@@ -3,8 +3,7 @@ const Base = require('./base');
 
 AV.init({
   appId: process.env.LEAN_ID,
-  appKey: process.env.LEAN_KEY,
-  serverURL: process.env.LEAN_API
+  appKey: process.env.LEAN_KEY
 });
 
 module.exports = class extends Base {
