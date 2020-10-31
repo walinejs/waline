@@ -4,16 +4,16 @@
   "version": "1.0.0",
   "author": "lizheming <i@imnerd.org>",
   "scripts": {
-    "start": "node development.js",
+    "start": "vercel dev",
     "lint": "eslint src/",
     "lint-fix": "eslint --fix src/"
   },
   "dependencies": {
+    "leancloud-storage": "^4.7.0",
     "think-logger3": "^1.0.0",
     "thinkjs": "^3.0.0"
   },
   "devDependencies": {
-    "think-watcher": "^3.0.0",
     "eslint": "^4.2.0",
     "eslint-config-think": "^1.0.0"
   },
