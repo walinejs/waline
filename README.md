@@ -1,5 +1,5 @@
 
-<img src="https://p5.ssl.qhimg.com/t01ec54674f5912eea9.png" width='200' align="right" />
+<img src="./assets/waline.png" width='200' align="right" />
 
 # Waline
 
