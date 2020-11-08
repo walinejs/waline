@@ -16,7 +16,21 @@
 
 [ ![](https://vercel.com/button) ](https://vercel.com/import/project?template=https://github.com/lizheming/waline/tree/master/example)
 
-点击上方按钮快速部署服务端，部署的时候在环境变量中输出 `LEAN_ID` 和 `LEAN_KEY` 的值，对应上一步中获得的 `APP ID` 和 `APP KEY`。部署完成后会得到一个 `*.vercel.app` 的二级域名。
+点击上方按钮，跳转至 Vercel 进行快速部署。未登录的话需要登录，这里选 Github 登录即可。登录后会让你输入 Vercel 项目名称。
+
+![](https://p2.ssl.qhimg.com/t018cd2a91a8896a555.png)
+
+输入名称后点击 <kbd>Continue</kbd> 进入下一步，输入 Github 仓库名称。Vercel 会基于 waline 模板帮助你新建并初始化该仓库。
+
+![](https://p4.ssl.qhimg.com/t01bb30e74f85ddf5b3.png)
+
+仓库初始化完毕后开始准备部署到 Vercel。这里需要在 Environment Variables 初配置 `LEAN_ID` 和 `LEAN_KE` 两个环境变量。它们的值分别对应上一步在 LeanCloud 中获得的 `APP ID` 和 `APP_KEY`。
+
+![](https://p5.ssl.qhimg.com/t019aec05e3e5fea5cc.png)
+
+点击 <kbd>Deploy</kbd> 就会开始进行部署了。稍等片刻，就会看到满屏的烟花庆祝你部署成功了。点击 <kbd>Visit</kbd> 会跳转到部署好的网站地址上，该地址即为之后需要填入的 `serverURL` 地址。
+
+![](https://p0.ssl.qhimg.com/t0142b58c2e8f886b28.png)
 
 ## HTML 片段
 

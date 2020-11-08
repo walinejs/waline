@@ -18,7 +18,6 @@ function renderValine(router) {
     }
     if ($page && !container){
       $page.appendChild(container)
-      waline()
     }else{
       setTimeout(()=>{
         $page = document.querySelector('.page')
@@ -26,6 +25,7 @@ function renderValine(router) {
         waline()
       }, 1000)
     }
+    waline()
   })
 }
 
