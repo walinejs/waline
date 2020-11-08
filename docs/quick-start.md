@@ -24,7 +24,7 @@
 
 ![](https://p4.ssl.qhimg.com/t01bb30e74f85ddf5b3.png)
 
-仓库初始化完毕后开始准备部署到 Vercel。这里需要在 Environment Variables 初配置 `LEAN_ID` 和 `LEAN_KE` 两个环境变量。它们的值分别对应上一步在 LeanCloud 中获得的 `APP ID` 和 `APP_KEY`。
+仓库初始化完毕后开始准备部署到 Vercel。这里需要在 Environment Variables 初配置 `LEAN_ID` 和 `LEAN_KEY` 两个环境变量。它们的值分别对应上一步在 LeanCloud 中获得的 `APP ID` 和 `APP_KEY`。
 
 ![](https://p5.ssl.qhimg.com/t019aec05e3e5fea5cc.png)
 
