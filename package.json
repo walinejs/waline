@@ -1,27 +1,7 @@
 {
-  "name": "server",
-  "description": "thinkjs serverless",
-  "version": "1.0.0",
-  "author": "lizheming <i@imnerd.org>",
-  "scripts": {
-    "start": "vercel dev",
-    "lint": "eslint src/",
-    "lint-fix": "eslint --fix src/"
-  },
-  "dependencies": {
-    "@koa/cors": "^3.1.0",
-    "leancloud-storage": "^4.7.0",
-    "marked": "^1.2.3",
-    "think-logger3": "^1.0.0",
-    "thinkjs": "^3.0.0"
-  },
-  "devDependencies": {
-    "eslint": "^4.2.0",
-    "eslint-config-think": "^1.0.0"
-  },
-  "repository": "",
-  "license": "MIT",
-  "engines": {
-    "node": ">=6.0.0"
-  }
+  "name": "waline",
+  "workspaces": [
+    "packages/server",
+    "packages/client"
+  ]
 }
