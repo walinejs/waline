@@ -19,5 +19,10 @@ module.exports = {
       '/cdn',
       '/faq'
     ]
-  }
+  },
+  plugin: [
+    _ => ({
+      enhanceAppFiles: path.resolve(__dirname, 'enhanceApp.js')
+    })
+  ]
 }
