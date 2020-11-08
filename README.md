@@ -1,31 +1,42 @@
-## Waline
 
-从 [Valine](https://valine.js.org) 衍生的带后端评论系统。 https://waline.netlify.app
+<img src="https://p5.ssl.qhimg.com/t01ec54674f5912eea9.png" width='200' align="right" />
 
-## 特性
+# Waline
 
-- 快速
-- 真·安全
-- Markdown 语法支持
-- 轻量易用
-- 免费部署
+![](https://img.shields.io/npm/v/@waline/client?color=blue&logo=npm&style=flat-square)   
 
-## Todo 
+A simple comment system with backend support fork from [Valine](https://valine.js.org). 
 
-- [ ] 评论管理
-- [ ] 邮件通知
-- [ ] Akismet 
-- [ ] 文章统计
-- [ ] 多语言同步
-- [ ] 自定义语言支持
-- [ ] 登录支持
-- [ ] 社交登录
-- [ ] 评论删除
-- 其它...
+------------------------------
 
-## 捐赠支持
+**View Documentation:** <https://waline.netlify.app>
 
-你的每一份帮助都将使 Waline 做的更好，走的更远！我们一直在坚持不懈地努力，并坚持让 Waline 完全开源免费，你的帮助将使我们更有动力和信心！
+## Feature
+
+- Fast
+- **Really** Safe
+- Support for full markdown syntax
+- Simple and lightweight
+- Deploy free!
+
+
+## Todo
+
+- [ ]Comment management
+- [ ]Email notification
+- [ ]Akismet 
+- [ ]Article counter
+- [ ]i18n
+- [ ]Custom language
+- [ ]Login support
+- [ ]Social account login
+- [ ]Support delete comment
+
+That's **really** welcome to contribute waline!
+
+## Donate
+
+If you want support me for my work and make waline greater, welecome to donate me!
 
 <div class="donate-qrcode">
 <img width="300" src="https://p5.ssl.qhimg.com/t013f422b5b319becbb.png" alt="donate by alipay" /> <img width="300" src="https://p4.ssl.qhimg.com/t0142965a40989b8d7a.png" alt="donate by wechat" />
@@ -33,3 +44,4 @@
 
 ## License
 [GPL-2.0](https://github.com/lizheming/Waline/blob/master/LICENSE)
+
