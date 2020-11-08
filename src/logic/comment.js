@@ -10,7 +10,7 @@ module.exports = class extends think.Logic {
 
   listAction() {
     this.rules = {
-      url: {
+      path: {
         string: true,
         required: true
       },

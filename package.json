@@ -9,7 +9,9 @@
     "lint-fix": "eslint --fix src/"
   },
   "dependencies": {
+    "@koa/cors": "^3.1.0",
     "leancloud-storage": "^4.7.0",
+    "marked": "^1.2.3",
     "think-logger3": "^1.0.0",
     "thinkjs": "^3.0.0"
   },

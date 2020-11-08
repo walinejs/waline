@@ -1,3 +1,4 @@
+const cors = require('@koa/cors');
 const isDev = think.env === 'development';
 
 module.exports = [
@@ -9,10 +10,13 @@ module.exports = [
     }
   },
   {
+    handle: cors
+  },
+  {
     handle: 'trace',
     enable: !think.isCli,
     options: {
-      debug: isDev
+      debug: true
     }
   },
   {
