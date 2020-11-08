@@ -1,35 +1,37 @@
-# 介绍
+<img src="https://p5.ssl.qhimg.com/t01ec54674f5912eea9.png" width='200' align="right" />
+
+# Waline
 ![](https://img.shields.io/npm/v/@waline/client?color=blue&logo=npm&style=flat-square)   
 
-Waline - 一款从 [Valine](https://valine.js.org) 衍生的带后端评论系统。可以将 Waline 等价成 With backend Valine.
+Waline - A simple comment system with backend support fork from [Valine](https://valine.js.org). 
 
-## 特性
+## Feature
 
-- 快速
-- 真·安全
-- Markdown 语法支持
-- 轻量易用
-- 免费部署
+- Fast
+- **Really** Safe
+- Support for full markdown syntax
+- Simple and lightweight
+- Deploy free!
 
 ## Todo
 
-- 评论管理
-- 邮件通知
+- Comment management
+- Email notification
 - Akismet 
-- 文章统计
-- 多语言同步
-- 自定义语言支持
-- 登录支持
-- 社交登录
-- 评论删除
-- 其它...
+- Article counter
+- i18n
+- Custom language
+- Login support
+- Social account login
+- Support delete comment
+- and so on...
 
-真·欢迎你为 Waline 的开发做贡献。
+That's **really** welcome to contribute waline!
 
-## 捐赠
+## Donate
 
-如果你觉得 Waline 对你有帮助，或者想对我微小的工作一点资瓷，欢迎给我捐赠。
+If waline helps you, or you want support me for my work, welecome to donate me!
 
-| 支付宝 | 微信 |
+| Alipay | Wechat |
 |:-------:|:------:|
 | ![donate by alipay](https://p5.ssl.qhimg.com/t013f422b5b319becbb.png) | ![donate by wechat](https://p4.ssl.qhimg.com/t0142965a40989b8d7a.png) | 
