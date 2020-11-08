@@ -10,7 +10,8 @@
 + <script src='//unpkg.com/@waline/client/dist/Waline.min.js'></script>
 
   <script>
-  new Valine({
+-  new Valine({
++  new Waline({
     el: '#vcomments',
 -  appId: 'Your appId',
 -  appKey: 'Your appKey'
