@@ -3,10 +3,10 @@ FROM node:lts-alpine
 ENV WORKDIR /opt/waline
 WORKDIR ${WORKDIR}
 
-COPY packages/server/package.json ${WORKDIR}/package.json
+COPY package.json ${WORKDIR}/package.json
 RUN npm install 
 
-COPY packages/server/vanilla.js ${WORKDIR}/vanilla.js
-COPY packages/server/src ${WORKDIR}/src
+COPY vanilla.js ${WORKDIR}/vanilla.js
+COPY src ${WORKDIR}/src
 
 ENTRYPOINT [ "node", "${WORKDIR}/vanilla.js" ]
