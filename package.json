@@ -1,7 +1,7 @@
 {
   "name": "waline",
+  "private": true,
   "workspaces": [
-    "packages/server",
-    "packages/client"
+    "packages/*"
   ]
 }
