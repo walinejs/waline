@@ -15,7 +15,7 @@
   ],
   "routes": [
     {
-      "src": "/index.html",
+      "src": "/",
       "dest": "index.html"
     },
     {

@@ -6,10 +6,11 @@
   <title>Waline Example</title>
 </head>
 <body>
-  <div id="waline"></div>
+  <div id="waline" style="max-width: 800px;margin: 0 auto;"></div>
+  <script src="https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js"></script>
   <script>
-    new Valine({
-      el: '#root',
+    new Waline({
+      el: '#waline',
       path: '/guestbook.html',
       serverURL: 'http://localhost:3000'
     });
