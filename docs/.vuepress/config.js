@@ -15,6 +15,7 @@ module.exports = {
       '/avatar',
       '/i18n',
       '/emoji',
+      '/migration',
       '/api',
       '/cdn',
       '/faq'
