@@ -4,7 +4,7 @@ module.exports = {
   themeConfig: {
     editLinks: true,
     repo: "https://github.com/lizheming/waline",
-    // 默认为 "Edit this page"
+    logo: "https://p5.ssl.qhimg.com/t01ec54674f5912eea9.png",
     docsDir: "docs",
     editLinkText: "帮助我们改善此页面！",
     sidebar: [
