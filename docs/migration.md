@@ -9,12 +9,14 @@
 - <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
 + <script src='//unpkg.com/@waline/client/dist/Waline.min.js'></script>
 
+  <script>
   new Valine({
     el: '#vcomments',
 -  appId: 'Your appId',
 -  appKey: 'Your appKey'
 +  serverURL: 'YOUR SERVER URL'
   });
+  </script>
   ```
 
 **注：** Waline 和 Valine 大部分的配置都是一样的，但也不能完全保证没有差异。Waline 具体的配置可查看 [配置项](/configuration.html)。
