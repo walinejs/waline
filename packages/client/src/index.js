@@ -7,7 +7,7 @@ import './index.css';
 export default function Waline({
   el, 
   placeholder = "撰写评论...", 
-  path = "", 
+  path = location.pathname, 
   avatar, 
   avatarForce,
   avatarCDN,
