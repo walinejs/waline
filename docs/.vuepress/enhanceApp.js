@@ -1,6 +1,5 @@
-import Waline from "@waline/client";
-
 function waline() {
+  const Waline = require('@waline/client');
   new Waline({
     el: '#waline',
     serverURL: 'https://waline.vercel.app',
