@@ -4,7 +4,7 @@ import App from './App';
 import Context from './context';
 import './index.css';
 
-function Valine({
+export default function Waline({
   el, 
   placeholder = "撰写评论...", 
   path = "", 
@@ -41,12 +41,3 @@ function Valine({
     document.querySelector(el)
   );
 }
-
-new Valine({
-  el: '#root',
-  lang: 'en',
-  copyRight: false,
-  placeholder: '哈哈哈哈哈',
-  path: '/guestbook.html',
-  serverURL: 'http://localhost:3000'
-});
