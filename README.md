@@ -1,6 +1,6 @@
 ## Waline
 
-从 [Valine](https://valine.js.org) 衍生的带后端评论系统。 https://waline.js.org
+从 [Valine](https://valine.js.org) 衍生的带后端评论系统。 https://waline.netlify.app
 
 ## 特性
 
