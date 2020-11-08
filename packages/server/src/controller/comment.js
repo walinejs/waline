@@ -129,6 +129,11 @@ module.exports = class extends Base {
     cmt.setACL(acl);
     const resp = await cmt.save();
 
+    const {postSave} = think.config();
+    if(think.isFunction(postSave)) {
+      await postSave(resp);
+    }
+
     return this.success(formatCmt(resp.toJSON()));
   }
 }
