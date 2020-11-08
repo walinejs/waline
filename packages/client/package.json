@@ -1,7 +1,7 @@
 {
   "name": "@waline/client",
   "description": "client for waline comment system",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "keywords": [
     "valine",
     "waline",
@@ -14,7 +14,8 @@
     "url": "https://github.com/lizheming/waline"
   },
   "scripts": {
-    "build": "webpack --mode=production"
+    "build": "webpack --mode=production",
+    "prepublish": "npm run build"
   },
   "browserslist": {
     "production": [
