@@ -4,13 +4,19 @@
 
 ## 获取APP ID 和 APP Key
 
-请先[登录](https://leancloud.cn/dashboard/login.html#/signin)或[注册](https://leancloud.cn/dashboard/login.html#/signup) `LeanCloud`, 进入[控制台](https://leancloud.cn/dashboard/applist.html#/apps)后点击左下角[创建应用](https://leancloud.cn/dashboard/applist.html#/newapp)：
+请先[登录](https://console.leancloud.app/login.html#/signin)或[注册](https://console.leancloud.app/login.html#/signup) `LeanCloud 国际版`, 进入[控制台](https://console.leancloud.app/applist.html#/apps)后点击左下角[创建应用](https://console.leancloud.app/applist.html#/newapp)：
 
 ![](https://i.loli.net/2019/06/21/5d0c995c86fac81746.jpg)
 
 应用创建好以后，进入刚刚创建的应用，选择左下角的`设置`>`应用Key`，然后就能看到你的`APP ID`和`APP Key`了：
 
 ![](https://i.loli.net/2019/06/21/5d0c997a60baa24436.jpg)
+
+> **注：**  
+> 这里推荐使用 Leancloud 国际版。如果你确实想用 Leancloud 国内版的话（国际版是 [leancloud.app](https://leancloud.app)，非国际版是 [leancloud.cn](https://leancloud.cn)），除了 `APP_ID` 和 `APP_Key` 之外，还需要对应用进行域名绑定。  
+> 进入应用后选择 <kbd>设置</kbd> > <kbd>域名绑定</kbd>  > API 访问域名 <kbd>绑定新域名</kbd> > 输入需要绑定的已备案域名点击 <kbd>确定</kbd>。之后按照页面上的提示去 DNS 上做正确的 CNAME 解析即可。
+> 
+> ![](https://i.loli.net/2020/11/09/xfsX4JKt9zhuaiB.png)
 
 ## Vercel 部署
 
@@ -24,7 +30,7 @@
 
 ![](https://p4.ssl.qhimg.com/t01bb30e74f85ddf5b3.png)
 
-仓库初始化完毕后开始准备部署到 Vercel。这里需要在 Environment Variables 初配置 `LEAN_ID` 和 `LEAN_KEY` 两个环境变量。它们的值分别对应上一步在 LeanCloud 中获得的 `APP ID` 和 `APP_KEY`。
+仓库初始化完毕后开始准备部署到 Vercel。这里需要在 Environment Variables 初配置 `LEAN_ID` 和 `LEAN_KEY` 两个环境变量。它们的值分别对应上一步在 LeanCloud 中获得的 `APP ID` 和 `APP_KEY`。如果你是 LeanCloud 国内版用户的话，还需要输入 `LEAN_SERVER` 环境变量，对应的是你在上一步上绑定的已备案域名。
 
 ![](https://p5.ssl.qhimg.com/t019aec05e3e5fea5cc.png)
 
