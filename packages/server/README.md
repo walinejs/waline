@@ -16,6 +16,8 @@ You should set `LEAN_ID` and `LEAN_KEY` in environment variable which can get fr
 
 The detail how to get `LEAN_ID` and `LEAN_KEY`: <https://waline.js.org/quick-start.html>
 
+We support [Akismet](https://akismet.com/) spam protection service default. If you want close it, please set `AKISMET_KEY` environment variable as `false`。
+
 ## Deploy
 
 [ ![](https://vercel.com/button) ](https://vercel.com/import/project?template=https://github.com/lizheming/waline/tree/master/example)

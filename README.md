@@ -24,7 +24,7 @@ A simple comment system with backend support fork from [Valine](https://valine.j
 
 - [ ] Comment management
 - [ ] Email notification
-- [ ] Akismet 
+- [x] Akismet 
 - [ ] Article counter
 - [ ] i18n
 - [ ] Custom language
