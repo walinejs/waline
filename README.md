@@ -9,7 +9,7 @@ A simple comment system with backend support fork from [Valine](https://valine.j
 
 ------------------------------
 
-**View Documentation:** <https://waline.netlify.app>
+**View Documentation:** <https://waline.js.org>
 
 ## Feature
 
@@ -22,15 +22,15 @@ A simple comment system with backend support fork from [Valine](https://valine.j
 
 ## Todo
 
-- [ ]Comment management
-- [ ]Email notification
-- [ ]Akismet 
-- [ ]Article counter
-- [ ]i18n
-- [ ]Custom language
-- [ ]Login support
-- [ ]Social account login
-- [ ]Support delete comment
+- [ ] Comment management
+- [ ] Email notification
+- [ ] Akismet 
+- [ ] Article counter
+- [ ] i18n
+- [ ] Custom language
+- [ ] Login support
+- [ ] Social account login
+- [ ] Support delete comment
 
 That's **really** welcome to contribute waline!
 
