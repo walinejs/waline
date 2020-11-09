@@ -1,23 +1,31 @@
 function waline() {
   const Waline = require('@waline/client');
   new Waline({
-    el: '#waline',
+    el: '#waline-comment',
     serverURL: 'https://waline.vercel.app',
     path: window.location.pathname
   });
 }
 
 function renderValine(router) {
-  router.afterEach(_ => {
+  router.afterEach(route => {
     let $page = document.querySelector('.page')
-    let container = document.getElementById('waline')
-    if(!container){
-      container = document.createElement('div')
-      container.id = 'waline'
-      container.className = 'page-nav'
+    let container = document.getElementById('waline-comment')
+    if(container) {
+      $page.removeChild(container);
     }
-    if ($page && !container){
+    
+    if(route.path !== '/') {
+      return;
+    }
+    
+    container = document.createElement('div')
+    container.id = 'waline-comment'
+    container.className = 'page-nav'
+
+    if ($page){
       $page.appendChild(container)
+      waline()
     }else{
       setTimeout(()=>{
         $page = document.querySelector('.page')
@@ -25,7 +33,6 @@ function renderValine(router) {
         waline()
       }, 1000)
     }
-    waline()
   })
 }
 
