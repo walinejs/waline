@@ -1,41 +1,37 @@
 const nodemailer = require('nodemailer');
 const nunjucks = require('nunjucks');
 
-module.exports = class extends think.Service {
-  constructor(...args) {
-    super(...args);
-
-    const {SMTP_USER, SMTP_PASS, SMTP_HOST, SMTP_PORT, SMTP_SECURE, SMTP_SERVICE} = process.env;
-    if(!SMTP_HOST && !SMTP_SERVICE) {
-      return;
-    }
-
-    const config = {auth: {user: SMTP_USER, pass: SMTP_PASS}};
-    if(SMTP_SERVICE) {
-      config.service = SMTP_SERVICE;
-    } else {
-      config.host = SMTP_HOST;
-      config.port = parseInt(SMTP_PORT);
-      config.secure = SMTP_SECURE !== 'false';
-    }
-    
-    this.transporter = nodemailer.createTransport(config);
-    this.transporter.verify(function(error, success) {
-      if (error) {
-        console.log('SMTP mail config eror:', error);
-      }
-      if (success) {
-        console.log("SMTP mail config normal!");
-      }
-    });
+const {SMTP_USER, SMTP_PASS, SMTP_HOST, SMTP_PORT, SMTP_SECURE, SMTP_SERVICE} = process.env;
+let transporter;
+if(SMTP_HOST || SMTP_SERVICE) {
+  const config = {
+    auth: {user: SMTP_USER, pass: SMTP_PASS}
+  };
+  if(SMTP_SERVICE) {
+    config.service = SMTP_SERVICE;
+  } else {
+    config.host = SMTP_HOST;
+    config.port = parseInt(SMTP_PORT);
+    config.secure = SMTP_SECURE !== 'false';
   }
-
+  transporter = nodemailer.createTransport(config);
+  transporter.verify().then(function(verify) {
+    console.log("verify result: ", verify);
+  }).catch(e => {
+    console.log("verify error: ", e);
+  });
+}
+module.exports = class extends think.Service {
   async sleep(second) {
     return new Promise(resolve => setTimeout(resolve, second * 1000));
   }
   
   async mail({to, title, content}, self, parent) {
-    const {SITE_NAME, SITE_URL} = process.env;
+    if(!transporter) {
+      return;
+    }
+
+    const {SITE_NAME, SITE_URL, SMTP_USER} = process.env;
     const data = {
       self, 
       parent, 
@@ -48,19 +44,21 @@ module.exports = class extends think.Service {
     title = nunjucks.renderString(title, data);
     content = nunjucks.renderString(content, data);
 
-    return new Promise((resolve, reject) => {
-      this.transporter.sendMail({
-        to,
-        subject: title,
-        html: content
-      }, (error, info) => {
-        if(error) {
-          return reject(error);
-        }
-        resolve(info);
-      });
+    console.log({
+      from: SMTP_USER,
+      to, 
+      subject: title, 
+      html: content
     })
-    
+    return transporter.sendMail({
+      from: SMTP_USER,
+      to, 
+      subject: title, 
+      html: content
+    }).catch(e => {
+      console.log(1111);
+      console.log(e);
+    })
   }
   
   async run(comment, parent) {
