@@ -153,8 +153,19 @@ module.exports = class extends Base {
     cmt.setACL(acl);
     const resp = await cmt.save();
 
+    let pComment;
+    if(pid) {
+      pComment = await AV.Query('Comment').get(pid);
+      pComment = pComment.toJSON();
+    }
+    if(comment.status !== 'spam') {
+      const notify = this.service('notify');
+      //run in background without await
+      notify.run(resp, pComment);
+    }
+
     if(think.isFunction(postSave)) {
-      await postSave(resp);
+      await postSave(resp, pComment);
     }
 
     return this.success(formatCmt(resp.toJSON()));

@@ -12,6 +12,8 @@
     "akismet": "^2.0.6",
     "leancloud-storage": "^4.7.0",
     "marked": "^1.2.3",
+    "nodemailer": "^6.4.15",
+    "nunjucks": "^3.2.2",
     "think-logger3": "^1.0.0",
     "thinkjs": "^3.0.0"
   },
