@@ -151,7 +151,7 @@ module.exports = class extends Base {
     acl.setPublicReadAccess(true);
     acl.setPublicWriteAccess(false);
     cmt.setACL(acl);
-    const resp = await cmt.save();
+    const resp = (await cmt.save()).toJSON();
 
     let pComment;
     if(pid) {
@@ -168,6 +168,6 @@ module.exports = class extends Base {
       await postSave(resp, pComment);
     }
 
-    return this.success(formatCmt(resp.toJSON()));
+    return this.success(formatCmt(resp));
   }
 }

@@ -1,13 +1,16 @@
 const nodemailer = require('nodemailer');
+const nunjucks = require('nunjucks');
 
 module.exports = class extends think.Service {
-  constructor() {
+  constructor(...args) {
+    super(...args);
+
     const {SMTP_USER, SMTP_PASS, SMTP_HOST, SMTP_PORT, SMTP_SECURE, SMTP_SERVICE} = process.env;
     if(!SMTP_HOST && !SMTP_SERVICE) {
       return;
     }
 
-    const config = {auto: {user: SMTP_USER, pass: SMTP_PASS}};
+    const config = {auth: {user: SMTP_USER, pass: SMTP_PASS}};
     if(SMTP_SERVICE) {
       config.service = SMTP_SERVICE;
     } else {
@@ -19,10 +22,10 @@ module.exports = class extends think.Service {
     this.transporter = nodemailer.createTransport(config);
     this.transporter.verify(function(error, success) {
       if (error) {
-        console.log('SMTP邮箱配置异常：', error);
+        console.log('SMTP mail config eror:', error);
       }
       if (success) {
-        console.log("SMTP邮箱配置正常！");
+        console.log("SMTP mail config normal!");
       }
     });
   }
@@ -31,8 +34,8 @@ module.exports = class extends think.Service {
     return new Promise(resolve => setTimeout(resolve, second * 1000));
   }
   
-  async mail({to, title, content}) {
-    const {SITE_NAME, SITE_URL, SENDER_NAME, SENDER_EMAIL} = process.env;
+  async mail({to, title, content}, self, parent) {
+    const {SITE_NAME, SITE_URL} = process.env;
     const data = {
       self, 
       parent, 
@@ -47,7 +50,6 @@ module.exports = class extends think.Service {
 
     return new Promise((resolve, reject) => {
       this.transporter.sendMail({
-        from: `"${SENDER_NAME}" <${SENDER_EMAIL}>`,
         to,
         subject: title,
         html: content
@@ -62,13 +64,13 @@ module.exports = class extends think.Service {
   }
   
   async run(comment, parent) {
-    const {AUTHOR_EMAIL, BLOGGER_EMAIL, SENDER_EMAIL} = process.env;
-    const AUTHOR = AUTHOR_EMAIL || BLOGGER_EMAIL || SENDER_EMAIL;
+    const {AUTHOR_EMAIL, BLOGGER_EMAIL} = process.env;
+    const AUTHOR = AUTHOR_EMAIL || BLOGGER_EMAIL;
     
     const mailList = [];
     if(
       comment.mail.toLowerCase() !== AUTHOR.toLowerCase() ||
-      parent.mail.toLowerCase() !== AUTHOR.toLowerCase()
+      (parent && parent.mail.toLowerCase() !== AUTHOR.toLowerCase())
     ) {
       mailList.push({
         to: AUTHOR,
@@ -111,10 +113,10 @@ module.exports = class extends think.Service {
 
     for(let i = 0; i < mailList.length; i++) {
       try {
-        const {response} = await this.mail(mailList[i]);
-        console.log('通知邮件成功发送: %s', response);
+        const {response} = await this.mail(mailList[i], comment, parent);
+        console.log('Notification mail send success: %s', response);
       } catch(e) {
-        console.log('邮件发送失败：', e);
+        console.log('Mail send fail:', e);
       }
       
       await this.sleep(10);
