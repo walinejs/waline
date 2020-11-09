@@ -2,7 +2,7 @@ const Akismet = require('akismet');
 const DEFAULT_KEY = '70542d86693e';
 
 module.exports = function(comment, blog) {
-  let {AKISMET_KEY} = process.env;
+  let {AKISMET_KEY, SITE_URL} = process.env;
   if(!AKISMET_KEY) {
     AKISMET_KEY = DEFAULT_KEY;
   }
@@ -23,7 +23,7 @@ module.exports = function(comment, blog) {
 
       akismet.checkComment({ 
         user_ip: comment.ip,
-        permalink: comment.host,
+        permalink: SITE_URL + comment.url,
         comment_author: comment.nick,
         comment_content: comment.comment
       }, function(err, spam) {
