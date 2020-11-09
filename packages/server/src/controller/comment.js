@@ -3,6 +3,7 @@ const helper = require('think-helper');
 const marked = require('marked');
 const Base = require('./base');
 const detect = require('../service/detect');
+const akismet = require('../service/akismet');
 
 marked.setOptions({
   renderer: new marked.Renderer(),
@@ -49,7 +50,12 @@ module.exports = class extends Base {
 
   async recentAction() {
     const {count} = this.get();
-    const comments = await this.modelInstance.descending('insertedAt').limit(count).find();
+    const comments = await this.modelInstance
+      .descending('insertedAt')
+      .notContainedIn('status', ['spam'])
+      .limit(count)
+      .find();
+
     return this.json(comments.map(comment => {
       const {ip, ...cmt} = comment.toJSON();
       return cmt;
@@ -59,17 +65,17 @@ module.exports = class extends Base {
   async listAction() {
     const {path: url, page, pageSize} = this.get();
 
-    const rootCount = await this.modelInstance.equalTo('url', url).doesNotExist('rid').count();
-    // const comments = await this.modelInstance.equalTo('url', url).descending('insertedAt').select([
-    //   'comment', 'insertedAt', 'link', 'mail', 'nick', 'pid', 'rid', 'ua'
-    // ]).find();
-    // const rootComments = comments.filter(comment => !comment.rid).slice((page - 1) * pageSize, pageSize * page);
-    // return this.json(rootComments);
+    const rootCount = await this.modelInstance
+      .equalTo('url', url)
+      .doesNotExist('rid')
+      .notContainedIn('status', ['spam'])
+      .count();
 
     const rootComments = await this.modelInstance
       .descending('insertedAt')
       .equalTo('url', url)
       .doesNotExist('rid')
+      .notContainedIn('status', ['spam'])
       .skip(Math.max((page - 1) * pageSize, 0))
       .limit(pageSize)
       .select([
@@ -81,6 +87,7 @@ module.exports = class extends Base {
       .ascending('insertedAt')
       .equalTo('url', url)
       .exists('rid')
+      .notContainedIn('status', ['spam'])
       .containedIn('rid', rootComments.map(comment => comment.get('objectId')))
       .select([
         'comment', 'insertedAt', 'link', 'mail', 'nick', 'pid', 'rid', 'ua'
@@ -103,25 +110,42 @@ module.exports = class extends Base {
 
   async countAction() {
     const {url} = this.get();
-    const count = await this.modelInstance.equalTo('url', url).count();
+    const count = await this.modelInstance
+      .equalTo('url', url)
+      .notContainedIn('status', ['spam'])
+      .count();
+
     return this.json(count);
   }
 
   async saveAction() {
     const {comment, link, mail, nick, pid, rid, ua, url, at} = this.post();
-    const Ct = AV.Object.extend('Comment');
-    const cmt = new Ct();
-
     const data = {
       link, mail, nick, pid, rid, ua, url, 
       ip: this.ctx.ip,
       insertedAt: new Date(),
       comment: marked(escapeHTML(comment))
     };
-
     if(pid) {
       data.comment = data.comment.replace('<p>', `<p><a class="at" href="#${pid}">@${at}</a> , `);
     }
+
+    data.status = 'approved';
+    const spam = await akismet(data, this.ctx.protocol + '://' + this.ctx.host).catch(e => console.log(e)); // ignore akismet error
+    if(spam === true) {
+      data.status = 'spam';
+    }
+    
+    const {preSave, postSave} = think.config();
+    if(think.isFunction(preSave)) {
+      const resp = await preSave(data);
+      if(resp) {
+        return this.fail(resp.errmsg);
+      }
+    }
+
+    const Ct = AV.Object.extend('Comment');
+    const cmt = new Ct();
     cmt.set(data);
     const acl = new AV.ACL();
     acl.setPublicReadAccess(true);
@@ -129,7 +153,6 @@ module.exports = class extends Base {
     cmt.setACL(acl);
     const resp = await cmt.save();
 
-    const {postSave} = think.config();
     if(think.isFunction(postSave)) {
       await postSave(resp);
     }

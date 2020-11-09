@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@koa/cors": "^3.1.0",
+    "akismet": "^2.0.6",
     "leancloud-storage": "^4.7.0",
     "marked": "^1.2.3",
     "think-logger3": "^1.0.0",
