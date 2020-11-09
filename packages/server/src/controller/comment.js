@@ -19,7 +19,9 @@ marked.setOptions({
 
 AV.init({
   appId: process.env.LEAN_ID,
-  appKey: process.env.LEAN_KEY
+  appKey: process.env.LEAN_KEY,
+  // required for leancloud china
+  serverURL: process.env.LEAN_SERVER
 });
 
 function formatCmt({ua, ip, ...comment}) {
