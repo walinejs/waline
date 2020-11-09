@@ -18,6 +18,7 @@ module.exports = {
       '/migration',
       '/api',
       '/cdn',
+      '/vps-deploy',
       '/faq'
     ]
   },
