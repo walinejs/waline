@@ -16,7 +16,13 @@ module.exports = [
     handle: 'trace',
     enable: !think.isCli,
     options: {
-      debug: true
+      debug: true,
+      error(err, ctx) {
+        if(/favicon.ico$/.test(ctx.url)) {
+          return;
+        }
+        console.error(err);
+      }
     }
   },
   {

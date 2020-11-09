@@ -19,7 +19,9 @@ marked.setOptions({
 
 AV.init({
   appId: process.env.LEAN_ID,
-  appKey: process.env.LEAN_KEY
+  appKey: process.env.LEAN_KEY,
+  // required for leancloud china
+  serverURL: process.env.LEAN_SERVER
 });
 
 function formatCmt({ua, ip, ...comment}) {
@@ -151,12 +153,23 @@ module.exports = class extends Base {
     acl.setPublicReadAccess(true);
     acl.setPublicWriteAccess(false);
     cmt.setACL(acl);
-    const resp = await cmt.save();
+    const resp = (await cmt.save()).toJSON();
 
-    if(think.isFunction(postSave)) {
-      await postSave(resp);
+    let pComment;
+    if(pid) {
+      pComment = await AV.Query('Comment').get(pid);
+      pComment = pComment.toJSON();
+    }
+    if(comment.status !== 'spam') {
+      const notify = this.service('notify');
+      //run in background without await
+      notify.run(resp, pComment);
     }
 
-    return this.success(formatCmt(resp.toJSON()));
+    if(think.isFunction(postSave)) {
+      await postSave(resp, pComment);
+    }
+
+    return this.success(formatCmt(resp));
   }
 }

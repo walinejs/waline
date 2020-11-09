@@ -12,7 +12,7 @@ npm install @waline/vercel --save
 
 ## Configuration
 
-You should set `LEAN_ID` and `LEAN_KEY` in environment variable which can get from <leancloud.app>.
+You should set `LEAN_ID` and `LEAN_KEY` in environment variable which can get from <https://leancloud.app>.
 
 The detail how to get `LEAN_ID` and `LEAN_KEY`: <https://waline.js.org/quick-start.html>
 

@@ -20,4 +20,6 @@
   </script>
   ```
 
-**注：** Waline 和 Valine 大部分的配置都是一样的，但也不能完全保证没有差异。Waline 具体的配置可查看 [配置项](/configuration.html)。
+**注1：** Waline 和 Valine 大部分的配置都是一样的，但也不能完全保证没有差异。Waline 具体的配置可查看 [配置项](/configuration.html)。
+
+**注2：** 如果你是 Leancloud 国内版用户的话，除了 `LEAN_ID` 和 `LEAN_KEY`，还需要设置 `LEAN_SERVER` 环境变量，值为你的应用后台绑定的已备案域名。
