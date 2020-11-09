@@ -23,7 +23,8 @@ A simple comment system with backend support fork from [Valine](https://valine.j
 ## Todo
 
 - [ ] Comment management
-- [ ] Email notification
+- [x] Email notification
+- [x] Wechat notification
 - [x] Akismet 
 - [ ] Article counter
 - [ ] i18n
