@@ -50,6 +50,8 @@ docker pull lizheming/waline
 
 - **自己构建镜像**（备选）
 
+> 若已从 Docker Hub 拉取了镜像，则无需此步。  
+
 GitHub Dockerfile：[https://github.com/lizheming/waline](https://github.com/lizheming/waline/tree/master/packages/server)
 
 ```
