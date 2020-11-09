@@ -9,4 +9,4 @@ RUN npm install
 COPY packages/server/vanilla.js ${WORKDIR}/vanilla.js
 COPY packages/server/src ${WORKDIR}/src
 
-ENTRYPOINT [ "node", "${WORKDIR}/vanilla.js" ]
+ENTRYPOINT [ "node", "vanilla.js" ]
