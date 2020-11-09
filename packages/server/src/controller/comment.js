@@ -162,8 +162,7 @@ module.exports = class extends Base {
     }
     if(comment.status !== 'spam') {
       const notify = this.service('notify');
-      //run in background without await
-      notify.run(resp, pComment);
+      await notify.run(resp, pComment);
     }
 
     if(think.isFunction(postSave)) {

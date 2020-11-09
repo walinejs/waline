@@ -1,33 +1,33 @@
 const nodemailer = require('nodemailer');
 const nunjucks = require('nunjucks');
-
-const {SMTP_USER, SMTP_PASS, SMTP_HOST, SMTP_PORT, SMTP_SECURE, SMTP_SERVICE} = process.env;
-let transporter;
-if(SMTP_HOST || SMTP_SERVICE) {
-  const config = {
-    auth: {user: SMTP_USER, pass: SMTP_PASS}
-  };
-  if(SMTP_SERVICE) {
-    config.service = SMTP_SERVICE;
-  } else {
-    config.host = SMTP_HOST;
-    config.port = parseInt(SMTP_PORT);
-    config.secure = SMTP_SECURE !== 'false';
-  }
-  transporter = nodemailer.createTransport(config);
-  transporter.verify().then(function(verify) {
-    console.log("verify result: ", verify);
-  }).catch(e => {
-    console.log("verify error: ", e);
-  });
-}
+const request = require('request-promise-native');
 module.exports = class extends think.Service {
+  constructor(...args) {
+    super(...args);
+
+    const {SMTP_USER, SMTP_PASS, SMTP_HOST, SMTP_PORT, SMTP_SECURE, SMTP_SERVICE} = process.env;
+    if(SMTP_HOST || SMTP_SERVICE) {
+      const config = {
+        auth: {user: SMTP_USER, pass: SMTP_PASS}
+      };
+      if(SMTP_SERVICE) {
+        config.service = SMTP_SERVICE;
+      } else {
+        config.host = SMTP_HOST;
+        config.port = parseInt(SMTP_PORT);
+        config.secure = SMTP_SECURE !== 'false';
+      }
+      this.transporter = nodemailer.createTransport(config);
+    }
+  }
+
   async sleep(second) {
     return new Promise(resolve => setTimeout(resolve, second * 1000));
   }
   
   async mail({to, title, content}, self, parent) {
-    if(!transporter) {
+    console.log(this.transporter);
+    if(!this.transporter) {
       return;
     }
 
@@ -44,21 +44,42 @@ module.exports = class extends think.Service {
     title = nunjucks.renderString(title, data);
     content = nunjucks.renderString(content, data);
 
-    console.log({
+    return this.transporter.sendMail({
       from: SMTP_USER,
       to, 
       subject: title, 
       html: content
-    })
-    return transporter.sendMail({
-      from: SMTP_USER,
-      to, 
-      subject: title, 
-      html: content
-    }).catch(e => {
-      console.log(1111);
-      console.log(e);
-    })
+    });
+  }
+
+  async wechat({title, content}, self, parent) {
+    const {SC_KEY, SITE_NAME, SITE_URL} = process.env;
+    if(!SC_KEY) {
+      return;
+    }
+
+    const data = {
+      self, 
+      parent, 
+      site: {
+        name: SITE_NAME, 
+        url: SITE_URL,
+        postUrl: SITE_URL + self.url + '#' + self.objectId
+      }
+    };
+    title = nunjucks.renderString(title, data);
+    content = nunjucks.renderString(content, data);
+  
+    const resp = await request({
+      uri: `https://sc.ftqq.com/${SC_KEY}.send`,
+      method: 'POST',
+      form: {
+        text: title,
+        desp: content
+      },
+      json: true
+    });
+    console.log(resp);
   }
   
   async run(comment, parent) {
@@ -66,26 +87,27 @@ module.exports = class extends think.Service {
     const AUTHOR = AUTHOR_EMAIL || BLOGGER_EMAIL;
     
     const mailList = [];
-    if(
-      comment.mail.toLowerCase() !== AUTHOR.toLowerCase() ||
-      (parent && parent.mail.toLowerCase() !== AUTHOR.toLowerCase())
-    ) {
-      mailList.push({
-        to: AUTHOR,
-        title: '{{site.name}} 上有新评论了',
-        content: `
-        <div style="border-top:2px solid #12ADDB;box-shadow:0 1px 3px #AAAAAA;line-height:180%;padding:0 15px 12px;margin:50px auto;font-size:12px;">
-          <h2 style="border-bottom:1px solid #DDD;font-size:14px;font-weight:normal;padding:13px 0 10px 8px;">
-            您在<a style="text-decoration:none;color: #12ADDB;" href="{{site.url}}" target="_blank">{{site.name}}</a>上的文章有了新的评论
-          </h2>
-          <p><strong>{{self.nick}}</strong>回复说：</p>
-          <div style="background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;">
-            {{self.comment}}
-          </div>
-          <p>您可以点击<a style="text-decoration:none; color:#12addb" href="{{site.postUrl}}" target="_blank">查看回复的完整內容</a></p>
-          <br/>
-        </div>`
-      });
+    const isAuthorComment = comment.mail.toLowerCase() === AUTHOR.toLowerCase();
+    const isReplyAuthor = parent && parent.mail.toLowerCase() === AUTHOR.toLowerCase();
+
+    const title = '{{site.name}} 上有新评论了';
+    const content = `
+    <div style="border-top:2px solid #12ADDB;box-shadow:0 1px 3px #AAAAAA;line-height:180%;padding:0 15px 12px;margin:50px auto;font-size:12px;">
+      <h2 style="border-bottom:1px solid #DDD;font-size:14px;font-weight:normal;padding:13px 0 10px 8px;">
+        您在<a style="text-decoration:none;color: #12ADDB;" href="{{site.url}}" target="_blank">{{site.name}}</a>上的文章有了新的评论
+      </h2>
+      <p><strong>{{self.nick}}</strong>回复说：</p>
+      <div style="background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;">
+        {{self.comment}}
+      </div>
+      <p>您可以点击<a style="text-decoration:none; color:#12addb" href="{{site.postUrl}}" target="_blank">查看回复的完整內容</a></p>
+      <br/>
+    </div>`;
+    if(!isAuthorComment) {
+      await this.wechat({title, content}, comment, parent);
+    }
+    if(!isAuthorComment || !isReplyAuthor) {
+      mailList.push({to: AUTHOR, title, content});
     }
 
     if(parent) {
@@ -116,8 +138,6 @@ module.exports = class extends think.Service {
       } catch(e) {
         console.log('Mail send fail:', e);
       }
-      
-      await this.sleep(10);
     }
   }
 }
