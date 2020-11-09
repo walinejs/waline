@@ -19,6 +19,7 @@ module.exports = {
       '/api',
       '/cdn',
       '/vps-deploy',
+      '/development',
       '/faq'
     ]
   },
