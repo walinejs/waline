@@ -1,5 +1,6 @@
 const path = require('path');
 const es3ifyPlugin = require('es3ify-webpack-plugin');
+const htmlWebpackPlugin = require('html-webpack-plugin');
 
 const pkgName = 'Waline';
 module.exports = {
@@ -39,6 +40,35 @@ module.exports = {
     ]
   },
   plugins: [
-    new es3ifyPlugin()
-  ]
+    new es3ifyPlugin(),
+    new htmlWebpackPlugin({
+      inject: false,
+      templateContent: ({htmlWebpackPlugin}) => `
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <meta charset="UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <title>${htmlWebpackPlugin.options.title}</title>
+        </head>
+        <body>
+          <div id="waline" style="max-width: 800px;margin: 0 auto;"></div>
+          ${htmlWebpackPlugin.tags.bodyTags}
+          <script>
+            new Waline({
+              el: '#waline',
+              path: '/',
+              serverURL: 'http://localhost:3000'
+            });
+          </script>
+        </body>
+        </html>
+      `
+    })
+  ],
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    compress: true,
+    port: 9000
+  }
 };
