@@ -26,12 +26,12 @@ export default function CommentCard({comment, boxConfig, rootId, onSubmit}) {
             className="vat" 
             onClick={_ => setReply(comment)}
           >
-            {ctx.locale.ctrl.reply}
+            {ctx.locale.reply}
           </span>
         </div>
         <div 
           className="vcontent" 
-          data-expand={ctx.locale.ctrl.more}
+          data-expand={ctx.locale.expand}
           dangerouslySetInnerHTML={{__html: comment.comment}}  
         ></div>
         {!reply ? null : (

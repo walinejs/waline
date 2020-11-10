@@ -213,7 +213,7 @@ export default function({
         {replyId ? (
           <p 
             className="cancel-reply text-right" 
-            title={ctx.locale.ctrl.cancel} 
+            title={ctx.locale.cancelReply} 
             onClick={onCanelReply}
           >
             <CancelReplyIcon />
@@ -228,7 +228,7 @@ export default function({
               ref={inputsRef[kind]}
               defaultValue={comment[kind]}
               className={`v${kind} vinput`}
-              placeholder={ctx.locale.head[kind]}
+              placeholder={ctx.locale[kind]}
               type={kind === 'mail' ? 'email' : 'text'}   
               onChange={e => dispatch({[kind]: e.target.value})}
             />
@@ -248,14 +248,14 @@ export default function({
             <div className="vcol vcol-60 status-bar"></div>
             <div className="vcol vcol-40 vctrl text-right">
               <span 
-                title={ctx.locale.ctrl.emoji} 
+                title={ctx.locale.emoji} 
                 className={cls('vicon vemoji-btn', {actived: showEmoji})} 
                 onClick={_ => toggleEmoji(!showEmoji) || (!showEmoji && togglePreview(false))}
               >
                 <EmojiIcon />
               </span>
               <span 
-                title={ctx.locale.ctrl.preview} 
+                title={ctx.locale.preview} 
                 className={cls('vicon vpreview-btn', {actived: showPreview})}
                 onClick={_ => togglePreview(!showPreview) || (!showPreview && toggleEmoji(false))}
               >
@@ -281,7 +281,7 @@ export default function({
               title="Cmd|Ctrl+Enter" 
               className="vsubmit vbtn"
               onClick={submitComment}  
-            >{ctx.locale.ctrl.reply}</button>
+            >{ctx.locale.reply}</button>
           </div>
         </div>
         <div className="vemojis" style={{display: showEmoji ? 'block' : 'none'}}>

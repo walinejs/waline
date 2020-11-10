@@ -24,17 +24,17 @@ function timeAgo(date,locale) {
           //计算相差秒数
           const leave3 = leave2 % (60 * 1000); //计算分钟数后剩余的毫秒数
           const seconds = Math.round(leave3 / 1000);
-          return seconds + ` ${locale['timeago']['seconds']}`;
+          return seconds + ` ${locale.seconds}`;
         }
-        return minutes + ` ${locale['timeago']['minutes']}`;
+        return minutes + ` ${locale.minutes}`;
       }
-      return hours + ` ${locale['timeago']['hours']}`;
+      return hours + ` ${locale.hours}`;
     }
     if (days < 0) {
-      return locale['timeago']['now'];
+      return locale.now;
     }
     if (days < 8) {
-      return days + ` ${locale['timeago']['days']}`;
+      return days + ` ${locale.days}`;
     } else {
       return dateFormat(date)
     }

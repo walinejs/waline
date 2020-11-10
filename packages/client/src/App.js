@@ -40,7 +40,7 @@ function App({boxConfig, listConfig, copyRight}) {
     <div className="v" data-class="v">
       <CommentBox {...boxConfig} onSubmit={onSubmit}/>
       <div className="vcount">
-        {count ? <span className="vnum">{count}</span> : null} {ctx.locale.tips.comments}
+        {count ? <span className="vnum">{count}</span> : null} {ctx.locale.comments}
       </div>
       {data.length || !loading ? null : (
         <div className="vload-top text-center">
@@ -63,10 +63,10 @@ function App({boxConfig, listConfig, copyRight}) {
           <i className="vspinner" style={{width: 30, height: 30}}></i>
         </div>
       ) : null}
-      {!data.length && !loading ? <div className="vempty">{ctx.locale.tips.sofa}</div> : null}
+      {!data.length && !loading ? <div className="vempty">{ctx.locale.sofa}</div> : null}
       {page < totalPages && !loading ? (
         <div className="vpage txt-center">
-          <button type="button" className="vmore vbtn" onClick={onLoadMore}>{ctx.locale.ctrl.more}</button>
+          <button type="button" className="vmore vbtn" onClick={onLoadMore}>{ctx.locale.more}</button>
         </div>
       ) : null}
       {copyRight ? (
