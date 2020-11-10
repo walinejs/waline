@@ -27,7 +27,7 @@ A simple comment system with backend support fork from [Valine](https://valine.j
 - [x] Wechat notification
 - [x] Akismet 
 - [ ] Article counter
-- [ ] i18n
+- [x] i18n
 - [ ] Custom language
 - [ ] Login support
 - [ ] Social account login
