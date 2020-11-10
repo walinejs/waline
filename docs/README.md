@@ -14,10 +14,10 @@ Waline - 一款从 [Valine](https://valine.js.org) 衍生的带后端评论系�
 ## Todo
 
 - 评论管理
-- 邮件通知
-- Akismet 
+- ✅ 邮件通知
+- ✅ Akismet 
 - 文章统计
-- 多语言同步
+- ✅ 多语言同步
 - 自定义语言支持
 - 登录支持
 - 社交登录
