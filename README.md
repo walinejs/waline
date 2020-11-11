@@ -28,7 +28,7 @@ A simple comment system with backend support fork from [Valine](https://valine.j
 - [x] Akismet 
 - [ ] Article counter
 - [x] i18n
-- [ ] Custom language
+- [x] Custom language
 - [ ] Login support
 - [ ] Social account login
 - [ ] Support delete comment
