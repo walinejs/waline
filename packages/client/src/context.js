@@ -92,9 +92,19 @@ export const ConfigContext = React.createContext({
 });
 
 export default function Context(props) {
+	const locale = locales[props.lang] || locales['zh-CN'];
+	if(typeof props.langMode === 'object') {
+		for(const k in langMode) {
+			if(!langMode[k]) {
+				continue;
+			}
+			locales[k] = langMode[k];
+		}
+	}
+
   const context = {
     locales,
-    locale: locales[props.lang] || locales['zh-cn'],
+    locale,
     emojiCDN: props.emojiCDN || emojiCDN,
     emojiMaps: props.emojiMaps || emojiMaps,
     gravatarSetting: {

@@ -13,7 +13,8 @@ export default function Waline({
   avatarCDN,
   meta = ['nick','mail','link'], 
   pageSize = 10, 
-  lang = "zh-cn",
+  lang = "zh-CN",
+  langMode = {},
   highlight, 
   serverURL,
   emojiCDN,
@@ -25,6 +26,7 @@ export default function Waline({
     <React.StrictMode>
       <Context 
         lang={lang} 
+        langMode={langMode}
         emojiCDN={emojiCDN} 
         emojiMaps={emojiMaps}
         avatar={avatar}

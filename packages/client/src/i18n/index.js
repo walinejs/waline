@@ -4,8 +4,11 @@ import zhCN from "./zh-CN";
 import zhTW from "./zh-TW";
 
 export default {
+  "zh-cn": zhCN,
   "zh-CN": zhCN,
   "zh-TW": zhTW,
   "en": en,
-  "jp": jp
+  "en-US": en,
+  "jp": jp,
+  "jp-JP": jp
 };
