@@ -32,6 +32,8 @@ A simple comment system with backend support fork from [Valine](https://valine.j
 - [ ] Login support
 - [ ] Social account login
 - [ ] Support delete comment
+- [ ] Sitcky Comment
+- [ ] Comment Like
 
 That's **really** welcome to contribute waline!
 
