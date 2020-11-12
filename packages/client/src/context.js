@@ -94,11 +94,11 @@ export const ConfigContext = React.createContext({
 export default function Context(props) {
 	const locale = locales[props.lang] || locales['zh-CN'];
 	if(typeof props.langMode === 'object') {
-		for(const k in langMode) {
-			if(!langMode[k]) {
+		for(const k in props.langMode) {
+			if(!props.langMode[k]) {
 				continue;
 			}
-			locales[k] = langMode[k];
+			locale[k] = props.langMode[k];
 		}
 	}
 
