@@ -78,9 +78,19 @@ Waline 的服务端地址。
 
 可选值：
 - `zh-CN`
+- `zh-TW`
 - `en`
+- `jp`
 
 如需`自定义语言`，请参考[i18n](/i18n.html)。
+
+## visitor
+
+- 类型: `Boolean`
+- 默认值: `false`
+- 必要性: `false`
+
+文章访问量统计。
 
 ## highlight
 - 类型：`Boolean`
