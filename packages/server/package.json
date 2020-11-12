@@ -17,6 +17,7 @@
     "request": "^2.88.2",
     "request-promise-native": "^1.0.9",
     "think-logger3": "^1.0.0",
+    "think-router-rest": "^1.0.5",
     "thinkjs": "^3.0.0"
   },
   "devDependencies": {
