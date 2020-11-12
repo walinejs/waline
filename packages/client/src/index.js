@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import Context from './context';
+import Visitor from './utils/visitor';
 import './index.css';
 
 export default function Waline({
@@ -20,8 +21,18 @@ export default function Waline({
   emojiCDN,
   emojiMaps,
   requiredFields = [],
-  copyRight = true
+  copyRight = true,
+  visitor = false
 } = {}) {
+  if(visitor) {
+    const visitorPromise = path ? Visitor.add({serverURL, path}) : Promise.resolve();
+    visitorPromise.then(() => Visitor.show({serverURL}));
+  }
+
+  const root = document.querySelector(el);
+  if(!root) {
+    return;
+  }
   ReactDOM.render(
     <React.StrictMode>
       <Context 
@@ -40,6 +51,6 @@ export default function Waline({
         />
       </Context>
     </React.StrictMode>,
-    document.querySelector(el)
+    root
   );
 }

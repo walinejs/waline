@@ -18,3 +18,19 @@ export function postComment({serverURL, comment}) {
     body: JSON.stringify(comment)
   });
 }
+
+export function fetchVisitCount({serverURL, path}) {
+  const url = `${serverURL}/article?path=${encodeURIComponent(path)}`;
+  return fetch(url).then(resp => resp.json());
+}
+
+export function postVisitCount({serverURL, path}) {
+  const url = `${serverURL}/article`;
+  return fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({path})
+  });
+}

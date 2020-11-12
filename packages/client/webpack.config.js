@@ -52,12 +52,17 @@ module.exports = {
           <title>${htmlWebpackPlugin.options.title}</title>
         </head>
         <body>
+        <span id="/" class="leancloud_visitors">
+          <em class="post-meta-item-text">阅读量 </em>
+          <i class="leancloud-visitors-count"></i>
+        </span>
           <div id="waline" style="max-width: 800px;margin: 0 auto;"></div>
           ${htmlWebpackPlugin.tags.bodyTags}
           <script>
             new Waline({
               el: '#waline',
               path: '/',
+              visitor: true,
               serverURL: 'http://localhost:3000'
             });
           </script>
