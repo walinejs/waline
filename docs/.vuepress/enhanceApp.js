@@ -3,7 +3,8 @@ function waline() {
   new Waline({
     el: '#waline-comment',
     serverURL: 'https://waline.vercel.app',
-    path: window.location.pathname
+    path: window.location.pathname,
+    visitor: true,
   });
 }
 
@@ -15,12 +16,12 @@ function renderValine(router) {
       $page.removeChild(container);
     }
     
-    if(route.path !== '/') {
+    if(route.path !== '/' && route.path !== '/visitor.html') {
       return;
     }
     
     container = document.createElement('div')
-    container.id = 'waline-comment'
+    container.id = route.path === '/' ? 'waline-comment' : 'waline-comment-invisible';
     container.className = 'page-nav'
 
     if ($page){

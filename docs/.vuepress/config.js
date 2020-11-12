@@ -14,6 +14,7 @@ module.exports = {
       '/configuration',
       '/avatar',
       '/i18n',
+      '/visitor',
       '/emoji',
       '/notification',
       '/migration',
