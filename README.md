@@ -22,7 +22,6 @@ A simple comment system with backend support fork from [Valine](https://valine.j
 
 ## Todo
 
-- [ ] Comment management
 - [x] Email notification
 - [x] Wechat notification
 - [x] Akismet 
@@ -30,10 +29,12 @@ A simple comment system with backend support fork from [Valine](https://valine.j
 - [x] i18n
 - [x] Custom language
 - [ ] Login support
-- [ ] Social account login
+- [ ] Comment management
 - [ ] Support delete comment
+- [ ] More Cloud Storage support
 - [ ] Sitcky Comment
 - [ ] Comment Like
+- [ ] Social account login
 
 That's **really** welcome to contribute waline!
 
