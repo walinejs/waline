@@ -1,5 +1,14 @@
 const Base = require('./base');
 module.exports = class extends Base {
+  async __before() {
+    await super.__before();
+
+    const {userInfo} = this.ctx.state;
+    if(this.ctx.method !== 'GET' && userInfo.type !== 'administrator') {
+      return this.fail();
+    }
+  }
+
   getAction() {
     const {type} = this.get();
     switch(type) {
@@ -11,6 +20,13 @@ module.exports = class extends Base {
             max: 50
           }
         };
+        break;
+
+      case 'list':
+        const {userInfo} = this.ctx.sate;
+        if(userInfo.type !== 'administrator') {
+          return this.fail();
+        }
         break;
       
       default:

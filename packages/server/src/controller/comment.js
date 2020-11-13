@@ -63,6 +63,13 @@ module.exports = class extends BaseRest {
         return this.json(count);
       }
 
+      case 'list': {
+        const {page, pageSize} = this.get();
+        this.modelInstance.select({
+          
+        })
+      }
+
       default: {
         const {path: url, page, pageSize} = this.get();
 
