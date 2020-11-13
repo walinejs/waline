@@ -28,7 +28,7 @@ A simple comment system with backend support fork from [Valine](https://valine.j
 - [x] Article counter
 - [x] i18n
 - [x] Custom language
-- [ ] Login support
+- [x] Login support
 - [ ] Comment management
 - [ ] Support delete comment
 - [ ] More Cloud Storage support
