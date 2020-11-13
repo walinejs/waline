@@ -19,9 +19,12 @@ module.exports = class extends think.Logic {
       return;
     }
   
-    const user = await this.modelInstance.select({email: userMail});
+    const user = await this.modelInstance.select(
+      {email: userMail},
+      {field: ['email', 'name', 'display_name', 'type']}
+    );
     if(!think.isEmpty(user)) {
-      this.ctx.state.userInfo = user;
+      this.ctx.state.userInfo = user[0];
     }
   }
 }

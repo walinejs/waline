@@ -57,8 +57,10 @@ module.exports = class extends Base {
     if(offset) {
       instance.skip(offset);
     }
-
-    const data = await (field ? instance.select(field) : instance.find());
+    if(field) {
+      instance.select(field);
+    }
+    const data = await instance.find();
     return data.map(item => item.toJSON());
   }
 
