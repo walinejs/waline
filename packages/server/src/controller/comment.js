@@ -65,9 +65,18 @@ module.exports = class extends BaseRest {
 
       case 'list': {
         const {page, pageSize} = this.get();
-        this.modelInstance.select({
-          
-        })
+        const comments = await this.modelInstance.select({}, {
+          desc: 'insertedAt',
+          limit: pageSize,
+          offset: Math.max((page - 1) * pageSize, 0),
+        });
+
+        return this.json({
+          page,
+          totalPages: Math.ceil(rootCount / pageSize),
+          pageSize,
+          data: comments.map(formatCmt)
+        });
       }
 
       default: {
