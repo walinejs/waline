@@ -1,4 +1,5 @@
-module.exports = class extends think.Logic {
+const Base = require('./base');
+module.exports = class extends Base {
   getAction() {
     const {type} = this.get();
     switch(type) {

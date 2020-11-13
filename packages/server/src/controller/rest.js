@@ -29,5 +29,9 @@ module.exports = class extends think.Controller {
     }
     return '';
   }
+  isLogin() {
+    const {userInfo} = this.ctx.state;
+    return think.isEmpty(userInfo);
+  }
   __call() {}
 };

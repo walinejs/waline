@@ -58,7 +58,7 @@ module.exports = class extends Base {
     return data.map(item => item.toJSON());
   }
 
-  async count(where, options = {}) {
+  async count(where = {}, options = {}) {
     const instance = new AV.Query(this.tableName);
     this.where(instance, where);
     return instance.count(options);
