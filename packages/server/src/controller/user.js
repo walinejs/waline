@@ -3,11 +3,11 @@ const BaseRest = require('./rest');
 
 module.exports = class extends BaseRest {
   constructor(...args) {
-    super(...arts);
-    this.modelInstance = this.service('store/leancloud', 'Users');
+    super(...args);
+    this.modelInstance = this.service('storage/leancloud', 'Users');
   }
 
-  postAction() {
+  async postAction() {
     const data = this.post();
 
     const resp = await this.modelInstance.select({

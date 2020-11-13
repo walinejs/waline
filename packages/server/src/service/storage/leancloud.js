@@ -14,6 +14,10 @@ module.exports = class extends Base {
   }
 
   where(instance, where) {
+    if(think.isEmpty(where)) {
+      return;
+    }
+
     for(const k in where) {
       if(think.isString(where[k])) {
         instance.equalTo(k, where[k]);
@@ -41,7 +45,7 @@ module.exports = class extends Base {
     }
   }
 
-  async select(where, {desc, limit, offset, field}) {
+  async select(where, {desc, limit, offset, field} = {}) {
     const instance = new AV.Query(this.tableName);
     this.where(instance, where);
     if(desc) {
@@ -67,7 +71,8 @@ module.exports = class extends Base {
   async add(data, {
     access: {read = true, write = false} = {read: true, write: false}
   } = {}) {
-    const instance = new AV.Object.extend(this.tableName);
+    const Table = new AV.Object.extend(this.tableName);
+    const instance = new Table();
     instance.set(data);
 
     const acl = new AV.ACL();
@@ -75,7 +80,7 @@ module.exports = class extends Base {
     acl.setPublicWriteAccess(write);
     instance.setACL(acl);
 
-    return instance.save().toJSON();
+    return instance.save();
   }
 
   async update(data, where) {

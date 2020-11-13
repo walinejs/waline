@@ -45,7 +45,7 @@ module.exports = class extends BaseRest {
   async getAction() {
     const {type} = this.get();
     switch(type) {
-      case 'recent':
+      case 'recent': {
         const {count} = this.get();
         const comments = await this.modelInstance.select({
           status: ['NOT IN', ['spam']]
@@ -55,11 +55,15 @@ module.exports = class extends BaseRest {
         });
 
         return this.json(comments.map(({ip, ...cmt}) => cmt));
-      case 'count':
+      }
+
+      case 'count': {
         const {url} = this.get();
         const count = await this.modelInstance.count({url, status: ['NOT IN', ['spam']]});
         return this.json(count);
-      default:
+      }
+
+      default: {
         const {path: url, page, pageSize} = this.get();
 
         const rootCount = await this.modelInstance.count({
@@ -102,6 +106,7 @@ module.exports = class extends BaseRest {
             return cmt;
           })
         });
+      }
     }
   }
 

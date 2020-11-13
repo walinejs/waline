@@ -12,7 +12,7 @@ module.exports = class extends BaseRest {
     return this.json(this.ctx.state.userInfo);
   }
 
-  postAction() {
+  async postAction() {
     const {email, password} = this.post();
     const user = await this.modelInstance.select({email});
     if(think.isEmpty(user)) {
