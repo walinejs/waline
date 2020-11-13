@@ -1,6 +1,6 @@
 const helper = require('think-helper');
 const marked = require('marked');
-const Base = require('./base');
+const BaseRest = require('./rest');
 const detect = require('../service/detect');
 const akismet = require('../service/akismet');
 
@@ -36,76 +36,76 @@ function escapeHTML(text) {
   );
   return text;
 }
-module.exports = class extends Base {
+module.exports = class extends BaseRest {
   constructor(ctx) {
     super(ctx);
     this.modelInstance = this.service('storage/leancloud', 'Comment');
   }
 
-  async recentAction() {
-    const {count} = this.get();
-    const comments = await this.modelInstance.select({
-      status: ['NOT IN', ['spam']]
-    }, {
-      desc: 'insertedAt',
-      limit: count
-    });
+  async getAction() {
+    const {type} = this.get();
+    switch(type) {
+      case 'recent':
+        const {count} = this.get();
+        const comments = await this.modelInstance.select({
+          status: ['NOT IN', ['spam']]
+        }, {
+          desc: 'insertedAt',
+          limit: count
+        });
 
-    return this.json(comments.map(({ip, ...cmt}) => cmt));
+        return this.json(comments.map(({ip, ...cmt}) => cmt));
+      case 'count':
+        const {url} = this.get();
+        const count = await this.modelInstance.count({url, status: ['NOT IN', ['spam']]});
+        return this.json(count);
+      default:
+        const {path: url, page, pageSize} = this.get();
+
+        const rootCount = await this.modelInstance.count({
+          url,
+          rid: undefined,
+          status: ['NOT IN', ['spam']]
+        });
+    
+        const rootComments = await this.modelInstance.select({
+          url, 
+          rid: undefined,
+          status: ['NOT IN', ['spam']]
+        }, {
+          desc: 'insertedAt',
+          limit: pageSize,
+          offset: Math.max((page - 1) * pageSize, 0),
+          field: [
+            'comment', 'insertedAt', 'link', 'mail', 'nick', 'pid', 'rid', 'ua'
+          ]
+        });
+    
+        const childrenComments = await this.modelInstance.select({
+          url,
+          rid: ['IN', rootComments.map(comment => comment.get('objectId'))],
+          status: ['NOT IN', ['spam']],
+        }, {
+          desc: 'insertedAt',
+          field: [
+            'comment', 'insertedAt', 'link', 'mail', 'nick', 'pid', 'rid', 'ua'
+          ]
+        });
+    
+        return this.json({
+          page,
+          totalPages: Math.ceil(rootCount / pageSize),
+          pageSize,
+          data: rootComments.map(comment => {
+            const cmt = formatCmt(comment);
+            cmt.children = childrenComments.filter(comment => comment.rid === cmt.objectId).map(cmt => formatCmt(cmt));
+            return cmt;
+          })
+        });
+    }
   }
 
-  async listAction() {
-    const {path: url, page, pageSize} = this.get();
-
-    const rootCount = await this.modelInstance.count({
-      url,
-      rid: undefined,
-      status: ['NOT IN', ['spam']]
-    });
-
-    const rootComments = await this.modelInstance.select({
-      url, 
-      rid: undefined,
-      status: ['NOT IN', ['spam']]
-    }, {
-      desc: 'insertedAt',
-      limit: pageSize,
-      offset: Math.max((page - 1) * pageSize, 0),
-      field: [
-        'comment', 'insertedAt', 'link', 'mail', 'nick', 'pid', 'rid', 'ua'
-      ]
-    });
-
-    const childrenComments = await this.modelInstance.select({
-      url,
-      rid: ['IN', rootComments.map(comment => comment.get('objectId'))],
-      status: ['NOT IN', ['spam']],
-    }, {
-      desc: 'insertedAt',
-      field: [
-        'comment', 'insertedAt', 'link', 'mail', 'nick', 'pid', 'rid', 'ua'
-      ]
-    });
-
-    return this.json({
-      page,
-      totalPages: Math.ceil(rootCount / pageSize),
-      pageSize,
-      data: rootComments.map(comment => {
-        const cmt = formatCmt(comment);
-        cmt.children = childrenComments.filter(comment => comment.rid === cmt.objectId).map(cmt => formatCmt(cmt));
-        return cmt;
-      })
-    });
-  }
-
-  async countAction() {
-    const {url} = this.get();
-    const count = await this.modelInstance.count({url, status: ['NOT IN', ['spam']]});
-    return this.json(count);
-  }
-
-  async saveAction() {
+  async postAction() {
     const {comment, link, mail, nick, pid, rid, ua, url, at} = this.post();
     const data = {
       link, mail, nick, pid, rid, ua, url, 
