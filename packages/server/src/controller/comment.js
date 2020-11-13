@@ -1,4 +1,3 @@
-const AV = require('leancloud-storage');
 const helper = require('think-helper');
 const marked = require('marked');
 const Base = require('./base');
@@ -15,13 +14,6 @@ marked.setOptions({
   sanitize: true,
   smartLists: true,
   smartypants: true
-});
-
-AV.init({
-  appId: process.env.LEAN_ID,
-  appKey: process.env.LEAN_KEY,
-  // required for leancloud china
-  serverURL: process.env.LEAN_SERVER
 });
 
 function formatCmt({ua, ip, ...comment}) {
@@ -47,64 +39,61 @@ function escapeHTML(text) {
 module.exports = class extends Base {
   constructor(ctx) {
     super(ctx);
-    this.modelInstance = new AV.Query('Comment');
+    this.modelInstance = this.service('storage/leancloud', 'Comment');
   }
 
   async recentAction() {
     const {count} = this.get();
-    const comments = await this.modelInstance
-      .descending('insertedAt')
-      .notContainedIn('status', ['spam'])
-      .limit(count)
-      .find();
+    const comments = await this.modelInstance.select({
+      status: ['NOT IN', ['spam']]
+    }, {
+      desc: 'insertedAt',
+      limit: count
+    });
 
-    return this.json(comments.map(comment => {
-      const {ip, ...cmt} = comment.toJSON();
-      return cmt;
-    }));
+    return this.json(comments.map(({ip, ...cmt}) => cmt));
   }
 
   async listAction() {
     const {path: url, page, pageSize} = this.get();
 
-    const rootCount = await this.modelInstance
-      .equalTo('url', url)
-      .doesNotExist('rid')
-      .notContainedIn('status', ['spam'])
-      .count();
+    const rootCount = await this.modelInstance.count({
+      url,
+      rid: undefined,
+      status: ['NOT IN', ['spam']]
+    });
 
-    const rootComments = await this.modelInstance
-      .descending('insertedAt')
-      .equalTo('url', url)
-      .doesNotExist('rid')
-      .notContainedIn('status', ['spam'])
-      .skip(Math.max((page - 1) * pageSize, 0))
-      .limit(pageSize)
-      .select([
+    const rootComments = await this.modelInstance.select({
+      url, 
+      rid: undefined,
+      status: ['NOT IN', ['spam']]
+    }, {
+      desc: 'insertedAt',
+      limit: pageSize,
+      offset: Math.max((page - 1) * pageSize, 0),
+      field: [
         'comment', 'insertedAt', 'link', 'mail', 'nick', 'pid', 'rid', 'ua'
-      ])
-      .find();
+      ]
+    });
 
-    const childrenComments = await this.modelInstance
-      .ascending('insertedAt')
-      .equalTo('url', url)
-      .exists('rid')
-      .notContainedIn('status', ['spam'])
-      .containedIn('rid', rootComments.map(comment => comment.get('objectId')))
-      .select([
+    const childrenComments = await this.modelInstance.select({
+      url,
+      rid: ['IN', rootComments.map(comment => comment.get('objectId'))],
+      status: ['NOT IN', ['spam']],
+    }, {
+      desc: 'insertedAt',
+      field: [
         'comment', 'insertedAt', 'link', 'mail', 'nick', 'pid', 'rid', 'ua'
-      ])
-      .skip(NaN)
-      .limit(NaN)
-      .find();
+      ]
+    });
 
     return this.json({
       page,
       totalPages: Math.ceil(rootCount / pageSize),
       pageSize,
       data: rootComments.map(comment => {
-        const cmt = formatCmt(comment.toJSON());
-        cmt.children = childrenComments.filter(comment => comment.get('rid') === cmt.objectId).map(cmt => formatCmt(cmt.toJSON()));
+        const cmt = formatCmt(comment);
+        cmt.children = childrenComments.filter(comment => comment.rid === cmt.objectId).map(cmt => formatCmt(cmt));
         return cmt;
       })
     });
@@ -112,11 +101,7 @@ module.exports = class extends Base {
 
   async countAction() {
     const {url} = this.get();
-    const count = await this.modelInstance
-      .equalTo('url', url)
-      .notContainedIn('status', ['spam'])
-      .count();
-
+    const count = await this.modelInstance.count({url, status: ['NOT IN', ['spam']]});
     return this.json(count);
   }
 
@@ -146,15 +131,8 @@ module.exports = class extends Base {
       }
     }
 
-    const Ct = AV.Object.extend('Comment');
-    const cmt = new Ct();
-    cmt.set(data);
-    const acl = new AV.ACL();
-    acl.setPublicReadAccess(true);
-    acl.setPublicWriteAccess(false);
-    cmt.setACL(acl);
-    const resp = (await cmt.save()).toJSON();
-
+    const resp = await this.modelInstance.add(data);
+    
     let pComment;
     if(pid) {
       pComment = await AV.Query('Comment').get(pid);
