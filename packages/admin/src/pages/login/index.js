@@ -7,7 +7,7 @@ export default function() {
   const user = useSelector(state => state.user);
   const [error, setError] = useState(false);
   useEffect(() => {
-    if(user) {
+    if(user && user.email) {
       navigate('/ui', {replace: true});
     }
   }, []);

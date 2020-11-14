@@ -20,8 +20,7 @@ export const createRouter = function(config) {
   const PrivateRoute = Comp => props => {
     // 检查用户登录状态
     const user = useSelector(state => state.user);
-    console.log(user);
-    if (!user) {
+    if (!user || !user.email) {
       return (location.href = '/ui/login');
     }
     return React.createElement(Comp, props);
