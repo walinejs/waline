@@ -4,7 +4,7 @@ import cls from 'classnames';
 import md5 from 'md5';
 
 import Header from '../../components/Header';
-import { getCommentList, replyComment, updateComment } from '../../services/comment';
+import { deleteComment, getCommentList, replyComment, updateComment } from '../../services/comment';
 import Paginator from '../../components/Paginator';
 const FILTERS = [
   [
@@ -101,9 +101,13 @@ export default function() {
       name: '删除',
       show: true,
       action() {
-        if(!confirm('你确认要删除这些评论吗?')) {
+        const text = comment ? `你确认要删除${comment.nick}的评论吗？` : `你确认要删除这些评论吗？`;
+        if(!confirm(text)) {
           return;
         }
+        await deleteComment(comment.objectId);
+        list.data = list.data.filter(({objectId}) => objectId !== comment.objectId);
+        setList({...list});
       }
     }
   ].filter(({show}) => show));
@@ -120,8 +124,9 @@ export default function() {
       ua: navigator.userAgent,
       link, url, comment, pid, rid: rid || pid, at
     });
-    setCmtHandler({});
-    setList({page: 1, totalPages: list.totalPages, spamCount: list.spamCount, data: []});
+    location.reload();
+    // setCmtHandler({});
+    // setList({page: 1, totalPages: list.totalPages, spamCount: list.spamCount, data: []});
   }
 
   return (
