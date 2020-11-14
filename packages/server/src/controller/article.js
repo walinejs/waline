@@ -30,7 +30,7 @@ module.exports = class extends BaseRest {
     const ret = await this.modelInstance.update(function(counter) {
       return {time: counter.time + 1};
     }, {
-      objectId: ['IN', ret.map(({objectId}) => objectId)]
+      objectId: ['IN', resp.map(({objectId}) => objectId)]
     });
     return this.success(ret);
   }

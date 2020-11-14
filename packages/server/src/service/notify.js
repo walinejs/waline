@@ -26,7 +26,6 @@ module.exports = class extends think.Service {
   }
   
   async mail({to, title, content}, self, parent) {
-    console.log(this.transporter);
     if(!this.transporter) {
       return;
     }
@@ -79,7 +78,6 @@ module.exports = class extends think.Service {
       },
       json: true
     });
-    console.log(resp);
   }
   
   async run(comment, parent) {
