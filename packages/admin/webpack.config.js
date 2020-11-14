@@ -2,7 +2,9 @@ const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  mode: 'development',
+  entry: {
+    admin: path.resolve(__dirname, 'src/index.js')
+  },
   module: {
     rules: [
       {
