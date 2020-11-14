@@ -171,7 +171,7 @@ export default function() {
             
             <div className="typecho-list-operate clearfix">
               <form method="get">
-                <div className="operate">
+                {/* <div className="operate">
                   <label>
                     <i className="sr-only">全选</i>
                     <input type="checkbox" className="typecho-table-select-all" />
@@ -187,7 +187,7 @@ export default function() {
                       <button lang="你确认要删除所有垃圾评论吗?" className="btn btn-s btn-warn btn-operate">删除所有垃圾评论</button>
                     ) : null}
                   </div>
-                </div>
+                </div> */}
 
                 <div className="search" role="search">
                   <input 
@@ -295,7 +295,7 @@ export default function() {
                       ) : (
                         <tr id={`comment-${objectId}`} key={objectId}>
                           <td valign="top">
-                            <input type="checkbox" value={objectId} />
+                            <input type="checkbox" value={objectId} disabled/>
                           </td>
                           <td valign="top">
                             <div className="comment-avatar">
@@ -365,7 +365,7 @@ export default function() {
 
             <div className="typecho-list-operate clearfix">
               <form method="get">
-                <div className="operate">
+                {/* <div className="operate">
                   <label><i className="sr-only">全选</i><input type="checkbox" className="typecho-table-select-all" /></label>
                   <div className="btn-group btn-drop">
                     <button className="btn dropdown-toggle btn-s" type="button"><i className="sr-only">操作</i>选中项 <i className="i-caret-down"></i></button>
@@ -378,7 +378,7 @@ export default function() {
                       <button lang="你确认要删除所有垃圾评论吗?" className="btn btn-s btn-warn btn-operate">删除所有垃圾评论</button>
                     ) : null}
                   </div>
-                </div>
+                </div> */}
                 <Paginator 
                   current={list.page} 
                   total={list.totalPages} 
