@@ -1,11 +1,13 @@
 # API
 
-## 评论列表
+## 评论接口
+
+### 评论列表
 
 获取某篇文章对应的评论列表
 
 ```
-GET /comment/list
+GET /comment
 ```
 
 **参数**
@@ -15,12 +17,12 @@ GET /comment/list
 | page | number | 评论列表的页数 |
 | pageSize | number | 每页评论列表的条数 |
 
-## 评论数
+### 评论数
 
 获取谋篇文章对应的评论总数
 
 ```
-GET /comment/count
+GET /comment?type=count
 ```
 
 **参数**
@@ -28,12 +30,12 @@ GET /comment/count
 |-----|-----|------|
 | path | string | 获取对应文章标识的评论列表 |
 
-## 最近评论
+### 最近评论
 
 获取当前网站的最近评论
 
 ```
-GET /comment/recent
+GET /comment?type=recent
 ```
 
 **参数**
@@ -41,12 +43,12 @@ GET /comment/recent
 |-----|-----|------|
 | count | number | 返回最新评论的条数 |
 
-## 发布评论
+### 发布评论
 
 发布一条评论
 
 ```
-POST /comment/list
+POST /comment
 ```
 
 **参数**

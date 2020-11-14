@@ -8,12 +8,12 @@
 
 ![](https://i.loli.net/2019/06/21/5d0c995c86fac81746.jpg)
 
-应用创建好以后，进入刚刚创建的应用，选择左下角的`设置`>`应用Key`，然后就能看到你的`APP ID`和`APP Key`了：
+应用创建好以后，进入刚刚创建的应用，选择左下角的`设置`>`应用Key`，然后就能看到你的`APP ID`,`APP Key`和`Master Key`了：
 
 ![](https://i.loli.net/2019/06/21/5d0c997a60baa24436.jpg)
 
 > **注：**  
-> 这里推荐使用 Leancloud 国际版。如果你确实想用 Leancloud 国内版的话（国际版是 [leancloud.app](https://leancloud.app)，非国际版是 [leancloud.cn](https://leancloud.cn)），除了 `APP_ID` 和 `APP_Key` 之外，还需要对应用进行域名绑定。  
+> 这里推荐使用 Leancloud 国际版。如果你确实想用 Leancloud 国内版的话（国际版是 [leancloud.app](https://leancloud.app)，非国际版是 [leancloud.cn](https://leancloud.cn)），除了 `APP_ID`, `APP_Key` 和 `Master Key` 之外，还需要对应用进行域名绑定。  
 > 进入应用后选择 <kbd>设置</kbd> > <kbd>域名绑定</kbd>  > API 访问域名 <kbd>绑定新域名</kbd> > 输入需要绑定的已备案域名点击 <kbd>确定</kbd>。之后按照页面上的提示去 DNS 上做正确的 CNAME 解析即可。
 > 
 > ![](https://i.loli.net/2020/11/09/xfsX4JKt9zhuaiB.png)
@@ -30,7 +30,7 @@
 
 ![](https://p4.ssl.qhimg.com/t01bb30e74f85ddf5b3.png)
 
-仓库初始化完毕后开始准备部署到 Vercel。这里需要在 Environment Variables 初配置 `LEAN_ID` 和 `LEAN_KEY` 两个环境变量。它们的值分别对应上一步在 LeanCloud 中获得的 `APP ID` 和 `APP_KEY`。如果你是 LeanCloud 国内版用户的话，还需要输入 `LEAN_SERVER` 环境变量，对应的是你在上一步上绑定的已备案域名。
+仓库初始化完毕后开始准备部署到 Vercel。这里需要在 Environment Variables 初配置 `LEAN_ID`, `LEAN_KEY` 和 `LEAN_MASTER_KEY` 三个环境变量。它们的值分别对应上一步在 LeanCloud 中获得的 `APP ID`, `APP KEY`, `Master Key`。如果你是 LeanCloud 国内版用户的话，还需要输入 `LEAN_SERVER` 环境变量，对应的是你在上一步上绑定的已备案域名。
 
 ![](https://p5.ssl.qhimg.com/t019aec05e3e5fea5cc.png)
 
@@ -97,10 +97,4 @@ new Waline({
 
 ## 评论数据管理
 
-目前 Waline 还未实现评论管理功能，可以先自行登录 LeanCloud 进行管理。
-
-具体步骤：<kbd>登录</kbd> > <kbd>选择你创建的应用</kbd> > <kbd>存储</kbd> > 选择 Class <kbd>Comment</kbd> 然后就可以尽情的发挥你的权利啦(～￣▽￣)～
-
-> 当然，你也可以配合 [@DesertsP](https://github.com/DesertsP) 开发的 [Valine-Admin](https://github.com/DesertsP/Valine-Admin) 进行`评论数据管理`。
-
-更多信息请查看[配置项](/configuration.html)。
+Waline 还带有简单的后台，可以实现对评论的管理。部署完成后访问 `<serverURL>/ui/register` 进行注册，第一个注册的你会被设定成管理员。登录成功后就可以看到评论管理的界面了，大家可以收藏该地址方便后续使用。
