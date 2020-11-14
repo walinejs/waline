@@ -8,8 +8,6 @@ import './style/grid.css';
 import './style/style.css';
 import './style/custom.css';
 
-globalThis.serverURL = 'http://localhost:3000/';
-
 async function run() {
   await Promise.all([
     store.dispatch({ type: 'user/loadUserInfo' }),
