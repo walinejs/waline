@@ -86,7 +86,7 @@ module.exports = class extends Base {
   async add(data, {
     access: {read = true, write = true} = {read: true, write: true}
   } = {}) {
-    const Table = new AV.Object.extend(this.tableName);
+    const Table = AV.Object.extend(this.tableName);
     const instance = new Table();
     instance.set(data);
 
@@ -95,7 +95,7 @@ module.exports = class extends Base {
     acl.setPublicWriteAccess(write);
     instance.setACL(acl);
 
-    return instance.save();
+    return (await instance.save()).toJSON();
   }
 
   async update(data, where) {
@@ -109,7 +109,7 @@ module.exports = class extends Base {
       } else {
         item.set(data);
       }
-      return item.save();
+      return item.save().toJSON();
     }));
   }
 

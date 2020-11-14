@@ -168,7 +168,6 @@ module.exports = class extends BaseRest {
       }
     }
 
-    console.log(data);
     const resp = await this.modelInstance.add(data);
     
     let pComment;
