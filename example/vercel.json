@@ -5,7 +5,7 @@
   },
   "builds": [
     {
-      "src": "index.html",
+      "src": "pages/*.html",
       "use": "@vercel/static"
     },
     {
@@ -16,7 +16,11 @@
   "routes": [
     {
       "src": "/",
-      "dest": "index.html"
+      "dest": "pages/index.html"
+    },
+    {
+      "src": "/ui/(.*)",
+      "dest": "pages/ui.html"
     },
     {
       "src": "/(.*)",
