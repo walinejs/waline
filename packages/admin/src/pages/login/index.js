@@ -1,18 +1,60 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link, navigate } from '@reach/router';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function() {
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.user);
+  const [error, setError] = useState(false);
+  useEffect(() => {
+    if(user) {
+      navigate('/ui', {replace: true});
+    }
+  }, []);
+
+  const onSubmit = async function(e) {
+    e.preventDefault();
+    setError(false);
+
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    const remember = e.target.remember.checked;
+    if(!email) {
+      return setError('请输入邮箱');
+    }
+    if(!password) {
+      return setError('请输入密码');
+    }
+
+    try {
+      await dispatch.user.login({email, password, remember});
+      navigate('/ui', {replace: true});
+    } catch(e) {
+      setError('账号密码错误');
+    }
+  };
+
   return (
     <>
-    <div className="message popup notice" style={{position: 'fixed', top: 0, display: 'block'}}>
-      <ul><li>请输入用户名</li><li>请输入密码</li></ul>
+    <div 
+      className="message popup notice" 
+      style={{
+        position: 'fixed', 
+        top: 0, 
+        display: error ? 'block' : 'none'
+      }}
+    >
+      <ul>
+        {error ? <li>{error}</li> : null}
+      </ul>
     </div>
     <div className="typecho-login-wrap">
       <div className="typecho-login">
-        <h1><a href="http://typecho.org" className="i-logo">Waline</a></h1>
-        <form action="https://old.imnerd.org/index.php/action/login?_=10b9216eaf53f03efd5c45707428a806" method="post" name="login" role="form">
+        {/* <h1><a href="http://waline.js.org" className="i-logo">Waline</a></h1> */}
+        <form method="post" name="login" role="form" onSubmit={onSubmit}>
           <p>
-            <label for="name" className="sr-only">用户名</label>
-            <input type="text" id="name" name="name" value="" placeholder="用户名" className="text-l w-100" autofocus="" />
+            <label for="email" className="sr-only">邮箱</label>
+            <input type="text" id="email" name="email" placeholder="邮箱" className="text-l w-100" />
           </p>
           <p>
             <label for="password" className="sr-only">密码</label>
@@ -20,14 +62,16 @@ export default function() {
           </p>
           <p className="submit">
             <button type="submit" className="btn btn-l w-100 primary">登录</button>
-            <input type="hidden" name="referer" value="https://old.imnerd.org/admin/" />
           </p>
           <p>
-            <label for="remember"><input type="checkbox" name="remember" className="checkbox" value="1" id="remember"/> 下次自动登录</label>
+            <label for="remember">
+              <input type="checkbox" name="remember" className="checkbox" id="remember"/> 下次自动登录
+            </label>
           </p>
         </form>
+
         <p className="more-link">
-          <a href="https://old.imnerd.org/">返回首页</a> • <a href="https://old.imnerd.org/admin/register.php">用户注册</a>
+          <Link to="/ui">返回首页</Link> • <Link to="/ui/register">用户注册</Link>
         </p>
       </div>
     </div>

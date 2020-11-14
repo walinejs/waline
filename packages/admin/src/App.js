@@ -8,8 +8,8 @@ import ManageComments from './pages/manage-comments';
 export default function() {
   const routers = createRouter({
     routers: [
-      { path: '/', component: ManageComments},
-      { path: '/login', component: Login, meta: { public: true }}
+      { path: '/ui', component: ManageComments},
+      { path: '/ui/login', component: Login, meta: { public: true }}
     ],
   });
 
@@ -20,8 +20,9 @@ export const createRouter = function(config) {
   const PrivateRoute = Comp => props => {
     // 检查用户登录状态
     const user = useSelector(state => state.user);
+    console.log(user);
     if (!user) {
-      return (location.href = '/login');
+      return (location.href = '/ui/login');
     }
     return React.createElement(Comp, props);
   }

@@ -9,7 +9,7 @@ module.exports = class extends BaseRest {
   }
 
   getAction() {
-    return this.json(this.ctx.state.userInfo);
+    return this.success(this.ctx.state.userInfo);
   }
 
   async postAction() {
@@ -24,8 +24,9 @@ module.exports = class extends BaseRest {
       return this.fail();
     }
 
-    return this.json({
+    return this.success({
       ...user[0], 
+      password: null,
       token: jwt.sign(user[0].email, this.config('jwtKey'))
     });
   }

@@ -29,12 +29,14 @@ module.exports = {
   },
   plugins: [
     new htmlWebpackPlugin({
-      title: 'Waline Management System'
+      title: 'Waline Management System',
+      publicPath: '/'
     })
   ],
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
-    port: 9010
+    port: 9010,
+    historyApiFallback: {index: '/'}
   }
 };
