@@ -53,18 +53,18 @@ export default function() {
         {/* <h1><a href="http://waline.js.org" className="i-logo">Waline</a></h1> */}
         <form method="post" name="login" role="form" onSubmit={onSubmit}>
           <p>
-            <label for="email" className="sr-only">邮箱</label>
+            <label htmlFor="email" className="sr-only">邮箱</label>
             <input type="text" id="email" name="email" placeholder="邮箱" className="text-l w-100" />
           </p>
           <p>
-            <label for="password" className="sr-only">密码</label>
+            <label htmlFor="password" className="sr-only">密码</label>
             <input type="password" id="password" name="password" className="text-l w-100" placeholder="密码" />
           </p>
           <p className="submit">
             <button type="submit" className="btn btn-l w-100 primary">登录</button>
           </p>
           <p>
-            <label for="remember">
+            <label htmlFor="remember">
               <input type="checkbox" name="remember" className="checkbox" id="remember"/> 下次自动登录
             </label>
           </p>

@@ -12,3 +12,7 @@ export async function logout() {
   globalThis.TOKEN = null;
   localStorage.removeItem('TOKEN');
 }
+
+export async function register(user) {
+  return request({url: 'user', method: 'POST', body: user});
+}

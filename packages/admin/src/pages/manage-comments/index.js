@@ -319,7 +319,7 @@ export default function() {
                             {cmtHandler.id === objectId && cmtHandler.action === 'reply' ? (
                               <form className="comment-reply">
                                 <p>
-                                  <label htmlFor="text" className="sr-only">内容</label>
+                                  <label htmlhtmlFor="text" className="sr-only">内容</label>
                                   <textarea 
                                     id="text" 
                                     name="text" 

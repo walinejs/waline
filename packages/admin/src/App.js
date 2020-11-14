@@ -4,12 +4,14 @@ import { Provider, useSelector } from "react-redux";
 import { store } from './store';
 import Login from './pages/login';
 import ManageComments from './pages/manage-comments';
+import Register from './pages/register';
 
 export default function() {
   const routers = createRouter({
     routers: [
       { path: '/ui', component: ManageComments},
-      { path: '/ui/login', component: Login, meta: { public: true }}
+      { path: '/ui/login', component: Login, meta: { public: true }},
+      { path: '/ui/register', component: Register, meta: { public: true }}
     ],
   });
 

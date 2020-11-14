@@ -1,5 +1,5 @@
-import { createModel } from '@rematch/core'
-import { getUserInfo, login, logout } from '../services/auth'
+import { createModel } from '@rematch/core';
+import { getUserInfo, login, logout, register } from '../services/auth';
 
 export const user = createModel({
   state: null,
@@ -26,6 +26,9 @@ export const user = createModel({
     logout() {
       logout();
       dispatch.user.setUser(null);
+    },
+    register(user) {
+      return register(user);
     }
   }),
 })
