@@ -64,16 +64,29 @@ module.exports = class extends BaseRest {
       }
 
       case 'list': {
-        const {page, pageSize} = this.get();
-        const comments = await this.modelInstance.select({}, {
+        const {page, pageSize, owner, status, keyword} = this.get();
+        const where = {};
+        if(owner === 'mine') {
+          const {userInfo} = this.ctx.state;
+          where.email = userInfo.email;
+        }
+        if(status) {
+          where.status = status;
+        }
+        if(keyword) {
+          where.comment = ['LIKE', `%${keyword}%`];
+        }
+
+        const count = await this.modelInstance.count(where);
+        const comments = await this.modelInstance.select(where, {
           desc: 'insertedAt',
           limit: pageSize,
           offset: Math.max((page - 1) * pageSize, 0),
         });
 
-        return this.json({
+        return this.success({
           page,
-          totalPages: Math.ceil(rootCount / pageSize),
+          totalPages: Math.ceil(count / pageSize),
           pageSize,
           data: comments.map(formatCmt)
         });

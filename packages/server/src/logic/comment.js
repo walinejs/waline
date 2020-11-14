@@ -6,18 +6,27 @@ module.exports = class extends Base {
       case 'recent': 
         this.rules = {
           count: {
-            int: true,
-            default: 10,
-            max: 50
+            int: {max: 50},
+            default: 10
           }
         };
         break;
 
       case 'list':
-        const {userInfo} = this.ctx.sate;
+        const {userInfo} = this.ctx.state;
         if(userInfo.type !== 'administrator') {
           return this.fail();
         }
+        this.rules = {
+          page: {
+            int: true,
+            default: 1
+          },
+          pageSize: {
+            int: {max: 100},
+            default: 10
+          }
+        };
         break;
       
       default:
@@ -31,9 +40,8 @@ module.exports = class extends Base {
             default: 1
           },
           pageSize: {
-            int: true,
-            default: 10,
-            max: 100
+            int: {max: 100},
+            default: 10
           }
         };
         break;
