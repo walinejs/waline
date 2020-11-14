@@ -49,14 +49,14 @@ module.exports = class extends Base {
   }
 
   putAction() {
-    const {userInfo} = this.ctx.sate;
+    const {userInfo} = this.ctx.state;
     if(userInfo.type !== 'administrator') {
       return this.fail();
     }
   }
 
   deleteAction() {
-    const {userInfo} = this.ctx.sate;
+    const {userInfo} = this.ctx.state;
     if(userInfo.type !== 'administrator') {
       return this.fail();
     }

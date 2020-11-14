@@ -24,7 +24,7 @@ module.exports = class extends think.Controller {
       return id;
     }
     const last = decodeURIComponent(this.ctx.path.split('/').pop());
-    if (last !== this.resource && /^(\d+,?)*$/.test(last)) {
+    if (last !== this.resource && /^([a-z0-9]+,?)*$/i.test(last)) {
       return last;
     }
     return '';

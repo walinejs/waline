@@ -1,9 +1,11 @@
 const AV = require('leancloud-storage');
 const Base = require('./base');
 
+AV.Cloud.useMasterKey(true);
 AV.init({
   appId: process.env.LEAN_ID,
   appKey: process.env.LEAN_KEY,
+  masterKey: process.env.LEAN_MASTER_KEY,
   // required for leancloud china
   serverURL: process.env.LEAN_SERVER
 });
@@ -82,7 +84,7 @@ module.exports = class extends Base {
   }
 
   async add(data, {
-    access: {read = true, write = false} = {read: true, write: false}
+    access: {read = true, write = true} = {read: true, write: true}
   } = {}) {
     const Table = new AV.Object.extend(this.tableName);
     const instance = new Table();
@@ -97,14 +99,25 @@ module.exports = class extends Base {
   }
 
   async update(data, where) {
-    const ret = await this.select(where);
+    const instance = new AV.Query(this.tableName);
+    this.where(instance, where);
+    const ret = await instance.find();
+
     return Promise.all(ret.map(item => {
       if(think.isFunction(data)) {
-        ret.set(data(item.toJSON()))
+        item.set(data(item.toJSON()));
       } else {
-        ret.set(data);
+        item.set(data);
       }
-      return ret.save();
+      return item.save();
     }));
+  }
+
+  async delete(where) {
+    const instance = new AV.Query(this.tableName);
+    this.where(instance, where);
+    const data = await instance.find();
+
+    return AV.Object.destroyAll(data);
   }
 }

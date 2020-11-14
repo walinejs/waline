@@ -3,6 +3,7 @@ const marked = require('marked');
 const BaseRest = require('./rest');
 const detect = require('../service/detect');
 const akismet = require('../service/akismet');
+const { think } = require('thinkjs');
 
 marked.setOptions({
   renderer: new marked.Renderer(),
@@ -78,6 +79,7 @@ module.exports = class extends BaseRest {
         }
 
         const count = await this.modelInstance.count(where);
+        const spamCount = await this.modelInstance.count({status: 'spam'});
         const comments = await this.modelInstance.select(where, {
           desc: 'insertedAt',
           limit: pageSize,
@@ -88,7 +90,8 @@ module.exports = class extends BaseRest {
           page,
           totalPages: Math.ceil(count / pageSize),
           pageSize,
-          data: comments.map(formatCmt)
+          spamCount,
+          data: comments
         });
       }
 
@@ -165,12 +168,13 @@ module.exports = class extends BaseRest {
       }
     }
 
+    console.log(data);
     const resp = await this.modelInstance.add(data);
     
     let pComment;
     if(pid) {
-      pComment = await AV.Query('Comment').get(pid);
-      pComment = pComment.toJSON();
+      pComment = await this.modelInstance.select({objectId: pid});
+      pComment = pComment[0];
     }
     if(comment.status !== 'spam') {
       const notify = this.service('notify');
@@ -182,5 +186,15 @@ module.exports = class extends BaseRest {
     }
 
     return this.success(formatCmt(resp));
+  }
+
+  async putAction() {
+    await this.modelInstance.update(this.post(), {objectId: this.id});
+    return this.success();
+  }
+
+  async deleteAction() {
+    await this.modelInstance.delete({objectId: this.id});
+    return this.success();
   }
 }
