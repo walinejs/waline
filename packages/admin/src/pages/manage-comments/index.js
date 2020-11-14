@@ -30,6 +30,7 @@ function buildAvatar(email) {
 export default function() {
   const keywordRef = useRef(null);
   const replyTextAreaRef = useRef(null);
+  const editCommentRef = useRef({});
   const user = useSelector(state => state.user);
   const [list, setList] = useState({page: 1, totalPages: 0, spamCount: 0, data: []});
   const [filter, dispatch] = useReducer(function(state, action) {
@@ -100,7 +101,7 @@ export default function() {
       key: 'delete',
       name: '删除',
       show: true,
-      action() {
+      async action() {
         const text = comment ? `你确认要删除${comment.nick}的评论吗？` : `你确认要删除这些评论吗？`;
         if(!confirm(text)) {
           return;
@@ -129,6 +130,14 @@ export default function() {
     // setList({page: 1, totalPages: list.totalPages, spamCount: list.spamCount, data: []});
   }
 
+  const onEditComment = async idx => {
+    const comment = list.data[idx];
+    await updateComment(comment.objectId, editCommentRef.current);
+    list.data[idx] = {...comment, ...editCommentRef.current};
+    setList({...list});
+    setCmtHandler({});
+  }
+
   return (
     <>
     <Header />
@@ -152,7 +161,7 @@ export default function() {
                         onClick={_ => dispatch({[key]: type})}
                       >
                         {name}
-                        {key === 'status' && type === 'spam' && list.spamCount > 0 ? (<span class="balloon">{list.spamCount}</span>) : null}  
+                        {key === 'status' && type === 'spam' && list.spamCount > 0 ? (<span className="balloon">{list.spamCount}</span>) : null}  
                       </a>
                     </li>
                   ))}
@@ -175,7 +184,7 @@ export default function() {
                       )}
                     </ul>
                     {filter.status === 'spam' ? (
-                      <button lang="你确认要删除所有垃圾评论吗?" class="btn btn-s btn-warn btn-operate">删除所有垃圾评论</button>
+                      <button lang="你确认要删除所有垃圾评论吗?" className="btn btn-s btn-warn btn-operate">删除所有垃圾评论</button>
                     ) : null}
                   </div>
                 </div>
@@ -214,71 +223,141 @@ export default function() {
                     </tr>
                   </thead>
                   <tbody>
-                    {list.data.map(({objectId, nick, mail, link, comment, ip, url, status, rid, pid, insertedAt}) => (
-                      <tr id={`comment-${objectId}`} key={objectId}>
-                        <td valign="top">
-                          <input type="checkbox" value={objectId} />
-                        </td>
-                        <td valign="top">
-                          <div className="comment-avatar">
-                            <img className="avatar" src={buildAvatar(mail)} alt={nick} width="40" height="40" />
-                          </div>
-                        </td>
-                        <td valign="top" className="comment-head">
-                          <div className="comment-meta">
-                            <strong className="comment-author">
-                              <a href={link} rel="external nofollow" target="_blank">{nick}</a>
-                            </strong>
-                            <br/>
-                            <span><a href={`mailto:${mail}`} target="_blank">{mail}</a></span>
-                            <br/>
-                            <span>{ip}</span>
-                          </div>
-                        </td>
-                        <td valign="top" className="comment-body">
-                          <div className="comment-date">{insertedAt} 于 <a href={url} target="_blank">{url}</a></div>
-                          <div className="comment-content" dangerouslySetInnerHTML={{__html: comment}}></div> 
-                          {cmtHandler.id === objectId && cmtHandler.action === 'reply' ? (
-                            <form class="comment-reply">
+                    {list.data.map(({objectId, nick, mail, link, comment, ip, url, status, rid, pid, insertedAt}, idx) => 
+                      cmtHandler.id === objectId && cmtHandler.action === 'edit' ? (
+                        <tr className="comment-edit" key={objectId}>
+                          <td> </td>
+                          <td colSpan="2" valign="top">
+                            <div className="comment-edit-info">
                               <p>
-                                <label htmlFor="text" class="sr-only">内容</label>
+                                <label htmlFor={`comment-${objectId}-author`}>用户名</label>
+                                <input 
+                                  className="text-s w-100" 
+                                  id={`comment-${objectId}-author`} 
+                                  name="author" 
+                                  type="text" 
+                                  defaultValue={nick}  
+                                  onChange={e => (editCommentRef.current.nick = e.target.value)}
+                                />
+                              </p>
+                              <p>
+                                <label htmlFor={`comment-${objectId}-mail`}>电子邮箱</label>
+                                <input 
+                                  className="text-s w-100" 
+                                  type="email" 
+                                  name="mail" 
+                                  id={`comment-${objectId}-mail`} 
+                                  defaultValue={mail}  
+                                  onChange={e => (editCommentRef.current.mail = e.target.value)}
+                                />
+                              </p>
+                              <p>
+                                <label htmlFor={`comment-${objectId}-url`}>个人主页</label>
+                                <input 
+                                  className="text-s w-100" 
+                                  type="text" 
+                                  name="url" 
+                                  id={`comment-${objectId}-author`} 
+                                  defaultValue={link}  
+                                  onChange={e => (editCommentRef.current.link = e.target.value)}
+                                />
+                              </p>
+                            </div>
+                          </td>
+                          <td valign="top">
+                            <div className="comment-edit-content">
+                              <p>
+                                <label htmlFor={`comment-${objectId}-text`}>内容</label>
                                 <textarea 
-                                  id="text" 
                                   name="text" 
-                                  class="w-90 mono" 
-                                  rows="3"
-                                  ref={replyTextAreaRef}  
-                                ></textarea>
+                                  id={`comment-${objectId}-text`} 
+                                  rows="6" 
+                                  className="w-90 mono"
+                                  defaultValue={comment}
+                                  onChange={e => (editCommentRef.current.comment = e.target.value)}
+                                />
                               </p>
                               <p>
                                 <button 
-                                  type="button"
-                                  class="btn btn-s primary"
-                                  onClick={e => {
-                                    e.preventDefault();
-                                    cmtReply({rid, pid: objectId, url, at: nick})
-                                  }}
-                                >回复</button> 
+                                  type="button" 
+                                  className="btn btn-s primary"
+                                  onClick={_ => onEditComment(idx)}  
+                                >提交</button> 
                                 <button 
                                   type="button" 
-                                  class="btn btn-s cancel"
+                                  className="btn btn-s cancel"
                                   onClick={_ => setCmtHandler({})}  
                                 >取消</button>
                               </p>
-                            </form>
-                          ) : null}
-                          <div className="comment-action hidden-by-mouse">
-                            {createActions({objectId, nick, status, rid, pid}).map(({key, disable, name, action}) => (
-                              disable ? (
-                                <span className="weak">{name}</span>
-                              ) : (
-                                <a href="javascript:void(0)" className={`operate-${key}`} onClick={action}>{name}</a>
-                              )
-                            ))}
-                          </div>
-                        </td>
-                      </tr>
-                    ))}
+                            </div>
+                          </td>
+                        </tr>
+                      ) : (
+                        <tr id={`comment-${objectId}`} key={objectId}>
+                          <td valign="top">
+                            <input type="checkbox" value={objectId} />
+                          </td>
+                          <td valign="top">
+                            <div className="comment-avatar">
+                              <img className="avatar" src={buildAvatar(mail)} alt={nick} width="40" height="40" />
+                            </div>
+                          </td>
+                          <td valign="top" className="comment-head">
+                            <div className="comment-meta">
+                              <strong className="comment-author">
+                                <a href={link} rel="external nofollow" target="_blank">{nick}</a>
+                              </strong>
+                              <br/>
+                              <span><a href={`mailto:${mail}`} target="_blank">{mail}</a></span>
+                              <br/>
+                              <span>{ip}</span>
+                            </div>
+                          </td>
+                          <td valign="top" className="comment-body">
+                            <div className="comment-date">{insertedAt} 于 <a href={url} target="_blank">{url}</a></div>
+                            <div className="comment-content" dangerouslySetInnerHTML={{__html: comment}}></div> 
+                            {cmtHandler.id === objectId && cmtHandler.action === 'reply' ? (
+                              <form className="comment-reply">
+                                <p>
+                                  <label htmlFor="text" className="sr-only">内容</label>
+                                  <textarea 
+                                    id="text" 
+                                    name="text" 
+                                    className="w-90 mono" 
+                                    rows="3"
+                                    ref={replyTextAreaRef}  
+                                  ></textarea>
+                                </p>
+                                <p>
+                                  <button 
+                                    type="button"
+                                    className="btn btn-s primary"
+                                    onClick={e => {
+                                      e.preventDefault();
+                                      cmtReply({rid, pid: objectId, url, at: nick})
+                                    }}
+                                  >回复</button> 
+                                  <button 
+                                    type="button" 
+                                    className="btn btn-s cancel"
+                                    onClick={_ => setCmtHandler({})}  
+                                  >取消</button>
+                                </p>
+                              </form>
+                            ) : null}
+                            <div className="comment-action hidden-by-mouse">
+                              {createActions({objectId, nick, status, rid, pid}).map(({key, disable, name, action}) => (
+                                disable ? (
+                                  <span className="weak" key={key}>{name}</span>
+                                ) : (
+                                  <a key={key} href="javascript:void(0)" className={`operate-${key}`} onClick={action}>{name}</a>
+                                )
+                              ))}
+                            </div>
+                          </td>
+                        </tr>
+                      )
+                    )}
                   </tbody>
                 </table>
               </div>
@@ -296,7 +375,7 @@ export default function() {
                       )}
                     </ul>
                     {filter.status === 'spam' ? (
-                      <button lang="你确认要删除所有垃圾评论吗?" class="btn btn-s btn-warn btn-operate">删除所有垃圾评论</button>
+                      <button lang="你确认要删除所有垃圾评论吗?" className="btn btn-s btn-warn btn-operate">删除所有垃圾评论</button>
                     ) : null}
                   </div>
                 </div>

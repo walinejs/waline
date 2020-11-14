@@ -7,9 +7,9 @@ export default function({current, total, onChange}) {
   }
   
   return (
-    <ul class="typecho-pager">
+    <ul className="typecho-pager">
       {current > 1 ? (
-        <li class="prev">
+        <li className="prev">
           <a href="javascript:void(0)" onClick={_ => onChange(current - 1)}>«</a>
         </li>
       ) : null}
@@ -28,7 +28,7 @@ export default function({current, total, onChange}) {
         current + 2, 
         current + 3
       ].filter(page => page > 0 && page <= total).map(page => (
-        <li className={cls({current: page === current})}>
+        <li key={page} className={cls({current: page === current})}>
           <a href="javascript:void(0)" onClick={_ => onChange(page)}>{page}</a>
         </li>
       ))}
@@ -39,7 +39,7 @@ export default function({current, total, onChange}) {
         </>
       ) : null}
       {current < total ? (
-        <li class="next"><a href="javascript:void(0)" onClick={_ => onChange(current + 1)}>»</a></li>
+        <li className="next"><a href="javascript:void(0)" onClick={_ => onChange(current + 1)}>»</a></li>
       ) : null}
     </ul>
   )

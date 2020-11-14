@@ -95,7 +95,8 @@ module.exports = class extends Base {
     acl.setPublicWriteAccess(write);
     instance.setACL(acl);
 
-    return (await instance.save()).toJSON();
+    const resp = await instance.save();
+    return resp.toJSON();
   }
 
   async update(data, where) {
@@ -103,13 +104,15 @@ module.exports = class extends Base {
     this.where(instance, where);
     const ret = await instance.find();
 
-    return Promise.all(ret.map(item => {
+    return Promise.all(ret.map(async item => {
       if(think.isFunction(data)) {
         item.set(data(item.toJSON()));
       } else {
         item.set(data);
       }
-      return item.save().toJSON();
+
+      const resp = await item.save();
+      return resp.toJSON();
     }));
   }
 
