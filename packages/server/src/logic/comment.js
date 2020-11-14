@@ -12,6 +12,15 @@ module.exports = class extends Base {
         };
         break;
 
+      case 'count':
+        this.rules = {
+          url: {
+            string: true,
+            required: true
+          }
+        };
+        break;
+
       case 'list':
         const {userInfo} = this.ctx.state;
         if(userInfo.type !== 'administrator') {

@@ -119,7 +119,7 @@ module.exports = class extends BaseRest {
     
         const childrenComments = await this.modelInstance.select({
           url,
-          rid: ['IN', rootComments.map(comment => comment.get('objectId'))],
+          rid: ['IN', rootComments.map(comment => comment.objectId)],
           status: ['NOT IN', ['spam']],
         }, {
           desc: 'insertedAt',
