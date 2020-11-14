@@ -21,7 +21,7 @@ export default async function request(url, opts = {}) {
     opts.headers.Authorization = `Bearer ${token}`;
   }
 
-  return fetch(globalThis.serverURL + opts.url, opts).then(resp => {
+  return fetch((globalThis.serverURL || '/')+ opts.url, opts).then(resp => {
     if(resp.ok) {
       return resp.json();
     }
