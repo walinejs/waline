@@ -21,16 +21,6 @@
 
 ## Todo
 
-✅ 邮件通知
-✅ Akismet
-✅ 文章统计
-✅ 多语言同步
-✅ 自定义语言支持
-✅ 登录支持
-✅ 评论管理
-✅ 评论删除
-✅ 其它云存储服务支持（已支持 LeanCloud, MySQL, MongoDB, SQLite, PostgreSQL)
-
 - [x] 邮件通知
 - [x] 微信通知
 - [x] Akismet 反垃圾评论
