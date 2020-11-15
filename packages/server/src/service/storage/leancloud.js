@@ -10,11 +10,6 @@ AV.init({
   serverURL: process.env.LEAN_SERVER
 });
 module.exports = class extends Base {
-  constructor(tableName) {
-    super();
-    this.tableName = tableName;
-  }
-
   where(instance, where) {
     if(think.isEmpty(where)) {
       return;

@@ -19,12 +19,31 @@ const {
   PG_PASSWORD,
   PG_PORT,
   PG_PREFIX,
-  PG_USER
+  PG_USER,
+  MONGO_AUTHSOURCE,
+  MONGO_DB,
+  MONGO_HOST,
+  MONGO_PASSWORD,
+  MONGO_PORT,
+  MONGO_REPLICASET,
+  MONGO_USER,
 } = process.env;
 let type = 'common';
-if(PG_DB) {
+let mongoOpt = {
+  replicaSet: MONGO_REPLICASET,
+  authSource: MONGO_AUTHSOURCE
+};
+if(MONGO_DB) {
+  type = 'mongo';
+  for(const i in process.env) {
+    if(/MONGO_OPT_/.test(i)) {
+      const k = i.slice(10).toLocaleLowerCase().replace(/_([a-z])/g, (_, b) => b.toUpperCase());
+      mongoOpt[k] = process.env[i];
+    }
+  }
+} else if(PG_DB) {
   type = 'postgresql';
-} if(SQLITE_PATH) {
+} else if(SQLITE_PATH) {
   type = 'sqlite';
 } else if(MYSQL_DB) {
   type = 'mysql';
@@ -34,6 +53,14 @@ exports.model = {
   common: {
     logSql: true,
     logger: msg => think.logger.info(msg)
+  },
+  mongo: {
+    host: MONGO_HOST ? ( MONGO_HOST.startsWith('[') ? JSON.parse(MONGO_HOST) : MONGO_HOST ) : '127.0.0.1',
+    port: MONGO_PORT ? ( MONGO_PORT.startsWith('[') ? JSON.parse(MONGO_PORT) : MONGO_PORT ) :  27017,
+    user: MONGO_USER,
+    password: MONGO_PASSWORD,
+    database: MONGO_DB,
+    options: mongoOpt
   },
   postgresql: {
     handle: Postgresql,

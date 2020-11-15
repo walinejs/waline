@@ -1,4 +1,9 @@
 module.exports = class extends think.Service {
+  constructor(tableName) {
+    super();
+    this.tableName = tableName;
+  }
+  
   async select(where, {desc, limit, offset, field} = {}) {
     //to be implemented
   }

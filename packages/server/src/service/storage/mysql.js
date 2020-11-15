@@ -1,11 +1,6 @@
 const Base = require('./base');
 
 module.exports = class extends Base {
-  constructor(tableName) {
-    super();
-    this.tableName = tableName;
-  }
-
   parseWhere(filter) {
     const where = {};
     if(think.isEmpty(filter)) {
