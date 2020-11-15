@@ -3,7 +3,8 @@
 
 # Waline
 
-![](https://img.shields.io/npm/v/@waline/client?color=blue&logo=npm&style=flat-square)   
+![](https://img.shields.io/npm/v/@waline/client?color=blue&logo=npm&style=flat-square)
+[ ![](https://img.shields.io/badge/telegram-walinejs-2ca5e0?logo=telegram&style=flat-square) ](https://t.me/walinejs)
 
 一款基于 [Valine](https://valine.js.org) 衍生的简洁、安全的评论系统。
 

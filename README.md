@@ -3,7 +3,8 @@
 
 # Waline
 
-![](https://img.shields.io/npm/v/@waline/client?color=blue&logo=npm&style=flat-square)   
+![](https://img.shields.io/npm/v/@waline/client?color=brightgreen&logo=npm&style=flat-square)
+[ ![](https://img.shields.io/badge/telegram-walinejs-2ca5e0?logo=telegram&style=flat-square) ](https://t.me/walinejs)
 
 A simple comment system with backend support fork from [Valine](https://valine.js.org). 
 
