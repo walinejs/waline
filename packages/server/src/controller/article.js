@@ -21,7 +21,7 @@ module.exports = class extends BaseRest {
     const resp = await this.modelInstance.select({url: path});
     if(think.isEmpty(resp)) {
       const ret = await this.modelInstance.add(
-        {url: path, time}, 
+        {url: path, time: 1}, 
         {access: {read: true, write: true}}
       );
       return this.success(ret);

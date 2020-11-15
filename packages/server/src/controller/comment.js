@@ -69,7 +69,7 @@ module.exports = class extends BaseRest {
         const where = {};
         if(owner === 'mine') {
           const {userInfo} = this.ctx.state;
-          where.email = userInfo.email;
+          where.mail = userInfo.email;
         }
         if(status) {
           where.status = status;

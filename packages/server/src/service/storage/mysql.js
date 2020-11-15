@@ -17,9 +17,15 @@ module.exports = class extends Base {
         where.id = filter[k];
         continue;
       }
+
+      if(filter[k] === undefined) {
+        where[k] = null;
+        continue;
+      }
       
       where[k] = filter[k];
     }
+    return where;
   }
 
   async select(where, {desc, limit, offset, field} = {}) {
@@ -32,6 +38,7 @@ module.exports = class extends Base {
       instance.limit(offset, limit);
     }
     if(field) {
+      field.push('id');
       instance.field(field);
     }
 
@@ -47,13 +54,16 @@ module.exports = class extends Base {
 
   async add(data) {
     const instance = this.model(this.tableName);
-    return instance.add(data);
+    const id =  instance.add(data);
+    return {...data, objectId: id};
   }
 
   async update(data, where) {
-    const instance = this.model(this.tableName);
-    instance.where(this.parseWhere(where));
-    return instance.update(data);
+    const list = await this.model(this.tableName).where(this.parseWhere(where)).select();
+    return Promise.all(list.map(item => {
+      const updateData = typeof data === 'function' ? data(item) : data;
+      return this.model(this.tableName).where({id: item.id}).update(updateData);
+    }));
   }
 
   async delete(where) {
