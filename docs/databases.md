@@ -52,3 +52,8 @@
 | `PG_USER` | √ | | PostgreSQL 数据库的用户名 |
 | `PG_PASSWORD` | √ | | PostgreSQL 数据库的密码 |
 | `PG_PREFIX` | | `wl_` | PostgreSQL 数据表的表前缀 |
+
+
+## 自定义
+
+除了以上数据库存储之外，也可以添加其它存储服务的支持。如果你想帮助 Waline 支持更多的存储服务的话，可以 fork 项目，继承该 [基类](https://github.com/lizheming/waline/blob/master/packages/server/src/service/storage/base.js) 后分别实现对应存储服务的 `select()`, `add()`, `update()`, `delete()` 方法后提交 PR 即可。
