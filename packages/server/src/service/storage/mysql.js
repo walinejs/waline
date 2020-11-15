@@ -12,7 +12,7 @@ module.exports = class extends Base {
       return where;
     }
 
-    for(k in filter) {
+    for(const k in filter) {
       if(k === 'objectId') {
         where.id = filter[k];
         continue;

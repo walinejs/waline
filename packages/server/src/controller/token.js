@@ -5,7 +5,7 @@ const BaseRest = require('./rest');
 module.exports = class extends BaseRest {
   constructor(...args) {
     super(...args);
-    this.modelInstance = this.service(`storage/${this.cofig('storage')}`, 'Users');
+    this.modelInstance = this.service(`storage/${this.config('storage')}`, 'Users');
   }
 
   getAction() {
