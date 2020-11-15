@@ -19,6 +19,8 @@
     "request": "^2.88.2",
     "request-promise-native": "^1.0.9",
     "think-logger3": "^1.0.0",
+    "think-model": "^1.5.1",
+    "think-model-mysql": "^1.1.4",
     "think-router-rest": "^1.0.5",
     "thinkjs": "^3.0.0"
   },
