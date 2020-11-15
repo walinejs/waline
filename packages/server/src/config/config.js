@@ -3,16 +3,21 @@ const {
   LEAN_KEY,
   MYSQL_DB,
   MYSQL_PASSWORD,
-  SQLITE_PATH
+  SQLITE_PATH,
+  PG_DB,
+  PG_PASSWORD
 } = process.env;
 
 let storage = 'leancloud';
 let jwtKey = JWT_TOKEN || LEAN_KEY;
-if (SQLITE_PATH) {
+if (PG_DB) {
+  storage = 'mysql';
+  jwtKey = jwtKey || PG_PASSWORD;
+} else if (SQLITE_PATH) {
   storage = 'mysql';
 } else if(MYSQL_DB) {
   storage = 'mysql';
-  jwtKey = MYSQL_PASSWORD;
+  jwtKey = jwtKey || MYSQL_PASSWORD;
 }
 module.exports = {
   workers: 1,
