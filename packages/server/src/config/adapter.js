@@ -10,8 +10,8 @@ const {
   MYSQL_PREFIX,
   MYSQL_ENCODING
 } = process.env;
-module.exports = {
-  type: 'mysql',
+exports.model = {
+  type: MYSQL_DB ? 'mysql' : 'common',
   common: {
     logSql: true,
     logger: msg => think.logger.info(msg)
@@ -20,11 +20,11 @@ module.exports = {
     handle: Mysql,
     dateStrings: true,
     host: MYSQL_HOST,
-    port: MYSQL_PORT,
+    port: MYSQL_PORT || '3306',
     database: MYSQL_DB,
     user: MYSQL_USER,
     password: MYSQL_PASSWORD,
-    prefix: MYSQL_PREFIX,
+    prefix: MYSQL_PREFIX || 'wl_',
     encoding: MYSQL_ENCODING || 'utf8mb4'
   }
 };
