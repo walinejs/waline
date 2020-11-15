@@ -1,5 +1,6 @@
 const {Console} = require('think-logger3');
 const Mysql = require('think-model-mysql');
+const Sqlite = require('think-model-sqlite');
 
 const {
   MYSQL_HOST,
@@ -8,13 +9,29 @@ const {
   MYSQL_USER,
   MYSQL_PASSWORD,
   MYSQL_PREFIX,
-  MYSQL_ENCODING
+  MYSQL_ENCODING,
+  SQLITE_PATH,
+  SQLITE_DB,
+  SQLITE_PREFIX
 } = process.env;
+let type = 'common';
+if(SQLITE_PATH) {
+  type = 'sqlite';
+} else if(MYSQL_DB) {
+  type = 'mysql';
+}
 exports.model = {
-  type: MYSQL_DB ? 'mysql' : 'common',
+  type,
   common: {
     logSql: true,
     logger: msg => think.logger.info(msg)
+  },
+  sqlite: {
+    handle: Sqlite, 
+    path: SQLITE_PATH,
+    database: SQLITE_DB || 'waline',
+    connectionLimit: 1,
+    prefix: SQLITE_PREFIX || 'wl_'
   },
   mysql: {
     handle: Mysql,
