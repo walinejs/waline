@@ -40,7 +40,7 @@ function escapeHTML(text) {
 module.exports = class extends BaseRest {
   constructor(ctx) {
     super(ctx);
-    this.modelInstance = this.service('storage/leancloud', 'Comment');
+    this.modelInstance = this.service(`storage/${this.cofig('storage')}`, 'Comment');
   }
 
   async getAction() {

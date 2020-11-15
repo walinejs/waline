@@ -4,7 +4,7 @@ const BaseRest = require('./rest');
 module.exports = class extends BaseRest {
   constructor(ctx) {
     super(ctx);
-    this.modelInstance = this.service('storage/leancloud', 'Counter');
+    this.modelInstance = this.service(`storage/${this.cofig('storage')}`, 'Counter');
   }
 
   async getAction() {
