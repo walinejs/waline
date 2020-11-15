@@ -20,6 +20,7 @@ module.exports = {
       '/migration',
       '/api',
       '/cdn',
+      '/databases',
       '/vps-deploy',
       '/development',
       '/faq'
