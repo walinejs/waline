@@ -32,7 +32,8 @@ English | [中文](https://github.com/lizheming/waline/blob/master/README_CN.md)
 - [x] Login support
 - [x] Comment management
 - [x] Support delete comment
-- [x] More Cloud Storage support
+- [x] More database support
+- [ ] AWS, GCP, Azure, CloudBase deploy support
 - [ ] Sitcky Comment
 - [ ] Comment Like
 - [ ] Social account login

@@ -31,7 +31,8 @@
 - [x] 登录支持
 - [x] 评论管理
 - [x] 评论删除
-- [x] 其它云存储服务支持（已支持 LeanCloud, MySQL, MongoDB, SQLite, PostgreSQL)
+- [x] 其它数据库服务支持（已支持 LeanCloud, MySQL, MongoDB, SQLite, PostgreSQL)
+- [ ] AWS, GCP, Azure, CloudBase 的部署支持
 - [ ] 置顶评论
 - [ ] 评论赞踩
 - [ ] 社交登录

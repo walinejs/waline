@@ -22,7 +22,8 @@ Waline - 一款从 [Valine](https://valine.js.org) 衍生的带后端评论系�
 - ✅ 登录支持
 - ✅ 评论管理
 - ✅ 评论删除
-- ✅ 其它云存储服务支持（已支持 LeanCloud, MySQL, MongoDB, SQLite, PostgreSQL)
+- ✅ 其它数据库支持（已支持 LeanCloud, MySQL, MongoDB, SQLite, PostgreSQL)
+- AWS, GCP, Azure, CloudBase 的部署支持
 - 社交登录
 - 置顶评论
 - 评论赞踩
