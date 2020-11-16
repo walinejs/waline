@@ -9,7 +9,7 @@
     "docs:build": "vuepress build docs"
   },
   "devDependencies": {
-    "@waline/client": "^0.4.1",
+    "@waline/client": "^0.4.2",
     "vuepress": "^1.7.1"
   }
 }
