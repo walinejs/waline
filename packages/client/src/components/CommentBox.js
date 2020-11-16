@@ -135,6 +135,8 @@ export default function({
     ua: navigator.userAgent,
     url: path
   });
+  const [submitting, setSubmitting] = useState(false);
+
   const ctx = useContext(ConfigContext);
   const onChange = useCallback(e => {
     const comment = e.target.value;
@@ -182,14 +184,16 @@ export default function({
       comment.at = replyUser;
     }
 
+    setSubmitting(true);
     postComment({serverURL, comment}).then(resp => {
+      setSubmitting(false);
       onSubmit(resp);
       store.setItem({
         nick: comment.nick,
         link: comment.link,
         mail: comment.mail
       });
-    });
+    }, _ => setSubmitting(false));
   }, [comment]);
 
   useEffect(() => {
@@ -278,6 +282,7 @@ export default function({
           <div className="vcol vcol-70 text-right">
             <button 
               type="button" 
+              disabled={submitting}
               title="Cmd|Ctrl+Enter" 
               className="vsubmit vbtn"
               onClick={submitComment}  
