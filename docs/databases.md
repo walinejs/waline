@@ -1,4 +1,4 @@
-# 多存储服务支持
+# 多数据库服务支持
 
 除了官配 LeanCloud 之外，Waline 还支持多种数据库，包括 MySQL, PostgreSQL, SQLite 以及 MongoDB。所有的这些支持仅需要配置环境变量即可，Waline 会自动根据你配置的环境变量切换到对应的数据存储服务。
 
