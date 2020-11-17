@@ -1,5 +1,8 @@
 # 介绍
-![](https://img.shields.io/npm/v/@waline/client?color=blue&logo=npm&style=flat-square)
+![](https://img.shields.io/npm/v/@waline/client?color=critical&logo=npm&style=flat-square)
+![npm bundle size (scoped)](https://img.shields.io/bundlephobia/minzip/@waline/client?style=flat-square&label=size)
+![npm](https://img.shields.io/npm/dm/@waline/client?style=flat-square)
+![GitHub](https://img.shields.io/github/license/lizheming/waline?style=flat-square)
 [ ![](https://img.shields.io/badge/telegram-walinejs-2ca5e0?logo=telegram&style=flat-square) ](https://t.me/walinejs)
 
 Waline - 一款从 [Valine](https://valine.js.org) 衍生的带后端评论系统。可以将 Waline 等价成 With backend Valine.
