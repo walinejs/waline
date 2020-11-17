@@ -1,4 +1,4 @@
-FROM node:lts-alpine
+FROM node:lts
 
 ENV WORKDIR /opt/waline
 WORKDIR ${WORKDIR}
