@@ -1,18 +1,15 @@
 const AV = require('leancloud-storage');
 const Base = require('./base');
+
+AV.Cloud.useMasterKey(true);
+AV.init({
+  appId: process.env.LEAN_ID,
+  appKey: process.env.LEAN_KEY,
+  masterKey: process.env.LEAN_MASTER_KEY,
+  // required for leancloud china
+  serverURL: process.env.LEAN_SERVER
+});
 module.exports = class extends Base {
-  constructor(...args) {
-    super(...args);
-    AV.Cloud.useMasterKey(true);
-    AV.init({
-      appId: process.env.LEAN_ID,
-      appKey: process.env.LEAN_KEY,
-      masterKey: process.env.LEAN_MASTER_KEY,
-      // required for leancloud china
-      serverURL: process.env.LEAN_SERVER
-    });
-  }
-  
   where(instance, where) {
     if(think.isEmpty(where)) {
       return;
@@ -71,14 +68,25 @@ module.exports = class extends Base {
     if(field) {
       instance.select(field);
     }
-    const data = await instance.find();
+
+    const data = await instance.find().catch(e => {
+      if(e.code === 101) {
+        return [];
+      }
+      throw e;
+    });
     return data.map(item => item.toJSON());
   }
 
   async count(where = {}, options = {}) {
     const instance = new AV.Query(this.tableName);
     this.where(instance, where);
-    return instance.count(options);
+    return instance.count(options).catch(e => {
+      if(e.code === 101) {
+        return 0;
+      }
+      throw e;
+    });
   }
 
   async add(data, {
