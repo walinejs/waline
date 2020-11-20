@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 module.exports = class extends think.Logic {
   constructor(...args) {
     super(...args);
-    this.modelInstance = this.service('storage/leancloud', 'Users');
+    this.modelInstance = this.service(`storage/${this.config('storage')}`, 'Users');
   }
 
   async __before() {
