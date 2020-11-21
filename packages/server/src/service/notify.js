@@ -96,7 +96,7 @@ module.exports = class extends think.Service {
       </h2>
       <p><strong>{{self.nick}}</strong>回复说：</p>
       <div style="background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;">
-        {{self.comment}}
+        {{self.comment | safe}}
       </div>
       <p>您可以点击<a style="text-decoration:none; color:#12addb" href="{{site.postUrl}}" target="_blank">查看回复的完整內容</a></p>
       <br/>
