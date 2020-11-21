@@ -19,6 +19,10 @@
       "dest": "pages/index.html"
     },
     {
+      "src": "/ui",
+      "dest": "pages/ui.html"
+    },
+    {
       "src": "/ui/(.*)",
       "dest": "pages/ui.html"
     },
