@@ -113,14 +113,14 @@ Waline 的服务端地址。
 - 默认值: ` `
 - 必要性: `false`
 
-设置`表情包CDN`，参考[自定义表情](/emoji.html)
+设置`表情包CDN`，参考[自定义表情](/client/emoji.html)
 
 ## emojiMaps
 - 类型: `Object`
 - 默认值: `null`
 - 必要性: `false`
 
-设置`表情包映射`，参考[自定义表情](/emoji.html)
+设置`表情包映射`，参考[自定义表情](/client/emoji.html)
 
 ## requiredFields
 - 类型: `Array`
