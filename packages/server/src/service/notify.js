@@ -104,7 +104,7 @@ module.exports = class extends think.Service {
     if(!isAuthorComment) {
       await this.wechat({title, content}, comment, parent);
     }
-    if(!isAuthorComment || !isReplyAuthor) {
+    if(!isAuthorComment && !isReplyAuthor) {
       mailList.push({to: AUTHOR, title, content});
     }
 
