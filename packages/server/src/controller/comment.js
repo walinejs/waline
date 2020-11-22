@@ -1,9 +1,8 @@
 const helper = require('think-helper');
 const marked = require('marked');
+const parser = require('ua-parser-js');
 const BaseRest = require('./rest');
-const detect = require('../service/detect');
 const akismet = require('../service/akismet');
-const { think } = require('thinkjs');
 
 marked.setOptions({
   renderer: new marked.Renderer(),
@@ -18,10 +17,10 @@ marked.setOptions({
 });
 
 function formatCmt({ua, ip, ...comment}) {
-  ua = detect(ua);
+  ua = parser(ua)
   comment.mail = helper.md5(comment.mail);
-  comment.browser = ua.browser + ' ' + ua.version;
-  comment.os = ua.os + ' ' + ua.osVersion;
+  comment.browser = ua.browser.name + ' ' + ua.browser.version;
+  comment.os = ua.os.name + ' ' + ua.os.version;
   return comment;
 }
 
