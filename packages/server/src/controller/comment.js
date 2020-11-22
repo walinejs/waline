@@ -3,7 +3,6 @@ const marked = require('marked');
 const parser = require('ua-parser-js');
 const BaseRest = require('./rest');
 const akismet = require('../service/akismet');
-const { think } = require('thinkjs');
 
 marked.setOptions({
   renderer: new marked.Renderer(),
