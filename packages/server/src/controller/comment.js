@@ -24,18 +24,6 @@ function formatCmt({ua, ip, ...comment}) {
   return comment;
 }
 
-function escapeHTML(text) {
-  const arr = [
-    ['<', '&lt;'],
-    ['>', '&gt;'],
-    ['"', '&quot;'],
-    ["'", '&#39;']
-  ];
-  arr.forEach(([target, replaced]) => 
-    (text = text.replace(new RegExp(target, 'g'), replaced))
-  );
-  return text;
-}
 module.exports = class extends BaseRest {
   constructor(ctx) {
     super(ctx);
@@ -147,7 +135,7 @@ module.exports = class extends BaseRest {
       link, mail, nick, pid, rid, ua, url, 
       ip: this.ctx.ip,
       insertedAt: new Date(),
-      comment: marked(escapeHTML(comment))
+      comment: marked(comment)
     };
     if(pid) {
       data.comment = data.comment.replace('<p>', `<p><a class="at" href="#${pid}">@${at}</a> , `);
