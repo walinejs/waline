@@ -4,6 +4,10 @@ const isDev = think.env === 'development';
 
 module.exports = [
   {
+    handle: 'dashboard',
+    match: /^\/ui/
+  },
+  {
     handle: 'meta',
     options: {
       logRequest: isDev,
