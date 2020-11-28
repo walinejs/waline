@@ -75,11 +75,12 @@ function getSidebar(groupA, groupB, groupC, lang) {
       children: [
         lang + '/migration',
         lang + '/server/databases',
+        !lang ? '/server/cloudbase' : undefined,
         lang + '/server/vps-deploy',
         lang + '/development',
         lang + '/api',
         lang +  '/faq'
-      ]
+      ].filter(v => v)
     }
   ]
 }
