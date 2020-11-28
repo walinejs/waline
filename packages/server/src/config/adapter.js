@@ -1,7 +1,12 @@
 const {Console} = require('think-logger3');
 const Mysql = require('think-model-mysql');
-const Sqlite = require('think-model-sqlite');
 const Postgresql = require('think-model-postgresql');
+let Sqlite = class {};
+try {
+  Sqlite = require('think-model-sqlite');
+} catch(e) {
+  console.log(e);
+}
 
 const {
   MYSQL_HOST,

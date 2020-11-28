@@ -26,6 +26,10 @@ if (MONGO_DB) {
   jwtKey = jwtKey || MYSQL_PASSWORD;
 }
 
+if(think.env === 'cloudbase' && storage === 'sqlite') {
+  throw new Error('You can\'t use SQLite in CloudBase platform.');
+}
+
 let forbiddenWords = [];
 if(FORBIDDEN_WORDS) {
   forbiddenWords = FORBIDDEN_WORDS.split(/\s*,\s*/);
