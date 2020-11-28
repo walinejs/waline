@@ -12,7 +12,7 @@ const instance = new Application({
   env: 'cloudbase'
 });
 
-module.expors = function(config = {}) {
+module.exports = function(config = {}) {
   const loader = new Loader(instance.options);
   loader.loadAll('worker');
 
