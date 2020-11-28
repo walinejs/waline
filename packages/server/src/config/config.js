@@ -36,5 +36,5 @@ module.exports = {
   storage, 
   jwtKey,
   forbiddenWords,
-  blackIPList: []
+  disallowIPList: []
 };

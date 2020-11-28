@@ -141,9 +141,9 @@ module.exports = class extends BaseRest {
       data.comment = data.comment.replace('<p>', `<p><a class="at" href="#${pid}">@${at}</a> , `);
     }
 
-    /** IP blackList */
-    const {blackIPList} = this.config();
-    if(think.isArray(blackIPList) && blackIPList.length && blackIPList.includes(data.ip)) {
+    /** IP disallowList */
+    const {disallowIPList} = this.config();
+    if(think.isArray(disallowIPList) && disallowIPList.length && disallowIPList.includes(data.ip)) {
       return this.ctx.throw(403);
     }
     
