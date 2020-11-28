@@ -13,15 +13,48 @@
 | `SITE_NAME`       |      | 博客名称                                                      |
 | `SITE_URL`        |      | 博客地址                                                      |
 | `IPQPS`           |      | 基于IP的评论发布频率限制，单位为秒。默认为60秒，设置为0不限制 |
-| `FORBIDDEN_WORDS` |      | 违禁词设置，逗号分隔，命中的会被设置为垃圾评论                |
 
 除了以上这些环境变量之外，不同的功能也会有很多环境变量配置，具体可在左侧列进度对应的功能项进行查看。
 
+## 代码配置
+
+除了环境变量，我们还支持一些项目代码配置。
+
+### forbiddenWords
+
+违禁词配置，包含违禁词的内容会直接标记为垃圾评论。
+
+```
+//index.js
+const Waline = require('@waline/vercel');
+
+module.exports = Waline({
+  forbiddenWords: [
+    '习近平',
+    '毛泽东'
+  ]
+});
+```
+### disallowIPList
+
+IP 禁止名单配置，命中名单中的 IP 会直接返回 403 错误 
+
+```
+//index.js
+const Waline = require('@waline/vercel');
+
+module.exports = Waline({
+  disallowIPList: [
+    '8.8.8.8',
+    '4.4.4.4'
+  ]
+});
+```
 ## 发布评论 Hooks
 
 除了环境变量配置之外，Waline 还提供了一些自定义钩子，方便大家有自定义需求进行处理。目前支持发布评论前和发布评论后的钩子。只需要在服务端入口文件 `index.js` 中进行配置即可。
 
-## preSave(comment)
+### preSave(comment)
 
 传入评论数据，如果该方法返回内容，则接口会直接返回，不存储评论数据。
 
@@ -39,7 +72,7 @@ module.exports = Waline({
 });
 ```
 
-## postSave(comment, pComment)
+### postSave(comment, pComment)
 
 评论发布后执行的操作。方法执行时会传入评论数据，如果是回复评论的话还会传入父级评论。
 

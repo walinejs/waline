@@ -38,6 +38,8 @@ English | [中文](https://github.com/lizheming/waline/blob/master/README_CN.md)
 - [x] More database support
 - [x] Limit the frequency of comments posted by IP
 - [x] Comment keyword restrictions
+- [x] IP disallow list
+- [x] Duplicate content check
 - [ ] AWS, GCP, Azure, CloudBase deploy support
 - [ ] Sitcky Comment
 - [ ] Comment Like
