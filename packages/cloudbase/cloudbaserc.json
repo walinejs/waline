@@ -1,0 +1,17 @@
+{
+    "version": "2.0",
+    "envId": "waline-2gk8d5jw219ba8c7",
+    "framework": {
+      "name": "waline",
+      "plugins": {
+        "node": {
+          "use": "@cloudbase/framework-plugin-node",
+          "inputs": {
+            "name": "waline",
+            "path": "/"
+          }
+        }
+      }
+    }
+  }
+  
