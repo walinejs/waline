@@ -36,6 +36,8 @@ English | [中文](https://github.com/lizheming/waline/blob/master/README_CN.md)
 - [x] Comment management
 - [x] Support delete comment
 - [x] More database support
+- [ ] Limit the frequency of comments posted by IP
+- [ ] Comment keyword restrictions
 - [ ] AWS, GCP, Azure, CloudBase deploy support
 - [ ] Sitcky Comment
 - [ ] Comment Like

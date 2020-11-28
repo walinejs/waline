@@ -35,6 +35,8 @@
 - [x] 评论管理
 - [x] 评论删除
 - [x] 其它数据库服务支持（已支持 LeanCloud, MySQL, MongoDB, SQLite, PostgreSQL)
+- [ ] 基于 IP 的评论发布频率限制
+- [ ] 基于关键词的评论过滤限制
 - [ ] AWS, GCP, Azure, CloudBase 的部署支持
 - [ ] 置顶评论
 - [ ] 评论赞踩

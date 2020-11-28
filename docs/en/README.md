@@ -30,6 +30,8 @@ A simple comment system with backend support fork from [Valine](https://valine.j
 - ✅ Comment management
 - ✅ Support delete comment
 - ✅ More database support
+- Limit the frequency of comments posted by IP
+- Comment keyword restrictions
 - AWS, GCP, Azure, CloudBase deploy support
 - Sitcky Comment
 - Comment Like
