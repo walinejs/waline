@@ -141,10 +141,32 @@ module.exports = class extends BaseRest {
       data.comment = data.comment.replace('<p>', `<p><a class="at" href="#${pid}">@${at}</a> , `);
     }
 
+    /** IP Frequence */
+    const {IPQPS = 60} = process.env;
+    const recent =  await this.modelInstance.select({
+      ip: this.ctx.ip,
+      insertedAt: ['>', new Date(Date.now() - IPQPS * 1000)]
+    });
+    if(!think.isEmpty(recent)) {
+      return this.fail('Comment too fast!');
+    }
+
+    /** Akismet */
     data.status = 'approved';
     const spam = await akismet(data, this.ctx.protocol + '://' + this.ctx.host).catch(e => console.log(e)); // ignore akismet error
     if(spam === true) {
       data.status = 'spam';
+    }
+    
+    if(data.status !== 'spam') {
+      /** KeyWord Filter */
+      const {FORBIDDEN_WORDS} = process.env;
+      if(!think.isEmpty(FORBIDDEN_WORDS)) {
+        const regexp = new RegExp('(' + FORBIDDEN_WORDS.split(/\s*,\s*/).join('|') + ')', 'g');
+        if(regexp.test(comment)) {
+          data.status = 'spam';
+        }
+      }
     }
     
     const {preSave, postSave} = think.config();

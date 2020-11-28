@@ -47,6 +47,9 @@ module.exports = class extends Base {
             case '!=':
               instance.notEqualTo(k, where[k][1]);
               break;
+            case '>':
+              instance.greaterThan(k, where[k][1]);
+              break;
           }
         }
       }

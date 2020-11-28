@@ -62,6 +62,11 @@ module.exports = class extends Base {
                 [parseKey(k)]: { $ne: where[k][1] }
               });
               break;
+            case '>':
+              instance.where({
+                [parseKey(k)]: { $gt: where[k][1] }
+              });
+              break;
           }
         }
       }

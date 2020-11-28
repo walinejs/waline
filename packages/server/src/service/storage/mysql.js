@@ -17,7 +17,10 @@ module.exports = class extends Base {
         where[k] = null;
         continue;
       }
-      
+
+      if(Array.isArray(filter[k]) && think.isDate(filter[k][1])) {
+        filter[k][1] = think.datetime(filter[k][1]);
+      }
       where[k] = filter[k];
     }
     return where;
