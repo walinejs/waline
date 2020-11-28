@@ -26,7 +26,7 @@ module.exports = {
         editLinkText: 'Edit this page on GitHub',
         lastUpdated: 'Last Updated',
         nav: require('./nav/en'),
-        sidebar: getSidebar('Basic Configure', 'Advanced Functions', 'More Features', 'en/')
+        sidebar: getSidebar('Basic Configure', 'Advanced Functions', 'More Features', '/en')
       },
       '/': {
         label: '简体中文',
@@ -48,7 +48,7 @@ module.exports = {
 
 function getSidebar(groupA, groupB, groupC, lang) {
   return [
-    lang + 'quick-start',
+    lang + '/quick-start',
     {
       title: groupA,
       collapsable: false,
@@ -83,3 +83,4 @@ function getSidebar(groupA, groupB, groupC, lang) {
     }
   ]
 }
+console.log(getSidebar('Basic Configure', 'Advanced Functions', 'More Features', '/en'));

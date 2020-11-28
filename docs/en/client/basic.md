@@ -1,4 +1,4 @@
-# Front End Configuration
+# Client Configuration
 
 ## el
 

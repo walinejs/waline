@@ -1,7 +1,7 @@
 module.exports = [
   {
     text: 'Guide',
-    link: '/quick-start'
+    link: '/en/quick-start'
   },
   {
     text: 'Config Reference',
@@ -13,15 +13,15 @@ module.exports = [
         items: [
           {
             text: 'Basic Configure',
-            link: '/client/basic.html'
+            link: '/en/client/basic.html'
           },
           {
             text: 'Internationalization',
-            link: '/client/i18n.html'
+            link: '/en/client/i18n.html'
           },
           {
             text: 'Reading Statistics',
-            link: '/client/visitor.html'
+            link: '/en/client/visitor.html'
           }
         ],
       },
@@ -31,19 +31,19 @@ module.exports = [
         items: [
           {
             text: 'Basic Configure',
-            link: '/server/basic.html'
+            link: '/en/server/basic.html'
           },
           {
             text: 'Comment Notification',
-            link: '/server/notification.html'
+            link: '/en/server/notification.html'
           },
           {
             text: 'Othere Databases',
-            link: '/server/databases.html'
+            link: '/en/server/databases.html'
           },
           {
             text: 'Independent Deployment',
-            link: '/server/vps-deploy.html'
+            link: '/en/server/vps-deploy.html'
           }
         ]
       }
@@ -51,7 +51,7 @@ module.exports = [
   },
   {
     text: 'Migration',
-    link: '/migration'
+    link: '/en/migration'
   },
   {
     text: 'Learn More',
@@ -59,15 +59,15 @@ module.exports = [
     items: [
       {
         text: 'API',
-        link: '/api'
+        link: '/en/api'
       },
       {
         text: 'Contributing Guide',
-        link: '/development'
+        link: '/en/development'
       },
       {
         text: 'FAQ',
-        link: '/faq'
+        link: '/en/faq'
       }
     ]
   }
