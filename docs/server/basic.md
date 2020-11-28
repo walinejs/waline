@@ -4,14 +4,16 @@
 
 服务端大部分的配置是通过环境变量进行配置的，如果是在 Vercel 的话可以在 <kbd>Settings</kbd> - <kbd>Environment Variables</kbd> 中进行设置。设置完毕之后需要进行重新部署才能生效。
 
-| 环境变量名称      | 必填 | 备注                                         |
-| ----------------- | ---- | -------------------------------------------- |
-| `LEAN_ID`         | √    | LeanCloud 应用的 App ID                      |
-| `LEAN_KEY`        | √    | LeanCloud 应用的 App Key                     |
-| `LEAN_MASTER_KEY` | √    | LeanCloud 应用的 Master Key 用于后台修改数据 |
-| `LEAN_SERVER`     |      | LeanCloud 服务地址，国内版用户需要配置此项   |
-| `SITE_NAME`       |      | 博客名称                                     |
-| `SITE_URL`        |      | 博客地址                                     |
+| 环境变量名称      | 必填 | 备注                                                          |
+| ----------------- | ---- | ------------------------------------------------------------- |
+| `LEAN_ID`         | √    | LeanCloud 应用的 App ID                                       |
+| `LEAN_KEY`        | √    | LeanCloud 应用的 App Key                                      |
+| `LEAN_MASTER_KEY` | √    | LeanCloud 应用的 Master Key 用于后台修改数据                  |
+| `LEAN_SERVER`     |      | LeanCloud 服务地址，国内版用户需要配置此项                    |
+| `SITE_NAME`       |      | 博客名称                                                      |
+| `SITE_URL`        |      | 博客地址                                                      |
+| `IPQPS`           |      | 基于IP的评论发布频率限制，单位为秒。默认为60秒，设置为0不限制 |
+| `FORBIDDEN_WORDS` |      | 违禁词设置，逗号分隔，命中的会被设置为垃圾评论                |
 
 除了以上这些环境变量之外，不同的功能也会有很多环境变量配置，具体可在左侧列进度对应的功能项进行查看。
 
