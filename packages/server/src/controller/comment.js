@@ -141,6 +141,20 @@ module.exports = class extends BaseRest {
       data.comment = data.comment.replace('<p>', `<p><a class="at" href="#${pid}">@${at}</a> , `);
     }
 
+    /** IP blackList */
+    const {blackIPList} = this.config();
+    if(think.isArray(blackIPList) && blackIPList.length && blackIPList.includes(data.ip)) {
+      return this.ctx.throw(403);
+    }
+    
+    /** Duplicate content detect */
+    const duplicate = await this.modelInstance.select({
+      url, mail: data.mail, nick: data.nick, link: data.link, comment: data.comment
+    });
+    if(!think.isEmpty(duplicate)) {
+      return this.fail('Duplicate Content');
+    }
+
     /** IP Frequence */
     const {IPQPS = 60} = process.env;
     const recent =  await this.modelInstance.select({
@@ -160,9 +174,9 @@ module.exports = class extends BaseRest {
     
     if(data.status !== 'spam') {
       /** KeyWord Filter */
-      const {FORBIDDEN_WORDS} = process.env;
-      if(!think.isEmpty(FORBIDDEN_WORDS)) {
-        const regexp = new RegExp('(' + FORBIDDEN_WORDS.split(/\s*,\s*/).join('|') + ')', 'g');
+      const {forbiddenWords} = this.config();
+      if(!think.isEmpty(forbiddenWords)) {
+        const regexp = new RegExp('(' + forbiddenWords.join('|') + ')', 'ig');
         if(regexp.test(comment)) {
           data.status = 'spam';
         }

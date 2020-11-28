@@ -8,6 +8,7 @@ const {
   PG_PASSWORD,
   MONGO_DB,
   MONGO_PASSWORD,
+  FORBIDDEN_WORDS
 } = process.env;
 
 let storage = 'leancloud';
@@ -24,8 +25,16 @@ if (MONGO_DB) {
   storage = 'mysql';
   jwtKey = jwtKey || MYSQL_PASSWORD;
 }
+
+let forbiddenWords = [];
+if(FORBIDDEN_WORDS) {
+  forbiddenWords = FORBIDDEN_WORDS.split(/\s*,\s*/);
+}
+
 module.exports = {
   workers: 1,
   storage, 
-  jwtKey  
+  jwtKey,
+  forbiddenWords,
+  blackIPList: []
 };
