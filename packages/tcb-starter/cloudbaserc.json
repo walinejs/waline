@@ -1,0 +1,18 @@
+{
+  "version": "2.0",
+  "envId": "{{envId}}",
+  "$schema": "https://framework-1258016615.tcloudbaseapp.com/schema/latest.json",
+  "framework": {
+    "name": "ThinkJS",
+    "plugins": {
+      "node": {
+        "use": "@cloudbase/framework-plugin-node",
+        "inputs": {
+          "entry": "app.js",
+          "name": "waline",
+          "path": "/"
+        }
+      }
+    }
+  }
+}
