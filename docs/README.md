@@ -26,8 +26,8 @@ Waline - 一款从 [Valine](https://valine.js.org) 衍生的带后端评论系�
 - ✅ 评论管理
 - ✅ 评论删除
 - ✅ 其它数据库支持（已支持 LeanCloud, MySQL, MongoDB, SQLite, PostgreSQL)
-- 基于 IP 的发布评论频率限制
-- 基于关键词的评论过滤限制
+- ✅ 基于 IP 的发布评论频率限制
+- ✅ 基于关键词的评论过滤限制
 - AWS, GCP, Azure, CloudBase 的部署支持
 - 社交登录
 - 置顶评论
