@@ -80,7 +80,7 @@ The action performed after the comment is posted. When the method is executed, t
 const Waline = require('@waline/vercel');
 
 module.exports = Waline({
-  async preSave(comment, pComment) {
+  async postSave(comment, pComment) {
     await mailto({
       mail: pComment.mail,
       text: `${comment.nick} replied your comment!`
