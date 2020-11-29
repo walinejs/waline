@@ -164,7 +164,7 @@ export default function({
   }, []);
   const onPaste = useCallback(onPasteFactory(editorRef, ctx.uploadImage, insertAtCaret), []);
   const submitComment = useCallback(() => {
-    if(requiredFields.indexOf('nick') > -1 && comment.nick.length < 3) {
+    if(requiredFields.indexOf('nick') > -1 && comment.nick.length < 2) {
       inputsRef.nick.current.focus();
       return;
     }
