@@ -78,6 +78,7 @@ function getSidebar(groupA, groupB, groupC, lang) {
         !lang ? '/server/cloudbase' : undefined,
         lang + '/server/vps-deploy',
         lang + '/development',
+        lang + '/client/other',
         lang + '/api',
         lang +  '/faq'
       ].filter(v => v)
