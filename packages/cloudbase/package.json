@@ -1,6 +1,6 @@
 {
   "name": "@waline/cloudbase",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "cloudbase server for waline comment system",
   "main": "index.js",
   "author": "lizheming<i@imnerd.org>",
