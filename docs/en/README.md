@@ -34,7 +34,8 @@ A simple comment system with backend support fork from [Valine](https://valine.j
 - ✅ Comment keyword restrictions
 - ✅ IP disallow list
 - ✅ Duplicate content check
-- AWS, GCP, Azure, CloudBase deploy support
+- ✅ CloudBase deploy support
+- AWS, GCP, Azure deploy support
 - Sitcky Comment
 - Comment Like
 - Social account login

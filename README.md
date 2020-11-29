@@ -40,7 +40,8 @@ English | [中文](https://github.com/lizheming/waline/blob/master/README_CN.md)
 - [x] Comment keyword restrictions
 - [x] IP disallow list
 - [x] Duplicate content check
-- [ ] AWS, GCP, Azure, CloudBase deploy support
+- [x] CloudBase deploy support
+- [ ] AWS, GCP, Azure deploy support
 - [ ] Sitcky Comment
 - [ ] Comment Like
 - [ ] Social account login

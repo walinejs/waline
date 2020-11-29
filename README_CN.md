@@ -39,7 +39,8 @@
 - [x] 基于关键词的评论过滤限制
 - [x] IP 黑名单
 - [x] 重复内容检测 
-- [ ] AWS, GCP, Azure, CloudBase 的部署支持
+- [x] CloudBase 腾讯云开发部署支持
+- [ ] AWS, GCP, Azure 部署支持
 - [ ] 置顶评论
 - [ ] 评论赞踩
 - [ ] 社交登录
