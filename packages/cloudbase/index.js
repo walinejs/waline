@@ -23,7 +23,7 @@ module.exports = function(config = {}) {
   return {
     async tcbGetApp() {
       await think.beforeStartServer().catch(err => think.logger.error(err));
-      await instance._getWorkerInstance(instance.parseArgv()).startServer();
+      await instance._getWorkerInstance(instance.parseArgv());
       think.app.emit('appReady');
       
       return think.app;

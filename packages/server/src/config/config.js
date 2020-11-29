@@ -1,3 +1,4 @@
+const cloudbase = require('@cloudbase/node-sdk');
 const {
   JWT_TOKEN,
   LEAN_KEY,
@@ -16,7 +17,7 @@ let storage = 'leancloud';
 let jwtKey = JWT_TOKEN || LEAN_KEY;
 if(think.env === 'cloudbase' || TCB_ENV) {
   storage = 'cloudbase';
-  jwtKey = jwtKey || TCB_ENV;
+  jwtKey = jwtKey || cloudbase.SYMBOL_CURRENT_ENV || TCB_ENV;
 } else if (MONGO_DB) {
   storage = 'mongodb';
   jwtKey = jwtKey || MONGO_PASSWORD;
