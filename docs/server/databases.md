@@ -46,7 +46,7 @@
 
 | 环境变量名称 | 必填 | 默认值 | 备注 |
 |------------|---------|------|------|
-| `PG_HSOT` | | 127.0.0.1 | PostgreSQL 服务的地址 |
+| `PG_HOST` | | 127.0.0.1 | PostgreSQL 服务的地址 |
 | `PG_PORT` | | 3211 | PostgreSQL 服务的端口 |
 | `PG_DB` | √ | | PostgreSQL 数据库库名 |
 | `PG_USER` | √ | | PostgreSQL 数据库的用户名 |
