@@ -85,4 +85,3 @@ function getSidebar(groupA, groupB, groupC, lang) {
     }
   ]
 }
-console.log(getSidebar('Basic Configure', 'Advanced Functions', 'More Features', '/en'));
