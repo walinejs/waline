@@ -82,7 +82,7 @@ module.exports = Waline({
 const Waline = require('@waline/vercel');
 
 module.exports = Waline({
-  async preSave(comment, pComment) {
+  async postSave(comment, pComment) {
     await mailto({
       mail: pComment.mail,
       text: `${comment.nick} replied your comment!`
