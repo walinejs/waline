@@ -21,7 +21,7 @@ module.exports = class extends think.Logic {
   
     const user = await this.modelInstance.select(
       {email: userMail},
-      {field: ['email', 'name', 'display_name', 'type']}
+      {field: ['email', 'display_name', 'type']}
     );
     if(!think.isEmpty(user)) {
       this.ctx.state.userInfo = user[0];
