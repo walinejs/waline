@@ -85,8 +85,8 @@ module.exports = class extends think.Service {
     const AUTHOR = AUTHOR_EMAIL || BLOGGER_EMAIL;
     
     const mailList = [];
-    const isAuthorComment = comment.mail.toLowerCase() === AUTHOR.toLowerCase();
-    const isReplyAuthor = parent && parent.mail.toLowerCase() === AUTHOR.toLowerCase();
+    const isAuthorComment = AUTHOR ? comment.mail.toLowerCase() === AUTHOR.toLowerCase() : false;
+    const isReplyAuthor = AUTHOR ? parent && parent.mail.toLowerCase() === AUTHOR.toLowerCase() : false;
 
     const title = '{{site.name}} 上有新评论了';
     const content = `

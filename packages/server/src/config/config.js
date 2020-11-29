@@ -8,12 +8,16 @@ const {
   PG_PASSWORD,
   MONGO_DB,
   MONGO_PASSWORD,
-  FORBIDDEN_WORDS
+  FORBIDDEN_WORDS,
+  TCB_ENV
 } = process.env;
 
 let storage = 'leancloud';
 let jwtKey = JWT_TOKEN || LEAN_KEY;
-if (MONGO_DB) {
+if(think.env === 'cloudbase' || TCB_ENV) {
+  storage = 'cloudbase';
+  jwtKey = jwtKey || TCB_ENV;
+} else if (MONGO_DB) {
   storage = 'mongodb';
   jwtKey = jwtKey || MONGO_PASSWORD;
 } else if (PG_DB) {

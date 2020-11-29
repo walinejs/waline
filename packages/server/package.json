@@ -8,6 +8,7 @@
     "lint-fix": "eslint --fix src/"
   },
   "dependencies": {
+    "@cloudbase/node-sdk": "^2.4.0",
     "@koa/cors": "^3.1.0",
     "akismet": "^2.0.6",
     "jsonwebtoken": "^8.5.1",
