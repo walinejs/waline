@@ -24,6 +24,7 @@ module.exports = [
     enable: !think.isCli,
     options: {
       debug: true,
+      contentType: _ => 'json',
       error(err, ctx) {
         if(/favicon.ico$/.test(ctx.url)) {
           return;
