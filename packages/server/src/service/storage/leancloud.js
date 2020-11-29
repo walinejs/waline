@@ -1,14 +1,17 @@
 const AV = require('leancloud-storage');
 const Base = require('./base');
+const {LEAN_ID, LEAN_KEY, LEAN_MASTER_KEY, LEAN_SERVER}  = process.env;
 
-AV.Cloud.useMasterKey(true);
-AV.init({
-  appId: process.env.LEAN_ID,
-  appKey: process.env.LEAN_KEY,
-  masterKey: process.env.LEAN_MASTER_KEY,
-  // required for leancloud china
-  serverURL: process.env.LEAN_SERVER
-});
+if(LEAN_ID && LEAN_KEY && LEAN_MASTER_KEY) {
+  AV.Cloud.useMasterKey(true);
+  AV.init({
+    appId: LEAN_ID,
+    appKey: LEAN_KEY,
+    masterKey: LEAN_MASTER_KEY,
+    // required for leancloud china
+    serverURL: LEAN_SERVER
+  });
+}
 module.exports = class extends Base {
   where(instance, where) {
     if(think.isEmpty(where)) {
