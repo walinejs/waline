@@ -54,6 +54,16 @@
 | `PG_PREFIX` | | `wl_` | PostgreSQL 数据表的表前缀 |
 
 
+## CloudBase
+
+腾讯云开发也一定了 [免费数据库](https://console.cloud.tencent.com/tcb/db/) 支持，即使不部署在腾讯云开发上也可以使用。如果部署在腾讯云开发上，不需要配置任何环境变量，Waline 默认会使用云开发的数据库。如果是部署在其它地方，需要配置以下环境变量。
+
+| 环境变量名称 | 必填 | 默认值 | 备注 |
+|------------|---------|------|------|
+| `TCB_ENV` |√ |  | 腾讯云开发环境 ID |
+| `TCB_ID` |√| | 腾讯云 API 密钥 ID，[在此](https://console.cloud.tencent.com/cam/capi)获取 |
+| `TCB_KEY` | √ | | 腾讯云 API 密钥 Key，[在此](https://console.cloud.tencent.com/cam/capi)获取 |
+| `JWT_TOKEN` | | | 用户登录密钥，如果没有配任何环境变量的话需要配置此变量，随机字符串即可 |
 ## 自定义
 
 除了以上数据库存储之外，也可以添加其它存储服务的支持。如果你想帮助 Waline 支持更多的存储服务的话，可以 fork 项目，继承该 [基类](https://github.com/lizheming/waline/blob/master/packages/server/src/service/storage/base.js) 后分别实现对应存储服务的 `select()`, `add()`, `update()`, `delete()` 方法后提交 PR 即可。
