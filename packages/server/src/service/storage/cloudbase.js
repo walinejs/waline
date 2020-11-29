@@ -35,7 +35,7 @@ module.exports = class extends Base {
 
   where(instance, where) {
     if(think.isEmpty(where)) {
-      return;
+      return instance;
     }
 
     const filter = {};
