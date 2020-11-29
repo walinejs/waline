@@ -20,7 +20,7 @@ If you want to use MySQL as storage, you need import [waline.sql](https://github
 
 | Environment Variable | Required | Default   | Description           |
 | -------------------- | -------- | --------- | --------------------- |
-| `MYSQL_HSOT`         |          | 127.0.0.1 | MySQL server address  |
+| `MYSQL_HOST`         |          | 127.0.0.1 | MySQL server address  |
 | `MYSQL_PORT`         |          | 3306      | MySQL server port     |
 | `MYSQL_DB`           | √        |           | MySQL database name   |
 | `MYSQL_USER`         | √        |           | MySQL server username |
@@ -38,11 +38,11 @@ Before use SQLite as storage, you should download [waline.sqlite](https://github
 | `SQLITE_PREFIX`      |          | `wl_`   | SQLite table prefix                                                 |
 
 ## PostgreSQL
-[elephantSQL](https://www.elephantsql.com/） provides 20M PG database support for free. It's same with MySQL, you need import [waline.sql](https://github.com/lizheming/waline/blob/master/assets/waline.sql) before use PostgreSQL as storage service.
+[elephantSQL](https://www.elephantsql.com/) provides 20M PG database support for free. It's same with MySQL, you need import [waline.sql](https://github.com/lizheming/waline/blob/master/assets/waline.sql) before use PostgreSQL as storage service.
 
 | Environment Variable | Required | Default   | Description                |
 | -------------------- | -------- | --------- | -------------------------- |
-| `PG_HSOT`            |          | 127.0.0.1 | PostgreSQL server address  |
+| `PG_HOST`            |          | 127.0.0.1 | PostgreSQL server address  |
 | `PG_PORT`            |          | 3211      | PostgreSQL server port     |
 | `PG_DB`              | √        |           | PostgreSQL database name   |
 | `PG_USER`            | √        |           | PostgreSQL server username |

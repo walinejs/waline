@@ -22,7 +22,7 @@
 
 | 环境变量名称 | 必填 | 默认值 | 备注 |
 |------------|---------|------|------|
-| `MYSQL_HSOT` | | 127.0.0.1 | MySQL 服务的地址 |
+| `MYSQL_HOST` | | 127.0.0.1 | MySQL 服务的地址 |
 | `MYSQL_PORT` | | 3306 | MySQL 服务的端口 |
 | `MYSQL_DB` | √ | | MySQL 数据库库名 |
 | `MYSQL_USER` | √ | | MySQL 数据库的用户名 |
@@ -42,11 +42,11 @@
 
 ## PostgreSQL
 
-[elephantSQL](https://www.elephantsql.com/）提供了 20M 的免费空间，对于评论服务来说绰绰有余了。如果想要使用 PostgreSQL 的也可以使用它搭建 Waline。同 MySQL 一样，使用 PostgreSQL 作为数据存储服务的话，也需要先导入 [waline.sql](https://github.com/lizheming/waline/blob/master/assets/waline.sql) 创建好表和表结构。之后在项目中配置如下环境变量即可。
+[elephantSQL](https://www.elephantsql.com/) 提供了 20M 的免费空间，对于评论服务来说绰绰有余了。如果想要使用 PostgreSQL 的也可以使用它搭建 Waline。同 MySQL 一样，使用 PostgreSQL 作为数据存储服务的话，也需要先导入 [waline.sql](https://github.com/lizheming/waline/blob/master/assets/waline.sql) 创建好表和表结构。之后在项目中配置如下环境变量即可。
 
 | 环境变量名称 | 必填 | 默认值 | 备注 |
 |------------|---------|------|------|
-| `PG_HSOT` | | 127.0.0.1 | PostgreSQL 服务的地址 |
+| `PG_HOST` | | 127.0.0.1 | PostgreSQL 服务的地址 |
 | `PG_PORT` | | 3211 | PostgreSQL 服务的端口 |
 | `PG_DB` | √ | | PostgreSQL 数据库库名 |
 | `PG_USER` | √ | | PostgreSQL 数据库的用户名 |
