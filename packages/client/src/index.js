@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import Context from './context';
 import Visitor from './utils/visitor';
+import { fetchCount } from './utils/fetch';
 import './index.css';
 
 export default function Waline({
@@ -24,11 +25,33 @@ export default function Waline({
   copyRight = true,
   visitor = false
 } = {}) {
+  //阅读统计
   if(visitor) {
     const visitorPromise = path ? Visitor.add({serverURL, path}) : Promise.resolve();
     visitorPromise.then(() => Visitor.show({serverURL}));
   }
 
+  //评论数统计
+  const $counts = [].slice.call(document.querySelectorAll('.waline-comment-count'));
+  if($counts.length) {
+    $counts.filter(
+      el => el.getAttribute('data-xid') || el.getAttribute('id')
+    ).filter(
+      el => !el.innerText?.trim()
+    ).map(async el => {
+      let path = el.getAttribute('data-xid') || el.getAttribute('id');
+      try {
+        path = decodeURI(path);
+      } catch(e) {
+        //ignore error
+      }
+      const count = await fetchCount({serverURL, path});
+      el.innerText = count;
+      return el;
+    });
+  }
+
+  //评论列表展示
   const root = document.querySelector(el);
   if(!root) {
     return;
