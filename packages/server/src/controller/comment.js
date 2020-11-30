@@ -183,12 +183,9 @@ module.exports = class extends BaseRest {
       }
     }
     
-    const {preSave, postSave} = think.config();
-    if(think.isFunction(preSave)) {
-      const resp = await preSave(data);
-      if(resp) {
-        return this.fail(resp.errmsg);
-      }
+    const preSaveResp = await this.hook('preSave', data);
+    if(preSaveResp) {
+      return this.fail(preSaveResp.errmsg);
     }
 
     const resp = await this.modelInstance.add(data);
@@ -203,20 +200,30 @@ module.exports = class extends BaseRest {
       await notify.run(resp, pComment);
     }
 
-    if(think.isFunction(postSave)) {
-      await postSave(resp, pComment);
-    }
-
+    await this.hook('postSave', resp, pComment);
     return this.success(formatCmt(resp));
   }
 
   async putAction() {
-    await this.modelInstance.update(this.post(), {objectId: this.id});
+    const data = this.post();
+    const preUpdateResp = await this.hook('preUpdate', {...data, objectId: this.id});
+    if(preUpdateResp) {
+      return this.fail(preUpdateResp);
+    }
+
+    await this.modelInstance.update(data, {objectId: this.id});
+    await this.hook('postUpdate', data);
     return this.success();
   }
 
   async deleteAction() {
+    const preDeleteResp = await this.hook('preDelete', this.id);
+    if(preDeleteResp) {
+      return this.fail(preDeleteResp);
+    }
+    
     await this.modelInstance.delete({objectId: this.id});
+    await this.hook('postDelete', this.id);
     return this.success();
   }
 }

@@ -33,5 +33,13 @@ module.exports = class extends think.Controller {
     const {userInfo} = this.ctx.state;
     return think.isEmpty(userInfo);
   }
+  
+  async hook(name, ...args) {
+    const fn = this.config(name);
+    if(!think.isFunction(fn)) {
+      return;
+    }
+    return fn(...args);
+  }
   __call() {}
 };
