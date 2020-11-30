@@ -131,7 +131,7 @@ module.exports = class extends think.Service {
 
     for(let i = 0; i < mailList.length; i++) {
       try {
-        const {response} = await this.mail(mailList[i], comment, parent);
+        const response = await this.mail(mailList[i], comment, parent);
         console.log('Notification mail send success: %s', response);
       } catch(e) {
         console.log('Mail send fail:', e);
