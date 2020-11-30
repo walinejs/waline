@@ -48,7 +48,7 @@ module.exports = Waline({
   ]
 });
 ```
-## Comment Submit Hooks
+## Comment Hooks
 
 In addition to environment variable configuration, Waline also provides some custom hooks to facilitate the processing of custom requirements. It only needs to be configured in the server entry file `index.js`.
 
