@@ -38,16 +38,14 @@ export default function Waline({
       el => el.getAttribute('data-xid') || el.getAttribute('id')
     ).filter(
       el => !el.innerText?.trim()
-    ).map(async el => {
+    ).map(el => {
       let path = el.getAttribute('data-xid') || el.getAttribute('id');
       try {
         path = decodeURI(path);
       } catch(e) {
         //ignore error
       }
-      const count = await fetchCount({serverURL, path});
-      el.innerText = count;
-      return el;
+      return fetchCount({serverURL, path}).then(count => (el.innerText = count));
     });
   }
 
