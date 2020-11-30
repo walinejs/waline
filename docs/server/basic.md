@@ -52,11 +52,11 @@ module.exports = Waline({
 ```
 ## 发布评论 Hooks
 
-除了环境变量配置之外，Waline 还提供了一些自定义钩子，方便大家有自定义需求进行处理。目前支持发布评论前和发布评论后的钩子。只需要在服务端入口文件 `index.js` 中进行配置即可。
+除了环境变量配置之外，Waline 还提供了一些自定义钩子，方便大家有自定义需求进行处理，只需要在服务端入口文件 `index.js` 中进行配置即可。
 
 ### preSave(comment)
 
-传入评论数据，如果该方法返回内容，则接口会直接返回，不存储评论数据。
+发布评论前执行的操作。传入评论数据，如果该方法返回内容，则接口会直接返回，不存储评论数据。
 
 ```js
 //index.js
@@ -87,6 +87,65 @@ module.exports = Waline({
       mail: pComment.mail,
       text: `${comment.nick} replied your comment!`
     });
+  }
+});
+```
+### preUpdate(comment)
+
+评论内容在后台被更新前执行的操作。如果该方法返回内容，则接口会直接返回，不更新评论数据。
+
+```js
+//index.js
+const Waline = require('@waline/vercel');
+
+module.exports = Waline({
+  async preUpdate(comment) {
+    return 'Then you can\'t update comment data';
+  }
+});
+```
+
+### afterUpdate(comment) 
+
+评论内容在后台被更新后执行的操作。方法执行时会传入评论数据。
+
+```js
+
+//index.js
+const Waline = require('@waline/vercel');
+
+module.exports = Waline({
+  async postUpdate(comment) {
+    console.log(`comment ${comment.objectId} has been updated!`);
+  }
+});
+```
+### preDelete(commentId)
+
+评论被删除前执行的操作，方法执行时会传入需要操作的评论 Id。如果该方法返回内容，则接口会直接返回，不更新评论数据。
+
+```js
+//index.js
+const Waline = require('@waline/vercel');
+
+module.exports = Waline({
+  async preDelete(commentId) {
+    return 'Then you can\'t delete comment';
+  }
+});
+```
+
+### afterDelete(commentId)
+
+评论被删除后执行的操作，方法执行时会传入需要操作的评论 Id。
+
+```js
+//index.js
+const Waline = require('@waline/vercel');
+
+module.exports = Waline({
+  async postDelete(commentId) {
+    console.log(`comment ${commentId} has been deleted!`);
   }
 });
 ```
