@@ -64,6 +64,7 @@ function getSidebar(groupA, groupB, groupC, lang) {
       sidebarDepth: 2,
       children: [
         lang + '/server/notification',
+        lang + '/client/count',
         lang + '/client/visitor',
         lang + '/client/emoji',
         lang + '/client/i18n',
