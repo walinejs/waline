@@ -11,7 +11,8 @@ const {
   FORBIDDEN_WORDS,
   TCB_ENV,
   TENCENTCLOUD_SECRETKEY,
-  TCB_KEY
+  TCB_KEY,
+  SECURE_DOMAINS
 } = process.env;
 
 let storage = 'leancloud';
@@ -46,5 +47,6 @@ module.exports = {
   storage, 
   jwtKey,
   forbiddenWords,
-  disallowIPList: []
+  disallowIPList: [],
+  secureDomains: SECURE_DOMAINS ? SECURE_DOMAINS.split(/\s*,\s*/) : undefined
 };
