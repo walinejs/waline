@@ -7,8 +7,21 @@ module.exports = class extends think.Logic {
   }
 
   async __before() {
-    this.ctx.state.userInfo = {};
+    const referrer = this.ctx.referrer(true);
+    let { secureDomains } = this.config();
+    if(secureDomains && referrer && this.ctx.host.indexOf(referrer) !== 0) {
+      secureDomains = think.isArray(secureDomains) ? secureDomains : [secureDomains];
+      secureDomains.push('localhost', '127.0.0.1');
 
+      const match = secureDomains.some(domain => 
+        think.isFunction(domain.test) ? domain.test(referrer) : domain === referrer
+      );
+      if(!match) {
+        return this.ctx.throw(403);
+      }
+    }
+
+    this.ctx.state.userInfo = {};
     const {authorization} = this.ctx.req.headers;
     if(!authorization) {
       return;
