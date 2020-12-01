@@ -57,7 +57,7 @@
 </div>
 <script>
 function lc2tcb(json) {
-  return json.results.map(function() {
+  return json.results.map(function(comment) {
     comment._id = comment.objectId;
     delete comment.objectId;
     delete comment.ACL;
