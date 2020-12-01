@@ -4,14 +4,15 @@
 
 Mose configuration for backend can be cofigured in environment variable, which can be set in <kbd>Settings</kbd> - <kbd>Environment Variables</kbd> for Vercel. Please reminder that all change works after redeploy.
 
-| Environment Variable | Required | Description                                             |
-| -------------------- | -------- | ------------------------------------------------------- |
-| `LEAN_ID`            | √        | LeanCloud Application ID                                |
-| `LEAN_KEY`           | √        | LeanCloud Application Key                               |
-| `LEAN_MASTER_KEY`    | √        | LeanCloud Application Master Key                        |
-| `LEAN_SERVER`        |          | LeanCloud server address if you're leancloud china user |
-| `SITE_NAME`          |          | site name                                               |
-| `SITE_URL`           |          | site url                                                |
+| Environment Variable | Required | Description                                                                 |
+| -------------------- | -------- | --------------------------------------------------------------------------- |
+| `LEAN_ID`            | √        | LeanCloud Application ID                                                    |
+| `LEAN_KEY`           | √        | LeanCloud Application Key                                                   |
+| `LEAN_MASTER_KEY`    | √        | LeanCloud Application Master Key                                            |
+| `LEAN_SERVER`        |          | LeanCloud server address if you're leancloud china user                     |
+| `SITE_NAME`          |          | site name                                                                   |
+| `SITE_URL`           |          | site url                                                                    |
+| `SECURE_DOMAINS`     |          | Secure Domains configuration. Supports multiple domain with Comma separated |
 
 In addition to the above environment variables, different functions will also have many environment variable configurations, which can be viewed in the function items corresponding to the progress in the left column.
 
@@ -32,7 +33,7 @@ module.exports = Waline({
 });
 ```
 
-> To facilitate local development, `localhost` and `127.0.0.1` will be added to the list of secure domain names by default.
+> To facilitate local development, `localhost` and `127.0.0.1` will be added to the list of secure domain names by default. Env `SECURE_DOMAINS` will be disabled when the configuration has been set.
 ### forbiddenWords
 
 If comment match forbidden word, it will be marked as spam.
