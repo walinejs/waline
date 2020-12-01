@@ -114,8 +114,8 @@ module.exports = class extends Base {
 
   async add(data) {
     const instance = await this.collection(this.tableName);
-    const id = await instance.add(data);
-    return {...data, objectId: id.toString()};
+    const {id} = await instance.add(data);
+    return {...data, objectId: id};
   }
 
   async update(data, where) {
