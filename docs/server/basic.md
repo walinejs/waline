@@ -20,6 +20,21 @@
 
 除了环境变量，我们还支持一些项目代码配置。
 
+### secureDomains
+
+安全域名配置，配置后非该域名来源的请求会返回 403 状态码。支持字符串、正则、数据写法，不配置表示允许所有域名来源。
+
+```
+//index.js
+const Waline = require('@waline/vercel');
+
+module.exports = Waline({
+  secureDomains: 'waline.js.org'
+});
+```
+
+> 为了方便本地开发，`localhost` 和 `127.0.0.1` 会被默认添加到安全域名列表中。
+
 ### forbiddenWords
 
 违禁词配置，包含违禁词的内容会直接标记为垃圾评论。

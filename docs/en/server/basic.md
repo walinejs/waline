@@ -19,6 +19,20 @@ In addition to the above environment variables, different functions will also ha
 
 Except environment variables setting, we also support some configuration in project file.
 
+### secureDomains
+
+You can set secure domain with it. After configuration, requests from referrer other than the domain name will return a 403 status code. It supports String, Regexp, and Array type. Empty configuration means that all domain referrer are allowed.
+
+```
+//index.js
+const Waline = require('@waline/vercel');
+
+module.exports = Waline({
+  secureDomains: 'waline.js.org'
+});
+```
+
+> To facilitate local development, `localhost` and `127.0.0.1` will be added to the list of secure domain names by default.
 ### forbiddenWords
 
 If comment match forbidden word, it will be marked as spam.
