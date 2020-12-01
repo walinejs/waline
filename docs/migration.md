@@ -83,14 +83,14 @@ function download(name, data) {
   }
   export_raw(name, data);
 };
-const area = document.querySelector('#lc-to-tcb textarea');
-const btn = document.querySelector('#lc-to-tcb button');
-btn.addEventListener('click', function(e) {
+var area = document.querySelector('#lc-to-tcb textarea');
+var btn = document.querySelector('#lc-to-tcb button');
+btn.onclick = function(e) {
   e.preventDefault();
   if(!area.value) {
     return alert('请输入内容');
   }
   const text = lc2tcb(JSON.parse(area.value));
   download('cloudbase_import.json', text);
-});
+};
 </script>
