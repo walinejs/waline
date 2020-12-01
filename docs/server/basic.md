@@ -24,7 +24,7 @@
 
 安全域名配置，配置后非该域名来源的请求会返回 403 状态码。支持字符串、正则、数组类型，不配置表示允许所有域名来源。
 
-```
+```js
 //index.js
 const Waline = require('@waline/vercel');
 
@@ -39,7 +39,7 @@ module.exports = Waline({
 
 违禁词配置，包含违禁词的内容会直接标记为垃圾评论。
 
-```
+```js
 //index.js
 const Waline = require('@waline/vercel');
 
@@ -54,7 +54,7 @@ module.exports = Waline({
 
 IP 禁止名单配置，命中名单中的 IP 会直接返回 403 错误 
 
-```
+```js
 //index.js
 const Waline = require('@waline/vercel');
 
