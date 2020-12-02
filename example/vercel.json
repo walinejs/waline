@@ -5,27 +5,11 @@
   },
   "builds": [
     {
-      "src": "pages/*.html",
-      "use": "@vercel/static"
-    },
-    {
       "src": "index.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
-    {
-      "src": "/",
-      "dest": "pages/index.html"
-    },
-    {
-      "src": "/ui",
-      "dest": "pages/ui.html"
-    },
-    {
-      "src": "/ui/(.*)",
-      "dest": "pages/ui.html"
-    },
     {
       "src": "/(.*)",
       "dest": "index.js"
