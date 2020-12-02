@@ -8,6 +8,14 @@ export default function CommentCard({comment, boxConfig, rootId, onSubmit}) {
 
   const ctx = useContext(ConfigContext);
 
+  const onContentClick = e => {
+    if(e.target.tagName !== 'A') {
+      return;
+    }
+    e.target.setAttribute('target', '_blank');
+    e.target.setAttribute('rel', 'noreferrer noopener');
+  }
+
   return (
     <div className="vcard" id={comment.objectId}>
       <img 
@@ -33,6 +41,7 @@ export default function CommentCard({comment, boxConfig, rootId, onSubmit}) {
           className="vcontent" 
           data-expand={ctx.locale.expand}
           dangerouslySetInnerHTML={{__html: comment.comment}}  
+          onClick={onContentClick}
         ></div>
         {!reply ? null : (
           <div className="vreply-wrapper">
