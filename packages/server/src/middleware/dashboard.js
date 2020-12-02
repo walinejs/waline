@@ -10,7 +10,8 @@ module.exports = function() {
   </head>
   <body>
     <script>
-      window.ENV = ${JSON.stringify(process.env)};
+    window.SITE_URL = ${JSON.stringify(process.env.SITE_URL)};
+    window.SITE_NAME = ${JSON.stringify(process.env.SITE_NAME)};
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@waline/admin"></script>
   </body>
