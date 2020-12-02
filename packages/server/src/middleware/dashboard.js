@@ -9,6 +9,9 @@ module.exports = function() {
     <meta name="viewport" content="width=device-width,initial-scale=1">
   </head>
   <body>
+    <script>
+      window.ENV = ${JSON.stringify(process.env)};
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/@waline/admin"></script>
   </body>
 </html>`;
