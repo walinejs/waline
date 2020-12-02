@@ -1,11 +1,11 @@
 import React, { useEffect, useReducer, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import cls from 'classnames';
-import md5 from 'md5';
-
 import Header from '../../components/Header';
 import { deleteComment, getCommentList, replyComment, updateComment } from '../../services/comment';
 import Paginator from '../../components/Paginator';
+import { buildAvatar, getPostUrl } from './utils';
+
 const FILTERS = [
   [
     'owner',
@@ -22,10 +22,6 @@ const FILTERS = [
     ]
   ]
 ];
-
-function buildAvatar(email) {
-  return `https://gravatar.loli.net/avatar/${md5(email)}?s=40&r=G&d=`;
-}
 
 export default function() {
   const keywordRef = useRef(null);
@@ -314,7 +310,7 @@ export default function() {
                             </div>
                           </td>
                           <td valign="top" className="comment-body">
-                            <div className="comment-date">{insertedAt} 于 <a href={url} target="_blank">{url}</a></div>
+                            <div className="comment-date">{insertedAt} 于 <a href={getPostUrl(url)} target="_blank">{url}</a></div>
                             <div className="comment-content" dangerouslySetInnerHTML={{__html: comment}}></div> 
                             {cmtHandler.id === objectId && cmtHandler.action === 'reply' ? (
                               <form className="comment-reply">
