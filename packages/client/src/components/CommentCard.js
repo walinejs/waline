@@ -12,6 +12,10 @@ export default function CommentCard({comment, boxConfig, rootId, onSubmit}) {
     if(e.target.tagName !== 'A') {
       return;
     }
+    // Open link with new tab just with absolute URL.
+    if(!/^https?:\/\//.test(e.target.href)) {
+      return;
+    }
     e.target.setAttribute('target', '_blank');
     e.target.setAttribute('rel', 'noreferrer noopener');
   }
