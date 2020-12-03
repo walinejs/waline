@@ -1,6 +1,8 @@
 const path = require('path');
+const webpack = require('webpack');
 const es3ifyPlugin = require('es3ify-webpack-plugin');
 const htmlWebpackPlugin = require('html-webpack-plugin');
+const {version} = require('./package.json');
 
 const pkgName = 'Waline';
 module.exports = {
@@ -40,6 +42,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.DefinePlugin({VERSION: JSON.stringify(version)}),
     new es3ifyPlugin(),
     new htmlWebpackPlugin({
       inject: false,

@@ -74,4 +74,6 @@ export default function Waline({
     </React.StrictMode>,
     root
   );
-}
+};
+
+Waline.version = VERSION;
