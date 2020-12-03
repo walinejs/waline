@@ -19,7 +19,7 @@ export const user = createModel({
     async login({email, password, remember}) {
       const {token, ...user} = await login({email, password});
       if(token) {
-        globalThis.TOKEN = TOKEN;
+        globalThis.TOKEN = token;
         sessionStorage.setItem('TOKEN', token);
         if(remember) {
           localStorage.setItem('TOKEN', token);
