@@ -1,5 +1,7 @@
 const path = require('path');
+const webpack = require('webpack');
 const htmlWebpackPlugin = require('html-webpack-plugin');
+const {version} = require('./package.json');
 
 module.exports = {
   entry: {
@@ -30,6 +32,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.DefinePlugin({VERSION: JSON.stringify(version)}),
     new htmlWebpackPlugin({
       title: 'Waline Management System',
       publicPath: '/'
