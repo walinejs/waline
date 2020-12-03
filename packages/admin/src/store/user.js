@@ -5,18 +5,22 @@ export const user = createModel({
   state: null,
   reducers: {
     setUser(_, user) {
-      return user
+      return user;
     },
   },
   effects: dispatch => ({
     async loadUserInfo() {
-      const user = await getUserInfo()
-      return dispatch.user.setUser(user)
+      const user = await getUserInfo();
+      if(!user) {
+        return;
+      }
+      return dispatch.user.setUser(user);
     },
     async login({email, password, remember}) {
       const {token, ...user} = await login({email, password});
       if(token) {
-        globalThis.TOKEN = token;
+        globalThis.TOKEN = TOKEN;
+        sessionStorage.setItem('TOKEN', token);
         if(remember) {
           localStorage.setItem('TOKEN', token);
         }

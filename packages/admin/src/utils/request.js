@@ -13,7 +13,7 @@ export default async function request(url, opts = {}) {
     opts.body = JSON.stringify(opts.body);
   }
 
-  let token = globalThis.TOKEN;
+  let token = globalThis.TOKEN || sessionStorage.getItem('TOKEN');
   if(!token) {
     token = localStorage.getItem('TOKEN');
   }
