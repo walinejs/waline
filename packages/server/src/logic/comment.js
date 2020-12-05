@@ -4,7 +4,8 @@ module.exports = class extends Base {
     await super.__before();
 
     const {type, path} = this.get();
-    if(this.isGet && (type !== 'list' || path)) {
+    const isAllowedGet = this.isGet && (type !== 'list' || path);
+    if(this.isPost || isAllowedGet) {
       return;
     }
     
