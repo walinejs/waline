@@ -1,3 +1,9 @@
+#  (2020-12-06)
+
+### Features
+
+* **vercel & client:** add mathjax support with katex ([9518679](https://github.com/lizheming/waline/commit/9518679051416338b9fb75e2f08aab82e7e9c6ed)), closes [#58](https://github.com/lizheming/waline/issues/58)
+
 #  (2020-12-05)
 ### Bug Fixes
 
