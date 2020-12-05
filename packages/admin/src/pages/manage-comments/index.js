@@ -33,9 +33,14 @@ export default function() {
     return {...state, ...action};
   }, {owner: 'all', status: 'approved', keyword: ''});
   const [cmtHandler, setCmtHandler] = useState({});
+  const [actDropStatus, setActDropStatus] = useState(false);
+  const [commentIds, setCommentIds] = useState([]);
 
   useEffect(() => {
-    getCommentList({page: list.page, filter}).then(data => setList({...list, ...data}));
+    getCommentList({page: list.page, filter}).then(data => {
+      setList({...list, ...data});
+      setCommentIds([]);
+    });
   }, [filter, list.page]);
 
   const createActions = comment => ([
@@ -50,6 +55,12 @@ export default function() {
           list.data = list.data.filter(({objectId}) => objectId !== comment.objectId);
           list.spamCount -= 1;
           setList({...list});
+        } else {
+          await Promise.all(commentIds.map(objectId => updateComment(objectId, {status: 'approved'})));
+          getCommentList({page: list.page, filter}).then(data => {
+            setList({...list, ...data});
+            setCommentIds([]);
+          });
         }
       }
     },
@@ -64,6 +75,12 @@ export default function() {
           list.data = list.data.filter(({objectId}) => objectId !== comment.objectId);
           list.spamCount += 1;
           setList({...list});
+        } else {
+          await Promise.all(commentIds.map(objectId => updateComment(objectId, {status: 'spam'})));
+          getCommentList({page: list.page, filter}).then(data => {
+            setList({...list, ...data});
+            setCommentIds([]);
+          });
         }
       }
     },
@@ -102,9 +119,18 @@ export default function() {
         if(!confirm(text)) {
           return;
         }
-        await deleteComment(comment.objectId);
-        list.data = list.data.filter(({objectId}) => objectId !== comment.objectId);
-        setList({...list});
+
+        if(comment) {
+          await deleteComment(comment.objectId);
+          list.data = list.data.filter(({objectId}) => objectId !== comment.objectId);
+          setList({...list});
+        } else {
+          await Promise.all(commentIds.map(deleteComment));
+          getCommentList({page: list.page, filter}).then(data => {
+            setList({...list, ...data});
+            setCommentIds([]);
+          });
+        }
       }
     }
   ].filter(({show}) => show));
@@ -134,6 +160,7 @@ export default function() {
     setCmtHandler({});
   }
 
+  const allSelected = list.data.length && list.data.every(({objectId}) => commentIds.includes(objectId));
   return (
     <>
     <Header />
@@ -167,23 +194,38 @@ export default function() {
             
             <div className="typecho-list-operate clearfix">
               <form method="get">
-                {/* <div className="operate">
+                <div className="operate">
                   <label>
                     <i className="sr-only">全选</i>
-                    <input type="checkbox" className="typecho-table-select-all" />
+                    <input 
+                      type="checkbox" 
+                      className="typecho-table-select-all" 
+                      checked={allSelected}
+                      onChange={_ => setCommentIds(allSelected ? [] : list.data.map(({objectId}) => objectId))}  
+                    />
                   </label>
                   <div className="btn-group btn-drop">
-                    <button className="btn dropdown-toggle btn-s" type="button"><i className="sr-only">操作</i>选中项 <i className="i-caret-down"></i></button>
-                    <ul className="dropdown-menu">
+                    <button 
+                      className="btn dropdown-toggle btn-s" 
+                      type="button" onClick={_ => setActDropStatus(!actDropStatus)}
+                    >
+                      <i className="sr-only">操作</i>选中项 <i className="i-caret-down"></i>
+                    </button>
+                    <ul 
+                      className="dropdown-menu" 
+                      style={{display: actDropStatus ? 'block' : 'none'}}
+                      onClick={_ => setActDropStatus(false)}  
+                    >
                       {createActions().map(({key, name, action}) => 
                         <li key={key}><a href="javascript:void(0)" onClick={action}>{name}</a></li>
                       )}
                     </ul>
-                    {filter.status === 'spam' ? (
+                    &nbsp;
+                    {/* {filter.status === 'spam' ? (
                       <button lang="你确认要删除所有垃圾评论吗?" className="btn btn-s btn-warn btn-operate">删除所有垃圾评论</button>
-                    ) : null}
+                    ) : null} */}
                   </div>
-                </div> */}
+                </div>
 
                 <div className="search" role="search">
                   <input 
@@ -192,6 +234,7 @@ export default function() {
                     className="text-s" 
                     placeholder="请输入关键字"
                   />
+                  &nbsp;
                   <button 
                     type="submit" 
                     className="btn btn-s"
@@ -291,7 +334,12 @@ export default function() {
                       ) : (
                         <tr id={`comment-${objectId}`} key={objectId}>
                           <td valign="top">
-                            <input type="checkbox" value={objectId} disabled/>
+                            <input 
+                              type="checkbox" 
+                              value={objectId} 
+                              checked={commentIds.includes(objectId)}
+                              onChange={_ => setCommentIds(commentIds.includes(objectId) ? commentIds.filter(id => id !== objectId) : [...commentIds, objectId])}
+                            />
                           </td>
                           <td valign="top">
                             <div className="comment-avatar">
@@ -332,7 +380,7 @@ export default function() {
                                       e.preventDefault();
                                       cmtReply({rid, pid: objectId, url, at: nick})
                                     }}
-                                  >回复</button> 
+                                  >回复</button> &nbsp;
                                   <button 
                                     type="button" 
                                     className="btn btn-s cancel"
@@ -361,20 +409,6 @@ export default function() {
 
             <div className="typecho-list-operate clearfix">
               <form method="get">
-                {/* <div className="operate">
-                  <label><i className="sr-only">全选</i><input type="checkbox" className="typecho-table-select-all" /></label>
-                  <div className="btn-group btn-drop">
-                    <button className="btn dropdown-toggle btn-s" type="button"><i className="sr-only">操作</i>选中项 <i className="i-caret-down"></i></button>
-                    <ul className="dropdown-menu">
-                      {createActions().map(({key, name, action}) => 
-                        <li key={key}><a href="javascript:void(0)" onClick={action}>{name}</a></li>
-                      )}
-                    </ul>
-                    {filter.status === 'spam' ? (
-                      <button lang="你确认要删除所有垃圾评论吗?" className="btn btn-s btn-warn btn-operate">删除所有垃圾评论</button>
-                    ) : null}
-                  </div>
-                </div> */}
                 <Paginator 
                   current={list.page} 
                   total={list.totalPages} 
