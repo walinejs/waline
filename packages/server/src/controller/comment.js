@@ -1,5 +1,6 @@
 const helper = require('think-helper');
 const marked = require('marked');
+const katext = require('katex');
 const parser = require('ua-parser-js');
 const BaseRest = require('./rest');
 const akismet = require('../service/akismet');
@@ -16,13 +17,30 @@ marked.setOptions({
   smartypants: true
 });
 
-function formatCmt({ua, ip, ...comment}) {
+async function formatCmt({ua, ip, ...comment}) {
   ua = parser(ua)
   comment.mail = helper.md5(comment.mail);
   if(!think.config('disableUserAgent')) {
     comment.browser = ua.browser.name + ' ' + ua.browser.version;
     comment.os = ua.os.name + ' ' + ua.os.version;
   }
+  
+  const blockMathRegExp = /(^|[\r\n]+|<p>|<br>)\$\$([^$]+)\$\$([\r\n]+|<\/p>|<br>|$)/g;
+  const match = comment.comment.match(blockMathRegExp);
+  if(match) {
+    for(let i = 0; i < match.length; i++) {
+      const text = match[i]
+        .replace(/(^|[\r\n]+|<p>|<br>)\$\$/, '')
+        .replace(/\$\$([\r\n]+|<\/p>|<br>|$)/, '')
+        .replace(/<br>/g, '\r\n');
+
+      const math = katext.renderToString(text, {
+        output: 'mathml'
+      });
+      comment.comment = comment.comment.replace(match[i], math);
+    }
+  }
+  
   return comment;
 }
 
@@ -121,11 +139,13 @@ module.exports = class extends BaseRest {
           page,
           totalPages: Math.ceil(rootCount / pageSize),
           pageSize,
-          data: rootComments.map(comment => {
-            const cmt = formatCmt(comment);
-            cmt.children = childrenComments.filter(comment => comment.rid === cmt.objectId).map(cmt => formatCmt(cmt));
+          data: await Promise.all(rootComments.map(async comment => {
+            const cmt = await formatCmt(comment);
+            cmt.children = await Promise.all(childrenComments
+              .filter(comment => comment.rid === cmt.objectId)
+              .map(cmt => formatCmt(cmt)));
             return cmt;
-          })
+          }))
         });
       }
     }
@@ -203,7 +223,7 @@ module.exports = class extends BaseRest {
     }
 
     await this.hook('postSave', resp, pComment);
-    return this.success(formatCmt(resp));
+    return this.success(await formatCmt(resp));
   }
 
   async putAction() {

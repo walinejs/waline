@@ -1,0 +1,218 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+/* See https://github.com/fred-wang/mathml.css */
+   
+/* math */
+.mathml-polyfill math {
+  font-family: Cambria Math, Latin Modern Math;
+  display: inline;
+  text-indent: 0;
+}
+.mathml-polyfill math[display="block"] {
+  display: block;
+  text-align: center;
+}
+
+/* fraction */
+.mathml-polyfill mfrac {
+  display: inline-block !important;
+  vertical-align: -50%;
+  border-collapse: collapse;
+  text-align: center;
+}
+.mathml-polyfill mfrac > * {
+  display: block !important;
+}
+.mathml-polyfill mfrac > * + * {
+  display: inline-block !important;
+  vertical-align: top;
+}
+.mathml-polyfill mfrac:not([linethickness="0"]) > *:first-child {
+  border-bottom: solid thin;
+}
+
+/* sub/sup scripts */
+.mathml-polyfill msub > *:nth-child(2), 
+.mathml-polyfill msubsup > *:nth-child(2),
+.mathml-polyfill mmultiscripts > *:nth-child(2n+2),
+.mathml-polyfill mmultiscripts > mprescripts ~ *:nth-child(2n+3) {
+  font-size: 0.8em;
+  vertical-align: sub;
+}
+.mathml-polyfill msup > *:nth-child(2),
+.mathml-polyfill msubsup > *:nth-child(3),
+.mathml-polyfill mmultiscripts > *:nth-child(2n+3),
+.mathml-polyfill mmultiscripts > mprescripts ~ *:nth-child(2n+2) {
+  font-size: 0.8em;
+  vertical-align: super;
+}
+.mathml-polyfill mprescripts:after {
+  content: ";";
+}
+
+/* under/over scripts */
+.mathml-polyfill munder, mover, munderover {
+  display: inline-flex !important;
+  flex-direction: column;
+}
+.mathml-polyfill munder > *:nth-child(2), munderover > *:nth-child(2) {
+  font-size: 0.8em;
+  order: +1;
+}
+.mathml-polyfill mover > *:nth-child(2), munderover > *:nth-child(3) {
+  font-size: 0.8em;
+  order: -1;
+}
+.mathml-polyfill munder {
+  vertical-align: text-top;
+}
+.mathml-polyfill mover {
+  vertical-align: text-bottom;
+}
+.mathml-polyfill munderover {
+  vertical-align: middle;
+}
+
+/* roots */
+.mathml-polyfill msqrt, mroot {
+  display: inline-flex !important;
+  margin-left: .5em;
+  vertical-align: middle;
+  border-top: solid thin;
+}
+.mathml-polyfill msqrt:before, mroot:before {
+  margin-left: -.5em;
+  content: "\221A";
+}
+.mathml-polyfill mroot > *:nth-child(2) {
+  margin-right: .25em;
+  margin-left: -.75em;
+  font-size: 0.8em;
+  order: -1;
+}
+
+/* menclose */
+.mathml-polyfill menclose {
+  display: inline-table !important;
+  border-collapse: separate;
+  border-spacing: 0.4ex 0;
+}
+.mathml-polyfill menclose[notation*="top"], menclose[notation*="actuarial"] {
+  border-top: solid thin;
+}
+.mathml-polyfill menclose[notation*="bottom"], menclose[notation*="madruwb"] {
+  border-bottom: solid thin;
+}
+menclose[notation*="right"], menclose[notation*="actuarial"],
+.mathml-polyfill menclose[notation*="madruwb"] {
+  border-right: solid thin;
+}
+.mathml-polyfill menclose[notation*="left"] {
+  border-left: solid thin;
+}
+menclose[notation*="box"], menclose[notation*="roundedbox"],
+.mathml-polyfill menclose[notation*="circle"] {
+  border: solid thin;
+}
+.mathml-polyfill menclose[notation*="roundedbox"] {
+  border-radius: 15%;
+}
+.mathml-polyfill menclose[notation*="circle"] {
+  border-radius: 50%;
+}
+.mathml-polyfill menclose[notation*="horizontalstrike"] {
+  text-decoration: line-through;
+}
+
+/* table */
+.mathml-polyfill mtable {
+  display: inline-table !important;
+  vertical-align: middle;
+  text-align: center;
+}
+.mathml-polyfill mtr {
+  display: table-row !important;
+}
+.mathml-polyfill mtd {
+  display: table-cell !important;
+  padding: 0 0.5ex;
+}
+
+/* token elements */
+.mathml-polyfill mspace {
+  margin: .2em;
+}
+.mathml-polyfill mi {
+  font-style: italic;
+}
+.mathml-polyfill mo {
+  margin-right: .2em;
+  margin-left: .2em;
+}
+.mathml-polyfill ms:before, ms:after {
+  content:"\0022";
+}
+.mathml-polyfill ms[lquote]:before {
+  content: attr(lquote);
+}
+.mathml-polyfill ms[rquote]:after {
+  content: attr(rquote);
+}
+
+/* mathvariants */
+.mathml-polyfill [mathvariant="bold"], 
+.mathml-polyfill [mathvariant="bold-italic"],
+.mathml-polyfill [mathvariant="bold-sans-serif"], [mathvariant="sans-serif-bold-italic"] {
+  font-weight: bold;
+  font-style: normal;
+}
+.mathml-polyfill [mathvariant="monospace"] {
+  font-family: monospace;
+  font-style: normal;
+}
+.mathml-polyfill [mathvariant="sans-serif"],
+.mathml-polyfill [mathvariant="bold-sans-serif"], 
+.mathml-polyfill [mathvariant="sans-serif-italic"],
+.mathml-polyfill [mathvariant="sans-serif-bold-italic"] {
+  font-family: sans-serif;
+  font-style: normal;
+}
+.mathml-polyfill [mathvariant="italic"], 
+.mathml-polyfill [mathvariant="bold-italic"],
+.mathml-polyfill [mathvariant="sans-serif-italic"], [mathvariant="sans-serif-bold-italic"] {
+  font-style: italic;
+}
+.mathml-polyfill [mathvariant="normal"] {
+  font-style: normal;
+}
+
+/* mphantom */
+.mathml-polyfill mphantom {
+  visibility: hidden;
+}
+
+/* merror */
+.mathml-polyfill merror {
+  outline: solid thin red;
+}
+.mathml-polyfill merror:before {
+  content: "Error: ";
+}
+
+/* annotations */
+.mathml-polyfill semantics > *:first-child {
+  display: inline;
+}
+.mathml-polyfill annotation, annotation-xml {
+  font-family: monospace;
+  display: none !important;
+}
+.mathml-polyfill math:active > semantics > *:first-child,
+.mathml-polyfill math:active > semantics > *:first-child {
+  display: none !important;
+}
+.mathml-polyfill math:active annotation:first-of-type {
+  display: inline !important;
+}

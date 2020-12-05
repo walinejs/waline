@@ -4,7 +4,9 @@ import App from './App';
 import Context from './context';
 import Visitor from './utils/visitor';
 import { fetchCount } from './utils/fetch';
+import mathML from './utils/mathml';
 import './index.css';
+import './math.css';
 
 export default function Waline({
   el, 
@@ -48,6 +50,9 @@ export default function Waline({
       return fetchCount({serverURL, path}).then(count => (el.innerText = count));
     });
   }
+
+  //mathml 
+  window.addEventListener('load', mathML);
 
   //评论列表展示
   const root = document.querySelector(el);
