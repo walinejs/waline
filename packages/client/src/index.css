@@ -349,6 +349,9 @@
 	border-radius: .2em;
 	margin-right: .3em
 }
+.v[data-class=v] .vsys:empty {
+	display: none;
+}
 
 @media screen and (max-width:520px) {
 	.v[data-class=v] .vsys {

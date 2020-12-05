@@ -12,7 +12,8 @@ const {
   TCB_ENV,
   TENCENTCLOUD_SECRETKEY,
   TCB_KEY,
-  SECURE_DOMAINS
+  SECURE_DOMAINS,
+  DISABLE_USERAGENT
 } = process.env;
 
 let storage = 'leancloud';
@@ -48,5 +49,6 @@ module.exports = {
   jwtKey,
   forbiddenWords,
   disallowIPList: [],
-  secureDomains: SECURE_DOMAINS ? SECURE_DOMAINS.split(/\s*,\s*/) : undefined
+  secureDomains: SECURE_DOMAINS ? SECURE_DOMAINS.split(/\s*,\s*/) : undefined,
+  disableUserAgent: DISABLE_USERAGENT && !['0', 'false'].includes(DISABLE_USERAGENT.toLowerCase())
 };

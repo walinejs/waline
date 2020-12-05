@@ -19,8 +19,10 @@ marked.setOptions({
 function formatCmt({ua, ip, ...comment}) {
   ua = parser(ua)
   comment.mail = helper.md5(comment.mail);
-  comment.browser = ua.browser.name + ' ' + ua.browser.version;
-  comment.os = ua.os.name + ' ' + ua.os.version;
+  if(!think.config('disableUserAgent')) {
+    comment.browser = ua.browser.name + ' ' + ua.browser.version;
+    comment.os = ua.os.name + ' ' + ua.os.version;
+  }
   return comment;
 }
 
