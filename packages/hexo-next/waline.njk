@@ -1,0 +1,10 @@
+<script>
+NexT.utils.loadComments('#waline-comments', () => {
+  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js', () => {
+    new Waline(Object.assign({{ config.waline | safedump }}, {
+      el: '#waline-comments',
+      path: {{ url_for(page.path) | replace(r/index\.html$/, '') | safedump }}
+    }));
+  }, window.Waline);
+});
+</script>
