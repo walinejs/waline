@@ -8,6 +8,7 @@
 ![npm](https://img.shields.io/npm/dm/@waline/vercel?style=flat-square)
 ![GitHub](https://img.shields.io/github/license/lizheming/waline?style=flat-square)
 [ ![](https://img.shields.io/badge/telegram-walinejs-2ca5e0?logo=telegram&style=flat-square) ](https://t.me/walinejs)
+[![](https://img.shields.io/badge/QQ-673663898-25bdff?logo=tencent-qq&style=flat-square)](https://qm.qq.com/cgi-bin/qm/qr?k=rPZvq_EBfwQa6QZX7sToVlhH49c6ed0R&jump_from=webapi)
 
 A simple comment system with backend support fork from [Valine](https://valine.js.org). 
 
