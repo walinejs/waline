@@ -62,7 +62,7 @@ module.exports = class extends BaseRest {
           limit: count
         });
 
-        return this.json(comments.map(({ip, ...cmt}) => cmt));
+        return this.json(await Promise.all(comments.map(formatCmt)));
       }
 
       case 'count': {

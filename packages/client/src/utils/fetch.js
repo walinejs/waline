@@ -3,6 +3,11 @@ export function fetchCount({serverURL, path}) {
   return fetch(url).then(resp => resp.text());
 }
 
+export function fetchRecent({serverURL, count}) {
+  const url = `${serverURL}/comment?type=recent&count=${count}`;
+  return fetch(url).then(resp => resp.json());
+}
+
 export function fetchList({serverURL, path, page, pageSize}) {
   const url = `${serverURL}/comment?path=${encodeURIComponent(path)}&pageSize=${pageSize}&page=${page}`;
   return fetch(url).then(resp => resp.json());

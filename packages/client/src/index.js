@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import Context from './context';
 import Visitor from './utils/visitor';
-import { fetchCount } from './utils/fetch';
+import { fetchCount, fetchRecent } from './utils/fetch';
 import mathML from './utils/mathml';
 import './index.css';
+import './recent.css';
 import './math.css';
 
 export default function Waline({
@@ -82,3 +83,26 @@ export default function Waline({
 };
 
 Waline.version = VERSION;
+Waline.Widget = {
+  RecentComments({el, serverURL, count}) {
+    //评论列表展示
+    const root = document.querySelector(el);
+    if(!root) {
+      return Promise.resolve();
+    }
+
+    return fetchRecent({serverURL, count}).then(comments => {
+      if(!comments.length) {
+        return comments;
+      }
+      root.innerHTML = `
+      <ul class="waline-widget-list">
+      ${comments.map(cmt => 
+        `<li class="waline-widget-item"><a href="${cmt.url}">${cmt.nick}</a>：${cmt.comment}</li>`
+      ).join('')}
+      </ul>`;
+      
+      return comments;
+    });
+  }
+};
