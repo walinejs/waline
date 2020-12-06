@@ -17,8 +17,6 @@ document.addEventListener('load', function() {
 </script>
 ```
 
-<RecentComment />
-
 ## 高级用法
 
 如果对默认输出的格式不满意，你也可以拿到数据之后自己进行渲染。
