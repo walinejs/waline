@@ -36,7 +36,7 @@ export default {
       }
     },
     initJs() {
-      const walineJs = this.$refs.walineJs;
+      const walineJs = this.$$refs.walineJs;
       if(walineJs) {
         walineJs.onload = this.initWaline;
         this.$router.afterEach(this.onRoute);
