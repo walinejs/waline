@@ -1,7 +1,7 @@
 #  (2020-12-06)
-
 ### Features
 
+* **client:** add recent comment widget ([1f43c13](https://github.com/lizheming/waline/commit/1f43c138cdf44ec715282c5e7a1cd0fd0e7dd818))
 * **vercel & client:** add mathjax support with katex ([9518679](https://github.com/lizheming/waline/commit/9518679051416338b9fb75e2f08aab82e7e9c6ed)), closes [#58](https://github.com/lizheming/waline/issues/58)
 
 #  (2020-12-05)

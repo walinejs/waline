@@ -69,6 +69,7 @@ function getSidebar(groupA, groupB, groupC, lang) {
         lang + '/client/emoji',
         lang + '/client/i18n',
         lang + '/client/avatar',
+        lang + '/client/recentcomment'
       ]
     },
     {
