@@ -38,12 +38,7 @@ module.exports = {
         sidebar: getSidebar('基础配置', '高级功能', '更多玩法', '')
       }
     }
-  },
-  plugin: [
-    _ => ({
-      enhanceAppFiles: path.resolve(__dirname, 'enhanceApp.js')
-    })
-  ]
+  }
 }
 
 function getSidebar(groupA, groupB, groupC, lang) {
