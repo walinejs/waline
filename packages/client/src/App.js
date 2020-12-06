@@ -70,7 +70,7 @@ function App({boxConfig, listConfig, copyRight}) {
         </div>
       ) : null}
       {copyRight ? (
-        <div className="vpower txt-right">Powered By <a href="https://github.com/lizheming/Waline" target="_blank">Waline</a></div>
+        <div className="vpower txt-right">Powered by <a href="https://github.com/lizheming/Waline" target="_blank">Waline</a> v{VERSION}</div>
       ) : null}
     </div>
   );
