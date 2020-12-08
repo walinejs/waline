@@ -1,3 +1,7 @@
+# (2020-12-07)
+### Bug Fixes
+
+* **vercel:** compat postgresql ([2b70144](https://github.com/lizheming/waline/commit/2b7014467a23256ef875417b625654c8f7bc1f3a))
 #  (2020-12-06)
 ### Features
 
