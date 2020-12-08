@@ -7,10 +7,11 @@ module.exports = class extends MySQL {
 
   async count(...args) {
     let result = await super.count(...args);
-    if(!Array.isArray(result)) {
-      return result;
+    try {
+      result = parseInt(result);
+    } catch(e) {
+      console.log(e);
     }
-    
-    return result[0].think_count;
+    return result;
   }
 }
