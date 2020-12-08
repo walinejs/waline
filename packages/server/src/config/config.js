@@ -25,7 +25,7 @@ if(think.env === 'cloudbase' || TCB_ENV) {
   storage = 'mongodb';
   jwtKey = jwtKey || MONGO_PASSWORD;
 } else if (PG_DB) {
-  storage = 'mysql';
+  storage = 'postgresql';
   jwtKey = jwtKey || PG_PASSWORD;
 } else if (SQLITE_PATH) {
   storage = 'mysql';

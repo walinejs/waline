@@ -23,7 +23,7 @@
     "think-logger3": "^1.0.0",
     "think-model": "^1.5.1",
     "think-model-mysql": "^1.1.4",
-    "think-model-postgresql": "^1.1.4",
+    "think-model-postgresql": "^1.1.5",
     "think-model-sqlite": "^1.2.1",
     "think-mongo": "^2.1.0",
     "think-router-rest": "^1.0.5",
