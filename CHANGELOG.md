@@ -1,4 +1,8 @@
-# (2020-12-07)
+#  (2020-12-09)
+### Features
+
+* **client:** add uplodImage custom method ([35abb56](https://github.com/lizheming/waline/commit/35abb5643c3693c70605e664b3a5f1d7d532b7b6))
+# (2020-12-08)
 ### Bug Fixes
 
 * **vercel:** compat postgresql ([2b70144](https://github.com/lizheming/waline/commit/2b7014467a23256ef875417b625654c8f7bc1f3a))

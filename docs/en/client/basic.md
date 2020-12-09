@@ -129,3 +129,10 @@ Set required fields, default anonymous, optional values:
 
 - `['nick']`
 - `['nick','mail']`
+
+## uploadImage
+- Type: `Function`
+- Default: `null`
+- Required: `false`
+
+Custom image upload callback to manage picture by yourself. We will input picture file object when execute it.
