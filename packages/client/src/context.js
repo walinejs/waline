@@ -112,7 +112,7 @@ export default function Context(props) {
       ds: gravatarSetting.ds,
       params: `?d=${(gravatarSetting.ds.indexOf(props.avatar) > -1 ? props.avatar : 'mp')}${props.avatarForce ? '&q=' + Math.random().toString(32).substring(2) : ''}`
     },
-    uploadImage(file) {
+    uploadImage: typeof props.uploadImage === 'function' ? props.uploadImage : function(file) {
       const formData = new FormData();
       formData.append('file', file);
       

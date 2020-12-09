@@ -26,7 +26,8 @@ export default function Waline({
   emojiMaps,
   requiredFields = [],
   copyRight = true,
-  visitor = false
+  visitor = false,
+  uploadImage
 } = {}) {
   //阅读统计
   if(visitor) {
@@ -70,6 +71,7 @@ export default function Waline({
         avatar={avatar}
         avatarCDN={avatarCDN}
         avatarFore={avatarForce}
+        uploadImage={uploadImage}
       >
         <App 
           boxConfig={{serverURL, placeholder, meta, highlight, requiredFields, path}}
