@@ -1,3 +1,7 @@
+#  (2020-12-10)
+### Bug Fixes
+
+* **client:** decode path parameter to compat ([aaa907e](https://github.com/lizheming/waline/commit/aaa907ebf4bb63d72ae9b328c8a4116ce58615de)), closes [#63](https://github.com/lizheming/waline/issues/63)
 #  (2020-12-09)
 ### Features
 
