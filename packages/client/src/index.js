@@ -29,6 +29,12 @@ export default function Waline({
   visitor = false,
   uploadImage
 } = {}) {
+  try {
+    path = decodeURI(path);
+  } catch(e) {
+    //ignore error
+  }
+  
   //阅读统计
   if(visitor) {
     const visitorPromise = path ? Visitor.add({serverURL, path}) : Promise.resolve();
