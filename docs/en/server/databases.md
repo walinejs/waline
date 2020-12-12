@@ -8,6 +8,7 @@ In addition to LeanCloud, Waline also supports a variety of databases, including
 | -------------------- | -------- | --------- | -------------------------------------------- |
 | `MONGO_HOST`         |          | 127.0.0.1 | MongoDB server address, support array format |
 | `MONGO_PORT`         |          | 27017     | MongoDB server port, support array format    |
+| `MONGO_DB`           | √        |           | MongoDB database name                        |
 | `MONGO_USER`         | √        |           | MongoDB server username                      |
 | `MONGO_PASSWORD`     | √        |           | MongoDB server password                      |
 | `MONGO_REPLICASET`   |          |           | MongoDB replica set                          |

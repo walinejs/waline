@@ -10,6 +10,7 @@
 |------------|---------|------|------|
 | `MONGO_HOST` |  | 127.0.0.1 | MongoDB 服务的地址，支持数组格式 |
 | `MONGO_PORT` |  | 27017 | MongoDB 服务的端口，支持数组格式 |
+| `MONGO_DB` | √ | | MongoDB 数据库名称 |
 | `MONGO_USER` | √ | | MongoDB 服务的用户名 |
 | `MONGO_PASSWORD` | √ | | MongoDB 服务的密码 |
 | `MONGO_REPLICASET` | | | MongoDB 集群 |
