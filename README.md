@@ -26,7 +26,7 @@ English | [中文](https://github.com/lizheming/waline/blob/master/README_CN.md)
 
 |                | Waline       |            |
 | -------------- | ------------ | ---------- |
-| Client         | Server       | Storage    |
+| **Client**         | **Server**       | **Storage**    |
 | @waline/client | Vercel       | LeanCloud  |
 | MiniValine     | CloudBase    | CloudBase  |
 |                | Docker       | MongoDB    |

@@ -25,15 +25,15 @@
 - 免费部署
 - 多种部署部署方式和存储服务支持，每列选择一项多达 48 种部署方式任君选择
 
-|                | Waline     |            |
-| -------------- | ---------- | ---------- |
-| 客户端脚本     | 服务端部署 | 数据存储   |
-| @waline/client | Vercel     | LeanCloud  |
-| MiniValine     | CloudBase  | CloudBase  |
-|                | Docker     | MongoDB    |
-|                | 独立部署   | MySQL      |
-|                |            | SQLite     |
-|                |            | PostgreSQL |
+|                | Waline         |              |
+| -------------- | -------------- | ------------ |
+| **客户端脚本** | **服务端部署** | **数据存储** |
+| @waline/client | Vercel         | LeanCloud    |
+| MiniValine     | CloudBase      | CloudBase    |
+|                | Docker         | MongoDB      |
+|                | 独立部署       | MySQL        |
+|                |                | SQLite       |
+|                |                | PostgreSQL   |
 
 ## Todo
 

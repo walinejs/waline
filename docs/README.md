@@ -18,7 +18,7 @@ Waline - 一款从 [Valine](https://valine.js.org) 衍生的带后端评论系�
 
 |                | Waline     |            |
 | -------------- | ---------- | ---------- |
-| 客户端脚本     | 服务端部署 | 数据存储   |
+| **客户端脚本**     | **服务端部署** | **数据存储**   |
 | @waline/client | Vercel     | LeanCloud  |
 | MiniValine     | CloudBase  | CloudBase  |
 |                | Docker     | MongoDB    |
