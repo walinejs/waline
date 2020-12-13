@@ -48,13 +48,13 @@
 
 **真**·欢迎你为 Waline 的开发做贡献。
 
-## 捐赠
+## 获得支持
 
-如果你觉得 Waline 对你有帮助，或者想对我微小的工作一点资瓷，欢迎给我捐赠。
+你可以在 [Github Discussions](https://github.com/lizheming/waline/discussions) 中发布问题获取支持。当然你也可以加入我们的 [Telegram](https://t.me/walinejs) 小组或者是扫描下方二维码加入我们的 [Waline 用户交流 QQ 群](https://qm.qq.com/cgi-bin/qm/qr?k=rPZvq_EBfwQa6QZX7sToVlhH49c6ed0R&jump_from=webapi)获取更多的支持。
 
-<div class="donate-qrcode">
-<img width="300" src="https://p5.ssl.qhimg.com/t013f422b5b319becbb.png" alt="donate by alipay" /> <img width="300" src="https://p4.ssl.qhimg.com/t0142965a40989b8d7a.png" alt="donate by wechat" />
-</div>
+<a href="https://qm.qq.com/cgi-bin/qm/qr?k=rPZvq_EBfwQa6QZX7sToVlhH49c6ed0R&jump_from=webapi" target="_blank">
+  <img src="./assets/qqgroup.jpg" width="300" />
+</a>
 
 ## 协议
 
