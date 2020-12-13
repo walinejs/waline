@@ -1,3 +1,7 @@
+#  (2020-12-13)
+### Bug Fixes
+
+* **client:** update image upload to alexchu ([4e7be34](https://github.com/lizheming/waline/commit/4e7be342453600488e57f9a4478bb235b9ac695a))
 #  (2020-12-10)
 ### Bug Fixes
 
