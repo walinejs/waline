@@ -51,7 +51,17 @@ module.exports = [
   },
   {
     text: '迁移',
-    link: '/migration'
+    ariaLabel: '迁移',
+    items: [
+      {
+        text: 'Valine 迁移指南',
+        link: '/migration'
+      },
+      {
+        text: '迁移助手',
+        link: '/migration/tool'
+      }
+    ]
   },
   {
     text: '了解更多',

@@ -51,7 +51,16 @@ module.exports = [
   },
   {
     text: 'Migration',
-    link: '/en/migration'
+    items: [
+      {
+        text: 'Valine Migration Guide',
+        link: '/en/migration'
+      },
+      {
+        text: 'Data Migration Helper',
+        link: '/migration/tool'
+      }
+    ]
   },
   {
     text: 'Learn More',
