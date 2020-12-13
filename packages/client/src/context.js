@@ -114,12 +114,12 @@ export default function Context(props) {
     },
     uploadImage: typeof props.uploadImage === 'function' ? props.uploadImage : function(file) {
       const formData = new FormData();
-      formData.append('file', file);
+      formData.append('image', file);
       
-      return fetch('https://imgkr.com/api/files/upload', {
+      return fetch('https://pic.alexhchu.com/api/upload', {
         method: 'POST',
         body: formData
-      }).then(resp => resp.json()).then(resp => resp.data);
+      }).then(resp => resp.json()).then(resp => resp.data.url);
     }
   };
 
