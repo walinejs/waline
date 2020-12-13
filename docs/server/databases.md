@@ -17,6 +17,19 @@
 | `MONGO_AUTHSOURCE` | | | MongoDB 认证源 |
 | `MONGO_OPT_SSL` | | | 是否使用 SSL 进行连接 |
 
+以下是使用 mongodb.com 官方服务的配置示例，多机需要将 `MONGO_HOST` 和 `MONO_PORT` 配置成 JSON 格式。
+
+```
+MONGO_HOST=["cluster0-shard-00-00.p4edw.mongodb.net","cluster0-shard-00-01.p4edw.mongodb.net","cluster0-shard-00-02.p4edw.mongodb.net"]
+MONGO_PORT=[27017,27017,27017,27017]
+MONGO_DB=waline
+MONGO_USER=admin
+MONGO_PASSWORD=xxxx
+MONGO_REPLICASET=atlas-12cebf-shard-0
+MONGO_AUTHSOURCE=admin
+MONGO_OPT_SSL=true
+```
+
 ## MySQL
 
 如果想要使用 MySQL 作为存储服务，需要先导入 [waline.sql](https://github.com/lizheming/waline/blob/master/assets/waline.sql) 创建好表和表结构。之后在项目中配置如下环境变量即可。

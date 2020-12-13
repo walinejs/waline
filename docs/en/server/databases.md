@@ -15,6 +15,20 @@ In addition to LeanCloud, Waline also supports a variety of databases, including
 | `MONGO_AUTHSOURCE`   |          |           | MongoDB auth source                          |
 | `MONGO_OPT_SSL`      |          |           | use SSL connection                           |
 
+
+Here is an example configuration for mongodb.com. Please note that you need set as JSON style for `MONGO_HOST` and `MONGO_PORT` when you has mulitple hosts.
+
+```
+MONGO_HOST=["cluster0-shard-00-00.p4edw.mongodb.net","cluster0-shard-00-01.p4edw.mongodb.net","cluster0-shard-00-02.p4edw.mongodb.net"]
+MONGO_PORT=[27017,27017,27017,27017]
+MONGO_DB=waline
+MONGO_USER=admin
+MONGO_PASSWORD=xxxx
+MONGO_REPLICASET=atlas-12cebf-shard-0
+MONGO_AUTHSOURCE=admin
+MONGO_OPT_SSL=true
+```
+
 ## MySQL
 
 If you want to use MySQL as storage, you need import [waline.sql](https://github.com/lizheming/waline/blob/master/assets/waline.sql) at first to create talbe and column. Then set environment variables in project.

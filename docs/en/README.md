@@ -16,6 +16,17 @@ A simple comment system with backend support fork from [Valine](https://valine.j
 - Support for full markdown syntax
 - Simple and lightweight
 - Deploy free!
+- Multiple deploy and storage service support, at least 48 deploy style choice!
+
+|                | Waline       |            |
+| -------------- | ------------ | ---------- |
+| Client         | Server       | Storage    |
+| @waline/client | Vercel       | LeanCloud  |
+| MiniValine     | CloudBase    | CloudBase  |
+|                | Docker       | MongoDB    |
+|                | Virtual Host | MySQL      |
+|                |              | SQLite     |
+|                |              | PostgreSQL |
 
 
 ## Todo

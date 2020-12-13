@@ -22,6 +22,17 @@ English | [中文](https://github.com/lizheming/waline/blob/master/README_CN.md)
 - Support for full markdown syntax
 - Simple and lightweight
 - Deploy free!
+- Multiple deploy and storage service support, at least 48 deploy style choice!
+
+|                | Waline       |            |
+| -------------- | ------------ | ---------- |
+| Client         | Server       | Storage    |
+| @waline/client | Vercel       | LeanCloud  |
+| MiniValine     | CloudBase    | CloudBase  |
+|                | Docker       | MongoDB    |
+|                | Virtual Host | MySQL      |
+|                |              | SQLite     |
+|                |              | PostgreSQL |
 
 
 ## Todo
