@@ -1,3 +1,7 @@
+#  (2020-12-14)
+### Bug Fixes
+
+* **vercel:** compat server url not root pathname ([17d402c](https://github.com/lizheming/waline/commit/17d402c6aed958bcee8af0e22cf8d2fd23543f68))
 #  (2020-12-13)
 ### Bug Fixes
 
