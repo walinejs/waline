@@ -21,7 +21,12 @@ export default async function request(url, opts = {}) {
     opts.headers.Authorization = `Bearer ${token}`;
   }
 
-  const baseUrl = globalThis.serverURL || location.pathname.match(/(.*)?\/ui/)[1] || '/';
+  let baseUrl = globalThis.serverURL;
+  if(!baseUrl) {
+    const match = location.pathname.match(/(.*?\/)ui/);
+    baseUrl = match ? match[1] : '/';
+  }
+  
   return fetch(baseUrl + opts.url, opts).then(resp => {
     if(resp.ok) {
       return resp.json();
