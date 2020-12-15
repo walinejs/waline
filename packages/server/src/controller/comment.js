@@ -80,7 +80,13 @@ module.exports = class extends BaseRest {
         }
         if(status) {
           where.status = status;
+
+          //compat with valine old data without status property
+          if(status === 'approved') {
+            where.status = ['NOT IN', 'spam'];
+          }
         }
+        
         if(keyword) {
           where.comment = ['LIKE', `%${keyword}%`];
         }
