@@ -1,3 +1,7 @@
+#  (2020-12-15)
+### Bug Fixes
+
+* **vercel:** compat valine old data without status property ([53ebc5a](https://github.com/lizheming/waline/commit/53ebc5a56c7cf24b5858fe6bb3c80c290e07eed5)), closes [#67](https://github.com/lizheming/waline/issues/67)
 #  (2020-12-14)
 ### Bug Fixes
 
