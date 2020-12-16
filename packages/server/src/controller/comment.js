@@ -83,7 +83,7 @@ module.exports = class extends BaseRest {
 
           //compat with valine old data without status property
           if(status === 'approved') {
-            where.status = ['NOT IN', 'spam'];
+            where.status = ['NOT IN', ['spam']];
           }
         }
         
