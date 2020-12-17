@@ -1,3 +1,7 @@
+#  (2020-12-17)
+### Bug Fixes
+
+* **client:** load emoji image when commentbox emoji button click ([7b9a1e2](https://github.com/lizheming/waline/commit/7b9a1e2214d6ee378f5c2e1993557c74493693ae)), closes [#70](https://github.com/lizheming/waline/issues/70)
 #  (2020-12-15)
 ### Bug Fixes
 
