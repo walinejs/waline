@@ -289,18 +289,21 @@ export default function({
             >{ctx.locale.reply}</button>
           </div>
         </div>
-        <div className="vemojis" style={{display: showEmoji ? 'block' : 'none'}}>
-          {Object.keys(ctx.emojiMaps).map(key => (
-            <i title={key} key={key} onClick={_ => insertAtCaret(editorRef.current, `:${key}:`)}>
-              <img 
-                alt={key} 
-                className="vemoji"
-                referrerPolicy="no-referrer"
-                src={/^(?:https?:)?\/\//.test(ctx.emojiMaps[key]) ? ctx.emojiMaps[key] : ctx.emojiCDN + ctx.emojiMaps[key]} 
-              />
-            </i>
-          ))}
-        </div>
+        {showEmoji ? (
+          <div className="vemojis">
+            {Object.keys(ctx.emojiMaps).map(key => (
+              <i title={key} key={key} onClick={_ => insertAtCaret(editorRef.current, `:${key}:`)}>
+                <img 
+                  alt={key} 
+                  loading="lazy"
+                  className="vemoji"
+                  referrerPolicy="no-referrer"
+                  src={/^(?:https?:)?\/\//.test(ctx.emojiMaps[key]) ? ctx.emojiMaps[key] : ctx.emojiCDN + ctx.emojiMaps[key]} 
+                />
+              </i>
+            ))}
+          </div>
+        ) : null}
         <div 
           className="vinput vpreview" 
           style={{display: showPreview ? 'block' : 'none'}}
