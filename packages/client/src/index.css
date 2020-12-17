@@ -195,7 +195,7 @@
 }
 
 .v[data-class=v] .vwrap .vemojis {
-	display: none;
+	/* display: none; */
 	font-size: 18px;
 	max-height: 145px;
 	overflow: auto;
