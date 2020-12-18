@@ -30,4 +30,5 @@ waline:
   visitor: false # Article reading statistic
   comment_count: true  # If false, comment count will only be displayed in post page, not in home page
   requiredFields: [] # Set required fields: [nick] | [nick, mail]
+  libUrl: # Set custom library cdn url
 ```
