@@ -47,8 +47,8 @@ hexo.extend.filter.register('theme_inject', injects => {
   const config = utils.defaultConfigFile('waline', 'default.yaml');
   if (!config.enable || !config.serverURL) return;
 
-  injects.postMeta.raw('waline', `
-  {% if post.comments and (is_post() or theme.waline.comment_count) %}
+  injects.postMeta.raw('waline_comments', `
+  {% if post.comments and (is_post() or config.waline.comment_count) %}
   <span class="post-meta-item">
     ${iconText('far fa-comment', 'waline')}
     <a title="waline" href="{{ url_for(post.path) }}#waline-comments" itemprop="discussionUrl">
@@ -65,8 +65,7 @@ hexo.extend.filter.register('theme_inject', injects => {
       return;
     }
     
-
-    injects.postMeta.raw('waline', `
+    injects.postMeta.raw('waline_visitors', `
     <span id="{{ url_for(post.path) }}" class="post-meta-item leancloud_visitors" data-flag-title="{{ post.title }}" title="{{ __('post.views') }}">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
