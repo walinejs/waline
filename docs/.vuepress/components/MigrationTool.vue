@@ -91,6 +91,7 @@ function tk2lc(input) {
 function lc2csv(input) {
   let output = [];
   const field = [
+      "id",
       "nick",
       "updatedAt",
       "mail",
@@ -98,13 +99,41 @@ function lc2csv(input) {
       "insertedAt",
       "createdAt",
       "comment",
+      "pid",
+      "rid",
       "link",
       "url"
   ];
   output.push(field.join(","));
 
+  const keyMaps = {};
+  const getId = row => {
+    if(row.hasOwnProperty('objectId')) {
+      return row.objectId;
+    } 
+
+    if(typeof row._id !== 'string' && row._id.$oid) {
+      return row._id.$oid;
+    }
+  }
+  let index = 1;
+  input.results.forEach(row => {
+    const id = getId(row);
+    if(id) {
+      keyMaps[ id ] = index;
+    }
+    index += 1;
+  });
+
   const [_head, ...body] = input.results;
   body.forEach(row => {
+    const id = getId(row);
+    if(id) {
+      row.id = keyMaps[ id ].toString();
+    }
+    row.pid = keyMaps[ row.pid ]?.toString();
+    row.rid = keyMaps[ row.rid ]?.toString();
+    
     let data = field.map(key => {
       if (key == "insertedAt") {
         return row[key].iso;
