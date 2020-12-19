@@ -1,6 +1,10 @@
 #  (2020-12-19)
+### Features
+
+* **client:** post comment without reload page ([353a14c](https://github.com/lizheming/waline/commit/353a14cca58751305252df1453dd92ce77a432ad))
 ### Bug Fixes
 
+* **client:** fix paste upload image can't update preview area after success ([2103295](https://github.com/lizheming/waline/commit/21032952d8fd7c9cfda3e2882b6ffd096409c37b))
 * **vercel:** fix childcomment with order asc ([f8c65e4](https://github.com/lizheming/waline/commit/f8c65e4a3b40f0b66e654957c63940a25ca6f66d))
 #  (2020-12-18)
 ### Features
