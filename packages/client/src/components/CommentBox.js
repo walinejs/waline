@@ -65,7 +65,7 @@ function _insertAtCaret(field, val) {
   }
 }
 
-function onPasteFactory(editorRef, uploadImage = new Function, insertAtCaret) {
+function onPasteFactory(editorRef, uploadImage = new Function, insertAtCaret, onChange) {
   return function(e) {
     const field = editorRef.current;
     const clipboardData = 'clipboardData' in e ? e.clipboardData : (e.originalEvent && e.originalEvent.clipboardData || window.clipboardData);
@@ -84,9 +84,10 @@ function onPasteFactory(editorRef, uploadImage = new Function, insertAtCaret) {
       files.forEach(file => {
         const uploadText = `![Uploading ${file['name']}]()`;
         insertAtCaret(field, uploadText);
-        return Promise.resolve().then(_ => uploadImage(file)).then(ret => 
-          (field.value = field.value.replace(uploadText, `\r\n![${file.name}](${ret.data || ret})`))  
-        );
+        return Promise.resolve().then(_ => uploadImage(file)).then(ret => {
+          field.value = field.value.replace(uploadText, `\r\n![${file.name}](${ret.data || ret})`);
+          onChange({target: field});
+        });
       });
     }
   }
@@ -162,7 +163,7 @@ export default function({
       insertAtCaret(e.target, '    ');
     }
   }, []);
-  const onPaste = useCallback(onPasteFactory(editorRef, ctx.uploadImage, insertAtCaret), []);
+  const onPaste = useCallback(onPasteFactory(editorRef, ctx.uploadImage, insertAtCaret, onChange), []);
   const submitComment = useCallback(() => {
     if(requiredFields.indexOf('nick') > -1 && comment.nick.length < 2) {
       inputsRef.nick.current.focus();
