@@ -135,7 +135,6 @@ module.exports = class extends BaseRest {
           rid: ['IN', rootComments.map(comment => comment.objectId)],
           status: ['NOT IN', ['spam']],
         }, {
-          desc: 'insertedAt',
           field: [
             'comment', 'insertedAt', 'link', 'mail', 'nick', 'pid', 'rid', 'ua'
           ]
