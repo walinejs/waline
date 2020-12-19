@@ -5,7 +5,8 @@ function timeAgo(date,locale) {
 
   try {
     if(typeof date === 'string') {
-      date = new Date(date);
+      //compat with mysql output date
+      date = new Date(date.indexOf(' ') !== -1 ? date.replace(/-/g, '/') : date);
     }
     const oldTime = date.getTime();
     const currTime = new Date().getTime();
