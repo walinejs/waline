@@ -96,6 +96,7 @@ function lc2csv(input) {
       "updatedAt",
       "mail",
       "ua",
+      "status",
       "insertedAt",
       "createdAt",
       "comment",
@@ -133,10 +134,14 @@ function lc2csv(input) {
     }
     row.pid = keyMaps[ row.pid ]?.toString();
     row.rid = keyMaps[ row.rid ]?.toString();
+    row.status = "approved";
     
     let data = field.map(key => {
       if (key == "insertedAt") {
-        return row[key].iso;
+        return row[key].iso.replace('T', ' ').replace(/.\d{3}Z$/i, '');
+      }
+      if (key === "createdAt" || key === "updatedAt") {
+        return row[key].replace('T', ' ').replace(/.\d{3}Z$/i, '');
       }
       return row[key]?.replaceAll('"', '""');
     });
