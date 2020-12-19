@@ -21,7 +21,7 @@ export function postComment({serverURL, comment}) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(comment)
-  });
+  }).then(resp => resp.json());
 }
 
 export function fetchVisitCount({serverURL, path}) {

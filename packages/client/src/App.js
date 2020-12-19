@@ -32,9 +32,22 @@ function App({boxConfig, listConfig, copyRight}) {
     })).catch(_ => dispatch({loading: false}));
   }, [page, data]);
 
-  const onSubmit = useCallback(() => {
-    window.location.reload();
-  }, []);
+  const onSubmit = useCallback(comment => {
+    if(comment.rid) {
+      const cmt = data.find(({objectId}) => objectId === comment.rid);
+      if(!cmt) {
+        return;
+      }
+      if(!Array.isArray(cmt.children)) {
+        cmt.children = [];
+      }
+      cmt.children.push(comment);
+    } else {
+      data.unshift(comment);
+    }
+    
+    dispatch({data: Array.from(data)});
+  }, [data]);
 
   return (
     <div className="v" data-class="v">

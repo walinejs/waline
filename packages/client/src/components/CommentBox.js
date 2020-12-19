@@ -115,7 +115,7 @@ export default function({
   replyUser, 
   rootId,
   serverURL,
-  onCanelReply,
+  onCancelReply,
   onSubmit
 }) {
   const inputsRef = {
@@ -187,12 +187,21 @@ export default function({
     setSubmitting(true);
     postComment({serverURL, comment}).then(resp => {
       setSubmitting(false);
-      onSubmit(resp);
       store.setItem({
         nick: comment.nick,
         link: comment.link,
         mail: comment.mail
       });
+
+      if(resp.errmsg) {
+        return alert(resp.errmsg);
+      }
+      onSubmit(resp.data);
+      editorRef.current.value = '';
+      setPreviewText('');
+      if(replyId) {
+        onCancelReply();
+      }
     }, _ => setSubmitting(false));
   }, [comment]);
 
@@ -218,7 +227,7 @@ export default function({
           <p 
             className="cancel-reply text-right" 
             title={ctx.locale.cancelReply} 
-            onClick={onCanelReply}
+            onClick={onCancelReply}
           >
             <CancelReplyIcon />
           </p>

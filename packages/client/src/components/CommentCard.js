@@ -54,7 +54,7 @@ export default function CommentCard({comment, boxConfig, rootId, onSubmit}) {
               replyId={reply && reply.objectId}
               replyUser={reply && reply.nick} 
               rootId={rootId}
-              onCanelReply={_ => setReply(null)} 
+              onCancelReply={_ => setReply(null)} 
               onSubmit={onSubmit} 
             />
           </div>
