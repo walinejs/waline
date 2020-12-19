@@ -1,3 +1,11 @@
+#  (2020-12-19)
+### Bug Fixes
+
+* **vercel:** fix childcomment with order asc ([f8c65e4](https://github.com/lizheming/waline/commit/f8c65e4a3b40f0b66e654957c63940a25ca6f66d))
+#  (2020-12-18)
+### Features
+
+* **hexo-next:** add `libUrl` parameter to custom cdn url ([67653ce](https://github.com/lizheming/waline/commit/67653ce229db02748f12e04008cd8b7741ab8d78))
 #  (2020-12-17)
 ### Bug Fixes
 
