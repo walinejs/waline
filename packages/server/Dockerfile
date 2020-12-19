@@ -1,6 +1,8 @@
 FROM node:lts
 
 ENV WORKDIR /opt/waline
+ENV TZ Asia/Shanghai
+
 WORKDIR ${WORKDIR}
 
 COPY packages/server/package.json ${WORKDIR}/package.json
