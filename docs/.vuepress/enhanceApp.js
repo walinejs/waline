@@ -10,6 +10,24 @@ function waline() {
 }
 
 function renderWaline(router) {
+  setTimeout(()=>{
+    if(!globalThis.window) {
+      return;
+    }
+    let $page = document.querySelector('.page')
+    let container = document.getElementById('waline-comment')
+    if(container) {
+      $page.removeChild(container);
+    }
+    
+    container = document.createElement('div')
+    container.id = 'waline-comment';
+    container.className = 'page-nav';
+    $page.appendChild(container);
+    
+    waline()
+  }, 1000);
+
   router.afterEach(_ => {
     let $page = document.querySelector('.page')
     let container = document.getElementById('waline-comment')
@@ -29,7 +47,7 @@ function renderWaline(router) {
         $page = document.querySelector('.page')
         $page.appendChild(container)
         waline()
-      }, 1500)
+      }, 1000)
     }
   })
 }
