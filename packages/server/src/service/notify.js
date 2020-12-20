@@ -1,6 +1,7 @@
 const nodemailer = require('nodemailer');
 const nunjucks = require('nunjucks');
 const request = require('request-promise-native');
+const { think } = require('thinkjs');
 module.exports = class extends think.Service {
   constructor(...args) {
     super(...args);
@@ -54,7 +55,7 @@ module.exports = class extends think.Service {
   async wechat({title, content}, self, parent) {
     const {SC_KEY, SITE_NAME, SITE_URL} = process.env;
     if(!SC_KEY) {
-      return;
+      return false;
     }
 
     const data = {
@@ -69,7 +70,7 @@ module.exports = class extends think.Service {
     title = nunjucks.renderString(title, data);
     content = nunjucks.renderString(content, data);
   
-    const resp = await request({
+    return request({
       uri: `https://sc.ftqq.com/${SC_KEY}.send`,
       method: 'POST',
       form: {
@@ -101,10 +102,13 @@ module.exports = class extends think.Service {
       <p>您可以点击<a style="text-decoration:none; color:#12addb" href="{{site.postUrl}}" target="_blank">查看回复的完整內容</a></p>
       <br/>
     </div>`;
+    
+    let wechatNotify = false;
     if(!isAuthorComment) {
-      await this.wechat({title, content}, comment, parent);
+      wechatNotify = await this.wechat({title, content}, comment, parent);
     }
-    if(!isAuthorComment && !isReplyAuthor) {
+
+    if(!isAuthorComment && !isReplyAuthor && think.isEmpty(wechatNotify)) {
       mailList.push({to: AUTHOR, title, content});
     }
 
