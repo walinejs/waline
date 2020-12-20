@@ -1,7 +1,6 @@
 const nodemailer = require('nodemailer');
 const nunjucks = require('nunjucks');
 const request = require('request-promise-native');
-const { think } = require('thinkjs');
 module.exports = class extends think.Service {
   constructor(...args) {
     super(...args);

@@ -1,3 +1,7 @@
+#  (2020-12-20)
+### Features
+
+* **vercel:** blog Author Email notify disable when wechat notify enabled ([f71a6d1](https://github.com/lizheming/waline/commit/f71a6d1804e32e20038ed3b96c3b394e7790e11b))
 #  (2020-12-19)
 ### Features
 
