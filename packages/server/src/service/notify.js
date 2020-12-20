@@ -80,6 +80,35 @@ module.exports = class extends think.Service {
     });
   }
   
+  async telegram({title, content}, self, parent) {
+    const {TG_TOKEN, CHAT_ID, SITE_NAME, SITE_URL} = process.env;
+    if(!TG_TOKEN) {
+      return false;
+    }
+
+    const data = {
+      self, 
+      parent, 
+      site: {
+        name: SITE_NAME, 
+        url: SITE_URL,
+        postUrl: SITE_URL + self.url + '#' + self.objectId
+      }
+    };
+    title = nunjucks.renderString(title, data);
+    content = nunjucks.renderString(content, data);
+  
+    return request({
+      uri: `https://api.telegram.org/bot${TG_TOKEN}/sendMessage`,
+      method: 'POST',
+      data: {
+        text: title,
+        chat_id: CHAT_ID
+      },
+      json: true
+    });
+  }
+  
   async run(comment, parent) {
     const {AUTHOR_EMAIL, BLOGGER_EMAIL} = process.env;
     const AUTHOR = AUTHOR_EMAIL || BLOGGER_EMAIL;
@@ -105,6 +134,11 @@ module.exports = class extends think.Service {
     let wechatNotify = false;
     if(!isAuthorComment) {
       wechatNotify = await this.wechat({title, content}, comment, parent);
+    }
+
+    let telegramNotify = false;
+    if(!isAuthorComment) {
+      telegramNotify = await this.telegram({title, content}, comment, parent);
     }
 
     if(!isAuthorComment && !isReplyAuthor && think.isEmpty(wechatNotify)) {
