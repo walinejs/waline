@@ -80,7 +80,7 @@ module.exports = class extends think.Service {
     });
   }
   
-  async telegram({title, content}, self, parent) {
+  async telegram({contentTG}, self, parent) {
     const {TG_TOKEN, CHAT_ID, SITE_NAME, SITE_URL} = process.env;
     if(!TG_TOKEN) {
       return false;
@@ -95,15 +95,18 @@ module.exports = class extends think.Service {
         postUrl: SITE_URL + self.url + '#' + self.objectId
       }
     };
-    title = nunjucks.renderString(title, data);
-    content = nunjucks.renderString(content, data);
-  
+    contentTG = nunjucks.renderString(contentTG, data);
+    contentTG = contentTG.replace(/<[\s\S]?p>/g,'');
+    contentTG = contentTG.replace('\n','');
+    contentTG = contentTG.replace(/<img src="(https?:[\s\S]*).png" alt="[\s\S]*">/g,' ')
+
     return request({
       uri: `https://api.telegram.org/bot${TG_TOKEN}/sendMessage`,
       method: 'POST',
-      data: {
-        text: title,
-        chat_id: CHAT_ID
+      form: {
+        text: contentTG,
+        chat_id: CHAT_ID,
+        parse_mode: 'MarkdownV2'
       },
       json: true
     });
@@ -130,6 +133,16 @@ module.exports = class extends think.Service {
       <p>您可以点击<a style="text-decoration:none; color:#12addb" href="{{site.postUrl}}" target="_blank">查看回复的完整內容</a></p>
       <br/>
     </div>`;
+
+    const contentTG = `
+💬 *[{{site.name}}]({{site.url}}) 上有新评论啦*
+
+*{{self.nick}}* 回复说：
+
+\`\`\`
+{{self.comment | safe}}
+\`\`\`
+您可以点击[查看回复的完整內容]({{site.postUrl}})`;
     
     let wechatNotify = false;
     if(!isAuthorComment) {
@@ -138,10 +151,10 @@ module.exports = class extends think.Service {
 
     let telegramNotify = false;
     if(!isAuthorComment) {
-      telegramNotify = await this.telegram({title, content}, comment, parent);
+      telegramNotify = await this.telegram({contentTG}, comment, parent);
     }
 
-    if(!isAuthorComment && !isReplyAuthor && think.isEmpty(wechatNotify)) {
+    if(!isAuthorComment && !isReplyAuthor && (think.isEmpty(wechatNotify) || think.isEmpty(telegramNotify)) ) {
       mailList.push({to: AUTHOR, title, content});
     }
 
