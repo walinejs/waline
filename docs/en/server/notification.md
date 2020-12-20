@@ -23,3 +23,10 @@ We use [Server Chan](http://sc.ftqq.com/3.version) to wechat notification. You n
 - `AUTHOR_EMAIL`：The blogger’s email is used to distinguish whether the posted comment is posted by the blogger himself. If it is posted by the blogger, there will be no reminder notification.
 - `SITE_NAME`：Your site name, it will be displayed in notification message.
 - `SITE_URL`：Your site url, it will be displayed in notification message.
+
+## Telegram Notification
+
+We use Telegram bot to send comment notification. You need to set the following env first.
+
+- `TG_BOT_TOKEN`：Telegram bot token to access the HTTP API. Create a bot with [@BotFather](https://t.me/BotFather) to get this token.
+- `TG_CHAT_ID`：The `chat_id` of the receiver. It can be an user, a channel or a group. [@userinfobot](https://t.me/userinfobot) will display this `chat_id` when you forward a message to it.
