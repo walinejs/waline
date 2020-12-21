@@ -104,13 +104,12 @@ module.exports = class extends think.Service {
         postUrl: SITE_URL + self.url + '#' + self.objectId
       }
     };
-    contentTG = nunjucks.renderString(contentTG, data);
 
     return request({
       uri: `https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`,
       method: 'POST',
       form: {
-        text: contentTG,
+        text: nunjucks.renderString(contentTG, data),
         chat_id: TG_CHAT_ID,
         parse_mode: 'MarkdownV2'
       },
@@ -140,19 +139,12 @@ module.exports = class extends think.Service {
       <br/>
     </div>`;
 
-    
-    let wechatNotify = false;
     if(!isAuthorComment) {
-      wechatNotify = await this.wechat({title, content}, comment, parent);
-    }
-
-    let telegramNotify = false;
-    if(!isAuthorComment) {
-      telegramNotify = await this.telegram(comment, parent);
-    }
-
-    if(!isAuthorComment && !isReplyAuthor && (think.isEmpty(wechatNotify) || think.isEmpty(telegramNotify)) ) {
-      mailList.push({to: AUTHOR, title, content});
+      const wechat = await this.wechat({title, content}, comment, parent);
+      const telegram = await this.telegram(comment, parent);
+      if(think.isEmpty(wechat) && think.isEmpty(telegram) && !isReplyAuthor) {
+        mailList.push({to: AUTHOR, title, content});
+      }
     }
 
     if(parent) {
