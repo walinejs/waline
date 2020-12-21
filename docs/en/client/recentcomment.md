@@ -7,7 +7,7 @@ Waline also support recent comments widget to help you display recent comment at
 ```html
 <div id="waline-recent"></div>
 <script>
-document.addEventListener('load', function() {
+window.addEventListener('load', function() {
   Waline.Widget.RecentComments({
     el: '#waline-recent',
     serverURL: 'http://waline.vercel.app',
@@ -24,7 +24,7 @@ If you dislike default output HTML format, you can also render by yourself.
 ```html
 <div id="waline-recent"></div>
 <script>
-document.addEventListener('load', function() {
+window.addEventListener('load', function() {
   Waline.Widget.RecentComments({
     el: '#waline-recent',
     serverURL: 'http://waline.vercel.app',
