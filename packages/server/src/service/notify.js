@@ -80,7 +80,16 @@ module.exports = class extends think.Service {
     });
   }
   
-  async telegram({contentTG}, self, parent) {
+  async telegram(self, parent) {
+    const contentTG = `
+💬 *[{{site.name}}]({{site.url}}) 上有新评论啦*
+
+*{{self.nick}}* 回复说：
+
+{{self.rawComment}}
+
+您可以点击[查看回复的完整內容]({{site.postUrl}})`;
+
     const {TG_BOT_TOKEN, TG_CHAT_ID, SITE_NAME, SITE_URL} = process.env;
     if(!TG_BOT_TOKEN || !TG_CHAT_ID) {
       return false;
@@ -96,9 +105,6 @@ module.exports = class extends think.Service {
       }
     };
     contentTG = nunjucks.renderString(contentTG, data);
-    contentTG = contentTG.replace(/<[\s\S]?p>/g,'');
-    contentTG = contentTG.replace('\n','');
-    contentTG = contentTG.replace(/<img src="(https?:[\s\S]*).png" alt="[\s\S]*">/g,' ')
 
     return request({
       uri: `https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`,
@@ -134,15 +140,6 @@ module.exports = class extends think.Service {
       <br/>
     </div>`;
 
-    const contentTG = `
-💬 *[{{site.name}}]({{site.url}}) 上有新评论啦*
-
-*{{self.nick}}* 回复说：
-
-\`\`\`
-{{self.comment | safe}}
-\`\`\`
-您可以点击[查看回复的完整內容]({{site.postUrl}})`;
     
     let wechatNotify = false;
     if(!isAuthorComment) {
@@ -151,7 +148,7 @@ module.exports = class extends think.Service {
 
     let telegramNotify = false;
     if(!isAuthorComment) {
-      telegramNotify = await this.telegram({contentTG}, comment, parent);
+      telegramNotify = await this.telegram(comment, parent);
     }
 
     if(!isAuthorComment && !isReplyAuthor && (think.isEmpty(wechatNotify) || think.isEmpty(telegramNotify)) ) {

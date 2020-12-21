@@ -224,7 +224,7 @@ module.exports = class extends BaseRest {
     }
     if(comment.status !== 'spam') {
       const notify = this.service('notify');
-      await notify.run(resp, pComment);
+      await notify.run({...resp, rawComment: comment}, pComment);
     }
 
     await this.hook('postSave', resp, pComment);
