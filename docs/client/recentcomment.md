@@ -7,7 +7,7 @@ Waline 也支持最新评论挂件显示，方便在博客侧边栏显示最近�
 ```html
 <div id="waline-recent"></div>
 <script>
-document.addEventListener('load', function() {
+window.addEventListener('load', function() {
   Waline.Widget.RecentComments({
     el: '#waline-recent',
     serverURL: 'http://waline.vercel.app',
@@ -24,7 +24,7 @@ document.addEventListener('load', function() {
 ```html
 <div id="waline-recent"></div>
 <script>
-document.addEventListener('load', function() {
+window.addEventListener('load', function() {
   Waline.Widget.RecentComments({
     el: '#waline-recent',
     serverURL: 'http://waline.vercel.app',
