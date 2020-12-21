@@ -1,3 +1,13 @@
+#  (2020-12-21)
+### Bug Fixes
+
+* **admin:** fix url redirect with double slash bug ([f5560eb](https://github.com/lizheming/waline/commit/f5560eb96035037d49b47f5542e9f06c08f55bb9)), closes [#80](https://github.com/lizheming/waline/issues/80)
+* **vercel:** fix dashboard waline config serverURL error with pathname ([9bb9385](https://github.com/lizheming/waline/commit/9bb9385d0897e682537750cde3162174b6f865f2)), closes [#85](https://github.com/lizheming/waline/issues/85)
+
+### Features
+
+* **vercel:** add Telegram notification ([#83](https://github.com/lizheming/waline/pull/83))
+
 #  (2020-12-20)
 ### Features
 
