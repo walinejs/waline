@@ -86,9 +86,12 @@ module.exports = class extends think.Service {
 
 *{{self.nick}}* 回复说：
 
+\`\`\`
 {{self.rawComment}}
+\`\`\`
+*邮箱：*\`{{self.mail}}\`  *审核：*{{self.status}} 
 
-您可以点击[查看回复的完整內容]({{site.postUrl}})`;
+评论仅显示 Markdown 源代码，您可以点击[查看回复的完整內容]({{site.postUrl}})`;
 
     const {TG_BOT_TOKEN, TG_CHAT_ID, SITE_NAME, SITE_URL} = process.env;
     if(!TG_BOT_TOKEN || !TG_CHAT_ID) {
