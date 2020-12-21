@@ -33,6 +33,7 @@ A simple comment system with backend support fork from [Valine](https://valine.j
 
 - ✅ Email notification
 - ✅ Wechat notification
+- ✅ Telegram notification
 - ✅ Akismet 
 - ✅ Article counter
 - ✅ i18n

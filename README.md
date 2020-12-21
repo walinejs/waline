@@ -39,6 +39,7 @@ English | [中文](https://github.com/lizheming/waline/blob/master/README_CN.md)
 
 - [x] Email notification
 - [x] Wechat notification
+- [x] Telegram notification
 - [x] Akismet 
 - [x] Article counter
 - [x] i18n
