@@ -15,7 +15,7 @@ module.exports = class extends think.Controller {
         new Waline({
           el: '#waline',
           path: '/',
-          serverURL: location.protocol + '//' + location.host + location.pathname.slice(1)
+          serverURL: location.protocol + '//' + location.host + location.pathname.replace(/\/+$/, '')
         });
       </script>
     </body>
