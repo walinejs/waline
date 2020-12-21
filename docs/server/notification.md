@@ -31,3 +31,5 @@ Telegram 通知通过 Telegram bot 机器人实现，需要在环境变量中配
 - `TG_BOT_TOKEN`：Telegram 机器人用于访问 HTTP API 的 token，通过 [@BotFather](https://t.me/BotFather) 创建机器人获取。
 - `TG_CHAT_ID`：Telegram 机器人发送消息对象的 `chat_id`，可以是单一用户、频道、群组，通过 [@userinfobot](https://t.me/userinfobot) 获取。
 - `AUTHOR_EMAIL`：博主邮箱，用来区分发布的评论是否是博主本身发布的。如果是博主发布的则不进行提醒通知。
+- `SITE_NAME`：网站名称，用于在消息中显示。
+- `SITE_URL`：网站地址，用于在消息中显示。
