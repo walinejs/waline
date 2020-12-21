@@ -8,5 +8,5 @@ export function getPostUrl(url) {
   if(!global.SITE_URL) {
     return url;
   }
-  return global.SITE_URL + '/' + url;
+  return global.SITE_URL + url;
 }
