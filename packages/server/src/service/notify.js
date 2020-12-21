@@ -81,8 +81,8 @@ module.exports = class extends think.Service {
   }
   
   async telegram({contentTG}, self, parent) {
-    const {TG_TOKEN, CHAT_ID, SITE_NAME, SITE_URL} = process.env;
-    if(!TG_TOKEN) {
+    const {TG_BOT_TOKEN, TG_CHAT_ID, SITE_NAME, SITE_URL} = process.env;
+    if(!TG_BOT_TOKEN || !TG_CHAT_ID) {
       return false;
     }
 
@@ -101,11 +101,11 @@ module.exports = class extends think.Service {
     contentTG = contentTG.replace(/<img src="(https?:[\s\S]*).png" alt="[\s\S]*">/g,' ')
 
     return request({
-      uri: `https://api.telegram.org/bot${TG_TOKEN}/sendMessage`,
+      uri: `https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`,
       method: 'POST',
       form: {
         text: contentTG,
-        chat_id: CHAT_ID,
+        chat_id: TG_CHAT_ID,
         parse_mode: 'MarkdownV2'
       },
       json: true
