@@ -80,6 +80,38 @@ module.exports = class extends think.Service {
     });
   }
   
+  async telegram({contentTG}, self, parent) {
+    const {TG_BOT_TOKEN, TG_CHAT_ID, SITE_NAME, SITE_URL} = process.env;
+    if(!TG_BOT_TOKEN || !TG_CHAT_ID) {
+      return false;
+    }
+
+    const data = {
+      self, 
+      parent, 
+      site: {
+        name: SITE_NAME, 
+        url: SITE_URL,
+        postUrl: SITE_URL + self.url + '#' + self.objectId
+      }
+    };
+    contentTG = nunjucks.renderString(contentTG, data);
+    contentTG = contentTG.replace(/<[\s\S]?p>/g,'');
+    contentTG = contentTG.replace('\n','');
+    contentTG = contentTG.replace(/<img src="(https?:[\s\S]*).png" alt="[\s\S]*">/g,' ')
+
+    return request({
+      uri: `https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`,
+      method: 'POST',
+      form: {
+        text: contentTG,
+        chat_id: TG_CHAT_ID,
+        parse_mode: 'MarkdownV2'
+      },
+      json: true
+    });
+  }
+  
   async run(comment, parent) {
     const {AUTHOR_EMAIL, BLOGGER_EMAIL} = process.env;
     const AUTHOR = AUTHOR_EMAIL || BLOGGER_EMAIL;
@@ -101,13 +133,28 @@ module.exports = class extends think.Service {
       <p>您可以点击<a style="text-decoration:none; color:#12addb" href="{{site.postUrl}}" target="_blank">查看回复的完整內容</a></p>
       <br/>
     </div>`;
+
+    const contentTG = `
+💬 *[{{site.name}}]({{site.url}}) 上有新评论啦*
+
+*{{self.nick}}* 回复说：
+
+\`\`\`
+{{self.comment | safe}}
+\`\`\`
+您可以点击[查看回复的完整內容]({{site.postUrl}})`;
     
     let wechatNotify = false;
     if(!isAuthorComment) {
       wechatNotify = await this.wechat({title, content}, comment, parent);
     }
 
-    if(!isAuthorComment && !isReplyAuthor && think.isEmpty(wechatNotify)) {
+    let telegramNotify = false;
+    if(!isAuthorComment) {
+      telegramNotify = await this.telegram({contentTG}, comment, parent);
+    }
+
+    if(!isAuthorComment && !isReplyAuthor && (think.isEmpty(wechatNotify) || think.isEmpty(telegramNotify)) ) {
       mailList.push({to: AUTHOR, title, content});
     }
 
