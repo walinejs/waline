@@ -1,3 +1,13 @@
+#  (2020-12-22)
+
+
+### Features
+
+* **doc:** add artalk migration support ([a4548a9](https://github.com/lizheming/waline/commit/a4548a9de66d8ea49d93de29d4a65a269d8cc292)), closes [#81](https://github.com/lizheming/waline/issues/81)
+### Bug Fixes
+
+* **doc:** migration tool compat leancloud cn output file ([1f25902](https://github.com/lizheming/waline/commit/1f2590200b2c14da665ed14a078cf59a885284d6))
+* **doc:** fix csv migration miss first line data bug ([3f7c3b3](https://github.com/lizheming/waline/commit/3f7c3b36eb8d104908bffc8593bb4ec78ed0bff6))
 #  (2020-12-21)
 ### Bug Fixes
 
