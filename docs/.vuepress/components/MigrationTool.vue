@@ -192,8 +192,7 @@ function lc2csv(input) {
     index += 1;
   });
 
-  const [_head, ...body] = input.results;
-  body.forEach(row => {
+  input.results.forEach(row => {
     const id = getId(row);
     if(id) {
       row.id = keyMaps[ id ].toString();
@@ -276,6 +275,7 @@ export default {
 
       if(from === 'valine') {
         //适配 LeanCloud 国内版导出非标准 JSON 情况
+        val = val.trim();
         if(val.match(/},$/)) {
           val = JSON.parse(val);
         } else {
