@@ -275,7 +275,12 @@ export default {
       }
 
       if(from === 'valine') {
-        val = JSON.parse(val);
+        //适配 LeanCloud 国内版导出非标准 JSON 情况
+        if(val.match(/},$/)) {
+          val = JSON.parse(val);
+        } else {
+          val = JSON.parse(`{"results":[ ${val.split(/[\r\n]+/).join(',')} ]}`);
+        }
       }
       
       const act = m[from][to];
