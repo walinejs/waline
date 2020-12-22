@@ -8,6 +8,7 @@
           <option value="disqus">Disqus</option>
           <option value="twikoo">Twikoo</option>
           <option value="typecho">Typecho</option>
+          <option value="artalk">Artalk</option>
         </select>
       </div>
       <div class="input-group">
@@ -42,6 +43,8 @@
   </form>
 </template>
 <script>
+import marked from 'marked';
+
 const m = {
   valine: {
     wcloudbase: lc2tcb,
@@ -55,6 +58,69 @@ const m = {
     wsql(data) {
       return lc2csv(tk2lc(data));
     } 
+  },
+  artalk: {
+    wleancloud: artalk2lc,
+    wcloudbase(data) {
+      return lc2tcb(artalk2lc(data))
+    },
+    wsql(data) {
+      return lc2csv(artalk2lc(data))
+    }
+  }
+}
+//artalk 数据结构转 leancloud
+function artalk2lc(input) {
+  input = JSON.parse(input);
+
+  function parseKey(key) {
+    const anchor = document.createElement('a');
+    anchor.href = key;
+    return anchor.pathname || key;
+  }
+
+  const idMap = {};
+  for(let i = 0; i < input.length; i++) {
+    idMap[ input[i].id ] = input[i].rid;
+  }
+  const rootIdMap = {};
+  for(let i = 0; i < input.length; i++) {
+    if(!input[i].rid) {
+      continue;
+    }
+
+    let rid = input[i].rid;
+    while(idMap[rid]) {
+      rid = idMap[rid];
+    }
+    rootIdMap[ input[i].id ] = rid;
+  }
+
+
+  return {
+    results: input.map(({content, date, email, id, ip, link, nick, page_key, rid, ua}) => {
+      const time = new Date(date.replace(/-/g, '/')).toISOString();
+      const url = parseKey(page_key);
+      return {
+        objectId: id,
+        QQAvatar: '',
+        comment: marked(content),
+        insertedAt: {
+          __type: 'Date',
+          iso: time
+        },
+        createdAt: time,
+        updatedAt: time,
+        ip: ip,
+        link: link,
+        nick: nick,
+        ua: ua,
+        url: url,
+        pid: rid ? rid : '',
+        rid: rootIdMap[id] || '',
+        status: 'approved'
+      };
+    })
   }
 }
 //twikoo 数据结构转 leancloud

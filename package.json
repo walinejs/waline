@@ -17,6 +17,7 @@
     "conventional-changelog-cli": "^2.1.1",
     "cz-conventional-changelog": "^3.3.0",
     "husky": "^4.3.0",
+    "marked": "^1.2.5",
     "vuepress": "^1.7.1"
   },
   "config": {
