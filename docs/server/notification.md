@@ -24,12 +24,22 @@
 - `SITE_NAME`：网站名称，用于在消息中显示。
 - `SITE_URL`：网站地址，用于在消息中显示。
 
+## QQ 通知
+
+QQ 通知使用了 [Qmsg 酱](https://qmsg.zendee.cn) 提供的服务，需要在环境变量中配置在 Qmsg 酱中申请的 `QMSG_KEY`。
+
+- `QMSG_KEY`：Qmsg 酱提供的 KEY，必填。
+- `QQ_ID`：接收消息的 QQ 号（不支持 QQ 群），可以添加多个，以半角逗号分割，如：`1244453393,2952937634`（必须均在您的 Qmsg 酱 QQ 号列表中）。
+- `AUTHOR_EMAIL`：博主邮箱，用来区分发布的评论是否是博主本身发布的。如果是博主发布的则不进行提醒通知。
+- `SITE_NAME`：网站名称，用于在消息中显示。
+- `SITE_URL`：网站地址，用于在消息中显示。
+
 ## Telegram 通知
 
-Telegram 通知通过 Telegram bot 机器人实现，需要在环境变量中配置以下几个：
+Telegram 通知通过 Telegram bot 机器人实现，需要配置以下几个环境变量：
 
-- `TG_BOT_TOKEN`：Telegram 机器人用于访问 HTTP API 的 token，通过 [@BotFather](https://t.me/BotFather) 创建机器人获取。
-- `TG_CHAT_ID`：Telegram 机器人发送消息对象的 `chat_id`，可以是单一用户、频道、群组，通过 [@userinfobot](https://t.me/userinfobot) 获取。
+- `TG_BOT_TOKEN`：Telegram 机器人用于访问 HTTP API 的 token，通过 [@BotFather](https://t.me/BotFather) 创建机器人获取，必填。
+- `TG_CHAT_ID`：接收消息对象的 `chat_id`，可以是单一用户、频道、群组，通过 [@userinfobot](https://t.me/userinfobot) 获取，必填。
 - `AUTHOR_EMAIL`：博主邮箱，用来区分发布的评论是否是博主本身发布的。如果是博主发布的则不进行提醒通知。
 - `SITE_NAME`：网站名称，用于在消息中显示。
 - `SITE_URL`：网站地址，用于在消息中显示。
