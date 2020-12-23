@@ -44,6 +44,7 @@
 </template>
 <script>
 import marked from 'marked';
+import CSV from './csv.js';
 
 const m = {
   valine: {
@@ -155,13 +156,13 @@ function tk2lc(input) {
 }
 //leancloud 数据结构转 csv 
 function lc2csv(input) {
-  let output = [];
   const field = [
       "id",
       "nick",
       "updatedAt",
       "mail",
       "ua",
+      "ip",
       "status",
       "insertedAt",
       "createdAt",
@@ -171,7 +172,6 @@ function lc2csv(input) {
       "link",
       "url"
   ];
-  output.push(field.join(","));
 
   const keyMaps = {};
   const getId = row => {
@@ -192,29 +192,44 @@ function lc2csv(input) {
     index += 1;
   });
 
+  const records = [];
   input.results.forEach(row => {
     const id = getId(row);
     if(id) {
       row.id = keyMaps[ id ].toString();
     }
-    row.pid = keyMaps[ row.pid ]?.toString();
-    row.rid = keyMaps[ row.rid ]?.toString();
+    row.pid = keyMaps[ row.pid ];
+    row.rid = keyMaps[ row.rid ];
     row.status = "approved";
     
-    let data = field.map(key => {
-      if (key == "insertedAt") {
-        return row[key].iso.replace('T', ' ').replace(/.\d{3}Z$/i, '');
+    const record = {};
+    for(let i = 0; i < field.length; i++) {
+      const key = field[i];
+      switch(key) {
+        case 'insertedAt':
+          record[key] = row[key].iso.replace('T', ' ').replace(/.\d{3}Z$/i, '');
+          break;
+        case 'createdAt':
+        case 'updatedAt':
+          record[key] = row[key].replace('T', ' ').replace(/.\d{3}Z$/i, '');
+          break;
+        case 'rid':
+        case 'pid':
+          record[key] = row[key] || null;
+          break;
+        default:
+          record[key] = row[key] || '';
+          break;
       }
-      if (key === "createdAt" || key === "updatedAt") {
-        return row[key].replace('T', ' ').replace(/.\d{3}Z$/i, '');
-      }
-      return row[key]?.replaceAll('"', '""');
-    });
-
-    output.push('"' + data.join('","') + '"');
+    }
+    records.push(record);
   });
 
-  return output.join("\n");
+  const ret = CSV.serialize({
+    fields: field.map(name => ({id: name, label: name})),
+    records
+  });
+  return ret;
 }
 //leancloud 数据结构转 cloudbase
 function lc2tcb(json) {
@@ -276,7 +291,8 @@ export default {
       if(from === 'valine') {
         //适配 LeanCloud 国内版导出非标准 JSON 情况
         val = val.trim();
-        if(val.match(/},$/)) {
+        console.log()
+        if(val.match(/},[\r\n]+/)) {
           val = JSON.parse(val);
         } else {
           val = JSON.parse(`{"results":[ ${val.split(/[\r\n]+/).join(',')} ]}`);
