@@ -79,22 +79,83 @@ module.exports = class extends think.Service {
       json: true
     });
   }
-  
+
+  async qq(self, parent) {
+    const {QMSG_KEY, QQ_ID, SITE_NAME, SITE_URL} = process.env;
+    if (!QMSG_KEY) {
+      return false;
+    }
+
+    self.comment = self.comment
+      .replace(/<a href="(.*?)">(.*?)<\/a>/g, "\n[$2] $1\n")
+      .replace(/<[^>]+>/g, '');
+    
+    const data = {
+      self, 
+      parent, 
+      site: {
+        name: SITE_NAME, 
+        url: SITE_URL,
+        postUrl: SITE_URL + self.url + '#' + self.objectId
+      }
+    };
+
+    const contentQQ = `💬 {{site.name}} 有新评论啦
+
+{{self.nick}} 回复说：
+
+{{self.comment}}
+
+邮箱：{{self.mail}}
+审核：{{self.status}} 
+
+仅供评论预览，查看完整內容：
+{{site.postUrl}}`;
+
+    return request({
+      uri: `https://qmsg.zendee.cn/send/${QMSG_KEY}`,
+      method: 'POST',
+      form: {
+        msg: nunjucks.renderString(contentQQ, data),
+        qq: QQ_ID
+      }
+    });
+  }
+
   async telegram(self, parent) {
-    const rawComment = self.rawComment.replace(/\!\[(.*?)\]\((.*?)\)/g,' ');
+    let commentLink = "";
+    const href = self.comment.match(/<a href="(.*?)">(.*?)<\/a>/g);
+    if (href !== null) {
+      for (var i = 0, j = 0; i < href.length; i++) {
+        href[i] = href[i].replace(/<a href="(.*?)">(.*?)<\/a>/g, "$1");
+        j = i + 1;
+        href[i] = "[链接" + j + "](" + href[i] + ")  ";
+        commentLink = commentLink + href[i];
+      }
+    }
+    if (commentLink != "") {
+      commentLink = `\n`+ commentLink + `\n`;
+    }
+    self.comment = self.comment
+      .replace(/<a href="(.*?)">(.*?)<\/a>/g, '\[链接 $2\]')
+      .replace(/<[^>]+>/g, '');
+    self.commentLink = commentLink;
+
     const contentTG = `
 💬 *[{{site.name}}]({{site.url}}) 有新评论啦*
 
 *{{self.nick}}* 回复说：
 
 \`\`\`
-` + rawComment + `
+{{self.comment}}
 \`\`\`
-*邮箱：*\`{{self.mail}}\`
 
+{{self.commentLink}}
+
+*邮箱：*\`{{self.mail}}\`
 *审核：*{{self.status}} 
 
-评论仅显示源码，点击[查看完整內容]({{site.postUrl}})`;
+仅供评论预览，点击[查看完整內容]({{site.postUrl}})`;
 
     const {TG_BOT_TOKEN, TG_CHAT_ID, SITE_NAME, SITE_URL} = process.env;
     if(!TG_BOT_TOKEN || !TG_CHAT_ID) {
@@ -147,8 +208,9 @@ module.exports = class extends think.Service {
 
     if(!isAuthorComment) {
       const wechat = await this.wechat({title, content}, comment, parent);
+      const qq = await this.qq(comment, parent);
       const telegram = await this.telegram(comment, parent);
-      if(think.isEmpty(wechat) && think.isEmpty(telegram) && !isReplyAuthor) {
+      if(think.isEmpty(wechat) && think.isEmpty(qq) && think.isEmpty(telegram) && !isReplyAuthor) {
         mailList.push({to: AUTHOR, title, content});
       }
     }

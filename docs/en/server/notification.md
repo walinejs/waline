@@ -24,12 +24,22 @@ We use [Server Chan](http://sc.ftqq.com/3.version) to wechat notification. You n
 - `SITE_NAME`：Your site name, it will be displayed in notification message.
 - `SITE_URL`：Your site url, it will be displayed in notification message.
 
+## QQ Notification
+
+We use [Qmsg Chan](https://qmsg.zendee.cn) to send QQ notification. You need to set `QMSG_KEY` in env which applied in Qmsg Chan.
+
+- `QMSG_KEY`：KEY applied in Qmsg Chan, It's required for this service.
+- `QQ_ID`：The QQ ID of the receiver(s), except for QQ group. If there are more than one QQ ID, use commas to separate multiple values, e.g. `1244453393,2952937634` (should all be included in your Qmsg Chan's QQ ID list).
+- `AUTHOR_EMAIL`：The blogger’s email is used to distinguish whether the posted comment is posted by the blogger himself. If it is posted by the blogger, there will be no reminder notification.
+- `SITE_NAME`：Your site name, it will be displayed in notification message.
+- `SITE_URL`：Your site url, it will be displayed in notification message.
+
 ## Telegram Notification
 
-We use Telegram bot to send comment notification. You need to set the following env first.
+We use Telegram bot to send Telegram notification. You need to set the following env first.
 
-- `TG_BOT_TOKEN`：Telegram bot token to access the HTTP API. Create a bot with [@BotFather](https://t.me/BotFather) to get this token.
-- `TG_CHAT_ID`：The `chat_id` of the receiver. It can be an user, a channel or a group. [@userinfobot](https://t.me/userinfobot) will display this `chat_id` when you forward a message to it.
+- `TG_BOT_TOKEN`：Telegram bot token to access the HTTP API. Create a bot with [@BotFather](https://t.me/BotFather) to get this token. It's required for this service.
+- `TG_CHAT_ID`：The `chat_id` of the receiver. It can be an user, a channel or a group. [@userinfobot](https://t.me/userinfobot) will display this `chat_id` when you forward a message to it. It's required for this service.
 - `AUTHOR_EMAIL`：The blogger’s email is used to distinguish whether the posted comment is posted by the blogger himself. If it is posted by the blogger, there will be no reminder notification.
 - `SITE_NAME`：Your site name, it will be displayed in notification message.
 - `SITE_URL`：Your site url, it will be displayed in notification message.
