@@ -86,6 +86,10 @@ module.exports = class extends think.Service {
       return false;
     }
 
+    self.comment = self.comment
+      .replace(/<a href="(.*?)">(.*?)<\/a>/g, "\n[$2] $1\n")
+      .replace(/<[^>]+>/g, '');
+    
     const data = {
       self, 
       parent, 
@@ -100,11 +104,8 @@ module.exports = class extends think.Service {
 
 {{self.nick}} 回复说：
 
-`+
-self.comment
-  .replace(/<a href="(.*?)">(.*?)<\/a>/g, "\n[$2] $1\n")
-  .replace(/<[^>]+>/g, '')  
-+ `
+{{self.comment}}
+
 邮箱：{{self.mail}}
 审核：{{self.status}} 
 
@@ -122,19 +123,23 @@ self.comment
   }
 
   async telegram(self, parent) {
-    var commentLink = ""
-    var href = self.comment.match(/<a href="(.*?)">(.*?)<\/a>/g);
-    if (href != null) {
-        for (var i = 0, j = 0; i < href.length; i++) {
-          href[i] = href[i].replace(/<a href="(.*?)">(.*?)<\/a>/g, "$1");
-          j = i + 1;
-          href[i] = "[链接" + j + "](" + href[i] + ")  ";
-          commentLink = commentLink + href[i];
-        }
+    let commentLink = "";
+    const href = self.comment.match(/<a href="(.*?)">(.*?)<\/a>/g);
+    if (href !== null) {
+      for (var i = 0, j = 0; i < href.length; i++) {
+        href[i] = href[i].replace(/<a href="(.*?)">(.*?)<\/a>/g, "$1");
+        j = i + 1;
+        href[i] = "[链接" + j + "](" + href[i] + ")  ";
+        commentLink = commentLink + href[i];
+      }
     }
     if (commentLink != "") {
       commentLink = `\n`+ commentLink + `\n`;
     }
+    self.comment = self.comment
+      .replace(/<a href="(.*?)">(.*?)<\/a>/g, '\[链接 $2\]')
+      .replace(/<[^>]+>/g, '');
+    self.commentLink = commentLink;
 
     const contentTG = `
 💬 *[{{site.name}}]({{site.url}}) 有新评论啦*
@@ -142,13 +147,11 @@ self.comment
 *{{self.nick}}* 回复说：
 
 \`\`\`
-` + 
-self.comment
-  .replace(/<a href="(.*?)">(.*?)<\/a>/g, '\[链接 $2\]')
-  .replace(/<[^>]+>/g, '')  
-+ `\`\`\`` 
-+ commentLink 
-+ `
+{{self.comment}}
+\`\`\`
+
+{{self.commentLink}}
+
 *邮箱：*\`{{self.mail}}\`
 *审核：*{{self.status}} 
 
