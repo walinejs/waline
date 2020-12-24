@@ -86,7 +86,7 @@ module.exports = class extends think.Service {
       return false;
     }
 
-    self.comment = self.comment
+    self.commentQQ = self.comment
       .replace(/<a href="(.*?)">(.*?)<\/a>/g, "\n[$2] $1\n")
       .replace(/<[^>]+>/g, '');
     
@@ -104,8 +104,7 @@ module.exports = class extends think.Service {
 
 {{self.nick}} 回复说：
 
-{{self.comment}}
-
+{{self.commentQQ}}
 邮箱：{{self.mail}}
 审核：{{self.status}} 
 
@@ -126,18 +125,16 @@ module.exports = class extends think.Service {
     let commentLink = "";
     const href = self.comment.match(/<a href="(.*?)">(.*?)<\/a>/g);
     if (href !== null) {
-      for (var i = 0, j = 0; i < href.length; i++) {
-        href[i] = href[i].replace(/<a href="(.*?)">(.*?)<\/a>/g, "$1");
-        j = i + 1;
-        href[i] = "[链接" + j + "](" + href[i] + ")  ";
+      for (var i = 0; i < href.length; i++) {
+        href[i] = '[Link: ' + href[i].replace(/<a href="(.*?)">(.*?)<\/a>/g, "$2") + '](' + href[i].replace(/<a href="(.*?)">(.*?)<\/a>/g, "$1") + ')  ';
         commentLink = commentLink + href[i];
       }
     }
     if (commentLink != "") {
-      commentLink = `\n`+ commentLink + `\n`;
+      commentLink = `\n` + commentLink + `\n`;
     }
-    self.comment = self.comment
-      .replace(/<a href="(.*?)">(.*?)<\/a>/g, '\[链接 $2\]')
+    self.commentTG = self.comment
+      .replace(/<a href="(.*?)">(.*?)<\/a>/g, '\[Link:$2\]')
       .replace(/<[^>]+>/g, '');
     self.commentLink = commentLink;
 
@@ -147,11 +144,9 @@ module.exports = class extends think.Service {
 *{{self.nick}}* 回复说：
 
 \`\`\`
-{{self.comment}}
+{{self.commentTG-}}
 \`\`\`
-
-{{self.commentLink}}
-
+{{-self.commentLink}}
 *邮箱：*\`{{self.mail}}\`
 *审核：*{{self.status}} 
 
