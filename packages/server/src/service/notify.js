@@ -86,12 +86,15 @@ module.exports = class extends think.Service {
       return false;
     }
 
-    self.commentQQ = self.comment
+    const comment = self.comment
       .replace(/<a href="(.*?)">(.*?)<\/a>/g, "\n[$2] $1\n")
       .replace(/<[^>]+>/g, '');
     
     const data = {
-      self, 
+      self: {
+        ...self,
+        comment
+      }, 
       parent, 
       site: {
         name: SITE_NAME, 
@@ -104,7 +107,7 @@ module.exports = class extends think.Service {
 
 {{self.nick}} 回复说：
 
-{{self.commentQQ}}
+{{self.comment}}
 邮箱：{{self.mail}}
 审核：{{self.status}} 
 
@@ -122,7 +125,7 @@ module.exports = class extends think.Service {
   }
 
   async telegram(self, parent) {
-    let commentLink = "";
+    let commentLink = '';
     const href = self.comment.match(/<a href="(.*?)">(.*?)<\/a>/g);
     if (href !== null) {
       for (var i = 0; i < href.length; i++) {
@@ -130,13 +133,12 @@ module.exports = class extends think.Service {
         commentLink = commentLink + href[i];
       }
     }
-    if (commentLink != "") {
+    if (commentLink !== '') {
       commentLink = `\n` + commentLink + `\n`;
     }
-    self.commentTG = self.comment
+    const comment = self.comment
       .replace(/<a href="(.*?)">(.*?)<\/a>/g, '\[Link:$2\]')
       .replace(/<[^>]+>/g, '');
-    self.commentLink = commentLink;
 
     const contentTG = `
 💬 *[{{site.name}}]({{site.url}}) 有新评论啦*
@@ -144,7 +146,7 @@ module.exports = class extends think.Service {
 *{{self.nick}}* 回复说：
 
 \`\`\`
-{{self.commentTG-}}
+{{self.comment-}}
 \`\`\`
 {{-self.commentLink}}
 *邮箱：*\`{{self.mail}}\`
@@ -158,7 +160,11 @@ module.exports = class extends think.Service {
     }
 
     const data = {
-      self, 
+      self: {
+        ...self,
+        comment,
+        commentLink
+      }, 
       parent, 
       site: {
         name: SITE_NAME, 
