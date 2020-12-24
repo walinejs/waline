@@ -1,6 +1,9 @@
+#  (2020-12-24)
+### Features
+
+* **vercel:** QQ notification support ([10d08af](https://github.com/lizheming/waline/commit/10d08affdbb5f86a4b724abbaa8e7d2a272979dd))
+
 #  (2020-12-22)
-
-
 ### Features
 
 * **doc:** add artalk migration support ([a4548a9](https://github.com/lizheming/waline/commit/a4548a9de66d8ea49d93de29d4a65a269d8cc292)), closes [#81](https://github.com/lizheming/waline/issues/81)
