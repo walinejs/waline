@@ -1,3 +1,7 @@
+#  (2020-12-26)
+### Features
+
+* **vercel:** add COMMENT_AUDIT env to audit comment before approved ([#94](https://github.com/lizheming/waline/pull/94))
 #  (2020-12-24)
 ### Features
 

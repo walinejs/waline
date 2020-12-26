@@ -15,6 +15,7 @@ Mose configuration for backend can be cofigured in environment variable, which c
 | `SECURE_DOMAINS`     |          | Secure Domains configuration. Supports multiple domain with Comma separated |
 | `DISABLE_USERAGENT` | | wether hide the user agent of commentor. Default value is `false` |
 | `AKISMET_KEY` | | Akismet anispam service key |
+| `COMMENT_AUDIT` | | Comment audit switcher. We recommend to tip on the placeholder text if it's true. |
 
 In addition to the above environment variables, different functions will also have many environment variable configurations, which can be viewed in the function items corresponding to the progress in the left column.
 
