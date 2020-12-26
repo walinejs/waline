@@ -185,7 +185,7 @@ module.exports = class extends think.Service {
     });
   }
   
-  async run(comment, parent) {
+  async run(comment, parent, disableAuthorNotify = false) {
     const {AUTHOR_EMAIL, BLOGGER_EMAIL} = process.env;
     const AUTHOR = AUTHOR_EMAIL || BLOGGER_EMAIL;
     
@@ -207,7 +207,7 @@ module.exports = class extends think.Service {
       <br/>
     </div>`;
 
-    if(!isAuthorComment) {
+    if(!isAuthorComment && !disableAuthorNotify) {
       const wechat = await this.wechat({title, content}, comment, parent);
       const qq = await this.qq(comment, parent);
       const telegram = await this.telegram(comment, parent);
@@ -216,7 +216,7 @@ module.exports = class extends think.Service {
       }
     }
 
-    if(parent) {
+    if(parent && comment.status !== 'waiting') {
       mailList.push({
         to: parent.mail,
         title: process.env.MAIL_SUBJECT || '{{parent.nick}}，『{{site.name}}』上的评论收到了回复',
