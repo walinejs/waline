@@ -56,7 +56,7 @@ module.exports = class extends BaseRest {
       case 'recent': {
         const {count} = this.get();
         const comments = await this.modelInstance.select({
-          status: ['NOT IN', ['spam']]
+          status: ['NOT IN', ['waiting', 'spam']]
         }, {
           desc: 'insertedAt',
           limit: count
@@ -67,7 +67,7 @@ module.exports = class extends BaseRest {
 
       case 'count': {
         const {url} = this.get();
-        const count = await this.modelInstance.count({url, status: ['NOT IN', ['spam']]});
+        const count = await this.modelInstance.count({url, status: ['NOT IN', ['waiting', 'spam']]});
         return this.json(count);
       }
 
@@ -83,7 +83,7 @@ module.exports = class extends BaseRest {
 
           //compat with valine old data without status property
           if(status === 'approved') {
-            where.status = ['NOT IN', ['spam']];
+            where.status = ['NOT IN', ['waiting', 'spam']];
           }
         }
         
@@ -93,6 +93,7 @@ module.exports = class extends BaseRest {
 
         const count = await this.modelInstance.count(where);
         const spamCount = await this.modelInstance.count({status: 'spam'});
+        const waitingCount = await this.modelInstance.count({status: 'waiting'});
         const comments = await this.modelInstance.select(where, {
           desc: 'insertedAt',
           limit: pageSize,
@@ -104,6 +105,7 @@ module.exports = class extends BaseRest {
           totalPages: Math.ceil(count / pageSize),
           pageSize,
           spamCount,
+          waitingCount,
           data: comments
         });
       }
@@ -114,13 +116,13 @@ module.exports = class extends BaseRest {
         const rootCount = await this.modelInstance.count({
           url,
           rid: undefined,
-          status: ['NOT IN', ['spam']]
+          status: ['NOT IN', ['waiting', 'spam']]
         });
     
         const rootComments = await this.modelInstance.select({
           url, 
           rid: undefined,
-          status: ['NOT IN', ['spam']]
+          status: ['NOT IN', ['waiting', 'spam']]
         }, {
           desc: 'insertedAt',
           limit: pageSize,
@@ -133,7 +135,7 @@ module.exports = class extends BaseRest {
         const childrenComments = await this.modelInstance.select({
           url,
           rid: ['IN', rootComments.map(comment => comment.objectId)],
-          status: ['NOT IN', ['spam']],
+          status: ['NOT IN', ['waiting', 'spam']],
         }, {
           field: [
             'comment', 'insertedAt', 'link', 'mail', 'nick', 'pid', 'rid', 'ua'
@@ -193,10 +195,15 @@ module.exports = class extends BaseRest {
     }
 
     /** Akismet */
-    data.status = 'approved';
-    const spam = await akismet(data, this.ctx.protocol + '://' + this.ctx.host).catch(e => console.log(e)); // ignore akismet error
-    if(spam === true) {
-      data.status = 'spam';
+    const {COMMENT_AUDIT, AUTHOR_EMAIL, BLOGGER_EMAIL} = process.env;
+    const AUTHOR = AUTHOR_EMAIL || BLOGGER_EMAIL;
+    const isAuthorComment = AUTHOR ? data.mail.toLowerCase() === AUTHOR.toLowerCase() : false;
+    data.status = COMMENT_AUDIT && !isAuthorComment ? 'waiting' : 'approved';
+    if(data.status === 'approved') {
+      const spam = await akismet(data, this.ctx.protocol + '://' + this.ctx.host).catch(e => console.log(e)); // ignore akismet error
+      if(spam === true) {
+        data.status = 'spam';
+      }
     }
     
     if(data.status !== 'spam') {
@@ -233,12 +240,21 @@ module.exports = class extends BaseRest {
 
   async putAction() {
     const data = this.post();
+    const oldData = await this.modelInstance.select({objectId: this.id});
     const preUpdateResp = await this.hook('preUpdate', {...data, objectId: this.id});
     if(preUpdateResp) {
       return this.fail(preUpdateResp);
     }
 
     await this.modelInstance.update(data, {objectId: this.id});
+
+    if(oldData.status === 'waiting' && data.status === 'approved' && oldData.pid) {
+      let pComment = await this.modelInstance.select({objectId: pid});
+      pComment = pComment[0];
+
+      const notify = this.service('notify');
+      await notify.run(resp, pComment, true);
+    }
     await this.hook('postUpdate', data);
     return this.success();
   }

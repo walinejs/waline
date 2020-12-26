@@ -18,6 +18,7 @@ const FILTERS = [
     'status',
     [
       { type: 'approved', name: '已通过' },
+      { type: 'waiting', name: '待审核' },
       { type: 'spam', name: '垃圾' }
     ]
   ]
@@ -28,7 +29,7 @@ export default function() {
   const replyTextAreaRef = useRef(null);
   const editCommentRef = useRef({});
   const user = useSelector(state => state.user);
-  const [list, setList] = useState({page: 1, totalPages: 0, spamCount: 0, data: []});
+  const [list, setList] = useState({page: 1, totalPages: 0, spamCount: 0, waitingCount: 0, data: []});
   const [filter, dispatch] = useReducer(function(state, action) {
     return {...state, ...action};
   }, {owner: 'all', status: 'approved', keyword: ''});
@@ -53,10 +54,40 @@ export default function() {
         if(comment) {
           await updateComment(comment.objectId, {status: 'approved'});
           list.data = list.data.filter(({objectId}) => objectId !== comment.objectId);
-          list.spamCount -= 1;
+          switch(comment.status) {
+            case 'waiting':
+              list.waitingCount -= 1;
+              break;
+            case 'spam':
+              list.spamCount -=1;
+              break;
+          }
           setList({...list});
         } else {
           await Promise.all(commentIds.map(objectId => updateComment(objectId, {status: 'approved'})));
+          getCommentList({page: list.page, filter}).then(data => {
+            setList({...list, ...data});
+            setCommentIds([]);
+          });
+        }
+      }
+    },
+    {
+      key: 'waiting',
+      name: '待审核',
+      show: true,
+      disable: comment && comment.status === 'waiting',
+      async action() {
+        if(comment) {
+          await updateComment(comment.objectId, {status: 'waiting'});
+          list.data = list.data.filter(({objectId}) => objectId !== comment.objectId);
+          if(comment.status === 'spam') {
+            list.spamCount -= 1;
+          }
+          list.waitingCount += 1;
+          setList({...list});
+        } else {
+          await Promise.all(commentIds.map(objectId => updateComment(objectId, {status: 'waiting'})));
           getCommentList({page: list.page, filter}).then(data => {
             setList({...list, ...data});
             setCommentIds([]);
@@ -99,7 +130,7 @@ export default function() {
     },
     {
       key: 'reply',
-      show: comment && comment.status !== 'spam',
+      show: comment && comment.status === 'approved',
       name: '回复',
       action() {
         const handler = {};
@@ -184,7 +215,7 @@ export default function() {
                         onClick={_ => dispatch({[key]: type})}
                       >
                         {name}
-                        {key === 'status' && type === 'spam' && list.spamCount > 0 ? (<span className="balloon">{list.spamCount}</span>) : null}  
+                        {key === 'status' && type !== 'approved' && list[`${type}Count`] > 0 ? (<span className="balloon">{list[`${type}Count`]}</span>) : null}  
                       </a>
                     </li>
                   ))}
