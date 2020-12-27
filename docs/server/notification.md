@@ -11,7 +11,7 @@
 - `SMTP_HOST`：SMTP 服务器地址，一般可以在邮箱的设置中找到。如果未配置 `SMTP_SERVICE` 的话该项必填。
 - `SMTP_PORT`：SMTP 服务器端口，一般可以在邮箱的设置中找到。如果未配置 `SMTP_SERVICE` 的话该项必填。
 - `SMTP_USER`：SMTP 邮件发送服务的用户名，一般为登录邮箱。
-- `SMTP_PASS`：SMTP 邮件发送服务的密码，一般为登录密码。
+- `SMTP_PASS`：SMTP 邮件发送服务的密码，一般为邮箱登录密码，部分邮箱（例如163）是单独的 SMTP 密码。
 - `SITE_NAME`：网站名称，用于在消息中显示。
 - `SITE_URL`：网站地址，用于在消息中显示。
 
