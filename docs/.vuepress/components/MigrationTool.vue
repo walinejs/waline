@@ -110,6 +110,7 @@ function artalk2lc(input) {
           __type: 'Date',
           iso: time
         },
+        mail: email,
         createdAt: time,
         updatedAt: time,
         ip: ip,
@@ -117,8 +118,8 @@ function artalk2lc(input) {
         nick: nick,
         ua: ua,
         url: url,
-        pid: rid ? rid : '',
-        rid: rootIdMap[id] || '',
+        pid: rid ? rid : null,
+        rid: rootIdMap[id] || null,
         status: 'approved'
       };
     })
