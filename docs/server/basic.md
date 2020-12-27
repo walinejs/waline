@@ -37,7 +37,8 @@ module.exports = Waline({
 });
 ```
 
-> 为了方便本地开发，`localhost` 和 `127.0.0.1` 会被默认添加到安全域名列表中。当存在该配置时，环境变量 `SECURE_DOMAINS` 不生效。
+> 为了方便本地开发，`localhost` 和 `127.0.0.1` 会被默认添加到安全域名列表中。当存在该配置时，环境变量 `SECURE_DOMAINS` 不生效。  
+> 腾讯云开发需要同时在 `环境 -> 安全配置 -> WEB 安全域名` 中配置安全域名
 
 ### forbiddenWords
 
