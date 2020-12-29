@@ -20,6 +20,11 @@ export default function CommentCard({comment, boxConfig, rootId, onSubmit}) {
     e.target.setAttribute('rel', 'noreferrer noopener');
   }
 
+  let link = comment.link;
+  if(link && !/^https:\/\//.test(link)) {
+    link = 'http://' + link;
+  }
+  
   return (
     <div className="vcard" id={comment.objectId}>
       <img 
@@ -28,7 +33,7 @@ export default function CommentCard({comment, boxConfig, rootId, onSubmit}) {
       />
       <div className="vh">
         <div className="vhead">
-          <a className="vnick" rel="nofollow" href={comment.link} target="_blank">{comment.nick}</a>
+          <a className="vnick" rel="nofollow" href={link} target="_blank">{comment.nick}</a>
           <span className="vsys">{comment.browser}</span>
           <span className="vsys">{comment.os}</span>
         </div>
