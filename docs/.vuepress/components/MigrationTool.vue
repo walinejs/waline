@@ -23,11 +23,6 @@
         存储服务。
       </div>
     </div>
-    
-    <div class="warning custom-block" v-if="from === 'disqus'">
-      <p class="custom-block-title">友情提示</p> 
-      <p>Disqus 数据可以使用 <a href="https://taosky.github.io/disqus-to-valine/" target="_blank">Disqus to Valine</a> 工具导出成 Valine 数据后直接使用。</p>
-    </div>
     <div class="warning custom-block" v-if="from === 'typecho'">
       <p class="custom-block-title">友情提示</p>
       <p>Typecho 用户可以使用 <a href="https://github.com/lizheming/typecho-export-valine" target="_blank">Export2Valine</a> 插件将评论数据导出成 Valine 数据后直接使用。</p>
@@ -47,6 +42,15 @@ import marked from 'marked';
 import CSV from './csv.js';
 
 const m = {
+  disqus: {
+    wleancloud: disqus2lc,
+    wcloudbase(data) {
+      return lc2tcb(disqus2lc(data))
+    },
+    wsql(data) {
+      return lc2csv(disqus2lc(data));
+    }
+  },
   valine: {
     wcloudbase: lc2tcb,
     wsql: lc2csv
@@ -69,6 +73,88 @@ const m = {
       return lc2csv(artalk2lc(data))
     }
   }
+}
+//disqus 数据结构转 leancloud
+function disqus2lc(input) {
+  const parser = new DOMParser();
+  const dom = parser.parseFromString(input, "application/xml");
+  const posts = Array.from(dom.querySelectorAll('post'));
+  const threads = Array.from(dom.querySelectorAll('disqus > thread'));
+
+  const articleMap = {};
+  threads.forEach(threadEl => {
+    const url = threadEl.querySelector('link').textContent;
+    const anchor = new URL(url);
+    const threadId = threadEl.getAttribute('dsq:id');
+    articleMap[threadId] = anchor.pathname;
+  });
+
+  const ridMap = {};
+  posts.forEach(postEl => {
+    const objectId = postEl.getAttribute('dsq:id');
+    if(!postEl.querySelector('parent')) {
+      return;
+    }
+
+    const pid = postEl.querySelector('parent').getAttribute('dsq:id');
+    ridMap[objectId] = pid;
+  });
+
+  const rootIdMap = {};
+  for(let i = 0; i < input.length; i++) {
+    if(!input[i].rid) {
+      continue;
+    }
+
+    let rid = input[i].rid;
+    while(idMap[rid]) {
+      rid = idMap[rid];
+    }
+    rootIdMap[ input[i].id ] = rid;
+  }
+  
+  const data =  posts.filter(postEl => {
+    const isDeleted = postEl.querySelector('isDeleted').textContent.toLowerCase();
+    return isDeleted === 'false';
+  }).map(postEl => {
+    const objectId = postEl.getAttribute('dsq:id');
+    const comment = postEl.querySelector('message').textContent;
+    const insertedAt = (
+      new Date(postEl.querySelector('createdAt').textContent)
+    ).toISOString();
+    const nick = postEl.querySelector('author name').textContent;
+    const threadId = postEl.querySelector('thread').getAttribute('dsq:id');
+    const url = articleMap[threadId];
+    const parent = postEl.querySelector('parent');
+    const pid = parent ? parent.getAttribute('dsq:id') : null;
+    const rid = parent ? rootIdMap[objectId] : null;
+    const isSpam = postEl.querySelector('isSpam').textContent.toLowerCase() !== 'false';
+
+    return {
+      objectId,
+      QQAvatar: '',
+      comment,
+      insertedAt: {
+        __type: 'Date',
+        iso: insertedAt
+      },
+      createdAt: insertedAt,
+      updatedAt: insertedAt,
+      ip: '',
+      link: '',
+      mail: '',
+      nick,
+      ua: '',
+      url,
+      pid,
+      rid,
+      status: isSpam ? 'spam' : 'approved'
+    };
+  });
+
+  return {
+    results: data
+  };
 }
 //artalk 数据结构转 leancloud
 function artalk2lc(input) {
@@ -292,7 +378,6 @@ export default {
       if(from === 'valine') {
         //适配 LeanCloud 国内版导出非标准 JSON 情况
         val = val.trim();
-        console.log()
         if(val.match(/},[\r\n]+/)) {
           val = JSON.parse(val);
         } else {
