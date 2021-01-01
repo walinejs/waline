@@ -1,3 +1,12 @@
+#  (2021-01-01)
+
+### Features
+
+* **doc:** Migration tool add disqus support ([9b965ed](https://github.com/lizheming/waline/commit/9b965edede35ab67471d7b7fd72f601d47512a52))
+
+### Bug Fixed
+
+* **vercel:** compat with empty ua ([f39d777](https://github.com/lizheming/waline/commit/f39d7775b0a047c2e89dc2c1f43e05e846c9f634))
 #  (2020-12-26)
 ### Features
 
