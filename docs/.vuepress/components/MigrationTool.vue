@@ -92,7 +92,7 @@ function disqus2lc(input) {
     articleMap[threadId] = anchor.pathname;
   });
 
-  const ridMap = {};
+  const idMap = {};
   posts.forEach(postEl => {
     const objectId = postEl.getAttribute('dsq:id');
     if(!postEl.querySelector('parent')) {
@@ -100,7 +100,7 @@ function disqus2lc(input) {
     }
 
     const pid = postEl.querySelector('parent').getAttribute('dsq:id');
-    ridMap[objectId] = pid;
+    idMap[objectId] = pid;
   });
 
   const rootIdMap = {};
