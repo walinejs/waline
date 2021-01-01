@@ -78,7 +78,10 @@ const m = {
 function disqus2lc(input) {
   const parser = new DOMParser();
   const dom = parser.parseFromString(input, "application/xml");
-  const posts = Array.from(dom.querySelectorAll('post'));
+  const posts = Array.from(dom.querySelectorAll('post')).filter(postEl => {
+    const isDeleted = postEl.querySelector('isDeleted').textContent.toLowerCase();
+    return isDeleted === 'false';
+  });
   const threads = Array.from(dom.querySelectorAll('disqus > thread'));
 
   const articleMap = {};
@@ -101,22 +104,16 @@ function disqus2lc(input) {
   });
 
   const rootIdMap = {};
-  for(let i = 0; i < input.length; i++) {
-    if(!input[i].rid) {
-      continue;
-    }
-
-    let rid = input[i].rid;
+  posts.filter(postEl => postEl.querySelector('parent')).forEach(postEl => {
+    const objectId = postEl.getAttribute('dsq:id');
+    let rid = postEl.querySelector('parent').getAttribute('dsq:id');
     while(idMap[rid]) {
       rid = idMap[rid];
     }
-    rootIdMap[ input[i].id ] = rid;
-  }
+    rootIdMap[ objectId ] = rid;
+  });
   
-  const data =  posts.filter(postEl => {
-    const isDeleted = postEl.querySelector('isDeleted').textContent.toLowerCase();
-    return isDeleted === 'false';
-  }).map(postEl => {
+  const data =  posts.map(postEl => {
     const objectId = postEl.getAttribute('dsq:id');
     const comment = postEl.querySelector('message').textContent;
     const insertedAt = (
