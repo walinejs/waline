@@ -21,8 +21,8 @@ async function formatCmt({ua, ip, ...comment}) {
   ua = parser(ua)
   comment.mail = helper.md5(comment.mail);
   if(!think.config('disableUserAgent')) {
-    comment.browser = ua.browser.name + ' ' + ua.browser.version;
-    comment.os = ua.os.name + ' ' + ua.os.version;
+    comment.browser = [ua.browser.name, ua.browser.version].filter(v => v).join(' ');
+    comment.os = [ua.os.name, ua.os.version].filter(v => v).join(' ');
   }
   
   const blockMathRegExp = /(^|[\r\n]+|<p>|<br>)\$\$([^$]+)\$\$([\r\n]+|<\/p>|<br>|$)/g;
