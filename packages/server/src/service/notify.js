@@ -126,8 +126,8 @@ module.exports = class extends think.Service {
     const isAuthorComment = AUTHOR ? comment.mail.toLowerCase() === AUTHOR.toLowerCase() : false;
     const isReplyAuthor = AUTHOR ? parent && parent.mail.toLowerCase() === AUTHOR.toLowerCase() : false;
 
-    const title = '{{site.name}} 上有新评论了';
-    const content = `
+    const title = process.env.MAIL_SUBJECT_ADMIN || '{{site.name}} 上有新评论了';
+    const content = process.env.MAIL_TEMPLATE_ADMIN ||  `
     <div style="border-top:2px solid #12ADDB;box-shadow:0 1px 3px #AAAAAA;line-height:180%;padding:0 15px 12px;margin:50px auto;font-size:12px;">
       <h2 style="border-bottom:1px solid #DDD;font-size:14px;font-weight:normal;padding:13px 0 10px 8px;">
         您在<a style="text-decoration:none;color: #12ADDB;" href="{{site.url}}" target="_blank">{{site.name}}</a>上的文章有了新的评论
