@@ -24,6 +24,8 @@ export default {
   uploading: "アップロード中...",
   uploadDone: "アップロードが完了しました!",
   busy: "20 秒間隔で提出してください    ...",
+  login: "ログインする",
+  logout: "ログアウト",
   "code-98": "ロードエラーです。av-min.js のバージョンを確認してください.",
   "code-99": "ロードエラーです。initにある`el`エレメントを確認ください.",
   "code-100": "ロードエラーです。AppIdとAppKeyを確認ください.",
