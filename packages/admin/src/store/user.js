@@ -14,6 +14,9 @@ export const user = createModel({
       if(!user) {
         return;
       }
+      if(window.opener) {
+        window.opener.postMessage({type: 'userInfo', data: user}, '*');
+      }
       return dispatch.user.setUser(user);
     },
     async login({email, password, remember}) {
@@ -23,6 +26,9 @@ export const user = createModel({
         sessionStorage.setItem('TOKEN', token);
         if(remember) {
           localStorage.setItem('TOKEN', token);
+        }
+        if(window.opener) {
+          window.opener.postMessage({type: 'userInfo', data: {token, ...user}}, '*');
         }
       }
       return dispatch.user.setUser(user);
