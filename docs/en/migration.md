@@ -7,7 +7,7 @@ Since Waline completely reuses Valine's data structure in storage, migrating fro
 
 ```html
 - <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
-+ <script src='//unpkg.com/@waline/client/dist/Waline.min.js'></script>
++ <script src='//cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js'></script>
 
   <script>
 -  new Valine({
