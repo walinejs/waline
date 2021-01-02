@@ -15,7 +15,11 @@ export const user = createModel({
         return;
       }
       if(window.opener) {
-        window.opener.postMessage({type: 'userInfo', data: user}, '*');
+        let token = globalThis.TOKEN || sessionStorage.getItem('TOKEN');
+        if(!token) {
+          token = localStorage.getItem('TOKEN');
+        }
+        window.opener.postMessage({type: 'userInfo', data: {token, ...user}}, '*');
       }
       return dispatch.user.setUser(user);
     },
