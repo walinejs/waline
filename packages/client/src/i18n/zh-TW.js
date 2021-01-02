@@ -2,7 +2,7 @@ export default {
   nick: "暱稱",
   mail: "郵箱",
   link: "網址(http://)",
-  nickFail: "昵稱不能少於3個字符",
+  nickFail: "暱稱不能少於3個字元",
   mailFail: "請填寫正確的郵件地址",
   sofa: "來發評論吧~",
   submit: "提交",
@@ -12,10 +12,10 @@ export default {
   cancel: "取消",
   confirm: "確認",
   continue: "繼續",
-  more: "加載更多...",
+  more: "載入更多...",
   preview: "預覽",
   emoji: "表情",
-  expand: "查看更多...",
+  expand: "檢視更多...",
   seconds: "秒前",
   minutes: "分鐘前",
   hours: "小時前",
@@ -27,7 +27,7 @@ export default {
   "code-98": "Valine 初始化失敗，請檢查 av-min.js 版本",
   "code-99": "Valine 初始化失敗，請檢查init中的`el`元素.",
   "code-100": "Valine 初始化失敗，請檢查你的AppId和AppKey.",
-  "code-140": "今日 API 調用總次數已超過開發版限制.",
+  "code-140": "今日 API 呼叫總次數已超過開發版限制.",
   "code-401": "未經授權的操作，請檢查你的AppId和AppKey.",
-  "code-403": "訪問被API域名白名單拒絕，請檢查你的安全域名設置."
+  "code-403": "訪問被API域名白名單拒絕，請檢查你的安全域名設定."
 };
