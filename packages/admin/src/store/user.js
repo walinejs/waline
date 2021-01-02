@@ -28,7 +28,7 @@ export const user = createModel({
           localStorage.setItem('TOKEN', token);
         }
         if(window.opener) {
-          window.opener.postMessage({type: 'userInfo', data: {token, ...user}}, '*');
+          window.opener.postMessage({type: 'userInfo', data: {token, remember, ...user}}, '*');
         }
       }
       return dispatch.user.setUser(user);
