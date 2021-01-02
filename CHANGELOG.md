@@ -1,3 +1,8 @@
+#  (2021-01-02)
+### Features
+
+* add client login support ([#109](https://github.com/lizheming/waline/pull/109))
+* Add `MAIL_SUBJECT_ADMIN` and `MAIL_TEMPLATE_ADMIN` config variable ([7f81112](https://github.com/lizheming/waline/commit/7f81112d67beff258c169800d6f713edf9d68ea4))
 #  (2021-01-01)
 
 ### Features
