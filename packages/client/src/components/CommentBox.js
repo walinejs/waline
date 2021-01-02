@@ -266,18 +266,22 @@ export default function({
         ) : null}
         <div className="vleft vlogin">
           {!ctx.userInfo.token ? (
-            <a className="vlogin-btn" onClick={onLogin}>登录</a>
+            <a className="vlogin-btn" onClick={onLogin}>{ctx.locale.login}</a>
           ) : (
             <div className="vlogin-info">
               <div className="vlogin-avatar">
-                <img src="https://gravatar.loli.net/avatar/9a17b77cbecfb67b12e8866ceebd0095?d=mp" alt="" className="vimg"/>
-                <div className="vlogin-logout-btn" onClick={onLogout}>
+                <img src={ctx.gravatarSetting.cdn + comment.mailMd5 + ctx.gravatarSetting.params} alt="" className="vimg"/>
+                <div 
+                  title={ctx.locale.logout}
+                  className="vlogin-logout-btn" 
+                  onClick={onLogout}
+                >
                   <svg class="vicon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="14" height="14">
                     <path d="M568.569 512l170.267-170.267c15.556-15.556 15.556-41.012 0-56.569s-41.012-15.556-56.569 0L512 455.431 341.733 285.165c-15.556-15.556-41.012-15.556-56.569 0s-15.556 41.012 0 56.569L455.431 512 285.165 682.267c-15.556 15.556-15.556 41.012 0 56.569 15.556 15.556 41.012 15.556 56.569 0L512 568.569l170.267 170.267c15.556 15.556 41.012 15.556 56.569 0 15.556-15.556 15.556-41.012 0-56.569L568.569 512z"></path>
                   </svg>
                 </div>
               </div>
-              <div className="vlogin-nick">怡红公子</div>
+              <div className="vlogin-nick">{ctx.userInfo.display_name}</div>
             </div>
           )}
         </div>

@@ -24,6 +24,8 @@ export default {
   uploading: "正在上傳...",
   uploadDone: "上傳完成!",
   busy: "操作頻繁，請稍候再試...",
+  login: "登录",
+  logout: "退出",
   "code-98": "Valine 初始化失敗，請檢查 av-min.js 版本",
   "code-99": "Valine 初始化失敗，請檢查init中的`el`元素.",
   "code-100": "Valine 初始化失敗，請檢查你的AppId和AppKey.",
