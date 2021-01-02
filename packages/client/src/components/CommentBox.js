@@ -271,7 +271,7 @@ export default function({
           ) : (
             <div className="vlogin-info">
               <div className="vlogin-avatar">
-                <img src={ctx.gravatarSetting.cdn + comment.mailMd5 + ctx.gravatarSetting.params} alt="" className="vimg"/>
+                <img src={ctx.gravatarSetting.cdn + ctx.userInfo.mailMd5 + ctx.gravatarSetting.params} alt="" className="vimg"/>
                 <div 
                   title={ctx.locale.logout}
                   className="vlogin-logout-btn" 
