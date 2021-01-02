@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const helper = require('think-helper');
 
 module.exports = class extends think.Logic {
   constructor(...args) {
@@ -37,7 +38,9 @@ module.exports = class extends think.Logic {
       {field: ['email', 'display_name', 'type']}
     );
     if(!think.isEmpty(user)) {
-      this.ctx.state.userInfo = user[0];
+      const userInfo = user[0];
+      userInfo.mailMd5 = helper.md5(userInfo.email);
+      this.ctx.state.userInfo = userInfo;
     }
   }
 }
