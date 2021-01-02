@@ -108,7 +108,8 @@ export default function Context(props) {
 
 	let initUser = {};
 	try {
-		initUser = JSON.parse((localStorage || sessionStorage).getItem('WALINE_USER')) || {};
+		const KEY = 'WALINE_USER';
+		initUser = JSON.parse(localStorage.getItem(KEY) || sessionStorage.getItem(KEY)) || {};
 	} catch(e) {}
 	const [userInfo, setUserInfo] = useState(initUser);
 

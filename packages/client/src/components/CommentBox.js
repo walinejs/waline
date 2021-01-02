@@ -228,12 +228,13 @@ export default function({
       if(data.data.token) {
         handler.close();
         ctx.setUserInfo(data.data);
-        sessionStorage.setItem('WALINE_USER', JSON.stringify(data.data));
+        (data.data.remember ? localStorage : sessionStorage).setItem('WALINE_USER', JSON.stringify(data.data));
       }
     })
   }, []);
   const onLogout = useCallback(e => {
     ctx.setUserInfo({});
+    localStorage.setItem('WALINE_USER', '');
     sessionStorage.setItem('WALINE_USER', '');
   }, []);
 
