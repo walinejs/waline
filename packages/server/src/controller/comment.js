@@ -164,7 +164,8 @@ module.exports = class extends BaseRest {
       link, mail, nick, pid, rid, ua, url, 
       ip: this.ctx.ip,
       insertedAt: new Date(),
-      comment: marked(comment)
+      comment: marked(comment),
+      user_id: this.ctx.state.userInfo.objectId
     };
     if(pid) {
       data.comment = data.comment.replace('<p>', `<p><a class="at" href="#${pid}">@${at}</a> , `);
