@@ -6,27 +6,31 @@ export default function() {
   const dispatch = useDispatch();
   const user = useSelector(state => state.user);
 
-  const onLogout = function() {
+  const onLogout = function(e) {
+    e.preventDefault();
     dispatch.user.logout();
   }
 
   return (
     <div className="typecho-head-nav clearfix" role="navigation">
-      <nav id="typecho-nav-list">
-        <ul className="root">
-          <li className="parent">
-            <Link to="/ui">管理</Link>
-          </li>
-          <ul className="child">
-            <li className="last">
-              <Link to="/ui">评论</Link>  
+      {user.type === 'administrator' ? (
+        <nav id="typecho-nav-list">
+          <ul className="root">
+            <li className="parent">
+              <Link to="/ui">管理</Link>
             </li>
-          </ul>
-        </ul>  
-      </nav>
+            <ul className="child">
+              <li className="last">
+                <Link to="/ui">评论</Link>  
+              </li>
+            </ul>
+          </ul>  
+        </nav>
+      ) : null}
+      
       <div className="operate">
-        <a href="javascript:void(0)" className="author">{user.display_name}</a>
-        <a className="exit" href="javascript:void(0)" onClick={onLogout}>登出</a>
+        <Link to="/ui/profile" className="author">{user.display_name}</Link>
+        <a className="exit" href="#" onClick={onLogout}>登出</a>
       </div>
   </div>
   )

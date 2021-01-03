@@ -221,6 +221,7 @@ export default function({
     const left = (window.innerWidth - width) / 2;
     const top = (window.innerHeight - height) / 2;
     const handler = window.open(serverURL + '/ui/login', '_blank', `width=${width},height=${height},left=${left},top=${top},scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no`);
+    handler.postMessage({type: 'TOKEN', data: null}, '*');
     window.addEventListener('message', ({data}) => {
       if(!data || data.type !== 'userInfo') {
         return;
@@ -237,6 +238,27 @@ export default function({
     localStorage.setItem('WALINE_USER', '');
     sessionStorage.setItem('WALINE_USER', '');
   }, []);
+  const onProfile = useCallback(e => {
+    e.preventDefault();
+
+    const width = 800;
+    const height = 800;
+    const left = (window.innerWidth - width) / 2;
+    const top = (window.innerHeight - height) / 2;
+    const handler = window.open(serverURL + '/ui/profile', '_blank', `width=${width},height=${height},left=${left},top=${top},scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no`);
+    handler.postMessage({type: 'TOKEN', data: ctx.userInfo.token}, '*');
+    window.addEventListener('message', ({data}) => {
+      if(!data || data.type !== 'profile') {
+        return;
+      }
+      
+      const userInfo = {...ctx.userInfo, ...data};
+      ctx.setUserInfo(userInfo);
+      [localStorage, sessionStorage].filter(store => store.getItem('WALINE_USER')).forEach(store => 
+        store.setItem('WALINE_USER', JSON.stringify(userInfo))
+      );
+    });
+  })
 
   useEffect(() => {
     marked.setOptions({
@@ -282,7 +304,7 @@ export default function({
                   </svg>
                 </div>
               </div>
-              <div className="vlogin-nick">{ctx.userInfo.display_name}</div>
+              <a href="#" className="vlogin-nick" onClick={onProfile}>{ctx.userInfo.display_name}</a>
             </div>
           )}
         </div>
