@@ -72,7 +72,7 @@ module.exports = class extends BaseRest {
           limit: count
         });
 
-        const userModel = this.this.service(`storage/${this.config('storage')}`, 'Users');
+        const userModel = this.service(`storage/${this.config('storage')}`, 'Users');
         const user_ids = Array.from(new Set(comments.map(({user_id}) => user_id).filter(v => v)));
         let users = [];
         if(user_ids.length) {
