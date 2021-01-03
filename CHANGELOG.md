@@ -2,9 +2,10 @@
 ### Features
 
 * **admin:** add profile setting page for dashboard and client ([aaf7836](https://github.com/lizheming/waline/commit/aaf783668b0fc046f797d509ddaddba26f37b7ab))
+* **client:** add admin comment badge for client ([#118](https://github.com/lizheming/waline/pull/118)), closes [#115](https://github.com/lizheming/waline/issues/115)) 
 ### Bug Fixes
 
-* **client:** fix post comment fail when token empty ([c8c7792](https://github.com/lizheming/waline/commit/c8c779252d3ea8b20ecd2b29343b488d5576924e)), closes [#113](https://github.com/lizheming/waline/issues/113)
+* **client:** fix post comment fail when token empty ([c8c7792](https://github.com/lizheming/waline/commit/c8c779252d3ea8b20ecd2b29343b488d5576924e)), closes [#113](https://github.com/lizheming/waline/issues/113))
 #  (2021-01-02)
 ### Features
 
