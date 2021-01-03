@@ -4,7 +4,7 @@
   "version": "0.0.0-development",
   "main": "app.js",
   "dependencies": {
-    "@waline/cloudbase": "^1.0.9"
+    "@waline/cloudbase": "^1.0.10"
   },
   "devDependencies": {
     "@cloudbase/framework-plugin-node": "^1.4.6"
