@@ -81,7 +81,7 @@ module.exports = class extends BaseRest {
           });
         }
 
-        return this.json(await Promise.all(comments.map(cmt => format(cmt, users))));
+        return this.json(await Promise.all(comments.map(cmt => formatCmt(cmt, users))));
       }
 
       case 'count': {
