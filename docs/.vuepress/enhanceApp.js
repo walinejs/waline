@@ -5,7 +5,10 @@ function waline() {
     serverURL: 'https://waline.vercel.app',
     path: window.location.pathname,
     visitor: true,
-    lang: location.pathname.startsWith('/en/') ? 'en' : 'zh-CN' 
+    lang: location.pathname.startsWith('/en/') ? 'en' : 'zh-CN',
+    langMode: {
+      admin: location.pathname.startsWith('/en/') ? 'Administrator' : '可爱的管理员'
+    }
   });
 }
 
