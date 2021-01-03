@@ -99,6 +99,12 @@ Waline 的服务端地址。
 
 `代码高亮`，默认开启，若不需要，请手动关闭
 
+## avatarCDN
+- 类型: `String`
+- 默认值: `https://gravatar.loli.net/avatar/`
+- 必要性: `false`
+
+设置 Gravatar 头像 CDN 地址。
 ## avatarForce
 - 类型: `Boolean`
 - 默认值: `false`

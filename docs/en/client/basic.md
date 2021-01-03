@@ -100,6 +100,12 @@ Article reading statistics.
 
 `Code highlighting`, it’s enabled by default, please close it selectively.
 
+## avatarCDN
+- Type: `String`
+- Default: `https://gravatar.loli.net/avatar/`
+- Required: `false`
+
+Gravatar CDN baseURL.
 ## avatarForce
 - Type: `Boolean`
 - Default: `false`
