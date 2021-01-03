@@ -26,6 +26,7 @@ export default {
   busy: "Submit is busy, please wait...",
   login: "Login",
   logout: "logout",
+  admin: "Admin",
   "code-98": "Valine initialization failed, please check your version of av-min.js.",
   "code-99": "Valine initialization failed, Please check the `el` element in the init method.",
   "code-100": "Valine initialization failed, Please check your appId and appKey.",

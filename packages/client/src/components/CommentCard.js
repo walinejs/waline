@@ -34,6 +34,9 @@ export default function CommentCard({comment, boxConfig, rootId, onSubmit}) {
       <div className="vh">
         <div className="vhead">
           <a className="vnick" rel="nofollow" href={link} target="_blank">{comment.nick}</a>
+          {comment.type === 'administrator' ? (
+            <span className="vmark" data-type={comment.type}>{ctx.locale.admin}</span>
+          ) : null}
           <span className="vsys">{comment.browser}</span>
           <span className="vsys">{comment.os}</span>
         </div>
