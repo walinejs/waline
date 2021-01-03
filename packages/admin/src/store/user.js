@@ -1,5 +1,6 @@
 import { createModel } from '@rematch/core';
 import { getUserInfo, login, logout, register } from '../services/auth';
+import { updateProfile } from '../services/user';
 
 export const user = createModel({
   state: null,
@@ -7,6 +8,9 @@ export const user = createModel({
     setUser(_, user) {
       return user;
     },
+    updateUser(state, data) {
+      return {...state, ...data};
+    }
   },
   effects: dispatch => ({
     async loadUserInfo() {
@@ -43,6 +47,14 @@ export const user = createModel({
     },
     register(user) {
       return register(user);
+    },
+    async updateProfile(data) {
+      await updateProfile(data);
+
+      if(window.opener) {
+        window.opener.postMessage({type: 'profile', data}, '*');
+      }
+      return dispatch.user.updateUser(data);
     }
   }),
 })

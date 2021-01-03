@@ -8,7 +8,9 @@ export default function() {
   const [error, setError] = useState(false);
   useEffect(() => {
     if(user && user.email) {
-      navigate('/ui', {replace: true});
+      const query = new URLSearchParams(location.search);
+      const redirect = query.get('redirect') || (user.type !== 'administrator' ? '/ui/profile' : '/ui');
+      navigate(redirect, {replace: true});
     }
   }, []);
 
