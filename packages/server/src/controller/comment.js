@@ -152,7 +152,8 @@ module.exports = class extends BaseRest {
         }
 
         const rootCount = comments.filter(({rid}) => !rid).length;
-        const rootComments = comments.filter(({rid}) => !rid).slice(Math.max((page - 1) * pageSize, 0), pageSize);
+        const pageOffset = Math.max((page - 1) * pageSize, 0);
+        const rootComments = comments.filter(({rid}) => !rid).slice(pageOffset, pageOffset + pageSize);
         
         return this.json({
           page,
