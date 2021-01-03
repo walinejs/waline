@@ -53,7 +53,7 @@ Waline 的服务端地址。
 - `robohash`
 - `hide` 
 
-更多信息，请查看[头像配置](/avatar.html)。
+更多信息，请查看[头像配置](/client/avatar.html)。
 
 ## meta
 - 类型:`Array`
