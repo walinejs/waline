@@ -414,6 +414,18 @@
 	color: #d7191a
 }
 
+.v[data-class=v] .vcards .vcard .vhead .vmark {
+	font-size: .775em;
+	margin-right: .875em;
+	cursor: pointer;
+	text-decoration: none;
+	display: inline-block;
+	background: #2196F3;
+	border-radius: 3px;
+	color: #FFF;
+	padding: 0 0.3em;
+}
+
 .v[data-class=v] .vcards .vcard .vh {
 	overflow: hidden;
 	padding-bottom: .5em;
