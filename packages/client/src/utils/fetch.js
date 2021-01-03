@@ -15,12 +15,14 @@ export function fetchList({serverURL, path, page, pageSize}) {
 
 export function postComment({serverURL, token, comment}) {
   const url = `${serverURL}/comment`;
+  const headers = {'Content-Type': 'application/json'};
+  if(token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
+
   return fetch(url, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`
-    },
+    headers,
     body: JSON.stringify(comment)
   }).then(resp => resp.json());
 }
