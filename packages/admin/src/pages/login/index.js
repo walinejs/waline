@@ -12,7 +12,7 @@ export default function() {
       const redirect = query.get('redirect') || (user.type !== 'administrator' ? '/ui/profile' : '/ui');
       navigate(redirect, {replace: true});
     }
-  }, []);
+  }, [user]);
 
   const onSubmit = async function(e) {
     e.preventDefault();
