@@ -30,7 +30,7 @@ module.exports = class extends think.Service {
       return;
     }
 
-    const {SITE_NAME, SITE_URL, SMTP_USER} = process.env;
+    const {SITE_NAME, SITE_URL, SMTP_USER, SENDER_EMAIL, SENDER_NAME} = process.env;
     const data = {
       self, 
       parent, 
@@ -44,7 +44,7 @@ module.exports = class extends think.Service {
     content = nunjucks.renderString(content, data);
 
     return this.transporter.sendMail({
-      from: SMTP_USER,
+      from: SENDER_EMAIL && SENDER_NAME ? `"${SENDER_NAME}" <${SENDER_EMAIL}>` : SMTP_USER,
       to, 
       subject: title, 
       html: content
