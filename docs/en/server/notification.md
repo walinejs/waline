@@ -14,6 +14,8 @@ Email notification needs to configure the following in the environment variables
 - `SMTP_PASS`：SMTP Mail delivery service password, it's always your mailbox login password.
 - `SITE_NAME`：Your site name, it will be displayed in notification message.
 - `SITE_URL`：Your site url, it will be displayed in notification message.
+- `SENDER_NAME`：Optional custom notification name from user.
+- `SENDER_EMAIL`：Optional custom notification email from user.
 
 ## Wechat Notification
 

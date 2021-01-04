@@ -14,7 +14,8 @@
 - `SMTP_PASS`：SMTP 邮件发送服务的密码，一般为邮箱登录密码，部分邮箱（例如163）是单独的 SMTP 密码。
 - `SITE_NAME`：网站名称，用于在消息中显示。
 - `SITE_URL`：网站地址，用于在消息中显示。
-
+- `SENDER_NAME`：自定义发送邮件的发件人，选填。
+- `SENDER_EMAIL`：自定义发送邮件的发件地址，选填。
 ## 微信通知
 
 微信通知使用了 [Server 酱](http://sc.ftqq.com/3.version) 提供的服务，需要在环境变量中配置在 Server 酱中申请的 `SC_KEY`。
