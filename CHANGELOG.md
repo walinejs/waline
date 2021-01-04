@@ -1,3 +1,9 @@
+#  (2021-01-04)
+
+### Bug Fixes
+
+* **vercel:** add sender_email env to custom mail from ([e5e9af8](https://github.com/lizheming/waline/commit/e5e9af8f7b27930c5fde5e6838153fc78f32816a), closes [#120](https://github.com/lizheming/waline/issues/120)
+* **admin:** fix recursive login bug ([8ad1fde](https://github.com/lizheming/waline/commit/8ad1fde5d4cdd367c764c30dd59e514995306a09), closes [#121](https://github.com/lizheming/waline/issues/121))
 #  (2021-01-03)
 ### Features
 
