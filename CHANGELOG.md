@@ -1,3 +1,7 @@
+#  (2021-01-05)
+### Bug Fixes
+
+* **client:** compat serverURL end with slash fix [#122](https://github.com/lizheming/waline/issues/122) ([196a959](https://github.com/lizheming/waline/commit/196a9591e0106f611296677cb1555a88519bf4bb))
 #  (2021-01-04)
 
 ### Bug Fixes
