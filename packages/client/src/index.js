@@ -34,14 +34,16 @@ export default function Waline({
   } catch(e) {
     //ignore error
   }
+  //compat multiple slash
+  serverURL = serverURL.replace(/\/+$/, '');
   
-  //阅读统计
+  //visitor count
   if(visitor) {
     const visitorPromise = path ? Visitor.add({serverURL, path}) : Promise.resolve();
     visitorPromise.then(() => Visitor.show({serverURL}));
   }
 
-  //评论数统计
+  //comment count
   const $counts = [].slice.call(document.querySelectorAll('.waline-comment-count'));
   if($counts.length) {
     $counts.filter(
@@ -62,7 +64,7 @@ export default function Waline({
   //mathml 
   window.addEventListener('load', mathML);
 
-  //评论列表展示
+  //comment list display
   const root = document.querySelector(el);
   if(!root) {
     return;
