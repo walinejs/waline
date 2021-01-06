@@ -3,7 +3,7 @@
   "envId": "{{envId}}",
   "$schema": "https://framework-1258016615.tcloudbaseapp.com/schema/latest.json",
   "framework": {
-    "name": "ThinkJS",
+    "name": "Waline",
     "plugins": {
       "node": {
         "use": "@cloudbase/framework-plugin-node",
