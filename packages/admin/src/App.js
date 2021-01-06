@@ -25,16 +25,18 @@ export const createRouter = function(config) {
     const user = useSelector(state => state.user);
     
     const emptyUser = !user || !user.email;
-    const noPermission = meta.auth ? meta.auth !== user.type : false;
+    const noPermission = emptyUser || (meta.auth ? meta.auth !== user.type : false);
     if(emptyUser || noPermission) {
       return (location.href = '/ui/login?redirect=' + location.pathname);
     }
 
     return React.createElement(Comp, props);
   }
-
+  
+  const match = location.pathname.match(/(.*?)\/ui/);
+  const basepath = match ? match[1] : '/';
   return (
-    <Router>
+    <Router basepath={basepath}>
       {config.routers.map(({ path, component: Comp, meta = {} }, idx) =>
         Comp && React.createElement(meta.public ? Comp : PrivateRoute(Comp, meta), {
           path,

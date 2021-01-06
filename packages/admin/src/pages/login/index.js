@@ -9,8 +9,11 @@ export default function() {
   useEffect(() => {
     if(user && user.email) {
       const query = new URLSearchParams(location.search);
-      const redirect = query.get('redirect') || (user.type !== 'administrator' ? '/ui/profile' : '/ui');
-      navigate(redirect, {replace: true});
+      const redirect = query.get('redirect') || (user.type !== 'administrator' ? 'ui/profile' : 'ui');
+
+      const match = location.pathname.match(/(.*?)\/ui/);
+      const basepath = match ? match[1] : '/';
+      navigate(basepath + redirect, {replace: true});
     }
   }, [user]);
 
