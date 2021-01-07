@@ -373,7 +373,7 @@ export default function({
                 title="Cmd|Ctrl+Enter" 
                 className="vsubmit vbtn"
                 onClick={submitComment}  
-              >{ctx.locale.reply}</button>
+              >{ctx.locale.submit}</button>
             </div>
           </div>
           {showEmoji ? (
