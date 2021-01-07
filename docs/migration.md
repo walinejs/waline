@@ -30,4 +30,4 @@
 
 将导出成功的文件内容粘贴至下方的文本框中，点击下方的转换按钮，获得待导入的文件。进入腾讯云开发后台[数据库](https://console.cloud.tencent.com/tcb/db/index)界面，选择 `Comment` 集合。若该集合不存在，点击左上角 <kbd>新建集合</kbd> 创建。进入后点击上方的导入按钮，选择刚才获得的转换后文件稍待片刻即可完成导入。
 
-<Migration />
+<MigrationTool />
