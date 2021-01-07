@@ -5,3 +5,31 @@ html, body {
 div[tabindex="-1"] {
   height: 100%;
 }
+
+.account-item {
+  display: inline-block;
+  position: relative;
+}
+
+.account-item .account-unbind svg {
+  background: #FFF;
+  border: 1px solid #999;
+  border-radius: 50%;
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  display: none;
+  cursor: pointer;
+}
+.account-item:hover .account-unbind svg {
+  display: block;
+}
+
+
+.account-item.github path {
+  fill: grey;
+}
+.account-item.github:hover path,
+.account-item.github.bind path {
+  fill: #1B1F23;
+}
