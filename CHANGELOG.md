@@ -1,3 +1,7 @@
+#  (2021-01-08)
+### Features
+
+* add github social login ([050f6be](https://github.com/lizheming/waline/commit/050f6beab69cccd239e0510834156265a5682671))
 #  (2021-01-05)
 ### Bug Fixes
 
