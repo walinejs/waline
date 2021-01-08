@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link, navigate } from '@reach/router';
 import { useDispatch, useSelector } from 'react-redux';
 
+import * as Icons from '../../components/icon';
+
 export default function() {
   const dispatch = useDispatch();
   const user = useSelector(state => state.user);
@@ -39,6 +41,12 @@ export default function() {
     }
   };
 
+  let baseUrl = globalThis.serverURL;
+  if(!baseUrl) {
+    const match = location.pathname.match(/(.*?\/)ui/);
+    baseUrl = match ? match[1] : '/';
+  }
+
   return (
     <>
     <div 
@@ -74,6 +82,11 @@ export default function() {
             </label>
           </p>
         </form>
+        <div className="social-accounts">
+          {(globalThis.ALLOW_SOCIALS || []).map(social => (
+            <a key={social} href={`${baseUrl}oauth/${social}`}>{React.createElement(Icons[social])}</a>
+          ))}
+        </div>
 
         <p className="more-link">
           <Link to="/ui">返回首页</Link> • <Link to="/ui/register">用户注册</Link>
