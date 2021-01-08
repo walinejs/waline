@@ -47,10 +47,10 @@ A simple comment system with backend support fork from [Valine](https://valine.j
 - ✅ IP disallow list
 - ✅ Duplicate content check
 - ✅ CloudBase deploy support
+- ✅ Social account login
 - AWS, GCP, Azure deploy support
 - Sitcky Comment
 - Comment Like
-- Social account login
 
 That's **really** welcome to contribute waline!
 
