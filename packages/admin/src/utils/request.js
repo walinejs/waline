@@ -21,7 +21,7 @@ export default async function request(url, opts = {}) {
     opts.headers.Authorization = `Bearer ${token}`;
   }
 
-  let baseUrl = 'http://localhost:3000/'; //globalThis.serverURL;
+  let baseUrl = globalThis.serverURL;
   if(!baseUrl) {
     const match = location.pathname.match(/(.*?\/)ui/);
     baseUrl = match ? match[1] : '/';
