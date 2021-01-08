@@ -8,13 +8,14 @@ export default function() {
   const dispatch = useDispatch();
   const user = useSelector(state => state.user);
   const [error, setError] = useState(false);
+  const match = location.pathname.match(/(.*?)\/ui/);
+  const basepath = match ? match[1] : '/';
+
   useEffect(() => {
     if(user && user.email) {
       const query = new URLSearchParams(location.search);
       const redirect = query.get('redirect') || (user.type !== 'administrator' ? 'ui/profile' : 'ui');
 
-      const match = location.pathname.match(/(.*?)\/ui/);
-      const basepath = match ? match[1] : '/';
       navigate(basepath + redirect, {replace: true});
     }
   }, [user]);
@@ -84,7 +85,9 @@ export default function() {
         </form>
         <div className="social-accounts">
           {(globalThis.ALLOW_SOCIALS || []).map(social => (
-            <a key={social} href={`${baseUrl}oauth/${social}`}>{React.createElement(Icons[social])}</a>
+            <a key={social} href={`${baseUrl}oauth/${social}?redirect=${basepath}ui/profile`}>
+              {React.createElement(Icons[social])}
+            </a>
           ))}
         </div>
 

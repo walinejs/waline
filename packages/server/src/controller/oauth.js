@@ -24,15 +24,16 @@ module.exports = class extends think.Controller {
       } else {
         await this.modelInstance.update({github}, {email});
       }
+
+      const {redirect} = this.get();
+      const token = jwt.sign(email, this.config('jwtKey'));
+      if(redirect) {
+        return this.redirect(redirect + (redirect.includes('?') ? '&' : '?') + 'token=' + token);
+      }
     } else {
       await this.modelInstance.update({github}, {objectId: current.objectId});
     }
 
-    const {redirect} = this.get();
-    if(redirect) {
-      return this.redirect(redirect);
-    }
-    
     return this.success();
   }
 };
