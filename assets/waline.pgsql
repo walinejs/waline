@@ -42,6 +42,8 @@ CREATE TABLE wl_users (
   password varchar(255) NOT NULL DEFAULT '',
   type varchar(50) NOT NULL DEFAULT '',
   url varchar(255) DEFAULT NULL,
+  avatar varchar(255) DEFAULT NULL,
+  github varchar(255) DEFAULT NULL,
   createdAt timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP,
   updatedAt timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id)
