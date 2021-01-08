@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken');
 module.exports = class extends think.Controller {
   constructor(ctx) {
     super(ctx);
