@@ -11,6 +11,7 @@ export default function() {
   const [isProfileUpdating, setProfileUpdating] = useState(false);
   const dispatch = useDispatch();
   const user = useSelector(state => state.user);
+  console.log(user);
 
   const onProfileUpdate = async function(e) {
     e.preventDefault();
@@ -44,8 +45,12 @@ export default function() {
     setPasswordUpdating(false);
   }
   
+  const unbind = async function(type) {
+    await updateProfile({[type]: ''});
+    location.reload();
+  }
 
-  let baseUrl = 'http://localhost:3000/'; globalThis.serverURL;
+  let baseUrl = 'http://localhost:3000/'; //globalThis.serverURL;
   if(!baseUrl) {
     const match = location.pathname.match(/(.*?\/)ui/);
     baseUrl = match ? match[1] : '/';
@@ -111,12 +116,12 @@ export default function() {
                 <div className="account-list">
                   <div className={cls('account-item github', {bind: user.github})}>
                     <a 
-                      href={user.gitub ? `https://github.com/${user.github}` : `${baseUrl}oauth?type=github`}
-                      target="_blank"
+                      href={user.github ? `https://github.com/${user.github}` : `${baseUrl}oauth/github`}
+                      target={user.github ? '_blank' : '_self'}
                     >
                       <GithubIcon />
                     </a>
-                    <div className="account-unbind">
+                    <div className="account-unbind" onClick={_ => unbind('github')}>
                       <svg className="vicon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="14" height="14">
                         <path d="M568.569 512l170.267-170.267c15.556-15.556 15.556-41.012 0-56.569s-41.012-15.556-56.569 0L512 455.431 341.733 285.165c-15.556-15.556-41.012-15.556-56.569 0s-15.556 41.012 0 56.569L455.431 512 285.165 682.267c-15.556 15.556-15.556 41.012 0 56.569 15.556 15.556 41.012 15.556 56.569 0L512 568.569l170.267 170.267c15.556 15.556 41.012 15.556 56.569 0 15.556-15.556 15.556-41.012 0-56.569L568.569 512z"></path>
                       </svg>

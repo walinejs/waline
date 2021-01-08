@@ -43,20 +43,21 @@ module.exports = class extends Base {
     });
 
     return {
-      id: userInfo.login,
-      name: userInfo.name,
-      desc: userInfo.bio,
-      avatar: userInfo.avatar_url
+      github: userInfo.login,
+      display_name: userInfo.name,
+      email: userInfo.email,
+      url: userInfo.blog,
+      avatar: userInfo.avatar_url,
     };
   }
 
   async redirect() {
     const {app} = this;
-    const {type, rdurl} = app.get();
-    const rdUrlAfterLogin = this.getCompleteUrl(rdurl);
+    const {redirect} = app.get();
+    const rdUrlAfterLogin = this.getCompleteUrl(redirect);
 
-    const params = { rdurl: rdUrlAfterLogin, type };
-    const signinUrl = this.getCompleteUrl('/oauth') + '?' + qs.stringify(params);
+    const params = { redirect: rdUrlAfterLogin };
+    const signinUrl = this.getCompleteUrl('/oauth/github') + '?' + qs.stringify(params);
     const AUTH_URL = this.getAuthUrl({rdUrl: signinUrl});
     app.redirect(AUTH_URL);
     return app.success();
