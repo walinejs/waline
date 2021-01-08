@@ -26,7 +26,7 @@ module.exports = class extends BaseRest {
   }
 
   async putAction() {
-    const {display_name, url, password} = this.post();
+    const {display_name, url, password, github} = this.post();
     const {objectId} = this.ctx.state.userInfo;
     
     const updateData = {};
@@ -38,6 +38,9 @@ module.exports = class extends BaseRest {
     }
     if(password) {
       updateData.password = (new PasswordHash()).hashPassword(password);
+    }
+    if(think.isString(github)) {
+      updateData.github = github;
     }
     if(think.isEmpty(updateData)) {
       return this.success();
