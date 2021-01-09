@@ -1,3 +1,9 @@
+#  (2021-01-09)
+### Bug Fixes
+
+* **vercel:** fix a serie of bugs when github oauth return email empty 
+* **doc:** add user_id, github, avatar field for sqlite ([f027784](https://github.com/lizheming/waline/commit/f027784e8b0b87e49c5f995bd8f28aa16747e6e0))
+* **vercel:** optimize docker build image ([#131](https://github.com/lizheming/waline/pull/131))
 #  (2021-01-08)
 ### Features
 
