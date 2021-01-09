@@ -1,12 +1,12 @@
 {
   "name": "@waline/cloudbase",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "cloudbase server for waline comment system",
   "main": "index.js",
   "author": "lizheming<i@imnerd.org>",
   "license": "MIT",
   "dependencies": {
-    "@waline/vercel": "^0.21.2",
+    "@waline/vercel": "^0.21.12",
     "thinkjs": "^3.2.12"
   }
 }
