@@ -9,10 +9,12 @@ module.exports = class extends think.Controller {
   async githubAction() {
     const instance = this.service('auth/github', this);
     const userInfo = await instance.getUserInfo();
+    if(!userInfo.email) {
+      //generator a fake email if github user have no email
+      userInfo.email = `${github}@mail.github`;
+    }
 
-    const {github} = userInfo;
-    //generator a fake email if github user have no email
-    const email = userInfo.email || `${github}@mail.github`;
+    const {github, email} = userInfo;
     const current = this.ctx.state.userInfo;
 
     if(think.isEmpty(current)) {
