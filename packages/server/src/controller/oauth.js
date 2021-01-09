@@ -14,7 +14,7 @@ module.exports = class extends think.Controller {
     const userByGithub = await this.modelInstance.select({github});
     if(!think.isEmpty(userByGithub)) {
       const {redirect} = this.get();
-      const token = jwt.sign(userByGithub.email, this.config('jwtKey'));
+      const token = jwt.sign(userByGithub[0].email, this.config('jwtKey'));
       if(redirect) {
         return this.redirect(redirect + (redirect.includes('?') ? '&' : '?') + 'token=' + token);
       }
