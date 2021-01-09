@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const { PasswordHash } = require('phpass');
 module.exports = class extends think.Controller {
   constructor(ctx) {
     super(ctx);
