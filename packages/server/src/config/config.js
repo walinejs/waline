@@ -18,9 +18,8 @@ const {
 
 let storage = 'leancloud';
 let jwtKey = JWT_TOKEN || LEAN_KEY;
-if(think.env === 'cloudbase' || TCB_ENV) {
-  storage = 'cloudbase';
-  jwtKey = jwtKey || TENCENTCLOUD_SECRETKEY || TCB_KEY || TCB_ENV;
+if (LEAN_KEY) {
+  storage = 'leancloud';
 } else if (MONGO_DB) {
   storage = 'mongodb';
   jwtKey = jwtKey || MONGO_PASSWORD;
@@ -32,6 +31,9 @@ if(think.env === 'cloudbase' || TCB_ENV) {
 } else if(MYSQL_DB) {
   storage = 'mysql';
   jwtKey = jwtKey || MYSQL_PASSWORD;
+} else if(think.env === 'cloudbase' || TCB_ENV) {
+  storage = 'cloudbase';
+  jwtKey = jwtKey || TENCENTCLOUD_SECRETKEY || TCB_KEY || TCB_ENV;
 }
 
 if(think.env === 'cloudbase' && storage === 'sqlite') {
