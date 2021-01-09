@@ -12,7 +12,7 @@ module.exports = class extends think.Logic {
     let { secureDomains } = this.config();
     if(secureDomains && referrer && this.ctx.host.indexOf(referrer) !== 0) {
       secureDomains = think.isArray(secureDomains) ? secureDomains : [secureDomains];
-      secureDomains.push('localhost', '127.0.0.1');
+      secureDomains.push('localhost', '127.0.0.1', 'github.com');
 
       const match = secureDomains.some(domain => 
         think.isFunction(domain.test) ? domain.test(referrer) : domain === referrer
