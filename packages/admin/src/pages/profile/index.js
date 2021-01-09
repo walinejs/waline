@@ -55,6 +55,11 @@ export default function() {
     const match = location.pathname.match(/(.*?\/)ui/);
     baseUrl = match ? match[1] : '/';
   }
+  const qs = new URLSearchParams(location.search);
+  let token = globalThis.TOKEN || sessionStorage.getItem('TOKEN') || qs.get('token');
+  if(!token) {
+    token = localStorage.getItem('TOKEN');
+  }
 
   return (
     <>
@@ -116,7 +121,7 @@ export default function() {
                 <div className="account-list">
                   <div className={cls('account-item github', {bind: user.github})}>
                     <a 
-                      href={user.github ? `https://github.com/${user.github}` : `${baseUrl}oauth/github`}
+                      href={user.github ? `https://github.com/${user.github}` : `${baseUrl}oauth/github?state=${token}`}
                       target={user.github ? '_blank' : '_self'}
                     >
                       <GithubIcon />

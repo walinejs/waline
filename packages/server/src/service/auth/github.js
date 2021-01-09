@@ -53,10 +53,10 @@ module.exports = class extends Base {
 
   async redirect() {
     const {app} = this;
-    const {redirect} = app.get();
+    const {redirect, state} = app.get();
     const rdUrlAfterLogin = this.getCompleteUrl(redirect);
 
-    const params = { redirect: rdUrlAfterLogin };
+    const params = { redirect: rdUrlAfterLogin, state };
     const signinUrl = this.getCompleteUrl('/oauth/github') + '?' + qs.stringify(params);
     const AUTH_URL = this.getAuthUrl({rdUrl: signinUrl});
     app.redirect(AUTH_URL);

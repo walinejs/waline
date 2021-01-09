@@ -24,10 +24,11 @@ module.exports = class extends think.Logic {
 
     this.ctx.state.userInfo = {};
     const {authorization} = this.ctx.req.headers;
-    if(!authorization) {
+    const {state} = this.get();
+    if(!authorization && !state) {
       return;
     }
-    const token = authorization.replace(/^Bearer /, '');
+    const token = state || authorization.replace(/^Bearer /, '');
     const userMail = jwt.verify(token, think.config('jwtKey'));
     if(think.isEmpty(userMail) || !think.isString(userMail)) {
       return;
