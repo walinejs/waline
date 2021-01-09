@@ -53,6 +53,7 @@ MONGO_OPT_SSL=true
 | `SQLITE_PATH` | √ | | SQLite 数据库文件的路径，该路径不包含文件名本身 |
 | `SQLITE_DB` | | waline | SQLite 数据库文件名，若文件名变化需要修改该字段值 |
 | `SQLITE_PREFIX` | | `wl_` | SQLite 数据表的表前缀 |
+| `JWT_TOKEN` | √ | | 用户登录密钥，随机字符串即可|
 
 ## PostgreSQL
 

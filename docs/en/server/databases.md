@@ -51,6 +51,7 @@ Before use SQLite as storage, you should download [waline.sqlite](https://github
 | `SQLITE_PATH`        | √        |         | SQLite storage file path, not include file name                     |
 | `SQLITE_DB`          |          | waline  | SQLite storage file name, change it if your filenamed is not waline |
 | `SQLITE_PREFIX`      |          | `wl_`   | SQLite table prefix                                                 |
+| `JWT_TOKEN` | √ | | Random String for login token generator |
 
 ## PostgreSQL
 [elephantSQL](https://www.elephantsql.com/) provides 20M PG database support for free. It's same with MySQL, you need import [waline.pgsql](https://github.com/lizheming/waline/blob/master/assets/waline.pgsql) before use PostgreSQL as storage service.
