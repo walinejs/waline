@@ -11,7 +11,7 @@ module.exports = class extends think.Controller {
     const userInfo = await instance.getUserInfo();
     if(!userInfo.email) {
       //generator a fake email if github user have no email
-      userInfo.email = `${github}@mail.github`;
+      userInfo.email = `${userInfo.github}@mail.github`;
     }
 
     const {github, email} = userInfo;
