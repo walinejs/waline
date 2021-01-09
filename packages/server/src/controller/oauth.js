@@ -27,7 +27,7 @@ module.exports = class extends think.Controller {
       userInfo.email = `${userInfo.github}@mail.github`;
     }
 
-    const {github, email} = userInfo;
+    const {email} = userInfo;
     const current = this.ctx.state.userInfo;
     if(!think.isEmpty(current)) {
       await this.modelInstance.update({github}, {objectId: current.objectId});
