@@ -87,8 +87,6 @@ module.exports = class extends think.Service {
     }
 
     const comment = self.comment
-      .replace(/<a href="(.*?)">(.*?)<\/a>/g, "\n[$2] $1\n")
-      .replace(/<[^>]+>/g, '');
     
     const data = {
       self: {
@@ -104,15 +102,12 @@ module.exports = class extends think.Service {
     };
 
     const contentQQ = `💬 {{site.name}} 有新评论啦
-
-{{self.nick}} 回复说：
-
-{{self.comment}}
-邮箱：{{self.mail}}
-审核：{{self.status}} 
-
-仅供评论预览，查看完整內容：
-{{site.postUrl}}`;
+      {{self.nick}} 评论道：
+      {{self.comment}}
+      邮箱：{{self.mail}}
+      状态：{{self.status}} 
+      仅供评论预览，查看完整內容：
+      {{site.postUrl}}`;
 
     return request({
       uri: `https://qmsg.zendee.cn/send/${QMSG_KEY}`,
