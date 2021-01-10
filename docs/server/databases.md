@@ -10,9 +10,9 @@
 |------------|---------|------|------|
 | `MONGO_HOST` |  | 127.0.0.1 | MongoDB 服务的地址，支持数组格式 |
 | `MONGO_PORT` |  | 27017 | MongoDB 服务的端口，支持数组格式 |
-| `MONGO_DB` | √ | | MongoDB 数据库名称 |
-| `MONGO_USER` | √ | | MongoDB 服务的用户名 |
-| `MONGO_PASSWORD` | √ | | MongoDB 服务的密码 |
+| `MONGO_DB` | ✓ | | MongoDB 数据库名称 |
+| `MONGO_USER` | ✓ | | MongoDB 服务的用户名 |
+| `MONGO_PASSWORD` | ✓ | | MongoDB 服务的密码 |
 | `MONGO_REPLICASET` | | | MongoDB 集群 |
 | `MONGO_AUTHSOURCE` | | | MongoDB 认证源 |
 | `MONGO_OPT_SSL` | | | 是否使用 SSL 进行连接 |
@@ -38,9 +38,9 @@ MONGO_OPT_SSL=true
 |------------|---------|------|------|
 | `MYSQL_HOST` | | 127.0.0.1 | MySQL 服务的地址 |
 | `MYSQL_PORT` | | 3306 | MySQL 服务的端口 |
-| `MYSQL_DB` | √ | | MySQL 数据库库名 |
-| `MYSQL_USER` | √ | | MySQL 数据库的用户名 |
-| `MYSQL_PASSWORD` | √ | | MySQL 数据库的密码 |
+| `MYSQL_DB` | ✓ | | MySQL 数据库库名 |
+| `MYSQL_USER` | ✓ | | MySQL 数据库的用户名 |
+| `MYSQL_PASSWORD` | ✓ | | MySQL 数据库的密码 |
 | `MYSQL_PREFIX` | | `wl_` | MySQL 数据表的表前缀 |
 
 ## SQLite
@@ -50,10 +50,10 @@ MONGO_OPT_SSL=true
 
 | 环境变量名称 | 必填 | 默认值 | 备注 |
 |------------|---------|------|------|
-| `SQLITE_PATH` | √ | | SQLite 数据库文件的路径，该路径不包含文件名本身 |
+| `SQLITE_PATH` | ✓ | | SQLite 数据库文件的路径，该路径不包含文件名本身 |
 | `SQLITE_DB` | | waline | SQLite 数据库文件名，若文件名变化需要修改该字段值 |
 | `SQLITE_PREFIX` | | `wl_` | SQLite 数据表的表前缀 |
-| `JWT_TOKEN` | √ | | 用户登录密钥，随机字符串即可|
+| `JWT_TOKEN` | ✓ | | 用户登录密钥，随机字符串即可|
 
 ## PostgreSQL
 
@@ -63,9 +63,9 @@ MONGO_OPT_SSL=true
 |------------|---------|------|------|
 | `PG_HOST` | | 127.0.0.1 | PostgreSQL 服务的地址 |
 | `PG_PORT` | | 3211 | PostgreSQL 服务的端口 |
-| `PG_DB` | √ | | PostgreSQL 数据库库名 |
-| `PG_USER` | √ | | PostgreSQL 数据库的用户名 |
-| `PG_PASSWORD` | √ | | PostgreSQL 数据库的密码 |
+| `PG_DB` | ✓ | | PostgreSQL 数据库库名 |
+| `PG_USER` | ✓ | | PostgreSQL 数据库的用户名 |
+| `PG_PASSWORD` | ✓ | | PostgreSQL 数据库的密码 |
 | `PG_PREFIX` | | `wl_` | PostgreSQL 数据表的表前缀 |
 
 
@@ -75,9 +75,9 @@ MONGO_OPT_SSL=true
 
 | 环境变量名称 | 必填 | 默认值 | 备注 |
 |------------|---------|------|------|
-| `TCB_ENV` |√ |  | 腾讯云开发环境 ID |
-| `TCB_ID` |√| | 腾讯云 API 密钥 ID，[在此](https://console.cloud.tencent.com/cam/capi)获取 |
-| `TCB_KEY` | √ | | 腾讯云 API 密钥 Key，[在此](https://console.cloud.tencent.com/cam/capi)获取 |
+| `TCB_ENV` |✓ |  | 腾讯云开发环境 ID |
+| `TCB_ID` |✓| | 腾讯云 API 密钥 ID，[在此](https://console.cloud.tencent.com/cam/capi)获取 |
+| `TCB_KEY` | ✓ | | 腾讯云 API 密钥 Key，[在此](https://console.cloud.tencent.com/cam/capi)获取 |
 | `JWT_TOKEN` | | | 用户登录密钥，如果没有配任何环境变量的话需要配置此变量，随机字符串即可 |
 ## 自定义
 
