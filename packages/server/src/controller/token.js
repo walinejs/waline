@@ -25,11 +25,11 @@ module.exports = class extends BaseRest {
       return this.fail();
     }
 
-    let avatar = users[0].avatar;
+    let avatar = user[0].avatar;
     if(/(github)/i.test(avatar)) {
       avatar = this.config('avatarProxy') + '?url=' + encodeURIComponent(avatar);
     }
-    users[0].avatar = avatar;
+    user[0].avatar = avatar;
     
     return this.success({
       ...user[0], 
