@@ -1,3 +1,11 @@
+#  (2021-01-10)
+### Features
+
+* **admin:** compat avatar sever return ([9482e83](https://github.com/lizheming/waline/commit/9482e83e7db9438ae8c825ef9264ad9d990a3ccc))
+* **client:** compat avatar server return ([86a0f0a](https://github.com/lizheming/waline/commit/86a0f0a081d7afda1bbced0ced6186dd295252ae))
+* **vercel:** add avatar return support ([1ab3c9f](https://github.com/lizheming/waline/commit/1ab3c9fd08dbdd3b9f6398059fae09b6791632c9))
+
+
 #  (2021-01-09)
 ### Bug Fixes
 
