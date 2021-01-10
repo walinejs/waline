@@ -17,7 +17,7 @@ marked.setOptions({
   smartypants: true
 });
 
-async function formatCmt({ua, user_id, ip, ...comment}, users = []) {
+async function formatCmt({ua, user_id, ip, ...comment}, users = [], {avatarProxy}) {
   ua = parser(ua);
   if(!think.config('disableUserAgent')) {
     comment.browser = [ua.browser.name, ua.browser.version].filter(v => v).join(' ');
@@ -26,11 +26,19 @@ async function formatCmt({ua, user_id, ip, ...comment}, users = []) {
 
   if(user_id) {
     const user = users.find(({objectId}) => user_id === objectId);
+    
     if(user) {
       comment.nick = user.display_name;
       comment.mail = user.email;
       comment.link = user.link;
       comment.type = user.type;
+      
+      if(user.avatar) {
+        if(/(github)/i.test(user.avatar)) {
+          user.avatar = avatarProxy + '?url=' + encodeURIComponent(user.avatar);
+        }
+        comment.avatar = user.avatar;
+      }
     }
   }
   comment.mail = helper.md5(comment.mail);
@@ -77,11 +85,11 @@ module.exports = class extends BaseRest {
         let users = [];
         if(user_ids.length) {
           users = await userModel.select({objectId: ['IN',  user_ids]}, {
-            field: ['display_name', 'email', 'url', 'type']
+            field: ['display_name', 'email', 'url', 'type', 'avatar']
           });
         }
 
-        return this.json(await Promise.all(comments.map(cmt => formatCmt(cmt, users))));
+        return this.json(await Promise.all(comments.map(cmt => formatCmt(cmt, users, this.config()))));
       }
 
       case 'count': {
@@ -147,7 +155,7 @@ module.exports = class extends BaseRest {
         let users = [];
         if(user_ids.length) {
           users = await userModel.select({objectId: ['IN',  user_ids]}, {
-            field: ['display_name', 'email', 'url', 'type']
+            field: ['display_name', 'email', 'url', 'type', 'avatar']
           });
         }
 
@@ -160,10 +168,10 @@ module.exports = class extends BaseRest {
           totalPages: Math.ceil(rootCount / pageSize),
           pageSize,
           data: await Promise.all(rootComments.map(async comment => {
-            const cmt = await formatCmt(comment, users);
+            const cmt = await formatCmt(comment, users, this.config());
             cmt.children = await Promise.all(comments
               .filter(({rid}) => rid === cmt.objectId)
-              .map(cmt => formatCmt(cmt, users)));
+              .map(cmt => formatCmt(cmt, users, this.config())));
             return cmt;
           }))
         });
@@ -249,7 +257,7 @@ module.exports = class extends BaseRest {
     }
 
     await this.hook('postSave', resp, pComment);
-    return this.success(await formatCmt(resp, [ this.ctx.state.userInfo ]));
+    return this.success(await formatCmt(resp, [ this.ctx.state.userInfo ], this.config()));
   }
 
   async putAction() {

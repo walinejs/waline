@@ -9,7 +9,7 @@ module.exports = class extends think.Controller {
   async githubAction() {
     const instance = this.service('auth/github', this);
     const userInfo = await instance.getUserInfo();
-    const {github} = userInfo;
+    const {github, avatar} = userInfo;
 
     const userByGithub = await this.modelInstance.select({github});
     if(!think.isEmpty(userByGithub)) {
@@ -30,7 +30,12 @@ module.exports = class extends think.Controller {
     const {email} = userInfo;
     const current = this.ctx.state.userInfo;
     if(!think.isEmpty(current)) {
-      await this.modelInstance.update({github}, {objectId: current.objectId});
+      const updateData = {github};
+      if(!current.avatar) {
+        updateData.avatar = github.avatar;
+      }
+
+      await this.modelInstance.update(updateData, {objectId: current.objectId});
       return this.success();
     }
 
@@ -44,7 +49,11 @@ module.exports = class extends think.Controller {
       };
       await this.modelInstance.add(data);
     } else {
-      await this.modelInstance.update({github}, {email});
+      const updateData = {github};
+      if(!userByEmail.avatar) {
+        updateData.avatar = avatar;
+      }
+      await this.modelInstance.update(updateData, {email});
     }
 
     const {redirect} = this.get();

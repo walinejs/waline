@@ -13,7 +13,8 @@ const {
   TENCENTCLOUD_SECRETKEY,
   TCB_KEY,
   SECURE_DOMAINS,
-  DISABLE_USERAGENT
+  DISABLE_USERAGENT,
+  AVATAR_PROXY
 } = process.env;
 
 let storage = 'leancloud';
@@ -52,5 +53,6 @@ module.exports = {
   forbiddenWords,
   disallowIPList: [],
   secureDomains: SECURE_DOMAINS ? SECURE_DOMAINS.split(/\s*,\s*/) : undefined,
-  disableUserAgent: DISABLE_USERAGENT && !['0', 'false'].includes(DISABLE_USERAGENT.toLowerCase())
+  disableUserAgent: DISABLE_USERAGENT && !['0', 'false'].includes(DISABLE_USERAGENT.toLowerCase()),
+  avatarProxy: AVATAR_PROXY || 'https://avatar.75cdn.workers.dev/'
 };
