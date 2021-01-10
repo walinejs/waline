@@ -73,7 +73,7 @@ export default function() {
             <div className="col-mb-12 col-tb-3">
               <p>
                 <a href="http://gravatar.com/emails/" title="在 Gravatar 上修改头像" target="_blank">
-                  <img className="profile-avatar" src={`https://gravatar.loli.net/avatar/${user.mailMd5}?s=220&amp;r=X&amp;d=mm`} alt="公子" />
+                  <img className="profile-avatar" src={user.avatar || `https://gravatar.loli.net/avatar/${user.mailMd5}?s=220&amp;r=X&amp;d=mm`} alt="公子" />
                 </a>
               </p>
               <h2>{user.display_name}</h2>
