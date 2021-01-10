@@ -216,7 +216,9 @@ module.exports = class extends think.Service {
       }
     }
 
-    if(parent && comment.status !== 'waiting') {
+    const disallowList = ['github'].map(social => 'mail.' + social);
+    const fakeMail = new RegExp(`@(${disallowList.join('|')})$`, 'i');
+    if(parent && !fakeMail.test(parent.mail) && comment.status !== 'waiting') {
       mailList.push({
         to: parent.mail,
         title: process.env.MAIL_SUBJECT || '{{parent.nick}}，『{{site.name}}』上的评论收到了回复',
