@@ -29,7 +29,7 @@ export default function CommentCard({comment, boxConfig, rootId, onSubmit}) {
     <div className="vcard" id={comment.objectId}>
       <img 
         className="vimg" 
-        src={ctx.gravatarSetting.cdn + comment.mail + ctx.gravatarSetting.params} 
+        src={comment.avatar || ctx.gravatarSetting.cdn + comment.mail + ctx.gravatarSetting.params} 
       />
       <div className="vh">
         <div className="vhead">

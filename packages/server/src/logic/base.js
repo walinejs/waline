@@ -36,11 +36,14 @@ module.exports = class extends think.Logic {
   
     const user = await this.modelInstance.select(
       {email: userMail},
-      {field: ['email', 'url', 'display_name', 'type', 'github']}
+      {field: ['email', 'url', 'display_name', 'type', 'github', 'avatar']}
     );
     if(!think.isEmpty(user)) {
       const userInfo = user[0];
       userInfo.mailMd5 = helper.md5(userInfo.email);
+      if(/(github)/i.test(userInfo.avatar)) {
+        userInfo.avatar = this.config('avatarProxy') + '?url=' + encodeURIComponent(userInfo.avatar);
+      }
       this.ctx.state.userInfo = userInfo;
     }
   }
