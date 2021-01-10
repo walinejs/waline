@@ -33,11 +33,12 @@ async function formatCmt({ua, user_id, ip, ...comment}, users = [], {avatarProxy
       comment.link = user.link;
       comment.type = user.type;
       
-      if(user.avatar) {
-        if(/(github)/i.test(user.avatar)) {
-          user.avatar = avatarProxy + '?url=' + encodeURIComponent(user.avatar);
+      let {avatar} = user;
+      if(avatar) {
+        if(/(github)/i.test(avatar)) {
+          avatar = avatarProxy + '?url=' + encodeURIComponent(avatar);
         }
-        comment.avatar = user.avatar;
+        comment.avatar = avatar;
       }
     }
   }
