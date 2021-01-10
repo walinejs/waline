@@ -6,9 +6,9 @@ Mose configuration for backend can be cofigured in environment variable, which c
 
 | Environment Variable | Required | Description                                                                 |
 | -------------------- | -------- | --------------------------------------------------------------------------- |
-| `LEAN_ID`            | √        | LeanCloud Application ID                                                    |
-| `LEAN_KEY`           | √        | LeanCloud Application Key                                                   |
-| `LEAN_MASTER_KEY`    | √        | LeanCloud Application Master Key                                            |
+| `LEAN_ID`            | ✓        | LeanCloud Application ID                                                    |
+| `LEAN_KEY`           | ✓        | LeanCloud Application Key                                                   |
+| `LEAN_MASTER_KEY`    | ✓        | LeanCloud Application Master Key                                            |
 | `LEAN_SERVER`        |          | LeanCloud server address if you're leancloud china user                     |
 | `SITE_NAME`          |          | site name                                                                   |
 | `SITE_URL`           |          | site url                                                                    |
