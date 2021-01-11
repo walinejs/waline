@@ -142,3 +142,11 @@ Set required fields, default anonymous, optional values:
 - Required: `false`
 
 Custom image upload callback to manage picture by yourself. We will input picture file object when execute it.
+
+## anonymous
+
+- 类型：`Boolean`
+- 默认值：` `
+- 必要性：`false`
+
+Whether to allow login comments. Both supported by default, set to `true` means only support anonymous comments, `false` means only support login comments.
