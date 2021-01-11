@@ -133,7 +133,8 @@ export default function Context(props) {
       }).then(resp => resp.json()).then(resp => resp.data.url);
 		},
 		userInfo,
-		setUserInfo
+		setUserInfo,
+		anonymous: props.anonymous
   };
 
   return (

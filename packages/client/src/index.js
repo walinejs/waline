@@ -27,7 +27,8 @@ export default function Waline({
   requiredFields = [],
   copyRight = true,
   visitor = false,
-  uploadImage
+  uploadImage,
+  anonymous
 } = {}) {
   try {
     path = decodeURI(path);
@@ -72,6 +73,7 @@ export default function Waline({
   ReactDOM.render(
     <React.StrictMode>
       <Context 
+        anonymous={anonymous}
         lang={lang} 
         langMode={langMode}
         emojiCDN={emojiCDN} 
