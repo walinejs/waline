@@ -20,6 +20,6 @@ Since Waline completely reuses Valine's data structure in storage, migrating fro
   </script>
   ```
 
-**Tips 1：** Most configuration are same between Waline and Valine, but there has little difference. All waline configuratioin can watch [configuration](/configuration.html)。
+**Tips 1：** Most configuration are same between Waline and Valine, but there has little difference. All waline configuratioin can watch [configuration](/en/client/basic.html)。
 
 **Tips 2：** Except `LEAN_ID` and `LEAN_KEY`, you also need config `LEAN_SERVER` environment variable if you're the user of LeanCloud China.
