@@ -168,6 +168,7 @@ module.exports = class extends BaseRest {
           page,
           totalPages: Math.ceil(rootCount / pageSize),
           pageSize,
+          count: comments.length,
           data: await Promise.all(rootComments.map(async comment => {
             const cmt = await formatCmt(comment, users, this.config());
             cmt.children = await Promise.all(comments
