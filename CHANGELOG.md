@@ -1,3 +1,7 @@
+#  (2021-01-13)
+### Bug Fixes
+
+* **client:** fix typo link check start with http ([8759f0f](https://github.com/lizheming/waline/commit/8759f0f736467325ab5a8a4728d22613c4c45405))
 #  (2021-01-10)
 ### Features
 
