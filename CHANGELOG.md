@@ -4,6 +4,7 @@
 * **client:** fix typo link check start with http ([8759f0f](https://github.com/lizheming/waline/commit/8759f0f736467325ab5a8a4728d22613c4c45405))
 * **vercel:** change github oauth scope to limit access ([19ad4e2](https://github.com/lizheming/waline/commit/19ad4e242af875b13a7f562249c37859a89b36f5))
 * **client:** comment list return comment count to reduce api request times ([ac4fdb9](https://github.com/lizheming/waline/commit/ac4fdb94e55c81d9f245445f299c64de3558a8b2))
+* **vercel:** comment and article count api support multiple url query ([3fc206b](https://github.com/lizheming/waline/commit/3fc206b440095283a8a643db0b29414291b92b63))
 #  (2021-01-10)
 ### Features
 
