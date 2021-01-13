@@ -21,7 +21,7 @@ export default function CommentCard({comment, boxConfig, rootId, onSubmit}) {
   }
 
   let link = comment.link;
-  if(link && !/^https:\/\//.test(link)) {
+  if(link && !/^https?:\/\//i.test(link)) {
     link = 'http://' + link;
   }
   
