@@ -1,6 +1,6 @@
 export function fetchCount({serverURL, path}) {
   const url = `${serverURL}/comment?type=count&url=${encodeURIComponent(path)}`;
-  return fetch(url).then(resp => resp.text());
+  return fetch(url).then(resp => resp.json());
 }
 
 export function fetchRecent({serverURL, count}) {

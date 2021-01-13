@@ -45,20 +45,31 @@ export default function Waline({
   }
 
   //comment count
-  const $counts = [].slice.call(document.querySelectorAll('.waline-comment-count'));
+  const $counts = [].filter.call(document.querySelectorAll('.waline-comment-count'), el => {
+    if(!el.getAttribute('data-xid') && !el.getAttribute('id')) {
+      return false;
+    }
+    if(el.innerText && el.innerText.trim()) {
+      return false;
+    }
+    return true;
+  });
   if($counts.length) {
-    $counts.filter(
-      el => el.getAttribute('data-xid') || el.getAttribute('id')
-    ).filter(
-      el => !el.innerText?.trim()
-    ).map(el => {
+    const paths = $counts.map(el => {
       let path = el.getAttribute('data-xid') || el.getAttribute('id');
       try {
         path = decodeURI(path);
       } catch(e) {
         //ignore error
       }
-      return fetchCount({serverURL, path}).then(count => (el.innerText = count));
+      return path;
+    });
+
+    fetchCount({serverURL, path: paths}).then(counts => {
+      if(!Array.isArray(counts)) {
+        counts = [counts];
+      }
+      $counts.forEach((el, idx) => (el.innerText = counts[idx]));
     });
   }
 

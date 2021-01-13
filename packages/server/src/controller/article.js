@@ -9,11 +9,23 @@ module.exports = class extends BaseRest {
 
   async getAction() {
     const {path} = this.get();
-    const resp = await this.modelInstance.select({url: path}, {limit: 1});
+    if(!Array.isArray(path) || !path.length) {
+      return this.json(0);
+    }
+
+    const resp = await this.modelInstance.select({url: ['IN', path]});
     if(think.isEmpty(resp)) {
       return this.json(0);
     }
-    return this.json(resp[0].time);
+
+    if(path.length === 1) {
+      return this.json(resp[0].time);
+    }
+    const respObj = resp.reduce((o, n) => {
+      o[n.url] = n.time;
+      return o;
+    }, {});
+    return this.json(path.map(url => respObj[url] || 0));
   }
 
   async postAction() {

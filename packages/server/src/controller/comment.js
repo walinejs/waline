@@ -95,8 +95,14 @@ module.exports = class extends BaseRest {
 
       case 'count': {
         const {url} = this.get();
-        const count = await this.modelInstance.count({url, status: ['NOT IN', ['waiting', 'spam']]});
-        return this.json(count);
+        const data = await this.modelInstance.select({
+          url: ['IN', url],
+          status: ['NOT IN', ['waiting', 'spam']]
+        }, {
+          field: ['url']
+        });
+        const counts = url.map(u => data.filter(({url}) => url === u).length);
+        return this.json(counts.length === 1 ? counts[0] : counts);
       }
 
       case 'list': {

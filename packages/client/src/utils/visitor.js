@@ -20,19 +20,27 @@ export default {
       return;
     }
 
-    [].forEach.call(countEls, el => {
+    const ids = [].map.call(countEls, el => {
       let id = el.getAttribute('id');
       try {
         id = decodeURI(id);
       } catch(e) {
         //ignore error
       }
-      
-      let counterEl = el.querySelector('.leancloud-visitors-count');
-      if(!counterEl) {
-        counterEl = el;
+      return id;
+    });
+
+    fetchVisitCount({serverURL, path: ids.join()}).then(counts => {
+      if(!Array.isArray(counts)) {
+        counts = [counts];
       }
-      fetchVisitCount({serverURL, path: id}).then(count => (counterEl.innerText = count));
+      countEls.forEach((el, idx) => {
+        let counterEl = el.querySelector('.leancloud-visitors-count');
+        if(!counterEl) {
+          counterEl = el;
+        }
+        counterEl.innerText = counts[idx];
+      });
     });
   }
 }
