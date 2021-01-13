@@ -2,6 +2,7 @@
 ### Bug Fixes
 
 * **client:** fix typo link check start with http ([8759f0f](https://github.com/lizheming/waline/commit/8759f0f736467325ab5a8a4728d22613c4c45405))
+* **vercel:** change github oauth scope to limit access ([19ad4e2](https://github.com/lizheming/waline/commit/19ad4e242af875b13a7f562249c37859a89b36f5))
 #  (2021-01-10)
 ### Features
 
