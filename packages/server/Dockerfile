@@ -12,10 +12,14 @@ RUN npm install --production
 # Stage release
 FROM node:lts-alpine
 
-# Apinelinux timezone setup
-# Reference to https://wiki.alpinelinux.org/wiki/Alpine_setup_scripts#setup-timezone
+# Setting the timezone
+# Reference to https://wiki.alpinelinux.org/wiki/Setting_the_timezone
 ENV TZ Asia/Shanghai
-RUN setup-timezone -z ${TZ}
+RUN apk update && \
+    apk add --no-cache tzdata && \
+    cp /usr/share/zoneinfo/${TZ} /etc/localtime && \
+    echo ${TZ} > /etc/timezone && \
+    apk del --no-cache tzdata
 
 ENV WORKDIR /opt/waline
 WORKDIR ${WORKDIR}
