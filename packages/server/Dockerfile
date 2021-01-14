@@ -19,7 +19,7 @@ RUN apk update && \
     apk add --no-cache tzdata && \
     cp /usr/share/zoneinfo/${TZ} /etc/localtime && \
     echo ${TZ} > /etc/timezone && \
-    apk del --no-cache tzdata
+    apk del --no-network tzdata
 
 ENV WORKDIR /opt/waline
 WORKDIR ${WORKDIR}
