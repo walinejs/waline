@@ -13,13 +13,12 @@ RUN npm install --production
 FROM node:lts-alpine
 
 # Setting the timezone
-# Reference to https://wiki.alpinelinux.org/wiki/Setting_the_timezone
+# Reference to https://wiki.alpinelinux.org/wiki/Alpine_setup_scripts#setup-timezone
 ENV TZ Asia/Shanghai
 RUN apk update && \
-    apk add --no-cache tzdata && \
-    cp /usr/share/zoneinfo/${TZ} /etc/localtime && \
-    echo ${TZ} > /etc/timezone && \
-    apk del --no-network tzdata
+    apk add --no-cache alpine-conf && \
+    setup-timezone -z ${TZ} && \
+    apk del --no-network alpine-conf
 
 ENV WORKDIR /opt/waline
 WORKDIR ${WORKDIR}
