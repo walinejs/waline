@@ -1,4 +1,4 @@
-# build
+# Stage build
 FROM node:lts AS build
 
 ENV WORKDIR /opt/waline
@@ -9,14 +9,21 @@ WORKDIR ${WORKDIR}
 COPY packages/server/package.json ${WORKDIR}/package.json
 RUN npm install --production
 
-# alpine
+# Stage release
 FROM node:lts-alpine
 
-ENV WORKDIR /opt/waline
+# Setting the timezone
+# Reference to https://wiki.alpinelinux.org/wiki/Alpine_setup_scripts#setup-timezone
 ENV TZ Asia/Shanghai
+RUN apk update && \
+    apk add --no-cache alpine-conf && \
+    setup-timezone -z ${TZ} && \
+    apk del --no-network alpine-conf
 
+ENV WORKDIR /opt/waline
 WORKDIR ${WORKDIR}
 
+COPY packages/server/package.json ${WORKDIR}/package.json
 COPY packages/server/vanilla.js ${WORKDIR}/vanilla.js
 COPY packages/server/src ${WORKDIR}/src
 COPY --from=build /opt/waline/node_modules ./node_modules
