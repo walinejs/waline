@@ -188,6 +188,7 @@ module.exports = class extends BaseRest {
   }
 
   async postAction() {
+    think.logger.debug('Post Comment Start!');
     const {comment, link, mail, nick, pid, rid, ua, url, at} = this.post();
     const data = {
       link, mail, nick, pid, rid, ua, url, 
@@ -200,19 +201,25 @@ module.exports = class extends BaseRest {
       data.comment = data.comment.replace('<p>', `<p><a class="at" href="#${pid}">@${at}</a> , `);
     }
 
+    think.logger.debug('Post Comment initial Data:', data);
+
     /** IP disallowList */
     const {disallowIPList} = this.config();
     if(think.isArray(disallowIPList) && disallowIPList.length && disallowIPList.includes(data.ip)) {
+      think.logger.debug(`Comment IP ${data.ip} is in disallowIPList`);
       return this.ctx.throw(403);
     }
-    
+    think.logger.debug(`Comment IP ${data.ip} check OK!`);
+
     /** Duplicate content detect */
     const duplicate = await this.modelInstance.select({
       url, mail: data.mail, nick: data.nick, link: data.link, comment: data.comment
     });
     if(!think.isEmpty(duplicate)) {
+      think.logger.debug('The comment author had post same comment content before');
       return this.fail('Duplicate Content');
     }
+    think.logger.debug('Comment duplicate check OK!');
 
     /** IP Frequence */
     const {IPQPS = 60} = process.env;
@@ -221,20 +228,24 @@ module.exports = class extends BaseRest {
       insertedAt: ['>', new Date(Date.now() - IPQPS * 1000)]
     });
     if(!think.isEmpty(recent)) {
+      think.logger.debug(`The author has posted in ${IPQPS} seconeds.`);
       return this.fail('Comment too fast!');
     }
+    think.logger.debug(`Comment post frequence check OK!`);
 
     /** Akismet */
     const {COMMENT_AUDIT, AUTHOR_EMAIL, BLOGGER_EMAIL} = process.env;
     const AUTHOR = AUTHOR_EMAIL || BLOGGER_EMAIL;
     const isAuthorComment = AUTHOR ? data.mail.toLowerCase() === AUTHOR.toLowerCase() : false;
     data.status = COMMENT_AUDIT && !isAuthorComment ? 'waiting' : 'approved';
+    think.logger.debug(`Comment initial status is ${data.status}`);
     if(data.status === 'approved') {
       const spam = await akismet(data, this.ctx.protocol + '://' + this.ctx.host).catch(e => console.log(e)); // ignore akismet error
       if(spam === true) {
         data.status = 'spam';
       }
     }
+    think.logger.debug(`Comment akismet check result: ${data.status}`);
     
     if(data.status !== 'spam') {
       /** KeyWord Filter */
@@ -246,13 +257,16 @@ module.exports = class extends BaseRest {
         }
       }
     }
+    think.logger.debug(`Comment keyword check result: ${data.status}`);
     
     const preSaveResp = await this.hook('preSave', data);
     if(preSaveResp) {
       return this.fail(preSaveResp.errmsg);
     }
+    think.logger.debug(`Comment post hooks preSave done!`);
 
     const resp = await this.modelInstance.add(data);
+    think.logger.debug(`Comment have been added to storage.`);
     
     let pComment;
     if(pid) {
@@ -263,8 +277,10 @@ module.exports = class extends BaseRest {
       const notify = this.service('notify');
       await notify.run({...resp, rawComment: comment}, pComment);
     }
+    think.logger.debug(`Comment notify done!`);
 
     await this.hook('postSave', resp, pComment);
+    think.logger.debug(`Comment post hooks postSave done!`);
     return this.success(await formatCmt(resp, [ this.ctx.state.userInfo ], this.config()));
   }
 
