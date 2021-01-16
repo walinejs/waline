@@ -1,5 +1,6 @@
 const {
   JWT_TOKEN,
+  FAUNA_SECRET,
   LEAN_KEY,
   MYSQL_DB,
   MYSQL_PASSWORD,
@@ -32,6 +33,9 @@ if (LEAN_KEY) {
 } else if(MYSQL_DB) {
   storage = 'mysql';
   jwtKey = jwtKey || MYSQL_PASSWORD;
+} else if(FAUNA_SECRET) {
+  storage = 'fauna';
+  jwtKey = jwtKey || FAUNA_SECRET;
 } else if(think.env === 'cloudbase' || TCB_ENV) {
   storage = 'cloudbase';
   jwtKey = jwtKey || TENCENTCLOUD_SECRETKEY || TCB_KEY || TCB_ENV;
