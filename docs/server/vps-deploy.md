@@ -29,7 +29,7 @@ docker run -d \
 
 ```bash
 npm install @waline/vercel
-node node_modules/@waline/vercel/valine.js
+node node_modules/@waline/vercel/vanilla.js
 ```
 
 ## Nginx 配置
