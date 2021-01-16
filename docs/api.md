@@ -19,7 +19,7 @@ GET /comment
 
 ### 评论数
 
-获取谋篇文章对应的评论总数
+获取某篇文章对应的评论总数
 
 ```
 GET /comment?type=count
