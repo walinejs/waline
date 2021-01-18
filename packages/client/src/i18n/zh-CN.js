@@ -27,9 +27,9 @@ export default {
   login: "登录",
   logout: "退出",
   admin: "博主",
-  "code-98": "Valine 初始化失败，请检查 av-min.js 版本",
-  "code-99": "Valine 初始化失败，请检查init中的`el`元素.",
-  "code-100": "Valine 初始化失败，请检查你的AppId和AppKey.",
+  "code-98": "Waline 初始化失败，请检查 av-min.js 版本",
+  "code-99": "Waline 初始化失败，请检查init中的`el`元素.",
+  "code-100": "Waline 初始化失败，请检查你的AppId和AppKey.",
   "code-140": "今日 API 调用总次数已超过开发版限制.",
   "code-401": "未经授权的操作，请检查你的AppId和AppKey.",
   "code-403": "访问被API域名白名单拒绝，请检查你的安全域名设置."
