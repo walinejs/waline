@@ -1,6 +1,6 @@
 {
   "name": "@waline/hexo-next",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Waline comment system for NexT.",
   "main": "index.js",
   "repository": "lizheming/waline",
