@@ -23,13 +23,42 @@ docker run -d \
 > docker build -t lizheming/waline -f packages/server/Dockerfile .
 > ```
 
+### ... via [docker stack deploy](https://docs.docker.com/engine/reference/commandline/stack_deploy/) or [docker-compose](https://github.com/docker/compose)
+
+The SQLite is used here as an example. For SQLite and supported database services, please refer to [Multi-database service support](https://waline.js.org/en/server/databases.html#sqlite).
+
+Example `docker-compose.yml` for `waline`:
+
+```yaml
+# docker-compose.yml
+version: "3"
+
+services:
+  waline:
+    container_name: waline
+    image: lizheming/waline:latest
+    restart: always
+    ports:
+      - 127.0.0.1:8360:8360
+    volumes:
+      - ${PWD}/data:/app/data
+    environment:
+      TZ: "Asia/Shanghai"
+      SQLITE_PATH: "/app/data"
+      JWT_TOKEN: "Your token"
+      SITE_NAME: "Your site name"
+      SITE_URL: "https://example.com"
+      SECURE_DOMAINS: "example.com"
+      AUTHOR_EMAIL: "mail@example.com"
+```
+
 ## Run directly
 
 It's easy to run without using docker deployment, just run the `vanilla.js` file in the module after installing.
 
 ```bash
 npm install @waline/vercel
-node node_modules/@waline/vercel/valine.js
+node node_modules/@waline/vercel/vanilla.js
 ```
 
 ## Nginx configuration
