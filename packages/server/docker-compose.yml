@@ -1,0 +1,20 @@
+# docker-compose.yml
+version: "3"
+
+services:
+  waline:
+    container_name: waline
+    image: lizheming/waline:latest
+    restart: always
+    ports:
+      - 127.0.0.1:8360:8360
+    volumes:
+      - ${PWD}/data:/app/data
+    environment:
+      TZ: "Asia/Shanghai"
+      SQLITE_PATH: "/app/data"
+      JWT_TOKEN: "Your token"
+      SITE_NAME: "Your site name"
+      SITE_URL: "https://example.com"
+      SECURE_DOMAINS: "example.com"
+      AUTHOR_EMAIL: "mail@example.com"
