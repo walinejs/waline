@@ -2,134 +2,29 @@ const faunaORM = require('faunadb_orm');
 const Base = require('./base');
 
 const {FAUNA_SECRET} = process.env;
-const schema = {
-  Comment: {
-    fields: {
-      comment: {
-        indexes: {
-          find: 'findByComment'
-        },
-      },
-      insertedAt: {
-        indexes: {
-          find: 'findByInsertedAt'
-        }
-      },
-      ip: {
-        indexes: {
-          find: 'findByIp'
-        }
-      },
-      link: {
-        indexes: {
-          find: 'findByLink'
-        }
-      },
-      mail: {
-        indexes: {
-          find: 'findByMail'
-        }
-      },
-      nick: {
-        indexes: {
-          find: 'findByNick'
-        }
-      },
-      pid: {
-        indexes: {
-          find: 'findByPid'
-        }
-      },
-      rid: {
-        indexes: {
-          find: 'findByRid'
-        }
-      },
-      status: {
-        indexes: {
-          find: 'findByStatus'
-        }
-      },
-      ua: {
-        indexes: {
-          find: 'findByUa'
-        }
-      },
-      url: {
-        indexes: {
-          find: 'findByUrl'
-        }
-      },
-      user_id: {
-        indexes: {
-          find: 'findByUserId'
-        }
-      },
-      createdAt: {
-        indexes: {
-          find: 'findByCreatedAt'
-        }
-      },
-      updatedAt: {
-        indexes: {
-          find: 'findByUpdatedAt'
-        }
+const FIELDS = {
+  Comment: [
+    'comment', 'insertedAt', 'ip', 'link', 'mail', 'nick', 'pid', 'rid', 'status', 'ua', 'url', 'user_id', 'createdAt', 'updatedAt', 'ref'
+  ],
+  Counter: [],
+  Users: [
+    'display_name', 'email', 'password', 'type', 'url', 'avatar', 'github', 'createdAt', 'updatedAt', 'ref'
+  ]
+};
+const schema = {};
+for(const tableName in FIELDS) {
+  schema[tableName] = {
+    fields: {}
+  };
+  FIELDS[tableName].forEach(field => {
+    schema[tableName].fields[field] = {
+      indexes: {
+        find: `find_by_${field}`
       }
     }
-  },
-  Counter: {
-
-  },
-  Users: {
-    fields: {
-      display_name: {
-        indexes: {
-          find: 'findByDisplayName'
-        }
-      },
-      email: {
-        indexes: {
-          find: 'findByEmail'
-        }
-      },
-      password: {
-        indexes: {
-          find: 'findByPassword'
-        }
-      },
-      type: {
-        indexes: {
-          find: 'findByType'
-        }
-      },
-      url: {
-        indexes: {
-          find: 'findByUrl'
-        }
-      },
-      avatar: {
-        indexes: {
-          find: 'findByAvatar'
-        }
-      },
-      github: {
-        indexes: {
-          find: 'findByGithub'
-        }
-      },
-      createdAt: {
-        indexes: {
-          find: 'findByCreatedAt'
-        }
-      },
-      updatedAt: {
-        indexes: {
-          find: 'findByUpdatedAt'
-        }
-      }
-    }
-  }
+  });
 }
+
 const client = new faunaORM(schema, FAUNA_SECRET);
 
 const collections = {};
@@ -147,20 +42,27 @@ class Where {
 module.exports = class extends Base {
   async collection(tableName) {
     if (collections[tableName]) {
-      return q.Collection(tableName);
+      return client.collection(tableName);
     }
-    
-    try {
-      await client.query(
-        q.createCollection({ name: tableName })
-      );
-    } catch(e) {
+  
+    const collection = client.collection(tableName);
+    await collection.create({}).run().catch(e => {
       if(e.description === 'Collection already exists.') {
-        collections[tableName] = true;
+        return;
       }
       throw e;
+    });
+
+    if(schema[tableName] && schema[tableName].fields) {
+      const fields = schema[tableName].fields;
+      await Promise.allSettled(
+        Object.keys(fields).map(field => collection.index.create(
+          fields[field].indexes.find, field, FIELDS[tableName]
+        ).run())
+      );
     }
-    return q.Collection(tableName);
+
+    return client.collection(tableName);
   }
 
   where(instance, where) {
@@ -235,37 +137,71 @@ module.exports = class extends Base {
   }
 
   async select(where, {desc, limit, offset, field} = {}) {
-    const collection = client.collection(this.tableName);
+    const collection = await this.collection(this.tableName);
     const instance = new Where();
     this.where(instance, where);
-    const query = collection.query.findMany(instance.data);
+    let query = collection.query.findMany(instance.data);
     
-    if(desc) {
-      query.order(`${desc} DESC`);
-    }
+    // if(desc) {
+    //   query.order(`${desc} DESC`);
+    // }
     if(limit || offset) {
-      query.limit(offset, limit);
+      query = query.limit(limit);
+      query = query.before(offset);
     }
-    if(field) {
-      
-      instance.field(field);
-    }
-    collection.query.findMany(instance.data).run();
+
+    const ret = await query.run();
+    return ret.data.map(item => {
+      const obj = {};
+      FIELDS[this.tableName].forEach((f, idx) => {
+        if(Array.isArray(field) && !field.includes(f)) {
+          return;
+        }
+
+        if(f === 'ref') {
+          obj.objectId = item[idx].id;
+        } else {
+          obj[f] = item[idx];
+        }
+      });
+      return obj;
+    });
   }
 
   async count(where = {}) {
-    const collection = client.collection(this.tableName);
+    const collection = await this.collection(this.tableName);
     const instance = new Where();
     this.where(instance, where);
-    return collection.query.count(instance.data).run();
+    return collection.query.count({where: instance.data}).run();
   }
 
   async add(data) {
+    for(const i in data) {
+      if(!data[i]) {
+        continue;
+      }
+      if(typeof data[i].toISOString === 'function') {
+        data[i] = data[i].toISOString();
+      }
+    }
+
+    const collection = await this.collection(this.tableName);
+    const resp = await collection.query.create(data).run();
+    resp[0].objectId = resp[0]._id;
+    return resp[0];
   }
 
   async update(data, where) {
+    const collection = await this.collection(this.tableName);
+    const instance = new Where();
+    this.where(instance, where);
+    return collection.query.updateMany({...data, where: instance.data}).run();
   }
 
   async delete(where) {
+    const collection = await this.collection(this.tableName);
+    const instance = new Where();
+    this.where(instance, where);
+    return collection.query.deleteMany(instance.data).run();
   }
 }
