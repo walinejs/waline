@@ -11,17 +11,19 @@ export default function() {
     dispatch.user.logout();
   }
 
+  const match = location.pathname.match(/(.*?)\/ui/);
+  const basepath = match ? match[1] : '';
   return (
     <div className="typecho-head-nav clearfix" role="navigation">
       {user.type === 'administrator' ? (
         <nav id="typecho-nav-list">
           <ul className="root">
             <li className="parent">
-              <Link to="/ui">管理</Link>
+              <Link to={basepath + '/ui'}>管理</Link>
             </li>
             <ul className="child">
               <li className="last">
-                <Link to="/ui">评论</Link>  
+                <Link to={basepath + '/ui'}>评论</Link>  
               </li>
             </ul>
           </ul>  
@@ -29,7 +31,7 @@ export default function() {
       ) : null}
       
       <div className="operate">
-        <Link to="/ui/profile" className="author">{user.display_name}</Link>
+        <Link to={basepath + '/ui/profile'} className="author">{user.display_name}</Link>
         <a className="exit" href="#" onClick={onLogout}>登出</a>
       </div>
   </div>
