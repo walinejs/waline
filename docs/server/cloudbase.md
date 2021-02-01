@@ -1,6 +1,6 @@
 # CloudBase 云开发部署
 
-[ ![](https://main.qcloudimg.com/raw/67f5a389f1ac6f3b4d04c7256438e44f.svg) ](https://console.cloud.tencent.com/tcb/env/index?action=CreateAndDeployCloudBaseProject&tdl_anchor=github&tdl_site=0&appUrl=https%3A%2F%2Fgithub.com%walinejs%2Ftcb-starter&workDir=%2F&appName=waline)
+[ ![](https://main.qcloudimg.com/raw/67f5a389f1ac6f3b4d04c7256438e44f.svg) ](https://console.cloud.tencent.com/tcb/env/index?action=CreateAndDeployCloudBaseProject&tdl_anchor=github&tdl_site=0&appUrl=https%3A%2F%2Fgithub.com%2Flizheming%2Fwaline&workDir=packages%2Ftcb-starter&appName=waline)
 
 Waline 还支持一键部署到腾讯云开发上。点击上方按钮，跳转至腾讯云开发进行快速部署。登录之后会让你选择部署的欢迎，你可以选择已有的应用，也可以选择新建应用。
 
