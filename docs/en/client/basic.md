@@ -102,7 +102,7 @@ Article reading statistics.
 
 ## avatarCDN
 - Type: `String`
-- Default: `https://gravatar.loli.net/avatar/`
+- Default: `https://cdn.v2ex.com/gravatar/`
 - Required: `false`
 
 Gravatar CDN baseURL.

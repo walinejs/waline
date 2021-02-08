@@ -101,7 +101,7 @@ Waline 的服务端地址。
 
 ## avatarCDN
 - 类型: `String`
-- 默认值: `https://gravatar.loli.net/avatar/`
+- 默认值: `https://cdn.v2ex.com/gravatar/`
 - 必要性: `false`
 
 设置 Gravatar 头像 CDN 地址。
