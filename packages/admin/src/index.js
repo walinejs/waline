@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import { store } from './store';
 
+import './i18n';
+
 import './style/normalize.css';
 import './style/grid.css';
 import './style/style.css';

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import cls from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation, Trans } from 'react-i18next';
 import Header from '../../components/Header';
 import { updateProfile } from '../../services/user';
 
@@ -11,7 +12,7 @@ export default function() {
   const [isProfileUpdating, setProfileUpdating] = useState(false);
   const dispatch = useDispatch();
   const user = useSelector(state => state.user);
-  console.log(user);
+  const { t } = useTranslation();
 
   const onProfileUpdate = async function(e) {
     e.preventDefault();
@@ -19,7 +20,7 @@ export default function() {
     const display_name = e.target.screenName.value;
     const url = e.target.url.value;
     if(!display_name || !url) {
-      return alert('昵称和个人主页都是必填字段');
+      return alert(t('nickname and homepage are required'));
     }
 
     setProfileUpdating(true);
@@ -33,11 +34,11 @@ export default function() {
     const password = e.target.password.value;
     const confirm = e.target.confirm.value;
     if(!password || !confirm) {
-      return alert('请输入密码');
+      return alert(t('please input password'));
     }
 
     if(password !== confirm) {
-      return alert('两次密码不一致，请重新输入');
+      return alert(t('passwords don\'t match'));
     }
 
     setPasswordUpdating(true);
@@ -67,13 +68,13 @@ export default function() {
       <div className="main">
         <div className="body container">
           <div className="typecho-page-title">
-            <h2>个人设置</h2>
+            <h2>{t('setting')}</h2>
           </div>
           <div className="row typecho-page-main">
             <div className="col-mb-12 col-tb-3">
               <p>
-                <a href="http://gravatar.com/emails/" title="在 Gravatar 上修改头像" target="_blank">
-                  <img className="profile-avatar" src={user.avatar || `https://gravatar.loli.net/avatar/${user.mailMd5}?s=220&amp;r=X&amp;d=mm`} alt="公子" />
+                <a href="http://gravatar.com/emails/" title={t('go to gravatar to change avatar')} target="_blank">
+                  <img className="profile-avatar" src={user.avatar || `https://gravatar.loli.net/avatar/${user.mailMd5}?s=220&amp;r=X&amp;d=mm`} />
                 </a>
               </p>
               <h2>{user.display_name}</h2>
@@ -82,12 +83,12 @@ export default function() {
 
             <div className="col-mb-12 col-tb-6 col-tb-offset-1 typecho-content-panel" role="form">
               <section>
-                <h3>个人资料</h3>
+                <h3>{t('profile')}</h3>
                 <form method="post" onSubmit={onProfileUpdate}>
                   <ul className="typecho-option">
                     <li>
                       <label className="typecho-label" htmlFor="screenName-0-1">
-                        昵称
+                        {t('nickname')}
                       </label>
                       <input id="screenName-0-1" name="screenName" type="text" className="text" defaultValue={user.display_name} />
                       <p className="description"></p>
@@ -97,11 +98,11 @@ export default function() {
                   <ul className="typecho-option">
                     <li>
                       <label className="typecho-label" htmlFor="url-0-2">
-                        个人主页地址
+                        {t('homepage')}
                       </label>
                       <input id="url-0-2" name="url" type="text" className="text" defaultValue={user.url} />
                       <p className="description">
-                        此用户的个人主页地址, 请用 <code>http://</code> 或 <code>https://</code> 开头.
+                        <Trans i18nKey="homepage tips">Current users' homepage. It must be start with <code>http://</code> or <code>https://</code>.</Trans>
                       </p>
                     </li>
                   </ul>
@@ -109,7 +110,7 @@ export default function() {
                   <ul className="typecho-option typecho-option-submit">
                     <li>
                       <button type="submit" className="btn primary" disabled={isProfileUpdating}>
-                        更新我的档案
+                        {t('update my profile')}
                       </button>
                     </li>
                   </ul>
@@ -117,7 +118,7 @@ export default function() {
               </section>
               <br/>
               <section id="socical-account">
-                <h3>账号绑定</h3>
+                <h3>{t('connect to social account')}</h3>
                 <div className="account-list">
                   <div className={cls('account-item github', {bind: user.github})}>
                     <a 
@@ -136,16 +137,16 @@ export default function() {
               </section>
               <br/>
               <section id="change-password">
-                <h3>密码修改</h3>
+                <h3>{t('change password')}</h3>
                 <form method="post" onSubmit={onPasswordUpdate}>
                   <ul className="typecho-option">
                     <li>
                       <label className="typecho-label" htmlFor="password-0-11">
-                        用户密码
+                        {t('password')}
                       </label>
                       <input id="password-0-11" name="password" type="password" className="w-60" autoComplete="new-password" />
                       <p className="description">
-                        为此用户分配一个密码.<br />建议使用特殊字符与字母、数字的混编样式,以增加系统安全性.
+                        <Trans i18nKey="password tips"></Trans>
                       </p>
                     </li>
                   </ul>
@@ -153,18 +154,18 @@ export default function() {
                   <ul className="typecho-option">
                     <li>
                       <label className="typecho-label" htmlFor="confirm-0-12">
-                        用户密码确认
+                        {t('password again')}
                       </label>
                       <input id="confirm-0-12" name="confirm" type="password" className="w-60" autoComplete="new-password" />
                       <p className="description">
-                        请确认你的密码, 与上面输入的密码保持一致.
+                        <Trans i18nKey="password again tips"></Trans>
                       </p>
                     </li>
                   </ul>
                   <ul className="typecho-option typecho-option-submit">
                     <li>
                       <button type="submit" className="btn primary" disabled={isPasswordUpdating}>
-                        更新密码
+                        {t('update password')}
                       </button>
                     </li>
                   </ul>

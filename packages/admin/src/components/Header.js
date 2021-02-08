@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from '@reach/router';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 export default function() {
   const dispatch = useDispatch();
   const user = useSelector(state => state.user);
+  const { t } = useTranslation();
 
   const onLogout = function(e) {
     e.preventDefault();
@@ -19,11 +21,11 @@ export default function() {
         <nav id="typecho-nav-list">
           <ul className="root">
             <li className="parent">
-              <Link to={basepath + '/ui'}>管理</Link>
+              <Link to={basepath + '/ui'}>{t('management')}</Link>
             </li>
             <ul className="child">
               <li className="last">
-                <Link to={basepath + '/ui'}>评论</Link>  
+                <Link to={basepath + '/ui'}>{t('comment')}</Link>  
               </li>
             </ul>
           </ul>  
@@ -32,7 +34,7 @@ export default function() {
       
       <div className="operate">
         <Link to={basepath + '/ui/profile'} className="author">{user.display_name}</Link>
-        <a className="exit" href="#" onClick={onLogout}>登出</a>
+        <a className="exit" href="#" onClick={onLogout}>{t('logout')}</a>
       </div>
   </div>
   )

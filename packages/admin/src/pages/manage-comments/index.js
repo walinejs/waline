@@ -5,26 +5,28 @@ import Header from '../../components/Header';
 import { deleteComment, getCommentList, replyComment, updateComment } from '../../services/comment';
 import Paginator from '../../components/Paginator';
 import { buildAvatar, getPostUrl } from './utils';
+import { useTranslation, Trans } from 'react-i18next';
 
 const FILTERS = [
   [
     'owner',
     [
-      { type: 'all', name: '所有' },
-      { type: 'mine', name: '我的' }
+      { type: 'all', name: <Trans i18nKey="all"></Trans> },
+      { type: 'mine', name: <Trans i18nKey="mine"></Trans> }
     ]
   ],
   [
     'status',
     [
-      { type: 'approved', name: '已通过' },
-      { type: 'waiting', name: '待审核' },
-      { type: 'spam', name: '垃圾' }
+      { type: 'approved', name: <Trans i18nKey="approved"></Trans> },
+      { type: 'waiting', name: <Trans i18nKey="waiting"></Trans> },
+      { type: 'spam', name: <Trans i18nKey="spam"></Trans> }
     ]
   ]
 ];
 
 export default function() {
+  const { t } = useTranslation();
   const keywordRef = useRef(null);
   const replyTextAreaRef = useRef(null);
   const editCommentRef = useRef({});
@@ -47,7 +49,7 @@ export default function() {
   const createActions = comment => ([
     {
       key: 'approved',
-      name: '通过',
+      name: t('approved button'),
       show: true,
       disable: comment && comment.status === 'approved',
       async action() {
@@ -74,7 +76,7 @@ export default function() {
     },
     {
       key: 'waiting',
-      name: '待审核',
+      name: t('waiting'),
       show: true,
       disable: comment && comment.status === 'waiting',
       async action() {
@@ -98,7 +100,7 @@ export default function() {
     {
       key: 'spam',
       show: true,
-      name: comment ? '垃圾' : '标记垃圾',
+      name: comment ? t('spam') : t('mark as spam'),
       disable: comment && comment.status === 'spam',
       async action() {
         if(comment) {
@@ -118,7 +120,7 @@ export default function() {
     {
       key: 'edit',
       show: comment,
-      name: '编辑',
+      name: t('edit'),
       action() {
         const handler = {};
         if(cmtHandler.id !== comment.objectId && cmtHandler.action !== 'edit') {
@@ -131,7 +133,7 @@ export default function() {
     {
       key: 'reply',
       show: comment && comment.status === 'approved',
-      name: '回复',
+      name: t('reply'),
       action() {
         const handler = {};
         if(cmtHandler.id !== comment.objectId && cmtHandler.action !== 'reply') {
@@ -143,10 +145,10 @@ export default function() {
     },
     {
       key: 'delete',
-      name: '删除',
+      name: t('delete'),
       show: true,
       async action() {
-        const text = comment ? `你确认要删除${comment.nick}的评论吗？` : `你确认要删除这些评论吗？`;
+        const text = comment ? t('delete one confirm', {nick: comment.nick}) : t('delete multiple confirm');
         if(!confirm(text)) {
           return;
         }
@@ -198,7 +200,7 @@ export default function() {
     <div className="main">
       <div className="body container">
         <div className="typecho-page-title">
-          <h2>管理评论</h2>
+          <h2>{t('manage comments')}</h2>
         </div>
         <div className="row typecho-page-main" role="main">
           <div className="col-mb-12 typecho-list">
@@ -211,7 +213,7 @@ export default function() {
                   {FILTER.map(({type, name}) => (
                     <li className={cls({current: type === filter[key]})} key={type}>
                       <a 
-                        href="javascript:void(0)" 
+                        href="#" 
                         onClick={_ => dispatch({[key]: type})}
                       >
                         {name}
@@ -227,7 +229,7 @@ export default function() {
               <form method="get">
                 <div className="operate">
                   <label>
-                    <i className="sr-only">全选</i>
+                    <i className="sr-only">{t('select all')}</i>
                     <input 
                       type="checkbox" 
                       className="typecho-table-select-all" 
@@ -240,7 +242,7 @@ export default function() {
                       className="btn dropdown-toggle btn-s" 
                       type="button" onClick={_ => setActDropStatus(!actDropStatus)}
                     >
-                      <i className="sr-only">操作</i>选中项 <i className="i-caret-down"></i>
+                      <i className="sr-only">{t('action')}</i>{t('selected items')} <i className="i-caret-down"></i>
                     </button>
                     <ul 
                       className="dropdown-menu" 
@@ -248,7 +250,7 @@ export default function() {
                       onClick={_ => setActDropStatus(false)}  
                     >
                       {createActions().map(({key, name, action}) => 
-                        <li key={key}><a href="javascript:void(0)" onClick={action}>{name}</a></li>
+                        <li key={key}><a href="#" onClick={action}>{name}</a></li>
                       )}
                     </ul>
                     &nbsp;
@@ -263,14 +265,14 @@ export default function() {
                     type="text" 
                     ref={keywordRef}
                     className="text-s" 
-                    placeholder="请输入关键字"
+                    placeholder={t('please input keywords')}
                   />
                   &nbsp;
                   <button 
                     type="submit" 
                     className="btn btn-s"
                     onClick={e => e.preventDefault() && dispatch({keyword: keywordRef.current.value})}  
-                  >筛选</button>
+                  >{t('filter')}</button>
                 </div>
               </form>
             </div>
@@ -287,9 +289,9 @@ export default function() {
                   <thead>
                     <tr>
                       <th> </th>
-                      <th>作者</th>
+                      <th>{t('author')}</th>
                       <th> </th>
-                      <th>内容</th>
+                      <th>{t('content')}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -300,7 +302,7 @@ export default function() {
                           <td colSpan="2" valign="top">
                             <div className="comment-edit-info">
                               <p>
-                                <label htmlFor={`comment-${objectId}-author`}>用户名</label>
+                                <label htmlFor={`comment-${objectId}-author`}>{t('username')}</label>
                                 <input 
                                   className="text-s w-100" 
                                   id={`comment-${objectId}-author`} 
@@ -311,7 +313,7 @@ export default function() {
                                 />
                               </p>
                               <p>
-                                <label htmlFor={`comment-${objectId}-mail`}>电子邮箱</label>
+                                <label htmlFor={`comment-${objectId}-mail`}>{t('email')}</label>
                                 <input 
                                   className="text-s w-100" 
                                   type="email" 
@@ -322,7 +324,7 @@ export default function() {
                                 />
                               </p>
                               <p>
-                                <label htmlFor={`comment-${objectId}-url`}>个人主页</label>
+                                <label htmlFor={`comment-${objectId}-url`}>{t('homepage')}</label>
                                 <input 
                                   className="text-s w-100" 
                                   type="text" 
@@ -337,7 +339,7 @@ export default function() {
                           <td valign="top">
                             <div className="comment-edit-content">
                               <p>
-                                <label htmlFor={`comment-${objectId}-text`}>内容</label>
+                                <label htmlFor={`comment-${objectId}-text`}>{t('content')}</label>
                                 <textarea 
                                   name="text" 
                                   id={`comment-${objectId}-text`} 
@@ -352,12 +354,12 @@ export default function() {
                                   type="button" 
                                   className="btn btn-s primary"
                                   onClick={_ => onEditComment(idx)}  
-                                >提交</button> 
+                                >{t('submit')}</button> 
                                 <button 
                                   type="button" 
                                   className="btn btn-s cancel"
                                   onClick={_ => setCmtHandler({})}  
-                                >取消</button>
+                                >{t('cancel')}</button>
                               </p>
                             </div>
                           </td>
@@ -389,12 +391,12 @@ export default function() {
                             </div>
                           </td>
                           <td valign="top" className="comment-body">
-                            <div className="comment-date">{insertedAt} 于 <a href={getPostUrl(url)} target="_blank">{url}</a></div>
+                            <div className="comment-date">{insertedAt} {t('at')} <a href={getPostUrl(url)} target="_blank">{url}</a></div>
                             <div className="comment-content" dangerouslySetInnerHTML={{__html: comment}}></div> 
                             {cmtHandler.id === objectId && cmtHandler.action === 'reply' ? (
                               <form className="comment-reply">
                                 <p>
-                                  <label htmlhtmlFor="text" className="sr-only">内容</label>
+                                  <label htmlhtmlFor="text" className="sr-only">{t('content')}</label>
                                   <textarea 
                                     id="text" 
                                     name="text" 
@@ -411,12 +413,12 @@ export default function() {
                                       e.preventDefault();
                                       cmtReply({rid, pid: objectId, url, at: nick})
                                     }}
-                                  >回复</button> &nbsp;
+                                  >{t('reply')}</button> &nbsp;
                                   <button 
                                     type="button" 
                                     className="btn btn-s cancel"
                                     onClick={_ => setCmtHandler({})}  
-                                  >取消</button>
+                                  >{t('cancel')}</button>
                                 </p>
                               </form>
                             ) : null}
@@ -425,7 +427,7 @@ export default function() {
                                 disable ? (
                                   <span className="weak" key={key}>{name}</span>
                                 ) : (
-                                  <a key={key} href="javascript:void(0)" className={`operate-${key}`} onClick={action}>{name}</a>
+                                  <a key={key} href="#" className={`operate-${key}`} onClick={action}>{name}</a>
                                 )
                               ))}
                             </div>
