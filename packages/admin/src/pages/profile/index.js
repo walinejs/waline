@@ -74,7 +74,7 @@ export default function() {
             <div className="col-mb-12 col-tb-3">
               <p>
                 <a href="http://gravatar.com/emails/" title={t('go to gravatar to change avatar')} target="_blank">
-                  <img className="profile-avatar" src={user.avatar || `https://gravatar.loli.net/avatar/${user.mailMd5}?s=220&amp;r=X&amp;d=mm`} />
+                  <img className="profile-avatar" src={user.avatar || `https://cdn.v2ex.com/gravatar/${user.mailMd5}?s=220&amp;r=X&amp;d=mm`} />
                 </a>
               </p>
               <h2>{user.display_name}</h2>
