@@ -78,7 +78,7 @@ const emojiMaps = {
 };
 
 const gravatarSetting = {
-  cdn: 'https://gravatar.loli.net/avatar/',
+  cdn: 'https://cdn.v2ex.com/gravatar/',
   ds: ['mp', 'identicon', 'monsterid', 'wavatar', 'robohash', 'retro', ''],
   params: ''
 }
