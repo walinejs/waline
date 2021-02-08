@@ -1,3 +1,7 @@
+#  (2021-02-08)
+### Features
+
+* **admin:** add i18n support, zh-cn and en-us now ([3f49034](https://github.com/lizheming/waline/commit/3f490344d67f810818eca3b326959454eaa6be43))
 #  (2021-01-13)
 ### Bug Fixes
 
