@@ -1,4 +1,8 @@
 #  (2021-02-08)
+### Bug Fixes
+
+* **admin:** update gravatar cdn to v2ex ([e4617e1](https://github.com/lizheming/waline/commit/e4617e1dc67287ef86dee294c7cd4c1d8e3f3add))
+* **client:** update default gravatar to v2ex ([7fb0bd7](https://github.com/lizheming/waline/commit/7fb0bd7bcd102b47fab8bd5f9973693a8da91b52))
 ### Features
 
 * **admin:** add i18n support, zh-cn and en-us now ([3f49034](https://github.com/lizheming/waline/commit/3f490344d67f810818eca3b326959454eaa6be43))
