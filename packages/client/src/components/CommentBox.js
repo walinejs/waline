@@ -220,7 +220,7 @@ export default function({
     const height = 450;
     const left = (window.innerWidth - width) / 2;
     const top = (window.innerHeight - height) / 2;
-    const handler = window.open(serverURL + '/ui/login', '_blank', `width=${width},height=${height},left=${left},top=${top},scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no`);
+    const handler = window.open(serverURL + '/ui/login?lng=' + encodeURIComponent(ctx.lang), '_blank', `width=${width},height=${height},left=${left},top=${top},scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no`);
     handler.postMessage({type: 'TOKEN', data: null}, '*');
     window.addEventListener('message', ({data}) => {
       if(!data || data.type !== 'userInfo') {
@@ -245,7 +245,7 @@ export default function({
     const height = 800;
     const left = (window.innerWidth - width) / 2;
     const top = (window.innerHeight - height) / 2;
-    const handler = window.open(serverURL + '/ui/profile', '_blank', `width=${width},height=${height},left=${left},top=${top},scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no`);
+    const handler = window.open(serverURL + '/ui/profile?lng=' + encodeURIComponent(ctx.lang), '_blank', `width=${width},height=${height},left=${left},top=${top},scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no`);
     handler.postMessage({type: 'TOKEN', data: ctx.userInfo.token}, '*');
     window.addEventListener('message', ({data}) => {
       if(!data || data.type !== 'profile') {

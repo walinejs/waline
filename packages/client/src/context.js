@@ -115,7 +115,8 @@ export default function Context(props) {
 
   const context = {
     locales,
-    locale,
+		locale,
+		lang: props.lang,
     emojiCDN: props.emojiCDN || emojiCDN,
     emojiMaps: props.emojiMaps || emojiMaps,
     gravatarSetting: {
