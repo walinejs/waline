@@ -13,6 +13,7 @@ SET NAMES utf8mb4;
 
 CREATE TABLE `wl_Comment` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
   `comment` text,
   `insertedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `ip` varchar(100) DEFAULT '',
@@ -55,6 +56,8 @@ CREATE TABLE `wl_Users` (
   `password` varchar(255) NOT NULL DEFAULT '',
   `type` varchar(50) NOT NULL DEFAULT '',
   `url` varchar(255) DEFAULT NULL,
+  `avatar` varchar(255) DEFAULT NULL,
+  `github` varchar(255) DEFAULT NULL,
   `createdAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)

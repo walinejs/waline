@@ -17,13 +17,32 @@ marked.setOptions({
   smartypants: true
 });
 
-async function formatCmt({ua, ip, ...comment}) {
-  ua = parser(ua)
-  comment.mail = helper.md5(comment.mail);
+async function formatCmt({ua, user_id, ip, ...comment}, users = [], {avatarProxy}) {
+  ua = parser(ua);
   if(!think.config('disableUserAgent')) {
-    comment.browser = ua.browser.name + ' ' + ua.browser.version;
-    comment.os = ua.os.name + ' ' + ua.os.version;
+    comment.browser = [ua.browser.name, ua.browser.version].filter(v => v).join(' ');
+    comment.os = [ua.os.name, ua.os.version].filter(v => v).join(' ');
   }
+
+  if(user_id) {
+    const user = users.find(({objectId}) => user_id === objectId);
+    
+    if(user) {
+      comment.nick = user.display_name;
+      comment.mail = user.email;
+      comment.link = user.link;
+      comment.type = user.type;
+      
+      let {avatar} = user;
+      if(avatar) {
+        if(/(github)/i.test(avatar)) {
+          avatar = avatarProxy + '?url=' + encodeURIComponent(avatar);
+        }
+        comment.avatar = avatar;
+      }
+    }
+  }
+  comment.mail = helper.md5(comment.mail);
   
   const blockMathRegExp = /(^|[\r\n]+|<p>|<br>)\$\$([^$]+)\$\$([\r\n]+|<\/p>|<br>|$)/g;
   const match = comment.comment.match(blockMathRegExp);
@@ -56,19 +75,34 @@ module.exports = class extends BaseRest {
       case 'recent': {
         const {count} = this.get();
         const comments = await this.modelInstance.select({
-          status: ['NOT IN', ['spam']]
+          status: ['NOT IN', ['waiting', 'spam']]
         }, {
           desc: 'insertedAt',
           limit: count
         });
 
-        return this.json(await Promise.all(comments.map(formatCmt)));
+        const userModel = this.service(`storage/${this.config('storage')}`, 'Users');
+        const user_ids = Array.from(new Set(comments.map(({user_id}) => user_id).filter(v => v)));
+        let users = [];
+        if(user_ids.length) {
+          users = await userModel.select({objectId: ['IN',  user_ids]}, {
+            field: ['display_name', 'email', 'url', 'type', 'avatar']
+          });
+        }
+
+        return this.json(await Promise.all(comments.map(cmt => formatCmt(cmt, users, this.config()))));
       }
 
       case 'count': {
         const {url} = this.get();
-        const count = await this.modelInstance.count({url, status: ['NOT IN', ['spam']]});
-        return this.json(count);
+        const data = await this.modelInstance.select({
+          url: ['IN', url],
+          status: ['NOT IN', ['waiting', 'spam']]
+        }, {
+          field: ['url']
+        });
+        const counts = url.map(u => data.filter(({url}) => url === u).length);
+        return this.json(counts.length === 1 ? counts[0] : counts);
       }
 
       case 'list': {
@@ -83,7 +117,7 @@ module.exports = class extends BaseRest {
 
           //compat with valine old data without status property
           if(status === 'approved') {
-            where.status = ['NOT IN', ['spam']];
+            where.status = ['NOT IN', ['waiting', 'spam']];
           }
         }
         
@@ -93,6 +127,7 @@ module.exports = class extends BaseRest {
 
         const count = await this.modelInstance.count(where);
         const spamCount = await this.modelInstance.count({status: 'spam'});
+        const waitingCount = await this.modelInstance.count({status: 'waiting'});
         const comments = await this.modelInstance.select(where, {
           desc: 'insertedAt',
           limit: pageSize,
@@ -104,6 +139,7 @@ module.exports = class extends BaseRest {
           totalPages: Math.ceil(count / pageSize),
           pageSize,
           spamCount,
+          waitingCount,
           data: comments
         });
       }
@@ -111,44 +147,39 @@ module.exports = class extends BaseRest {
       default: {
         const {path: url, page, pageSize} = this.get();
 
-        const rootCount = await this.modelInstance.count({
+        const comments = await this.modelInstance.select({
           url,
-          rid: undefined,
-          status: ['NOT IN', ['spam']]
-        });
-    
-        const rootComments = await this.modelInstance.select({
-          url, 
-          rid: undefined,
-          status: ['NOT IN', ['spam']]
+          status: ['NOT IN', ['waiting', 'spam']]
         }, {
           desc: 'insertedAt',
-          limit: pageSize,
-          offset: Math.max((page - 1) * pageSize, 0),
           field: [
-            'comment', 'insertedAt', 'link', 'mail', 'nick', 'pid', 'rid', 'ua'
+            'comment', 'insertedAt', 'link', 'mail', 'nick', 'pid', 'rid', 'ua', 'user_id'
           ]
         });
-    
-        const childrenComments = await this.modelInstance.select({
-          url,
-          rid: ['IN', rootComments.map(comment => comment.objectId)],
-          status: ['NOT IN', ['spam']],
-        }, {
-          field: [
-            'comment', 'insertedAt', 'link', 'mail', 'nick', 'pid', 'rid', 'ua'
-          ]
-        });
-    
+
+        const userModel = this.service(`storage/${this.config('storage')}`, 'Users');
+        const user_ids = Array.from(new Set(comments.map(({user_id}) => user_id).filter(v => v)));
+        let users = [];
+        if(user_ids.length) {
+          users = await userModel.select({objectId: ['IN',  user_ids]}, {
+            field: ['display_name', 'email', 'url', 'type', 'avatar']
+          });
+        }
+
+        const rootCount = comments.filter(({rid}) => !rid).length;
+        const pageOffset = Math.max((page - 1) * pageSize, 0);
+        const rootComments = comments.filter(({rid}) => !rid).slice(pageOffset, pageOffset + pageSize);
+        
         return this.json({
           page,
           totalPages: Math.ceil(rootCount / pageSize),
           pageSize,
+          count: comments.length,
           data: await Promise.all(rootComments.map(async comment => {
-            const cmt = await formatCmt(comment);
-            cmt.children = await Promise.all(childrenComments
-              .filter(comment => comment.rid === cmt.objectId)
-              .map(cmt => formatCmt(cmt)));
+            const cmt = await formatCmt(comment, users, this.config());
+            cmt.children = await Promise.all(comments
+              .filter(({rid}) => rid === cmt.objectId)
+              .map(cmt => formatCmt(cmt, users, this.config())));
             return cmt;
           }))
         });
@@ -157,30 +188,38 @@ module.exports = class extends BaseRest {
   }
 
   async postAction() {
+    think.logger.debug('Post Comment Start!');
     const {comment, link, mail, nick, pid, rid, ua, url, at} = this.post();
     const data = {
       link, mail, nick, pid, rid, ua, url, 
       ip: this.ctx.ip,
       insertedAt: new Date(),
-      comment: marked(comment)
+      comment: marked(comment),
+      user_id: this.ctx.state.userInfo.objectId
     };
     if(pid) {
       data.comment = data.comment.replace('<p>', `<p><a class="at" href="#${pid}">@${at}</a> , `);
     }
 
+    think.logger.debug('Post Comment initial Data:', data);
+
     /** IP disallowList */
     const {disallowIPList} = this.config();
     if(think.isArray(disallowIPList) && disallowIPList.length && disallowIPList.includes(data.ip)) {
+      think.logger.debug(`Comment IP ${data.ip} is in disallowIPList`);
       return this.ctx.throw(403);
     }
-    
+    think.logger.debug(`Comment IP ${data.ip} check OK!`);
+
     /** Duplicate content detect */
     const duplicate = await this.modelInstance.select({
       url, mail: data.mail, nick: data.nick, link: data.link, comment: data.comment
     });
     if(!think.isEmpty(duplicate)) {
+      think.logger.debug('The comment author had post same comment content before');
       return this.fail('Duplicate Content');
     }
+    think.logger.debug('Comment duplicate check OK!');
 
     /** IP Frequence */
     const {IPQPS = 60} = process.env;
@@ -189,15 +228,24 @@ module.exports = class extends BaseRest {
       insertedAt: ['>', new Date(Date.now() - IPQPS * 1000)]
     });
     if(!think.isEmpty(recent)) {
+      think.logger.debug(`The author has posted in ${IPQPS} seconeds.`);
       return this.fail('Comment too fast!');
     }
+    think.logger.debug(`Comment post frequence check OK!`);
 
     /** Akismet */
-    data.status = 'approved';
-    const spam = await akismet(data, this.ctx.protocol + '://' + this.ctx.host).catch(e => console.log(e)); // ignore akismet error
-    if(spam === true) {
-      data.status = 'spam';
+    const {COMMENT_AUDIT, AUTHOR_EMAIL, BLOGGER_EMAIL} = process.env;
+    const AUTHOR = AUTHOR_EMAIL || BLOGGER_EMAIL;
+    const isAuthorComment = AUTHOR ? data.mail.toLowerCase() === AUTHOR.toLowerCase() : false;
+    data.status = COMMENT_AUDIT && !isAuthorComment ? 'waiting' : 'approved';
+    think.logger.debug(`Comment initial status is ${data.status}`);
+    if(data.status === 'approved') {
+      const spam = await akismet(data, this.ctx.protocol + '://' + this.ctx.host).catch(e => console.log(e)); // ignore akismet error
+      if(spam === true) {
+        data.status = 'spam';
+      }
     }
+    think.logger.debug(`Comment akismet check result: ${data.status}`);
     
     if(data.status !== 'spam') {
       /** KeyWord Filter */
@@ -209,13 +257,16 @@ module.exports = class extends BaseRest {
         }
       }
     }
+    think.logger.debug(`Comment keyword check result: ${data.status}`);
     
     const preSaveResp = await this.hook('preSave', data);
     if(preSaveResp) {
       return this.fail(preSaveResp.errmsg);
     }
+    think.logger.debug(`Comment post hooks preSave done!`);
 
     const resp = await this.modelInstance.add(data);
+    think.logger.debug(`Comment have been added to storage.`);
     
     let pComment;
     if(pid) {
@@ -226,19 +277,30 @@ module.exports = class extends BaseRest {
       const notify = this.service('notify');
       await notify.run({...resp, rawComment: comment}, pComment);
     }
+    think.logger.debug(`Comment notify done!`);
 
     await this.hook('postSave', resp, pComment);
-    return this.success(await formatCmt(resp));
+    think.logger.debug(`Comment post hooks postSave done!`);
+    return this.success(await formatCmt(resp, [ this.ctx.state.userInfo ], this.config()));
   }
 
   async putAction() {
     const data = this.post();
+    const oldData = await this.modelInstance.select({objectId: this.id});
     const preUpdateResp = await this.hook('preUpdate', {...data, objectId: this.id});
     if(preUpdateResp) {
       return this.fail(preUpdateResp);
     }
 
     await this.modelInstance.update(data, {objectId: this.id});
+
+    if(oldData.status === 'waiting' && data.status === 'approved' && oldData.pid) {
+      let pComment = await this.modelInstance.select({objectId: pid});
+      pComment = pComment[0];
+
+      const notify = this.service('notify');
+      await notify.run(resp, pComment, true);
+    }
     await this.hook('postUpdate', data);
     return this.success();
   }

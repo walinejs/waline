@@ -27,42 +27,56 @@ export default function Waline({
   requiredFields = [],
   copyRight = true,
   visitor = false,
-  uploadImage
+  uploadImage,
+  anonymous
 } = {}) {
   try {
     path = decodeURI(path);
   } catch(e) {
     //ignore error
   }
+  //compat multiple slash
+  serverURL = serverURL.replace(/\/+$/, '');
   
-  //阅读统计
+  //visitor count
   if(visitor) {
     const visitorPromise = path ? Visitor.add({serverURL, path}) : Promise.resolve();
     visitorPromise.then(() => Visitor.show({serverURL}));
   }
 
-  //评论数统计
-  const $counts = [].slice.call(document.querySelectorAll('.waline-comment-count'));
+  //comment count
+  const $counts = [].filter.call(document.querySelectorAll('.waline-comment-count'), el => {
+    if(!el.getAttribute('data-xid') && !el.getAttribute('id')) {
+      return false;
+    }
+    if(el.innerText && el.innerText.trim()) {
+      return false;
+    }
+    return true;
+  });
   if($counts.length) {
-    $counts.filter(
-      el => el.getAttribute('data-xid') || el.getAttribute('id')
-    ).filter(
-      el => !el.innerText?.trim()
-    ).map(el => {
+    const paths = $counts.map(el => {
       let path = el.getAttribute('data-xid') || el.getAttribute('id');
       try {
         path = decodeURI(path);
       } catch(e) {
         //ignore error
       }
-      return fetchCount({serverURL, path}).then(count => (el.innerText = count));
+      return path;
+    });
+
+    fetchCount({serverURL, path: paths}).then(counts => {
+      if(!Array.isArray(counts)) {
+        counts = [counts];
+      }
+      $counts.forEach((el, idx) => (el.innerText = counts[idx]));
     });
   }
 
   //mathml 
   window.addEventListener('load', mathML);
 
-  //评论列表展示
+  //comment list display
   const root = document.querySelector(el);
   if(!root) {
     return;
@@ -70,6 +84,7 @@ export default function Waline({
   ReactDOM.render(
     <React.StrictMode>
       <Context 
+        anonymous={anonymous}
         lang={lang} 
         langMode={langMode}
         emojiCDN={emojiCDN} 

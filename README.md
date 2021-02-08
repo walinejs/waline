@@ -39,6 +39,7 @@ English | [中文](https://github.com/lizheming/waline/blob/master/README_CN.md)
 
 - [x] Email notification
 - [x] Wechat notification
+- [x] QQ notification
 - [x] Telegram notification
 - [x] Akismet 
 - [x] Article counter
@@ -53,10 +54,10 @@ English | [中文](https://github.com/lizheming/waline/blob/master/README_CN.md)
 - [x] IP disallow list
 - [x] Duplicate content check
 - [x] CloudBase deploy support
+- [x] Social account login
 - [ ] AWS, GCP, Azure deploy support
 - [ ] Sitcky Comment
 - [ ] Comment Like
-- [ ] Social account login
 
 That's **really** welcome to contribute waline!
 

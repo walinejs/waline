@@ -12,11 +12,12 @@
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
-    "@waline/client": "^0.6.0",
+    "@waline/client": "^0.14.4",
     "commitizen": "^4.2.2",
     "conventional-changelog-cli": "^2.1.1",
     "cz-conventional-changelog": "^3.3.0",
     "husky": "^4.3.0",
+    "marked": "^1.2.5",
     "vuepress": "^1.7.1"
   },
   "config": {

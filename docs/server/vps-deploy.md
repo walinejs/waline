@@ -23,13 +23,42 @@ docker run -d \
 > docker build -t lizheming/waline -f packages/server/Dockerfile .
 > ```
 
+### 使用 [docker stack deploy](https://docs.docker.com/engine/reference/commandline/stack_deploy/) 或者 [docker-compose](https://github.com/docker/compose)
+
+这里使用了 SQLite 数据库作为例子。关于 SQLite 和支持的数据库服务，请参考[多数据库服务支持](https://waline.js.org/server/databases.html#sqlite)。
+
+`docker-compose.yml` 示例：
+
+```yaml
+# docker-compose.yml
+version: "3"
+
+services:
+  waline:
+    container_name: waline
+    image: lizheming/waline:latest
+    restart: always
+    ports:
+      - 127.0.0.1:8360:8360
+    volumes:
+      - ${PWD}/data:/app/data
+    environment:
+      TZ: "Asia/Shanghai"
+      SQLITE_PATH: "/app/data"
+      JWT_TOKEN: "Your token"
+      SITE_NAME: "Your site name"
+      SITE_URL: "https://example.com"
+      SECURE_DOMAINS: "example.com"
+      AUTHOR_EMAIL: "mail@example.com"
+```
+
 ## 直接运行
 
 不使用容器部署的话运行也很简单，安装好模块后直接运行模块内的 `vanilla.js` 文件即可。
 
 ```bash
 npm install @waline/vercel
-node node_modules/@waline/vercel/valine.js
+node node_modules/@waline/vercel/vanilla.js
 ```
 
 ## Nginx 配置
@@ -63,6 +92,7 @@ server
     proxy_set_header Host $host;
     proxy_set_header X-Real-IP $remote_addr;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
     proxy_set_header REMOTE-HOST $remote_addr;
     add_header X-Cache $upstream_cache_status;
     # cache

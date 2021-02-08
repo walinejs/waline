@@ -31,6 +31,7 @@ Waline - 一款从 [Valine](https://valine.js.org) 衍生的带后端评论系�
 
 - ✅ 邮件通知
 - ✅ 微信通知
+- ✅ QQ 通知
 - ✅ Telegram 通知
 - ✅ Akismet 
 - ✅ 文章统计
@@ -45,8 +46,8 @@ Waline - 一款从 [Valine](https://valine.js.org) 衍生的带后端评论系�
 - ✅ IP 黑名单
 - ✅ 重复内容检测
 - ✅ CloudBase 腾讯云开发部署支持
+- ✅ 社交登录
 - AWS, GCP, Azure 部署支持
-- 社交登录
 - 置顶评论
 - 评论赞踩
 - 其它...

@@ -8,6 +8,7 @@
           <option value="disqus">Disqus</option>
           <option value="twikoo">Twikoo</option>
           <option value="typecho">Typecho</option>
+          <option value="artalk">Artalk</option>
         </select>
       </div>
       <div class="input-group">
@@ -21,11 +22,6 @@
       <div class="input-group">
         存储服务。
       </div>
-    </div>
-    
-    <div class="warning custom-block" v-if="from === 'disqus'">
-      <p class="custom-block-title">友情提示</p> 
-      <p>Disqus 数据可以使用 <a href="https://taosky.github.io/disqus-to-valine/" target="_blank">Disqus to Valine</a> 工具导出成 Valine 数据后直接使用。</p>
     </div>
     <div class="warning custom-block" v-if="from === 'typecho'">
       <p class="custom-block-title">友情提示</p>
@@ -42,7 +38,19 @@
   </form>
 </template>
 <script>
+import marked from 'marked';
+import CSV from './csv.js';
+
 const m = {
+  disqus: {
+    wleancloud: disqus2lc,
+    wcloudbase(data) {
+      return lc2tcb(disqus2lc(data))
+    },
+    wsql(data) {
+      return lc2csv(disqus2lc(data));
+    }
+  },
   valine: {
     wcloudbase: lc2tcb,
     wsql: lc2csv
@@ -55,6 +63,149 @@ const m = {
     wsql(data) {
       return lc2csv(tk2lc(data));
     } 
+  },
+  artalk: {
+    wleancloud: artalk2lc,
+    wcloudbase(data) {
+      return lc2tcb(artalk2lc(data))
+    },
+    wsql(data) {
+      return lc2csv(artalk2lc(data))
+    }
+  }
+}
+//disqus 数据结构转 leancloud
+function disqus2lc(input) {
+  const parser = new DOMParser();
+  const dom = parser.parseFromString(input, "application/xml");
+  const posts = Array.from(dom.querySelectorAll('post')).filter(postEl => {
+    const isDeleted = postEl.querySelector('isDeleted').textContent.toLowerCase();
+    return isDeleted === 'false';
+  });
+  const threads = Array.from(dom.querySelectorAll('disqus > thread'));
+
+  const articleMap = {};
+  threads.forEach(threadEl => {
+    const url = threadEl.querySelector('link').textContent;
+    const anchor = new URL(url);
+    const threadId = threadEl.getAttribute('dsq:id');
+    articleMap[threadId] = anchor.pathname;
+  });
+
+  const idMap = {};
+  posts.forEach(postEl => {
+    const objectId = postEl.getAttribute('dsq:id');
+    if(!postEl.querySelector('parent')) {
+      return;
+    }
+
+    const pid = postEl.querySelector('parent').getAttribute('dsq:id');
+    idMap[objectId] = pid;
+  });
+
+  const rootIdMap = {};
+  posts.filter(postEl => postEl.querySelector('parent')).forEach(postEl => {
+    const objectId = postEl.getAttribute('dsq:id');
+    let rid = postEl.querySelector('parent').getAttribute('dsq:id');
+    while(idMap[rid]) {
+      rid = idMap[rid];
+    }
+    rootIdMap[ objectId ] = rid;
+  });
+  
+  const data =  posts.map(postEl => {
+    const objectId = postEl.getAttribute('dsq:id');
+    const comment = postEl.querySelector('message').textContent;
+    const insertedAt = (
+      new Date(postEl.querySelector('createdAt').textContent)
+    ).toISOString();
+    const nick = postEl.querySelector('author name').textContent;
+    const threadId = postEl.querySelector('thread').getAttribute('dsq:id');
+    const url = articleMap[threadId];
+    const parent = postEl.querySelector('parent');
+    const pid = parent ? parent.getAttribute('dsq:id') : null;
+    const rid = parent ? rootIdMap[objectId] : null;
+    const isSpam = postEl.querySelector('isSpam').textContent.toLowerCase() !== 'false';
+
+    return {
+      objectId,
+      QQAvatar: '',
+      comment,
+      insertedAt: {
+        __type: 'Date',
+        iso: insertedAt
+      },
+      createdAt: insertedAt,
+      updatedAt: insertedAt,
+      ip: '',
+      link: '',
+      mail: '',
+      nick,
+      ua: '',
+      url,
+      pid,
+      rid,
+      status: isSpam ? 'spam' : 'approved'
+    };
+  });
+
+  return {
+    results: data
+  };
+}
+//artalk 数据结构转 leancloud
+function artalk2lc(input) {
+  input = JSON.parse(input);
+
+  function parseKey(key) {
+    const anchor = document.createElement('a');
+    anchor.href = key;
+    return anchor.pathname || key;
+  }
+
+  const idMap = {};
+  for(let i = 0; i < input.length; i++) {
+    idMap[ input[i].id ] = input[i].rid;
+  }
+  const rootIdMap = {};
+  for(let i = 0; i < input.length; i++) {
+    if(!input[i].rid) {
+      continue;
+    }
+
+    let rid = input[i].rid;
+    while(idMap[rid]) {
+      rid = idMap[rid];
+    }
+    rootIdMap[ input[i].id ] = rid;
+  }
+
+
+  return {
+    results: input.map(({content, date, email, id, ip, link, nick, page_key, rid, ua}) => {
+      const time = new Date(date.replace(/-/g, '/')).toISOString();
+      const url = parseKey(page_key);
+      return {
+        objectId: id,
+        QQAvatar: '',
+        comment: marked(content),
+        insertedAt: {
+          __type: 'Date',
+          iso: time
+        },
+        mail: email,
+        createdAt: time,
+        updatedAt: time,
+        ip: ip,
+        link: link,
+        nick: nick,
+        ua: ua,
+        url: url,
+        pid: rid ? rid : null,
+        rid: rootIdMap[id] || null,
+        status: 'approved'
+      };
+    })
   }
 }
 //twikoo 数据结构转 leancloud
@@ -89,13 +240,13 @@ function tk2lc(input) {
 }
 //leancloud 数据结构转 csv 
 function lc2csv(input) {
-  let output = [];
   const field = [
       "id",
       "nick",
       "updatedAt",
       "mail",
       "ua",
+      "ip",
       "status",
       "insertedAt",
       "createdAt",
@@ -105,7 +256,6 @@ function lc2csv(input) {
       "link",
       "url"
   ];
-  output.push(field.join(","));
 
   const keyMaps = {};
   const getId = row => {
@@ -126,30 +276,44 @@ function lc2csv(input) {
     index += 1;
   });
 
-  const [_head, ...body] = input.results;
-  body.forEach(row => {
+  const records = [];
+  input.results.forEach(row => {
     const id = getId(row);
     if(id) {
       row.id = keyMaps[ id ].toString();
     }
-    row.pid = keyMaps[ row.pid ]?.toString();
-    row.rid = keyMaps[ row.rid ]?.toString();
+    row.pid = keyMaps[ row.pid ];
+    row.rid = keyMaps[ row.rid ];
     row.status = "approved";
     
-    let data = field.map(key => {
-      if (key == "insertedAt") {
-        return row[key].iso.replace('T', ' ').replace(/.\d{3}Z$/i, '');
+    const record = {};
+    for(let i = 0; i < field.length; i++) {
+      const key = field[i];
+      switch(key) {
+        case 'insertedAt':
+          record[key] = row[key].iso.replace('T', ' ').replace(/.\d{3}Z$/i, '');
+          break;
+        case 'createdAt':
+        case 'updatedAt':
+          record[key] = row[key].replace('T', ' ').replace(/.\d{3}Z$/i, '');
+          break;
+        case 'rid':
+        case 'pid':
+          record[key] = row[key] || null;
+          break;
+        default:
+          record[key] = row[key] || '';
+          break;
       }
-      if (key === "createdAt" || key === "updatedAt") {
-        return row[key].replace('T', ' ').replace(/.\d{3}Z$/i, '');
-      }
-      return row[key]?.replaceAll('"', '""');
-    });
-
-    output.push('"' + data.join('","') + '"');
+    }
+    records.push(record);
   });
 
-  return output.join("\n");
+  const ret = CSV.serialize({
+    fields: field.map(name => ({id: name, label: name})),
+    records
+  });
+  return ret;
 }
 //leancloud 数据结构转 cloudbase
 function lc2tcb(json) {
@@ -209,7 +373,13 @@ export default {
       }
 
       if(from === 'valine') {
-        val = JSON.parse(val);
+        //适配 LeanCloud 国内版导出非标准 JSON 情况
+        val = val.trim();
+        if(val.match(/},[\r\n]+/)) {
+          val = JSON.parse(val);
+        } else {
+          val = JSON.parse(`{"results":[ ${val.split(/[\r\n]+/).join(',')} ]}`);
+        }
       }
       
       const act = m[from][to];

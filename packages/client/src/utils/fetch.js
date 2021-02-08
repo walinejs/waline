@@ -1,6 +1,6 @@
 export function fetchCount({serverURL, path}) {
   const url = `${serverURL}/comment?type=count&url=${encodeURIComponent(path)}`;
-  return fetch(url).then(resp => resp.text());
+  return fetch(url).then(resp => resp.json());
 }
 
 export function fetchRecent({serverURL, count}) {
@@ -13,13 +13,16 @@ export function fetchList({serverURL, path, page, pageSize}) {
   return fetch(url).then(resp => resp.json());
 }
 
-export function postComment({serverURL, comment}) {
+export function postComment({serverURL, token, comment}) {
   const url = `${serverURL}/comment`;
+  const headers = {'Content-Type': 'application/json'};
+  if(token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
+
   return fetch(url, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
+    headers,
     body: JSON.stringify(comment)
   }).then(resp => resp.json());
 }

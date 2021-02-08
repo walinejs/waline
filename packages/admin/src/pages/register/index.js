@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link, navigate } from '@reach/router';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 export default function() {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const user = useSelector(state => state.user);
   const [error, setError] = useState(false);
@@ -18,24 +20,24 @@ export default function() {
 
     const nick = e.target.nick.value;
     if(!nick || nick.length < 2) {
-      return setError('请输入正确的昵称');
+      return setError(t('nickname illegal'));
     }
     const email = e.target.email.value;
     if(!email) {
-      return setError('请输入邮箱');
+      return setError(t('please input email'));
     }
     const link = e.target.link.value;
     const password = e.target.password.value;
     const passwordAgain = e.target['password-again'].value;
     if(!password || !passwordAgain || passwordAgain !== password) {
-      return setError('两次密码不一致');
+      return setError(t('passwords don\'t match'));
     }
 
     try {
       await dispatch.user.register({display_name: nick, email, url: link, password});
       navigate('/ui/login', {replace: true});
     } catch(e) {
-      setError('注册失败，请稍后再试！');
+      setError(t('register error! try again later'));
     }
   };
 
@@ -57,32 +59,32 @@ export default function() {
       <div className="typecho-login">
         <form method="post" name="login" role="form" onSubmit={onSubmit}>
           <p>
-            <label htmlhtmlFor="nick" className="sr-only">昵称</label>
-            <input type="text" id="nick" name="nick" placeholder="昵称" className="text-l w-100" />
+            <label htmlhtmlFor="nick" className="sr-only">{t('nickname')}</label>
+            <input type="text" id="nick" name="nick" placeholder={t('nickname')} className="text-l w-100" />
           </p>
           <p>
-            <label htmlhtmlFor="email" className="sr-only">邮箱</label>
-            <input type="text" id="email" name="email" placeholder="邮箱" className="text-l w-100" />
+            <label htmlhtmlFor="email" className="sr-only">{t('email')}</label>
+            <input type="text" id="email" name="email" placeholder={t('email')} className="text-l w-100" />
           </p>
           <p>
-            <label htmlhtmlFor="link" className="sr-only">个人网站</label>
-            <input type="text" id="link" name="link" placeholder="个人网站" className="text-l w-100" />
+            <label htmlhtmlFor="link" className="sr-only">{t('website')}</label>
+            <input type="text" id="link" name="link" placeholder={t('website')} className="text-l w-100" />
           </p>
           <p>
-            <label htmlhtmlFor="password" className="sr-only">密码</label>
-            <input type="password" id="password" name="password" className="text-l w-100" placeholder="密码" />
+            <label htmlhtmlFor="password" className="sr-only">{t('password')}</label>
+            <input type="password" id="password" name="password" className="text-l w-100" placeholder={t('password')} />
           </p>
           <p>
-            <label htmlhtmlFor="password-again" className="sr-only">再次输入密码</label>
-            <input type="password" id="password-again" name="password-again" className="text-l w-100" placeholder="密码" />
+            <label htmlhtmlFor="password-again" className="sr-only">{t('password again')}</label>
+            <input type="password" id="password-again" name="password-again" className="text-l w-100" placeholder={t('password again')} />
           </p>
           <p className="submit">
-            <button type="submit" className="btn btn-l w-100 primary">注册</button>
+            <button type="submit" className="btn btn-l w-100 primary">{t('register')}</button>
           </p>
         </form>
 
         <p className="more-link">
-          <Link to="/ui">返回首页</Link> • <Link to="/ui/login">用户登录</Link>
+          <Link to="/ui">{t('back to home')}</Link> • <Link to="/ui/login">{t('register.login')}</Link>
         </p>
       </div>
     </div>

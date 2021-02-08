@@ -1,3 +1,81 @@
+#  (2021-02-08)
+### Features
+
+* **admin:** add i18n support, zh-cn and en-us now ([3f49034](https://github.com/lizheming/waline/commit/3f490344d67f810818eca3b326959454eaa6be43))
+#  (2021-01-13)
+### Bug Fixes
+
+* **client:** fix typo link check start with http ([8759f0f](https://github.com/lizheming/waline/commit/8759f0f736467325ab5a8a4728d22613c4c45405))
+* **vercel:** change github oauth scope to limit access ([19ad4e2](https://github.com/lizheming/waline/commit/19ad4e242af875b13a7f562249c37859a89b36f5))
+* **client:** comment list return comment count to reduce api request times ([ac4fdb9](https://github.com/lizheming/waline/commit/ac4fdb94e55c81d9f245445f299c64de3558a8b2))
+* **vercel:** comment and article count api support multiple url query ([3fc206b](https://github.com/lizheming/waline/commit/3fc206b440095283a8a643db0b29414291b92b63))
+#  (2021-01-10)
+### Features
+
+* **admin:** compat avatar sever return ([9482e83](https://github.com/lizheming/waline/commit/9482e83e7db9438ae8c825ef9264ad9d990a3ccc))
+* **client:** compat avatar server return ([86a0f0a](https://github.com/lizheming/waline/commit/86a0f0a081d7afda1bbced0ced6186dd295252ae))
+* **vercel:** add avatar return support ([1ab3c9f](https://github.com/lizheming/waline/commit/1ab3c9fd08dbdd3b9f6398059fae09b6791632c9))
+
+
+#  (2021-01-09)
+### Bug Fixes
+
+* **vercel:** fix a serie of bugs when github oauth return email empty 
+* **doc:** add user_id, github, avatar field for sqlite ([f027784](https://github.com/lizheming/waline/commit/f027784e8b0b87e49c5f995bd8f28aa16747e6e0))
+* **vercel:** optimize docker build image ([#131](https://github.com/lizheming/waline/pull/131))
+#  (2021-01-08)
+### Features
+
+* add github social login ([050f6be](https://github.com/lizheming/waline/commit/050f6beab69cccd239e0510834156265a5682671))
+#  (2021-01-05)
+### Bug Fixes
+
+* **client:** compat serverURL end with slash fix [#122](https://github.com/lizheming/waline/issues/122) ([196a959](https://github.com/lizheming/waline/commit/196a9591e0106f611296677cb1555a88519bf4bb))
+#  (2021-01-04)
+
+### Bug Fixes
+
+* **vercel:** add sender_email env to custom mail from ([e5e9af8](https://github.com/lizheming/waline/commit/e5e9af8f7b27930c5fde5e6838153fc78f32816a), closes [#120](https://github.com/lizheming/waline/issues/120)
+* **admin:** fix recursive login bug ([8ad1fde](https://github.com/lizheming/waline/commit/8ad1fde5d4cdd367c764c30dd59e514995306a09), closes [#121](https://github.com/lizheming/waline/issues/121))
+#  (2021-01-03)
+### Features
+
+* **admin:** add profile setting page for dashboard and client ([aaf7836](https://github.com/lizheming/waline/commit/aaf783668b0fc046f797d509ddaddba26f37b7ab))
+* **client:** add admin comment badge for client ([#118](https://github.com/lizheming/waline/pull/118)), closes [#115](https://github.com/lizheming/waline/issues/115)) 
+### Bug Fixes
+
+* **client:** fix post comment fail when token empty ([c8c7792](https://github.com/lizheming/waline/commit/c8c779252d3ea8b20ecd2b29343b488d5576924e)), closes [#113](https://github.com/lizheming/waline/issues/113))
+#  (2021-01-02)
+### Features
+
+* add client login support ([#109](https://github.com/lizheming/waline/pull/109))
+* Add `MAIL_SUBJECT_ADMIN` and `MAIL_TEMPLATE_ADMIN` config variable ([7f81112](https://github.com/lizheming/waline/commit/7f81112d67beff258c169800d6f713edf9d68ea4))
+#  (2021-01-01)
+
+### Features
+
+* **doc:** Migration tool add disqus support ([9b965ed](https://github.com/lizheming/waline/commit/9b965edede35ab67471d7b7fd72f601d47512a52))
+
+### Bug Fixed
+
+* **vercel:** compat with empty ua ([f39d777](https://github.com/lizheming/waline/commit/f39d7775b0a047c2e89dc2c1f43e05e846c9f634))
+#  (2020-12-26)
+### Features
+
+* **vercel:** add COMMENT_AUDIT env to audit comment before approved ([#94](https://github.com/lizheming/waline/pull/94))
+#  (2020-12-24)
+### Features
+
+* **vercel:** QQ notification support ([10d08af](https://github.com/lizheming/waline/commit/10d08affdbb5f86a4b724abbaa8e7d2a272979dd))
+
+#  (2020-12-22)
+### Features
+
+* **doc:** add artalk migration support ([a4548a9](https://github.com/lizheming/waline/commit/a4548a9de66d8ea49d93de29d4a65a269d8cc292)), closes [#81](https://github.com/lizheming/waline/issues/81)
+### Bug Fixes
+
+* **doc:** migration tool compat leancloud cn output file ([1f25902](https://github.com/lizheming/waline/commit/1f2590200b2c14da665ed14a078cf59a885284d6))
+* **doc:** fix csv migration miss first line data bug ([3f7c3b3](https://github.com/lizheming/waline/commit/3f7c3b36eb8d104908bffc8593bb4ec78ed0bff6))
 #  (2020-12-21)
 ### Bug Fixes
 

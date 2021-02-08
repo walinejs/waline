@@ -1,16 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { Link, navigate } from '@reach/router';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+
+import * as Icons from '../../components/icon';
 
 export default function() {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const user = useSelector(state => state.user);
   const [error, setError] = useState(false);
+  const match = location.pathname.match(/(.*?)\/ui/);
+  const basepath = match ? match[1] : '/';
+
   useEffect(() => {
     if(user && user.email) {
-      navigate('/ui', {replace: true});
+      const query = new URLSearchParams(location.search);
+      const redirect = query.get('redirect') || (user.type !== 'administrator' ? 'ui/profile' : 'ui');
+
+      navigate(basepath + redirect, {replace: true});
     }
-  }, []);
+  }, [user]);
 
   const onSubmit = async function(e) {
     e.preventDefault();
@@ -20,19 +30,25 @@ export default function() {
     const password = e.target.password.value;
     const remember = e.target.remember.checked;
     if(!email) {
-      return setError('请输入邮箱');
+      return setError(t('please input email'));
     }
     if(!password) {
-      return setError('请输入密码');
+      return setError(t('please input password'));
     }
 
     try {
       await dispatch.user.login({email, password, remember});
       navigate('/ui', {replace: true});
     } catch(e) {
-      setError('账号密码错误');
+      setError(t('email or password error'));
     }
   };
+
+  let baseUrl = globalThis.serverURL;
+  if(!baseUrl) {
+    const match = location.pathname.match(/(.*?\/)ui/);
+    baseUrl = match ? match[1] : '/';
+  }
 
   return (
     <>
@@ -53,25 +69,32 @@ export default function() {
         {/* <h1><a href="http://waline.js.org" className="i-logo">Waline</a></h1> */}
         <form method="post" name="login" role="form" onSubmit={onSubmit}>
           <p>
-            <label htmlFor="email" className="sr-only">邮箱</label>
-            <input type="text" id="email" name="email" placeholder="邮箱" className="text-l w-100" />
+            <label htmlFor="email" className="sr-only">{t('email')}</label>
+            <input type="text" id="email" name="email" placeholder={t('email')} className="text-l w-100" />
           </p>
           <p>
-            <label htmlFor="password" className="sr-only">密码</label>
-            <input type="password" id="password" name="password" className="text-l w-100" placeholder="密码" />
+            <label htmlFor="password" className="sr-only">{t('password')}</label>
+            <input type="password" id="password" name="password" className="text-l w-100" placeholder={t('password')} />
           </p>
           <p className="submit">
-            <button type="submit" className="btn btn-l w-100 primary">登录</button>
+            <button type="submit" className="btn btn-l w-100 primary">{t('login')}</button>
           </p>
           <p>
             <label htmlFor="remember">
-              <input type="checkbox" name="remember" className="checkbox" id="remember"/> 下次自动登录
+              <input type="checkbox" name="remember" className="checkbox" id="remember"/> {t('remember me')}
             </label>
           </p>
         </form>
+        <div className="social-accounts">
+          {(globalThis.ALLOW_SOCIALS || []).map(social => (
+            <a key={social} href={`${baseUrl}oauth/${social}?redirect=${basepath}ui/profile`}>
+              {React.createElement(Icons[social])}
+            </a>
+          ))}
+        </div>
 
         <p className="more-link">
-          <Link to="/ui">返回首页</Link> • <Link to="/ui/register">用户注册</Link>
+          <Link to="/ui">{t('back to home')}</Link> • <Link to="/ui/register">{t('register')}</Link>
         </p>
       </div>
     </div>

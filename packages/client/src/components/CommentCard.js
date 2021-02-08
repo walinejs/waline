@@ -20,15 +20,23 @@ export default function CommentCard({comment, boxConfig, rootId, onSubmit}) {
     e.target.setAttribute('rel', 'noreferrer noopener');
   }
 
+  let link = comment.link;
+  if(link && !/^https?:\/\//i.test(link)) {
+    link = 'http://' + link;
+  }
+  
   return (
     <div className="vcard" id={comment.objectId}>
       <img 
         className="vimg" 
-        src={ctx.gravatarSetting.cdn + comment.mail + ctx.gravatarSetting.params} 
+        src={comment.avatar || ctx.gravatarSetting.cdn + comment.mail + ctx.gravatarSetting.params} 
       />
       <div className="vh">
         <div className="vhead">
-          <a className="vnick" rel="nofollow" href={comment.link} target="_blank">{comment.nick}</a>
+          <a className="vnick" rel="nofollow" href={link} target="_blank">{comment.nick}</a>
+          {comment.type === 'administrator' ? (
+            <span className="vmark" data-type={comment.type}>{ctx.locale.admin}</span>
+          ) : null}
           <span className="vsys">{comment.browser}</span>
           <span className="vsys">{comment.os}</span>
         </div>

@@ -3,12 +3,27 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import { store } from './store';
 
+import './i18n';
+
 import './style/normalize.css';
 import './style/grid.css';
 import './style/style.css';
 import './style/custom.css';
 
 async function run() {
+  await Promise.race([
+    new Promise(resolve => setTimeout(resolve, 50)),
+    new Promise(resolve => {
+      window.addEventListener('message', data => {
+        data && data.type === 'TOKEN' && data.data && resolve(data);
+      })
+    })
+  ]).then(token => {
+    if(token) {
+      globalThis.TOKEN = token;
+    }
+  });
+
   await Promise.all([
     store.dispatch({ type: 'user/loadUserInfo' }),
   ]).catch(e => {

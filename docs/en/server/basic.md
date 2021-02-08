@@ -6,15 +6,16 @@ Mose configuration for backend can be cofigured in environment variable, which c
 
 | Environment Variable | Required | Description                                                                 |
 | -------------------- | -------- | --------------------------------------------------------------------------- |
-| `LEAN_ID`            | √        | LeanCloud Application ID                                                    |
-| `LEAN_KEY`           | √        | LeanCloud Application Key                                                   |
-| `LEAN_MASTER_KEY`    | √        | LeanCloud Application Master Key                                            |
+| `LEAN_ID`            | ✓        | LeanCloud Application ID                                                    |
+| `LEAN_KEY`           | ✓        | LeanCloud Application Key                                                   |
+| `LEAN_MASTER_KEY`    | ✓        | LeanCloud Application Master Key                                            |
 | `LEAN_SERVER`        |          | LeanCloud server address if you're leancloud china user                     |
 | `SITE_NAME`          |          | site name                                                                   |
 | `SITE_URL`           |          | site url                                                                    |
 | `SECURE_DOMAINS`     |          | Secure Domains configuration. Supports multiple domain with Comma separated |
 | `DISABLE_USERAGENT` | | wether hide the user agent of commentor. Default value is `false` |
-| `AKISMET_KEY` | | Akismet anispam service key |
+| `AKISMET_KEY` | | Akismet antispam service key, default is open, set `false` if you wanna close it. |
+| `COMMENT_AUDIT` | | Comment audit switcher. We recommend to tip on the placeholder text if it's true. |
 
 In addition to the above environment variables, different functions will also have many environment variable configurations, which can be viewed in the function items corresponding to the progress in the left column.
 

@@ -3,6 +3,7 @@ CREATE SEQUENCE wl_comment_seq;
 
 CREATE TABLE wl_comment (
   id int check (id > 0) NOT NULL DEFAULT NEXTVAL ('wl_comment_seq'),
+  user_id int DEFAULT NULL,
   comment text,
   insertedAt timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP,
   ip varchar(100) DEFAULT '',
@@ -41,6 +42,8 @@ CREATE TABLE wl_users (
   password varchar(255) NOT NULL DEFAULT '',
   type varchar(50) NOT NULL DEFAULT '',
   url varchar(255) DEFAULT NULL,
+  avatar varchar(255) DEFAULT NULL,
+  github varchar(255) DEFAULT NULL,
   createdAt timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP,
   updatedAt timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id)

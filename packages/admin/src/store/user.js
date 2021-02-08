@@ -1,5 +1,6 @@
 import { createModel } from '@rematch/core';
 import { getUserInfo, login, logout, register } from '../services/auth';
+import { updateProfile } from '../services/user';
 
 export const user = createModel({
   state: null,
@@ -7,12 +8,23 @@ export const user = createModel({
     setUser(_, user) {
       return user;
     },
+    updateUser(state, data) {
+      return {...state, ...data};
+    }
   },
   effects: dispatch => ({
     async loadUserInfo() {
       const user = await getUserInfo();
       if(!user) {
         return;
+      }
+      if(window.opener) {
+        const qs = new URLSearchParams(location.search);
+        let token = globalThis.TOKEN || sessionStorage.getItem('TOKEN') || qs.get('token');
+        if(!token) {
+          token = localStorage.getItem('TOKEN');
+        }
+        window.opener.postMessage({type: 'userInfo', data: {token, ...user}}, '*');
       }
       return dispatch.user.setUser(user);
     },
@@ -24,6 +36,9 @@ export const user = createModel({
         if(remember) {
           localStorage.setItem('TOKEN', token);
         }
+        if(window.opener) {
+          window.opener.postMessage({type: 'userInfo', data: {token, remember, ...user}}, '*');
+        }
       }
       return dispatch.user.setUser(user);
     },
@@ -33,6 +48,14 @@ export const user = createModel({
     },
     register(user) {
       return register(user);
+    },
+    async updateProfile(data) {
+      await updateProfile(data);
+
+      if(window.opener) {
+        window.opener.postMessage({type: 'profile', data}, '*');
+      }
+      return dispatch.user.updateUser(data);
     }
   }),
 })

@@ -53,7 +53,7 @@ Waline 的服务端地址。
 - `robohash`
 - `hide` 
 
-更多信息，请查看[头像配置](/avatar.html)。
+更多信息，请查看[头像配置](/client/avatar.html)。
 
 ## meta
 - 类型:`Array`
@@ -99,6 +99,12 @@ Waline 的服务端地址。
 
 `代码高亮`，默认开启，若不需要，请手动关闭
 
+## avatarCDN
+- 类型: `String`
+- 默认值: `https://gravatar.loli.net/avatar/`
+- 必要性: `false`
+
+设置 Gravatar 头像 CDN 地址。
 ## avatarForce
 - 类型: `Boolean`
 - 默认值: `false`
@@ -138,3 +144,11 @@ Waline 的服务端地址。
 - 必要性: `false`
 
 自定义图片上传方法，方便更好的存储图片。方法执行时会将图片对象传入。
+
+## anonymous
+
+- 类型：`Boolean`
+- 默认值：` `
+- 必要性：`false`
+
+是否允许登录评论。默认情况是两者都支持，设置为 `true` 表示仅支持匿名评论，`false` 表示仅支持登录评论。

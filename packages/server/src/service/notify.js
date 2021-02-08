@@ -30,7 +30,7 @@ module.exports = class extends think.Service {
       return;
     }
 
-    const {SITE_NAME, SITE_URL, SMTP_USER} = process.env;
+    const {SITE_NAME, SITE_URL, SMTP_USER, SENDER_EMAIL, SENDER_NAME} = process.env;
     const data = {
       self, 
       parent, 
@@ -44,7 +44,7 @@ module.exports = class extends think.Service {
     content = nunjucks.renderString(content, data);
 
     return this.transporter.sendMail({
-      from: SMTP_USER,
+      from: SENDER_EMAIL && SENDER_NAME ? `"${SENDER_NAME}" <${SENDER_EMAIL}>` : SMTP_USER,
       to, 
       subject: title, 
       html: content
@@ -79,24 +79,22 @@ module.exports = class extends think.Service {
       json: true
     });
   }
-  
-  async telegram(self, parent) {
-    const contentTG = `
-💬 *[{{site.name}}]({{site.url}}) 上有新评论啦*
 
-*{{self.nick}}* 回复说：
-
-{{self.rawComment}}
-
-您可以点击[查看回复的完整內容]({{site.postUrl}})`;
-
-    const {TG_BOT_TOKEN, TG_CHAT_ID, SITE_NAME, SITE_URL} = process.env;
-    if(!TG_BOT_TOKEN || !TG_CHAT_ID) {
+  async qq(self, parent) {
+    const {QMSG_KEY, QQ_ID, SITE_NAME, SITE_URL} = process.env;
+    if (!QMSG_KEY) {
       return false;
     }
 
+    const comment = self.comment
+      .replace(/<a href="(.*?)">(.*?)<\/a>/g, "\n[$2] $1\n")
+      .replace(/<[^>]+>/g, '');
+    
     const data = {
-      self, 
+      self: {
+        ...self,
+        comment
+      }, 
       parent, 
       site: {
         name: SITE_NAME, 
@@ -104,13 +102,79 @@ module.exports = class extends think.Service {
         postUrl: SITE_URL + self.url + '#' + self.objectId
       }
     };
-    contentTG = nunjucks.renderString(contentTG, data);
+
+    const contentQQ = `💬 {{site.name|safe}} 有新评论啦
+      {{self.nick}} 评论道：
+      {{self.comment}}
+      邮箱：{{self.mail}}
+      状态：{{self.status}} 
+      仅供评论预览，查看完整內容：
+      {{site.postUrl}}`;
+
+    return request({
+      uri: `https://qmsg.zendee.cn/send/${QMSG_KEY}`,
+      method: 'POST',
+      form: {
+        msg: nunjucks.renderString(contentQQ, data),
+        qq: QQ_ID
+      }
+    });
+  }
+
+  async telegram(self, parent) {
+    let commentLink = '';
+    const href = self.comment.match(/<a href="(.*?)">(.*?)<\/a>/g);
+    if (href !== null) {
+      for (var i = 0; i < href.length; i++) {
+        href[i] = '[Link: ' + href[i].replace(/<a href="(.*?)">(.*?)<\/a>/g, "$2") + '](' + href[i].replace(/<a href="(.*?)">(.*?)<\/a>/g, "$1") + ')  ';
+        commentLink = commentLink + href[i];
+      }
+    }
+    if (commentLink !== '') {
+      commentLink = `\n` + commentLink + `\n`;
+    }
+    const comment = self.comment
+      .replace(/<a href="(.*?)">(.*?)<\/a>/g, '\[Link:$2\]')
+      .replace(/<[^>]+>/g, '');
+
+    const contentTG = `
+💬 *[{{site.name}}]({{site.url}}) 有新评论啦*
+
+*{{self.nick}}* 回复说：
+
+\`\`\`
+{{self.comment-}}
+\`\`\`
+{{-self.commentLink}}
+*邮箱：*\`{{self.mail}}\`
+*审核：*{{self.status}} 
+
+仅供评论预览，点击[查看完整內容]({{site.postUrl}})`;
+
+    const {TG_BOT_TOKEN, TG_CHAT_ID, SITE_NAME, SITE_URL} = process.env;
+    if(!TG_BOT_TOKEN || !TG_CHAT_ID) {
+      return false;
+    }
+
+    const data = {
+      self: {
+        ...self,
+        comment,
+        commentLink
+      }, 
+      parent, 
+      site: {
+        name: SITE_NAME, 
+        url: SITE_URL,
+        postUrl: SITE_URL + self.url + '#' + self.objectId
+      }
+    };
 
     return request({
       uri: `https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`,
       method: 'POST',
       form: {
-        text: contentTG,
+        text: nunjucks.renderString(contentTG, data),
         chat_id: TG_CHAT_ID,
         parse_mode: 'MarkdownV2'
       },
@@ -118,7 +182,7 @@ module.exports = class extends think.Service {
     });
   }
   
-  async run(comment, parent) {
+  async run(comment, parent, disableAuthorNotify = false) {
     const {AUTHOR_EMAIL, BLOGGER_EMAIL} = process.env;
     const AUTHOR = AUTHOR_EMAIL || BLOGGER_EMAIL;
     
@@ -140,22 +204,18 @@ module.exports = class extends think.Service {
       <br/>
     </div>`;
 
-    
-    let wechatNotify = false;
-    if(!isAuthorComment) {
-      wechatNotify = await this.wechat({title, content}, comment, parent);
+    if(!isAuthorComment && !disableAuthorNotify) {
+      const wechat = await this.wechat({title, content}, comment, parent);
+      const qq = await this.qq(comment, parent);
+      const telegram = await this.telegram(comment, parent);
+      if(think.isEmpty(wechat) && think.isEmpty(qq) && think.isEmpty(telegram) && !isReplyAuthor) {
+        mailList.push({to: AUTHOR, title, content});
+      }
     }
 
-    let telegramNotify = false;
-    if(!isAuthorComment) {
-      telegramNotify = await this.telegram(comment, parent);
-    }
-
-    if(!isAuthorComment && !isReplyAuthor && (think.isEmpty(wechatNotify) || think.isEmpty(telegramNotify)) ) {
-      mailList.push({to: AUTHOR, title, content});
-    }
-
-    if(parent) {
+    const disallowList = ['github'].map(social => 'mail.' + social);
+    const fakeMail = new RegExp(`@(${disallowList.join('|')})$`, 'i');
+    if(parent && !fakeMail.test(parent.mail) && comment.status !== 'waiting') {
       mailList.push({
         to: parent.mail,
         title: process.env.MAIL_SUBJECT || '{{parent.nick}}，『{{site.name}}』上的评论收到了回复',

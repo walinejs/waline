@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const helper = require('think-helper');
 const { PasswordHash } = require('phpass');
 const BaseRest = require('./rest');
 
@@ -24,9 +25,16 @@ module.exports = class extends BaseRest {
       return this.fail();
     }
 
+    let avatar = user[0].avatar;
+    if(/(github)/i.test(avatar)) {
+      avatar = this.config('avatarProxy') + '?url=' + encodeURIComponent(avatar);
+    }
+    user[0].avatar = avatar;
+    
     return this.success({
       ...user[0], 
       password: null,
+      mailMd5: helper.md5(user[0].email),
       token: jwt.sign(user[0].email, this.config('jwtKey'))
     });
   }

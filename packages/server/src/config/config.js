@@ -13,14 +13,14 @@ const {
   TENCENTCLOUD_SECRETKEY,
   TCB_KEY,
   SECURE_DOMAINS,
-  DISABLE_USERAGENT
+  DISABLE_USERAGENT,
+  AVATAR_PROXY
 } = process.env;
 
 let storage = 'leancloud';
 let jwtKey = JWT_TOKEN || LEAN_KEY;
-if(think.env === 'cloudbase' || TCB_ENV) {
-  storage = 'cloudbase';
-  jwtKey = jwtKey || TENCENTCLOUD_SECRETKEY || TCB_KEY || TCB_ENV;
+if (LEAN_KEY) {
+  storage = 'leancloud';
 } else if (MONGO_DB) {
   storage = 'mongodb';
   jwtKey = jwtKey || MONGO_PASSWORD;
@@ -32,6 +32,9 @@ if(think.env === 'cloudbase' || TCB_ENV) {
 } else if(MYSQL_DB) {
   storage = 'mysql';
   jwtKey = jwtKey || MYSQL_PASSWORD;
+} else if(think.env === 'cloudbase' || TCB_ENV) {
+  storage = 'cloudbase';
+  jwtKey = jwtKey || TENCENTCLOUD_SECRETKEY || TCB_KEY || TCB_ENV;
 }
 
 if(think.env === 'cloudbase' && storage === 'sqlite') {
@@ -50,5 +53,6 @@ module.exports = {
   forbiddenWords,
   disallowIPList: [],
   secureDomains: SECURE_DOMAINS ? SECURE_DOMAINS.split(/\s*,\s*/) : undefined,
-  disableUserAgent: DISABLE_USERAGENT && !['0', 'false'].includes(DISABLE_USERAGENT.toLowerCase())
+  disableUserAgent: DISABLE_USERAGENT && !['0', 'false'].includes(DISABLE_USERAGENT.toLowerCase()),
+  avatarProxy: AVATAR_PROXY || 'https://avatar.75cdn.workers.dev/'
 };

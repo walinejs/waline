@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const helper = require('think-helper');
 
 module.exports = class extends think.Logic {
   constructor(...args) {
@@ -11,7 +12,7 @@ module.exports = class extends think.Logic {
     let { secureDomains } = this.config();
     if(secureDomains && referrer && this.ctx.host.indexOf(referrer) !== 0) {
       secureDomains = think.isArray(secureDomains) ? secureDomains : [secureDomains];
-      secureDomains.push('localhost', '127.0.0.1');
+      secureDomains.push('localhost', '127.0.0.1', 'github.com');
 
       const match = secureDomains.some(domain => 
         think.isFunction(domain.test) ? domain.test(referrer) : domain === referrer
@@ -23,10 +24,11 @@ module.exports = class extends think.Logic {
 
     this.ctx.state.userInfo = {};
     const {authorization} = this.ctx.req.headers;
-    if(!authorization) {
+    const {state} = this.get();
+    if(!authorization && !state) {
       return;
     }
-    const token = authorization.replace(/^Bearer /, '');
+    const token = state || authorization.replace(/^Bearer /, '');
     const userMail = jwt.verify(token, think.config('jwtKey'));
     if(think.isEmpty(userMail) || !think.isString(userMail)) {
       return;
@@ -34,10 +36,15 @@ module.exports = class extends think.Logic {
   
     const user = await this.modelInstance.select(
       {email: userMail},
-      {field: ['email', 'display_name', 'type']}
+      {field: ['email', 'url', 'display_name', 'type', 'github', 'avatar']}
     );
     if(!think.isEmpty(user)) {
-      this.ctx.state.userInfo = user[0];
+      const userInfo = user[0];
+      userInfo.mailMd5 = helper.md5(userInfo.email);
+      if(/(github)/i.test(userInfo.avatar)) {
+        userInfo.avatar = this.config('avatarProxy') + '?url=' + encodeURIComponent(userInfo.avatar);
+      }
+      this.ctx.state.userInfo = userInfo;
     }
   }
 }

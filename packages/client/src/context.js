@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import locales from './i18n';
 
 const emojiCDN = 'https://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/';
@@ -88,7 +88,11 @@ export const ConfigContext = React.createContext({
   locale: {},
   emojiCDN,
   emojiMaps,
-  gravatarSetting
+	gravatarSetting,
+	userInfo: {
+		nick: '',
+		mail: ''
+	}
 });
 
 export default function Context(props) {
@@ -102,9 +106,17 @@ export default function Context(props) {
 		}
 	}
 
+	let initUser = {};
+	try {
+		const KEY = 'WALINE_USER';
+		initUser = JSON.parse(localStorage.getItem(KEY) || sessionStorage.getItem(KEY)) || {};
+	} catch(e) {}
+	const [userInfo, setUserInfo] = useState(initUser);
+
   const context = {
     locales,
-    locale,
+		locale,
+		lang: props.lang,
     emojiCDN: props.emojiCDN || emojiCDN,
     emojiMaps: props.emojiMaps || emojiMaps,
     gravatarSetting: {
@@ -120,7 +132,10 @@ export default function Context(props) {
         method: 'POST',
         body: formData
       }).then(resp => resp.json()).then(resp => resp.data.url);
-    }
+		},
+		userInfo,
+		setUserInfo,
+		anonymous: props.anonymous
   };
 
   return (

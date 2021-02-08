@@ -6,16 +6,17 @@
 
 | 环境变量名称      | 必填 | 备注                                                          |
 | ----------------- | ---- | ------------------------------------------------------------- |
-| `LEAN_ID`         | √    | LeanCloud 应用的 App ID                                       |
-| `LEAN_KEY`        | √    | LeanCloud 应用的 App Key                                      |
-| `LEAN_MASTER_KEY` | √    | LeanCloud 应用的 Master Key 用于后台修改数据                  |
+| `LEAN_ID`         | ✓    | LeanCloud 应用的 App ID                                       |
+| `LEAN_KEY`        | ✓    | LeanCloud 应用的 App Key                                      |
+| `LEAN_MASTER_KEY` | ✓    | LeanCloud 应用的 Master Key 用于后台修改数据                  |
 | `LEAN_SERVER`     |      | LeanCloud 服务地址，国内版用户需要配置此项                    |
 | `SITE_NAME`       |      | 博客名称                                                      |
 | `SITE_URL`        |      | 博客地址                                                      |
 | `IPQPS`           |      | 基于IP的评论发布频率限制，单位为秒。默认为60秒，设置为0不限制 |
 | `SECURE_DOMAINS`  |      | 安全域名配置，支持逗号分隔配置多个域名                        |
 | `DISABLE_USERAGENT` | | 是否隐藏评论者的 UA，默认为否 |
-| `AKISMET_KEY` | | Akismet 反垃圾评论服务 Key |
+| `AKISMET_KEY` | | Akismet 反垃圾评论服务 Key（默认开启，不用请设置为false） |
+| `COMMENT_AUDIT` | | 评论发布审核开关，配置后建议在 Placehoder 上提供文案提示 |
 
 除了以上这些环境变量之外，不同的功能也会有很多环境变量配置，具体可在左侧列进度对应的功能项进行查看。
 
@@ -36,7 +37,8 @@ module.exports = Waline({
 });
 ```
 
-> 为了方便本地开发，`localhost` 和 `127.0.0.1` 会被默认添加到安全域名列表中。当存在该配置时，环境变量 `SECURE_DOMAINS` 不生效。
+> 为了方便本地开发，`localhost` 和 `127.0.0.1` 会被默认添加到安全域名列表中。当存在该配置时，环境变量 `SECURE_DOMAINS` 不生效。  
+> 腾讯云开发需要同时在 `环境 -> 安全配置 -> WEB 安全域名` 中配置安全域名
 
 ### forbiddenWords
 

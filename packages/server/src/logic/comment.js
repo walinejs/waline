@@ -33,7 +33,7 @@ module.exports = class extends Base {
       case 'count':
         this.rules = {
           url: {
-            string: true,
+            array: true,
             required: true
           }
         };

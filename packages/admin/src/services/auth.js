@@ -3,7 +3,7 @@ import request from '../utils/request';
 export async function getUserInfo() {
   return request('token').catch(_ => {
     logout();
-    Promise.reject(new Error('获取用户信息失败'));
+    Promise.reject(new Error(t('get userinfo failed')));
   });
 }
 

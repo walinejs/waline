@@ -45,7 +45,7 @@
 ```html
 <head>
   ..
-  <script src='//unpkg.com/@waline/client/dist/Waline.min.js'></script>
+  <script src='//cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js'></script>
   ...
 </head>
 <body>

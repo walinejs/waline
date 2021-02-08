@@ -24,4 +24,29 @@ module.exports = class extends BaseRest {
     await this.modelInstance.add(data);
     return this.success();
   }
+
+  async putAction() {
+    const {display_name, url, password, github} = this.post();
+    const {objectId} = this.ctx.state.userInfo;
+    
+    const updateData = {};
+    if(display_name) {
+      updateData.display_name = display_name;
+    }
+    if(url) {
+      updateData.url = url;
+    }
+    if(password) {
+      updateData.password = (new PasswordHash()).hashPassword(password);
+    }
+    if(think.isString(github)) {
+      updateData.github = github;
+    }
+    if(think.isEmpty(updateData)) {
+      return this.success();
+    }
+    
+    await this.modelInstance.update(updateData, {objectId});
+    return this.success();
+  }
 }

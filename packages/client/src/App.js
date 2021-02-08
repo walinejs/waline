@@ -12,11 +12,11 @@ function App({boxConfig, listConfig, copyRight}) {
   }, {page: 1, totalPages: 0, count: 0, loading: true, data: []});
 
   useEffect(() => {
-    fetchCount(listConfig).then(count => dispatch({count}));
     fetchList({...listConfig, page}).then(resp => dispatch({
       totalPages: resp.totalPages,
       loading: false,
-      data: data.concat(resp.data)
+      data: data.concat(resp.data),
+      count: resp.count,
     })).catch(_ => dispatch({loading: false}));
   }, []);
 
