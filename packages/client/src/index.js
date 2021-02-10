@@ -9,8 +9,7 @@ import './index.css';
 import './recent.css';
 import './math.css';
 
-export default function Waline({
-  el, 
+export function ReactComponent({
   placeholder = "Just Go Go.", 
   path = location.pathname, 
   avatar, 
@@ -26,9 +25,36 @@ export default function Waline({
   emojiMaps,
   requiredFields = [],
   copyRight = true,
-  visitor = false,
   uploadImage,
   anonymous
+} = {}) {
+  return (
+    <Context 
+      anonymous={anonymous}
+      lang={lang} 
+      langMode={langMode}
+      emojiCDN={emojiCDN} 
+      emojiMaps={emojiMaps}
+      avatar={avatar}
+      avatarCDN={avatarCDN}
+      avatarFore={avatarForce}
+      uploadImage={uploadImage}
+    >
+      <App 
+        boxConfig={{serverURL, placeholder, meta, highlight, requiredFields, path}}
+        listConfig={{path, pageSize, serverURL, avatar}}
+        copyRight={copyRight}
+      />
+    </Context>
+  )
+}
+
+export default function Waline({
+  el,
+  path = location.pathname,
+  serverURL,
+  visitor = false,
+  ...props
 } = {}) {
   try {
     path = decodeURI(path);
@@ -81,32 +107,20 @@ export default function Waline({
   if(!root) {
     return;
   }
+
+  props.path = path;
+  props.serverURL = serverURL;
   ReactDOM.render(
     <React.StrictMode>
-      <Context 
-        anonymous={anonymous}
-        lang={lang} 
-        langMode={langMode}
-        emojiCDN={emojiCDN} 
-        emojiMaps={emojiMaps}
-        avatar={avatar}
-        avatarCDN={avatarCDN}
-        avatarFore={avatarForce}
-        uploadImage={uploadImage}
-      >
-        <App 
-          boxConfig={{serverURL, placeholder, meta, highlight, requiredFields, path}}
-          listConfig={{path, pageSize, serverURL, avatar}}
-          copyRight={copyRight}
-        />
-      </Context>
+      <ReactComponent {...props} />
     </React.StrictMode>,
     root
   );
 };
 
-Waline.version = VERSION;
-Waline.Widget = {
+ReactComponent.version = Waline.version = VERSION;
+
+ReactComponent.Widget = Waline.Widget = {
   RecentComments({el, serverURL, count}) {
     //评论列表展示
     const root = document.querySelector(el);
