@@ -14,7 +14,8 @@ const {
   TCB_KEY,
   SECURE_DOMAINS,
   DISABLE_USERAGENT,
-  AVATAR_PROXY
+  AVATAR_PROXY,
+  GITHUB_TOKEN
 } = process.env;
 
 let storage = 'leancloud';
@@ -32,6 +33,9 @@ if (LEAN_KEY) {
 } else if(MYSQL_DB) {
   storage = 'mysql';
   jwtKey = jwtKey || MYSQL_PASSWORD;
+} else if(GITHUB_TOKEN) {
+  storage = 'github';
+  jwtKey = jwtKey || GITHUB_TOKEN;
 } else if(think.env === 'cloudbase' || TCB_ENV) {
   storage = 'cloudbase';
   jwtKey = jwtKey || TENCENTCLOUD_SECRETKEY || TCB_KEY || TCB_ENV;
