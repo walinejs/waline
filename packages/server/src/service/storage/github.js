@@ -102,6 +102,10 @@ module.exports = class extends Base {
 
     const filters = [];
     for(let k in where) {
+      if(k === 'objectId') {
+        filters.push(item => item.id === where[k]);
+        continue;
+      }
       if(think.isString(where[k])) {
         filters.push(item => item[k] === where[k]);
         continue;
@@ -162,7 +166,7 @@ module.exports = class extends Base {
 
     data = data.slice(limit || 0, offset || data.length);
     if(field) {
-      field.push('objectId');
+      field.push('id');
       const fieldObj = {};
       field.forEach(f => (fieldObj[f] = true));
       data = data.map(item => {
@@ -176,7 +180,7 @@ module.exports = class extends Base {
       });
     }
 
-    return data;
+    return data.map(({id, ...cmt}) => ({...cmt, objectId: id}));
   }
 
   async count(where = {}, options = {}) {
@@ -189,10 +193,11 @@ module.exports = class extends Base {
     access: {read = true, write = true} = {read: true, write: true}
   } = {}) {
     const instance = await this.collection(this.tableName);
-    data.objectId = Math.random().toString(36).substr(2, 15);
-    instance.push(data);
+    const id = Math.random().toString(36).substr(2, 15);
+
+    instance.push({...data, id});
     await this.save(this.tableName, instance, instance.sha);
-    return data;
+    return {...data, objectId: id};
   }
 
   async update(data, where) {
@@ -216,8 +221,8 @@ module.exports = class extends Base {
   async delete(where) {
     const instance = await this.collection(this.tableName);
     const deleteData = this.where(instance, where);
-    const deleteId = deleteData.map(({objectId}) => objectId);
-    const data = instance.filter(data => !deleteId.includes(data.objectId));
+    const deleteId = deleteData.map(({id}) => id);
+    const data = instance.filter(data => !deleteId.includes(data.id));
     await this.save(this.tableName, data, instance.sha);
   }
 }
