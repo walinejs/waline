@@ -79,6 +79,15 @@ MONGO_OPT_SSL=true
 | `TCB_ID` |✓| | 腾讯云 API 密钥 ID，[在此](https://console.cloud.tencent.com/cam/capi)获取 |
 | `TCB_KEY` | ✓ | | 腾讯云 API 密钥 Key，[在此](https://console.cloud.tencent.com/cam/capi)获取 |
 | `JWT_TOKEN` | | | 用户登录密钥，如果没有配任何环境变量的话需要配置此变量，随机字符串即可 |
+## Github
+
+Waline 支持将评论数据以 CSV 文件的格式存储在 Github 仓库中。使用 Github 作为数据存储需要申请 Personal access tokens，可在 <https://github.com/settings/tokens> 这里点击 <kbd>Generate new token</kbd> 进行申请，下方权限选项中勾选上 **repo** 选项，用于获得仓库的读写权限。
+
+| 环境变量名称 | 必填 | 默认值 | 备注 |
+|------------|---------|------|------|
+| GITHUB_TOKEN | ✓ | | [Personal access tokens](https://github.com/settings/tokens) |
+| GITHUB_REPO | ✓ | | 仓库名称，例如 `lizheming/waline` |
+| GITHUB_PATH | | | 数据存储目录，例如 `data` 表示存储在 `data` 目录下，默认存在仓库根目录下 |
 ## 自定义
 
 除了以上数据库存储之外，也可以添加其它存储服务的支持。如果你想帮助 Waline 支持更多的存储服务的话，可以 fork 项目，继承该 [基类](https://github.com/lizheming/waline/blob/master/packages/server/src/service/storage/base.js) 后分别实现对应存储服务的 `select()`, `add()`, `update()`, `delete()` 方法后提交 PR 即可。

@@ -66,6 +66,15 @@ Before use SQLite as storage, you should download [waline.sqlite](https://github
 | `PG_PREFIX`          |          | `wl_`     | PostgreSQL table prefix    |
 
 
+## Github
+
+Waline supports storing comment data in a CSV file format in the Github repository. To use Github as data storage, you need to apply for Personal access tokens. You can click on <kbd>Generate new token</kbd> to apply for it at <https://github.com/settings/tokens>. Check the permission option below **repo** option is used to obtain read and write permissions for the repository.
+
+| Environment Variable | Required | Default   | Description                |
+|------------|---------|------|------|
+| GITHUB_TOKEN | ✓ | | [Personal access tokens](https://github.com/settings/tokens) |
+| GITHUB_REPO | ✓ | | repository name, such as `lizheming/waline` |
+| GITHUB_PATH | | | The data storage directory, such as `data` means it is stored in the `data` directory, root directory by default|
 ## Custom
 
 In addition to the above database storage, support for other storage services can also be added. If you want to help Waline support more storage services, you can fork the project and inherit the [base class](https://github.com/lizheming/waline/blob/master/packages/server/src/service/storage/ base.js) and then implement the `select()`, `add()`, `update()`, and `delete()` methods of the corresponding storage service and submit the PR.

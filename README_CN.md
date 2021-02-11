@@ -34,6 +34,7 @@
 |                | 独立部署       | MySQL        |
 |                |                | SQLite       |
 |                |                | PostgreSQL   |
+|                |            | Github |
 
 ## Todo
 

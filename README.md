@@ -33,6 +33,7 @@ English | [中文](https://github.com/lizheming/waline/blob/master/README_CN.md)
 |                | Virtual Host | MySQL      |
 |                |              | SQLite     |
 |                |              | PostgreSQL |
+|                |            | Github |
 
 
 ## Todo
