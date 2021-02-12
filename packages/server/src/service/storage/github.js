@@ -114,8 +114,7 @@ module.exports = class extends Base {
       const data = [];
       data.sha = file.sha;
       return parseString(file.data, {
-        headers: CSV_HEADERS[tableName],
-        renameHeaders: true
+        headers: file ? true : CSV_HEADERS[tableName]
       })
       .on('error', reject)
       .on('data', row => data.push(row))
@@ -157,10 +156,10 @@ module.exports = class extends Base {
       const handler = where[k][0].toUpperCase();
       switch(handler) {
         case 'IN':
-          filters.push(item => where[k][1].includes(item));
+          filters.push(item => where[k][1].includes(item[k]));
           break;
         case 'NOT IN':
-          filters.push(item => !where[k][1].includes(item));
+          filters.push(item => !where[k][1].includes(item[k]));
           break;
         case 'LIKE':
           const first = where[k][1][0];
@@ -173,13 +172,13 @@ module.exports = class extends Base {
           } else if(last === '%') {
             reg = new RegExp('^' + where[k][1].slice(1, -1));
           }
-          filters.push(item => reg.test(item));
+          filters.push(item => reg.test(item[k]));
           break;
         case '!=':
-          filters.push(item => item !== where[k][1]);
+          filters.push(item => item[k] !== where[k][1]);
           break;
         case '>':
-          filters.push(item => item >= where[k][1]);
+          filters.push(item => item[k] >= where[k][1]);
           break;
       }
     }
