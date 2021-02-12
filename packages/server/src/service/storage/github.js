@@ -15,6 +15,7 @@ class Github {
     this.repo = repo;
   }
 
+  // content api can only get file < 1MB
   async get(filename) {
     const resp = await request({
       uri: 'https://api.github.com/repos/' + path.join(this.repo, 'contents', filename),
@@ -24,12 +25,48 @@ class Github {
         'User-Agent': 'Waline'
       },
       json: true
+    }).catch(e => {
+      const isTooLarge = e.message.includes('"too_large"');
+      if(!isTooLarge) {
+        throw e;
+      }
+      return this.getLargeFile(filename);
     });
-
+  
     return {
       data: Buffer.from(resp.content, 'base64').toString('utf-8'),
       sha: resp.sha
     };
+  }
+
+  // blob api can get file larger than 1MB
+  async getLargeFile(filename) {
+    const {tree} = await request({
+      uri: 'https://api.github.com/repos/' + path.join(this.repo, 'git/trees/HEAD') + '?recursive=1',
+      headers: {
+        Accept: 'application/vnd.github.v3+json',
+        Authorization: 'token ' + this.token,
+        'User-Agent': 'Waline'
+      },
+      json: true
+    });
+    
+    const file = tree.find(({path}) => path === filename);
+    if(!file) {
+      const error = new Error('NOT FOUND');
+      error.statusCode = 404;
+      throw error;
+    }
+
+    return request({
+      uri: file.url,
+      headers: {
+        Accept: 'application/vnd.github.v3+json',
+        Authorization: 'token ' + this.token,
+        'User-Agent': 'Waline'
+      },
+      json: true
+    });
   }
 
   async set(filename, content, {sha}) {
