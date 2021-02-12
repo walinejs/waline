@@ -1,3 +1,9 @@
+#  (2021-02-12)
+### Bug Fixes
+
+* **vercel:** github select where bug ([b19547c](https://github.com/lizheming/waline/commit/b19547ca43493c88c8f624c7ad271a1b34ecdde7))
+* **vercel:** fix too_large error when file > 1M ([77b6452](https://github.com/lizheming/waline/commit/77b645283c4112d1b949ed3dd22c29791ce79e7d))
+
 #  (2021-02-08)
 ### Bug Fixes
 
