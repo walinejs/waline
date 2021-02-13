@@ -49,11 +49,15 @@ const m = {
     },
     wsql(data) {
       return lc2csv(disqus2lc(data));
+    },
+    wgithub(data) {
+      return lc2csv(disqus2lc(data));
     }
   },
   valine: {
     wcloudbase: lc2tcb,
-    wsql: lc2csv
+    wsql: lc2csv,
+    wgithub: lc2csv
   },
   twikoo: {
     wleancloud: tk2lc,
@@ -62,15 +66,21 @@ const m = {
     },
     wsql(data) {
       return lc2csv(tk2lc(data));
-    } 
+    },
+    wgithub(data) {
+      return lc2csv(tk2lc(data));
+    }
   },
   artalk: {
     wleancloud: artalk2lc,
     wcloudbase(data) {
-      return lc2tcb(artalk2lc(data))
+      return lc2tcb(artalk2lc(data));
     },
     wsql(data) {
-      return lc2csv(artalk2lc(data))
+      return lc2csv(artalk2lc(data));
+    },
+    wgithub(data) {
+      return lc2csv(artalk2lc(data));
     }
   }
 }
@@ -254,7 +264,8 @@ function lc2csv(input) {
       "pid",
       "rid",
       "link",
-      "url"
+      "url",
+      "user_id"
   ];
 
   const keyMaps = {};
@@ -284,7 +295,7 @@ function lc2csv(input) {
     }
     row.pid = keyMaps[ row.pid ];
     row.rid = keyMaps[ row.rid ];
-    row.status = "approved";
+    row.status = row[key] || "approved";
     
     const record = {};
     for(let i = 0; i < field.length; i++) {
