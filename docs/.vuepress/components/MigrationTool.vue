@@ -17,6 +17,7 @@
           <option value="wleancloud">Waline LeanCloud</option>
           <option value="wcloudbase">Waline CloudBase</option>
           <option value="wsql">Waline MySQL/PostgreSQL/SQLite</option>
+          <option value="wgithub">Github</option>
         </select>
       </div>
       <div class="input-group">
