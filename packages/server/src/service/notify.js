@@ -81,7 +81,7 @@ module.exports = class extends think.Service {
   }
 
   async qq(self, parent) {
-    const {QMSG_KEY, QQ_ID, SITE_NAME, SITE_URL} = process.env;
+    const {QMSG_KEY, QQ_ID, SITE_NAME, SITE_URL, HIDE_EMAIL} = process.env;
     if (!QMSG_KEY) {
       return false;
     }
@@ -106,7 +106,7 @@ module.exports = class extends think.Service {
     const contentQQ = `💬 {{site.name|safe}} 有新评论啦
       {{self.nick}} 评论道：
       {{self.comment}}
-      邮箱：{{self.mail}}
+      ${HIDE_EMAIL ? '' : `邮箱：{{self.mail}}`}
       状态：{{self.status}} 
       仅供评论预览，查看完整內容：
       {{site.postUrl}}`;
@@ -122,10 +122,15 @@ module.exports = class extends think.Service {
   }
 
   async telegram(self, parent) {
+    const {TG_BOT_TOKEN, TG_CHAT_ID, SITE_NAME, SITE_URL, HIDE_EMAIL} = process.env;
+    if (!TG_BOT_TOKEN || !TG_CHAT_ID) {
+      return false;
+    }
+
     let commentLink = '';
     const href = self.comment.match(/<a href="(.*?)">(.*?)<\/a>/g);
     if (href !== null) {
-      for (var i = 0; i < href.length; i++) {
+      for (let i = 0; i < href.length; i++) {
         href[i] = '[Link: ' + href[i].replace(/<a href="(.*?)">(.*?)<\/a>/g, "$2") + '](' + href[i].replace(/<a href="(.*?)">(.*?)<\/a>/g, "$1") + ')  ';
         commentLink = commentLink + href[i];
       }
@@ -146,15 +151,10 @@ module.exports = class extends think.Service {
 {{self.comment-}}
 \`\`\`
 {{-self.commentLink}}
-*邮箱：*\`{{self.mail}}\`
+${HIDE_EMAIL ? '' : `*邮箱：*\`{{self.mail}}\``}
 *审核：*{{self.status}} 
 
 仅供评论预览，点击[查看完整內容]({{site.postUrl}})`;
-
-    const {TG_BOT_TOKEN, TG_CHAT_ID, SITE_NAME, SITE_URL} = process.env;
-    if(!TG_BOT_TOKEN || !TG_CHAT_ID) {
-      return false;
-    }
 
     const data = {
       self: {
