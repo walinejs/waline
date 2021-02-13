@@ -125,7 +125,7 @@ module.exports = class extends Base {
   async save(tableName, data, sha) {
     const filename = path.join(this.basePath, tableName + '.csv');
     const csv = await writeToString(data, {
-      headers: CSV_HEADERS[tableName],
+      headers: sha ? true : CSV_HEADERS[tableName],
       writeHeaders: true
     });
     return this.git.set(filename, csv, {sha});
