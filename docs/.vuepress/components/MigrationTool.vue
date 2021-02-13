@@ -296,7 +296,7 @@ function lc2csv(input) {
     }
     row.pid = keyMaps[ row.pid ];
     row.rid = keyMaps[ row.rid ];
-    row.status = row[key] || "approved";
+    row.status = row.status || "approved";
     
     const record = {};
     for(let i = 0; i < field.length; i++) {
