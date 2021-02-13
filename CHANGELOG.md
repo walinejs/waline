@@ -1,3 +1,8 @@
+#  (2021-02-13)
+
+### Bug Fixes
+
+* **vercel:** github store write header error ([dd41f52](https://github.com/lizheming/waline/commit/dd41f5206daff8e12be1a96343b6b7fd798bfe98))
 #  (2021-02-12)
 ### Bug Fixes
 
