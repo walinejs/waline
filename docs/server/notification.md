@@ -16,6 +16,7 @@
 - `SITE_URL`：网站地址，用于在消息中显示。
 - `SENDER_NAME`：自定义发送邮件的发件人，选填。
 - `SENDER_EMAIL`：自定义发送邮件的发件地址，选填。
+
 ## 微信通知
 
 微信通知使用了 [Server 酱](http://sc.ftqq.com/3.version) 提供的服务，需要在环境变量中配置在 Server 酱中申请的 `SC_KEY`。
@@ -34,6 +35,7 @@ QQ 通知使用了 [Qmsg 酱](https://qmsg.zendee.cn) 提供的服务，需要�
 - `AUTHOR_EMAIL`：博主邮箱，用来区分发布的评论是否是博主本身发布的。如果是博主发布的则不进行提醒通知。
 - `SITE_NAME`：网站名称，用于在消息中显示。
 - `SITE_URL`：网站地址，用于在消息中显示。
+- `NOTIFY_TEMPLATE_QQ`：QQ使用的通知模板，变量与具体格式可参见下文的通知模板。未配置则使用默认模板。
 
 ## Telegram 通知
 
@@ -44,3 +46,81 @@ Telegram 通知通过 Telegram bot 机器人实现，需要配置以下几个环
 - `AUTHOR_EMAIL`：博主邮箱，用来区分发布的评论是否是博主本身发布的。如果是博主发布的则不进行提醒通知。
 - `SITE_NAME`：网站名称，用于在消息中显示。
 - `SITE_URL`：网站地址，用于在消息中显示。
+- `NOTIFY_TEMPLATE_TG`：Telegram使用的通知模板，变量与具体格式可参见下文的通知模板。未配置则使用默认模板。
+
+## 通知模板
+
+Waline 支持为每个平台分别配置您自定义的通知模板，从而实现更强大的自定义能力与 i18n 兼容性。
+
+### 支持的变量
+
+模板通过 `self` 、 `parent` 和 `site` 对象传递参数，其中分别包含以下变量：
+
+- self: 该条评论本身
+
+    |       变量      |     备注     |
+    | --------------- | ----------- |
+    |      nick       |   评论者名   |
+    |      mail       |  评论者邮箱  |
+    |      link       |  评论者网址  |
+    |      url        |   文章地址   |
+    |     comment     |   评论内容   |
+    | *commentLink*\* | 评论中的链接 |
+
+    *: commentLink仅在Telegram通知中提供，会自动封装成MarkDown的格式
+
+- parent: 该条评论的回复对象（父评论）
+
+    |     变量     |    备注   |
+    | ----------- | --------- |
+    |    nick     |  评论者名  |
+    |    mail     | 评论者邮箱 |
+    |    link     | 评论者网址 |
+    |    type     | 评论者类型 |
+    |   comment   |  评论内容  |
+
+- site: 网站配置
+
+    |   变量   |    备注     |
+    | ------- | ----------- |
+    |   name  |    站点名    |
+    |   url   |   站点网址   |
+    | postUrl | 评论完整地址  |
+
+### 默认模板
+
+此处附上默认的模板，方便您参考：
+
+- NOTIFY_TEMPLATE_QQ:
+
+    ``` plain
+    💬 {{site.name|safe}} 有新评论啦
+    {{self.nick}} 评论道：
+    {{self.comment}}
+    邮箱：{{self.mail}}
+    状态：{{self.status}} 
+    仅供评论预览，查看完整內容：
+    {{site.postUrl}}
+    ```
+
+- NOTIFY_TEMPLATE_TG:
+
+    ``` markdown
+    💬 *[{{site.name}}]({{site.url}}) 有新评论啦*
+
+    *{{self.nick}}* 回复说：
+
+    \`\`\`
+    {{self.comment-}}
+    \`\`\`
+    {{-self.commentLink}}
+    *邮箱：*\`{{self.mail}}\`
+    *审核：*{{self.status}} 
+
+    仅供评论预览，点击[查看完整內容]({{site.postUrl}})
+    ```
+
+### 附加说明
+
+1. Vercel 的环境变量大小限制为 `4KB` ，因而如果您的模板存储需求比较大，您可以考虑直接修改代码中对应的内容，可以参见  [issue#106](https://github.com/lizheming/waline/issues/106) ；
+2. 变量具体信息在开发过程中可能会发生变化，此处的变量说明仅供参考，具体的内容请以具体的代码示例为准。
