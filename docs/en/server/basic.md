@@ -66,21 +66,21 @@ module.exports = Waline({
   ]
 });
 ```
-## mailSubject
+### mailSubject
 
 Customize the title of the comment reply email, which is equivalent to environment variable  `MAIL_SUBJECT`.
-## mailTemplate
+### mailTemplate
 
 Customize the title of the content reply email, which is equivalent to environment variable  `MAIL_TEMPLATE`.
-## mailSubjectAdmin
+### mailSubjectAdmin
 Customize the title of the new comment notification email, which is equivalent to the environment variable `MAIL_SUBJECT_ADMIN`.
-## mailTemplateAdmin
+### mailTemplateAdmin
 
 Customize the content of the new comment notification email, which is equivalent to the environment variable `MAIL_TEMPLATE_ADMIN`.
-## QQTemplate
+### QQTemplate
 
 The QQ comment notification template, which is equivalent to the environment variable `QQ_TEMPLATE`.
-## TGTempalte
+### TGTempalte
 
 Telegram comment notification template, which is equivalent to the environment variable `TG_TEMPLATE`.
 ## Comment Hooks

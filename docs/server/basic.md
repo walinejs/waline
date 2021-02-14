@@ -71,23 +71,23 @@ module.exports = Waline({
 });
 ```
 
-## mailSubject
+### mailSubject
 
 评论回复邮件标题自定义，等同于环境变量 `MAIL_SUBJECT`。
-## mailTemplate
+### mailTemplate
 
 评论回复邮件内容自定义，等同于环境变量 `MAIL_TEMPLATE`。
-## mailSubjectAdmin
+### mailSubjectAdmin
 
 新评论通知邮件标题自定义，等同于环境变量 `MAIL_SUBJECT_ADMIN`。
-## mailTemplateAdmin
+### mailTemplateAdmin
 
 新评论通知邮件内容自定义，等同于环境变量 `MAIL_TEMPLATE_ADMIN`。
-## QQTemplate
+### QQTemplate
 
 QQ 评论通知模板，等同于环境变量 `QQ_TEMPLATE`。
 
-## TGTempalte
+### TGTempalte
 
 Telegram 评论通知模板，等同于环境变量 `TG_TEMPLATE`。
 ## 评论 Hooks
