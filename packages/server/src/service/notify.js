@@ -81,7 +81,7 @@ module.exports = class extends think.Service {
   }
 
   async qq(self, parent) {
-    const {QMSG_KEY, QQ_ID, SITE_NAME, SITE_URL, NOTIFY_TEMPLATE_QQ} = process.env;
+    const {QMSG_KEY, QQ_ID, SITE_NAME, SITE_URL} = process.env;
     if (!QMSG_KEY) {
       return false;
     }
@@ -103,7 +103,7 @@ module.exports = class extends think.Service {
       }
     };
 
-    const contentQQ = NOTIFY_TEMPLATE_QQ || 
+    const contentQQ = think.config('QQTemplate') || 
 `💬 {{site.name|safe}} 有新评论啦
 {{self.nick}} 评论道：
 {{self.comment}}
@@ -123,7 +123,7 @@ module.exports = class extends think.Service {
   }
 
   async telegram(self, parent) {
-    const {TG_BOT_TOKEN, TG_CHAT_ID, SITE_NAME, SITE_URL, NOTIFY_TEMPLATE_TG} = process.env;
+    const {TG_BOT_TOKEN, TG_CHAT_ID, SITE_NAME, SITE_URL} = process.env;
     if(!TG_BOT_TOKEN || !TG_CHAT_ID) {
       return false;
     }
@@ -143,7 +143,7 @@ module.exports = class extends think.Service {
       .replace(/<a href="(.*?)">(.*?)<\/a>/g, '\[Link:$2\]')
       .replace(/<[^>]+>/g, '');
 
-    const contentTG = NOTIFY_TEMPLATE_TG ||
+    const contentTG = think.config('TGTemplate') ||
 `💬 *[{{site.name}}]({{site.url}}) 有新评论啦*
 
 *{{self.nick}}* 回复说：
@@ -185,14 +185,15 @@ module.exports = class extends think.Service {
   
   async run(comment, parent, disableAuthorNotify = false) {
     const {AUTHOR_EMAIL, BLOGGER_EMAIL} = process.env;
+    const {mailSubject, mailTemplate, mailSubjectAdmin, mailTemplateAdmin} = think.config();
     const AUTHOR = AUTHOR_EMAIL || BLOGGER_EMAIL;
     
     const mailList = [];
     const isAuthorComment = AUTHOR ? comment.mail.toLowerCase() === AUTHOR.toLowerCase() : false;
     const isReplyAuthor = AUTHOR ? parent && parent.mail.toLowerCase() === AUTHOR.toLowerCase() : false;
 
-    const title = process.env.MAIL_SUBJECT_ADMIN || '{{site.name}} 上有新评论了';
-    const content = process.env.MAIL_TEMPLATE_ADMIN ||  `
+    const title = mailSubjectAdmin || '{{site.name}} 上有新评论了';
+    const content = mailTemplateAdmin ||  `
     <div style="border-top:2px solid #12ADDB;box-shadow:0 1px 3px #AAAAAA;line-height:180%;padding:0 15px 12px;margin:50px auto;font-size:12px;">
       <h2 style="border-bottom:1px solid #DDD;font-size:14px;font-weight:normal;padding:13px 0 10px 8px;">
         您在<a style="text-decoration:none;color: #12ADDB;" href="{{site.url}}" target="_blank">{{site.name}}</a>上的文章有了新的评论
@@ -219,8 +220,8 @@ module.exports = class extends think.Service {
     if(parent && !fakeMail.test(parent.mail) && comment.status !== 'waiting') {
       mailList.push({
         to: parent.mail,
-        title: process.env.MAIL_SUBJECT || '{{parent.nick}}，『{{site.name}}』上的评论收到了回复',
-        content: process.env.MAIL_TEMPLATE || `
+        title: mailSubject || '{{parent.nick}}，『{{site.name}}』上的评论收到了回复',
+        content: mailTemplate || `
         <div style="border-top:2px solid #12ADDB;box-shadow:0 1px 3px #AAAAAA;line-height:180%;padding:0 15px 12px;margin:50px auto;font-size:12px;">
           <h2 style="border-bottom:1px solid #DDD;font-size:14px;font-weight:normal;padding:13px 0 10px 8px;">        
             您在<a style="text-decoration:none;color: #12ADDB;" href="{{site.url}}" target="_blank">{{site.name}}</a>上的评论有了新的回复

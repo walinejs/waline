@@ -15,7 +15,14 @@ const {
   SECURE_DOMAINS,
   DISABLE_USERAGENT,
   AVATAR_PROXY,
-  GITHUB_TOKEN
+  GITHUB_TOKEN,
+
+  MAIL_SUBJECT,
+  MAIL_TEMPLATE,
+  MAIL_SUBJECT_ADMIN,
+  MAIL_TEMPLATE_ADMIN,
+  QQ_TEMPLATE,
+  TG_TEMPLATE
 } = process.env;
 
 let storage = 'leancloud';
@@ -58,5 +65,12 @@ module.exports = {
   disallowIPList: [],
   secureDomains: SECURE_DOMAINS ? SECURE_DOMAINS.split(/\s*,\s*/) : undefined,
   disableUserAgent: DISABLE_USERAGENT && !['0', 'false'].includes(DISABLE_USERAGENT.toLowerCase()),
-  avatarProxy: AVATAR_PROXY || 'https://avatar.75cdn.workers.dev/'
+  avatarProxy: AVATAR_PROXY || 'https://avatar.75cdn.workers.dev/',
+  
+  mailSubject: MAIL_SUBJECT,
+  mailTemplate: MAIL_TEMPLATE,
+  mailSubjectAdmin: MAIL_SUBJECT_ADMIN,
+  mailTemplateAdmin: MAIL_TEMPLATE_ADMIN,
+  QQTemplate: QQ_TEMPLATE,
+  TGTemplate: TG_TEMPLATE
 };

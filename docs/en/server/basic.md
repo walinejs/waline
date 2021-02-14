@@ -66,6 +66,23 @@ module.exports = Waline({
   ]
 });
 ```
+## mailSubject
+
+Customize the title of the comment reply email, which is equivalent to environment variable  `MAIL_SUBJECT`.
+## mailTemplate
+
+Customize the title of the content reply email, which is equivalent to environment variable  `MAIL_TEMPLATE`.
+## mailSubjectAdmin
+Customize the title of the new comment notification email, which is equivalent to the environment variable `MAIL_SUBJECT_ADMIN`.
+## mailTemplateAdmin
+
+Customize the content of the new comment notification email, which is equivalent to the environment variable `MAIL_TEMPLATE_ADMIN`.
+## QQTemplate
+
+The QQ comment notification template, which is equivalent to the environment variable `QQ_TEMPLATE`.
+## TGTempalte
+
+Telegram comment notification template, which is equivalent to the environment variable `TG_TEMPLATE`.
 ## Comment Hooks
 
 In addition to environment variable configuration, Waline also provides some custom hooks to facilitate the processing of custom requirements. It only needs to be configured in the server entry file `index.js`.

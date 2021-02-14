@@ -70,6 +70,26 @@ module.exports = Waline({
   ]
 });
 ```
+
+## mailSubject
+
+评论回复邮件标题自定义，等同于环境变量 `MAIL_SUBJECT`。
+## mailTemplate
+
+评论回复邮件内容自定义，等同于环境变量 `MAIL_TEMPLATE`。
+## mailSubjectAdmin
+
+新评论通知邮件标题自定义，等同于环境变量 `MAIL_SUBJECT_ADMIN`。
+## mailTemplateAdmin
+
+新评论通知邮件内容自定义，等同于环境变量 `MAIL_TEMPLATE_ADMIN`。
+## QQTemplate
+
+QQ 评论通知模板，等同于环境变量 `QQ_TEMPLATE`。
+
+## TGTempalte
+
+Telegram 评论通知模板，等同于环境变量 `TG_TEMPLATE`。
 ## 评论 Hooks
 
 除了环境变量配置之外，Waline 还提供了一些自定义钩子，方便大家有自定义需求进行处理，只需要在服务端入口文件 `index.js` 中进行配置即可。
