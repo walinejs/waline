@@ -5,6 +5,10 @@
 * **vercel:** await error ([71d93ce](https://github.com/lizheming/waline/commit/71d93cec668f2f916e292e6679dd27c7f32f4066))
 * **client:** show vistor count by post return val ([b00dc64](https://github.com/lizheming/waline/commit/b00dc641d1602bcbb94eece73243ba26a432fd7a))
 * **vercel:** stor update func return updated value ([59cc1c5](https://github.com/lizheming/waline/commit/59cc1c5a02028bdc3cde47c450e7ccfad438ada3))
+  
+### Features
+
+* Customize notification template ([#154](https://github.com/lizheming/waline/issues/154)) ([1f17964](https://github.com/lizheming/waline/commit/1f179647d24b75a714427bda66eedc1b0262e0e8))
 #  (2021-02-13)
 
 ### Bug Fixes
