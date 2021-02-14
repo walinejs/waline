@@ -108,11 +108,12 @@ module.exports = class extends Base {
     this.where(instance, where);
     const list = await instance.select();
     
-    return Promise.all(list.map(item => {
+    return Promise.all(list.map(async item => {
       const updateData = typeof data === 'function' ? data(item) : data;
       const instance = this.mongo(this.tableName);
       this.where(instance, where);
-      return instance.update(updateData);
+      await instance.update(updateData);
+      return {...item, ...updateData};
     }));
   }
 

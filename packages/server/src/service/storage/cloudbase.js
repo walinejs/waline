@@ -125,7 +125,8 @@ module.exports = class extends Base {
     return Promise.all(list.map(async item => {
       const updateData = typeof data === 'function' ? data(item) : data;
       const instance = await this.collection(this.tableName);
-      return instance.doc(item._id).update(updateData);
+      await instance.doc(item._id).update(updateData);
+      return {...item, ...updateData};
     }));
   }
 

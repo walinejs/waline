@@ -252,6 +252,7 @@ module.exports = class extends Base {
       }
     });
     await this.save(this.tableName, instance, instance.sha);
+    return list;
   }
 
   async delete(where) {

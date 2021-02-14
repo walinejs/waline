@@ -65,7 +65,8 @@ module.exports = class extends Base {
     const list = await this.model(this.tableName).where(this.parseWhere(where)).select();
     return Promise.all(list.map(item => {
       const updateData = typeof data === 'function' ? data(item) : data;
-      return this.model(this.tableName).where({id: item.id}).update(updateData);
+      await this.model(this.tableName).where({id: item.id}).update(updateData);
+      return {...item, ...updateData};
     }));
   }
 

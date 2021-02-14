@@ -32,11 +32,12 @@ module.exports = class extends BaseRest {
     const {path} = this.post();
     const resp = await this.modelInstance.select({url: path});
     if(think.isEmpty(resp)) {
-      const ret = await this.modelInstance.add(
-        {url: path, time: 1}, 
+      const time = 1;
+      await this.modelInstance.add(
+        {url: path, time}, 
         {access: {read: true, write: true}}
       );
-      return this.success(ret);
+      return this.json(time);
     }
 
     const ret = await this.modelInstance.update(function(counter) {
@@ -44,6 +45,6 @@ module.exports = class extends BaseRest {
     }, {
       objectId: ['IN', resp.map(({objectId}) => objectId)]
     });
-    return this.success(ret);
+    return this.json(ret[0].time);
   }
 }
