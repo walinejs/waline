@@ -81,7 +81,7 @@ module.exports = class extends think.Service {
   }
 
   async qq(self, parent) {
-    const {QMSG_KEY, QQ_ID, SITE_NAME, SITE_URL} = process.env;
+    const {QMSG_KEY, QQ_ID, SITE_NAME, SITE_URL, NOTIFY_TEMPLATE_QQ} = process.env;
     if (!QMSG_KEY) {
       return false;
     }
@@ -103,13 +103,14 @@ module.exports = class extends think.Service {
       }
     };
 
-    const contentQQ = `💬 {{site.name|safe}} 有新评论啦
-      {{self.nick}} 评论道：
-      {{self.comment}}
-      邮箱：{{self.mail}}
-      状态：{{self.status}} 
-      仅供评论预览，查看完整內容：
-      {{site.postUrl}}`;
+    const contentQQ = NOTIFY_TEMPLATE_QQ || 
+`💬 {{site.name|safe}} 有新评论啦
+{{self.nick}} 评论道：
+{{self.comment}}
+邮箱：{{self.mail}}
+状态：{{self.status}} 
+仅供评论预览，查看完整內容：
+{{site.postUrl}}`;
 
     return request({
       uri: `https://qmsg.zendee.cn/send/${QMSG_KEY}`,
@@ -122,6 +123,11 @@ module.exports = class extends think.Service {
   }
 
   async telegram(self, parent) {
+    const {TG_BOT_TOKEN, TG_CHAT_ID, SITE_NAME, SITE_URL, NOTIFY_TEMPLATE_TG} = process.env;
+    if(!TG_BOT_TOKEN || !TG_CHAT_ID) {
+      return false;
+    }
+
     let commentLink = '';
     const href = self.comment.match(/<a href="(.*?)">(.*?)<\/a>/g);
     if (href !== null) {
@@ -137,8 +143,8 @@ module.exports = class extends think.Service {
       .replace(/<a href="(.*?)">(.*?)<\/a>/g, '\[Link:$2\]')
       .replace(/<[^>]+>/g, '');
 
-    const contentTG = `
-💬 *[{{site.name}}]({{site.url}}) 有新评论啦*
+    const contentTG = NOTIFY_TEMPLATE_TG ||
+`💬 *[{{site.name}}]({{site.url}}) 有新评论啦*
 
 *{{self.nick}}* 回复说：
 
@@ -150,11 +156,6 @@ module.exports = class extends think.Service {
 *审核：*{{self.status}} 
 
 仅供评论预览，点击[查看完整內容]({{site.postUrl}})`;
-
-    const {TG_BOT_TOKEN, TG_CHAT_ID, SITE_NAME, SITE_URL} = process.env;
-    if(!TG_BOT_TOKEN || !TG_CHAT_ID) {
-      return false;
-    }
 
     const data = {
       self: {
