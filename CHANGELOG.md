@@ -1,3 +1,9 @@
+#  (2021-02-14)
+
+### Bug Fixes
+
+* **client:** show vistor count by post return val ([b00dc64](https://github.com/lizheming/waline/commit/b00dc641d1602bcbb94eece73243ba26a432fd7a))
+* **vercel:** stor update func return updated value ([59cc1c5](https://github.com/lizheming/waline/commit/59cc1c5a02028bdc3cde47c450e7ccfad438ada3))
 #  (2021-02-13)
 
 ### Bug Fixes
