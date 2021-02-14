@@ -40,5 +40,5 @@ export function postVisitCount({serverURL, path}) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({path})
-  });
+  }).then(resp => resp.json());
 }

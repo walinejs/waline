@@ -66,8 +66,7 @@ export default function Waline({
   
   //visitor count
   if(visitor) {
-    const visitorPromise = path ? Visitor.add({serverURL, path}) : Promise.resolve();
-    visitorPromise.then(() => Visitor.show({serverURL}));
+    path ? Visitor.add({serverURL, path}) : Visitor.show({serverURL});
   }
 
   //comment count

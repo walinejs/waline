@@ -1,15 +1,28 @@
 import { fetchVisitCount, postVisitCount } from "./fetch";
 
 export default {
-  /**
-   * 增加阅读统计
-   */
-  add({serverURL, path}) {
+  add({serverURL, path, countEl = '.leancloud_visitors,.leancloud-visitors'}) {
     if(!serverURL || !path) {
       return;
     }
     
-    return postVisitCount({serverURL, path});
+    return postVisitCount({serverURL, path}).then(count => {
+      const countEls = [].filter.call(
+        document.querySelectorAll(countEl),
+        el => el.getAttribute('id')
+      );
+      if(!countEls.length) {
+        return;
+      }
+
+      countEls.forEach(el => {
+        let counterEl = el.querySelector('.leancloud-visitors-count');
+        if(!counterEl) {
+          counterEl = el;
+        }
+        counterEl.innerText = count;
+      });
+    });
   },
   show({serverURL, countEl = '.leancloud_visitors,.leancloud-visitors'}) {
     const countEls = [].filter.call(
