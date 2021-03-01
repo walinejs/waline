@@ -44,7 +44,7 @@ export default function() {
     }
   };
 
-  let baseUrl = globalThis.serverURL;
+  let baseUrl = window.serverURL;
   if(!baseUrl) {
     const match = location.pathname.match(/(.*?\/)ui/);
     baseUrl = match ? match[1] : '/';
@@ -86,7 +86,7 @@ export default function() {
           </p>
         </form>
         <div className="social-accounts">
-          {(globalThis.ALLOW_SOCIALS || []).map(social => (
+          {(window.ALLOW_SOCIALS || []).map(social => (
             <a key={social} href={`${baseUrl}oauth/${social}?redirect=${basepath}ui/profile`}>
               {React.createElement(Icons[social])}
             </a>

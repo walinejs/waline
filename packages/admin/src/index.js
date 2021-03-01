@@ -20,7 +20,7 @@ async function run() {
     })
   ]).then(token => {
     if(token) {
-      globalThis.TOKEN = token;
+      window.TOKEN = token;
     }
   });
 

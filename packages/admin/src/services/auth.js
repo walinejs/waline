@@ -12,7 +12,7 @@ export async function login({email, password}) {
 }
 
 export async function logout() {
-  globalThis.TOKEN = null;
+  window.TOKEN = null;
   sessionStorage.removeItem('TOKEN');
   localStorage.removeItem('TOKEN');
 }

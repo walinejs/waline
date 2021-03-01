@@ -20,7 +20,7 @@ export const user = createModel({
       }
       if(window.opener) {
         const qs = new URLSearchParams(location.search);
-        let token = globalThis.TOKEN || sessionStorage.getItem('TOKEN') || qs.get('token');
+        let token = window.TOKEN || sessionStorage.getItem('TOKEN') || qs.get('token');
         if(!token) {
           token = localStorage.getItem('TOKEN');
         }
@@ -31,7 +31,7 @@ export const user = createModel({
     async login({email, password, remember}) {
       const {token, ...user} = await login({email, password});
       if(token) {
-        globalThis.TOKEN = token;
+        window.TOKEN = token;
         sessionStorage.setItem('TOKEN', token);
         if(remember) {
           localStorage.setItem('TOKEN', token);

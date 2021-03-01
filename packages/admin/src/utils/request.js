@@ -14,7 +14,7 @@ export default async function request(url, opts = {}) {
   }
 
   const qs = new URLSearchParams(location.search);
-  let token = globalThis.TOKEN || sessionStorage.getItem('TOKEN') || qs.get('token');
+  let token = window.TOKEN || sessionStorage.getItem('TOKEN') || qs.get('token');
   if(!token) {
     token = localStorage.getItem('TOKEN');
   }
@@ -22,7 +22,7 @@ export default async function request(url, opts = {}) {
     opts.headers.Authorization = `Bearer ${token}`;
   }
 
-  let baseUrl = globalThis.serverURL;
+  let baseUrl = window.serverURL;
   if(!baseUrl) {
     const match = location.pathname.match(/(.*?\/)ui/);
     baseUrl = match ? match[1] : '/';
