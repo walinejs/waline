@@ -12,17 +12,52 @@ function waline() {
   });
 }
 
+function renderTips() {
+
+  let tips = document.getElementById('waline-tips');
+  if(tips) {
+    return false;
+  }
+  
+  tips = document.createElement('div')
+  tips.id = 'waline-tips';
+  tips.className = 'page-nav';
+  const styles = {
+    padding: '10px',
+    boxSizing: 'border-box',
+    border: '1px solid #e2e2e2',
+    backgroundColor: '#FFFFC0',
+    borderLeft: '5px solid #FFF000',
+    color: '#333',
+    margin: '1rem auto'
+  };
+  for(const name in styles) {
+    tips.style[name] = styles[name];
+  }
+  
+  tips.innerHTML = location.pathname.startsWith('/en/') ? 
+    'TIPS: The comment area is only for demo. If you have any questions, please go to <a href="https://github.com/lizheming/waline/discussions" target="_blank">Github Discussion</a> to ask.' : 
+    '友情提示：评论区仅作评论展示，如有问题咨询请去 <a href="https://github.com/lizheming/waline/discussions" target="_blank">Github Discussion</a> 中提问。'
+  
+  return tips;
+}
+
 function renderWaline(router) {
   setTimeout(()=>{
     if(!globalThis.window) {
       return;
     }
     let $page = document.querySelector('.page')
+    let tips = renderTips();
+    if(tips) {
+      $page.appendChild(tips);
+    }
+
     let container = document.getElementById('waline-comment')
     if(container) {
       $page.removeChild(container);
     }
-    
+
     container = document.createElement('div')
     container.id = 'waline-comment';
     container.className = 'page-nav';
@@ -33,6 +68,8 @@ function renderWaline(router) {
 
   router.afterEach(_ => {
     let $page = document.querySelector('.page')
+    let tips = renderTips();
+    
     let container = document.getElementById('waline-comment')
     if(container) {
       $page.removeChild(container);
@@ -43,10 +80,13 @@ function renderWaline(router) {
     container.className = 'page-nav';
 
     if ($page){
+      if(tips) {
+        $page.appendChild(tips);
+      }
       $page.appendChild(container)
       waline()
     }else{
-      setTimeout(()=>{
+      setTimeout(()=>{    
         $page = document.querySelector('.page')
         $page.appendChild(container)
         waline()
