@@ -38,13 +38,13 @@ module.exports = class extends Base {
               break;
             case 'LIKE':
               const first = where[k][1][0];
-              const last = where[k][1][-1];
+              const last = where[k][1].slice(-1);
               if(first === '%' && last === '%') {
                 instance.contains(k, where[k][1].slice(1, -1));
               } else if(first === '%') {
-                instance.endsWidth(k, where[k][1].slice(1));
+                instance.endsWith(k, where[k][1].slice(1));
               } else if(last === '%') {
-                instance.startsWidth(k, where[k][1].slice(-1));
+                instance.startsWith(k, where[k][1].slice(0, -1));
               }
               break;
             case '!=':

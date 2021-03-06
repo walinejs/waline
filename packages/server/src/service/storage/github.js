@@ -163,14 +163,14 @@ module.exports = class extends Base {
           break;
         case 'LIKE':
           const first = where[k][1][0];
-          const last = where[k][1][-1];
+          const last = where[k][1].slice(-1);
           let reg;
           if(first === '%' && last === '%') {
             reg = new RegExp(where[k][1].slice(1, -1));
           } else if(first === '%') {
-            reg = new RegExp(where[k][1].slice(1, -1) + '$');
+            reg = new RegExp(where[k][1].slice(1) + '$');
           } else if(last === '%') {
-            reg = new RegExp('^' + where[k][1].slice(1, -1));
+            reg = new RegExp('^' + where[k][1].slice(0, -1));
           }
           filters.push(item => reg.test(item[k]));
           break;
