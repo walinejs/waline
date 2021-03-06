@@ -1,3 +1,9 @@
+#  (2021-03-06)
+### Bug Fixes
+
+* **admin:** dashboard time zone miss ([87efb46](https://github.com/lizheming/waline/commit/87efb460445871244eeacbd0664612559bf94791))
+* **admin:** keyword search btn click resp ([48feb8b](https://github.com/lizheming/waline/commit/48feb8bb70501d1bb9f223126a4c6d0f9a56844d))
+* **vercel:** LIKE query typo ([090230c](https://github.com/lizheming/waline/commit/090230c35fea0873e18e85fd5e5fff0de4469aa5))
 #  (2021-02-14)
 
 ### Bug Fixes
