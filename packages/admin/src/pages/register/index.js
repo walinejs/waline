@@ -59,23 +59,23 @@ export default function() {
       <div className="typecho-login">
         <form method="post" name="login" role="form" onSubmit={onSubmit}>
           <p>
-            <label htmlhtmlFor="nick" className="sr-only">{t('nickname')}</label>
+            <label htmlFor="nick" className="sr-only">{t('nickname')}</label>
             <input type="text" id="nick" name="nick" placeholder={t('nickname')} className="text-l w-100" />
           </p>
           <p>
-            <label htmlhtmlFor="email" className="sr-only">{t('email')}</label>
+            <label htmlFor="email" className="sr-only">{t('email')}</label>
             <input type="text" id="email" name="email" placeholder={t('email')} className="text-l w-100" />
           </p>
           <p>
-            <label htmlhtmlFor="link" className="sr-only">{t('website')}</label>
+            <label htmlFor="link" className="sr-only">{t('website')}</label>
             <input type="text" id="link" name="link" placeholder={t('website')} className="text-l w-100" />
           </p>
           <p>
-            <label htmlhtmlFor="password" className="sr-only">{t('password')}</label>
+            <label htmlFor="password" className="sr-only">{t('password')}</label>
             <input type="password" id="password" name="password" className="text-l w-100" placeholder={t('password')} />
           </p>
           <p>
-            <label htmlhtmlFor="password-again" className="sr-only">{t('password again')}</label>
+            <label htmlFor="password-again" className="sr-only">{t('password again')}</label>
             <input type="password" id="password-again" name="password-again" className="text-l w-100" placeholder={t('password again')} />
           </p>
           <p className="submit">

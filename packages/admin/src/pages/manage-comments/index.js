@@ -4,7 +4,7 @@ import cls from 'classnames';
 import Header from '../../components/Header';
 import { deleteComment, getCommentList, replyComment, updateComment } from '../../services/comment';
 import Paginator from '../../components/Paginator';
-import { buildAvatar, getPostUrl } from './utils';
+import { buildAvatar, getPostUrl, formatDate } from './utils';
 import { useTranslation, Trans } from 'react-i18next';
 
 const FILTERS = [
@@ -391,12 +391,12 @@ export default function() {
                             </div>
                           </td>
                           <td valign="top" className="comment-body">
-                            <div className="comment-date">{insertedAt} {t('at')} <a href={getPostUrl(url)} target="_blank">{url}</a></div>
+                            <div className="comment-date">{formatDate(insertedAt)} {t('at')} <a href={getPostUrl(url)} target="_blank">{url}</a></div>
                             <div className="comment-content" dangerouslySetInnerHTML={{__html: comment}}></div> 
                             {cmtHandler.id === objectId && cmtHandler.action === 'reply' ? (
                               <form className="comment-reply">
                                 <p>
-                                  <label htmlhtmlFor="text" className="sr-only">{t('content')}</label>
+                                  <label htmlFor="text" className="sr-only">{t('content')}</label>
                                   <textarea 
                                     id="text" 
                                     name="text" 
