@@ -271,7 +271,10 @@ export default function() {
                   <button 
                     type="submit" 
                     className="btn btn-s"
-                    onClick={e => e.preventDefault() && dispatch({keyword: keywordRef.current.value})}  
+                    onClick={e => {
+                      e.preventDefault(); 
+                      dispatch({keyword: keywordRef.current.value});
+                    }}  
                   >{t('filter')}</button>
                 </div>
               </form>
