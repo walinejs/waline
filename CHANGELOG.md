@@ -1,3 +1,6 @@
+#  (2021-03-07)
+### Bug Fixes
+* **vercel:** child cmts order increment fix [#163](https://github.com/lizheming/waline/issues/163) ([e31b172](https://github.com/lizheming/waline/commit/e31b17225c6a62c4f5109d0425d15428cceffdc1))
 #  (2021-03-06)
 ### Bug Fixes
 
