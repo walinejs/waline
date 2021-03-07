@@ -179,8 +179,9 @@ module.exports = class extends BaseRest {
             const cmt = await formatCmt(comment, users, this.config());
             cmt.children = await Promise.all(comments
               .filter(({rid}) => rid === cmt.objectId)
-              .map(cmt => formatCmt(cmt, users, this.config())))
-              .reverse();
+              .map(cmt => formatCmt(cmt, users, this.config()))
+              .reverse()
+            );
             return cmt;
           }))
         });
