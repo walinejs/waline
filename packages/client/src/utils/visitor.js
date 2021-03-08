@@ -1,59 +1,30 @@
 import { fetchVisitCount, postVisitCount } from "./fetch";
 
 export default {
-  add({serverURL, path, countEl = '.leancloud_visitors,.leancloud-visitors'}) {
+  post({serverURL, path}) {
     if(!serverURL || !path) {
-      return;
+      return null;
     }
-    
-    return postVisitCount({serverURL, path}).then(count => {
-      const countEls = [].filter.call(
-        document.querySelectorAll(countEl),
-        el => el.getAttribute('id')
-      );
-      if(!countEls.length) {
-        return;
-      }
 
-      countEls.forEach(el => {
-        let counterEl = el.querySelector('.leancloud-visitors-count');
-        if(!counterEl) {
-          counterEl = el;
-        }
-        counterEl.innerText = count;
-      });
-    });
+    return postVisitCount({serverURL, path});
   },
-  show({serverURL, countEl = '.leancloud_visitors,.leancloud-visitors'}) {
-    const countEls = [].filter.call(
-      document.querySelectorAll(countEl),
-      el => el.getAttribute('id')
-    );
-    if(!countEls.length) {
+  get({serverURL, path}) {
+    if(!path.length) {
       return;
     }
 
-    const ids = [].map.call(countEls, el => {
-      let id = el.getAttribute('id');
-      try {
-        id = decodeURI(id);
-      } catch(e) {
-        //ignore error
+    return fetchVisitCount({serverURL, path: path.join()});
+  },
+  render(counts, countEls) {
+    if(!Array.isArray(counts)) {
+      counts = new Array(countEls.length).fill(counts);
+    }
+    countEls.forEach((el, idx) => {
+      let counterEl = el.querySelector('.leancloud-visitors-count');
+      if(!counterEl) {
+        counterEl = el;
       }
-      return id;
-    });
-
-    fetchVisitCount({serverURL, path: ids.join()}).then(counts => {
-      if(!Array.isArray(counts)) {
-        counts = [counts];
-      }
-      countEls.forEach((el, idx) => {
-        let counterEl = el.querySelector('.leancloud-visitors-count');
-        if(!counterEl) {
-          counterEl = el;
-        }
-        counterEl.innerText = counts[idx];
-      });
+      counterEl.innerText = counts[idx];
     });
   }
 }

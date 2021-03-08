@@ -66,7 +66,29 @@ export default function Waline({
   
   //visitor count
   if(visitor) {
-    path ? Visitor.add({serverURL, path}) : Visitor.show({serverURL});
+    const addPromise = Visitor.post({serverURL, path});
+
+    const els = document.querySelectorAll('.leancloud_visitors,.leancloud-visitors');
+    const countEls = [].filter.call(els, el => el.getAttribute('id'));
+    const ids = [].map.call(countEls, el => {
+      let id = el.getAttribute('id');
+      try {
+        id = decodeURI(id);
+      } catch(e) {
+        //ignore error
+      }
+      return id;
+    });
+    const restIds = ids.filter(id => id !== path);
+
+    if(!restIds.length) {
+      addPromise.then(count => Visitor.render(count, countEls));
+    } else {
+      const hasPath = restIds.length !== ids.length;
+      (hasPath ? addPromise : Promise.resolve())
+        .then(_ => Visitor.get({serverURL, path: ids}))
+        .then(counts => Visitor.render(counts, countEls));
+    }
   }
 
   //comment count
