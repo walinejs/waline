@@ -1,3 +1,8 @@
+#  (2021-03-08)
+### Bug Fixes
+
+* **client:** fix [#164](https://github.com/lizheming/waline/issues/164) remove dark mode scheme ([c9c543f](https://github.com/lizheming/waline/commit/c9c543f199a93dba0acdc194aa4b77b50ed75d53))
+* **client:** article list count show error fix [#157](https://github.com/lizheming/waline/issues/157) ([7a429ac](https://github.com/lizheming/waline/commit/7a429ac50232dd8f67a2ab807d363cd7b1d9f3f3))
 #  (2021-03-07)
 ### Bug Fixes
 * **vercel:** child cmts order increment fix [#163](https://github.com/lizheming/waline/issues/163) ([e31b172](https://github.com/lizheming/waline/commit/e31b17225c6a62c4f5109d0425d15428cceffdc1))
