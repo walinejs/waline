@@ -1,3 +1,7 @@
+#  (2021-03-12)
+### Bug Fixes
+
+* **vercel:** compat pgsql column case insensitive ([613323c](https://github.com/lizheming/waline/commit/613323c5b91640a81936bda5378f54a47abbfdea))
 #  (2021-03-08)
 ### Bug Fixes
 
