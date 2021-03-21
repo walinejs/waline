@@ -1,6 +1,10 @@
 import md5 from 'md5';
 
 export function buildAvatar(email = '') {
+  if(typeof email !== 'string') {
+    email = '';
+  }
+  
   return `https://cdn.v2ex.com/gravatar/${md5(email)}?s=40&r=G&d=`;
 }
 
