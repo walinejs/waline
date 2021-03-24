@@ -39,7 +39,7 @@ hexo.extend.filter.register('theme_inject', injects => {
 
   injects.bodyEnd.raw('waline', utils.getFileContent('waline.njk'));
 
-  injects.headEnd.raw('waline', `<link rel="dns-prefetch" href="${config.serverURL}">`, {}, {});
+  injects.head.raw('waline', `<link rel="dns-prefetch" href="${config.serverURL}">`, {}, {});
 
 });
 
