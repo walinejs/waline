@@ -42,7 +42,7 @@ async function formatCmt({ua, user_id, ip, ...comment}, users = [], {avatarProxy
       }
     }
   }
-  comment.mail = helper.md5(comment.mail);
+  comment.mail = helper.md5(comment.mail ? comment.mail.toLowerCase() : comment.mail);
   
   const blockMathRegExp = /(^|[\r\n]+|<p>|<br>)\$\$([^$]+)\$\$([\r\n]+|<\/p>|<br>|$)/g;
   const match = comment.comment.match(blockMathRegExp);
