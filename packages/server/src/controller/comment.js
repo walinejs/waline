@@ -30,7 +30,7 @@ async function formatCmt({ua, user_id, ip, ...comment}, users = [], {avatarProxy
     if(user) {
       comment.nick = user.display_name;
       comment.mail = user.email;
-      comment.link = user.link;
+      comment.link = user.url;
       comment.type = user.type;
       
       let {avatar} = user;
