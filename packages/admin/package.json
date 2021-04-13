@@ -1,6 +1,6 @@
 {
   "name": "@waline/admin",
-  "version": "0.8.7",
+  "version": "0.8.8",
   "description": "management system for waline",
   "main": "dist/admin.js",
   "browser": "dist/admin.js",
