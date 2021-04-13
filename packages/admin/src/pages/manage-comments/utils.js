@@ -18,7 +18,7 @@ export function getPostUrl(url) {
 export function formatDate(time) {
   const d = new Date(time);
   const p = n => n < 10 ? '0' + n : n;
-  const localDate = [d.getFullYear(), d.getMonth() + 1, d.getDay()].map(p).join('-');
+  const localDate = [d.getFullYear(), d.getMonth() + 1, d.getDate()].map(p).join('-');
   const localTime = [d.getHours(), d.getMinutes(), d.getSeconds()].map(p).join(':');
   return localDate + ' ' + localTime;
 }
