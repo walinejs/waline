@@ -15,7 +15,7 @@ const {
   MYSQL_USER,
   MYSQL_PASSWORD,
   MYSQL_PREFIX,
-  MYSQL_ENCODING,
+  MYSQL_CHARSET,
   SQLITE_PATH,
   SQLITE_DB,
   SQLITE_PREFIX,
@@ -93,7 +93,7 @@ exports.model = {
     user: MYSQL_USER,
     password: MYSQL_PASSWORD,
     prefix: MYSQL_PREFIX || 'wl_',
-    encoding: MYSQL_ENCODING || 'utf8mb4'
+    charset: MYSQL_CHARSET || 'utf8mb4'
   }
 };
 /**
