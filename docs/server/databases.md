@@ -42,6 +42,7 @@ MONGO_OPT_SSL=true
 | `MYSQL_USER` | ✓ | | MySQL 数据库的用户名 |
 | `MYSQL_PASSWORD` | ✓ | | MySQL 数据库的密码 |
 | `MYSQL_PREFIX` | | `wl_` | MySQL 数据表的表前缀 |
+| `MYSQL_CHARSET` | | `utf8mb4` | MySQL 数据表的字符集 |
 
 ## SQLite
 

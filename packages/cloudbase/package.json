@@ -6,7 +6,7 @@
   "author": "lizheming<i@imnerd.org>",
   "license": "MIT",
   "dependencies": {
-    "@waline/vercel": "^0.23.12",
+    "@waline/vercel": "^0.23.13",
     "thinkjs": "^3.2.12"
   }
 }

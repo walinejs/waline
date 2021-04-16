@@ -41,6 +41,7 @@ If you want to use MySQL as storage, you need import [waline.sql](https://github
 | `MYSQL_USER`         | ✓        |           | MySQL server username |
 | `MYSQL_PASSWORD`     | ✓        |           | MySQL server password |
 | `MYSQL_PREFIX`       |          | `wl_`     | MySQL table prefix    |
+| `MYSQL_CHARSET` | | `utf8mb4` | MySQL table charset |
 
 ## SQLite
 
