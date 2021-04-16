@@ -1,7 +1,7 @@
 {
   "name": "@waline/vercel",
   "description": "vercel server for waline comment system",
-  "version": "0.23.12",
+  "version": "0.23.13",
   "author": "lizheming <i@imnerd.org>",
   "scripts": {
     "lint": "eslint src/",
