@@ -32,7 +32,7 @@ MONGO_OPT_SSL=true
 
 ## MySQL
 
-如果想要使用 MySQL 作为存储服务，需要先导入 [waline.sql](https://github.com/lizheming/waline/blob/master/assets/waline.sql) 创建好表和表结构。之后在项目中配置如下环境变量即可。
+我们也可以使用 MySQL 存储数据，除了使用自建的 MySQL 服务之外，我们也可以使用 <https://freedb.tech>，它免费提供了 100M 的数据库支持。如果想要使用 MySQL 作为存储服务，需要先导入 [waline.sql](https://github.com/lizheming/waline/blob/master/assets/waline.sql) 创建好表和表结构。之后在项目中配置如下环境变量即可。
 
 | 环境变量名称 | 必填 | 默认值 | 备注 |
 |------------|---------|------|------|

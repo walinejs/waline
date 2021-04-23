@@ -31,7 +31,7 @@ MONGO_OPT_SSL=true
 
 ## MySQL
 
-If you want to use MySQL as storage, you need import [waline.sql](https://github.com/lizheming/waline/blob/master/assets/waline.sql) at first to create talbe and column. Then set environment variables in project.
+We can also use MySQL to store data, and in addition to using our own MySQL service, we can also use <https://freedb.tech>, which provides 100M of database support for free. If you want to use MySQL as storage, you need import [waline.sql](https://github.com/lizheming/waline/blob/master/assets/waline.sql) at first to create talbe and column. Then set environment variables in project.
 
 | Environment Variable | Required | Default   | Description           |
 | -------------------- | -------- | --------- | --------------------- |
