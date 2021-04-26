@@ -17,6 +17,13 @@ async function run() {
       window.addEventListener('message', data => {
         data && data.type === 'TOKEN' && data.data && resolve(data);
       })
+    }),
+    new Promise(resolve => {
+      const qs = new URLSearchParams(location.search);
+      const token = qs.get('token');
+      if(token) {
+        resolve(token);
+      }
     })
   ]).then(token => {
     if(token) {

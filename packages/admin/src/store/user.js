@@ -19,8 +19,7 @@ export const user = createModel({
         return;
       }
       if(window.opener) {
-        const qs = new URLSearchParams(location.search);
-        let token = window.TOKEN || sessionStorage.getItem('TOKEN') || qs.get('token');
+        let token = window.TOKEN || sessionStorage.getItem('TOKEN');
         if(!token) {
           token = localStorage.getItem('TOKEN');
         }
