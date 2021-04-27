@@ -26,9 +26,11 @@ async function run() {
       }
     })
   ]).then(token => {
-    if(token) {
-      window.TOKEN = token;
+    if(!token) {
+      return;
     }
+    window.TOKEN = token;
+    sessionStorage.setItem('TOKEN', token);
   });
 
   await Promise.all([
