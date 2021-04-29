@@ -3,7 +3,7 @@
 }, config.waline, {
   el: '#waline-comments',
   libUrl: config.waline.libUrl || 'https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js',
-  path: url_for(page.path) | replace(r/index\.html$/, '') | safedump
+  path: url_for(page.path) | replace(r/index\.html$/, '')
 }) }}
 <script>
 document.addEventListener('page:loaded', () => {
