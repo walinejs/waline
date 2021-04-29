@@ -16,7 +16,7 @@ After app created, we need click into it. Select <kbd>Settings</kbd> > <kbd>App 
 
 [ ![](https://vercel.com/button) ](https://vercel.com/import/project?template=https://github.com/lizheming/waline/tree/master/example)
 
-Click the blue button, and it will redirect to vercel to deploy with waline template. You need login if you have not, we recommends you sign in with Github. You can input your Vercel project name after you login.
+Click the blue button, and it will redirect to vercel to deploy with waline template. You need login if you have not, we recommends you sign in with GitHub. You can input your Vercel project name after you login.
 
 ![](https://p2.ssl.qhimg.com/t018cd2a91a8896a555.png)
 

@@ -5,7 +5,7 @@
 ## Problem of Valine
 ### Not Open Source
 
-The author only push the compiled files to the Github repository starting from version `1.4.0`, and the source code stop updating. May be the author have a broken heart in open source. While for users like me who want to add or modify project, this problem is a bit uncomfortable.
+The author only push the compiled files to the GitHub repository starting from version `1.4.0`, and the source code stop updating. May be the author have a broken heart in open source. While for users like me who want to add or modify project, this problem is a bit uncomfortable.
 ### XSS
 
 Since the very early version, users have reported Valine's XSS problems, and the community is also using various methods to fix these problems. Including the addition of verification codes, frontend XSS filtering and other methods. However, the author later realized that all the frontend verification can only prevent the gentleman, so the restriction such as verification code is removed.

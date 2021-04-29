@@ -34,7 +34,7 @@
 |                | 独立部署       | MySQL        |
 |                |                | SQLite       |
 |                |                | PostgreSQL   |
-|                |            | Github |
+|                |            | GitHub |
 
 ## Todo
 
@@ -64,7 +64,7 @@
 
 ## 获得支持
 
-你可以在 [Github Discussions](https://github.com/lizheming/waline/discussions) 中发布问题获取支持。当然你也可以加入我们的 [Telegram](https://t.me/walinejs) 小组或者是扫描下方二维码加入我们的 [Waline 用户交流 QQ 群](https://qm.qq.com/cgi-bin/qm/qr?k=rPZvq_EBfwQa6QZX7sToVlhH49c6ed0R&jump_from=webapi)获取更多的支持。
+你可以在 [GitHub Discussions](https://github.com/lizheming/waline/discussions) 中发布问题获取支持。当然你也可以加入我们的 [Telegram](https://t.me/walinejs) 小组或者是扫描下方二维码加入我们的 [Waline 用户交流 QQ 群](https://qm.qq.com/cgi-bin/qm/qr?k=rPZvq_EBfwQa6QZX7sToVlhH49c6ed0R&jump_from=webapi)获取更多的支持。
 
 <a href="https://qm.qq.com/cgi-bin/qm/qr?k=rPZvq_EBfwQa6QZX7sToVlhH49c6ed0R&jump_from=webapi" target="_blank">
   <img src="./assets/qqgroup.jpg" width="300" />
