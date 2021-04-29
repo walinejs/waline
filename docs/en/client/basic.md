@@ -23,6 +23,14 @@ Waline server address url.
 
 Comment box placeholders.
 
+## wordLimit
+
+- Type: `number | [number, number]`
+- Default: `0`
+- Required: `false`
+
+Comment word s limit. When a single number is filled in, it 's the maximum number of comment words. No limit when set to `0`.
+
 ## path
 
 - Type: `String`
@@ -128,7 +136,7 @@ Each time you access `forced` pulls the latest avatar.
 ## emojiCDN
 
 - Type: `String`
-- Default: ` `
+- Default: ``
 - Required: `false`
 
 Set `Emoji Pack CDN`, refer to [Custom Emoji](/client/emoji.html).
@@ -163,7 +171,7 @@ Custom image upload callback to manage picture by yourself. We will input pictur
 ## anonymous
 
 - 类型：`Boolean`
-- 默认值：` `
+- 默认值：``
 - 必要性：`false`
 
 Whether to allow login comments. Both supported by default, set to `true` means only support anonymous comments, `false` means only support login comments.
