@@ -4,6 +4,7 @@ import zhCN from "./zh-CN";
 import zhTW from "./zh-TW";
 
 export default {
+  "zh": zhCN,
   "zh-cn": zhCN,
   "zh-CN": zhCN,
   "zh-TW": zhTW,
