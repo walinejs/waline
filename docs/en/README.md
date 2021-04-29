@@ -26,8 +26,7 @@ A simple comment system with backend support fork from [Valine](https://valine.j
 |                | Virtual Host | MySQL       |
 |                |              | SQLite      |
 |                |              | PostgreSQL  |
-|                |              | Github  |
-
+|                |              | Github      |
 
 ## Todo
 
