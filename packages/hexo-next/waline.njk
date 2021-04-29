@@ -1,15 +1,18 @@
+{{ next_data('waline', config.waline, {
+  el: '#waline-comments',
+  path: url_for(page.path) | replace(r/index\.html$/, '') | safedump
+}) }}
 <script>
-NexT.utils.loadComments('#waline-comments', () => {
-  NexT.utils.getScript(
-    '{%if config.waline.libUrl %}{{config.waline.libUrl}}{%else%}https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js{%endif%}', 
-    { condition: window.Waline }
-  ).then(() => {
-    new Waline(Object.assign({
-      lang: '{%if page.lang%}{{page.lang}}{%else%}zh-CN{%endif%}'
-    }, {{ config.waline | safedump }}, {
-      el: '#waline-comments',
-      path: {{ url_for(page.path) | replace(r/index\.html$/, '') | safedump }},
-    }));
-  });
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el)
+    .then(() => NexT.utils.getScript(
+      CONFIG.waline.libUrl || 'https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js', 
+      { condition: window.Waline }
+    ))
+    .then(() => {
+      new Waline(Object.assign({
+        lang: CONFIG.page.lang || 'zh-CN'
+      }, CONFIG.waline));
+    });
 });
 </script>
