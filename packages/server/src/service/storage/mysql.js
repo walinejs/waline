@@ -3,25 +3,26 @@ const Base = require('./base');
 module.exports = class extends Base {
   parseWhere(filter) {
     const where = {};
-    if(think.isEmpty(filter)) {
+    if (think.isEmpty(filter)) {
       return where;
     }
 
-    for(const k in filter) {
-      if(k === 'objectId') {
+    for (const k in filter) {
+      if (k === 'objectId') {
         where.id = filter[k];
         continue;
       }
 
-      if(filter[k] === undefined) {
+      if (filter[k] === undefined) {
         where[k] = null;
         continue;
       }
 
-      if(Array.isArray(filter[k])) {
-        if(filter[k][0] === 'IN' && !filter[k][1].length) {
+      if (Array.isArray(filter[k])) {
+        if (filter[k][0] === 'IN' && !filter[k][1].length) {
           continue;
-        } if(think.isDate(filter[k][1])) {
+        }
+        if (think.isDate(filter[k][1])) {
           filter[k][1] = think.datetime(filter[k][1]);
         }
       }
@@ -31,22 +32,22 @@ module.exports = class extends Base {
     return where;
   }
 
-  async select(where, {desc, limit, offset, field} = {}) {
+  async select(where, { desc, limit, offset, field } = {}) {
     const instance = this.model(this.tableName);
     instance.where(this.parseWhere(where));
-    if(desc) {
+    if (desc) {
       instance.order(`${desc} DESC`);
     }
-    if(limit || offset) {
+    if (limit || offset) {
       instance.limit(offset, limit);
     }
-    if(field) {
+    if (field) {
       field.push('id');
       instance.field(field);
     }
 
     const data = await instance.select();
-    return data.map(({id, ...cmt}) => ({...cmt, objectId: id}));
+    return data.map(({ id, ...cmt }) => ({ ...cmt, objectId: id }));
   }
 
   async count(where = {}) {
@@ -58,20 +59,26 @@ module.exports = class extends Base {
   async add(data) {
     const instance = this.model(this.tableName);
     const id = await instance.add(data);
-    return {...data, objectId: id};
+    return { ...data, objectId: id };
   }
 
   async update(data, where) {
-    const list = await this.model(this.tableName).where(this.parseWhere(where)).select();
-    return Promise.all(list.map(async item => {
-      const updateData = typeof data === 'function' ? data(item) : data;
-      await this.model(this.tableName).where({id: item.id}).update(updateData);
-      return {...item, ...updateData};
-    }));
+    const list = await this.model(this.tableName)
+      .where(this.parseWhere(where))
+      .select();
+    return Promise.all(
+      list.map(async (item) => {
+        const updateData = typeof data === 'function' ? data(item) : data;
+        await this.model(this.tableName)
+          .where({ id: item.id })
+          .update(updateData);
+        return { ...item, ...updateData };
+      })
+    );
   }
 
   async delete(where) {
     const instance = this.model(this.tableName);
     return instance.where(this.parseWhere(where)).delete();
   }
-}
+};

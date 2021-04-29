@@ -9,34 +9,40 @@ export const user = createModel({
       return user;
     },
     updateUser(state, data) {
-      return {...state, ...data};
-    }
+      return { ...state, ...data };
+    },
   },
-  effects: dispatch => ({
+  effects: (dispatch) => ({
     async loadUserInfo() {
       const user = await getUserInfo();
-      if(!user) {
+      if (!user) {
         return;
       }
-      if(window.opener) {
+      if (window.opener) {
         let token = window.TOKEN || sessionStorage.getItem('TOKEN');
-        if(!token) {
+        if (!token) {
           token = localStorage.getItem('TOKEN');
         }
-        window.opener.postMessage({type: 'userInfo', data: {token, ...user}}, '*');
+        window.opener.postMessage(
+          { type: 'userInfo', data: { token, ...user } },
+          '*'
+        );
       }
       return dispatch.user.setUser(user);
     },
-    async login({email, password, remember}) {
-      const {token, ...user} = await login({email, password});
-      if(token) {
+    async login({ email, password, remember }) {
+      const { token, ...user } = await login({ email, password });
+      if (token) {
         window.TOKEN = token;
         sessionStorage.setItem('TOKEN', token);
-        if(remember) {
+        if (remember) {
           localStorage.setItem('TOKEN', token);
         }
-        if(window.opener) {
-          window.opener.postMessage({type: 'userInfo', data: {token, remember, ...user}}, '*');
+        if (window.opener) {
+          window.opener.postMessage(
+            { type: 'userInfo', data: { token, remember, ...user } },
+            '*'
+          );
         }
       }
       return dispatch.user.setUser(user);
@@ -51,10 +57,10 @@ export const user = createModel({
     async updateProfile(data) {
       await updateProfile(data);
 
-      if(window.opener) {
-        window.opener.postMessage({type: 'profile', data}, '*');
+      if (window.opener) {
+        window.opener.postMessage({ type: 'profile', data }, '*');
       }
       return dispatch.user.updateUser(data);
-    }
+    },
   }),
-})
+});

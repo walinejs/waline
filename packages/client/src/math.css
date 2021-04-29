@@ -3,14 +3,14 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 /* See https://github.com/fred-wang/mathml.css */
-   
+
 /* math */
 .mathml-polyfill math {
   font-family: Cambria Math, Latin Modern Math;
   display: inline;
   text-indent: 0;
 }
-.mathml-polyfill math[display="block"] {
+.mathml-polyfill math[display='block'] {
   display: block;
   text-align: center;
 }
@@ -29,39 +29,43 @@
   display: inline-block !important;
   vertical-align: top;
 }
-.mathml-polyfill mfrac:not([linethickness="0"]) > *:first-child {
+.mathml-polyfill mfrac:not([linethickness='0']) > *:first-child {
   border-bottom: solid thin;
 }
 
 /* sub/sup scripts */
-.mathml-polyfill msub > *:nth-child(2), 
+.mathml-polyfill msub > *:nth-child(2),
 .mathml-polyfill msubsup > *:nth-child(2),
-.mathml-polyfill mmultiscripts > *:nth-child(2n+2),
-.mathml-polyfill mmultiscripts > mprescripts ~ *:nth-child(2n+3) {
+.mathml-polyfill mmultiscripts > *:nth-child(2n + 2),
+.mathml-polyfill mmultiscripts > mprescripts ~ *:nth-child(2n + 3) {
   font-size: 0.8em;
   vertical-align: sub;
 }
 .mathml-polyfill msup > *:nth-child(2),
 .mathml-polyfill msubsup > *:nth-child(3),
-.mathml-polyfill mmultiscripts > *:nth-child(2n+3),
-.mathml-polyfill mmultiscripts > mprescripts ~ *:nth-child(2n+2) {
+.mathml-polyfill mmultiscripts > *:nth-child(2n + 3),
+.mathml-polyfill mmultiscripts > mprescripts ~ *:nth-child(2n + 2) {
   font-size: 0.8em;
   vertical-align: super;
 }
 .mathml-polyfill mprescripts:after {
-  content: ";";
+  content: ';';
 }
 
 /* under/over scripts */
-.mathml-polyfill munder, mover, munderover {
+.mathml-polyfill munder,
+mover,
+munderover {
   display: inline-flex !important;
   flex-direction: column;
 }
-.mathml-polyfill munder > *:nth-child(2), munderover > *:nth-child(2) {
+.mathml-polyfill munder > *:nth-child(2),
+munderover > *:nth-child(2) {
   font-size: 0.8em;
   order: +1;
 }
-.mathml-polyfill mover > *:nth-child(2), munderover > *:nth-child(3) {
+.mathml-polyfill mover > *:nth-child(2),
+munderover > *:nth-child(3) {
   font-size: 0.8em;
   order: -1;
 }
@@ -76,19 +80,21 @@
 }
 
 /* roots */
-.mathml-polyfill msqrt, mroot {
+.mathml-polyfill msqrt,
+mroot {
   display: inline-flex !important;
-  margin-left: .5em;
+  margin-left: 0.5em;
   vertical-align: middle;
   border-top: solid thin;
 }
-.mathml-polyfill msqrt:before, mroot:before {
-  margin-left: -.5em;
-  content: "\221A";
+.mathml-polyfill msqrt:before,
+mroot:before {
+  margin-left: -0.5em;
+  content: '\221A';
 }
 .mathml-polyfill mroot > *:nth-child(2) {
-  margin-right: .25em;
-  margin-left: -.75em;
+  margin-right: 0.25em;
+  margin-left: -0.75em;
   font-size: 0.8em;
   order: -1;
 }
@@ -99,30 +105,34 @@
   border-collapse: separate;
   border-spacing: 0.4ex 0;
 }
-.mathml-polyfill menclose[notation*="top"], menclose[notation*="actuarial"] {
+.mathml-polyfill menclose[notation*='top'],
+menclose[notation*='actuarial'] {
   border-top: solid thin;
 }
-.mathml-polyfill menclose[notation*="bottom"], menclose[notation*="madruwb"] {
+.mathml-polyfill menclose[notation*='bottom'],
+menclose[notation*='madruwb'] {
   border-bottom: solid thin;
 }
-menclose[notation*="right"], menclose[notation*="actuarial"],
-.mathml-polyfill menclose[notation*="madruwb"] {
+menclose[notation*='right'],
+menclose[notation*='actuarial'],
+.mathml-polyfill menclose[notation*='madruwb'] {
   border-right: solid thin;
 }
-.mathml-polyfill menclose[notation*="left"] {
+.mathml-polyfill menclose[notation*='left'] {
   border-left: solid thin;
 }
-menclose[notation*="box"], menclose[notation*="roundedbox"],
-.mathml-polyfill menclose[notation*="circle"] {
+menclose[notation*='box'],
+menclose[notation*='roundedbox'],
+.mathml-polyfill menclose[notation*='circle'] {
   border: solid thin;
 }
-.mathml-polyfill menclose[notation*="roundedbox"] {
+.mathml-polyfill menclose[notation*='roundedbox'] {
   border-radius: 15%;
 }
-.mathml-polyfill menclose[notation*="circle"] {
+.mathml-polyfill menclose[notation*='circle'] {
   border-radius: 50%;
 }
-.mathml-polyfill menclose[notation*="horizontalstrike"] {
+.mathml-polyfill menclose[notation*='horizontalstrike'] {
   text-decoration: line-through;
 }
 
@@ -142,17 +152,18 @@ menclose[notation*="box"], menclose[notation*="roundedbox"],
 
 /* token elements */
 .mathml-polyfill mspace {
-  margin: .2em;
+  margin: 0.2em;
 }
 .mathml-polyfill mi {
   font-style: italic;
 }
 .mathml-polyfill mo {
-  margin-right: .2em;
-  margin-left: .2em;
+  margin-right: 0.2em;
+  margin-left: 0.2em;
 }
-.mathml-polyfill ms:before, ms:after {
-  content:"\0022";
+.mathml-polyfill ms:before,
+ms:after {
+  content: '\0022';
 }
 .mathml-polyfill ms[lquote]:before {
   content: attr(lquote);
@@ -162,29 +173,31 @@ menclose[notation*="box"], menclose[notation*="roundedbox"],
 }
 
 /* mathvariants */
-.mathml-polyfill [mathvariant="bold"], 
-.mathml-polyfill [mathvariant="bold-italic"],
-.mathml-polyfill [mathvariant="bold-sans-serif"], [mathvariant="sans-serif-bold-italic"] {
+.mathml-polyfill [mathvariant='bold'],
+.mathml-polyfill [mathvariant='bold-italic'],
+.mathml-polyfill [mathvariant='bold-sans-serif'],
+[mathvariant='sans-serif-bold-italic'] {
   font-weight: bold;
   font-style: normal;
 }
-.mathml-polyfill [mathvariant="monospace"] {
+.mathml-polyfill [mathvariant='monospace'] {
   font-family: monospace;
   font-style: normal;
 }
-.mathml-polyfill [mathvariant="sans-serif"],
-.mathml-polyfill [mathvariant="bold-sans-serif"], 
-.mathml-polyfill [mathvariant="sans-serif-italic"],
-.mathml-polyfill [mathvariant="sans-serif-bold-italic"] {
+.mathml-polyfill [mathvariant='sans-serif'],
+.mathml-polyfill [mathvariant='bold-sans-serif'],
+.mathml-polyfill [mathvariant='sans-serif-italic'],
+.mathml-polyfill [mathvariant='sans-serif-bold-italic'] {
   font-family: sans-serif;
   font-style: normal;
 }
-.mathml-polyfill [mathvariant="italic"], 
-.mathml-polyfill [mathvariant="bold-italic"],
-.mathml-polyfill [mathvariant="sans-serif-italic"], [mathvariant="sans-serif-bold-italic"] {
+.mathml-polyfill [mathvariant='italic'],
+.mathml-polyfill [mathvariant='bold-italic'],
+.mathml-polyfill [mathvariant='sans-serif-italic'],
+[mathvariant='sans-serif-bold-italic'] {
   font-style: italic;
 }
-.mathml-polyfill [mathvariant="normal"] {
+.mathml-polyfill [mathvariant='normal'] {
   font-style: normal;
 }
 
@@ -198,14 +211,15 @@ menclose[notation*="box"], menclose[notation*="roundedbox"],
   outline: solid thin red;
 }
 .mathml-polyfill merror:before {
-  content: "Error: ";
+  content: 'Error: ';
 }
 
 /* annotations */
 .mathml-polyfill semantics > *:first-child {
   display: inline;
 }
-.mathml-polyfill annotation, annotation-xml {
+.mathml-polyfill annotation,
+annotation-xml {
   font-family: monospace;
   display: none !important;
 }

@@ -1,5 +1,5 @@
 # docker-compose.yml
-version: "3"
+version: '3'
 
 services:
   waline:
@@ -11,10 +11,10 @@ services:
     volumes:
       - ${PWD}/data:/app/data
     environment:
-      TZ: "Asia/Shanghai"
-      SQLITE_PATH: "/app/data"
-      JWT_TOKEN: "Your token"
-      SITE_NAME: "Your site name"
-      SITE_URL: "https://example.com"
-      SECURE_DOMAINS: "example.com"
-      AUTHOR_EMAIL: "mail@example.com"
+      TZ: 'Asia/Shanghai'
+      SQLITE_PATH: '/app/data'
+      JWT_TOKEN: 'Your token'
+      SITE_NAME: 'Your site name'
+      SITE_URL: 'https://example.com'
+      SECURE_DOMAINS: 'example.com'
+      AUTHOR_EMAIL: 'mail@example.com'

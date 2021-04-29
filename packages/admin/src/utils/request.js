@@ -1,47 +1,49 @@
 export default async function request(url, opts = {}) {
-  if(typeof url === 'object') {
+  if (typeof url === 'object') {
     opts = url;
-  } else if(typeof url === 'string') {
+  } else if (typeof url === 'string') {
     opts.url = url;
   }
 
-  if(!opts.headers) {
+  if (!opts.headers) {
     opts.headers = {};
   }
-  if(opts.body && !(opts.body instanceof FormData)) {
+  if (opts.body && !(opts.body instanceof FormData)) {
     opts.headers['Content-Type'] = 'application/json';
     opts.body = JSON.stringify(opts.body);
   }
 
   let token = window.TOKEN || sessionStorage.getItem('TOKEN');
-  if(!token) {
+  if (!token) {
     token = localStorage.getItem('TOKEN');
   }
-  if(token) {
+  if (token) {
     opts.headers.Authorization = `Bearer ${token}`;
   }
 
   let baseUrl = window.serverURL;
-  if(!baseUrl) {
+  if (!baseUrl) {
     const match = location.pathname.match(/(.*?\/)ui/);
     baseUrl = match ? match[1] : '/';
   }
-  
-  return fetch(baseUrl + opts.url, opts).then(resp => {
-    if(resp.ok) {
-      return resp.json();
-    }
 
-    if(resp.status === 401) {
-      throw new Error(401);
-    }
+  return fetch(baseUrl + opts.url, opts)
+    .then((resp) => {
+      if (resp.ok) {
+        return resp.json();
+      }
 
-    throw new Error(`${resp.status}: ${resp.statusText}`);
-  }).then(resp => {
-    if(resp.errno !== 0) {
-      throw new Error(resp.errmsg);
-    }
+      if (resp.status === 401) {
+        throw new Error(401);
+      }
 
-    return resp.data;
-  });
+      throw new Error(`${resp.status}: ${resp.statusText}`);
+    })
+    .then((resp) => {
+      if (resp.errno !== 0) {
+        throw new Error(resp.errmsg);
+      }
+
+      return resp.data;
+    });
 }

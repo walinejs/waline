@@ -22,7 +22,7 @@ const {
   MAIL_SUBJECT_ADMIN,
   MAIL_TEMPLATE_ADMIN,
   QQ_TEMPLATE,
-  TG_TEMPLATE
+  TG_TEMPLATE,
 } = process.env;
 
 let storage = 'leancloud';
@@ -37,40 +37,42 @@ if (LEAN_KEY) {
   jwtKey = jwtKey || PG_PASSWORD;
 } else if (SQLITE_PATH) {
   storage = 'mysql';
-} else if(MYSQL_DB) {
+} else if (MYSQL_DB) {
   storage = 'mysql';
   jwtKey = jwtKey || MYSQL_PASSWORD;
-} else if(GITHUB_TOKEN) {
+} else if (GITHUB_TOKEN) {
   storage = 'github';
   jwtKey = jwtKey || GITHUB_TOKEN;
-} else if(think.env === 'cloudbase' || TCB_ENV) {
+} else if (think.env === 'cloudbase' || TCB_ENV) {
   storage = 'cloudbase';
   jwtKey = jwtKey || TENCENTCLOUD_SECRETKEY || TCB_KEY || TCB_ENV;
 }
 
-if(think.env === 'cloudbase' && storage === 'sqlite') {
-  throw new Error('You can\'t use SQLite in CloudBase platform.');
+if (think.env === 'cloudbase' && storage === 'sqlite') {
+  throw new Error("You can't use SQLite in CloudBase platform.");
 }
 
 let forbiddenWords = [];
-if(FORBIDDEN_WORDS) {
+if (FORBIDDEN_WORDS) {
   forbiddenWords = FORBIDDEN_WORDS.split(/\s*,\s*/);
 }
 
 module.exports = {
   workers: 1,
-  storage, 
+  storage,
   jwtKey,
   forbiddenWords,
   disallowIPList: [],
   secureDomains: SECURE_DOMAINS ? SECURE_DOMAINS.split(/\s*,\s*/) : undefined,
-  disableUserAgent: DISABLE_USERAGENT && !['0', 'false'].includes(DISABLE_USERAGENT.toLowerCase()),
+  disableUserAgent:
+    DISABLE_USERAGENT &&
+    !['0', 'false'].includes(DISABLE_USERAGENT.toLowerCase()),
   avatarProxy: AVATAR_PROXY || 'https://avatar.75cdn.workers.dev/',
-  
+
   mailSubject: MAIL_SUBJECT,
   mailTemplate: MAIL_TEMPLATE,
   mailSubjectAdmin: MAIL_SUBJECT_ADMIN,
   mailTemplateAdmin: MAIL_TEMPLATE_ADMIN,
   QQTemplate: QQ_TEMPLATE,
-  TGTemplate: TG_TEMPLATE
+  TGTemplate: TG_TEMPLATE,
 };

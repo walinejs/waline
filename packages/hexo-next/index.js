@@ -26,30 +26,41 @@ function iconText(icon, key, defaultValue) {
 }
 
 function warning(...args) {
-  hexo.log.warn(`Since ${args[0]} is turned on, the ${args[1]} is disabled to avoid potential hazards.`);
-};
+  hexo.log.warn(
+    `Since ${args[0]} is turned on, the ${args[1]} is disabled to avoid potential hazards.`
+  );
+}
 
 // Add comment
-hexo.extend.filter.register('theme_inject', injects => {
-
+hexo.extend.filter.register('theme_inject', (injects) => {
   const config = utils.defaultConfigFile('waline', 'default.yaml');
   if (!config.enable || !config.serverURL) return;
 
-  injects.comment.raw('waline', '<div class="comments" id="waline-comments"></div>', {}, { cache: true });
+  injects.comment.raw(
+    'waline',
+    '<div class="comments" id="waline-comments"></div>',
+    {},
+    { cache: true }
+  );
 
   injects.bodyEnd.raw('waline', utils.getFileContent('waline.njk'));
 
-  injects.head.raw('waline', `<link rel="dns-prefetch" href="${config.serverURL}">`, {}, {});
-
+  injects.head.raw(
+    'waline',
+    `<link rel="dns-prefetch" href="${config.serverURL}">`,
+    {},
+    {}
+  );
 });
 
 // Add post_meta
-hexo.extend.filter.register('theme_inject', injects => {
-
+hexo.extend.filter.register('theme_inject', (injects) => {
   const config = utils.defaultConfigFile('waline', 'default.yaml');
   if (!config.enable || !config.serverURL) return;
 
-  injects.postMeta.raw('waline_comments', `
+  injects.postMeta.raw(
+    'waline_comments',
+    `
   {% if post.comments and (is_post() or config.waline.comment_count) %}
   <span class="post-meta-item">
     ${iconText('far fa-comment', 'waline')}
@@ -58,16 +69,24 @@ hexo.extend.filter.register('theme_inject', injects => {
     </a>
   </span>
   {% endif %}
-  `, {}, {});
+  `,
+    {},
+    {}
+  );
 
   if (config.visitor) {
-    if (hexo.theme.config.leancloud_visitors && hexo.theme.config.leancloud_visitors.enable) {
+    if (
+      hexo.theme.config.leancloud_visitors &&
+      hexo.theme.config.leancloud_visitors.enable
+    ) {
       warning('waline.visitor', 'leancloud_visitors');
       hexo.theme.config.leancloud_visitors.enable = false;
       return;
     }
-    
-    injects.postMeta.raw('waline_visitors', `
+
+    injects.postMeta.raw(
+      'waline_visitors',
+      `
     <span id="{{ url_for(post.path) }}" class="post-meta-item leancloud_visitors" data-flag-title="{{ post.title }}" title="{{ __('post.views') }}">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
@@ -75,7 +94,9 @@ hexo.extend.filter.register('theme_inject', injects => {
       <span class="post-meta-item-text">{{ __('post.views') + __('symbol.colon') }}</span>
       <span class="leancloud-visitors-count"></span>
     </span>
-  `, {}, {});
+  `,
+      {},
+      {}
+    );
   }
-
 });

@@ -3,68 +3,81 @@ const Base = require('./base');
 
 module.exports = class extends Base {
   where(instance, where) {
-    if(think.isEmpty(where)) {
+    if (think.isEmpty(where)) {
       return;
     }
 
-    const parseKey = k => k === 'objectId' ? '_id' : k;
-    for(let k in where) {
-      if(think.isString(where[k])) {
+    const parseKey = (k) => (k === 'objectId' ? '_id' : k);
+    for (let k in where) {
+      if (think.isString(where[k])) {
         instance.where({
-          [parseKey(k)]: { $eq: k === 'objectId' ? ObjectId(where[k]) : where[k] }
+          [parseKey(k)]: {
+            $eq: k === 'objectId' ? ObjectId(where[k]) : where[k],
+          },
         });
         continue;
       }
-      if(where[k] === undefined) {
+      if (where[k] === undefined) {
         instance.where({
-          [parseKey(k)]: { $eq: null }
+          [parseKey(k)]: { $eq: null },
         });
       }
-      if(Array.isArray(where[k])) {
-        if(where[k][0]) {
+      if (Array.isArray(where[k])) {
+        if (where[k][0]) {
           const handler = where[k][0].toUpperCase();
-          switch(handler) {
+          switch (handler) {
             case 'IN':
-              if(k === 'objectId') {
+              if (k === 'objectId') {
                 instance.where({
-                  [parseKey(k)]: { $in: where[k][1].map(ObjectId) }
+                  [parseKey(k)]: { $in: where[k][1].map(ObjectId) },
                 });
               } else {
                 instance.where({
-                  [parseKey(k)]: { $regex: new RegExp(`^(${where[k][1].join('|')})$`) }
+                  [parseKey(k)]: {
+                    $regex: new RegExp(`^(${where[k][1].join('|')})$`),
+                  },
                 });
               }
               break;
             case 'NOT IN':
               instance.where({
-                [parseKey(k)]: { $nin: k === 'objectId' ? where[k][1].map(ObjectId) : where[k][1] }
+                [parseKey(k)]: {
+                  $nin:
+                    k === 'objectId' ? where[k][1].map(ObjectId) : where[k][1],
+                },
               });
               break;
             case 'LIKE':
               const first = where[k][1][0];
               const last = where[k][1].slice(-1);
-              if(first === '%' && last === '%') {
+              if (first === '%' && last === '%') {
                 instance.where({
-                  [parseKey(k)]: { $regex: new RegExp(where[k][1].slice(1, -1)) }
+                  [parseKey(k)]: {
+                    $regex: new RegExp(where[k][1].slice(1, -1)),
+                  },
                 });
-              } else if(first === '%') {
+              } else if (first === '%') {
                 instance.where({
-                  [parseKey(k)]: { $regex: new RegExp(where[k][1].slice(1) + '$') }
+                  [parseKey(k)]: {
+                    $regex: new RegExp(where[k][1].slice(1) + '$'),
+                  },
                 });
-              } else if(last === '%') {
+              } else if (last === '%') {
                 instance.where({
-                  [parseKey(k)]: { $regex: new RegExp('^' + where[k][1].slice(0, -1)) }
+                  [parseKey(k)]: {
+                    $regex: new RegExp('^' + where[k][1].slice(0, -1)),
+                  },
                 });
               }
               break;
             case '!=':
               instance.where({
-                [parseKey(k)]: { $ne: where[k][1] }
+                [parseKey(k)]: { $ne: where[k][1] },
               });
               break;
             case '>':
               instance.where({
-                [parseKey(k)]: { $gt: where[k][1] }
+                [parseKey(k)]: { $gt: where[k][1] },
               });
               break;
           }
@@ -73,22 +86,24 @@ module.exports = class extends Base {
     }
   }
 
-
-  async select(where, {desc, limit, offset, field} = {}) {
+  async select(where, { desc, limit, offset, field } = {}) {
     const instance = this.mongo(this.tableName);
     this.where(instance, where);
-    if(desc) {
+    if (desc) {
       instance.order(`${desc} DESC`);
     }
-    if(limit || offset) {
+    if (limit || offset) {
       instance.limit(offset, limit);
     }
-    if(field) {
+    if (field) {
       instance.field(field);
     }
 
     const data = await instance.select();
-    return data.map(({_id, ...cmt}) => ({...cmt, objectId: _id.toString()}));
+    return data.map(({ _id, ...cmt }) => ({
+      ...cmt,
+      objectId: _id.toString(),
+    }));
   }
 
   async count(where = {}) {
@@ -100,21 +115,23 @@ module.exports = class extends Base {
   async add(data) {
     const instance = this.mongo(this.tableName);
     const id = await instance.add(data);
-    return {...data, objectId: id.toString()};
+    return { ...data, objectId: id.toString() };
   }
 
   async update(data, where) {
     const instance = this.mongo(this.tableName);
     this.where(instance, where);
     const list = await instance.select();
-    
-    return Promise.all(list.map(async item => {
-      const updateData = typeof data === 'function' ? data(item) : data;
-      const instance = this.mongo(this.tableName);
-      this.where(instance, where);
-      await instance.update(updateData);
-      return {...item, ...updateData};
-    }));
+
+    return Promise.all(
+      list.map(async (item) => {
+        const updateData = typeof data === 'function' ? data(item) : data;
+        const instance = this.mongo(this.tableName);
+        this.where(instance, where);
+        await instance.update(updateData);
+        return { ...item, ...updateData };
+      })
+    );
   }
 
   async delete(where) {
@@ -122,4 +139,4 @@ module.exports = class extends Base {
     this.where(instance, where);
     return instance.delete();
   }
-}
+};

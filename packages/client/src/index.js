@@ -10,43 +10,50 @@ import './recent.css';
 import './math.css';
 
 export function ReactComponent({
-  placeholder = "Just Go Go.", 
-  path = location.pathname, 
-  avatar, 
+  placeholder = 'Just Go Go.',
+  path = location.pathname,
+  avatar,
   avatarForce,
   avatarCDN,
-  meta = ['nick','mail','link'], 
-  pageSize = 10, 
-  lang = "zh-CN",
+  meta = ['nick', 'mail', 'link'],
+  pageSize = 10,
+  lang = 'zh-CN',
   langMode = {},
-  highlight, 
+  highlight,
   serverURL,
   emojiCDN,
   emojiMaps,
   requiredFields = [],
   copyRight = true,
   uploadImage,
-  anonymous
+  anonymous,
 } = {}) {
   return (
-    <Context 
+    <Context
       anonymous={anonymous}
-      lang={lang} 
+      lang={lang}
       langMode={langMode}
-      emojiCDN={emojiCDN} 
+      emojiCDN={emojiCDN}
       emojiMaps={emojiMaps}
       avatar={avatar}
       avatarCDN={avatarCDN}
       avatarFore={avatarForce}
       uploadImage={uploadImage}
     >
-      <App 
-        boxConfig={{serverURL, placeholder, meta, highlight, requiredFields, path}}
-        listConfig={{path, pageSize, serverURL, avatar}}
+      <App
+        boxConfig={{
+          serverURL,
+          placeholder,
+          meta,
+          highlight,
+          requiredFields,
+          path,
+        }}
+        listConfig={{ path, pageSize, serverURL, avatar }}
         copyRight={copyRight}
       />
     </Context>
-  )
+  );
 }
 
 export default function Waline({
@@ -58,74 +65,79 @@ export default function Waline({
 } = {}) {
   try {
     path = decodeURI(path);
-  } catch(e) {
+  } catch (e) {
     //ignore error
   }
   //compat multiple slash
   serverURL = serverURL.replace(/\/+$/, '');
-  
-  //visitor count
-  if(visitor) {
-    const addPromise = Visitor.post({serverURL, path});
 
-    const els = document.querySelectorAll('.leancloud_visitors,.leancloud-visitors');
-    const countEls = [].filter.call(els, el => el.getAttribute('id'));
-    const ids = [].map.call(countEls, el => {
+  //visitor count
+  if (visitor) {
+    const addPromise = Visitor.post({ serverURL, path });
+
+    const els = document.querySelectorAll(
+      '.leancloud_visitors,.leancloud-visitors'
+    );
+    const countEls = [].filter.call(els, (el) => el.getAttribute('id'));
+    const ids = [].map.call(countEls, (el) => {
       let id = el.getAttribute('id');
       try {
         id = decodeURI(id);
-      } catch(e) {
+      } catch (e) {
         //ignore error
       }
       return id;
     });
-    const restIds = ids.filter(id => id !== path);
+    const restIds = ids.filter((id) => id !== path);
 
-    if(!restIds.length) {
-      addPromise.then(count => Visitor.render(count, countEls));
+    if (!restIds.length) {
+      addPromise.then((count) => Visitor.render(count, countEls));
     } else {
       const hasPath = restIds.length !== ids.length;
       (hasPath ? addPromise : Promise.resolve())
-        .then(_ => Visitor.get({serverURL, path: ids}))
-        .then(counts => Visitor.render(counts, countEls));
+        .then((_) => Visitor.get({ serverURL, path: ids }))
+        .then((counts) => Visitor.render(counts, countEls));
     }
   }
 
   //comment count
-  const $counts = [].filter.call(document.querySelectorAll('.waline-comment-count'), el => {
-    if(!el.getAttribute('data-xid') && !el.getAttribute('id')) {
-      return false;
+  const $counts = [].filter.call(
+    document.querySelectorAll('.waline-comment-count'),
+    (el) => {
+      if (!el.getAttribute('data-xid') && !el.getAttribute('id')) {
+        return false;
+      }
+      if (el.innerText && el.innerText.trim()) {
+        return false;
+      }
+      return true;
     }
-    if(el.innerText && el.innerText.trim()) {
-      return false;
-    }
-    return true;
-  });
-  if($counts.length) {
-    const paths = $counts.map(el => {
+  );
+  if ($counts.length) {
+    const paths = $counts.map((el) => {
       let path = el.getAttribute('data-xid') || el.getAttribute('id');
       try {
         path = decodeURI(path);
-      } catch(e) {
+      } catch (e) {
         //ignore error
       }
       return path;
     });
 
-    fetchCount({serverURL, path: paths}).then(counts => {
-      if(!Array.isArray(counts)) {
+    fetchCount({ serverURL, path: paths }).then((counts) => {
+      if (!Array.isArray(counts)) {
         counts = [counts];
       }
       $counts.forEach((el, idx) => (el.innerText = counts[idx]));
     });
   }
 
-  //mathml 
+  //mathml
   window.addEventListener('load', mathML);
 
   //comment list display
   const root = document.querySelector(el);
-  if(!root) {
+  if (!root) {
     return;
   }
 
@@ -137,30 +149,33 @@ export default function Waline({
     </React.StrictMode>,
     root
   );
-};
+}
 
 ReactComponent.version = Waline.version = VERSION;
 
 ReactComponent.Widget = Waline.Widget = {
-  RecentComments({el, serverURL, count}) {
+  RecentComments({ el, serverURL, count }) {
     //评论列表展示
     const root = document.querySelector(el);
-    if(!root) {
+    if (!root) {
       return Promise.resolve();
     }
 
-    return fetchRecent({serverURL, count}).then(comments => {
-      if(!comments.length) {
+    return fetchRecent({ serverURL, count }).then((comments) => {
+      if (!comments.length) {
         return comments;
       }
       root.innerHTML = `
       <ul class="waline-widget-list">
-      ${comments.map(cmt => 
-        `<li class="waline-widget-item"><a href="${cmt.url}">${cmt.nick}</a>：${cmt.comment}</li>`
-      ).join('')}
+      ${comments
+        .map(
+          (cmt) =>
+            `<li class="waline-widget-item"><a href="${cmt.url}">${cmt.nick}</a>：${cmt.comment}</li>`
+        )
+        .join('')}
       </ul>`;
-      
+
       return comments;
     });
-  }
+  },
 };

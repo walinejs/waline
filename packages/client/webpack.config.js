@@ -2,20 +2,20 @@ const path = require('path');
 const webpack = require('webpack');
 const es3ifyPlugin = require('es3ify-webpack-plugin');
 const htmlWebpackPlugin = require('html-webpack-plugin');
-const {version} = require('./package.json');
+const { version } = require('./package.json');
 
 const pkgName = 'Waline';
 module.exports = {
   mode: 'production',
   entry: {
-    [pkgName + '.min']: path.resolve(__dirname, 'src/index.js')
+    [pkgName + '.min']: path.resolve(__dirname, 'src/index.js'),
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
     library: pkgName,
     libraryExport: 'default',
-    libraryTarget: 'umd'
+    libraryTarget: 'umd',
   },
   // resolve: {
   //   alias: {
@@ -30,23 +30,20 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: 'babel-loader?cacheDirectory'
+        use: 'babel-loader?cacheDirectory',
       },
       {
         test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader'
-        ]
-      }
-    ]
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
   },
   plugins: [
-    new webpack.DefinePlugin({VERSION: JSON.stringify(version)}),
+    new webpack.DefinePlugin({ VERSION: JSON.stringify(version) }),
     new es3ifyPlugin(),
     new htmlWebpackPlugin({
       inject: false,
-      templateContent: ({htmlWebpackPlugin}) => `
+      templateContent: ({ htmlWebpackPlugin }) => `
         <!DOCTYPE html>
         <html>
         <head>
@@ -71,12 +68,12 @@ module.exports = {
           </script>
         </body>
         </html>
-      `
-    })
+      `,
+    }),
   ],
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
-    port: 9000
-  }
+    port: 9000,
+  },
 };

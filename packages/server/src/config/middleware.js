@@ -6,51 +6,51 @@ const isTcb = think.env === 'cloudbase';
 module.exports = [
   {
     handle: 'dashboard',
-    match: /^\/ui/
+    match: /^\/ui/,
   },
   {
     handle: 'meta',
     options: {
       logRequest: isDev,
       sendResponseTime: isDev,
-      requestTimeoutCallback: isTcb ? false : () => {}
-    }
+      requestTimeoutCallback: isTcb ? false : () => {},
+    },
   },
   {
-    handle: cors
+    handle: cors,
   },
   {
     handle: 'trace',
     enable: !think.isCli,
     options: {
       debug: true,
-      contentType: _ => 'json',
+      contentType: (_) => 'json',
       error(err, ctx) {
-        if(/favicon.ico$/.test(ctx.url)) {
+        if (/favicon.ico$/.test(ctx.url)) {
           return;
         }
         if (think.isPrevent(err)) {
           return false;
         }
-        
+
         console.error(err);
-      }
-    }
+      },
+    },
   },
   {
     handle: 'payload',
     options: {
       keepExtensions: true,
-      limit: '5mb'
-    }
+      limit: '5mb',
+    },
   },
   {
     handle: 'router',
-    options: {}
+    options: {},
   },
   {
-    handle: routerREST
+    handle: routerREST,
   },
   'logic',
-  'controller'
+  'controller',
 ];

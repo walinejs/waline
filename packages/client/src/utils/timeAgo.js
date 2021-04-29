@@ -1,12 +1,14 @@
-function timeAgo(date,locale) {
-  if(!date) {
+function timeAgo(date, locale) {
+  if (!date) {
     return;
   }
 
   try {
-    if(typeof date === 'string') {
+    if (typeof date === 'string') {
       //compat with mysql output date
-      date = new Date(date.indexOf(' ') !== -1 ? date.replace(/-/g, '/') : date);
+      date = new Date(
+        date.indexOf(' ') !== -1 ? date.replace(/-/g, '/') : date
+      );
     }
     const oldTime = date.getTime();
     const currTime = new Date().getTime();
@@ -37,28 +39,26 @@ function timeAgo(date,locale) {
     if (days < 8) {
       return days + ` ${locale.days}`;
     } else {
-      return dateFormat(date)
+      return dateFormat(date);
     }
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 }
-
 
 const dateFormat = (date) => {
   var vDay = padWithZeros(date.getDate(), 2);
   var vMonth = padWithZeros(date.getMonth() + 1, 2);
   var vYear = padWithZeros(date.getFullYear(), 2);
   return `${vYear}-${vMonth}-${vDay}`;
-}
-
+};
 
 const padWithZeros = (vNumber, width) => {
   var numAsString = vNumber.toString();
   while (numAsString.length < width) {
-      numAsString = '0' + numAsString;
+    numAsString = '0' + numAsString;
   }
   return numAsString;
-}
+};
 
-module.exports = timeAgo
+module.exports = timeAgo;
