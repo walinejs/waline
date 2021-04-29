@@ -1,10 +1,10 @@
-name: "[docker] CI for test"
+name: '[docker] CI for test'
 
 on:
   pull_request:
     branches: [master]
     paths:
-      - "packages/server/*"
+      - 'packages/server/*'
 
 jobs:
   path-context:

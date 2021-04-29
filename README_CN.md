@@ -1,4 +1,3 @@
-
 <img src="./assets/waline.png" width='200' align="right" />
 
 # Waline
@@ -12,7 +11,7 @@
 
 一款基于 [Valine](https://valine.js.org) 衍生的简洁、安全的评论系统。
 
-------------------------------
+---
 
 [English](https://github.com/lizheming/waline/blob/master/README.md) | 中文 | **查看文档：** <https://waline.js.org>
 
@@ -34,14 +33,14 @@
 |                | 独立部署       | MySQL        |
 |                |                | SQLite       |
 |                |                | PostgreSQL   |
-|                |            | GitHub |
+|                |                | GitHub       |
 
 ## Todo
 
 - [x] 邮件通知
 - [x] 微信通知
 - [x] QQ 通知
-- [x] Telegram 通知 
+- [x] Telegram 通知
 - [x] Akismet 反垃圾评论
 - [x] 文章统计
 - [x] 多语言
@@ -53,7 +52,7 @@
 - [x] 基于 IP 的评论发布频率限制
 - [x] 基于关键词的评论过滤限制
 - [x] IP 黑名单
-- [x] 重复内容检测 
+- [x] 重复内容检测
 - [x] CloudBase 腾讯云开发部署支持
 - [x] 社交登录
 - [ ] AWS, GCP, Azure 部署支持
@@ -73,4 +72,3 @@
 ## 协议
 
 [GPL-2.0](https://github.com/lizheming/Waline/blob/master/LICENSE)
-
