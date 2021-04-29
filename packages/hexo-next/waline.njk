@@ -1,12 +1,15 @@
 <script>
 NexT.utils.loadComments('#waline-comments', () => {
-  NexT.utils.getScript('{%if config.waline.libUrl %}{{config.waline.libUrl}}{%else%}https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js{%endif%}', () => {
+  NexT.utils.getScript(
+    '{%if config.waline.libUrl %}{{config.waline.libUrl}}{%else%}https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js{%endif%}', 
+    { condition: window.Waline }
+  ).then(() => {
     new Waline(Object.assign({
       lang: '{%if page.lang%}{{page.lang}}{%else%}zh-CN{%endif%}'
     }, {{ config.waline | safedump }}, {
       el: '#waline-comments',
       path: {{ url_for(page.path) | replace(r/index\.html$/, '') | safedump }},
     }));
-  }, window.Waline);
+  });
 });
 </script>
