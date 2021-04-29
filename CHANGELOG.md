@@ -1,9 +1,11 @@
-#  (2021-04-29)
+# (2021-04-29)
+
 ### Features
 
-* **client:** add wordLimit support ([#219](https://github.com/lizheming/waline/issues/219)) ([97c47cb](https://github.com/lizheming/waline/commit/97c47cb7fb41dec579f02462b70712a8042210e8))
-* compat with NexT theme 8.4.0 ([e297524](https://github.com/lizheming/waline/commit/e2975244263361a7ff6fc7a236f14831f79b413c))
-* **client:** add short lang 'zh' support in i18n, close [#209](https://github.com/lizheming/waline/issues/209) ([#210](https://github.com/lizheming/waline/issues/210)) ([2332f6f](https://github.com/lizheming/waline/commit/2332f6f68c14d5b0a82578d8db49cfe1f1aa6e44))
+- **client:** add wordLimit support ([#219](https://github.com/lizheming/waline/issues/219)) ([97c47cb](https://github.com/lizheming/waline/commit/97c47cb7fb41dec579f02462b70712a8042210e8))
+- compat with NexT theme 8.4.0 ([e297524](https://github.com/lizheming/waline/commit/e2975244263361a7ff6fc7a236f14831f79b413c))
+- **client:** add short lang 'zh' support in i18n, close [#209](https://github.com/lizheming/waline/issues/209) ([#210](https://github.com/lizheming/waline/issues/210)) ([2332f6f](https://github.com/lizheming/waline/commit/2332f6f68c14d5b0a82578d8db49cfe1f1aa6e44))
+
 # (2021-03-12)
 
 ### Bug Fixes
