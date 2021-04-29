@@ -71,7 +71,7 @@ Waline 支持为每个平台分别配置您自定义的通知模板，从而实�
     | comment         | 评论内容     |
     | *commentLink*\* | 评论中的链接 |
 
-    *: commentLink仅在Telegram通知中提供，会自动封装成MarkDown的格式
+    *: commentLink仅在Telegram通知中提供，会自动封装成Markdown的格式
 
 - parent: 该条评论的回复对象（父评论）
 

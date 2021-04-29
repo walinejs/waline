@@ -70,7 +70,7 @@ The template passes parameters through `self`, `parent` and `site` objects, whic
     | comment         | Comment cotent       |
     | *commentLink*\* | Links in comments    |
 
-    *: commentLink is only provided in Telegram notifications and will be automatically encapsulated in MarkDown format.
+    *: commentLink is only provided in Telegram notifications and will be automatically encapsulated in Markdown format.
 
 - parent: Comment which is replied (parent comment).
 
