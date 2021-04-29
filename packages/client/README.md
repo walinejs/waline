@@ -1,6 +1,6 @@
-## @waline/client
+# @waline/client
 
-![](https://img.shields.io/npm/v/@waline/vercel?color=blue&logo=npm&style=flat-square)
+![npm](https://img.shields.io/npm/v/@waline/vercel?color=blue&logo=npm&style=flat-square)
 
 This is the frontend module for Waline comment system.
 
