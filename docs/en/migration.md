@@ -18,7 +18,7 @@ Since Waline completely reuses Valine's data structure in storage, migrating fro
 +  serverURL: 'YOUR SERVER URL'
   });
   </script>
-  ```
+```
 
 **Tips 1：** Most configuration are same between Waline and Valine, but there has little difference. All waline configuratioin can watch [configuration](/en/client/basic.html)。
 
