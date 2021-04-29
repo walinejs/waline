@@ -28,4 +28,4 @@ assignees: ''
     - [ ] MySQL
     - [ ] SQLite
     - [ ] PostgreSQL
-    - [ ] Github
+    - [ ] GitHub

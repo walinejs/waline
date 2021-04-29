@@ -10,4 +10,4 @@ All subsequent versions are modified around this positioning.
 ```
 Waline = With backend Valine
 ```
-The front end of the comment list is rewritten with React referring to the open source version of Valine. The style and structure as well as some internal tools and methods are all from Valine.
+The frontend of the comment list is rewritten with React referring to the open source version of Valine. The style and structure as well as some internal tools and methods are all from Valine.

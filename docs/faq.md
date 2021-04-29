@@ -27,7 +27,7 @@ Waline 主要由前端和服务端两部分组成。其中前端指的是网页�
 
 除了前端之外，还有服务端的更新也会比较频繁。服务端指的是在前端脚本中配置的 `serverURL` 对应的服务，它的更新视不同的部署环境会略微有点区别。
 
-- 使用 Vercel 部署的，进入到对应的 Github 仓库中，修改 package.json 文件中的 `@waline/vercel` 对应的版本号到最新即可。
+- 使用 Vercel 部署的，进入到对应的 GitHub 仓库中，修改 package.json 文件中的 `@waline/vercel` 对应的版本号到最新即可。
   ![](../assets/doc/vercel-update.png)
 
 - 使用 CloudBase 部署的，进入到代码编辑界面中，点击<kbd>保存并重新安装依赖</kbd>即可。如果还不行，则进入<kbd>我的应用</kbd> 选择 <kbd>部署</kbd> 进行重新部署。需要注意的是重新部署会清空之前的文件，如果之前文件中有配置的话需要先备份一下。

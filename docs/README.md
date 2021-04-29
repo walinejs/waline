@@ -25,7 +25,7 @@ Waline - 一款从 [Valine](https://valine.js.org) 衍生的带后端评论系�
 |                | 独立部署   | MySQL      |
 |                |            | SQLite     |
 |                |            | PostgreSQL |
-|                |            | Github |
+|                |            | GitHub |
 
 
 ## Todo

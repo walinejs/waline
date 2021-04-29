@@ -67,9 +67,9 @@ Before use SQLite as storage, you should download [waline.sqlite](https://github
 | `PG_PREFIX`          |          | `wl_`     | PostgreSQL table prefix    |
 
 
-## Github
+## GitHub
 
-Waline supports storing comment data in a CSV file format in the Github repository. To use Github as data storage, you need to apply for Personal access tokens. You can click on <kbd>Generate new token</kbd> to apply for it at <https://github.com/settings/tokens>. Check the permission option below **repo** option is used to obtain read and write permissions for the repository.
+Waline supports storing comment data in a CSV file format in the GitHub repository. To use GitHub as data storage, you need to apply for Personal access tokens. You can click on <kbd>Generate new token</kbd> to apply for it at <https://github.com/settings/tokens>. Check the permission option below **repo** option is used to obtain read and write permissions for the repository.
 
 | Environment Variable | Required | Default   | Description                |
 |------------|---------|------|------|

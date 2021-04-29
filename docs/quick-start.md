@@ -22,11 +22,11 @@
 
 [ ![](https://vercel.com/button) ](https://vercel.com/import/project?template=https://github.com/lizheming/waline/tree/master/example)
 
-点击上方按钮，跳转至 Vercel 进行快速部署。未登录的话需要登录，这里选 Github 登录即可。登录后会让你输入 Vercel 项目名称。
+点击上方按钮，跳转至 Vercel 进行快速部署。未登录的话需要登录，这里选 GitHub 登录即可。登录后会让你输入 Vercel 项目名称。
 
 ![](https://p2.ssl.qhimg.com/t018cd2a91a8896a555.png)
 
-输入名称后点击 <kbd>Continue</kbd> 进入下一步，输入 Github 仓库名称。Vercel 会基于 waline 模板帮助你新建并初始化该仓库。
+输入名称后点击 <kbd>Continue</kbd> 进入下一步，输入 GitHub 仓库名称。Vercel 会基于 waline 模板帮助你新建并初始化该仓库。
 
 ![](https://p4.ssl.qhimg.com/t01bb30e74f85ddf5b3.png)
 
