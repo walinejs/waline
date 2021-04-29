@@ -119,6 +119,11 @@ export default function Context(props) {
     locales,
     locale,
     lang: props.lang,
+    wordLimit: Array.isArray(props.wordLimit)
+      ? props.wordLimit
+      : props.wordLimit === 0
+      ? false
+      : [0, props.wordLimit],
     emojiCDN: props.emojiCDN || emojiCDN,
     emojiMaps: props.emojiMaps || emojiMaps,
     gravatarSetting: {

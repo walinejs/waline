@@ -22,6 +22,14 @@ Waline server address url.
 
 Comment box placeholder.
 
+## wordLimit
+
+- Type: `number | [number, number]`
+- Default: `0`
+- Required: `false`
+
+Comment word s limit. When a single number is filled in, it 's the maximum number of comment words. No limit when set to `0`.
+
 ## path
 
 - Type: `string`

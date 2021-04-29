@@ -27,6 +27,7 @@ export function ReactComponent({
   copyRight = true,
   uploadImage,
   anonymous,
+  wordLimit = 0,
 } = {}) {
   return (
     <Context
@@ -39,6 +40,7 @@ export function ReactComponent({
       avatarCDN={avatarCDN}
       avatarFore={avatarForce}
       uploadImage={uploadImage}
+      wordLimit={wordLimit}
     >
       <App
         boxConfig={{
