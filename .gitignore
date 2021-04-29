@@ -25,5 +25,5 @@ yarn-error.log*
 dist/
 .env
 
-# compress files
-docs/.vuepress/components/csv.js
+#vscode
+.vscode/
