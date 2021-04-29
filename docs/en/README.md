@@ -15,7 +15,7 @@ A simple comment system with backend support fork from [Valine](https://valine.j
 - Support for full markdown syntax
 - Simple and lightweight
 - Deploy free!
-- Multiple deploy and storage service support, at least 48 deploy style choice!
+- Multiple deploy and storage service support, at least 56 deploy style choice!
 
 |                | Waline       |             |
 | -------------- | ------------ | ----------- |
@@ -26,6 +26,8 @@ A simple comment system with backend support fork from [Valine](https://valine.j
 |                | Virtual Host | MySQL       |
 |                |              | SQLite      |
 |                |              | PostgreSQL  |
+|                |              | Github  |
+
 
 ## Todo
 
