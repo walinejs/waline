@@ -1,14 +1,11 @@
-const {
-  GITHUB_ID,
-  GITHUB_SECRET
-} = process.env;
+const { GITHUB_ID, GITHUB_SECRET } = process.env;
 
-module.exports = function() {
-  const socials = [
-    ['github', GITHUB_ID && GITHUB_SECRET]
-  ].filter(([_, condition]) => condition).map(([name]) => name);
+module.exports = function () {
+  const socials = [['github', GITHUB_ID && GITHUB_SECRET]]
+    .filter(([_, condition]) => condition)
+    .map(([name]) => name);
 
-  return ctx =>  {
+  return (ctx) => {
     ctx.type = 'html';
     ctx.body = `<!doctype html>
 <html>
@@ -26,5 +23,5 @@ module.exports = function() {
     <script src="https://cdn.jsdelivr.net/npm/@waline/admin"></script>
   </body>
 </html>`;
-  }
-}
+  };
+};

@@ -7,14 +7,14 @@ module.exports = class extends MySQL {
 
   async select(...args) {
     const data = await super.select(...args);
-    return data.map(({insertedat, createdat, updatedat, ...item}) => {
+    return data.map(({ insertedat, createdat, updatedat, ...item }) => {
       const mapFields = {
         insertedAt: insertedat,
         createdAt: createdat,
-        updatedAt: updatedat
+        updatedAt: updatedat,
       };
-      for(const field in mapFields) {
-        if(!mapFields[field]) {
+      for (const field in mapFields) {
+        if (!mapFields[field]) {
           continue;
         }
         item[field] = mapFields[field];
@@ -22,14 +22,14 @@ module.exports = class extends MySQL {
       return item;
     });
   }
-  
+
   async count(...args) {
     let result = await super.count(...args);
     try {
       result = parseInt(result);
-    } catch(e) {
+    } catch (e) {
       console.log(e);
     }
     return result;
   }
-}
+};

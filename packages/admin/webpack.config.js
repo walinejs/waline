@@ -1,25 +1,22 @@
 const path = require('path');
 const webpack = require('webpack');
 const htmlWebpackPlugin = require('html-webpack-plugin');
-const {version} = require('./package.json');
+const { version } = require('./package.json');
 
 module.exports = {
   entry: {
-    admin: path.resolve(__dirname, 'src/index.js')
+    admin: path.resolve(__dirname, 'src/index.js'),
   },
   module: {
     rules: [
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: 'babel-loader?cacheDirectory'
+        use: 'babel-loader?cacheDirectory',
       },
       {
         test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader'
-        ]
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.svg$/,
@@ -33,19 +30,19 @@ module.exports = {
           },
         ],
       },
-    ]
+    ],
   },
   plugins: [
-    new webpack.DefinePlugin({VERSION: JSON.stringify(version)}),
+    new webpack.DefinePlugin({ VERSION: JSON.stringify(version) }),
     new htmlWebpackPlugin({
       title: 'Waline Management System',
-      publicPath: '/'
-    })
+      publicPath: '/',
+    }),
   ],
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
     port: 9010,
-    historyApiFallback: {index: '/'}
-  }
+    historyApiFallback: { index: '/' },
+  },
 };

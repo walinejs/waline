@@ -10,7 +10,7 @@ cd waline
 npm install -g npm@7
 
 # 安装依赖
-npm install 
+npm install
 
 # 将 @waline/server 链接到本地开发
 cd packages/server

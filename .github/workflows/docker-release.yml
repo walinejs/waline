@@ -1,10 +1,10 @@
-name: "[docker] CI for releases"
+name: '[docker] CI for releases'
 
 on:
   push:
     branches: [master]
     paths:
-      - "packages/server/*"
+      - 'packages/server/*'
 
 jobs:
   path-context:

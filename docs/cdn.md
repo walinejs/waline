@@ -6,7 +6,7 @@
 
 ## 获取最新版本
 
-``` html
+```html
 <!-- do not set the version number -->
 <script src="//cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js"></script>
 <!-- or set latest -->

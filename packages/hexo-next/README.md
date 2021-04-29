@@ -28,7 +28,7 @@ waline:
   lang: # Language, available values: en, zh-cn
   # Warning: Do not enable both `waline.visitor` and `leancloud_visitors`.
   visitor: false # Article reading statistic
-  comment_count: true  # If false, comment count will only be displayed in post page, not in home page
+  comment_count: true # If false, comment count will only be displayed in post page, not in home page
   requiredFields: [] # Set required fields: [nick] | [nick, mail]
   libUrl: # Set custom library cdn url
 ```

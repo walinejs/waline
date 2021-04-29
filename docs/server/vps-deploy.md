@@ -16,7 +16,7 @@ docker run -d \
 `LEAN_ID` 和 `LEAN_KEY` 分别对应的是后台得到的 App Id 和 App Key。如果非 LeanCloud 国际版用户的话需要在后台绑定已备案域名并配置 `LEAN_SERVER`。
 
 > **注：** 如何构建镜像？
-> 
+>
 > ```bash
 > git clone https://github.com/lizheming/waline.git
 > cd waline
@@ -31,7 +31,7 @@ docker run -d \
 
 ```yaml
 # docker-compose.yml
-version: "3"
+version: '3'
 
 services:
   waline:
@@ -43,13 +43,13 @@ services:
     volumes:
       - ${PWD}/data:/app/data
     environment:
-      TZ: "Asia/Shanghai"
-      SQLITE_PATH: "/app/data"
-      JWT_TOKEN: "Your token"
-      SITE_NAME: "Your site name"
-      SITE_URL: "https://example.com"
-      SECURE_DOMAINS: "example.com"
-      AUTHOR_EMAIL: "mail@example.com"
+      TZ: 'Asia/Shanghai'
+      SQLITE_PATH: '/app/data'
+      JWT_TOKEN: 'Your token'
+      SITE_NAME: 'Your site name'
+      SITE_URL: 'https://example.com'
+      SECURE_DOMAINS: 'example.com'
+      AUTHOR_EMAIL: 'mail@example.com'
 ```
 
 ## 直接运行

@@ -24,4 +24,4 @@ module.exports = class extends think.Service {
     }
     return protocol + '://' + this.app.ctx.host + url;
   }
-}
+};

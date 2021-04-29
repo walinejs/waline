@@ -5,5 +5,5 @@ module.exports = {
   },
   isPrevent(err) {
     return think.isError(err) && err.message === preventMessage;
-  }
+  },
 };

@@ -7,11 +7,11 @@ module.exports = [
   {
     controller: {
       fail(...args) {
-        if(this.ctx.status === 200) {
+        if (this.ctx.status === 200) {
           this.ctx.status = 500;
         }
         this.ctx.fail(...args);
-      }
-    }
-  }
+      },
+    },
+  },
 ];

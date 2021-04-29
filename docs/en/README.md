@@ -6,8 +6,7 @@
 ![GitHub](https://img.shields.io/github/license/lizheming/waline?style=flat-square)
 [ ![](https://img.shields.io/badge/telegram-walinejs-2ca5e0?logo=telegram&style=flat-square) ](https://t.me/walinejs)
 
-A simple comment system with backend support fork from [Valine](https://valine.js.org). 
-
+A simple comment system with backend support fork from [Valine](https://valine.js.org).
 
 ## Feature
 
@@ -28,13 +27,12 @@ A simple comment system with backend support fork from [Valine](https://valine.j
 |                |              | SQLite      |
 |                |              | PostgreSQL  |
 
-
 ## Todo
 
 - ✅ Email notification
 - ✅ Wechat notification
 - ✅ Telegram notification
-- ✅ Akismet 
+- ✅ Akismet
 - ✅ Article counter
 - ✅ i18n
 - ✅ Custom language
@@ -54,7 +52,6 @@ A simple comment system with backend support fork from [Valine](https://valine.j
 
 That's **really** welcome to contribute waline!
 
-
 ## License
-[GPL-2.0](https://github.com/lizheming/Waline/blob/master/LICENSE)
 
+[GPL-2.0](https://github.com/lizheming/Waline/blob/master/LICENSE)

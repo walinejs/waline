@@ -1,6 +1,6 @@
-## @waline/client
+# @waline/client
 
-![](https://img.shields.io/npm/v/@waline/vercel?color=blue&logo=npm&style=flat-square)   
+![npm](https://img.shields.io/npm/v/@waline/vercel?color=blue&logo=npm&style=flat-square)
 
 This is the frontend module for Waline comment system.
 
@@ -9,7 +9,7 @@ This is the frontend module for Waline comment system.
 ```html
 <head>
   ..
-  <script src='//cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js'></script>
+  <script src="//cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js"></script>
   ...
 </head>
 <body>
@@ -19,7 +19,7 @@ This is the frontend module for Waline comment system.
     new Waline({
       el: '#waline',
       path: location.pathname,
-      serverURL: 'https://your-domain.vercel.app'
+      serverURL: 'https://your-domain.vercel.app',
     });
   </script>
 </body>
@@ -28,4 +28,3 @@ This is the frontend module for Waline comment system.
 ## Configuration
 
 <https://waline.js.org/configuration.html>
-

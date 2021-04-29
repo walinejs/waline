@@ -39,7 +39,7 @@ Let us set the `serverURL` value to the site url previous step got in the config
 ```html
 <head>
   ..
-  <script src='//cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js'></script>
+  <script src="//cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js"></script>
   ...
 </head>
 <body>
@@ -49,12 +49,11 @@ Let us set the `serverURL` value to the site url previous step got in the config
     new Waline({
       el: '#waline',
       path: location.pathname,
-      serverURL: 'https://your-domain.vercel.app'
+      serverURL: 'https://your-domain.vercel.app',
     });
   </script>
 </body>
 ```
-
 
 ## NPM
 
@@ -72,11 +71,11 @@ import Waline from '@waline/client';
 const Waline = require('@waline/client');
 
 new Waline({
-  el:'#waline',
+  el: '#waline',
   // other config
-})
+});
 ```
 
 ## Comment Managment
 
-Waline has a simple admin control panel, we can mange comment data in it. We can register in your site url  `<serverURL>/ui/register` after we deployed successfully. The first register one is administrator. You can see comment management UI after login. Collection it for the next use!
+Waline has a simple admin control panel, we can mange comment data in it. We can register in your site url `<serverURL>/ui/register` after we deployed successfully. The first register one is administrator. You can see comment management UI after login. Collection it for the next use!

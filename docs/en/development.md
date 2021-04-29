@@ -10,7 +10,7 @@ cd waline
 npm install -g npm@7
 
 # install dependencies
-npm install 
+npm install
 
 # link @waline/server to local
 cd packages/server

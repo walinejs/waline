@@ -10,22 +10,22 @@ Valine 是一款样式精美，操作简单，部署高效的评论系统。第�
 
 ### XSS 安全
 
-从很早的版本开始就有用户报告了 Valine 的 XSS 问题，社区也在使用各种方法在修复这些问题。包括增加验证码，前端XSS过滤等方式。不过后来作者才明白，前端的一切验证都只能防君子，所以把验证码之类的限制去除了。
+从很早的版本开始就有用户报告了 Valine 的 XSS 问题，社区也在使用各种方法在修复这些问题。包括增加验证码，前端 XSS 过滤等方式。不过后来作者才明白，前端的一切验证都只能防君子，所以把验证码之类的限制去除了。
 
 现有的逻辑里，前端发布评论的时候会将 Markdown 转换成 HTML 然后走一下前端的一个 XSS 过滤方法最后提交到 LeanCloud 中。从 LeanCloud 中拿到数据之后因为是 HTML 直接插入进行显示即可。很明显，这个流程是存在问题的。只要直接提交的是 HTML 而且拿到 HTML 之后直接进行展示的话，XSS 从根本上是无法根除的。
 
 那有没有根本的解决办法？其实是有的。针对存储型的 XSS 攻击，我们可以使用转义编码进行解决。只要效仿早前 BBCode 的做法，提交到数据库的是 Markdown 内容。前端读取到内容对所有 HTML 进行编码后再进行 Markdown 转换后展示。
 
 ```js
-function encodeForHTML(str){
+function encodeForHTML(str) {
   return ('' + str)
     .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')    
+    .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#x27;')
     .replace(/\//g, '&#x2F;');
-};
+}
 ```
 
 由于 Serverless 攻击者是可以直达存储阶段，所以数据存储之前的一切防范是无效的，只能在读取展示过程处理。由于所有的 HTML 转义后无法解析，Markdown 相当于我们根据自定义的语法解析成 HTML，保证转换后的 HTML 没有被插入的机会。
@@ -38,7 +38,7 @@ function encodeForHTML(str){
 
 说完了存储的问题，我们再来看看读取的问题。攻击者除了可以直达存储，也可以直达读取，当一个数据库的字段开放了读取权限后，相当于该字段的内容对攻击者是透明的。
 
-在评论数据中，有两个字段是用户比较敏感的数据，分别是 IP 和邮箱。灯大甚至专门写了一篇文章来批判该问题 [《请马上停止使用Valine.js评论系统，除非它修复了用户隐私泄露问题》](https://ttys3.net/post/hugo/please-stop-using-valine-js-comment-system-until-it-fixed-the-privacy-leaking-problem/)。甚至掘金社区在早期使用 LeanCloud 的时候也暴出过[泄露用户手机号](https://m.weibo.cn/detail/4568007327622344?cid=4568044392682999)的安全问题。
+在评论数据中，有两个字段是用户比较敏感的数据，分别是 IP 和邮箱。灯大甚至专门写了一篇文章来批判该问题 [《请马上停止使用 Valine.js 评论系统，除非它修复了用户隐私泄露问题》](https://ttys3.net/post/hugo/please-stop-using-valine-js-comment-system-until-it-fixed-the-privacy-leaking-problem/)。甚至掘金社区在早期使用 LeanCloud 的时候也暴出过[泄露用户手机号](https://m.weibo.cn/detail/4568007327622344?cid=4568044392682999)的安全问题。
 
 为了规避这个问题，Valine 作者增加了 `recordIP` 配置用来设置是否允许记录用户 IP。由于无服务端，目前能想到的也只是不存储的方式解决了。不过该配置项会存在一个问题，就是该配置项的配置权在网站，隐私的问题是评论者遇到的，也就是说评论者是无权管理自己的隐私的。
 

@@ -6,5 +6,5 @@ module.exports = {
   fail(...args) {
     this.ctx.fail(...args);
     return think.prevent();
-  }
+  },
 };

@@ -5,8 +5,8 @@
 - Type: `String`
 - Default`null`
 - Required: `true`
-- 
-The DOM element to be mounted on initialization. It can be a CSS selector string or an actual HTMLElement.
+- The DOM element to be mounted on initialization. It can be a CSS selector string or an actual HTMLElement.
+
 ## serverURL
 
 - Type: `String`
@@ -16,6 +16,7 @@ The DOM element to be mounted on initialization. It can be a CSS selector string
 Waline server address url.
 
 ## placeholder
+
 - Type: `String`
 - Default: `Just go go...`
 - Required: `false`
@@ -23,6 +24,7 @@ Waline server address url.
 Comment box placeholders.
 
 ## path
+
 - Type: `String`
 - Default: `window.location.pathname`
 - Required: `false`
@@ -34,10 +36,11 @@ Optional value:
 - window.location.pathname (recommend)
 - window.location.href
 - customize (Please ensure uniqueness)
-- 
->-I. Please ensure the uniqueness of each `article page` path, otherwise the same comment list may be loaded under different `article pages`.
->-II. If the value is `window.location.href`, it may appear that adding `different parameters` to enter the page, and it will be judged as a new page.
+- > -I. Please ensure the uniqueness of each `article page` path, otherwise the same comment list may be loaded under different `article pages`.
+  > -II. If the value is `window.location.href`, it may appear that adding `different parameters` to enter the page, and it will be judged as a new page.
+
 ## avatar
+
 - Type: `String`
 - Default: `mp`
 - Required: `false`
@@ -56,7 +59,9 @@ Optional value:
 - hide
 
 See the [Avatar setting](/avatar.html) for more details.
+
 ## meta
+
 - Type: `Array`
 - Default: `['nick','mail','link']`
 - Required: `false`
@@ -64,6 +69,7 @@ See the [Avatar setting](/avatar.html) for more details.
 Reviewer attributes.
 
 ## pageSize
+
 - Type: `Number`
 - Default: `10`
 - Required: `false`
@@ -71,6 +77,7 @@ Reviewer attributes.
 Number of pages per page.
 
 ## lang
+
 - Type: `String`
 - Default: `zh-CN`
 - Required: `false`
@@ -93,7 +100,9 @@ If you need a custom language, please refer to [i18n](/i18n.html).
 - Required: `false`
 
 Article reading statistics.
+
 ## highlight
+
 - Type: `Boolean`
 - Default: `true`
 - Required: `false`
@@ -101,18 +110,23 @@ Article reading statistics.
 `Code highlighting`, it’s enabled by default, please close it selectively.
 
 ## avatarCDN
+
 - Type: `String`
 - Default: `https://cdn.v2ex.com/gravatar/`
 - Required: `false`
 
 Gravatar CDN baseURL.
+
 ## avatarForce
+
 - Type: `Boolean`
 - Default: `false`
 - Required: `false`
-  
+
 Each time you access `forced` pulls the latest avatar.
+
 ## emojiCDN
+
 - Type: `String`
 - Default: ` `
 - Required: `false`
@@ -120,6 +134,7 @@ Each time you access `forced` pulls the latest avatar.
 Set `Emoji Pack CDN`, refer to [Custom Emoji](/client/emoji.html).
 
 ## emojiMaps
+
 - Type: `Object`
 - Default: `null`
 - Required: `false`
@@ -127,6 +142,7 @@ Set `Emoji Pack CDN`, refer to [Custom Emoji](/client/emoji.html).
 Set `Emoji Packet Mapping’, refer to [Custom Emoji](/client/emoji.html).
 
 ## requiredFields
+
 - Type: `Array`
 - Default: `[]`
 - Required: `false`
@@ -137,6 +153,7 @@ Set required fields, default anonymous, optional values:
 - `['nick','mail']`
 
 ## uploadImage
+
 - Type: `Function`
 - Default: `null`
 - Required: `false`

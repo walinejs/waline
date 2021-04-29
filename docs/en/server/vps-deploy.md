@@ -16,7 +16,7 @@ docker run -d \
 `LEAN_ID` and `LEAN_KEY` correspond to the App Id and App Key obtained in the background respectively. If you are not a LeanCloud International version user, you need to bind the registered domain name in the background and configure `LEAN_SERVER`.
 
 > **Tips：** How to build image?
-> 
+>
 > ```bash
 > git clone https://github.com/lizheming/waline.git
 > cd waline
@@ -31,7 +31,7 @@ Example `docker-compose.yml` for `waline`:
 
 ```yaml
 # docker-compose.yml
-version: "3"
+version: '3'
 
 services:
   waline:
@@ -43,13 +43,13 @@ services:
     volumes:
       - ${PWD}/data:/app/data
     environment:
-      TZ: "Asia/Shanghai"
-      SQLITE_PATH: "/app/data"
-      JWT_TOKEN: "Your token"
-      SITE_NAME: "Your site name"
-      SITE_URL: "https://example.com"
-      SECURE_DOMAINS: "example.com"
-      AUTHOR_EMAIL: "mail@example.com"
+      TZ: 'Asia/Shanghai'
+      SQLITE_PATH: '/app/data'
+      JWT_TOKEN: 'Your token'
+      SITE_NAME: 'Your site name'
+      SITE_URL: 'https://example.com'
+      SECURE_DOMAINS: 'example.com'
+      AUTHOR_EMAIL: 'mail@example.com'
 ```
 
 ## Run directly

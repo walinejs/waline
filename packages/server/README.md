@@ -1,6 +1,6 @@
 ## @waline/vercel
 
-![](https://img.shields.io/npm/v/@waline/vercel?color=blue&logo=npm&style=flat-square)   
+![](https://img.shields.io/npm/v/@waline/vercel?color=blue&logo=npm&style=flat-square)
 
 This is the backend for Waline comment system.
 
@@ -23,5 +23,3 @@ We support [Akismet](https://akismet.com/) spam protection service default. If y
 [ ![](https://vercel.com/button) ](https://vercel.com/import/project?template=https://github.com/lizheming/waline/tree/master/example)
 
 Click it to deploy quickly!
-
-

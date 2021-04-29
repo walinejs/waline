@@ -1,7 +1,7 @@
 module.exports = [
   {
     text: '开始',
-    link: '/quick-start'
+    link: '/quick-start',
   },
   {
     text: '配置',
@@ -13,16 +13,16 @@ module.exports = [
         items: [
           {
             text: '基础配置',
-            link: '/client/basic.html'
+            link: '/client/basic.html',
           },
           {
             text: '多语言',
-            link: '/client/i18n.html'
+            link: '/client/i18n.html',
           },
           {
             text: '阅读统计',
-            link: '/client/visitor.html'
-          }
+            link: '/client/visitor.html',
+          },
         ],
       },
       {
@@ -31,23 +31,23 @@ module.exports = [
         items: [
           {
             text: '基础配置',
-            link: '/server/basic.html'
+            link: '/server/basic.html',
           },
           {
             text: '评论通知',
-            link: '/server/notification.html'
+            link: '/server/notification.html',
           },
           {
             text: '多数据库',
-            link: '/server/databases.html'
+            link: '/server/databases.html',
           },
           {
             text: '其它部署',
-            link: '/server/vps-deploy.html'
-          }
-        ]
-      }
-    ]
+            link: '/server/vps-deploy.html',
+          },
+        ],
+      },
+    ],
   },
   {
     text: '迁移',
@@ -55,13 +55,13 @@ module.exports = [
     items: [
       {
         text: 'Valine 迁移指南',
-        link: '/migration'
+        link: '/migration',
       },
       {
         text: '迁移助手',
-        link: '/migration/tool'
-      }
-    ]
+        link: '/migration/tool',
+      },
+    ],
   },
   {
     text: '了解更多',
@@ -69,16 +69,16 @@ module.exports = [
     items: [
       {
         text: 'API',
-        link: '/api'
+        link: '/api',
       },
       {
         text: '开发指南',
-        link: '/development'
+        link: '/development',
       },
       {
         text: 'FAQ',
-        link: '/faq'
-      }
-    ]
-  }
+        link: '/faq',
+      },
+    ],
+  },
 ];

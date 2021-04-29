@@ -1,4 +1,3 @@
-
 <img src="./assets/waline.png" width='200' align="right" />
 
 # Waline
@@ -9,11 +8,11 @@
 ![GitHub](https://img.shields.io/github/license/lizheming/waline?style=flat-square)
 [ ![](https://img.shields.io/badge/telegram-walinejs-2ca5e0?logo=telegram&style=flat-square) ](https://t.me/walinejs)
 
-A simple comment system with backend support fork from [Valine](https://valine.js.org). 
+A simple comment system with backend support fork from [Valine](https://valine.js.org).
 
-------------------------------
+---
 
-English | [中文](https://github.com/lizheming/waline/blob/master/README_CN.md)  | **View Documentation:** <https://waline.js.org>
+English | [中文](https://github.com/lizheming/waline/blob/master/README_CN.md) | **View Documentation:** <https://waline.js.org>
 
 ## Feature
 
@@ -24,17 +23,16 @@ English | [中文](https://github.com/lizheming/waline/blob/master/README_CN.md)
 - Deploy free!
 - Multiple deploy and storage service support, at least 48 deploy style choice!
 
-|                | Waline       |            |
-| -------------- | ------------ | ---------- |
-| **Client**         | **Server**       | **Storage**    |
-| @waline/client | Vercel       | LeanCloud  |
-| MiniValine     | CloudBase    | CloudBase  |
-|                | Docker       | MongoDB    |
-|                | Virtual Host | MySQL      |
-|                |              | SQLite     |
-|                |              | PostgreSQL |
-|                |            | GitHub |
-
+|                | Waline       |             |
+| -------------- | ------------ | ----------- |
+| **Client**     | **Server**   | **Storage** |
+| @waline/client | Vercel       | LeanCloud   |
+| MiniValine     | CloudBase    | CloudBase   |
+|                | Docker       | MongoDB     |
+|                | Virtual Host | MySQL       |
+|                |              | SQLite      |
+|                |              | PostgreSQL  |
+|                |              | GitHub      |
 
 ## Todo
 
@@ -42,7 +40,7 @@ English | [中文](https://github.com/lizheming/waline/blob/master/README_CN.md)
 - [x] Wechat notification
 - [x] QQ notification
 - [x] Telegram notification
-- [x] Akismet 
+- [x] Akismet
 - [x] Article counter
 - [x] i18n
 - [x] Custom language
@@ -71,5 +69,5 @@ You can contact me with [discussions](https://github.com/lizheming/waline/discus
 </a>
 
 ## License
-[GPL-2.0](https://github.com/lizheming/Waline/blob/master/LICENSE)
 
+[GPL-2.0](https://github.com/lizheming/Waline/blob/master/LICENSE)

@@ -7,13 +7,13 @@ Waline 也支持最新评论挂件显示，方便在博客侧边栏显示最近�
 ```html
 <div id="waline-recent"></div>
 <script>
-window.addEventListener('load', function() {
-  Waline.Widget.RecentComments({
-    el: '#waline-recent',
-    serverURL: 'http://waline.vercel.app',
-    count: 10
+  window.addEventListener('load', function () {
+    Waline.Widget.RecentComments({
+      el: '#waline-recent',
+      serverURL: 'http://waline.vercel.app',
+      count: 10,
+    });
   });
-});
 </script>
 ```
 
@@ -24,16 +24,16 @@ window.addEventListener('load', function() {
 ```html
 <div id="waline-recent"></div>
 <script>
-window.addEventListener('load', function() {
-  Waline.Widget.RecentComments({
-    el: '#waline-recent',
-    serverURL: 'http://waline.vercel.app',
-    count: 10
-  }).then(comments => {
-    document.getElementById('waline-recent').innerHTML = comments.map(cmt => 
-      `${cmt.nick}: ${cmt.comment}`
-    );
+  window.addEventListener('load', function () {
+    Waline.Widget.RecentComments({
+      el: '#waline-recent',
+      serverURL: 'http://waline.vercel.app',
+      count: 10,
+    }).then((comments) => {
+      document.getElementById('waline-recent').innerHTML = comments.map(
+        (cmt) => `${cmt.nick}: ${cmt.comment}`
+      );
+    });
   });
-});
 </script>
 ```
