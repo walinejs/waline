@@ -27,3 +27,7 @@ dist/
 
 #vscode
 .vscode/
+
+# lock files
+package-lock.json
+yarn.lock
