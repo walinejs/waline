@@ -5,17 +5,18 @@ Waline is a classic Client/Server architecture, which provides a relatively comp
 At present, the following projects have added the adaptation of the Waline interface:
 
 - [MiniValine](https://github.com/MiniValine/MiniValine) by [@MHuiG](https://github.com/MHuiG)
-    ```html
-    <script src="https://cdn.jsdelivr.net/npm/minivaline/dist/MiniValine.min.js"></script>
 
-    <div id="waline-comments"></div>
-    <script>
+  ```html
+  <script src="https://cdn.jsdelivr.net/npm/minivaline/dist/MiniValine.min.js"></script>
+
+  <div id="waline-comments"></div>
+  <script>
     new MiniValine({
       el: '#waline-comments',
       backend: 'waline',
-      serverURLs: 'YOUR SERVER URL'
+      serverURLs: 'YOUR SERVER URL',
     });
-    </script>
-    ```
+  </script>
+  ```
 
 If your client also supports Waline, please post a comment at the bottom to let me know!

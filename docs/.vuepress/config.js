@@ -5,19 +5,19 @@ module.exports = {
     '/': {
       lang: 'zh-CN',
       title: 'Waline',
-      description: 'Simple Comment System inspired by Valine.'
+      description: 'Simple Comment System inspired by Valine.',
     },
     '/en/': {
       lang: 'en-US',
       title: 'Waline',
-      description: '一款基于 Valine 衍生的简洁、安全的评论系统。'
-    }
+      description: '一款基于 Valine 衍生的简洁、安全的评论系统。',
+    },
   },
   themeConfig: {
     editLinks: true,
-    repo: "https://github.com/lizheming/waline",
-    logo: "https://p5.ssl.qhimg.com/t01ec54674f5912eea9.png",
-    docsDir: "docs",
+    repo: 'https://github.com/lizheming/waline',
+    logo: 'https://p5.ssl.qhimg.com/t01ec54674f5912eea9.png',
+    docsDir: 'docs',
     locales: {
       '/en/': {
         label: 'English',
@@ -26,7 +26,12 @@ module.exports = {
         editLinkText: 'Edit this page on GitHub',
         lastUpdated: 'Last Updated',
         nav: require('./nav/en'),
-        sidebar: getSidebar('Basic Configure', 'Advanced Functions', 'More Features', '/en')
+        sidebar: getSidebar(
+          'Basic Configure',
+          'Advanced Functions',
+          'More Features',
+          '/en'
+        ),
       },
       '/': {
         label: '简体中文',
@@ -35,16 +40,16 @@ module.exports = {
         editLinkText: '在 GitHub 上编辑此页',
         lastUpdated: '上次更新',
         nav: require('./nav/zh'),
-        sidebar: getSidebar('基础配置', '高级功能', '更多玩法', '')
-      }
-    }
+        sidebar: getSidebar('基础配置', '高级功能', '更多玩法', ''),
+      },
+    },
   },
   plugin: [
-    _ => ({
-      enhanceAppFiles: path.resolve(__dirname, 'enhanceApp.js')
-    })
-  ]
-}
+    (_) => ({
+      enhanceAppFiles: path.resolve(__dirname, 'enhanceApp.js'),
+    }),
+  ],
+};
 
 function getSidebar(groupA, groupB, groupC, lang) {
   return [
@@ -53,10 +58,7 @@ function getSidebar(groupA, groupB, groupC, lang) {
       title: groupA,
       collapsable: false,
       sidebarDepth: 2,
-      children: [
-        lang + '/client/basic',
-        lang + '/server/basic'
-      ]
+      children: [lang + '/client/basic', lang + '/server/basic'],
     },
     {
       title: groupB,
@@ -70,8 +72,8 @@ function getSidebar(groupA, groupB, groupC, lang) {
         lang + '/client/emoji',
         lang + '/client/i18n',
         lang + '/client/avatar',
-        lang + '/client/recentcomment'
-      ]
+        lang + '/client/recentcomment',
+      ],
     },
     {
       title: groupC,
@@ -83,8 +85,8 @@ function getSidebar(groupA, groupB, groupC, lang) {
         lang + '/development',
         lang + '/client/other',
         lang + '/api',
-        lang +  '/faq'
-      ].filter(v => v)
-    }
-  ]
+        lang + '/faq',
+      ].filter((v) => v),
+    },
+  ];
 }

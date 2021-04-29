@@ -7,19 +7,20 @@ function waline() {
     visitor: true,
     lang: location.pathname.startsWith('/en/') ? 'en' : 'zh-CN',
     langMode: {
-      admin: location.pathname.startsWith('/en/') ? 'Administrator' : '可爱的管理员'
-    }
+      admin: location.pathname.startsWith('/en/')
+        ? 'Administrator'
+        : '可爱的管理员',
+    },
   });
 }
 
 function renderTips() {
-
   let tips = document.getElementById('waline-tips');
-  if(tips) {
+  if (tips) {
     return false;
   }
-  
-  tips = document.createElement('div')
+
+  tips = document.createElement('div');
   tips.id = 'waline-tips';
   tips.className = 'page-nav';
   const styles = {
@@ -29,76 +30,76 @@ function renderTips() {
     backgroundColor: '#FFFFC0',
     borderLeft: '5px solid #FFF000',
     color: '#333',
-    margin: '1rem auto'
+    margin: '1rem auto',
   };
-  for(const name in styles) {
+  for (const name in styles) {
     tips.style[name] = styles[name];
   }
-  
-  tips.innerHTML = location.pathname.startsWith('/en/') ? 
-    'TIPS: The comment area is only for demo. If you have any questions, please go to <a href="https://github.com/lizheming/waline/discussions" target="_blank">Github Discussion</a> to ask.' : 
-    '友情提示：评论区仅作评论展示，如有问题咨询请去 <a href="https://github.com/lizheming/waline/discussions" target="_blank">Github Discussion</a> 中提问。'
-  
+
+  tips.innerHTML = location.pathname.startsWith('/en/')
+    ? 'TIPS: The comment area is only for demo. If you have any questions, please go to <a href="https://github.com/lizheming/waline/discussions" target="_blank">Github Discussion</a> to ask.'
+    : '友情提示：评论区仅作评论展示，如有问题咨询请去 <a href="https://github.com/lizheming/waline/discussions" target="_blank">Github Discussion</a> 中提问。';
+
   return tips;
 }
 
 function renderWaline(router) {
-  setTimeout(()=>{
-    if(!globalThis.window) {
+  setTimeout(() => {
+    if (!globalThis.window) {
       return;
     }
-    let $page = document.querySelector('.page')
+    let $page = document.querySelector('.page');
     let tips = renderTips();
-    if(tips) {
+    if (tips) {
       $page.appendChild(tips);
     }
 
-    let container = document.getElementById('waline-comment')
-    if(container) {
+    let container = document.getElementById('waline-comment');
+    if (container) {
       $page.removeChild(container);
     }
 
-    container = document.createElement('div')
+    container = document.createElement('div');
     container.id = 'waline-comment';
     container.className = 'page-nav';
     $page.appendChild(container);
-    
-    waline()
+
+    waline();
   }, 1000);
 
-  router.afterEach(_ => {
-    let $page = document.querySelector('.page')
+  router.afterEach((_) => {
+    let $page = document.querySelector('.page');
     let tips = renderTips();
-    
-    let container = document.getElementById('waline-comment')
-    if(container) {
+
+    let container = document.getElementById('waline-comment');
+    if (container) {
       $page.removeChild(container);
     }
-    
-    container = document.createElement('div')
+
+    container = document.createElement('div');
     container.id = 'waline-comment';
     container.className = 'page-nav';
 
-    if ($page){
-      if(tips) {
+    if ($page) {
+      if (tips) {
         $page.appendChild(tips);
       }
-      $page.appendChild(container)
-      waline()
-    }else{
-      setTimeout(()=>{    
-        $page = document.querySelector('.page')
-        $page.appendChild(container)
-        waline()
-      }, 1000)
+      $page.appendChild(container);
+      waline();
+    } else {
+      setTimeout(() => {
+        $page = document.querySelector('.page');
+        $page.appendChild(container);
+        waline();
+      }, 1000);
     }
-  })
+  });
 }
 
-export default ({router}) => {
+export default ({ router }) => {
   try {
-    document && renderWaline(router)
+    document && renderWaline(router);
   } catch (e) {
-    console.error(e.message)
+    console.error(e.message);
   }
-}
+};

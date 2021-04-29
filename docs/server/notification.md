@@ -11,7 +11,7 @@
 - `SMTP_HOST`：SMTP 服务器地址，一般可以在邮箱的设置中找到。如果未配置 `SMTP_SERVICE` 的话该项必填。
 - `SMTP_PORT`：SMTP 服务器端口，一般可以在邮箱的设置中找到。如果未配置 `SMTP_SERVICE` 的话该项必填。
 - `SMTP_USER`：SMTP 邮件发送服务的用户名，一般为登录邮箱。
-- `SMTP_PASS`：SMTP 邮件发送服务的密码，一般为邮箱登录密码，部分邮箱（例如163）是单独的 SMTP 密码。
+- `SMTP_PASS`：SMTP 邮件发送服务的密码，一般为邮箱登录密码，部分邮箱（例如 163）是单独的 SMTP 密码。
 - `SITE_NAME`：网站名称，用于在消息中显示。
 - `SITE_URL`：网站地址，用于在消息中显示。
 - `SENDER_NAME`：自定义发送邮件的发件人，选填。
@@ -62,34 +62,34 @@ Waline 支持为每个平台分别配置您自定义的通知模板，从而实�
 
 - self: 该条评论本身
 
-    | 变量            | 备注         |
-    | --------------- | ------------ |
-    | nick            | 评论者名     |
-    | mail            | 评论者邮箱   |
-    | link            | 评论者网址   |
-    | url             | 文章地址     |
-    | comment         | 评论内容     |
-    | *commentLink*\* | 评论中的链接 |
+  | 变量            | 备注         |
+  | --------------- | ------------ |
+  | nick            | 评论者名     |
+  | mail            | 评论者邮箱   |
+  | link            | 评论者网址   |
+  | url             | 文章地址     |
+  | comment         | 评论内容     |
+  | _commentLink_\* | 评论中的链接 |
 
-    *: commentLink仅在Telegram通知中提供，会自动封装成Markdown的格式
+  \*: commentLink 仅在 Telegram 通知中提供，会自动封装成 Markdown 的格式
 
 - parent: 该条评论的回复对象（父评论）
 
-    | 变量    | 备注       |
-    | ------- | ---------- |
-    | nick    | 评论者名   |
-    | mail    | 评论者邮箱 |
-    | link    | 评论者网址 |
-    | type    | 评论者类型 |
-    | comment | 评论内容   |
+  | 变量    | 备注       |
+  | ------- | ---------- |
+  | nick    | 评论者名   |
+  | mail    | 评论者邮箱 |
+  | link    | 评论者网址 |
+  | type    | 评论者类型 |
+  | comment | 评论内容   |
 
 - site: 网站配置
 
-    | 变量    | 备注         |
-    | ------- | ------------ |
-    | name    | 站点名       |
-    | url     | 站点网址     |
-    | postUrl | 评论完整地址 |
+  | 变量    | 备注         |
+  | ------- | ------------ |
+  | name    | 站点名       |
+  | url     | 站点网址     |
+  | postUrl | 评论完整地址 |
 
 ### 默认模板
 
@@ -97,32 +97,32 @@ Waline 支持为每个平台分别配置您自定义的通知模板，从而实�
 
 - QQ_TEMPLATE:
 
-    ``` plain
-    💬 {{site.name|safe}} 有新评论啦
-    {{self.nick}} 评论道：
-    {{self.comment}}
-    邮箱：{{self.mail}}
-    状态：{{self.status}} 
-    仅供评论预览，查看完整內容：
-    {{site.postUrl}}
-    ```
+  ```plain
+  💬 {{site.name|safe}} 有新评论啦
+  {{self.nick}} 评论道：
+  {{self.comment}}
+  邮箱：{{self.mail}}
+  状态：{{self.status}}
+  仅供评论预览，查看完整內容：
+  {{site.postUrl}}
+  ```
 
 - TG_TEMPLATE:
 
-    ``` markdown
-    💬 *[{{site.name}}]({{site.url}}) 有新评论啦*
+  ```markdown
+  💬 _[{{site.name}}]({{site.url}}) 有新评论啦_
 
-    *{{self.nick}}* 回复说：
+  _{{self.nick}}_ 回复说：
 
-    \`\`\`
-    {{self.comment-}}
-    \`\`\`
-    {{-self.commentLink}}
-    *邮箱：*\`{{self.mail}}\`
-    *审核：*{{self.status}} 
+  \`\`\`
+  {{self.comment-}}
+  \`\`\`
+  {{-self.commentLink}}
+  _邮箱：_\`{{self.mail}}\`
+  _审核：_{{self.status}}
 
-    仅供评论预览，点击[查看完整內容]({{site.postUrl}})
-    ```
+  仅供评论预览，点击[查看完整內容]({{site.postUrl}})
+  ```
 
 ### 附加说明
 

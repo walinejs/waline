@@ -1,7 +1,9 @@
 # Multi-database service support
 
 In addition to LeanCloud, Waline also supports a variety of databases, including MySQL, PostgreSQL, SQLite and MongoDB. All of these supports only need to configure environment variables, and Waline will automatically switch to the corresponding data storage service according to the environment variables you configure.
+
 ## MongoDB
+
 <https://mongodb.com> the official website provides 512M MongoDB database support for free, and we can also use MongoDB as Waline's data storage service. The following are the environment variables that need to be configured to use MongoDB to store.
 
 | Environment Variable | Required | Default   | Description                                  |
@@ -14,7 +16,6 @@ In addition to LeanCloud, Waline also supports a variety of databases, including
 | `MONGO_REPLICASET`   |          |           | MongoDB replica set                          |
 | `MONGO_AUTHSOURCE`   |          |           | MongoDB auth source                          |
 | `MONGO_OPT_SSL`      |          |           | use SSL connection                           |
-
 
 Here is an example configuration for mongodb.com. Please note that you need set as JSON style for `MONGO_HOST` and `MONGO_PORT` when you has mulitple hosts.
 
@@ -41,7 +42,7 @@ We can also use MySQL to store data, and in addition to using our own MySQL serv
 | `MYSQL_USER`         | ✓        |           | MySQL server username |
 | `MYSQL_PASSWORD`     | ✓        |           | MySQL server password |
 | `MYSQL_PREFIX`       |          | `wl_`     | MySQL table prefix    |
-| `MYSQL_CHARSET` | | `utf8mb4` | MySQL table charset |
+| `MYSQL_CHARSET`      |          | `utf8mb4` | MySQL table charset   |
 
 ## SQLite
 
@@ -52,9 +53,10 @@ Before use SQLite as storage, you should download [waline.sqlite](https://github
 | `SQLITE_PATH`        | ✓        |         | SQLite storage file path, not include file name                     |
 | `SQLITE_DB`          |          | waline  | SQLite storage file name, change it if your filenamed is not waline |
 | `SQLITE_PREFIX`      |          | `wl_`   | SQLite table prefix                                                 |
-| `JWT_TOKEN` | ✓ | | Random String for login token generator |
+| `JWT_TOKEN`          | ✓        |         | Random String for login token generator                             |
 
 ## PostgreSQL
+
 [elephantSQL](https://www.elephantsql.com/) provides 20M PG database support for free. It's same with MySQL, you need import [waline.pgsql](https://github.com/lizheming/waline/blob/master/assets/waline.pgsql) before use PostgreSQL as storage service.
 
 | Environment Variable | Required | Default   | Description                |
@@ -66,16 +68,16 @@ Before use SQLite as storage, you should download [waline.sqlite](https://github
 | `PG_PASSWORD`        | ✓        |           | PostgreSQL server password |
 | `PG_PREFIX`          |          | `wl_`     | PostgreSQL table prefix    |
 
-
 ## GitHub
 
 Waline supports storing comment data in a CSV file format in the GitHub repository. To use GitHub as data storage, you need to apply for Personal access tokens. You can click on <kbd>Generate new token</kbd> to apply for it at <https://github.com/settings/tokens>. Check the permission option below **repo** option is used to obtain read and write permissions for the repository.
 
-| Environment Variable | Required | Default   | Description                |
-|------------|---------|------|------|
-| GITHUB_TOKEN | ✓ | | [Personal access tokens](https://github.com/settings/tokens) |
-| GITHUB_REPO | ✓ | | repository name, such as `lizheming/waline` |
-| GITHUB_PATH | | | The data storage directory, such as `data` means it is stored in the `data` directory, root directory by default|
+| Environment Variable | Required | Default | Description                                                                                                      |
+| -------------------- | -------- | ------- | ---------------------------------------------------------------------------------------------------------------- |
+| GITHUB_TOKEN         | ✓        |         | [Personal access tokens](https://github.com/settings/tokens)                                                     |
+| GITHUB_REPO          | ✓        |         | repository name, such as `lizheming/waline`                                                                      |
+| GITHUB_PATH          |          |         | The data storage directory, such as `data` means it is stored in the `data` directory, root directory by default |
+
 ## Custom
 
 In addition to the above database storage, support for other storage services can also be added. If you want to help Waline support more storage services, you can fork the project and inherit the [base class](https://github.com/lizheming/waline/blob/master/packages/server/src/service/storage/ base.js) and then implement the `select()`, `add()`, `update()`, and `delete()` methods of the corresponding storage service and submit the PR.

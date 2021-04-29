@@ -1,4 +1,5 @@
 # 介绍
+
 ![](https://img.shields.io/npm/v/@waline/vercel?color=critical&logo=npm&style=flat-square)
 ![npm bundle size (scoped)](https://img.shields.io/bundlephobia/minzip/@waline/client?style=flat-square&label=size)
 ![npm](https://img.shields.io/npm/dm/@waline/vercel?style=flat-square)
@@ -16,17 +17,16 @@ Waline - 一款从 [Valine](https://valine.js.org) 衍生的带后端评论系�
 - 免费部署
 - 多种部署部署方式和存储服务支持，每列选择一项多达 48 种部署方式任君选择
 
-|                | Waline     |            |
-| -------------- | ---------- | ---------- |
-| **客户端脚本**     | **服务端部署** | **数据存储**   |
-| @waline/client | Vercel     | LeanCloud  |
-| MiniValine     | CloudBase  | CloudBase  |
-|                | Docker     | MongoDB    |
-|                | 独立部署   | MySQL      |
-|                |            | SQLite     |
-|                |            | PostgreSQL |
-|                |            | GitHub |
-
+|                | Waline         |              |
+| -------------- | -------------- | ------------ |
+| **客户端脚本** | **服务端部署** | **数据存储** |
+| @waline/client | Vercel         | LeanCloud    |
+| MiniValine     | CloudBase      | CloudBase    |
+|                | Docker         | MongoDB      |
+|                | 独立部署       | MySQL        |
+|                |                | SQLite       |
+|                |                | PostgreSQL   |
+|                |                | GitHub       |
 
 ## Todo
 
@@ -34,7 +34,7 @@ Waline - 一款从 [Valine](https://valine.js.org) 衍生的带后端评论系�
 - ✅ 微信通知
 - ✅ QQ 通知
 - ✅ Telegram 通知
-- ✅ Akismet 
+- ✅ Akismet
 - ✅ 文章统计
 - ✅ 多语言同步
 - ✅ 自定义语言支持

@@ -40,6 +40,7 @@ We use [Qmsg Chan](https://qmsg.zendee.cn) to send QQ notification. You need to 
 - `SITE_NAME`：Your site name, it will be displayed in notification message.
 - `SITE_URL`：Your site url, it will be displayed in notification message.
 - `QQ_TEMPLATE`：Notification template used by QQ. Variables and specific formats can be found in the notification template below. If not configured, the default template is used.
+
 ## Telegram Notification
 
 We use Telegram bot to send Telegram notification. You need to set the following env first.
@@ -51,44 +52,44 @@ We use Telegram bot to send Telegram notification. You need to set the following
 - `SITE_URL`：Your site url, it will be displayed in notification message.
 - `TG_TEMPLATE`：Notification template used by Telegram. Variables and specific formats can be found in the notification template below. If not configured, the default template is used.
 
-
 ## Notification Template
 
 Waline supports configuring your customized notification templates for each platform separately to achieve stronger customization capabilities and i18n compatibility.
+
 ### Supported variables
 
 The template passes parameters through `self`, `parent` and `site` objects, which contain the following variables respectively:
 
 - self: The comment itself
 
-    | variable        | description          |
-    | --------------- | -------------------- |
-    | nick            | Commenter's nickname |
-    | mail            | Commenter's email    |
-    | link            | Commenter's website  |
-    | url             | Article address      |
-    | comment         | Comment cotent       |
-    | *commentLink*\* | Links in comments    |
+  | variable        | description          |
+  | --------------- | -------------------- |
+  | nick            | Commenter's nickname |
+  | mail            | Commenter's email    |
+  | link            | Commenter's website  |
+  | url             | Article address      |
+  | comment         | Comment cotent       |
+  | _commentLink_\* | Links in comments    |
 
-    *: commentLink is only provided in Telegram notifications and will be automatically encapsulated in Markdown format.
+  \*: commentLink is only provided in Telegram notifications and will be automatically encapsulated in Markdown format.
 
 - parent: Comment which is replied (parent comment).
 
-    | variable | description          |
-    | -------- | -------------------- |
-    | nick     | Commenter's nickname |
-    | mail     | Commenter's email    |
-    | link     | Commenter's website  |
-    | type     | Commenter's type     |
-    | comment  | Comment content      |
+  | variable | description          |
+  | -------- | -------------------- |
+  | nick     | Commenter's nickname |
+  | mail     | Commenter's email    |
+  | link     | Commenter's website  |
+  | type     | Commenter's type     |
+  | comment  | Comment content      |
 
 - site: Website configuration
 
-    | variable | description          |
-    | -------- | -------------------- |
-    | name     | Site name            |
-    | url      | Site URL             |
-    | postUrl  | Comment full address |
+  | variable | description          |
+  | -------- | -------------------- |
+  | name     | Site name            |
+  | url      | Site URL             |
+  | postUrl  | Comment full address |
 
 ### Default template
 
@@ -96,32 +97,32 @@ The default template is attached here for your reference:
 
 - QQ_TEMPLATE:
 
-    ``` plain
-    💬 {{site.name|safe}} 有新评论啦
-    {{self.nick}} 评论道：
-    {{self.comment}}
-    邮箱：{{self.mail}}
-    状态：{{self.status}} 
-    仅供评论预览，查看完整內容：
-    {{site.postUrl}}
-    ```
+  ```plain
+  💬 {{site.name|safe}} 有新评论啦
+  {{self.nick}} 评论道：
+  {{self.comment}}
+  邮箱：{{self.mail}}
+  状态：{{self.status}}
+  仅供评论预览，查看完整內容：
+  {{site.postUrl}}
+  ```
 
 - TG_TEMPLATE:
 
-    ``` markdown
-    💬 *[{{site.name}}]({{site.url}}) 有新评论啦*
+  ```markdown
+  💬 _[{{site.name}}]({{site.url}}) 有新评论啦_
 
-    *{{self.nick}}* 回复说：
+  _{{self.nick}}_ 回复说：
 
-    \`\`\`
-    {{self.comment-}}
-    \`\`\`
-    {{-self.commentLink}}
-    *邮箱：*\`{{self.mail}}\`
-    *审核：*{{self.status}} 
+  \`\`\`
+  {{self.comment-}}
+  \`\`\`
+  {{-self.commentLink}}
+  _邮箱：_\`{{self.mail}}\`
+  _审核：_{{self.status}}
 
-    仅供评论预览，点击[查看完整內容]({{site.postUrl}})
-    ```
+  仅供评论预览，点击[查看完整內容]({{site.postUrl}})
+  ```
 
 ### Addtional Info
 

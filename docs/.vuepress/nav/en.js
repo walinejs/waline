@@ -1,7 +1,7 @@
 module.exports = [
   {
     text: 'Guide',
-    link: '/en/quick-start'
+    link: '/en/quick-start',
   },
   {
     text: 'Config Reference',
@@ -13,16 +13,16 @@ module.exports = [
         items: [
           {
             text: 'Basic Configure',
-            link: '/en/client/basic.html'
+            link: '/en/client/basic.html',
           },
           {
             text: 'Internationalization',
-            link: '/en/client/i18n.html'
+            link: '/en/client/i18n.html',
           },
           {
             text: 'Reading Statistics',
-            link: '/en/client/visitor.html'
-          }
+            link: '/en/client/visitor.html',
+          },
         ],
       },
       {
@@ -31,36 +31,36 @@ module.exports = [
         items: [
           {
             text: 'Basic Configure',
-            link: '/en/server/basic.html'
+            link: '/en/server/basic.html',
           },
           {
             text: 'Comment Notification',
-            link: '/en/server/notification.html'
+            link: '/en/server/notification.html',
           },
           {
             text: 'Othere Databases',
-            link: '/en/server/databases.html'
+            link: '/en/server/databases.html',
           },
           {
             text: 'Independent Deployment',
-            link: '/en/server/vps-deploy.html'
-          }
-        ]
-      }
-    ]
+            link: '/en/server/vps-deploy.html',
+          },
+        ],
+      },
+    ],
   },
   {
     text: 'Migration',
     items: [
       {
         text: 'Valine Migration Guide',
-        link: '/en/migration'
+        link: '/en/migration',
       },
       {
         text: 'Data Migration Helper',
-        link: '/migration/tool'
-      }
-    ]
+        link: '/migration/tool',
+      },
+    ],
   },
   {
     text: 'Learn More',
@@ -68,16 +68,16 @@ module.exports = [
     items: [
       {
         text: 'API',
-        link: '/en/api'
+        link: '/en/api',
       },
       {
         text: 'Contributing Guide',
-        link: '/en/development'
+        link: '/en/development',
       },
       {
         text: 'FAQ',
-        link: '/en/faq'
-      }
-    ]
-  }
+        link: '/en/faq',
+      },
+    ],
+  },
 ];
