@@ -13,6 +13,7 @@ import autosize from 'autosize';
 import { ConfigContext } from '../context';
 import { CancelReplyIcon, EmojiIcon, MarkdownIcon, PreviewIcon } from './Icons';
 import { postComment } from '../utils/fetch';
+import { getWordNumber } from '../utils/wordCount';
 
 const CACHE_KEY = 'ValineCache';
 const META = ['nick', 'mail', 'link'];
@@ -200,8 +201,11 @@ export default function ({
     onPasteFactory(editorRef, ctx.uploadImage, insertAtCaret, onChange),
     []
   );
+
   const submitComment = useCallback(() => {
     const isLogin = ctx.userInfo.token;
+    const { wordLimit } = ctx;
+
     if (!isLogin) {
       if (requiredFields.indexOf('nick') > -1 && comment.nick.length < 2) {
         inputsRef.nick.current.focus();
@@ -225,6 +229,19 @@ export default function ({
       comment.nick = ctx.userInfo.display_name;
       comment.mail = ctx.userInfo.email;
       comment.link = ctx.userInfo.url;
+    }
+
+    if (wordLimit) {
+      const wordCount = getWordNumber(comment.comment);
+
+      if (wordCount < wordLimit[0] || wordCount > wordLimit[1]) {
+        return alert(
+          ctx.locale.word
+            .replace('$0', wordLimit[0])
+            .replace('$1', wordLimit[1])
+            .replace('$2', wordCount)
+        );
+      }
     }
 
     comment.comment = parseEmoji(comment.comment, ctx.emojiMaps, ctx.emojiCDN);
