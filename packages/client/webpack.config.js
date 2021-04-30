@@ -6,7 +6,6 @@ const { version } = require('./package.json');
 
 const pkgName = 'Waline';
 module.exports = {
-  mode: 'production',
   entry: {
     [pkgName + '.min']: path.resolve(__dirname, 'src/index.js'),
   },
