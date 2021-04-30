@@ -1,8 +1,8 @@
 {{ next_data('waline', {
-  lang: page.lang || 'zh-CN'
+  lang: page.lang | default('zh-CN', true)
 }, config.waline, {
   el: '#waline-comments',
-  libUrl: config.waline.libUrl || 'https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js',
+  libUrl: config.waline.libUrl | default('https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js', true),
   path: url_for(page.path) | replace(r/index\.html$/, '')
 }) }}
 <script>
