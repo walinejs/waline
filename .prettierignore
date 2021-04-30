@@ -1,2 +1,5 @@
+# coverage
+coverage/
+
 # compress files
 docs/.vuepress/components/csv.js
