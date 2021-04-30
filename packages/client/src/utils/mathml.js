@@ -14,6 +14,6 @@ export default function () {
   document.body.removeChild(div);
 
   if (Math.abs(box.height - 23) > 1 || Math.abs(box.width - 77) > 1) {
-    document.body.className += ' mathml-polyfill';
+    document.body.setAttribute('waline-math');
   }
 }
