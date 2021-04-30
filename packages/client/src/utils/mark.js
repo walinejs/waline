@@ -20,6 +20,10 @@ DOMPurify.addHook('afterSanitizeAttributes', function (node) {
   ) {
     node.setAttribute('xlink:show', 'new');
   }
+
+  if ('preload' in node) {
+    node.setAttribute('preload', 'none');
+  }
 });
 
 export const parseEmoji = (text, emojiMaps, emojiCDN) => {
@@ -52,7 +56,8 @@ export const getMarkdownParser = (highlight, ctx) => {
     DOMPurify.sanitize(
       marked(parseEmoji(comment, ctx.emojiMaps, ctx.emojiCDN)),
       {
-        FORBID_ATTR: ['autoplay'],
+        FORBID_TAGS: ['form', 'input'],
+        FORBID_ATTR: ['autoplay', 'draggable'],
       }
     );
 };

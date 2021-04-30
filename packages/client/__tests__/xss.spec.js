@@ -55,19 +55,19 @@ Waline is a good framework. :money:
     );
   });
 
-  it('Should not autoplay media', () => {
-    expect(parser('<audio autoplay src="x">')).toEqual(
-      '<audio src="x"></audio>'
+  it('Should not autoplay or preload media', () => {
+    expect(parser('<audio autoplay preload="auto" src="x">')).toEqual(
+      '<audio src="x" preload="none"></audio>'
     );
     expect(parser('<audio autoplay src="x"></audio>')).toEqual(
-      '<p><audio src="x"></audio></p>\n'
+      '<p><audio src="x" preload="none"></audio></p>\n'
     );
 
-    expect(parser('<video autoplay src="x">')).toEqual(
-      '<video src="x"></video>'
+    expect(parser('<video autoplay preload="auto" src="x">')).toEqual(
+      '<video src="x" preload="none"></video>'
     );
     expect(parser('<video autoplay src="x"></video>')).toEqual(
-      '<p><video src="x"></video></p>\n'
+      '<p><video src="x" preload="none"></video></p>\n'
     );
   });
 
@@ -82,5 +82,10 @@ Waline is a good framework. :money:
     ).toEqual(
       '<p><a rel="noreferrer noopener" href="https://example.com" target="_blank">link</a></p>'
     );
+  });
+
+  it('Should forbid forms and inputs', () => {
+    expect(parser('<form></form>')).toEqual('');
+    expect(parser('<input type="password" autocomplete>')).toEqual('');
   });
 });
