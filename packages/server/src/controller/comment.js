@@ -387,13 +387,11 @@ module.exports = class extends BaseRest {
       data.status === 'approved' &&
       oldData.pid
     ) {
-      // FIXME: pid is not defined
-      let pComment = await this.modelInstance.select({ objectId: pid });
+      let pComment = await this.modelInstance.select({ objectId: oldData.pid });
       pComment = pComment[0];
 
       const notify = this.service('notify');
-      // FIXME: resp is not defined
-      await notify.run(resp, pComment, true);
+      await notify.run(oldData, pComment, true);
     }
     await this.hook('postUpdate', data);
     return this.success();
