@@ -3,10 +3,6 @@
   "description": "vercel server for waline comment system",
   "version": "0.23.13",
   "author": "lizheming <i@imnerd.org>",
-  "scripts": {
-    "lint": "eslint src/",
-    "lint-fix": "eslint --fix src/"
-  },
   "dependencies": {
     "@cloudbase/node-sdk": "^2.4.0",
     "@koa/cors": "^3.1.0",
