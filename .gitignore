@@ -22,6 +22,10 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# docs
+docs/.vuepress/.cache
+docs/.vuepress/.temp
+
 dist/
 .env
 

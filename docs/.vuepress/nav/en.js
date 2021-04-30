@@ -1,16 +1,16 @@
 module.exports = [
   {
     text: 'Guide',
-    link: '/en/quick-start',
+    link: '/en/quick-start.html',
   },
   {
     text: 'Config Reference',
     ariaLabel: 'Config Reference',
-    items: [
+    children: [
       {
         text: 'Client',
         ariaLabel: 'Client',
-        items: [
+        children: [
           {
             text: 'Basic Configure',
             link: '/en/client/basic.html',
@@ -28,7 +28,7 @@ module.exports = [
       {
         text: 'Server',
         ariaLabel: 'Server',
-        items: [
+        children: [
           {
             text: 'Basic Configure',
             link: '/en/server/basic.html',
@@ -51,32 +51,32 @@ module.exports = [
   },
   {
     text: 'Migration',
-    items: [
+    children: [
       {
         text: 'Valine Migration Guide',
-        link: '/en/migration',
+        link: '/en/migration.html',
       },
       {
         text: 'Data Migration Helper',
-        link: '/migration/tool',
+        link: '/migration/tool.html',
       },
     ],
   },
   {
     text: 'Learn More',
     ariaLabel: 'Learn More',
-    items: [
+    children: [
       {
         text: 'API',
-        link: '/en/api',
+        link: '/en/api.html',
       },
       {
         text: 'Contributing Guide',
-        link: '/en/development',
+        link: '/en/development.html',
       },
       {
         text: 'FAQ',
-        link: '/en/faq',
+        link: '/en/faq.html',
       },
     ],
   },

@@ -1,4 +1,4 @@
-name: Linter test
+name: Test
 
 on:
   - push
@@ -41,8 +41,8 @@ jobs:
 
       - name: Unit test
         run: |
-          yarn run admin:build
-          yarn run client:build
+          yarn workspace @waline/admin build
+          yarn workspace @waline/client build
 
   linter-test:
     runs-on: ubuntu-latest

@@ -1,10 +1,10 @@
 # 介绍
 
-![](https://img.shields.io/npm/v/@waline/vercel?color=critical&logo=npm&style=flat-square)
+![npm version](https://img.shields.io/npm/v/@waline/vercel?color=critical&logo=npm&style=flat-square)
 ![npm bundle size (scoped)](https://img.shields.io/bundlephobia/minzip/@waline/client?style=flat-square&label=size)
 ![npm](https://img.shields.io/npm/dm/@waline/vercel?style=flat-square)
 ![GitHub](https://img.shields.io/github/license/lizheming/waline?style=flat-square)
-[![](https://img.shields.io/badge/QQ-673663898-25bdff?logo=tencent-qq&style=flat-square)](https://qm.qq.com/cgi-bin/qm/qr?k=rPZvq_EBfwQa6QZX7sToVlhH49c6ed0R&jump_from=webapi)
+[![QQ](https://img.shields.io/badge/QQ-673663898-25bdff?logo=tencent-qq&style=flat-square)](https://qm.qq.com/cgi-bin/qm/qr?k=rPZvq_EBfwQa6QZX7sToVlhH49c6ed0R&jump_from=webapi)
 
 Waline - 一款从 [Valine](https://valine.js.org) 衍生的带后端评论系统。可以将 Waline 等价成 With backend Valine.
 
@@ -41,7 +41,7 @@ Waline - 一款从 [Valine](https://valine.js.org) 衍生的带后端评论系�
 - ✅ 登录支持
 - ✅ 评论管理
 - ✅ 评论删除
-- ✅ 其它数据库支持（已支持 LeanCloud, MySQL, MongoDB, SQLite, PostgreSQL)
+- ✅ 其它数据库支持（已支持 LeanCloud, MySQL, MongoDB, SQLite, PostgreSQL）
 - ✅ 基于 IP 的发布评论频率限制
 - ✅ 基于关键词的评论过滤限制
 - ✅ IP 黑名单
@@ -57,7 +57,7 @@ Waline - 一款从 [Valine](https://valine.js.org) 衍生的带后端评论系�
 
 ## 捐赠
 
-如果你觉得 Waline 对你有帮助，或者想对我微小的工作一点资瓷，欢迎给我捐赠。
+如果你觉得 Waline 对你有帮助，或者想对我微小的工作一点资瓷，欢迎向我捐赠。
 
 |                                支付宝                                 |                                 微信                                  |
 | :-------------------------------------------------------------------: | :-------------------------------------------------------------------: |
