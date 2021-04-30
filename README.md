@@ -1,12 +1,12 @@
-<img src="./assets/waline.png" width='200' align="right" />
+<img src="./assets/waline.png" width="200" align="right" />
 
 # Waline
 
-![](https://img.shields.io/npm/v/@waline/vercel?color=critical&logo=npm&style=flat-square)
+![npm version](https://img.shields.io/npm/v/@waline/vercel?color=critical&logo=npm&style=flat-square)
 ![npm bundle size (scoped)](https://img.shields.io/bundlephobia/minzip/@waline/client?style=flat-square&label=size)
 ![npm](https://img.shields.io/npm/dm/@waline/vercel?style=flat-square)
 ![GitHub](https://img.shields.io/github/license/lizheming/waline?style=flat-square)
-[ ![](https://img.shields.io/badge/telegram-walinejs-2ca5e0?logo=telegram&style=flat-square) ](https://t.me/walinejs)
+[![telegram](https://img.shields.io/badge/telegram-walinejs-2ca5e0?logo=telegram&style=flat-square)](https://t.me/walinejs)
 
 A simple comment system with backend support fork from [Valine](https://valine.js.org).
 
@@ -18,10 +18,10 @@ English | [中文](https://github.com/lizheming/waline/blob/master/README_CN.md)
 
 - Fast
 - **Really** Safe
-- Support for full markdown syntax
+- Support full markdown syntax
 - Simple and lightweight
 - Deploy free!
-- Multiple deploy and storage service support, at least 48 deploy style choice!
+- Multiple deployment and storage service support, at least 56 deployment choice!
 
 |                | Waline       |             |
 | -------------- | ------------ | ----------- |
@@ -58,11 +58,11 @@ English | [中文](https://github.com/lizheming/waline/blob/master/README_CN.md)
 - [ ] Sitcky Comment
 - [ ] Comment Like
 
-That's **really** welcome to contribute waline!
+We **really** welcome you to contribute to waline!
 
 ## Contact
 
-You can contact me with [discussions](https://github.com/lizheming/waline/discussions). Join to our [telegram](https://t.me/walinejs) group or scan [QQ group](https://qm.qq.com/cgi-bin/qm/qr?k=rPZvq_EBfwQa6QZX7sToVlhH49c6ed0R&jump_from=webapi) qrcode to communicate about waline!
+You can contact me through [discussions](https://github.com/lizheming/waline/discussions). Join our [telegram](https://t.me/walinejs) group or scan [QQ group](https://qm.qq.com/cgi-bin/qm/qr?k=rPZvq_EBfwQa6QZX7sToVlhH49c6ed0R&jump_from=webapi) qrcode to communicate about waline!
 
 <a href="https://qm.qq.com/cgi-bin/qm/qr?k=rPZvq_EBfwQa6QZX7sToVlhH49c6ed0R&jump_from=webapi" target="_blank">
   <img src="./assets/qqgroup.jpg" width="300" />
