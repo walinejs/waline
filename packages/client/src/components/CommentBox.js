@@ -6,10 +6,11 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import cls from 'classnames';
-import marked from 'marked';
-import hanabi from 'hanabi';
 import autosize from 'autosize';
+import cls from 'classnames';
+import DOMPurify from 'dompurify';
+import hanabi from 'hanabi';
+import marked from 'marked';
 import { ConfigContext } from '../context';
 import { CancelReplyIcon, EmojiIcon, MarkdownIcon, PreviewIcon } from './Icons';
 import { postComment } from '../utils/fetch';
@@ -35,20 +36,6 @@ const store = {
     localStorage.setItem(CACHE_KEY, JSON.stringify(comment));
   },
 };
-
-function escapeHTML(text) {
-  const arr = [
-    ['<', '&lt;'],
-    ['>', '&gt;'],
-    ['"', '&quot;'],
-    ["'", '&#39;'],
-  ];
-  arr.forEach(
-    ([target, replaced]) =>
-      (text = text.replace(new RegExp(target, 'g'), replaced))
-  );
-  return text;
-}
 
 function _insertAtCaret(field, val) {
   if (document.selection) {
@@ -174,8 +161,8 @@ export default function ({
   const onChange = useCallback((e) => {
     const comment = e.target.value;
     dispatch({ comment });
-    const preview = marked(
-      parseEmoji(escapeHTML(comment), ctx.emojiMaps, ctx.emojiCDN)
+    const preview = DOMPurify.sanitize(
+      marked(parseEmoji(comment, ctx.emojiMaps, ctx.emojiCDN))
     );
     setPreviewText(preview);
     comment ? autosize(e.target) : autosize.destroy(e.target);
@@ -336,13 +323,8 @@ export default function ({
 
   useEffect(() => {
     marked.setOptions({
-      renderer: new marked.Renderer(),
       highlight: highlight === false ? null : hanabi,
-      gfm: true,
-      tables: true,
       breaks: true,
-      pedantic: false,
-      sanitize: true,
       smartLists: true,
       smartypants: true,
     });
