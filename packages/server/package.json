@@ -15,7 +15,7 @@
     "jsonwebtoken": "^8.5.1",
     "katex": "^0.12.0",
     "leancloud-storage": "^4.7.0",
-    "marked": "^1.2.5",
+    "marked": "^2.0.3",
     "nodemailer": "^6.4.15",
     "nunjucks": "^3.2.2",
     "phpass": "^0.1.1",

@@ -6,13 +6,8 @@ const BaseRest = require('./rest');
 const akismet = require('../service/akismet');
 
 marked.setOptions({
-  renderer: new marked.Renderer(),
   highlight: false,
-  gfm: true,
-  tables: true,
   breaks: true,
-  pedantic: false,
-  sanitize: true,
   smartLists: true,
   smartypants: true,
 });
