@@ -1,6 +1,6 @@
 const helper = require('think-helper');
 const marked = require('marked');
-const katext = require('katex');
+const katex = require('katex');
 const parser = require('ua-parser-js');
 const BaseRest = require('./rest');
 const akismet = require('../service/akismet');
@@ -56,7 +56,7 @@ async function formatCmt(
         .replace(/\$\$([\r\n]+|<\/p>|<br>|$)/, '')
         .replace(/<br>/g, '\r\n');
 
-      const math = katext.renderToString(text, {
+      const math = katex.renderToString(text, {
         output: 'mathml',
       });
       comment.comment = comment.comment.replace(match[i], math);
