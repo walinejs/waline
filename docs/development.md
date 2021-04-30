@@ -2,7 +2,7 @@
 
 如果你想为 waline 提交 Pull Request，你可以参考一下方式进行本地开发。
 
-```
+```sh
 git clone https://github.com/lizheming/waline.git
 cd waline
 

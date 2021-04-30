@@ -1,8 +1,8 @@
 # How to develop
 
-If you want to create pull request for Waline repo, you can develop with follow tips.
+If you want to create pull request for Waline repo, you can develop with the following tips.
 
-```
+```sh
 git clone https://github.com/lizheming/waline.git
 cd waline
 
