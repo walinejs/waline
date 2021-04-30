@@ -35,21 +35,27 @@ The front end inserts comment lists and comment boxes by including JS scripts in
 
 The server refers to the backend service corresponding to the `serverURL` configured in frontend script, and its update will be slightly different depending on different deployment environments. Server updates will be more frequent.
 
-- **Vercel**: Go to the corresponding GitHub repository and modify the version number of `@waline/vercel` in the package.json file to the latest.
+#### Vercel
 
-  ![vercel](../assets/doc/vercel-update.png)
+Go to the corresponding GitHub repository and modify the version number of `@waline/vercel` in the package.json file to the latest.
 
-- **CloudBase**: Enter the code editing page, click <kbd>Save and reinstall dependencies</kbd>. If it still doesn’t work, enter <kbd>My Application</kbd> and select <kbd>Deploy</kbd> to redeploy.
+![vercel](../../assets/doc/vercel-update.png)
 
-  ::: warn
+#### CloudBase
 
-  Redeployment will clear the previous files. If there is a configuration in the previous file, it needs to be backed up first.
+Enter the code editing page, click <kbd>Save and reinstall dependencies</kbd>. If it still doesn’t work, enter <kbd>My Application</kbd> and select <kbd>Deploy</kbd> to redeploy.
 
-  :::
+::: warning
 
-  ![cloudBase](../assets/doc/cloudbase-update.jpg)
+Redeployment will clear the previous files. If there is a configuration in the previous file, it needs to be backed up first.
 
-- **Docker**: Run `docker pull lizheming/waline` directly to pull the latest image.
+:::
+
+![cloudBase](../../assets/doc/cloudbase-update.jpg)
+
+#### Docker
+
+Run `docker pull lizheming/waline` directly to pull the latest image.
 
 ## why posting comments are slow?
 

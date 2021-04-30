@@ -35,21 +35,27 @@ Waline 主要由前端和服务端两部分组成。
 
 服务端指的是在前端脚本中配置的 `serverURL` 对应的后端服务，其更新视不同的部署环境会略有区别。服务端的更新会比较频繁。
 
-- **Vercel**: 进入到对应的 GitHub 仓库中，修改 package.json 文件中的 `@waline/vercel` 版本号为最新版本即可。
+#### Vercel
 
-  ![vercel](../assets/doc/vercel-update.png)
+进入到对应的 GitHub 仓库中，修改 package.json 文件中的 `@waline/vercel` 版本号为最新版本即可。
 
-- **CloudBase**: 进入代码编辑界面，点击 <kbd>保存并重新安装依赖</kbd> 即可。如果还不行，则进入 <kbd>我的应用</kbd> 选择 <kbd>部署</kbd> 进行重新部署。
+![vercel](../assets/doc/vercel-update.png)
 
-  ::: warn
+#### CloudBase\*\*
 
-  重新部署会清空之前的文件，如果之前文件中有配置的话需要先行备份。
+进入代码编辑界面，点击 <kbd>保存并重新安装依赖</kbd> 即可。如果还不行，则进入 <kbd>我的应用</kbd> 选择 <kbd>部署</kbd> 进行重新部署。
 
-  :::
+::: warning
 
-  ![cloudBase](../assets/doc/cloudbase-update.jpg)
+重新部署会清空之前的文件，如果之前文件中有配置的话需要先行备份。
 
-- **Docker**： 直接运行 `docker pull lizheming/waline` 拉取最新的镜像即可。
+:::
+
+![cloudBase](../assets/doc/cloudbase-update.jpg)
+
+#### Docker
+
+直接运行 `docker pull lizheming/waline` 拉取最新的镜像即可。
 
 ## 发布评论很慢怎么办？
 
