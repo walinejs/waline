@@ -36,7 +36,7 @@ module.exports = class extends Base {
             case 'NOT IN':
               instance.notContainedIn(k, where[k][1]);
               break;
-            case 'LIKE':
+            case 'LIKE': {
               const first = where[k][1][0];
               const last = where[k][1].slice(-1);
               if (first === '%' && last === '%') {
@@ -47,6 +47,7 @@ module.exports = class extends Base {
                 instance.startsWith(k, where[k][1].slice(0, -1));
               }
               break;
+            }
             case '!=':
               instance.notEqualTo(k, where[k][1]);
               break;

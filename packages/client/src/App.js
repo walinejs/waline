@@ -2,7 +2,7 @@ import React, { useCallback, useContext, useEffect, useReducer } from 'react';
 import CommentBox from './components/CommentBox';
 import CommentCard from './components/CommentCard';
 import { ConfigContext } from './context';
-import { fetchCount, fetchList } from './utils/fetch';
+import { fetchList } from './utils/fetch';
 
 function App({ boxConfig, listConfig, copyRight }) {
   const ctx = useContext(ConfigContext);
@@ -23,7 +23,7 @@ function App({ boxConfig, listConfig, copyRight }) {
           count: resp.count,
         })
       )
-      .catch((_) => dispatch({ loading: false }));
+      .catch(() => dispatch({ loading: false }));
   }, []);
 
   const onLoadMore = useCallback(() => {
@@ -39,7 +39,7 @@ function App({ boxConfig, listConfig, copyRight }) {
           data: data.concat(resp.data),
         })
       )
-      .catch((_) => dispatch({ loading: false }));
+      .catch(() => dispatch({ loading: false }));
   }, [page, data]);
 
   const onSubmit = useCallback(
@@ -103,7 +103,11 @@ function App({ boxConfig, listConfig, copyRight }) {
       {copyRight ? (
         <div className="vpower txt-right">
           Powered by{' '}
-          <a href="https://github.com/lizheming/Waline" target="_blank">
+          <a
+            href="https://github.com/lizheming/Waline"
+            target="_blank"
+            rel="noreferrer"
+          >
             Waline
           </a>{' '}
           v{VERSION}

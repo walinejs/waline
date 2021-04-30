@@ -10,7 +10,7 @@ export default function ({ current, total, onChange }) {
     <ul className="typecho-pager">
       {current > 1 ? (
         <li className="prev">
-          <a href="#" onClick={(_) => onChange(current - 1)}>
+          <a href="#" onClick={() => onChange(current - 1)}>
             «
           </a>
         </li>
@@ -18,7 +18,7 @@ export default function ({ current, total, onChange }) {
       {current > 4 ? (
         <>
           <li>
-            <a href="#" onClick={(_) => onChange(1)}>
+            <a href="#" onClick={() => onChange(1)}>
               1
             </a>
           </li>
@@ -39,7 +39,7 @@ export default function ({ current, total, onChange }) {
         .filter((page) => page > 0 && page <= total)
         .map((page) => (
           <li key={page} className={cls({ current: page === current })}>
-            <a href="#" onClick={(_) => onChange(page)}>
+            <a href="#" onClick={() => onChange(page)}>
               {page}
             </a>
           </li>
@@ -50,7 +50,7 @@ export default function ({ current, total, onChange }) {
             <span>...</span>
           </li>
           <li>
-            <a href="#" onClick={(_) => onChange(total)}>
+            <a href="#" onClick={() => onChange(total)}>
               {total}
             </a>
           </li>
@@ -58,7 +58,7 @@ export default function ({ current, total, onChange }) {
       ) : null}
       {current < total ? (
         <li className="next">
-          <a href="#" onClick={(_) => onChange(current + 1)}>
+          <a href="#" onClick={() => onChange(current + 1)}>
             »
           </a>
         </li>

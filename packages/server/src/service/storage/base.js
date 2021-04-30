@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 module.exports = class extends think.Service {
   constructor(tableName) {
     super();

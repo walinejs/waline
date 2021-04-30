@@ -148,7 +148,7 @@ module.exports = class extends Base {
       })
         .on('error', reject)
         .on('data', (row) => data.push(row))
-        .on('end', (_) => resolve(data));
+        .on('end', () => resolve(data));
     });
   }
 
@@ -191,7 +191,7 @@ module.exports = class extends Base {
         case 'NOT IN':
           filters.push((item) => !where[k][1].includes(item[k]));
           break;
-        case 'LIKE':
+        case 'LIKE': {
           const first = where[k][1][0];
           const last = where[k][1].slice(-1);
           let reg;
@@ -204,6 +204,7 @@ module.exports = class extends Base {
           }
           filters.push((item) => reg.test(item[k]));
           break;
+        }
         case '!=':
           filters.push((item) => item[k] !== where[k][1]);
           break;
@@ -249,6 +250,7 @@ module.exports = class extends Base {
     return data.map(({ id, ...cmt }) => ({ ...cmt, objectId: id }));
   }
 
+  // eslint-disable-next-line no-unused-vars
   async count(where = {}, options = {}) {
     const instance = await this.collection(this.tableName);
     const data = this.where(instance, where);
@@ -257,6 +259,7 @@ module.exports = class extends Base {
 
   async add(
     data,
+    // eslint-disable-next-line no-unused-vars
     { access: { read = true, write = true } = { read: true, write: true } } = {}
   ) {
     const instance = await this.collection(this.tableName);

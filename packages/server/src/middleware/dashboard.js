@@ -2,7 +2,7 @@ const { GITHUB_ID, GITHUB_SECRET } = process.env;
 
 module.exports = function () {
   const socials = [['github', GITHUB_ID && GITHUB_SECRET]]
-    .filter(([_, condition]) => condition)
+    .filter(([, condition]) => condition)
     .map(([name]) => name);
 
   return (ctx) => {

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const CancelReplyIcon = (_) => (
+export const CancelReplyIcon = () => (
   <svg
     className="vicon cancel-reply-btn"
     viewBox="0 0 1024 1024"
@@ -15,7 +15,7 @@ export const CancelReplyIcon = (_) => (
   </svg>
 );
 
-export const EmojiIcon = (_) => (
+export const EmojiIcon = () => (
   <svg
     viewBox="0 0 1024 1024"
     version="1.1"
@@ -30,7 +30,7 @@ export const EmojiIcon = (_) => (
   </svg>
 );
 
-export const PreviewIcon = (_) => (
+export const PreviewIcon = () => (
   <svg
     viewBox="0 0 1024 1024"
     version="1.1"
@@ -45,7 +45,7 @@ export const PreviewIcon = (_) => (
   </svg>
 );
 
-export const MarkdownIcon = (_) => (
+export const MarkdownIcon = () => (
   <svg
     className="markdown"
     viewBox="0 0 16 16"

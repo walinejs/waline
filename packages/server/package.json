@@ -31,10 +31,6 @@
     "thinkjs": "^3.0.0",
     "ua-parser-js": "^0.7.22"
   },
-  "devDependencies": {
-    "eslint": "^4.2.0",
-    "eslint-config-think": "^1.0.0"
-  },
   "repository": "https://github.com/lizheming/waline",
   "license": "MIT"
 }

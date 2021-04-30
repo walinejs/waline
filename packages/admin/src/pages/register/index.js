@@ -8,6 +8,7 @@ export default function () {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const [error, setError] = useState(false);
+
   useEffect(() => {
     if (user && user.email) {
       navigate('/ui', { replace: true });
