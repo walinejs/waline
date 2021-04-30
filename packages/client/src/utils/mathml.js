@@ -1,4 +1,4 @@
-export default function () {
+export const registMathML = () => {
   // First check whether the page contains any <math> element.
   const namespaceURI = 'http://www.w3.org/1998/Math/MathML';
 
@@ -16,4 +16,4 @@ export default function () {
   if (Math.abs(box.height - 23) > 1 || Math.abs(box.width - 77) > 1) {
     document.body.setAttribute('waline-math', '');
   }
-}
+};

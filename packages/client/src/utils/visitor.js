@@ -1,6 +1,6 @@
 import { fetchVisitCount, postVisitCount } from './fetch';
 
-export default {
+export const Visitor = {
   post({ serverURL, path }) {
     if (!serverURL || !path) {
       return null;

@@ -1,20 +1,20 @@
 import React, {
   useCallback,
   useContext,
-  useEffect,
   useReducer,
   useRef,
   useState,
 } from 'react';
 import autosize from 'autosize';
 import cls from 'classnames';
-import DOMPurify from 'dompurify';
-import hanabi from 'hanabi';
-import marked from 'marked';
 import { ConfigContext } from '../context';
 import { CancelReplyIcon, EmojiIcon, MarkdownIcon, PreviewIcon } from './Icons';
-import { postComment } from '../utils/fetch';
-import { getWordNumber } from '../utils/wordCount';
+import {
+  getMarkdownParser,
+  getWordNumber,
+  parseEmoji,
+  postComment,
+} from '../utils';
 
 const CACHE_KEY = 'ValineCache';
 const META = ['nick', 'mail', 'link'];
@@ -105,23 +105,6 @@ function onPasteFactory(
   };
 }
 
-function parseEmoji(text, emojiMaps, emojiCDN) {
-  if (!text) {
-    return text;
-  }
-  return text.replace(/:(.+?):/g, (placeholder, key) => {
-    if (!emojiMaps[key]) {
-      return placeholder;
-    }
-
-    return `![${key}](${
-      /(?:https?:)?\/\//.test(emojiMaps[key])
-        ? emojiMaps[key]
-        : emojiCDN + emojiMaps[key]
-    })`;
-  });
-}
-
 export default function ({
   placeholder,
   meta,
@@ -156,17 +139,23 @@ export default function ({
     }
   );
   const [submitting, setSubmitting] = useState(false);
-
   const ctx = useContext(ConfigContext);
+
+  const metaFields = meta.filter((kind) => META.indexOf(kind) > -1);
+
+  const parser = getMarkdownParser(highlight, ctx);
+
   const onChange = useCallback((e) => {
     const comment = e.target.value;
     dispatch({ comment });
-    const preview = DOMPurify.sanitize(
-      marked(parseEmoji(comment, ctx.emojiMaps, ctx.emojiCDN))
-    );
+    const preview = parser(comment);
+
     setPreviewText(preview);
-    comment ? autosize(e.target) : autosize.destroy(e.target);
+
+    if (comment) autosize(e.target);
+    else autosize.destroy(e.target);
   }, []);
+
   const insertAtCaret = (field, val) => {
     _insertAtCaret(field, val);
     onChange({ target: field });
@@ -184,6 +173,7 @@ export default function ({
       insertAtCaret(e.target, '    ');
     }
   }, []);
+
   const onPaste = useCallback(
     onPasteFactory(editorRef, ctx.uploadImage, insertAtCaret, onChange),
     []
@@ -288,11 +278,13 @@ export default function ({
       }
     });
   }, []);
+
   const onLogout = useCallback(() => {
     ctx.setUserInfo({});
     localStorage.setItem('WALINE_USER', '');
     sessionStorage.setItem('WALINE_USER', '');
   }, []);
+
   const onProfile = useCallback((e) => {
     e.preventDefault();
 
@@ -320,16 +312,6 @@ export default function ({
         );
     });
   });
-
-  useEffect(() => {
-    marked.setOptions({
-      highlight: highlight === false ? null : hanabi,
-      breaks: true,
-      smartLists: true,
-      smartypants: true,
-    });
-  }, []);
-  const metaFields = meta.filter((kind) => META.indexOf(kind) > -1);
 
   return (
     <div className="vpanel">

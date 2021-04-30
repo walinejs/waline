@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`XSS test Should render 1`] = `
+"<p>Waline is a good framework. <img alt=\\"money\\" src=\\"https://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/a2/2018new_qian_thumb.png\\"></p>
+<h2 id=\\"特性\\">特性</h2>
+<ul>
+<li>快速</li>
+<li>真·安全</li>
+<li>Markdown 语法支持</li>
+<li>轻量易用</li>
+<li>免费部署</li>
+<li>多种部署部署方式和存储服务支持，每列选择一项多达 48 种部署方式任君选择</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Waline</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>客户端脚本</strong></td>
+<td><strong>服务端部署</strong></td>
+<td><strong>数据存储</strong></td>
+</tr>
+<tr>
+<td>@waline/client</td>
+<td>Vercel</td>
+<td>LeanCloud</td>
+</tr>
+<tr>
+<td>MiniValine</td>
+<td>CloudBase</td>
+<td>CloudBase</td>
+</tr>
+<tr>
+<td></td>
+<td>Docker</td>
+<td>MongoDB</td>
+</tr>
+<tr>
+<td></td>
+<td>独立部署</td>
+<td>MySQL</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>SQLite</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>PostgreSQL</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>GitHub</td>
+</tr>
+</tbody></table>
+"
+`;
