@@ -1,3 +1,5 @@
+import MigrationTool from './components/MigrationTool.vue';
+
 function waline() {
   const Waline = require('@waline/client');
   new Waline({
@@ -96,9 +98,11 @@ function renderWaline(router) {
   });
 }
 
-export default ({ router }) => {
+export default ({ app, router }) => {
+  app.component('MigrationTool', MigrationTool);
+
   try {
-    document && renderWaline(router);
+    if (!__SSR__) renderWaline(router);
   } catch (e) {
     console.error(e.message);
   }
