@@ -47,7 +47,7 @@ module.exports = class extends Base {
                 },
               });
               break;
-            case 'LIKE':
+            case 'LIKE': {
               const first = where[k][1][0];
               const last = where[k][1].slice(-1);
               if (first === '%' && last === '%') {
@@ -70,6 +70,7 @@ module.exports = class extends Base {
                 });
               }
               break;
+            }
             case '!=':
               instance.where({
                 [parseKey(k)]: { $ne: where[k][1] },

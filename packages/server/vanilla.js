@@ -13,7 +13,9 @@ instance.run();
 let config = {};
 try {
   require('./config.js');
-} catch (e) {}
+} catch (e) {
+  // do nothing
+}
 for (const k in config) {
   think.config(k, config[k]);
 }

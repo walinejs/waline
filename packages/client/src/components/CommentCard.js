@@ -36,7 +36,12 @@ export default function CommentCard({ comment, boxConfig, rootId, onSubmit }) {
       />
       <div className="vh">
         <div className="vhead">
-          <a className="vnick" rel="nofollow" href={link} target="_blank">
+          <a
+            className="vnick"
+            rel="nofollow noreferrer"
+            href={link}
+            target="_blank"
+          >
             {comment.nick}
           </a>
           {comment.type === 'administrator' ? (
@@ -51,7 +56,7 @@ export default function CommentCard({ comment, boxConfig, rootId, onSubmit }) {
           <span className="vtime">
             {timeAgo(comment.insertedAt, ctx.locale)}
           </span>
-          <span className="vat" onClick={(_) => setReply(comment)}>
+          <span className="vat" onClick={() => setReply(comment)}>
             {ctx.locale.reply}
           </span>
         </div>
@@ -68,7 +73,7 @@ export default function CommentCard({ comment, boxConfig, rootId, onSubmit }) {
               replyId={reply && reply.objectId}
               replyUser={reply && reply.nick}
               rootId={rootId}
-              onCancelReply={(_) => setReply(null)}
+              onCancelReply={() => setReply(null)}
               onSubmit={onSubmit}
             />
           </div>

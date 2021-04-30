@@ -105,7 +105,7 @@ function onPasteFactory(
         const uploadText = `![Uploading ${file['name']}]()`;
         insertAtCaret(field, uploadText);
         return Promise.resolve()
-          .then((_) => uploadImage(file))
+          .then(() => uploadImage(file))
           .then((ret) => {
             field.value = field.value.replace(
               uploadText,
@@ -271,7 +271,7 @@ export default function ({
           onCancelReply();
         }
       },
-      (_) => setSubmitting(false)
+      () => setSubmitting(false)
     );
   }, [comment]);
 
@@ -301,7 +301,7 @@ export default function ({
       }
     });
   }, []);
-  const onLogout = useCallback((e) => {
+  const onLogout = useCallback(() => {
     ctx.setUserInfo({});
     localStorage.setItem('WALINE_USER', '');
     sessionStorage.setItem('WALINE_USER', '');
@@ -386,7 +386,7 @@ export default function ({
                     onClick={onLogout}
                   >
                     <svg
-                      class="vicon"
+                      className="vicon"
                       viewBox="0 0 1024 1024"
                       version="1.1"
                       xmlns="http://www.w3.org/2000/svg"
@@ -437,7 +437,7 @@ export default function ({
                 <span
                   title={ctx.locale.emoji}
                   className={cls('vicon vemoji-btn', { actived: showEmoji })}
-                  onClick={(_) =>
+                  onClick={() =>
                     toggleEmoji(!showEmoji) ||
                     (!showEmoji && togglePreview(false))
                   }
@@ -449,7 +449,7 @@ export default function ({
                   className={cls('vicon vpreview-btn', {
                     actived: showPreview,
                   })}
-                  onClick={(_) =>
+                  onClick={() =>
                     togglePreview(!showPreview) ||
                     (!showPreview && toggleEmoji(false))
                   }
@@ -466,6 +466,7 @@ export default function ({
                 href="https://guides.github.com/features/mastering-markdown/"
                 className="vicon"
                 target="_blank"
+                rel="noreferrer"
               >
                 <MarkdownIcon />
               </a>
@@ -488,7 +489,7 @@ export default function ({
                 <i
                   title={key}
                   key={key}
-                  onClick={(_) => insertAtCaret(editorRef.current, `:${key}:`)}
+                  onClick={() => insertAtCaret(editorRef.current, `:${key}:`)}
                 >
                   <img
                     alt={key}

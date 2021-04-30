@@ -39,7 +39,7 @@ module.exports = class extends Base {
         };
         break;
 
-      case 'list':
+      case 'list': {
         const { userInfo } = this.ctx.state;
         if (userInfo.type !== 'administrator') {
           return this.fail();
@@ -55,6 +55,7 @@ module.exports = class extends Base {
           },
         };
         break;
+      }
 
       default:
         this.rules = {

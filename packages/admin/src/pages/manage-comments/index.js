@@ -267,7 +267,7 @@ export default function () {
                         className={cls({ current: type === filter[key] })}
                         key={type}
                       >
-                        <a href="#" onClick={(_) => dispatch({ [key]: type })}>
+                        <a href="#" onClick={() => dispatch({ [key]: type })}>
                           {name}
                           {key === 'status' &&
                           type !== 'approved' &&
@@ -292,7 +292,7 @@ export default function () {
                         type="checkbox"
                         className="typecho-table-select-all"
                         checked={allSelected}
-                        onChange={(_) =>
+                        onChange={() =>
                           setCommentIds(
                             allSelected
                               ? []
@@ -305,7 +305,7 @@ export default function () {
                       <button
                         className="btn dropdown-toggle btn-s"
                         type="button"
-                        onClick={(_) => setActDropStatus(!actDropStatus)}
+                        onClick={() => setActDropStatus(!actDropStatus)}
                       >
                         <i className="sr-only">{t('action')}</i>
                         {t('selected items')} <i className="i-caret-down"></i>
@@ -313,7 +313,7 @@ export default function () {
                       <ul
                         className="dropdown-menu"
                         style={{ display: actDropStatus ? 'block' : 'none' }}
-                        onClick={(_) => setActDropStatus(false)}
+                        onClick={() => setActDropStatus(false)}
                       >
                         {createActions().map(({ key, name, action }) => (
                           <li key={key}>
@@ -471,14 +471,14 @@ export default function () {
                                     <button
                                       type="button"
                                       className="btn btn-s primary"
-                                      onClick={(_) => onEditComment(idx)}
+                                      onClick={() => onEditComment(idx)}
                                     >
                                       {t('submit')}
                                     </button>
                                     <button
                                       type="button"
                                       className="btn btn-s cancel"
-                                      onClick={(_) => setCmtHandler({})}
+                                      onClick={() => setCmtHandler({})}
                                     >
                                       {t('cancel')}
                                     </button>
@@ -493,7 +493,7 @@ export default function () {
                                   type="checkbox"
                                   value={objectId}
                                   checked={commentIds.includes(objectId)}
-                                  onChange={(_) =>
+                                  onChange={() =>
                                     setCommentIds(
                                       commentIds.includes(objectId)
                                         ? commentIds.filter(
@@ -520,7 +520,7 @@ export default function () {
                                   <strong className="comment-author">
                                     <a
                                       href={link}
-                                      rel="external nofollow"
+                                      rel="external nofollow noreferrer"
                                       target="_blank"
                                     >
                                       {nick}
@@ -528,7 +528,11 @@ export default function () {
                                   </strong>
                                   <br />
                                   <span>
-                                    <a href={`mailto:${mail}`} target="_blank">
+                                    <a
+                                      href={`mailto:${mail}`}
+                                      target="_blank"
+                                      rel="noreferrer"
+                                    >
                                       {mail}
                                     </a>
                                   </span>
@@ -539,7 +543,11 @@ export default function () {
                               <td valign="top" className="comment-body">
                                 <div className="comment-date">
                                   {formatDate(insertedAt)} {t('at')}{' '}
-                                  <a href={getPostUrl(url)} target="_blank">
+                                  <a
+                                    href={getPostUrl(url)}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                  >
                                     {url}
                                   </a>
                                 </div>
@@ -582,7 +590,7 @@ export default function () {
                                       <button
                                         type="button"
                                         className="btn btn-s cancel"
-                                        onClick={(_) => setCmtHandler({})}
+                                        onClick={() => setCmtHandler({})}
                                       >
                                         {t('cancel')}
                                       </button>

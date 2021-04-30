@@ -78,6 +78,7 @@ export default function () {
                   href="http://gravatar.com/emails/"
                   title={t('go to gravatar to change avatar')}
                   target="_blank"
+                  rel="noreferrer"
                 >
                   <img
                     className="profile-avatar"
@@ -129,7 +130,7 @@ export default function () {
                       />
                       <p className="description">
                         <Trans i18nKey="homepage tips">
-                          Current users' homepage. It must be start with{' '}
+                          Current users&apos; homepage. It must be start with{' '}
                           <code>http://</code> or <code>https://</code>.
                         </Trans>
                       </p>
@@ -165,12 +166,13 @@ export default function () {
                           : `${baseUrl}oauth/github?state=${token}`
                       }
                       target={user.github ? '_blank' : '_self'}
+                      rel="noreferrer"
                     >
                       <GithubIcon />
                     </a>
                     <div
                       className="account-unbind"
-                      onClick={(_) => unbind('github')}
+                      onClick={() => unbind('github')}
                     >
                       <svg
                         className="vicon"

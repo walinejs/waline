@@ -1,0 +1,28 @@
+root: true
+
+env:
+  node: true
+  es6: true
+
+extends:
+  - eslint:recommended
+  - plugin:prettier/recommended
+
+settings:
+  react:
+    version: detect
+
+parserOptions:
+  ecmaVersion: 11
+
+ignorePatterns:
+  - dist/
+  - example/
+  - node_modules/
+
+overrides:
+  - files:
+      - 'packages/**/__tests__/**/*.spec.js'
+
+    env:
+      jest: true

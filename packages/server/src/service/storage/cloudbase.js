@@ -58,7 +58,7 @@ module.exports = class extends Base {
             case 'NOT IN':
               filter[parseKey(k)] = _.nin(where[k][1]);
               break;
-            case 'LIKE':
+            case 'LIKE': {
               const first = where[k][1][0];
               const last = where[k][1].slice(-1);
               let reg;
@@ -71,12 +71,15 @@ module.exports = class extends Base {
               }
               filter[parseKey(k)] = reg;
               break;
-            case '!=':
+            }
+            case '!=': {
               filter[parseKey(k)] = _.neq(where[k][1]);
               break;
-            case '>':
+            }
+            case '>': {
               filter[parseKey(k)] = _.gt(where[k][1]);
               break;
+            }
           }
         }
       }
