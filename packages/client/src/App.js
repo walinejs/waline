@@ -2,7 +2,7 @@ import React, { useCallback, useContext, useEffect, useReducer } from 'react';
 import CommentBox from './components/CommentBox';
 import CommentCard from './components/CommentCard';
 import { ConfigContext } from './context';
-import { fetchList } from './utils/fetch';
+import { fetchList } from './utils';
 
 function App({ boxConfig, listConfig, copyRight }) {
   const ctx = useContext(ConfigContext);

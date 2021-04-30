@@ -1,4 +1,19 @@
-function timeAgo(date, locale) {
+const dateFormat = (date) => {
+  var vDay = padWithZeros(date.getDate(), 2);
+  var vMonth = padWithZeros(date.getMonth() + 1, 2);
+  var vYear = padWithZeros(date.getFullYear(), 2);
+  return `${vYear}-${vMonth}-${vDay}`;
+};
+
+const padWithZeros = (vNumber, width) => {
+  var numAsString = vNumber.toString();
+  while (numAsString.length < width) {
+    numAsString = '0' + numAsString;
+  }
+  return numAsString;
+};
+
+export const timeAgo = (date, locale) => {
   if (!date) {
     return;
   }
@@ -44,21 +59,4 @@ function timeAgo(date, locale) {
   } catch (error) {
     console.log(error);
   }
-}
-
-const dateFormat = (date) => {
-  var vDay = padWithZeros(date.getDate(), 2);
-  var vMonth = padWithZeros(date.getMonth() + 1, 2);
-  var vYear = padWithZeros(date.getFullYear(), 2);
-  return `${vYear}-${vMonth}-${vDay}`;
 };
-
-const padWithZeros = (vNumber, width) => {
-  var numAsString = vNumber.toString();
-  while (numAsString.length < width) {
-    numAsString = '0' + numAsString;
-  }
-  return numAsString;
-};
-
-module.exports = timeAgo;

@@ -2,9 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import Context from './context';
-import Visitor from './utils/visitor';
-import { fetchCount, fetchRecent } from './utils/fetch';
-import mathML from './utils/mathml';
+import { Visitor, fetchCount, fetchRecent, registMathML } from './utils';
 import './index.css';
 import './recent.css';
 import './math.css';
@@ -134,10 +132,10 @@ export default function Waline({
     });
   }
 
-  //mathml
-  window.addEventListener('load', mathML);
+  // mathml
+  window.addEventListener('load', registMathML);
 
-  //comment list display
+  // comment list display
   const root = document.querySelector(el);
   if (!root) {
     return;

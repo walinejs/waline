@@ -1,4 +1,4 @@
-import { getWords, getChinese, getWordNumber } from '../src/utils/wordCount';
+import { getWords, getChinese, getWordNumber } from '../src/utils';
 
 describe('Words test', () => {
   it('Should count emplty content correctly', () => {

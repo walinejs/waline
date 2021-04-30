@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { ConfigContext } from '../context';
-import timeAgo from '../utils/timeAgo';
+import { timeAgo } from '../utils';
 import CommentBox from './CommentBox';
 
 export default function CommentCard({ comment, boxConfig, rootId, onSubmit }) {
@@ -8,6 +8,8 @@ export default function CommentCard({ comment, boxConfig, rootId, onSubmit }) {
 
   const ctx = useContext(ConfigContext);
 
+  // This is remained only because of existing comments
+  // Links is now handled when inputing
   const onContentClick = (e) => {
     if (e.target.tagName !== 'A') {
       return;
