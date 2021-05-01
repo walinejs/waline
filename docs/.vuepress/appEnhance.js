@@ -24,7 +24,7 @@ function renderTips(isHome = false) {
 
   tips = document.createElement('div');
   tips.id = 'waline-tips';
-  if(!isHome) {
+  if (!isHome) {
     tips.className = 'page-nav';
   }
   const styles = {
@@ -65,7 +65,7 @@ function renderWaline(router) {
 
     container = document.createElement('div');
     container.id = 'waline-comment';
-    if(!$page.classList.contains('theme-default-content')) {
+    if (!$page.classList.contains('theme-default-content')) {
       container.className = 'page-nav';
     }
     $page.appendChild(container);
@@ -84,7 +84,7 @@ function renderWaline(router) {
 
     container = document.createElement('div');
     container.id = 'waline-comment';
-    if(!$page.classList.contains('theme-default-content')) {
+    if (!$page.classList.contains('theme-default-content')) {
       container.className = 'page-nav';
     }
 
@@ -108,7 +108,7 @@ export default ({ app, router }) => {
   app.component('MigrationTool', MigrationTool);
 
   try {
-    if (!__SSR__)renderWaline(router);
+    if (!__SSR__) renderWaline(router);
   } catch (e) {
     console.error(e.message);
   }

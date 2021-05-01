@@ -1,29 +1,32 @@
 ---
+
 home: true
 title: Waline
 heroImage: /logo.png
 actions:
-  - text: 💡 Get Started
-    link: /en/get-started.html
-    type: primary
 
-  - text: ℹ️ Intro
-    link: /en/intro.html
+- text: 💡 Get Started
+  link: /en/get-started.html
+  type: primary
+
+- text: ℹ️ Intro
+  link: /en/intro.html
 
 features:
-  - title: Comment the way you like
-    details: Full Markdown support, with emoji, mathematical formulas and HTML embedding support
 
-  - title: Improved Security
-    details: Content verification, anti-irrigation, protection of sensitive data, etc.
+- title: Comment the way you like
+  details: Full Markdown support, with emoji, mathematical formulas and HTML embedding support
 
-  - title: Login support
-    details: Besides anonymous comments, account registration is supported to maintain identity
+- title: Improved Security
+  details: Content verification, anti-irrigation, protection of sensitive data, etc.
 
-  - title: Completely free
-    details: Can be deployed on Vercel for free
+- title: Login support
+  details: Besides anonymous comments, account registration is supported to maintain identity
 
-  - title: Easy to deploy
-    details: Multiple deployment methods and storage service support
+- title: Completely free
+  details: Can be deployed on Vercel for free
+
+- title: Easy to deploy
+  details: Multiple deployment methods and storage service support
 
 footer: GPL-2.0 Licensed | Copyright © 2020-present lizheming
