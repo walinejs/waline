@@ -7,6 +7,9 @@ actions:
     link: /get-started.html
     type: primary
 
+  - text: ℹ️ 介绍
+    link: /intro.html
+
 features:
   - title: 自由评论
     details: 完全的 Markdown 支持，同时包含表情、数学公式、HTML 嵌入
