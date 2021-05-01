@@ -8,7 +8,7 @@ A simple comment system with backend support fork from [Valine](https://valine.j
 
 ---
 
-English | [中文](https://github.com/lizheming/waline/blob/master/README_CN.md) | **View Documentation:** <https://waline.js.org>
+English | [中文](https://github.com/lizheming/waline/blob/master/README_CN.md) | **View Documentation:** <https://waline.js.org/en/>
 
 ## Feature
 
