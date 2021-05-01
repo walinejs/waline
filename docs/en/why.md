@@ -1,6 +1,6 @@
 # Why Waline?
 
-[Valine](https://valine.js.org) an exquisite style, simple operation, and efficient deployment review system. The first time I came into contact, I was attracted by its exquisite style and serverless characteristics. It doesn't require the backend service. The frontend interacts with the LeanCloud storage service directly, which is really cool! But as I slowly understood it, I found that it had some problems.
+[Valine](https://valine.js.org) an exquisite style, simple operation, and efficient deployment review system. The first time I came into contact, I was attracted by its exquisite style and serverless characteristics. It doesn't require the backend service. The frontend interacts with the LeanCloud storage service directly, which is really cool! But as I understand deeper, I find out it's problems.
 
 ## Problem of Valine
 
@@ -12,9 +12,11 @@ The author only push the compiled files to the GitHub repository starting from v
 
 Since the very early version, users have reported Valine's XSS problems, and the community is also using various methods to fix these problems. Including the addition of verification codes, frontend XSS filtering and other methods. However, the author later realized that all the frontend verification can only prevent the gentleman, so the restriction such as verification code is removed.
 
-Now when the frontend publishes a comment, Markdown will be converted into HTML, and then execute an XSS filter function on the frontend before be submitted to LeanCloud. After you get the data from LeanCloud, you can insert it directly for display because it's just HTML. Obviously, the process is problematic. As long as the HTML is submitted directly and displayed directly after the HTML is obtained, XSS cannot be eradicated fundamentally.
+Now when the frontend publishes a comment, Markdown will be converted into HTML, and then execute an XSS filter function on the frontend before be submitted to LeanCloud. After getting the data from LeanCloud, it is directly inserted to DOM. Obviously, the process is problematic. As long as the HTML is submitted directly and displayed directly after the HTML is obtained, XSS cannot be eradicated fundamentally.
 
-Is there a fundamental solution? In fact, there are. For stored XSS attacks, we can use escape codes to solve them. Just like old BBCode, we just submit to the database the Markdown content. The frontend reads the content and encodes all HTML before displaying it after Markdown conversion.
+::: tip Fundamental solution
+
+For stored XSS attacks, we can use escape HTML codes to solve them permanently. Just like old BBCode, only markdown content is submit to the database. The frontend reads the content and encodes all HTML before displaying it after Markdown conversion.
 
 ```js
 function encodeForHTML(str) {
@@ -30,21 +32,29 @@ function encodeForHTML(str) {
 
 Since Valine is a serverless system, attackers can directly reach the storage stage. All precautions before data storage are invalid and can only be processed during the displaying process. Because all HTML cannot be parsed after being escaped, we can ensure that the converted HTML has no chance of being inserted.
 
-Since Valine does not have an open source code, it is not easy to pull requests. I can only wait for the author to discover this by himself. However, there is a problem with this method that it's incompatibility with old data. Because this is equivalent to modifying the rules of storage and display, and HTML content has been stored before. After the repair, the previous data will not be able to display HTML style.
+Since Valine is no longer open source, pull requests cannot be opened.
 
-In order to circumvent XSS security issues when the storage data is still HTML, the only way is to add a backend. This is why this project exists. But because Valine is not open source, I can only implement it from beginning to end, while most of the frontend code still refers to the old version of Valine. Thank you.
+:::
+
+Since the above method will completely restrict users in the scope of Markdown, Waline inludes `DOMPurify` on the client side since `0.15.0` to prevent XSS. Besides the regular XSS sterilization, `<form>` and `<input>` are disabled, and the draggable attribute and autoplay of the media are also disabled. At the same time, all external links will be processed and opened in a new window with rel of `noopener noreferrer`.
+
+::: warning
+
+We will pay extra attention to this change. If you encounter unfriendly comments that can bypass the existing protection during usage, feel free to give us feedback.
+
+:::
 
 ### Privacy Leak
 
-After talking about the storage problem, let's look at the displaying problem again. In addition to direct access to storage, the attacker can also access displaying directly. When a field in a database has read permission, the content of the field is equivalent to transparent to the attacker.
+Besides direct access to storage, the attacker can also read any data directly. If a database field has read permission to everyone, the content of the field is completely transparent to the attacker.
 
-In the comment data, there are two fields that are user sensitive data, namely IP and email. Another valine user even wrote an article specifically to criticize the problem ["Please stop using the Valine.js comment system immediately, unless it fixes the user privacy leak"] (https://ttys3.net/post/hugo/please- stop-using-valine-js-comment-system-until-it-fixed-the-privacy-leaking-problem/). Even when the [JueJin](https://juejin.cn) community used LeanCloud in the early years, the security problem of [disclose user's mobile phone number](https://m.weibo.cn/detail/4568007327622344?cid=4568044392682999) was exposed.
+In the comment data, the two fields IP and mailbox contain the user's sensitive data. Mr.Deng wrote an article specifically to criticize the problem [Please stop using the Valine.js comment system immediately unless it fixes the user privacy leak](https://ttys3.net/post/hugo/please-stop-using-valine-js-comment-system-until-it-fixed-the-privacy-leaking-problem/). Even when the [JueJin](https://juejin.cn) community used LeanCloud in early years, the security problem of [disclosed user's mobile phone number](https://m.weibo.cn/detail/4568007327622344?cid=4568044392682999) was exposed.
 
-In order to circumvent this problem, Valine authors added the `recordIP` configuration to set whether to allow recording of user IP. Since there is no server, all that can be thought of is a solution without storage. However, there is a problem with this configuration item, that the configuration right of the item is on the website, and the privacy problem is encountered by the commentor, which means that the commentor has no right to manage his own privacy.
+In order to circumvent this problem, the author of Valine added the `recordIP` configuration to set whether to allow recording of user IP. Since there is no server, it can only be solved by not storing the value.
 
-In addition to this contradiction, there is also the problem of email. Essentially, the email only needs to return to md5 to get the Gravatar profile picture. However, due to the limitation of the server, the original content can only be returned and calculated by the frontend. And we need to get the original value of the mailbox to facilitate the comment reply email notification function. So we can't save it or store the value after md5.
+There is still a problem with this option: Whether to record ip is based on the site owner's config, while commenters have no right to manage their own privacy.
 
-The solution to this problem can only be to add a layer of server to solve this problem by filtering sensitive information on the server.
+Leaking of email address are another major privacy issue. It is completely feasible to calculate and report the md5 of the user's email at frontend to obtain the Gravatar avatar. But if sending email notification when a comment being replyed is needed, it is inevitable to store the original value of the user's email address. This problem can theoretically be solved by RSA encryption. The private key can be stored in the environment variable of LeanCloud. The client reports both the email md5 and the email encrypted by the public key. When LeanCloud wants to send email notifications, it reads the private key in the environment in the cloud function, and then decrypt to get the user email. However, considering the size and performance of the frontend RSA encryption library, it's not actual. Adding a server layer to filter sensitive information through the server side is definitely a better practice.
 
 ### Read Statistics Tampering
 
@@ -57,10 +67,12 @@ resp[0].set('time', -100000).save();
 location.reload();
 ```
 
-The only good thing about this problem is that the value of the `time` field is of type Number, and other values cannot be inserted. If it is a string type, it is another XSS vulnerability. There is a solution to this problem, which is to not use the accumulative storage method. Changed to store a read only access record for each visit, and use the `count()` method for statistics when reading. In this way, all data is read-only, and there is no problem of tampering. The only problem with this solution is that the amount of data will be relatively large, which will cause a certain pressure on the query.
+Fortunately, the value of the `time` field is of type Number, so other values cannot be inserted. If the `time` field is of string type, it may be an XSS vulnerability. A possible solution to this problem is not to use the accumulative storage method. Changed to store a read-only access record for each visit, and use the `count()` method for statistics when reading. In this way, all data is read-only, which solves the problem of tampering. This solution also has a problem: when the amount of data is relatively large, it will cause a certain pressure on the query.
 
-Of course, if it is based on the original data unchanged, you can only add a layer of server to isolate the modification permissions.
+If it is based on remaining the original data, only server layer can be added to isolate the modification permissions.
 
-## Waline
+## Born of Waline
 
-Based on the above reasons, Waline was born. Waline's original goal was only to add backend to Valine, but because Valine is not open source, it can only be implemented with the frontend. Of course, many codes and logic of the frontend have reference Valine in order to be consistent with Valine's configuration. Even in the project's name, I derived it from Valine, so that everyone can understand that this project is a derivative of Valine.
+Based on the above reasons, Waline was born. Waline's original goal was only to add backend to Valine, but because Valine is not open source, it can only be implemented with frontend. Of course, many codes and logic of the frontend have reference Valine in order to be consistent with Valine's configuration. Even in the project's name, I derived it from Valine, so that everyone can understand that this project is a derivative of Valine.
+
+Besides solving the above-mentioned security problems. the addition of the server side implement many features previously limited by no server side, including email notifications, spam comment filtering, etc.
