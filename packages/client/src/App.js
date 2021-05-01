@@ -94,14 +94,14 @@ function App({ boxConfig, listConfig, copyRight }) {
         <div className="vempty">{ctx.locale.sofa}</div>
       ) : null}
       {page < totalPages && !loading ? (
-        <div className="vpage txt-center">
+        <div className="vpage text-center">
           <button type="button" className="vmore vbtn" onClick={onLoadMore}>
             {ctx.locale.more}
           </button>
         </div>
       ) : null}
       {copyRight ? (
-        <div className="vpower txt-right">
+        <div className="vpower text-right">
           Powered by{' '}
           <a
             href="https://github.com/lizheming/Waline"
