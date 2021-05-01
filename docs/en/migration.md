@@ -2,8 +2,8 @@
 
 Since Waline completely reuses Valine's data structure in storage, migrating from Valine to Waline is very simple.
 
-1. Deploy backend according to [Vercel Deploy](./quick-start.md#deploy-to-vercel) in _Get Started_ section. `LEAN_ID` and `LEAN_KEY` should be the same as those applied for when using Valine before. Don't forget to set `LEAN_MASTER_KEY` for Waline.
-2. Modifiy frontend scripts according to [HTML](./quick-start.md#html-references) in _Get Started_ section. Please remind we should remove old configuration `appId` and `appKey` from Valine, and add `serverURL` option.
+1. Deploy backend according to [Vercel Deploy](./get-started.md#deploy-to-vercel) in _Get Started_ section. `LEAN_ID` and `LEAN_KEY` should be the same as those applied for when using Valine before. Don't forget to set `LEAN_MASTER_KEY` for Waline.
+2. Modifiy frontend scripts according to [HTML](./get-started.md#html-references) in _Get Started_ section. Please remind we should remove old configuration `appId` and `appKey` from Valine, and add `serverURL` option.
 
 ```diff
 - <script src='//unpkg.com/valine/dist/Valine.min.js'></script>

@@ -1,7 +1,7 @@
 module.exports = [
   {
-    text: '开始',
-    link: '/quick-start.html',
+    text: '指南',
+    link: '/get-started.html',
   },
   {
     text: '配置',
