@@ -5,7 +5,7 @@ const getSidebar = require('./sidebar');
 
 module.exports = {
   title: 'Waline',
-  description: 'Simple Comment System inspired by Valine.',
+  description: 'A Simple Comment System inspired by Valine.',
 
   locales: {
     '/': {
@@ -16,7 +16,7 @@ module.exports = {
     '/en/': {
       lang: 'en-US',
       title: 'Waline',
-      description: 'Simple Comment System inspired by Valine.',
+      description: 'A Simple Comment System inspired by Valine.',
     },
   },
 

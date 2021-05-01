@@ -27,12 +27,3 @@ features:
     details: Multiple deployment methods and storage service support
 
 footer: GPL-2.0 Licensed | Copyright © 2020-present lizheming
----
-
-![npm version](https://img.shields.io/npm/v/@waline/vercel?color=critical&logo=npm&style=flat-square) ![npm bundle size (scoped)](https://img.shields.io/bundlephobia/minzip/@waline/client?style=flat-square&label=size) ![npm](https://img.shields.io/npm/dm/@waline/vercel?style=flat-square) ![GitHub](https://img.shields.io/github/license/lizheming/waline?style=flat-square) [![telegram](https://img.shields.io/badge/telegram-walinejs-2ca5e0?logo=telegram&style=flat-square)](https://t.me/walinejs)
-
-Waline: A simple comment system with backend support fork from [Valine](https://valine.js.org).
-
-## License
-
-[GPL-2.0](https://github.com/lizheming/Waline/blob/master/LICENSE)
