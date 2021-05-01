@@ -1,0 +1,23 @@
+.v[data-class='v'] {
+  .text-right {
+    text-align: right;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .clear {
+    content: '';
+    display: block;
+    clear: both;
+  }
+
+  .pd5 {
+    padding: 5px;
+  }
+
+  .pd10 {
+    padding: 10px;
+  }
+}
