@@ -53,12 +53,12 @@ module.exports = [
     text: 'Migration',
     children: [
       {
-        text: 'Valine Migration Guide',
+        text: 'Migrate from Valine',
         link: '/en/migration.html',
       },
       {
-        text: 'Data Migration Helper',
-        link: '/migration/tool.html',
+        text: 'Migration Helper',
+        link: '/en/migration/tool.html',
       },
     ],
   },

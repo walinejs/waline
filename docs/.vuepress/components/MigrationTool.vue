@@ -2,8 +2,8 @@
   <form>
     <div style="margin-bottom: 20px">
       <div class="input-group">
-        <label for="">从</label>
-        <select v-model="from">
+        <label for="from">{{ i18n.from }}</label>
+        <select id="from" v-model="from">
           <option value="valine">Valine</option>
           <option value="disqus">Disqus</option>
           <option value="twikoo">Twikoo</option>
@@ -13,58 +13,50 @@
         </select>
       </div>
       <div class="input-group">
-        <label for="">迁移至</label>
-        <select v-model="to">
+        <label for="to">{{ i18n.to }}</label>
+        <select id="to" v-model="to">
           <option value="wleancloud">Waline LeanCloud</option>
           <option value="wcloudbase">Waline CloudBase</option>
           <option value="wsql">Waline MySQL/PostgreSQL/SQLite</option>
           <option value="wgithub">Github</option>
         </select>
       </div>
-      <div class="input-group">存储服务。</div>
+      <div class="input-group">{{ i18n.storage }}</div>
     </div>
     <div class="warning custom-block" v-if="from === 'typecho'">
-      <p class="custom-block-title">友情提示</p>
-      <p>
-        Typecho 用户可以使用
-        <a
-          href="https://github.com/lizheming/typecho-export-valine"
-          target="_blank"
-          >Export2Valine</a
-        >
-        插件将评论数据导出成 Valine 数据后直接使用。
-      </p>
+      <p class="custom-block-title">{{ i18n.tip }}</p>
+      <p v-html="i18n.typeecho" />
     </div>
     <div
       class="warning custom-block"
       v-else-if="from === 'valine' && to === 'wleancloud'"
     >
-      <p class="custom-block-title">友情提示</p>
-      <p>
-        Waline 和 Valine 的 LeanCloud 配置是可以共用的，不需要进行数据转换哦！
-      </p>
+      <p class="custom-block-title">{{ i18n.tip }}</p>
+      <p v-text="i18n.tip" />
     </div>
     <div v-else>
-      <textarea
-        placeholder="请将源导出文件数据粘贴至此"
-        v-model="source"
-      ></textarea>
-      <button @click="click">转换</button>
+      <textarea :placeholder="i18n.placeholder" v-model="source"></textarea>
+      <button @click="click">{{ i18n.convert }}</button>
     </div>
   </form>
 </template>
 <script>
-import { defineComponent, ref } from 'vue';
+import { useRouteLocale } from '@vuepress/client';
+import { computed, defineComponent, ref } from 'vue';
 import { exportRaw } from './exportRaw';
+import { migrateI18n } from './i18n';
 import { transform } from './transform';
 
 export default defineComponent({
   name: 'MigrationTool',
 
   setup() {
+    const routeLocalePath = useRouteLocale();
     const from = ref('valine');
     const to = ref('wcloudbase');
     const source = ref('');
+
+    const i18n = computed(() => migrateI18n[routeLocalePath.value]);
 
     const click = (event) => {
       event.preventDefault();
@@ -102,6 +94,7 @@ export default defineComponent({
 
     return {
       click,
+      i18n,
       from,
       to,
       source,
@@ -110,7 +103,7 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<style scoped>
 textarea {
   width: 100%;
   height: 200px;

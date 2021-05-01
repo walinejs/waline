@@ -54,7 +54,7 @@ module.exports = [
     ariaLabel: '迁移',
     children: [
       {
-        text: 'Valine 迁移指南',
+        text: '从 Valine 迁移',
         link: '/migration.html',
       },
       {
