@@ -1,5 +1,6 @@
 const chokidar = require('chokidar');
-const { path } = require('@vuepress/utils');
+const taskLists = require('markdown-it-task-lists');
+const { logger, path } = require('@vuepress/utils');
 const getSidebar = require('./sidebar');
 
 module.exports = {
@@ -10,24 +11,29 @@ module.exports = {
     '/': {
       lang: 'zh-CN',
       title: 'Waline',
-      description: 'Simple Comment System inspired by Valine.',
+      description: '一款基于 Valine 衍生的简洁、安全的评论系统。',
     },
     '/en/': {
       lang: 'en-US',
       title: 'Waline',
-      description: '一款基于 Valine 衍生的简洁、安全的评论系统。',
+      description: 'Simple Comment System inspired by Valine.',
     },
   },
 
   themeConfig: {
-    logo: 'https://p5.ssl.qhimg.com/t01ec54674f5912eea9.png',
+    logo: '/logo.png',
     repo: 'lizheming/waline',
     docsDir: 'docs',
     docsBranch: 'master',
     locales: {
       '/': {
         navbar: require('./nav/zh'),
-        sidebar: getSidebar('基础配置', '高级功能', '更多玩法', ''),
+        sidebar: getSidebar('', [
+          '快速上手',
+          '基础配置',
+          '高级功能',
+          '更多玩法',
+        ]),
         selectLanguageName: '简体中文',
         selectLanguageText: '选择语言',
         selectLanguageAriaLabel: '选择语言',
@@ -42,18 +48,18 @@ module.exports = {
         openInNewWindow: '在新窗口打开',
       },
       '/en/': {
+        navbar: require('./nav/en'),
+        sidebar: getSidebar('/en', [
+          'Get Started',
+          'Basic Config',
+          'Advanced Functions',
+          'More Features',
+        ]),
         selectLanguageName: 'English',
         selectLanguageText: 'Languages',
         selectLanguageAriaLabel: 'Select language',
         editLinkText: 'Edit this page on GitHub',
         lastUpdatedText: 'Last Updated',
-        navbar: require('./nav/en'),
-        sidebar: getSidebar(
-          'Basic Configure',
-          'Advanced Functions',
-          'More Features',
-          '/en'
-        ),
       },
     },
   },
@@ -69,9 +75,12 @@ module.exports = {
         maxSuggestions: 10,
       },
     ],
-    (_) => ({
+    {
+      extendsMarkdown: (md) => {
+        md.use(taskLists, { label: true, labelAfter: true });
+      },
       clientAppEnhanceFiles: path.resolve(__dirname, 'appEnhance.js'),
-    }),
+    },
   ],
 
   // watch navbar

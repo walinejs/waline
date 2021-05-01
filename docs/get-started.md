@@ -1,6 +1,8 @@
-# 快速开始
+# 快速上手
 
 如果你想在某个网页或者文章页中使用 Waline，请参照以下步骤配置
+
+<!-- more -->
 
 ## 获取 APP ID 和 APP Key
 
@@ -20,7 +22,7 @@
 
 ## Vercel 部署
 
-[ ![](https://vercel.com/button) ](https://vercel.com/import/project?template=https://github.com/lizheming/waline/tree/master/example)
+[![Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/lizheming/waline/tree/master/example)
 
 点击上方按钮，跳转至 Vercel 进行快速部署。未登录的话需要登录，这里选 GitHub 登录即可。登录后会让你输入 Vercel 项目名称。
 

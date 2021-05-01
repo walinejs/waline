@@ -1,6 +1,8 @@
-# Quick Start
+# Get Started
 
 If you want to use Waline in your site, please follow this guide.
+
+<!-- more -->
 
 ## Get APP ID and APP Key
 
@@ -14,7 +16,7 @@ After app created, we need click into it. Select <kbd>Settings</kbd> > <kbd>App 
 
 ## Deploy to Vercel
 
-[ ![](https://vercel.com/button) ](https://vercel.com/import/project?template=https://github.com/lizheming/waline/tree/master/example)
+[![Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/lizheming/waline/tree/master/example)
 
 Click the blue button, and it will redirect to vercel to deploy with waline template. You need login if you have not, we recommends you sign in with GitHub. You can input your Vercel project name after you login.
 

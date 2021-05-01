@@ -1,10 +1,10 @@
 module.exports = [
   {
     text: 'Guide',
-    link: '/en/quick-start.html',
+    link: '/en/get-started.html',
   },
   {
-    text: 'Config Reference',
+    text: 'Config',
     ariaLabel: 'Config Reference',
     children: [
       {

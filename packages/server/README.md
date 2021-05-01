@@ -14,7 +14,7 @@ npm install @waline/vercel --save
 
 You should set `LEAN_ID` and `LEAN_KEY` in environment variable which can get from <https://leancloud.app>.
 
-The detail how to get `LEAN_ID` and `LEAN_KEY`: <https://waline.js.org/quick-start.html>
+The detail how to get `LEAN_ID` and `LEAN_KEY`: <https://waline.js.org/get-started.html>
 
 We support [Akismet](https://akismet.com/) spam protection service default. If you want close it, please set `AKISMET_KEY` environment variable as `false`。
 
