@@ -5,7 +5,6 @@ module.exports = [
   },
   {
     text: '配置',
-    ariaLabel: '配置',
     children: [
       {
         text: '前端',
@@ -27,7 +26,6 @@ module.exports = [
       },
       {
         text: '服务端',
-        ariaLabel: '服务端',
         children: [
           {
             text: '基础配置',
@@ -51,7 +49,6 @@ module.exports = [
   },
   {
     text: '迁移',
-    ariaLabel: '迁移',
     children: [
       {
         text: '从 Valine 迁移',
@@ -65,7 +62,6 @@ module.exports = [
   },
   {
     text: '了解更多',
-    ariaLabel: '了解更多',
     children: [
       {
         text: 'API',

@@ -5,14 +5,13 @@ module.exports = [
   },
   {
     text: 'Config',
-    ariaLabel: 'Config Reference',
     children: [
       {
         text: 'Client',
         ariaLabel: 'Client',
         children: [
           {
-            text: 'Basic Configure',
+            text: 'Basic Config',
             link: '/en/client/basic.html',
           },
           {
@@ -27,10 +26,9 @@ module.exports = [
       },
       {
         text: 'Server',
-        ariaLabel: 'Server',
         children: [
           {
-            text: 'Basic Configure',
+            text: 'Basic Config',
             link: '/en/server/basic.html',
           },
           {
@@ -38,7 +36,7 @@ module.exports = [
             link: '/en/server/notification.html',
           },
           {
-            text: 'Othere Databases',
+            text: 'Using Databases',
             link: '/en/server/databases.html',
           },
           {
@@ -64,7 +62,6 @@ module.exports = [
   },
   {
     text: 'Learn More',
-    ariaLabel: 'Learn More',
     children: [
       {
         text: 'API',
