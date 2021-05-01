@@ -7,6 +7,40 @@ module.exports = {
   title: 'Waline',
   description: 'A Simple Comment System inspired by Valine.',
 
+  head: [
+    [
+      'link',
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '16x16',
+        href: `/assets/icon/favicon-16x16.png`,
+      },
+    ],
+    [
+      'link',
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '32x32',
+        href: `/assets/icon/favicon-32x32.png`,
+      },
+    ],
+    ['link', { rel: 'manifest', href: '/manifest.webmanifest' }],
+    ['meta', { name: 'application-name', content: 'Waline' }],
+    ['meta', { name: 'apple-mobile-web-app-title', content: 'Waline' }],
+    [
+      'meta',
+      { name: 'apple-mobile-web-app-status-bar-style', content: 'white' },
+    ],
+    [
+      'link',
+      { rel: 'apple-touch-icon', href: `/assets/icon/apple-touch-icon.png` },
+    ],
+    ['meta', { name: 'msapplication-TileColor', content: '#0066AE' }],
+    ['meta', { name: 'theme-color', content: '#0066AE' }],
+  ],
+
   locales: {
     '/': {
       lang: 'zh-CN',
@@ -60,11 +94,30 @@ module.exports = {
         selectLanguageAriaLabel: 'Select language',
         editLinkText: 'Edit this page on GitHub',
         lastUpdatedText: 'Last Updated',
+        tip: 'Tip',
+        warning: 'Note',
+        danger: 'Warn',
       },
     },
   },
 
   plugins: [
+    ['@vuepress/pwa'],
+    [
+      '@vuepress/pwa-popup',
+      {
+        locales: {
+          '/': {
+            message: '发现新内容可用',
+            buttonText: '刷新',
+          },
+          '/en/': {
+            message: 'New Content is available',
+            buttonText: 'Refresh',
+          },
+        },
+      },
+    ],
     [
       '@vuepress/search',
       {
