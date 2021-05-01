@@ -3,9 +3,8 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import Context from './context';
 import { Visitor, fetchCount, fetchRecent, registMathML } from './utils';
-import './index.css';
-import './recent.css';
-import './math.css';
+
+import './styles/index.scss';
 
 export function ReactComponent({
   placeholder = 'Just Go Go.',

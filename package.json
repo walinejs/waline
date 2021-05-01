@@ -44,6 +44,8 @@
     "lint-staged": "^10.5.4",
     "marked": "^2.0.3",
     "prettier": "^2.2.1",
+    "sass": "^1.32.12",
+    "sass-loader": "^11.0.1",
     "style-loader": "^2.0.0",
     "url-loader": "^4.1.1",
     "vuepress": "2.0.0-beta.12",

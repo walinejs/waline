@@ -1,0 +1,267 @@
+body[waline-math] .v {
+  // This Source Code Form is subject to the terms of the Mozilla Public
+  // License, v. 2.0. If a copy of the MPL was not distributed with this
+  // file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+  /* See https://github.com/fred-wang/mathml.css */
+
+  /* math */
+  math {
+    display: inline;
+    text-indent: 0;
+
+    &[display='block'] {
+      display: block;
+      text-align: center;
+    }
+  }
+
+  /* fraction */
+  mfrac {
+    display: inline-block !important;
+    vertical-align: -50%;
+    border-collapse: collapse;
+    text-align: center;
+    > * {
+      display: block !important;
+    }
+
+    > * + * {
+      display: inline-block !important;
+      vertical-align: top;
+    }
+
+    &:not([linethickness='0']) > *:first-child {
+      border-bottom: solid thin;
+    }
+  }
+
+  /* sub/sup scripts */
+  msub > *:nth-child(2),
+  msubsup > *:nth-child(2),
+  mmultiscripts > *:nth-child(2n + 2),
+  mmultiscripts > mprescripts ~ *:nth-child(2n + 3) {
+    font-size: 0.8em;
+    vertical-align: sub;
+  }
+
+  msup > *:nth-child(2),
+  msubsup > *:nth-child(3),
+  mmultiscripts > *:nth-child(2n + 3),
+  mmultiscripts > mprescripts ~ *:nth-child(2n + 2) {
+    font-size: 0.8em;
+    vertical-align: super;
+  }
+
+  mprescripts:after {
+    content: ';';
+  }
+
+  /* under/over scripts */
+  munder,
+  mover,
+  munderover {
+    display: inline-flex !important;
+    flex-direction: column;
+  }
+
+  munder > *:nth-child(2),
+  munderover > *:nth-child(2) {
+    font-size: 0.8em;
+    order: +1;
+  }
+
+  mover > *:nth-child(2),
+  munderover > *:nth-child(3) {
+    font-size: 0.8em;
+    order: -1;
+  }
+
+  munder {
+    vertical-align: text-top;
+  }
+
+  mover {
+    vertical-align: text-bottom;
+  }
+
+  munderover {
+    vertical-align: middle;
+  }
+
+  /* roots */
+  msqrt,
+  mroot {
+    display: inline-flex !important;
+    margin-left: 0.5em;
+    vertical-align: middle;
+    border-top: solid thin;
+  }
+
+  msqrt:before,
+  mroot:before {
+    margin-left: -0.5em;
+    content: '\221A';
+  }
+
+  mroot > *:nth-child(2) {
+    margin-right: 0.25em;
+    margin-left: -0.75em;
+    font-size: 0.8em;
+    order: -1;
+  }
+
+  /* menclose */
+  menclose {
+    display: inline-table !important;
+    border-collapse: separate;
+    border-spacing: 0.4ex 0;
+
+    &[notation*='top'],
+    &[notation*='actuarial'] {
+      border-top: solid thin;
+    }
+
+    &[notation*='bottom'],
+    &[notation*='madruwb'] {
+      border-bottom: solid thin;
+    }
+
+    &[notation*='right'],
+    &[notation*='actuarial'],
+    &[notation*='madruwb'] {
+      border-right: solid thin;
+    }
+
+    &[notation*='left'] {
+      border-left: solid thin;
+    }
+
+    &[notation*='box'],
+    &[notation*='roundedbox'],
+    &[notation*='circle'] {
+      border: solid thin;
+    }
+
+    &[notation*='roundedbox'] {
+      border-radius: 15%;
+    }
+
+    &[notation*='circle'] {
+      border-radius: 50%;
+    }
+
+    &[notation*='horizontalstrike'] {
+      text-decoration: line-through;
+    }
+  }
+
+  /* table */
+  mtable {
+    display: inline-table !important;
+    vertical-align: middle;
+    text-align: center;
+  }
+
+  mtr {
+    display: table-row !important;
+  }
+
+  mtd {
+    display: table-cell !important;
+    padding: 0 0.5ex;
+  }
+
+  /* token elements */
+  mspace {
+    margin: 0.2em;
+  }
+
+  mi {
+    font-style: italic;
+  }
+
+  mo {
+    margin-right: 0.2em;
+    margin-left: 0.2em;
+  }
+
+  ms {
+    &:before,
+    &:after {
+      content: '\0022';
+    }
+
+    &[lquote] {
+      &:before {
+        content: attr(lquote);
+      }
+
+      &:after {
+        content: attr(rquote);
+      }
+    }
+  }
+
+  /* mathvariants */
+  [mathvariant='bold'],
+  [mathvariant='bold-italic'],
+  [mathvariant='bold-sans-serif'],
+  [mathvariant='sans-serif-bold-italic'] {
+    font-weight: bold;
+    font-style: normal;
+  }
+  [mathvariant='monospace'] {
+    font-family: monospace;
+    font-style: normal;
+  }
+  [mathvariant='sans-serif'],
+  [mathvariant='bold-sans-serif'],
+  [mathvariant='sans-serif-italic'],
+  [mathvariant='sans-serif-bold-italic'] {
+    font-family: sans-serif;
+    font-style: normal;
+  }
+  [mathvariant='italic'],
+  [mathvariant='bold-italic'],
+  [mathvariant='sans-serif-italic'],
+  [mathvariant='sans-serif-bold-italic'] {
+    font-style: italic;
+  }
+  [mathvariant='normal'] {
+    font-style: normal;
+  }
+
+  /* mphantom */
+  mphantom {
+    visibility: hidden;
+  }
+
+  /* merror */
+  merror {
+    outline: solid thin red;
+
+    &:before {
+      content: 'Error: ';
+    }
+  }
+
+  /* annotations */
+  semantics > *:first-child {
+    display: inline;
+  }
+
+  annotation,
+  annotation-xml {
+    font-family: monospace;
+    display: none !important;
+  }
+
+  math:active > semantics > *:first-child {
+    display: none !important;
+  }
+
+  math:active annotation:first-of-type {
+    display: inline !important;
+  }
+}
