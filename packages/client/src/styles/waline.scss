@@ -137,7 +137,7 @@
     user-select: none;
     outline: none;
 
-    & + & {
+    & + .vbtn {
       margin-left: 1.25em;
     }
 
