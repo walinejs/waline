@@ -39,7 +39,7 @@ Waline 主要由前端和服务端两部分组成。
 
 进入到对应的 GitHub 仓库中，修改 package.json 文件中的 `@waline/vercel` 版本号为最新版本即可。
 
-![vercel](../assets/doc/vercel-update.png)
+![vercel](./assets/vercel-update.png)
 
 #### CloudBase\*\*
 
@@ -51,7 +51,7 @@ Waline 主要由前端和服务端两部分组成。
 
 :::
 
-![cloudBase](../assets/doc/cloudbase-update.jpg)
+![cloudBase](./assets/cloudbase-update.jpg)
 
 #### Docker
 
