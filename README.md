@@ -1,4 +1,4 @@
-<img src="./assets/waline.png" width="200" align="right" />
+<img src="./assets/logo.png" width="200" align="right" />
 
 # Waline
 
