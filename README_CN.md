@@ -18,18 +18,17 @@
 - Markdown 语法支持
 - 轻量易用
 - 免费部署
-- 多种部署方式和存储服务支持，每列选择一项多达 56 种部署方式任君选择
-
-|                | Waline         |              |
-| -------------- | -------------- | ------------ |
-| **客户端脚本** | **服务端部署** | **数据存储** |
-| @waline/client | Vercel         | LeanCloud    |
-| MiniValine     | CloudBase      | CloudBase    |
-|                | Docker         | MongoDB      |
-|                | 独立部署       | MySQL        |
-|                |                | SQLite       |
-|                |                | PostgreSQL   |
-|                |                | GitHub       |
+- 多种部署方式和存储服务支持，每列选择一项多达 84 种部署方式任君选择
+  | | Waline | |
+  | ------------------------------------------------------ | ------------ | ----------- |
+  | **客户端脚本** | **服务端部署** | **数据存储** |
+  | [@waline/client](https://waline.js.org) | Vercel | LeanCloud |
+  | [MiniValine](https://minivaline.js.org/) | CloudBase | CloudBase |
+  | [AprilComment](https://github.com/innc11/AprilComment) | Docker | MongoDB |
+  | | 独立部署 | MySQL |
+  | | | SQLite |
+  | | | PostgreSQL |
+  | | | GitHub |
 
 ## Todo
 

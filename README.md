@@ -17,18 +17,18 @@ English | [中文](https://github.com/lizheming/waline/blob/master/README_CN.md)
 - Support full markdown syntax
 - Simple and lightweight
 - Deploy free!
-- Multiple deployment and storage service support, at least 56 deployment choice!
+- Multiple deployment and storage service support, at least 84 deployment choice!
 
-|                | Waline       |             |
-| -------------- | ------------ | ----------- |
-| **Client**     | **Server**   | **Storage** |
-| @waline/client | Vercel       | LeanCloud   |
-| MiniValine     | CloudBase    | CloudBase   |
-|                | Docker       | MongoDB     |
-|                | Virtual Host | MySQL       |
-|                |              | SQLite      |
-|                |              | PostgreSQL  |
-|                |              | GitHub      |
+|                                                        | Waline       |             |
+| ------------------------------------------------------ | ------------ | ----------- |
+| **Client**                                             | **Server**   | **Storage** |
+| [@waline/client](https://waline.js.org)                | Vercel       | LeanCloud   |
+| [MiniValine](https://minivaline.js.org/)               | CloudBase    | CloudBase   |
+| [AprilComment](https://github.com/innc11/AprilComment) | Docker       | MongoDB     |
+|                                                        | Virtual Host | MySQL       |
+|                                                        |              | SQLite      |
+|                                                        |              | PostgreSQL  |
+|                                                        |              | GitHub      |
 
 ## Todo
 
