@@ -9,19 +9,6 @@
     overflow: hidden;
   }
 
-  .vinput {
-    max-width: 100%;
-    padding: 10px 5px;
-    border: none;
-
-    color: var(--waline-text-color);
-    outline: none;
-
-    font-size: 0.775em;
-
-    resize: none;
-  }
-
   .vicon {
     display: inline-block;
     vertical-align: middle;
@@ -92,19 +79,23 @@
   }
 
   .vspinner {
-    position: relative;
+    text-align: center;
 
-    display: inline-block;
-    vertical-align: middle;
+    i {
+      position: relative;
 
-    width: 22px;
-    height: 22px;
-    margin: 0 5px;
-    border: 6px double #a0a0a0;
-    border-top-color: transparent;
-    border-bottom-color: transparent;
-    border-radius: 50%;
+      display: inline-block;
+      vertical-align: middle;
 
-    animation: spin 1s infinite linear;
+      width: 22px;
+      height: 22px;
+      margin: 0 5px;
+      border: 6px double #a0a0a0;
+      border-top-color: transparent;
+      border-bottom-color: transparent;
+      border-radius: 50%;
+
+      animation: spin 1s infinite linear;
+    }
   }
 }

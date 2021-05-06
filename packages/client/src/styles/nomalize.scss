@@ -44,7 +44,7 @@
     padding: 0.2em 0.4em;
     border-radius: 3px;
 
-    background-color: var(--waline-light);
+    background: var(--waline-light);
 
     font-size: 85%;
   }
@@ -68,7 +68,7 @@
   blockquote {
     margin: 0.5em 0;
     padding: 0 0 0 1em;
-    border-left: 8px solid rgba(237, 237, 237, 0.5);
+    border-left: 8px solid var(--waline-border-color);
     color: var(--waline-dark-grey);
   }
 

@@ -1,100 +1,9 @@
 .v[data-class='v'] {
-  .status-bar {
-    color: var(--waline-text-color);
-  }
-
-  .hide-avatar .vimg {
-    display: none;
-  }
-
-  .vwrap {
-    position: relative;
-
-    overflow: hidden;
-
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid var(--waline-border-color);
-    border-radius: 4px;
-
-    input {
-      background: transparent;
-    }
-
-    .vheader {
-      padding-bottom: 10px;
-
-      .vinput {
-        width: 33.33%;
-        border-bottom: 1px dashed var(--waline-border-color);
-
-        @media (max-width: 520px) {
-          width: 100%;
-        }
-
-        &:focus {
-          border-bottom-color: var(--waline-active-color);
-        }
-      }
-
-      &.item1 .vinput {
-        width: 100%;
-      }
-
-      &.item2 .vinput {
-        width: 50%;
-
-        @media (max-width: 520px) {
-          width: 100%;
-        }
-      }
-    }
-
-    .vedit {
-      position: relative;
-    }
-
-    .cancel-reply-btn {
-      position: absolute;
-      top: 5px;
-      right: 5px;
-      cursor: pointer;
-    }
-
-    .vemojis {
-      overflow: auto;
-
-      max-height: 145px;
-      padding-bottom: 10px;
-
-      box-shadow: 0 0 1px var(--waline-border-color);
-
-      font-size: 18px;
-
-      i {
-        display: inline-block;
-        vertical-align: middle;
-
-        width: 36px;
-        padding-top: 7px;
-
-        font-style: normal;
-        text-align: center;
-
-        cursor: pointer;
-      }
-    }
-
-    .vpreview {
-      padding: 7px;
-      box-shadow: 0 0 1px var(--waline-border-color);
-    }
-  }
-
   .vpower {
     padding: 0.5em 0;
     color: var(--waline-light-grey);
     font-size: 0.75em;
+    text-align: right;
 
     a {
       font-size: 0.75em;
@@ -158,7 +67,7 @@
 
     &:disabled {
       border-color: #e1e1e1;
-      background-color: #fdfafa;
+      background: #fdfafa;
       color: #e1e1e1;
       cursor: not-allowed;
     }
@@ -182,6 +91,7 @@
     padding: 0.2em 0.5em;
     border-radius: 0.2em;
 
+    background: var(--waline-info-bgcolor);
     color: var(--waline-info-color);
 
     font-size: 0.75em;
@@ -193,17 +103,6 @@
     &:empty {
       display: none;
     }
-  }
-
-  .vlogin .vimg {
-    float: left;
-
-    width: 3.125em;
-    height: 3.125em;
-    margin-right: 0.7525em;
-    padding: 0.125em;
-    border: 1px solid var(--waline-border-color);
-    border-radius: 50%;
   }
 
   .vcards {
@@ -376,8 +275,12 @@
     }
   }
 
-  .vpage .vmore {
-    margin: 1em 0;
+  .vpage {
+    text-align: center;
+
+    .vmore {
+      margin: 1em 0;
+    }
   }
 
   .vlogin-btn {

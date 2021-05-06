@@ -1,0 +1,117 @@
+.v[data-class='v'] {
+  .vpanel {
+    position: relative;
+
+    overflow: hidden;
+
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 12px;
+
+    box-shadow: var(--waline-box-shadow);
+
+    .vedit {
+      position: relative;
+    }
+
+    .cancel-reply-btn {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      cursor: pointer;
+    }
+
+    .vemojis {
+      overflow: auto;
+
+      max-height: 145px;
+      padding-bottom: 10px;
+
+      box-shadow: 0 0 1px var(--waline-border-color);
+
+      font-size: 18px;
+
+      i {
+        display: inline-block;
+        vertical-align: middle;
+
+        width: 36px;
+        padding-top: 7px;
+
+        font-style: normal;
+        text-align: center;
+
+        cursor: pointer;
+      }
+    }
+  }
+
+  .hide-avatar .vimg {
+    display: none;
+  }
+
+  .vlogin .vimg {
+    float: left;
+
+    width: 3.125em;
+    height: 3.125em;
+    margin-right: 0.7525em;
+    padding: 0.125em;
+    border: 1px solid var(--waline-border-color);
+    border-radius: 50%;
+  }
+
+  .vheader {
+    padding-bottom: 10px;
+
+    .vinput {
+      width: 33.33%;
+
+      @media (max-width: 600px) {
+        width: 100%;
+      }
+    }
+
+    &.item1 .vinput {
+      width: 100%;
+    }
+
+    &.item2 .vinput {
+      width: 50%;
+
+      @media (max-width: 520px) {
+        width: 100%;
+      }
+    }
+  }
+
+  .vinput {
+    max-width: 100%;
+    margin: 5px;
+    padding: 10px 5px;
+    border: none;
+    border-radius: 5px;
+
+    background: transparent;
+
+    color: var(--waline-text-color);
+    outline: none;
+
+    font-size: 0.775em;
+
+    resize: none;
+
+    &:focus {
+      background: var(--waline-light);
+    }
+  }
+
+  .status-bar {
+    color: var(--waline-text-color);
+  }
+
+  .vpreview {
+    padding: 7px;
+    box-shadow: 0 0 1px var(--waline-border-color);
+  }
+}

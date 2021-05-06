@@ -44,14 +44,14 @@
 [data-theme='dark'] .v[data-class='v'] code,
 [data-theme='dark'] .v[data-class='v'] pre,
 [data-theme='dark'] .v[data-class='v'] pre code {
-  background-color: #151414;
+  background: #151414;
   color: #929298;
 }
 
-.dark .v[data-class='v'] .vwrap,
-.night .v[data-class='v'] .vwrap,
-.theme__dark .v[data-class='v'] .vwrap,
-[data-theme='dark'] .v[data-class='v'] .vwrap {
+.dark .v[data-class='v'] .vpanel,
+.night .v[data-class='v'] .vpanel,
+.theme__dark .v[data-class='v'] .vpanel,
+[data-theme='dark'] .v[data-class='v'] .vpanel {
   border-color: #b2b2b5;
 }
 

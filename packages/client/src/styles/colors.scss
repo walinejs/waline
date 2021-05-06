@@ -10,11 +10,13 @@
   --waline-active-color: #eb5055;
 
   // layout colors
-  --waline-text-color: #555;
-  --waline-border-color: #f0f0f0;
+  --waline-text-color: #444;
+  --waline-border-color: #ddd;
+  --waline-box-shadow: 0px 12px 40px rgb(134 151 168 / 25%);
 
   // special colors
   --waline-badge-color: #2196f3;
-  --waline-info-color: #f0f0f0;
+  --waline-info-bgcolor: #f8f8f8;
+  --waline-info-color: #999;
   --waline-time-color: #b3b3b3;
 }
