@@ -16,20 +16,6 @@
     font-size: 1.25em;
   }
 
-  .veditor {
-    width: 100%;
-    min-height: 8.75em;
-
-    background: transparent;
-    color: var(--waline-text-color);
-
-    font-size: 0.875em;
-
-    resize: vertical;
-
-    transition: all 0.25s ease;
-  }
-
   .vbtn {
     display: inline-block;
     vertical-align: middle;

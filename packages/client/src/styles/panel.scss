@@ -1,117 +1,175 @@
 .v[data-class='v'] {
-  .vpanel {
+  .vcomment {
+    display: flex;
     position: relative;
-
-    overflow: hidden;
-
     margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 12px;
+  }
 
+  .vclose {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+  }
+
+  .vlogin {
+    margin-top: 12px;
+
+    width: 3.125em;
+    height: 3.125em;
     box-shadow: var(--waline-box-shadow);
+    border-radius: 50%;
 
-    .vedit {
-      position: relative;
+    .vimg {
+      float: left;
+      width: 100%;
+      height: 100%;
+      padding: 0.125em;
+      border: 1px solid var(--waline-border-color);
     }
+  }
 
-    .cancel-reply-btn {
-      position: absolute;
-      top: 5px;
-      right: 5px;
-      cursor: pointer;
-    }
-
-    .vemojis {
-      overflow: auto;
-
-      max-height: 145px;
-      padding-bottom: 10px;
-
-      box-shadow: 0 0 1px var(--waline-border-color);
-
-      font-size: 18px;
-
-      i {
-        display: inline-block;
-        vertical-align: middle;
-
-        width: 36px;
-        padding-top: 7px;
-
-        font-style: normal;
-        text-align: center;
-
-        cursor: pointer;
-      }
-    }
+  .vpanel {
+    flex: 1;
+    margin: 8px;
+    border-radius: 12px;
+    box-shadow: var(--waline-box-shadow);
   }
 
   .hide-avatar .vimg {
     display: none;
   }
 
-  .vlogin .vimg {
-    float: left;
-
-    width: 3.125em;
-    height: 3.125em;
-    margin-right: 0.7525em;
-    padding: 0.125em;
-    border: 1px solid var(--waline-border-color);
-    border-radius: 50%;
-  }
-
   .vheader {
-    padding-bottom: 10px;
+    display: flex;
+    padding: 0 4px;
+    border-bottom: 2px dashed var(--waline-border-color);
 
-    .vinput {
-      width: 33.33%;
-
-      @media (max-width: 600px) {
-        width: 100%;
-      }
+    .vitem {
+      flex: 1;
+      display: flex;
     }
 
-    &.item1 .vinput {
+    &.vheader-1 .vitem {
       width: 100%;
     }
 
-    &.item2 .vinput {
+    &.vheader-2 .vitem {
       width: 50%;
 
-      @media (max-width: 520px) {
+      @media (max-width: 580px) {
         width: 100%;
+      }
+    }
+
+    &.vheader-3 .vitem {
+      width: 33.33%;
+
+      @media (max-width: 580px) {
+        width: 100%;
+      }
+    }
+
+    label {
+      min-width: 40px;
+      padding: 10px 0;
+      color: var(--waline-text-color);
+      font-size: 12px;
+      text-align: center;
+    }
+
+    input {
+      flex: 1;
+
+      width: 0px;
+      max-width: 100%;
+
+      padding: 8px;
+      border: none;
+
+      background: transparent;
+
+      color: var(--waline-text-color);
+      outline: none;
+
+      font-size: 0.775em;
+
+      resize: none;
+
+      &:focus {
+        background: var(--waline-light);
       }
     }
   }
 
-  .vinput {
-    max-width: 100%;
-    margin: 5px;
-    padding: 10px 5px;
-    border: none;
-    border-radius: 5px;
+  .veditor {
+    position: relative;
+    width: 100%;
+    min-height: 8.75em;
 
     background: transparent;
-
     color: var(--waline-text-color);
-    outline: none;
 
-    font-size: 0.775em;
-
-    resize: none;
-
-    &:focus {
-      background: var(--waline-light);
-    }
+    margin: 12px 8px;
+    border-radius: 8px;
   }
 
-  .status-bar {
-    color: var(--waline-text-color);
+  .veditor {
+    font-size: 0.875em;
+
+    resize: vertical;
+
+    transition: all 0.25s ease;
+  }
+
+  .vemojis {
+    overflow: auto;
+
+    max-height: 145px;
+    padding-bottom: 10px;
+
+    box-shadow: 0 0 1px var(--waline-border-color);
+
+    font-size: 18px;
+
+    i {
+      display: inline-block;
+      vertical-align: middle;
+
+      width: 36px;
+      padding-top: 7px;
+
+      font-style: normal;
+      text-align: center;
+
+      cursor: pointer;
+    }
   }
 
   .vpreview {
     padding: 7px;
     box-shadow: 0 0 1px var(--waline-border-color);
+  }
+
+  .vfooter {
+    margin: 8px;
+    display: flex;
+  }
+
+  .vinfo {
+    display: flex;
+    align-items: center;
+    flex: 2;
+  }
+
+  .vaction {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex: 3;
+
+    button {
+      margin-left: 12px;
+    }
   }
 }

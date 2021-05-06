@@ -314,7 +314,7 @@ export default function ({
   });
 
   return (
-    <div className="vpanel">
+    <div className="vcomment">
       {replyId ? (
         <p
           className="cancel-reply text-right"
@@ -324,8 +324,9 @@ export default function ({
           <CancelReplyIcon />
         </p>
       ) : null}
+
       {ctx.anonymous !== true ? (
-        <div className="vleft vlogin">
+        <div className="vlogin">
           {!ctx.userInfo.token ? (
             <a className="vlogin-btn" onClick={onLogin}>
               {ctx.locale.login}
@@ -366,37 +367,57 @@ export default function ({
           )}
         </div>
       ) : null}
-      <div className="vright">
+
+      <div className="vpanel">
         {!ctx.userInfo.token && ctx.anonymous !== false ? (
-          <div className={`vheader item${metaFields.length}`}>
+          <div className={`vheader vheader-${metaFields.length}`}>
             {metaFields.map((kind) => (
-              <input
-                key={kind}
-                name={kind}
-                ref={inputsRef[kind]}
-                defaultValue={comment[kind]}
-                className={`v${kind} vinput`}
-                placeholder={ctx.locale[kind]}
-                type={kind === 'mail' ? 'email' : 'text'}
-                onChange={(e) => dispatch({ [kind]: e.target.value })}
-              />
+              <div className="vitem" key={kind}>
+                <label>{ctx.locale[kind]}</label>
+                <input
+                  name={kind}
+                  ref={inputsRef[kind]}
+                  defaultValue={comment[kind]}
+                  className={`v${kind}`}
+                  type={kind === 'mail' ? 'email' : 'text'}
+                  onChange={(e) => dispatch({ [kind]: e.target.value })}
+                />
+              </div>
             ))}
           </div>
         ) : null}
-        <div className="vedit">
-          <textarea
-            id="vedit"
-            ref={editorRef}
-            className="veditor vinput"
-            placeholder={replyUser ? `@${replyUser}` : placeholder}
-            onKeyDown={onKeyDown}
-            onPaste={onPaste}
-            onChange={onChange}
-          ></textarea>
-          <div className="vrow">
+
+        <textarea
+          className="veditor"
+          id="vedit"
+          ref={editorRef}
+          placeholder={replyUser ? `@${replyUser}` : placeholder}
+          onKeyDown={onKeyDown}
+          onPaste={onPaste}
+          onChange={onChange}
+        />
+
+        <div
+          className="vpreview"
+          style={{ display: showPreview ? 'block' : 'none' }}
+          dangerouslySetInnerHTML={{ __html: previewText }}
+        />
+        <div className="vfooter">
+          <div className="vinfo">
+            <a
+              alt="Markdown is supported"
+              href="https://guides.github.com/features/mastering-markdown/"
+              className="vicon"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <MarkdownIcon />
+            </a>
             {/* TODO: Add text number here */}
-            <div className="vcol vcol-60 status-bar"></div>
-            <div className="vcol vcol-40 vctrl text-right">
+            <div className="text-number"></div>
+          </div>
+          <div className="vaction">
+            <div className="vctrl">
               <span
                 title={ctx.locale.emoji}
                 className={cls('vicon vemoji-btn', { actived: showEmoji })}
@@ -420,61 +441,41 @@ export default function ({
                 <PreviewIcon />
               </span>
             </div>
-          </div>
-        </div>
-        <div className="vrow">
-          <div className="vcol vcol-30">
-            <a
-              alt="Markdown is supported"
-              href="https://guides.github.com/features/mastering-markdown/"
-              className="vicon"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <MarkdownIcon />
-            </a>
-          </div>
-          <div className="vcol vcol-70 text-right">
             <button
               type="button"
               disabled={submitting}
               title="Cmd|Ctrl+Enter"
-              className="vsubmit vbtn"
+              className="vbtn"
               onClick={submitComment}
             >
               {ctx.locale.submit}
             </button>
           </div>
+
+          {showEmoji ? (
+            <div className="vemojis">
+              {Object.keys(ctx.emojiMaps).map((key) => (
+                <i
+                  title={key}
+                  key={key}
+                  onClick={() => insertAtCaret(editorRef.current, `:${key}:`)}
+                >
+                  <img
+                    alt={key}
+                    loading="lazy"
+                    className="vemoji"
+                    referrerPolicy="no-referrer"
+                    src={
+                      /^(?:https?:)?\/\//.test(ctx.emojiMaps[key])
+                        ? ctx.emojiMaps[key]
+                        : ctx.emojiCDN + ctx.emojiMaps[key]
+                    }
+                  />
+                </i>
+              ))}
+            </div>
+          ) : null}
         </div>
-        {showEmoji ? (
-          <div className="vemojis">
-            {Object.keys(ctx.emojiMaps).map((key) => (
-              <i
-                title={key}
-                key={key}
-                onClick={() => insertAtCaret(editorRef.current, `:${key}:`)}
-              >
-                <img
-                  alt={key}
-                  loading="lazy"
-                  className="vemoji"
-                  referrerPolicy="no-referrer"
-                  src={
-                    /^(?:https?:)?\/\//.test(ctx.emojiMaps[key])
-                      ? ctx.emojiMaps[key]
-                      : ctx.emojiCDN + ctx.emojiMaps[key]
-                  }
-                />
-              </i>
-            ))}
-          </div>
-        ) : null}
-        <div
-          className="vinput vpreview"
-          style={{ display: showPreview ? 'block' : 'none' }}
-          dangerouslySetInnerHTML={{ __html: previewText }}
-        ></div>
-        <div className="vmark"></div>
       </div>
     </div>
   );
