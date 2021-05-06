@@ -1,8 +1,8 @@
 .v[data-class='v'] {
   .vleft {
     float: left;
-    text-align: center;
     margin-right: 0.7525em;
+    text-align: center;
   }
 
   .vright {
@@ -10,34 +10,39 @@
   }
 
   .vinput {
-    color: var(--waline-text-color);
-    border: none;
-    resize: none;
-    outline: none;
-    padding: 10px 5px;
     max-width: 100%;
+    padding: 10px 5px;
+    border: none;
+
+    color: var(--waline-text-color);
+    outline: none;
+
     font-size: 0.775em;
+
+    resize: none;
   }
 
   .vicon {
-    cursor: pointer;
     display: inline-block;
-    overflow: hidden;
-    fill: var(--waline-text-color);
     vertical-align: middle;
 
-    & + .vicon {
-      margin-left: 10px;
-    }
+    overflow: hidden;
+
+    cursor: pointer;
+    fill: var(--waline-text-color);
 
     &.actived {
       fill: var(--waline-active-color);
     }
   }
 
+  .vicon + .vicon {
+    margin-left: 10px;
+  }
+
   .vrow {
-    font-size: 0;
     padding: 10px 0;
+    font-size: 0;
 
     .vcol {
       display: inline-block;
@@ -80,24 +85,26 @@
 
   .emoji,
   .vemoji {
-    max-width: 25px;
-    vertical-align: middle;
-    margin: 0 1px;
     display: inline-block;
+    vertical-align: middle;
+    max-width: 25px;
+    margin: 0 1px;
   }
 
   .vspinner {
+    position: relative;
+
+    display: inline-block;
+    vertical-align: middle;
+
     width: 22px;
     height: 22px;
-    display: inline-block;
+    margin: 0 5px;
     border: 6px double #a0a0a0;
     border-top-color: transparent;
     border-bottom-color: transparent;
     border-radius: 50%;
-    -webkit-animation: spin 1s infinite linear;
+
     animation: spin 1s infinite linear;
-    position: relative;
-    vertical-align: middle;
-    margin: 0 5px;
   }
 }

@@ -44,8 +44,8 @@
 [data-theme='dark'] .v[data-class='v'] code,
 [data-theme='dark'] .v[data-class='v'] pre,
 [data-theme='dark'] .v[data-class='v'] pre code {
-  color: #929298;
   background-color: #151414;
+  color: #929298;
 }
 
 .dark .v[data-class='v'] .vwrap,
@@ -73,16 +73,16 @@
 .night .v[data-class='v'] .vbtn,
 .theme__dark .v[data-class='v'] .vbtn,
 [data-theme='dark'] .v[data-class='v'] .vbtn {
-  color: #b2b2b5;
   border-color: #b2b2b5;
+  color: #b2b2b5;
 }
 
 .dark .v[data-class='v'] .vbtn:hover,
 .night .v[data-class='v'] .vbtn:hover,
 .theme__dark .v[data-class='v'] .vbtn:hover,
 [data-theme='dark'] .v[data-class='v'] .vbtn:hover {
-  color: #66b1ff;
   border-color: #66b1ff;
+  color: #66b1ff;
 }
 
 .dark .v[data-class='v'] a:hover,
@@ -92,10 +92,10 @@
   color: #d7191a;
 }
 
-.dark .v[data-class='v'] .vcards .vcard .vcontent.expand:before,
-.night .v[data-class='v'] .vcards .vcard .vcontent.expand:before,
-.theme__dark .v[data-class='v'] .vcards .vcard .vcontent.expand:before,
-[data-theme='dark'] .v[data-class='v'] .vcards .vcard .vcontent.expand:before {
+.dark .v[data-class='v'] .vcard .vcontent.expand::before,
+.night .v[data-class='v'] .vcard .vcontent.expand::before,
+.theme__dark .v[data-class='v'] .vcard .vcontent.expand::before,
+[data-theme='dark'] .v[data-class='v'] .vcard .vcontent.expand::before {
   background: -webkit-gradient(
     linear,
     left top,
@@ -106,9 +106,9 @@
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7));
 }
 
-.dark .v[data-class='v'] .vcards .vcard .vcontent.expand:after,
-.night .v[data-class='v'] .vcards .vcard .vcontent.expand:after,
-.theme__dark .v[data-class='v'] .vcards .vcard .vcontent.expand:after,
-[data-theme='dark'] .v[data-class='v'] .vcards .vcard .vcontent.expand:after {
+.dark .v[data-class='v'] .vcard .vcontent.expand::after,
+.night .v[data-class='v'] .vcard .vcontent.expand::after,
+.theme__dark .v[data-class='v'] .vcard .vcontent.expand::after,
+[data-theme='dark'] .v[data-class='v'] .vcard .vcontent.expand::after {
   background: rgba(0, 0, 0, 0.7);
 }

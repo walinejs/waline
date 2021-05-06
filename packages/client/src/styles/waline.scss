@@ -8,12 +8,14 @@
   }
 
   .vwrap {
+    position: relative;
+
+    overflow: hidden;
+
+    margin-bottom: 10px;
+    padding: 10px;
     border: 1px solid var(--waline-border-color);
     border-radius: 4px;
-    margin-bottom: 10px;
-    overflow: hidden;
-    position: relative;
-    padding: 10px;
 
     input {
       background: transparent;
@@ -54,41 +56,45 @@
 
     .cancel-reply-btn {
       position: absolute;
-      right: 5px;
       top: 5px;
+      right: 5px;
       cursor: pointer;
     }
 
     .vemojis {
-      font-size: 18px;
-      max-height: 145px;
       overflow: auto;
+
+      max-height: 145px;
       padding-bottom: 10px;
-      -webkit-box-shadow: 0 0 1px var(--waline-border-color);
+
       box-shadow: 0 0 1px var(--waline-border-color);
 
+      font-size: 18px;
+
       i {
-        font-style: normal;
-        padding-top: 7px;
-        width: 36px;
-        cursor: pointer;
-        text-align: center;
         display: inline-block;
         vertical-align: middle;
+
+        width: 36px;
+        padding-top: 7px;
+
+        font-style: normal;
+        text-align: center;
+
+        cursor: pointer;
       }
     }
 
     .vpreview {
       padding: 7px;
-      -webkit-box-shadow: 0 0 1px var(--waline-border-color);
       box-shadow: 0 0 1px var(--waline-border-color);
     }
   }
 
   .vpower {
+    padding: 0.5em 0;
     color: var(--waline-light-grey);
     font-size: 0.75em;
-    padding: 0.5em 0;
 
     a {
       font-size: 0.75em;
@@ -104,71 +110,81 @@
   .veditor {
     width: 100%;
     min-height: 8.75em;
-    font-size: 0.875em;
-    color: var(--waline-text-color);
+
     background: transparent;
+    color: var(--waline-text-color);
+
+    font-size: 0.875em;
+
     resize: vertical;
-    -webkit-transition: all 0.25s ease;
+
     transition: all 0.25s ease;
   }
 
   .vbtn {
-    -webkit-transition-duration: 0.4s;
-    transition-duration: 0.4s;
-    text-align: center;
-    color: var(--waline-text-color);
+    display: inline-block;
+    vertical-align: middle;
+
+    margin-bottom: 0;
+    padding: 0.5em 1.25em;
     border: 1px solid var(--waline-border-color);
     border-radius: 0.3em;
-    display: inline-block;
+
     background: transparent;
-    margin-bottom: 0;
+    color: var(--waline-text-color);
+    outline: none;
+
     font-weight: 400;
-    vertical-align: middle;
-    -ms-touch-action: manipulation;
-    touch-action: manipulation;
-    cursor: pointer;
-    white-space: nowrap;
-    padding: 0.5em 1.25em;
     font-size: 0.875em;
     line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+
+    cursor: pointer;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    outline: none;
 
-    & + .vbtn {
-      margin-left: 1.25em;
-    }
+    transition-duration: 0.4s;
+
+    touch-action: manipulation;
 
     &:active,
     &:hover {
-      color: var(--waline-theme-color);
       border-color: var(--waline-theme-color);
+      color: var(--waline-theme-color);
     }
 
     &:disabled {
       border-color: #e1e1e1;
-      color: #e1e1e1;
       background-color: #fdfafa;
+      color: #e1e1e1;
       cursor: not-allowed;
     }
   }
 
+  .vbtn + .vbtn {
+    margin-left: 1.25em;
+  }
+
   .vempty {
-    padding: 1.25em;
-    text-align: center;
-    color: var(--waline-text-color);
     overflow: auto;
+    padding: 1.25em;
+    color: var(--waline-text-color);
+    text-align: center;
   }
 
   .vsys {
-    color: var(--waline-info-color);
     display: inline-block;
-    padding: 0.2em 0.5em;
-    font-size: 0.75em;
-    border-radius: 0.2em;
+
     margin-right: 0.3em;
+    padding: 0.2em 0.5em;
+    border-radius: 0.2em;
+
+    color: var(--waline-info-color);
+
+    font-size: 0.75em;
 
     @media (max-width: 520px) {
       display: none;
@@ -180,161 +196,182 @@
   }
 
   .vlogin .vimg {
+    float: left;
+
     width: 3.125em;
     height: 3.125em;
-    float: left;
-    border-radius: 50%;
     margin-right: 0.7525em;
-    border: 1px solid var(--waline-border-color);
     padding: 0.125em;
+    border: 1px solid var(--waline-border-color);
+    border-radius: 50%;
   }
 
   .vcards {
     width: 100%;
+  }
 
-    .vcard {
-      padding-top: 1.25em;
-      position: relative;
+  .vcard {
+    position: relative;
+    display: block;
+    padding-top: 1.25em;
+
+    &::after {
+      content: '';
       display: block;
+      clear: both;
+    }
 
-      &:after {
-        content: '';
-        clear: both;
-        display: block;
+    .vimg {
+      float: left;
+
+      width: 3.125em;
+      height: 3.125em;
+      margin-right: 0.7525em;
+      padding: 0.125em;
+      border: 1px solid var(--waline-border-color);
+      border-radius: 50%;
+
+      @media (max-width: 720px) {
+        width: 2.5em;
+        height: 2.5em;
       }
+    }
+
+    .vhead {
+      margin-top: 0;
+      line-height: 1.5;
+
+      .vnick {
+        position: relative;
+
+        display: inline-block;
+
+        margin-right: 0.875em;
+
+        font-weight: 500;
+        font-size: 0.875em;
+        text-decoration: none;
+
+        cursor: pointer;
+
+        &:hover {
+          color: var(--waline-active-color);
+        }
+      }
+
+      .vmark {
+        display: inline-block;
+
+        margin-right: 0.875em;
+        padding: 0 0.3em;
+        border-radius: 3px;
+
+        background: var(--waline-badge-color);
+        color: var(--waline-white);
+
+        font-size: 0.775em;
+        text-decoration: none;
+
+        cursor: pointer;
+      }
+    }
+
+    .vh {
+      overflow: hidden;
+      padding-bottom: 0.5em;
+      border-bottom: 1px dashed var(--waline-border-color);
+
+      .vmeta {
+        position: relative;
+        line-height: 1;
+      }
+
+      .vtime {
+        margin-right: 0.875em;
+        color: var(--waline-time-color);
+        font-size: 0.75em;
+      }
+
+      .vat {
+        float: right;
+        color: var(--waline-theme-color);
+        font-size: 0.8125em;
+        cursor: pointer;
+      }
+    }
+
+    &:last-child .vh {
+      border-bottom: none;
+    }
+
+    .vcontent {
+      position: relative;
+
+      margin-bottom: 0.75em;
+      padding-top: 0.625em;
+
+      font-size: 0.875em;
+      line-height: 2;
+      word-wrap: break-word;
+      word-break: break-all;
+
+      &.expand {
+        overflow: hidden;
+        max-height: 8em;
+        cursor: pointer;
+
+        &::before {
+          content: '';
+
+          position: absolute;
+          top: 0;
+          bottom: 3.15em;
+          left: 0;
+          z-index: 999;
+
+          display: block;
+
+          width: 100%;
+
+          background: -webkit-gradient(
+            linear,
+            left top,
+            left bottom,
+            from(#000),
+            to(rgba(255, 255, 255, 0.9))
+          );
+          background: linear-gradient(180deg, #000, rgba(255, 255, 255, 0.9));
+        }
+
+        &::after {
+          content: attr(data-expand);
+
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          z-index: 999;
+
+          display: block;
+
+          width: 100%;
+          height: 3.15em;
+
+          background: rgba(255, 255, 255, 0.9);
+          color: #828586;
+
+          line-height: 3.15em;
+          text-align: center;
+        }
+      }
+    }
+
+    .vquote {
+      padding-left: 1em;
+      border-left: 1px dashed rgba(237, 237, 237, 0.5);
 
       .vimg {
-        width: 3.125em;
-        height: 3.125em;
-        float: left;
-        border-radius: 50%;
-        margin-right: 0.7525em;
-        border: 1px solid var(--waline-border-color);
-        padding: 0.125em;
-
-        @media (max-width: 720px) {
-          width: 2.5em;
-          height: 2.5em;
-        }
-      }
-
-      .vhead {
-        line-height: 1.5;
-        margin-top: 0;
-
-        .vnick {
-          position: relative;
-          font-size: 0.875em;
-          font-weight: 500;
-          margin-right: 0.875em;
-          cursor: pointer;
-          text-decoration: none;
-          display: inline-block;
-
-          &:hover {
-            color: var(--waline-active-color);
-          }
-        }
-
-        .vmark {
-          font-size: 0.775em;
-          margin-right: 0.875em;
-          cursor: pointer;
-          text-decoration: none;
-          display: inline-block;
-          background: var(--waline-badge-color);
-          border-radius: 3px;
-          color: var(--waline-white);
-          padding: 0 0.3em;
-        }
-      }
-
-      .vh {
-        overflow: hidden;
-        padding-bottom: 0.5em;
-        border-bottom: 1px dashed var(--waline-border-color);
-
-        .vtime {
-          color: var(--waline-time-color);
-          font-size: 0.75em;
-          margin-right: 0.875em;
-        }
-
-        .vmeta {
-          line-height: 1;
-          position: relative;
-
-          .vat {
-            font-size: 0.8125em;
-            color: var(--waline-theme-color);
-            cursor: pointer;
-            float: right;
-          }
-        }
-      }
-
-      &:last-child .vh {
-        border-bottom: none;
-      }
-
-      .vcontent {
-        word-wrap: break-word;
-        word-break: break-all;
-        font-size: 0.875em;
-        line-height: 2;
-        position: relative;
-        margin-bottom: 0.75em;
-        padding-top: 0.625em;
-
-        &.expand {
-          cursor: pointer;
-          max-height: 8em;
-          overflow: hidden;
-
-          &:before {
-            display: block;
-            content: '';
-            position: absolute;
-            width: 100%;
-            left: 0;
-            top: 0;
-            bottom: 3.15em;
-            background: -webkit-gradient(
-              linear,
-              left top,
-              left bottom,
-              from(#000),
-              to(rgba(255, 255, 255, 0.9))
-            );
-            background: linear-gradient(180deg, #000, rgba(255, 255, 255, 0.9));
-            z-index: 999;
-          }
-
-          &:after {
-            display: block;
-            content: attr(data-expand);
-            text-align: center;
-            color: #828586;
-            position: absolute;
-            width: 100%;
-            height: 3.15em;
-            line-height: 3.15em;
-            left: 0;
-            bottom: 0;
-            z-index: 999;
-            background: rgba(255, 255, 255, 0.9);
-          }
-        }
-      }
-
-      .vquote {
-        padding-left: 1em;
-        border-left: 1px dashed rgba(237, 237, 237, 0.5);
-
-        .vimg {
-          width: 2.225em;
-          height: 2.225em;
-        }
+        width: 2.225em;
+        height: 2.225em;
       }
     }
   }
@@ -344,15 +381,18 @@
   }
 
   .vlogin-btn {
+    display: block;
+
     width: 3.572em;
     height: 3.572em;
-    text-align: center;
-    line-height: 3.572em;
-    display: block;
-    border-radius: 50%;
     border: 1px dashed var(--waline-border-color);
-    font-size: 14px;
+    border-radius: 50%;
+
     color: var(--waline-text-color);
+
+    font-size: 14px;
+    line-height: 3.572em;
+    text-align: center;
   }
 
   .vlogin-avatar {
@@ -365,17 +405,20 @@
 
   .vlogin-logout-btn {
     position: absolute;
-    background: var(--waline-white);
-    line-height: 0;
-    font-size: 14px;
-    right: 3px;
     top: -3px;
+    right: 3px;
+
     border: 1px solid var(--waline-border-color);
     border-radius: 50%;
+
+    background: var(--waline-white);
+
+    font-size: 14px;
+    line-height: 0;
   }
 
   .vlogin-nick {
-    font-size: 12px;
     color: var(--waline-theme-color);
+    font-size: 12px;
   }
 }
