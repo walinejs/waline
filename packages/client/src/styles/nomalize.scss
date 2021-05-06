@@ -67,9 +67,13 @@
 
   blockquote {
     margin: 0.5em 0;
-    padding: 0 0 0 1em;
-    border-left: 8px solid var(--waline-border-color);
+    padding: 0.5em 0 0.5em 1em;
+    border-left: 8px solid var(--waline-bq-color);
     color: var(--waline-dark-grey);
+
+    > p {
+      margin: 0;
+    }
   }
 
   ol,

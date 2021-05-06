@@ -56,7 +56,9 @@ module.exports = {
         ]
       : []),
     new htmlWebpackPlugin({
+      title: 'Waline Test',
       inject: false,
+      scriptLoading: 'blocking',
       templateContent: ({ htmlWebpackPlugin }) => `
         <!DOCTYPE html>
         <html>
@@ -64,12 +66,13 @@ module.exports = {
           <meta charset="UTF-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
           <title>${htmlWebpackPlugin.options.title}</title>
+          ${htmlWebpackPlugin.tags.headTags}
         </head>
         <body>
-        <span id="/" class="leancloud_visitors">
-          <em class="post-meta-item-text">阅读量 </em>
-          <i class="leancloud-visitors-count"></i>
-        </span>
+          <span id="/" class="leancloud_visitors">
+            <em class="post-meta-item-text">阅读量 </em>
+            <i class="leancloud-visitors-count"></i>
+          </span>
           <div id="waline" style="max-width: 800px;margin: 0 auto;"></div>
           ${htmlWebpackPlugin.tags.bodyTags}
           <script>
@@ -77,7 +80,7 @@ module.exports = {
               el: '#waline',
               path: '/',
               visitor: true,
-              serverURL: 'http://localhost:3000'
+              serverURL: 'http://localhost:9090'
             });
           </script>
         </body>
