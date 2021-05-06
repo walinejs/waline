@@ -35,7 +35,7 @@ export function ReactComponent({
       emojiMaps={emojiMaps}
       avatar={avatar}
       avatarCDN={avatarCDN}
-      avatarFore={avatarForce}
+      avatarForce={avatarForce}
       uploadImage={uploadImage}
       wordLimit={wordLimit}
     >
