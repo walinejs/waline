@@ -1,13 +1,16 @@
 const path = require('path');
 const webpack = require('webpack');
 const htmlWebpackPlugin = require('html-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { version } = require('./package.json');
 
 const pkgName = 'Waline';
+
 module.exports = {
   entry: {
-    [pkgName + '.min']: path.resolve(__dirname, 'src/index.js'),
+    [`${pkgName}.min`]: path.resolve(__dirname, 'src/index.js'),
   },
+
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
@@ -15,33 +18,43 @@ module.exports = {
     libraryExport: 'default',
     libraryTarget: 'umd',
   },
-  // resolve: {
-  //   alias: {
-  //     'react': 'anujs',
-  //     'react-dom': 'anujs',
-  //     'prop-types': 'anujs/lib/ReactPropTypes',
-  //     'create-react-class': 'anujs/lib/createClass',
-  //   }
-  // },
+
+  devtool: 'source-map',
+
   module: {
     rules: [
+      {
+        test: /\.scss$/,
+        use: [
+          { loader: 'style-loader' },
+          {
+            loader: 'css-loader',
+            options: { sourceMap: false },
+          },
+          {
+            loader: 'sass-loader',
+            options: { sourceMap: false },
+          },
+        ],
+      },
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         use: 'babel-loader?cacheDirectory',
       },
-      {
-        test: /\.scss$/,
-        use: [
-          { loader: 'style-loader' },
-          { loader: 'css-loader' },
-          { loader: 'sass-loader' },
-        ],
-      },
     ],
   },
+
   plugins: [
     new webpack.DefinePlugin({ VERSION: JSON.stringify(version) }),
+    ...(process.env.ANALYZE
+      ? [
+          new BundleAnalyzerPlugin({
+            analyzerPort: 0,
+            defaultSizes: 'gzip',
+          }),
+        ]
+      : []),
     new htmlWebpackPlugin({
       inject: false,
       templateContent: ({ htmlWebpackPlugin }) => `
@@ -72,6 +85,7 @@ module.exports = {
       `,
     }),
   ],
+
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
