@@ -10,7 +10,7 @@
   }
 
   .vinput {
-    color: #555;
+    color: var(--waline-text-color);
     border: none;
     resize: none;
     outline: none;
@@ -23,7 +23,7 @@
     cursor: pointer;
     display: inline-block;
     overflow: hidden;
-    fill: #555;
+    fill: var(--waline-text-color);
     vertical-align: middle;
 
     & + .vicon {
@@ -31,7 +31,7 @@
     }
 
     &.actived {
-      fill: #66b1ff;
+      fill: var(--waline-active-color);
     }
   }
 

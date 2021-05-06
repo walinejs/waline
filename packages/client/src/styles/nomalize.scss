@@ -9,18 +9,18 @@
   }
 
   p {
-    color: #555;
+    color: var(--waline-text-color);
   }
 
   a {
     position: relative;
     cursor: pointer;
-    color: #1abc9c;
+    color: var(--waline-theme-color);
     text-decoration: none;
     display: inline-block;
 
     &:hover {
-      color: #d7191a;
+      color: var(--waline-active-color);
     }
   }
 
@@ -31,13 +31,13 @@
 
   hr {
     margin: 0.825em 0;
-    border-color: #f6f6f6;
+    border-color: var(--waline-light);
     border-style: dashed;
   }
 
   code,
   pre {
-    background-color: #f8f8f8;
+    background-color: var(--waline-light);
     padding: 0.2em 0.4em;
     border-radius: 3px;
     font-size: 85%;
@@ -51,7 +51,7 @@
 
     code {
       padding: 0;
-      color: #555;
+      color: var(--waline-text-color);
       background: transparent;
       white-space: pre-wrap;
       word-break: keep-all;
@@ -59,10 +59,10 @@
   }
 
   blockquote {
-    color: #666;
+    color: var(--waline-dark-grey);
     margin: 0.5em 0;
     padding: 0 0 0 1em;
-    border-left: 8px solid hsla(0, 0%, 93%, 0.5);
+    border-left: 8px solid rgba(237, 237, 237, 0.5);
   }
 
   ol,
