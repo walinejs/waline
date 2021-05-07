@@ -14,6 +14,7 @@
     "url": "https://github.com/lizheming/waline"
   },
   "scripts": {
+    "analyze": "cross-env ANALYZE=true webpack --mode=production",
     "build": "webpack --mode=production",
     "dev": "webpack serve --mode=development",
     "prepublish": "npm run build"

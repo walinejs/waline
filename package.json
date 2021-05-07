@@ -7,6 +7,7 @@
   "scripts": {
     "admin:build": "npm run build --workspace=@waline/admin",
     "admin:dev": "npm run dev --workspace=@waline/admin",
+    "client:analyze": "npm run analyze --workspace=@waline/client",
     "client:build": "npm run build --workspace=@waline/client",
     "client:dev": "npm run dev --workspace=@waline/client",
     "docs:build": "vuepress build docs",
@@ -33,6 +34,7 @@
     "babel-loader": "^8.2.2",
     "commitizen": "^4.2.3",
     "conventional-changelog-cli": "^2.1.1",
+    "cross-env": "^7.0.3",
     "css-loader": "^5.2.4",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^7.25.0",
@@ -53,6 +55,7 @@
     "url-loader": "^4.1.1",
     "vuepress": "2.0.0-beta.12",
     "webpack": "^5.36.2",
+    "webpack-bundle-analyzer": "^4.4.1",
     "webpack-cli": "^4.6.0",
     "webpack-dev-server": "^3.11.2"
   },

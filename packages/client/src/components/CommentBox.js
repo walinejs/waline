@@ -8,7 +8,7 @@ import React, {
 import autosize from 'autosize';
 import cls from 'classnames';
 import { ConfigContext } from '../context';
-import { CancelReplyIcon, EmojiIcon, MarkdownIcon, PreviewIcon } from './Icons';
+import { CloseIcon, EmojiIcon, MarkdownIcon, PreviewIcon } from './Icons';
 import {
   getMarkdownParser,
   getWordNumber,
@@ -314,167 +314,179 @@ export default function ({
   });
 
   return (
-    <div className="vpanel">
-      <div className="vwrap">
-        {replyId ? (
-          <p
-            className="cancel-reply text-right"
-            title={ctx.locale.cancelReply}
-            onClick={onCancelReply}
-          >
-            <CancelReplyIcon />
-          </p>
-        ) : null}
-        {ctx.anonymous !== true ? (
-          <div className="vleft vlogin">
-            {!ctx.userInfo.token ? (
-              <a className="vlogin-btn" onClick={onLogin}>
-                {ctx.locale.login}
-              </a>
-            ) : (
-              <div className="vlogin-info">
-                <div className="vlogin-avatar">
-                  <img
-                    src={
-                      ctx.userInfo.avatar ||
-                      ctx.gravatarSetting.cdn +
-                        ctx.userInfo.mailMd5 +
-                        ctx.gravatarSetting.params
-                    }
-                    alt=""
-                    className="vimg"
-                  />
-                  <div
-                    title={ctx.locale.logout}
-                    className="vlogin-logout-btn"
-                    onClick={onLogout}
+    <div className="vcomment">
+      {replyId ? (
+        <div
+          className="vclose"
+          title={ctx.locale.cancelReply}
+          role="button"
+          onClick={onCancelReply}
+        >
+          <CloseIcon />
+        </div>
+      ) : null}
+
+      {ctx.anonymous !== true ? (
+        <div className="vlogin">
+          {!ctx.userInfo.token ? (
+            <a className="vlogin-btn" role="button" onClick={onLogin}>
+              {ctx.locale.login}
+            </a>
+          ) : (
+            <div className="vlogin-info">
+              <div className="vlogin-avatar">
+                <img
+                  src={
+                    ctx.userInfo.avatar ||
+                    ctx.gravatarSetting.cdn +
+                      ctx.userInfo.mailMd5 +
+                      ctx.gravatarSetting.params
+                  }
+                  alt="avator"
+                  className="vavatar"
+                />
+                <div
+                  title={ctx.locale.logout}
+                  className="vlogin-logout-btn"
+                  role="button"
+                  onClick={onLogout}
+                >
+                  <svg
+                    className="vicon"
+                    viewBox="0 0 1024 1024"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="14"
+                    height="14"
                   >
-                    <svg
-                      className="vicon"
-                      viewBox="0 0 1024 1024"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="14"
-                      height="14"
-                    >
-                      <path d="m568.569 512 170.267-170.267c15.556-15.556 15.556-41.012 0-56.569s-41.012-15.556-56.569 0L512 455.431 341.733 285.165c-15.556-15.556-41.012-15.556-56.569 0s-15.556 41.012 0 56.569L455.431 512 285.165 682.267c-15.556 15.556-15.556 41.012 0 56.569 15.556 15.556 41.012 15.556 56.569 0L512 568.569l170.267 170.267c15.556 15.556 41.012 15.556 56.569 0 15.556-15.556 15.556-41.012 0-56.569L568.569 512z" />
-                    </svg>
-                  </div>
+                    <path d="m568.569 512 170.267-170.267c15.556-15.556 15.556-41.012 0-56.569s-41.012-15.556-56.569 0L512 455.431 341.733 285.165c-15.556-15.556-41.012-15.556-56.569 0s-15.556 41.012 0 56.569L455.431 512 285.165 682.267c-15.556 15.556-15.556 41.012 0 56.569 15.556 15.556 41.012 15.556 56.569 0L512 568.569l170.267 170.267c15.556 15.556 41.012 15.556 56.569 0 15.556-15.556 15.556-41.012 0-56.569L568.569 512z" />
+                  </svg>
                 </div>
-                <a href="#" className="vlogin-nick" onClick={onProfile}>
-                  {ctx.userInfo.display_name}
-                </a>
               </div>
-            )}
-          </div>
-        ) : null}
-        <div className="vright">
-          {!ctx.userInfo.token && ctx.anonymous !== false ? (
-            <div className={`vheader item${metaFields.length}`}>
-              {metaFields.map((kind) => (
+              <a href="#" className="vlogin-nick" onClick={onProfile}>
+                {ctx.userInfo.display_name}
+              </a>
+            </div>
+          )}
+        </div>
+      ) : null}
+
+      <div className="vpanel">
+        {!ctx.userInfo.token && ctx.anonymous !== false ? (
+          <div className={`vheader vheader-${metaFields.length}`}>
+            {metaFields.map((kind) => (
+              <div className="vitem" key={kind}>
+                <label>{ctx.locale[kind]}</label>
                 <input
-                  key={kind}
                   name={kind}
                   ref={inputsRef[kind]}
                   defaultValue={comment[kind]}
-                  className={`v${kind} vinput`}
-                  placeholder={ctx.locale[kind]}
+                  className={`vinput v${kind}`}
                   type={kind === 'mail' ? 'email' : 'text'}
                   onChange={(e) => dispatch({ [kind]: e.target.value })}
                 />
-              ))}
-            </div>
-          ) : null}
-          <div className="vedit">
-            <textarea
-              id="vedit"
-              ref={editorRef}
-              className="veditor vinput"
-              placeholder={replyUser ? `@${replyUser}` : placeholder}
-              onKeyDown={onKeyDown}
-              onPaste={onPaste}
-              onChange={onChange}
-            ></textarea>
-            <div className="vrow">
-              <div className="vcol vcol-60 status-bar"></div>
-              <div className="vcol vcol-40 vctrl text-right">
-                <span
-                  title={ctx.locale.emoji}
-                  className={cls('vicon vemoji-btn', { actived: showEmoji })}
-                  onClick={() =>
-                    toggleEmoji(!showEmoji) ||
-                    (!showEmoji && togglePreview(false))
-                  }
-                >
-                  <EmojiIcon />
-                </span>
-                <span
-                  title={ctx.locale.preview}
-                  className={cls('vicon vpreview-btn', {
-                    actived: showPreview,
-                  })}
-                  onClick={() =>
-                    togglePreview(!showPreview) ||
-                    (!showPreview && toggleEmoji(false))
-                  }
-                >
-                  <PreviewIcon />
-                </span>
               </div>
-            </div>
+            ))}
           </div>
-          <div className="vrow">
-            <div className="vcol vcol-30">
-              <a
-                alt="Markdown is supported"
-                href="https://guides.github.com/features/mastering-markdown/"
-                className="vicon"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <MarkdownIcon />
-              </a>
-            </div>
-            <div className="vcol vcol-70 text-right">
-              <button
-                type="button"
-                disabled={submitting}
-                title="Cmd|Ctrl+Enter"
-                className="vsubmit vbtn"
-                onClick={submitComment}
-              >
-                {ctx.locale.submit}
-              </button>
-            </div>
+        ) : null}
+
+        <textarea
+          className="veditor"
+          id="vedit"
+          ref={editorRef}
+          placeholder={replyUser ? `@${replyUser}` : placeholder}
+          onKeyDown={onKeyDown}
+          onPaste={onPaste}
+          onChange={onChange}
+        />
+
+        <div
+          className="vpreview"
+          style={{ display: showPreview ? 'block' : 'none' }}
+        >
+          <h4>{ctx.locale.preview}:</h4>
+          <div
+            className="vcontent"
+            dangerouslySetInnerHTML={{ __html: previewText }}
+          />
+        </div>
+
+        <div className="vfooter">
+          <div className="vaction">
+            <a
+              alt="Markdown is supported"
+              href="https://guides.github.com/features/mastering-markdown/"
+              className="vicon"
+              target="_blank"
+              rel="noreferrer"
+              title="Markdown Guide"
+            >
+              <MarkdownIcon />
+            </a>
+
+            <span
+              className={cls('vicon', { actived: showEmoji })}
+              title={ctx.locale.emoji}
+              role="button"
+              onClick={() =>
+                toggleEmoji(!showEmoji) || (!showEmoji && togglePreview(false))
+              }
+            >
+              <EmojiIcon />
+            </span>
+
+            <span
+              className={cls('vicon', {
+                actived: showPreview,
+              })}
+              title={ctx.locale.preview}
+              role="button"
+              onClick={() =>
+                togglePreview(!showPreview) ||
+                (!showPreview && toggleEmoji(false))
+              }
+            >
+              <PreviewIcon />
+            </span>
           </div>
+
+          <div className="vinfo">
+            {/* TODO: Add text number here */}
+            <div className="text-number"></div>
+
+            <button
+              className="vbtn"
+              title="Cmd|Ctrl+Enter"
+              disabled={submitting}
+              onClick={submitComment}
+            >
+              {ctx.locale.submit}
+            </button>
+          </div>
+
           {showEmoji ? (
-            <div className="vemojis">
+            <div className="vemoji-wrapper">
               {Object.keys(ctx.emojiMaps).map((key) => (
                 <i
                   title={key}
+                  role="button"
                   key={key}
                   onClick={() => insertAtCaret(editorRef.current, `:${key}:`)}
                 >
                   <img
-                    alt={key}
-                    loading="lazy"
                     className="vemoji"
-                    referrerPolicy="no-referrer"
                     src={
                       /^(?:https?:)?\/\//.test(ctx.emojiMaps[key])
                         ? ctx.emojiMaps[key]
                         : ctx.emojiCDN + ctx.emojiMaps[key]
                     }
+                    alt={key}
+                    loading="lazy"
+                    referrerPolicy="no-referrer"
                   />
                 </i>
               ))}
             </div>
           ) : null}
-          <div
-            className="vinput vpreview"
-            style={{ display: showPreview ? 'block' : 'none' }}
-            dangerouslySetInnerHTML={{ __html: previewText }}
-          ></div>
-          <div className="vmark"></div>
         </div>
       </div>
     </div>

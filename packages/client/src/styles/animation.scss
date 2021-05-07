@@ -1,28 +1,10 @@
-@-webkit-keyframes spin {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  to {
-    -webkit-transform: rotate(1turn);
-    transform: rotate(1turn);
-  }
-}
-
 @keyframes spin {
   0% {
-    -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
-  to {
-    -webkit-transform: rotate(1turn);
-    transform: rotate(1turn);
-  }
-}
 
-@-webkit-keyframes pulse {
-  50% {
-    background: #dcdcdc;
+  to {
+    transform: rotate(1turn);
   }
 }
 

@@ -22,6 +22,7 @@ body[waline-math] .v {
     vertical-align: -50%;
     border-collapse: collapse;
     text-align: center;
+
     > * {
       display: block !important;
     }
@@ -41,19 +42,19 @@ body[waline-math] .v {
   msubsup > *:nth-child(2),
   mmultiscripts > *:nth-child(2n + 2),
   mmultiscripts > mprescripts ~ *:nth-child(2n + 3) {
-    font-size: 0.8em;
     vertical-align: sub;
+    font-size: 0.8em;
   }
 
   msup > *:nth-child(2),
   msubsup > *:nth-child(3),
   mmultiscripts > *:nth-child(2n + 3),
   mmultiscripts > mprescripts ~ *:nth-child(2n + 2) {
-    font-size: 0.8em;
     vertical-align: super;
+    font-size: 0.8em;
   }
 
-  mprescripts:after {
+  mprescripts::after {
     content: ';';
   }
 
@@ -67,14 +68,14 @@ body[waline-math] .v {
 
   munder > *:nth-child(2),
   munderover > *:nth-child(2) {
-    font-size: 0.8em;
     order: +1;
+    font-size: 0.8em;
   }
 
   mover > *:nth-child(2),
   munderover > *:nth-child(3) {
-    font-size: 0.8em;
     order: -1;
+    font-size: 0.8em;
   }
 
   munder {
@@ -93,29 +94,29 @@ body[waline-math] .v {
   msqrt,
   mroot {
     display: inline-flex !important;
-    margin-left: 0.5em;
     vertical-align: middle;
+    margin-left: 0.5em;
     border-top: solid thin;
   }
 
-  msqrt:before,
-  mroot:before {
-    margin-left: -0.5em;
+  msqrt::before,
+  mroot::before {
     content: '\221A';
+    margin-left: -0.5em;
   }
 
   mroot > *:nth-child(2) {
+    order: -1;
     margin-right: 0.25em;
     margin-left: -0.75em;
     font-size: 0.8em;
-    order: -1;
   }
 
   /* menclose */
   menclose {
     display: inline-table !important;
-    border-collapse: separate;
     border-spacing: 0.4ex 0;
+    border-collapse: separate;
 
     &[notation*='top'],
     &[notation*='actuarial'] {
@@ -187,17 +188,17 @@ body[waline-math] .v {
   }
 
   ms {
-    &:before,
-    &:after {
+    &::before,
+    &::after {
       content: '\0022';
     }
 
     &[lquote] {
-      &:before {
+      &::before {
         content: attr(lquote);
       }
 
-      &:after {
+      &::after {
         content: attr(rquote);
       }
     }
@@ -211,23 +212,27 @@ body[waline-math] .v {
     font-weight: bold;
     font-style: normal;
   }
+
   [mathvariant='monospace'] {
-    font-family: monospace;
     font-style: normal;
+    font-family: monospace;
   }
+
   [mathvariant='sans-serif'],
   [mathvariant='bold-sans-serif'],
   [mathvariant='sans-serif-italic'],
   [mathvariant='sans-serif-bold-italic'] {
-    font-family: sans-serif;
     font-style: normal;
+    font-family: sans-serif;
   }
+
   [mathvariant='italic'],
   [mathvariant='bold-italic'],
   [mathvariant='sans-serif-italic'],
   [mathvariant='sans-serif-bold-italic'] {
     font-style: italic;
   }
+
   [mathvariant='normal'] {
     font-style: normal;
   }
@@ -239,9 +244,9 @@ body[waline-math] .v {
 
   /* merror */
   merror {
-    outline: solid thin red;
+    outline: solid thin #f00;
 
-    &:before {
+    &::before {
       content: 'Error: ';
     }
   }
@@ -253,8 +258,8 @@ body[waline-math] .v {
 
   annotation,
   annotation-xml {
-    font-family: monospace;
     display: none !important;
+    font-family: monospace;
   }
 
   math:active > semantics > *:first-child {

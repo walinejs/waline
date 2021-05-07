@@ -29,6 +29,10 @@ docs/.vuepress/.temp
 dist/
 .env
 
+# local dev
+dev.bat
+dev.sh
+
 #vscode
 .vscode/
 

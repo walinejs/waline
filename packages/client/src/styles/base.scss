@@ -1,103 +1,90 @@
 .v[data-class='v'] {
-  .vleft {
-    float: left;
-    text-align: center;
-    margin-right: 0.7525em;
-  }
-
-  .vright {
-    overflow: hidden;
-  }
-
-  .vinput {
-    color: #555;
-    border: none;
-    resize: none;
-    outline: none;
-    padding: 10px 5px;
-    max-width: 100%;
-    font-size: 0.775em;
-  }
-
   .vicon {
-    cursor: pointer;
+    position: relative;
+
     display: inline-block;
-    overflow: hidden;
-    fill: #555;
     vertical-align: middle;
 
-    & + .vicon {
-      margin-left: 10px;
+    text-align: center;
+
+    cursor: pointer;
+    fill: var(--waline-text-color);
+
+    &:hover {
+      fill: var(--waline-theme-color);
     }
 
     &.actived {
-      fill: #66b1ff;
+      fill: var(--waline-active-color);
     }
   }
 
-  .vrow {
-    font-size: 0;
-    padding: 10px 0;
-
-    .vcol {
-      display: inline-block;
-      vertical-align: middle;
-      font-size: 14px;
-
-      &.vcol-20 {
-        width: 20%;
-      }
-
-      &.vcol-30 {
-        width: 30%;
-      }
-
-      &.vcol-40 {
-        width: 40%;
-      }
-
-      &.vcol-50 {
-        width: 50%;
-      }
-
-      &.vcol-60 {
-        width: 60%;
-      }
-
-      &.vcol-70 {
-        width: 70%;
-      }
-
-      &.vcol-80 {
-        width: 80%;
-      }
-
-      &.vctrl {
-        font-size: 12px;
-      }
-    }
+  .vicon + .vicon {
+    margin-left: 6px;
   }
 
-  .emoji,
-  .vemoji {
-    max-width: 25px;
-    vertical-align: middle;
-    margin: 0 1px;
+  .vbtn {
     display: inline-block;
+    vertical-align: middle;
+
+    min-width: 2.5em;
+    margin-bottom: 0;
+    padding: 0.5em 1em;
+    border: 1px solid var(--waline-border-color);
+    border-radius: 0.5em;
+
+    background: transparent;
+    color: var(--waline-text-color);
+    outline: none;
+
+    font-weight: 400;
+    font-size: 0.75em;
+    line-height: 1.5;
+    text-align: center;
+    white-space: nowrap;
+
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    transition-duration: 0.4s;
+
+    touch-action: manipulation;
+
+    &:hover,
+    &:active {
+      border-color: var(--waline-theme-color);
+      color: var(--waline-theme-color);
+    }
+
+    &:disabled {
+      border-color: var(--waline-disable-color);
+      background: var(--waline-disable-bgcolor);
+      color: var(--waline-disable-color);
+      cursor: not-allowed;
+    }
   }
 
   .vspinner {
-    width: 22px;
-    height: 22px;
-    display: inline-block;
-    border: 6px double #a0a0a0;
-    border-top-color: transparent;
-    border-bottom-color: transparent;
-    border-radius: 50%;
-    -webkit-animation: spin 1s infinite linear;
-    animation: spin 1s infinite linear;
-    position: relative;
-    vertical-align: middle;
-    margin: 0 5px;
+    text-align: center;
+
+    i {
+      position: relative;
+
+      display: inline-block;
+      vertical-align: middle;
+
+      width: 22px;
+      height: 22px;
+      margin: 0 5px;
+      border: 6px double #888;
+      border-top-color: transparent;
+      border-bottom-color: transparent;
+      border-radius: 50%;
+
+      animation: spin 1s infinite linear;
+    }
   }
 }
