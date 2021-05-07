@@ -11,6 +11,7 @@ export default function CommentCard({ comment, boxConfig, rootId, onSubmit }) {
 
   // This is remained only because of existing comments
   // Links is now handled when inputing
+  // Can be removed in future time
   const onContentClick = (e) => {
     if (e.target.tagName !== 'A') {
       return;
