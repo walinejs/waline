@@ -403,7 +403,7 @@ export default function ({
           className="vpreview"
           style={{ display: showPreview ? 'block' : 'none' }}
         >
-          <h4>预览:</h4>
+          <h4>{ctx.locale.preview}:</h4>
           <div
             className="vcontent"
             dangerouslySetInnerHTML={{ __html: previewText }}

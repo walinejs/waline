@@ -178,9 +178,12 @@
         }
       }
 
-      // clear margin-top of the first element in content
       > *:first-child {
         margin-top: 0;
+      }
+
+      > *:last-child {
+        margin-bottom: 0;
       }
     }
 

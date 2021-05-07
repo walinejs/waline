@@ -192,6 +192,14 @@
       padding: 0.25em;
       border: 1px solid var(--waline-border-color);
       border-radius: 0.25em;
+
+      > *:first-child {
+        margin-top: 0;
+      }
+
+      > *:last-child {
+        margin-bottom: 0;
+      }
     }
   }
 
