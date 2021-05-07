@@ -52,8 +52,8 @@ async function formatCmt(
   if (match) {
     for (let i = 0; i < match.length; i++) {
       const text = match[i]
-        .replace(/(^|[\r\n]+|<p>|<br>)\$\$/, '')
-        .replace(/\$\$([\r\n]+|<\/p>|<br>|$)/, '')
+        .replace(/(?:^|[\r\n]+|<p>|<br>)\$\$/, '')
+        .replace(/\$\$(?:[\r\n]+|<\/p>|<br>|$)/, '')
         .replace(/<br>/g, '\r\n');
 
       const math = katex.renderToString(text, {
