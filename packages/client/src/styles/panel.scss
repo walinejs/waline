@@ -19,6 +19,7 @@
     width: 3.125em;
     height: 3.125em;
     margin-top: 0.75em;
+    border: var(--waline-border);
     border-radius: 50%;
 
     background: var(--waline-bgcolor);
@@ -38,6 +39,7 @@
     flex: 1;
 
     margin: 0.5em;
+    border: var(--waline-border);
     border-radius: 0.75em;
 
     background: var(--waline-bgcolor);
@@ -247,6 +249,7 @@
     max-width: 526px;
     max-height: 145px;
     padding: 0.5em;
+    border: var(--waline-border);
     border-radius: 1em;
 
     background: var(--waline-bgcolor);
