@@ -2,7 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import Context from './context';
-import { Visitor, fetchCount, fetchRecent, registMathML } from './utils';
+import {
+  Visitor,
+  fetchCount,
+  fetchRecent,
+  injectDarkStyle,
+  registMathML,
+} from './utils';
 
 import './styles/index.scss';
 
@@ -60,17 +66,20 @@ export default function Waline({
   path = location.pathname,
   serverURL,
   visitor = false,
+  dark,
   ...props
 } = {}) {
   try {
     path = decodeURI(path);
-  } catch (e) {
-    //ignore error
+  } catch (err) {
+    // ignore error
   }
-  //compat multiple slash
+  // compat multiple slash
   serverURL = serverURL.replace(/\/+$/, '');
 
-  //visitor count
+  if (dark) injectDarkStyle(dark);
+
+  // visitor count
   if (visitor) {
     const addPromise = Visitor.post({ serverURL, path });
 

@@ -70,8 +70,8 @@ function App({ boxConfig, listConfig, copyRight }) {
         {ctx.locale.comments}
       </div>
       {data.length || !loading ? null : (
-        <div className="vload-top text-center">
-          <i className="vspinner" style={{ width: 30, height: 30 }}></i>
+        <div className="vspinner">
+          <i style={{ width: 30, height: 30 }} />
         </div>
       )}
       <div className="vcards">
@@ -86,22 +86,22 @@ function App({ boxConfig, listConfig, copyRight }) {
         ))}
       </div>
       {data.length && loading ? (
-        <div className="vload-bottom text-center">
-          <i className="vspinner" style={{ width: 30, height: 30 }}></i>
+        <div className="vspinner">
+          <i style={{ width: 30, height: 30 }} />
         </div>
       ) : null}
       {!data.length && !loading ? (
         <div className="vempty">{ctx.locale.sofa}</div>
       ) : null}
       {page < totalPages && !loading ? (
-        <div className="vpage text-center">
-          <button type="button" className="vmore vbtn" onClick={onLoadMore}>
+        <div className="vmore">
+          <button type="button" className="vbtn" onClick={onLoadMore}>
             {ctx.locale.more}
           </button>
         </div>
       ) : null}
       {copyRight ? (
-        <div className="vpower text-right">
+        <div className="vpower">
           Powered by{' '}
           <a
             href="https://github.com/lizheming/Waline"

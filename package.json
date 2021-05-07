@@ -14,7 +14,7 @@
     "docs:dev": "vuepress dev docs",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "lint": "eslint --fix . && prettier --check --write .",
-    "lint:check": "eslint . && prettier --check .",
+    "lint:check": "eslint . && prettier --check . ",
     "prepare": "husky install",
     "test": "jest -i"
   },

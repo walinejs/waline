@@ -1,0 +1,27 @@
+:root {
+  // font-size
+  --waline-font-size: 16px;
+
+  // regular colors
+  --waline-white: #fff;
+  --waline-light: #f8f8f8;
+  --waline-light-grey: #999;
+  --waline-dark-grey: #666;
+
+  // theme colors
+  --waline-theme-color: #27ae60;
+  --waline-active-color: #2ecc71;
+
+  // layout colors
+  --waline-text-color: #444;
+  --waline-border-color: #ddd;
+  --waline-disable-bgcolor: #f8f8f8;
+  --waline-disable-color: #ddd;
+  --waline-box-shadow: 0 12px 40px rgb(134 151 168 / 25%);
+
+  // special colors
+  --waline-bq-color: #f0f0f0;
+  --waline-badge-color: #3498db;
+  --waline-info-bgcolor: #f8f8f8;
+  --waline-info-color: #999;
+}

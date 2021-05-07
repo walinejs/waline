@@ -1,0 +1,33 @@
+.v[data-class='v'] {
+  .vcount {
+    padding: 0.375em;
+    font-weight: bold;
+    font-size: 1.25em;
+  }
+
+  .vempty {
+    overflow: auto;
+    padding: 1.25em;
+    color: var(--waline-text-color);
+    text-align: center;
+  }
+
+  .vmore {
+    text-align: center;
+
+    button {
+      margin: 1em 0;
+    }
+  }
+
+  .vpower {
+    padding: 0.5em 0;
+    color: var(--waline-light-grey);
+    font-size: 0.75em;
+    text-align: right;
+
+    a {
+      font-size: 0.75em;
+    }
+  }
+}
