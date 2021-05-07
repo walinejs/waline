@@ -70,8 +70,8 @@ export default function CommentCard({ comment, boxConfig, rootId, onSubmit }) {
           </span>
         </div>
         <div className="vmeta">
-          <span className="vsys">{comment.browser}</span>
-          <span className="vsys">{comment.os}</span>
+          <span>{comment.browser}</span>
+          <span>{comment.os}</span>
         </div>
         <div
           className="vcontent"

@@ -8,8 +8,8 @@
       padding-top: 1.25em;
 
       .vuser {
-        width: 3.125em;
-        height: 3.125em;
+        width: var(--waline-avatar-size);
+        height: var(--waline-avatar-size);
         margin-right: 0.75em;
         border: var(--waline-border);
         border-radius: 50%;
@@ -64,10 +64,7 @@
         background: var(--waline-badge-color);
         color: var(--waline-white);
 
-        font-size: 0.775em;
-        text-decoration: none;
-
-        cursor: pointer;
+        font-size: var(--waline-badge-font-size);
       }
 
       .vtime {
@@ -96,7 +93,7 @@
       position: relative;
       line-height: 1;
 
-      .vsys {
+      > span {
         display: inline-block;
 
         margin-right: 0.25em;
@@ -106,7 +103,7 @@
         background: var(--waline-info-bgcolor);
         color: var(--waline-info-color);
 
-        font-size: 0.625em;
+        font-size: var(--waline-info-font-size);
         line-height: 1.5;
 
         @media (max-width: 520px) {
@@ -193,8 +190,8 @@
       border-left: 1px dashed rgba(237, 237, 237, 0.5);
 
       .vuser {
-        width: 2.225em;
-        height: 2.225em;
+        width: calc(var(--waline-avatar-size) * 9 / 13);
+        height: calc(var(--waline-avatar-size) * 9 / 13);
       }
     }
   }
