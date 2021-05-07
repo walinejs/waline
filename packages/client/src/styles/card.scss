@@ -10,10 +10,10 @@
       .vuser {
         width: 3.125em;
         height: 3.125em;
-
         margin-right: 0.75em;
-        box-shadow: var(--waline-box-shadow);
         border-radius: 50%;
+
+        box-shadow: var(--waline-box-shadow);
 
         @media (max-width: 720px) {
           width: 2.5em;
