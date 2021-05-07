@@ -17,7 +17,7 @@ describe('Emoji test', () => {
     expect(
       parseEmoji('Waline is a good framework. :money:', emojiMaps, emojiCDN)
     ).toEqual(
-      'Waline is a good framework. ![money](https://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/a2/2018new_qian_thumb.png)'
+      'Waline is a good framework. <img class="vemoji" src="https://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/a2/2018new_qian_thumb.png" alt="money">'
     );
   });
 

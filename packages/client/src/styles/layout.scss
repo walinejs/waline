@@ -1,4 +1,13 @@
 .v[data-class='v'] {
+  .vcontent {
+    .vemoji {
+      display: inline-block;
+      vertical-align: middle;
+      width: 1.25em;
+      margin: 0.25em;
+    }
+  }
+
   .vcount {
     padding: 0.375em;
     font-weight: bold;

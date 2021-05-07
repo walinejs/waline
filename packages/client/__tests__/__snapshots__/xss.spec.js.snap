@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`XSS test Should render 1`] = `
-"<p>Waline is a good framework. <img alt=\\"money\\" src=\\"https://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/a2/2018new_qian_thumb.png\\"></p>
+"<p>Waline is a good framework. <img alt=\\"money\\" src=\\"https://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/a2/2018new_qian_thumb.png\\" class=\\"vemoji\\"></p>
 <h2 id=\\"特性\\">特性</h2>
 <ul>
 <li>快速</li>

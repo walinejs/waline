@@ -36,11 +36,11 @@ export const parseEmoji = (text, emojiMaps, emojiCDN) => {
       return placeholder;
     }
 
-    return `![${key}](${
+    return `<img class="vemoji" src="${
       /(?:https?:)?\/\//.test(emojiMaps[key])
         ? emojiMaps[key]
         : emojiCDN + emojiMaps[key]
-    })`;
+    }" alt="${key}">`;
   });
 };
 
