@@ -99,6 +99,10 @@
     padding: 0 0.25em;
     border-bottom: 2px dashed var(--waline-border-color);
 
+    @media (max-width: 580px) {
+      display: block;
+    }
+
     .vitem {
       display: flex;
       flex: 1;
@@ -112,7 +116,8 @@
       width: 50%;
 
       @media (max-width: 580px) {
-        width: 100%;
+        flex: 0;
+        width: 100% !important;
       }
     }
 
