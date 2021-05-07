@@ -260,7 +260,6 @@
     box-shadow: var(--waline-box-shadow);
 
     font-style: normal;
-    text-align: center;
 
     &::-webkit-scrollbar {
       width: 6px;
@@ -288,6 +287,7 @@
       margin: 0.125em;
 
       line-height: 2;
+      text-align: center;
 
       cursor: pointer;
 
