@@ -77,13 +77,8 @@
 
       .vreply {
         float: right;
-        // padding: 0.25em 0.5em;
-        // border-radius: 0.5em;
-        // color: var(--waline-theme-color);
-        // font-size: 0.8125em;
         cursor: pointer;
 
-        // transition: background 0.2s ease, color 0.2s ease;
         transition: fill 0.2s ease;
 
         svg {
@@ -93,11 +88,6 @@
             fill: var(--waline-theme-color);
           }
         }
-
-        // &:hover {
-        //   background: var(--waline-theme-color);
-        //   color: var(--waline-white);
-        // }
       }
     }
 
