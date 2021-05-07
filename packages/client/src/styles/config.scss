@@ -18,7 +18,17 @@
   --waline-border-color: #ddd;
   --waline-disable-bgcolor: #f8f8f8;
   --waline-disable-color: #ddd;
-  --waline-box-shadow: 0 12px 40px rgb(134 151 168 / 25%);
+
+  // ====render choises====
+
+  //   ** using border **
+  --waline-border: 1px solid var(--waline-border-color);
+  --waline-box-shadow: none;
+
+  // ** using box-shadow **
+  // --waline-border: none;
+  // --waline-box-shadow: 0 12px 40px rgb(134 151 168 / 25%);
+  // Dark: --waline-box-shadow: 0 12px 40px #0f0e0d
 
   // special colors
   --waline-bq-color: #f0f0f0;
