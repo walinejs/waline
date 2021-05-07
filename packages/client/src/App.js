@@ -71,7 +71,7 @@ function App({ boxConfig, listConfig, copyRight }) {
       </div>
       {data.length || !loading ? null : (
         <div className="vspinner">
-          <i style={{ width: 30, height: 30 }}></i>
+          <i style={{ width: 30, height: 30 }} />
         </div>
       )}
       <div className="vcards">
@@ -87,15 +87,15 @@ function App({ boxConfig, listConfig, copyRight }) {
       </div>
       {data.length && loading ? (
         <div className="vspinner">
-          <i style={{ width: 30, height: 30 }}></i>
+          <i style={{ width: 30, height: 30 }} />
         </div>
       ) : null}
       {!data.length && !loading ? (
         <div className="vempty">{ctx.locale.sofa}</div>
       ) : null}
       {page < totalPages && !loading ? (
-        <div className="vpage">
-          <button type="button" className="vmore vbtn" onClick={onLoadMore}>
+        <div className="vmore">
+          <button type="button" className="vbtn" onClick={onLoadMore}>
             {ctx.locale.more}
           </button>
         </div>

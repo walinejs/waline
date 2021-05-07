@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { ConfigContext } from '../context';
 import { timeAgo } from '../utils';
 import CommentBox from './CommentBox';
+import { ReplyIcon } from './Icons';
 
 export default function CommentCard({ comment, boxConfig, rootId, onSubmit }) {
   const [reply, setReply] = useState(null);
@@ -58,8 +59,13 @@ export default function CommentCard({ comment, boxConfig, rootId, onSubmit }) {
           <span className="vtime">
             {timeAgo(comment.insertedAt, ctx.locale)}
           </span>
-          <span className="vat" onClick={() => setReply(comment)}>
-            {ctx.locale.reply}
+          <span
+            className="vreply"
+            title={ctx.locale.reply}
+            role="button"
+            onClick={() => setReply(comment)}
+          >
+            <ReplyIcon />
           </span>
         </div>
         <div className="vmeta">

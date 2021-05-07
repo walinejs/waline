@@ -1,36 +1,36 @@
 .v[data-class='v'] {
   .vcards {
     width: 100%;
-  }
 
-  .vitem {
-    position: relative;
-    display: flex;
-    padding-top: 1.25em;
+    .vitem {
+      position: relative;
+      display: flex;
+      padding-top: 1.25em;
 
-    .vuser {
-      width: 3.125em;
-      height: 3.125em;
+      .vuser {
+        width: 3.125em;
+        height: 3.125em;
 
-      margin-right: 0.75em;
-      box-shadow: var(--waline-box-shadow);
-      border-radius: 50%;
+        margin-right: 0.75em;
+        box-shadow: var(--waline-box-shadow);
+        border-radius: 50%;
 
-      @media (max-width: 720px) {
-        width: 2.5em;
-        height: 2.5em;
+        @media (max-width: 720px) {
+          width: 2.5em;
+          height: 2.5em;
+        }
+      }
+
+      &:last-child .vcard {
+        border-bottom: none;
       }
     }
+  }
 
-    .vcard {
-      flex: 1;
-      padding-bottom: 0.5em;
-      border-bottom: 1px dashed var(--waline-border-color);
-    }
-
-    &:last-child .vcard {
-      border-bottom: none;
-    }
+  .vcard {
+    flex: 1;
+    padding-bottom: 0.5em;
+    border-bottom: 1px dashed var(--waline-border-color);
 
     .vhead {
       line-height: 1.5;
@@ -75,11 +75,29 @@
         font-size: 0.75em;
       }
 
-      .vat {
+      .vreply {
         float: right;
-        color: var(--waline-theme-color);
-        font-size: 0.8125em;
+        // padding: 0.25em 0.5em;
+        // border-radius: 0.5em;
+        // color: var(--waline-theme-color);
+        // font-size: 0.8125em;
         cursor: pointer;
+
+        // transition: background 0.2s ease, color 0.2s ease;
+        transition: fill 0.2s ease;
+
+        svg {
+          fill: var(--waline-text-color);
+
+          &:hover {
+            fill: var(--waline-theme-color);
+          }
+        }
+
+        // &:hover {
+        //   background: var(--waline-theme-color);
+        //   color: var(--waline-white);
+        // }
       }
     }
 

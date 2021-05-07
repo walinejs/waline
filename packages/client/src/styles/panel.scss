@@ -7,8 +7,9 @@
 
   .vclose {
     position: absolute;
-    top: 0.25em;
-    right: 0.25em;
+    top: -4px;
+    right: -4px;
+    line-height: 1;
     cursor: pointer;
   }
 

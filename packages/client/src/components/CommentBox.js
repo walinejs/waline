@@ -8,7 +8,7 @@ import React, {
 import autosize from 'autosize';
 import cls from 'classnames';
 import { ConfigContext } from '../context';
-import { CancelReplyIcon, EmojiIcon, MarkdownIcon, PreviewIcon } from './Icons';
+import { CloseIcon, EmojiIcon, MarkdownIcon, PreviewIcon } from './Icons';
 import {
   getMarkdownParser,
   getWordNumber,
@@ -316,19 +316,20 @@ export default function ({
   return (
     <div className="vcomment">
       {replyId ? (
-        <p
-          className="cancel-reply text-right"
+        <div
+          className="vclose"
           title={ctx.locale.cancelReply}
+          role="button"
           onClick={onCancelReply}
         >
-          <CancelReplyIcon />
-        </p>
+          <CloseIcon />
+        </div>
       ) : null}
 
       {ctx.anonymous !== true ? (
         <div className="vlogin">
           {!ctx.userInfo.token ? (
-            <a className="vlogin-btn" onClick={onLogin}>
+            <a className="vlogin-btn" role="button" onClick={onLogin}>
               {ctx.locale.login}
             </a>
           ) : (
@@ -341,12 +342,13 @@ export default function ({
                       ctx.userInfo.mailMd5 +
                       ctx.gravatarSetting.params
                   }
-                  alt=""
+                  alt="avator"
                   className="vavatar"
                 />
                 <div
                   title={ctx.locale.logout}
                   className="vlogin-logout-btn"
+                  role="button"
                   onClick={onLogout}
                 >
                   <svg
@@ -422,8 +424,9 @@ export default function ({
             </a>
 
             <span
-              title={ctx.locale.emoji}
               className={cls('vicon', { actived: showEmoji })}
+              title={ctx.locale.emoji}
+              role="button"
               onClick={() =>
                 toggleEmoji(!showEmoji) || (!showEmoji && togglePreview(false))
               }
@@ -432,10 +435,11 @@ export default function ({
             </span>
 
             <span
-              title={ctx.locale.preview}
               className={cls('vicon', {
                 actived: showPreview,
               })}
+              title={ctx.locale.preview}
+              role="button"
               onClick={() =>
                 togglePreview(!showPreview) ||
                 (!showPreview && toggleEmoji(false))
@@ -452,7 +456,6 @@ export default function ({
             <button
               className="vbtn"
               title="Cmd|Ctrl+Enter"
-              type="button"
               disabled={submitting}
               onClick={submitComment}
             >
@@ -465,19 +468,20 @@ export default function ({
               {Object.keys(ctx.emojiMaps).map((key) => (
                 <i
                   title={key}
+                  role="button"
                   key={key}
                   onClick={() => insertAtCaret(editorRef.current, `:${key}:`)}
                 >
                   <img
-                    alt={key}
-                    loading="lazy"
                     className="vemoji"
-                    referrerPolicy="no-referrer"
                     src={
                       /^(?:https?:)?\/\//.test(ctx.emojiMaps[key])
                         ? ctx.emojiMaps[key]
                         : ctx.emojiCDN + ctx.emojiMaps[key]
                     }
+                    alt={key}
+                    loading="lazy"
+                    referrerPolicy="no-referrer"
                   />
                 </i>
               ))}
