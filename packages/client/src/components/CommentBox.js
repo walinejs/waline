@@ -1,6 +1,7 @@
 import React, {
   useCallback,
   useContext,
+  useMemo,
   useReducer,
   useRef,
   useState,
@@ -127,6 +128,7 @@ export default function ({
   const [showEmoji, toggleEmoji] = useState(false);
   const [showPreview, togglePreview] = useState(false);
   const [previewText, setPreviewText] = useState('');
+  const [wordNumber, setWordNumber] = useState(0);
   const [comment, dispatch] = useReducer(
     (state, action) => ({ ...state, ...action }),
     {
@@ -145,12 +147,34 @@ export default function ({
 
   const parser = getMarkdownParser(highlight, ctx);
 
+  const [textLimit, isWordNumberLegal] = useMemo(() => {
+    const { wordLimit } = ctx;
+
+    if (wordLimit) {
+      if (wordNumber < wordLimit[0] && wordLimit[0] !== 0) {
+        return [wordLimit[0], false];
+      }
+
+      if (wordNumber > wordLimit[1]) {
+        return [wordLimit[1], false];
+      }
+
+      return [wordLimit[1], true];
+    }
+
+    return [0, true];
+  }, [ctx, wordNumber]);
+
   const onChange = useCallback((e) => {
     const comment = e.target.value;
     dispatch({ comment });
     const preview = parser(comment);
 
     setPreviewText(preview);
+
+    const wordCount = getWordNumber(comment);
+
+    setWordNumber(wordCount);
 
     if (comment) autosize(e.target);
     else autosize.destroy(e.target);
@@ -208,17 +232,13 @@ export default function ({
       comment.link = ctx.userInfo.url;
     }
 
-    if (wordLimit) {
-      const wordCount = getWordNumber(comment.comment);
-
-      if (wordCount < wordLimit[0] || wordCount > wordLimit[1]) {
-        return alert(
-          ctx.locale.word
-            .replace('$0', wordLimit[0])
-            .replace('$1', wordLimit[1])
-            .replace('$2', wordCount)
-        );
-      }
+    if (!isWordNumberLegal) {
+      return alert(
+        ctx.locale.wordHint
+          .replace('$0', wordLimit[0])
+          .replace('$1', wordLimit[1])
+          .replace('$2', wordNumber)
+      );
     }
 
     comment.comment = parseEmoji(comment.comment, ctx.emojiMaps, ctx.emojiCDN);
@@ -442,8 +462,18 @@ export default function ({
           </div>
 
           <div className="vinfo">
-            {/* TODO: Add text number here */}
-            <div className="text-number"></div>
+            <div className="vtext-number">
+              {wordNumber}
+              {ctx.wordLimit ? (
+                <span>
+                  &nbsp;/&nbsp;
+                  <span className={cls({ illegal: !isWordNumberLegal })}>
+                    {textLimit}
+                  </span>
+                </span>
+              ) : null}
+              &nbsp;{ctx.locale.word}
+            </div>
 
             <button
               className="vbtn"
