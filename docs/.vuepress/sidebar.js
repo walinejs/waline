@@ -10,6 +10,7 @@ module.exports = (lang, titles) =>
       lang + '/client/emoji.md',
       lang + '/client/i18n.md',
       lang + '/client/avatar.md',
+      lang + '/client/style.md',
       lang + '/client/recentcomment.md',
     ],
     [
