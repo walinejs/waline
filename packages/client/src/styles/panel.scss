@@ -60,8 +60,8 @@
   .vavatar {
     position: relative;
 
-    width: 3.5rem;
-    height: 3.5rem;
+    width: var(--waline-avatar-size);
+    height: var(--waline-avatar-size);
     margin: 0 auto;
 
     border: 1px solid var(--waline-border-color);

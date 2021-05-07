@@ -4,8 +4,6 @@
 
   // regular colors
   --waline-white: #fff;
-  --waline-bgcolor: #fff;
-  --waline-bgcolor-light: #f8f8f8;
   --waline-light-grey: #999;
   --waline-dark-grey: #666;
 
@@ -15,12 +13,28 @@
 
   // layout colors
   --waline-text-color: #444;
+  --waline-bgcolor: #fff;
+  --waline-bgcolor-light: #f8f8f8;
   --waline-border-color: #ddd;
   --waline-disable-bgcolor: #f8f8f8;
   --waline-disable-color: #ddd;
 
-  // ====render choises====
+  // special colors
+  --waline-bq-color: #f0f0f0;
 
+  // avatar
+  --waline-avatar-size: 3.25rem;
+
+  // badge
+  --waline-badge-color: #3498db;
+  --waline-badge-font-size: 0.775em;
+
+  // info
+  --waline-info-bgcolor: #f8f8f8;
+  --waline-info-color: #999;
+  --waline-info-font-size: 0.625em;
+
+  // ====render choises====
   //   ** using border **
   --waline-border: 1px solid var(--waline-border-color);
   --waline-box-shadow: none;
@@ -29,10 +43,4 @@
   // --waline-border: none;
   // --waline-box-shadow: 0 12px 40px rgb(134 151 168 / 25%);
   // Dark: --waline-box-shadow: 0 12px 40px #0f0e0d
-
-  // special colors
-  --waline-bq-color: #f0f0f0;
-  --waline-badge-color: #3498db;
-  --waline-info-bgcolor: #f8f8f8;
-  --waline-info-color: #999;
 }
