@@ -228,6 +228,15 @@
     align-items: center;
     justify-content: flex-end;
 
+    .vtext-number {
+      color: var(--waline-info-color);
+      font-size: 0.75em;
+
+      .illegal {
+        color: #f00;
+      }
+    }
+
     button {
       margin-left: 0.75em;
     }
