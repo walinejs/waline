@@ -113,6 +113,17 @@ If you need a custom language, please refer to [i18n](./i18n.md).
 
 Article reading statistics.
 
+## dark
+
+- Type: `string`
+- Required: No
+
+Whether to enable darkmode support, setting `'auto'` will display darkmode due to device settings. Filling in CSS selector will enable darkmode only when the selector match waline ancestor nodes.
+
+For example, if you are using docusaurus, it will enable darkmode by setting `data-theme="dark"` on the html itself. So you need to set this content as `dark` option.
+
+For details of custom style and darkmode, please see [Custom Style](./style.md).
+
 ## highlight
 
 - Type: `boolean`
