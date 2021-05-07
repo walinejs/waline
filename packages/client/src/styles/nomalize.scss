@@ -1,9 +1,9 @@
 .v[data-class='v'] {
-  font-size: 16px;
+  font-size: var(--waline-font-size);
   text-align: left;
 
   * {
-    box-sizing: border-box;
+    box-sizing: content-box;
     line-height: 1.75;
   }
 

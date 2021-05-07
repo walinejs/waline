@@ -2,18 +2,18 @@
   .vcomment {
     display: flex;
     position: relative;
-    margin-bottom: 10px;
+    margin-bottom: 0.75em;
   }
 
   .vclose {
     position: absolute;
-    top: 5px;
-    right: 5px;
+    top: 0.25em;
+    right: 0.25em;
     cursor: pointer;
   }
 
   .vlogin {
-    margin-top: 12px;
+    margin-top: 0.75em;
 
     width: 3.125em;
     height: 3.125em;
@@ -31,8 +31,8 @@
 
   .vpanel {
     flex: 1;
-    margin: 8px;
-    border-radius: 12px;
+    margin: 0.5em;
+    border-radius: 0.75em;
     box-shadow: var(--waline-box-shadow);
   }
 
@@ -40,9 +40,55 @@
     display: none;
   }
 
+  .vlogin-btn {
+    display: block;
+
+    width: 3.5em;
+    height: 3.5em;
+    border: 1px dashed var(--waline-border-color);
+    border-radius: 50%;
+
+    color: var(--waline-text-color);
+
+    font-size: 14px;
+    line-height: 3.5em;
+    text-align: center;
+
+    &:hover {
+      color: var(--waline-theme-color);
+    }
+  }
+
+  .vlogin-avatar {
+    position: relative;
+
+    .vimg {
+      margin-right: 0;
+    }
+  }
+
+  .vlogin-logout-btn {
+    position: absolute;
+    top: -3px;
+    right: 3px;
+
+    border: 1px solid var(--waline-border-color);
+    border-radius: 50%;
+
+    background: var(--waline-white);
+
+    font-size: 14px;
+    line-height: 0;
+  }
+
+  .vlogin-nick {
+    color: var(--waline-theme-color);
+    font-size: 0.75em;
+  }
+
   .vheader {
     display: flex;
-    padding: 0 4px;
+    padding: 0 0.25em;
     border-bottom: 2px dashed var(--waline-border-color);
 
     .vitem {
@@ -72,104 +118,151 @@
 
     label {
       min-width: 40px;
-      padding: 10px 0;
+      padding: 0.75em 0;
       color: var(--waline-text-color);
-      font-size: 12px;
+      font-size: 0.75em;
       text-align: center;
     }
 
     input {
       flex: 1;
-
       width: 0px;
-      max-width: 100%;
-
-      padding: 8px;
-      border: none;
-
+      padding: 0.5em;
       background: transparent;
-
-      color: var(--waline-text-color);
-      outline: none;
-
-      font-size: 0.775em;
-
+      font-size: 0.625em;
       resize: none;
+    }
+  }
 
-      &:focus {
-        background: var(--waline-light);
-      }
+  .veditor,
+  .vinput {
+    max-width: 100%;
+    border: none;
+
+    color: var(--waline-text-color);
+    outline: none;
+
+    transition: all 0.25s ease;
+
+    &:focus {
+      background: var(--waline-light);
     }
   }
 
   .veditor {
     position: relative;
-    width: 100%;
+    width: calc(100% - 1em);
     min-height: 8.75em;
+    margin: 0.75em 0.5em;
+    border-radius: 0.5em;
 
     background: transparent;
-    color: var(--waline-text-color);
-
-    margin: 12px 8px;
-    border-radius: 8px;
-  }
-
-  .veditor {
     font-size: 0.875em;
 
     resize: vertical;
-
-    transition: all 0.25s ease;
-  }
-
-  .vemojis {
-    overflow: auto;
-
-    max-height: 145px;
-    padding-bottom: 10px;
-
-    box-shadow: 0 0 1px var(--waline-border-color);
-
-    font-size: 18px;
-
-    i {
-      display: inline-block;
-      vertical-align: middle;
-
-      width: 36px;
-      padding-top: 7px;
-
-      font-style: normal;
-      text-align: center;
-
-      cursor: pointer;
-    }
   }
 
   .vpreview {
-    padding: 7px;
-    box-shadow: 0 0 1px var(--waline-border-color);
+    padding: 0 0.5em 0.5em;
+
+    h4 {
+      margin: 0.25em;
+      font-size: 0.9375em;
+      font-weight: bold;
+    }
+
+    .vcontent {
+      min-height: 1.25em;
+      padding: 0.25em;
+      border: 1px solid var(--waline-border-color);
+      border-radius: 0.25em;
+    }
   }
 
   .vfooter {
-    margin: 8px;
+    position: relative;
     display: flex;
+    margin: 0.5em 0.75em;
+  }
+
+  .vaction {
+    display: flex;
+    align-items: center;
+    flex: 2;
+
+    .vicon {
+      width: 1.5em;
+      height: 1.5em;
+    }
   }
 
   .vinfo {
     display: flex;
     align-items: center;
-    flex: 2;
-  }
-
-  .vaction {
-    display: flex;
     justify-content: flex-end;
-    align-items: center;
     flex: 3;
 
     button {
-      margin-left: 12px;
+      margin-left: 0.75em;
+    }
+  }
+
+  .vemoji-wrapper {
+    position: absolute;
+    z-index: 10;
+    top: 100%;
+    left: 1.25em;
+    overflow: auto;
+
+    max-width: 526px;
+    max-height: 145px;
+    padding: 0.5em;
+    border-radius: 1em;
+
+    background: var(--waline-white);
+    box-shadow: var(--waline-box-shadow);
+
+    font-style: normal;
+    text-align: center;
+
+    &::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    &::-webkit-scrollbar-track-piece {
+      background: rgba(0, 0, 0, 0.1);
+      -webkit-border-radius: 6px;
+      border-radius: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb:vertical {
+      height: 6px;
+      background: var(--waline-theme-color);
+      -webkit-border-radius: 6px;
+      border-radius: 6px;
+    }
+
+    i {
+      display: inline-block;
+      vertical-align: middle;
+
+      width: 2em;
+      margin: 0.125em;
+
+      line-height: 2;
+
+      cursor: pointer;
+
+      &:hover {
+        background: var(--waline-light);
+      }
+    }
+
+    .vemoji {
+      display: inline-block;
+      vertical-align: middle;
+      max-width: 1.5em;
     }
   }
 }

@@ -378,7 +378,7 @@ export default function ({
                   name={kind}
                   ref={inputsRef[kind]}
                   defaultValue={comment[kind]}
-                  className={`v${kind}`}
+                  className={`vinput v${kind}`}
                   type={kind === 'mail' ? 'email' : 'text'}
                   onChange={(e) => dispatch({ [kind]: e.target.value })}
                 />
@@ -400,52 +400,60 @@ export default function ({
         <div
           className="vpreview"
           style={{ display: showPreview ? 'block' : 'none' }}
-          dangerouslySetInnerHTML={{ __html: previewText }}
-        />
+        >
+          <h4>预览:</h4>
+          <div
+            className="vcontent"
+            dangerouslySetInnerHTML={{ __html: previewText }}
+          />
+        </div>
+
         <div className="vfooter">
-          <div className="vinfo">
+          <div className="vaction">
             <a
               alt="Markdown is supported"
               href="https://guides.github.com/features/mastering-markdown/"
               className="vicon"
               target="_blank"
               rel="noreferrer"
+              title="Markdown Guide"
             >
               <MarkdownIcon />
             </a>
+
+            <span
+              title={ctx.locale.emoji}
+              className={cls('vicon', { actived: showEmoji })}
+              onClick={() =>
+                toggleEmoji(!showEmoji) || (!showEmoji && togglePreview(false))
+              }
+            >
+              <EmojiIcon />
+            </span>
+
+            <span
+              title={ctx.locale.preview}
+              className={cls('vicon', {
+                actived: showPreview,
+              })}
+              onClick={() =>
+                togglePreview(!showPreview) ||
+                (!showPreview && toggleEmoji(false))
+              }
+            >
+              <PreviewIcon />
+            </span>
+          </div>
+
+          <div className="vinfo">
             {/* TODO: Add text number here */}
             <div className="text-number"></div>
-          </div>
-          <div className="vaction">
-            <div className="vctrl">
-              <span
-                title={ctx.locale.emoji}
-                className={cls('vicon vemoji-btn', { actived: showEmoji })}
-                onClick={() =>
-                  toggleEmoji(!showEmoji) ||
-                  (!showEmoji && togglePreview(false))
-                }
-              >
-                <EmojiIcon />
-              </span>
-              <span
-                title={ctx.locale.preview}
-                className={cls('vicon vpreview-btn', {
-                  actived: showPreview,
-                })}
-                onClick={() =>
-                  togglePreview(!showPreview) ||
-                  (!showPreview && toggleEmoji(false))
-                }
-              >
-                <PreviewIcon />
-              </span>
-            </div>
+
             <button
+              className="vbtn"
+              title="Cmd|Ctrl+Enter"
               type="button"
               disabled={submitting}
-              title="Cmd|Ctrl+Enter"
-              className="vbtn"
               onClick={submitComment}
             >
               {ctx.locale.submit}
@@ -453,7 +461,7 @@ export default function ({
           </div>
 
           {showEmoji ? (
-            <div className="vemojis">
+            <div className="vemoji-wrapper">
               {Object.keys(ctx.emojiMaps).map((key) => (
                 <i
                   title={key}
