@@ -342,7 +342,7 @@ export default function ({
                       ctx.gravatarSetting.params
                   }
                   alt=""
-                  className="vimg"
+                  className="vavatar"
                 />
                 <div
                   title={ctx.locale.logout}

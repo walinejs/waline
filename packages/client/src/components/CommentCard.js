@@ -28,39 +28,43 @@ export default function CommentCard({ comment, boxConfig, rootId, onSubmit }) {
   }
 
   return (
-    <div className="vcard" id={comment.objectId}>
+    <div className="vitem" id={comment.objectId}>
       <img
-        className="vimg"
+        className="vuser"
         src={
           comment.avatar ||
           ctx.gravatarSetting.cdn + comment.mail + ctx.gravatarSetting.params
         }
       />
-      <div className="vh">
+      <div className="vcard">
         <div className="vhead">
-          <a
-            className="vnick"
-            rel="nofollow noreferrer"
-            href={link}
-            target="_blank"
-          >
-            {comment.nick}
-          </a>
+          {link ? (
+            <a
+              className="vnick"
+              rel="nofollow noreferrer"
+              href={link}
+              target="_blank"
+            >
+              {comment.nick}
+            </a>
+          ) : (
+            <span className="vnick">{comment.nick}</span>
+          )}
           {comment.type === 'administrator' ? (
-            <span className="vmark" data-type={comment.type}>
+            <span className="vbadge" data-type={comment.type}>
               {ctx.locale.admin}
             </span>
           ) : null}
-          <span className="vsys">{comment.browser}</span>
-          <span className="vsys">{comment.os}</span>
-        </div>
-        <div className="vmeta">
           <span className="vtime">
             {timeAgo(comment.insertedAt, ctx.locale)}
           </span>
           <span className="vat" onClick={() => setReply(comment)}>
             {ctx.locale.reply}
           </span>
+        </div>
+        <div className="vmeta">
+          <span className="vsys">{comment.browser}</span>
+          <span className="vsys">{comment.os}</span>
         </div>
         <div
           className="vcontent"

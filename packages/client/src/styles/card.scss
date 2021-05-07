@@ -1,48 +1,19 @@
 .v[data-class='v'] {
-  .vsys {
-    display: inline-block;
-
-    margin-right: 0.3em;
-    padding: 0.2em 0.5em;
-    border-radius: 0.2em;
-
-    background: var(--waline-info-bgcolor);
-    color: var(--waline-info-color);
-
-    font-size: 0.75em;
-
-    @media (max-width: 520px) {
-      display: none;
-    }
-
-    &:empty {
-      display: none;
-    }
-  }
-
   .vcards {
     width: 100%;
   }
 
-  .vcard {
+  .vitem {
     position: relative;
-    display: block;
+    display: flex;
     padding-top: 1.25em;
 
-    &::after {
-      content: '';
-      display: block;
-      clear: both;
-    }
-
-    .vimg {
-      float: left;
-
+    .vuser {
       width: 3.125em;
       height: 3.125em;
-      margin-right: 0.7525em;
-      padding: 0.125em;
-      border: 1px solid var(--waline-border-color);
+
+      margin-right: 0.75em;
+      box-shadow: var(--waline-box-shadow);
       border-radius: 50%;
 
       @media (max-width: 720px) {
@@ -51,8 +22,17 @@
       }
     }
 
+    .vcard {
+      flex: 1;
+      padding-bottom: 0.5em;
+      border-bottom: 1px dashed var(--waline-border-color);
+    }
+
+    &:last-child .vcard {
+      border-bottom: none;
+    }
+
     .vhead {
-      margin-top: 0;
       line-height: 1.5;
 
       .vnick {
@@ -60,23 +40,23 @@
 
         display: inline-block;
 
-        margin-right: 0.875em;
+        margin-right: 0.5em;
 
-        font-weight: 500;
+        font-weight: bold;
         font-size: 0.875em;
         text-decoration: none;
 
         cursor: pointer;
-
-        &:hover {
-          color: var(--waline-active-color);
-        }
       }
 
-      .vmark {
+      span.vnick {
+        color: var(--waline-dark-grey);
+      }
+
+      .vbadge {
         display: inline-block;
 
-        margin-right: 0.875em;
+        margin-right: 0.5em;
         padding: 0 0.3em;
         border-radius: 3px;
 
@@ -88,21 +68,10 @@
 
         cursor: pointer;
       }
-    }
-
-    .vh {
-      overflow: hidden;
-      padding-bottom: 0.5em;
-      border-bottom: 1px dashed var(--waline-border-color);
-
-      .vmeta {
-        position: relative;
-        line-height: 1;
-      }
 
       .vtime {
         margin-right: 0.875em;
-        color: var(--waline-time-color);
+        color: var(--waline-info-color);
         font-size: 0.75em;
       }
 
@@ -114,8 +83,31 @@
       }
     }
 
-    &:last-child .vh {
-      border-bottom: none;
+    .vmeta {
+      position: relative;
+      line-height: 1;
+
+      .vsys {
+        display: inline-block;
+
+        margin-right: 0.25em;
+        padding: 2px 4px;
+        border-radius: 0.2em;
+
+        background: var(--waline-info-bgcolor);
+        color: var(--waline-info-color);
+
+        font-size: 0.625em;
+        line-height: 1.5;
+
+        @media (max-width: 520px) {
+          display: none;
+        }
+
+        &:empty {
+          display: none;
+        }
+      }
     }
 
     .vcontent {
@@ -177,13 +169,18 @@
           text-align: center;
         }
       }
+
+      // clear margin-top of the first element in content
+      > *:first-child {
+        margin-top: 0;
+      }
     }
 
     .vquote {
       padding-left: 1em;
       border-left: 1px dashed rgba(237, 237, 237, 0.5);
 
-      .vimg {
+      .vuser {
         width: 2.225em;
         height: 2.225em;
       }
