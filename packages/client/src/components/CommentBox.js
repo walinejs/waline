@@ -322,7 +322,7 @@ export default function ({
           role="button"
           onClick={onCancelReply}
         >
-          <CloseIcon />
+          <CloseIcon size={24} />
         </div>
       ) : null}
 
@@ -334,7 +334,16 @@ export default function ({
             </a>
           ) : (
             <div className="vlogin-info">
-              <div className="vlogin-avatar">
+              <div className="vavatar">
+                <div
+                  title={ctx.locale.logout}
+                  className="vlogout-btn"
+                  role="button"
+                  onClick={onLogout}
+                >
+                  <CloseIcon size={14} />
+                </div>
+
                 <img
                   src={
                     ctx.userInfo.avatar ||
@@ -343,24 +352,7 @@ export default function ({
                       ctx.gravatarSetting.params
                   }
                   alt="avator"
-                  className="vavatar"
                 />
-                <div
-                  title={ctx.locale.logout}
-                  className="vlogin-logout-btn"
-                  role="button"
-                  onClick={onLogout}
-                >
-                  <svg
-                    className="vicon"
-                    viewBox="0 0 1024 1024"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="14"
-                    height="14"
-                  >
-                    <path d="m568.569 512 170.267-170.267c15.556-15.556 15.556-41.012 0-56.569s-41.012-15.556-56.569 0L512 455.431 341.733 285.165c-15.556-15.556-41.012-15.556-56.569 0s-15.556 41.012 0 56.569L455.431 512 285.165 682.267c-15.556 15.556-15.556 41.012 0 56.569 15.556 15.556 41.012 15.556 56.569 0L512 568.569l170.267 170.267c15.556 15.556 41.012 15.556 56.569 0 15.556-15.556 15.556-41.012 0-56.569L568.569 512z" />
-                  </svg>
-                </div>
               </div>
               <a href="#" className="vlogin-nick" onClick={onProfile}>
                 {ctx.userInfo.display_name}

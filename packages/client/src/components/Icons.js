@@ -11,12 +11,12 @@ export const ReplyIcon = () => (
   </svg>
 );
 
-export const CloseIcon = () => (
+export const CloseIcon = ({ size }) => (
   <svg
     viewBox="0 0 1024 1024"
     xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
+    width={size}
+    height={size}
   >
     <path
       d="M697.173 85.333h-369.92c-144.64 0-241.92 101.547-241.92 252.587v348.587c0 150.613 97.28 252.16 241.92 252.16h369.92c144.64 0 241.494-101.547 241.494-252.16V337.92c0-151.04-96.854-252.587-241.494-252.587z"

@@ -16,23 +16,68 @@
   }
 
   .vlogin {
-    width: 3.125em;
-    height: 3.125em;
     margin-top: 0.75em;
-    border: var(--waline-border);
+  }
+
+  .vlogin-btn {
+    display: block;
+
+    width: 3rem;
+    height: 3rem;
+    border: 1px solid var(--waline-border-color);
     border-radius: 50%;
 
     background: var(--waline-bgcolor);
+    color: var(--waline-text-color);
     box-shadow: var(--waline-box-shadow);
 
-    .vavatar {
-      float: left;
+    font-size: 12px;
+    line-height: 3rem;
+    text-align: center;
 
+    &:hover {
+      color: var(--waline-theme-color);
+    }
+  }
+
+  .vlogin-info {
+    max-width: 80px;
+    text-align: center;
+  }
+
+  .vlogout-btn {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+
+    padding: 3px;
+
+    line-height: 0;
+
+    cursor: pointer;
+  }
+
+  .vavatar {
+    position: relative;
+
+    width: 3.5rem;
+    height: 3.5rem;
+    margin: 0 auto;
+
+    border: 1px solid var(--waline-border-color);
+    border-radius: 0.25em;
+
+    img {
       width: 100%;
       height: 100%;
-      padding: 0.125em;
-      border: 1px solid var(--waline-border-color);
     }
+  }
+
+  .vlogin-nick {
+    display: block;
+    color: var(--waline-theme-color);
+    font-size: 0.75em;
+    word-break: break-all;
   }
 
   .vpanel {
@@ -44,56 +89,6 @@
 
     background: var(--waline-bgcolor);
     box-shadow: var(--waline-box-shadow);
-  }
-
-  .hide-avatar .vavatar {
-    display: none;
-  }
-
-  .vlogin-btn {
-    display: block;
-
-    width: 3.5em;
-    height: 3.5em;
-    border: 1px dashed var(--waline-border-color);
-    border-radius: 50%;
-
-    color: var(--waline-text-color);
-
-    font-size: 14px;
-    line-height: 3.5em;
-    text-align: center;
-
-    &:hover {
-      color: var(--waline-theme-color);
-    }
-  }
-
-  .vlogin-avatar {
-    position: relative;
-
-    .vavatar {
-      margin-right: 0;
-    }
-  }
-
-  .vlogin-logout-btn {
-    position: absolute;
-    top: -3px;
-    right: 3px;
-
-    border: 1px solid var(--waline-border-color);
-    border-radius: 50%;
-
-    background: var(--waline-bgcolor);
-
-    font-size: 14px;
-    line-height: 0;
-  }
-
-  .vlogin-nick {
-    color: var(--waline-theme-color);
-    font-size: 0.75em;
   }
 
   .vheader {
