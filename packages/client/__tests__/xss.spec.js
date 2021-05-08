@@ -88,4 +88,17 @@ Waline is a good framework. :money:
     expect(parser('<form></form>')).toEqual('');
     expect(parser('<input type="password" autocomplete>')).toEqual('');
   });
+
+  it('Should forbid style', () => {
+    expect(
+      parser(
+        '<div style="position:fixed;top:0;left:0;width:100vh;height:100vh;">广告文字</div>'
+      )
+    ).toEqual('<div>广告文字</div>');
+    expect(
+      parser(
+        '<div id="ad">广告文字</div><style>#ad{position:fixed;top:0;left:0;width:100vh;height:100vh;}</style>'
+      )
+    ).toEqual('<div id="ad">广告文字</div>');
+  });
 });

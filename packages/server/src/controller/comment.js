@@ -1,16 +1,8 @@
 const helper = require('think-helper');
-const marked = require('marked');
-const katex = require('katex');
 const parser = require('ua-parser-js');
 const BaseRest = require('./rest');
 const akismet = require('../service/akismet');
-
-marked.setOptions({
-  highlight: false,
-  breaks: true,
-  smartLists: true,
-  smartypants: true,
-});
+const { getMarkdownParser } = require('../service/markdown');
 
 async function formatCmt(
   { ua, user_id, ...comment },
@@ -47,22 +39,6 @@ async function formatCmt(
     comment.mail ? comment.mail.toLowerCase() : comment.mail
   );
 
-  const blockMathRegExp = /(^|[\r\n]+|<p>|<br>)\$\$([^$]+)\$\$([\r\n]+|<\/p>|<br>|$)/g;
-  const match = comment.comment.match(blockMathRegExp);
-  if (match) {
-    for (let i = 0; i < match.length; i++) {
-      const text = match[i]
-        .replace(/(?:^|[\r\n]+|<p>|<br>)\$\$/, '')
-        .replace(/\$\$(?:[\r\n]+|<\/p>|<br>|$)/, '')
-        .replace(/<br>/g, '\r\n');
-
-      const math = katex.renderToString(text, {
-        output: 'mathml',
-      });
-      comment.comment = comment.comment.replace(match[i], math);
-    }
-  }
-
   return comment;
 }
 
@@ -73,6 +49,8 @@ module.exports = class extends BaseRest {
       `storage/${this.config('storage')}`,
       'Comment'
     );
+
+    this.parser = getMarkdownParser();
   }
 
   async getAction() {
@@ -254,7 +232,7 @@ module.exports = class extends BaseRest {
       url,
       ip: this.ctx.ip,
       insertedAt: new Date(),
-      comment: marked(comment),
+      comment: this.parser(comment),
       user_id: this.ctx.state.userInfo.objectId,
     };
     if (pid) {

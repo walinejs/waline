@@ -17,10 +17,10 @@
     &.actived {
       fill: var(--waline-active-color);
     }
-  }
 
-  .vicon + .vicon {
-    margin-left: 6px;
+    + .vicon {
+      margin-left: 6px;
+    }
   }
 
   .vbtn {

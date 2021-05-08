@@ -32,13 +32,12 @@
     ]
   },
   "devDependencies": {
-    "anujs": "^1.7.4",
+    "anujs": "^1.7.5",
     "autosize": "^4.0.2",
-    "classnames": "^2.2.6",
-    "dompurify": "^2.2.8",
+    "classnames": "^2.3.1",
     "hanabi": "^0.4.0",
     "marked": "^2.0.3",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   }
 }

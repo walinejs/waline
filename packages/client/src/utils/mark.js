@@ -26,6 +26,9 @@ DOMPurify.addHook('afterSanitizeAttributes', function (node) {
   }
 });
 
+const inlineMathRegExp = /\B\$\b([^\n$]*)\b\$\B/g;
+const blockMathRegExp = /(^|[\r\n]+|<p>|<br>)\$\$([^$]+)\$\$([\r\n]+|<\/p>|<br>|$)/g;
+
 export const parseEmoji = (text, emojiMaps, emojiCDN) => {
   if (!text) {
     return '';
@@ -44,6 +47,16 @@ export const parseEmoji = (text, emojiMaps, emojiCDN) => {
   });
 };
 
+export const parseMath = (content) =>
+  content
+    .replace(
+      inlineMathRegExp,
+      '<span class="vtex">Tex is not available in preview</span>'
+    )
+    .replace(
+      blockMathRegExp,
+      '<p class="vtex">Tex is not available in preview</p>'
+    );
 export const getMarkdownParser = (highlight, ctx) => {
   marked.setOptions({
     highlight: highlight === false ? null : hanabi,
@@ -54,10 +67,10 @@ export const getMarkdownParser = (highlight, ctx) => {
 
   return (comment) =>
     DOMPurify.sanitize(
-      marked(parseEmoji(comment, ctx.emojiMaps, ctx.emojiCDN)),
+      parseMath(marked(parseEmoji(comment, ctx.emojiMaps, ctx.emojiCDN))),
       {
-        FORBID_TAGS: ['form', 'input'],
-        FORBID_ATTR: ['autoplay', 'draggable'],
+        FORBID_TAGS: ['form', 'input', 'style'],
+        FORBID_ATTR: ['autoplay', 'draggable', 'style'],
       }
     );
 };
