@@ -17,6 +17,12 @@ const {
   AVATAR_PROXY,
   GITHUB_TOKEN,
 
+  MARKDOWN_HIGHLIGHT,
+  MARKDOWN_EMOJI,
+  MARKDOWN_SUB,
+  MARKDOWN_SUP,
+  MARKDOWN_TEX,
+
   MAIL_SUBJECT,
   MAIL_TEMPLATE,
   MAIL_SUBJECT_ADMIN,
@@ -57,6 +63,20 @@ if (FORBIDDEN_WORDS) {
   forbiddenWords = FORBIDDEN_WORDS.split(/\s*,\s*/);
 }
 
+const isFalse = (content) => content && content.toLowerCase() === 'false';
+
+const markdown = {
+  config: {},
+  plugin: {
+    emoji: !isFalse(MARKDOWN_EMOJI),
+    sub: !isFalse(MARKDOWN_SUB),
+    sup: !isFalse(MARKDOWN_SUP),
+    tex: !isFalse(MARKDOWN_TEX),
+  },
+};
+
+if (isFalse(MARKDOWN_HIGHLIGHT)) markdown.config.highlight = false;
+
 module.exports = {
   workers: 1,
   storage,
@@ -68,6 +88,8 @@ module.exports = {
     DISABLE_USERAGENT &&
     !['0', 'false'].includes(DISABLE_USERAGENT.toLowerCase()),
   avatarProxy: AVATAR_PROXY || 'https://avatar.75cdn.workers.dev/',
+
+  markdown,
 
   mailSubject: MAIL_SUBJECT,
   mailTemplate: MAIL_TEMPLATE,
