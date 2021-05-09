@@ -84,7 +84,7 @@ export default function () {
                     className="profile-avatar"
                     src={
                       user.avatar ||
-                      `https://cdn.v2ex.com/gravatar/${user.mailMd5}?s=220&amp;r=X&amp;d=mm`
+                      `https://sdn.geekzu.org/avatar/${user.mailMd5}?s=220&amp;r=X&amp;d=mm`
                     }
                   />
                 </a>
