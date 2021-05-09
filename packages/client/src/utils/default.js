@@ -77,7 +77,7 @@ export const emojiMaps = {
 };
 
 export const gravatarSetting = {
-  cdn: 'https://sdn.geekzu.org/gravatar/',
+  cdn: 'https://sdn.geekzu.org/avatar/',
   ds: ['mp', 'identicon', 'monsterid', 'wavatar', 'robohash', 'retro', ''],
   params: '',
 };

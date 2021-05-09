@@ -5,7 +5,7 @@ export function buildAvatar(email = '') {
     email = '';
   }
 
-  return `https://sdn.geekzu.org/gravatar/${md5(email)}?s=40&r=G&d=`;
+  return `https://sdn.geekzu.org/avatar/${md5(email)}?s=40&r=G&d=`;
 }
 
 export function getPostUrl(url) {
