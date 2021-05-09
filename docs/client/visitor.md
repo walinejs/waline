@@ -10,7 +10,7 @@ new Waline({
 })
 ```
 
-Valine 会自动查找页面中`class`值为`leancloud_visitors`的元素，获取其`id`为查询条件。并将得到的值填充到其`class`的值为`leancloud-visitors-count`的子元素里：
+Valine 会自动查找页面中`class`值为`leancloud_visitors`的元素，获取其`id`为查询条件。并将得到的值填充到其`class`的值为`leancloud-visitors-count`的子元素里:
 
 ```html
 <!-- id 将作为查询条件 -->

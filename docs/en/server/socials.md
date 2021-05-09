@@ -1,19 +1,27 @@
 # Social account login
 
-The latest version of Waline adds the login comment function. In addition to ordinary account login, it also supports direct login using third-party social accounts. Currently, we support login by the following social account. Of course, these social account login features are not enabled by default, and we need to do some configuration to support them.
+The latest version of Waline adds the login feature for comment. Besides ordinary account login, waline also supports direct login using third-party social accounts.
+
+Currently, we support login by the following social account.
+
+::: warning
+
+Social account login feature is not enabled by default, extra configuration is needed.
+
+:::
 
 ## GitHub
 
-To enable the GitHub account login feature, you need to configure the GitHub OAuth key. Click [《Register a new OAuth application》](https://github.com/settings/applications/new) to enter the GitHub OAuth application application page. The following configurations need to be filled here:
+To enable the GitHub account login feature, you need to configure the GitHub OAuth key. Click [Register a new OAuth application](https://github.com/settings/applications/new) to enter the GitHub OAuth application application page. Then fill in the following configurations:
 
-- Application name：The application name can be arbitrary and will be displayed when the user is authorized. The blog name is recommended.
-- Homepage URL：The application homepage address can be arbitrary, and will be displayed when the user authorizes it. The blog address is recommended.
-- Appcation description：The description of the application, which can be arbitrary, will be displayed when the user is authorized, and is not required.
-- Authorization callback URL：The callback address of the application, which is required for login. Fill in `<serverURL>/oauth/github` where `<serverURL>` is your Waline server address.
+- Application name: The application name, will be displayed when authorizing. Blog name is recommended.
+- Homepage URL: The application homepage link, will be displayed when authorizing. Blog address is recommended.
+- Appcation description: The description of the application, optional, will be displayed when the authorizing.
+- Authorization callback URL: The callback address of the application, which is required for login. Fill in `<serverURL>/oauth/github` where `<serverURL>` is your Waline server address.
 
-After filling in, click <kbd>Register application</kbd> to create it successfully, and you can see the Client ID on the page. Click the <kbd>Generate a new client secret</kbd> button on the right side of the Client secrets column to get the Client secrets of the application.
+When you are finished, click <kbd>Register application</kbd> to create, and you will see the Client ID on the page. Click <kbd>Generate a new client secret</kbd> button on the right side of the Client secrets column to get the Client secrets of the application.
 
-Configure the key obtained just now into the Waline server according to the following environment variable configuration. After redeploying, you can log in with GitHub.
+Configure these environment variables using the infomation above, then make a redeployment to log in with GitHub.
 
 | Environment Variable | Description                                         |
 | -------------------- | --------------------------------------------------- |

@@ -29,11 +29,11 @@ docs/.vuepress/.temp
 dist/
 .env
 
-# local dev
-dev.bat
-dev.sh
+# set local env variables
+env.bat
+env.sh
 
-#vscode
+# vscode
 .vscode/
 
 # lock files

@@ -2,7 +2,7 @@
 
 Waline 是经典的前后端分离 Client/Server 架构，提供了较为完善的 API 接口。[@waline/client](https://npmjs.com/@waline/client) 是官方的客户端实现，如果你不想使用它，你甚至可以基于服务端提供的 API 自行实现自己的客户端实现。
 
-目前有以下项目已经增加了 Waline 接口的适配：
+目前有以下项目已经增加了 Waline 接口的适配:
 
 - [MiniValine](https://github.com/MiniValine/MiniValine) by [@MHuiG](https://github.com/MHuiG)
 

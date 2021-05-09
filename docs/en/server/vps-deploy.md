@@ -15,15 +15,17 @@ docker run -d \
 
 `LEAN_ID` and `LEAN_KEY` correspond to the App Id and App Key obtained in the background respectively. If you are not a LeanCloud International version user, you need to bind the registered domain name in the background and configure `LEAN_SERVER`.
 
-> **Tips：** How to build image?
->
-> ```bash
-> git clone https://github.com/lizheming/waline.git
-> cd waline
-> docker build -t lizheming/waline -f packages/server/Dockerfile .
-> ```
+::: tip How to build image?
 
-### ... via [docker stack deploy](https://docs.docker.com/engine/reference/commandline/stack_deploy/) or [docker-compose](https://github.com/docker/compose)
+```bash
+git clone https://github.com/lizheming/waline.git
+cd waline
+docker build -t lizheming/waline -f packages/server/Dockerfile .
+```
+
+:::
+
+### via [docker stack deploy](https://docs.docker.com/engine/reference/commandline/stack_deploy/) or [docker-compose](https://github.com/docker/compose)
 
 The SQLite is used here as an example. For SQLite and supported database services, please refer to [Multi-database service support](https://waline.js.org/en/server/databases.html#sqlite).
 
@@ -61,11 +63,11 @@ npm install @waline/vercel
 node node_modules/@waline/vercel/vanilla.js
 ```
 
-## Nginx configuration
+## Nginx config
 
-If you don't want to take port in server url, you can use Nginx proxy pass to 80 and 443. Refer to the following configuration:
+If you don't want to use port in server url, you can use Nginx proxy pass to 80 and 443. Refer to the following configuration:
 
-```
+```nginx
 server
 {
   listen 80;

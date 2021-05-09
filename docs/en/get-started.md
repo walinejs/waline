@@ -6,7 +6,7 @@ If you want to use Waline in your site, please follow this guide.
 
 ## Get APP ID and APP Key
 
-First you need [sign in](https://console.leancloud.app/login.html#/signin) or [sign up](https://console.leancloud.app/login.html#/signup) LeanCloud. Then go to [Console](https://console.leancloud.app/applist.html#/apps) click button [Create app](https://console.leancloud.app/applist.html#/newapp) to create a new app：
+First you need [sign in](https://console.leancloud.app/login.html#/signin) or [sign up](https://console.leancloud.app/login.html#/signup) LeanCloud. Then go to [Console](https://console.leancloud.app/applist.html#/apps) click button [Create app](https://console.leancloud.app/applist.html#/newapp) to create a new app:
 
 ![](https://i.loli.net/2019/06/21/5d0c995c86fac81746.jpg)
 

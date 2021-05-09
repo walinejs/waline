@@ -1,6 +1,6 @@
 module.exports = (lang, titles) =>
   [
-    [lang + '/get-started.md', lang + '/intro.md'],
+    [lang + '/get-started.md', lang + '/intro.md', lang + '/syntax.md'],
     [lang + '/client/basic.md', lang + '/server/basic.md'],
     [
       lang + '/server/notification.md',

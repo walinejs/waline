@@ -2,7 +2,7 @@
 
 If you want to create pull request for Waline repo, you can develop with the following tips.
 
-```sh
+```bash
 git clone https://github.com/lizheming/waline.git
 cd waline
 

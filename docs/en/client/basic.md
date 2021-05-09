@@ -93,7 +93,7 @@ number of pages per page.
 
 Multilingual support.
 
-Optional value：
+Optional value:
 
 - `'zh'`
 - `'zh-CN'`
