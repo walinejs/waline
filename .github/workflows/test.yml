@@ -39,7 +39,7 @@ jobs:
         if: steps.node-cache.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile
 
-      - name: Unit test
+      - name: Build test
         run: |
           yarn workspace @waline/admin build
           yarn workspace @waline/client build

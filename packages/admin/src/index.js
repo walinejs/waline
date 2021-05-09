@@ -5,10 +5,7 @@ import { store } from './store';
 
 import './i18n';
 
-import './style/normalize.css';
-import './style/grid.css';
-import './style/style.css';
-import './style/custom.css';
+import './style/index.scss';
 
 async function run() {
   await Promise.race([

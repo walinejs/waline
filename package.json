@@ -5,6 +5,7 @@
     "packages/*"
   ],
   "scripts": {
+    "admin:analyze": "npm run analyze --workspace=@waline/admin",
     "admin:build": "npm run build --workspace=@waline/admin",
     "admin:dev": "npm run dev --workspace=@waline/admin",
     "client:analyze": "npm run analyze --workspace=@waline/client",
