@@ -9,7 +9,7 @@
 
 ---
 
-[English](https://github.com/lizheming/waline/blob/master/README.md) | 中文 | **查看文档：** <https://waline.js.org>
+[English](https://github.com/lizheming/waline/blob/master/README.md) | 中文 | **查看文档**: <https://waline.js.org>
 
 ## 特性
 

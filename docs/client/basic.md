@@ -24,9 +24,9 @@ Waline 的服务端地址。
 
 ## wordLimit
 
-- 类型：`number | [number, number]`
-- 默认值：`0`
-- 必要性：`false`
+- 类型: `number | [number, number]`
+- 默认值: `0`
+- 必要性: `false`
 
 评论字数限制。填入单个数字时为最大字数限制。设置为 `0` 时无限制。
 

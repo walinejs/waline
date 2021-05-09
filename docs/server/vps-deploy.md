@@ -15,19 +15,21 @@ docker run -d \
 
 `LEAN_ID` 和 `LEAN_KEY` 分别对应的是后台得到的 App Id 和 App Key。如果非 LeanCloud 国际版用户的话需要在后台绑定已备案域名并配置 `LEAN_SERVER`。
 
-> **注：** 如何构建镜像？
->
-> ```bash
-> git clone https://github.com/lizheming/waline.git
-> cd waline
-> docker build -t lizheming/waline -f packages/server/Dockerfile .
-> ```
+::: tip 如何构建镜像？
+
+```bash
+git clone https://github.com/lizheming/waline.git
+cd waline
+docker build -t lizheming/waline -f packages/server/Dockerfile .
+```
+
+:::
 
 ### 使用 [docker stack deploy](https://docs.docker.com/engine/reference/commandline/stack_deploy/) 或者 [docker-compose](https://github.com/docker/compose)
 
 这里使用了 SQLite 数据库作为例子。关于 SQLite 和支持的数据库服务，请参考[多数据库服务支持](https://waline.js.org/server/databases.html#sqlite)。
 
-`docker-compose.yml` 示例：
+`docker-compose.yml` 示例:
 
 ```yaml
 # docker-compose.yml
@@ -63,9 +65,9 @@ node node_modules/@waline/vercel/vanilla.js
 
 ## Nginx 配置
 
-如果你不想带端口访问的话，可以增加 Nginx 80 和 443 端口的反代。可参考如下配置：
+如果你不想带端口访问的话，可以增加 Nginx 80 和 443 端口的反代。可参考如下配置:
 
-```
+```nginx
 server
 {
   listen 80;

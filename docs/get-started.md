@@ -6,15 +6,15 @@
 
 ## 获取 APP ID 和 APP Key
 
-请先[登录](https://console.leancloud.app/login.html#/signin)或[注册](https://console.leancloud.app/login.html#/signup) `LeanCloud 国际版`, 进入[控制台](https://console.leancloud.app/applist.html#/apps)后点击左下角[创建应用](https://console.leancloud.app/applist.html#/newapp)：
+请先[登录](https://console.leancloud.app/login.html#/signin)或[注册](https://console.leancloud.app/login.html#/signup) `LeanCloud 国际版`, 进入[控制台](https://console.leancloud.app/applist.html#/apps)后点击左下角[创建应用](https://console.leancloud.app/applist.html#/newapp):
 
 ![](https://i.loli.net/2019/06/21/5d0c995c86fac81746.jpg)
 
-应用创建好以后，进入刚刚创建的应用，选择左下角的`设置`>`应用Key`，然后就能看到你的`APP ID`,`APP Key`和`Master Key`了：
+应用创建好以后，进入刚刚创建的应用，选择左下角的`设置`>`应用Key`，然后就能看到你的`APP ID`,`APP Key`和`Master Key`了:
 
 ![](https://i.loli.net/2019/06/21/5d0c997a60baa24436.jpg)
 
-> **注：**  
+> **注:**  
 > 这里推荐使用 Leancloud 国际版。如果你确实想用 Leancloud 国内版的话（国际版是 [leancloud.app](https://leancloud.app)，非国际版是 [leancloud.cn](https://leancloud.cn)），除了 `APP_ID`, `APP_Key` 和 `Master Key` 之外，还需要对应用进行域名绑定。  
 > 进入应用后选择 <kbd>设置</kbd> > <kbd>域名绑定</kbd> > API 访问域名 <kbd>绑定新域名</kbd> > 输入需要绑定的已备案域名点击 <kbd>确定</kbd>。之后按照页面上的提示去 DNS 上做正确的 CNAME 解析即可。
 >
@@ -76,7 +76,7 @@ new Waline({
 
 ## NPM
 
-Waline 已发布到[npm](https://www.npmjs.com/package/@waline/client)，可以直接用命令安装：
+Waline 已发布到[npm](https://www.npmjs.com/package/@waline/client)，可以直接用命令安装:
 
 ```bash
 # Install waline
