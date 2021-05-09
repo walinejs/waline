@@ -11,6 +11,7 @@
     "client:analyze": "npm run analyze --workspace=@waline/client",
     "client:build": "npm run build --workspace=@waline/client",
     "client:dev": "npm run dev --workspace=@waline/client",
+    "server:dev": "env && vercel dev ./example --listen 9090",
     "docs:build": "vuepress build docs",
     "docs:dev": "vuepress dev docs",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
