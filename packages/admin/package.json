@@ -5,6 +5,7 @@
   "main": "dist/admin.js",
   "browser": "dist/admin.js",
   "scripts": {
+    "analyze": "cross-env ANALYZE=true webpack --mode=production",
     "build": "webpack --mode=production",
     "dev": "webpack serve --mode=development",
     "prepublish": "npm run build"
