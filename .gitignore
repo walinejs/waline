@@ -39,3 +39,5 @@ env.sh
 # lock files
 package-lock.json
 yarn.lock
+
+.idea
