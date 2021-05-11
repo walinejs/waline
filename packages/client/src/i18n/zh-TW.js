@@ -1,7 +1,7 @@
 export default {
   nick: '暱稱',
   mail: '郵箱',
-  link: '網址(http://)',
+  link: '網址',
   nickFail: '暱稱不能少於3個字元',
   mailFail: '請填寫正確的郵件地址',
   sofa: '來發評論吧~',

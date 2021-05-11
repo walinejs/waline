@@ -11,14 +11,13 @@
         width: var(--waline-avatar-size);
         height: var(--waline-avatar-size);
         margin-right: 0.75em;
-        border: var(--waline-border);
         border-radius: 50%;
 
         box-shadow: var(--waline-box-shadow);
 
         @media (max-width: 720px) {
-          width: 2.5em;
-          height: 2.5em;
+          width: calc(var(--waline-avatar-size) * 9 / 13);
+          height: calc(var(--waline-avatar-size) * 9 / 13);
         }
       }
 
@@ -32,7 +31,6 @@
     flex: 1;
     padding-bottom: 0.5em;
     border-bottom: 1px dashed var(--waline-border-color);
-    overflow: hidden;
 
     .vhead {
       line-height: 1.5;

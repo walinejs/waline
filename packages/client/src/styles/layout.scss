@@ -1,4 +1,8 @@
 .v[data-class='v'] {
+  .vclose-icon {
+    color: var(--waline-border-color);
+  }
+
   .vcontent {
     .vemoji {
       display: inline-block;

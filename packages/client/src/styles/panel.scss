@@ -22,8 +22,8 @@
   .vlogin-btn {
     display: block;
 
-    width: 3rem;
-    height: 3rem;
+    width: var(--waline-avatar-size);
+    height: var(--waline-avatar-size);
     border: 1px solid var(--waline-border-color);
     border-radius: 50%;
 
@@ -32,7 +32,7 @@
     box-shadow: var(--waline-box-shadow);
 
     font-size: 12px;
-    line-height: 3rem;
+    line-height: var(--waline-avatar-size);
     text-align: center;
 
     &:hover {
@@ -70,6 +70,7 @@
     img {
       width: 100%;
       height: 100%;
+      border-radius: 0.25em;
     }
   }
 
@@ -93,23 +94,25 @@
 
   .vheader {
     display: flex;
-    padding: 0 0.25em;
     border-bottom: 2px dashed var(--waline-border-color);
+    border-top-left-radius: 0.75em;
+    border-top-right-radius: 0.75em;
+    overflow: hidden;
 
     @media (max-width: 580px) {
       display: block;
     }
 
-    .vitem {
+    .vheader-item {
       display: flex;
       flex: 1;
     }
 
-    &.vheader-1 .vitem {
+    &.vheader-1 .vheader-item {
       width: 100%;
     }
 
-    &.vheader-2 .vitem {
+    &.vheader-2 .vheader-item {
       width: 50%;
 
       @media (max-width: 580px) {
@@ -118,7 +121,7 @@
       }
     }
 
-    &.vheader-3 .vitem {
+    &.vheader-3 .vheader-item {
       width: 33.33%;
 
       @media (max-width: 580px) {

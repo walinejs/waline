@@ -1,7 +1,7 @@
 export default {
   nick: '昵称',
   mail: '邮箱',
-  link: '网址(http://)',
+  link: '网址',
   nickFail: '昵称不能少于3个字符',
   mailFail: '请填写正确的邮件地址',
   sofa: '来发评论吧~',
