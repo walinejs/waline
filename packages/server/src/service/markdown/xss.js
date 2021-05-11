@@ -30,7 +30,7 @@ DOMPurify.addHook('afterSanitizeAttributes', function (node) {
 const sanitize = (content) =>
   DOMPurify.sanitize(content, {
     FORBID_TAGS: ['form', 'input', 'style'],
-    FORBID_ATTR: ['autoplay', 'draggable', 'style'],
+    FORBID_ATTR: ['autoplay', 'style'],
   });
 
 module.exports = {

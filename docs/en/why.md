@@ -36,7 +36,7 @@ Since Valine is no longer open source, pull requests cannot be opened.
 
 :::
 
-Since the above method will completely restrict users in the scope of Markdown, Waline inludes `DOMPurify` on the client side since `0.15.0` to prevent XSS. Besides the regular XSS sterilization, `<form>` and `<input>` are disabled, and the draggable attribute and autoplay of the media are also disabled. At the same time, all external links will be processed and opened in a new window with rel of `noopener noreferrer`.
+Since the above method will completely restrict users in the scope of Markdown, Waline inludes `DOMPurify` on the client side since `0.15.0` to prevent XSS. Besides the regular XSS sterilization, `<form>` and `<input>` are disabled, and autoplay of the media are also disabled. At the same time, all external links will be processed and opened in a new window with rel of `noopener noreferrer`.
 
 ::: warning
 

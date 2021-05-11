@@ -183,7 +183,7 @@ At the same time, all links will be automatically set `rel="noreferrer noopener"
 
 - To prevent users from using style tag to revise website pages or modify their own comment styles to implant spam ads, the `<style>` tag and the `style` attribute are not allowed.
 
-- To prevent users from abusing media autoplay and draggable feature, `autoplay` and `draggable` attributes are not allowed.
+- To prevent users from abusing media autoplay feature, `autoplay` attribute is not allowed.
 
 :::
 
