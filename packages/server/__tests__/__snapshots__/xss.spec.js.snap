@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`XSS test Should render 1`] = `
-"<p>Waline is a good framework. <img alt=\\"money\\" src=\\"https://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/a2/2018new_qian_thumb.png\\" class=\\"vemoji\\"></p>
-<h2 id=\\"特性\\">特性</h2>
+"<p>Waline is a good framework. :money:</p>
+<h2>特性</h2>
 <ul>
 <li>快速</li>
 <li>真·安全</li>
@@ -19,7 +19,8 @@ exports[`XSS test Should render 1`] = `
 <th></th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><strong>客户端脚本</strong></td>
 <td><strong>服务端部署</strong></td>
 <td><strong>数据存储</strong></td>
@@ -59,6 +60,7 @@ exports[`XSS test Should render 1`] = `
 <td></td>
 <td>GitHub</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 "
 `;

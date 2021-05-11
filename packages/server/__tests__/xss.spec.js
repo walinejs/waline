@@ -1,7 +1,7 @@
-import { emojiCDN, emojiMaps, getMarkdownParser } from '../src/utils';
-
-const ctx = { emojiCDN, emojiMaps };
-const parser = getMarkdownParser(false, ctx);
+const MarkdownIt = require('markdown-it');
+const { sanitize } = require('../src/service/markdown/xss');
+const parser = (content) =>
+  sanitize(new MarkdownIt({ html: true }).render(content));
 
 describe('XSS test', () => {
   it('Should render', () => {
