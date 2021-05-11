@@ -1,7 +1,7 @@
 export default {
   nick: 'NickName',
   mail: 'E-Mail',
-  link: 'Website(http://)',
+  link: 'Website',
   nickFail: 'NickName cannot be less than 3 bytes.',
   mailFail: 'Please confirm your email address.',
   sofa: 'No comment yet.',

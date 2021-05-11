@@ -386,7 +386,7 @@ export default function ({
         {!ctx.userInfo.token && ctx.anonymous !== false ? (
           <div className={`vheader vheader-${metaFields.length}`}>
             {metaFields.map((kind) => (
-              <div className="vitem" key={kind}>
+              <div className="vheader-item" key={kind}>
                 <label>{ctx.locale[kind]}</label>
                 <input
                   name={kind}
