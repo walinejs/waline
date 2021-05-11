@@ -118,9 +118,20 @@ Waline 的服务端地址。
 - 类型: `string`
 - 必填: 否
 
-是否开启暗黑模式适配，设置 `'auto'` 会根据设备暗黑模式自适应。填入 CSS 选择器会在对应选择器生效时启用夜间模式。
+暗黑模式适配。
 
-比如你在使用 docusaurus，它会通过在 html 上设置 `data-theme="dark"` 开启暗黑模式。那么你需要将该内容传入 `dark` 选项。
+- 设置 `'auto'` 会根据设备暗黑模式自适应。
+- 填入 CSS 选择器会在对应选择器生效时启用夜间模式。
+
+::: tip 针对不同主题的例子
+
+- **Docusaurus**: 它会在 `<html>` 上通过设置 `data-theme="dark"` 开启暗黑模式，那么你需要将 `dark` 选项设置为 `'html[data-theme="dark"]'`。
+
+- **hexo-theme-fluid**: 它会在 `<html>` 上通过设置 `data-user-color-scheme="dark"` 开启暗黑模式。那么你需要将 `dark` 选项设置为 `'html[data-user-color-scheme="dark"]'`。
+
+- **vuepress-theme-hope**: 它会在 `<body>` 上添加`theme-dark` class 来开启暗黑模式。那么你需要将 `dark` 选项设置为 `body.theme-dark`。
+
+:::
 
 自定义样式与暗黑模式详见 [自定义样式](./style.md)。
 

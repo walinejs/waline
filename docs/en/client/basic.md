@@ -12,7 +12,7 @@ The DOM element to be mounted on initialization. It must be a valid **CSS select
 - Type: `string`
 - Required: Yes
 
-Waline server address url.
+Waline server address url
 
 ## placeholder
 
@@ -20,7 +20,7 @@ Waline server address url.
 - Default: `Just go go...`
 - Required: No
 
-Comment box placeholder.
+Comment box placeholder
 
 ## wordLimit
 
@@ -83,7 +83,7 @@ Reviewer attributes. Optional values: `'nick'`, `'mail'`, `'link'`
 - Default: `10`
 - Required: No
 
-number of pages per page.
+number of comments per page.
 
 ## lang
 
@@ -91,7 +91,7 @@ number of pages per page.
 - Default: `'zh-CN'`
 - Required: No
 
-Multilingual support.
+Display language.
 
 Optional value:
 
@@ -118,9 +118,20 @@ Article reading statistics.
 - Type: `string`
 - Required: No
 
-Whether to enable darkmode support, setting `'auto'` will display darkmode due to device settings. Filling in CSS selector will enable darkmode only when the selector match waline ancestor nodes.
+Darkmode support
 
-For example, if you are using docusaurus, it will enable darkmode by setting `data-theme="dark"` on the html itself. So you need to set this content as `dark` option.
+- Set it to `'auto'` will display darkmode due to device settings.
+- Filling in a CSS selector will enable darkmode only when the selector match waline ancestor nodes.
+
+::: tip Examples
+
+- **Docusaurus**: It will enable darkmode by setting `data-theme="dark"` on the `<html>` tag itself. So you need to set `'html[data-theme="dark"]'` as `dark` option.
+
+- **hexo-theme-fluid**: It will enable darkmode by setting `data-user-color-scheme="dark"` on the `<html>` tag itself. So you need to set `'html[data-user-color-scheme="dark"]'` as `dark` option.
+
+- **vuepress-theme-hope**: It will enable darkmode by setting `theme-dark` class on the `<body>` tag itself. So you need to set `'body.theme-dark'` as `dark` option.
+
+:::
 
 For details of custom style and darkmode, please see [Custom Style](./style.md).
 
@@ -180,7 +191,7 @@ Set required fields, default anonymous, optional values:
 - Type: `Function`
 - Required: No
 
-Custom image upload callback to manage picture by yourself. We will input picture file object when execute it.
+Custom image upload callback to manage picture by yourself. We will pass a picture file object when execute it.
 
 ## anonymous
 

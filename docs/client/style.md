@@ -1,6 +1,8 @@
 # 自定义样式
 
-`@waline/client` 提供了一些 CSS 变量。你可以很轻松的通过这些变量配置 waline 的样式:
+`@waline/client` 提供了一些 CSS 变量。你可以很轻松的通过这些变量配置 waline 的样式。
+
+## 提供的变量
 
 ```css
 :root {
@@ -45,37 +47,38 @@
 }
 ```
 
+## 夜间模式默认颜色
+
 在使用 `dark` 选项配置暗黑模式时，waline 会默认使用以下颜色:
 
 ```css
-@media (prefers-color-scheme: dark) {
-  body {
-    /* 常规颜色 */
-    --waline-white: #000;
-    --waline-light-grey: #666;
-    --waline-dark-grey: #999;
+/* 根据用户设置 ↓ */
+darkmode-selector {
+  /* 常规颜色 */
+  --waline-white: #000;
+  --waline-light-grey: #666;
+  --waline-dark-grey: #999;
 
-    /* 布局颜色 */
-    --waline-text-color: #888;
-    --waline-bgcolor: #1e1e1e;
-    --waline-bgcolor-light: #272727;
-    --waline-border-color: #333;
-    --waline-disable-bgcolor: #222;
-    --waline-disable-color: #272727;
+  /* 布局颜色 */
+  --waline-text-color: #888;
+  --waline-bgcolor: #1e1e1e;
+  --waline-bgcolor-light: #272727;
+  --waline-border-color: #333;
+  --waline-disable-bgcolor: #222;
+  --waline-disable-color: #272727;
 
-    /* 特殊颜色 */
-    --waline-bq-color: #272727;
+  /* 特殊颜色 */
+  --waline-bq-color: #272727;
 
-    /* 其他颜色 */
-    --waline-info-bgcolor: #272727;
-    --waline-info-color: #666;
-  }
+  /* 其他颜色 */
+  --waline-info-bgcolor: #272727;
+  --waline-info-color: #666;
 }
 ```
 
 如果上述颜色与你的站点夜间模式颜色不同，你可以不设置 `dark` 选项并自行覆盖他们。
 
-::: tip 阴影样式
+## 阴影样式
 
 如果你在使用一个大量运用阴影 (`box-shadow`) 的主题，你可以通过修改 `--waline-border` 和 `--waline-box-shadow` 来更改 Waline 的显示效果，如:
 
@@ -91,5 +94,3 @@
   }
 }
 ```
-
-:::

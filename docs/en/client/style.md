@@ -2,6 +2,8 @@
 
 `@waline/client` provides some CSS variables. You can easily configure the style of waline through these variables:
 
+## Variables
+
 ```css
 :root {
   /* Font Size */
@@ -45,37 +47,38 @@
 }
 ```
 
+## Darkmode
+
 When using the `dark` option to configure the dark mode, waline will use the following colors by default:
 
 ```css
-@media (prefers-color-scheme: dark) {
-  body {
-    /* Regular color */
-    --waline-white: #000;
-    --waline-light-grey: #666;
-    --waline-dark-grey: #999;
+/* ↓ According to user settings */
+darkmode-selector {
+  /* Regular color */
+  --waline-white: #000;
+  --waline-light-grey: #666;
+  --waline-dark-grey: #999;
 
-    /* Layout color */
-    --waline-text-color: #888;
-    --waline-bgcolor: #1e1e1e;
-    --waline-bgcolor-light: #272727;
-    --waline-border-color: #333;
-    --waline-disable-bgcolor: #222;
-    --waline-disable-color: #272727;
+  /* Layout color */
+  --waline-text-color: #888;
+  --waline-bgcolor: #1e1e1e;
+  --waline-bgcolor-light: #272727;
+  --waline-border-color: #333;
+  --waline-disable-bgcolor: #222;
+  --waline-disable-color: #272727;
 
-    /* Special color */
-    --waline-bq-color: #272727;
+  /* Special color */
+  --waline-bq-color: #272727;
 
-    /* Other color */
-    --waline-info-bgcolor: #272727;
-    --waline-info-color: #666;
-  }
+  /* Other color */
+  --waline-info-bgcolor: #272727;
+  --waline-info-color: #666;
 }
 ```
 
 If the above colors are different from the darkmode palette of your site, you can override them instead of setting the `dark` option.
 
-::: tip Box Shadow
+## Box Shadow
 
 If you are using a theme that uses shadows (`box-shadow`) instead of borders, you can modify the display effect of Waline by modifying `--waline-border` and `--waline-box-shadow`, e.g.:
 
@@ -91,5 +94,3 @@ If you are using a theme that uses shadows (`box-shadow`) instead of borders, yo
   }
 }
 ```
-
-:::
