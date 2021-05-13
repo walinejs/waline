@@ -2,7 +2,8 @@ import hanabi from 'hanabi';
 import marked from 'marked';
 
 const inlineMathRegExp = /\B\$\b([^\n$]*)\b\$\B/g;
-const blockMathRegExp = /(^|[\r\n]+|<p>|<br>)\$\$([^$]+)\$\$([\r\n]+|<\/p>|<br>|$)/g;
+const blockMathRegExp =
+  /(^|[\r\n]+|<p>|<br>)\$\$([^$]+)\$\$([\r\n]+|<\/p>|<br>|$)/g;
 
 export const parseEmoji = (text, emojiMaps, emojiCDN) => {
   if (!text) {

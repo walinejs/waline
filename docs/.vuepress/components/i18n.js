@@ -13,8 +13,7 @@ export const migrateI18n = {
           >Export2Valine</a
         >
         插件将评论数据导出成 Valine 数据后直接使用。`,
-    tip:
-      'Waline 和 Valine 的 LeanCloud 配置是可以共用的，不需要进行数据转换哦！',
+    tip: 'Waline 和 Valine 的 LeanCloud 配置是可以共用的，不需要进行数据转换哦！',
   },
   '/en/': {
     from: 'Migrate from',
@@ -30,7 +29,6 @@ export const migrateI18n = {
           >Export2Valine Plugin</a
         >
         to export comment data to Valine format.`,
-    tip:
-      'The LeanCloud configuration of Waline and Valine can be shared, no data conversion is required!',
+    tip: 'The LeanCloud configuration of Waline and Valine can be shared, no data conversion is required!',
   },
 };

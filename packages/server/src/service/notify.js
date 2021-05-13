@@ -37,13 +37,8 @@ module.exports = class extends think.Service {
       return;
     }
 
-    const {
-      SITE_NAME,
-      SITE_URL,
-      SMTP_USER,
-      SENDER_EMAIL,
-      SENDER_NAME,
-    } = process.env;
+    const { SITE_NAME, SITE_URL, SMTP_USER, SENDER_EMAIL, SENDER_NAME } =
+      process.env;
     const data = {
       self,
       parent,
@@ -208,12 +203,8 @@ module.exports = class extends think.Service {
 
   async run(comment, parent, disableAuthorNotify = false) {
     const { AUTHOR_EMAIL, BLOGGER_EMAIL } = process.env;
-    const {
-      mailSubject,
-      mailTemplate,
-      mailSubjectAdmin,
-      mailTemplateAdmin,
-    } = think.config();
+    const { mailSubject, mailTemplate, mailSubjectAdmin, mailTemplateAdmin } =
+      think.config();
     const AUTHOR = AUTHOR_EMAIL || BLOGGER_EMAIL;
 
     const mailList = [];
