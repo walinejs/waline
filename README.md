@@ -3,6 +3,7 @@
 # Waline
 
 ![npm version](https://img.shields.io/npm/v/@waline/vercel?color=critical&logo=npm&style=flat-square) ![npm bundle size (scoped)](https://img.shields.io/bundlephobia/minzip/@waline/client?style=flat-square&label=size) ![npm](https://img.shields.io/npm/dm/@waline/vercel?style=flat-square) ![GitHub](https://img.shields.io/github/license/lizheming/waline?style=flat-square) [![telegram](https://img.shields.io/badge/telegram-walinejs-2ca5e0?logo=telegram&style=flat-square)](https://t.me/walinejs)
+[![jsDelivr hits](https://data.jsdelivr.com/v1/package/npm/@waline/client/badge)](https://www.jsdelivr.com/package/npm/@waline/client)
 
 A simple comment system with backend support fork from [Valine](https://valine.js.org).
 
