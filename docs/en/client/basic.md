@@ -183,6 +183,7 @@ Set `Emoji Packet Mapping’, refer to [Custom Emoji](./emoji.md).
 
 Set required fields, default anonymous, optional values:
 
+- `[]`
 - `['nick']`
 - `['nick','mail']`
 
