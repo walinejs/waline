@@ -70,14 +70,23 @@
 
 Waline 已发布到 [npm](https://www.npmjs.com/package/@waline/client)，可以直接安装:
 
+<CodeGroup>
+<CodeGroupItem title="yarn">
+
 ```bash
-# Install waline
-npm i -D @waline/client
-
-# or
-
 yarn add -D @waline/client
 ```
+
+</CodeGroupItem>
+
+<CodeGroupItem title="npm">
+
+```bash
+npm i -D @waline/client
+```
+
+</CodeGroupItem>
+</CodeGroup>
 
 ```js
 // Use import

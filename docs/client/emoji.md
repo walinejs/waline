@@ -9,9 +9,9 @@ new Waline({
   el: '#waline',
   serverURL: '<YOUR SERVER URL>',
 
-  // 这里设置CDN, 默认微博表情CDN
+  // 这里设置 CDN, 默认微博表情 CDN
   emojiCDN: 'https://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/',
-  // 表情title和图片映射
+  // 表情 title 和图片映射
   emojiMaps: {
     smile: 'e3/2018new_weixioa02_org.png',
     lovely: '09/2018new_keai_org.png',
@@ -29,9 +29,9 @@ new Waline({
   el: '#waline',
   serverURL: '<YOUR SERVER URL>',
 
-  // 设置Bilibili表情包地址
+  // 设置 Bilibili 表情包地址
   emojiCDN: '//i0.hdslb.com/bfs/emote/',
-  // 表情title和图片映射
+  // 表情 title 和图片映射
   emojiMaps: {
     tv_doge: '6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png',
     tv_亲亲: 'a8111ad55953ef5e3be3327ef94eb4a39d535d06.png',
@@ -58,3 +58,22 @@ new Waline({
   },
 });
 ```
+
+## 历史问题
+
+::: tip 历史版本的 Emoji
+
+在历史版本中，由于 HTML 标签会被转义，Emoji 图片完全使用 Markdown 的图片语法，这导致历史版本的 Emoji 是由存粹的 `<img>` 标签进行渲染的。如果你使用了高清表情包，可能会产生显示大小问题。在 `@waline/client@0.16.0` 以后，表情 emoji 的大小被成功修复。
+
+如果你需要对历史版本的 Emoji 表情大小进行适配，你可以使用 CSS 选择器做到这一点:
+
+```css
+/* 你需要把 `https://img.t.sinajs.cn` 换成自己的 CDN */
+.v[data-class='v'] .vcontent img[src^=https://img.t.sinajs.cn]
+{
+  width: 1.25em;
+  margin: 0.25em;
+}
+```
+
+:::

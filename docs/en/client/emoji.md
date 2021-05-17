@@ -58,3 +58,22 @@ new Waline({
   },
 });
 ```
+
+## Historical issues
+
+::: tip Emoji Size
+
+In historical versions, since HTML tags will be escaped, Emoji images completely use Markdown's image syntax, which results of Emoji being rendered by the original `<img>` tag in historical versions. If you use a high-definition emoticon pack, it may cause display size problems. After `@waline/client@0.16.0`, the emoji size was successfully repaired.
+
+If you need to adapt the emoji size of the historical version, you can use the CSS selector to do this:
+
+```css
+/* You need to replace `https://img.t.sinajs.cn` with your own CDN */
+.v[data-class='v'] .vcontent img[src^=https://img.t.sinajs.cn]
+{
+  width: 1.25em;
+  margin: 0.25em;
+}
+```
+
+:::

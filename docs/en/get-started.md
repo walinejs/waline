@@ -60,14 +60,23 @@ Set `serverURL` option with the site url in options.
 
 You can use [npm](https://www.npmjs.com/package/@waline/client) to install Waline instead of CDN link. Install in CLI like this:
 
+<CodeGroup>
+<CodeGroupItem title="yarn">
+
 ```bash
-# Install waline
-npm i -D @waline/client
-
-# or
-
 yarn add -D @waline/client
 ```
+
+</CodeGroupItem>
+
+<CodeGroupItem title="npm">
+
+```bash
+npm i -D @waline/client
+```
+
+</CodeGroupItem>
+</CodeGroup>
 
 ```js
 // Use import
