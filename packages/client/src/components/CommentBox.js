@@ -9,7 +9,13 @@ import React, {
 import autosize from 'autosize';
 import cls from 'classnames';
 import { ConfigContext } from '../context';
-import { CloseIcon, EmojiIcon, MarkdownIcon, PreviewIcon } from './Icons';
+import {
+  CloseIcon,
+  EmojiIcon,
+  LoadingIcon,
+  MarkdownIcon,
+  PreviewIcon,
+} from './Icons';
 import {
   getMarkdownParser,
   getWordNumber,
@@ -481,7 +487,7 @@ export default function ({
               disabled={submitting}
               onClick={submitComment}
             >
-              {ctx.locale.submit}
+              {submitting ? <LoadingIcon size={12} /> : ctx.locale.submit}
             </button>
           </div>
 

@@ -1,6 +1,7 @@
 import React, { useCallback, useContext, useEffect, useReducer } from 'react';
 import CommentBox from './components/CommentBox';
 import CommentCard from './components/CommentCard';
+import { LoadingIcon } from './components/Icons';
 import { ConfigContext } from './context';
 import { fetchList } from './utils';
 
@@ -70,8 +71,8 @@ function App({ boxConfig, listConfig, copyRight }) {
         {ctx.locale.comments}
       </div>
       {data.length || !loading ? null : (
-        <div className="vspinner">
-          <i style={{ width: 30, height: 30 }} />
+        <div className="vloading">
+          <LoadingIcon size={30} />
         </div>
       )}
       <div className="vcards">
@@ -86,8 +87,8 @@ function App({ boxConfig, listConfig, copyRight }) {
         ))}
       </div>
       {data.length && loading ? (
-        <div className="vspinner">
-          <i style={{ width: 30, height: 30 }} />
+        <div className="vloading">
+          <LoadingIcon size={30} />
         </div>
       ) : null}
       {!data.length && !loading ? (

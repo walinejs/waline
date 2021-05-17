@@ -60,31 +60,18 @@
     }
 
     &:disabled {
-      border-color: var(--waline-disable-color);
+      border-color: var(--waline-border-color);
       background: var(--waline-disable-bgcolor);
       color: var(--waline-disable-color);
       cursor: not-allowed;
     }
   }
 
-  .vspinner {
+  .vloading {
     text-align: center;
 
-    i {
-      position: relative;
-
-      display: inline-block;
-      vertical-align: middle;
-
-      width: 22px;
-      height: 22px;
-      margin: 0 5px;
-      border: 6px double #888;
-      border-top-color: transparent;
-      border-bottom-color: transparent;
-      border-radius: 50%;
-
-      animation: spin 1s infinite linear;
+    svg {
+      margin: 0 auto;
     }
   }
 }
