@@ -11,7 +11,7 @@
         width: var(--waline-avatar-size);
         height: var(--waline-avatar-size);
         margin-right: 0.75em;
-        border-radius: 50%;
+        border-radius: var(--waline-avatar-radius);
 
         box-shadow: var(--waline-box-shadow);
 
