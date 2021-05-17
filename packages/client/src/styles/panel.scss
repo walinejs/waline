@@ -94,6 +94,7 @@
 
   .vheader {
     display: flex;
+    padding: 0 4px;
     border-bottom: 2px dashed var(--waline-border-color);
     border-top-left-radius: 0.75em;
     border-top-right-radius: 0.75em;
@@ -101,6 +102,7 @@
 
     @media (max-width: 580px) {
       display: block;
+      padding: 0;
     }
 
     .vheader-item {
