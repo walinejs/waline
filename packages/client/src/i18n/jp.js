@@ -1,4 +1,5 @@
 export default {
+  placeholder: 'コメントへようこそ',
   nick: 'ニックネーム',
   mail: 'メールアドレス',
   link: 'サイト(http://)',

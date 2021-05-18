@@ -16,13 +16,17 @@ export const ConfigContext = React.createContext({
 
 export default function Context(props) {
   const locale = locales[props.lang] || locales['zh-CN'];
-  if (typeof props.langMode === 'object') {
-    for (const k in props.langMode) {
-      if (!props.langMode[k]) {
+  if (typeof props.locale === 'object') {
+    for (const k in props.locale) {
+      if (!props.locale[k]) {
         continue;
       }
-      locale[k] = props.langMode[k];
+      locale[k] = props.locale[k];
     }
+  }
+
+  if (props.placeholder && !props.locale.placeholder) {
+    locale.placeholder = props.placeholder;
   }
 
   let initUser = {};
@@ -72,7 +76,7 @@ export default function Context(props) {
           },
     userInfo,
     setUserInfo,
-    anonymous: props.anonymous,
+    login: props.login,
   };
 
   return (

@@ -14,14 +14,6 @@ The DOM element to be mounted on initialization. It must be a valid **CSS select
 
 Waline server address url
 
-## placeholder
-
-- Type: `string`
-- Default: `Just go go...`
-- Required: No
-
-Comment box placeholder
-
 ## wordLimit
 
 - Type: `number | [number, number]`
@@ -175,7 +167,7 @@ Set **Emoji Pack CDN**, refer to [Custom Emoji](./emoji.md).
 
 Set `Emoji Packet Mapping’, refer to [Custom Emoji](./emoji.md).
 
-## requiredFields
+## requiredMeta
 
 - Type: `string[]`
 - Default: `[]`
@@ -194,9 +186,90 @@ Set required fields, default anonymous, optional values:
 
 Custom image upload callback to manage picture by yourself. We will pass a picture file object when execute it.
 
-## anonymous
+## login
+
+- Type: `string`
+- Default value: `'enabled'`
+- Required: No
+
+Login mode status, optional values:
+
+- `'enable'`: enable login (default)
+- `'disable'`: Login is disabled, users should fill in infomation to comment
+- `'force'`: Forced login, users must login to comment
+
+### copyright
+
+- Type: `boolean`
+- Default: `true`
+- Required: No
+
+Whether show copyright and version in footer.
+
+::: tip
+
+We hope you can keep it on to support Waline.
+
+:::
+
+## Deprecated API
+
+### langMode
+
+::: warning Deprecated
+
+Please use `locale` instead.
+
+:::
+
+- Type: `Locale`
+- Required: No
+
+Custom I18N.
+
+### placeholder
+
+::: warning Deprecated
+
+Please use `locale.placeholder` instead.
+
+:::
+
+- Type: `string`
+- Default: `Just go go...`
+- Required: No
+
+Comment box placeholder
+
+### requiredFields
+
+::: warning Deprecated
+
+Please use `requiredMeta` instead.
+
+:::
+
+### anonymous
+
+::: warning Deprecated
+
+Please use `login` instead.
+
+:::
 
 - Type: `boolean`
 - Required: No
 
 Whether to allow login comments. Both supported by default, set to `true` means only support anonymous comments, `false` means only support login comments.
+
+### copyRight
+
+::: danger Removed
+
+Please use `copyright` instead.
+
+:::
+
+- Type: `boolean`
+- Default: `true`
+- Required: No
