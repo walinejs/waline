@@ -5,7 +5,7 @@ import { LoadingIcon } from './components/Icons';
 import { ConfigContext } from './context';
 import { fetchList } from './utils';
 
-function App({ boxConfig, listConfig, copyRight }) {
+function App({ boxConfig, listConfig, copyright }) {
   const ctx = useContext(ConfigContext);
   const [{ page, count, totalPages, loading, data }, dispatch] = useReducer(
     function (state, action) {
@@ -101,7 +101,7 @@ function App({ boxConfig, listConfig, copyRight }) {
           </button>
         </div>
       ) : null}
-      {copyRight ? (
+      {copyright ? (
         <div className="vpower">
           Powered by{' '}
           <a

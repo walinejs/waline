@@ -113,11 +113,10 @@ function onPasteFactory(
 }
 
 export default function ({
-  placeholder,
   meta,
   highlight,
   path,
-  requiredFields,
+  requiredMeta,
   replyId,
   replyUser,
   rootId,
@@ -214,12 +213,15 @@ export default function ({
     const { wordLimit } = ctx;
 
     if (!isLogin) {
-      if (requiredFields.indexOf('nick') > -1 && comment.nick.length < 2) {
+      if (ctx.login === 'force') return;
+
+      if (requiredMeta.indexOf('nick') > -1 && comment.nick.length < 2) {
         inputsRef.nick.current.focus();
         return;
       }
+
       if (
-        requiredFields.indexOf('mail') > -1 &&
+        requiredMeta.indexOf('mail') > -1 &&
         (comment.mail.length < 6 ||
           comment.mail.indexOf('@') < 1 ||
           comment.mail.indexOf('.') < 3)
@@ -227,10 +229,12 @@ export default function ({
         inputsRef.mail.current.focus();
         return;
       }
+
       if (comment.comment === '') {
         editorRef.current.focus();
         return;
       }
+
       comment.nick = comment.nick || 'Anonymous';
     } else {
       comment.nick = ctx.userInfo.display_name;
@@ -352,7 +356,7 @@ export default function ({
         </div>
       ) : null}
 
-      {ctx.anonymous !== true ? (
+      {ctx.login === 'disable' ? null : (
         <div className="vlogin">
           {!ctx.userInfo.token ? (
             <a className="vlogin-btn" role="button" onClick={onLogin}>
@@ -386,10 +390,10 @@ export default function ({
             </div>
           )}
         </div>
-      ) : null}
+      )}
 
       <div className="vpanel">
-        {!ctx.userInfo.token && ctx.anonymous !== false ? (
+        {ctx.login === 'force' || ctx.userInfo.token ? null : (
           <div className={`vheader vheader-${metaFields.length}`}>
             {metaFields.map((kind) => (
               <div className="vheader-item" key={kind}>
@@ -405,13 +409,13 @@ export default function ({
               </div>
             ))}
           </div>
-        ) : null}
+        )}
 
         <textarea
           className="veditor"
           id="vedit"
           ref={editorRef}
-          placeholder={replyUser ? `@${replyUser}` : placeholder}
+          placeholder={replyUser ? `@${replyUser}` : ctx.locale.placeholder}
           onKeyDown={onKeyDown}
           onPaste={onPaste}
           onChange={onChange}

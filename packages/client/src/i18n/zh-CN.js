@@ -1,4 +1,5 @@
 export default {
+  placeholder: '撰写评论...',
   nick: '昵称',
   mail: '邮箱',
   link: '网址',

@@ -13,7 +13,6 @@ import {
 import './styles/index.scss';
 
 export function ReactComponent({
-  placeholder = 'Just Go Go.',
   path = location.pathname,
   avatar,
   avatarForce,
@@ -22,21 +21,29 @@ export function ReactComponent({
   pageSize = 10,
   lang = 'zh-CN',
   langMode = {},
+  locale = langMode,
   highlight,
   serverURL,
   emojiCDN,
   emojiMaps,
   requiredFields = [],
-  copyRight = true,
+  requiredMeta = requiredFields,
+  copyright = true,
   uploadImage,
   anonymous,
+  placeholder,
+  login = anonymous === true
+    ? 'disable'
+    : anonymous === false
+    ? 'force'
+    : 'enable',
   wordLimit = 0,
 } = {}) {
   return (
     <Context
-      anonymous={anonymous}
+      placeholder={placeholder}
       lang={lang}
-      langMode={langMode}
+      locale={locale}
       emojiCDN={emojiCDN}
       emojiMaps={emojiMaps}
       avatar={avatar}
@@ -44,18 +51,18 @@ export function ReactComponent({
       avatarForce={avatarForce}
       uploadImage={uploadImage}
       wordLimit={wordLimit}
+      login={login}
     >
       <App
         boxConfig={{
           serverURL,
-          placeholder,
           meta,
           highlight,
-          requiredFields,
+          requiredMeta,
           path,
         }}
         listConfig={{ path, pageSize, serverURL, avatar }}
-        copyRight={copyRight}
+        copyright={copyright}
       />
     </Context>
   );

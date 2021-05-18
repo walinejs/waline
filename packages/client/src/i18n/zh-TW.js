@@ -1,4 +1,5 @@
 export default {
+  placeholder: '撰寫評論...',
   nick: '暱稱',
   mail: '郵箱',
   link: '網址',

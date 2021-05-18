@@ -1,4 +1,5 @@
 export default {
+  placeholder: 'Welcome to comment',
   nick: 'NickName',
   mail: 'E-Mail',
   link: 'Website',

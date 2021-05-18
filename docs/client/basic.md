@@ -14,14 +14,6 @@ Waline 的初始化挂载器。必须是一个有效的 **CSS 选择器**。
 
 Waline 的服务端地址。
 
-## placeholder
-
-- 类型:`string`
-- 默认值: `'撰写评论...'`
-- 必填: 否
-
-评论框 **占位提示符**。
-
 ## wordLimit
 
 - 类型: `number | [number, number]`
@@ -177,7 +169,7 @@ Waline 的服务端地址。
 
 设置**表情包映射**，参考[自定义表情](./emoji.md)
 
-## requiredFields
+## requiredMeta
 
 - 类型: `string[]`
 - 默认值: `[]`
@@ -196,9 +188,92 @@ Waline 的服务端地址。
 
 自定义图片上传方法，方便更好的存储图片。方法执行时会将图片对象传入。
 
-## anonymous
+## login
+
+- 类型: `string`
+- 默认值: `'enabled'`
+- 必填: 否
+
+登录模式状态，可选值:
+
+- `'enable'`: 启用登录 (默认)
+- `'disable'`: 禁用登录，用户只能填写信息评论
+- `'force'`: 强制登录，用户必须注册并登录才可发布评论
+
+## copyright
+
+- 类型: `boolean`
+- 默认值: `true`
+- 必填: 否
+
+是否显示页脚版权信息。
+
+::: tip
+
+我们希望你保持打开以支持 Waline
+
+:::
+
+## 废弃的 API
+
+以下 API 仍然有效，但它们会在未来某个版本中移除
+
+### langMode
+
+::: warning 已废弃
+
+请使用 `locale`
+
+:::
+
+- 类型: `Locale`
+- 必填: 否
+
+自定义语言。
+
+### placeholder
+
+::: warning 已废弃
+
+请使用 `locale.placeholder`
+
+:::
+
+- 类型: `string`
+- 默认值: `'Just Go GO'`
+- 必填: 否
+
+评论框 **占位提示符**。
+
+### requiredFields
+
+::: warning 已废弃
+
+请使用 `requiredMeta`
+
+:::
+
+### anonymous
+
+::: warning 已废弃
+
+请使用 `login`
+
+:::
 
 - 类型: `boolean`
 - 必填: 否
 
 是否允许登录评论。默认情况是两者都支持，设置为 `true` 表示仅支持匿名评论，`false` 表示仅支持登录评论。
+
+### copyRight
+
+::: danger 已移除
+
+请使用 `copyright`
+
+:::
+
+- 类型: `boolean`
+- 默认值: `true`
+- 必填: 否
