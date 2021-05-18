@@ -69,10 +69,11 @@ new Waline({
 
 ```css
 /* 你需要把 `https://img.t.sinajs.cn` 换成自己的 CDN */
-.v[data-class='v'] .vcontent img[src^=https://img.t.sinajs.cn]
+.v[data-class='v'] .vcontent img[src^="https://img.t.sinajs.cn"]
 {
   width: 1.25em;
   margin: 0.25em;
+  vertical-align: middle;
 }
 ```
 
