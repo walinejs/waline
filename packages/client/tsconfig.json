@@ -5,5 +5,5 @@
     "target": "esnext",
     "rootDir": "./src"
   },
-  "include": ["./src/**/*.ts", "./src/**/*.vue"]
+  "include": ["__tests__/**/*.ts", "./src/**/*.ts", "./src/**/*.vue"]
 }
