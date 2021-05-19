@@ -72,7 +72,7 @@ export const LoadingIcon = ({ size }) => (
       cy="50"
       fill="none"
       stroke="currentColor"
-      strokeWidth="3"
+      strokeWidth="4"
       r="40"
       strokeDasharray="85 30"
     >

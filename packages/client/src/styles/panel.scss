@@ -35,6 +35,12 @@
     line-height: var(--waline-avatar-size);
     text-align: center;
 
+    @media (max-width: 720px) {
+      width: --waline-mobile-avatar-size;
+      height: --waline-mobile-avatar-size;
+      line-height: --waline-mobile-avatar-size;
+    }
+
     &:hover {
       color: var(--waline-theme-color);
     }
@@ -66,6 +72,11 @@
 
     border: 1px solid var(--waline-border-color);
     border-radius: var(--waline-avatar-radius);
+
+    @media (max-width: 720px) {
+      width: --waline-mobile-avatar-size;
+      height: --waline-mobile-avatar-size;
+    }
 
     img {
       width: 100%;
@@ -249,6 +260,12 @@
 
     button {
       margin-left: 0.75em;
+
+      svg {
+        display: block;
+        margin: 0 auto;
+        line-height: 18px;
+      }
     }
   }
 

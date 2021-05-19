@@ -491,7 +491,7 @@ export default function ({
               disabled={submitting}
               onClick={submitComment}
             >
-              {submitting ? <LoadingIcon size={12} /> : ctx.locale.submit}
+              {submitting ? <LoadingIcon size={16} /> : ctx.locale.submit}
             </button>
           </div>
 
