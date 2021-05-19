@@ -1,0 +1,9 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "module": "ESNext",
+    "target": "esnext",
+    "rootDir": "./src"
+  },
+  "include": ["./src/**/*.ts", "./src/**/*.vue"]
+}

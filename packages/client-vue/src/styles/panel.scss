@@ -1,0 +1,332 @@
+.v[data-class='v'] {
+  .vcomment {
+    position: relative;
+    display: flex;
+    margin-bottom: 0.75em;
+  }
+
+  .vclose {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+
+    line-height: 1;
+
+    cursor: pointer;
+  }
+
+  .vlogin {
+    margin-top: 0.75em;
+  }
+
+  .vlogin-btn {
+    display: block;
+
+    width: var(--waline-avatar-size);
+    height: var(--waline-avatar-size);
+    border: 1px solid var(--waline-border-color);
+    border-radius: var(--waline-avatar-radius);
+
+    background: var(--waline-bgcolor);
+    color: var(--waline-text-color);
+    box-shadow: var(--waline-box-shadow);
+
+    font-size: 12px;
+    line-height: var(--waline-avatar-size);
+    text-align: center;
+
+    @media (max-width: 720px) {
+      width: --waline-mobile-avatar-size;
+      height: --waline-mobile-avatar-size;
+      line-height: --waline-mobile-avatar-size;
+    }
+
+    &:hover {
+      color: var(--waline-theme-color);
+    }
+  }
+
+  .vlogin-info {
+    max-width: 80px;
+    text-align: center;
+  }
+
+  .vlogout-btn {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+
+    padding: 3px;
+
+    line-height: 0;
+
+    cursor: pointer;
+  }
+
+  .vavatar {
+    position: relative;
+
+    width: var(--waline-avatar-size);
+    height: var(--waline-avatar-size);
+    margin: 0 auto;
+
+    border: 1px solid var(--waline-border-color);
+    border-radius: var(--waline-avatar-radius);
+
+    @media (max-width: 720px) {
+      width: --waline-mobile-avatar-size;
+      height: --waline-mobile-avatar-size;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: var(--waline-avatar-radius);
+    }
+  }
+
+  .vlogin-nick {
+    display: block;
+    color: var(--waline-theme-color);
+    font-size: 0.75em;
+    word-break: break-all;
+  }
+
+  .vpanel {
+    flex: 1;
+
+    margin: 0.5em;
+    border: var(--waline-border);
+    border-radius: 0.75em;
+
+    background: var(--waline-bgcolor);
+    box-shadow: var(--waline-box-shadow);
+  }
+
+  .vheader {
+    display: flex;
+    padding-left: 4px;
+    border-bottom: 2px dashed var(--waline-border-color);
+    border-top-left-radius: 0.75em;
+    border-top-right-radius: 0.75em;
+    overflow: hidden;
+
+    @media (max-width: 580px) {
+      display: block;
+    }
+
+    .vheader-item {
+      display: flex;
+      flex: 1;
+
+      &:not(:last-child) {
+        @media (max-width: 580px) {
+          border-bottom: 2px dashed var(--waline-border-color);
+        }
+      }
+    }
+
+    &.vheader-1 .vheader-item {
+      width: 100%;
+    }
+
+    &.vheader-2 .vheader-item {
+      width: 50%;
+
+      @media (max-width: 580px) {
+        flex: 0;
+        width: 100%;
+      }
+    }
+
+    &.vheader-3 .vheader-item {
+      width: 33.33%;
+
+      @media (max-width: 580px) {
+        width: 100%;
+      }
+    }
+
+    label {
+      min-width: 40px;
+      padding: 0.75em 0;
+
+      color: var(--waline-text-color);
+
+      font-size: 0.75em;
+      text-align: center;
+    }
+
+    input {
+      flex: 1;
+
+      width: 0;
+      padding: 0.5em;
+
+      background: transparent;
+
+      font-size: 0.625em;
+
+      resize: none;
+    }
+  }
+
+  .veditor,
+  .vinput {
+    max-width: 100%;
+    border: none;
+
+    color: var(--waline-text-color);
+    outline: none;
+
+    transition: all 0.25s ease;
+
+    &:focus {
+      background: var(--waline-bgcolor-light);
+    }
+  }
+
+  .veditor {
+    position: relative;
+
+    width: calc(100% - 1em);
+    min-height: 8.75em;
+    margin: 0.75em 0.5em;
+    border-radius: 0.5em;
+
+    background: transparent;
+
+    font-size: 0.875em;
+
+    resize: vertical;
+  }
+
+  .vpreview {
+    padding: 0 0.5em 0.5em;
+
+    h4 {
+      margin: 0.25em;
+      font-weight: bold;
+      font-size: 0.9375em;
+    }
+
+    .vcontent {
+      min-height: 1.25em;
+      padding: 0.25em;
+      border: 1px solid var(--waline-border-color);
+      border-radius: 0.25em;
+
+      > *:first-child {
+        margin-top: 0;
+      }
+
+      > *:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .vfooter {
+    position: relative;
+    display: flex;
+    margin: 0.5em 0.75em;
+  }
+
+  .vaction {
+    display: flex;
+    flex: 2;
+    align-items: center;
+
+    .vicon {
+      width: 1.5em;
+      height: 1.5em;
+    }
+  }
+
+  .vinfo {
+    display: flex;
+    flex: 3;
+    align-items: center;
+    justify-content: flex-end;
+
+    .vtext-number {
+      color: var(--waline-info-color);
+      font-size: 0.75em;
+
+      .illegal {
+        color: #f00;
+      }
+    }
+
+    button {
+      margin-left: 0.75em;
+
+      svg {
+        display: block;
+        margin: 0 auto;
+        line-height: 18px;
+      }
+    }
+  }
+
+  .vemoji-wrapper {
+    position: absolute;
+    top: 100%;
+    left: 1.25em;
+    z-index: 10;
+
+    overflow: auto;
+
+    max-width: 526px;
+    max-height: 145px;
+    padding: 0.5em;
+    border: var(--waline-border);
+    border-radius: 1em;
+
+    background: var(--waline-bgcolor);
+    box-shadow: var(--waline-box-shadow);
+
+    font-style: normal;
+
+    &::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    &::-webkit-scrollbar-track-piece {
+      -webkit-border-radius: 6px;
+      border-radius: 6px;
+      background: rgba(0, 0, 0, 0.1);
+    }
+
+    &::-webkit-scrollbar-thumb:vertical {
+      height: 6px;
+      -webkit-border-radius: 6px;
+      border-radius: 6px;
+      background: var(--waline-theme-color);
+    }
+
+    i {
+      display: inline-block;
+      vertical-align: middle;
+
+      width: 2em;
+      margin: 0.125em;
+
+      line-height: 2;
+      text-align: center;
+
+      cursor: pointer;
+
+      &:hover {
+        background: var(--waline-bgcolor-light);
+      }
+    }
+
+    .vemoji {
+      display: inline-block;
+      vertical-align: middle;
+      max-width: 1.5em;
+    }
+  }
+}

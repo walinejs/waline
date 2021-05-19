@@ -6,3 +6,6 @@ docs/.vuepress/components/csv.js
 
 # output files
 dist/
+
+# temp files
+.temp/

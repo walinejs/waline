@@ -1,0 +1,77 @@
+.v[data-class='v'] {
+  .vicon {
+    position: relative;
+
+    display: inline-block;
+    vertical-align: middle;
+
+    text-align: center;
+
+    cursor: pointer;
+    fill: var(--waline-text-color);
+
+    &:hover {
+      fill: var(--waline-theme-color);
+    }
+
+    &.actived {
+      fill: var(--waline-active-color);
+    }
+
+    + .vicon {
+      margin-left: 6px;
+    }
+  }
+
+  .vbtn {
+    display: inline-block;
+    vertical-align: middle;
+
+    min-width: 2.5em;
+    margin-bottom: 0;
+    padding: 0.5em 1em;
+    border: 1px solid var(--waline-border-color);
+    border-radius: 0.5em;
+
+    background: transparent;
+    color: var(--waline-text-color);
+    outline: none;
+
+    font-weight: 400;
+    font-size: 0.75em;
+    line-height: 1.5;
+    text-align: center;
+    white-space: nowrap;
+
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    transition-duration: 0.4s;
+
+    touch-action: manipulation;
+
+    &:hover,
+    &:active {
+      border-color: var(--waline-theme-color);
+      color: var(--waline-theme-color);
+    }
+
+    &:disabled {
+      border-color: var(--waline-border-color);
+      background: var(--waline-disable-bgcolor);
+      color: var(--waline-disable-color);
+      cursor: not-allowed;
+    }
+  }
+
+  .vloading {
+    text-align: center;
+
+    svg {
+      margin: 0 auto;
+    }
+  }
+}

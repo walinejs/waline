@@ -1,0 +1,75 @@
+.v[data-class='v'] {
+  .vclose-icon {
+    color: var(--waline-border-color);
+  }
+
+  .vcontent {
+    .vemoji {
+      display: inline-block;
+      vertical-align: middle;
+      width: 1.25em;
+      margin: 0.25em;
+    }
+
+    .vtex {
+      background: var(--waline-info-bgcolor);
+      color: var(--waline-info-color);
+    }
+
+    span.vtex {
+      display: inline-block;
+      margin-right: 0.25em;
+      padding: 2px 4px;
+      border-radius: 0.2em;
+      font-size: var(--waline-info-font-size);
+      line-height: 1.5;
+    }
+
+    p.vtex {
+      text-align: center;
+    }
+
+    .katex-display {
+      padding-top: 0.2em;
+      padding-bottom: 0.2em;
+      overflow: auto hidden;
+      -webkit-overflow-scrolling: touch;
+
+      &::-webkit-scrollbar {
+        height: 3px;
+      }
+    }
+
+    .katex-error {
+      color: red;
+    }
+  }
+
+  .vcount {
+    padding: 0.375em;
+    font-weight: bold;
+    font-size: 1.25em;
+  }
+
+  .vempty {
+    overflow: auto;
+    padding: 1.25em;
+    color: var(--waline-text-color);
+    text-align: center;
+  }
+
+  .vmore {
+    text-align: center;
+
+    button {
+      margin: 1em 0;
+    }
+  }
+
+  .vpower {
+    padding: 0.5em 0;
+    color: var(--waline-light-grey);
+    font-size: var(--waline-info-font-size);
+    text-align: right;
+  }
+}

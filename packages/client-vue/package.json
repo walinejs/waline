@@ -1,0 +1,44 @@
+{
+  "name": "@waline/client-vue",
+  "description": "client for waline comment system",
+  "version": "0.15.0",
+  "keywords": [
+    "valine",
+    "waline",
+    "comment",
+    "blog"
+  ],
+  "browser": "dist/Waline.min.js",
+  "main": "dist/Waline.min.js",
+  "types": "dist/Waline.min.d.ts",
+  "repository": {
+    "url": "https://github.com/lizheming/waline"
+  },
+  "scripts": {
+    "analyze": "cross-env ANALYZE=true webpack --mode=production",
+    "build": "webpack --mode=production",
+    "dev": "webpack serve --mode=development",
+    "prepublish": "npm run build"
+  },
+  "browserslist": {
+    "production": [
+      ">0.5%",
+      "not dead",
+      "not ie 11",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/autosize": "^3.0.7",
+    "@types/marked": "^2.0.2",
+    "autosize": "^4.0.2",
+    "hanabi": "^0.4.0",
+    "marked": "^2.0.3",
+    "vue": "^3.0.0"
+  }
+}
