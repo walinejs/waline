@@ -25,27 +25,31 @@ const domRender = (config: Config): void => {
   updateCommentCount(serverURL);
 };
 
-function Waline(
-  options: WalineOptions
-): { update: (options: Partial<WalineOptions>) => void } | void {
+export interface WalineInstance {
+  update: (options: Partial<WalineOptions>) => void;
+  destroy: () => void;
+}
+
+function Waline(options: WalineOptions): WalineInstance | void {
   let temp = options;
   const config = ref(getConfig(options));
 
-  if (checkOptions(options)) {
-    // darkmode support
-    if (options.dark) injectDarkStyle(options.dark);
+  if (!checkOptions(options)) return;
 
-    // mathml
-    window.addEventListener('load', registerMathML);
+  // darkmode support
+  if (options.dark) injectDarkStyle(options.dark);
 
-    domRender(config.value);
+  // mathml
+  window.addEventListener('load', registerMathML);
 
-    // mount waline
-    createApp(App)
-      .provide('config', config)
-      .provide('version', VERSION)
-      .mount(options.el || '#waline');
-  }
+  domRender(config.value);
+
+  // mount waline
+  const app = createApp(App)
+    .provide('config', config)
+    .provide('version', VERSION);
+
+  app.mount(options.el || '#waline');
 
   return {
     update: (newOptons: Partial<WalineOptions>): void => {
@@ -53,6 +57,9 @@ function Waline(
 
       config.value = getConfig(temp);
       domRender(config.value);
+    },
+    destroy: (): void => {
+      app.unmount();
     },
   };
 }
