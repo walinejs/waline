@@ -4,7 +4,7 @@
       class="vuser"
       :src="
         comment.avatar ||
-        `${config.avatarCDN}${comment.mail}${config.avatarParams}`
+        `${config.avatarCDN}${comment.mail}${config.avatarParam}`
       "
     />
     <div class="vcard">

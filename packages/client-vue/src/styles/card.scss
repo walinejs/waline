@@ -16,8 +16,8 @@
         box-shadow: var(--waline-box-shadow);
 
         @media (max-width: 720px) {
-          width: --waline-mobile-avatar-size;
-          height: --waline-mobile-avatar-size;
+          width: var(--waline-mobile-avatar-size);
+          height: var(--waline-mobile-avatar-size);
         }
       }
 
@@ -190,8 +190,8 @@
       border-left: 1px dashed rgba(237, 237, 237, 0.5);
 
       .vuser {
-        width: --waline-mobile-avatar-size;
-        height: --waline-mobile-avatar-size;
+        width: var(--waline-mobile-avatar-size);
+        height: var(--waline-mobile-avatar-size);
       }
     }
   }

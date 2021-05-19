@@ -36,9 +36,9 @@
     text-align: center;
 
     @media (max-width: 720px) {
-      width: --waline-mobile-avatar-size;
-      height: --waline-mobile-avatar-size;
-      line-height: --waline-mobile-avatar-size;
+      width: var(--waline-mobile-avatar-size);
+      height: var(--waline-mobile-avatar-size);
+      line-height: var(--waline-mobile-avatar-size);
     }
 
     &:hover {
@@ -74,8 +74,8 @@
     border-radius: var(--waline-avatar-radius);
 
     @media (max-width: 720px) {
-      width: --waline-mobile-avatar-size;
-      height: --waline-mobile-avatar-size;
+      width: var(--waline-mobile-avatar-size);
+      height: var(--waline-mobile-avatar-size);
     }
 
     img {
