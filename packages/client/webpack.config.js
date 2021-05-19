@@ -2,13 +2,14 @@ const path = require('path');
 const webpack = require('webpack');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const { VueLoaderPlugin } = require('vue-loader');
 const { version } = require('./package.json');
 
 const pkgName = 'Waline';
 
 module.exports = {
   entry: {
-    [`${pkgName}.min`]: path.resolve(__dirname, 'src/index.js'),
+    [`${pkgName}.min`]: path.resolve(__dirname, 'src/index.ts'),
   },
 
   output: {
@@ -17,6 +18,10 @@ module.exports = {
     library: pkgName,
     libraryExport: 'default',
     libraryTarget: 'umd',
+  },
+
+  resolve: {
+    extensions: ['.ts', '.mjs', '.js', '.vue', '.json'],
   },
 
   devtool: 'source-map',
@@ -38,15 +43,36 @@ module.exports = {
         ],
       },
       {
-        test: /\.jsx?$/,
+        test: /\.ts?$/,
+        use: [
+          {
+            loader: 'ts-loader',
+            options: {
+              transpileOnly: true,
+              appendTsSuffixTo: ['\\.vue$'],
+              happyPackMode: false,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.js?$/,
         exclude: /node_modules/,
         use: 'babel-loader?cacheDirectory',
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader',
       },
     ],
   },
 
   plugins: [
-    new webpack.DefinePlugin({ VERSION: JSON.stringify(version) }),
+    new VueLoaderPlugin(),
+    new webpack.DefinePlugin({
+      __VUE_OPTIONS_API__: false,
+      VERSION: JSON.stringify(version),
+    }),
     ...(process.env.ANALYZE
       ? [
           new BundleAnalyzerPlugin({

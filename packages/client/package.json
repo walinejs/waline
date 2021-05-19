@@ -10,12 +10,15 @@
   ],
   "browser": "dist/Waline.min.js",
   "main": "dist/Waline.min.js",
+  "types": "dist/Waline.min.d.ts",
   "repository": {
     "url": "https://github.com/lizheming/waline"
   },
   "scripts": {
     "analyze": "cross-env ANALYZE=true webpack --mode=production",
-    "build": "webpack --mode=production",
+    "build": "npm run build:webpack && npm run build:rollup",
+    "build:rollup": "rollup -c rollup.config.js",
+    "build:webpack": "webpack --mode=production",
     "dev": "webpack serve --mode=development",
     "prepublish": "npm run build"
   },
@@ -33,12 +36,11 @@
     ]
   },
   "devDependencies": {
-    "anujs": "^1.7.5",
+    "@types/autosize": "^3.0.7",
+    "@types/marked": "^2.0.2",
     "autosize": "^4.0.2",
-    "classnames": "^2.3.1",
     "hanabi": "^0.4.0",
     "marked": "^2.0.3",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "vue": "^3.0.0"
   }
 }

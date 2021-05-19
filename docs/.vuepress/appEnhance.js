@@ -1,7 +1,7 @@
 import MigrationTool from './components/MigrationTool.vue';
 
 function waline() {
-  const Waline = require('@waline/client-vue');
+  const Waline = require('@waline/client');
 
   new Waline({
     el: '#waline-comment',
