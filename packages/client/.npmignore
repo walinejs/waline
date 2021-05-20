@@ -1,6 +1,9 @@
-node_modules
-src
+node_modules/
+src/
+
 .babelrc
 .env
 .gitignore
+
+rollup.config.js
 webpack.config.js

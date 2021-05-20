@@ -25,6 +25,7 @@
 
   // avatar
   --waline-avatar-size: 3.25rem;
+  --waline-mobile-avatar-size: calc(var(--waline-avatar-size) * 9 / 13);
 
   // badge
   --waline-badge-color: #3498db;

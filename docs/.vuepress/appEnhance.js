@@ -2,13 +2,14 @@ import MigrationTool from './components/MigrationTool.vue';
 
 function waline() {
   const Waline = require('@waline/client');
+
   new Waline({
     el: '#waline-comment',
     serverURL: 'https://waline.vercel.app',
     path: window.location.pathname,
     visitor: true,
     lang: location.pathname.startsWith('/en/') ? 'en' : 'zh-CN',
-    langMode: {
+    locale: {
       admin: location.pathname.startsWith('/en/')
         ? 'Administrator'
         : '可爱的管理员',
@@ -76,8 +77,8 @@ function renderWaline(router) {
   router.afterEach((_) => {
     let $page = document.querySelector('.page,.home .theme-default-content');
     let tips = renderTips();
-
     let container = document.getElementById('waline-comment');
+
     if (container) {
       $page.removeChild(container);
     }

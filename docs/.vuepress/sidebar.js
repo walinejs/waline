@@ -1,6 +1,11 @@
 module.exports = (lang, titles) =>
   [
-    [lang + '/get-started.md', lang + '/intro.md', lang + '/syntax.md'],
+    [
+      lang + '/get-started.md',
+      lang + '/intro.md',
+      lang + '/syntax.md',
+      lang + '/ecosystem.md',
+    ],
     [lang + '/client/basic.md', lang + '/server/basic.md'],
     [
       lang + '/server/notification.md',
@@ -19,7 +24,6 @@ module.exports = (lang, titles) =>
       !lang ? '/server/cloudbase.md' : undefined,
       lang + '/server/vps-deploy.md',
       lang + '/development.md',
-      lang + '/client/other.md',
       lang + '/api.md',
       lang + '/faq.md',
     ].filter((v) => v),
