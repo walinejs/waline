@@ -179,7 +179,7 @@ export interface WalineOptions {
    *
    * @see [I18n](https://waline.js.org/en/client/i18n.html)
    */
-  locale?: Locale;
+  locale?: Partial<Locale>;
 
   /**
    * 文章访问量统计
