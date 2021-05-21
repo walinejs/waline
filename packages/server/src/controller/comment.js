@@ -340,9 +340,7 @@ module.exports = class extends BaseRest {
 
     await this.hook('postSave', resp, pComment);
     think.logger.debug(`Comment post hooks postSave done!`);
-    return this.success(
-      await formatCmt(resp, [userInfo], this.config())
-    );
+    return this.success(await formatCmt(resp, [userInfo], this.config()));
   }
 
   async putAction() {

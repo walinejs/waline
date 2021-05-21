@@ -2,6 +2,7 @@
   "name": "waline",
   "private": true,
   "workspaces": [
+    "example/",
     "packages/*"
   ],
   "scripts": {
@@ -11,7 +12,7 @@
     "client:analyze": "npm run analyze --workspace=@waline/client",
     "client:build": "npm run build:webpack --workspace=@waline/client && npm run build:rollup --workspace=@waline/client",
     "client:dev": "npm run dev --workspace=@waline/client",
-    "server:dev": "env && vercel dev ./example --listen 9090",
+    "server:dev": "vercel dev ./example --listen 9090",
     "docs:build": "vuepress build docs",
     "docs:dev": "vuepress dev docs",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
@@ -67,6 +68,7 @@
     "ts-loader": "^9.1.2",
     "typescript": "^4.2.4",
     "url-loader": "^4.1.1",
+    "vercel": "^22.0.1",
     "vue-loader": "^16.1.2",
     "vuepress": "2.0.0-beta.14",
     "webpack": "^5.37.0",

@@ -106,7 +106,7 @@ module.exports = {
               el: '#waline',
               path: '/',
               visitor: true,
-              serverURL: 'http://localhost:9090'
+              serverURL: '${process.env.SERVERURL || 'http://localhost:9090'}'
             });
           </script>
         </body>
