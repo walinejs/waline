@@ -32,7 +32,7 @@
         v-text="locale.more"
       />
     </div>
-    <div v-if="copyright" class="vpower">
+    <div v-if="config.copyright" class="vpower">
       Powered by
       <a
         href="https://github.com/lizheming/Waline"
@@ -47,7 +47,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, inject, onMounted, ref } from 'vue';
+import { computed, defineComponent, inject, onMounted, ref } from 'vue';
 import CommentBox from './components/CommentBox.vue';
 import CommentCard from './components/CommentCard.vue';
 import { LoadingIcon } from './components/Icons';
@@ -76,6 +76,8 @@ export default defineComponent({
     const totalPages = ref(0);
     const loading = ref(true);
     const data = ref<Comment[]>([]);
+
+    const locale = computed(() => config.value.locale);
 
     const fetchComment = (): void => {
       loading.value = true;
@@ -121,20 +123,27 @@ export default defineComponent({
       } else data.value.unshift(comment);
     };
 
-    event.on('update', () => fetchComment());
+    event.on('update', () => {
+      loading.value = true;
+      data.value = [];
+      fetchComment();
+    });
 
     onMounted(() => fetchComment());
 
     return {
-      copyright: config.value.copyright,
+      config,
+      locale,
+
       count,
       data,
       loading,
-      loadMore,
-      locale: config.value.locale,
-      onSubmit,
       page,
       totalPages,
+
+      loadMore,
+      onSubmit,
+
       version: VERSION,
     };
   },

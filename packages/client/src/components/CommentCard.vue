@@ -100,6 +100,8 @@ export default defineComponent({
   setup(props, { emit }) {
     const config = inject<ConfigRef>('config') as ConfigRef;
 
+    const locale = computed(() => config.value.locale);
+
     const link = computed(() => {
       let { link } = props.comment;
 
@@ -112,7 +114,7 @@ export default defineComponent({
 
     return {
       config,
-      locale: config.value.locale,
+      locale,
 
       onSubmit,
       link,

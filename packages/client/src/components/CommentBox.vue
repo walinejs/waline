@@ -167,7 +167,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, inject, reactive, ref, watch } from 'vue';
+import { computed, defineComponent, inject, reactive, ref, watch } from 'vue';
 import autosize from 'autosize';
 
 import {
@@ -252,6 +252,8 @@ export default defineComponent({
     });
 
     const isSubmitting = ref(false);
+
+    const locale = computed(() => config.value.locale);
 
     const onEditorChange = (textArea: HTMLTextAreaElement): void => {
       const content = textArea.value;
@@ -497,7 +499,7 @@ export default defineComponent({
     return {
       // config
       config,
-      locale: config.value.locale,
+      locale,
 
       // events
       insertAtCursor,
