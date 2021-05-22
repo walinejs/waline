@@ -15,6 +15,9 @@ features:
   - title: Comment the way you like
     details: Full Markdown support, with emoji, mathematical formulas and HTML embedding support
 
+  - title: LightWeight
+    details: 53kb gzip Size
+
   - title: Improved Security
     details: Content verification, anti-irrigation, protection of sensitive data, etc.
 
