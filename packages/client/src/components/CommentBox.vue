@@ -324,6 +324,7 @@ export default defineComponent({
     const submitComment = (): void => {
       const {
         serverURL,
+        lang,
         emojiCDN,
         emojiMaps,
         login,
@@ -383,7 +384,12 @@ export default defineComponent({
 
       isSubmitting.value = true;
 
-      postComment({ serverURL, token: userInfo.value?.token, comment }).then(
+      postComment({
+        serverURL,
+        lang,
+        token: userInfo.value?.token,
+        comment,
+      }).then(
         (resp) => {
           isSubmitting.value = false;
 

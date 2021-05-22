@@ -24,7 +24,7 @@ const domRender = (config: Config): void => {
   const { path, serverURL, visitor } = config;
 
   // visitor count
-  if (visitor) updateVisitor({ path, serverURL });
+  if (visitor) updateVisitor({ serverURL, path });
 
   // comment count
   updateCommentCount(serverURL);

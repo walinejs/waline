@@ -54,6 +54,7 @@ export const fetchList = ({
 
 export interface PostCommentOptions {
   serverURL: string;
+  lang: string;
   token?: string;
   comment: CommentData;
 }
@@ -65,10 +66,11 @@ export interface PostCommentResponse {
 
 export const postComment = ({
   serverURL,
+  lang,
   token,
   comment,
 }: PostCommentOptions): Promise<PostCommentResponse> => {
-  const url = `${serverURL}/comment`;
+  const url = `${serverURL}/comment?lang=${lang}`;
 
   const headers: Record<string, string> = {
     'Content-Type': 'application/json',
