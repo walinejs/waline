@@ -2,6 +2,7 @@
   "name": "@waline/client",
   "description": "client for waline comment system",
   "version": "0.17.0",
+  "license": "GNU",
   "keywords": [
     "valine",
     "waline",
