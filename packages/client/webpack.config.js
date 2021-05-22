@@ -46,6 +46,10 @@ module.exports = {
         test: /\.ts?$/,
         use: [
           {
+            loader: 'babel-loader',
+            options: { cacheDirectory: true },
+          },
+          {
             loader: 'ts-loader',
             options: {
               transpileOnly: true,
