@@ -106,7 +106,7 @@ module.exports = {
           <div id="waline" style="max-width: 800px;margin: 0 auto;"></div>
           ${htmlWebpackPlugin.tags.bodyTags}
           <script>
-            new Waline({
+            const waline = new Waline({
               el: '#waline',
               path: '/',
               visitor: true,

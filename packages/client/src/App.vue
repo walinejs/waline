@@ -69,7 +69,7 @@ export default defineComponent({
 
   setup() {
     const config = inject<ConfigRef>('config') as ConfigRef;
-    const event = inject<Emitter>('emit') as Emitter;
+    const event = inject<Emitter>('event') as Emitter;
 
     const count = ref(0);
     const page = ref(1);
