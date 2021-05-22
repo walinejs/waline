@@ -66,8 +66,8 @@ POST /comment
 | url       | string | Article id for comment              |
 | at        | string | comment nick name which one replied |
 
+## Reading statistics
 
-## Reading statistics 
 ### Get reading statistics
 
 Get the number of readings corresponding to an article or multiple articles.
@@ -77,14 +77,13 @@ GET /article
 ```
 
 **Parameters**:
-| Parameter | Type   | Description                                                         |
+| Parameter | Type | Description |
 | --------- | ------ | ------------------------------------------------------------------- |
-| path      | string | Article id for comment，multiple ids should be spliced with commas. |
+| path | string | Article id for comment，multiple ids should be spliced with commas. |
 
 ### Update reading statistics
 
 Update the reading count of an article.
-
 
 ```http
 POST /article
