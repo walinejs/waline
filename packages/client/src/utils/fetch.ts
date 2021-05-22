@@ -58,11 +58,16 @@ export interface PostCommentOptions {
   comment: CommentData;
 }
 
+export interface PostCommentResponse {
+  data: unknown;
+  errmsg?: string;
+}
+
 export const postComment = ({
   serverURL,
   token,
   comment,
-}: PostCommentOptions) => {
+}: PostCommentOptions): Promise<PostCommentResponse> => {
   const url = `${serverURL}/comment`;
 
   const headers: Record<string, string> = {
@@ -75,5 +80,5 @@ export const postComment = ({
     method: 'POST',
     headers,
     body: JSON.stringify(comment),
-  }).then((resp) => resp.json());
+  }).then((resp) => resp.json() as Promise<PostCommentResponse>);
 };

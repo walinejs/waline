@@ -23,7 +23,7 @@ module.exports = (lang, titles) =>
       lang + '/server/databases.md',
       !lang ? '/server/cloudbase.md' : undefined,
       lang + '/server/vps-deploy.md',
-      lang + '/development.md',
+      lang + '/contribution.md',
       lang + '/api.md',
       lang + '/faq.md',
     ].filter((v) => v),

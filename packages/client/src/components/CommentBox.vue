@@ -302,7 +302,7 @@ export default defineComponent({
 
       if (files.length) {
         files.forEach((file) => {
-          const uploadText = `![Uploading ${file['name']}]()`;
+          const uploadText = `![${config.value.locale.uploading} ${file['name']}]()`;
 
           insert(target as HTMLTextAreaElement, uploadText);
 

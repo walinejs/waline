@@ -17,7 +17,7 @@ const USER_KEY = 'WALINE_USER';
 
 export const useUserInfo = (): {
   userInfo: UserInfoRef;
-  setUserInfo: (userInfo: UserInfo) => void;
+  setUserInfo: (userInfo: UserInfo | null) => void;
 } => {
   const userInfo = ref<UserInfo | null>(null);
 
