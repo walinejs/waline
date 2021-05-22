@@ -1,3 +1,4 @@
+import mitt from 'mitt';
 import { createApp, ref } from 'vue';
 import { checkOptions, getConfig } from './config';
 import {
@@ -8,7 +9,6 @@ import {
 } from './utils';
 import { RecentComments } from './widget';
 import App from './App.vue';
-
 import type { Config, WalineOptions } from './config';
 
 export type { Locale as WalineLocale, WalineOptions } from './config';
@@ -17,6 +17,8 @@ export type { Comment as WalineComment } from './typings';
 import './styles/index.scss';
 
 declare const VERSION: string;
+
+const event = mitt();
 
 const domRender = (config: Config): void => {
   const { path, serverURL, visitor } = config;
@@ -51,6 +53,7 @@ function Waline(options: WalineOptions): WalineInstance | void {
   // mount waline
   const app = createApp(App)
     .provide('config', config)
+    .provide('event', event)
     .provide('version', VERSION);
 
   app.mount(options.el || '#waline');
@@ -60,6 +63,7 @@ function Waline(options: WalineOptions): WalineInstance | void {
       temp = { ...temp, ...newOptions };
 
       config.value = getConfig(temp);
+      event.emit('update');
       domRender(config.value);
     },
     destroy: (): void => {

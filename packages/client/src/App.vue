@@ -53,6 +53,7 @@ import CommentCard from './components/CommentCard.vue';
 import { LoadingIcon } from './components/Icons';
 import { fetchList } from './utils';
 
+import type { Emitter } from 'mitt';
 import type { Comment, ConfigRef } from './typings';
 
 declare const VERSION: string;
@@ -68,11 +69,28 @@ export default defineComponent({
 
   setup() {
     const config = inject<ConfigRef>('config') as ConfigRef;
+    const event = inject<Emitter>('emit') as Emitter;
+
     const count = ref(0);
     const page = ref(1);
     const totalPages = ref(0);
     const loading = ref(true);
     const data = ref<Comment[]>([]);
+
+    const fetchComment = (): void => {
+      loading.value = true;
+
+      fetchList({ ...config.value, page: page.value })
+        .then((resp) => {
+          loading.value = false;
+          data.value = resp.data;
+          count.value = resp.count;
+          totalPages.value = resp.totalPages;
+        })
+        .catch(() => {
+          loading.value = false;
+        });
+    };
 
     const loadMore = (): void => {
       const nextPage = page.value + 1;
@@ -103,18 +121,9 @@ export default defineComponent({
       } else data.value.unshift(comment);
     };
 
-    onMounted(() => {
-      fetchList({ ...config.value, page: page.value })
-        .then((resp) => {
-          loading.value = false;
-          data.value.push(...resp.data);
-          count.value = resp.count;
-          totalPages.value = resp.totalPages;
-        })
-        .catch(() => {
-          loading.value = false;
-        });
-    });
+    event.on('update', () => fetchComment());
+
+    onMounted(() => fetchComment());
 
     return {
       copyright: config.value.copyright,
