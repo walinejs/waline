@@ -281,7 +281,7 @@ export interface WalineOptions {
   login?: 'enable' | 'disable' | 'force';
 
   /**
-   * @deprecated Use `login` instead, will be dropped in V1
+   * @deprecated Use `login` instead, will be dropped in future versions of V1
    *
    * 是否允许登录评论
    *
@@ -309,17 +309,17 @@ export interface WalineOptions {
   copyright?: boolean;
 
   /**
-   * @deprecated Use `locale.placeholder` instead, will be dropped in V1
+   * @deprecated Use `locale.placeholder` instead, will be dropped in future versions of V1
    */
   placeholder?: string;
 
   /**
-   * @deprecated Use `locale` instead, will be dropped in V1
+   * @deprecated Use `locale` instead, will be dropped in future versions of V1
    */
   langMode?: Locale;
 
   /**
-   * @deprecated Use `requiredMeta` instead, will be dropped in V1
+   * @deprecated Use `requiredMeta` instead, will be dropped in future versions of V1
    */
   requiredFields?: Meta[];
 }
