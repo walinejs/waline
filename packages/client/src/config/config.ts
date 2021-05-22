@@ -11,6 +11,7 @@ import { locales } from './i18n';
 
 import { decodePath } from '../utils';
 
+import type { Locale } from './i18n';
 import type { WalineOptions } from './options';
 
 export const checkOptions = (options: WalineOptions): boolean => {
@@ -48,7 +49,6 @@ export interface Config
         | 'el'
         | 'path'
         | 'lang'
-        | 'locale'
         | 'emojiCDN'
         | 'emojiMaps'
         | 'meta'
@@ -61,6 +61,7 @@ export interface Config
       >
     >,
     Pick<WalineOptions, 'dark' | 'serverURL' | 'visitor' | 'highlight'> {
+  locale: Locale;
   wordLimit: [number, number] | false;
 
   avatarParam: string;

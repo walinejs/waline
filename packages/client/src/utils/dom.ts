@@ -32,10 +32,9 @@ export const registerMathML = (): void => {
       "'><mspace height='23px' width='77px'></mspace></math></div>"
   );
   const div = document.body.firstChild as HTMLElement;
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  const box = (
-    div.firstChild!.firstChild as HTMLElement
-  ).getBoundingClientRect();
+  const box =
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    (div.firstChild!.firstChild as HTMLElement).getBoundingClientRect();
 
   document.body.removeChild(div);
 

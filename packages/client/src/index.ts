@@ -11,6 +11,9 @@ import App from './App.vue';
 
 import type { Config, WalineOptions } from './config';
 
+export type { Locale as WalineLocale, WalineOptions } from './config';
+export type { Comment as WalineComment } from './typings';
+
 import './styles/index.scss';
 
 declare const VERSION: string;
@@ -30,6 +33,7 @@ export interface WalineInstance {
   destroy: () => void;
 }
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 function Waline(options: WalineOptions): WalineInstance | void {
   let temp = options;
   const config = ref(getConfig(options));
