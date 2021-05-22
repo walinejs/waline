@@ -33,6 +33,7 @@ const {
 
 let storage = 'leancloud';
 let jwtKey = JWT_TOKEN || LEAN_KEY;
+
 if (LEAN_KEY) {
   storage = 'leancloud';
 } else if (MONGO_DB) {
@@ -58,10 +59,7 @@ if (think.env === 'cloudbase' && storage === 'sqlite') {
   throw new Error("You can't use SQLite in CloudBase platform.");
 }
 
-let forbiddenWords = [];
-if (FORBIDDEN_WORDS) {
-  forbiddenWords = FORBIDDEN_WORDS.split(/\s*,\s*/);
-}
+const forbiddenWords = FORBIDDEN_WORDS ? FORBIDDEN_WORDS.split(/\s*,\s*/) : [];
 
 const isFalse = (content) => content && content.toLowerCase() === 'false';
 

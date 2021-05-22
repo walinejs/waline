@@ -12,7 +12,7 @@ module.exports = class extends think.Controller {
     <body>
       <div id="waline" style="max-width: 800px;margin: 0 auto;"></div> <script src="https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js"></script>
       <script>
-        new Waline({
+        const waline = new Waline({
           el: '#waline',
           path: '/',
           serverURL: location.protocol + '//' + location.host + location.pathname.replace(/\\/+$/, '')

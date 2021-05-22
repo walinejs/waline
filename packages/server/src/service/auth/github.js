@@ -30,6 +30,7 @@ module.exports = class extends Base {
       form: params,
       json: true,
     });
+
     return body;
   }
 
@@ -52,6 +53,7 @@ module.exports = class extends Base {
         },
         json: true,
       });
+
       if (emails.length) {
         userInfo.email = emails[0].email;
       }
@@ -75,17 +77,21 @@ module.exports = class extends Base {
     const signinUrl =
       this.getCompleteUrl('/oauth/github') + '?' + qs.stringify(params);
     const AUTH_URL = this.getAuthUrl({ rdUrl: signinUrl });
+
     app.redirect(AUTH_URL);
+
     return app.success();
   }
 
   async getUserInfo() {
     const { code } = this.app.get();
+
     if (!code) {
       return this.redirect();
     }
 
     const accessTokenInfo = await this.getAccessToken({ code });
+
     return this.getUserInfoByToken(accessTokenInfo);
   }
 };

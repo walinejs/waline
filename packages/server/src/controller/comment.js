@@ -55,17 +55,13 @@ module.exports = class extends BaseRest {
 
   async getAction() {
     const { type } = this.get();
+
     switch (type) {
       case 'recent': {
         const { count } = this.get();
         const comments = await this.modelInstance.select(
-          {
-            status: ['NOT IN', ['waiting', 'spam']],
-          },
-          {
-            desc: 'insertedAt',
-            limit: count,
-          }
+          { status: ['NOT IN', ['waiting', 'spam']] },
+          { desc: 'insertedAt', limit: count }
         );
 
         const userModel = this.service(
@@ -75,6 +71,7 @@ module.exports = class extends BaseRest {
         const user_ids = Array.from(
           new Set(comments.map(({ user_id }) => user_id).filter((v) => v))
         );
+
         let users = [];
         if (user_ids.length) {
           users = await userModel.select(
@@ -99,27 +96,28 @@ module.exports = class extends BaseRest {
             url: ['IN', url],
             status: ['NOT IN', ['waiting', 'spam']],
           },
-          {
-            field: ['url'],
-          }
+          { field: ['url'] }
         );
         const counts = url.map(
           (u) => data.filter(({ url }) => url === u).length
         );
+
         return this.json(counts.length === 1 ? counts[0] : counts);
       }
 
       case 'list': {
         const { page, pageSize, owner, status, keyword } = this.get();
         const where = {};
+
         if (owner === 'mine') {
           const { userInfo } = this.ctx.state;
           where.mail = userInfo.email;
         }
+
         if (status) {
           where.status = status;
 
-          //compat with valine old data without status property
+          // compat with valine old data without status property
           if (status === 'approved') {
             where.status = ['NOT IN', ['waiting', 'spam']];
           }
@@ -182,6 +180,7 @@ module.exports = class extends BaseRest {
           new Set(comments.map(({ user_id }) => user_id).filter((v) => v))
         );
         let users = [];
+
         if (user_ids.length) {
           users = await userModel.select(
             { objectId: ['IN', user_ids] },
@@ -221,6 +220,7 @@ module.exports = class extends BaseRest {
 
   async postAction() {
     think.logger.debug('Post Comment Start!');
+
     const { comment, link, mail, nick, pid, rid, ua, url, at } = this.post();
     const data = {
       link,
@@ -235,6 +235,7 @@ module.exports = class extends BaseRest {
       comment: this.parser(comment),
       user_id: this.ctx.state.userInfo.objectId,
     };
+
     if (pid) {
       data.comment = data.comment.replace(
         '<p>',
@@ -245,17 +246,21 @@ module.exports = class extends BaseRest {
     think.logger.debug('Post Comment initial Data:', data);
 
     const { userInfo } = this.ctx.state;
+
     if (!userInfo || userInfo.type !== 'administrator') {
       /** IP disallowList */
       const { disallowIPList } = this.config();
+
       if (
         think.isArray(disallowIPList) &&
         disallowIPList.length &&
         disallowIPList.includes(data.ip)
       ) {
         think.logger.debug(`Comment IP ${data.ip} is in disallowIPList`);
+
         return this.ctx.throw(403);
       }
+
       think.logger.debug(`Comment IP ${data.ip} check OK!`);
 
       /** Duplicate content detect */
@@ -266,24 +271,30 @@ module.exports = class extends BaseRest {
         link: data.link,
         comment: data.comment,
       });
+
       if (!think.isEmpty(duplicate)) {
         think.logger.debug(
           'The comment author had post same comment content before'
         );
+
         return this.fail('Duplicate Content');
       }
+
       think.logger.debug('Comment duplicate check OK!');
 
       /** IP Frequence */
       const { IPQPS = 60 } = process.env;
+
       const recent = await this.modelInstance.select({
         ip: this.ctx.ip,
         insertedAt: ['>', new Date(Date.now() - IPQPS * 1000)],
       });
+
       if (!think.isEmpty(recent)) {
         think.logger.debug(`The author has posted in ${IPQPS} seconeds.`);
         return this.fail('Comment too fast!');
       }
+
       think.logger.debug(`Comment post frequence check OK!`);
 
       /** Akismet */
@@ -292,22 +303,28 @@ module.exports = class extends BaseRest {
       const isAuthorComment = AUTHOR
         ? data.mail.toLowerCase() === AUTHOR.toLowerCase()
         : false;
+
       data.status = COMMENT_AUDIT && !isAuthorComment ? 'waiting' : 'approved';
+
       think.logger.debug(`Comment initial status is ${data.status}`);
+
       if (data.status === 'approved') {
         const spam = await akismet(
           data,
           this.ctx.protocol + '://' + this.ctx.host
         ).catch((e) => console.log(e)); // ignore akismet error
+
         if (spam === true) {
           data.status = 'spam';
         }
       }
+
       think.logger.debug(`Comment akismet check result: ${data.status}`);
 
       if (data.status !== 'spam') {
         /** KeyWord Filter */
         const { forbiddenWords } = this.config();
+
         if (!think.isEmpty(forbiddenWords)) {
           const regexp = new RegExp('(' + forbiddenWords.join('|') + ')', 'ig');
           if (regexp.test(comment)) {
@@ -315,31 +332,40 @@ module.exports = class extends BaseRest {
           }
         }
       }
+
       think.logger.debug(`Comment keyword check result: ${data.status}`);
     }
 
     const preSaveResp = await this.hook('preSave', data);
+
     if (preSaveResp) {
       return this.fail(preSaveResp.errmsg);
     }
+
     think.logger.debug(`Comment post hooks preSave done!`);
 
     const resp = await this.modelInstance.add(data);
+
     think.logger.debug(`Comment have been added to storage.`);
 
-    let pComment;
+    let parrentComment;
+
     if (pid) {
-      pComment = await this.modelInstance.select({ objectId: pid });
-      pComment = pComment[0];
+      parrentComment = await this.modelInstance.select({ objectId: pid });
+      parrentComment = parrentComment[0];
     }
+
     if (comment.status !== 'spam') {
       const notify = this.service('notify');
-      await notify.run({ ...resp, rawComment: comment }, pComment);
+      await notify.run({ ...resp, rawComment: comment }, parrentComment);
     }
+
     think.logger.debug(`Comment notify done!`);
 
-    await this.hook('postSave', resp, pComment);
+    await this.hook('postSave', resp, parrentComment);
+
     think.logger.debug(`Comment post hooks postSave done!`);
+
     return this.success(await formatCmt(resp, [userInfo], this.config()));
   }
 
@@ -350,6 +376,7 @@ module.exports = class extends BaseRest {
       ...data,
       objectId: this.id,
     });
+
     if (preUpdateResp) {
       return this.fail(preUpdateResp);
     }
@@ -367,18 +394,22 @@ module.exports = class extends BaseRest {
       const notify = this.service('notify');
       await notify.run(oldData, pComment, true);
     }
+
     await this.hook('postUpdate', data);
+
     return this.success();
   }
 
   async deleteAction() {
     const preDeleteResp = await this.hook('preDelete', this.id);
+
     if (preDeleteResp) {
       return this.fail(preDeleteResp);
     }
 
     await this.modelInstance.delete({ objectId: this.id });
     await this.hook('postDelete', this.id);
+
     return this.success();
   }
 };

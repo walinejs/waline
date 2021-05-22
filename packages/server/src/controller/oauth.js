@@ -15,9 +15,11 @@ module.exports = class extends think.Controller {
     const { github, avatar } = userInfo;
 
     const userByGithub = await this.modelInstance.select({ github });
+
     if (!think.isEmpty(userByGithub)) {
       const { redirect } = this.get();
       const token = jwt.sign(userByGithub[0].email, this.config('jwtKey'));
+
       if (redirect) {
         return this.redirect(
           redirect + (redirect.includes('?') ? '&' : '?') + 'token=' + token
@@ -34,8 +36,10 @@ module.exports = class extends think.Controller {
 
     const { email } = userInfo;
     const current = this.ctx.state.userInfo;
+
     if (!think.isEmpty(current)) {
       const updateData = { github };
+
       if (!current.avatar) {
         updateData.avatar = github.avatar;
       }
@@ -43,6 +47,7 @@ module.exports = class extends think.Controller {
       await this.modelInstance.update(updateData, {
         objectId: current.objectId,
       });
+
       return this.success();
     }
 
@@ -54,9 +59,11 @@ module.exports = class extends think.Controller {
         password: new PasswordHash().hashPassword(Math.random()),
         type: think.isEmpty(count) ? 'administrator' : 'guest',
       };
+
       await this.modelInstance.add(data);
     } else {
       const updateData = { github };
+
       if (!userByEmail.avatar) {
         updateData.avatar = avatar;
       }
@@ -65,11 +72,13 @@ module.exports = class extends think.Controller {
 
     const { redirect } = this.get();
     const token = jwt.sign(email, this.config('jwtKey'));
+
     if (redirect) {
       return this.redirect(
         redirect + (redirect.includes('?') ? '&' : '?') + 'token=' + token
       );
     }
+
     return this.success();
   }
 };

@@ -19,6 +19,7 @@ module.exports = class extends BaseRest {
   async postAction() {
     const { email, password } = this.post();
     const user = await this.modelInstance.select({ email });
+
     if (think.isEmpty(user)) {
       return this.fail();
     }
@@ -27,15 +28,18 @@ module.exports = class extends BaseRest {
       password,
       user[0].password
     );
+
     if (!checkPassword) {
       return this.fail();
     }
 
     let avatar = user[0].avatar;
+
     if (/(github)/i.test(avatar)) {
       avatar =
         this.config('avatarProxy') + '?url=' + encodeURIComponent(avatar);
     }
+
     user[0].avatar = avatar;
 
     return this.success({

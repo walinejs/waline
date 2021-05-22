@@ -5,14 +5,17 @@ module.exports = class extends Base {
 
     const { type, path } = this.get();
     const isAllowedGet = this.isGet && (type !== 'list' || path);
+
     if (this.isPost || isAllowedGet) {
       return;
     }
 
     const { userInfo } = this.ctx.state;
+
     if (think.isEmpty(userInfo)) {
       return this.ctx.throw(401);
     }
+
     if (userInfo.type !== 'administrator') {
       return this.ctx.throw(403);
     }
