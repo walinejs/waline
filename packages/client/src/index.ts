@@ -59,7 +59,7 @@ function Waline(options: WalineOptions): WalineInstance | void {
   app.mount(options.el || '#waline');
 
   return {
-    update: (newOptions: Partial<WalineOptions>): void => {
+    update: (newOptions: Partial<WalineOptions> = {}): void => {
       temp = { ...temp, ...newOptions };
 
       config.value = getConfig(temp);
