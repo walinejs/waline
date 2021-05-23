@@ -2,7 +2,7 @@ import chokidar = require('chokidar');
 import { defineUserConfig } from '@vuepress/cli';
 import taskLists = require('markdown-it-task-lists');
 import { logger, path } from '@vuepress/utils';
-import { getSidebar, enNavbarConfig, zhNavbarConfig } from './configuation';
+import { getSidebar, enNavbarConfig, zhNavbarConfig } from './configuration';
 
 import type { DefaultThemeOptions } from '@vuepress/theme-default';
 
