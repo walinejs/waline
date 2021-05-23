@@ -2,6 +2,7 @@
   <div class="vitem" :id="comment.objectId">
     <img
       class="vuser"
+      aria-hidden="true"
       :src="
         comment.avatar ||
         `${config.avatarCDN}${comment.mail}${config.avatarParam}`
@@ -22,7 +23,6 @@
         <span
           v-if="comment.type === 'administrator'"
           class="vbadge"
-          :data-type="comment.type"
           v-text="locale.admin"
         />
 
@@ -31,21 +31,19 @@
         <span
           class="vreply"
           :title="locale.reply"
+          :aria-label="locale.reply"
           role="button"
+          tabindex="0"
           @click="reply = comment"
         >
           <ReplyIcon />
         </span>
       </div>
-      <div class="vmeta">
+      <div class="vmeta" aria-hidden="true">
         <span v-text="comment.browser" />
         <span v-text="comment.os" />
       </div>
-      <div
-        class="vcontent"
-        :data-expand="locale.expand"
-        v-html="comment.comment"
-      />
+      <div class="vcontent" v-html="comment.comment" />
 
       <div v-if="reply" class="vreply-wrapper">
         <CommentBox

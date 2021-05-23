@@ -15,7 +15,6 @@ const jpLocale: Locale = {
   more: 'さらに読み込む...',
   preview: 'プレビュー',
   emoji: '絵文字',
-  expand: 'もっと見る',
   seconds: '秒前',
   minutes: '分前',
   hours: '時間前',

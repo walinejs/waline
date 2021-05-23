@@ -15,7 +15,6 @@ const enLocale: Locale = {
   more: 'Load More...',
   preview: 'Preview',
   emoji: 'Emoji',
-  expand: 'See more....',
   seconds: 'seconds ago',
   minutes: 'minutes ago',
   hours: 'hours ago',

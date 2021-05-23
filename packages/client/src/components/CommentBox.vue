@@ -87,17 +87,20 @@
           <a
             href="https://guides.github.com/features/mastering-markdown/"
             title="Markdown Guide"
+            aria-label="Markdown is supported"
             class="vicon"
             target="_blank"
             rel="noreferrer"
           >
-            <MarkdownIcon alt="Markdown is supported" />
+            <MarkdownIcon />
           </a>
 
           <span
             :class="{ vicon: true, actived: showEmoji }"
             role="button"
+            tabindex="0"
             :title="locale.emoji"
+            :aria-label="locale.emoji"
             @click="showEmoji = !showEmoji"
           >
             <EmojiIcon />
@@ -106,7 +109,9 @@
           <span
             :class="{ vicon: true, actived: showPreview }"
             role="button"
+            tabindex="0"
             :title="locale.preview"
+            :aria-label="locale.preview"
             @click="showPreview = !showPreview"
           >
             <PreviewIcon />

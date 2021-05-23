@@ -15,7 +15,6 @@ const zhTWLocale: Locale = {
   more: '載入更多...',
   preview: '預覽',
   emoji: '表情',
-  expand: '檢視更多...',
   seconds: '秒前',
   minutes: '分鐘前',
   hours: '小時前',
