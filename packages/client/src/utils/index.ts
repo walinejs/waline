@@ -1,3 +1,4 @@
+export * from './check';
 export * from './comment';
 export * from './dom';
 export * from './fetch';

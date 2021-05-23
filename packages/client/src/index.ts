@@ -1,7 +1,8 @@
 import mitt from 'mitt';
 import { createApp, ref } from 'vue';
-import { checkOptions, getConfig } from './config';
+import { getConfig } from './config';
 import {
+  checkOptions,
   injectDarkStyle,
   registerMathML,
   updateCommentCount,
