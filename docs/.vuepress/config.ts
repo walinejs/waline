@@ -1,9 +1,12 @@
-const chokidar = require('chokidar');
-const taskLists = require('markdown-it-task-lists');
-const { logger, path } = require('@vuepress/utils');
-const getSidebar = require('./sidebar');
+import chokidar = require('chokidar');
+import { defineUserConfig } from '@vuepress/cli';
+import taskLists = require('markdown-it-task-lists');
+import { logger, path } from '@vuepress/utils';
+import { getSidebar, enNavbarConfig, zhNavbarConfig } from './configuation';
 
-module.exports = {
+import type { DefaultThemeOptions } from '@vuepress/theme-default';
+
+export default defineUserConfig<DefaultThemeOptions>({
   title: 'Waline',
   description: 'A Simple Comment System inspired by Valine.',
 
@@ -54,6 +57,8 @@ module.exports = {
     },
   },
 
+  theme: path.resolve(__dirname, 'theme'),
+
   themeConfig: {
     logo: '/logo.png',
     repo: 'lizheming/waline',
@@ -61,7 +66,7 @@ module.exports = {
     docsBranch: 'master',
     locales: {
       '/': {
-        navbar: require('./nav/zh'),
+        navbar: zhNavbarConfig,
         sidebar: getSidebar('', [
           '快速上手',
           '基础配置',
@@ -82,7 +87,7 @@ module.exports = {
         openInNewWindow: '在新窗口打开',
       },
       '/en/': {
-        navbar: require('./nav/en'),
+        navbar: enNavbarConfig,
         sidebar: getSidebar('/en', [
           'Get Started',
           'Basic Config',
@@ -129,10 +134,11 @@ module.exports = {
       },
     ],
     {
+      name: 'waline',
       extendsMarkdown: (md) => {
         md.use(taskLists, { label: true, labelAfter: true });
       },
-      clientAppEnhanceFiles: path.resolve(__dirname, 'appEnhance.js'),
+      clientAppEnhanceFiles: path.resolve(__dirname, 'appEnhance.ts'),
     },
   ],
 
@@ -160,4 +166,4 @@ module.exports = {
 
     watchers.push(navbarWatcher, sidebarWatcher);
   },
-};
+});

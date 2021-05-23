@@ -1,4 +1,6 @@
-module.exports = (lang, titles) =>
+import type { SidebarConfig } from '@vuepress/theme-default';
+
+export const getSidebar = (lang, titles): SidebarConfig =>
   [
     [
       lang + '/get-started.md',

@@ -1,0 +1,7 @@
+@use '@vuepress/theme-default/lib/client/styles/wrapper';
+
+.page {
+  .waline-wrapper {
+    @extend %wrapper;
+  }
+}

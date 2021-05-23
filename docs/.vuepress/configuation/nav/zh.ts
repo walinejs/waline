@@ -1,4 +1,6 @@
-module.exports = [
+import type { NavbarConfig } from '@vuepress/theme-default';
+
+export const zhNavbarConfig: NavbarConfig = [
   {
     text: '指南',
     link: '/get-started.html',

@@ -1,4 +1,6 @@
-module.exports = [
+import type { NavbarConfig } from '@vuepress/theme-default';
+
+export const enNavbarConfig: NavbarConfig = [
   {
     text: 'Guide',
     link: '/en/get-started.html',
