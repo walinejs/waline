@@ -12,26 +12,22 @@
     <div v-if="config.login !== 'disable'" class="vlogin">
       <div v-if="userInfo?.token" class="vlogin-info">
         <div class="vavatar">
-          <div
-            class="vlogout-btn"
-            role="button"
-            :title="locale.logout"
-            @click="onLogout"
-          >
+          <button class="vlogout-btn" :title="locale.logout" @click="onLogout">
             <CloseIcon size="14" />
-          </div>
+          </button>
 
           <img
             :src="
               userInfo.avatar ||
               `${config.avatarCDN}${userInfo.mailMd5}${config.avatarParam}`
             "
-            alt="avator"
+            alt="avatar"
           />
         </div>
         <a
           href="#"
           class="vlogin-nick"
+          aria-label="Profile"
           @click="onProfile"
           v-text="userInfo.display_name"
         />
@@ -51,9 +47,14 @@
         :class="['vheader', `vheader-${config.meta.length}`]"
       >
         <div v-for="kind in config.meta" class="vheader-item" :key="kind">
-          <label v-text="locale[kind]" />
+          <label :for="kind" v-text="locale[kind]" />
           <input
-            :ref="`${kind}Ref`"
+            :ref="
+              (element) => {
+                if (element) inputRefs[kind] = element;
+              }
+            "
+            :id="kind"
             :class="['vinput', `v${kind}`]"
             :name="kind"
             :type="kind === 'mail' ? 'email' : 'text'"
@@ -229,9 +230,7 @@ export default defineComponent({
       editor: '',
     });
 
-    const nickRef = ref<HTMLElement | null>(null);
-    const mailRef = ref<HTMLElement | null>(null);
-    const linkRef = ref<HTMLElement | null>(null);
+    const inputRefs = ref<Record<string, HTMLInputElement>>({});
     const editorRef = ref<HTMLElement | null>(null);
 
     const showEmoji = ref(false);
@@ -242,27 +241,20 @@ export default defineComponent({
     const wordLimit = ref(0);
     const isWordNumberLegal = ref(false);
 
-    const comment = reactive<CommentData>({
-      comment: '',
-      nick: inputs.nick,
-      mail: inputs.mail,
-      link: inputs.link,
-      ua: navigator.userAgent,
-      url: config.value.path,
-    });
+    const content = ref('');
 
     const isSubmitting = ref(false);
 
     const locale = computed(() => config.value.locale);
 
     const onEditorChange = (textArea: HTMLTextAreaElement): void => {
-      const content = textArea.value;
+      const comment = textArea.value;
 
-      comment.comment = content;
-      previewText.value = parseMarkdown(content, config.value);
-      wordNumber.value = getWordNumber(content);
+      content.value = comment;
+      previewText.value = parseMarkdown(comment, config.value);
+      wordNumber.value = getWordNumber(comment);
 
-      if (content) autosize(textArea);
+      if (comment) autosize(textArea);
       else autosize.destroy(textArea);
     };
 
@@ -328,10 +320,18 @@ export default defineComponent({
         emojiCDN,
         emojiMaps,
         login,
-        locale,
         wordLimit,
         requiredMeta,
       } = config.value;
+
+      const comment: CommentData = {
+        comment: content.value,
+        nick: inputs.nick,
+        mail: inputs.mail,
+        link: inputs.link,
+        ua: navigator.userAgent,
+        url: config.value.path,
+      };
 
       if (userInfo.value?.token) {
         // login user
@@ -343,18 +343,21 @@ export default defineComponent({
         if (login === 'force') return;
 
         // check nick
-        if (requiredMeta.indexOf('nick') > -1 && comment.nick.length < 2) {
-          nickRef.value?.focus();
-          return;
+        if (
+          (requiredMeta.indexOf('nick') > -1 || comment.nick) &&
+          comment.nick.length < 3
+        ) {
+          inputRefs.value.nick?.focus();
+          return alert(locale.value.nickError);
         }
 
         // check mail
         if (
-          requiredMeta.indexOf('mail') > -1 &&
+          (requiredMeta.indexOf('mail') > -1 || comment.mail) &&
           !/^(\w)+(\.\w+)*@(\w)+((\.\w{2,3}){1,3})$/.exec(comment.mail)
         ) {
-          mailRef.value?.focus();
-          return;
+          inputRefs.value.mail?.focus();
+          return alert(locale.value.mailError);
         }
 
         // check comment
@@ -368,7 +371,7 @@ export default defineComponent({
 
       if (!isWordNumberLegal.value)
         return alert(
-          locale.wordHint
+          locale.value.wordHint
             .replace('$0', (wordLimit as [number, number])[0].toString())
             .replace('$1', (wordLimit as [number, number])[1].toString())
             .replace('$2', wordNumber.value.toString())
@@ -536,9 +539,7 @@ export default defineComponent({
       showPreview,
 
       // ref
-      nickRef,
-      mailRef,
-      linkRef,
+      inputRefs,
       editorRef,
     };
   },
