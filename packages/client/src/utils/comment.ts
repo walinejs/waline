@@ -1,4 +1,4 @@
-import { fetchCount } from './fetch';
+import { fetchCommentCount } from './fetch';
 import { decodePath } from './path';
 
 export const updateCommentCount = (serverURL: string): void => {
@@ -10,7 +10,7 @@ export const updateCommentCount = (serverURL: string): void => {
   );
 
   if ($counts.length)
-    void fetchCount({
+    void fetchCommentCount({
       serverURL,
       paths: $counts.map((element) =>
         decodePath(

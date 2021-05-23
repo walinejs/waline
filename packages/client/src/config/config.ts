@@ -9,7 +9,7 @@ import {
 } from './default';
 import { locales } from './i18n';
 
-import { decodePath } from '../utils';
+import { decodePath, removeEndingSplash } from '../utils';
 
 import type { Locale } from './i18n';
 import type { WalineOptions } from './options';
@@ -103,7 +103,7 @@ export const getConfig = ({
   return {
     el,
     // remove ending slash
-    serverURL: serverURL.replace(/\/$/, ''),
+    serverURL: removeEndingSplash(serverURL),
     path: decodePath(path),
     lang: $lang,
     locale: {

@@ -5,7 +5,7 @@ export interface FetchCountOptions {
   paths: string[];
 }
 
-export const fetchCount = ({
+export const fetchCommentCount = ({
   serverURL,
   paths,
 }: FetchCountOptions): Promise<number | number[]> =>
@@ -18,7 +18,7 @@ export interface FetchRecentOptions {
   count: number;
 }
 
-export const fetchRecent = ({
+export const fetchRecentComment = ({
   serverURL,
   count,
 }: FetchRecentOptions): Promise<Comment[]> => {
@@ -39,7 +39,7 @@ export interface FetchListResult {
   totalPages: number;
 }
 
-export const fetchList = ({
+export const fetchCommentList = ({
   serverURL,
   path,
   page,

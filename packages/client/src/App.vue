@@ -51,7 +51,7 @@ import { computed, defineComponent, inject, onMounted, ref } from 'vue';
 import CommentBox from './components/CommentBox.vue';
 import CommentCard from './components/CommentCard.vue';
 import { LoadingIcon } from './components/Icons';
-import { fetchList } from './utils';
+import { fetchCommentList } from './utils';
 
 import type { Emitter } from 'mitt';
 import type { Comment, ConfigRef } from './typings';
@@ -82,7 +82,7 @@ export default defineComponent({
     const fetchComment = (): void => {
       loading.value = true;
 
-      fetchList({ ...config.value, page: page.value })
+      fetchCommentList({ ...config.value, page: page.value })
         .then((resp) => {
           loading.value = false;
           data.value = resp.data;
@@ -99,7 +99,7 @@ export default defineComponent({
 
       loading.value = true;
 
-      fetchList({ ...config.value, page: nextPage })
+      fetchCommentList({ ...config.value, page: nextPage })
         .then((resp) => {
           loading.value = false;
           data.value.push(...resp.data);

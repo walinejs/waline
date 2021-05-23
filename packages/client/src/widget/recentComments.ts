@@ -1,4 +1,4 @@
-import { fetchRecent } from '../utils';
+import { fetchRecentComment } from '../utils';
 import type { Comment } from '../typings';
 
 export interface RecentCommentsOptions {
@@ -15,7 +15,7 @@ export const RecentComments = ({
   const root = document.querySelector(el);
 
   return root
-    ? fetchRecent({ serverURL, count }).then((comments) => {
+    ? fetchRecentComment({ serverURL, count }).then((comments) => {
         if (comments.length) {
           root.innerHTML = `
       <ul class="waline-widget-list">
