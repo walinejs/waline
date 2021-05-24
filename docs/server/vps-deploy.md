@@ -54,7 +54,7 @@ services:
       AUTHOR_EMAIL: 'mail@example.com'
 ```
 
-## 直接运行
+## 直接运行（推荐）
 
 不使用容器部署的话运行也很简单，安装好模块后直接运行模块内的 `vanilla.js` 文件即可。
 
