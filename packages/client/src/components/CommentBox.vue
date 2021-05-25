@@ -69,7 +69,7 @@
         id="vedit"
         :placeholder="replyUser ? `@${replyUser}` : locale.placeholder"
         v-model="inputs.editor"
-        @keyDown="onKeyDown"
+        @keydown="onKeyDown"
         @paste="onPaste"
       />
 
@@ -95,7 +95,8 @@
           </a>
 
           <span
-            :class="{ vicon: true, actived: showEmoji }"
+            class="vicon"
+            :class="{ actived: showEmoji }"
             role="button"
             tabindex="0"
             :title="locale.emoji"
@@ -106,7 +107,8 @@
           </span>
 
           <span
-            :class="{ vicon: true, actived: showPreview }"
+            class="vicon"
+            :class="{ actived: showPreview }"
             role="button"
             tabindex="0"
             :title="locale.preview"
@@ -298,7 +300,7 @@ export default defineComponent({
       const key = event.key;
 
       // Shortcut key
-      if (event.ctrlKey || (event.metaKey && key === 'Enter')) submitComment();
+      if ((event.ctrlKey || event.metaKey) && key === 'Enter') submitComment();
 
       // tab key
       if (key === 'Tab') {
