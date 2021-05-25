@@ -14,6 +14,7 @@ const zhTWLocale: Locale = {
   comment: '評論',
   more: '載入更多...',
   preview: '預覽',
+  uploadImage: '上傳圖片',
   emoji: '表情',
   seconds: '秒前',
   minutes: '分鐘前',

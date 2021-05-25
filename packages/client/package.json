@@ -37,10 +37,10 @@
   },
   "devDependencies": {
     "@types/autosize": "^3.0.7",
-    "@types/marked": "^2.0.2",
-    "autosize": "^4.0.2",
+    "@types/marked": "^2.0.3",
+    "autosize": "^4.0.4",
     "hanabi": "^0.4.0",
-    "marked": "^2.0.3",
+    "marked": "^2.0.5",
     "mitt": "^2.1.0",
     "vue": "^3.0.0"
   }

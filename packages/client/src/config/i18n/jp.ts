@@ -14,6 +14,7 @@ const jpLocale: Locale = {
   comment: 'コメント',
   more: 'さらに読み込む...',
   preview: 'プレビュー',
+  uploadImage: '画像をアップロード',
   emoji: '絵文字',
   seconds: '秒前',
   minutes: '分前',

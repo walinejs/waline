@@ -13,6 +13,7 @@ export interface Locale {
   more: string;
   preview: string;
   emoji: string;
+  uploadImage: string;
   seconds: string;
   minutes: string;
   hours: string;

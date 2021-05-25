@@ -15,6 +15,7 @@ const zhCNLocale: Locale = {
   more: '加载更多...',
   preview: '预览',
   emoji: '表情',
+  uploadImage: '上传图片',
   seconds: '秒前',
   minutes: '分钟前',
   hours: '小时前',

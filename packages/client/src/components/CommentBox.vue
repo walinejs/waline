@@ -83,41 +83,55 @@
       </div>
 
       <div class="vfooter">
-        <div class="vaction">
+        <div class="vactions">
           <a
             href="https://guides.github.com/features/mastering-markdown/"
             title="Markdown Guide"
             aria-label="Markdown is supported"
-            class="vicon"
+            class="vaction"
             target="_blank"
             rel="noreferrer"
           >
             <MarkdownIcon />
           </a>
 
-          <span
-            class="vicon"
+          <button
+            class="vaction"
             :class="{ actived: showEmoji }"
-            role="button"
-            tabindex="0"
             :title="locale.emoji"
             :aria-label="locale.emoji"
             @click="showEmoji = !showEmoji"
           >
             <EmojiIcon />
-          </span>
+          </button>
 
-          <span
-            class="vicon"
+          <label
+            for="image-upload"
+            class="vaction"
+            :title="locale.uploadImage"
+            :aria-label="locale.uploadImage"
+          >
+            <ImageIcon />
+
+            <input
+              ref="imageUploadRef"
+              class="upload"
+              id="image-upload"
+              type="file"
+              accept=".png,.jpg,.jpeg,.webp,.bmp,.gif"
+              @change="onChange"
+            />
+          </label>
+
+          <button
+            class="vaction"
             :class="{ actived: showPreview }"
-            role="button"
-            tabindex="0"
             :title="locale.preview"
             :aria-label="locale.preview"
             @click="showPreview = !showPreview"
           >
             <PreviewIcon />
-          </span>
+          </button>
         </div>
 
         <div class="vinfo">
@@ -199,6 +213,7 @@ import autosize from 'autosize';
 import {
   CloseIcon,
   EmojiIcon,
+  ImageIcon,
   MarkdownIcon,
   PreviewIcon,
   LoadingIcon,
@@ -222,6 +237,7 @@ export default defineComponent({
   components: {
     CloseIcon,
     EmojiIcon,
+    ImageIcon,
     MarkdownIcon,
     PreviewIcon,
     LoadingIcon,
@@ -257,7 +273,8 @@ export default defineComponent({
     });
 
     const inputRefs = ref<Record<string, HTMLInputElement>>({});
-    const editorRef = ref<HTMLElement | null>(null);
+    const editorRef = ref<HTMLTextAreaElement | null>(null);
+    const imageUploadRef = ref<HTMLInputElement | null>(null);
 
     const emoji = ref<EmojiConfig>({ tabs: [], map: {} });
     const emojiTabIndex = ref(0);
@@ -277,25 +294,18 @@ export default defineComponent({
 
     const insert = (content: string): void => {
       const textArea = editorRef.value as HTMLTextAreaElement;
+      const startPosition = textArea.selectionStart;
+      const endPosition = textArea.selectionEnd || 0;
+      const scrollTop = textArea.scrollTop;
 
-      // For browsers like Firefox and Webkit based
-      if (textArea.selectionStart || textArea.selectionStart === 0) {
-        const startPos = textArea.selectionStart;
-        const endPos = textArea.selectionEnd || 0;
-        const scrollTop = textArea.scrollTop;
-
-        inputs.editor =
-          textArea.value.substring(0, startPos) +
-          content +
-          textArea.value.substring(endPos, textArea.value.length);
-        textArea.focus();
-        textArea.selectionStart = startPos + content.length;
-        textArea.selectionEnd = startPos + content.length;
-        textArea.scrollTop = scrollTop;
-      } else {
-        textArea.focus();
-        inputs.editor += content;
-      }
+      inputs.editor =
+        textArea.value.substring(0, startPosition) +
+        content +
+        textArea.value.substring(endPosition, textArea.value.length);
+      textArea.focus();
+      textArea.selectionStart = startPosition + content.length;
+      textArea.selectionEnd = startPosition + content.length;
+      textArea.scrollTop = scrollTop;
     };
 
     const onKeyDown = (event: KeyboardEvent): void => {
@@ -311,12 +321,12 @@ export default defineComponent({
       }
     };
 
-    const uploadImage = (file: File): void => {
+    const uploadImage = (file: File): Promise<void> => {
       const uploadText = `![${config.value.locale.uploading} ${file.name}]()`;
 
       insert(uploadText);
 
-      void Promise.resolve()
+      return Promise.resolve()
         .then(() => config.value.uploadImage(file))
         .then((url) => {
           inputs.editor = inputs.editor.replace(
@@ -343,6 +353,16 @@ export default defineComponent({
 
         if (file) uploadImage(file);
       }
+    };
+
+    const onChange = (): void => {
+      const inputElement = imageUploadRef.value as HTMLInputElement;
+
+      if (inputElement.files)
+        uploadImage(inputElement.files[0]).then(() => {
+          // clear input so a same image can be uploaded later
+          inputElement.value = '';
+        });
     };
 
     const submitComment = (): void => {
@@ -566,6 +586,7 @@ export default defineComponent({
 
       // events
       insert,
+      onChange,
       onDrop,
       onKeyDown,
       onPaste,
@@ -597,6 +618,7 @@ export default defineComponent({
       // ref
       inputRefs,
       editorRef,
+      imageUploadRef,
     };
   },
 });

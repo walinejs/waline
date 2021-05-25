@@ -1,28 +1,4 @@
 .v[data-class='v'] {
-  .vicon {
-    position: relative;
-
-    display: inline-block;
-    vertical-align: middle;
-
-    text-align: center;
-
-    cursor: pointer;
-    fill: var(--waline-text-color);
-
-    &:hover {
-      fill: var(--waline-theme-color);
-    }
-
-    &.actived {
-      fill: var(--waline-active-color);
-    }
-
-    + .vicon {
-      margin-left: 6px;
-    }
-  }
-
   .vbtn {
     display: inline-block;
     vertical-align: middle;
