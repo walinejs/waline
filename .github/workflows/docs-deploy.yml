@@ -1,0 +1,54 @@
+name: Deploy theme docs
+
+on:
+  - push
+
+jobs:
+  deploy-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.4
+
+      - name: restore node_modules
+        uses: actions/cache@v2.1.5
+        id: node-cache
+        with:
+          path: |
+            node_modules
+            **/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package.json') }}
+
+      - name: Get yarn cache directory path
+        if: steps.node-cache.outputs.cache-hit != 'true'
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - name: yarn-cache
+        if: steps.node-cache.outputs.cache-hit != 'true'
+        uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install Deps
+        run: yarn install
+
+      - name: Build client
+        run: |
+          yarn workspace @waline/client build:webpack
+          yarn workspace @waline/client build:rollup
+
+      - name: Build docs
+        run: yarn workspace docs build
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@4.1.3
+        with:
+          branch: gh-pages
+          folder: docs/.vuepress/dist
+          ssh-key: ${{ secrets.SSH_TOKEN }}
+          repository-name: walinejs/walinejs.github.io
