@@ -1,5 +1,6 @@
 export * from './check';
 export * from './comment';
+export * from './data';
 export * from './dom';
 export * from './fetch';
 export * from './markdown';

@@ -70,6 +70,7 @@
         :placeholder="replyUser ? `@${replyUser}` : locale.placeholder"
         v-model="inputs.editor"
         @keydown="onKeyDown"
+        @drop="onDrop"
         @paste="onPaste"
       />
 
@@ -204,6 +205,7 @@ import {
 } from './Icons';
 import { useUserInfo } from '../composables';
 import {
+  getImagefromDataTransfer,
   parseMarkdown,
   getWordNumber,
   parseEmoji,
@@ -309,39 +311,37 @@ export default defineComponent({
       }
     };
 
-    const onPaste = (event: ClipboardEvent): void => {
-      const { clipboardData } = event;
-      const files: File[] = [];
+    const uploadImage = (file: File): void => {
+      const uploadText = `![${config.value.locale.uploading} ${file.name}]()`;
 
-      if (clipboardData) {
-        const { items } = clipboardData;
+      insert(uploadText);
 
-        if (items && items.length) {
-          // 检索剪切板 items
-          for (let i = 0; i < items.length; i++) {
-            if (items[i].type.indexOf('image') !== -1) {
-              files.push(items[i].getAsFile() as File);
-              break;
-            }
-          }
+      void Promise.resolve()
+        .then(() => config.value.uploadImage(file))
+        .then((url) => {
+          inputs.editor = inputs.editor.replace(
+            uploadText,
+            `\r\n![${file.name}](${url})`
+          );
+        });
+    };
+
+    const onDrop = (event: DragEvent): void => {
+      if (event.dataTransfer?.items) {
+        const file = getImagefromDataTransfer(event.dataTransfer.items);
+
+        if (file) {
+          uploadImage(file);
+          event.preventDefault();
         }
       }
+    };
 
-      if (files.length) {
-        files.forEach((file) => {
-          const uploadText = `![${config.value.locale.uploading} ${file['name']}]()`;
+    const onPaste = (event: ClipboardEvent): void => {
+      if (event.clipboardData) {
+        const file = getImagefromDataTransfer(event.clipboardData.items);
 
-          insert(uploadText);
-
-          void Promise.resolve()
-            .then(() => config.value.uploadImage(file))
-            .then((url) => {
-              inputs.editor = inputs.editor.replace(
-                uploadText,
-                `\r\n![${file.name}](${url})`
-              );
-            });
-        });
+        if (file) uploadImage(file);
       }
     };
 
@@ -566,6 +566,7 @@ export default defineComponent({
 
       // events
       insert,
+      onDrop,
       onKeyDown,
       onPaste,
       onLogin,
