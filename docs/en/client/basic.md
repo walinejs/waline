@@ -151,21 +151,12 @@ Gravatar CDN baseURL.
 
 Whether **force** pulling the latest avatar each time.
 
-## emojiCDN
+## emoji
 
-- Type: `string`
-- Default: `https://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/`
-- Required: No
+- Type: `(string | EmojiInfo)[]`
+- Default: `['https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo']`
 
-Set **Emoji Pack CDN**, refer to [Custom Emoji](./emoji.md).
-
-## emojiMaps
-
-- Type: `Object`
-- Default: `null`
-- Required: No
-
-Set `Emoji Packet Mapping’, refer to [Custom Emoji](./emoji.md).
+Emoji settings, for details see [Custom Emoji](./emoji.md)
 
 ## requiredMeta
 
@@ -240,6 +231,34 @@ Please use `locale.placeholder` instead.
 - Required: No
 
 Comment box placeholder
+
+### emojiCDN
+
+::: warning Deprecated
+
+Please use `emoji` instead.
+
+:::
+
+- Type: `string`
+- Default: `https://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/`
+- Required: No
+
+Set **Emoji Pack CDN**, refer to [Custom Emoji](./emoji.md).
+
+### emojiMaps
+
+::: warning Deprecated
+
+Please use `emoji` instead.
+
+:::
+
+- Type: `Object`
+- Default: `null`
+- Required: No
+
+Set `Emoji Packet Mapping’, refer to [Custom Emoji](./emoji.md).
 
 ### requiredFields
 

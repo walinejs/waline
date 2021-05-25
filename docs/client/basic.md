@@ -153,21 +153,12 @@ Waline 的服务端地址。
 
 > 不推荐设置为 `true`，目前的*评论列表头像*会自动带上 `Waline` 的版本号
 
-## emojiCDN
+## emoji
 
-- 类型: `string`
-- 默认值: `https://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/`
-- 必填: 否
+- 类型: `(string | EmojiInfo)[]`
+- 默认值: `['https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo']`
 
-设置**表情包 CDN**，参考[自定义表情](./emoji.md)
-
-## emojiMaps
-
-- 类型: `Object`
-- 默认值: `微博表情包`
-- 必填: 否
-
-设置**表情包映射**，参考[自定义表情](./emoji.md)
+表情设置，详见 [自定义表情](./emoji.md)
 
 ## requiredMeta
 
@@ -244,6 +235,34 @@ Waline 的服务端地址。
 - 必填: 否
 
 评论框 **占位提示符**。
+
+### emojiCDN
+
+::: warning 已废弃
+
+请使用 `emoji`
+
+:::
+
+- 类型: `string`
+- 默认值: `https://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/`
+- 必填: 否
+
+设置**表情包 CDN**，参考[自定义表情](./emoji.md)
+
+### emojiMaps
+
+::: warning 已废弃
+
+请使用 `emoji`
+
+:::
+
+- 类型: `Object`
+- 默认值: `微博表情包`
+- 必填: 否
+
+设置**表情包映射**，参考[自定义表情](./emoji.md)
 
 ### requiredFields
 
