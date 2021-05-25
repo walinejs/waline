@@ -7,4 +7,4 @@ Waline 支持在非评论区单独显示评论数，效果和文章阅读量统�
 <span id="<Your/Path/Name>" class="waline-comment-count"></span>条评论
 ```
 
-当前页共有 <span id="/en/client/count.html" class="waline-comment-count"></span> 条评论
+当前页共有 <span id="/client/count.html" class="waline-comment-count"></span> 条评论

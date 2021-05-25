@@ -7,4 +7,4 @@ Waline supports separate display of the count of comments in the other side, and
 <span id="<Your/Path/Name>" class="waline-comment-count"></span> Comments
 ```
 
-Current page has <span id="/client/count.html" class="waline-comment-count"></span> comments.
+Current page has <span id="/en/client/count.html" class="waline-comment-count"></span> comments.
