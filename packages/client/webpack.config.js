@@ -110,7 +110,11 @@ module.exports = {
               el: '#waline',
               path: '/',
               visitor: true,
-              serverURL: '${process.env.SERVERURL || 'http://localhost:9090'}'
+              serverURL: '${process.env.SERVERURL || 'http://localhost:9090'}',
+              emoji: [
+                'https://cdn.jsdelivr.net/gh/walinejs/emojis/bilibili',
+                'https://cdn.jsdelivr.net/gh/walinejs/emojis/qq'
+              ]
             });
           </script>
         </body>

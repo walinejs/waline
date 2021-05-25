@@ -1,8 +1,6 @@
 import {
   availableAvatar,
   availableMeta,
-  defaultEmojiCDN,
-  defaultEmojiMaps,
   defaultGravatarCDN,
   defaultLang,
   defaultUploadImage,
@@ -12,35 +10,13 @@ import { locales } from './i18n';
 import { decodePath, removeEndingSplash } from '../utils';
 
 import type { Locale } from './i18n';
-import type { WalineOptions } from './options';
+import type { EmojiInfo, EmojiMaps, WalineOptions } from './options';
+import { getEmojis, resolveOldEmojiMap } from '../utils/emoji';
 
-export const checkOptions = (options: WalineOptions): boolean => {
-  const { el, serverURL } = options;
-
-  if (!el) {
-    console.error("Required option 'el' is missing!");
-
-    return false;
-  }
-
-  // check root element
-  const root = document.querySelector(el);
-
-  if (!root) {
-    console.error("Option 'el' is invalid!");
-
-    return false;
-  }
-
-  // check serverURL
-  if (!serverURL) {
-    console.error("Required option 'serverURL' is missing!");
-
-    return false;
-  }
-
-  return true;
-};
+export interface EmojiConfig {
+  tabs: Pick<EmojiInfo, 'name' | 'icon' | 'items'>[];
+  map: EmojiMaps;
+}
 
 export interface Config
   extends Required<
@@ -49,8 +25,6 @@ export interface Config
         | 'el'
         | 'path'
         | 'lang'
-        | 'emojiCDN'
-        | 'emojiMaps'
         | 'meta'
         | 'pageSize'
         | 'requiredMeta'
@@ -63,30 +37,36 @@ export interface Config
     Pick<WalineOptions, 'dark' | 'serverURL' | 'visitor' | 'highlight'> {
   locale: Locale;
   wordLimit: [number, number] | false;
+  emoji: Promise<EmojiConfig>;
 
   avatarParam: string;
 }
 
 export const getConfig = ({
   el = '#waline',
+  serverURL,
   path = location.pathname,
+  // TODO: remove
   placeholder,
   lang,
+  // TODO: remove
   langMode,
   locale = langMode,
   wordLimit,
-  serverURL,
-  emojiCDN = defaultEmojiCDN,
-  emojiMaps = defaultEmojiMaps,
+  emojiCDN,
+  emojiMaps,
+  emoji,
   avatar = 'mp',
   avatarCDN = defaultGravatarCDN,
   avatarForce,
   meta = ['nick', 'mail', 'link'],
+  // TODO: remove
   requiredFields = [],
   requiredMeta = requiredFields,
   pageSize = 10,
   uploadImage,
   copyright = true,
+  // TODO: remove
   anonymous,
   login = anonymous === true
     ? 'disable'
@@ -98,6 +78,7 @@ export const getConfig = ({
   const $lang = lang || defaultLang;
   const $locale = locales[$lang] || locales[defaultLang];
 
+  // TODO: remove
   if (placeholder) $locale.placeholder = placeholder;
 
   return {
@@ -110,8 +91,13 @@ export const getConfig = ({
       ...$locale,
       ...(typeof locale === 'object' ? locale : {}),
     },
-    emojiCDN,
-    emojiMaps,
+    emoji:
+      // TODO: remove
+      emojiCDN && typeof emojiMaps === 'object' && !emoji
+        ? Promise.resolve(resolveOldEmojiMap(emojiMaps, emojiCDN))
+        : getEmojis(
+            emoji || ['https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo']
+          ),
     wordLimit: Array.isArray(wordLimit)
       ? wordLimit
       : wordLimit
