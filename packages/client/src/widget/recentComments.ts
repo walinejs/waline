@@ -17,15 +17,12 @@ export const RecentComments = ({
   return root
     ? fetchRecentComment({ serverURL, count }).then((comments) => {
         if (comments.length) {
-          root.innerHTML = `
-      <ul class="waline-widget-list">
-      ${comments
-        .map(
-          (comment) =>
-            `<li class="waline-widget-item"><a href="${comment.url}">${comment.nick}</a>：${comment.comment}</li>`
-        )
-        .join('')}
-      </ul>`;
+          root.innerHTML = `<ul class="waline-widget-list">${comments
+            .map(
+              (comment) =>
+                `<li class="waline-widget-item"><a href="${comment.url}">${comment.nick}</a>：${comment.comment}</li>`
+            )
+            .join('')}</ul>`;
         }
 
         return comments;
