@@ -38,10 +38,11 @@
   "devDependencies": {
     "@types/autosize": "^3.0.7",
     "@types/marked": "^2.0.3",
+    "@vue/compiler-sfc": "3.0.11",
     "autosize": "^4.0.4",
     "hanabi": "^0.4.0",
     "marked": "^2.0.5",
     "mitt": "^2.1.0",
-    "vue": "^3.0.0"
+    "vue": "^3.0.11"
   }
 }
