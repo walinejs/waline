@@ -28,13 +28,13 @@ export interface EmojiInfo {
    *
    * Common prefix of Emoji icons
    */
-  prefix: string;
+  prefix?: string;
   /**
    * Emoji 图片的类型，会作为文件扩展名使用
    *
    * Type of Emoji icons, will be regarded as file extension
    */
-  type: string;
+  type?: string;
   /**
    * 选项卡显示的 Emoji 图标
    *

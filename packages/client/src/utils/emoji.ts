@@ -34,7 +34,7 @@ export const resolveOldEmojiMap = (
   };
 };
 
-export const fetchEmoji = (link: string): Promise<EmojiInfo> => {
+const fetchEmoji = (link: string): Promise<EmojiInfo> => {
   const result = hasVersion(link);
 
   if (result) {
@@ -56,6 +56,13 @@ export const fetchEmoji = (link: string): Promise<EmojiInfo> => {
     });
 };
 
+const getLink = (
+  name: string,
+  folder: string,
+  prefix = '',
+  type = ''
+): string => `${folder}/${prefix}${name}${type ? `.${type}` : ''}`;
+
 export const getEmojis = (
   emojis: (string | EmojiInfo)[]
 ): Promise<EmojiConfig> =>
@@ -76,11 +83,11 @@ export const getEmojis = (
 
       emojiConfig.tabs.push({
         name,
-        icon: `${folder}/${prefix}${icon}.${type}`,
+        icon: getLink(icon, folder, prefix, type),
         items: items.map((item) => {
-          const key = `${prefix}${item}`;
+          const key = `${prefix || ''}${item}`;
 
-          emojiConfig.map[key] = `${folder}/${prefix}${item}.${type}`;
+          emojiConfig.map[key] = getLink(item, folder, prefix, type);
 
           return key;
         }),
