@@ -218,7 +218,5 @@ var CSV = {};
           return e.replace(/^\s*/, '').replace(/\s*$/, '');
         };
 })(CSV);
-var recline = recline || {};
-(recline.Backend = recline.Backend || {}),
-  (recline.Backend.CSV = CSV),
-  'undefined' != typeof module && module.exports && (module.exports = CSV);
+
+export default CSV;

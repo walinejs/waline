@@ -22,7 +22,7 @@ const fakeClick = (obj) => {
   obj.dispatchEvent(ev);
 };
 
-const exportRaw = (name, data) => {
+export const exportRaw = (name, data) => {
   const urlObject = window.URL || window.webkitURL || window;
   const export_blob = new Blob([data]);
   const save_link = document.createElementNS(
