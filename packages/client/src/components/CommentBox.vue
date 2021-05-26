@@ -442,7 +442,7 @@ export default defineComponent({
         (resp) => {
           isSubmitting.value = false;
 
-          infoStore.set({
+          infoStore.update({
             nick: comment.nick,
             link: comment.link,
             mail: comment.mail,

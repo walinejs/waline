@@ -1,4 +1,4 @@
-import { parseEmoji } from '../src/utils';
+import { parseEmoji } from '../src/utils/markdown';
 import { emojiMaps } from './utils';
 
 describe('Emoji test', () => {

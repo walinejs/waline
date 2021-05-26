@@ -112,8 +112,8 @@ module.exports = {
               visitor: true,
               serverURL: '${process.env.SERVERURL || 'http://localhost:9090'}',
               emoji: [
-                'https://cdn.jsdelivr.net/gh/walinejs/emojis/bilibili',
-                'https://cdn.jsdelivr.net/gh/walinejs/emojis/qq'
+                'https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/bilibili',
+                'https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/qq'
               ]
             });
           </script>
