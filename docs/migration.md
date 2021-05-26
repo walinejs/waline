@@ -17,7 +17,7 @@
 
      <script>
    -  new Valine({
-   +  new Waline({
+   +  Waline({
        el: '#vcomments',
    -  appId: 'Your appId',
    -  appKey: 'Your appKey'

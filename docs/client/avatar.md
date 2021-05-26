@@ -22,7 +22,7 @@ Waline 同 Valine 一样，目前使用的是[Gravatar][1] 作为评论列表头
 |    `hide`    |                                                   &nbsp;                                                   | 不显示头像                       |
 
 ```js
-new Waline({
+Waline({
   ...
   avatar:'' // (''/mp/identicon/monsterid/wavatar/robohash/retro/hide)
 });

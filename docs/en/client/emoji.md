@@ -1,31 +1,33 @@
 # Custom emoji
 
-Waline provides a series of emoji presets that can be used immediately. You can directly set the emoji options to an array containing them.
+You can customize the emoji of the comment box by setting `emoji` option, you should set it to an **array** containing _preset link_ or _preset config object_.
 
-## Available items
+## Presets
+
+Waline provides a series of emoji presets that can be used out of box. You can add them directly to the emoji options:
 
 - Alus
 
   ```
-  https://cdn.jsdelivr.net/gh/walinejs/emojis/alus
+  https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/alus
   ```
 
 - Bilibili
 
   ```
-  https://cdn.jsdelivr.net/gh/walinejs/emojis/bilibili
+  https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/bilibili
   ```
 
 - QQ
 
   ```
-  https://cdn.jsdelivr.net/gh/walinejs/emojis/qq
+  https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/qq
   ```
 
 - Tieba
 
   ```
-  https://cdn.jsdelivr.net/gh/walinejs/emojis/tieba
+  https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tieba
   ```
 
 - Twemoji
@@ -33,7 +35,7 @@ Waline provides a series of emoji presets that can be used immediately. You can 
   - Emoji:
 
     ```
-    https://cdn.jsdelivr.net/gh/walinejs/emojis/tw-emoji
+    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-emoji
     ```
 
   ::: details Others
@@ -41,73 +43,73 @@ Waline provides a series of emoji presets that can be used immediately. You can 
   - Full: (Not recommand)
 
     ```
-    https://cdn.jsdelivr.net/gh/walinejs/emojis/tw
+    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw
     ```
 
   - People:
 
     ```
-    https://cdn.jsdelivr.net/gh/walinejs/emojis/tw-people
+    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-people
     ```
 
   - Body:
 
     ```
-    https://cdn.jsdelivr.net/gh/walinejs/emojis/tw-body
+    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-body
     ```
 
   - Flag:
 
     ```
-    https://cdn.jsdelivr.net/gh/walinejs/emojis/tw-flag
+    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-flag
     ```
 
   - Food:
 
     ```
-    https://cdn.jsdelivr.net/gh/walinejs/emojis/tw-food
+    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-food
     ```
 
   - Natural:
 
     ```
-    https://cdn.jsdelivr.net/gh/walinejs/emojis/tw-natural
+    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-natural
     ```
 
   - Object:
 
     ```
-    https://cdn.jsdelivr.net/gh/walinejs/emojis/tw-object
+    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-object
     ```
 
   - Sport:
 
     ```
-    https://cdn.jsdelivr.net/gh/walinejs/emojis/tw-sport
+    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-sport
     ```
 
   - Symbol:
 
     ```
-    https://cdn.jsdelivr.net/gh/walinejs/emojis/tw-symbol
+    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-symbol
     ```
 
   - Time:
 
     ```
-    https://cdn.jsdelivr.net/gh/walinejs/emojis/tw-time
+    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-time
     ```
 
   - Travel:
 
     ```
-    https://cdn.jsdelivr.net/gh/walinejs/emojis/tw-travel
+    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-travel
     ```
 
   - Weather:
 
     ```
-    https://cdn.jsdelivr.net/gh/walinejs/emojis/tw-weather
+    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-weather
     ```
 
   :::
@@ -115,8 +117,127 @@ Waline provides a series of emoji presets that can be used immediately. You can 
 - Weibo
 
   ```
-  https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo
+  https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/weibo
   ```
+
+::: tip Demo
+
+```js
+Waline({
+  el: '#waline',
+  serverURL: '<YOUR SERVER URL>',
+
+  // Set emoji to Weibo and Bilibili
+  emoji: [
+    'https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/weibo',
+    'https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/bilibili',
+  ],
+});
+```
+
+:::
+
+## Creating preset
+
+Besides presets provided by Waline, you can create one by yourself.
+
+You need to place all emoticons in an accessible server folder, then create `info.json` in the root directory and set the following options:
+
+- `name`: emoji name on the tab
+
+- `prefix` (optional): The general prefix of images' filename
+
+  When you set multiple emojis tabs, we recommend you to add a common prefix to all emoji images in one tab to prevent conflicts with other emoji titles.
+
+- `type` (optional): type of the picture, which will be used as file extension
+
+  ::: warning
+
+  The emojis should be a set of images with same size and same file format. If you DO need to use different types of images, please leave this blank and manually specify the suffix in the next two options.
+
+  :::
+
+- `icon`: filename of the icon image used in tab (requirement is the same as `items`)
+
+- `items`: Array, each item is the picture filename without common prefix (do not include file extension)
+
+  ::: tip
+
+  The order of the array is the order in which the emojis are arranged.
+
+  :::
+
+### Demo
+
+We assume that you have the following files:
+
+```
+https://example.com/myemoji/
+├─ my_laugh.png
+├─ my_cute.png
+├─ my_rage.png
+├─ my_sob.png
+└─ info.json
+```
+
+Your `info.json` can be:
+
+```json
+{
+  "name": "My Emoji",
+  "prefix": "my_",
+  "type": "png",
+  "icon": "cute",
+  "items": ["laugh", "sob", "rage", "cute"]
+}
+```
+
+Then you can use `'https://example.com/myemoji'` as a available preset in `emoji` option. (ending with `/` suffix or not is both OK)
+
+### Advanced
+
+We recommend you to upload images to a GitHub repo and add a tag after each modification. In this way, you can use the GitHub tag CDN link on [cdn.jsdelivr.net](https://www.jsdelivr.com/) as your preset, which format is `https://cdn.jsdelivr.net/ gh/user/repo@version/file`. After the tag is bound, original links referenced by the historical comment will still be valid if you edit the images.
+
+::: tip
+
+The official presets are using the `v1.0.0` version of [walinejs/emoji](https://walinejs/emoji).
+
+:::
+
+## Using config objects
+
+Besides creating `info.json` under the image folder to create presets, you can directly add config objects to the `emoji` option.
+
+The format of the config object is only one place different from `info.json`: you should add the `folder` option and set image folder link additionally (DO NOT add trailing `/`) so that Waline can find your images.
+
+::: tip Demo
+
+If you have the following files:
+
+```
+https://example.com/myemoji/
+├─ my_laugh.png
+├─ my_cute.png
+├─ my_rage.png
+└─ my_sob.png
+```
+
+You can add
+
+```js
+{
+  name: "My Emoji",
+  link: "https://example.com/myemoji",
+  prefix: "my_",
+  type: "png",
+  icon: "cute",
+  items: ["laugh", "sob", "rage", "cute"]
+}
+```
+
+to the `emoji` option as a config item.
+
+:::
 
 ## Historical issues
 
@@ -124,14 +245,14 @@ Waline provides a series of emoji presets that can be used immediately. You can 
 
 ::: tip
 
-Although Waline is still compatible with Valine's custom emoji syntax, this compatibility will be removed in future versions. Please migrate to the `emoji` option as soon as possible.
+Though Waline is still compatible with Valine's custom emoji syntax, this compatibility will be removed in future version. Please migrate to the `emoji` option.
 
 :::
 
 Use `emojiCDN` to set the address prefix of emoji images, and use `emojiMaps` to set the mapping between emoji title and image:
 
 ```js
-new Waline({
+Waline({
   el: '#waline',
   serverURL: '<YOUR SERVER URL>',
 

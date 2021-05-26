@@ -58,7 +58,7 @@
   ...
   <div id="waline"></div>
   <script>
-    new Waline({
+    Waline({
       el: '#waline',
       serverURL: 'https://your-domain.vercel.app',
     });
@@ -94,7 +94,7 @@ import Waline from '@waline/client';
 // or Use require
 const Waline = require('@waline/client');
 
-new Waline({
+Waline({
   el: '#waline',
   // other config
 });

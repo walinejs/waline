@@ -92,7 +92,7 @@ describe('Words test', () => {
   ...
   <div id="waline"></div>
   <script>
-    new Waline({
+    Waline({
       el: '#waline',
       path: location.pathname,
       serverURL: 'https://your-domain.vercel.app',
@@ -127,7 +127,7 @@ describe('Words test', () => {
       'waline',
       'div',
       'script',
-      'new Waline',
+      'Waline',
       'el',
       'waline',
       'path',
@@ -143,6 +143,6 @@ describe('Words test', () => {
       'body',
     ]);
 
-    expect(getWordNumber(codeBlock)).toEqual(37);
+    expect(getWordNumber(codeBlock)).toEqual(36);
   });
 });

@@ -11,7 +11,7 @@ Since Waline completely reuses Valine's data structure in storage, migrating fro
 
   <script>
 -  new Valine({
-+  new Waline({
++  Waline({
     el: '#vcomments',
 -  appId: 'Your appId',
 -  appKey: 'Your appKey'
