@@ -36,6 +36,10 @@ export default defineComponent({
         locale: {
           admin: lang.value === 'zh-CN' ? '可爱的管理员' : 'Administrator',
         },
+        emoji: [
+          'https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/weibo',
+          'https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/bilibili',
+        ],
       }) as WalineInstance;
 
     onMounted(() => {
