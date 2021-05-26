@@ -1,6 +1,7 @@
-import { removeEndingSplash } from './string';
+import { removeEndingSplash } from './path';
 
-import type { EmojiConfig, EmojiInfo, EmojiMaps } from '../config';
+import type { EmojiInfo, EmojiMaps } from '../config';
+import type { EmojiConfig } from './config';
 
 // TODO: remove
 export const resolveOldEmojiMap = (

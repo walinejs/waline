@@ -1,17 +1,16 @@
 import {
-  availableAvatar,
-  availableMeta,
   defaultGravatarCDN,
   defaultLang,
   defaultUploadImage,
-} from './default';
-import { locales } from './i18n';
+  getAvatar,
+  getMeta,
+  locales,
+} from '../config';
 
-import { decodePath, removeEndingSplash } from '../utils';
+import { decodePath, removeEndingSplash } from '.';
+import { getEmojis, resolveOldEmojiMap } from './emoji';
 
-import type { Locale } from './i18n';
-import type { EmojiInfo, EmojiMaps, WalineOptions } from './options';
-import { getEmojis, resolveOldEmojiMap } from '../utils/emoji';
+import type { EmojiInfo, EmojiMaps, Locale, WalineOptions } from '../config';
 
 export interface EmojiConfig {
   tabs: Pick<EmojiInfo, 'name' | 'icon' | 'items'>[];
@@ -28,7 +27,6 @@ export interface Config
         | 'meta'
         | 'pageSize'
         | 'requiredMeta'
-        | 'avatarCDN'
         | 'uploadImage'
         | 'copyright'
         | 'login'
@@ -38,8 +36,7 @@ export interface Config
   locale: Locale;
   wordLimit: [number, number] | false;
   emoji: Promise<EmojiConfig>;
-
-  avatarParam: string;
+  avatar: { cdn: string; param: string } | false;
 }
 
 export const getConfig = ({
@@ -103,13 +100,18 @@ export const getConfig = ({
       : wordLimit
       ? [0, wordLimit]
       : false,
-    meta: meta.filter((item) => availableMeta.includes(item)),
-    requiredMeta,
+    meta: getMeta(meta),
+    requiredMeta: getMeta(requiredMeta),
     pageSize,
-    avatarCDN,
-    avatarParam: `?d=${availableAvatar.includes(avatar) ? avatar : 'mp'}${
-      avatarForce ? `&q=${Math.random().toString(32).substring(2)}` : ''
-    }`,
+    avatar:
+      avatar === 'hide'
+        ? false
+        : {
+            cdn: avatarCDN,
+            param: `?d=${getAvatar(avatar)}${
+              avatarForce ? `&q=${Math.random().toString(32).substring(2)}` : ''
+            }`,
+          },
     uploadImage:
       typeof uploadImage === 'function' ? uploadImage : defaultUploadImage,
     copyright,

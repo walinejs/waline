@@ -1,4 +1,4 @@
-import type { Config } from '../config';
+import type { Config } from '../utils';
 import { Ref } from 'vue';
 
 export interface CommentData {

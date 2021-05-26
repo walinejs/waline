@@ -7,3 +7,6 @@ export const decodePath = (path: string): string => {
 
   return path;
 };
+
+export const removeEndingSplash = (content = ''): string =>
+  content.replace(/\/$/u, '');

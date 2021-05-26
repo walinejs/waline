@@ -1,8 +1,8 @@
 import mitt from 'mitt';
 import { createApp, ref } from 'vue';
-import { getConfig } from './config';
 import {
   checkOptions,
+  getConfig,
   injectDarkStyle,
   registerMathML,
   updateCommentCount,
@@ -10,7 +10,9 @@ import {
 } from './utils';
 import { RecentComments } from './widget';
 import App from './App.vue';
-import type { Config, WalineOptions } from './config';
+
+import type { WalineOptions } from './config';
+import type { Config } from './utils';
 
 export type { Locale as WalineLocale, WalineOptions } from './config';
 export type { Comment as WalineComment } from './typings';

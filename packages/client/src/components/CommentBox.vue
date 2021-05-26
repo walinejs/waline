@@ -19,7 +19,7 @@
           <img
             :src="
               userInfo.avatar ||
-              `${config.avatarCDN}${userInfo.mailMd5}${config.avatarParam}`
+              `${config.avatar.cdn}${userInfo.mailMd5}${config.avatar.param}`
             "
             alt="avatar"
           />
@@ -228,8 +228,8 @@ import {
   store,
 } from '../utils';
 
-import type { EmojiConfig } from '../config';
 import type { CommentData, ConfigRef } from '../typings';
+import type { EmojiConfig } from '../utils';
 
 export default defineComponent({
   name: 'CommentBox',

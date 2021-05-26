@@ -1,11 +1,12 @@
 <template>
   <div class="vitem" :id="comment.objectId">
     <img
+      v-if="config.avatar"
       class="vuser"
       aria-hidden="true"
       :src="
         comment.avatar ||
-        `${config.avatarCDN}${comment.mail}${config.avatarParam}`
+        `${config.avatar.cdn}${comment.mail}${config.avatar.param}`
       "
     />
     <div class="vcard">

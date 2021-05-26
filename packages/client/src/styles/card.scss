@@ -1,11 +1,9 @@
 .v[data-class='v'] {
   .vcards {
-    width: 100%;
-
     .vitem {
       position: relative;
       display: flex;
-      padding-top: 1.25em;
+      padding: 0.5em;
 
       .vuser {
         width: var(--waline-avatar-size);
@@ -32,6 +30,10 @@
     width: 0;
     padding-bottom: 0.5em;
     border-bottom: 1px dashed var(--waline-border-color);
+
+    &:first-child {
+      margin-left: 1em;
+    }
 
     .vhead {
       line-height: 1.5;

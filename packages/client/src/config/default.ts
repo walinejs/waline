@@ -1,6 +1,6 @@
-export const defaultGravatarCDN = 'https://cdn.v2ex.com/gravatar/';
+import type { Avatar, Meta } from './options';
 
-export const availableAvatar = [
+const availableAvatar: Avatar[] = [
   'mp',
   'identicon',
   'monsterid',
@@ -10,7 +10,15 @@ export const availableAvatar = [
   '',
 ];
 
-export const availableMeta = ['nick', 'mail', 'link'];
+const availableMeta: Meta[] = ['nick', 'mail', 'link'];
+
+export const getAvatar = (avatar: Avatar): Avatar =>
+  availableAvatar.includes(avatar) ? avatar : 'mp';
+
+export const getMeta = (meta: Meta[]): Meta[] =>
+  meta.filter((item) => availableMeta.includes(item));
+
+export const defaultGravatarCDN = 'https://cdn.v2ex.com/gravatar/';
 
 export const defaultLang = 'zh-CN';
 
