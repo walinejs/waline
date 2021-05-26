@@ -1,25 +1,27 @@
-import type { UserInfo } from '../composables';
+export interface Store {
+  get: <T = unknown>(key: string) => T | null;
+  set: <T = unknown>(content: T) => void;
+}
 
-const CACHE_KEY = 'ValineCache';
-
-export const store = {
+export const store = (cacheKey: string): Store => ({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  getItem(key: string): string {
-    const userInfoString = localStorage.getItem(CACHE_KEY);
+  get<T>(key: string): T | null {
+    const userInfoString = localStorage.getItem(cacheKey);
 
     if (userInfoString) {
       try {
-        const result = JSON.parse(userInfoString) as UserInfo;
+        const result = JSON.parse(userInfoString) as Record<string, T>;
 
-        return result[key as keyof UserInfo] || '';
+        return result[key] || null;
       } catch (err) {
         // do nothing
       }
     }
 
-    return '';
+    return null;
   },
-  setItem<T = UserInfo>(content: T): void {
-    localStorage.setItem(CACHE_KEY, JSON.stringify(content));
+
+  set<T>(content: T): void {
+    localStorage.setItem(cacheKey, JSON.stringify(content));
   },
-};
+});
