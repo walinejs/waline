@@ -1,98 +1,60 @@
-export interface FetchVisitCountOptions {
-  serverURL: string;
-  paths: string[];
-}
+import { fetchVisitCount, postVisitCount } from './fetch';
+import { decodePath } from './path';
 
-export const fetchVisitCount = ({
-  serverURL,
-  paths,
-}: FetchVisitCountOptions): Promise<number[]> => {
-  const url = `${serverURL}/article?path=${encodeURIComponent(
-    paths.join(',')
-  )}`;
-  return fetch(url).then((resp) => resp.json() as Promise<number[]>);
-};
-
-export interface PostVisitCountOptions {
-  serverURL: string;
-  path: string;
-}
-
-export const postVisitCount = ({
-  serverURL,
-  path,
-}: PostVisitCountOptions): Promise<number> => {
-  const url = `${serverURL}/article`;
-  return fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ path }),
-  }).then((resp) => resp.json() as Promise<number>);
-};
+import type { PostVisitCountOptions } from './fetch';
 
 const renderVisitorCount = (
-  counts: number[] | number,
+  counts: number[],
   countElements: HTMLElement[]
 ): void => {
-  if (!Array.isArray(counts)) {
-    counts = new Array(countElements.length).fill(counts);
-  }
-
-  countElements.forEach((el, idx) => {
-    let counterEl = el.querySelector(
-      '.leancloud-visitors-count'
-    ) as HTMLElement;
-
-    if (!counterEl) {
-      counterEl = el;
-    }
-
-    counterEl.innerText = (counts as number[])[idx].toString();
+  countElements.forEach((element, index) => {
+    (
+      element.querySelector<HTMLElement>('.leancloud-visitors-count') || element
+    ).innerText = counts[index].toString();
   });
 };
 
-export type UpdateVisitOptions = PostVisitCountOptions;
+export interface UpdateVisitOptions extends PostVisitCountOptions {
+  signal: AbortSignal;
+}
 
 export const updateVisitor = ({
   serverURL,
   path,
+  signal,
 }: UpdateVisitOptions): void => {
   const countIncrease = postVisitCount({ serverURL, path });
+  const countElements = Array.from(
+    // visitor selectors
+    document.querySelectorAll<HTMLElement>(
+      '.leancloud_visitors,.leancloud-visitors'
+    )
+  ).filter((el) => el.getAttribute('id'));
 
-  const visitorElements = document.querySelectorAll(
-    '.leancloud_visitors,.leancloud-visitors'
+  const ids = countElements.map((el: Element) =>
+    decodePath(el.getAttribute('id') || '')
   );
-  const countElements = (Array.from(visitorElements) as HTMLElement[]).filter(
-    (el) => el.getAttribute('id')
-  );
-
-  const ids = countElements.map((el: Element) => {
-    let id = el.getAttribute('id') || '';
-
-    try {
-      if (id) {
-        id = decodeURI(id);
-      }
-    } catch (err) {
-      // ignore error
-    }
-
-    return id;
-  });
 
   const restIds = ids.filter((id) => id !== path);
 
+  // if we should fetch count of other pages
   if (restIds.length) {
-    const hasPath = restIds.length !== ids.length;
-
-    void (hasPath ? countIncrease : Promise.resolve())
-      .then(() => fetchVisitCount({ serverURL, paths: ids }))
+    void (
+      restIds.length === ids.length
+        ? // all the ids are other pages, so no need to wait
+          Promise.resolve()
+        : // wait till the post success
+          countIncrease
+    )
+      .then(() => fetchVisitCount({ serverURL, paths: ids, signal }))
       .then((counts) => renderVisitorCount(counts, countElements));
   } else {
+    // all the id are current page, so no need to fetch
     void countIncrease.then((count) =>
-      renderVisitorCount(count, countElements)
+      renderVisitorCount(
+        new Array(countElements.length).fill(count),
+        countElements
+      )
     );
   }
 };

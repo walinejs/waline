@@ -3,34 +3,45 @@ import type { Comment, CommentData } from '../typings';
 export interface FetchCountOptions {
   serverURL: string;
   paths: string[];
+  signal: AbortSignal;
 }
 
 export const fetchCommentCount = ({
   serverURL,
   paths,
-}: FetchCountOptions): Promise<number | number[]> =>
+  signal,
+}: FetchCountOptions): Promise<number[]> =>
   fetch(
-    `${serverURL}/comment?type=count&url=${encodeURIComponent(paths.join(','))}`
-  ).then((resp) => resp.json() as Promise<number | number[]>);
+    `${serverURL}/comment?type=count&url=${encodeURIComponent(
+      paths.join(',')
+    )}`,
+    { signal }
+  )
+    .then((resp) => resp.json() as Promise<number | number[]>)
+    // TODO: Improve this API
+    .then((counts) => (Array.isArray(counts) ? counts : [counts]));
 
 export interface FetchRecentOptions {
   serverURL: string;
   count: number;
+  signal: AbortSignal;
 }
 
 export const fetchRecentComment = ({
   serverURL,
   count,
-}: FetchRecentOptions): Promise<Comment[]> => {
-  const url = `${serverURL}/comment?type=recent&count=${count}`;
-  return fetch(url).then((resp) => resp.json() as Promise<Comment[]>);
-};
+  signal,
+}: FetchRecentOptions): Promise<Comment[]> =>
+  fetch(`${serverURL}/comment?type=recent&count=${count}`, { signal }).then(
+    (resp) => resp.json() as Promise<Comment[]>
+  );
 
 export interface FetchListOptions {
   serverURL: string;
   path: string;
   page: number;
   pageSize: number;
+  signal: AbortSignal;
 }
 
 export interface FetchListResult {
@@ -44,13 +55,14 @@ export const fetchCommentList = ({
   path,
   page,
   pageSize,
-}: FetchListOptions): Promise<FetchListResult> => {
-  const url = `${serverURL}/comment?path=${encodeURIComponent(
-    path
-  )}&pageSize=${pageSize}&page=${page}`;
-
-  return fetch(url).then((resp) => resp.json() as Promise<FetchListResult>);
-};
+  signal,
+}: FetchListOptions): Promise<FetchListResult> =>
+  fetch(
+    `${serverURL}/comment?path=${encodeURIComponent(
+      path
+    )}&pageSize=${pageSize}&page=${page}`,
+    { signal }
+  ).then((resp) => resp.json() as Promise<FetchListResult>);
 
 export interface PostCommentOptions {
   serverURL: string;
@@ -70,17 +82,50 @@ export const postComment = ({
   token,
   comment,
 }: PostCommentOptions): Promise<PostCommentResponse> => {
-  const url = `${serverURL}/comment?lang=${lang}`;
-
   const headers: Record<string, string> = {
     'Content-Type': 'application/json',
   };
 
   if (token) headers.Authorization = `Bearer ${token}`;
 
-  return fetch(url, {
+  return fetch(`${serverURL}/comment?lang=${lang}`, {
     method: 'POST',
     headers,
     body: JSON.stringify(comment),
   }).then((resp) => resp.json() as Promise<PostCommentResponse>);
 };
+
+export interface FetchVisitCountOptions {
+  serverURL: string;
+  paths: string[];
+  signal: AbortSignal;
+}
+
+export const fetchVisitCount = ({
+  serverURL,
+  paths,
+  signal,
+}: FetchVisitCountOptions): Promise<number[]> =>
+  fetch(`${serverURL}/article?path=${encodeURIComponent(paths.join(','))}`, {
+    signal,
+  })
+    .then((resp) => resp.json() as Promise<number[] | number>)
+    // TODO: Improve this API
+    .then((counts) => (Array.isArray(counts) ? counts : [counts]));
+
+export interface PostVisitCountOptions {
+  serverURL: string;
+  path: string;
+}
+
+export const postVisitCount = ({
+  serverURL,
+  path,
+}: PostVisitCountOptions): Promise<number> =>
+  fetch(`${serverURL}/article`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ path }),
+  }).then((resp) => resp.json() as Promise<number>);

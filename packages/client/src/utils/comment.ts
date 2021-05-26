@@ -1,7 +1,10 @@
 import { fetchCommentCount } from './fetch';
 import { decodePath } from './path';
 
-export const updateCommentCount = (serverURL: string): void => {
+export const updateCommentCount = (
+  serverURL: string,
+  signal: AbortSignal
+): void => {
   // comment count
   const $counts = Array.from<HTMLElement>(
     document.querySelectorAll('.waline-comment-count')
@@ -18,13 +21,10 @@ export const updateCommentCount = (serverURL: string): void => {
             element.getAttribute('id')) as string
         )
       ),
+      signal,
     }).then((counts) => {
-      if (!Array.isArray(counts)) {
-        counts = [counts];
-      }
-
-      $counts.forEach(
-        (el, idx) => (el.innerText = (counts as number[])[idx].toString())
-      );
+      $counts.forEach((element, index) => {
+        element.innerText = counts[index].toString();
+      });
     });
 };

@@ -53,8 +53,9 @@ import CommentCard from './components/CommentCard.vue';
 import { LoadingIcon } from './components/Icons';
 import { fetchCommentList } from './utils';
 
-import type { Emitter } from 'mitt';
+import type { PropType } from 'vue';
 import type { Comment, ConfigRef } from './typings';
+import type { WalineEvent } from './utils';
 
 declare const VERSION: string;
 
@@ -67,9 +68,16 @@ export default defineComponent({
     LoadingIcon,
   },
 
-  setup() {
+  props: {
+    signal: {
+      type: Object as PropType<AbortSignal>,
+      required: true,
+    },
+  },
+
+  setup(props) {
     const config = inject<ConfigRef>('config') as ConfigRef;
-    const event = inject<Emitter>('event') as Emitter;
+    const event = inject<WalineEvent>('event') as WalineEvent;
 
     const count = ref(0);
     const page = ref(1);
@@ -77,39 +85,32 @@ export default defineComponent({
     const loading = ref(true);
     const data = ref<Comment[]>([]);
 
+    // eslint-disable-next-line vue/no-setup-props-destructure
+    let signal = props.signal;
+
     const locale = computed(() => config.value.locale);
 
-    const fetchComment = (): void => {
+    const fetchComment = (pageNumber: number): void => {
       loading.value = true;
 
-      fetchCommentList({ ...config.value, page: page.value })
+      fetchCommentList({
+        ...config.value,
+        page: pageNumber,
+        signal,
+      })
         .then((resp) => {
           loading.value = false;
-          data.value = resp.data;
           count.value = resp.count;
-          totalPages.value = resp.totalPages;
-        })
-        .catch(() => {
-          loading.value = false;
-        });
-    };
-
-    const loadMore = (): void => {
-      const nextPage = page.value + 1;
-
-      loading.value = true;
-
-      fetchCommentList({ ...config.value, page: nextPage })
-        .then((resp) => {
-          loading.value = false;
           data.value.push(...resp.data);
-          page.value = nextPage;
+          page.value = pageNumber;
           totalPages.value = resp.totalPages;
         })
-        .catch(() => {
-          loading.value = false;
+        .catch((err) => {
+          if (err.name !== 'AbortError') loading.value = false;
         });
     };
+
+    const loadMore = (): void => fetchComment(page.value + 1);
 
     const onSubmit = (comment: Comment): void => {
       if (comment.rid) {
@@ -123,13 +124,14 @@ export default defineComponent({
       } else data.value.unshift(comment);
     };
 
-    event.on('update', () => {
-      loading.value = true;
+    event.on('render', (abortSignal) => {
+      signal = abortSignal as AbortSignal;
+      count.value = 0;
       data.value = [];
-      fetchComment();
+      fetchComment(1);
     });
 
-    onMounted(() => fetchComment());
+    onMounted(() => fetchComment(1));
 
     return {
       config,

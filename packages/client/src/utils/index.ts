@@ -3,6 +3,7 @@ export * from './comment';
 export * from './config';
 export * from './data';
 export * from './dom';
+export * from './event';
 export * from './fetch';
 export * from './markdown';
 export * from './path';

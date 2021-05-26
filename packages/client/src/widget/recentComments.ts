@@ -7,25 +7,44 @@ export interface RecentCommentsOptions {
   count: number;
 }
 
+export interface RecentCommentsResult {
+  comments: Comment[];
+  destroy: () => void;
+}
+
 export const RecentComments = ({
   el,
   serverURL,
   count,
-}: RecentCommentsOptions): Promise<Comment[]> => {
+}: RecentCommentsOptions): Promise<RecentCommentsResult> => {
   const root = document.querySelector(el);
+  const controller = new AbortController();
 
-  return root
-    ? fetchRecentComment({ serverURL, count }).then((comments) => {
-        if (comments.length) {
-          root.innerHTML = `<ul class="waline-widget-list">${comments
-            .map(
-              (comment) =>
-                `<li class="waline-widget-item"><a href="${comment.url}">${comment.nick}</a>：${comment.comment}</li>`
-            )
-            .join('')}</ul>`;
-        }
+  return fetchRecentComment({
+    serverURL,
+    count,
+    signal: controller.signal,
+  }).then((comments) => {
+    if (root && comments.length) {
+      root.innerHTML = `<ul class="waline-widget-list">${comments
+        .map(
+          (comment) =>
+            `<li class="waline-widget-item"><a href="${comment.url}">${comment.nick}</a>：${comment.comment}</li>`
+        )
+        .join('')}</ul>`;
 
-        return comments;
-      })
-    : Promise.resolve([]);
+      return {
+        comments,
+        destroy: (): void => {
+          controller.abort();
+          root.innerHTML = '';
+        },
+      };
+    }
+
+    return {
+      comments,
+      destroy: (): void => controller.abort(),
+    };
+  });
 };
