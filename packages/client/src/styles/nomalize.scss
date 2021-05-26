@@ -54,6 +54,24 @@
     padding: 10px;
     line-height: 1.45;
 
+    &::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    &::-webkit-scrollbar-track-piece:horizontal {
+      -webkit-border-radius: 6px;
+      border-radius: 6px;
+      background: rgba(0, 0, 0, 0.1);
+    }
+
+    &::-webkit-scrollbar-thumb:horizontal {
+      width: 6px;
+      -webkit-border-radius: 6px;
+      border-radius: 6px;
+      background: var(--waline-theme-color);
+    }
+
     code {
       padding: 0;
 
