@@ -10,3 +10,6 @@ export const decodePath = (path: string): string => {
 
 export const removeEndingSplash = (content = ''): string =>
   content.replace(/\/$/u, '');
+
+export const isLinkHttp = (link: string): boolean =>
+  /^(https?:)?\/\//.test(link);

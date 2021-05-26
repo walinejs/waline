@@ -42,29 +42,28 @@ export interface Config
 export const getConfig = ({
   el = '#waline',
   serverURL,
-  path = location.pathname,
+
   // TODO: remove
   placeholder,
-  lang,
-  // TODO: remove
   langMode,
-  locale = langMode,
-  wordLimit,
   emojiCDN,
   emojiMaps,
-  emoji,
+  requiredFields = [],
+  anonymous,
+
+  path = location.pathname,
+  lang = defaultLang,
+  locale = langMode,
+  emoji = ['https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo'],
   avatar = 'mp',
   avatarCDN = defaultGravatarCDN,
   avatarForce,
   meta = ['nick', 'mail', 'link'],
-  // TODO: remove
-  requiredFields = [],
   requiredMeta = requiredFields,
   pageSize = 10,
+  wordLimit,
   uploadImage,
   copyright = true,
-  // TODO: remove
-  anonymous,
   login = anonymous === true
     ? 'disable'
     : anonymous === false
@@ -72,29 +71,28 @@ export const getConfig = ({
     : 'enable',
   ...more
 }: WalineOptions): Config => {
-  const $lang = lang || defaultLang;
-  const $locale = locales[$lang] || locales[defaultLang];
+  const $locale = locales[lang] || locales[defaultLang];
 
   // TODO: remove
   if (placeholder) $locale.placeholder = placeholder;
+
+  // TODO: remove
+  const $emoji =
+    emojiCDN && typeof emojiMaps === 'object'
+      ? Promise.resolve(resolveOldEmojiMap(emojiMaps, emojiCDN))
+      : getEmojis(emoji);
 
   return {
     el,
     // remove ending slash
     serverURL: removeEndingSplash(serverURL),
     path: decodePath(path),
-    lang: $lang,
+    lang,
     locale: {
       ...$locale,
       ...(typeof locale === 'object' ? locale : {}),
     },
-    emoji:
-      // TODO: remove
-      emojiCDN && typeof emojiMaps === 'object' && !emoji
-        ? Promise.resolve(resolveOldEmojiMap(emojiMaps, emojiCDN))
-        : getEmojis(
-            emoji || ['https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo']
-          ),
+    emoji: $emoji,
     wordLimit: Array.isArray(wordLimit)
       ? wordLimit
       : wordLimit
