@@ -16,9 +16,10 @@
   },
   "scripts": {
     "analyze": "cross-env ANALYZE=true webpack --mode=production",
-    "build": "npm run build:webpack && npm run build:rollup",
-    "build:rollup": "rollup -c rollup.config.js",
-    "build:webpack": "webpack --mode=production",
+    "build": "npm run build:normal && npm run build:no-style && npm run build:dts",
+    "build:dts": "rollup -c ./build/rollup.config.js",
+    "build:normal": "webpack --mode=production --config ./build/webpack.config.js",
+    "build:no-style": "webpack --mode=production --config ./build/webpack.noStyle.js",
     "dev": "webpack serve --mode=development",
     "prepublish": "npm run build"
   },

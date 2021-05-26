@@ -11,7 +11,7 @@
     "admin:build": "npm run build --workspace=@waline/admin",
     "admin:dev": "npm run dev --workspace=@waline/admin",
     "client:analyze": "npm run analyze --workspace=@waline/client",
-    "client:build": "npm run build:webpack --workspace=@waline/client && npm run build:rollup --workspace=@waline/client",
+    "client:build": "npm run build:normal --workspace=@waline/client && npm run build:no-style --workspace=@waline/client && npm run build:dts --workspace=@waline/client",
     "client:dev": "npm run dev --workspace=@waline/client",
     "server:dev": "vercel dev ./example --listen 9090",
     "docs:build": "npm run build --workspace=docs",
@@ -69,7 +69,8 @@
     "webpack": "^5.37.1",
     "webpack-bundle-analyzer": "^4.4.2",
     "webpack-cli": "^4.7.0",
-    "webpack-dev-server": "^4.0.0-beta.3"
+    "webpack-dev-server": "^4.0.0-beta.3",
+    "webpack-merge": "^5.7.3"
   },
   "config": {
     "commitizen": {

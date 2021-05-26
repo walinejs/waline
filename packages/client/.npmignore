@@ -1,6 +1,7 @@
 node_modules/
 
 __tests__/
+build/
 src/
 
 .babelrc
@@ -8,6 +9,5 @@ src/
 .env.example
 .eslintrc.js
 .gitignore
-rollup.config.js
-webpack.config.js
+
 tsconfig.json

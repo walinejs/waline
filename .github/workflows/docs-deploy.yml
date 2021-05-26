@@ -39,8 +39,7 @@ jobs:
 
       - name: Build client
         run: |
-          yarn workspace @waline/client build:webpack
-          yarn workspace @waline/client build:rollup
+          yarn workspace @waline/client build
 
       - name: Build docs
         run: yarn workspace docs build

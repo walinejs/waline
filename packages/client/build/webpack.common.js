@@ -3,18 +3,17 @@ const webpack = require('webpack');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { VueLoaderPlugin } = require('vue-loader');
-const { version } = require('./package.json');
+const { version } = require('../package.json');
 
 const pkgName = 'Waline';
 
 module.exports = {
   entry: {
-    [`${pkgName}.min`]: path.resolve(__dirname, 'src/index.ts'),
+    main: path.resolve(__dirname, '../src/index.ts'),
   },
 
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js',
+    path: path.resolve(__dirname, '../dist'),
     library: pkgName,
     libraryExport: 'default',
     libraryTarget: 'umd',

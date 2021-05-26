@@ -16,7 +16,6 @@ yarn.lock
 coverage/
 
 # production
-build/
 dist/
 
 # misc

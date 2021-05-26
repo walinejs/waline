@@ -17,7 +17,7 @@ import type { Config } from './utils';
 export type { Locale as WalineLocale, WalineOptions } from './config';
 export type { Comment as WalineComment } from './typings';
 
-import './styles/index.scss';
+import '@style';
 
 declare const VERSION: string;
 
