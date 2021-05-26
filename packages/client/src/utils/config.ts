@@ -54,7 +54,7 @@ export const getConfig = ({
   path = location.pathname,
   lang = defaultLang,
   locale = langMode,
-  emoji = ['https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo'],
+  emoji = ['https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/weibo'],
   avatar = 'mp',
   avatarCDN = defaultGravatarCDN,
   avatarForce,
