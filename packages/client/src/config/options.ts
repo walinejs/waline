@@ -55,7 +55,70 @@ export type Meta = 'nick' | 'mail' | 'link';
 
 export type UploadImage = (image: File) => Promise<string>;
 
-export interface WalineOptions {
+export interface DeprecatedValineOptions {
+  /**
+   * @deprecated Use `locale.placeholder` instead, will be dropped in V2
+   */
+  placeholder?: string;
+
+  /**
+   * @deprecated Use `locale` instead, will be dropped in V2
+   */
+  langMode?: Locale;
+
+  /**
+   * @deprecated Use `requiredMeta` instead, will be dropped in V2
+   */
+  requiredFields?: Meta[];
+
+  /**
+   * @deprecated Use `emojis` instead, will be dropped in V2
+   *
+   * 设置**表情包 CDN**
+   *
+   * @see [自定义表情包](https://waline.js.org/client/emoji.html)
+   *
+   * Set **Emoji Pack CDN**
+   *
+   * @see [Custom Emoji](https://waline.js.org/en/client/emoji.html)
+   *
+   * @default 'https://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/'
+   */
+  emojiCDN?: string;
+
+  /**
+   * @deprecated Use `emojis` instead, will be dropped in V2
+   *
+   * 设置**表情包映射**
+   *
+   * @see [自定义表情](https://waline.js.org/client/emoji.html)
+   *
+   * Set **emoji maps**
+   *
+   * @see [Custom Emoji](https://waline.js.org/en/client/emoji.html)
+   *
+   * @default 微博表情包
+   */
+
+  emojiMaps?: EmojiMaps;
+
+  /**
+   * @deprecated Use `login` instead, will be dropped in V2
+   *
+   * 是否允许登录评论
+   *
+   * 默认情况是两者都支持，设置为 `true` 表示仅支持匿名评论，`false` 表示仅支持登录评论。
+   *
+   * Whether to allow login comments.
+   *
+   * Both supported by default, set to `true` means only support anonymous comments, `false` means only support login comments.
+   *
+   * @default undefined
+   */
+  anonymous?: boolean;
+}
+
+export interface WalineOptions extends DeprecatedValineOptions {
   /**
    * Waline 的初始化挂载器。必须是一个有效的 **CSS 选择器**
    *
@@ -308,21 +371,6 @@ export interface WalineOptions {
   login?: 'enable' | 'disable' | 'force';
 
   /**
-   * @deprecated Use `login` instead, will be dropped in future versions of V1
-   *
-   * 是否允许登录评论
-   *
-   * 默认情况是两者都支持，设置为 `true` 表示仅支持匿名评论，`false` 表示仅支持登录评论。
-   *
-   * Whether to allow login comments.
-   *
-   * Both supported by default, set to `true` means only support anonymous comments, `false` means only support login comments.
-   *
-   * @default undefined
-   */
-  anonymous?: boolean;
-
-  /**
    * 是否在页脚展示版权信息
    *
    * 为了支持 Waline，我们强烈建议你开启它
@@ -334,50 +382,4 @@ export interface WalineOptions {
    * @default true
    */
   copyright?: boolean;
-
-  /**
-   * @deprecated Use `locale.placeholder` instead, will be dropped in future versions of V1
-   */
-  placeholder?: string;
-
-  /**
-   * @deprecated Use `locale` instead, will be dropped in future versions of V1
-   */
-  langMode?: Locale;
-
-  /**
-   * @deprecated Use `requiredMeta` instead, will be dropped in future versions of V1
-   */
-  requiredFields?: Meta[];
-
-  /**
-   * @deprecated Use `emojis` instead, will be dropped in future versions of V1
-   *
-   * 设置**表情包 CDN**
-   *
-   * @see [自定义表情包](https://waline.js.org/client/emoji.html)
-   *
-   * Set **Emoji Pack CDN**
-   *
-   * @see [Custom Emoji](https://waline.js.org/en/client/emoji.html)
-   *
-   * @default 'https://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/'
-   */
-  emojiCDN?: string;
-
-  /**
-   * @deprecated Use `emojis` instead, will be dropped in future versions of V1
-   *
-   * 设置**表情包映射**
-   *
-   * @see [自定义表情](https://waline.js.org/client/emoji.html)
-   *
-   * Set **emoji maps**
-   *
-   * @see [Custom Emoji](https://waline.js.org/en/client/emoji.html)
-   *
-   * @default 微博表情包
-   */
-
-  emojiMaps?: EmojiMaps;
 }
