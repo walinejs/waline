@@ -4,123 +4,123 @@
 
 ## 预设
 
-Waline 提供了一系列开箱即用的表情预设。你可以直接将它们添加到 emoji 选项中:
+Waline 提供了一系列开箱即用的表情预设。你可以直接将它们添加到 `emoji` 选项中:
 
 - Alus
 
-  ```
+  ```http
   https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/alus
   ```
 
-- Bilibili
+- 哔哩哔哩
 
-  ```
+  ```http
   https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/bilibili
   ```
 
 - QQ
 
-  ```
+  ```http
   https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/qq
   ```
 
-- Tieba
+- 贴吧
 
-  ```
+  ```http
   https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tieba
   ```
 
-- Twemoji
+- Twitter Emoji
 
-  - Emoji:
+  - 表情:
 
-    ```
+    ```http
     https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-emoji
     ```
 
-  ::: details Others
+  ::: details 其他可用预设
 
-  - Full: (Not recommand)
+  - 完整: (不推荐使用)
 
-    ```
+    ```http
     https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw
     ```
 
-  - People:
+  - 身体:
 
-    ```
-    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-people
-    ```
-
-  - Body:
-
-    ```
+    ```http
     https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-body
     ```
 
-  - Flag:
+  - 食物:
 
-    ```
-    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-flag
-    ```
-
-  - Food:
-
-    ```
+    ```http
     https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-food
     ```
 
-  - Natural:
+  - 自然:
 
-    ```
+    ```http
     https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-natural
     ```
 
-  - Object:
+  - 对象:
 
-    ```
+    ```http
     https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-object
     ```
 
-  - Sport:
+  - 符号:
 
-    ```
-    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-sport
-    ```
-
-  - Symbol:
-
-    ```
+    ```http
     https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-symbol
     ```
 
-  - Time:
+  - 人物:
 
+    ```http
+    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-people
     ```
+
+  - 运动:
+
+    ```http
+    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-sport
+    ```
+
+  - 时间:
+
+    ```http
     https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-time
     ```
 
-  - Travel:
+  - 旅行:
 
-    ```
+    ```http
     https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-travel
     ```
 
-  - Weather:
+  - 天气:
 
-    ```
+    ```http
     https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-weather
+    ```
+
+  - 旗帜:
+
+    ```http
+    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-flag
     ```
 
   :::
 
-- Weibo
+- 微博
 
-  ```
+  ```http
   https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/weibo
   ```
 
-::: tip 例子
+### 例子
 
 ```js
 Waline({
@@ -135,8 +135,6 @@ Waline({
 });
 ```
 
-:::
-
 ## 创建自己的预设
 
 除了 Waline 提供的预设外，你可以创建自己的预设。
@@ -147,7 +145,11 @@ Waline({
 
 - `prefix` (可选的): Emoji 图片名称的通用前缀
 
+  ::: warning
+
   当你设置了多个 Emoji 选项卡时，我们推荐你为同一个选项卡内的所有表情图片添加一个共用前缀，以防与其他 Emoji 缩写相冲突。
+
+  :::
 
 - `type` (可选的): 图片的类型，会用作图片的后缀名
 
@@ -210,7 +212,7 @@ https://example.com/myemoji/
 
 配置对象的格式和 `info.json` 只有一点不同: 你应当额外添加 `folder` 选项为图片文件夹 (不应包含尾随 `/`)，以便 Waline 可以找到你的表情包。
 
-::: tip 例子
+### 例子
 
 假设你有下列文件结构:
 
@@ -227,7 +229,7 @@ https://example.com/myemoji/
 ```js
 {
   name: "我的 Emoji",
-  link: "https://example.com/myemoji",
+  folder: "https://example.com/myemoji",
   prefix: "my_",
   type: "png",
   icon: "cute",
@@ -237,13 +239,11 @@ https://example.com/myemoji/
 
 至 `emoji` 选项作为一个配置项。
 
-:::
-
 ## 历史问题
 
 ### Valine 兼容
 
-::: tip
+::: warning
 
 虽然 Waline 目前仍在兼容 Valine 的自定义表情写法，但此兼容会在未来版本中移除，请尽快迁移到 `emoji` 选项。
 

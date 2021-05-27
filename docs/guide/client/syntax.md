@@ -1,6 +1,8 @@
-# 格式支持
+# 评论格式支持
 
 你可以在评论中添加多样化的内容，包括经过扩展的 Markdown 语法和 HTML 标签。
+
+<!-- more -->
 
 ## Markdown 支持
 
@@ -8,11 +10,17 @@
 
 ### Github 风格语法
 
-包含删除线与表格
-
-::: details 案例
+::: details 删除线
 
 ~~此单词~~被删除。
+
+```md
+~~此单词~~被删除。
+```
+
+:::
+
+::: details 表格
 
 |     居中      |         右对齐 | 左对齐         |
 | :-----------: | -------------: | :------------- |
@@ -21,8 +29,6 @@
 |       c       |           aaaa | a              |
 
 ```md
-~~此单词~~被删除。
-
 |     居中      |         右对齐 | 左对齐         |
 | :-----------: | -------------: | :------------- |
 | 居中使用`:-:` | 右对齐使用`-:` | 左对齐使用`:-` |
@@ -68,7 +74,7 @@
 
 ::: details 案例
 
-```html:no-line-numbers
+```html
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -92,7 +98,7 @@
 </html>
 ```
 
-```js:no-line-numbers
+```js
 /** @deprecated Use `Prism.plugins.fileHighlight.highlight` instead. */
 Prism.fileHighlight = function () {
   if (!logged) {
@@ -105,7 +111,7 @@ Prism.fileHighlight = function () {
 };
 ```
 
-```css:no-line-numbers
+```css
 @import url(https://fonts.googleapis.com/css?family=Questrial);
 @import url(https://fonts.googleapis.com/css?family=Arvo);
 
@@ -136,6 +142,10 @@ footer p {
 
 <MathML content='Euler’s identity <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mi>e</mi><mrow><mi>i</mi><mi>π</mi></mrow></msup><mo>+</mo><mn>1</mn><mo>=</mo><mn>0</mn></mrow></math> is a beautiful formula in <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mi mathvariant="double-struck">R</mi><mn>2</mn></msup></mrow></math>.' />
 
+```md
+Euler’s identity $e^{i\pi}+1=0$ is a beautiful formula in $\mathbb{R}^2$.
+```
+
 <MathML content='<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mfrac><msup><mi mathvariant="normal">∂</mi><mi>r</mi></msup><mrow><mi mathvariant="normal">∂</mi><msup><mi>ω</mi><mi>r</mi></msup></mrow></mfrac><mrow><mo fence="true">(</mo><mfrac><msup><mi>y</mi><mi>ω</mi></msup><mi>ω</mi></mfrac><mo fence="true">)</mo></mrow><mo>=</mo><mrow><mo fence="true">(</mo><mfrac><msup><mi>y</mi><mi>ω</mi></msup><mi>ω</mi></mfrac><mo fence="true">)</mo></mrow><mrow><mo fence="true">{</mo><mo stretchy="false">(</mo><mi>log</mi><mo>⁡</mo><mi>y</mi><msup><mo stretchy="false">)</mo><mi>r</mi></msup><mo>+</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>r</mi></munderover><mfrac><mrow><mo stretchy="false">(</mo><mo>−</mo><mn>1</mn><msup><mo stretchy="false">)</mo><mi>i</mi></msup><mi>r</mi><mo>⋯</mo><mo stretchy="false">(</mo><mi>r</mi><mo>−</mo><mi>i</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>log</mi><mo>⁡</mo><mi>y</mi><msup><mo stretchy="false">)</mo><mrow><mi>r</mi><mo>−</mo><mi>i</mi></mrow></msup></mrow><msup><mi>ω</mi><mi>i</mi></msup></mfrac><mo fence="true">}</mo></mrow></mrow></math>' />
 
 <script>
@@ -157,8 +167,6 @@ export default {
 </script>
 
 ```md
-Euler’s identity $e^{i\pi}+1=0$ is a beautiful formula in $\mathbb{R}^2$.
-
 $$
 \frac {\partial^r} {\partial \omega^r} \left(\frac {y^{\omega}} {\omega}\right)
 = \left(\frac {y^{\omega}} {\omega}\right) \left\{(\log y)^r + \sum_{i=1}^r \frac {(-1)^i r \cdots (r-i+1) (\log y)^{r-i}} {\omega^i} \right\}
@@ -189,7 +197,7 @@ $$
 
 ## 受限的预览功能
 
-为了控制客户端一侧的 `@waline/client` 体积大小，很多功能并**不能在预览模式正确显示**，但**提交后**它们会**正确的渲染在评论区**。
+为了控制客户端一侧的 `@waline/client` 体积大小，很多功能会**正确的渲染在评论区**，但它们并**不能在预览模式正确显示**。
 
 这包含如下限制:
 

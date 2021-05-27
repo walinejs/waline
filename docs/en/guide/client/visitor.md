@@ -1,6 +1,6 @@
 # Article reading statistics
 
-Same as Valine, Waline also supports article reading statistics, and the data structure is consistent with Valine, facilitating seamless migration for Valine users.
+Waline supports article reading statistics, you can enable it by setting the `visitor` option to `true`:
 
 ```js
 Waline({
@@ -10,7 +10,7 @@ Waline({
 });
 ```
 
-Valine will automatically find the elements which have `leancloud_visitors` class in current page and use their `id` as the query condition. And fill the obtained value into the child element whose `class` value is `leancloud-visitors-count`:
+Waline will automatically find the elements which have `leancloud-visitors` class in current page and use their `id` as the query condition. And fill the obtained value into the child element has a `leancloud-visitors-count` class:
 
 ```html
 <!-- id will be used as the query condition -->
@@ -20,7 +20,13 @@ Valine will automatically find the elements which have `leancloud_visitors` clas
 </span>
 ```
 
-::: tip Demo
+::: tip
+
+If Waline can not find any child element with the right class, Waline will directly output numbers in the `.leancloud-visitors` element.
+
+:::
+
+## Example
 
 ```html
 <span id="/visitor.html" class="leancloud_visitors">
@@ -34,4 +40,8 @@ Valine will automatically find the elements which have `leancloud_visitors` clas
   <i class="leancloud-visitors-count"></i>
 </span>
 
-:::
+## Valine compatible
+
+In order to facilitate the seamless migration of users, Waline will be compatible with Valine's `.leancloud_visitors` and `.leancloud-visitors-count`.
+
+But we will not be compatible with it in future V2 versions.

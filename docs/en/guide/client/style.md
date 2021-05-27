@@ -22,15 +22,18 @@
   --waline-text-color: #444;
   --waline-bgcolor: #fff;
   --waline-bgcolor-light: #f8f8f8;
+  --waline-bgcolor-hover: #f0f0f0;
   --waline-border-color: #ddd;
   --waline-disable-bgcolor: #f8f8f8;
-  --waline-disable-color: #ddd;
+  --waline-disable-color: #bbb;
+  --waline-code-bgcolor: #282c34;
 
   /* Special Color */
   --waline-bq-color: #f0f0f0;
 
   /* Avatar */
   --waline-avatar-size: 3.25rem;
+  --waline-mobile-avatar-size: calc(var(--waline-avatar-size) * 9 / 13);
 
   /* Badge */
   --waline-badge-color: #3498db;
@@ -41,8 +44,9 @@
   --waline-info-color: #999;
   --waline-info-font-size: 0.625em;
 
-  /* * Use border * */
+  /* Render choise */
   --waline-border: 1px solid var(--waline-border-color);
+  --waline-avatar-radius: 50%;
   --waline-box-shadow: none;
 }
 ```
@@ -64,7 +68,7 @@ darkmode-selector {
   --waline-bgcolor: #1e1e1e;
   --waline-bgcolor-light: #272727;
   --waline-border-color: #333;
-  --waline-disable-bgcolor: #222;
+  --waline-disable-bgcolor: #444;
   --waline-disable-color: #272727;
 
   /* Special color */

@@ -71,7 +71,7 @@
    - `el` 选项是 Waline 渲染使用的元素，你可以设置一个字符串形式的 CSS 选择器或者一个 HTMLElement 对象。
    - `serverURL` 是服务端的地址，即上一步获取到的值。
 
-   ```html
+   ```html:line-numbers
    <head>
      ..
      <script src="//cdn.jsdelivr.net/npm/@waline/client"></script>

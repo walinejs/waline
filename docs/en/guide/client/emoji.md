@@ -4,29 +4,29 @@ You can customize the emoji of the comment box by setting `emoji` option, you sh
 
 ## Presets
 
-Waline provides a series of emoji presets that can be used out of box. You can add them directly to the emoji options:
+Waline provides a series of emoji presets that can be used out of box. You can add them directly to the `emoji` options:
 
 - Alus
 
-  ```
+  ```http
   https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/alus
   ```
 
 - Bilibili
 
-  ```
+  ```http
   https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/bilibili
   ```
 
 - QQ
 
-  ```
+  ```http
   https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/qq
   ```
 
 - Tieba
 
-  ```
+  ```http
   https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tieba
   ```
 
@@ -34,93 +34,93 @@ Waline provides a series of emoji presets that can be used out of box. You can a
 
   - Emoji:
 
-    ```
+    ```http
     https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-emoji
     ```
 
-  ::: details Others
+  ::: details Others presets
 
   - Full: (Not recommand)
 
-    ```
+    ```http
     https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw
-    ```
-
-  - People:
-
-    ```
-    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-people
     ```
 
   - Body:
 
-    ```
+    ```http
     https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-body
-    ```
-
-  - Flag:
-
-    ```
-    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-flag
     ```
 
   - Food:
 
-    ```
+    ```http
     https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-food
     ```
 
   - Natural:
 
-    ```
+    ```http
     https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-natural
     ```
 
   - Object:
 
-    ```
+    ```http
     https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-object
-    ```
-
-  - Sport:
-
-    ```
-    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-sport
     ```
 
   - Symbol:
 
-    ```
+    ```http
     https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-symbol
+    ```
+
+  - People:
+
+    ```http
+    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-people
+    ```
+
+  - Sport:
+
+    ```http
+    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-sport
     ```
 
   - Time:
 
-    ```
+    ```http
     https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-time
     ```
 
   - Travel:
 
-    ```
+    ```http
     https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-travel
     ```
 
   - Weather:
 
-    ```
+    ```http
     https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-weather
+    ```
+
+  - Flag:
+
+    ```http
+    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-flag
     ```
 
   :::
 
 - Weibo
 
-  ```
+  ```http
   https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/weibo
   ```
 
-::: tip Demo
+### Example
 
 ```js
 Waline({
@@ -135,9 +135,7 @@ Waline({
 });
 ```
 
-:::
-
-## Creating preset
+## Creating own preset
 
 Besides presets provided by Waline, you can create one by yourself.
 
@@ -147,7 +145,11 @@ You need to place all emoticons in an accessible server folder, then create `inf
 
 - `prefix` (optional): The general prefix of images' filename
 
+  ::: warning
+
   When you set multiple emojis tabs, we recommend you to add a common prefix to all emoji images in one tab to prevent conflicts with other emoji titles.
+
+  :::
 
 - `type` (optional): type of the picture, which will be used as file extension
 
@@ -210,7 +212,7 @@ Besides creating `info.json` under the image folder to create presets, you can d
 
 The format of the config object is only one place different from `info.json`: you should add the `folder` option and set image folder link additionally (DO NOT add trailing `/`) so that Waline can find your images.
 
-::: tip Demo
+### Example
 
 If you have the following files:
 
@@ -227,7 +229,7 @@ You can add
 ```js
 {
   name: "My Emoji",
-  link: "https://example.com/myemoji",
+  folder: "https://example.com/myemoji",
   prefix: "my_",
   type: "png",
   icon: "cute",
@@ -237,13 +239,11 @@ You can add
 
 to the `emoji` option as a config item.
 
-:::
-
 ## Historical issues
 
 ### Valine support
 
-::: tip
+::: warning
 
 Though Waline is still compatible with Valine's custom emoji syntax, this compatibility will be removed in future version. Please migrate to the `emoji` option.
 

@@ -4,18 +4,20 @@
 
 推荐使用 [jsdelivr](https://cdn.jsdelivr.net/npm/@waline/client/)。
 
-## 获取最新版本
+### 获取最新版本
 
 ```html
 <!-- 使用短链接获取最新的默认文件 -->
 <script src="//cdn.jsdelivr.net/npm/@waline/client"></script>
+
 <!-- 省略版本号以自动应用最新版本 -->
 <script src="//cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js"></script>
+
 <!-- 或者手动指定最新版本 -->
 <script src="//cdn.jsdelivr.net/@waline/clien@latest/dist/Waline.min.js"></script>
 ```
 
-## 获取指定版本
+### 获取指定版本
 
 ```html
 <!-- 你需要自行修改替换 `1.0.0` 为你想要的版本号 -->
@@ -46,7 +48,7 @@ npm i -D @waline/client
 
 之后请在你的源文件中引入并使用:
 
-```js
+```js:line-numbers
 // 使用 import
 import Waline from '@waline/client';
 // 或者使用 require

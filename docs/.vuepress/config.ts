@@ -64,6 +64,12 @@ export default defineUserConfig<DefaultThemeOptions>({
 
   theme: path.resolve(__dirname, 'theme'),
 
+  markdown: {
+    code: {
+      lineNumbers: false,
+    },
+  },
+
   themeConfig: {
     logo: '/logo.png',
     repo: 'walinejs/waline',

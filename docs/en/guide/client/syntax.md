@@ -1,4 +1,4 @@
-# Syntax Support
+# Comment Syntax Support
 
 You can add a variety of content in the comments, including expanded Markdown syntax and HTML tags.
 
@@ -8,11 +8,17 @@ We support tcomplete Markdown syntax and the following extensions.
 
 ### GFM Markdown Favor
 
-Including tables and delete lines
-
-::: details Demo
+::: details Delete lines
 
 This is ~~deleted~~.
+
+```md
+This is ~~deleted~~.
+```
+
+:::
+
+::: details Tables
 
 |           center           |                    right | left                    |
 | :------------------------: | -----------------------: | :---------------------- |
@@ -21,8 +27,6 @@ This is ~~deleted~~.
 |             c              |                     aaaa | a                       |
 
 ```md
-This is ~~deleted~~.
-
 |           center           |                    right | left                    |
 | :------------------------: | -----------------------: | :---------------------- |
 | For center align use `:-:` | For right align use `-:` | For left align use `:-` |
@@ -68,7 +72,7 @@ We support highlighting in almost all languages.
 
 ::: details Demo
 
-```html:no-line-numbers
+```html
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -92,7 +96,7 @@ We support highlighting in almost all languages.
 </html>
 ```
 
-```js:no-line-numbers
+```js
 /** @deprecated Use `Prism.plugins.fileHighlight.highlight` instead. */
 Prism.fileHighlight = function () {
   if (!logged) {
@@ -105,7 +109,7 @@ Prism.fileHighlight = function () {
 };
 ```
 
-```css:no-line-numbers
+```css
 @import url(https://fonts.googleapis.com/css?family=Questrial);
 @import url(https://fonts.googleapis.com/css?family=Arvo);
 
@@ -136,6 +140,10 @@ You can use `$ ... $` to create inline formulas, or use `$$ ... $$` to create bl
 
 <MathML content='Euler’s identity <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mi>e</mi><mrow><mi>i</mi><mi>π</mi></mrow></msup><mo>+</mo><mn>1</mn><mo>=</mo><mn>0</mn></mrow></math> is a beautiful formula in <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mi mathvariant="double-struck">R</mi><mn>2</mn></msup></mrow></math>.' />
 
+```md
+Euler’s identity $e^{i\pi}+1=0$ is a beautiful formula in $\mathbb{R}^2$.
+```
+
 <MathML content='<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mfrac><msup><mi mathvariant="normal">∂</mi><mi>r</mi></msup><mrow><mi mathvariant="normal">∂</mi><msup><mi>ω</mi><mi>r</mi></msup></mrow></mfrac><mrow><mo fence="true">(</mo><mfrac><msup><mi>y</mi><mi>ω</mi></msup><mi>ω</mi></mfrac><mo fence="true">)</mo></mrow><mo>=</mo><mrow><mo fence="true">(</mo><mfrac><msup><mi>y</mi><mi>ω</mi></msup><mi>ω</mi></mfrac><mo fence="true">)</mo></mrow><mrow><mo fence="true">{</mo><mo stretchy="false">(</mo><mi>log</mi><mo>⁡</mo><mi>y</mi><msup><mo stretchy="false">)</mo><mi>r</mi></msup><mo>+</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>r</mi></munderover><mfrac><mrow><mo stretchy="false">(</mo><mo>−</mo><mn>1</mn><msup><mo stretchy="false">)</mo><mi>i</mi></msup><mi>r</mi><mo>⋯</mo><mo stretchy="false">(</mo><mi>r</mi><mo>−</mo><mi>i</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>log</mi><mo>⁡</mo><mi>y</mi><msup><mo stretchy="false">)</mo><mrow><mi>r</mi><mo>−</mo><mi>i</mi></mrow></msup></mrow><msup><mi>ω</mi><mi>i</mi></msup></mfrac><mo fence="true">}</mo></mrow></mrow></math>' />
 
 <script>
@@ -157,8 +165,6 @@ export default {
 </script>
 
 ```md
-Euler’s identity $e^{i\pi}+1=0$ is a beautiful formula in $\mathbb{R}^2$.
-
 $$
 \frac {\partial^r} {\partial \omega^r} \left(\frac {y^{\omega}} {\omega}\right)
 = \left(\frac {y^{\omega}} {\omega}\right) \left\{(\log y)^r + \sum_{i=1}^r \frac {(-1)^i r \cdots (r-i+1) (\log y)^{r-i}} {\omega^i} \right\}
@@ -189,7 +195,7 @@ At the same time, all links will be automatically set `rel="noreferrer noopener"
 
 ## Restricted preview function
 
-In order to control the size of the client `@waline / client`, many functions **cannot be displayed correctly in the preview mode**, but **after submission** they will be **correctly rendered in the comment area**.
+In order to control the size of the client `@waline / client`, many functions can **correctly rendered in the comment area**, but they **cannot be displayed correctly in the preview mode**.
 
 This includes the following restrictions:
 
