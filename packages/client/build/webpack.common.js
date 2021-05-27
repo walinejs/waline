@@ -98,10 +98,11 @@ module.exports = {
           ${htmlWebpackPlugin.tags.headTags}
         </head>
         <body>
-          <span id="/" class="leancloud_visitors">
+          <span id="/" class="waline-visitor">
             <em class="post-meta-item-text">阅读量 </em>
-            <i class="leancloud-visitors-count"></i>
+            <i class="waline-visitor-count"></i>
           </span>
+          评论数:<span id="/" class="waline-comment-count"></span>
           <div id="waline" style="max-width: 800px;margin: 0 auto;"></div>
           ${htmlWebpackPlugin.tags.bodyTags}
           <script>
