@@ -50,7 +50,7 @@ export default defineComponent({
 
     onBeforeUnmount(() => {
       if (timeout) clearTimeout(timeout);
-      waline.destroy();
+      waline?.destroy();
     });
 
     watch(
@@ -61,15 +61,20 @@ export default defineComponent({
           void nextTick(() => {
             if (timeout) clearTimeout(timeout);
 
-            timeout = setTimeout(() => {
-              waline.update({
-                lang: lang.value === 'zh-CN' ? 'zh-CN' : 'en',
-                locale: {
-                  admin:
-                    lang.value === 'zh-CN' ? '可爱的管理员' : 'Administrator',
-                },
-              });
-            }, 1000);
+            if (waline)
+              timeout = setTimeout(() => {
+                waline.update({
+                  lang: lang.value === 'zh-CN' ? 'zh-CN' : 'en',
+                  locale: {
+                    admin:
+                      lang.value === 'zh-CN' ? '可爱的管理员' : 'Administrator',
+                  },
+                });
+              }, 1000);
+            else
+              timeout = setTimeout(() => {
+                waline = initWaline();
+              }, 1000);
           });
         }
       }
