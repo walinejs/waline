@@ -2,7 +2,8 @@ name: '[docker] CI for test'
 
 on:
   pull_request:
-    branches: [master]
+    branches:
+      - main
     paths:
       - 'packages/server/*'
 

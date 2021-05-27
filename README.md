@@ -9,7 +9,7 @@ A simple comment system with backend support fork from [Valine](https://valine.j
 
 ---
 
-English | [中文](https://github.com/walinejs/waline/blob/master/README_CN.md) | **View Documentation:** <https://waline.js.org/en/>
+English | [中文](https://github.com/walinejs/waline/blob/main/README_CN.md) | **View Documentation:** <https://waline.js.org/en/>
 
 ## Feature
 
@@ -67,4 +67,4 @@ You can contact me through [discussions](https://github.com/walinejs/waline/disc
 
 ## License
 
-[GPL-2.0](https://github.com/lizheming/Waline/blob/master/LICENSE)
+[GPL-2.0](https://github.com/lizheming/Waline/blob/main/LICENSE)

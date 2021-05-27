@@ -16,7 +16,7 @@ After app is created, we need click into it. Select `Settings` > `App Keys` at t
 
 ## Deploy to Vercel
 
-[![Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/walinejs/waline/tree/master/example)
+[![Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/walinejs/waline/tree/main/example)
 
 Click the blue button above, it will redirect you to vercel to deploy with waline template. We recommend you to sign in with GitHub if you don't have a vercel account. Input your Vercel project name after login.
 

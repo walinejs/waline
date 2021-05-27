@@ -63,7 +63,7 @@ export default defineUserConfig<DefaultThemeOptions>({
     logo: '/logo.png',
     repo: 'walinejs/waline',
     docsDir: 'docs',
-    docsBranch: 'master',
+    docsBranch: 'main',
     locales: {
       '/': {
         navbar: zhNavbarConfig,

@@ -9,7 +9,7 @@
 
 ---
 
-[English](https://github.com/walinejs/waline/blob/master/README.md) | 中文 | **查看文档**: <https://waline.js.org>
+[English](https://github.com/walinejs/waline/blob/main/README.md) | 中文 | **查看文档**: <https://waline.js.org>
 
 ## 特性
 
@@ -66,4 +66,4 @@
 
 ## 协议
 
-[GPL-2.0](https://github.com/lizheming/Waline/blob/master/LICENSE)
+[GPL-2.0](https://github.com/lizheming/Waline/blob/main/LICENSE)

@@ -2,7 +2,8 @@ name: '[docker] CI for releases'
 
 on:
   push:
-    branches: [master]
+    branches:
+      - main
     paths:
       - 'packages/server/*'
 

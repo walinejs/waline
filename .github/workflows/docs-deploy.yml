@@ -3,7 +3,7 @@ name: Deploy theme docs
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   deploy-docs:
