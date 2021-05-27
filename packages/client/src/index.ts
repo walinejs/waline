@@ -32,7 +32,7 @@ const domRender = (config: Config, signal: AbortSignal): void => {
 };
 
 export interface WalineInstance {
-  update: (options: Partial<WalineOptions>) => void;
+  update: (options: Partial<Omit<WalineOptions, 'el' | 'dark'>>) => void;
   destroy: () => void;
 }
 
