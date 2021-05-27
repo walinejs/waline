@@ -11,9 +11,8 @@ export const getGuideSidebar = (lang, titles): SidebarConfigArray =>
       lang + '/guide/client/style.md',
       lang + '/guide/client/avatar.md',
       lang + '/guide/client/i18n.md',
-      lang + '/guide/client/visitor.md',
       lang + '/guide/client/count.md',
-      lang + '/guide/client/recentcomment.md',
+      lang + '/guide/client/widget/README.md',
     ],
     [
       lang + '/guide/server/intro.md',

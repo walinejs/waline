@@ -2,6 +2,8 @@
 
 You can customize the emoji of the comment box by setting `emoji` option, you should set it to an **array** containing _preset link_ or _preset config object_.
 
+<!-- more -->
+
 ## Presets
 
 Waline provides a series of emoji presets that can be used out of box. You can add them directly to the `emoji` options:

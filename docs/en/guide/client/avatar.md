@@ -6,6 +6,8 @@ Waline currently uses [Gravatar][1] as the comment list avatar.
 
 Users should log in or register by themselves [Gravatar][1], then set or modify their avatar.When commenting, just leave the email address you used when registering in [Gravatar][1].
 
+<!-- more -->
+
 ## Options
 
 You should use `avatar` option to set the default avatar image, e.g.:

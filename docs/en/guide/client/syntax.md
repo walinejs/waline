@@ -2,6 +2,8 @@
 
 You can add a variety of content in the comments, including expanded Markdown syntax and HTML tags.
 
+<!-- more -->
+
 ## Markdown Support
 
 We support tcomplete Markdown syntax and the following extensions.

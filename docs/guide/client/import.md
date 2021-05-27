@@ -1,5 +1,9 @@
 # 引入客户端
 
+你可以通过多种方式引入 Waline 客户端。
+
+<!-- more -->
+
 ## 通过 CDN
 
 推荐使用 [jsdelivr](https://cdn.jsdelivr.net/npm/@waline/client/)。

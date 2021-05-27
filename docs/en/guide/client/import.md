@@ -1,5 +1,7 @@
 # Importing Client
 
+You can introduce the Waline client in a variety of ways.
+
 ## Via CDN
 
 Recommend to use [jsdelivr](https://cdn.jsdelivr.net/npm/@waline/client/).

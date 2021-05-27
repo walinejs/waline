@@ -2,6 +2,10 @@
 
 `@waline/client` provides some CSS variables. You can easily configure the style of waline through these variables:
 
+Meanwhile, `@waline/client` also brings built-in dark mode support.
+
+<!-- more -->
+
 ## Variables
 
 ```css

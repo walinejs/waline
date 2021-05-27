@@ -2,6 +2,10 @@
 
 `@waline/client` 提供了一些 CSS 变量。你可以很轻松的通过这些变量配置 waline 的样式。
 
+同时 `@waline/client` 还带来了内置的暗黑模式支持。
+
+<!-- more -->
+
 ## 提供的变量
 
 ```css
