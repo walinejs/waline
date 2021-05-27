@@ -13,7 +13,7 @@
 
    ```diff
    - <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
-   + <script src='//cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js'></script>
+   + <script src='//cdn.jsdelivr.net/npm/@waline/client'></script>
 
      <script>
    -  new Valine({

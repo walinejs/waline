@@ -2,7 +2,12 @@ import chokidar = require('chokidar');
 import { defineUserConfig } from '@vuepress/cli';
 import taskLists = require('markdown-it-task-lists');
 import { logger, path } from '@vuepress/utils';
-import { getSidebar, enNavbarConfig, zhNavbarConfig } from './configuration';
+import {
+  getDefaultSidebar,
+  getGuideSidebar,
+  enNavbarConfig,
+  zhNavbarConfig,
+} from './configuration';
 
 import type { DefaultThemeOptions } from '@vuepress/theme-default';
 
@@ -67,12 +72,10 @@ export default defineUserConfig<DefaultThemeOptions>({
     locales: {
       '/': {
         navbar: zhNavbarConfig,
-        sidebar: getSidebar('', [
-          '快速上手',
-          '基础配置',
-          '高级功能',
-          '更多玩法',
-        ]),
+        sidebar: {
+          '/guide/': getGuideSidebar('', ['快速上手', '客户端', '服务端']),
+          '/': getDefaultSidebar('', ['指南', '更多', '迁移', '参考']),
+        },
         selectLanguageName: '简体中文',
         selectLanguageText: '选择语言',
         selectLanguageAriaLabel: '选择语言',
@@ -88,12 +91,19 @@ export default defineUserConfig<DefaultThemeOptions>({
       },
       '/en/': {
         navbar: enNavbarConfig,
-        sidebar: getSidebar('/en', [
-          'Get Started',
-          'Basic Config',
-          'Advanced Functions',
-          'More Features',
-        ]),
+        sidebar: {
+          '/en/guide/': getGuideSidebar('/en', [
+            'Get Started',
+            'Client',
+            'Server',
+          ]),
+          '/en/': getDefaultSidebar('', [
+            'Guide',
+            'Lear More',
+            'Migration',
+            'Reference',
+          ]),
+        },
         selectLanguageName: 'English',
         selectLanguageText: 'Languages',
         selectLanguageAriaLabel: 'Select language',
@@ -144,7 +154,7 @@ export default defineUserConfig<DefaultThemeOptions>({
 
   // watch navbar
   onWatched: (_, watchers, restart) => {
-    const navbarWatcher = chokidar.watch('./nav/*.js', {
+    const navbarWatcher = chokidar.watch('./configuration/nav/*.ts', {
       cwd: __dirname,
       ignoreInitial: true,
     });
@@ -154,7 +164,7 @@ export default defineUserConfig<DefaultThemeOptions>({
       await restart();
     });
 
-    const sidebarWatcher = chokidar.watch('./sidebar.js', {
+    const sidebarWatcher = chokidar.watch('./configuration/sidebar.ts', {
       cwd: __dirname,
       ignoreInitial: true,
     });

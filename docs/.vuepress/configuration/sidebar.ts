@@ -1,34 +1,54 @@
-import type { SidebarConfig } from '@vuepress/theme-default';
+import type { SidebarConfigArray } from '@vuepress/theme-default';
 
-export const getSidebar = (lang, titles): SidebarConfig =>
+export const getGuideSidebar = (lang, titles): SidebarConfigArray =>
+  [
+    [lang + '/guide/get-started.md'],
+    [
+      lang + '/guide/client/intro.md',
+      lang + '/guide/client/import.md',
+      lang + '/guide/client/syntax.md',
+      lang + '/guide/client/count.md',
+      lang + '/guide/client/visitor.md',
+      lang + '/guide/client/emoji.md',
+      lang + '/guide/client/i18n.md',
+      lang + '/guide/client/avatar.md',
+      lang + '/guide/client/style.md',
+      lang + '/guide/client/recentcomment.md',
+    ],
+    [
+      lang + '/guide/server/intro.md',
+      lang + '/guide/server/notification.md',
+      lang + '/guide/server/socials.md',
+      lang + '/guide/server/databases.md',
+      !lang ? '/guide/server/cloudbase.md' : undefined,
+      lang + '/guide/server/vps-deploy.md',
+    ].filter((v) => v),
+  ].map((item, index) => ({
+    isGroup: true,
+    text: titles[index],
+    children: item,
+  }));
+
+export const getDefaultSidebar = (lang, titles): SidebarConfigArray =>
   [
     [
-      lang + '/get-started.md',
-      lang + '/intro.md',
-      lang + '/syntax.md',
-      lang + '/ecosystem.md',
-    ],
-    [lang + '/client/basic.md', lang + '/server/basic.md'],
-    [
-      lang + '/server/notification.md',
-      lang + '/server/socials.md',
-      lang + '/client/count.md',
-      lang + '/client/visitor.md',
-      lang + '/client/emoji.md',
-      lang + '/client/i18n.md',
-      lang + '/client/avatar.md',
-      lang + '/client/style.md',
-      lang + '/client/recentcomment.md',
+      lang + '/guide/get-started.md',
+      lang + '/guide/client/intro.md',
+      lang + '/guide/server/intro.md',
     ],
     [
-      lang + '/migration.md',
-      lang + '/server/databases.md',
-      !lang ? '/server/cloudbase.md' : undefined,
-      lang + '/server/vps-deploy.md',
-      lang + '/contribution.md',
-      lang + '/api.md',
-      lang + '/faq.md',
-    ].filter((v) => v),
+      lang + '/advanced/ecosystem.md',
+      lang + '/advanced/faq.md',
+      lang + '/advanced/why.md',
+    ],
+    [lang + '/migration/valine.md', lang + '/migration/tool.md'],
+    [
+      lang + '/reference/client.md',
+      lang + '/reference/server.md',
+      lang + '/reference/intro.md',
+      lang + '/reference/api.md',
+      lang + '/reference/contribution.md',
+    ],
   ].map((item, index) => ({
     isGroup: true,
     text: titles[index],

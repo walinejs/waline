@@ -2,10 +2,10 @@
 
 ## el
 
-- Type: `string`
+- Type: `string | HTMLElement`
 - Required: Yes
 
-The DOM element to be mounted on initialization. It must be a valid **CSS selector string**.
+The DOM element to be mounted on initialization. It must be a valid **CSS selector string** or HTMLElement Object.
 
 ## serverURL
 
@@ -13,14 +13,6 @@ The DOM element to be mounted on initialization. It must be a valid **CSS select
 - Required: Yes
 
 Waline server address url
-
-## wordLimit
-
-- Type: `number | [number, number]`
-- Default: `0`
-- Required: `false`
-
-Comment word s limit. When a single number is filled in, it 's the maximum number of comment words. No limit when set to `0`.
 
 ## path
 
@@ -39,6 +31,95 @@ Optional value:
 > I. Please ensure the uniqueness of each _article page_ path, otherwise the same comment list may be loaded under different _article pages_.
 >
 > II. If the value is `window.location.href`, it may appear that adding _different parameters_ to enter the page, and it will be judged as a new page.
+
+## lang
+
+- Type: `string`
+- Default: `'zh-CN'`
+- Required: No
+
+Display language.
+
+Optional value:
+
+- `'zh'`
+- `'zh-CN'`
+- `'zh-TW'`
+- `'en'`
+- `'en-US'`
+- `'jp'`
+- `'jp-JP'`
+
+If you need a custom language, please refer to [i18n](../guide/client/i18n.md).
+
+## visitor
+
+- Type: `boolean`
+- Default: `false`
+- Required: No
+
+Article reading statistics.
+
+## emoji
+
+- Type: `(string | EmojiInfo)[]`
+- Default: `['https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo']`
+
+Emoji settings, for details see [Custom Emoji](../guide/client/emoji.md)
+
+## dark
+
+- Type: `string`
+- Required: No
+
+Darkmode support
+
+- Set it to `'auto'` will display darkmode due to device settings.
+- Filling in a CSS selector will enable darkmode only when the selector match waline ancestor nodes.
+
+::: tip Examples
+
+- **Docusaurus**: It will enable darkmode by setting `data-theme="dark"` on the `<html>` tag itself. So you need to set `'html[data-theme="dark"]'` as `dark` option.
+
+- **hexo-theme-fluid**: It will enable darkmode by setting `data-user-color-scheme="dark"` on the `<html>` tag itself. So you need to set `'html[data-user-color-scheme="dark"]'` as `dark` option.
+
+- **vuepress-theme-hope**: It will enable darkmode by setting `theme-dark` class on the `<body>` tag itself. So you need to set `'body.theme-dark'` as `dark` option.
+
+:::
+
+For details of custom style and darkmode, please see [Custom Style](../guide/client/style.md).
+
+## meta
+
+- Type: `string[]`
+- Default: `['nick','mail','link']`
+- Required: No
+
+Reviewer attributes. Optional values: `'nick'`, `'mail'`, `'link'`
+
+## requiredMeta
+
+- Type: `string[]`
+- Default: `[]`
+- Required: No
+
+Set required fields, default anonymous, optional values:
+
+- `[]`
+- `['nick']`
+- `['nick','mail']`
+
+## login
+
+- Type: `string`
+- Default value: `'enabled'`
+- Required: No
+
+Login mode status, optional values:
+
+- `'enable'`: enable login (default)
+- `'disable'`: Login is disabled, users should fill in infomation to comment
+- `'force'`: Forced login, users must login to comment
 
 ## avatar
 
@@ -61,13 +142,13 @@ Optional value:
 
 See the [Avatar setting](./avatar.md) for more details.
 
-## meta
+## wordLimit
 
-- Type: `string[]`
-- Default: `['nick','mail','link']`
-- Required: No
+- Type: `number | [number, number]`
+- Default: `0`
+- Required: `false`
 
-Reviewer attributes. Optional values: `'nick'`, `'mail'`, `'link'`
+Comment word s limit. When a single number is filled in, it 's the maximum number of comment words. No limit when set to `0`.
 
 ## pageSize
 
@@ -76,64 +157,6 @@ Reviewer attributes. Optional values: `'nick'`, `'mail'`, `'link'`
 - Required: No
 
 number of comments per page.
-
-## lang
-
-- Type: `string`
-- Default: `'zh-CN'`
-- Required: No
-
-Display language.
-
-Optional value:
-
-- `'zh'`
-- `'zh-CN'`
-- `'zh-TW'`
-- `'en'`
-- `'en-US'`
-- `'jp'`
-- `'jp-JP'`
-
-If you need a custom language, please refer to [i18n](./i18n.md).
-
-## visitor
-
-- Type: `boolean`
-- Default: `false`
-- Required: No
-
-Article reading statistics.
-
-## dark
-
-- Type: `string`
-- Required: No
-
-Darkmode support
-
-- Set it to `'auto'` will display darkmode due to device settings.
-- Filling in a CSS selector will enable darkmode only when the selector match waline ancestor nodes.
-
-::: tip Examples
-
-- **Docusaurus**: It will enable darkmode by setting `data-theme="dark"` on the `<html>` tag itself. So you need to set `'html[data-theme="dark"]'` as `dark` option.
-
-- **hexo-theme-fluid**: It will enable darkmode by setting `data-user-color-scheme="dark"` on the `<html>` tag itself. So you need to set `'html[data-user-color-scheme="dark"]'` as `dark` option.
-
-- **vuepress-theme-hope**: It will enable darkmode by setting `theme-dark` class on the `<body>` tag itself. So you need to set `'body.theme-dark'` as `dark` option.
-
-:::
-
-For details of custom style and darkmode, please see [Custom Style](./style.md).
-
-## highlight
-
-- Type: `boolean`
-- Default: `true`
-- Required: No
-
-**Code highlighting**, it’s enabled by default, please close it selectively.
 
 ## avatarCDN
 
@@ -151,25 +174,6 @@ Gravatar CDN baseURL.
 
 Whether **force** pulling the latest avatar each time.
 
-## emoji
-
-- Type: `(string | EmojiInfo)[]`
-- Default: `['https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo']`
-
-Emoji settings, for details see [Custom Emoji](./emoji.md)
-
-## requiredMeta
-
-- Type: `string[]`
-- Default: `[]`
-- Required: No
-
-Set required fields, default anonymous, optional values:
-
-- `[]`
-- `['nick']`
-- `['nick','mail']`
-
 ## uploadImage
 
 - Type: `Function`
@@ -177,17 +181,13 @@ Set required fields, default anonymous, optional values:
 
 Custom image upload callback to manage picture by yourself. We will pass a picture file object when execute it.
 
-## login
+## highlight
 
-- Type: `string`
-- Default value: `'enabled'`
+- Type: `boolean`
+- Default: `true`
 - Required: No
 
-Login mode status, optional values:
-
-- `'enable'`: enable login (default)
-- `'disable'`: Login is disabled, users should fill in infomation to comment
-- `'force'`: Forced login, users must login to comment
+**Code highlighting**, it’s enabled by default, please close it selectively.
 
 ### copyright
 
@@ -204,6 +204,8 @@ We hope you can keep it on to support Waline.
 :::
 
 ## Deprecated API
+
+The following APIs are still valid, but they will be removed in V2.
 
 ### langMode
 
@@ -288,7 +290,3 @@ Whether to allow login comments. Both supported by default, set to `true` means 
 Please use `copyright` instead.
 
 :::
-
-- Type: `boolean`
-- Default: `true`
-- Required: No

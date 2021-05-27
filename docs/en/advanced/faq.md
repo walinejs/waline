@@ -39,7 +39,7 @@ The server refers to the backend service corresponding to the `serverURL` config
 
 Go to the corresponding GitHub repository and modify the version number of `@waline/vercel` in the package.json file to the latest.
 
-![vercel](../assets/vercel-update.png)
+![vercel](./assets/vercel-update.png)
 
 #### CloudBase
 
@@ -51,7 +51,7 @@ Redeployment will clear the previous files. If there is a configuration in the p
 
 :::
 
-![cloudBase](../assets/cloudbase-update.jpg)
+![cloudBase](./assets/cloudbase-update.jpg)
 
 #### Docker
 

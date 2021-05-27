@@ -3,49 +3,22 @@ import type { NavbarConfig } from '@vuepress/theme-default';
 export const enNavbarConfig: NavbarConfig = [
   {
     text: 'Guide',
-    link: '/en/get-started.html',
+    link: '/en/guide/get-started.html',
   },
   {
-    text: 'Config',
+    text: 'Learn More',
     children: [
       {
-        text: 'Client',
-        ariaLabel: 'Client',
-        children: [
-          {
-            text: 'Basic Config',
-            link: '/en/client/basic.html',
-          },
-          {
-            text: 'Internationalization',
-            link: '/en/client/i18n.html',
-          },
-          {
-            text: 'Reading Statistics',
-            link: '/en/client/visitor.html',
-          },
-        ],
+        text: 'Ecosystem',
+        link: '/en/advanced/ecosystem.html',
       },
       {
-        text: 'Server',
-        children: [
-          {
-            text: 'Basic Config',
-            link: '/en/server/basic.html',
-          },
-          {
-            text: 'Comment Notification',
-            link: '/en/server/notification.html',
-          },
-          {
-            text: 'Using Databases',
-            link: '/en/server/databases.html',
-          },
-          {
-            text: 'Independent Deployment',
-            link: '/en/server/vps-deploy.html',
-          },
-        ],
+        text: 'FAQ',
+        link: '/en/advanced/faq.html',
+      },
+      {
+        text: 'Original Goal',
+        link: '/en/advanced/why.html',
       },
     ],
   },
@@ -54,7 +27,7 @@ export const enNavbarConfig: NavbarConfig = [
     children: [
       {
         text: 'Migrate from Valine',
-        link: '/en/migration.html',
+        link: '/en/migration/valine.html',
       },
       {
         text: 'Migration Helper',
@@ -63,19 +36,23 @@ export const enNavbarConfig: NavbarConfig = [
     ],
   },
   {
-    text: 'Learn More',
+    text: 'Reference',
     children: [
       {
+        text: 'Client Config',
+        link: '/en/reference/client.html',
+      },
+      {
+        text: 'Server Config',
+        link: '/en/reference/server.html',
+      },
+      {
         text: 'API',
-        link: '/en/api.html',
+        link: '/en/reference/api.html',
       },
       {
-        text: 'Contributing Guide',
-        link: '/en/development.html',
-      },
-      {
-        text: 'FAQ',
-        link: '/en/faq.html',
+        text: 'Contribution Guide',
+        link: '/en/reference/contribution.html',
       },
     ],
   },

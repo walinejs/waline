@@ -4,11 +4,11 @@ title: Waline
 heroImage: /logo.png
 actions:
   - text: 💡 快速上手
-    link: /get-started.html
+    link: /guide/get-started.html
     type: primary
 
   - text: ℹ️ 介绍
-    link: /intro.html
+    link: /guide/intro.html
     type: secondary
 
 features:
