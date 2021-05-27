@@ -9,7 +9,9 @@ const renderVisitorCount = (
 ): void => {
   countElements.forEach((element, index) => {
     (
-      element.querySelector<HTMLElement>('.leancloud-visitors-count') || element
+      element.querySelector<HTMLElement>(
+        '.waline-visitor-count,.leancloud-visitors-count'
+      ) || element
     ).innerText = counts[index].toString();
   });
 };
@@ -27,7 +29,7 @@ export const updateVisitor = ({
   const countElements = Array.from(
     // visitor selectors
     document.querySelectorAll<HTMLElement>(
-      '.leancloud_visitors,.leancloud-visitors'
+      '.waline-visitor,.leancloud_visitors,.leancloud-visitors'
     )
   ).filter((el) => el.getAttribute('id'));
 

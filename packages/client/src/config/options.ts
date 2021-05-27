@@ -126,7 +126,7 @@ export interface WalineOptions extends DeprecatedValineOptions {
    *
    * @default '#waline'
    */
-  el?: string;
+  el?: string | HTMLElement;
 
   /**
    * Waline 的服务端地址

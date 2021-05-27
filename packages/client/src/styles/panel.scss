@@ -26,7 +26,7 @@
 
     width: var(--waline-avatar-size);
     height: var(--waline-avatar-size);
-    border: 1px solid var(--waline-border-color);
+    border: var(--waline-border);
     border-radius: var(--waline-avatar-radius);
 
     background: var(--waline-bgcolor);
@@ -72,7 +72,7 @@
     height: var(--waline-avatar-size);
     margin: 0 auto;
 
-    border: 1px solid var(--waline-border-color);
+    border: var(--waline-border);
     border-radius: var(--waline-avatar-radius);
 
     @media (max-width: 720px) {
@@ -215,7 +215,7 @@
     .vcontent {
       min-height: 1.25em;
       padding: 0.25em;
-      border: 1px solid var(--waline-border-color);
+      border: var(--waline-border);
       border-radius: 0.25em;
 
       > *:first-child {

@@ -10,12 +10,14 @@ export const checkOptions = (options: WalineOptions): boolean => {
   }
 
   // check root element
-  const root = document.querySelector(el);
+  if (!(el instanceof HTMLElement)) {
+    const root = document.querySelector(el);
 
-  if (!root) {
-    console.error("Option 'el' is invalid!");
+    if (!root) {
+      console.error("Option 'el' is invalid!");
 
-    return false;
+      return false;
+    }
   }
 
   // check serverURL

@@ -1,7 +1,7 @@
 {
   "name": "@waline/client",
   "description": "client for waline comment system",
-  "version": "1.0.0-beta.2",
+  "version": "1.0.0-beta.3",
   "keywords": [
     "valine",
     "waline",
@@ -20,7 +20,7 @@
     "build:dts": "rollup -c ./build/rollup.config.js",
     "build:normal": "webpack --mode=production --config ./build/webpack.config.js",
     "build:no-style": "webpack --mode=production --config ./build/webpack.noStyle.js",
-    "dev": "webpack serve --mode=development",
+    "dev": "webpack serve --mode=development --config ./build/webpack.config.js",
     "prepublish": "npm run build"
   },
   "browserslist": {
