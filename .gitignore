@@ -9,7 +9,6 @@ yarn-debug.log*
 yarn-error.log*
 
 # lock files
-package-lock.json
 yarn.lock
 
 # testing
