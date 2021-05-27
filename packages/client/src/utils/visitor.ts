@@ -8,6 +8,7 @@ const renderVisitorCount = (
   countElements: HTMLElement[]
 ): void => {
   countElements.forEach((element, index) => {
+    // TODO: Remove the first one
     (
       element.querySelector<HTMLElement>('.leancloud-visitors-count') || element
     ).innerText = counts[index].toString();
@@ -27,7 +28,8 @@ export const updateVisitor = ({
   const countElements = Array.from(
     // visitor selectors
     document.querySelectorAll<HTMLElement>(
-      '.leancloud_visitors,.leancloud-visitors'
+      // TODO: Remove the last two
+      '.waline-visitor-count,.leancloud_visitors,.leancloud-visitors'
     )
   ).filter((el) => el.getAttribute('id'));
 
