@@ -26,7 +26,7 @@
 
 ## Vercel 部署
 
-[![Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/lizheming/waline/tree/master/example)
+[![Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/walinejs/waline/tree/master/example)
 
 点击上方按钮，跳转至 Vercel 进行快速部署。未登录的话建议选择 GitHub 登录。之后请按要求输入 Vercel 项目名称。
 

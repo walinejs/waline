@@ -33,6 +33,6 @@
     "thinkjs": "^3.2.13",
     "ua-parser-js": "^0.7.28"
   },
-  "repository": "https://github.com/lizheming/waline",
+  "repository": "https://github.com/walinejs/waline",
   "license": "MIT"
 }

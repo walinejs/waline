@@ -9,7 +9,7 @@
 1. 使用 Git 克隆项目
 
    ```bash
-   git clone https://github.com/lizheming/waline.git
+   git clone https://github.com/walinejs/waline.git
    ```
 
 1. 安装依赖

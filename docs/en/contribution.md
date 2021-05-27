@@ -9,7 +9,7 @@ If you want to contribute to waline, here is a guide.
 1. Use Git to clone the project
 
    ```bash
-   git clone https://github.com/lizheming/waline.git
+   git clone https://github.com/walinejs/waline.git
    ```
 
 1. Installation dependencies

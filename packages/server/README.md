@@ -20,6 +20,6 @@ We support [Akismet](https://akismet.com/) spam protection service default. If y
 
 ## Deploy
 
-[ ![](https://vercel.com/button) ](https://vercel.com/import/project?template=https://github.com/lizheming/waline/tree/master/example)
+[ ![](https://vercel.com/button) ](https://vercel.com/import/project?template=https://github.com/walinejs/waline/tree/master/example)
 
 Click it to deploy quickly!

@@ -127,5 +127,5 @@ The default template is attached here for your reference:
 
 ### Addtional Info
 
-1. Vercel’s environment variable size is limited to `4KB`, so if your template storage needs are large, you can directly use the code configuration, see [issue#106](https://github.com/lizheming/waline/issues/106).
+1. Vercel’s environment variable size is limited to `4KB`, so if your template storage needs are large, you can directly use the code configuration, see [issue#106](https://github.com/walinejs/waline/issues/106).
 2. The specific information of variables may change during the development process. The variable descriptions here are for reference only. Please refer to the specific code examples for specific content.

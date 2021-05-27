@@ -36,7 +36,7 @@ MONGO_OPT_SSL=true
 
 Using MySQL to store data is also a good choise. Besides our own MySQL service, we can also use <https://freedb.tech>, which provides 100M of database support for free.
 
-If you want to use MySQL as storage, you need to import [waline.sql](https://github.com/lizheming/waline/blob/master/assets/waline.sql) first to create table and table structure, then set these environment variables in project.
+If you want to use MySQL as storage, you need to import [waline.sql](https://github.com/walinejs/waline/blob/master/assets/waline.sql) first to create table and table structure, then set these environment variables in project.
 
 | Environment Variable | Required | Default   | Description           |
 | -------------------- | -------- | --------- | --------------------- |
@@ -50,7 +50,7 @@ If you want to use MySQL as storage, you need to import [waline.sql](https://git
 
 ## SQLite
 
-Download [waline.sqlite](https://github.com/lizheming/waline/blob/master/assets/waline.sqlite) to your server if you want to use SQLite. Then set these environment variables in project.
+Download [waline.sqlite](https://github.com/walinejs/waline/blob/master/assets/waline.sqlite) to your server if you want to use SQLite. Then set these environment variables in project.
 
 | Environment Variable | Required | Default | Description                                                         |
 | -------------------- | -------- | ------- | ------------------------------------------------------------------- |
@@ -61,7 +61,7 @@ Download [waline.sqlite](https://github.com/lizheming/waline/blob/master/assets/
 
 ## PostgreSQL
 
-[elephantSQL](https://www.elephantsql.com/) provides 20M PG database support for free. Same as MySQL, you need to import [waline.pgsql](https://github.com/lizheming/waline/blob/master/assets/waline.pgsql) to create table and table structure before using PostgreSQL.
+[elephantSQL](https://www.elephantsql.com/) provides 20M PG database support for free. Same as MySQL, you need to import [waline.pgsql](https://github.com/walinejs/waline/blob/master/assets/waline.pgsql) to create table and table structure before using PostgreSQL.
 
 | Environment Variable | Required | Default   | Description                |
 | -------------------- | -------- | --------- | -------------------------- |
@@ -79,7 +79,7 @@ Waline supports storing comment data in a CSV file on GitHub. To use GitHub as d
 | Environment Variable | Required | Default | Description                                                                                                      |
 | -------------------- | -------- | ------- | ---------------------------------------------------------------------------------------------------------------- |
 | GITHUB_TOKEN         | ✅       |         | [Personal access tokens](https://github.com/settings/tokens)                                                     |
-| GITHUB_REPO          | ✅       |         | repository name, such as `lizheming/waline`                                                                      |
+| GITHUB_REPO          | ✅       |         | repository name, such as `walinejs/waline`                                                                       |
 | GITHUB_PATH          |          |         | The data storage directory, such as `data` means it is stored in the `data` directory, root directory by default |
 
 ::: warning
@@ -92,4 +92,4 @@ Due to preformance, using GitHub is not recommanded.
 
 Besides above database storage, support for other storage services can also be added.
 
-If you want to help Waline supporting more storage services, you can fork the project and inherit the [base class](https://github.com/lizheming/waline/blob/master/packages/server/src/service/storage/base.js) and then implement the `select()`, `add()`, `update()` and `delete()` methods of the corresponding storage service and submit the PR.
+If you want to help Waline supporting more storage services, you can fork the project and inherit the [base class](https://github.com/walinejs/waline/blob/master/packages/server/src/service/storage/base.js) and then implement the `select()`, `add()`, `update()` and `delete()` methods of the corresponding storage service and submit the PR.

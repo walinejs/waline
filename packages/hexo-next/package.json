@@ -3,7 +3,7 @@
   "version": "2.0.5",
   "description": "Waline comment system for NexT.",
   "main": "index.js",
-  "repository": "lizheming/waline",
+  "repository": "walinejs/waline",
   "keywords": [
     "Hexo",
     "NexT",
@@ -12,9 +12,9 @@
   "author": "lizheming <i@imnerd.org>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/lizheming/waline/issues"
+    "url": "https://github.com/walinejs/waline/issues"
   },
-  "homepage": "https://github.com/lizheming/waline/packages/#readme",
+  "homepage": "https://github.com/walinejs/waline/packages/#readme",
   "dependencies": {
     "@next-theme/utils": "^1.1.0"
   }

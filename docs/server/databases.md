@@ -36,7 +36,7 @@ MONGO_OPT_SSL=true
 
 使用 MySQL 存储数据也是一个很好的选择，除了使用自建的 MySQL 服务之外，我们也可以使用 <https://freedb.tech>，它免费提供了 100M 的数据库支持。
 
-使用时请先导入 [waline.sql](https://github.com/lizheming/waline/blob/master/assets/waline.sql) 以完成表和表结构的创建，之后在项目中配置如下环境变量。
+使用时请先导入 [waline.sql](https://github.com/walinejs/waline/blob/master/assets/waline.sql) 以完成表和表结构的创建，之后在项目中配置如下环境变量。
 
 | 环境变量名称     | 必填 | 默认值    | 备注                 |
 | ---------------- | ---- | --------- | -------------------- |
@@ -50,7 +50,7 @@ MONGO_OPT_SSL=true
 
 ## SQLite
 
-使用 SQLite 时需要下载 [waline.sqlite](https://github.com/lizheming/waline/blob/master/assets/waline.sqlite) 文件至合适的位置。之后在项目中配置如下环境变量。
+使用 SQLite 时需要下载 [waline.sqlite](https://github.com/walinejs/waline/blob/master/assets/waline.sqlite) 文件至合适的位置。之后在项目中配置如下环境变量。
 
 | 环境变量名称    | 必填 | 默认值 | 备注                                              |
 | --------------- | ---- | ------ | ------------------------------------------------- |
@@ -63,7 +63,7 @@ MONGO_OPT_SSL=true
 
 [elephantSQL](https://www.elephantsql.com/) 提供了 20M 的免费空间，对于评论服务来说绰绰有余了。如果想要使用 PostgreSQL 的也可以使用它搭建 Waline。
 
-同 MySQL，使用 PostgreSQL 也需要先导入 [waline.pgsql](https://github.com/lizheming/waline/blob/master/assets/waline.pgsql) 创建好表和表结构。之后在项目中配置如下环境变量。
+同 MySQL，使用 PostgreSQL 也需要先导入 [waline.pgsql](https://github.com/walinejs/waline/blob/master/assets/waline.pgsql) 创建好表和表结构。之后在项目中配置如下环境变量。
 
 | 环境变量名称  | 必填 | 默认值    | 备注                      |
 | ------------- | ---- | --------- | ------------------------- |
@@ -92,7 +92,7 @@ Waline 支持将评论数据以 CSV 文件的格式存储在 GitHub 仓库中。
 | 环境变量名称 | 必填 | 默认值 | 备注                                                                     |
 | ------------ | ---- | ------ | ------------------------------------------------------------------------ |
 | GITHUB_TOKEN | ✅   |        | [Personal access tokens](https://github.com/settings/tokens)             |
-| GITHUB_REPO  | ✅   |        | 仓库名称，例如 `lizheming/waline`                                        |
+| GITHUB_REPO  | ✅   |        | 仓库名称，例如 `walinejs/waline`                                         |
 | GITHUB_PATH  |      |        | 数据存储目录，例如 `data` 表示存储在 `data` 目录下，默认存在仓库根目录下 |
 
 ::: warning
@@ -105,4 +105,4 @@ Waline 支持将评论数据以 CSV 文件的格式存储在 GitHub 仓库中。
 
 除了以上数据库存储之外，waline 也能够很方便的扩展其它存储服务。
 
-如果你想帮助 Waline 支持更多的存储服务的话，可以 Fork 项目，继承该 [基类](https://github.com/lizheming/waline/blob/master/packages/server/src/service/storage/base.js) 后分别实现对应存储服务的 `select()`, `add()`, `update()`, `delete()` 方法后提交 PR 即可。
+如果你想帮助 Waline 支持更多的存储服务的话，可以 Fork 项目，继承该 [基类](https://github.com/walinejs/waline/blob/master/packages/server/src/service/storage/base.js) 后分别实现对应存储服务的 `select()`, `add()`, `update()`, `delete()` 方法后提交 PR 即可。

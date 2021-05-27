@@ -3,13 +3,13 @@
 # Waline
 
 ![npm version](https://img.shields.io/npm/v/@waline/vercel?color=critical&logo=npm&style=flat-square) ![npm bundle size (scoped)](https://img.shields.io/bundlephobia/minzip/@waline/client?style=flat-square&label=size)
-![npm](https://img.shields.io/npm/dm/@waline/vercel?style=flat-square) ![GitHub](https://img.shields.io/github/license/lizheming/waline?style=flat-square) [![Telegram](https://img.shields.io/badge/telegram-walinejs-2ca5e0?logo=telegram&style=flat-square)](https://t.me/walinejs) [![QQ](https://img.shields.io/badge/QQ-673663898-25bdff?logo=tencent-qq&style=flat-square)](https://qm.qq.com/cgi-bin/qm/qr?k=rPZvq_EBfwQa6QZX7sToVlhH49c6ed0R&jump_from=webapi)
+![npm](https://img.shields.io/npm/dm/@waline/vercel?style=flat-square) ![GitHub](https://img.shields.io/github/license/walinejs/waline?style=flat-square) [![Telegram](https://img.shields.io/badge/telegram-walinejs-2ca5e0?logo=telegram&style=flat-square)](https://t.me/walinejs) [![QQ](https://img.shields.io/badge/QQ-673663898-25bdff?logo=tencent-qq&style=flat-square)](https://qm.qq.com/cgi-bin/qm/qr?k=rPZvq_EBfwQa6QZX7sToVlhH49c6ed0R&jump_from=webapi)
 
 一款基于 [Valine](https://valine.js.org) 衍生的简洁、安全的评论系统。
 
 ---
 
-[English](https://github.com/lizheming/waline/blob/master/README.md) | 中文 | **查看文档**: <https://waline.js.org>
+[English](https://github.com/walinejs/waline/blob/master/README.md) | 中文 | **查看文档**: <https://waline.js.org>
 
 ## 特性
 
@@ -58,7 +58,7 @@
 
 ## 获得支持
 
-你可以在 [GitHub Discussions](https://github.com/lizheming/waline/discussions) 中发布问题获取支持。当然你也可以加入我们的 [Telegram](https://t.me/walinejs) 小组或者是扫描下方二维码加入我们的 [Waline 用户交流 QQ 群](https://qm.qq.com/cgi-bin/qm/qr?k=rPZvq_EBfwQa6QZX7sToVlhH49c6ed0R&jump_from=webapi) 以获取更多的支持。
+你可以在 [GitHub Discussions](https://github.com/walinejs/waline/discussions) 中发布问题获取支持。当然你也可以加入我们的 [Telegram](https://t.me/walinejs) 小组或者是扫描下方二维码加入我们的 [Waline 用户交流 QQ 群](https://qm.qq.com/cgi-bin/qm/qr?k=rPZvq_EBfwQa6QZX7sToVlhH49c6ed0R&jump_from=webapi) 以获取更多的支持。
 
 <a href="https://qm.qq.com/cgi-bin/qm/qr?k=rPZvq_EBfwQa6QZX7sToVlhH49c6ed0R&jump_from=webapi" target="_blank">
   <img src="./assets/qqgroup.jpg" width="300" />

@@ -129,5 +129,5 @@ Waline 支持为每个平台分别配置您自定义的通知模板，从而实�
 
 ### 附加说明
 
-1. Vercel 的环境变量大小限制为 `4KB` ，因而如果您的模板存储需求比较大，可以直接使用代码配置，参见 [issue#106](https://github.com/lizheming/waline/issues/106) ；
+1. Vercel 的环境变量大小限制为 `4KB` ，因而如果您的模板存储需求比较大，可以直接使用代码配置，参见 [issue#106](https://github.com/walinejs/waline/issues/106) ；
 2. 变量具体信息在开发过程中可能会发生变化，此处的变量说明仅供参考，具体的内容请以具体的代码示例为准。

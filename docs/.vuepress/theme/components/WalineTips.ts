@@ -8,9 +8,9 @@ import type {
 } from '@vuepress/theme-default/lib/shared';
 
 const i18n: Record<string, string> = {
-  '/': '友情提示：评论区仅作评论展示，如有问题咨询请去 <a href="https://github.com/lizheming/waline/discussions" target="_blank">Github Discussion</a> 中提问。',
+  '/': '友情提示：评论区仅作评论展示，如有问题咨询请去 <a href="https://github.com/walinejs/waline/discussions" target="_blank">Github Discussion</a> 中提问。',
   '/en/':
-    'TIPS: The comment area is only for demo. If you have any questions, please go to <a href="https://github.com/lizheming/waline/discussions" target="_blank">Github Discussion</a> to ask.',
+    'TIPS: The comment area is only for demo. If you have any questions, please go to <a href="https://github.com/walinejs/waline/discussions" target="_blank">Github Discussion</a> to ask.',
 };
 
 import './WalineTips.scss';

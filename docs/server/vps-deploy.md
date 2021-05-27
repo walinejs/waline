@@ -18,7 +18,7 @@ docker run -d \
 ::: tip 如何构建镜像？
 
 ```bash
-git clone https://github.com/lizheming/waline.git
+git clone https://github.com/walinejs/waline.git
 cd waline
 docker build -t lizheming/waline -f packages/server/Dockerfile .
 ```

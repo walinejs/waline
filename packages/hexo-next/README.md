@@ -17,7 +17,7 @@ Set the value `enable` to `true`, add `serverURL`, and edit other configurations
 
 ```yml next/_config.yml
 # Waline
-# For more information: https://waline.js.org, https://github.com/lizheming/waline
+# For more information: https://waline.js.org, https://github.com/walinejs/waline
 waline:
   enable: false
   serverURL: https://waline.vercel.app # Waline server address url

@@ -61,7 +61,7 @@ export default defineUserConfig<DefaultThemeOptions>({
 
   themeConfig: {
     logo: '/logo.png',
-    repo: 'lizheming/waline',
+    repo: 'walinejs/waline',
     docsDir: 'docs',
     docsBranch: 'master',
     locales: {

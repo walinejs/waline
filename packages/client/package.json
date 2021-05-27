@@ -12,7 +12,7 @@
   "main": "dist/Waline.min.js",
   "types": "dist/Waline.min.d.ts",
   "repository": {
-    "url": "https://github.com/lizheming/waline"
+    "url": "https://github.com/walinejs/waline"
   },
   "scripts": {
     "analyze": "cross-env ANALYZE=true webpack --mode=production",
