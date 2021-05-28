@@ -1,6 +1,6 @@
-import { createApp, ref } from 'vue';
+import { createApp } from 'vue';
+import { useConfig } from './composables';
 import {
-  getConfig,
   getEvent,
   injectDarkStyle,
   registerMathML,
@@ -10,9 +10,12 @@ import {
 import { RecentComments } from './widget';
 import App from './App.vue';
 
+import type { DeepReadonly } from 'vue';
 import type { WalineOptions } from './config';
+import type { Update } from './composables';
 import type { Config } from './utils';
 
+export type { Update as WalineUpdate } from './composables';
 export type { Locale as WalineLocale, WalineOptions } from './config';
 export type { Comment as WalineComment } from './typings';
 
@@ -20,7 +23,7 @@ import '@style';
 
 declare const VERSION: string;
 
-const domRender = (config: Config, signal: AbortSignal): void => {
+const domRender = (config: DeepReadonly<Config>, signal: AbortSignal): void => {
   const { path, serverURL, visitor } = config;
 
   // visitor count
@@ -31,7 +34,7 @@ const domRender = (config: Config, signal: AbortSignal): void => {
 };
 
 export interface WalineInstance {
-  update: (options: Partial<Omit<WalineOptions, 'el' | 'dark'>>) => void;
+  update: Update;
   destroy: () => void;
 }
 
@@ -42,7 +45,7 @@ function waline(options: WalineOptions): WalineInstance | void {
   if (
     el !== null &&
     !(el instanceof HTMLElement) &&
-    document.querySelector(el)
+    !document.querySelector(el)
   ) {
     console.error("Option 'el' is invalid!");
 
@@ -57,7 +60,7 @@ function waline(options: WalineOptions): WalineInstance | void {
   }
 
   const event = getEvent();
-  const config = ref(getConfig(options));
+  const { config, update } = useConfig(options);
 
   // darkmode support
   if (options.dark) injectDarkStyle(options.dark);
@@ -87,10 +90,8 @@ function waline(options: WalineOptions): WalineInstance | void {
   };
 
   return {
-    update: (newOptions: Partial<WalineOptions> = {}): void => {
-      state.options = { ...state.options, ...newOptions };
-
-      config.value = getConfig(state.options);
+    update: (newOptions): void => {
+      update(newOptions);
 
       const { path } = config.value;
 
@@ -108,9 +109,7 @@ function waline(options: WalineOptions): WalineInstance | void {
 
       domRender(config.value, state.counter.signal);
     },
-    destroy: (): void => {
-      app.unmount();
-    },
+    destroy: (): void => app.unmount(),
   };
 }
 

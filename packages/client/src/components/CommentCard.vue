@@ -75,7 +75,8 @@ import { ReplyIcon } from './Icons';
 import { isLinkHttp, timeAgo } from '../utils';
 
 import type { PropType } from 'vue';
-import type { Comment, ConfigRef } from '../typings';
+import type { ConfigRef } from '../composables';
+import type { Comment } from '../typings';
 
 export default defineComponent({
   props: {

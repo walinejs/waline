@@ -54,7 +54,8 @@ import { LoadingIcon } from './components/Icons';
 import { fetchCommentList } from './utils';
 
 import type { PropType } from 'vue';
-import type { Comment, ConfigRef } from './typings';
+import type { ConfigRef } from './composables';
+import type { Comment } from './typings';
 import type { WalineEvent } from './utils';
 
 declare const VERSION: string;

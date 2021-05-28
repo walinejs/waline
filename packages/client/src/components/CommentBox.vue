@@ -228,7 +228,9 @@ import {
   store,
 } from '../utils';
 
-import type { CommentData, ConfigRef } from '../typings';
+import type { DeepReadonly } from 'vue';
+import type { ConfigRef } from '../composables';
+import type { CommentData } from '../typings';
 import type { EmojiConfig } from '../utils';
 
 const infoStore = store('WALINE_USER_CACHE');
@@ -278,7 +280,7 @@ export default defineComponent({
     const editorRef = ref<HTMLTextAreaElement | null>(null);
     const imageUploadRef = ref<HTMLInputElement | null>(null);
 
-    const emoji = ref<EmojiConfig>({ tabs: [], map: {} });
+    const emoji = ref<DeepReadonly<EmojiConfig>>({ tabs: [], map: {} });
     const emojiTabIndex = ref(0);
     const showEmoji = ref(false);
     const showPreview = ref(false);
