@@ -1,6 +1,5 @@
 import { createApp, ref } from 'vue';
 import {
-  checkOptions,
   getConfig,
   getEvent,
   injectDarkStyle,
@@ -36,14 +35,29 @@ export interface WalineInstance {
   destroy: () => void;
 }
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
-function Waline(options: WalineOptions): WalineInstance | void {
-  let prevOptions = options;
-  let controller = new AbortController();
+function waline(options: WalineOptions): WalineInstance | void {
+  const { el = '#waline', serverURL } = options;
+
+  // check el element
+  if (
+    el !== null &&
+    !(el instanceof HTMLElement) &&
+    document.querySelector(el)
+  ) {
+    console.error("Option 'el' is invalid!");
+
+    return;
+  }
+
+  // check serverURL
+  if (!serverURL) {
+    console.error("Required option 'serverURL' is missing!");
+
+    return;
+  }
+
   const event = getEvent();
   const config = ref(getConfig(options));
-
-  if (!checkOptions(options)) return;
 
   // darkmode support
   if (options.dark) injectDarkStyle(options.dark);
@@ -51,28 +65,48 @@ function Waline(options: WalineOptions): WalineInstance | void {
   // mathml
   window.addEventListener('load', registerMathML);
 
-  domRender(config.value, controller.signal);
+  const commentController = new AbortController();
+  const counterController = new AbortController();
+
+  domRender(config.value, counterController.signal);
 
   // mount waline
-  const app = createApp(App, { signal: controller.signal })
+  const app = createApp(App, { signal: commentController.signal })
     .provide('config', config)
     .provide('event', event)
     .provide('version', VERSION);
 
   app.mount(options.el || '#waline');
 
+  // store for update use
+  const state = {
+    options,
+    path: config.value.path,
+    comment: commentController,
+    counter: counterController,
+  };
+
   return {
     update: (newOptions: Partial<WalineOptions> = {}): void => {
-      prevOptions = { ...prevOptions, ...newOptions };
+      state.options = { ...state.options, ...newOptions };
 
-      config.value = getConfig(prevOptions);
+      config.value = getConfig(state.options);
+
+      const { path } = config.value;
+
+      // comment should not rerender
+      if (state.path !== path) {
+        state.comment.abort();
+        state.comment = new AbortController();
+        state.path = path;
+        event.emit('render', state.comment.signal);
+      }
 
       // abort previous requests and update controller
-      controller.abort();
-      controller = new AbortController();
+      state.counter.abort();
+      state.counter = new AbortController();
 
-      event.emit('render', controller.signal);
-      domRender(config.value, controller.signal);
+      domRender(config.value, state.counter.signal);
     },
     destroy: (): void => {
       app.unmount();
@@ -80,10 +114,10 @@ function Waline(options: WalineOptions): WalineInstance | void {
   };
 }
 
-Waline.Widget = {
+waline.Widget = {
   RecentComments,
 };
 
-Waline.version = VERSION;
+waline.version = VERSION;
 
-export default Waline;
+export default waline;
