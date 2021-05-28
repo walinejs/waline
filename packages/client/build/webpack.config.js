@@ -4,7 +4,7 @@ const path = require('path');
 
 module.exports = merge(common, {
   output: {
-    filename: 'Waline.min.js',
+    filename: '[name].min.js',
   },
 
   resolve: {
