@@ -7,7 +7,6 @@ export * from './event';
 export * from './fetch';
 export * from './markdown';
 export * from './path';
-export * from './store';
 export * from './timeAgo';
 export * from './visitor';
 export * from './wordCount';

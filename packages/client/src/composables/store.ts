@@ -4,7 +4,7 @@ export interface Store {
   update: <T = unknown>(content: T) => void;
 }
 
-export const store = (cacheKey: string): Store => {
+export const useStore = (cacheKey: string): Store => {
   let storage: Record<string, unknown> = {};
   const content = localStorage.getItem(cacheKey);
 

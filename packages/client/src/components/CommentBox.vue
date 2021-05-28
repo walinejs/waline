@@ -218,14 +218,13 @@ import {
   PreviewIcon,
   LoadingIcon,
 } from './Icons';
-import { useUserInfo } from '../composables';
+import { useStore, useUserInfo } from '../composables';
 import {
   getImagefromDataTransfer,
   parseMarkdown,
   getWordNumber,
   parseEmoji,
   postComment,
-  store,
 } from '../utils';
 
 import type { DeepReadonly } from 'vue';
@@ -233,7 +232,7 @@ import type { ConfigRef } from '../composables';
 import type { CommentData } from '../typings';
 import type { EmojiConfig } from '../utils';
 
-const infoStore = store('WALINE_USER_CACHE');
+const store = useStore('WALINE_USER_CACHE');
 
 export default defineComponent({
   name: 'CommentBox',
@@ -270,9 +269,9 @@ export default defineComponent({
     const { userInfo, setUserInfo } = useUserInfo();
 
     const inputs = reactive({
-      nick: infoStore.get<string>('nick') || '',
-      mail: infoStore.get<string>('mail') || '',
-      link: infoStore.get<string>('link') || '',
+      nick: store.get<string>('nick') || '',
+      mail: store.get<string>('mail') || '',
+      link: store.get<string>('link') || '',
       editor: '',
     });
 
@@ -444,7 +443,7 @@ export default defineComponent({
         (resp) => {
           isSubmitting.value = false;
 
-          infoStore.update({
+          store.update({
             nick: comment.nick,
             link: comment.link,
             mail: comment.mail,
