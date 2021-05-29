@@ -4,6 +4,8 @@ Besides LeanCloud, Waline also supports a variety of databases, including MySQL,
 
 You only need to configure environment variables, and Waline will automatically switch to the corresponding data storage service based on the environment variables you configure.
 
+<!-- more -->
+
 ## MongoDB
 
 <https://mongodb.com> official provides 512M MongoDB database support for free. The following are the environment variables that need to be configured to use MongoDB database.

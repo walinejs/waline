@@ -10,6 +10,8 @@
 
 :::
 
+<!-- more -->
+
 ## GitHub
 
 开启 GitHub 账号登录功能需要配置 GitHub OAuth 密钥。点击 [Register a new OAuth application](https://github.com/settings/applications/new) 进入 GitHub OAuth 应用申请页面。

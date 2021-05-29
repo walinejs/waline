@@ -4,24 +4,39 @@
 
 博主通知支持多种方式，包括 QQ、微信、邮件等，回复评论作者仅支持邮件通知。
 
+<!-- more -->
+
 ## 邮件通知
 
-邮件通知需要在环境变量中配置以下几个:
+邮件通知需要配置以下环境变量:
 
-- `AUTHOR_EMAIL`: 博主邮箱，用来区分发布的评论是否是博主本身发布的。如果是博主发布的则不进行提醒通知。
-- `SMTP_SERVICE`: SMTP 邮件发送服务提供商，可以在 [这里](https://github.com/nodemailer/nodemailer/blob/master/lib/well-known/services.json) 查看所有支持的运营商。如果没在列表中的可以自行配置 `SMTP_HOST` 和 `SMTP_PORT`。
-- `SMTP_HOST`: SMTP 服务器地址，一般可以在邮箱的设置中找到。如未配置 `SMTP_SERVICE` 该项必填。
-- `SMTP_PORT`: SMTP 服务器端口，一般可以在邮箱的设置中找到。如未配置 `SMTP_SERVICE` 该项必填。
+- `SMTP_SERVICE`: SMTP 邮件发送服务提供商。
+
+  ::: tip
+
+  你可以在 [这里](https://github.com/nodemailer/nodemailer/blob/master/lib/well-known/services.json) 查看所有支持的运营商。
+
+  如果你的运营商不受支持，你必须填写 `SMTP_HOST` 和 `SMTP_PORT`。
+
+  - `SMTP_HOST`: SMTP 服务器地址，一般可以在邮箱的设置中找到。
+  - `SMTP_PORT`: SMTP 服务器端口，一般可以在邮箱的设置中找到。
+
+  :::
+
 - `SMTP_USER`: SMTP 邮件发送服务的用户名，一般为登录邮箱。
-- `SMTP_PASS`: SMTP 邮件发送服务的密码，一般为邮箱登录密码，部分邮箱（例如 163）是单独的 SMTP 密码。
+- `SMTP_PASS`: SMTP 邮件发送服务的密码，一般为邮箱登录密码，部分邮箱(例如 163)是单独的 SMTP 密码。
 - `SITE_NAME`: 网站名称，用于在消息中显示。
 - `SITE_URL`: 网站地址，用于在消息中显示。
-- `SENDER_NAME`: 自定义发送邮件的发件人，选填。
-- `SENDER_EMAIL`: 自定义发送邮件的发件地址，选填。
-- `MAIL_SUBJECT`: 评论回复邮件标题自定义
-- `MAIL_TEMPLATE`: 评论回复邮件内容自定义
-- `MAIL_SUBJECT_ADMIN`: 新评论通知邮件标题自定义
-- `MAIL_TEMPLATE_ADMIN`: 新评论通知邮件内容自定义
+
+以下是选填的环境变量:
+
+- `SENDER_NAME`: 自定义发送邮件的发件人
+- `SENDER_EMAIL`: 自定义发送邮件的发件地址
+- `MAIL_SUBJECT`: 自定义评论回复邮件标题
+- `MAIL_TEMPLATE`: 自定义评论回复邮件内容
+- `MAIL_SUBJECT_ADMIN`: 自定义新评论通知邮件标题
+- `MAIL_TEMPLATE_ADMIN`: 自定义新评论通知邮件内容
+- `AUTHOR_EMAIL`: 博主邮箱，用来区分发布的评论是否是博主本身发布的。如果是博主发布的则不进行提醒通知。
 
 ## 微信通知
 
@@ -37,7 +52,7 @@
 QQ 通知使用了 [Qmsg 酱](https://qmsg.zendee.cn) 提供的服务，需要在环境变量中配置在 Qmsg 酱中申请的 `QMSG_KEY`。
 
 - `QMSG_KEY`: Qmsg 酱提供的 KEY，必填。
-- `QQ_ID`: 接收消息的 QQ 号（不支持 QQ 群），可以添加多个，以半角逗号分割，如: `1244453393,2952937634`（必须均在您的 Qmsg 酱 QQ 号列表中）。
+- `QQ_ID`: 接收消息的 QQ 号 (不支持 QQ 群)，可以添加多个，以半角逗号分割，如: `1244453393,2952937634` (必须均在您的 Qmsg 酱 QQ 号列表中)。
 - `AUTHOR_EMAIL`: 博主邮箱，用来区分发布的评论是否是博主本身发布的。如果是博主发布的则不进行提醒通知。
 - `SITE_NAME`: 网站名称，用于在消息中显示。
 - `SITE_URL`: 网站地址，用于在消息中显示。
@@ -56,13 +71,13 @@ Telegram 通知通过 Telegram bot 机器人实现，需要配置以下几个环
 
 ## 通知模板
 
-Waline 支持为每个平台分别配置您自定义的通知模板，从而实现更强大的自定义能力与 i18n 兼容性。
+Waline 支持为每个平台分别配置您自定义的通知模板，从而实现更强大的自定义能力与多语言兼容性。
 
 ### 支持的变量
 
 模板通过 `self` 、 `parent` 和 `site` 对象传递参数，其中分别包含以下变量:
 
-- self: 该条评论本身
+- `self`: 该条评论本身
 
   | 变量            | 备注         |
   | --------------- | ------------ |
@@ -75,7 +90,7 @@ Waline 支持为每个平台分别配置您自定义的通知模板，从而实�
 
   \*: commentLink 仅在 Telegram 通知中提供，会自动封装成 Markdown 的格式
 
-- parent: 该条评论的回复对象（父评论）
+- `parent`: 该条评论的回复对象(父评论)
 
   | 变量    | 备注       |
   | ------- | ---------- |
@@ -129,5 +144,5 @@ Waline 支持为每个平台分别配置您自定义的通知模板，从而实�
 
 ### 附加说明
 
-1. Vercel 的环境变量大小限制为 `4KB` ，因而如果您的模板存储需求比较大，可以直接使用代码配置，参见 [issue#106](https://github.com/walinejs/waline/issues/106) ；
-2. 变量具体信息在开发过程中可能会发生变化，此处的变量说明仅供参考，具体的内容请以具体的代码示例为准。
+1. Vercel 的环境变量大小限制为 `4KB` ，所以如果您的模板很长，请使用使用代码配置，参见 [issue#106](https://github.com/walinejs/waline/issues/106) ；
+1. 变量具体信息在开发过程中可能会发生变化，此处的变量说明仅供参考，具体的内容请以具体的代码示例为准。

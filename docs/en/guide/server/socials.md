@@ -10,6 +10,8 @@ Social account login feature is not enabled by default, extra configuration is n
 
 :::
 
+<!-- more -->
+
 ## GitHub
 
 To enable the GitHub account login feature, you need to configure the GitHub OAuth key. Click [Register a new OAuth application](https://github.com/settings/applications/new) to enter the GitHub OAuth application application page. Then fill in the following configurations:
