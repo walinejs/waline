@@ -27,11 +27,11 @@ Pageviews: <i id="<Your/Path/Name>" class="waline-visitor-count"></i>
 
 ```html
 The current page has been viewed
-<i id="/en/client/count.html" class="waline-visitor-count" /> times.
+<i id="/en/guide/client/count.html" class="waline-visitor-count" /> times.
 ```
 
 The current page has been viewed
-<i id="/en/client/count.html" class="waline-visitor-count" /> times.
+<i id="/en/guide/client/count.html" class="waline-visitor-count" /> times.
 
 ### Valine compatible
 
@@ -52,8 +52,8 @@ Waline supports separate display of the number of comments in the non-comment ar
 
 ```html
 The current page has
-<span id="/en.client/count.html" class="waline-comment-count" /> comments.
+<span id="/en/guide/client/count.html" class="waline-comment-count" /> comments.
 ```
 
 The current page has
-<span id="/en.client/count.html" class="waline-comment-count" /> comments.
+<span id="/en/guide/client/count.html" class="waline-comment-count" /> comments.

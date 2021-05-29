@@ -26,10 +26,13 @@ Waline 会自动查找页面中 `class` 值为 `waline-visitor-count` 的元素�
 ### 例子
 
 ```html
-当前页阅读量为<span id="/client/count.html" class="waline-visitor-count" />次。
+当前页阅读量为<span
+  id="/guide/client/count.html"
+  class="waline-visitor-count"
+/>次。
 ```
 
-当前页阅读量为<span id="/client/count.html" class="waline-visitor-count" />次。
+当前页阅读量为<span id="/guide/client/count.html" class="waline-visitor-count" />次。
 
 ### Valine 兼容
 
@@ -49,7 +52,8 @@ Waline 支持在非评论区单独显示评论数，其方式和页面浏览量�
 ### 例子
 
 ```html
-当前页共有 <span id="/client/count.html" class="waline-comment-count" />条评论
+当前页共有
+<span id="/guide/client/count.html" class="waline-comment-count" />条评论
 ```
 
-当前页共有 <span id="/client/count.html" class="waline-comment-count" />条评论
+当前页共有 <span id="/guide/client/count.html" class="waline-comment-count" />条评论
