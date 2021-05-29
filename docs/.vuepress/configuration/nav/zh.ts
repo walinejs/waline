@@ -9,16 +9,20 @@ export const zhNavbarConfig: NavbarConfig = [
     text: '了解更多',
     children: [
       {
+        text: '介绍',
+        link: '/advanced/intro.html',
+      },
+      {
+        text: '源始',
+        link: '/advanced/why.html',
+      },
+      {
         text: '生态系统',
         link: '/advanced/ecosystem.html',
       },
       {
         text: '常见问题',
         link: '/advanced/faq.html',
-      },
-      {
-        text: '源始',
-        link: '/advanced/why.html',
       },
     ],
   },
@@ -43,10 +47,13 @@ export const zhNavbarConfig: NavbarConfig = [
         link: '/reference/client.html',
       },
       {
+        text: '客户端实例',
+        link: '/reference/instance.html',
+      },
+      {
         text: '服务端配置',
         link: '/reference/server.html',
       },
-
       {
         text: 'API',
         link: '/reference/api.html',

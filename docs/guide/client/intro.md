@@ -10,7 +10,7 @@ Waline 官方提供了 [`@waline/client`](https://www.npmjs.com/package/@waline/
 
 ## 初始化
 
-你可以使用 `Waline(options)` 初始化 Waline 实例，其中 `el` 和 `serverURL` 两个选项是必填的。前者为 Waline 挂在的元素或元素选择器，后者为服务端地址。
+你可以使用 `Waline(options)` 初始化 Waline 实例，其中 `el` 和 `serverURL` 两个选项是必填的。前者为 Waline 挂载的元素或元素选择器，后者为服务端地址。
 
 关于 Waline 的全部初始化参数，详见 [参考 → Waline 客户端配置](../../reference/client.md)。
 

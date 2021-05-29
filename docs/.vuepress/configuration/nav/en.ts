@@ -9,16 +9,20 @@ export const enNavbarConfig: NavbarConfig = [
     text: 'Learn More',
     children: [
       {
+        text: 'Intro',
+        link: '/en/advanced/intro.html',
+      },
+      {
+        text: 'Original Goal',
+        link: '/en/advanced/why.html',
+      },
+      {
         text: 'Ecosystem',
         link: '/en/advanced/ecosystem.html',
       },
       {
         text: 'FAQ',
         link: '/en/advanced/faq.html',
-      },
-      {
-        text: 'Original Goal',
-        link: '/en/advanced/why.html',
       },
     ],
   },
@@ -41,6 +45,10 @@ export const enNavbarConfig: NavbarConfig = [
       {
         text: 'Client Config',
         link: '/en/reference/client.html',
+      },
+      {
+        text: 'Client Instance',
+        link: '/en/reference/instance.html',
       },
       {
         text: 'Server Config',

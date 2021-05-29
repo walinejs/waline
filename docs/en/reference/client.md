@@ -140,7 +140,7 @@ Optional value:
 - `'robohash'`
 - `'hide'`
 
-See the [Avatar setting](./avatar.md) for more details.
+See the [Avatar setting](../guide/client/avatar.md) for more details.
 
 ## wordLimit
 
@@ -246,7 +246,7 @@ Please use `emoji` instead.
 - Default: `https://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/`
 - Required: No
 
-Set **Emoji Pack CDN**, refer to [Custom Emoji](./emoji.md).
+Set **Emoji Pack CDN**, refer to [Custom Emoji](../guide/client/emoji.md)
 
 ### emojiMaps
 
@@ -260,7 +260,7 @@ Please use `emoji` instead.
 - Default: `null`
 - Required: No
 
-Set `Emoji Packet Mapping’, refer to [Custom Emoji](./emoji.md).
+Set `Emoji Packet Mapping’, refer to [Custom Emoji](../guide/client/emoji.md)
 
 ### requiredFields
 

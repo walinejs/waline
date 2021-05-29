@@ -140,7 +140,7 @@ Waline 的服务端地址。
 - `'robohash'`
 - `'hide'`
 
-更多信息，请查看 [头像配置](./avatar.md)。
+更多信息，请查看 [头像配置](../guide/client/avatar.md)。
 
 ## wordLimit
 
@@ -248,7 +248,7 @@ Waline 的服务端地址。
 - 默认值: `https://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/`
 - 必填: 否
 
-设置**表情包 CDN**，参考[自定义表情](./emoji.md)
+设置**表情包 CDN**，参考[自定义表情](../guide/client/emoji.md)
 
 ### emojiMaps
 
@@ -262,7 +262,7 @@ Waline 的服务端地址。
 - 默认值: `微博表情包`
 - 必填: 否
 
-设置**表情包映射**，参考[自定义表情](./emoji.md)
+设置**表情包映射**，参考[自定义表情](../guide/client/emoji.md)
 
 ### requiredFields
 
