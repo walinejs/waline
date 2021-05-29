@@ -46,6 +46,6 @@ Waline 为 SPA(**S**ingle **P**age **A**pplication, 单页应用) 带来了支�
 
 ## 生态环境
 
-Waline 服务端提供了一套 API，任何人都可以基于此开发第三方客户端、插件或主题。
+你可以很方便的在 Hexo，VuePress 等工具上通过插件使用 Waline，甚至使用第三方客户端。
 
-你可以在 [了解更多 → 生态系统](../../advanced/ecosystem.md) 中查看更多 Waline 相关项目。
+有关支持 Waline 的第三方客户端、主题与插件，详见[了解更多 → 生态系统](../../advanced/ecosystem.md)。

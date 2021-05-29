@@ -103,7 +103,7 @@ export default defineUserConfig<DefaultThemeOptions>({
             'Client',
             'Server',
           ]),
-          '/en/': getDefaultSidebar('', [
+          '/en/': getDefaultSidebar('/en', [
             'Guide',
             'Lear More',
             'Migration',

@@ -1,9 +1,5 @@
 # Server Intro
 
-### Other tools
-
-You can easily use Waline on Hexo, VuePress and other tools through plug-ins, and even use third-party clients. For details on third-party clients, themes and plug-ins that support Waline, please refer to [Waline Ecology](../helper/ecosystem.md).
-
 ## Server
 
 In addition to free deployment in Vercel, you can deploy through docker or directly deploy on a self-hosted environment. See [Deployment](../server/vps-deploy.md) for details.

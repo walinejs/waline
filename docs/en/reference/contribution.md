@@ -14,22 +14,21 @@ If you want to contribute to waline, here is a guide.
 
 1. Installation dependencies
 
-   ```bash
-   cd waline
-   npm i
-   ```
-
    ::: warning
 
-   You need to make sure you use the npm@v7 version:
+   Node 14 and below use npm@v6 by default, you need to make sure you use the npm@v7 version:
 
    ```bash
    # Ensure that your npm version is 7
    npm i -g npm@7
-
    ```
 
    :::
+
+   ```bash
+   cd waline
+   npm i
+   ```
 
 ## Development
 

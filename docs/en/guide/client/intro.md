@@ -46,6 +46,6 @@ Waline brings support for SPA (**S**ingle **P**age **A**pplication). If you are 
 
 ## Ecosystem
 
-Waline server provides a set of APIs, and anyone can develop third-party clients, plug-ins or themes based on this.
+You can easily use Waline with plugins on Hexo, VuePress and other tools, and even use third-party clients.
 
-You can view more Waline related projects in [Learn more → Ecosystem](../../advanced/ecosystem.md).
+For details about third-party clients, themes and plugins that support Waline, please see [Learn more → Ecosystem](../../advanced/ecosystem.md).

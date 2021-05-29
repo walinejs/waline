@@ -14,22 +14,21 @@
 
 1. 安装依赖
 
+   ::: warning
+
+   Node 14 及以下默认使用 npm@v6，你需要确保自己使用 npm@v7 版本:
+
+   ```bash
+   # 保证自己的 npm 版本是 7
+   npm i -g npm@latest
+   ```
+
+   :::
+
    ```bash
    cd waline
    npm i
    ```
-
-   ::: warning
-
-   你需要确保自己使用 npm@v7 版本:
-
-   ```bash
-   # 保证自己的 npm 版本是 7
-   npm i -g npm@7
-
-   ```
-
-   :::
 
 ## 开发
 

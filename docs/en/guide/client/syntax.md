@@ -175,17 +175,13 @@ $$
 
 :::
 
-## Spam and XSS prevention
+## Embed HTML
 
-::: warning Preventing XSS attacks
+Feel free to add any HTML content unless triggering the protection mechanism below.
 
-We use DOMPurify to sanitize every comment input to prevent potential XSS attacks. This means you can't use `<iframe>` or any form of script.
+## Restrictions
 
-At the same time, all links will be automatically set `rel="noreferrer noopener"` and opened in a new window with `target="_ blank"`.
-
-:::
-
-::: warning Preventing malicious content implantation
+### Spam protection
 
 - To prevent users from creating submitable forms in the comment area to trick other visitors submitting information, `<form>` and `<input>` are not allowed
 
@@ -193,9 +189,13 @@ At the same time, all links will be automatically set `rel="noreferrer noopener"
 
 - To prevent users from abusing media autoplay feature, `autoplay` attribute is not allowed.
 
-:::
+### XSS prevention
 
-## Restricted preview function
+- We use DOMPurify to sanitize every comment input to prevent potential XSS attacks. This means you can't use `<iframe>` or any form of script.
+
+- All links will be automatically set `rel="noreferrer noopener"` and opened in a new window with `target="_ blank"`.
+
+### Restricted preview function
 
 In order to control the size of the client `@waline / client`, many functions can **correctly rendered in the comment area**, but they **cannot be displayed correctly in the preview mode**.
 

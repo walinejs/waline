@@ -1,9 +1,5 @@
 # 服务端介绍
 
-## 其他工具
-
-你可以很方便的在 Hexo，VuePress 等工具上通过插件使用 Waline，甚至可以使用第三方客户端。有关支持 Waline 的第三方客户端、主题与插件，详见 [Waline 生态](../helper/ecosystem.md)。
-
 ## 服务端
 
 除了在 Vercel 免费部署外，你可以通过 docker 进行部署或直接部署在自托管环境上。详见 [部署](../server/vps-deploy.md)。

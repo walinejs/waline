@@ -1,31 +1,47 @@
 # Server Configuration
 
-## Basic Configuration
+## Environment Variables
 
-Most backend config can be cofigured in environment variable, which can be set in <kbd>Settings</kbd> - <kbd>Environment Variables</kbd> for Vercel. Note: all changes works after redeploy.
+You can configure the Waline server through the following environment variables.
 
-| Environment Variable | Required | Description                                                                       |
-| -------------------- | -------- | --------------------------------------------------------------------------------- |
-| `LEAN_ID`            | ✅       | LeanCloud Application ID                                                          |
-| `LEAN_KEY`           | ✅       | LeanCloud Application Key                                                         |
-| `LEAN_MASTER_KEY`    | ✅       | LeanCloud Application Master Key                                                  |
-| `LEAN_SERVER`        | ⚠        | LeanCloud server address if you're leancloud china user                           |
-| `SITE_NAME`          |          | site name                                                                         |
-| `SITE_URL`           |          | site url                                                                          |
-| `SECURE_DOMAINS`     |          | Secure Domains config. Supports multiple domain with Comma separated              |
-| `DISABLE_USERAGENT`  |          | wether hide the user agent of commentor. Default value is `false`                 |
-| `AKISMET_KEY`        |          | Akismet antispam service key, default is open, set `false` if you wanna close it. |
-| `COMMENT_AUDIT`      |          | Comment audit switcher. We recommend to tip on the placeholder text if it's true. |
+| Environment Variables | Required | Description                                                                       |
+| --------------------- | -------- | --------------------------------------------------------------------------------- |
+| `LEAN_ID`             | ✅       | LeanCloud Application ID                                                          |
+| `LEAN_KEY`            | ✅       | LeanCloud Application Key                                                         |
+| `LEAN_MASTER_KEY`     | ✅       | LeanCloud Application Master Key                                                  |
+| `LEAN_SERVER`         | ⚠        | LeanCloud server address if you're leancloud china user                           |
+| `SITE_NAME`           |          | site name                                                                         |
+| `SITE_URL`            |          | site url                                                                          |
+| `SECURE_DOMAINS`      |          | Secure Domains config. Supports multiple domain with Comma separated              |
+| `DISABLE_USERAGENT`   |          | wether hide the user agent of commentor. Default value is `false`                 |
+| `AKISMET_KEY`         |          | Akismet antispam service key, default is open, set `false` if you wanna close it. |
+| `COMMENT_AUDIT`       |          | Comment audit switcher. We recommend to tip on the placeholder text if it's true. |
 
-Besides the above environment variables, different features will also its environment variable config, which can be viewed in the corresponding sidebar items.
+::: warning
 
-## Code Config
+You must **redeploy** after updating Environment variables to take effect.
 
-Except environment variables setting, we also support some config in project file.
+Vercel needs to be set in <kbd>Settings</kbd> - <kbd>Environment Variables</kbd>.
+
+:::
+
+## Main entrance
+
+The following options need to be configured in the server entry file `index.js`.
+
+::: warning
+
+If you are using template, please note that you need to save these configurations yourself, because they will be overwritten when you pull the latest official template.
+
+:::
 
 ### secureDomains
 
+- Type: `string | RegExp | string[] | RegExp[]`
+
 Secure domain settings. Requests from other domain will receive 403 status code. It supports String, Regexp, and Array type. Leaving this config means that all domain referrer are allowed.
+
+::: details Example
 
 ```js
 // index.js
@@ -36,16 +52,22 @@ module.exports = Waline({
 });
 ```
 
+:::
+
 ::: tip
 
-- To make local development easy, `localhost` and `127.0.0.1` will be added to the list of secure domain names by default.
+- To make local development easier, `localhost` and `127.0.0.1` will be added to the list of secure domain names by default.
 - Env variable `SECURE_DOMAINS` won't work when this option is set.
 
 :::
 
 ### forbiddenWords
 
+- Type: `string[]`
+
 If a comment match forbidden word, it will be marked as spam.
+
+::: details Example
 
 ```js
 // index.js
@@ -56,9 +78,15 @@ module.exports = Waline({
 });
 ```
 
+:::
+
 ### disallowIPList
 
+- Type: `string[]`
+
 If a comment ip match this list, 403 status code is returned.
+
+::: details Example
 
 ```js
 // index.js
@@ -69,27 +97,41 @@ module.exports = Waline({
 });
 ```
 
+:::
+
 ### mailSubject
+
+- Type: `string`
 
 Customize the title of the comment reply email, which is equivalent to environment variable `MAIL_SUBJECT`.
 
 ### mailTemplate
 
+- Type: `string`
+
 Customize the content of the comment reply email, which is equivalent to environment variable `MAIL_TEMPLATE`.
 
 ### mailSubjectAdmin
+
+- Type: `string`
 
 Customize the title of the new comment notification email, which is equivalent to the environment variable `MAIL_SUBJECT_ADMIN`.
 
 ### mailTemplateAdmin
 
+- Type: `string`
+
 Customize the content of the new comment notification email, which is equivalent to the environment variable `MAIL_TEMPLATE_ADMIN`.
 
 ### QQTemplate
 
+- Type: `string`
+
 The QQ comment notification template, which is equivalent to the environment variable `QQ_TEMPLATE`.
 
 ### TGTempalte
+
+- Type: `string`
 
 Telegram comment notification template, which is equivalent to the environment variable `TG_TEMPLATE`.
 
@@ -99,10 +141,12 @@ Besides environment variable configuration, Waline also provides some custom hoo
 
 ### preSave(comment)
 
-The hook will be triggered before comments are posted, and comment data will be passed to params. If the method returns content, the interface will return directly without storing the comment data.
+Waline provides some custom hooks to let users customize Waline server behavior according to their own needs.
+
+::: details Example
 
 ```js
-//index.js
+// index.js
 const Waline = require('@waline/vercel');
 
 module.exports = Waline({
@@ -115,11 +159,15 @@ module.exports = Waline({
 });
 ```
 
+:::
+
 ### postSave(comment, pComment)
 
 The action performed after the comment is posted.
 
 When the method is executed, the comment data will be passed as the first param, and if it's a reply to the comment, the parent comment will be passed as the second param.
+
+::: details Example
 
 ```js
 // index.js
@@ -135,12 +183,16 @@ module.exports = Waline({
 });
 ```
 
+:::
+
 ### preUpdate(comment)
 
 Action before a comment content is updated in the dashboard. If the method returns content, the interface will return directly without updating the comment data.
 
+::: details Example
+
 ```js
-//index.js
+// index.js
 const Waline = require('@waline/vercel');
 
 module.exports = Waline({
@@ -150,12 +202,16 @@ module.exports = Waline({
 });
 ```
 
+:::
+
 ### afterUpdate(comment)
 
 Action after a comment content is updated in the dashboard. Comment data will be passed in when the method is executed.
 
+::: details Example
+
 ```js
-//index.js
+// index.js
 const Waline = require('@waline/vercel');
 
 module.exports = Waline({
@@ -165,9 +221,13 @@ module.exports = Waline({
 });
 ```
 
+:::
+
 ### preDelete(commentId)
 
 Action before a comment is deleted. When the method is executed, the comment Id to be operated will be passed in. If the method returns content, the interface will return directly without updating the comment data.
+
+::: details Example
 
 ```js
 // index.js
@@ -180,9 +240,13 @@ module.exports = Waline({
 });
 ```
 
+:::
+
 ### afterDelete(commentId)
 
 Action after a comment is deleted, the comment Id will be passed as the only param.
+
+::: details Example
 
 ```js
 // index.js
@@ -194,3 +258,5 @@ module.exports = Waline({
   },
 });
 ```
+
+:::

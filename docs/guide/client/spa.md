@@ -2,7 +2,7 @@
 
 Waline 为 SPA(**S**ingle **P**age **A**pplication, 单页应用) 带来了支持。
 
-在单页应用中，你需要保存初始化 Waline 时 Waline 函数返回的 `WalineInstance` 实例以便后续使用。
+在单页应用中，你需要在初始化 Waline 时保存 Waline 函数返回的 `WalineInstance` 实例以便后续使用。
 
 你可以在 `WalineInstance` 上找到两个方法: `update()` 和 `destroy()`。
 

@@ -1,8 +1,8 @@
 # 服务端配置
 
-## 基础配置
+## 环境变量
 
-服务端大部分的配置是通过环境变量进行配置的，如果是在 Vercel 的话可以在 <kbd>Settings</kbd> - <kbd>Environment Variables</kbd> 中进行设置。设置完毕之后需要进行重新部署才能生效。
+你可以通过下面的环境变量对 Waline 服务端进行配置。
 
 | 环境变量名称        | 必填 | 备注                                                                |
 | ------------------- | ---- | ------------------------------------------------------------------- |
@@ -18,24 +18,42 @@
 | `AKISMET_KEY`       |      | Akismet 反垃圾评论服务 Key（默认开启，不用请设置为 false）          |
 | `COMMENT_AUDIT`     |      | 评论发布审核开关，配置后建议在 Placehoder 上提供文案提示            |
 
-除了以上这些环境变量之外，不同的功能也会有很多环境变量配置，具体可点击侧边栏中相应功能介绍进行查看。
+::: warning
 
-## 代码配置
+环境变量在更新后必须**重新部署**才能生效。
 
-除了环境变量，我们还支持一些项目代码配置。
+Vercel 需要在 <kbd>Settings</kbd> - <kbd>Environment Variables</kbd> 中进行设置。
+
+:::
+
+## 主入口配置
+
+以下选项需要在服务端入口文件 `index.js` 中进行配置。
+
+::: warning
+
+如果你使用模板，请额外注意你需要自行保存这些配置，因为它们会在拉取官方最新模板时被覆盖。
+
+:::
 
 ### secureDomains
 
-安全域名配置，配置后非该域名来源的请求会返回 403 状态码。支持字符串、正则、数组类型，不配置表示允许所有域名来源。
+- 类型: `string | RegExp | string[] | RegExp[]`
+
+安全域名配置。配置后非该域名来源的请求会返回 403 状态码。支持字符串、正则、数组类型，不配置表示允许所有域名来源。
+
+::: details 例子
 
 ```js
-//index.js
+// index.js
 const Waline = require('@waline/vercel');
 
 module.exports = Waline({
   secureDomains: 'waline.js.org',
 });
 ```
+
+:::
 
 ::: tip
 
@@ -47,7 +65,11 @@ module.exports = Waline({
 
 ### forbiddenWords
 
+- 类型: `string[]`
+
 违禁词配置，包含违禁词的内容会直接标记为垃圾评论。
+
+::: details 例子
 
 ```js
 //index.js
@@ -58,12 +80,18 @@ module.exports = Waline({
 });
 ```
 
+:::
+
 ### disallowIPList
 
-IP 禁止名单配置，命中名单中的 IP 会直接返回 403 错误。
+- 类型: `string[]`
+
+IP 黑名单配置，名单中的 IP 访问会直接返回 403 错误。
+
+::: details 例子
 
 ```js
-//index.js
+// index.js
 const Waline = require('@waline/vercel');
 
 module.exports = Waline({
@@ -71,39 +99,55 @@ module.exports = Waline({
 });
 ```
 
+:::
+
 ### mailSubject
+
+- 类型: `string`
 
 评论回复邮件标题自定义，等同于环境变量 `MAIL_SUBJECT`。
 
 ### mailTemplate
 
+- 类型: `string`
+
 评论回复邮件内容自定义，等同于环境变量 `MAIL_TEMPLATE`。
 
 ### mailSubjectAdmin
+
+- 类型: `string`
 
 新评论通知邮件标题自定义，等同于环境变量 `MAIL_SUBJECT_ADMIN`。
 
 ### mailTemplateAdmin
 
+- 类型: `string`
+
 新评论通知邮件内容自定义，等同于环境变量 `MAIL_TEMPLATE_ADMIN`。
 
 ### QQTemplate
+
+- 类型: `string`
 
 QQ 评论通知模板，等同于环境变量 `QQ_TEMPLATE`。
 
 ### TGTempalte
 
+- 类型: `string`
+
 Telegram 评论通知模板，等同于环境变量 `TG_TEMPLATE`。
 
 ## 评论 Hooks
 
-除了环境变量配置之外，Waline 还提供了一些自定义钩子，方便大家根据自身需求进行处理。
+Waline 提供了一些自定义 Hook，方便用户根据自身业务需求对 Waline 服务端行为进行定制。
 
 自定义 Hook 在服务端入口文件 `index.js` 中进行配置。
 
 ### preSave(comment)
 
 发布评论前执行的操作。传入评论数据，如果该方法返回内容，则接口会直接返回，不存储评论数据。
+
+::: details 例子
 
 ```js
 // index.js
@@ -119,11 +163,15 @@ module.exports = Waline({
 });
 ```
 
+:::
+
 ### postSave(comment, pComment)
 
 评论发布后执行的操作。
 
 方法执行时会传入评论数据，如果是回复评论的话还会传入父级评论。
+
+::: details 例子
 
 ```js
 // index.js
@@ -139,9 +187,13 @@ module.exports = Waline({
 });
 ```
 
+:::
+
 ### preUpdate(comment)
 
 评论内容在后台被更新前执行的操作。如果该方法返回内容，则接口会直接返回，不更新评论数据。
+
+::: details 例子
 
 ```js
 // index.js
@@ -154,9 +206,13 @@ module.exports = Waline({
 });
 ```
 
+:::
+
 ### afterUpdate(comment)
 
 评论内容在后台被更新后执行的操作。方法执行时会传入评论数据。
+
+::: details 例子
 
 ```js
 // index.js
@@ -169,9 +225,13 @@ module.exports = Waline({
 });
 ```
 
+:::
+
 ### preDelete(commentId)
 
 评论被删除前执行的操作，方法执行时会传入需要操作的评论 Id。如果该方法返回内容，则接口会直接返回，不更新评论数据。
+
+::: details 例子
 
 ```js
 // index.js
@@ -184,9 +244,13 @@ module.exports = Waline({
 });
 ```
 
+:::
+
 ### afterDelete(commentId)
 
 评论被删除后执行的操作，方法执行时会传入需要操作的评论 Id。
+
+::: details 例子
 
 ```js
 // index.js
@@ -198,3 +262,5 @@ module.exports = Waline({
   },
 });
 ```
+
+:::
