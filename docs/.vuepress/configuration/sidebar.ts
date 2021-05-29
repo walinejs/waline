@@ -11,6 +11,7 @@ export const getGuideSidebar = (lang, titles): SidebarConfigArray =>
       lang + '/guide/client/style.md',
       lang + '/guide/client/avatar.md',
       lang + '/guide/client/i18n.md',
+      lang + '/guide/client/spa.md',
       lang + '/guide/client/count.md',
       lang + '/guide/client/widget/README.md',
     ],
@@ -44,6 +45,7 @@ export const getDefaultSidebar = (lang, titles): SidebarConfigArray =>
     [
       lang + '/reference/client.md',
       lang + '/reference/server.md',
+      lang + '/reference/instance.md',
       lang + '/reference/intro.md',
       lang + '/reference/api.md',
       lang + '/reference/contribution.md',
