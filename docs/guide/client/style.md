@@ -102,3 +102,10 @@ darkmode-selector {
   }
 }
 ```
+
+## 更多
+
+如果上面的 CSS 变量无法满足你对 Waline 样式的定制要求，你还可以:
+
+- 手动添加 CSS 对 Waline 的默认样式进行覆盖
+- 引入 Waline 的无样式版本，详见 [Waline 引入](./import.md)

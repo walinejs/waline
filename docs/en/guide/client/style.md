@@ -102,3 +102,10 @@ If you are using a theme that uses shadows (`box-shadow`) instead of borders, yo
   }
 }
 ```
+
+## More
+
+If the above CSS variables cannot meet your custom requirements for Waline styles, you can also:
+
+- Manually add a CSS file to override Waline's default style
+- Import the unstyled version of Waline, see [Waline import](./import.md) for details
