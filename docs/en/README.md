@@ -8,7 +8,7 @@ actions:
     type: primary
 
   - text: ℹ️ Intro
-    link: /en/guide/intro.html
+    link: /en/advanced/intro.html
     type: secondary
 
 features:

@@ -8,7 +8,7 @@ actions:
     type: primary
 
   - text: ℹ️ 介绍
-    link: /guide/intro.html
+    link: /advanced/intro.html
     type: secondary
 
 features:
