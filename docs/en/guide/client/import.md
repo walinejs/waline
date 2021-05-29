@@ -1,6 +1,6 @@
 # Importing Client
 
-You can introduce the Waline client in a variety of ways.
+Waline provides two versions of client files: default (with its own style) and no-style.
 
 ## Via CDN
 
@@ -8,23 +8,44 @@ Recommend to use [jsdelivr](https://cdn.jsdelivr.net/npm/@waline/client/).
 
 ### Get the latest version
 
-```html
-<!-- Use the short link to get latest default file -->
-<script src="//cdn.jsdelivr.net/npm/@waline/client"></script>
+- Default:
 
-<!-- Omit the version number to automatically apply the latest version -->
-<script src="//cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js"></script>
+  ```html
+  <!-- Use the short link to get latest default file -->
+  <script src="//cdn.jsdelivr.net/npm/@waline/client"></script>
 
-<!-- Or manually specify the latest version -->
-<script src="//cdn.jsdelivr.net/@waline/clien@latest/dist/Waline.min.js"></script>
-```
+  <!-- Omit the version number to automatically apply the latest version -->
+  <script src="//cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js"></script>
+
+  <!-- Or manually specify the latest version -->
+  <script src="//cdn.jsdelivr.net/@waline/clien@latest/dist/Waline.min.js"></script>
+  ```
+
+- No Style:
+
+  ```html
+  <!-- Omit the version number to automatically apply the latest version -->
+  <script src="//cdn.jsdelivr.net/npm/@waline/client/dist/Waline.noStyle.js"></script>
+
+  <!-- Or manually specify the latest version -->
+  <script src="//cdn.jsdelivr.net/@waline/clien@latest/dist/Waline.noStyle.js"></script>
+  ```
 
 ### Get the specified version
 
-```html
-<!-- You need to modify and replace `1.0.0` with the version number you want -->
-<script src="//cdn.jsdelivr.net/npm/@waline/client@1.0.0/dist/Waline.min.js"></script>
-```
+- Default:
+
+  ```html
+  <!-- You need to modify and replace `1.0.0` with the version number you want -->
+  <script src="//cdn.jsdelivr.net/npm/@waline/client@1.0.0/dist/Waline.min.js"></script>
+  ```
+
+- No Style:
+
+  ```html
+  <!-- You need to modify and replace `1.0.0` with the version number you want -->
+  <script src="//cdn.jsdelivr.net/npm/@waline/client@1.0.0/dist/Waline.noStyle.js"></script>
+  ```
 
 ## Via NPM
 
@@ -50,14 +71,30 @@ npm i -D @waline/client
 
 Then, please import and use in your source file:
 
-```js:line-numbers
-// Use import
-import Waline from '@waline/client';
-// or Use require
-const Waline = require('@waline/client');
+- Default:
 
-Waline({
-  el: '#waline',
-  // ...
-});
-```
+  ```js:line-numbers
+  // Use import
+  import Waline from '@waline/client';
+  // or Use require
+  const Waline = require('@waline/client');
+
+  Waline({
+    el: '#waline',
+    // ...
+  });
+  ```
+
+- No Style:
+
+  ```js:line-numbers
+  // Use import
+  import Waline from '@waline/client/dist/Waline.noStyle';
+  // or Use require
+  const Waline = require('@waline/client/dist/Waline.noStyle');
+
+  Waline({
+    el: '#waline',
+    // ...
+  });
+  ```

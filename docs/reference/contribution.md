@@ -1,4 +1,4 @@
-# 开发指南
+# 贡献指南
 
 我们欢迎大家为 waline 提交 Pull Request！:tada:
 
