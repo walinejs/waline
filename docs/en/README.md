@@ -4,11 +4,11 @@ title: Waline
 heroImage: /logo.png
 actions:
   - text: 💡 Get Started
-    link: /en/get-started.html
+    link: /en/guide/get-started.html
     type: primary
 
   - text: ℹ️ Intro
-    link: /en/intro.html
+    link: /en/guide/intro.html
     type: secondary
 
 features:

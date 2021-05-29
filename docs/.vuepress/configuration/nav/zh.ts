@@ -3,49 +3,22 @@ import type { NavbarConfig } from '@vuepress/theme-default';
 export const zhNavbarConfig: NavbarConfig = [
   {
     text: '指南',
-    link: '/get-started.html',
+    link: '/guide/get-started.html',
   },
   {
-    text: '配置',
+    text: '了解更多',
     children: [
       {
-        text: '前端',
-        ariaLabel: '前端',
-        children: [
-          {
-            text: '基础配置',
-            link: '/client/basic.html',
-          },
-          {
-            text: '多语言',
-            link: '/client/i18n.html',
-          },
-          {
-            text: '阅读统计',
-            link: '/client/visitor.html',
-          },
-        ],
+        text: '生态系统',
+        link: '/advanced/ecosystem.html',
       },
       {
-        text: '服务端',
-        children: [
-          {
-            text: '基础配置',
-            link: '/server/basic.html',
-          },
-          {
-            text: '评论通知',
-            link: '/server/notification.html',
-          },
-          {
-            text: '多数据库',
-            link: '/server/databases.html',
-          },
-          {
-            text: '其它部署',
-            link: '/server/vps-deploy.html',
-          },
-        ],
+        text: '常见问题',
+        link: '/advanced/faq.html',
+      },
+      {
+        text: '源始',
+        link: '/advanced/why.html',
       },
     ],
   },
@@ -54,7 +27,7 @@ export const zhNavbarConfig: NavbarConfig = [
     children: [
       {
         text: '从 Valine 迁移',
-        link: '/migration.html',
+        link: '/migration/valine.html',
       },
       {
         text: '迁移助手',
@@ -63,19 +36,24 @@ export const zhNavbarConfig: NavbarConfig = [
     ],
   },
   {
-    text: '了解更多',
+    text: '参考',
     children: [
       {
+        text: '客户端配置',
+        link: '/reference/client.html',
+      },
+      {
+        text: '服务端配置',
+        link: '/reference/server.html',
+      },
+
+      {
         text: 'API',
-        link: '/api.html',
+        link: '/reference/api.html',
       },
       {
-        text: '开发指南',
-        link: '/development.html',
-      },
-      {
-        text: 'FAQ',
-        link: '/faq.html',
+        text: '贡献指南',
+        link: '/reference/contribution.html',
       },
     ],
   },
