@@ -4,7 +4,13 @@ Waline 为 SPA(**S**ingle **P**age **A**pplication, 单页应用) 带来了支�
 
 在单页应用中，你需要在初始化 Waline 时保存 Waline 函数返回的 `WalineInstance` 实例以便后续使用。
 
-你可以在 `WalineInstance` 上找到两个方法: `update()` 和 `destroy()`。
+你可以在 `WalineInstance` 上找到一个实例属性 `el` 和两个方法: `update()` 和 `destroy()`。
+
+## el
+
+`el` 属性为 Waline 当前实例挂载的 HTMLElement。
+
+如果你显式通过 `el: null` 初始化 Waline (即只使用浏览量与评论数功能)，该项为 `null`。
 
 ## update
 
@@ -29,7 +35,7 @@ waline.update({
 }); // 这将使 Waline 以英文显示，并禁用用户登录
 ```
 
-### 运行原理
+### 工作方式
 
 调用 `update` 时，会把当前选项和历史选项**浅拷贝**合并，并重新根据新参数更新整个 Waline 实例 (同时保存这个新参数)。
 
@@ -59,6 +65,17 @@ waline.update({
 
 :::
 
+同时，`update()` 选项已经针对异步网络请求优化，这包括:
+
+- 只有当路径的确发生改变时才刷新评论区重新请求
+- 新的 `update()` 调用会自动终止上一个 `update()` 发出的不再需要的请求。
+
 ## destroy
 
 你可以使用 `destroy()` 方法销毁 Waline 实例。它会同时清空 Waline 挂载元素中的全部内容。
+
+## 初始化失败
+
+如果你忘记传入 `serverURL` 或者 Waline 无法在页面中通过 `el` 选项找到挂载位置，Waline 会返回一个 `WalineErrorInstance`。
+
+`WalineErrorInstance` 上只有一个属性 `errMsg` 标明初始化失败的原因。

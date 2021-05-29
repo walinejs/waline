@@ -4,7 +4,13 @@ Waline brings support for SPA (**S**ingle **P**age **A** application).
 
 In an SPA, you need to store the `WalineInstance` returned by the Waline function when Waline is initialized.
 
-You can find two methods on `WalineInstance`: `update()` and `destroy()`.
+You can find an instance property `el` and two methods: `update()` and `destroy()` on `WalineInstance`.
+
+## el
+
+The `el` property is the HTMLElement mounted by the current instance of Waline.
+
+If you explicitly initialize Waline with `el: null` (only use comments and pageview statistics), this property will be `null`.
 
 ## update
 
@@ -59,6 +65,17 @@ If you really need to update one or more certain fields in `locale`, you need to
 
 :::
 
+Meanwhile, the `update()` option has been optimized for asynchronous network requests, including:
+
+- Refresh the comment area and re-request only when the path does change
+- The new `update()` call will automatically terminate the no longer needed request from the previous `update()`.
+
 ## destroy
 
 You use the `destroy()` method to destory Waline instance. This will also clear all the contents of the Waline mounted element.
+
+## Initialization Failure
+
+If you forget to set `serverURL` or Waline cannot find the mount location through the `el` option on the page, Waline will return a `WalineErrorInstance`.
+
+There is only one attribute `errMsg` on `WalineErrorInstance` to indicate the reason for the initialization failure.

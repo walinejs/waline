@@ -2,10 +2,16 @@
 
 ## el
 
-- 类型: `string | HTMLElement`
-- 必填: 是
+- 类型: `string | HTMLElement | null`
+- 默认值: `'#waline'`
 
 Waline 的初始化挂载器。必须是一个有效的 **CSS 选择器** 或 HTMLELement 对象。
+
+::: tip
+
+如果你只想使用浏览量统计功能，请显式指定为 `null`。
+
+:::
 
 ## serverURL
 

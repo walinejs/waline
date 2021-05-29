@@ -8,9 +8,9 @@ import {
   updateVisitor,
 } from './utils';
 import { RecentComments } from './widget';
-import App from './App.vue';
+import Waline from './Waline.vue';
 
-import type { DeepReadonly } from 'vue';
+import type { App, DeepReadonly } from 'vue';
 import type { WalineOptions } from './config';
 import type { Update } from './composables';
 import type { Config } from './utils';
@@ -33,30 +33,47 @@ const domRender = (config: DeepReadonly<Config>, signal: AbortSignal): void => {
   updateCommentCount(serverURL, signal);
 };
 
+const getRoot = (
+  el: string | HTMLElement | null | undefined
+): HTMLElement | null | false => {
+  if (el === null || el instanceof HTMLElement) return el;
+
+  const root = document.querySelector<HTMLElement>(el || '#waline');
+
+  if (root) return root;
+
+  return false;
+};
+
 export interface WalineInstance {
+  el: HTMLElement | null;
   update: Update;
   destroy: () => void;
 }
 
-function waline(options: WalineOptions): WalineInstance | void {
-  const { el = '#waline', serverURL } = options;
+export interface WalineErrorInstance {
+  errMsg: string;
+}
 
-  // check el element
-  if (
-    el !== null &&
-    !(el instanceof HTMLElement) &&
-    !document.querySelector(el)
-  ) {
-    console.error("Option 'el' is invalid!");
+function waline(options: WalineOptions): WalineInstance | WalineErrorInstance {
+  const { el, serverURL } = options;
 
-    return;
-  }
+  // check el element and serverURL
+  const root = getRoot(el);
 
-  // check serverURL
-  if (!serverURL) {
-    console.error("Required option 'serverURL' is missing!");
+  if (root === false || !serverURL) {
+    const errMsg = `Option '${
+      !serverURL ? "serverURL' is missing" : "el' is invalid"
+    }!`;
+    const errorFunction = (): void => {
+      console.error(
+        'Waline failed when initializing, this method has no effect!'
+      );
+    };
 
-    return;
+    console.error(errMsg);
+
+    return { errMsg, update: errorFunction, destroy: errorFunction };
   }
 
   const event = getEvent();
@@ -74,12 +91,16 @@ function waline(options: WalineOptions): WalineInstance | void {
   domRender(config.value, counterController.signal);
 
   // mount waline
-  const app = createApp(App, { signal: commentController.signal })
-    .provide('config', config)
-    .provide('event', event)
-    .provide('version', VERSION);
+  let app: App;
 
-  app.mount(options.el || '#waline');
+  if (el) {
+    app = createApp(Waline, { signal: commentController.signal })
+      .provide('config', config)
+      .provide('event', event)
+      .provide('version', VERSION);
+
+    app.mount(el);
+  }
 
   // store for update use
   const state = {
@@ -90,6 +111,7 @@ function waline(options: WalineOptions): WalineInstance | void {
   };
 
   return {
+    el: root,
     update: (newOptions): void => {
       update(newOptions);
 
@@ -109,7 +131,9 @@ function waline(options: WalineOptions): WalineInstance | void {
 
       domRender(config.value, state.counter.signal);
     },
-    destroy: (): void => app.unmount(),
+    destroy: (): void => {
+      if (el) app.unmount();
+    },
   };
 }
 
