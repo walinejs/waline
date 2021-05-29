@@ -14,7 +14,7 @@ Waline 为 SPA(**S**ingle **P**age **A**pplication, 单页应用) 带来了支�
 
 ## update
 
-你可以调用 `update()` 更新 Waline。`update` 方法接收一个可选参数 `options`，除 `el` 和 `dark` 选项外外，其他 Waline 初始化选项都可以传入新的值进行更新。
+你可以调用 `update()` 更新 Waline。`update` 方法接收一个可选参数 `options`，除 `el` 和 `dark` 选项外，其他 Waline 初始化选项都可以传入新的值进行更新。
 
 如:
 
