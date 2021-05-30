@@ -118,7 +118,7 @@ Set required fields, default anonymous, optional values:
 ## login
 
 - Type: `string`
-- Default value: `'enabled'`
+- Default value: `'enable'`
 - Required: No
 
 Login mode status, optional values:

@@ -118,7 +118,7 @@ Waline 的服务端地址。
 ## login
 
 - 类型: `string`
-- 默认值: `'enabled'`
+- 默认值: `'enable'`
 - 必填: 否
 
 登录模式状态，可选值:
