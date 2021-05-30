@@ -35,7 +35,19 @@ The current page has been viewed
 
 ### Valine compatible
 
-In order to facilitate the seamless migration of users, Waline is currently compatible with Valine's `.leancloud_visitors` and `.leancloud-visitors-count`.
+In order to facilitate the seamless migration of users, Waline is currently compatible with Valine's `.leancloud_visitors` and `.leancloud-visitors-count`:
+
+```html
+<!-- id will be the query condition -->
+<span
+  id="<Your/Path/Name>"
+  class="leancloud_visitors"
+  data-flag-title="Your Article Title"
+>
+  <em class="post-meta-item-text">阅读量 </em>
+  <i class="leancloud-visitors-count"></i>
+</span>
+```
 
 But we will not be compatible with it in future V2 versions.
 

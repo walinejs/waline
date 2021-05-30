@@ -16,7 +16,7 @@ Waline({
 });
 ```
 
-Waline 会自动查找页面中 `class` 值为 `waline-visitor-count` 的元素，获取其 `id` 为查询条件。并将得到的值填充到其中:
+Waline 会自动查找页面中 `class` 值为 `waline-visitor-count` 的元素，获取其 `id` 为查询条件，并将得到的值填充到其中:
 
 ```html
 <!-- id 将作为查询条件 -->
@@ -36,7 +36,19 @@ Waline 会自动查找页面中 `class` 值为 `waline-visitor-count` 的元素�
 
 ### Valine 兼容
 
-为了方便用户无缝迁移，Waline 目前会兼容 Valine 的 `.leancloud_visitors` 与 `.leancloud-visitors-count`。
+为了方便用户无缝迁移，Waline 目前会兼容 Valine 的 `.leancloud_visitors` 与 `.leancloud-visitors-count`:
+
+```html
+<!-- id 将作为查询条件 -->
+<span
+  id="<Your/Path/Name>"
+  class="leancloud_visitors"
+  data-flag-title="Your Article Title"
+>
+  <em class="post-meta-item-text">阅读量 </em>
+  <i class="leancloud-visitors-count"></i>
+</span>
+```
 
 但是我们不会在未来的 V2 版本兼容它。
 
