@@ -28,7 +28,7 @@
 
 ::: tip 配置
 
-Waline 和 Valine 大部分的配置都是一样的，但也存在些许不同。Waline 具体的配置详见 [配置项](./client/basic.md)。
+Waline 和 Valine 大部分的配置都是一样的，但也存在些许不同。Waline 具体的配置详见 [客户端配置](../reference/client.md)。
 
 :::
 

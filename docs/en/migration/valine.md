@@ -22,7 +22,7 @@ Since Waline completely reuses Valine's data structure in storage, migrating fro
 
 ::: tip Config
 
-Most configuration are same between Waline and Valine, but there are a bit difference. For waline config, please refer to [Config](./client/basic.md)。
+Most configuration are same between Waline and Valine, but there are a bit difference. For waline config, please refer to [Client Config](../reference/client.md)。
 
 :::
 
