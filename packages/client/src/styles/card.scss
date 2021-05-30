@@ -47,6 +47,7 @@
 
         font-weight: bold;
         font-size: 0.875em;
+        line-height: 1;
         text-decoration: none;
 
         cursor: pointer;
@@ -78,6 +79,11 @@
       .vreply {
         float: right;
         cursor: pointer;
+
+        padding: 4px;
+        border: none;
+        background: transparent;
+        line-height: 1;
 
         transition: fill 0.2s ease;
 

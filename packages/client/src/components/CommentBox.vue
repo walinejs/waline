@@ -1,14 +1,5 @@
 <template>
   <div class="vcomment">
-    <CloseIcon
-      v-if="replyId"
-      size="24"
-      class="vclose"
-      :title="locale.cancelReply"
-      role="button"
-      @click="onCancelReply"
-    />
-
     <div v-if="config.login !== 'disable'" class="vlogin">
       <div v-if="userInfo?.token" class="vlogin-info">
         <div class="vavatar">
@@ -32,14 +23,17 @@
           v-text="userInfo.display_name"
         />
       </div>
-      <a
+      <button
         v-else
         class="vlogin-btn"
-        role="button"
         @click="onLogin"
         v-text="locale.login"
       />
     </div>
+
+    <button class="vclose" :title="locale.cancelReply" @click="onCancelReply">
+      <CloseIcon size="24" />
+    </button>
 
     <div class="vpanel">
       <div
@@ -105,6 +99,15 @@
             <EmojiIcon />
           </button>
 
+          <input
+            ref="imageUploadRef"
+            class="upload"
+            id="image-upload"
+            type="file"
+            accept=".png,.jpg,.jpeg,.webp,.bmp,.gif"
+            @change="onChange"
+          />
+
           <label
             for="image-upload"
             class="vaction"
@@ -112,15 +115,6 @@
             :aria-label="locale.uploadImage"
           >
             <ImageIcon />
-
-            <input
-              ref="imageUploadRef"
-              class="upload"
-              id="image-upload"
-              type="file"
-              accept=".png,.jpg,.jpeg,.webp,.bmp,.gif"
-              @change="onChange"
-            />
           </label>
 
           <button
@@ -316,12 +310,6 @@ export default defineComponent({
 
       // Shortcut key
       if ((event.ctrlKey || event.metaKey) && key === 'Enter') submitComment();
-
-      // tab key
-      if (key === 'Tab') {
-        event.preventDefault();
-        insert('    ');
-      }
     };
 
     const uploadImage = (file: File): Promise<void> => {

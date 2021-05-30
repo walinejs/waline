@@ -12,6 +12,10 @@
     top: -4px;
     right: -4px;
 
+    padding: 0;
+    border: none;
+    background: transparent;
+
     line-height: 1;
 
     cursor: pointer;
@@ -26,6 +30,7 @@
 
     width: var(--waline-avatar-size);
     height: var(--waline-avatar-size);
+    padding: 0px;
     border: var(--waline-border);
     border-radius: var(--waline-avatar-radius);
 
@@ -59,6 +64,8 @@
     right: -10px;
 
     padding: 3px;
+    border: none;
+    background: transparent;
 
     line-height: 0;
 
@@ -245,6 +252,9 @@
     height: 1.5em;
     border: none;
 
+    margin: 2px;
+    padding: 0;
+
     background: transparent;
 
     font-size: 16px;
@@ -264,10 +274,18 @@
     &.actived {
       fill: var(--waline-active-color);
     }
+  }
 
-    .upload {
-      width: 0;
-      height: 0;
+  #image-upload {
+    width: 0;
+    height: 0;
+
+    &:focus + label {
+      fill: var(--waline-text-color);
+    }
+
+    &:focus-visible + label {
+      outline: -webkit-focus-ring-color auto 1px;
     }
   }
 

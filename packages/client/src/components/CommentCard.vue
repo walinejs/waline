@@ -29,16 +29,14 @@
 
         <span class="vtime" v-text="timeAgo(comment.insertedAt, locale)" />
 
-        <span
+        <button
           class="vreply"
           :title="locale.reply"
           :aria-label="locale.reply"
-          role="button"
-          tabindex="0"
           @click="reply = comment"
         >
           <ReplyIcon />
-        </span>
+        </button>
       </div>
       <div class="vmeta" aria-hidden="true">
         <span v-text="comment.browser" />
