@@ -531,11 +531,7 @@ export default defineComponent({
         const { highlight } = config.value;
 
         content.value = value;
-
-        parseMarkdown(value, emoji.value.map, highlight).then((content) => {
-          previewText.value = content;
-        });
-
+        previewText.value = parseMarkdown(value, highlight, emoji.value.map);
         wordNumber.value = getWordNumber(value);
 
         if (editorRef.value)

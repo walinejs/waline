@@ -4,7 +4,7 @@ const path = require('path');
 
 module.exports = merge(common, {
   output: {
-    filename: '[name].noStyle.js',
+    filename: 'Waline.noStyle.js',
   },
 
   resolve: {

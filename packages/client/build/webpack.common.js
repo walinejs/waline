@@ -9,7 +9,7 @@ const pkgName = 'Waline';
 
 module.exports = {
   entry: {
-    Waline: path.resolve(__dirname, '../src/index.ts'),
+    main: path.resolve(__dirname, '../src/index.ts'),
   },
 
   output: {
@@ -119,19 +119,6 @@ module.exports = {
       `,
     }),
   ],
-
-  optimization: {
-    splitChunks: {
-      chunks: 'async',
-      cacheGroups: {
-        markdown: {
-          test: /[\\/]node_modules[\\/](marked|hanabi)[\\/]/,
-          name: 'markdown',
-          priority: 5,
-        },
-      },
-    },
-  },
 
   devServer: {
     compress: true,
