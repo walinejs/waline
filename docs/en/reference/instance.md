@@ -1,5 +1,9 @@
 # Client instance
 
+## el
+
+The DOM element object mounted by the current instance
+
 ## update
 
 Type: `(options: Partial<Omit<WalineOptions,'el' |'dark'>>) => void`

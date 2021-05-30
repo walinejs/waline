@@ -1,5 +1,9 @@
 # 客户端实例
 
+## el
+
+当前实例挂载的 DOM 元素对象
+
 ## update
 
 结构: `(options: Partial<Omit<WalineOptions, 'el' | 'dark'>>) => void`
