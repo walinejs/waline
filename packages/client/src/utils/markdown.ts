@@ -1,10 +1,24 @@
-import hanabi from 'hanabi';
-import marked from 'marked';
-
 import type { EmojiMaps } from '../config';
 
 const inlineMathRegExp = /\B\$\b([^\n$]*)\b\$\B/g;
 const blockMathRegExp = /(^|\n\n)\$\$\n(.+?)\n\$\$(\n\n|$)/g;
+
+export type MarkdownParser = (content: string) => string;
+
+const getParser = (highlight: boolean): Promise<MarkdownParser> =>
+  Promise.all([
+    import(/** chunkName: markdown */ 'marked'),
+    import(/** chunkName: markdown */ 'hanabi'),
+  ]).then(([{ default: marked }, { default: hanabi }]) => {
+    marked.setOptions({
+      highlight: highlight ? hanabi : undefined,
+      breaks: true,
+      smartLists: true,
+      smartypants: true,
+    });
+
+    return marked;
+  });
 
 export const parseEmoji = (text = '', emojiMap: EmojiMaps = {}): string =>
   text.replace(/:(.+?):/g, (placeholder, key: string) =>
@@ -26,15 +40,9 @@ export const parseMath = (content: string): string =>
 
 export const parseMarkdown = (
   content: string,
-  highlight = true,
-  emojiMap: EmojiMaps
-): string => {
-  marked.setOptions({
-    highlight: highlight ? hanabi : undefined,
-    breaks: true,
-    smartLists: true,
-    smartypants: true,
-  });
-
-  return parseMath(marked(parseEmoji(content, emojiMap)));
-};
+  emojiMap: EmojiMaps,
+  highlight = true
+): Promise<string> =>
+  getParser(highlight).then((parser) =>
+    parseMath(parser(parseEmoji(content, emojiMap)))
+  );
