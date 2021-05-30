@@ -21,40 +21,9 @@
     cursor: pointer;
   }
 
-  .vlogin {
-    margin-top: 0.75em;
-  }
-
-  .vlogin-btn {
-    display: block;
-
-    width: var(--waline-avatar-size);
-    height: var(--waline-avatar-size);
-    padding: 0px;
-    border: var(--waline-border);
-    border-radius: var(--waline-avatar-radius);
-
-    background: var(--waline-bgcolor);
-    color: var(--waline-text-color);
-    box-shadow: var(--waline-box-shadow);
-
-    font-size: 12px;
-    line-height: var(--waline-avatar-size);
-    text-align: center;
-
-    @media (max-width: 720px) {
-      width: var(--waline-mobile-avatar-size);
-      height: var(--waline-mobile-avatar-size);
-      line-height: var(--waline-mobile-avatar-size);
-    }
-
-    &:hover {
-      color: var(--waline-theme-color);
-    }
-  }
-
   .vlogin-info {
     max-width: 80px;
+    margin-top: 0.75em;
     text-align: center;
   }
 
@@ -102,6 +71,8 @@
   }
 
   .vpanel {
+    position: relative;
+    z-index: 2;
     flex: 1;
 
     margin: 0.5em;
@@ -110,6 +81,40 @@
 
     background: var(--waline-bgcolor);
     box-shadow: var(--waline-box-shadow);
+
+    &:first-child {
+      margin-left: 2em;
+    }
+  }
+
+  .vlogin-btn {
+    position: absolute;
+    z-index: 1;
+    right: 100%;
+    top: 1em;
+    display: block;
+
+    width: 1.5em;
+    height: 4em;
+    padding: 1em 0.25em;
+    border: var(--waline-border);
+    border-right: none;
+    border-top-left-radius: 0.75em;
+    border-bottom-left-radius: 0.75em;
+
+    background: transparent;
+    color: var(--waline-text-color);
+    box-shadow: var(--waline-box-shadow);
+
+    font-size: 12px;
+    text-align: center;
+
+    cursor: pointer;
+
+    &:hover {
+      border-color: var(--waline-theme-color);
+      color: var(--waline-theme-color);
+    }
   }
 
   .vheader {

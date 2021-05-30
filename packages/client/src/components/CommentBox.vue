@@ -1,43 +1,37 @@
 <template>
   <div class="vcomment">
-    <div v-if="config.login !== 'disable'" class="vlogin">
-      <div v-if="userInfo?.token" class="vlogin-info">
-        <div class="vavatar">
-          <button class="vlogout-btn" :title="locale.logout" @click="onLogout">
-            <CloseIcon size="14" />
-          </button>
+    <div v-if="config.login !== 'disable' && isLogin" class="vlogin-info">
+      <div class="vavatar">
+        <button class="vlogout-btn" :title="locale.logout" @click="onLogout">
+          <CloseIcon size="14" />
+        </button>
 
-          <img
-            :src="
-              userInfo.avatar ||
-              `${config.avatar.cdn}${userInfo.mailMd5}${config.avatar.param}`
-            "
-            alt="avatar"
-          />
-        </div>
-        <a
-          href="#"
-          class="vlogin-nick"
-          aria-label="Profile"
-          @click="onProfile"
-          v-text="userInfo.display_name"
+        <img
+          :src="
+            userInfo.avatar ||
+            `${config.avatar.cdn}${userInfo.mailMd5}${config.avatar.param}`
+          "
+          alt="avatar"
         />
       </div>
+      <a
+        href="#"
+        class="vlogin-nick"
+        aria-label="Profile"
+        @click="onProfile"
+        v-text="userInfo.display_name"
+      />
+    </div>
+
+    <div class="vpanel">
       <button
-        v-else
+        v-if="config.login !== 'disable' && !isLogin"
         class="vlogin-btn"
         @click="onLogin"
         v-text="locale.login"
       />
-    </div>
-
-    <button class="vclose" :title="locale.cancelReply" @click="onCancelReply">
-      <CloseIcon size="24" />
-    </button>
-
-    <div class="vpanel">
       <div
-        v-if="(!userInfo || !userInfo.token) && config.login !== 'force'"
+        v-if="config.login !== 'force' && !isLogin"
         :class="['vheader', `vheader-${config.meta.length}`]"
       >
         <div v-for="kind in config.meta" class="vheader-item" :key="kind">
@@ -197,6 +191,15 @@
         </div>
       </div>
     </div>
+
+    <button
+      v-if="replyId"
+      class="vclose"
+      :title="locale.cancelReply"
+      @click="onCancelReply"
+    >
+      <CloseIcon size="24" />
+    </button>
   </div>
 </template>
 
@@ -288,6 +291,8 @@ export default defineComponent({
     const isSubmitting = ref(false);
 
     const locale = computed(() => config.value.locale);
+
+    const isLogin = computed(() => Boolean(userInfo.value?.token));
 
     const insert = (content: string): void => {
       const textArea = editorRef.value as HTMLTextAreaElement;
@@ -586,6 +591,7 @@ export default defineComponent({
       onProfile,
       submitComment,
 
+      isLogin,
       userInfo,
       isSubmitting,
 
