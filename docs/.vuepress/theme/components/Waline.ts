@@ -13,7 +13,6 @@ import WalineTips from './WalineTips';
 
 import type { WalineInstance } from '@waline/client';
 import type { VNode } from 'vue';
-import type { RouteLocation } from 'vue-router';
 
 import './Waline.scss';
 
@@ -24,11 +23,10 @@ export default defineComponent({
     const lang = usePageLang();
     const route = useRoute();
 
-    let timeout: number | null = null;
     let waline: WalineInstance;
 
-    const initWaline = (): WalineInstance =>
-      Waline({
+    onMounted(() => {
+      waline = Waline({
         el: '#waline-comment',
         serverURL: 'https://waline.vercel.app',
         visitor: true,
@@ -40,44 +38,25 @@ export default defineComponent({
           'https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/weibo',
           'https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/bilibili',
         ],
-      }) as WalineInstance;
-
-    onMounted(() => {
-      timeout = setTimeout(() => {
-        waline = initWaline();
-      }, 1000);
+      }) as WalineInstance; // We are sure that waline will be initialized successfully
     });
 
     onBeforeUnmount(() => {
-      if (timeout) clearTimeout(timeout);
-      waline?.destroy();
+      waline.destroy();
     });
 
+    // Refresh comment when navigating to a new page
     watch(
-      () => route,
-      (newValue: RouteLocation, oldValue: RouteLocation) => {
-        // Refresh comment when navigating to a new page
-        if (newValue.path !== oldValue.path) {
-          void nextTick(() => {
-            if (timeout) clearTimeout(timeout);
-
-            if (waline)
-              timeout = setTimeout(() => {
-                waline.update({
-                  lang: lang.value === 'zh-CN' ? 'zh-CN' : 'en',
-                  locale: {
-                    admin:
-                      lang.value === 'zh-CN' ? '可爱的管理员' : 'Administrator',
-                  },
-                });
-              }, 1000);
-            else
-              timeout = setTimeout(() => {
-                waline = initWaline();
-              }, 1000);
-          });
-        }
-      }
+      () => route.path,
+      () =>
+        nextTick(() =>
+          waline.update({
+            lang: lang.value === 'zh-CN' ? 'zh-CN' : 'en',
+            locale: {
+              admin: lang.value === 'zh-CN' ? '可爱的管理员' : 'Administrator',
+            },
+          })
+        )
     );
 
     return (): VNode =>
