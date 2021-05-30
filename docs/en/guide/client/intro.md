@@ -44,6 +44,15 @@ Waline supports comment and pageview statistics. For more information, please re
 
 Waline brings support for SPA (**S**ingle **P**age **A**pplication). If you are using an app with`history.pushState`, you can use the `update()` method of the `Waline()` instance to refresh config for the comment area, or you can use the `destory()` method on the instance to destroy Waline instance. See [SPA Support](./spa.md) for details.
 
+## Accessibility support
+
+Waline fully complies with all accessibility standards in the V1 version:
+
+- All icons and controls have their corresponding accessibility labels.
+- You can use the keyboard or head-mounted pointing device to complete the interaction with all Waline controls.
+
+This is our little support for the visually impaired and mobility impaired people around the world! :heart:
+
 ## Ecosystem
 
 You can easily use Waline with plugins on Hexo, VuePress and other tools, and even use third-party clients.
