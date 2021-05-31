@@ -101,7 +101,7 @@ export interface PostCommentOptions {
 }
 
 export interface PostCommentResponse {
-  data: unknown;
+  data: CommentData;
   errmsg?: string;
 }
 

@@ -49,7 +49,7 @@
           :replyId="reply.objectId"
           :replyUser="reply.nick"
           :rootId="rootId"
-          @submit="$emit('submit')"
+          @submit="$emit('submit', $event)"
           @cancel-reply="reply = null"
         />
       </div>
@@ -59,7 +59,7 @@
           :key="child.objectId"
           :comment="child"
           :rootId="rootId"
-          @submit="$emit('submit')"
+          @submit="$emit('submit', $event)"
         />
       </div>
     </div>

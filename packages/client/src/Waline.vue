@@ -115,13 +115,16 @@ export default defineComponent({
 
     const onSubmit = (comment: Comment): void => {
       if (comment.rid) {
-        const cmt = data.value.find(({ objectId }) => objectId === comment.rid);
+        const repliedComment = data.value.find(
+          ({ objectId }) => objectId === comment.rid
+        );
 
-        if (!cmt) return;
+        if (!repliedComment) return;
 
-        if (!Array.isArray(cmt.children)) cmt.children = [];
+        if (!Array.isArray(repliedComment.children))
+          repliedComment.children = [];
 
-        cmt.children.push(comment);
+        repliedComment.children.push(comment);
       } else data.value.unshift(comment);
     };
 
