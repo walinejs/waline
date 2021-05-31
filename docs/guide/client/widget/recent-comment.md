@@ -12,6 +12,11 @@ Waline 通过 `RecentComments` 支持最新评论挂件显示，方便在博客�
 - `serverURL`: 服务器地址
 - `count` 需要获取的最近评论数量
 
+组件返回的数据格式应为 `Promise<{ comment: commentData[], destroy: void }>`。
+
+- `comment` 属性: 包含 `count` 数量的最近评论的数组
+- `destory` 方法: 销毁挂件的函数
+
 ## 基本用法
 
 ```html
@@ -46,7 +51,7 @@ Waline 通过 `RecentComments` 支持最新评论挂件显示，方便在博客�
     Waline.Widget.RecentComments({
       serverURL: 'http://waline.vercel.app',
       count: 10,
-    }).then((comments) => {
+    }).then(({ comments }) => {
       document.getElementById('waline-recent').innerHTML = comments.map(
         (comment) => `${comment.nick}: ${comment.comment}`
       );

@@ -1,6 +1,6 @@
 # Waline client v1 migration guide
 
-V1 has several changes, the only BREAKING CHANGE is detailed in [Initialization](#initialization).
+V1 has several changes, the BREAKING CHANGEs are detailed in [Initialization](#initialization) and [Widget Change](#widget-change).
 
 ## New Features
 
@@ -89,5 +89,13 @@ Since the Waline function now returns a Waline instance, we strengthened the det
 ::: warning BREAKING CHANGE
 
 If you just want Waline to update the number of comments and pageviews in the page, and **do not need Waline to mount to the current page**, please set **the `el` option to `null`** explicitly.
+
+:::
+
+## Widget Change
+
+::: warning BREAKING CHANGE
+
+The `RecentComments` will now return `Promise<{ comment: commentData[], destroy: void }>` instead of `Promise<CommentData[]>`.
 
 :::

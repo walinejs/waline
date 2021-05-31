@@ -1,6 +1,6 @@
 # Waline 客户端 v1 迁移指南
 
-V1 有数处更改，唯一一处破坏性变更详见 [初始化变更](#初始化变更)。
+V1 有数处更改，破坏性变更详见 [初始化变更](#初始化变更) 和 [挂件更改](#挂件更改)。
 
 ## 新功能
 
@@ -89,5 +89,13 @@ v1 版本是基于 Vue 与 TypeScript 的完全重写，所以大小从 78.4kb �
 ::: warning BREAKING CHANGE
 
 如果你只是想让 Waline 更新页面内的评论数与浏览量，而**不需要 Waline 挂载到当前页面时**，请显式**设置选项 `el` 为 `null`**。
+
+:::
+
+## 挂件更改
+
+::: warning BREAKING CHANGE
+
+`RecentComments` 现在将返回 `Promise <{comment：commentData []，destroy：void}>` 而不是 `Promise <CommentData []>`。
 
 :::
