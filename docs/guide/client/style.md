@@ -55,7 +55,30 @@
 }
 ```
 
-## 夜间模式默认颜色
+## 暗黑模式支持
+
+你可以使用 `dark` 选项来启用 Waline 的暗黑模式支持。
+
+通常网站会通过两种方式启用暗黑模式支持:
+
+- 使用 `@media` 选择器通过 `prefers-color-scheme` 来根据设备颜色模式状态自动切换
+- 通过修改 dom 根元素 (`html` 或 `body`) 的属性与 class 来动态应用或取消暗黑模式的颜色样式。
+
+如果你在第一种方式的站点上启用 Waline，你只需将 `dark` 设置为 `'auto'`。
+
+对于第二种站点，你需要将 dark 设置为令暗黑模式生效的 CSS 选择器。以下是几个例子
+
+::: tip 不同主题的例子
+
+- **Docusaurus**: 它会在 `<html>` 上通过设置 `data-theme="dark"` 开启暗黑模式，那么你需要将 `dark` 选项设置为 `'html[data-theme="dark"]'`。
+
+- **hexo-theme-fluid**: 它会在 `<html>` 上通过设置 `data-user-color-scheme="dark"` 开启暗黑模式。那么你需要将 `dark` 选项设置为 `'html[data-user-color-scheme="dark"]'`。
+
+- **vuepress-theme-hope**: 它会在 `<body>` 上添加`theme-dark` class 来开启暗黑模式。那么你需要将 `dark` 选项设置为 `body.theme-dark`。
+
+:::
+
+### 夜间模式默认颜色
 
 在使用 `dark` 选项配置暗黑模式时，waline 会默认使用以下颜色:
 

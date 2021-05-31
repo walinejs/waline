@@ -55,7 +55,30 @@ Meanwhile, `@waline/client` also brings built-in dark mode support.
 }
 ```
 
-## Darkmode
+## Dark mode support
+
+You can use the `dark` option to enable Waline's dark mode support.
+
+Usually websites will enable dark mode support in two ways:
+
+- Use the `@media` selector to automatically switch according to the device color mode status through `prefers-color-scheme`
+- Dynamically apply othe dark mode color style by modifying the attributes and class of the dom root element (`html` or `body`).
+
+If you enable Waline on the site of the first method, you only need to set `dark` to `'auto'`.
+
+For the second type of site, you need to set dark to the CSS selector that makes the dark mode effective. Here are a few examples:
+
+::: tip Examples
+
+- **Docusaurus**: It will enable darkmode by setting `data-theme="dark"` on the `<html>` tag itself. So you need to set `'html[data-theme="dark"]'` as `dark` option.
+
+- **hexo-theme-fluid**: It will enable darkmode by setting `data-user-color-scheme="dark"` on the `<html>` tag itself. So you need to set `'html[data-user-color-scheme="dark"]'` as `dark` option.
+
+- **vuepress-theme-hope**: It will enable darkmode by setting `theme-dark` class on the `<body>` tag itself. So you need to set `'body.theme-dark'` as `dark` option.
+
+:::
+
+### Darkmode Palette
 
 When using the `dark` option to configure the dark mode, waline will use the following colors by default:
 
