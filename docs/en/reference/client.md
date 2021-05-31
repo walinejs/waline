@@ -215,7 +215,7 @@ The following APIs are still valid, but they will be removed in V2.
 
 ### langMode
 
-::: warning Deprecated
+::: warning Obsolete
 
 Please use `locale` instead.
 
@@ -228,7 +228,7 @@ Custom I18N.
 
 ### placeholder
 
-::: warning Deprecated
+::: warning Obsolete
 
 Please use `locale.placeholder` instead.
 
@@ -242,7 +242,7 @@ Comment box placeholder
 
 ### emojiCDN
 
-::: warning Deprecated
+::: warning Obsolete
 
 Please use `emoji` instead.
 
@@ -256,7 +256,7 @@ Set **Emoji Pack CDN**, refer to [Custom Emoji](../guide/client/emoji.md)
 
 ### emojiMaps
 
-::: warning Deprecated
+::: warning Obsolete
 
 Please use `emoji` instead.
 
@@ -270,7 +270,7 @@ Set `Emoji Packet Mapping’, refer to [Custom Emoji](../guide/client/emoji.md)
 
 ### requiredFields
 
-::: warning Deprecated
+::: warning Obsolete
 
 Please use `requiredMeta` instead.
 
@@ -278,7 +278,7 @@ Please use `requiredMeta` instead.
 
 ### anonymous
 
-::: warning Deprecated
+::: warning Obsolete
 
 Please use `login` instead.
 
@@ -291,7 +291,7 @@ Whether to allow login comments. Both supported by default, set to `true` means 
 
 ### copyRight
 
-::: danger Removed
+::: danger Deprecated
 
 Please use `copyright` instead.
 

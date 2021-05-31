@@ -42,7 +42,11 @@ export const getDefaultSidebar = (lang, titles): SidebarConfigArray =>
       lang + '/advanced/ecosystem.md',
       lang + '/advanced/faq.md',
     ],
-    [lang + '/migration/valine.md', lang + '/migration/tool.md'],
+    [
+      lang + '/migration/client.md',
+      lang + '/migration/valine.md',
+      lang + '/migration/tool.md',
+    ],
     [
       lang + '/reference/client.md',
       lang + '/reference/instance.md',

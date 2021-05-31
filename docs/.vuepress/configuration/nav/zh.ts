@@ -30,6 +30,10 @@ export const zhNavbarConfig: NavbarConfig = [
     text: '迁移',
     children: [
       {
+        text: '迁移至 @waline/client@v1',
+        link: '/migration/client.html',
+      },
+      {
         text: '从 Valine 迁移',
         link: '/migration/valine.html',
       },

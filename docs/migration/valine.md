@@ -28,7 +28,9 @@
 
 ::: tip 配置
 
-Waline 和 Valine 大部分的配置都是一样的，但也存在些许不同。Waline 具体的配置详见 [客户端配置](../reference/client.md)。
+Waline 和 Valine 大部分的配置都是一样的，但也存在些许不同。对于 v1 及 v0.x 版本，你只需要删除 Valine 原始的配置 `appId` 和 `appKey`，并添加 `serverURL`，其他选项均可正常工作。但是对于未来的 V2 我们将会移除某些 Valine 兼容，转向更好的配置方案。
+
+Waline 具体的配置详见 [客户端配置](../reference/client.md)。你也可以查看 [Waline 客户端 v1 迁移指南](./client.md) 来了解与 Valine 不兼容的选项。
 
 :::
 

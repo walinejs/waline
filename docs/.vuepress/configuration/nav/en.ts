@@ -30,6 +30,10 @@ export const enNavbarConfig: NavbarConfig = [
     text: 'Migration',
     children: [
       {
+        text: 'Migrate to @waline/client@v1',
+        link: '/en/migration/client.html',
+      },
+      {
         text: 'Migrate from Valine',
         link: '/en/migration/valine.html',
       },

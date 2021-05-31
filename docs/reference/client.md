@@ -217,7 +217,7 @@ Waline 的服务端地址。
 
 ### langMode
 
-::: warning 已废弃
+::: warning 已过时
 
 请使用 `locale`
 
@@ -230,7 +230,7 @@ Waline 的服务端地址。
 
 ### placeholder
 
-::: warning 已废弃
+::: warning 已过时
 
 请使用 `locale.placeholder`
 
@@ -244,7 +244,7 @@ Waline 的服务端地址。
 
 ### emojiCDN
 
-::: warning 已废弃
+::: warning 已过时
 
 请使用 `emoji`
 
@@ -258,7 +258,7 @@ Waline 的服务端地址。
 
 ### emojiMaps
 
-::: warning 已废弃
+::: warning 已过时
 
 请使用 `emoji`
 
@@ -272,7 +272,7 @@ Waline 的服务端地址。
 
 ### requiredFields
 
-::: warning 已废弃
+::: warning 已过时
 
 请使用 `requiredMeta`
 
@@ -280,7 +280,7 @@ Waline 的服务端地址。
 
 ### anonymous
 
-::: warning 已废弃
+::: warning 已过时
 
 请使用 `login`
 
@@ -293,7 +293,7 @@ Waline 的服务端地址。
 
 ### copyRight
 
-::: danger 已移除
+::: danger 已废弃
 
 请使用 `copyright`
 

@@ -22,7 +22,9 @@ Since Waline completely reuses Valine's data structure in storage, migrating fro
 
 ::: tip Config
 
-Most configuration are same between Waline and Valine, but there are a bit difference. For waline config, please refer to [Client Config](../reference/client.md)。
+Most configuration are same between Waline and Valine, but there are a bit difference. For v1 and v0.x versions, you only need to delete `appId` and `appKey` from Valine config and add `serverURL`, and everything should work well. But for future V2, we will remove some Valine compatibility and switch to a better config scheme.
+
+For waline config, please refer to [Client Config](../reference/client.md). You can also check [Waline Client v1 Migration Guide](./client.md) to learn about the options that are not compatible with Valine.
 
 :::
 
