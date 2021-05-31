@@ -98,11 +98,10 @@
     height: 4em;
     padding: 1em 0.25em;
     border: var(--waline-border);
-    border-right: none;
     border-top-left-radius: 0.75em;
     border-bottom-left-radius: 0.75em;
 
-    background: transparent;
+    background: var(--waline-bgcolor);
     color: var(--waline-text-color);
     box-shadow: var(--waline-box-shadow);
 
@@ -113,13 +112,19 @@
 
     &:hover {
       border-color: var(--waline-theme-color);
+      border-right-color: var(--waline-border-color);
       color: var(--waline-theme-color);
+    }
+
+    > div {
+      line-height: 1.5;
+      writing-mode: vertical-rl;
     }
   }
 
   .vheader {
     display: flex;
-    padding-left: 4px;
+    padding: 0 4px;
     border-bottom: 2px dashed var(--waline-border-color);
     border-top-left-radius: 0.75em;
     border-top-right-radius: 0.75em;
@@ -163,7 +168,7 @@
 
     label {
       min-width: 40px;
-      padding: 0.75em 0;
+      padding: 0.75em 0.5em;
 
       color: var(--waline-text-color);
 
