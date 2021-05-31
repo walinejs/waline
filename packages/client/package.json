@@ -1,7 +1,7 @@
 {
   "name": "@waline/client",
   "description": "client for waline comment system",
-  "version": "1.0.0-beta.5",
+  "version": "1.0.0",
   "keywords": [
     "valine",
     "waline",
@@ -14,6 +14,7 @@
   "repository": {
     "url": "https://github.com/walinejs/waline"
   },
+  "license": "GPL-2.0",
   "scripts": {
     "analyze": "cross-env ANALYZE=true webpack --mode=production",
     "build": "npm run build:normal && npm run build:no-style && npm run build:dts",
