@@ -81,7 +81,7 @@ module.exports = class extends think.Service {
     content = nunjucks.renderString(content, data);
 
     return request({
-      uri: `https://sc.ftqq.com/${SC_KEY}.send`,
+      uri: `https://sctapi.ftqq.com/${SC_KEY}.send`,
       method: 'POST',
       form: {
         text: title,
