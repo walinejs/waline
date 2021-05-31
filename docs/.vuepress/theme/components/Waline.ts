@@ -29,6 +29,7 @@ export default defineComponent({
       waline = Waline({
         el: '#waline-comment',
         serverURL: 'https://waline.vercel.app',
+        dark: 'html.dark',
         visitor: true,
         lang: lang.value === 'zh-CN' ? 'zh-CN' : 'en',
         locale: {

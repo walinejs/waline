@@ -7,6 +7,6 @@
   "license": "MIT",
   "dependencies": {
     "@waline/vercel": "^0.24.0",
-    "thinkjs": "^3.2.12"
+    "thinkjs": "^3.2.13"
   }
 }

@@ -16,6 +16,6 @@
   },
   "homepage": "https://github.com/walinejs/waline/packages/#readme",
   "dependencies": {
-    "@next-theme/utils": "^1.1.0"
+    "@next-theme/utils": "^1.2.0"
   }
 }
