@@ -24,13 +24,6 @@
     </div>
 
     <div class="vpanel">
-      <button
-        v-if="config.login !== 'disable' && !isLogin"
-        class="vlogin-btn"
-        @click="onLogin"
-      >
-        <div v-text="locale.login" />
-      </button>
       <div
         v-if="config.login !== 'force' && !isLogin"
         :class="['vheader', `vheader-${config.meta.length}`]"
@@ -139,7 +132,14 @@
           </div>
 
           <button
+            v-if="config.login !== 'disable' && !isLogin"
             class="vbtn"
+            @click="onLogin"
+            v-text="locale.login"
+          />
+
+          <button
+            class="vbtn primary"
             title="Cmd|Ctrl + Enter"
             :disabled="isSubmitting"
             @click="submitComment"

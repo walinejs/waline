@@ -72,7 +72,6 @@
 
   .vpanel {
     position: relative;
-    z-index: 2;
     flex: 1;
 
     margin: 0.5em;
@@ -81,45 +80,6 @@
 
     background: var(--waline-bgcolor);
     box-shadow: var(--waline-box-shadow);
-
-    &:first-child {
-      margin-left: 2em;
-    }
-  }
-
-  .vlogin-btn {
-    position: absolute;
-    z-index: 1;
-    right: 100%;
-    top: 1em;
-    display: block;
-
-    width: 1.5em;
-    height: 4em;
-    padding: 1em 0.25em;
-    border: var(--waline-border);
-    border-top-left-radius: 0.75em;
-    border-bottom-left-radius: 0.75em;
-
-    background: var(--waline-bgcolor);
-    color: var(--waline-text-color);
-    box-shadow: var(--waline-box-shadow);
-
-    font-size: 12px;
-    text-align: center;
-
-    cursor: pointer;
-
-    &:hover {
-      border-color: var(--waline-theme-color);
-      border-right-color: var(--waline-border-color);
-      color: var(--waline-theme-color);
-    }
-
-    > div {
-      line-height: 1.5;
-      writing-mode: vertical-rl;
-    }
   }
 
   .vheader {
