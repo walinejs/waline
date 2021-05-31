@@ -8,7 +8,7 @@ V1 has several changes, the only BREAKING CHANGE is detailed in [Initialization]
 - Multiple Emoji tabs: Emoji can now contain multiple tabs to add different types of Emoji
 - Picture upload optimization: We added a picture upload button to remind visitors that they can upload pictures
 - Drag and drop support: You can now directly drag and drop text or images into the comment box to complete text input or image addition.
-- Responsive and SPA: Now Waline will become responsive and supports SPA applications, see [Responsive](#Responsive)
+- Responsive and SPA: Now Waline will return a responsive instance and supports SPA applications, see [Responsive](#Responsive)
 
 ## Options Change
 
@@ -52,7 +52,7 @@ The following options are marked as `obsolete`, and will be removed in v2.
 
 ## Options Rename
 
-The original option has problems like unclear meaning and inconsistent naming. The following are the renamed options, and their behavior remains the same as before.
+The original option has problems like unclear meaning and inconsistent naming. The following are the renamed options, and their behavior remains the same as before. These are also marked as `obsolete`, and will be removed in v2.
 
 - `langmode` → renamed to `locale`
 
