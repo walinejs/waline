@@ -10,6 +10,10 @@ V1 has several changes, the only BREAKING CHANGE is detailed in [Initialization]
 - Drag and drop support: You can now directly drag and drop text or images into the comment box to complete text input or image addition.
 - Responsive and SPA: Now Waline will return a responsive instance and supports SPA applications, see [Responsive](#Responsive)
 
+## Size reduction
+
+The v1 version is a complete rewrite with Vue and TypeScript, so the size is reduced from 78.4kb to 55.1kb (gzip).
+
 ## Options Change
 
 The following options are marked as `obsolete`, and will be removed in v2.

@@ -16,7 +16,7 @@ features:
     details: Full Markdown support, with emoji, mathematical formulas and HTML embedding support
 
   - title: LightWeight
-    details: 53kb gzip Size
+    details: 55kb gzip Size
 
   - title: Improved Security
     details: Content verification, anti-irrigation, protection of sensitive data, etc.
