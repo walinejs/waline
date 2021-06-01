@@ -208,6 +208,7 @@
   .vfooter {
     position: relative;
     display: flex;
+    flex-wrap: wrap;
     margin: 0.5em 0.75em;
   }
 
