@@ -81,7 +81,6 @@
             class="vaction"
             :class="{ actived: showEmoji }"
             :title="locale.emoji"
-            :aria-label="locale.emoji"
             @click="showEmoji = !showEmoji"
           >
             <EmojiIcon />
@@ -96,12 +95,7 @@
             @change="onChange"
           />
 
-          <label
-            for="image-upload"
-            class="vaction"
-            :title="locale.uploadImage"
-            :aria-label="locale.uploadImage"
-          >
+          <label for="image-upload" class="vaction" :title="locale.uploadImage">
             <ImageIcon />
           </label>
 
@@ -109,7 +103,6 @@
             class="vaction"
             :class="{ actived: showPreview }"
             :title="locale.preview"
-            :aria-label="locale.preview"
             @click="showPreview = !showPreview"
           >
             <PreviewIcon />
@@ -158,7 +151,6 @@
                 v-for="key in config.items"
                 :key="key"
                 :title="key"
-                :aria-label="key"
                 @click="insert(`:${key}:`)"
               >
                 <img
@@ -525,6 +517,8 @@ export default defineComponent({
       });
     };
 
+    const onCancelReply = (): void => emit('cancel-reply');
+
     // initial set of emoji
     config.value.emoji.then((emojiConfig) => {
       emoji.value = emojiConfig;
@@ -583,6 +577,7 @@ export default defineComponent({
 
       // events
       insert,
+      onCancelReply,
       onChange,
       onDrop,
       onKeyDown,

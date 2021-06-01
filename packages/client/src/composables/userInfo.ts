@@ -15,21 +15,24 @@ export type UserInfoRef = Ref<UserInfo | null>;
 
 const USER_KEY = 'WALINE_USER';
 
+const userInfo = ref<UserInfo | null>(null);
+
 export const useUserInfo = (): {
   userInfo: UserInfoRef;
   setUserInfo: (userInfo: UserInfo | null) => void;
 } => {
-  const userInfo = ref<UserInfo | null>(null);
-
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    userInfo.value =
-      JSON.parse(
-        localStorage.getItem(USER_KEY) || sessionStorage.getItem(USER_KEY) || ''
-      ) || null;
-  } catch (err) {
-    // do nothing
-  }
+  if (!userInfo.value)
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      userInfo.value =
+        JSON.parse(
+          localStorage.getItem(USER_KEY) ||
+            sessionStorage.getItem(USER_KEY) ||
+            ''
+        ) || null;
+    } catch (err) {
+      // do nothing
+    }
 
   return {
     userInfo: readonly(userInfo),

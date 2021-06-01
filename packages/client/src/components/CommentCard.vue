@@ -31,9 +31,9 @@
 
         <button
           class="vreply"
-          :title="locale.reply"
-          :aria-label="locale.reply"
-          @click="reply = comment"
+          :class="{ active: reply }"
+          :title="reply ? locale.cancelReply : locale.reply"
+          @click="reply = reply ? null : comment"
         >
           <ReplyIcon />
         </button>

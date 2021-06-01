@@ -94,6 +94,12 @@
             fill: var(--waline-theme-color);
           }
         }
+
+        &.active {
+          svg {
+            fill: var(--waline-active-color);
+          }
+        }
       }
     }
 
