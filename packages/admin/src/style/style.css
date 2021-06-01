@@ -2567,9 +2567,3 @@ div.token-input-dropdown ul li.token-input-selected-dropdown-item {
   visibility: hidden;
 }
 
-.vemoji { 
-  display: inline-block;
-  vertical-align: middle;
-  width: 1.3rem;
-  margin: .25rem;
-}
