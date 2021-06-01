@@ -72,7 +72,8 @@
 
   .vpanel {
     position: relative;
-    flex: 1;
+    width: 100%;
+    flex-shrink: 1;
 
     margin: 0.5em;
     border: var(--waline-border);
@@ -248,8 +249,7 @@
   }
 
   #image-upload {
-    width: 0;
-    height: 0;
+    display: none;
 
     &:focus + label {
       fill: var(--waline-text-color);
