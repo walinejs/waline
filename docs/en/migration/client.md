@@ -96,6 +96,6 @@ If you just want Waline to update the number of comments and pageviews in the pa
 
 ::: warning BREAKING CHANGE
 
-The `RecentComments` will now return `Promise<{ comment: commentData[], destroy: void }>` instead of `Promise<CommentData[]>`.
+The `RecentComments` will now return `Promise<{ comment: CommentData[], destroy: () => void }>` instead of `Promise<CommentData[]>`.
 
 :::

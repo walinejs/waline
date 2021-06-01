@@ -12,7 +12,7 @@ The latest comment widget is named `RecentComments` and contains three options:
 - `serverURL`: server link
 - `count` The number of recent comments needed to get
 
-The data format returned by the component should be `Promise<{ comment: commentData[], destroy: void }>`.
+The data format returned by the component should be `Promise<{ comment: CommentData[], destroy: () => void }>`.
 
 - `comment` property: an array of the most recent comments with exact number of `count`
 - `destory` method: a function which will destroy the widget
