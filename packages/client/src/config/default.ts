@@ -18,7 +18,7 @@ export const getAvatar = (avatar: Avatar): Avatar =>
 export const getMeta = (meta: Meta[]): Meta[] =>
   meta.filter((item) => availableMeta.includes(item));
 
-export const defaultGravatarCDN = 'https://cdn.v2ex.com/gravatar/';
+export const defaultGravatarCDN = 'https://sdn.geekzu.org/avatar/';
 
 export const defaultLang = 'zh-CN';
 
