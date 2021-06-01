@@ -31,9 +31,9 @@
 
         <button
           class="vreply"
-          :class="{ active: reply }"
-          :title="reply ? locale.cancelReply : locale.reply"
-          @click="reply = reply ? null : comment"
+          :class="{ active: isReplyingCurrent }"
+          :title="isReplyingCurrent ? locale.cancelReply : locale.reply"
+          @click="$emit('reply', isReplyingCurrent ? null : comment)"
         >
           <ReplyIcon />
         </button>
@@ -44,13 +44,13 @@
       </div>
       <div class="vcontent" v-html="comment.comment" />
 
-      <div v-if="reply" class="vreply-wrapper">
+      <div v-if="isReplyingCurrent" class="vreply-wrapper">
         <CommentBox
-          :replyId="reply.objectId"
-          :replyUser="reply.nick"
+          :replyId="comment.objectId"
+          :replyUser="comment.nick"
           :rootId="rootId"
           @submit="$emit('submit', $event)"
-          @cancel-reply="reply = null"
+          @cancel-reply="$emit('reply', null)"
         />
       </div>
       <div v-if="comment.children" class="vquote">
@@ -58,7 +58,9 @@
           v-for="child in comment.children"
           :key="child.objectId"
           :comment="child"
+          :reply="reply"
           :rootId="rootId"
+          @reply="$emit('reply', $event)"
           @submit="$emit('submit', $event)"
         />
       </div>
@@ -67,7 +69,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, inject, ref } from 'vue';
+import { computed, defineComponent, inject } from 'vue';
 import CommentBox from './CommentBox.vue';
 import { ReplyIcon } from './Icons';
 import { isLinkHttp, timeAgo } from '../utils';
@@ -86,6 +88,9 @@ export default defineComponent({
       type: String,
       required: true,
     },
+    reply: {
+      type: Object as PropType<Comment | null>,
+    },
   },
 
   components: {
@@ -93,13 +98,10 @@ export default defineComponent({
     ReplyIcon,
   },
 
-  emits: ['submit'],
+  emits: ['submit', 'reply'],
 
   setup(props) {
     const config = inject<ConfigRef>('config') as ConfigRef;
-
-    const reply = ref(null);
-
     const locale = computed(() => config.value.locale);
 
     const link = computed(() => {
@@ -108,12 +110,16 @@ export default defineComponent({
       return link && isLinkHttp(link) ? link : `https://${link}`;
     });
 
+    const isReplyingCurrent = computed(
+      () => props.comment.objectId === props.reply?.objectId
+    );
+
     return {
       config,
       locale,
 
+      isReplyingCurrent,
       link,
-      reply,
       timeAgo,
     };
   },

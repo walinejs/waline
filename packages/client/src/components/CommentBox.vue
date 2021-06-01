@@ -189,7 +189,7 @@
       v-if="replyId"
       class="vclose"
       :title="locale.cancelReply"
-      @click="onCancelReply"
+      @click="$emit('cancel-reply')"
     >
       <CloseIcon size="24" />
     </button>
@@ -197,7 +197,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, inject, reactive, ref, watch } from 'vue';
+import { computed, defineComponent, inject, ref, watch } from 'vue';
 import autosize from 'autosize';
 
 import {
@@ -208,7 +208,7 @@ import {
   PreviewIcon,
   LoadingIcon,
 } from './Icons';
-import { useStore, useUserInfo } from '../composables';
+import { useInputs, useUserInfo } from '../composables';
 import {
   getImagefromDataTransfer,
   parseMarkdown,
@@ -221,8 +221,6 @@ import type { DeepReadonly } from 'vue';
 import type { ConfigRef } from '../composables';
 import type { CommentData } from '../typings';
 import type { EmojiConfig } from '../utils';
-
-const store = useStore('WALINE_USER_CACHE');
 
 export default defineComponent({
   name: 'CommentBox',
@@ -256,14 +254,8 @@ export default defineComponent({
   setup(props, { emit }) {
     const config = inject<ConfigRef>('config') as ConfigRef;
 
+    const { inputs, store } = useInputs();
     const { userInfo, setUserInfo } = useUserInfo();
-
-    const inputs = reactive({
-      nick: store.get<string>('nick') || '',
-      mail: store.get<string>('mail') || '',
-      link: store.get<string>('link') || '',
-      editor: '',
-    });
 
     const inputRefs = ref<Record<string, HTMLInputElement>>({});
     const editorRef = ref<HTMLTextAreaElement | null>(null);
@@ -517,8 +509,6 @@ export default defineComponent({
       });
     };
 
-    const onCancelReply = (): void => emit('cancel-reply');
-
     // initial set of emoji
     config.value.emoji.then((emojiConfig) => {
       emoji.value = emojiConfig;
@@ -577,7 +567,6 @@ export default defineComponent({
 
       // events
       insert,
-      onCancelReply,
       onChange,
       onDrop,
       onKeyDown,

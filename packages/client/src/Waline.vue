@@ -1,6 +1,6 @@
 <template>
   <div class="v" data-class="v">
-    <CommentBox @submit="onSubmit" />
+    <CommentBox v-if="!reply" @submit="onSubmit" />
     <div class="vcount">
       <span v-if="count" class="vnum" v-text="count" />
       {{ locale.comment }}
@@ -14,6 +14,8 @@
         :key="comment.objectId"
         :root-id="comment.objectId"
         :comment="comment"
+        :reply="reply"
+        @reply="onReply"
         @submit="onSubmit"
       />
     </div>
@@ -85,6 +87,7 @@ export default defineComponent({
     const totalPages = ref(0);
     const loading = ref(true);
     const data = ref<Comment[]>([]);
+    const reply = ref<Comment | null>(null);
 
     // eslint-disable-next-line vue/no-setup-props-destructure
     let signal = props.signal;
@@ -112,6 +115,10 @@ export default defineComponent({
     };
 
     const loadMore = (): void => fetchComment(page.value + 1);
+
+    const onReply = (comment: Comment | null): void => {
+      reply.value = comment;
+    };
 
     const onSubmit = (comment: Comment): void => {
       if (comment.rid) {
@@ -146,8 +153,10 @@ export default defineComponent({
       loading,
       page,
       totalPages,
+      reply,
 
       loadMore,
+      onReply,
       onSubmit,
 
       version: VERSION,
