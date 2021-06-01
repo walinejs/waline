@@ -40,7 +40,7 @@ Welcome to Waline. In just a few steps, you can enable Waline to provide comment
 
    ![Deploy](https://p0.ssl.qhimg.com/t0142b58c2e8f886b28.png)
 
-## Including in HTML (Client)
+## Importing in HTML (Client)
 
 Make the following settings on your web page:
 
