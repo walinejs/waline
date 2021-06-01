@@ -10,7 +10,7 @@ Waline 为 SPA(**S**ingle **P**age **A**pplication, 单页应用) 带来了支�
 
 `el` 属性为 Waline 当前实例挂载的 HTMLElement。
 
-如果你显式通过 `el: null` 初始化 Waline (即只使用浏览量与评论数功能)，该项为 `null`。
+如果你不设置 `el` 初始化 Waline (即只使用浏览量与评论数功能)，该项为 `null`。
 
 ## update
 

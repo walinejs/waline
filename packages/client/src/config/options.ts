@@ -123,10 +123,8 @@ export interface WalineOptions extends DeprecatedValineOptions {
    * Waline 的初始化挂载器。必须是一个有效的 **CSS 选择器**
    *
    * The DOM element to be mounted on initialization. It must be a valid **CSS selector string**.
-   *
-   * @default '#waline'
    */
-  el?: string | HTMLElement | null;
+  el?: string | HTMLElement;
 
   /**
    * Waline 的服务端地址

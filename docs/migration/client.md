@@ -88,7 +88,7 @@ v1 版本是基于 Vue 与 TypeScript 的完全重写，所以大小从 78.4kb �
 
 ::: warning BREAKING CHANGE
 
-如果你只是想让 Waline 更新页面内的评论数与浏览量，而**不需要 Waline 挂载到当前页面时**，请显式**设置选项 `el` 为 `null`**。
+如果你只是想让 Waline 更新页面内的评论数与浏览量，而**不需要 Waline 挂载到当前页面时**，请**不要设置选项 `el`**。
 
 :::
 

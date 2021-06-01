@@ -10,7 +10,7 @@ You can find an instance property `el` and two methods: `update()` and `destroy(
 
 The `el` property is the HTMLElement mounted by the current instance of Waline.
 
-If you explicitly initialize Waline with `el: null` (only use comments and pageview statistics), this property will be `null`.
+If you initialize Waline without `el: null` (only use comments and pageview statistics), this property will be `null`.
 
 ## update
 

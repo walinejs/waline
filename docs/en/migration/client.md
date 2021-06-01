@@ -88,7 +88,7 @@ Since the Waline function now returns a Waline instance, we strengthened the det
 
 ::: warning BREAKING CHANGE
 
-If you just want Waline to update the number of comments and pageviews in the page, and **do not need Waline to mount to the current page**, please set **the `el` option to `null`** explicitly.
+If you just want Waline to update the number of comments and pageviews in the page, and do not need Waline **mount on the current page**, please DONOT set **`el` option** explicitly.
 
 :::
 

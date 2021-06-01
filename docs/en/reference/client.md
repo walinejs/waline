@@ -2,14 +2,14 @@
 
 ## el
 
-- Type: `string | HTMLElement | null`
+- Type: `string | HTMLElement`
 - Default: `'#waline'`
 
 The DOM element to be mounted on initialization. It must be a valid **CSS selector string** or HTMLElement Object.
 
 ::: tip
 
-If you only want to use the pageview statistics feature, please specify it explicitly as `null`.
+If you only want to use the pageview statistics feature, DO NOT set it.
 
 :::
 

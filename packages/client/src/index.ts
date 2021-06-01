@@ -23,6 +23,27 @@ import '@style';
 
 declare const VERSION: string;
 
+class Controller {
+  private controller;
+
+  constructor() {
+    this.controller = new AbortController();
+  }
+
+  get signal(): AbortSignal {
+    return this.controller.signal;
+  }
+
+  abort(): void {
+    this.controller.abort();
+  }
+
+  new(): void {
+    this.abort();
+    this.controller = new AbortController();
+  }
+}
+
 const domRender = (config: DeepReadonly<Config>, signal: AbortSignal): void => {
   const { path, serverURL, visitor } = config;
 
@@ -33,16 +54,23 @@ const domRender = (config: DeepReadonly<Config>, signal: AbortSignal): void => {
   updateCommentCount(serverURL, signal);
 };
 
-const getRoot = (
-  el: string | HTMLElement | null | undefined
-): HTMLElement | null | false => {
-  if (el === null || el instanceof HTMLElement) return el;
+const getRoot = (el: string | HTMLElement | undefined): HTMLElement | null => {
+  if (!el) return null;
+  if (el instanceof HTMLElement) return el;
 
-  const root = document.querySelector<HTMLElement>(el || '#waline');
+  const root = document.querySelector<HTMLElement>(el);
 
-  if (root) return root;
+  return root || null;
+};
 
-  return false;
+export interface WalineErrorInstance {
+  errMsg: string;
+}
+
+const getErrorInstance = (errMsg: string): WalineErrorInstance => {
+  console.error(errMsg);
+
+  return { errMsg };
 };
 
 export interface WalineInstance {
@@ -51,33 +79,11 @@ export interface WalineInstance {
   destroy: () => void;
 }
 
-export interface WalineErrorInstance {
-  errMsg: string;
-}
-
 function waline(options: WalineOptions): WalineInstance | WalineErrorInstance {
   const { el, serverURL } = options;
 
-  // check el element and serverURL
-  const root = getRoot(el);
-
-  if (root === false || !serverURL) {
-    const errMsg = `Option '${
-      !serverURL ? "serverURL' is missing" : "el' is invalid"
-    }!`;
-    const errorFunction = (): void => {
-      console.error(
-        'Waline failed when initializing, this method has no effect!'
-      );
-    };
-
-    console.error(errMsg);
-
-    return { errMsg, update: errorFunction, destroy: errorFunction };
-  }
-
-  const event = getEvent();
-  const { config, update } = useConfig(options);
+  // check serverURL
+  if (!serverURL) return getErrorInstance("Option 'serverURL' is missing!");
 
   // darkmode support
   if (options.dark) injectDarkStyle(options.dark);
@@ -85,29 +91,35 @@ function waline(options: WalineOptions): WalineInstance | WalineErrorInstance {
   // mathml
   window.addEventListener('load', registerMathML);
 
-  const commentController = new AbortController();
-  const counterController = new AbortController();
+  const commentController = new Controller();
+  const counterController = new Controller();
+
+  const event = getEvent();
+  const { config, update } = useConfig(options);
 
   domRender(config.value, counterController.signal);
+
+  // check el element
+  const root = getRoot(el);
+
+  if (el && !root) return getErrorInstance("Option 'el' is invalid!");
 
   // mount waline
   let app: App;
 
-  if (el) {
+  if (root) {
     app = createApp(Waline, { signal: commentController.signal })
       .provide('config', config)
       .provide('event', event)
       .provide('version', VERSION);
 
-    app.mount(el);
+    app.mount(root);
   }
 
   // store for update use
   const state = {
     options,
     path: config.value.path,
-    comment: commentController,
-    counter: counterController,
   };
 
   return {
@@ -119,17 +131,15 @@ function waline(options: WalineOptions): WalineInstance | WalineErrorInstance {
 
       // comment should not rerender
       if (state.path !== path) {
-        state.comment.abort();
-        state.comment = new AbortController();
+        commentController.new();
         state.path = path;
-        event.emit('render', state.comment.signal);
+        event.emit('render', commentController.signal);
       }
 
       // abort previous requests and update controller
-      state.counter.abort();
-      state.counter = new AbortController();
+      counterController.new();
 
-      domRender(config.value, state.counter.signal);
+      domRender(config.value, counterController.signal);
     },
     destroy: (): void => {
       if (el) app.unmount();
