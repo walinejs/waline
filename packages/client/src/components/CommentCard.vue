@@ -107,7 +107,7 @@ export default defineComponent({
     const link = computed(() => {
       let { link } = props.comment;
 
-      return link && isLinkHttp(link) ? link : `https://${link}`;
+      return link ? (isLinkHttp(link) ? link : `https://${link}`) : '';
     });
 
     const isReplyingCurrent = computed(
