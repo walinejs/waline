@@ -131,4 +131,15 @@ If you are using a theme that uses shadows (`box-shadow`) instead of borders, yo
 If the above CSS variables cannot meet your custom requirements for Waline styles, you can also:
 
 - Manually add a CSS file to override Waline's default style
+
+  ::: warning
+
+  Please note that since Waline is a pure JS package, it will inject styles into the `<head>` of the web page at runtime, so if you want to override styles, please pay attention to where your CSS is injected.
+
+  If you use a packing tool (e.g.: webpack), your custom styles will probably be packed as external css and imported in `<head>`, which means it is before the styles injected by Waline.
+
+  So in this case, you may need to use a higher priority selector, or place the `<style>` tag in body.
+
+  :::
+
 - Import the unstyled version of Waline, see [Waline import](./import.md) for details
