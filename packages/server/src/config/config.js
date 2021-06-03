@@ -17,6 +17,7 @@ const {
   AVATAR_PROXY,
   GITHUB_TOKEN,
 
+  MARKDOWN_CONFIG = '{}',
   MARKDOWN_HIGHLIGHT,
   MARKDOWN_EMOJI,
   MARKDOWN_SUB,
@@ -64,7 +65,7 @@ const forbiddenWords = FORBIDDEN_WORDS ? FORBIDDEN_WORDS.split(/\s*,\s*/) : [];
 const isFalse = (content) => content && content.toLowerCase() === 'false';
 
 const markdown = {
-  config: {},
+  config: JSON.parse(MARKDOWN_CONFIG),
   plugin: {
     emoji: !isFalse(MARKDOWN_EMOJI),
     sub: !isFalse(MARKDOWN_SUB),
