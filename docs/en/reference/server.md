@@ -4,6 +4,16 @@
 
 You can configure the Waline server through the following environment variables.
 
+::: warning
+
+You must **redeploy** after updating Environment variables to take effect.
+
+Vercel needs to be set in <kbd>Settings</kbd> - <kbd>Environment Variables</kbd>.
+
+:::
+
+### Basic
+
 | Environment Variables | Required | Description                                                                       |
 | --------------------- | -------- | --------------------------------------------------------------------------------- |
 | `LEAN_ID`             | ✅       | LeanCloud Application ID                                                          |
@@ -17,13 +27,71 @@ You can configure the Waline server through the following environment variables.
 | `AKISMET_KEY`         |          | Akismet antispam service key, default is open, set `false` if you wanna close it. |
 | `COMMENT_AUDIT`       |          | Comment audit switcher. We recommend to tip on the placeholder text if it's true. |
 
-::: warning
+### Markdown
 
-You must **redeploy** after updating Environment variables to take effect.
+| Environment Variables | Description                                   |
+| --------------------- | --------------------------------------------- |
+| `MARKDOWN_CONFIG`     | MarkdownIt Config                             |
+| `MARKDOWN_HIGHLIGHT`  | Whether enable highlight, enable by default   |
+| `MARKDOWN_EMOJI`      | Whether enable emoji, enable by default       |
+| `MARKDOWN_SUB`        | Whether enable subscript, enable by default   |
+| `MARKDOWN_SUP`        | Whether enable superscript, enable by default |
+| `MARKDOWN_TEX`        | Whether enable tex support, enable by default |
 
-Vercel needs to be set in <kbd>Settings</kbd> - <kbd>Environment Variables</kbd>.
+### Database
 
-:::
+- **MongoDB**:
+
+  | Environment Variable | Required | Default   | Description                                  |
+  | -------------------- | -------- | --------- | -------------------------------------------- |
+  | `MONGO_HOST`         |          | 127.0.0.1 | MongoDB server address, support array format |
+  | `MONGO_PORT`         |          | 27017     | MongoDB server port, support array format    |
+  | `MONGO_DB`           | ✅       |           | MongoDB database name                        |
+  | `MONGO_USER`         | ✅       |           | MongoDB server username                      |
+  | `MONGO_PASSWORD`     | ✅       |           | MongoDB server password                      |
+  | `MONGO_REPLICASET`   |          |           | MongoDB replica set                          |
+  | `MONGO_AUTHSOURCE`   |          |           | MongoDB auth source                          |
+  | `MONGO_OPT_SSL`      |          |           | use SSL connection                           |
+
+- **MySQL**:
+
+  | Environment Variable | Required | Default   | Description           |
+  | -------------------- | -------- | --------- | --------------------- |
+  | `MYSQL_HOST`         |          | 127.0.0.1 | MySQL server address  |
+  | `MYSQL_PORT`         |          | 3306      | MySQL server port     |
+  | `MYSQL_DB`           | ✅       |           | MySQL database name   |
+  | `MYSQL_USER`         | ✅       |           | MySQL server username |
+  | `MYSQL_PASSWORD`     | ✅       |           | MySQL server password |
+  | `MYSQL_PREFIX`       |          | `wl_`     | MySQL table prefix    |
+  | `MYSQL_CHARSET`      |          | `utf8mb4` | MySQL table charset   |
+
+- **SQLite**:
+
+  | Environment Variable | Required | Default | Description                                                         |
+  | -------------------- | -------- | ------- | ------------------------------------------------------------------- |
+  | `SQLITE_PATH`        | ✅       |         | SQLite storage file path, not include file name                     |
+  | `SQLITE_DB`          |          | waline  | SQLite storage file name, change it if your filenamed is not waline |
+  | `SQLITE_PREFIX`      |          | `wl_`   | SQLite table prefix                                                 |
+  | `JWT_TOKEN`          | ✅       |         | Random String for login token generator                             |
+
+- **PostgreSQL**:
+
+  | Environment Variable | Required | Default   | Description                |
+  | -------------------- | -------- | --------- | -------------------------- |
+  | `PG_HOST`            |          | 127.0.0.1 | PostgreSQL server address  |
+  | `PG_PORT`            |          | 3211      | PostgreSQL server port     |
+  | `PG_DB`              | ✅       |           | PostgreSQL database name   |
+  | `PG_USER`            | ✅       |           | PostgreSQL server username |
+  | `PG_PASSWORD`        | ✅       |           | PostgreSQL server password |
+  | `PG_PREFIX`          |          | `wl_`     | PostgreSQL table prefix    |
+
+- **GitHub**:
+
+  | Environment Variable | Required | Default | Description                                                                                                      |
+  | -------------------- | -------- | ------- | ---------------------------------------------------------------------------------------------------------------- |
+  | GITHUB_TOKEN         | ✅       |         | [Personal access tokens](https://github.com/settings/tokens)                                                     |
+  | GITHUB_REPO          | ✅       |         | repository name, such as `walinejs/waline`                                                                       |
+  | GITHUB_PATH          |          |         | The data storage directory, such as `data` means it is stored in the `data` directory, root directory by default |
 
 ## Main entrance
 
