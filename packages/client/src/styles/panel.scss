@@ -233,18 +233,18 @@
 
     cursor: pointer;
 
-    fill: var(--waline-text-color);
+    color: var(--waline-text-color);
 
     display: inline-flex;
     justify-content: center;
     align-items: center;
 
     &:hover {
-      fill: var(--waline-theme-color);
+      color: var(--waline-theme-color);
     }
 
     &.actived {
-      fill: var(--waline-active-color);
+      color: var(--waline-active-color);
     }
   }
 
@@ -252,7 +252,7 @@
     display: none;
 
     &:focus + label {
-      fill: var(--waline-text-color);
+      color: var(--waline-text-color);
     }
 
     &:focus-visible + label {

@@ -83,22 +83,18 @@
         padding: 4px;
         border: none;
         background: transparent;
+
+        color: var(--waline-text-color);
         line-height: 1;
 
-        transition: fill 0.2s ease;
+        transition: color 0.2s ease;
 
-        svg {
-          fill: var(--waline-text-color);
-
-          &:hover {
-            fill: var(--waline-theme-color);
-          }
+        &:hover {
+          color: var(--waline-theme-color);
         }
 
         &.active {
-          svg {
-            fill: var(--waline-active-color);
-          }
+          color: var(--waline-active-color);
         }
       }
     }
