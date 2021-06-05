@@ -379,7 +379,7 @@ export default defineComponent({
         // check mail
         if (
           (requiredMeta.indexOf('mail') > -1 || comment.mail) &&
-          !/^(\w)+(\.\w+)*@(\w)+((\.\w{2,3}){1,3})$/.exec(comment.mail)
+          !/^(\w)+(\.\w+)*@(\w)+((\.\w{2,}){1,3})$/.exec(comment.mail)
         ) {
           inputRefs.value.mail?.focus();
           return alert(locale.value.mailError);
