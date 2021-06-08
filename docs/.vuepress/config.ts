@@ -140,13 +140,18 @@ export default defineUserConfig<DefaultThemeOptions>({
       },
     ],
     [
-      '@vuepress/search',
+      '@vuepress/plugin-docsearch',
       {
+        apiKey: 'db5aa8592b64fb549dce9c0657dac992',
+        indexName: 'waline',
         locales: {
-          '/': { placeholder: '搜索' },
-          '/en/': { placeholder: 'Search' },
+          '/': {
+            placeholder: '搜索文档',
+          },
+          '/en/': {
+            placeholder: 'Search',
+          },
         },
-        maxSuggestions: 10,
       },
     ],
     {
