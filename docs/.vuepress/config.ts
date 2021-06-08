@@ -154,7 +154,6 @@ export default defineUserConfig<DefaultThemeOptions>({
       extendsMarkdown: (md) => {
         md.use(taskLists, { label: true, labelAfter: true });
       },
-      clientAppEnhanceFiles: path.resolve(__dirname, 'appEnhance.ts'),
     },
   ],
 

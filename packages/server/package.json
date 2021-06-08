@@ -7,7 +7,7 @@
     "@cloudbase/node-sdk": "^2.5.2",
     "@koa/cors": "^3.1.0",
     "akismet": "^2.0.6",
-    "dompurify": "^2.2.8",
+    "dompurify": "^2.2.9",
     "fast-csv": "^4.3.6",
     "jsdom": "^16.6.0",
     "jsonwebtoken": "^8.5.1",
