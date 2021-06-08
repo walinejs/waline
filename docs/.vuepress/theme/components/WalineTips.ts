@@ -19,10 +19,9 @@ export default defineComponent({
   name: 'WalineTips',
 
   setup() {
-    const frontmatter =
-      usePageFrontmatter<
-        DefaultThemeHomePageFrontmatter | DefaultThemePageFrontmatter
-      >();
+    const frontmatter = usePageFrontmatter<
+      DefaultThemeHomePageFrontmatter | DefaultThemePageFrontmatter
+    >();
     const routeLocale = useRouteLocale();
 
     const isHome = computed(() => frontmatter.value.home || false);
