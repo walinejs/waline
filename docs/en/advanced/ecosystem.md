@@ -18,9 +18,9 @@ Waline is a classic Client/Server architecture, which provides a relatively comp
   <div id="waline-comments"></div>
   <script>
     new MiniValine({
-      el: "#waline-comments",
-      backend: "waline",
-      serverURLs: "YOUR SERVER URL",
+      el: '#waline-comments',
+      backend: 'waline',
+      serverURLs: 'YOUR SERVER URL',
     });
   </script>
   ```
@@ -41,8 +41,8 @@ Waline is a classic Client/Server architecture, which provides a relatively comp
   <script>
     $(function () {
       new AprilComment({
-        el: "comment-widget",
-        api: "https://your-waline-backend-url.app",
+        el: 'comment-widget',
+        api: 'https://your-waline-backend-url.app',
       });
     });
   </script>

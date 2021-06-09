@@ -18,9 +18,9 @@ Waline 是经典的前后端分离 Client/Server 架构，提供了较为完善�
   <div id="waline-comments"></div>
   <script>
     new MiniValine({
-      el: "#waline-comments",
-      backend: "waline",
-      serverURLs: "YOUR SERVER URL",
+      el: '#waline-comments',
+      backend: 'waline',
+      serverURLs: 'YOUR SERVER URL',
     });
   </script>
   ```
@@ -41,8 +41,8 @@ Waline 是经典的前后端分离 Client/Server 架构，提供了较为完善�
   <script>
     $(function () {
       new AprilComment({
-        el: "comment-widget",
-        api: "https://your-waline-backend-url.app",
+        el: 'comment-widget',
+        api: 'https://your-waline-backend-url.app',
       });
     });
   </script>
