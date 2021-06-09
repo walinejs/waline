@@ -204,7 +204,7 @@ https://example.com/myemoji/
 
 ::: tip
 
-官方预设就使用了 [walinejs/emoji](https://walinejs/emoji) 的 `v1.0.0` 版本。
+官方预设就使用了 [walinejs/emoji](https://github.com/walinejs/emoji) 的 `v1.0.0` 版本。
 
 :::
 

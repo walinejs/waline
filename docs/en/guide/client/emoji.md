@@ -204,7 +204,7 @@ We recommend you to upload images to a GitHub repo and add a tag after each modi
 
 ::: tip
 
-The official presets are using the `v1.0.0` version of [walinejs/emoji](https://walinejs/emoji).
+The official presets are using the `v1.0.0` version of [walinejs/emoji](https://github.com/walinejs/emoji).
 
 :::
 
