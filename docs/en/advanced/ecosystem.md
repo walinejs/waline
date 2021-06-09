@@ -14,7 +14,7 @@ Waline is a classic Client/Server architecture, which provides a relatively comp
 
   ```html
   <script src="https://cdn.jsdelivr.net/npm/minivaline/dist/MiniValine.min.js"></script>
-
+  
   <div id="waline-comments"></div>
   <script>
     new MiniValine({
@@ -22,6 +22,25 @@ Waline is a classic Client/Server architecture, which provides a relatively comp
       backend: 'waline',
       serverURLs: 'YOUR SERVER URL',
     });
+  </script>
+  ```
+
+- [AprilComment](https://github.com/innc11/AprilComment)
+
+  By [innc11](https://github.com/innc11/AprilComment),  green-by-white theme, simple and easy,  support Markdown as the format of comment. Usage:
+
+  ```html
+  <script src="https://cdn.jsdelivr.net/npm/april-comment@latest/dist/index.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/april-comment@latest/dist/index.css" />
+  
+  <div id="comment-widget"></div>
+  <script>
+      $(function() {
+          new AprilComment({
+              el: 'comment-widget',
+              api: 'https://your-waline-backend-url.app'
+          })
+      })
   </script>
   ```
 
