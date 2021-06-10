@@ -25,6 +25,29 @@ Waline is a classic Client/Server architecture, which provides a relatively comp
   </script>
   ```
 
+- [AprilComment](https://github.com/innc11/AprilComment)
+
+  By [innc11](https://github.com/innc11/AprilComment), green-by-white theme, simple and easy, support Markdown as the format of comment. Usage:
+
+  ```html
+  <script src="https://cdn.jsdelivr.net/npm/april-comment@latest/dist/index.js"></script>
+  <link
+    rel="stylesheet"
+    type="text/css"
+    href="https://cdn.jsdelivr.net/npm/april-comment@latest/dist/index.css"
+  />
+
+  <div id="comment-widget"></div>
+  <script>
+    $(function () {
+      new AprilComment({
+        el: 'comment-widget',
+        api: 'https://your-waline-backend-url.app',
+      });
+    });
+  </script>
+  ```
+
 ## Plugins
 
 You can use the following plugins to use Waline on different tools:

@@ -25,6 +25,29 @@ Waline 是经典的前后端分离 Client/Server 架构，提供了较为完善�
   </script>
   ```
 
+- [AprilComment](https://github.com/innc11/AprilComment)
+
+  作者[innc11](https://github.com/innc11/AprilComment)，白绿色调的简洁风格，Markdown 格式渲染评论，并有一些独特的小功能。使用方式如下：
+
+  ```html
+  <script src="https://cdn.jsdelivr.net/npm/april-comment@latest/dist/index.js"></script>
+  <link
+    rel="stylesheet"
+    type="text/css"
+    href="https://cdn.jsdelivr.net/npm/april-comment@latest/dist/index.css"
+  />
+
+  <div id="comment-widget"></div>
+  <script>
+    $(function () {
+      new AprilComment({
+        el: 'comment-widget',
+        api: 'https://your-waline-backend-url.app',
+      });
+    });
+  </script>
+  ```
+
 ## 插件
 
 你可以使用下列插件来在不同工具上使用 Waline:
