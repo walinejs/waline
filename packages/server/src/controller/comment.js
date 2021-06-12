@@ -28,7 +28,7 @@ async function formatCmt(
 
       let { avatar } = user;
       if (avatar) {
-        if (/(github)/i.test(avatar)) {
+        if (/(github)/i.test(avatar) && !avatar.includes(avatarProxy)) {
           avatar = avatarProxy + '?url=' + encodeURIComponent(avatar);
         }
         comment.avatar = avatar;
