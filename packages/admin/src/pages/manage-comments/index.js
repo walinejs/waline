@@ -270,8 +270,8 @@ export default function () {
                         <a href="#" onClick={() => dispatch({ [key]: type })}>
                           {name}
                           {key === 'status' &&
-                          type !== 'approved' &&
-                          list[`${type}Count`] > 0 ? (
+                            type !== 'approved' &&
+                            list[`${type}Count`] > 0 ? (
                             <span className="balloon">
                               {list[`${type}Count`]}
                             </span>
@@ -392,7 +392,7 @@ export default function () {
                           idx
                         ) =>
                           cmtHandler.id === objectId &&
-                          cmtHandler.action === 'edit' ? (
+                            cmtHandler.action === 'edit' ? (
                             <tr className="comment-edit" key={objectId}>
                               <td> </td>
                               <td colSpan="2" valign="top">
@@ -410,8 +410,8 @@ export default function () {
                                       type="text"
                                       defaultValue={nick}
                                       onChange={(e) =>
-                                        (editCommentRef.current.nick =
-                                          e.target.value)
+                                      (editCommentRef.current.nick =
+                                        e.target.value)
                                       }
                                     />
                                   </p>
@@ -426,8 +426,8 @@ export default function () {
                                       id={`comment-${objectId}-mail`}
                                       defaultValue={mail}
                                       onChange={(e) =>
-                                        (editCommentRef.current.mail =
-                                          e.target.value)
+                                      (editCommentRef.current.mail =
+                                        e.target.value)
                                       }
                                     />
                                   </p>
@@ -442,8 +442,8 @@ export default function () {
                                       id={`comment-${objectId}-author`}
                                       defaultValue={link}
                                       onChange={(e) =>
-                                        (editCommentRef.current.link =
-                                          e.target.value)
+                                      (editCommentRef.current.link =
+                                        e.target.value)
                                       }
                                     />
                                   </p>
@@ -462,8 +462,8 @@ export default function () {
                                       className="w-90 mono"
                                       defaultValue={comment}
                                       onChange={(e) =>
-                                        (editCommentRef.current.comment =
-                                          e.target.value)
+                                      (editCommentRef.current.comment =
+                                        e.target.value)
                                       }
                                     />
                                   </p>
@@ -497,8 +497,8 @@ export default function () {
                                     setCommentIds(
                                       commentIds.includes(objectId)
                                         ? commentIds.filter(
-                                            (id) => id !== objectId
-                                          )
+                                          (id) => id !== objectId
+                                        )
                                         : [...commentIds, objectId]
                                     )
                                   }
@@ -519,7 +519,7 @@ export default function () {
                                 <div className="comment-meta">
                                   <strong className="comment-author">
                                     <a
-                                      href={link}
+                                      href={!/^https:\/\//.test(link) ? 'https://' + link : link}
                                       rel="external nofollow noreferrer"
                                       target="_blank"
                                     >
@@ -556,7 +556,7 @@ export default function () {
                                   dangerouslySetInnerHTML={{ __html: comment }}
                                 ></div>
                                 {cmtHandler.id === objectId &&
-                                cmtHandler.action === 'reply' ? (
+                                  cmtHandler.action === 'reply' ? (
                                   <form className="comment-reply">
                                     <p>
                                       <label htmlFor="text" className="sr-only">
