@@ -14,7 +14,7 @@
   "repository": {
     "url": "https://github.com/walinejs/waline"
   },
-  "license": "GPL-2.0",
+  "license": "MIT",
   "scripts": {
     "analyze": "cross-env ANALYZE=true webpack --mode=production",
     "build": "npm run build:normal && npm run build:no-style && npm run build:dts",
