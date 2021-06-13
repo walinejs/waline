@@ -68,7 +68,7 @@ export interface WalineErrorInstance {
 }
 
 const getErrorInstance = (errMsg: string): WalineErrorInstance => {
-  console.error(errMsg);
+  console.warn(errMsg);
 
   return { errMsg };
 };
