@@ -11,6 +11,15 @@
 
     background: var(--waline-bgcolor);
     box-shadow: var(--waline-box-shadow);
+    opacity: 0;
+    transform: scale(0.9, 0.9);
+    transform-origin: 0 0;
+    transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+
+    &.display {
+      opacity: 1;
+      transform: none;
+    }
 
     button {
       display: inline-block;

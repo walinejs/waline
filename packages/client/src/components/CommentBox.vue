@@ -78,6 +78,7 @@
           </a>
 
           <button
+            ref="emojiButtonRef"
             class="vaction"
             :class="{ actived: showEmoji }"
             :title="locale.emoji"
@@ -144,7 +145,11 @@
           </button>
         </div>
 
-        <div v-if="showEmoji" class="vemoji-popup">
+        <div
+          ref="emojiPopupRef"
+          class="vemoji-popup"
+          :class="{ display: showEmoji }"
+        >
           <template v-for="(config, index) in emoji.tabs" :key="config.name">
             <div v-if="index === emojiTabIndex" class="vtab-wrapper">
               <button
@@ -197,7 +202,15 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, inject, ref, watch } from 'vue';
+import {
+  computed,
+  defineComponent,
+  inject,
+  onMounted,
+  onUnmounted,
+  ref,
+  watch,
+} from 'vue';
 import autosize from 'autosize';
 
 import {
@@ -260,6 +273,8 @@ export default defineComponent({
     const inputRefs = ref<Record<string, HTMLInputElement>>({});
     const editorRef = ref<HTMLTextAreaElement | null>(null);
     const imageUploadRef = ref<HTMLInputElement | null>(null);
+    const emojiButtonRef = ref<HTMLDivElement | null>(null);
+    const emojiPopupRef = ref<HTMLDivElement | null>(null);
 
     const emoji = ref<DeepReadonly<EmojiConfig>>({ tabs: [], map: {} });
     const emojiTabIndex = ref(0);
@@ -459,7 +474,9 @@ export default defineComponent({
       );
 
       handler?.postMessage({ type: 'TOKEN', data: null }, '*');
-      window.addEventListener('message', ({ data }) => {
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const receiver = ({ data }: any): void => {
         if (!data || data.type !== 'userInfo') return;
 
         if (data.data.token) {
@@ -470,7 +487,10 @@ export default defineComponent({
             JSON.stringify(data.data)
           );
         }
-      });
+        window.removeEventListener('message', receiver);
+      };
+
+      window.addEventListener('message', receiver);
     };
 
     const onLogout = (): void => {
@@ -497,7 +517,8 @@ export default defineComponent({
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       handler?.postMessage({ type: 'TOKEN', data: userInfo.value!.token }, '*');
 
-      window.addEventListener('message', ({ data }) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const receiver = ({ data }: any): void => {
         if (!data || data.type !== 'profile') return;
 
         setUserInfo({ ...userInfo.value, ...data });
@@ -506,7 +527,10 @@ export default defineComponent({
           .forEach((store) =>
             store.setItem('WALINE_USER', JSON.stringify(userInfo))
           );
-      });
+        window.removeEventListener('message', receiver);
+      };
+
+      window.addEventListener('message', receiver);
     };
 
     // initial set of emoji
@@ -560,6 +584,22 @@ export default defineComponent({
       }
     });
 
+    const popupHandler = (event: MouseEvent): void => {
+      if (
+        !(emojiButtonRef.value as HTMLElement).contains(event.target as Node) &&
+        !(emojiPopupRef.value as HTMLElement).contains(event.target as Node)
+      )
+        showEmoji.value = false;
+    };
+
+    onMounted(() => {
+      document.body.addEventListener('click', popupHandler);
+    });
+
+    onUnmounted(() => {
+      document.body.removeEventListener('click', popupHandler);
+    });
+
     return {
       // config
       config,
@@ -600,6 +640,8 @@ export default defineComponent({
       // ref
       inputRefs,
       editorRef,
+      emojiButtonRef,
+      emojiPopupRef,
       imageUploadRef,
     };
   },
