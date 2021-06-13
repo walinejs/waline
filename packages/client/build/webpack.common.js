@@ -17,6 +17,7 @@ module.exports = {
     library: pkgName,
     libraryExport: 'default',
     libraryTarget: 'umd',
+    globalObject: 'this',
   },
 
   resolve: {
