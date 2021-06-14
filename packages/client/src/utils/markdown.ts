@@ -4,7 +4,7 @@ import marked from 'marked';
 import type { EmojiMaps } from '../config';
 
 const inlineMathRegExp = /\B\$\b([^\n$]*)\b\$\B/g;
-const blockMathRegExp = /(^|\n\n)\$\$\n(.+?)\n\$\$(\n\n|$)/g;
+const blockMathRegExp = /(^|\n\n)\$\$(\n(.+?)\n|(.+?))\$\$(\n\n|$)/g;
 
 export const parseEmoji = (text = '', emojiMap: EmojiMaps = {}): string =>
   text.replace(/:(.+?):/g, (placeholder, key: string) =>
@@ -16,12 +16,12 @@ export const parseEmoji = (text = '', emojiMap: EmojiMaps = {}): string =>
 export const parseMath = (content: string): string =>
   content
     .replace(
-      inlineMathRegExp,
-      '<span class="vtex">Tex is not available in preview</span>'
-    )
-    .replace(
       blockMathRegExp,
       '<p class="vtex">Tex is not available in preview</p>'
+    )
+    .replace(
+      inlineMathRegExp,
+      '<span class="vtex">Tex is not available in preview</span>'
     );
 
 export const parseMarkdown = (
@@ -36,5 +36,5 @@ export const parseMarkdown = (
     smartypants: true,
   });
 
-  return parseMath(marked(parseEmoji(content, emojiMap)));
+  return marked(parseMath(parseEmoji(content, emojiMap)));
 };
