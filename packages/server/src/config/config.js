@@ -70,7 +70,8 @@ const markdown = {
     emoji: !isFalse(MARKDOWN_EMOJI),
     sub: !isFalse(MARKDOWN_SUB),
     sup: !isFalse(MARKDOWN_SUP),
-    tex: !isFalse(MARKDOWN_TEX),
+    // tex is false | 'katex' | 'mathjax' (default and fallback).
+    tex: !isFalse(MARKDOWN_TEX) ? MARKDOWN_TEX : false,
   },
 };
 
