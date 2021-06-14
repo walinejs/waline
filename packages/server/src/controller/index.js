@@ -1,3 +1,5 @@
+const { version } = require('../../package.json');
+
 module.exports = class extends think.Controller {
   indexAction() {
     this.type = 'html';
@@ -12,6 +14,11 @@ module.exports = class extends think.Controller {
     <body>
       <div id="waline" style="max-width: 800px;margin: 0 auto;"></div> <script src="https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js"></script>
       <script>
+        console.log(
+          '%c @waline/server %c v${version} ',
+          'color: white; background: #0078E7; padding:5px 0;',
+          'padding:4px;border:1px solid #0078E7;'
+        );
         const waline = new Waline({
           el: '#waline',
           path: '/',
