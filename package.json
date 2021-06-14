@@ -57,7 +57,7 @@
     "rollup": "^2.51.2",
     "rollup-plugin-dts": "^3.0.2",
     "sass": "^1.34.1",
-    "sass-loader": "^12.0.0",
+    "sass-loader": "^12.1.0",
     "style-loader": "^2.0.0",
     "ts-jest": "^27.0.3",
     "ts-loader": "^9.2.3",
