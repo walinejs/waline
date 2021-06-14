@@ -63,9 +63,11 @@ module.exports = {
   ],
 
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
     compress: true,
     port: 9010,
     historyApiFallback: { index: '/' },
+    proxy: {
+      '/token': 'http://localhost:9090',
+    },
   },
 };
