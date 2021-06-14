@@ -16,7 +16,9 @@ export function getPostUrl(url) {
 }
 
 export function formatDate(time) {
-  const d = new Date(/\d+\-\d+\-\d+\s\d+:\d+:\d+/.test(time) ? time.replace(/-/g, '/') : time);
+  const d = new Date(
+    /\d+-\d+-\d+\s\d+:\d+:\d+/.test(time) ? time.replace(/-/g, '/') : time
+  );
   const p = (n) => (n < 10 ? '0' + n : n);
   const localDate = [d.getFullYear(), d.getMonth() + 1, d.getDate()]
     .map(p)
