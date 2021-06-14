@@ -1,0 +1,19 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: daily
+      time: '08:00'
+      timezone: Asia/Shanghai
+    versioning-strategy: increase
+    open-pull-requests-limit: 50
+    pull-request-branch-name:
+      separator: '-'
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: daily
+      time: '08:00'
+      timezone: Asia/Shanghai
