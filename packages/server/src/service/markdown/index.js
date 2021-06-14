@@ -30,7 +30,7 @@ const getMarkdownParser = () => {
     html: true,
   });
 
-  const { emoji, tex, sub, sup } = plugin;
+  const { emoji, tex, mathjax, katex, sub, sup } = plugin;
 
   // parse emoji
   if (emoji !== false) {
@@ -50,13 +50,11 @@ const getMarkdownParser = () => {
   // parse tex
   if (tex === 'katex') {
     markdownIt.use(katexPlugin, {
-      ...(typeof tex === 'object' ? tex : {}),
+      ...katex,
       output: 'mathml',
     });
   } else if (tex !== false) {
-    markdownIt.use(mathjaxPlugin, {
-      ...(typeof tex === 'object' ? tex : {}),
-    });
+    markdownIt.use(mathjaxPlugin, mathjax);
   }
 
   return (content) => sanitize(markdownIt.render(content));
