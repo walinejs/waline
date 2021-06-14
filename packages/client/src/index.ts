@@ -89,7 +89,7 @@ function waline(options: WalineOptions): WalineInstance | WalineErrorInstance {
   if (options.dark) injectDarkStyle(options.dark);
 
   // mathml
-  window.addEventListener('load', registerMathML);
+  if (options.mathTagSupport) window.addEventListener('load', registerMathML);
 
   const commentController = new Controller();
   const counterController = new Controller();

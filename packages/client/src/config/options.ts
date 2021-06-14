@@ -369,11 +369,22 @@ export interface WalineOptions extends DeprecatedValineOptions {
   login?: 'enable' | 'disable' | 'force';
 
   /**
+   * @deprecated Please use mathjax in server, will be dropped in V2
+   *
+   * 是否注入额外的样式添加对 `<math>` 块的兼容
+   *
+   * Whether injecting additional styles to support math block
+   *
+   * @default false
+   */
+  mathTagSupport?: boolean;
+
+  /**
    * 是否在页脚展示版权信息
    *
    * 为了支持 Waline，我们强烈建议你开启它
    *
-   * Whether show copyright in fotter
+   * Whether show copyright in footer
    *
    * We strongly recommended you to keep it on to support waline
    *
