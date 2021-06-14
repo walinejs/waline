@@ -25,11 +25,9 @@ export const useUserInfo = (): {
     try {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       userInfo.value =
-        JSON.parse(
-          localStorage.getItem(USER_KEY) ||
-            sessionStorage.getItem(USER_KEY) ||
-            ''
-        ) || null;
+        JSON.parse(localStorage.getItem(USER_KEY) || '') ||
+        JSON.parse(sessionStorage.getItem(USER_KEY) || '') ||
+        null;
     } catch (err) {
       // do nothing
     }
