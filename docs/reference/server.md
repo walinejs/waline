@@ -30,14 +30,17 @@ Vercel 需要在 <kbd>Settings</kbd> - <kbd>Environment Variables</kbd> 中进�
 
 ### Markdown
 
-| 环境变量名称         | 备注                              |
-| -------------------- | --------------------------------- |
-| `MARKDOWN_CONFIG`    | MarkdownIt 配置                   |
-| `MARKDOWN_HIGHLIGHT` | 是否启用高亮，默认启用            |
-| `MARKDOWN_EMOJI`     | 是否启用 Emoji 缩写支持，默认启用 |
-| `MARKDOWN_SUB`       | 是否启用下角标支持，默认启用      |
-| `MARKDOWN_SUP`       | 是否启用上角标支持，默认启用      |
-| `MARKDOWN_TEX`       | 是否启用数学公式支持，默认启用    |
+| 环境变量名称         | 备注                                                              |
+| -------------------- | ----------------------------------------------------------------- |
+| `MARKDOWN_CONFIG`    | MarkdownIt 配置                                                   |
+| `MARKDOWN_HIGHLIGHT` | 是否启用高亮，默认启用                                            |
+| `MARKDOWN_EMOJI`     | 是否启用 Emoji 缩写支持，默认启用                                 |
+| `MARKDOWN_SUB`       | 是否启用下角标支持，默认启用                                      |
+| `MARKDOWN_SUP`       | 是否启用上角标支持，默认启用                                      |
+| `MARKDOWN_TEX`       | 是否启用数学公式支持，默认启用                                    |
+| `MARKDOWN_TEX`       | 解析 Tex 的服务, 默认为 `'mathjax'` (可填入 `false` \| `'katex'`) |
+| `MARKDOWN_MATHJAX`   | MathJax 选项                                                      |
+| `MARKDOWN_KATEX`     | Katex 选项                                                        |
 
 ### 数据库
 

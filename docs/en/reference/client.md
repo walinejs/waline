@@ -195,6 +195,14 @@ Custom image upload callback to manage picture by yourself. We will pass a pictu
 
 **Code highlighting**, it’s enabled by default, please close it selectively.
 
+## mathTagSupport
+
+- Type: `boolean`
+- Default: `false`
+- Required: No
+
+Whether inject extra styles to display `<math>` block
+
 ### copyright
 
 - Type: `boolean`

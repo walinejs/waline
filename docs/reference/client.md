@@ -197,6 +197,14 @@ Waline 的服务端地址。
 
 **代码高亮**，默认开启，若不需要，请手动关闭
 
+## mathTagSupport
+
+- 类型: `boolean`
+- 默认值: `false`
+- 必填: 否
+
+是否注入核外样式以兼容 `<math>` 显示。
+
 ## copyright
 
 - 类型: `boolean`
