@@ -3,8 +3,8 @@ import marked from 'marked';
 
 import type { EmojiMaps } from '../config';
 
-const inlineMathRegExp = /\B\$\b([^\n$]*)\b\$\B/g;
-const blockMathRegExp = /(^|\n\n)\$\$(\n(.+?)\n|(.+?))\$\$(\n\n|$)/g;
+const inlineMathRegExp = /\B\$([^\s$]|[^\s$][^\n$]*[^\s$])\$\B/g;
+const blockMathRegExp = /(^|\n)\$\$(.+?)\$\$(\n|$)/gs;
 
 export const parseEmoji = (text = '', emojiMap: EmojiMaps = {}): string =>
   text.replace(/:(.+?):/g, (placeholder, key: string) =>
