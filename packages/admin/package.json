@@ -45,7 +45,7 @@
     "@rematch/core": "^1.4.0",
     "@svgr/webpack": "^5.5.0",
     "classnames": "^2.3.1",
-    "i18next": "^19.8.7",
+    "i18next": "^20.3.1",
     "i18next-browser-languagedetector": "^6.1.1",
     "md5": "^2.3.0",
     "react": "^16.14.0",
