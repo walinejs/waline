@@ -486,8 +486,9 @@ export default defineComponent({
             'WALINE_USER',
             JSON.stringify(data.data)
           );
+
+          window.removeEventListener('message', receiver);
         }
-        window.removeEventListener('message', receiver);
       };
 
       window.addEventListener('message', receiver);

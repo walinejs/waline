@@ -37,7 +37,7 @@
     <div v-if="config.copyright" class="vpower">
       Powered by
       <a
-        href="https://github.com/lizheming/Waline"
+        href="https://github.com/walinejs/waline"
         target="_blank"
         rel="noreferrer"
       >

@@ -29,14 +29,16 @@ Vercel needs to be set in <kbd>Settings</kbd> - <kbd>Environment Variables</kbd>
 
 ### Markdown
 
-| Environment Variables | Description                                   |
-| --------------------- | --------------------------------------------- |
-| `MARKDOWN_CONFIG`     | MarkdownIt Config                             |
-| `MARKDOWN_HIGHLIGHT`  | Whether enable highlight, enable by default   |
-| `MARKDOWN_EMOJI`      | Whether enable emoji, enable by default       |
-| `MARKDOWN_SUB`        | Whether enable subscript, enable by default   |
-| `MARKDOWN_SUP`        | Whether enable superscript, enable by default |
-| `MARKDOWN_TEX`        | Whether enable tex support, enable by default |
+| Environment Variables | Description                                                                      |
+| --------------------- | -------------------------------------------------------------------------------- |
+| `MARKDOWN_CONFIG`     | MarkdownIt Config                                                                |
+| `MARKDOWN_HIGHLIGHT`  | Whether enable highlight, enable by default                                      |
+| `MARKDOWN_EMOJI`      | Whether enable emoji, enable by default                                          |
+| `MARKDOWN_SUB`        | Whether enable subscript, enable by default                                      |
+| `MARKDOWN_SUP`        | Whether enable superscript, enable by default                                    |
+| `MARKDOWN_TEX`        | Service to parse math, `'mathjax'` by default (also can be `false` \| `'katex'`) |
+| `MARKDOWN_MATHJAX`    | MathJax Options                                                                  |
+| `MARKDOWN_KATEX`      | Katex Options                                                                    |
 
 ### Database
 

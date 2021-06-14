@@ -144,6 +144,9 @@ export default defineUserConfig<DefaultThemeOptions>({
       {
         apiKey: 'db5aa8592b64fb549dce9c0657dac992',
         indexName: 'waline',
+        searchParameters: {
+          facetFilters: [],
+        },
         locales: {
           '/': {
             placeholder: '搜索文档',
