@@ -12,7 +12,7 @@ V1 has several changes, the BREAKING CHANGEs are detailed in [Initialization](#i
 
 ## Size reduction
 
-The v1 version is a complete rewrite with Vue and TypeScript, so the size is reduced from 78.4kb to 53.3kb (gzip).
+The v1 version is a complete rewrite with Vue and TypeScript, so the size is reduced from 78.4kb to 54.0kb (gzip).
 
 ## Options Change
 
