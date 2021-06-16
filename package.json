@@ -52,7 +52,7 @@
     "husky": "^6.0.0",
     "jest": "^27.0.4",
     "lint-staged": "^11.0.0",
-    "marked": "^2.0.7",
+    "marked": "^2.1.0",
     "prettier": "^2.3.1",
     "rollup": "^2.51.2",
     "rollup-plugin-dts": "^3.0.2",
