@@ -50,7 +50,7 @@
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.1",
     "husky": "^6.0.0",
-    "jest": "^27.0.4",
+    "jest": "^27.0.5",
     "lint-staged": "^11.0.0",
     "marked": "^2.1.1",
     "prettier": "^2.3.1",
