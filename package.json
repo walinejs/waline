@@ -48,7 +48,7 @@
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-vue": "^7.11.1",
     "file-loader": "^6.2.0",
-    "html-webpack-plugin": "^5.3.1",
+    "html-webpack-plugin": "^5.3.2",
     "husky": "^6.0.0",
     "jest": "^27.0.4",
     "lint-staged": "^11.0.0",
