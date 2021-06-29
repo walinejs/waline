@@ -35,7 +35,7 @@
     "@typescript-eslint/parser": "^4.28.0",
     "@vue/eslint-config-prettier": "6.0.0",
     "@vue/eslint-config-typescript": "7.0.0",
-    "babel-jest": "^27.0.5",
+    "babel-jest": "^27.0.6",
     "babel-loader": "^8.2.2",
     "commitizen": "^4.2.4",
     "conventional-changelog-cli": "^2.1.1",
