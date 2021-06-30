@@ -36,7 +36,7 @@
                 if (element) inputRefs[kind] = element;
               }
             "
-            :id="kind"
+            :id="`waline-${kind}`"
             :class="['vinput', `v${kind}`]"
             :name="kind"
             :type="kind === 'mail' ? 'email' : 'text'"
@@ -48,7 +48,7 @@
       <textarea
         class="veditor"
         ref="editorRef"
-        id="vedit"
+        id="waline-edit"
         :placeholder="replyUser ? `@${replyUser}` : locale.placeholder"
         v-model="inputs.editor"
         @keydown="onKeyDown"
@@ -90,7 +90,7 @@
           <input
             ref="imageUploadRef"
             class="upload"
-            id="image-upload"
+            id="waline-image-upload"
             type="file"
             accept=".png,.jpg,.jpeg,.webp,.bmp,.gif"
             @change="onChange"
