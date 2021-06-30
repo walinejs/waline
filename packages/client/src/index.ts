@@ -102,7 +102,8 @@ function waline(options: WalineOptions): WalineInstance | WalineErrorInstance {
   // check el element
   const root = getRoot(el);
 
-  if (el && !root) return getErrorInstance("Option 'el' is invalid!");
+  if (el && !root)
+    return getErrorInstance(`Option 'el' do not match any domElement!`);
 
   // mount waline
   let app: App;
