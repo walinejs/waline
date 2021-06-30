@@ -534,11 +534,6 @@ export default defineComponent({
       window.addEventListener('message', receiver);
     };
 
-    // initial set of emoji
-    config.value.emoji.then((emojiConfig) => {
-      emoji.value = emojiConfig;
-    });
-
     // watch editor
     watch(
       () => inputs.editor,
@@ -552,7 +547,8 @@ export default defineComponent({
         if (editorRef.value)
           if (value) autosize(editorRef.value);
           else autosize.destroy(editorRef.value);
-      }
+      },
+      { immediate: true }
     );
 
     // watch emoji value change
@@ -561,29 +557,34 @@ export default defineComponent({
       (emojiConfig) =>
         emojiConfig.then((config) => {
           emoji.value = config;
-        })
+        }),
+      { immediate: true }
     );
 
     // update wordNumber
-    watch([config, wordNumber], ([config, wordNumber]) => {
-      const { wordLimit: limit } = config;
+    watch(
+      [config, wordNumber],
+      ([config, wordNumber]) => {
+        const { wordLimit: limit } = config;
 
-      if (limit) {
-        if (wordNumber < limit[0] && limit[0] !== 0) {
-          wordLimit.value = limit[0];
-          isWordNumberLegal.value = false;
-        } else if (wordNumber > limit[1]) {
-          wordLimit.value = limit[1];
-          isWordNumberLegal.value = false;
+        if (limit) {
+          if (wordNumber < limit[0] && limit[0] !== 0) {
+            wordLimit.value = limit[0];
+            isWordNumberLegal.value = false;
+          } else if (wordNumber > limit[1]) {
+            wordLimit.value = limit[1];
+            isWordNumberLegal.value = false;
+          } else {
+            wordLimit.value = limit[1];
+            isWordNumberLegal.value = true;
+          }
         } else {
-          wordLimit.value = limit[1];
+          wordLimit.value = 0;
           isWordNumberLegal.value = true;
         }
-      } else {
-        wordLimit.value = 0;
-        isWordNumberLegal.value = true;
-      }
-    });
+      },
+      { immediate: true }
+    );
 
     const popupHandler = (event: MouseEvent): void => {
       if (
