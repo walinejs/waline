@@ -1,5 +1,6 @@
 version: 2
 updates:
+  # daily update for deps to be bundled
   - package-ecosystem: npm
     directory: /
     schedule:
@@ -10,10 +11,63 @@ updates:
     open-pull-requests-limit: 50
     pull-request-branch-name:
       separator: '-'
+    allow:
+      # admin package
+      - development-name: '@reach/router'
+      - development-name: '@rematch/core'
+      - development-name: '@svgr/webpack'
+      - development-name: 'classnames'
+      - development-name: 'md5'
+      - development-name: 'i18next*'
+      - development-name: 'react*'
 
+      # client package
+      - development-name: '@types/autosize'
+      - development-name: '@types/marked'
+      - development-name: '@vue/compiler-sfc'
+      - development-name: autosize
+      - development-name: hanabi
+      - development-name: marked
+      - development-name: mitt
+      - development-name: vue
+      - development-name: '@vuepress/*'
+
+  # weekly update for other deps
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      time: '08:00'
+      timezone: Asia/Shanghai
+    versioning-strategy: increase
+    open-pull-requests-limit: 50
+    pull-request-branch-name:
+      separator: '-'
+    ignore:
+      # admin package
+      - development-name: '@reach/router'
+      - development-name: '@rematch/core'
+      - development-name: '@svgr/webpack'
+      - development-name: 'classnames'
+      - development-name: 'md5'
+      - development-name: 'i18next*'
+      - development-name: 'react*'
+
+      # client package
+      - development-name: '@types/autosize'
+      - development-name: '@types/marked'
+      - development-name: '@vue/compiler-sfc'
+      - development-name: autosize
+      - development-name: hanabi
+      - development-name: marked
+      - development-name: mitt
+      - development-name: vue
+      - development-name: '@vuepress/*'
+
+  # weekly update for github actions
   - package-ecosystem: github-actions
     directory: /
     schedule:
-      interval: daily
+      interval: weekly
       time: '08:00'
       timezone: Asia/Shanghai
