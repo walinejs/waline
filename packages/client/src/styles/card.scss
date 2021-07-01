@@ -23,6 +23,12 @@
         border-bottom: none;
       }
     }
+
+    .vcard {
+      .vitem {
+        padding: 0;
+      }
+    }
   }
 
   .vcard {
@@ -196,7 +202,6 @@
     }
 
     .vquote {
-      padding-left: 1em;
       border-left: 1px dashed rgba(237, 237, 237, 0.5);
 
       .vuser {
