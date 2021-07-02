@@ -11,9 +11,10 @@ async function formatCmt(
 ) {
   ua = parser(ua);
   if (!think.config('disableUserAgent')) {
-    comment.browser = [ua.browser.name, ua.browser.version]
-      .filter((v) => v)
-      .join(' ');
+    comment.browser = `${ua.browser.name || ''}${(ua.browser.version || '')
+      .split('.')
+      .slice(0, 2)
+      .join('.')}`;
     comment.os = [ua.os.name, ua.os.version].filter((v) => v).join(' ');
   }
 
