@@ -35,3 +35,17 @@ Waline({
 |   `'hide'`    |                                                               N/A                                                                | Hidden avatar                                       |
 
 [1]: http://gravatar.com/
+
+## Attentions
+
+::: warning
+
+Please note that though email providers such as Google and QQ do not distinguish upper and lower case user names, you still need to ensure that the email address registered by gravatar corresponds to the email address inputed.
+
+Although most large mail providers in the world do not distinguish case-sensitive email user names, according to RFC 5231, emails are case-sensitive.
+
+This means that the email provider can treat `abc@xxx.com` and `ABC@xxx.com` as different accounts, and there are indeed email providers that handle in this way.
+
+Therefore, in order to prevent users who use such email providers from being unable to receive emails or displaying wrong avatars, we do not perform case conversion on mailboxes.
+
+:::
