@@ -31,9 +31,9 @@
 
     <div class="theme-default-content custom">
       <Content />
-
-      <Waline />
     </div>
+
+    <Waline />
 
     <template v-if="footer">
       <div v-if="footerHtml" class="footer" v-html="footer" />
