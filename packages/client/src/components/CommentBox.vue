@@ -96,7 +96,11 @@
             @change="onChange"
           />
 
-          <label for="image-upload" class="vaction" :title="locale.uploadImage">
+          <label
+            for="waline-image-upload"
+            class="vaction"
+            :title="locale.uploadImage"
+          >
             <ImageIcon />
           </label>
 
