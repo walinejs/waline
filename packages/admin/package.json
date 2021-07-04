@@ -2,11 +2,29 @@
   "name": "@waline/admin",
   "version": "0.8.14",
   "description": "management system for waline",
+  "keywords": [
+    "waline",
+    "valine",
+    "comment",
+    "management",
+    "system"
+  ],
+  "homepage": "https://github.com/walinejs/waline#readme",
+  "bugs": {
+    "url": "https://github.com/walinejs/waline/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/walinejs/waline.git"
+  },
+  "license": "MIT",
+  "author": "lizheming <i@imnerd.org>",
   "main": "dist/admin.js",
   "browser": "dist/admin.js",
   "scripts": {
     "analyze": "cross-env ANALYZE=true webpack --mode=production",
     "build": "webpack --mode=production",
+    "clean": "rimraf ./dist",
     "dev": "webpack serve --mode=development",
     "prepublish": "npm run build"
   },
@@ -23,23 +41,6 @@
       "last 1 safari version"
     ]
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/walinejs/waline.git"
-  },
-  "keywords": [
-    "waline",
-    "valine",
-    "comment",
-    "management",
-    "system"
-  ],
-  "author": "lizheming <i@imnerd.org>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/walinejs/waline/issues"
-  },
-  "homepage": "https://github.com/walinejs/waline#readme",
   "devDependencies": {
     "@reach/router": "^1.3.4",
     "@rematch/core": "^2.0.1",
