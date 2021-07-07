@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "@types/autosize": "4.0.0",
-    "@types/marked": "2.0.3",
+    "@types/marked": "2.0.4",
     "@vue/compiler-sfc": "3.1.4",
     "autosize": "5.0.1",
     "hanabi": "0.4.0",
