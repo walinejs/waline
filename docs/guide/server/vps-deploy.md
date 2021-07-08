@@ -27,7 +27,7 @@ docker build -t lizheming/waline -f packages/server/Dockerfile .
 
 ### 使用 [docker stack deploy](https://docs.docker.com/engine/reference/commandline/stack_deploy/) 或者 [docker-compose](https://github.com/docker/compose)
 
-这里使用了 SQLite 数据库作为例子。关于 SQLite 和支持的数据库服务，请参考[多数据库服务支持](https://waline.js.org/server/databases.html#sqlite)。
+这里使用了 SQLite 数据库作为例子。关于 SQLite 和支持的数据库服务，请参考[多数据库服务支持](./databases.md#sqlite)。
 
 `docker-compose.yml` 示例:
 
