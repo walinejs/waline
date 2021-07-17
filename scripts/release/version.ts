@@ -1,4 +1,4 @@
-import { prerelease } from "semver";
+import { prerelease } from 'semver';
 
 export interface Answers {
   bump: string;
@@ -15,7 +15,7 @@ export const isPreRelease = (version: string): boolean =>
   Boolean(prerelease(version));
 
 export const getNpmTags = (version: string): string[] => {
-  if (isPreRelease(version)) return ["next", "alpha", "beta", "latest"];
+  if (isPreRelease(version)) return ['next', 'alpha', 'beta', 'latest'];
 
-  return ["latest", "beta", "alpha", "next"];
+  return ['latest', 'beta', 'alpha', 'next'];
 };

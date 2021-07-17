@@ -1,8 +1,8 @@
-import { readdirSync } from "fs";
-import { get } from "https";
-import { resolve } from "path";
+import { readdirSync } from 'fs';
+import { get } from 'https';
+import { resolve } from 'path';
 
-const packages = readdirSync(resolve(__dirname, "../../packages"));
+const packages = readdirSync(resolve(__dirname, '../../packages'));
 
 export const sync = (): Promise<void[]> => {
   const promises = packages.map((packageName) => {
