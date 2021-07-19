@@ -35,12 +35,16 @@ export default function () {
     }
 
     try {
-      await dispatch.user.register({
+      const resp = await dispatch.user.register({
         display_name: nick,
         email,
         url: link,
         password,
       });
+
+      if (resp && resp.verify) {
+        alert(t('register success! please go to your mailbox to verify it!'));
+      }
       navigate('/ui/login', { replace: true });
     } catch (e) {
       setError(t('register error! try again later'));

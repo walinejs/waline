@@ -20,7 +20,7 @@ module.exports = class extends BaseRest {
     const { email, password } = this.post();
     const user = await this.modelInstance.select({ email });
 
-    if (think.isEmpty(user)) {
+    if (think.isEmpty(user) || /^verify:/i.test(user.type)) {
       return this.fail();
     }
 
@@ -50,5 +50,5 @@ module.exports = class extends BaseRest {
     });
   }
 
-  deleteAction() {}
+  deleteAction() { }
 };
