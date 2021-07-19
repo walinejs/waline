@@ -78,4 +78,13 @@ module.exports = class extends Base {
         break;
     }
   }
+
+  postAction() {
+    const { LOGIN } = process.env;
+    const { userInfo } = this.ctx.state;
+
+    if (LOGIN === 'force' && think.isEmpty(userInfo)) {
+      return this.ctx.throw(401);
+    }
+  }
 };
