@@ -54,5 +54,6 @@
   "submit": "提交",
   "cancel": "取消",
   "at": "于",
-  "get userinfo failed": "获取用户信息失败"
+  "get userinfo failed": "获取用户信息失败",
+  "register success! please go to your mailbox to verify it!": "注册成功！请到你的个人邮箱中确认注册！"
 }

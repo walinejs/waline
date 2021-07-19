@@ -54,5 +54,6 @@
   "submit": "提交",
   "cancel": "取消",
   "at": "於",
-  "get userinfo failed": "獲取使用者資訊失敗"
+  "get userinfo failed": "獲取使用者資訊失敗",
+  "register success! please go to your mailbox to verify it!": "註冊成功！請到你的個人郵箱中確認註冊！"
 }

@@ -54,5 +54,6 @@
   "submit": "Submit",
   "cancel": "Cancel",
   "at": "At",
-  "get userinfo failed": "Get userinfo failed!"
+  "get userinfo failed": "Get userinfo failed!",
+  "register success! please go to your mailbox to verify it!": "Register success! Please go to your mailbox to verify it!"
 }
