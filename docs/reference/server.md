@@ -58,7 +58,7 @@ Vercel 需要在 <kbd>Settings</kbd> - <kbd>Environment Variables</kbd> 中进�
 | `SENDER_NAME`  | 自定义发送邮件的发件人                                                              |
 | `SENDER_EMAIL` | 自定义发送邮件的发件地址                                                            |
 
-:::tips
+:::tip
 可以在[这里](https://github.com/nodemailer/nodemailer/blob/master/lib/well-known/services.json)查看支持的服务商。`SMTP_SERVICE` 和 (`SMTP_HOST`、`SMTP_PORT`）任选其一即可，如果没有在列表中知道对应的 `SMTP_SERVICE` 的话则需要配 `SMTP_HOST` 和 `SMTP_PORT`。
 :::
 ### 数据库
