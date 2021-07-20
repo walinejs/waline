@@ -15,7 +15,7 @@ module.exports = class extends think.Controller {
     this.id = this.getId();
   }
 
-  __before() {}
+  __before() { }
 
   getResource() {
     const filename = this.__filename || __filename;
@@ -52,8 +52,8 @@ module.exports = class extends think.Controller {
       return;
     }
 
-    return fn(...args);
+    return fn.call(this, ...args);
   }
 
-  __call() {}
+  __call() { }
 };
