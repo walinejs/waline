@@ -1,7 +1,7 @@
 {
   "name": "@waline/vercel",
   "description": "vercel server for waline comment system",
-  "version": "0.26.0",
+  "version": "0.26.1",
   "author": "lizheming <i@imnerd.org>",
   "dependencies": {
     "@cloudbase/node-sdk": "^2.6.0",
