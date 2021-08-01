@@ -47,6 +47,7 @@ Waline - 一款从 [Valine](https://valine.js.org) 衍生的带后端评论系�
 - [ ] AWS, GCP, Azure 部署支持
 - [ ] 置顶评论
 - [ ] 评论赞踩
+- [ ] 双重验证
 - [ ] 其它...
 
 真·欢迎你为 Waline 的开发做贡献。
