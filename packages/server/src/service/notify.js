@@ -232,16 +232,20 @@ module.exports = class extends think.Service {
     </div>`;
 
     if (!isAuthorComment && !disableAuthorNotify) {
-      const wechat = await this.wechat({ title, content }, comment, parent);
-      const qq = await this.qq(comment, parent);
-      const telegram = await this.telegram(comment, parent);
-      if (
-        think.isEmpty(wechat) &&
-        think.isEmpty(qq) &&
-        think.isEmpty(telegram) &&
-        !isReplyAuthor
-      ) {
-        mailList.push({ to: AUTHOR, title, content });
+      try {
+        const wechat = await this.wechat({ title, content }, comment, parent);
+        const qq = await this.qq(comment, parent);
+        const telegram = await this.telegram(comment, parent);
+        if (
+          think.isEmpty(wechat) &&
+          think.isEmpty(qq) &&
+          think.isEmpty(telegram) &&
+          !isReplyAuthor
+        ) {
+          mailList.push({ to: AUTHOR, title, content });
+        }
+      } catch (error) {
+        console.log('Notification send fail:', error);
       }
     }
 
