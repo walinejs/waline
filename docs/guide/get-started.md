@@ -36,19 +36,25 @@
 
 1. 如果你未登录的话，Vercel 会让你注册或登录，请使用 GitHub 账户进行快捷登录。
 
-1. 输入一个你喜欢的 Vercel 项目名称并点击 `Continue` 继续:
+1. 输入一个你喜欢的 Vercel 项目名称并点击 `Create` 继续:
 
-   ![创建项目](https://p2.ssl.qhimg.com/t018cd2a91a8896a555.png)
+   ![创建项目](../assets/vercel-1.png)
 
-1. 输入你想要设置的 GitHub 仓库名称并点击 `Continue` 继续。
+1. 此时会让你创建 Team 账号，这里选择 `Skip` 即可：
 
-   此时 Vercel 会基于 Waline 模板帮助你新建并初始化该仓库。
+   ![skip team](../assets/vercel-2.png)
 
-   ![创建仓库](https://p4.ssl.qhimg.com/t01bb30e74f85ddf5b3.png)
+1. 此时 Vercel 会基于 Waline 模板帮助你新建并初始化仓库，仓库名为你之前输入的项目名。
 
-1. 在仓库初始化完毕后，请进入 `Environment Variables` 中配置三个环境变量 `LEAN_ID`, `LEAN_KEY` 和 `LEAN_MASTER_KEY` 。它们的值分别对应上一步在 LeanCloud 中获得的 `APP ID`, `APP KEY`, `Master Key`。
+   ![deploy](../assets/vercel-3.png)
+   
+   一两分钟后，满屏的烟花会庆祝你部署成功。此时点击 `Go to Dashboard` 可以跳转到应用的控制台。
 
-   ![设置环境变量](https://p5.ssl.qhimg.com/t019aec05e3e5fea5cc.png)
+   ![deploy](../assets/vercel-4.png)
+
+1. 点击顶部的 `Settings` - `Environment Variables` 进入环境变量配置页，并配置三个环境变量`LEAN_ID`, `LEAN_KEY` 和 `LEAN_MASTER_KEY` 。它们的值分别对应上一步在 LeanCloud 中获得的 `APP ID`, `APP KEY`, `Master Key`。
+
+   ![设置环境变量](../assets/vercel-5.png)
 
    ::: tip
 
@@ -56,17 +62,21 @@
 
    :::
 
-1. 点击 `Deploy` 部署。一两分钟后，满屏的烟花会庆祝你部署成功。此时请点击 `Visit` ，即可跳转到部署好的网站地址，此地址即为你的服务端地址。
+1. 环境变量配置完成之后点击顶部的 `Deployments` 点击顶部最新的一次部署右侧的 `Redeploy` 按钮进行重新部署。该步骤是为了让刚才设置的环境变量生效。
 
-   ![部署成功](https://p0.ssl.qhimg.com/t0142b58c2e8f886b28.png)
+   ![redeploy](../assets/vercel-6.png)
 
+1. 此时会跳转到 `Overview` 界面开始部署，等待片刻后 `STATUS` 会变成 `Ready`。此时请点击 `Visit` ，即可跳转到部署好的网站地址，此地址即为你的服务端地址。
+
+   ![redeploy success](../assets/vercel-7.png)
+   
 ## HTML 引入 (客户端)
 
 在你的网页中进行如下设置:
 
 1. 使用 CDN 引入 Waline: `//cdn.jsdelivr.net/npm/@waline/client`。
 
-1. 创建 `<script>` 标签使用 `Waline()` 初始化，并传入必要的 `el` 与 `serverURL` 选项。
+2. 创建 `<script>` 标签使用 `Waline()` 初始化，并传入必要的 `el` 与 `serverURL` 选项。
 
    - `el` 选项是 Waline 渲染使用的元素，你可以设置一个字符串形式的 CSS 选择器或者一个 HTMLElement 对象。
    - `serverURL` 是服务端的地址，即上一步获取到的值。
@@ -89,7 +99,7 @@
    </body>
    ```
 
-1. 评论服务此时就会在你的网站上成功运行 :tada:
+3. 评论服务此时就会在你的网站上成功运行 :tada:
 
 ## 评论管理 (管理端)
 

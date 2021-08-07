@@ -18,27 +18,40 @@ Welcome to Waline. In just a few steps, you can enable Waline to provide comment
 
 ## Deploy to Vercel (Server)
 
+
 [![Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/walinejs/waline/tree/main/example)
 
 1. Click the blue button above, it will redirect you to vercel to deploy with waline template.
 
-1. If you haven't logined, we recommend you to sign in with GitHub.
+2. If you haven't logined, we recommend you to sign in with GitHub.
 
-1. Input your Vercel project name then click `Continue`.
+3. Input your Vercel project name then click `Create`.
 
-   ![Create project](https://p2.ssl.qhimg.com/t018cd2a91a8896a555.png)
+   ![Create Project](../../assets/vercel-1.png)
 
-1. Input your new GitHub repo name then click `Continue`. So that repo will be created and initiallized automatically base on waline example template by Vercel.
+4. Then Vercel will let you create Vercel Team account, click `Skip` and go on.
 
-   ![Select repo](https://p4.ssl.qhimg.com/t01bb30e74f85ddf5b3.png)
+   ![skip team](../../assets/vercel-2.png)
 
-1. After repo is initialized, enter `Environment Variables` and set `LEAN_ID`, `LEAN_KEY` and `LEAN_MASTER_KEY`. The variables' value should be the ones you got in the previous step. `APP ID` is the value of `LEAN_ID`, and `APP Key` to `LEAN_KEY`, `Master Key` to `LEAN_MASTER_KEY`.
+5. Repo which named you input before will be created and initiallized automatically base on waline example template by Vercel.
 
-   ![Set environment variables](https://p5.ssl.qhimg.com/t019aec05e3e5fea5cc.png)
+   ![deploy](../../assets/vercel-3.png)
+   
+   After one minute or two, vercel should finish the deployment. Click `Go to Dashboard` button to redirect to your application dashboard.
 
-1. Click `Deploy` button, and after one minute or two, vercel should finish the deployment. Click `Visit` button to visit the site. This link is your server address.
+   ![deploy](../../assets/vercel-4.png)
 
-   ![Deploy](https://p0.ssl.qhimg.com/t0142b58c2e8f886b28.png)
+6. Click `Settings` menu on the top, and `Environment Variables` button on the side to go to envrionment variables setting page. Then set `LEAN_ID`, `LEAN_KEY` and `LEAN_MASTER_KEY`. The variables' value should be the ones you got in the previous step. `APP ID` is the value of `LEAN_ID`, and `APP Key` to `LEAN_KEY`, `Master Key` to `LEAN_MASTER_KEY`.
+
+   ![set environment variables](../../assets/vercel-5.png)
+
+7. To let your environment variables setting active, you need redeploy your application. Click `Deployments` menu on the top and find the latest deployment at the top of list, click `Redeploy` button in the right dropdown menu.
+
+   ![redeploy](../../assets/vercel-6.png)
+
+8. If everything is ok, vercel will redirect to `Overview` page to start redeployment. Wait a moment the `STATUS` will change to `Ready`. Now you can click `Visit` to visit the site. This link is your server address.
+
+   ![redeploy success](../../assets/vercel-7.png)
 
 ## Importing in HTML (Client)
 
