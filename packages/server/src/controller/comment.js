@@ -335,6 +335,8 @@ module.exports = class extends BaseRest {
       }
 
       think.logger.debug(`Comment keyword check result: ${data.status}`);
+    } else {
+      data.status = 'approved';
     }
 
     const preSaveResp = await this.hook('preSave', data);
