@@ -25,7 +25,7 @@ English | [中文](https://github.com/walinejs/waline/blob/main/README_CN.md) | 
 | **Client**                                             | **Server**   | **Storage** |
 | [@waline/client](https://waline.js.org)                | Vercel       | LeanCloud   |
 | [MiniValine](https://minivaline.js.org/)               | CloudBase    | CloudBase   |
-| [AprilComment](https://github.com/innc11/AprilComment) | Docker       | MongoDB     |
+| [AprilComment](https://github.com/asforest/AprilComment) | Docker       | MongoDB     |
 |                                                        | Virtual Host | MySQL       |
 |                                                        |              | SQLite      |
 |                                                        |              | PostgreSQL  |

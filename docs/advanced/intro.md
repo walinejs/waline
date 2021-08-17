@@ -18,7 +18,7 @@ Waline - 一款从 [Valine](https://valine.js.org) 衍生的带后端评论系�
 | **客户端脚本**                                         | **服务端部署** | **数据存储** |
 | [@waline/client](https://waline.js.org)                | Vercel         | LeanCloud    |
 | [MiniValine](https://minivaline.js.org/)               | CloudBase      | CloudBase    |
-| [AprilComment](https://github.com/innc11/AprilComment) | Docker         | MongoDB      |
+| [AprilComment](https://github.com/asforest/AprilComment) | Docker         | MongoDB      |
 |                                                        | 独立部署       | MySQL        |
 |                                                        |                | SQLite       |
 |                                                        |                | PostgreSQL   |
