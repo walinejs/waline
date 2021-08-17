@@ -182,10 +182,12 @@ Whether **force** pulling the latest avatar each time.
 
 ## uploadImage
 
-- Type: `Function`
+- Type: `Function | false`
 - Required: No
 
 Custom image upload callback to manage picture by yourself. We will pass a picture file object when execute it.
+
+If you set it to `false`, image upload feature will be disabled.
 
 ## highlight
 

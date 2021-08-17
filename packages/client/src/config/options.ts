@@ -348,7 +348,7 @@ export interface WalineOptions extends DeprecatedValineOptions {
    * We will pass a picture file object when execute it.
    */
 
-  uploadImage?: UploadImage;
+  uploadImage?: UploadImage | false;
 
   /**
    *

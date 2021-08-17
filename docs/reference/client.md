@@ -184,10 +184,12 @@ Waline 的服务端地址。
 
 ## uploadImage
 
-- 类型: `Function`
+- 类型: `Function | false`
 - 必填: 否
 
 自定义图片上传方法，方便更好的存储图片。方法执行时会将图片对象传入。
+
+你可以设置为 `false` 以禁用图片上传功能。
 
 ## highlight
 

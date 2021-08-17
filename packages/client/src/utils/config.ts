@@ -64,6 +64,7 @@ export const getConfig = ({
   wordLimit,
   uploadImage,
   copyright = true,
+  // TODO: changed to `login = 'enable'`
   login = anonymous === true
     ? 'disable'
     : anonymous === false
@@ -111,7 +112,11 @@ export const getConfig = ({
             }`,
           },
     uploadImage:
-      typeof uploadImage === 'function' ? uploadImage : defaultUploadImage,
+      typeof uploadImage === 'function'
+        ? uploadImage
+        : uploadImage === false
+        ? false
+        : defaultUploadImage,
     copyright,
     login,
     ...more,

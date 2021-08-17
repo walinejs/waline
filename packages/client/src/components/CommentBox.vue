@@ -97,6 +97,7 @@
           />
 
           <label
+            v-if="canUploadImage"
             for="waline-image-upload"
             class="vaction"
             :title="locale.uploadImage"
@@ -238,6 +239,7 @@ import type { DeepReadonly } from 'vue';
 import type { ConfigRef } from '../composables';
 import type { CommentData } from '../typings';
 import type { EmojiConfig } from '../utils';
+import { UploadImage } from '../config';
 
 export default defineComponent({
   name: 'CommentBox',
@@ -298,6 +300,8 @@ export default defineComponent({
 
     const isLogin = computed(() => Boolean(userInfo.value?.token));
 
+    const canUploadImage = computed(() => config.value.uploadImage !== false);
+
     const insert = (content: string): void => {
       const textArea = editorRef.value as HTMLTextAreaElement;
       const startPosition = textArea.selectionStart;
@@ -327,7 +331,7 @@ export default defineComponent({
       insert(uploadText);
 
       return Promise.resolve()
-        .then(() => config.value.uploadImage(file))
+        .then(() => (config.value.uploadImage as UploadImage)(file))
         .then((url) => {
           inputs.editor = inputs.editor.replace(
             uploadText,
@@ -340,7 +344,7 @@ export default defineComponent({
       if (event.dataTransfer?.items) {
         const file = getImagefromDataTransfer(event.dataTransfer.items);
 
-        if (file) {
+        if (file && canUploadImage.value) {
           uploadImage(file);
           event.preventDefault();
         }
@@ -351,14 +355,14 @@ export default defineComponent({
       if (event.clipboardData) {
         const file = getImagefromDataTransfer(event.clipboardData.items);
 
-        if (file) uploadImage(file);
+        if (file && canUploadImage.value) uploadImage(file);
       }
     };
 
     const onChange = (): void => {
       const inputElement = imageUploadRef.value as HTMLInputElement;
 
-      if (inputElement.files)
+      if (inputElement.files && canUploadImage.value)
         uploadImage(inputElement.files[0]).then(() => {
           // clear input so a same image can be uploaded later
           inputElement.value = '';
@@ -638,6 +642,9 @@ export default defineComponent({
       emoji,
       emojiTabIndex,
       showEmoji,
+
+      // image
+      canUploadImage,
 
       // preview
       previewText,
