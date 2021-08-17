@@ -25,9 +25,9 @@ Waline is a classic Client/Server architecture, which provides a relatively comp
   </script>
   ```
 
-- [AprilComment](https://github.com/innc11/AprilComment)
+- [AprilComment](https://github.com/asforest/AprilComment)
 
-  By [innc11](https://github.com/innc11/AprilComment), green-by-white theme, simple and easy, support Markdown as the format of comment. Usage:
+  By [asforest](https://github.com/asforest/AprilComment), green-by-white theme, simple and easy, support Markdown as the format of comment. Usage:
 
   ```html
   <script src="https://cdn.jsdelivr.net/npm/april-comment@latest/dist/index.js"></script>
