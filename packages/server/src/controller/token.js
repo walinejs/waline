@@ -50,5 +50,5 @@ module.exports = class extends BaseRest {
     });
   }
 
-  deleteAction() { }
+  deleteAction() {}
 };

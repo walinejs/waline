@@ -18,7 +18,6 @@ Welcome to Waline. In just a few steps, you can enable Waline to provide comment
 
 ## Deploy to Vercel (Server)
 
-
 [![Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/walinejs/waline/tree/main/example)
 
 1. Click the blue button above, it will redirect you to vercel to deploy with waline template.
@@ -36,7 +35,7 @@ Welcome to Waline. In just a few steps, you can enable Waline to provide comment
 5. Repo which named you input before will be created and initiallized automatically base on waline example template by Vercel.
 
    ![deploy](../../assets/vercel-3.png)
-   
+
    After one minute or two, vercel should finish the deployment. Click `Go to Dashboard` button to redirect to your application dashboard.
 
    ![deploy](../../assets/vercel-4.png)

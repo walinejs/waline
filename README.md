@@ -20,16 +20,16 @@ English | [中文](https://github.com/walinejs/waline/blob/main/README_CN.md) | 
 - Deploy free!
 - Multiple deployment and storage service support, at least 84 deployment choice!
 
-|                                                        | Waline       |             |
-| ------------------------------------------------------ | ------------ | ----------- |
-| **Client**                                             | **Server**   | **Storage** |
-| [@waline/client](https://waline.js.org)                | Vercel       | LeanCloud   |
-| [MiniValine](https://minivaline.js.org/)               | CloudBase    | CloudBase   |
+|                                                          | Waline       |             |
+| -------------------------------------------------------- | ------------ | ----------- |
+| **Client**                                               | **Server**   | **Storage** |
+| [@waline/client](https://waline.js.org)                  | Vercel       | LeanCloud   |
+| [MiniValine](https://minivaline.js.org/)                 | CloudBase    | CloudBase   |
 | [AprilComment](https://github.com/asforest/AprilComment) | Docker       | MongoDB     |
-|                                                        | Virtual Host | MySQL       |
-|                                                        |              | SQLite      |
-|                                                        |              | PostgreSQL  |
-|                                                        |              | GitHub      |
+|                                                          | Virtual Host | MySQL       |
+|                                                          |              | SQLite      |
+|                                                          |              | PostgreSQL  |
+|                                                          |              | GitHub      |
 
 ## Todo
 

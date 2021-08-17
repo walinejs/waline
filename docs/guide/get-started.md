@@ -47,7 +47,7 @@
 1. 此时 Vercel 会基于 Waline 模板帮助你新建并初始化仓库，仓库名为你之前输入的项目名。
 
    ![deploy](../assets/vercel-3.png)
-   
+
    一两分钟后，满屏的烟花会庆祝你部署成功。此时点击 `Go to Dashboard` 可以跳转到应用的控制台。
 
    ![deploy](../assets/vercel-4.png)
@@ -69,7 +69,7 @@
 1. 此时会跳转到 `Overview` 界面开始部署，等待片刻后 `STATUS` 会变成 `Ready`。此时请点击 `Visit` ，即可跳转到部署好的网站地址，此地址即为你的服务端地址。
 
    ![redeploy success](../assets/vercel-7.png)
-   
+
 ## HTML 引入 (客户端)
 
 在你的网页中进行如下设置:
