@@ -22,7 +22,7 @@
     "lint": "eslint --fix . && prettier --check --write .",
     "lint:check": "eslint . && prettier --check .",
     "packages:check-update": "ncu --deep --timeout 600000",
-    "packages:update": "ncu -u --deep --timeout 600000 && npm install && npm upgrade",
+    "packages:update": "ncu -u --deep --timeout 600000 && npm install --legacy-peer-deps && npm upgrade --legacy-peer-deps",
     "prepare": "husky install",
     "release": "ts-node -O {\\\"module\\\":\\\"commonjs\\\"} scripts/release",
     "test": "jest -i"
