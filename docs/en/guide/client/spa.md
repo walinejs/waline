@@ -20,7 +20,7 @@ E.g.:
 
 ```js
 // in `/` route
-const waline = Walien({
+const waline = Waline({
   serverURL: 'https://example.com',
 });
 

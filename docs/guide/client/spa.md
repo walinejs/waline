@@ -20,7 +20,7 @@ Waline 为 SPA(**S**ingle **P**age **A**pplication, 单页应用) 带来了支�
 
 ```js
 // 在 `/` 路由
-const waline = Walien({
+const waline = Waline({
   serverURL: 'https://example.com',
 });
 
