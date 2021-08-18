@@ -36,7 +36,7 @@ jobs:
             ${{ runner.os }}-npm-
 
       - name: Use npm v7
-        run: sudo npm i -g npm@7
+        run: sudo npm i -g npm@7.19
 
       - name: Install Deps
         if: steps.node-cache.outputs.cache-hit != 'true'
