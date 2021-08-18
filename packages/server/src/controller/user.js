@@ -19,7 +19,7 @@ module.exports = class extends BaseRest {
 
     if (
       !think.isEmpty(resp) &&
-      ['administrator', 'guest'].includes(resp.type)
+      ['administrator', 'guest'].includes(resp[0].type)
     ) {
       return this.fail('USER_EXIST');
     }
