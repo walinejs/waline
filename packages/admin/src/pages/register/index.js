@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { Link, navigate } from '@reach/router';
+import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 export default function () {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const history = useHistory();
   const user = useSelector((state) => state.user);
   const [error, setError] = useState(false);
 
   useEffect(() => {
     if (user && user.email) {
-      navigate('/ui', { replace: true });
+      history.replace('/ui');
     }
-  }, []);
+  }, [history]);
 
   const onSubmit = async function (e) {
     e.preventDefault();

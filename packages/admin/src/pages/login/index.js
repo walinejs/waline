@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, navigate } from '@reach/router';
+import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
@@ -8,19 +8,20 @@ import * as Icons from '../../components/icon';
 export default function () {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const history = useHistory();
   const user = useSelector((state) => state.user);
   const [error, setError] = useState(false);
   const match = location.pathname.match(/(.*?)\/ui/);
-  const basepath = match ? match[1] : '/';
+  const basepath = match && match[1] ? match[1] : '/';
 
   useEffect(() => {
     if (user && user.email) {
       const query = new URLSearchParams(location.search);
       const redirect =
         query.get('redirect') ||
-        (user.type !== 'administrator' ? 'ui/profile' : 'ui');
+        (user.type !== 'administrator' ? '/ui/profile' : 'ui');
 
-      navigate(basepath + redirect, { replace: true });
+      history.push(basepath + redirect);
     }
   }, [user]);
 
@@ -40,7 +41,6 @@ export default function () {
 
     try {
       await dispatch.user.login({ email, password, remember });
-      navigate('/ui', { replace: true });
     } catch (e) {
       setError(t('email or password error'));
     }

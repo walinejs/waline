@@ -1,8 +1,7 @@
-import { createModel } from '@rematch/core';
 import { getUserInfo, login, logout, register } from '../services/auth';
 import { updateProfile } from '../services/user';
 
-export const user = createModel({
+export const user = {
   state: null,
   reducers: {
     setUser(_, user) {
@@ -63,4 +62,4 @@ export const user = createModel({
       return dispatch.user.updateUser(data);
     },
   }),
-});
+};

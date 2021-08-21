@@ -1,16 +1,18 @@
 import React from 'react';
-import { Link } from '@reach/router';
+import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 export default function () {
   const dispatch = useDispatch();
+  const history = useHistory();
   const user = useSelector((state) => state.user);
   const { t } = useTranslation();
 
   const onLogout = function (e) {
     e.preventDefault();
     dispatch.user.logout();
+    history.push('/ui/login');
   };
 
   const match = location.pathname.match(/(.*?)\/ui/);
