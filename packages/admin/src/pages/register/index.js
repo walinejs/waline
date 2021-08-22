@@ -46,7 +46,7 @@ export default function () {
       if (resp && resp.verify) {
         alert(t('register success! please go to your mailbox to verify it!'));
       }
-      navigate('/ui/login', { replace: true });
+      history.push('/ui/login');
     } catch (e) {
       setError(t('register error! try again later'));
     }
