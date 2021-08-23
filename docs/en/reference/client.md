@@ -167,10 +167,10 @@ number of comments per page.
 ## avatarCDN
 
 - Type: `string`
-- Default: `https://sdn.geekzu.org/avatar/`
+- Default: `https://seccdn.libravatar.org/avatar/`
 - Required: No
 
-Gravatar CDN baseURL.
+Avatar provider baseURL. Supports Gravatar-compatible APIs.
 
 ## avatarForce
 

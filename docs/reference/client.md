@@ -167,10 +167,10 @@ Waline 的服务端地址。
 ## avatarCDN
 
 - 类型: `string`
-- 默认值: `https://sdn.geekzu.org/avatar/`
+- 默认值: `https://seccdn.libravatar.org/avatar/`
 - 必填: 否
 
-设置 Gravatar 头像 CDN 地址。
+设置头像 CDN 地址。可使用任何与 [Gravatar](http://cn.gravatar.com/) API 兼容的服务。
 
 ## avatarForce
 

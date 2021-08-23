@@ -26,7 +26,7 @@ Waline 支持诸多功能，包括登录、头像、多语言、自定义 Emoji�
 
 Waline 官方添加了简体中文、繁体中文、英文和日语的支持，同时你可以在此基础上 [自定义多语言](./i18n.md)
 
-Waline 使用 Gravatar，同时支持你定制默认头像，详见 [头像配置](./avatar.md)。
+Waline 使用 Libravatar [头像配置](./avatar.md)。
 
 你可以很轻松的使用 Waline 提供的预设或自己创建新的预设来自定义评论框内的 Emoji 表情，详见 [自定义 Emoji](./emoji.md)。
 
