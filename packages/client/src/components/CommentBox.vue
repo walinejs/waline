@@ -123,7 +123,7 @@
               &nbsp;/&nbsp;
               <span
                 :class="{ illegal: !isWordNumberLegal }"
-                v-text="textLimit"
+                v-text="wordLimit"
               />
             </span>
 
