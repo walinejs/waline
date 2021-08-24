@@ -1,10 +1,10 @@
 # Avatar Configuration
 
-Waline currently uses [Gravatar][1] as the comment list avatar.
+Waline currently uses [Libravatar][1] as the comment list avatar.
 
-> Thanks for the mirroring service provided by [geekzu](https://cdn.geekzu.org/cached.html), [v2ex](https://v2ex.com).
+Libravatar is a free, open-source avatar provider features federated hosting and Gravatar-compatible APIs.
 
-Users should log in or register by themselves [Gravatar][1], then set or modify their avatar.When commenting, just leave the email address you used when registering in [Gravatar][1].
+Users should log in or register by themselves [Libravatar][1], then set or modify their avatar. When commenting, just leave the email address you used when registering in [Libravatar][1]. Note that if an image is not found in the [Libravatar][1] database and the hash algorithm used was MD5, then Libravatar will first redirect to [Gravatar][2] in case the image exists there.
 
 <!-- more -->
 
@@ -23,24 +23,25 @@ Waline({
 
 ## Available Values
 
-|     Value     |                                                               Demo                                                               | Style                                               |
-| :-----------: | :------------------------------------------------------------------------------------------------------------------------------: | --------------------------------------------------- |
-|     `''`      |                   ![Gravatar official graphics](//sdn.geekzu.org/avatar/d41d8cd98f00b204e9800998ecf8427e?s=40)                   | Gravatar official graphics                          |
-|    `'mp'`     |                  ![Mystic man (a grayhead)](//sdn.geekzu.org/avatar/d41d8cd98f00b204e9800998ecf8427e?s=40&d=mp)                  | Mystic man (a grayhead)                             |
-| `'identicon'` |                 ![Abstract geometry](//sdn.geekzu.org/avatar/d41d8cd98f00b204e9800998ecf8427e?s=40&d=identicon)                  | Abstract geometry                                   |
-| `'monsterid'` |                   ![little monster](//sdn.geekzu.org/avatar/d41d8cd98f00b204e9800998ecf8427e?s=40&d=monsterid)                   | little monster                                      |
-|  `'wavatar'`  |   ![A combination of different faces and backgrounds](//sdn.geekzu.org/avatar/d41d8cd98f00b204e9800998ecf8427e?s=40&d=wavatar)   | A combination of different faces and backgrounds    |
-| `'robohash'`  | ![a generated robot with different colors, faces, etc](//sdn.geekzu.org/avatar/d41d8cd98f00b204e9800998ecf8427e?s=40&d=robohash) | a generated robot with different colors, faces, etc |
-|   `'retro'`   |               ![Eight-pixel retro portrait](//sdn.geekzu.org/avatar/d41d8cd98f00b204e9800998ecf8427e?s=40&d=retro)               | Eight-pixel retro portrait                          |
-|   `'hide'`    |                                                               N/A                                                                | Hidden avatar                                       |
+|     Value     |                                                                  Demo                                                                   | Style                                               |
+| :-----------: | :-------------------------------------------------------------------------------------------------------------------------------------: | --------------------------------------------------- |
+|     `''`      |                  ![Libravatar official graphics](//seccdn.libravatar.org/avatar/d41d8cd98f00b204e9800998ecf8427e?s=40)                  | Libravatar official graphics                        |
+|    `'mp'`     |                  ![Mystic man (a grayhead)](//seccdn.libravatar.org/avatar/d41d8cd98f00b204e9800998ecf8427e?s=40&d=mp)                  | Mystic man (a grayhead)                             |
+| `'identicon'` |                 ![Abstract geometry](//seccdn.libravatar.org/avatar/d41d8cd98f00b204e9800998ecf8427e?s=40&d=identicon)                  | Abstract geometry                                   |
+| `'monsterid'` |                   ![little monster](//seccdn.libravatar.org/avatar/d41d8cd98f00b204e9800998ecf8427e?s=40&d=monsterid)                   | little monster                                      |
+|  `'wavatar'`  |   ![A combination of different faces and backgrounds](//seccdn.libravatar.org/avatar/d41d8cd98f00b204e9800998ecf8427e?s=40&d=wavatar)   | A combination of different faces and backgrounds    |
+| `'robohash'`  | ![a generated robot with different colors, faces, etc](//seccdn.libravatar.org/avatar/d41d8cd98f00b204e9800998ecf8427e?s=40&d=robohash) | a generated robot with different colors, faces, etc |
+|   `'retro'`   |               ![Eight-pixel retro portrait](//seccdn.libravatar.org/avatar/d41d8cd98f00b204e9800998ecf8427e?s=40&d=retro)               | Eight-pixel retro portrait                          |
+|   `'hide'`    |                                                                   N/A                                                                   | Hidden avatar                                       |
 
-[1]: http://gravatar.com/
+[1]: https://www.libravatar.org/
+[2]: http://gravatar.com/
 
 ## Attentions
 
 ::: warning
 
-Please note that though email providers such as Google and QQ do not distinguish upper and lower case user names, you still need to ensure that the email address registered by gravatar corresponds to the email address inputed.
+Please note that though email providers such as Google and QQ do not distinguish upper and lower case user names, you still need to ensure that the email address registered on Gravatar corresponds to the email address inputed.
 
 Although most large mail providers in the world do not distinguish case-sensitive email user names, according to RFC 5231, emails are case-sensitive.
 

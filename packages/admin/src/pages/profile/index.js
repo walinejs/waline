@@ -84,7 +84,7 @@ export default function () {
                     className="profile-avatar"
                     src={
                       user.avatar ||
-                      `https://sdn.geekzu.org/avatar/${user.mailMd5}?s=220&amp;r=X&amp;d=mm`
+                      `https://seccdn.libravatar.org/avatar/${user.mailMd5}?s=220&amp;r=X&amp;d=mm`
                     }
                   />
                 </a>

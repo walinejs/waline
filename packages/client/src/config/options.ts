@@ -316,7 +316,7 @@ export interface WalineOptions extends DeprecatedValineOptions {
    *
    * Gravatar CDN baseURL
    *
-   * @default 'https://cdn.v2ex.com/gravatar/'
+   * @default 'https://seccdn.libavatar.org/avatar/'
    */
   avatarCDN?: string;
 
