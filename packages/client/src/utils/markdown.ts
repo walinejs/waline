@@ -39,7 +39,5 @@ export const parseMarkdown = (
     smartypants: true,
   });
 
-  console.log(marked(parseMath(parseEmojiPre(content, emojiMap))));
-
   return parseEmojiAfter(marked(parseMath(parseEmojiPre(content, emojiMap))));
 };
