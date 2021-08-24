@@ -50,7 +50,7 @@ module.exports = class extends think.Logic {
       userInfo.mailMd5 = helper.md5(userInfo.email);
       if (/(github)/i.test(userInfo.avatar)) {
         userInfo.avatar =
-          this.config('avatarProxy') +
+          this.config('avatarProvider') +
           '?url=' +
           encodeURIComponent(userInfo.avatar);
       }
