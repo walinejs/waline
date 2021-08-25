@@ -33,12 +33,13 @@
       ">0.5%",
       "not dead",
       "not ie 11",
-      "not op_mini all"
+      "not op_mini all",
+      "last 2 years"
     ],
     "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
+      "last 2 chrome version",
+      "last 2 firefox version",
+      "last 2 safari version"
     ]
   },
   "devDependencies": {
