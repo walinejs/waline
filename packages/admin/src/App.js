@@ -12,11 +12,13 @@ function Access(props) {
 
   useEffect(() => {
     const meta = props.meta || {};
+    const basename = props.basename || '/';
     const emptyUser = !user || !user.email;
     const noPermission =
       emptyUser || (meta.auth ? props.meta.auth !== user.type : false);
     if (emptyUser || noPermission) {
-      return (location.href = '/ui/login?redirect=' + location.pathname);
+      return (location.href =
+        basename + 'ui/login?redirect=' + location.pathname);
     }
   }, [user, props.meta]);
 
@@ -32,7 +34,7 @@ export default function () {
       <Router basename={basepath}>
         <Switch>
           <Route path="/ui" exact>
-            <Access meta={{ auth: 'administrator' }}>
+            <Access meta={{ auth: 'administrator' }} basename={basepath}>
               <ManageComments />
             </Access>
           </Route>
