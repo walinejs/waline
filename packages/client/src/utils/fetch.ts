@@ -46,6 +46,7 @@ export const fetchCommentCount = ({
     )
     // TODO: Improve this API
     .then((counts) => (Array.isArray(counts) ? counts : [counts]));
+
 export interface FetchRecentOptions {
   serverURL: string;
   count: number;
