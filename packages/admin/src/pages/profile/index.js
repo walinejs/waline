@@ -129,10 +129,11 @@ export default function () {
                         defaultValue={user.url}
                       />
                       <p className="description">
-                        <Trans i18nKey="homepage tips">
-                          Current users&apos; homepage. It must be start with{' '}
-                          <code>http://</code> or <code>https://</code>.
-                        </Trans>
+                        <Trans
+                          i18nKey="homepage tips"
+                          defaults="Current users' homepage. It must be start with <code>http://</code> or <code>https://</code>."
+                          components={{ code: <code /> }}
+                        />
                       </p>
                     </li>
                   </ul>
