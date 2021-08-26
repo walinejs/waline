@@ -21,7 +21,7 @@ export default function () {
         query.get('redirect') ||
         (user.type !== 'administrator' ? '/ui/profile' : 'ui');
 
-      history.push(basepath + redirect);
+      history.push((basepath + redirect).replace(/\/+/g, '/'));
     }
   }, [user]);
 
