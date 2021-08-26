@@ -52,7 +52,7 @@ module.exports = class extends BaseRest {
       await this.modelInstance.update(data, { email: data.email });
     }
 
-    if (!hasMailServie) {
+    if (!/^verify:/i.test(data.type)) {
       return this.success();
     }
 
