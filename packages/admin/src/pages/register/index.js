@@ -9,6 +9,7 @@ export default function () {
   const history = useHistory();
   const user = useSelector((state) => state.user);
   const [error, setError] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     if (user && user.email) {
@@ -36,6 +37,7 @@ export default function () {
     }
 
     try {
+      setSubmitting(true);
       const resp = await dispatch.user.register({
         display_name: nick,
         email,
@@ -49,6 +51,8 @@ export default function () {
       history.push('/ui/login');
     } catch (e) {
       setError(t('register error! try again later'));
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -128,7 +132,11 @@ export default function () {
               />
             </p>
             <p className="submit">
-              <button type="submit" className="btn btn-l w-100 primary">
+              <button
+                type="submit"
+                disabled={submitting}
+                className="btn btn-l w-100 primary"
+              >
                 {t('register')}
               </button>
             </p>
