@@ -12,13 +12,13 @@ function Access(props) {
 
   useEffect(() => {
     const meta = props.meta || {};
-    const basename = props.basename || '/';
+    const basename = props.basename || '';
     const emptyUser = !user || !user.email;
     const noPermission =
       emptyUser || (meta.auth ? props.meta.auth !== user.type : false);
     if (emptyUser || noPermission) {
       return (location.href =
-        basename + 'ui/login?redirect=' + location.pathname);
+        basename + '/ui/login?redirect=' + location.pathname);
     }
   }, [user, props.meta]);
 
