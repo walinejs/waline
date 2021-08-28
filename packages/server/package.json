@@ -1,6 +1,6 @@
 {
   "name": "@waline/vercel",
-  "version": "0.26.5",
+  "version": "0.26.6",
   "description": "vercel server for waline comment system",
   "repository": "https://github.com/walinejs/waline",
   "license": "MIT",
