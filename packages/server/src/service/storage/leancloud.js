@@ -60,7 +60,7 @@ module.exports = class extends Base {
     }
   }
 
-  async select(where, { desc, limit, offset, field } = {}) {
+  async _select(where, { desc, limit, offset, field } = {}) {
     const instance = new AV.Query(this.tableName);
     this.where(instance, where);
     if (desc) {
@@ -83,6 +83,18 @@ module.exports = class extends Base {
       throw e;
     });
     return data.map((item) => item.toJSON());
+  }
+
+  async select(where, options) {
+    let data = [];
+    let ret = [];
+    do {
+      options.offset = (options.offset || 0) + data.length;
+      ret = await this._select(where, options);
+      data = data.concat(ret);
+    } while (ret.length === 100);
+
+    return data;
   }
 
   async count(where = {}, options = {}) {

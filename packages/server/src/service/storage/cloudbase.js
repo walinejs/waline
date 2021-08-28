@@ -87,7 +87,7 @@ module.exports = class extends Base {
     return instance.where(filter);
   }
 
-  async select(where, { desc, limit, offset, field } = {}) {
+  async _select(where, { desc, limit, offset, field } = {}) {
     let instance = await this.collection(this.tableName);
     instance = this.where(instance, where);
     if (desc) {
@@ -110,6 +110,18 @@ module.exports = class extends Base {
       ...cmt,
       objectId: _id.toString(),
     }));
+  }
+
+  async select(where, options) {
+    let data = [];
+    let ret = [];
+    do {
+      options.offset = (options.offset || 0) + data.length;
+      ret = await this._select(where, options);
+      data = data.concat(ret);
+    } while (ret.length === 100);
+
+    return data;
   }
 
   async count(where = {}) {
