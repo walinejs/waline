@@ -54,6 +54,7 @@
     "@babel/preset-react": "^7.14.5",
     "@commitlint/cli": "^13.1.0",
     "@commitlint/config-conventional": "^13.1.0",
+    "@fancyapps/ui": "^4.0.0-beta.3",
     "@types/inquirer": "^7.3.3",
     "@types/jest": "^27.0.1",
     "@types/node": "^16.6.1",
