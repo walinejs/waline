@@ -112,7 +112,7 @@ module.exports = class extends Base {
     }));
   }
 
-  async select(where, options) {
+  async select(where, options = {}) {
     let data = [];
     let ret = [];
     do {

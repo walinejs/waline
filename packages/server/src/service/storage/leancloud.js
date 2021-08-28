@@ -85,7 +85,7 @@ module.exports = class extends Base {
     return data.map((item) => item.toJSON());
   }
 
-  async select(where, options) {
+  async select(where, options = {}) {
     let data = [];
     let ret = [];
     do {
