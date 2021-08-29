@@ -44,7 +44,6 @@
         </template>
       </Page>
     </Transition>
-    <Fancybox />
   </div>
 </template>
 
@@ -64,7 +63,6 @@ import Navbar from '@vuepress/theme-default/lib/client/components/Navbar.vue';
 import Page from '@vuepress/theme-default/lib/client/components/Page.vue';
 import Sidebar from '@vuepress/theme-default/lib/client/components/Sidebar.vue';
 import Waline from '../components/Waline';
-import Fancybox from '../components/Fancybox';
 import {
   useScrollPromise,
   useSidebarItems,
