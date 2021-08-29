@@ -64,6 +64,7 @@ Waline 主要由前端和服务端两部分组成。
 ## 如何增加灯箱效果？
 
 有很多插件可以实现灯箱效果，这里我以 [lightGallery](https://www.lightgalleryjs.com/), [Slimbox2](https://www.digitalia.be/software/slimbox2/), [lightbox2](https://lokeshdhakar.com/projects/lightbox2/) 和 [Fancybox](https://fancyapps.com/docs/ui/fancybox/) 为例。
+
 ### lightGallery
 
 在你的 HTML `</head>` 前写入以下内容，其中 `#waline-comment` 是你的 Waline 评论框，需要根据实际场景进行替换。
@@ -91,7 +92,6 @@ document.addEventListener('click', e => {
 ### Slimbox2
 
 在你的 HTML `</head>` 前写入以下内容，其中 `#waline-comment` 是你的 Waline 评论框，需要根据实际场景进行替换。
-
 
 ```
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/cbeyls/slimbox/css/slimbox2.css" />
@@ -140,6 +140,7 @@ document.addEventListener('click', e => {
 });
 </script>
 ```
+
 ### Fancybox
 
 在你的 HTML `</head>` 前写入以下内容，其中 `#waline-comment` 是你的 Waline 评论框，需要根据实际场景进行替换。

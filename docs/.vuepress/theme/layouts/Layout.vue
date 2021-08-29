@@ -81,7 +81,6 @@ export default defineComponent({
     Sidebar,
     Transition,
     Waline,
-    Fancybox
   },
 
   setup() {

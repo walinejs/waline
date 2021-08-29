@@ -64,6 +64,7 @@ Due to some technical reasons, spam detection and comment notification are all s
 ## How to add lightbox effects?
 
 There has many plugin can implement it. Here we give a simple example for [lightGallery](https://www.lightgalleryjs.com/), [Slimbox2](https://www.digitalia.be/software/slimbox2/), [lightbox2](https://lokeshdhakar.com/projects/lightbox2/) and [Fancybox](https://fancyapps.com/docs/ui/fancybox/).
+
 ### lightGallery
 
 Insert following code before `</head>` tag in your html content. `#waline-coment` is your Waline comment element selector, you need replace it by yourself.
@@ -139,6 +140,7 @@ document.addEventListener('click', e => {
 });
 </script>
 ```
+
 ### Fancybox
 
 Insert following code before `</head>` tag in your html content. `#waline-coment` is your Waline comment element selector, you need replace it by yourself.

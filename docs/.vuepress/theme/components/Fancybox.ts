@@ -8,5 +8,5 @@ export default defineComponent({
   setup() {
     onMounted(() => NativeFancybox.bind('#waline-comment .vcontent img'));
     onBeforeUnmount(() => NativeFancybox.destroy());
-  }
+  },
 });
