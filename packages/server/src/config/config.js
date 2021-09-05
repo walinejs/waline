@@ -14,7 +14,7 @@ const {
   TCB_KEY,
   SECURE_DOMAINS,
   DISABLE_USERAGENT,
-  AVATAR_PROVIDER,
+  AVATAR_PROXY,
   GITHUB_TOKEN,
 
   MARKDOWN_CONFIG = '{}',
@@ -91,7 +91,7 @@ module.exports = {
   disableUserAgent:
     DISABLE_USERAGENT &&
     !['0', 'false'].includes(DISABLE_USERAGENT.toLowerCase()),
-  avatarProvider: AVATAR_PROVIDER || 'https://seccdn.libravatar.org/avatar/',
+  avatarProxy: AVATAR_PROXY || 'https://avatar.75cdn.workers.dev/',
 
   markdown,
 

@@ -37,7 +37,7 @@ module.exports = class extends BaseRest {
 
     if (/(github)/i.test(avatar)) {
       avatar =
-        this.config('avatarProvider') + '?url=' + encodeURIComponent(avatar);
+        this.config('avatarProxy') + '?url=' + encodeURIComponent(avatar);
     }
 
     user[0].avatar = avatar;
