@@ -98,7 +98,7 @@ module.exports = class extends think.Service {
     }
 
     const comment = self.comment
-      .replace(/<a href="(.*?)">(.*?)<\/a>/g, '\n[$2] $1\n')
+      .replace(/<a href="(.*?)">(.*?)<\/a>/g, '')
       .replace(/<[^>]+>/g, '');
 
     const data = {
@@ -121,8 +121,8 @@ module.exports = class extends think.Service {
 {{self.comment}}
 邮箱：{{self.mail}}
 状态：{{self.status}} 
-仅供评论预览，查看完整內容：
-{{site.postUrl}}`;
+评论页面：{{self.url}} 
+仅供预览评论，请前往上述页面查看完整內容。`;
 
     return request({
       uri: `https://qmsg.zendee.cn/send/${QMSG_KEY}`,
