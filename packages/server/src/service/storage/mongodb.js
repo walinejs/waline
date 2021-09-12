@@ -94,7 +94,7 @@ module.exports = class extends Base {
       instance.order(`${desc} DESC`);
     }
     if (limit || offset) {
-      instance.limit(offset, limit);
+      instance.limit(offset || 0, limit);
     }
     if (field) {
       instance.field(field);
