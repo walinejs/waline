@@ -97,11 +97,12 @@ export default defineComponent({
     const fetchComment = (pageNumber: number): void => {
       loading.value = true;
 
-      fetchCommentList({
-        ...config.value,
-        page: pageNumber,
-        signal,
-      })
+      fetchCommentList(
+        Object.assign({}, config.value, {
+          page: pageNumber,
+          signal,
+        })
+      )
         .then((resp) => {
           loading.value = false;
           count.value = resp.count;

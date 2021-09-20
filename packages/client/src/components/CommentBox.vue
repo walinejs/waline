@@ -530,7 +530,7 @@ export default defineComponent({
       const receiver = ({ data }: any): void => {
         if (!data || data.type !== 'profile') return;
 
-        setUserInfo({ ...userInfo.value, ...data });
+        setUserInfo(Object.assign({}, userInfo.value, data));
         [localStorage, sessionStorage]
           .filter((store) => store.getItem('WALINE_USER'))
           .forEach((store) =>
