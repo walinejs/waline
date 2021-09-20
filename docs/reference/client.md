@@ -126,28 +126,6 @@ Waline 的服务端地址。
 - `'enable'`: 启用登录 (默认)
 - `'disable'`: 禁用登录，用户只能填写信息评论
 - `'force'`: 强制登录，用户必须注册并登录才可发布评论
-
-## avatar
-
-- 类型: `string`
-- 默认值: `mp`
-- 必填: 否
-
-[Gravatar](http://cn.gravatar.com/) 头像展示方式。
-
-可选值:
-
-- `''`
-- `'mp'`
-- `'identicon'`
-- `'monsterid'`
-- `'wavatar'`
-- `'retro'`
-- `'robohash'`
-- `'hide'`
-
-更多信息，请查看 [头像配置](../guide/client/avatar.md)。
-
 ## wordLimit
 
 - 类型: `number | [number, number]`
@@ -163,25 +141,6 @@ Waline 的服务端地址。
 - 必填: 否
 
 评论列表分页，每页条数。
-
-## avatarCDN
-
-- 类型: `string`
-- 默认值: `https://seccdn.libravatar.org/avatar/`
-- 必填: 否
-
-设置头像 CDN 地址。可使用任何与 [Gravatar](http://cn.gravatar.com/) API 兼容的服务。
-
-## avatarForce
-
-- 类型: `boolean`
-- 默认值: `false`
-- 必填: 否
-
-每次访问是否**强制**拉取最新的*评论列表头像*
-
-> 不推荐设置为 `true`，目前的*评论列表头像*会自动带上 `Waline` 的版本号
-
 ## uploadImage
 
 - 类型: `Function | false`
@@ -224,7 +183,6 @@ Waline 的服务端地址。
 ## 废弃的 API
 
 以下 API 仍然有效，但它们会在 V2 版本中移除
-
 ### langMode
 
 ::: warning 已过时
@@ -301,6 +259,18 @@ Waline 的服务端地址。
 
 是否允许登录评论。默认情况是两者都支持，设置为 `true` 表示仅支持匿名评论，`false` 表示仅支持登录评论。
 
+## avatarCDN
+
+::: warning 已过时
+Gravatar 头像配置统一走服务端的 AVATAR_PROXY 配置，该配置已废弃
+:::
+
+- 类型: `string`
+- 默认值: `https://seccdn.libravatar.org/avatar/`
+- 必填: 否
+
+设置头像 CDN 地址。可使用任何与 [Gravatar](http://cn.gravatar.com/) API 兼容的服务。
+
 ### copyRight
 
 ::: danger 已废弃
@@ -308,3 +278,43 @@ Waline 的服务端地址。
 请使用 `copyright`
 
 :::
+
+
+## avatar
+
+::: danger 已废弃
+Gravatar 头像配置统一走服务端的 AVATAR_PROXY 配置，该配置已废弃
+:::
+
+- 类型: `string`
+- 默认值: `mp`
+- 必填: 否
+
+[Gravatar](http://cn.gravatar.com/) 头像展示方式。
+
+可选值:
+
+- `''`
+- `'mp'`
+- `'identicon'`
+- `'monsterid'`
+- `'wavatar'`
+- `'retro'`
+- `'robohash'`
+- `'hide'`
+
+更多信息，请查看 [头像配置](../guide/client/avatar.md)。
+
+## avatarForce
+
+::: danger 已废弃
+Gravatar 头像配置统一走服务端的 AVATAR_PROXY 配置，该配置已废弃
+:::
+
+- 类型: `boolean`
+- 默认值: `false`
+- 必填: 否
+
+每次访问是否**强制**拉取最新的*评论列表头像*
+
+> 不推荐设置为 `true`，目前的*评论列表头像*会自动带上 `Waline` 的版本号

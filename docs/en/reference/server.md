@@ -26,6 +26,8 @@ Vercel needs to be set in <kbd>Settings</kbd> - <kbd>Environment Variables</kbd>
 | `DISABLE_USERAGENT`   |          | wether hide the user agent of commentor. Default value is `false`                 |
 | `AKISMET_KEY`         |          | Akismet antispam service key, default is open, set `false` if you wanna close it. |
 | `COMMENT_AUDIT`       |          | Comment audit switcher. We recommend to tip on the placeholder text if it's true. |
+| `LOGIN`             |      | User need login before comment when `LOGIN=force`                        |
+| `AVATAR_PROXY`      |      | Avatar proxy service url, default is `https://avatar.75cdn.workers.dev`. You can set `false` to close it |
 
 ### Markdown
 
