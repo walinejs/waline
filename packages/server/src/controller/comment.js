@@ -33,7 +33,7 @@ async function formatCmt(
   const avatarUrl =
     user && user.avatar
       ? user.avatar
-      : `https://www.gravatar.com/avatar/${comment.mail}`;
+      : `https://seccdn.libravatar.org/avatar/${comment.mail}`;
 
   comment.avatar =
     avatarProxy && !avatarUrl.includes(avatarProxy)

@@ -54,7 +54,7 @@ module.exports = class extends think.Logic {
 
     let avatarUrl = userInfo.avatar
       ? userInfo.avatar
-      : `https://www.gravatar.com/avatar/${userInfo.mailMd5}`;
+      : `https://seccdn.libravatar.org/avatar/${userInfo.mailMd5}`;
     const { avatarProxy } = think.config();
     if (avatarProxy) {
       avatarUrl = avatarProxy + '?url=' + encodeURIComponent(avatarUrl);
