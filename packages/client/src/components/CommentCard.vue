@@ -27,6 +27,8 @@
           v-text="locale.admin"
         />
 
+        <span v-if="comment.sticky" class="vbadge" v-text="locale.sticky" />
+
         <span class="vtime" v-text="timeAgo(comment.insertedAt, locale)" />
 
         <button

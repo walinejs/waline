@@ -25,6 +25,7 @@ const enLocale: Locale = {
   login: 'Login',
   logout: 'logout',
   admin: 'Admin',
+  sticky: 'Sticky',
   word: 'Words',
   wordHint:
     'Please input comments between $0 and $1 words!\n Current word number: $2',
