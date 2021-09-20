@@ -18,27 +18,27 @@ async function formatCmt(
     comment.os = [ua.os.name, ua.os.version].filter((v) => v).join(' ');
   }
 
-  if (user_id) {
-    const user = users.find(({ objectId }) => user_id === objectId);
-
-    if (user) {
-      comment.nick = user.display_name;
-      comment.mail = user.email;
-      comment.link = user.url;
-      comment.type = user.type;
-
-      let { avatar } = user;
-      if (avatar) {
-        if (/(github)/i.test(avatar) && !avatar.includes(avatarProxy)) {
-          avatar = avatarProxy + '?url=' + encodeURIComponent(avatar);
-        }
-        comment.avatar = avatar;
-      }
-    }
+  const user = users.find(({ objectId }) => user_id === objectId);
+  if (user) {
+    comment.nick = user.display_name;
+    comment.mail = user.email;
+    comment.link = user.url;
+    comment.type = user.type;
   }
+
   comment.mail = helper.md5(
     comment.mail ? comment.mail.toLowerCase() : comment.mail
   );
+
+  const avatarUrl =
+    user && user.avatar
+      ? user.avatar
+      : `https://www.gravatar.com/avatar/${comment.mail}`;
+
+  comment.avatar =
+    avatarProxy && !avatarUrl.includes(avatarProxy)
+      ? avatarProxy + '?url=' + encodeURIComponent(avatarUrl)
+      : avatarUrl;
 
   return comment;
 }
