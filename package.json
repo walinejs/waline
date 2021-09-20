@@ -16,8 +16,9 @@
     "client:build": "npm run build:normal --workspace=@waline/client && npm run build:no-style --workspace=@waline/client && npm run build:dts --workspace=@waline/client",
     "client:dev": "npm run dev --workspace=@waline/client",
     "server:dev": "vercel dev ./example --listen 9090",
-    "docs:build": "npm run build --workspace=docs",
+    "docs:build": "npm run build --workspace=docs && npm run apidoc",
     "docs:dev": "npm run dev --workspace=docs",
+    "apidoc": "apidoc -i packages/server/src/logic -o docs/.vuepress/dist/api",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "lint": "eslint --fix . && prettier --check --write .",
     "lint:check": "eslint . && prettier --check .",
@@ -64,6 +65,7 @@
     "@vue/eslint-config-prettier": "6.0.0",
     "@vue/eslint-config-typescript": "7.0.0",
     "babel-jest": "^27.2.0",
+    "apidoc": "^0.29.0",
     "babel-loader": "^8.2.2",
     "commitizen": "^4.2.4",
     "conventional-changelog-cli": "^2.1.1",
@@ -104,5 +106,8 @@
     "webpack-cli": "^4.8.0",
     "webpack-dev-server": "^4.2.1",
     "webpack-merge": "^5.8.0"
+  },
+  "apidoc": {
+    "title": "Waline API Documentation"
   }
 }
