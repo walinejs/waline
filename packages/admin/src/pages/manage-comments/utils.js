@@ -1,6 +1,10 @@
 import md5 from 'md5';
 
-export function buildAvatar(email = '') {
+export function buildAvatar(email = '', avatar = '') {
+  if (avatar) {
+    return avatar;
+  }
+
   if (typeof email !== 'string') {
     email = '';
   }
