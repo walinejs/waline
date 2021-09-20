@@ -45,16 +45,21 @@ module.exports = class extends think.Logic {
       { email: userMail },
       { field: ['email', 'url', 'display_name', 'type', 'github', 'avatar'] }
     );
-    if (!think.isEmpty(user)) {
-      const userInfo = user[0];
-      userInfo.mailMd5 = helper.md5(userInfo.email);
-      if (/(github)/i.test(userInfo.avatar)) {
-        userInfo.avatar =
-          this.config('avatarProxy') +
-          '?url=' +
-          encodeURIComponent(userInfo.avatar);
-      }
-      this.ctx.state.userInfo = userInfo;
+    if (think.isEmpty(user)) {
+      return;
     }
+
+    const userInfo = user[0];
+    userInfo.mailMd5 = helper.md5(userInfo.mail);
+
+    let avatarUrl = userInfo.avatar
+      ? userInfo.avatar
+      : `https://www.gravatar.com/avatar/${userInfo.mailMd5}`;
+    const { avatarProxy } = think.config();
+    if (avatarProxy) {
+      avatarUrl = avatarProxy + '?url=' + encodeURIComponent(avatarUrl);
+    }
+    userInfo.avatar = avatarUrl;
+    this.ctx.state.userInfo = userInfo;
   }
 };
