@@ -126,6 +126,7 @@ Login mode status, optional values:
 - `'enable'`: enable login (default)
 - `'disable'`: Login is disabled, users should fill in infomation to comment
 - `'force'`: Forced login, users must login to comment
+
 ## wordLimit
 
 - Type: `number | [number, number]`
@@ -264,7 +265,9 @@ Whether to allow login comments. Both supported by default, set to `true` means 
 ## avatarCDN
 
 ::: warning Obsolete
+
 The configure is deprecated, because gravatar avatar setting migrated to server configure `AVATAR_PROXY`.
+
 :::
 
 - Type: `string`
@@ -272,6 +275,7 @@ The configure is deprecated, because gravatar avatar setting migrated to server 
 - Required: No
 
 Avatar provider baseURL. Supports Gravatar-compatible APIs.
+
 ### copyRight
 
 ::: danger Deprecated
@@ -283,7 +287,9 @@ Please use `copyright` instead.
 ## avatar
 
 ::: danger Deprecated
+
 The configure is deprecated, because gravatar avatar setting migrated to server configure `AVATAR_PROXY`.
+
 :::
 
 - Type: `string`
@@ -304,10 +310,13 @@ Optional value:
 - `'hide'`
 
 See the [Avatar setting](../guide/client/avatar.md) for more details.
+
 ## avatarForce
 
 ::: danger Deprecated
+
 The configure is deprecated, because gravatar avatar setting migrated to server configure `AVATAR_PROXY`.
+
 :::
 
 - Type: `boolean`

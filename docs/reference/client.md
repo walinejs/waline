@@ -126,6 +126,7 @@ Waline 的服务端地址。
 - `'enable'`: 启用登录 (默认)
 - `'disable'`: 禁用登录，用户只能填写信息评论
 - `'force'`: 强制登录，用户必须注册并登录才可发布评论
+
 ## wordLimit
 
 - 类型: `number | [number, number]`
@@ -141,6 +142,7 @@ Waline 的服务端地址。
 - 必填: 否
 
 评论列表分页，每页条数。
+
 ## uploadImage
 
 - 类型: `Function | false`
@@ -183,6 +185,7 @@ Waline 的服务端地址。
 ## 废弃的 API
 
 以下 API 仍然有效，但它们会在 V2 版本中移除
+
 ### langMode
 
 ::: warning 已过时
@@ -262,7 +265,9 @@ Waline 的服务端地址。
 ## avatarCDN
 
 ::: warning 已过时
+
 Gravatar 头像配置统一走服务端的 AVATAR_PROXY 配置，该配置已废弃
+
 :::
 
 - 类型: `string`
@@ -279,11 +284,12 @@ Gravatar 头像配置统一走服务端的 AVATAR_PROXY 配置，该配置已废
 
 :::
 
-
 ## avatar
 
 ::: danger 已废弃
+
 Gravatar 头像配置统一走服务端的 AVATAR_PROXY 配置，该配置已废弃
+
 :::
 
 - 类型: `string`
@@ -308,7 +314,9 @@ Gravatar 头像配置统一走服务端的 AVATAR_PROXY 配置，该配置已废
 ## avatarForce
 
 ::: danger 已废弃
-Gravatar 头像配置统一走服务端的 AVATAR_PROXY 配置，该配置已废弃
+
+Gravatar 头像配置使用服务端的 AVATAR_PROXY，该配置已废弃
+
 :::
 
 - 类型: `boolean`
