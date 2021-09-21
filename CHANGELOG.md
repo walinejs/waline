@@ -1,17 +1,23 @@
 # (2021-09-21)
+
 ### Bug Fixes
 
-* 🐛[bug] Comment length out of the preview box ([fdab120](https://github.com/lizheming/waline/commit/fdab12095983022b8f84cc8f201af253650a0aec))
-* **client:** try compatable with safari 13, close [#531](https://github.com/lizheming/waline/issues/531) ([#557](https://github.com/lizheming/waline/issues/557)) ([a13ab21](https://github.com/lizheming/waline/commit/a13ab2109d85a8474593b087066fa3e488b9e903))
+- 🐛[bug] Comment length out of the preview box ([fdab120](https://github.com/lizheming/waline/commit/fdab12095983022b8f84cc8f201af253650a0aec))
+- **client:** try compatable with safari 13, close [#531](https://github.com/lizheming/waline/issues/531) ([#557](https://github.com/lizheming/waline/issues/557)) ([a13ab21](https://github.com/lizheming/waline/commit/a13ab2109d85a8474593b087066fa3e488b9e903))
+
 ### Features
 
-* [FEATURE] Uniform avatar configure by AVATAR_PROXY ([#555](https://github.com/walinejs/waline/pull/555)) ([ff0958e](https://github.com/walinejs/waline/commit/ff0958e76e18cb8d6e548af8f56cbfed16215a22))
-* add sticky comment support, need upgrade to latest client and server [#509](https://github.com/walinejs/waline/pull/509) ([e4225d3](https://github.com/walinejs/waline/commit/e4225d35ae92c11e4ed11dbb056ba3e8e4d1c233))
-* **doc:** add api doc https://waline.js.org/api/ ([39de903](https://github.com/walinejs/waline/commit/39de903cc0d18414ee86731f6e09f69bb51b8c24))
+- **vercel:** add version export on response header fix [#279](https://github.com/lizheming/waline/issues/279) ([a643d87](https://github.com/lizheming/waline/commit/a643d87d6093f8b3b484efb44cdc96139bc5259d))
+- [FEATURE] Uniform avatar configure by AVATAR_PROXY ([#555](https://github.com/walinejs/waline/pull/555)) ([ff0958e](https://github.com/walinejs/waline/commit/ff0958e76e18cb8d6e548af8f56cbfed16215a22))
+- add sticky comment support, need upgrade to latest client and server [#509](https://github.com/walinejs/waline/pull/509) ([e4225d3](https://github.com/walinejs/waline/commit/e4225d35ae92c11e4ed11dbb056ba3e8e4d1c233))
+- **doc:** add api doc https://waline.js.org/api/ ([39de903](https://github.com/walinejs/waline/commit/39de903cc0d18414ee86731f6e09f69bb51b8c24))
+
 ### BREAKING CHANGES
 
-* **client:** Remove `avatar`, `avatarCDN` and `avatarForce` configuration for client and add `AVATAR_PROXY` for server.
+- **client:** Remove `avatar`, `avatarCDN` and `avatarForce` configuration for client and add `AVATAR_PROXY` for server.
+
 # (2021-04-29)
+
 ### Features
 
 - **client:** add wordLimit support ([#219](https://github.com/walinejs/waline/issues/219)) ([97c47cb](https://github.com/walinejs/waline/commit/97c47cb7fb41dec579f02462b70712a8042210e8))
