@@ -23,3 +23,4 @@ We support [Akismet](https://akismet.com/) spam protection service default. If y
 [ ![](https://vercel.com/button) ](https://vercel.com/import/project?template=https://github.com/walinejs/waline/tree/main/example)
 
 Click it to deploy quickly!
+
