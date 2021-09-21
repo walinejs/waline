@@ -169,6 +169,7 @@ module.exports = class extends BaseRest {
               'rid',
               'ua',
               'user_id',
+              'sticky',
             ],
           }
         );
@@ -193,9 +194,10 @@ module.exports = class extends BaseRest {
 
         const rootCount = comments.filter(({ rid }) => !rid).length;
         const pageOffset = Math.max((page - 1) * pageSize, 0);
-        const rootComments = comments
-          .filter(({ rid }) => !rid)
-          .slice(pageOffset, pageOffset + pageSize);
+        const rootComments = [
+          ...comments.filter(({ rid, sticky }) => !rid && sticky),
+          ...comments.filter(({ rid, sticky }) => !rid && !sticky),
+        ].slice(pageOffset, pageOffset + pageSize);
 
         return this.json({
           page,

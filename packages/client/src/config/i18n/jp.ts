@@ -25,6 +25,7 @@ const jpLocale: Locale = {
   login: 'ログインする',
   logout: 'ログアウト',
   admin: '管理者',
+  sticky: 'トップに置く',
   word: 'ワード',
   wordHint:
     'コメントは $0 から $1 ワードの間でなければなりません!\n 現在の単語番号: $2',

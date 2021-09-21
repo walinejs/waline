@@ -18,4 +18,5 @@ export interface Comment extends Exclude<CommentData, 'ua'> {
   updateAt: string;
   objectId: string;
   children?: Comment[];
+  sticky?: boolean;
 }

@@ -23,6 +23,7 @@ export interface Locale {
   login: string;
   logout: string;
   admin: string;
+  sticky: string;
   word: string;
   wordHint: string;
 }

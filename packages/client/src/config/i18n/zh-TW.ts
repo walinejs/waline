@@ -25,6 +25,7 @@ const zhTWLocale: Locale = {
   login: '登錄',
   logout: '退出',
   admin: '博主',
+  sticky: '置頂',
   word: '字',
   wordHint: '評論字數應在 $0 到 $1 字之間！\n當前字數：$2',
 };
