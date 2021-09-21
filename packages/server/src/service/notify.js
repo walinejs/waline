@@ -119,9 +119,6 @@ module.exports = class extends think.Service {
       `💬 {{site.name|safe}} 有新评论啦
 {{self.nick}} 评论道：
 {{self.comment}}
-邮箱：{{self.mail}}
-状态：{{self.status}} 
-评论页面：{{self.url}} 
 仅供预览评论，请前往上述页面查看完整內容。`;
 
     return request({
