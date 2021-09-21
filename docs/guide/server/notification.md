@@ -37,7 +37,6 @@
 - `MAIL_TEMPLATE`: 自定义评论回复邮件内容
 - `MAIL_SUBJECT_ADMIN`: 自定义新评论通知邮件标题
 - `MAIL_TEMPLATE_ADMIN`: 自定义新评论通知邮件内容
-- `AUTHOR_EMAIL`: 博主邮箱，用来区分发布的评论是否是博主本身发布的。如果是博主发布的则不进行提醒通知。
 
 ## 微信通知
 
