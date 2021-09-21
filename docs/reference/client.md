@@ -249,46 +249,11 @@ Waline 的服务端地址。
 
 :::
 
-### anonymous
+### avatar
 
 ::: warning 已过时
 
-请使用 `login`
-
-:::
-
-- 类型: `boolean`
-- 必填: 否
-
-是否允许登录评论。默认情况是两者都支持，设置为 `true` 表示仅支持匿名评论，`false` 表示仅支持登录评论。
-
-## avatarCDN
-
-::: warning 已过时
-
-Gravatar 头像配置统一走服务端的 AVATAR_PROXY 配置，该配置已废弃
-
-:::
-
-- 类型: `string`
-- 默认值: `https://seccdn.libravatar.org/avatar/`
-- 必填: 否
-
-设置头像 CDN 地址。可使用任何与 [Gravatar](http://cn.gravatar.com/) API 兼容的服务。
-
-### copyRight
-
-::: danger 已废弃
-
-请使用 `copyright`
-
-:::
-
-## avatar
-
-::: danger 已废弃
-
-Gravatar 头像配置统一走服务端的 AVATAR_PROXY 配置，该配置已废弃
+建议配合最新版本的服务端，通过服务端的 `AVATAR_PROXY` 配置。
 
 :::
 
@@ -311,11 +276,11 @@ Gravatar 头像配置统一走服务端的 AVATAR_PROXY 配置，该配置已废
 
 更多信息，请查看 [头像配置](../guide/client/avatar.md)。
 
-## avatarForce
+### avatarForce
 
-::: danger 已废弃
+::: warning 已过时
 
-Gravatar 头像配置使用服务端的 AVATAR_PROXY，该配置已废弃
+建议配合最新版本的服务端，通过服务端的 `AVATAR_PROXY` 配置。
 
 :::
 
@@ -326,3 +291,38 @@ Gravatar 头像配置使用服务端的 AVATAR_PROXY，该配置已废弃
 每次访问是否**强制**拉取最新的*评论列表头像*
 
 > 不推荐设置为 `true`，目前的*评论列表头像*会自动带上 `Waline` 的版本号
+
+### avatarCDN
+
+::: warning 已过时
+
+建议配合最新版本的服务端，通过服务端的 `AVATAR_PROXY` 配置。
+
+:::
+
+- 类型: `string`
+- 默认值: `https://seccdn.libravatar.org/avatar/`
+- 必填: 否
+
+设置头像 CDN 地址。可使用任何与 [Gravatar](http://cn.gravatar.com/) API 兼容的服务。
+
+### anonymous
+
+::: warning 已过时
+
+请使用 `login`
+
+:::
+
+- 类型: `boolean`
+- 必填: 否
+
+是否允许登录评论。默认情况是两者都支持，设置为 `true` 表示仅支持匿名评论，`false` 表示仅支持登录评论。
+
+### copyRight
+
+::: danger 已废弃
+
+请使用 `copyright`
+
+:::
