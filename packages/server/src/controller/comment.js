@@ -7,7 +7,7 @@ const { getMarkdownParser } = require('../service/markdown');
 async function formatCmt(
   { ua, user_id, ...comment },
   users = [],
-  { avatarProvider }
+  { avatarProxy }
 ) {
   ua = parser(ua);
   if (!think.config('disableUserAgent')) {
@@ -29,8 +29,8 @@ async function formatCmt(
 
       let { avatar } = user;
       if (avatar) {
-        if (/(github)/i.test(avatar) && !avatar.includes(avatarProvider)) {
-          avatar = avatarProvider + '?url=' + encodeURIComponent(avatar);
+        if (/(github)/i.test(avatar) && !avatar.includes(avatarProxy)) {
+          avatar = avatarProxy + '?url=' + encodeURIComponent(avatar);
         }
         comment.avatar = avatar;
       }

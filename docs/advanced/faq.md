@@ -41,7 +41,7 @@ Waline 主要由前端和服务端两部分组成。
 
 ![vercel](./assets/vercel-update.png)
 
-#### CloudBase\*\*
+#### CloudBase
 
 进入代码编辑界面，点击 <kbd>保存并重新安装依赖</kbd> 即可。如果还不行，则进入 <kbd>我的应用</kbd> 选择 <kbd>部署</kbd> 进行重新部署。
 
@@ -61,6 +61,92 @@ Waline 主要由前端和服务端两部分组成。
 
 因为一些技术性原因，在发布评论的时垃圾邮件检测、评论通知都是串联操作。其中垃圾邮件检测使用的是国外 Akismet 提供的服务，可能访问很慢，用户可以通过 `AKISMET_KEY=false` 环境变量关闭垃圾评论检测功能。除了垃圾评论检测服务，评论通知中的邮件通知也有可能造成超时，可以通过关闭评论通知测试是否是该功能导致的。
 
-## 最后
+## 如何增加灯箱效果？
 
-以后 `Waline` 可能会有所变化，但无论如何都不会改变 **有后端** 这个初衷。
+有很多插件可以实现灯箱效果，这里我以 [lightGallery](https://www.lightgalleryjs.com/), [Slimbox2](https://www.digitalia.be/software/slimbox2/), [lightbox2](https://lokeshdhakar.com/projects/lightbox2/) 和 [Fancybox](https://fancyapps.com/docs/ui/fancybox/) 为例。
+
+### lightGallery
+
+在你的 HTML `</head>` 前写入以下内容，其中 `#waline-comment` 是你的 Waline 评论框，需要根据实际场景进行替换。
+
+```
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.1.5/css/lightgallery-bundle.css" />
+<srciprt src="https://cdn.jsdelivr.net/npm/lightgallery@2.1.5/lightgallery.umd.min.js"></script>
+<script>
+document.addEventListener('click', e => {
+  const imgs = [].slice.call(
+    document.querySelectorAll('#waline-comment .vcontent img')
+  ).filter(img => img.width > 20);
+
+  if(imgs.indexOf(e.target) === -1) {
+    return;
+  }
+  if(!e.target.gallery) {
+    e.target.gallery = window.lightGallery(e.target.parentNode);
+  }
+  e.target.gallery.openGallery(0);
+});
+</script>
+```
+
+### Slimbox2
+
+在你的 HTML `</head>` 前写入以下内容，其中 `#waline-comment` 是你的 Waline 评论框，需要根据实际场景进行替换。
+
+```
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/cbeyls/slimbox/css/slimbox2.css" />
+<script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/cbeyls/slimbox/js/slimbox2.js"></script>
+<script>
+document.addEventListener('click', (e) => {
+  const imgs = [].slice.call(
+    document.querySelectorAll('#waline-comment .vcontent img')
+  ).filter(img => img.width > 20);
+
+  const idx = imgs.indexOf(e.target);
+  if(idx === -1) {
+    return;
+  }
+
+  $.slimbox(e.target.src, e.target.alt, {});
+});
+</script>
+```
+
+### lightbox2
+
+在你的 HTML `</head>` 前写入以下内容，其中 `#waline-comment` 是你的 Waline 评论框，需要根据实际场景进行替换。
+
+```
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightbox2@2.11.3/dist/css/lightbox.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/lightbox2@2.11.3/dist/js/lightbox-plus-jquery.min.js"></script>
+<script>
+document.addEventListener('click', e => {
+  const lightbox = new Lightbox();
+  const imgs = [].slice.call(
+    document.querySelectorAll('#waline-comment .vcontent img')
+  ).filter(img => img.width > 20);
+
+  if(imgs.indexOf(e.target) === -1) {
+    return;
+  }
+
+  const $link = $('<a />', {
+    href: e.target.src,
+    'data-title': e.target.alt,
+    rel: 'lightbox'
+  });
+  lightbox.start($link);
+});
+</script>
+```
+
+### Fancybox
+
+在你的 HTML `</head>` 前写入以下内容，其中 `#waline-comment` 是你的 Waline 评论框，需要根据实际场景进行替换。
+
+```
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css"/>
+<script>Fancybox.bind('#waline-comment .vcontent img')</script>
+```

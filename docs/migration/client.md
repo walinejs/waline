@@ -96,6 +96,6 @@ v1 版本是基于 Vue 与 TypeScript 的完全重写，所以大小从 78.4kb �
 
 ::: warning BREAKING CHANGE
 
-`RecentComments` 现在将返回 `Promise <{commen: commentData[], destroy: () => void}>` 而不是 `Promise<CommentData[]>`。
+`RecentComments` 现在将返回 `Promise <{comment: commentData[], destroy: () => void}>` 而不是 `Promise<CommentData[]>`。
 
 :::
