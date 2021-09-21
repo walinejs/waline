@@ -1,5 +1,9 @@
 # Avatar Configuration
 
+::: danger Deprecated
+The configure is deprecated, because gravatar avatar setting migrated to server configure `AVATAR_PROXY`.
+:::
+
 Waline currently uses [Libravatar][1] as the comment list avatar.
 
 Libravatar is a free, open-source avatar provider features federated hosting and Gravatar-compatible APIs.

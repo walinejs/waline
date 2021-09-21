@@ -397,6 +397,7 @@ export default function () {
                             objectId,
                             nick,
                             mail,
+                            avatar,
                             link,
                             comment,
                             ip,
@@ -526,7 +527,7 @@ export default function () {
                                 <div className="comment-avatar">
                                   <img
                                     className="avatar"
-                                    src={buildAvatar(mail)}
+                                    src={buildAvatar(mail, avatar)}
                                     alt={nick}
                                     width="40"
                                     height="40"

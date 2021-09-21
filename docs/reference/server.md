@@ -14,20 +14,21 @@ Vercel 需要在 <kbd>Settings</kbd> - <kbd>Environment Variables</kbd> 中进�
 
 ### 主要配置
 
-| 环境变量名称        | 必填 | 备注                                                                |
-| ------------------- | ---- | ------------------------------------------------------------------- |
-| `LEAN_ID`           | ✅   | LeanCloud 应用的 App ID                                             |
-| `LEAN_KEY`          | ✅   | LeanCloud 应用的 App Key                                            |
-| `LEAN_MASTER_KEY`   | ✅   | LeanCloud 应用的 Master Key 用于后台修改数据                        |
-| `LEAN_SERVER`       | ⚠    | LeanCloud 服务地址，国内版用户需要配置此项                          |
-| `SITE_NAME`         |      | 博客名称                                                            |
-| `SITE_URL`          |      | 博客地址                                                            |
-| `IPQPS`             |      | 基于 IP 的评论发布频率限制，单位为秒。默认为 60 秒，设置为 0 不限制 |
-| `SECURE_DOMAINS`    |      | 安全域名配置，支持逗号分隔配置多个域名                              |
-| `DISABLE_USERAGENT` |      | 是否隐藏评论者的 UA，默认为否                                       |
-| `AKISMET_KEY`       |      | Akismet 反垃圾评论服务 Key（默认开启，不用请设置为 false）          |
-| `COMMENT_AUDIT`     |      | 评论发布审核开关，配置后建议在 Placehoder 上提供文案提示            |
-| `LOGIN`             |      | 当设置为 `LOGIN=force` 时会要求登录才能评论                         |
+| 环境变量名称        | 必填 | 备注                                                                             |
+| ------------------- | ---- | -------------------------------------------------------------------------------- |
+| `LEAN_ID`           | ✅   | LeanCloud 应用的 App ID                                                          |
+| `LEAN_KEY`          | ✅   | LeanCloud 应用的 App Key                                                         |
+| `LEAN_MASTER_KEY`   | ✅   | LeanCloud 应用的 Master Key 用于后台修改数据                                     |
+| `LEAN_SERVER`       | ⚠    | LeanCloud 服务地址，国内版用户需要配置此项                                       |
+| `SITE_NAME`         |      | 博客名称                                                                         |
+| `SITE_URL`          |      | 博客地址                                                                         |
+| `IPQPS`             |      | 基于 IP 的评论发布频率限制，单位为秒。默认为 60 秒，设置为 0 不限制              |
+| `SECURE_DOMAINS`    |      | 安全域名配置，支持逗号分隔配置多个域名                                           |
+| `DISABLE_USERAGENT` |      | 是否隐藏评论者的 UA，默认为否                                                    |
+| `AKISMET_KEY`       |      | Akismet 反垃圾评论服务 Key（默认开启，不用请设置为 false）                       |
+| `COMMENT_AUDIT`     |      | 评论发布审核开关，配置后建议在 Placehoder 上提供文案提示                         |
+| `LOGIN`             |      | 当设置为 `LOGIN=force` 时会要求登录才能评论                                      |
+| `AVATAR_PROXY`      |      | 头像的代理地址，默认为 `https://avatar.75cdn.workers.dev`，设置 `false` 关闭代理 |
 
 ### Markdown
 

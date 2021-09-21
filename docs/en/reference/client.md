@@ -127,27 +127,6 @@ Login mode status, optional values:
 - `'disable'`: Login is disabled, users should fill in infomation to comment
 - `'force'`: Forced login, users must login to comment
 
-## avatar
-
-- Type: `string`
-- Default: `'mp'`
-- Required: No
-
-[Gravatar](http://gravatar.com/) type.
-
-Optional value:
-
-- `''` (Empty string)
-- `'mp'`
-- `'identicon'`
-- `'monsterid'`
-- `'wavatar'`
-- `'retro'`
-- `'robohash'`
-- `'hide'`
-
-See the [Avatar setting](../guide/client/avatar.md) for more details.
-
 ## wordLimit
 
 - Type: `number | [number, number]`
@@ -163,22 +142,6 @@ Comment word s limit. When a single number is filled in, it 's the maximum numbe
 - Required: No
 
 number of comments per page.
-
-## avatarCDN
-
-- Type: `string`
-- Default: `https://seccdn.libravatar.org/avatar/`
-- Required: No
-
-Avatar provider baseURL. Supports Gravatar-compatible APIs.
-
-## avatarForce
-
-- Type: `boolean`
-- Default: `false`
-- Required: No
-
-Whether **force** pulling the latest avatar each time.
 
 ## uploadImage
 
@@ -299,6 +262,20 @@ Please use `login` instead.
 
 Whether to allow login comments. Both supported by default, set to `true` means only support anonymous comments, `false` means only support login comments.
 
+## avatarCDN
+
+::: warning Obsolete
+
+The configure is deprecated, because gravatar avatar setting migrated to server configure `AVATAR_PROXY`.
+
+:::
+
+- Type: `string`
+- Default: `https://seccdn.libravatar.org/avatar/`
+- Required: No
+
+Avatar provider baseURL. Supports Gravatar-compatible APIs.
+
 ### copyRight
 
 ::: danger Deprecated
@@ -306,3 +283,44 @@ Whether to allow login comments. Both supported by default, set to `true` means 
 Please use `copyright` instead.
 
 :::
+
+## avatar
+
+::: danger Deprecated
+
+The configure is deprecated, because gravatar avatar setting migrated to server configure `AVATAR_PROXY`.
+
+:::
+
+- Type: `string`
+- Default: `'mp'`
+- Required: No
+
+[Gravatar](http://gravatar.com/) type.
+
+Optional value:
+
+- `''` (Empty string)
+- `'mp'`
+- `'identicon'`
+- `'monsterid'`
+- `'wavatar'`
+- `'retro'`
+- `'robohash'`
+- `'hide'`
+
+See the [Avatar setting](../guide/client/avatar.md) for more details.
+
+## avatarForce
+
+::: danger Deprecated
+
+The configure is deprecated, because gravatar avatar setting migrated to server configure `AVATAR_PROXY`.
+
+:::
+
+- Type: `boolean`
+- Default: `false`
+- Required: No
+
+Whether **force** pulling the latest avatar each time.
