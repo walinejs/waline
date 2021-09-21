@@ -133,15 +133,12 @@
     }
 
     .vcontent {
+      line-height: 2;
       position: relative;
-
       margin-bottom: 0.75em;
       padding-top: 0.625em;
-
       font-size: 0.875em;
-      line-height: 2;
       word-wrap: break-word;
-      word-break: break-all;
 
       &.expand {
         overflow: hidden;
