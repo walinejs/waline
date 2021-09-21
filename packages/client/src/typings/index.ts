@@ -12,6 +12,7 @@ export interface CommentData {
 }
 
 export interface Comment extends Exclude<CommentData, 'ua'> {
+  avatar?: string;
   browser: string;
   createAt: string;
   insertAt: string;

@@ -12,8 +12,8 @@ const availableAvatar: Avatar[] = [
 
 const availableMeta: Meta[] = ['nick', 'mail', 'link'];
 
-export const getAvatar = (avatar: Avatar): Avatar =>
-  availableAvatar.includes(avatar) ? avatar : 'mp';
+export const getAvatar = (avatar?: Avatar): Avatar =>
+  avatar && availableAvatar.includes(avatar) ? avatar : 'mp';
 
 export const getMeta = (meta: Meta[]): Meta[] =>
   meta.filter((item) => availableMeta.includes(item));
