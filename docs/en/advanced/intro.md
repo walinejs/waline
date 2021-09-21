@@ -43,8 +43,8 @@ Waline: A simple comment system with backend support fork from [Valine](https://
 - [x] Duplicate content check
 - [x] CloudBase deploy support
 - [x] Social account login
+- [x] Sitcky Comment
 - [ ] AWS, GCP, Azure deploy support
-- [ ] Sitcky Comment
 - [ ] Comment Like
 
 We **really** welcome you to contribute to waline!

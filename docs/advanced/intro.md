@@ -44,8 +44,8 @@ Waline - 一款从 [Valine](https://valine.js.org) 衍生的带后端评论系�
 - [x] 重复内容检测
 - [x] CloudBase 腾讯云开发部署支持
 - [x] 社交登录
+- [x] 置顶评论
 - [ ] AWS, GCP, Azure 部署支持
-- [ ] 置顶评论
 - [ ] 评论赞踩
 - [ ] 其它...
 

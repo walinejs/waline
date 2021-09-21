@@ -51,8 +51,8 @@ English | [中文](https://github.com/walinejs/waline/blob/main/README_CN.md) | 
 - [x] Duplicate content check
 - [x] CloudBase deploy support
 - [x] Social account login
+- [x] Sitcky Comment
 - [ ] AWS, GCP, Azure deploy support
-- [ ] Sitcky Comment
 - [ ] Comment Like
 
 We **really** welcome you to contribute to waline!
