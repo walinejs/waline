@@ -18,6 +18,10 @@ module.exports = [
     },
   },
 
+  {
+    handle: 'version',
+  },
+
   { handle: cors },
 
   {
