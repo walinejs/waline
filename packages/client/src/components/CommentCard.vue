@@ -110,7 +110,8 @@ export default defineComponent({
 
       return !userData || avatarConfig.hide
         ? false
-        : 'type' in props.comment || avatarConfig === null
+        : props.comment.avatar &&
+          ('type' in props.comment || avatarConfig.default)
         ? props.comment.avatar
         : `${avatarConfig.cdn}${props.comment.mail}${avatarConfig.param}`;
     });
