@@ -50,7 +50,7 @@ module.exports = class extends think.Logic {
     }
 
     const userInfo = user[0];
-    userInfo.mailMd5 = helper.md5(userInfo.mail);
+    userInfo.mailMd5 = helper.md5(userInfo.email);
 
     let avatarUrl = userInfo.avatar
       ? userInfo.avatar

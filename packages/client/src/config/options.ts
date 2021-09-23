@@ -72,6 +72,76 @@ export interface DeprecatedValineOptions {
   requiredFields?: Meta[];
 
   /**
+   * @deprecated Please use `AVATAR_PROXY` in server, will be dropped in V2
+   *
+   * [Gravatar](http://cn.gravatar.com/) 头像展示方式
+   *
+   * 可选值:
+   *
+   * - `''`
+   * - `'mp'`
+   * - `'identicon'`
+   * - `'monsterid'`
+   * - `'wavatar'`
+   * - `'retro'`
+   * - `'robohash'`
+   * - `'hide'`
+   *
+   * @see https://waline.js.org/client/avatar.html
+   *
+   * [Gravatar](http://gravatar.com/) type
+   *
+   * Optional value:
+   *
+   * - `''`
+   * - `'mp'`
+   * - `'identicon'`
+   * - `'monsterid'`
+   * - `'wavatar'`
+   * - `'retro'`
+   * - `'robohash'`
+   * - `'hide'`
+   *
+   * @see https://waline.js.org/en/client/avatar.html
+   *
+   * @default 'mp'
+   */
+  avatar?: Avatar;
+
+  /**
+   * @deprecated Please use `AVATAR_PROXY` in server, will be dropped in V2
+   *
+   * 设置 Gravatar 头像 CDN 地址
+   *
+   * Gravatar CDN baseURL
+   *
+   * @default 'https://seccdn.libavatar.org/avatar/'
+   */
+  avatarCDN?: string;
+
+  /**
+   * @deprecated This option is no longer needed with latest server, will be dropped in V2
+   *
+   * 每次访问是否**强制**拉取最新的*评论列表头像*
+   *
+   * Whether **force** pulling the latest avatar each time
+   *
+   * @default false
+   */
+  avatarForce?: boolean;
+
+  /**
+   * @deprecated Please use mathjax in server, will be dropped in V2
+   *
+   * 是否注入额外的样式添加对 `<math>` 块的兼容
+   *
+   * Whether injecting additional styles to support math block
+   *
+   * @default false
+   */
+  mathTagSupport?: boolean;
+
+  /**
    * @deprecated Use `emojis` instead, will be dropped in V2
    *
    * 设置**表情包 CDN**
@@ -176,41 +246,6 @@ export interface WalineOptions extends DeprecatedValineOptions {
   path?: string;
 
   /**
-   * [Gravatar](http://cn.gravatar.com/) 头像展示方式
-   *
-   * 可选值:
-   *
-   * - `''`
-   * - `'mp'`
-   * - `'identicon'`
-   * - `'monsterid'`
-   * - `'wavatar'`
-   * - `'retro'`
-   * - `'robohash'`
-   * - `'hide'`
-   *
-   * @see https://waline.js.org/client/avatar.html
-   *
-   * [Gravatar](http://gravatar.com/) type
-   *
-   * Optional value:
-   *
-   * - `''`
-   * - `'mp'`
-   * - `'identicon'`
-   * - `'monsterid'`
-   * - `'wavatar'`
-   * - `'retro'`
-   * - `'robohash'`
-   * - `'hide'`
-   *
-   * @see https://waline.js.org/en/client/avatar.html
-   *
-   * @default 'mp'
-   */
-  avatar?: Avatar;
-
-  /**
    * 评论者相关属性
    *
    * `Meta` 可选值: `'nick'`, `'mail'`, `'link'`
@@ -312,24 +347,6 @@ export interface WalineOptions extends DeprecatedValineOptions {
   highlight?: boolean;
 
   /**
-   * 设置 Gravatar 头像 CDN 地址
-   *
-   * Gravatar CDN baseURL
-   *
-   * @default 'https://seccdn.libavatar.org/avatar/'
-   */
-  avatarCDN?: string;
-
-  /**
-   * 每次访问是否**强制**拉取最新的*评论列表头像*
-   *
-   * Whether **force** pulling the latest avatar each time
-   *
-   * @default false
-   */
-  avatarForce?: boolean;
-
-  /**
    * 设置表情包
    *
    * Set Emojis
@@ -367,17 +384,6 @@ export interface WalineOptions extends DeprecatedValineOptions {
    * @default 'enable'
    */
   login?: 'enable' | 'disable' | 'force';
-
-  /**
-   * @deprecated Please use mathjax in server, will be dropped in V2
-   *
-   * 是否注入额外的样式添加对 `<math>` 块的兼容
-   *
-   * Whether injecting additional styles to support math block
-   *
-   * @default false
-   */
-  mathTagSupport?: boolean;
 
   /**
    * 是否在页脚展示版权信息

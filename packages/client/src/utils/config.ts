@@ -36,7 +36,7 @@ export interface Config
   locale: Locale;
   wordLimit: [number, number] | false;
   emoji: Promise<EmojiConfig>;
-  avatar: { cdn: string; param: string } | false;
+  avatar: { cdn: string; param: string; default: boolean; hide: boolean };
 }
 
 export const getConfig = ({
@@ -50,14 +50,14 @@ export const getConfig = ({
   emojiMaps,
   requiredFields = [],
   anonymous,
+  avatarCDN,
+  avatar,
+  avatarForce,
 
   path = location.pathname,
   lang = defaultLang,
   locale = langMode,
   emoji = ['https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/weibo'],
-  avatar = 'mp',
-  avatarCDN = defaultGravatarCDN,
-  avatarForce,
   meta = ['nick', 'mail', 'link'],
   requiredMeta = requiredFields,
   pageSize = 10,
@@ -102,15 +102,14 @@ export const getConfig = ({
     meta: getMeta(meta),
     requiredMeta: getMeta(requiredMeta),
     pageSize,
-    avatar:
-      avatar === 'hide'
-        ? false
-        : {
-            cdn: avatarCDN,
-            param: `?d=${getAvatar(avatar)}${
-              avatarForce ? `&q=${Math.random().toString(32).substring(2)}` : ''
-            }`,
-          },
+    avatar: {
+      cdn: avatarCDN || defaultGravatarCDN,
+      param: `?d=${getAvatar(avatar)}${
+        avatarForce ? `&q=${Math.random().toString(32).substring(2)}` : ''
+      }`,
+      default: !avatar && !avatarCDN,
+      hide: avatar === 'hide',
+    },
     uploadImage:
       typeof uploadImage === 'function'
         ? uploadImage

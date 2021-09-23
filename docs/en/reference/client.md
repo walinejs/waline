@@ -262,11 +262,11 @@ Please use `login` instead.
 
 Whether to allow login comments. Both supported by default, set to `true` means only support anonymous comments, `false` means only support login comments.
 
-## avatarCDN
+### avatarCDN
 
-::: warning Obsolete
+::: waring Obsolete
 
-The configure is deprecated, because gravatar avatar setting migrated to server configure `AVATAR_PROXY`.
+We recommand you to use lastest server and config it with `AVATAR_PROXY`.
 
 :::
 
@@ -276,19 +276,11 @@ The configure is deprecated, because gravatar avatar setting migrated to server 
 
 Avatar provider baseURL. Supports Gravatar-compatible APIs.
 
-### copyRight
+### avatar
 
-::: danger Deprecated
+::: waring Obsolete
 
-Please use `copyright` instead.
-
-:::
-
-## avatar
-
-::: danger Deprecated
-
-The configure is deprecated, because gravatar avatar setting migrated to server configure `AVATAR_PROXY`.
+We recommand you to use lastest server and config it with `AVATAR_PROXY`.
 
 :::
 
@@ -311,11 +303,11 @@ Optional value:
 
 See the [Avatar setting](../guide/client/avatar.md) for more details.
 
-## avatarForce
+### avatarForce
 
-::: danger Deprecated
+::: waring Obsolete
 
-The configure is deprecated, because gravatar avatar setting migrated to server configure `AVATAR_PROXY`.
+We recommand you to use lastest server and config it with `AVATAR_PROXY`.
 
 :::
 
@@ -324,3 +316,11 @@ The configure is deprecated, because gravatar avatar setting migrated to server 
 - Required: No
 
 Whether **force** pulling the latest avatar each time.
+
+### copyRight
+
+::: danger Deprecated
+
+Please use `copyright` instead.
+
+:::

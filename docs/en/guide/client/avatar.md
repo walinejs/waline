@@ -1,7 +1,9 @@
 # Avatar Configuration
 
-::: danger Deprecated
-The configure is deprecated, because gravatar avatar setting migrated to server configure `AVATAR_PROXY`.
+::: waring Obsolete
+
+We recommand you to use lastest server and config it with `AVATAR_PROXY`.
+
 :::
 
 Waline currently uses [Libravatar][1] as the comment list avatar.

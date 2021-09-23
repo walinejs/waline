@@ -237,9 +237,9 @@ import {
 
 import type { DeepReadonly } from 'vue';
 import type { ConfigRef } from '../composables';
+import type { UploadImage } from '../config';
 import type { CommentData } from '../typings';
 import type { EmojiConfig } from '../utils';
-import { UploadImage } from '../config';
 
 export default defineComponent({
   name: 'CommentBox',

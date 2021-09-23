@@ -1,7 +1,9 @@
 # 头像配置
 
-::: danger 已废弃
-Gravatar 头像配置统一走服务端的 AVATAR_PROXY 配置，该配置已废弃
+::: warning 已过时
+
+建议配合最新版本的服务端，通过服务端的 `AVATAR_PROXY` 配置。
+
 :::
 
 Waline 目前使用 [Libravatar][1] 获取评论列表头像。
