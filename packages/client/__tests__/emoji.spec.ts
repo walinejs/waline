@@ -22,7 +22,7 @@ describe('Emoji test', () => {
     );
   });
 
-  it('Should not throw errows', () => {
+  it('Should not throw errors', () => {
     expect(parseEmoji());
     expect(parseEmoji(''));
   });
