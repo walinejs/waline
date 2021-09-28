@@ -2,6 +2,7 @@ import en from './en';
 import jp from './jp';
 import zhCN from './zh-CN';
 import zhTW from './zh-TW';
+import ptBR from './pt-BR';
 
 import type { Locale } from './typings';
 
@@ -18,4 +19,5 @@ export const locales: Locales = {
   'en-US': en,
   jp: jp,
   'jp-JP': jp,
+  'pt-BR': ptBR,
 };
