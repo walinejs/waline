@@ -20,4 +20,5 @@ export const locales: Locales = {
   jp: jp,
   'jp-JP': jp,
   'pt-BR': ptBR,
+  'pt-br': ptBR,
 };
