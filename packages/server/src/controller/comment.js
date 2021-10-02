@@ -62,7 +62,22 @@ module.exports = class extends BaseRest {
         const { count } = this.get();
         const comments = await this.modelInstance.select(
           { status: ['NOT IN', ['waiting', 'spam']] },
-          { desc: 'insertedAt', limit: count }
+          {
+            desc: 'insertedAt',
+            limit: count,
+            field: [
+              'comment',
+              'insertedAt',
+              'link',
+              'mail',
+              'nick',
+              'pid',
+              'rid',
+              'ua',
+              'user_id',
+              'sticky',
+            ],
+          }
         );
 
         const userModel = this.service(
