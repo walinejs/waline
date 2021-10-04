@@ -3,7 +3,6 @@ const { resolve } = require('path');
 module.exports = {
   rootDir: resolve(__dirname),
   preset: 'ts-jest',
-  // preset: "ts-jest/presets/js-with-babel",
   collectCoverage: true,
   testEnvironment: 'node',
   transform: {

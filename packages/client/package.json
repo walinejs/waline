@@ -19,10 +19,11 @@
     "analyze": "cross-env ANALYZE=true webpack --mode=production",
     "build": "npm run build:normal && npm run build:no-style && npm run build:dts",
     "build:dts": "rollup -c ./build/rollup.config.js",
-    "build:normal": "webpack --mode=production --config ./build/webpack.config.js",
     "build:no-style": "webpack --mode=production --config ./build/webpack.noStyle.js",
+    "build:normal": "webpack --mode=production --config ./build/webpack.config.js",
     "clean": "rimraf ./dist",
     "dev": "webpack serve --mode=development --config ./build/webpack.config.js",
+    "lint": "eslint --ext .ts,.vue .",
     "prepublish": "npm run build"
   },
   "browserslist": {
@@ -42,7 +43,7 @@
   "devDependencies": {
     "@types/autosize": "4.0.0",
     "@types/marked": "3.0.1",
-    "@vue/compiler-sfc": "3.2.12",
+    "@vue/compiler-sfc": "3.2.19",
     "autosize": "5.0.1",
     "hanabi": "0.4.0",
     "marked": "3.0.4",
