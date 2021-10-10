@@ -21,6 +21,7 @@ export const getGuideSidebar = (lang, titles): SidebarConfigArray =>
       lang + '/guide/server/socials.md',
       lang + '/guide/server/databases.md',
       !lang ? '/guide/server/cloudbase.md' : undefined,
+      lang + '/guide/server/deta.md',
       lang + '/guide/server/vps-deploy.md',
     ].filter((v) => v),
   ].map((item, index) => ({

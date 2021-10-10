@@ -18,6 +18,7 @@ assignees: ''
 
 - 服务部署在哪里？ | Where your waline deploy?
   - [ ] Vercel
+  - [ ] Deta
   - [ ] CloudBase
   - [ ] Docker
   - [ ] VPS, Virtual Host

@@ -17,10 +17,10 @@ Waline: A simple comment system with backend support fork from [Valine](https://
 | -------------------------------------------------------- | ------------ | ----------- |
 | **Client**                                               | **Server**   | **Storage** |
 | [@waline/client](https://waline.js.org)                  | Vercel       | LeanCloud   |
-| [MiniValine](https://minivaline.js.org/)                 | CloudBase    | CloudBase   |
-| [AprilComment](https://github.com/asforest/AprilComment) | Docker       | MongoDB     |
-|                                                          | Virtual Host | MySQL       |
-|                                                          |              | SQLite      |
+| [MiniValine](https://minivaline.js.org/)                 | Deta         | CloudBase   |
+| [AprilComment](https://github.com/asforest/AprilComment) | CloudBase    | MongoDB     |
+|                                                          | Docker       | MySQL       |
+|                                                          | Virtual Host | SQLite      |
 |                                                          |              | PostgreSQL  |
 |                                                          |              | GitHub      |
 

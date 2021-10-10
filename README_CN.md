@@ -19,16 +19,16 @@
 - 轻量易用
 - 免费部署
 - 多种部署方式和存储服务支持，每列选择一项多达 84 种部署方式任君选择
-  | | Waline | |
-  | ------------------------------------------------------ | ------------ | ----------- |
-  | **客户端脚本** | **服务端部署** | **数据存储** |
-  | [@waline/client](https://waline.js.org) | Vercel | LeanCloud |
-  | [MiniValine](https://minivaline.js.org/) | CloudBase | CloudBase |
-  | [AprilComment](https://github.com/asforest/AprilComment) | Docker | MongoDB |
-  | | 独立部署 | MySQL |
-  | | | SQLite |
-  | | | PostgreSQL |
-  | | | GitHub |
+  |                                                          | Waline         |              |
+  | -------------------------------------------------------- | -------------- | ------------ |
+  | **客户端脚本**                                           | **服务端部署** | **数据存储** |
+  | [@waline/client](https://waline.js.org)                  | Vercel         | LeanCloud    |
+  | [MiniValine](https://minivaline.js.org/)                 | Deta           | CloudBase    |
+  | [AprilComment](https://github.com/asforest/AprilComment) | CloudBase      | MongoDB      |
+  |                                                          | Docker         | MySQL        |
+  |                                                          | 独立部署       | SQLite       |
+  |                                                          |                | PostgreSQL   |
+  |                                                          |                | GitHub       |
 
 ## Todo
 
