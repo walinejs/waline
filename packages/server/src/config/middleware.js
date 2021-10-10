@@ -2,6 +2,7 @@ const cors = require('@koa/cors');
 const routerREST = require('think-router-rest');
 const isDev = think.env === 'development';
 const isTcb = think.env === 'cloudbase';
+const isDeta = think.env === 'deta';
 
 module.exports = [
   {
@@ -14,7 +15,7 @@ module.exports = [
     options: {
       logRequest: isDev,
       sendResponseTime: isDev,
-      requestTimeoutCallback: isTcb ? false : () => {},
+      requestTimeoutCallback: isTcb || isDeta ? false : () => {},
     },
   },
 

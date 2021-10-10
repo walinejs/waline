@@ -3,14 +3,16 @@ const path = require('path');
 const Application = require('thinkjs');
 const Loader = require('thinkjs/lib/loader');
 
-module.exports = function (config = {}) {
+module.exports = function (configParams = {}) {
+  const { env, ...config } = configParams;
+
   const app = new Application({
     ROOT_PATH: __dirname,
     APP_PATH: path.join(__dirname, 'src'),
     VIEW_PATH: path.join(__dirname, 'view'),
     RUNTIME_PATH: path.join(os.tmpdir(), 'runtime'),
     proxy: true, // use proxy
-    env: 'vercel',
+    env: env || 'vercel',
   });
 
   const loader = new Loader(app.options);
