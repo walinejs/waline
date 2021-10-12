@@ -284,7 +284,10 @@ export default function () {
                         className={cls({ current: type === filter[key] })}
                         key={type}
                       >
-                        <a href="javascript:void(0)" onClick={() => dispatch({ [key]: type })}>
+                        <a
+                          href="javascript:void(0)"
+                          onClick={() => dispatch({ [key]: type })}
+                        >
                           {name}
                           {key === 'status' &&
                           type !== 'approved' &&
