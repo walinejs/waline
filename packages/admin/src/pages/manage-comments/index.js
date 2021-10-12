@@ -284,7 +284,10 @@ export default function () {
                         className={cls({ current: type === filter[key] })}
                         key={type}
                       >
-                        <a href="#" onClick={() => dispatch({ [key]: type })}>
+                        <a
+                          href="javascript:void(0)"
+                          onClick={() => dispatch({ [key]: type })}
+                        >
                           {name}
                           {key === 'status' &&
                           type !== 'approved' &&
@@ -334,7 +337,7 @@ export default function () {
                       >
                         {createActions().map(({ key, name, action }) => (
                           <li key={key}>
-                            <a href="#" onClick={action}>
+                            <a href="javascript:void(0)" onClick={action}>
                               {name}
                             </a>
                           </li>
@@ -636,7 +639,7 @@ export default function () {
                                     ) : (
                                       <a
                                         key={key}
-                                        href="#"
+                                        href="javascript:void(0)"
                                         className={`operate-${key}`}
                                         onClick={action}
                                       >
