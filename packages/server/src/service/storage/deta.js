@@ -31,6 +31,18 @@ module.exports = class extends Base {
               conditions[parseKey(k)] = where[k][1];
               break;
             case 'NOT IN':
+              /**
+               * deta base doesn't support not equal with multiple value query
+               * so we have to transfer it into equal with some value in most of scene
+               */
+              if (Array.isArray(where[k][1]) && parseKey(k) === 'status') {
+                const STATUS = ['approved', 'waiting', 'spam'];
+                let val = STATUS.filter((s) => !where[k][1].includes(s));
+                if (val.length === 1) {
+                  val = val[0];
+                }
+                conditions[parseKey(k)] = val;
+              }
               conditions[parseKey(k) + '?ne'] = where[k][1];
               break;
             case 'LIKE': {
