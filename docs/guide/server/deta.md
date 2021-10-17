@@ -28,7 +28,7 @@ iwr https://get.deta.dev/cli.ps1 -useb | iex
 
 更新之前我们需要将项目克隆下来。进入到我们的项目的设置页，复制并执行页面中的 `deta clone` 命令，稍等一会儿项目就下载下来了。
 
-![Deta-2](../../assets/deta-3.png)
+![Deta-2](../../assets/deta-3.jpg)
 
 之后我们可以在本地对项目代码进行修改，比如将 `package.json` 中的依赖版本修改至最新。
 
