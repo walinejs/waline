@@ -1,4 +1,5 @@
 const { Deta } = require('deta');
+const { performance } = require('perf_hooks');
 const Base = require('./base');
 
 module.exports = class extends Base {
@@ -22,6 +23,23 @@ module.exports = class extends Base {
     }
 
     return result;
+  }
+
+  /**
+   * deta base doesn't support order data by field
+   * it will order by key default
+   * so we need create a lower key than before to keep latest data in front
+   * @returns string
+   */
+  async uuid() {
+    const items = await this.select({}, { limit: 1 });
+    let lastKey;
+    if (items.length && !isNaN(parseInt(items[0].objectId))) {
+      lastKey = parseInt(items[0].objectId);
+    } else {
+      lastKey = Number.MAX_SAFE_INTEGER - performance.now();
+    }
+    return (lastKey - Math.round(Math.random() * 100)).toString();
   }
 
   where(where) {
@@ -179,7 +197,8 @@ module.exports = class extends Base {
   }
 
   async add(data) {
-    const resp = await this.instance.put(data);
+    const uuid = await this.uuid();
+    const resp = await this.instance.put(data, uuid);
     resp.objectId = resp.key;
     delete resp.key;
     return resp;
