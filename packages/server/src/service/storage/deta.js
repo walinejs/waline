@@ -161,7 +161,7 @@ module.exports = class extends Base {
       const { items } = await this.instance.fetch(conditions, {
         limit: limit,
       });
-      data = items;
+      data = items || [];
     }
 
     data = data.map(({ key, ...cmt }) => ({
