@@ -41,6 +41,9 @@ Waline 主要由前端和服务端两部分组成。
 
 ![vercel](./assets/vercel-update.png)
 
+#### Deta
+
+[Deta - 如何更新](https://waline.js.org/guide/server/deta.html#deta-%E5%A6%82%E4%BD%95%E6%9B%B4%E6%96%B0)
 #### CloudBase
 
 进入代码编辑界面，点击 <kbd>保存并重新安装依赖</kbd> 即可。如果还不行，则进入 <kbd>我的应用</kbd> 选择 <kbd>部署</kbd> 进行重新部署。
