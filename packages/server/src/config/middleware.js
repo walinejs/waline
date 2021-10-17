@@ -2,7 +2,7 @@ const cors = require('@koa/cors');
 const routerREST = require('think-router-rest');
 const isDev = think.env === 'development';
 const isTcb = think.env === 'cloudbase';
-const isDeta = think.env === 'deta';
+const isDeta = think.env === 'deta' || process.env.DETA_RUNTIME === 'true';
 
 module.exports = [
   {

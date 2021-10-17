@@ -11,5 +11,3 @@ Click this button and it'll redirect to deta platform to quickly deploy. You nee
 When everything is ok, just click <kbd>Deploy</kbd> button. It'll deploy successful after a moment. Then deta will show you deploy site url. Copy the site url and input it into client `serverURL` configuration. Then you can enjoy waline!
 
 ![Deta-2](../../../assets/deta-2.png)
-
-
