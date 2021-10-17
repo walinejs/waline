@@ -23,51 +23,48 @@ module.exports = class extends Base {
       if (where[k] === undefined) {
         conditions[parseKey(k)] = null;
       }
-      if (Array.isArray(where[k])) {
-        if (where[k][0]) {
-          const handler = where[k][0].toUpperCase();
-          switch (handler) {
-            case 'IN':
-              conditions[parseKey(k)] = where[k][1];
-              break;
-            case 'NOT IN':
-              /**
-               * deta base doesn't support not equal with multiple value query
-               * so we have to transfer it into equal with some value in most of scene
-               */
-              if (Array.isArray(where[k][1]) && parseKey(k) === 'status') {
-                const STATUS = ['approved', 'waiting', 'spam'];
-                let val = STATUS.filter((s) => !where[k][1].includes(s));
-                if (val.length === 1) {
-                  val = val[0];
-                }
-                conditions[parseKey(k)] = val;
-              }
-              conditions[parseKey(k) + '?ne'] = where[k][1];
-              break;
-            case 'LIKE': {
-              const first = where[k][1][0];
-              const last = where[k][1].slice(-1);
-              if (first === '%' && last === '%') {
-                conditions[parseKey(k) + '?contains'] = where[k][1].slice(
-                  1,
-                  -1
-                );
-              } else if (first === '%') {
-                conditions[parseKey(k) + '?contains'] = where[k][1].slice(1);
-              } else if (last === '%') {
-                conditions[parseKey(k) + '?pfx'] = where[k][1].slice(0, -1);
-              }
-              break;
+
+      if (!think.isArray(where[k]) || !where[k][0]) {
+        continue;
+      }
+      const handler = where[k][0].toUpperCase();
+      switch (handler) {
+        case 'IN':
+          conditions[parseKey(k)] = where[k][1];
+          break;
+        case 'NOT IN':
+          /**
+           * deta base doesn't support not equal with multiple value query
+           * so we have to transfer it into equal with some value in most of scene
+           */
+          if (Array.isArray(where[k][1]) && parseKey(k) === 'status') {
+            const STATUS = ['approved', 'waiting', 'spam'];
+            let val = STATUS.filter((s) => !where[k][1].includes(s));
+            if (val.length === 1) {
+              val = val[0];
             }
-            case '!=':
-              conditions[parseKey(k) + '?ne'] = where[k][1];
-              break;
-            case '>':
-              conditions[parseKey(k) + '?gt'] = where[k][1];
-              break;
+            conditions[parseKey(k)] = val;
           }
+          conditions[parseKey(k) + '?ne'] = where[k][1];
+          break;
+        case 'LIKE': {
+          const first = where[k][1][0];
+          const last = where[k][1].slice(-1);
+          if (first === '%' && last === '%') {
+            conditions[parseKey(k) + '?contains'] = where[k][1].slice(1, -1);
+          } else if (first === '%') {
+            conditions[parseKey(k) + '?contains'] = where[k][1].slice(1);
+          } else if (last === '%') {
+            conditions[parseKey(k) + '?pfx'] = where[k][1].slice(0, -1);
+          }
+          break;
         }
+        case '!=':
+          conditions[parseKey(k) + '?ne'] = where[k][1];
+          break;
+        case '>':
+          conditions[parseKey(k) + '?gt'] = where[k][1];
+          break;
       }
     }
 
@@ -76,7 +73,6 @@ module.exports = class extends Base {
 
   async select(where, { limit, offset, field } = {}) {
     const conditions = this.where(where);
-    console.log(conditions);
     let data = [];
 
     if (
@@ -84,9 +80,19 @@ module.exports = class extends Base {
       think.isString(conditions.key) &&
       conditions.key
     ) {
+      /**
+       * deta base doesn't support fetch with key field query
+       * if you want query by key field
+       * you need use `get()` rather than `fetch()` method.
+       */
       const item = await this.instance.get(conditions.key);
       item && data.push(item);
     } else if (offset) {
+      /**
+       * deta base need last data key when pagination
+       * so we need fetch data list again and again
+       * because only that we can get last data key
+       */
       while (data.length < limit + offset) {
         const lastData = data[data.length - 1];
         const last = lastData ? lastData.key : undefined;
@@ -94,7 +100,9 @@ module.exports = class extends Base {
           limit,
           last,
         });
-        if (items.length === 0) {
+        data = data.concat(items);
+
+        if (items.length < limit) {
           break;
         }
       }
