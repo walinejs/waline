@@ -28,7 +28,7 @@ After installation, we use `deta login` to log in to the command line, during wh
 
 We need to clone the project before updating. Enter the setting page of our project, copy and execute the `deta clone` command on the page, and the project will be downloaded after a while.
 
-![Deta-2](../../assets/deta-3.jpg)
+![Deta-2](../../../assets/deta-3.jpg)
 
 After that, we can modify the project code locally, for example, modify the dependency version in `package.json` to the latest.
 
