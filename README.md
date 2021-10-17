@@ -30,6 +30,7 @@ English | [中文](https://github.com/walinejs/waline/blob/main/README_CN.md) | 
 |                                                          | Virtual Host | SQLite      |
 |                                                          |              | PostgreSQL  |
 |                                                          |              | GitHub      |
+|                                                          |              | Deta Base   |
 
 ## Todo
 

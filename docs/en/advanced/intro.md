@@ -23,6 +23,7 @@ Waline: A simple comment system with backend support fork from [Valine](https://
 |                                                          | Virtual Host | SQLite      |
 |                                                          |              | PostgreSQL  |
 |                                                          |              | GitHub      |
+|                                                          |              | Deta Base   |
 
 ## Todo
 
