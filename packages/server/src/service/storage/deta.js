@@ -8,6 +8,22 @@ module.exports = class extends Base {
     this.instance = deta.Base(tableName);
   }
 
+  complex(obj, keys) {
+    const result = new Array(keys.reduce((a, b) => a * obj[b].length, 1));
+    for (let i = 0; i < result.length; i++) {
+      result[i] = { ...obj };
+      for (let n = 0; n < keys.length; n++) {
+        const divisor = keys
+          .slice(n + 1)
+          .reduce((a, b) => a * obj[b].length, 1);
+        const idx = Math.floor(i / divisor) % obj[keys[n]].length;
+        result[i][keys[n]] = obj[keys[n]][idx];
+      }
+    }
+
+    return result;
+  }
+
   where(where) {
     if (think.isEmpty(where)) {
       return;
@@ -15,6 +31,7 @@ module.exports = class extends Base {
 
     const parseKey = (k) => (k === 'objectId' ? 'key' : k);
     const conditions = {};
+    const _isArrayKeys = [];
     for (let k in where) {
       if (think.isString(where[k])) {
         conditions[parseKey(k)] = where[k];
@@ -31,6 +48,9 @@ module.exports = class extends Base {
       switch (handler) {
         case 'IN':
           conditions[parseKey(k)] = where[k][1];
+          if (think.isArray(where[k][1])) {
+            _isArrayKeys.push(parseKey(k));
+          }
           break;
         case 'NOT IN':
           /**
@@ -68,13 +88,24 @@ module.exports = class extends Base {
       }
     }
 
-    return conditions;
+    if (_isArrayKeys.length === 0) {
+      return conditions;
+    }
+
+    return this.complex(conditions, _isArrayKeys);
   }
 
   async select(where, { limit, offset, field } = {}) {
     const conditions = this.where(where);
-    let data = [];
+    if (think.isArray(conditions)) {
+      return Promise.all(
+        conditions.map((condition) =>
+          this.select(condition, { limit, offset, field })
+        )
+      ).then((data) => data.flat());
+    }
 
+    let data = [];
     if (
       think.isObject(conditions) &&
       think.isString(conditions.key) &&
@@ -137,6 +168,12 @@ module.exports = class extends Base {
 
   async count(where = {}) {
     const conditions = this.where(where);
+    if (think.isArray(conditions)) {
+      return Promise.all(
+        conditions.map((condition) => this.count(condition))
+      ).then((counts) => counts.reduce((a, b) => a + b, 0));
+    }
+
     const { count } = await this.instance.fetch(conditions);
     return count;
   }
