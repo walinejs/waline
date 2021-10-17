@@ -33,6 +33,7 @@ We need to clone the project before updating. Enter the setting page of our proj
 After that, we can modify the project code locally, for example, modify the dependency version in `package.json` to the latest.
 
 Finally, we can use the `deta deploy` command in the command line to implement the update deployment of the website.
+
 ## How to modify environment variables
 
 Modifying environment variable also requires the CLI to operate.

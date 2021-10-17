@@ -33,6 +33,7 @@ iwr https://get.deta.dev/cli.ps1 -useb | iex
 之后我们可以在本地对项目代码进行修改，比如将 `package.json` 中的依赖版本修改至最新。
 
 最后我们在命令行中使用 `deta deploy` 命令即可实现网站的更新部署。
+
 ## 如何修改环境变量
 
 修改换进变量同样需要使用 CLI 进行操作。
