@@ -16,7 +16,7 @@ const {
   DISABLE_USERAGENT,
   AVATAR_PROXY,
   GITHUB_TOKEN,
-  DETA_KEY,
+  DETA_PROJECT_KEY,
 
   MARKDOWN_CONFIG = '{}',
   MARKDOWN_HIGHLIGHT,
@@ -58,9 +58,9 @@ if (LEAN_KEY) {
 } else if (think.env === 'cloudbase' || TCB_ENV) {
   storage = 'cloudbase';
   jwtKey = jwtKey || TENCENTCLOUD_SECRETKEY || TCB_KEY || TCB_ENV;
-} else if (DETA_KEY) {
+} else if (DETA_PROJECT_KEY) {
   storage = 'deta';
-  jwtKey = jwtKey || DETA_KEY;
+  jwtKey = jwtKey || DETA_PROJECT_KEY;
 }
 
 if (think.env === 'cloudbase' && storage === 'sqlite') {

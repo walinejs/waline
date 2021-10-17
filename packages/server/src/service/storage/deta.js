@@ -5,7 +5,7 @@ const Base = require('./base');
 module.exports = class extends Base {
   constructor(tableName) {
     super(tableName);
-    const deta = Deta(process.env.DETA_KEY);
+    const deta = Deta(process.env.DETA_PROJECT_KEY);
     this.instance = deta.Base(tableName);
   }
 
