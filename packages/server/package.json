@@ -9,6 +9,7 @@
     "@cloudbase/node-sdk": "^2.7.1",
     "@koa/cors": "^3.1.0",
     "akismet": "^2.0.6",
+    "deta": "^1.0.1",
     "dompurify": "^2.3.3",
     "fast-csv": "^4.3.6",
     "jsdom": "^17.0.0",
