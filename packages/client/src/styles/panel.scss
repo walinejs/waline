@@ -196,9 +196,9 @@
       border: var(--waline-border);
       border-radius: 0.25em;
       word-break: break-word;
-      hyphens: auto;
       -ms-hyphens: auto;
-      -webkit-hyphens: auto
+      -webkit-hyphens: auto;
+      hyphens: auto;
 
       > *:first-child {
         margin-top: 0;
