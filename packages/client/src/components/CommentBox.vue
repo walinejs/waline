@@ -504,7 +504,7 @@ export default defineComponent({
     };
 
     const onLogout = (): void => {
-      setUserInfo(null);
+      setUserInfo({});
       localStorage.setItem('WALINE_USER', 'null');
       sessionStorage.setItem('WALINE_USER', 'null');
     };

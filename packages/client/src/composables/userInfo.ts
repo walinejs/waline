@@ -11,15 +11,15 @@ export interface UserInfo {
   mailMd5: string;
 }
 
-export type UserInfoRef = Ref<UserInfo | null>;
+export type UserInfoRef = Ref<UserInfo | Record<string, never>>;
 
 const USER_KEY = 'WALINE_USER';
 
-const userInfo = ref<UserInfo | null>(null);
+const userInfo: UserInfoRef = ref({});
 
 export const useUserInfo = (): {
   userInfo: UserInfoRef;
-  setUserInfo: (userInfo: UserInfo | null) => void;
+  setUserInfo: (userInfo: UserInfo | Record<string, never>) => void;
 } => {
   if (!userInfo.value)
     try {
@@ -27,14 +27,14 @@ export const useUserInfo = (): {
       userInfo.value =
         JSON.parse(localStorage.getItem(USER_KEY) || '') ||
         JSON.parse(sessionStorage.getItem(USER_KEY) || '') ||
-        null;
+        {};
     } catch (err) {
       // do nothing
     }
 
   return {
     userInfo: readonly(userInfo),
-    setUserInfo: (info: UserInfo | null): void => {
+    setUserInfo: (info: UserInfo | Record<string, never>): void => {
       userInfo.value = info;
     },
   };

@@ -13,11 +13,12 @@ export interface CommentData {
 
 export interface Comment extends Exclude<CommentData, 'ua'> {
   avatar?: string;
-  browser: string;
-  createAt: string;
-  insertAt: string;
-  updateAt: string;
   objectId: string;
-  children?: Comment[];
+  createdAt: string;
+  insertedAt: string;
+  updatedAt: string;
+  children: Comment[];
   sticky?: boolean;
+  browser?: string;
+  os?: string;
 }
