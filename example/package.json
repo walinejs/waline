@@ -3,6 +3,6 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "@waline/vercel": "^1.1.1"
+    "@waline/vercel": "latest"
   }
 }

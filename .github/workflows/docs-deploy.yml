@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'assets/*'
+      - 'docs/*'
 
 jobs:
   deploy-docs:
@@ -36,8 +39,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-npm-
 
-      - name: Use npm v7
-        run: sudo npm i -g npm@7
+      - name: Use npm v8
+        run: sudo npm i -g npm@8
 
       - name: Install Deps
         if: steps.node-cache.outputs.cache-hit != 'true'
