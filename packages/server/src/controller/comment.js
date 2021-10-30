@@ -70,6 +70,7 @@ module.exports = class extends BaseRest {
               'link',
               'mail',
               'nick',
+              'url',
               'pid',
               'rid',
               'ua',
