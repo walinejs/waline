@@ -10,6 +10,7 @@
 
 - fix scss lint error ([c8e5a71](https://github.com/lizheming/waline/commit/c8e5a71182068606bdf81f4634e132b3e8fddba7))
 - remove unused animation style ([5d32461](https://github.com/lizheming/waline/commit/5d324619a7e9a730517d8d613995eb6f1d9df46c))
+- fix recent comment have no url field bug ([2078a60](https://github.com/lizheming/waline/commit/2078a605f56c0c31ca6a4b3eb0846747159506cc))
 
 # (2021-09-21)
 
