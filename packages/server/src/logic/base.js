@@ -50,16 +50,20 @@ module.exports = class extends think.Logic {
     }
 
     const userInfo = user[0];
-    userInfo.mailMd5 = helper.md5(userInfo.email);
 
     let avatarUrl = userInfo.avatar
       ? userInfo.avatar
-      : `https://seccdn.libravatar.org/avatar/${userInfo.mailMd5}`;
+      : await think.service('avatar').stringify({
+          mail: userInfo.email,
+          nick: userInfo.display_name,
+          link: userInfo.url,
+        });
     const { avatarProxy } = think.config();
     if (avatarProxy) {
       avatarUrl = avatarProxy + '?url=' + encodeURIComponent(avatarUrl);
     }
     userInfo.avatar = avatarUrl;
+    userInfo.mailMd5 = helper.md5(userInfo.email);
     this.ctx.state.userInfo = userInfo;
   }
 };
