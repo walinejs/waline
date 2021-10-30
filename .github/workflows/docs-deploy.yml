@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'assets/*'
+      - 'docs/*'
 
 jobs:
   deploy-docs:
