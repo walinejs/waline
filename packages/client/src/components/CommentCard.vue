@@ -9,10 +9,11 @@
           :href="link"
           target="_blank"
           rel="nofollow noreferrer"
-          v-text="comment.nick"
-        />
-        <span v-else class="vnick" v-text="comment.nick" />
-
+          >{{ comment.nick }}<VerifiedIcon v-if="comment.type"
+        /></a>
+        <span v-else class="vnick"
+          >{{ comment.nick }}<VerifiedIcon v-if="comment.type" />
+        </span>
         <span
           v-if="comment.type === 'administrator'"
           class="vbadge"
@@ -65,7 +66,7 @@
 <script lang="ts">
 import { computed, defineComponent, inject } from 'vue';
 import CommentBox from './CommentBox.vue';
-import { ReplyIcon } from './Icons';
+import { ReplyIcon, VerifiedIcon } from './Icons';
 import { isLinkHttp, timeAgo } from '../utils';
 
 import type { PropType } from 'vue';
@@ -90,6 +91,7 @@ export default defineComponent({
   components: {
     CommentBox,
     ReplyIcon,
+    VerifiedIcon,
   },
 
   emits: ['submit', 'reply'],

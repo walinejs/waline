@@ -57,6 +57,12 @@
         text-decoration: none;
 
         cursor: pointer;
+
+        svg {
+          position: relative;
+          bottom: -0.125em;
+          line-height: 1;
+        }
       }
 
       span.vnick {
