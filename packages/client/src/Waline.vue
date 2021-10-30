@@ -63,7 +63,7 @@ import type { WalineEvent } from './utils';
 declare const VERSION: string;
 
 export default defineComponent({
-  name: 'Waline',
+  name: 'Waline-Root',
 
   components: {
     CommentBox,

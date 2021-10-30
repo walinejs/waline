@@ -54,7 +54,7 @@ export const updateVisitor = ({
     // all the id are current page, so no need to fetch
     void countIncrease.then((count) =>
       renderVisitorCount(
-        new Array(countElements.length).fill(count),
+        new Array<number>(countElements.length).fill(count),
         countElements
       )
     );

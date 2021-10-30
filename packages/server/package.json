@@ -12,16 +12,16 @@
     "deta": "^1.0.1",
     "dompurify": "^2.3.3",
     "fast-csv": "^4.3.6",
-    "jsdom": "^17.0.0",
+    "jsdom": "^18.0.0",
     "jsonwebtoken": "^8.5.1",
-    "katex": "^0.13.18",
+    "katex": "^0.13.23",
     "leancloud-storage": "^4.12.0",
     "markdown-it": "^12.2.0",
     "markdown-it-emoji": "^2.0.0",
     "markdown-it-sub": "^1.0.0",
     "markdown-it-sup": "^1.0.0",
     "mathjax-full": "^3.2.0",
-    "nodemailer": "^6.6.5",
+    "nodemailer": "^6.7.0",
     "nunjucks": "^3.2.3",
     "phpass": "^0.1.1",
     "prismjs": "^1.25.0",
@@ -35,6 +35,6 @@
     "think-mongo": "^2.1.2",
     "think-router-rest": "^1.0.5",
     "thinkjs": "^3.2.14",
-    "ua-parser-js": "^0.7.28"
+    "ua-parser-js": "^0.7.31"
   }
 }
