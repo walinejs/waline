@@ -138,6 +138,7 @@
           />
 
           <button
+            v-if="config.login !== 'force' || isLogin"
             class="vbtn primary"
             title="Cmd|Ctrl + Enter"
             :disabled="isSubmitting"
