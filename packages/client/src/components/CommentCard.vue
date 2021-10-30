@@ -33,8 +33,8 @@
         </button>
       </div>
       <div class="vmeta" aria-hidden="true">
-        <span v-text="comment.browser" />
-        <span v-text="comment.os" />
+        <span v-if="comment.browser" v-text="comment.browser" />
+        <span v-if="comment.os" v-text="comment.os" />
       </div>
       <div class="vcontent" v-html="comment.comment" />
 
