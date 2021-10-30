@@ -10,11 +10,11 @@ Welcome to Waline. In just a few steps, you can enable Waline to provide comment
 
 1. Click [Create app](https://console.leancloud.app/applist.html#/newapp) button to create a new app and enter a name you like:
 
-   ![Create App](https://i.loli.net/2019/06/21/5d0c995c86fac81746.jpg)
+   ![Create App](../../assets/leancloud-app-1.jpg)
 
-1. Enter the app, then select `Settings` > `App Keys` at the left bottom corner. You will see `APP ID`, `APP Key` and `Master Key` of your app. We will use them later
+2. Enter the app, then select `Settings` > `App Keys` at the left bottom corner. You will see `APP ID`, `APP Key` and `Master Key` of your app. We will use them later
 
-   ![ID and Key](https://i.loli.net/2019/06/21/5d0c997a60baa24436.jpg)
+   ![ID and Key](../../assets/leancloud-app-2.jpg)
 
 ## Deploy to Vercel (Server)
 

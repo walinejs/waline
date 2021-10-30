@@ -10,11 +10,11 @@
 
 1. 点击左下角 [创建应用](https://console.leancloud.app/applist.html#/newapp) 并起一个你喜欢的名字 (请选择免费的开发版):
 
-   ![创建应用](https://i.loli.net/2019/06/21/5d0c995c86fac81746.jpg)
+   ![创建应用](../assets/leancloud-1.jpeg)
 
-1. 进入应用，选择左下角的 `设置` > `应用 Key`。你可以看到你的 `APP ID`,`APP Key` 和 `Master Key`。后续我们会用到这三个值。
+2. 进入应用，选择左下角的 `设置` > `应用 Key`。你可以看到你的 `APP ID`,`APP Key` 和 `Master Key`。后续我们会用到这三个值。
 
-   ![ID 和 Key](https://i.loli.net/2019/06/21/5d0c995c86fac81746.jpg)
+   ![ID 和 Key](../assets/leancloud-2.jpeg)
 
 ::: warning
 
@@ -24,7 +24,7 @@
 - 选择 `设置` > `域名绑定` > `API 访问域名` > `绑定新域名` > 输入域名 > `确定`。
 - 按照页面上的提示按要求在 DNS 上完成 CNAME 解析。
 
-![域名设置](https://i.loli.net/2020/11/09/xfsX4JKt9zhuaiB.png)
+![域名设置](../assets/leancloud-3.png)
 
 :::
 
