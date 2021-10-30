@@ -3,6 +3,8 @@ import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
+import Header from '../../components/Header';
+
 import * as Icons from '../../components/icon';
 
 export default function () {
@@ -54,6 +56,7 @@ export default function () {
 
   return (
     <>
+      <Header />
       <div
         className="message popup notice"
         style={{

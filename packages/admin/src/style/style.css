@@ -504,6 +504,15 @@ select {
   color: #fff;
 }
 
+.typecho-head-nav .operate .language-select {
+  display: inline-block;
+  margin-left: -1px;
+  padding: 0 20px;
+  border: 1px solid #383d45;
+  border-width: 0 1px;
+  line-height: 36px;
+}
+
 /** 注脚 */
 .typecho-foot {
   padding: 4em 0 3em;

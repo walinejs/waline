@@ -12,24 +12,6 @@ import Paginator from '../../components/Paginator';
 import { buildAvatar, getPostUrl, formatDate } from './utils';
 import { useTranslation, Trans } from 'react-i18next';
 
-const FILTERS = [
-  [
-    'owner',
-    [
-      { type: 'all', name: <Trans i18nKey="all"></Trans> },
-      { type: 'mine', name: <Trans i18nKey="mine"></Trans> },
-    ],
-  ],
-  [
-    'status',
-    [
-      { type: 'approved', name: <Trans i18nKey="approved"></Trans> },
-      { type: 'waiting', name: <Trans i18nKey="waiting"></Trans> },
-      { type: 'spam', name: <Trans i18nKey="spam"></Trans> },
-    ],
-  ],
-];
-
 export default function () {
   const { t } = useTranslation();
   const keywordRef = useRef(null);
@@ -52,6 +34,24 @@ export default function () {
   const [cmtHandler, setCmtHandler] = useState({});
   const [actDropStatus, setActDropStatus] = useState(false);
   const [commentIds, setCommentIds] = useState([]);
+
+  const FILTERS = [
+    [
+      'owner',
+      [
+        { type: 'all', name: <Trans i18nKey="all"></Trans> },
+        { type: 'mine', name: <Trans i18nKey="mine"></Trans> },
+      ],
+    ],
+    [
+      'status',
+      [
+        { type: 'approved', name: <Trans i18nKey="approved"></Trans> },
+        { type: 'waiting', name: <Trans i18nKey="waiting"></Trans> },
+        { type: 'spam', name: <Trans i18nKey="spam"></Trans> },
+      ],
+    ],
+  ];
 
   useEffect(() => {
     getCommentList({ page: list.page, filter }).then((data) => {
