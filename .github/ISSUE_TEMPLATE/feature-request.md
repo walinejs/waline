@@ -1,7 +1,7 @@
 ---
 name: Feature Request
 about: Describe a feature you want
-title: '[BUG]'
+title: '[Feature]'
 labels: ''
 assignees: ''
 ---
