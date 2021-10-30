@@ -257,7 +257,7 @@ module.exports = class extends BaseRest {
     if (pid) {
       data.comment = data.comment.replace(
         '<p>',
-        `<p><a class="at" href="#${pid}">@${at}</a> , `
+        `<p><a class="at" href="#${pid}">@${at}</a>: `
       );
     }
 
