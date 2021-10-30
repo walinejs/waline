@@ -22,6 +22,7 @@ module.exports = class extends think.Controller {
         const waline = new Waline({
           el: '#waline',
           path: '/',
+          lang: new URLSearchParams(location.search.slice(1)).get('lng'),
           serverURL: location.protocol + '//' + location.host + location.pathname.replace(/\\/+$/, '')
         });
       </script>
