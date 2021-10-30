@@ -29,6 +29,7 @@ Vercel 需要在 <kbd>Settings</kbd> - <kbd>Environment Variables</kbd> 中进�
 | `COMMENT_AUDIT`     |      | 评论发布审核开关，配置后建议在 Placehoder 上提供文案提示                         |
 | `LOGIN`             |      | 当设置为 `LOGIN=force` 时会要求登录才能评论                                      |
 | `AVATAR_PROXY`      |      | 头像的代理地址，默认为 `https://avatar.75cdn.workers.dev`，设置 `false` 关闭代理 |
+| `GRAVATAR_STR` | | Gravatar 头像的地址，默认为 `https://seccdn.libravatar.org/avatar/{{mail|md5}}`，基于 nunjucks 语法 |
 
 ### Markdown
 
