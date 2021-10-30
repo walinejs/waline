@@ -1,14 +1,16 @@
 # (2021-10-30)
+
 ### Features
 
-* admin add language select ([6296fe5](https://github.com/lizheming/waline/commit/6296fe5f24b4d3864583939e93f29407b23b726b))
-* add lang support for default page ([81a8d2c](https://github.com/lizheming/waline/commit/81a8d2cfe58b56a423057da945d1728989d66691))
-* add avatarUrl to custom avatar url fix [#607](https://github.com/lizheming/waline/issues/607) ([a473ecb](https://github.com/lizheming/waline/commit/a473ecb59f4b4c841f1af099ec2a4acc3b763a1a))
+- admin add language select ([6296fe5](https://github.com/lizheming/waline/commit/6296fe5f24b4d3864583939e93f29407b23b726b))
+- add lang support for default page ([81a8d2c](https://github.com/lizheming/waline/commit/81a8d2cfe58b56a423057da945d1728989d66691))
+- add avatarUrl to custom avatar url fix [#607](https://github.com/lizheming/waline/issues/607) ([a473ecb](https://github.com/lizheming/waline/commit/a473ecb59f4b4c841f1af099ec2a4acc3b763a1a))
 
 ### Bug Fixes
 
-* fix scss lint error ([c8e5a71](https://github.com/lizheming/waline/commit/c8e5a71182068606bdf81f4634e132b3e8fddba7))
-* remove unused animation style ([5d32461](https://github.com/lizheming/waline/commit/5d324619a7e9a730517d8d613995eb6f1d9df46c))
+- fix scss lint error ([c8e5a71](https://github.com/lizheming/waline/commit/c8e5a71182068606bdf81f4634e132b3e8fddba7))
+- remove unused animation style ([5d32461](https://github.com/lizheming/waline/commit/5d324619a7e9a730517d8d613995eb6f1d9df46c))
+
 # (2021-09-21)
 
 ### Bug Fixes
