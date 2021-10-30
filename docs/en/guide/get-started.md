@@ -12,7 +12,7 @@ Welcome to Waline. In just a few steps, you can enable Waline to provide comment
 
    ![Create App](../../assets/leancloud-app-1.jpg)
 
-2. Enter the app, then select `Settings` > `App Keys` at the left bottom corner. You will see `APP ID`, `APP Key` and `Master Key` of your app. We will use them later
+1. Enter the app, then select `Settings` > `App Keys` at the left bottom corner. You will see `APP ID`, `APP Key` and `Master Key` of your app. We will use them later
 
    ![ID and Key](../../assets/leancloud-app-2.jpg)
 

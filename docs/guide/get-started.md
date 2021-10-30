@@ -12,7 +12,7 @@
 
    ![创建应用](../assets/leancloud-1.jpeg)
 
-2. 进入应用，选择左下角的 `设置` > `应用 Key`。你可以看到你的 `APP ID`,`APP Key` 和 `Master Key`。后续我们会用到这三个值。
+1. 进入应用，选择左下角的 `设置` > `应用 Key`。你可以看到你的 `APP ID`,`APP Key` 和 `Master Key`。后续我们会用到这三个值。
 
    ![ID 和 Key](../assets/leancloud-2.jpeg)
 
