@@ -85,7 +85,7 @@
     "jest": "^27.2.4",
     "lerna": "^4.0.0",
     "lint-staged": "^11.2.0",
-    "marked": "^3.0.7",
+    "marked": "^3.0.8",
     "npm-check-updates": "^11.8.5",
     "ora": "^5.4.1",
     "prettier": "^2.4.1",

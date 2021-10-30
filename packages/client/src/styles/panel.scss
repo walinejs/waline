@@ -197,6 +197,8 @@
       border-radius: 0.25em;
       word-break: break-word;
       hyphens: auto;
+      -ms-hyphens: auto;
+      -webkit-hyphens: auto
 
       > *:first-child {
         margin-top: 0;
