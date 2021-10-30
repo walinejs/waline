@@ -196,8 +196,6 @@
       border: var(--waline-border);
       border-radius: 0.25em;
       word-break: break-word;
-      -ms-hyphens: auto;
-      -webkit-hyphens: auto;
       hyphens: auto;
 
       > *:first-child {
