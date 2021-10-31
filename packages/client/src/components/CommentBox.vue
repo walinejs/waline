@@ -450,8 +450,8 @@ export default defineComponent({
         lang,
         token: userInfo.value?.token,
         comment,
-      }).then(
-        (resp) => {
+      })
+        .then((resp) => {
           isSubmitting.value = false;
 
           store.update({
@@ -469,11 +469,12 @@ export default defineComponent({
           previewText.value = '';
 
           if (props.replyId) emit('cancel-reply');
-        },
-        () => {
+        })
+        .catch((err: TypeError) => {
           isSubmitting.value = false;
-        }
-      );
+
+          alert(err.message);
+        });
     };
 
     const onLogin = (event: Event): void => {

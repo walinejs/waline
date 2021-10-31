@@ -13,6 +13,7 @@ export default generateLocale([
   'Responder',
   'Cancelar resposta',
   'Comentários',
+  'Refrescar',
   'Carregar Mais...',
   'Visualizar',
   'Emoji',

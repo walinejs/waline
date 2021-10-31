@@ -11,6 +11,7 @@ export interface Locale {
   reply: string;
   cancelReply: string;
   comment: string;
+  refresh: string;
   more: string;
   preview: string;
   emoji: string;

@@ -49,7 +49,10 @@ export const updateVisitor = ({
           countIncrease
     )
       .then(() => fetchVisitCount({ serverURL, paths: ids, signal }))
-      .then((counts) => renderVisitorCount(counts, countElements));
+      .then((counts) => renderVisitorCount(counts, countElements))
+      .catch((err: Error) => {
+        if (err.name !== 'AbortError') console.error(err.message);
+      });
   } else {
     // all the id are current page, so no need to fetch
     void countIncrease.then((count) =>

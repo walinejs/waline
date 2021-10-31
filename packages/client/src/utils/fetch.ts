@@ -5,20 +5,13 @@ export interface FetchErrorData {
   errmsg: string;
 }
 
-const errorCheck = <T = unknown>(
-  data: T | FetchErrorData,
-  fallback: T,
-  name = ''
-): T => {
-  if (typeof data === 'object' && (data as FetchErrorData).errno) {
-    console.error(
+const errorCheck = <T = unknown>(data: T | FetchErrorData, name = ''): T => {
+  if (typeof data === 'object' && (data as FetchErrorData).errno)
+    throw new TypeError(
       `Fetch ${name} failed with ${(data as FetchErrorData).errno}: ${
         (data as FetchErrorData).errmsg
       }`
     );
-
-    return fallback;
-  }
 
   return data as T;
 };
@@ -41,9 +34,7 @@ export const fetchCommentCount = ({
     { signal }
   )
     .then((resp) => resp.json() as Promise<number | number[]>)
-    .then((data) =>
-      errorCheck(data, new Array(paths.length).fill(0), 'comment count')
-    )
+    .then((data) => errorCheck(data, 'comment count'))
     // TODO: Improve this API
     .then((counts) => (Array.isArray(counts) ? counts : [counts]));
 
@@ -60,7 +51,7 @@ export const fetchRecentComment = ({
 }: FetchRecentOptions): Promise<Comment[]> =>
   fetch(`${serverURL}/comment?type=recent&count=${count}`, { signal })
     .then((resp) => resp.json() as Promise<Comment[]>)
-    .then((data) => errorCheck(data, [], 'recent comment'));
+    .then((data) => errorCheck(data, 'recent comment'));
 
 export interface FetchListOptions {
   serverURL: string;
@@ -90,9 +81,7 @@ export const fetchCommentList = ({
     { signal }
   )
     .then((resp) => resp.json() as Promise<FetchListResult>)
-    .then((data) =>
-      errorCheck(data, { count: 0, data: [], totalPages: 0 }, 'comment list')
-    );
+    .then((data) => errorCheck(data, 'comment list'));
 
 export interface PostCommentOptions {
   serverURL: string;
@@ -102,7 +91,7 @@ export interface PostCommentOptions {
 }
 
 export interface PostCommentResponse {
-  data: CommentData;
+  data?: CommentData;
   errmsg?: string;
 }
 
@@ -140,9 +129,7 @@ export const fetchVisitCount = ({
     signal,
   })
     .then((resp) => resp.json() as Promise<number[] | number>)
-    .then((data) =>
-      errorCheck(data, new Array(paths.length).fill(0), 'visit count')
-    )
+    .then((data) => errorCheck(data, 'visit count'))
     // TODO: Improve this API
     .then((counts) => (Array.isArray(counts) ? counts : [counts]));
 
@@ -163,4 +150,4 @@ export const postVisitCount = ({
     body: JSON.stringify({ path }),
   })
     .then((resp) => resp.json() as Promise<number>)
-    .then((data) => errorCheck(data, 0, 'visit count'));
+    .then((data) => errorCheck(data, 'visit count'));

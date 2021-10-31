@@ -22,9 +22,13 @@ export const updateCommentCount = (
         )
       ),
       signal,
-    }).then((counts) => {
-      $counts.forEach((element, index) => {
-        element.innerText = counts[index].toString();
+    })
+      .then((counts) => {
+        $counts.forEach((element, index) => {
+          element.innerText = counts[index].toString();
+        });
+      })
+      .catch((err: Error) => {
+        if (err.name !== 'AbortError') console.error(err.message);
       });
-    });
 };

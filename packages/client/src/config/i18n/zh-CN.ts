@@ -13,6 +13,7 @@ export default generateLocale([
   '回复',
   '取消回复',
   '评论',
+  '刷新',
   '加载更多...',
   '预览',
   '表情',

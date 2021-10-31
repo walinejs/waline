@@ -5,9 +5,7 @@
       <span v-if="count" class="vnum" v-text="count" />
       {{ locale.comment }}
     </div>
-    <div v-if="loading && !data.length" class="vloading">
-      <LoadingIcon :size="30" />
-    </div>
+
     <div class="vcards">
       <CommentCard
         v-for="comment in data"
@@ -20,11 +18,19 @@
       />
     </div>
 
-    <div v-if="loading && data.length" class="vloading">
+    <div v-if="inError" class="vloading">
+      <button
+        type="button"
+        class="vbtn"
+        @click="refresh"
+        v-text="locale.refresh"
+      />
+    </div>
+    <div v-else-if="loading" class="vloading">
       <LoadingIcon :size="30" />
     </div>
 
-    <div v-if="!data.length && !loading" class="vempty" v-text="locale.sofa" />
+    <div v-else-if="!data.length" class="vempty" v-text="locale.sofa" />
 
     <div v-if="page < totalPages && !loading" class="vmore">
       <button
@@ -86,6 +92,7 @@ export default defineComponent({
     const page = ref(1);
     const totalPages = ref(0);
     const loading = ref(true);
+    const inError = ref(false);
     const data = ref<Comment[]>([]);
     const reply = ref<Comment | null>(null);
 
@@ -96,6 +103,7 @@ export default defineComponent({
 
     const fetchComment = (pageNumber: number): void => {
       loading.value = true;
+      inError.value = false;
 
       fetchCommentList(
         Object.assign({}, config.value, {
@@ -111,11 +119,20 @@ export default defineComponent({
           totalPages.value = resp.totalPages;
         })
         .catch((err) => {
-          if (err.name !== 'AbortError') loading.value = false;
+          if (err.name !== 'AbortError') {
+            console.error(err.message);
+
+            inError.value = true;
+            loading.value = false;
+          }
         });
     };
 
     const loadMore = (): void => fetchComment(page.value + 1);
+    const refresh = (): void => {
+      data.value = [];
+      fetchComment(1);
+    };
 
     const onReply = (comment: Comment | null): void => {
       reply.value = comment;
@@ -152,11 +169,13 @@ export default defineComponent({
       count,
       data,
       loading,
+      inError,
       page,
       totalPages,
       reply,
 
       loadMore,
+      refresh,
       onReply,
       onSubmit,
 

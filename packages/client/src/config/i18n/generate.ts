@@ -13,6 +13,7 @@ const localeKeys = [
   'reply',
   'cancelReply',
   'comment',
+  'refresh',
   'more',
   'preview',
   'emoji',
