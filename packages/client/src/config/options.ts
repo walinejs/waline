@@ -55,6 +55,8 @@ export type Meta = 'nick' | 'mail' | 'link';
 
 export type UploadImage = (image: File) => Promise<string>;
 
+export type PreviewMath = (blockMode: boolean, tex: string) => string;
+
 export interface DeprecatedValineOptions {
   /**
    * @deprecated Use `locale.placeholder` instead, will be dropped in V2
@@ -366,6 +368,13 @@ export interface WalineOptions extends DeprecatedValineOptions {
    */
 
   uploadImage?: UploadImage | false;
+
+  /**
+   * 自定义数学公式处理方法，用于预览。
+   *
+   * Custom math formula parse callback for preview.
+   */
+  previewMath?: PreviewMath | false;
 
   /**
    *
