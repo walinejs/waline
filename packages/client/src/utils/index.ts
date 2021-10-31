@@ -5,6 +5,7 @@ export * from './dom';
 export * from './emoji';
 export * from './event';
 export * from './fetch';
+export * from './getRoot';
 export * from './markdown';
 export * from './path';
 export * from './timeAgo';

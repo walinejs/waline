@@ -1,4 +1,4 @@
-import { fetchRecentComment } from '../utils';
+import { fetchRecentComment, getRoot } from '../utils';
 import type { Comment } from '../typings';
 
 export interface RecentCommentsOptions {
@@ -17,8 +17,7 @@ export const RecentComments = ({
   serverURL,
   count,
 }: RecentCommentsOptions): Promise<RecentCommentsResult> => {
-  const root =
-    el instanceof HTMLElement ? el : el ? document.querySelector(el) : null;
+  const root = getRoot(el);
   const controller = new AbortController();
 
   return fetchRecentComment({

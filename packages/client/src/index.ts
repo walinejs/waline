@@ -2,6 +2,7 @@ import { createApp } from 'vue';
 import { useConfig } from './composables';
 import {
   getEvent,
+  getRoot,
   injectDarkStyle,
   registerMathML,
   updateCommentCount,
@@ -52,15 +53,6 @@ const domRender = (config: DeepReadonly<Config>, signal: AbortSignal): void => {
 
   // comment count
   updateCommentCount(serverURL, signal);
-};
-
-const getRoot = (el: string | HTMLElement | undefined): HTMLElement | null => {
-  if (!el) return null;
-  if (el instanceof HTMLElement) return el;
-
-  const root = document.querySelector<HTMLElement>(el);
-
-  return root || null;
 };
 
 export interface WalineErrorInstance {
