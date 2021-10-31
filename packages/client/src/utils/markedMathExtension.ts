@@ -23,6 +23,7 @@ export const markedMathExtension = (
           text: previewMath(true, cap[1]),
         };
       }
+
       return undefined;
     },
   };
