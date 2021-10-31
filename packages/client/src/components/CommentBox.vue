@@ -29,7 +29,15 @@
         :class="['vheader', `vheader-${config.meta.length}`]"
       >
         <div v-for="kind in config.meta" class="vheader-item" :key="kind">
-          <label :for="kind" v-text="locale[kind]" />
+          <label
+            :for="kind"
+            v-text="
+              locale[kind] +
+              (config.requiredMeta.includes(kind) || !config.requiredMeta.length
+                ? ''
+                : `(${locale.optional})`)
+            "
+          />
           <input
             :ref="
               (element) => {

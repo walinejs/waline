@@ -114,9 +114,12 @@ module.exports = {
           <script>
             const waline = Waline({
               el: '#waline',
+              lang: 'en-US',
               path: '/',
               visitor: true,
-              serverURL: '${process.env.SERVER_URL || 'http://localhost:9090'}',
+              serverURL: '${
+                'https://waline.vercel.app' || 'http://localhost:9090'
+              }',
               emoji: [
                 'https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/bilibili',
                 'https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/qq'

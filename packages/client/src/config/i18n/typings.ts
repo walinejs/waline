@@ -4,6 +4,7 @@ export interface Locale {
   mail: string;
   mailError: string;
   link: string;
+  optional: string;
   placeholder: string;
   sofa: string;
   submit: string;

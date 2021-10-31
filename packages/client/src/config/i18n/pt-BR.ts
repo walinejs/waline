@@ -6,6 +6,7 @@ const ptBRLocale: Locale = {
   mail: 'E-Mail',
   mailError: 'Por favor, confirme seu endereço de e-mail.',
   link: 'Website',
+  optional: 'Optional',
   placeholder: 'Comente aqui...',
   sofa: 'Nenhum comentário, ainda.',
   submit: 'Enviar',

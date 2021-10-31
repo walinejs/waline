@@ -4,6 +4,7 @@ const zhTWLocale: Locale = {
   nick: '暱稱',
   mail: '郵箱',
   link: '網址',
+  optional: '可選',
   nickError: '暱稱不能少於3個字元',
   mailError: '請填寫正確的郵件地址',
   placeholder: '歡迎評論',

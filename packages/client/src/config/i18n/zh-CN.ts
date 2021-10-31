@@ -6,6 +6,7 @@ const zhCNLocale: Locale = {
   mail: '邮箱',
   mailError: '请填写正确的邮件地址',
   link: '网址',
+  optional: '可选',
   placeholder: '欢迎评论',
   sofa: '来发评论吧~',
   submit: '提交',

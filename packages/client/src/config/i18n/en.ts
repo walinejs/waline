@@ -6,6 +6,7 @@ const enLocale: Locale = {
   mail: 'E-Mail',
   mailError: 'Please confirm your email address.',
   link: 'Website',
+  optional: 'Optional',
   placeholder: 'Comment here...',
   sofa: 'No comment yet.',
   submit: 'Submit',

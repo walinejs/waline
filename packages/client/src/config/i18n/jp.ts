@@ -6,6 +6,7 @@ const jpLocale: Locale = {
   mail: 'メールアドレス',
   mailError: 'メールアドレスをご確認ください.',
   link: 'サイト(http://)',
+  optional: 'オプション',
   placeholder: 'ここにコメント',
   sofa: 'コメントしましょう~',
   submit: '提出する',
