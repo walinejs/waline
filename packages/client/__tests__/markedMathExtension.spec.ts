@@ -77,7 +77,7 @@ describe('Should parse block tex', () => {
     );
   });
 
-  it('Mutiple line', () => {
+  it('Mutiple lines', () => {
     expect(marked('$$\na\n$$')).toEqual(
       '<p class="vtex">Tex is not available in preview</p>'
     );
