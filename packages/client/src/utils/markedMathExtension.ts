@@ -44,6 +44,7 @@ export const markedMathExtension = (
           text: previewMath(false, cap[1]),
         };
       }
+
       return undefined;
     },
   };
