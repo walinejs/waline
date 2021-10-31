@@ -154,10 +154,10 @@ Waline 的服务端地址。
 
 ## previewMath
 
-- 类型: `Function | false`
+- 类型: `(blockMode: boolean, tex: string) => string| false`
 - 必填: 否
 
-自定义数学公式的渲染方法，方便更好的预览数学公式。接受 `(blockMode: boolean, tex: string) => string` 类型的函数，更多请参考 [KaTeX API](https://katex.org/docs/api.html#server-side-rendering-or-rendering-to-a-string) 或者 [MathJax API](http://docs.mathjax.org/en/latest/web/typeset.html#converting-a-math-string-to-other-formats)。
+自定义数学公式的渲染方法，方便更好的预览数学公式。更多请参考 [KaTeX API](https://katex.org/docs/api.html#server-side-rendering-or-rendering-to-a-string) 或 [MathJax API](http://docs.mathjax.org/en/latest/web/typeset.html#converting-a-math-string-to-other-formats)。
 
 你可以设置为 `false` 以禁止预览数学公式。
 
