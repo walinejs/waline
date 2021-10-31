@@ -3,6 +3,7 @@ import { defaultPreviewMath } from '../src/config';
 import { markedMathExtension } from '../src/utils/markedMathExtension';
 
 const extensions = markedMathExtension(defaultPreviewMath);
+
 marked.setOptions({
   highlight: undefined,
   breaks: true,
