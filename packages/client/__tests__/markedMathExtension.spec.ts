@@ -35,7 +35,7 @@ describe('Should parse inline tex', () => {
     );
   });
 
-  it('Mutiple word', () => {
+  it('Mutiple words', () => {
     expect(marked('$a = 1$')).toEqual(
       '<p><span class="vtex">Tex is not available in preview</span></p>\n'
     );
