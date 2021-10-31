@@ -152,6 +152,15 @@ Custom image upload callback to manage picture by yourself. We will pass a pictu
 
 If you set it to `false`, image upload feature will be disabled.
 
+## previewMath
+
+- Type: `Function | false`
+- Required: No
+
+Custom the rendering method of math to facilitate better preview of math. To accept function of the `(blockMode: boolean, tex: string) => string` type, please refer more to the [KaTeX API](https://katex.org/docs/api.html#server-side-rendering-or-rendering-to-a-string) or [MathJax API](http://docs.mathjax.org/en/latest/web/typeset.html#converting-a-math-string-to-other-formats).
+
+If you set it to 'false', preview math feature will be disabled.
+
 ## highlight
 
 - Type: `boolean`
