@@ -36,6 +36,7 @@ export const markedMathExtension = (
     },
     tokenizer(src: string) {
       const cap = rules.inlineMath.exec(src);
+
       if (cap !== null) {
         return {
           type: 'html',
