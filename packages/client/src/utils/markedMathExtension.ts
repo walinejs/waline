@@ -1,11 +1,9 @@
 import type { TokenizerExtension } from 'marked';
 import type { PreviewMath } from '../config';
 
-const rules = {
-  inlineMathStart: /\$.*?\$/,
-  inlineMath: /^\$(.*?)\$/,
-  blockMath: /^(?:\s{0,3})\$\$((?:[^\n]|\n[^\n])+?)\n{0,1}\$\$/,
-};
+const inlineMathStart = /\$.*?\$/;
+const inlineMathReg = /^\$(.*?)\$/;
+const blockMathReg = /^(?:\s{0,3})\$\$((?:[^\n]|\n[^\n])+?)\n{0,1}\$\$/;
 
 export const markedMathExtension = (
   previewMath: PreviewMath
@@ -14,7 +12,7 @@ export const markedMathExtension = (
     name: 'blockMath',
     level: 'block',
     tokenizer(src: string) {
-      const cap = rules.blockMath.exec(src);
+      const cap = blockMathReg.exec(src);
 
       if (cap !== null) {
         return {
@@ -32,11 +30,11 @@ export const markedMathExtension = (
     name: 'inlineMath',
     level: 'inline',
     start(src: string) {
-      const idx = src.search(rules.inlineMathStart);
+      const idx = src.search(inlineMathStart);
       return idx !== -1 ? idx : src.length;
     },
     tokenizer(src: string) {
-      const cap = rules.inlineMath.exec(src);
+      const cap = inlineMathReg.exec(src);
 
       if (cap !== null) {
         return {
