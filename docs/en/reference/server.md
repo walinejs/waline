@@ -28,7 +28,7 @@ Vercel needs to be set in <kbd>Settings</kbd> - <kbd>Environment Variables</kbd>
 | `COMMENT_AUDIT`       |          | Comment audit switcher. We recommend to tip on the placeholder text if it's true.                                   |
 | `LOGIN`               |          | User need login before comment when `LOGIN=force`                                                                   |
 | `AVATAR_PROXY`        |          | Avatar proxy service url, default is `https://avatar.75cdn.workers.dev`. You can set `false` to close it            |
-| `GRAVATAR_STR`        |          | Gravatar render string，default is `https://seccdn.libravatar.org/avatar/{ {mail\|md5}}`，base on nunjucks template |
+| `GRAVATAR_STR`        |          | Gravatar render string，default is `https://seccdn.libravatar.org/avatar/{{mail\|md5}}`，base on nunjucks template |
 
 ### Markdown
 
