@@ -6,7 +6,7 @@ const ptBRLocale: Locale = {
   mail: 'E-Mail',
   mailError: 'Por favor, confirme seu endereço de e-mail.',
   link: 'Website',
-  optional: 'Optional',
+  optional: 'Opcional',
   placeholder: 'Comente aqui...',
   sofa: 'Nenhum comentário, ainda.',
   submit: 'Enviar',
@@ -30,6 +30,7 @@ const ptBRLocale: Locale = {
   word: 'Palavras',
   wordHint:
     'Favor enviar comentário com $0 a $1 palavras!\n Número de palavras atuais: $2',
+  anonymous: 'Anônimo',
 };
 
 export default ptBRLocale;

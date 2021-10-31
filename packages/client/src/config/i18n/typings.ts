@@ -27,4 +27,5 @@ export interface Locale {
   sticky: string;
   word: string;
   wordHint: string;
+  anonymous: string;
 }

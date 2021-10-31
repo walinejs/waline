@@ -29,6 +29,7 @@ const zhCNLocale: Locale = {
   sticky: '置顶',
   word: '字',
   wordHint: '评论字数应在 $0 到 $1 字之间！\n当前字数：$2',
+  anonymous: '匿名',
 };
 
 export default zhCNLocale;

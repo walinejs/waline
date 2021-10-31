@@ -30,6 +30,7 @@ const enLocale: Locale = {
   word: 'Words',
   wordHint:
     'Please input comments between $0 and $1 words!\n Current word number: $2',
+  anonymous: 'Anonymous',
 };
 
 export default enLocale;

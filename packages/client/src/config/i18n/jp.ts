@@ -30,6 +30,7 @@ const jpLocale: Locale = {
   word: 'ワード',
   wordHint:
     'コメントは $0 から $1 ワードの間でなければなりません!\n 現在の単語番号: $2',
+  anonymous: '匿名',
 };
 
 export default jpLocale;

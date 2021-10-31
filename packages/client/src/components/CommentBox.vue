@@ -424,7 +424,7 @@ export default defineComponent({
           return;
         }
 
-        comment.nick = comment.nick || 'Anonymous';
+        comment.nick = locale.value.anonymous;
       }
 
       if (!isWordNumberLegal.value)

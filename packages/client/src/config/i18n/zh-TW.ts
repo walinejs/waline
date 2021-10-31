@@ -29,6 +29,7 @@ const zhTWLocale: Locale = {
   sticky: '置頂',
   word: '字',
   wordHint: '評論字數應在 $0 到 $1 字之間！\n當前字數：$2',
+  anonymous: '匿名',
 };
 
 export default zhTWLocale;
