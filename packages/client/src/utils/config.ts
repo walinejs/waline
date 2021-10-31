@@ -2,6 +2,7 @@ import {
   defaultGravatarCDN,
   defaultLang,
   defaultUploadImage,
+  defaultPreviewMath,
   getAvatar,
   getMeta,
   locales,
@@ -28,6 +29,7 @@ export interface Config
         | 'pageSize'
         | 'requiredMeta'
         | 'uploadImage'
+        | 'previewMath'
         | 'copyright'
         | 'login'
       >
@@ -63,6 +65,7 @@ export const getConfig = ({
   pageSize = 10,
   wordLimit,
   uploadImage,
+  previewMath,
   copyright = true,
   // TODO: changed to `login = 'enable'`
   login = anonymous === true
@@ -116,6 +119,12 @@ export const getConfig = ({
         : uploadImage === false
         ? false
         : defaultUploadImage,
+    previewMath:
+      typeof previewMath === 'function'
+        ? previewMath
+        : previewMath === false
+        ? false
+        : defaultPreviewMath,
     copyright,
     login,
     ...more,

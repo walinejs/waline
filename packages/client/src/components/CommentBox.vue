@@ -564,10 +564,15 @@ export default defineComponent({
     watch(
       () => inputs.editor,
       (value) => {
-        const { highlight } = config.value;
+        const { highlight, previewMath } = config.value;
 
         content.value = value;
-        previewText.value = parseMarkdown(value, highlight, emoji.value.map);
+        previewText.value = parseMarkdown(
+          value,
+          highlight,
+          emoji.value.map,
+          previewMath
+        );
         wordNumber.value = getWordNumber(value);
 
         if (editorRef.value)
