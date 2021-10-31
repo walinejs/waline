@@ -15,6 +15,7 @@ export const markedMathExtension = (
     level: 'block',
     tokenizer(src: string) {
       const cap = rules.blockMath.exec(src);
+
       if (cap !== null) {
         return {
           type: 'html',
