@@ -16,7 +16,7 @@
   "browser": "dist/Waline.min.js",
   "types": "dist/Waline.min.d.ts",
   "scripts": {
-    "analyze": "cross-env ANALYZE=true webpack --mode=production",
+    "analyze": "cross-env ANALYZE=true webpack --mode=production --config ./build/webpack.config.js",
     "build": "npm run build:normal && npm run build:no-style && npm run build:dts",
     "build:dts": "rollup -c ./build/rollup.config.js",
     "build:no-style": "webpack --mode=production --config ./build/webpack.noStyle.js",
