@@ -152,6 +152,27 @@ Custom image upload callback to manage picture by yourself. We will pass a pictu
 
 If you set it to `false`, image upload feature will be disabled.
 
+## highlight
+
+- Type: `Highlighter | false`
+- Required: No
+
+**Code highlighting**, `hanabi` is used by default, and you can pass in a code highlighter of your own.
+
+```ts
+(code: string, lang: string) => string
+
+// or
+
+(
+  code: string,
+  lang: string,
+  callback?: (error: unknown | undefined, code?: string) => void
+) => void;
+```
+
+You can set it to `false` to disable the code highlighting.
+
 ## math
 
 - Type: `(blockMode: boolean, tex: string) => string | false`
@@ -160,22 +181,6 @@ If you set it to `false`, image upload feature will be disabled.
 Custom the rendering method of math to facilitate better preview of math. For details, please refer to [KaTeX API](https://katex.org/docs/api.html#server-side-rendering-or-rendering-to-a-string) or [MathJax API](http://docs.mathjax.org/en/latest/web/typeset.html#converting-a-math-string-to-other-formats).
 
 If you set it to 'false', math preview feature will be disabled.
-
-## highlight
-
-- Type: `boolean`
-- Default: `true`
-- Required: No
-
-**Code highlighting**, it’s enabled by default, please close it selectively.
-
-## mathTagSupport
-
-- Type: `boolean`
-- Default: `false`
-- Required: No
-
-Whether inject extra styles to display `<math>` block
 
 ### copyright
 
@@ -325,6 +330,20 @@ We recommand you to use lastest server and config it with `AVATAR_PROXY`.
 - Required: No
 
 Whether **force** pulling the latest avatar each time.
+
+## mathTagSupport
+
+::: waring Obsolete
+
+We recommand you to use mathjax on server.
+
+:::
+
+- Type: `boolean`
+- Default: `false`
+- Required: No
+
+Whether inject extra styles to display `<math>` block
 
 ### copyRight
 

@@ -152,6 +152,27 @@ Waline 的服务端地址。
 
 你可以设置为 `false` 以禁用图片上传功能。
 
+## highlight
+
+- 类型: `Highlighter | false`
+- 必填: 否
+
+**代码高亮**，默认使用 `hanabi`，你可以传入一个自己的代码高亮器。
+
+```ts
+(code: string, lang: string) => string
+
+// 或
+
+(
+  code: string,
+  lang: string,
+  callback?: (error: unknown | undefined, code?: string) => void
+) => void;
+```
+
+你可以设置为 `false` 以禁用代码高亮功能。
+
 ## math
 
 - 类型: `(blockMode: boolean, tex: string) => string | false`
@@ -160,22 +181,6 @@ Waline 的服务端地址。
 自定义数学公式的渲染方法，方便更好的预览数学公式。更多请参考 [KaTeX API](https://katex.org/docs/api.html#server-side-rendering-or-rendering-to-a-string) 或 [MathJax API](http://docs.mathjax.org/en/latest/web/typeset.html#converting-a-math-string-to-other-formats)。
 
 你可以设置为 `false` 以禁止预览数学公式。
-
-## highlight
-
-- 类型: `boolean`
-- 默认值: `true`
-- 必填: 否
-
-**代码高亮**，默认开启，若不需要，请手动关闭
-
-## mathTagSupport
-
-- 类型: `boolean`
-- 默认值: `false`
-- 必填: 否
-
-是否注入核外样式以兼容 `<math>` 显示。
 
 ## copyright
 
@@ -327,6 +332,20 @@ Waline 的服务端地址。
 - 必填: 否
 
 是否允许登录评论。默认情况是两者都支持，设置为 `true` 表示仅支持匿名评论，`false` 表示仅支持登录评论。
+
+## mathTagSupport
+
+::: warning 已过时
+
+请在服务端使用 mathjax 渲染公式。
+
+:::
+
+- 类型: `boolean`
+- 默认值: `false`
+- 必填: 否
+
+是否注入核外样式以兼容 `<math>` 显示。
 
 ### copyRight
 
