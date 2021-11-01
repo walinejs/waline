@@ -10,7 +10,7 @@
     "@vuepress/plugin-docsearch": "2.0.0-beta.27",
     "@vuepress/plugin-pwa": "2.0.0-beta.27",
     "@vuepress/plugin-pwa-popup": "2.0.0-beta.27",
-    "@waline/client": "^1.4.0",
+    "@waline/client": "^1.5.0",
     "markdown-it-task-lists": "^2.1.1",
     "vuepress": "2.0.0-beta.27",
     "vuepress-vite": "2.0.0-beta.27"
