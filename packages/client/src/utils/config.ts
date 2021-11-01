@@ -8,7 +8,7 @@ import {
   locales,
 } from '../config';
 
-import { decodePath, removeEndingSplash } from '.';
+import { decodePath, isLinkHttp, removeEndingSplash } from '.';
 import { getEmojis, resolveOldEmojiMap } from './emoji';
 
 import type { EmojiInfo, EmojiMaps, Locale, WalineOptions } from '../config';
@@ -42,6 +42,12 @@ export interface Config
   emoji: Promise<EmojiConfig>;
   avatar: { cdn: string; param: string; default: boolean; hide: boolean };
 }
+
+const getServerURL = (serverURL: string): string => {
+  const result = removeEndingSplash(serverURL);
+
+  return isLinkHttp(result) ? result : `https://${result}`;
+};
 
 const fallback = <T = unknown>(
   value: T | false | undefined,
@@ -99,7 +105,7 @@ export const getConfig = ({
   return {
     el,
     // remove ending slash
-    serverURL: removeEndingSplash(serverURL),
+    serverURL: getServerURL(serverURL),
     path: decodePath(path),
     lang,
     locale: {
