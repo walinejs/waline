@@ -12,6 +12,7 @@ import { decodePath, removeEndingSplash } from '.';
 import { getEmojis, resolveOldEmojiMap } from './emoji';
 
 import type { EmojiInfo, EmojiMaps, Locale, WalineOptions } from '../config';
+import hanabi from 'hanabi';
 
 export interface EmojiConfig {
   tabs: Pick<EmojiInfo, 'name' | 'icon' | 'items'>[];
@@ -29,17 +30,24 @@ export interface Config
         | 'pageSize'
         | 'requiredMeta'
         | 'uploadImage'
+        | 'highlight'
         | 'tex'
         | 'copyright'
         | 'login'
       >
     >,
-    Pick<WalineOptions, 'dark' | 'serverURL' | 'visitor' | 'highlight'> {
+    Pick<WalineOptions, 'dark' | 'serverURL' | 'visitor'> {
   locale: Locale;
   wordLimit: [number, number] | false;
   emoji: Promise<EmojiConfig>;
   avatar: { cdn: string; param: string; default: boolean; hide: boolean };
 }
+
+const fallback = <T = unknown>(
+  value: T | false | undefined,
+  fallback: T
+): T | false =>
+  typeof value === 'function' ? value : value === false ? false : fallback;
 
 export const getConfig = ({
   el = '#waline',
@@ -55,6 +63,7 @@ export const getConfig = ({
   avatarCDN,
   avatar,
   avatarForce,
+  previewMath,
 
   path = location.pathname,
   lang = defaultLang,
@@ -65,7 +74,7 @@ export const getConfig = ({
   pageSize = 10,
   wordLimit,
   uploadImage,
-  previewMath,
+  highlight,
   tex = previewMath,
   copyright = true,
   // TODO: changed to `login = 'enable'`
@@ -114,18 +123,9 @@ export const getConfig = ({
       default: !avatar && !avatarCDN,
       hide: avatar === 'hide',
     },
-    uploadImage:
-      typeof uploadImage === 'function'
-        ? uploadImage
-        : uploadImage === false
-        ? false
-        : defaultUploadImage,
-    tex:
-      typeof tex === 'function'
-        ? tex
-        : tex === false
-        ? false
-        : defaultTexRenderer,
+    uploadImage: fallback(uploadImage, defaultUploadImage),
+    highlight: fallback(highlight, hanabi),
+    tex: fallback(tex, defaultTexRenderer),
     copyright,
     login,
     ...more,

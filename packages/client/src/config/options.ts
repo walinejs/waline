@@ -55,6 +55,14 @@ export type Meta = 'nick' | 'mail' | 'link';
 
 export type UploadImage = (image: File) => Promise<string>;
 
+export type Highlighter =
+  | ((code: string, lang: string) => string)
+  | ((
+      code: string,
+      lang: string,
+      callback?: (error: unknown | undefined, code?: string) => void
+    ) => void);
+
 export type TexRenderer = (blockMode: boolean, tex: string) => string;
 
 export interface DeprecatedValineOptions {
@@ -351,11 +359,9 @@ export interface WalineOptions extends DeprecatedValineOptions {
    * 代码高亮
    *
    * Code highlighting
-   *
-   * @default true
    */
 
-  highlight?: boolean;
+  highlight?: Highlighter | false;
 
   /**
    * 设置表情包
