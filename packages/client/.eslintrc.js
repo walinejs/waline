@@ -5,8 +5,6 @@ module.exports = {
     browser: true,
   },
 
-  extends: ['plugin:react/recommended'],
-
   parser: '@babel/eslint-parser',
 
   parserOptions: {
@@ -21,13 +19,9 @@ module.exports = {
     VERSION: 'readonly',
   },
 
-  rules: {
-    'react/prop-types': 'off',
-  },
-
   overrides: [
     {
-      files: ['*.ts', '*.tsx'],
+      files: ['*.ts'],
       extends: [
         'plugin:@typescript-eslint/eslint-recommended',
         'plugin:@typescript-eslint/recommended',
