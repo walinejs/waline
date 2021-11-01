@@ -197,7 +197,7 @@ Feel free to add any HTML content unless triggering the protection mechanism bel
 
 ### Restricted preview function
 
-In order to control the size of the client `@waline / client`, many functions can **correctly rendered in the comment area**, but they **cannot be displayed correctly in the preview mode**.
+In order to control the size of `@waline/client` on client side, many functions can **correctly rendered in the comment area**, but they **cannot be displayed correctly in the preview mode**.
 
 This includes the following restrictions:
 
@@ -205,7 +205,9 @@ This includes the following restrictions:
 
 - Superscript and subscript (e.g.: `H~2~O`, `x^2^`) cannot be rendered correctly
 
-- Tex syntax, or mathematical formulas (e.g.: `$a = 1$`) cannot be rendered correctly
+- Tex syntax, or mathematical formulas (e.g.: `$a = 1$`) cannot be rendered correctly by default
+
+  You can set Tex rendering during preview by setting the `math` option.
 
 - Code blocks will be highlighted in random colors splited by specific characters
 
@@ -215,7 +217,7 @@ This includes the following restrictions:
 
 1. When a user submits a comment, the client embeds custom Emoji images, and the raw comment will be sent to the server.
 
-1. The server receives the comment, uses `markdown-it` to render markdown correctly with related plugins, and uses `prismjs` to highlight code blocks according to the language, and finally executes XSS sanitizing.
+1. The server receives the comment, uses `markdown-it` to render markdown correctly with related plugins, and uses `prismjs` to highlight code blocks according to the language, then render Tex according to users' settings, and finally executes XSS sanitizing.
 
 1. After successfully processed, the server storage the render content in database, and returns it to the client when needed so comment will be displayed normally.
 
