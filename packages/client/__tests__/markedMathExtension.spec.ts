@@ -1,8 +1,8 @@
 import * as marked from 'marked';
-import { defaultPreviewMath } from '../src/config';
-import { markedMathExtension } from '../src/utils/markedMathExtension';
+import { defaultTexRenderer } from '../src/config';
+import { markedTexExtensions } from '../src/utils/markedMathExtension';
 
-const extensions = markedMathExtension(defaultPreviewMath);
+const extensions = markedTexExtensions(defaultTexRenderer);
 
 marked.setOptions({
   highlight: undefined,

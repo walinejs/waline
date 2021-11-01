@@ -1,12 +1,12 @@
 import type { TokenizerExtension } from 'marked';
-import type { PreviewMath } from '../config';
+import type { TexRenderer } from '../config';
 
 const inlineMathStart = /\$.*?\$/;
 const inlineMathReg = /^\$(.*?)\$/;
 const blockMathReg = /^(?:\s{0,3})\$\$((?:[^\n]|\n[^\n])+?)\n{0,1}\$\$/;
 
-export const markedMathExtension = (
-  previewMath: PreviewMath
+export const markedTexExtensions = (
+  texRenderer: TexRenderer
 ): TokenizerExtension[] => {
   const blockMathExt: TokenizerExtension = {
     name: 'blockMath',
@@ -18,7 +18,7 @@ export const markedMathExtension = (
         return {
           type: 'html',
           raw: cap[0],
-          text: previewMath(true, cap[1]),
+          text: texRenderer(true, cap[1]),
         };
       }
 
@@ -40,7 +40,7 @@ export const markedMathExtension = (
         return {
           type: 'html',
           raw: cap[0],
-          text: previewMath(false, cap[1]),
+          text: texRenderer(false, cap[1]),
         };
       }
 

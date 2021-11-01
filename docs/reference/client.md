@@ -152,7 +152,7 @@ Waline 的服务端地址。
 
 你可以设置为 `false` 以禁用图片上传功能。
 
-## previewMath
+## math
 
 - 类型: `(blockMode: boolean, tex: string) => string | false`
 - 必填: 否

@@ -1,8 +1,8 @@
 import hanabi from 'hanabi';
 import marked from 'marked';
-import { markedMathExtension } from './markedMathExtension';
+import { markedTexExtensions } from './markedMathExtension';
 
-import type { EmojiMaps, PreviewMath } from '../config';
+import type { EmojiMaps, TexRenderer } from '../config';
 
 export const parseEmoji = (text = '', emojiMap: EmojiMaps = {}): string =>
   text.replace(/:(.+?):/g, (placeholder, key: string) =>
@@ -15,7 +15,7 @@ export const parseMarkdown = (
   content: string,
   highlight = true,
   emojiMap: EmojiMaps,
-  previewMath: PreviewMath | false
+  texRenderer: TexRenderer | false
 ): string => {
   marked.setOptions({
     highlight: highlight ? hanabi : undefined,
@@ -24,8 +24,9 @@ export const parseMarkdown = (
     smartypants: true,
   });
 
-  if (previewMath !== false) {
-    const extensions = markedMathExtension(previewMath);
+  if (texRenderer) {
+    const extensions = markedTexExtensions(texRenderer);
+
     marked.use({ extensions });
   }
 
