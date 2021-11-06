@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
@@ -7,7 +7,7 @@ import { LANGUAGE_OPTIONS } from '../locales';
 
 export default function () {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
   const user = useSelector((state) => state.user);
   const { t, i18n } = useTranslation();
 
@@ -25,7 +25,7 @@ export default function () {
   const onLogout = function (e) {
     e.preventDefault();
     dispatch.user.logout();
-    history.push('/ui/login');
+    navigate('/ui/login');
   };
 
   const match = location.pathname.match(/(.*?)\/ui/);
@@ -33,7 +33,7 @@ export default function () {
 
   return (
     <div className="typecho-head-nav clearfix" role="navigation">
-      {user.type === 'administrator' ? (
+      {user?.type === 'administrator' ? (
         <nav id="typecho-nav-list">
           <ul className="root">
             <li className="parent">

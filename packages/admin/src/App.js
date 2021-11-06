@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Provider, useSelector } from 'react-redux';
 import { store } from './store';
 import Login from './pages/login';
@@ -32,24 +32,28 @@ export default function () {
   return (
     <Provider store={store}>
       <Router basename={basepath}>
-        <Switch>
-          <Route path="/ui" exact>
-            <Access meta={{ auth: 'administrator' }} basename={basepath}>
-              <ManageComments />
-            </Access>
-          </Route>
-          <Route path="/ui/login" exact>
-            <Login />
-          </Route>
-          <Route path="/ui/register" exact>
-            <Register />
-          </Route>
-          <Route path="/ui/profile" exact>
-            <Access>
-              <Profile />
-            </Access>
-          </Route>
-        </Switch>
+        <Routes>
+          <Route
+            path="/ui"
+            exact
+            element={
+              <Access meta={{ auth: 'administrator' }} basename={basepath}>
+                <ManageComments />
+              </Access>
+            }
+          />
+          <Route path="/ui/login" exact element={<Login />} />
+          <Route path="/ui/register" exact element={<Register />} />
+          <Route
+            path="/ui/profile"
+            exact
+            element={
+              <Access>
+                <Profile />
+              </Access>
+            }
+          />
+        </Routes>
       </Router>
     </Provider>
   );

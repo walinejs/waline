@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
@@ -8,16 +8,16 @@ import Header from '../../components/Header';
 export default function () {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
   const user = useSelector((state) => state.user);
   const [error, setError] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     if (user && user.email) {
-      history.replace('/ui');
+      navigate('/ui', { replace: true });
     }
-  }, [history]);
+  }, [navigate]);
 
   const onSubmit = async function (e) {
     e.preventDefault();

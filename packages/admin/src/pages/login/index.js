@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
@@ -10,7 +10,7 @@ import * as Icons from '../../components/icon';
 export default function () {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
   const user = useSelector((state) => state.user);
   const [error, setError] = useState(false);
   const match = location.pathname.match(/(.*?)\/ui/);
@@ -23,7 +23,7 @@ export default function () {
         query.get('redirect') ||
         (user.type !== 'administrator' ? '/ui/profile' : 'ui');
 
-      history.push((basepath + redirect).replace(/\/+/g, '/'));
+      navigate((basepath + redirect).replace(/\/+/g, '/'));
     }
   }, [user]);
 
