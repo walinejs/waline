@@ -1,4 +1,4 @@
-import marked from 'marked';
+import { marked } from 'marked';
 
 const parseKey = (key) => {
   const anchor = document.createElement('a');
@@ -37,7 +37,7 @@ export const artalk2lc = (input) => {
         return {
           objectId: id,
           QQAvatar: '',
-          comment: marked(content),
+          comment: marked.parse(content),
           insertedAt: {
             __type: 'Date',
             iso: time,

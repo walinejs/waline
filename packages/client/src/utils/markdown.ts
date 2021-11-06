@@ -1,4 +1,4 @@
-import marked from 'marked';
+import { marked } from 'marked';
 import { markedTexExtensions } from './markedMathExtension';
 
 import type { EmojiMaps, Highlighter, TexRenderer } from '../config';
@@ -29,5 +29,5 @@ export const parseMarkdown = (
     marked.use({ extensions });
   }
 
-  return marked(parseEmoji(content, emojiMap));
+  return marked.parse(parseEmoji(content, emojiMap));
 };
