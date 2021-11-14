@@ -205,4 +205,30 @@ module.exports = class extends Base {
       return this.ctx.throw(401);
     }
   }
+
+  /**
+   * @api {POST} /comment/:id update comment data
+   * @apiGroup Comment
+   * @apiVersion  0.0.1
+   *
+   * @apiParam  {String}  [nick] post comment user nick name
+   * @apiParam  {String}  [mail]  post comment user mail address
+   * @apiParam  {String}  [link]  post comment user link
+   * @apiParam  {String}  [comment]  post comment text
+   * @apiParam  {String}  [url]  the artcile url path of comment
+   *
+   * @apiSuccess  (200) {Number}  errno 0
+   * @apiSuccess  (200) {String}  errmsg  return error message if error
+   */
+  putAction() {}
+
+  /**
+   * @api {DELETE} /comment/:id delete comment
+   * @apiGroup Comment
+   * @apiVersion  0.0.1
+   *
+   * @apiSuccess  (200) {Number}  errno 0
+   * @apiSuccess  (200) {String}  errmsg  return error message if error
+   */
+  deleteAction() {}
 };
