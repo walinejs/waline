@@ -403,7 +403,7 @@ export default defineComponent({
         // check nick
         if (
           (requiredMeta.indexOf('nick') > -1 || comment.nick) &&
-          comment.nick.length < 3
+          !comment.nick
         ) {
           inputRefs.value.nick?.focus();
           return alert(locale.value.nickError);
