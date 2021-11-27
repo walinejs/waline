@@ -19,7 +19,7 @@ async function formatCmt(
   }
 
   const user = users.find(({ objectId }) => user_id === objectId);
-  if (user) {
+  if (!think.isEmpty(user)) {
     comment.nick = user.display_name;
     comment.mail = user.email;
     comment.link = user.url;
