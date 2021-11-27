@@ -1,4 +1,4 @@
-import type { TokenizerExtension } from 'marked';
+import type { marked } from 'marked';
 import type { TexRenderer } from '../config';
 
 const inlineMathStart = /\$.*?\$/;
@@ -7,8 +7,8 @@ const blockMathReg = /^(?:\s{0,3})\$\$((?:[^\n]|\n[^\n])+?)\n{0,1}\$\$/;
 
 export const markedTexExtensions = (
   texRenderer: TexRenderer
-): TokenizerExtension[] => {
-  const blockMathExt: TokenizerExtension = {
+): marked.TokenizerExtension[] => {
+  const blockMathExt: marked.TokenizerExtension = {
     name: 'blockMath',
     level: 'block',
     tokenizer(src: string) {
@@ -26,7 +26,7 @@ export const markedTexExtensions = (
     },
   };
 
-  const inlineMathExt: TokenizerExtension = {
+  const inlineMathExt: marked.TokenizerExtension = {
     name: 'inlineMath',
     level: 'inline',
     start(src: string) {

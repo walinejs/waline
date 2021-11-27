@@ -21,10 +21,10 @@ module.exports = class extends Base {
    * @apiGroup User
    * @apiVersion  0.0.1
    *
-   * @apiParam  {String}  display_name  user new nick name
-   * @apiParam  {String}  url user new link
-   * @apiParam  {String}  password user new password
-   * @apiParam  {String}  github user github account name
+   * @apiParam  {String}  [display_name]  user new nick name
+   * @apiParam  {String}  [url] user new link
+   * @apiParam  {String}  [password] user new password
+   * @apiParam  {String}  [github] user github account name
    *
    * @apiSuccess  (200) {Number}  errno 0
    * @apiSuccess  (200) {String}  errmsg  return error message if error
