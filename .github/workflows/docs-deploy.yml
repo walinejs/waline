@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v2.4.0
 
       - name: restore node_modules
-        uses: actions/cache@v2.1.6
+        uses: actions/cache@v2.1.7
         id: node-cache
         with:
           path: |
@@ -32,7 +32,7 @@ jobs:
 
       - name: npm-cache
         if: steps.node-cache.outputs.cache-hit != 'true'
-        uses: actions/cache@v2.1.6
+        uses: actions/cache@v2.1.7
         id: npm-cache
         with:
           path: ${{ steps.npm-cache-dir-path.outputs.dir }}
@@ -54,7 +54,7 @@ jobs:
         run: npm run docs:build
 
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@4.1.6
+        uses: JamesIves/github-pages-deploy-action@4.1.7
         with:
           branch: gh-pages
           folder: docs/.vuepress/dist
