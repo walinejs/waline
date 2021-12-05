@@ -23,15 +23,12 @@ export const defaultGravatarCDN = 'https://seccdn.libravatar.org/avatar/';
 export const defaultLang = 'zh-CN';
 
 export const defaultUploadImage = (file: File): Promise<string> => {
-  const formData = new FormData();
-  formData.append('image', file);
-
-  return fetch('https://pic.alexhchu.com/api/upload', {
-    method: 'POST',
-    body: formData,
-  })
-    .then((resp) => resp.json())
-    .then((resp: { data: { url: string } }) => resp.data.url);
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result?.toString() || '');
+    reader.onerror = reject;
+  });
 };
 
 export const defaultTexRenderer = (blockMode: boolean): string =>
