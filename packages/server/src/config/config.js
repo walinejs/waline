@@ -17,6 +17,7 @@ const {
   AVATAR_PROXY,
   GITHUB_TOKEN,
   DETA_PROJECT_KEY,
+  OAUTH_URL,
 
   MARKDOWN_CONFIG = '{}',
   MARKDOWN_HIGHLIGHT,
@@ -91,6 +92,8 @@ if (AVATAR_PROXY) {
   avatarProxy = !isFalse(AVATAR_PROXY) ? AVATAR_PROXY : '';
 }
 
+const oauthUrl = OAUTH_URL || 'https://user.75.team';
+
 module.exports = {
   workers: 1,
   storage,
@@ -100,6 +103,7 @@ module.exports = {
   secureDomains: SECURE_DOMAINS ? SECURE_DOMAINS.split(/\s*,\s*/) : undefined,
   disableUserAgent: !isFalse(DISABLE_USERAGENT),
   avatarProxy,
+  oauthUrl,
   markdown,
   mailSubject: MAIL_SUBJECT,
   mailTemplate: MAIL_TEMPLATE,

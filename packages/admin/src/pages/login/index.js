@@ -113,10 +113,10 @@ export default function () {
             </p>
           </form>
           <div className="social-accounts">
-            {(window.ALLOW_SOCIALS || []).map((social) => (
+            {(window.ALLOW_SOCIALS || ['github']).map((social) => (
               <a
                 key={social}
-                href={`${baseUrl}oauth/${social}?redirect=${basepath}ui/profile`}
+                href={`${baseUrl}oauth?type=${social}&redirect=${basepath}ui/profile`}
               >
                 {React.createElement(Icons[social])}
               </a>
