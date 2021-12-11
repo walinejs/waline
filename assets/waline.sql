@@ -59,6 +59,11 @@ CREATE TABLE `wl_Users` (
   `url` varchar(255) DEFAULT NULL,
   `avatar` varchar(255) DEFAULT NULL,
   `github` varchar(255) DEFAULT NULL,
+  `twitter` varchar(255) DEFAULT NULL,
+  `facebook` varchar(255) DEFAULT NULL,
+  `google` varchar(255) DEFAULT NULL,
+  `weibo` varchar(255) DEFAULT NULL,
+  `qq` varchar(255) DEFAULT NULL,
   `createdAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
