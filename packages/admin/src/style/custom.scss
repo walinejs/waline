@@ -28,7 +28,8 @@ div[tabindex='-1'] {
 }
 
 .account-item.github path,
-.account-item.twitter circle {
+.account-item.twitter circle,
+.account-item.facebook path {
   fill: grey;
 }
 .account-item.github:hover path,
@@ -38,6 +39,10 @@ div[tabindex='-1'] {
 .account-item.twitter:hover circle,
 .account-item.twitter.bind circle {
   fill: #2daae1;
+}
+.account-item.facebook:hover path,
+.account-item.facebook.bind path {
+  fill: #1877F2;
 }
 
 .vemoji {
