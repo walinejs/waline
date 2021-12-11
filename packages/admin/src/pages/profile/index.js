@@ -6,6 +6,7 @@ import Header from '../../components/Header';
 import { updateProfile } from '../../services/user';
 
 import { ReactComponent as GithubIcon } from '../../components/icon/github.svg';
+import { ReactComponent as TwitterIcon } from '../../components/icon/twitter.svg';
 
 export default function () {
   const [isPasswordUpdating, setPasswordUpdating] = useState(false);
@@ -164,7 +165,7 @@ export default function () {
                       href={
                         user.github
                           ? `https://github.com/${user.github}`
-                          : `${baseUrl}oauth/github?state=${token}`
+                          : `${baseUrl}oauth/?type=github&state=${token}`
                       }
                       target={user.github ? '_blank' : '_self'}
                       rel="noreferrer"
@@ -174,6 +175,37 @@ export default function () {
                     <div
                       className="account-unbind"
                       onClick={() => unbind('github')}
+                    >
+                      <svg
+                        className="vicon"
+                        viewBox="0 0 1024 1024"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="14"
+                        height="14"
+                      >
+                        <path d="m568.569 512 170.267-170.267c15.556-15.556 15.556-41.012 0-56.569s-41.012-15.556-56.569 0L512 455.431 341.733 285.165c-15.556-15.556-41.012-15.556-56.569 0s-15.556 41.012 0 56.569L455.431 512 285.165 682.267c-15.556 15.556-15.556 41.012 0 56.569 15.556 15.556 41.012 15.556 56.569 0L512 568.569l170.267 170.267c15.556 15.556 41.012 15.556 56.569 0 15.556-15.556 15.556-41.012 0-56.569L568.569 512z" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div
+                    className={cls('account-item twitter', {
+                      bind: user.twitter,
+                    })}
+                  >
+                    <a
+                      href={
+                        user.twitter
+                          ? `https://twitter.com/${user.twitter}`
+                          : `${baseUrl}oauth?type=twitter&state=${token}`
+                      }
+                      target={user.twitter ? '_blank' : '_self'}
+                      rel="noreferrer"
+                    >
+                      <TwitterIcon />
+                    </a>
+                    <div
+                      className="account-unbind"
+                      onClick={() => unbind('twitter')}
                     >
                       <svg
                         className="vicon"

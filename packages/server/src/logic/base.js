@@ -43,7 +43,17 @@ module.exports = class extends think.Logic {
 
     const user = await this.modelInstance.select(
       { email: userMail },
-      { field: ['email', 'url', 'display_name', 'type', 'github', 'avatar'] }
+      {
+        field: [
+          'email',
+          'url',
+          'display_name',
+          'type',
+          'github',
+          'twitter',
+          'avatar',
+        ],
+      }
     );
     if (think.isEmpty(user)) {
       return;

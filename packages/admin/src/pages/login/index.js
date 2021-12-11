@@ -113,7 +113,7 @@ export default function () {
             </p>
           </form>
           <div className="social-accounts">
-            {(window.ALLOW_SOCIALS || ['github']).map((social) => (
+            {(window.ALLOW_SOCIALS || ['github', 'twitter']).map((social) => (
               <a
                 key={social}
                 href={`${baseUrl}oauth?type=${social}&redirect=${basepath}ui/profile`}
