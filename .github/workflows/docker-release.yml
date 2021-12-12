@@ -58,7 +58,7 @@ jobs:
 
       - name: Login to ghcr.io
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-      
+
       - name: Build and push alpine - ghcr.io
         uses: docker/build-push-action@v2
         with:

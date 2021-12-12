@@ -10,6 +10,7 @@ div[tabindex='-1'] {
 .account-item {
   display: inline-block;
   position: relative;
+  margin-right: 16px;
 }
 
 .account-item .account-unbind svg {
@@ -26,12 +27,22 @@ div[tabindex='-1'] {
   display: block;
 }
 
-.account-item.github path {
+.account-item.github path,
+.account-item.twitter circle,
+.account-item.facebook path {
   fill: grey;
 }
 .account-item.github:hover path,
 .account-item.github.bind path {
   fill: #1b1f23;
+}
+.account-item.twitter:hover circle,
+.account-item.twitter.bind circle {
+  fill: #2daae1;
+}
+.account-item.facebook:hover path,
+.account-item.facebook.bind path {
+  fill: #1877f2;
 }
 
 .vemoji {
@@ -39,4 +50,8 @@ div[tabindex='-1'] {
   vertical-align: middle;
   width: 1.3rem;
   margin: 0.25rem;
+}
+
+.social-accounts a + a {
+  margin-left: 16px;
 }

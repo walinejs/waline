@@ -16,7 +16,7 @@ We support multiple ways to notify users or bloggers when users comment, see [Co
 
 ## Social Login
 
-We support social account login, currently supports GitHub, see [Social Login](./socials.md) for details.
+We support social account login, currently supports GitHub, Twitter, Facebook.
 
 ::: tip
 

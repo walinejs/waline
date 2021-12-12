@@ -16,7 +16,7 @@
 
 ## 社交登录
 
-我们支持社交帐号登录，目前支持 GitHub，详见 [社交登录](./socials.md)。
+我们支持社交帐号登录，目前支持 GitHub，Twitter, Facebook。
 
 ::: tip
 
