@@ -54,6 +54,7 @@ export default function () {
     baseUrl = match ? match[1] : '/';
   }
 
+  const socials = ['github', 'twitter', 'facebook'];
   return (
     <>
       <Header />
@@ -113,10 +114,10 @@ export default function () {
             </p>
           </form>
           <div className="social-accounts">
-            {(window.ALLOW_SOCIALS || []).map((social) => (
+            {(window.ALLOW_SOCIALS || socials).map((social) => (
               <a
                 key={social}
-                href={`${baseUrl}oauth/${social}?redirect=${basepath}ui/profile`}
+                href={`${baseUrl}oauth?type=${social}&redirect=${basepath}ui/profile`}
               >
                 {React.createElement(Icons[social])}
               </a>

@@ -242,7 +242,9 @@ module.exports = class extends think.Service {
       }
     }
 
-    const disallowList = ['github'].map((social) => 'mail.' + social);
+    const disallowList = ['github', 'twitter', 'facebook'].map(
+      (social) => 'mail.' + social
+    );
     const fakeMail = new RegExp(`@(${disallowList.join('|')})$`, 'i');
     if (parent && !fakeMail.test(parent.mail) && comment.status !== 'waiting') {
       mailList.push({

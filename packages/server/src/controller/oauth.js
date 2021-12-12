@@ -1,5 +1,7 @@
+const qs = require('querystring');
 const jwt = require('jsonwebtoken');
 const { PasswordHash } = require('phpass');
+const request = require('request-promise-native');
 module.exports = class extends think.Controller {
   constructor(ctx) {
     super(ctx);
@@ -9,16 +11,50 @@ module.exports = class extends think.Controller {
     );
   }
 
-  async githubAction() {
-    const instance = this.service('auth/github', this);
-    const userInfo = await instance.getUserInfo();
-    const { github, avatar } = userInfo;
+  async indexAction() {
+    const { code, type, redirect } = this.get();
+    const { oauthUrl } = this.config();
 
-    const userByGithub = await this.modelInstance.select({ github });
+    if (!code) {
+      const { protocol, host } = this.ctx;
+      const redirectUrl = `${protocol}://${host}/oauth?${qs.stringify({
+        redirect,
+        type,
+      })}`;
+      return this.redirect(
+        `${oauthUrl}/${type}?${qs.stringify({ redirect: redirectUrl })}`
+      );
+    }
 
-    if (!think.isEmpty(userByGithub)) {
-      const { redirect } = this.get();
-      const token = jwt.sign(userByGithub[0].email, this.config('jwtKey'));
+    /**
+     * user = { id, name, email, avatar,url };
+     */
+    const params = { code };
+    if (type === 'facebook') {
+      const { protocol, host } = this.ctx;
+      const redirectUrl = `${protocol}://${host}/oauth?${qs.stringify({
+        redirect,
+        type,
+      })}`;
+      params.state = qs.stringify({ redirect: redirectUrl, state: '' });
+    }
+
+    const user = await request({
+      url: `${oauthUrl}/${type}?${qs.stringify(params)}`,
+      method: 'GET',
+      json: true,
+      headers: {
+        'User-Agent': '@waline',
+      },
+    });
+    if (!user || !user.id) {
+      return this.fail();
+    }
+
+    const userBySocial = await this.modelInstance.select({ [type]: user.id });
+
+    if (!think.isEmpty(userBySocial)) {
+      const token = jwt.sign(userBySocial[0].email, this.config('jwtKey'));
 
       if (redirect) {
         return this.redirect(
@@ -29,19 +65,16 @@ module.exports = class extends think.Controller {
       return this.success();
     }
 
-    if (!userInfo.email) {
-      //generator a fake email if github user have no email
-      userInfo.email = `${userInfo.github}@mail.github`;
+    if (!user.email) {
+      user.email = `${user.id}@mail.${type}`;
     }
 
-    const { email } = userInfo;
     const current = this.ctx.state.userInfo;
-
     if (!think.isEmpty(current)) {
-      const updateData = { github };
+      const updateData = { [type]: user.id };
 
-      if (!current.avatar) {
-        updateData.avatar = github.avatar;
+      if (!current.avatar && user.avatar) {
+        updateData.avatar = user.avatar;
       }
 
       await this.modelInstance.update(updateData, {
@@ -51,27 +84,30 @@ module.exports = class extends think.Controller {
       return this.success();
     }
 
-    const userByEmail = await this.modelInstance.select({ email });
+    const userByEmail = await this.modelInstance.select({ email: user.email });
     if (think.isEmpty(userByEmail)) {
       const count = await this.modelInstance.count();
       const data = {
-        ...userInfo,
+        display_name: user.name,
+        email: user.email,
+        url: user.url,
+        avatar: user.avatar,
+        [type]: user.id,
         password: new PasswordHash().hashPassword(Math.random()),
         type: think.isEmpty(count) ? 'administrator' : 'guest',
       };
 
       await this.modelInstance.add(data);
     } else {
-      const updateData = { github };
+      const updateData = { [type]: user.id };
 
-      if (!userByEmail.avatar) {
-        updateData.avatar = avatar;
+      if (!userByEmail.avatar && user.avatar) {
+        updateData.avatar = user.avatar;
       }
-      await this.modelInstance.update(updateData, { email });
+      await this.modelInstance.update(updateData, { email: user.email });
     }
 
-    const { redirect } = this.get();
-    const token = jwt.sign(email, this.config('jwtKey'));
+    const token = jwt.sign(user.email, this.config('jwtKey'));
 
     if (redirect) {
       return this.redirect(
