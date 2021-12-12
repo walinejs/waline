@@ -51,6 +51,10 @@ module.exports = class extends think.Logic {
           'type',
           'github',
           'twitter',
+          'facebook',
+          'google',
+          'weibo',
+          'qq',
           'avatar',
         ],
       }

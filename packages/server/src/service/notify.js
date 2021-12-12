@@ -242,7 +242,7 @@ module.exports = class extends think.Service {
       }
     }
 
-    const disallowList = ['github', 'twitter'].map(
+    const disallowList = ['github', 'twitter', 'facebook'].map(
       (social) => 'mail.' + social
     );
     const fakeMail = new RegExp(`@(${disallowList.join('|')})$`, 'i');

@@ -155,7 +155,28 @@ export default function () {
               <section id="socical-account">
                 <h3>{t('connect to social account')}</h3>
                 <div className="account-list">
-                  {['github', 'twitter', 'facebook'].map(((social) => (
+                  {/** warning: compat with old server version */}
+                  {window.ALLOW_SOCIALS && (
+                    <div
+                      className={cls('account-item github', {
+                        bind: user.github,
+                      })}
+                    >
+                      <a
+                        href={
+                          user.github
+                            ? `https://github.com/${user.github}`
+                            : `${baseUrl}oauth/github?state=${token}`
+                        }
+                        target={user.github ? '_blank' : '_self'}
+                        rel="noreferrer"
+                      >
+                        <GithubIcon />
+                      </a>
+                    </div>
+                  )}
+                  {!window.ALLOW_SOCIALS &&
+                    ['github', 'twitter', 'facebook'].map((social) => (
                     <div
                       key={social}
                       className={cls('account-item', social, {
