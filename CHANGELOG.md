@@ -3,9 +3,11 @@
 ### Features
 
 - refactor oauth login, add twitter and facebook login ([#705](https://github.com/walinejs/waline/pull/705))
+
 ### BREAKING CHANGES
 
-- **vercel:** everyone who use MySQL, SQLite, pgsql to store data need add new field `twitter`, `facebook`, `google`, `weibo`, `qq` before use social login. 
+- **vercel:** everyone who use MySQL, SQLite, pgsql to store data need add new field `twitter`, `facebook`, `google`, `weibo`, `qq` before use social login.
+
 # (2021-10-30)
 
 ### Features

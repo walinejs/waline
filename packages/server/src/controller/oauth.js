@@ -24,7 +24,10 @@ module.exports = class extends think.Controller {
         type,
       })}`;
       return this.redirect(
-        `${oauthUrl}/${type}?${qs.stringify({ redirect: redirectUrl })}`
+        `${oauthUrl}/${type}?${qs.stringify({
+          redirect: redirectUrl,
+          state: this.ctx.state.token,
+        })}`
       );
     }
 
@@ -38,7 +41,10 @@ module.exports = class extends think.Controller {
         redirect,
         type,
       })}`;
-      params.state = qs.stringify({ redirect: redirectUrl, state: '' });
+      params.state = qs.stringify({
+        redirect: redirectUrl,
+        state: this.ctx.state.token || '',
+      });
     }
 
     const user = await request({
@@ -83,7 +89,7 @@ module.exports = class extends think.Controller {
         objectId: current.objectId,
       });
 
-      return this.success();
+      return this.redirect('/ui/profile');
     }
 
     const userByEmail = await this.modelInstance.select({ email: user.email });

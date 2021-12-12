@@ -79,5 +79,6 @@ module.exports = class extends think.Logic {
     userInfo.avatar = avatarUrl;
     userInfo.mailMd5 = helper.md5(userInfo.email);
     this.ctx.state.userInfo = userInfo;
+    this.ctx.state.token = token;
   }
 };
