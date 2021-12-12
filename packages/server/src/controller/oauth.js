@@ -29,10 +29,23 @@ module.exports = class extends think.Controller {
     /**
      * user = { id, name, email, avatar,url };
      */
+    const params = { code };
+    if (type === 'facebook') {
+      const { protocol, host } = this.ctx;
+      const redirectUrl = `${protocol}://${host}/oauth?${qs.stringify({
+        redirect,
+        type,
+      })}`;
+      params.state = qs.stringify({ redirect: redirectUrl, state: '' });
+    }
+
     const user = await request({
-      url: `${oauthUrl}/${type}?code=${code}`,
+      url: `${oauthUrl}/${type}?${qs.stringify(params)}`,
       method: 'GET',
       json: true,
+      headers: {
+        'User-Agent': '@waline',
+      },
     });
     if (!user || !user.id) {
       return this.fail();
