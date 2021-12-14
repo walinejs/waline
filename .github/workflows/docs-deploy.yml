@@ -4,10 +4,10 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'assets/*'
-      - 'docs/*'
-      - 'packages/server/src/logic/*'
+    # paths:
+    #   - 'assets/*'
+    #   - 'docs/*'
+    #   - 'packages/server/src/logic/*'
 
 jobs:
   deploy-docs:
