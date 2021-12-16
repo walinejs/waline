@@ -50,7 +50,7 @@ export default function () {
       if (resp && resp.verify) {
         alert(t('register success! please go to your mailbox to verify it!'));
       }
-      history.push('/ui/login');
+      navigate('/ui/login');
     } catch (e) {
       setError(t('register error! try again later'));
     } finally {
