@@ -117,7 +117,9 @@ export default function () {
             {(window.ALLOW_SOCIALS || socials).map((social) => (
               <a
                 key={social}
-                href={`${baseUrl}oauth?type=${social}&redirect=${basepath}ui/profile`}
+                href={`${baseUrl}oauth${
+                  window.ALLOW_SOCIALS ? '/' + social + '?' : `?type=${social}`
+                }&redirect=${basepath}ui/profile`}
               >
                 {React.createElement(Icons[social])}
               </a>
