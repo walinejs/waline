@@ -41,7 +41,7 @@
     ]
   },
   "devDependencies": {
-    "@types/autosize": "4.0.0",
+    "@types/autosize": "4.0.1",
     "@types/marked": "4.0.1",
     "@vue/compiler-sfc": "3.2.22",
     "autosize": "5.0.1",
