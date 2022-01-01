@@ -38,7 +38,7 @@ const {
   TG_TEMPLATE,
 } = process.env;
 
-let storage = process'inspirecloud';
+let storage = 'leancloud';
 let jwtKey = JWT_TOKEN || LEAN_KEY;
 
 if (LEAN_KEY) {
