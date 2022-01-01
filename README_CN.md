@@ -19,17 +19,18 @@
 - 轻量易用
 - 免费部署
 - 多种部署方式和存储服务支持，每列选择一项多达 84 种部署方式任君选择
-  | | Waline | |
-  | -------------------------------------------------------- | -------------- | ------------ |
-  | **客户端脚本** | **服务端部署** | **数据存储** |
-  | [@waline/client](https://waline.js.org) | Vercel | LeanCloud |
-  | [MiniValine](https://minivaline.js.org/) | Deta | CloudBase |
-  | [AprilComment](https://github.com/asforest/AprilComment) | CloudBase | MongoDB |
-  | | Docker | MySQL |
-  | | 独立部署 | SQLite |
-  | | | PostgreSQL |
-  | | | GitHub |
-  | | | Deta Base |
+  |                                                          | Waline                              |                                                                          |
+  | -------------------------------------------------------- | ----------------------------------- | ------------------------------------------------------------------------ |
+  | **客户端脚本**                                           | **服务端部署**                      | **数据存储**                                                             |
+  | [@waline/client](https://waline.js.org)                  | [Vercel](https://vercel.com)        | [LeanCloud](https://leancloud.app)                                       |
+  | [MiniValine](https://minivaline.js.org/)                 | [Deta](https://deta.sh)             | [CloudBase](https://clodbase.net)                                        |
+  | [AprilComment](https://github.com/asforest/AprilComment) | [CloudBase](https://cloudbase.net/) | [MongoDB](https://mongodb.com)                                           |
+  |                                                          | [轻服务](https://qingfuwu.cn) | MySQL                                                                    |
+  |                                                          | Docker                              | SQLite                                                                   |
+  |                                                          | 独立部署                            | PostgreSQL                                                               |
+  |                                                          |                                     | [GitHub](https://github.com)                                             |
+  |                                                          |                                     | [Deta Base](https://docs.deta.sh/docs/base/about)                        |
+  |                                                          |                                     | [轻服务](https://qingfuwu.cn/docs/nodejs/database/quickstart.html) |
 
 ## Todo
 
@@ -44,7 +45,7 @@
 - [x] 登录支持
 - [x] 评论管理
 - [x] 评论删除
-- [x] 其它数据库服务支持（已支持 LeanCloud, MySQL, MongoDB, SQLite, PostgreSQL）
+- [x] 其它数据库服务支持（已支持 LeanCloud, MySQL, MongoDB, SQLite, PostgreSQL, CloudBase, Deta Base, InspireCloud, GitHub）
 - [x] 基于 IP 的评论发布频率限制
 - [x] 基于关键词的评论过滤限制
 - [x] IP 黑名单

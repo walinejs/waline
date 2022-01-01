@@ -23,6 +23,7 @@ assignees: ''
   - [ ] Docker
   - [ ] VPS, Virtual Host
   - [ ] Deta
+  - [ ] InspireCloud
   - [ ] Other
 - 数据存储在哪里？| Where your comment data store?
   - [ ] LeanCloud(https://leancloud.app)
@@ -34,3 +35,4 @@ assignees: ''
   - [ ] PostgreSQL
   - [ ] GitHub
   - [ ] Deta Base
+  - [ ] InspireCloud
