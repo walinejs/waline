@@ -4,9 +4,9 @@
 
 ## 如何部署
 
-1. Fork 该项目 https://github.com/walinejs/inspirecloud-starter 
+1. Fork 该项目 <https://github.com/walinejs/inspirecloud-starter> 
    ![](../../assets/inspirecloud-1.jpg)
-2. 进入轻服务网站，完成注册实名等相关流程后，在面板中选择创建服务，输入服务名称和简介，并确定
+2. 进入[轻服务](https://qingfuwu.cn)网站，完成注册实名等相关流程后，在面板中选择创建服务，输入服务名称和简介并确定
    ![](../../assets/inspirecloud-2.jpg)
 3. 服务创建好后，点击 <kbd>云工程</kbd>-<kbd>快速创建</kbd> 进入部署环节
    ![](../../assets/inspirecloud-3.jpg)
