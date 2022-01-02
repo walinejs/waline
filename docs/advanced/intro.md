@@ -17,14 +17,15 @@ Waline - 一款从 [Valine](https://valine.js.org) 衍生的带后端评论系�
 | -------------------------------------------------------- | ----------------------------------- | ------------------------------------------------------------------------ |
 | **客户端脚本**                                           | **服务端部署**                      | **数据存储**                                                             |
 | [@waline/client](https://waline.js.org)                  | [Vercel](https://vercel.com)        | [LeanCloud](https://leancloud.app)                                       |
-| [MiniValine](https://minivaline.js.org/)                 | [Deta](https://deta.sh)             | [CloudBase](https://clodbase.net)                                        |
-| [AprilComment](https://github.com/asforest/AprilComment) | [CloudBase](https://cloudbase.net/) | [MongoDB](https://mongodb.com)                                           |
-|                                                          | [轻服务](https://qingfuwu.cn) | MySQL                                                                    |
-|                                                          | Docker                              | SQLite                                                                   |
-|                                                          | 独立部署                            | PostgreSQL                                                               |
-|                                                          |                                     | [GitHub](https://github.com)                                             |
-|                                                          |                                     | [Deta Base](https://docs.deta.sh/docs/base/about)                        |
-|                                                          |                                     | [轻服务](https://qingfuwu.cn/docs/nodejs/database/quickstart.html) |
+  | [MiniValine](https://minivaline.js.org/)                 | [Deta](https://deta.sh)             | [CloudBase](https://clodbase.net)                                        |
+  | [AprilComment](https://github.com/asforest/AprilComment) | [CloudBase](https://cloudbase.net/) | [MongoDB](https://mongodb.com)                                           |
+  |                                                          | [轻服务](https://qingfuwu.cn) | MySQL                                                                    |
+  | |[百度云 CFC](https://console.bce.baidu.com/cfc/#/cfc/functions) |  SQLite |
+  |                                                          | Docker                              | PostgreSQL                                                                   |
+  |                                                          | 独立部署                            | [GitHub](https://github.com)                                                               |
+  |                                                          |                                     | [Deta Base](https://docs.deta.sh/docs/base/about)                                             |
+  |                                                          |                                     | [轻服务](https://qingfuwu.cn/docs/nodejs/database/quickstart.html)                        |
+  |         
 
 ## Todo
 

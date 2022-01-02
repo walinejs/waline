@@ -24,6 +24,7 @@ assignees: ''
   - [ ] VPS, Virtual Host
   - [ ] Deta
   - [ ] InspireCloud
+  - [ ] Baidu CFC
   - [ ] Other
 - 数据存储在哪里？| Where your comment data store?
   - [ ] LeanCloud(https://leancloud.app)

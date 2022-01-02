@@ -22,6 +22,7 @@ export const getGuideSidebar = (lang, titles): SidebarConfigArray =>
       !lang ? '/guide/server/cloudbase.md' : undefined,
       lang + '/guide/server/deta.md',
       !lang ? '/guide/server/inspirecloud.md' : undefined,
+      !lang ? '/guide/server/baidu-cfc.md' : undefined,
       lang + '/guide/server/vps-deploy.md',
     ].filter((v) => v),
   ].map((item, index) => ({
