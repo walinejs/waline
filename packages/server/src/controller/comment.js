@@ -4,6 +4,7 @@ const BaseRest = require('./rest');
 const akismet = require('../service/akismet');
 const { getMarkdownParser } = require('../service/markdown');
 
+const markdownParser = getMarkdownParser();
 async function formatCmt(
   { ua, user_id, ...comment },
   users = [],
@@ -39,6 +40,7 @@ async function formatCmt(
     comment.mail ? comment.mail.toLowerCase() : comment.mail
   );
 
+  comment.comment = markdownParser(comment.comment);
   return comment;
 }
 
@@ -49,8 +51,6 @@ module.exports = class extends BaseRest {
       `storage/${this.config('storage')}`,
       'Comment'
     );
-
-    this.parser = getMarkdownParser();
   }
 
   async getAction() {
@@ -248,17 +248,14 @@ module.exports = class extends BaseRest {
       rid,
       ua,
       url,
+      comment,
       ip: this.ctx.ip,
       insertedAt: new Date(),
-      comment: this.parser(comment),
       user_id: this.ctx.state.userInfo.objectId,
     };
 
     if (pid) {
-      data.comment = data.comment.replace(
-        '<p>',
-        `<p><a class="at" href="#${pid}">@${at}</a>: `
-      );
+      data.comment = `[@${at}](#${pid}): ` + data.comment;
     }
 
     think.logger.debug('Post Comment initial Data:', data);
