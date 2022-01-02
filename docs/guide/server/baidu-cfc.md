@@ -16,19 +16,20 @@
    ![](../../assets/baidu-cfc-5.jpg)
 6. 输入函数名称，运行时选择 `Node.js 12`，超时时间设置为 300 秒后点击<kbd>下一步</kbd>
    ![](../../assets/baidu-cfc-6.jpg)
-7. 触发器选择“HTTP触发器”，URL 路径填写 `/{path+}`，HTTP 方法全选后点击<kbd>提交</kbd>
+7. 触发器选择“HTTP 触发器”，URL 路径填写 `/{path+}`，HTTP 方法全选后点击<kbd>提交</kbd>
    ![](../../assets/baidu-cfc-7.jpg)
 8. 稍待片刻页面会提示函数创建成功，此时点击“进度代码编辑页”准备部署代码
    ![](../../assets/baidu-cfc-8.jpg)
-9. 编辑类型选择 <kbd>上传函数.ZIP包</kbd>，点击<kbd>选择文件</kbd>按钮后选择之前已经打包好的 .zip 包代码，点击<kbd>开始上传</kbd>。
-    
+9. 编辑类型选择 <kbd>上传函数.ZIP 包</kbd>，点击<kbd>选择文件</kbd>按钮后选择之前已经打包好的 .zip 包代码，点击<kbd>开始上传</kbd>。
+
    环境变量中输入你想要配置的环境变量，下图的示例是配置 LeanCloud 存储服务环境变量。
 
    最后点击<kbd>确定</kbd>按钮完成代码部署。
 
    ![](../../assets/baidu-cfc-9.jpg)
+
 10. 部署完毕后点击左侧的 <kbd>触发器</kbd> 菜单，图中的“URL 路径”处的地址即为你最终的服务地址。下图中的地址为 <https://7vrjpkgy3nt9g.cfc-execute.bj.baidubce.com>。
-   ![](../../assets/baidu-cfc-10.jpg)
+    ![](../../assets/baidu-cfc-10.jpg)
 
 ## 如何更新
 

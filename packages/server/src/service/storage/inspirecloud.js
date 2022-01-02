@@ -16,7 +16,8 @@ module.exports = class extends Base {
     const parseKey = (k) => (k === 'objectId' ? '_id' : k);
     for (const k in where) {
       if (think.isString(where[k])) {
-        _where[parseKey(k)] = k === 'objectId' ? this.db.ObjectId(where[k]) : where[k];
+        _where[parseKey(k)] =
+          k === 'objectId' ? this.db.ObjectId(where[k]) : where[k];
         continue;
       }
       if (where[k] === undefined) {
