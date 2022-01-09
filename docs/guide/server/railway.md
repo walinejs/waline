@@ -24,4 +24,4 @@
 
 可以通过 <kbd>Variables</kbd> Tab 进入环境变量管理页，修改完成之后会自动重新部署。
 
-![](../../assets/railway-4.jpg)
+![](../../../assets/railway-4.jpg)
