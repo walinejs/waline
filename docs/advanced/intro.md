@@ -21,11 +21,10 @@ Waline - 一款从 [Valine](https://valine.js.org) 衍生的带后端评论系�
 | [AprilComment](https://github.com/asforest/AprilComment) | [CloudBase](https://cloudbase.net/)                             | [MongoDB](https://mongodb.com)                                     |
 |                                                          | [轻服务](https://qingfuwu.cn)                                   | MySQL                                                              |
 |                                                          | [百度云 CFC](https://console.bce.baidu.com/cfc/#/cfc/functions) | SQLite                                                             |
-|                                                          | Docker                                                          | PostgreSQL                                                         |
-|                                                          | 独立部署                                                        | [GitHub](https://github.com)                                       |
-|                                                          |                                                                 | [Deta Base](https://docs.deta.sh/docs/base/about)                  |
-|                                                          |                                                                 | [轻服务](https://qingfuwu.cn/docs/nodejs/database/quickstart.html) |
-|  |
+|                                                          | [阿里云 FC](https://fc.console.aliyun.com/)                     | PostgreSQL                                                         |
+|                                                          | [Render](https://render.com)                                    | [GitHub](https://github.com)                                       |
+|                                                          | Docker                                                          | [Deta Base](https://docs.deta.sh/docs/base/about)                  |
+|                                                          | 独立部署                                                        | [轻服务](https://qingfuwu.cn/docs/nodejs/database/quickstart.html) |
 
 ## Todo
 
