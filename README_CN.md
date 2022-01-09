@@ -28,9 +28,10 @@
   | | [轻服务](https://qingfuwu.cn) | MySQL |
   | | [百度云 CFC](https://console.bce.baidu.com/cfc/#/cfc/functions) | SQLite |
   | | [阿里云 FC](https://fc.console.aliyun.com/) | PostgreSQL |
-  | | [Render](https://render.com) | [GitHub](https://github.com) |
-  | | Docker | [Deta Base](https://docs.deta.sh/docs/base/about) |
-  | | 独立部署 | [轻服务](https://qingfuwu.cn/docs/nodejs/database/quickstart.html) |
+  | | [Railway](https://railway.app) | [GitHub](https://github.com) |
+  | | [Render](https://render.com) | [Deta Base](https://docs.deta.sh/docs/base/about) |
+  | | Docker | [轻服务](https://qingfuwu.cn/docs/nodejs/database/quickstart.html) |
+  | | 独立部署 | |
 
 ## Todo
 
