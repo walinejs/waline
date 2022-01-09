@@ -24,4 +24,4 @@ Go to the corresponding GitHub repository and modify the version number of `@wal
 
 Click <kbd>Variables</kbd> Tab to go to enviroment variables management page. It will deploy automatically after variable was changed.
 
-![](../../assets/railway-4.jpg)
+![](../../../assets/railway-4.jpg)
