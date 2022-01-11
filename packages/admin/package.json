@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "@rematch/core": "^2.2.0",
-    "@svgr/webpack": "^6.1.2",
+    "@svgr/webpack": "^6.2.0",
     "classnames": "^2.3.1",
     "i18next": "^21.6.5",
     "i18next-browser-languagedetector": "^6.1.2",
