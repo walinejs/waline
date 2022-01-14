@@ -105,7 +105,7 @@ module.exports = {
   forbiddenWords,
   disallowIPList: [],
   secureDomains: SECURE_DOMAINS ? SECURE_DOMAINS.split(/\s*,\s*/) : undefined,
-  disableUserAgent: !isFalse(DISABLE_USERAGENT),
+  disableUserAgent: DISABLE_USERAGENT && !isFalse(DISABLE_USERAGENT),
   avatarProxy,
   oauthUrl,
   markdown,
