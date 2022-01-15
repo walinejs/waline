@@ -1,10 +1,9 @@
 ---
 name: Bug report
-about: Create a report to help us improve
+description: Create a report to help us improve
 title: '[Bug]: '
 labels: 
 - bug
-assignees: ''
 body:
 - type: markdown
   attributes:
@@ -48,7 +47,6 @@ body:
     - CloudBase
     - Docker
     - VPS, VirtualHost
-    - Deta
     - InspireCloud
     - Baidu CFC
     - Aliyun FC

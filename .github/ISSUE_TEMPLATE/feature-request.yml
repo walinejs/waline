@@ -1,11 +1,10 @@
 ---
 name: Feature Request
-about: Describe a feature you want
+description: Describe a feature you want
 title: '[Feature]: '
 labels: 
 - discussion
 - enhancement
-assignees: ''
 body:
 - type: textarea
   id: description
