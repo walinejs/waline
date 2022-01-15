@@ -5,7 +5,7 @@ title: '[Feature]: '
 labels: 
 - discussion
 - enhancement
-assignees: 
+assignees: ''
 body:
 - type: textarea
   id: description
