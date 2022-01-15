@@ -47,6 +47,22 @@
 - `SITE_NAME`: 网站名称，用于在消息中显示。
 - `SITE_URL`: 网站地址，用于在消息中显示。
 
+## 企业微信应用通知
+
+由于 [Server 酱](http://sc.ftqq.com/3.version) 提供的推送服务对发送消息数量有限制，如果消息数量较多时，建议使用企业微信>应用通知。
+
+要使用企业微信应用通知，需要配置环境变量 `QYWX_AM` 。
+
+第一个值是企业 id，第二个值是应用 secret，第三个值@all(或者成员 id)，第四个值是 AgentID，第五个值是图片 id，中间以逗号隔开。最终格式例：`ww479cadfqfe8c151f,MPKN9gX97w4e4b4h4u7u4i4i4i4iO6mN_dDedBFzqC5c,@all,1000002,2S8H-JWEdsadFDSFSDDijbrtkldfhjslafhs5zEU1GyUkU`
+
+[参考文档 1](https://note.youdao.com/ynoteshare/index.html?id=351e08a72378206f9dd64d2281e9b83b&type=note&_time=1642141216026) [参考文档 2](https://note.youdao.com/ynoteshare1/index.html?id=1a0c8aff284ad28cbd011b29b3ad0191&type=note)
+
+- `QYWX_AM`: 用于发送企业应用消息的变量，必填。
+- `AUTHOR_EMAIL`: 博主邮箱，用来区分发布的评论是否是博主本身发布的。如果是博主发布的则不进行提醒通知。
+- `SITE_NAME`: 网站名称，用于在消息中显示。
+- `SITE_URL`: 网站地址，用于在消息中显示。
+- `WX_TEMPLATE`: QYWX_AM 使用的通知模板，变量与具体格式可参见下文 QQ 的通知模板。未配置则使用默认模板。
+
 ## QQ 通知
 
 QQ 通知使用了 [Qmsg 酱](https://qmsg.zendee.cn) 提供的服务，需要在环境变量中配置在 Qmsg 酱中申请的 `QMSG_KEY`。
