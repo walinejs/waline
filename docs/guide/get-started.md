@@ -6,9 +6,9 @@
 
 ## LeanCloud 设置 (数据库)
 
-1. [登录](https://console.leancloud.app/login.html#/signin) 或 [注册](https://console.leancloud.app/login.html#/signup) `LeanCloud 国际版` 并进入 [控制台](https://console.leancloud.app/applist.html#/apps)
+1. [登录](https://console.leancloud.app/login) 或 [注册](https://console.leancloud.app/register) `LeanCloud 国际版` 并进入 [控制台](https://console.leancloud.app/apps)
 
-1. 点击左下角 [创建应用](https://console.leancloud.app/applist.html#/newapp) 并起一个你喜欢的名字 (请选择免费的开发版):
+1. 点击左下角 [创建应用](https://console.leancloud.app/apps) 并起一个你喜欢的名字 (请选择免费的开发版):
 
    ![创建应用](../assets/leancloud-1.jpeg)
 

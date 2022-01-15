@@ -6,9 +6,9 @@ Welcome to Waline. In just a few steps, you can enable Waline to provide comment
 
 ## LeanCloud settings (Database)
 
-1. [sign in](https://console.leancloud.app/login.html#/signin) or [sign up](https://console.leancloud.app/login.html#/signup) LeanCloud and enter [Console](https://console.leancloud.app/applist.html#/apps).
+1. [sign in](https://console.leancloud.app/login) or [sign up](https://console.leancloud.app/register) LeanCloud and enter [Console](https://console.leancloud.app/apps).
 
-1. Click [Create app](https://console.leancloud.app/applist.html#/newapp) button to create a new app and enter a name you like:
+1. Click [Create app](https://console.leancloud.app/apps) button to create a new app and enter a name you like:
 
    ![Create App](../../assets/leancloud-app-1.jpg)
 

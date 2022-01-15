@@ -1,0 +1,69 @@
+---
+name: Bug report
+description: Create a report to help us improve
+title: '[Bug]: '
+labels:
+  - bug
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: 问题描述 | Describe the bug
+      description: 请描述你的问题现象 | A clear and concise description of what the bug is.
+      placeholder:
+      value:
+    validations:
+      required: true
+
+  - type: input
+    id: url
+    attributes:
+      label: 问题网站 | Website URL
+      description: 请提供下可复现网站地址 | Please supply a website url which can reproduce problem.
+      placeholder: ex. https://waline.js.org
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ## 部署方式 | Deploy Type
+
+  - type: dropdown
+    id: server
+    validations:
+      required: true
+    attributes:
+      label: 服务部署在哪里？ | Where your waline deploy?
+      description:
+      options:
+        - Vercel (Default)
+        - Deta
+        - CloudBase
+        - Docker
+        - VPS, VirtualHost
+        - InspireCloud
+        - Baidu CFC
+        - Aliyun FC
+        - Render
+        - Railway.app
+        - Other
+
+  - type: dropdown
+    id: database
+    validations:
+      required: true
+    attributes:
+      label: 数据存储在哪里？| Where your comment data store?
+      description:
+      options:
+        - LeanCloud(https://leancloud.app)
+        - LeanCloud(https://leancloud.cn)
+        - CloudBase
+        - MongoDB
+        - MySQL
+        - SQLite
+        - PostgreSQL
+        - GitHub
+        - Deta Base
+        - InspireCloud
