@@ -7,9 +7,9 @@ labels:
 assignees: 
 body:
 - type: markdown
-    attributes:
-      value: |
-        Thanks for taking the time to fill out this bug report!
+  attributes:
+    value: |
+      Thanks for taking the time to fill out this bug report!
 
 - type: textarea
   id: description
@@ -19,7 +19,7 @@ body:
     placeholder:
     value:
   validations:
-    require: true
+    required: true
 
 - type: input
   id: url
@@ -27,6 +27,8 @@ body:
     label: 问题网站 | Website URL
     description: 请提供下可复现网站地址 | Please supply a website url which can reproduce problem.
     placeholder: ex. https://waline.js.org
+  validations:
+    required: true
 
 - type: markdown
     attributes:
@@ -36,7 +38,7 @@ body:
 - type: dropdown
   id: server
   validations:
-    require: true
+    required: true
   attributes:
     label: 服务部署在哪里？ | Where your waline deploy?
     description: 
@@ -57,7 +59,7 @@ body:
 - type: dropdown
   id: database
   validations:
-    require: true
+    required: true
   attributes:
     label: 数据存储在哪里？| Where your comment data store?
     description:
