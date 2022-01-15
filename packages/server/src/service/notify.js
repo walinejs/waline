@@ -93,86 +93,77 @@ module.exports = class extends think.Service {
 
   async qywxAmWechat({ title, content }, self, parent) {
     const { QYWX_AM, SITE_NAME, SITE_URL } = process.env;
-    if (!QYWX_AM && !SC_KEY) {
+    if (!QYWX_AM) {
       return false;
     }
-    if (QYWX_AM) {
-      const QYWX_AM_AY = QYWX_AM.split(',');
-      const comment = self.comment
-        .replace(/<a href="(.*?)">(.*?)<\/a>/g, '\n[$2] $1\n')
-        .replace(/<[^>]+>/g, '');
-      const postName = self.url;
 
-      const data = {
-        self: {
-          ...self,
-          comment,
-        },
-        postName,
-        parent,
-        site: {
-          name: SITE_NAME,
-          url: SITE_URL,
-          postUrl: SITE_URL + self.url + '#' + self.objectId,
-        },
-      };
-      const contentWechat =
-        think.config('WXTemplate') ||
-        `💬 {{site.name|safe}}的文章《{{postName}}》有新评论啦 
-  【评论者昵称】：{{self.nick}}
-  【评论者邮箱】：{{self.mail}} 
-  【内容】：{{self.comment}} 
-  <a href='{{site.postUrl}}'>查看详情</a>`;
+    const QYWX_AM_AY = QYWX_AM.split(',');
+    const comment = self.comment
+      .replace(/<a href="(.*?)">(.*?)<\/a>/g, '\n[$2] $1\n')
+      .replace(/<[^>]+>/g, '');
+    const postName = self.url;
 
-      title = nunjucks.renderString(title, data);
-      const desp = nunjucks.renderString(contentWechat, data);
-      content = desp.replace(/\n/g, '<br/>');
-      return new Promise((resolve) => {
-        request({
-          uri: `https://qyapi.weixin.qq.com/cgi-bin/gettoken`,
-          qs: {
-            corpid: `${QYWX_AM_AY[0]}`,
-            corpsecret: `${QYWX_AM_AY[1]}`,
-          },
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          json: true,
-        }).then((resp) => {
-          const access_token = resp.access_token;
-          return request({
-            url: `https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=${access_token}`,
-            body: {
-              touser: `${QYWX_AM_AY[2]}`,
-              agentid: `${QYWX_AM_AY[3]}`,
-              msgtype: 'mpnews',
-              mpnews: {
-                articles: [
-                  {
-                    title: `${SITE_NAME} 有新评论啦`,
-                    thumb_media_id: `${QYWX_AM_AY[4]}`,
-                    author: `Waline Comment`,
-                    content_source_url: `${data.site.postUrl}`,
-                    content: `${content}`,
-                    digest: `${desp}`,
-                  },
-                ],
-              },
+    const data = {
+      self: {
+        ...self,
+        comment,
+      },
+      postName,
+      parent,
+      site: {
+        name: SITE_NAME,
+        url: SITE_URL,
+        postUrl: SITE_URL + self.url + '#' + self.objectId,
+      },
+    };
+    const contentWechat =
+      think.config('WXTemplate') ||
+      `💬 {{site.name|safe}}的文章《{{postName}}》有新评论啦 
+【评论者昵称】：{{self.nick}}
+【评论者邮箱】：{{self.mail}} 
+【内容】：{{self.comment}} 
+<a href='{{site.postUrl}}'>查看详情</a>`;
+
+    title = nunjucks.renderString(title, data);
+    const desp = nunjucks.renderString(contentWechat, data);
+    content = desp.replace(/\n/g, '<br/>');
+
+    const { access_token } = await request({
+      uri: `https://qyapi.weixin.qq.com/cgi-bin/gettoken`,
+      qs: {
+        corpid: `${QYWX_AM_AY[0]}`,
+        corpsecret: `${QYWX_AM_AY[1]}`,
+      },
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      json: true,
+    });
+    return request({
+      url: `https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=${access_token}`,
+      body: {
+        touser: `${QYWX_AM_AY[2]}`,
+        agentid: `${QYWX_AM_AY[3]}`,
+        msgtype: 'mpnews',
+        mpnews: {
+          articles: [
+            {
+              title,
+              thumb_media_id: `${QYWX_AM_AY[4]}`,
+              author: `Waline Comment`,
+              content_source_url: `${data.site.postUrl}`,
+              content: `${content}`,
+              digest: `${desp}`,
             },
-            method: 'POST',
-            json: true,
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          }).then((err, resp, data) => {
-            if (err) {
-              console.log(err);
-            }
-            resolve();
-          });
-        });
-      });
-    }
+          ],
+        },
+      },
+      method: 'POST',
+      json: true,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
   }
 
   async qq(self, parent) {
