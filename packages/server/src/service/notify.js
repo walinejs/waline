@@ -287,7 +287,7 @@ module.exports = class extends think.Service {
       ? parent && parent.mail.toLowerCase() === AUTHOR.toLowerCase()
       : false;
 
-    const title = mailSubjectAdmin || '{{site.name}} 上有新评论了';
+    const title = mailSubjectAdmin || '{{site.name | safe}} 上有新评论了';
     const content =
       mailTemplateAdmin ||
       `
@@ -331,7 +331,8 @@ module.exports = class extends think.Service {
       mailList.push({
         to: parent.mail,
         title:
-          mailSubject || '{{parent.nick}}，『{{site.name}}』上的评论收到了回复',
+          mailSubject ||
+          '{{parent.nick | safe}}，『{{site.name | safe}}』上的评论收到了回复',
         content:
           mailTemplate ||
           `
