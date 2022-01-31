@@ -154,13 +154,33 @@ module.exports = class extends BaseRest {
           offset: Math.max((page - 1) * pageSize, 0),
         });
 
+        const userModel = this.service(
+          `storage/${this.config('storage')}`,
+          'Users'
+        );
+        const user_ids = Array.from(
+          new Set(comments.map(({ user_id }) => user_id).filter((v) => v))
+        );
+
+        let users = [];
+        if (user_ids.length) {
+          users = await userModel.select(
+            { objectId: ['IN', user_ids] },
+            {
+              field: ['display_name', 'email', 'url', 'type', 'avatar'],
+            }
+          );
+        }
+
         return this.success({
           page,
           totalPages: Math.ceil(count / pageSize),
           pageSize,
           spamCount,
           waitingCount,
-          data: comments,
+          data: await Promise.all(
+            comments.map((cmt) => formatCmt(cmt, users, this.config()))
+          ),
         });
       }
 
