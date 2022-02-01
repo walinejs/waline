@@ -101,8 +101,9 @@ module.exports = class extends Base {
   async select(where, options = {}) {
     let data = [];
     let ret = [];
+    let offset = options.offset || 0;
     do {
-      options.offset = (options.offset || 0) + data.length;
+      options.offset = offset + data.length;
       ret = await this._select(where, options);
       data = data.concat(ret);
     } while (ret.length === 1000);
