@@ -55,6 +55,7 @@ module.exports = class extends BaseRest {
 
   async getAction() {
     const { type } = this.get();
+    const { userInfo } = this.ctx.state;
 
     switch (type) {
       case 'recent': {
@@ -186,28 +187,33 @@ module.exports = class extends BaseRest {
 
       default: {
         const { path: url, page, pageSize } = this.get();
-
-        const comments = await this.modelInstance.select(
-          {
-            url,
+        const where = { url };
+        if (think.isEmpty(userInfo) || this.config('storage') === 'deta') {
+          where.status = ['NOT IN', ['waiting', 'spam']];
+        } else {
+          where._complex = {
+            _logic: 'or',
             status: ['NOT IN', ['waiting', 'spam']],
-          },
-          {
-            desc: 'insertedAt',
-            field: [
-              'comment',
-              'insertedAt',
-              'link',
-              'mail',
-              'nick',
-              'pid',
-              'rid',
-              'ua',
-              'user_id',
-              'sticky',
-            ],
-          }
-        );
+            user_id: userInfo.objectId,
+          };
+        }
+
+        const comments = await this.modelInstance.select(where, {
+          desc: 'insertedAt',
+          field: [
+            'status',
+            'comment',
+            'insertedAt',
+            'link',
+            'mail',
+            'nick',
+            'pid',
+            'rid',
+            'ua',
+            'user_id',
+            'sticky',
+          ],
+        });
 
         const userModel = this.service(
           `storage/${this.config('storage')}`,

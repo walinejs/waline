@@ -45,6 +45,7 @@ module.exports = class extends think.Logic {
       { email: userMail },
       {
         field: [
+          'id',
           'email',
           'url',
           'display_name',

@@ -166,13 +166,18 @@ module.exports = class extends Base {
     return this.git.set(filename, csv, { sha });
   }
 
-  where(data, where) {
+  parseWhere(where) {
+    const _where = [];
     if (think.isEmpty(where)) {
-      return data;
+      return _where;
     }
 
     const filters = [];
     for (let k in where) {
+      if (k === '_complex') {
+        continue;
+      }
+
       if (k === 'objectId') {
         filters.push((item) => item.id === where[k]);
         continue;
@@ -219,7 +224,33 @@ module.exports = class extends Base {
       }
     }
 
-    return filters.reduce((data, fn) => data.filter(fn), data);
+    return filters;
+  }
+
+  where(data, where) {
+    const filter = this.parseWhere(where);
+
+    if (!where._complex) {
+      return data.filter((item) => filter.every((fn) => fn(item)));
+    }
+
+    const logicMap = {
+      and: Array.prototype.every,
+      or: Array.prototype.some,
+    };
+    const filters = [];
+    for (const k in where._complex) {
+      if (k === '_logic') {
+        continue;
+      }
+
+      filters.push([...filter, ...this.parseWhere({ [k]: where._complex[k] })]);
+    }
+
+    const logicFn = logicMap[where._complex._logic];
+    return data.filter((item) =>
+      logicFn.call(filters, (filter) => filter.every((fn) => fn(item)))
+    );
   }
 
   async select(where, { desc, limit, offset, field } = {}) {
