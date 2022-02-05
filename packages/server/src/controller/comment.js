@@ -1,4 +1,3 @@
-const helper = require('think-helper');
 const parser = require('ua-parser-js');
 const BaseRest = require('./rest');
 const akismet = require('../service/akismet');
@@ -8,7 +7,8 @@ const markdownParser = getMarkdownParser();
 async function formatCmt(
   { ua, user_id, ...comment },
   users = [],
-  { avatarProxy }
+  { avatarProxy },
+  loginUser
 ) {
   ua = parser(ua);
   if (!think.config('disableUserAgent')) {
@@ -36,9 +36,12 @@ async function formatCmt(
       ? avatarProxy + '?url=' + encodeURIComponent(avatarUrl)
       : avatarUrl;
 
-  comment.mail = helper.md5(
-    comment.mail ? comment.mail.toLowerCase() : comment.mail
-  );
+  const isAdmin = loginUser && loginUser.type === 'administrator';
+  if (!isAdmin) {
+    delete comment.mail;
+  } else {
+    comment.orig = comment.comment;
+  }
 
   comment.comment = markdownParser(comment.comment);
   return comment;
@@ -110,7 +113,9 @@ module.exports = class extends BaseRest {
 
         return this.json(
           await Promise.all(
-            comments.map((cmt) => formatCmt(cmt, users, this.config()))
+            comments.map((cmt) =>
+              formatCmt(cmt, users, this.config(), userInfo)
+            )
           )
         );
       }
@@ -193,7 +198,9 @@ module.exports = class extends BaseRest {
           spamCount,
           waitingCount,
           data: await Promise.all(
-            comments.map((cmt) => formatCmt(cmt, users, this.config()))
+            comments.map((cmt) =>
+              formatCmt(cmt, users, this.config(), userInfo)
+            )
           ),
         });
       }
@@ -260,11 +267,16 @@ module.exports = class extends BaseRest {
           count: comments.length,
           data: await Promise.all(
             rootComments.map(async (comment) => {
-              const cmt = await formatCmt(comment, users, this.config());
+              const cmt = await formatCmt(
+                comment,
+                users,
+                this.config(),
+                userInfo
+              );
               cmt.children = await Promise.all(
                 comments
                   .filter(({ rid }) => rid === cmt.objectId)
-                  .map((cmt) => formatCmt(cmt, users, this.config()))
+                  .map((cmt) => formatCmt(cmt, users, this.config(), userInfo))
                   .reverse()
               );
               return cmt;
@@ -422,7 +434,9 @@ module.exports = class extends BaseRest {
 
     think.logger.debug(`Comment post hooks postSave done!`);
 
-    return this.success(await formatCmt(resp, [userInfo], this.config()));
+    return this.success(
+      await formatCmt(resp, [userInfo], this.config(), userInfo)
+    );
   }
 
   async putAction() {
