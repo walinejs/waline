@@ -34,7 +34,9 @@ export const fetchCommentCount = ({
 
   return (
     fetch(
-      `${serverURL}/comment?type=count&url=${encodeURIComponent(paths.join(','))}`,
+      `${serverURL}/comment?type=count&url=${encodeURIComponent(
+        paths.join(',')
+      )}`,
       { signal, headers }
     )
       .then((resp) => resp.json() as Promise<number | number[]>)
