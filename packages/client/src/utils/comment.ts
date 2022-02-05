@@ -1,5 +1,6 @@
 import { fetchCommentCount } from './fetch';
 import { decodePath } from './path';
+import { useUserInfo } from '../composables';
 
 export const updateCommentCount = (
   serverURL: string,
@@ -12,6 +13,8 @@ export const updateCommentCount = (
     (element) => element.getAttribute('data-xid') || element.getAttribute('id')
   );
 
+  const { userInfo } = useUserInfo();
+
   if ($counts.length)
     void fetchCommentCount({
       serverURL,
@@ -22,6 +25,7 @@ export const updateCommentCount = (
         )
       ),
       signal,
+      token: userInfo.value?.token,
     })
       .then((counts) => {
         $counts.forEach((element, index) => {

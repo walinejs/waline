@@ -21,7 +21,7 @@ export const useUserInfo = (): {
   userInfo: UserInfoRef;
   setUserInfo: (userInfo: UserInfo | Record<string, never>) => void;
 } => {
-  if (!userInfo.value)
+  if (!userInfo.value.token)
     try {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       userInfo.value =

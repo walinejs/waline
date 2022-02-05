@@ -60,6 +60,7 @@ import CommentBox from './components/CommentBox.vue';
 import CommentCard from './components/CommentCard.vue';
 import { LoadingIcon } from './components/Icons';
 import { fetchCommentList } from './utils';
+import { useUserInfo } from './composables';
 
 import type { PropType } from 'vue';
 import type { ConfigRef } from './composables';
@@ -87,6 +88,7 @@ export default defineComponent({
   setup(props) {
     const config = inject<ConfigRef>('config') as ConfigRef;
     const event = inject<WalineEvent>('event') as WalineEvent;
+    const { userInfo } = useUserInfo();
 
     const count = ref(0);
     const page = ref(1);
@@ -109,6 +111,7 @@ export default defineComponent({
         Object.assign({}, config.value, {
           page: pageNumber,
           signal,
+          token: userInfo.value?.token,
         })
       )
         .then((resp) => {
