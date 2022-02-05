@@ -32,13 +32,19 @@ module.exports = class extends Base {
           const handler = where[k][0].toUpperCase();
           switch (handler) {
             case 'IN':
-              _where[parseKey(k)] = { 
-                $in: k === 'objectId' ? where[k][1].map(this.db.ObjectId) : where[k][1]
-              }
+              _where[parseKey(k)] = {
+                $in:
+                  k === 'objectId'
+                    ? where[k][1].map(this.db.ObjectId)
+                    : where[k][1],
+              };
               break;
             case 'NOT IN':
-              _where[parseKey(k)] = { 
-                $nin: k === 'objectId' ? where[k][1].map(this.db.ObjectId) : where[k][1]
+              _where[parseKey(k)] = {
+                $nin:
+                  k === 'objectId'
+                    ? where[k][1].map(this.db.ObjectId)
+                    : where[k][1],
               };
               break;
             case 'LIKE': {

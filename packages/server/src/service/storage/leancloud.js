@@ -21,7 +21,7 @@ module.exports = class extends Base {
 
     for (const k in where) {
       if (k === '_complex') {
-        return;
+        continue;
       }
 
       if (think.isString(where[k])) {
@@ -65,6 +65,7 @@ module.exports = class extends Base {
         }
       }
     }
+    return instance;
   }
 
   where(className, where) {
@@ -78,7 +79,7 @@ module.exports = class extends Base {
         continue;
       }
 
-      const filter = this.parseWhere({
+      const filter = this.parseWhere(className, {
         ...where,
         [k]: where._complex[k],
       });
@@ -126,8 +127,7 @@ module.exports = class extends Base {
   }
 
   async count(where = {}, options = {}) {
-    const instance = new AV.Query(this.tableName);
-    this.where(instance, where);
+    const instance = this.where(this.tableName, where);
     return instance.count(options).catch((e) => {
       if (e.code === 101) {
         return 0;
@@ -154,8 +154,7 @@ module.exports = class extends Base {
   }
 
   async update(data, where) {
-    const instance = new AV.Query(this.tableName);
-    this.where(instance, where);
+    const instance = this.where(this.tableName, where);
     const ret = await instance.find();
 
     return Promise.all(
@@ -173,8 +172,7 @@ module.exports = class extends Base {
   }
 
   async delete(where) {
-    const instance = new AV.Query(this.tableName);
-    this.where(instance, where);
+    const instance = this.where(this.tableName, where);
     const data = await instance.find();
 
     return AV.Object.destroyAll(data);

@@ -28,15 +28,15 @@ module.exports = class extends Base {
           switch (handler) {
             case 'IN':
               if (k === 'objectId') {
-                where[parseKey(k)] = { $in: where[k][1].map(ObjectId) };
+                filter[parseKey(k)] = { $in: where[k][1].map(ObjectId) };
               } else {
-                where[parseKey(k)] = {
+                filter[parseKey(k)] = {
                   $regex: new RegExp(`^(${where[k][1].join('|')})$`),
                 };
               }
               break;
             case 'NOT IN':
-              where[parseKey(k)] = {
+              filter[parseKey(k)] = {
                 $nin:
                   k === 'objectId' ? where[k][1].map(ObjectId) : where[k][1],
               };
