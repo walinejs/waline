@@ -60,26 +60,35 @@ module.exports = class extends BaseRest {
     switch (type) {
       case 'recent': {
         const { count } = this.get();
-        const comments = await this.modelInstance.select(
-          { status: ['NOT IN', ['waiting', 'spam']] },
-          {
-            desc: 'insertedAt',
-            limit: count,
-            field: [
-              'comment',
-              'insertedAt',
-              'link',
-              'mail',
-              'nick',
-              'url',
-              'pid',
-              'rid',
-              'ua',
-              'user_id',
-              'sticky',
-            ],
-          }
-        );
+        const where = {};
+        if (think.isEmpty(userInfo) || this.config('storage') === 'deta') {
+          where.status = ['NOT IN', ['waiting', 'spam']];
+        } else {
+          where._complex = {
+            _logic: 'or',
+            status: ['NOT IN', ['waiting', 'spam']],
+            user_id: userInfo.objectId,
+          };
+        }
+
+        const comments = await this.modelInstance.select(where, {
+          desc: 'insertedAt',
+          limit: count,
+          field: [
+            'status',
+            'comment',
+            'insertedAt',
+            'link',
+            'mail',
+            'nick',
+            'url',
+            'pid',
+            'rid',
+            'ua',
+            'user_id',
+            'sticky',
+          ],
+        });
 
         const userModel = this.service(
           `storage/${this.config('storage')}`,
@@ -108,13 +117,17 @@ module.exports = class extends BaseRest {
 
       case 'count': {
         const { url } = this.get();
-        const data = await this.modelInstance.select(
-          {
-            url: ['IN', url],
+        const where = { url: ['IN', url] };
+        if (think.isEmpty(userInfo) || this.config('storage') === 'deta') {
+          where.status = ['NOT IN', ['waiting', 'spam']];
+        } else {
+          where._complex = {
+            _logic: 'or',
             status: ['NOT IN', ['waiting', 'spam']],
-          },
-          { field: ['url'] }
-        );
+            user_id: userInfo.objectId,
+          };
+        }
+        const data = await this.modelInstance.select(where, { field: ['url'] });
         const counts = url.map(
           (u) => data.filter(({ url }) => url === u).length
         );
