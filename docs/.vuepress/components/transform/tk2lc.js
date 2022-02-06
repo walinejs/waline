@@ -7,7 +7,7 @@ export const tk2lc = (input) => {
     .map((text) => {
       const cmt = JSON.parse(text);
       return {
-        objectId: cmt._id,
+        objectId: typeof cmt._id === 'string' ? cmt._id : cmt._id.$oid,
         QQAvatar: '',
         comment: cmt.comment,
         insertedAt: {
