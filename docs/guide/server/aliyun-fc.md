@@ -21,26 +21,26 @@
 
 至此就完成了部署，第四步中返回的地址即为你的部署地址。
 
-### Windows环境缺少VC++
+### Windows 环境缺少 VC++
 
-由于 @serverless-devs/s 依赖于 node-gyp ，根据<https://github.com/nodejs/node-gyp#on-windows>，我们需要安装VC++环境。
+由于 @serverless-devs/s 依赖于 node-gyp ，根据<https://github.com/nodejs/node-gyp#on-windows>，我们需要安装 VC++环境。
 
-> 值得注意的是，VC++ 环境需要占用大量的存储资源，因此我更建议你使用 _Windows Subsystem for Linux_ 或Linux云服务器
+> 值得注意的是，VC++ 环境需要占用大量的存储资源，因此我更建议你使用 _Windows Subsystem for Linux_ 或 Linux 云服务器
 
-1. 前往<https://visualstudio.microsoft.com>下载Visual Studio安装包
-2. 在安装包中勾选 _使用C++的桌面开发_ ，勾选全部MSVC套件，开始安装。
-3. 使用`npm config set msvs_version 2022`设置版本信息，例如我下载的Visual Studio Community 2022，即需填写2022版本
+1. 前往<https://visualstudio.microsoft.com>下载 Visual Studio 安装包
+2. 在安装包中勾选 _使用 C++的桌面开发_ ，勾选全部 MSVC 套件，开始安装。
+3. 使用`npm config set msvs_version 2022`设置版本信息，例如我下载的 Visual Studio Community 2022，即需填写 2022 版本
 4. 继续`s deplay`的安装过程
 
-### 缺少Python
+### 缺少 Python
 
-由于 @serverless-devs/s 依赖于 node-gyp ，根据<https://github.com/nodejs/node-gyp#configuring-python-dependency>，我们也需要安装Python环境。
+由于 @serverless-devs/s 依赖于 node-gyp ，根据<https://github.com/nodejs/node-gyp#configuring-python-dependency>，我们也需要安装 Python 环境。
 
-> Python作为一个优秀的脚本性语言，是很值得安装的。
+> Python 作为一个优秀的脚本性语言，是很值得安装的。
 
-node-gyp支持 3.7/3.8/3.9/3.10 版本的Python，你可以通过搜索引擎获取大量的帮助，因此在此不申明详细步骤。
+node-gyp 支持 3.7/3.8/3.9/3.10 版本的 Python，你可以通过搜索引擎获取大量的帮助，因此在此不申明详细步骤。
 
-如果你的系统有多个Python，那你需要使用以下命令指定使用python的路径。
+如果你的系统有多个 Python，那你需要使用以下命令指定使用 python 的路径。
 
 ```bash
 npm config set python /path/to/executable/python

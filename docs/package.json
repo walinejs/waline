@@ -3,16 +3,16 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "vuepress build .",
-    "dev": "vuepress dev ."
+    "build": "vuepress-vite build .",
+    "dev": "vuepress-vite dev ."
   },
   "devDependencies": {
-    "@vuepress/plugin-docsearch": "2.0.0-beta.27",
-    "@vuepress/plugin-pwa": "2.0.0-beta.27",
-    "@vuepress/plugin-pwa-popup": "2.0.0-beta.27",
-    "@waline/client": "^1.5.1",
+    "@mr-hope/vuepress-shared": "2.0.0-alpha.19",
+    "@vuepress/plugin-docsearch": "2.0.0-beta.35",
+    "@vuepress/plugin-pwa": "2.0.0-beta.35",
+    "@vuepress/plugin-pwa-popup": "2.0.0-beta.35",
+    "@waline/client": "^1.5.4",
     "markdown-it-task-lists": "^2.1.1",
-    "vuepress": "2.0.0-beta.27",
-    "vuepress-vite": "2.0.0-beta.27"
+    "vuepress-vite": "2.0.0-beta.35"
   }
 }

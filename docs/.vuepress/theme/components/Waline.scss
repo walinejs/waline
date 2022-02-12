@@ -1,7 +1,7 @@
-@use '@vuepress/theme-default/lib/client/styles/wrapper';
+@use '@vuepress/theme-default/lib/client/styles/mixins';
 
 .page {
   .waline-wrapper {
-    @extend %wrapper;
+    @include mixins.content_wrapper;
   }
 }
