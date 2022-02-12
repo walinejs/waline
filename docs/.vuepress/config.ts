@@ -189,8 +189,9 @@ export default defineUserConfig<HopeThemeOptions>({
     [
       '@vuepress/plugin-docsearch',
       {
+        appId: 'W34KABV4KM',
         apiKey: 'd189586c601d439f9247bdaf95b3555f',
-        indexName: 'W34KABV4KM',
+        indexName: 'waline',
         locales: {
           '/': {
             placeholder: '搜索文档',
