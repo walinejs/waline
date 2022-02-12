@@ -1,71 +1,35 @@
-import type { NavbarConfig } from '@vuepress/theme-default';
+import type { HopeThemeNavbarConfig } from 'vuepress-theme-hope';
 
-export const enNavbarConfig: NavbarConfig = [
-  {
-    text: 'Guide',
-    link: '/en/guide/get-started.html',
-  },
+export const enNavbarConfig: HopeThemeNavbarConfig = [
+  '/en/guide/get-started.md',
   {
     text: 'Learn More',
+    icon: 'advance',
     children: [
-      {
-        text: 'Intro',
-        link: '/en/advanced/intro.html',
-      },
-      {
-        text: 'Original Goal',
-        link: '/en/advanced/why.html',
-      },
-      {
-        text: 'Ecosystem',
-        link: '/en/advanced/ecosystem.html',
-      },
-      {
-        text: 'FAQ',
-        link: '/en/advanced/faq.html',
-      },
+      '/en/advanced/intro.md',
+      '/en/advanced/why.md',
+      '/en/advanced/ecosystem.md',
+      '/en/advanced/faq.md',
     ],
   },
   {
     text: 'Migration',
+    icon: 'migration',
     children: [
-      {
-        text: 'Migrate to @waline/client@v1',
-        link: '/en/migration/client.html',
-      },
-      {
-        text: 'Migrate from Valine',
-        link: '/en/migration/valine.html',
-      },
-      {
-        text: 'Migration Helper',
-        link: '/en/migration/tool.html',
-      },
+      '/en/migration/client.md',
+      '/en/migration/valine.md',
+      '/en/migration/tool.md',
     ],
   },
   {
     text: 'Reference',
+    icon: 'reference',
     children: [
-      {
-        text: 'Client Config',
-        link: '/en/reference/client.html',
-      },
-      {
-        text: 'Client Instance',
-        link: '/en/reference/instance.html',
-      },
-      {
-        text: 'Server Config',
-        link: '/en/reference/server.html',
-      },
-      {
-        text: 'API',
-        link: '/en/reference/api.html',
-      },
-      {
-        text: 'Contribution Guide',
-        link: '/en/reference/contribution.html',
-      },
+      '/en/reference/client.md',
+      '/en/reference/instance.md',
+      '/en/reference/server.md',
+      '/en/reference/api.md',
+      '/en/reference/contribution.md',
     ],
   },
 ];

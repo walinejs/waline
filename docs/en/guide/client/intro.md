@@ -1,4 +1,7 @@
-# Client Intro
+---
+title: Client Intro
+icon: intro
+---
 
 Waline officially provides the [`@waline/client`](https://www.npmjs.com/package/@waline/client) client, written in Vue + TypeScript, and the size is only 54kb gzip.
 

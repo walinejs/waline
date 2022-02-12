@@ -1,4 +1,7 @@
-# 生态系统
+---
+title: 生态系统
+icon: ecosystem
+---
 
 Waline 是经典的前后端分离 Client/Server 架构，提供了较为完善的 API 接口。你可以基于服务端提供的 API 自行实现自己的客户端实现。
 
@@ -27,7 +30,7 @@ Waline 是经典的前后端分离 Client/Server 架构，提供了较为完善�
 
 - [AprilComment](https://github.com/asforest/AprilComment)
 
-  作者[asforest](https://github.com/asforest/AprilComment)，白绿色调的简洁风格，Markdown 格式渲染评论，并有一些独特的小功能。使用方式如下：
+  作者 [asforest](https://github.com/asforest/AprilComment)，白绿色调的简洁风格，Markdown 格式渲染评论，并有一些独特的小功能。使用方式如下：
 
   ```html
   <script src="https://cdn.jsdelivr.net/npm/april-comment@latest/dist/index.js"></script>
@@ -58,7 +61,9 @@ Waline 是经典的前后端分离 Client/Server 架构，提供了较为完善�
 
 ### VuePress
 
-- [@mr-hope/vuepress-plugin-comment](https://vuepress-theme-hope.github.io/comment/zh/): VuePress 评论插件
+- [@mr-hope/vuepress-plugin-comment](https://vuepress-theme-hope.github.io/comment/zh/): VuePress1 评论插件
+
+- [@mr-hope/vuepress-plugin-comment](https://vuepress-theme-hope.github.io/v2/comment/zh/): VuePress2 评论插件
 
 ## 主题
 

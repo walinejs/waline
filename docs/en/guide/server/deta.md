@@ -1,4 +1,7 @@
-# Deta deployment
+---
+title: Deta deployment
+icon: deta
+---
 
 [Deta](https://www.deta.sh/) is a free Serverless platform, we can deploy Waline to Deta platform easily.
 

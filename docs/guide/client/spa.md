@@ -1,4 +1,7 @@
-# 单页应用支持
+---
+title: 单页应用支持
+icon: spa
+---
 
 Waline 为 SPA(**S**ingle **P**age **A**pplication, 单页应用) 带来了支持。
 

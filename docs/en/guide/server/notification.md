@@ -1,4 +1,7 @@
-# Comment Notification
+---
+title: Comment Notification
+icon: notice
+---
 
 When a user posts a comment on the website or a user responds to a comment, Waline supports email or WeChat notification to the blogger and the author who responded to the comment. There are many types of blogger notifications, and only email notifications are supported for replying to comment authors.
 

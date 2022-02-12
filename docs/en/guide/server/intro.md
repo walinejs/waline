@@ -1,4 +1,7 @@
-# Server introduction
+---
+title: Server introduction
+icon: intro
+---
 
 ## Deployment
 

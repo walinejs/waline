@@ -1,4 +1,7 @@
-# Get Started
+---
+title: Get Started
+icon: creative
+---
 
 Welcome to Waline. In just a few steps, you can enable Waline to provide comments and pageviews on your website.
 

@@ -1,4 +1,7 @@
-# 挂件
+---
+title: 挂件
+icon: widget
+---
 
 Waline 在自身的 Widget 属性上提供了一些挂件，你可以通过 `Waline.Widget.<挂件名>` 来使用它们。
 

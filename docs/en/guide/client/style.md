@@ -1,4 +1,7 @@
-# Custom style
+---
+title: Custom style
+icon: style
+---
 
 `@waline/client` provides some CSS variables. You can easily configure the style of waline through these variables:
 

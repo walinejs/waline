@@ -1,4 +1,7 @@
-# Development Guide
+---
+title: Development Guide
+icon: guide
+---
 
 We welcome everyone to open Pull Requests for waline! :tada:
 

@@ -1,4 +1,7 @@
-# Migration Helper
+---
+title: Migration Helper
+icon: helper
+---
 
 <MigrationTool />
 

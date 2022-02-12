@@ -1,4 +1,7 @@
-# 阿里云函数计算部署
+---
+title: 阿里云函数计算部署
+icon: aliyun
+---
 
 [阿里云函数计算](https://fc.console.aliyun.com/) 是阿里云推出的 Serverless 平台。我们可以快速的将 Waline 部署到阿里云函数计算平台上。
 

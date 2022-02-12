@@ -1,4 +1,7 @@
-# 引入客户端
+---
+title: 引入客户端
+icon: import
+---
 
 Waline 提供默认 (自带样式) 和不带样式两种版本的客户端文件。你可以通过多种方式引入 Waline。
 
@@ -53,23 +56,25 @@ Waline 提供默认 (自带样式) 和不带样式两种版本的客户端文件
 
 Waline 客户端已通过 `@waline/client` 发布到 [npm](https://www.npmjs.com/package/@waline/client)，你可以通过以下命令安装:
 
-<CodeGroup>
-<CodeGroupItem title="yarn">
+:::: code-group
+
+::: code-group yarn
 
 ```bash
 yarn add -D @waline/client
 ```
 
-</CodeGroupItem>
+:::
 
-<CodeGroupItem title="npm">
+::: code-group npm
 
 ```bash
 npm i -D @waline/client
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+
+::::
 
 之后请在你的源文件中引入并使用:
 

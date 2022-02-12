@@ -1,4 +1,7 @@
-# Ecosystem
+---
+title: Ecosystem
+icon: ecosystem
+---
 
 Waline is a classic Client/Server architecture, which provides a relatively complete API interface. you can implement your own client implementation based on the API provided by the server.
 
@@ -10,7 +13,7 @@ Waline is a classic Client/Server architecture, which provides a relatively comp
 
 - [MiniValine](https://github.com/MiniValine/MiniValine)
 
-  By [@MHuiG](https://github.com/MHuiG), supports Waline API. Usage:
+  By [@MHuiG](https://github.com/MHuiG) , supports Waline API. Usage:
 
   ```html
   <script src="https://cdn.jsdelivr.net/npm/minivaline/dist/MiniValine.min.js"></script>
@@ -58,7 +61,8 @@ You can use the following plugins to use Waline on different tools:
 
 ### VuePress
 
-- [@mr-hope/vuepress-plugin-comment](https://vuepress-theme-hope.github.io/comment/zh/): VuePress comment plugin
+- [@mr-hope/vuepress-plugin-comment](https://vuepress-theme-hope.github.io/comment/): VuePress1 comment plugin
+- [vuepress-plugin-comment2](https://vuepress-theme-hope.github.io/v2/comment/): VuePress2 comment plugin
 
 ## Theme
 

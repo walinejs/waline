@@ -1,4 +1,7 @@
-# 前端配置
+---
+title: 前端配置
+icon: config
+---
 
 ## el
 

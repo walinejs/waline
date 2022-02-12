@@ -1,4 +1,7 @@
-# Why Waline?
+---
+title: Design Goal
+icon: goal
+---
 
 [Valine](https://valine.js.org) an exquisite style, simple operation, and efficient deployment review system. The first time I came into contact, I was attracted by its exquisite style and serverless characteristics. It doesn't require the backend service. The frontend interacts with the LeanCloud storage service directly, which is really cool! But as I understand deeper, I find out it's problems.
 

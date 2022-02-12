@@ -28,12 +28,13 @@ export default defineComponent({
     const text = computed(() => i18n[routeLocale.value]);
 
     return (): VNode =>
-      h('div', {
-        class: {
-          'waline-tips': true,
-          'page-nav': !isHome.value,
-        },
-        innerHTML: text.value,
-      });
+      h(
+        'div',
+        { class: ['waline-tips-wrapper', { home: isHome.value }] },
+        h('div', {
+          class: 'waline-tips',
+          innerHTML: text.value,
+        })
+      );
   },
 });

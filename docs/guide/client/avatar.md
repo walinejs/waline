@@ -1,4 +1,7 @@
-# 头像配置
+---
+title: 头像配置
+icon: avatar
+---
 
 ::: warning 已过时
 
