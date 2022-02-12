@@ -40,7 +40,7 @@ export default defineUserConfig<HopeThemeOptions>({
     },
   },
 
-  theme: path.resolve(__dirname, 'theme'),
+  theme: 'hope',
 
   themeConfig: {
     hostname: 'https://waline.js.org',
@@ -202,6 +202,19 @@ export default defineUserConfig<HopeThemeOptions>({
         },
       },
     ],
+    {
+      name: 'waline-workaround',
+      alias: {
+        '@theme-hope/components/NormalPage': path.resolve(
+          __dirname,
+          './components/NormalPage'
+        ),
+        '@theme-hope/components/home/ProjectHome': path.resolve(
+          __dirname,
+          './components/ProjectHome'
+        ),
+      },
+    },
   ],
 
   // watch navbar

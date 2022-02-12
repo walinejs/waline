@@ -15,7 +15,7 @@ import type { HopeThemeNormalPageFrontmatter } from 'vuepress-theme-hope';
 import 'vuepress-theme-hope/lib/client/styles/page.scss';
 
 export default defineComponent({
-  name: 'Page',
+  name: 'NormalPage',
 
   setup(_props, { slots }) {
     const frontmatter = usePageFrontmatter<HopeThemeNormalPageFrontmatter>();
