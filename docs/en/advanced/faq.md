@@ -46,7 +46,7 @@ Go to the corresponding GitHub repository and modify the version number of `@wal
 
 #### Deta
 
-[Deta - How to update?](https://waline.js.org/en/guide/server/deta.html#how-to-update)
+[Deta - How to update?](../guide/server/deta.md#how-to-update)
 
 #### CloudBase
 
