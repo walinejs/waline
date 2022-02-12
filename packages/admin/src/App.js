@@ -18,7 +18,9 @@ function Access(props) {
       emptyUser || (meta.auth ? props.meta.auth !== user.type : false);
     if (emptyUser || noPermission) {
       return (location.href =
-        basename + '/ui/login?redirect=' + location.pathname);
+        basename +
+        '/ui/login?redirect=' +
+        location.pathname.replace(basename, ''));
     }
   }, [user, props.meta]);
 

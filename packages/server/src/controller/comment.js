@@ -1,4 +1,3 @@
-const helper = require('think-helper');
 const parser = require('ua-parser-js');
 const BaseRest = require('./rest');
 const akismet = require('../service/akismet');
@@ -8,7 +7,8 @@ const markdownParser = getMarkdownParser();
 async function formatCmt(
   { ua, user_id, ...comment },
   users = [],
-  { avatarProxy }
+  { avatarProxy },
+  loginUser
 ) {
   ua = parser(ua);
   if (!think.config('disableUserAgent')) {
@@ -36,9 +36,12 @@ async function formatCmt(
       ? avatarProxy + '?url=' + encodeURIComponent(avatarUrl)
       : avatarUrl;
 
-  comment.mail = helper.md5(
-    comment.mail ? comment.mail.toLowerCase() : comment.mail
-  );
+  const isAdmin = loginUser && loginUser.type === 'administrator';
+  if (!isAdmin) {
+    delete comment.mail;
+  } else {
+    comment.orig = comment.comment;
+  }
 
   comment.comment = markdownParser(comment.comment);
   return comment;
@@ -55,30 +58,40 @@ module.exports = class extends BaseRest {
 
   async getAction() {
     const { type } = this.get();
+    const { userInfo } = this.ctx.state;
 
     switch (type) {
       case 'recent': {
         const { count } = this.get();
-        const comments = await this.modelInstance.select(
-          { status: ['NOT IN', ['waiting', 'spam']] },
-          {
-            desc: 'insertedAt',
-            limit: count,
-            field: [
-              'comment',
-              'insertedAt',
-              'link',
-              'mail',
-              'nick',
-              'url',
-              'pid',
-              'rid',
-              'ua',
-              'user_id',
-              'sticky',
-            ],
-          }
-        );
+        const where = {};
+        if (think.isEmpty(userInfo) || this.config('storage') === 'deta') {
+          where.status = ['NOT IN', ['waiting', 'spam']];
+        } else {
+          where._complex = {
+            _logic: 'or',
+            status: ['NOT IN', ['waiting', 'spam']],
+            user_id: userInfo.objectId,
+          };
+        }
+
+        const comments = await this.modelInstance.select(where, {
+          desc: 'insertedAt',
+          limit: count,
+          field: [
+            'status',
+            'comment',
+            'insertedAt',
+            'link',
+            'mail',
+            'nick',
+            'url',
+            'pid',
+            'rid',
+            'ua',
+            'user_id',
+            'sticky',
+          ],
+        });
 
         const userModel = this.service(
           `storage/${this.config('storage')}`,
@@ -100,20 +113,26 @@ module.exports = class extends BaseRest {
 
         return this.json(
           await Promise.all(
-            comments.map((cmt) => formatCmt(cmt, users, this.config()))
+            comments.map((cmt) =>
+              formatCmt(cmt, users, this.config(), userInfo)
+            )
           )
         );
       }
 
       case 'count': {
         const { url } = this.get();
-        const data = await this.modelInstance.select(
-          {
-            url: ['IN', url],
+        const where = { url: ['IN', url] };
+        if (think.isEmpty(userInfo) || this.config('storage') === 'deta') {
+          where.status = ['NOT IN', ['waiting', 'spam']];
+        } else {
+          where._complex = {
+            _logic: 'or',
             status: ['NOT IN', ['waiting', 'spam']],
-          },
-          { field: ['url'] }
-        );
+            user_id: userInfo.objectId,
+          };
+        }
+        const data = await this.modelInstance.select(where, { field: ['url'] });
         const counts = url.map(
           (u) => data.filter(({ url }) => url === u).length
         );
@@ -179,35 +198,42 @@ module.exports = class extends BaseRest {
           spamCount,
           waitingCount,
           data: await Promise.all(
-            comments.map((cmt) => formatCmt(cmt, users, this.config()))
+            comments.map((cmt) =>
+              formatCmt(cmt, users, this.config(), userInfo)
+            )
           ),
         });
       }
 
       default: {
         const { path: url, page, pageSize } = this.get();
-
-        const comments = await this.modelInstance.select(
-          {
-            url,
+        const where = { url };
+        if (think.isEmpty(userInfo) || this.config('storage') === 'deta') {
+          where.status = ['NOT IN', ['waiting', 'spam']];
+        } else {
+          where._complex = {
+            _logic: 'or',
             status: ['NOT IN', ['waiting', 'spam']],
-          },
-          {
-            desc: 'insertedAt',
-            field: [
-              'comment',
-              'insertedAt',
-              'link',
-              'mail',
-              'nick',
-              'pid',
-              'rid',
-              'ua',
-              'user_id',
-              'sticky',
-            ],
-          }
-        );
+            user_id: userInfo.objectId,
+          };
+        }
+
+        const comments = await this.modelInstance.select(where, {
+          desc: 'insertedAt',
+          field: [
+            'status',
+            'comment',
+            'insertedAt',
+            'link',
+            'mail',
+            'nick',
+            'pid',
+            'rid',
+            'ua',
+            'user_id',
+            'sticky',
+          ],
+        });
 
         const userModel = this.service(
           `storage/${this.config('storage')}`,
@@ -241,11 +267,16 @@ module.exports = class extends BaseRest {
           count: comments.length,
           data: await Promise.all(
             rootComments.map(async (comment) => {
-              const cmt = await formatCmt(comment, users, this.config());
+              const cmt = await formatCmt(
+                comment,
+                users,
+                this.config(),
+                userInfo
+              );
               cmt.children = await Promise.all(
                 comments
                   .filter(({ rid }) => rid === cmt.objectId)
-                  .map((cmt) => formatCmt(cmt, users, this.config()))
+                  .map((cmt) => formatCmt(cmt, users, this.config(), userInfo))
                   .reverse()
               );
               return cmt;
@@ -403,7 +434,9 @@ module.exports = class extends BaseRest {
 
     think.logger.debug(`Comment post hooks postSave done!`);
 
-    return this.success(await formatCmt(resp, [userInfo], this.config()));
+    return this.success(
+      await formatCmt(resp, [userInfo], this.config(), userInfo)
+    );
   }
 
   async putAction() {

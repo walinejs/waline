@@ -33,14 +33,17 @@ module.exports = class extends Base {
     }
   }
 
-  where(instance, where) {
+  parseWhere(where) {
     if (think.isEmpty(where)) {
-      return instance;
+      return {};
     }
 
     const filter = {};
     const parseKey = (k) => (k === 'objectId' ? '_id' : k);
     for (let k in where) {
+      if (k === '_complex') {
+        continue;
+      }
       if (think.isString(where[k])) {
         filter[parseKey(k)] = _.eq(where[k]);
         continue;
@@ -84,7 +87,26 @@ module.exports = class extends Base {
         }
       }
     }
-    return instance.where(filter);
+    return filter;
+  }
+
+  where(instance, where) {
+    const filter = this.parseWhere(where);
+    if (!where._complex) {
+      return instance.where(filter);
+    }
+
+    const filters = [];
+    for (const k in where._complex) {
+      if (k === '_logic') {
+        continue;
+      }
+      filters.push({
+        ...this.parseWhere({ [k]: where._complex[k] }),
+        ...filter,
+      });
+    }
+    return instance.where(_[where._complex._logic](...filters));
   }
 
   async _select(where, { desc, limit, offset, field } = {}) {
@@ -115,8 +137,9 @@ module.exports = class extends Base {
   async select(where, options = {}) {
     let data = [];
     let ret = [];
+    let offset = options.offset || 0;
     do {
-      options.offset = (options.offset || 0) + data.length;
+      options.offset = offset + data.length;
       ret = await this._select(where, options);
       data = data.concat(ret);
     } while (ret.length === 100);

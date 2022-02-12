@@ -7,14 +7,18 @@ module.exports = class extends Base {
     this.db = inspirecloud.db;
   }
 
-  where(where) {
+  parseWhere(where) {
+    const _where = {};
     if (think.isEmpty(where)) {
-      return;
+      return _where;
     }
 
-    const _where = {};
     const parseKey = (k) => (k === 'objectId' ? '_id' : k);
     for (const k in where) {
+      if (k === '_complex') {
+        continue;
+      }
+
       if (think.isString(where[k])) {
         _where[parseKey(k)] =
           k === 'objectId' ? this.db.ObjectId(where[k]) : where[k];
@@ -28,18 +32,20 @@ module.exports = class extends Base {
           const handler = where[k][0].toUpperCase();
           switch (handler) {
             case 'IN':
-              _where[parseKey(k)] = this.db.in(
-                k === 'objectId'
-                  ? where[k][1].map(this.db.ObjectId)
-                  : where[k][1]
-              );
+              _where[parseKey(k)] = {
+                $in:
+                  k === 'objectId'
+                    ? where[k][1].map(this.db.ObjectId)
+                    : where[k][1],
+              };
               break;
             case 'NOT IN':
-              _where[parseKey(k)] = this.db.nin(
-                k === 'objectId'
-                  ? where[k][1].map(this.db.ObjectId)
-                  : where[k][1]
-              );
+              _where[parseKey(k)] = {
+                $nin:
+                  k === 'objectId'
+                    ? where[k][1].map(this.db.ObjectId)
+                    : where[k][1],
+              };
               break;
             case 'LIKE': {
               const first = where[k][1][0];
@@ -52,14 +58,14 @@ module.exports = class extends Base {
               } else if (last === '%') {
                 reg = new RegExp('^' + where[k][1].slice(0, -1));
               }
-              _where[parseKey(k)] = this.db.regex(reg);
+              _where[parseKey(k)] = { $regex: reg };
               break;
             }
             case '!=':
-              _where[parseKey(k)] = this.db.ne(where[k]);
+              _where[parseKey(k)] = { $ne: where[k] };
               break;
             case '>':
-              _where[parseKey(k)] = this.db.gt(where[k]);
+              _where[parseKey(k)] = { $gt: where[k] };
               break;
           }
         }
@@ -67,6 +73,27 @@ module.exports = class extends Base {
     }
 
     return _where;
+  }
+
+  where(where) {
+    const filter = this.parseWhere(where);
+    if (!where._complex) {
+      return filter;
+    }
+
+    const filters = [];
+    for (const k in where._complex) {
+      if (k === '_logic') {
+        continue;
+      }
+
+      filters.push({
+        ...this.parseWhere({ [k]: where._complex[k] }),
+        ...filter,
+      });
+    }
+
+    return { [`$${where._complex._logic}`]: filters };
   }
 
   async _select(where, { desc, limit, offset, field } = {}) {
@@ -101,8 +128,9 @@ module.exports = class extends Base {
   async select(where, options = {}) {
     let data = [];
     let ret = [];
+    let offset = options.offset || 0;
     do {
-      options.offset = (options.offset || 0) + data.length;
+      options.offset = offset + data.length;
       ret = await this._select(where, options);
       data = data.concat(ret);
     } while (ret.length === 1000);

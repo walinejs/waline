@@ -110,12 +110,14 @@ export default defineComponent({
       const userData = props.comment;
       const avatarConfig = config.value.avatar;
 
-      return !userData || avatarConfig.hide
-        ? false
-        : props.comment.avatar &&
-          ('type' in props.comment || avatarConfig.default)
-        ? props.comment.avatar
-        : `${avatarConfig.cdn}${props.comment.mail}${avatarConfig.param}`;
+      if (!userData || avatarConfig.hide) {
+        return false;
+      }
+
+      return (
+        props.comment.avatar ||
+        `${avatarConfig.cdn}${props.comment.mail}${avatarConfig.param}`
+      );
     });
 
     const isReplyingCurrent = computed(

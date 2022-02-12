@@ -2,25 +2,25 @@ const { ObjectId } = require('mongodb');
 const Base = require('./base');
 
 module.exports = class extends Base {
-  where(instance, where) {
+  parseWhere(where) {
     if (think.isEmpty(where)) {
-      return;
+      return {};
     }
 
+    const filter = {};
     const parseKey = (k) => (k === 'objectId' ? '_id' : k);
     for (let k in where) {
+      if (k === '_complex') {
+        continue;
+      }
       if (think.isString(where[k])) {
-        instance.where({
-          [parseKey(k)]: {
-            $eq: k === 'objectId' ? ObjectId(where[k]) : where[k],
-          },
-        });
+        filter[parseKey(k)] = {
+          $eq: k === 'objectId' ? ObjectId(where[k]) : where[k],
+        };
         continue;
       }
       if (where[k] === undefined) {
-        instance.where({
-          [parseKey(k)]: { $eq: null },
-        });
+        filter[parseKey(k)] = { $eq: null };
       }
       if (Array.isArray(where[k])) {
         if (where[k][0]) {
@@ -28,63 +28,70 @@ module.exports = class extends Base {
           switch (handler) {
             case 'IN':
               if (k === 'objectId') {
-                instance.where({
-                  [parseKey(k)]: { $in: where[k][1].map(ObjectId) },
-                });
+                filter[parseKey(k)] = { $in: where[k][1].map(ObjectId) };
               } else {
-                instance.where({
-                  [parseKey(k)]: {
-                    $regex: new RegExp(`^(${where[k][1].join('|')})$`),
-                  },
-                });
+                filter[parseKey(k)] = {
+                  $regex: new RegExp(`^(${where[k][1].join('|')})$`),
+                };
               }
               break;
             case 'NOT IN':
-              instance.where({
-                [parseKey(k)]: {
-                  $nin:
-                    k === 'objectId' ? where[k][1].map(ObjectId) : where[k][1],
-                },
-              });
+              filter[parseKey(k)] = {
+                $nin:
+                  k === 'objectId' ? where[k][1].map(ObjectId) : where[k][1],
+              };
               break;
             case 'LIKE': {
               const first = where[k][1][0];
               const last = where[k][1].slice(-1);
+              let reg;
               if (first === '%' && last === '%') {
-                instance.where({
-                  [parseKey(k)]: {
-                    $regex: new RegExp(where[k][1].slice(1, -1)),
-                  },
-                });
+                reg = new RegExp(where[k][1].slice(1, -1));
               } else if (first === '%') {
-                instance.where({
-                  [parseKey(k)]: {
-                    $regex: new RegExp(where[k][1].slice(1) + '$'),
-                  },
-                });
+                reg = new RegExp(where[k][1].slice(1) + '$');
               } else if (last === '%') {
-                instance.where({
-                  [parseKey(k)]: {
-                    $regex: new RegExp('^' + where[k][1].slice(0, -1)),
-                  },
-                });
+                reg = new RegExp('^' + where[k][1].slice(0, -1));
+              }
+
+              if (reg) {
+                filter[parseKey(k)] = { $regex: reg };
               }
               break;
             }
             case '!=':
-              instance.where({
-                [parseKey(k)]: { $ne: where[k][1] },
-              });
+              filter[parseKey(k)] = { $ne: where[k][1] };
               break;
             case '>':
-              instance.where({
-                [parseKey(k)]: { $gt: where[k][1] },
-              });
+              filter[parseKey(k)] = { $gt: where[k][1] };
               break;
           }
         }
       }
     }
+    return filter;
+  }
+
+  where(instance, where) {
+    const filter = this.parseWhere(where);
+    if (!where._complex) {
+      return instance.where(filter);
+    }
+
+    const filters = [];
+    for (const k in where._complex) {
+      if (k === '_logic') {
+        continue;
+      }
+      filters.push({
+        ...this.parseWhere({ [k]: where._complex[k] }),
+        ...filter,
+      });
+    }
+
+    return instance.where({
+      // $or, $and, $not, $nor
+      [`$${where._complex._logic}`]: filters,
+    });
   }
 
   async select(where, { desc, limit, offset, field } = {}) {

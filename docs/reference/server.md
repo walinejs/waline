@@ -366,3 +366,30 @@ module.exports = Waline({
 ```
 
 :::
+
+### avatarUrl(comment)
+
+获取头像时执行的操作，方法执行时会传入需要操作的 comment 对象。
+
+::: details 例子
+
+这是一个实现自动替换使用 QQ 头像的示例函数
+
+```js
+// index.js
+const Waline = require('@waline/vercel');
+module.exports = Waline({
+  async avatarUrl(comment) {
+    const reg = new RegExp('(\\d+)@qq\\.com$', 'i');
+    const mail = comment.mail;
+    if (reg.test(mail)) {
+      const q = mail.replace(/@qq\.com/i, '').toLowerCase();
+      return 'https://q1.qlogo.cn/headimg_dl?dst_uin=' + q + '&spec=4';
+    }
+  },
+});
+```
+
+此方法或传入一个 `comment` 对象，你可以通过 `comment.mail` 获取邮箱。若返回值为 string 类型，则会直接调用返回值作为头像地址，否则正常生成 MD5。
+
+:::

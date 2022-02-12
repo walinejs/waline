@@ -1,4 +1,5 @@
 import { fetchRecentComment, getRoot } from '../utils';
+import { useUserInfo } from '../composables';
 import type { Comment } from '../typings';
 
 export interface RecentCommentsOptions {
@@ -19,11 +20,13 @@ export const RecentComments = ({
 }: RecentCommentsOptions): Promise<RecentCommentsResult> => {
   const root = getRoot(el);
   const controller = new AbortController();
+  const { userInfo } = useUserInfo();
 
   return fetchRecentComment({
     serverURL,
     count,
     signal: controller.signal,
+    token: userInfo.value?.token,
   }).then((comments) => {
     if (root && comments.length) {
       root.innerHTML = `<ul class="waline-widget-list">${comments

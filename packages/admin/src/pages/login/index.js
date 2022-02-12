@@ -21,9 +21,9 @@ export default function () {
       const query = new URLSearchParams(location.search);
       const redirect =
         query.get('redirect') ||
-        (user.type !== 'administrator' ? '/ui/profile' : 'ui');
+        (user.type !== 'administrator' ? '/ui/profile' : '/ui');
 
-      navigate((basepath + redirect).replace(/\/+/g, '/'));
+      navigate(redirect.replace(/\/+/g, '/'));
     }
   }, [user]);
 
