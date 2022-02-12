@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "vuepress-vite build .",
-    "dev": "vuepress-vite dev ."
+    "build": "vuepress-webpack build .",
+    "dev": "vuepress-webpack dev ."
   },
   "devDependencies": {
     "@mr-hope/vuepress-shared": "2.0.0-alpha.19",
@@ -13,6 +13,7 @@
     "@vuepress/plugin-pwa-popup": "2.0.0-beta.35",
     "@waline/client": "^1.5.4",
     "markdown-it-task-lists": "^2.1.1",
-    "vuepress-vite": "2.0.0-beta.35"
+    "vuepress-vite": "2.0.0-beta.35",
+    "vuepress-webpack": "2.0.0-beta.35"
   }
 }

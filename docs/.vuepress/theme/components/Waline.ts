@@ -1,5 +1,4 @@
 import { usePageLang } from '@vuepress/client';
-import Waline from '@waline/client';
 import {
   defineComponent,
   h,
@@ -26,20 +25,22 @@ export default defineComponent({
     let waline: WalineInstance;
 
     onMounted(() => {
-      waline = Waline({
-        el: '#waline-comment',
-        serverURL: 'https://waline.vercel.app',
-        dark: 'html.dark',
-        visitor: true,
-        lang: lang.value === 'zh-CN' ? 'zh-CN' : 'en',
-        locale: {
-          admin: lang.value === 'zh-CN' ? '可爱的管理员' : 'Administrator',
-        },
-        emoji: [
-          'https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/weibo',
-          'https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/bilibili',
-        ],
-      }) as WalineInstance; // We are sure that waline will be initialized successfully
+      import('@waline/client').then((Waline) => {
+        waline = Waline.default({
+          el: '#waline-comment',
+          serverURL: 'https://waline.vercel.app',
+          dark: 'html.dark',
+          visitor: true,
+          lang: lang.value === 'zh-CN' ? 'zh-CN' : 'en',
+          locale: {
+            admin: lang.value === 'zh-CN' ? '可爱的管理员' : 'Administrator',
+          },
+          emoji: [
+            'https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/weibo',
+            'https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/bilibili',
+          ],
+        }) as WalineInstance; // We are sure that waline will be initialized successfully
+      });
     });
 
     onBeforeUnmount(() => {

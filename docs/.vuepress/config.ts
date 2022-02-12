@@ -1,6 +1,6 @@
 import chokidar = require('chokidar');
-import { defineUserConfig } from '@vuepress/cli';
 import taskLists = require('markdown-it-task-lists');
+import { defineUserConfig } from '@vuepress/cli';
 import { logger, path } from '@vuepress/utils';
 import {
   getDefaultSidebar,
