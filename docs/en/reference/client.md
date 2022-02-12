@@ -1,4 +1,7 @@
-# Client Configuration
+---
+title: Client Options
+icon: config
+---
 
 ## el
 

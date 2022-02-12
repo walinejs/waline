@@ -1,4 +1,7 @@
-# 最新评论挂件
+---
+title: 最新评论挂件
+icon: recent
+---
 
 Waline 通过 `RecentComments` 支持最新评论挂件显示，方便在博客侧边栏显示最近评论。
 

@@ -1,4 +1,7 @@
-# Pageview statistics
+---
+title: Pageview statistics
+icon: counter
+---
 
 Waline supports pageview statistics and comment number display.
 

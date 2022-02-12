@@ -1,4 +1,6 @@
-# Server Configuration
+---
+title: Server Config
+---
 
 ## Environment Variables
 
@@ -6,9 +8,9 @@ You can configure the Waline server through the following environment variables.
 
 ::: warning
 
-You must **redeploy** after updating Environment variables to take effect.
+You MUST **redeploy** after updating Environment variables to take effect.
 
-Vercel needs to be set in <kbd>Settings</kbd> - <kbd>Environment Variables</kbd>.
+Vercel needs to be set in `Settings` - `Environment Variables`.
 
 :::
 

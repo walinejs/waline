@@ -1,4 +1,7 @@
-# Waline client v1 migration guide
+---
+title: Migration to @waline/client v1
+icon: migration
+---
 
 V1 has several changes, the BREAKING CHANGEs are detailed in [Initialization](#initialization) and [Widget Change](#widget-change).
 

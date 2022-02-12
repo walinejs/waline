@@ -1,4 +1,7 @@
-# Recent comment Widget
+---
+title: Recent comment Widget
+icon: recent
+---
 
 Waline supports displying recent comments by widget, which is convenient for displaying the latest comments in the sidebar of the blog.
 

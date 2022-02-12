@@ -1,4 +1,7 @@
-# Importing Client
+---
+title: Importing Client
+icon: import
+---
 
 Waline provides two versions of client files: default (with its own style) and no-style.
 
@@ -51,23 +54,25 @@ Recommend to use [jsdelivr](https://cdn.jsdelivr.net/npm/@waline/client/).
 
 Waline client has been released to [npm](https://www.npmjs.com/package/@waline/client) via `@waline/client`, you can install it with the following command:
 
-<CodeGroup>
-<CodeGroupItem title="yarn">
+:::: code-group
+
+::: code-group-item yarn
 
 ```bash
 yarn add -D @waline/client
 ```
 
-</CodeGroupItem>
+:::
 
-<CodeGroupItem title="npm">
+::: code-group-item npm
 
 ```bash
 npm i -D @waline/client
 ```
 
-</CodeGroupItem>
-</CodeGroup>
+:::
+
+::::
 
 Then, please import and use in your source file:
 

@@ -1,6 +1,9 @@
-# 贡献指南
+---
+title: 贡献指南
+icon: guide
+---
 
-我们欢迎大家为 waline 提交 Pull Request！:tada:
+我们永远欢迎大家为 waline 提交 Pull Request！:tada:
 
 如果你想为 waline 贡献出自己的一份力量，以下是一份指南。
 

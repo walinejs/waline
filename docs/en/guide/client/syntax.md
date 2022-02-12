@@ -1,4 +1,7 @@
-# Comment Syntax Support
+---
+title: Comment Syntax Support
+icon: format
+---
 
 You can add a variety of content in the comments, including expanded Markdown syntax and HTML tags.
 

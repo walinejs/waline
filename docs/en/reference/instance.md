@@ -1,4 +1,7 @@
-# Client instance
+---
+title: Client instance
+icon: instance
+---
 
 ## el
 

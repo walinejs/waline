@@ -1,4 +1,7 @@
-# 数据迁移助手
+---
+title: 数据迁移助手
+icon: helper
+---
 
 <MigrationTool />
 

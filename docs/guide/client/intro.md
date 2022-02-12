@@ -1,4 +1,7 @@
-# 客户端介绍
+---
+title: 客户端介绍
+icon: intro
+---
 
 Waline 官方提供了 [`@waline/client`](https://www.npmjs.com/package/@waline/client) 客户端，使用 Vue + TypeScript 编写，大小仅为 54kb gzip。
 

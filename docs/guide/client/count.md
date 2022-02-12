@@ -1,4 +1,7 @@
-# 浏览量统计
+---
+title: 浏览量统计
+icon: counter
+---
 
 Waline 支持浏览量统计与评论数显示。
 

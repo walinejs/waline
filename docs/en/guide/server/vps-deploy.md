@@ -1,4 +1,7 @@
-# Independent deployment
+---
+title: Independent deployment
+icon: server
+---
 
 If you don't want to deploy the server on Vercel, you can also choose to deploy on your own server.
 

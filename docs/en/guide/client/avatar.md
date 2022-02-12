@@ -1,4 +1,7 @@
-# Avatar Configuration
+---
+title: Avatar Configuration
+icon: avatar
+---
 
 ::: waring Obsolete
 

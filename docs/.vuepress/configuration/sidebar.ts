@@ -1,6 +1,6 @@
-import type { SidebarConfigArray } from '@vuepress/theme-default';
+import type { HopeThemeSidebarArrayConfig } from 'vuepress-theme-hope';
 
-export const getGuideSidebar = (lang, titles): SidebarConfigArray =>
+export const getGuideSidebar = (lang, titles): HopeThemeSidebarArrayConfig =>
   [
     [lang + '/guide/get-started.md'],
     [
@@ -28,12 +28,11 @@ export const getGuideSidebar = (lang, titles): SidebarConfigArray =>
       lang + '/guide/server/vps-deploy.md',
     ].filter((v) => v),
   ].map((item, index) => ({
-    isGroup: true,
     text: titles[index],
     children: item,
   }));
 
-export const getDefaultSidebar = (lang, titles): SidebarConfigArray =>
+export const getDefaultSidebar = (lang, titles): HopeThemeSidebarArrayConfig =>
   [
     [
       lang + '/guide/get-started.md',

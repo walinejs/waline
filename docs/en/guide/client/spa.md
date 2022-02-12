@@ -1,4 +1,7 @@
-# Single Page Application Support
+---
+title: Single Page Application Support
+icon: spa
+---
 
 Waline brings support for SPA (**S**ingle **P**age **A** application).
 

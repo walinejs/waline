@@ -1,23 +1,19 @@
 import { addViteOptimizeDeps } from '@mr-hope/vuepress-shared';
 import { path } from '@vuepress/utils';
 import type { Theme } from '@vuepress/core';
-import type { DefaultThemeOptions } from '@vuepress/theme-default';
+import type { HopeThemeOptions } from 'vuepress-theme-hope';
 
-const defaultThemewithWaline: Theme<DefaultThemeOptions> = (_options, app) => {
+const defaultThemewithWaline: Theme<HopeThemeOptions> = (_options, app) => {
   addViteOptimizeDeps(app, '@waline/client');
 
   return {
     name: 'default-theme-with-waline',
 
-    alias: {
-      '@theme/Home.vue': path.resolve(__dirname, './components/Home.vue'),
-    },
-
     layouts: {
-      Layout: path.resolve(__dirname, 'layouts/Layout.vue'),
+      Layout: path.resolve(__dirname, 'layouts/Layout'),
     },
 
-    extends: '@vuepress/theme-default',
+    extends: 'vuepress-theme-hope',
   };
 };
 

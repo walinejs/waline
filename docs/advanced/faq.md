@@ -1,4 +1,7 @@
-# FAQ
+---
+title: FAQ
+icon: faq
+---
 
 Waline 诞生之初就已经作了很明确的定位:
 
@@ -73,23 +76,28 @@ Waline 主要由前端和服务端两部分组成。
 
 在你的 HTML `</head>` 前写入以下内容，其中 `#waline-comment` 是你的 Waline 评论框，需要根据实际场景进行替换。
 
-```
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.1.5/css/lightgallery-bundle.css" />
-<srciprt src="https://cdn.jsdelivr.net/npm/lightgallery@2.1.5/lightgallery.umd.min.js"></script>
+```html
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/lightgallery@2.1.5/css/lightgallery-bundle.css"
+/>
+<srciprt
+  src="https://cdn.jsdelivr.net/npm/lightgallery@2.1.5/lightgallery.umd.min.js"
+/>
 <script>
-document.addEventListener('click', e => {
-  const imgs = [].slice.call(
-    document.querySelectorAll('#waline-comment .vcontent img')
-  ).filter(img => img.width > 20);
+  document.addEventListener('click', (e) => {
+    const imgs = [].slice
+      .call(document.querySelectorAll('#waline-comment .vcontent img'))
+      .filter((img) => img.width > 20);
 
-  if(imgs.indexOf(e.target) === -1) {
-    return;
-  }
-  if(!e.target.gallery) {
-    e.target.gallery = window.lightGallery(e.target.parentNode);
-  }
-  e.target.gallery.openGallery(0);
-});
+    if (imgs.indexOf(e.target) === -1) {
+      return;
+    }
+    if (!e.target.gallery) {
+      e.target.gallery = window.lightGallery(e.target.parentNode);
+    }
+    e.target.gallery.openGallery(0);
+  });
 </script>
 ```
 
@@ -97,23 +105,26 @@ document.addEventListener('click', e => {
 
 在你的 HTML `</head>` 前写入以下内容，其中 `#waline-comment` 是你的 Waline 评论框，需要根据实际场景进行替换。
 
-```
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/cbeyls/slimbox/css/slimbox2.css" />
-<script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/cbeyls/slimbox/js/slimbox2.js"></script>
+```html
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/cbeyls/slimbox/css/slimbox2.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js" />
+<script src="https://cdn.jsdelivr.net/gh/cbeyls/slimbox/js/slimbox2.js" />
 <script>
-document.addEventListener('click', (e) => {
-  const imgs = [].slice.call(
-    document.querySelectorAll('#waline-comment .vcontent img')
-  ).filter(img => img.width > 20);
+  document.addEventListener('click', (e) => {
+    const imgs = [].slice
+      .call(document.querySelectorAll('#waline-comment .vcontent img'))
+      .filter((img) => img.width > 20);
 
-  const idx = imgs.indexOf(e.target);
-  if(idx === -1) {
-    return;
-  }
+    const idx = imgs.indexOf(e.target);
+    if (idx === -1) {
+      return;
+    }
 
-  $.slimbox(e.target.src, e.target.alt, {});
-});
+    $.slimbox(e.target.src, e.target.alt, {});
+  });
 </script>
 ```
 
@@ -121,27 +132,30 @@ document.addEventListener('click', (e) => {
 
 在你的 HTML `</head>` 前写入以下内容，其中 `#waline-comment` 是你的 Waline 评论框，需要根据实际场景进行替换。
 
-```
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightbox2@2.11.3/dist/css/lightbox.min.css" />
-<script src="https://cdn.jsdelivr.net/npm/lightbox2@2.11.3/dist/js/lightbox-plus-jquery.min.js"></script>
+```html
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/lightbox2@2.11.3/dist/css/lightbox.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/lightbox2@2.11.3/dist/js/lightbox-plus-jquery.min.js" />
 <script>
-document.addEventListener('click', e => {
-  const lightbox = new Lightbox();
-  const imgs = [].slice.call(
-    document.querySelectorAll('#waline-comment .vcontent img')
-  ).filter(img => img.width > 20);
+  document.addEventListener('click', (e) => {
+    const lightbox = new Lightbox();
+    const imgs = [].slice
+      .call(document.querySelectorAll('#waline-comment .vcontent img'))
+      .filter((img) => img.width > 20);
 
-  if(imgs.indexOf(e.target) === -1) {
-    return;
-  }
+    if (imgs.indexOf(e.target) === -1) {
+      return;
+    }
 
-  const $link = $('<a />', {
-    href: e.target.src,
-    'data-title': e.target.alt,
-    rel: 'lightbox'
+    const $link = $('<a />', {
+      href: e.target.src,
+      'data-title': e.target.alt,
+      rel: 'lightbox',
+    });
+    lightbox.start($link);
   });
-  lightbox.start($link);
-});
 </script>
 ```
 
@@ -149,8 +163,13 @@ document.addEventListener('click', e => {
 
 在你的 HTML `</head>` 前写入以下内容，其中 `#waline-comment` 是你的 Waline 评论框，需要根据实际场景进行替换。
 
-```
-<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css"/>
-<script>Fancybox.bind('#waline-comment .vcontent img')</script>
+```html
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js" />
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css"
+/>
+<script>
+  Fancybox.bind('#waline-comment .vcontent img');
+</script>
 ```

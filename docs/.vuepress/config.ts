@@ -1,5 +1,4 @@
 import chokidar = require('chokidar');
-import taskLists = require('markdown-it-task-lists');
 import { defineUserConfig } from '@vuepress/cli';
 import { logger, path } from '@vuepress/utils';
 import {
@@ -9,44 +8,17 @@ import {
   zhNavbarConfig,
 } from './configuration';
 
-import type { DefaultThemeOptions } from '@vuepress/theme-default';
+import type { HopeThemeOptions } from 'vuepress-theme-hope';
 
-export default defineUserConfig<DefaultThemeOptions>({
-  title: 'Waline',
-  description: 'A Simple Comment System inspired by Valine.',
-
+export default defineUserConfig<HopeThemeOptions>({
   head: [
     [
       'link',
       {
-        rel: 'icon',
-        type: 'image/png',
-        sizes: '16x16',
-        href: `/assets/icon/favicon-16x16.png`,
+        rel: 'stylesheet',
+        href: '//at.alicdn.com/t/font_3180165_a8pbcqicbql.css',
       },
     ],
-    [
-      'link',
-      {
-        rel: 'icon',
-        type: 'image/png',
-        sizes: '32x32',
-        href: `/assets/icon/favicon-32x32.png`,
-      },
-    ],
-    ['link', { rel: 'manifest', href: '/manifest.webmanifest' }],
-    ['meta', { name: 'application-name', content: 'Waline' }],
-    ['meta', { name: 'apple-mobile-web-app-title', content: 'Waline' }],
-    [
-      'meta',
-      { name: 'apple-mobile-web-app-status-bar-style', content: 'white' },
-    ],
-    [
-      'link',
-      { rel: 'apple-touch-icon', href: `/assets/icon/apple-touch-icon.png` },
-    ],
-    ['meta', { name: 'msapplication-TileColor', content: '#0066AE' }],
-    ['meta', { name: 'theme-color', content: '#0066AE' }],
   ],
 
   locales: {
@@ -62,19 +34,25 @@ export default defineUserConfig<DefaultThemeOptions>({
     },
   },
 
-  theme: path.resolve(__dirname, 'theme'),
-
   markdown: {
     code: {
       lineNumbers: false,
     },
   },
 
+  theme: path.resolve(__dirname, 'theme'),
+
   themeConfig: {
+    hostname: 'https://waline.js.org',
+
+    iconPrefix: 'iconfont icon-',
     logo: '/logo.png',
-    repo: 'walinejs/waline',
+    repo: 'https://github.com/walinejs/waline',
     docsDir: 'docs',
     docsBranch: 'main',
+
+    pageInfo: ['ReadingTime'],
+
     locales: {
       '/': {
         navbar: zhNavbarConfig,
@@ -82,18 +60,9 @@ export default defineUserConfig<DefaultThemeOptions>({
           '/guide/': getGuideSidebar('', ['快速上手', '客户端', '服务端']),
           '/': getDefaultSidebar('', ['指南', '更多', '迁移', '参考']),
         },
-        selectLanguageName: '简体中文',
-        selectLanguageText: '选择语言',
-        selectLanguageAriaLabel: '选择语言',
-        contributorsText: '贡献者',
-        editLinkText: '在 GitHub 上编辑此页',
-        lastUpdatedText: '上次更新于',
-        tip: '提示',
-        warning: '注意',
-        danger: '警告',
-        notFound: ['未找到页面'],
-        backToHome: '返回主页',
-        openInNewWindow: '在新窗口打开',
+
+        footer: 'GPL-2.0 协议 | Copyright © 2020-present lizheming',
+        displayFooter: true,
       },
       '/en/': {
         navbar: enNavbarConfig,
@@ -110,43 +79,118 @@ export default defineUserConfig<DefaultThemeOptions>({
             'Reference',
           ]),
         },
-        selectLanguageName: 'English',
-        selectLanguageText: 'Languages',
-        selectLanguageAriaLabel: 'Select language',
-        editLinkText: 'Edit this page on GitHub',
-        lastUpdatedText: 'Last Updated',
-        tip: 'Tip',
-        warning: 'Note',
-        danger: 'Warn',
+
+        footer: 'GPL-2.0 LICENSE | Copyright © 2020-present lizheming',
+        displayFooter: true,
+      },
+    },
+
+    plugins: {
+      blog: false,
+
+      comment: {
+        type: 'waline',
+        serverURL: 'https://waline.vercel.app',
+      },
+
+      mdEnhance: {
+        codegroup: true,
+        tasklist: true,
+      },
+
+      pwa: {
+        favicon: '/favicon.ico',
+        themeColor: '#0e6db1',
+        cachePic: true,
+
+        apple: {
+          icon: '/assets/icon/apple-icon-152.png',
+          statusBarColor: 'white',
+        },
+        msTile: {
+          image: '/assets/icon/ms-icon-144.png',
+          color: '#ffffff',
+        },
+
+        manifest: {
+          name: 'Waline',
+          short_name: 'Waline',
+          description: 'A simple comment system with backend support',
+          icons: [
+            {
+              src: '/assets/icon/chrome-mask-512.png',
+              sizes: '512x512',
+              purpose: 'maskable',
+              type: 'image/png',
+            },
+            {
+              src: '/assets/icon/chrome-mask-192.png',
+              sizes: '192x192',
+              purpose: 'maskable',
+              type: 'image/png',
+            },
+            {
+              src: '/assets/icon/chrome-512.png',
+              sizes: '512x512',
+              type: 'image/png',
+            },
+            {
+              src: '/assets/icon/chrome-192.png',
+              sizes: '192x192',
+              type: 'image/png',
+            },
+          ],
+          shortcuts: [
+            {
+              name: '快速上手',
+              short_name: '快速上手',
+              url: '/guide/get-started',
+              icons: [
+                {
+                  src: '/assets/icon/guide-maskable.png',
+                  sizes: '192x192',
+                  purpose: 'maskable',
+                  type: 'image/png',
+                },
+                {
+                  src: '/assets/icon/guide-monochrome.png',
+                  sizes: '192x192',
+                  purpose: 'monochrome',
+                  type: 'image/png',
+                },
+              ],
+            },
+            {
+              name: 'Guide Started',
+              short_name: 'Guide Started',
+              url: '/en/guide/get-started',
+              icons: [
+                {
+                  src: '/assets/icon/guide-maskable.png',
+                  sizes: '192x192',
+                  purpose: 'maskable',
+                  type: 'image/png',
+                },
+                {
+                  src: '/assets/icon/guide-monochrome.png',
+                  sizes: '192x192',
+                  purpose: 'monochrome',
+                  type: 'image/png',
+                },
+              ],
+            },
+          ],
+        },
       },
     },
   },
 
   plugins: [
-    ['@vuepress/pwa'],
-    [
-      '@vuepress/pwa-popup',
-      {
-        locales: {
-          '/': {
-            message: '发现新内容可用',
-            buttonText: '刷新',
-          },
-          '/en/': {
-            message: 'New Content is available',
-            buttonText: 'Refresh',
-          },
-        },
-      },
-    ],
     [
       '@vuepress/plugin-docsearch',
       {
-        apiKey: 'db5aa8592b64fb549dce9c0657dac992',
-        indexName: 'waline',
-        searchParameters: {
-          facetFilters: [],
-        },
+        apiKey: 'd189586c601d439f9247bdaf95b3555f',
+        indexName: 'W34KABV4KM',
         locales: {
           '/': {
             placeholder: '搜索文档',
@@ -157,12 +201,6 @@ export default defineUserConfig<DefaultThemeOptions>({
         },
       },
     ],
-    {
-      name: 'waline',
-      extendsMarkdown: (md) => {
-        md.use(taskLists, { label: true, labelAfter: true });
-      },
-    },
   ],
 
   // watch navbar
