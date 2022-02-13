@@ -26,8 +26,8 @@ dist/
 .env.production.local
 
 # VuePress Temp
-docs/.vuepress/.cache
-docs/.vuepress/.temp
+**/.vuepress/.cache/
+**/.vuepress/.temp/
 
 # editors
 .vscode/
