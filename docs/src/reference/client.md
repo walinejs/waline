@@ -31,15 +31,13 @@ Waline 的服务端地址。
 
 当前 _文章页_ 路径，用于区分不同的 _文章页_，以保证正确读取该 _文章页_ 下的评论列表。
 
-可选值:
+::: warning
 
-- `window.location.pathname` (默认值，推荐)
-- `window.location.href`
-- 自定义
+请保证每个 _文章页_ 路径的唯一性，否则可能会出现不同 _文章页_ 下加载相同评论列表的情况。
 
-> I. 请保证每个 _文章页_ 路径的唯一性，否则可能会出现不同 _文章页_ 下加载相同评论列表的情况。
->
-> II. 如果值为 `window.location.href`，可能会出现随便加 _不同参数_ 进入该页面，而被判断成新页面的情况。
+例子: 如果你站点的 `/example/path/` 和 `/example/path` 对应同一个页面，你最好将其设置为 `window.location.pathname.replace(/\/$/,'')`。
+
+:::
 
 ## lang
 

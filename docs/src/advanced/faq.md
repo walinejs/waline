@@ -76,7 +76,7 @@ Waline 主要由前端和服务端两部分组成。
 
 ### LightGallery
 
-在你的 HTML `</head>` 前写入以下内容，其中 `#waline-comment` 是你的 Waline 评论框，需要根据实际场景进行替换。
+在你的 HTML `<head>` 前写入以下内容，其中 `#waline-comment` 是你的 Waline 评论框，需要根据实际场景进行替换。
 
 ```html
 <link
@@ -105,7 +105,7 @@ Waline 主要由前端和服务端两部分组成。
 
 ### Slimbox2
 
-在你的 HTML `</head>` 前写入以下内容，其中 `#waline-comment` 是你的 Waline 评论框，需要根据实际场景进行替换。
+在你的 HTML `<head>` 前写入以下内容，其中 `#waline-comment` 是你的 Waline 评论框，需要根据实际场景进行替换。
 
 ```html
 <link
@@ -132,7 +132,7 @@ Waline 主要由前端和服务端两部分组成。
 
 ### Lightbox2
 
-在你的 HTML `</head>` 前写入以下内容，其中 `#waline-comment` 是你的 Waline 评论框，需要根据实际场景进行替换。
+在你的 HTML `<head>` 前写入以下内容，其中 `#waline-comment` 是你的 Waline 评论框，需要根据实际场景进行替换。
 
 ```html
 <link
@@ -163,7 +163,7 @@ Waline 主要由前端和服务端两部分组成。
 
 ### Fancybox
 
-在你的 HTML `</head>` 前写入以下内容，其中 `#waline-comment` 是你的 Waline 评论框，需要根据实际场景进行替换。
+在你的 HTML `<head>` 前写入以下内容，其中 `#waline-comment` 是你的 Waline 评论框，需要根据实际场景进行替换。
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>

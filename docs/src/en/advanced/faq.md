@@ -78,7 +78,7 @@ There has many plugin can implement it. Here we give a simple example for [light
 
 ### LightGallery
 
-Insert following code before `</head>` tag in your html content. `#waline-coment` is your Waline comment element selector, you need replace it by yourself.
+Insert following code before `<head>` tag in your html content. `#waline-coment` is your Waline comment element selector, you need replace it by yourself.
 
 ```html
 <link
@@ -105,7 +105,7 @@ Insert following code before `</head>` tag in your html content. `#waline-coment
 
 ### Slimbox2
 
-Insert following code before `</head>` tag in your html content. `#waline-coment` is your Waline comment element selector, you need replace it by yourself.
+Insert following code before `<head>` tag in your html content. `#waline-coment` is your Waline comment element selector, you need replace it by yourself.
 
 ```html
 <link
@@ -132,7 +132,7 @@ Insert following code before `</head>` tag in your html content. `#waline-coment
 
 ### Lightbox2
 
-Insert following code before `</head>` tag in your html content. `#waline-coment` is your Waline comment element selector, you need replace it by yourself.
+Insert following code before `<head>` tag in your html content. `#waline-coment` is your Waline comment element selector, you need replace it by yourself.
 
 ```html
 <link
@@ -163,7 +163,7 @@ Insert following code before `</head>` tag in your html content. `#waline-coment
 
 ### Fancybox
 
-Insert following code before `</head>` tag in your html content. `#waline-coment` is your Waline comment element selector, you need replace it by yourself.
+Insert following code before `<head>` tag in your html content. `#waline-coment` is your Waline comment element selector, you need replace it by yourself.
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>

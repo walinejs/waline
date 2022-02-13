@@ -31,15 +31,13 @@ Waline server address url
 
 Article path id. Used to distinguish different _article pages_ to ensure loading the correct comment list under the _article page_.
 
-Optional value:
+::: warning
 
-- `window.location.pathname` (default, recommended)
-- `window.location.href`
-- customize
+Please ensure the uniqueness of each _article page_ path, otherwise the same comment list may be loaded .
 
-> I. Please ensure the uniqueness of each _article page_ path, otherwise the same comment list may be loaded under different _article pages_.
->
-> II. If the value is `window.location.href`, it may appear that adding _different parameters_ to enter the page, and it will be judged as a new page.
+For example: If on your site `/example/path/` and `/example/path` is the same page, you should probably set `window.location.pathname.replace(/\/$/,'')`.
+
+:::
 
 ## lang
 
