@@ -17,7 +17,7 @@ Since the very early version, users have reported Valine's XSS problems, and the
 
 Now when the frontend publishes a comment, Markdown will be converted into HTML, and then execute an XSS filter function on the frontend before be submitted to LeanCloud. After getting the data from LeanCloud, it is directly inserted to DOM. Obviously, the process is problematic. As long as the HTML is submitted directly and displayed directly after the HTML is obtained, XSS cannot be eradicated fundamentally.
 
-::: tip Fundamental solution
+::: note Fundamental solution
 
 For stored XSS attacks, we can use escape HTML codes to solve them permanently. Just like old BBCode, only markdown content is submit to the database. The frontend reads the content and encodes all HTML before displaying it after Markdown conversion.
 
@@ -39,13 +39,12 @@ Since Valine is no longer open source, pull requests cannot be opened.
 
 :::
 
-Since the above method will completely restrict users in the scope of Markdown, Waline inludes `DOMPurify` on the client side since `0.15.0` to prevent XSS. Besides the regular XSS sterilization, `<form>` and `<input>` are disabled, and autoplay of the media are also disabled. At the same time, all external links will be processed and opened in a new window with rel of `noopener noreferrer`.
+Since the above method will completely restrict users in the scope of Markdown, Waline inludes `DOMPurify` on the client side since `0.15.0` to prevent XSS. Besides the regular XSS sterilization:
 
-::: warning
-
-We will pay extra attention to this change. If you encounter unfriendly comments that can bypass the existing protection during usage, feel free to give us feedback.
-
-:::
+- `<form>` and `<input>` are disabled
+- style inject is disabled
+- autoplay of the media is disabled
+- all external links will be processed and opened in a new window with rel of `noopener noreferrer`.
 
 ### Privacy Leak
 

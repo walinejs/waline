@@ -3,7 +3,7 @@ title: Avatar Configuration
 icon: avatar
 ---
 
-::: waring Obsolete
+::: warning Obsolete
 
 We recommand you to use lastest server and config it with `AVATAR_PROXY`.
 

@@ -281,7 +281,7 @@ Whether to allow login comments. Both supported by default, set to `true` means 
 
 ### avatarCDN
 
-::: waring Obsolete
+::: warning Obsolete
 
 We recommand you to use lastest server and config it with `AVATAR_PROXY`.
 
@@ -295,7 +295,7 @@ Avatar provider baseURL. Supports Gravatar-compatible APIs.
 
 ### avatar
 
-::: waring Obsolete
+::: warning Obsolete
 
 We recommand you to use lastest server and config it with `AVATAR_PROXY`.
 
@@ -322,7 +322,7 @@ See the [Avatar setting](../guide/client/avatar.md) for more details.
 
 ### avatarForce
 
-::: waring Obsolete
+::: warning Obsolete
 
 We recommand you to use lastest server and config it with `AVATAR_PROXY`.
 
@@ -336,7 +336,7 @@ Whether **force** pulling the latest avatar each time.
 
 ### mathTagSupport
 
-::: waring Obsolete
+::: warning Obsolete
 
 We recommand you to use mathjax on server.
 

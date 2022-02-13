@@ -19,11 +19,11 @@ If you want to contribute to waline, here is a guide.
 
    ::: warning
 
-   Node 14 and below use npm@v6 by default, you need to make sure you use the npm@v7 version:
+   Node 14 and below use npm@v6 by default, you need to make sure you use the npm@v8 version:
 
    ```bash
-   # Ensure that your npm version is 7
-   npm i -g npm@7
+   # Ensure that your npm version is 8
+   npm i -g npm@latest
    ```
 
    :::

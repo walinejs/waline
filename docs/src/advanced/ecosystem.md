@@ -57,7 +57,7 @@ Waline 是经典的前后端分离 Client/Server 架构，提供了较为完善�
 
 ### Hexo
 
-- [@waline/hexo-next](https://npmjs.com/@waline/hexo-next), Hexo NexT 主题插件
+- [@waline/hexo-next](https://npmjs.com/@waline/hexo-next): Hexo NexT 主题插件
 
 ### VuePress
 

@@ -3,7 +3,11 @@ title: Intro
 icon: intro
 ---
 
-Waline: A simple comment system with backend support fork from [Valine](https://valine.js.org).
+::: info Waline
+
+A simple comment system with backend support fork from [Valine](https://valine.js.org).
+
+:::
 
 <!-- more -->
 

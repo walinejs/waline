@@ -5,7 +5,7 @@ icon: faq
 
 Waline has a very clear position since its birth:
 
-::: info A **simple** comment system **with backend**.
+::: info A simple comment system with backend.
 
 :::
 
@@ -13,7 +13,7 @@ All versions released afterwards are modifications made around this position.
 
 ## What is the relationship with Valine?
 
-::: info Waline = **W**ith backend V**aline**
+::: info Waline = With backend Valine
 
 :::
 
@@ -31,7 +31,7 @@ Waline is mainly composed of two parts: the frontend and the server.
 
 The front end inserts comment lists and comment boxes by including JS scripts in the web page. In most scenarios, the link will use the address of the latest version of the online CDN, and the latest version will be automatically applied, without the need for users to manually update.
 
-::: tip Need manually update in following situations
+::: note Need manually update in following situations
 
 1. The version number is forcibly specified in the CDN address. In this situation, you need to manually modify the version number to be the latest.
 1. Use NPM to require and pack the module into code. In this situation, you need to modify the version number in the dependency to ensure that the latest version of the dependency can be obtained during installation.
@@ -56,7 +56,7 @@ Go to the corresponding GitHub repository and modify the version number of `@wal
 
 Enter the code editing page, click <kbd>Save and reinstall dependencies</kbd>. If it still doesn’t work, enter <kbd>My Application</kbd> and select <kbd>Deploy</kbd> to redeploy.
 
-::: warning
+::: danger
 
 Redeployment will clear the previous files. If there is a configuration in the previous file, it needs to be backed up first.
 
@@ -68,7 +68,7 @@ Redeployment will clear the previous files. If there is a configuration in the p
 
 Run `docker pull lizheming/waline` directly to pull the latest image.
 
-## why posting comments are slow?
+## Why posting comments are slow?
 
 Due to some technical reasons, spam detection and comment notification are all serial operations when posting comments. The spam detection uses the service provided by Akismet abroad, which may be slow to access. Users can turn off the spam detection function through the `AKISMET_KEY=false` environment variable. Beside the spam detection service, the email notification in the comment notification may also cause a timeout. You can turn off the comment notification to test whether it is caused by this feature.
 
@@ -76,7 +76,7 @@ Due to some technical reasons, spam detection and comment notification are all s
 
 There has many plugin can implement it. Here we give a simple example for [lightGallery](https://www.lightgalleryjs.com/), [Slimbox2](https://www.digitalia.be/software/slimbox2/), [lightbox2](https://lokeshdhakar.com/projects/lightbox2/) and [Fancybox](https://fancyapps.com/docs/ui/fancybox/).
 
-### lightGallery
+### LightGallery
 
 Insert following code before `</head>` tag in your html content. `#waline-coment` is your Waline comment element selector, you need replace it by yourself.
 
@@ -130,7 +130,7 @@ Insert following code before `</head>` tag in your html content. `#waline-coment
 </script>
 ```
 
-### lightbox2
+### Lightbox2
 
 Insert following code before `</head>` tag in your html content. `#waline-coment` is your Waline comment element selector, you need replace it by yourself.
 

@@ -19,10 +19,10 @@ icon: guide
 
    ::: warning
 
-   Node 14 及以下默认使用 npm@v6，你需要确保自己使用 npm@v7 版本:
+   Node 14 及以下默认使用 npm@v6，你需要确保自己使用 npm@v8 版本:
 
    ```bash
-   # 保证自己的 npm 版本是 7
+   # 保证自己的 npm 版本是 8
    npm i -g npm@latest
    ```
 

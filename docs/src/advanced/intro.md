@@ -3,7 +3,11 @@ title: 介绍
 icon: intro
 ---
 
-Waline - 一款从 [Valine](https://valine.js.org) 衍生的带后端评论系统。可以将 Waline 等价成 With backend Valine.
+::: info Waline
+
+一款从 [Valine](https://valine.js.org) 衍生的带后端评论系统。可以将 Waline 等价成 With backend Valine.
+
+:::
 
 <!-- more -->
 

@@ -5,15 +5,17 @@ icon: faq
 
 Waline 诞生之初就已经作了很明确的定位:
 
-> 一款 **带后端** 的 **极简风** 评论系统。
+::: info 一款带后端的极简风评论系统。
+
+:::
 
 之后发布的所有版本都是围绕这个定位的修改。
 
 ## 和 Valine 是什么关系？
 
-Waline = **W**ith backend V**aline**
+::: info Waline = With backend Valine
 
-前端的评论列表使用 React 参考着 Valine 的已开源版本进行了重写，样式和结构还有内部的一些工具方法都来自 Valine。
+:::
 
 ## 是否需要在 LeanCloud 上部署 Valine-Admin？
 
@@ -27,7 +29,7 @@ Waline 主要由前端和服务端两部分组成。
 
 前端通过在网页引入 JS 脚本来插入评论列表和评论框。大部分场景下，链接会使用线上 CDN 最新版的地址，会自动应用最新版本，无需使用者手动更新。
 
-::: tip 以下情形需要手动更新
+::: note 以下情形需要手动更新
 
 1. CDN 地址中强制指定了版本号，这时候需要手动修改版本号为最新。
 1. 使用了 NPM 引入最终将模块打包到了代码中，这时候需要修改依赖中的版本号保证依赖在安装的时候能获取到最新版本。
@@ -52,7 +54,7 @@ Waline 主要由前端和服务端两部分组成。
 
 进入代码编辑界面，点击 <kbd>保存并重新安装依赖</kbd> 即可。如果还不行，则进入 <kbd>我的应用</kbd> 选择 <kbd>部署</kbd> 进行重新部署。
 
-::: warning
+::: danger
 
 重新部署会清空之前的文件，如果之前文件中有配置的话需要先行备份。
 
@@ -72,7 +74,7 @@ Waline 主要由前端和服务端两部分组成。
 
 有很多插件可以实现灯箱效果，这里我以 [lightGallery](https://www.lightgalleryjs.com/), [Slimbox2](https://www.digitalia.be/software/slimbox2/), [lightbox2](https://lokeshdhakar.com/projects/lightbox2/) 和 [Fancybox](https://fancyapps.com/docs/ui/fancybox/) 为例。
 
-### lightGallery
+### LightGallery
 
 在你的 HTML `</head>` 前写入以下内容，其中 `#waline-comment` 是你的 Waline 评论框，需要根据实际场景进行替换。
 
@@ -128,7 +130,7 @@ Waline 主要由前端和服务端两部分组成。
 </script>
 ```
 
-### lightbox2
+### Lightbox2
 
 在你的 HTML `</head>` 前写入以下内容，其中 `#waline-comment` 是你的 Waline 评论框，需要根据实际场景进行替换。
 

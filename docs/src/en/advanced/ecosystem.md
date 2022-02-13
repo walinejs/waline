@@ -57,7 +57,7 @@ You can use the following plugins to use Waline on different tools:
 
 ### Hexo
 
-- [@waline/hexo-next](https://npmjs.com/@waline/hexo-next), Hexo NexT theme plugin
+- [@waline/hexo-next](https://npmjs.com/@waline/hexo-next): Hexo NexT theme plugin
 
 ### VuePress
 
