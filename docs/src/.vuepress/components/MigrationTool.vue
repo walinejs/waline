@@ -40,67 +40,53 @@
     </div>
   </form>
 </template>
-<script>
+<script setup>
 import { useRouteLocale } from '@vuepress/client';
 import { computed, defineComponent, ref } from 'vue';
 import { exportRaw } from './exportRaw';
 import { migrateI18n } from './i18n';
 import { transform } from './transform';
 
-export default defineComponent({
-  name: 'MigrationTool',
+const routeLocalePath = useRouteLocale();
+const from = ref('valine');
+const to = ref('wcloudbase');
+const source = ref('');
 
-  setup() {
-    const routeLocalePath = useRouteLocale();
-    const from = ref('valine');
-    const to = ref('wcloudbase');
-    const source = ref('');
+const i18n = computed(() => migrateI18n[routeLocalePath.value]);
 
-    const i18n = computed(() => migrateI18n[routeLocalePath.value]);
+const click = (event) => {
+  event.preventDefault();
 
-    const click = (event) => {
-      event.preventDefault();
+  if (!source.value) {
+    return alert('请输入内容');
+  }
 
-      if (!source.value) {
-        return alert('请输入内容');
-      }
+  if (from.value === 'valine') {
+    // 适配 LeanCloud 国内版导出非标准 JSON 情况
+    source.value = source.value.trim();
 
-      if (from.value === 'valine') {
-        // 适配 LeanCloud 国内版导出非标准 JSON 情况
-        source.value = source.value.trim();
+    if (source.value.match(/},[\r\n]+/)) {
+      source.value = JSON.parse(source.value);
+    } else {
+      source.value = JSON.parse(
+        `{"results":[ ${source.value.split(/[\r\n]+/).join(',')} ]}`
+      );
+    }
+  }
 
-        if (source.value.match(/},[\r\n]+/)) {
-          source.value = JSON.parse(source.value);
-        } else {
-          source.value = JSON.parse(
-            `{"results":[ ${source.value.split(/[\r\n]+/).join(',')} ]}`
-          );
-        }
-      }
+  const act = transform[from.value][to.value];
 
-      const act = transform[from.value][to.value];
+  if (typeof act === 'function') {
+    let text = act(source.value);
+    console.log(text);
 
-      if (typeof act === 'function') {
-        let text = act(source.value);
-        console.log(text);
+    if (typeof text !== 'string') {
+      text = JSON.stringify(text, null, '\t');
+    }
 
-        if (typeof text !== 'string') {
-          text = JSON.stringify(text, null, '\t');
-        }
-
-        exportRaw('output.' + (to.value !== 'wsql' ? 'json' : 'csv'), text);
-      }
-    };
-
-    return {
-      click,
-      i18n,
-      from,
-      to,
-      source,
-    };
-  },
-});
+    exportRaw('output.' + (to.value !== 'wsql' ? 'json' : 'csv'), text);
+  }
+};
 </script>
 
 <style scoped>
