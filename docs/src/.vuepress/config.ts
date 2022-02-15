@@ -50,9 +50,7 @@ export default defineHopeConfig({
 
     pageInfo: ['ReadingTime'],
 
-    meta: {
-      contributors: false,
-    },
+    contributors: false,
 
     locales: {
       '/': {
