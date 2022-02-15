@@ -1,6 +1,5 @@
-import chokidar = require('chokidar');
-import { defineUserConfig } from '@vuepress/cli';
-import { logger, path } from '@vuepress/utils';
+import { path } from '@vuepress/utils';
+import { defineHopeConfig } from 'vuepress-theme-hope';
 import {
   getDefaultSidebar,
   getGuideSidebar,
@@ -8,9 +7,7 @@ import {
   zhNavbarConfig,
 } from './configuration';
 
-import type { HopeThemeOptions } from 'vuepress-theme-hope';
-
-export default defineUserConfig<HopeThemeOptions>({
+export default defineHopeConfig({
   head: [
     [
       'link',
@@ -52,6 +49,10 @@ export default defineUserConfig<HopeThemeOptions>({
     docsBranch: 'main',
 
     pageInfo: ['ReadingTime'],
+
+    meta: {
+      contributors: false,
+    },
 
     locales: {
       '/': {
@@ -208,40 +209,15 @@ export default defineUserConfig<HopeThemeOptions>({
     {
       name: 'waline-workaround',
       alias: {
+        '@theme-hope/components/HomePage': path.resolve(
+          __dirname,
+          './components/HomePage'
+        ),
         '@theme-hope/components/NormalPage': path.resolve(
           __dirname,
           './components/NormalPage'
         ),
-        '@theme-hope/components/home/ProjectHome': path.resolve(
-          __dirname,
-          './components/ProjectHome'
-        ),
       },
     },
   ],
-
-  // watch navbar
-  onWatched: (_, watchers, restart) => {
-    const navbarWatcher = chokidar.watch('./configuration/nav/*.ts', {
-      cwd: __dirname,
-      ignoreInitial: true,
-    });
-
-    navbarWatcher.on('change', async (file) => {
-      logger.info(`file ${file} is modified`);
-      await restart();
-    });
-
-    const sidebarWatcher = chokidar.watch('./configuration/sidebar.ts', {
-      cwd: __dirname,
-      ignoreInitial: true,
-    });
-
-    sidebarWatcher.on('change', async (file) => {
-      logger.info(`file ${file} is modified`);
-      await restart();
-    });
-
-    watchers.push(navbarWatcher, sidebarWatcher);
-  },
 });
