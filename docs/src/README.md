@@ -36,5 +36,5 @@ features:
     icon: strong
     details: 多种部署部署方式和存储服务支持
 
-footer: GPL-2.0 协议 | Copyright © 2020-present <a href="https://github.com/lizheming" rel="noopenner noreferrer " target="_blank">lizheming</a> | 主题使用 <a href="https://github.com/vuepress-theme-hope/vuepress-theme-hope" rel="noopenner noreferrer " target="_blank">vuepress-theme-hope</a>
+footer: GPL-2.0 协议 | Copyright © 2020-present <a href="https://github.com/lizheming" rel="noopenner noreferrer " target="_blank">lizheming</a> | 主题使用 <a href="https://vuepress-theme-hope.github.io/v2/zh/" rel="noopenner noreferrer " target="_blank">vuepress-theme-hope</a>
 ---

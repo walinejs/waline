@@ -38,7 +38,7 @@ export default defineComponent({
           iconPrefix: iconPrefix.value,
         }),
         h(PageTitle),
-        h(resolveComponent('PageAnchor')),
+        h(resolveComponent('TOC')),
         slots.contentBefore?.(),
         h(MarkdownContent),
         slots.contentAfter?.(),
