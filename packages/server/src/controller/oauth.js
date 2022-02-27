@@ -77,6 +77,10 @@ module.exports = class extends think.Controller {
       user.email = `${user.id}@mail.${type}`;
     }
 
+    if (!user.name) {
+      user.name = user.id;
+    }
+
     const current = this.ctx.state.userInfo;
     if (!think.isEmpty(current)) {
       const updateData = { [type]: user.id };
