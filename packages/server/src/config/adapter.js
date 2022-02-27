@@ -37,10 +37,9 @@ const {
 } = process.env;
 
 let type = 'common';
-let mongoOpt = {
-  replicaSet: MONGO_REPLICASET,
-  authSource: MONGO_AUTHSOURCE,
-};
+const mongoOpt = {};
+if (MONGO_REPLICASET) mongoOpt.replicaSet = MONGO_REPLICASET;
+if (MONGO_AUTHSOURCE) mongoOpt.authSource = MONGO_AUTHSOURCE;
 
 if (MONGO_DB) {
   type = 'mongo';
