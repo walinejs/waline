@@ -44,13 +44,15 @@ export default defineHopeConfig({
 
     iconPrefix: 'iconfont icon-',
     logo: '/logo.png',
-    repo: 'https://github.com/walinejs/waline',
+    repo: 'walinejs/waline',
     docsDir: 'docs',
     docsBranch: 'main',
 
     pageInfo: ['ReadingTime'],
 
     contributors: false,
+    fullScreen: false,
+    themeColor: false,
 
     locales: {
       '/': {
@@ -90,6 +92,20 @@ export default defineHopeConfig({
       comment: {
         type: 'waline',
         serverURL: 'https://waline.vercel.app',
+      },
+
+      docsearch: {
+        appId: 'W34KABV4KM',
+        apiKey: 'd189586c601d439f9247bdaf95b3555f',
+        indexName: 'waline',
+        locales: {
+          '/': {
+            placeholder: '搜索文档',
+          },
+          '/en/': {
+            placeholder: 'Search',
+          },
+        },
       },
 
       mdEnhance: {
@@ -188,22 +204,6 @@ export default defineHopeConfig({
   },
 
   plugins: [
-    [
-      '@vuepress/plugin-docsearch',
-      {
-        appId: 'W34KABV4KM',
-        apiKey: 'd189586c601d439f9247bdaf95b3555f',
-        indexName: 'waline',
-        locales: {
-          '/': {
-            placeholder: '搜索文档',
-          },
-          '/en/': {
-            placeholder: 'Search',
-          },
-        },
-      },
-    ],
     {
       name: 'waline-workaround',
       alias: {
