@@ -68,12 +68,11 @@ We use Telegram bot to send Telegram notification. You need to set the following
 - `SITE_URL`: Your site url, it will be displayed in notification message.
 - `TG_TEMPLATE`: Notification template used by Telegram. Variables and specific formats can be found in the notification template below. If not configured, the default template is used.
 
-
 ## PushPlus Notification
 
-[pushplus](http://www.pushplus.plus/) is a message push platform which supports many channels like wechat, wechat work, ding talk, sms or email. You need to set the following env. You can go to [pushplus documentation](http://www.pushplus.plus/doc/guide/api.html#%E4%B8%80%E3%80%81%E5%8F%91%E9%80%81%E6%B6%88%E6%81%AF%E6%8E%A5%E5%8F%A3) to get more parameter format detail. 
+[pushplus](http://www.pushplus.plus/) is a message push platform which supports many channels like wechat, wechat work, ding talk, sms or email. You need to set the following env. You can go to [pushplus documentation](http://www.pushplus.plus/doc/guide/api.html#%E4%B8%80%E3%80%81%E5%8F%91%E9%80%81%E6%B6%88%E6%81%AF%E6%8E%A5%E5%8F%A3) to get more parameter format detail.
 
-- PUSH_PLUS_KEY：	user token. It's required for this service.
+- PUSH_PLUS_KEY： user token. It's required for this service.
 - PUSH_PLUS_TOPIC：group id. Send yourself if it's empty. And It's unuseful if `PUSH_PLUS_CHANNEL` equals `webhook`.
 - PUSH_PLUS_TEMPLATE：Send template
 - PUSH_PLUS_CHANNEL：Send channel
@@ -82,6 +81,7 @@ We use Telegram bot to send Telegram notification. You need to set the following
 - `AUTHOR_EMAIL`: The blogger’s email is used to distinguish whether the posted comment is posted by the blogger himself. If it is posted by the blogger, there will be no reminder notification.
 - `SITE_NAME`: Your site name, it will be displayed in notification message.
 - `SITE_URL`: Your site url, it will be displayed in notification message.
+
 ## Notification Template
 
 Waline supports configuring your customized notification templates for each platform separately to achieve stronger customization capabilities and i18n compatibility.

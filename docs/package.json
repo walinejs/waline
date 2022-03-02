@@ -3,14 +3,14 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "vuepress-webpack build src",
-    "dev": "vuepress-webpack dev src"
+    "build": "vuepress-vite build src",
+    "dev": "vuepress-vite dev src"
   },
   "devDependencies": {
     "@vuepress/plugin-docsearch": "2.0.0-beta.35",
     "@waline/client": "^1.5.4",
     "markdown-it-task-lists": "^2.1.1",
-    "vuepress-theme-hope": "2.0.0-alpha.23",
-    "vuepress-webpack": "2.0.0-beta.35"
+    "vuepress-theme-hope": "2.0.0-alpha.38",
+    "vuepress-vite": "2.0.0-beta.35"
   }
 }

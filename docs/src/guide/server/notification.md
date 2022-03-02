@@ -96,15 +96,16 @@ Telegram 通知通过 Telegram bot 机器人实现，需要配置以下几个环
 
 [pushplus](http://www.pushplus.plus/) 集成了微信、企业微信、钉钉、短信、邮件等渠道的信息推送平台。需要配置以下几个环境变量，具体的参数格式见 [pushplus 文档](http://www.pushplus.plus/doc/guide/api.html#%E4%B8%80%E3%80%81%E5%8F%91%E9%80%81%E6%B6%88%E6%81%AF%E6%8E%A5%E5%8F%A3)：
 
-- PUSH_PLUS_KEY：	用户令牌，即 `token`，必填。
-- PUSH_PLUS_TOPIC：群组编码，不填仅发送给自己；channel为webhook时无效
+- PUSH_PLUS_KEY： 用户令牌，即 `token`，必填。
+- PUSH_PLUS_TOPIC：群组编码，不填仅发送给自己；channel 为 webhook 时无效
 - PUSH_PLUS_TEMPLATE：发送模板
 - PUSH_PLUS_CHANNEL：发送渠道
-- PLUSH_PLUS_WEBHOOK：webhook编码，仅在channel使用webhook渠道和CP渠道时需要填写
+- PLUSH_PLUS_WEBHOOK：webhook 编码，仅在 channel 使用 webhook 渠道和 CP 渠道时需要填写
 - PUSH_PLUS_CALLBACKURL：发送结果回调地址
 - `AUTHOR_EMAIL`: 博主邮箱，用来区分发布的评论是否是博主本身发布的。如果是博主发布的则不进行提醒通知。
 - `SITE_NAME`: 网站名称，用于在消息中显示。
 - `SITE_URL`: 网站地址，用于在消息中显示。
+
 ## 通知模板
 
 Waline 支持为每个平台分别配置您自定义的通知模板，从而实现更强大的自定义能力与多语言兼容性。
