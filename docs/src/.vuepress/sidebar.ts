@@ -68,11 +68,11 @@ export const zhSidebarConfig = defineSidebarConfig({
 
 export const enSidebarConfig = defineSidebarConfig({
   '/en/guide/': [
-    '/guide/get-started',
+    'get-started',
     {
       text: 'Client',
       icon: 'client',
-      prefix: '/guide/client/',
+      prefix: 'client/',
       children: [
         'intro',
         'import',
@@ -89,7 +89,7 @@ export const enSidebarConfig = defineSidebarConfig({
     {
       text: 'Server',
       icon: 'server',
-      prefix: '/guide/server/',
+      prefix: 'server/',
       children: [
         'intro',
         'notification',
@@ -104,25 +104,25 @@ export const enSidebarConfig = defineSidebarConfig({
     {
       text: 'Guide',
       icon: 'creative',
-      prefix: '/guide/',
+      prefix: 'guide/',
       children: ['get-started', 'client/intro', 'server/intro'],
     },
     {
       text: 'Lear More',
       icon: 'advanced',
-      prefix: '/advanced/',
+      prefix: 'advanced/',
       children: ['intro', 'why', 'ecosystem', 'faq'],
     },
     {
       text: 'Migration',
       icon: 'migration',
-      prefix: '/migration/',
+      prefix: 'migration/',
       children: ['client', 'valine', 'tool'],
     },
     {
       text: 'Reference',
       icon: 'reference',
-      prefix: '/reference/',
+      prefix: 'reference/',
       children: ['client', 'instance', 'server', 'api', 'contribution'],
     },
   ],
