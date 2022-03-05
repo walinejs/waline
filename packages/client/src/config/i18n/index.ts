@@ -3,6 +3,7 @@ import jp from './jp';
 import zhCN from './zh-CN';
 import zhTW from './zh-TW';
 import ptBR from './pt-BR';
+import ru from './ru';
 
 import type { Locale } from './typings';
 
@@ -23,4 +24,5 @@ export const locales: Locales = {
   'jp-JP': jp,
   'pt-br': ptBR,
   'pt-BR': ptBR,
+  ru: ru,
 };
