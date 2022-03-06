@@ -25,4 +25,6 @@ export const locales: Locales = {
   'pt-br': ptBR,
   'pt-BR': ptBR,
   ru: ru,
+  'ru-ru': ru,
+  'ru-RU': ru,
 };
