@@ -19,7 +19,7 @@ module.exports = class extends think.Controller {
           'color: white; background: #0078E7; padding:5px 0;',
           'padding:4px;border:1px solid #0078E7;'
         );
-        const pathParam = decodeURI(window.location.search.substring(1)).split("&").find((item) => item.match(/path=(.*));
+        const pathParam = decodeURI(window.location.search.substring(1)).split("&").find((item) => item.match(/path=.*/);
         const waline = new Waline({
           el: '#waline',
           path: pathParam ? pathParm.substring(5) : '/',
