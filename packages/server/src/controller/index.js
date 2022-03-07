@@ -19,10 +19,11 @@ module.exports = class extends think.Controller {
           'color: white; background: #0078E7; padding:5px 0;',
           'padding:4px;border:1px solid #0078E7;'
         );
+        const params = new URLSearchParams(location.search.slice(1));
         const waline = new Waline({
           el: '#waline',
-          path: '/',
-          lang: new URLSearchParams(location.search.slice(1)).get('lng'),
+          path: params.get('path') || '/',
+          lang: params.get('lng'),
           serverURL: location.protocol + '//' + location.host + location.pathname.replace(/\\/+$/, '')
         });
       </script>
