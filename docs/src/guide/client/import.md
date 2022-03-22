@@ -74,7 +74,7 @@ Waline 客户端已通过 `@waline/client` 发布到 [npm](https://www.npmjs.com
 
 :::: code-group
 
-::: code-group yarn
+::: code-group-item yarn
 
 ```bash
 yarn add -D @waline/client
@@ -82,7 +82,7 @@ yarn add -D @waline/client
 
 :::
 
-::: code-group npm
+::: code-group-item npm
 
 ```bash
 npm i -D @waline/client
