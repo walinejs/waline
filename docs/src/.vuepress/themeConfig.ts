@@ -9,7 +9,7 @@ export default defineThemeConfig({
   iconPrefix: 'iconfont icon-',
   logo: '/logo.png',
   repo: 'walinejs/waline',
-  docsDir: 'docs',
+  docsDir: 'docs/src',
   docsBranch: 'main',
 
   pageInfo: ['ReadingTime'],
