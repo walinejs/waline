@@ -18,12 +18,14 @@ export const user = {
         return;
       }
       if (window.opener) {
-        let token = window.TOKEN || sessionStorage.getItem('TOKEN');
+        let token = window.TOKEN || localStorage.getItem('TOKEN');
+        let remember = true;
         if (!token) {
-          token = localStorage.getItem('TOKEN');
+          remember = false;
+          token = sessionStorage.getItem('TOKEN');
         }
         window.opener.postMessage(
-          { type: 'userInfo', data: { token, ...user } },
+          { type: 'userInfo', data: { token, remember, ...user } },
           '*'
         );
       }
