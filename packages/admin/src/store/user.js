@@ -18,12 +18,9 @@ export const user = {
         return;
       }
       if (window.opener) {
-        let token = window.TOKEN || localStorage.getItem('TOKEN');
-        let remember = true;
-        if (!token) {
-          remember = false;
-          token = sessionStorage.getItem('TOKEN');
-        }
+        const localToken = localStorage.getItem('TOKEN');
+        const remember = !!localToken;
+        const token = localToken || window.TOKEN || sessionStorage.getItem('token');
         window.opener.postMessage(
           { type: 'userInfo', data: { token, remember, ...user } },
           '*'
