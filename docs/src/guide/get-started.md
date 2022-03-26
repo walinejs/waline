@@ -75,23 +75,26 @@ icon: creative
    ![redeploy success](../assets/vercel-7.png)
 
 ## 绑定域名（可选）
+
 1. 点击顶部的 `Settings` - `Domains` 进入域名配置页
 
 1. 输入需要绑定的域名并点击`Add`
 
-	![Add domain](../assets/vercel-8.png)
+   ![Add domain](../assets/vercel-8.png)
 
 1. 在域名服务器商处添加新的`CNAME`解析记录
 
-	| Type  | Name    | Value                |
-	| ----- | ------- | -------------------- |
-	| CNAME | example | cname.vercel-dns.com |
+   | Type  | Name    | Value                |
+   | ----- | ------- | -------------------- |
+   | CNAME | example | cname.vercel-dns.com |
 
 1. 等待生效，你可以通过自己的域名来访问了:tada:
-	- 评论系统：example.yourdomain.com
-	- 评论管理：example.yourdomain.com/ui
 
-	![success](../assets/vercel-9.png)
+   - 评论系统：example.yourdomain.com
+   - 评论管理：example.yourdomain.com/ui
+
+   ![success](../assets/vercel-9.png)
+
 ## HTML 引入 (客户端)
 
 在你的网页中进行如下设置:
