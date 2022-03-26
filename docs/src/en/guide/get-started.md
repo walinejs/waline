@@ -55,6 +55,26 @@ Welcome to Waline. In just a few steps, you can enable Waline to provide comment
 
    ![redeploy success](../../assets/vercel-7.png)
 
+## Assign Domain (Optional)
+
+1. Click <kbd>Settings</kbd> - <kbd>Domains</kbd> to go to domain setting page. 
+
+1. Input domain you want to assign and click <kbd>Add</kbd> button.
+
+	![Add domain](../../assets/vercel-8.png)
+
+1. Add a new `CANME` record in your domain service server.
+
+	| Type  | Name    | Value                |
+	| ----- | ------- | -------------------- |
+	| CNAME | example | cname.vercel-dns.com |
+
+1. You can use your own domain to visit waline comment system after go into effect. :tada:
+
+	- serverURL：example.yourdomain.com
+	- admin panel：example.yourdomain.com/ui
+
+	![success](../../assets/vercel-9.png)
 ## Importing in HTML (Client)
 
 Make the following settings on your web page:
