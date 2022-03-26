@@ -1,38 +1,13 @@
 import { Store, useStore } from '../composables/store';
 import { removeEndingSplash } from './path';
 
-import type { EmojiInfo, EmojiMaps } from '../config';
+import type { EmojiInfo } from '../config';
 import type { EmojiConfig } from './config';
 
 let store: Store;
 
 const hasVersion = (url: string): boolean =>
   Boolean(/@[0-9]+\.[0-9]+\.[0-9]+/.test(url));
-
-// TODO: remove
-export const resolveOldEmojiMap = (
-  emojiMaps: EmojiMaps,
-  emojiCDN = ''
-): EmojiConfig => {
-  const resolvedEmojiMaps: EmojiMaps = {};
-
-  for (const key in emojiMaps) {
-    resolvedEmojiMaps[key] = /(?:https?:)?\/\//.test(emojiMaps[key])
-      ? emojiMaps[key]
-      : `${emojiCDN}${emojiMaps[key]}`;
-  }
-
-  return {
-    tabs: [
-      {
-        name: 'Emoji',
-        icon: Object.values(resolvedEmojiMaps).pop() || '',
-        items: Object.keys(resolvedEmojiMaps),
-      },
-    ],
-    map: resolvedEmojiMaps,
-  };
-};
 
 const fetchEmoji = (link: string): Promise<EmojiInfo> => {
   if (!store) store = useStore('WALINE_EMOJI');

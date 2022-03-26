@@ -7,7 +7,7 @@ export interface UserInfo {
   email: string;
   url: string;
   token: string;
-  avatar?: string;
+  avatar: string;
   mailMd5: string;
 }
 

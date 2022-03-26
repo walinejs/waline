@@ -1,12 +1,12 @@
 <template>
-  <div class="v" data-class="v">
+  <div data-waline>
     <CommentBox v-if="!reply" @submit="onSubmit" />
-    <div class="vcount">
-      <span v-if="count" class="vnum" v-text="count" />
+    <div class="wl-count">
+      <span v-if="count" class="wl-num" v-text="count" />
       {{ locale.comment }}
     </div>
 
-    <div class="vcards">
+    <div class="wl-cards">
       <CommentCard
         v-for="comment in data"
         :key="comment.objectId"
@@ -18,29 +18,29 @@
       />
     </div>
 
-    <div v-if="inError" class="vloading">
+    <div v-if="inError" class="wl-action">
       <button
         type="button"
-        class="vbtn"
+        class="wl-btn"
         @click="refresh"
         v-text="locale.refresh"
       />
     </div>
-    <div v-else-if="loading" class="vloading">
+    <div v-else-if="loading" class="wl-loading">
       <LoadingIcon :size="30" />
     </div>
 
-    <div v-else-if="!data.length" class="vempty" v-text="locale.sofa" />
+    <div v-else-if="!data.length" class="wl-empty" v-text="locale.sofa" />
 
-    <div v-if="page < totalPages && !loading" class="vmore">
+    <div v-if="page < totalPages && !loading" class="wl-action">
       <button
         type="button"
-        class="vbtn"
+        class="wl-btn"
         @click="loadMore"
         v-text="locale.more"
       />
     </div>
-    <div v-if="config.copyright" class="vpower">
+    <div v-if="config.copyright" class="wl-power">
       Powered by
       <a
         href="https://github.com/walinejs/waline"

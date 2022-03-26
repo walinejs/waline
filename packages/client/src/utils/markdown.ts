@@ -12,8 +12,8 @@ export const parseEmoji = (text = '', emojiMap: EmojiMaps = {}): string =>
 
 export const parseMarkdown = (
   content: string,
-  highlight: Highlighter,
   emojiMap: EmojiMaps,
+  highlight: Highlighter | false,
   texRenderer: TexRenderer | false
 ): string => {
   marked.setOptions({

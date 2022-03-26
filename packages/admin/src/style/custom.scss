@@ -45,7 +45,9 @@ div[tabindex='-1'] {
   fill: #1877f2;
 }
 
-.vemoji {
+// remain for historical reasons
+.vemoji,
+.wl-emoji {
   display: inline-block;
   vertical-align: middle;
   width: 1.3rem;

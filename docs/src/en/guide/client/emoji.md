@@ -286,7 +286,7 @@ If you need to adapt the emoji size of the historical version, you can use the C
 
 ```css
 /* You need to replace `https://img.t.sinajs.cn` with your own CDN */
-.v[data-class='v'] .vcontent img[src^="https://img.t.sinajs.cn"]
+.wl-content img[src^="https://img.t.sinajs.cn"]
 {
   width: 1.25em;
   margin: 0.25em;

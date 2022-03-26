@@ -1,10 +1,11 @@
-.v[data-class='v'] {
+// should only effect waline content
+.wl-content {
   pre,
   pre[class*='language-'] {
     line-height: 1.4;
     padding: 1rem 1.25rem;
     margin: 0.75rem 0;
-    background: var(--waline-code-bgcolor);
+    background: var(--wl-code-bgcolor);
     border-radius: 6px;
     overflow: auto;
 

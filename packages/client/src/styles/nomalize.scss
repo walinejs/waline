@@ -1,5 +1,5 @@
-.v[data-class='v'] {
-  font-size: var(--waline-font-size);
+[data-waline] {
+  font-size: var(--wl-font-size);
   text-align: left;
 
   * {
@@ -8,7 +8,7 @@
   }
 
   p {
-    color: var(--waline-text-color);
+    color: var(--wl-color);
   }
 
   a {
@@ -16,14 +16,14 @@
 
     display: inline-block;
 
-    color: var(--waline-theme-color);
+    color: var(--wl-theme-color);
 
     text-decoration: none;
 
     cursor: pointer;
 
     &:hover {
-      color: var(--waline-active-color);
+      color: var(--wl-active-color);
     }
   }
 
@@ -36,7 +36,7 @@
   hr {
     margin: 0.825em 0;
     border-style: dashed;
-    border-color: var(--waline-bgcolor-light);
+    border-color: var(--wl-bgcolor-light);
   }
 
   code,
@@ -45,7 +45,7 @@
     padding: 0.2em 0.4em;
     border-radius: 3px;
 
-    background: var(--waline-bgcolor-light);
+    background: var(--wl-bgcolor-light);
 
     font-size: 85%;
   }
@@ -70,14 +70,14 @@
       width: 6px;
       -webkit-border-radius: 6px;
       border-radius: 6px;
-      background: var(--waline-theme-color);
+      background: var(--wl-theme-color);
     }
 
     code {
       padding: 0;
 
       background: transparent;
-      color: var(--waline-text-color);
+      color: var(--wl-color);
 
       white-space: pre-wrap;
       word-break: keep-all;
@@ -87,8 +87,8 @@
   blockquote {
     margin: 0.5em 0;
     padding: 0.5em 0 0.5em 1em;
-    border-left: 8px solid var(--waline-bq-color);
-    color: var(--waline-dark-grey);
+    border-left: 8px solid var(--wl-bq-color);
+    color: var(--wl-dark-grey);
 
     > p {
       margin: 0;

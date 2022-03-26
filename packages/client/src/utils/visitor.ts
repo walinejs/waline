@@ -8,10 +8,7 @@ const renderVisitorCount = (
   countElements: HTMLElement[]
 ): void => {
   countElements.forEach((element, index) => {
-    // TODO: Remove the first one
-    (
-      element.querySelector<HTMLElement>('.leancloud-visitors-count') || element
-    ).innerText = counts[index].toString();
+    element.innerText = counts[index].toString();
   });
 };
 
@@ -27,10 +24,7 @@ export const updateVisitor = ({
   const countIncrease = postVisitCount({ serverURL, path });
   const countElements = Array.from(
     // visitor selectors
-    document.querySelectorAll<HTMLElement>(
-      // TODO: Remove the last two
-      '.waline-visitor-count,.leancloud_visitors,.leancloud-visitors'
-    )
+    document.querySelectorAll<HTMLElement>('.waline-visitor-count')
   ).filter((el) => el.getAttribute('id'));
 
   const ids = countElements.map((el: Element) =>

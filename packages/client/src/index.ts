@@ -4,7 +4,6 @@ import {
   getEvent,
   getRoot,
   injectDarkStyle,
-  registerMathML,
   updateCommentCount,
   updateVisitor,
 } from './utils';
@@ -79,9 +78,6 @@ function waline(options: WalineOptions): WalineInstance | WalineErrorInstance {
 
   // darkmode support
   if (options.dark) injectDarkStyle(options.dark);
-
-  // mathml
-  if (options.mathTagSupport) window.addEventListener('load', registerMathML);
 
   const commentController = new Controller();
   const counterController = new Controller();

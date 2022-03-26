@@ -14,47 +14,47 @@ icon: style
 ```css
 :root {
   /* 字体大小 */
-  --waline-font-size: 16px;
+  --wl-font-size: 16px;
 
   /* 常规颜色 */
-  --waline-white: #fff;
-  --waline-light-grey: #999;
-  --waline-dark-grey: #666;
+  --wl-white: #fff;
+  --wl-light-grey: #999;
+  --wl-dark-grey: #666;
 
   /* 主题色 */
-  --waline-theme-color: #27ae60;
-  --waline-active-color: #2ecc71;
+  --wl-theme-color: #27ae60;
+  --wl-active-color: #2ecc71;
 
   /* 布局颜色 */
-  --waline-text-color: #444;
-  --waline-bgcolor: #fff;
-  --waline-bgcolor-light: #f8f8f8;
-  --waline-bgcolor-hover: #f0f0f0;
-  --waline-border-color: #ddd;
-  --waline-disable-bgcolor: #f8f8f8;
-  --waline-disable-color: #bbb;
-  --waline-code-bgcolor: #282c34;
+  --wl-color: #444;
+  --wl-bgcolor: #fff;
+  --wl-bgcolor-light: #f8f8f8;
+  --wl-bgcolor-hover: #f0f0f0;
+  --wl-border-color: #ddd;
+  --wl-disable-bgcolor: #f8f8f8;
+  --wl-disable-color: #bbb;
+  --wl-code-bgcolor: #282c34;
 
   /* 特殊颜色 */
-  --waline-bq-color: #f0f0f0;
+  --wl-bq-color: #f0f0f0;
 
   /* 头像 */
-  --waline-avatar-size: 3.25rem;
-  --waline-mobile-avatar-size: calc(var(--waline-avatar-size) * 9 / 13);
+  --wl-avatar-size: 3.25rem;
+  --wl-m-avatar-size: calc(var(--wl-avatar-size) * 9 / 13);
 
   /* 徽章 */
-  --waline-badge-color: #3498db;
-  --waline-badge-font-size: 0.775em;
+  --wl-badge-color: #3498db;
+  --wl-badge-font-size: 0.775em;
 
   /* 信息 */
-  --waline-info-bgcolor: #f8f8f8;
-  --waline-info-color: #999;
-  --waline-info-font-size: 0.625em;
+  --wl-info-bgcolor: #f8f8f8;
+  --wl-info-color: #999;
+  --wl-info-font-size: 0.625em;
 
   /* 渲染选择 */
-  --waline-border: 1px solid var(--waline-border-color);
-  --waline-avatar-radius: 50%;
-  --waline-box-shadow: none;
+  --wl-border: 1px solid var(--wl-border-color);
+  --wl-avatar-radius: 50%;
+  --wl-box-shadow: none;
 }
 ```
 
@@ -87,24 +87,24 @@ icon: style
 /* 根据用户设置 ↓ */
 darkmode-selector {
   /* 常规颜色 */
-  --waline-white: #000;
-  --waline-light-grey: #666;
-  --waline-dark-grey: #999;
+  --wl-white: #000;
+  --wl-light-grey: #666;
+  --wl-dark-grey: #999;
 
   /* 布局颜色 */
-  --waline-text-color: #888;
-  --waline-bgcolor: #1e1e1e;
-  --waline-bgcolor-light: #272727;
-  --waline-border-color: #333;
-  --waline-disable-bgcolor: #444;
-  --waline-disable-color: #272727;
+  --wl-color: #888;
+  --wl-bgcolor: #1e1e1e;
+  --wl-bgcolor-light: #272727;
+  --wl-border-color: #333;
+  --wl-disable-bgcolor: #444;
+  --wl-disable-color: #272727;
 
   /* 特殊颜色 */
-  --waline-bq-color: #272727;
+  --wl-bq-color: #272727;
 
   /* 其他颜色 */
-  --waline-info-bgcolor: #272727;
-  --waline-info-color: #666;
+  --wl-info-bgcolor: #272727;
+  --wl-info-color: #666;
 }
 ```
 
@@ -112,17 +112,17 @@ darkmode-selector {
 
 ## 阴影样式
 
-如果你在使用一个大量运用阴影 (`box-shadow`) 的主题，你可以通过修改 `--waline-border` 和 `--waline-box-shadow` 来更改 Waline 的显示效果，如:
+如果你在使用一个大量运用阴影 (`box-shadow`) 的主题，你可以通过修改 `--wl-border` 和 `--wl-box-shadow` 来更改 Waline 的显示效果，如:
 
 ```css
 :root {
-  --waline-border: none;
-  --waline-box-shadow: 0 12px 40px rgb(134 151 168 / 25%);
+  --wl-border: none;
+  --wl-box-shadow: 0 12px 40px rgb(134 151 168 / 25%);
 }
 
 @media (prefers-color-scheme: dark) {
   body {
-    --waline-box-shadow: 0 12px 40px #0f0e0d;
+    --wl-box-shadow: 0 12px 40px #0f0e0d;
   }
 }
 ```

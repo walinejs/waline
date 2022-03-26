@@ -1,50 +1,52 @@
 :root {
   // font-size
-  --waline-font-size: 16px;
+  --wl-font-size: 16px;
 
   // regular colors
-  --waline-white: #fff;
-  --waline-light-grey: #999;
-  --waline-dark-grey: #666;
+  --wl-white: #fff;
+  --wl-light-grey: #999;
+  --wl-dark-grey: #666;
 
   // theme colors
-  --waline-theme-color: #27ae60;
-  --waline-active-color: #2ecc71;
+  --wl-theme-color: #27ae60;
+  --wl-active-color: #2ecc71;
 
   // layout colors
-  --waline-text-color: #444;
-  --waline-bgcolor: #fff;
-  --waline-bgcolor-light: #f8f8f8;
-  --waline-bgcolor-hover: #f0f0f0;
-  --waline-border-color: #ddd;
-  --waline-disable-bgcolor: #f8f8f8;
-  --waline-disable-color: #000;
-  --waline-code-bgcolor: #282c34;
+  --wl-color: #444;
+  --wl-bgcolor: #fff;
+  --wl-bgcolor-light: #f8f8f8;
+  --wl-bgcolor-hover: #f0f0f0;
+  --wl-border-color: #ddd;
+  --wl-disable-bgcolor: #f8f8f8;
+  --wl-disable-color: #000;
+  --wl-code-bgcolor: #282c34;
 
   // special colors
-  --waline-bq-color: #f0f0f0;
+  --wl-bq-color: #f0f0f0;
 
   // avatar
-  --waline-avatar-size: 3.25rem;
-  --waline-mobile-avatar-size: calc(var(--waline-avatar-size) * 9 / 13);
+  --wl-avatar-size: 3.25rem;
+  --wl-m-avatar-size: calc(var(--wl-avatar-size) * 9 / 13);
 
   // badge
-  --waline-badge-color: #3498db;
-  --waline-badge-font-size: 0.775em;
+  --wl-badge-color: #3498db;
+  --wl-badge-font-size: 0.775em;
 
   // info
-  --waline-info-bgcolor: #f8f8f8;
-  --waline-info-color: #999;
-  --waline-info-font-size: 0.625em;
+  --wl-info-bgcolor: #f8f8f8;
+  --wl-info-color: #999;
+  --wl-info-font-size: 0.625em;
 
   // ====render choises====
   //   ** using border **
-  --waline-border: 1px solid var(--waline-border-color);
-  --waline-avatar-radius: 50%;
-  --waline-box-shadow: none;
+  --wl-border: 1px solid var(--wl-border-color);
+  --wl-avatar-radius: 50%;
+  --wl-box-shadow: none;
 
   // ** using box-shadow **
-  // --waline-border: none;
-  // --waline-box-shadow: 0 12px 40px rgb(134 151 168 / 25%);
-  // Dark: --waline-box-shadow: 0 12px 40px #0f0e0d
+  // --wl-border: none;
+  // Light:
+  // --wl-box-shadow: 0 12px 40px rgb(134 151 168 / 25%);
+  // Dark:
+  // --wl-box-shadow: 0 12px 40px #0f0e0d
 }

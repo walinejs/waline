@@ -1,24 +1,9 @@
-import type { Avatar, Meta } from './options';
-
-const availableAvatar: Avatar[] = [
-  'mp',
-  'identicon',
-  'monsterid',
-  'wavatar',
-  'robohash',
-  'retro',
-  '',
-];
+import type { Meta } from './options';
 
 const availableMeta: Meta[] = ['nick', 'mail', 'link'];
 
-export const getAvatar = (avatar?: Avatar): Avatar =>
-  avatar && availableAvatar.includes(avatar) ? avatar : 'mp';
-
 export const getMeta = (meta: Meta[]): Meta[] =>
   meta.filter((item) => availableMeta.includes(item));
-
-export const defaultGravatarCDN = 'https://seccdn.libravatar.org/avatar/';
 
 export const defaultLang = 'zh-CN';
 
