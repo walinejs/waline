@@ -25,7 +25,7 @@ icon: intro
   | **客户端脚本**                                           | **服务端部署**                                                  | **数据存储**                                                       |
   | [@waline/client](https://waline.js.org)                  | [Vercel](https://vercel.com)                                    | [LeanCloud](https://leancloud.app)                                 |
   | [MiniValine](https://minivaline.js.org/)                 | [Deta](https://deta.sh)                                         | [CloudBase](https://clodbase.net)                                  |
-  | [AprilComment](https://github.com/asforest/AprilComment) | [CloudBase](https://cloudbase.net/)                             | [MongoDB](https://mongodb.com)                                     |
+  |                                                          | [CloudBase](https://cloudbase.net/)                             | [MongoDB](https://mongodb.com)                                     |
   |                                                          | [轻服务](https://qingfuwu.cn)                                   | MySQL                                                              |
   |                                                          | [百度云 CFC](https://console.bce.baidu.com/cfc/#/cfc/functions) | SQLite                                                             |
   |                                                          | [阿里云 FC](https://fc.console.aliyun.com/)                     | PostgreSQL                                                         |
