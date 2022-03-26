@@ -13,27 +13,27 @@ Welcome to Waline. In just a few steps, you can enable Waline to provide comment
 
 1. Click [Create app](https://console.leancloud.app/apps) button to create a new app and enter a name you like:
 
-   ![Create App](../../assets/leancloud-app-1.jpg)
+   ![Create App](./assets/leancloud-1.png)
 
 1. Enter the app, then select `Settings` > `App Keys` at the left bottom corner. You will see `APP ID`, `APP Key` and `Master Key` of your app. We will use them later
 
-   ![ID and Key](../../assets/leancloud-app-2.jpg)
+   ![ID and Key](./assets/leancloud-2.png)
 
 ## Deploy to Vercel (Server)
 
-[![Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/walinejs/waline/tree/main/example)
+[![Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fwalinejs%2Fwaline%2Ftree%2Fmain%2Fexample)
 
 1. Click the blue button above, it will redirect you to vercel to deploy with waline template.
 
-1. If you haven't logined, we recommend you to sign in with GitHub.
+   ::: note
+
+   If you haven't logined, we recommend you to sign in with GitHub.
+
+   :::
 
 1. Input your Vercel project name then click `Create`.
 
    ![Create Project](../../assets/vercel-1.png)
-
-1. Then Vercel will let you create Vercel Team account, click `Skip` and go on.
-
-   ![skip team](../../assets/vercel-2.png)
 
 1. Repo which named you input before will be created and initiallized automatically base on waline example template by Vercel.
 
@@ -87,14 +87,14 @@ Make the following settings on your web page:
    - The `el` option is the element used for Waline rendering. You can set a CSS selector in the form of a string or an HTMLElement object.
    - `serverURL` is the link of the server, which you just got.
 
-   ```html:line-numbers
+   ```html {8-14}:line-numbers
    <head>
-     ..
+     <!-- ... -->
      <script src="//cdn.jsdelivr.net/npm/@waline/client"></script>
-     ...
+     <!-- ... -->
    </head>
    <body>
-     ...
+     <!-- ... -->
      <div id="waline"></div>
      <script>
        Waline({

@@ -28,7 +28,7 @@ Vercel 需要在 <kbd>Settings</kbd> - <kbd>Environment Variables</kbd> 中进�
 | `IPQPS`             |      | 基于 IP 的评论发布频率限制，单位为秒。默认为 60 秒，设置为 0 不限制                                                     |
 | `SECURE_DOMAINS`    |      | 安全域名配置，支持逗号分隔配置多个域名                                                                                  |
 | `DISABLE_USERAGENT` |      | 是否隐藏评论者的 UA，默认为否                                                                                           |
-| `AKISMET_KEY`       |      | Akismet 反垃圾评论服务 Key（默认开启，不用请设置为 false）                                                              |
+| `AKISMET_KEY`       |      | Akismet 反垃圾评论服务 Key (默认开启，不用请设置为 false)                                                               |
 | `COMMENT_AUDIT`     |      | 评论发布审核开关，配置后建议在 Placehoder 上提供文案提示                                                                |
 | `LOGIN`             |      | 当设置为 `LOGIN=force` 时会要求登录才能评论                                                                             |
 | `AVATAR_PROXY`      |      | 头像的代理地址，默认为 `https://avatar.75cdn.workers.dev`，设置 `false` 关闭代理                                        |
@@ -64,7 +64,7 @@ Vercel 需要在 <kbd>Settings</kbd> - <kbd>Environment Variables</kbd> 中进�
 | `SENDER_EMAIL` | 自定义发送邮件的发件地址                                                            |
 
 :::tip
-可以在[这里](https://github.com/nodemailer/nodemailer/blob/master/lib/well-known/services.json)查看支持的服务商。`SMTP_SERVICE` 和 (`SMTP_HOST`、`SMTP_PORT`）任选其一即可，如果没有在列表中知道对应的 `SMTP_SERVICE` 的话则需要配 `SMTP_HOST` 和 `SMTP_PORT`。
+可以在[这里](https://github.com/nodemailer/nodemailer/blob/master/lib/well-known/services.json)查看支持的服务商。`SMTP_SERVICE` 和 (`SMTP_HOST`、`SMTP_PORT`) 任选其一即可，如果没有在列表中知道对应的 `SMTP_SERVICE` 的话则需要配 `SMTP_HOST` 和 `SMTP_PORT`。
 :::
 
 ### 数据库
