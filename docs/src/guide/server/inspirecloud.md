@@ -13,7 +13,7 @@ icon: inspirecloud
    ![轻服务2](../../assets/inspirecloud-2.jpg)
 1. 服务创建好后，点击 <kbd>云工程</kbd>-<kbd>快速创建</kbd> 进入部署环节
    ![轻服务3](../../assets/inspirecloud-3.jpg)
-1. 部署弹窗如果没有做 GitHub 授权的话需要点击 GitHub 授权按钮进行授权（图中为已授权后的效果）。授权完毕后在仓库地址中输入你在第一步中 Fork 后的地址
+1. 部署弹窗如果没有做 GitHub 授权的话需要点击 GitHub 授权按钮进行授权 (图中为已授权后的效果) 。授权完毕后在仓库地址中输入你在第一步中 Fork 后的地址
    ![轻服务4](../../assets/inspirecloud-4.jpg)
 1. 点击部署之后稍待片刻部署就完成了。页面中的请求地址就是你最终的服务地址
    ![轻服务5](../../assets/inspirecloud-5.jpg)

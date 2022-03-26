@@ -11,13 +11,13 @@ icon: creative
 
 1. [登录](https://console.leancloud.app/login) 或 [注册](https://console.leancloud.app/register) `LeanCloud 国际版` 并进入 [控制台](https://console.leancloud.app/apps)
 
-1. 点击左下角 [创建应用](https://console.leancloud.app/apps) 并起一个你喜欢的名字 (请选择免费的开发版):
+1. 点击左上角 [创建应用](https://console.leancloud.app/apps) 并起一个你喜欢的名字 (请选择免费的开发版):
 
-   ![创建应用](../assets/leancloud-1.jpeg)
+   ![创建应用](./assets/leancloud-1.png)
 
-1. 进入应用，选择左下角的 `设置` > `应用 Key`。你可以看到你的 `APP ID`,`APP Key` 和 `Master Key`。后续我们会用到这三个值。
+1. 进入应用，选择左下角的 `设置` > `应用 Key`。你可以看到你的 `APP ID`,`APP Key` 和 `Master Key`。请记录它们，以便后续使用。
 
-   ![ID 和 Key](../assets/leancloud-2.jpeg)
+   ![ID 和 Key](./assets/leancloud-2.png)
 
 ::: warning 国内版需要完成备案接入
 
@@ -28,25 +28,25 @@ icon: creative
 - 按照页面上的提示按要求在 DNS 上完成 CNAME 解析。
 - 购买独立 IP 并提交工单完成备案接入。(独立 IP 目前价格为 ￥ 50/个/月)
 
-![域名设置](../assets/leancloud-3.png)
+![域名设置](./assets/leancloud-3.png)
 
 :::
 
 ## Vercel 部署 (服务端)
 
-[![Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/walinejs/waline/tree/main/example)
+[![Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fwalinejs%2Fwaline%2Ftree%2Fmain%2Fexample)
 
 1. 点击上方按钮，跳转至 Vercel 进行 Server 端部署。
 
-1. 如果你未登录的话，Vercel 会让你注册或登录，请使用 GitHub 账户进行快捷登录。
+   ::: note
+
+   如果你未登录的话，Vercel 会让你注册或登录，请使用 GitHub 账户进行快捷登录。
+
+   :::
 
 1. 输入一个你喜欢的 Vercel 项目名称并点击 `Create` 继续:
 
    ![创建项目](../assets/vercel-1.png)
-
-1. 此时会让你创建 Team 账号，这里选择 `Skip` 即可：
-
-   ![skip team](../assets/vercel-2.png)
 
 1. 此时 Vercel 会基于 Waline 模板帮助你新建并初始化仓库，仓库名为你之前输入的项目名。
 
@@ -56,7 +56,7 @@ icon: creative
 
    ![deploy](../assets/vercel-4.png)
 
-1. 点击顶部的 `Settings` - `Environment Variables` 进入环境变量配置页，并配置三个环境变量`LEAN_ID`, `LEAN_KEY` 和 `LEAN_MASTER_KEY` 。它们的值分别对应上一步在 LeanCloud 中获得的 `APP ID`, `APP KEY`, `Master Key`。
+1. 点击顶部的 `Settings` - `Environment Variables` 进入环境变量配置页，并配置三个环境变量 `LEAN_ID`, `LEAN_KEY` 和 `LEAN_MASTER_KEY` 。它们的值分别对应上一步在 LeanCloud 中获得的 `APP ID`, `APP KEY`, `Master Key`。
 
    ![设置环境变量](../assets/vercel-5.png)
 
@@ -74,24 +74,27 @@ icon: creative
 
    ![redeploy success](../assets/vercel-7.png)
 
-## 绑定域名（可选）
+## 绑定域名 (可选)
+
 1. 点击顶部的 `Settings` - `Domains` 进入域名配置页
 
-1. 输入需要绑定的域名并点击`Add`
+1. 输入需要绑定的域名并点击 `Add`
 
-	![Add domain](../assets/vercel-8.png)
+   ![Add domain](../assets/vercel-8.png)
 
-1. 在域名服务器商处添加新的`CNAME`解析记录
+1. 在域名服务器商处添加新的 `CNAME` 解析记录
 
-	| Type  | Name    | Value                |
-	| ----- | ------- | -------------------- |
-	| CNAME | example | cname.vercel-dns.com |
+   | Type  | Name    | Value                |
+   | ----- | ------- | -------------------- |
+   | CNAME | example | cname.vercel-dns.com |
 
 1. 等待生效，你可以通过自己的域名来访问了:tada:
-	- 评论系统：example.yourdomain.com
-	- 评论管理：example.yourdomain.com/ui
 
-	![success](../assets/vercel-9.png)
+   - 评论系统：example.yourdomain.com
+   - 评论管理：example.yourdomain.com/ui
+
+   ![success](../assets/vercel-9.png)
+
 ## HTML 引入 (客户端)
 
 在你的网页中进行如下设置:
@@ -103,14 +106,14 @@ icon: creative
    - `el` 选项是 Waline 渲染使用的元素，你可以设置一个字符串形式的 CSS 选择器或者一个 HTMLElement 对象。
    - `serverURL` 是服务端的地址，即上一步获取到的值。
 
-   ```html:line-numbers
+   ```html {8-14}:line-numbers
    <head>
-     ..
+     <!-- ... -->
      <script src="//cdn.jsdelivr.net/npm/@waline/client"></script>
-     ...
+     <!-- ... -->
    </head>
    <body>
-     ...
+     <!-- ... -->
      <div id="waline"></div>
      <script>
        Waline({

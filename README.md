@@ -20,18 +20,18 @@ English | [中文](https://github.com/walinejs/waline/blob/main/README_CN.md) | 
 - Deploy free!
 - Multiple deployment and storage service support, at least 84 deployment choice!
 
-|                                                          | Waline                                   |                                                                               |
-| -------------------------------------------------------- | ---------------------------------------- | ----------------------------------------------------------------------------- |
-| **Client**                                               | **Server**                               | **Storage**                                                                   |
-| [@waline/client](https://waline.js.org)                  | [Vercel](https://vercel.com)             | [LeanCloud](https://leancloud.app)                                            |
-| [MiniValine](https://minivaline.js.org/)                 | [Deta](https://deta.sh)                  | [CloudBase](https://clodbase.net)                                             |
-| [AprilComment](https://github.com/asforest/AprilComment) | [CloudBase](https://cloudbase.net/)      | [MongoDB](https://mongodb.com)                                                |
-|                                                          | [InspireCloud](https://inspirecloud.com) | MySQL                                                                         |
-|                                                          | [Railway](https://railway.app)           | SQLite                                                                        |
-|                                                          | [Render](https://render.com)             | PostgreSQL                                                                    |
-|                                                          | Docker                                   | [GitHub](https://github.com)                                                  |
-|                                                          | Virtual Host                             | [Deta Base](https://docs.deta.sh/docs/base/about)                             |
-|                                                          |                                          | [InspireCloud](https://inspirecloud.com/docs/nodejs/database/quickstart.html) |
+|                                          | Waline                                   |                                                                               |
+| ---------------------------------------- | ---------------------------------------- | ----------------------------------------------------------------------------- |
+| **Client**                               | **Server**                               | **Storage**                                                                   |
+| [@waline/client](https://waline.js.org)  | [Vercel](https://vercel.com)             | [LeanCloud](https://leancloud.app)                                            |
+| [MiniValine](https://minivaline.js.org/) | [Deta](https://deta.sh)                  | [CloudBase](https://clodbase.net)                                             |
+|                                          | [CloudBase](https://cloudbase.net/)      | [MongoDB](https://mongodb.com)                                                |
+|                                          | [InspireCloud](https://inspirecloud.com) | MySQL                                                                         |
+|                                          | [Railway](https://railway.app)           | SQLite                                                                        |
+|                                          | [Render](https://render.com)             | PostgreSQL                                                                    |
+|                                          | Docker                                   | [GitHub](https://github.com)                                                  |
+|                                          | Virtual Host                             | [Deta Base](https://docs.deta.sh/docs/base/about)                             |
+|                                          |                                          | [InspireCloud](https://inspirecloud.com/docs/nodejs/database/quickstart.html) |
 
 ## Todo
 
