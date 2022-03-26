@@ -14,5 +14,6 @@ module.exports = {
       tsconfig: '<rootDir>/tsconfig.json',
     },
   },
+  setupFiles: ['<rootDir>/scripts/thinkjs-mock.js'],
   testMatch: ['<rootDir>/packages/**/__tests__/**/*.spec.{js,ts}'],
 };
