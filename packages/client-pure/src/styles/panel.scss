@@ -1,0 +1,290 @@
+@use 'emoji';
+
+.wl-comment {
+  position: relative;
+  display: flex;
+  margin-bottom: 0.75em;
+}
+
+.wl-close {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+
+  padding: 0;
+  border: none;
+  background: transparent;
+
+  line-height: 1;
+
+  cursor: pointer;
+}
+
+.wl-login-info {
+  max-width: 80px;
+  margin-top: 0.75em;
+  text-align: center;
+}
+
+.wl-logout-btn {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+
+  padding: 3px;
+  border: none;
+  background: transparent;
+
+  line-height: 0;
+
+  cursor: pointer;
+}
+
+.wl-avatar {
+  position: relative;
+
+  width: var(--wl-avatar-size);
+  height: var(--wl-avatar-size);
+  margin: 0 auto;
+
+  border: var(--wl-border);
+  border-radius: var(--wl-avatar-radius);
+
+  @media (max-width: 720px) {
+    width: var(--wl-m-avatar-size);
+    height: var(--wl-m-avatar-size);
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: var(--wl-avatar-radius);
+  }
+}
+
+.wl-login-nick {
+  display: block;
+  color: var(--wl-theme-color);
+  font-size: 0.75em;
+  word-break: break-all;
+}
+
+.wl-panel {
+  position: relative;
+  width: 100%;
+  flex-shrink: 1;
+
+  margin: 0.5em;
+  border: var(--wl-border);
+  border-radius: 0.75em;
+
+  background: var(--wl-bgcolor);
+  box-shadow: var(--wl-box-shadow);
+}
+
+.wl-header {
+  display: flex;
+  padding: 0 4px;
+  border-bottom: 2px dashed var(--wl-border-color);
+  border-top-left-radius: 0.75em;
+  border-top-right-radius: 0.75em;
+  overflow: hidden;
+
+  @media (max-width: 580px) {
+    display: block;
+  }
+
+  label {
+    min-width: 40px;
+    padding: 0.75em 0.5em;
+
+    color: var(--wl-color);
+
+    font-size: 0.75em;
+    text-align: center;
+  }
+
+  input {
+    flex: 1;
+
+    width: 0;
+    padding: 0.5em;
+
+    background: transparent;
+
+    font-size: 0.625em;
+
+    resize: none;
+  }
+}
+
+.wl-header-item {
+  display: flex;
+  flex: 1;
+
+  &:not(:last-child) {
+    @media (max-width: 580px) {
+      border-bottom: 2px dashed var(--wl-border-color);
+    }
+  }
+}
+
+.wl-header-1 .wl-header-item {
+  width: 100%;
+}
+
+.wl-header-2 .wl-header-item {
+  width: 50%;
+
+  @media (max-width: 580px) {
+    flex: 0;
+    width: 100%;
+  }
+}
+
+.wl-header-3 .wl-header-item {
+  width: 33.33%;
+
+  @media (max-width: 580px) {
+    width: 100%;
+  }
+}
+
+.wl-editor,
+.wl-input {
+  max-width: 100%;
+  border: none;
+
+  color: var(--wl-color);
+  outline: none;
+
+  transition: all 0.25s ease;
+
+  &:focus {
+    background: var(--wl-bgcolor-light);
+  }
+}
+
+.wl-editor {
+  position: relative;
+
+  width: calc(100% - 1em);
+  min-height: 8.75em;
+  margin: 0.75em 0.5em;
+  border-radius: 0.5em;
+
+  background: transparent;
+
+  font-size: 0.875em;
+
+  resize: vertical;
+}
+
+.wl-preview {
+  padding: 0 0.5em 0.5em;
+
+  h4 {
+    margin: 0.25em;
+    font-weight: bold;
+    font-size: 0.9375em;
+  }
+
+  .wl-content {
+    padding: 0.25em;
+    min-height: 1.25em;
+    border: var(--wl-border);
+    border-radius: 0.25em;
+    word-break: break-word;
+    hyphens: auto;
+
+    > *:first-child {
+      margin-top: 0;
+    }
+
+    > *:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.wl-footer {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0.5em 0.75em;
+}
+
+.wl-actions {
+  display: flex;
+  flex: 2;
+  align-items: center;
+}
+
+.wl-action {
+  width: 1.5em;
+  height: 1.5em;
+  border: none;
+
+  margin: 2px;
+  padding: 0;
+
+  background: transparent;
+
+  font-size: 16px;
+
+  cursor: pointer;
+
+  color: var(--wl-color);
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    color: var(--wl-theme-color);
+  }
+
+  &.actived {
+    color: var(--wl-active-color);
+  }
+}
+
+#wl-image-upload {
+  display: none;
+
+  &:focus + label {
+    color: var(--wl-color);
+  }
+
+  &:focus-visible + label {
+    outline: -webkit-focus-ring-color auto 1px;
+  }
+}
+
+.wl-info {
+  display: flex;
+  flex: 3;
+  align-items: center;
+  justify-content: flex-end;
+
+  .wl-text-number {
+    color: var(--wl-info-color);
+    font-size: 0.75em;
+
+    .illegal {
+      color: #f00;
+    }
+  }
+
+  button {
+    margin-left: 0.75em;
+
+    svg {
+      display: block;
+      margin: 0 auto;
+      line-height: 18px;
+    }
+  }
+}
+
+@include emoji.emoji;

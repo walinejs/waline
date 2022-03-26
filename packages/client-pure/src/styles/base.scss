@@ -1,0 +1,68 @@
+.wl-btn {
+  display: inline-block;
+  vertical-align: middle;
+
+  min-width: 2.5em;
+  margin-bottom: 0;
+  padding: 0.5em 1em;
+  border: 1px solid var(--wl-border-color);
+  border-radius: 0.5em;
+
+  background: transparent;
+  color: var(--wl-color);
+
+  font-weight: 400;
+  font-size: 0.75em;
+  line-height: 1.5;
+  text-align: center;
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  user-select: none;
+
+  transition-duration: 0.4s;
+
+  touch-action: manipulation;
+
+  &:hover,
+  &:active {
+    border-color: var(--wl-theme-color);
+    color: var(--wl-theme-color);
+  }
+
+  &:disabled {
+    border-color: var(--wl-border-color);
+    background: var(--wl-disable-bgcolor);
+    color: var(--wl-disable-color);
+    cursor: not-allowed;
+  }
+
+  &.primary {
+    border-color: var(--wl-theme-color);
+    background: var(--wl-theme-color);
+    color: var(--wl-white);
+
+    &:hover,
+    &:active {
+      border-color: var(--wl-active-color);
+      background: var(--wl-active-color);
+      color: var(--wl-white);
+    }
+
+    &:disabled {
+      border-color: var(--wl-border-color);
+      background: var(--wl-disable-bgcolor);
+      color: var(--wl-disable-color);
+      cursor: not-allowed;
+    }
+  }
+}
+
+.wl-loading {
+  text-align: center;
+
+  svg {
+    margin: 0 auto;
+  }
+}

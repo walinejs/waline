@@ -1,0 +1,52 @@
+:root {
+  // font-size
+  --wl-font-size: 16px;
+
+  // regular colors
+  --wl-white: #fff;
+  --wl-light-grey: #999;
+  --wl-dark-grey: #666;
+
+  // theme colors
+  --wl-theme-color: #27ae60;
+  --wl-active-color: #2ecc71;
+
+  // layout colors
+  --wl-color: #444;
+  --wl-bgcolor: #fff;
+  --wl-bgcolor-light: #f8f8f8;
+  --wl-bgcolor-hover: #f0f0f0;
+  --wl-border-color: #ddd;
+  --wl-disable-bgcolor: #f8f8f8;
+  --wl-disable-color: #000;
+  --wl-code-bgcolor: #282c34;
+
+  // special colors
+  --wl-bq-color: #f0f0f0;
+
+  // avatar
+  --wl-avatar-size: 3.25rem;
+  --wl-m-avatar-size: calc(var(--wl-avatar-size) * 9 / 13);
+
+  // badge
+  --wl-badge-color: #3498db;
+  --wl-badge-font-size: 0.775em;
+
+  // info
+  --wl-info-bgcolor: #f8f8f8;
+  --wl-info-color: #999;
+  --wl-info-font-size: 0.625em;
+
+  // ====render choises====
+  //   ** using border **
+  --wl-border: 1px solid var(--wl-border-color);
+  --wl-avatar-radius: 50%;
+  --wl-box-shadow: none;
+
+  // ** using box-shadow **
+  // --wl-border: none;
+  // Light:
+  // --wl-box-shadow: 0 12px 40px rgb(134 151 168 / 25%);
+  // Dark:
+  // --wl-box-shadow: 0 12px 40px #0f0e0d
+}

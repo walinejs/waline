@@ -1,0 +1,51 @@
+{
+  "name": "@waline/client-pure",
+  "version": "2.0.0-alpha.0",
+  "description": "pure client for waline comment system",
+  "keywords": [
+    "valine",
+    "waline",
+    "comment",
+    "blog"
+  ],
+  "repository": {
+    "url": "https://github.com/walinejs/waline"
+  },
+  "license": "MIT",
+  "main": "dist/Waline.min.js",
+  "browser": "dist/Waline.min.js",
+  "types": "dist/Waline.min.d.ts",
+  "scripts": {
+    "analyze": "cross-env ANALYZE=true webpack --mode=production --config ./build/webpack.config.js",
+    "build": "npm run build:normal && npm run build:no-style && npm run build:dts",
+    "build:dts": "rollup -c ./build/rollup.config.js",
+    "build:no-style": "webpack --mode=production --config ./build/webpack.noStyle.js",
+    "build:normal": "webpack --mode=production --config ./build/webpack.config.js",
+    "clean": "rimraf ./dist",
+    "dev": "webpack serve --mode=development --config ./build/webpack.config.js",
+    "lint": "eslint --ext .ts,.vue .",
+    "prepublish": "npm run build"
+  },
+  "browserslist": {
+    "production": [
+      ">0.5%",
+      "not dead",
+      "not ie 11",
+      "not op_mini all",
+      "last 2 years"
+    ],
+    "development": [
+      "last 2 chrome version",
+      "last 2 firefox version",
+      "last 2 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/autosize": "4.0.0",
+    "@types/marked": "3.0.2",
+    "autosize": "5.0.1",
+    "hanabi": "0.4.0",
+    "marked": "3.0.8",
+    "mitt": "3.0.0"
+  }
+}
