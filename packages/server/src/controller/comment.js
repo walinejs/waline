@@ -441,7 +441,12 @@ module.exports = class extends BaseRest {
 
   async putAction() {
     const data = this.post();
-    const oldData = await this.modelInstance.select({ objectId: this.id });
+    let oldData = await this.modelInstance.select({ objectId: this.id });
+    if (think.isEmpty(oldData)) {
+      return this.success();
+    }
+
+    oldData = oldData[0];
     const preUpdateResp = await this.hook('preUpdate', {
       ...data,
       objectId: this.id,
@@ -451,18 +456,22 @@ module.exports = class extends BaseRest {
       return this.fail(preUpdateResp);
     }
 
-    await this.modelInstance.update(data, { objectId: this.id });
+    const newData = await this.modelInstance.update(data, {
+      objectId: this.id,
+    });
 
     if (
       oldData.status === 'waiting' &&
       data.status === 'approved' &&
       oldData.pid
     ) {
-      let pComment = await this.modelInstance.select({ objectId: oldData.pid });
+      let pComment = await this.modelInstance.select({
+        objectId: oldData.pid,
+      });
       pComment = pComment[0];
 
       const notify = this.service('notify');
-      await notify.run(oldData, pComment, true);
+      await notify.run(newData, pComment, true);
     }
 
     await this.hook('postUpdate', data);
