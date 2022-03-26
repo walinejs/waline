@@ -18,12 +18,11 @@ export const user = {
         return;
       }
       if (window.opener) {
-        let token = window.TOKEN || sessionStorage.getItem('TOKEN');
-        if (!token) {
-          token = localStorage.getItem('TOKEN');
-        }
+        const localToken = localStorage.getItem('TOKEN');
+        const remember = !!localToken;
+        const token = localToken || window.TOKEN || sessionStorage.getItem('token');
         window.opener.postMessage(
-          { type: 'userInfo', data: { token, ...user } },
+          { type: 'userInfo', data: { token, remember, ...user } },
           '*'
         );
       }
