@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import * as ReactDOM from 'react-dom/client';
 import App from './App';
 import { store } from './store';
 
@@ -36,15 +36,15 @@ async function run() {
     }
   );
 
-  const root = document.createElement('div');
-  root.style.height = '100%';
-  document.body.appendChild(root);
+  const container = document.createElement('div');
+  container.style.height = '100%';
+  document.body.appendChild(container);
 
-  ReactDOM.render(
+  const root = ReactDOM.createRoot(container);
+  root.render(
     <React.StrictMode>
       <App />
-    </React.StrictMode>,
-    root
+    </React.StrictMode>
   );
 }
 
