@@ -6,12 +6,21 @@ module.exports = class extends MySQL {
   }
 
   async select(...args) {
-    const data = await super.select(...args);
+    const data = await super.select(...args.map(x=>{
+      if (x.field && x.desc) {
+        return {
+          desc: x.desc.toLowerCase(),
+          field: x.field.map(y=>y.toLowerCase()),
+        }
+      }
+      return x
+    }));
+
     return data.map(({ insertedat, createdat, updatedat, ...item }) => {
       const mapFields = {
-        insertedAt: insertedat,
-        createdAt: createdat,
-        updatedAt: updatedat,
+        insertedat: insertedat,
+        createdat: createdat,
+        updatedat: updatedat,
       };
       for (const field in mapFields) {
         if (!mapFields[field]) {
