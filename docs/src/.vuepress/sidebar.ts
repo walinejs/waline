@@ -31,7 +31,6 @@ export const zhSidebarConfig = defineSidebarConfig({
         'cloudbase',
         'deta',
         'railway',
-        'inspirecloud',
         'baidu-cfc',
         'aliyun-fc',
         'vps-deploy',

@@ -42,7 +42,6 @@ body:
         - CloudBase
         - Docker
         - VPS, VirtualHost
-        - InspireCloud
         - Baidu CFC
         - Aliyun FC
         - Render
@@ -66,4 +65,3 @@ body:
         - PostgreSQL
         - GitHub
         - Deta Base
-        - InspireCloud
