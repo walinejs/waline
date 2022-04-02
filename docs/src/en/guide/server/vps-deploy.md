@@ -1,5 +1,5 @@
 ---
-title: Independent deployment
+title: Self Host
 icon: server
 ---
 

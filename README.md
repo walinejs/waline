@@ -29,7 +29,7 @@ English | [中文](https://github.com/walinejs/waline/blob/main/README_CN.md) | 
 |                                          | [Railway](https://railway.app)      | MySQL                                             |
 |                                          | [Render](https://render.com)        | SQLite                                            |
 |                                          | Docker                              | PostgreSQL                                        |
-|                                          | Virtual Host                        | [GitHub](https://github.com)                      |
+|                                          | self host                           | [GitHub](https://github.com)                      |
 |                                          |                                     | [Deta Base](https://docs.deta.sh/docs/base/about) |
 
 ## Todo
