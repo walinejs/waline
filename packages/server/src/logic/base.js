@@ -17,7 +17,13 @@ module.exports = class extends think.Logic {
       secureDomains = think.isArray(secureDomains)
         ? secureDomains
         : [secureDomains];
-      secureDomains.push('localhost', '127.0.0.1', 'github.com', 'api.twitter.com', 'www.facebook.com');
+      secureDomains.push(
+        'localhost',
+        '127.0.0.1',
+        'github.com',
+        'api.twitter.com',
+        'www.facebook.com'
+      );
 
       const match = secureDomains.some((domain) =>
         think.isFunction(domain.test)

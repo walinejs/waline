@@ -57,5 +57,12 @@
   "cancel": "Cancel",
   "at": "At",
   "get userinfo failed": "Get userinfo failed!",
-  "register success! please go to your mailbox to verify it!": "Register success! Please go to your mailbox to verify it!"
+  "register success! please go to your mailbox to verify it!": "Register success! Please go to your mailbox to verify it!",
+  "migration": "Migration",
+  "exporting": "Exporting…",
+  "export": "Export",
+  "importing": "Importing…",
+  "import": "Import",
+  "import success": "Import Success",
+  "import clear data confirm": "Notice! All current data will be overwrited by importing data, do you really want to continue?"
 }
