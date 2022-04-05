@@ -46,7 +46,7 @@ module.exports = class extends BaseRest {
         }
       }
       return this.success();
-    } catch(e) {
+    } catch (e) {
       if (think.isPrevent(e)) {
         return this.success();
       }

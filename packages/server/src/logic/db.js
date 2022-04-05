@@ -8,7 +8,7 @@ module.exports = class extends Base {
     if (think.isEmpty(userInfo)) {
       return this.fail(401);
     }
-    
+
     if (userInfo.type !== 'administrator') {
       return this.fail(403);
     }
