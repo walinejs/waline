@@ -6,6 +6,7 @@ import Login from './pages/login';
 import ManageComments from './pages/manage-comments';
 import Register from './pages/register';
 import Profile from './pages/profile';
+import Migration from './pages/migration';
 
 function Access(props) {
   const user = useSelector((state) => state.user);
@@ -41,6 +42,15 @@ export default function () {
             element={
               <Access meta={{ auth: 'administrator' }} basename={basepath}>
                 <ManageComments />
+              </Access>
+            }
+          />
+          <Route
+            path="/ui/migration"
+            exact
+            element={
+              <Access meta={{ auth: 'administrator' }} basename={basepath}>
+                <Migration />
               </Access>
             }
           />

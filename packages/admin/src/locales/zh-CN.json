@@ -57,5 +57,12 @@
   "cancel": "取消",
   "at": "于",
   "get userinfo failed": "获取用户信息失败",
-  "register success! please go to your mailbox to verify it!": "注册成功！请到你的个人邮箱中确认注册！"
+  "register success! please go to your mailbox to verify it!": "注册成功！请到你的个人邮箱中确认注册！",
+  "migration": "导入导出",
+  "exporting": "导出中...",
+  "export": "导出",
+  "importing": "导入中...",
+  "import": "导入",
+  "import success": "导入成功",
+  "import clear data confirm": "注意！导入数据会覆盖当前所有数据，请确认是否继续操作？"
 }
