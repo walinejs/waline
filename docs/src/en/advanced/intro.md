@@ -20,18 +20,17 @@ A simple comment system with backend support fork from [Valine](https://valine.j
 - Deploy free!
 - Multiple deploy and storage service support, at least 84 deploy style choice!
 
-  |                                          | Waline                                   |                                                                               |
-  | ---------------------------------------- | ---------------------------------------- | ----------------------------------------------------------------------------- |
-  | **Client**                               | **Server**                               | **Storage**                                                                   |
-  | [@waline/client](https://waline.js.org)  | [Vercel](https://vercel.com)             | [LeanCloud](https://leancloud.app)                                            |
-  | [MiniValine](https://minivaline.js.org/) | [Deta](https://deta.sh)                  | [CloudBase](https://clodbase.net)                                             |
-  |                                          | [CloudBase](https://cloudbase.net/)      | [MongoDB](https://mongodb.com)                                                |
-  |                                          | [InspireCloud](https://inspirecloud.com) | MySQL                                                                         |
-  |                                          | [Railway](https://railway.app)           | SQLite                                                                        |
-  |                                          | [Render](https://render.com)             | PostgreSQL                                                                    |
-  |                                          | Docker                                   | [GitHub](https://github.com)                                                  |
-  |                                          | Virtual Host                             | [Deta Base](https://docs.deta.sh/docs/base/about)                             |
-  |                                          |                                          | [InspireCloud](https://inspirecloud.com/docs/nodejs/database/quickstart.html) |
+|                                          | Waline                              |                                                   |
+| ---------------------------------------- | ----------------------------------- | ------------------------------------------------- |
+| **Client**                               | **Server**                          | **Storage**                                       |
+| [@waline/client](https://waline.js.org)  | [Vercel](https://vercel.com)        | [LeanCloud](https://leancloud.app)                |
+| [MiniValine](https://minivaline.js.org/) | [Deta](https://deta.sh)             | [CloudBase](https://clodbase.net)                 |
+|                                          | [CloudBase](https://cloudbase.net/) | [MongoDB](https://mongodb.com)                    |
+|                                          | [Railway](https://railway.app)      | MySQL                                             |
+|                                          | [Render](https://render.com)        | SQLite                                            |
+|                                          | Docker                              | PostgreSQL                                        |
+|                                          | self host                           | [GitHub](https://github.com)                      |
+|                                          |                                     | [Deta Base](https://docs.deta.sh/docs/base/about) |
 
 ## Todo
 

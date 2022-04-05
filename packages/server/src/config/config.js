@@ -17,7 +17,6 @@ const {
   AVATAR_PROXY,
   GITHUB_TOKEN,
   DETA_PROJECT_KEY,
-  INSPIRECLOUD_SERVICE_SECRET,
   OAUTH_URL,
 
   MARKDOWN_CONFIG = '{}',
@@ -64,9 +63,6 @@ if (LEAN_KEY) {
 } else if (DETA_PROJECT_KEY) {
   storage = 'deta';
   jwtKey = jwtKey || DETA_PROJECT_KEY;
-} else if (INSPIRECLOUD_SERVICE_SECRET) {
-  storage = 'inspirecloud';
-  jwtKey = jwtKey || INSPIRECLOUD_SERVICE_SECRET;
 }
 
 if (think.env === 'cloudbase' && storage === 'sqlite') {

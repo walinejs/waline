@@ -6,7 +6,6 @@
   "license": "MIT",
   "author": "lizheming <i@imnerd.org>",
   "dependencies": {
-    "@byteinspire/api": "^1.0.12",
     "@cloudbase/node-sdk": "^2.9.0",
     "@koa/cors": "^3.2.0",
     "akismet": "^2.0.6",

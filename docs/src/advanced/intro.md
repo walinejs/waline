@@ -20,19 +20,18 @@ icon: intro
 - 免费部署
 - 多种部署部署方式和存储服务支持，每列选择一项多达 84 种部署方式任君选择
 
-  |                                          | Waline                                                          |                                                                    |
-  | ---------------------------------------- | --------------------------------------------------------------- | ------------------------------------------------------------------ |
-  | **客户端脚本**                           | **服务端部署**                                                  | **数据存储**                                                       |
-  | [@waline/client](https://waline.js.org)  | [Vercel](https://vercel.com)                                    | [LeanCloud](https://leancloud.app)                                 |
-  | [MiniValine](https://minivaline.js.org/) | [Deta](https://deta.sh)                                         | [CloudBase](https://clodbase.net)                                  |
-  |                                          | [CloudBase](https://cloudbase.net/)                             | [MongoDB](https://mongodb.com)                                     |
-  |                                          | [轻服务](https://qingfuwu.cn)                                   | MySQL                                                              |
-  |                                          | [百度云 CFC](https://console.bce.baidu.com/cfc/#/cfc/functions) | SQLite                                                             |
-  |                                          | [阿里云 FC](https://fc.console.aliyun.com/)                     | PostgreSQL                                                         |
-  |                                          | [Railway](https://railway.app)                                  | [GitHub](https://github.com)                                       |
-  |                                          | [Render](https://render.com)                                    | [Deta Base](https://docs.deta.sh/docs/base/about)                  |
-  |                                          | Docker                                                          | [轻服务](https://qingfuwu.cn/docs/nodejs/database/quickstart.html) |
-  |                                          | 独立部署                                                        |                                                                    |
+|                                          | Waline                                                          |                                                   |
+| ---------------------------------------- | --------------------------------------------------------------- | ------------------------------------------------- |
+| **客户端脚本**                           | **服务端部署**                                                  | **数据存储**                                      |
+| [@waline/client](https://waline.js.org)  | [Vercel](https://vercel.com)                                    | [LeanCloud](https://leancloud.app)                |
+| [MiniValine](https://minivaline.js.org/) | [Deta](https://deta.sh)                                         | [CloudBase](https://clodbase.net)                 |
+|                                          | [CloudBase](https://cloudbase.net/)                             | [MongoDB](https://mongodb.com)                    |
+|                                          | [百度云 CFC](https://console.bce.baidu.com/cfc/#/cfc/functions) | MySQL                                             |
+|                                          | [阿里云 FC](https://fc.console.aliyun.com/)                     | SQLite                                            |
+|                                          | [Railway](https://railway.app)                                  | PostgreSQL                                        |
+|                                          | [Render](https://render.com)                                    | [GitHub](https://github.com)                      |
+|                                          | Docker                                                          | [Deta Base](https://docs.deta.sh/docs/base/about) |
+|                                          | 独立部署                                                        |                                                   |
 
 ## Todo
 
