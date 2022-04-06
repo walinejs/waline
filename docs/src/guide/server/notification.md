@@ -106,6 +106,16 @@ Telegram 通知通过 Telegram bot 机器人实现，需要配置以下几个环
 - `SITE_NAME`: 网站名称，用于在消息中显示。
 - `SITE_URL`: 网站地址，用于在消息中显示。
 
+## Discord 通知
+
+Discord 通知通过 Discord Webhook 实现，需要配置以下几个环境变量：
+
+- `DISCORD_WEBHOOK`：Discord Webhook 地址，[如何创建 Discord Webhook](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks)？
+- `DISCORD_TEMPLATE`：发送模板
+- `AUTHOR_EMAIL`: 博主邮箱，用来区分发布的评论是否是博主本身发布的。如果是博主发布的则不进行提醒通知。
+- `SITE_NAME`: 网站名称，用于在消息中显示。
+- `SITE_URL`: 网站地址，用于在消息中显示。
+
 ## 通知模板
 
 Waline 支持为每个平台分别配置您自定义的通知模板，从而实现更强大的自定义能力与多语言兼容性。

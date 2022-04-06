@@ -36,6 +36,7 @@ const {
   QQ_TEMPLATE,
   TG_TEMPLATE,
   WX_TEMPLATE,
+  DISCORD_TEMPLATE,
 } = process.env;
 
 let storage = 'leancloud';
@@ -113,4 +114,5 @@ module.exports = {
   QQTemplate: QQ_TEMPLATE,
   TGTemplate: TG_TEMPLATE,
   WXTemplate: WX_TEMPLATE,
+  DiscordTemplate: DISCORD_TEMPLATE,
 };

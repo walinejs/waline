@@ -82,6 +82,16 @@ We use Telegram bot to send Telegram notification. You need to set the following
 - `SITE_NAME`: Your site name, it will be displayed in notification message.
 - `SITE_URL`: Your site url, it will be displayed in notification message.
 
+## Discord Notification
+
+We use Discord Webhook to send Discord notification. You need to set the following env.
+
+- `DISCORD_WEBHOOK`: Discord Webhook url, [How to create Discord Webhook url](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks)?
+- `DISCORD_TEMPLATE`: Send template
+- `AUTHOR_EMAIL`: The blogger’s email is used to distinguish whether the posted comment is posted by the blogger himself. If it is posted by the blogger, there will be no reminder notification.
+- `SITE_NAME`: Your site name, it will be displayed in notification message.
+- `SITE_URL`: Your site url, it will be displayed in notification message.
+
 ## Notification Template
 
 Waline supports configuring your customized notification templates for each platform separately to achieve stronger customization capabilities and i18n compatibility.
