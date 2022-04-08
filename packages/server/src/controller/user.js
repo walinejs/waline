@@ -78,7 +78,7 @@ module.exports = class extends BaseRest {
   }
 
   async putAction() {
-    const { display_name, url, password } = this.post();
+    const { display_name, url, avatar, password } = this.post();
     const { objectId } = this.ctx.state.userInfo;
 
     const updateData = {};
@@ -89,6 +89,10 @@ module.exports = class extends BaseRest {
 
     if (url) {
       updateData.url = url;
+    }
+
+    if (avatar) {
+      updateData.avatar = avatar;
     }
 
     if (password) {
