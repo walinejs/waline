@@ -64,5 +64,7 @@
   "importing": "Importing…",
   "import": "Import",
   "import success": "Import Success",
-  "import clear data confirm": "Notice! All current data will be overwrited by importing data, do you really want to continue?"
+  "import clear data confirm": "Notice! All current data will be overwrited by importing data, do you really want to continue?",
+  "please input avatar url": "Please input avatar URL",
+  "change avatar": "Change avatar"
 }

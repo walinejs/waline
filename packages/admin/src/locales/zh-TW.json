@@ -64,5 +64,7 @@
   "importing": "導入中...",
   "import": "導入",
   "import success": "導入成功",
-  "import clear data confirm": "注意！導入數據會覆蓋當前所有数据，请确认是否继续操作？"
+  "import clear data confirm": "注意！導入數據會覆蓋當前所有数据，请确认是否继续操作？",
+  "please input avatar url": "請輸入頭像 URL",
+  "change avatar": "修改頭像"
 }
