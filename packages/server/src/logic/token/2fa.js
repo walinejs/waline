@@ -5,7 +5,7 @@ module.exports = class extends Base {
     const { email } = this.get();
     const { userInfo } = this.ctx.state;
 
-    if (think.isEmpty(userInfo) || !email) {
+    if (think.isEmpty(userInfo) && !email) {
       return this.fail(401);
     }
   }

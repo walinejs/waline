@@ -5,7 +5,7 @@ module.exports = class extends BaseRest {
   async getAction() {
     const { userInfo } = this.ctx.state;
     const { email } = this.get();
-    
+
     if (think.isEmpty(userInfo) && email) {
       const userModel = this.service(
         `storage/${this.config('storage')}`,
@@ -15,7 +15,7 @@ module.exports = class extends BaseRest {
       const user = await userModel.select({ email }, {
         field: [ '2fa' ]
       });
-      const is2FAEnabled = !think.isEmpty(user) && user[0]['2fa'];
+      const is2FAEnabled = !think.isEmpty(user) && Boolean(user[0]['2fa']);
       return this.success({ enable: is2FAEnabled });
     }
     
