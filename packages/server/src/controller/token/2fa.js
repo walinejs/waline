@@ -4,6 +4,21 @@ const BaseRest = require('../rest');
 module.exports = class extends BaseRest {
   async getAction() {
     const { userInfo } = this.ctx.state;
+    const { email } = this.get();
+    
+    if (think.isEmpty(userInfo) && email) {
+      const userModel = this.service(
+        `storage/${this.config('storage')}`,
+        'Users'
+      );
+
+      const user = await userModel.select({ email }, {
+        field: [ '2fa' ]
+      });
+      const is2FAEnabled = !think.isEmpty(user) && user[0]['2fa'];
+      return this.success({ enable: is2FAEnabled });
+    }
+    
     const name = `waline_${userInfo.objectId}`;
     if (userInfo['2fa'] && userInfo['2fa'].length == 32) {
       return this.success({

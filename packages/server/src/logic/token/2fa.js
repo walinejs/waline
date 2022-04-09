@@ -1,18 +1,21 @@
 const Base = require('../base');
 
 module.exports = class extends Base {
-  async __before(...args) {
-    await super.__before(...args);
-
+  async getAction() {
+    const { email } = this.get();
     const { userInfo } = this.ctx.state;
-    if (think.isEmpty(userInfo)) {
+
+    if (think.isEmpty(userInfo) || !email) {
       return this.fail(401);
     }
   }
 
-  async getAction() {}
-
   async postAction() {
+    const { userInfo } = this.ctx.state;
+    if (think.isEmpty(userInfo)) {
+      return this.fail(401);
+    }
+
     this.rules = {
       code: {
         required: true,
