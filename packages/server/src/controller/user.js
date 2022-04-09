@@ -80,6 +80,7 @@ module.exports = class extends BaseRest {
   async putAction() {
     const { display_name, url, avatar, password } = this.post();
     const { objectId } = this.ctx.state.userInfo;
+    const twoFactorAuth = this.post('2fa');
 
     const updateData = {};
 
@@ -97,6 +98,10 @@ module.exports = class extends BaseRest {
 
     if (password) {
       updateData.password = new PasswordHash().hashPassword(password);
+    }
+
+    if (think.isString(twoFactorAuth)) {
+      updateData['2fa'] = twoFactorAuth;
     }
 
     const socials = ['github', 'twitter', 'facebook', 'google', 'weibo', 'qq'];
