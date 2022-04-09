@@ -49,6 +49,7 @@
     "i18next": "^21.6.14",
     "i18next-browser-languagedetector": "^6.1.4",
     "md5": "^2.3.0",
+    "qrcode.react": "^3.0.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-i18next": "^11.16.2",

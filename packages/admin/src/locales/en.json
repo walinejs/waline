@@ -66,5 +66,17 @@
   "import success": "Import Success",
   "import clear data confirm": "Notice! All current data will be overwrited by importing data, do you really want to continue?",
   "please input avatar url": "Please input avatar URL",
-  "change avatar": "Change avatar"
+  "change avatar": "Change avatar",
+  "minimum 6 characters required": "Minimum 6 characters required!",
+  "close 2fa confirm": "Two-step verification can greatly improve the security of your account. Are you sure to turn it off?",
+  "two factor auth": "Two-step verification",
+  "enable 2fa": "Enable Two-step verification",
+  "disable 2fa": "Disable Two-step verification",
+  "2fa description 1": "Two-step verification, as can be seen from the name, \"two-step\" is the focus of 2FA, and 2FA in a broad sense refers to providing a variety of solutions to complete user authorization authentication.",
+  "2fa description 2": "After enabling two-step verification, to log in to the background of the system, in addition to the user name and password, additional tokens must be provided, which can greatly improve the security of the system.",
+  "next step": "Next Step",
+  "download 2fa app": "Download Two-step verification app",
+  "open app and scan qrcode": "Open the Two-step verification app and scan the QR code below",
+  "input 2fa code": "Input Two-step verification code",
+  "2fa code": "Two-step verification code"
 }
