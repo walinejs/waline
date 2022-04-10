@@ -12,13 +12,16 @@ module.exports = class extends BaseRest {
         'Users'
       );
 
-      const user = await userModel.select({ email }, {
-        field: [ '2fa' ]
-      });
+      const user = await userModel.select(
+        { email },
+        {
+          field: ['2fa'],
+        }
+      );
       const is2FAEnabled = !think.isEmpty(user) && Boolean(user[0]['2fa']);
       return this.success({ enable: is2FAEnabled });
     }
-    
+
     const name = `waline_${userInfo.objectId}`;
     if (userInfo['2fa'] && userInfo['2fa'].length == 32) {
       return this.success({
