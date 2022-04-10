@@ -150,17 +150,17 @@ Waline 支持为每个平台分别配置您自定义的通知模板，从而实�
 - TG_TEMPLATE:
 
   ````md
-  💬 _[{{site.name}}]({{site.url}}) 有新评论啦_
+  💬 *[{{site.name}}]({{site.url}}) 有新评论啦*
 
-  _{{self.nick}}_ 回复说:
+  *{{self.nick}}* 回复说:
 
   ```
-  {{self.comment-}}
+  {{self.comment}}
   ```
 
-  {{-self.commentLink}}
-  _邮箱_: `{{self.mail}}`
-  _审核_: {{self.status}}
+  {{self.commentLink}}
+  *邮箱*: `{{self.mail}}`
+  *审核*: {{self.status}}
 
   仅供评论预览，点击 [查看完整內容]({{site.postUrl}})
   ````
