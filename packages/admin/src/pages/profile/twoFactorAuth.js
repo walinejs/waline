@@ -32,12 +32,15 @@ export default function () {
   };
 
   const close2FA = async () => {
-    if (!confirm('close 2fa confirm')) {
+    if (!confirm(t('close 2fa confirm'))) {
       return;
     }
 
     setUpdating(true);
-    await updateProfile({ ['2fa']: '' });
+    await updateProfile({ ['2fa']: '' }).catch((reason) => {
+      alert(reason);
+      console.error(reason);
+    });
     setUpdating(false);
     location.reload();
   };
@@ -63,7 +66,7 @@ export default function () {
       ) : null}
       {!user['2fa'] && step === 1 && (
         <div>
-          <p>{t('2fa decription 1')}</p>
+          <p>{t('2fa description 1')}</p>
           <p>{t('2fa description 2')}</p>
           <button className="btn primary" onClick={() => setStep(2)}>
             {t('next step')}
