@@ -570,7 +570,7 @@ export default function () {
                                 <div className="comment-date">
                                   {formatDate(insertedAt)} {t('at')}{' '}
                                   <a
-                                    href={getPostUrl(url)}
+                                    href={`http://${getPostUrl(url)}`}
                                     target="_blank"
                                     rel="noreferrer"
                                   >
