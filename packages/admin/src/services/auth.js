@@ -31,4 +31,4 @@ export async function forgot({ email }) {
     method: 'PUT',
     body: { email },
   });
-};
+}
