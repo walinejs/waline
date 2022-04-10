@@ -388,8 +388,8 @@ export default function () {
                     <thead>
                       <tr>
                         <th> </th>
-                        <th>{t('author')}</th>
                         <th> </th>
+                        <th>{t('author')}</th>
                         <th>{t('content')}</th>
                       </tr>
                     </thead>
