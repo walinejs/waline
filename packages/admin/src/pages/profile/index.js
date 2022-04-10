@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation, Trans } from 'react-i18next';
 import Header from '../../components/Header';
 import { updateProfile } from '../../services/user';
+import TwoFactorAuth from './twoFactorAuth';
 
 import * as Icons from '../../components/icon';
 
@@ -277,6 +278,9 @@ export default function () {
                   </ul>
                 </form>
               </section>
+              <br />
+              <TwoFactorAuth />
+              <br />
             </div>
           </div>
         </div>

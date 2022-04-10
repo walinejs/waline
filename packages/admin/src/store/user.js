@@ -29,8 +29,8 @@ export const user = {
       }
       return dispatch.user.setUser(user);
     },
-    async login({ email, password, remember }) {
-      const { token, ...user } = await login({ email, password });
+    async login({ email, password, code, remember }) {
+      const { token, ...user } = await login({ email, password, code });
       if (token) {
         window.TOKEN = token;
         sessionStorage.setItem('TOKEN', token);

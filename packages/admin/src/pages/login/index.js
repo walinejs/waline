@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { get2FAToken } from '../../services/user';
 
 import Header from '../../components/Header';
 
@@ -13,6 +14,7 @@ export default function () {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
   const [error, setError] = useState(false);
+  const [is2FAEnabled, enable2FA] = useState(false);
   const match = location.pathname.match(/(.*?)\/ui/);
   const basepath = match && match[1] ? match[1] : '/';
 
@@ -33,6 +35,7 @@ export default function () {
 
     const email = e.target.email.value;
     const password = e.target.password.value;
+    const code = e.target.code ? e.target.code.value : '';
     const remember = e.target.remember.checked;
     if (!email) {
       return setError(t('please input email'));
@@ -40,12 +43,25 @@ export default function () {
     if (!password) {
       return setError(t('please input password'));
     }
+    if (e.target.code && !code) {
+      return setError(t('please input 2fa code'));
+    }
 
     try {
-      await dispatch.user.login({ email, password, remember });
+      await dispatch.user.login({ email, password, code, remember });
     } catch (e) {
       setError(t('email or password error'));
     }
+  };
+
+  const check2FACode = async (e) => {
+    const email = e.target.value;
+    if (!email) {
+      return;
+    }
+
+    const data = await get2FAToken(email);
+    enable2FA(data.enable);
   };
 
   let baseUrl = window.serverURL;
@@ -82,6 +98,7 @@ export default function () {
                 name="email"
                 placeholder={t('email')}
                 className="text-l w-100"
+                onBlur={check2FACode}
               />
             </p>
             <p>
@@ -96,6 +113,20 @@ export default function () {
                 placeholder={t('password')}
               />
             </p>
+            {is2FAEnabled && (
+              <p>
+                <label htmlFor="code" className="sr-only">
+                  {t('2fa code')}
+                </label>
+                <input
+                  type="text"
+                  id="code"
+                  name="code"
+                  className="text-l w-100"
+                  placeholder={t('2fa code')}
+                />
+              </p>
+            )}
             <p className="submit">
               <button type="submit" className="btn btn-l w-100 primary">
                 {t('login')}

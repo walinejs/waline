@@ -66,5 +66,17 @@
   "import success": "導入成功",
   "import clear data confirm": "注意！導入數據會覆蓋當前所有数据，请确认是否继续操作？",
   "please input avatar url": "請輸入頭像 URL",
-  "change avatar": "修改頭像"
+  "change avatar": "修改頭像",
+  "minimum 6 characters required": "請輸入 6 位驗證碼",
+  "close 2fa confirm": "兩步驗證可以大大提升賬戶的安全性，確定關閉嗎？",
+  "two factor auth": "兩步驗證",
+  "enable 2fa": "開啟兩步驗證",
+  "disable 2fa": "關閉兩步驗證",
+  "2fa description 1": "兩步驗證，對應的英文是 Two-factor Authentication(2FA)，或者 Two-step Verification。從名字可以看出， 「兩步」是 2FA 的重點，廣義的 2FA 是指提供多種方案完成用戶權限鑑定。",
+  "2fa description 2": "開啟兩步驗證後，登錄系統後台，除了要提供用戶名和密碼外，還要提供額外的 Token，這樣可以大大提高系統的安全性。",
+  "next step": "下一步",
+  "download 2fa app": "下載對應的應用",
+  "open app and scan qrcode": "打開兩步驗證的應用，掃描下面的二維碼",
+  "input 2fa code": "填寫 6 位驗證碼",
+  "2fa code": "兩步驗證碼"
 }

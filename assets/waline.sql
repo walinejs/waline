@@ -64,6 +64,7 @@ CREATE TABLE `wl_Users` (
   `google` varchar(255) DEFAULT NULL,
   `weibo` varchar(255) DEFAULT NULL,
   `qq` varchar(255) DEFAULT NULL,
+  `2fa` varchar(32) DEFAULT NULL,
   `createdAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
