@@ -335,7 +335,7 @@ module.exports = class extends think.Service {
     title = nunjucks.renderString(title, data);
     content = nunjucks.renderString(
       think.config('DiscordTemplate') ||
-        `💬 {{site.name|safe}}的文章《{{postName}}》有新评论啦 
+        `💬 {{site.name|safe}} 有新评论啦 
     【评论者昵称】：{{self.nick}}
     【评论者邮箱】：{{self.mail}} 
     【内容】：{{self.comment}} 
