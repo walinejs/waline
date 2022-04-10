@@ -24,3 +24,11 @@ export async function logout() {
 export async function register(user) {
   return request({ url: 'user', method: 'POST', body: user });
 }
+
+export async function forgot({ email }) {
+  return request({
+    url: 'user/password',
+    method: 'PUT',
+    body: { email },
+  });
+}
