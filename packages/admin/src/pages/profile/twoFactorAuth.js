@@ -75,24 +75,21 @@ export default function () {
           <h4>{t('download 2fa app')}</h4>
           <ul className="step2-apps">
             <li>
-              For Android, iOS:
-              <a href="https://support.google.com/accounts/answer/1066447?hl=en">
+              <a href="https://www.microsoft.com/security/mobile-authenticator-app">
                 {' '}
-                Google Authenticator
+                Microsoft Authenticator
               </a>
             </li>
             <li>
-              For Android and iOS:
-              <a href="http://guide.duosecurity.com/third-party-accounts">
+              <a href="https://2fas.com/">
                 {' '}
-                Duo Mobile
+                2FAS
               </a>
             </li>
             <li>
-              For Windows Phone:
-              <a href="https://www.microsoft.com/en-US/store/apps/Authenticator/9WZDNCRFJ3RJ">
+              <a href="https://authy.com/">
                 {' '}
-                Authenticator
+                Twilio Authy
               </a>
             </li>
           </ul>
