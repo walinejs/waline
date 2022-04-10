@@ -78,5 +78,10 @@
   "download 2fa app": "Download Two-step verification app",
   "open app and scan qrcode": "Open the Two-step verification app and scan the QR code below",
   "input 2fa code": "Input Two-step verification code",
-  "2fa code": "Two-step verification code"
+  "2fa code": "Two-step verification code",
+  "forgot password": "Forgot Password",
+  "get new password": "Get a new password",
+  "you will receive an email which contains a link to create new password": "You'll receive an email which contains a link to create new password.",
+  "find password success! please go to your mailbox to reset it!": "The reset password email has been sent successfully, please check it in your mailbox!",
+  "find password error! try again later": "Failed to send reset password email, please try again later!"
 }

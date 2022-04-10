@@ -87,6 +87,7 @@ export default function () {
       <div className="typecho-login-wrap">
         <div className="typecho-login">
           {/* <h1><a href="http://waline.js.org" className="i-logo">Waline</a></h1> */}
+
           <form method="post" name="login" role="form" onSubmit={onSubmit}>
             <p>
               <label htmlFor="email" className="sr-only">
@@ -132,7 +133,7 @@ export default function () {
                 {t('login')}
               </button>
             </p>
-            <p>
+            <p style={{ display: 'flex', justifyContent: 'space-between' }}>
               <label htmlFor="remember">
                 <input
                   type="checkbox"
@@ -142,6 +143,9 @@ export default function () {
                 />{' '}
                 {t('remember me')}
               </label>
+              <div className="right forgot-password">
+                <Link to="/ui/forgot">{t('forgot password')}</Link>
+              </div>
             </p>
           </form>
           <div className="social-accounts">

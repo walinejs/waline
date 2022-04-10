@@ -78,5 +78,10 @@
   "download 2fa app": "下載對應的應用",
   "open app and scan qrcode": "打開兩步驗證的應用，掃描下面的二維碼",
   "input 2fa code": "填寫 6 位驗證碼",
-  "2fa code": "兩步驗證碼"
+  "2fa code": "兩步驗證碼",
+  "forgot password": "忘記密碼",
+  "get new password": "獲取新密碼",
+  "you will receive an email which contains a link to create new password": "您會收到一封包含創建新密碼鏈接的電子郵件。",
+  "find password success! please go to your mailbox to reset it!": "重置密碼郵件發送成功，請去郵箱中查收！",
+  "find password error! try again later": "重置密碼郵件發送失敗，請稍後再試！"
 }
