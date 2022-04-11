@@ -34,7 +34,6 @@ Vercel 需要在 <kbd>Settings</kbd> - <kbd>Environment Variables</kbd> 中进�
 | `AVATAR_PROXY`      |      | 头像的代理地址，默认为 `https://avatar.75cdn.workers.dev`，设置 `false` 关闭代理                                        |
 | `GRAVATAR_STR`      |      | Gravatar 头像的地址，默认为 <span v-pre>`https://seccdn.libravatar.org/avatar/{{mail\|md5}}`</span>，基于 nunjucks 语法 |
 | `OAUTH_URL`         |      | OAuth 第三方登录服务地址，默认为 `https://user.75.team`，也可以使用 [auth](https://github.com/walinejs/auth) 自建       |
-| `WALINE_ADMIN_MODULE_ASSET_URL`         |      | 通过URL自定义后台的 JS 加载脚本，覆盖默认的@waline/admin|
 
 ### Markdown
 
