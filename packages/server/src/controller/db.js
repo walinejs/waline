@@ -1,6 +1,8 @@
-const fs = require('fs/promises');
+const fs = require('fs');
+const util = require('util');
 const BaseRest = require('./rest');
 
+const readFileAsync = util.promisify(fs.readFile);
 module.exports = class extends BaseRest {
   async getAction() {
     const exportData = {
@@ -17,7 +19,10 @@ module.exports = class extends BaseRest {
 
     for (let i = 0; i < exportData.tables.length; i++) {
       const tableName = exportData.tables[i];
-      const model = this.model(tableName);
+      const model = this.service(
+        `storage/${this.config('storage')}`,
+        tableName
+      );
       const data = await model.select({});
       exportData.data[tableName] = data;
     }
@@ -28,7 +33,7 @@ module.exports = class extends BaseRest {
   async postAction() {
     const file = this.file('file');
     try {
-      const jsonText = await fs.readFile(file.path, 'utf-8');
+      const jsonText = await readFileAsync(file.path, 'utf-8');
       const importData = JSON.parse(jsonText);
       if (!importData || importData.type !== 'waline') {
         return this.fail('import data format not support!');
