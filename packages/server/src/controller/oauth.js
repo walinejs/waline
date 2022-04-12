@@ -18,8 +18,8 @@ module.exports = class extends think.Controller {
     const hasCode =
       type === 'twitter' ? oauth_token && oauth_verifier : Boolean(code);
     if (!hasCode) {
-      const { protocol, host } = this.ctx;
-      const redirectUrl = `${protocol}://${host}/oauth?${qs.stringify({
+      const { serverURL } = this.ctx;
+      const redirectUrl = `${serverURL}/oauth?${qs.stringify({
         redirect,
         type,
       })}`;
@@ -36,8 +36,8 @@ module.exports = class extends think.Controller {
      */
     const params = { code, oauth_verifier, oauth_token };
     if (type === 'facebook') {
-      const { protocol, host } = this.ctx;
-      const redirectUrl = `${protocol}://${host}/oauth?${qs.stringify({
+      const { serverURL } = this.ctx;
+      const redirectUrl = `${serverURL}/oauth?${qs.stringify({
         redirect,
         type,
       })}`;

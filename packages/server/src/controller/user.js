@@ -58,9 +58,7 @@ module.exports = class extends BaseRest {
 
     const notify = this.service('notify');
     const apiUrl =
-      this.ctx.protocol +
-      '://' +
-      this.ctx.host +
+      this.ctx.serverURL +
       '/verification?' +
       qs.stringify({ token, email: data.email });
 

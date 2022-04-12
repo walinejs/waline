@@ -15,7 +15,7 @@ export default function () {
   const user = useSelector((state) => state.user);
   const [error, setError] = useState(false);
   const [is2FAEnabled, enable2FA] = useState(false);
-  const match = location.pathname.match(/(.*?)\/ui/);
+  const match = location.pathname.match(/(.*?\/)ui/);
   const basepath = match && match[1] ? match[1] : '/';
 
   useEffect(() => {
