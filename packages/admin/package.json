@@ -46,7 +46,7 @@
     "@rematch/core": "^2.2.0",
     "@svgr/webpack": "^6.2.1",
     "classnames": "^2.3.1",
-    "i18next": "^21.6.15",
+    "i18next": "^21.6.16",
     "i18next-browser-languagedetector": "^6.1.4",
     "md5": "^2.3.0",
     "qrcode.react": "^3.0.1",
