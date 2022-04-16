@@ -7,10 +7,10 @@
     "dev": "vuepress-vite dev src"
   },
   "devDependencies": {
-    "@vuepress/plugin-docsearch": "2.0.0-beta.36",
+    "@vuepress/plugin-docsearch": "2.0.0-beta.38",
     "@waline/client": "^1.6.0",
     "markdown-it-task-lists": "^2.1.1",
-    "vuepress-theme-hope": "2.0.0-beta.27",
-    "vuepress-vite": "2.0.0-beta.36"
+    "vuepress": "2.0.0-beta.39",
+    "vuepress-theme-hope": "2.0.0-beta.41"
   }
 }
