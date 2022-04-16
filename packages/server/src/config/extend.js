@@ -7,6 +7,11 @@ module.exports = [
   {
     context: {
       get serverURL() {
+        const { SERVER_URL } = process.env;
+        if (SERVER_URL) {
+          return SERVER_URL;
+        }
+
         const { protocol, host, path, controller } = this;
         return `${protocol}://${host}${path.slice(0, -controller.length)}`;
       },
