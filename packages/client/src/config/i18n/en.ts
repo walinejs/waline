@@ -1,7 +1,7 @@
 import { generateLocale } from './generate';
 
 export default generateLocale([
-  'NickName',
+  'Name',
   'NickName cannot be less than 3 bytes.',
   'E-Mail',
   'Please confirm your email address.',
