@@ -4,7 +4,6 @@ import zhCN from './zh-CN';
 import zhTW from './zh-TW';
 import ptBR from './pt-BR';
 import ru from './ru';
-import vi from './vi-VN';
 
 import type { Locale } from './typings';
 
@@ -28,7 +27,4 @@ export const locales: Locales = {
   ru: ru,
   'ru-ru': ru,
   'ru-RU': ru,
-  vi: vi,
-  'vi-vn': vi,
-  'vi-VN': vi,
 };
