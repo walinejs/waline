@@ -56,7 +56,7 @@ export const covertOptions = (
     Object.keys(options).includes(oldOption)
   ).forEach(([oldOption, newOption]) =>
     warning(
-      `Option "${oldOption}" was deprecated and is currently being polyfilled, Please switch to option "${newOption}" in v2!`
+      `Deprecated option "${oldOption}" is currently being polyfilled, Please switch to option "${newOption}" in v2!`
     )
   );
 
