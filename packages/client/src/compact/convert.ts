@@ -46,7 +46,7 @@ export const covertOptions = ({
   DROPPED_OPTIONS_WHICH_CAN_NOT_BE_POLYFILLED.filter((item) =>
     Object.keys(more).includes(item)
   ).forEach((item) =>
-    warning(`Option ${item} is removed and can NOT be polyfilled!`)
+    warning(`Option "${item}" is REMOVED and CAN NOT be polyfilled!`)
   );
 
   // warnings with those which can no longr be handled
@@ -54,7 +54,7 @@ export const covertOptions = ({
     Object.keys(more).includes(oldOption)
   ).forEach(([oldOption, newOption]) =>
     warning(
-      `Option ${oldOption} waas deprecated in v1 and is currently being polyfilled, Please move to option ${newOption} in v2!`
+      `Option "${oldOption}" was deprecated and is currently being polyfilled, Please switch to option "${newOption}" in v2!`
     )
   );
 
