@@ -163,7 +163,7 @@ export default function () {
               cmt.sticky = sticky;
             }
           });
-          await updateComment(comment.objectId, { sticky });
+          await updateComment(comment.objectId, { sticky: sticky ? 1 : 0 });
           setList({ ...list });
         },
       },
