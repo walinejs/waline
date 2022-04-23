@@ -33,7 +33,7 @@ Waline 服务端默认使用 [Libravatar 头像配置](../server/intro.md#头像
 
 你可以很轻松的使用 Waline 提供的预设或自己创建新的预设来自定义评论框内的 Emoji 表情，详见 [自定义 Emoji](./emoji.md)。
 
-Waline 内置了图像上传支持，默认将图片转为 Base64，你也可以通过 [`uploadImage` 选项](../../reference/client.md#uploadimage) 自定义图像上传。
+Waline 内置了图像上传支持，默认将图片转为 Base64，你也可以通过 [`imageUploader` 选项](../../reference/client.md#uploadimage) 自定义图像上传。
 
 ## 样式定义
 

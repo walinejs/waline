@@ -42,7 +42,7 @@ In most cases, this just means the following changes:
 
 - `highlight` renamed to `highlighter`
 
-- `math` renamed to `texRenderer`
+- `texRenderer` renamed to `texRenderer`
 
 - `visitor` renamed to `pageview`
 

@@ -33,7 +33,7 @@ Waline uses Gravatar, and also supports you to customize the default avatar, see
 
 You can easily use the presets provided by Waline or create new presets to customize the Emoji popup in the comment box, see [Custom Emoji](./emoji.md) for details.
 
-Waline has built-in image upload support, coverting image to Base64 , you can customize the image upload through [`uploadImage`](../../reference/client.md#uploadimage) option.
+Waline has built-in image upload support, coverting image to Base64 , you can customize the image upload through [`imageUploader`](../../reference/client.md#uploadimage) option.
 
 ## Custom Style
 

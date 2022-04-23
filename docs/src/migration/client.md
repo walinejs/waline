@@ -42,7 +42,7 @@ icon: migration
 
 - `highlight` 更名为 `highlighter`
 
-- `math` 更名为 `texRenderer`
+- `texRenderer` 更名为 `texRenderer`
 
 - `visitor` 更名为 `pageview`
 
