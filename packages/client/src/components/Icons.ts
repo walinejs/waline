@@ -5,7 +5,7 @@ export const CloseIcon: FunctionalComponent<{ size: number }> = ({ size }) =>
   h(
     'svg',
     {
-      class: 'vclose-icon',
+      class: 'wl-close-icon',
       viewBox: '0 0 1024 1024',
       width: size,
       height: size,
