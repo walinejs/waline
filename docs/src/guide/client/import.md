@@ -87,7 +87,7 @@ Waline 提供多个版本的文件:
 
   此文件为 `require` 引入 `@waline/client` 的默认文件，14.24 KB Gzip 大小
 
-- `dist/shim.esm.js`: 不含依赖捆绑的完整版本， ES module 格式
+- `dist/shim.esm.js`: 不含依赖捆绑的完整版本， ES Module 格式
 
   此文件为 `import` 引入 `@waline/client` 的默认文件, 14.14 KB Gzip 大小
 
@@ -105,11 +105,11 @@ Waline 提供多个版本的文件:
 
 - `dist/waline.cjs.js`: `dist/waline.js` 文件的 Common JS 格式
 
-- `dist/waline.esm.js`: `dist/waline.js` 文件的 ES module 格式
+- `dist/waline.esm.js`: `dist/waline.js` 文件的 ES Module 格式
 
 - `dist/pageview.cjs.js`: `dist/pageview.js` 文件的 Common JS 格式
 
-- `dist/pageview.esm.js`: `dist/pageview.js` 文件的 ES module 格式
+- `dist/pageview.esm.js`: `dist/pageview.js` 文件的 ES Module 格式
 
 ### 使用
 

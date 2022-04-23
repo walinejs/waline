@@ -83,7 +83,7 @@ Waline provides several versions of the file:
 
   This file is the default file when `require` `@waline/client`, 14.24 KB Gzip size
 
-- `dist/shim.esm.js`: full version without dependencies, ES module format
+- `dist/shim.esm.js`: full version without dependencies, ES Module format
 
   This file is the default file when `import` `@waline/client`, 14.14 KB Gzip size
 
@@ -101,11 +101,11 @@ Other format files:
 
 - `dist/waline.cjs.js`: Common JS format for `dist/waline.js` file
 
-- `dist/waline.esm.js`: ES module format of `dist/waline.js` file
+- `dist/waline.esm.js`: ES Module format of `dist/waline.js` file
 
 - `dist/pageview.cjs.js`: Common JS format for `dist/pageview.js` file
 
-- `dist/pageview.esm.js`: ES module format of `dist/pageview.js` file
+- `dist/pageview.esm.js`: ES Module format of `dist/pageview.js` file
 
 ### Usage
 
