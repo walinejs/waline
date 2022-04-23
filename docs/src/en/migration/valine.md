@@ -8,20 +8,21 @@ Since Waline completely reuses Valine's data structure in storage, migrating fro
 1. Deploy backend according to [Vercel Deploy](../guide/get-started.md#deploy-to-vercel-server) in _Get Started_ section. `LEAN_ID` and `LEAN_KEY` should be the same as those applied for when using Valine before. Don't forget to set `LEAN_MASTER_KEY` for Waline.
 1. Modifiy frontend scripts according to [HTML](../guide/get-started.md#importing-in-html-client) in _Get Started_ section. Please remind we should remove old configuration `appId` and `appKey` from Valine, and add `serverURL` option.
 
-```diff
-- <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
-+ <script src='//cdn.jsdelivr.net/npm/@waline/client'></script>
+   ```diff
+   - <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+   + <script src='//cdn.jsdelivr.net/npm/@waline/client@v2'></script>
+   + <link rel='style' href='//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.css' />
 
-  <script>
--  new Valine({
-+  Waline.init({
-    el: '#vcomments',
--   appId: 'Your appId',
--   appKey: 'Your appKey'
-+   serverURL: 'YOUR SERVER URL'
-  });
-  </script>
-```
+     <script>
+   -  new Valine({
+   +  Waline.init({
+       el: '#vcomments',
+   -   appId: 'Your appId',
+   -   appKey: 'Your appKey'
+   +   serverURL: 'YOUR SERVER URL'
+     });
+     </script>
+   ```
 
 ::: tip Config
 

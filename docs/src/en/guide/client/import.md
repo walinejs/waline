@@ -15,19 +15,16 @@ Recommend to use [jsdelivr](https://cdn.jsdelivr.net/npm/@waline/client/).
 
 ```html
 <!-- Use the short link to get latest default file -->
-<script src="//cdn.jsdelivr.net/npm/@waline/client"></script>
+<script src="//cdn.jsdelivr.net/npm/@waline/client@v2"></script>
 <!-- Styles -->
-<link
-  rel="style"
-  href="//cdn.jsdelivr.net/@waline/clien@latest/dist/waline.css"
-/>
+<link rel="style" href="//cdn.jsdelivr.net/@waline/client@v2/dist/waline.css" />
 ```
 
 ::: code-group-item Pageview Only
 
 ```html
 <!-- Pageview -->
-<script src="//cdn.jsdelivr.net/npm/@waline/client/dist/pageview.js"></script>
+<script src="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/pageview.js"></script>
 ```
 
 :::
@@ -39,8 +36,8 @@ Recommend to use [jsdelivr](https://cdn.jsdelivr.net/npm/@waline/client/).
 For CDN links, if you don't specify a version number, it will be latest version, so if you need to specify a specific version, you need to specify a version number in the format `@version` after `@waline/client`.
 
 ```html
-<!-- You need to modify and replace `1.0.0` with the version number you want -->
-<script src="//cdn.jsdelivr.net/npm/@waline/client@1.0.0/dist"></script>
+<!-- You need to modify and replace `v2` with the version number you want -->
+<script src="//cdn.jsdelivr.net/npm/@waline/client@v2/dist"></script>
 ```
 
 :::
@@ -56,7 +53,7 @@ Waline client has been released to [npm](https://www.npmjs.com/package/@waline/c
 ::: code-group-item yarn
 
 ```bash
-yarn add -D @waline/client
+yarn add -D @waline/client@v2
 ```
 
 :::
@@ -64,7 +61,7 @@ yarn add -D @waline/client
 ::: code-group-item npm
 
 ```bash
-npm i -D @waline/client
+npm i -D @waline/client@v2
 ```
 
 :::

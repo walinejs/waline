@@ -45,7 +45,7 @@ Waline supports comment and pageview statistics. For more information, please re
 
 ## SPA support
 
-Waline brings support for SPA (**S**ingle **P**age **A**pplication). If you are using an app with `history.pushState`, you can use the `update()` method of the `Waline()` instance to refresh config for the comment area, or you can use the `destory()` method on the instance to destroy Waline instance. See [SPA Support](./spa.md) for details.
+Waline brings support for SPA (**S**ingle **P**age **A**pplication). If you are using an app with `history.pushState`, you can use the `update()` method of the `Waline.init()` instance to refresh config for the comment area, or you can use the `destory()` method on the instance to destroy Waline instance. See [SPA Support](./spa.md) for details.
 
 ## Accessibility support
 

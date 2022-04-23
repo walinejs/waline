@@ -16,7 +16,8 @@ icon: valine
 
    ```diff
    - <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
-   + <script src='//cdn.jsdelivr.net/npm/@waline/client'></script>
+   + <script src='//cdn.jsdelivr.net/npm/@waline/client@v2'></script>
+   + <link rel='style' href='//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.css' />
 
      <script>
    -  new Valine({
