@@ -34,7 +34,7 @@
     "build": "npm run rollup && npm run style",
     "clean": "rimraf ./dist",
     "lint": "eslint --ext .ts,.vue .",
-    "prepublish": "npm run build",
+    "prepublish": "npm run clean && npm run build",
     "rollup": "rollup -c ./scripts/rollup.config.js",
     "style": "sass ./src/styles/index.scss ./dist/waline.css --style=compressed"
   },
