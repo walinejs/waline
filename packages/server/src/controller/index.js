@@ -13,7 +13,7 @@ module.exports = class extends think.Controller {
     </head>
     <body>
       <div id="waline" style="max-width: 800px;margin: 0 auto;"></div>
-      <script src="https://cdn.jsdelivr.net/npm/@waline/client@next"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@waline/client@next/dist/waline.js"></script>
       <link rel='style' href='//cdn.jsdelivr.net/npm/@waline/client@next/dist/waline.css' />
       <script>
         console.log(

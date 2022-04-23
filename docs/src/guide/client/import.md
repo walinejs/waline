@@ -9,15 +9,15 @@ Waline 提供多种版本的客户端文件。你可以通过多种方式引入 
 
 ## 通过 CDN
 
-推荐使用 [jsdelivr](https://cdn.jsdelivr.net/npm/@waline/client@next/)。
+推荐使用 [jsdelivr](https://cdn.jsdelivr.net/npm/@waline/client@next)。
 
 :::: code-group
 
 ::: code-group-item 推荐版本
 
 ```html
-<!-- 推荐的版本 -->
-<script src="//cdn.jsdelivr.net/npm/@waline/client@next"></script>
+<!-- 脚本文件 -->
+<script src="//cdn.jsdelivr.net/npm/@waline/client@next/dist/waline.js"></script>
 <!-- 样式文件 -->
 <link
   rel="style"
@@ -43,8 +43,8 @@ Waline 提供多种版本的客户端文件。你可以通过多种方式引入 
 对于 CDN 链接来说，不指定版本号时为最新版本，所以如果你需要指定特定版本，你需要在 `@waline/client` 后以 `@version` 的格式指定一个版本号。
 
 ```html
-<!-- 你需要自行修改替换 `v2` 为你想要的版本号 -->
-<script src="//cdn.jsdelivr.net/npm/@waline/client@next"></script>
+<!-- 你需要自行修改替换 `next` 为你想要的版本号 -->
+<script src="//cdn.jsdelivr.net/npm/@waline/client@next/dist/waline.js"></script>
 ```
 
 :::

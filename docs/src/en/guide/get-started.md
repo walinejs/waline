@@ -80,7 +80,10 @@ Welcome to Waline. In just a few steps, you can enable Waline to provide comment
 
 Make the following settings on your web page:
 
-1. Use CDN to import Waline: `//cdn.jsdelivr.net/npm/@waline/client@next`.
+1. Use CDN to import Waline:
+
+   - `//cdn.jsdelivr.net/npm/@waline/client@next/dist/waline.js`.
+   - `//cdn.jsdelivr.net/npm/@waline/client@next/dist/waline.css`.
 
 1. Create a `<script>` tag and initialize with `Waline.init()` while passing in the necessary `el` and `serverURL` options.
 
@@ -90,7 +93,7 @@ Make the following settings on your web page:
    ```html {8-14}:line-numbers
    <head>
      <!-- ... -->
-     <script src="//cdn.jsdelivr.net/npm/@waline/client@next"></script>
+     <script src="//cdn.jsdelivr.net/npm/@waline/client@next/dist/waline.js"></script>
      <link
        rel="style"
        href="//cdn.jsdelivr.net/npm/@waline/client@next/dist/waline.css"

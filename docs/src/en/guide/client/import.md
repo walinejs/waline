@@ -14,8 +14,8 @@ Recommend to use [jsdelivr](https://cdn.jsdelivr.net/npm/@waline/client/).
 ::: code-group-item Default
 
 ```html
-<!-- Use the short link to get latest default file -->
-<script src="//cdn.jsdelivr.net/npm/@waline/client@next"></script>
+<!-- Scripts -->
+<script src="//cdn.jsdelivr.net/npm/@waline/client@next/dist/waline.js"></script>
 <!-- Styles -->
 <link
   rel="style"
@@ -39,8 +39,8 @@ Recommend to use [jsdelivr](https://cdn.jsdelivr.net/npm/@waline/client/).
 For CDN links, if you don't specify a version number, it will be latest version, so if you need to specify a specific version, you need to specify a version number in the format `@version` after `@waline/client`.
 
 ```html
-<!-- You need to modify and replace `v2` with the version number you want -->
-<script src="//cdn.jsdelivr.net/npm/@waline/client@next/dist"></script>
+<!-- You need to modify and replace `next` with the version number you want -->
+<script src="//cdn.jsdelivr.net/npm/@waline/client@next/dist/waline.js"></script>
 ```
 
 :::

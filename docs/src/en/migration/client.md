@@ -18,9 +18,9 @@ We changed Waline's default export to `init` named export, and to make Waline SS
 In most cases, this just means the following changes:
 
 ```diff
-+ <link rel='style' href='//cdn.jsdelivr.net/npm/@waline/client@next/dist/waline.css' />
 - <script src='//cdn.jsdelivr.net/npm/@waline/client'></script>
-+ <script src='//cdn.jsdelivr.net/npm/@waline/client@next'></script>
++ <script src='//cdn.jsdelivr.net/npm/@waline/client@next/dist/waline.js'></script>
++ <link rel='style' href='//cdn.jsdelivr.net/npm/@waline/client@next/dist/waline.css' />
 
   <script>
 -  Waline({
