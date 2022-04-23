@@ -18,9 +18,9 @@ icon: migration
 在大多数情况下，这只意味着下列更改:
 
 ```diff
-+ <link rel='style' href='//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.css' />
++ <link rel='style' href='//cdn.jsdelivr.net/npm/@waline/client@next/dist/waline.css' />
 - <script src='//cdn.jsdelivr.net/npm/@waline/client'></script>
-+ <script src='//cdn.jsdelivr.net/npm/@waline/client@v2'></script>
++ <script src='//cdn.jsdelivr.net/npm/@waline/client@next'></script>
 
   <script>
 -  Waline({

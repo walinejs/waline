@@ -9,7 +9,7 @@ Waline 提供多种版本的客户端文件。你可以通过多种方式引入 
 
 ## 通过 CDN
 
-推荐使用 [jsdelivr](https://cdn.jsdelivr.net/npm/@waline/client@v2/)。
+推荐使用 [jsdelivr](https://cdn.jsdelivr.net/npm/@waline/client@next/)。
 
 :::: code-group
 
@@ -17,9 +17,12 @@ Waline 提供多种版本的客户端文件。你可以通过多种方式引入 
 
 ```html
 <!-- 推荐的版本 -->
-<script src="//cdn.jsdelivr.net/npm/@waline/client@v2"></script>
+<script src="//cdn.jsdelivr.net/npm/@waline/client@next"></script>
 <!-- 样式文件 -->
-<link rel="style" href="//cdn.jsdelivr.net/@waline/client@v2/dist/waline.css" />
+<link
+  rel="style"
+  href="//cdn.jsdelivr.net/@waline/client@next/dist/waline.css"
+/>
 ```
 
 :::
@@ -28,7 +31,7 @@ Waline 提供多种版本的客户端文件。你可以通过多种方式引入 
 
 ```html
 <!-- 浏览量 -->
-<script src="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/pageview.js"></script>
+<script src="//cdn.jsdelivr.net/npm/@waline/client@next/dist/pageview.js"></script>
 ```
 
 :::
@@ -41,7 +44,7 @@ Waline 提供多种版本的客户端文件。你可以通过多种方式引入 
 
 ```html
 <!-- 你需要自行修改替换 `v2` 为你想要的版本号 -->
-<script src="//cdn.jsdelivr.net/npm/@waline/client@v2"></script>
+<script src="//cdn.jsdelivr.net/npm/@waline/client@next"></script>
 ```
 
 :::
