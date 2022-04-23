@@ -14,7 +14,7 @@ Since Waline completely reuses Valine's data structure in storage, migrating fro
 
   <script>
 -  new Valine({
-+  Waline({
++  Waline.init({
     el: '#vcomments',
 -   appId: 'Your appId',
 -   appKey: 'Your appKey'
@@ -25,9 +25,17 @@ Since Waline completely reuses Valine's data structure in storage, migrating fro
 
 ::: tip Config
 
-Most configuration are same between Waline and Valine, but there are a bit difference. For v1 and v0.x versions, you only need to delete `appId` and `appKey` from Valine config and add `serverURL`, and everything should work well. But for future V2, we will remove some Valine compatibility and switch to a better config scheme.
+Waline V2 has removed Valine support and moved to a better configuration. The following is a migration summary of some options:
 
-For waline config, please refer to [Client Config](../reference/client.md). You can also check [Waline Client v1 Migration Guide](./client.md) to learn about the options that are not compatible with Valine.
+- `placeholder`: use `locales.placeholder`
+- `highlight`: use `highlighter`
+- `avatarForce`, `avatar`: use the server's `AVATAR_PROXY` environment variable
+- `recordIP`: no longer display the user IP, and provide the `DISABLE_USERAGENT` environment variable on the server
+- `requiredFields`: renamed to `requiredMeta`
+- `langMode`: renamed to `locales`
+- `emojiCDN`, `emojiMap`: use more powerful `emoji` options
+
+For waline config, please refer to [Client Config](../reference/client.md). You can also check [Waline Client V2 Migration Guide](./client.md) to learn about the options that are not compatible with Valine.
 
 :::
 

@@ -1,51 +1,26 @@
 import { Store, useStore } from '../composables/store';
 import { removeEndingSplash } from './path';
 
-import type { EmojiInfo, EmojiMaps } from '../config';
 import type { EmojiConfig } from './config';
+import type { WalineEmojiInfo } from '../typings';
 
 let store: Store;
 
 const hasVersion = (url: string): boolean =>
   Boolean(/@[0-9]+\.[0-9]+\.[0-9]+/.test(url));
 
-// TODO: remove
-export const resolveOldEmojiMap = (
-  emojiMaps: EmojiMaps,
-  emojiCDN = ''
-): EmojiConfig => {
-  const resolvedEmojiMaps: EmojiMaps = {};
-
-  for (const key in emojiMaps) {
-    resolvedEmojiMaps[key] = /(?:https?:)?\/\//.test(emojiMaps[key])
-      ? emojiMaps[key]
-      : `${emojiCDN}${emojiMaps[key]}`;
-  }
-
-  return {
-    tabs: [
-      {
-        name: 'Emoji',
-        icon: Object.values(resolvedEmojiMaps).pop() || '',
-        items: Object.keys(resolvedEmojiMaps),
-      },
-    ],
-    map: resolvedEmojiMaps,
-  };
-};
-
-const fetchEmoji = (link: string): Promise<EmojiInfo> => {
+const fetchEmoji = (link: string): Promise<WalineEmojiInfo> => {
   if (!store) store = useStore('WALINE_EMOJI');
 
   const result = hasVersion(link);
 
   if (result) {
-    const info = store.get<EmojiInfo>(link);
+    const info = store.get<WalineEmojiInfo>(link);
     if (info) return Promise.resolve(info);
   }
 
   return fetch(`${link}/info.json`)
-    .then((resp) => resp.json() as Promise<Omit<EmojiInfo, 'folder'>>)
+    .then((resp) => resp.json() as Promise<Omit<WalineEmojiInfo, 'folder'>>)
     .then((emojiInfo) => {
       const info = {
         folder: link,
@@ -66,7 +41,7 @@ const getLink = (
 ): string => `${folder}/${prefix}${name}${type ? `.${type}` : ''}`;
 
 export const getEmojis = (
-  emojis: (string | EmojiInfo)[]
+  emojis: (string | WalineEmojiInfo)[]
 ): Promise<EmojiConfig> =>
   Promise.all(
     emojis.map((emoji) =>

@@ -1,5 +1,5 @@
 import { parseEmoji } from '../src/utils/markdown';
-import { emojiMaps } from './utils';
+import { emojiMaps } from './__fixtures__/emojiMap';
 
 describe('Emoji test', () => {
   it('Should not parse', () => {

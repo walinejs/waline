@@ -3,11 +3,8 @@ const isImage = (item: DataTransferItem): boolean =>
 
 export const getImagefromDataTransfer = (
   items: DataTransferItemList
-): File | false => {
-  const list = Array.from(items);
-  const image = list.find(isImage);
+): File | null => {
+  const image = Array.from(items).find(isImage);
 
-  if (image) return image.getAsFile() as File;
-
-  return false;
+  return image ? (image.getAsFile() as File) : null;
 };

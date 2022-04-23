@@ -16,6 +16,9 @@ module.exports = {
   },
 
   globals: {
+    defineProps: 'readonly',
+    defineEmits: 'readonly',
+    withDefaults: 'readonly',
     VERSION: 'readonly',
   },
 
@@ -34,7 +37,7 @@ module.exports = {
       parser: '@typescript-eslint/parser',
 
       parserOptions: {
-        project: path.resolve(__dirname, './tsconfig.json'),
+        project: path.resolve(__dirname, './tsconfig.eslint.json'),
       },
 
       rules: {

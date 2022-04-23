@@ -1,4 +1,4 @@
-import type { Comment, CommentData } from '../typings';
+import type { WalineComment, WalineCommentData } from '../typings';
 
 export interface FetchErrorData {
   errno: number;
@@ -57,7 +57,7 @@ export const fetchRecentComment = ({
   count,
   signal,
   token,
-}: FetchRecentOptions): Promise<Comment[]> => {
+}: FetchRecentOptions): Promise<WalineComment[]> => {
   const headers: Record<string, string> = {};
   if (token) headers.Authorization = `Bearer ${token}`;
 
@@ -65,7 +65,7 @@ export const fetchRecentComment = ({
     signal,
     headers,
   })
-    .then((resp) => resp.json() as Promise<Comment[]>)
+    .then((resp) => resp.json() as Promise<WalineComment[]>)
     .then((data) => errorCheck(data, 'recent comment'));
 };
 
@@ -80,7 +80,7 @@ export interface FetchListOptions {
 
 export interface FetchListResult {
   count: number;
-  data: Comment[];
+  data: WalineComment[];
   totalPages: number;
 }
 
@@ -109,11 +109,11 @@ export interface PostCommentOptions {
   serverURL: string;
   lang: string;
   token?: string;
-  comment: CommentData;
+  comment: WalineCommentData;
 }
 
 export interface PostCommentResponse {
-  data?: CommentData;
+  data?: WalineComment;
   errmsg?: string;
 }
 
@@ -124,6 +124,7 @@ export const postComment = ({
   comment,
 }: PostCommentOptions): Promise<PostCommentResponse> => {
   const headers: Record<string, string> = {
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     'Content-Type': 'application/json',
   };
 
@@ -136,17 +137,17 @@ export const postComment = ({
   }).then((resp) => resp.json() as Promise<PostCommentResponse>);
 };
 
-export interface FetchVisitCountOptions {
+export interface FetchPageviewsOptions {
   serverURL: string;
   paths: string[];
   signal: AbortSignal;
 }
 
-export const fetchVisitCount = ({
+export const fetchPageviews = ({
   serverURL,
   paths,
   signal,
-}: FetchVisitCountOptions): Promise<number[]> =>
+}: FetchPageviewsOptions): Promise<number[]> =>
   fetch(`${serverURL}/article?path=${encodeURIComponent(paths.join(','))}`, {
     signal,
   })
@@ -155,18 +156,19 @@ export const fetchVisitCount = ({
     // TODO: Improve this API
     .then((counts) => (Array.isArray(counts) ? counts : [counts]));
 
-export interface PostVisitCountOptions {
+export interface UpdatePageviewsOptions {
   serverURL: string;
   path: string;
 }
 
-export const postVisitCount = ({
+export const updatePageviews = ({
   serverURL,
   path,
-}: PostVisitCountOptions): Promise<number> =>
+}: UpdatePageviewsOptions): Promise<number> =>
   fetch(`${serverURL}/article`, {
     method: 'POST',
     headers: {
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ path }),

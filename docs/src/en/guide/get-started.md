@@ -91,13 +91,17 @@ Make the following settings on your web page:
    <head>
      <!-- ... -->
      <script src="//cdn.jsdelivr.net/npm/@waline/client"></script>
+     <link
+       rel="style"
+       href="//cdn.jsdelivr.net/npm/@waline/client/dist/waline.css"
+     />
      <!-- ... -->
    </head>
    <body>
      <!-- ... -->
      <div id="waline"></div>
      <script>
-       Waline({
+       Waline.init({
          el: '#waline',
          serverURL: 'https://your-domain.vercel.app',
        });

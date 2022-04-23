@@ -5,13 +5,19 @@ icon: instance
 
 ## el
 
-当前实例挂载的 DOM 元素对象
+当前实例挂载的 DOM 元素对象。
+
+::: note
+
+当初始化指定 `el: null` 时，其为 null。
+
+:::
 
 ## update
 
-结构: `(options: Partial<Omit<WalineOptions, 'el' | 'dark'>>) => void`
+结构: `(options: Partial<Omit<WalineInitOptions, 'el'>>) => void`
 
-可传入一个可选参数作为需要更新的配置对象，除 `el` 和 `dark` 外所有初始化选项均可用。
+可传入一个可选参数作为需要更新的配置对象，除 `el` 外所有初始化选项均可用。
 
 ## destory
 

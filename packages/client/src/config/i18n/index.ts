@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import en from './en';
 import jp from './jp';
 import zhCN from './zh-CN';
@@ -5,11 +6,9 @@ import zhTW from './zh-TW';
 import ptBR from './pt-BR';
 import ru from './ru';
 
-import type { Locale } from './typings';
+import type { WalineLocale } from '../../typings';
 
-export * from './typings';
-
-export type Locales = Record<string, Locale>;
+export type Locales = Record<string, WalineLocale>;
 
 export const locales: Locales = {
   zh: zhCN,
@@ -19,6 +18,7 @@ export const locales: Locales = {
   'zh-TW': zhTW,
   en: en,
   'en-US': en,
+  'en-us': en,
   jp: jp,
   'jp-jp': jp,
   'jp-JP': jp,

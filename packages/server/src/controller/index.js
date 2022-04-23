@@ -20,6 +20,7 @@ module.exports = class extends think.Controller {
           'padding:4px;border:1px solid #0078E7;'
         );
         const params = new URLSearchParams(location.search.slice(1));
+        // const waline = Waline.init({
         const waline = new Waline({
           el: '#waline',
           path: params.get('path') || '/',

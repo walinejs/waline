@@ -1,23 +1,31 @@
 import { marked } from 'marked';
 import { markedTexExtensions } from './markedMathExtension';
 
-import type { EmojiMaps, Highlighter, TexRenderer } from '../config';
+import type {
+  WalineEmojiMaps,
+  WalineHighlighter,
+  WalineTexRenderer,
+} from '../typings';
 
-export const parseEmoji = (text = '', emojiMap: EmojiMaps = {}): string =>
+export const parseEmoji = (text = '', emojiMap: WalineEmojiMaps = {}): string =>
   text.replace(/:(.+?):/g, (placeholder, key: string) =>
     emojiMap[key]
       ? `<img class="vemoji" src="${emojiMap[key]}" alt="${key}">`
       : placeholder
   );
 
+export interface ParseMarkdownOptions {
+  emojiMap: WalineEmojiMaps;
+  highlighter: WalineHighlighter | false;
+  texRenderer: WalineTexRenderer | false;
+}
+
 export const parseMarkdown = (
   content: string,
-  highlight: Highlighter,
-  emojiMap: EmojiMaps,
-  texRenderer: TexRenderer | false
+  { emojiMap, highlighter, texRenderer }: ParseMarkdownOptions
 ): string => {
   marked.setOptions({
-    highlight: highlight || undefined,
+    highlight: highlighter || undefined,
     breaks: true,
     smartLists: true,
     smartypants: true,

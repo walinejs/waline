@@ -1,6 +1,6 @@
-import { fetchRecentComment, getRoot } from '../utils';
-import { useUserInfo } from '../composables';
-import type { Comment } from '../typings';
+import { fetchRecentComment, getRoot, getUserInfo } from '../utils';
+
+import type { WalineComment } from '../typings';
 
 export interface RecentCommentsOptions {
   serverURL: string;
@@ -9,7 +9,7 @@ export interface RecentCommentsOptions {
 }
 
 export interface RecentCommentsResult {
-  comments: Comment[];
+  comments: WalineComment[];
   destroy: () => void;
 }
 
@@ -20,19 +20,18 @@ export const RecentComments = ({
 }: RecentCommentsOptions): Promise<RecentCommentsResult> => {
   const root = getRoot(el);
   const controller = new AbortController();
-  const { userInfo } = useUserInfo();
 
   return fetchRecentComment({
     serverURL,
     count,
     signal: controller.signal,
-    token: userInfo.value?.token,
+    token: getUserInfo()?.token,
   }).then((comments) => {
     if (root && comments.length) {
-      root.innerHTML = `<ul class="waline-widget-list">${comments
+      root.innerHTML = `<ul class="wl-recent-list">${comments
         .map(
           (comment) =>
-            `<li class="waline-widget-item"><a href="${comment.url}">${comment.nick}</a>：${comment.comment}</li>`
+            `<li class="wl-recent-item"><a href="${comment.url}">${comment.nick}</a>：${comment.comment}</li>`
         )
         .join('')}</ul>`;
 

@@ -5,13 +5,19 @@ icon: instance
 
 ## el
 
-The DOM element object mounted by the current instance
+The DOM element object mounted by the current instance。
+
+::: note
+
+When passing `el: null` while initializing Waline, it's null.
+
+:::
 
 ## update
 
-Type: `(options: Partial<Omit<WalineOptions,'el' |'dark'>>) => void`
+Type: `(options: Partial<Omit<WalineInitOptions, 'el'>>) => void`
 
-An optional parameter can be passed in as the configuration object that needs to be updated. All initialization options are available except for `el` and `dark`.
+An optional parameter can be passed in as the configuration object that needs to be updated. All initialization options are available except `el` .
 
 ## destory
 

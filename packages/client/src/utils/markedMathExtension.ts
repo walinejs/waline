@@ -1,14 +1,14 @@
 import type { marked } from 'marked';
-import type { TexRenderer } from '../config';
+import type { WalineTexRenderer } from '../typings';
 
 const inlineMathStart = /\$.*?\$/;
 const inlineMathReg = /^\$(.*?)\$/;
 const blockMathReg = /^(?:\s{0,3})\$\$((?:[^\n]|\n[^\n])+?)\n{0,1}\$\$/;
 
 export const markedTexExtensions = (
-  texRenderer: TexRenderer
+  texRenderer: WalineTexRenderer
 ): marked.TokenizerExtension[] => {
-  const blockMathExt: marked.TokenizerExtension = {
+  const blockMathExtension: marked.TokenizerExtension = {
     name: 'blockMath',
     level: 'block',
     tokenizer(src: string) {
@@ -26,7 +26,7 @@ export const markedTexExtensions = (
     },
   };
 
-  const inlineMathExt: marked.TokenizerExtension = {
+  const inlineMathExtension: marked.TokenizerExtension = {
     name: 'inlineMath',
     level: 'inline',
     start(src: string) {
@@ -48,5 +48,5 @@ export const markedTexExtensions = (
     },
   };
 
-  return [blockMathExt, inlineMathExt];
+  return [blockMathExtension, inlineMathExtension];
 };
