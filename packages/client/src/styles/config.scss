@@ -12,7 +12,7 @@
   --waline-active-color: #2ecc71;
 
   // layout colors
-  --waline-text-color: #444;
+  --waline-color: #444;
   --waline-bgcolor: #fff;
   --waline-bgcolor-light: #f8f8f8;
   --waline-bgcolor-hover: #f0f0f0;
@@ -26,7 +26,7 @@
 
   // avatar
   --waline-avatar-size: 3.25rem;
-  --waline-mobile-avatar-size: calc(var(--waline-avatar-size) * 9 / 13);
+  --waline-m-avatar-size: calc(var(--waline-avatar-size) * 9 / 13);
 
   // badge
   --waline-badge-color: #3498db;
@@ -45,6 +45,8 @@
 
   // ** using box-shadow **
   // --waline-border: none;
+  // Light:
   // --waline-box-shadow: 0 12px 40px rgb(134 151 168 / 25%);
-  // Dark: --waline-box-shadow: 0 12px 40px #0f0e0d
+  // Dark:
+  // --waline-box-shadow: 0 12px 40px #0f0e0d
 }

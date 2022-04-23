@@ -1,18 +1,22 @@
-.v[data-class='v'] {
+// should only effect waline content
+.wl-content {
   pre,
   pre[class*='language-'] {
-    line-height: 1.4;
-    padding: 1rem 1.25rem;
-    margin: 0.75rem 0;
-    background: var(--waline-code-bgcolor);
-    border-radius: 6px;
     overflow: auto;
 
+    margin: 0.75rem 0;
+    padding: 1rem 1.25rem;
+    border-radius: 6px;
+
+    background: var(--waline-code-bgcolor);
+
+    line-height: 1.4;
+
     code {
-      color: #bbb;
       padding: 0;
-      background: transparent !important;
       border-radius: 0;
+      background: transparent !important;
+      color: #bbb;
     }
   }
 
@@ -23,15 +27,16 @@
    */
   code[class*='language-'],
   pre[class*='language-'] {
-    color: #ccc;
     background: none;
-    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    color: #ccc;
+
     font-size: 1em;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
     text-align: left;
     white-space: pre;
     word-spacing: normal;
-    word-break: normal;
     word-wrap: normal;
+    word-break: normal;
     tab-size: 4;
     hyphens: none;
   }
@@ -125,6 +130,6 @@
   }
 
   .token.inserted {
-    color: green;
+    color: #008000;
   }
 }

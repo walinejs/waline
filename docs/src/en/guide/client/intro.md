@@ -13,7 +13,7 @@ For details about Waline import, please refer to [Importing Client](./import.md)
 
 ## Initialization
 
-You can use `Waline(options)` to initialize a Waline instance, where `el` and `serverURL` options are required. The `el` option should be the element or element selector that Waline mounts, and `serverURL` options should be the server URL.
+You can use `Waline.init(options)` to initialize a Waline instance, where `el` and `serverURL` options are required. The `el` option should be the element or element selector that Waline mounts, and `serverURL` options should be the server URL.
 
 For available options, please refer to [Reference → Client Options](../../reference/client.md).
 
@@ -41,11 +41,11 @@ To let users adjust the style of Waline, Waline provides some configurable CSS v
 
 ## Comment and pageview statistics
 
-Waline supports comment and pageview statistics. For more information, please refer to [View Statistics](./count.md).
+Waline supports comment and pageview statistics. For more information, please refer to [Comment count](comment.md) and [Pagwview count](pageview.md).
 
 ## SPA support
 
-Waline brings support for SPA (**S**ingle **P**age **A**pplication). If you are using an app with `history.pushState`, you can use the `update()` method of the `Waline()` instance to refresh config for the comment area, or you can use the `destory()` method on the instance to destroy Waline instance. See [SPA Support](./spa.md) for details.
+Waline brings support for SPA (**S**ingle **P**age **A**pplication). If you are using an app with `history.pushState`, you can use the `update()` method of the `Waline.init()` instance to refresh config for the comment area, or you can use the `destory()` method on the instance to destroy Waline instance. See [SPA Support](./spa.md) for details.
 
 ## Accessibility support
 

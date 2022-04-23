@@ -3,7 +3,7 @@
  *
  * So We just make a simple implement here
  *
- * Forked from https://github.com/vuepress-theme-hope/vuepress-theme-hope/blob/v1/packages/reading-time/src/node/reading-time.ts
+ * Forked from https://github.com/vuepress-theme-hope/vuepress-theme-hope/blob/main/packages/reading-time2/src/node/reading-time.ts
  */
 
 export const getWords = (content: string): string[] =>

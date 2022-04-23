@@ -1,4 +1,4 @@
-export interface Locale {
+export interface WalineLocale {
   nick: string;
   nickError: string;
   mail: string;

@@ -26,7 +26,7 @@ icon: style
   --waline-active-color: #2ecc71;
 
   /* 布局颜色 */
-  --waline-text-color: #444;
+  --waline-color: #444;
   --waline-bgcolor: #fff;
   --waline-bgcolor-light: #f8f8f8;
   --waline-bgcolor-hover: #f0f0f0;
@@ -40,7 +40,7 @@ icon: style
 
   /* 头像 */
   --waline-avatar-size: 3.25rem;
-  --waline-mobile-avatar-size: calc(var(--waline-avatar-size) * 9 / 13);
+  --waline-m-avatar-size: calc(var(--waline-avatar-size) * 9 / 13);
 
   /* 徽章 */
   --waline-badge-color: #3498db;
@@ -92,7 +92,7 @@ darkmode-selector {
   --waline-dark-grey: #999;
 
   /* 布局颜色 */
-  --waline-text-color: #888;
+  --waline-color: #888;
   --waline-bgcolor: #1e1e1e;
   --waline-bgcolor-light: #272727;
   --waline-border-color: #333;

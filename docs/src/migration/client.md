@@ -1,104 +1,91 @@
 ---
-title: Waline 客户端 V1 迁移指南
+title: Waline 客户端 V2 迁移指南
 icon: migration
 ---
 
-V1 有数处更改，破坏性变更详见 [初始化变更](#初始化变更) 和 [挂件更改](#挂件更改)。
+## API 更改
 
-## 新功能
+我们取消了 Waline 的默认导出，进而提供下列导出:
 
-- Emoji 预设支持: 你现在可以直接填入 Emoji 预设链接完成 Emoji 的配置
-- 多 Emoji 选项卡: 现在 Emoji 可以包含含有多个选项卡，以便添加多种不同类型的 Emoji
-- 图片上传优化: 我们添加了图片上传按钮，以提示访客可以上传图片
-- 拖拽支持: 你现在可以直接将文字或图片拖拽到评论框中完成文字的输入或图片的添加。
-- 响应式与 SPA: 现在 Waline 将返回一个响应式的实例，并支持 SPA 应用，详见 [响应式](#响应式)
+- `init`: 行为模式同旧的 `Waline`
+- `version`: 版本号
+- `commentCount`: 更新评论数
+- `pageviewCount`: 更新访问数
+- `widgets`: 其他挂件
 
-## 体积减小
+我们将 Waline 的默认导出改为 `init` 命名导出，同时为了使 Waline SSR 友好，V2 将 CSS 单独输出。
 
-v1 版本是基于 Vue 与 TypeScript 的完全重写，所以大小从 78.4kb 减小至 54.0kb (gzip)。
+在大多数情况下，这只意味着下列更改:
 
-## 选项变更
+```diff
++ <link rel='style' href='//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.css' />
+- <script src='//cdn.jsdelivr.net/npm/@waline/client'></script>
++ <script src='//cdn.jsdelivr.net/npm/@waline/client@v2'></script>
 
-以下选项标记为 `废弃`，相关兼容兼容将在 v2 移除。
+  <script>
+-  Waline({
++  Waline.init({
+    el: '#waline',
+    serverURL: 'YOUR SERVER URL'
+  });
+  </script>
+```
 
-- `placeholder` → 请通过 `locale.placeholder` 选项设置
+## 新增选项
 
-  ::: tip
-
-  此改动是为了让默认的 placeholder 可以适配多语言
-
-  :::
-
-- `emojiCDN`、`emojiMaps`→ 请使用新的 `emoji` 选项
-
-  ::: tip
-
-  我们带来了多 Emoji 选项卡和 Emoji 预设支持。Emoji 配置将对大多数使用者来说更为简单。
-
-  :::
-
-- `anonymous` → 请使用新的 `login` 选项
-
-  ::: tip
-
-  由于 Waline 带来了登录支持，我们将先前的
-
-  - `anonymous: undefined`:匿名评论和登录均可
-  - `anonymous: true`: 禁用登录
-  - `anonymous: false`: 无法匿名评论，即只有登录后才能评论
-
-  改为了
-
-  - `login: 'enable'`: 启用登录
-  - `login: 'disable'`: 禁用登录
-  - `login: 'force'`: 强制登录
-
-  此选项应该更加直观。
-
-  :::
+- `comment` 选项支持设置字符串作为 CSS 选择器。
+- `pageview` 选项支持设置字符串作为 CSS 选择器。
 
 ## 选项重命名
 
-原先的选项存在含义不明，Chinglish 或命名不一致等问题。下列是重命名的选项，其行为与先前保持一致。旧选项同样标记为 `废弃`，相关兼容兼容将在 v2 移除。
+- `uploadImage` 更名为 `imageUploader`
 
-- `langmode` → 重命名为 `locale`
+- `highlight` 更名为 `highlighter`
 
-  ::: tip
+- `math` 更名为 `texRenderer`
 
-  此改动改进了选项的英文翻译。
+- `visitor` 更名为 `pageview`
 
-  :::
+## 选项移除
 
-- `requiredFields` → 重命名为 `requiredMeta`
+以下选项已在 V1 中长时间标记为废弃 API，它们已在 V2 中移除。
 
-  ::: tip
+- `langMode`
+- `placeholder`
+- `emojiCDN`
+- `emojiMaps`
+- `requiredFields`
+- `avatar`
+- `avatarCDN`
+- `avatarForce`
+- `anonymous`
+- `mathTagSupport`
+- `copyRight`
 
-  此改动是为了与 `meta` 选项进行对齐。
+## 其他变更
 
-  :::
+### 实例变更
 
-## 行为变更
+现在 `Waline.init` 会在 `el`, `serverURL` 两个必填属性非法时直接抛出错误，而不是返回一个错误示例表明原因。
 
-### 响应式
+你可以使用 `try { ... } catch (err) { ... }` 块来捕获错误以更好的兼容用户配置错误的情况。
 
-现在 Waline 将是完全响应式的，调用 Waline 将会返回一个 `WalineInstance` 实例，你可以通过调用 `WalineInstance` 上的 `update()` 方法更新 Waline 的选项，或是使用 `WalineInstance` 上的 `destroy()` 方法销毁实例。
+### 更新行为变更
 
-此改变将使 Waline 支持 SPA 应用，详情请见 [SPA 支持](../guide/client/spa.md)。
+- Waline 现在支持通过 `Instance.update` 更新 `el` 选项之外的所有选项。
+- `path` 参数在 `update()` 时会被重置，这意味着只要你不传入 `path`，它就会被重置为 `window.location.pathname`。
 
-### 初始化变更
+### 评论与浏览量选择器变更
 
-由于 Waline 函数现在返回一个 Waline 实例，我们在 Waline 初始化时加强了检测。如果 Waline 不能正确的挂载。我们会返回 `WalineErrorInstance` 实例，实例上只有一个 `errMsg` 表明初始化的错误原因。
+现在，评论与浏览量关于 Valine 的选择器兼容已被移除。
 
-::: warning BREAKING CHANGE
+- 评论选择器默认为 `'.waline-comment-count'`
+- 浏览量选择器默认为 `'.waline-pageview-count'`
 
-如果你只是想让 Waline 更新页面内的评论数与浏览量，而**不需要 Waline 挂载到当前页面时**，请**不要设置选项 `el`**。
+如果你需要为某个选择器获取不同于当前页面的对应值时，强烈建议使用 `data-path` 属性。
 
-:::
+为了兼容性，我们仍然保留先前的 `id` 属性支持，但此兼容会在 V3 移除。
 
-## 挂件更改
+### CSS 类变更
 
-::: warning BREAKING CHANGE
-
-`RecentComments` 现在将返回 `Promise <{comment: commentData[], destroy: () => void}>` 而不是 `Promise<CommentData[]>`。
-
-:::
+所有 CSS 类从 `v` 开头改为 `wl-` 开头。
