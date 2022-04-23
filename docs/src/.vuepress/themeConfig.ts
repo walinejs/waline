@@ -15,7 +15,7 @@ export default defineThemeConfig({
   pageInfo: ['ReadingTime'],
 
   contributors: false,
-  fullScreen: false,
+  fullscreen: false,
   themeColor: false,
 
   locales: {
