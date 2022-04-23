@@ -9,49 +9,51 @@ import {
 import type { DeprecatedWalineOptions } from './v1';
 import type { WalineInitOptions } from '../typings';
 
-export const covertOptions = ({
-  // Options which needs to be polyfilled
-  placeholder,
-  langMode = {},
-  emojiCDN,
-  emojiMaps,
-  requiredFields = [],
-  anonymous,
-  previewMath,
-  uploadImage,
-  highlight,
-  copyRight,
-  visitor,
+export const covertOptions = (
+  options: WalineInitOptions & DeprecatedValineOptions & DeprecatedWalineOptions
+): WalineInitOptions => {
+  const {
+    // Options which needs to be polyfilled
+    placeholder,
+    langMode = {},
+    emojiCDN,
+    emojiMaps,
+    requiredFields = [],
+    anonymous,
+    previewMath,
+    uploadImage,
+    highlight,
+    copyRight,
+    visitor,
 
-  pageview = visitor === true
-    ? '.leancloud_visitors,.waline-visitor-count,.waline-pageview-count'
-    : visitor,
-  locale = langMode,
-  emoji,
-  requiredMeta = requiredFields,
-  highlighter = highlight,
-  imageUploader = uploadImage,
-  texRenderer = previewMath,
-  copyright = copyRight,
-  login = anonymous === true
-    ? 'disable'
-    : anonymous === false
-    ? 'force'
-    : 'enable',
-  ...more
-}: WalineInitOptions &
-  DeprecatedValineOptions &
-  DeprecatedWalineOptions): WalineInitOptions => {
+    pageview = visitor === true
+      ? '.leancloud_visitors,.waline-visitor-count,.waline-pageview-count'
+      : visitor,
+    locale = langMode,
+    emoji,
+    requiredMeta = requiredFields,
+    highlighter = highlight,
+    imageUploader = uploadImage,
+    texRenderer = previewMath,
+    copyright = copyRight,
+    login = anonymous === true
+      ? 'disable'
+      : anonymous === false
+      ? 'force'
+      : 'enable',
+    ...more
+  } = options;
+
   // error with those which can no longr be handled
   DROPPED_OPTIONS_WHICH_CAN_NOT_BE_POLYFILLED.filter((item) =>
-    Object.keys(more).includes(item)
+    Object.keys(options).includes(item)
   ).forEach((item) =>
     warning(`Option "${item}" is REMOVED and CAN NOT be polyfilled!`)
   );
 
   // warnings with those which can no longr be handled
   DROPPED_OPTIONS_WHICH_CAN_STILL_BE_POLYFILLED.filter(([oldOption]) =>
-    Object.keys(more).includes(oldOption)
+    Object.keys(options).includes(oldOption)
   ).forEach(([oldOption, newOption]) =>
     warning(
       `Option "${oldOption}" was deprecated and is currently being polyfilled, Please switch to option "${newOption}" in v2!`
