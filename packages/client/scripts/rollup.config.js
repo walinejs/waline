@@ -1,4 +1,4 @@
-import { getBabelOutputPlugin } from '@rollup/plugin-babel';
+import { babel, getBabelOutputPlugin } from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import dts from 'rollup-plugin-dts';
@@ -40,6 +40,56 @@ const babelPlugin = getBabelOutputPlugin({
 });
 
 export default [
+  // TODO: Remove this in future
+
+  // legacy package
+  {
+    input: './src/entrys/legacy.ts',
+    output: [
+      {
+        file: './dist/legacy.js',
+        format: 'umd',
+        name: 'Waline',
+        exports: 'default',
+        sourcemap: true,
+      },
+    ],
+    ...commonOptions,
+    plugins: [
+      vue(),
+      typescript2({
+        tsconfigOverride: {
+          compilerOptions: {
+            declaration: false,
+            declarationMap: false,
+          },
+        },
+      }),
+      replace({
+        'process.env.NODE_ENV': JSON.stringify('production'),
+        'process.env["NODE_ENV"]': JSON.stringify('production'),
+        "process.env['NODE_ENV']": JSON.stringify('production'),
+        SHOULD_VALIDATE: JSON.stringify(false),
+        VERSION: JSON.stringify(version),
+        preventAssignment: true,
+      }),
+      nodeResolve({ preferBuiltins: true }),
+      commonjs(),
+      babel({
+        babelHelpers: 'bundled',
+        presets: [['@babel/preset-env']],
+      }),
+      terser(),
+    ],
+  },
+
+  // legacy declaration files
+  {
+    input: './src/entrys/legacy.ts',
+    output: [{ file: './dist/legacy.d.ts', format: 'esm' }],
+    plugins: [dts()],
+  },
+
   // full package
   {
     input: './src/entrys/full.ts',

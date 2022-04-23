@@ -33,12 +33,8 @@ const fetchEmoji = (link: string): Promise<WalineEmojiInfo> => {
     });
 };
 
-const getLink = (
-  name: string,
-  folder: string,
-  prefix = '',
-  type = ''
-): string => `${folder}/${prefix}${name}${type ? `.${type}` : ''}`;
+const getLink = (name: string, folder = '', prefix = '', type = ''): string =>
+  `${folder ? `${folder}/` : ''}${prefix}${name}${type ? `.${type}` : ''}`;
 
 export const getEmojis = (
   emojis: (string | WalineEmojiInfo)[]

@@ -24,7 +24,7 @@
     "./package.json": "./package.json"
   },
   "main": "./dist/shim.js",
-  "browser": "./dist/waline.js",
+  "browser": "./dist/legacy.js",
   "types": "./dist/shim.d.ts",
   "files": [
     "dist",

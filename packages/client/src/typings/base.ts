@@ -10,7 +10,7 @@ export interface WalineEmojiInfo {
    *
    * Current folder link
    */
-  folder: string;
+  folder?: string;
   /**
    * Emoji 通用路径前缀
    *
