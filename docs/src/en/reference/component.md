@@ -44,13 +44,6 @@ Optional value:
 
 If you need a custom language, please refer to [i18n](../guide/client/i18n.md).
 
-## visitor
-
-- Type: `boolean`
-- Default: `false`
-
-Article reading statistics.
-
 ## emoji
 
 - Type: `(string | EmojiInfo)[]`
@@ -163,11 +156,10 @@ Custom the rendering method of math to facilitate better preview of math. For de
 
 If you set it to `false`, math preview feature will be disabled.
 
-### copyright
+## copyright
 
 - Type: `boolean`
 - Default: `true`
-- Required: No
 
 Whether show copyright and version in footer.
 
