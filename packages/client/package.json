@@ -14,9 +14,9 @@
   "license": "MIT",
   "exports": {
     ".": {
-      "default": "./dist/shim.js",
+      "import": "./dist/shim.esm.js",
       "require": "./dist/shim.js",
-      "import": "./dist/shim.esm.js"
+      "default": "./dist/shim.js"
     },
     "./dist": "./dist/shim.js",
     "./dist/waline.css": "./dist/waline.css",
