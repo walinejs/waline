@@ -3,7 +3,6 @@
   "compilerOptions": {
     "jsx": "preserve",
     "module": "ESNext",
-    "target": "esnext",
     "rootDir": "./src"
   },
   "include": ["./src/**/*.ts", "./src/**/*.vue"]
