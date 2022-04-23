@@ -15,7 +15,7 @@ CREATE TABLE `wl_Comment` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
   `comment` text,
-  `insertedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `insertedAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `ip` varchar(100) DEFAULT '',
   `link` varchar(255) DEFAULT NULL,
   `mail` varchar(255) DEFAULT NULL,
