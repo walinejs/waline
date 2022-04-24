@@ -15,19 +15,16 @@ Recommend to use [jsdelivr](https://cdn.jsdelivr.net/npm/@waline/client/).
 
 ```html
 <!-- Scripts -->
-<script src="//cdn.jsdelivr.net/npm/@waline/client@next/dist/waline.js"></script>
+<script src="//cdn.jsdelivr.net/npm/@waline/client/dist/waline.js"></script>
 <!-- Styles -->
-<link
-  rel="style"
-  href="//cdn.jsdelivr.net/@waline/client@next/dist/waline.css"
-/>
+<link rel="style" href="//cdn.jsdelivr.net/@waline/client/dist/waline.css" />
 ```
 
 ::: code-group-item Pageview Only
 
 ```html
 <!-- Pageview -->
-<script src="//cdn.jsdelivr.net/npm/@waline/client@next/dist/pageview.js"></script>
+<script src="//cdn.jsdelivr.net/npm/@waline/client/dist/pageview.js"></script>
 ```
 
 :::
@@ -40,7 +37,7 @@ For CDN links, if you don't specify a version number, it will be latest version,
 
 ```html
 <!-- You need to modify and replace `next` with the version number you want -->
-<script src="//cdn.jsdelivr.net/npm/@waline/client@next/dist/waline.js"></script>
+<script src="//cdn.jsdelivr.net/npm/@waline/client/dist/waline.js"></script>
 ```
 
 :::
@@ -56,7 +53,7 @@ Waline client has been released to [npm](https://www.npmjs.com/package/@waline/c
 ::: code-group-item yarn
 
 ```bash
-yarn add -D @waline/client@next
+yarn add -D @waline/client
 ```
 
 :::
@@ -64,7 +61,7 @@ yarn add -D @waline/client@next
 ::: code-group-item npm
 
 ```bash
-npm i -D @waline/client@next
+npm i -D @waline/client
 ```
 
 :::

@@ -19,8 +19,8 @@ icon: migration
 
 ```diff
 - <script src='//cdn.jsdelivr.net/npm/@waline/client'></script>
-+ <script src='//cdn.jsdelivr.net/npm/@waline/client@next/dist/waline.js'></script>
-+ <link rel='style' href='//cdn.jsdelivr.net/npm/@waline/client@next/dist/waline.css' />
++ <script src='//cdn.jsdelivr.net/npm/@waline/client/dist/waline.js'></script>
++ <link rel='style' href='//cdn.jsdelivr.net/npm/@waline/client/dist/waline.css' />
 
   <script>
 -  Waline({

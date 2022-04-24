@@ -10,8 +10,8 @@ Since Waline completely reuses Valine's data structure in storage, migrating fro
 
    ```diff
    - <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
-   + <script src='//cdn.jsdelivr.net/npm/@waline/client@next/dist/waline.js'></script>
-   + <link rel='style' href='//cdn.jsdelivr.net/npm/@waline/client@next/dist/waline.css' />
+   + <script src='//cdn.jsdelivr.net/npm/@waline/client/dist/waline.js'></script>
+   + <link rel='style' href='//cdn.jsdelivr.net/npm/@waline/client/dist/waline.css' />
 
      <script>
    -  new Valine({
