@@ -93,7 +93,7 @@ declare const SHOULD_VALIDATE: boolean;
 declare const VERSION: string;
 
 export default defineComponent({
-  name: 'Waline-Root',
+  name: 'WalineRoot',
 
   components: {
     CommentBox,
