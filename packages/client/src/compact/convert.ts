@@ -51,7 +51,7 @@ export const covertOptions = (
     warning(`Option "${item}" is REMOVED and CAN NOT be polyfilled!`)
   );
 
-  // warnings with those which can no longr be handled
+  // warnings with those which is being polyfilled
   DROPPED_OPTIONS_WHICH_CAN_STILL_BE_POLYFILLED.filter(([oldOption]) =>
     Object.keys(options).includes(oldOption)
   ).forEach(([oldOption, newOption]) =>
