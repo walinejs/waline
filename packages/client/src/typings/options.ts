@@ -41,4 +41,4 @@ export interface WalineInitOptions extends Omit<WalineProps, 'path'> {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type WalineAbort = (reson: any) => void;
+export type WalineAbort = (reason?: any) => void;
