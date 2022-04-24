@@ -121,5 +121,10 @@
   },
   "apidoc": {
     "title": "Waline API Documentation"
+  },
+  "overrides": {
+    "docs": {
+      "@waline/client": "file:./packages/client"
+    }
   }
 }

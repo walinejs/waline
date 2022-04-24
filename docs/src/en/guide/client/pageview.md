@@ -1,5 +1,5 @@
 ---
-title: Pageview statistics
+title: Pageview Counter
 icon: counter
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: Supported Comment Syntax
+title: Comment Syntax Support
 icon: format
 ---
 

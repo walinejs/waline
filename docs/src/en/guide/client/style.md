@@ -1,5 +1,5 @@
 ---
-title: Custom style
+title: Style Customize
 icon: style
 ---
 

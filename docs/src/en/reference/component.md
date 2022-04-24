@@ -1,5 +1,5 @@
 ---
-title: Waline Component Props
+title: Component Props
 icon: config
 ---
 

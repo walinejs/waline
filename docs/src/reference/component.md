@@ -1,5 +1,5 @@
 ---
-title: Waline 组件属性
+title: 组件属性
 icon: config
 ---
 

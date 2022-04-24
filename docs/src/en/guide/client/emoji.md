@@ -1,5 +1,5 @@
 ---
-title: Custom emoji
+title: Emoji Customize
 icon: emoji
 ---
 

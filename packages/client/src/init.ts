@@ -5,11 +5,36 @@ import { commentCount } from './comment';
 import { pageviewCount } from './pageview';
 import { getRoot } from './utils';
 
-import type { WalineInitOptions, WalineProps } from './typings';
+import type { WalineInitOptions } from './typings';
 
 export interface WalineInstance {
+  /**
+   * Waline 被挂载到的元素
+   *
+   * @description 当通过 `el: null` 初始化，值为 `null`
+   *
+   * Element where Waline is mounted
+   *
+   * @description when initialized with `el: null`, it will be `null`
+   */
   el: HTMLElement | null;
-  update: (newOptions: Partial<WalineProps>) => void;
+
+  /**
+   * 更新 Waline 实例
+   *
+   * @description 只要不设置`path` 选项，更新时它就会被重置为 `windows.location.pathname`
+   *
+   * Update Waline instance
+   *
+   * @description when not setting `path` option, it will be reset to `window.location.pathname`
+   */
+  update: (newOptions: Partial<Omit<WalineInitOptions, 'el'>>) => void;
+
+  /**
+   * 取消挂载并摧毁 Waline 实例
+   *
+   * Unmount and destroy Waline instance
+   */
   destroy: () => void;
 }
 

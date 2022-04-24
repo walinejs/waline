@@ -1,6 +1,7 @@
 ---
 home: true
 title: Waline
+icon: home
 heroImage: /logo.png
 actions:
   - text: 💡 Get Started

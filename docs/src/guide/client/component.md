@@ -1,15 +1,15 @@
 ---
-title: 组件
+title: Vue 组件
 icon: component
 ---
 
-Waline V2 客户端导出了一个响应式的组件。
-
-<!-- more -->
+Waline V2 客户端导出了一个响应式的 Vue 组件。
 
 所有的属性都是响应式的，你可以在 [参考 → 组件属性](../../reference/component.md) 找到全部支持的属性。
 
-这里是一个案例:
+<!-- more -->
+
+## 案例
 
 ```vue
 <template>

@@ -1,15 +1,15 @@
 ---
-title: Component
+title: Vue Component
 icon: component
 ---
 
-Waline V2 client exports a reactive component.
-
-<!-- more -->
+Waline V2 client exports a Vue Component.
 
 All properties are reactive, you can find all supported properties in [Reference → Component Properties](../../reference/component.md).
 
-Here is a demo:
+<!-- more -->
+
+## Demo
 
 ```vue
 <template>

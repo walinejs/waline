@@ -5,21 +5,21 @@ icon: spa
 
 Waline 为 SPA(**S**ingle **P**age **A**pplication, 单页应用) 带来了支持。
 
-## 初始化
+## Vue 组件
 
-在单页应用中，你需要在初始化 Waline 时保存 Waline 函数返回的 `WalineInstance` 实例以便后续使用。
+如果你在使用一个 Vue 项目，你可以通过导入 `@waline/client/dist/components` 来使用 Waline 组件。
+
+所有组件的属性都是响应式的，这意味着当你更改属性时，评论框会自动更新。
+
+## 其他项目
+
+在其他单页项目应用中，你需要在初始化 Waline 时保存 Waline 函数返回的 `WalineInstance` 实例以便后续使用。
 
 你可以在 `WalineInstance` 上找到一个实例属性 `el` 和两个方法: `update()` 和 `destroy()`。
 
-### el
-
-`el` 属性为 Waline 当前实例挂载的 HTMLElement。
-
-如果你在初始化时设置了 `el: null` (即只需要浏览量与评论数功能)，该项为 `null`。
-
 ### update
 
-你可以调用 `update()` 更新 Waline。`update` 方法接收一个可选参数 `options`，除 `el` 选项外，其他 Waline 初始化选项都可以传入新的值进行更新。
+你可以在任何需要的时刻 (如用户前往新页面后) 调用 `update()` 更新 Waline。`update` 方法接收一个可选参数 `options`，除 `el` 选项外，其他 Waline 初始化选项都可以传入新的值进行更新。
 
 如:
 
@@ -71,6 +71,12 @@ waline.update({
 - 只有当路径的确发生改变时才刷新评论区重新请求
 - 新的 `update()` 调用会自动终止上一个 `update()` 发出的不再需要的请求。
 
+### el
+
+`el` 属性为 Waline 当前实例挂载的 HTMLElement。
+
+如果你在初始化时设置了 `el: null` (即只需要浏览量与评论数功能)，该项为 `null`。
+
 ### destroy
 
 你可以使用 `destroy()` 方法销毁 Waline 实例。它会同时清空 Waline 挂载元素中的全部内容。
@@ -78,9 +84,3 @@ waline.update({
 ### 初始化失败
 
 如果你忘记传入 `serverURL` 或者 Waline 无法在页面中通过 `el` 选项找到挂载位置，Waline 会抛出一个 Error 指明错误原因。
-
-## 组件
-
-如果你在使用一个 Vue 项目，你可以通过导入 `@waline/client/dist/components` 来使用 Waline 组件。
-
-所有组件的属性都是响应式的，这意味着当你更改属性时，评论框会自动更新。

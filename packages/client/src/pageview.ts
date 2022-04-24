@@ -5,6 +5,44 @@ import {
   updatePageviews,
 } from './utils';
 
+import type { WalineAbort } from './typings';
+
+export interface WalinePageviewCountOptions {
+  /**
+   * Waline 服务端地址
+   *
+   * Waline server url
+   */
+  serverURL: string;
+
+  /**
+   * 浏览量 CSS 选择器
+   *
+   * Pageview CSS selector
+   *
+   * @default '.waline-pageview-count'
+   */
+  selector?: string;
+
+  /**
+   * 需要更新和获取的路径
+   *
+   * Path to be fetched and updated
+   *
+   * @default window.location.pathname
+   */
+  path?: string;
+
+  /**
+   * 是否在查询时更新 path 的浏览量
+   *
+   * Whether update pageviews when fetching path result
+   *
+   * @default true
+   */
+  update?: boolean;
+}
+
 const renderVisitorCount = (
   counts: number[],
   countElements: HTMLElement[]
@@ -14,44 +52,12 @@ const renderVisitorCount = (
   });
 };
 
-export interface VisitorCountOptions {
-  /**
-   * Waline server url
-   *
-   * Waline 服务端地址
-   */
-  serverURL: string;
-
-  /**
-   * Path to be fetched and updated
-   *
-   * 需要更新和获取的路径
-   *
-   * @default window.location.pathname
-   */
-  path?: string;
-
-  /**
-   * @default '.waline-pageview-count'
-   */
-  selector?: string;
-
-  /**
-   * Whether update pageviews when fetching path result
-   *
-   * 是否在查询时更新 path 的浏览量
-   *
-   * @default true
-   */
-  update?: boolean;
-}
-
 export const pageviewCount = ({
   serverURL,
   path = window.location.pathname,
   selector = '.waline-pageview-count',
   update = true,
-}: VisitorCountOptions): ((reason?: unknown) => void) => {
+}: WalinePageviewCountOptions): WalineAbort => {
   const controller = new AbortController();
 
   const elements = Array.from(

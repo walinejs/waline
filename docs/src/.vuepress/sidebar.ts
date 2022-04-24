@@ -61,14 +61,7 @@ export const zhSidebarConfig = defineSidebarConfig({
       text: '参考',
       icon: 'reference',
       prefix: '/reference/',
-      children: [
-        'client',
-        'component',
-        'instance',
-        'server',
-        'api',
-        'contribution',
-      ],
+      children: ['component', 'client', 'server', 'api', 'contribution'],
     },
   ],
 });
@@ -131,14 +124,7 @@ export const enSidebarConfig = defineSidebarConfig({
       text: 'Reference',
       icon: 'reference',
       prefix: 'reference/',
-      children: [
-        'client',
-        'component',
-        'instance',
-        'server',
-        'api',
-        'contribution',
-      ],
+      children: ['component', 'client', 'server', 'api', 'contribution'],
     },
   ],
 });

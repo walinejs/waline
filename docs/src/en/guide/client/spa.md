@@ -5,21 +5,21 @@ icon: spa
 
 Waline brings support for SPA (**S**ingle **P**age **A** application).
 
-## Initialize
+## Vue Component
 
-In an SPA, you need to store the `WalineInstance` returned by the Waline function when Waline is initialized.
+If you are building a Vue project, you can use Waline components by importing `@waline/client/dist/components`.
+
+All component properties are reactive, which means that when you change the properties, the comment box will get an automatically update.
+
+## Other projects
+
+In other SPA, you need to store the `WalineInstance` returned by the Waline function when Waline is initialized.
 
 You can find an instance property `el` and two methods: `update()` and `destroy()` on `WalineInstance`.
 
-### el
-
-The `el` property is the HTMLElement mounted by the current instance of Waline.
-
-If you initialize Waline with `el: null` (only use comments and pageview statistics), this property will be `null`.
-
 ### update
 
-You can call `update()` to update Waline. The `update` method receives an optional parameter `options`, except for `el`, other Waline initial options can be updated by passing in new values.
+You can call `update()`to update Waline at any time (e.g.: when user visite a new route). The `update` method receives an optional parameter `options`, except for `el`, other Waline initial options can be updated by passing in new values.
 
 E.g.:
 
@@ -71,6 +71,12 @@ Meanwhile, the `update()` option has been optimized for asynchronous network req
 - Refresh the comment area and re-request only when the path does change
 - The new `update()` call will automatically terminate the no longer needed request from the previous `update()`.
 
+### el
+
+The `el` property is the HTMLElement mounted by the current instance of Waline.
+
+If you initialize Waline with `el: null` (only use comments and pageview statistics), this property will be `null`.
+
 ### destroy
 
 If you forget to pass in the `serverURL` or Waline cannot find the mount location via the `el` option on the page, Waline will throw an Error indicating the reason for the error.
@@ -80,9 +86,3 @@ If you forget to pass in the `serverURL` or Waline cannot find the mount locatio
 If you forget to set `serverURL` or Waline cannot find the mount location through the `el` option on the page, Waline will return a `WalineErrorInstance`.
 
 There is only one attribute `errMsg` on `WalineErrorInstance` to indicate the reason for the initialization failure.
-
-## Component
-
-If you are building a Vue project, you can use Waline components by importing `@waline/client/dist/components`.
-
-All component properties are responsive, which means that when you change the properties, the comment box will get an automatically update.
