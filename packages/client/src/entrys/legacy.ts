@@ -10,7 +10,7 @@ import type { WalineInitOptions } from '../typings';
 export { WalineInstance } from '../init';
 
 warning(
-  ' This is a legacy package compatable with Valine and Waline@v1, please switch to Waline@v2 using https://CDN.LINK/@waline/client@next/dist/waline.js instead!'
+  ' This is a legacy package compatable with Valine and Waline@v1, please switch to Waline@v2 using https://<CDN.LINK>/@waline/client@next/dist/waline.js instead!'
 );
 
 // inject css styles
