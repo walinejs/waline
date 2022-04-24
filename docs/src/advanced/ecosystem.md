@@ -40,7 +40,7 @@ Waline 是经典的前后端分离 Client/Server 架构，提供了较为完善�
 
 - [@mr-hope/vuepress-plugin-comment](https://vuepress-theme-hope.github.io/comment/zh/): VuePress1 评论插件
 
-- [@mr-hope/vuepress-plugin-comment](https://vuepress-theme-hope.github.io/v2/comment/zh/): VuePress2 评论插件
+- [vuepress-plugin-comment2](https://vuepress-theme-hope.github.io/v2/comment/zh/): VuePress2 评论插件
 
 ## 主题
 

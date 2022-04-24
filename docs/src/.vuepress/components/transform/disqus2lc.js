@@ -1,4 +1,7 @@
-// disqus 数据结构转 leancloud
+/**
+ * disqus 数据结构转 leancloud
+ */
+
 export const disqus2lc = (input) => {
   const parser = new DOMParser();
   const dom = parser.parseFromString(input, 'application/xml');

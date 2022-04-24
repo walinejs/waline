@@ -20,7 +20,7 @@ In most cases, this just means the following changes:
 ```diff
 - <script src='//cdn.jsdelivr.net/npm/@waline/client'></script>
 + <script src='//cdn.jsdelivr.net/npm/@waline/client/dist/waline.js'></script>
-+ <link rel='style' href='//cdn.jsdelivr.net/npm/@waline/client/dist/waline.css' />
++ <link href='//cdn.jsdelivr.net/npm/@waline/client/dist/waline.css' rel='stylesheet' />
 
   <script>
 -  Waline({
@@ -31,7 +31,7 @@ In most cases, this just means the following changes:
   </script>
 ```
 
-## New options
+## Options Added
 
 - The `comment` option supports setting strings as CSS selectors.
 - The `pageview` option supports setting strings as CSS selectors.

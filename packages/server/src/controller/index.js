@@ -14,7 +14,7 @@ module.exports = class extends think.Controller {
     <body>
       <div id="waline" style="max-width: 800px;margin: 0 auto;"></div>
       <script src="https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.js"></script>
-      <link rel='style' href='//cdn.jsdelivr.net/npm/@waline/client/dist/waline.css' />
+      <link href='//cdn.jsdelivr.net/npm/@waline/client/dist/waline.css' rel='stylesheet' />
       <script>
         console.log(
           '%c @waline/server %c v${version} ',

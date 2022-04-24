@@ -6,16 +6,19 @@ const parseKey = (key) => {
   return anchor.pathname || key;
 };
 
-// artalk 数据结构转 leancloud
+/**
+ * artalk 数据结构转 leancloud
+ */
+
 export const artalk2lc = (input) => {
   input = JSON.parse(input);
 
   const idMap = {};
+  const rootIdMap = {};
 
   for (let i = 0; i < input.length; i++) {
     idMap[input[i].id] = input[i].rid;
   }
-  const rootIdMap = {};
 
   for (let i = 0; i < input.length; i++) {
     if (!input[i].rid) {
@@ -23,9 +26,11 @@ export const artalk2lc = (input) => {
     }
 
     let rid = input[i].rid;
+
     while (idMap[rid]) {
       rid = idMap[rid];
     }
+
     rootIdMap[input[i].id] = rid;
   }
 
@@ -45,12 +50,12 @@ export const artalk2lc = (input) => {
           mail: email,
           createdAt: time,
           updatedAt: time,
-          ip: ip,
-          link: link,
-          nick: nick,
-          ua: ua,
-          url: url,
-          pid: rid ? rid : null,
+          ip,
+          link,
+          nick,
+          ua,
+          url,
+          pid: rid || null,
           rid: rootIdMap[id] || null,
           status: 'approved',
         };

@@ -27,6 +27,7 @@ export default defineHopeConfig({
   },
 
   alias: {
+    '@MigrationTool': path.resolve(__dirname, './components/MigrationTool.vue'),
     '@theme-hope/components/HomePage': path.resolve(
       __dirname,
       './components/HomePage'
