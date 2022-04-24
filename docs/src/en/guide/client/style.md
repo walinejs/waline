@@ -1,5 +1,5 @@
 ---
-title: Custom style
+title: Style Customize
 icon: style
 ---
 
@@ -26,7 +26,7 @@ Meanwhile, `@waline/client` also has built-in dark mode support.
   --waline-active-color: #2ecc71;
 
   /* Layout Color */
-  --waline-text-color: #444;
+  --waline-color: #444;
   --waline-bgcolor: #fff;
   --waline-bgcolor-light: #f8f8f8;
   --waline-bgcolor-hover: #f0f0f0;
@@ -40,7 +40,7 @@ Meanwhile, `@waline/client` also has built-in dark mode support.
 
   /* Avatar */
   --waline-avatar-size: 3.25rem;
-  --waline-mobile-avatar-size: calc(var(--waline-avatar-size) * 9 / 13);
+  --waline-m-avatar-size: calc(var(--waline-avatar-size) * 9 / 13);
 
   /* Badge */
   --waline-badge-color: #3498db;
@@ -92,7 +92,7 @@ darkmode-selector {
   --waline-dark-grey: #999;
 
   /* Layout color */
-  --waline-text-color: #888;
+  --waline-color: #888;
   --waline-bgcolor: #1e1e1e;
   --waline-bgcolor-light: #272727;
   --waline-border-color: #333;

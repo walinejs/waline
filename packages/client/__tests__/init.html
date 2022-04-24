@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../dist/waline.js"></script>
+    <link rel="stylesheet" href="../dist/waline.css" />
+  </head>
+  <body>
+    阅读量: <span id="/" class="waline-pageview-count"></span> 评论数:
+    <span id="/" class="waline-comment-count"></span>
+    <div id="waline" style="max-width: 800px; margin: 0 auto"></div>
+    <script>
+      const waline = Waline.init({
+        el: '#waline',
+        lang: 'en-US',
+        path: '/',
+        pageview: true,
+        serverURL: 'https://waline.vercel.app',
+        emoji: [
+          'https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/bilibili',
+          'https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/qq',
+        ],
+      });
+    </script>
+  </body>
+</html>

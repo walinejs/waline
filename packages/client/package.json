@@ -1,6 +1,6 @@
 {
   "name": "@waline/client",
-  "version": "1.6.0",
+  "version": "2.0.0",
   "description": "client for waline comment system",
   "keywords": [
     "valine",
@@ -12,19 +12,31 @@
     "url": "https://github.com/walinejs/waline"
   },
   "license": "MIT",
-  "main": "dist/Waline.min.js",
-  "browser": "dist/Waline.min.js",
-  "types": "dist/Waline.min.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/shim.esm.js",
+      "require": "./dist/shim.js",
+      "default": "./dist/shim.js"
+    },
+    "./dist": "./dist/shim.js",
+    "./dist/waline.css": "./dist/waline.css",
+    "./dist/*": "./dist/*.js",
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/shim.js",
+  "browser": "./dist/legacy.js",
+  "types": "./dist/shim.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
-    "analyze": "cross-env ANALYZE=true webpack --mode=production --config ./build/webpack.config.js",
-    "build": "npm run build:normal && npm run build:no-style && npm run build:dts",
-    "build:dts": "rollup -c ./build/rollup.config.js",
-    "build:no-style": "webpack --mode=production --config ./build/webpack.noStyle.js",
-    "build:normal": "webpack --mode=production --config ./build/webpack.config.js",
+    "build": "npm run rollup && npm run style",
     "clean": "rimraf ./dist",
-    "dev": "webpack serve --mode=development --config ./build/webpack.config.js",
     "lint": "eslint --ext .ts,.vue .",
-    "prepublish": "npm run build"
+    "prepublish": "npm run clean && npm run build",
+    "rollup": "rollup -c ./scripts/rollup.config.js",
+    "style": "sass ./src/styles/index.scss ./dist/waline.css --style=compressed"
   },
   "browserslist": {
     "production": [
@@ -40,14 +52,17 @@
       "last 2 safari version"
     ]
   },
-  "devDependencies": {
-    "@types/autosize": "4.0.1",
-    "@types/marked": "4.0.3",
-    "@vue/compiler-sfc": "3.2.33",
+  "dependencies": {
     "autosize": "5.0.1",
     "hanabi": "0.4.0",
     "marked": "4.0.14",
-    "mitt": "3.0.0",
     "vue": "3.2.33"
+  },
+  "devDependencies": {
+    "@types/autosize": "4.0.1",
+    "@types/marked": "4.0.3"
+  },
+  "engines": {
+    "node": ">=12.20.0"
   }
 }

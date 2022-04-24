@@ -1,4 +1,4 @@
-import type { Locale } from './typings';
+import type { WalineLocale } from '../../typings';
 
 const localeKeys = [
   'nick',
@@ -33,7 +33,7 @@ const localeKeys = [
   'anonymous',
 ];
 
-export const generateLocale = (locale: string[]): Locale =>
+export const generateLocale = (locale: string[]): WalineLocale =>
   Object.fromEntries(
     locale.map((item, index) => [localeKeys[index], item])
-  ) as unknown as Locale;
+  ) as unknown as WalineLocale;

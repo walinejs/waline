@@ -134,7 +134,7 @@ Waline 不含有上述 Emoji 表情的任何版权，你需要自行承担使用
 ### 例子
 
 ```js
-Waline({
+Waline.init({
   el: '#waline',
   serverURL: '<YOUR SERVER URL>',
 
@@ -263,7 +263,7 @@ https://example.com/myemoji/
 使用 `emojiCDN` 设置 emoji 图片地址前缀，并使用 `emojiMaps` 设置表情 title 与图片的映射:
 
 ```js
-Waline({
+Waline.init({
   el: '#waline',
   serverURL: '<YOUR SERVER URL>',
 
@@ -286,7 +286,7 @@ Waline({
 
 ```css
 /* 你需要把 `https://img.t.sinajs.cn` 换成自己的 CDN */
-.v[data-class='v'] .vcontent img[src^="https://img.t.sinajs.cn"]
+.wl-content img[src^="https://img.t.sinajs.cn"]
 {
   width: 1.25em;
   margin: 0.25em;

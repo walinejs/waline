@@ -8,21 +8,26 @@ div[tabindex='-1'] {
 }
 
 .account-item {
-  display: inline-block;
   position: relative;
+  display: inline-block;
   margin-right: 16px;
 }
 
 .account-item .account-unbind svg {
-  background: #fff;
-  border: 1px solid #999;
-  border-radius: 50%;
   position: absolute;
   top: -3px;
   right: -3px;
+
   display: none;
+
+  border: 1px solid #999;
+  border-radius: 50%;
+
+  background: #fff;
+
   cursor: pointer;
 }
+
 .account-item:hover .account-unbind svg {
   display: block;
 }
@@ -30,22 +35,27 @@ div[tabindex='-1'] {
 .account-item.github path,
 .account-item.twitter circle,
 .account-item.facebook path {
-  fill: grey;
+  fill: #808080;
 }
+
 .account-item.github:hover path,
 .account-item.github.bind path {
   fill: #1b1f23;
 }
+
 .account-item.twitter:hover circle,
 .account-item.twitter.bind circle {
   fill: #2daae1;
 }
+
 .account-item.facebook:hover path,
 .account-item.facebook.bind path {
   fill: #1877f2;
 }
 
-.vemoji {
+// remain for historical reasons
+.vemoji,
+.wl-emoji {
   display: inline-block;
   vertical-align: middle;
   width: 1.3rem;

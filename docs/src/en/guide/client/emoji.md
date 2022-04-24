@@ -1,5 +1,5 @@
 ---
-title: Custom emoji
+title: Emoji Customize
 icon: emoji
 ---
 
@@ -134,7 +134,7 @@ Waline DO NOT have any copright of above emojis, use them at your own risk.
 ### Example
 
 ```js
-Waline({
+Waline.init({
   el: '#waline',
   serverURL: '<YOUR SERVER URL>',
 
@@ -263,7 +263,7 @@ Though Waline is still compatible with Valine's custom emoji syntax, this compat
 Use `emojiCDN` to set the address prefix of emoji images, and use `emojiMaps` to set the mapping between emoji title and image:
 
 ```js
-Waline({
+Waline.init({
   el: '#waline',
   serverURL: '<YOUR SERVER URL>',
 
@@ -286,7 +286,7 @@ If you need to adapt the emoji size of the historical version, you can use the C
 
 ```css
 /* You need to replace `https://img.t.sinajs.cn` with your own CDN */
-.v[data-class='v'] .vcontent img[src^="https://img.t.sinajs.cn"]
+.wl-content img[src^="https://img.t.sinajs.cn"]
 {
   width: 1.25em;
   margin: 0.25em;

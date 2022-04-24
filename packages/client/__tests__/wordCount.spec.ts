@@ -84,17 +84,20 @@ describe('Words test', () => {
     const codeBlock = `
 \`\`\`html
 <head>
-  ..
-  <script src="//cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js"></script>
-  ...
+  <!-- ... -->
+  <script src="//cdn.jsdelivr.net/npm/@waline/client"></script>
+  <link
+    rel="style"
+    href="//cdn.jsdelivr.net/npm/@waline/client/dist/waline.css"
+  />
+  <!-- ... -->
 </head>
 <body>
-  ...
+  <!-- ... -->
   <div id="waline"></div>
   <script>
-    Waline({
+    Waline.init({
       el: '#waline',
-      path: location.pathname,
       serverURL: 'https://your-domain.vercel.app',
     });
   </script>
@@ -116,11 +119,19 @@ describe('Words test', () => {
       'npm',
       'waline',
       'client',
-      'dist',
-      'Waline',
-      'min',
-      'js',
       'script',
+      'link\n    rel',
+      'style',
+      'href',
+      'cdn',
+      'jsdelivr',
+      'net',
+      'npm',
+      'waline',
+      'client',
+      'dist',
+      'waline',
+      'css',
       'head',
       'body',
       'div id',
@@ -128,11 +139,9 @@ describe('Words test', () => {
       'div',
       'script',
       'Waline',
+      'init',
       'el',
       'waline',
-      'path',
-      'location',
-      'pathname',
       'serverURL',
       'https',
       'your',
@@ -143,6 +152,6 @@ describe('Words test', () => {
       'body',
     ]);
 
-    expect(getWordNumber(codeBlock)).toEqual(36);
+    expect(getWordNumber(codeBlock)).toEqual(43);
   });
 });

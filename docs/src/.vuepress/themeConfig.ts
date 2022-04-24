@@ -12,10 +12,10 @@ export default defineThemeConfig({
   docsDir: 'docs/src',
   docsBranch: 'main',
 
-  pageInfo: ['ReadingTime'],
+  pageInfo: ['ReadingTime', 'PageView'],
 
   contributors: false,
-  fullScreen: false,
+  fullscreen: false,
   themeColor: false,
 
   locales: {
@@ -41,6 +41,7 @@ export default defineThemeConfig({
     comment: {
       type: 'waline',
       serverURL: 'https://waline.vercel.app',
+      pageviews: true,
       walineLocales: {
         '/': {
           admin: '可爱的管理员',

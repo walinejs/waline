@@ -1,5 +1,5 @@
 ---
-title: Supported Comment Syntax
+title: Comment Syntax Support
 icon: format
 ---
 
@@ -199,7 +199,7 @@ This includes the following restrictions:
 
 - Tex syntax, or mathematical formulas (e.g.: `$a = 1$`) cannot be rendered correctly by default
 
-  You can set Tex rendering during preview by setting the `math` option.
+  You can set Tex rendering during preview by setting the `texRenderer` option.
 
 - Code blocks will be highlighted in random colors splited by specific characters
 

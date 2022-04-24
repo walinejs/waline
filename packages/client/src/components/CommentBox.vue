@@ -1,34 +1,28 @@
 <template>
-  <div class="vcomment">
-    <div v-if="config.login !== 'disable' && isLogin" class="vlogin-info">
-      <div class="vavatar">
-        <button class="vlogout-btn" :title="locale.logout" @click="onLogout">
-          <CloseIcon size="14" />
+  <div class="wl-comment">
+    <div v-if="config.login !== 'disable' && isLogin" class="wl-login-info">
+      <div class="wl-avatar">
+        <button class="wl-logout-btn" :title="locale.logout" @click="onLogout">
+          <CloseIcon :size="14" />
         </button>
 
-        <img
-          :src="
-            userInfo.avatar ||
-            `${config.avatar.cdn}${userInfo.mailMd5}${config.avatar.param}`
-          "
-          alt="avatar"
-        />
+        <img :src="userInfo.avatar" alt="avatar" />
       </div>
       <a
         href="#"
-        class="vlogin-nick"
+        class="wl-login-nick"
         aria-label="Profile"
         @click="onProfile"
         v-text="userInfo.display_name"
       />
     </div>
 
-    <div class="vpanel">
+    <div class="wl-panel">
       <div
         v-if="config.login !== 'force' && config.meta.length && !isLogin"
-        :class="['vheader', `vheader-${config.meta.length}`]"
+        :class="['wl-header', `item${config.meta.length}`]"
       >
-        <div v-for="kind in config.meta" class="vheader-item" :key="kind">
+        <div v-for="kind in config.meta" class="wl-header-item" :key="kind">
           <label
             :for="kind"
             v-text="
@@ -44,8 +38,8 @@
                 if (element) inputRefs[kind] = element;
               }
             "
-            :id="`waline-${kind}`"
-            :class="['vinput', `v${kind}`]"
+            :id="`wl-${kind}`"
+            :class="['wl-input', `wl-${kind}`]"
             :name="kind"
             :type="kind === 'mail' ? 'email' : 'text'"
             v-model="inputs[kind]"
@@ -54,9 +48,9 @@
       </div>
 
       <textarea
-        class="veditor"
+        class="wl-editor"
         ref="editorRef"
-        id="waline-edit"
+        id="wl-edit"
         :placeholder="replyUser ? `@${replyUser}` : locale.placeholder"
         v-model="inputs.editor"
         @keydown="onKeyDown"
@@ -65,20 +59,20 @@
       />
 
       <div
-        class="vpreview"
+        class="wl-preview"
         :style="{ display: showPreview ? 'block' : 'none' }"
       >
         <h4>{{ locale.preview }}:</h4>
-        <div class="vcontent" v-html="previewText" />
+        <div class="wl-content" v-html="previewText" />
       </div>
 
-      <div class="vfooter">
-        <div class="vactions">
+      <div class="wl-footer">
+        <div class="wl-actions">
           <a
             href="https://guides.github.com/features/mastering-markdown/"
             title="Markdown Guide"
             aria-label="Markdown is supported"
-            class="vaction"
+            class="wl-action"
             target="_blank"
             rel="noreferrer"
           >
@@ -87,7 +81,7 @@
 
           <button
             ref="emojiButtonRef"
-            class="vaction"
+            class="wl-action"
             :class="{ actived: showEmoji }"
             :title="locale.emoji"
             @click="showEmoji = !showEmoji"
@@ -98,7 +92,7 @@
           <input
             ref="imageUploadRef"
             class="upload"
-            id="waline-image-upload"
+            id="wl-image-upload"
             type="file"
             accept=".png,.jpg,.jpeg,.webp,.bmp,.gif"
             @change="onChange"
@@ -106,15 +100,15 @@
 
           <label
             v-if="canUploadImage"
-            for="waline-image-upload"
-            class="vaction"
+            for="wl-image-upload"
+            class="wl-action"
             :title="locale.uploadImage"
           >
             <ImageIcon />
           </label>
 
           <button
-            class="vaction"
+            class="wl-action"
             :class="{ actived: showPreview }"
             :title="locale.preview"
             @click="showPreview = !showPreview"
@@ -123,8 +117,8 @@
           </button>
         </div>
 
-        <div class="vinfo">
-          <div class="vtext-number">
+        <div class="wl-info">
+          <div class="wl-text-number">
             {{ wordNumber }}
 
             <span v-if="config.wordLimit">
@@ -140,14 +134,14 @@
 
           <button
             v-if="config.login !== 'disable' && !isLogin"
-            class="vbtn"
+            class="wl-btn"
             @click="onLogin"
             v-text="locale.login"
           />
 
           <button
             v-if="config.login !== 'force' || isLogin"
-            class="vbtn primary"
+            class="wl-btn primary"
             title="Cmd|Ctrl + Enter"
             :disabled="isSubmitting"
             @click="submitComment"
@@ -161,11 +155,11 @@
 
         <div
           ref="emojiPopupRef"
-          class="vemoji-popup"
+          class="wl-emoji-popup"
           :class="{ display: showEmoji }"
         >
           <template v-for="(config, index) in emoji.tabs" :key="config.name">
-            <div v-if="index === emojiTabIndex" class="vtab-wrapper">
+            <div v-if="index === emojiTabIndex" class="wl-tab-wrapper">
               <button
                 v-for="key in config.items"
                 :key="key"
@@ -174,7 +168,7 @@
               >
                 <img
                   v-if="showEmoji"
-                  class="vemoji"
+                  class="wl-emoji"
                   :src="emoji.map[key]"
                   :alt="key"
                   loading="lazy"
@@ -183,16 +177,16 @@
               </button>
             </div>
           </template>
-          <div v-if="emoji.tabs.length > 1" class="vtabs">
+          <div v-if="emoji.tabs.length > 1" class="wl-tabs">
             <button
               v-for="(config, index) in emoji.tabs"
               :key="config.name"
-              class="vtab"
+              class="wl-tab"
               :class="{ active: emojiTabIndex === index }"
               @click="emojiTabIndex = index"
             >
               <img
-                class="vemoji"
+                class="wl-emoji"
                 :src="config.icon"
                 :alt="config.name"
                 :title="config.name"
@@ -207,16 +201,17 @@
 
     <button
       v-if="replyId"
-      class="vclose"
+      class="wl-close"
       :title="locale.cancelReply"
       @click="$emit('cancel-reply')"
     >
-      <CloseIcon size="24" />
+      <CloseIcon :size="24" />
     </button>
   </div>
 </template>
 
 <script lang="ts">
+import autosize from 'autosize';
 import {
   computed,
   defineComponent,
@@ -226,7 +221,6 @@ import {
   ref,
   watch,
 } from 'vue';
-import autosize from 'autosize';
 
 import {
   CloseIcon,
@@ -245,11 +239,9 @@ import {
   postComment,
 } from '../utils';
 
-import type { DeepReadonly } from 'vue';
-import type { ConfigRef } from '../composables';
-import type { UploadImage } from '../config';
-import type { CommentData } from '../typings';
-import type { EmojiConfig } from '../utils';
+import type { ComputedRef, DeepReadonly } from 'vue';
+import type { WalineCommentData, WalineImageUploader } from '../typings';
+import type { Config, EmojiConfig } from '../utils';
 
 export default defineComponent({
   name: 'CommentBox',
@@ -281,7 +273,7 @@ export default defineComponent({
   emits: ['submit', 'cancel-reply'],
 
   setup(props, { emit }) {
-    const config = inject<ConfigRef>('config') as ConfigRef;
+    const config = inject<ComputedRef<Config>>('config') as ComputedRef<Config>;
 
     const { inputs, store } = useInputs();
     const { userInfo, setUserInfo } = useUserInfo();
@@ -310,7 +302,7 @@ export default defineComponent({
 
     const isLogin = computed(() => Boolean(userInfo.value?.token));
 
-    const canUploadImage = computed(() => config.value.uploadImage !== false);
+    const canUploadImage = computed(() => config.value.imageUploader !== false);
 
     const insert = (content: string): void => {
       const textArea = editorRef.value as HTMLTextAreaElement;
@@ -341,7 +333,7 @@ export default defineComponent({
       insert(uploadText);
 
       return Promise.resolve()
-        .then(() => (config.value.uploadImage as UploadImage)(file))
+        .then(() => (config.value.imageUploader as WalineImageUploader)(file))
         .then((url) => {
           inputs.editor = inputs.editor.replace(
             uploadText,
@@ -382,7 +374,7 @@ export default defineComponent({
     const submitComment = (): void => {
       const { serverURL, lang, login, wordLimit, requiredMeta } = config.value;
 
-      const comment: CommentData = {
+      const comment: WalineCommentData = {
         comment: content.value,
         nick: inputs.nick,
         mail: inputs.mail,
@@ -459,7 +451,8 @@ export default defineComponent({
 
           if (resp.errmsg) return alert(resp.errmsg);
 
-          emit('submit', resp.data);
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          emit('submit', resp.data!);
 
           inputs.editor = '';
 
@@ -562,15 +555,14 @@ export default defineComponent({
     watch(
       () => inputs.editor,
       (value) => {
-        const { highlight, tex } = config.value;
+        const { highlighter, texRenderer } = config.value;
 
         content.value = value;
-        previewText.value = parseMarkdown(
-          value,
-          highlight,
-          emoji.value.map,
-          tex
-        );
+        previewText.value = parseMarkdown(value, {
+          emojiMap: emoji.value.map,
+          highlighter,
+          texRenderer,
+        });
         wordNumber.value = getWordNumber(value);
 
         if (editorRef.value)

@@ -1,4 +1,4 @@
-.v[data-class='v'] {
+[data-waline] {
   font-size: var(--waline-font-size);
   text-align: left;
 
@@ -8,7 +8,7 @@
   }
 
   p {
-    color: var(--waline-text-color);
+    color: var(--waline-color);
   }
 
   a {
@@ -19,6 +19,8 @@
     color: var(--waline-theme-color);
 
     text-decoration: none;
+
+    word-break: break-word;
 
     cursor: pointer;
 
@@ -63,7 +65,7 @@
     &::-webkit-scrollbar-track-piece:horizontal {
       -webkit-border-radius: 6px;
       border-radius: 6px;
-      background: rgba(0, 0, 0, 0.1);
+      background: rgb(0 0 0 / 10%);
     }
 
     &::-webkit-scrollbar-thumb:horizontal {
@@ -77,7 +79,7 @@
       padding: 0;
 
       background: transparent;
-      color: var(--waline-text-color);
+      color: var(--waline-color);
 
       white-space: pre-wrap;
       word-break: keep-all;

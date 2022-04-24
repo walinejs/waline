@@ -83,9 +83,9 @@ Insert following code before `<head>` tag in your html content. `#waline-coment`
 ```html
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/lightgallery@2.1.5/css/lightgallery-bundle.css"
+  href="https://cdn.jsdelivr.net/npm/lightgallery@v2/css/lightgallery-bundle.css"
 />
-<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.1.5/lightgallery.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lightgallery@v2/lightgallery.umd.min.js"></script>
 <script>
   document.addEventListener('click', (e) => {
     const imgs = [].slice
@@ -112,7 +112,7 @@ Insert following code before `<head>` tag in your html content. `#waline-coment`
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/gh/cbeyls/slimbox/css/slimbox2.css"
 />
-<script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@v1/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/cbeyls/slimbox/js/slimbox2.js"></script>
 <script>
   document.addEventListener('click', (e) => {
@@ -137,9 +137,9 @@ Insert following code before `<head>` tag in your html content. `#waline-coment`
 ```html
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/lightbox2@2.11.3/dist/css/lightbox.min.css"
+  href="https://cdn.jsdelivr.net/npm/lightbox2@v2/dist/css/lightbox.min.css"
 />
-<script src="https://cdn.jsdelivr.net/npm/lightbox2@2.11.3/dist/js/lightbox-plus-jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lightbox2@v2/dist/js/lightbox-plus-jquery.min.js"></script>
 <script>
   document.addEventListener('click', (e) => {
     const lightbox = new Lightbox();

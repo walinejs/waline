@@ -7,17 +7,21 @@ Waline 官方提供了 [`@waline/client`](https://www.npmjs.com/package/@waline/
 
 ## 引入
 
-你可以使用 CDN 或 npm 引入 Waline，我们提供了有样式和无样式两种版本。
+你可以使用 CDN 或 npm 引入 Waline，我们提供了多种版本。
 
 关于 Waline 引入，详见 [Waline 引入](./import.md)。
 
 ## 初始化
 
-你可以使用 `Waline(options)` 初始化 Waline 实例，其中 `el` 和 `serverURL` 两个选项是必填的。前者为 Waline 挂载的元素或元素选择器，后者为服务端地址。
+你可以使用 `Waline.init(options)` 初始化 Waline 实例，其中 `el` 和 `serverURL` 两个选项是必填的。前者为 Waline 挂载的元素或元素选择器，后者为服务端地址。
 
 关于 Waline 的全部初始化参数，详见 [参考 → Waline 客户端配置](../../reference/client.md)。
 
-## 格式支持
+## 浏览量统计
+
+Waline 支持页面浏览量统计，如果你不需要评论服务而只是需要浏览量功能的话，Waline 提供了一个 < 1KB Gzip 大小的统计插件，请参阅 [浏览量统计](pageview.md)。
+
+## 丰富的评论格式支持
 
 Waline 支持丰富的格式。除了在评论区使用标准的 Markdown 与 GFM 语法扩展外，你还可以嵌入 HTML 标签、使用数学公式以及其他语法。
 
@@ -27,21 +31,29 @@ Waline 支持丰富的格式。除了在评论区使用标准的 Markdown 与 GF
 
 Waline 支持诸多功能，包括登录、头像、多语言、自定义 Emoji、图片上传和实时预览等功能。你可以在下方 Demo 中对这些功能进行体验。
 
-Waline 官方添加了简体中文、繁体中文、英文和日语的支持，同时你可以在此基础上 [自定义多语言](./i18n.md)。
+Waline 官方添加了多种语言的内置支持，同时你可以在此基础上 [自定义多语言](./i18n.md)。
 
 Waline 服务端默认使用 [Libravatar 头像配置](../server/intro.md#头像配置)。
 
 你可以很轻松的使用 Waline 提供的预设或自己创建新的预设来自定义评论框内的 Emoji 表情，详见 [自定义 Emoji](./emoji.md)。
 
-Waline 内置了图像上传支持，默认将图片转为 Base64，你也可以通过 [`uploadImage` 选项](../../reference/client.md#uploadimage) 自定义图像上传。
+Waline 内置了图像上传支持，默认将图片转为 Base64 内嵌，你也可以通过 [`imageUploader` 选项](../../reference/client.md#uploadimage) 完全自定义图像上传过程，比如到你想要使用的图床。
 
-## 样式定义
+## 自定义样式
 
-为了方便用户对 Waline 样式的调整，Waline 提供了很多可配置的 CSS 变量 (CSS Variables)。同时 Waline 还带来了内置的 [暗黑模式支持](../../reference/client.md#dark)，详见 [自定义样式](./style.md)。
+Waline 带来了内置的暗黑模式支持，同时为了方便用户对 Waline 样式的调整，Waline 提供了很多可配置的 CSS 变量 (CSS Variables)。
 
-## 评论数和浏览量统计
+详见 [自定义样式](./style.md)。
 
-Waline 支持评论数和浏览量统计，有关使用的详细信息，请参阅 [浏览量统计](./count.md)。
+## 评论数统计
+
+Waline 支持在页面的其他部分显示评论数，请参阅 [评论统计](comment.md) 。
+
+## Vue 组件
+
+由于 Waline 官方客户端基于 Vue3，Waline 同时提供了一个 13KB Gzip 大小的 Vue 组件，所有的组件属性都是响应式的。
+
+如果你在使用基于 Vue 的项目，你可以直接在项目中导入并使用 Waline 组件，详见 [Vue 组件](./component.md)。
 
 ## 单页应用支持
 
@@ -49,7 +61,7 @@ Waline 为 SPA(**S**ingle **P**age **A**pplication, 单页应用) 带来了支�
 
 ## 无障碍支持
 
-Waline 在 V1 版本完整符合了全部的无障碍标准:
+Waline 完整支持了全部的无障碍标准:
 
 - 所有图标与控件均有其对应的无障碍标签。
 - 你可以使用键盘或头戴式指针设备完成与 Waline 所有控件的交互。

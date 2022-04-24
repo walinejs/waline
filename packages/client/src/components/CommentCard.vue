@@ -1,31 +1,33 @@
 <template>
-  <div class="vitem" :id="comment.objectId">
-    <img v-if="avatar" class="vuser" aria-hidden="true" :src="avatar" />
-    <div class="vcard">
-      <div class="vhead">
+  <div class="wl-item" :id="comment.objectId">
+    <div class="wl-user" aria-hidden="true">
+      <img v-if="comment.avatar" :src="comment.avatar" />
+      <VerifiedIcon v-if="comment.type" />
+    </div>
+
+    <div class="wl-card">
+      <div class="wl-head">
         <a
           v-if="link"
-          class="vnick"
+          class="wl-nick"
           :href="link"
           target="_blank"
           rel="nofollow noreferrer"
-          >{{ comment.nick }}<VerifiedIcon v-if="comment.type"
-        /></a>
-        <span v-else class="vnick"
-          >{{ comment.nick }}<VerifiedIcon v-if="comment.type" />
-        </span>
+          >{{ comment.nick }}</a
+        >
+        <span v-else class="wl-nick">{{ comment.nick }}</span>
+
         <span
           v-if="comment.type === 'administrator'"
-          class="vbadge"
+          class="wl-badge"
           v-text="locale.admin"
         />
+        <span v-if="comment.sticky" class="wl-badge" v-text="locale.sticky" />
 
-        <span v-if="comment.sticky" class="vbadge" v-text="locale.sticky" />
-
-        <span class="vtime" v-text="timeAgo(comment.insertedAt, locale)" />
+        <span class="wl-time" v-text="timeAgo(comment.insertedAt, locale)" />
 
         <button
-          class="vreply"
+          class="wl-reply"
           :class="{ active: isReplyingCurrent }"
           :title="isReplyingCurrent ? locale.cancelReply : locale.reply"
           @click="$emit('reply', isReplyingCurrent ? null : comment)"
@@ -33,13 +35,13 @@
           <ReplyIcon />
         </button>
       </div>
-      <div class="vmeta" aria-hidden="true">
+      <div class="wl-meta" aria-hidden="true">
         <span v-if="comment.browser" v-text="comment.browser" />
         <span v-if="comment.os" v-text="comment.os" />
       </div>
-      <div class="vcontent" v-html="comment.comment" />
+      <div class="wl-content" v-html="comment.comment" />
 
-      <div v-if="isReplyingCurrent" class="vreply-wrapper">
+      <div v-if="isReplyingCurrent" class="wl-reply-wrapper">
         <CommentBox
           :replyId="comment.objectId"
           :replyUser="comment.nick"
@@ -48,7 +50,7 @@
           @cancel-reply="$emit('reply', null)"
         />
       </div>
-      <div v-if="comment.children" class="vquote">
+      <div v-if="comment.children" class="wl-quote">
         <CommentCard
           v-for="child in comment.children"
           :key="child.objectId"
@@ -69,14 +71,14 @@ import CommentBox from './CommentBox.vue';
 import { ReplyIcon, VerifiedIcon } from './Icons';
 import { isLinkHttp, timeAgo } from '../utils';
 
-import type { PropType } from 'vue';
-import type { ConfigRef } from '../composables';
-import type { Comment } from '../typings';
+import type { ComputedRef, PropType } from 'vue';
+import type { Config } from '../utils';
+import type { WalineComment } from '../typings';
 
 export default defineComponent({
   props: {
     comment: {
-      type: Object as PropType<Comment>,
+      type: Object as PropType<WalineComment>,
       required: true,
     },
     rootId: {
@@ -84,7 +86,7 @@ export default defineComponent({
       required: true,
     },
     reply: {
-      type: Object as PropType<Comment | null>,
+      type: Object as PropType<WalineComment | null>,
     },
   },
 
@@ -97,27 +99,13 @@ export default defineComponent({
   emits: ['submit', 'reply'],
 
   setup(props) {
-    const config = inject<ConfigRef>('config') as ConfigRef;
+    const config = inject<ComputedRef<Config>>('config') as ComputedRef<Config>;
     const locale = computed(() => config.value.locale);
 
     const link = computed(() => {
       let { link } = props.comment;
 
       return link ? (isLinkHttp(link) ? link : `https://${link}`) : '';
-    });
-
-    const avatar = computed(() => {
-      const userData = props.comment;
-      const avatarConfig = config.value.avatar;
-
-      if (!userData || avatarConfig.hide) {
-        return false;
-      }
-
-      return (
-        props.comment.avatar ||
-        `${avatarConfig.cdn}${props.comment.mail}${avatarConfig.param}`
-      );
     });
 
     const isReplyingCurrent = computed(
@@ -128,7 +116,6 @@ export default defineComponent({
       config,
       locale,
 
-      avatar,
       isReplyingCurrent,
       link,
       timeAgo,
