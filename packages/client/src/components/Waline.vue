@@ -6,6 +6,18 @@
       {{ i18n.comment }}
     </div>
 
+    <div class="wl-cards">
+      <CommentCard
+        v-for="comment in data"
+        :key="comment.objectId"
+        :root-id="comment.objectId"
+        :comment="comment"
+        :reply="reply"
+        @reply="onReply"
+        @submit="onSubmit"
+      />
+    </div>
+
     <div v-if="status === 'error'" class="wl-action">
       <button
         type="button"
@@ -15,27 +27,15 @@
       />
     </div>
 
-    <div v-else-if="status === 'loading'" class="wl-loading">
-      <LoadingIcon :size="30" />
-    </div>
-
     <template v-else>
-      <div v-if="!data.length" class="wl-empty" v-text="i18n.sofa" />
-
-      <div v-else class="wl-cards">
-        <CommentCard
-          v-for="comment in data"
-          :key="comment.objectId"
-          :root-id="comment.objectId"
-          :comment="comment"
-          :reply="reply"
-          @reply="onReply"
-          @submit="onSubmit"
-        />
+      <div v-if="status === 'loading'" class="wl-loading">
+        <LoadingIcon :size="30" />
       </div>
 
+      <div v-else-if="!data.length" class="wl-empty" v-text="i18n.sofa" />
+
       <!-- Load more button -->
-      <div v-if="page < totalPages" class="wl-more">
+      <div v-else-if="page < totalPages" class="wl-more">
         <button
           type="button"
           class="wl-btn"
