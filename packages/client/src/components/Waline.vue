@@ -216,7 +216,7 @@ export default defineComponent({
   setup(props) {
     const config = computed(() => getConfig(props as WalineProps));
 
-    const { userInfo } = useUserInfo();
+    const userInfo = useUserInfo();
 
     const status = ref<'loading' | 'success' | 'error'>('loading');
 

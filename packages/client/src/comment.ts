@@ -40,7 +40,7 @@ WalineCommentCountOptions): WalineAbort => {
   // comment count
   const elements = document.querySelectorAll<HTMLElement>(selector);
 
-  const { userInfo } = useUserInfo();
+  const userInfo = useUserInfo();
 
   if (elements.length)
     void fetchCommentCount({

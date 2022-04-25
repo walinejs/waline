@@ -1,21 +1,23 @@
-import { Store, useStore } from '../composables/store';
+import { useStorage } from '@vueuse/core';
 import { removeEndingSplash } from './path';
 
 import type { EmojiConfig } from './config';
 import type { WalineEmojiInfo } from '../typings';
 
-let store: Store;
-
 const hasVersion = (url: string): boolean =>
   Boolean(/@[0-9]+\.[0-9]+\.[0-9]+/.test(url));
 
 const fetchEmoji = (link: string): Promise<WalineEmojiInfo> => {
-  if (!store) store = useStore('WALINE_EMOJI');
+  const emojiStore = useStorage<Record<string, WalineEmojiInfo>>(
+    'WALINE_EMOJI',
+    {}
+  );
 
   const result = hasVersion(link);
 
   if (result) {
-    const info = store.get<WalineEmojiInfo>(link);
+    const info = emojiStore.value.link;
+
     if (info) return Promise.resolve(info);
   }
 
@@ -27,7 +29,7 @@ const fetchEmoji = (link: string): Promise<WalineEmojiInfo> => {
         ...emojiInfo,
       };
 
-      if (result) store.set(link, info);
+      if (result) emojiStore.value.link = info;
 
       return info;
     });

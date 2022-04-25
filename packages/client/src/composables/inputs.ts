@@ -1,7 +1,5 @@
-import { reactive } from 'vue';
-import { useStore } from './store';
-
-import type { Store } from './store';
+import { useStorage } from '@vueuse/core';
+import type { RemovableRef } from '@vueuse/core';
 
 export interface Inputs {
   nick: string;
@@ -10,20 +8,10 @@ export interface Inputs {
   editor: string;
 }
 
-let store: Store;
-let inputs: Inputs;
-
-export const useInputs = (): { inputs: Inputs; store: Store } => {
-  if (!inputs) {
-    store = useStore('WALINE_USER_CACHE');
-
-    inputs = reactive({
-      nick: store.get<string>('nick') || '',
-      mail: store.get<string>('mail') || '',
-      link: store.get<string>('link') || '',
-      editor: '',
-    });
-  }
-
-  return { inputs, store };
-};
+export const useInputs = (): RemovableRef<Inputs> =>
+  useStorage<Inputs>('WALINE_USER_CACHE', {
+    nick: '',
+    mail: '',
+    link: '',
+    editor: '',
+  });

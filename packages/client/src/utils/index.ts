@@ -9,5 +9,4 @@ export * from './markdown';
 export * from './path';
 export * from './query';
 export * from './timeAgo';
-export * from './userInfo';
 export * from './wordCount';

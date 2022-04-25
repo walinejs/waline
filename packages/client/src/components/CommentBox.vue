@@ -273,8 +273,8 @@ export default defineComponent({
   setup(props, { emit }) {
     const config = inject<ComputedRef<Config>>('config') as ComputedRef<Config>;
 
-    const { inputs, store } = useInputs();
-    const { userInfo, setUserInfo } = useUserInfo();
+    const inputs = useInputs();
+    const userInfo = useUserInfo();
 
     const inputRefs = ref<Record<string, HTMLInputElement>>({});
     const editorRef = ref<HTMLTextAreaElement | null>(null);
@@ -308,7 +308,7 @@ export default defineComponent({
       const endPosition = textArea.selectionEnd || 0;
       const scrollTop = textArea.scrollTop;
 
-      inputs.editor =
+      inputs.value.editor =
         textArea.value.substring(0, startPosition) +
         content +
         textArea.value.substring(endPosition, textArea.value.length);
@@ -333,7 +333,7 @@ export default defineComponent({
       return Promise.resolve()
         .then(() => (config.value.imageUploader as WalineImageUploader)(file))
         .then((url) => {
-          inputs.editor = inputs.editor.replace(
+          inputs.value.editor = inputs.value.editor.replace(
             uploadText,
             `\r\n![${file.name}](${url})`
           );
@@ -374,9 +374,9 @@ export default defineComponent({
 
       const comment: WalineCommentData = {
         comment: content.value,
-        nick: inputs.nick,
-        mail: inputs.mail,
-        link: inputs.link,
+        nick: inputs.value.nick,
+        mail: inputs.value.mail,
+        link: inputs.value.link,
         ua: navigator.userAgent,
         url: config.value.path,
       };
@@ -441,18 +441,12 @@ export default defineComponent({
         .then((resp) => {
           isSubmitting.value = false;
 
-          store.update({
-            nick: comment.nick,
-            link: comment.link,
-            mail: comment.mail,
-          });
-
           if (resp.errmsg) return alert(resp.errmsg);
 
           // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           emit('submit', resp.data!);
 
-          inputs.editor = '';
+          inputs.value.editor = '';
 
           previewText.value = '';
 
@@ -488,7 +482,7 @@ export default defineComponent({
 
         if (data.data.token) {
           handler?.close();
-          setUserInfo(data.data);
+          userInfo.value = data.data;
           (data.data.remember ? localStorage : sessionStorage).setItem(
             'WALINE_USER',
             JSON.stringify(data.data)
@@ -502,7 +496,7 @@ export default defineComponent({
     };
 
     const onLogout = (): void => {
-      setUserInfo({});
+      userInfo.value = {};
       localStorage.setItem('WALINE_USER', 'null');
       sessionStorage.setItem('WALINE_USER', 'null');
     };
@@ -529,7 +523,8 @@ export default defineComponent({
       const receiver = ({ data }: any): void => {
         if (!data || data.type !== 'profile') return;
 
-        setUserInfo(Object.assign({}, userInfo.value, data));
+        userInfo.value = { ...userInfo.value, ...data };
+
         [localStorage, sessionStorage]
           .filter((store) => store.getItem('WALINE_USER'))
           .forEach((store) =>
@@ -551,7 +546,7 @@ export default defineComponent({
 
     // watch editor
     watch(
-      () => inputs.editor,
+      () => inputs.value.editor,
       (value) => {
         const { highlighter, texRenderer } = config.value;
 
