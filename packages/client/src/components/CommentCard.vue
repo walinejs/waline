@@ -24,7 +24,7 @@
         />
         <span v-if="comment.sticky" class="wl-badge" v-text="locale.sticky" />
 
-        <span class="wl-time" v-text="timeAgo(comment.insertedAt, locale)" />
+        <span class="wl-time" v-text="time" />
 
         <button
           class="wl-reply"
@@ -69,7 +69,8 @@
 import { computed, defineComponent, inject } from 'vue';
 import CommentBox from './CommentBox.vue';
 import { ReplyIcon, VerifiedIcon } from './Icons';
-import { isLinkHttp, timeAgo } from '../utils';
+import { isLinkHttp } from '../utils';
+import { useTimeAgo } from '../composables';
 
 import type { ComputedRef, PropType } from 'vue';
 import type { Config } from '../utils';
@@ -108,6 +109,8 @@ export default defineComponent({
       return link ? (isLinkHttp(link) ? link : `https://${link}`) : '';
     });
 
+    const time = useTimeAgo(props.comment.insertedAt, locale.value);
+
     const isReplyingCurrent = computed(
       () => props.comment.objectId === props.reply?.objectId
     );
@@ -118,7 +121,7 @@ export default defineComponent({
 
       isReplyingCurrent,
       link,
-      timeAgo,
+      time,
     };
   },
 });
