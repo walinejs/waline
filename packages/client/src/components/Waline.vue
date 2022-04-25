@@ -114,7 +114,6 @@ export default defineComponent({
 
     meta: {
       type: Array,
-      // default: (): Meta[] => ['nick', 'mail', 'link'],
       ...(SHOULD_VALIDATE
         ? {
             validator: (value: unknown): boolean =>
@@ -126,7 +125,6 @@ export default defineComponent({
 
     requiredMeta: {
       type: Array,
-      // default: (): Meta[] => [],
       ...(SHOULD_VALIDATE
         ? {
             validator: (value: unknown): boolean =>
@@ -138,17 +136,14 @@ export default defineComponent({
 
     visitor: {
       type: Boolean,
-      // default: false,
     },
 
     dark: {
       type: [String, Boolean],
-      // default: false,
     },
 
     lang: {
       type: String,
-      // default: 'zh-CN',
       ...(SHOULD_VALIDATE
         ? {
             validator: (value: unknown): boolean =>
@@ -163,7 +158,6 @@ export default defineComponent({
 
     pageSize: {
       type: Number,
-      // default: 10,
     },
 
     wordLimit: {
@@ -182,9 +176,6 @@ export default defineComponent({
 
     emoji: {
       type: Array as PropType<(string | WalineEmojiInfo)[]>,
-      // default: (): string[] => [
-      //   'https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo',
-      // ],
       ...(SHOULD_VALIDATE
         ? {
             validator: (value: unknown): boolean =>
@@ -207,31 +198,18 @@ export default defineComponent({
 
     login: {
       type: String as PropType<'enable' | 'disable' | 'force'>,
-      // default: 'enable',
     },
 
     highlighter: {
       type: Function as PropType<WalineHighlighter>,
-      // default: (text: string): string => text,
     },
 
     imageUploader: {
-      type: [Function, false] as PropType<WalineImageUploader>,
-      // default: (file: File): Promise<string> =>
-      //   new Promise((resolve, reject) => {
-      //     const reader = new FileReader();
-      //     reader.readAsDataURL(file);
-      //     reader.onload = (): void => resolve(reader.result?.toString() || '');
-      //     reader.onerror = reject;
-      //   }),
+      type: [Function, Boolean] as PropType<WalineImageUploader | false>,
     },
 
     texRenderer: {
-      type: Function as PropType<WalineTexRenderer>,
-      // default: (blockMode: boolean): string =>
-      //   blockMode === true
-      //     ? '<p class="wl-tex">Tex is not available in preview</p>'
-      //     : '<span class="wl-tex">Tex is not available in preview</span>',
+      type: [Function, Boolean] as PropType<WalineTexRenderer | false>,
     },
   },
 

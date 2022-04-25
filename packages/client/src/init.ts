@@ -97,7 +97,7 @@ export const init = ({
       path = window.location.pathname,
       ...newProps
     }: Partial<Omit<WalineInitOptions, 'el'>>): void => {
-      Object.entries(newProps).map(([key, value]) => {
+      Object.entries(newProps).forEach(([key, value]) => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         // eslint-disable-next-line

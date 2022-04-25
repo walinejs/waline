@@ -42,7 +42,7 @@
 </template>
 <script setup>
 import { useRouteLocale } from '@vuepress/client';
-import { computed, defineComponent, ref } from 'vue';
+import { computed, ref } from 'vue';
 import { exportRaw } from './exportRaw';
 import { migrateI18n } from './i18n';
 import { transform } from './transform';
