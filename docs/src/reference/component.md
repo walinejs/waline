@@ -151,6 +151,55 @@ Waline 的服务端地址。
 
 你可以传入一个自己的代码高亮器，也可以设置为 `false` 以禁用代码高亮功能。
 
+::: Details 案例
+
+一个使用 PrismJS 高亮代码块额案例
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Waline highlighter 案例</title>
+    <script src="https://cdn.jsdelivr.net/npm/@waline/client@v1/dist/waline.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@waline/client@v1/dist/waline.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@v1" data-manual></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@v1/plugins/autoloader/prism-autoloader.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/prismjs@v1/themes/prism-tomorrow.min.css"
+    />
+  </head>
+  <body>
+    <div id="waline" style="max-width: 800px; margin: 0 auto"></div>
+    <script>
+      const waline = Waline.init({
+        el: '#waline',
+        serverURL: 'https://waline.vercel.app',
+        path: '/',
+        highlighter: (code, lang) => {
+          if (!window.Prism.languages[lang]) {
+            window.Prism.plugins.autoloader.loadLanguages(lang);
+          }
+
+          return window.Prism.highlight(
+            code,
+            window.Prism.languages[lang] || window.Prism.languages.text,
+            lang
+          );
+        },
+      });
+    </script>
+  </body>
+</html>
+```
+
+:::
+
 ## texRenderer
 
 - 类型: `WalineTexRenderer | false`

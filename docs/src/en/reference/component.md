@@ -151,6 +151,56 @@ The default behavior is to embed images Base 64 encoded, you can set this to `fa
 
 You can pass in a code highlighter of your own, or set to `false` to disable code highlighting.
 
+::: Details Demo
+
+A demo using prismjs to highlight code blocks.
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Waline highlighter demo</title>
+    <script src="https://cdn.jsdelivr.net/npm/@waline/client@v1/dist/waline.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@waline/client@v1/dist/waline.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@v1" data-manual></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@v1/plugins/autoloader/prism-autoloader.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/prismjs@v1/themes/prism-tomorrow.min.css"
+    />
+  </head>
+  <body>
+    <div id="waline" style="max-width: 800px; margin: 0 auto"></div>
+    <script>
+      const waline = Waline.init({
+        el: '#waline',
+        serverURL: 'https://waline.vercel.app',
+        path: '/',
+        lang: 'en-US',
+        highlighter: (code, lang) => {
+          if (!window.Prism.languages[lang]) {
+            window.Prism.plugins.autoloader.loadLanguages(lang);
+          }
+
+          return window.Prism.highlight(
+            code,
+            window.Prism.languages[lang] || window.Prism.languages.text,
+            lang
+          );
+        },
+      });
+    </script>
+  </body>
+</html>
+```
+
+:::
+
 ## texRenderer
 
 - Type: `WalineTexRenderer | false`
