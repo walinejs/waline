@@ -151,9 +151,9 @@ Waline 的服务端地址。
 
 你可以传入一个自己的代码高亮器，也可以设置为 `false` 以禁用代码高亮功能。
 
-::: Details 案例
+::: details 案例
 
-一个使用 PrismJS 高亮代码块额案例
+一个使用 PrismJS 高亮代码块的案例。
 
 ```html
 <!DOCTYPE html>
@@ -210,9 +210,96 @@ Waline 的服务端地址。
   type WalineTexRenderer = (blockMode: boolean, tex: string) => string;
   ```
 
-自定义 $\TeX$ 渲染，默认行为是提示预览模式不支持 $\Tex$。函数提供两个参数，第一个参数表示渲染模式是否为块级，第二个参数是 $\Tex$ 的字符串，并返回一段 HTML 字符串作为渲染结果。
+自定义 $\TeX$ 渲染，默认行为是提示预览模式不支持 $\TeX$。函数提供两个参数，第一个参数表示渲染模式是否为块级，第二个参数是 $\TeX$ 的字符串，并返回一段 HTML 字符串作为渲染结果。
 
-你可以自行引入 $\Tex$ 渲染器并提供预览渲染，建议使用 Katex 或 MathJax，也可以设置为 `false` 以禁止渲染 $\Tex$。更多请参考 [KaTeX API](https://katex.org/docs/api.html#server-side-rendering-or-rendering-to-a-string) 或 [MathJax API](http://docs.mathjax.org/en/latest/web/typeset.html#converting-a-math-string-to-other-formats)。
+你可以自行引入 $\TeX$ 渲染器并提供预览渲染，建议使用 Katex 或 MathJax，也可以设置为 `false` 以禁止渲染 $\TeX$。更多请参考 [KaTeX API](https://katex.org/docs/api.html#server-side-rendering-or-rendering-to-a-string) 或 [MathJax API](http://docs.mathjax.org/en/latest/web/typeset.html#converting-a-math-string-to-other-formats)。
+
+::::: details 案例
+
+:::: code-group
+
+::: code-group-item KaTex
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Waline highlighter 案例</title>
+    <script src="https://cdn.jsdelivr.net/npm/@waline/client@v1/dist/waline.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@waline/client@v1/dist/waline.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/katex@v0.15"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@v0.15/dist/katex.min.css"
+    />
+  </head>
+  <body>
+    <div id="waline" style="max-width: 800px; margin: 0 auto"></div>
+    <script>
+      const waline = Waline.init({
+        el: '#waline',
+        serverURL: 'https://waline.vercel.app',
+        path: '/',
+        lang: 'en-US',
+        texRenderer: (blockmode, tex) =>
+          window.katex.renderToString(tex, {
+            displayMode: blockmode,
+            throwOnError: false,
+          }),
+      });
+    </script>
+  </body>
+</html>
+```
+
+:::
+
+::: code-group-item MathJax
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Waline highlighter 案例</title>
+    <script src="https://cdn.jsdelivr.net/npm/@waline/client@v1/dist/waline.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@waline/client@v1/dist/waline.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@v3/es5/tex-svg.js"></script>
+  </head>
+  <body>
+    <div id="waline" style="max-width: 800px; margin: 0 auto"></div>
+    <script>
+      const waline = Waline.init({
+        el: '#waline',
+        serverURL: 'https://waline.vercel.app',
+        path: '/',
+        lang: 'en-US',
+        texRenderer: (blockmode, tex) =>
+          window.MathJax.startup.adaptor.outerHTML(
+            window.MathJax.tex2svg(tex, {
+              display: blockmode,
+            })
+          ),
+      });
+    </script>
+  </body>
+</html>
+```
+
+:::
+
+::::
+
+:::::
 
 ## copyright
 

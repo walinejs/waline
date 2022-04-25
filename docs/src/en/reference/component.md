@@ -151,7 +151,7 @@ The default behavior is to embed images Base 64 encoded, you can set this to `fa
 
 You can pass in a code highlighter of your own, or set to `false` to disable code highlighting.
 
-::: Details Demo
+::: details Demo
 
 A demo using prismjs to highlight code blocks.
 
@@ -211,9 +211,96 @@ A demo using prismjs to highlight code blocks.
   type WalineTexRenderer = (blockMode: boolean, tex: string) => string;
   ```
 
-Customize $\TeX$ rendering, the default behavior is to prompt that the preview mode does not support $\TeX$. The function provides two parameters, the first parameter indicates whether it should be rendered in block level, and the second parameter is the string of the $\Tex$ content, and return a HTML string as render result.
+Customize $\TeX$ rendering, the default behavior is to prompt that the preview mode does not support $\TeX$. The function provides two parameters, the first parameter indicates whether it should be rendered in block level, and the second parameter is the string of the $\TeX$ content, and return a HTML string as render result.
 
-You can import $\Tex$ renderer to provide preview feature. We recommend you to use Katex or MathJax, or you can set to `false` to disable parsing $\Tex$. For more information, please refer to [KaTeX API](https://katex.org/docs/api.html#server-side-rendering-or-rendering-to-a-string) or [MathJax API](http://docs.mathjax.org/en/latest/web/typeset.html#converting-a-math-string-to-other-formats).
+You can import $\TeX$ renderer to provide preview feature. We recommend you to use Katex or MathJax, or you can set to `false` to disable parsing $\TeX$. For more information, please refer to [KaTeX API](https://katex.org/docs/api.html#server-side-rendering-or-rendering-to-a-string) or [MathJax API](http://docs.mathjax.org/en/latest/web/typeset.html#converting-a-math-string-to-other-formats).
+
+::::: details Demo
+
+:::: code-group
+
+::: code-group-item KaTex
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Waline highlighter 案例</title>
+    <script src="https://cdn.jsdelivr.net/npm/@waline/client@v1/dist/waline.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@waline/client@v1/dist/waline.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/katex@v0.15"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@v0.15/dist/katex.min.css"
+    />
+  </head>
+  <body>
+    <div id="waline" style="max-width: 800px; margin: 0 auto"></div>
+    <script>
+      const waline = Waline.init({
+        el: '#waline',
+        serverURL: 'https://waline.vercel.app',
+        path: '/',
+        lang: 'en-US',
+        texRenderer: (blockmode, tex) =>
+          window.katex.renderToString(tex, {
+            displayMode: blockmode,
+            throwOnError: false,
+          }),
+      });
+    </script>
+  </body>
+</html>
+```
+
+:::
+
+::: code-group-item MathJax
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Waline highlighter 案例</title>
+    <script src="https://cdn.jsdelivr.net/npm/@waline/client@v1/dist/waline.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@waline/client@v1/dist/waline.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@v3/es5/tex-svg.js"></script>
+  </head>
+  <body>
+    <div id="waline" style="max-width: 800px; margin: 0 auto"></div>
+    <script>
+      const waline = Waline.init({
+        el: '#waline',
+        serverURL: 'https://waline.vercel.app',
+        path: '/',
+        lang: 'en-US',
+        texRenderer: (blockmode, tex) =>
+          window.MathJax.startup.adaptor.outerHTML(
+            window.MathJax.tex2svg(tex, {
+              display: blockmode,
+            })
+          ),
+      });
+    </script>
+  </body>
+</html>
+```
+
+:::
+
+::::
+
+:::::
 
 ## copyright
 

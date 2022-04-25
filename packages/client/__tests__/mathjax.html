@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Waline MathJax demo</title>
+    <script src="../dist/waline.js"></script>
+    <link rel="stylesheet" href="../dist/waline.css" />
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@v3/es5/tex-svg.js"></script>
+  </head>
+  <body>
+    <div id="waline" style="max-width: 800px; margin: 0 auto"></div>
+    <script>
+      const waline = Waline.init({
+        el: '#waline',
+        serverURL: 'https://waline.vercel.app',
+        path: '/',
+        lang: 'en-US',
+        texRenderer: (blockmode, tex) =>
+          window.MathJax.startup.adaptor.outerHTML(
+            window.MathJax.tex2svg(tex, {
+              display: blockmode,
+            })
+          ),
+      });
+    </script>
+  </body>
+</html>
