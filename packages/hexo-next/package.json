@@ -5,13 +5,16 @@
   "keywords": [
     "Hexo",
     "NexT",
-    "Waline"
+    "waline"
   ],
   "homepage": "https://github.com/walinejs/waline/packages/#readme",
   "bugs": {
     "url": "https://github.com/walinejs/waline/issues"
   },
-  "repository": "walinejs/waline",
+  "repository": {
+    "url": "https://github.com/walinejs/waline",
+    "directory": "packages/hexo-next"
+  },
   "license": "MIT",
   "author": "lizheming <i@imnerd.org>",
   "main": "index.js",

@@ -2,7 +2,16 @@
   "name": "@waline/vercel",
   "version": "1.13.5",
   "description": "vercel server for waline comment system",
-  "repository": "https://github.com/walinejs/waline",
+  "keywords": [
+    "waline",
+    "vercel",
+    "comment",
+    "blog"
+  ],
+  "repository": {
+    "url": "https://github.com/walinejs/waline",
+    "directory": "packages/server"
+  },
   "license": "MIT",
   "author": "lizheming <i@imnerd.org>",
   "dependencies": {

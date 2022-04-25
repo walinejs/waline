@@ -9,9 +9,15 @@
     "blog"
   ],
   "repository": {
-    "url": "https://github.com/walinejs/waline"
+    "url": "https://github.com/walinejs/waline",
+    "directory": "packages/client"
   },
   "license": "MIT",
+  "author": {
+    "name": "Mr.Hope",
+    "email": "mister-hope@outlook.com",
+    "url": "https://mrhope.site"
+  },
   "exports": {
     ".": {
       "import": "./dist/shim.esm.js",

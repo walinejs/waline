@@ -14,8 +14,8 @@
     "url": "https://github.com/walinejs/waline/issues"
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/walinejs/waline.git"
+    "url": "https://github.com/walinejs/waline.git",
+    "directory": "packages/admin"
   },
   "license": "MIT",
   "author": "lizheming <i@imnerd.org>",
