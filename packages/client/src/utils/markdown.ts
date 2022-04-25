@@ -10,7 +10,7 @@ import type {
 export const parseEmoji = (text = '', emojiMap: WalineEmojiMaps = {}): string =>
   text.replace(/:(.+?):/g, (placeholder, key: string) =>
     emojiMap[key]
-      ? `<img class="vemoji" src="${emojiMap[key]}" alt="${key}">`
+      ? `<img class="wl-emoji" src="${emojiMap[key]}" alt="${key}">`
       : placeholder
   );
 
