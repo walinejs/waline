@@ -90,7 +90,7 @@ Make the following settings on your web page:
    - The `el` option is the element used for Waline rendering. You can set a CSS selector in the form of a string or an HTMLElement object.
    - `serverURL` is the link of the server, which you just got.
 
-   ```html {8-14}:line-numbers
+   ```html {3-7,12-18}:line-numbers
    <head>
      <!-- ... -->
      <script src="//cdn.jsdelivr.net/npm/@waline/client/dist/waline.js"></script>

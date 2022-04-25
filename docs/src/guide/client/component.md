@@ -14,7 +14,7 @@ Waline V2 客户端导出了一个响应式的 Vue 组件。
 ```vue
 <template>
   <button @click="toggleDarkmode">切换模式</button>
-  <WalineComment :serverURL="serverURL" :path="path" :darkmode="darmode" />
+  <WalineComment :serverURL="serverURL" :path="path" :darkmode="darkmode" />
 </template>
 <script setup>
 import { computed } from 'vue';

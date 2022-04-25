@@ -116,7 +116,7 @@ Waline 提供多个版本的文件:
 
 ::: code-group-item JS
 
-```js {2,4,6-9}:line-numbers
+```js
 import { init } from '@waline/client';
 
 import '@waline/client/dist/waline.css';
@@ -131,7 +131,7 @@ init({
 
 ::: code-group-item TS
 
-```ts {2,4,6-9}:line-numbers
+```ts
 import { init } from '@waline/client';
 
 import '@waline/client/dist/waline.css';

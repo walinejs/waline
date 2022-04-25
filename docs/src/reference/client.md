@@ -7,21 +7,29 @@ icon: config
 
 Waline 提供三个 API:
 
-- `init(options: WalineInitOptions): WalineInstance`
+- `init`: 初始化 Waline
 
-- `commentCount(options: WalineCommentCountOptions): WalineAbort`
+- `commentCount`: 评论数统计
 
-- `pageviewCount(options: WalinePageviewCountOptions): Abort`
+- `pageviewCount`: 访问量统计
 
 以及:
 
-- `widgets: Record<string, WalineWidget>`: Waline 挂件集合
+- `RecentComment`: 最近评论
 
 - `version: string`: Waline 客户端版本
 
 ## init
 
 `init` 函数接收一个 `WalineInitOptions` 初始化选项，并返回一个 `WalineInstance`。
+
+类型:
+
+```ts
+const init: (options: WalineInitOptions) => WalineInstance;
+```
+
+返回值:
 
 ```ts
 interface WalineInstance {
@@ -75,6 +83,14 @@ Waline 的初始化挂载器。必须是一个有效的 **CSS 选择器** 或 HT
 
 `commentCount` 函数接收 `WalineCommentCountOptions` 选项，并负责更新页面上的文章评论数，同时返回一个可以取消当前操作的函数 `WalineAbort`。
 
+类型:
+
+```ts
+const commentCount: (options: WalineCommentCountOptions) => WalineAbort;
+```
+
+选项:
+
 ```ts
 interface WalineCommentCountOptions {
   /**
@@ -96,13 +112,25 @@ interface WalineCommentCountOptions {
    */
   path?: string;
 }
+```
 
+返回值:
+
+```ts
 type WalineAbort = (reason?: any) => void;
 ```
 
 ## pageviewCount
 
 `pageviewCount` 函数接收 `WalinePageviewCountOptions` 选项，并负责更新页面上的文章评论数，同时返回一个可以取消当前操作的函数 `WalineAbort`。
+
+类型:
+
+```ts
+const pageviewCount: (options: WalinePageviewCountOptions) => WalineAbort;
+```
+
+选项:
 
 ```ts
 interface WalinePageviewCountOptions {
@@ -132,6 +160,61 @@ interface WalinePageviewCountOptions {
    */
   update?: boolean;
 }
+```
 
+返回值:
+
+```ts
 type WalineAbort = (reason?: any) => void;
+```
+
+## 挂件
+
+### RecentComments
+
+`RecentComments` 是一个展示最近评论的挂件。
+
+类型:
+
+```ts
+const RecentComments: (
+  options: WalineRecentCommentsOptions
+) => Promise<WalineRecentCommentsResult>;
+```
+
+选项:
+
+```ts
+interface WalineRecentCommentsOptions {
+  /**
+   * Waline 服务端地址
+   */
+  serverURL: string;
+
+  /**
+   * 获取最新评论的数量
+   */
+  count: number;
+
+  /**
+   * 需要挂载的元素
+   */
+  el?: string | HTMLElement;
+}
+```
+
+返回值:
+
+```ts
+interface WalineRecentCommentsResult {
+  /**
+   * 评论数据
+   */
+  comments: WalineComment[];
+
+  /**
+   * 取消挂载挂件
+   */
+  destroy: () => void;
+}
 ```

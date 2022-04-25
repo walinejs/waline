@@ -11,7 +11,7 @@ icon: migration
 - `version`: 版本号
 - `commentCount`: 更新评论数
 - `pageviewCount`: 更新访问数
-- `widgets`: 其他挂件
+- `RecentComments`: 最近评论
 
 我们将 Waline 的默认导出改为 `init` 命名导出，同时为了使 Waline SSR 友好，V2 将 CSS 单独输出。
 
@@ -42,7 +42,7 @@ icon: migration
 
 - `highlight` 更名为 `highlighter`
 
-- `texRenderer` 更名为 `texRenderer`
+- `previewMath` 更名为 `texRenderer`
 
 - `visitor` 更名为 `pageview`
 

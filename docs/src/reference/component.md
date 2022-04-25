@@ -119,42 +119,51 @@ Waline 的服务端地址。
 
 ## imageUploader
 
-- 类型: `Function | false`
+- 类型: `WalineImageUploader | false`
 - 必填: 否
+- 详情:
 
-自定义图片上传方法，方便更好的存储图片。方法执行时会将图片对象传入。
+  ```ts
+  type WalineImageUploader = (image: File) => Promise<string>;
+  ```
 
-你可以设置为 `false` 以禁用图片上传功能，默认行为是将图片 Base 64 编码嵌入。
+自定义图片上传方法。函数应该接收图片对象，返回一个提供图片地址的 Promise。
+
+默认行为是将图片 Base 64 编码嵌入，你可以设置为 `false` 以禁用图片上传功能。
 
 ## highlighter
 
-- 类型: `Highlighter | false`
+- 类型: `WalineHighlighter | false`
 - 必填: 否
+- 详情:
 
-**代码高亮**，默认使用 `hanabi`，你可以传入一个自己的代码高亮器。
+  ```ts
+  type WalineHighlighter =
+    | ((code: string, lang: string) => string)
+    | ((
+        code: string,
+        lang: string,
+        callback?: (error: unknown | undefined, code?: string) => void
+      ) => void);
+  ```
 
-```ts
-(code: string, lang: string) => string
+**代码高亮**，默认使用 `hanabi`。函数传入代码块的原始字符和代码块的语言。你应该触发回调函数或者直接返回一个字符串。
 
-// 或
-
-(
-  code: string,
-  lang: string,
-  callback?: (error: unknown | undefined, code?: string) => void
-) => void;
-```
-
-你可以设置为 `false` 以禁用代码高亮功能。
+你可以传入一个自己的代码高亮器，也可以设置为 `false` 以禁用代码高亮功能。
 
 ## texRenderer
 
-- 类型: `(blockMode: boolean, tex: string) => string | false`
+- 类型: `WalineTexRenderer | false`
 - 必填: 否
+- 详情:
 
-自定义数学公式的渲染方法，方便更好的预览数学公式。更多请参考 [KaTeX API](https://katex.org/docs/api.html#server-side-rendering-or-rendering-to-a-string) 或 [MathJax API](http://docs.mathjax.org/en/latest/web/typeset.html#converting-a-math-string-to-other-formats)。
+  ```ts
+  type WalineTexRenderer = (blockMode: boolean, tex: string) => string;
+  ```
 
-你可以设置为 `false` 以禁止预览数学公式。
+自定义 $\TeX$ 渲染，默认行为是提示预览模式不支持 $\Tex$。函数提供两个参数，第一个参数表示渲染模式是否为块级，第二个参数是 $\Tex$ 的字符串，并返回一段 HTML 字符串作为渲染结果。
+
+你可以自行引入 $\Tex$ 渲染器并提供预览渲染，建议使用 Katex 或 MathJax，也可以设置为 `false` 以禁止渲染 $\Tex$。更多请参考 [KaTeX API](https://katex.org/docs/api.html#server-side-rendering-or-rendering-to-a-string) 或 [MathJax API](http://docs.mathjax.org/en/latest/web/typeset.html#converting-a-math-string-to-other-formats)。
 
 ## copyright
 

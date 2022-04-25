@@ -7,15 +7,15 @@ icon: config
 
 Waline provides three APIs:
 
-- `init(options: WalineInitOptions): WalineInstance`
+- `init`: Initialize Waline
 
-- `commentCount(options: WalineCommentCountOptions): WalineAbort`
+- `commentCount`: Count comments
 
-- `pageviewCount(options: WalinePageviewCountOptions): Abort`
+- `pageviewCount`: Count pageviews
 
 As well as:
 
-- `widgets: Record<string, WalineWidget>`: Waline widget collection
+- `RecentComment`: Waline recent comments widget
 
 - `version: string`: Waline client version
 
@@ -23,8 +23,16 @@ As well as:
 
 The `init` API accepts a `WalineInitOptions` options and returns a `WalineInstance`.
 
+Type:
+
 ```ts
-export interface WalineInstance {
+const init: (options: WalineInitOptions) => WalineInstance;
+```
+
+Return:
+
+```ts
+interface WalineInstance {
   /**
    * Element where Waline is mounted
    *
@@ -75,6 +83,14 @@ Pageview counter. When filled in a string, it will be used as a CSS selector.
 
 The `commentCount` function receives the `WalineCommentCountOptions` option and updates the number of article comments on the page, and returns a function `WalineAbort` that can cancel the current operation.
 
+Type:
+
+```ts
+const commentCount: (options: WalineCommentCountOptions) => WalineAbort;
+```
+
+Options:
+
 ```ts
 interface WalineCommentCountOptions {
   /**
@@ -96,13 +112,25 @@ interface WalineCommentCountOptions {
    */
   path?: string;
 }
+```
 
+Returns:
+
+```ts
 type WalineAbort = (reason?: any) => void;
 ```
 
 ## pageviewCount
 
 The `pageviewCount` function receives the `WalinePageviewCountOptions` option and updates the number of article comments on the page, and returns a function `WalineAbort` that can cancel the current operation.
+
+Type:
+
+```ts
+const pageviewCount: (options: WalinePageviewCountOptions) => WalineAbort;
+```
+
+Options:
 
 ```ts
 interface WalinePageviewCountOptions {
@@ -132,6 +160,61 @@ interface WalinePageviewCountOptions {
    */
   update?: boolean;
 }
+```
 
+Returns:
+
+```ts
 type WalineAbort = (reason?: any) => void;
+```
+
+## Widgets
+
+### RecentComments
+
+`RecentComments` is a widget displaying recent comments.
+
+Type:
+
+```ts
+const RecentComments: (
+  options: WalineRecentCommentsOptions
+) => Promise<WalineRecentCommentsResult>;
+```
+
+Options:
+
+```ts
+interface WalineRecentCommentsOptions {
+  /**
+   * Waline serverURL
+   */
+  serverURL: string;
+
+  /**
+   * fetch number of latest comments
+   */
+  count: number;
+
+  /**
+   * Element to be mounted
+   */
+  el?: string | HTMLElement;
+}
+```
+
+Returns:
+
+```ts
+interface WalineRecentCommentsResult {
+  /**
+   * Comment Data
+   */
+  comments: WalineComment[];
+
+  /**
+   * Umount widget
+   */
+  destroy: () => void;
+}
 ```

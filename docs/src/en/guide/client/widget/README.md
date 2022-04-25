@@ -3,7 +3,7 @@ title: Widgets
 icon: widget
 ---
 
-Waline provides some widgets in its property `Widget`, you can use them through `Waline.Widget.<widget name>`.
+Waline provides some widgets, you can use them through `Waline.<widget name>`.
 
 <!-- more -->
 

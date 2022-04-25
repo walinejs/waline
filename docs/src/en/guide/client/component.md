@@ -14,7 +14,7 @@ All properties are reactive, you can find all supported properties in [Reference
 ```vue
 <template>
   <button @click="toggleDarkmode">切换模式</button>
-  <WalineComment :serverURL="serverURL" :path="path" :darkmode="darmode" />
+  <WalineComment :serverURL="serverURL" :path="path" :darkmode="darkmode" />
 </template>
 <script setup>
 import { computed } from 'vue';

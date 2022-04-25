@@ -119,42 +119,51 @@ number of comments per page.
 
 ## imageUploader
 
-- Type: `Function | false`
+- Type: `WalineImageUploader | false`
 - Required: No
+- Details:
 
-Custom image upload callback to manage picture by yourself. We will pass a picture file object when execute it.
+  ```ts
+  type WalineImageUploader = (image: File) => Promise<string>;
+  ```
 
-You can set to `false` to disable image uploading, the default behavior is to base 64 encode image then the embedded it.
+Custom image upload method. The function should receive an image object and return a Promise that provides the image address.
+
+The default behavior is to embed images Base 64 encoded, you can set this to `false` to disable image uploading.
 
 ## highlighter
 
-- Type: `Highlighter | false`
+- Type: `WalineHighlighter | false`
 - Required: No
+- Details:
 
-**Code highlighting**, `hanabi` is used by default, and you can pass in a code highlighter of your own.
+  ```ts
+  type WalineHighlighter =
+    | ((code: string, lang: string) => string)
+    | ((
+        code: string,
+        lang: string,
+        callback?: (error: unknown | undefined, code?: string) => void
+      ) => void);
+  ```
 
-```ts
-(code: string, lang: string) => string
+**Code highlighting**, use `hanabi` by default. The function passes in original content of code block and language of the code block. You should trigger the callback function or return a string directly.
 
-// or
-
-(
-  code: string,
-  lang: string,
-  callback?: (error: unknown | undefined, code?: string) => void
-) => void;
-```
-
-You can set it to `false` to disable the code highlighting.
+You can pass in a code highlighter of your own, or set to `false` to disable code highlighting.
 
 ## texRenderer
 
-- Type: `(blockMode: boolean, tex: string) => string | false`
+- Type: `WalineTexRenderer | false`
 - Required: No
+- Details:
 
-Custom the rendering method of math to facilitate better preview of math. For details, please refer to [KaTeX API](https://katex.org/docs/api.html#server-side-rendering-or-rendering-to-a-string) or [MathJax API](http://docs.mathjax.org/en/latest/web/typeset.html#converting-a-math-string-to-other-formats).
+  ```ts
+  type WalineTexRenderer = (blockMode: boolean, tex: string) => string;
+  ```
 
-If you set it to `false`, math preview feature will be disabled.
+Customize $\TeX$ rendering, the default behavior is to prompt that the preview mode does not support $\TeX$. The function provides two parameters, the first parameter indicates whether it should be rendered in block level, and the second parameter is the string of the $\Tex$ content, and return a HTML string as render result.
+
+You can import $\Tex$ renderer to provide preview feature. We recommend you to use Katex or MathJax, or you can set to `false` to disable parsing $\Tex$. For more information, please refer to [KaTeX API](https://katex.org/docs/api.html#server-side-rendering-or-rendering-to-a-string) or [MathJax API](http://docs.mathjax.org/en/latest/web/typeset.html#converting-a-math-string-to-other-formats).
 
 ## copyright
 

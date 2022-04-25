@@ -112,9 +112,8 @@ You can import the required files in various forms and use them, the following i
 
 ::: code-group-item JS
 
-```js {2,4,6-9}:line-numbers
+```js
 import { init } from '@waline/client';
-
 import '@waline/client/dist/waline.css';
 
 init({
@@ -127,9 +126,8 @@ init({
 
 ::: code-group-item TS
 
-```ts {2,4,6-9}:line-numbers
+```ts
 import { init } from '@waline/client';
-
 import '@waline/client/dist/waline.css';
 
 init({
