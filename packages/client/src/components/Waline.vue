@@ -226,7 +226,7 @@ export default defineComponent({
       //   }),
     },
 
-    texRender: {
+    texRenderer: {
       type: Function as PropType<WalineTexRenderer>,
       // default: (blockMode: boolean): string =>
       //   blockMode === true
