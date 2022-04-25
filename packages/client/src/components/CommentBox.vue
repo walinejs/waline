@@ -58,10 +58,8 @@
         @paste="onPaste"
       />
 
-      <div
-        class="wl-preview"
-        :style="{ display: showPreview ? 'block' : 'none' }"
-      >
+      <div class="wl-preview" v-show="showPreview">
+        <hr />
         <h4>{{ locale.preview }}:</h4>
         <div class="wl-content" v-html="previewText" />
       </div>

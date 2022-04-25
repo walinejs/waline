@@ -18,7 +18,7 @@
       />
     </div>
 
-    <div v-if="status === 'error'" class="wl-action">
+    <div v-if="status === 'error'" class="wl-operation">
       <button
         type="button"
         class="wl-btn"
@@ -35,7 +35,7 @@
       <div v-else-if="!data.length" class="wl-empty" v-text="i18n.sofa" />
 
       <!-- Load more button -->
-      <div v-else-if="page < totalPages" class="wl-more">
+      <div v-else-if="page < totalPages" class="wl-operation">
         <button
           type="button"
           class="wl-btn"
