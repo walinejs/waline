@@ -41,6 +41,9 @@ Waline 的服务端地址。
 - `'en-US'`
 - `'jp'`
 - `'jp-JP'`
+- `'pt-BR'`
+- `'ru'`
+- `'ru-RU'`
 
 如需 _自定义语言_，请参考 [i18n](../guide/client/i18n.md)。
 

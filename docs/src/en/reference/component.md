@@ -41,6 +41,9 @@ Optional value:
 - `'en-US'`
 - `'jp'`
 - `'jp-JP'`
+- `'pt-BR'`
+- `'ru'`
+- `'ru-RU'`
 
 If you need a custom language, please refer to [i18n](../guide/client/i18n.md).
 
