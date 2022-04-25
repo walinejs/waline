@@ -117,7 +117,7 @@ Waline 的服务端地址。
 
 评论列表分页，每页条数。
 
-## imageUploader
+## uploadImage
 
 - 类型: `Function | false`
 - 必填: 否
