@@ -5,15 +5,17 @@
 const Util = require('@next-theme/utils');
 const utils = new Util(hexo, __dirname);
 
-function capitalize(input) {
-  return input.toString().charAt(0).toUpperCase() + input.toString().substr(1);
-}
+const warn = (...args) => {
+  hexo.log.warn(
+    `Since ${args[0]} is turned on, the ${args[1]} is disabled to avoid potential hazards.`
+  );
+};
 
-function iconText(icon, key, defaultValue) {
-  if (!defaultValue) {
-    defaultValue = capitalize(key);
-  }
-  return `
+const capitalize = (input) =>
+  input.toString().charAt(0).toUpperCase() + input.toString().substr(1);
+
+const iconText = (icon, key, defaultValue = capitalize(key)) =>
+  `
     <span class="post-meta-item-icon">
       <i class="${icon}"></i>
     </span>
@@ -23,13 +25,6 @@ function iconText(icon, key, defaultValue) {
     {%- endif %}
     <span class="post-meta-item-text">{{ post_meta_comment + __('symbol.colon') }}</span>
   `;
-}
-
-function warning(...args) {
-  hexo.log.warn(
-    `Since ${args[0]} is turned on, the ${args[1]} is disabled to avoid potential hazards.`
-  );
-}
 
 // Add comment
 hexo.extend.filter.register('theme_inject', (injects) => {
@@ -38,7 +33,7 @@ hexo.extend.filter.register('theme_inject', (injects) => {
 
   injects.comment.raw(
     'waline',
-    '<div class="comments" id="waline-comments"></div>',
+    '<div class="comments" id="waline"></div>',
     {},
     { cache: true }
   );
@@ -61,11 +56,11 @@ hexo.extend.filter.register('theme_inject', (injects) => {
   injects.postMeta.raw(
     'waline_comments',
     `
-  {% if post.comments and (is_post() or config.waline.comment_count) %}
+  {% if post.comments and (is_post() or config.waline.commentCount) %}
   <span class="post-meta-item">
     ${iconText('far fa-comment', 'waline')}
-    <a title="waline" href="{{ url_for(post.path) }}#waline-comments" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" id="{{ url_for(post.path) }}" data-xid="{{ url_for(post.path) }}" itemprop="commentCount"></span>
+    <a title="waline" href="{{ url_for(post.path) }}#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="{{ url_for(post.path) }}" itemprop="commentCount"></span>
     </a>
   </span>
   {% endif %}
@@ -74,25 +69,27 @@ hexo.extend.filter.register('theme_inject', (injects) => {
     {}
   );
 
-  if (config.visitor) {
+  if (config.pageview) {
+    // ensure to turn of valine visitor
     if (
       hexo.theme.config.leancloud_visitors &&
       hexo.theme.config.leancloud_visitors.enable
     ) {
-      warning('waline.visitor', 'leancloud_visitors');
+      warn('waline.pageview', 'leancloud_visitors');
       hexo.theme.config.leancloud_visitors.enable = false;
+
       return;
     }
 
     injects.postMeta.raw(
-      'waline_visitors',
+      'waline_pageview',
       `
-    <span id="{{ url_for(post.path) }}" class="post-meta-item leancloud_visitors" data-flag-title="{{ post.title }}" title="{{ __('post.views') }}">
+    <span class="post-meta-item" title="{{ __('post.views') }}">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
       <span class="post-meta-item-text">{{ __('post.views') + __('symbol.colon') }}</span>
-      <span class="leancloud-visitors-count"></span>
+      <span class="waline-pageview-count" data-path="{{ url_for(post.path) }}"></span>
     </span>
   `,
       {},
