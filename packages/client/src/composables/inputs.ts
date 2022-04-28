@@ -1,17 +1,18 @@
 import { useStorage } from '@vueuse/core';
 import type { RemovableRef } from '@vueuse/core';
 
-export interface Inputs {
+export interface UserMeta {
   nick: string;
   mail: string;
   link: string;
-  editor: string;
 }
 
-export const useInputs = (): RemovableRef<Inputs> =>
-  useStorage<Inputs>('WALINE_USER_CACHE', {
+export const useUserMeta = (): RemovableRef<UserMeta> =>
+  useStorage<UserMeta>('WALINE_USER_META', {
     nick: '',
     mail: '',
     link: '',
-    editor: '',
   });
+
+export const useEditor = (): RemovableRef<string> =>
+  useStorage<string>('WALINE_COMMENT_BOX_EDITOR', '');

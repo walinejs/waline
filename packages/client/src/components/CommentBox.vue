@@ -42,7 +42,7 @@
             :class="['wl-input', `wl-${kind}`]"
             :name="kind"
             :type="kind === 'mail' ? 'email' : 'text'"
-            v-model="inputs[kind]"
+            v-model="userMeta[kind]"
           />
         </div>
       </div>
@@ -52,7 +52,7 @@
         ref="editorRef"
         id="wl-edit"
         :placeholder="replyUser ? `@${replyUser}` : locale.placeholder"
-        v-model="inputs.editor"
+        v-model="editor"
         @keydown="onKeyDown"
         @drop="onDrop"
         @paste="onPaste"
@@ -228,7 +228,7 @@ import {
   PreviewIcon,
   LoadingIcon,
 } from './Icons';
-import { useInputs, useUserInfo } from '../composables';
+import { useEditor, useUserMeta, useUserInfo } from '../composables';
 import {
   getImagefromDataTransfer,
   parseMarkdown,
@@ -276,7 +276,8 @@ export default defineComponent({
       'config'
     ) as ComputedRef<WalineConfig>;
 
-    const inputs = useInputs();
+    const editor = useEditor();
+    const userMeta = useUserMeta();
     const userInfo = useUserInfo();
 
     const inputRefs = ref<Record<string, HTMLInputElement>>({});
@@ -311,7 +312,7 @@ export default defineComponent({
       const endPosition = textArea.selectionEnd || 0;
       const scrollTop = textArea.scrollTop;
 
-      inputs.value.editor =
+      editor.value =
         textArea.value.substring(0, startPosition) +
         content +
         textArea.value.substring(endPosition, textArea.value.length);
@@ -336,7 +337,7 @@ export default defineComponent({
       return Promise.resolve()
         .then(() => (config.value.imageUploader as WalineImageUploader)(file))
         .then((url) => {
-          inputs.value.editor = inputs.value.editor.replace(
+          editor.value = editor.value.replace(
             uploadText,
             `\r\n![${file.name}](${url})`
           );
@@ -377,9 +378,9 @@ export default defineComponent({
 
       const comment: WalineCommentData = {
         comment: content.value,
-        nick: inputs.value.nick,
-        mail: inputs.value.mail,
-        link: inputs.value.link,
+        nick: userMeta.value.nick,
+        mail: userMeta.value.mail,
+        link: userMeta.value.link,
         ua: navigator.userAgent,
         url: config.value.path,
       };
@@ -449,7 +450,7 @@ export default defineComponent({
           // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           emit('submit', resp.data!);
 
-          inputs.value.editor = '';
+          editor.value = '';
 
           previewText.value = '';
 
@@ -577,7 +578,7 @@ export default defineComponent({
 
       // watch editor
       watch(
-        () => inputs.value.editor,
+        () => editor.value,
         (value) => {
           const { highlighter, texRenderer } = config.value;
 
@@ -638,7 +639,8 @@ export default defineComponent({
       isWordNumberLegal,
 
       // inputs
-      inputs,
+      editor,
+      userMeta,
 
       // emoji
       emoji,
