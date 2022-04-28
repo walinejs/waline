@@ -2,7 +2,7 @@
   lang: page.lang | default('zh-CN', true)
 }, config.waline, {
   comment: true,
-  libUrl: config.waline.libUrl | default('https://cdn.jsdelivr.net/npm/@waline/client@v2', true),
+  libUrl: config.waline.libUrl | default('https://cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.js', true),
   cssUrl: config.waline.libUrl | default('https://cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.css', true),
   path: url_for(page.path) | replace(r/\/index\.html$/, '/')
 }) }}
