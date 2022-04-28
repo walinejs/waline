@@ -14,12 +14,12 @@ Waline V2 客户端导出了一个响应式的 Vue 组件。
 ```vue
 <template>
   <button @click="toggleDarkmode">切换模式</button>
-  <WalineComment :serverURL="serverURL" :path="path" :darkmode="darkmode" />
+  <Waline :serverURL="serverURL" :path="path" :darkmode="darkmode" />
 </template>
 <script setup>
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
-import { WalineComment } from '@waline/client/dist/components';
+import { Waline } from '@waline/client/dist/component';
 
 const serverURL = 'https://waline.vercel.app';
 const path = computed(() => useRoute().path);
