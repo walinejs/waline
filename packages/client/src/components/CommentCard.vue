@@ -73,7 +73,7 @@ import { isLinkHttp } from '../utils';
 import { useTimeAgo } from '../composables';
 
 import type { ComputedRef, PropType } from 'vue';
-import type { Config } from '../utils';
+import type { WalineConfig } from '../utils';
 import type { WalineComment } from '../typings';
 
 export default defineComponent({
@@ -100,7 +100,9 @@ export default defineComponent({
   emits: ['submit', 'reply'],
 
   setup(props) {
-    const config = inject<ComputedRef<Config>>('config') as ComputedRef<Config>;
+    const config = inject<ComputedRef<WalineConfig>>(
+      'config'
+    ) as ComputedRef<WalineConfig>;
     const locale = computed(() => config.value.locale);
 
     const link = computed(() => {

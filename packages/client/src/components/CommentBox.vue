@@ -235,11 +235,12 @@ import {
   getWordNumber,
   parseEmoji,
   postComment,
+  getEmojis,
 } from '../utils';
 
 import type { ComputedRef, DeepReadonly } from 'vue';
 import type { WalineCommentData, WalineImageUploader } from '../typings';
-import type { Config, EmojiConfig } from '../utils';
+import type { WalineConfig, WalineEmojiConfig } from '../utils';
 
 export default defineComponent({
   name: 'CommentBox',
@@ -271,7 +272,9 @@ export default defineComponent({
   emits: ['submit', 'cancel-reply'],
 
   setup(props, { emit }) {
-    const config = inject<ComputedRef<Config>>('config') as ComputedRef<Config>;
+    const config = inject<ComputedRef<WalineConfig>>(
+      'config'
+    ) as ComputedRef<WalineConfig>;
 
     const inputs = useInputs();
     const userInfo = useUserInfo();
@@ -282,7 +285,7 @@ export default defineComponent({
     const emojiButtonRef = ref<HTMLDivElement | null>(null);
     const emojiPopupRef = ref<HTMLDivElement | null>(null);
 
-    const emoji = ref<DeepReadonly<EmojiConfig>>({ tabs: [], map: {} });
+    const emoji = ref<DeepReadonly<WalineEmojiConfig>>({ tabs: [], map: {} });
     const emojiTabIndex = ref(0);
     const showEmoji = ref(false);
     const showPreview = ref(false);
@@ -544,37 +547,6 @@ export default defineComponent({
         showEmoji.value = false;
     };
 
-    // watch editor
-    watch(
-      () => inputs.value.editor,
-      (value) => {
-        const { highlighter, texRenderer } = config.value;
-
-        content.value = value;
-        previewText.value = parseMarkdown(value, {
-          emojiMap: emoji.value.map,
-          highlighter,
-          texRenderer,
-        });
-        wordNumber.value = getWordNumber(value);
-
-        if (editorRef.value)
-          if (value) autosize(editorRef.value);
-          else autosize.destroy(editorRef.value);
-      },
-      { immediate: true }
-    );
-
-    // watch emoji value change
-    watch(
-      () => config.value.emoji,
-      (emojiConfig) =>
-        emojiConfig.then((config) => {
-          emoji.value = config;
-        }),
-      { immediate: true }
-    );
-
     // update wordNumber
     watch(
       [config, wordNumber],
@@ -602,6 +574,38 @@ export default defineComponent({
 
     onMounted(() => {
       document.body.addEventListener('click', popupHandler);
+
+      // watch editor
+      watch(
+        () => inputs.value.editor,
+        (value) => {
+          const { highlighter, texRenderer } = config.value;
+
+          content.value = value;
+          previewText.value = parseMarkdown(value, {
+            emojiMap: emoji.value.map,
+            highlighter,
+            texRenderer,
+          });
+          wordNumber.value = getWordNumber(value);
+
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          if (value) autosize(editorRef.value!);
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          else autosize.destroy(editorRef.value!);
+        },
+        { immediate: true }
+      );
+
+      // watch emoji value change
+      watch(
+        () => config.value.emoji,
+        (emojiConfig) =>
+          getEmojis(emojiConfig).then((config) => {
+            emoji.value = config;
+          }),
+        { immediate: true }
+      );
     });
 
     onUnmounted(() => {
