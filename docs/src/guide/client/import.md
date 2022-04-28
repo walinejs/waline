@@ -19,7 +19,7 @@ Waline 提供多种版本的客户端文件。你可以通过多种方式引入 
 <!-- 脚本文件 -->
 <script src="//cdn.jsdelivr.net/npm/@waline/client/dist/waline.js"></script>
 <!-- 样式文件 -->
-<link rel="style" href="//cdn.jsdelivr.net/@waline/client/dist/waline.css" />
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@waline/client/dist/waline.css" />
 ```
 
 :::
