@@ -27,6 +27,7 @@
     "./dist": "./dist/shim.js",
     "./dist/waline.css": "./dist/waline.css",
     "./dist/*": "./dist/*.js",
+    "./src/*": "./src/*",
     "./package.json": "./package.json"
   },
   "main": "./dist/shim.js",
