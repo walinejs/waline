@@ -87,8 +87,8 @@ describe('Words test', () => {
   <!-- ... -->
   <script src="//cdn.jsdelivr.net/npm/@waline/client"></script>
   <link
-    rel="style"
-    href="//cdn.jsdelivr.net/npm/@waline/client/dist/waline.css"
+    rel="stylesheet"
+    href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.css"
   />
   <!-- ... -->
 </head>
@@ -121,7 +121,7 @@ describe('Words test', () => {
       'client',
       'script',
       'link\n    rel',
-      'style',
+      'stylesheet',
       'href',
       'cdn',
       'jsdelivr',
@@ -129,6 +129,7 @@ describe('Words test', () => {
       'npm',
       'waline',
       'client',
+      'v2',
       'dist',
       'waline',
       'css',
@@ -152,6 +153,6 @@ describe('Words test', () => {
       'body',
     ]);
 
-    expect(getWordNumber(codeBlock)).toEqual(43);
+    expect(getWordNumber(codeBlock)).toEqual(44);
   });
 });

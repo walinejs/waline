@@ -19,8 +19,8 @@ In most cases, this just means the following changes:
 
 ```diff
 - <script src='//cdn.jsdelivr.net/npm/@waline/client'></script>
-+ <script src='//cdn.jsdelivr.net/npm/@waline/client/dist/waline.js'></script>
-+ <link href='//cdn.jsdelivr.net/npm/@waline/client/dist/waline.css' rel='stylesheet' />
++ <script src='//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.js'></script>
++ <link href='//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.css' rel='stylesheet' />
 
   <script>
 -  Waline({

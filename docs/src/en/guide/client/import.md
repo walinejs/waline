@@ -15,9 +15,12 @@ Recommend to use [jsdelivr](https://cdn.jsdelivr.net/npm/@waline/client/).
 
 ```html
 <!-- Scripts -->
-<script src="//cdn.jsdelivr.net/npm/@waline/client/dist/waline.js"></script>
+<script src="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.js"></script>
 <!-- Styles -->
-<link rel="style" href="//cdn.jsdelivr.net/@waline/client/dist/waline.css" />
+<link
+  rel="stylesheet"
+  href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.css"
+/>
 ```
 
 ::: code-group-item Pageview Only
@@ -37,7 +40,7 @@ For CDN links, if you don't specify a version number, it will be latest version,
 
 ```html
 <!-- You need to modify and replace `next` with the version number you want -->
-<script src="//cdn.jsdelivr.net/npm/@waline/client/dist/waline.js"></script>
+<script src="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.js"></script>
 ```
 
 :::

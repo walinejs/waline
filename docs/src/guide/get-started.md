@@ -101,8 +101,8 @@ icon: creative
 
 1. 使用 CDN 引入 Waline:
 
-   - `//cdn.jsdelivr.net/npm/@waline/client/dist/waline.js`。
-   - `//cdn.jsdelivr.net/npm/@waline/client/dist/waline.css`。
+   - `//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.js`。
+   - `//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.css`。
 
 1. 创建 `<script>` 标签使用 `Waline.init()` 初始化，并传入必要的 `el` 与 `serverURL` 选项。
 
@@ -112,10 +112,10 @@ icon: creative
    ```html {3-7,12-18}:line-numbers
    <head>
      <!-- ... -->
-     <script src="//cdn.jsdelivr.net/npm/@waline/client/dist/waline.js"></script>
+     <script src="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.js"></script>
      <link
-       rel="style"
-       href="//cdn.jsdelivr.net/npm/@waline/client/dist/waline.css"
+       rel="stylesheet"
+       href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.css"
      />
      <!-- ... -->
    </head>
