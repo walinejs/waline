@@ -61,7 +61,7 @@ export const pageviewCount = ({
   const controller = new AbortController();
 
   const elements = Array.from(
-    // visitor selectors
+    // pageview selectors
     document.querySelectorAll<HTMLElement>(selector)
   );
 

@@ -27,7 +27,7 @@ export const covertOptions = (
     visitor,
 
     pageview = visitor === true
-      ? '.leancloud_visitors,.waline-visitor-count,.waline-pageview-count'
+      ? '.leancloud_visitors,.leancloud-visitors,.waline-visitor-count,.waline-pageview-count'
       : visitor,
     locale = langMode,
     emoji,

@@ -134,10 +134,6 @@ export default defineComponent({
         : {}),
     },
 
-    visitor: {
-      type: Boolean,
-    },
-
     dark: {
       type: [String, Boolean],
     },
