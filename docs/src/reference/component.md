@@ -165,16 +165,16 @@ Waline 的服务端地址。
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Waline highlighter 案例</title>
-    <script src="https://cdn.jsdelivr.net/npm/@waline/client@v1/dist/waline.js"></script>
+    <script src="//unpkg.com/@waline/client@v1/dist/waline.js"></script>
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@waline/client@v1/dist/waline.css"
+      href="//unpkg.com/@waline/client@v1/dist/waline.css"
     />
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@v1" data-manual></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@v1/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="//unpkg.com/prismjs@v1" data-manual></script>
+    <script src="//unpkg.com/prismjs@v1/plugins/autoloader/prism-autoloader.min.js"></script>
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/prismjs@v1/themes/prism-tomorrow.min.css"
+      href="//unpkg.com/prismjs@v1/themes/prism-tomorrow.min.css"
     />
   </head>
   <body>
@@ -230,16 +230,13 @@ Waline 的服务端地址。
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Waline highlighter 案例</title>
-    <script src="https://cdn.jsdelivr.net/npm/@waline/client@v1/dist/waline.js"></script>
+    <script src="//unpkg.com/@waline/client@v1/dist/waline.js"></script>
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@waline/client@v1/dist/waline.css"
+      href="//unpkg.com/@waline/client@v1/dist/waline.css"
     />
-    <script src="https://cdn.jsdelivr.net/npm/katex@v0.15"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/katex@v0.15/dist/katex.min.css"
-    />
+    <script src="//unpkg.com/katex@v0.15"></script>
+    <link rel="stylesheet" href="//unpkg.com/katex@v0.15/dist/katex.min.css" />
   </head>
   <body>
     <div id="waline" style="max-width: 800px; margin: 0 auto"></div>
@@ -271,12 +268,12 @@ Waline 的服务端地址。
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Waline highlighter 案例</title>
-    <script src="https://cdn.jsdelivr.net/npm/@waline/client@v1/dist/waline.js"></script>
+    <script src="//unpkg.com/@waline/client@v1/dist/waline.js"></script>
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@waline/client@v1/dist/waline.css"
+      href="//unpkg.com/@waline/client@v1/dist/waline.css"
     />
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@v3/es5/tex-svg.js"></script>
+    <script src="//unpkg.com/mathjax@v3/es5/tex-svg.js"></script>
   </head>
   <body>
     <div id="waline" style="max-width: 800px; margin: 0 auto"></div>

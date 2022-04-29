@@ -53,8 +53,7 @@ describe('Words test', () => {
   });
 
   it('Addtional counts with Markdown links and images', () => {
-    const linkAddress =
-      '//cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js';
+    const linkAddress = '//unpkg.com/@waline/client/dist/Waline.min.js';
     const linkMarkdown = `You can found Waline [here](${linkAddress}).`;
     const imageMarkdown = `Here is a image.\n\n![Alt](https://a/fake/link)`;
 
@@ -63,10 +62,8 @@ describe('Words test', () => {
       .filter((word) => word);
 
     expect(linkWords).toEqual([
-      'cdn',
-      'jsdelivr',
-      'net',
-      'npm',
+      'unpkg',
+      'com',
       'waline',
       'client',
       'dist',
@@ -75,8 +72,8 @@ describe('Words test', () => {
       'js',
     ]);
 
-    expect(getWordNumber(linkAddress)).toEqual(10);
-    expect(getWordNumber(linkMarkdown)).toEqual(15);
+    expect(getWordNumber(linkAddress)).toEqual(8);
+    expect(getWordNumber(linkMarkdown)).toEqual(13);
     expect(getWordNumber(imageMarkdown)).toEqual(9);
   });
 
@@ -85,10 +82,10 @@ describe('Words test', () => {
 \`\`\`html
 <head>
   <!-- ... -->
-  <script src="//cdn.jsdelivr.net/npm/@waline/client"></script>
+  <script src="//unpkg.com/@waline/client"></script>
   <link
     rel="stylesheet"
-    href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.css"
+    href="//unpkg.com/@waline/client@v2/dist/waline.css"
   />
   <!-- ... -->
 </head>
@@ -113,20 +110,16 @@ describe('Words test', () => {
       'html',
       'head',
       'script src',
-      'cdn',
-      'jsdelivr',
-      'net',
-      'npm',
+      'unpkg',
+      'com',
       'waline',
       'client',
       'script',
       'link\n    rel',
       'stylesheet',
       'href',
-      'cdn',
-      'jsdelivr',
-      'net',
-      'npm',
+      'unpkg',
+      'com',
       'waline',
       'client',
       'v2',
@@ -153,6 +146,6 @@ describe('Words test', () => {
       'body',
     ]);
 
-    expect(getWordNumber(codeBlock)).toEqual(44);
+    expect(getWordNumber(codeBlock)).toEqual(40);
   });
 });

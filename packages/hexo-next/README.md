@@ -33,12 +33,12 @@ waline:
 
   # Custom emoji
   emoji:
-    - https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/weibo
-    # - https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/alus
-    # - https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/bilibili
-    # - https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/qq
-    # - https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tieba
-    # - https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-emoji
+    - //unpkg.com/@waline/emojis@1.0.1/weibo/info.json
+    # - //unpkg.com/@waline/emojis@1.0.1/alus/info.json
+    # - //unpkg.com/@waline/emojis@1.0.1/bilibili/info.json
+    # - //unpkg.com/@waline/emojis@1.0.1/qq/info.json
+    # - //unpkg.com/@waline/emojis@1.0.1/tieba/info.json
+    # - //unpkg.com/@waline/emojis@1.0.1/tw-emoji/info.json
 
   # If false, comment count will only be displayed in post page, not in home page
   commentCount: true

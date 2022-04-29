@@ -14,8 +14,7 @@ module.exports = function () {
     window.SITE_NAME = ${JSON.stringify(process.env.SITE_NAME)};
     </script>
     <script src="${
-      process.env.WALINE_ADMIN_MODULE_ASSET_URL ||
-      'https://cdn.jsdelivr.net/npm/@waline/admin'
+      process.env.WALINE_ADMIN_MODULE_ASSET_URL || '//unpkg.com/@waline/admin'
     }"></script>
   </body>
 </html>`;

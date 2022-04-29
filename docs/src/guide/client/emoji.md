@@ -14,25 +14,25 @@ Waline 提供了一系列开箱即用的表情预设。你可以直接将它们�
 - Alus
 
   ```http
-  https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/alus
+  //unpkg.com/@waline/emojis@1.0.1/alus/info.json
   ```
 
 - 哔哩哔哩
 
   ```http
-  https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/bilibili
+  //unpkg.com/@waline/emojis@1.0.1/bilibili/info.json
   ```
 
 - QQ
 
   ```http
-  https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/qq
+  //unpkg.com/@waline/emojis@1.0.1/qq/info.json
   ```
 
 - 贴吧
 
   ```http
-  https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tieba
+  //unpkg.com/@waline/emojis@1.0.1/tieba/info.json
   ```
 
 - Twitter Emoji
@@ -40,7 +40,7 @@ Waline 提供了一系列开箱即用的表情预设。你可以直接将它们�
   - 表情:
 
     ```http
-    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-emoji
+    //unpkg.com/@waline/emojis@1.0.1/tw-emoji/info.json
     ```
 
   ::: details 其他可用预设
@@ -48,73 +48,73 @@ Waline 提供了一系列开箱即用的表情预设。你可以直接将它们�
   - 完整: (不推荐使用)
 
     ```http
-    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw
+    //unpkg.com/@waline/emojis@1.0.1/tw/info.json
     ```
 
   - 身体:
 
     ```http
-    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-body
+    //unpkg.com/@waline/emojis@1.0.1/tw-body/info.json
     ```
 
   - 食物:
 
     ```http
-    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-food
+    //unpkg.com/@waline/emojis@1.0.1/tw-food/info.json
     ```
 
   - 自然:
 
     ```http
-    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-natural
+    //unpkg.com/@waline/emojis@1.0.1/tw-natural/info.json
     ```
 
   - 对象:
 
     ```http
-    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-object
+    //unpkg.com/@waline/emojis@1.0.1/tw-object/info.json
     ```
 
   - 符号:
 
     ```http
-    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-symbol
+    //unpkg.com/@waline/emojis@1.0.1/tw-symbol/info.json
     ```
 
   - 人物:
 
     ```http
-    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-people
+    //unpkg.com/@waline/emojis@1.0.1/tw-people/info.json
     ```
 
   - 运动:
 
     ```http
-    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-sport
+    //unpkg.com/@waline/emojis@1.0.1/tw-sport/info.json
     ```
 
   - 时间:
 
     ```http
-    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-time
+    //unpkg.com/@waline/emojis@1.0.1/tw-time/info.json
     ```
 
   - 旅行:
 
     ```http
-    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-travel
+    //unpkg.com/@waline/emojis@1.0.1/tw-travel/info.json
     ```
 
   - 天气:
 
     ```http
-    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-weather
+    //unpkg.com/@waline/emojis@1.0.1/tw-weather/info.json
     ```
 
   - 旗帜:
 
     ```http
-    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-flag
+    //unpkg.com/@waline/emojis@1.0.1/tw-flag/info.json
     ```
 
   :::
@@ -122,7 +122,7 @@ Waline 提供了一系列开箱即用的表情预设。你可以直接将它们�
 - 微博
 
   ```http
-  https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/weibo
+  //unpkg.com/@waline/emojis@1.0.1/weibo/info.json
   ```
 
 ::: warning
@@ -140,8 +140,8 @@ Waline.init({
 
   // 设置 emoji 为微博与哔哩哔哩
   emoji: [
-    'https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/weibo',
-    'https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/bilibili',
+    '//unpkg.com/@waline/emojis@1.0.1/weibo/info.json',
+    '//unpkg.com/@waline/emojis@1.0.1/bilibili/info.json',
   ],
 });
 ```

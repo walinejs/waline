@@ -50,7 +50,7 @@ export const getConfig = ({
   path = location.pathname,
   lang = defaultLang,
   locale,
-  emoji = ['https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/weibo'],
+  emoji = ['//unpkg.com/@waline/emojis@1.0.1/weibo/info.json'],
   meta = ['nick', 'mail', 'link'],
   requiredMeta = [],
   dark = false,
