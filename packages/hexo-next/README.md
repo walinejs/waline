@@ -27,6 +27,12 @@ waline:
   # Waline server address url, you should set this to your own link
   serverURL: https://waline.vercel.app
 
+  # Waline library CDN url, you can set this to your preferred CDN
+  # libUrl: //unpkg.com/@waline/client@v2/dist/waline.js
+
+  # Waline CSS styles CDN url, you can set this to your preferred CDN
+  # cssUrl: //unpkg.com/@waline/client@v2/dist/waline.css
+
   # Custom locales
   locale:
     placeholder: Welcome to comment # Comment box placeholder

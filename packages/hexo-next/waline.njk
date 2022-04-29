@@ -4,7 +4,6 @@
   el: '#waline',
   comment: true,
   libUrl: config.waline.libUrl | default('//unpkg.com/@waline/client@v2/dist/waline.js', true),
-  cssUrl: config.waline.cssUrl | default('//unpkg.com/@waline/client@v2/dist/waline.css', true),
   path: url_for(page.path) | replace(r/\/index\.html$/, '/')
 }) }}
 <link rel="stylesheet" href="{{ config.waline.cssUrl }}">
