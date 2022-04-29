@@ -72,7 +72,7 @@ describe('Words test', () => {
       'js',
     ]);
 
-    expect(getWordNumber(linkAddress)).toEqual(10);
+    expect(getWordNumber(linkAddress)).toEqual(8);
     expect(getWordNumber(linkMarkdown)).toEqual(15);
     expect(getWordNumber(imageMarkdown)).toEqual(9);
   });
@@ -146,6 +146,6 @@ describe('Words test', () => {
       'body',
     ]);
 
-    expect(getWordNumber(codeBlock)).toEqual(44);
+    expect(getWordNumber(codeBlock)).toEqual(40);
   });
 });
