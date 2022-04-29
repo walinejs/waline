@@ -16,7 +16,7 @@ const fetchEmoji = (link: string): Promise<WalineEmojiInfo> => {
   const result = hasVersion(link);
 
   if (result) {
-    const info = emojiStore.value.link;
+    const info = emojiStore.value[link];
 
     if (info) return Promise.resolve(info);
   }
@@ -29,7 +29,7 @@ const fetchEmoji = (link: string): Promise<WalineEmojiInfo> => {
         ...emojiInfo,
       };
 
-      if (result) emojiStore.value.link = info;
+      if (result) emojiStore.value[link] = info;
 
       return info;
     });
