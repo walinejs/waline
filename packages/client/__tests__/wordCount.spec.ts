@@ -73,7 +73,7 @@ describe('Words test', () => {
     ]);
 
     expect(getWordNumber(linkAddress)).toEqual(8);
-    expect(getWordNumber(linkMarkdown)).toEqual(15);
+    expect(getWordNumber(linkMarkdown)).toEqual(13);
     expect(getWordNumber(imageMarkdown)).toEqual(9);
   });
 
