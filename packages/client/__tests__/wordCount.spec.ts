@@ -54,7 +54,7 @@ describe('Words test', () => {
 
   it('Addtional counts with Markdown links and images', () => {
     const linkAddress =
-      '//cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js';
+      '//unpkg.com/@waline/client/dist/Waline.min.js';
     const linkMarkdown = `You can found Waline [here](${linkAddress}).`;
     const imageMarkdown = `Here is a image.\n\n![Alt](https://a/fake/link)`;
 
@@ -85,10 +85,10 @@ describe('Words test', () => {
 \`\`\`html
 <head>
   <!-- ... -->
-  <script src="//cdn.jsdelivr.net/npm/@waline/client"></script>
+  <script src="//unpkg.com/@waline/client"></script>
   <link
     rel="stylesheet"
-    href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.css"
+    href="//unpkg.com/@waline/client@v2/dist/waline.css"
   />
   <!-- ... -->
 </head>

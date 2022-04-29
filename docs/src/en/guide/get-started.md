@@ -82,8 +82,8 @@ Make the following settings on your web page:
 
 1. Use CDN to import Waline:
 
-   - `//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.js`.
-   - `//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.css`.
+   - `//unpkg.com/@waline/client@v2/dist/waline.js`.
+   - `//unpkg.com/@waline/client@v2/dist/waline.css`.
 
 1. Create a `<script>` tag and initialize with `Waline.init()` while passing in the necessary `el` and `serverURL` options.
 
@@ -93,10 +93,10 @@ Make the following settings on your web page:
    ```html {3-7,12-18}:line-numbers
    <head>
      <!-- ... -->
-     <script src="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.js"></script>
+     <script src="//unpkg.com/@waline/client@v2/dist/waline.js"></script>
      <link
        rel="stylesheet"
-       href="//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.css"
+       href="//unpkg.com/@waline/client@v2/dist/waline.css"
      />
      <!-- ... -->
    </head>

@@ -18,7 +18,7 @@ warning(
 const link = document.createElement('link');
 
 link.rel = 'stylesheet';
-link.href = '//cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.css';
+link.href = '//unpkg.com/@waline/client@v2/dist/waline.css';
 
 document.head.appendChild(link);
 

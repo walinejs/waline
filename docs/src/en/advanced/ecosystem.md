@@ -16,7 +16,7 @@ Waline is a classic Client/Server architecture, which provides a relatively comp
   By [@MHuiG](https://github.com/MHuiG) , supports Waline API. Usage:
 
   ```html
-  <script src="https://cdn.jsdelivr.net/npm/minivaline/dist/MiniValine.min.js"></script>
+  <script src="https://unpkg.com/minivaline/dist/MiniValine.min.js"></script>
 
   <div id="waline-comments"></div>
   <script>
