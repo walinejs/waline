@@ -78,6 +78,7 @@
           </a>
 
           <button
+            v-show="config.emoji.length"
             ref="emojiButtonRef"
             class="wl-action"
             :class="{ actived: showEmoji }"
