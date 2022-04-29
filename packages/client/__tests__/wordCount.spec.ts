@@ -53,8 +53,7 @@ describe('Words test', () => {
   });
 
   it('Addtional counts with Markdown links and images', () => {
-    const linkAddress =
-      '//unpkg.com/@waline/client/dist/Waline.min.js';
+    const linkAddress = '//unpkg.com/@waline/client/dist/Waline.min.js';
     const linkMarkdown = `You can found Waline [here](${linkAddress}).`;
     const imageMarkdown = `Here is a image.\n\n![Alt](https://a/fake/link)`;
 
@@ -63,10 +62,8 @@ describe('Words test', () => {
       .filter((word) => word);
 
     expect(linkWords).toEqual([
-      'cdn',
-      'jsdelivr',
-      'net',
-      'npm',
+      'unpkg',
+      'com',
       'waline',
       'client',
       'dist',
@@ -113,20 +110,16 @@ describe('Words test', () => {
       'html',
       'head',
       'script src',
-      'cdn',
-      'jsdelivr',
-      'net',
-      'npm',
+      'unpkg',
+      'com',
       'waline',
       'client',
       'script',
       'link\n    rel',
       'stylesheet',
       'href',
-      'cdn',
-      'jsdelivr',
-      'net',
-      'npm',
+      'unpkg',
+      'com',
       'waline',
       'client',
       'v2',
