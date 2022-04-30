@@ -83,9 +83,9 @@ Insert following code before `<head>` tag in your html content. `#waline-coment`
 ```html
 <link
   rel="stylesheet"
-  href="//unpkg.com/lightgallery@v2/css/lightgallery-bundle.css"
+  href="https://unpkg.com/lightgallery@v2/css/lightgallery-bundle.css"
 />
-<script src="//unpkg.com/lightgallery@v2/lightgallery.umd.min.js"></script>
+<script src="https://unpkg.com/lightgallery@v2/lightgallery.umd.min.js"></script>
 <script>
   document.addEventListener('click', (e) => {
     const imgs = [].slice
@@ -113,7 +113,7 @@ Insert following code before `<head>` tag in your html content. `#waline-coment`
   rel="stylesheet"
   href="//cdn.jsdelivr.net/gh/cbeyls/slimbox/css/slimbox2.css"
 />
-<script src="//unpkg.com/jquery@v1/dist/jquery.min.js"></script>
+<script src="https://unpkg.com/jquery@v1/dist/jquery.min.js"></script>
 <script src="//cdn.jsdelivr.net/gh/cbeyls/slimbox/js/slimbox2.js"></script>
 <script>
   document.addEventListener('click', (e) => {
@@ -138,9 +138,9 @@ Insert following code before `<head>` tag in your html content. `#waline-coment`
 ```html
 <link
   rel="stylesheet"
-  href="//unpkg.com/lightbox2@v2/dist/css/lightbox.min.css"
+  href="https://unpkg.com/lightbox2@v2/dist/css/lightbox.min.css"
 />
-<script src="//unpkg.com/lightbox2@v2/dist/js/lightbox-plus-jquery.min.js"></script>
+<script src="https://unpkg.com/lightbox2@v2/dist/js/lightbox-plus-jquery.min.js"></script>
 <script>
   document.addEventListener('click', (e) => {
     const lightbox = new Lightbox();
@@ -167,8 +167,11 @@ Insert following code before `<head>` tag in your html content. `#waline-coment`
 Insert following code before `<head>` tag in your html content. `#waline-coment` is your Waline comment element selector, you need replace it by yourself.
 
 ```html
-<script src="//unpkg.com/@fancyapps/ui/dist/fancybox.umd.js"></script>
-<link rel="stylesheet" href="//unpkg.com/@fancyapps/ui/dist/fancybox.css" />
+<script src="https://unpkg.com/@fancyapps/ui/dist/fancybox.umd.js"></script>
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/@fancyapps/ui/dist/fancybox.css"
+/>
 <script>
   Fancybox.bind('#waline-comment .vcontent img');
 </script>

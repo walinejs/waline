@@ -15,16 +15,19 @@ Recommend to use [jsdelivr](https://unpkg.com/@waline/client/).
 
 ```html
 <!-- Scripts -->
-<script src="//unpkg.com/@waline/client@v2/dist/waline.js"></script>
+<script src="https://unpkg.com/@waline/client@v2/dist/waline.js"></script>
 <!-- Styles -->
-<link rel="stylesheet" href="//unpkg.com/@waline/client@v2/dist/waline.css" />
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/@waline/client@v2/dist/waline.css"
+/>
 ```
 
 ::: code-group-item Pageview Only
 
 ```html
 <!-- Pageview -->
-<script src="//unpkg.com/@waline/client/dist/pageview.js"></script>
+<script src="https://unpkg.com/@waline/client/dist/pageview.js"></script>
 ```
 
 :::
@@ -37,7 +40,7 @@ For CDN links, if you don't specify a version number, it will be latest version,
 
 ```html
 <!-- You need to modify and replace `next` with the version number you want -->
-<script src="//unpkg.com/@waline/client@v2/dist/waline.js"></script>
+<script src="https://unpkg.com/@waline/client@v2/dist/waline.js"></script>
 ```
 
 :::

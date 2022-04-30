@@ -82,10 +82,10 @@ describe('Words test', () => {
 \`\`\`html
 <head>
   <!-- ... -->
-  <script src="//unpkg.com/@waline/client"></script>
+  <script src="https://unpkg.com/@waline/client"></script>
   <link
     rel="stylesheet"
-    href="//unpkg.com/@waline/client@v2/dist/waline.css"
+    href="https://unpkg.com/@waline/client@v2/dist/waline.css"
   />
   <!-- ... -->
 </head>
@@ -110,6 +110,7 @@ describe('Words test', () => {
       'html',
       'head',
       'script src',
+      'https',
       'unpkg',
       'com',
       'waline',
@@ -118,6 +119,7 @@ describe('Words test', () => {
       'link\n    rel',
       'stylesheet',
       'href',
+      'https',
       'unpkg',
       'com',
       'waline',
@@ -146,6 +148,6 @@ describe('Words test', () => {
       'body',
     ]);
 
-    expect(getWordNumber(codeBlock)).toEqual(40);
+    expect(getWordNumber(codeBlock)).toEqual(42);
   });
 });

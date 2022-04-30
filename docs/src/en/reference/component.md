@@ -165,16 +165,16 @@ A demo using prismjs to highlight code blocks.
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Waline highlighter demo</title>
-    <script src="//unpkg.com/@waline/client@v1/dist/waline.js"></script>
+    <script src="https://unpkg.com/@waline/client@v1/dist/waline.js"></script>
     <link
       rel="stylesheet"
-      href="//unpkg.com/@waline/client@v1/dist/waline.css"
+      href="https://unpkg.com/@waline/client@v1/dist/waline.css"
     />
-    <script src="//unpkg.com/prismjs@v1" data-manual></script>
-    <script src="//unpkg.com/prismjs@v1/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://unpkg.com/prismjs@v1" data-manual></script>
+    <script src="https://unpkg.com/prismjs@v1/plugins/autoloader/prism-autoloader.min.js"></script>
     <link
       rel="stylesheet"
-      href="//unpkg.com/prismjs@v1/themes/prism-tomorrow.min.css"
+      href="https://unpkg.com/prismjs@v1/themes/prism-tomorrow.min.css"
     />
   </head>
   <body>
@@ -231,13 +231,16 @@ You can import $\TeX$ renderer to provide preview feature. We recommend you to u
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Waline highlighter 案例</title>
-    <script src="//unpkg.com/@waline/client@v1/dist/waline.js"></script>
+    <script src="https://unpkg.com/@waline/client@v1/dist/waline.js"></script>
     <link
       rel="stylesheet"
-      href="//unpkg.com/@waline/client@v1/dist/waline.css"
+      href="https://unpkg.com/@waline/client@v1/dist/waline.css"
     />
-    <script src="//unpkg.com/katex@v0.15"></script>
-    <link rel="stylesheet" href="//unpkg.com/katex@v0.15/dist/katex.min.css" />
+    <script src="https://unpkg.com/katex@v0.15"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/katex@v0.15/dist/katex.min.css"
+    />
   </head>
   <body>
     <div id="waline" style="max-width: 800px; margin: 0 auto"></div>
@@ -269,12 +272,12 @@ You can import $\TeX$ renderer to provide preview feature. We recommend you to u
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Waline highlighter 案例</title>
-    <script src="//unpkg.com/@waline/client@v1/dist/waline.js"></script>
+    <script src="https://unpkg.com/@waline/client@v1/dist/waline.js"></script>
     <link
       rel="stylesheet"
-      href="//unpkg.com/@waline/client@v1/dist/waline.css"
+      href="https://unpkg.com/@waline/client@v1/dist/waline.css"
     />
-    <script src="//unpkg.com/mathjax@v3/es5/tex-svg.js"></script>
+    <script src="https://unpkg.com/mathjax@v3/es5/tex-svg.js"></script>
   </head>
   <body>
     <div id="waline" style="max-width: 800px; margin: 0 auto"></div>

@@ -14,25 +14,25 @@ Waline 提供了一系列开箱即用的表情预设。你可以直接将它们�
 - Alus
 
   ```http
-  //unpkg.com/@waline/emojis@1.0.1/alus
+  https://unpkg.com/@waline/emojis@1.0.1/alus
   ```
 
 - 哔哩哔哩
 
   ```http
-  //unpkg.com/@waline/emojis@1.0.1/bilibili
+  https://unpkg.com/@waline/emojis@1.0.1/bilibili
   ```
 
 - QQ
 
   ```http
-  //unpkg.com/@waline/emojis@1.0.1/qq
+  https://unpkg.com/@waline/emojis@1.0.1/qq
   ```
 
 - 贴吧
 
   ```http
-  //unpkg.com/@waline/emojis@1.0.1/tieba
+  https://unpkg.com/@waline/emojis@1.0.1/tieba
   ```
 
 - Twitter Emoji
@@ -40,7 +40,7 @@ Waline 提供了一系列开箱即用的表情预设。你可以直接将它们�
   - 表情:
 
     ```http
-    //unpkg.com/@waline/emojis@1.0.1/tw-emoji
+    https://unpkg.com/@waline/emojis@1.0.1/tw-emoji
     ```
 
   ::: details 其他可用预设
@@ -48,73 +48,73 @@ Waline 提供了一系列开箱即用的表情预设。你可以直接将它们�
   - 完整: (不推荐使用)
 
     ```http
-    //unpkg.com/@waline/emojis@1.0.1/tw
+    https://unpkg.com/@waline/emojis@1.0.1/tw
     ```
 
   - 身体:
 
     ```http
-    //unpkg.com/@waline/emojis@1.0.1/tw-body
+    https://unpkg.com/@waline/emojis@1.0.1/tw-body
     ```
 
   - 食物:
 
     ```http
-    //unpkg.com/@waline/emojis@1.0.1/tw-food
+    https://unpkg.com/@waline/emojis@1.0.1/tw-food
     ```
 
   - 自然:
 
     ```http
-    //unpkg.com/@waline/emojis@1.0.1/tw-natural
+    https://unpkg.com/@waline/emojis@1.0.1/tw-natural
     ```
 
   - 对象:
 
     ```http
-    //unpkg.com/@waline/emojis@1.0.1/tw-object
+    https://unpkg.com/@waline/emojis@1.0.1/tw-object
     ```
 
   - 符号:
 
     ```http
-    //unpkg.com/@waline/emojis@1.0.1/tw-symbol
+    https://unpkg.com/@waline/emojis@1.0.1/tw-symbol
     ```
 
   - 人物:
 
     ```http
-    //unpkg.com/@waline/emojis@1.0.1/tw-people
+    https://unpkg.com/@waline/emojis@1.0.1/tw-people
     ```
 
   - 运动:
 
     ```http
-    //unpkg.com/@waline/emojis@1.0.1/tw-sport
+    https://unpkg.com/@waline/emojis@1.0.1/tw-sport
     ```
 
   - 时间:
 
     ```http
-    //unpkg.com/@waline/emojis@1.0.1/tw-time
+    https://unpkg.com/@waline/emojis@1.0.1/tw-time
     ```
 
   - 旅行:
 
     ```http
-    //unpkg.com/@waline/emojis@1.0.1/tw-travel
+    https://unpkg.com/@waline/emojis@1.0.1/tw-travel
     ```
 
   - 天气:
 
     ```http
-    //unpkg.com/@waline/emojis@1.0.1/tw-weather
+    https://unpkg.com/@waline/emojis@1.0.1/tw-weather
     ```
 
   - 旗帜:
 
     ```http
-    //unpkg.com/@waline/emojis@1.0.1/tw-flag
+    https://unpkg.com/@waline/emojis@1.0.1/tw-flag
     ```
 
   :::
@@ -122,7 +122,7 @@ Waline 提供了一系列开箱即用的表情预设。你可以直接将它们�
 - 微博
 
   ```http
-  //unpkg.com/@waline/emojis@1.0.1/weibo
+  https://unpkg.com/@waline/emojis@1.0.1/weibo
   ```
 
 ::: warning

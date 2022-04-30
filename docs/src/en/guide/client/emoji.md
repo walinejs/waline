@@ -14,25 +14,25 @@ Waline provides a series of emoji presets that can be used out of box. You can a
 - Alus
 
   ```http
-  //unpkg.com/@waline/emojis@1.0.1/alus
+  https://unpkg.com/@waline/emojis@1.0.1/alus
   ```
 
 - Bilibili
 
   ```http
-  //unpkg.com/@waline/emojis@1.0.1/bilibili
+  https://unpkg.com/@waline/emojis@1.0.1/bilibili
   ```
 
 - QQ
 
   ```http
-  //unpkg.com/@waline/emojis@1.0.1/qq
+  https://unpkg.com/@waline/emojis@1.0.1/qq
   ```
 
 - Tieba
 
   ```http
-  //unpkg.com/@waline/emojis@1.0.1/tieba
+  https://unpkg.com/@waline/emojis@1.0.1/tieba
   ```
 
 - Twemoji
@@ -40,7 +40,7 @@ Waline provides a series of emoji presets that can be used out of box. You can a
   - Emoji:
 
     ```http
-    //unpkg.com/@waline/emojis@1.0.1/tw-emoji
+    https://unpkg.com/@waline/emojis@1.0.1/tw-emoji
     ```
 
   ::: details Others presets
@@ -48,73 +48,73 @@ Waline provides a series of emoji presets that can be used out of box. You can a
   - Full: (Not recommand)
 
     ```http
-    //unpkg.com/@waline/emojis@1.0.1/tw
+    https://unpkg.com/@waline/emojis@1.0.1/tw
     ```
 
   - Body:
 
     ```http
-    //unpkg.com/@waline/emojis@1.0.1/tw-body
+    https://unpkg.com/@waline/emojis@1.0.1/tw-body
     ```
 
   - Food:
 
     ```http
-    //unpkg.com/@waline/emojis@1.0.1/tw-food
+    https://unpkg.com/@waline/emojis@1.0.1/tw-food
     ```
 
   - Natural:
 
     ```http
-    //unpkg.com/@waline/emojis@1.0.1/tw-natural
+    https://unpkg.com/@waline/emojis@1.0.1/tw-natural
     ```
 
   - Object:
 
     ```http
-    //unpkg.com/@waline/emojis@1.0.1/tw-object
+    https://unpkg.com/@waline/emojis@1.0.1/tw-object
     ```
 
   - Symbol:
 
     ```http
-    //unpkg.com/@waline/emojis@1.0.1/tw-symbol
+    https://unpkg.com/@waline/emojis@1.0.1/tw-symbol
     ```
 
   - People:
 
     ```http
-    //unpkg.com/@waline/emojis@1.0.1/tw-people
+    https://unpkg.com/@waline/emojis@1.0.1/tw-people
     ```
 
   - Sport:
 
     ```http
-    //unpkg.com/@waline/emojis@1.0.1/tw-sport
+    https://unpkg.com/@waline/emojis@1.0.1/tw-sport
     ```
 
   - Time:
 
     ```http
-    //unpkg.com/@waline/emojis@1.0.1/tw-time
+    https://unpkg.com/@waline/emojis@1.0.1/tw-time
     ```
 
   - Travel:
 
     ```http
-    //unpkg.com/@waline/emojis@1.0.1/tw-travel
+    https://unpkg.com/@waline/emojis@1.0.1/tw-travel
     ```
 
   - Weather:
 
     ```http
-    //unpkg.com/@waline/emojis@1.0.1/tw-weather
+    https://unpkg.com/@waline/emojis@1.0.1/tw-weather
     ```
 
   - Flag:
 
     ```http
-    //unpkg.com/@waline/emojis@1.0.1/tw-flag
+    https://unpkg.com/@waline/emojis@1.0.1/tw-flag
     ```
 
   :::
@@ -122,7 +122,7 @@ Waline provides a series of emoji presets that can be used out of box. You can a
 - Weibo
 
   ```http
-  //unpkg.com/@waline/emojis@1.0.1/weibo
+  https://unpkg.com/@waline/emojis@1.0.1/weibo
   ```
 
 ::: warning

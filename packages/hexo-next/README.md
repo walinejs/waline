@@ -28,10 +28,10 @@ waline:
   serverURL: https://waline.vercel.app
 
   # Waline library CDN url, you can set this to your preferred CDN
-  # libUrl: //unpkg.com/@waline/client@v2/dist/waline.js
+  # libUrl: https://unpkg.com/@waline/client@v2/dist/waline.js
 
   # Waline CSS styles CDN url, you can set this to your preferred CDN
-  cssUrl: //unpkg.com/@waline/client@v2/dist/waline.css
+  cssUrl: https://unpkg.com/@waline/client@v2/dist/waline.css
 
   # Custom locales
   # locale:
@@ -45,12 +45,12 @@ waline:
 
   # Custom emoji
   # emoji:
-  #   - //unpkg.com/@waline/emojis@1.0.1/weibo
-  #   - //unpkg.com/@waline/emojis@1.0.1/alus
-  #   - //unpkg.com/@waline/emojis@1.0.1/bilibili
-  #   - //unpkg.com/@waline/emojis@1.0.1/qq
-  #   - //unpkg.com/@waline/emojis@1.0.1/tieba
-  #   - //unpkg.com/@waline/emojis@1.0.1/tw-emoji
+  #   - https://unpkg.com/@waline/emojis@1.0.1/weibo
+  #   - https://unpkg.com/@waline/emojis@1.0.1/alus
+  #   - https://unpkg.com/@waline/emojis@1.0.1/bilibili
+  #   - https://unpkg.com/@waline/emojis@1.0.1/qq
+  #   - https://unpkg.com/@waline/emojis@1.0.1/tieba
+  #   - https://unpkg.com/@waline/emojis@1.0.1/tw-emoji
 
   # Comment infomation, valid meta are nick, mail and link
   # meta:
