@@ -31,26 +31,26 @@ waline:
   # libUrl: //unpkg.com/@waline/client@v2/dist/waline.js
 
   # Waline CSS styles CDN url, you can set this to your preferred CDN
-  # cssUrl: //unpkg.com/@waline/client@v2/dist/waline.css
+  cssUrl: //unpkg.com/@waline/client@v2/dist/waline.css
 
   # Custom locales
-  locale:
-    placeholder: Welcome to comment # Comment box placeholder
-
-  # Custom emoji
-  emoji:
-    - //unpkg.com/@waline/emojis@1.0.1/weibo
-    # - //unpkg.com/@waline/emojis@1.0.1/alus
-    # - //unpkg.com/@waline/emojis@1.0.1/bilibili
-    # - //unpkg.com/@waline/emojis@1.0.1/qq
-    # - //unpkg.com/@waline/emojis@1.0.1/tieba
-    # - //unpkg.com/@waline/emojis@1.0.1/tw-emoji
+  # locale:
+  #   placeholder: Welcome to comment # Comment box placeholder
 
   # If false, comment count will only be displayed in post page, not in home page
   commentCount: true
 
   # Pageviews count, Note: You should not enable both `waline.pageview` and `leancloud_visitors`.
   pageview: false
+
+  # Custom emoji
+  # emoji:
+  #   - //unpkg.com/@waline/emojis@1.0.1/weibo
+  #   - //unpkg.com/@waline/emojis@1.0.1/alus
+  #   - //unpkg.com/@waline/emojis@1.0.1/bilibili
+  #   - //unpkg.com/@waline/emojis@1.0.1/qq
+  #   - //unpkg.com/@waline/emojis@1.0.1/tieba
+  #   - //unpkg.com/@waline/emojis@1.0.1/tw-emoji
 
   # Comment infomation, valid meta are nick, mail and link
   # meta:
