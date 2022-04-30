@@ -49,7 +49,7 @@ Waline 的服务端地址。
 
 ## emoji
 
-- 类型: `(string | EmojiInfo)[]`
+- 类型: `(string | WalineEmojiInfo)[] | false`
 - 默认值: `['https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo']`
 
 表情设置，详见 [自定义表情](../guide/client/emoji.md)

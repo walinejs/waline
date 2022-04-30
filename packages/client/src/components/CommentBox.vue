@@ -78,7 +78,7 @@
           </a>
 
           <button
-            v-show="config.emoji.length"
+            v-show="emoji.tabs.length"
             ref="emojiButtonRef"
             class="wl-action"
             :class="{ actived: showEmoji }"
@@ -603,9 +603,11 @@ export default defineComponent({
       watch(
         () => config.value.emoji,
         (emojiConfig) =>
-          getEmojis(emojiConfig).then((config) => {
-            emoji.value = config;
-          }),
+          getEmojis(Array.isArray(emojiConfig) ? emojiConfig : []).then(
+            (config) => {
+              emoji.value = config;
+            }
+          ),
         { immediate: true }
       );
     });

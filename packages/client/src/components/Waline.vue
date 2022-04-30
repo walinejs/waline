@@ -171,23 +171,24 @@ export default defineComponent({
     },
 
     emoji: {
-      type: Array as PropType<(string | WalineEmojiInfo)[]>,
+      type: [Array, Boolean] as PropType<(string | WalineEmojiInfo)[] | false>,
       ...(SHOULD_VALIDATE
         ? {
             validator: (value: unknown): boolean =>
-              Array.isArray(value) &&
-              value.every(
-                (item) =>
-                  typeof item === 'string' ||
-                  (typeof item === 'object' &&
-                    typeof item.name === 'string' &&
-                    typeof item.folder === 'string' &&
-                    typeof item.icon === 'string' &&
-                    Array.isArray(item.items) &&
-                    (item.items as unknown[]).every(
-                      (icon) => typeof icon === 'string'
-                    ))
-              ),
+              value === false ||
+              (Array.isArray(value) &&
+                value.every(
+                  (item) =>
+                    typeof item === 'string' ||
+                    (typeof item === 'object' &&
+                      typeof item.name === 'string' &&
+                      typeof item.folder === 'string' &&
+                      typeof item.icon === 'string' &&
+                      Array.isArray(item.items) &&
+                      (item.items as unknown[]).every(
+                        (icon) => typeof icon === 'string'
+                      ))
+                )),
           }
         : {}),
     },
