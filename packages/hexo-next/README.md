@@ -38,14 +38,13 @@ waline:
     placeholder: Welcome to comment # Comment box placeholder
 
   # Custom emoji
-  emoji: [
-    # https://unpkg.com/@waline/emojis@1.0.1/weibo,
-    # https://unpkg.com/@waline/emojis@1.0.1/alus,
-    # https://unpkg.com/@waline/emojis@1.0.1/bilibili,
-    # https://unpkg.com/@waline/emojis@1.0.1/qq,
-    # https://unpkg.com/@waline/emojis@1.0.1/tieba,
-    # https://unpkg.com/@waline/emojis@1.0.1/tw-emoji,
-  ]
+  # emoji:
+    # - https://unpkg.com/@waline/emojis@1.0.1/weibo
+    # - https://unpkg.com/@waline/emojis@1.0.1/alus
+    # - https://unpkg.com/@waline/emojis@1.0.1/bilibili
+    # - https://unpkg.com/@waline/emojis@1.0.1/qq
+    # - https://unpkg.com/@waline/emojis@1.0.1/tieba
+    # - https://unpkg.com/@waline/emojis@1.0.1/tw-emoji
 
   # If false, comment count will only be displayed in post page, not in home page
   commentCount: true
