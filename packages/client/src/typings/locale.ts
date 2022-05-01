@@ -1,4 +1,12 @@
-export interface WalineLocale {
+export interface WalineDateLocale {
+  seconds: string;
+  minutes: string;
+  hours: string;
+  days: string;
+  now: string;
+}
+
+export interface WalineLocale extends WalineDateLocale {
   nick: string;
   nickError: string;
   mail: string;
@@ -16,11 +24,6 @@ export interface WalineLocale {
   preview: string;
   emoji: string;
   uploadImage: string;
-  seconds: string;
-  minutes: string;
-  hours: string;
-  days: string;
-  now: string;
   uploading: string;
   login: string;
   logout: string;
