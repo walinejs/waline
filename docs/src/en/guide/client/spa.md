@@ -86,3 +86,13 @@ If you forget to pass in the `serverURL` or Waline cannot find the mount locatio
 If you forget to set `serverURL` or Waline cannot find the mount location through the `el` option on the page, Waline will return a `WalineErrorInstance`.
 
 There is only one attribute `errMsg` on `WalineErrorInstance` to indicate the reason for the initialization failure.
+
+### Precautions
+
+::: warning Remember to destory the instance
+
+In order for Waline to properly release resources, please manually call `WalineInstance.destroy()` before removing the element where Waline is mounted.
+
+Otherwise, some listeners may not be removed properly.
+
+:::

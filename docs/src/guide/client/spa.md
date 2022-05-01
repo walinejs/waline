@@ -84,3 +84,13 @@ waline.update({
 ### 初始化失败
 
 如果你忘记传入 `serverURL` 或者 Waline 无法在页面中通过 `el` 选项找到挂载位置，Waline 会抛出一个 Error 指明错误原因。
+
+### 注意事项
+
+::: warning 取消挂载实例
+
+为了让 Waline 能够正确释放资源，请在移除 Waline 所在元素之前，手动调用 `WalineInstance.destroy()`。
+
+否则，一些监听器可能不会被正确移除。
+
+:::
