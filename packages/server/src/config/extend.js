@@ -12,8 +12,8 @@ module.exports = [
           return SERVER_URL;
         }
 
-        const { protocol, host, path, controller } = this;
-        return `${protocol}://${host}${path.slice(0, -controller.length)}`;
+        const { protocol, host } = this;
+        return `${protocol}://${host}`;
       },
     },
     controller: {
