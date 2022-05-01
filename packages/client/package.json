@@ -40,9 +40,10 @@
   "scripts": {
     "build": "npm run rollup && npm run style",
     "clean": "rimraf ./dist",
+    "dev": "vite -c config/vite.config.js",
     "lint": "eslint --ext .ts,.vue .",
     "prepublish": "npm run clean && npm run build",
-    "rollup": "rollup -c ./scripts/rollup.config.js",
+    "rollup": "rollup -c ./config/rollup.config.js",
     "style": "sass ./src/styles/index.scss ./dist/waline.css --style=compressed"
   },
   "browserslist": {
@@ -68,7 +69,9 @@
   },
   "devDependencies": {
     "@types/autosize": "^4.0.1",
-    "@types/marked": "^4.0.3"
+    "@types/marked": "^4.0.3",
+    "@vitejs/plugin-vue": "^2.3.1",
+    "vite": "^2.9.6"
   },
   "engines": {
     "node": ">=12.20.0"
