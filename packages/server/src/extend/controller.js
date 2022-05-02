@@ -1,3 +1,4 @@
+const nunjucks = require('nunjucks');
 const locales = require('../locales');
 
 module.exports = {
@@ -10,13 +11,16 @@ module.exports = {
       this.ctx.status = 500;
     }
 
+    message = this.locale(message);
+    this.ctx.fail(message, ...args);
+    return think.prevent();
+  },
+  locale(message, variables) {
     const { lang } = this.get();
     const locale = locales[(lang || '').toLowerCase()];
     if (locale && locale[message]) {
       message = locale[message];
     }
-
-    this.ctx.fail(message, ...args);
-    return think.prevent();
+    return nunjucks.renderString(message, variables);
   },
 };

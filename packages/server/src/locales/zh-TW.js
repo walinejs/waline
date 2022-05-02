@@ -7,4 +7,8 @@ module.exports = {
   'USER_REGISTED': '用戶已註冊',
   'TOKEN_EXPIRED': '密鑰已過期',
   'TWO_FACTOR_AUTH_ERROR_DETAIL': '二步驗證失敗',
+  '[{{name}}] Registration Confirm Mail': '『{{name}}』註冊確認郵件',
+  'Please click <a href="{{url}}">{{url}}<a/> to confirm registration, the link is valid for 1 hour. If you are not registering, please ignore this email.': '請點擊 <a href="{{url}}">{{url}}</a> 確認註冊，鏈接有效時間為 1 個小時。如果不是你在註冊，請忽略這封郵件。',
+  '[{{name}}] Reset Password': '『{{name}}』重置密碼',
+  'Please click <a href="{{url}}">{{url}}</a> to login and change your password as soon as possible!': '請盡快點擊鏈接 <a href="{{url}}">{{url}}</a> 登錄並修改你的密碼！',
 };

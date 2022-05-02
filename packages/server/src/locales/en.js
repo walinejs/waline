@@ -7,4 +7,8 @@ module.exports = {
   'USER_REGISTED': 'USER_REGISTED',
   'TOKEN_EXPIRED': 'TOKEN_EXPIRED',
   'TWO_FACTOR_AUTH_ERROR_DETAIL': 'TWO_FACTOR_AUTH_ERROR_DETAIL',
+  '[{{name}}] Registration Confirm Mail': '[{{name}}] Registration Confirm Mail',
+  'Please click <a href="{{url}}">{{url}}<a/> to confirm registration, the link is valid for 1 hour. If you are not registering, please ignore this email.': 'Please click <a href="{{url}}">{{url}}<a/> to confirm registration, the link is valid for 1 hour. If you are not registering, please ignore this email.',
+  '[{{name}}] Reset Password': '[{{name}}] Reset Password',
+  'Please click <a href="{{url}}">{{url}}</a> to login and change your password as soon as possible!': 'Please click <a href="{{url}}">{{url}}</a> to login and change your password as soon as possible!',
 };
