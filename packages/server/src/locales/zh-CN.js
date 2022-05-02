@@ -11,4 +11,7 @@ module.exports = {
   'Please click <a href="{{url}}">{{url}}<a/> to confirm registration, the link is valid for 1 hour. If you are not registering, please ignore this email.': '请点击 <a href="{{url}}">{{url}}</a> 确认注册，链接有效时间为 1 个小时。如果不是你在注册，请忽略这封邮件。',
   '[{{name}}] Reset Password': '【{{name}}】重置密码',
   'Please click <a href="{{url}}">{{url}}</a> to login and change your password as soon as possible!': '请尽快点击链接 <a href="{{url}}">{{url}}</a> 登录并修改你的密码！',
+  'Duplicate Content': '发送的内容之前已经发过',
+  'Comment too fast': '评论太快啦，请慢点！',
+  'Registeration confirm mail send failed, please check your mail configuration if you are administrator.': '注册确认邮件发送失败，请{%- if isAdmin -%}检查一下网站的邮件相关配置{% else %}联系管理员{%- endif -%}。',
 };

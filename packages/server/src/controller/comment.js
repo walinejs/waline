@@ -388,7 +388,7 @@ module.exports = class extends BaseRest {
           'The comment author had post same comment content before'
         );
 
-        return this.fail('Duplicate Content');
+        return this.fail(this.locale('Duplicate Content'));
       }
 
       think.logger.debug('Comment duplicate check OK!');
@@ -403,7 +403,7 @@ module.exports = class extends BaseRest {
 
       if (!think.isEmpty(recent)) {
         think.logger.debug(`The author has posted in ${IPQPS} seconeds.`);
-        return this.fail('Comment too fast!');
+        return this.fail(this.locale('Comment too fast!'));
       }
 
       think.logger.debug(`Comment post frequence check OK!`);

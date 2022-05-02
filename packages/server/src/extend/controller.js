@@ -11,7 +11,6 @@ module.exports = {
       this.ctx.status = 500;
     }
 
-    message = this.locale(message);
     this.ctx.fail(message, ...args);
     return think.prevent();
   },
