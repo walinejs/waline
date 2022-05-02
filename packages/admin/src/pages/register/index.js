@@ -52,7 +52,7 @@ export default function () {
       }
       navigate('/ui/login');
     } catch (e) {
-      setError(e);
+      setError(e.message);
     } finally {
       setSubmitting(false);
     }

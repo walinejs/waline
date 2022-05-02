@@ -6,12 +6,8 @@ module.exports = {
     this.ctx.success(...args);
     return think.prevent();
   },
-  fail(message, ...args) {
-    if (this.ctx.status === 200) {
-      this.ctx.status = 500;
-    }
-
-    this.ctx.fail(message, ...args);
+  fail(...args) {
+    this.ctx.fail(...args);
     return think.prevent();
   },
   locale(message, variables) {
