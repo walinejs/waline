@@ -1,6 +1,6 @@
 {
   "name": "@waline/vercel",
-  "version": "1.13.5",
+  "version": "1.13.6",
   "description": "vercel server for waline comment system",
   "keywords": [
     "waline",
