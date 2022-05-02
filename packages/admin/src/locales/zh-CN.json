@@ -17,7 +17,6 @@
   "register.login": "用户登录",
   "nickname illegal": "请输入正确的昵称",
   "passwords don't match": "两次密码不一致",
-  "register error! try again later": "注册失败，请稍后再试！",
   "setting": "个人设置",
   "profile": "个人资料",
   "go to gravatar to change avatar": "在 Gravatar 上修改头像",
