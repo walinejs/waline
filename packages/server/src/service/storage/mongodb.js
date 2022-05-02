@@ -121,6 +121,11 @@ module.exports = class extends Base {
   }
 
   async add(data) {
+    if (data.objectId) {
+      data._id = data.objectId;
+      delete data.objectId;
+    }
+
     const instance = this.mongo(this.tableName);
     const id = await instance.add(data);
     return { ...data, objectId: id.toString() };

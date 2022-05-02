@@ -57,6 +57,11 @@ module.exports = class extends Base {
   }
 
   async add(data) {
+    if (data.objectId) {
+      data.id = data.objectId;
+      delete data.objectId;
+    }
+
     const instance = this.model(this.tableName);
     const id = await instance.add(data);
     return { ...data, objectId: id };

@@ -19,10 +19,9 @@ module.exports = class extends BaseRest {
 
     for (let i = 0; i < exportData.tables.length; i++) {
       const tableName = exportData.tables[i];
-      const model = this.service(
-        `storage/${this.config('storage')}`,
-        tableName
-      );
+      const storage = this.config('storage');
+      const model = this.service(`storage/${storage}`, tableName);
+
       const data = await model.select({});
       exportData.data[tableName] = data;
     }
@@ -41,7 +40,8 @@ module.exports = class extends BaseRest {
 
       for (let i = 0; i < importData.tables.length; i++) {
         const tableName = importData.tables[i];
-        const model = this.model(tableName);
+        const storage = this.config('storage');
+        const model = this.service(`storage/${storage}`, tableName);
 
         // delete all data at first
         await model.delete({});
