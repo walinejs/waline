@@ -36,8 +36,13 @@ module.exports = class extends BaseRest {
           ? `"${SENDER_NAME}" <${SENDER_EMAIL}>`
           : SMTP_USER,
       to: user[0].email,
-      subject: `【${SITE_NAME || 'Waline'}】Reset Password`,
-      html: `Please click <a href="${profileUrl}">${profileUrl}</a> to login and change your password as soon as possible!`,
+      subject: this.locale('[{{name}}] Reset Password', {
+        name: SITE_NAME || 'Waline',
+      }),
+      html: this.locale(
+        'Please click <a href="{{url}}">{{url}}</a> to login and change your password as soon as possible!',
+        { url: profileUrl }
+      ),
     });
 
     return this.success();

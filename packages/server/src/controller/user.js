@@ -21,7 +21,7 @@ module.exports = class extends BaseRest {
       !think.isEmpty(resp) &&
       ['administrator', 'guest'].includes(resp[0].type)
     ) {
-      return this.fail('USER_EXIST');
+      return this.fail(this.locale('USER_EXIST'));
     }
 
     const count = await this.modelInstance.count();
@@ -56,21 +56,37 @@ module.exports = class extends BaseRest {
       return this.success();
     }
 
-    const notify = this.service('notify');
-    const apiUrl =
-      this.ctx.serverURL +
-      '/verification?' +
-      qs.stringify({ token, email: data.email });
+    try {
+      const notify = this.service('notify');
+      const apiUrl =
+        this.ctx.serverURL +
+        '/verification?' +
+        qs.stringify({ token, email: data.email });
 
-    await notify.transporter.sendMail({
-      from:
-        SENDER_EMAIL && SENDER_NAME
-          ? `"${SENDER_NAME}" <${SENDER_EMAIL}>`
-          : SMTP_USER,
-      to: data.email,
-      subject: `【${SITE_NAME || 'Waline'}】注册确认邮件`,
-      html: `请点击 ${apiUrl} 确认注册，链接有效时间为 1 个小时。如果不是你在注册，请忽略这封邮件。`,
-    });
+      await notify.transporter.sendMail({
+        from:
+          SENDER_EMAIL && SENDER_NAME
+            ? `"${SENDER_NAME}" <${SENDER_EMAIL}>`
+            : SMTP_USER,
+        to: data.email,
+        subject: this.locale('[{{name}}] Registration Confirm Mail', {
+          name: SITE_NAME || 'Waline',
+        }),
+        html: this.locale(
+          'Please click <a href="{{url}}">{{url}}<a/> to confirm registration, the link is valid for 1 hour. If you are not registering, please ignore this email.',
+          { url: apiUrl }
+        ),
+      });
+    } catch (e) {
+      console.log(e);
+
+      return this.fail(
+        this.locale(
+          'Registeration confirm mail send failed, please {%- if isAdmin -%}check your mail configuration{%- else -%}check your email address and contact administrator{%- endif -%}.',
+          { isAdmin: think.isEmpty(count) }
+        )
+      );
+    }
 
     return this.success({ verify: true });
   }

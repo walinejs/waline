@@ -52,7 +52,7 @@ export default function () {
       }
       navigate('/ui/login');
     } catch (e) {
-      setError(t('register error! try again later'));
+      setError(e.message);
     } finally {
       setSubmitting(false);
     }

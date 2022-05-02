@@ -35,7 +35,7 @@ module.exports = class extends BaseRest {
       const jsonText = await readFileAsync(file.path, 'utf-8');
       const importData = JSON.parse(jsonText);
       if (!importData || importData.type !== 'waline') {
-        return this.fail('import data format not support!');
+        return this.fail(this.locale('import data format not support!'));
       }
 
       for (let i = 0; i < importData.tables.length; i++) {
