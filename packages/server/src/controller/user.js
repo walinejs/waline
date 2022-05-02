@@ -82,7 +82,7 @@ module.exports = class extends BaseRest {
 
       return this.fail(
         this.locale(
-          'Registeration confirm mail send failed, please check your mail configuration if you are administrator.',
+          'Registeration confirm mail send failed, please {%- if isAdmin -%}check your mail configuration{%- else -%}check your email address and contact administrator{%- endif -%}.',
           { isAdmin: think.isEmpty(count) }
         )
       );
