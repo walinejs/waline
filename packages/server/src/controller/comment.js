@@ -218,7 +218,12 @@ module.exports = class extends BaseRest {
           };
         }
 
-        const comments = await this.modelInstance.select(where, {
+        const totalCount = await this.modelInstance.count(where);
+        const pageOffset = Math.max((page - 1) * pageSize, 0);
+        let comments = [];
+        let rootComments = [];
+        let rootCount = 0;
+        const selectOptions = {
           desc: 'insertedAt',
           field: [
             'status',
@@ -233,7 +238,54 @@ module.exports = class extends BaseRest {
             'user_id',
             'sticky',
           ],
-        });
+        };
+
+        /**
+         * most of case we have just little comments
+         * while if we want get rootComments, rootCount, childComments with pagination
+         * we have to query three times from storage service
+         * That's so expensive for user, especially in the serverless.
+         * so we have a comments length check
+         * If you have less than 1000 comments, then we'll get all comments one time
+         * then we'll compute rootComment, rootCount, childComments in program to reduce http request query
+         *
+         * Why we have limit and the limit is 1000?
+         * Many serverless storages have fetch data limit, for example LeanCloud is 100, and CloudBase is 1000
+         * If we have much commments, We should use more request to fetch all comments
+         * If we have 3000 comments, We have to use 30 http request to fetch comments, things go athwart.
+         * And Serverless Service like vercel have excute time limit
+         * if we have more http requests in a serverless function, it may timeout easily.
+         * so we use limit to avoid it.
+         */
+        if (totalCount < 1000) {
+          comments = await this.modelInstance.select(where, selectOptions);
+          rootCount = comments.filter(({ rid }) => !rid).length;
+          rootComments = [
+            ...comments.filter(({ rid, sticky }) => !rid && sticky),
+            ...comments.filter(({ rid, sticky }) => !rid && !sticky),
+          ].slice(pageOffset, pageOffset + pageSize);
+        } else {
+          rootComments = await this.modelInstance.select(
+            { ...where, rid: undefined },
+            {
+              ...selectOptions,
+              offset: pageOffset,
+              limit: pageSize,
+            }
+          );
+          const children = await this.modelInstance.select(
+            {
+              ...where,
+              rid: ['IN', rootComments.map(({ objectId }) => objectId)],
+            },
+            selectOptions
+          );
+          comments = [...rootComments, ...children];
+          rootCount = await this.modelInstance.count({
+            ...where,
+            rid: undefined,
+          });
+        }
 
         const userModel = this.service(
           `storage/${this.config('storage')}`,
@@ -253,18 +305,11 @@ module.exports = class extends BaseRest {
           );
         }
 
-        const rootCount = comments.filter(({ rid }) => !rid).length;
-        const pageOffset = Math.max((page - 1) * pageSize, 0);
-        const rootComments = [
-          ...comments.filter(({ rid, sticky }) => !rid && sticky),
-          ...comments.filter(({ rid, sticky }) => !rid && !sticky),
-        ].slice(pageOffset, pageOffset + pageSize);
-
         return this.json({
           page,
           totalPages: Math.ceil(rootCount / pageSize),
           pageSize,
-          count: comments.length,
+          count: totalCount,
           data: await Promise.all(
             rootComments.map(async (comment) => {
               const cmt = await formatCmt(
