@@ -460,21 +460,25 @@ module.exports = class extends BaseRest {
 
     think.logger.debug(`Comment have been added to storage.`);
 
-    let parrentComment;
-
+    let parentComment;
     if (pid) {
-      parrentComment = await this.modelInstance.select({ objectId: pid });
-      parrentComment = parrentComment[0];
+      parentComment = await this.modelInstance.select({ objectId: pid });
+      parentComment = parentComment[0];
     }
+
+    await this.ctx.webhook('new_comment', {
+      comment: { ...resp, rawComment: comment },
+      reply: parentComment,
+    });
 
     if (comment.status !== 'spam') {
       const notify = this.service('notify');
-      await notify.run({ ...resp, rawComment: comment }, parrentComment);
+      await notify.run({ ...resp, rawComment: comment }, parentComment);
     }
 
     think.logger.debug(`Comment notify done!`);
 
-    await this.hook('postSave', resp, parrentComment);
+    await this.hook('postSave', resp, parentComment);
 
     think.logger.debug(`Comment post hooks postSave done!`);
 

@@ -1,5 +1,6 @@
 const Model = require('think-model');
 const Mongo = require('think-mongo');
+const request = require('request-promise-native');
 
 module.exports = [
   Model(think.app),
@@ -14,6 +15,21 @@ module.exports = [
 
         const { protocol, host } = this;
         return `${protocol}://${host}`;
+      },
+      async webhook(type, data) {
+        const { WEBHOOK } = process.env;
+        if (!WEBHOOK) {
+          return;
+        }
+
+        return request({
+          uri: WEBHOOK,
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+          },
+          body: JSON.stringify({ type, data }),
+        });
       },
     },
     controller: {

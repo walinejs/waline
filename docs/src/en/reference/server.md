@@ -33,6 +33,7 @@ Vercel needs to be set in `Settings` - `Environment Variables`.
 | `AVATAR_PROXY`          |          | Avatar proxy service url, default is `https://avatar.75cdn.workers.dev`. You can set `false` to close it                                    |
 | `GRAVATAR_STR`          |          | Gravatar render string，default is <span v-pre>`https://seccdn.libravatar.org/avatar/{{mail\|md5}}`</span>，base on nunjucks template       |
 | `OAUTH_URL`             |          | OAuth Social Login Service URL，default is `https://user.75.team`. Also you can custom build with [auth](https://github.com/walinejs/auth). |
+| `WEBHOOK`               |          | You can set a Webhook URL that will be triggered when you have new comment.                                                                 |
 
 ### Markdown
 
