@@ -10,6 +10,7 @@ const app = cloudbase.init({
 
 const db = app.database();
 const _ = db.command;
+const $ = db.command.aggregate;
 const collections = {};
 
 module.exports = class extends Base {
@@ -90,10 +91,10 @@ module.exports = class extends Base {
     return filter;
   }
 
-  where(instance, where) {
+  where(instance, where, method = 'where') {
     const filter = this.parseWhere(where);
     if (!where._complex) {
-      return instance.where(filter);
+      return instance[method](filter);
     }
 
     const filters = [];
@@ -106,7 +107,7 @@ module.exports = class extends Base {
         ...filter,
       });
     }
-    return instance.where(_[where._complex._logic](...filters));
+    return instance[method](_[where._complex._logic](...filters));
   }
 
   async _select(where, { desc, limit, offset, field } = {}) {
@@ -147,10 +148,24 @@ module.exports = class extends Base {
     return data;
   }
 
-  async count(where = {}) {
-    const instance = await this.collection(this.tableName);
-    const { total } = await this.where(instance, where).count();
-    return total;
+  async count(where = {}, { group } = {}) {
+    let instance = await this.collection(this.tableName);
+    if (!group) {
+      instance = this.where(instance, where);
+      const { total } = await instance.count();
+      return total;
+    }
+
+    const _id = {};
+    group.forEach((f) => {
+      _id[f] = `$${f}`;
+    });
+    instance = instance.aggregate();
+    this.where(instance, where, 'match');
+    instance = instance.group({ _id, count: $.sum(1) });
+    const { data } = await instance.end();
+
+    return data.map(({ _id, count }) => ({ ..._id, count }));
   }
 
   async add(data) {

@@ -42,7 +42,7 @@
     "think-model-mysql": "^1.1.7",
     "think-model-postgresql": "1.1.6",
     "think-model-sqlite": "^1.2.3",
-    "think-mongo": "^2.1.2",
+    "think-mongo": "^2.2.1",
     "think-router-rest": "^1.0.5",
     "thinkjs": "^3.2.14",
     "ua-parser-js": "^1.0.2"

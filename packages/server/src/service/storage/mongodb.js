@@ -114,10 +114,17 @@ module.exports = class extends Base {
     }));
   }
 
-  async count(where = {}) {
+  async count(where = {}, { group } = {}) {
     const instance = this.mongo(this.tableName);
     this.where(instance, where);
-    return instance.count();
+    if (group) {
+      instance.group(group);
+    }
+    const data = await instance.count({ raw: group });
+    if (!Array.isArray(data)) {
+      return data;
+    }
+    return data.map(({ _id, total: count }) => ({ ..._id, count }));
   }
 
   async add(data) {

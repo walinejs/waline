@@ -50,10 +50,16 @@ module.exports = class extends Base {
     return data.map(({ id, ...cmt }) => ({ ...cmt, objectId: id }));
   }
 
-  async count(where = {}) {
+  async count(where = {}, { group } = {}) {
     const instance = this.model(this.tableName);
     instance.where(this.parseWhere(where));
-    return instance.count();
+    if (!group) {
+      return instance.count();
+    }
+
+    instance.field([...group, 'COUNT(*) as count']);
+    instance.group(group);
+    return instance.select();
   }
 
   async add(data) {

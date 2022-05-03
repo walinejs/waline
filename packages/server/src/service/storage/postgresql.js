@@ -26,7 +26,13 @@ module.exports = class extends MySQL {
   async count(...args) {
     let result = await super.count(...args);
     try {
-      result = parseInt(result);
+      if (Array.isArray(result)) {
+        result.forEach((r) => {
+          r.count = parseInt(r.count);
+        });
+      } else {
+        result = parseInt(result);
+      }
     } catch (e) {
       console.log(e);
     }

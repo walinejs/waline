@@ -31,4 +31,10 @@ export default generateLocale([
   'Words',
   'Please input comments between $0 and $1 words!\n Current word number: $2',
   'Anonymous',
+  'Dwarves',
+  'Hobbits',
+  'Ents',
+  'Wizards',
+  'Elves',
+  'Maiar',
 ]);

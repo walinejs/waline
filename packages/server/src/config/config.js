@@ -37,6 +37,8 @@ const {
   TG_TEMPLATE,
   WX_TEMPLATE,
   DISCORD_TEMPLATE,
+
+  LEVELS,
 } = process.env;
 
 let storage = 'leancloud';
@@ -104,6 +106,9 @@ module.exports = {
   disallowIPList: [],
   secureDomains: SECURE_DOMAINS ? SECURE_DOMAINS.split(/\s*,\s*/) : undefined,
   disableUserAgent: DISABLE_USERAGENT && !isFalse(DISABLE_USERAGENT),
+  levels: isFalse(LEVELS)
+    ? false
+    : LEVELS.split(/\s*,\s*/).map((v) => Number(v)),
   avatarProxy,
   oauthUrl,
   markdown,

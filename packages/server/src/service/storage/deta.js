@@ -184,16 +184,47 @@ module.exports = class extends Base {
     return data;
   }
 
-  async count(where = {}) {
-    const conditions = this.where(where);
-    if (think.isArray(conditions)) {
-      return Promise.all(
-        conditions.map((condition) => this.count(condition))
-      ).then((counts) => counts.reduce((a, b) => a + b, 0));
+  async count(where = {}, { group } = {}) {
+    if (!group) {
+      const conditions = this.where(where);
+      if (think.isArray(conditions)) {
+        return Promise.all(
+          conditions.map((condition) => this.count(condition))
+        ).then((counts) => counts.reduce((a, b) => a + b, 0));
+      }
+
+      const { count } = await this.instance.fetch(conditions);
+      return count;
     }
 
-    const { count } = await this.instance.fetch(conditions);
-    return count;
+    const counts = [];
+    for (let i = 0; i < group.length; i++) {
+      const groupName = group[i];
+      if (!where._complex || !Array.isArray(where._complex[groupName])) {
+        continue;
+      }
+
+      const groupFlatValue = {};
+      group.slice(0, i).forEach((group) => {
+        groupFlatValue[group] = null;
+      });
+
+      for (let j = 0; j < where._complex[groupName][1].length; j++) {
+        const groupWhere = {
+          ...where,
+          ...groupFlatValue,
+          _complex: undefined,
+          [groupName]: where._complex[groupName][1][j],
+        };
+        const num = await this.count(groupWhere);
+        counts.push({
+          ...groupFlatValue,
+          [groupName]: where._complex[groupName][1][j],
+          count: num,
+        });
+      }
+    }
+    return counts;
   }
 
   async add(data) {

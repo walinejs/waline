@@ -23,6 +23,11 @@
           v-text="locale.admin"
         />
         <span v-if="comment.sticky" class="wl-badge" v-text="locale.sticky" />
+        <span
+          v-if="comment.level >= 0"
+          class="wl-badge"
+          v-text="locale[`level${comment.level}`] || `Level ${comment.level}`"
+        />
 
         <span class="wl-time" v-text="time" />
 

@@ -305,6 +305,50 @@ module.exports = class extends BaseRest {
           );
         }
 
+        if (think.isArray(this.config('levels'))) {
+          const countWhere = {
+            status: ['NOT IN', ['waiting', 'spam']],
+            _complex: {},
+          };
+          if (user_ids.length) {
+            countWhere._complex.user_id = ['IN', user_ids];
+          }
+          const mails = Array.from(
+            new Set(comments.map(({ mail }) => mail).filter((v) => v))
+          );
+          if (mails.length) {
+            countWhere._complex.mail = ['IN', mails];
+          }
+          if (!think.isEmpty(countWhere._complex)) {
+            countWhere._complex._logic = 'or';
+          } else {
+            delete countWhere._complex;
+          }
+          const counts = await this.modelInstance.count(countWhere, {
+            group: ['user_id', 'mail'],
+          });
+          comments.forEach((cmt) => {
+            const countItem = (counts || []).find(({ mail, user_id }) => {
+              if (user_id) {
+                return user_id === cmt.user_id;
+              }
+              return mail === cmt.mail;
+            });
+
+            let level = 0;
+            if (countItem) {
+              const _level = think.findLastIndex(
+                this.config('levels'),
+                (l) => l <= countItem.count
+              );
+              if (_level !== -1) {
+                level = _level;
+              }
+            }
+            cmt.level = level;
+          });
+        }
+
         return this.json({
           page,
           totalPages: Math.ceil(rootCount / pageSize),
