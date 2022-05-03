@@ -24,6 +24,15 @@ export interface WalineRecentCommentsOptions {
    * Element to be mounted
    */
   el?: string | HTMLElement;
+
+  /**
+   * 错误提示消息所使用的语言
+   *
+   * Language of error message
+   *
+   * @default 'zh-CN'
+   */
+  lang?: string;
 }
 
 export interface WalineRecentCommentsResult {
@@ -46,6 +55,7 @@ export const RecentComments = ({
   el,
   serverURL,
   count,
+  lang = 'zh-CN',
 }: WalineRecentCommentsOptions): Promise<WalineRecentCommentsResult> => {
   const userInfo = useUserInfo();
   const root = getRoot(el);
@@ -54,6 +64,7 @@ export const RecentComments = ({
   return fetchRecentComment({
     serverURL,
     count,
+    lang,
     signal: controller.signal,
     token: userInfo.value?.token,
   }).then((comments) => {

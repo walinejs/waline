@@ -27,12 +27,22 @@ export interface WalineCommentCountOptions {
    * @default window.location.pathname
    */
   path?: string;
+
+  /**
+   * 错误提示消息所使用的语言
+   *
+   * Language of error message
+   *
+   * @default 'zh-CN'
+   */
+  lang?: string;
 }
 
 export const commentCount = ({
   serverURL,
   path = window.location.pathname,
   selector = '.waline-comment-count',
+  lang = 'zh-CN',
 }: // eslint-disable-next-line @typescript-eslint/no-explicit-any
 WalineCommentCountOptions): WalineAbort => {
   const controller = new AbortController();
@@ -48,6 +58,7 @@ WalineCommentCountOptions): WalineAbort => {
       paths: Array.from(elements).map((element) =>
         decodePath(element.dataset.path || element.getAttribute('id') || path)
       ),
+      lang,
       signal: controller.signal,
       token: userInfo.value?.token,
     })
