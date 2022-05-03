@@ -29,6 +29,11 @@
       "require": "./dist/shim.js",
       "default": "./dist/shim.js"
     },
+    "./dist/component": {
+      "import": "./dist/component.esm.js",
+      "require": "./dist/component.js",
+      "default": "./dist/component.esm.js"
+    },
     "./dist/pageview": {
       "import": "./dist/pageview.esm.js",
       "require": "./dist/pageview.cjs.js",
