@@ -87,7 +87,7 @@
     "jest": "^27.5.1",
     "lerna": "^4.0.0",
     "lint-staged": "^12.3.8",
-    "marked": "^4.0.14",
+    "marked": "^4.0.15",
     "npm-check-updates": "^12.5.9",
     "postcss-loader": "^6.2.1",
     "prettier": "^2.6.2",
