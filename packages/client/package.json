@@ -64,7 +64,7 @@
     "@vueuse/core": "^8.3.1",
     "autosize": "^5.0.1",
     "hanabi": "^0.4.0",
-    "marked": "^4.0.14",
+    "marked": "^4.0.15",
     "vue": "^3.2.33"
   },
   "devDependencies": {
