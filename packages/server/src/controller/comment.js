@@ -307,9 +307,7 @@ module.exports = class extends BaseRest {
 
         const countWhere = {
           status: ['NOT IN', ['waiting', 'spam']],
-          _complex: {
-            _logic: 'or',
-          },
+          _complex: {},
         };
         if (user_ids.length) {
           countWhere._complex.user_id = ['IN', user_ids];
@@ -319,6 +317,11 @@ module.exports = class extends BaseRest {
         );
         if (mails.length) {
           countWhere._complex.mail = ['IN', mails];
+        }
+        if (!think.isEmpty(countWhere._complex)) {
+          countWhere._complex._logic = 'or';
+        } else {
+          delete countWhere._complex;
         }
         const counts = await this.modelInstance.count(countWhere, {
           group: ['user_id', 'mail'],
