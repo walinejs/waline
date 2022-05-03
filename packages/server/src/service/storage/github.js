@@ -296,13 +296,13 @@ module.exports = class extends Base {
 
     const counts = {};
     for (let i = 0; i < data.length; i++) {
-      const key = group.map(field => data[field]).join();
+      const key = group.map((field) => data[field]).join();
       if (!counts[key]) {
         counts[key] = { count: 0 };
-        group.forEach(field => {
+        group.forEach((field) => {
           counts[key][field] = data[field];
         });
-      };
+      }
       counts[key].count += 1;
     }
     return Object.keys(counts);

@@ -36,6 +36,7 @@ Vercel 需要在 <kbd>Settings</kbd> - <kbd>Environment Variables</kbd> 中进�
 | `GRAVATAR_STR`          |      | Gravatar 头像的地址，默认为 https://seccdn.libravatar.org/avatar/{{mail\|md5}}，基于 nunjucks 语法 |
 | `OAUTH_URL`             |      | OAuth 第三方登录服务地址，默认为 https://user.75.team，也可以使用 auth 自建                        |
 | `WEBHOOK`               |      | 评论成功后会向 WEBHOOK 配置的地址发送一条 POST 请求                                                |
+| `LEVELS`                |      | 根据评论数为每个用户提供等级标签                                                                   |
 
 ### Markdown
 
@@ -68,6 +69,36 @@ Vercel 需要在 <kbd>Settings</kbd> - <kbd>Environment Variables</kbd> 中进�
 :::tip
 可以在[这里](https://github.com/nodemailer/nodemailer/blob/master/lib/well-known/services.json)查看支持的服务商。`SMTP_SERVICE` 和 (`SMTP_HOST`、`SMTP_PORT`) 任选其一即可，如果没有在列表中知道对应的 `SMTP_SERVICE` 的话则需要配 `SMTP_HOST` 和 `SMTP_PORT`。
 :::
+
+### 等级标签
+
+根据设置的等级条件以及用户的评论数，会为评论者增加等级标签。该功能默认关闭，可以通过配置环境变量 `LEVELS` 开启该功能。配置的形式为一串给定的数的逗号拼接，例如 `0,10,20,50,100,200` 表示的就是：
+
+| 等级 | 条件               | 默认等级标签 |
+| ---- | ------------------ | ------------ |
+| 0    | 0 <= count < 10    | 潜水         |
+| 1    | 10 <= count < 20   | 冒泡         |
+| 2    | 20 <= count < 50   | 吐槽         |
+| 3    | 50 <= count < 100  | 活跃         |
+| 4    | 100 <= count < 200 | 话痨         |
+| 5    | 200 <= count       | 传说         |
+
+除了可以自定义等级判断规则之外，我们还可以自定义等级标签。在客户端中按照如下配置文案：
+
+```js
+new Waline({
+  locale: {
+    level0: '炼体',
+    level1: '炼气',
+    level2: '筑基',
+    level3: '金丹',
+    level4: '元婴',
+    level5: '化神',
+  },
+});
+```
+
+默认只提供了 6 级文案，但并不表示只能有 6 个级别。具体的等级上限是根据你设置的等级判断规则来的。增加新的等级建议自己配置上等级对应的文案，没有提供文案的话默认展示的就是 `Level 10` 这样的默认文案。
 
 ### 数据库
 
