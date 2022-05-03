@@ -41,6 +41,15 @@ export interface WalinePageviewCountOptions {
    * @default true
    */
   update?: boolean;
+
+  /**
+   * 错误提示消息所使用的语言
+   *
+   * Language of error message
+   *
+   * @default 'zh-CN'
+   */
+  lang?: string;
 }
 
 const renderVisitorCount = (
@@ -57,6 +66,7 @@ export const pageviewCount = ({
   path = window.location.pathname,
   selector = '.waline-pageview-count',
   update = true,
+  lang = 'zh-CN',
 }: WalinePageviewCountOptions): WalineAbort => {
   const controller = new AbortController();
 
@@ -75,6 +85,7 @@ export const pageviewCount = ({
     fetchPageviews({
       serverURL,
       paths: elements.map((element) => getQuery(element) || path),
+      lang,
       signal: controller.signal,
     })
       .then((counts) => renderVisitorCount(counts, elements))
@@ -85,7 +96,7 @@ export const pageviewCount = ({
     const normalElements = elements.filter((element) => !filter(element));
     const elementsNeedstoBeFetched = elements.filter(filter);
 
-    void updatePageviews({ serverURL, path }).then((count) =>
+    void updatePageviews({ serverURL, path, lang }).then((count) =>
       renderVisitorCount(
         new Array<number>(normalElements.length).fill(count),
         normalElements

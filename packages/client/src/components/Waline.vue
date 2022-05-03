@@ -233,6 +233,7 @@ export default defineComponent({
 
       fetchCommentList({
         serverURL,
+        lang: config.value.lang,
         path,
         pageSize,
         page: pageNumber,

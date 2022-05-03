@@ -18,6 +18,7 @@ const errorCheck = <T = unknown>(data: T | FetchErrorData, name = ''): T => {
 
 export interface FetchCountOptions {
   serverURL: string;
+  lang: string;
   paths: string[];
   signal: AbortSignal;
   token?: string;
@@ -25,6 +26,7 @@ export interface FetchCountOptions {
 
 export const fetchCommentCount = ({
   serverURL,
+  lang,
   paths,
   signal,
   token,
@@ -36,7 +38,7 @@ export const fetchCommentCount = ({
     fetch(
       `${serverURL}/comment?type=count&url=${encodeURIComponent(
         paths.join(',')
-      )}`,
+      )}&lang=${lang}`,
       { signal, headers }
     )
       .then((resp) => resp.json() as Promise<number | number[]>)
@@ -47,6 +49,7 @@ export const fetchCommentCount = ({
 };
 export interface FetchRecentOptions {
   serverURL: string;
+  lang: string;
   count: number;
   signal: AbortSignal;
   token?: string;
@@ -54,6 +57,7 @@ export interface FetchRecentOptions {
 
 export const fetchRecentComment = ({
   serverURL,
+  lang,
   count,
   signal,
   token,
@@ -61,7 +65,7 @@ export const fetchRecentComment = ({
   const headers: Record<string, string> = {};
   if (token) headers.Authorization = `Bearer ${token}`;
 
-  return fetch(`${serverURL}/comment?type=recent&count=${count}`, {
+  return fetch(`${serverURL}/comment?type=recent&count=${count}&lang=${lang}`, {
     signal,
     headers,
   })
@@ -76,6 +80,7 @@ export interface FetchListOptions {
   pageSize: number;
   signal: AbortSignal;
   token?: string;
+  lang: string;
 }
 
 export interface FetchListResult {
@@ -86,6 +91,7 @@ export interface FetchListResult {
 
 export const fetchCommentList = ({
   serverURL,
+  lang,
   path,
   page,
   pageSize,
@@ -98,7 +104,7 @@ export const fetchCommentList = ({
   return fetch(
     `${serverURL}/comment?path=${encodeURIComponent(
       path
-    )}&pageSize=${pageSize}&page=${page}`,
+    )}&pageSize=${pageSize}&page=${page}&lang=${lang}`,
     { signal, headers }
   )
     .then((resp) => resp.json() as Promise<FetchListResult>)
@@ -139,18 +145,23 @@ export const postComment = ({
 
 export interface FetchPageviewsOptions {
   serverURL: string;
+  lang: string;
   paths: string[];
   signal: AbortSignal;
 }
 
 export const fetchPageviews = ({
   serverURL,
+  lang,
   paths,
   signal,
 }: FetchPageviewsOptions): Promise<number[]> =>
-  fetch(`${serverURL}/article?path=${encodeURIComponent(paths.join(','))}`, {
-    signal,
-  })
+  fetch(
+    `${serverURL}/article?path=${encodeURIComponent(
+      paths.join(',')
+    )}&lang=${lang}`,
+    { signal }
+  )
     .then((resp) => resp.json() as Promise<number[] | number>)
     .then((data) => errorCheck(data, 'visit count'))
     // TODO: Improve this API
@@ -158,14 +169,16 @@ export const fetchPageviews = ({
 
 export interface UpdatePageviewsOptions {
   serverURL: string;
+  lang: string;
   path: string;
 }
 
 export const updatePageviews = ({
   serverURL,
+  lang,
   path,
 }: UpdatePageviewsOptions): Promise<number> =>
-  fetch(`${serverURL}/article`, {
+  fetch(`${serverURL}/article?lang=${lang}`, {
     method: 'POST',
     headers: {
       // eslint-disable-next-line @typescript-eslint/naming-convention
