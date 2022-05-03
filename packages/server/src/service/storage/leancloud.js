@@ -128,12 +128,47 @@ module.exports = class extends Base {
 
   async count(where = {}, options = {}) {
     const instance = this.where(this.tableName, where);
-    return instance.count(options).catch((e) => {
-      if (e.code === 101) {
-        return 0;
+    if (!options.group) {
+      return instance.count(options).catch((e) => {
+        if (e.code === 101) {
+          return 0;
+        }
+        throw e;
+      });
+    }
+
+    // todo: query optimize
+    const counts = [];
+    for (let i = 0; i < options.group.length; i++) {
+      const groupName = options.group[i];
+      if (!where._complex || !Array.isArray(where._complex[groupName])) {
+        continue;
       }
-      throw e;
-    });
+
+      const groupFlatValue = {};
+      options.group.slice(0, i).forEach((group) => {
+        groupFlatValue[group] = null;
+      });
+
+      for (let j = 0; j < where._complex[groupName][1].length; j++) {
+        const groupWhere = {
+          ...where,
+          ...groupFlatValue,
+          _complex: undefined,
+          [groupName]: where._complex[groupName][1][j],
+        };
+        const num = await this.count(groupWhere, {
+          ...options,
+          group: undefined,
+        });
+        counts.push({
+          ...groupFlatValue,
+          [groupName]: where._complex[groupName][1][j],
+          count: num,
+        });
+      }
+    }
+    return counts;
   }
 
   async add(
