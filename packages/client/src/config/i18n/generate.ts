@@ -31,6 +31,12 @@ const localeKeys = [
   'word',
   'wordHint',
   'anonymous',
+  'level0',
+  'level1',
+  'level2',
+  'level3',
+  'level4',
+  'level5',
 ];
 
 export const generateLocale = (locale: string[]): WalineLocale =>
