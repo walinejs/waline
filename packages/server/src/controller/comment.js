@@ -264,6 +264,13 @@ module.exports = class extends BaseRest {
             ...comments.filter(({ rid, sticky }) => !rid && sticky),
             ...comments.filter(({ rid, sticky }) => !rid && !sticky),
           ].slice(pageOffset, pageOffset + pageSize);
+          const rootIds = {};
+          rootComments.forEach(({ objectId }) => {
+            rootIds[objectId] = true;
+          });
+          comments = comments.filter(
+            (cmt) => rootIds[cmt.objectId] || rootIds[cmt.rid]
+          );
         } else {
           rootComments = await this.modelInstance.select(
             { ...where, rid: undefined },

@@ -139,6 +139,7 @@ module.exports = class extends Base {
 
     // todo: query optimize
     const counts = [];
+    const countsPromise = [];
     for (let i = 0; i < options.group.length; i++) {
       const groupName = options.group[i];
       if (!where._complex || !Array.isArray(where._complex[groupName])) {
@@ -157,17 +158,21 @@ module.exports = class extends Base {
           _complex: undefined,
           [groupName]: where._complex[groupName][1][j],
         };
-        const num = await this.count(groupWhere, {
+        const countPromise = this.count(groupWhere, {
           ...options,
           group: undefined,
+        }).then((num) => {
+          counts.push({
+            ...groupFlatValue,
+            [groupName]: where._complex[groupName][1][j],
+            count: num,
+          });
         });
-        counts.push({
-          ...groupFlatValue,
-          [groupName]: where._complex[groupName][1][j],
-          count: num,
-        });
+        countsPromise.push(countPromise);
       }
     }
+
+    await Promise.all(countsPromise);
     return counts;
   }
 
