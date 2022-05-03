@@ -24,9 +24,23 @@
       "require": "./dist/shim.js",
       "default": "./dist/shim.js"
     },
-    "./dist": "./dist/shim.js",
+    "./dist": {
+      "import": "./dist/shim.esm.js",
+      "require": "./dist/shim.js",
+      "default": "./dist/shim.js"
+    },
+    "./dist/pageview": {
+      "import": "./dist/pageview.esm.js",
+      "require": "./dist/pageview.cjs.js",
+      "default": "./dist/pageview.js"
+    },
+    "./dist/waline": {
+      "import": "./dist/waline.esm.js",
+      "require": "./dist/waline.cjs.js",
+      "default": "./dist/waline.js"
+    },
     "./dist/waline.css": "./dist/waline.css",
-    "./dist/*": "./dist/*.js",
+    "./dist/*": "./dist/*",
     "./src/*": "./src/*",
     "./package.json": "./package.json"
   },
