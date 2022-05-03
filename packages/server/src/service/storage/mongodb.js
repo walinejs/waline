@@ -122,7 +122,7 @@ module.exports = class extends Base {
     }
     const data = await instance.count({ raw: group });
     if (!Array.isArray(data)) {
-      return data; 
+      return data;
     }
     return data.map(({ _id, total: count }) => ({ ..._id, count }));
   }
