@@ -18,4 +18,32 @@ module.exports = {
 
     return -1;
   },
+  promiseAllQueue(promises, taskNum) {
+    return new Promise((resolve, reject) => {
+      const ret = [];
+      let index = 0;
+      let count = 0;
+
+      function runTask() {
+        const idx = index;
+        index += 1;
+        if (index > promises.length) {
+          return Promise.resolve();
+        }
+
+        return promises[idx].then((data) => {
+          ret[idx] = data;
+          count += 1;
+          if (count === promises.length) {
+            resolve(ret);
+          }
+          return runTask();
+        }, reject);
+      }
+
+      for (let i = 0; i < taskNum; i++) {
+        runTask();
+      }
+    });
+  },
 };

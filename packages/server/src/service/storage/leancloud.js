@@ -172,7 +172,7 @@ module.exports = class extends Base {
       }
     }
 
-    await Promise.all(countsPromise);
+    await think.promiseAllQueue(countsPromise, 3);
     return counts;
   }
 
