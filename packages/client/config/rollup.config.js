@@ -160,6 +160,11 @@ export default [
     output: [
       {
         file: './dist/component.js',
+        format: 'cjs',
+        sourcemap: true,
+      },
+      {
+        file: './dist/component.esm.js',
         format: 'esm',
         sourcemap: true,
       },

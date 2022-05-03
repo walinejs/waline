@@ -1,6 +1,6 @@
 {
   "name": "@waline/client",
-  "version": "2.1.0",
+  "version": "2.1.2",
   "description": "client for waline comment system",
   "keywords": [
     "valine",
@@ -28,6 +28,11 @@
       "import": "./dist/shim.esm.js",
       "require": "./dist/shim.js",
       "default": "./dist/shim.js"
+    },
+    "./dist/component": {
+      "import": "./dist/component.esm.js",
+      "require": "./dist/component.js",
+      "default": "./dist/component.esm.js"
     },
     "./dist/pageview": {
       "import": "./dist/pageview.esm.js",

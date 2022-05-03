@@ -85,12 +85,12 @@
   .wl-badge {
     display: inline-block;
 
-    margin-right: 0.5em;
+    margin-right: 1em;
     padding: 0 0.3em;
-    border-radius: 3px;
+    border: 1px solid var(--waline-badge-color);
+    border-radius: 4px;
 
-    background: var(--waline-badge-color);
-    color: var(--waline-white);
+    color: var(--waline-badge-color);
 
     font-size: var(--waline-badge-font-size);
   }
