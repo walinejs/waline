@@ -305,6 +305,34 @@ module.exports = class extends BaseRest {
           );
         }
 
+        const countWhere = {
+          status: ['NOT IN', ['waiting', 'spam']],
+          _complex: {
+            _logic: 'or',
+          },
+        };
+        if (user_ids.length) {
+          countWhere._complex.user_id = ['IN', user_ids];
+        }
+        const mails = Array.from(
+          new Set(comments.map(({ mail }) => mail).filter((v) => v))
+        );
+        if (mails.length) {
+          countWhere._complex.mail = ['IN', mails];
+        }
+        const counts = await this.modelInstance.count(countWhere, {
+          group: ['user_id', 'mail'],
+        });
+        comments.forEach((cmt) => {
+          const countItem = (counts || []).find(({ mail, user_id }) => {
+            if (user_id) {
+              return user_id === cmt.user_id;
+            }
+            return mail === cmt.mail;
+          });
+          cmt.count = countItem ? countItem.count : 0;
+        });
+
         return this.json({
           page,
           totalPages: Math.ceil(rootCount / pageSize),
