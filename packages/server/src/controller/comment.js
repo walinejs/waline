@@ -335,11 +335,17 @@ module.exports = class extends BaseRest {
               return mail === cmt.mail;
             });
 
-            cmt.level = countItem
-              ? this.config('levels').findLast(
-                  (level) => level <= countItem.count
-                )
-              : 0;
+            let level = 0;
+            if (countItem) {
+              const _level = think.findLastIndex(
+                this.config('levels'),
+                (l) => l <= countItem.count
+              );
+              if (_level !== -1) {
+                level = _level;
+              }
+            }
+            cmt.level = level;
           });
         }
 
