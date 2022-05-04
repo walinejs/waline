@@ -123,5 +123,10 @@
     "docs": {
       "@waline/client": "file:./packages/client"
     }
+  },
+  "pnpm": {
+    "overrides": {
+      "@waline/client": "file:./packages/client"
+    }
   }
 }
