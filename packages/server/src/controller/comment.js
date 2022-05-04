@@ -41,9 +41,11 @@ async function formatCmt(
     delete comment.mail;
   } else {
     comment.orig = comment.comment;
+    comment.ip = ip;
   }
 
-  if (!think.config('disableRegion')) {
+  // administrator can always show region
+  if (isAdmin || !think.config('disableRegion')) {
     comment.addr = await think.ip2region(ip, { depth: isAdmin ? 3 : 1 });
   }
   comment.comment = markdownParser(comment.comment);
