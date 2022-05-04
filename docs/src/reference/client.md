@@ -45,7 +45,7 @@ interface WalineInstance {
    *
    * @description 只要不设置`path` 选项，更新时它就会被重置为 `windows.location.pathname`
    */
-  update: (newOptions: Partial<Omit<WalineInitOptions, 'el'>>) => void;
+  update: (newOptions?: Partial<Omit<WalineInitOptions, 'el'>>) => void;
 
   /**
    * 取消挂载并摧毁 Waline 实例
