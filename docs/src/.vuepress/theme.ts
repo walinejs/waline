@@ -46,7 +46,24 @@ export default hopeTheme({
       walineLocales: {
         '/': {
           admin: '可爱的管理员',
+          //@ts-ignore
+          level0: '锻体',
+          level1: '炼气',
+          level2: '筑基',
+          level3: '金丹',
+          level4: '元婴',
+          level5: '化神',
         },
+        '/en': {
+          admin: 'GM',
+          //@ts-ignore
+          level0: 'Dwarves',
+          level1: 'Hobbits',
+          level2: 'Ents',
+          level3: 'Wizards',
+          level4: 'Elves',
+          level5: 'Maiar',
+        }
       },
     },
 
