@@ -16,7 +16,7 @@
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "clean": "lerna run clean --stream",
     "client:analyze": "npm run analyze --dir=@waline/client",
-    "client:build": "pnpm --dir=packages/client run rollup && pnpm --dir=packages/clien run stylet",
+    "client:build": "pnpm --dir=packages/client run rollup && pnpm --dir=packages/client run stylet",
     "client:dev": "pnpm --dir=packages/client run dev",
     "docs:build": "pnpm --dir=docs run build && npm run apidoc",
     "docs:dev": "pnpm --dir=docs run dev",
