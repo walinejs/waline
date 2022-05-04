@@ -18,7 +18,7 @@ module.exports = class extends BaseRest {
     const users = await this.modelInstance.select(
       {},
       {
-        desc: 'insertedAt',
+        desc: 'createdAt',
         limit: pageSize,
         offset: Math.max((page - 1) * pageSize, 0),
       }
