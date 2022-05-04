@@ -141,13 +141,7 @@ Waline 的服务端地址。
 - 详情:
 
   ```ts
-  type WalineHighlighter =
-    | ((code: string, lang: string) => string)
-    | ((
-        code: string,
-        lang: string,
-        callback?: (error: unknown | undefined, code?: string) => void
-      ) => void);
+  type WalineHighlighter = (code: string, lang: string) => string;
   ```
 
 **代码高亮**，默认使用 `hanabi`。函数传入代码块的原始字符和代码块的语言。你应该触发回调函数或者直接返回一个字符串。
