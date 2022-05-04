@@ -7,8 +7,8 @@
     "dev": "vuepress-vite dev src"
   },
   "devDependencies": {
-    "@vuepress/plugin-docsearch": "2.0.0-beta.38",
-    "vuepress": "2.0.0-beta.39",
-    "vuepress-theme-hope": "2.0.0-beta.47"
+    "@vuepress/plugin-docsearch": "2.0.0-beta.43",
+    "vuepress": "2.0.0-beta.43",
+    "vuepress-theme-hope": "2.0.0-beta.49"
   }
 }

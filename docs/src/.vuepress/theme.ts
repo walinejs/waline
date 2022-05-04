@@ -1,9 +1,9 @@
-import { defineThemeConfig } from 'vuepress-theme-hope';
+import { hopeTheme } from 'vuepress-theme-hope';
 
 import { enNavbarConfig, zhNavbarConfig } from './navbar';
 import { enSidebarConfig, zhSidebarConfig } from './sidebar';
 
-export default defineThemeConfig({
+export default hopeTheme({
   hostname: 'https://waline.js.org',
 
   iconPrefix: 'iconfont icon-',
@@ -26,6 +26,7 @@ export default defineThemeConfig({
       footer: 'GPL-2.0 协议 | Copyright © 2020-present lizheming',
       displayFooter: true,
     },
+
     '/en/': {
       navbar: enNavbarConfig,
       sidebar: enSidebarConfig,
@@ -41,24 +42,10 @@ export default defineThemeConfig({
     comment: {
       type: 'waline',
       serverURL: 'https://waline.vercel.app',
-      pageviews: true,
+      pageview: true,
       walineLocales: {
         '/': {
           admin: '可爱的管理员',
-        },
-      },
-    },
-
-    docsearch: {
-      appId: 'W34KABV4KM',
-      apiKey: 'd189586c601d439f9247bdaf95b3555f',
-      indexName: 'waline',
-      locales: {
-        '/': {
-          placeholder: '搜索文档',
-        },
-        '/en/': {
-          placeholder: 'Search',
         },
       },
     },

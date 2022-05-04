@@ -1,28 +1,6 @@
-import { defineNavbarConfig } from 'vuepress-theme-hope';
+import { navbar } from 'vuepress-theme-hope';
 
-export const enNavbarConfig = defineNavbarConfig([
-  '/en/guide/get-started',
-  {
-    text: 'Learn More',
-    icon: 'advanced',
-    prefix: '/en/advanced/',
-    children: ['intro', 'why', 'ecosystem', 'faq'],
-  },
-  {
-    text: 'Migration',
-    icon: 'migration',
-    prefix: '/en/migration/',
-    children: ['client', 'valine', 'tool'],
-  },
-  {
-    text: 'Reference',
-    icon: 'reference',
-    prefix: '/en/reference/',
-    children: ['component', 'client', 'server', 'api', 'contribution'],
-  },
-]);
-
-export const zhNavbarConfig = defineNavbarConfig([
+export const zhNavbarConfig = navbar([
   '/guide/get-started',
   {
     text: '了解更多',
@@ -40,6 +18,28 @@ export const zhNavbarConfig = defineNavbarConfig([
     text: '参考',
     icon: 'reference',
     prefix: '/reference/',
+    children: ['component', 'client', 'server', 'api', 'contribution'],
+  },
+]);
+
+export const enNavbarConfig = navbar([
+  '/en/guide/get-started',
+  {
+    text: 'Learn More',
+    icon: 'advanced',
+    prefix: '/en/advanced/',
+    children: ['intro', 'why', 'ecosystem', 'faq'],
+  },
+  {
+    text: 'Migration',
+    icon: 'migration',
+    prefix: '/en/migration/',
+    children: ['client', 'valine', 'tool'],
+  },
+  {
+    text: 'Reference',
+    icon: 'reference',
+    prefix: '/en/reference/',
     children: ['component', 'client', 'server', 'api', 'contribution'],
   },
 ]);

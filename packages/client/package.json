@@ -80,7 +80,7 @@
     ]
   },
   "dependencies": {
-    "@vueuse/core": "^8.3.1",
+    "@vueuse/core": "^8.4.0",
     "autosize": "^5.0.1",
     "hanabi": "^0.4.0",
     "marked": "^4.0.15",
@@ -90,7 +90,7 @@
     "@types/autosize": "^4.0.1",
     "@types/marked": "^4.0.3",
     "@vitejs/plugin-vue": "^2.3.1",
-    "vite": "^2.9.6"
+    "vite": "^2.9.7"
   },
   "engines": {
     "node": ">=12.20.0"
