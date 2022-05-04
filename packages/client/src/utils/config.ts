@@ -3,7 +3,7 @@ import {
   defaultUploadImage,
   defaultTexRenderer,
   getMeta,
-  locales,
+  defaultLocales,
 } from '../config';
 
 import { decodePath, isLinkHttp, removeEndingSplash } from './path';
@@ -66,7 +66,7 @@ export const getConfig = ({
   serverURL: getServerURL(serverURL),
   path: decodePath(path),
   locale: {
-    ...(locales[lang] || locales[defaultLang]),
+    ...(defaultLocales[lang] || defaultLocales[defaultLang]),
     ...(typeof locale === 'object' ? locale : {}),
   },
   wordLimit: getWordLimit(wordLimit),
