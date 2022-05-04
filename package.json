@@ -86,7 +86,7 @@
     "lerna": "^4.0.0",
     "lint-staged": "^12.4.1",
     "marked": "^4.0.15",
-    "npm-check-updates": "^12.5.11",
+    "pnpm": "^7.0.0",
     "postcss-loader": "^6.2.1",
     "prettier": "^2.6.2",
     "rollup": "^2.71.1",

@@ -54,9 +54,7 @@
     "react-dom": "^18.1.0",
     "react-i18next": "^11.16.7",
     "react-redux": "^8.0.1",
-    "react-router-dom": "^6.3.0"
-  },
-  "dependencies": {
+    "react-router-dom": "^6.3.0",
     "redux": "^4.2.0"
   }
 }
