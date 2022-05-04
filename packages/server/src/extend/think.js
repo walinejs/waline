@@ -1,4 +1,8 @@
+const ip2region = require('dy-node-ip2region');
+const helper = require('think-helper');
 const preventMessage = 'PREVENT_NEXT_PROCESS';
+
+const regionSearch = ip2region.create();
 
 module.exports = {
   prevent() {
@@ -46,4 +50,18 @@ module.exports = {
       }
     });
   },
+  async ip2region(ip, { depth = 1 }) {
+    if (!ip) return '';
+
+    try {
+      const search = helper.promisify(regionSearch.btreeSearch, regionSearch);
+      const { region } = await search(ip);
+      const [,, province, city, isp] = region.split('|');
+      const address = Array.from(new Set([province, city, isp]));
+      return address.slice(0, depth).join(' ');
+    } catch(e) {
+      console.log(e);
+      return '';
+    }
+  }
 };

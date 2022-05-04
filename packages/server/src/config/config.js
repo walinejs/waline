@@ -14,6 +14,7 @@ const {
   TCB_KEY,
   SECURE_DOMAINS,
   DISABLE_USERAGENT,
+  DISABLE_REGION,
   AVATAR_PROXY,
   GITHUB_TOKEN,
   DETA_PROJECT_KEY,
@@ -106,6 +107,7 @@ module.exports = {
   disallowIPList: [],
   secureDomains: SECURE_DOMAINS ? SECURE_DOMAINS.split(/\s*,\s*/) : undefined,
   disableUserAgent: DISABLE_USERAGENT && !isFalse(DISABLE_USERAGENT),
+  disableReigon: DISABLE_REGION && !isFalse(DISABLE_REGION),
   levels:
     !LEVELS || isFalse(LEVELS)
       ? false

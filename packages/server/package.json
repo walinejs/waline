@@ -20,6 +20,7 @@
     "akismet": "^2.0.7",
     "deta": "^1.1.0",
     "dompurify": "^2.3.6",
+    "dy-node-ip2region": "^1.0.1",
     "fast-csv": "^4.3.6",
     "jsdom": "^19.0.0",
     "jsonwebtoken": "^8.5.1",

@@ -5,7 +5,7 @@ const { getMarkdownParser } = require('../service/markdown');
 
 const markdownParser = getMarkdownParser();
 async function formatCmt(
-  { ua, user_id, ...comment },
+  { ua, user_id, ip, ...comment },
   users = [],
   { avatarProxy },
   loginUser
@@ -43,6 +43,9 @@ async function formatCmt(
     comment.orig = comment.comment;
   }
 
+  if (!think.config('disableRegion')) {
+    comment.addr = await think.ip2region(ip, { depth: isAdmin ? 3 : 1 });
+  }
   comment.comment = markdownParser(comment.comment);
   return comment;
 }
@@ -88,6 +91,7 @@ module.exports = class extends BaseRest {
             'pid',
             'rid',
             'ua',
+            'ip',
             'user_id',
             'sticky',
           ],
@@ -235,6 +239,7 @@ module.exports = class extends BaseRest {
             'pid',
             'rid',
             'ua',
+            'ip',
             'user_id',
             'sticky',
           ],
