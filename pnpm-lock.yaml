@@ -204,14 +204,12 @@ importers:
       '@vitejs/plugin-vue': ^2.3.1
       '@vueuse/core': ^8.4.0
       autosize: ^5.0.1
-      hanabi: ^0.4.0
       marked: ^4.0.15
       vite: ^2.9.7
       vue: ^3.2.33
     dependencies:
       '@vueuse/core': 8.4.1_vue@3.2.33
       autosize: 5.0.1
-      hanabi: 0.4.0
       marked: 4.0.15
       vue: 3.2.33
     devDependencies:
@@ -6025,6 +6023,7 @@ packages:
   /comment-regex/1.0.1:
     resolution: {integrity: sha512-IWlN//Yfby92tOIje7J18HkNmWRR7JESA/BK8W7wqY/akITpU5B0JQWnbTjCfdChSrDNb0DrdA9jfAxiiBXyiQ==}
     engines: {node: '>=0.10.0'}
+    dev: true
 
   /commitizen/4.2.4:
     resolution: {integrity: sha512-LlZChbDzg3Ir3O2S7jSo/cgWp5/QwylQVr59K4xayVq8S4/RdKzSyJkghAiZZHfhh5t4pxunUoyeg0ml1q/7aw==}
@@ -8936,6 +8935,7 @@ packages:
     resolution: {integrity: sha1-67slE1jBM32x6r2mhsQ/93fTDYI=}
     dependencies:
       comment-regex: 1.0.1
+    dev: true
 
   /handle-thing/2.0.1:
     resolution: {integrity: sha512-9Qn4yBxelxoh2Ow62nP+Ka/kMnOXRi8BXnRaUwezLNhqelnN49xKz4F/dPP8OYLxLxq6JDtZb2i9XznUQbNPTg==}

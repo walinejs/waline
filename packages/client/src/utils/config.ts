@@ -1,6 +1,7 @@
 import {
   defaultLang,
   defaultUploadImage,
+  defaultHighlighter,
   defaultTexRenderer,
   getMeta,
   defaultLocales,
@@ -14,7 +15,6 @@ import type {
   WalineLocale,
   WalineProps,
 } from '../typings';
-import hanabi from 'hanabi';
 
 export interface WalineEmojiConfig {
   tabs: Pick<WalineEmojiInfo, 'name' | 'icon' | 'items'>[];
@@ -73,7 +73,7 @@ export const getConfig = ({
   meta: getMeta(meta),
   requiredMeta: getMeta(requiredMeta),
   imageUploader: fallback(imageUploader, defaultUploadImage),
-  highlighter: fallback(highlighter, hanabi),
+  highlighter: fallback(highlighter, defaultHighlighter),
   texRenderer: fallback(texRenderer, defaultTexRenderer),
   lang,
   dark,

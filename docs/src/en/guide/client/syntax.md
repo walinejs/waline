@@ -205,7 +205,7 @@ This includes the following restrictions:
 
 ::: tip Principle
 
-1. Considering the size, the client uses `marked` for rendering and `hanabi` for highlighting, which will have the above limitations.
+1. Considering the size, the client uses `marked` for rendering and a < 1kb highlighter, which will have the above limitations.
 
 1. When a user submits a comment, the client embeds custom Emoji images, and the raw comment will be sent to the server.
 
