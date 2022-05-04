@@ -28,7 +28,7 @@ export interface WalineInstance {
    *
    * @description when not setting `path` option, it will be reset to `window.location.pathname`
    */
-  update: (newOptions: Partial<Omit<WalineInitOptions, 'el'>>) => void;
+  update: (newOptions?: Partial<Omit<WalineInitOptions, 'el'>>) => void;
 
   /**
    * 取消挂载并摧毁 Waline 实例
@@ -96,7 +96,7 @@ export const init = ({
       pageview,
       path = window.location.pathname,
       ...newProps
-    }: Partial<Omit<WalineInitOptions, 'el'>>): void => {
+    }: Partial<Omit<WalineInitOptions, 'el'>> = {}): void => {
       Object.entries(newProps).forEach(([key, value]) => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
