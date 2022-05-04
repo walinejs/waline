@@ -28,6 +28,7 @@ Vercel 需要在 <kbd>Settings</kbd> - <kbd>Environment Variables</kbd> 中进�
 | `IPQPS`                 |      | 基于 IP 的评论发布频率限制，单位为秒。默认为 60 秒，设置为 0 不限制                                |
 | `SECURE_DOMAINS`        |      | 安全域名配置，支持逗号分隔配置多个域名                                                             |
 | `DISABLE_USERAGENT`     |      | 是否隐藏评论者的 UA，默认为否                                                                      |
+| `DISABLE_REGION`        |      | 是否隐藏评论者的归属地 |
 | `DISABLE_AUTHOR_NOTIFY` |      | 是否禁止新评论通知                                                                                 |
 | `AKISMET_KEY`           |      | Akismet 反垃圾评论服务 Key (默认开启，不用请设置为 false)                                          |
 | `COMMENT_AUDIT`         |      | 评论发布审核开关，配置后建议在 Placehoder 上提供文案提示                                           |
