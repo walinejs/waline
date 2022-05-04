@@ -57,11 +57,11 @@
     "src"
   ],
   "scripts": {
-    "build": "npm run rollup && npm run style",
+    "build": "pnpm rollup && pnpm style",
     "clean": "rimraf ./dist",
     "dev": "vite -c config/vite.config.js",
     "lint": "eslint --ext .ts,.vue .",
-    "prepublish": "npm run clean && npm run build",
+    "prepublish": "pnpm clean && pnpm build",
     "rollup": "rollup -c ./config/rollup.config.js",
     "style": "sass ./src/styles/index.scss ./dist/waline.css --style=compressed"
   },

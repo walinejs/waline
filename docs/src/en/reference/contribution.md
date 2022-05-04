@@ -19,23 +19,22 @@ If you want to contribute to waline, here is a guide.
 
    ::: warning
 
-   Node 14 and below use npm@v6 by default, you need to make sure you use the npm@v8 version:
+   Install and use pnpm to install dependencies.
 
    ```bash
-   # Ensure that your npm version is 8
-   npm i -g npm@latest
+   npm i -g pnpm@latest
    ```
 
    :::
 
    ```bash
    cd waline
-   npm i
+   pnpm i
    ```
 
 ## Development
 
-- Run `npm run client:dev` to start `@waline/client` devServer
+- Run `pnpm client:dev` to start `@waline/client` devServer
 
   ::: tip
 
@@ -43,7 +42,7 @@ If you want to contribute to waline, here is a guide.
 
   :::
 
-- Run `npm run server:dev` to start `@waline/server` devServer
+- Run `pnpm server:dev` to start `@waline/server` devServer
 
   ::: tip
 

@@ -26,7 +26,7 @@
     "build": "webpack --mode=production",
     "clean": "rimraf ./dist",
     "dev": "webpack serve --mode=development",
-    "prepublish": "npm run build"
+    "prepublish": "pnpm build"
   },
   "browserslist": {
     "production": [
