@@ -23,7 +23,7 @@ export default async function request(url, opts = {}) {
     opts.headers.Authorization = `Bearer ${token}`;
   }
 
-  let baseUrl = 'http://localhost:9090/'; //window.serverURL;
+  let baseUrl = window.serverURL;
   if (!baseUrl) {
     const match = location.pathname.match(/(.*?\/)ui/);
     baseUrl = match ? match[1] : '/';
