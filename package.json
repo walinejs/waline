@@ -2,11 +2,6 @@
   "name": "waline",
   "version": "0.0.1",
   "private": true,
-  "workspaces": [
-    "docs/",
-    "example/",
-    "packages/*"
-  ],
   "scripts": {
     "admin:analyze": "npm --dir=packages/admin run analyze",
     "admin:build": "pnpm --dir=packages/admin run build",
@@ -118,14 +113,9 @@
   "apidoc": {
     "title": "Waline API Documentation"
   },
-  "overrides": {
-    "docs": {
-      "@waline/client": "file:./packages/client"
-    }
-  },
   "pnpm": {
     "overrides": {
-      "@waline/client": "file:../packages/client"
+      "@waline/client": "workspace:*"
     }
   }
 }
