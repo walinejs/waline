@@ -22,6 +22,7 @@
           class="wl-badge"
           v-text="locale.admin"
         />
+        <span v-if="comment.label" class="wl-badge" v-text="comment.label" />
         <span v-if="comment.sticky" class="wl-badge" v-text="locale.sticky" />
         <span
           v-if="comment.level >= 0"

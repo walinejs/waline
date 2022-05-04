@@ -82,5 +82,17 @@
   "get new password": "獲取新密碼",
   "you will receive an email which contains a link to create new password": "您會收到一封包含創建新密碼鏈接的電子郵件。",
   "find password success! please go to your mailbox to reset it!": "重置密碼郵件發送成功，請去郵箱中查收！",
-  "find password error! try again later": "重置密碼郵件發送失敗，請稍後再試！"
+  "find password error! try again later": "重置密碼郵件發送失敗，請稍後再試！",
+  "set administrator": "成為管理員",
+  "set guest": "成為普通用戶",
+  "set label": "設置專屬標籤",
+  "verify": "待認證",
+  "administrator": "管理員",
+  "guest": "普通用戶",
+  "user": "用戶",
+  "manage users": "管理用戶",
+  "role": "角色",
+  "exclusive label": "專屬標籤",
+  "You can't set yourself to be guest!": "你不能將自己設置為普通用戶！",
+  "please enter an exclusive label": "請輸入專屬標籤"
 }

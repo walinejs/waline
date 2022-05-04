@@ -42,6 +42,7 @@ CREATE TABLE wl_users (
   email varchar(255) NOT NULL DEFAULT '',
   password varchar(255) NOT NULL DEFAULT '',
   type varchar(50) NOT NULL DEFAULT '',
+  label varchar(255) DEFAULT NULL,
   url varchar(255) DEFAULT NULL,
   avatar varchar(255) DEFAULT NULL,
   github varchar(255) DEFAULT NULL,

@@ -11,6 +11,26 @@ module.exports = class extends BaseRest {
     );
   }
 
+  async getAction() {
+    const { page, pageSize } = this.get();
+
+    const count = await this.modelInstance.count({});
+    const users = await this.modelInstance.select(
+      {},
+      {
+        desc: 'insertedAt',
+        limit: pageSize,
+        offset: Math.max((page - 1) * pageSize, 0),
+      }
+    );
+    return this.success({
+      page,
+      totalPages: Math.ceil(count / pageSize),
+      pageSize,
+      data: users,
+    });
+  }
+
   async postAction() {
     const data = this.post();
     const resp = await this.modelInstance.select({
@@ -92,11 +112,19 @@ module.exports = class extends BaseRest {
   }
 
   async putAction() {
-    const { display_name, url, avatar, password } = this.post();
+    const { display_name, url, avatar, password, type, label } = this.post();
     const { objectId } = this.ctx.state.userInfo;
     const twoFactorAuth = this.post('2fa');
 
     const updateData = {};
+
+    if (this.id && type) {
+      updateData.type = type;
+    }
+
+    if (think.isString(label)) {
+      updateData.label = label;
+    }
 
     if (display_name) {
       updateData.display_name = display_name;
@@ -130,7 +158,9 @@ module.exports = class extends BaseRest {
       return this.success();
     }
 
-    await this.modelInstance.update(updateData, { objectId });
+    await this.modelInstance.update(updateData, {
+      objectId: this.id || objectId,
+    });
 
     return this.success();
   }

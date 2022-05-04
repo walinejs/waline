@@ -8,6 +8,7 @@ module.exports = class extends think.Logic {
       `storage/${this.config('storage')}`,
       'Users'
     );
+    this.id = this.getId();
   }
 
   async __before() {
@@ -88,5 +89,21 @@ module.exports = class extends think.Logic {
     userInfo.mailMd5 = helper.md5(userInfo.email);
     this.ctx.state.userInfo = userInfo;
     this.ctx.state.token = token;
+  }
+
+  getId() {
+    const id = this.get('id');
+
+    if (id && (think.isString(id) || think.isNumber(id))) {
+      return id;
+    }
+
+    const last = decodeURIComponent(this.ctx.path.split('/').pop());
+
+    if (last !== this.resource && /^([a-z0-9]+,?)*$/i.test(last)) {
+      return last;
+    }
+
+    return '';
   }
 };

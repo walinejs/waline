@@ -25,6 +25,7 @@ async function formatCmt(
     comment.mail = user.email;
     comment.link = user.url;
     comment.type = user.type;
+    comment.label = user.label;
   }
 
   const avatarUrl =
@@ -112,7 +113,14 @@ module.exports = class extends BaseRest {
           users = await userModel.select(
             { objectId: ['IN', user_ids] },
             {
-              field: ['display_name', 'email', 'url', 'type', 'avatar'],
+              field: [
+                'display_name',
+                'email',
+                'url',
+                'type',
+                'avatar',
+                'label',
+              ],
             }
           );
         }
@@ -192,7 +200,14 @@ module.exports = class extends BaseRest {
           users = await userModel.select(
             { objectId: ['IN', user_ids] },
             {
-              field: ['display_name', 'email', 'url', 'type', 'avatar'],
+              field: [
+                'display_name',
+                'email',
+                'url',
+                'type',
+                'avatar',
+                'label',
+              ],
             }
           );
         }
@@ -314,7 +329,14 @@ module.exports = class extends BaseRest {
           users = await userModel.select(
             { objectId: ['IN', user_ids] },
             {
-              field: ['display_name', 'email', 'url', 'type', 'avatar'],
+              field: [
+                'display_name',
+                'email',
+                'url',
+                'type',
+                'avatar',
+                'label',
+              ],
             }
           );
         }

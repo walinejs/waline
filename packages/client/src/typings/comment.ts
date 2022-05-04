@@ -24,4 +24,5 @@ export interface WalineComment extends Exclude<WalineCommentData, 'ua'> {
   os?: string;
   level?: number;
   addr?: string;
+  label?: string;
 }
