@@ -67,7 +67,7 @@ import CommentBox from './CommentBox.vue';
 import CommentCard from './CommentCard.vue';
 import { LoadingIcon } from './Icons';
 import { useUserInfo } from '../composables';
-import { locales } from '../config';
+import { defaultLocales } from '../config';
 import { fetchCommentList, getConfig, getDarkStyle } from '../utils';
 
 import type { PropType } from 'vue';
@@ -135,7 +135,7 @@ export default defineComponent({
       ...(SHOULD_VALIDATE
         ? {
             validator: (value: unknown): boolean =>
-              Object.keys(locales).includes(value as string),
+              Object.keys(defaultLocales).includes(value as string),
           }
         : {}),
     },
