@@ -151,12 +151,14 @@ importers:
 
   docs:
     specifiers:
+      '@vuepress/client': 2.0.0-beta.43
       '@vuepress/plugin-docsearch': 2.0.0-beta.43
       vuepress: 2.0.0-beta.43
       vuepress-theme-hope: 2.0.0-beta.49
     devDependencies:
+      '@vuepress/client': 2.0.0-beta.43
       '@vuepress/plugin-docsearch': 2.0.0-beta.43
-      vuepress: 2.0.0-beta.43
+      vuepress: 2.0.0-beta.43_s7efxo4emqfjndfsldz5ptd2ei
       vuepress-theme-hope: 2.0.0-beta.49
 
   example:
@@ -16618,7 +16620,7 @@ packages:
       - supports-color
     dev: true
 
-  /vuepress-vite/2.0.0-beta.43:
+  /vuepress-vite/2.0.0-beta.43_s7efxo4emqfjndfsldz5ptd2ei:
     resolution: {integrity: sha512-AJQJ60eKZE+tqB1A+079Zu2mssOuM95/I1qA5a5ORqjm+3gKf+opzqs8beXJDu/POOoAaWYgif4Ak9mVKGygHQ==}
     hasBin: true
     peerDependencies:
@@ -16627,6 +16629,7 @@ packages:
     dependencies:
       '@vuepress/bundler-vite': 2.0.0-beta.43
       '@vuepress/cli': 2.0.0-beta.43
+      '@vuepress/client': 2.0.0-beta.43
       '@vuepress/core': 2.0.0-beta.43
       '@vuepress/theme-default': 2.0.0-beta.43
     transitivePeerDependencies:
@@ -16638,11 +16641,11 @@ packages:
       - supports-color
     dev: true
 
-  /vuepress/2.0.0-beta.43:
+  /vuepress/2.0.0-beta.43_s7efxo4emqfjndfsldz5ptd2ei:
     resolution: {integrity: sha512-O60rL6UNw/zqNUK/nx9nU/ztR1x3vhik7zxa1MgA6z92NRuHILVYZKkJMMyjM3bK5z6YDUHuwvpYFTrIN6cWDQ==}
     hasBin: true
     dependencies:
-      vuepress-vite: 2.0.0-beta.43
+      vuepress-vite: 2.0.0-beta.43_s7efxo4emqfjndfsldz5ptd2ei
     transitivePeerDependencies:
       - '@vue/composition-api'
       - '@vuepress/client'

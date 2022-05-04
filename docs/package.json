@@ -7,6 +7,7 @@
     "dev": "vuepress-vite dev src"
   },
   "devDependencies": {
+    "@vuepress/client": "2.0.0-beta.43",
     "@vuepress/plugin-docsearch": "2.0.0-beta.43",
     "vuepress": "2.0.0-beta.43",
     "vuepress-theme-hope": "2.0.0-beta.49"
