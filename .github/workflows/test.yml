@@ -26,7 +26,7 @@ jobs:
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.os }}
+          node-version: ${{ matrix.node-version }}
           cache: "pnpm"
 
       - name: Build admin
@@ -56,7 +56,7 @@ jobs:
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.os }}
+          node-version: ${{ matrix.node-version }}
           cache: "pnpm"
 
       - name: Linter test
@@ -83,7 +83,7 @@ jobs:
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.os }}
+          node-version: ${{ matrix.node-version }}
           cache: "pnpm"
 
       - name: Unit test
