@@ -45,7 +45,7 @@ interface WalineInstance {
    *
    * @description when not setting `path` option, it will be reset to `window.location.pathname`
    */
-  update: (newOptions: Partial<Omit<WalineInitOptions, 'el'>>) => void;
+  update: (newOptions?: Partial<Omit<WalineInitOptions, 'el'>>) => void;
 
   /**
    * Unmount and destroy Waline instance
