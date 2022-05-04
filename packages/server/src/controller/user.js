@@ -158,7 +158,6 @@ module.exports = class extends BaseRest {
       return this.success();
     }
 
-    console.log('lizheming', updateData, { objectId: this.id || objectId });
     await this.modelInstance.update(updateData, {
       objectId: this.id || objectId,
     });
