@@ -45,7 +45,6 @@ importers:
       lerna: ^4.0.0
       lint-staged: ^12.4.1
       marked: ^4.0.15
-      pnpm: ^7.0.0
       postcss-loader: ^6.2.1
       prettier: ^2.6.2
       rollup: ^2.71.1
@@ -117,7 +116,6 @@ importers:
       lerna: 4.0.0
       lint-staged: 12.4.1
       marked: 4.0.15
-      pnpm: 7.0.0
       postcss-loader: 6.2.1_webpack@5.72.0
       prettier: 2.6.2
       rollup: 2.71.1
@@ -9659,12 +9657,6 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       find-up: 5.0.0
-    dev: true
-
-  /pnpm/7.0.0:
-    resolution: {integrity: sha512-5njVSmE/Sz6coyikS6gjwoKWaxxsJ6BY6jL1aqwvnEpNUfFednbHqid3aZ42JszOFaSOz3Qipcfp4ei22G/JEg==}
-    engines: {node: '>=14.19'}
-    hasBin: true
     dev: true
 
   /portfinder/1.0.28:
