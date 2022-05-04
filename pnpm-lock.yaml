@@ -1,5 +1,8 @@
 lockfileVersion: 5.4
 
+overrides:
+  '@waline/client': file:../packages/client
+
 importers:
 
   .:
@@ -4590,19 +4593,6 @@ packages:
     dependencies:
       vue: 3.2.33
       vue-demi: 0.12.5_vue@3.2.33
-
-  /@waline/client/2.2.0:
-    resolution: {integrity: sha512-NuGveo5yNHhtwOC7m1nRW9J6VCrLMhNtDlm+1Qm0kTcmWCwF/QOVKxfJ6437IsPCZNpZ7cy9AbqrrvAJL/WzRw==}
-    engines: {node: '>=12.20.0'}
-    dependencies:
-      '@vueuse/core': 8.4.1_vue@3.2.33
-      autosize: 5.0.1
-      hanabi: 0.4.0
-      marked: 4.0.15
-      vue: 3.2.33
-    transitivePeerDependencies:
-      - '@vue/composition-api'
-    dev: true
 
   /@webassemblyjs/ast/1.11.1:
     resolution: {integrity: sha512-ukBh14qFLjxTQNTXocdyksN5QdM28S1CxHt2rdskFyL+xFV7VremuBLVbmCePj+URalXBENx/9Lm7lnhihtCSw==}
@@ -16397,7 +16387,7 @@ packages:
       '@mr-hope/vuepress-shared': 2.0.0-beta.49
       '@vuepress/client': 2.0.0-beta.43
       '@vuepress/utils': 2.0.0-beta.43
-      '@waline/client': 2.2.0
+      '@waline/client': file:packages/client
       giscus: 1.0.3
       twikoo: 1.5.9
       vue: 3.2.33
@@ -17446,4 +17436,19 @@ packages:
   /yocto-queue/0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+    dev: true
+
+  file:packages/client:
+    resolution: {directory: packages/client, type: directory}
+    name: '@waline/client'
+    version: 2.3.0
+    engines: {node: '>=12.20.0'}
+    dependencies:
+      '@vueuse/core': 8.4.1_vue@3.2.33
+      autosize: 5.0.1
+      hanabi: 0.4.0
+      marked: 4.0.15
+      vue: 3.2.33
+    transitivePeerDependencies:
+      - '@vue/composition-api'
     dev: true

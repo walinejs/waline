@@ -126,7 +126,7 @@
   },
   "pnpm": {
     "overrides": {
-      "@waline/client": "file:./packages/client"
+      "@waline/client": "file:../packages/client"
     }
   }
 }
