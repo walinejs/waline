@@ -6,7 +6,16 @@ export interface WalineDateLocale {
   now: string;
 }
 
-export interface WalineLocale extends WalineDateLocale {
+export interface WalineLevelLocale {
+  level0: string;
+  level1: string;
+  level2: string;
+  level3: string;
+  level4: string;
+  level5: string;
+}
+
+export interface WalineLocale extends WalineDateLocale, WalineLevelLocale {
   nick: string;
   nickError: string;
   mail: string;

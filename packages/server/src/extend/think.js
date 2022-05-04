@@ -56,12 +56,12 @@ module.exports = {
     try {
       const search = helper.promisify(regionSearch.btreeSearch, regionSearch);
       const { region } = await search(ip);
-      const [,, province, city, isp] = region.split('|');
+      const [, , province, city, isp] = region.split('|');
       const address = Array.from(new Set([province, city, isp]));
       return address.slice(0, depth).join(' ');
-    } catch(e) {
+    } catch (e) {
       console.log(e);
       return '';
     }
-  }
+  },
 };
