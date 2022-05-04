@@ -126,9 +126,7 @@ export default defineComponent({
         : {}),
     },
 
-    dark: {
-      type: [String, Boolean],
-    },
+    dark: [String, Boolean],
 
     lang: {
       type: String,
@@ -140,13 +138,9 @@ export default defineComponent({
         : {}),
     },
 
-    locale: {
-      type: Object as PropType<Partial<WalineLocale>>,
-    },
+    locale: Object as PropType<Partial<WalineLocale>>,
 
-    pageSize: {
-      type: Number,
-    },
+    pageSize: Number,
 
     wordLimit: {
       type: [Number, Array] as PropType<number | [number, number]>,
@@ -185,21 +179,15 @@ export default defineComponent({
         : {}),
     },
 
-    login: {
-      type: String as PropType<'enable' | 'disable' | 'force'>,
-    },
+    login: String as PropType<'enable' | 'disable' | 'force'>,
 
-    highlighter: {
-      type: Function as PropType<WalineHighlighter>,
-    },
+    highlighter: Function as PropType<WalineHighlighter>,
 
-    imageUploader: {
-      type: [Function, Boolean] as PropType<WalineImageUploader | false>,
-    },
+    imageUploader: [Function, Boolean] as PropType<WalineImageUploader | false>,
 
-    texRenderer: {
-      type: [Function, Boolean] as PropType<WalineTexRenderer | false>,
-    },
+    texRenderer: [Function, Boolean] as PropType<WalineTexRenderer | false>,
+
+    copyright: Boolean,
   },
 
   setup(props) {
