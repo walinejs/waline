@@ -146,7 +146,7 @@ export interface WalineProps {
    *
    * @default ['https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo']
    */
-  emoji?: (string | WalineEmojiInfo)[];
+  emoji?: (string | WalineEmojiInfo)[] | false;
 
   /**
    * 代码高亮

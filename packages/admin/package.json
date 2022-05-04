@@ -1,6 +1,6 @@
 {
   "name": "@waline/admin",
-  "version": "0.17.1",
+  "version": "0.18.0",
   "description": "management system for waline",
   "keywords": [
     "waline",
@@ -14,8 +14,8 @@
     "url": "https://github.com/walinejs/waline/issues"
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/walinejs/waline.git"
+    "url": "https://github.com/walinejs/waline.git",
+    "directory": "packages/admin"
   },
   "license": "MIT",
   "author": "lizheming <i@imnerd.org>",
@@ -50,10 +50,11 @@
     "i18next-browser-languagedetector": "^6.1.4",
     "md5": "^2.3.0",
     "qrcode.react": "^3.0.1",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "react-i18next": "^11.16.6",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-i18next": "^11.16.7",
     "react-redux": "^8.0.1",
-    "react-router-dom": "^6.3.0"
+    "react-router-dom": "^6.3.0",
+    "redux": "^4.2.0"
   }
 }

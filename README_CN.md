@@ -2,14 +2,21 @@
 
 # Waline
 
-![npm version](https://img.shields.io/npm/v/@waline/vercel?color=critical&logo=npm&style=flat-square) ![npm bundle size (scoped)](https://img.shields.io/bundlephobia/minzip/@waline/client?style=flat-square&label=size)
-![npm](https://img.shields.io/npm/dm/@waline/vercel?style=flat-square) ![GitHub](https://img.shields.io/github/license/walinejs/waline?style=flat-square) [![Telegram](https://img.shields.io/badge/telegram-walinejs-2ca5e0?logo=telegram&style=flat-square)](https://t.me/walinejs) [![QQ](https://img.shields.io/badge/QQ-673663898-25bdff?logo=tencent-qq&style=flat-square)](https://qm.qq.com/cgi-bin/qm/qr?k=rPZvq_EBfwQa6QZX7sToVlhH49c6ed0R&jump_from=webapi)
+![作者](https://img.shields.io/badge/作者-lizheming,%20Mr.Hope-blue?style=for-the-badge) ![协议](https://img.shields.io/github/license/walinejs/waline?style=for-the-badge) [![qq](https://img.shields.io/badge/qq-waline交流群-f75137?logo=TencentQQ&style=for-the-badge)](https://jq.qq.com/?_wv=1027&k=bKoVBppG) [![telegram](https://img.shields.io/badge/telegram-walinejs-2ca5e0?logo=telegram&style=for-the-badge)](https://t.me/walinejs)
+
+![npm version](https://img.shields.io/npm/v/@waline/client?color=critical&logo=npm&style=flat-square&label=@walin/client) ![npm bundle size (scoped)](https://img.shields.io/bundlephobia/minzip/@waline/client?style=flat-square&label=@waline/client%20size) ![downloads](https://img.shields.io/npm/dm/@waline/vercel?style=flat-square&label=@waline/client%20downloads) [![jsDelivr hits](https://data.jsdelivr.com/v1/package/npm/@waline/client/badge)](https://www.jsdelivr.com/package/npm/@waline/client)
+
+![npm version](https://img.shields.io/npm/v/@waline/vercel?color=critical&logo=npm&style=flat-square&label=@walin/vercel)
 
 一款基于 [Valine](https://valine.js.org) 衍生的简洁、安全的评论系统。
 
 ---
 
-[English](https://github.com/walinejs/waline/blob/main/README.md) | 中文 | **查看文档**: <https://waline.js.org>
+> [English README](https://github.com/walinejs/waline/blob/main/README.md)
+
+## 文档
+
+### [English](https://waline.js.org/en/) | [简体中文](https://waline.js.org/)
 
 ## 特性
 

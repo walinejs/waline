@@ -81,11 +81,9 @@ Waline 主要由前端和服务端两部分组成。
 ```html
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/lightgallery@v2/css/lightgallery-bundle.css"
+  href="https://unpkg.com/lightgallery@v2/css/lightgallery-bundle.css"
 />
-<srciprt
-  src="https://cdn.jsdelivr.net/npm/lightgallery@v2/lightgallery.umd.min.js"
-/>
+<srciprt src="https://unpkg.com/lightgallery@v2/lightgallery.umd.min.js" />
 <script>
   document.addEventListener('click', (e) => {
     const imgs = [].slice
@@ -103,6 +101,7 @@ Waline 主要由前端和服务端两部分组成。
 </script>
 ```
 
+<!--
 ### Slimbox2
 
 在你的 HTML `<head>` 前写入以下内容，其中 `#waline-comment` 是你的 Waline 评论框，需要根据实际场景进行替换。
@@ -110,10 +109,10 @@ Waline 主要由前端和服务端两部分组成。
 ```html
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/cbeyls/slimbox/css/slimbox2.css"
+  href="//cdn.jsdelivr.net/gh/cbeyls/slimbox/css/slimbox2.css"
 />
-<script src="https://cdn.jsdelivr.net/npm/jquery@v1/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/cbeyls/slimbox/js/slimbox2.js"></script>
+<script src="https://unpkg.com/jquery@v1/dist/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/cbeyls/slimbox/js/slimbox2.js"></script>
 <script>
   document.addEventListener('click', (e) => {
     const imgs = [].slice
@@ -128,7 +127,7 @@ Waline 主要由前端和服务端两部分组成。
     $.slimbox(e.target.src, e.target.alt, {});
   });
 </script>
-```
+``` -->
 
 ### Lightbox2
 
@@ -137,9 +136,9 @@ Waline 主要由前端和服务端两部分组成。
 ```html
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/lightbox2@v2/dist/css/lightbox.min.css"
+  href="https://unpkg.com/lightbox2@v2/dist/css/lightbox.min.css"
 />
-<script src="https://cdn.jsdelivr.net/npm/lightbox2@v2/dist/js/lightbox-plus-jquery.min.js"></script>
+<script src="https://unpkg.com/lightbox2@v2/dist/js/lightbox-plus-jquery.min.js"></script>
 <script>
   document.addEventListener('click', (e) => {
     const lightbox = new Lightbox();
@@ -166,10 +165,10 @@ Waline 主要由前端和服务端两部分组成。
 在你的 HTML `<head>` 前写入以下内容，其中 `#waline-comment` 是你的 Waline 评论框，需要根据实际场景进行替换。
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
+<script src="https://unpkg.com/@fancyapps/ui/dist/fancybox.umd.js"></script>
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css"
+  href="https://unpkg.com/@fancyapps/ui/dist/fancybox.css"
 />
 <script>
   Fancybox.bind('#waline-comment .vcontent img');

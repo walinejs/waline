@@ -13,13 +13,13 @@ module.exports = class extends BaseRest {
     const { token, email } = this.get();
     const users = await this.modelInstance.select({ email });
     if (think.isEmpty(users)) {
-      return this.fail('USER_NOT_EXIST');
+      return this.fail(this.locale('USER_NOT_EXIST'));
     }
 
     const user = users[0];
     const match = user.type.match(/^verify:(\d{4}):(\d+)$/i);
     if (!match) {
-      return this.fail('USER_REGISTED');
+      return this.fail(this.locale('USER_REGISTED'));
     }
 
     if (token === match[1] && Date.now() < parseInt(match[2])) {
@@ -27,6 +27,6 @@ module.exports = class extends BaseRest {
       return this.redirect('/ui/login');
     }
 
-    return this.fail('TOKEN_EXPIRED');
+    return this.fail(this.locale('TOKEN_EXPIRED'));
   }
 };

@@ -3,7 +3,7 @@ title: Emoji Customize
 icon: emoji
 ---
 
-You can customize the emoji of the comment box by setting `emoji` option, you should set it to an **array** containing _preset link_ or _preset config object_.
+You can customize the emoji of the comment box by setting `emoji` option, you should set it to an **array** containing _preset link_ or _preset config object_. If you don't want it, just set it to `false`.
 
 <!-- more -->
 
@@ -14,25 +14,25 @@ Waline provides a series of emoji presets that can be used out of box. You can a
 - Alus
 
   ```http
-  https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/alus
+  https://unpkg.com/@waline/emojis@1.0.1/alus
   ```
 
 - Bilibili
 
   ```http
-  https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/bilibili
+  https://unpkg.com/@waline/emojis@1.0.1/bilibili
   ```
 
 - QQ
 
   ```http
-  https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/qq
+  https://unpkg.com/@waline/emojis@1.0.1/qq
   ```
 
 - Tieba
 
   ```http
-  https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tieba
+  https://unpkg.com/@waline/emojis@1.0.1/tieba
   ```
 
 - Twemoji
@@ -40,7 +40,7 @@ Waline provides a series of emoji presets that can be used out of box. You can a
   - Emoji:
 
     ```http
-    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-emoji
+    https://unpkg.com/@waline/emojis@1.0.1/tw-emoji
     ```
 
   ::: details Others presets
@@ -48,73 +48,73 @@ Waline provides a series of emoji presets that can be used out of box. You can a
   - Full: (Not recommand)
 
     ```http
-    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw
+    https://unpkg.com/@waline/emojis@1.0.1/tw
     ```
 
   - Body:
 
     ```http
-    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-body
+    https://unpkg.com/@waline/emojis@1.0.1/tw-body
     ```
 
   - Food:
 
     ```http
-    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-food
+    https://unpkg.com/@waline/emojis@1.0.1/tw-food
     ```
 
   - Natural:
 
     ```http
-    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-natural
+    https://unpkg.com/@waline/emojis@1.0.1/tw-natural
     ```
 
   - Object:
 
     ```http
-    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-object
+    https://unpkg.com/@waline/emojis@1.0.1/tw-object
     ```
 
   - Symbol:
 
     ```http
-    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-symbol
+    https://unpkg.com/@waline/emojis@1.0.1/tw-symbol
     ```
 
   - People:
 
     ```http
-    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-people
+    https://unpkg.com/@waline/emojis@1.0.1/tw-people
     ```
 
   - Sport:
 
     ```http
-    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-sport
+    https://unpkg.com/@waline/emojis@1.0.1/tw-sport
     ```
 
   - Time:
 
     ```http
-    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-time
+    https://unpkg.com/@waline/emojis@1.0.1/tw-time
     ```
 
   - Travel:
 
     ```http
-    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-travel
+    https://unpkg.com/@waline/emojis@1.0.1/tw-travel
     ```
 
   - Weather:
 
     ```http
-    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-weather
+    https://unpkg.com/@waline/emojis@1.0.1/tw-weather
     ```
 
   - Flag:
 
     ```http
-    https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/tw-flag
+    https://unpkg.com/@waline/emojis@1.0.1/tw-flag
     ```
 
   :::
@@ -122,7 +122,7 @@ Waline provides a series of emoji presets that can be used out of box. You can a
 - Weibo
 
   ```http
-  https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/weibo
+  https://unpkg.com/@waline/emojis@1.0.1/weibo
   ```
 
 ::: warning
@@ -140,8 +140,8 @@ Waline.init({
 
   // Set emoji to Weibo and Bilibili
   emoji: [
-    'https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/weibo',
-    'https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/bilibili',
+    '//unpkg.com/@waline/emojis@1.0.1/weibo',
+    '//unpkg.com/@waline/emojis@1.0.1/bilibili',
   ],
 });
 ```

@@ -1,6 +1,6 @@
 {
   "name": "@waline/client",
-  "version": "2.0.0",
+  "version": "2.3.0",
   "description": "client for waline comment system",
   "keywords": [
     "valine",
@@ -9,18 +9,44 @@
     "blog"
   ],
   "repository": {
-    "url": "https://github.com/walinejs/waline"
+    "url": "https://github.com/walinejs/waline",
+    "directory": "packages/client"
   },
   "license": "MIT",
+  "author": {
+    "name": "Mr.Hope",
+    "email": "mister-hope@outlook.com",
+    "url": "https://mrhope.site"
+  },
   "exports": {
     ".": {
       "import": "./dist/shim.esm.js",
       "require": "./dist/shim.js",
       "default": "./dist/shim.js"
     },
-    "./dist": "./dist/shim.js",
+    "./dist": {
+      "import": "./dist/shim.esm.js",
+      "require": "./dist/shim.js",
+      "default": "./dist/shim.js"
+    },
+    "./dist/component": {
+      "import": "./dist/component.esm.js",
+      "require": "./dist/component.js",
+      "default": "./dist/component.esm.js"
+    },
+    "./dist/pageview": {
+      "import": "./dist/pageview.esm.js",
+      "require": "./dist/pageview.cjs.js",
+      "default": "./dist/pageview.js"
+    },
+    "./dist/waline": {
+      "import": "./dist/waline.esm.js",
+      "require": "./dist/waline.cjs.js",
+      "default": "./dist/waline.js"
+    },
     "./dist/waline.css": "./dist/waline.css",
-    "./dist/*": "./dist/*.js",
+    "./dist/*": "./dist/*",
+    "./src/*": "./src/*",
     "./package.json": "./package.json"
   },
   "main": "./dist/shim.js",
@@ -33,9 +59,10 @@
   "scripts": {
     "build": "npm run rollup && npm run style",
     "clean": "rimraf ./dist",
+    "dev": "vite -c config/vite.config.js",
     "lint": "eslint --ext .ts,.vue .",
     "prepublish": "npm run clean && npm run build",
-    "rollup": "rollup -c ./scripts/rollup.config.js",
+    "rollup": "rollup -c ./config/rollup.config.js",
     "style": "sass ./src/styles/index.scss ./dist/waline.css --style=compressed"
   },
   "browserslist": {
@@ -53,14 +80,17 @@
     ]
   },
   "dependencies": {
-    "autosize": "5.0.1",
-    "hanabi": "0.4.0",
-    "marked": "4.0.14",
-    "vue": "3.2.33"
+    "@vueuse/core": "^8.4.0",
+    "autosize": "^5.0.1",
+    "hanabi": "^0.4.0",
+    "marked": "^4.0.15",
+    "vue": "^3.2.33"
   },
   "devDependencies": {
-    "@types/autosize": "4.0.1",
-    "@types/marked": "4.0.3"
+    "@types/autosize": "^4.0.1",
+    "@types/marked": "^4.0.3",
+    "@vitejs/plugin-vue": "^2.3.1",
+    "vite": "^2.9.7"
   },
   "engines": {
     "node": ">=12.20.0"

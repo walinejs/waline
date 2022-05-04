@@ -2,14 +2,21 @@
 
 # Waline
 
-![npm version](https://img.shields.io/npm/v/@waline/vercel?color=critical&logo=npm&style=flat-square) ![npm bundle size (scoped)](https://img.shields.io/bundlephobia/minzip/@waline/client?style=flat-square&label=size) ![npm](https://img.shields.io/npm/dm/@waline/vercel?style=flat-square) ![GitHub](https://img.shields.io/github/license/walinejs/waline?style=flat-square) [![telegram](https://img.shields.io/badge/telegram-walinejs-2ca5e0?logo=telegram&style=flat-square)](https://t.me/walinejs)
-[![jsDelivr hits](https://data.jsdelivr.com/v1/package/npm/@waline/client/badge)](https://www.jsdelivr.com/package/npm/@waline/client)
+![Author](https://img.shields.io/badge/author-lizheming,%20Mr.Hope-blue?style=for-the-badge) ![License](https://img.shields.io/github/license/walinejs/waline?style=for-the-badge) [![qq](https://img.shields.io/badge/qq-waline交流群-f75137?logo=TencentQQ&style=for-the-badge)](https://jq.qq.com/?_wv=1027&k=bKoVBppG) [![telegram](https://img.shields.io/badge/telegram-walinejs-2ca5e0?logo=telegram&style=for-the-badge)](https://t.me/walinejs)
+
+![npm version](https://img.shields.io/npm/v/@waline/client?color=critical&logo=npm&style=flat-square&label=@walin/client) ![npm bundle size (scoped)](https://img.shields.io/bundlephobia/minzip/@waline/client?style=flat-square&label=@waline/client%20size) ![downloads](https://img.shields.io/npm/dm/@waline/vercel?style=flat-square&label=@waline/client%20downloads) [![jsDelivr hits](https://data.jsdelivr.com/v1/package/npm/@waline/client/badge)](https://www.jsdelivr.com/package/npm/@waline/client)
+
+![npm version](https://img.shields.io/npm/v/@waline/vercel?color=critical&logo=npm&style=flat-square&label=@walin/vercel)
 
 A simple comment system with backend support fork from [Valine](https://valine.js.org).
 
 ---
 
-English | [中文](https://github.com/walinejs/waline/blob/main/README_CN.md) | **View Documentation:** <https://waline.js.org/en/>
+> [中文 README](https://github.com/walinejs/waline/blob/main/README_CN.md)
+
+## Documatation
+
+### [English](https://waline.js.org/en/) | [简体中文](https://waline.js.org/)
 
 ## Feature
 

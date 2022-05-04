@@ -1,30 +1,46 @@
-// twikoo 数据结构转 leancloud
+/**
+ * twikoo 数据结构转 leancloud
+ */
 export const tk2lc = (input) => {
   const data = input
     .trim()
     .split(/[\r\n]+/)
     .filter((v) => v)
     .map((text) => {
-      const cmt = JSON.parse(text);
+      const {
+        _id,
+        comment,
+        created,
+        updated,
+        ip,
+        link,
+        mail,
+        nick,
+        ua,
+        url,
+        pid,
+        rid,
+        isSpam,
+      } = JSON.parse(text);
       return {
-        objectId: typeof cmt._id === 'string' ? cmt._id : cmt._id.$oid,
+        objectId: typeof _id === 'string' ? _id : _id.$oid,
         QQAvatar: '',
-        comment: cmt.comment,
+        comment: comment,
         insertedAt: {
           __type: 'Date',
-          iso: new Date(cmt.created).toISOString(),
+          iso: new Date(created).toISOString(),
         },
-        createdAt: new Date(cmt.created).toISOString(),
-        updatedAt: new Date(cmt.updated).toISOString(),
-        ip: cmt.ip,
-        link: cmt.link,
-        mail: cmt.mail,
-        nick: cmt.nick,
-        ua: cmt.ua,
-        url: cmt.url,
-        pid: cmt.pid,
-        rid: cmt.rid,
-        status: cmt.isSpam ? 'spam' : 'approved',
+        createdAt: new Date(created).toISOString(),
+        updatedAt: new Date(updated).toISOString(),
+        ip,
+        link,
+        mail,
+        nick,
+        ua,
+        url,
+        pid,
+        rid,
+        status: isSpam ? 'spam' : 'approved',
       };
     });
 

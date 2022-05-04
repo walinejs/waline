@@ -3,11 +3,10 @@ import {
   defaultUploadImage,
   defaultTexRenderer,
   getMeta,
-  locales,
+  defaultLocales,
 } from '../config';
 
 import { decodePath, isLinkHttp, removeEndingSplash } from './path';
-import { getEmojis } from './emoji';
 
 import type {
   WalineEmojiInfo,
@@ -17,31 +16,15 @@ import type {
 } from '../typings';
 import hanabi from 'hanabi';
 
-export interface EmojiConfig {
+export interface WalineEmojiConfig {
   tabs: Pick<WalineEmojiInfo, 'name' | 'icon' | 'items'>[];
   map: WalineEmojiMaps;
 }
 
-export interface Config
-  extends Required<
-      Pick<
-        WalineProps,
-        | 'path'
-        | 'lang'
-        | 'meta'
-        | 'pageSize'
-        | 'requiredMeta'
-        | 'imageUploader'
-        | 'highlighter'
-        | 'texRenderer'
-        | 'copyright'
-        | 'login'
-      >
-    >,
-    Pick<WalineProps, 'dark' | 'serverURL'> {
+export interface WalineConfig extends Required<Omit<WalineProps, 'wordLimit'>> {
   locale: WalineLocale;
   wordLimit: [number, number] | false;
-  emoji: Promise<EmojiConfig>;
+  // emoji: Promise<EmojiConfig>;
 }
 
 const getServerURL = (serverURL: string): string => {
@@ -49,6 +32,11 @@ const getServerURL = (serverURL: string): string => {
 
   return isLinkHttp(result) ? result : `https://${result}`;
 };
+
+const getWordLimit = (
+  wordLimit: WalineProps['wordLimit']
+): [number, number] | false =>
+  Array.isArray(wordLimit) ? wordLimit : wordLimit ? [0, wordLimit] : false;
 
 const fallback = <T = unknown>(
   value: T | false | undefined,
@@ -62,9 +50,10 @@ export const getConfig = ({
   path = location.pathname,
   lang = defaultLang,
   locale,
-  emoji = ['https://cdn.jsdelivr.net/gh/walinejs/emojis@1.0.0/weibo'],
+  emoji = ['//unpkg.com/@waline/emojis@1.0.1/weibo'],
   meta = ['nick', 'mail', 'link'],
   requiredMeta = [],
+  dark = false,
   pageSize = 10,
   wordLimit,
   imageUploader,
@@ -73,27 +62,24 @@ export const getConfig = ({
   copyright = true,
   login = 'enable',
   ...more
-}: WalineProps): Config => ({
+}: WalineProps): WalineConfig => ({
   serverURL: getServerURL(serverURL),
   path: decodePath(path),
-  lang,
   locale: {
-    ...(locales[lang] || locales[defaultLang]),
+    ...(defaultLocales[lang] || defaultLocales[defaultLang]),
     ...(typeof locale === 'object' ? locale : {}),
   },
-  emoji: getEmojis(emoji),
-  wordLimit: Array.isArray(wordLimit)
-    ? wordLimit
-    : wordLimit
-    ? [0, wordLimit]
-    : false,
+  wordLimit: getWordLimit(wordLimit),
   meta: getMeta(meta),
   requiredMeta: getMeta(requiredMeta),
-  pageSize,
-  login,
   imageUploader: fallback(imageUploader, defaultUploadImage),
   highlighter: fallback(highlighter, hanabi),
   texRenderer: fallback(texRenderer, defaultTexRenderer),
+  lang,
+  dark,
+  emoji,
+  pageSize,
+  login,
   copyright,
   ...more,
 });

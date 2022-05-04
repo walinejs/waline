@@ -287,10 +287,25 @@ module.exports = class extends Base {
   }
 
   // eslint-disable-next-line no-unused-vars
-  async count(where = {}, options = {}) {
+  async count(where = {}, { group } = {}) {
     const instance = await this.collection(this.tableName);
     const data = this.where(instance, where);
-    return data.length;
+    if (!group) {
+      return data.length;
+    }
+
+    const counts = {};
+    for (let i = 0; i < data.length; i++) {
+      const key = group.map((field) => data[field]).join();
+      if (!counts[key]) {
+        counts[key] = { count: 0 };
+        group.forEach((field) => {
+          counts[key][field] = data[field];
+        });
+      }
+      counts[key].count += 1;
+    }
+    return Object.keys(counts);
   }
 
   async add(

@@ -22,9 +22,15 @@
           class="wl-badge"
           v-text="locale.admin"
         />
+        <span v-if="comment.label" class="wl-badge" v-text="comment.label" />
         <span v-if="comment.sticky" class="wl-badge" v-text="locale.sticky" />
+        <span
+          v-if="comment.level >= 0"
+          :class="`wl-badge level${comment.level}`"
+          v-text="locale[`level${comment.level}`] || `Level ${comment.level}`"
+        />
 
-        <span class="wl-time" v-text="timeAgo(comment.insertedAt, locale)" />
+        <span class="wl-time" v-text="time" />
 
         <button
           class="wl-reply"
@@ -36,6 +42,7 @@
         </button>
       </div>
       <div class="wl-meta" aria-hidden="true">
+        <span v-if="comment.addr" v-text="comment.addr" />
         <span v-if="comment.browser" v-text="comment.browser" />
         <span v-if="comment.os" v-text="comment.os" />
       </div>
@@ -69,10 +76,11 @@
 import { computed, defineComponent, inject } from 'vue';
 import CommentBox from './CommentBox.vue';
 import { ReplyIcon, VerifiedIcon } from './Icons';
-import { isLinkHttp, timeAgo } from '../utils';
+import { isLinkHttp } from '../utils';
+import { useTimeAgo } from '../composables';
 
 import type { ComputedRef, PropType } from 'vue';
-import type { Config } from '../utils';
+import type { WalineConfig } from '../utils';
 import type { WalineComment } from '../typings';
 
 export default defineComponent({
@@ -99,7 +107,9 @@ export default defineComponent({
   emits: ['submit', 'reply'],
 
   setup(props) {
-    const config = inject<ComputedRef<Config>>('config') as ComputedRef<Config>;
+    const config = inject<ComputedRef<WalineConfig>>(
+      'config'
+    ) as ComputedRef<WalineConfig>;
     const locale = computed(() => config.value.locale);
 
     const link = computed(() => {
@@ -107,6 +117,8 @@ export default defineComponent({
 
       return link ? (isLinkHttp(link) ? link : `https://${link}`) : '';
     });
+
+    const time = useTimeAgo(props.comment.insertedAt, locale.value);
 
     const isReplyingCurrent = computed(
       () => props.comment.objectId === props.reply?.objectId
@@ -118,7 +130,7 @@ export default defineComponent({
 
       isReplyingCurrent,
       link,
-      timeAgo,
+      time,
     };
   },
 });

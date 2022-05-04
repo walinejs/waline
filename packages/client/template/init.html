@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Waline init test</title>
+  </head>
+  <body>
+    阅读量: <span id="/" class="waline-pageview-count"></span> 评论数:
+    <span id="/" class="waline-comment-count"></span>
+    <div id="waline" style="max-width: 800px; margin: 0 auto"></div>
+    <script type="module">
+      import { init } from '../src/entrys/init.ts';
+      import '../src/styles/index.scss';
+
+      window.waline = init({
+        el: '#waline',
+        lang: 'en-US',
+        path: '/',
+        comment: true,
+        pageview: true,
+        serverURL: 'https://waline.vercel.app',
+        emoji: [
+          '//unpkg.com/@waline/emojis@1.0.1/bilibili',
+          '//unpkg.com/@waline/emojis@1.0.1/qq',
+        ],
+      });
+    </script>
+  </body>
+</html>

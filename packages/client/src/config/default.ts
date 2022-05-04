@@ -17,5 +17,5 @@ export const defaultUploadImage = (file: File): Promise<string> =>
 
 export const defaultTexRenderer = (blockMode: boolean): string =>
   blockMode === true
-    ? '<p class="vtex">Tex is not available in preview</p>'
-    : '<span class="vtex">Tex is not available in preview</span>';
+    ? '<p class="wl-tex">Tex is not available in preview</p>'
+    : '<span class="wl-tex">Tex is not available in preview</span>';

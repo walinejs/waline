@@ -1,29 +1,18 @@
-import { reactive } from 'vue';
-import { useStore } from './store';
+import { useStorage } from '@vueuse/core';
+import type { RemovableRef } from '@vueuse/core';
 
-import type { Store } from './store';
-
-export interface Inputs {
+export interface UserMeta {
   nick: string;
   mail: string;
   link: string;
-  editor: string;
 }
 
-let store: Store;
-let inputs: Inputs;
+export const useUserMeta = (): RemovableRef<UserMeta> =>
+  useStorage<UserMeta>('WALINE_USER_META', {
+    nick: '',
+    mail: '',
+    link: '',
+  });
 
-export const useInputs = (): { inputs: Inputs; store: Store } => {
-  if (!inputs) {
-    store = useStore('WALINE_USER_CACHE');
-
-    inputs = reactive({
-      nick: store.get<string>('nick') || '',
-      mail: store.get<string>('mail') || '',
-      link: store.get<string>('link') || '',
-      editor: '',
-    });
-  }
-
-  return { inputs, store };
-};
+export const useEditor = (): RemovableRef<string> =>
+  useStorage<string>('WALINE_COMMENT_BOX_EDITOR', '');

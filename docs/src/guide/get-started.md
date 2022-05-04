@@ -101,21 +101,21 @@ icon: creative
 
 1. 使用 CDN 引入 Waline:
 
-   - `//cdn.jsdelivr.net/npm/@waline/client/dist/waline.js`。
-   - `//cdn.jsdelivr.net/npm/@waline/client/dist/waline.css`。
+   - `https://unpkg.com/@waline/client@v2/dist/waline.js`。
+   - `https://unpkg.com/@waline/client@v2/dist/waline.css`。
 
 1. 创建 `<script>` 标签使用 `Waline.init()` 初始化，并传入必要的 `el` 与 `serverURL` 选项。
 
    - `el` 选项是 Waline 渲染使用的元素，你可以设置一个字符串形式的 CSS 选择器或者一个 HTMLElement 对象。
    - `serverURL` 是服务端的地址，即上一步获取到的值。
 
-   ```html {8-14}:line-numbers
+   ```html {3-7,12-18}:line-numbers
    <head>
      <!-- ... -->
-     <script src="//cdn.jsdelivr.net/npm/@waline/client/dist/waline.js"></script>
+     <script src="https://unpkg.com/@waline/client@v2/dist/waline.js"></script>
      <link
-       rel="style"
-       href="//cdn.jsdelivr.net/npm/@waline/client/dist/waline.css"
+       rel="stylesheet"
+       href="https://unpkg.com/@waline/client@v2/dist/waline.css"
      />
      <!-- ... -->
    </head>

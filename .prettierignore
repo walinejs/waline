@@ -7,3 +7,6 @@ dist/
 # temp files
 .temp/
 .cache/
+
+# ignore yaml
+pnpm-lock.yaml

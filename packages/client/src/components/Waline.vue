@@ -18,7 +18,7 @@
       />
     </div>
 
-    <div v-if="status === 'error'" class="wl-action">
+    <div v-if="status === 'error'" class="wl-operation">
       <button
         type="button"
         class="wl-btn"
@@ -35,7 +35,7 @@
       <div v-else-if="!data.length" class="wl-empty" v-text="i18n.sofa" />
 
       <!-- Load more button -->
-      <div v-else-if="page < totalPages" class="wl-more">
+      <div v-else-if="page < totalPages" class="wl-operation">
         <button
           type="button"
           class="wl-btn"
@@ -61,21 +61,13 @@
 </template>
 
 <script lang="ts">
-import {
-  computed,
-  defineComponent,
-  onBeforeUnmount,
-  onMounted,
-  provide,
-  ref,
-  watch,
-  watchEffect,
-} from 'vue';
+import { useStyleTag } from '@vueuse/core';
+import { computed, defineComponent, onMounted, provide, ref, watch } from 'vue';
 import CommentBox from './CommentBox.vue';
 import CommentCard from './CommentCard.vue';
 import { LoadingIcon } from './Icons';
 import { useUserInfo } from '../composables';
-import { locales } from '../config';
+import { defaultLocales } from '../config';
 import { fetchCommentList, getConfig, getDarkStyle } from '../utils';
 
 import type { PropType } from 'vue';
@@ -114,7 +106,6 @@ export default defineComponent({
 
     meta: {
       type: Array,
-      // default: (): Meta[] => ['nick', 'mail', 'link'],
       ...(SHOULD_VALIDATE
         ? {
             validator: (value: unknown): boolean =>
@@ -126,7 +117,6 @@ export default defineComponent({
 
     requiredMeta: {
       type: Array,
-      // default: (): Meta[] => [],
       ...(SHOULD_VALIDATE
         ? {
             validator: (value: unknown): boolean =>
@@ -136,23 +126,16 @@ export default defineComponent({
         : {}),
     },
 
-    visitor: {
-      type: Boolean,
-      // default: false,
-    },
-
     dark: {
       type: [String, Boolean],
-      // default: false,
     },
 
     lang: {
       type: String,
-      // default: 'zh-CN',
       ...(SHOULD_VALIDATE
         ? {
             validator: (value: unknown): boolean =>
-              Object.keys(locales).includes(value as string),
+              Object.keys(defaultLocales).includes(value as string),
           }
         : {}),
     },
@@ -163,7 +146,6 @@ export default defineComponent({
 
     pageSize: {
       type: Number,
-      // default: 10,
     },
 
     wordLimit: {
@@ -181,64 +163,49 @@ export default defineComponent({
     },
 
     emoji: {
-      type: Array as PropType<(string | WalineEmojiInfo)[]>,
-      // default: (): string[] => [
-      //   'https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo',
-      // ],
+      type: [Array, Boolean] as PropType<(string | WalineEmojiInfo)[] | false>,
       ...(SHOULD_VALIDATE
         ? {
             validator: (value: unknown): boolean =>
-              Array.isArray(value) &&
-              value.every(
-                (item) =>
-                  typeof item === 'string' ||
-                  (typeof item === 'object' &&
-                    typeof item.name === 'string' &&
-                    typeof item.folder === 'string' &&
-                    typeof item.icon === 'string' &&
-                    Array.isArray(item.items) &&
-                    (item.items as unknown[]).every(
-                      (icon) => typeof icon === 'string'
-                    ))
-              ),
+              value === false ||
+              (Array.isArray(value) &&
+                value.every(
+                  (item) =>
+                    typeof item === 'string' ||
+                    (typeof item === 'object' &&
+                      typeof item.name === 'string' &&
+                      typeof item.folder === 'string' &&
+                      typeof item.icon === 'string' &&
+                      Array.isArray(item.items) &&
+                      (item.items as unknown[]).every(
+                        (icon) => typeof icon === 'string'
+                      ))
+                )),
           }
         : {}),
     },
 
     login: {
       type: String as PropType<'enable' | 'disable' | 'force'>,
-      // default: 'enable',
     },
 
     highlighter: {
       type: Function as PropType<WalineHighlighter>,
-      // default: (text: string): string => text,
     },
 
     imageUploader: {
-      type: [Function, false] as PropType<WalineImageUploader>,
-      // default: (file: File): Promise<string> =>
-      //   new Promise((resolve, reject) => {
-      //     const reader = new FileReader();
-      //     reader.readAsDataURL(file);
-      //     reader.onload = (): void => resolve(reader.result?.toString() || '');
-      //     reader.onerror = reject;
-      //   }),
+      type: [Function, Boolean] as PropType<WalineImageUploader | false>,
     },
 
-    texRender: {
-      type: Function as PropType<WalineTexRenderer>,
-      // default: (blockMode: boolean): string =>
-      //   blockMode === true
-      //     ? '<p class="vtex">Tex is not available in preview</p>'
-      //     : '<span class="vtex">Tex is not available in preview</span>',
+    texRenderer: {
+      type: [Function, Boolean] as PropType<WalineTexRenderer | false>,
     },
   },
 
   setup(props) {
     const config = computed(() => getConfig(props as WalineProps));
 
-    const { userInfo } = useUserInfo();
+    const userInfo = useUserInfo();
 
     const status = ref<'loading' | 'success' | 'error'>('loading');
 
@@ -251,9 +218,10 @@ export default defineComponent({
 
     const darkmodeStyle = computed(() => getDarkStyle(config.value.dark));
 
+    useStyleTag(darkmodeStyle);
+
     // eslint-disable-next-line vue/no-setup-props-destructure
     let abort: () => void;
-    let stop: () => void;
 
     const fetchComment = (pageNumber: number): void => {
       const { serverURL, path, pageSize } = config.value;
@@ -265,6 +233,7 @@ export default defineComponent({
 
       fetchCommentList({
         serverURL,
+        lang: config.value.lang,
         path,
         pageSize,
         page: pageNumber,
@@ -319,21 +288,7 @@ export default defineComponent({
 
     watch(() => props.path, refresh);
 
-    onMounted(() => {
-      refresh();
-
-      const style = document.createElement('style');
-
-      style.innerText = darkmodeStyle.value;
-
-      document.querySelector('[data-waline]')?.appendChild(style);
-
-      stop = watchEffect(() => {
-        style.innerText = darkmodeStyle.value;
-      });
-    });
-
-    onBeforeUnmount(() => stop());
+    onMounted(() => refresh());
 
     return {
       config,

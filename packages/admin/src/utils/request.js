@@ -1,3 +1,5 @@
+import i18n from 'i18next';
+
 export default async function request(url, opts = {}) {
   if (typeof url === 'object') {
     opts = url;
@@ -27,7 +29,8 @@ export default async function request(url, opts = {}) {
     baseUrl = match ? match[1] : '/';
   }
 
-  return fetch(baseUrl + opts.url, opts)
+  const joiner = opts.url.includes('?') ? '&' : '?';
+  return fetch(`${baseUrl}${opts.url}${joiner}lang=${i18n.language}`, opts)
     .then((resp) => {
       if (resp.ok) {
         return resp.json();

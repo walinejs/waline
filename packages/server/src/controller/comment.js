@@ -5,7 +5,7 @@ const { getMarkdownParser } = require('../service/markdown');
 
 const markdownParser = getMarkdownParser();
 async function formatCmt(
-  { ua, user_id, ...comment },
+  { ua, user_id, ip, ...comment },
   users = [],
   { avatarProxy },
   loginUser
@@ -25,6 +25,7 @@ async function formatCmt(
     comment.mail = user.email;
     comment.link = user.url;
     comment.type = user.type;
+    comment.label = user.label;
   }
 
   const avatarUrl =
@@ -41,8 +42,13 @@ async function formatCmt(
     delete comment.mail;
   } else {
     comment.orig = comment.comment;
+    comment.ip = ip;
   }
 
+  // administrator can always show region
+  if (isAdmin || !think.config('disableRegion')) {
+    comment.addr = await think.ip2region(ip, { depth: isAdmin ? 3 : 1 });
+  }
   comment.comment = markdownParser(comment.comment);
   return comment;
 }
@@ -88,6 +94,7 @@ module.exports = class extends BaseRest {
             'pid',
             'rid',
             'ua',
+            'ip',
             'user_id',
             'sticky',
           ],
@@ -106,7 +113,14 @@ module.exports = class extends BaseRest {
           users = await userModel.select(
             { objectId: ['IN', user_ids] },
             {
-              field: ['display_name', 'email', 'url', 'type', 'avatar'],
+              field: [
+                'display_name',
+                'email',
+                'url',
+                'type',
+                'avatar',
+                'label',
+              ],
             }
           );
         }
@@ -186,7 +200,14 @@ module.exports = class extends BaseRest {
           users = await userModel.select(
             { objectId: ['IN', user_ids] },
             {
-              field: ['display_name', 'email', 'url', 'type', 'avatar'],
+              field: [
+                'display_name',
+                'email',
+                'url',
+                'type',
+                'avatar',
+                'label',
+              ],
             }
           );
         }
@@ -218,7 +239,12 @@ module.exports = class extends BaseRest {
           };
         }
 
-        const comments = await this.modelInstance.select(where, {
+        const totalCount = await this.modelInstance.count(where);
+        const pageOffset = Math.max((page - 1) * pageSize, 0);
+        let comments = [];
+        let rootComments = [];
+        let rootCount = 0;
+        const selectOptions = {
           desc: 'insertedAt',
           field: [
             'status',
@@ -230,10 +256,65 @@ module.exports = class extends BaseRest {
             'pid',
             'rid',
             'ua',
+            'ip',
             'user_id',
             'sticky',
           ],
-        });
+        };
+
+        /**
+         * most of case we have just little comments
+         * while if we want get rootComments, rootCount, childComments with pagination
+         * we have to query three times from storage service
+         * That's so expensive for user, especially in the serverless.
+         * so we have a comments length check
+         * If you have less than 1000 comments, then we'll get all comments one time
+         * then we'll compute rootComment, rootCount, childComments in program to reduce http request query
+         *
+         * Why we have limit and the limit is 1000?
+         * Many serverless storages have fetch data limit, for example LeanCloud is 100, and CloudBase is 1000
+         * If we have much commments, We should use more request to fetch all comments
+         * If we have 3000 comments, We have to use 30 http request to fetch comments, things go athwart.
+         * And Serverless Service like vercel have excute time limit
+         * if we have more http requests in a serverless function, it may timeout easily.
+         * so we use limit to avoid it.
+         */
+        if (totalCount < 1000) {
+          comments = await this.modelInstance.select(where, selectOptions);
+          rootCount = comments.filter(({ rid }) => !rid).length;
+          rootComments = [
+            ...comments.filter(({ rid, sticky }) => !rid && sticky),
+            ...comments.filter(({ rid, sticky }) => !rid && !sticky),
+          ].slice(pageOffset, pageOffset + pageSize);
+          const rootIds = {};
+          rootComments.forEach(({ objectId }) => {
+            rootIds[objectId] = true;
+          });
+          comments = comments.filter(
+            (cmt) => rootIds[cmt.objectId] || rootIds[cmt.rid]
+          );
+        } else {
+          rootComments = await this.modelInstance.select(
+            { ...where, rid: undefined },
+            {
+              ...selectOptions,
+              offset: pageOffset,
+              limit: pageSize,
+            }
+          );
+          const children = await this.modelInstance.select(
+            {
+              ...where,
+              rid: ['IN', rootComments.map(({ objectId }) => objectId)],
+            },
+            selectOptions
+          );
+          comments = [...rootComments, ...children];
+          rootCount = await this.modelInstance.count({
+            ...where,
+            rid: undefined,
+          });
+        }
 
         const userModel = this.service(
           `storage/${this.config('storage')}`,
@@ -248,23 +329,67 @@ module.exports = class extends BaseRest {
           users = await userModel.select(
             { objectId: ['IN', user_ids] },
             {
-              field: ['display_name', 'email', 'url', 'type', 'avatar'],
+              field: [
+                'display_name',
+                'email',
+                'url',
+                'type',
+                'avatar',
+                'label',
+              ],
             }
           );
         }
 
-        const rootCount = comments.filter(({ rid }) => !rid).length;
-        const pageOffset = Math.max((page - 1) * pageSize, 0);
-        const rootComments = [
-          ...comments.filter(({ rid, sticky }) => !rid && sticky),
-          ...comments.filter(({ rid, sticky }) => !rid && !sticky),
-        ].slice(pageOffset, pageOffset + pageSize);
+        if (think.isArray(this.config('levels'))) {
+          const countWhere = {
+            status: ['NOT IN', ['waiting', 'spam']],
+            _complex: {},
+          };
+          if (user_ids.length) {
+            countWhere._complex.user_id = ['IN', user_ids];
+          }
+          const mails = Array.from(
+            new Set(comments.map(({ mail }) => mail).filter((v) => v))
+          );
+          if (mails.length) {
+            countWhere._complex.mail = ['IN', mails];
+          }
+          if (!think.isEmpty(countWhere._complex)) {
+            countWhere._complex._logic = 'or';
+          } else {
+            delete countWhere._complex;
+          }
+          const counts = await this.modelInstance.count(countWhere, {
+            group: ['user_id', 'mail'],
+          });
+          comments.forEach((cmt) => {
+            const countItem = (counts || []).find(({ mail, user_id }) => {
+              if (user_id) {
+                return user_id === cmt.user_id;
+              }
+              return mail === cmt.mail;
+            });
+
+            let level = 0;
+            if (countItem) {
+              const _level = think.findLastIndex(
+                this.config('levels'),
+                (l) => l <= countItem.count
+              );
+              if (_level !== -1) {
+                level = _level;
+              }
+            }
+            cmt.level = level;
+          });
+        }
 
         return this.json({
           page,
           totalPages: Math.ceil(rootCount / pageSize),
           pageSize,
-          count: comments.length,
+          count: totalCount,
           data: await Promise.all(
             rootComments.map(async (comment) => {
               const cmt = await formatCmt(
@@ -343,7 +468,7 @@ module.exports = class extends BaseRest {
           'The comment author had post same comment content before'
         );
 
-        return this.fail('Duplicate Content');
+        return this.fail(this.locale('Duplicate Content'));
       }
 
       think.logger.debug('Comment duplicate check OK!');
@@ -358,7 +483,7 @@ module.exports = class extends BaseRest {
 
       if (!think.isEmpty(recent)) {
         think.logger.debug(`The author has posted in ${IPQPS} seconeds.`);
-        return this.fail('Comment too fast!');
+        return this.fail(this.locale('Comment too fast!'));
       }
 
       think.logger.debug(`Comment post frequence check OK!`);
@@ -415,21 +540,25 @@ module.exports = class extends BaseRest {
 
     think.logger.debug(`Comment have been added to storage.`);
 
-    let parrentComment;
-
+    let parentComment;
     if (pid) {
-      parrentComment = await this.modelInstance.select({ objectId: pid });
-      parrentComment = parrentComment[0];
+      parentComment = await this.modelInstance.select({ objectId: pid });
+      parentComment = parentComment[0];
     }
+
+    await this.ctx.webhook('new_comment', {
+      comment: { ...resp, rawComment: comment },
+      reply: parentComment,
+    });
 
     if (comment.status !== 'spam') {
       const notify = this.service('notify');
-      await notify.run({ ...resp, rawComment: comment }, parrentComment);
+      await notify.run({ ...resp, rawComment: comment }, parentComment);
     }
 
     think.logger.debug(`Comment notify done!`);
 
-    await this.hook('postSave', resp, parrentComment);
+    await this.hook('postSave', resp, parentComment);
 
     think.logger.debug(`Comment post hooks postSave done!`);
 

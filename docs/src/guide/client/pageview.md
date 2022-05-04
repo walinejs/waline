@@ -57,7 +57,7 @@ Waline 会自动查找页面中 `class` 值为 `waline-pageview-count` 的元素
     <span class="waline-pageview-count" data-path="/" />
   </li>
 </ul>
-<script src="//cdn.jsdelivr.net/npm/@waline/client/dist/visitor.js"></script>
+<script src="https://unpkg.com/@waline/client/dist/pageview.js"></script>
 <script>
   Waline.pageviewCount({
     serverURL: '<YOUR_SERVER_URL>',

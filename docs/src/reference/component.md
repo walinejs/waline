@@ -41,12 +41,15 @@ Waline 的服务端地址。
 - `'en-US'`
 - `'jp'`
 - `'jp-JP'`
+- `'pt-BR'`
+- `'ru'`
+- `'ru-RU'`
 
 如需 _自定义语言_，请参考 [i18n](../guide/client/i18n.md)。
 
 ## emoji
 
-- 类型: `(string | EmojiInfo)[]`
+- 类型: `(string | WalineEmojiInfo)[] | false`
 - 默认值: `['https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo']`
 
 表情设置，详见 [自定义表情](../guide/client/emoji.md)
@@ -119,42 +122,187 @@ Waline 的服务端地址。
 
 ## imageUploader
 
-- 类型: `Function | false`
+- 类型: `WalineImageUploader | false`
 - 必填: 否
+- 详情:
 
-自定义图片上传方法，方便更好的存储图片。方法执行时会将图片对象传入。
+  ```ts
+  type WalineImageUploader = (image: File) => Promise<string>;
+  ```
 
-你可以设置为 `false` 以禁用图片上传功能，默认行为是将图片 Base 64 编码嵌入。
+自定义图片上传方法。函数应该接收图片对象，返回一个提供图片地址的 Promise。
+
+默认行为是将图片 Base 64 编码嵌入，你可以设置为 `false` 以禁用图片上传功能。
 
 ## highlighter
 
-- 类型: `Highlighter | false`
+- 类型: `WalineHighlighter | false`
 - 必填: 否
+- 详情:
 
-**代码高亮**，默认使用 `hanabi`，你可以传入一个自己的代码高亮器。
+  ```ts
+  type WalineHighlighter =
+    | ((code: string, lang: string) => string)
+    | ((
+        code: string,
+        lang: string,
+        callback?: (error: unknown | undefined, code?: string) => void
+      ) => void);
+  ```
 
-```ts
-(code: string, lang: string) => string
+**代码高亮**，默认使用 `hanabi`。函数传入代码块的原始字符和代码块的语言。你应该触发回调函数或者直接返回一个字符串。
 
-// 或
+你可以传入一个自己的代码高亮器，也可以设置为 `false` 以禁用代码高亮功能。
 
-(
-  code: string,
-  lang: string,
-  callback?: (error: unknown | undefined, code?: string) => void
-) => void;
+::: details 案例
+
+一个使用 PrismJS 高亮代码块的案例。
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Waline highlighter 案例</title>
+    <script src="https://unpkg.com/@waline/client@v1/dist/waline.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@waline/client@v1/dist/waline.css"
+    />
+    <script src="https://unpkg.com/prismjs@v1" data-manual></script>
+    <script src="https://unpkg.com/prismjs@v1/plugins/autoloader/prism-autoloader.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/prismjs@v1/themes/prism-tomorrow.min.css"
+    />
+  </head>
+  <body>
+    <div id="waline" style="max-width: 800px; margin: 0 auto"></div>
+    <script>
+      const waline = Waline.init({
+        el: '#waline',
+        serverURL: 'https://waline.vercel.app',
+        path: '/',
+        highlighter: (code, lang) => {
+          if (!window.Prism.languages[lang]) {
+            window.Prism.plugins.autoloader.loadLanguages(lang);
+          }
+
+          return window.Prism.highlight(
+            code,
+            window.Prism.languages[lang] || window.Prism.languages.text,
+            lang
+          );
+        },
+      });
+    </script>
+  </body>
+</html>
 ```
 
-你可以设置为 `false` 以禁用代码高亮功能。
+:::
 
 ## texRenderer
 
-- 类型: `(blockMode: boolean, tex: string) => string | false`
+- 类型: `WalineTexRenderer | false`
 - 必填: 否
+- 详情:
 
-自定义数学公式的渲染方法，方便更好的预览数学公式。更多请参考 [KaTeX API](https://katex.org/docs/api.html#server-side-rendering-or-rendering-to-a-string) 或 [MathJax API](http://docs.mathjax.org/en/latest/web/typeset.html#converting-a-math-string-to-other-formats)。
+  ```ts
+  type WalineTexRenderer = (blockMode: boolean, tex: string) => string;
+  ```
 
-你可以设置为 `false` 以禁止预览数学公式。
+自定义 $\TeX$ 渲染，默认行为是提示预览模式不支持 $\TeX$。函数提供两个参数，第一个参数表示渲染模式是否为块级，第二个参数是 $\TeX$ 的字符串，并返回一段 HTML 字符串作为渲染结果。
+
+你可以自行引入 $\TeX$ 渲染器并提供预览渲染，建议使用 Katex 或 MathJax，也可以设置为 `false` 以禁止渲染 $\TeX$。更多请参考 [KaTeX API](https://katex.org/docs/api.html#server-side-rendering-or-rendering-to-a-string) 或 [MathJax API](http://docs.mathjax.org/en/latest/web/typeset.html#converting-a-math-string-to-other-formats)。
+
+::::: details 案例
+
+:::: code-group
+
+::: code-group-item KaTex
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Waline highlighter 案例</title>
+    <script src="https://unpkg.com/@waline/client@v1/dist/waline.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@waline/client@v1/dist/waline.css"
+    />
+    <script src="https://unpkg.com/katex@v0.15"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/katex@v0.15/dist/katex.min.css"
+    />
+  </head>
+  <body>
+    <div id="waline" style="max-width: 800px; margin: 0 auto"></div>
+    <script>
+      const waline = Waline.init({
+        el: '#waline',
+        serverURL: 'https://waline.vercel.app',
+        path: '/',
+        lang: 'en-US',
+        texRenderer: (blockmode, tex) =>
+          window.katex.renderToString(tex, {
+            displayMode: blockmode,
+            throwOnError: false,
+          }),
+      });
+    </script>
+  </body>
+</html>
+```
+
+:::
+
+::: code-group-item MathJax
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Waline highlighter 案例</title>
+    <script src="https://unpkg.com/@waline/client@v1/dist/waline.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@waline/client@v1/dist/waline.css"
+    />
+    <script src="https://unpkg.com/mathjax@v3/es5/tex-svg.js"></script>
+  </head>
+  <body>
+    <div id="waline" style="max-width: 800px; margin: 0 auto"></div>
+    <script>
+      const waline = Waline.init({
+        el: '#waline',
+        serverURL: 'https://waline.vercel.app',
+        path: '/',
+        lang: 'en-US',
+        texRenderer: (blockmode, tex) =>
+          window.MathJax.startup.adaptor.outerHTML(
+            window.MathJax.tex2svg(tex, {
+              display: blockmode,
+            })
+          ),
+      });
+    </script>
+  </body>
+</html>
+```
+
+:::
+
+::::
+
+:::::
 
 ## copyright
 

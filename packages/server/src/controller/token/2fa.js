@@ -47,7 +47,7 @@ module.exports = class extends BaseRest {
     });
 
     if (!verified) {
-      return this.fail('TWO_FACTOR_AUTH_ERROR_DETAIL');
+      return this.fail(this.locale('TWO_FACTOR_AUTH_ERROR_DETAIL'));
     }
 
     const userModel = this.service(

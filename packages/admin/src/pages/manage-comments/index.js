@@ -404,6 +404,7 @@ export default function () {
                             link,
                             comment,
                             ip,
+                            addr,
                             url,
                             status,
                             rid,
@@ -562,8 +563,10 @@ export default function () {
                                       {mail}
                                     </a>
                                   </span>
-                                  <br />
+                                  {mail && <br />}
                                   <span>{ip}</span>
+                                  {ip && <br />}
+                                  <span>{addr}</span>
                                 </div>
                               </td>
                               <td valign="top" className="comment-body">

@@ -11,41 +11,28 @@ on:
 
 jobs:
   deploy-docs:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
+        os: [ubuntu-latest]
+
+    runs-on: ${{ matrix.os }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: restore node_modules
-        uses: actions/cache@v3
-        id: node-cache
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
         with:
-          path: |
-            node_modules
-            **/node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          version: 7
+          run_install: true
 
-      - name: Get npm cache directory path
-        if: steps.node-cache.outputs.cache-hit != 'true'
-        id: npm-cache-dir-path
-        run: echo "::set-output name=dir::$(npm config get cache)"
-
-      - name: npm-cache
-        if: steps.node-cache.outputs.cache-hit != 'true'
-        uses: actions/cache@v3
-        id: npm-cache
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
         with:
-          path: ${{ steps.npm-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-npm-${{ hashFiles('**/package.json') }}
-          restore-keys: |
-            ${{ runner.os }}-npm-
-
-      - name: Use npm v8
-        run: sudo npm i -g npm@8
-
-      - name: Install Deps
-        if: steps.node-cache.outputs.cache-hit != 'true'
-        run: npm i
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
 
       - name: Build client
         run: npm run client:build
@@ -54,7 +41,7 @@ jobs:
         run: npm run docs:build
 
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4.3.0
+        uses: JamesIves/github-pages-deploy-action@v4.3.3
         with:
           branch: gh-pages
           folder: docs/src/.vuepress/dist

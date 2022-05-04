@@ -11,7 +11,7 @@ We removed Waline's default export and instead provide the following exports:
 - `version`: version number
 - `commentCount`: number of updated comments
 - `pageviewCount`: update the number of visits
-- `widgets`: other widgets
+- `RecentComments`: recent comments
 
 We changed Waline's default export to `init` named export, and to make Waline SSR friendly, V2 exports CSS separately.
 
@@ -19,8 +19,8 @@ In most cases, this just means the following changes:
 
 ```diff
 - <script src='//cdn.jsdelivr.net/npm/@waline/client'></script>
-+ <script src='//cdn.jsdelivr.net/npm/@waline/client/dist/waline.js'></script>
-+ <link rel='style' href='//cdn.jsdelivr.net/npm/@waline/client/dist/waline.css' />
++ <script src='//unpkg.com/@waline/client@v2/dist/waline.js'></script>
++ <link href='//unpkg.com/@waline/client@v2/dist/waline.css' rel='stylesheet' />
 
   <script>
 -  Waline({
@@ -31,7 +31,7 @@ In most cases, this just means the following changes:
   </script>
 ```
 
-## New options
+## Options Added
 
 - The `comment` option supports setting strings as CSS selectors.
 - The `pageview` option supports setting strings as CSS selectors.
@@ -42,7 +42,7 @@ In most cases, this just means the following changes:
 
 - `highlight` renamed to `highlighter`
 
-- `texRenderer` renamed to `texRenderer`
+- `previewMath` renamed to `texRenderer`
 
 - `visitor` renamed to `pageview`
 

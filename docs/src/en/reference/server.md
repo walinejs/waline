@@ -26,6 +26,7 @@ Vercel needs to be set in `Settings` - `Environment Variables`.
 | `SITE_URL`              |          | site url                                                                                                                                    |
 | `SECURE_DOMAINS`        |          | Secure Domains config. Supports multiple domain with Comma separated                                                                        |
 | `DISABLE_USERAGENT`     |          | wether hide the user agent of commentor. Default value is `false`                                                                           |
+| `DISABLE_REGION`        |          | wether hide commentor's region. Default value is `false`                                                                                    |
 | `DISABLE_AUTHOR_NOTIFY` |          | wether disable author notification                                                                                                          |
 | `AKISMET_KEY`           |          | Akismet antispam service key, default is open, set `false` if you wanna close it.                                                           |
 | `COMMENT_AUDIT`         |          | Comment audit switcher. We recommend to tip on the placeholder text if it's true.                                                           |
@@ -33,6 +34,8 @@ Vercel needs to be set in `Settings` - `Environment Variables`.
 | `AVATAR_PROXY`          |          | Avatar proxy service url, default is `https://avatar.75cdn.workers.dev`. You can set `false` to close it                                    |
 | `GRAVATAR_STR`          |          | Gravatar render string，default is <span v-pre>`https://seccdn.libravatar.org/avatar/{{mail\|md5}}`</span>，base on nunjucks template       |
 | `OAUTH_URL`             |          | OAuth Social Login Service URL，default is `https://user.75.team`. Also you can custom build with [auth](https://github.com/walinejs/auth). |
+| `WEBHOOK`               |          | You can set a Webhook URL that will be triggered when you have new comment.                                                                 |
+| `LEVELS`                |          | Give each user a rating label based on the number of comments                                                                               |
 
 ### Markdown
 
@@ -46,6 +49,36 @@ Vercel needs to be set in `Settings` - `Environment Variables`.
 | `MARKDOWN_TEX`        | Service to parse math, `'mathjax'` by default (also can be `false` \| `'katex'`) |
 | `MARKDOWN_MATHJAX`    | MathJax Options                                                                  |
 | `MARKDOWN_KATEX`      | Katex Options                                                                    |
+
+### Level Label
+
+According to the set rating conditions and the number of user comments, a level label will be added to the commenter. This feature is disabled by default and can be enabled by configuring the environment variable `LEVELS`. The configuration is in the form of a comma concatenation of a given number, for example `0,10,20,50,100,200` means:
+
+| Grades | Conditions         | Default Grade Labels |
+| ------ | ------------------ | -------------------- |
+| 0      | 0 <= count < 10    | Dwarves              |
+| 1      | 10 <= count < 20   | Hobbits              |
+| 2      | 20 <= count < 50   | Ents                 |
+| 3      | 50 <= count < 100  | Wizards              |
+| 4      | 100 <= count < 200 | Elves                |
+| 5      | 200 <= count       | Maiar                |
+
+In addition to customizing the level judgment rules, we can also customize the level label. Configure the text in the client as follows:
+
+```js
+new Waline({
+  locale: {
+    level0: 'Dwarves',
+    level1: 'Hobbits',
+    level2: 'Ents',
+    level3: 'Wizards',
+    level4: 'Elves',
+    level5: 'Maiar',
+  },
+});
+```
+
+By default, only 6 levels of copywriting are provided, but it does not mean that there can only be 6 levels. The specific level cap is based on the level judgment rules you set. To add a new level, it is recommended to configure the label text corresponding to the level by yourself. If no label text is provided, the default label text such as `Level 10` will be displayed by default.
 
 ### Database
 

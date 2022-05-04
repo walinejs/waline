@@ -7,7 +7,7 @@ Waline provides several versions of client files. You can introduce Waline in a 
 
 ## Via CDN
 
-Recommend to use [jsdelivr](https://cdn.jsdelivr.net/npm/@waline/client/).
+Recommend to use [jsdelivr](https://unpkg.com/@waline/client/).
 
 :::: code-group
 
@@ -15,16 +15,19 @@ Recommend to use [jsdelivr](https://cdn.jsdelivr.net/npm/@waline/client/).
 
 ```html
 <!-- Scripts -->
-<script src="//cdn.jsdelivr.net/npm/@waline/client/dist/waline.js"></script>
+<script src="https://unpkg.com/@waline/client@v2/dist/waline.js"></script>
 <!-- Styles -->
-<link rel="style" href="//cdn.jsdelivr.net/@waline/client/dist/waline.css" />
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/@waline/client@v2/dist/waline.css"
+/>
 ```
 
 ::: code-group-item Pageview Only
 
 ```html
 <!-- Pageview -->
-<script src="//cdn.jsdelivr.net/npm/@waline/client/dist/pageview.js"></script>
+<script src="https://unpkg.com/@waline/client/dist/pageview.js"></script>
 ```
 
 :::
@@ -37,7 +40,7 @@ For CDN links, if you don't specify a version number, it will be latest version,
 
 ```html
 <!-- You need to modify and replace `next` with the version number you want -->
-<script src="//cdn.jsdelivr.net/npm/@waline/client/dist/waline.js"></script>
+<script src="https://unpkg.com/@waline/client@v2/dist/waline.js"></script>
 ```
 
 :::
@@ -112,9 +115,8 @@ You can import the required files in various forms and use them, the following i
 
 ::: code-group-item JS
 
-```js {2,4,6-9}:line-numbers
+```js
 import { init } from '@waline/client';
-
 import '@waline/client/dist/waline.css';
 
 init({
@@ -127,9 +129,8 @@ init({
 
 ::: code-group-item TS
 
-```ts {2,4,6-9}:line-numbers
+```ts
 import { init } from '@waline/client';
-
 import '@waline/client/dist/waline.css';
 
 init({

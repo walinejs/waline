@@ -1,15 +1,53 @@
-import { fetchRecentComment, getRoot, getUserInfo } from '../utils';
+import { useUserInfo } from '../composables';
+import { fetchRecentComment, getRoot } from '../utils';
 
 import type { WalineComment } from '../typings';
 
-export interface RecentCommentsOptions {
+export interface WalineRecentCommentsOptions {
+  /**
+   * Waline 服务端地址
+   *
+   * Waline serverURL
+   */
   serverURL: string;
+
+  /**
+   * 获取最新评论的数量
+   *
+   * fetch number of latest comments
+   */
   count: number;
+
+  /**
+   * 需要挂载的元素
+   *
+   * Element to be mounted
+   */
   el?: string | HTMLElement;
+
+  /**
+   * 错误提示消息所使用的语言
+   *
+   * Language of error message
+   *
+   * @default 'zh-CN'
+   */
+  lang?: string;
 }
 
-export interface RecentCommentsResult {
+export interface WalineRecentCommentsResult {
+  /**
+   * 评论数据
+   *
+   * Comment Data
+   */
   comments: WalineComment[];
+
+  /**
+   * 取消挂载挂件
+   *
+   * Umount widget
+   */
   destroy: () => void;
 }
 
@@ -17,15 +55,18 @@ export const RecentComments = ({
   el,
   serverURL,
   count,
-}: RecentCommentsOptions): Promise<RecentCommentsResult> => {
+  lang = 'zh-CN',
+}: WalineRecentCommentsOptions): Promise<WalineRecentCommentsResult> => {
+  const userInfo = useUserInfo();
   const root = getRoot(el);
   const controller = new AbortController();
 
   return fetchRecentComment({
     serverURL,
     count,
+    lang,
     signal: controller.signal,
-    token: getUserInfo()?.token,
+    token: userInfo.value?.token,
   }).then((comments) => {
     if (root && comments.length) {
       root.innerHTML = `<ul class="wl-recent-list">${comments

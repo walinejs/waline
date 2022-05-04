@@ -1,4 +1,4 @@
 export * from '../init';
-export * from '../config';
+export { defaultLocales } from '../config';
 export * from '../typings';
 export * from '../version';

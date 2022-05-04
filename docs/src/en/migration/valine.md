@@ -10,8 +10,8 @@ Since Waline completely reuses Valine's data structure in storage, migrating fro
 
    ```diff
    - <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
-   + <script src='//cdn.jsdelivr.net/npm/@waline/client/dist/waline.js'></script>
-   + <link rel='style' href='//cdn.jsdelivr.net/npm/@waline/client/dist/waline.css' />
+   + <script src='//unpkg.com/@waline/client@v2/dist/waline.js'></script>
+   + <link href='//unpkg.com/@waline/client@v2/dist/waline.css' rel='stylesheet' />
 
      <script>
    -  new Valine({
@@ -55,3 +55,7 @@ If you want to migrate your Valine data to Tencent Cloud Database, you can use t
 Paste the content of export file into the textarea below, and click the convert button to obtain the file to be imported. Enter the [Tencent Cloud Development Backend → Database](https://console.cloud.tencent.com/tcb/db/index) page and select the `Comment` collection. If the collection doesn't exist, click <kbd>New Collection</kbd> in the upper left corner to create it. Click the import button above, select the converted file and wait a while to complete importing.
 
 <MigrationTool />
+
+<script setup lang="ts">
+import MigrationTool from '@MigrationTool';
+</script>

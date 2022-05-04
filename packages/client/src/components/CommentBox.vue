@@ -42,7 +42,7 @@
             :class="['wl-input', `wl-${kind}`]"
             :name="kind"
             :type="kind === 'mail' ? 'email' : 'text'"
-            v-model="inputs[kind]"
+            v-model="userMeta[kind]"
           />
         </div>
       </div>
@@ -52,16 +52,14 @@
         ref="editorRef"
         id="wl-edit"
         :placeholder="replyUser ? `@${replyUser}` : locale.placeholder"
-        v-model="inputs.editor"
+        v-model="editor"
         @keydown="onKeyDown"
         @drop="onDrop"
         @paste="onPaste"
       />
 
-      <div
-        class="wl-preview"
-        :style="{ display: showPreview ? 'block' : 'none' }"
-      >
+      <div class="wl-preview" v-show="showPreview">
+        <hr />
         <h4>{{ locale.preview }}:</h4>
         <div class="wl-content" v-html="previewText" />
       </div>
@@ -80,6 +78,7 @@
           </a>
 
           <button
+            v-show="emoji.tabs.length"
             ref="emojiButtonRef"
             class="wl-action"
             :class="{ actived: showEmoji }"
@@ -230,18 +229,19 @@ import {
   PreviewIcon,
   LoadingIcon,
 } from './Icons';
-import { useInputs, useUserInfo } from '../composables';
+import { useEditor, useUserMeta, useUserInfo } from '../composables';
 import {
   getImagefromDataTransfer,
   parseMarkdown,
   getWordNumber,
   parseEmoji,
   postComment,
+  getEmojis,
 } from '../utils';
 
 import type { ComputedRef, DeepReadonly } from 'vue';
 import type { WalineCommentData, WalineImageUploader } from '../typings';
-import type { Config, EmojiConfig } from '../utils';
+import type { WalineConfig, WalineEmojiConfig } from '../utils';
 
 export default defineComponent({
   name: 'CommentBox',
@@ -273,10 +273,13 @@ export default defineComponent({
   emits: ['submit', 'cancel-reply'],
 
   setup(props, { emit }) {
-    const config = inject<ComputedRef<Config>>('config') as ComputedRef<Config>;
+    const config = inject<ComputedRef<WalineConfig>>(
+      'config'
+    ) as ComputedRef<WalineConfig>;
 
-    const { inputs, store } = useInputs();
-    const { userInfo, setUserInfo } = useUserInfo();
+    const editor = useEditor();
+    const userMeta = useUserMeta();
+    const userInfo = useUserInfo();
 
     const inputRefs = ref<Record<string, HTMLInputElement>>({});
     const editorRef = ref<HTMLTextAreaElement | null>(null);
@@ -284,7 +287,7 @@ export default defineComponent({
     const emojiButtonRef = ref<HTMLDivElement | null>(null);
     const emojiPopupRef = ref<HTMLDivElement | null>(null);
 
-    const emoji = ref<DeepReadonly<EmojiConfig>>({ tabs: [], map: {} });
+    const emoji = ref<DeepReadonly<WalineEmojiConfig>>({ tabs: [], map: {} });
     const emojiTabIndex = ref(0);
     const showEmoji = ref(false);
     const showPreview = ref(false);
@@ -310,7 +313,7 @@ export default defineComponent({
       const endPosition = textArea.selectionEnd || 0;
       const scrollTop = textArea.scrollTop;
 
-      inputs.editor =
+      editor.value =
         textArea.value.substring(0, startPosition) +
         content +
         textArea.value.substring(endPosition, textArea.value.length);
@@ -335,7 +338,7 @@ export default defineComponent({
       return Promise.resolve()
         .then(() => (config.value.imageUploader as WalineImageUploader)(file))
         .then((url) => {
-          inputs.editor = inputs.editor.replace(
+          editor.value = editor.value.replace(
             uploadText,
             `\r\n![${file.name}](${url})`
           );
@@ -376,9 +379,9 @@ export default defineComponent({
 
       const comment: WalineCommentData = {
         comment: content.value,
-        nick: inputs.nick,
-        mail: inputs.mail,
-        link: inputs.link,
+        nick: userMeta.value.nick,
+        mail: userMeta.value.mail,
+        link: userMeta.value.link,
         ua: navigator.userAgent,
         url: config.value.path,
       };
@@ -393,16 +396,19 @@ export default defineComponent({
         if (login === 'force') return;
 
         // check nick
-        if (
-          (requiredMeta.indexOf('nick') > -1 || comment.nick) &&
-          !comment.nick
-        ) {
+        if (requiredMeta.indexOf('nick') > -1 && !comment.nick) {
           inputRefs.value.nick?.focus();
           return alert(locale.value.nickError);
         }
 
         // check mail
-        if (requiredMeta.indexOf('mail') > -1 && !comment.mail) {
+        if (
+          (requiredMeta.indexOf('mail') > -1 && !comment.mail) ||
+          (comment.mail &&
+            !/^\w(?:[\w._-]*\w)?@(?:\w(?:[\w-]*\w)?\.){0,2}\w+$/.exec(
+              comment.mail
+            ))
+        ) {
           inputRefs.value.mail?.focus();
           return alert(locale.value.mailError);
         }
@@ -443,18 +449,12 @@ export default defineComponent({
         .then((resp) => {
           isSubmitting.value = false;
 
-          store.update({
-            nick: comment.nick,
-            link: comment.link,
-            mail: comment.mail,
-          });
-
           if (resp.errmsg) return alert(resp.errmsg);
 
           // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           emit('submit', resp.data!);
 
-          inputs.editor = '';
+          editor.value = '';
 
           previewText.value = '';
 
@@ -490,7 +490,7 @@ export default defineComponent({
 
         if (data.data.token) {
           handler?.close();
-          setUserInfo(data.data);
+          userInfo.value = data.data;
           (data.data.remember ? localStorage : sessionStorage).setItem(
             'WALINE_USER',
             JSON.stringify(data.data)
@@ -504,7 +504,7 @@ export default defineComponent({
     };
 
     const onLogout = (): void => {
-      setUserInfo({});
+      userInfo.value = {};
       localStorage.setItem('WALINE_USER', 'null');
       sessionStorage.setItem('WALINE_USER', 'null');
     };
@@ -531,7 +531,8 @@ export default defineComponent({
       const receiver = ({ data }: any): void => {
         if (!data || data.type !== 'profile') return;
 
-        setUserInfo(Object.assign({}, userInfo.value, data));
+        userInfo.value = { ...userInfo.value, ...data };
+
         [localStorage, sessionStorage]
           .filter((store) => store.getItem('WALINE_USER'))
           .forEach((store) =>
@@ -550,37 +551,6 @@ export default defineComponent({
       )
         showEmoji.value = false;
     };
-
-    // watch editor
-    watch(
-      () => inputs.editor,
-      (value) => {
-        const { highlighter, texRenderer } = config.value;
-
-        content.value = value;
-        previewText.value = parseMarkdown(value, {
-          emojiMap: emoji.value.map,
-          highlighter,
-          texRenderer,
-        });
-        wordNumber.value = getWordNumber(value);
-
-        if (editorRef.value)
-          if (value) autosize(editorRef.value);
-          else autosize.destroy(editorRef.value);
-      },
-      { immediate: true }
-    );
-
-    // watch emoji value change
-    watch(
-      () => config.value.emoji,
-      (emojiConfig) =>
-        emojiConfig.then((config) => {
-          emoji.value = config;
-        }),
-      { immediate: true }
-    );
 
     // update wordNumber
     watch(
@@ -609,6 +579,40 @@ export default defineComponent({
 
     onMounted(() => {
       document.body.addEventListener('click', popupHandler);
+
+      // watch editor
+      watch(
+        () => editor.value,
+        (value) => {
+          const { highlighter, texRenderer } = config.value;
+
+          content.value = value;
+          previewText.value = parseMarkdown(value, {
+            emojiMap: emoji.value.map,
+            highlighter,
+            texRenderer,
+          });
+          wordNumber.value = getWordNumber(value);
+
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          if (value) autosize(editorRef.value!);
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          else autosize.destroy(editorRef.value!);
+        },
+        { immediate: true }
+      );
+
+      // watch emoji value change
+      watch(
+        () => config.value.emoji,
+        (emojiConfig) =>
+          getEmojis(Array.isArray(emojiConfig) ? emojiConfig : []).then(
+            (config) => {
+              emoji.value = config;
+            }
+          ),
+        { immediate: true }
+      );
     });
 
     onUnmounted(() => {
@@ -641,7 +645,8 @@ export default defineComponent({
       isWordNumberLegal,
 
       // inputs
-      inputs,
+      editor,
+      userMeta,
 
       // emoji
       emoji,

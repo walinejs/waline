@@ -1,11 +1,17 @@
-// commento 数据结构转 leancloud
-export const commento2lc = (input) => {
-  input = JSON.parse(input);
-  const comments = input.comments;
-  const commenters = {};
+/**
+ * commento 数据结构转 leancloud
+ */
 
-  if (Array.isArray(input.commenters)) {
-    input.commenters.forEach((commenter) => {
+export const commento2lc = (input) => {
+  const data = JSON.parse(input);
+
+  const { comments } = data;
+  const commenters = {};
+  const hexMaps = {};
+  const rootHexMaps = {};
+
+  if (Array.isArray(data.commenters)) {
+    data.commenters.forEach((commenter) => {
       commenters[commenter.commenterHex] = {
         nick: commenter.name,
         mail: commenter.email,
@@ -14,15 +20,11 @@ export const commento2lc = (input) => {
     });
   }
 
-  const hexMaps = {};
-
   comments
     .filter((comment) => comment.parentHex && comment.parentHex !== 'root')
     .forEach((comment) => {
       hexMaps[comment.commentHex] = comment.parentHex;
     });
-
-  const rootHexMaps = {};
 
   comments
     .filter((comment) => comment.parentHex && comment.parentHex !== 'root')
@@ -36,38 +38,45 @@ export const commento2lc = (input) => {
 
   return {
     results: comments
-      .filter((comment) => !comment.deleted)
-      .map((comment) => {
-        const commenter = commenters[comment.commenterHex]
-          ? commenters[comment.commenterHex]
-          : {
-              nick: 'Anonymous',
-              mail: '',
-              link: '',
-            };
+      .filter(({ deleted }) => !deleted)
+      .map(
+        ({
+          commentHex,
+          commenterHex,
+          parentHex,
+          creationDate,
+          html,
+          markdown,
+          url,
+          state,
+        }) => {
+          const commenter = commenters[commenterHex] || {
+            nick: 'Anonymous',
+            mail: '',
+            link: '',
+          };
 
-        return Object.assign(
-          {
-            objectId: comment.commentHex,
-            QQAvatar: '',
-            comment: comment.html || comment.markdown,
-            insertedAt: {
-              __type: 'Date',
-              iso: comment.creationDate,
+          return Object.assign(
+            {
+              objectId: commentHex,
+              QQAvatar: '',
+              comment: html || markdown,
+              insertedAt: {
+                __type: 'Date',
+                iso: creationDate,
+              },
+              createdAt: creationDate,
+              updatedAt: creationDate,
+              ip: '',
+              ua: '',
+              url: url,
+              pid: parentHex !== 'root' ? parentHex : '',
+              rid: rootHexMaps[commentHex] ? rootHexMaps[commentHex] : '',
+              status: state === 'approved' ? 'approved' : 'waiting',
             },
-            createdAt: comment.creationDate,
-            updatedAt: comment.creationDate,
-            ip: '',
-            ua: '',
-            url: comment.url,
-            pid: comment.parentHex !== 'root' ? comment.parentHex : '',
-            rid: rootHexMaps[comment.commentHex]
-              ? rootHexMaps[comment.commentHex]
-              : '',
-            status: comment.state === 'approved' ? 'approved' : 'waiting',
-          },
-          commenter
-        );
-      }),
+            commenter
+          );
+        }
+      ),
   };
 };
