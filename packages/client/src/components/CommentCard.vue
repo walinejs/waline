@@ -41,6 +41,7 @@
         </button>
       </div>
       <div class="wl-meta" aria-hidden="true">
+        <span v-if="comment.addr" v-text="comment.addr" />
         <span v-if="comment.browser" v-text="comment.browser" />
         <span v-if="comment.os" v-text="comment.os" />
       </div>
