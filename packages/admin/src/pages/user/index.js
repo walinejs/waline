@@ -1,5 +1,4 @@
-import React, { useEffect, useReducer, useRef, useState } from 'react';
-import cls from 'classnames';
+import React, { useEffect, useState } from 'react';
 import Header from '../../components/Header';
 import Paginator from '../../components/Paginator';
 import { useTranslation } from 'react-i18next';
