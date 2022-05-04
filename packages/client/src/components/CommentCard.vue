@@ -25,7 +25,7 @@
         <span v-if="comment.sticky" class="wl-badge" v-text="locale.sticky" />
         <span
           v-if="comment.level >= 0"
-          class="wl-badge"
+          :class="`wl-badge level${comment.level}`"
           v-text="locale[`level${comment.level}`] || `Level ${comment.level}`"
         />
 
