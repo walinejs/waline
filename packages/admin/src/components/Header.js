@@ -44,6 +44,9 @@ export default function () {
                 <Link to={basepath + '/ui'}>{t('comment')}</Link>
               </li>
               <li className="last">
+                <Link to={basepath + '/ui/user'}>{t('user')}</Link>
+              </li>
+              <li className="last">
                 <Link to={basepath + '/ui/migration'}>{t('migration')}</Link>
               </li>
             </ul>

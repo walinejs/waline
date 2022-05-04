@@ -82,5 +82,17 @@
   "get new password": "获取新密码",
   "you will receive an email which contains a link to create new password": "您会收到一封包含创建新密码链接的电子邮件。",
   "find password success! please go to your mailbox to reset it!": "重置密码邮件发送成功，请去邮箱中查收！",
-  "find password error! try again later": "重置密码邮件发送失败，请稍后再试！"
+  "find password error! try again later": "重置密码邮件发送失败，请稍后再试！",
+  "set administrator": "成为管理员",
+  "set guest": "成为普通用户",
+  "set label": "设置专属标签",
+  "verify": "待认证",
+  "administrator": "管理员",
+  "guest": "普通用户",
+  "user": "用户",
+  "manage users": "管理用户",
+  "role": "角色",
+  "exclusive label": "专属标签",
+  "You can't set yourself to be guest!": "你不能将自己设置为普通用户！",
+  "please enter an exclusive label": "请输入专属标签"
 }

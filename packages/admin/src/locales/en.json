@@ -82,5 +82,17 @@
   "get new password": "Get a new password",
   "you will receive an email which contains a link to create new password": "You'll receive an email which contains a link to create new password.",
   "find password success! please go to your mailbox to reset it!": "The reset password email has been sent successfully, please check it in your mailbox!",
-  "find password error! try again later": "Failed to send reset password email, please try again later!"
+  "find password error! try again later": "Failed to send reset password email, please try again later!",
+  "set administrator": "Set Admin",
+  "set guest": "Set Guest",
+  "set label": "Set Label",
+  "verify": "Under verification",
+  "administrator": "Administrator",
+  "guest": "Guest",
+  "user": "User",
+  "manage users": "Manage Users",
+  "role": "Role",
+  "exclusive label": "Exclusive Label",
+  "You can't set yourself to be guest!": "You can't set yourself to be guest!",
+  "please enter an exclusive label": "Please enter an exclusive label"
 }

@@ -12,3 +12,14 @@ export function gen2FAToken(data) {
 export function updateProfile(data) {
   return request({ url: 'user', method: 'PUT', body: data });
 }
+
+export function getUserList({ page }) {
+  return request({
+    url: `user?page=${page}`,
+    method: 'GET',
+  });
+}
+
+export function updateUser({ id, ...data }) {
+  return request({ url: `user/${id}`, method: 'PUT', body: data });
+}
