@@ -178,8 +178,11 @@ importers:
       react-i18next: ^11.16.7
       react-redux: ^8.0.1
       react-router-dom: ^6.3.0
+      redux: ^4.2.0
+    dependencies:
+      redux: 4.2.0
     devDependencies:
-      '@rematch/core': 2.2.0
+      '@rematch/core': 2.2.0_redux@4.2.0
       '@svgr/webpack': 6.2.1
       classnames: 2.3.1
       i18next: 21.6.16
@@ -189,7 +192,7 @@ importers:
       react: 18.1.0
       react-dom: 18.1.0_react@18.1.0
       react-i18next: 11.16.7_47hlnquejirkg3ammbyc66ijei
-      react-redux: 8.0.1_ef5jwxihqo6n7gxfmzogljlgcm
+      react-redux: 8.0.1_zi7aoi7ced5urpsfm5fjpojgnm
       react-router-dom: 6.3.0_ef5jwxihqo6n7gxfmzogljlgcm
 
   packages/client:
@@ -3362,11 +3365,13 @@ packages:
     resolution: {integrity: sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==}
     dev: true
 
-  /@rematch/core/2.2.0:
+  /@rematch/core/2.2.0_redux@4.2.0:
     resolution: {integrity: sha512-Sj3nC/2X+bOBZeOf4jdJ00nhCcx9wLbVK9SOs6eFR4Y1qKXqRY0hGigbQgfTpCdjRFlwTHHfN3m41MlNvMhDgw==}
     engines: {node: '>=10'}
     peerDependencies:
       redux: '>=4'
+    dependencies:
+      redux: 4.2.0
     dev: true
 
   /@rollup/plugin-babel/5.3.1_kivsufgsujm4mhgsob5j5hyz44:
@@ -13902,7 +13907,7 @@ packages:
     resolution: {integrity: sha512-Fl7FuabXsJnV5Q1qIOQwx/sagGF18kogb4gpfcG4gjLBWO0WDiiz1ko/ExayuxE7InyQkBLkxRFG5oxY6Uu3Kg==}
     dev: true
 
-  /react-redux/8.0.1_ef5jwxihqo6n7gxfmzogljlgcm:
+  /react-redux/8.0.1_zi7aoi7ced5urpsfm5fjpojgnm:
     resolution: {integrity: sha512-LMZMsPY4DYdZfLJgd7i79n5Kps5N9XVLCJJeWAaPYTV+Eah2zTuBjTxKtNEbjiyitbq80/eIkm55CYSLqAub3w==}
     peerDependencies:
       '@types/react': ^16.8 || ^17.0 || ^18.0
@@ -13930,6 +13935,7 @@ packages:
       react: 18.1.0
       react-dom: 18.1.0_react@18.1.0
       react-is: 18.1.0
+      redux: 4.2.0
       use-sync-external-store: 1.1.0_react@18.1.0
     dev: true
 
@@ -14113,6 +14119,12 @@ packages:
       indent-string: 4.0.0
       strip-indent: 3.0.0
     dev: true
+
+  /redux/4.2.0:
+    resolution: {integrity: sha512-oSBmcKKIuIR4ME29/AeNUnl5L+hvBq7OaJWzaptTQJAntaPvxIJqfnjbaEiCzzaIz+XmVILfqAM3Ob0aXLPfjA==}
+    dependencies:
+      '@babel/runtime': 7.17.9
+    dev: false
 
   /regenerate-unicode-properties/10.0.1:
     resolution: {integrity: sha512-vn5DU6yg6h8hP/2OkQo3K7uVILvY4iu0oI4t3HFa81UPkhGJwkRwM10JEc3upjdhHjs/k8GJY1sRBhk5sr69Bw==}
