@@ -59,7 +59,11 @@ module.exports = {
 
     try {
       const search = helper.promisify(regionSearch.btreeSearch, regionSearch);
-      const { region } = await search(ip);
+      const result = await search(ip);
+      if (!result) {
+        return '';
+      }
+      const { region } = result;
       const [, , province, city, isp] = region.split('|');
       const address = Array.from(new Set([province, city, isp]));
       return address.slice(0, depth).join(' ');
