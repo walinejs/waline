@@ -144,7 +144,7 @@ Waline 的服务端地址。
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Waline highlighter 案例</title>
+    <title>Waline imageUploader 案例</title>
     <script src="https://unpkg.com/@waline/client@v1/dist/waline.js"></script>
     <link
       rel="stylesheet"

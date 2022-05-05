@@ -130,9 +130,57 @@ number of comments per page.
   type WalineImageUploader = (image: File) => Promise<string>;
   ```
 
-Custom image upload method. The function should receive an image object and return a Promise that provides the image address.
+Custom image upload method. The default behavior is to embed images Base 64 encoded, you can set this to `false` to disable image uploading.
 
-The default behavior is to embed images Base 64 encoded, you can set this to `false` to disable image uploading.
+The function should receive an image object and return a Promise that provides the image address.
+
+::: details Demo
+
+A demo using api of `lsky - pro`.
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Waline imageUploader demo</title>
+    <script src="https://unpkg.com/@waline/client@v1/dist/waline.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@waline/client@v1/dist/waline.css"
+    />
+    <script src="https://unpkg.com/katex@v0.15"></script>
+  </head>
+  <body>
+    <div id="waline" style="max-width: 800px; margin: 0 auto"></div>
+    <script>
+      const waline = Waline.init({
+        el: '#waline',
+        serverURL: 'https://waline.vercel.app',
+        path: '/',
+        lang: 'en-US',
+        imageUploader: function(file) {
+          let formData = new FormData();
+          let headers = new Headers();
+
+          formData.append('file', file);
+          headers.append('Authorization', '!{API TOKEN}');
+          headers.append('Accept', 'application/json');
+
+          return fetch('!{API URL}', {
+            method: 'POST',
+            headers: headers,
+            body: formData
+          }).then(resp => resp.json()).then(resp => resp.data.links.url);
+        }
+      });
+    </script>
+  </body>
+</html>
+```
+
+:::
 
 ## highlighter
 
