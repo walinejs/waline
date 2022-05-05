@@ -159,7 +159,7 @@ A demo using api of `lsky - pro`.
         serverURL: 'https://waline.vercel.app',
         path: '/',
         lang: 'en-US',
-        imageUploader: function(file) {
+        imageUploader: function (file) {
           let formData = new FormData();
           let headers = new Headers();
 
@@ -170,9 +170,11 @@ A demo using api of `lsky - pro`.
           return fetch('!{API URL}', {
             method: 'POST',
             headers: headers,
-            body: formData
-          }).then(resp => resp.json()).then(resp => resp.data.links.url);
-        }
+            body: formData,
+          })
+            .then((resp) => resp.json())
+            .then((resp) => resp.data.links.url);
+        },
       });
     </script>
   </body>
