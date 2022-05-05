@@ -30,10 +30,10 @@ jobs:
           cache: 'pnpm'
 
       - name: Build admin
-        run: npm run admin:build
+        run: pnpm admin:build
 
       - name: Build client
-        run: npm run client:build
+        run: pnpm client:build
 
   linter-test:
     strategy:
@@ -60,7 +60,7 @@ jobs:
           cache: 'pnpm'
 
       - name: Linter test
-        run: npm run lint:check
+        run: pnpm lint:check
 
   unit-test:
     strategy:
@@ -87,4 +87,4 @@ jobs:
           cache: 'pnpm'
 
       - name: Unit test
-        run: npm run test
+        run: pnpm test

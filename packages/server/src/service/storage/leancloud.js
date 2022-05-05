@@ -126,6 +126,88 @@ module.exports = class extends Base {
     return data;
   }
 
+  async _getCmtGroupByMailUserIdCache(key, where) {
+    if (this.tableName !== 'Comment' || key !== 'user_id_mail') {
+      return [];
+    }
+
+    const cacheTableName = `cache_group_count_${key}`;
+    const currentTableName = this.tableName;
+    this.tableName = cacheTableName;
+    const cacheData = await this.select({ _complex: where._complex });
+    this.tableName = currentTableName;
+    return cacheData;
+  }
+
+  async _setCmtGroupByMailUserIdCache(key, data) {
+    if (this.tableName !== 'Comment' || key !== 'user_id_mail') {
+      return;
+    }
+
+    const cacheTableName = `cache_group_count_${key}`;
+    const currentTableName = this.tableName;
+    this.tableName = cacheTableName;
+
+    await think.promiseAllQueue(
+      data.map((item) => {
+        if (item.user_id && !think.isString(item.user_id)) {
+          item.user_id = item.user_id.toString();
+        }
+        return this.add(item);
+      }),
+      1
+    );
+    this.tableName = currentTableName;
+  }
+
+  async _updateCmtGroupByMailUserIdCache(data, method) {
+    if (this.tableName !== 'Comment') {
+      return;
+    }
+
+    if (!data.user_id && !data.mail) {
+      return;
+    }
+
+    const cacheTableName = `cache_group_count_user_id_mail`;
+    const cacheData = await this.select({
+      _complex: {
+        _logic: 'or',
+        user_id: think.isObject(data.user_id)
+          ? data.user_id.toString()
+          : data.user_id,
+        mail: data.mail,
+      },
+    });
+    if (think.isEmpty(data)) {
+      return;
+    }
+
+    let count = cacheData[0].count;
+    switch (method) {
+      case 'add':
+        if (data.status === 'approved') {
+          count += 1;
+        }
+        break;
+      case 'udpate_status':
+        if (data.status === 'approved') {
+          count += 1;
+        } else {
+          count -= 1;
+        }
+        break;
+      case 'delete':
+        count -= 1;
+        break;
+    }
+
+    const currentTableName = this.tableName;
+    this.tableName = cacheTableName;
+    await this.update({ count }, { objectId: cacheData[0].objectId });
+    this.tableName = currentTableName;
+  }
+
   async count(where = {}, options = {}) {
     const instance = this.where(this.tableName, where);
     if (!options.group) {
@@ -137,7 +219,19 @@ module.exports = class extends Base {
       });
     }
 
-    // todo: query optimize
+    // get group count cache by group field where data
+    const cacheData = await this._getCmtGroupByMailUserIdCache(
+      options.group.join('_'),
+      where
+    );
+    const cacheDataMap = {};
+    for (let i = 0; i < cacheData.length; i++) {
+      const key = options.group
+        .map((item) => cacheData[i][item] || null)
+        .join('_');
+      cacheDataMap[key] = cacheData[i];
+    }
+
     const counts = [];
     const countsPromise = [];
     for (let i = 0; i < options.group.length; i++) {
@@ -152,6 +246,19 @@ module.exports = class extends Base {
       });
 
       for (let j = 0; j < where._complex[groupName][1].length; j++) {
+        const cacheKey = options.group
+          .map(
+            (item) =>
+              ({
+                ...groupFlatValue,
+                [groupName]: where._complex[groupName][1][j],
+              }[item] || null)
+          )
+          .join('_');
+        if (cacheDataMap[cacheKey]) {
+          continue;
+        }
+
         const groupWhere = {
           ...where,
           ...groupFlatValue,
@@ -172,8 +279,10 @@ module.exports = class extends Base {
       }
     }
 
-    await think.promiseAllQueue(countsPromise, 3);
-    return counts;
+    await think.promiseAllQueue(countsPromise, 1);
+    // cache data
+    await this._setCmtGroupByMailUserIdCache(options.group.join('_'), counts);
+    return [...cacheData, ...counts];
   }
 
   async add(
@@ -190,6 +299,7 @@ module.exports = class extends Base {
     instance.setACL(acl);
 
     const resp = await instance.save();
+    await this._updateCmtGroupByMailUserIdCache(data, 'add');
     return resp.toJSON();
   }
 
@@ -199,10 +309,15 @@ module.exports = class extends Base {
 
     return Promise.all(
       ret.map(async (item) => {
+        const _oldStatus = item.get('status');
         if (think.isFunction(data)) {
           item.set(data(item.toJSON()));
         } else {
           item.set(data);
+        }
+        const _newStatus = item.get('status');
+        if (_newStatus && _oldStatus !== _newStatus) {
+          await this._updateCmtGroupByMailUserIdCache(data, 'update_status');
         }
 
         const resp = await item.save();
@@ -214,6 +329,7 @@ module.exports = class extends Base {
   async delete(where) {
     const instance = this.where(this.tableName, where);
     const data = await instance.find();
+    await this._updateCmtGroupByMailUserIdCache(data, 'delete');
 
     return AV.Object.destroyAll(data);
   }

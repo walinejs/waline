@@ -35,10 +35,10 @@ jobs:
           cache: 'pnpm'
 
       - name: Build client
-        run: npm run client:build
+        run: pnpm client:build
 
       - name: Build docs
-        run: npm run docs:build
+        run: pnpm docs:build
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4.3.3

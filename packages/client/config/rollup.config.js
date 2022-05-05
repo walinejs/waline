@@ -141,7 +141,7 @@ export default [
       },
     ],
     ...commonOptions,
-    external: ['autosize', 'hanabi', 'marked', 'vue'],
+    external: ['autosize', 'marked', 'vue'],
   },
 
   // shim declaration files
@@ -169,7 +169,7 @@ export default [
         sourcemap: true,
       },
     ],
-    external: ['autosize', 'hanabi', 'marked', 'vue'],
+    external: ['autosize', 'marked', 'vue'],
     ...commonOptions,
   },
 

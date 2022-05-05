@@ -141,13 +141,7 @@ The default behavior is to embed images Base 64 encoded, you can set this to `fa
 - Details:
 
   ```ts
-  type WalineHighlighter =
-    | ((code: string, lang: string) => string)
-    | ((
-        code: string,
-        lang: string,
-        callback?: (error: unknown | undefined, code?: string) => void
-      ) => void);
+  type WalineHighlighter = (code: string, lang: string) => string;
   ```
 
 **Code highlighting**, use `hanabi` by default. The function passes in original content of code block and language of the code block. You should trigger the callback function or return a string directly.

@@ -1,6 +1,6 @@
 {
   "name": "@waline/client",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "description": "client for waline comment system",
   "keywords": [
     "valine",
@@ -57,11 +57,11 @@
     "src"
   ],
   "scripts": {
-    "build": "npm run rollup && npm run style",
+    "build": "pnpm rollup && pnpm style",
     "clean": "rimraf ./dist",
     "dev": "vite -c config/vite.config.js",
     "lint": "eslint --ext .ts,.vue .",
-    "prepublish": "npm run clean && npm run build",
+    "prepublish": "pnpm clean && pnpm build",
     "rollup": "rollup -c ./config/rollup.config.js",
     "style": "sass ./src/styles/index.scss ./dist/waline.css --style=compressed"
   },
@@ -82,7 +82,6 @@
   "dependencies": {
     "@vueuse/core": "^8.4.0",
     "autosize": "^5.0.1",
-    "hanabi": "^0.4.0",
     "marked": "^4.0.15",
     "vue": "^3.2.33"
   },

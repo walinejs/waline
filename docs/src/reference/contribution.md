@@ -19,23 +19,22 @@ icon: guide
 
    ::: warning
 
-   Node 14 及以下默认使用 npm@v6，你需要确保自己使用 npm@v8 版本:
+   请使用 pnpm 安装依赖:
 
    ```bash
-   # 保证自己的 npm 版本是 8
-   npm i -g npm@latest
+   npm i -g pnpm@latest
    ```
 
    :::
 
    ```bash
    cd waline
-   npm i
+   pnpm i
    ```
 
 ## 开发
 
-- 使用 `npm run client:dev` 启动 `@waline/client` 本地开发
+- 使用 `pnpm client:dev` 启动 `@waline/client` 本地开发
 
   ::: tip
 
@@ -43,7 +42,7 @@ icon: guide
 
   :::
 
-- 使用 `npm run server:dev` 启动 `@waline/server` 本地开发
+- 使用 `pnpm server:dev` 启动 `@waline/server` 本地开发
 
   ::: tip
 

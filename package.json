@@ -2,23 +2,17 @@
   "name": "waline",
   "version": "0.0.1",
   "private": true,
-  "workspaces": [
-    "docs/",
-    "example/",
-    "packages/*"
-  ],
   "scripts": {
     "admin:analyze": "npm --dir=packages/admin run analyze",
     "admin:build": "pnpm --dir=packages/admin run build",
     "admin:dev": "pnpm --dir=packages/admin run dev",
     "apidoc": "apidoc -i packages/server/src/logic -o docs/src/.vuepress/dist/api",
-    "build": "npm run admin:build && npm run client:build",
+    "build": "pnpm admin:build && pnpm client:build",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "clean": "lerna run clean --stream",
-    "client:analyze": "npm run analyze --dir=@waline/client",
     "client:build": "pnpm --dir=packages/client run rollup && pnpm --dir=packages/client run style",
     "client:dev": "pnpm --dir=packages/client run dev",
-    "docs:build": "pnpm --dir=docs run build && npm run apidoc",
+    "docs:build": "pnpm --dir=docs run build && pnpm apidoc",
     "docs:dev": "pnpm --dir=docs run dev",
     "lint": "eslint --fix . && prettier --check --write .",
     "lint:check": "eslint . && prettier --check .",
@@ -119,14 +113,9 @@
   "apidoc": {
     "title": "Waline API Documentation"
   },
-  "overrides": {
-    "docs": {
-      "@waline/client": "file:./packages/client"
-    }
-  },
   "pnpm": {
     "overrides": {
-      "@waline/client": "file:../packages/client"
+      "@waline/client": "workspace:*"
     }
   }
 }

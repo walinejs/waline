@@ -43,12 +43,6 @@ export type WalineMeta = 'nick' | 'mail' | 'link';
 
 export type WalineImageUploader = (image: File) => Promise<string>;
 
-export type WalineHighlighter =
-  | ((code: string, lang: string) => string)
-  | ((
-      code: string,
-      lang: string,
-      callback?: (error: unknown | undefined, code?: string) => void
-    ) => void);
+export type WalineHighlighter = (code: string, lang: string) => string;
 
 export type WalineTexRenderer = (blockMode: boolean, tex: string) => string;

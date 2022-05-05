@@ -26,7 +26,6 @@ updates:
       - dependency-name: '@types/marked'
       - dependency-name: '@vue/compiler-sfc'
       - dependency-name: autosize
-      - dependency-name: hanabi
       - dependency-name: marked
       - dependency-name: mitt
       - dependency-name: vue
