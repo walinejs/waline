@@ -204,7 +204,14 @@ module.exports = class extends Base {
 
     const currentTableName = this.tableName;
     this.tableName = cacheTableName;
-    await this.update({ count }, { objectId: cacheData[0].objectId });
+    await this.update({ count }, { objectId: cacheData[0].objectId }).catch(
+      (e) => {
+        if (e.code === 101) {
+          return;
+        }
+        throw e;
+      }
+    );
     this.tableName = currentTableName;
   }
 
@@ -227,7 +234,7 @@ module.exports = class extends Base {
     const cacheDataMap = {};
     for (let i = 0; i < cacheData.length; i++) {
       const key = options.group
-        .map((item) => cacheData[i][item] || null)
+        .map((item) => cacheData[i][item] || undefined)
         .join('_');
       cacheDataMap[key] = cacheData[i];
     }
@@ -242,7 +249,7 @@ module.exports = class extends Base {
 
       const groupFlatValue = {};
       options.group.slice(0, i).forEach((group) => {
-        groupFlatValue[group] = null;
+        groupFlatValue[group] = undefined;
       });
 
       for (let j = 0; j < where._complex[groupName][1].length; j++) {
@@ -252,7 +259,7 @@ module.exports = class extends Base {
               ({
                 ...groupFlatValue,
                 [groupName]: where._complex[groupName][1][j],
-              }[item] || null)
+              }[item] || undefined)
           )
           .join('_');
         if (cacheDataMap[cacheKey]) {
