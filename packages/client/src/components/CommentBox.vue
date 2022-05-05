@@ -405,9 +405,7 @@ export default defineComponent({
         if (
           (requiredMeta.indexOf('mail') > -1 && !comment.mail) ||
           (comment.mail &&
-            !/^\w(?:[\w._-]*\w)?@(?:\w(?:[\w-]*\w)?\.){0,2}\w+$/.exec(
-              comment.mail
-            ))
+            !/^\w(?:[\w._-]*\w)?@(?:\w(?:[\w-]*\w)?\.)*\w+$/.exec(comment.mail))
         ) {
           inputRefs.value.mail?.focus();
           return alert(locale.value.mailError);
