@@ -130,9 +130,56 @@ Waline 的服务端地址。
   type WalineImageUploader = (image: File) => Promise<string>;
   ```
 
-自定义图片上传方法。函数应该接收图片对象，返回一个提供图片地址的 Promise。
+自定义图片上传方法。默认行为是将图片 Base 64 编码嵌入，你可以设置为 `false` 以禁用图片上传功能。
 
-默认行为是将图片 Base 64 编码嵌入，你可以设置为 `false` 以禁用图片上传功能。
+函数应该接收图片对象，返回一个提供图片地址的 Promise。
+
+::: details 案例
+
+一个使用`lsky - pro`图床的案例。
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Waline imageUploader 案例</title>
+    <script src="https://unpkg.com/@waline/client@v1/dist/waline.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@waline/client@v1/dist/waline.css"
+    />
+  </head>
+  <body>
+    <div id="waline" style="max-width: 800px; margin: 0 auto"></div>
+    <script>
+      const waline = Waline.init({
+        el: '#waline',
+        serverURL: 'https://waline.vercel.app',
+        path: '/',
+        lang: 'en-US',
+        imageUploader: function(file) {
+          let formData = new FormData();
+          let headers = new Headers();
+
+          formData.append('file', file);
+          headers.append('Authorization', '!{API TOKEN}');
+          headers.append('Accept', 'application/json');
+
+          return fetch('!{API URL}', {
+            method: 'POST',
+            headers: headers,
+            body: formData
+          }).then(resp => resp.json()).then(resp => resp.data.links.url);
+        }
+      });
+    </script>
+  </body>
+</html>
+```
+
+:::
 
 ## highlighter
 
