@@ -65,6 +65,7 @@ module.exports = class extends think.Logic {
           'qq',
           'avatar',
           '2fa',
+          'label',
         ],
       }
     );

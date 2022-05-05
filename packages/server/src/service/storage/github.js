@@ -30,6 +30,7 @@ const CSV_HEADERS = {
     'type',
     'url',
     'avatar',
+    'label',
     'github',
     'twitter',
     'facebook',
