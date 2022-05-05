@@ -150,7 +150,6 @@ Waline 的服务端地址。
       rel="stylesheet"
       href="https://unpkg.com/@waline/client@v1/dist/waline.css"
     />
-    <script src="https://unpkg.com/katex@v0.15"></script>
   </head>
   <body>
     <div id="waline" style="max-width: 800px; margin: 0 auto"></div>
