@@ -24,6 +24,10 @@ module.exports = {
   },
   promiseAllQueue(promises, taskNum) {
     return new Promise((resolve, reject) => {
+      if (!promises.length) {
+        return resolve();
+      }
+
       const ret = [];
       let index = 0;
       let count = 0;
