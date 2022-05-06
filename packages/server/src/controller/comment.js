@@ -365,7 +365,7 @@ module.exports = class extends BaseRest {
           });
           comments.forEach((cmt) => {
             const countItem = (counts || []).find(({ mail, user_id }) => {
-              if (user_id) {
+              if (cmt.user_id) {
                 return user_id === cmt.user_id;
               }
               return mail === cmt.mail;
