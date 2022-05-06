@@ -79,10 +79,114 @@ import type {
   WalineImageUploader,
   WalineLocale,
   WalineProps,
+  WalineMeta,
 } from '../typings';
 
 declare const SHOULD_VALIDATE: boolean;
 declare const VERSION: string;
+
+const props = [
+  'serverURL',
+  'path',
+  'meta',
+  'requiredMeta',
+  'dark',
+  'lang',
+  'locale',
+  'pageSize',
+  'wordLimit',
+  'emoji',
+  'login',
+  'highlighter',
+  'texRenderer',
+  'imageUploader',
+  'copyright',
+];
+
+const propsWithValidate = {
+  serverURL: {
+    type: String,
+    required: true,
+  },
+
+  path: {
+    type: String,
+    required: true,
+  },
+
+  meta: {
+    type: Array as PropType<WalineMeta[]>,
+    default: (): WalineMeta[] => ['nick', 'mail', 'link'],
+    validator: (value: unknown): boolean =>
+      Array.isArray(value) &&
+      value.every((item) => ['nick', 'mail', 'link'].includes(item)),
+  },
+
+  requiredMeta: {
+    type: Array,
+    default: (): WalineMeta[] => [],
+    validator: (value: unknown): boolean =>
+      Array.isArray(value) &&
+      value.every((item) => ['nick', 'mail', 'link'].includes(item)),
+  },
+
+  dark: [String, Boolean],
+
+  lang: {
+    type: String,
+    default: 'zh-CN',
+    validator: (value: unknown): boolean =>
+      Object.keys(defaultLocales).includes(value as string),
+  },
+
+  locale: Object as PropType<Partial<WalineLocale>>,
+
+  pageSize: { type: Number, default: 10 },
+
+  wordLimit: {
+    type: [Number, Array] as PropType<number | [number, number]>,
+    validator: (value: unknown): boolean =>
+      typeof value === 'number' ||
+      (Array.isArray(value) &&
+        value.length === 2 &&
+        value.every((item) => typeof item === 'number')),
+  },
+
+  emoji: {
+    type: [Array, Boolean] as PropType<(string | WalineEmojiInfo)[] | false>,
+    validator: (value: unknown): boolean =>
+      value === false ||
+      (Array.isArray(value) &&
+        value.every(
+          (item) =>
+            typeof item === 'string' ||
+            (typeof item === 'object' &&
+              typeof item.name === 'string' &&
+              typeof item.folder === 'string' &&
+              typeof item.icon === 'string' &&
+              Array.isArray(item.items) &&
+              (item.items as unknown[]).every(
+                (icon) => typeof icon === 'string'
+              ))
+        )),
+  },
+
+  login: String as PropType<'enable' | 'disable' | 'force'>,
+
+  highlighter: Function as PropType<WalineHighlighter>,
+
+  imageUploader: {
+    type: [Function, Boolean] as PropType<WalineImageUploader | false>,
+    default: undefined,
+  },
+
+  texRenderer: {
+    type: [Function, Boolean] as PropType<WalineTexRenderer | false>,
+    default: undefined,
+  },
+
+  copyright: { type: Boolean, default: true },
+};
 
 export default defineComponent({
   name: 'WalineRoot',
@@ -93,105 +197,10 @@ export default defineComponent({
     LoadingIcon,
   },
 
-  props: {
-    serverURL: {
-      type: String,
-      required: true,
-    },
-
-    path: {
-      type: String,
-      required: true,
-    },
-
-    meta: {
-      type: Array,
-      ...(SHOULD_VALIDATE
-        ? {
-            validator: (value: unknown): boolean =>
-              Array.isArray(value) &&
-              value.every((item) => ['nick', 'mail', 'link'].includes(item)),
-          }
-        : {}),
-    },
-
-    requiredMeta: {
-      type: Array,
-      ...(SHOULD_VALIDATE
-        ? {
-            validator: (value: unknown): boolean =>
-              Array.isArray(value) &&
-              value.every((item) => ['nick', 'mail', 'link'].includes(item)),
-          }
-        : {}),
-    },
-
-    dark: [String, Boolean],
-
-    lang: {
-      type: String,
-      ...(SHOULD_VALIDATE
-        ? {
-            validator: (value: unknown): boolean =>
-              Object.keys(defaultLocales).includes(value as string),
-          }
-        : {}),
-    },
-
-    locale: Object as PropType<Partial<WalineLocale>>,
-
-    pageSize: Number,
-
-    wordLimit: {
-      type: [Number, Array] as PropType<number | [number, number]>,
-      // default: 0,
-      ...(SHOULD_VALIDATE
-        ? {
-            validator: (value: unknown): boolean =>
-              typeof value === 'number' ||
-              (Array.isArray(value) &&
-                value.length === 2 &&
-                value.every((item) => typeof item === 'number')),
-          }
-        : {}),
-    },
-
-    emoji: {
-      type: [Array, Boolean] as PropType<(string | WalineEmojiInfo)[] | false>,
-      ...(SHOULD_VALIDATE
-        ? {
-            validator: (value: unknown): boolean =>
-              value === false ||
-              (Array.isArray(value) &&
-                value.every(
-                  (item) =>
-                    typeof item === 'string' ||
-                    (typeof item === 'object' &&
-                      typeof item.name === 'string' &&
-                      typeof item.folder === 'string' &&
-                      typeof item.icon === 'string' &&
-                      Array.isArray(item.items) &&
-                      (item.items as unknown[]).every(
-                        (icon) => typeof icon === 'string'
-                      ))
-                )),
-          }
-        : {}),
-    },
-
-    login: String as PropType<'enable' | 'disable' | 'force'>,
-
-    highlighter: Function as PropType<WalineHighlighter>,
-
-    imageUploader: [Function, Boolean] as PropType<WalineImageUploader | false>,
-
-    texRenderer: [Function, Boolean] as PropType<WalineTexRenderer | false>,
-
-    copyright: Boolean,
-  },
+  props: SHOULD_VALIDATE ? propsWithValidate : props,
 
   setup(props) {
-    const config = computed(() => getConfig(props as WalineProps));
+    const config = computed(() => getConfig(props as unknown as WalineProps));
 
     const userInfo = useUserInfo();
 
@@ -274,7 +283,7 @@ export default defineComponent({
 
     provide('config', config);
 
-    watch(() => props.path, refresh);
+    watch(() => (props as unknown as WalineProps).path, refresh);
 
     onMounted(() => refresh());
 
