@@ -203,7 +203,11 @@ export default [
   // pageview declaration files
   {
     input: './src/entrys/pageview.ts',
-    output: [{ file: './dist/pageview.d.ts', format: 'esm' }],
+    output: [
+      { file: './dist/pageview.d.ts', format: 'esm' },
+      { file: './dist/pageview.cjs.d.ts', format: 'esm' },
+      { file: './dist/pageview.esm.d.ts', format: 'esm' },
+    ],
     plugins: [dts()],
   },
 ];

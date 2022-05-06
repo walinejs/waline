@@ -1,6 +1,6 @@
 {
   "name": "@waline/client",
-  "version": "2.3.1",
+  "version": "2.3.2",
   "description": "client for waline comment system",
   "keywords": [
     "valine",
@@ -80,7 +80,7 @@
     ]
   },
   "dependencies": {
-    "@vueuse/core": "^8.4.0",
+    "@vueuse/core": "^8.4.2",
     "autosize": "^5.0.1",
     "marked": "^4.0.15",
     "vue": "^3.2.33"
@@ -88,8 +88,8 @@
   "devDependencies": {
     "@types/autosize": "^4.0.1",
     "@types/marked": "^4.0.3",
-    "@vitejs/plugin-vue": "^2.3.1",
-    "vite": "^2.9.7"
+    "@vitejs/plugin-vue": "^2.3.2",
+    "vite": "^2.9.8"
   },
   "engines": {
     "node": ">=12.20.0"
