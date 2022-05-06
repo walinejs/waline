@@ -9,7 +9,8 @@
   "devDependencies": {
     "@vuepress/client": "2.0.0-beta.43",
     "@vuepress/plugin-docsearch": "2.0.0-beta.43",
+    "vue": "^3.2.33",
     "vuepress": "2.0.0-beta.43",
-    "vuepress-theme-hope": "2.0.0-beta.49"
+    "vuepress-theme-hope": "2.0.0-beta.52"
   }
 }
