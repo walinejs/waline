@@ -127,7 +127,11 @@ module.exports = class extends Base {
   }
 
   async _getCmtGroupByMailUserIdCache(key, where) {
-    if (this.tableName !== 'Comment' || key !== 'user_id_mail') {
+    if (
+      this.tableName !== 'Comment' ||
+      key !== 'user_id_mail' ||
+      !think.isArray(think.config('levels'))
+    ) {
       return [];
     }
 
@@ -140,7 +144,11 @@ module.exports = class extends Base {
   }
 
   async _setCmtGroupByMailUserIdCache(key, data) {
-    if (this.tableName !== 'Comment' || key !== 'user_id_mail') {
+    if (
+      this.tableName !== 'Comment' ||
+      key !== 'user_id_mail' ||
+      !think.isArray(think.config('levels'))
+    ) {
       return;
     }
 
@@ -161,7 +169,10 @@ module.exports = class extends Base {
   }
 
   async _updateCmtGroupByMailUserIdCache(data, method) {
-    if (this.tableName !== 'Comment') {
+    if (
+      this.tableName !== 'Comment' ||
+      !think.isArray(think.config('levels'))
+    ) {
       return;
     }
 
