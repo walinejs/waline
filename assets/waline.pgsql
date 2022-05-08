@@ -14,6 +14,7 @@ CREATE TABLE wl_comment (
   rid int DEFAULT NULL,
   sticky boolean DEFAULT NULL,
   status varchar(50) NOT NULL DEFAULT '',
+  like inc DEFAULT NULL,
   ua text,
   url varchar(255) DEFAULT NULL,
   createdAt timestamp(0) with time zone NULL DEFAULT CURRENT_TIMESTAMP,
