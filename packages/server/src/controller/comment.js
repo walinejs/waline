@@ -584,8 +584,11 @@ module.exports = class extends BaseRest {
         return this.success();
       }
 
+      const likeIncMax = this.config('LIKE_INC_MAX') || 1;
       data = {
-        like: (Number(oldData.like) || 0) + (data.like ? 1 : -1),
+        like:
+          (Number(oldData.like) || 0) +
+          (data.like ? Math.ceil(Math.random() * likeIncMax) : -1),
       };
     }
 
