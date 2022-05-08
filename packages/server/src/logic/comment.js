@@ -7,7 +7,6 @@ module.exports = class extends Base {
     const { like } = this.post();
     const isAllowedGet = this.isGet && (type !== 'list' || path);
     const isAllowedPut = this.ctx.isMethod('PUT') && think.isBoolean(like);
-    console.log(isAllowedPut, this.ctx.isMethod('PUT'), think.isBoolean(like), this.post());
     if (this.isPost || isAllowedGet || isAllowedPut) {
       return;
     }
