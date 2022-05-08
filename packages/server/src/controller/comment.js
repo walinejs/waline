@@ -50,6 +50,7 @@ async function formatCmt(
     comment.addr = await think.ip2region(ip, { depth: isAdmin ? 3 : 1 });
   }
   comment.comment = markdownParser(comment.comment);
+  comment.like = Number(comment.like) || 0;
   return comment;
 }
 
@@ -97,6 +98,7 @@ module.exports = class extends BaseRest {
             'ip',
             'user_id',
             'sticky',
+            'like',
           ],
         });
 
@@ -259,6 +261,7 @@ module.exports = class extends BaseRest {
             'ip',
             'user_id',
             'sticky',
+            'like',
           ],
         };
 
@@ -568,13 +571,24 @@ module.exports = class extends BaseRest {
   }
 
   async putAction() {
-    const data = this.post();
+    const { userInfo } = this.ctx.state;
+    let data = this.post();
     let oldData = await this.modelInstance.select({ objectId: this.id });
     if (think.isEmpty(oldData)) {
       return this.success();
     }
 
     oldData = oldData[0];
+    if (think.isEmpty(userInfo) || userInfo.type !== 'administrator') {
+      if (!think.isBoolean(data.like)) {
+        return this.success();
+      }
+
+      data = {
+        like: (Number(oldData.like) || 0) + (data.like ? 1 : -1),
+      };
+    }
+
     const preUpdateResp = await this.hook('preUpdate', {
       ...data,
       objectId: this.id,
