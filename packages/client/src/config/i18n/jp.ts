@@ -10,6 +10,8 @@ export default generateLocale([
   'ここにコメント',
   'コメントしましょう~',
   '提出する',
+  'Like',
+  'Cancel like',
   '返信する',
   'キャンセル',
   'コメント',

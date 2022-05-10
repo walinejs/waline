@@ -25,11 +25,10 @@
         <span v-if="comment.label" class="wl-badge" v-text="comment.label" />
         <span v-if="comment.sticky" class="wl-badge" v-text="locale.sticky" />
         <span
-          v-if="comment.level >= 0"
+          v-if="comment.level && comment.level >= 0"
           :class="`wl-badge level${comment.level}`"
           v-text="locale[`level${comment.level}`] || `Level ${comment.level}`"
         />
-
         <span class="wl-time" v-text="time" />
 
         <button
@@ -39,6 +38,15 @@
           @click="$emit('reply', isReplyingCurrent ? null : comment)"
         >
           <ReplyIcon />
+        </button>
+
+        <button
+          class="wl-like"
+          @click="$emit('like', comment)"
+          :title="like ? locale.cancelLike : locale.like"
+        >
+          <LikeIcon :active="like" />
+          <span v-if="'like' in comment" v-text="comment.like" />
         </button>
 
         <button
@@ -105,6 +113,7 @@
           @waiting="$emit('waiting', $event)"
           @spam="$emit('spam', $event)"
           @sticky="$emit('sticky', $event)"
+          @like="$emit('like', $event)"
         />
       </div>
     </div>
@@ -114,9 +123,9 @@
 <script lang="ts">
 import { computed, defineComponent, inject } from 'vue';
 import CommentBox from './CommentBox.vue';
-import { ReplyIcon, VerifiedIcon } from './Icons';
+import { LikeIcon, ReplyIcon, VerifiedIcon } from './Icons';
 import { isLinkHttp } from '../utils';
-import { useTimeAgo, useUserInfo } from '../composables';
+import { useTimeAgo, useLikeStorage, useUserInfo } from '../composables';
 
 import type { ComputedRef, PropType } from 'vue';
 import type { WalineConfig } from '../utils';
@@ -139,16 +148,28 @@ export default defineComponent({
 
   components: {
     CommentBox,
+    LikeIcon,
     ReplyIcon,
     VerifiedIcon,
   },
 
-  emits: ['submit', 'reply', 'delete', 'approved', 'waiting', 'spam', 'sticky'],
+  emits: [
+    'submit',
+    'reply',
+    'like',
+    'delete',
+    'approved',
+    'waiting',
+    'spam',
+    'sticky',
+  ],
 
   setup(props) {
     const config = inject<ComputedRef<WalineConfig>>(
       'config'
     ) as ComputedRef<WalineConfig>;
+    const likes = useLikeStorage();
+
     const locale = computed(() => config.value.locale);
 
     const link = computed(() => {
@@ -156,6 +177,8 @@ export default defineComponent({
 
       return link ? (isLinkHttp(link) ? link : `https://${link}`) : '';
     });
+
+    const like = computed(() => likes.value.includes(props.comment.objectId));
 
     const time = useTimeAgo(props.comment.insertedAt, locale.value);
 
@@ -178,6 +201,7 @@ export default defineComponent({
 
       isReplyingCurrent,
       link,
+      like,
       time,
 
       editable,

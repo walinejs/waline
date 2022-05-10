@@ -5,6 +5,11 @@ export interface FetchErrorData {
   errmsg: string;
 }
 
+const JSON_HEADERS: Record<string, string> = {
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  'Content-Type': 'application/json',
+};
+
 const errorCheck = <T = unknown>(data: T | FetchErrorData, name = ''): T => {
   if (typeof data === 'object' && (data as FetchErrorData).errno)
     throw new TypeError(
@@ -195,6 +200,25 @@ export const deleteComment = ({
   }).then((resp) => resp.json() as Promise<void>);
 };
 
+export interface LikeCommentOptions {
+  serverURL: string;
+  lang: string;
+  objectId: number | string;
+  like: boolean;
+}
+
+export const likeComment = ({
+  serverURL,
+  lang,
+  objectId,
+  like,
+}: LikeCommentOptions): Promise<void> =>
+  fetch(`${serverURL}/comment/${objectId}?lang=${lang}`, {
+    method: 'PUT',
+    headers: JSON_HEADERS,
+    body: JSON.stringify({ like }),
+  }).then((resp) => resp.json() as Promise<void>);
+
 export interface FetchPageviewsOptions {
   serverURL: string;
   lang: string;
@@ -232,10 +256,7 @@ export const updatePageviews = ({
 }: UpdatePageviewsOptions): Promise<number> =>
   fetch(`${serverURL}/article?lang=${lang}`, {
     method: 'POST',
-    headers: {
-      // eslint-disable-next-line @typescript-eslint/naming-convention
-      'Content-Type': 'application/json',
-    },
+    headers: JSON_HEADERS,
     body: JSON.stringify({ path }),
   })
     .then((resp) => resp.json() as Promise<number>)

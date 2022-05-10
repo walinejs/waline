@@ -4,9 +4,10 @@ module.exports = class extends Base {
     await super.__before();
 
     const { type, path } = this.get();
+    const { like } = this.post();
     const isAllowedGet = this.isGet && (type !== 'list' || path);
-
-    if (this.isPost || isAllowedGet) {
+    const isAllowedPut = this.ctx.isMethod('PUT') && think.isBoolean(like);
+    if (this.isPost || isAllowedGet || isAllowedPut) {
       return;
     }
 
@@ -207,7 +208,7 @@ module.exports = class extends Base {
   }
 
   /**
-   * @api {POST} /comment/:id update comment data
+   * @api {PUT} /comment/:id update comment data
    * @apiGroup Comment
    * @apiVersion  0.0.1
    *
@@ -216,11 +217,22 @@ module.exports = class extends Base {
    * @apiParam  {String}  [link]  post comment user link
    * @apiParam  {String}  [comment]  post comment text
    * @apiParam  {String}  [url]  the artcile url path of comment
+   * @apiParam  {Boolean} [like] like comment
    *
    * @apiSuccess  (200) {Number}  errno 0
    * @apiSuccess  (200) {String}  errmsg  return error message if error
    */
-  putAction() {}
+  putAction() {
+    const { userInfo } = this.ctx.state;
+    if (think.isEmpty(userInfo) || userInfo.type !== 'administrator') {
+      this.rules = {
+        like: {
+          required: true,
+          boolean: true,
+        },
+      };
+    }
+  }
 
   /**
    * @api {DELETE} /comment/:id delete comment

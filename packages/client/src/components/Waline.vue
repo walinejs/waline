@@ -20,6 +20,7 @@
         @spam="onSpam"
         @delete="onDelete"
         @sticky="onSticky"
+        @like="onLike"
       />
     </div>
 
@@ -71,11 +72,12 @@ import { computed, defineComponent, onMounted, provide, ref, watch } from 'vue';
 import CommentBox from './CommentBox.vue';
 import CommentCard from './CommentCard.vue';
 import { LoadingIcon } from './Icons';
-import { useUserInfo } from '../composables';
+import { useUserInfo, useLikeStorage } from '../composables';
 import { defaultLocales } from '../config';
 import {
   deleteComment,
   fetchCommentList,
+  likeComment,
   getConfig,
   getDarkStyle,
   updateComment,
@@ -214,6 +216,7 @@ export default defineComponent({
     const config = computed(() => getConfig(props as unknown as WalineProps));
 
     const userInfo = useUserInfo();
+    const likeStorage = useLikeStorage();
 
     const status = ref<'loading' | 'success' | 'error'>('loading');
 
@@ -312,6 +315,7 @@ export default defineComponent({
     const onApproved = computed(() => onUpdateCommentStatus('approved'));
     const onWaiting = computed(() => onUpdateCommentStatus('waiting'));
     const onSpam = computed(() => onUpdateCommentStatus('spam'));
+
     const onSticky = async (comment: WalineComment): Promise<void> => {
       if (comment.rid) {
         return;
@@ -327,6 +331,7 @@ export default defineComponent({
       });
       // todo: render comment list
     };
+
     const onDelete = async (comment: WalineComment): Promise<void> => {
       if (!confirm('Are you sure you want to delete this comment?')) {
         return;
@@ -340,6 +345,28 @@ export default defineComponent({
         objectId: comment.objectId,
       });
       // todo render comment list
+    };
+
+    const onLike = (comment: WalineComment): Promise<void> => {
+      const { serverURL, lang } = config.value;
+      const hasLiked = likeStorage.value.includes(comment.objectId);
+
+      if (hasLiked)
+        likeStorage.value = likeStorage.value.filter(
+          (id) => id !== comment.objectId
+        );
+      else {
+        likeStorage.value.push(comment.objectId);
+
+        if (likeStorage.value.length > 50) likeStorage.value.slice(-50);
+      }
+
+      return likeComment({
+        serverURL,
+        lang,
+        objectId: comment.objectId,
+        like: !hasLiked,
+      });
     };
 
     provide('config', config);
@@ -369,6 +396,7 @@ export default defineComponent({
       onSpam,
       onDelete,
       onSticky,
+      onLike,
 
       version: VERSION,
     };
