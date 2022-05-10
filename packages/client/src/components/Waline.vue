@@ -15,6 +15,11 @@
         :reply="reply"
         @reply="onReply"
         @submit="onSubmit"
+        @approved="onApproved"
+        @waiting="onWaiting"
+        @spam="onSpam"
+        @delete="onDelete"
+        @sticky="onSticky"
         @like="onLike"
       />
     </div>
@@ -70,10 +75,12 @@ import { LoadingIcon } from './Icons';
 import { useUserInfo, useLikeStorage } from '../composables';
 import { defaultLocales } from '../config';
 import {
+  deleteComment,
   fetchCommentList,
   likeComment,
   getConfig,
   getDarkStyle,
+  updateComment,
 } from '../utils';
 
 import type { PropType } from 'vue';
@@ -288,6 +295,58 @@ export default defineComponent({
       } else data.value.unshift(comment);
     };
 
+    const onUpdateCommentStatus =
+      (action: 'approved' | 'waiting' | 'spam') =>
+      async (comment: WalineComment): Promise<void> => {
+        if (comment.status === action) {
+          return;
+        }
+
+        const { serverURL, lang } = config.value;
+        await updateComment({
+          serverURL,
+          lang,
+          token: userInfo.value?.token,
+          objectId: comment.objectId,
+          status: action,
+        });
+        // todo: render comment list
+      };
+    const onApproved = computed(() => onUpdateCommentStatus('approved'));
+    const onWaiting = computed(() => onUpdateCommentStatus('waiting'));
+    const onSpam = computed(() => onUpdateCommentStatus('spam'));
+
+    const onSticky = async (comment: WalineComment): Promise<void> => {
+      if (comment.rid) {
+        return;
+      }
+
+      const { serverURL, lang } = config.value;
+      await updateComment({
+        serverURL,
+        lang,
+        token: userInfo.value?.token,
+        objectId: comment.objectId,
+        sticky: comment.sticky ? 0 : 1,
+      });
+      // todo: render comment list
+    };
+
+    const onDelete = async (comment: WalineComment): Promise<void> => {
+      if (!confirm('Are you sure you want to delete this comment?')) {
+        return;
+      }
+
+      const { serverURL, lang } = config.value;
+      await deleteComment({
+        serverURL,
+        lang,
+        token: userInfo.value?.token,
+        objectId: comment.objectId,
+      });
+      // todo render comment list
+    };
+
     const onLike = (comment: WalineComment): Promise<void> => {
       const { serverURL, lang } = config.value;
       const hasLiked = likeStorage.value.includes(comment.objectId);
@@ -332,6 +391,11 @@ export default defineComponent({
       refresh,
       onReply,
       onSubmit,
+      onApproved,
+      onWaiting,
+      onSpam,
+      onDelete,
+      onSticky,
       onLike,
 
       version: VERSION,

@@ -101,6 +101,7 @@
     font-size: 0.75em;
   }
 
+  .wl-delete,
   .wl-like,
   .wl-reply {
     float: right;
@@ -211,6 +212,28 @@
 
     > *:last-child {
       margin-bottom: 0;
+    }
+  }
+
+  .wl-admin-actions {
+    margin: 8px 0;
+    text-align: right;
+    font-size: 12px;
+  }
+
+  .wl-comment-status {
+    margin: 0 8px;
+
+    .wl-btn {
+      border-radius: 0;
+
+      &:first-child {
+        border-radius: 0.5em 0 0 0.5em;
+      }
+
+      &:last-child {
+        border-radius: 0 0.5em 0.5em 0;
+      }
     }
   }
 
