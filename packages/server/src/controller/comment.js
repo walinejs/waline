@@ -233,7 +233,7 @@ module.exports = class extends BaseRest {
         const where = { url };
         if (think.isEmpty(userInfo) || this.config('storage') === 'deta') {
           where.status = ['NOT IN', ['waiting', 'spam']];
-        } else {
+        } else if (userInfo.type !== 'administrator') {
           where._complex = {
             _logic: 'or',
             status: ['NOT IN', ['waiting', 'spam']],
