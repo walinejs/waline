@@ -73,7 +73,5 @@ export interface WalineComment extends Exclude<WalineCommentData, 'ua'> {
   level?: number;
   addr?: string;
   label?: string;
-  user_id?: string | number;
-  status?: 'approved' | 'waiting' | 'spam';
   like?: number;
 }

@@ -10,8 +10,6 @@ export interface UserInfo {
   token: string;
   avatar: string;
   mailMd5: string;
-  objectId: string | number;
-  type: 'administrator' | 'guest';
 }
 
 export const USER_KEY = 'WALINE_USER';
