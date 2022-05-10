@@ -48,6 +48,41 @@
           <LikeIcon :active="like" />
           <span v-if="'like' in comment" v-text="comment.like" />
         </button>
+
+        <button
+          class="wl-approved"
+          v-if="isAdmin && comment.status !== 'approved'"
+          @click="$emit('approved', comment)"
+        >
+          Approved
+        </button>
+        <button
+          class="wl-waiting"
+          v-if="isAdmin && comment.status !== 'waiting'"
+          @click="$emit('waiting', comment)"
+        >
+          Waiting
+        </button>
+        <button
+          class="wl-spam"
+          v-if="isAdmin && comment.status !== 'spam'"
+          @click="$emit('spam', comment)"
+        >
+          Spam
+        </button>
+        <button
+          class="wl-sticky"
+          v-if="isAdmin && !comment.rid"
+          v-text="comment.sticky ? 'unsticky' : 'sticky'"
+          @click="$emit('sticky', comment)"
+        />
+        <button
+          class="wl-delete"
+          v-if="editable"
+          @click="$emit('delete', comment)"
+        >
+          ×
+        </button>
       </div>
       <div class="wl-meta" aria-hidden="true">
         <span v-if="comment.addr" v-text="comment.addr" />
@@ -74,6 +109,10 @@
           :rootId="rootId"
           @reply="$emit('reply', $event)"
           @submit="$emit('submit', $event)"
+          @approved="$emit('approved', $event)"
+          @waiting="$emit('waiting', $event)"
+          @spam="$emit('spam', $event)"
+          @sticky="$emit('sticky', $event)"
           @like="$emit('like', $event)"
         />
       </div>
@@ -86,7 +125,7 @@ import { computed, defineComponent, inject } from 'vue';
 import CommentBox from './CommentBox.vue';
 import { LikeIcon, ReplyIcon, VerifiedIcon } from './Icons';
 import { isLinkHttp } from '../utils';
-import { useTimeAgo, useLikeStorage } from '../composables';
+import { useTimeAgo, useLikeStorage, useUserInfo } from '../composables';
 
 import type { ComputedRef, PropType } from 'vue';
 import type { WalineConfig } from '../utils';
@@ -114,7 +153,16 @@ export default defineComponent({
     VerifiedIcon,
   },
 
-  emits: ['submit', 'reply', 'like'],
+  emits: [
+    'submit',
+    'reply',
+    'like',
+    'delete',
+    'approved',
+    'waiting',
+    'spam',
+    'sticky',
+  ],
 
   setup(props) {
     const config = inject<ComputedRef<WalineConfig>>(
@@ -134,6 +182,15 @@ export default defineComponent({
 
     const time = useTimeAgo(props.comment.insertedAt, locale.value);
 
+    const userInfo = useUserInfo();
+    const isAdmin = userInfo.value.type === 'administrator';
+    const editable = computed(() => {
+      const isOwner =
+        props.comment.user_id &&
+        userInfo.value.objectId === props.comment.user_id;
+      return isAdmin || isOwner;
+    });
+
     const isReplyingCurrent = computed(
       () => props.comment.objectId === props.reply?.objectId
     );
@@ -146,6 +203,9 @@ export default defineComponent({
       link,
       like,
       time,
+
+      editable,
+      isAdmin,
     };
   },
 });
