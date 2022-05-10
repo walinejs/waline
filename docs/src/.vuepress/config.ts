@@ -97,15 +97,4 @@ export default defineUserConfig({
       },
     }),
   ],
-
-  // TODO: Remove this when vuepress-theme-hope fix related issue
-  extendsBundlerOptions: (config, app) => {
-    config.viteOptions.optimizeDeps = config.viteOptions.optimizeDeps ?? {};
-
-    config.viteOptions.optimizeDeps.include =
-      config.viteOptions.optimizeDeps.include ?? [];
-
-    config.viteOptions.optimizeDeps.include.push('bcryptjs');
-    config.viteOptions.optimizeDeps.include.push('lodash.throttle');
-  },
 });
