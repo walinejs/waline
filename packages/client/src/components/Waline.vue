@@ -15,6 +15,7 @@
         :reply="reply"
         @reply="onReply"
         @submit="onSubmit"
+        @like="onLike"
       />
     </div>
 
@@ -66,9 +67,14 @@ import { computed, defineComponent, onMounted, provide, ref, watch } from 'vue';
 import CommentBox from './CommentBox.vue';
 import CommentCard from './CommentCard.vue';
 import { LoadingIcon } from './Icons';
-import { useUserInfo } from '../composables';
+import { useUserInfo, useLikeStorage } from '../composables';
 import { defaultLocales } from '../config';
-import { fetchCommentList, getConfig, getDarkStyle } from '../utils';
+import {
+  fetchCommentList,
+  likeComment,
+  getConfig,
+  getDarkStyle,
+} from '../utils';
 
 import type { PropType } from 'vue';
 import type {
@@ -203,6 +209,7 @@ export default defineComponent({
     const config = computed(() => getConfig(props as unknown as WalineProps));
 
     const userInfo = useUserInfo();
+    const likeStorage = useLikeStorage();
 
     const status = ref<'loading' | 'success' | 'error'>('loading');
 
@@ -281,6 +288,28 @@ export default defineComponent({
       } else data.value.unshift(comment);
     };
 
+    const onLike = (comment: WalineComment): Promise<void> => {
+      const { serverURL, lang } = config.value;
+      const hasLiked = likeStorage.value.includes(comment.objectId);
+
+      if (hasLiked)
+        likeStorage.value = likeStorage.value.filter(
+          (id) => id !== comment.objectId
+        );
+      else {
+        likeStorage.value.push(comment.objectId);
+
+        if (likeStorage.value.length > 50) likeStorage.value.slice(-50);
+      }
+
+      return likeComment({
+        serverURL,
+        lang,
+        objectId: comment.objectId,
+        like: !hasLiked,
+      });
+    };
+
     provide('config', config);
 
     watch(() => (props as unknown as WalineProps).path, refresh);
@@ -303,6 +332,7 @@ export default defineComponent({
       refresh,
       onReply,
       onSubmit,
+      onLike,
 
       version: VERSION,
     };

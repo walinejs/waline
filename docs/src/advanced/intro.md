@@ -54,8 +54,8 @@ icon: intro
 - [x] CloudBase 腾讯云开发部署支持
 - [x] 社交登录
 - [x] 置顶评论
+- [x] 评论赞踩
 - [ ] AWS, GCP, Azure 部署支持
-- [ ] 评论赞踩
 - [ ] 其它...
 
 真·欢迎你为 Waline 的开发做贡献。

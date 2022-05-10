@@ -24,6 +24,7 @@ CREATE TABLE `wl_Comment` (
   `rid` int(11) DEFAULT NULL,
   `sticky` boolean DEFAULT NULL,
   `status` varchar(50) NOT NULL DEFAULT '',
+  `like` int(11) DEFAULT NULL,
   `ua` text,
   `url` varchar(255) DEFAULT NULL,
   `createdAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,

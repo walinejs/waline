@@ -10,6 +10,8 @@ export default generateLocale([
   'Comente aqui...',
   'Nenhum comentário, ainda.',
   'Enviar',
+  'Like',
+  'Cancel like',
   'Responder',
   'Cancelar resposta',
   'Comentários',

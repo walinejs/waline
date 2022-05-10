@@ -60,8 +60,8 @@ A simple comment system with backend support fork from [Valine](https://valine.j
 - [x] CloudBase deploy support
 - [x] Social account login
 - [x] Sitcky Comment
+- [x] Comment Like
 - [ ] AWS, GCP, Azure deploy support
-- [ ] Comment Like
 
 We **really** welcome you to contribute to waline!
 
