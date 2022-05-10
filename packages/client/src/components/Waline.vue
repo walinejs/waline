@@ -307,6 +307,8 @@ export default defineComponent({
         lang,
         objectId: comment.objectId,
         like: !hasLiked,
+      }).then(() => {
+        comment.like = (comment.like || 0) + (hasLiked ? -1 : 1);
       });
     };
 
