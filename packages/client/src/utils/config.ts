@@ -68,7 +68,7 @@ export const getConfig = ({
   locale: {
     ...(defaultLocales[lang] || defaultLocales[defaultLang]),
     ...(typeof locale === 'object' ? locale : {}),
-  },
+  } as WalineLocale,
   wordLimit: getWordLimit(wordLimit),
   meta: getMeta(meta),
   requiredMeta: getMeta(requiredMeta),
