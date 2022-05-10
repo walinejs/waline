@@ -71,7 +71,7 @@
             :key="status"
             :class="`wl-btn wl-${status}`"
             :disabled="comment.status === status"
-            @click="$emit(status, comment)"
+            @click="$emit('status', { status, comment })"
             v-text="status"
           />
         </span>
@@ -104,9 +104,7 @@
           @reply="$emit('reply', $event)"
           @submit="$emit('submit', $event)"
           @like="$emit('like', $event)"
-          @approved="$emit('approved', $event)"
-          @waiting="$emit('waiting', $event)"
-          @spam="$emit('spam', $event)"
+          @status="$emit('status', $event)"
           @sticky="$emit('sticky', $event)"
         />
       </div>
@@ -150,16 +148,7 @@ export default defineComponent({
     VerifiedIcon,
   },
 
-  emits: [
-    'submit',
-    'reply',
-    'like',
-    'delete',
-    'approved',
-    'waiting',
-    'spam',
-    'sticky',
-  ],
+  emits: ['submit', 'reply', 'like', 'delete', 'status', 'sticky'],
 
   setup(props) {
     const config = inject<ComputedRef<WalineConfig>>(

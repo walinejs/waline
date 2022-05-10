@@ -15,9 +15,7 @@
         :reply="reply"
         @reply="onReply"
         @submit="onSubmit"
-        @approved="onApproved"
-        @waiting="onWaiting"
-        @spam="onSpam"
+        @status="onStatusChange"
         @delete="onDelete"
         @sticky="onSticky"
         @like="onLike"
@@ -86,6 +84,7 @@ import {
 import type { PropType } from 'vue';
 import type {
   WalineComment,
+  WalineCommentStatus,
   WalineEmojiInfo,
   WalineHighlighter,
   WalineTexRenderer,
@@ -295,33 +294,32 @@ export default defineComponent({
       } else data.value.unshift(comment);
     };
 
-    const onUpdateCommentStatus =
-      (action: 'approved' | 'waiting' | 'spam') =>
-      async (comment: WalineComment): Promise<void> => {
-        if (comment.status === action) {
-          return;
-        }
-
-        const { serverURL, lang } = config.value;
-        await updateComment({
-          serverURL,
-          lang,
-          token: userInfo.value?.token,
-          objectId: comment.objectId,
-          status: action,
-        });
-        // todo: render comment list
-      };
-    const onApproved = computed(() => onUpdateCommentStatus('approved'));
-    const onWaiting = computed(() => onUpdateCommentStatus('waiting'));
-    const onSpam = computed(() => onUpdateCommentStatus('spam'));
-
-    const onSticky = async (comment: WalineComment): Promise<void> => {
-      if (comment.rid) {
-        return;
-      }
+    const onStatusChange = async ({
+      comment,
+      status,
+    }: {
+      comment: WalineComment;
+      status: WalineCommentStatus;
+    }): Promise<void> => {
+      if (comment.status === status) return;
 
       const { serverURL, lang } = config.value;
+
+      await updateComment({
+        serverURL,
+        lang,
+        token: userInfo.value?.token,
+        objectId: comment.objectId,
+        status,
+      });
+      // todo: render comment list
+    };
+
+    const onSticky = async (comment: WalineComment): Promise<void> => {
+      if (comment.rid) return;
+
+      const { serverURL, lang } = config.value;
+
       await updateComment({
         serverURL,
         lang,
@@ -333,11 +331,10 @@ export default defineComponent({
     };
 
     const onDelete = async (comment: WalineComment): Promise<void> => {
-      if (!confirm('Are you sure you want to delete this comment?')) {
-        return;
-      }
+      if (!confirm('Are you sure you want to delete this comment?')) return;
 
       const { serverURL, lang } = config.value;
+
       await deleteComment({
         serverURL,
         lang,
@@ -347,9 +344,16 @@ export default defineComponent({
       // todo render comment list
     };
 
-    const onLike = (comment: WalineComment): Promise<void> => {
+    const onLike = async (comment: WalineComment): Promise<void> => {
       const { serverURL, lang } = config.value;
       const hasLiked = likeStorage.value.includes(comment.objectId);
+
+      await likeComment({
+        serverURL,
+        lang,
+        objectId: comment.objectId,
+        like: !hasLiked,
+      });
 
       if (hasLiked)
         likeStorage.value = likeStorage.value.filter(
@@ -361,14 +365,7 @@ export default defineComponent({
         if (likeStorage.value.length > 50) likeStorage.value.slice(-50);
       }
 
-      return likeComment({
-        serverURL,
-        lang,
-        objectId: comment.objectId,
-        like: !hasLiked,
-      }).then(() => {
-        comment.like = (comment.like || 0) + (hasLiked ? -1 : 1);
-      });
+      comment.like = (comment.like || 0) + (hasLiked ? -1 : 1);
     };
 
     provide('config', config);
@@ -393,9 +390,7 @@ export default defineComponent({
       refresh,
       onReply,
       onSubmit,
-      onApproved,
-      onWaiting,
-      onSpam,
+      onStatusChange,
       onDelete,
       onSticky,
       onLike,
