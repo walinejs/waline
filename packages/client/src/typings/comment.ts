@@ -46,6 +46,8 @@ export interface WalineCommentData {
   url: string;
 }
 
+export type WalineCommentStatus = 'approved' | 'waiting' | 'spam';
+
 export interface WalineComment extends Exclude<WalineCommentData, 'ua'> {
   /**
    * User avatar
@@ -73,5 +75,9 @@ export interface WalineComment extends Exclude<WalineCommentData, 'ua'> {
   level?: number;
   addr?: string;
   label?: string;
+  // TODO: Rename it to `userId` in next major version
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  user_id?: string | number;
+  status?: WalineCommentStatus;
   like?: number;
 }

@@ -48,6 +48,14 @@
           <LikeIcon :active="like" />
           <span v-if="'like' in comment" v-text="comment.like" />
         </button>
+
+        <button
+          class="wl-delete"
+          v-if="isAdmin || isOwner"
+          @click="$emit('delete', comment)"
+        >
+          <DeleteIcon />
+        </button>
       </div>
       <div class="wl-meta" aria-hidden="true">
         <span v-if="comment.addr" v-text="comment.addr" />
@@ -55,6 +63,27 @@
         <span v-if="comment.os" v-text="comment.os" />
       </div>
       <div class="wl-content" v-html="comment.comment" />
+
+      <div v-if="isAdmin" class="wl-admin-actions">
+        <span class="wl-comment-status">
+          <button
+            v-for="status in commentStatus"
+            :key="status"
+            :class="`wl-btn wl-${status}`"
+            :disabled="comment.status === status"
+            @click="$emit(status, comment)"
+            v-text="status"
+          />
+        </span>
+
+        <button
+          class="wl-btn wl-sticky"
+          v-if="isAdmin && !comment.rid"
+          @click="$emit('sticky', comment)"
+        >
+          {{ comment.sticky ? 'unsticky' : 'sticky' }}
+        </button>
+      </div>
 
       <div v-if="isReplyingCurrent" class="wl-reply-wrapper">
         <CommentBox
@@ -75,6 +104,10 @@
           @reply="$emit('reply', $event)"
           @submit="$emit('submit', $event)"
           @like="$emit('like', $event)"
+          @approved="$emit('approved', $event)"
+          @waiting="$emit('waiting', $event)"
+          @spam="$emit('spam', $event)"
+          @sticky="$emit('sticky', $event)"
         />
       </div>
     </div>
@@ -84,13 +117,15 @@
 <script lang="ts">
 import { computed, defineComponent, inject } from 'vue';
 import CommentBox from './CommentBox.vue';
-import { LikeIcon, ReplyIcon, VerifiedIcon } from './Icons';
+import { DeleteIcon, LikeIcon, ReplyIcon, VerifiedIcon } from './Icons';
 import { isLinkHttp } from '../utils';
-import { useTimeAgo, useLikeStorage } from '../composables';
+import { useTimeAgo, useLikeStorage, useUserInfo } from '../composables';
 
 import type { ComputedRef, PropType } from 'vue';
 import type { WalineConfig } from '../utils';
-import type { WalineComment } from '../typings';
+import type { WalineComment, WalineCommentStatus } from '../typings';
+
+const commentStatus: WalineCommentStatus[] = ['approved', 'waiting', 'spam'];
 
 export default defineComponent({
   props: {
@@ -109,18 +144,29 @@ export default defineComponent({
 
   components: {
     CommentBox,
+    DeleteIcon,
     LikeIcon,
     ReplyIcon,
     VerifiedIcon,
   },
 
-  emits: ['submit', 'reply', 'like'],
+  emits: [
+    'submit',
+    'reply',
+    'like',
+    'delete',
+    'approved',
+    'waiting',
+    'spam',
+    'sticky',
+  ],
 
   setup(props) {
     const config = inject<ComputedRef<WalineConfig>>(
       'config'
     ) as ComputedRef<WalineConfig>;
     const likes = useLikeStorage();
+    const userInfo = useUserInfo();
 
     const locale = computed(() => config.value.locale);
 
@@ -134,6 +180,14 @@ export default defineComponent({
 
     const time = useTimeAgo(props.comment.insertedAt, locale.value);
 
+    const isAdmin = computed(() => userInfo.value.type === 'administrator');
+
+    const isOwner = computed(
+      () =>
+        props.comment.user_id &&
+        userInfo.value.objectId === props.comment.user_id
+    );
+
     const isReplyingCurrent = computed(
       () => props.comment.objectId === props.reply?.objectId
     );
@@ -146,6 +200,11 @@ export default defineComponent({
       link,
       like,
       time,
+
+      isAdmin,
+      isOwner,
+
+      commentStatus,
     };
   },
 });
