@@ -10,6 +10,8 @@ const localeKeys = [
   'placeholder',
   'sofa',
   'submit',
+  'like',
+  'cancelLike',
   'reply',
   'cancelReply',
   'comment',

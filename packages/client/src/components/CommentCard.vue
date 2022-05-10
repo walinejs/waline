@@ -40,8 +40,12 @@
           <ReplyIcon />
         </button>
 
-        <button class="wl-like" @click="$emit('like', comment)">
-          <LikeIcon :active="hasLiked" />
+        <button
+          class="wl-like"
+          @click="$emit('like', comment)"
+          :title="like ? locale.cancelLike : locale.like"
+        >
+          <LikeIcon :active="like" />
           <span v-if="'like' in comment" v-text="comment.like" />
         </button>
       </div>
@@ -126,9 +130,7 @@ export default defineComponent({
       return link ? (isLinkHttp(link) ? link : `https://${link}`) : '';
     });
 
-    const hasLiked = computed(() =>
-      likes.value.includes(props.comment.objectId)
-    );
+    const like = computed(() => likes.value.includes(props.comment.objectId));
 
     const time = useTimeAgo(props.comment.insertedAt, locale.value);
 
@@ -142,8 +144,8 @@ export default defineComponent({
 
       isReplyingCurrent,
       link,
+      like,
       time,
-      hasLiked,
     };
   },
 });

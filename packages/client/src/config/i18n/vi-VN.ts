@@ -10,6 +10,8 @@ export default generateLocale([
   'Hãy bình luận có văn hoá!',
   'Chưa có bình luận',
   'Gửi',
+  'Like',
+  'Cancel like',
   'Trả lời',
   'Hủy bỏ',
   'bình luận',

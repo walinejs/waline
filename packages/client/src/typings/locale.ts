@@ -6,14 +6,7 @@ export interface WalineDateLocale {
   now: string;
 }
 
-export interface WalineLevelLocale {
-  level0: string;
-  level1: string;
-  level2: string;
-  level3: string;
-  level4: string;
-  level5: string;
-}
+export type WalineLevelLocale = Record<`level${number}`, string>;
 
 export interface WalineLocale extends WalineDateLocale, WalineLevelLocale {
   nick: string;
@@ -25,6 +18,8 @@ export interface WalineLocale extends WalineDateLocale, WalineLevelLocale {
   placeholder: string;
   sofa: string;
   submit: string;
+  like: string;
+  cancelLike: string;
   reply: string;
   cancelReply: string;
   comment: string;
