@@ -4,17 +4,15 @@ on:
   push:
     branches:
       - main
-    # paths:
-    #   - 'assets/*'
-    #   - 'docs/*'
-    #   - 'packages/server/src/logic/*'
 
 jobs:
   deploy-docs:
     strategy:
       matrix:
-        node-version: [16.x]
-        os: [ubuntu-latest]
+        node-version:
+          - 16
+        os:
+          - ubuntu-latest
 
     runs-on: ${{ matrix.os }}
 
@@ -32,12 +30,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'pnpm'
+          cache: pnpm
 
-      - name: Build client
+      - name: Build Client
         run: pnpm client:build
 
-      - name: Build docs
+      - name: Build Docs
         run: pnpm docs:build
 
       - name: Deploy

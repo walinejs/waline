@@ -8,8 +8,12 @@ jobs:
   build-test:
     strategy:
       matrix:
-        node-version: [16.x]
-        os: [ubuntu-latest]
+        node-version:
+          - 14
+          - 16
+          - 18
+        os:
+          - ubuntu-latest
 
     runs-on: ${{ matrix.os }}
 
@@ -27,21 +31,16 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'pnpm'
+          cache: pnpm
 
-      - name: Build admin
-        run: pnpm admin:build
+      - name: Package Build Test
+        run: pnpm build
 
-      - name: Build client
-        run: pnpm client:build
+      - name: Docs Build Test
+        run: pnpm docs:build
 
-  linter-test:
-    strategy:
-      matrix:
-        node-version: [16.x]
-        os: [ubuntu-latest]
-
-    runs-on: ${{ matrix.os }}
+  test:
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
@@ -57,34 +56,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'pnpm'
+          cache: pnpm
 
       - name: Linter test
-        run: pnpm lint:check
-
-  unit-test:
-    strategy:
-      matrix:
-        node-version: [16.x]
-        os: [ubuntu-latest]
-
-    runs-on: ${{ matrix.os }}
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 7
-          run_install: true
-
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'pnpm'
+        run: pnpm lint
 
       - name: Unit test
         run: pnpm test
