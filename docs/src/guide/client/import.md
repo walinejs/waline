@@ -9,7 +9,7 @@ Waline 提供多种版本的客户端文件。你可以通过多种方式引入 
 
 ## 通过 CDN
 
-推荐使用 [jsdelivr](https://unpkg.com/@waline/client)。
+推荐使用 [unpkg](https://unpkg.com/@waline/client)。
 
 :::: code-group
 
