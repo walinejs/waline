@@ -312,7 +312,8 @@ export default defineComponent({
         objectId: comment.objectId,
         status,
       });
-      // todo: render comment list
+
+      comment.status = status;
     };
 
     const onSticky = async (comment: WalineComment): Promise<void> => {
@@ -327,10 +328,11 @@ export default defineComponent({
         objectId: comment.objectId,
         sticky: comment.sticky ? 0 : 1,
       });
-      // todo: render comment list
+
+      comment.sticky = !comment.sticky;
     };
 
-    const onDelete = async (comment: WalineComment): Promise<void> => {
+    const onDelete = async ({ objectId }: WalineComment): Promise<void> => {
       if (!confirm('Are you sure you want to delete this comment?')) return;
 
       const { serverURL, lang } = config.value;
@@ -339,28 +341,47 @@ export default defineComponent({
         serverURL,
         lang,
         token: userInfo.value?.token,
-        objectId: comment.objectId,
+        objectId: objectId,
       });
-      // todo render comment list
+
+      // delete comment from data
+      data.value.some((item, index) => {
+        if (item.objectId === objectId) {
+          data.value = data.value.filter((_item, i) => i !== index);
+
+          return true;
+        }
+
+        return item.children.some((child, childIndex) => {
+          if (child.objectId === objectId) {
+            data.value[index].children = item.children.filter(
+              (_item, i) => i !== childIndex
+            );
+
+            return true;
+          }
+
+          return false;
+        });
+      });
     };
 
     const onLike = async (comment: WalineComment): Promise<void> => {
       const { serverURL, lang } = config.value;
-      const hasLiked = likeStorage.value.includes(comment.objectId);
+      const { objectId } = comment;
+      const hasLiked = likeStorage.value.includes(objectId);
 
       await likeComment({
         serverURL,
         lang,
-        objectId: comment.objectId,
+        objectId,
         like: !hasLiked,
       });
 
       if (hasLiked)
-        likeStorage.value = likeStorage.value.filter(
-          (id) => id !== comment.objectId
-        );
+        likeStorage.value = likeStorage.value.filter((id) => id !== objectId);
       else {
-        likeStorage.value = [...likeStorage.value, comment.objectId];
+        likeStorage.value = [...likeStorage.value, objectId];
 
         if (likeStorage.value.length > 50)
           likeStorage.value = likeStorage.value.slice(-50);

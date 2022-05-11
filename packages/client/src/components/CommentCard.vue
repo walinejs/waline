@@ -106,6 +106,7 @@
           @reply="$emit('reply', $event)"
           @submit="$emit('submit', $event)"
           @like="$emit('like', $event)"
+          @delete="$emit('delete', $event)"
           @status="$emit('status', $event)"
           @sticky="$emit('sticky', $event)"
         />
