@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "vuepress-vite build src",
-    "dev": "vuepress-vite dev src"
+    "build": "vuepress build src",
+    "dev": "vuepress dev src"
   },
   "devDependencies": {
     "@fancyapps/ui": "^4.0.26",
