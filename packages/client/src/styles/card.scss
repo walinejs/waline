@@ -18,12 +18,12 @@
   .wl-user {
     --avatar-size: var(--waline-avatar-size);
 
+    position: relative;
+    margin-right: 0.75em;
+
     @media (max-width: 720px) {
       --avatar-size: var(--waline-m-avatar-size);
     }
-
-    position: relative;
-    margin-right: 0.75em;
 
     img {
       width: var(--avatar-size);
@@ -217,8 +217,8 @@
 
   .wl-admin-actions {
     margin: 8px 0;
-    text-align: right;
     font-size: 12px;
+    text-align: right;
   }
 
   .wl-comment-status {
