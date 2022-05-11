@@ -105,6 +105,7 @@ importers:
       '@babel/plugin-transform-runtime': ^7.17.10
       '@babel/preset-env': ^7.17.10
       '@babel/preset-react': ^7.16.7
+      '@babel/runtime': ^7.17.9
       '@rematch/core': ^2.2.0
       '@svgr/webpack': ^6.2.1
       babel-loader: ^8.2.5
@@ -136,6 +137,7 @@ importers:
       '@babel/plugin-transform-runtime': 7.17.10_@babel+core@7.17.10
       '@babel/preset-env': 7.17.10_@babel+core@7.17.10
       '@babel/preset-react': 7.16.7_@babel+core@7.17.10
+      '@babel/runtime': 7.17.9
       '@rematch/core': 2.2.0_redux@4.2.0
       '@svgr/webpack': 6.2.1
       babel-loader: 8.2.5_we4j6ycntotymd3gptdmlkk2fi
