@@ -360,9 +360,10 @@ export default defineComponent({
           (id) => id !== comment.objectId
         );
       else {
-        likeStorage.value.push(comment.objectId);
+        likeStorage.value = [...likeStorage.value, comment.objectId];
 
-        if (likeStorage.value.length > 50) likeStorage.value.slice(-50);
+        if (likeStorage.value.length > 50)
+          likeStorage.value = likeStorage.value.slice(-50);
       }
 
       comment.like = (comment.like || 0) + (hasLiked ? -1 : 1);

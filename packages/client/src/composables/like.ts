@@ -8,4 +8,7 @@ export type LikeID = number | string;
 
 export type LikeRef = Ref<LikeID[]>;
 
-export const useLikeStorage = (): LikeRef => useStorage<LikeID[]>(LIKE_KEY, []);
+let likeStorage: LikeRef | null = null;
+
+export const useLikeStorage = (): LikeRef =>
+  likeStorage || (likeStorage = useStorage<LikeID[]>(LIKE_KEY, []));

@@ -31,31 +31,33 @@
         />
         <span class="wl-time" v-text="time" />
 
-        <button
-          class="wl-reply"
-          :class="{ active: isReplyingCurrent }"
-          :title="isReplyingCurrent ? locale.cancelReply : locale.reply"
-          @click="$emit('reply', isReplyingCurrent ? null : comment)"
-        >
-          <ReplyIcon />
-        </button>
+        <div class="wl-comment-actions">
+          <button
+            class="wl-delete"
+            v-if="isAdmin || isOwner"
+            @click="$emit('delete', comment)"
+          >
+            <DeleteIcon />
+          </button>
 
-        <button
-          class="wl-like"
-          @click="$emit('like', comment)"
-          :title="like ? locale.cancelLike : locale.like"
-        >
-          <LikeIcon :active="like" />
-          <span v-if="'like' in comment" v-text="comment.like" />
-        </button>
+          <button
+            class="wl-like"
+            @click="$emit('like', comment)"
+            :title="like ? locale.cancelLike : locale.like"
+          >
+            <LikeIcon :active="like" />
+            <span v-if="'like' in comment" v-text="comment.like" />
+          </button>
 
-        <button
-          class="wl-delete"
-          v-if="isAdmin || isOwner"
-          @click="$emit('delete', comment)"
-        >
-          <DeleteIcon />
-        </button>
+          <button
+            class="wl-reply"
+            :class="{ active: isReplyingCurrent }"
+            :title="isReplyingCurrent ? locale.cancelReply : locale.reply"
+            @click="$emit('reply', isReplyingCurrent ? null : comment)"
+          >
+            <ReplyIcon />
+          </button>
+        </div>
       </div>
       <div class="wl-meta" aria-hidden="true">
         <span v-if="comment.addr" v-text="comment.addr" />

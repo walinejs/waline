@@ -101,32 +101,6 @@
     font-size: 0.75em;
   }
 
-  .wl-delete,
-  .wl-like,
-  .wl-reply {
-    float: right;
-
-    padding: 4px;
-    border: none;
-
-    background: transparent;
-    color: var(--waline-color);
-
-    line-height: 1;
-
-    cursor: pointer;
-
-    transition: color 0.2s ease;
-
-    &:hover {
-      color: var(--waline-theme-color);
-    }
-
-    &.active {
-      color: var(--waline-active-color);
-    }
-  }
-
   .wl-meta {
     position: relative;
     line-height: 1;
@@ -151,6 +125,36 @@
       &:empty {
         display: none;
       }
+    }
+  }
+
+  .wl-comment-actions {
+    float: right;
+  }
+
+  .wl-delete,
+  .wl-like,
+  .wl-reply {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px;
+    border: none;
+
+    background: transparent;
+    color: var(--waline-color);
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: var(--waline-theme-color);
+    }
+
+    &.active {
+      color: var(--waline-active-color);
     }
   }
 
