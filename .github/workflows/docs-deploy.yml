@@ -24,15 +24,13 @@ jobs:
         uses: pnpm/action-setup@v2
         with:
           version: 7
+          run_install: true
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           cache: pnpm
-
-      - name: Install Deps
-        run: pnpm install --frozen-lockfile
 
       - name: Build Client
         run: pnpm client:build
