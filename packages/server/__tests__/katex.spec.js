@@ -1,5 +1,7 @@
-const MarkdownIt = require('markdown-it');
-const { katexPlugin } = require('../src/service/markdown/katex');
+import { describe, expect, it } from 'vitest';
+import MarkdownIt from 'markdown-it';
+import { katexPlugin } from '../src/service/markdown/katex';
+import { vi } from 'vitest';
 
 const markdownIt = MarkdownIt({ linkify: true }).use(katexPlugin, {
   output: 'mathml',
@@ -46,7 +48,7 @@ describe('inline katex', () => {
   it('Should render error msg when content is wrong', () => {
     // eslint-disable-next-line @typescript-eslint/unbound-method
     const originalWarn = global.console.warn;
-    global.console.warn = jest.fn();
+    global.console.warn = vi.fn();
 
     expect(markdownItWithError.render('$\\fra{a}{b}$')).toEqual(
       "<p><span class='katex-error' title='ParseError: KaTeX parse error: Undefined control sequence: \\fra at position 1: \\̲f̲r̲a̲{a}{b}'>\\fra{a}{b}</span></p>\n"
@@ -117,7 +119,7 @@ $$
   it('Should render error msg when content is wrong', () => {
     // eslint-disable-next-line @typescript-eslint/unbound-method
     const originalWarn = global.console.warn;
-    global.console.warn = jest.fn();
+    global.console.warn = vi.fn();
     expect(markdownItWithError.render('$$\\fra{a}{b}$$')).toMatch(
       /<p class='katex-block katex-error' title='[\s\S]*?'>[\s\S]*?<\/p>/
     );

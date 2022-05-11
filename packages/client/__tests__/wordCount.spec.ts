@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import { getWords, getChinese, getWordNumber } from '../src/utils/wordCount';
 
 describe('Words test', () => {

@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import { marked } from 'marked';
 import { defaultTexRenderer } from '../src/config';
 import { markedTexExtensions } from '../src/utils/markedMathExtension';

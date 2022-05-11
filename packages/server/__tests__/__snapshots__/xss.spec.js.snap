@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`XSS test Should render 1`] = `
+exports[`XSS test > Should render 1`] = `
 "<p>Waline is a good framework. :money:</p>
 <h2>特性</h2>
 <ul>

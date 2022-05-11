@@ -1,5 +1,6 @@
-const MarkdownIt = require('markdown-it');
-const { mathjaxPlugin } = require('../src/service/markdown/mathjax');
+import { describe, expect, it } from 'vitest';
+import MarkdownIt from 'markdown-it';
+import { mathjaxPlugin } from '../src/service/markdown/mathjax';
 
 const markdownIt = MarkdownIt({ linkify: true }).use(mathjaxPlugin);
 

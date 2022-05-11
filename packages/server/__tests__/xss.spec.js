@@ -1,5 +1,7 @@
-const MarkdownIt = require('markdown-it');
-const { sanitize } = require('../src/service/markdown/xss');
+import { describe, expect, it } from 'vitest';
+import MarkdownIt from 'markdown-it';
+import { sanitize } from '../src/service/markdown/xss';
+
 const parser = (content) =>
   sanitize(new MarkdownIt({ html: true }).render(content));
 
