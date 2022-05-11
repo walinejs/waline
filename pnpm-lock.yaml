@@ -129,6 +129,7 @@ importers:
       react-redux: ^8.0.1
       react-router-dom: ^6.3.0
       redux: ^4.2.0
+      rimraf: ^3.0.2
       sass-loader: ^12.6.0
       style-loader: ^3.3.1
       ts-loader: ^9.3.0
@@ -161,6 +162,7 @@ importers:
       react-redux: 8.0.1_zi7aoi7ced5urpsfm5fjpojgnm
       react-router-dom: 6.3.0_ef5jwxihqo6n7gxfmzogljlgcm
       redux: 4.2.0
+      rimraf: 3.0.2
       sass-loader: 12.6.0_webpack@5.72.1
       style-loader: 3.3.1_webpack@5.72.1
       ts-loader: 9.3.0_gp3atwgq76mgimstdygasg64n4
