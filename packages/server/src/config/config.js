@@ -92,7 +92,7 @@ const markdown = {
 
 if (isFalse(MARKDOWN_HIGHLIGHT)) markdown.config.highlight = false;
 
-let avatarProxy = 'https://avatar.75cdn.workers.dev/';
+let avatarProxy = '';
 if (AVATAR_PROXY) {
   avatarProxy = !isFalse(AVATAR_PROXY) ? AVATAR_PROXY : '';
 }
