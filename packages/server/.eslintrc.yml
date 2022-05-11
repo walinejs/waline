@@ -1,2 +1,9 @@
 globals:
   think: readonly
+
+overrides:
+  - files:
+      - '__tests__/**/*.spec.js'
+
+    parserOptions:
+      sourceType: module

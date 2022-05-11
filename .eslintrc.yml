@@ -87,9 +87,3 @@ overrides:
 
       '@typescript-eslint/no-unsafe-member-access':
         - warn
-
-  - files:
-      - 'packages/**/__tests__/**/*.spec.js'
-
-    env:
-      jest: true
