@@ -7,7 +7,7 @@ Waline provides several versions of client files. You can introduce Waline in a 
 
 ## Via CDN
 
-Recommend to use [jsdelivr](https://unpkg.com/@waline/client/).
+Recommend to use [unpkg](https://unpkg.com/@waline/client/).
 
 :::: code-group
 

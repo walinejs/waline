@@ -50,7 +50,7 @@ If you need a custom language, please refer to [i18n](../guide/client/i18n.md).
 ## emoji
 
 - Type: `(string | WalineEmojiInfo)[] | false`
-- Default: `['https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo']`
+- Default: `['//unpkg.com/@waline/emojis@1.0.1/weibo']`
 
 Emoji settings, for details see [Custom Emoji](../guide/client/emoji.md)
 

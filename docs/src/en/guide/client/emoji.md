@@ -209,7 +209,7 @@ Then you can use `'https://example.com/myemoji'` as a available preset in `emoji
 
 ### Advanced
 
-We recommend you to upload images to a GitHub repo and add a tag after each modification. In this way, you can use the GitHub tag CDN link on [cdn.jsdelivr.net](https://www.jsdelivr.com/) as your preset, which format is `https://cdn.jsdelivr.net/ gh/user/repo@version/file`. After the tag is bound, original links referenced by the historical comment will still be valid if you edit the images.
+We recommend you to upload images to a GitHub repo and add a tag after each modification. In this way, you can use the GitHub tag CDN link on [cdn.jsdelivr.net](https://www.jsdelivr.com/) as your preset, which format is `https://cdn.jsdelivr.net/gh/user/repo@version/file`. After the tag is bound, original links referenced by the historical comment will still be valid if you edit the images.
 
 ::: tip
 
