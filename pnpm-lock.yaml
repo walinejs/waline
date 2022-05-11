@@ -39,6 +39,7 @@ importers:
       stylelint-order: ^5.0.0
       typescript: ^4.6.4
       vercel: ^24.2.1
+      vite: ~2.9.8
       vitest: ^0.12.4
     devDependencies:
       '@babel/core': 7.17.10
@@ -73,6 +74,7 @@ importers:
       stylelint-order: 5.0.0_stylelint@14.8.2
       typescript: 4.6.4
       vercel: 24.2.1
+      vite: 2.9.9_sass@1.51.0
       vitest: 0.12.4_c8@7.11.2+sass@1.51.0
 
   docs:
