@@ -558,7 +558,9 @@ module.exports = class extends BaseRest {
       const notify = this.service('notify');
       await notify.run(
         { ...resp, comment: markdownParser(resp.comment), rawComment: comment },
-        { ...parentComment, comment: markdownParser(parentComment.comment) }
+        parentComment
+          ? { ...parentComment, comment: markdownParser(parentComment.comment) }
+          : undefined
       );
     }
 
