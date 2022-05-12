@@ -1,4 +1,4 @@
-const qs = require('node:querystring');
+const qs = require('querystring');
 const { PasswordHash } = require('phpass');
 const BaseRest = require('./rest');
 

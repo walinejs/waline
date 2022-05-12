@@ -1,4 +1,4 @@
-const path = require('node:path');
+const path = require('path');
 const { parseString, writeToString } = require('fast-csv');
 const request = require('request-promise-native');
 const Base = require('./base');

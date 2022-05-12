@@ -1,4 +1,4 @@
-const path = require('node:path');
+const path = require('path');
 
 module.exports = class extends think.Controller {
   static get _REST() {

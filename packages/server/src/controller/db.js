@@ -1,5 +1,5 @@
-const fs = require('node:fs');
-const util = require('node:util');
+const fs = require('fs');
+const util = require('util');
 const BaseRest = require('./rest');
 
 const readFileAsync = util.promisify(fs.readFile);

@@ -1,4 +1,4 @@
-const path = require('node:path');
+const path = require('path');
 const Application = require('thinkjs');
 
 const instance = new Application({

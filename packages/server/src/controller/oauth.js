@@ -1,4 +1,4 @@
-const qs = require('node:querystring');
+const qs = require('querystring');
 const jwt = require('jsonwebtoken');
 const { PasswordHash } = require('phpass');
 const request = require('request-promise-native');
