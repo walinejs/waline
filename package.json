@@ -20,7 +20,7 @@
     "lint:stylelint": "stylelint packages/*/src/**/*.scss --fix",
     "prepare": "husky install",
     "server:dev": "vercel dev ./example --listen 9090",
-    "test": "vitest run --coverage"
+    "test": "vitest"
   },
   "lint-staged": {
     "*.{md,json,yml,js,vue}": [
