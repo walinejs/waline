@@ -556,10 +556,7 @@ module.exports = class extends BaseRest {
 
     if (comment.status !== 'spam') {
       const notify = this.service('notify');
-      await notify.run(
-        { ...resp, comment: markdownParser(resp.comment), rawComment: comment },
-        { ...parentComment, comment: markdownParser(parentComment.comment) }
-      );
+      await notify.run({ ...resp, rawComment: comment }, parentComment);
     }
 
     think.logger.debug(`Comment notify done!`);
@@ -619,11 +616,7 @@ module.exports = class extends BaseRest {
       pComment = pComment[0];
 
       const notify = this.service('notify');
-      await notify.run(
-        { ...newData, comment: markdownParser(newData.comment) },
-        { ...pComment, comment: markdownParser(pComment.comment) },
-        true
-      );
+      await notify.run(newData, pComment, true);
     }
 
     await this.hook('postUpdate', data);
