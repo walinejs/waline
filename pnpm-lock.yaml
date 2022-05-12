@@ -194,7 +194,6 @@ importers:
       rollup-plugin-dts: ^4.2.1
       rollup-plugin-terser: ^7.0.2
       rollup-plugin-ts: ^2.0.7
-      rollup-plugin-vue: ^6.0.0
       typescript: ^4.6.4
       vite: ^2.9.8
       vue: ^3.2.33
@@ -220,7 +219,6 @@ importers:
       rollup-plugin-dts: 4.2.1_pz6niy2zrvqhgxfup3pdyir4yu
       rollup-plugin-terser: 7.0.2_rollup@2.72.1
       rollup-plugin-ts: 2.0.7_psxna4usoc3r4fyov462zejew4
-      rollup-plugin-vue: 6.0.0_@vue+compiler-sfc@3.2.33
       typescript: 4.6.4
       vite: 2.9.9
 
@@ -6637,10 +6635,6 @@ packages:
     resolution: {integrity: sha512-MMdARuVEQziNTeJD8DgMqmhwR11BRQ/cBP+pLtYdSTnf3MIO8fFeiINEbX36ZdNlfU/7A9f3gUw49B3oQsvwBA==}
     engines: {node: '>=4.0'}
 
-  /estree-walker/0.6.1:
-    resolution: {integrity: sha512-SqmZANLWS0mnatqbSfRP5g8OXZC12Fgg1IwNtLsyHDzJizORW4khDfjPqJZsemPWBB2uqykUah5YpQ6epsqC/w==}
-    dev: true
-
   /estree-walker/1.0.1:
     resolution: {integrity: sha512-1fMXF3YP4pZZVozF8j/ZLfvnR8NSIljt56UhbZ5PeeDmmGHpgpdwQt7ITlGvYaQukCvuBRMLEiKiYC+oeIg4cg==}
     dev: true
@@ -11021,25 +11015,6 @@ packages:
       ts-clone-node: 0.3.32_typescript@4.6.4
       tslib: 2.4.0
       typescript: 4.6.4
-    dev: true
-
-  /rollup-plugin-vue/6.0.0_@vue+compiler-sfc@3.2.33:
-    resolution: {integrity: sha512-oVvUd84d5u73M2HYM3XsMDLtZRIA/tw2U0dmHlXU2UWP5JARYHzh/U9vcxaN/x/9MrepY7VH3pHFeOhrWpxs/Q==}
-    peerDependencies:
-      '@vue/compiler-sfc': '*'
-    dependencies:
-      '@vue/compiler-sfc': 3.2.33
-      debug: 4.3.4
-      hash-sum: 2.0.0
-      rollup-pluginutils: 2.8.2
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
-  /rollup-pluginutils/2.8.2:
-    resolution: {integrity: sha512-EEp9NhnUkwY8aif6bxgovPHMoMoNr2FulJziTndpt5H9RdwC47GSGuII9XxpSdzVGM0GWrNPHV6ie1LTNJPaLQ==}
-    dependencies:
-      estree-walker: 0.6.1
     dev: true
 
   /rollup/2.72.1:
