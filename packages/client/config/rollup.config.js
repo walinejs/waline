@@ -3,22 +3,26 @@ import commonjs from '@rollup/plugin-commonjs';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import ts from 'rollup-plugin-ts';
 import dts from 'rollup-plugin-dts';
-import vue from 'rollup-plugin-vue';
 import { terser } from 'rollup-plugin-terser';
 import replace from '@rollup/plugin-replace';
 import { version } from '../package.json';
+import vue from '@vitejs/plugin-vue';
 
 const commonOptions = {
   plugins: [
-    vue(),
+    vue({
+      isProduction: true,
+    }),
     ts(),
     replace({
       'process.env.NODE_ENV': JSON.stringify('production'),
       'process.env["NODE_ENV"]': JSON.stringify('production'),
       "process.env['NODE_ENV']": JSON.stringify('production'),
+      __VUE_OPTIONS_API__: false,
+      __VUE_PROD_DEVTOOLS__: false,
       SHOULD_VALIDATE: JSON.stringify(false),
       VERSION: JSON.stringify(version),
-      preventAssignment: true,
+      preventAssignment: false,
     }),
     nodeResolve({ preferBuiltins: true }),
     commonjs(),
@@ -49,15 +53,19 @@ export default [
     ],
     ...commonOptions,
     plugins: [
-      vue(),
+      vue({
+        isProduction: true,
+      }),
       ts(),
       replace({
         'process.env.NODE_ENV': JSON.stringify('production'),
         'process.env["NODE_ENV"]': JSON.stringify('production'),
         "process.env['NODE_ENV']": JSON.stringify('production'),
         SHOULD_VALIDATE: JSON.stringify(false),
+        __VUE_OPTIONS_API__: false,
+        __VUE_PROD_DEVTOOLS__: false,
         VERSION: JSON.stringify(version),
-        preventAssignment: true,
+        preventAssignment: false,
       }),
       nodeResolve({ preferBuiltins: true }),
       commonjs(),
