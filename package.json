@@ -79,7 +79,7 @@
   },
   "pnpm": {
     "overrides": {
-      "@waline/client": "workspace:*"
+      "@waline/client": "file:../packages/client"
     },
     "peerDependencyRules": {
       "ignoreMissing": [
