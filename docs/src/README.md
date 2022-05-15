@@ -19,7 +19,7 @@ features:
 
   - title: 轻量
     icon: light
-    details: 52kb gzip 的完整客户端大小
+    details: 48kb gzip 的完整客户端大小
 
   - title: 强大的安全性
     icon: safe

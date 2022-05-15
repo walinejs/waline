@@ -3,7 +3,7 @@ title: 客户端介绍
 icon: intro
 ---
 
-Waline 官方提供了 [`@waline/client`](https://www.npmjs.com/package/@waline/client) 客户端，使用 Vue + TypeScript 编写，大小仅为 52kb gzip。
+Waline 官方提供了 [`@waline/client`](https://www.npmjs.com/package/@waline/client) 客户端，使用 Vue + TypeScript 编写，大小仅为 48kb gzip。
 
 ## 引入
 
