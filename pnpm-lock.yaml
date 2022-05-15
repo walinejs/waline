@@ -3515,7 +3515,7 @@ packages:
       webpack-cli: 4.x.x
     dependencies:
       webpack: 5.72.1_webpack-cli@4.9.2
-      webpack-cli: 4.9.2_dm2ytpn7fgyd7euodvcejn2hda
+      webpack-cli: 4.9.2_webpack@5.72.1
     dev: true
 
   /@webpack-cli/info/1.4.1_webpack-cli@4.9.2:
@@ -3524,7 +3524,7 @@ packages:
       webpack-cli: 4.x.x
     dependencies:
       envinfo: 7.8.1
-      webpack-cli: 4.9.2_dm2ytpn7fgyd7euodvcejn2hda
+      webpack-cli: 4.9.2_webpack@5.72.1
     dev: true
 
   /@webpack-cli/serve/1.6.1_efhxflzxrvzsrtpw5o3zelaodm:
@@ -13583,7 +13583,7 @@ packages:
       tapable: 2.2.1
       terser-webpack-plugin: 5.3.1_webpack@5.72.1
       watchpack: 2.3.1
-      webpack-cli: 4.9.2_dm2ytpn7fgyd7euodvcejn2hda
+      webpack-cli: 4.9.2_webpack@5.72.1
       webpack-sources: 3.2.3
     transitivePeerDependencies:
       - '@swc/core'
