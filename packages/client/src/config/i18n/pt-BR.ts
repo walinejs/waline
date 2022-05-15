@@ -33,4 +33,12 @@ export default generateLocale([
   'Palavras',
   'Favor enviar comentário com $0 a $1 palavras!\n Número de palavras atuais: $2',
   'Anônimo',
+  'Dwarves',
+  'Hobbits',
+  'Ents',
+  'Wizards',
+  'Elves',
+  'Maiar',
+  'GIF',
+  'Pesquisar GIF',
 ]);

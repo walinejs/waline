@@ -33,4 +33,12 @@ export default generateLocale([
   'Слова',
   'Пожалуйста, введите комментарии от $0 до $1 слов!\nНомер текущего слова: $2',
   'Анонимный',
+  'Dwarves',
+  'Hobbits',
+  'Ents',
+  'Wizards',
+  'Elves',
+  'Maiar',
+  'GIF',
+  'Поиск GIF',
 ]);

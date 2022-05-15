@@ -88,6 +88,16 @@
             <EmojiIcon />
           </button>
 
+          <button
+            ref="gifButtonRef"
+            class="wl-action"
+            :class="{ actived: showGif }"
+            :title="locale.gif"
+            @click="showGif = !showGif"
+          >
+            <GifIcon />
+          </button>
+
           <input
             ref="imageUploadRef"
             class="upload"
@@ -152,6 +162,47 @@
           </button>
         </div>
 
+        <div
+          ref="gifPopupRef"
+          class="wl-gif-popup"
+          :class="{ display: showGif }"
+        >
+          <input
+            type="text"
+            :placeholder="locale.gifSearchPlaceholder"
+            ref="gifSearchInputRef"
+            @input="onGifSearch"
+          />
+
+          <masonry-wall
+            class="wl-gif-waterfall"
+            :items="gifData.list"
+            :ssr-columns="2"
+            :column-width="200"
+            :gap="6"
+            @scroll="onGifMasonryScroll"
+          >
+            <template #default="{ item }">
+              <img
+                @click="insert(`![](${item.media[0].tinygif.url})`)"
+                :src="item.media[0].tinygif.url"
+                :title="item.title"
+                loading="lazy"
+                :style="{
+                  width: '200px',
+                  height:
+                    (200 * item.media[0].tinygif.dims[1]) /
+                      item.media[0].tinygif.dims[0] +
+                    'px',
+                }"
+              />
+            </template>
+          </masonry-wall>
+
+          <div v-if="gifData.loading" class="wl-loading">
+            <LoadingIcon :size="30" />
+          </div>
+        </div>
         <div
           ref="emojiPopupRef"
           class="wl-emoji-popup"
@@ -228,6 +279,7 @@ import {
   MarkdownIcon,
   PreviewIcon,
   LoadingIcon,
+  GifIcon,
 } from './Icons';
 import { useEditor, useUserMeta, useUserInfo } from '../composables';
 import {
@@ -237,6 +289,9 @@ import {
   parseEmoji,
   postComment,
   getEmojis,
+  fetchGif,
+  FetchGifResponse,
+  throttle,
 } from '../utils';
 
 import type { ComputedRef, DeepReadonly } from 'vue';
@@ -253,6 +308,7 @@ export default defineComponent({
     MarkdownIcon,
     PreviewIcon,
     LoadingIcon,
+    GifIcon,
   },
 
   props: {
@@ -286,13 +342,22 @@ export default defineComponent({
     const imageUploadRef = ref<HTMLInputElement | null>(null);
     const emojiButtonRef = ref<HTMLDivElement | null>(null);
     const emojiPopupRef = ref<HTMLDivElement | null>(null);
+    const gifButtonRef = ref<HTMLDivElement | null>(null);
+    const gifPopupRef = ref<HTMLDivElement | null>(null);
+    const gifSearchInputRef = ref<HTMLInputElement | null>(null);
 
     const emoji = ref<DeepReadonly<WalineEmojiConfig>>({ tabs: [], map: {} });
     const emojiTabIndex = ref(0);
     const showEmoji = ref(false);
+    const showGif = ref(false);
     const showPreview = ref(false);
     const previewText = ref('');
     const wordNumber = ref(0);
+    const gifData = ref<{
+      cursor: string;
+      loading: boolean;
+      list: FetchGifResponse['results'];
+    }>({ cursor: '', loading: true, list: [] });
 
     const wordLimit = ref(0);
     const isWordNumberLegal = ref(false);
@@ -548,6 +613,41 @@ export default defineComponent({
         !(emojiPopupRef.value as HTMLElement).contains(event.target as Node)
       )
         showEmoji.value = false;
+
+      if (
+        !(gifButtonRef.value as HTMLElement).contains(event.target as Node) &&
+        !(gifPopupRef.value as HTMLElement).contains(event.target as Node)
+      )
+        showGif.value = false;
+    };
+
+    const onGifSearch = throttle(async (event: Event) => {
+      gifData.value.cursor = '';
+      gifData.value.list = [];
+      onGifMasonryScroll(event);
+    });
+
+    const onGifMasonryScroll = async (event: Event): Promise<void> => {
+      const { scrollTop, clientHeight, scrollHeight } =
+        event.target as HTMLDivElement;
+      const percent = (clientHeight + scrollTop) / scrollHeight;
+      if (percent < 0.9 || gifData.value.loading) {
+        return;
+      }
+
+      gifData.value.loading = true;
+      const data = await fetchGif({
+        keyword: gifSearchInputRef.value?.value || '',
+        pos: gifData.value.cursor,
+      }).finally(() => {
+        gifData.value.loading = false;
+      });
+
+      gifData.value.cursor = data.next;
+      gifData.value.list = gifData.value.list.concat(data.results);
+      setTimeout(() => {
+        (event.target as HTMLDivElement).scrollTop = scrollTop;
+      }, 50);
     };
 
     // update wordNumber
@@ -574,6 +674,20 @@ export default defineComponent({
       },
       { immediate: true }
     );
+
+    watch([showGif], async ([showGif]) => {
+      if (!showGif) {
+        return;
+      }
+
+      gifData.value.loading = true;
+      const data = await fetchGif({ keyword: '' }).finally(() => {
+        gifData.value.loading = false;
+      });
+
+      gifData.value.cursor = data.next;
+      gifData.value.list = gifData.value.list.concat(data.results);
+    });
 
     onMounted(() => {
       document.body.addEventListener('click', popupHandler);
@@ -632,6 +746,8 @@ export default defineComponent({
       onLogout,
       onProfile,
       submitComment,
+      onGifMasonryScroll,
+      onGifSearch,
 
       isLogin,
       userInfo,
@@ -651,6 +767,9 @@ export default defineComponent({
       emojiTabIndex,
       showEmoji,
 
+      // gif
+      showGif,
+
       // image
       canUploadImage,
 
@@ -663,7 +782,11 @@ export default defineComponent({
       editorRef,
       emojiButtonRef,
       emojiPopupRef,
+      gifButtonRef,
+      gifPopupRef,
       imageUploadRef,
+      gifSearchInputRef,
+      gifData,
     };
   },
 });

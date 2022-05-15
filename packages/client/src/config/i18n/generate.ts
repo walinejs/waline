@@ -39,6 +39,8 @@ const localeKeys = [
   'level3',
   'level4',
   'level5',
+  'gif',
+  'gifSearchPlaceholder',
 ];
 
 export const generateLocale = (locale: string[]): WalineLocale =>
