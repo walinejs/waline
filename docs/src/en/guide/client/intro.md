@@ -3,7 +3,7 @@ title: Client Intro
 icon: intro
 ---
 
-Waline official provides the [`@waline/client`](https://www.npmjs.com/package/@waline/client), written in Vue + TypeScript, and the size is only 52kb gzip.
+Waline official provides the [`@waline/client`](https://www.npmjs.com/package/@waline/client), written in Vue + TypeScript, and the size is only 48kb gzip.
 
 ## Introduce
 
