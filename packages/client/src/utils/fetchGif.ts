@@ -38,7 +38,7 @@ export const fetchGif = ({
 }: FetchGifRequest): Promise<FetchGifResponse> => {
   const baseUrl = `https://g.tenor.com/v1/search`;
   const query = new URLSearchParams('media_filter=minimal');
-  query.set('key', key || 'LIVDSRZULELA');
+  query.set('key', key || 'PAY5JLFIH6V6');
   query.set('limit', (limit || 20).toString());
   query.set('pos', pos || '');
   query.set('q', keyword);
