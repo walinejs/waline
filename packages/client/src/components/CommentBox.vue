@@ -167,7 +167,7 @@
           class="wl-gif-popup"
           :class="{ display: showGif }"
         >
-          <input type="text" placeholder="搜索GIF" ref="gifSearchInputRef" @input="onGifSearch"/>
+          <input type="text" :placeholder="locale.gifSearchPlaceholder" ref="gifSearchInputRef" @input="onGifSearch"/>
 
           <masonry-wall 
             class="wl-gif-waterfall" 
@@ -181,6 +181,7 @@
               <img 
                 @click="insert(`![](${item.media[0].tinygif.url})`)"
                 :src="item.media[0].tinygif.url" 
+                :title="item.title"
                 loading="lazy" 
                 :style="{width: '200px', height: 200 * item.media[0].tinygif.dims[1] / item.media[0].tinygif.dims[0] + 'px'}"  
               />

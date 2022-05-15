@@ -33,4 +33,12 @@ export default generateLocale([
   'từ',
   'Please input comments between $0 and $1 words!\n Current word number: $2',
   'Vô danh',
+  'Dwarves',
+  'Hobbits',
+  'Ents',
+  'Wizards',
+  'Elves',
+  'Maiar',
+  'GIF',
+  'Tìm kiếm GIF',
 ]);

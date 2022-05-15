@@ -36,4 +36,6 @@ export interface WalineLocale extends WalineDateLocale, WalineLevelLocale {
   word: string;
   wordHint: string;
   anonymous: string;
+  gif: string;
+  gifSearchPlaceholder: string;
 }

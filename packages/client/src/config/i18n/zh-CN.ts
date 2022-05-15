@@ -39,4 +39,6 @@ export default generateLocale([
   '活跃',
   '话痨',
   '传说',
+  '表情包',
+  '搜索表情包'
 ]);
