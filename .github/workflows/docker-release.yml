@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - main
-    # paths:
-    #   - 'packages/server/*'
+    paths:
+      - 'packages/server/*'
 
 jobs:
   path-context:
@@ -66,16 +66,16 @@ jobs:
           # cache-from: type=local,src=/tmp/.buildx-cache
           # cache-to: type=local,dest=/tmp/.buildx-cache,mode=max
 
-      - name: Login to ghcr.io
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      # - name: Login to ghcr.io
+      #   run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
-      - name: Build and push alpine - ghcr.io
-        if: contains(github.event.head_commit.message, 'release @waline/vercel')
-        uses: docker/build-push-action@v3
-        with:
-          file: ./packages/server/Dockerfile.alpine
-          platforms: linux/amd64,linux/arm64,linux/arm/v7
-          push: true
-          tags: |
-            ghcr.io/lizheming/waline:alpine
-            ghcr.io/lizheming/waline:${{steps.pkg-version.outputs.version}}-alpine
+      # - name: Build and push alpine - ghcr.io
+      #   if: contains(github.event.head_commit.message, 'release @waline/vercel')
+      #   uses: docker/build-push-action@v3
+      #   with:
+      #     file: ./packages/server/Dockerfile.alpine
+      #     platforms: linux/amd64,linux/arm64,linux/arm/v7
+      #     push: true
+      #     tags: |
+      #       ghcr.io/lizheming/waline:alpine
+      #       ghcr.io/lizheming/waline:${{steps.pkg-version.outputs.version}}-alpine
