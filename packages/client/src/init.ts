@@ -81,9 +81,10 @@ export const init = ({
     ? createApp(() => h(Waline, { path: state.path, ...props }))
     : null;
 
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   if (app) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     app.use(MasonryWall);
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     app.mount(root!);
   }
 

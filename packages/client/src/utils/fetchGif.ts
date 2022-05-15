@@ -1,4 +1,15 @@
-export type GifFormat = 'gif' | 'mediumgif' | 'tinygif' | 'nanogif' | 'mp4' | 'loopedmp4' | 'tinymp4' | 'nanomp4' | 'webm' | 'tinywebm' | 'nanowebm';
+export type GifFormat =
+  | 'gif'
+  | 'mediumgif'
+  | 'tinygif'
+  | 'nanogif'
+  | 'mp4'
+  | 'loopedmp4'
+  | 'tinymp4'
+  | 'nanomp4'
+  | 'webm'
+  | 'tinywebm'
+  | 'nanowebm';
 export interface MediaObject {
   preview: string;
   url: string;
@@ -42,10 +53,10 @@ export const fetchGif = ({
   query.set('limit', (limit || 20).toString());
   query.set('pos', pos || '');
   query.set('q', keyword);
-  
+
   return fetch(`${baseUrl}?${query.toString()}`, {
     headers: {
-      'content-type': 'application/json'
+      'Content-Type': 'application/json',
     },
   }).then((resp) => resp.json() as Promise<FetchGifResponse>);
 };

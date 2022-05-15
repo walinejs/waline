@@ -167,23 +167,34 @@
           class="wl-gif-popup"
           :class="{ display: showGif }"
         >
-          <input type="text" :placeholder="locale.gifSearchPlaceholder" ref="gifSearchInputRef" @input="onGifSearch"/>
+          <input
+            type="text"
+            :placeholder="locale.gifSearchPlaceholder"
+            ref="gifSearchInputRef"
+            @input="onGifSearch"
+          />
 
-          <masonry-wall 
-            class="wl-gif-waterfall" 
-            :items="gifData.list" 
-            :ssr-columns="2" 
-            :column-width="200" 
-            :gap="6" 
+          <masonry-wall
+            class="wl-gif-waterfall"
+            :items="gifData.list"
+            :ssr-columns="2"
+            :column-width="200"
+            :gap="6"
             @scroll="onGifMasonryScroll"
           >
             <template #default="{ item }">
-              <img 
+              <img
                 @click="insert(`![](${item.media[0].tinygif.url})`)"
-                :src="item.media[0].tinygif.url" 
+                :src="item.media[0].tinygif.url"
                 :title="item.title"
-                loading="lazy" 
-                :style="{width: '200px', height: 200 * item.media[0].tinygif.dims[1] / item.media[0].tinygif.dims[0] + 'px'}"  
+                loading="lazy"
+                :style="{
+                  width: '200px',
+                  height:
+                    (200 * item.media[0].tinygif.dims[1]) /
+                      item.media[0].tinygif.dims[0] +
+                    'px',
+                }"
               />
             </template>
           </masonry-wall>
@@ -343,9 +354,9 @@ export default defineComponent({
     const previewText = ref('');
     const wordNumber = ref(0);
     const gifData = ref<{
-      cursor: string, 
-      loading: boolean, 
-      list: FetchGifResponse['results']
+      cursor: string;
+      loading: boolean;
+      list: FetchGifResponse['results'];
     }>({ cursor: '', loading: true, list: [] });
 
     const wordLimit = ref(0);
@@ -616,27 +627,28 @@ export default defineComponent({
       onGifMasonryScroll(event);
     });
 
-    const onGifMasonryScroll = async (event: Event) => {
-      const { scrollTop, clientHeight, scrollHeight } = event.target as HTMLDivElement;
+    const onGifMasonryScroll = async (event: Event): Promise<void> => {
+      const { scrollTop, clientHeight, scrollHeight } =
+        event.target as HTMLDivElement;
       const percent = (clientHeight + scrollTop) / scrollHeight;
       if (percent < 0.9 || gifData.value.loading) {
         return;
       }
-      
+
       gifData.value.loading = true;
-      const data = await fetchGif({ 
-        keyword: gifSearchInputRef.value?.value || '', 
-        pos: gifData.value.cursor 
+      const data = await fetchGif({
+        keyword: gifSearchInputRef.value?.value || '',
+        pos: gifData.value.cursor,
       }).finally(() => {
         gifData.value.loading = false;
       });
-    
+
       gifData.value.cursor = data.next;
       gifData.value.list = gifData.value.list.concat(data.results);
       setTimeout(() => {
         (event.target as HTMLDivElement).scrollTop = scrollTop;
       }, 50);
-    }
+    };
 
     // update wordNumber
     watch(
@@ -663,22 +675,19 @@ export default defineComponent({
       { immediate: true }
     );
 
-    watch(
-      [showGif],
-      async ([showGif]) => {
-        if (!showGif) {
-          return;
-        }
-
-        gifData.value.loading = true;
-        const data = await fetchGif({ keyword: '' }).finally(() => {
-          gifData.value.loading = false;
-        });
-      
-        gifData.value.cursor = data.next;
-        gifData.value.list = gifData.value.list.concat(data.results);
+    watch([showGif], async ([showGif]) => {
+      if (!showGif) {
+        return;
       }
-    );
+
+      gifData.value.loading = true;
+      const data = await fetchGif({ keyword: '' }).finally(() => {
+        gifData.value.loading = false;
+      });
+
+      gifData.value.cursor = data.next;
+      gifData.value.list = gifData.value.list.concat(data.results);
+    });
 
     onMounted(() => {
       document.body.addEventListener('click', popupHandler);

@@ -27,33 +27,37 @@
     }
 
     input {
-      width: 100%;
-      padding: 3px 5px;
       box-sizing: border-box;
+
+      width: 100%;
       margin-bottom: 10px;
+      padding: 3px 5px;
       border: var(--waline-border);
     }
 
     img {
-      cursor: pointer;
+      display: block;
+
+      box-sizing: border-box;
+
+      width: 100%;
       border-width: 2px;
       border-style: solid;
       border-color: #fff;
-      display: block;
-      width: 100%;
-      box-sizing: border-box;
+
+      cursor: pointer;
 
       &:hover {
-        border-radius: 2px;
         border-color: var(--waline-theme-color);
+        border-radius: 2px;
       }
     }
 
     .wl-gif-waterfall {
-      max-height:800px;
-      overflow-y:auto;
+      overflow-y: auto;
+      max-height: 800px;
     }
-    
+
     button {
       display: inline-block;
       vertical-align: middle;

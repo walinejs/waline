@@ -40,5 +40,5 @@ export default generateLocale([
   'Elves',
   'Maiar',
   'GIF',
-  'Pesquisar GIF'
+  'Pesquisar GIF',
 ]);
