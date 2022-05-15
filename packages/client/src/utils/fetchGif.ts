@@ -56,6 +56,7 @@ export const fetchGif = ({
 
   return fetch(`${baseUrl}?${query.toString()}`, {
     headers: {
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       'Content-Type': 'application/json',
     },
   }).then((resp) => resp.json() as Promise<FetchGifResponse>);
