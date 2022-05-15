@@ -177,7 +177,6 @@
           <masonry-wall
             class="wl-gif-waterfall"
             :items="gifData.list"
-            :ssr-columns="2"
             :column-width="200"
             :gap="6"
             @scroll="onGifMasonryScroll"
