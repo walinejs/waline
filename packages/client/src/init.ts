@@ -1,4 +1,5 @@
 import { createApp, h, reactive, watchEffect } from 'vue';
+import MasonryWall from '@yeger/vue-masonry-wall';
 
 import Waline from './components/Waline.vue';
 import { commentCount } from './comment';
@@ -81,7 +82,10 @@ export const init = ({
     : null;
 
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  if (app) app.mount(root!);
+  if (app) {
+    app.use(MasonryWall);
+    app.mount(root!);
+  }
 
   updateCommentCount();
   updatePageviewCount();

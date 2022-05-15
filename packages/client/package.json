@@ -97,6 +97,7 @@
     "@types/node": "^17.0.31",
     "@vitejs/plugin-vue": "^2.3.2",
     "@vue/compiler-sfc": "^3.2.33",
+    "@yeger/vue-masonry-wall": "^3.0.31",
     "rimraf": "^3.0.2",
     "rollup": "^2.72.1",
     "rollup-plugin-dts": "^4.2.1",

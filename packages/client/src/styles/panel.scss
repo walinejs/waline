@@ -1,4 +1,5 @@
 @use 'emoji';
+@use 'gif';
 
 .wl-comment {
   position: relative;
@@ -288,3 +289,4 @@
 }
 
 @include emoji.emoji;
+@include gif.gif;

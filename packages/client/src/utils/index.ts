@@ -10,3 +10,5 @@ export * from './markdown';
 export * from './path';
 export * from './query';
 export * from './wordCount';
+export * from './fetchGif';
+export * from './throttle';
