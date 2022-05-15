@@ -182,17 +182,18 @@
             :gap="6"
             @scroll="onGifMasonryScroll"
           >
-            <template #default="{ item }">
+            <template #default="slotProps">
               <img
-                @click="insert(`![](${item.media[0].tinygif.url})`)"
-                :src="item.media[0].tinygif.url"
-                :title="item.title"
+                v-if="slotProps?.item"
+                @click="insert(`![](${slotProps?.item.media[0].tinygif.url})`)"
+                :src="slotProps?.item.media[0].tinygif.url"
+                :title="slotProps?.item.title"
                 loading="lazy"
                 :style="{
                   width: '200px',
                   height:
-                    (200 * item.media[0].tinygif.dims[1]) /
-                      item.media[0].tinygif.dims[0] +
+                    (200 * slotProps?.item.media[0].tinygif.dims[1]) /
+                      slotProps?.item.media[0].tinygif.dims[0] +
                     'px',
                 }"
               />
