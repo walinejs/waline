@@ -2,7 +2,7 @@ import { useStorage } from '@vueuse/core';
 
 import type { Ref } from 'vue';
 
-const LIKE_KEY = 'WALIKE_LIKE';
+const LIKE_KEY = 'WALINE_LIKE';
 
 export type LikeID = number | string;
 
