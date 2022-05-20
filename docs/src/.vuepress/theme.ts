@@ -66,7 +66,7 @@ export default hopeTheme({
     },
 
     mdEnhance: {
-      codegroup: true,
+      codetabs: true,
       sub: true,
       sup: true,
       tasklist: true,
