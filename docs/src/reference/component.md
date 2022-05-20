@@ -260,11 +260,11 @@ Waline 的服务端地址。
 
 你可以自行引入 $\TeX$ 渲染器并提供预览渲染，建议使用 Katex 或 MathJax，也可以设置为 `false` 以禁止渲染 $\TeX$。更多请参考 [KaTeX API](https://katex.org/docs/api.html#server-side-rendering-or-rendering-to-a-string) 或 [MathJax API](http://docs.mathjax.org/en/latest/web/typeset.html#converting-a-math-string-to-other-formats)。
 
-::::: details 案例
+:::: details 案例
 
-:::: code-group
+::: code-tabs
 
-::: code-group-item KaTex
+@tab KaTex
 
 ```html
 <!DOCTYPE html>
@@ -303,9 +303,7 @@ Waline 的服务端地址。
 </html>
 ```
 
-:::
-
-::: code-group-item MathJax
+@tab MathJax
 
 ```html
 <!DOCTYPE html>
@@ -344,8 +342,6 @@ Waline 的服务端地址。
 :::
 
 ::::
-
-:::::
 
 ## copyright
 

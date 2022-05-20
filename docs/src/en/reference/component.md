@@ -261,11 +261,11 @@ Customize $\TeX$ rendering, the default behavior is to prompt that the preview m
 
 You can import $\TeX$ renderer to provide preview feature. We recommend you to use Katex or MathJax, or you can set to `false` to disable parsing $\TeX$. For more information, please refer to [KaTeX API](https://katex.org/docs/api.html#server-side-rendering-or-rendering-to-a-string) or [MathJax API](http://docs.mathjax.org/en/latest/web/typeset.html#converting-a-math-string-to-other-formats).
 
-::::: details Demo
+:::: details Demo
 
-:::: code-group
+::: code-tabs
 
-::: code-group-item KaTex
+@tab KaTex
 
 ```html
 <!DOCTYPE html>
@@ -304,9 +304,7 @@ You can import $\TeX$ renderer to provide preview feature. We recommend you to u
 </html>
 ```
 
-:::
-
-::: code-group-item MathJax
+@tab MathJax
 
 ```html
 <!DOCTYPE html>
@@ -345,8 +343,6 @@ You can import $\TeX$ renderer to provide preview feature. We recommend you to u
 :::
 
 ::::
-
-:::::
 
 ## copyright
 

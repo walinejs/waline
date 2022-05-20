@@ -61,18 +61,16 @@ services:
 
 It's easy to run without using docker deployment, after setting environment variables, just run the `vanilla.js` file in the module after installing.
 
-:::: code-group
+::: code-tabs
 
-::: code-group-item npm
+@tab npm
 
 ```bash
 npm install @waline/vercel
 node node_modules/@waline/vercel/vanilla.js
 ```
 
-:::
-
-::: code-group-item yarn
+@tab yarn
 
 ```bash
 yarn add @waline/vercel
@@ -80,8 +78,6 @@ node node_modules/@waline/vercel/vanilla.js
 ```
 
 :::
-
-::::
 
 ## Nginx config
 

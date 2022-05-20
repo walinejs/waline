@@ -9,9 +9,9 @@ Waline provides several versions of client files. You can introduce Waline in a 
 
 Recommend to use [unpkg](https://unpkg.com/@waline/client/).
 
-:::: code-group
+::: code-tabs
 
-::: code-group-item Default
+@tab Default
 
 ```html
 <!-- Scripts -->
@@ -23,7 +23,7 @@ Recommend to use [unpkg](https://unpkg.com/@waline/client/).
 />
 ```
 
-::: code-group-item Pageview Only
+@tab Pageview Only
 
 ```html
 <!-- Pageview -->
@@ -31,8 +31,6 @@ Recommend to use [unpkg](https://unpkg.com/@waline/client/).
 ```
 
 :::
-
-::::
 
 ::: info Specifies version
 
@@ -51,25 +49,21 @@ For CDN links, if you don't specify a version number, it will be latest version,
 
 Waline client has been released to [npm](https://www.npmjs.com/package/@waline/client) via `@waline/client`, you can install it with the following command:
 
-:::: code-group
+::: code-tabs
 
-::: code-group-item yarn
+@tab yarn
 
 ```bash
 yarn add -D @waline/client
 ```
 
-:::
-
-::: code-group-item npm
+@tab npm
 
 ```bash
 npm i -D @waline/client
 ```
 
 :::
-
-::::
 
 ### Import
 
@@ -111,9 +105,9 @@ Other format files:
 
 You can import the required files in various forms and use them, the following is an example.
 
-:::: code-group
+::: code-tabs
 
-::: code-group-item JS
+@tab JS
 
 ```js
 import { init } from '@waline/client';
@@ -125,9 +119,7 @@ init({
 });
 ```
 
-:::
-
-::: code-group-item TS
+@tab TS
 
 ```ts
 import { init } from '@waline/client';
@@ -140,5 +132,3 @@ init({
 ```
 
 :::
-
-::::
