@@ -256,11 +256,11 @@ to the `emoji` option as a config item.
 
 ::: warning
 
-Though Waline is still compatible with Valine's custom emoji syntax, this compatibility will be removed in V2 version. Please migrate to the `emoji` option whenever possile.
+Waline legacy package still provides Valine's custom emoji options, you can use `emojiCDN` to set the address prefix of emoji images, and use `emojiMaps` to set the mapping between emoji title and image.
+
+This compatibility is removed in standard V2 version, so please migrate to the `emoji` option.
 
 :::
-
-Use `emojiCDN` to set the address prefix of emoji images, and use `emojiMaps` to set the mapping between emoji title and image:
 
 ```js
 Waline.init({

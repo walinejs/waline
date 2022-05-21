@@ -19,7 +19,7 @@ v1 版本是基于 Vue 与 TypeScript 的完全重写，所以大小从 78.4kb �
 
 ## 选项变更
 
-以下选项标记为 `废弃`，相关兼容兼容将在 v2 移除。
+以下选项标记为 `废弃`，相关兼容已在 v2 移除。
 
 - `placeholder` → 请通过 `locale.placeholder` 选项设置
 

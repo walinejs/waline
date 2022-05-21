@@ -256,11 +256,13 @@ https://example.com/myemoji/
 
 ::: warning
 
-虽然 Waline 目前仍在兼容 Valine 的自定义表情写法，但此兼容会在未来版本中移除，请尽快迁移到 `emoji` 选项。
+Waline 提供了一个 legacy 版本，对 Valine 的 emoji 选项进行了兼容。
+
+在 legacy 版本中，你可以使用 `emojiCDN` 设置 emoji 图片地址前缀，并使用 `emojiMaps` 设置表情 title 与图片的映射。
+
+此兼容在 V2 正式版中已经移除，请尽快迁移到 `emoji` 选项。
 
 :::
-
-使用 `emojiCDN` 设置 emoji 图片地址前缀，并使用 `emojiMaps` 设置表情 title 与图片的映射:
 
 ```js
 Waline.init({

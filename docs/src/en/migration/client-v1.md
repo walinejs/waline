@@ -19,7 +19,7 @@ The v1 version is a complete rewrite with Vue and TypeScript, so the size is red
 
 ## Options Change
 
-The following options are marked as `obsolete`, and will be removed in v2.
+The following options are marked as `obsolete`, and are removed in v2.
 
 - `placeholder` → please use `locale.placeholder` option
 
