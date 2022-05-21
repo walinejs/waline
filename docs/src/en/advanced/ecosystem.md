@@ -38,12 +38,12 @@ You can use the following plugins to use Waline on different tools:
 
 ### VuePress
 
-- [@mr-hope/vuepress-plugin-comment](https://vuepress-theme-hope.github.io/comment/): VuePress1 comment plugin
+- [@mr-hope/vuepress-plugin-comment](https://vuepress-theme-hope.github.io/v1/comment/): VuePress1 comment plugin
 - [vuepress-plugin-comment2](https://vuepress-theme-hope.github.io/v2/comment/): VuePress2 comment plugin
 
 ## Theme
 
-- [vuepress-theme-hope](https://vuepress-theme-hope.github.io/zh/): A powerful VuePress theme with tons of features
+- [vuepress-theme-hope](https://vuepress-theme-hope.github.io/v2/): A powerful VuePress theme with tons of features
 
 ## More
 
