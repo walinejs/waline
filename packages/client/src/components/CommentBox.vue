@@ -35,7 +35,7 @@
           <input
             :ref="
               (element) => {
-                if (element) inputRefs[kind] = element;
+                if (element) inputRefs[kind] = element as HTMLInputElement;
               }
             "
             :id="`wl-${kind}`"
@@ -174,30 +174,14 @@
             @input="onGifSearch"
           />
 
-          <masonry-wall
-            class="wl-gif-waterfall"
+          <ImageWall
             :items="gifData.list"
             :column-width="200"
             :gap="6"
-            @scroll="onGifMasonryScroll"
+            @insert="insert($event)"
+            @scroll="onImageWallScroll"
           >
-            <template #default="slotProps">
-              <img
-                v-if="slotProps?.item"
-                @click="insert(`![](${slotProps?.item.media[0].tinygif.url})`)"
-                :src="slotProps?.item.media[0].tinygif.url"
-                :title="slotProps?.item.title"
-                loading="lazy"
-                :style="{
-                  width: '200px',
-                  height:
-                    (200 * slotProps?.item.media[0].tinygif.dims[1]) /
-                      slotProps?.item.media[0].tinygif.dims[0] +
-                    'px',
-                }"
-              />
-            </template>
-          </masonry-wall>
+          </ImageWall>
 
           <div v-if="gifData.loading" class="wl-loading">
             <LoadingIcon :size="30" />
@@ -272,6 +256,7 @@ import {
   watch,
 } from 'vue';
 
+import ImageWall from './ImageWall.vue';
 import {
   CloseIcon,
   EmojiIcon,
@@ -283,20 +268,23 @@ import {
 } from './Icons';
 import { useEditor, useUserMeta, useUserInfo } from '../composables';
 import {
+  fetchGif,
+  getEmojis,
   getImagefromDataTransfer,
-  parseMarkdown,
   getWordNumber,
   parseEmoji,
+  parseMarkdown,
   postComment,
-  getEmojis,
-  fetchGif,
-  FetchGifResponse,
   throttle,
 } from '../utils';
 
 import type { ComputedRef, DeepReadonly } from 'vue';
 import type { WalineCommentData, WalineImageUploader } from '../typings';
-import type { WalineConfig, WalineEmojiConfig } from '../utils';
+import type {
+  FetchGifResponse,
+  WalineConfig,
+  WalineEmojiConfig,
+} from '../utils';
 
 export default defineComponent({
   name: 'CommentBox',
@@ -305,6 +293,7 @@ export default defineComponent({
     CloseIcon,
     EmojiIcon,
     ImageIcon,
+    ImageWall,
     MarkdownIcon,
     PreviewIcon,
     LoadingIcon,
@@ -621,21 +610,15 @@ export default defineComponent({
         showGif.value = false;
     };
 
-    const onGifSearch = throttle(async (event: Event) => {
-      gifData.value.cursor = '';
-      gifData.value.list = [];
-      onGifMasonryScroll(event);
-    });
-
-    const onGifMasonryScroll = async (event: Event): Promise<void> => {
+    const onImageWallScroll = async (event: Event): Promise<void> => {
       const { scrollTop, clientHeight, scrollHeight } =
         event.target as HTMLDivElement;
       const percent = (clientHeight + scrollTop) / scrollHeight;
-      if (percent < 0.9 || gifData.value.loading) {
-        return;
-      }
+
+      if (percent < 0.9 || gifData.value.loading) return;
 
       gifData.value.loading = true;
+
       const data = await fetchGif({
         keyword: gifSearchInputRef.value?.value || '',
         pos: gifData.value.cursor,
@@ -645,10 +628,17 @@ export default defineComponent({
 
       gifData.value.cursor = data.next;
       gifData.value.list = gifData.value.list.concat(data.results);
+
       setTimeout(() => {
         (event.target as HTMLDivElement).scrollTop = scrollTop;
       }, 50);
     };
+
+    const onGifSearch = throttle(async (event: Event) => {
+      gifData.value.cursor = '';
+      gifData.value.list = [];
+      onImageWallScroll(event);
+    });
 
     // update wordNumber
     watch(
@@ -675,10 +665,8 @@ export default defineComponent({
       { immediate: true }
     );
 
-    watch([showGif], async ([showGif]) => {
-      if (!showGif) {
-        return;
-      }
+    watch(showGif, async (showGif) => {
+      if (!showGif) return;
 
       gifData.value.loading = true;
       const data = await fetchGif({ keyword: '' }).finally(() => {
@@ -746,7 +734,7 @@ export default defineComponent({
       onLogout,
       onProfile,
       submitComment,
-      onGifMasonryScroll,
+      onImageWallScroll,
       onGifSearch,
 
       isLogin,
@@ -768,6 +756,7 @@ export default defineComponent({
       showEmoji,
 
       // gif
+      gifData,
       showGif,
 
       // image
@@ -786,7 +775,6 @@ export default defineComponent({
       gifPopupRef,
       imageUploadRef,
       gifSearchInputRef,
-      gifData,
     };
   },
 });

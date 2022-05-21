@@ -1,118 +1,116 @@
-@mixin emoji() {
-  .wl-emoji-popup {
-    position: absolute;
-    top: 100%;
-    left: 1.25em;
-    z-index: 10;
+.wl-emoji-popup {
+  position: absolute;
+  top: 100%;
+  left: 1.25em;
+  z-index: 10;
 
-    max-width: 526px;
-    border: var(--waline-border);
-    border-radius: 6px;
+  max-width: 526px;
+  border: var(--waline-border);
+  border-radius: 6px;
 
-    background: var(--waline-bgcolor);
-    box-shadow: var(--waline-box-shadow);
+  background: var(--waline-bgcolor);
+  box-shadow: var(--waline-box-shadow);
 
-    opacity: 0;
-    visibility: hidden;
+  opacity: 0;
+  visibility: hidden;
 
-    transition: transform 0.2s ease-out, opacity 0.2s ease-out;
-    transform: scale(0.9, 0.9);
-    transform-origin: 0 0;
+  transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+  transform: scale(0.9, 0.9);
+  transform-origin: 0 0;
 
-    &.display {
-      opacity: 1;
-      visibility: visible;
-      transform: none;
+  &.display {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  button {
+    display: inline-block;
+    vertical-align: middle;
+
+    width: 2em;
+    margin: 0.125em;
+    padding: 0;
+    border-width: 0;
+
+    background: transparent;
+
+    font-size: inherit;
+    line-height: 2;
+    text-align: center;
+
+    cursor: pointer;
+
+    &:hover {
+      background: var(--waline-bgcolor-hover);
+    }
+  }
+
+  .wl-emoji {
+    display: inline-block;
+    vertical-align: middle;
+    max-width: 1.5em;
+    max-height: 1.5em;
+  }
+
+  .wl-tab-wrapper {
+    overflow-y: auto;
+    max-height: 145px;
+    padding: 0.5em;
+
+    &::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
     }
 
-    button {
-      display: inline-block;
-      vertical-align: middle;
-
-      width: 2em;
-      margin: 0.125em;
-      padding: 0;
-      border-width: 0;
-
-      background: transparent;
-
-      font-size: inherit;
-      line-height: 2;
-      text-align: center;
-
-      cursor: pointer;
-
-      &:hover {
-        background: var(--waline-bgcolor-hover);
-      }
+    &::-webkit-scrollbar-track-piece:vertical {
+      -webkit-border-radius: 6px;
+      border-radius: 6px;
+      background: rgb(0 0 0 / 10%);
     }
 
-    .wl-emoji {
-      display: inline-block;
-      vertical-align: middle;
-      max-width: 1.5em;
-      max-height: 1.5em;
+    &::-webkit-scrollbar-thumb:vertical {
+      width: 6px;
+      -webkit-border-radius: 6px;
+      border-radius: 6px;
+      background: var(--waline-theme-color);
     }
+  }
 
-    .wl-tab-wrapper {
-      overflow-y: auto;
-      max-height: 145px;
-      padding: 0.5em;
+  .wl-tabs {
+    position: relative;
+    height: 2em;
+    padding: 0 6px 1px;
 
-      &::-webkit-scrollbar {
-        width: 6px;
-        height: 6px;
-      }
+    &::before {
+      content: ' ';
 
-      &::-webkit-scrollbar-track-piece:vertical {
-        -webkit-border-radius: 6px;
-        border-radius: 6px;
-        background: rgb(0 0 0 / 10%);
-      }
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      z-index: 2;
 
-      &::-webkit-scrollbar-thumb:vertical {
-        width: 6px;
-        -webkit-border-radius: 6px;
-        border-radius: 6px;
-        background: var(--waline-theme-color);
-      }
+      height: 1px;
+
+      background: var(--waline-border-color);
     }
+  }
 
-    .wl-tabs {
-      position: relative;
-      height: 2em;
-      padding: 0 6px 1px;
+  .wl-tab {
+    position: relative;
+    margin: 0;
+    padding: 0 0.5em;
 
-      &::before {
-        content: ' ';
+    &.active {
+      z-index: 3;
 
-        position: absolute;
-        top: 0;
-        right: 0;
-        left: 0;
-        z-index: 2;
+      border: 1px solid var(--waline-border-color);
+      border-top-width: 0;
+      border-bottom-right-radius: 6px;
+      border-bottom-left-radius: 6px;
 
-        height: 1px;
-
-        background: var(--waline-border-color);
-      }
-    }
-
-    .wl-tab {
-      position: relative;
-      margin: 0;
-      padding: 0 0.5em;
-
-      &.active {
-        z-index: 3;
-
-        border: 1px solid var(--waline-border-color);
-        border-top-width: 0;
-        border-bottom-right-radius: 6px;
-        border-bottom-left-radius: 6px;
-
-        background: var(--waline-bgcolor);
-      }
+      background: var(--waline-bgcolor);
     }
   }
 }

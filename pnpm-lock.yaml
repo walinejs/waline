@@ -101,7 +101,7 @@ importers:
 
   example:
     specifiers:
-      '@waline/vercel': workspace:latest
+      '@waline/vercel': latest
     dependencies:
       '@waline/vercel': link:../packages/server
 
@@ -187,7 +187,6 @@ importers:
       '@vitejs/plugin-vue': ^2.3.3
       '@vue/compiler-sfc': ^3.2.35
       '@vueuse/core': ^8.5.0
-      '@yeger/vue-masonry-wall': ^3.0.32
       autosize: ^5.0.1
       marked: ^4.0.16
       rimraf: ^3.0.2
@@ -215,7 +214,6 @@ importers:
       '@types/node': 17.0.35
       '@vitejs/plugin-vue': 2.3.3_vite@2.9.9+vue@3.2.35
       '@vue/compiler-sfc': 3.2.35
-      '@yeger/vue-masonry-wall': 3.0.32_vue@3.2.35
       rimraf: 3.0.2
       rollup: 2.74.1
       rollup-plugin-dts: 4.2.1_lq4dy2bb4fhoyaf2vwyb4geyfa
@@ -226,7 +224,7 @@ importers:
 
   packages/cloudbase:
     specifiers:
-      '@waline/vercel': workspace:latest
+      '@waline/vercel': latest
       thinkjs: ^3.2.14
     dependencies:
       '@waline/vercel': link:../server
@@ -3604,15 +3602,6 @@ packages:
 
   /@xtuc/long/4.2.2:
     resolution: {integrity: sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==}
-    dev: true
-
-  /@yeger/vue-masonry-wall/3.0.32_vue@3.2.35:
-    resolution: {integrity: sha512-2hb+aZqMlGlq6gzDr47nMyUbSc1XlWcXeXXocypmYaBF53HHqQ6l4dgc4XldXUL+tn6D6saJoYO9DRafUZaw2Q==}
-    engines: {node: '>=12'}
-    peerDependencies:
-      vue: ^3.0.0
-    dependencies:
-      vue: 3.2.35
     dev: true
 
   /JSONStream/1.3.5:

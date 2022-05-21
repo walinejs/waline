@@ -1,16 +1,15 @@
-export function throttle(
+export const throttle = (
   func: (...args: any[]) => void,
   timeout = 300
-): (...args: []) => void {
+): ((...args: []) => void) => {
   let timer: number | null;
+
   return (...args: []): void => {
-    if (timer) {
-      clearTimeout(timer);
-    }
+    if (timer) clearTimeout(timer);
 
     timer = window.setTimeout(() => {
       func(...args);
       timer = null;
     }, timeout);
   };
-}
+};

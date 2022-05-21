@@ -1,6 +1,3 @@
-@use 'emoji';
-@use 'gif';
-
 .wl-comment {
   position: relative;
   display: flex;
@@ -287,6 +284,3 @@
     }
   }
 }
-
-@include emoji.emoji;
-@include gif.gif;
