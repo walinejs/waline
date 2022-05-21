@@ -12,9 +12,9 @@
     "@vuepress/client": "2.0.0-beta.45",
     "@vuepress/plugin-docsearch": "2.0.0-beta.45",
     "@vuepress/utils": "2.0.0-beta.45",
-    "marked": "^4.0.15",
-    "vue": "^3.2.33",
+    "marked": "^4.0.16",
+    "vue": "^3.2.35",
     "vuepress": "2.0.0-beta.45",
-    "vuepress-theme-hope": "2.0.0-beta.66"
+    "vuepress-theme-hope": "2.0.0-beta.67"
   }
 }

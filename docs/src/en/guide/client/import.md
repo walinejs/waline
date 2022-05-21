@@ -49,7 +49,13 @@ For CDN links, if you don't specify a version number, it will be latest version,
 
 Waline client has been released to [npm](https://www.npmjs.com/package/@waline/client) via `@waline/client`, you can install it with the following command:
 
-::: code-tabs
+::: code-tabs#shell
+
+@tab pnpm
+
+```bash
+pnpm add -D @waline/client
+```
 
 @tab yarn
 
@@ -105,7 +111,7 @@ Other format files:
 
 You can import the required files in various forms and use them, the following is an example.
 
-::: code-tabs
+::: code-tabs#lang
 
 @tab JS
 
