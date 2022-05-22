@@ -34,17 +34,46 @@ Waline 是经典的前后端分离 Client/Server 架构，提供了较为完善�
 
 ### Hexo
 
-- [@waline/hexo-next](https://npmjs.com/@waline/hexo-next): Hexo NexT 主题插件
+- [@waline/hexo-next](https://npmjs.com/@waline/hexo-next): Waline comment system for NexT.
+
+### Docsify
+
+- [docsify-waline](https://github.com/cxcn/docsify-waline): A simple comment plugin for docsify.
 
 ### VuePress
 
-- [@mr-hope/vuepress-plugin-comment](https://vuepress-theme-hope.github.io/v1/comment/zh/): VuePress1 评论插件
+- [vuepress-plugin-comment2](https://vuepress-theme-hope.github.io/v2/comment/): Comment system for VuePress2.
+- [@mr-hope/vuepress-plugin-comment](https://vuepress-theme-hope.github.io/v1/comment/): Comment system for VuePress1.
 
-- [vuepress-plugin-comment2](https://vuepress-theme-hope.github.io/v2/comment/zh/): VuePress2 评论插件
+Others:
+
+- [vuepress-plugin-waline](https://github.com/xinlei3166/vuepress-plugin-waline): Waline comment system for VuePress2.
+- [vuepress-plugin-comment-plus](https://github.com/SivanLaai/vuepress-plugin-comment-plus): Comment system plugin for VuePress.
 
 ## 主题
 
-- [vuepress-theme-hope](https://vuepress-theme-hope.github.io/v2/zh/): 一个强大的 VuePress 主题
+### Hexo
+
+- 🦋 [Butterfly](https://github.com/jerryc127/hexo-theme-butterfly)
+- 🍬 [Kratos-Rebirth](https://github.com/Candinya/Kratos-Rebirth)
+- 🍭 [MengD](https://github.com/lete114/hexo-theme-MengD)
+- ⛲ [Fluid](https://github.com/fluid-dev/hexo-theme-fluid)
+- 🚚 [Kaze](https://github.com/theme-kaze/hexo-theme-kaze)
+- ✌🏻 [Volantis](https://github.com/volantis-x/hexo-theme-volantis)
+- 🗒 [Blank](https://github.com/dewjohn/hexo-theme-blank)
+- 🐴 [Stun](https://github.com/liuyib/hexo-theme-stun)
+- 🤖 [Yun](https://github.com/YunYouJun/hexo-theme-yun)
+- 🦄 [Unicorn](https://github.com/Uzizkp/hexo-theme-unicorn)
+
+### VuePress
+
+- [hope](https://github.com/vuepress-theme-hope/vuepress-theme-hope)
+- [stella](https://github.com/SHUAXINDIARY/vuepress-theme-stella)
+
+### Hugo
+
+- [hugo-theme-stack](https://github.com/CaiJimmy/hugo-theme-stack)
+- [DoIt](https://github.com/HEIGE-PCloud/DoIt)
 
 ## 更多
 

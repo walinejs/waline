@@ -33,3 +33,36 @@ const toggleDarkmode = () => {
 ```
 
 Since we use reactive `path`, when the route changes, Waline will automatically refresh and display the comments of the corresponding route, and at the same time, when you click the toggle button, Waline will switch the theme mode.
+
+## React Component
+
+With a simple wrapper, you can turn Waline into a React Component:
+
+```tsx
+import React, { useEffect, useRef } from 'react';
+import { init } from '@waline/client';
+
+import type { WalineInstance, WalineInitOptions } from '@waline/client';
+
+export type WalineOptions = Omit<WalineInitOptions, 'el'> & { path: string };
+
+export const Waline = (props: WalineOptions) => {
+  const walineInstanceRef = useRef<WalineInstance | null>(null);
+  const containerRef = React.createRef<HTMLDivElement>();
+
+  useEffect(() => {
+    walineInstanceRef.current = init({
+      ...props,
+      el: containerRef.current,
+    });
+
+    return () => walineInstanceRef.current?.destroy();
+  }, []);
+
+  useEffect(() => {
+    walineInstanceRef.current?.update(props);
+  }, props);
+
+  return <div ref={containerRef} />;
+};
+```

@@ -33,3 +33,36 @@ const toggleDarkmode = () => {
 ```
 
 由于我们使用了响应式的 `path`，当路由变动时，Waline 会自动刷新并显示相应路由的评论，同时，当你按下切换按钮时，Waline 会切换主题模式。
+
+## React 组件
+
+只需要简单的包装，你就可以将 Waline 转为 React 组件:
+
+```tsx
+import React, { useEffect, useRef } from 'react';
+import { init } from '@waline/client';
+
+import type { WalineInstance, WalineInitOptions } from '@waline/client';
+
+export type WalineOptions = Omit<WalineInitOptions, 'el'> & { path: string };
+
+export const Waline = (props: WalineOptions) => {
+  const walineInstanceRef = useRef<WalineInstance | null>(null);
+  const containerRef = React.createRef<HTMLDivElement>();
+
+  useEffect(() => {
+    walineInstanceRef.current = init({
+      ...props,
+      el: containerRef.current,
+    });
+
+    return () => walineInstanceRef.current?.destroy();
+  }, []);
+
+  useEffect(() => {
+    walineInstanceRef.current?.update(props);
+  }, props);
+
+  return <div ref={containerRef} />;
+};
+```
