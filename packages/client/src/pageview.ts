@@ -2,6 +2,7 @@ import {
   errorHandler,
   fetchPageviews,
   getQuery,
+  getServerURL,
   updatePageviews,
 } from './utils';
 
@@ -83,7 +84,7 @@ export const pageviewCount = ({
 
   const fetch = (elements: HTMLElement[]): Promise<void> =>
     fetchPageviews({
-      serverURL,
+      serverURL: getServerURL(serverURL),
       paths: elements.map((element) => getQuery(element) || path),
       lang,
       signal: controller.signal,

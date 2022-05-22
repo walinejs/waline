@@ -27,7 +27,7 @@ export interface WalineConfig extends Required<Omit<WalineProps, 'wordLimit'>> {
   // emoji: Promise<EmojiConfig>;
 }
 
-const getServerURL = (serverURL: string): string => {
+export const getServerURL = (serverURL: string): string => {
   const result = removeEndingSplash(serverURL);
 
   return isLinkHttp(result) ? result : `https://${result}`;
