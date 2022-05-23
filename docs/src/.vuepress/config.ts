@@ -99,12 +99,4 @@ export default defineUserConfig({
   ],
 
   shouldPrefetch: false,
-
-  extendsBundlerOptions: (config, app) => {
-    config.viteOptions.ssr = config.viteOptions.ssr ?? {};
-
-    config.viteOptions.ssr.noExternal = config.viteOptions.ssr.noExternal ?? [];
-
-    config.viteOptions.ssr.noExternal.push('@mr-hope/vuepress-shared');
-  },
 });

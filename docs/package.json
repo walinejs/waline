@@ -8,13 +8,13 @@
   },
   "devDependencies": {
     "@fancyapps/ui": "^4.0.27",
-    "@mr-hope/vuepress-shared": "2.0.0-beta.59",
     "@vuepress/client": "2.0.0-beta.45",
     "@vuepress/plugin-docsearch": "2.0.0-beta.45",
     "@vuepress/utils": "2.0.0-beta.45",
     "marked": "^4.0.16",
-    "vue": "^3.2.35",
+    "vue": "^3.2.36",
     "vuepress": "2.0.0-beta.45",
-    "vuepress-theme-hope": "2.0.0-beta.67"
+    "vuepress-shared": "2.0.0-beta.71",
+    "vuepress-theme-hope": "2.0.0-beta.71"
   }
 }

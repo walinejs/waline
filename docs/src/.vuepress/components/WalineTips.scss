@@ -1,4 +1,4 @@
-@use '@mr-hope/vuepress-shared/styles/wrapper';
+@use 'vuepress-shared/styles/wrapper';
 
 .waline-tips-wrapper:not(.home) {
   @include wrapper.horizontal-wrapper();
