@@ -103,7 +103,7 @@ export default defineUserConfig({
 
     config.viteOptions.ssr.noExternal = config.viteOptions.ssr.noExternal ?? [];
 
-    config.viteOptions.ssr.noExternal.push('@mr-hope/vuepress-shared');
+    config.viteOptions.ssr.noExternal.push('vuepress-shared');
   },
 
   shouldPrefetch: false,
