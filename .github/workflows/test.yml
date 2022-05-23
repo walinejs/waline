@@ -19,14 +19,15 @@ jobs:
 
       - name: Install pnpm
         uses: pnpm/action-setup@v2
-        with:
-          run_install: true
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           cache: pnpm
+
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
 
       - name: Package Build Test
         run: pnpm build
@@ -43,14 +44,15 @@ jobs:
 
       - name: Install pnpm
         uses: pnpm/action-setup@v2
-        with:
-          run_install: true
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           cache: pnpm
+
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
 
       - name: Linter test
         run: pnpm lint
