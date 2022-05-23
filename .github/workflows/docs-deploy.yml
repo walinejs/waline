@@ -9,10 +9,8 @@ jobs:
   deploy-docs:
     strategy:
       matrix:
-        node-version:
-          - 16
-        os:
-          - ubuntu-latest
+        node-version: [16]
+        os: [ubuntu-latest]
 
     runs-on: ${{ matrix.os }}
 
@@ -23,7 +21,6 @@ jobs:
       - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: 7
           run_install: true
 
       - name: Use Node.js ${{ matrix.node-version }}

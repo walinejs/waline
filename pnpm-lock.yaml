@@ -12604,6 +12604,9 @@ packages:
     hasBin: true
     peerDependencies:
       typescript: '>=2.7'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
     dependencies:
       arg: 4.1.3
       diff: 4.0.2
