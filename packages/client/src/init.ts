@@ -83,9 +83,6 @@ export const init = ({
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   if (app) app.mount(root!);
 
-  updateCommentCount();
-  updatePageviewCount();
-
   const stopComment = watchEffect(updateCommentCount);
   const stopPageview = watchEffect(updatePageviewCount);
 
