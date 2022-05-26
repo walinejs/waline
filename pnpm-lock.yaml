@@ -82,7 +82,7 @@ importers:
       '@fancyapps/ui': ^4.0.27
       '@vuepress/client': 2.0.0-beta.45
       '@vuepress/plugin-docsearch': 2.0.0-beta.45
-      '@vuepress/utils': 2.0.0-beta.45
+      '@vuepress/utils': 2.0.0-beta.46
       marked: ^4.0.16
       vue: ^3.2.36
       vuepress: 2.0.0-beta.45
@@ -92,7 +92,7 @@ importers:
       '@fancyapps/ui': 4.0.27
       '@vuepress/client': 2.0.0-beta.45
       '@vuepress/plugin-docsearch': 2.0.0-beta.45
-      '@vuepress/utils': 2.0.0-beta.45
+      '@vuepress/utils': 2.0.0-beta.46
       marked: 4.0.16
       vue: 3.2.36
       vuepress: 2.0.0-beta.45_bdwekwkq6dldak7vw7siptpnxm
@@ -3301,6 +3301,12 @@ packages:
       '@vue/shared': 3.2.36
     dev: true
 
+  /@vuepress/shared/2.0.0-beta.46:
+    resolution: {integrity: sha512-iqunwXZR3ea+36Cyz1QVP6F49CVhNxcYZFFxpSOi5Z5j9S4qiZm+fL931w8XHz70qpgwmfBFUOZBGqsMMLVuRg==}
+    dependencies:
+      '@vue/shared': 3.2.36
+    dev: true
+
   /@vuepress/theme-default/2.0.0-beta.45:
     resolution: {integrity: sha512-u8xe6UfU+0QihhAdf2Imh8G50Gb5kQkKuuBaet1KDJMt9UafZvB83j9uw8evOlwPfy4vOf7oT02PXrGHKzZDZg==}
     peerDependencies:
@@ -3338,6 +3344,23 @@ packages:
       '@types/debug': 4.1.7
       '@types/fs-extra': 9.0.13
       '@vuepress/shared': 2.0.0-beta.45
+      chalk: 4.1.2
+      debug: 4.3.4
+      fs-extra: 10.1.0
+      globby: 11.1.0
+      hash-sum: 2.0.0
+      ora: 5.4.1
+      upath: 2.0.1
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  /@vuepress/utils/2.0.0-beta.46:
+    resolution: {integrity: sha512-rzNJPKlyZuWjCzjrQT08W6an/7OBc7GpiTx/XQj5Fd/VTDAARrw7EQP+jLTtU3PzJa3o55obHpxWR2NNUU/jtg==}
+    dependencies:
+      '@types/debug': 4.1.7
+      '@types/fs-extra': 9.0.13
+      '@vuepress/shared': 2.0.0-beta.46
       chalk: 4.1.2
       debug: 4.3.4
       fs-extra: 10.1.0
