@@ -2,7 +2,7 @@
   "name": "waline",
   "version": "0.0.1",
   "private": true,
-  "packageManager": "pnpm@7.1.5",
+  "packageManager": "pnpm@7.1.7",
   "scripts": {
     "admin:analyze": "npm --dir=packages/admin analyze",
     "admin:build": "pnpm --dir=packages/admin build",
