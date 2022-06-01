@@ -81,7 +81,7 @@ importers:
     specifiers:
       '@fancyapps/ui': ^4.0.27
       '@vuepress/client': 2.0.0-beta.45
-      '@vuepress/plugin-docsearch': 2.0.0-beta.45
+      '@vuepress/plugin-docsearch': 2.0.0-beta.46
       '@vuepress/utils': 2.0.0-beta.45
       marked: ^4.0.16
       vue: ^3.2.36
@@ -91,7 +91,7 @@ importers:
     devDependencies:
       '@fancyapps/ui': 4.0.27
       '@vuepress/client': 2.0.0-beta.45
-      '@vuepress/plugin-docsearch': 2.0.0-beta.45
+      '@vuepress/plugin-docsearch': 2.0.0-beta.46
       '@vuepress/utils': 2.0.0-beta.45
       marked: 4.0.16
       vue: 3.2.36
@@ -3276,16 +3276,16 @@ packages:
       - supports-color
     dev: true
 
-  /@vuepress/plugin-docsearch/2.0.0-beta.45:
-    resolution: {integrity: sha512-b1XLel6v0TD2OxYU9CkGYCcJ0At04muVqkppa7QUxog/1vufKD8KhniwrMtc2OG9gnnmgBBKsghUKo/x6lzEBw==}
+  /@vuepress/plugin-docsearch/2.0.0-beta.46:
+    resolution: {integrity: sha512-QEX0+ztqfRu1/dlQ++k/+4WFo3cv8Aq14lSA8ZuI6Uib86uKKItQ130OxOdn0zmP3DiU4xMgHn6Qx8t7iM1Twg==}
     dependencies:
       '@docsearch/css': 3.1.0
       '@docsearch/js': 3.1.0
       '@docsearch/react': 3.1.0
-      '@vuepress/client': 2.0.0-beta.45
-      '@vuepress/core': 2.0.0-beta.45
-      '@vuepress/shared': 2.0.0-beta.45
-      '@vuepress/utils': 2.0.0-beta.45
+      '@vuepress/client': 2.0.0-beta.46
+      '@vuepress/core': 2.0.0-beta.46
+      '@vuepress/shared': 2.0.0-beta.46
+      '@vuepress/utils': 2.0.0-beta.46
       ts-debounce: 4.0.0
       vue: 3.2.36
       vue-router: 4.0.15_vue@3.2.36
