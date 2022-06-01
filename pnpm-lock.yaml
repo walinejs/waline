@@ -193,7 +193,7 @@ importers:
       rollup: ^2.74.1
       rollup-plugin-dts: ^4.2.1
       rollup-plugin-terser: ^7.0.2
-      rollup-plugin-ts: ^2.0.7
+      rollup-plugin-ts: 3.0.1
       typescript: ^4.6.4
       vite: ^2.9.9
       vue: ^3.2.36
@@ -218,7 +218,7 @@ importers:
       rollup: 2.74.1
       rollup-plugin-dts: 4.2.1_lq4dy2bb4fhoyaf2vwyb4geyfa
       rollup-plugin-terser: 7.0.2_rollup@2.74.1
-      rollup-plugin-ts: 2.0.7_yjuiljcjn6izcfuekt63n2kbnu
+      rollup-plugin-ts: 3.0.1_yjuiljcjn6izcfuekt63n2kbnu
       typescript: 4.6.4
       vite: 2.9.9
 
@@ -2685,12 +2685,12 @@ packages:
     resolution: {integrity: sha512-B9EoJFjhqcQ9OmQrNorItO+OwEOORNn3S31WuiHvZY/dm9ajkB7AKD/8toessEtHHNL+58jofbq7hMMY9v4yig==}
     dev: false
 
-  /@types/node/16.11.36:
-    resolution: {integrity: sha512-FR5QJe+TaoZ2GsMHkjuwoNabr+UrJNRr2HNOo+r/7vhcuntM6Ee/pRPOnRhhL2XE9OOvX9VLEq+BcXl3VjNoWA==}
-    dev: true
-
   /@types/node/17.0.35:
     resolution: {integrity: sha512-vu1SrqBjbbZ3J6vwY17jBs8Sr/BKA+/a/WtjRG+whKg1iuLFOosq872EXS0eXWILdO36DHQQeku/ZcL6hz2fpg==}
+
+  /@types/node/17.0.38:
+    resolution: {integrity: sha512-5jY9RhV7c0Z4Jy09G+NIDTsCZ5G0L5n+Z+p+Y7t5VJHM30bgwzSjVtlcBxqAj+6L/swIlvtOSzr8rBk/aNyV2g==}
+    dev: true
 
   /@types/normalize-package-data/2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
@@ -3891,6 +3891,11 @@ packages:
       string-width: 4.2.3
     dev: true
 
+  /ansi-colors/4.1.3:
+    resolution: {integrity: sha512-/6w/C21Pm1A7aZitlI5Ni/2J6FFQN8i1Cvz3kHABAAbw93v/NlvKdVOqz7CCWz/3iv/JplRSEEZ83XION15ovw==}
+    engines: {node: '>=6'}
+    dev: true
+
   /ansi-escapes/3.2.0:
     resolution: {integrity: sha512-cBhpre4ma+U0T1oM5fXg7Dy1Jw7zzwv7lt/GoCpr+hDQJoYnKVPLL4dCvSEFMmQurOQvSrwT7SL/DAlhBI97RQ==}
     engines: {node: '>=4'}
@@ -4891,9 +4896,9 @@ packages:
       dot-prop: 5.3.0
     dev: true
 
-  /compatfactory/0.0.13_typescript@4.6.4:
-    resolution: {integrity: sha512-k9Sl/Qal3xQPnjAFZaRpl7jlCh0hDEhVaxyiTMfiHKC/w5TYn4Nds+7340X/v1OrAQC5xGBtaD2JpWgPhXWaAw==}
-    engines: {node: '>=10.0.0'}
+  /compatfactory/1.0.1_typescript@4.6.4:
+    resolution: {integrity: sha512-hR9u0HSZTKDNNchPtMHg6myeNx0XO+av7UZIJPsi4rPALJBHi/W5Mbwi19hC/xm6y3JkYpxVYjTqnSGsU5X/iw==}
+    engines: {node: '>=14.9.0'}
     peerDependencies:
       typescript: '>=3.x || >= 4.x'
     peerDependenciesMeta:
@@ -5231,11 +5236,11 @@ packages:
       shebang-command: 2.0.0
       which: 2.0.2
 
-  /crosspath/1.0.0:
-    resolution: {integrity: sha512-mpjkSErNO6vioL/Cde2aF4UBysPFEMyn+1AN1t7Oc4yqvzSRWe8iBte4P8BHyjo64OmC+ZBxwjIqmpSpIWiQ7Q==}
-    engines: {node: '>=10.0.0'}
+  /crosspath/2.0.0:
+    resolution: {integrity: sha512-ju88BYCQ2uvjO2bR+SsgLSTwTSctU+6Vp2ePbKPgSCZyy4MWZxYsT738DlKVRE5utUjobjPRm1MkTYKJxCmpTA==}
+    engines: {node: '>=14.9.0'}
     dependencies:
-      '@types/node': 16.11.36
+      '@types/node': 17.0.38
     dev: true
 
   /crypt/0.0.2:
@@ -11121,13 +11126,14 @@ packages:
       terser: 5.13.1
     dev: true
 
-  /rollup-plugin-ts/2.0.7_yjuiljcjn6izcfuekt63n2kbnu:
-    resolution: {integrity: sha512-M9sppRKX6y/b2KXbGdUdHid0tshAEK/sEeYLBHBJiBa4swukSsoFVXKGGZasLcjaXhgUnnizFuvFFj6znxwvSA==}
-    engines: {node: '>=10.0.0', npm: '>=7.0.0', pnpm: '>=3.2.0', yarn: '>=1.13'}
+  /rollup-plugin-ts/3.0.1_yjuiljcjn6izcfuekt63n2kbnu:
+    resolution: {integrity: sha512-qb+FDZyq1pljgXE+e2LqZH8L+FvS3a47ju/o+4sDd1OcM8P+CR6iH3jT2tjz0YIoJm9h1sj6ITVVBkux3EZ+XA==}
+    engines: {node: '>=14.9.0', npm: '>=7.0.0', pnpm: '>=3.2.0', yarn: '>=1.13'}
     peerDependencies:
       '@babel/core': '>=6.x || >=7.x'
       '@babel/plugin-transform-runtime': '>=6.x || >=7.x'
       '@babel/preset-env': '>=6.x || >=7.x'
+      '@babel/preset-typescript': '>=6.x || >=7.x'
       '@babel/runtime': '>=6.x || >=7.x'
       '@swc/core': '>=1.x'
       '@swc/helpers': '>=0.2'
@@ -11139,6 +11145,8 @@ packages:
       '@babel/plugin-transform-runtime':
         optional: true
       '@babel/preset-env':
+        optional: true
+      '@babel/preset-typescript':
         optional: true
       '@babel/runtime':
         optional: true
@@ -11153,14 +11161,14 @@ packages:
       '@babel/preset-env': 7.18.0_@babel+core@7.18.0
       '@rollup/pluginutils': 4.2.1
       '@wessberg/stringutil': 1.0.19
+      ansi-colors: 4.1.3
       browserslist: 4.20.3
       browserslist-generator: 1.0.66
-      chalk: 4.1.2
-      compatfactory: 0.0.13_typescript@4.6.4
-      crosspath: 1.0.0
+      compatfactory: 1.0.1_typescript@4.6.4
+      crosspath: 2.0.0
       magic-string: 0.26.2
       rollup: 2.74.1
-      ts-clone-node: 0.3.32_typescript@4.6.4
+      ts-clone-node: 1.0.0_typescript@4.6.4
       tslib: 2.4.0
       typescript: 4.6.4
     dev: true
@@ -12682,16 +12690,16 @@ packages:
     resolution: {integrity: sha512-XrHUvV5HpdLmIj4uVMxHggLbFSZYIn7HEWsqePZcI50pco+MPqJ50wMGY794X7AOOhxOBAjbkqfAbEe/QMp2Lw==}
     dev: true
 
-  /ts-clone-node/0.3.32_typescript@4.6.4:
-    resolution: {integrity: sha512-YYGvoWy2Ba98/YC/0leD7IRsU/q5pu/KRg9dD8omzkbgoZ8g7gfYfED9mWMTyNp7J3CQiiKyvM62B7mXXHKU7Q==}
-    engines: {node: '>=10.0.0'}
+  /ts-clone-node/1.0.0_typescript@4.6.4:
+    resolution: {integrity: sha512-/cDYbr2HAXxFNeTT41c/xs/2bhLJjqnYheHsmA3AoHSt+n4JA4t0FL9Lk5O8kWnJ6jeB3kPcUoXIFtwERNzv6Q==}
+    engines: {node: '>=14.9.0'}
     peerDependencies:
       typescript: ^3.x || ^4.x
     peerDependenciesMeta:
       typescript:
         optional: true
     dependencies:
-      compatfactory: 0.0.13_typescript@4.6.4
+      compatfactory: 1.0.1_typescript@4.6.4
       typescript: 4.6.4
     dev: true
 
