@@ -15,8 +15,6 @@ export default hopeTheme({
   pageInfo: ['ReadingTime', 'PageView'],
 
   contributors: false,
-  fullscreen: false,
-  themeColor: false,
 
   locales: {
     '/': {
