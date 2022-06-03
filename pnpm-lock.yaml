@@ -38,7 +38,7 @@ importers:
       stylelint-config-standard-scss: 4.0.0
       stylelint-order: 5.0.0
       typescript: 4.7.2
-      vercel: 24.2.5
+      vercel: 25.0.0
       vite: 2.9.9
       vitest: 0.13.1
     devDependencies:
@@ -73,7 +73,7 @@ importers:
       stylelint-config-standard-scss: 4.0.0_eosquaphqmlhwfqk6bu6sglt5y
       stylelint-order: 5.0.0_stylelint@14.8.5
       typescript: 4.7.2
-      vercel: 24.2.5
+      vercel: 25.0.0
       vite: 2.9.9_sass@1.52.2
       vitest: 0.13.1_c8@7.11.3+sass@1.52.2
 
@@ -3115,9 +3115,7 @@ packages:
       localstorage-memory: 1.0.3
       ws: 5.2.3
     transitivePeerDependencies:
-      - bufferutil
       - supports-color
-      - utf-8-validate
     dev: false
 
   /@leancloud/platform-adapters-weapp/1.6.1:
@@ -3239,13 +3237,13 @@ packages:
       source-map: 0.7.3
     dev: true
 
-  /@remix-run/vercel/1.4.3_@vercel+node@1.15.4:
+  /@remix-run/vercel/1.4.3_@vercel+node@2.0.0:
     resolution: {integrity: sha512-ZNDmn/j8mU0rK+6VdMqZmWx50thlXtioNLJ0U6qic3hSFFr4vO1weRTUwRIFE3Gm3AxmmvcLxx581W2aTnReVQ==}
     peerDependencies:
       '@vercel/node': ^1.8.3
     dependencies:
       '@remix-run/node': 1.4.3
-      '@vercel/node': 1.15.4
+      '@vercel/node': 2.0.0
     transitivePeerDependencies:
       - encoding
       - react
@@ -4016,16 +4014,16 @@ packages:
       eslint-visitor-keys: 3.3.0
     dev: true
 
-  /@vercel/build-utils/3.1.1:
-    resolution: {integrity: sha512-VmIEG8IdKH9hpVG+lm9h/ksFk5dWsdHinzSHXjekminPdGUUsb6BUHkYY/e10PSNJtg9Cq42c8pnr0kvaDSLew==}
+  /@vercel/build-utils/4.0.0:
+    resolution: {integrity: sha512-Rbbp9sLMRQI2DYa2Ib/i5GWjubfWuB8Ci2evWUWjAp9g/dyQrRrjxiiE7GhseN4MZa9uJB3VnlHOdZipVzgBQw==}
     dev: true
 
-  /@vercel/go/1.4.4:
-    resolution: {integrity: sha512-Bt4S6cLOz6YunTD2F0t5cjXBGfwNJ2LZcQVX/o3SUIDopCIjvOPD/w1a1BMqP8UGy1/Cj4DtcuDFUl5RfdIbyA==}
+  /@vercel/go/2.0.0:
+    resolution: {integrity: sha512-/uDdTuMMyJA/O8YrBv8ILOweBCWF/cqQR+Ya7BiwmCP/MCSbawFWVnGwbT6cAITN9k6yy9nECsQNWy7LGE+2FQ==}
     dev: true
 
-  /@vercel/next/2.9.0:
-    resolution: {integrity: sha512-q3AhZPVJf+C2OjpU85yrJCuK1WSNJH6tsFIBwGNdgJ4VZGT9VV0ctypZubyL58H4JalpAAjoPASlUa5AP6N1EA==}
+  /@vercel/next/3.0.0:
+    resolution: {integrity: sha512-XLu6Ay9TvQfUtglhumoVbYW9MbGBQrX3Lw1AAFLV6RoV33ie6Yq98uZkjfxfB/5EGJ18HmwWci6aawKCC6uB/A==}
     dev: true
 
   /@vercel/nft/0.19.1:
@@ -4048,38 +4046,38 @@ packages:
       - supports-color
     dev: true
 
-  /@vercel/node-bridge/2.2.2:
-    resolution: {integrity: sha512-haGBC8noyA5BfjCRXRH+VIkHCDVW5iD5UX24P2nOdilwUxI4qWsattS/co8QBGq64XsNLRAMdM5pQUE3zxkF9Q==}
+  /@vercel/node-bridge/3.0.0:
+    resolution: {integrity: sha512-TNQK6cufwrhd8ASDk5YHHenH8Xhp9sY8xUjOTKnQQI37KLk+Sw2HlHhT5rzUFN23ahosUlkY8InwtYUmSNb9kw==}
     dev: true
 
-  /@vercel/node/1.15.4:
-    resolution: {integrity: sha512-45fV7qVVw1cWCD6tWBXH0i4pSfYck4yF2qNKlJb1gmbO9JHWRqMYm0uxNWISD6E6Z69Pl1KDvfa+l48w/qEkaw==}
+  /@vercel/node/2.0.0:
+    resolution: {integrity: sha512-wGEZ/Ge2GrmcBQmuJHFq2h0gTy4XOn2oYJyceVnOsMPwSZXMdZet2E3xSff5VfmrK2yGxO4mUIBeYjsPH+ZwWg==}
     dependencies:
       '@types/node': 17.0.38
-      '@vercel/node-bridge': 2.2.2
+      '@vercel/node-bridge': 3.0.0
       ts-node: 8.9.1_typescript@4.3.4
       typescript: 4.3.4
     dev: true
 
-  /@vercel/python/2.3.4:
-    resolution: {integrity: sha512-2zbizaZyyawHkWCSZ2Tdoij1L2hdz6de9YCeJomWL/BXcOFhSesevkYC/hJbfXyYoJr79TUzSFmwu1cX6Nsiww==}
+  /@vercel/python/3.0.0:
+    resolution: {integrity: sha512-bGaZ4Jp3DwbJNvZC1us2KEqKm9WlFgNvL0XD4xOqbfzLdJZcks0YEQji1+mCumTbvPW4RzWWIRYoe6iRZDHesQ==}
     dev: true
 
-  /@vercel/redwood/0.8.4:
-    resolution: {integrity: sha512-yo+FeIEW/Sh+pL9s3iCHhZSGPA/b/Me8pBWapbSejObpGSDLflAu+DkzOYeZLMi3JnynIl53h8Rkkjs1fjDSYw==}
+  /@vercel/redwood/1.0.0:
+    resolution: {integrity: sha512-vRfYdvkWSs9uI9uvZkMzGQp1Ty18fQDvs9njUNLWrC4mQdg1osWx+3zqfGuZ62iOfpw70BOgB+hYIhsyzxI30A==}
     dependencies:
       '@vercel/nft': 0.19.1
-      '@vercel/routing-utils': 1.13.3
+      '@vercel/routing-utils': 1.13.4
       semver: 6.1.1
     transitivePeerDependencies:
       - encoding
       - supports-color
     dev: true
 
-  /@vercel/remix/0.0.2_@vercel+node@1.15.4:
-    resolution: {integrity: sha512-5mIpMbPUh6byNJrcpKfk95spgxK30o5cE2mAM3KbPJYSjsGYu56Bhf1OZOxiumce8e0aYE9R7TlGfeY+0ZVAlg==}
+  /@vercel/remix/1.0.0_@vercel+node@2.0.0:
+    resolution: {integrity: sha512-MifLyJluP2HTTmhdPxvuYA3g884tTbrFXJtB4Jw7u0ZJXvteSHmbZsqO35XReUvBPWvXcK477LZFywqa/r/P8A==}
     dependencies:
-      '@remix-run/vercel': 1.4.3_@vercel+node@1.15.4
+      '@remix-run/vercel': 1.4.3_@vercel+node@2.0.0
       '@vercel/nft': 0.19.1
     transitivePeerDependencies:
       - '@vercel/node'
@@ -4089,20 +4087,20 @@ packages:
       - supports-color
     dev: true
 
-  /@vercel/routing-utils/1.13.3:
-    resolution: {integrity: sha512-XnIafghL19PDQmcZJ4QNy0YKoQo7iJeYj3zEYxV9IFLlyqH4nPlme8L/Vh4BSqsm959QG1YesTJo7eQI0SwD4A==}
+  /@vercel/routing-utils/1.13.4:
+    resolution: {integrity: sha512-ifrNFfIjGF8pSHOXB6BPUWLhG6/ZjRIdSUMrFLhBzrPj4yHelafqNSVTN70V1VHFNrr3OJscimc9EdwzOtiHzQ==}
     dependencies:
       path-to-regexp: 6.1.0
     optionalDependencies:
       ajv: 6.12.6
     dev: true
 
-  /@vercel/ruby/1.3.7:
-    resolution: {integrity: sha512-uLMiIiPDaEtgJoqtsiOEBYNAK+3JRJs6esdnbVhoXvC3PpHo/rlYd8ri3Ll2wJfhogSvZr8C8LOXzXj7Lu4zBQ==}
+  /@vercel/ruby/1.3.8:
+    resolution: {integrity: sha512-kQeGj3dqDc0wrYr+htXmtxAczaEbICl9+aA23AKF4j/8tJPALAgTehOggiTkC0Jp/jC/UxcYoIBBXzpVoENrGQ==}
     dev: true
 
-  /@vercel/static-build/0.26.0:
-    resolution: {integrity: sha512-U/jZZhyteq1fdq45LmHe/puCirA+3sd5myNuYvd7o3m/t3+FapI5C+8w96sHsaQdNPoXQH5xy50I/QhLNGEbVg==}
+  /@vercel/static-build/1.0.0:
+    resolution: {integrity: sha512-fuVsdF3KpX9seEtvmsaEBpP8kR92GLokAHpkq8FnrOn8RiU37CCXeyw2weYClORw4vAsU5vq0X56sXkH1lCD+Q==}
     dev: true
 
   /@vitejs/plugin-vue/2.3.3_vite@2.9.9+vue@3.2.36:
@@ -4172,10 +4170,6 @@ packages:
     peerDependencies:
       eslint: ^6.2.0 || ^7.0.0 || ^8.0.0
       eslint-plugin-vue: ^8.0.1
-      typescript: '*'
-    peerDependenciesMeta:
-      typescript:
-        optional: true
     dependencies:
       '@typescript-eslint/eslint-plugin': 5.27.0_dszb5tb7atwkjjijmmov4qhi7i
       '@typescript-eslint/parser': 5.27.0_xztl6dhthcahlo6akmb2bmjmle
@@ -4185,6 +4179,7 @@ packages:
       vue-eslint-parser: 8.3.0_eslint@8.16.0
     transitivePeerDependencies:
       - supports-color
+      - typescript
     dev: true
 
   /@vue/reactivity-transform/3.2.36:
@@ -5414,8 +5409,6 @@ packages:
       raw-body: 2.5.1
       type-is: 1.6.18
       unpipe: 1.0.0
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /bonjour-service/1.0.12:
@@ -5434,20 +5427,6 @@ packages:
   /bootstrap/3.4.1:
     resolution: {integrity: sha512-yN5oZVmRCwe5aKwzRj6736nSmKDX7pLYwsXiCj/EYmo16hODaBiT4En5btW/jhBF/seV+XMx3aYwukYC3A49DA==}
     engines: {node: '>=6'}
-    dev: true
-
-  /boxen/4.2.0:
-    resolution: {integrity: sha512-eB4uT9RGzg2odpER62bBwSLvUeGC+WbRjjyyFhGsKnc8wp/m0+hQsMUvUe3H2V0D5vw0nBdO1hCJoZo5mKeuIQ==}
-    engines: {node: '>=8'}
-    dependencies:
-      ansi-align: 3.0.1
-      camelcase: 5.3.1
-      chalk: 3.0.0
-      cli-boxes: 2.2.1
-      string-width: 4.2.3
-      term-size: 2.2.1
-      type-fest: 0.8.1
-      widest-line: 3.1.0
     dev: true
 
   /boxen/5.1.2:
@@ -5708,14 +5687,6 @@ packages:
       ansi-styles: 3.2.1
       escape-string-regexp: 1.0.5
       supports-color: 5.5.0
-    dev: true
-
-  /chalk/3.0.0:
-    resolution: {integrity: sha512-4D3B6Wf41KOYRFdszmDqMCGq5VV/uMAB273JILmO+3jAlh8X4qDtdtgCR3fxtbLEMzSx22QdhnDcJvu2u1fVwg==}
-    engines: {node: '>=8'}
-    dependencies:
-      ansi-styles: 4.3.0
-      supports-color: 7.2.0
     dev: true
 
   /chalk/4.1.2:
@@ -6059,8 +6030,6 @@ packages:
       on-headers: 1.0.2
       safe-buffer: 5.1.2
       vary: 1.1.2
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /concat-map/0.0.1:
@@ -7028,35 +6997,13 @@ packages:
 
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
-    peerDependencies:
-      supports-color: '*'
-    peerDependenciesMeta:
-      supports-color:
-        optional: true
     dependencies:
       ms: 2.0.0
 
   /debug/3.2.7:
     resolution: {integrity: sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ==}
-    peerDependencies:
-      supports-color: '*'
-    peerDependenciesMeta:
-      supports-color:
-        optional: true
     dependencies:
       ms: 2.1.3
-
-  /debug/3.2.7_supports-color@5.5.0:
-    resolution: {integrity: sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ==}
-    peerDependencies:
-      supports-color: '*'
-    peerDependenciesMeta:
-      supports-color:
-        optional: true
-    dependencies:
-      ms: 2.1.3
-      supports-color: 5.5.0
-    dev: true
 
   /debug/4.3.4:
     resolution: {integrity: sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==}
@@ -8272,8 +8219,6 @@ packages:
       type-is: 1.6.18
       utils-merge: 1.0.1
       vary: 1.1.2
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /extend-shallow/2.0.1:
@@ -8411,8 +8356,6 @@ packages:
       parseurl: 1.3.3
       statuses: 2.0.1
       unpipe: 1.0.0
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /find-cache-dir/3.3.2:
@@ -8830,13 +8773,6 @@ packages:
     engines: {node: '>=4'}
     dependencies:
       ini: 1.3.8
-    dev: true
-
-  /global-dirs/2.1.0:
-    resolution: {integrity: sha512-MG6kdOUh/xBnyo9cJFeIKkLEc1AyFq42QTU4XiX51i2NEdxLxLWXIjEjmqKeSuKR7pAZjTqUVoT2b2huxVLgYQ==}
-    engines: {node: '>=8'}
-    dependencies:
-      ini: 1.3.7
     dev: true
 
   /global-dirs/3.0.0:
@@ -9424,10 +9360,6 @@ packages:
   /inherits/2.0.4:
     resolution: {integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==}
 
-  /ini/1.3.7:
-    resolution: {integrity: sha512-iKpRpXP+CrP2jyrxvg1kMUpXDyRUFDWurxbnVT1vQPx+Wz9uCYsMIqYuSBLV+PAaZG/d7kRLKRFc9oDMsH+mFQ==}
-    dev: true
-
   /ini/1.3.8:
     resolution: {integrity: sha512-JV/yugV2uzW5iMRSiZAyDtQd+nxtUnjeLt0acNdw98kKLrvuRVyB80tsREOE7yvGVgalhZ6RNXCmEHkUKBKxew==}
 
@@ -9610,14 +9542,6 @@ packages:
       is-extglob: 2.1.1
     dev: true
 
-  /is-installed-globally/0.3.2:
-    resolution: {integrity: sha512-wZ8x1js7Ia0kecP/CHM/3ABkAmujX7WPvQk6uu3Fly/Mk44pySulQpnHG46OMjHGXApINnV4QhY3SWnECO2z5g==}
-    engines: {node: '>=8'}
-    dependencies:
-      global-dirs: 2.1.0
-      is-path-inside: 3.0.3
-    dev: true
-
   /is-installed-globally/0.4.0:
     resolution: {integrity: sha512-iwGqO3J21aaSkC7jWnHP/difazwS7SFeIqxv6wEtLU8Y5KlzFTjyqcSIT0d8s4+dDhKytsk9PJZ2BkS5eZwQRQ==}
     engines: {node: '>=10'}
@@ -9646,11 +9570,6 @@ packages:
   /is-negative-zero/2.0.2:
     resolution: {integrity: sha512-dqJvarLawXsFbNDeJW7zAz8ItJ9cd28YufuuFzh0G8pNHjJMnY08Dv7sYX2uF5UpQOwieAeOExEYAWWfu7ZZUA==}
     engines: {node: '>= 0.4'}
-    dev: true
-
-  /is-npm/4.0.0:
-    resolution: {integrity: sha512-96ECIfh9xtDDlPylNPXhzjsykHsMJZ18ASpaWzQyBr4YRTcVjUvzaHayDAES2oU/3KpljhHUjtSRNiDwi0F0ig==}
-    engines: {node: '>=8'}
     dev: true
 
   /is-npm/5.0.0:
@@ -9990,7 +9909,7 @@ packages:
     dev: true
 
   /json-buffer/3.0.0:
-    resolution: {integrity: sha512-CuUqjv0FUZIdXkHPI8MezCnFCdaTAacej1TZYulLoAg1h/PhwkdXFN4V/gzY4g+fMBCOV2xF+rp7t2XD2ns/NQ==}
+    resolution: {integrity: sha1-Wx85evx11ne96Lz8Dkfh+aPZqJg=}
     dev: true
 
   /json-parse-better-errors/1.0.2:
@@ -10158,8 +10077,6 @@ packages:
       debug: 2.6.9
       mz: 2.7.0
       resolve-path: 1.4.0
-    transitivePeerDependencies:
-      - supports-color
     dev: false
 
   /koa/2.13.4:
@@ -10236,9 +10153,7 @@ packages:
       protobufjs: 5.0.3
       uuid: 3.4.0
     transitivePeerDependencies:
-      - bufferutil
       - supports-color
-      - utf-8-validate
     dev: false
 
   /leancloud-storage/4.12.2:
@@ -10258,9 +10173,7 @@ packages:
       underscore: 1.13.3
       uuid: 3.4.0
     transitivePeerDependencies:
-      - bufferutil
       - supports-color
-      - utf-8-validate
     dev: false
 
   /leven/3.1.0:
@@ -11066,8 +10979,6 @@ packages:
       debug: 3.2.7
       iconv-lite: 0.4.24
       sax: 1.2.4
-    transitivePeerDependencies:
-      - supports-color
 
   /negotiator/0.6.3:
     resolution: {integrity: sha512-+EUsqGPLsM+j/zdChZjsnX51g4XrHFOIXwfnCVPGlQk/k5giakcKsuxCObBRu6DSm9opw/O6slWbJdghQM4bBg==}
@@ -11119,8 +11030,6 @@ packages:
       rimraf: 2.7.1
       semver: 5.7.1
       tar: 4.4.19
-    transitivePeerDependencies:
-      - supports-color
     dev: false
 
   /node-pre-gyp/0.13.0:
@@ -11138,8 +11047,6 @@ packages:
       rimraf: 2.7.1
       semver: 5.7.1
       tar: 4.4.19
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /node-releases/2.0.4:
@@ -11170,7 +11077,7 @@ packages:
     requiresBuild: true
     dependencies:
       chokidar: 3.5.3
-      debug: 3.2.7_supports-color@5.5.0
+      debug: 3.2.7
       ignore-by-default: 1.0.1
       minimatch: 3.1.2
       pstree.remy: 1.1.8
@@ -12928,8 +12835,6 @@ packages:
       on-finished: 2.4.1
       range-parser: 1.2.1
       statuses: 2.0.1
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /serialize-javascript/4.0.0:
@@ -12955,8 +12860,6 @@ packages:
       http-errors: 1.6.3
       mime-types: 2.1.35
       parseurl: 1.3.3
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /serve-static/1.15.0:
@@ -12967,8 +12870,6 @@ packages:
       escape-html: 1.0.3
       parseurl: 1.3.3
       send: 0.18.0
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /set-blocking/2.0.0:
@@ -13243,8 +13144,6 @@ packages:
     dependencies:
       nan: 2.15.0
       node-pre-gyp: 0.11.0
-    transitivePeerDependencies:
-      - supports-color
     dev: false
 
   /sqlstring/2.3.1:
@@ -13766,11 +13665,6 @@ packages:
       unique-string: 2.0.0
     dev: true
 
-  /term-size/2.2.1:
-    resolution: {integrity: sha512-wK0Ri4fOGjv/XPy8SBHZChl8CM7uMc5VML7SqiQ0zG7+J5Vr+RMQDoHa2CNT6KHUnTGIXH34UDMkPzAUyapBZg==}
-    engines: {node: '>=8'}
-    dev: true
-
   /terser-webpack-plugin/5.3.3_webpack@5.73.0:
     resolution: {integrity: sha512-Fx60G5HNYknNTNQnzQ1VePRuu89ZVYWfjRAeT5rITuCY/1b08s49e5kSQwHDirKZWuoKOBRFS98EUUoZ9kLEwQ==}
     engines: {node: '>= 10.13.0'}
@@ -13856,8 +13750,6 @@ packages:
       debug: 2.6.9
       string-hash: 1.1.3
       think-helper: 1.1.3
-    transitivePeerDependencies:
-      - supports-color
     dev: false
 
   /think-config/1.1.3:
@@ -13883,8 +13775,6 @@ packages:
       think-cluster: 1.5.8
       think-helper: 1.1.3
       think-mock-http: 1.0.6
-    transitivePeerDependencies:
-      - supports-color
     dev: false
 
   /think-debounce/1.0.4:
@@ -13949,8 +13839,6 @@ packages:
     dependencies:
       debug: 2.6.9
       think-helper: 1.1.3
-    transitivePeerDependencies:
-      - supports-color
     dev: false
 
   /think-model-abstract/1.6.5:
@@ -13958,8 +13846,6 @@ packages:
     dependencies:
       debug: 3.2.7
       think-helper: 1.1.3
-    transitivePeerDependencies:
-      - supports-color
     dev: false
 
   /think-model-mysql/1.1.7:
@@ -13969,8 +13855,6 @@ packages:
       think-helper: 1.1.3
       think-model-abstract: 1.6.5
       think-mysql: 1.4.4
-    transitivePeerDependencies:
-      - supports-color
     dev: false
 
   /think-model-postgresql/1.1.6:
@@ -13983,7 +13867,6 @@ packages:
       think-model-abstract: 1.6.5
     transitivePeerDependencies:
       - pg-native
-      - supports-color
     dev: false
 
   /think-model-sqlite/1.2.3:
@@ -13995,8 +13878,6 @@ packages:
       think-helper: 1.1.3
       think-instance: 1.0.2
       think-model-abstract: 1.6.5
-    transitivePeerDependencies:
-      - supports-color
     dev: false
 
   /think-model/1.5.4:
@@ -14006,8 +13887,6 @@ packages:
       think-debounce: 1.0.4
       think-helper: 1.1.3
       think-model-abstract: 1.6.5
-    transitivePeerDependencies:
-      - supports-color
     dev: false
 
   /think-mongo/2.2.1:
@@ -14035,8 +13914,6 @@ packages:
       think-debounce: 1.0.4
       think-helper: 1.1.3
       think-instance: 1.0.2
-    transitivePeerDependencies:
-      - supports-color
     dev: false
 
   /think-payload/1.4.0:
@@ -14062,8 +13939,6 @@ packages:
       debug: 2.6.9
       koa-send: 3.3.0
       think-helper: 1.1.3
-    transitivePeerDependencies:
-      - supports-color
     dev: false
 
   /think-router-rest/1.0.5:
@@ -14081,8 +13956,6 @@ packages:
       debug: 2.6.9
       path-to-regexp: 1.8.0
       think-helper: 1.1.3
-    transitivePeerDependencies:
-      - supports-color
     dev: false
 
   /think-trace/1.0.18:
@@ -14549,25 +14422,6 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /update-notifier/4.1.0:
-    resolution: {integrity: sha512-w3doE1qtI0/ZmgeoDoARmI5fjDoT93IfKgEGqm26dGUOh8oNpaSTsGNdYRN/SjOuo10jcJGwkEL3mroKzktkew==}
-    engines: {node: '>=8'}
-    dependencies:
-      boxen: 4.2.0
-      chalk: 3.0.0
-      configstore: 5.0.1
-      has-yarn: 2.1.0
-      import-lazy: 2.1.0
-      is-ci: 2.0.0
-      is-installed-globally: 0.3.2
-      is-npm: 4.0.0
-      is-yarn-global: 0.3.0
-      latest-version: 5.1.0
-      pupa: 2.1.1
-      semver-diff: 3.1.1
-      xdg-basedir: 4.0.0
-    dev: true
-
   /update-notifier/5.1.0:
     resolution: {integrity: sha512-ItnICHbeMh9GqUy31hFPrD1kcuZ3rpxDZbf4KUDavXwS0bW5m7SLbDQpGX3UYr072cbrF5hFUs3r5tUsPwjfHw==}
     engines: {node: '>=10'}
@@ -14701,22 +14555,22 @@ packages:
     resolution: {integrity: sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=}
     engines: {node: '>= 0.8'}
 
-  /vercel/24.2.5:
-    resolution: {integrity: sha512-ZEpjZorugQRPoMhVHvTVEvuVrtl8o8scjs4zBKPbc91niIGlHWnieA+dVmoh5fK3jx+TrD5ZBAlbtP3AaxGr/A==}
-    engines: {node: '>= 12'}
+  /vercel/25.0.0:
+    resolution: {integrity: sha512-vBv5rKPiONRhE2Sh4QLzw77xwT0xKLPW3fF2kplF5JhKNonppC2Yvx+ktV2mUNzkCkNM7ruaVPktCiTgoJIBWQ==}
+    engines: {node: '>= 14'}
     hasBin: true
     requiresBuild: true
     dependencies:
-      '@vercel/build-utils': 3.1.1
-      '@vercel/go': 1.4.4
-      '@vercel/next': 2.9.0
-      '@vercel/node': 1.15.4
-      '@vercel/python': 2.3.4
-      '@vercel/redwood': 0.8.4
-      '@vercel/remix': 0.0.2_@vercel+node@1.15.4
-      '@vercel/ruby': 1.3.7
-      '@vercel/static-build': 0.26.0
-      update-notifier: 4.1.0
+      '@vercel/build-utils': 4.0.0
+      '@vercel/go': 2.0.0
+      '@vercel/next': 3.0.0
+      '@vercel/node': 2.0.0
+      '@vercel/python': 3.0.0
+      '@vercel/redwood': 1.0.0
+      '@vercel/remix': 1.0.0_@vercel+node@2.0.0
+      '@vercel/ruby': 1.3.8
+      '@vercel/static-build': 1.0.0
+      update-notifier: 5.1.0
     transitivePeerDependencies:
       - encoding
       - react
@@ -15820,14 +15674,6 @@ packages:
 
   /ws/5.2.3:
     resolution: {integrity: sha512-jZArVERrMsKUatIdnLzqvcfydI85dvd/Fp1u/VOpfdDWQ4c9qWXe+VIeAbQ5FrDwciAkr+lzofXLz3Kuf26AOA==}
-    peerDependencies:
-      bufferutil: ^4.0.1
-      utf-8-validate: ^5.0.2
-    peerDependenciesMeta:
-      bufferutil:
-        optional: true
-      utf-8-validate:
-        optional: true
     dependencies:
       async-limiter: 1.0.1
     dev: false
