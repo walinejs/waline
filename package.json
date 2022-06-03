@@ -62,7 +62,7 @@
     "lint-staged": "13.0.0",
     "postcss": "8.4.14",
     "prettier": "2.6.2",
-    "sass": "1.52.1",
+    "sass": "1.52.2",
     "sort-package-json": "1.57.0",
     "stylelint": "14.8.5",
     "stylelint-config-prettier": "9.0.3",
