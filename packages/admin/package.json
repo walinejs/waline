@@ -61,7 +61,7 @@
     "qrcode.react": "3.0.2",
     "react": "18.1.0",
     "react-dom": "18.1.0",
-    "react-i18next": "11.16.10",
+    "react-i18next": "11.17.0",
     "react-redux": "8.0.2",
     "react-router-dom": "6.3.0",
     "redux": "4.2.0",
