@@ -38,7 +38,7 @@ export default hopeTheme({
     blog: false,
 
     comment: {
-      type: 'waline',
+      provider: 'Waline',
       serverURL: 'https://waline.vercel.app',
       pageview: true,
       walineLocales: {
