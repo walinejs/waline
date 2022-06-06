@@ -640,7 +640,14 @@ module.exports = class extends BaseRest {
       return this.fail(preDeleteResp);
     }
 
-    await this.modelInstance.delete({ objectId: this.id });
+    await this.modelInstance.delete({
+      _complex: {
+        _logic: 'or',
+        objectId: this.id,
+        pid: this.id,
+        rid: this.id,
+      },
+    });
     await this.hook('postDelete', this.id);
 
     return this.success();
