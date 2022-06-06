@@ -13,6 +13,11 @@ module.exports = class extends Base {
         continue;
       }
 
+      if (k === '_complex') {
+        where[k] = this.parseWhere(filter[k]);
+        continue;
+      }
+
       if (filter[k] === undefined) {
         where[k] = null;
         continue;

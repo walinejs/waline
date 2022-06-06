@@ -642,7 +642,7 @@ module.exports = class extends BaseRest {
 
     await this.modelInstance.delete({
       _complex: {
-        logic: 'or',
+        _logic: 'or',
         objectId: this.id,
         pid: this.id,
         rid: this.id,
