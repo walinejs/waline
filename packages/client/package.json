@@ -96,7 +96,7 @@
     "@types/marked": "4.0.3",
     "@types/node": "17.0.38",
     "@vitejs/plugin-vue": "2.3.3",
-    "@vue/compiler-sfc": "3.2.36",
+    "@vue/compiler-sfc": "3.2.37",
     "rimraf": "3.0.2",
     "rollup": "2.75.5",
     "rollup-plugin-dts": "4.2.2",
