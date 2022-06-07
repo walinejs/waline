@@ -8,18 +8,21 @@ function formatID(data, idGenerator) {
   const objectIdMap = {};
   for (let i = 0; i < data.length; i++) {
     const { objectId } = data[i];
-    objectIdMap[objectId] = idGenerator();
+    objectIdMap[objectId] = idGenerator(data[i], i, data);
   }
 
   for (let i = 0; i < data.length; i++) {
-    const { objectId, pid, rid } = data[i];
-    data[i].objectId = objectIdMap[objectId];
-    if (pid && objectIdMap[pid]) {
-      data[i].pid = objectIdMap[pid];
-    }
-    if (rid && objectIdMap[rid]) {
-      data[i].rid = objectIdMap[rid];
-    }
+    ['objectId', 'pid', 'rid']
+      .filter((k) => data[i][k])
+      .forEach((k) => {
+        data[i][k] = objectIdMap[data[i][k]];
+      });
+
+    ['createdAt', 'insertedAt', 'updatedAt']
+      .filter((k) => data[i][k])
+      .forEach((k) => {
+        data[i][k] = new Date(data[i][k]);
+      });
   }
 
   return data;
