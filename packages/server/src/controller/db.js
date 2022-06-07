@@ -3,6 +3,27 @@ const util = require('util');
 const BaseRest = require('./rest');
 
 const readFileAsync = util.promisify(fs.readFile);
+
+function formatID(data, idGenerator) {
+  const objectIdMap = {};
+  for (let i = 0; i < data.length; i++) {
+    const { objectId } = data[i];
+    objectIdMap[objectId] = idGenerator();
+  }
+
+  for (let i = 0; i < data.length; i++) {
+    const { objectId, pid, rid } = data[i];
+    data[i].objectId = objectIdMap[objectId];
+    if (pid && objectIdMap[pid]) {
+      data[i].pid = objectIdMap[pid];
+    }
+    if (rid && objectIdMap[rid]) {
+      data[i].rid = objectIdMap[rid];
+    }
+  }
+
+  return data;
+}
 module.exports = class extends BaseRest {
   async getAction() {
     const exportData = {
@@ -43,11 +64,17 @@ module.exports = class extends BaseRest {
         const storage = this.config('storage');
         const model = this.service(`storage/${storage}`, tableName);
 
+        let data = importData.data[tableName];
+        if (['postgresql', 'mysql', 'sqlite'].includes(storage)) {
+          let i = 0;
+          data = formatID(data, () => (i = i + 1));
+        }
+
         // delete all data at first
         await model.delete({});
         // then add data one by one
-        for (let j = 0; j < importData.data[tableName].length; j++) {
-          await model.add(importData.data[tableName][j]);
+        for (let j = 0; j < data.length; j++) {
+          await model.add(data[j]);
         }
       }
       return this.success();
