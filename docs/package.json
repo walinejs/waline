@@ -9,7 +9,7 @@
   "devDependencies": {
     "@fancyapps/ui": "4.0.27",
     "@vuepress/client": "2.0.0-beta.46",
-    "@vuepress/plugin-docsearch": "2.0.0-beta.46",
+    "@vuepress/plugin-docsearch": "2.0.0-beta.48",
     "@vuepress/utils": "2.0.0-beta.46",
     "marked": "4.0.16",
     "vue": "3.2.37",
