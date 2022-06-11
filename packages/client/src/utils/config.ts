@@ -1,10 +1,11 @@
 import {
   defaultLang,
+  defaultLocales,
   defaultUploadImage,
   defaultHighlighter,
   defaultTexRenderer,
+  getDefaultSearchOptions,
   getMeta,
-  defaultLocales,
 } from '../config';
 
 import { decodePath, isLinkHttp, removeEndingSplash } from './path';
@@ -61,6 +62,7 @@ export const getConfig = ({
   texRenderer,
   copyright = true,
   login = 'enable',
+  search = getDefaultSearchOptions(),
   ...more
 }: WalineProps): WalineConfig => ({
   serverURL: getServerURL(serverURL),
@@ -81,5 +83,6 @@ export const getConfig = ({
   pageSize,
   login,
   copyright,
+  search,
   ...more,
 });

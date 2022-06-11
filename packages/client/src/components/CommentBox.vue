@@ -89,6 +89,7 @@
           </button>
 
           <button
+            v-if="config.search"
             ref="gifButtonRef"
             class="wl-action"
             :class="{ actived: showGif }"
@@ -245,6 +246,7 @@
 </template>
 
 <script lang="ts">
+import { useDebounceFn } from '@vueuse/core';
 import autosize from 'autosize';
 import {
   computed,
@@ -252,11 +254,11 @@ import {
   inject,
   onMounted,
   onUnmounted,
+  reactive,
   ref,
   watch,
 } from 'vue';
 
-import ImageWall from './ImageWall.vue';
 import {
   CloseIcon,
   EmojiIcon,
@@ -266,25 +268,25 @@ import {
   LoadingIcon,
   GifIcon,
 } from './Icons';
+import ImageWall from './ImageWall.vue';
 import { useEditor, useUserMeta, useUserInfo } from '../composables';
 import {
-  fetchGif,
   getEmojis,
   getImagefromDataTransfer,
   getWordNumber,
   parseEmoji,
   parseMarkdown,
   postComment,
-  throttle,
 } from '../utils';
 
 import type { ComputedRef, DeepReadonly } from 'vue';
-import type { WalineCommentData, WalineImageUploader } from '../typings';
 import type {
-  FetchGifResponse,
-  WalineConfig,
-  WalineEmojiConfig,
-} from '../utils';
+  WalineCommentData,
+  WalineImageUploader,
+  WalineSearchOptions,
+  WalineSearchResult,
+} from '../typings';
+import type { WalineConfig, WalineEmojiConfig } from '../utils';
 
 export default defineComponent({
   name: 'CommentBox',
@@ -342,11 +344,11 @@ export default defineComponent({
     const showPreview = ref(false);
     const previewText = ref('');
     const wordNumber = ref(0);
-    const gifData = ref<{
-      cursor: string;
-      loading: boolean;
-      list: FetchGifResponse['results'];
-    }>({ cursor: '', loading: true, list: [] });
+
+    const searchResults = reactive({
+      loading: true,
+      list: [] as WalineSearchResult[],
+    });
 
     const wordLimit = ref(0);
     const isWordNumberLegal = ref(false);
@@ -614,31 +616,30 @@ export default defineComponent({
       const { scrollTop, clientHeight, scrollHeight } =
         event.target as HTMLDivElement;
       const percent = (clientHeight + scrollTop) / scrollHeight;
+      const searchOptions = config.value.search as WalineSearchOptions;
+      const keyword = gifSearchInputRef.value?.value || '';
 
-      if (percent < 0.9 || gifData.value.loading) return;
+      if (percent < 0.9 || searchResults.loading) return;
 
-      gifData.value.loading = true;
+      searchResults.loading = true;
 
-      const data = await fetchGif({
-        keyword: gifSearchInputRef.value?.value || '',
-        pos: gifData.value.cursor,
-      }).finally(() => {
-        gifData.value.loading = false;
-      });
+      searchResults.list.push(
+        ...(searchOptions.more
+          ? await searchOptions.more(keyword, searchResults.list.length)
+          : await searchOptions.search(keyword))
+      );
 
-      gifData.value.cursor = data.next;
-      gifData.value.list = gifData.value.list.concat(data.results);
+      searchResults.loading = false;
 
       setTimeout(() => {
         (event.target as HTMLDivElement).scrollTop = scrollTop;
       }, 50);
     };
 
-    const onGifSearch = throttle(async (event: Event) => {
-      gifData.value.cursor = '';
-      gifData.value.list = [];
+    const onGifSearch = useDebounceFn((event: Event) => {
+      searchResults.list = [];
       onImageWallScroll(event);
-    });
+    }, 300);
 
     // update wordNumber
     watch(
@@ -668,13 +669,18 @@ export default defineComponent({
     watch(showGif, async (showGif) => {
       if (!showGif) return;
 
-      gifData.value.loading = true;
-      const data = await fetchGif({ keyword: '' }).finally(() => {
-        gifData.value.loading = false;
-      });
+      const searchOptions = config.value.search as WalineSearchOptions;
 
-      gifData.value.cursor = data.next;
-      gifData.value.list = gifData.value.list.concat(data.results);
+      // clear input
+      if (gifSearchInputRef.value) gifSearchInputRef.value.value = '';
+
+      searchResults.loading = true;
+
+      searchResults.list = searchOptions.default
+        ? await searchOptions.default()
+        : await searchOptions.search('');
+
+      searchResults.loading = false;
     });
 
     onMounted(() => {
@@ -756,7 +762,7 @@ export default defineComponent({
       showEmoji,
 
       // gif
-      gifData,
+      gifData: searchResults,
       showGif,
 
       // image

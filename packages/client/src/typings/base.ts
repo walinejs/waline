@@ -39,6 +39,32 @@ export interface WalineEmojiInfo {
 
 export type WalineEmojiMaps = Record<string, string>;
 
+export interface WalineSearchResult extends Record<string, unknown> {
+  /**
+   * Image link
+   */
+  src: string;
+
+  /**
+   * Image title, optional
+   */
+  title?: string;
+
+  /**
+   * Image preview link, optional
+   *
+   * @default src
+   */
+  preview?: string;
+}
+
+export interface WalineSearchOptions {
+  placeholder?: string;
+  search: (word: string) => Promise<WalineSearchResult[]>;
+  default?: () => Promise<WalineSearchResult[]>;
+  more?: (word: string, currectCount: number) => Promise<WalineSearchResult[]>;
+}
+
 export type WalineMeta = 'nick' | 'mail' | 'link';
 
 export type WalineImageUploader = (image: File) => Promise<string>;
