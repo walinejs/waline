@@ -59,9 +59,23 @@ export interface WalineSearchResult extends Record<string, unknown> {
 }
 
 export interface WalineSearchOptions {
-  placeholder?: string;
+  /**
+   * Search action
+   */
   search: (word: string) => Promise<WalineSearchResult[]>;
+
+  /**
+   * Default search action
+   *
+   * @default () => search('')
+   */
   default?: () => Promise<WalineSearchResult[]>;
+
+  /**
+   * Fetch more action
+   *
+   * @default (word) => search(word)
+   */
   more?: (word: string, currectCount: number) => Promise<WalineSearchResult[]>;
 }
 
