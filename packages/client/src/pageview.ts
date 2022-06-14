@@ -97,7 +97,11 @@ export const pageviewCount = ({
     const normalElements = elements.filter((element) => !filter(element));
     const elementsNeedstoBeFetched = elements.filter(filter);
 
-    void updatePageviews({ serverURL, path, lang }).then((count) =>
+    void updatePageviews({
+      serverURL: getServerURL(serverURL),
+      path,
+      lang,
+    }).then((count) =>
       renderVisitorCount(
         new Array<number>(normalElements.length).fill(count),
         normalElements
