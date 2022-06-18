@@ -39,23 +39,24 @@ MONGO_OPT_SSL=true
 
 ## MySQL
 
-使用 MySQL 存储数据也是一个很好的选择，除了使用自建的 MySQL 服务之外，我们也可以使用 <https://freedb.tech>，它免费提供了 100M 的数据库支持。
+使用 MySQL 存储数据也是一个很好的选择，除了使用自建的 MySQL 服务之外，我们也可以使用 [PlanetScale](https://planetscale.com)，它免费提供了 10GB 的数据库支持。
 
-使用时请先导入 [waline.sql](https://github.com/walinejs/waline/blob/main/assets/waline.sql) 以完成表和表结构的创建，之后在项目中配置如下环境变量。
+使用时请先导入 [waline_my.sql](https://github.com/walinejs/waline/blob/main/assets/waline_my.sql) 以完成表和表结构的创建，之后在项目中配置如下环境变量。
 
-| 环境变量名称     | 必填 | 默认值    | 备注                 |
-| ---------------- | ---- | --------- | -------------------- |
-| `MYSQL_HOST`     |      | 127.0.0.1 | MySQL 服务的地址     |
-| `MYSQL_PORT`     |      | 3306      | MySQL 服务的端口     |
-| `MYSQL_DB`       | ✅   |           | MySQL 数据库库名     |
-| `MYSQL_USER`     | ✅   |           | MySQL 数据库的用户名 |
-| `MYSQL_PASSWORD` | ✅   |           | MySQL 数据库的密码   |
-| `MYSQL_PREFIX`   |      | `wl_`     | MySQL 数据表的表前缀 |
-| `MYSQL_CHARSET`  |      | `utf8mb4` | MySQL 数据表的字符集 |
+| 环境变量名称     | 必填 | 默认值    | 备注                          |
+| ---------------- | ---- | --------- | ----------------------------- |
+| `MYSQL_HOST`     |      | 127.0.0.1 | MySQL 服务的地址              |
+| `MYSQL_PORT`     |      | 3306      | MySQL 服务的端口              |
+| `MYSQL_DB`       | ✅   |           | MySQL 数据库库名              |
+| `MYSQL_USER`     | ✅   |           | MySQL 数据库的用户名          |
+| `MYSQL_PASSWORD` | ✅   |           | MySQL 数据库的密码            |
+| `MYSQL_PREFIX`   |      | `wl_`     | MySQL 数据表的表前缀          |
+| `MYSQL_CHARSET`  |      | `utf8mb4` | MySQL 数据表的字符集          |
+| `MYSQL_SSL`      |      |           | 是否使用 SSL MYSQL 连接数据库 |
 
 ## SQLite
 
-使用 SQLite 时需要下载 [waline.sqlite](https://github.com/walinejs/waline/blob/main/assets/waline.sqlite) 文件至合适的位置。之后在项目中配置如下环境变量。
+使用 SQLite 时需要下载 [waline_my.sqlite](https://github.com/walinejs/waline/blob/main/assets/waline_my.sqlite) 文件至合适的位置。之后在项目中配置如下环境变量。
 
 | 环境变量名称    | 必填 | 默认值 | 备注                                              |
 | --------------- | ---- | ------ | ------------------------------------------------- |
@@ -68,16 +69,17 @@ MONGO_OPT_SSL=true
 
 [elephantSQL](https://www.elephantsql.com/) 提供了 20M 的免费空间，对于评论服务来说绰绰有余了。如果想要使用 PostgreSQL 的也可以使用它搭建 Waline。
 
-同 MySQL，使用 PostgreSQL 也需要先导入 [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) 创建好表和表结构。之后在项目中配置如下环境变量。
+同 MySQL，使用 PostgreSQL 也需要先导入 [waline_pg.sql](https://github.com/walinejs/waline/blob/main/assets/waline_pg.sql) 创建好表和表结构。之后在项目中配置如下环境变量。
 
-| 环境变量名称  | 必填 | 默认值    | 备注                      |
-| ------------- | ---- | --------- | ------------------------- |
-| `PG_HOST`     |      | 127.0.0.1 | PostgreSQL 服务的地址     |
-| `PG_PORT`     |      | 3211      | PostgreSQL 服务的端口     |
-| `PG_DB`       | ✅   |           | PostgreSQL 数据库库名     |
-| `PG_USER`     | ✅   |           | PostgreSQL 数据库的用户名 |
-| `PG_PASSWORD` | ✅   |           | PostgreSQL 数据库的密码   |
-| `PG_PREFIX`   |      | `wl_`     | PostgreSQL 数据表的表前缀 |
+| 环境变量名称  | 必填 | 默认值    | 备注                                |
+| ------------- | ---- | --------- | ----------------------------------- |
+| `PG_HOST`     |      | 127.0.0.1 | PostgreSQL 服务的地址               |
+| `PG_PORT`     |      | 3211      | PostgreSQL 服务的端口               |
+| `PG_DB`       | ✅   |           | PostgreSQL 数据库库名               |
+| `PG_USER`     | ✅   |           | PostgreSQL 数据库的用户名           |
+| `PG_PASSWORD` | ✅   |           | PostgreSQL 数据库的密码             |
+| `PG_PREFIX`   |      | `wl_`     | PostgreSQL 数据表的表前缀           |
+| `PG_SSL`      |      |           | 是否使用 SSL 连接 PostgreSQL 数据库 |
 
 ## CloudBase
 
