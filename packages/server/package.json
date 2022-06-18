@@ -38,7 +38,7 @@
     "request": "2.88.2",
     "request-promise-native": "1.0.9",
     "speakeasy": "2.0.0",
-    "think-helper": "^1.1.3",
+    "think-helper": "1.1.3",
     "think-logger3": "1.3.1",
     "think-model": "1.5.4",
     "think-model-mysql": "1.1.7",
