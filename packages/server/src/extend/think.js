@@ -55,7 +55,7 @@ module.exports = {
     });
   },
   async ip2region(ip, { depth = 1 }) {
-    if (!ip) return '';
+    if (!ip || ip.includes(':')) return '';
 
     try {
       const search = helper.promisify(regionSearch.btreeSearch, regionSearch);
