@@ -9,6 +9,7 @@ module.exports = class extends MySQL {
     }
     return await super.add(data);
   }
+
   async count(...args) {
     let result = await super.count(...args);
     try {
