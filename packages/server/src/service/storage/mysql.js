@@ -41,7 +41,7 @@ module.exports = class extends Base {
     const instance = this.model(this.tableName);
     instance.where(this.parseWhere(where));
     if (desc) {
-      instance.order(`${desc} DESC`);
+      instance.order(`"${desc}" DESC`);
     }
     if (limit || offset) {
       instance.limit(offset || 0, limit);
@@ -72,7 +72,6 @@ module.exports = class extends Base {
       data.id = data.objectId;
       delete data.objectId;
     }
-
     const instance = this.model(this.tableName);
     const id = await instance.add(data);
     return { ...data, objectId: id };
