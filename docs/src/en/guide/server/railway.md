@@ -11,7 +11,7 @@ Click this button and it'll redirect to railway.app platform to quickly deploy. 
 
 ![](../../../assets/railway-1.jpg)
 
-After a moment you will redirect to dashboard page. Click <kbd>PostgreSQL</kbd> - <kbd>Query</kbd> and paste [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) this file content into textarea, then click <kbd>Run Query</kbd> button at the bottom to initialized database.
+After a moment you will redirect to dashboard page. Click <kbd>PostgreSQL</kbd> - <kbd>Query</kbd> and paste [waline_pg.sql](https://github.com/walinejs/waline/blob/main/assets/waline_pg.sql) this file content into textarea, then click <kbd>Run Query</kbd> button at the bottom to initialized database.
 
 ![](../../../assets/railway-2.jpg)
 

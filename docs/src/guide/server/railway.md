@@ -11,7 +11,7 @@ icon: railway
 
 ![](../../assets/railway-1.jpg)
 
-进入管理界面后，选择 <kbd>PostgreSQL</kbd> - <kbd>Query</kbd>，将 [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) 中的内容粘贴至输入框中，点击底部的 <kbd>Run Query</kbd> 按钮完成数据库的初始化。
+进入管理界面后，选择 <kbd>PostgreSQL</kbd> - <kbd>Query</kbd>，将 [waline_pg.sql](https://github.com/walinejs/waline/blob/main/assets/waline_pg.sql) 中的内容粘贴至输入框中，点击底部的 <kbd>Run Query</kbd> 按钮完成数据库的初始化。
 
 ![](../../assets/railway-2.jpg)
 

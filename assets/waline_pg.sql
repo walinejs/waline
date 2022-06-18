@@ -1,11 +1,11 @@
 
 CREATE SEQUENCE wl_comment_seq;
 
-CREATE TABLE wl_comment (
+CREATE TABLE "wl_Comment" (
   id int check (id > 0) NOT NULL DEFAULT NEXTVAL ('wl_comment_seq'),
   user_id int DEFAULT NULL,
   comment text,
-  insertedAt timestamp(0) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "insertedAt" varchar(255) DEFAULT NULL,
   ip varchar(100) DEFAULT '',
   link varchar(255) DEFAULT NULL,
   mail varchar(255) DEFAULT NULL,
@@ -17,27 +17,27 @@ CREATE TABLE wl_comment (
   "like" int DEFAULT NULL,
   ua text,
   url varchar(255) DEFAULT NULL,
-  createdAt timestamp(0) with time zone NULL DEFAULT CURRENT_TIMESTAMP,
-  updatedAt timestamp(0) with time zone NULL DEFAULT CURRENT_TIMESTAMP,
+  "createdAt" varchar(255) DEFAULT NULL,
+  "updatedAt" varchar(255) DEFAULT NULL,
   PRIMARY KEY (id)
 ) ;
 
 
 CREATE SEQUENCE wl_counter_seq;
 
-CREATE TABLE wl_counter (
+CREATE TABLE "wl_Counter" (
   id int check (id > 0) NOT NULL DEFAULT NEXTVAL ('wl_counter_seq'),
   time int DEFAULT NULL,
   url varchar(255) NOT NULL DEFAULT '',
-  createdAt timestamp(0) with time zone NULL DEFAULT CURRENT_TIMESTAMP,
-  updatedAt timestamp(0) with time zone NULL DEFAULT CURRENT_TIMESTAMP,
+  "createdAt" varchar(255) DEFAULT NULL,
+  "updatedAt" varchar(255) DEFAULT NULL,
   PRIMARY KEY (id)
 ) ;
 
 
 CREATE SEQUENCE wl_users_seq;
 
-CREATE TABLE wl_users (
+CREATE TABLE "wl_Users" (
   id int check (id > 0) NOT NULL DEFAULT NEXTVAL ('wl_users_seq'),
   display_name varchar(255) NOT NULL DEFAULT '',
   email varchar(255) NOT NULL DEFAULT '',
@@ -53,7 +53,7 @@ CREATE TABLE wl_users (
   weibo varchar(255) DEFAULT NULL,
   qq varchar(255) DEFAULT NULL,
   "2fa" varchar(32) DEFAULT NULL,
-  createdAt timestamp(0) with time zone NULL DEFAULT CURRENT_TIMESTAMP,
-  updatedAt timestamp(0) with time zone NULL DEFAULT CURRENT_TIMESTAMP,
+  "createdAt" varchar(255) DEFAULT NULL,
+  "updatedAt" varchar(255) DEFAULT NULL,
   PRIMARY KEY (id)
 ) ;
