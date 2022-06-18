@@ -31,17 +31,21 @@ SOFTWARE. -->
       :data-index="columnIndex"
       :style="{ gap: `${gap}px` }"
     >
-      <img
-        v-for="itemIndex in column"
-        :key="itemIndex"
-        class="wl-gallery-item"
-        :src="items[itemIndex].media[0].tinygif.url"
-        :title="items[itemIndex].title"
-        loading="lazy"
-        @click="
-          $emit('insert', `![](${items[itemIndex].media[0].tinygif.url})`)
-        "
-      />
+      <template v-for="itemIndex in column" :key="itemIndex">
+        <LoadingIcon
+          v-if="!state[items[itemIndex].src]"
+          :size="36"
+          style="margin: 20px auto"
+        />
+        <img
+          class="wl-gallery-item"
+          :src="items[itemIndex].src"
+          :title="items[itemIndex].title"
+          loading="lazy"
+          @load="state[items[itemIndex].src] = true"
+          @click="$emit('insert', `![](${items[itemIndex].src})`)"
+        />
+      </template>
     </div>
   </div>
 </template>
@@ -56,16 +60,24 @@ import {
   watch,
 } from 'vue';
 
+import { LoadingIcon } from './Icons';
+
 import type { PropType } from 'vue';
+import type { WalineSearchResult } from '../typings';
 
 type Column = number[];
 
 export default defineComponent({
+  name: 'ImageWall',
+
+  components: {
+    LoadingIcon,
+  },
+
   props: {
+    items: { type: Array as PropType<WalineSearchResult[]>, default: () => [] },
     columnWidth: { type: Number, default: 300 },
-    items: { type: Array as PropType<unknown[]>, default: () => [] },
     gap: { type: Number, default: 0 },
-    rtl: { type: Boolean, default: false },
   },
 
   emit: ['insert'],
@@ -73,7 +85,7 @@ export default defineComponent({
   setup(props) {
     let resizeObserver: ResizeObserver | null = null;
     const wall = ref<HTMLDivElement | null>(null);
-
+    const state = ref<Record<string, boolean>>({});
     const columns = ref<Column[]>([]);
 
     const getColumnCount = (): number => {
@@ -97,8 +109,6 @@ export default defineComponent({
       const columnDivs = Array.from(
         wall.value?.children || []
       ) as HTMLDivElement[];
-
-      if (props.rtl) columnDivs.reverse();
 
       const target = columnDivs.reduce((prev, curr) =>
         curr.getBoundingClientRect().height <
@@ -125,8 +135,11 @@ export default defineComponent({
     };
 
     watch(
-      () => [props.items, props.rtl],
-      () => redraw(true)
+      () => [props.items],
+      () => {
+        state.value = {};
+        redraw(true);
+      }
     );
     watch(
       () => [props.columnWidth, props.gap],
@@ -145,6 +158,7 @@ export default defineComponent({
 
     return {
       columns,
+      state,
       wall,
     };
   },

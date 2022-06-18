@@ -4,6 +4,7 @@ import type {
   WalineImageUploader,
   WalineMeta,
   WalineTexRenderer,
+  WalineSearchOptions,
 } from './base';
 import type { WalineLocale } from './locale';
 
@@ -147,6 +148,13 @@ export interface WalineProps {
    * @default ['//unpkg.com/@waline/emojis@1.0.1/weibo']
    */
   emoji?: (string | WalineEmojiInfo)[] | false;
+
+  /**
+   * 设置搜索功能
+   *
+   * Customize Search feature
+   */
+  search?: WalineSearchOptions | false;
 
   /**
    * 代码高亮

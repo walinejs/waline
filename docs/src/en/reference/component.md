@@ -344,6 +344,59 @@ You can import $\TeX$ renderer to provide preview feature. We recommend you to u
 
 ::::
 
+## search
+
+- 类型: `WalineSearchOptions | false`
+- 必填: 否
+- 详情:
+
+  ```ts
+  interface WalineSearchResult extends Record<string, unknown> {
+    /**
+     * Image link
+     */
+    src: string;
+
+    /**
+     * Image title, optional
+     */
+    title?: string;
+
+    /**
+     * Image preview link, optional
+     *
+     * @default src
+     */
+    preview?: string;
+  }
+
+  interface WalineSearchOptions {
+    /**
+     * Search action
+     */
+    search: (word: string) => Promise<WalineSearchResult[]>;
+
+    /**
+     * Default search action
+     *
+     * @default () => search('')
+     */
+    default?: () => Promise<WalineSearchResult[]>;
+
+    /**
+     * Fetch more action
+     *
+     * @default (word) => search(word)
+     */
+    more?: (
+      word: string,
+      currectCount: number
+    ) => Promise<WalineSearchResult[]>;
+  }
+  ```
+
+Customize search featreus, you can disable search function by setting it to `false`.
+
 ## copyright
 
 - Type: `boolean`

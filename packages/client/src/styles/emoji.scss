@@ -81,6 +81,8 @@
     position: relative;
     height: 2em;
     padding: 0 6px 1px;
+    overflow-x: scroll;
+    white-space: nowrap;
 
     &::before {
       content: ' ';
@@ -94,6 +96,24 @@
       height: 1px;
 
       background: var(--waline-border-color);
+    }
+
+    &::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    &::-webkit-scrollbar-track-piece:horizontal {
+      -webkit-border-radius: 6px;
+      border-radius: 6px;
+      background: rgb(0 0 0 / 10%);
+    }
+
+    &::-webkit-scrollbar-thumb:horizontal {
+      height: 6px;
+      -webkit-border-radius: 6px;
+      border-radius: 6px;
+      background: var(--waline-theme-color);
     }
   }
 

@@ -343,11 +343,63 @@ Waline 的服务端地址。
 
 ::::
 
+## search
+
+- 类型: `WalineSearchOptions | false`
+- 必填: 否
+- 详情:
+
+  ```ts
+  interface WalineSearchResult extends Record<string, unknown> {
+    /**
+     * Image link
+     */
+    src: string;
+
+    /**
+     * Image title, optional
+     */
+    title?: string;
+
+    /**
+     * Image preview link, optional
+     *
+     * @default src
+     */
+    preview?: string;
+  }
+
+  interface WalineSearchOptions {
+    /**
+     * 搜索行为
+     */
+    search: (word: string) => Promise<WalineSearchResult[]>;
+
+    /**
+     * 默认的搜索行为
+     *
+     * @default () => search('')
+     */
+    default?: () => Promise<WalineSearchResult[]>;
+
+    /**
+     * 获取更多行为
+     *
+     * @default (word) => search(word)
+     */
+    more?: (
+      word: string,
+      currectCount: number
+    ) => Promise<WalineSearchResult[]>;
+  }
+  ```
+
+自定义搜索功能，设置 `false` 可禁用搜索。
+
 ## copyright
 
 - 类型: `boolean`
 - 默认值: `true`
-- 必填: 否
 
 是否显示页脚版权信息。
 
