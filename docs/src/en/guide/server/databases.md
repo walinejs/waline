@@ -39,7 +39,7 @@ MONGO_OPT_SSL=true
 
 ## MySQL
 
-Using MySQL to store data is also a good choise. Besides our own MySQL service, we can also use <https://freedb.tech>, which provides 100M of database support for free.
+Using MySQL to store data is also a good choise. Besides our own MySQL service, we can also use <https://freedb.tech>(100MB storage) or [PlanetScale](https://planetscale.com)(10GB storage), which provide database support for free.
 
 If you want to use MySQL as storage, you need to import [waline_my.sql](https://github.com/walinejs/waline/blob/main/assets/waline_my.sql) first to create table and table structure, then set these environment variables in project.
 
@@ -67,17 +67,18 @@ Download [waline_my.sqlite](https://github.com/walinejs/waline/blob/main/assets/
 
 ## PostgreSQL
 
-[elephantSQL](https://www.elephantsql.com/) provides 20M PG database support for free. Same as MySQL, you need to import [waline_pg.sql](https://github.com/walinejs/waline/blob/main/assets/waline_pg.sql) to create table and table structure before using PostgreSQL.
-
-| Environment Variable | Required | Default   | Description                         |
+[elephantSQL](https://www.elephantsql.com/) provides 20M PG database support for free.
+[YugabyteDB](https://www.yugabyte.com/) provides a postgres compatible database with 10Gstorage for free.
+Same as MySQL, you need to import [waline_pg.sql](https://github.com/walinejs/waline/blob/main/assets/waline_pg.sql) to create table and table structure before using PostgreSQL.
+| Environment Variable | Required | Default | Description |
 | -------------------- | -------- | --------- | ----------------------------------- |
-| `PG_HOST`            |          | 127.0.0.1 | PostgreSQL server address           |
-| `PG_PORT`            |          | 3211      | PostgreSQL server port              |
-| `PG_DB`              | ✅       |           | PostgreSQL database name            |
-| `PG_USER`            | ✅       |           | PostgreSQL server username          |
-| `PG_PASSWORD`        | ✅       |           | PostgreSQL server password          |
-| `PG_PREFIX`          |          | `wl_`     | PostgreSQL table prefix             |
-| `PG_SSL`             |          |           | set to `true` to use SSL connection |
+| `PG_HOST` | | 127.0.0.1 | PostgreSQL server address |
+| `PG_PORT` | | 3211 | PostgreSQL server port |
+| `PG_DB` | ✅ | | PostgreSQL database name |
+| `PG_USER` | ✅ | | PostgreSQL server username |
+| `PG_PASSWORD` | ✅ | | PostgreSQL server password |
+| `PG_PREFIX` | | `wl_` | PostgreSQL table prefix |
+| `PG_SSL` | | | set to `true` to use SSL connection |
 
 ## GitHub
 

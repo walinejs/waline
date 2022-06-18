@@ -39,7 +39,7 @@ MONGO_OPT_SSL=true
 
 ## MySQL
 
-使用 MySQL 存储数据也是一个很好的选择，除了使用自建的 MySQL 服务之外，我们也可以使用 [PlanetScale](https://planetscale.com)，它免费提供了 10GB 的数据库支持。
+使用 MySQL 存储数据也是一个很好的选择，除了使用自建的 MySQL 服务之外，我们也可以使用 <https://freedb.tech>(100MB 存储)或[PlanetScale](https://planetscale.com)(10GB 存储)，它们免费提供 MySQL 数据库支持。
 
 使用时请先导入 [waline_my.sql](https://github.com/walinejs/waline/blob/main/assets/waline_my.sql) 以完成表和表结构的创建，之后在项目中配置如下环境变量。
 
@@ -68,7 +68,7 @@ MONGO_OPT_SSL=true
 ## PostgreSQL
 
 [elephantSQL](https://www.elephantsql.com/) 提供了 20M 的免费空间，对于评论服务来说绰绰有余了。如果想要使用 PostgreSQL 的也可以使用它搭建 Waline。
-
+[YugabyteDB](https://www.yugabyte.com/) 免费提供了 2 核 2G 内存 10G 存储的免费数据库,可以部署在 AWS 和 GCP 的大多数区域(包括对大陆友好的香港和新加坡),这个配置对于评论服务来说肯定是绰绰有余的。
 同 MySQL，使用 PostgreSQL 也需要先导入 [waline_pg.sql](https://github.com/walinejs/waline/blob/main/assets/waline_pg.sql) 创建好表和表结构。之后在项目中配置如下环境变量。
 
 | 环境变量名称  | 必填 | 默认值    | 备注                                |
