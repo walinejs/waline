@@ -17,12 +17,6 @@ function formatID(data, idGenerator) {
       .forEach((k) => {
         data[i][k] = objectIdMap[data[i][k]];
       });
-
-    ['createdAt', 'insertedAt', 'updatedAt']
-      .filter((k) => data[i][k])
-      .forEach((k) => {
-        data[i][k] = new Date(data[i][k]);
-      });
   }
 
   return data;

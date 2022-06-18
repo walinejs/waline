@@ -23,6 +23,20 @@ module.exports = class extends MySQL {
     });
   }
 
+  async add(data) {
+    ['insertedAt', 'createdAt', 'updatedAt']
+      .filter((key) => data[key])
+      .forEach((key) => {
+        const val = data[key];
+        data[key.toLowerCase()] =
+          val instanceof Date
+            ? think.datetime(val, 'YYYY-MM-DD HH:mm:ss')
+            : val;
+        delete data[key];
+      });
+    return super.add(data);
+  }
+
   async count(...args) {
     let result = await super.count(...args);
     try {
