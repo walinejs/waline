@@ -22,7 +22,7 @@
     "dompurify": "2.3.8",
     "dy-node-ip2region": "1.0.1",
     "fast-csv": "4.3.6",
-    "jsdom": "19.0.0",
+    "jsdom": "20.0.0",
     "jsonwebtoken": "8.5.1",
     "katex": "0.16.0",
     "leancloud-storage": "4.12.2",
