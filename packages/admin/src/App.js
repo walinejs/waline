@@ -17,13 +17,17 @@ function Access(props) {
     const meta = props.meta || {};
     const basename = props.basename || '';
     const emptyUser = !user || !user.email;
-    const noPermission =
-      emptyUser || (meta.auth ? props.meta.auth !== user.type : false);
-    if (emptyUser || noPermission) {
+
+    if (emptyUser) {
       return (location.href =
         basename +
         '/ui/login?redirect=' +
         location.pathname.replace(basename, ''));
+    }
+
+    const noPermission = meta.auth ? props.meta.auth !== user.type : false;
+    if (noPermission) {
+      return (location.href = basename + '/ui/profile');
     }
   }, [user, props.meta]);
 
