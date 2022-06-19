@@ -89,7 +89,7 @@ module.exports = class extends BaseRest {
             ? `"${SENDER_NAME}" <${SENDER_EMAIL}>`
             : SMTP_USER,
         to: data.email,
-        subject: this.locale('[{{name}}] Registration Confirm Mail', {
+        subject: this.locale('[{{name | safe}}] Registration Confirm Mail', {
           name: SITE_NAME || 'Waline',
         }),
         html: this.locale(
