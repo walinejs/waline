@@ -19,14 +19,21 @@ export default function () {
   const basepath = match && match[1] ? match[1] : '/';
 
   useEffect(() => {
-    if (user && user.email) {
-      const query = new URLSearchParams(location.search);
-      const redirect =
-        query.get('redirect') ||
-        (user.type !== 'administrator' ? '/ui/profile' : '/ui');
-
-      navigate(redirect.replace(/\/+/g, '/'));
+    if (!user || !user.email) {
+      return;
     }
+
+    const query = new URLSearchParams(location.search);
+    const isAdmin = user.type === 'administrator';
+
+    const defaultRedirect = isAdmin ? '/ui/profile' : '/ui';
+    const redirect =
+      isAdmin && query.get('redirect')
+        ? query.get('redirect')
+        : defaultRedirect;
+
+    console.log(redirect);
+    navigate(redirect.replace(/\/+/g, '/'));
   }, [user]);
 
   const onSubmit = async function (e) {

@@ -1,3 +1,4 @@
+const path = require('path');
 const jwt = require('jsonwebtoken');
 const helper = require('think-helper');
 
@@ -8,6 +9,7 @@ module.exports = class extends think.Logic {
       `storage/${this.config('storage')}`,
       'Users'
     );
+    this.resource = this.getResource();
     this.id = this.getId();
   }
 
@@ -90,6 +92,13 @@ module.exports = class extends think.Logic {
     userInfo.mailMd5 = helper.md5(userInfo.email);
     this.ctx.state.userInfo = userInfo;
     this.ctx.state.token = token;
+  }
+
+  getResource() {
+    const filename = this.__filename || __filename;
+    const last = filename.lastIndexOf(path.sep);
+
+    return filename.substr(last + 1, filename.length - last - 4);
   }
 
   getId() {
