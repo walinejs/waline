@@ -39,9 +39,9 @@ MONGO_OPT_SSL=true
 
 ## MySQL
 
-Using MySQL to store data is also a good choise. Besides our own MySQL service, we can also use <https://freedb.tech>, which provides 100M of database support for free.
+Using MySQL to store data is also a good choise. Besides our own MySQL service, we can also use <https://freedb.tech>, which provides 100M of database support for free, or [PlanetScale](https://planetscale.com) which provides 10GB.
 
-If you want to use MySQL as storage, you need to import [waline_my.sql](https://github.com/walinejs/waline/blob/main/assets/waline_my.sql) first to create table and table structure, then set these environment variables in project.
+If you want to use MySQL as storage, you need to import [waline.sql](https://github.com/walinejs/waline/blob/main/assets/waline.sql) first to create table and table structure, then set these environment variables in project.
 
 | Environment Variable | Required | Default   | Description                         |
 | -------------------- | -------- | --------- | ----------------------------------- |
@@ -56,7 +56,7 @@ If you want to use MySQL as storage, you need to import [waline_my.sql](https://
 
 ## SQLite
 
-Download [waline_my.sqlite](https://github.com/walinejs/waline/blob/main/assets/waline_my.sqlite) to your server if you want to use SQLite. Then set these environment variables in project.
+Download [waline.sqlite](https://github.com/walinejs/waline/blob/main/assets/waline.sqlite) to your server if you want to use SQLite. Then set these environment variables in project.
 
 | Environment Variable | Required | Default | Description                                                         |
 | -------------------- | -------- | ------- | ------------------------------------------------------------------- |
@@ -67,7 +67,7 @@ Download [waline_my.sqlite](https://github.com/walinejs/waline/blob/main/assets/
 
 ## PostgreSQL
 
-[elephantSQL](https://www.elephantsql.com/) provides 20M PG database support for free. Same as MySQL, you need to import [waline_pg.sql](https://github.com/walinejs/waline/blob/main/assets/waline_pg.sql) to create table and table structure before using PostgreSQL.
+[elephantSQL](https://www.elephantsql.com/) provides 20M PG database support for free. Same as MySQL, you need to import [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) to create table and table structure before using PostgreSQL.
 
 | Environment Variable | Required | Default   | Description                         |
 | -------------------- | -------- | --------- | ----------------------------------- |
