@@ -39,19 +39,20 @@ MONGO_OPT_SSL=true
 
 ## MySQL
 
-使用 MySQL 存储数据也是一个很好的选择，除了使用自建的 MySQL 服务之外，我们也可以使用 <https://freedb.tech>，它免费提供了 100M 的数据库支持。
+使用 MySQL 存储数据也是一个很好的选择，除了使用自建的 MySQL 服务之外，我们也可以使用 [PlanetScale](https://planetscale.com)，它免费提供了 10GB 的数据库支持。或者 <https://freedb.tech>，它免费提供了 100M 的数据库支持。
 
 使用时请先导入 [waline.sql](https://github.com/walinejs/waline/blob/main/assets/waline.sql) 以完成表和表结构的创建，之后在项目中配置如下环境变量。
 
-| 环境变量名称     | 必填 | 默认值    | 备注                 |
-| ---------------- | ---- | --------- | -------------------- |
-| `MYSQL_HOST`     |      | 127.0.0.1 | MySQL 服务的地址     |
-| `MYSQL_PORT`     |      | 3306      | MySQL 服务的端口     |
-| `MYSQL_DB`       | ✅   |           | MySQL 数据库库名     |
-| `MYSQL_USER`     | ✅   |           | MySQL 数据库的用户名 |
-| `MYSQL_PASSWORD` | ✅   |           | MySQL 数据库的密码   |
-| `MYSQL_PREFIX`   |      | `wl_`     | MySQL 数据表的表前缀 |
-| `MYSQL_CHARSET`  |      | `utf8mb4` | MySQL 数据表的字符集 |
+| 环境变量名称     | 必填 | 默认值    | 备注                          |
+| ---------------- | ---- | --------- | ----------------------------- |
+| `MYSQL_HOST`     |      | 127.0.0.1 | MySQL 服务的地址              |
+| `MYSQL_PORT`     |      | 3306      | MySQL 服务的端口              |
+| `MYSQL_DB`       | ✅   |           | MySQL 数据库库名              |
+| `MYSQL_USER`     | ✅   |           | MySQL 数据库的用户名          |
+| `MYSQL_PASSWORD` | ✅   |           | MySQL 数据库的密码            |
+| `MYSQL_PREFIX`   |      | `wl_`     | MySQL 数据表的表前缀          |
+| `MYSQL_CHARSET`  |      | `utf8mb4` | MySQL 数据表的字符集          |
+| `MYSQL_SSL`      |      |           | 是否使用 SSL MYSQL 连接数据库 |
 
 ## SQLite
 
@@ -70,14 +71,15 @@ MONGO_OPT_SSL=true
 
 同 MySQL，使用 PostgreSQL 也需要先导入 [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) 创建好表和表结构。之后在项目中配置如下环境变量。
 
-| 环境变量名称  | 必填 | 默认值    | 备注                      |
-| ------------- | ---- | --------- | ------------------------- |
-| `PG_HOST`     |      | 127.0.0.1 | PostgreSQL 服务的地址     |
-| `PG_PORT`     |      | 3211      | PostgreSQL 服务的端口     |
-| `PG_DB`       | ✅   |           | PostgreSQL 数据库库名     |
-| `PG_USER`     | ✅   |           | PostgreSQL 数据库的用户名 |
-| `PG_PASSWORD` | ✅   |           | PostgreSQL 数据库的密码   |
-| `PG_PREFIX`   |      | `wl_`     | PostgreSQL 数据表的表前缀 |
+| 环境变量名称  | 必填 | 默认值    | 备注                                |
+| ------------- | ---- | --------- | ----------------------------------- |
+| `PG_HOST`     |      | 127.0.0.1 | PostgreSQL 服务的地址               |
+| `PG_PORT`     |      | 3211      | PostgreSQL 服务的端口               |
+| `PG_DB`       | ✅   |           | PostgreSQL 数据库库名               |
+| `PG_USER`     | ✅   |           | PostgreSQL 数据库的用户名           |
+| `PG_PASSWORD` | ✅   |           | PostgreSQL 数据库的密码             |
+| `PG_PREFIX`   |      | `wl_`     | PostgreSQL 数据表的表前缀           |
+| `PG_SSL`      |      |           | 是否使用 SSL 连接 PostgreSQL 数据库 |
 
 ## CloudBase
 

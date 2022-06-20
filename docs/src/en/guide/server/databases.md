@@ -39,19 +39,20 @@ MONGO_OPT_SSL=true
 
 ## MySQL
 
-Using MySQL to store data is also a good choise. Besides our own MySQL service, we can also use <https://freedb.tech>, which provides 100M of database support for free.
+Using MySQL to store data is also a good choise. Besides our own MySQL service, we can also use <https://freedb.tech>, which provides 100M of database support for free, or [PlanetScale](https://planetscale.com) which provides 10GB.
 
 If you want to use MySQL as storage, you need to import [waline.sql](https://github.com/walinejs/waline/blob/main/assets/waline.sql) first to create table and table structure, then set these environment variables in project.
 
-| Environment Variable | Required | Default   | Description           |
-| -------------------- | -------- | --------- | --------------------- |
-| `MYSQL_HOST`         |          | 127.0.0.1 | MySQL server address  |
-| `MYSQL_PORT`         |          | 3306      | MySQL server port     |
-| `MYSQL_DB`           | ✅       |           | MySQL database name   |
-| `MYSQL_USER`         | ✅       |           | MySQL server username |
-| `MYSQL_PASSWORD`     | ✅       |           | MySQL server password |
-| `MYSQL_PREFIX`       |          | `wl_`     | MySQL table prefix    |
-| `MYSQL_CHARSET`      |          | `utf8mb4` | MySQL table charset   |
+| Environment Variable | Required | Default   | Description                         |
+| -------------------- | -------- | --------- | ----------------------------------- |
+| `MYSQL_HOST`         |          | 127.0.0.1 | MySQL server address                |
+| `MYSQL_PORT`         |          | 3306      | MySQL server port                   |
+| `MYSQL_DB`           | ✅       |           | MySQL database name                 |
+| `MYSQL_USER`         | ✅       |           | MySQL server username               |
+| `MYSQL_PASSWORD`     | ✅       |           | MySQL server password               |
+| `MYSQL_PREFIX`       |          | `wl_`     | MySQL table prefix                  |
+| `MYSQL_CHARSET`      |          | `utf8mb4` | MySQL table charset                 |
+| `MYSQL_SSL`          |          |           | set to `true` to use SSL connection |
 
 ## SQLite
 
@@ -68,14 +69,15 @@ Download [waline.sqlite](https://github.com/walinejs/waline/blob/main/assets/wal
 
 [elephantSQL](https://www.elephantsql.com/) provides 20M PG database support for free. Same as MySQL, you need to import [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) to create table and table structure before using PostgreSQL.
 
-| Environment Variable | Required | Default   | Description                |
-| -------------------- | -------- | --------- | -------------------------- |
-| `PG_HOST`            |          | 127.0.0.1 | PostgreSQL server address  |
-| `PG_PORT`            |          | 3211      | PostgreSQL server port     |
-| `PG_DB`              | ✅       |           | PostgreSQL database name   |
-| `PG_USER`            | ✅       |           | PostgreSQL server username |
-| `PG_PASSWORD`        | ✅       |           | PostgreSQL server password |
-| `PG_PREFIX`          |          | `wl_`     | PostgreSQL table prefix    |
+| Environment Variable | Required | Default   | Description                         |
+| -------------------- | -------- | --------- | ----------------------------------- |
+| `PG_HOST`            |          | 127.0.0.1 | PostgreSQL server address           |
+| `PG_PORT`            |          | 3211      | PostgreSQL server port              |
+| `PG_DB`              | ✅       |           | PostgreSQL database name            |
+| `PG_USER`            | ✅       |           | PostgreSQL server username          |
+| `PG_PASSWORD`        | ✅       |           | PostgreSQL server password          |
+| `PG_PREFIX`          |          | `wl_`     | PostgreSQL table prefix             |
+| `PG_SSL`             |          |           | set to `true` to use SSL connection |
 
 ## GitHub
 

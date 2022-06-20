@@ -18,6 +18,7 @@ const {
   MYSQL_PASSWORD,
   MYSQL_PREFIX,
   MYSQL_CHARSET,
+  MYSQL_SSL,
   SQLITE_PATH,
   SQLITE_DB,
   SQLITE_PREFIX,
@@ -27,6 +28,7 @@ const {
   PG_PORT,
   PG_PREFIX,
   PG_USER,
+  PG_SSL,
   MONGO_AUTHSOURCE,
   MONGO_DB,
   MONGO_HOST,
@@ -93,6 +95,12 @@ exports.model = {
     port: PG_PORT || '3211',
     connectionLimit: 1,
     prefix: PG_PREFIX || 'wl_',
+    ssl:
+      PG_SSL == 'true'
+        ? {
+            rejectUnauthorized: false,
+          }
+        : null,
   },
 
   sqlite: {
@@ -113,6 +121,12 @@ exports.model = {
     password: MYSQL_PASSWORD,
     prefix: MYSQL_PREFIX || 'wl_',
     charset: MYSQL_CHARSET || 'utf8mb4',
+    ssl:
+      MYSQL_SSL === 'true'
+        ? {
+            rejectUnauthorized: false,
+          }
+        : null,
   },
 };
 
