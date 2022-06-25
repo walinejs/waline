@@ -5,8 +5,21 @@ module.exports = class extends MySQL {
     return super.model(tableName.toLowerCase());
   }
 
-  async select(...args) {
-    const data = await super.select(...args);
+  async select(where, options) {
+    const lowerWhere = {};
+    for (const i in where) {
+      lowerWhere[i.toLowerCase()] = where[i];
+    }
+
+    if (options && options.desc) {
+      options.desc = options.desc.toLowerCase();
+    }
+
+    if (Array.isArray(options.field)) {
+      options.field = options.field.map((field) => field.toLowerCase());
+    }
+
+    const data = await super.select(where, options);
     return data.map(({ insertedat, createdat, updatedat, ...item }) => {
       const mapFields = {
         insertedAt: insertedat,
