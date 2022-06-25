@@ -41,8 +41,8 @@
   "devDependencies": {
     "@babel/core": "7.18.5",
     "@babel/eslint-parser": "7.18.2",
-    "@commitlint/cli": "17.0.2",
-    "@commitlint/config-conventional": "17.0.2",
+    "@commitlint/cli": "17.0.3",
+    "@commitlint/config-conventional": "17.0.3",
     "@typescript-eslint/eslint-plugin": "5.29.0",
     "@typescript-eslint/parser": "5.29.0",
     "@vue/eslint-config-prettier": "7.0.0",
