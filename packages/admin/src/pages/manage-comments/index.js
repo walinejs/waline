@@ -541,17 +541,21 @@ export default function () {
                               <td valign="top" className="comment-head">
                                 <div className="comment-meta">
                                   <strong className="comment-author">
-                                    <a
-                                      href={
-                                        !/^https:\/\//.test(link)
-                                          ? 'https://' + link
-                                          : link
-                                      }
-                                      rel="external nofollow noreferrer"
-                                      target="_blank"
-                                    >
-                                      {nick}
-                                    </a>
+                                    {!link ? (
+                                      nick
+                                    ) : (
+                                      <a
+                                        href={
+                                          !/^https:\/\//.test(link)
+                                            ? 'https://' + link
+                                            : link
+                                        }
+                                        rel="external nofollow noreferrer"
+                                        target="_blank"
+                                      >
+                                        {nick}
+                                      </a>
+                                    )}
                                   </strong>
                                   <br />
                                   <span>
