@@ -580,22 +580,6 @@ export default defineComponent({
 
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       handler?.postMessage({ type: 'TOKEN', data: userInfo.value!.token }, '*');
-
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const receiver = ({ data }: any): void => {
-        if (!data || data.type !== 'profile') return;
-
-        userInfo.value = { ...userInfo.value, ...data };
-
-        [localStorage, sessionStorage]
-          .filter((store) => store.getItem('WALINE_USER'))
-          .forEach((store) =>
-            store.setItem('WALINE_USER', JSON.stringify(userInfo))
-          );
-        window.removeEventListener('message', receiver);
-      };
-
-      window.addEventListener('message', receiver);
     };
 
     const popupHandler = (event: MouseEvent): void => {
@@ -683,8 +667,22 @@ export default defineComponent({
       searchResults.loading = false;
     });
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const onMessageRecive = ({ data }: any): void => {
+      if (!data || data.type !== 'profile') return;
+
+      userInfo.value = { ...userInfo.value, ...data.data };
+
+      [localStorage, sessionStorage]
+        .filter((store) => store.getItem('WALINE_USER'))
+        .forEach((store) =>
+          store.setItem('WALINE_USER', JSON.stringify(userInfo))
+        );
+    };
+
     onMounted(() => {
       document.body.addEventListener('click', popupHandler);
+      window.addEventListener('message', onMessageRecive);
 
       // watch editor
       watch(
@@ -723,6 +721,7 @@ export default defineComponent({
 
     onUnmounted(() => {
       document.body.removeEventListener('click', popupHandler);
+      window.removeEventListener('message', onMessageRecive);
     });
 
     return {
