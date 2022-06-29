@@ -2,11 +2,11 @@ import { generateLocale } from './generate';
 
 export default generateLocale([
   '暱稱',
+  '暱稱不能少於3個字元',
   '郵箱',
+  '請填寫正確的郵件地址',
   '網址',
   '可選',
-  '暱稱不能少於3個字元',
-  '請填寫正確的郵件地址',
   '歡迎評論',
   '來發評論吧~',
   '提交',
