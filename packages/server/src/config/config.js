@@ -97,7 +97,7 @@ if (AVATAR_PROXY) {
   avatarProxy = !isFalse(AVATAR_PROXY) ? AVATAR_PROXY : '';
 }
 
-const oauthUrl = OAUTH_URL || 'https://user.75.team';
+const oauthUrl = OAUTH_URL || 'https://oauth.lithub.cc';
 
 module.exports = {
   workers: 1,

@@ -5,7 +5,7 @@ module.exports = class extends MySQL {
     return super.model(tableName.toLowerCase());
   }
 
-  async select(where, options) {
+  async select(where, options = {}) {
     const lowerWhere = {};
     for (const i in where) {
       lowerWhere[i.toLowerCase()] = where[i];

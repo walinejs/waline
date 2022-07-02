@@ -77,7 +77,7 @@ export default function () {
     baseUrl = match ? match[1] : '/';
   }
 
-  const socials = ['github', 'twitter', 'facebook'];
+  const socials = ['weibo', 'github', 'twitter', 'facebook'];
   return (
     <>
       <Header />

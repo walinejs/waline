@@ -34,7 +34,8 @@ div[tabindex='-1'] {
 
 .account-item.github path,
 .account-item.twitter circle,
-.account-item.facebook path {
+.account-item.facebook path,
+.account-item.weibo circle {
   fill: #808080;
 }
 
@@ -51,6 +52,11 @@ div[tabindex='-1'] {
 .account-item.facebook:hover path,
 .account-item.facebook.bind path {
   fill: #1877f2;
+}
+
+.account-item.weibo:hover circle,
+.account-item.weibo.bind circle {
+  fill: #D34237;
 }
 
 // remain for historical reasons
