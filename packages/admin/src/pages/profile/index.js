@@ -190,7 +190,7 @@ export default function () {
                     </div>
                   )}
                   {!window.ALLOW_SOCIALS &&
-                    ['github', 'twitter', 'facebook'].map((social) => (
+                    ['weibo', 'github', 'twitter', 'facebook'].map((social) => (
                       <div
                         key={social}
                         className={cls('account-item', social, {
