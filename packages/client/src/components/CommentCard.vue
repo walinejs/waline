@@ -1,5 +1,5 @@
 <template>
-  <div class="wl-item" :id="comment.objectId">
+  <div :id="comment.objectId" class="wl-item">
     <div class="wl-user" aria-hidden="true">
       <img v-if="comment.avatar" :src="comment.avatar" />
       <VerifiedIcon v-if="comment.type" />
@@ -33,8 +33,8 @@
 
         <div class="wl-comment-actions">
           <button
-            class="wl-delete"
             v-if="isAdmin || isOwner"
+            class="wl-delete"
             @click="$emit('delete', comment)"
           >
             <DeleteIcon />
@@ -42,8 +42,8 @@
 
           <button
             class="wl-like"
-            @click="$emit('like', comment)"
             :title="like ? locale.cancelLike : locale.like"
+            @click="$emit('like', comment)"
           >
             <LikeIcon :active="like" />
             <span v-if="'like' in comment" v-text="comment.like" />
@@ -64,6 +64,7 @@
         <span v-if="comment.browser" v-text="comment.browser" />
         <span v-if="comment.os" v-text="comment.os" />
       </div>
+      <!-- eslint-disable-next-line vue/no-v-html -->
       <div class="wl-content" v-html="comment.comment" />
 
       <div v-if="isAdmin" class="wl-admin-actions">
@@ -79,8 +80,8 @@
         </span>
 
         <button
-          class="wl-btn wl-sticky"
           v-if="isAdmin && !comment.rid"
+          class="wl-btn wl-sticky"
           @click="$emit('sticky', comment)"
         >
           {{ comment.sticky ? 'unsticky' : 'sticky' }}
@@ -89,9 +90,9 @@
 
       <div v-if="isReplyingCurrent" class="wl-reply-wrapper">
         <CommentBox
-          :replyId="comment.objectId"
-          :replyUser="comment.nick"
-          :rootId="rootId"
+          :reply-id="comment.objectId"
+          :reply-user="comment.nick"
+          :root-id="rootId"
           @submit="$emit('submit', $event)"
           @cancel-reply="$emit('reply', null)"
         />
@@ -102,7 +103,7 @@
           :key="child.objectId"
           :comment="child"
           :reply="reply"
-          :rootId="rootId"
+          :root-id="rootId"
           @reply="$emit('reply', $event)"
           @submit="$emit('submit', $event)"
           @like="$emit('like', $event)"
@@ -129,6 +130,14 @@ import type { WalineComment, WalineCommentStatus } from '../typings';
 const commentStatus: WalineCommentStatus[] = ['approved', 'waiting', 'spam'];
 
 export default defineComponent({
+  components: {
+    CommentBox,
+    DeleteIcon,
+    LikeIcon,
+    ReplyIcon,
+    VerifiedIcon,
+  },
+
   props: {
     comment: {
       type: Object as PropType<WalineComment>,
@@ -140,15 +149,8 @@ export default defineComponent({
     },
     reply: {
       type: Object as PropType<WalineComment | null>,
+      default: null,
     },
-  },
-
-  components: {
-    CommentBox,
-    DeleteIcon,
-    LikeIcon,
-    ReplyIcon,
-    VerifiedIcon,
   },
 
   emits: ['submit', 'reply', 'like', 'delete', 'status', 'sticky'],
@@ -163,7 +165,7 @@ export default defineComponent({
     const locale = computed(() => config.value.locale);
 
     const link = computed(() => {
-      let { link } = props.comment;
+      const { link } = props.comment;
 
       return link ? (isLinkHttp(link) ? link : `https://${link}`) : '';
     });

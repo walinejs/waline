@@ -31,6 +31,7 @@ export const markedTexExtensions = (
     level: 'inline',
     start(src: string) {
       const idx = src.search(inlineMathStart);
+
       return idx !== -1 ? idx : src.length;
     },
     tokenizer(src: string) {

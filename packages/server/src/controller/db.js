@@ -6,8 +6,10 @@ const readFileAsync = util.promisify(fs.readFile);
 
 function formatID(data, idGenerator) {
   const objectIdMap = {};
+
   for (let i = 0; i < data.length; i++) {
     const { objectId } = data[i];
+
     objectIdMap[objectId] = idGenerator(data[i], i, data);
   }
 
@@ -41,6 +43,7 @@ module.exports = class extends BaseRest {
       const model = this.service(`storage/${storage}`, tableName);
 
       const data = await model.select({});
+
       exportData.data[tableName] = data;
     }
 
@@ -49,9 +52,11 @@ module.exports = class extends BaseRest {
 
   async postAction() {
     const file = this.file('file');
+
     try {
       const jsonText = await readFileAsync(file.path, 'utf-8');
       const importData = JSON.parse(jsonText);
+
       if (!importData || importData.type !== 'waline') {
         return this.fail(this.locale('import data format not support!'));
       }
@@ -62,8 +67,10 @@ module.exports = class extends BaseRest {
         const model = this.service(`storage/${storage}`, tableName);
 
         let data = importData.data[tableName];
+
         if (['postgresql', 'mysql', 'sqlite'].includes(storage)) {
           let i = 0;
+
           data = formatID(data, () => (i = i + 1));
         }
 
@@ -74,11 +81,13 @@ module.exports = class extends BaseRest {
           await model.add(data[j]);
         }
       }
+
       return this.success();
     } catch (e) {
       if (think.isPrevent(e)) {
         return this.success();
       }
+
       return this.fail(e.message);
     }
   }

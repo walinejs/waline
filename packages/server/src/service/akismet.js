@@ -3,6 +3,7 @@ const DEFAULT_KEY = '70542d86693e';
 
 module.exports = function (comment, blog) {
   let { AKISMET_KEY, SITE_URL } = process.env;
+
   if (!AKISMET_KEY) {
     AKISMET_KEY = DEFAULT_KEY;
   }

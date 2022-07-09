@@ -37,6 +37,7 @@ export const fetchCommentCount = ({
   token,
 }: FetchCountOptions): Promise<number[]> => {
   const headers: Record<string, string> = {};
+
   if (token) headers.Authorization = `Bearer ${token}`;
 
   return (
@@ -68,6 +69,7 @@ export const fetchRecentComment = ({
   token,
 }: FetchRecentOptions): Promise<WalineComment[]> => {
   const headers: Record<string, string> = {};
+
   if (token) headers.Authorization = `Bearer ${token}`;
 
   return fetch(`${serverURL}/comment?type=recent&count=${count}&lang=${lang}`, {
@@ -104,6 +106,7 @@ export const fetchCommentList = ({
   token,
 }: FetchListOptions): Promise<FetchListResult> => {
   const headers: Record<string, string> = {};
+
   if (token) headers.Authorization = `Bearer ${token}`;
 
   return fetch(

@@ -21,6 +21,7 @@ export default function () {
     e.preventDefault();
 
     const code = e.target.code.value;
+
     if (!code || code.length < 6) {
       return alert(t('minimum 6 characters required'));
     }

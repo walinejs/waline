@@ -12,6 +12,7 @@ module.exports = class extends BaseRest {
       SITE_NAME,
     } = process.env;
     const hasMailServie = SMTP_HOST || SMTP_SERVICE;
+
     if (!hasMailServie) {
       return this.fail();
     }
@@ -22,6 +23,7 @@ module.exports = class extends BaseRest {
       'Users'
     );
     const user = await userModel.select({ email });
+
     if (think.isEmpty(user)) {
       return this.fail();
     }

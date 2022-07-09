@@ -3,6 +3,7 @@ const Base = require('./base');
 module.exports = class extends Base {
   getAction() {
     const { userInfo } = this.ctx.state;
+
     if (think.isEmpty(userInfo) || userInfo.type !== 'administrator') {
       return this.fail();
     }
@@ -50,6 +51,7 @@ module.exports = class extends Base {
   putAction() {
     // you need login to update yourself profile
     const { userInfo } = this.ctx.state;
+
     if (think.isEmpty(userInfo)) {
       return this.fail();
     }

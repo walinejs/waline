@@ -29,6 +29,7 @@ const iconText = (icon, key, defaultValue = capitalize(key)) =>
 // Add comment
 hexo.extend.filter.register('theme_inject', (injects) => {
   const config = utils.defaultConfigFile('waline', 'default.yaml');
+
   if (!config.enable || !config.serverURL) return;
 
   injects.comment.raw(
@@ -51,6 +52,7 @@ hexo.extend.filter.register('theme_inject', (injects) => {
 // Add post_meta
 hexo.extend.filter.register('theme_inject', (injects) => {
   const config = utils.defaultConfigFile('waline', 'default.yaml');
+
   if (!config.enable || !config.serverURL) return;
 
   injects.postMeta.raw(

@@ -7,6 +7,7 @@ module.exports = class extends MySQL {
 
   async select(where, options = {}) {
     const lowerWhere = {};
+
     for (const i in where) {
       lowerWhere[i.toLowerCase()] = where[i];
     }
@@ -20,18 +21,21 @@ module.exports = class extends MySQL {
     }
 
     const data = await super.select(where, options);
+
     return data.map(({ insertedat, createdat, updatedat, ...item }) => {
       const mapFields = {
         insertedAt: insertedat,
         createdAt: createdat,
         updatedAt: updatedat,
       };
+
       for (const field in mapFields) {
         if (!mapFields[field]) {
           continue;
         }
         item[field] = mapFields[field];
       }
+
       return item;
     });
   }
@@ -41,17 +45,20 @@ module.exports = class extends MySQL {
       .filter((key) => data[key])
       .forEach((key) => {
         const val = data[key];
+
         data[key.toLowerCase()] =
           val instanceof Date
             ? think.datetime(val, 'YYYY-MM-DD HH:mm:ss')
             : val;
         delete data[key];
       });
+
     return super.add(data);
   }
 
   async count(...args) {
     let result = await super.count(...args);
+
     try {
       if (Array.isArray(result)) {
         result.forEach((r) => {
@@ -63,6 +70,7 @@ module.exports = class extends MySQL {
     } catch (e) {
       console.log(e);
     }
+
     return result;
   }
 };

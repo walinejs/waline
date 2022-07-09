@@ -23,6 +23,7 @@ export default function () {
     setImportLoading(true);
     try {
       const body = new FormData();
+
       body.append('file', e.target.files[0]);
 
       await request({
@@ -46,6 +47,7 @@ export default function () {
     setExportLoading(true);
     try {
       const data = await request('db');
+
       download(
         JSON.stringify(data, null, '\t'),
         'waline.json',

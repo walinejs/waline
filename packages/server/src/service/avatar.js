@@ -3,6 +3,7 @@ const helper = require('think-helper');
 const { GRAVATAR_STR } = process.env;
 
 const env = new nunjucks.Environment();
+
 env.addFilter('md5', (str) => helper.md5(str));
 
 const DEFAULT_GRAVATAR_STR = `{%- set numExp = r/^[0-9]+$/g -%}
@@ -14,17 +15,21 @@ const DEFAULT_GRAVATAR_STR = `{%- set numExp = r/^[0-9]+$/g -%}
 {%- else -%}
   https://seccdn.libravatar.org/avatar/{{mail|md5}}
 {%- endif -%}`;
+
 module.exports = class extends think.Service {
   async stringify(comment) {
     const fn = think.config('avatarUrl');
+
     if (think.isFunction(fn)) {
       const ret = await fn(comment);
+
       if (think.isString(ret) && ret) {
         return ret;
       }
     }
 
     const gravatarStr = GRAVATAR_STR || DEFAULT_GRAVATAR_STR;
+
     return env.renderString(gravatarStr, comment);
   }
 };

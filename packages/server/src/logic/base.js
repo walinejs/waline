@@ -16,6 +16,7 @@ module.exports = class extends think.Logic {
   async __before() {
     const referrer = this.ctx.referrer(true);
     let { secureDomains } = this.config();
+
     if (secureDomains && referrer && this.ctx.host.indexOf(referrer) !== 0) {
       secureDomains = think.isArray(secureDomains)
         ? secureDomains
@@ -33,6 +34,7 @@ module.exports = class extends think.Logic {
           ? domain.test(referrer)
           : domain === referrer
       );
+
       if (!match) {
         return this.ctx.throw(403);
       }
@@ -41,11 +43,13 @@ module.exports = class extends think.Logic {
     this.ctx.state.userInfo = {};
     const { authorization } = this.ctx.req.headers;
     const { state } = this.get();
+
     if (!authorization && !state) {
       return;
     }
     const token = state || authorization.replace(/^Bearer /, '');
     const userMail = jwt.verify(token, think.config('jwtKey'));
+
     if (think.isEmpty(userMail) || !think.isString(userMail)) {
       return;
     }
@@ -71,6 +75,7 @@ module.exports = class extends think.Logic {
         ],
       }
     );
+
     if (think.isEmpty(user)) {
       return;
     }
@@ -85,6 +90,7 @@ module.exports = class extends think.Logic {
           link: userInfo.url,
         });
     const { avatarProxy } = think.config();
+
     if (avatarProxy) {
       avatarUrl = avatarProxy + '?url=' + encodeURIComponent(avatarUrl);
     }

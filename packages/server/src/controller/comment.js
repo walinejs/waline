@@ -4,6 +4,7 @@ const akismet = require('../service/akismet');
 const { getMarkdownParser } = require('../service/markdown');
 
 const markdownParser = getMarkdownParser();
+
 async function formatCmt(
   { ua, user_id, ip, ...comment },
   users = [],
@@ -20,6 +21,7 @@ async function formatCmt(
   }
 
   const user = users.find(({ objectId }) => user_id === objectId);
+
   if (!think.isEmpty(user)) {
     comment.nick = user.display_name;
     comment.mail = user.email;
@@ -32,12 +34,14 @@ async function formatCmt(
     user && user.avatar
       ? user.avatar
       : await think.service('avatar').stringify(comment);
+
   comment.avatar =
     avatarProxy && !avatarUrl.includes(avatarProxy)
       ? avatarProxy + '?url=' + encodeURIComponent(avatarUrl)
       : avatarUrl;
 
   const isAdmin = loginUser && loginUser.type === 'administrator';
+
   if (!isAdmin) {
     delete comment.mail;
   } else {
@@ -51,6 +55,7 @@ async function formatCmt(
   }
   comment.comment = markdownParser(comment.comment);
   comment.like = Number(comment.like) || 0;
+
   return comment;
 }
 
@@ -71,6 +76,7 @@ module.exports = class extends BaseRest {
       case 'recent': {
         const { count } = this.get();
         const where = {};
+
         if (think.isEmpty(userInfo) || this.config('storage') === 'deta') {
           where.status = ['NOT IN', ['waiting', 'spam']];
         } else {
@@ -111,6 +117,7 @@ module.exports = class extends BaseRest {
         );
 
         let users = [];
+
         if (user_ids.length) {
           users = await userModel.select(
             { objectId: ['IN', user_ids] },
@@ -139,6 +146,7 @@ module.exports = class extends BaseRest {
       case 'count': {
         const { url } = this.get();
         const where = { url: ['IN', url] };
+
         if (think.isEmpty(userInfo) || this.config('storage') === 'deta') {
           where.status = ['NOT IN', ['waiting', 'spam']];
         } else {
@@ -162,6 +170,7 @@ module.exports = class extends BaseRest {
 
         if (owner === 'mine') {
           const { userInfo } = this.ctx.state;
+
           where.mail = userInfo.email;
         }
 
@@ -198,6 +207,7 @@ module.exports = class extends BaseRest {
         );
 
         let users = [];
+
         if (user_ids.length) {
           users = await userModel.select(
             { objectId: ['IN', user_ids] },
@@ -231,6 +241,7 @@ module.exports = class extends BaseRest {
       default: {
         const { path: url, page, pageSize } = this.get();
         const where = { url };
+
         if (think.isEmpty(userInfo) || this.config('storage') === 'deta') {
           where.status = ['NOT IN', ['waiting', 'spam']];
         } else if (userInfo.type !== 'administrator') {
@@ -290,6 +301,7 @@ module.exports = class extends BaseRest {
             ...comments.filter(({ rid, sticky }) => !rid && !sticky),
           ].slice(pageOffset, pageOffset + pageSize);
           const rootIds = {};
+
           rootComments.forEach(({ objectId }) => {
             rootIds[objectId] = true;
           });
@@ -312,6 +324,7 @@ module.exports = class extends BaseRest {
             },
             selectOptions
           );
+
           comments = [...rootComments, ...children];
           rootCount = await this.modelInstance.count({
             ...where,
@@ -349,12 +362,14 @@ module.exports = class extends BaseRest {
             status: ['NOT IN', ['waiting', 'spam']],
             _complex: {},
           };
+
           if (user_ids.length) {
             countWhere._complex.user_id = ['IN', user_ids];
           }
           const mails = Array.from(
             new Set(comments.map(({ mail }) => mail).filter((v) => v))
           );
+
           if (mails.length) {
             countWhere._complex.mail = ['IN', mails];
           }
@@ -366,20 +381,24 @@ module.exports = class extends BaseRest {
           const counts = await this.modelInstance.count(countWhere, {
             group: ['user_id', 'mail'],
           });
+
           comments.forEach((cmt) => {
             const countItem = (counts || []).find(({ mail, user_id }) => {
               if (cmt.user_id) {
                 return user_id === cmt.user_id;
               }
+
               return mail === cmt.mail;
             });
 
             let level = 0;
+
             if (countItem) {
               const _level = think.findLastIndex(
                 this.config('levels'),
                 (l) => l <= countItem.count
               );
+
               if (_level !== -1) {
                 level = _level;
               }
@@ -401,12 +420,14 @@ module.exports = class extends BaseRest {
                 this.config(),
                 userInfo
               );
+
               cmt.children = await Promise.all(
                 comments
                   .filter(({ rid }) => rid === cmt.objectId)
                   .map((cmt) => formatCmt(cmt, users, this.config(), userInfo))
                   .reverse()
               );
+
               return cmt;
             })
           ),
@@ -486,6 +507,7 @@ module.exports = class extends BaseRest {
 
       if (!think.isEmpty(recent)) {
         think.logger.debug(`The author has posted in ${IPQPS} seconeds.`);
+
         return this.fail(this.locale('Comment too fast!'));
       }
 
@@ -520,6 +542,7 @@ module.exports = class extends BaseRest {
 
         if (!think.isEmpty(forbiddenWords)) {
           const regexp = new RegExp('(' + forbiddenWords.join('|') + ')', 'ig');
+
           if (regexp.test(comment)) {
             data.status = 'spam';
           }
@@ -544,6 +567,7 @@ module.exports = class extends BaseRest {
     think.logger.debug(`Comment have been added to storage.`);
 
     let parentComment;
+
     if (pid) {
       parentComment = await this.modelInstance.select({ objectId: pid });
       parentComment = parentComment[0];
@@ -556,6 +580,7 @@ module.exports = class extends BaseRest {
 
     if (comment.status !== 'spam') {
       const notify = this.service('notify');
+
       await notify.run(
         { ...resp, comment: markdownParser(resp.comment), rawComment: comment },
         parentComment
@@ -579,6 +604,7 @@ module.exports = class extends BaseRest {
     const { userInfo } = this.ctx.state;
     let data = this.post();
     let oldData = await this.modelInstance.select({ objectId: this.id });
+
     if (think.isEmpty(oldData)) {
       return this.success();
     }
@@ -590,6 +616,7 @@ module.exports = class extends BaseRest {
       }
 
       const likeIncMax = this.config('LIKE_INC_MAX') || 1;
+
       data = {
         like:
           (Number(oldData.like) || 0) +
@@ -618,9 +645,11 @@ module.exports = class extends BaseRest {
       let pComment = await this.modelInstance.select({
         objectId: oldData.pid,
       });
+
       pComment = pComment[0];
 
       const notify = this.service('notify');
+
       await notify.run(
         { ...newData, comment: markdownParser(newData.comment) },
         { ...pComment, comment: markdownParser(pComment.comment) },

@@ -18,6 +18,7 @@ async function run() {
     new Promise((resolve) => {
       const qs = new URLSearchParams(location.search);
       const token = qs.get('token');
+
       if (token) {
         resolve(token);
       }
@@ -37,10 +38,12 @@ async function run() {
   );
 
   const container = document.createElement('div');
+
   container.style.height = '100%';
   document.body.appendChild(container);
 
   const root = ReactDOM.createRoot(container);
+
   root.render(
     <React.StrictMode>
       <App />

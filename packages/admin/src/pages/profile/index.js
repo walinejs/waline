@@ -20,6 +20,7 @@ export default function () {
 
     const display_name = e.target.screenName.value;
     const url = e.target.url.value;
+
     if (!display_name || !url) {
       return alert(t('nickname and homepage are required'));
     }
@@ -34,6 +35,7 @@ export default function () {
 
     const password = e.target.password.value;
     const confirm = e.target.confirm.value;
+
     if (!password || !confirm) {
       return alert(t('please input password'));
     }
@@ -56,6 +58,7 @@ export default function () {
     e.preventDefault();
 
     const url = prompt(t('please input avatar url'));
+
     if (!url) {
       return;
     }
@@ -65,13 +68,16 @@ export default function () {
   };
 
   let baseUrl = window.serverURL;
+
   if (!baseUrl) {
     const match = location.pathname.match(/(.*?\/)ui/);
+
     baseUrl = match ? match[1] : '/';
   }
   const qs = new URLSearchParams(location.search);
   let token =
     window.TOKEN || sessionStorage.getItem('TOKEN') || qs.get('token');
+
   if (!token) {
     token = localStorage.getItem('TOKEN');
   }

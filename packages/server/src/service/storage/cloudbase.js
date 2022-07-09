@@ -21,13 +21,16 @@ module.exports = class extends Base {
 
     try {
       const instance = db.collection(tableName);
+
       await instance.count();
       collections[tableName] = true;
+
       return db.collection(tableName);
     } catch (e) {
       if (e.code === 'DATABASE_COLLECTION_NOT_EXIST') {
         await db.createCollection(tableName);
         collections[tableName] = true;
+
         return db.collection(tableName);
       }
       throw e;
@@ -41,6 +44,7 @@ module.exports = class extends Base {
 
     const filter = {};
     const parseKey = (k) => (k === 'objectId' ? '_id' : k);
+
     for (let k in where) {
       if (k === '_complex') {
         continue;
@@ -55,6 +59,7 @@ module.exports = class extends Base {
       if (Array.isArray(where[k])) {
         if (where[k][0]) {
           const handler = where[k][0].toUpperCase();
+
           switch (handler) {
             case 'IN':
               filter[parseKey(k)] = _.in(where[k][1]);
@@ -66,6 +71,7 @@ module.exports = class extends Base {
               const first = where[k][1][0];
               const last = where[k][1].slice(-1);
               let reg;
+
               if (first === '%' && last === '%') {
                 reg = new RegExp(where[k][1].slice(1, -1));
               } else if (first === '%') {
@@ -88,16 +94,19 @@ module.exports = class extends Base {
         }
       }
     }
+
     return filter;
   }
 
   where(instance, where, method = 'where') {
     const filter = this.parseWhere(where);
+
     if (!where._complex) {
       return instance[method](filter);
     }
 
     const filters = [];
+
     for (const k in where._complex) {
       if (k === '_logic') {
         continue;
@@ -107,11 +116,13 @@ module.exports = class extends Base {
         ...filter,
       });
     }
+
     return instance[method](_[where._complex._logic](...filters));
   }
 
   async _select(where, { desc, limit, offset, field } = {}) {
     let instance = await this.collection(this.tableName);
+
     instance = this.where(instance, where);
     if (desc) {
       instance = instance.orderBy(desc, 'desc');
@@ -124,11 +135,13 @@ module.exports = class extends Base {
     }
     if (field) {
       const filedObj = {};
+
       field.forEach((f) => (filedObj[f] = true));
       instance = instance.field(filedObj);
     }
 
     const { data } = await instance.get();
+
     return data.map(({ _id, ...cmt }) => ({
       ...cmt,
       objectId: _id.toString(),
@@ -139,6 +152,7 @@ module.exports = class extends Base {
     let data = [];
     let ret = [];
     let offset = options.offset || 0;
+
     do {
       options.offset = offset + data.length;
       ret = await this._select(where, options);
@@ -150,13 +164,16 @@ module.exports = class extends Base {
 
   async count(where = {}, { group } = {}) {
     let instance = await this.collection(this.tableName);
+
     if (!group) {
       instance = this.where(instance, where);
       const { total } = await instance.count();
+
       return total;
     }
 
     const _id = {};
+
     group.forEach((f) => {
       _id[f] = `$${f}`;
     });
@@ -176,6 +193,7 @@ module.exports = class extends Base {
 
     const instance = await this.collection(this.tableName);
     const { id } = await instance.add(data);
+
     return { ...data, objectId: id };
   }
 
@@ -187,7 +205,9 @@ module.exports = class extends Base {
       list.map(async (item) => {
         const updateData = typeof data === 'function' ? data(item) : data;
         const instance = await this.collection(this.tableName);
+
         await instance.doc(item._id).update(updateData);
+
         return { ...item, ...updateData };
       })
     );
@@ -195,6 +215,7 @@ module.exports = class extends Base {
 
   async delete(where) {
     const instance = await this.collection(this.tableName);
+
     return this.where(instance, where).remove();
   }
 };

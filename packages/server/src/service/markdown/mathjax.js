@@ -12,6 +12,7 @@ const { inlineTex, blockTex } = require('./mathCommon');
 class MathToSvg {
   constructor() {
     const adaptor = liteAdaptor();
+
     RegisterHTMLHandler(adaptor);
 
     const packages = AllPackages.sort();
@@ -27,6 +28,7 @@ class MathToSvg {
 
       if (svg.includes('data-mml-node="merror"')) {
         const errorTitle = svg.match(/<title>(.*?)<\/title>/)[1];
+
         svg = `<span class='katex-error' title='${escapeHtml(
           errorTitle
         )}'>${escapeHtml(tex)}</span>`;
@@ -41,6 +43,7 @@ class MathToSvg {
 
       if (svg.includes('data-mml-node="merror"')) {
         const errorTitle = svg.match(/<title>(.*?)<\/title>/)[1];
+
         svg = `<p class='katex-block katex-error' title='${escapeHtml(
           errorTitle
         )}'>${escapeHtml(tex)}</p>`;

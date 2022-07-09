@@ -22,7 +22,7 @@
         v-if="config.login !== 'force' && config.meta.length && !isLogin"
         :class="['wl-header', `item${config.meta.length}`]"
       >
-        <div v-for="kind in config.meta" class="wl-header-item" :key="kind">
+        <div v-for="kind in config.meta" :key="kind" class="wl-header-item">
           <label
             :for="kind"
             v-text="
@@ -33,34 +33,35 @@
             "
           />
           <input
+            :id="`wl-${kind}`"
             :ref="
               (element) => {
                 if (element) inputRefs[kind] = element as HTMLInputElement;
               }
             "
-            :id="`wl-${kind}`"
+            v-model="userMeta[kind]"
             :class="['wl-input', `wl-${kind}`]"
             :name="kind"
             :type="kind === 'mail' ? 'email' : 'text'"
-            v-model="userMeta[kind]"
           />
         </div>
       </div>
 
       <textarea
-        class="wl-editor"
-        ref="editorRef"
         id="wl-edit"
-        :placeholder="replyUser ? `@${replyUser}` : locale.placeholder"
+        ref="editorRef"
         v-model="editor"
+        class="wl-editor"
+        :placeholder="replyUser ? `@${replyUser}` : locale.placeholder"
         @keydown="onKeyDown"
         @drop="onDrop"
         @paste="onPaste"
       />
 
-      <div class="wl-preview" v-show="showPreview">
+      <div v-show="showPreview" class="wl-preview">
         <hr />
         <h4>{{ locale.preview }}:</h4>
+        <!-- eslint-disable-next-line vue/no-v-html -->
         <div class="wl-content" v-html="previewText" />
       </div>
 
@@ -100,9 +101,9 @@
           </button>
 
           <input
+            id="wl-image-upload"
             ref="imageUploadRef"
             class="upload"
-            id="wl-image-upload"
             type="file"
             accept=".png,.jpg,.jpeg,.webp,.bmp,.gif"
             @change="onChange"
@@ -169,9 +170,9 @@
           :class="{ display: showGif }"
         >
           <input
+            ref="gifSearchInputRef"
             type="text"
             :placeholder="locale.gifSearchPlaceholder"
-            ref="gifSearchInputRef"
             @input="onGifSearch"
           />
 
@@ -193,10 +194,13 @@
           class="wl-emoji-popup"
           :class="{ display: showEmoji }"
         >
-          <template v-for="(config, index) in emoji.tabs" :key="config.name">
+          <template
+            v-for="(emojiItem, index) in emoji.tabs"
+            :key="emojiItem.name"
+          >
             <div v-if="index === emojiTabIndex" class="wl-tab-wrapper">
               <button
-                v-for="key in config.items"
+                v-for="key in emojiItem.items"
                 :key="key"
                 :title="key"
                 @click="insert(`:${key}:`)"
@@ -214,17 +218,17 @@
           </template>
           <div v-if="emoji.tabs.length > 1" class="wl-tabs">
             <button
-              v-for="(config, index) in emoji.tabs"
-              :key="config.name"
+              v-for="(emojiItem, index) in emoji.tabs"
+              :key="emojiItem.name"
               class="wl-tab"
               :class="{ active: emojiTabIndex === index }"
               @click="emojiTabIndex = index"
             >
               <img
                 class="wl-emoji"
-                :src="config.icon"
-                :alt="config.name"
-                :title="config.name"
+                :src="emojiItem.icon"
+                :alt="emojiItem.name"
+                :title="emojiItem.name"
                 loading="lazy"
                 referrerPolicy="no-referrer"
               />
@@ -454,6 +458,7 @@ export default defineComponent({
         // check nick
         if (requiredMeta.indexOf('nick') > -1 && !comment.nick) {
           inputRefs.value.nick?.focus();
+
           return alert(locale.value.nickError);
         }
 
@@ -464,12 +469,14 @@ export default defineComponent({
             !/^\w(?:[\w._-]*\w)?@(?:\w(?:[\w-]*\w)?\.)*\w+$/.exec(comment.mail))
         ) {
           inputRefs.value.mail?.focus();
+
           return alert(locale.value.mailError);
         }
 
         // check comment
         if (!comment.comment) {
           editorRef.value?.focus();
+
           return;
         }
 
@@ -505,7 +512,6 @@ export default defineComponent({
 
           if (resp.errmsg) return alert(resp.errmsg);
 
-          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           emit('submit', resp.data!);
 
           editor.value = '';
@@ -578,7 +584,6 @@ export default defineComponent({
         `width=${width},height=${height},left=${left},top=${top},scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no`
       );
 
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       handler?.postMessage({ type: 'TOKEN', data: userInfo.value!.token }, '*');
     };
 
@@ -698,9 +703,7 @@ export default defineComponent({
           });
           wordNumber.value = getWordNumber(value);
 
-          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           if (value) autosize(editorRef.value!);
-          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           else autosize.destroy(editorRef.value!);
         },
         { immediate: true }

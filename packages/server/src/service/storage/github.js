@@ -62,9 +62,11 @@ class Github {
       json: true,
     }).catch((e) => {
       const isTooLarge = e.message.includes('"too_large"');
+
       if (!isTooLarge) {
         throw e;
       }
+
       return this.getLargeFile(filename);
     });
 
@@ -90,8 +92,10 @@ class Github {
     });
 
     const file = tree.find(({ path }) => path === filename);
+
     if (!file) {
       const error = new Error('NOT FOUND');
+
       error.statusCode = 404;
       throw error;
     }
@@ -133,6 +137,7 @@ module.exports = class extends Base {
     this.tableName = tableName;
 
     const { GITHUB_TOKEN, GITHUB_REPO, GITHUB_PATH } = process.env;
+
     this.git = new Github(GITHUB_REPO, GITHUB_TOKEN);
     this.basePath = GITHUB_PATH;
   }
@@ -148,7 +153,9 @@ module.exports = class extends Base {
 
     return new Promise((resolve, reject) => {
       const data = [];
+
       data.sha = file.sha;
+
       return parseString(file.data, {
         headers: file ? true : CSV_HEADERS[tableName],
       })
@@ -164,16 +171,19 @@ module.exports = class extends Base {
       headers: sha ? true : CSV_HEADERS[tableName],
       writeHeaders: true,
     });
+
     return this.git.set(filename, csv, { sha });
   }
 
   parseWhere(where) {
     const _where = [];
+
     if (think.isEmpty(where)) {
       return _where;
     }
 
     const filters = [];
+
     for (let k in where) {
       if (k === '_complex') {
         continue;
@@ -195,6 +205,7 @@ module.exports = class extends Base {
       }
 
       const handler = where[k][0].toUpperCase();
+
       switch (handler) {
         case 'IN':
           filters.push((item) => where[k][1].includes(item[k]));
@@ -206,6 +217,7 @@ module.exports = class extends Base {
           const first = where[k][1][0];
           const last = where[k][1].slice(-1);
           let reg;
+
           if (first === '%' && last === '%') {
             reg = new RegExp(where[k][1].slice(1, -1));
           } else if (first === '%') {
@@ -240,6 +252,7 @@ module.exports = class extends Base {
       or: Array.prototype.some,
     };
     const filters = [];
+
     for (const k in where._complex) {
       if (k === '_logic') {
         continue;
@@ -249,6 +262,7 @@ module.exports = class extends Base {
     }
 
     const logicFn = logicMap[where._complex._logic];
+
     return data.filter((item) =>
       logicFn.call(filters, (filter) => filter.every((fn) => fn(item)))
     );
@@ -257,13 +271,16 @@ module.exports = class extends Base {
   async select(where, { desc, limit, offset, field } = {}) {
     const instance = await this.collection(this.tableName);
     let data = this.where(instance, where);
+
     if (desc) {
       data.sort((a, b) => {
         if (['insertedAt', 'createdAt', 'updatedAt'].includes(desc)) {
           const aTime = new Date(a[desc]).getTime();
           const bTime = new Date(b[desc]).getTime();
+
           return bTime - aTime;
         }
+
         return a[desc] - b[desc];
       });
     }
@@ -272,14 +289,17 @@ module.exports = class extends Base {
     if (field) {
       field.push('id');
       const fieldObj = {};
+
       field.forEach((f) => (fieldObj[f] = true));
       data = data.map((item) => {
         const ret = {};
+
         for (const k in item) {
           if (fieldObj[k]) {
             ret[k] = item[k];
           }
         }
+
         return ret;
       });
     }
@@ -291,13 +311,16 @@ module.exports = class extends Base {
   async count(where = {}, { group } = {}) {
     const instance = await this.collection(this.tableName);
     const data = this.where(instance, where);
+
     if (!group) {
       return data.length;
     }
 
     const counts = {};
+
     for (let i = 0; i < data.length; i++) {
       const key = group.map((field) => data[field]).join();
+
       if (!counts[key]) {
         counts[key] = { count: 0 };
         group.forEach((field) => {
@@ -306,6 +329,7 @@ module.exports = class extends Base {
       }
       counts[key].count += 1;
     }
+
     return Object.keys(counts);
   }
 
@@ -319,6 +343,7 @@ module.exports = class extends Base {
 
     instance.push({ ...data, id });
     await this.save(this.tableName, instance, instance.sha);
+
     return { ...data, objectId: id };
   }
 
@@ -338,6 +363,7 @@ module.exports = class extends Base {
       }
     });
     await this.save(this.tableName, instance, instance.sha);
+
     return list;
   }
 
@@ -346,6 +372,7 @@ module.exports = class extends Base {
     const deleteData = this.where(instance, where);
     const deleteId = deleteData.map(({ id }) => id);
     const data = instance.filter((data) => !deleteId.includes(data.id));
+
     await this.save(this.tableName, data, instance.sha);
   }
 };

@@ -14,9 +14,11 @@ module.exports = {
   findLastIndex(arr, fn) {
     for (let i = arr.length - 1; i >= 0; i--) {
       const ret = fn(arr[i], i, arr);
+
       if (!ret) {
         continue;
       }
+
       return i;
     }
 
@@ -34,6 +36,7 @@ module.exports = {
 
       function runTask() {
         const idx = index;
+
         index += 1;
         if (index > promises.length) {
           return Promise.resolve();
@@ -45,6 +48,7 @@ module.exports = {
           if (count === promises.length) {
             resolve(ret);
           }
+
           return runTask();
         }, reject);
       }
@@ -60,15 +64,18 @@ module.exports = {
     try {
       const search = helper.promisify(regionSearch.btreeSearch, regionSearch);
       const result = await search(ip);
+
       if (!result) {
         return '';
       }
       const { region } = result;
       const [, , province, city, isp] = region.split('|');
       const address = Array.from(new Set([province, city, isp]));
+
       return address.slice(0, depth).join(' ');
     } catch (e) {
       console.log(e);
+
       return '';
     }
   },

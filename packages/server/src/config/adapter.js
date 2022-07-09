@@ -40,6 +40,7 @@ const {
 
 let type = 'common';
 const mongoOpt = {};
+
 if (MONGO_REPLICASET) mongoOpt.replicaSet = MONGO_REPLICASET;
 if (MONGO_AUTHSOURCE) mongoOpt.authSource = MONGO_AUTHSOURCE;
 
@@ -51,6 +52,7 @@ if (MONGO_DB) {
         .slice(10)
         .toLocaleLowerCase()
         .replace(/_([a-z])/g, (_, b) => b.toUpperCase());
+
       mongoOpt[key] = process.env[envKeys];
     }
   }

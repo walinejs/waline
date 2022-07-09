@@ -35,6 +35,7 @@ module.exports = class extends BaseRest {
     }
 
     const twoFactorAuthSecret = user[0]['2fa'];
+
     if (twoFactorAuthSecret) {
       const verified = speakeasy.totp.verify({
         secret: twoFactorAuthSecret,
@@ -42,6 +43,7 @@ module.exports = class extends BaseRest {
         token: code,
         window: 2,
       });
+
       if (!verified) {
         return this.fail();
       }
@@ -55,10 +57,12 @@ module.exports = class extends BaseRest {
           link: user[0].url,
         });
     const { avatarProxy } = think.config();
+
     if (avatarProxy) {
       avatarUrl = avatarProxy + '?url=' + encodeURIComponent(avatarUrl);
     }
     user[0].avatar = avatarUrl;
+
     return this.success({
       ...user[0],
       password: null,

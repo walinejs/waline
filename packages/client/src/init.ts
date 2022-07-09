@@ -80,7 +80,6 @@ export const init = ({
     ? createApp(() => h(Waline, { path: state.path, ...props }))
     : null;
 
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   if (app) app.mount(root!);
 
   const stopComment = watchEffect(updateCommentCount);

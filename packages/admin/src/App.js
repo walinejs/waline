@@ -26,6 +26,7 @@ function Access(props) {
     }
 
     const noPermission = meta.auth ? props.meta.auth !== user.type : false;
+
     if (noPermission) {
       return (location.href = basename + '/ui/profile');
     }

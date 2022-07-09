@@ -89,6 +89,7 @@ export default function () {
     if (/^verify/.test(type)) {
       return t('verify');
     }
+
     return t(type);
   };
 

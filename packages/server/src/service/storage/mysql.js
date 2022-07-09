@@ -3,6 +3,7 @@ const Base = require('./base');
 module.exports = class extends Base {
   parseWhere(filter) {
     const where = {};
+
     if (think.isEmpty(filter)) {
       return where;
     }
@@ -34,11 +35,13 @@ module.exports = class extends Base {
 
       where[k] = filter[k];
     }
+
     return where;
   }
 
   async select(where, { desc, limit, offset, field } = {}) {
     const instance = this.model(this.tableName);
+
     instance.where(this.parseWhere(where));
     if (desc) {
       instance.order(`${desc} DESC`);
@@ -52,11 +55,13 @@ module.exports = class extends Base {
     }
 
     const data = await instance.select();
+
     return data.map(({ id, ...cmt }) => ({ ...cmt, objectId: id }));
   }
 
   async count(where = {}, { group } = {}) {
     const instance = this.model(this.tableName);
+
     instance.where(this.parseWhere(where));
     if (!group) {
       return instance.count();
@@ -64,6 +69,7 @@ module.exports = class extends Base {
 
     instance.field([...group, 'COUNT(*) as count']);
     instance.group(group);
+
     return instance.select();
   }
 
@@ -75,6 +81,7 @@ module.exports = class extends Base {
 
     const instance = this.model(this.tableName);
     const id = await instance.add(data);
+
     return { ...data, objectId: id };
   }
 
@@ -82,12 +89,15 @@ module.exports = class extends Base {
     const list = await this.model(this.tableName)
       .where(this.parseWhere(where))
       .select();
+
     return Promise.all(
       list.map(async (item) => {
         const updateData = typeof data === 'function' ? data(item) : data;
+
         await this.model(this.tableName)
           .where({ id: item.id })
           .update(updateData);
+
         return { ...item, ...updateData };
       })
     );
@@ -95,6 +105,7 @@ module.exports = class extends Base {
 
   async delete(where) {
     const instance = this.model(this.tableName);
+
     return instance.where(this.parseWhere(where)).delete();
   }
 };

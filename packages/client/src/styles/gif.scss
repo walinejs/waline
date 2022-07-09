@@ -54,17 +54,18 @@
 }
 
 .wl-gallery {
-  max-height: 80vh;
   display: flex;
   overflow-y: auto;
+  max-height: 80vh;
 }
 
 .wl-gallery-column {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+
+  // stylelint-disable
   height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
-
-  flex: 1;
-  display: flex;
-  flex-direction: column;
 }

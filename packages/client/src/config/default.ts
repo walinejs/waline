@@ -10,6 +10,7 @@ export const defaultLang = 'zh-CN';
 export const defaultUploadImage = (file: File): Promise<string> =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
+
     reader.readAsDataURL(file);
     reader.onload = (): void => resolve(reader.result?.toString() || '');
     reader.onerror = reject;
@@ -73,6 +74,7 @@ export const getDefaultSearchOptions = (): WalineSearchOptions => {
   }: FetchGifRequest): Promise<FetchGifResponse> => {
     const baseUrl = `https://g.tenor.com/v1/search`;
     const query = new URLSearchParams('media_filter=minimal');
+
     query.set('key', 'PAY5JLFIH6V6');
     query.set('limit', '20');
     query.set('pos', pos || '');

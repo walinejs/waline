@@ -9,6 +9,7 @@ module.exports = class extends Base {
 
     const filter = {};
     const parseKey = (k) => (k === 'objectId' ? '_id' : k);
+
     for (let k in where) {
       if (k === '_complex') {
         continue;
@@ -25,6 +26,7 @@ module.exports = class extends Base {
       if (Array.isArray(where[k])) {
         if (where[k][0]) {
           const handler = where[k][0].toUpperCase();
+
           switch (handler) {
             case 'IN':
               if (k === 'objectId') {
@@ -45,6 +47,7 @@ module.exports = class extends Base {
               const first = where[k][1][0];
               const last = where[k][1].slice(-1);
               let reg;
+
               if (first === '%' && last === '%') {
                 reg = new RegExp(where[k][1].slice(1, -1));
               } else if (first === '%') {
@@ -68,16 +71,19 @@ module.exports = class extends Base {
         }
       }
     }
+
     return filter;
   }
 
   where(instance, where) {
     const filter = this.parseWhere(where);
+
     if (!where._complex) {
       return instance.where(filter);
     }
 
     const filters = [];
+
     for (const k in where._complex) {
       if (k === '_logic') {
         continue;
@@ -96,6 +102,7 @@ module.exports = class extends Base {
 
   async select(where, { desc, limit, offset, field } = {}) {
     const instance = this.mongo(this.tableName);
+
     this.where(instance, where);
     if (desc) {
       instance.order(`${desc} DESC`);
@@ -108,6 +115,7 @@ module.exports = class extends Base {
     }
 
     const data = await instance.select();
+
     return data.map(({ _id, ...cmt }) => ({
       ...cmt,
       objectId: _id.toString(),
@@ -116,14 +124,17 @@ module.exports = class extends Base {
 
   async count(where = {}, { group } = {}) {
     const instance = this.mongo(this.tableName);
+
     this.where(instance, where);
     if (group) {
       instance.group(group);
     }
     const data = await instance.count({ raw: group });
+
     if (!Array.isArray(data)) {
       return data;
     }
+
     return data.map(({ _id, total: count }) => ({ ..._id, count }));
   }
 
@@ -135,11 +146,13 @@ module.exports = class extends Base {
 
     const instance = this.mongo(this.tableName);
     const id = await instance.add(data);
+
     return { ...data, objectId: id.toString() };
   }
 
   async update(data, where) {
     const instance = this.mongo(this.tableName);
+
     this.where(instance, where);
     const list = await instance.select();
 
@@ -147,8 +160,10 @@ module.exports = class extends Base {
       list.map(async (item) => {
         const updateData = typeof data === 'function' ? data(item) : data;
         const instance = this.mongo(this.tableName);
+
         this.where(instance, where);
         await instance.update(updateData);
+
         return { ...item, ...updateData };
       })
     );
@@ -156,7 +171,9 @@ module.exports = class extends Base {
 
   async delete(where) {
     const instance = this.mongo(this.tableName);
+
     this.where(instance, where);
+
     return instance.delete();
   }
 };

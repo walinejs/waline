@@ -30,6 +30,7 @@ module.exports = class extends BaseRest {
 
     const respObj = resp.reduce((o, n) => {
       o[n.url] = n.time;
+
       return o;
     }, {});
 

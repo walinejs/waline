@@ -5,6 +5,7 @@ module.exports = class extends Base {
     await super.__before(...args);
 
     const { userInfo } = this.ctx.state;
+
     if (think.isEmpty(userInfo)) {
       return this.fail(401);
     }

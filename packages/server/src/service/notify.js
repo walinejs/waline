@@ -1,6 +1,7 @@
 const nodemailer = require('nodemailer');
 const nunjucks = require('nunjucks');
 const request = require('request-promise-native');
+
 module.exports = class extends think.Service {
   constructor(...args) {
     super(...args);
@@ -13,10 +14,12 @@ module.exports = class extends think.Service {
       SMTP_SECURE,
       SMTP_SERVICE,
     } = process.env;
+
     if (SMTP_HOST || SMTP_SERVICE) {
       const config = {
         auth: { user: SMTP_USER, pass: SMTP_PASS },
       };
+
       if (SMTP_SERVICE) {
         config.service = SMTP_SERVICE;
       } else {
@@ -48,6 +51,7 @@ module.exports = class extends think.Service {
         postUrl: SITE_URL + self.url + '#' + self.objectId,
       },
     };
+
     title = nunjucks.renderString(title, data);
     content = nunjucks.renderString(content, data);
 
@@ -64,6 +68,7 @@ module.exports = class extends think.Service {
 
   async wechat({ title, content }, self, parent) {
     const { SC_KEY, SITE_NAME, SITE_URL } = process.env;
+
     if (!SC_KEY) {
       return false;
     }
@@ -77,6 +82,7 @@ module.exports = class extends think.Service {
         postUrl: SITE_URL + self.url + '#' + self.objectId,
       },
     };
+
     title = nunjucks.renderString(title, data);
     content = nunjucks.renderString(content, data);
 
@@ -93,6 +99,7 @@ module.exports = class extends think.Service {
 
   async qywxAmWechat({ title, content }, self, parent) {
     const { QYWX_AM, SITE_NAME, SITE_URL } = process.env;
+
     if (!QYWX_AM) {
       return false;
     }
@@ -126,6 +133,7 @@ module.exports = class extends think.Service {
 
     title = nunjucks.renderString(title, data);
     const desp = nunjucks.renderString(contentWechat, data);
+
     content = desp.replace(/\n/g, '<br/>');
 
     const { access_token } = await request({
@@ -139,6 +147,7 @@ module.exports = class extends think.Service {
       },
       json: true,
     });
+
     return request({
       url: `https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=${access_token}`,
       body: {
@@ -168,6 +177,7 @@ module.exports = class extends think.Service {
 
   async qq(self, parent) {
     const { QMSG_KEY, QQ_ID, SITE_NAME, SITE_URL } = process.env;
+
     if (!QMSG_KEY) {
       return false;
     }
@@ -208,12 +218,14 @@ module.exports = class extends think.Service {
 
   async telegram(self, parent) {
     const { TG_BOT_TOKEN, TG_CHAT_ID, SITE_NAME, SITE_URL } = process.env;
+
     if (!TG_BOT_TOKEN || !TG_CHAT_ID) {
       return false;
     }
 
     let commentLink = '';
     const href = self.comment.match(/<a href="(.*?)">(.*?)<\/a>/g);
+
     if (href !== null) {
       for (var i = 0; i < href.length; i++) {
         href[i] =
@@ -298,6 +310,7 @@ module.exports = class extends think.Service {
         postUrl: SITE_URL + self.url + '#' + self.objectId,
       },
     };
+
     title = nunjucks.renderString(title, data);
     content = nunjucks.renderString(content, data);
 
@@ -319,6 +332,7 @@ module.exports = class extends think.Service {
 
   async discord({ title, content }, self, parent) {
     const { DISCORD_WEBHOOK, SITE_NAME, SITE_URL } = process.env;
+
     if (!DISCORD_WEBHOOK) {
       return false;
     }
@@ -332,6 +346,7 @@ module.exports = class extends think.Service {
         postUrl: SITE_URL + self.url + '#' + self.objectId,
       },
     };
+
     title = nunjucks.renderString(title, data);
     content = nunjucks.renderString(
       think.config('DiscordTemplate') ||
@@ -394,6 +409,7 @@ module.exports = class extends think.Service {
       const telegram = await this.telegram(comment, parent);
       const pushplus = await this.pushplus({ title, content }, comment, parent);
       const discord = await this.discord({ title, content }, comment, parent);
+
       if (
         [wechat, qq, telegram, qywxAmWechat, pushplus, discord].every(
           think.isEmpty
@@ -408,6 +424,7 @@ module.exports = class extends think.Service {
       (social) => 'mail.' + social
     );
     const fakeMail = new RegExp(`@(${disallowList.join('|')})$`, 'i');
+
     if (parent && !fakeMail.test(parent.mail) && comment.status !== 'waiting') {
       mailList.push({
         to: parent.mail,
@@ -436,6 +453,7 @@ module.exports = class extends think.Service {
     for (let i = 0; i < mailList.length; i++) {
       try {
         const response = await this.mail(mailList[i], comment, parent);
+
         console.log('Notification mail send success: %s', response);
       } catch (e) {
         console.log('Mail send fail:', e);

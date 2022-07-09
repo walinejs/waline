@@ -19,10 +19,12 @@ module.exports = class extends BaseRest {
         }
       );
       const is2FAEnabled = !think.isEmpty(user) && Boolean(user[0]['2fa']);
+
       return this.success({ enable: is2FAEnabled });
     }
 
     const name = `waline_${userInfo.objectId}`;
+
     if (userInfo['2fa'] && userInfo['2fa'].length == 32) {
       return this.success({
         otpauth_url: `otpauth://totp/${name}?secret=${userInfo['2fa']}`,
@@ -34,6 +36,7 @@ module.exports = class extends BaseRest {
       length: 20,
       name,
     });
+
     return this.success({ otpauth_url, secret });
   }
 
@@ -55,6 +58,7 @@ module.exports = class extends BaseRest {
       'Users'
     );
     const { objectId } = this.ctx.state.userInfo;
+
     await userModel.update({ ['2fa']: data.secret }, { objectId });
 
     return this.success();

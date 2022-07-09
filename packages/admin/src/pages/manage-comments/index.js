@@ -158,6 +158,7 @@ export default function () {
           e.preventDefault();
 
           const sticky = !comment.sticky;
+
           list.data.forEach((cmt) => {
             if (cmt.objectId === comment.objectId) {
               cmt.sticky = sticky;
@@ -173,6 +174,7 @@ export default function () {
         name: t('edit'),
         action() {
           const handler = {};
+
           if (
             cmtHandler.id !== comment.objectId &&
             cmtHandler.action !== 'edit'
@@ -189,6 +191,7 @@ export default function () {
         name: t('reply'),
         action() {
           const handler = {};
+
           if (
             cmtHandler.id !== comment.objectId &&
             cmtHandler.action !== 'reply'
@@ -207,6 +210,7 @@ export default function () {
           const text = comment
             ? t('delete one confirm', { nick: comment.nick })
             : t('delete multiple confirm');
+
           if (!confirm(text)) {
             return;
           }
@@ -230,10 +234,12 @@ export default function () {
 
   const cmtReply = async ({ pid, rid, url, at }) => {
     const comment = replyTextAreaRef.current.value;
+
     if (!comment) {
       return null;
     }
     const { display_name, email, url: link } = user;
+
     await replyComment({
       nick: display_name,
       mail: email,
@@ -252,6 +258,7 @@ export default function () {
 
   const onEditComment = async (idx) => {
     const comment = list.data[idx];
+
     await updateComment(comment.objectId, editCommentRef.current);
     list.data[idx] = { ...comment, ...editCommentRef.current };
     setList({ ...list });
@@ -261,6 +268,7 @@ export default function () {
   const allSelected =
     list.data.length &&
     list.data.every(({ objectId }) => commentIds.includes(objectId));
+
   return (
     <>
       <Header />

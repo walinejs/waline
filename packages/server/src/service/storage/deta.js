@@ -6,11 +6,13 @@ module.exports = class extends Base {
   constructor(tableName) {
     super(tableName);
     const deta = Deta(process.env.DETA_PROJECT_KEY);
+
     this.instance = deta.Base(tableName);
   }
 
   complex(obj, keys) {
     const result = new Array(keys.reduce((a, b) => a * obj[b].length, 1));
+
     for (let i = 0; i < result.length; i++) {
       result[i] = { ...obj };
       for (let n = 0; n < keys.length; n++) {
@@ -18,6 +20,7 @@ module.exports = class extends Base {
           .slice(n + 1)
           .reduce((a, b) => a * obj[b].length, 1);
         const idx = Math.floor(i / divisor) % obj[keys[n]].length;
+
         result[i][keys[n]] = obj[keys[n]][idx];
       }
     }
@@ -34,11 +37,13 @@ module.exports = class extends Base {
   async uuid() {
     const items = await this.select({}, { limit: 1 });
     let lastKey;
+
     if (items.length && !isNaN(parseInt(items[0].objectId))) {
       lastKey = parseInt(items[0].objectId);
     } else {
       lastKey = Number.MAX_SAFE_INTEGER - performance.now();
     }
+
     return (lastKey - Math.round(Math.random() * 100)).toString();
   }
 
@@ -50,6 +55,7 @@ module.exports = class extends Base {
     const parseKey = (k) => (k === 'objectId' ? 'key' : k);
     const conditions = {};
     const _isArrayKeys = [];
+
     for (let k in where) {
       if (think.isString(where[k])) {
         conditions[parseKey(k)] = where[k];
@@ -63,6 +69,7 @@ module.exports = class extends Base {
         continue;
       }
       const handler = where[k][0].toUpperCase();
+
       switch (handler) {
         case 'IN':
           conditions[parseKey(k)] = where[k][1];
@@ -78,6 +85,7 @@ module.exports = class extends Base {
           if (Array.isArray(where[k][1]) && parseKey(k) === 'status') {
             const STATUS = ['approved', 'waiting', 'spam'];
             let val = STATUS.filter((s) => !where[k][1].includes(s));
+
             if (val.length === 1) {
               val = val[0];
             }
@@ -88,6 +96,7 @@ module.exports = class extends Base {
         case 'LIKE': {
           const first = where[k][1][0];
           const last = where[k][1].slice(-1);
+
           if (first === '%' && last === '%') {
             conditions[parseKey(k) + '?contains'] = where[k][1].slice(1, -1);
           } else if (first === '%') {
@@ -115,6 +124,7 @@ module.exports = class extends Base {
 
   async select(where, { limit, offset, field } = {}) {
     const conditions = this.where(where);
+
     if (think.isArray(conditions)) {
       return Promise.all(
         conditions.map((condition) =>
@@ -124,6 +134,7 @@ module.exports = class extends Base {
     }
 
     let data = [];
+
     if (
       think.isObject(conditions) &&
       think.isString(conditions.key) &&
@@ -135,6 +146,7 @@ module.exports = class extends Base {
        * you need use `get()` rather than `fetch()` method.
        */
       const item = await this.instance.get(conditions.key);
+
       item && data.push(item);
     } else if (offset) {
       /**
@@ -149,6 +161,7 @@ module.exports = class extends Base {
           limit,
           last,
         });
+
         data = data.concat(items);
 
         if (items.length < limit) {
@@ -161,6 +174,7 @@ module.exports = class extends Base {
       const { items } = await this.instance.fetch(conditions, {
         limit: limit,
       });
+
       data = items || [];
     }
 
@@ -171,6 +185,7 @@ module.exports = class extends Base {
 
     if (Array.isArray(field)) {
       const fieldMap = new Set(field);
+
       fieldMap.add('objectId');
       data.forEach((item) => {
         for (const k in item) {
@@ -187,6 +202,7 @@ module.exports = class extends Base {
   async count(where = {}, { group } = {}) {
     if (!group) {
       const conditions = this.where(where);
+
       if (think.isArray(conditions)) {
         return Promise.all(
           conditions.map((condition) => this.count(condition))
@@ -194,17 +210,21 @@ module.exports = class extends Base {
       }
 
       const { count } = await this.instance.fetch(conditions);
+
       return count;
     }
 
     const counts = [];
+
     for (let i = 0; i < group.length; i++) {
       const groupName = group[i];
+
       if (!where._complex || !Array.isArray(where._complex[groupName])) {
         continue;
       }
 
       const groupFlatValue = {};
+
       group.slice(0, i).forEach((group) => {
         groupFlatValue[group] = null;
       });
@@ -217,6 +237,7 @@ module.exports = class extends Base {
           [groupName]: where._complex[groupName][1][j],
         };
         const num = await this.count(groupWhere);
+
         counts.push({
           ...groupFlatValue,
           [groupName]: where._complex[groupName][1][j],
@@ -224,24 +245,30 @@ module.exports = class extends Base {
         });
       }
     }
+
     return counts;
   }
 
   async add(data) {
     const uuid = await this.uuid();
     const resp = await this.instance.put(data, uuid);
+
     resp.objectId = resp.key;
     delete resp.key;
+
     return resp;
   }
 
   async update(data, where) {
     const items = await this.select(where);
+
     return Promise.all(
       items.map(async (item) => {
         const updateData = typeof data === 'function' ? data(item) : data;
         const nextData = { ...item, ...updateData };
+
         await this.instance.put(nextData, item.objectId);
+
         return nextData;
       })
     );
@@ -249,6 +276,7 @@ module.exports = class extends Base {
 
   async delete(where) {
     const items = await this.select(where);
+
     return Promise.all(
       items.map(({ objectId }) => this.instance.delete(objectId))
     );

@@ -79,9 +79,12 @@
 
   .wl-tabs {
     position: relative;
+
+    overflow-x: scroll;
+
     height: 2em;
     padding: 0 6px 1px;
-    overflow-x: scroll;
+
     white-space: nowrap;
 
     &::before {

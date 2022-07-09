@@ -8,17 +8,39 @@ extends:
   - eslint:recommended
   - plugin:prettier/recommended
 
+ignorePatterns:
+  - '**/dist/**'
+  - '**/node_modules/**'
+  - example/
+
+parserOptions:
+  ecmaVersion: 2020
+
 settings:
   react:
     version: detect
 
-parserOptions:
-  ecmaVersion: 11
-
-ignorePatterns:
-  - dist/
-  - example/
-  - node_modules/
+rules:
+  padding-line-between-statements:
+    - error
+    - blankLine: always
+      prev:
+        - const
+        - let
+      next:
+        - '*'
+    - blankLine: any
+      prev:
+        - const
+        - let
+      next:
+        - const
+        - let
+    - blankLine: always
+      prev:
+        - '*'
+      next:
+        - return
 
 overrides:
   - files:
@@ -56,6 +78,7 @@ overrides:
             - variable
           format:
             - camelCase
+            - PascalCase
             - UPPER_CASE
           leadingUnderscore: allow
           trailingUnderscore: allow
@@ -84,6 +107,9 @@ overrides:
       '@typescript-eslint/no-explicit-any':
         - warn
         - ignoreRestArgs: true
+
+      '@typescript-eslint/no-non-null-assertion':
+        - off
 
       '@typescript-eslint/no-unsafe-member-access':
         - warn

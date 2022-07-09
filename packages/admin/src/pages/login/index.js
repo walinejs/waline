@@ -44,6 +44,7 @@ export default function () {
     const password = e.target.password.value;
     const code = e.target.code ? e.target.code.value : '';
     const remember = e.target.remember.checked;
+
     if (!email) {
       return setError(t('please input email'));
     }
@@ -63,21 +64,26 @@ export default function () {
 
   const check2FACode = async (e) => {
     const email = e.target.value;
+
     if (!email) {
       return;
     }
 
     const data = await get2FAToken(email);
+
     enable2FA(data.enable);
   };
 
   let baseUrl = window.serverURL;
+
   if (!baseUrl) {
     const match = location.pathname.match(/(.*?\/)ui/);
+
     baseUrl = match ? match[1] : '/';
   }
 
   const socials = ['weibo', 'github', 'twitter', 'facebook'];
+
   return (
     <>
       <Header />

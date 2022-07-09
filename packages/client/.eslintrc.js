@@ -22,6 +22,8 @@ module.exports = {
     VERSION: 'readonly',
   },
 
+  ignorePatterns: ['dist/**'],
+
   overrides: [
     {
       files: ['*.ts'],
@@ -43,9 +45,7 @@ module.exports = {
       rules: {
         '@typescript-eslint/explicit-function-return-type': [
           'warn',
-          {
-            allowTypedFunctionExpressions: true,
-          },
+          { allowTypedFunctionExpressions: true },
         ],
         '@typescript-eslint/naming-convention': [
           'warn',
@@ -78,13 +78,15 @@ module.exports = {
           { ignoreRestArgs: true },
         ],
 
+        '@typescript-eslint/no-non-null-assertion': 'off',
+
         '@typescript-eslint/no-unsafe-member-access': 'warn',
       },
     },
     {
       files: '*.vue',
       extends: [
-        'plugin:vue/vue3-essential',
+        'plugin:vue/vue3-recommended',
         'plugin:@typescript-eslint/eslint-recommended',
         'plugin:@typescript-eslint/recommended',
         'plugin:prettier/recommended',
@@ -100,9 +102,7 @@ module.exports = {
       rules: {
         '@typescript-eslint/explicit-function-return-type': [
           'warn',
-          {
-            allowTypedFunctionExpressions: true,
-          },
+          { allowTypedFunctionExpressions: true },
         ],
 
         '@typescript-eslint/naming-convention': [
@@ -133,10 +133,10 @@ module.exports = {
 
         '@typescript-eslint/no-explicit-any': [
           'warn',
-          {
-            ignoreRestArgs: true,
-          },
+          { ignoreRestArgs: true },
         ],
+
+        '@typescript-eslint/no-non-null-assertion': 'off',
       },
     },
   ],

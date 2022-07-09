@@ -9,6 +9,7 @@ const katexInline = (tex, options) => {
     return katex.renderToString(tex, options);
   } catch (error) {
     if (options.throwOnError) console.warn(error);
+
     return `<span class='katex-error' title='${escapeHtml(
       error.toString()
     )}'>${escapeHtml(tex)}</span>`;
@@ -21,6 +22,7 @@ const katexBlock = (tex, options) => {
     return `<p class='katex-block'>${katex.renderToString(tex, options)}</p>`;
   } catch (error) {
     if (options.throwOnError) console.warn(error);
+
     return `<p class='katex-block katex-error' title='${escapeHtml(
       error.toString()
     )}'>${escapeHtml(tex)}</p>`;

@@ -11,6 +11,7 @@ const instance = new Application({
 instance.run();
 
 let config = {};
+
 try {
   require('./config.js');
 } catch (e) {

@@ -9,15 +9,18 @@ module.exports = [
     context: {
       get serverURL() {
         const { SERVER_URL } = process.env;
+
         if (SERVER_URL) {
           return SERVER_URL;
         }
 
         const { protocol, host } = this;
+
         return `${protocol}://${host}`;
       },
       async webhook(type, data) {
         const { WEBHOOK } = process.env;
+
         if (!WEBHOOK) {
           return;
         }

@@ -80,7 +80,7 @@ export default defineComponent({
     gap: { type: Number, default: 0 },
   },
 
-  emit: ['insert'],
+  emits: ['insert'],
 
   setup(props) {
     let resizeObserver: ResizeObserver | null = null;
@@ -90,7 +90,6 @@ export default defineComponent({
 
     const getColumnCount = (): number => {
       const count = Math.floor(
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         (wall.value!.getBoundingClientRect().width + props.gap) /
           (props.columnWidth + props.gap)
       );
@@ -149,11 +148,10 @@ export default defineComponent({
     onMounted(() => {
       redraw(true);
       resizeObserver = new ResizeObserver(() => redraw());
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+
       resizeObserver.observe(wall.value!);
     });
 
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     onBeforeUnmount(() => resizeObserver!.unobserve(wall.value!));
 
     return {

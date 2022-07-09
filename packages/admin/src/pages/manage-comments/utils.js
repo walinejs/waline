@@ -16,6 +16,7 @@ export function getPostUrl(url) {
   if (!global.SITE_URL) {
     return url;
   }
+
   return global.SITE_URL + url;
 }
 
@@ -30,5 +31,6 @@ export function formatDate(time) {
   const localTime = [d.getHours(), d.getMinutes(), d.getSeconds()]
     .map(p)
     .join(':');
+
   return localDate + ' ' + localTime;
 }

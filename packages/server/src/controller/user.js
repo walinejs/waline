@@ -23,6 +23,7 @@ module.exports = class extends BaseRest {
         offset: Math.max((page - 1) * pageSize, 0),
       }
     );
+
     return this.success({
       page,
       totalPages: Math.ceil(count / pageSize),
@@ -147,8 +148,10 @@ module.exports = class extends BaseRest {
     }
 
     const socials = ['github', 'twitter', 'facebook', 'google', 'weibo', 'qq'];
+
     socials.forEach((social) => {
       const nextSocial = this.post(social);
+
       if (think.isString(nextSocial)) {
         updateData[social] = nextSocial;
       }

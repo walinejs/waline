@@ -14,6 +14,7 @@ const instance = new Application({
 
 module.exports = function (config = {}) {
   const loader = new Loader(instance.options);
+
   loader.loadAll('worker');
 
   for (const k in config) {

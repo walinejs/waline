@@ -15,6 +15,7 @@ export default function () {
     const option = LANGUAGE_OPTIONS.find((option) =>
       option.alias.includes(i18n.language)
     );
+
     return option?.value ?? '';
   }, [i18n.language]);
 

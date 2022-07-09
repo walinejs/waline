@@ -1,4 +1,5 @@
 const Base = require('./base');
+
 module.exports = class extends Base {
   async __before() {
     await super.__before();
@@ -7,6 +8,7 @@ module.exports = class extends Base {
     const { like } = this.post();
     const isAllowedGet = this.isGet && (type !== 'list' || path);
     const isAllowedPut = this.ctx.isMethod('PUT') && think.isBoolean(like);
+
     if (this.isPost || isAllowedGet || isAllowedPut) {
       return;
     }
@@ -114,6 +116,7 @@ module.exports = class extends Base {
    */
   getAction() {
     const { type } = this.get();
+
     switch (type) {
       case 'recent':
         this.rules = {
@@ -135,6 +138,7 @@ module.exports = class extends Base {
 
       case 'list': {
         const { userInfo } = this.ctx.state;
+
         if (userInfo.type !== 'administrator') {
           return this.fail();
         }
@@ -224,6 +228,7 @@ module.exports = class extends Base {
    */
   putAction() {
     const { userInfo } = this.ctx.state;
+
     if (think.isEmpty(userInfo) || userInfo.type !== 'administrator') {
       this.rules = {
         like: {

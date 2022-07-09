@@ -5,6 +5,7 @@
 const isValidDelim = (state, pos) => {
   const prevChar = pos > 0 ? state.src.charAt(pos - 1) : '';
   const nextChar = pos + 1 <= state.posMax ? state.src.charAt(pos + 1) : '';
+
   return {
     canOpen: nextChar !== ' ' && nextChar !== '\t',
     /*
@@ -31,6 +32,7 @@ const inlineTex = (state, silent) => {
   if (!res.canOpen) {
     if (!silent) state.pending += '$';
     state.pos += 1;
+
     return true;
   }
   /*
@@ -58,6 +60,7 @@ const inlineTex = (state, silent) => {
   if (match === -1) {
     if (!silent) state.pending += '$';
     state.pos = start;
+
     return true;
   }
 
@@ -65,6 +68,7 @@ const inlineTex = (state, silent) => {
   if (match - start === 0) {
     if (!silent) state.pending += '$$';
     state.pos = start + 1;
+
     return true;
   }
 
@@ -74,6 +78,7 @@ const inlineTex = (state, silent) => {
   if (!res.canClose) {
     if (!silent) state.pending += '$';
     state.pos = start;
+
     return true;
   }
 

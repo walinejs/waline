@@ -24,6 +24,7 @@ export default function () {
     setError(false);
 
     const email = e.target.email.value;
+
     if (!email) {
       return setError(t('please input email'));
     }

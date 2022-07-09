@@ -16,6 +16,7 @@ export default async function request(url, opts = {}) {
   }
 
   let token = window.TOKEN || sessionStorage.getItem('TOKEN');
+
   if (!token) {
     token = localStorage.getItem('TOKEN');
   }
@@ -24,12 +25,15 @@ export default async function request(url, opts = {}) {
   }
 
   let baseUrl = window.serverURL;
+
   if (!baseUrl) {
     const match = location.pathname.match(/(.*?\/)ui/);
+
     baseUrl = match ? match[1] : '/';
   }
 
   const joiner = opts.url.includes('?') ? '&' : '?';
+
   return fetch(`${baseUrl}${opts.url}${joiner}lang=${i18n.language}`, opts)
     .then((resp) => {
       if (resp.ok) {
