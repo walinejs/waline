@@ -14,7 +14,7 @@
     "marked": "4.0.17",
     "vue": "3.2.37",
     "vuepress": "2.0.0-beta.48",
-    "vuepress-shared": "2.0.0-beta.84",
-    "vuepress-theme-hope": "2.0.0-beta.84"
+    "vuepress-shared": "2.0.0-beta.85",
+    "vuepress-theme-hope": "2.0.0-beta.85"
   }
 }
