@@ -5,7 +5,7 @@ CREATE TABLE wl_comment (
   id int check (id > 0) NOT NULL DEFAULT NEXTVAL ('wl_comment_seq'),
   user_id int DEFAULT NULL,
   comment text,
-  insertedAt timestamp(0) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  insertedAt timestamp(0) without time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
   ip varchar(100) DEFAULT '',
   link varchar(255) DEFAULT NULL,
   mail varchar(255) DEFAULT NULL,
@@ -17,8 +17,8 @@ CREATE TABLE wl_comment (
   "like" int DEFAULT NULL,
   ua text,
   url varchar(255) DEFAULT NULL,
-  createdAt timestamp(0) with time zone NULL DEFAULT CURRENT_TIMESTAMP,
-  updatedAt timestamp(0) with time zone NULL DEFAULT CURRENT_TIMESTAMP,
+  createdAt timestamp(0) without time zone NULL DEFAULT CURRENT_TIMESTAMP,
+  updatedAt timestamp(0) without time zone NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id)
 ) ;
 
@@ -29,8 +29,8 @@ CREATE TABLE wl_counter (
   id int check (id > 0) NOT NULL DEFAULT NEXTVAL ('wl_counter_seq'),
   time int DEFAULT NULL,
   url varchar(255) NOT NULL DEFAULT '',
-  createdAt timestamp(0) with time zone NULL DEFAULT CURRENT_TIMESTAMP,
-  updatedAt timestamp(0) with time zone NULL DEFAULT CURRENT_TIMESTAMP,
+  createdAt timestamp(0) without time zone NULL DEFAULT CURRENT_TIMESTAMP,
+  updatedAt timestamp(0) without time zone NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id)
 ) ;
 
@@ -53,7 +53,7 @@ CREATE TABLE wl_users (
   weibo varchar(255) DEFAULT NULL,
   qq varchar(255) DEFAULT NULL,
   "2fa" varchar(32) DEFAULT NULL,
-  createdAt timestamp(0) with time zone NULL DEFAULT CURRENT_TIMESTAMP,
-  updatedAt timestamp(0) with time zone NULL DEFAULT CURRENT_TIMESTAMP,
+  createdAt timestamp(0) without time zone NULL DEFAULT CURRENT_TIMESTAMP,
+  updatedAt timestamp(0) without time zone NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id)
 ) ;

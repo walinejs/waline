@@ -20,7 +20,7 @@ module.exports = class extends MySQL {
       options.field = options.field.map((field) => field.toLowerCase());
     }
 
-    const data = await super.select(where, options);
+    const data = await super.select(lowerWhere, options);
 
     return data.map(({ insertedat, createdat, updatedat, ...item }) => {
       const mapFields = {
