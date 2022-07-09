@@ -1,6 +1,7 @@
+const FormData = require('form-data');
 const nodemailer = require('nodemailer');
+const fetch = require('node-fetch');
 const nunjucks = require('nunjucks');
-const request = require('request-promise-native');
 
 module.exports = class extends think.Service {
   constructor(...args) {
@@ -86,15 +87,16 @@ module.exports = class extends think.Service {
     title = nunjucks.renderString(title, data);
     content = nunjucks.renderString(content, data);
 
-    return request({
-      uri: `https://sctapi.ftqq.com/${SC_KEY}.send`,
+    const form = new FormData();
+
+    form.append('text', title);
+    form.append('desp', content);
+
+    return fetch(`https://sctapi.ftqq.com/${SC_KEY}.send`, {
       method: 'POST',
-      form: {
-        text: title,
-        desp: content,
-      },
-      json: true,
-    });
+      headers: form.getHeaders(),
+      body: form,
+    }).json();
   }
 
   async qywxAmWechat({ title, content }, self, parent) {
@@ -136,43 +138,47 @@ module.exports = class extends think.Service {
 
     content = desp.replace(/\n/g, '<br/>');
 
-    const { access_token } = await request({
-      uri: `https://qyapi.weixin.qq.com/cgi-bin/gettoken`,
-      qs: {
-        corpid: `${QYWX_AM_AY[0]}`,
-        corpsecret: `${QYWX_AM_AY[1]}`,
-      },
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      json: true,
-    });
+    const querystring = new URLSearchParams();
 
-    return request({
-      url: `https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=${access_token}`,
-      body: {
-        touser: `${QYWX_AM_AY[2]}`,
-        agentid: `${QYWX_AM_AY[3]}`,
-        msgtype: 'mpnews',
-        mpnews: {
-          articles: [
-            {
-              title,
-              thumb_media_id: `${QYWX_AM_AY[4]}`,
-              author: `Waline Comment`,
-              content_source_url: `${data.site.postUrl}`,
-              content: `${content}`,
-              digest: `${desp}`,
-            },
-          ],
+    querystring.set('corpid', `${QYWX_AM_AY[0]}`);
+    querystring.set('corpsecret', `${QYWX_AM_AY[1]}`);
+
+    const { access_token } = await fetch(
+      `https://qyapi.weixin.qq.com/cgi-bin/gettoken`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
         },
-      },
-      method: 'POST',
-      json: true,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+        body: querystring,
+      }
+    ).json();
+
+    return fetch(
+      `https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=${access_token}`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          touser: `${QYWX_AM_AY[2]}`,
+          agentid: `${QYWX_AM_AY[3]}`,
+          msgtype: 'mpnews',
+          mpnews: {
+            articles: [
+              {
+                title,
+                thumb_media_id: `${QYWX_AM_AY[4]}`,
+                author: `Waline Comment`,
+                content_source_url: `${data.site.postUrl}`,
+                content: `${content}`,
+                digest: `${desp}`,
+              },
+            ],
+          },
+        }),
+      }
+    ).json();
   }
 
   async qq(self, parent) {
@@ -206,13 +212,15 @@ module.exports = class extends think.Service {
 {{self.comment}}
 仅供预览评论，请前往上述页面查看完整內容。`;
 
-    return request({
-      uri: `https://qmsg.zendee.cn/send/${QMSG_KEY}`,
+    const form = new FormData();
+
+    form.append('msg', nunjucks.renderString(contentQQ, data));
+    form.append('qq', QQ_ID);
+
+    return fetch(`https://qmsg.zendee.cn/send/${QMSG_KEY}`, {
       method: 'POST',
-      form: {
-        msg: nunjucks.renderString(contentQQ, data),
-        qq: QQ_ID,
-      },
+      header: form.getHeaders(),
+      body: form,
     });
   }
 
@@ -273,16 +281,17 @@ module.exports = class extends think.Service {
       },
     };
 
-    return request({
-      uri: `https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`,
+    const form = new FormData();
+
+    form.append('text', nunjucks.renderString(contentTG, data));
+    form.append('chat_id', TG_CHAT_ID);
+    form.append('parse_mode', 'MarkdownV2');
+
+    return fetch(`https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`, {
       method: 'POST',
-      form: {
-        text: nunjucks.renderString(contentTG, data),
-        chat_id: TG_CHAT_ID,
-        parse_mode: 'MarkdownV2',
-      },
-      json: true,
-    });
+      header: form.getHeaders(),
+      body: form,
+    }).json();
   }
 
   async pushplus({ title, content }, self, parent) {
@@ -314,20 +323,21 @@ module.exports = class extends think.Service {
     title = nunjucks.renderString(title, data);
     content = nunjucks.renderString(content, data);
 
-    return request({
-      uri: `http://www.pushplus.plus/send/${PUSH_PLUS_KEY}`,
+    const form = new FormData();
+
+    form.append('topic', topic);
+    form.append('template', template);
+    form.append('channel', channel);
+    form.append('webhook', webhook);
+    form.append('callbackUrl', callbackUrl);
+    form.append('title', title);
+    form.append('content', content);
+
+    return fetch(`http://www.pushplus.plus/send/${PUSH_PLUS_KEY}`, {
       method: 'POST',
-      form: {
-        title,
-        content,
-        topic,
-        template,
-        channel,
-        webhook,
-        callbackUrl,
-      },
-      json: true,
-    });
+      header: form.getHeaders(),
+      body: form,
+    }).json();
   }
 
   async discord({ title, content }, self, parent) {
@@ -358,14 +368,15 @@ module.exports = class extends think.Service {
       data
     );
 
-    return request({
-      uri: DISCORD_WEBHOOK,
+    const form = new FormData();
+
+    form.append('content', `${title}\n${content}`);
+
+    return fetch(DISCORD_WEBHOOK, {
       method: 'POST',
-      form: {
-        content: title + '\n' + content,
-      },
-      json: true,
-    });
+      header: form.getHeaders(),
+      body: form,
+    }).json();
   }
 
   async run(comment, parent, disableAuthorNotify = false) {
