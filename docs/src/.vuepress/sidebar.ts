@@ -109,7 +109,7 @@ export const enSidebarConfig = sidebar({
       children: ['get-started', 'client/intro', 'server/intro'],
     },
     {
-      text: 'Lear More',
+      text: 'Learn More',
       icon: 'advanced',
       prefix: 'advanced/',
       children: ['intro', 'why', 'ecosystem', 'faq'],
