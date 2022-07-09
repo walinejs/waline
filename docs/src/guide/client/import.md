@@ -39,7 +39,7 @@ Waline 提供多种版本的客户端文件。你可以通过多种方式引入 
 对于 CDN 链接来说，不指定版本号时为最新版本，所以如果你需要指定特定版本，你需要在 `@waline/client` 后以 `@version` 的格式指定一个版本号。
 
 ```html
-<!-- 你需要自行修改替换 `next` 为你想要的版本号 -->
+<!-- 你需要自行修改替换 `v2` 为你想要的版本号 -->
 <script src="https://unpkg.com/@waline/client@v2/dist/waline.js"></script>
 ```
 

@@ -37,7 +37,7 @@ Recommend to use [unpkg](https://unpkg.com/@waline/client/).
 For CDN links, if you don't specify a version number, it will be latest version, so if you need to specify a specific version, you need to specify a version number in the format `@version` after `@waline/client`.
 
 ```html
-<!-- You need to modify and replace `next` with the version number you want -->
+<!-- You need to modify and replace `v2` with the version number you want -->
 <script src="https://unpkg.com/@waline/client@v2/dist/waline.js"></script>
 ```
 
