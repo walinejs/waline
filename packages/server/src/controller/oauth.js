@@ -1,7 +1,7 @@
-const qs = require('querystring');
 const jwt = require('jsonwebtoken');
+const fetch = require('node-fetch');
 const { PasswordHash } = require('phpass');
-const request = require('request-promise-native');
+const qs = require('querystring');
 
 module.exports = class extends think.Controller {
   constructor(ctx) {
@@ -52,14 +52,12 @@ module.exports = class extends think.Controller {
       });
     }
 
-    const user = await request({
-      url: `${oauthUrl}/${type}?${qs.stringify(params)}`,
+    const user = await fetch(`${oauthUrl}/${type}?${qs.stringify(params)}`, {
       method: 'GET',
-      json: true,
       headers: {
         'User-Agent': '@waline',
       },
-    });
+    }).json();
 
     if (!user || !user.id) {
       return this.fail();

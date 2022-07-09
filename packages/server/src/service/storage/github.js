@@ -1,6 +1,6 @@
-const path = require('path');
 const { parseString, writeToString } = require('fast-csv');
-const request = require('request-promise-native');
+const fetch = require('node-fetch');
+const path = require('path');
 const Base = require('./base');
 
 const CSV_HEADERS = {
@@ -50,25 +50,27 @@ class Github {
 
   // content api can only get file < 1MB
   async get(filename) {
-    const resp = await request({
-      uri:
-        'https://api.github.com/repos/' +
+    const resp = await fetch(
+      'https://api.github.com/repos/' +
         path.join(this.repo, 'contents', filename),
-      headers: {
-        Accept: 'application/vnd.github.v3+json',
-        Authorization: 'token ' + this.token,
-        'User-Agent': 'Waline',
-      },
-      json: true,
-    }).catch((e) => {
-      const isTooLarge = e.message.includes('"too_large"');
-
-      if (!isTooLarge) {
-        throw e;
+      {
+        headers: {
+          Accept: 'application/vnd.github.v3+json',
+          Authorization: 'token ' + this.token,
+          'User-Agent': 'Waline',
+        },
       }
+    )
+      .json()
+      .catch((e) => {
+        const isTooLarge = e.message.includes('"too_large"');
 
-      return this.getLargeFile(filename);
-    });
+        if (!isTooLarge) {
+          throw e;
+        }
+
+        return this.getLargeFile(filename);
+      });
 
     return {
       data: Buffer.from(resp.content, 'base64').toString('utf-8'),
@@ -78,18 +80,18 @@ class Github {
 
   // blob api can get file larger than 1MB
   async getLargeFile(filename) {
-    const { tree } = await request({
-      uri:
-        'https://api.github.com/repos/' +
+    const { tree } = await fetch(
+      'https://api.github.com/repos/' +
         path.join(this.repo, 'git/trees/HEAD') +
         '?recursive=1',
-      headers: {
-        Accept: 'application/vnd.github.v3+json',
-        Authorization: 'token ' + this.token,
-        'User-Agent': 'Waline',
-      },
-      json: true,
-    });
+      {
+        headers: {
+          Accept: 'application/vnd.github.v3+json',
+          Authorization: 'token ' + this.token,
+          'User-Agent': 'Waline',
+        },
+      }
+    ).json();
 
     const file = tree.find(({ path }) => path === filename);
 
@@ -100,34 +102,33 @@ class Github {
       throw error;
     }
 
-    return request({
-      uri: file.url,
+    return fetch(file.url, {
       headers: {
         Accept: 'application/vnd.github.v3+json',
         Authorization: 'token ' + this.token,
         'User-Agent': 'Waline',
       },
-      json: true,
-    });
+    }).json();
   }
 
   async set(filename, content, { sha }) {
-    return request({
-      uri:
-        'https://api.github.com/repos/' +
+    return fetch(
+      'https://api.github.com/repos/' +
         path.join(this.repo, 'contents', filename),
-      method: 'PUT',
-      headers: {
-        Accept: 'application/vnd.github.v3+json',
-        Authorization: 'token ' + this.token,
-        'User-Agent': 'Waline',
-      },
-      body: JSON.stringify({
-        sha,
-        message: 'feat(waline): update comment data',
-        content: Buffer.from(content, 'utf-8').toString('base64'),
-      }),
-    });
+      {
+        method: 'PUT',
+        headers: {
+          Accept: 'application/vnd.github.v3+json',
+          Authorization: 'token ' + this.token,
+          'User-Agent': 'Waline',
+        },
+        body: JSON.stringify({
+          sha,
+          message: 'feat(waline): update comment data',
+          content: Buffer.from(content, 'utf-8').toString('base64'),
+        }),
+      }
+    );
   }
 }
 

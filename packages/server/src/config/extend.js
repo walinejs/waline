@@ -1,6 +1,6 @@
+const fetch = require('node-fetch');
 const Model = require('think-model');
 const Mongo = require('think-mongo');
-const request = require('request-promise-native');
 
 module.exports = [
   Model(think.app),
@@ -25,8 +25,7 @@ module.exports = [
           return;
         }
 
-        return request({
-          uri: WEBHOOK,
+        return fetch(WEBHOOK, {
           method: 'POST',
           headers: {
             'content-type': 'application/json',
