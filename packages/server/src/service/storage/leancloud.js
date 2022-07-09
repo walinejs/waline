@@ -336,7 +336,14 @@ module.exports = class extends Base {
     const Table = AV.Object.extend(this.tableName);
     const instance = new Table();
 
-    instance.set(data);
+    const REVERSED_KEYS = ['objectId', 'createdAt', 'updatedAt'];
+
+    for (const k in data) {
+      if (REVERSED_KEYS.includes(k)) {
+        continue;
+      }
+      instance.set(k, data[k]);
+    }
 
     const acl = new AV.ACL();
 
