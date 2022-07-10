@@ -96,7 +96,7 @@ module.exports = class extends think.Service {
       method: 'POST',
       headers: form.getHeaders(),
       body: form,
-    }).json();
+    }).then((resp) => resp.json());
   }
 
   async qywxAmWechat({ title, content }, self, parent) {
@@ -151,7 +151,7 @@ module.exports = class extends think.Service {
         },
         body: querystring,
       }
-    ).json();
+    ).then((resp) => resp.json());
 
     return fetch(
       `https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=${access_token}`,
@@ -178,7 +178,7 @@ module.exports = class extends think.Service {
           },
         }),
       }
-    ).json();
+    ).then((resp) => resp.json());
   }
 
   async qq(self, parent) {
@@ -221,7 +221,7 @@ module.exports = class extends think.Service {
       method: 'POST',
       header: form.getHeaders(),
       body: form,
-    });
+    }).then((resp) => resp.json());
   }
 
   async telegram(self, parent) {
@@ -291,7 +291,7 @@ module.exports = class extends think.Service {
       method: 'POST',
       header: form.getHeaders(),
       body: form,
-    }).json();
+    }).then((resp) => resp.json());
   }
 
   async pushplus({ title, content }, self, parent) {
@@ -337,7 +337,7 @@ module.exports = class extends think.Service {
       method: 'POST',
       header: form.getHeaders(),
       body: form,
-    }).json();
+    }).then((resp) => resp.json());
   }
 
   async discord({ title, content }, self, parent) {
@@ -376,7 +376,7 @@ module.exports = class extends think.Service {
       method: 'POST',
       header: form.getHeaders(),
       body: form,
-    }).json();
+    }).then((resp) => resp.json());
   }
 
   async run(comment, parent, disableAuthorNotify = false) {

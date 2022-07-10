@@ -61,7 +61,7 @@ class Github {
         },
       }
     )
-      .json()
+      .then((resp) => resp.json())
       .catch((e) => {
         const isTooLarge = e.message.includes('"too_large"');
 
@@ -91,7 +91,7 @@ class Github {
           'User-Agent': 'Waline',
         },
       }
-    ).json();
+    ).then((resp) => resp.json());
 
     const file = tree.find(({ path }) => path === filename);
 

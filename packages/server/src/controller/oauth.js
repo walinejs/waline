@@ -57,10 +57,10 @@ module.exports = class extends think.Controller {
       headers: {
         'User-Agent': '@waline',
       },
-    }).json();
+    }).then((resp) => resp.json());
 
     if (!user || !user.id) {
-      return this.fail();
+      return this.fail(user);
     }
 
     const userBySocial = await this.modelInstance.select({ [type]: user.id });

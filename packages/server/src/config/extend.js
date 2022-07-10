@@ -31,7 +31,7 @@ module.exports = [
             'content-type': 'application/json',
           },
           body: JSON.stringify({ type, data }),
-        });
+        }).then((resp) => resp.json());
       },
     },
   },
