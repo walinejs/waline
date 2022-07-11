@@ -83,7 +83,7 @@ importers:
       '@vuepress/client': 2.0.0-beta.48
       '@vuepress/plugin-docsearch': 2.0.0-beta.48
       '@vuepress/utils': 2.0.0-beta.48
-      marked: 4.0.17
+      marked: 4.0.18
       vue: 3.2.37
       vuepress: 2.0.0-beta.48
       vuepress-shared: 2.0.0-beta.85
@@ -93,7 +93,7 @@ importers:
       '@vuepress/client': 2.0.0-beta.48
       '@vuepress/plugin-docsearch': 2.0.0-beta.48
       '@vuepress/utils': 2.0.0-beta.48
-      marked: 4.0.17
+      marked: 4.0.18
       vue: 3.2.37
       vuepress: 2.0.0-beta.48_cvdz5rjhltiqfsopd7oft5nvg4
       vuepress-shared: 2.0.0-beta.85
@@ -9546,6 +9546,13 @@ packages:
     resolution: {integrity: sha512-Wfk0ATOK5iPxM4ptrORkFemqroz0ZDxp5MWfYA7H/F+wO17NRWV5Ypxi6p3g2Xmw2bKeiYOl6oVnLHKxBA0VhA==}
     engines: {node: '>= 12'}
     hasBin: true
+    dev: false
+
+  /marked/4.0.18:
+    resolution: {integrity: sha512-wbLDJ7Zh0sqA0Vdg6aqlbT+yPxqLblpAZh1mK2+AO2twQkPywvvqQNfEPVwSSRjZ7dZcdeVBIAgiO7MMp3Dszw==}
+    engines: {node: '>= 12'}
+    hasBin: true
+    dev: true
 
   /mathjax-full/3.2.2:
     resolution: {integrity: sha512-+LfG9Fik+OuI8SLwsiR02IVdjcnRCy5MufYLi0C3TdMT56L/pjB0alMVGgoWJF8pN9Rc7FESycZB9BMNWIid5w==}
