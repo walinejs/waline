@@ -1,6 +1,6 @@
 const FormData = require('form-data');
 const nodemailer = require('nodemailer');
-const fetch = require('node-fetch');
+const { request } = require('undici');
 const nunjucks = require('nunjucks');
 
 module.exports = class extends think.Service {
@@ -92,11 +92,11 @@ module.exports = class extends think.Service {
     form.append('text', title);
     form.append('desp', content);
 
-    return fetch(`https://sctapi.ftqq.com/${SC_KEY}.send`, {
+    return request(`https://sctapi.ftqq.com/${SC_KEY}.send`, {
       method: 'POST',
       headers: form.getHeaders(),
       body: form,
-    }).then((resp) => resp.json());
+    }).then((resp) => resp.body.json());
   }
 
   async qywxAmWechat({ title, content }, self, parent) {
@@ -143,22 +143,22 @@ module.exports = class extends think.Service {
     querystring.set('corpid', `${QYWX_AM_AY[0]}`);
     querystring.set('corpsecret', `${QYWX_AM_AY[1]}`);
 
-    const { access_token } = await fetch(
+    const { access_token } = await request(
       `https://qyapi.weixin.qq.com/cgi-bin/gettoken`,
       {
         headers: {
-          'Content-Type': 'application/json',
+          'content-type': 'application/json',
         },
         body: querystring,
       }
-    ).then((resp) => resp.json());
+    ).then((resp) => resp.body.json());
 
-    return fetch(
+    return request(
       `https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=${access_token}`,
       {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'content-type': 'application/json',
         },
         body: JSON.stringify({
           touser: `${QYWX_AM_AY[2]}`,
@@ -178,7 +178,7 @@ module.exports = class extends think.Service {
           },
         }),
       }
-    ).then((resp) => resp.json());
+    ).then((resp) => resp.body.json());
   }
 
   async qq(self, parent) {
@@ -217,11 +217,11 @@ module.exports = class extends think.Service {
     form.append('msg', nunjucks.renderString(contentQQ, data));
     form.append('qq', QQ_ID);
 
-    return fetch(`https://qmsg.zendee.cn/send/${QMSG_KEY}`, {
+    return request(`https://qmsg.zendee.cn/send/${QMSG_KEY}`, {
       method: 'POST',
       header: form.getHeaders(),
       body: form,
-    }).then((resp) => resp.json());
+    }).then((resp) => resp.body.json());
   }
 
   async telegram(self, parent) {
@@ -287,11 +287,11 @@ module.exports = class extends think.Service {
     form.append('chat_id', TG_CHAT_ID);
     form.append('parse_mode', 'MarkdownV2');
 
-    return fetch(`https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`, {
+    return request(`https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`, {
       method: 'POST',
       header: form.getHeaders(),
       body: form,
-    }).then((resp) => resp.json());
+    }).then((resp) => resp.body.json());
   }
 
   async pushplus({ title, content }, self, parent) {
@@ -333,11 +333,11 @@ module.exports = class extends think.Service {
     form.append('title', title);
     form.append('content', content);
 
-    return fetch(`http://www.pushplus.plus/send/${PUSH_PLUS_KEY}`, {
+    return request(`http://www.pushplus.plus/send/${PUSH_PLUS_KEY}`, {
       method: 'POST',
       header: form.getHeaders(),
       body: form,
-    }).then((resp) => resp.json());
+    }).then((resp) => resp.body.json());
   }
 
   async discord({ title, content }, self, parent) {
@@ -372,11 +372,11 @@ module.exports = class extends think.Service {
 
     form.append('content', `${title}\n${content}`);
 
-    return fetch(DISCORD_WEBHOOK, {
+    return request(DISCORD_WEBHOOK, {
       method: 'POST',
       header: form.getHeaders(),
       body: form,
-    }).then((resp) => resp.json());
+    }).then((resp) => resp.body.json());
   }
 
   async run(comment, parent, disableAuthorNotify = false) {

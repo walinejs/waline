@@ -1,5 +1,5 @@
 const { parseString, writeToString } = require('fast-csv');
-const fetch = require('node-fetch');
+const { request } = require('undici');
 const path = require('path');
 const Base = require('./base');
 
@@ -50,18 +50,18 @@ class Github {
 
   // content api can only get file < 1MB
   async get(filename) {
-    const resp = await fetch(
+    const resp = await request(
       'https://api.github.com/repos/' +
         path.join(this.repo, 'contents', filename),
       {
         headers: {
-          Accept: 'application/vnd.github.v3+json',
-          Authorization: 'token ' + this.token,
-          'User-Agent': 'Waline',
+          accept: 'application/vnd.github.v3+json',
+          authorization: 'token ' + this.token,
+          'user-agent': 'Waline',
         },
       }
     )
-      .then((resp) => resp.json())
+      .then((resp) => resp.body.json())
       .catch((e) => {
         const isTooLarge = e.message.includes('"too_large"');
 
@@ -80,18 +80,18 @@ class Github {
 
   // blob api can get file larger than 1MB
   async getLargeFile(filename) {
-    const { tree } = await fetch(
+    const { tree } = await request(
       'https://api.github.com/repos/' +
         path.join(this.repo, 'git/trees/HEAD') +
         '?recursive=1',
       {
         headers: {
-          Accept: 'application/vnd.github.v3+json',
-          Authorization: 'token ' + this.token,
-          'User-Agent': 'Waline',
+          accept: 'application/vnd.github.v3+json',
+          authorization: 'token ' + this.token,
+          'user-agent': 'Waline',
         },
       }
-    ).then((resp) => resp.json());
+    ).then((resp) => resp.body.json());
 
     const file = tree.find(({ path }) => path === filename);
 
@@ -102,25 +102,25 @@ class Github {
       throw error;
     }
 
-    return fetch(file.url, {
+    return request(file.url, {
       headers: {
-        Accept: 'application/vnd.github.v3+json',
-        Authorization: 'token ' + this.token,
-        'User-Agent': 'Waline',
+        accept: 'application/vnd.github.v3+json',
+        authorization: 'token ' + this.token,
+        'user-agent': 'Waline',
       },
-    }).json();
+    }).then((resp) => resp.body.json());
   }
 
   async set(filename, content, { sha }) {
-    return fetch(
+    return request(
       'https://api.github.com/repos/' +
         path.join(this.repo, 'contents', filename),
       {
         method: 'PUT',
         headers: {
-          Accept: 'application/vnd.github.v3+json',
-          Authorization: 'token ' + this.token,
-          'User-Agent': 'Waline',
+          accept: 'application/vnd.github.v3+json',
+          authorization: 'token ' + this.token,
+          'user-agent': 'Waline',
         },
         body: JSON.stringify({
           sha,
