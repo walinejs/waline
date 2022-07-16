@@ -1,4 +1,4 @@
-const { request } = require('undici');
+const { fetch } = require('undici');
 const Model = require('think-model');
 const Mongo = require('think-mongo');
 
@@ -25,13 +25,13 @@ module.exports = [
           return;
         }
 
-        return request(WEBHOOK, {
+        return fetch(WEBHOOK, {
           method: 'POST',
           headers: {
             'content-type': 'application/json',
           },
           body: JSON.stringify({ type, data }),
-        }).then((resp) => resp.body.json());
+        }).then((resp) => resp.json());
       },
     },
   },

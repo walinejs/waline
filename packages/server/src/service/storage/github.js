@@ -1,5 +1,5 @@
 const { parseString, writeToString } = require('fast-csv');
-const { request } = require('undici');
+const { fetch } = require('undici');
 const path = require('path');
 const Base = require('./base');
 
@@ -50,7 +50,7 @@ class Github {
 
   // content api can only get file < 1MB
   async get(filename) {
-    const resp = await request(
+    const resp = await fetch(
       'https://api.github.com/repos/' +
         path.join(this.repo, 'contents', filename),
       {
@@ -61,7 +61,7 @@ class Github {
         },
       }
     )
-      .then((resp) => resp.body.json())
+      .then((resp) => resp.json())
       .catch((e) => {
         const isTooLarge = e.message.includes('"too_large"');
 
@@ -80,7 +80,7 @@ class Github {
 
   // blob api can get file larger than 1MB
   async getLargeFile(filename) {
-    const { tree } = await request(
+    const { tree } = await fetch(
       'https://api.github.com/repos/' +
         path.join(this.repo, 'git/trees/HEAD') +
         '?recursive=1',
@@ -91,7 +91,7 @@ class Github {
           'user-agent': 'Waline',
         },
       }
-    ).then((resp) => resp.body.json());
+    ).then((resp) => resp.json());
 
     const file = tree.find(({ path }) => path === filename);
 
@@ -102,17 +102,17 @@ class Github {
       throw error;
     }
 
-    return request(file.url, {
+    return fetch(file.url, {
       headers: {
         accept: 'application/vnd.github.v3+json',
         authorization: 'token ' + this.token,
         'user-agent': 'Waline',
       },
-    }).then((resp) => resp.body.json());
+    }).then((resp) => resp.json());
   }
 
   async set(filename, content, { sha }) {
-    return request(
+    return fetch(
       'https://api.github.com/repos/' +
         path.join(this.repo, 'contents', filename),
       {
