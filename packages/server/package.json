@@ -19,7 +19,7 @@
     "@koa/cors": "3.3.0",
     "akismet": "2.0.7",
     "deta": "1.1.0",
-    "dompurify": "2.3.8",
+    "dompurify": "2.3.10",
     "dy-node-ip2region": "1.0.1",
     "fast-csv": "4.3.6",
     "form-data": "4.0.0",

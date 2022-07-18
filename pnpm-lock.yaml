@@ -234,7 +234,7 @@ importers:
       '@koa/cors': 3.3.0
       akismet: 2.0.7
       deta: 1.1.0
-      dompurify: 2.3.8
+      dompurify: 2.3.10
       dy-node-ip2region: 1.0.1
       fast-csv: 4.3.6
       form-data: 4.0.0
@@ -268,7 +268,7 @@ importers:
       '@koa/cors': 3.3.0
       akismet: 2.0.7
       deta: 1.1.0
-      dompurify: 2.3.8
+      dompurify: 2.3.10
       dy-node-ip2region: 1.0.1
       fast-csv: 4.3.6
       form-data: 4.0.0
@@ -6171,8 +6171,13 @@ packages:
     dependencies:
       domelementtype: 2.3.0
 
+  /dompurify/2.3.10:
+    resolution: {integrity: sha512-o7Fg/AgC7p/XpKjf/+RC3Ok6k4St5F7Q6q6+Nnm3p2zGWioAY6dh0CbbuwOhH2UcSzKsdniE/YnE2/92JcsA+g==}
+    dev: false
+
   /dompurify/2.3.8:
     resolution: {integrity: sha512-eVhaWoVibIzqdGYjwsBWodIQIaXFSB+cKDf4cfxLMsK0xiud6SE+/WCVx/Xw/UwQsa4cS3T2eITcdtmTg2UKcw==}
+    dev: true
 
   /domutils/2.8.0:
     resolution: {integrity: sha512-w96Cjofp72M5IIhpjgobBimYEfoPjx1Vx0BSX9P30WBdZW2WIKU0T1Bd0kz2eNZ9ikjKgHbEyKx8BB6H1L3h3A==}
