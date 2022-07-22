@@ -1,6 +1,6 @@
 const FormData = require('form-data');
 const nodemailer = require('nodemailer');
-const fetch = require('node-fetch');
+const { fetch } = require('undici');
 const nunjucks = require('nunjucks');
 
 module.exports = class extends think.Service {
@@ -147,7 +147,7 @@ module.exports = class extends think.Service {
       `https://qyapi.weixin.qq.com/cgi-bin/gettoken`,
       {
         headers: {
-          'Content-Type': 'application/json',
+          'content-type': 'application/json',
         },
         body: querystring,
       }
@@ -158,7 +158,7 @@ module.exports = class extends think.Service {
       {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'content-type': 'application/json',
         },
         body: JSON.stringify({
           touser: `${QYWX_AM_AY[2]}`,

@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+const { fetch } = require('undici');
 const Model = require('think-model');
 const Mongo = require('think-mongo');
 

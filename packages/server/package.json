@@ -32,7 +32,6 @@
     "markdown-it-sub": "1.0.0",
     "markdown-it-sup": "1.0.0",
     "mathjax-full": "3.2.2",
-    "node-fetch": "2.6.7",
     "nodemailer": "6.7.7",
     "nunjucks": "3.2.3",
     "phpass": "0.1.1",
@@ -47,7 +46,8 @@
     "think-mongo": "2.2.1",
     "think-router-rest": "1.0.5",
     "thinkjs": "3.2.14",
-    "ua-parser-js": "1.0.2"
+    "ua-parser-js": "1.0.2",
+    "undici": "^5.7.0"
   },
   "engines": {
     "node": ">=14"

@@ -1,5 +1,5 @@
 const { parseString, writeToString } = require('fast-csv');
-const fetch = require('node-fetch');
+const { fetch } = require('undici');
 const path = require('path');
 const Base = require('./base');
 
@@ -55,9 +55,9 @@ class Github {
         path.join(this.repo, 'contents', filename),
       {
         headers: {
-          Accept: 'application/vnd.github.v3+json',
-          Authorization: 'token ' + this.token,
-          'User-Agent': 'Waline',
+          accept: 'application/vnd.github.v3+json',
+          authorization: 'token ' + this.token,
+          'user-agent': 'Waline',
         },
       }
     )
@@ -86,9 +86,9 @@ class Github {
         '?recursive=1',
       {
         headers: {
-          Accept: 'application/vnd.github.v3+json',
-          Authorization: 'token ' + this.token,
-          'User-Agent': 'Waline',
+          accept: 'application/vnd.github.v3+json',
+          authorization: 'token ' + this.token,
+          'user-agent': 'Waline',
         },
       }
     ).then((resp) => resp.json());
@@ -104,11 +104,11 @@ class Github {
 
     return fetch(file.url, {
       headers: {
-        Accept: 'application/vnd.github.v3+json',
-        Authorization: 'token ' + this.token,
-        'User-Agent': 'Waline',
+        accept: 'application/vnd.github.v3+json',
+        authorization: 'token ' + this.token,
+        'user-agent': 'Waline',
       },
-    }).json();
+    }).then((resp) => resp.json());
   }
 
   async set(filename, content, { sha }) {
@@ -118,9 +118,9 @@ class Github {
       {
         method: 'PUT',
         headers: {
-          Accept: 'application/vnd.github.v3+json',
-          Authorization: 'token ' + this.token,
-          'User-Agent': 'Waline',
+          accept: 'application/vnd.github.v3+json',
+          authorization: 'token ' + this.token,
+          'user-agent': 'Waline',
         },
         body: JSON.stringify({
           sha,

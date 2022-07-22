@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const fetch = require('node-fetch');
+const { fetch } = require('undici');
 const { PasswordHash } = require('phpass');
 const qs = require('querystring');
 
@@ -55,7 +55,7 @@ module.exports = class extends think.Controller {
     const user = await fetch(`${oauthUrl}/${type}?${qs.stringify(params)}`, {
       method: 'GET',
       headers: {
-        'User-Agent': '@waline',
+        'user-agent': '@waline',
       },
     }).then((resp) => resp.json());
 
