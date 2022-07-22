@@ -47,7 +47,7 @@
     "think-router-rest": "1.0.5",
     "thinkjs": "3.2.14",
     "ua-parser-js": "1.0.2",
-    "undici": "^5.8.0"
+    "undici": "5.8.0"
   },
   "engines": {
     "node": ">=14"
