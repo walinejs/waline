@@ -41,4 +41,5 @@ export default generateLocale([
   'Maiar',
   'GIF',
   'Search GIF',
+  'Profile',
 ]);

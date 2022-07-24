@@ -6,12 +6,21 @@
           <CloseIcon :size="14" />
         </button>
 
-        <img :src="userInfo.avatar" alt="avatar" />
+        <a
+          href="#"
+          class="wl-login-nick"
+          aria-label="Profile"
+          :title="locale.profile"
+          @click="onProfile"
+        >
+          <img :src="userInfo.avatar" alt="avatar" />
+        </a>
       </div>
       <a
         href="#"
         class="wl-login-nick"
         aria-label="Profile"
+        :title="locale.profile"
         @click="onProfile"
         v-text="userInfo.display_name"
       />

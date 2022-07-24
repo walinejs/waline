@@ -41,4 +41,5 @@ export default generateLocale([
   'Maiar',
   'GIF',
   'Tìm kiếm GIF',
+  'thông tin cá nhân',
 ]);

@@ -41,4 +41,5 @@ export default generateLocale([
   'Maiar',
   'GIF',
   'Pesquisar GIF',
+  'informação pessoal',
 ]);

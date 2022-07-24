@@ -38,4 +38,5 @@ export interface WalineLocale extends WalineDateLocale, WalineLevelLocale {
   anonymous: string;
   gif: string;
   gifSearchPlaceholder: string;
+  profile: string;
 }

@@ -41,4 +41,5 @@ export default generateLocale([
   '传说',
   '表情包',
   '搜索表情包',
+  '个人资料',
 ]);
