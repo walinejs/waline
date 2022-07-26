@@ -80,7 +80,7 @@
     ]
   },
   "dependencies": {
-    "@vueuse/core": "^8.9.4",
+    "@vueuse/core": "^9.0.0",
     "autosize": "^5.0.1",
     "marked": "^4.0.18",
     "vue": "^3.2.37"
