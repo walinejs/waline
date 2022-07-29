@@ -79,7 +79,7 @@ importers:
 
   docs:
     specifiers:
-      '@fancyapps/ui': 4.0.29
+      '@fancyapps/ui': 4.0.31
       '@vuepress/client': 2.0.0-beta.49
       '@vuepress/plugin-docsearch': 2.0.0-beta.49
       '@vuepress/utils': 2.0.0-beta.49
@@ -89,7 +89,7 @@ importers:
       vuepress-shared: 2.0.0-beta.87
       vuepress-theme-hope: 2.0.0-beta.87
     devDependencies:
-      '@fancyapps/ui': 4.0.29
+      '@fancyapps/ui': 4.0.31
       '@vuepress/client': 2.0.0-beta.49
       '@vuepress/plugin-docsearch': 2.0.0-beta.49
       '@vuepress/utils': 2.0.0-beta.49
@@ -2036,8 +2036,8 @@ packages:
       - supports-color
     dev: true
 
-  /@fancyapps/ui/4.0.29:
-    resolution: {integrity: sha512-29SnYP3QB5eW3hnnKqi5uFsGUkXIkw9MX/Vuz+bDGz/2C16C/br3YX6C0Y1S2i27R1H3HPT/suOx9HGOj65Fjw==}
+  /@fancyapps/ui/4.0.31:
+    resolution: {integrity: sha512-D7+PMIloxSOFJyY+lXcNlVDhmssOmDT6PT5fqQUIiws2hT7PH29r0EKZxERmACSQpm6qrFkP7rSguzXWvRJduQ==}
     dev: true
 
   /@fast-csv/format/4.3.5:
