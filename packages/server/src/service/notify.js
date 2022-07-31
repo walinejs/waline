@@ -1,6 +1,6 @@
 const FormData = require('form-data');
 const nodemailer = require('nodemailer');
-const { fetch } = require('undici');
+const fetch = require('node-fetch');
 const nunjucks = require('nunjucks');
 
 module.exports = class extends think.Service {

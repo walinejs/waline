@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const { fetch } = require('undici');
+const fetch = require('node-fetch');
 const { PasswordHash } = require('phpass');
 const qs = require('querystring');
 

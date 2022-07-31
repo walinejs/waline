@@ -1,5 +1,5 @@
 const { parseString, writeToString } = require('fast-csv');
-const { fetch } = require('undici');
+const fetch = require('node-fetch');
 const path = require('path');
 const Base = require('./base');
 
