@@ -478,6 +478,18 @@ module.exports = class extends BaseRest {
 
       think.logger.debug(`Comment IP ${data.ip} check OK!`);
 
+      /* check required metadata in environment variable */
+      const { REQUIRED_META = 'comment' } = process.env
+      var metap = REQUIRED_META.replaceAll(' ', '').split(',')
+      
+      for(var a = 0, len = metap.length; a < len; a++){
+        if(data[metap[a]] == null || data[metap[a]].length == 0){
+          think.logger.debug(`Lost Metadata ${metap[a]}`)
+          return this.fail(`Metadata ${metap[a]} Required`)
+        }
+      }
+      think.logger.debug(`Comment Metadata check OK!`)
+      
       /** Duplicate content detect */
       const duplicate = await this.modelInstance.select({
         url,
