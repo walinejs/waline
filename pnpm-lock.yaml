@@ -249,7 +249,7 @@ importers:
       markdown-it-sub: 1.0.0
       markdown-it-sup: 1.0.0
       mathjax-full: 3.2.2
-      node-fetch: 2.6.1
+      node-fetch: 2.6.7
       nodemailer: 6.7.7
       nunjucks: 3.2.3
       phpass: 0.1.1
@@ -283,7 +283,7 @@ importers:
       markdown-it-sub: 1.0.0
       markdown-it-sup: 1.0.0
       mathjax-full: 3.2.2
-      node-fetch: 2.6.1
+      node-fetch: 2.6.7
       nodemailer: 6.7.7
       nunjucks: 3.2.3
       phpass: 0.1.1
@@ -11058,11 +11058,6 @@ packages:
     dependencies:
       lower-case: 2.0.2
       tslib: 2.4.0
-
-  /node-fetch/2.6.1:
-    resolution: {integrity: sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==}
-    engines: {node: 4.x || >=6.0.0}
-    dev: false
 
   /node-fetch/2.6.7:
     resolution: {integrity: sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ==}
