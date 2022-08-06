@@ -6,8 +6,10 @@ const readFileAsync = util.promisify(fs.readFile);
 
 function formatID(data, idGenerator) {
   const objectIdMap = {};
+
   for (let i = 0; i < data.length; i++) {
     const { objectId } = data[i];
+
     objectIdMap[objectId] = idGenerator(data[i], i, data);
   }
 
@@ -42,6 +44,7 @@ module.exports = class extends BaseRest {
       const model = this.service(`storage/${storage}`, tableName);
 
       const data = await model.select({});
+
       exportData.data[tableName] = data;
     }
 
@@ -68,8 +71,10 @@ module.exports = class extends BaseRest {
 
         idMaps[tableName] = new Map();
         let data = importData.data[tableName];
+
         if (['postgresql', 'mysql', 'sqlite'].includes(storage)) {
           let i = 0;
+
           data = formatID(data, () => (i = i + 1));
         } else if (storage === 'leancloud') {
           data
@@ -131,6 +136,7 @@ module.exports = class extends BaseRest {
         return this.success();
       }
       console.log(e);
+
       return this.fail(e.message);
     }
   }
