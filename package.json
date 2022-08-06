@@ -39,12 +39,12 @@
     "singleQuote": true
   },
   "devDependencies": {
-    "@babel/core": "7.18.9",
+    "@babel/core": "7.18.10",
     "@babel/eslint-parser": "7.18.9",
     "@commitlint/cli": "17.0.3",
     "@commitlint/config-conventional": "17.0.3",
-    "@typescript-eslint/eslint-plugin": "5.31.0",
-    "@typescript-eslint/parser": "5.31.0",
+    "@typescript-eslint/eslint-plugin": "5.32.0",
+    "@typescript-eslint/parser": "5.32.0",
     "@vue/eslint-config-prettier": "7.0.0",
     "@vue/eslint-config-typescript": "11.0.0",
     "apidoc": "0.52.0",
@@ -53,7 +53,7 @@
     "conventional-changelog-cli": "2.2.2",
     "cross-env": "7.0.3",
     "cz-conventional-changelog": "3.3.0",
-    "eslint": "8.20.0",
+    "eslint": "8.21.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-prettier": "4.2.1",
     "eslint-plugin-react": "7.30.1",
@@ -62,7 +62,7 @@
     "lint-staged": "13.0.3",
     "postcss": "8.4.14",
     "prettier": "2.7.1",
-    "sass": "1.54.0",
+    "sass": "1.54.3",
     "sort-package-json": "1.57.0",
     "stylelint": "14.9.1",
     "stylelint-config-prettier": "9.0.3",
@@ -70,9 +70,9 @@
     "stylelint-config-standard-scss": "5.0.0",
     "stylelint-order": "5.0.0",
     "typescript": "4.7.4",
-    "vercel": "27.3.3",
+    "vercel": "27.3.7",
     "vite": "3.0.4",
-    "vitest": "0.19.1"
+    "vitest": "0.21.0"
   },
   "packageManager": "pnpm@7.8.0",
   "apidoc": {
