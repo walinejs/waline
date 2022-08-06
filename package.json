@@ -71,7 +71,7 @@
     "stylelint-order": "5.0.0",
     "typescript": "4.7.4",
     "vercel": "27.3.7",
-    "vite": "3.0.4",
+    "vite": "2.9.14",
     "vitest": "0.21.0"
   },
   "packageManager": "pnpm@7.8.0",

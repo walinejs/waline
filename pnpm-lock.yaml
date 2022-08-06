@@ -39,7 +39,7 @@ importers:
       stylelint-order: 5.0.0
       typescript: 4.7.4
       vercel: 27.3.7
-      vite: 3.0.4
+      vite: 2.9.14
       vitest: 0.21.0
     devDependencies:
       '@babel/core': 7.18.10
@@ -74,7 +74,7 @@ importers:
       stylelint-order: 5.0.0_stylelint@14.9.1
       typescript: 4.7.4
       vercel: 27.3.7
-      vite: 3.0.4_sass@1.54.3
+      vite: 2.9.14_sass@1.54.3
       vitest: 0.21.0_c8@7.12.0+sass@1.54.3
 
   docs:
@@ -84,7 +84,6 @@ importers:
       '@vuepress/plugin-docsearch': 2.0.0-beta.49
       '@vuepress/utils': 2.0.0-beta.49
       marked: 4.0.18
-      vite: 2.9.14
       vue: 3.2.37
       vuepress: 2.0.0-beta.49
       vuepress-shared: 2.0.0-beta.87
@@ -95,7 +94,6 @@ importers:
       '@vuepress/plugin-docsearch': 2.0.0-beta.49
       '@vuepress/utils': 2.0.0-beta.49
       marked: 4.0.18
-      vite: 2.9.14
       vue: 3.2.37
       vuepress: 2.0.0-beta.49_2swkti5cn42xfigpmsn6ifcgpu
       vuepress-shared: 2.0.0-beta.87
@@ -14643,6 +14641,31 @@ packages:
       postcss: 8.4.14
       resolve: 1.22.1
       rollup: 2.77.2
+    optionalDependencies:
+      fsevents: 2.3.2
+    dev: true
+
+  /vite/2.9.14_sass@1.54.3:
+    resolution: {integrity: sha512-P/UCjSpSMcE54r4mPak55hWAZPlyfS369svib/gpmz8/01L822lMPOJ/RYW6tLCe1RPvMvOsJ17erf55bKp4Hw==}
+    engines: {node: '>=12.2.0'}
+    hasBin: true
+    peerDependencies:
+      less: '*'
+      sass: '*'
+      stylus: '*'
+    peerDependenciesMeta:
+      less:
+        optional: true
+      sass:
+        optional: true
+      stylus:
+        optional: true
+    dependencies:
+      esbuild: 0.14.53
+      postcss: 8.4.14
+      resolve: 1.22.1
+      rollup: 2.77.2
+      sass: 1.54.3
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
