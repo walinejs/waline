@@ -42,4 +42,8 @@ export default generateLocale([
   'GIF',
   '探す GIF',
   '個人情報',
+  '承認済み',
+  '待っている',
+  'スパム',
+  'べたつかない',
 ]);

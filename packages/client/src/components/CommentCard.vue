@@ -75,7 +75,7 @@
             :class="`wl-btn wl-${status}`"
             :disabled="comment.status === status"
             @click="$emit('status', { status, comment })"
-            v-text="status"
+            v-text="locale[status]"
           />
         </span>
 
@@ -84,7 +84,7 @@
           class="wl-btn wl-sticky"
           @click="$emit('sticky', comment)"
         >
-          {{ comment.sticky ? 'unsticky' : 'sticky' }}
+          {{ comment.sticky ? locale.unsticky : locale.sticky }}
         </button>
       </div>
 

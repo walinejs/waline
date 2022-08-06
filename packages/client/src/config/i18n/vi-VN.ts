@@ -42,4 +42,8 @@ export default generateLocale([
   'GIF',
   'Tìm kiếm GIF',
   'thông tin cá nhân',
+  'Đã được phê duyệt',
+  'Đang chờ đợi',
+  'Thư rác',
+  'Không dính',
 ]);
