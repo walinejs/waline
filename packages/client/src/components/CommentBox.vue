@@ -411,6 +411,12 @@ export default defineComponent({
             uploadText,
             `\r\n![${file.name}](${url})`
           );
+        }).catch(e => {
+          alert(e.message);
+          editor.value = editor.value.replace(
+            uploadText,
+            ''
+          );
         });
     };
 
