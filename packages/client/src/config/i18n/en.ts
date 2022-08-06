@@ -42,4 +42,8 @@ export default generateLocale([
   'GIF',
   'Search GIF',
   'Profile',
+  'Approved',
+  'Waiting',
+  'Spam',
+  'Unsticky',
 ]);

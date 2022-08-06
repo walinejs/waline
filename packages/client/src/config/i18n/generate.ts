@@ -42,6 +42,10 @@ const localeKeys = [
   'gif',
   'gifSearchPlaceholder',
   'profile',
+  'approved',
+  'waiting',
+  'spam',
+  'unsticky',
 ];
 
 export const generateLocale = (locale: string[]): WalineLocale =>
