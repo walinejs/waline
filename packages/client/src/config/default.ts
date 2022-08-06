@@ -10,7 +10,7 @@ export const defaultLang = 'zh-CN';
 export const defaultUploadImage = (file: File): Promise<string> =>
   new Promise((resolve, reject) => {
     if (file.size > 128 * 1000) {
-      reject(new Error('File too large! File size limit 128KB'));
+      return reject(new Error('File too large! File size limit 128KB'));
     }
 
     const reader = new FileReader();
