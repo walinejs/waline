@@ -89,6 +89,7 @@ import type {
   WalineHighlighter,
   WalineTexRenderer,
   WalineImageUploader,
+  WalineSearchOptions,
   WalineLocale,
   WalineProps,
   WalineMeta,
@@ -112,6 +113,7 @@ const props = [
   'highlighter',
   'texRenderer',
   'imageUploader',
+  'search',
   'copyright',
 ];
 
@@ -194,6 +196,11 @@ const propsWithValidate = {
 
   texRenderer: {
     type: [Function, Boolean] as PropType<WalineTexRenderer | false>,
+    default: undefined,
+  },
+
+  search: {
+    type: [Object, Boolean] as PropType<WalineSearchOptions | false>,
     default: undefined,
   },
 
