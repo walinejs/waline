@@ -67,7 +67,7 @@ MONGO_OPT_SSL=true
 
 ## PostgreSQL
 
-[elephantSQL](https://www.elephantsql.com/) 提供了 20M 的免费空间，对于评论服务来说绰绰有余了。如果想要使用 PostgreSQL 的也可以使用它搭建 Waline。
+[Supabase](https://supabase.com) 提供了 512M 的数据库支持，而[elephantSQL](https://www.elephantsql.com/) 则提供了 20M 的免费空间，对于评论服务来说绰绰有余了。如果想要使用 PostgreSQL 的也可以使用它搭建 Waline。
 
 同 MySQL，使用 PostgreSQL 也需要先导入 [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) 创建好表和表结构。之后在项目中配置如下环境变量。
 
