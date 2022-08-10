@@ -70,7 +70,7 @@
     "stylelint-config-standard-scss": "5.0.0",
     "stylelint-order": "5.0.0",
     "typescript": "4.7.4",
-    "vercel": "27.3.7",
+    "vercel": "27.4.0",
     "vite": "2.9.14",
     "vitest": "0.21.0"
   },
