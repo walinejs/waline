@@ -30,7 +30,7 @@ importers:
       lint-staged: 13.0.3
       postcss: 8.4.14
       prettier: 2.7.1
-      sass: 1.54.3
+      sass: 1.54.4
       sort-package-json: 1.57.0
       stylelint: 14.9.1
       stylelint-config-prettier: 9.0.3
@@ -65,7 +65,7 @@ importers:
       lint-staged: 13.0.3
       postcss: 8.4.14
       prettier: 2.7.1
-      sass: 1.54.3
+      sass: 1.54.4
       sort-package-json: 1.57.0
       stylelint: 14.9.1
       stylelint-config-prettier: 9.0.3_stylelint@14.9.1
@@ -74,8 +74,8 @@ importers:
       stylelint-order: 5.0.0_stylelint@14.9.1
       typescript: 4.7.4
       vercel: 27.3.7
-      vite: 2.9.14_sass@1.54.3
-      vitest: 0.21.0_c8@7.12.0+sass@1.54.3
+      vite: 2.9.14_sass@1.54.4
+      vitest: 0.21.0_c8@7.12.0+sass@1.54.4
 
   docs:
     specifiers:
@@ -12727,8 +12727,8 @@ packages:
       source-map-js: 1.0.2
     dev: true
 
-  /sass/1.54.3:
-    resolution: {integrity: sha512-fLodey5Qd41Pxp/Tk7Al97sViYwF/TazRc5t6E65O7JOk4XF8pzwIW7CvCxYVOfJFFI/1x5+elDyBIixrp+zrw==}
+  /sass/1.54.4:
+    resolution: {integrity: sha512-3tmF16yvnBwtlPrNBHw/H907j8MlOX8aTBnlNX1yrKx24RKcJGPyLhFUwkoKBKesR3unP93/2z14Ll8NicwQUA==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     dependencies:
@@ -14645,7 +14645,7 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vite/2.9.14_sass@1.54.3:
+  /vite/2.9.14_sass@1.54.4:
     resolution: {integrity: sha512-P/UCjSpSMcE54r4mPak55hWAZPlyfS369svib/gpmz8/01L822lMPOJ/RYW6tLCe1RPvMvOsJ17erf55bKp4Hw==}
     engines: {node: '>=12.2.0'}
     hasBin: true
@@ -14665,7 +14665,7 @@ packages:
       postcss: 8.4.14
       resolve: 1.22.1
       rollup: 2.77.2
-      sass: 1.54.3
+      sass: 1.54.4
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
@@ -14697,7 +14697,7 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vite/3.0.4_sass@1.54.3:
+  /vite/3.0.4_sass@1.54.4:
     resolution: {integrity: sha512-NU304nqnBeOx2MkQnskBQxVsa0pRAH5FphokTGmyy8M3oxbvw7qAXts2GORxs+h/2vKsD+osMhZ7An6yK6F1dA==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -14720,12 +14720,12 @@ packages:
       postcss: 8.4.14
       resolve: 1.22.1
       rollup: 2.77.2
-      sass: 1.54.3
+      sass: 1.54.4
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
 
-  /vitest/0.21.0_c8@7.12.0+sass@1.54.3:
+  /vitest/0.21.0_c8@7.12.0+sass@1.54.4:
     resolution: {integrity: sha512-+BQB2swk4wQdw5loOoL8esIYh/1ifAliuwj2HWHNE2F8SAl/jF7/aoCJBoXGSf/Ws19k3pH4NrWeVtcSwM0j2w==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
@@ -14759,7 +14759,7 @@ packages:
       local-pkg: 0.4.2
       tinypool: 0.2.4
       tinyspy: 1.0.0
-      vite: 3.0.4_sass@1.54.3
+      vite: 3.0.4_sass@1.54.4
     transitivePeerDependencies:
       - less
       - sass
