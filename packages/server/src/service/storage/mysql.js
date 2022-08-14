@@ -78,6 +78,11 @@ module.exports = class extends Base {
       data.id = data.objectId;
       delete data.objectId;
     }
+    const date = new Date();
+    if (!data.createdAt)
+      data.createdAt = date;
+    if (!data.updatedAt)
+      data.updatedAt = date;
 
     const instance = this.model(this.tableName);
     const id = await instance.add(data);
