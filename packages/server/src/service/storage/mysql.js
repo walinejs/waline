@@ -9,7 +9,7 @@ module.exports = class extends Base {
     }
 
     for (const k in filter) {
-      if (k === 'objectId') {
+      if (k === 'objectId' || k === 'objectid') {
         where.id = filter[k];
         continue;
       }
