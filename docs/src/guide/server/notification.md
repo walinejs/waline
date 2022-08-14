@@ -133,6 +133,10 @@ Waline 支持为每个平台分别配置您自定义的通知模板，从而实�
   | link            | 评论者网址   |
   | url             | 文章地址     |
   | comment         | 评论内容     |
+  | browser         | 浏览器       |
+  | os              | 操作系统     |
+  | addr            | 归属地       |
+  | avatar          | 头像地址     |
   | _commentLink_\* | 评论中的链接 |
 
   \*: commentLink 仅在 Telegram 通知中提供，会自动封装成 Markdown 的格式
@@ -144,7 +148,10 @@ Waline 支持为每个平台分别配置您自定义的通知模板，从而实�
   | nick    | 评论者名   |
   | mail    | 评论者邮箱 |
   | link    | 评论者网址 |
-  | type    | 评论者类型 |
+  | browser | 浏览器     |
+  | os      | 操作系统   |
+  | addr    | 归属地     |
+  | avatar  | 头像地址   |
   | comment | 评论内容   |
 
 - site: 网站配置

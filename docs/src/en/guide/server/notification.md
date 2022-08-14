@@ -109,6 +109,9 @@ The template passes parameters through `self`, `parent` and `site` objects, whic
   | link            | Commenter's website  |
   | url             | Article address      |
   | comment         | Comment cotent       |
+  | browser         | Browser name         |
+  | os              | Operate system name  |
+  | avatar          | avatar               |
   | _commentLink_\* | Links in comments    |
 
   \*: commentLink is only provided in Telegram notifications and will be automatically encapsulated in Markdown format.
@@ -120,7 +123,9 @@ The template passes parameters through `self`, `parent` and `site` objects, whic
   | nick     | Commenter's nickname |
   | mail     | Commenter's email    |
   | link     | Commenter's website  |
-  | type     | Commenter's type     |
+  | browser  | Browser name         |
+  | os       | Operate system name  |
+  | avatar   | avatar               |
   | comment  | Comment content      |
 
 - `site`: Website configuration

@@ -567,10 +567,17 @@ module.exports = class extends BaseRest {
     think.logger.debug(`Comment have been added to storage.`);
 
     let parentComment;
+    let parentUser;
 
     if (pid) {
       parentComment = await this.modelInstance.select({ objectId: pid });
       parentComment = parentComment[0];
+      if (parentComment.user_id) {
+        parentUser = await this.model('User').select({
+          objectId: parentComment.user_id,
+        });
+        parentUser = parentUser[0];
+      }
     }
 
     await this.ctx.webhook('new_comment', {
@@ -578,14 +585,27 @@ module.exports = class extends BaseRest {
       reply: parentComment,
     });
 
+    const cmtReturn = await formatCmt(
+      resp,
+      [userInfo],
+      this.config(),
+      userInfo
+    );
+    const parentReturn = parentComment
+      ? await formatCmt(
+          parentComment,
+          parentUser ? [parentUser] : [],
+          this.config(),
+          userInfo
+        )
+      : undefined;
+
     if (comment.status !== 'spam') {
       const notify = this.service('notify');
 
       await notify.run(
-        { ...resp, comment: markdownParser(resp.comment), rawComment: comment },
-        parentComment
-          ? { ...parentComment, comment: markdownParser(parentComment.comment) }
-          : undefined
+        { ...cmtReturn, mail: resp.mail, rawComment: comment },
+        parentReturn ? { ...parentReturn, mail: parentComment.mail } : undefined
       );
     }
 
@@ -642,17 +662,47 @@ module.exports = class extends BaseRest {
       data.status === 'approved' &&
       oldData.pid
     ) {
+      let cmtUser;
+
+      if (newData.user_id) {
+        cmtUser = await this.model('User').select({
+          objectId: newData.user_id,
+        });
+        cmtUser = cmtUser[0];
+      }
+
       let pComment = await this.modelInstance.select({
         objectId: oldData.pid,
       });
 
       pComment = pComment[0];
 
+      let pUser;
+
+      if (pComment.user_id) {
+        pUser = await this.model('User').select({
+          objectId: pComment.user_id,
+        });
+        pUser = pUser[0];
+      }
+
       const notify = this.service('notify');
+      const cmtReturn = await formatCmt(
+        newData,
+        cmtUser ? [cmtUser] : [],
+        this.config(),
+        userInfo
+      );
+      const pcmtReturn = await formatCmt(
+        pComment,
+        pUser ? [pUser] : [],
+        this.config(),
+        userInfo
+      );
 
       await notify.run(
-        { ...newData, comment: markdownParser(newData.comment) },
-        { ...pComment, comment: markdownParser(pComment.comment) },
+        { ...cmtReturn, mail: newData.mail },
+        { ...pcmtReturn, mail: pComment.mail },
         true
       );
     }
