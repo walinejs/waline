@@ -573,7 +573,10 @@ module.exports = class extends BaseRest {
       parentComment = await this.modelInstance.select({ objectId: pid });
       parentComment = parentComment[0];
       if (parentComment.user_id) {
-        parentUser = await this.model('User').select({
+        parentUser = await this.service(
+          `storage/${this.config('storage')}`,
+          'User'
+        ).select({
           objectId: parentComment.user_id,
         });
         parentUser = parentUser[0];
@@ -665,7 +668,10 @@ module.exports = class extends BaseRest {
       let cmtUser;
 
       if (newData.user_id) {
-        cmtUser = await this.model('User').select({
+        cmtUser = await this.service(
+          `storage/${this.config('storage')}`,
+          'User'
+        ).select({
           objectId: newData.user_id,
         });
         cmtUser = cmtUser[0];
@@ -680,7 +686,10 @@ module.exports = class extends BaseRest {
       let pUser;
 
       if (pComment.user_id) {
-        pUser = await this.model('User').select({
+        pUser = await this.service(
+          `storage/${this.config('storage')}`,
+          'User'
+        ).select({
           objectId: pComment.user_id,
         });
         pUser = pUser[0];
