@@ -231,7 +231,7 @@ importers:
   packages/server:
     specifiers:
       '@cloudbase/node-sdk': 2.9.1
-      '@koa/cors': 3.3.0
+      '@koa/cors': 3.4.1
       akismet: 2.0.7
       deta: 1.1.0
       dompurify: 2.3.10
@@ -265,7 +265,7 @@ importers:
       ua-parser-js: 1.0.2
     dependencies:
       '@cloudbase/node-sdk': 2.9.1
-      '@koa/cors': 3.3.0
+      '@koa/cors': 3.4.1
       akismet: 2.0.7
       deta: 1.1.0
       dompurify: 2.3.10
@@ -2174,8 +2174,8 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.14
     dev: true
 
-  /@koa/cors/3.3.0:
-    resolution: {integrity: sha512-lzlkqLlL5Ond8jb6JLnVVDmD2OPym0r5kvZlMgAWiS9xle+Q5ulw1T358oW+RVguxUkANquZQz82i/STIRmsqQ==}
+  /@koa/cors/3.4.1:
+    resolution: {integrity: sha512-/sG9NlpGZ/aBpnRamIlGs+wX+C/IJ5DodNK7iPQIVCG4eUQdGeshGhWQ6JCi7tpnD9sCtFXcS04iTimuaJfh4Q==}
     engines: {node: '>= 8.0.0'}
     dependencies:
       vary: 1.1.2
