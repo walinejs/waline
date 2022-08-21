@@ -7,50 +7,42 @@ describe('Words test', () => {
   });
   it('Should count english words correctly', () => {
     expect(
-      getWordNumber(
-        'A simple comment system with backend support fork from Valine'
-      )
-    ).toEqual(10);
+      getWordNumber('A simple comment system with backend support')
+    ).toEqual(7);
   });
 
   it('Should pick chinese words correctly', () => {
     const chineseWords = getChinese(
-      'Waline - 一款从 Valine 衍生的带后端评论系统。可以将 Waline 等价成 With backend Valine.'
+      'Waline - 一款带后端的评论系统。可以将 Waline 等价成 With backend Valine.'
     );
 
-    expect(chineseWords.join('')).toEqual(
-      '一款从衍生的带后端评论系统可以将等价成'
-    );
+    expect(chineseWords.join('')).toEqual('一款带后端的评论系统可以将等价成');
   });
 
   it('Should count word correctly', () => {
     expect(
-      getWordNumber(
-        'A simple comment system, with backend support fork from Valine.'
-      )
-    ).toEqual(10);
+      getWordNumber('A simple comment system, with backend support.')
+    ).toEqual(7);
 
     expect(
       getWordNumber(
-        'Waline - 一款从 Valine 衍生的带后端评论系统。可以将 Waline 等价成 With backend Valine.'
+        'Waline - 一款带后端的评论系统。可以将 Waline 等价成 With backend Valine.'
       )
-    ).toEqual(25);
+    ).toEqual(21);
   });
 
   it('Should omit other characters in Markdown', () => {
     expect(getWordNumber('#$%^\t&*% /?=+[\n{|}]\r')).toEqual(0);
 
     expect(
-      getWordNumber(
-        '\nA simple comment system,\n\n with _backend support_ fork from **Valine**.\n'
-      )
-    ).toEqual(10);
+      getWordNumber('\nA simple comment system,\n\n with _backend support_.\n')
+    ).toEqual(7);
 
     expect(
       getWordNumber(
-        'Waline - 一款从 **Valine** 衍生的带后端评论系统。\n\n可以将 Waline 等价成 _With backend Valine_.'
+        'Waline - 一款带后端的评论系统。\n\n可以将 Waline 等价成 _With backend Valine_.'
       )
-    ).toEqual(25);
+    ).toEqual(21);
   });
 
   it('Addtional counts with Markdown links and images', () => {
