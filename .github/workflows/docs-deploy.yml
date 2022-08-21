@@ -18,23 +18,32 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
+      # - name: Install pnpm
+      #   uses: pnpm/action-setup@v2
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: pnpm
+      # - name: Use Node.js ${{ matrix.node-version }}
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: ${{ matrix.node-version }}
+      #     cache: pnpm
 
-      - name: Install Dependencies
-        run: pnpm install --frozen-lockfile
+      # - name: Install Dependencies
+      #   run: pnpm install --frozen-lockfile
 
-      - name: Build Client
-        run: pnpm client:build
+      # - name: Build Client
+      #   run: pnpm client:build
 
-      - name: Build Docs
-        run: pnpm docs:build
+      # - name: Build Docs
+      #   run: pnpm docs:build
+
+      - name: Use npm v8
+        run: sudo npm i -g npm@8
+
+      - name: Install Deps
+        run: cd docs && npm i
+
+      - name: Build docs
+        run: cd docs && npm run build
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4.4.0
