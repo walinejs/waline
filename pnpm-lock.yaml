@@ -39,7 +39,7 @@ importers:
       stylelint-order: 5.0.0
       typescript: 4.7.4
       vercel: 28.1.0
-      vite: '2'
+      vite: 2.9.15
       vitest: 0.22.1
     devDependencies:
       '@babel/core': 7.18.10
@@ -74,7 +74,7 @@ importers:
       stylelint-order: 5.0.0_stylelint@14.10.0
       typescript: 4.7.4
       vercel: 28.1.0
-      vite: 2.9.14_sass@1.54.5
+      vite: 2.9.15_sass@1.54.5
       vitest: 0.22.1_sass@1.54.5
 
   docs:
@@ -3873,7 +3873,7 @@ packages:
       webpack-cli: 4.x.x
     dependencies:
       webpack: 5.74.0_webpack-cli@4.10.0
-      webpack-cli: 4.10.0_webpack@5.74.0
+      webpack-cli: 4.10.0_axotvfhnu7nvbx7p36ekbmrhsm
     dev: true
 
   /@webpack-cli/info/1.5.0_webpack-cli@4.10.0:
@@ -3882,7 +3882,7 @@ packages:
       webpack-cli: 4.x.x
     dependencies:
       envinfo: 7.8.1
-      webpack-cli: 4.10.0_webpack@5.74.0
+      webpack-cli: 4.10.0_axotvfhnu7nvbx7p36ekbmrhsm
     dev: true
 
   /@webpack-cli/serve/1.7.0_7r45by5oyo7ronrzgeqf7j6vxq:
@@ -14048,8 +14048,8 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vite/2.9.14_sass@1.54.5:
-    resolution: {integrity: sha512-P/UCjSpSMcE54r4mPak55hWAZPlyfS369svib/gpmz8/01L822lMPOJ/RYW6tLCe1RPvMvOsJ17erf55bKp4Hw==}
+  /vite/2.9.15_sass@1.54.5:
+    resolution: {integrity: sha512-fzMt2jK4vQ3yK56te3Kqpkaeq9DkcZfBbzHwYpobasvgYmP2SoAr6Aic05CsB4CzCZbsDv4sujX3pkEGhLabVQ==}
     engines: {node: '>=12.2.0'}
     hasBin: true
     peerDependencies:
@@ -14067,7 +14067,7 @@ packages:
       esbuild: 0.14.54
       postcss: 8.4.16
       resolve: 1.22.1
-      rollup: 2.78.1
+      rollup: 2.77.3
       sass: 1.54.5
     optionalDependencies:
       fsevents: 2.3.2
@@ -14828,7 +14828,7 @@ packages:
       tapable: 2.2.1
       terser-webpack-plugin: 5.3.5_webpack@5.74.0
       watchpack: 2.4.0
-      webpack-cli: 4.10.0_webpack@5.74.0
+      webpack-cli: 4.10.0_axotvfhnu7nvbx7p36ekbmrhsm
       webpack-sources: 3.2.3
     transitivePeerDependencies:
       - '@swc/core'
