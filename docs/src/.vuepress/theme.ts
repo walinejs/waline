@@ -41,6 +41,7 @@ export default hopeTheme({
       provider: 'Waline',
       serverURL: 'https://waline.vercel.app',
       pageview: true,
+      path: 'window.location.pathname',
       walineLocales: {
         '/': {
           admin: '可爱的管理员',
