@@ -8,7 +8,7 @@
 
 ![npm version](https://img.shields.io/npm/v/@waline/vercel?color=critical&logo=npm&style=flat-square&label=@walin/vercel)
 
-一款基于 [Valine](https://valine.js.org) 衍生的简洁、安全的评论系统。
+一款简洁、安全的评论系统。
 
 ---
 

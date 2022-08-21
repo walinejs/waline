@@ -18,12 +18,12 @@ export default defineUserConfig({
     '/': {
       lang: 'zh-CN',
       title: 'Waline',
-      description: '一款基于 Valine 衍生的简洁、安全的评论系统。',
+      description: '一款简洁、安全的评论系统。',
     },
     '/en/': {
       lang: 'en-US',
       title: 'Waline',
-      description: 'A Simple Comment System inspired by Valine.',
+      description: 'A Simple, Safe Comment System.',
     },
   },
 
