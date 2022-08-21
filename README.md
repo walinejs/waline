@@ -8,7 +8,7 @@
 
 ![npm version](https://img.shields.io/npm/v/@waline/vercel?color=critical&logo=npm&style=flat-square&label=@walin/vercel)
 
-A simple comment system with backend support fork from [Valine](https://valine.js.org).
+A simple comment system with backend support.
 
 ---
 
