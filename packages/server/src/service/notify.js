@@ -144,12 +144,11 @@ module.exports = class extends think.Service {
     querystring.set('corpsecret', `${QYWX_AM_AY[1]}`);
 
     const { access_token } = await fetch(
-      `https://qyapi.weixin.qq.com/cgi-bin/gettoken`,
+      `https://qyapi.weixin.qq.com/cgi-bin/gettoken?${querystring.toString()}`,
       {
         headers: {
           'content-type': 'application/json',
         },
-        body: querystring,
       }
     ).then((resp) => resp.json());
 
