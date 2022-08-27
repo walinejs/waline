@@ -39,7 +39,7 @@ export default hopeTheme({
 
     comment: {
       provider: 'Waline',
-      serverURL: 'https://waline.vercel.app',
+      serverURL: 'https://walinejs.comment.lithub.cc',
       pageview: true,
       walineLocales: {
         '/': {
