@@ -1,21 +1,21 @@
 import { usePageFrontmatter } from '@vuepress/client';
 import { computed, defineComponent, h, resolveComponent } from 'vue';
 
-import BreadCrumb from '@theme-hope/components/BreadCrumb';
-import MarkdownContent from '@theme-hope/components/MarkdownContent';
-import PageNav from '@theme-hope/components/PageNav';
-import PageTitle from '@theme-hope/components/PageTitle';
+import BreadCrumb from '@theme-hope/components/BreadCrumb.js';
+import MarkdownContent from '@theme-hope/components/MarkdownContent.js';
+import PageNav from '@theme-hope/components/PageNav.js';
+import PageTitle from '@theme-hope/components/PageTitle.js';
 import WalineTips from './WalineTips';
 
-import { useThemeLocaleData } from '@theme-hope/composables';
+import { useThemeLocaleData } from '@theme-hope/composables/index.js';
 
-import PageMeta from '@theme-hope/module/info/components/PageMeta';
-import TOC from '@theme-hope/module/info/components/TOC';
+import PageMeta from '@theme-hope/modules/info/components/PageMeta.js';
+import TOC from '@theme-hope/modules/info/components/TOC.js';
 
-import { useDarkMode } from '@theme-hope/module/outlook/composables';
+import { useDarkMode } from '@theme-hope/modules/outlook/composables/index.js';
 
 import type { VNode } from 'vue';
-import type { HopeThemeNormalPageFrontmatter } from '../../shared';
+import type { HopeThemeNormalPageFrontmatter } from 'vuepress-theme-hope';
 
 import 'vuepress-theme-hope/lib/client/styles/page.scss';
 

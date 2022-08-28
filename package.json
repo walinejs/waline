@@ -88,6 +88,7 @@
         "@types/react",
         "react",
         "react-dom",
+        "ts-node",
         "typescript"
       ]
     }

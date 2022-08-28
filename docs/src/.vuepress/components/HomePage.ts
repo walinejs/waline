@@ -1,8 +1,8 @@
 import { defineComponent, h, resolveComponent } from 'vue';
-import HopeHomePage from 'vuepress-theme-hope/lib/client/components/HomePage';
+import HopeHomePage from 'vuepress-theme-hope/lib/client/components/HomePage.js';
 import WalineTips from './WalineTips';
 
-import { useDarkMode } from '@theme-hope/module/outlook/composables';
+import { useDarkMode } from '@theme-hope/modules/outlook/composables/index.js';
 
 import type { VNode } from 'vue';
 

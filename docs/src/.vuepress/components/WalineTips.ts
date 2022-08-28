@@ -3,9 +3,9 @@ import { computed, defineComponent, h } from 'vue';
 
 import type { VNode } from 'vue';
 import type {
-  DefaultThemeHomePageFrontmatter,
-  DefaultThemePageFrontmatter,
-} from '@vuepress/theme-default/lib/shared';
+  HopeThemeProjectHomePageFrontmatter,
+  HopeThemeNormalPageFrontmatter,
+} from 'vuepress-theme-hope';
 
 const i18n: Record<string, string> = {
   '/': '友情提示：评论区仅作评论展示，如有问题咨询请去 <a href="https://github.com/walinejs/waline/discussions" target="_blank">Github Discussion</a> 中提问。',
@@ -20,7 +20,7 @@ export default defineComponent({
 
   setup() {
     const frontmatter = usePageFrontmatter<
-      DefaultThemeHomePageFrontmatter | DefaultThemePageFrontmatter
+      HopeThemeProjectHomePageFrontmatter | HopeThemeNormalPageFrontmatter
     >();
     const routeLocale = useRouteLocale();
 
