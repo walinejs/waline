@@ -34,7 +34,9 @@ jobs:
         run: pnpm client:build
 
       - name: Build Docs
-        run: pnpm docs:build
+        run: |-
+          pnpm docs:build
+          > docs/src/.vuepress/dist/.nojekyll
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4.4.0
