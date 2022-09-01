@@ -82,7 +82,7 @@ importers:
       '@fancyapps/ui': 4.0.31
       '@vuepress/client': 2.0.0-beta.51
       '@vuepress/plugin-docsearch': 2.0.0-beta.51
-      '@vuepress/utils': 2.0.0-beta.51
+      '@vuepress/utils': 2.0.0-beta.50-pre
       marked: 4.1.0
       vue: 3.2.38
       vuepress: 2.0.0-beta.51
@@ -92,7 +92,7 @@ importers:
       '@fancyapps/ui': 4.0.31
       '@vuepress/client': 2.0.0-beta.51
       '@vuepress/plugin-docsearch': 2.0.0-beta.51
-      '@vuepress/utils': 2.0.0-beta.51
+      '@vuepress/utils': 2.0.0-beta.50-pre
       marked: 4.1.0
       vue: 3.2.38
       vuepress: 2.0.0-beta.51_wfvojtkubzfaqzh44qlgu3poju
@@ -3615,6 +3615,13 @@ packages:
       - supports-color
     dev: true
 
+  /@vuepress/shared/2.0.0-beta.50-pre:
+    resolution: {integrity: sha512-4x0g5jcNPZ8kC1nl6gHGR+VYKHvxNdqEAV+PElzQOBu+nYuVVHXAVZbiNGqlLY5uiY3LCjAb4vaq+TF8mWz82w==}
+    deprecated: deprecated
+    dependencies:
+      '@vue/shared': 3.2.38
+    dev: true
+
   /@vuepress/shared/2.0.0-beta.51:
     resolution: {integrity: sha512-0dbJp0M+d/schkD+xUI7MwwoyJRtFxH3QEYMcLTKhgkaNFjgzlIEG/coh1QywVIoQGX9cGQSa8PZk8BeMeePug==}
     dependencies:
@@ -3650,6 +3657,24 @@ packages:
       vue-router: 4.1.5_vue@3.2.38
     transitivePeerDependencies:
       - '@vue/composition-api'
+      - supports-color
+    dev: true
+
+  /@vuepress/utils/2.0.0-beta.50-pre:
+    resolution: {integrity: sha512-kujaObpJkE239PSUn0AYQ4gvko/PPCOS6ixIvUXJ2MTAfMZ4gs7/tgQ5+fLl82yrBdp5Ot70rujMI8J5uojQtg==}
+    dependencies:
+      '@types/debug': 4.1.7
+      '@types/fs-extra': 9.0.13
+      '@types/hash-sum': 1.0.0
+      '@vuepress/shared': 2.0.0-beta.50-pre
+      chalk: 5.0.1
+      debug: 4.3.4
+      fs-extra: 10.1.0
+      globby: 13.1.2
+      hash-sum: 2.0.0
+      ora: 6.1.2
+      upath: 2.0.1
+    transitivePeerDependencies:
       - supports-color
     dev: true
 
@@ -3806,7 +3831,7 @@ packages:
       webpack-cli: 4.x.x
     dependencies:
       webpack: 5.74.0_webpack-cli@4.10.0
-      webpack-cli: 4.10.0_webpack@5.74.0
+      webpack-cli: 4.10.0_sjobg5ds7hmgtxx5pqy6k6k7ei
     dev: true
 
   /@webpack-cli/info/1.5.0_webpack-cli@4.10.0:
@@ -3815,7 +3840,7 @@ packages:
       webpack-cli: 4.x.x
     dependencies:
       envinfo: 7.8.1
-      webpack-cli: 4.10.0_webpack@5.74.0
+      webpack-cli: 4.10.0_sjobg5ds7hmgtxx5pqy6k6k7ei
     dev: true
 
   /@webpack-cli/serve/1.7.0_eib23wgkspxiotey5yppdrjtku:
@@ -14743,7 +14768,7 @@ packages:
       tapable: 2.2.1
       terser-webpack-plugin: 5.3.6_webpack@5.74.0
       watchpack: 2.4.0
-      webpack-cli: 4.10.0_webpack@5.74.0
+      webpack-cli: 4.10.0_sjobg5ds7hmgtxx5pqy6k6k7ei
       webpack-sources: 3.2.3
     transitivePeerDependencies:
       - '@swc/core'
