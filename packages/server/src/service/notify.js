@@ -391,6 +391,8 @@ module.exports = class extends think.Service {
     const isReplyAuthor = AUTHOR
       ? parent && parent.mail.toLowerCase() === AUTHOR.toLowerCase()
       : false;
+    const isCommentSelf =
+      parent && parent.mail.toLowerCase() === comment.mail.toLowerCase();
 
     const title = mailSubjectAdmin || '{{site.name | safe}} 上有新评论了';
     const content =
@@ -435,7 +437,12 @@ module.exports = class extends think.Service {
     );
     const fakeMail = new RegExp(`@(${disallowList.join('|')})$`, 'i');
 
-    if (parent && !fakeMail.test(parent.mail) && comment.status !== 'waiting') {
+    if (
+      parent &&
+      !fakeMail.test(parent.mail) &&
+      !isCommentSelf &&
+      comment.status !== 'waiting'
+    ) {
       mailList.push({
         to: parent.mail,
         title:
