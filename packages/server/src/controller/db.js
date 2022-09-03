@@ -76,12 +76,15 @@ module.exports = class extends BaseRest {
           let i = 0;
 
           data = formatID(data, () => (i = i + 1));
-        } else if (storage === 'leancloud') {
-          data
-            .filter(({ insertedAt }) => insertedAt)
-            .forEach((item) => {
-              item.insertedAt = new Date(item.insertedAt);
-            });
+          await model.setSeqId(1);
+        }
+
+        if (storage === 'leancloud' || storage === 'mysql') {
+          data.forEach((item) => {
+            item.insertedAt && (item.insertedAt = new Date(item.insertedAt));
+            item.createdAt && (item.createdAt = new Date(item.createdAt));
+            item.updatedAt && (item.updatedAt = new Date(item.updatedAt));
+          });
         }
 
         // delete all data at first
@@ -113,7 +116,7 @@ module.exports = class extends BaseRest {
           const oldId = cmt[field];
           const newId = idMaps[tableName].get(cmt[field]);
 
-          if (oldId !== newId) {
+          if (oldId && newId && oldId !== newId) {
             willUpdateItem[field] = newId;
           }
         });

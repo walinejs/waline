@@ -73,4 +73,12 @@ module.exports = class extends MySQL {
 
     return result;
   }
+
+  async setSeqId(id) {
+    const instance = this.model(this.tableName);
+
+    return instance.query(
+      `ALTER SEQUENCE ${instance.tableName}_seq RESTART WITH ${id};`
+    );
+  }
 };

@@ -113,4 +113,12 @@ module.exports = class extends Base {
 
     return instance.where(this.parseWhere(where)).delete();
   }
+
+  async setSeqId(id) {
+    const instance = this.model(this.tableName);
+
+    return instance.query(
+      `ALTER TABLE ${instance.tableName} AUTO_INCREMENT = ${id};`
+    );
+  }
 };
