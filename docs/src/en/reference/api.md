@@ -33,7 +33,7 @@ GET /comment?type=count
 
 | Parameter | Type   | Description            |
 | --------- | ------ | ---------------------- |
-| path      | string | Article id for comment |
+| url      | string | Article id for comment, return site comment count if it empty |
 
 ### Recent Comment
 

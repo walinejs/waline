@@ -145,7 +145,8 @@ module.exports = class extends BaseRest {
 
       case 'count': {
         const { url } = this.get();
-        const where = { url: ['IN', url] };
+        const where =
+          Array.isArray(url) && url.length ? { url: ['IN', url] } : {};
 
         if (think.isEmpty(userInfo) || this.config('storage') === 'deta') {
           where.status = ['NOT IN', ['waiting', 'spam']];
@@ -156,12 +157,19 @@ module.exports = class extends BaseRest {
             user_id: userInfo.objectId,
           };
         }
-        const data = await this.modelInstance.select(where, { field: ['url'] });
-        const counts = url.map(
-          (u) => data.filter(({ url }) => url === u).length
-        );
 
-        return this.json(counts.length === 1 ? counts[0] : counts);
+        if (Array.isArray(url) && url.length > 1) {
+          const data = await this.modelInstance.select(where, {
+            field: ['url'],
+          });
+
+          return this.json(
+            url.map((u) => data.filter(({ url }) => url === u).length)
+          );
+        }
+        const data = await this.modelInstance.count(where);
+
+        return this.json(data);
       }
 
       case 'list': {
