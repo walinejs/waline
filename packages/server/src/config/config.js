@@ -54,7 +54,7 @@ if (LEAN_KEY) {
   storage = 'postgresql';
   jwtKey = jwtKey || PG_PASSWORD;
 } else if (SQLITE_PATH) {
-  storage = 'mysql';
+  storage = 'sqlite';
 } else if (MYSQL_DB) {
   storage = 'mysql';
   jwtKey = jwtKey || MYSQL_PASSWORD;
