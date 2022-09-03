@@ -76,7 +76,7 @@ module.exports = class extends BaseRest {
           let i = 0;
 
           data = formatID(data, () => (i = i + 1));
-          await model.setSeqId(0);
+          await model.setSeqId(1);
         } else if (storage === 'leancloud') {
           data
             .filter(({ insertedAt }) => insertedAt)
@@ -114,7 +114,7 @@ module.exports = class extends BaseRest {
           const oldId = cmt[field];
           const newId = idMaps[tableName].get(cmt[field]);
 
-          if (oldId !== newId) {
+          if (oldId && newId && oldId !== newId) {
             willUpdateItem[field] = newId;
           }
         });
