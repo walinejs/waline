@@ -76,6 +76,7 @@ module.exports = class extends BaseRest {
           let i = 0;
 
           data = formatID(data, () => (i = i + 1));
+          await model.setSeqId(0);
         } else if (storage === 'leancloud') {
           data
             .filter(({ insertedAt }) => insertedAt)
