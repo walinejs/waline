@@ -89,7 +89,7 @@ module.exports = class extends Base {
    * @apiGroup Comment
    * @apiVersion  0.0.1
    *
-   * @apiParam  {String}  url a array string join by comma just like `a` or `a,b`
+   * @apiParam  {String}  url a array string join by comma just like `a` or `a,b`, return site comment count if url empty
    *
    * @apiSuccessExample {Number} Single Path Response:
    * 300
@@ -131,7 +131,6 @@ module.exports = class extends Base {
         this.rules = {
           url: {
             array: true,
-            required: true,
           },
         };
         break;
