@@ -77,12 +77,14 @@ module.exports = class extends BaseRest {
 
           data = formatID(data, () => (i = i + 1));
           await model.setSeqId(1);
-        } else if (storage === 'leancloud') {
-          data
-            .filter(({ insertedAt }) => insertedAt)
-            .forEach((item) => {
-              item.insertedAt = new Date(item.insertedAt);
-            });
+        }
+
+        if (storage === 'leancloud' || storage === 'mysql') {
+          data.forEach((item) => {
+            item.insertedAt && (item.insertedAt = new Date(item.insertedAt));
+            item.createdAt && (item.createdAt = new Date(item.createdAt));
+            item.updatedAt && (item.updatedAt = new Date(item.updatedAt));
+          });
         }
 
         // delete all data at first
