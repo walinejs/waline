@@ -168,6 +168,10 @@ module.exports = class extends Base {
             int: { max: 100 },
             default: 10,
           },
+          sortBy: {
+            in: ['insertedAt_desc', 'insertedAt_asc', 'like_desc'],
+            default: 'insertedAt_desc',
+          },
         };
         break;
     }

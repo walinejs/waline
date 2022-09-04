@@ -247,7 +247,7 @@ module.exports = class extends BaseRest {
       }
 
       default: {
-        const { path: url, page, pageSize } = this.get();
+        const { path: url, page, pageSize, sortBy } = this.get();
         const where = { url };
 
         if (think.isEmpty(userInfo) || this.config('storage') === 'deta') {
@@ -266,7 +266,6 @@ module.exports = class extends BaseRest {
         let rootComments = [];
         let rootCount = 0;
         const selectOptions = {
-          desc: 'insertedAt',
           field: [
             'status',
             'comment',
@@ -283,6 +282,16 @@ module.exports = class extends BaseRest {
             'like',
           ],
         };
+
+        if (sortBy) {
+          const [field, order] = sortBy.split('_');
+
+          if (order === 'desc') {
+            selectOptions.desc = field;
+          } else if (order === 'asc') {
+            // do nothing because of ascending order is default behaviour
+          }
+        }
 
         /**
          * most of case we have just little comments

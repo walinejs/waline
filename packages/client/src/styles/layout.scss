@@ -53,6 +53,7 @@
   padding: 0.375em;
   font-weight: bold;
   font-size: 1.25em;
+  flex: 1;
 }
 
 .wl-empty {
@@ -75,4 +76,29 @@
   color: var(--waline-light-grey);
   font-size: var(--waline-info-font-size);
   text-align: right;
+}
+
+.wl-head {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.wl-sort.ul {
+  list-style-type: none;
+}
+
+.wl-sort li {
+  display: inline-block;
+  font-size: 0.75em;
+  color: var(--waline-info-color);
+  cursor: pointer;
+}
+
+.wl-sort li + li {
+  margin-left: 1em;
+}
+
+.wl-sort li.active {
+  color: var(--waline-theme-color);
 }
