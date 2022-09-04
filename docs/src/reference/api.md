@@ -20,6 +20,7 @@ GET /comment
 | path     | string | 获取对应文章标识的评论列表 |
 | page     | number | 评论列表的页数             |
 | pageSize | number | 每页评论列表的条数         |
+| sortBy   | string | 评论排序方式，默认按时间倒序(insertedAt_desc)，还可以选择按时间正序（insertedAt_asc），按热度倒序（like_desc）|
 
 ### 评论数
 
