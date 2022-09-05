@@ -85,6 +85,7 @@ export interface FetchListOptions {
   path: string;
   page: number;
   pageSize: number;
+  sortBy: string;
   signal: AbortSignal;
   token?: string;
   lang: string;
@@ -102,6 +103,7 @@ export const fetchCommentList = ({
   path,
   page,
   pageSize,
+  sortBy,
   signal,
   token,
 }: FetchListOptions): Promise<FetchListResult> => {
@@ -112,7 +114,7 @@ export const fetchCommentList = ({
   return fetch(
     `${serverURL}/comment?path=${encodeURIComponent(
       path
-    )}&pageSize=${pageSize}&page=${page}&lang=${lang}`,
+    )}&pageSize=${pageSize}&page=${page}&lang=${lang}&sortBy=${sortBy}`,
     { signal, headers }
   )
     .then((resp) => resp.json() as Promise<FetchListResult>)

@@ -46,4 +46,7 @@ export default generateLocale([
   '待审核',
   '垃圾',
   '取消置顶',
+  '按倒序',
+  '按正序',
+  '按热度',
 ]);

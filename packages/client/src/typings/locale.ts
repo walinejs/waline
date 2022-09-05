@@ -43,4 +43,7 @@ export interface WalineLocale extends WalineDateLocale, WalineLevelLocale {
   waiting: string;
   spam: string;
   unsticky: string;
+  oldest: string;
+  latest: string;
+  hottest: string;
 }

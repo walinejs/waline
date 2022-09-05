@@ -32,6 +32,7 @@ module.exports = class extends Base {
    * @apiParam  {String}  path  comment url path
    * @apiParam  {String}  page  page
    * @apiParam  {String}  pagesize  page size
+   * @apiParam  {String}  sortBy  comment sort type, one of 'insertedAt_desc', 'insertedAt_asc', 'like_desc'
    *
    * @apiSuccess  (200) {Number}  page return current comments list page
    * @apiSuccess  (200) {Number}  pageSize  to  return error message if error
@@ -167,6 +168,10 @@ module.exports = class extends Base {
           pageSize: {
             int: { max: 100 },
             default: 10,
+          },
+          sortBy: {
+            in: ['insertedAt_desc', 'insertedAt_asc', 'like_desc'],
+            default: 'insertedAt_desc',
           },
         };
         break;

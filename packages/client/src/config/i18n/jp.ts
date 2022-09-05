@@ -46,4 +46,7 @@ export default generateLocale([
   '待っている',
   'スパム',
   'べたつかない',
+  '逆順',
+  '正順',
+  '人気順',
 ]);
