@@ -178,7 +178,7 @@ importers:
       '@types/autosize': 4.0.1
       '@types/marked': 4.0.6
       '@types/node': 18.7.14
-      '@vitejs/plugin-vue': 3.0.3
+      '@vitejs/plugin-vue': 3.1.0
       '@vueuse/core': ^9.1.1
       autosize: ^5.0.1
       marked: ^4.1.0
@@ -205,7 +205,7 @@ importers:
       '@types/autosize': 4.0.1
       '@types/marked': 4.0.6
       '@types/node': 18.7.14
-      '@vitejs/plugin-vue': 3.0.3_vite@3.0.9+vue@3.2.38
+      '@vitejs/plugin-vue': 3.1.0_vite@3.0.9+vue@3.2.38
       rimraf: 3.0.2
       rollup: 2.79.0
       rollup-plugin-dts: 4.2.2_id3sp2lbl4kx3dskm7teaj32um
@@ -3276,6 +3276,17 @@ packages:
       vue: 3.2.38
     dev: true
 
+  /@vitejs/plugin-vue/3.1.0_vite@3.0.9+vue@3.2.38:
+    resolution: {integrity: sha512-fmxtHPjSOEIRg6vHYDaem+97iwCUg/uSIaTzp98lhELt2ISOQuDo2hbkBdXod0g15IhfPMQmAxh4heUks2zvDA==}
+    engines: {node: ^14.18.0 || >=16.0.0}
+    peerDependencies:
+      vite: ^3.0.0
+      vue: ^3.2.25
+    dependencies:
+      vite: 3.0.9
+      vue: 3.2.38
+    dev: true
+
   /@vue/compiler-core/3.2.38:
     resolution: {integrity: sha512-/FsvnSu7Z+lkd/8KXMa4yYNUiqQrI22135gfsQYVGuh5tqEgOB0XqrUdb/KnCLa5+TmQLPwvyUnKMyCpu+SX3Q==}
     dependencies:
@@ -3806,7 +3817,7 @@ packages:
       webpack-cli: 4.x.x
     dependencies:
       webpack: 5.74.0_webpack-cli@4.10.0
-      webpack-cli: 4.10.0_webpack@5.74.0
+      webpack-cli: 4.10.0_sjobg5ds7hmgtxx5pqy6k6k7ei
     dev: true
 
   /@webpack-cli/info/1.5.0_webpack-cli@4.10.0:
@@ -3815,7 +3826,7 @@ packages:
       webpack-cli: 4.x.x
     dependencies:
       envinfo: 7.8.1
-      webpack-cli: 4.10.0_webpack@5.74.0
+      webpack-cli: 4.10.0_sjobg5ds7hmgtxx5pqy6k6k7ei
     dev: true
 
   /@webpack-cli/serve/1.7.0_eib23wgkspxiotey5yppdrjtku:
@@ -14743,7 +14754,7 @@ packages:
       tapable: 2.2.1
       terser-webpack-plugin: 5.3.6_webpack@5.74.0
       watchpack: 2.4.0
-      webpack-cli: 4.10.0_webpack@5.74.0
+      webpack-cli: 4.10.0_sjobg5ds7hmgtxx5pqy6k6k7ei
       webpack-sources: 3.2.3
     transitivePeerDependencies:
       - '@swc/core'
