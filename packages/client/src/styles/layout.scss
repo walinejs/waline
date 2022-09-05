@@ -50,7 +50,6 @@
 }
 
 .wl-count {
-  padding: 0.375em;
   font-weight: bold;
   font-size: 1.25em;
   flex: 1;
@@ -78,14 +77,16 @@
   text-align: right;
 }
 
-.wl-head {
+.wl-meta-head {
   display: flex;
   flex-direction: row;
   align-items: center;
+  padding: 0.375em;
 }
 
-.wl-sort.ul {
+ul.wl-sort {
   list-style-type: none;
+  margin: 0;
 }
 
 .wl-sort li {

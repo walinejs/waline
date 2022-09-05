@@ -1,7 +1,7 @@
 <template>
   <div data-waline>
     <CommentBox v-if="!reply" @submit="onSubmit" />
-    <div class="wl-head">
+    <div class="wl-meta-head">
       <div class="wl-count">
         <span v-if="count" class="wl-num" v-text="count" />
         {{ i18n.comment }}
