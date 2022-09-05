@@ -80,7 +80,7 @@
     ]
   },
   "dependencies": {
-    "@vueuse/core": "^9.1.1",
+    "@vueuse/core": "^9.2.0",
     "autosize": "^5.0.1",
     "marked": "^4.1.0",
     "vue": "^3.2.38"
@@ -94,15 +94,15 @@
     "@rollup/plugin-replace": "4.0.0",
     "@types/autosize": "4.0.1",
     "@types/marked": "4.0.6",
-    "@types/node": "18.7.14",
-    "@vitejs/plugin-vue": "3.0.3",
+    "@types/node": "18.7.15",
+    "@vitejs/plugin-vue": "3.1.0",
     "rimraf": "3.0.2",
     "rollup": "2.79.0",
     "rollup-plugin-dts": "4.2.2",
     "rollup-plugin-terser": "7.0.2",
     "rollup-plugin-ts": "3.0.2",
     "typescript": "4.8.2",
-    "vite": "3.0.9"
+    "vite": "3.1.0"
   },
   "engines": {
     "node": ">=14"
