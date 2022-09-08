@@ -15,7 +15,7 @@ importers:
       '@typescript-eslint/parser': 5.36.1
       '@vue/eslint-config-prettier': 7.0.0
       '@vue/eslint-config-typescript': 11.0.1
-      apidoc: 0.52.0
+      apidoc: 0.53.0
       c8: 7.12.0
       commitizen: 4.2.5
       conventional-changelog-cli: 2.2.2
@@ -50,7 +50,7 @@ importers:
       '@typescript-eslint/parser': 5.36.1_yqf6kl63nyoq5megxukfnom5rm
       '@vue/eslint-config-prettier': 7.0.0_bxpuzolsxufkw2ipnoyzzxnyrm
       '@vue/eslint-config-typescript': 11.0.1_eigtonit5c3q5td2tbopyi5r7e
-      apidoc: 0.52.0
+      apidoc: 0.53.0
       c8: 7.12.0
       commitizen: 4.2.5
       conventional-changelog-cli: 2.2.2
@@ -4155,8 +4155,8 @@ packages:
       picomatch: 2.3.1
     dev: true
 
-  /apidoc/0.52.0:
-    resolution: {integrity: sha512-k0gaMI7LWxaqKt2D+twC6XpI8X5SHkJalfo8TmF72d2TSNABquqB8LyIrVYzLcadcHuLMRFDaDibOK271gD67w==}
+  /apidoc/0.53.0:
+    resolution: {integrity: sha512-H4hYToCrI6TgSksdVHxS7h5/Xoqr/rR9m9/IOQaYqXbX07cPVbg0O3RM4+bR4tJKG1aqBWKKm+xojQ8+4i7O5A==}
     engines: {node: '>=14.0.0'}
     os: [darwin, freebsd, linux, openbsd, win32]
     hasBin: true
