@@ -176,7 +176,7 @@ importers:
       '@rollup/plugin-node-resolve': 13.3.0
       '@rollup/plugin-replace': 4.0.0
       '@types/autosize': 4.0.1
-      '@types/marked': 4.0.6
+      '@types/marked': 4.0.7
       '@types/node': 18.7.15
       '@vitejs/plugin-vue': 3.1.0
       '@vueuse/core': ^9.2.0
@@ -203,7 +203,7 @@ importers:
       '@rollup/plugin-node-resolve': 13.3.0_rollup@2.79.0
       '@rollup/plugin-replace': 4.0.0_rollup@2.79.0
       '@types/autosize': 4.0.1
-      '@types/marked': 4.0.6
+      '@types/marked': 4.0.7
       '@types/node': 18.7.15
       '@vitejs/plugin-vue': 3.1.0_vite@3.1.0+vue@3.2.38
       rimraf: 3.0.2
@@ -2879,8 +2879,8 @@ packages:
       '@types/mdurl': 1.0.2
     dev: true
 
-  /@types/marked/4.0.6:
-    resolution: {integrity: sha512-ITAVUzsnVbhy5afxhs4PPPbrv2hKVEDH5BhhaQNQlVG0UNu+9A18XSdYr53nBdHZ0ADEQLl+ciOjXbs7eHdiQQ==}
+  /@types/marked/4.0.7:
+    resolution: {integrity: sha512-eEAhnz21CwvKVW+YvRvcTuFKNU9CV1qH+opcgVK3pIMI6YZzDm6gc8o2vHjldFk6MGKt5pueSB7IOpvpx5Qekw==}
     dev: true
 
   /@types/mdurl/1.0.2:
