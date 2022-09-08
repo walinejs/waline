@@ -173,7 +173,7 @@ importers:
       '@babel/preset-env': 7.18.10
       '@rollup/plugin-babel': 5.3.1
       '@rollup/plugin-commonjs': 22.0.2
-      '@rollup/plugin-node-resolve': 13.3.0
+      '@rollup/plugin-node-resolve': 14.0.1
       '@rollup/plugin-replace': 4.0.0
       '@types/autosize': 4.0.1
       '@types/marked': 4.0.7
@@ -200,7 +200,7 @@ importers:
       '@babel/preset-env': 7.18.10_@babel+core@7.18.13
       '@rollup/plugin-babel': 5.3.1_qa5xd24o3tymwictiiptlhxtom
       '@rollup/plugin-commonjs': 22.0.2_rollup@2.79.0
-      '@rollup/plugin-node-resolve': 13.3.0_rollup@2.79.0
+      '@rollup/plugin-node-resolve': 14.0.1_rollup@2.79.0
       '@rollup/plugin-replace': 4.0.0_rollup@2.79.0
       '@types/autosize': 4.0.1
       '@types/marked': 4.0.7
@@ -2445,11 +2445,11 @@ packages:
       rollup: 2.79.0
     dev: true
 
-  /@rollup/plugin-node-resolve/13.3.0_rollup@2.79.0:
-    resolution: {integrity: sha512-Lus8rbUo1eEcnS4yTFKLZrVumLPY+YayBdWXgFSHYhTT2iJbMhoaaBL3xl5NCdeRytErGr8tZ0L71BMRmnlwSw==}
+  /@rollup/plugin-node-resolve/14.0.1_rollup@2.79.0:
+    resolution: {integrity: sha512-YvSs0ev00QWTQS8u+yaCJkIUPBgpmBsnzRJFvg8c2chbky85ZKoZtoNuRH0k9rjZT4xpgEPOiVTyeJTj1/iMdQ==}
     engines: {node: '>= 10.0.0'}
     peerDependencies:
-      rollup: ^2.42.0
+      rollup: ^2.78.0
     dependencies:
       '@rollup/pluginutils': 3.1.0_rollup@2.79.0
       '@types/resolve': 1.17.1
