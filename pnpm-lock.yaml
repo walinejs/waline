@@ -24,7 +24,7 @@ importers:
       eslint: 8.23.0
       eslint-config-prettier: 8.5.0
       eslint-plugin-prettier: 4.2.1
-      eslint-plugin-react: 7.31.6
+      eslint-plugin-react: 7.31.8
       eslint-plugin-vue: 9.4.0
       husky: 8.0.1
       lint-staged: 13.0.3
@@ -59,7 +59,7 @@ importers:
       eslint: 8.23.0
       eslint-config-prettier: 8.5.0_eslint@8.23.0
       eslint-plugin-prettier: 4.2.1_tgumt6uwl2md3n6uqnggd6wvce
-      eslint-plugin-react: 7.31.6_eslint@8.23.0
+      eslint-plugin-react: 7.31.8_eslint@8.23.0
       eslint-plugin-vue: 9.4.0_eslint@8.23.0
       husky: 8.0.1
       lint-staged: 13.0.3
@@ -7499,8 +7499,8 @@ packages:
       prettier-linter-helpers: 1.0.0
     dev: true
 
-  /eslint-plugin-react/7.31.6_eslint@8.23.0:
-    resolution: {integrity: sha512-CXu4eu28sb8Sd2+cyUYsJVyDvpTlaXPG+bOzzpS9IzZKtye96AYX3ZmHQ6ayn/OAIQ/ufDJP8ElPWd63Pepn9w==}
+  /eslint-plugin-react/7.31.8_eslint@8.23.0:
+    resolution: {integrity: sha512-5lBTZmgQmARLLSYiwI71tiGVTLUuqXantZM6vlSY39OaDSV0M7+32K5DnLkmFrwTe+Ksz0ffuLUC91RUviVZfw==}
     engines: {node: '>=4'}
     peerDependencies:
       eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8
