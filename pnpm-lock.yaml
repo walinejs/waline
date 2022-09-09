@@ -119,7 +119,7 @@ importers:
       qrcode.react: 3.1.0
       react: 18.2.0
       react-dom: 18.2.0
-      react-i18next: 11.18.5
+      react-i18next: 11.18.6
       react-redux: 8.0.2
       react-router-dom: 6.3.0
       redux: 4.2.0
@@ -152,7 +152,7 @@ importers:
       qrcode.react: 3.1.0_react@18.2.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      react-i18next: 11.18.5_4sidbwfhen5r7txudrvpua6nty
+      react-i18next: 11.18.6_4sidbwfhen5r7txudrvpua6nty
       react-redux: 8.0.2_e42enmjmqb4imi3q3iaq2rrebm
       react-router-dom: 6.3.0_biqbaboplfbrettd7655fr4n2y
       redux: 4.2.0
@@ -11683,8 +11683,8 @@ packages:
       scheduler: 0.23.0
     dev: true
 
-  /react-i18next/11.18.5_4sidbwfhen5r7txudrvpua6nty:
-    resolution: {integrity: sha512-cKcyuuzIv0YUZ4l9WORflVNuhISPAqQShOAsxwFyYuJoCA7HlLmHm7XnvO6hfAGmGpDNRhJHoBX8hG49Cb2xZQ==}
+  /react-i18next/11.18.6_4sidbwfhen5r7txudrvpua6nty:
+    resolution: {integrity: sha512-yHb2F9BiT0lqoQDt8loZ5gWP331GwctHz9tYQ8A2EIEUu+CcEdjBLQWli1USG3RdWQt3W+jqQLg/d4rrQR96LA==}
     peerDependencies:
       i18next: '>= 19.0.0'
       react: '>= 16.8.0'
