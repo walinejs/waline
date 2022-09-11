@@ -223,14 +223,14 @@ module.exports = class extends Base {
     if (!RECAPTCHA_V3_SECRET) {
       return;
     }
-    const { recaptcha } = this.get();
-    if (!recaptcha) {
+    const { recaptchaV3 } = this.get();
+    if (!recaptchaV3) {
       return this.ctx.throw(403);
     }
 
     const query = qs.string({
       secret: RECAPTCHA_V3_SECRET,
-      response: recaptcha,
+      response: recaptchaV3,
       remoteip: this.ctx.ip,
     });
     const recaptchaV3Result = await fetch(`https://recaptcha.net/recaptcha/api/siteverify?${query}`).then(resp => resp.json());

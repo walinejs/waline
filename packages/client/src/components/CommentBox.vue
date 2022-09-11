@@ -466,7 +466,7 @@ export default defineComponent({
         link: userMeta.value.link,
         ua: navigator.userAgent,
         url: config.value.path,
-        recaptcha: token,
+        recaptchaV3: token,
       };
 
       if (userInfo.value?.token) {
