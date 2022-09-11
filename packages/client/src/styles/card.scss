@@ -118,10 +118,6 @@
       font-size: var(--waline-info-font-size);
       line-height: 1.5;
 
-      @media (max-width: 520px) {
-        display: none;
-      }
-
       &:empty {
         display: none;
       }

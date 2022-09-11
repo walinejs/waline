@@ -60,9 +60,9 @@
         </div>
       </div>
       <div class="wl-meta" aria-hidden="true">
-        <span v-if="comment.addr" v-text="comment.addr" />
-        <span v-if="comment.browser" v-text="comment.browser" />
-        <span v-if="comment.os" v-text="comment.os" />
+        <span v-if="comment.addr" class="wl-addr" :data-value="comment.addr" v-text="comment.addr" />
+        <span v-if="comment.browser" class="wl-browser" :data-value="comment.browser" v-text="comment.browser" />
+        <span v-if="comment.os" class="wl-os" :data-value="comment.os" v-text="comment.os" />
       </div>
       <!-- eslint-disable-next-line vue/no-v-html -->
       <div class="wl-content" v-html="comment.comment" />
