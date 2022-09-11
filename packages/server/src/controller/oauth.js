@@ -21,16 +21,16 @@ module.exports = class extends think.Controller {
 
     if (!hasCode) {
       const { serverURL } = this.ctx;
-      const redirectUrl = `${serverURL}/oauth?${qs.stringify({
+      const redirectUrl = `${serverURL}/oauth?${new URLSearchParams({
         redirect,
         type,
-      })}`;
+      }).toString()}`;
 
       return this.redirect(
-        `${oauthUrl}/${type}?${qs.stringify({
+        `${oauthUrl}/${type}?${new URLSearchParams({
           redirect: redirectUrl,
           state: this.ctx.state.token,
-        })}`
+        }).toString()}`
       );
     }
 
@@ -41,23 +41,26 @@ module.exports = class extends think.Controller {
 
     if (type === 'facebook') {
       const { serverURL } = this.ctx;
-      const redirectUrl = `${serverURL}/oauth?${qs.stringify({
+      const redirectUrl = `${serverURL}/oauth?${new URLSearchParams({
         redirect,
         type,
-      })}`;
+      }).toString()}`;
 
-      params.state = qs.stringify({
+      params.state = new URLSearchParams({
         redirect: redirectUrl,
         state: this.ctx.state.token || '',
       });
     }
 
-    const user = await fetch(`${oauthUrl}/${type}?${qs.stringify(params)}`, {
-      method: 'GET',
-      headers: {
-        'user-agent': '@waline',
-      },
-    }).then((resp) => resp.json());
+    const user = await fetch(
+      `${oauthUrl}/${type}?${new URLSearchParams(params).toString()}`,
+      {
+        method: 'GET',
+        headers: {
+          'user-agent': '@waline',
+        },
+      }
+    ).then((resp) => resp.json());
 
     if (!user || !user.id) {
       return this.fail(user);
