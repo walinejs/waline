@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
 const fetch = require('node-fetch');
 const { PasswordHash } = require('phpass');
-const qs = require('querystring');
 
 module.exports = class extends think.Controller {
   constructor(ctx) {
