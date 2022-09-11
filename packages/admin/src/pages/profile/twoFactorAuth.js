@@ -57,7 +57,7 @@ export default function () {
           <br />
           <button
             className="btn primary"
-            htmlType="submit"
+            type="submit"
             onClick={close2FA}
             disabled={updating}
           >
@@ -102,7 +102,7 @@ export default function () {
           </ul>
           <button
             className="btn primary"
-            htmlType="submit"
+            type="submit"
             onClick={() => setStep(3)}
           >
             {t('next step')}

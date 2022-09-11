@@ -130,7 +130,7 @@ export default function () {
                     <tbody>
                       {list.data.map((user) => (
                         <tr id={`user-${user.objectId}`} key={user.objectId}>
-                          <td valign="top">
+                          <td style={{verticalAlign: 'top'}}>
                             <div className="user-avatar">
                               <img
                                 className="avatar"
