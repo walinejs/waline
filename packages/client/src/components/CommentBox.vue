@@ -260,6 +260,7 @@
 
 <script lang="ts">
 import { useDebounceFn } from '@vueuse/core';
+import { useReCaptcha } from 'vue-recaptcha-v3';
 import autosize from 'autosize';
 import {
   computed,
@@ -340,6 +341,7 @@ export default defineComponent({
     const editor = useEditor();
     const userMeta = useUserMeta();
     const userInfo = useUserInfo();
+    const recaptchaHandler = useReCaptcha();
 
     const inputRefs = ref<Record<string, HTMLInputElement>>({});
     const editorRef = ref<HTMLTextAreaElement | null>(null);
@@ -447,8 +449,15 @@ export default defineComponent({
         });
     };
 
-    const submitComment = (): void => {
+    const submitComment = async (): Promise<void> => {
       const { serverURL, lang, login, wordLimit, requiredMeta } = config.value;
+
+      let token = '';
+      if (recaptchaHandler) {
+        const { executeRecaptcha, recaptchaLoaded } = recaptchaHandler;
+        await recaptchaLoaded();
+        token = await executeRecaptcha('submit');
+      }
 
       const comment: WalineCommentData = {
         comment: content.value,
@@ -457,6 +466,7 @@ export default defineComponent({
         link: userMeta.value.link,
         ua: navigator.userAgent,
         url: config.value.path,
+        recaptcha: token,
       };
 
       if (userInfo.value?.token) {

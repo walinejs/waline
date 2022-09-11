@@ -1,4 +1,5 @@
 import { createApp, h, reactive, watchEffect } from 'vue';
+import { VueReCaptcha } from 'vue-recaptcha-v3';
 
 import Waline from './components/Waline.vue';
 import { commentCount } from './comment';
@@ -79,6 +80,16 @@ export const init = ({
   const app = root
     ? createApp(() => h(Waline, { path: state.path, ...props }))
     : null;
+
+  if (app && initProps.recaptchaV3Key) {
+    app.use(VueReCaptcha, { 
+      siteKey: initProps.recaptchaV3Key,
+      loaderOptions: {
+        useRecaptchaNet: true,
+        autoHideBadge: true,
+      } 
+    });
+  }
 
   if (app) app.mount(root!);
 

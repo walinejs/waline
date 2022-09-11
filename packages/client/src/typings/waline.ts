@@ -213,4 +213,9 @@ export interface WalineProps {
    * @default true
    */
   copyright?: boolean;
+
+  /**
+   * recaptcha v3 client id
+   */
+   recaptchaV3Key?: string;
 }

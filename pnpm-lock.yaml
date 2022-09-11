@@ -190,6 +190,7 @@ importers:
       typescript: 4.8.2
       vite: 3.1.0
       vue: ^3.2.38
+      vue-recaptcha-v3: ^2.0.1
     dependencies:
       '@vueuse/core': 9.2.0_vue@3.2.38
       autosize: 5.0.1
@@ -213,6 +214,7 @@ importers:
       rollup-plugin-ts: 3.0.2_zixfz7twptuthwemdi2s6pkqs4
       typescript: 4.8.2
       vite: 3.1.0
+      vue-recaptcha-v3: 2.0.1_vue@3.2.38
 
   packages/cloudbase:
     specifiers:
@@ -11845,6 +11847,10 @@ packages:
       picomatch: 2.3.1
     dev: true
 
+  /recaptcha-v3/1.10.0:
+    resolution: {integrity: sha512-aGTxYSk3FFNKnXeKDbLpgRDRyIHRZNBF5HyaXXAN1Aj4TSyyZvmoAn9CylvpqLV3pYpIQavwc+2rzhNFn5SsLQ==}
+    dev: true
+
   /rechoir/0.7.1:
     resolution: {integrity: sha512-/njmZ8s1wVeR6pjTZ+0nCnv8SpZNRMT2D1RLOJQESlYFDBvwpTA4KWJpZ+sBJ4+vhjILRcK7JIFdGCdxEAAitg==}
     engines: {node: '>= 0.10'}
@@ -14448,6 +14454,15 @@ packages:
       semver: 7.3.7
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /vue-recaptcha-v3/2.0.1_vue@3.2.38:
+    resolution: {integrity: sha512-isEDtOfHU4wWRrZZuxciAELtQmPOeEEdicPNa0f1AOyLPy3sCcBEcpFt+FOcO3RQv5unJ3Yn5NlsWtXv9rXqjg==}
+    peerDependencies:
+      vue: ^3.0.11
+    dependencies:
+      recaptcha-v3: 1.10.0
+      vue: 3.2.38
     dev: true
 
   /vue-router/4.1.5_vue@3.2.38:

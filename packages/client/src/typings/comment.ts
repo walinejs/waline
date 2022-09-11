@@ -44,6 +44,10 @@ export interface WalineCommentData {
    * Comment link
    */
   url: string;
+  /**
+   * Recaptcha Token
+   */
+  recaptcha?: string;
 }
 
 export type WalineCommentStatus = 'approved' | 'waiting' | 'spam';
