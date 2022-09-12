@@ -146,6 +146,14 @@ export const postComment = ({
 
   if (token) headers.Authorization = `Bearer ${token}`;
 
+  if (comment.eid) {
+    return fetch(`${serverURL}/comment/${comment.eid}?lang=${lang}`, {
+      method: 'PUT',
+      headers,
+      body: JSON.stringify(comment),
+    }).then((resp) => resp.json() as Promise<PostCommentResponse>);
+  }
+
   return fetch(`${serverURL}/comment?lang=${lang}`, {
     method: 'POST',
     headers,

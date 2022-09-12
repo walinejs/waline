@@ -1,18 +1,7 @@
 const Base = require('./base');
 
 module.exports = class extends Base {
-  async __before() {
-    await super.__before();
-
-    const { type, path } = this.get();
-    const { like } = this.post();
-    const isAllowedGet = this.isGet && (type !== 'list' || path);
-    const isAllowedPut = this.ctx.isMethod('PUT') && think.isBoolean(like);
-
-    if (this.isPost || isAllowedGet || isAllowedPut) {
-      return;
-    }
-
+  checkAdmin() {
     const { userInfo } = this.ctx.state;
 
     if (think.isEmpty(userInfo)) {
@@ -116,7 +105,11 @@ module.exports = class extends Base {
    * @apiSuccess  (200) {String}  response.type comment login user type
    */
   getAction() {
-    const { type } = this.get();
+    const { type, path } = this.get();
+    const isAllowedGet = type !== 'list' || path;
+    if (!isAllowedGet) {
+      this.checkAdmin();
+    }
 
     switch (type) {
       case 'recent':
@@ -230,17 +223,41 @@ module.exports = class extends Base {
    * @apiSuccess  (200) {Number}  errno 0
    * @apiSuccess  (200) {String}  errmsg  return error message if error
    */
-  putAction() {
+  async putAction() {
     const { userInfo } = this.ctx.state;
+    const { like } = this.post();
 
-    if (think.isEmpty(userInfo) || userInfo.type !== 'administrator') {
+    // 1. like
+    if (think.isEmpty(userInfo) && think.isBoolean(like)) {
       this.rules = {
         like: {
           required: true,
           boolean: true,
         },
       };
+      return;
     }
+
+    if (think.isEmpty(userInfo)) {
+      return this.ctx.throw(401);
+    }
+
+    // 2. administrator
+    if (userInfo.type === 'administrator') {
+      return;
+    }
+
+    // 3. comment author modify comment content
+    const modelInstance = this.service(
+      `storage/${this.config('storage')}`,
+      'Comment'
+    );
+    const commentData = await modelInstance.select({ user_id: userInfo.objectId, objectId: this.id });
+    if (!think.isEmpty(commentData)) {
+      return;
+    }
+    
+    return this.ctx.throw(403);
   }
 
   /**
@@ -251,5 +268,25 @@ module.exports = class extends Base {
    * @apiSuccess  (200) {Number}  errno 0
    * @apiSuccess  (200) {String}  errmsg  return error message if error
    */
-  deleteAction() {}
+  async deleteAction() {
+    const { userInfo } = this.ctx.state;
+
+    if (think.isEmpty(userInfo)) {
+      return this.ctx.throw(401);
+    }
+
+    if (userInfo.type === 'administrator') {
+      return;
+    }
+
+    const modelInstance = this.service(
+      `storage/${this.config('storage')}`,
+      'Comment'
+    );
+    const commentData = await modelInstance.select({ user_id: userInfo.objectId, objectId: this.id });
+    if (!think.isEmpty(commentData)) {
+      return;
+    }
+    return this.ctx.throw(403);
+  }
 };
