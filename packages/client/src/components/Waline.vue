@@ -25,7 +25,9 @@
         :root-id="comment.objectId"
         :comment="comment"
         :reply="reply"
+        :edit="edit"
         @reply="onReply"
+        @edit="onEdit"
         @submit="onSubmit"
         @status="onStatusChange"
         @delete="onDelete"
@@ -263,6 +265,7 @@ export default defineComponent({
 
     const data = ref<WalineComment[]>([]);
     const reply = ref<WalineComment | null>(null);
+    const edit = ref<WalineComment | null>(null);
 
     const darkmodeStyle = computed(() => getDarkStyle(config.value.dark));
 
@@ -326,8 +329,15 @@ export default defineComponent({
       reply.value = comment;
     };
 
+    const onEdit = (comment: WalineComment | null): void => {
+      edit.value = comment;
+    };
+
     const onSubmit = (comment: WalineComment): void => {
-      if (comment.rid) {
+      if (edit.value) {
+        edit.value.comment = comment.comment;
+        edit.value.orig = comment.orig;
+      } else if (comment.rid) {
         const repliedComment = data.value.find(
           ({ objectId }) => objectId === comment.rid
         );
@@ -456,6 +466,7 @@ export default defineComponent({
       sortByItems,
       data,
       reply,
+      edit,
 
       loadMore,
       refresh,
@@ -466,6 +477,7 @@ export default defineComponent({
       onDelete,
       onSticky,
       onLike,
+      onEdit,
 
       version: VERSION,
     };

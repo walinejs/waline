@@ -67,9 +67,9 @@ module.exports = class extends Base {
       return instance.count();
     }
 
-    instance.field([...group, 'COUNT(*) as count']);
+    instance.field([...group, 'COUNT(*) as count'].join(','));
     instance.group(group);
-
+    
     return instance.select();
   }
 

@@ -41,6 +41,11 @@ export interface WalineCommentData {
   at?: string;
 
   /**
+   * edit comment id
+   */
+  eid?: string;
+
+  /**
    * Comment link
    */
   url: string;
@@ -84,4 +89,5 @@ export interface WalineComment extends Exclude<WalineCommentData, 'ua'> {
   user_id?: string | number;
   status?: WalineCommentStatus;
   like?: number;
+  orig?: string;
 }

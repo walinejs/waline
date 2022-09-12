@@ -1,6 +1,6 @@
 <template>
   <div class="wl-comment">
-    <div v-if="config.login !== 'disable' && isLogin" class="wl-login-info">
+    <div v-if="config.login !== 'disable' && isLogin && !edit?.objectId" class="wl-login-info">
       <div class="wl-avatar">
         <button class="wl-logout-btn" :title="locale.logout" @click="onLogout">
           <CloseIcon :size="14" />
@@ -248,10 +248,10 @@
     </div>
 
     <button
-      v-if="replyId"
+      v-if="replyId || edit?.objectId"
       class="wl-close"
       :title="locale.cancelReply"
-      @click="$emit('cancel-reply')"
+      @click="$emit(replyId ? 'cancel-reply' : 'cancel-edit')"
     >
       <CloseIcon :size="24" />
     </button>
@@ -268,6 +268,7 @@ import {
   inject,
   onMounted,
   onUnmounted,
+  PropType,
   reactive,
   ref,
   watch,
@@ -295,6 +296,7 @@ import {
 
 import type { ComputedRef, DeepReadonly } from 'vue';
 import type {
+  WalineComment,
   WalineCommentData,
   WalineImageUploader,
   WalineSearchOptions,
@@ -329,9 +331,13 @@ export default defineComponent({
       type: String,
       default: '',
     },
+    edit: {
+      type: Object as PropType<WalineComment | null>,
+      default: null,
+    },
   },
 
-  emits: ['submit', 'cancel-reply'],
+  emits: ['submit', 'cancel-reply', 'cancel-edit'],
 
   setup(props, { emit }) {
     const config = inject<ComputedRef<WalineConfig>>(
@@ -520,6 +526,8 @@ export default defineComponent({
         comment.pid = props.replyId;
         comment.rid = props.rootId;
         comment.at = props.replyUser;
+      } else if (props.edit) {
+        comment.eid = props.edit.objectId;
       }
 
       isSubmitting.value = true;
@@ -542,6 +550,7 @@ export default defineComponent({
           previewText.value = '';
 
           if (props.replyId) emit('cancel-reply');
+          if (props.edit?.objectId) emit('cancel-edit');
         })
         .catch((err: TypeError) => {
           isSubmitting.value = false;
@@ -711,6 +720,9 @@ export default defineComponent({
     onMounted(() => {
       document.body.addEventListener('click', popupHandler);
       window.addEventListener('message', onMessageRecive);
+      if (props.edit?.objectId) {
+        editor.value = props.edit.orig;
+      }
 
       // watch editor
       watch(

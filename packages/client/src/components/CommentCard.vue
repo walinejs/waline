@@ -34,6 +34,14 @@
         <div class="wl-comment-actions">
           <button
             v-if="isAdmin || isOwner"
+            class="wl-edit"
+            @click="$emit('edit', comment)"
+          >
+            <EditIcon />
+          </button>
+
+          <button
+            v-if="isAdmin || isOwner"
             class="wl-delete"
             @click="$emit('delete', comment)"
           >
@@ -60,14 +68,14 @@
         </div>
       </div>
       <div class="wl-meta" aria-hidden="true">
-        <span v-if="comment.addr" v-text="comment.addr" />
-        <span v-if="comment.browser" v-text="comment.browser" />
-        <span v-if="comment.os" v-text="comment.os" />
+        <span v-if="comment.addr" class="wl-addr" :data-value="comment.addr" v-text="comment.addr" />
+        <span v-if="comment.browser" class="wl-browser" :data-value="comment.browser" v-text="comment.browser" />
+        <span v-if="comment.os" class="wl-os" :data-value="comment.os" v-text="comment.os" />
       </div>
       <!-- eslint-disable-next-line vue/no-v-html -->
-      <div class="wl-content" v-html="comment.comment" />
+      <div v-if="!isEditingCurrent" class="wl-content" v-html="comment.comment" />
 
-      <div v-if="isAdmin" class="wl-admin-actions">
+      <div v-if="isAdmin && !isEditingCurrent" class="wl-admin-actions">
         <span class="wl-comment-status">
           <button
             v-for="status in commentStatus"
@@ -88,13 +96,18 @@
         </button>
       </div>
 
-      <div v-if="isReplyingCurrent" class="wl-reply-wrapper">
+      <div 
+        v-if="isReplyingCurrent || isEditingCurrent" 
+        :class="{'wl-reply-wrapper': isReplyingCurrent, 'wl-edit-wrapper': isEditingCurrent}"
+      >
         <CommentBox
-          :reply-id="comment.objectId"
+          :edit="edit"
+          :reply-id="reply?.objectId"
           :reply-user="comment.nick"
           :root-id="rootId"
           @submit="$emit('submit', $event)"
           @cancel-reply="$emit('reply', null)"
+          @cancel-edit="$emit('edit', null)"
         />
       </div>
       <div v-if="comment.children" class="wl-quote">
@@ -103,10 +116,12 @@
           :key="child.objectId"
           :comment="child"
           :reply="reply"
+          :edit="edit"
           :root-id="rootId"
           @reply="$emit('reply', $event)"
           @submit="$emit('submit', $event)"
           @like="$emit('like', $event)"
+          @edit="$emit('edit', $event)"
           @delete="$emit('delete', $event)"
           @status="$emit('status', $event)"
           @sticky="$emit('sticky', $event)"
@@ -119,7 +134,7 @@
 <script lang="ts">
 import { computed, defineComponent, inject } from 'vue';
 import CommentBox from './CommentBox.vue';
-import { DeleteIcon, LikeIcon, ReplyIcon, VerifiedIcon } from './Icons';
+import { DeleteIcon, LikeIcon, ReplyIcon, EditIcon, VerifiedIcon } from './Icons';
 import { isLinkHttp } from '../utils';
 import { useTimeAgo, useLikeStorage, useUserInfo } from '../composables';
 
@@ -135,6 +150,7 @@ export default defineComponent({
     DeleteIcon,
     LikeIcon,
     ReplyIcon,
+    EditIcon,
     VerifiedIcon,
   },
 
@@ -151,9 +167,13 @@ export default defineComponent({
       type: Object as PropType<WalineComment | null>,
       default: null,
     },
+    edit: {
+      type: Object as PropType<WalineComment | null>,
+      default: null,
+    }
   },
 
-  emits: ['submit', 'reply', 'like', 'delete', 'status', 'sticky'],
+  emits: ['submit', 'reply', 'like', 'delete', 'status', 'sticky', 'edit'],
 
   setup(props) {
     const config = inject<ComputedRef<WalineConfig>>(
@@ -181,16 +201,22 @@ export default defineComponent({
         props.comment.user_id &&
         userInfo.value.objectId === props.comment.user_id
     );
+    console.log('lizheming:', props.comment.user_id, userInfo.value.objectId, isOwner.value);
 
     const isReplyingCurrent = computed(
       () => props.comment.objectId === props.reply?.objectId
     );
+
+    const isEditingCurrent = computed(
+      () => props.comment.objectId === props.edit?.objectId
+    )
 
     return {
       config,
       locale,
 
       isReplyingCurrent,
+      isEditingCurrent,
       link,
       like,
       time,
