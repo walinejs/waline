@@ -45,6 +45,7 @@
       "default": "./dist/waline.js"
     },
     "./dist/waline.css": "./dist/waline.css",
+    "./dist/waline-meta.css": "./dist/waline-meta.css",
     "./dist/*": "./dist/*",
     "./src/*": "./src/*",
     "./package.json": "./package.json"
@@ -63,7 +64,9 @@
     "lint": "eslint --ext .ts,.vue .",
     "prepublishOnly": "pnpm clean && pnpm build",
     "rollup": "rollup -c ./config/rollup.config.js",
-    "style": "sass ./src/styles/index.scss ./dist/waline.css --style=compressed"
+    "style": "pnpm style:main && pnpm style:ua",
+    "style:main": "sass ./src/styles/index.scss ./dist/waline.css --style=compressed",
+    "style:ua": "sass ./src/styles/meta.scss ./dist/waline-meta.css --style=compressed"
   },
   "browserslist": {
     "production": [

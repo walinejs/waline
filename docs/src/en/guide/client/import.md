@@ -89,6 +89,8 @@ Waline provides several versions of the file:
 
 - `dist/waline.css`: Waline CSS styles
 
+- `dist/waline-meta.css`: Waline Meta Icon CSS
+
 - `dist/component.js`: Waline's Vue component, ES Module format, without dependency bundling
 
   This file is for using Waline comments in component mode in a Vue project, 13.19 KB Gzip size

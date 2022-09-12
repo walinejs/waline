@@ -110,6 +110,26 @@ darkmode-selector {
 
 If the above colors are different from the darkmode palette of your site, you can override them instead of setting the `dark` option.
 
+## Meta Icons
+
+If you want to add icons to user comment meta data, you can import `waline-meta.css` to use it.
+
+For CDN users, you can import via the following link:
+
+```html
+<!-- Meta icon (optional) -->
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/@waline/client@v2/dist/waline-meta.css"
+/>
+```
+
+For NPM users, you can import via:
+
+```js
+import '@waline/client/dist/waline-meta.css';
+```
+
 ## Box Shadow
 
 If you are using a theme that uses shadows (`box-shadow`) instead of borders, you can modify the display effect of Waline by modifying `--waline-border` and `--waline-box-shadow`, e.g.:

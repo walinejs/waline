@@ -110,6 +110,26 @@ darkmode-selector {
 
 如果上述颜色与你的站点夜间模式颜色不同，你可以考虑手动添加 CSS 并自行覆盖他们。
 
+## Meta 图标
+
+如果你希望给用户评论的 meta 数据加上图标的话，你可以导入 `waline-meta.css` 来使用它。
+
+对于 CDN 用户，你可以通过以下链接导入:
+
+```html
+<!-- Meta 图标 (可选) -->
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/@waline/client@v2/dist/waline-meta.css"
+/>
+```
+
+对于 NPM 用户，你可以通过以下方式导入:
+
+```js
+import '@waline/client/dist/waline-meta.css';
+```
+
 ## 阴影样式
 
 如果你在使用一个大量运用阴影 (`box-shadow`) 的主题，你可以通过修改 `--waline-border` 和 `--waline-box-shadow` 来更改 Waline 的显示效果，如:
