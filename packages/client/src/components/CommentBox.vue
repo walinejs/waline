@@ -459,10 +459,12 @@ export default defineComponent({
       const { serverURL, lang, login, wordLimit, requiredMeta } = config.value;
 
       let token = '';
+
       if (recaptchaHandler) {
         const { executeRecaptcha, recaptchaLoaded } = recaptchaHandler;
+
         await recaptchaLoaded();
-        token = await executeRecaptcha('submit');
+        token = await executeRecaptcha('social');
       }
 
       const comment: WalineCommentData = {
