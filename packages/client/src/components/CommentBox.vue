@@ -517,7 +517,7 @@ export default defineComponent({
         comment.rid = props.rootId;
         comment.at = props.replyUser;
       } else if (props.edit) {
-        comment.eid = props.edit?.objectId;
+        comment.eid = props.edit.objectId;
       }
 
       isSubmitting.value = true;
