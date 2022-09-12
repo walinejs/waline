@@ -594,7 +594,7 @@ module.exports = class extends BaseRest {
       if (parentComment.user_id) {
         parentUser = await this.service(
           `storage/${this.config('storage')}`,
-          'User'
+          'Users'
         ).select({
           objectId: parentComment.user_id,
         });
@@ -676,7 +676,7 @@ module.exports = class extends BaseRest {
     if (!think.isEmpty(newData) && newData[0].user_id) {
       cmtUser = await this.service(
         `storage/${this.config('storage')}`,
-        'User'
+        'Users'
       ).select({
         objectId: newData[0].user_id,
       });
@@ -706,7 +706,7 @@ module.exports = class extends BaseRest {
       if (pComment.user_id) {
         pUser = await this.service(
           `storage/${this.config('storage')}`,
-          'User'
+          'Users'
         ).select({
           objectId: pComment.user_id,
         });
