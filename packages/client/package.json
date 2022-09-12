@@ -64,9 +64,9 @@
     "lint": "eslint --ext .ts,.vue .",
     "prepublishOnly": "pnpm clean && pnpm build",
     "rollup": "rollup -c ./config/rollup.config.js",
-    "style": "pnpm style:main && pnpm style:ua",
+    "style": "pnpm style:main && pnpm style:meta",
     "style:main": "sass ./src/styles/index.scss ./dist/waline.css --style=compressed",
-    "style:ua": "sass ./src/styles/meta.scss ./dist/waline-meta.css --style=compressed"
+    "style:meta": "sass ./src/styles/meta.scss ./dist/waline-meta.css --style=compressed"
   },
   "browserslist": {
     "production": [
