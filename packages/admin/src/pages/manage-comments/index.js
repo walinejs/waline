@@ -426,7 +426,7 @@ export default function () {
                           cmtHandler.action === 'edit' ? (
                             <tr className="comment-edit" key={objectId}>
                               <td> </td>
-                              <td colSpan="2" style={{verticalAlign: 'top'}}>
+                              <td colSpan="2" style={{ verticalAlign: 'top' }}>
                                 <div className="comment-edit-info">
                                   <p>
                                     <label
@@ -480,7 +480,7 @@ export default function () {
                                   </p>
                                 </div>
                               </td>
-                              <td style={{verticalAlign: 'top'}}>
+                              <td style={{ verticalAlign: 'top' }}>
                                 <div className="comment-edit-content">
                                   <p>
                                     <label htmlFor={`comment-${objectId}-text`}>
@@ -519,7 +519,7 @@ export default function () {
                             </tr>
                           ) : (
                             <tr id={`comment-${objectId}`} key={objectId}>
-                              <td style={{verticalalign: 'top'}}>
+                              <td style={{ verticalalign: 'top' }}>
                                 <input
                                   type="checkbox"
                                   value={objectId}
@@ -535,7 +535,7 @@ export default function () {
                                   }
                                 />
                               </td>
-                              <td style={{verticalalign: 'top'}}>
+                              <td style={{ verticalalign: 'top' }}>
                                 <div className="comment-avatar">
                                   <img
                                     className="avatar"
@@ -546,7 +546,10 @@ export default function () {
                                   />
                                 </div>
                               </td>
-                              <td style={{verticalalign: 'top'}} className="comment-head">
+                              <td
+                                style={{ verticalalign: 'top' }}
+                                className="comment-head"
+                              >
                                 <div className="comment-meta">
                                   <strong className="comment-author">
                                     {!link ? (
@@ -581,7 +584,10 @@ export default function () {
                                   <span>{addr}</span>
                                 </div>
                               </td>
-                              <td style={{verticalalign: 'top'}} className="comment-body">
+                              <td
+                                style={{ verticalalign: 'top' }}
+                                className="comment-body"
+                              >
                                 <div className="comment-date">
                                   {formatDate(insertedAt)} {t('at')}{' '}
                                   <a

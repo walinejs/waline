@@ -1,6 +1,9 @@
 <template>
   <div class="wl-comment">
-    <div v-if="config.login !== 'disable' && isLogin && !edit?.objectId" class="wl-login-info">
+    <div
+      v-if="config.login !== 'disable' && isLogin && !edit?.objectId"
+      class="wl-login-info"
+    >
       <div class="wl-avatar">
         <button class="wl-logout-btn" :title="locale.logout" @click="onLogout">
           <CloseIcon :size="14" />

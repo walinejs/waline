@@ -15,12 +15,12 @@ GET /comment
 
 **Parameters**:
 
-| Parameter | Type   | Description            |
-| --------- | ------ | ---------------------- |
-| path      | string | Article id for comment |
-| page      | number | Comment page           |
-| pageSize  | number | Comment list page size |
-| sortBy   | string | Which sort type for comment list, default descending sort by create time, also you can ascending sort by create_time, or descending sort by comment like. |
+| Parameter | Type   | Description                                                                                                                                               |
+| --------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| path      | string | Article id for comment                                                                                                                                    |
+| page      | number | Comment page                                                                                                                                              |
+| pageSize  | number | Comment list page size                                                                                                                                    |
+| sortBy    | string | Which sort type for comment list, default descending sort by create time, also you can ascending sort by create_time, or descending sort by comment like. |
 
 ### Comment Count
 
@@ -32,9 +32,9 @@ GET /comment?type=count
 
 **Parameters**:
 
-| Parameter | Type   | Description            |
-| --------- | ------ | ---------------------- |
-| url      | string | Article id for comment, return site comment count if it empty |
+| Parameter | Type   | Description                                                   |
+| --------- | ------ | ------------------------------------------------------------- |
+| url       | string | Article id for comment, return site comment count if it empty |
 
 ### Recent Comment
 

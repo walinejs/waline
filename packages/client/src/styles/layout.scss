@@ -50,9 +50,9 @@
 }
 
 .wl-count {
+  flex: 1;
   font-weight: bold;
   font-size: 1.25em;
-  flex: 1;
 }
 
 .wl-empty {
@@ -85,14 +85,14 @@
 }
 
 ul.wl-sort {
-  list-style-type: none;
   margin: 0;
+  list-style-type: none;
 }
 
 .wl-sort li {
   display: inline-block;
-  font-size: 0.75em;
   color: var(--waline-info-color);
+  font-size: 0.75em;
   cursor: pointer;
 }
 

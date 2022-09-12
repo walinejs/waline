@@ -109,6 +109,7 @@ module.exports = class extends Base {
   getAction() {
     const { type, path } = this.get();
     const isAllowedGet = type !== 'list' || path;
+
     if (!isAllowedGet) {
       this.checkAdmin();
     }
@@ -260,6 +261,7 @@ module.exports = class extends Base {
           boolean: true,
         },
       };
+
       return;
     }
 
@@ -277,11 +279,15 @@ module.exports = class extends Base {
       `storage/${this.config('storage')}`,
       'Comment'
     );
-    const commentData = await modelInstance.select({ user_id: userInfo.objectId, objectId: this.id });
+    const commentData = await modelInstance.select({
+      user_id: userInfo.objectId,
+      objectId: this.id,
+    });
+
     if (!think.isEmpty(commentData)) {
       return;
     }
-    
+
     return this.ctx.throw(403);
   }
 
@@ -308,10 +314,15 @@ module.exports = class extends Base {
       `storage/${this.config('storage')}`,
       'Comment'
     );
-    const commentData = await modelInstance.select({ user_id: userInfo.objectId, objectId: this.id });
+    const commentData = await modelInstance.select({
+      user_id: userInfo.objectId,
+      objectId: this.id,
+    });
+
     if (!think.isEmpty(commentData)) {
       return;
     }
+
     return this.ctx.throw(403);
   }
 };

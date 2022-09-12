@@ -1,6 +1,6 @@
 {
   "name": "@waline/client",
-  "version": "2.8.0",
+  "version": "2.8.1",
   "description": "client for waline comment system",
   "keywords": [
     "valine",
@@ -20,11 +20,32 @@
   },
   "exports": {
     ".": {
+      "types": "./dist/shim.d.ts",
       "import": "./dist/shim.esm.js",
       "require": "./dist/shim.js",
       "default": "./dist/shim.js"
     },
+    "./component": {
+      "import": "./dist/component.esm.js",
+      "require": "./dist/component.js",
+      "default": "./dist/component.esm.js"
+    },
+    "./full": {
+      "types": "./dist/waline.d.ts",
+      "import": "./dist/waline.esm.js",
+      "require": "./dist/waline.cjs.js",
+      "default": "./dist/waline.js"
+    },
+    "./pageview": {
+      "types": "./dist/pageview.d.ts",
+      "import": "./dist/pageview.esm.js",
+      "require": "./dist/pageview.cjs.js",
+      "default": "./dist/pageview.js"
+    },
+    "./waline.css": "./dist/waline.css",
+    "./waline-meta.css": "./dist/waline-meta.css",
     "./dist": {
+      "types": "./dist/shim.d.ts",
       "import": "./dist/shim.esm.js",
       "require": "./dist/shim.js",
       "default": "./dist/shim.js"
@@ -35,16 +56,19 @@
       "default": "./dist/component.esm.js"
     },
     "./dist/pageview": {
+      "types": "./dist/pageview.d.ts",
       "import": "./dist/pageview.esm.js",
       "require": "./dist/pageview.cjs.js",
       "default": "./dist/pageview.js"
     },
     "./dist/waline": {
+      "types": "./dist/waline.d.ts",
       "import": "./dist/waline.esm.js",
       "require": "./dist/waline.cjs.js",
       "default": "./dist/waline.js"
     },
     "./dist/waline.css": "./dist/waline.css",
+    "./dist/waline-meta.css": "./dist/waline-meta.css",
     "./dist/*": "./dist/*",
     "./src/*": "./src/*",
     "./package.json": "./package.json"
@@ -63,7 +87,9 @@
     "lint": "eslint --ext .ts,.vue .",
     "prepublishOnly": "pnpm clean && pnpm build",
     "rollup": "rollup -c ./config/rollup.config.js",
-    "style": "sass ./src/styles/index.scss ./dist/waline.css --style=compressed"
+    "style": "pnpm style:main && pnpm style:meta",
+    "style:main": "sass ./src/styles/index.scss ./dist/waline.css --style=compressed",
+    "style:meta": "sass ./src/styles/meta.scss ./dist/waline-meta.css --style=compressed"
   },
   "browserslist": {
     "production": [

@@ -91,6 +91,8 @@ Waline 提供多个版本的文件:
 
 - `dist/waline.css`: Waline CSS 样式
 
+- `dist/waline-meta.css`: Waline Meta 图标 CSS
+
 - `dist/component.js`: Waline 的 Vue 组件，ES Module 格式，不含依赖捆绑
 
   此文件用于在 Vue 项目中以组件模式使用 Waline 评论, 13.19 KB Gzip 大小

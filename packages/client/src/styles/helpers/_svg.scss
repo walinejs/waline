@@ -1,0 +1,51 @@
+@use "sass:math";
+@use "sass:string";
+
+/* stylelint-disable scss/operator-no-newline-after */
+
+@function string-replace($string, $search, $replace: "") {
+  $index: string.index($string, $search);
+  @return if(
+    $index,
+    str-slice($string, 1, $index - 1) + $replace +
+      string-replace(
+        str-slice($string, $index + str-length($search)),
+        $search,
+        $replace
+      ),
+    $string
+  );
+}
+
+@function svg-url($svg) {
+  $encoded: "";
+  $slice: 2000;
+  $index: 0;
+  $loops: math.ceil(math.div(string.length($svg), $slice));
+
+  @if not str-index($svg, xmlns) {
+    $svg: string-replace(
+      $svg,
+      "<svg",
+      '<svg xmlns="http://www.w3.org/2000/svg"'
+    );
+  }
+
+  @for $i from 1 through $loops {
+    $chunk: string.slice($svg, $index, $index + $slice - 1);
+    $chunk: string-replace($chunk, '"', "'");
+    $chunk: string-replace($chunk, "%", "%25");
+    $chunk: string-replace($chunk, "#", "%23");
+    $chunk: string-replace($chunk, "{", "%7B");
+    $chunk: string-replace($chunk, "}", "%7D");
+    $chunk: string-replace($chunk, "<", "%3C");
+    $chunk: string-replace($chunk, ">", "%3E");
+    $encoded: #{$encoded}#{$chunk};
+    $index: $index + $slice;
+  }
+  @return url("data:image/svg+xml,#{$encoded}");
+}
+
+@mixin background-svg($svg) {
+  background-image: svg-url($svg);
+}
