@@ -68,12 +68,31 @@
         </div>
       </div>
       <div class="wl-meta" aria-hidden="true">
-        <span v-if="comment.addr" class="wl-addr" :data-value="comment.addr" v-text="comment.addr" />
-        <span v-if="comment.browser" class="wl-browser" :data-value="comment.browser" v-text="comment.browser" />
-        <span v-if="comment.os" class="wl-os" :data-value="comment.os" v-text="comment.os" />
+        <span
+          v-if="comment.addr"
+          class="wl-addr"
+          :data-value="comment.addr"
+          v-text="comment.addr"
+        />
+        <span
+          v-if="comment.browser"
+          class="wl-browser"
+          :data-value="comment.browser"
+          v-text="comment.browser"
+        />
+        <span
+          v-if="comment.os"
+          class="wl-os"
+          :data-value="comment.os"
+          v-text="comment.os"
+        />
       </div>
       <!-- eslint-disable-next-line vue/no-v-html -->
-      <div v-if="!isEditingCurrent" class="wl-content" v-html="comment.comment" />
+      <div
+        v-if="!isEditingCurrent"
+        class="wl-content"
+        v-html="comment.comment"
+      />
 
       <div v-if="isAdmin && !isEditingCurrent" class="wl-admin-actions">
         <span class="wl-comment-status">
@@ -96,9 +115,12 @@
         </button>
       </div>
 
-      <div 
-        v-if="isReplyingCurrent || isEditingCurrent" 
-        :class="{'wl-reply-wrapper': isReplyingCurrent, 'wl-edit-wrapper': isEditingCurrent}"
+      <div
+        v-if="isReplyingCurrent || isEditingCurrent"
+        :class="{
+          'wl-reply-wrapper': isReplyingCurrent,
+          'wl-edit-wrapper': isEditingCurrent,
+        }"
       >
         <CommentBox
           :edit="edit"
@@ -134,7 +156,13 @@
 <script lang="ts">
 import { computed, defineComponent, inject } from 'vue';
 import CommentBox from './CommentBox.vue';
-import { DeleteIcon, LikeIcon, ReplyIcon, EditIcon, VerifiedIcon } from './Icons';
+import {
+  DeleteIcon,
+  LikeIcon,
+  ReplyIcon,
+  EditIcon,
+  VerifiedIcon,
+} from './Icons';
 import { isLinkHttp } from '../utils';
 import { useTimeAgo, useLikeStorage, useUserInfo } from '../composables';
 
@@ -170,7 +198,7 @@ export default defineComponent({
     edit: {
       type: Object as PropType<WalineComment | null>,
       default: null,
-    }
+    },
   },
 
   emits: ['submit', 'reply', 'like', 'delete', 'status', 'sticky', 'edit'],
@@ -201,7 +229,13 @@ export default defineComponent({
         props.comment.user_id &&
         userInfo.value.objectId === props.comment.user_id
     );
-    console.log('lizheming:', props.comment.user_id, userInfo.value.objectId, isOwner.value);
+
+    console.log(
+      'lizheming:',
+      props.comment.user_id,
+      userInfo.value.objectId,
+      isOwner.value
+    );
 
     const isReplyingCurrent = computed(
       () => props.comment.objectId === props.reply?.objectId
@@ -209,7 +243,7 @@ export default defineComponent({
 
     const isEditingCurrent = computed(
       () => props.comment.objectId === props.edit?.objectId
-    )
+    );
 
     return {
       config,

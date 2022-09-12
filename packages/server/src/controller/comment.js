@@ -655,8 +655,10 @@ module.exports = class extends BaseRest {
     oldData = oldData[0];
     if (think.isBoolean(data.like)) {
       const likeIncMax = this.config('LIKE_INC_MAX') || 1;
-      data.like = (Number(oldData.like) || 0) +
-      (data.like ? Math.ceil(Math.random() * likeIncMax) : -1);
+
+      data.like =
+        (Number(oldData.like) || 0) +
+        (data.like ? Math.ceil(Math.random() * likeIncMax) : -1);
     }
 
     const preUpdateResp = await this.hook('preUpdate', {
@@ -673,6 +675,7 @@ module.exports = class extends BaseRest {
     });
 
     let cmtUser;
+
     if (!think.isEmpty(newData) && newData[0].user_id) {
       cmtUser = await this.service(
         `storage/${this.config('storage')}`,
@@ -688,13 +691,12 @@ module.exports = class extends BaseRest {
       this.config(),
       userInfo
     );
-    
+
     if (
       oldData.status === 'waiting' &&
       data.status === 'approved' &&
       oldData.pid
     ) {
-
       let pComment = await this.modelInstance.select({
         objectId: oldData.pid,
       });

@@ -69,7 +69,7 @@ module.exports = class extends Base {
 
     instance.field([...group, 'COUNT(*) as count'].join(','));
     instance.group(group);
-    
+
     return instance.select();
   }
 
@@ -79,10 +79,9 @@ module.exports = class extends Base {
       delete data.objectId;
     }
     const date = new Date();
-    if (!data.createdAt)
-      data.createdAt = date;
-    if (!data.updatedAt)
-      data.updatedAt = date;
+
+    if (!data.createdAt) data.createdAt = date;
+    if (!data.updatedAt) data.updatedAt = date;
 
     const instance = this.model(this.tableName);
     const id = await instance.add(data);
