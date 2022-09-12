@@ -87,12 +87,13 @@
           v-text="comment.os"
         />
       </div>
-      <!-- eslint-disable-next-line vue/no-v-html -->
+      <!-- eslint-disable vue/no-v-html -->
       <div
         v-if="!isEditingCurrent"
         class="wl-content"
         v-html="comment.comment"
       />
+      <!-- eslint-enable vue/no-v-html -->
 
       <div v-if="isAdmin && !isEditingCurrent" class="wl-admin-actions">
         <span class="wl-comment-status">
