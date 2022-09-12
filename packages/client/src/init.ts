@@ -1,5 +1,5 @@
 import { createApp, h, reactive, watchEffect } from 'vue';
-import { VueReCaptcha } from 'vue-recaptcha-v3';
+import { VueReCaptcha } from './components/RecaptchaV3/RecaptchaVuePlugin';
 
 import Waline from './components/Waline.vue';
 import { commentCount } from './comment';
@@ -82,12 +82,12 @@ export const init = ({
     : null;
 
   if (app && initProps.recaptchaV3Key) {
-    app.use(VueReCaptcha, { 
+    app.use(VueReCaptcha, {
       siteKey: initProps.recaptchaV3Key,
       loaderOptions: {
         useRecaptchaNet: true,
         autoHideBadge: true,
-      } 
+      },
     });
   }
 
