@@ -77,23 +77,23 @@ Waline provides several versions of the file:
 
 - `dist/waline.js`: full version, UMD format
 
-  This file is the default file for CDN import `@waline/client`, 51 KB Gzip size
+  This file is the default file for CDN import `@waline/client`, 53 KB Gzip size
 
-- `dist/shim.js`: full version without dependencies, in Common JS format
+- `dist/shim.mjs`: full version without dependencies, ES Module format
 
-  This file is the default file when `require` `@waline/client`, 14.24 KB Gzip size
+  This file is the default file when `import` `@waline/client`, 19.39 KB Gzip size
 
-- `dist/shim.esm.js`: full version without dependencies, ES Module format
+- `dist/shim.cjs`: full version without dependencies, in Common JS format
 
-  This file is the default file when `import` `@waline/client`, 14.14 KB Gzip size
+  This file is the default file when `require` `@waline/client`, 19.59 KB Gzip size
 
 - `dist/waline.css`: Waline CSS styles
 
 - `dist/waline-meta.css`: Waline Meta Icon CSS
 
-- `dist/component.js`: Waline's Vue component, ES Module format, without dependency bundling
+- `dist/component.mjs`: Waline's Vue component, ES Module format, without dependency bundling
 
-  This file is for using Waline comments in component mode in a Vue project, 13.19 KB Gzip size
+  This file is for using Waline comments in component mode in a Vue project, 18.28 KB Gzip size
 
 - `dist/pageview.js`: Waline's pageview module, UMD format, < 1KB Gzip size
 
@@ -101,13 +101,13 @@ Waline provides several versions of the file:
 
 Other format files:
 
-- `dist/waline.cjs.js`: Common JS format for `dist/waline.js` file
+- `dist/waline.cjs`: Common JS format for `dist/waline.js` file
 
-- `dist/waline.esm.js`: ES Module format of `dist/waline.js` file
+- `dist/waline.mjs`: ES Module format of `dist/waline.js` file
 
-- `dist/pageview.cjs.js`: Common JS format for `dist/pageview.js` file
+- `dist/pageview.cjs`: Common JS format for `dist/pageview.js` file
 
-- `dist/pageview.esm.js`: ES Module format of `dist/pageview.js` file
+- `dist/pageview.mjs`: ES Module format of `dist/pageview.js` file
 
 ### Usage
 

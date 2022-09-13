@@ -19,7 +19,7 @@ features:
 
   - title: LightWeight
     icon: light
-    details: 48kb gzip size of whole client
+    details: 53kb gzip size of whole client
 
   - title: Improved Security
     icon: safe

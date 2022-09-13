@@ -3,7 +3,7 @@ title: 客户端介绍
 icon: intro
 ---
 
-Waline 官方提供了 [`@waline/client`](https://www.npmjs.com/package/@waline/client) 客户端，使用 Vue + TypeScript 编写，大小仅为 48kb gzip。
+Waline 官方提供了 [`@waline/client`](https://www.npmjs.com/package/@waline/client) 客户端，使用 Vue + TypeScript 编写，大小仅为 53kb gzip。
 
 ## 引入
 
@@ -51,7 +51,7 @@ Waline 支持在页面的其他部分显示评论数，请参阅 [评论统计](
 
 ## Vue 组件
 
-由于 Waline 官方客户端基于 Vue3，Waline 同时提供了一个 13KB Gzip 大小的 Vue 组件，所有的组件属性都是响应式的。
+由于 Waline 官方客户端基于 Vue3，Waline 同时提供了一个 18KB Gzip 大小的 Vue 组件，所有的组件属性都是响应式的。
 
 如果你在使用基于 Vue 的项目，你可以直接在项目中导入并使用 Waline 组件，详见 [Vue 组件](./component.md)。
 

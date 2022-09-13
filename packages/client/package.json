@@ -1,6 +1,6 @@
 {
   "name": "@waline/client",
-  "version": "2.8.1",
+  "version": "2.9.0",
   "description": "client for waline comment system",
   "keywords": [
     "valine",
@@ -21,50 +21,40 @@
   "exports": {
     ".": {
       "types": "./dist/shim.d.ts",
-      "import": "./dist/shim.esm.js",
-      "require": "./dist/shim.js",
-      "default": "./dist/shim.js"
+      "import": "./dist/shim.mjs",
+      "require": "./dist/shim.cjs",
+      "default": "./dist/shim.cjs"
     },
     "./component": {
-      "import": "./dist/component.esm.js",
-      "require": "./dist/component.js",
-      "default": "./dist/component.esm.js"
+      "default": "./dist/component.mjs"
     },
     "./full": {
       "types": "./dist/waline.d.ts",
-      "import": "./dist/waline.esm.js",
-      "require": "./dist/waline.cjs.js",
+      "import": "./dist/waline.mjs",
+      "require": "./dist/waline.cjs",
       "default": "./dist/waline.js"
     },
     "./pageview": {
       "types": "./dist/pageview.d.ts",
-      "import": "./dist/pageview.esm.js",
-      "require": "./dist/pageview.cjs.js",
+      "import": "./dist/pageview.mjs",
+      "require": "./dist/pageview.cjs",
       "default": "./dist/pageview.js"
     },
     "./waline.css": "./dist/waline.css",
     "./waline-meta.css": "./dist/waline-meta.css",
-    "./dist": {
-      "types": "./dist/shim.d.ts",
-      "import": "./dist/shim.esm.js",
-      "require": "./dist/shim.js",
-      "default": "./dist/shim.js"
-    },
     "./dist/component": {
-      "import": "./dist/component.esm.js",
-      "require": "./dist/component.js",
-      "default": "./dist/component.esm.js"
+      "default": "./dist/component.mjs"
     },
     "./dist/pageview": {
       "types": "./dist/pageview.d.ts",
-      "import": "./dist/pageview.esm.js",
-      "require": "./dist/pageview.cjs.js",
+      "import": "./dist/pageview.mjs",
+      "require": "./dist/pageview.cjs",
       "default": "./dist/pageview.js"
     },
     "./dist/waline": {
       "types": "./dist/waline.d.ts",
-      "import": "./dist/waline.esm.js",
-      "require": "./dist/waline.cjs.js",
+      "import": "./dist/waline.mjs",
+      "require": "./dist/waline.cjs",
       "default": "./dist/waline.js"
     },
     "./dist/waline.css": "./dist/waline.css",
@@ -73,9 +63,10 @@
     "./src/*": "./src/*",
     "./package.json": "./package.json"
   },
-  "main": "./dist/shim.js",
-  "browser": "./dist/legacy.js",
-  "types": "./dist/shim.d.ts",
+  "main": "./dist/shim.cjs",
+  "module": "./dist/shim.mjs",
+  "browser": "./dist/legacy.umd.js",
+  "types": "./dist/shim.d.mts",
   "files": [
     "dist",
     "src"
