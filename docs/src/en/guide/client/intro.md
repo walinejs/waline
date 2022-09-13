@@ -3,7 +3,7 @@ title: Client Intro
 icon: intro
 ---
 
-Waline official provides the [`@waline/client`](https://www.npmjs.com/package/@waline/client), written in Vue + TypeScript, and the size is only 48kb gzip.
+Waline official provides the [`@waline/client`](https://www.npmjs.com/package/@waline/client), written in Vue + TypeScript, and the size is only 53kb gzip.
 
 ## Introduce
 
@@ -49,7 +49,7 @@ Waline supports comment and pageview statistics. For more information, please re
 
 ## Vue Component
 
-Since Waline's official client is based on Vue3, Waline also provides a 13KB Gzip Vue component, and all component properties are reactive.
+Since Waline's official client is based on Vue3, Waline also provides a 18KB Gzip Vue component, and all component properties are reactive.
 
 If you are building a Vue project, you can directly import and use Waline components in the project, see [Vue Components](./如果你在使用基于 Vue 的项目，你可以直接在项目中导入并使用 Waline 组件，详见 [Vue 组件](./component.md)。
 .md) for details.
