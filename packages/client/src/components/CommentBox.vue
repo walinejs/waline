@@ -206,12 +206,11 @@
           class="wl-emoji-popup"
           :class="{ display: showEmoji }"
         >
-          <template v-for="(emojiItem, index) in emoji.tabs">
-            <div
-              v-if="index === emojiTabIndex"
-              :key="emojiItem.name"
-              class="wl-tab-wrapper"
-            >
+          <template
+            v-for="(emojiItem, index) in emoji.tabs"
+            :key="emojiItem.name"
+          >
+            <div v-if="index === emojiTabIndex" class="wl-tab-wrapper">
               <button
                 v-for="key in emojiItem.items"
                 :key="key"
