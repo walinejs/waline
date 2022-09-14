@@ -231,13 +231,6 @@ export default defineComponent({
         userInfo.value.objectId === props.comment.user_id
     );
 
-    console.log(
-      'lizheming:',
-      props.comment.user_id,
-      userInfo.value.objectId,
-      isOwner.value
-    );
-
     const isReplyingCurrent = computed(
       () => props.comment.objectId === props.reply?.objectId
     );
