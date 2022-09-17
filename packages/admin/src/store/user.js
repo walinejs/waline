@@ -32,8 +32,13 @@ export const user = {
 
       return dispatch.user.setUser(user);
     },
-    async login({ email, password, code, remember }) {
-      const { token, ...user } = await login({ email, password, code });
+    async login({ email, password, code, remember, recaptchaV3 }) {
+      const { token, ...user } = await login({
+        email,
+        password,
+        code,
+        recaptchaV3,
+      });
 
       if (token) {
         window.TOKEN = token;

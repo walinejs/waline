@@ -7,11 +7,11 @@ export async function getUserInfo() {
   });
 }
 
-export async function login({ email, password, code }) {
+export async function login({ email, password, code, recaptchaV3 }) {
   return request({
     url: 'token',
     method: 'POST',
-    body: { email, password, code },
+    body: { email, password, code, recaptchaV3 },
   });
 }
 

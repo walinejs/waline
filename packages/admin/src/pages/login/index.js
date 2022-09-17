@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { get2FAToken } from '../../services/user';
+import useRecaptcha from '../../components/useRecaptchaV3';
 
 import Header from '../../components/Header';
 
@@ -15,6 +16,10 @@ export default function () {
   const user = useSelector((state) => state.user);
   const [error, setError] = useState(false);
   const [is2FAEnabled, enable2FA] = useState(false);
+  const execute = window.recaptchaV3Key
+    ? useRecaptcha({ sitekey: window.recaptchaV3Key, hideDefaultBadge: true })
+    : () => '';
+
   const match = location.pathname.match(/(.*?\/)ui/);
   const basepath = match && match[1] ? match[1] : '/';
 
@@ -55,8 +60,16 @@ export default function () {
       return setError(t('please input 2fa code'));
     }
 
+    const recaptchaV3 = await execute('login');
+
     try {
-      await dispatch.user.login({ email, password, code, remember });
+      await dispatch.user.login({
+        email,
+        password,
+        code,
+        remember,
+        recaptchaV3,
+      });
     } catch (e) {
       setError(t('email or password error'));
     }
