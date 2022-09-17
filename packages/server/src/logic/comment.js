@@ -1,6 +1,4 @@
 const Base = require('./base');
-const qs = require('querystring');
-const fetch = require('node-fetch');
 
 module.exports = class extends Base {
   checkAdmin() {
@@ -203,7 +201,7 @@ module.exports = class extends Base {
    * @apiSuccess  (200) {String}  data.type comment login user type
    */
   async postAction() {
-    const { LOGIN, RECAPTCHA_V3_SECRET } = process.env;
+    const { LOGIN } = process.env;
     const { userInfo } = this.ctx.state;
 
     if (!think.isEmpty(userInfo)) {
@@ -213,25 +211,8 @@ module.exports = class extends Base {
     if (LOGIN === 'force') {
       return this.ctx.throw(401);
     }
-    
-    if (!RECAPTCHA_V3_SECRET) {
-      return;
-    }
-    const { recaptchaV3 } = this.get();
-    if (!recaptchaV3) {
-      return this.ctx.throw(403);
-    }
 
-    const query = qs.string({
-      secret: RECAPTCHA_V3_SECRET,
-      response: recaptchaV3,
-      remoteip: this.ctx.ip,
-    });
-    const recaptchaV3Result = await fetch(`https://recaptcha.net/recaptcha/api/siteverify?${query}`).then(resp => resp.json());
-    if (!recaptchaV3Result.success) {
-      think.logger.debug('RecaptchaV3 Result:', JSON.stringify(recaptchaV3Result, null, '\t'));
-      return this.ctx.throw(403);
-    }
+    return this.useCaptchaCheck();
   }
 
   /**

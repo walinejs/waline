@@ -1,4 +1,6 @@
 const path = require('path');
+const qs = require('querystring');
+const fetch = require('node-fetch');
 const jwt = require('jsonwebtoken');
 const helper = require('think-helper');
 
@@ -121,5 +123,36 @@ module.exports = class extends think.Logic {
     }
 
     return '';
+  }
+
+  async useCaptchaCheck() {
+    const { RECAPTCHA_V3_SECRET } = process.env();
+
+    if (!RECAPTCHA_V3_SECRET) {
+      return;
+    }
+    const { recaptchaV3 } = this.post();
+
+    if (!recaptchaV3) {
+      return this.ctx.throw(403);
+    }
+
+    const query = qs.stringify({
+      secret: RECAPTCHA_V3_SECRET,
+      response: recaptchaV3,
+      remoteip: this.ctx.ip,
+    });
+    const recaptchaV3Result = await fetch(
+      `https://recaptcha.net/recaptcha/api/siteverify?${query}`
+    ).then((resp) => resp.json());
+
+    if (!recaptchaV3Result.success) {
+      think.logger.debug(
+        'RecaptchaV3 Result:',
+        JSON.stringify(recaptchaV3Result, null, '\t')
+      );
+
+      return this.ctx.throw(403);
+    }
   }
 };
