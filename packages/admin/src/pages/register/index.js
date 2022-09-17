@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import useRecaptcha from '../../components/useRecaptchaV3';
+import { useRecaptcha } from '../../components/useRecaptchaV3';
 
 import Header from '../../components/Header';
 
@@ -47,7 +47,7 @@ export default function () {
 
     try {
       setSubmitting(true);
-      const recaptchaV3 = execute('login');
+      const recaptchaV3 = await execute('login');
       const resp = await dispatch.user.register({
         display_name: nick,
         email,

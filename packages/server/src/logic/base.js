@@ -126,7 +126,7 @@ module.exports = class extends think.Logic {
   }
 
   async useCaptchaCheck() {
-    const { RECAPTCHA_V3_SECRET } = process.env();
+    const { RECAPTCHA_V3_SECRET } = process.env;
 
     if (!RECAPTCHA_V3_SECRET) {
       return;

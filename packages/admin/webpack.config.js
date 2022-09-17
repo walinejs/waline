@@ -68,6 +68,7 @@ module.exports = {
     historyApiFallback: { index: '/' },
     proxy: {
       '/token': 'http://localhost:9090',
+      '/user': 'http://localhost:9090',
     },
   },
 };
