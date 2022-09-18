@@ -26,7 +26,8 @@ module.exports = class extends think.Controller {
           el: '#waline',
           path: params.get('path') || '/',
           lang: params.get('lng'),
-          serverURL: location.protocol + '//' + location.host + location.pathname.replace(/\\/+$/, '')
+          serverURL: location.protocol + '//' + location.host + location.pathname.replace(/\\/+$/, ''),
+          recaptchaV3Key: '${process.env.RECAPTCHA_V3_KEY || ''}',
         });
       </script>
     </body>
