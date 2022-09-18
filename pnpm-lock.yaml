@@ -182,7 +182,7 @@ importers:
       '@vueuse/core': ^9.2.0
       autosize: ^5.0.1
       marked: ^4.1.0
-      recaptcha-v3: ^1.10.0
+      recaptcha-v3: 1.10.0
       rimraf: 3.0.2
       rollup: 2.79.0
       rollup-plugin-dts: 4.2.2
