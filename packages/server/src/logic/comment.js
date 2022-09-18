@@ -200,13 +200,19 @@ module.exports = class extends Base {
    * @apiSuccess  (200) {String}  data.avatar comment user avatar
    * @apiSuccess  (200) {String}  data.type comment login user type
    */
-  postAction() {
+  async postAction() {
     const { LOGIN } = process.env;
     const { userInfo } = this.ctx.state;
 
-    if (LOGIN === 'force' && think.isEmpty(userInfo)) {
+    if (!think.isEmpty(userInfo)) {
+      return;
+    }
+
+    if (LOGIN === 'force') {
       return this.ctx.throw(401);
     }
+
+    return this.useCaptchaCheck();
   }
 
   /**

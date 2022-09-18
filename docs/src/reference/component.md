@@ -408,3 +408,11 @@ Waline 的服务端地址。
 我们希望你保持打开以支持 Waline。
 
 :::
+
+## recaptchaV3Key
+
+- 类型: `string`
+- 必填: 否
+
+reCAPTCHA V3 是 Google 提供的验证码服务，配置 reCAPTCHA V3 网站密钥即可开启该功能。服务端需要同步配置 `RECAPTCHA_V3_SECRET` 环境变量。
+
