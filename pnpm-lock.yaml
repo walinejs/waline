@@ -113,7 +113,7 @@ importers:
       css-loader: 6.7.1
       file-loader: 6.2.0
       html-webpack-plugin: 5.5.0
-      i18next: 21.9.1
+      i18next: 21.9.2
       i18next-browser-languagedetector: 6.1.5
       md5: 2.3.0
       qrcode.react: 3.1.0
@@ -146,13 +146,13 @@ importers:
       css-loader: 6.7.1_webpack@5.74.0
       file-loader: 6.2.0_webpack@5.74.0
       html-webpack-plugin: 5.5.0_webpack@5.74.0
-      i18next: 21.9.1
+      i18next: 21.9.2
       i18next-browser-languagedetector: 6.1.5
       md5: 2.3.0
       qrcode.react: 3.1.0_react@18.2.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      react-i18next: 11.18.6_4sidbwfhen5r7txudrvpua6nty
+      react-i18next: 11.18.6_ulhmqqxshznzmtuvahdi5nasbq
       react-redux: 8.0.2_e42enmjmqb4imi3q3iaq2rrebm
       react-router-dom: 6.4.0_biqbaboplfbrettd7655fr4n2y
       redux: 4.2.0
@@ -2615,19 +2615,11 @@ packages:
       regenerator-runtime: 0.13.9
     dev: false
 
-  /@babel/runtime/7.18.9:
-    resolution: {integrity: sha512-lkqXDcvlFT5rvEjiu6+QYO+1GXrEHRo2LOtS7E4GtX5ESIZOgepqsZBVIj6Pv+a6zqsya9VCgiK1KAK4BvJDAw==}
-    engines: {node: '>=6.9.0'}
-    dependencies:
-      regenerator-runtime: 0.13.9
-    dev: false
-
   /@babel/runtime/7.19.0:
     resolution: {integrity: sha512-eR8Lo9hnDS7tqkO7NsV+mKvCmv5boaXFSZ70DnfhcgiEne8hv9oCEd36Klw74EtizEqLsy4YnW8UWwpBVolHZA==}
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: 0.13.9
-    dev: true
 
   /@babel/template/7.18.10:
     resolution: {integrity: sha512-TI+rCtooWHr3QJ27kJxfjutghu44DLnasDMwpDqCXVTal9RLp3RSYNh4NdBrRP2cQAoG9A8juOQl6P6oZG4JxA==}
@@ -9711,8 +9703,8 @@ packages:
       '@babel/runtime': 7.19.0
     dev: true
 
-  /i18next/21.9.1:
-    resolution: {integrity: sha512-ITbDrAjbRR73spZAiu6+ex5WNlHRr1mY+acDi2ioTHuUiviJqSz269Le1xHAf0QaQ6GgIHResUhQNcxGwa/PhA==}
+  /i18next/21.9.2:
+    resolution: {integrity: sha512-00fVrLQOwy45nm3OtC9l1WiLK3nJlIYSljgCt0qzTaAy65aciMdRy9GsuW+a2AtKtdg9/njUGfRH30LRupV7ZQ==}
     dependencies:
       '@babel/runtime': 7.19.0
     dev: true
@@ -10598,7 +10590,7 @@ packages:
   /leancloud-realtime/5.0.0-rc.7:
     resolution: {integrity: sha512-T5D12cvONg/eLlMKO+J31CdolM0ydgCnRpcTwWaCq1KrboROOvwgovKQpfeSKm4MxKNIio5gEKf41xAbE3K5dA==}
     dependencies:
-      '@babel/runtime': 7.18.9
+      '@babel/runtime': 7.19.0
       '@leancloud/adapter-types': 3.0.0
       '@leancloud/platform-adapters-browser': 1.5.3
       '@leancloud/platform-adapters-node': 1.5.3
@@ -12551,7 +12543,7 @@ packages:
       scheduler: 0.23.0
     dev: true
 
-  /react-i18next/11.18.6_4sidbwfhen5r7txudrvpua6nty:
+  /react-i18next/11.18.6_ulhmqqxshznzmtuvahdi5nasbq:
     resolution: {integrity: sha512-yHb2F9BiT0lqoQDt8loZ5gWP331GwctHz9tYQ8A2EIEUu+CcEdjBLQWli1USG3RdWQt3W+jqQLg/d4rrQR96LA==}
     peerDependencies:
       i18next: '>= 19.0.0'
@@ -12568,7 +12560,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.19.0
       html-parse-stringify: 3.0.1
-      i18next: 21.9.1
+      i18next: 21.9.2
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     dev: true
