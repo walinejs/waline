@@ -12,7 +12,7 @@ CREATE TABLE wl_comment (
   nick varchar(255) DEFAULT NULL,
   pid int DEFAULT NULL,
   rid int DEFAULT NULL,
-  sticky boolean DEFAULT NULL,
+  sticky numeric DEFAULT NULL,
   status varchar(50) NOT NULL DEFAULT '',
   "like" int DEFAULT NULL,
   ua text,
