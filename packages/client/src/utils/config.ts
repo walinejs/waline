@@ -22,7 +22,7 @@ export interface WalineEmojiConfig {
   map: WalineEmojiMaps;
 }
 
-export interface WalineConfig extends Required<Omit<WalineProps, 'wordLimit'>> {
+export interface WalineConfig extends Required<Omit<WalineProps, 'wordLimit' | 'recaptchaV3Key'>> {
   locale: WalineLocale;
   wordLimit: [number, number] | false;
   // emoji: Promise<EmojiConfig>;

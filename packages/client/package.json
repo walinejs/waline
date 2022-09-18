@@ -113,6 +113,7 @@
     "@types/marked": "4.0.7",
     "@types/node": "18.7.18",
     "@vitejs/plugin-vue": "3.1.0",
+    "recaptcha-v3": "^1.10.0",
     "rimraf": "3.0.2",
     "rollup": "2.79.0",
     "rollup-plugin-dts": "4.2.2",

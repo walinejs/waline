@@ -18,9 +18,9 @@ Vercel needs to be set in `Settings` - `Environment Variables`.
 
 | Environment Variables   | Required | Description                                                                                                                                    |
 | ----------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| `LEAN_ID`               | ✅       | LeanCloud Application ID                                                                                                                       |
-| `LEAN_KEY`              | ✅       | LeanCloud Application Key                                                                                                                      |
-| `LEAN_MASTER_KEY`       | ✅       | LeanCloud Application Master Key                                                                                                               |
+| `LEAN_ID`               | ✅        | LeanCloud Application ID                                                                                                                       |
+| `LEAN_KEY`              | ✅        | LeanCloud Application Key                                                                                                                      |
+| `LEAN_MASTER_KEY`       | ✅        | LeanCloud Application Master Key                                                                                                               |
 | `LEAN_SERVER`           | ⚠        | LeanCloud server address if you're leancloud china user                                                                                        |
 | `SITE_NAME`             |          | site name                                                                                                                                      |
 | `SITE_URL`              |          | site url                                                                                                                                       |
@@ -36,6 +36,9 @@ Vercel needs to be set in `Settings` - `Environment Variables`.
 | `OAUTH_URL`             |          | OAuth Social Login Service URL，default is `https://oauth.lithub.cc`. Also you can custom build with [auth](https://github.com/walinejs/auth). |
 | `WEBHOOK`               |          | You can set a Webhook URL that will be triggered when you have new comment.                                                                    |
 | `LEVELS`                |          | Give each user a rating label based on the number of comments                                                                                  |
+| `RECAPTCHA_V3_KEY`      |          | reCAPTCHA V3 site key for admin client which can apply at https://www.google.com/recaptcha.                                                    |
+| `RECAPTCHA_V3_SECRET`   |          | reCAPTCHA V3 secret key for server which can apply at https://www.google.com/recaptcha.                                                        |
+
 
 ### Markdown
 
@@ -88,9 +91,9 @@ By default, only 6 levels of copywriting are provided, but it does not mean that
   | -------------------- | -------- | --------- | -------------------------------------------- |
   | `MONGO_HOST`         |          | 127.0.0.1 | MongoDB server address, support array format |
   | `MONGO_PORT`         |          | 27017     | MongoDB server port, support array format    |
-  | `MONGO_DB`           | ✅       |           | MongoDB database name                        |
-  | `MONGO_USER`         | ✅       |           | MongoDB server username                      |
-  | `MONGO_PASSWORD`     | ✅       |           | MongoDB server password                      |
+  | `MONGO_DB`           | ✅        |           | MongoDB database name                        |
+  | `MONGO_USER`         | ✅        |           | MongoDB server username                      |
+  | `MONGO_PASSWORD`     | ✅        |           | MongoDB server password                      |
   | `MONGO_REPLICASET`   |          |           | MongoDB replica set                          |
   | `MONGO_AUTHSOURCE`   |          |           | MongoDB auth source                          |
   | `MONGO_OPT_SSL`      |          |           | use SSL connection                           |
@@ -101,9 +104,9 @@ By default, only 6 levels of copywriting are provided, but it does not mean that
   | -------------------- | -------- | --------- | --------------------- |
   | `MYSQL_HOST`         |          | 127.0.0.1 | MySQL server address  |
   | `MYSQL_PORT`         |          | 3306      | MySQL server port     |
-  | `MYSQL_DB`           | ✅       |           | MySQL database name   |
-  | `MYSQL_USER`         | ✅       |           | MySQL server username |
-  | `MYSQL_PASSWORD`     | ✅       |           | MySQL server password |
+  | `MYSQL_DB`           | ✅        |           | MySQL database name   |
+  | `MYSQL_USER`         | ✅        |           | MySQL server username |
+  | `MYSQL_PASSWORD`     | ✅        |           | MySQL server password |
   | `MYSQL_PREFIX`       |          | `wl_`     | MySQL table prefix    |
   | `MYSQL_CHARSET`      |          | `utf8mb4` | MySQL table charset   |
 
@@ -111,10 +114,10 @@ By default, only 6 levels of copywriting are provided, but it does not mean that
 
   | Environment Variable | Required | Default | Description                                                         |
   | -------------------- | -------- | ------- | ------------------------------------------------------------------- |
-  | `SQLITE_PATH`        | ✅       |         | SQLite storage file path, not include file name                     |
+  | `SQLITE_PATH`        | ✅        |         | SQLite storage file path, not include file name                     |
   | `SQLITE_DB`          |          | waline  | SQLite storage file name, change it if your filenamed is not waline |
   | `SQLITE_PREFIX`      |          | `wl_`   | SQLite table prefix                                                 |
-  | `JWT_TOKEN`          | ✅       |         | Random String for login token generator                             |
+  | `JWT_TOKEN`          | ✅        |         | Random String for login token generator                             |
 
 - **PostgreSQL**:
 
@@ -122,17 +125,17 @@ By default, only 6 levels of copywriting are provided, but it does not mean that
   | -------------------- | -------- | --------- | -------------------------- |
   | `PG_HOST`            |          | 127.0.0.1 | PostgreSQL server address  |
   | `PG_PORT`            |          | 3211      | PostgreSQL server port     |
-  | `PG_DB`              | ✅       |           | PostgreSQL database name   |
-  | `PG_USER`            | ✅       |           | PostgreSQL server username |
-  | `PG_PASSWORD`        | ✅       |           | PostgreSQL server password |
+  | `PG_DB`              | ✅        |           | PostgreSQL database name   |
+  | `PG_USER`            | ✅        |           | PostgreSQL server username |
+  | `PG_PASSWORD`        | ✅        |           | PostgreSQL server password |
   | `PG_PREFIX`          |          | `wl_`     | PostgreSQL table prefix    |
 
 - **GitHub**:
 
   | Environment Variable | Required | Default | Description                                                                                                      |
   | -------------------- | -------- | ------- | ---------------------------------------------------------------------------------------------------------------- |
-  | GITHUB_TOKEN         | ✅       |         | [Personal access tokens](https://github.com/settings/tokens)                                                     |
-  | GITHUB_REPO          | ✅       |         | repository name, such as `walinejs/waline`                                                                       |
+  | GITHUB_TOKEN         | ✅        |         | [Personal access tokens](https://github.com/settings/tokens)                                                     |
+  | GITHUB_REPO          | ✅        |         | repository name, such as `walinejs/waline`                                                                       |
   | GITHUB_PATH          |          |         | The data storage directory, such as `data` means it is stored in the `data` directory, root directory by default |
 
 ## Main entrance

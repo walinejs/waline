@@ -33,7 +33,9 @@ module.exports = class extends Base {
    * @apiSuccess  (200) {Number}  errno 0
    * @apiSuccess  (200) {String}  errmsg  return error message if error
    */
-  postAction() {}
+  postAction() {
+    return this.useCaptchaCheck();
+  }
 
   /**
    * @api {PUT} /user update user profile
