@@ -74,6 +74,7 @@ Others:
 
 - [hugo-theme-stack](https://github.com/CaiJimmy/hugo-theme-stack)
 - [DoIt](https://github.com/HEIGE-PCloud/DoIt)
+- [FixIt](https://github.com/hugo-fixit/FixIt)
 
 ## 更多
 
