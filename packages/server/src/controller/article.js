@@ -78,7 +78,10 @@ module.exports = class extends BaseRest {
 
     const ret = await this.modelInstance.update(
       (counter) => ({
-        [type]: action === 'desc' ? counter[type] - 1 : counter[type] + 1,
+        [type]:
+          action === 'desc'
+            ? (counter[type] || 1) - 1
+            : (counter[type] || 0) + 1,
       }),
       { objectId: ['IN', resp.map(({ objectId }) => objectId)] }
     );
