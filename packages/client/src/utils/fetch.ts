@@ -13,8 +13,7 @@ const JSON_HEADERS: Record<string, string> = {
 const errorCheck = <T = unknown>(data: T | FetchErrorData, name = ''): T => {
   if (typeof data === 'object' && (data as FetchErrorData).errno)
     throw new TypeError(
-      `Fetch ${name} failed with ${(data as FetchErrorData).errno}: ${
-        (data as FetchErrorData).errmsg
+      `Fetch ${name} failed with ${(data as FetchErrorData).errno}: ${(data as FetchErrorData).errmsg
       }`
     );
 
@@ -232,45 +231,80 @@ export const updateComment = ({
   }).then((resp) => resp.json() as Promise<void>);
 };
 
-export interface FetchPageviewsOptions {
+export interface FetchArticleCounterOptions {
   serverURL: string;
   lang: string;
   paths: string[];
+  type: string[];
   signal: AbortSignal;
 }
+
+export const fetchArticleCounter = ({
+  serverURL,
+  lang,
+  paths,
+  type,
+  signal,
+}: FetchArticleCounterOptions): Promise<
+  Record<string, number>[] | Record<string, number> | number[] | number
+> =>
+  fetch(
+    `${serverURL}/article?path=${encodeURIComponent(
+      paths.join(',')
+    )}&type=${encodeURIComponent(type.join(','))}&lang=${lang}`,
+    { signal }
+  )
+    .then(
+      (resp) =>
+        resp.json() as Promise<Record<string, number>[] | number[] | number>
+    )
+    .then((data) => errorCheck(data, 'article count'));
 
 export const fetchPageviews = ({
   serverURL,
   lang,
   paths,
   signal,
-}: FetchPageviewsOptions): Promise<number[]> =>
-  fetch(
-    `${serverURL}/article?path=${encodeURIComponent(
-      paths.join(',')
-    )}&lang=${lang}`,
-    { signal }
-  )
-    .then((resp) => resp.json() as Promise<number[] | number>)
-    .then((data) => errorCheck(data, 'visit count'))
+}: Omit<FetchArticleCounterOptions, 'type'>): Promise<number[] | number> =>
+  fetchArticleCounter({
+    serverURL,
+    lang,
+    paths,
+    type: ['time'],
+    signal,
+  })
     // TODO: Improve this API
-    .then((counts) => (Array.isArray(counts) ? counts : [counts]));
+    .then((counts) => (Array.isArray(counts) ? counts : [counts])) as Promise<
+    number[] | number
+  >;
 
-export interface UpdatePageviewsOptions {
+export interface UpdateArticleCounterOptions {
   serverURL: string;
   lang: string;
   path: string;
+  type: string;
+  action?: 'inc' | 'desc';
 }
 
-export const updatePageviews = ({
+export const updateArticleCounter = ({
   serverURL,
   lang,
   path,
-}: UpdatePageviewsOptions): Promise<number> =>
+  type,
+  action,
+}: UpdateArticleCounterOptions): Promise<number> =>
   fetch(`${serverURL}/article?lang=${lang}`, {
     method: 'POST',
     headers: JSON_HEADERS,
-    body: JSON.stringify({ path }),
+    body: JSON.stringify({ path, type, action }),
   })
     .then((resp) => resp.json() as Promise<number>)
-    .then((data) => errorCheck(data, 'visit count'));
+    .then((data) => errorCheck(data, 'article count'));
+
+export const updatePageviews = (
+  options: Omit<UpdateArticleCounterOptions, 'type'>
+): Promise<number> =>
+  updateArticleCounter({
+    ...options,
+    type: 'time',
+  });
