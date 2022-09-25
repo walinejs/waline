@@ -21,17 +21,15 @@
     &.active img {
       transform: scale(1.15);
     }
+  }
 
-    &.active {
-      .wl-reaction {
-        &__votes {
-          color: var(--waline-bgcolor);
-          background: var(--waline-theme-color);
-        }
-        &__text {
-          color: var(--waline-theme-color);
-        }
-      }
+  li.active .wl-reaction {
+    &__votes {
+      color: var(--waline-bgcolor);
+      background: var(--waline-theme-color);
+    }
+    &__text {
+      color: var(--waline-theme-color);
     }
   }
 
