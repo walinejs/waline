@@ -1,28 +1,4 @@
-const fs = require('fs');
-const util = require('util');
 const BaseRest = require('./rest');
-
-const readFileAsync = util.promisify(fs.readFile);
-
-function formatID(data, idGenerator) {
-  const objectIdMap = {};
-
-  for (let i = 0; i < data.length; i++) {
-    const { objectId } = data[i];
-
-    objectIdMap[objectId] = idGenerator(data[i], i, data);
-  }
-
-  for (let i = 0; i < data.length; i++) {
-    ['objectId', 'pid', 'rid']
-      .filter((k) => data[i][k])
-      .forEach((k) => {
-        data[i][k] = objectIdMap[data[i][k]];
-      });
-  }
-
-  return data;
-}
 
 module.exports = class extends BaseRest {
   async getAction() {
@@ -52,95 +28,41 @@ module.exports = class extends BaseRest {
   }
 
   async postAction() {
-    const file = this.file('file');
+    const { table } = this.get();
+    const item = this.post();
+    const storage = this.config('storage');
+    const model = this.service(`storage/${storage}`, table);
 
-    try {
-      const jsonText = await readFileAsync(file.path, 'utf-8');
-      const importData = JSON.parse(jsonText);
-
-      if (!importData || importData.type !== 'waline') {
-        return this.fail(this.locale('import data format not support!'));
-      }
-
-      const idMaps = {};
-      const storage = this.config('storage');
-
-      for (let i = 0; i < importData.tables.length; i++) {
-        const tableName = importData.tables[i];
-        const model = this.service(`storage/${storage}`, tableName);
-
-        idMaps[tableName] = new Map();
-        let data = importData.data[tableName];
-
-        if (['postgresql', 'mysql', 'sqlite'].includes(storage)) {
-          let i = 0;
-
-          data = formatID(data, () => (i = i + 1));
-          await model.setSeqId(1);
-        }
-
-        if (storage === 'leancloud' || storage === 'mysql') {
-          data.forEach((item) => {
-            item.insertedAt && (item.insertedAt = new Date(item.insertedAt));
-            item.createdAt && (item.createdAt = new Date(item.createdAt));
-            item.updatedAt && (item.updatedAt = new Date(item.updatedAt));
-          });
-        }
-
-        // delete all data at first
-        await model.delete({});
-        // then add data one by one
-        for (let j = 0; j < data.length; j++) {
-          const ret = await model.add(data[j]);
-
-          idMaps[tableName].set(data[j].objectId, ret.objectId);
-        }
-      }
-
-      const cmtModel = this.service(`storage/${storage}`, 'Comment');
-      const commentData = importData.data.Comment;
-      const willUpdateData = [];
-
-      for (let i = 0; i < commentData.length; i++) {
-        const cmt = commentData[i];
-        const willUpdateItem = {};
-
-        [
-          { tableName: 'Comment', field: 'pid' },
-          { tableName: 'Comment', field: 'rid' },
-          { tableName: 'Users', field: 'user_id' },
-        ].forEach(({ tableName, field }) => {
-          if (!cmt[field]) {
-            return;
-          }
-          const oldId = cmt[field];
-          const newId = idMaps[tableName].get(cmt[field]);
-
-          if (oldId && newId && oldId !== newId) {
-            willUpdateItem[field] = newId;
-          }
-        });
-        if (!think.isEmpty(willUpdateItem)) {
-          willUpdateData.push([
-            willUpdateItem,
-            { objectId: idMaps.Comment.get(cmt.objectId) },
-          ]);
-        }
-      }
-      for (let i = 0; i < willUpdateData.length; i++) {
-        const [data, where] = willUpdateData[i];
-
-        await cmtModel.update(data, where);
-      }
-
-      return this.success();
-    } catch (e) {
-      if (think.isPrevent(e)) {
-        return this.success();
-      }
-      console.log(e);
-
-      return this.fail(e.message);
+    if (storage === 'leancloud' || storage === 'mysql') {
+      item.insertedAt && (item.insertedAt = new Date(item.insertedAt));
+      item.createdAt && (item.createdAt = new Date(item.createdAt));
+      item.updatedAt && (item.updatedAt = new Date(item.updatedAt));
     }
+
+    delete item.objectId;
+    const resp = await model.add(item);
+
+    return this.success(resp);
+  }
+
+  async putAction() {
+    const { table, objectId } = this.get();
+    const data = this.post();
+    const storage = this.config('storage');
+    const model = this.service(`storage/${storage}`, table);
+
+    await model.update(data, { objectId });
+
+    return this.success();
+  }
+
+  async deleteAction() {
+    const { table } = this.get();
+    const storage = this.config('storage');
+    const model = this.service(`storage/${storage}`, table);
+
+    await model.delete({});
+
+    return this.success();
   }
 };
