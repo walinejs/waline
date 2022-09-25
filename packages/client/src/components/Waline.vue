@@ -82,7 +82,7 @@
 <script lang="ts">
 import { useStyleTag } from '@vueuse/core';
 import { computed, defineComponent, onMounted, provide, ref, watch } from 'vue';
-import Reaction from './Reaction.vue';
+import Reaction from './ArticleReaction.vue';
 import CommentBox from './CommentBox.vue';
 import CommentCard from './CommentCard.vue';
 import { LoadingIcon } from './Icons';
