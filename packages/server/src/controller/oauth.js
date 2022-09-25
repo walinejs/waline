@@ -28,7 +28,7 @@ module.exports = class extends think.Controller {
       return this.redirect(
         `${oauthUrl}/${type}?${new URLSearchParams({
           redirect: redirectUrl,
-          state: this.ctx.state.token,
+          state: this.ctx.state.token || '',
         }).toString()}`
       );
     }
