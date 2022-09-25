@@ -131,6 +131,8 @@ const props = [
   'imageUploader',
   'search',
   'copyright',
+  'recaptchaV3Key',
+  'reaction',
 ];
 
 type SortKeyItems = 'insertedAt_desc' | 'insertedAt_asc' | 'like_desc';
