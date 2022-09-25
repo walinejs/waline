@@ -57,6 +57,7 @@
 
   .wl-head {
     line-height: 1.5;
+    overflow: hidden; // bfc to fix https://github.com/walinejs/waline/issues/1415
   }
 
   .wl-nick {
@@ -126,6 +127,7 @@
 
   .wl-comment-actions {
     float: right;
+    line-height: 1;
   }
 
   .wl-delete,
@@ -135,7 +137,7 @@
     display: inline-flex;
     align-items: center;
 
-    padding: 4px;
+    // padding: 4px;
     border: none;
 
     background: transparent;
