@@ -50,10 +50,10 @@ export default defineComponent({
       'config'
     ) as ComputedRef<WalineConfig>;
     const locale = computed(() => config.value.locale);
-    const reaction = computed<ReactionItem[]>(() => {
+    const reaction = computed((): ReactionItem[] => {
       const { path } = config.value;
 
-      if (!config.value.reaction) {
+      if (!Array.isArray(config.value.reaction)) {
         return [];
       }
 
@@ -61,7 +61,9 @@ export default defineComponent({
         icon,
         vote: votes.value[index] || 0,
         desc: locale.value[`reaction${index}` as `reaction0`],
-        active: voteStorage.value.find(({ u, i }) => u === path && i === index),
+        active: Boolean(
+          voteStorage.value.find(({ u, i }) => u === path && i === index)
+        ),
       }));
     });
 
