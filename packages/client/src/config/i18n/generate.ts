@@ -49,6 +49,7 @@ const localeKeys = [
   'oldest',
   'latest',
   'hottest',
+  'reactionTitle',
 ];
 
 export const generateLocale = (locale: string[]): WalineLocale =>

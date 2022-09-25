@@ -222,5 +222,5 @@ export interface WalineProps {
   /**
    * reaction
    */
-  reaction?: string[] | false;
+  reaction?: string[] | boolean;
 }

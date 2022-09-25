@@ -1,6 +1,7 @@
 import {
   defaultLang,
   defaultLocales,
+  defaultReaction,
   defaultUploadImage,
   defaultHighlighter,
   defaultTexRenderer,
@@ -63,6 +64,7 @@ export const getConfig = ({
   copyright = true,
   login = 'enable',
   search = getDefaultSearchOptions(),
+  reaction,
   ...more
 }: WalineProps): WalineConfig => ({
   serverURL: getServerURL(serverURL),
@@ -84,5 +86,6 @@ export const getConfig = ({
   login,
   copyright,
   search,
+  reaction: reaction === true ? defaultReaction : reaction,
   ...more,
 });

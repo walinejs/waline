@@ -49,4 +49,5 @@ export default generateLocale([
   '逆順',
   '正順',
   '人気順',
+  'どう思いますか？',
 ]);

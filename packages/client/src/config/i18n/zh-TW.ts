@@ -49,4 +49,5 @@ export default generateLocale([
   '按倒序',
   '按正序',
   '按熱度',
+  '你認為這篇文章怎麼樣？',
 ]);

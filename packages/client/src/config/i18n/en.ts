@@ -49,4 +49,5 @@ export default generateLocale([
   'Oldest',
   'Latest',
   'Hottest',
+  'What do you think?',
 ]);
