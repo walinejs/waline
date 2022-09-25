@@ -23,12 +23,14 @@
     }
 
     &.active {
-      .wl-reaction__votes {
-        color: var(--waline-bgcolor);
-        background: var(--waline-theme-color);
-      }
-      .wl-reaction__text {
-        color: var(--waline-theme-color);
+      .wl-reaction {
+        &__votes {
+          color: var(--waline-bgcolor);
+          background: var(--waline-theme-color);
+        }
+        &__text {
+          color: var(--waline-theme-color);
+        }
       }
     }
   }
