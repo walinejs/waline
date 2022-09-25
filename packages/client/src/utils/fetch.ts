@@ -265,7 +265,7 @@ export const fetchPageviews = ({
   lang,
   paths,
   signal,
-}: Omit<FetchArticleCounterOptions, 'type'>): Promise<number[] | number> =>
+}: Omit<FetchArticleCounterOptions, 'type'>): Promise<number[]> =>
   fetchArticleCounter({
     serverURL,
     lang,
@@ -275,7 +275,7 @@ export const fetchPageviews = ({
   })
     // TODO: Improve this API
     .then((counts) => (Array.isArray(counts) ? counts : [counts])) as Promise<
-    number[] | number
+    number[]
   >;
 
 export interface UpdateArticleCounterOptions {
