@@ -1,6 +1,5 @@
 const BaseRest = require('./rest');
 
-// title, time, url, xid
 module.exports = class extends BaseRest {
   constructor(ctx) {
     super(ctx);
@@ -11,7 +10,7 @@ module.exports = class extends BaseRest {
   }
 
   async getAction() {
-    const { path } = this.get();
+    const { path, type } = this.get();
 
     // path is required
     if (!Array.isArray(path) || !path.length) {
@@ -21,42 +20,69 @@ module.exports = class extends BaseRest {
     const resp = await this.modelInstance.select({ url: ['IN', path] });
 
     if (think.isEmpty(resp)) {
-      return this.json(0);
-    }
+      const data = type.reduce((o, field) => {
+        o[field] = 0;
 
-    if (path.length === 1) {
-      return this.json(resp[0].time);
+        return o;
+      }, {});
+
+      return this.json(type.length === 1 ? data[type[0]] : data);
     }
 
     const respObj = resp.reduce((o, n) => {
-      o[n.url] = n.time;
+      o[n.url] = n;
 
       return o;
     }, {});
 
-    return this.json(path.map((url) => respObj[url] || 0));
+    const data = [];
+
+    for (let i = 0; i < path.length; i++) {
+      const url = path[i];
+      let counters = {};
+
+      for (let j = 0; j < type.length; j++) {
+        const field = type[j];
+
+        counters[field] =
+          respObj[url] && respObj[url][field] ? respObj[url][field] : 0;
+      }
+
+      if (type.length === 1) {
+        counters = counters[type[0]];
+      }
+      data.push(counters);
+    }
+
+    return this.json(path.length === 1 ? data[0] : data);
   }
 
   async postAction() {
-    const { path } = this.post();
+    const { path, type, action } = this.post();
     const resp = await this.modelInstance.select({ url: path });
 
     if (think.isEmpty(resp)) {
-      const time = 1;
+      if (action === 'desc') {
+        return this.json(0);
+      }
+
+      const count = 1;
 
       await this.modelInstance.add(
-        { url: path, time },
+        { url: path, [type]: count },
         { access: { read: true, write: true } }
       );
 
-      return this.json(time);
+      return this.json(count);
     }
 
     const ret = await this.modelInstance.update(
-      (counter) => ({ time: counter.time + 1 }),
+      (counter) => ({
+        [type]: action === 'desc' ? counter[type] - 1 : counter[type] + 1,
+      }),
       { objectId: ['IN', resp.map(({ objectId }) => objectId)] }
     );
 
-    return this.json(ret[0].time);
+    return this.json(ret[0][type]);
   }
 };

@@ -217,5 +217,10 @@ export interface WalineProps {
   /**
    * recaptcha v3 client key
    */
-   recaptchaV3Key?: string;
+  recaptchaV3Key?: string;
+
+  /**
+   * reaction
+   */
+  reaction?: string[] | boolean;
 }

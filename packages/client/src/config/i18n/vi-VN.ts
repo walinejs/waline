@@ -49,4 +49,5 @@ export default generateLocale([
   'lâu đời nhất',
   'muộn nhất',
   'nóng nhất',
+  'What do you think?',
 ]);

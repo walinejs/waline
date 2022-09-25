@@ -1,5 +1,6 @@
 <template>
   <div data-waline>
+    <Reaction />
     <CommentBox v-if="!reply" @submit="onSubmit" />
     <div class="wl-meta-head">
       <div class="wl-count">
@@ -81,6 +82,7 @@
 <script lang="ts">
 import { useStyleTag } from '@vueuse/core';
 import { computed, defineComponent, onMounted, provide, ref, watch } from 'vue';
+import Reaction from './ArticleReaction.vue';
 import CommentBox from './CommentBox.vue';
 import CommentCard from './CommentCard.vue';
 import { LoadingIcon } from './Icons';
@@ -237,12 +239,21 @@ const propsWithValidate = {
   },
 
   copyright: { type: Boolean, default: true },
+
+  recaptchav3key: {
+    type: String,
+  },
+
+  reaction: {
+    type: [Array, Boolean] as PropType<string[] | false>,
+  },
 };
 
 export default defineComponent({
   name: 'WalineRoot',
 
   components: {
+    Reaction,
     CommentBox,
     CommentCard,
     LoadingIcon,

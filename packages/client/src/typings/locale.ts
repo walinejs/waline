@@ -46,4 +46,14 @@ export interface WalineLocale extends WalineDateLocale, WalineLevelLocale {
   oldest: string;
   latest: string;
   hottest: string;
+  reactionTitle: string;
+  reaction0: string;
+  reaction1: string;
+  reaction2: string;
+  reaction3: string;
+  reaction4: string;
+  reaction5: string;
+  reaction6: string;
+  reaction7: string;
+  reaction8: string;
 }
