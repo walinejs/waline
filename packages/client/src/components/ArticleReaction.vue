@@ -72,7 +72,7 @@ export default defineComponent({
     const fetchCounter = async (): Promise<void> => {
       const { serverURL, lang, path, reaction } = config.value;
 
-      if (!reaction) {
+      if (!Array.isArray(reaction)) {
         return;
       }
 
