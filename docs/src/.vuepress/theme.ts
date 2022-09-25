@@ -42,6 +42,7 @@ export default hopeTheme({
       serverURL: 'https://walinejs.comment.lithub.cc',
       recaptchaV3Key: '6Lfz4-shAAAAANgsYRR0datkzv6zLIaKrSqfHsiG',
       pageview: true,
+      reaction: true,
       walineLocales: {
         '/': {
           admin: '可爱的管理员',
