@@ -23,7 +23,8 @@ export interface WalineEmojiConfig {
   map: WalineEmojiMaps;
 }
 
-export interface WalineConfig extends Required<Omit<WalineProps, 'wordLimit' | 'recaptchaV3Key'>> {
+export interface WalineConfig
+  extends Required<Omit<WalineProps, 'wordLimit' | 'recaptchaV3Key'>> {
   locale: WalineLocale;
   wordLimit: [number, number] | false;
   // emoji: Promise<EmojiConfig>;
@@ -86,6 +87,6 @@ export const getConfig = ({
   login,
   copyright,
   search,
-  reaction: reaction === true ? defaultReaction : reaction,
+  reaction: reaction === true ? defaultReaction : reaction || false,
   ...more,
 });
