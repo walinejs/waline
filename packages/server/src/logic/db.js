@@ -23,9 +23,51 @@ module.exports = class extends Base {
   async getAction() {}
 
   /**
-   * @api {GET} /db import site data
+   * @api {POST} /db import site data
    * @apiGroup Site
    * @apiVersion  0.0.1
    */
-  async postAction() {}
+  async postAction() {
+    this.rules = {
+      table: {
+        string: true,
+        required: true,
+        method: 'GET',
+      },
+    };
+  }
+
+  /**
+   * @api {PUT} /db update site table data
+   * @apiGroup Site
+   * @apiVersion  0.0.1
+   */
+  async putAction() {
+    this.rules = {
+      table: {
+        string: true,
+        required: true,
+        method: 'GET',
+      },
+      objectId: {
+        required: true,
+        method: 'GET',
+      },
+    };
+  }
+
+  /**
+   * @api {DELETE} /db clean site data
+   * @apiGroup Site
+   * @apiVersion  0.0.1
+   */
+  async deleteAction() {
+    this.rules = {
+      table: {
+        string: true,
+        required: true,
+        method: 'GET',
+      },
+    };
+  }
 };

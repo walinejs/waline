@@ -3,6 +3,7 @@ import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import Header from '../../components/Header';
 import download from '../../utils/download';
+import readFileAsync from '../../utils/readFileAsync';
 import request from '../../utils/request';
 
 export default function () {
@@ -20,17 +21,109 @@ export default function () {
   };
 
   const importData = async (e) => {
-    setImportLoading(true);
     try {
-      const body = new FormData();
+      const text = await readFileAsync(e.target.files[0]);
+      const data = JSON.parse(text);
 
-      body.append('file', e.target.files[0]);
+      if (!data || data.type !== 'waline') {
+        return alert('import data format not support!');
+      }
 
-      await request({
-        url: 'db',
-        method: 'POST',
-        body,
-      });
+      const maxLength = data.tables.reduce(
+        (count, tableName) => count + (data.data[tableName]?.length || 0),
+        0
+      );
+      let importedLength = 0;
+
+      setImportLoading([
+        'importing {{importedLength}}/{{maxLength}}',
+        { importedLength, maxLength },
+      ]);
+
+      const idMaps = {};
+
+      for (let i = 0; i < data.tables.length; i++) {
+        const tableName = data.tables[i];
+        const tableData = data.data[tableName];
+
+        // clean table data
+        await request({
+          url: 'db?table=' + tableName,
+          method: 'DELETE',
+        });
+
+        if (!idMaps[tableName]) {
+          idMaps[tableName] = {};
+        }
+        if (!Array.isArray(tableData)) {
+          continue;
+        }
+
+        for (let j = 0; j < tableData.length; j++) {
+          const resp = await request({
+            url: 'db?table=' + tableName,
+            method: 'POST',
+            body: tableData[j],
+          });
+
+          idMaps[tableName][tableData.objectId] = resp.objectId;
+          importedLength += 1;
+          setImportLoading([
+            'importing {{importedLength}}/{{maxLength}}',
+            { importedLength, maxLength },
+          ]);
+        }
+      }
+
+      setImportLoading(['comment data index relationship reconstruction']);
+      const commentData = importData.data.Comment;
+      const willUpdateData = [];
+
+      for (let i = 0; i < commentData.length; i++) {
+        const cmt = commentData[i];
+        const willUpdateItem = {};
+
+        [
+          { tableName: 'Comment', field: 'pid' },
+          { tableName: 'Comment', field: 'rid' },
+          { tableName: 'Users', field: 'user_id' },
+        ].forEach(({ tableName, field }) => {
+          if (!cmt[field]) {
+            return;
+          }
+          const oldId = cmt[field];
+          const newId = idMaps[tableName][cmt[field]];
+
+          if (oldId && newId && oldId !== newId) {
+            willUpdateItem[field] = newId;
+          }
+        });
+        if (!Object.keys(willUpdateItem).length) {
+          continue;
+        }
+
+        willUpdateData.push([
+          willUpdateItem,
+          { objectId: idMaps.Comment[cmt.objectId] },
+        ]);
+      }
+
+      importedLength = 0;
+      for (let i = 0; i < willUpdateData.length; i++) {
+        const [willUpdateItem, where] = willUpdateData[i];
+
+        await request({
+          url: `db?table=Comment&objectId=${where.objectId}`,
+          method: 'PUT',
+          body: willUpdateItem,
+        });
+
+        importedLength += 1;
+        setImportLoading([
+          'index updating {{importedLength}}/{{maxLength}}',
+          { importedLength, maxLength: willUpdateData.length },
+        ]);
+      }
 
       alert(t('import success'));
       location.reload();
@@ -84,7 +177,9 @@ export default function () {
                 onClick={importDB}
                 disabled={importLoading}
               >
-                {importLoading ? t('importing') : t('import')}
+                {Array.isArray(importLoading)
+                  ? t(...importLoading)
+                  : t('import')}
               </button>
               <input
                 ref={uploadRef}
