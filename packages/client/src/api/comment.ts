@@ -1,5 +1,5 @@
 import { JSON_HEADERS, errorCheck } from './utils';
-import type { WalineComment, WalineCommentData } from '../../typings';
+import type { WalineComment, WalineCommentData } from '../typings';
 
 export interface FetchCommentOptions {
   serverURL: string;

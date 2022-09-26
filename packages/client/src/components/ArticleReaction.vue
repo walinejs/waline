@@ -28,12 +28,9 @@ import {
   onUnmounted,
   ref,
 } from 'vue';
+import { fetchArticleCounter, updateArticleCounter } from '../api';
 import { useVoteStorage } from '../composables';
-import {
-  fetchArticleCounter,
-  updateArticleCounter,
-  WalineConfig,
-} from '../utils';
+import type { WalineConfig } from '../utils';
 import type { WalineLocale } from '../typings';
 
 interface ReactionItem {

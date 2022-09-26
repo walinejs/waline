@@ -25,6 +25,11 @@
       "require": "./dist/shim.cjs",
       "default": "./dist/shim.cjs"
     },
+    "./api": {
+      "types": "./dist/api.d.ts",
+      "require": "./dist/api.cjs",
+      "default": "./dist/api.mjs"
+    },
     "./component": {
       "default": "./dist/component.mjs"
     },
@@ -48,6 +53,11 @@
     },
     "./waline.css": "./dist/waline.css",
     "./waline-meta.css": "./dist/waline-meta.css",
+    "./dist/api": {
+      "types": "./dist/api.d.ts",
+      "require": "./dist/api.cjs",
+      "default": "./dist/api.mjs"
+    },
     "./dist/component": {
       "default": "./dist/component.mjs"
     },

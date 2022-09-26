@@ -92,10 +92,9 @@ import {
   deleteComment,
   fetchComment,
   likeComment,
-  getConfig,
-  getDarkStyle,
   updateComment,
-} from '../utils';
+} from '../api';
+import { getConfig, getDarkStyle } from '../utils';
 
 import type { PropType } from 'vue';
 import type {

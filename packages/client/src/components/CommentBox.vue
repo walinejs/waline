@@ -287,15 +287,14 @@ import {
   GifIcon,
 } from './Icons';
 import ImageWall from './ImageWall.vue';
+import { login, postComment } from '../api';
 import { useEditor, useUserMeta, useUserInfo } from '../composables';
 import {
   getEmojis,
   getImagefromDataTransfer,
   getWordNumber,
-  login,
   parseEmoji,
   parseMarkdown,
-  postComment,
 } from '../utils';
 
 import type { ComputedRef, DeepReadonly } from 'vue';

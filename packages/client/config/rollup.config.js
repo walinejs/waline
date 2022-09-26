@@ -165,6 +165,35 @@ export default [
   // components declaration files
   // TODO: Generate declaration files
 
+  // api
+  {
+    input: './src/entrys/api.ts',
+    output: [
+      {
+        file: './dist/api.cjs',
+        format: 'cjs',
+        sourcemap: true,
+      },
+      {
+        file: './dist/api.mjs',
+        format: 'esm',
+        sourcemap: true,
+      },
+    ],
+    ...commonOptions,
+  },
+
+  // api declaration files
+  {
+    input: './src/entrys/api.ts',
+    output: [
+      { file: './dist/api.d.ts', format: 'esm' },
+      { file: './dist/api.d.cts', format: 'esm' },
+      { file: './dist/api.d.mts', format: 'esm' },
+    ],
+    plugins: [dts({ compilerOptions: { preserveSymlinks: false } })],
+  },
+
   // comment
   {
     input: './src/entrys/comment.ts',

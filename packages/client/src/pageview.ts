@@ -1,10 +1,5 @@
-import {
-  errorHandler,
-  fetchPageviews,
-  getQuery,
-  getServerURL,
-  updatePageviews,
-} from './utils';
+import { fetchPageviews, updatePageviews } from './api';
+import { errorHandler, getQuery, getServerURL } from './utils';
 
 import type { WalineAbort } from './typings';
 

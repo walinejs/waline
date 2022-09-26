@@ -1,5 +1,6 @@
+import { fetchRecentComment } from '../api';
 import { useUserInfo } from '../composables';
-import { fetchRecentComment, getRoot } from '../utils';
+import { getRoot } from '../utils';
 
 import type { WalineComment } from '../typings';
 

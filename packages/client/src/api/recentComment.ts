@@ -1,5 +1,5 @@
 import { errorCheck } from './utils';
-import type { WalineComment } from '../../typings';
+import type { WalineComment } from '../typings';
 
 export interface FetchRecentCommentOptions {
   serverURL: string;
