@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+
 export interface LoginOptions {
   lang: string;
   serverURL: string;
@@ -35,14 +37,14 @@ export const login = ({
   return new Promise((resolve) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const receiver = ({ data }: any): void => {
-      if (!data || data.type !== 'userInfo') return;
+      if (!data || typeof data !== 'object' || data.type !== 'userInfo') return;
 
       if (data.data.token) {
         handler?.close();
 
         window.removeEventListener('message', receiver);
 
-        resolve(data.data);
+        resolve(data.data as UserInfo & { remember: boolean });
       }
     };
 
