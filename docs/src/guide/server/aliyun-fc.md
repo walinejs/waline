@@ -16,7 +16,7 @@ icon: aliyun
 
    ![阿里云函数计算3](../../assets/aliyun-fc-3.jpg)
 
-1. https://ram.console.aliyun.com/manage/ak 访问该网址获取到你账户的一对密钥，使用 s 命令添加。
+1. 访问 <https://ram.console.aliyun.com/manage/ak> 获取到你账户的一对密钥，使用 s 命令添加。
    ![阿里云函数计算4](../../assets/aliyun-fc-4.jpg)
    ![阿里云函数计算5](../../assets/aliyun-fc-5.jpg)
 

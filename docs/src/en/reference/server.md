@@ -16,28 +16,28 @@ Vercel needs to be set in `Settings` - `Environment Variables`.
 
 ### Basic
 
-| Environment Variables   | Required | Description                                                                                                                                          |
-| ----------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `LEAN_ID`               | ✅       | LeanCloud Application ID                                                                                                                             |
-| `LEAN_KEY`              | ✅       | LeanCloud Application Key                                                                                                                            |
-| `LEAN_MASTER_KEY`       | ✅       | LeanCloud Application Master Key                                                                                                                     |
-| `LEAN_SERVER`           | ⚠        | LeanCloud server address if you're leancloud china user                                                                                              |
-| `SITE_NAME`             |          | site name                                                                                                                                            |
-| `SITE_URL`              |          | site url                                                                                                                                             |
-| `SECURE_DOMAINS`        |          | Secure Domains config. Supports multiple domain with Comma separated                                                                                 |
-| `DISABLE_USERAGENT`     |          | wether hide the user agent of commentor. Default value is `false`                                                                                    |
-| `DISABLE_REGION`        |          | wether hide commentor's region. Default value is `false`                                                                                             |
-| `DISABLE_AUTHOR_NOTIFY` |          | wether disable author notification                                                                                                                   |
-| `AKISMET_KEY`           |          | Akismet antispam service key, default is open, set `false` if you wanna close it.                                                                    |
-| `COMMENT_AUDIT`         |          | Comment audit switcher. We recommend to tip on the placeholder text if it's true.                                                                    |
-| `LOGIN`                 |          | User need login before comment when `LOGIN=force`                                                                                                    |
-| `AVATAR_PROXY`          |          | Avatar proxy service url, default is `https://avatar.75cdn.workers.dev`. You can set `false` to close it                                             |
-| `GRAVATAR_STR`          |          | Gravatar render string，default is <span v-pre>`https://seccdn.libravatar.org/avatar/{{mail\|md5}}`</span>，base on nunjucks template                |
-| `OAUTH_URL`             |          | OAuth Social Login Service URL，default is `https://oauth.lithub.cc`. Also you can custom build with [auth](https://github.com/walinejs/auth).       |
-| `WEBHOOK`               |          | You can set a Webhook URL that will be triggered when you have new comment.                                                                          |
-| `LEVELS`                |          | Give each user a rating label based on the number of comments                                                                                        |
-| `RECAPTCHA_V3_KEY`      |          | reCAPTCHA V3 site key for admin client which can apply at https://www.google.com/recaptcha, waline server url should be added into domain configure. |
-| `RECAPTCHA_V3_SECRET`   |          | reCAPTCHA V3 secret key for server which can apply at https://www.google.com/recaptcha, waline server url should be added into domain configure.     |
+| Environment Variables   | Required | Description                                                                                                                                            |
+| ----------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `LEAN_ID`               | ✅       | LeanCloud Application ID                                                                                                                               |
+| `LEAN_KEY`              | ✅       | LeanCloud Application Key                                                                                                                              |
+| `LEAN_MASTER_KEY`       | ✅       | LeanCloud Application Master Key                                                                                                                       |
+| `LEAN_SERVER`           | ⚠        | LeanCloud server address if you're leancloud china user                                                                                                |
+| `SITE_NAME`             |          | site name                                                                                                                                              |
+| `SITE_URL`              |          | site url                                                                                                                                               |
+| `SECURE_DOMAINS`        |          | Secure Domains config. Supports multiple domain with Comma separated                                                                                   |
+| `DISABLE_USERAGENT`     |          | wether hide the user agent of commentor. Default value is `false`                                                                                      |
+| `DISABLE_REGION`        |          | wether hide commentor's region. Default value is `false`                                                                                               |
+| `DISABLE_AUTHOR_NOTIFY` |          | wether disable author notification                                                                                                                     |
+| `AKISMET_KEY`           |          | Akismet antispam service key, default is open, set `false` if you wanna close it.                                                                      |
+| `COMMENT_AUDIT`         |          | Comment audit switcher. We recommend to tip on the placeholder text if it's true.                                                                      |
+| `LOGIN`                 |          | User need login before comment when `LOGIN=force`                                                                                                      |
+| `AVATAR_PROXY`          |          | Avatar proxy service url, default is `https://avatar.75cdn.workers.dev`. You can set `false` to close it                                               |
+| `GRAVATAR_STR`          |          | Gravatar render string，default is <span v-pre>`https://seccdn.libravatar.org/avatar/{{mail\|md5}}`</span>，base on nunjucks template                  |
+| `OAUTH_URL`             |          | OAuth Social Login Service URL，default is `https://oauth.lithub.cc`. Also you can custom build with [auth](https://github.com/walinejs/auth).         |
+| `WEBHOOK`               |          | You can set a Webhook URL that will be triggered when you have new comment.                                                                            |
+| `LEVELS`                |          | Give each user a rating label based on the number of comments                                                                                          |
+| `RECAPTCHA_V3_KEY`      |          | reCAPTCHA V3 site key for admin client which can apply at <https://www.google.com/recaptcha>, waline server url should be added into domain configure. |
+| `RECAPTCHA_V3_SECRET`   |          | reCAPTCHA V3 secret key for server which can apply at <https://www.google.com/recaptcha>, waline server url should be added into domain configure.     |
 
 ### Markdown
 

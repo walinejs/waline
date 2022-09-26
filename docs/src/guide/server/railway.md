@@ -9,15 +9,15 @@ icon: railway
 
 点击上方按钮，跳转至 Railway 平台快速部署。登录之后会让你选择新建仓库的名称，环境变量部分不需要改动，直接点击下方的 <kbd>Deploy</kbd> 按钮进行部署即可。
 
-![](../../assets/railway-1.jpg)
+![railway1](../../assets/railway-1.jpg)
 
 进入管理界面后，选择 <kbd>PostgreSQL</kbd> - <kbd>Query</kbd>，将 [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) 中的内容粘贴至输入框中，点击底部的 <kbd>Run Query</kbd> 按钮完成数据库的初始化。
 
-![](../../assets/railway-2.jpg)
+![railway2](../../assets/railway-2.jpg)
 
 最后在 <kbd>Deployments</kbd> - <kbd>Domains</kbd> 中就可以获取到访问的地址了。
 
-![](../../assets/railway-3.jpg)
+![railway3](../../assets/railway-3.jpg)
 
 ## 如何更新
 
@@ -27,4 +27,4 @@ icon: railway
 
 可以通过 <kbd>Variables</kbd> Tab 进入环境变量管理页，修改完成之后会自动重新部署。
 
-![](../../assets/railway-4.jpg)
+![railway4](../../assets/railway-4.jpg)
