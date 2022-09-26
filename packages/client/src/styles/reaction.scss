@@ -26,12 +26,12 @@
   }
 
   li.active .wl-reaction {
-    &__votes {
+    &-votes {
       background: var(--waline-theme-color);
       color: var(--waline-bgcolor);
     }
 
-    &__text {
+    &-text {
       color: var(--waline-theme-color);
     }
   }
@@ -42,13 +42,13 @@
     transition: all 250ms ease-in-out;
   }
 
-  &__img {
+  &-img {
     position: relative;
     width: 42px;
     height: 42px;
   }
 
-  &__votes {
+  &-votes {
     position: absolute;
     top: -4px;
     right: -5px;
@@ -66,7 +66,7 @@
     line-height: 1;
   }
 
-  &__text {
+  &-text {
     font-size: 0.875em;
   }
 }

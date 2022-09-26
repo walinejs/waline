@@ -6,13 +6,13 @@
         v-for="(item, index) in reaction"
         :key="index"
         :class="{ active: item.active }"
-        @click="onVote(index)"
+        @click="vote(index)"
       >
-        <div class="wl-reaction__img">
+        <div class="wl-reaction-img">
           <img :src="item.icon" :alt="item.desc" />
-          <div class="wl-reaction__votes">{{ item.vote }}</div>
+          <div class="wl-reaction-votes">{{ item.vote }}</div>
         </div>
-        <div class="wl-reaction__text">{{ item.desc }}</div>
+        <div class="wl-reaction-text">{{ item.desc }}</div>
       </li>
     </ul>
   </div>
@@ -34,6 +34,7 @@ import {
   updateArticleCounter,
   WalineConfig,
 } from '../utils';
+import type { WalineLocale } from '../typings';
 
 interface ReactionItem {
   icon: string;
@@ -46,9 +47,7 @@ export default defineComponent({
   setup() {
     const votes = ref<ReactionItem['vote'][]>([]);
     const voteStorage = useVoteStorage();
-    const config = inject<ComputedRef<WalineConfig>>(
-      'config'
-    ) as ComputedRef<WalineConfig>;
+    const config = inject<ComputedRef<WalineConfig>>('config')!;
     const locale = computed(() => config.value.locale);
     const reaction = computed((): ReactionItem[] => {
       const { reaction, path } = config.value;
@@ -56,7 +55,7 @@ export default defineComponent({
       return (Array.isArray(reaction) ? reaction : []).map((icon, index) => ({
         icon,
         vote: votes.value[index] || 0,
-        desc: locale.value[`reaction${index}` as `reaction0`],
+        desc: locale.value[`reaction${index}` as keyof WalineLocale],
         active: Boolean(
           voteStorage.value.find(({ u, i }) => u === path && i === index)
         ),
@@ -85,7 +84,7 @@ export default defineComponent({
       votes.value = reaction.map((_, k) => resp[`reaction${k}`]);
     };
 
-    const onVote = async (index: number): Promise<void> => {
+    const vote = async (index: number): Promise<void> => {
       const { serverURL, lang, path } = config.value;
       const hasVoted = voteStorage.value.find(({ u }) => u === path);
       const hasVotedTheReaction = hasVoted && hasVoted.i === index;
@@ -126,7 +125,7 @@ export default defineComponent({
     return {
       reaction,
       locale,
-      onVote,
+      vote,
     };
   },
 });

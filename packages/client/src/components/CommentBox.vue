@@ -343,9 +343,7 @@ export default defineComponent({
   emits: ['submit', 'cancel-reply', 'cancel-edit'],
 
   setup(props, { emit }) {
-    const config = inject<ComputedRef<WalineConfig>>(
-      'config'
-    ) as ComputedRef<WalineConfig>;
+    const config = inject<ComputedRef<WalineConfig>>('config')!;
 
     const editor = useEditor();
     const userMeta = useUserMeta();
@@ -387,7 +385,7 @@ export default defineComponent({
     const canUploadImage = computed(() => config.value.imageUploader !== false);
 
     const insert = (content: string): void => {
-      const textArea = editorRef.value as HTMLTextAreaElement;
+      const textArea = editorRef.value!;
       const startPosition = textArea.selectionStart;
       const endPosition = textArea.selectionEnd || 0;
       const scrollTop = textArea.scrollTop;
@@ -448,7 +446,7 @@ export default defineComponent({
     };
 
     const onChange = (): void => {
-      const inputElement = imageUploadRef.value as HTMLInputElement;
+      const inputElement = imageUploadRef.value!;
 
       if (inputElement.files && canUploadImage.value)
         uploadImage(inputElement.files[0]).then(() => {
@@ -623,14 +621,14 @@ export default defineComponent({
 
     const popupHandler = (event: MouseEvent): void => {
       if (
-        !(emojiButtonRef.value as HTMLElement).contains(event.target as Node) &&
-        !(emojiPopupRef.value as HTMLElement).contains(event.target as Node)
+        !emojiButtonRef.value!.contains(event.target as Node) &&
+        !emojiPopupRef.value!.contains(event.target as Node)
       )
         showEmoji.value = false;
 
       if (
-        !(gifButtonRef.value as HTMLElement).contains(event.target as Node) &&
-        !(gifPopupRef.value as HTMLElement).contains(event.target as Node)
+        !gifButtonRef.value!.contains(event.target as Node) &&
+        !gifPopupRef.value!.contains(event.target as Node)
       )
         showGif.value = false;
     };
