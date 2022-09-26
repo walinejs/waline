@@ -242,8 +242,9 @@ const propsWithValidate = {
 
   copyright: { type: Boolean, default: true },
 
-  recaptchav3key: {
+  recaptchaV3Key: {
     type: String,
+    default: '',
   },
 
   reaction: {
