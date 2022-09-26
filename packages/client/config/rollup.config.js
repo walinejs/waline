@@ -77,7 +77,7 @@ export default [
     ],
   },
 
-  // // legacy declaration files
+  // legacy declaration files
   {
     input: './src/entrys/legacy.ts',
     output: [{ file: './dist/legacy.umd.d.ts', format: 'esm' }],
@@ -164,6 +164,41 @@ export default [
 
   // components declaration files
   // TODO: Generate declaration files
+
+  // comment
+  {
+    input: './src/entrys/comment.ts',
+    output: [
+      {
+        file: './dist/comment.js',
+        format: 'esm',
+        sourcemap: true,
+        plugins: [babelPlugin],
+      },
+      {
+        file: './dist/comment.cjs',
+        format: 'cjs',
+        sourcemap: true,
+      },
+      {
+        file: './dist/comment.mjs',
+        format: 'esm',
+        sourcemap: true,
+      },
+    ],
+    ...commonOptions,
+  },
+
+  // comment declaration files
+  {
+    input: './src/entrys/comment.ts',
+    output: [
+      { file: './dist/comment.d.ts', format: 'esm' },
+      { file: './dist/comment.d.cts', format: 'esm' },
+      { file: './dist/comment.d.mts', format: 'esm' },
+    ],
+    plugins: [dts({ compilerOptions: { preserveSymlinks: false } })],
+  },
 
   // pageview
   {

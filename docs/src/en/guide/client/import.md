@@ -95,6 +95,10 @@ Waline provides several versions of the file:
 
   This file is for using Waline comments in component mode in a Vue project, 18.28 KB Gzip size
 
+- `dist/comment.js`: Waline's comment module, UMD format, < 1KB Gzip size
+
+  This file is used for CDN, when only comment count are needed
+
 - `dist/pageview.js`: Waline's pageview module, UMD format, < 1KB Gzip size
 
   This file is used for CDN, when only page views are needed
@@ -104,6 +108,10 @@ Other format files:
 - `dist/waline.cjs`: Common JS format for `dist/waline.js` file
 
 - `dist/waline.mjs`: ES Module format of `dist/waline.js` file
+
+- `dist/comment.cjs`: Common JS format for `dist/comment.js` file
+
+- `dist/comment.mjs`: ES Module format of `dist/comment.js` file
 
 - `dist/pageview.cjs`: Common JS format for `dist/pageview.js` file
 
