@@ -90,7 +90,7 @@ import { useUserInfo, useLikeStorage } from '../composables';
 import { defaultLocales } from '../config';
 import {
   deleteComment,
-  fetchCommentList,
+  fetchComment,
   likeComment,
   getConfig,
   getDarkStyle,
@@ -288,7 +288,7 @@ export default defineComponent({
     // eslint-disable-next-line vue/no-setup-props-destructure
     let abort: () => void;
 
-    const fetchComment = (pageNumber: number): void => {
+    const fetchCommentData = (pageNumber: number): void => {
       const { serverURL, path, pageSize } = config.value;
       const controller = new AbortController();
 
@@ -296,7 +296,7 @@ export default defineComponent({
 
       abort?.();
 
-      fetchCommentList({
+      fetchComment({
         serverURL,
         lang: config.value.lang,
         path,
@@ -323,12 +323,12 @@ export default defineComponent({
       abort = controller.abort.bind(controller);
     };
 
-    const loadMore = (): void => fetchComment(page.value + 1);
+    const loadMore = (): void => fetchCommentData(page.value + 1);
 
     const refresh = (): void => {
       count.value = 0;
       data.value = [];
-      fetchComment(1);
+      fetchCommentData(1);
     };
 
     const onSortByChange = (item: SortKeyItems): void => {

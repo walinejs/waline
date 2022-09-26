@@ -1,11 +1,11 @@
 <template>
   <div v-if="reaction && reaction.length" class="wl-reaction">
-    <h4>{{ locale.reactionTitle }}</h4>
+    <h4 v-text="locale.reactionTitle" />
     <ul>
       <li
         v-for="(item, index) in reaction"
         :key="index"
-        :class="item.active ? 'active' : ''"
+        :class="{ active: item.active }"
         @click="onVote(index)"
       >
         <div class="wl-reaction__img">
@@ -28,12 +28,12 @@ import {
   onUnmounted,
   ref,
 } from 'vue';
+import { useVoteStorage } from '../composables';
 import {
   fetchArticleCounter,
   updateArticleCounter,
   WalineConfig,
 } from '../utils';
-import { useVoteStorage } from '../composables/vote';
 
 interface ReactionItem {
   icon: string;
@@ -51,13 +51,9 @@ export default defineComponent({
     ) as ComputedRef<WalineConfig>;
     const locale = computed(() => config.value.locale);
     const reaction = computed((): ReactionItem[] => {
-      const { path } = config.value;
+      const { reaction, path } = config.value;
 
-      if (!Array.isArray(config.value.reaction)) {
-        return [];
-      }
-
-      return config.value.reaction.map((icon, index) => ({
+      return (Array.isArray(reaction) ? reaction : []).map((icon, index) => ({
         icon,
         vote: votes.value[index] || 0,
         desc: locale.value[`reaction${index}` as `reaction0`],
@@ -84,9 +80,7 @@ export default defineComponent({
         signal: controller.signal,
       });
 
-      if (Array.isArray(resp) || typeof resp === 'number') {
-        return;
-      }
+      if (Array.isArray(resp) || typeof resp === 'number') return;
 
       votes.value = reaction.map((_, k) => resp[`reaction${k}`]);
     };
@@ -96,9 +90,7 @@ export default defineComponent({
       const hasVoted = voteStorage.value.find(({ u }) => u === path);
       const hasVotedTheReaction = hasVoted && hasVoted.i === index;
 
-      if (hasVotedTheReaction) {
-        return;
-      }
+      if (hasVotedTheReaction) return;
 
       await updateArticleCounter({
         serverURL,
