@@ -6,6 +6,7 @@ export * from './error';
 export * from './fetch';
 export * from './getRoot';
 export * from './image';
+export * from './login';
 export * from './markdown';
 export * from './path';
 export * from './query';

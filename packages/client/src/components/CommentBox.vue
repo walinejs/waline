@@ -292,6 +292,7 @@ import {
   getEmojis,
   getImagefromDataTransfer,
   getWordNumber,
+  login,
   parseEmoji,
   parseMarkdown,
   postComment,
@@ -563,36 +564,16 @@ export default defineComponent({
       event.preventDefault();
       const { lang, serverURL } = config.value;
 
-      const width = 450;
-      const height = 450;
-      const left = (window.innerWidth - width) / 2;
-      const top = (window.innerHeight - height) / 2;
-
-      const handler = window.open(
-        `${serverURL}/ui/login?lng=${encodeURIComponent(lang)}`,
-        '_blank',
-        `width=${width},height=${height},left=${left},top=${top},scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no`
-      );
-
-      handler?.postMessage({ type: 'TOKEN', data: null }, '*');
-
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const receiver = ({ data }: any): void => {
-        if (!data || data.type !== 'userInfo') return;
-
-        if (data.data.token) {
-          handler?.close();
-          userInfo.value = data.data;
-          (data.data.remember ? localStorage : sessionStorage).setItem(
-            'WALINE_USER',
-            JSON.stringify(data.data)
-          );
-
-          window.removeEventListener('message', receiver);
-        }
-      };
-
-      window.addEventListener('message', receiver);
+      login({
+        serverURL,
+        lang,
+      }).then((data) => {
+        userInfo.value = data;
+        (data.remember ? localStorage : sessionStorage).setItem(
+          'WALINE_USER',
+          JSON.stringify(data)
+        );
+      });
     };
 
     const onLogout = (): void => {

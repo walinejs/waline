@@ -1,18 +1,7 @@
 import { useStorage } from '@vueuse/core';
 
 import type { Ref } from 'vue';
-
-export interface UserInfo {
-  // eslint-disable-next-line @typescript-eslint/naming-convention
-  display_name: string;
-  email: string;
-  url: string;
-  token: string;
-  avatar: string;
-  mailMd5: string;
-  objectId: string | number;
-  type: 'administrator' | 'guest';
-}
+import type { UserInfo } from '../utils';
 
 export const USER_KEY = 'WALINE_USER';
 
