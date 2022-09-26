@@ -263,7 +263,7 @@
 
 <script lang="ts">
 import { useDebounceFn } from '@vueuse/core';
-import { useReCaptcha } from './RecaptchaV3/RecaptchaVuePlugin';
+import { useReCaptcha } from '../composables';
 import autosize from 'autosize';
 import {
   computed,
@@ -350,7 +350,6 @@ export default defineComponent({
     const editor = useEditor();
     const userMeta = useUserMeta();
     const userInfo = useUserInfo();
-    const recaptchaHandler = useReCaptcha();
 
     const inputRefs = ref<Record<string, HTMLInputElement>>({});
     const editorRef = ref<HTMLTextAreaElement | null>(null);
@@ -463,12 +462,10 @@ export default defineComponent({
 
       let token = '';
 
-      if (recaptchaHandler) {
-        const { executeRecaptcha, recaptchaLoaded } = recaptchaHandler;
-
-        await recaptchaLoaded();
-        token = await executeRecaptcha('social');
-      }
+      if (config.value.recaptchaV3Key)
+        token = await useReCaptcha(config.value.recaptchaV3Key).execute(
+          'social'
+        );
 
       const comment: WalineCommentData = {
         comment: content.value,
