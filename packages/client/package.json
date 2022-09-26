@@ -34,6 +34,12 @@
       "require": "./dist/waline.cjs",
       "default": "./dist/waline.js"
     },
+    "./comment": {
+      "types": "./dist/comment.d.ts",
+      "import": "./dist/comment.mjs",
+      "require": "./dist/comment.cjs",
+      "default": "./dist/comment.js"
+    },
     "./pageview": {
       "types": "./dist/pageview.d.ts",
       "import": "./dist/pageview.mjs",
@@ -44,6 +50,12 @@
     "./waline-meta.css": "./dist/waline-meta.css",
     "./dist/component": {
       "default": "./dist/component.mjs"
+    },
+    "./dist/comment": {
+      "types": "./dist/comment.d.ts",
+      "import": "./dist/comment.mjs",
+      "require": "./dist/comment.cjs",
+      "default": "./dist/comment.js"
     },
     "./dist/pageview": {
       "types": "./dist/pageview.d.ts",

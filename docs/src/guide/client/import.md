@@ -97,6 +97,10 @@ Waline 提供多个版本的文件:
 
   此文件用于在 Vue 项目中以组件模式使用 Waline 评论, 18.28 KB Gzip 大小
 
+- `dist/comment.js`: Waline 的评论数模块，UMD 格式， < 1KB Gzip 大小
+
+  此文件用于 CDN 引入，用于仅需页面评论数的情况
+
 - `dist/pageview.js`: Waline 的浏览量模块，UMD 格式， < 1KB Gzip 大小
 
   此文件用于 CDN 引入，用于仅需页面浏览量的情况
@@ -106,6 +110,10 @@ Waline 提供多个版本的文件:
 - `dist/waline.cjs`: `dist/waline.js` 文件的 Common JS 格式
 
 - `dist/waline.mjs`: `dist/waline.js` 文件的 ES Module 格式
+
+- `dist/comment.cjs`: `dist/comment.js` 文件的 Common JS 格式
+
+- `dist/comment.mjs`: `dist/comment.js` 文件的 ES Module 格式
 
 - `dist/pageview.cjs`: `dist/pageview.js` 文件的 Common JS 格式
 
