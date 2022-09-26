@@ -5,7 +5,6 @@ export interface FetchCommentCountOptions {
   lang: string;
   paths: string[];
   signal: AbortSignal;
-  token?: string;
 }
 
 export const fetchCommentCount = ({
@@ -13,11 +12,8 @@ export const fetchCommentCount = ({
   lang,
   paths,
   signal,
-  token,
 }: FetchCommentCountOptions): Promise<number[]> => {
   const headers: Record<string, string> = {};
-
-  if (token) headers.Authorization = `Bearer ${token}`;
 
   return (
     fetch(

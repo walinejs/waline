@@ -1,4 +1,3 @@
-import { useUserInfo } from './composables';
 import {
   decodePath,
   errorHandler,
@@ -55,8 +54,6 @@ WalineCommentCountOptions): WalineAbort => {
   // comment count
   const elements = document.querySelectorAll<HTMLElement>(selector);
 
-  const userInfo = useUserInfo();
-
   if (elements.length)
     void fetchCommentCount({
       serverURL: getServerURL(serverURL),
@@ -65,7 +62,6 @@ WalineCommentCountOptions): WalineAbort => {
       ),
       lang,
       signal: controller.signal,
-      token: userInfo.value?.token,
     })
       .then((counts) => {
         elements.forEach((element, index) => {
