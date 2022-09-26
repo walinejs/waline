@@ -19,9 +19,9 @@ Vercel 需要在 <kbd>Settings</kbd> - <kbd>Environment Variables</kbd> 中进�
 
 | 环境变量名称            | 必填 | 备注                                                                                                                      |
 | ----------------------- | ---- | ------------------------------------------------------------------------------------------------------------------------- |
-| `LEAN_ID`               | ✅    | LeanCloud 应用的 App ID                                                                                                   |
-| `LEAN_KEY`              | ✅    | LeanCloud 应用的 App Key                                                                                                  |
-| `LEAN_MASTER_KEY`       | ✅    | LeanCloud 应用的 Master Key 用于后台修改数据                                                                              |
+| `LEAN_ID`               | ✅   | LeanCloud 应用的 App ID                                                                                                   |
+| `LEAN_KEY`              | ✅   | LeanCloud 应用的 App Key                                                                                                  |
+| `LEAN_MASTER_KEY`       | ✅   | LeanCloud 应用的 Master Key 用于后台修改数据                                                                              |
 | `LEAN_SERVER`           | ⚠    | LeanCloud 服务地址，国内版用户需要配置此项                                                                                |
 | `SITE_NAME`             |      | 博客名称                                                                                                                  |
 | `SITE_URL`              |      | 博客地址                                                                                                                  |
@@ -34,7 +34,7 @@ Vercel 需要在 <kbd>Settings</kbd> - <kbd>Environment Variables</kbd> 中进�
 | `COMMENT_AUDIT`         |      | 评论发布审核开关，配置后建议在 Placeholder 上提供文案提示                                                                 |
 | `LOGIN`                 |      | 当设置为 LOGIN=force 时会要求登录才能评论                                                                                 |
 | `AVATAR_PROXY`          |      | 头像的代理地址，默认为 https://avatar.75cdn.workers.dev，设置 false 关闭代理                                              |
-| `GRAVATAR_STR`          |      | Gravatar 头像的地址，默认为 https://seccdn.libravatar.org/avatar/{{mail\|md5}}，基于 nunjucks 语法                        |
+| `GRAVATAR_STR`          |      | Gravatar 头像的地址，默认为 <span v-pre>https://seccdn.libravatar.org/avatar/{{mail\|md5}}</span>，基于 nunjucks 语法     |
 | `OAUTH_URL`             |      | OAuth 第三方登录服务地址，默认为 https://oauth.lithub.cc，也可以使用 auth 自建                                            |
 | `WEBHOOK`               |      | 评论成功后会向 WEBHOOK 配置的地址发送一条 POST 请求                                                                       |
 | `LEVELS`                |      | 根据评论数为每个用户提供等级标签                                                                                          |
@@ -111,9 +111,9 @@ new Waline({
   | ------------------ | ---- | --------- | -------------------------------- |
   | `MONGO_HOST`       |      | 127.0.0.1 | MongoDB 服务的地址，支持数组格式 |
   | `MONGO_PORT`       |      | 27017     | MongoDB 服务的端口，支持数组格式 |
-  | `MONGO_DB`         | ✅    |           | MongoDB 数据库名称               |
-  | `MONGO_USER`       | ✅    |           | MongoDB 服务的用户名             |
-  | `MONGO_PASSWORD`   | ✅    |           | MongoDB 服务的密码               |
+  | `MONGO_DB`         | ✅   |           | MongoDB 数据库名称               |
+  | `MONGO_USER`       | ✅   |           | MongoDB 服务的用户名             |
+  | `MONGO_PASSWORD`   | ✅   |           | MongoDB 服务的密码               |
   | `MONGO_REPLICASET` |      |           | MongoDB 集群                     |
   | `MONGO_AUTHSOURCE` |      |           | MongoDB 认证源                   |
   | `MONGO_OPT_SSL`    |      |           | 是否使用 SSL 进行连接            |
@@ -124,9 +124,9 @@ new Waline({
   | ---------------- | ---- | --------- | -------------------- |
   | `MYSQL_HOST`     |      | 127.0.0.1 | MySQL 服务的地址     |
   | `MYSQL_PORT`     |      | 3306      | MySQL 服务的端口     |
-  | `MYSQL_DB`       | ✅    |           | MySQL 数据库库名     |
-  | `MYSQL_USER`     | ✅    |           | MySQL 数据库的用户名 |
-  | `MYSQL_PASSWORD` | ✅    |           | MySQL 数据库的密码   |
+  | `MYSQL_DB`       | ✅   |           | MySQL 数据库库名     |
+  | `MYSQL_USER`     | ✅   |           | MySQL 数据库的用户名 |
+  | `MYSQL_PASSWORD` | ✅   |           | MySQL 数据库的密码   |
   | `MYSQL_PREFIX`   |      | `wl_`     | MySQL 数据表的表前缀 |
   | `MYSQL_CHARSET`  |      | `utf8mb4` | MySQL 数据表的字符集 |
 
@@ -134,10 +134,10 @@ new Waline({
 
   | 环境变量名称    | 必填 | 默认值 | 备注                                              |
   | --------------- | ---- | ------ | ------------------------------------------------- |
-  | `SQLITE_PATH`   | ✅    |        | SQLite 数据库文件的路径，该路径不包含文件名本身   |
+  | `SQLITE_PATH`   | ✅   |        | SQLite 数据库文件的路径，该路径不包含文件名本身   |
   | `SQLITE_DB`     |      | waline | SQLite 数据库文件名，若文件名变化需要修改该字段值 |
   | `SQLITE_PREFIX` |      | `wl_`  | SQLite 数据表的表前缀                             |
-  | `JWT_TOKEN`     | ✅    |        | 用户登录密钥，随机字符串即可                      |
+  | `JWT_TOKEN`     | ✅   |        | 用户登录密钥，随机字符串即可                      |
 
 - **PostgreSQL**:
 
@@ -145,26 +145,26 @@ new Waline({
   | ------------- | ---- | --------- | ------------------------- |
   | `PG_HOST`     |      | 127.0.0.1 | PostgreSQL 服务的地址     |
   | `PG_PORT`     |      | 3211      | PostgreSQL 服务的端口     |
-  | `PG_DB`       | ✅    |           | PostgreSQL 数据库库名     |
-  | `PG_USER`     | ✅    |           | PostgreSQL 数据库的用户名 |
-  | `PG_PASSWORD` | ✅    |           | PostgreSQL 数据库的密码   |
+  | `PG_DB`       | ✅   |           | PostgreSQL 数据库库名     |
+  | `PG_USER`     | ✅   |           | PostgreSQL 数据库的用户名 |
+  | `PG_PASSWORD` | ✅   |           | PostgreSQL 数据库的密码   |
   | `PG_PREFIX`   |      | `wl_`     | PostgreSQL 数据表的表前缀 |
 
 - **CloudBase**:
 
   | 环境变量名称 | 必填 | 默认值 | 备注                                                                        |
   | ------------ | ---- | ------ | --------------------------------------------------------------------------- |
-  | `TCB_ENV`    | ✅    |        | 腾讯云开发环境 ID                                                           |
-  | `TCB_ID`     | ✅    |        | 腾讯云 API 密钥 ID，[在此](https://console.cloud.tencent.com/cam/capi)获取  |
-  | `TCB_KEY`    | ✅    |        | 腾讯云 API 密钥 Key，[在此](https://console.cloud.tencent.com/cam/capi)获取 |
+  | `TCB_ENV`    | ✅   |        | 腾讯云开发环境 ID                                                           |
+  | `TCB_ID`     | ✅   |        | 腾讯云 API 密钥 ID，[在此](https://console.cloud.tencent.com/cam/capi)获取  |
+  | `TCB_KEY`    | ✅   |        | 腾讯云 API 密钥 Key，[在此](https://console.cloud.tencent.com/cam/capi)获取 |
   | `JWT_TOKEN`  |      |        | 用户登录密钥，如果没有配任何环境变量的话需要配置此变量，随机字符串即可      |
 
 - **GitHub**:
 
   | 环境变量名称 | 必填 | 默认值 | 备注                                                                     |
   | ------------ | ---- | ------ | ------------------------------------------------------------------------ |
-  | GITHUB_TOKEN | ✅    |        | [Personal access tokens](https://github.com/settings/tokens)             |
-  | GITHUB_REPO  | ✅    |        | 仓库名称，例如 `walinejs/waline`                                         |
+  | GITHUB_TOKEN | ✅   |        | [Personal access tokens](https://github.com/settings/tokens)             |
+  | GITHUB_REPO  | ✅   |        | 仓库名称，例如 `walinejs/waline`                                         |
   | GITHUB_PATH  |      |        | 数据存储目录，例如 `data` 表示存储在 `data` 目录下，默认存在仓库根目录下 |
 
 ## 主入口配置

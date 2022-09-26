@@ -21,7 +21,7 @@ module.exports = class extends Base {
         string: true,
         in: ['inc', 'desc'],
         default: 'inc',
-      }
+      },
     };
   }
 };

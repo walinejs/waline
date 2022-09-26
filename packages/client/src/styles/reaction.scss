@@ -1,21 +1,23 @@
 .wl-reaction {
-  text-align: center;
   margin-bottom: 1.75em;
+  text-align: center;
 
   ul {
-    margin: 0;
-    list-style-type: none;
     display: flex;
     flex-direction: row;
-    justify-content: center;
     gap: 16px;
+    justify-content: center;
+
+    margin: 0;
+
+    list-style-type: none;
   }
 
   li {
-    cursor: pointer;
     display: flex;
     flex-direction: column;
     align-items: center;
+    cursor: pointer;
 
     &:hover img,
     &.active img {
@@ -25,9 +27,10 @@
 
   li.active .wl-reaction {
     &__votes {
-      color: var(--waline-bgcolor);
       background: var(--waline-theme-color);
+      color: var(--waline-bgcolor);
     }
+
     &__text {
       color: var(--waline-theme-color);
     }
@@ -49,15 +52,18 @@
     position: absolute;
     top: -4px;
     right: -5px;
-    font-size: 0.75em;
-    color: var(--waline-theme-color);
-    background: var(--waline-bgcolor);
-    border: 1px solid var(--waline-theme-color);
-    padding: 2px;
-    border-radius: 1em;
-    line-height: 1;
+
     min-width: 1em;
+    padding: 2px;
+    border: 1px solid var(--waline-theme-color);
+    border-radius: 1em;
+
+    background: var(--waline-bgcolor);
+    color: var(--waline-theme-color);
+
     font-weight: 700;
+    font-size: 0.75em;
+    line-height: 1;
   }
 
   &__text {

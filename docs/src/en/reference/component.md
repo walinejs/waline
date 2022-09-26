@@ -410,7 +410,6 @@ We hope you can keep it on to support Waline.
 
 :::
 
-
 ## recaptchaV3Key
 
 - Type: `string`
@@ -418,10 +417,9 @@ We hope you can keep it on to support Waline.
 
 reCAPTCHA V3 is a captcha service provided by Google. You can add reCAPTCHA V3 site key with `recaptchaV3Key` to enable it. Notice you should also set environment variable `RECAPTCHA_V3_SECRET` for server.
 
-
 ## reaction
 
 - Type: `boolean | string[]`
 - Default: `false`
-- 
+
 Add emoji interaction function to the article, set it to `true` to provide the default emoji, you can also customize the emoji image by setting the emoji url array, and supports a maximum of 8 emojis.
