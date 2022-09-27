@@ -1,5 +1,5 @@
 <template>
-  <div v-if="reaction && reaction.length" class="wl-reaction">
+  <div v-if="reaction.length" class="wl-reaction">
     <h4 v-text="locale.reactionTitle" />
     <ul>
       <li
@@ -49,7 +49,7 @@ export default defineComponent({
     const reaction = computed((): ReactionItem[] => {
       const { reaction, path } = config.value;
 
-      return (Array.isArray(reaction) ? reaction : []).map((icon, index) => ({
+      return reaction.map((icon, index) => ({
         icon,
         vote: votes.value[index] || 0,
         desc: locale.value[`reaction${index}` as keyof WalineLocale],
@@ -64,21 +64,19 @@ export default defineComponent({
     const fetchCounter = async (): Promise<void> => {
       const { serverURL, lang, path, reaction } = config.value;
 
-      if (!Array.isArray(reaction)) {
-        return;
+      if (reaction.length) {
+        const resp = await fetchArticleCounter({
+          serverURL,
+          lang,
+          paths: [path],
+          type: reaction.map((_, k) => `reaction${k}`),
+          signal: controller.signal,
+        });
+
+        if (Array.isArray(resp) || typeof resp === 'number') return;
+
+        votes.value = reaction.map((_, k) => resp[`reaction${k}`]);
       }
-
-      const resp = await fetchArticleCounter({
-        serverURL,
-        lang,
-        paths: [path],
-        type: reaction.map((_, k) => `reaction${k}`),
-        signal: controller.signal,
-      });
-
-      if (Array.isArray(resp) || typeof resp === 'number') return;
-
-      votes.value = reaction.map((_, k) => resp[`reaction${k}`]);
     };
 
     const vote = async (index: number): Promise<void> => {

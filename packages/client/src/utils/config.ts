@@ -23,9 +23,11 @@ export interface WalineEmojiConfig {
   map: WalineEmojiMaps;
 }
 
-export interface WalineConfig extends Required<Omit<WalineProps, 'wordLimit'>> {
+export interface WalineConfig
+  extends Required<Omit<WalineProps, 'wordLimit' | 'reaction'>> {
   locale: WalineLocale;
   wordLimit: [number, number] | false;
+  reaction: string[];
 }
 
 export const getServerURL = (serverURL: string): string => {
@@ -87,6 +89,10 @@ export const getConfig = ({
   copyright,
   search,
   recaptchaV3Key,
-  reaction: reaction === true ? defaultReaction : reaction || false,
+  reaction: Array.isArray(reaction)
+    ? reaction
+    : reaction === true
+    ? defaultReaction
+    : [],
   ...more,
 });
