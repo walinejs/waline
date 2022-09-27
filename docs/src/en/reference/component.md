@@ -103,7 +103,7 @@ Set required fields, default anonymous, optional values:
 Login mode status, optional values:
 
 - `'enable'`: enable login (default)
-- `'disable'`: Login is disabled, users should fill in infomation to comment
+- `'disable'`: Login is disabled, users should fill in information to comment
 - `'force'`: Forced login, users must login to comment
 
 ## wordLimit
@@ -346,9 +346,9 @@ You can import $\TeX$ renderer to provide preview feature. We recommend you to u
 
 ## search
 
-- 类型: `WalineSearchOptions | false`
-- 必填: 否
-- 详情:
+- Type: `WalineSearchOptions | false`
+- Required: No
+- Details:
 
   ```ts
   interface WalineSearchResult extends Record<string, unknown> {

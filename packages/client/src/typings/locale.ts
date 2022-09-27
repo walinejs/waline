@@ -8,44 +8,7 @@ export interface WalineDateLocale {
 
 export type WalineLevelLocale = Record<`level${number}`, string>;
 
-export interface WalineLocale extends WalineDateLocale, WalineLevelLocale {
-  nick: string;
-  nickError: string;
-  mail: string;
-  mailError: string;
-  link: string;
-  optional: string;
-  placeholder: string;
-  sofa: string;
-  submit: string;
-  like: string;
-  cancelLike: string;
-  reply: string;
-  cancelReply: string;
-  comment: string;
-  refresh: string;
-  more: string;
-  preview: string;
-  emoji: string;
-  uploadImage: string;
-  uploading: string;
-  login: string;
-  logout: string;
-  admin: string;
-  sticky: string;
-  word: string;
-  wordHint: string;
-  anonymous: string;
-  gif: string;
-  gifSearchPlaceholder: string;
-  profile: string;
-  approved: string;
-  waiting: string;
-  spam: string;
-  unsticky: string;
-  oldest: string;
-  latest: string;
-  hottest: string;
+export interface WalineReactionLocale {
   reactionTitle: string;
   reaction0: string;
   reaction1: string;
@@ -56,4 +19,55 @@ export interface WalineLocale extends WalineDateLocale, WalineLevelLocale {
   reaction6: string;
   reaction7: string;
   reaction8: string;
+}
+
+export interface WalineLocale
+  extends WalineDateLocale,
+    WalineLevelLocale,
+    WalineReactionLocale {
+  nick: string;
+  mail: string;
+  link: string;
+  optional: string;
+  placeholder: string;
+  sofa: string;
+  submit: string;
+  comment: string;
+  refresh: string;
+  more: string;
+  uploading: string;
+  login: string;
+  admin: string;
+  sticky: string;
+  word: string;
+  anonymous: string;
+  gif: string;
+  gifSearchPlaceholder: string;
+
+  // manage
+  approved: string;
+  waiting: string;
+  spam: string;
+  unsticky: string;
+
+  // sorting
+  oldest: string;
+  latest: string;
+  hottest: string;
+
+  // hint
+  nickError: string;
+  mailError: string;
+  wordHint: string;
+
+  // i18n
+  like: string;
+  cancelLike: string;
+  reply: string;
+  cancelReply: string;
+  preview: string;
+  emoji: string;
+  uploadImage: string;
+  profile: string;
+  logout: string;
 }

@@ -68,7 +68,7 @@ According to the set rating conditions and the number of user comments, a level 
 In addition to customizing the level judgment rules, we can also customize the level label. Configure the text in the client as follows:
 
 ```js
-new Waline({
+Waline.init({
   locale: {
     level0: 'Dwarves',
     level1: 'Hobbits',
