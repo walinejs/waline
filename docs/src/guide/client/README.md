@@ -15,6 +15,8 @@ icon: client
 
 - [自定义样式](style.md)
 
+- [反应添加](reaction.md)
+
 - [多语言支持](i18n.md)
 
 - [Vue 组件](component.md)

@@ -33,11 +33,13 @@ Waline 支持诸多功能，包括登录、头像、多语言、自定义 Emoji�
 
 Waline 官方添加了多种语言的内置支持，同时你可以在此基础上 [自定义多语言](./i18n.md)。
 
-Waline 服务端默认使用 [Libravatar 头像配置](../server/intro.md#头像配置)。
-
 你可以很轻松的使用 Waline 提供的预设或自己创建新的预设来自定义评论框内的 Emoji 表情，详见 [自定义 Emoji](./emoji.md)。
 
+如果你想让用户在评论之外，快速表达对文章的反应，你可以手动启用 [文章反应](./reaction.md) 功能。
+
 Waline 内置了图像上传支持，默认将图片转为 Base64 内嵌，你也可以通过 [`imageUploader` 选项](../../reference/client.md#uploadimage) 完全自定义图像上传过程，比如到你想要使用的图床。
+
+<!-- Waline 支持表情包搜索功能，默认使用 <https://tenor.com>。你也可以[自定义自己的表情包服务](./search.md)。 -->
 
 ## 自定义样式
 

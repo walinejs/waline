@@ -34,6 +34,8 @@ export default hopeTheme({
     },
   },
 
+  iconAssets: '//at.alicdn.com/t/c/font_3180165_zmwravx0fq.css',
+
   plugins: {
     blog: false,
 
@@ -67,10 +69,10 @@ export default hopeTheme({
 
     mdEnhance: {
       codetabs: true,
+      katex: true,
       sub: true,
       sup: true,
       tasklist: true,
-      tex: true,
     },
 
     pwa: {

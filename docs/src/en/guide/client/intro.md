@@ -31,13 +31,15 @@ You can learn about the complete syntax supported by Waline in the [Supported Sy
 
 Waline has many features, including login, avatar, multi-language, custom Emoji, image upload and real-time preview. You can try these features in the demo below.
 
-Waline officially added support for mutiple languages, and you can also customize locales. See [I18n support](./i18n.md) for details.
-
-Waline uses Gravatar, and also supports you to customize the default avatar, see [Server → Avatar config](../server/intro.md#avatar) for details.
+Waline officially added support for mutiple languages, and you can also customize locales. See [I18n Support](./i18n.md) for details.
 
 You can easily use the presets provided by Waline or create new presets to customize the Emoji popup in the comment box, see [Custom Emoji](./emoji.md) for details.
 
+If you want users to quickly express their reactions to articles outside of comments, you can manually enable the [Article Reaction](./reaction.md) feature.
+
 Waline has built-in image upload support, coverting image to Base64 , you can customize the image upload through [`imageUploader`](../../reference/client.md#uploadimage) option.
+
+<!-- Waline supports emoji search feature and uses <https://tenor.com> by default. You can also [customize your own emoji service](./search.md). -->
 
 ## Style Customization
 

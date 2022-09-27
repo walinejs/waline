@@ -15,6 +15,8 @@ icon: client
 
 - [Style Customize](style.md)
 
+- [Article Reactions](reaction.md)
+
 - [Internationalization Support](i18n.md)
 
 - [Vue Component](component.md)

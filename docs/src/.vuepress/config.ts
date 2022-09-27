@@ -4,16 +4,6 @@ import { defineUserConfig } from 'vuepress';
 import theme from './theme';
 
 export default defineUserConfig({
-  head: [
-    [
-      'link',
-      {
-        rel: 'stylesheet',
-        href: '//at.alicdn.com/t/font_3180165_rlbqujdkar.css',
-      },
-    ],
-  ],
-
   locales: {
     '/': {
       lang: 'zh-CN',
