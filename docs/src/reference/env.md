@@ -193,7 +193,8 @@ SMTP 的用户名通常均支持用户的完整邮箱，而密码大多同邮箱
 
 ## 高级配置
 
-| 环境变量名称 | 默认值                    | 备注                                                                         |
-| ------------ | ------------------------- | ---------------------------------------------------------------------------- |
-| `OAUTH_URL`  | `https://oauth.lithub.cc` | OAuth 第三方登录服务地址，可以 [自建 auth](https://github.com/walinejs/auth) |
-| `WEBHOOK`    |                           | 评论成功后会向 WEBHOOK 配置的地址发送一条 POST 请求                          |
+| 环境变量名称                    | 默认值                      | 备注                                                                         |
+| ------------------------------- | --------------------------- | ---------------------------------------------------------------------------- |
+| `OAUTH_URL`                     | `https://oauth.lithub.cc`   | OAuth 第三方登录服务地址，可以 [自建 auth](https://github.com/walinejs/auth) |
+| `WEBHOOK`                       |                             | 评论成功后会向 WEBHOOK 配置的地址发送一条 POST 请求                          |
+| `WALINE_ADMIN_MODULE_ASSET_URL` | `//unpkg.com/@waline/admin` | Waline admin 地址                                                            |
