@@ -11,7 +11,7 @@ Beside free deployment on Vercel, you can deploy through docker or directly depl
 
 Most of the server config can be configured through environment variables, and you can also configure some advanced options in the main entry file.
 
-For detailed information please refer to [Reference → Server Config](../../reference/server.md).
+For detailed information please refer to [Reference → Server Environment Variables](../../reference/env.md) and [Reference → Server Config](../../reference/server.md).
 
 ## Comment notification
 

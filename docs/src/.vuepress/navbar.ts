@@ -18,7 +18,7 @@ export const zhNavbarConfig = navbar([
     text: '参考',
     icon: 'reference',
     prefix: '/reference/',
-    children: ['component', 'client', 'server', 'api', 'contribution'],
+    children: ['component', 'client', 'env', 'server', 'api', 'contribution'],
   },
 ]);
 
@@ -40,6 +40,6 @@ export const enNavbarConfig = navbar([
     text: 'Reference',
     icon: 'reference',
     prefix: '/en/reference/',
-    children: ['component', 'client', 'server', 'api', 'contribution'],
+    children: ['component', 'client', 'env', 'server', 'api', 'contribution'],
   },
 ]);
