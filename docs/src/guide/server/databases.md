@@ -15,14 +15,14 @@ icon: database
 
 | 环境变量名称       | 必填 | 默认值    | 备注                             |
 | ------------------ | ---- | --------- | -------------------------------- |
-| `MONGO_HOST`       |      | 127.0.0.1 | MongoDB 服务的地址，支持数组格式 |
-| `MONGO_PORT`       |      | 27017     | MongoDB 服务的端口，支持数组格式 |
 | `MONGO_DB`         | ✅   |           | MongoDB 数据库名称               |
 | `MONGO_USER`       | ✅   |           | MongoDB 服务的用户名             |
 | `MONGO_PASSWORD`   | ✅   |           | MongoDB 服务的密码               |
+| `MONGO_HOST`       |      | 127.0.0.1 | MongoDB 服务的地址，支持数组格式 |
+| `MONGO_PORT`       |      | 27017     | MongoDB 服务的端口，支持数组格式 |
 | `MONGO_REPLICASET` |      |           | MongoDB 集群                     |
 | `MONGO_AUTHSOURCE` |      |           | MongoDB 认证源                   |
-| `MONGO_OPT_SSL`    |      |           | 是否使用 SSL 进行连接            |
+| `MONGO_OPT_SSL`    |      | `false`   | 是否使用 SSL 进行连接            |
 
 以下是使用 mongodb.com 官方服务的配置示例，多机需要将 `MONGO_HOST` 和 `MONO_PORT` 配置成 JSON 格式。
 
@@ -52,7 +52,7 @@ MONGO_OPT_SSL=true
 | `MYSQL_PASSWORD` | ✅   |           | MySQL 数据库的密码            |
 | `MYSQL_PREFIX`   |      | `wl_`     | MySQL 数据表的表前缀          |
 | `MYSQL_CHARSET`  |      | `utf8mb4` | MySQL 数据表的字符集          |
-| `MYSQL_SSL`      |      |           | 是否使用 SSL MYSQL 连接数据库 |
+| `MYSQL_SSL`      |      | `false`   | 是否使用 SSL MYSQL 连接数据库 |
 
 ## SQLite
 
@@ -61,9 +61,9 @@ MONGO_OPT_SSL=true
 | 环境变量名称    | 必填 | 默认值 | 备注                                              |
 | --------------- | ---- | ------ | ------------------------------------------------- |
 | `SQLITE_PATH`   | ✅   |        | SQLite 数据库文件的路径，该路径不包含文件名本身   |
+| `JWT_TOKEN`     | ✅   |        | 用户登录密钥，随机字符串即可                      |
 | `SQLITE_DB`     |      | waline | SQLite 数据库文件名，若文件名变化需要修改该字段值 |
 | `SQLITE_PREFIX` |      | `wl_`  | SQLite 数据表的表前缀                             |
-| `JWT_TOKEN`     | ✅   |        | 用户登录密钥，随机字符串即可                      |
 
 ## PostgreSQL
 
@@ -73,34 +73,40 @@ MONGO_OPT_SSL=true
 
 | 环境变量名称  | 必填 | 默认值    | 备注                                |
 | ------------- | ---- | --------- | ----------------------------------- |
-| `PG_HOST`     |      | 127.0.0.1 | PostgreSQL 服务的地址               |
-| `PG_PORT`     |      | 3211      | PostgreSQL 服务的端口               |
 | `PG_DB`       | ✅   |           | PostgreSQL 数据库库名               |
 | `PG_USER`     | ✅   |           | PostgreSQL 数据库的用户名           |
 | `PG_PASSWORD` | ✅   |           | PostgreSQL 数据库的密码             |
+| `PG_HOST`     |      | 127.0.0.1 | PostgreSQL 服务的地址               |
+| `PG_PORT`     |      | 3211      | PostgreSQL 服务的端口               |
 | `PG_PREFIX`   |      | `wl_`     | PostgreSQL 数据表的表前缀           |
-| `PG_SSL`      |      |           | 是否使用 SSL 连接 PostgreSQL 数据库 |
+| `PG_SSL`      |      | `false`   | 是否使用 SSL 连接 PostgreSQL 数据库 |
 
 ## CloudBase
 
 腾讯云开发也提供了一定的 [免费数据库](https://console.cloud.tencent.com/tcb/db/) 支持，即使不部署在腾讯云开发上也可以使用。如果部署在腾讯云开发上，不需要配置任何环境变量，Waline 默认会使用云开发的数据库。如果是部署在其它地方，需要配置以下环境变量。
 
-| 环境变量名称 | 必填 | 默认值 | 备注                                                                        |
-| ------------ | ---- | ------ | --------------------------------------------------------------------------- |
-| `TCB_ENV`    | ✅   |        | 腾讯云开发环境 ID                                                           |
-| `TCB_ID`     | ✅   |        | 腾讯云 API 密钥 ID，[在此](https://console.cloud.tencent.com/cam/capi)获取  |
-| `TCB_KEY`    | ✅   |        | 腾讯云 API 密钥 Key，[在此](https://console.cloud.tencent.com/cam/capi)获取 |
-| `JWT_TOKEN`  |      |        | 用户登录密钥，如果没有配任何环境变量的话需要配置此变量，随机字符串即可      |
+| 环境变量名称 | 必填 | 默认值 | 备注                                                                   |
+| ------------ | ---- | ------ | ---------------------------------------------------------------------- |
+| `TCB_ENV`    | ✅   |        | 腾讯云开发环境 ID                                                      |
+| `TCB_ID`     | ✅   |        | 腾讯云 API 密钥 ID                                                     |
+| `TCB_KEY`    | ✅   |        | 腾讯云 API 密钥 Key                                                    |
+| `JWT_TOKEN`  |      |        | 用户登录密钥，如果没有配任何环境变量的话需要配置此变量，随机字符串即可 |
+
+::: tip
+
+对于腾讯云 API 密钥 ID 与 Key，可以在 [此处](https://console.cloud.tencent.com/cam/capi) 申请。
+
+:::
 
 ## GitHub
 
 Waline 支持将评论数据以 CSV 文件的格式存储在 GitHub 仓库中。使用 GitHub 作为数据存储需要申请 Personal access tokens，可在 <https://github.com/settings/tokens> 这里点击 <kbd>Generate new token</kbd> 进行申请，下方权限选项中勾选上 **repo** 选项，用于获得仓库的读写权限。
 
-| 环境变量名称 | 必填 | 默认值 | 备注                                                                     |
-| ------------ | ---- | ------ | ------------------------------------------------------------------------ |
-| GITHUB_TOKEN | ✅   |        | [Personal access tokens](https://github.com/settings/tokens)             |
-| GITHUB_REPO  | ✅   |        | 仓库名称，例如 `walinejs/waline`                                         |
-| GITHUB_PATH  |      |        | 数据存储目录，例如 `data` 表示存储在 `data` 目录下，默认存在仓库根目录下 |
+| 环境变量名称   | 必填 | 默认值 | 备注                                                                     |
+| -------------- | ---- | ------ | ------------------------------------------------------------------------ |
+| `GITHUB_TOKEN` | ✅   |        | [Personal access tokens](https://github.com/settings/tokens)             |
+| `GITHUB_REPO`  | ✅   |        | 仓库名称，例如 `walinejs/waline`                                         |
+| `GITHUB_PATH`  |      |        | 数据存储目录，例如 `data` 表示存储在 `data` 目录下，默认存在仓库根目录下 |
 
 ::: warning
 
