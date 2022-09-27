@@ -1,11 +1,11 @@
 import { warning } from './logger';
 import { resolveOldEmojiMap } from './valine';
-
-import type { DeprecatedValineOptions } from './valine';
 import {
   DROPPED_OPTIONS_WHICH_CAN_NOT_BE_POLYFILLED,
   DROPPED_OPTIONS_WHICH_CAN_STILL_BE_POLYFILLED,
 } from './dropped';
+
+import type { DeprecatedValineOptions } from './valine';
 import type { DeprecatedWalineOptions } from './v1';
 import type { WalineInitOptions } from '../typings';
 

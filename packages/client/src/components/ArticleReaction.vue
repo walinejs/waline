@@ -29,7 +29,7 @@ import {
   ref,
 } from 'vue';
 import { fetchArticleCounter, updateArticleCounter } from '../api';
-import { useVoteStorage } from '../composables';
+import { VOTE_IDENTIFIER, VOTE_INDEX, useVoteStorage } from '../composables';
 import type { WalineConfig } from '../utils';
 import type { WalineLocale } from '../typings';
 
@@ -54,7 +54,10 @@ export default defineComponent({
         vote: votes.value[index] || 0,
         desc: locale.value[`reaction${index}` as keyof WalineLocale],
         active: Boolean(
-          voteStorage.value.find(({ u, i }) => u === path && i === index)
+          voteStorage.value.find(
+            ({ [VOTE_IDENTIFIER]: voteIdentifier, [VOTE_INDEX]: voteIndex }) =>
+              voteIdentifier === path && voteIndex === index
+          )
         ),
       }));
     });
@@ -81,8 +84,10 @@ export default defineComponent({
 
     const vote = async (index: number): Promise<void> => {
       const { serverURL, lang, path } = config.value;
-      const hasVoted = voteStorage.value.find(({ u }) => u === path);
-      const hasVotedTheReaction = hasVoted && hasVoted.i === index;
+      const hasVoted = voteStorage.value.find(
+        ({ [VOTE_IDENTIFIER]: voteIdentifier }) => voteIdentifier === path
+      );
+      const hasVotedTheReaction = hasVoted && hasVoted[VOTE_INDEX] === index;
 
       if (hasVotedTheReaction) return;
 
@@ -95,7 +100,10 @@ export default defineComponent({
 
       votes.value[index] = (votes.value[index] || 0) + 1;
       if (hasVoted) {
-        votes.value[hasVoted.i] = Math.max(votes.value[hasVoted.i] - 1, 0);
+        votes.value[hasVoted[VOTE_INDEX]] = Math.max(
+          votes.value[hasVoted[VOTE_INDEX]] - 1,
+          0
+        );
         updateArticleCounter({
           serverURL,
           lang,
@@ -107,7 +115,10 @@ export default defineComponent({
         hasVoted.i = index;
         voteStorage.value = Array.from(voteStorage.value);
       } else {
-        voteStorage.value = [...voteStorage.value, { u: path, i: index }];
+        voteStorage.value = [
+          ...voteStorage.value,
+          { [VOTE_IDENTIFIER]: path, [VOTE_INDEX]: index },
+        ];
       }
 
       if (voteStorage.value.length > 50)
