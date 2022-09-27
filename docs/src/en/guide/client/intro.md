@@ -39,7 +39,7 @@ If you want users to quickly express their reactions to articles outside of comm
 
 Waline has built-in image upload support, coverting image to Base64 , you can customize the image upload through [`imageUploader`](../../reference/client.md#uploadimage) option.
 
-<!-- Waline supports emoji search feature and uses <https://tenor.com> by default. You can also [customize your own emoji service](./search.md). -->
+Waline supports emoji search feature and uses <https://tenor.com> by default. You can also [customize your own emoji service](./search.md).
 
 ## Style Customization
 

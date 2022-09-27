@@ -39,44 +39,70 @@ export interface WalineEmojiInfo {
 
 export type WalineEmojiMaps = Record<string, string>;
 
-export interface WalineSearchResult extends Record<string, unknown> {
+export interface WalineSearchImageData extends Record<string, unknown> {
   /**
+   * 图片链接
+   *
    * Image link
    */
   src: string;
 
   /**
-   * Image title, optional
+   * 图片标题
+   *
+   * @description 用于图片的 alt 属性
+   *
+   * Image title
+   *
+   * @description Used for alt attribute of image
    */
   title?: string;
 
   /**
-   * Image preview link, optional
+   * 图片缩略图
+   *
+   * @description 为了更好的加载性能，我们会优先在列表中使用此缩略图
+   *
+   * Image preview link
+   *
+   * @description For better loading performance, we will use this thumbnail first in the list
    *
    * @default src
    */
   preview?: string;
 }
 
+export type WalineSearchResult = WalineSearchImageData[];
+
 export interface WalineSearchOptions {
   /**
+   * 搜索操作
+   *
    * Search action
    */
-  search: (word: string) => Promise<WalineSearchResult[]>;
+  search: (word: string) => Promise<WalineSearchResult>;
 
   /**
-   * Default search action
+   * 打开列表时展示的默认结果
+   *
+   * Default result when opening list
    *
    * @default () => search('')
    */
-  default?: () => Promise<WalineSearchResult[]>;
+  default?: () => Promise<WalineSearchResult>;
 
   /**
+   * 获取更多的操作
+   *
+   * @description 会在列表滚动到底部时触发，如果你的搜索服务支持分页功能，你应该设置此项实现无限滚动
+   *
    * Fetch more action
+   *
+   * @description It will be triggered when the list scrolls to the bottom. If your search service supports paging, you should set this to achieve infinite scrolling
    *
    * @default (word) => search(word)
    */
-  more?: (word: string, currectCount: number) => Promise<WalineSearchResult[]>;
+  more?: (word: string, currectCount: number) => Promise<WalineSearchResult>;
 }
 
 export type WalineMeta = 'nick' | 'mail' | 'link';

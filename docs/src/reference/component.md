@@ -350,47 +350,52 @@ Waline 的服务端地址。
 - 详情:
 
   ```ts
-  interface WalineSearchResult extends Record<string, unknown> {
+  interface WalineSearchImageData extends Record<string, unknown> {
     /**
-     * Image link
+     * 图片链接
      */
     src: string;
 
     /**
-     * Image title, optional
+     * 图片标题
+     *
+     * @description 用于图片的 alt 属性
      */
     title?: string;
 
     /**
-     * Image preview link, optional
+     * 图片缩略图
+     *
+     * @description 为了更好的加载性能，我们会优先在列表中使用此缩略图
      *
      * @default src
      */
     preview?: string;
   }
 
+  type WalineSearchResult = WalineSearchImageData[];
+
   interface WalineSearchOptions {
     /**
-     * 搜索行为
+     * 搜索操作
      */
-    search: (word: string) => Promise<WalineSearchResult[]>;
+    search: (word: string) => Promise<WalineSearchResult>;
 
     /**
-     * 默认的搜索行为
+     * 打开列表时展示的默认结果
      *
      * @default () => search('')
      */
-    default?: () => Promise<WalineSearchResult[]>;
+    default?: () => Promise<WalineSearchResult>;
 
     /**
-     * 获取更多行为
+     * 获取更多的操作
+     *
+     * @description 会在列表滚动到底部时触发，如果你的搜索服务支持分页功能，你应该设置此项实现无限滚动
      *
      * @default (word) => search(word)
      */
-    more?: (
-      word: string,
-      currectCount: number
-    ) => Promise<WalineSearchResult[]>;
+    more?: (word: string, currectCount: number) => Promise<WalineSearchResult>;
   }
   ```
 

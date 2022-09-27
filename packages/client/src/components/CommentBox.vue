@@ -368,7 +368,7 @@ export default defineComponent({
 
     const searchResults = reactive({
       loading: true,
-      list: [] as WalineSearchResult[],
+      list: [] as WalineSearchResult,
     });
 
     const wordLimit = ref(0);

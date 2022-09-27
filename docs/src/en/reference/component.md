@@ -351,47 +351,52 @@ You can import $\TeX$ renderer to provide preview feature. We recommend you to u
 - Details:
 
   ```ts
-  interface WalineSearchResult extends Record<string, unknown> {
+  interface WalineSearchImageData extends Record<string, unknown> {
     /**
      * Image link
      */
     src: string;
 
     /**
-     * Image title, optional
+     * Image title
+     *
+     * @description Used for alt attribute of image
      */
     title?: string;
 
     /**
-     * Image preview link, optional
+     * Image preview link
+     *
+     * @description For better loading performance, we will use this thumbnail first in the list
      *
      * @default src
      */
     preview?: string;
   }
 
+  type WalineSearchResult = WalineSearchImageData[];
+
   interface WalineSearchOptions {
     /**
      * Search action
      */
-    search: (word: string) => Promise<WalineSearchResult[]>;
+    search: (word: string) => Promise<WalineSearchResult>;
 
     /**
-     * Default search action
+     * Default result when opening list
      *
      * @default () => search('')
      */
-    default?: () => Promise<WalineSearchResult[]>;
+    default?: () => Promise<WalineSearchResult>;
 
     /**
      * Fetch more action
      *
+     * @description It will be triggered when the list scrolls to the bottom. If your search service supports paging, you should set this to achieve infinite scrolling
+     *
      * @default (word) => search(word)
      */
-    more?: (
-      word: string,
-      currectCount: number
-    ) => Promise<WalineSearchResult[]>;
+    more?: (word: string, currectCount: number) => Promise<WalineSearchResult>;
   }
   ```
 

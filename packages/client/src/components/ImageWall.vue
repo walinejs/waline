@@ -75,7 +75,7 @@ export default defineComponent({
   },
 
   props: {
-    items: { type: Array as PropType<WalineSearchResult[]>, default: () => [] },
+    items: { type: Array as PropType<WalineSearchResult>, default: () => [] },
     columnWidth: { type: Number, default: 300 },
     gap: { type: Number, default: 0 },
   },

@@ -17,6 +17,8 @@ icon: client
 
 - [反应添加](reaction.md)
 
+- [表情包搜索](search.md)
+
 - [多语言支持](i18n.md)
 
 - [Vue 组件](component.md)
