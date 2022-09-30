@@ -62,23 +62,26 @@ export default defineComponent({
       }));
     });
 
-    const controller = new AbortController();
+    let abort: () => void;
 
-    const fetchCounter = async (): Promise<void> => {
+    const fetchCounter = (): void => {
       const { serverURL, lang, path, reaction } = config.value;
 
       if (reaction.length) {
-        const resp = await fetchArticleCounter({
+        const controller = new AbortController();
+
+        fetchArticleCounter({
           serverURL,
           lang,
           paths: [path],
           type: reaction.map((_, k) => `reaction${k}`),
           signal: controller.signal,
+        }).then((resp) => {
+          if (Array.isArray(resp) || typeof resp === 'number') return;
+          votes.value = reaction.map((_, k) => resp[`reaction${k}`]);
         });
 
-        if (Array.isArray(resp) || typeof resp === 'number') return;
-
-        votes.value = reaction.map((_, k) => resp[`reaction${k}`]);
+        abort = controller.abort.bind(controller);
       }
     };
 
@@ -126,7 +129,7 @@ export default defineComponent({
     };
 
     onMounted(() => fetchCounter());
-    onUnmounted(() => controller.abort());
+    onUnmounted(() => abort?.());
 
     return {
       reaction,
