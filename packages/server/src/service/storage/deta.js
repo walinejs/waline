@@ -47,7 +47,7 @@ module.exports = class extends Base {
     return (lastKey - Math.round(Math.random() * 100)).toString();
   }
 
-  where(where) {
+  parseWhere(where) {
     if (think.isEmpty(where)) {
       return;
     }
@@ -120,6 +120,29 @@ module.exports = class extends Base {
     }
 
     return this.complex(conditions, _isArrayKeys);
+  }
+
+  where(where) {
+    const filter = this.parseWhere(where);
+
+    if (!where._complex) {
+      return filter;
+    }
+
+    const filters = [];
+
+    for (const k in where._complex) {
+      if (k === '_logic') {
+        continue;
+      }
+      filters.push({
+        ...this.parseWhere({ [k]: where._complex[k] }),
+        ...filter,
+      });
+    }
+
+    // just support OR logic for deta
+    return filters;
   }
 
   async select(where, { limit, offset, field } = {}) {
