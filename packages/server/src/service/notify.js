@@ -26,7 +26,7 @@ module.exports = class extends think.Service {
       } else {
         config.host = SMTP_HOST;
         config.port = parseInt(SMTP_PORT);
-        config.secure = SMTP_SECURE !== 'false';
+        config.secure = SMTP_SECURE && SMTP_SECURE !== 'false';
       }
       this.transporter = nodemailer.createTransport(config);
     }

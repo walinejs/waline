@@ -112,6 +112,7 @@ The email service is used for email notification of user registration and commen
 | `SMTP_PORT`               | SMTP server port           |
 | `SMTP_USER`               | SMTP username              |
 | `SMTP_PASS`               | SMTP Password.             |
+| `SMTP_SECURE`             | SMTP connect with SSL      |
 | `SENDER_NAME`             | Customize sender name      |
 | `SENDER_EMAIL`            | Customize sender eamil     |
 
