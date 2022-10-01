@@ -86,7 +86,7 @@ importers:
       marked: 4.1.1
       vue: 3.2.40
       vuepress: 2.0.0-beta.51
-      vuepress-shared: 2.0.0-beta.104
+      vuepress-shared: 2.0.0-beta.105
       vuepress-theme-hope: 2.0.0-beta.104
     devDependencies:
       '@fancyapps/ui': 4.0.31
@@ -96,7 +96,7 @@ importers:
       marked: 4.1.1
       vue: 3.2.40
       vuepress: 2.0.0-beta.51_cf67x7swsxhuhjarakslfn5yh4
-      vuepress-shared: 2.0.0-beta.104
+      vuepress-shared: 2.0.0-beta.105
       vuepress-theme-hope: 2.0.0-beta.104
 
   packages/admin:
@@ -14539,6 +14539,22 @@ packages:
 
   /vuepress-shared/2.0.0-beta.104:
     resolution: {integrity: sha512-wDQZ1D8J1uFsgI1gohIjuKdmVVcgsDg1p33VN+5aGAEAh+BwePTs34JExUdYXx9S27dW0/WP3PdHkKyj1lkIvA==}
+    dependencies:
+      '@vuepress/client': 2.0.0-beta.51
+      '@vuepress/plugin-git': 2.0.0-beta.51
+      '@vuepress/shared': 2.0.0-beta.51
+      '@vuepress/utils': 2.0.0-beta.51
+      dayjs: 1.11.5
+      execa: 6.1.0
+      ora: 6.1.2
+      vue: 3.2.40
+      vue-router: 4.1.5_vue@3.2.40
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  /vuepress-shared/2.0.0-beta.105:
+    resolution: {integrity: sha512-Jq2+niQLw/FJzU9xfzFBJpCTB/dyEkKR5Jz0Srg9F47zPs3VO7rZKFm1R5P2VT67D0qg3eie7FCbzEBIQchL4w==}
     dependencies:
       '@vuepress/client': 2.0.0-beta.51
       '@vuepress/plugin-git': 2.0.0-beta.51
