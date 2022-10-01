@@ -27,6 +27,7 @@ Email notification needs the following environment variables to be configured:
 
 - `SMTP_USER`: SMTP Mail delivery service account, it's your email address.
 - `SMTP_PASS`: SMTP Mail delivery service password, it's your email password.
+- `SMTP_SECURE`: SMTP connect with SSL.
 - `SITE_NAME`: Your site name, will be displayed in notification message.
 - `SITE_URL`: Your site url, will be displayed in notification message.
 

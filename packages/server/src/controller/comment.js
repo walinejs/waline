@@ -533,8 +533,8 @@ module.exports = class extends BaseRest {
       think.logger.debug(`Comment post frequence check OK!`);
 
       /** Akismet */
-      const { COMMENT_AUDIT, AUTHOR_EMAIL, BLOGGER_EMAIL } = process.env;
-      const AUTHOR = AUTHOR_EMAIL || BLOGGER_EMAIL;
+      const { COMMENT_AUDIT, AUTHOR_EMAIL } = process.env;
+      const AUTHOR = AUTHOR_EMAIL;
       const isAuthorComment = AUTHOR
         ? data.mail.toLowerCase() === AUTHOR.toLowerCase()
         : false;

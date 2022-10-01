@@ -26,7 +26,7 @@ module.exports = class extends think.Service {
       } else {
         config.host = SMTP_HOST;
         config.port = parseInt(SMTP_PORT);
-        config.secure = SMTP_SECURE !== 'false';
+        config.secure = SMTP_SECURE && SMTP_SECURE !== 'false';
       }
       this.transporter = nodemailer.createTransport(config);
     }
@@ -379,10 +379,10 @@ module.exports = class extends think.Service {
   }
 
   async run(comment, parent, disableAuthorNotify = false) {
-    const { AUTHOR_EMAIL, BLOGGER_EMAIL, DISABLE_AUTHOR_NOTIFY } = process.env;
+    const { AUTHOR_EMAIL, DISABLE_AUTHOR_NOTIFY } = process.env;
     const { mailSubject, mailTemplate, mailSubjectAdmin, mailTemplateAdmin } =
       think.config();
-    const AUTHOR = AUTHOR_EMAIL || BLOGGER_EMAIL;
+    const AUTHOR = AUTHOR_EMAIL;
 
     const mailList = [];
     const isAuthorComment = AUTHOR
