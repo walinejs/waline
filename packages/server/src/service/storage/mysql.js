@@ -44,7 +44,7 @@ module.exports = class extends Base {
 
     instance.where(this.parseWhere(where));
     if (desc) {
-      instance.order(`${desc} DESC`);
+      instance.order({ [desc]: 'DESC' });
     }
     if (limit || offset) {
       instance.limit(offset || 0, limit);
