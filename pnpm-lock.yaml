@@ -179,7 +179,7 @@ importers:
       '@types/autosize': 4.0.1
       '@types/marked': 4.0.7
       '@types/node': 18.7.23
-      '@vitejs/plugin-vue': 3.1.0
+      '@vitejs/plugin-vue': 3.1.2
       '@vueuse/core': ^9.3.0
       autosize: ^5.0.1
       marked: ^4.1.1
@@ -208,7 +208,7 @@ importers:
       '@types/autosize': 4.0.1
       '@types/marked': 4.0.7
       '@types/node': 18.7.23
-      '@vitejs/plugin-vue': 3.1.0_vite@3.1.4+vue@3.2.40
+      '@vitejs/plugin-vue': 3.1.2_vite@3.1.4+vue@3.2.40
       recaptcha-v3: 1.10.0
       rimraf: 3.0.2
       rollup: 2.79.1
@@ -3284,8 +3284,8 @@ packages:
       ts-morph: 12.0.0
     dev: true
 
-  /@vitejs/plugin-vue/3.1.0_vite@3.0.9+vue@3.2.40:
-    resolution: {integrity: sha512-fmxtHPjSOEIRg6vHYDaem+97iwCUg/uSIaTzp98lhELt2ISOQuDo2hbkBdXod0g15IhfPMQmAxh4heUks2zvDA==}
+  /@vitejs/plugin-vue/3.1.2_vite@3.0.9+vue@3.2.40:
+    resolution: {integrity: sha512-3zxKNlvA3oNaKDYX0NBclgxTQ1xaFdL7PzwF6zj9tGFziKwmBa3Q/6XcJQxudlT81WxDjEhHmevvIC4Orc1LhQ==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
       vite: ^3.0.0
@@ -3295,8 +3295,8 @@ packages:
       vue: 3.2.40
     dev: true
 
-  /@vitejs/plugin-vue/3.1.0_vite@3.1.4+vue@3.2.40:
-    resolution: {integrity: sha512-fmxtHPjSOEIRg6vHYDaem+97iwCUg/uSIaTzp98lhELt2ISOQuDo2hbkBdXod0g15IhfPMQmAxh4heUks2zvDA==}
+  /@vitejs/plugin-vue/3.1.2_vite@3.1.4+vue@3.2.40:
+    resolution: {integrity: sha512-3zxKNlvA3oNaKDYX0NBclgxTQ1xaFdL7PzwF6zj9tGFziKwmBa3Q/6XcJQxudlT81WxDjEhHmevvIC4Orc1LhQ==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
       vite: ^3.0.0
@@ -3427,7 +3427,7 @@ packages:
   /@vuepress/bundler-vite/2.0.0-beta.51:
     resolution: {integrity: sha512-HADQujwuj0KbONq6R0UGSiktMzG0iOFmI2OACgi7r5P4pHAEF06h333g0q4tSH6HQg6VuqelQrVgWwq/0puIfA==}
     dependencies:
-      '@vitejs/plugin-vue': 3.1.0_vite@3.0.9+vue@3.2.40
+      '@vitejs/plugin-vue': 3.1.2_vite@3.0.9+vue@3.2.40
       '@vuepress/client': 2.0.0-beta.51
       '@vuepress/core': 2.0.0-beta.51
       '@vuepress/shared': 2.0.0-beta.51
