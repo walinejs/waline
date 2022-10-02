@@ -16,6 +16,7 @@ features:
   - title: Comment the way you like
     icon: markdown
     details: Full Markdown support, with emoji, mathematical formulas and HTML embedding support
+    link: /en/guide/client/syntax.html
 
   - title: LightWeight
     icon: light
@@ -28,6 +29,16 @@ features:
   - title: Login support
     icon: register
     details: Besides anonymous comments, account registration is supported to maintain identity
+
+  - title: Article Reaction
+    icon: reaction
+    details: Show your attitude towards the article quickly
+    link: /en/guide/client/reaction.html
+
+  - title: Pageview Counter
+    icon: counter
+    details: Count pageviews accurately with < 1kb code
+    link: /en/guide/client/pageview.html
 
   - title: Completely free
     icon: free
