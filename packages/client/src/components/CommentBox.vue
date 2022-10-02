@@ -624,11 +624,12 @@ export default defineComponent({
 
       searchResults.loading = true;
 
-      searchResults.list.push(
-        ...(searchOptions.more
+      searchResults.list = [
+        ...searchResults.list,
+        ...(searchOptions.more && searchResults.list.length
           ? await searchOptions.more(keyword, searchResults.list.length)
-          : await searchOptions.search(keyword))
-      );
+          : await searchOptions.search(keyword)),
+      ];
 
       searchResults.loading = false;
 
