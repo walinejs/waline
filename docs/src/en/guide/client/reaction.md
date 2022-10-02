@@ -52,6 +52,6 @@ Waline supports up to 9 reactions, and you can add less than 9 reactions without
 
 Counting of reactions is based on location.
 
-If you need to reorder and adjust the reactions, you may need to adjust the data already stored in the database to make them correspond to the new configuration.
+If you need to reorder and adjust the reactions, check [#1451](https://github.com/walinejs/waline/issues/1451#issuecomment-1264555264) for more details.
 
 :::
