@@ -171,6 +171,7 @@ importers:
     specifiers:
       '@babel/core': 7.19.3
       '@babel/preset-env': 7.19.3
+      '@giphy/js-types': ^4.2.1
       '@rollup/plugin-babel': 5.3.1
       '@rollup/plugin-commonjs': 22.0.2
       '@rollup/plugin-node-resolve': 14.1.0
@@ -199,6 +200,7 @@ importers:
     devDependencies:
       '@babel/core': 7.19.3
       '@babel/preset-env': 7.19.3_@babel+core@7.19.3
+      '@giphy/js-types': 4.2.1
       '@rollup/plugin-babel': 5.3.1_vy4anxjpv2s44kyfi2kxqu576u
       '@rollup/plugin-commonjs': 22.0.2_rollup@2.79.1
       '@rollup/plugin-node-resolve': 14.1.0_rollup@2.79.1
@@ -2101,6 +2103,10 @@ packages:
     resolution: {integrity: sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==}
     dev: false
     optional: true
+
+  /@giphy/js-types/4.2.1:
+    resolution: {integrity: sha512-Ii+TvBhQsDHaeS79Y/dSqJTCeH3TirHv9DpbuIzxJ2VDKpsXVuIMrxAybwQ7Ve/mF+kjvEiL7TXtrz9Sc8Zxeg==}
+    dev: true
 
   /@humanwhocodes/config-array/0.10.7:
     resolution: {integrity: sha512-MDl6D6sBsaV452/QSdX+4CXIjZhIcI0PELsxUjk4U828yd58vk3bTIvk/6w5FY+4hIy9sLW0sfrV7K7Kc++j/w==}
