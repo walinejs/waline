@@ -9,7 +9,7 @@ Waline allows users to add emoticons search services and customize this feature.
 
 ## Introduction
 
-By default, Waline provides meme search service through [tenor](https://tenor.com/). This will allow you to search for images and add to comments while commenting.
+By default, Waline provides meme search service through [Giphy](https://giphy.com/). This will allow you to search for images and add to comments while commenting.
 
 ## disable
 
@@ -127,6 +127,102 @@ When the user searches for `smile`, we execute `search('smile')`. Suppose you re
 
 ::: details Default implementation
 
-@[code{28-117}](../../../../../packages/client/src/config/default.ts)
+@[code{33-79}](../../../../../packages/client/src/config/default.ts)
+
+:::
+
+::: details Tenor V1
+
+```ts
+interface FetchGifRequest {
+  keyword: string;
+  pos?: string;
+}
+
+type GifFormat =
+  | 'gif'
+  | 'mediumgif'
+  | 'tinygif'
+  | 'nanogif'
+  | 'mp4'
+  | 'loopedmp4'
+  | 'tinymp4'
+  | 'nanomp4'
+  | 'webm'
+  | 'tinywebm'
+  | 'nanowebm';
+
+interface MediaObject {
+  preview: string;
+  url: string;
+  dims: number[];
+  size: number;
+}
+
+interface GifObject {
+  created: number;
+  hasaudio: boolean;
+  id: string;
+  media: Record<GifFormat, MediaObject>[];
+  tags: string[];
+  title: string;
+  itemurl: string;
+  hascaption: boolean;
+  url: string;
+}
+
+interface FetchGifResponse {
+  next: string;
+  results: GifObject[];
+}
+
+export const getTenorV1SearchOptions = (
+  key = 'PAY5JLFIH6V6'
+): WalineSearchOptions => {
+  const state = { next: '' };
+
+  const fetchGif = ({
+    keyword,
+    pos,
+  }: FetchGifRequest): Promise<FetchGifResponse> => {
+    const baseUrl = `https://g.tenor.com/v1/search`;
+    const query = new URLSearchParams('media_filter=minimal');
+
+    query.set('key', key);
+    query.set('limit', '20');
+    query.set('pos', pos || '');
+    query.set('q', keyword);
+
+    return fetch(`${baseUrl}?${query.toString()}`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((resp) => resp.json() as Promise<FetchGifResponse>)
+      .catch(() => ({ next: pos || '', results: [] }));
+  };
+
+  return {
+    search: (word = '') =>
+      fetchGif({ keyword: word }).then((resp) => {
+        state.next = resp.next;
+
+        return resp.results.map((item) => ({
+          title: item.title,
+          src: item.media[0].tinygif.url,
+        }));
+      }),
+    more: (word) =>
+      fetchGif({ keyword: word, pos: state.next }).then((resp) => {
+        state.next = resp.next;
+
+        return resp.results.map((item) => ({
+          title: item.title,
+          src: item.media[0].tinygif.url,
+        }));
+      }),
+  };
+};
+```
 
 :::

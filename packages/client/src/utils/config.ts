@@ -64,7 +64,7 @@ export const getConfig = ({
   texRenderer,
   copyright = true,
   login = 'enable',
-  search = getDefaultSearchOptions(),
+  search,
   reaction,
   recaptchaV3Key = '',
   ...more
@@ -87,7 +87,7 @@ export const getConfig = ({
   pageSize,
   login,
   copyright,
-  search,
+  search: search || getDefaultSearchOptions(lang),
   recaptchaV3Key,
   reaction: Array.isArray(reaction)
     ? reaction
