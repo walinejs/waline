@@ -39,7 +39,7 @@ Waline 官方添加了多种语言的内置支持，同时你可以在此基础�
 
 Waline 内置了图像上传支持，默认将图片转为 Base64 内嵌，你也可以通过 [`imageUploader` 选项](../../reference/client.md#uploadimage) 完全自定义图像上传过程，比如到你想要使用的图床。
 
-Waline 支持表情包搜索功能，默认使用 <https://tenor.com>。你也可以[自定义自己的表情包服务](./search.md)。
+Waline 支持表情包搜索功能，默认使用 <https://giphy.com>。你也可以[自定义自己的表情包服务](./search.md)。
 
 ## 自定义样式
 

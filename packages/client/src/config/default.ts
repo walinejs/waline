@@ -1,5 +1,9 @@
-import type { WalineMeta, WalineSearchOptions, WalineSearchResult } from '../typings';
 import type { IGif } from '@giphy/js-types';
+import type {
+  WalineMeta,
+  WalineSearchOptions,
+  WalineSearchResult,
+} from '../typings';
 
 const availableMeta: WalineMeta[] = ['nick', 'mail', 'link'];
 
@@ -43,11 +47,10 @@ export const getDefaultSearchOptions = (lang: string): WalineSearchOptions => {
     data: IGif[];
   }
 
-  async function fetchGiphy(
+  const fetchGiphy = async (
     url: string,
     params: Record<string, string> = {}
-  ): Promise<WalineSearchResult> {
-    const baseUrl = 'https://api.giphy.com/v1/gifs/';
+  ): Promise<WalineSearchResult> => {
     const querystring = new URLSearchParams({
       lang,
       limit: '20',
@@ -56,30 +59,22 @@ export const getDefaultSearchOptions = (lang: string): WalineSearchOptions => {
       ...params,
     }).toString();
 
-    const resp = await fetch(baseUrl + url + '?' + querystring).then(
-      (resp) => resp.json() as Promise<GifsResult>
-    );
-
-    if (!resp.data.length) {
-      return [];
-    }
+    const resp = await fetch(
+      `https://api.giphy.com/v1/gifs/${url}?${querystring}`
+    ).then((resp) => resp.json() as Promise<GifsResult>);
 
     return resp.data.map((gif) => ({
       title: gif.title,
       src: gif.images.downsized_medium.url,
     }));
-  }
-  async function searchGif(q: string, offset = 0): Promise<WalineSearchResult> {
-    return fetchGiphy('search', { q, offset: offset.toString() });
-  }
-  async function trendingGif(): Promise<WalineSearchResult> {
-    return fetchGiphy('trending', {});
-  }
+  };
 
   return {
-    search: searchGif,
-    default: trendingGif,
-    more: searchGif,
+    search: (word: string): Promise<WalineSearchResult> =>
+      fetchGiphy('search', { q: word, offset: '0' }),
+    default: (): Promise<WalineSearchResult> => fetchGiphy('trending', {}),
+    more: (word: string, offset = 0): Promise<WalineSearchResult> =>
+      fetchGiphy('search', { q: word, offset: offset.toString() }),
   };
 };
 
