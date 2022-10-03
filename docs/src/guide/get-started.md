@@ -3,7 +3,8 @@ title: 快速上手
 icon: creative
 ---
 
-## 视频
+## 视频    
+
 <video src="https://pan.jaypan.cn/api/v3/file/source/7368/km_20221003-3_1080p.mp4?sign=xoQLStuYFB0F7GHR8cu5vmLJ5fmvgnhc2BgFzFZkKKo%3D%3A0" position= "absolute" width="100%" height="100%" controls="controls"></video>
 
 欢迎使用 Waline，只需几个步骤，你就可以在你的网站中启用 Waline 提供评论与浏览量服务。
