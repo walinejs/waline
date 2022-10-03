@@ -5,7 +5,7 @@ icon: creative
 
 ## 视频    
 
-<video src="https://pan.jaypan.cn/api/v3/file/source/7368/km_20221003-3_1080p.mp4?sign=xoQLStuYFB0F7GHR8cu5vmLJ5fmvgnhc2BgFzFZkKKo%3D%3A0" position= "absolute" width="100%" height="100%" controls="controls"></video>
+<iframe src="https://player.bilibili.com/player.html?aid=603711299&bvid=BV1pB4y1E7fp&cid=851182849&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
 
 欢迎使用 Waline，只需几个步骤，你就可以在你的网站中启用 Waline 提供评论与浏览量服务。
 
