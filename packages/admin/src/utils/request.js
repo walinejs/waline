@@ -37,7 +37,9 @@ export default async function request(url, opts = {}) {
   return fetch(`${baseUrl}${opts.url}${joiner}lang=${i18n.language}`, opts)
     .then((resp) => {
       if (resp.ok) {
-        return resp.json();
+        const __version = resp.headers.get('x-waline-version');
+
+        return resp.json().then((resp) => ({ __version, ...resp }));
       }
 
       if (resp.status === 401) {
@@ -51,6 +53,6 @@ export default async function request(url, opts = {}) {
         throw new Error(resp.errmsg);
       }
 
-      return resp.data;
+      return { __version: resp.__version, ...resp.data };
     });
 }
