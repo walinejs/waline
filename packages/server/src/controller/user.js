@@ -77,7 +77,7 @@ module.exports = class extends BaseRest {
     }
 
     try {
-      const notify = this.service('notify');
+      const notify = this.service('notify', this);
       const apiUrl =
         this.ctx.serverURL +
         '/verification?' +
