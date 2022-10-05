@@ -97,5 +97,5 @@
   "exclusive label": "Exclusive Label",
   "You can't set yourself to be guest!": "You can't set yourself to be guest!",
   "please enter an exclusive label": "Please enter an exclusive label",
-  "new version tips": "New version @waline/vercel@{{version}} published, please upgrade it! Goto <a href='https://waline.js.org/en/advanced/faq.html#server'>FAQ</a> to find How to upgrade it."
+  "new version tips": "New version @waline/vercel@{{version}} published, please upgrade it! Goto <a href='https://waline.js.org/en/advanced/faq.html#server' target='_blank'>FAQ</a> to find How to upgrade it."
 }

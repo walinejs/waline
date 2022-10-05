@@ -101,13 +101,14 @@ export default function () {
       <div className="upgrade-tips clearfix" key="upgrade">
         <Trans
           i18nKey="new version tips"
-          defaults="New version @waline/vercel@{{version}} published, please upgrade it! Goto <a href='https://waline.js.org/en/advanced/faq.html#server'>FAQ</a> to find How to upgrade it."
+          defaults="New version @waline/vercel@{{version}} published, please upgrade it! Goto <a href='https://waline.js.org/en/advanced/faq.html#server' target='_blank'>FAQ</a> to find How to upgrade it."
           components={{
             a: <a />,
           }}
           values={{
             version: latestVersion,
           }}
+          transKeepBasicHtmlNodesFor={['a']}
         />
       </div>
     ) : null,
