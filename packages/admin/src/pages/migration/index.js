@@ -46,11 +46,13 @@ export default function () {
         const tableName = data.tables[i];
         const tableData = data.data[tableName];
 
-        // clean table data
-        await request({
-          url: 'db?table=' + tableName,
-          method: 'DELETE',
-        });
+        // clean table data if not user table
+        if (tableName !== 'Users') {
+          await request({
+            url: 'db?table=' + tableName,
+            method: 'DELETE',
+          });
+        }
 
         if (!idMaps[tableName]) {
           idMaps[tableName] = {};
@@ -60,9 +62,23 @@ export default function () {
         }
 
         for (let j = 0; j < tableData.length; j++) {
-          const resp = await request({
-            url: 'db?table=' + tableName,
-            method: 'POST',
+          let exitUserObjectId = false;
+
+          if (tableName === 'Users') {
+            const user = await request('user?email=' + tableData[j].email);
+
+            if (user && user.objectId) {
+              exitUserObjectId = user.objectId;
+            }
+          }
+
+          const method =
+            tableName !== 'Users' || !exitUserObjectId ? 'POST' : 'PUT';
+          const resp = request({
+            url: `db?table=${tableName}${
+              method === 'PUT' ? `&objectId=${exitUserObjectId}` : ''
+            }`,
+            method,
             body: tableData[j],
           });
 
