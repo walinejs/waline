@@ -10,8 +10,7 @@ export type UserInfoRef = Ref<UserInfo | Record<string, never>>;
 let userInfoStorage: UserInfoRef | null = null;
 
 export const useUserInfo = (): UserInfoRef =>
-  userInfoStorage ||
-  (userInfoStorage = useStorage<UserInfo | Record<string, never>>(
+  (userInfoStorage ??= useStorage<UserInfo | Record<string, never>>(
     USER_KEY,
     {}
   ));

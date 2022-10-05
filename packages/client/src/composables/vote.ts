@@ -17,4 +17,4 @@ export type VoteRef = Ref<VoteLogItem[]>;
 let voteStorage: VoteRef | null = null;
 
 export const useVoteStorage = (): VoteRef =>
-  voteStorage || (voteStorage = useStorage<VoteLogItem[]>(VOTE_KEY, []));
+  (voteStorage ??= useStorage<VoteLogItem[]>(VOTE_KEY, []));
