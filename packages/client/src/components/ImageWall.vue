@@ -42,7 +42,7 @@ SOFTWARE. -->
           :src="items[itemIndex].src"
           :title="items[itemIndex].title"
           loading="lazy"
-          @load="state[items[itemIndex].src] = true"
+          @load="imageLoad"
           @click="$emit('insert', `![](${items[itemIndex].src})`)"
         />
       </template>
@@ -133,6 +133,10 @@ export default defineComponent({
       window.scrollTo({ top: scrollY });
     };
 
+    const imageLoad = (e: Event) => {
+      state.value[(e.target as HTMLImageElement).src] = true;
+    };
+
     watch(
       () => [props.items],
       () => {
@@ -158,6 +162,7 @@ export default defineComponent({
       columns,
       state,
       wall,
+      imageLoad,
     };
   },
 });
