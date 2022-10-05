@@ -96,5 +96,6 @@
   "role": "角色",
   "exclusive label": "專屬標籤",
   "You can't set yourself to be guest!": "你不能將自己設置為普通用戶！",
-  "please enter an exclusive label": "請輸入專屬標籤"
+  "please enter an exclusive label": "請輸入專屬標籤",
+  "new version tips": "新版本 @waline/vercel@{{version}} 已發佈，請盡快升級！查看 <1>FAQ</1> 了解如何升級。"
 }
