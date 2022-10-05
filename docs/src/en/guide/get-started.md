@@ -3,9 +3,6 @@ title: Get Started
 icon: creative
 ---
 
-## [Video](https://youtu.be/SzEHzsme8uY) 
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/SzEHzsme8uY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 Welcome to Waline. In just a few steps, you can enable Waline to provide comments and pageviews on your site.
 
 <!-- more -->
@@ -122,3 +119,9 @@ Make the following settings on your web page:
 1. After the deployment is complete, please visit `<serverURL>/ui/register` to register. The first person to register will be set as an administrator.
 1. After you log in as administrator, you can see the comment management interface. You can edit, mark or delete comments here.
 1. Users can also register their account through comment box, and they will be redirected to their profile page after logging in.
+
+## Video Tutorial
+
+The following is the enthusiastic user made video tutorial, the above operation is not clear can also refer to it.
+
+<iframe width="100%" height="500" src="https://www.youtube.com/embed/SzEHzsme8uY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

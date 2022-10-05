@@ -3,16 +3,6 @@ title: 快速上手
 icon: creative
 ---
 
-## 视频教程
-
-标题：[Waline部署教程（快速上手）](https://www.bilibili.com/video/BV1pB4y1E7fp)  
-UP主：[rickroll摇](https://space.bilibili.com/381992209)  
-<iframe src="https://player.bilibili.com/player.html?bvid=BV1pB4y1E7fp" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
-
-标题：[使用 Vercel 简单地部署 Waline 评论系统](https://www.bilibili.com/video/BV1Ft4y1A73f)  
-UP主：[岚天呀](https://space.bilibili.com/355877984)  
-<iframe src="//player.bilibili.com/player.html?bvid=BV1Ft4y1A73f" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
-
 欢迎使用 Waline，只需几个步骤，你就可以在你的网站中启用 Waline 提供评论与浏览量服务。
 
 <!-- more -->
@@ -148,3 +138,16 @@ UP主：[岚天呀](https://space.bilibili.com/355877984)
 1. 部署完成后，请访问 `<serverURL>/ui/register` 进行注册。首个注册的人会被设定成管理员。
 1. 管理员登陆后，即可看到评论管理界面。在这里可以修改、标记或删除评论。
 1. 用户也可通过评论框注册账号，登陆后会跳转到自己的档案页。
+
+
+## 视频教程
+
+以下是热心用户制作的视频教程，以上操作不清楚的也可以参考一二。
+
+标题：[Waline部署教程（快速上手）](https://www.bilibili.com/video/BV1pB4y1E7fp)  
+UP主：[rickroll摇](https://space.bilibili.com/381992209)  
+<iframe src="https://player.bilibili.com/player.html?bvid=BV1pB4y1E7fp" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="width: 100%;height:500px;"> </iframe>
+
+标题：[使用 Vercel 简单地部署 Waline 评论系统](https://www.bilibili.com/video/BV1Ft4y1A73f)  
+UP主：[岚天呀](https://space.bilibili.com/355877984)  
+<iframe src="//player.bilibili.com/player.html?bvid=BV1Ft4y1A73f" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="width: 100%;height:500px;"> </iframe>
