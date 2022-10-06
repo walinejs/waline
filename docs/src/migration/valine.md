@@ -10,7 +10,7 @@ icon: valine
 
    ::: warning
 
-   你需要删除 Valine 原始的配置 `appId` 和 `appKey`，并添加 `serverURL`。
+   你需要替换 `new Valine` 为 `Waline.init`，并在配置中删除 Valine 的 `appId` 和 `appKey`，并添加 `serverURL`。
 
    :::
 
@@ -48,7 +48,7 @@ Waline 具体的配置详见 [客户端配置](../reference/client.md)。你也�
 
 ::: tip 使用国内版 Leancloud
 
-如果你是 Leancloud 国内版用户的话，除了 `LEAN_ID` 和 `LEAN_KEY`，还需要设置 `LEAN_SERVER` 环境变量，值为你的应用后台绑定的接入域名。
+如果你是 Leancloud 国内版用户的话，除了 `LEAN_ID`、 `LEAN_KEY` 和 `LEAN_MASTER_KEY` 之外，还需要设置 `LEAN_SERVER` 环境变量，值为你的应用后台绑定的接入域名。
 
 :::
 

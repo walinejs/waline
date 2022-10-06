@@ -124,4 +124,4 @@ Make the following settings on your web page:
 
 The following is the enthusiastic user made video tutorial, the above operation is not clear can also refer to it.
 
-<iframe width="100%" height="500" src="https://www.youtube.com/embed/SzEHzsme8uY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<YouTube id="SzEHzsme8uY" />

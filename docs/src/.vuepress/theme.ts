@@ -67,6 +67,8 @@ export default hopeTheme({
       },
     },
 
+    components: ['BiliBili', 'YouTube'],
+
     mdEnhance: {
       codetabs: true,
       katex: true,
