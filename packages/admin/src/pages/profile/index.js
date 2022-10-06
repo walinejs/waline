@@ -20,13 +20,14 @@ export default function () {
 
     const display_name = e.target.screenName.value;
     const url = e.target.url.value;
+    const label = e.target.label.value;
 
     if (!display_name || !url) {
       return alert(t('nickname and homepage are required'));
     }
 
     setProfileUpdating(true);
-    await dispatch.user.updateProfile({ display_name, url });
+    await dispatch.user.updateProfile({ display_name, url, label });
     setProfileUpdating(false);
   };
 
@@ -155,6 +156,22 @@ export default function () {
                           components={{ code: <code /> }}
                         />
                       </p>
+                    </li>
+                  </ul>
+
+                  <ul className="typecho-option">
+                    <li>
+                      <label className="typecho-label" htmlFor="url-0-2">
+                        {t('exclusive label')}
+                      </label>
+                      <input
+                        id="url-0-2"
+                        name="label"
+                        type="text"
+                        className="text"
+                        defaultValue={user.label}
+                      />
+                      <p className="description"></p>
                     </li>
                   </ul>
 
