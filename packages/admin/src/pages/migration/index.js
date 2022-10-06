@@ -92,7 +92,7 @@ export default function () {
       }
 
       setImportLoading(['comment data index relationship reconstruction']);
-      const commentData = importData.data.Comment;
+      const commentData = data.data.Comment;
       const willUpdateData = [];
 
       for (let i = 0; i < commentData.length; i++) {
