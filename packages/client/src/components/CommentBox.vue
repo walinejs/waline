@@ -36,7 +36,7 @@
       >
         <div v-for="kind in config.meta" :key="kind" class="wl-header-item">
           <label
-            :for="kind"
+            :for="`wl-${kind}`"
             v-text="
               locale[kind] +
               (config.requiredMeta.includes(kind) || !config.requiredMeta.length
