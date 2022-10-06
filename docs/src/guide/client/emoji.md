@@ -215,7 +215,7 @@ https://example.com/myemoji/
 
 ### 进阶
 
-我们更推荐你将图片上传到一个 GitHub 仓库，这样你可以使用 [GithubRaw](https://githubraw.com/)，它可以把Raw链接转换为cdn，其格式为 `https://cdn.githubraw.com/user/repo/path/file`。    
+我们更推荐你将图片上传到一个 GitHub 仓库，这样你可以使用 [GithubRaw](https://githubraw.com/)，它可以把 Raw 链接转换为 CDN 地址，其格式为 `https://cdn.githubraw.com/user/repo/path/file`。    
 当然，你也可以使用[cdn.jsdelivr.net](https://jsdelivr.com)，其格式为 `https://cdn.jsdelivr.net/gh/user/repo@version/file` 但当你发布版本后，将不会因图片调整而改变。    
 
 
