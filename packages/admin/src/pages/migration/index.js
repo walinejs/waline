@@ -74,7 +74,7 @@ export default function () {
 
           const method =
             tableName !== 'Users' || !exitUserObjectId ? 'POST' : 'PUT';
-          const resp = request({
+          const resp = await request({
             url: `db?table=${tableName}${
               method === 'PUT' ? `&objectId=${exitUserObjectId}` : ''
             }`,
