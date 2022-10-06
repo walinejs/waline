@@ -54,8 +54,8 @@ module.exports = class extends think.Service {
       },
     };
 
-    title = nunjucks.renderString(title, data);
-    content = nunjucks.renderString(content, data);
+    title = this.ctx.locale(title, data);
+    content = this.ctx.locale(content, data);
 
     return this.transporter.sendMail({
       from:
@@ -395,8 +395,8 @@ module.exports = class extends think.Service {
     const isCommentSelf =
       parent && parent.mail.toLowerCase() === comment.mail.toLowerCase();
 
-    const title = mailSubjectAdmin || this.ctx.locale('MAIL_SUBJECT_ADMIN');
-    const content = mailTemplateAdmin || this.ctx.locale('MAIL_TEMPLATE_ADMIN');
+    const title = mailSubjectAdmin || 'MAIL_SUBJECT_ADMIN';
+    const content = mailTemplateAdmin || 'MAIL_TEMPLATE_ADMIN';
 
     if (!DISABLE_AUTHOR_NOTIFY && !isAuthorComment && !disableAuthorNotify) {
       const wechat = await this.wechat({ title, content }, comment, parent);
@@ -433,8 +433,8 @@ module.exports = class extends think.Service {
     ) {
       mailList.push({
         to: parent.mail,
-        title: mailSubject || this.ctx.locale('MAIL_SUBJECT'),
-        content: mailTemplate || this.ctx.locale('MAIL_TEMPLATE'),
+        title: mailSubject || 'MAIL_SUBJECT',
+        content: mailTemplate || 'MAIL_TEMPLATE',
       });
     }
 
