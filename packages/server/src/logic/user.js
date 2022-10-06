@@ -17,6 +17,9 @@ module.exports = class extends Base {
         int: { max: 100 },
         default: 10,
       },
+      email: {
+        string: true,
+      },
     };
   }
 

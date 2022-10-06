@@ -51,6 +51,9 @@ module.exports = class extends BaseRest {
     const storage = this.config('storage');
     const model = this.service(`storage/${storage}`, table);
 
+    delete data.objectId;
+    delete data.createdAt;
+    delete data.updatedAt;
     await model.update(data, { objectId });
 
     return this.success();

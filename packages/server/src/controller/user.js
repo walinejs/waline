@@ -11,7 +11,17 @@ module.exports = class extends BaseRest {
   }
 
   async getAction() {
-    const { page, pageSize } = this.get();
+    const { page, pageSize, email } = this.get();
+
+    if (email) {
+      const user = await this.modelInstance.select({ email });
+
+      if (think.isEmpty(user)) {
+        return this.success();
+      }
+
+      return this.success(user[0]);
+    }
 
     const count = await this.modelInstance.count({});
     const users = await this.modelInstance.select(
