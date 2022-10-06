@@ -91,6 +91,34 @@
   }
 }
 
+.wl-user-wall {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  padding: 0;
+
+  > li {
+    width: 48px;
+    height: 48px;
+    overflow: hidden;
+  }
+
+  > li:hover .wl-user-avatar img {
+    transform: scale(1.25);
+  }
+
+  .wl-user-avatar img {
+    width: 48px;
+    height: 48px;
+    border-radius: 0;
+    transition: transform ease-in-out 400ms;
+  }
+
+  .wl-user-avatar > i,
+  .wl-user-meta {
+    display: none;
+  }
+}
 
 
 

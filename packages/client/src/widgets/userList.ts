@@ -44,6 +44,13 @@ export interface WalineUserListOptions {
    * @see [I18n](https://waline.js.org/en/client/i18n.html)
    */
   locale?: WalineLocale;
+
+  /**
+   * 列表模式还是头像墙模式
+   *
+   * list mode or avatar wall mode
+   */
+  mode: 'list' | 'wall';
 }
 
 export interface WalineUserListResult {
@@ -68,6 +75,7 @@ export const UserList = ({
   count,
   locale,
   lang = defaultLang,
+  mode = 'list',
 }: WalineUserListOptions): Promise<WalineUserListResult> => {
   const root = getRoot(el);
   const controller = new AbortController();
@@ -90,7 +98,7 @@ export const UserList = ({
       ...(typeof locale === 'object' ? locale : {}),
     } as WalineLocale;
 
-    root.innerHTML = `<ul class="wl-user-list">${users
+    root.innerHTML = `<ul class="wl-user-${mode}">${users
       .map((user, index) =>
         [
           '<li class="wl-user-item">',
