@@ -5,7 +5,14 @@ module.exports = class extends Base {
     const { userInfo } = this.ctx.state;
 
     if (think.isEmpty(userInfo) || userInfo.type !== 'administrator') {
-      return this.fail();
+      this.rules = {
+        pageSize: {
+          int: { max: 50 },
+          default: 20,
+        },
+      };
+
+      return;
     }
 
     this.rules = {

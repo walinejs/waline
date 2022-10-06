@@ -12,6 +12,13 @@ module.exports = class extends BaseRest {
 
   async getAction() {
     const { page, pageSize, email } = this.get();
+    const { userInfo } = this.ctx.state;
+
+    if (think.isEmpty(userInfo) || userInfo.type !== 'administrator') {
+      const users = await this.getUsersListByCount();
+
+      return this.success(users);
+    }
 
     if (email) {
       const user = await this.modelInstance.select({ email });
@@ -175,5 +182,108 @@ module.exports = class extends BaseRest {
     });
 
     return this.success();
+  }
+
+  async getUsersListByCount() {
+    const { pageSize } = this.get();
+    const commentModel = this.service(
+      `storage/${this.config('storage')}`,
+      'Comment'
+    );
+    const counts = await commentModel.count(
+      {
+        status: ['NOT IN', ['waiting', 'spam']],
+      },
+      {
+        group: ['user_id', 'mail'],
+      }
+    );
+
+    counts.sort((a, b) => b.count - a.count);
+    counts.length = Math.min(pageSize, counts.length);
+
+    const userIds = counts
+      .filter(({ user_id }) => user_id)
+      .map(({ user_id }) => user_id);
+
+    let usersMap = {};
+
+    if (userIds.length) {
+      const users = await this.modelInstance.select({
+        objectId: ['IN', userIds],
+      });
+
+      for (let i = 0; i < users.length; i++) {
+        usersMap[users[i].objectId] = users;
+      }
+    }
+
+    const users = [];
+    const { avatarProxy } = this.config();
+
+    for (let i = 0; i < counts.length; i++) {
+      const count = counts[i];
+      const user = {
+        count: count.count,
+      };
+
+      if (think.isArray(this.config('levels'))) {
+        let level = 0;
+
+        if (user.count) {
+          const _level = think.findLastIndex(
+            this.config('levels'),
+            (l) => l <= user.count
+          );
+
+          if (_level !== -1) {
+            level = _level;
+          }
+        }
+        user.level = level;
+      }
+
+      if (count.user_id && users[count.user_id]) {
+        const {
+          display_name: nick,
+          url: link,
+          avatar: avatarUrl,
+          label,
+        } = users[count.user_id];
+        const avatar =
+          avatarProxy && !avatarUrl.includes(avatarProxy)
+            ? avatarProxy + '?url=' + encodeURIComponent(avatarUrl)
+            : avatarUrl;
+
+        Object.assign(user, { nick, link, avatar, label });
+        users.push(user);
+        continue;
+      }
+
+      const comments = await commentModel.select(
+        { mail: count.mail },
+        { limit: 1 }
+      );
+
+      if (think.isEmpty(comments)) {
+        continue;
+      }
+      const comment = comments[0];
+
+      if (think.isEmpty(comment)) {
+        continue;
+      }
+      const { nick, link } = comment;
+      const avatarUrl = await think.service('avatar').stringify(comment);
+      const avatar =
+        avatarProxy && !avatarUrl.includes(avatarProxy)
+          ? avatarProxy + '?url=' + encodeURIComponent(avatarUrl)
+          : avatarUrl;
+
+      Object.assign(user, { nick, link, avatar });
+      users.push(user);
+    }
+
+    return users;
   }
 };
