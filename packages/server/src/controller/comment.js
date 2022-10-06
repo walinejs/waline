@@ -623,7 +623,7 @@ module.exports = class extends BaseRest {
       : undefined;
 
     if (comment.status !== 'spam') {
-      const notify = this.service('notify');
+      const notify = this.service('notify', this);
 
       await notify.run(
         { ...cmtReturn, mail: resp.mail, rawComment: comment },
@@ -715,7 +715,7 @@ module.exports = class extends BaseRest {
         pUser = pUser[0];
       }
 
-      const notify = this.service('notify');
+      const notify = this.service('notify', this);
       const pcmtReturn = await formatCmt(
         pComment,
         pUser ? [pUser] : [],
