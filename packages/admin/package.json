@@ -55,7 +55,7 @@
     "css-loader": "6.7.1",
     "file-loader": "6.2.0",
     "html-webpack-plugin": "5.5.0",
-    "i18next": "21.9.2",
+    "i18next": "21.10.0",
     "i18next-browser-languagedetector": "6.1.5",
     "md5": "2.3.0",
     "qrcode.react": "3.1.0",
