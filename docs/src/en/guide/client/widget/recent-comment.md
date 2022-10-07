@@ -3,7 +3,7 @@ title: Recent comment Widget
 icon: recent
 ---
 
-Waline supports displying recent comments by widget, which is convenient for displaying the latest comments in the sidebar of the blog.
+Waline supports displaying recent comments by widget, which is convenient for displaying the latest comments in the sidebar of the blog.
 
 <!-- more -->
 
