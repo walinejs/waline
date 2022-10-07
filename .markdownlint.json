@@ -11,7 +11,15 @@
     "allow_different_nesting": true
   },
   "MD033": {
-    "allowed_elements": ["br", "kbd", "BiliBili", "YouTube"]
+    "allowed_elements": [
+      "br",
+      "kbd",
+      "script",
+      "span",
+      "BiliBili",
+      "MigrationTool",
+      "YouTube"
+    ]
   },
   "MD035": {
     "style": "---"

@@ -37,5 +37,5 @@ module.exports = Waline();
 You can deploy your new Waline project with a single command from your terminal using [Vercel CLI](https://vercel.com/download):
 
 ```shell
-$ vercel
+vercel
 ```

@@ -16,6 +16,7 @@
     "docs:dev": "pnpm --dir=docs run dev",
     "lint": "pnpm lint:eslint && pnpm lint:prettier && pnpm lint:stylelint",
     "lint:eslint": "eslint --ext .js,.vue,.ts --fix .",
+    "lint:md": "markdownlint docs/ --fix",
     "lint:prettier": "prettier --check --write .",
     "lint:stylelint": "stylelint packages/*/src/**/*.scss --fix",
     "prepare": "husky install",
@@ -23,7 +24,15 @@
     "test": "vitest"
   },
   "lint-staged": {
-    "*.{md,json,yml,js,vue}": [
+    "*.md": [
+      "markdownlint --fix",
+      "prettier --write"
+    ],
+    "*.{js,vue}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,yml}": [
       "prettier --write"
     ],
     "package.json": [
@@ -60,6 +69,7 @@
     "eslint-plugin-vue": "9.6.0",
     "husky": "8.0.1",
     "lint-staged": "13.0.3",
+    "markdownlint-cli": "0.32.2",
     "postcss": "8.4.17",
     "prettier": "2.7.1",
     "sass": "1.55.0",

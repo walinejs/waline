@@ -56,10 +56,6 @@ Paste the content of export file into the textarea below, and click the convert 
 
 <MigrationTool />
 
-<script setup lang="ts">
-import MigrationTool from '@MigrationTool';
-</script>
-
 ## Waline Highlights
 
 Compared with Valine, Waline has the following highlights:
@@ -90,3 +86,7 @@ Compared with Valine, Waline has the following highlights:
 1. Various methods (QQ, WeChat, DingTalk, E-mail), etc. to notify bloggers about comments
 1. Powerful management service, you can view all users and comments and perform related operations, and set custom labels and administrators for users
 1. Front-end management, administrators can review, edit or delete comments directly through the Waline comment component.
+
+<script setup lang="ts">
+import MigrationTool from '@MigrationTool';
+</script>
