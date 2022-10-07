@@ -18,3 +18,5 @@ You can customize labels for users through the management side.
 ![](../../../assets/label-admin-en.jpg)
 
 As a login user, you can also update your exclusive label at profile page.
+
+![](../../../assets/label-profile-en.jpg)

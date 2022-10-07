@@ -18,3 +18,5 @@ Waline 支持你为登录用户，根据其互动情况设置等级标签和自�
 ![](../../assets/label-admin-cn.jpg)
 
 作为登录用户，也可以自己在个人资料页中修改自己的专属标签。
+
+![](../../assets/label-profile-cn.jpg)
