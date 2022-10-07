@@ -8,3 +8,5 @@ Waline 自身提供了一些挂件，你可以通过 `Waline.<挂件名>` 来使
 <!-- more -->
 
 - [最近评论挂件](recent-comment.md)
+- [排行榜挂件](user-list.md)
+- [读者墙挂件](user-list.md)

@@ -1,11 +1,28 @@
 const Base = require('./base');
 
 module.exports = class extends Base {
+  /**
+   * @api {GET} /user user list
+   * @apiGroup User
+   * @apiVersion  0.0.1
+   *
+   * @apiParam  {String}  pageSize  page size
+   *
+   * @apiSuccess  (200) {Number}  errno 0
+   * @apiSuccess  (200) {String}  errmsg  return error message if error
+   */
   getAction() {
     const { userInfo } = this.ctx.state;
 
     if (think.isEmpty(userInfo) || userInfo.type !== 'administrator') {
-      return this.fail();
+      this.rules = {
+        pageSize: {
+          int: { max: 50 },
+          default: 20,
+        },
+      };
+
+      return;
     }
 
     this.rules = {
@@ -35,6 +52,12 @@ module.exports = class extends Base {
    *
    * @apiSuccess  (200) {Number}  errno 0
    * @apiSuccess  (200) {String}  errmsg  return error message if error
+   * @apiSuccess  (200) {Object[]}  data  user list
+   * @apiSuccess  (200) {String}  data.nick comment user nick name
+   * @apiSuccess  (200) {String}  data.link comment user link
+   * @apiSuccess  (200) {String}  data.avatar comment user avatar
+   * @apiSuccess  (200) {String}  data.level comment user level
+   * @apiSuccess  (200) {String}  data.label comment user label
    */
   postAction() {
     return this.useCaptchaCheck();
