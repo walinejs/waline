@@ -215,7 +215,7 @@ https://example.com/myemoji/
 
 ### 进阶
 
-我们更推荐你将图片上传到一个 GitHub 仓库，[cdn.jsdelivr.net](https://jsdelivr.com)，它可以把 Github 仓库 转换为 CDN 链接，其格式为 `https://cdn.jsdelivr.net/gh/user/repo@version/file` 但当你发布版本后，将不会因图片调整而改变。（但你可以@latest以最新版本更新）     
+我们更推荐你将图片上传到一个 GitHub 仓库，这样你可以使用 [cdn.jsdelivr.net](https://jsdelivr.com) ，它可以把 Github 仓库 转换为 CDN 链接，其格式为 `https://cdn.jsdelivr.net/gh/user/repo@version/file` 但当你发布版本后，将不会因图片调整而改变。（但你可以@latest以最新版本更新）     
 
 
 ::: warning
