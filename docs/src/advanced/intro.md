@@ -40,10 +40,12 @@ icon: intro
 - [x] QQ 通知
 - [x] Telegram 通知
 - [x] Akismet
-- [x] 文章统计
 - [x] 多语言同步
 - [x] 自定义语言支持
+- [x] 文章浏览量
+- [x] 文章反应
 - [x] 登录支持
+- [x] 用户标签
 - [x] 评论管理
 - [x] 评论删除
 - [x] 其它数据库支持 (已支持 LeanCloud, MySQL, MongoDB, SQLite, PostgreSQL, CloudBase, Deta, 轻服务, GitHub)

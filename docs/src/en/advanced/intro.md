@@ -38,10 +38,12 @@ A simple comment system with backend support fork from [Valine](https://valine.j
 - [x] Wechat notification
 - [x] Telegram notification
 - [x] Akismet
-- [x] Article counter
 - [x] i18n
 - [x] Custom language
+- [x] Pageviews
+- [x] Article reaction
 - [x] Login support
+- [x] User label
 - [x] Comment management
 - [x] Support delete comment
 - [x] More database support

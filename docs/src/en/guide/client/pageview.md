@@ -75,7 +75,7 @@ If you only need to use the pageview statistics function, you can import the pag
 
 - Current pageviews: <span class="waline-pageview-count" />
 
-- Pageviews: <span class="waline-pageview-count" data-path="/" />
+- Homepage Pageviews: <span class="waline-pageview-count" data-path="/" />
 
 ::: info Abort
 

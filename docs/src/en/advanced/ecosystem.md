@@ -45,7 +45,6 @@ Waline is a classic Client/Server architecture, which provides a relatively comp
 
 Others:
 
-- [vuepress-plugin-waline](https://github.com/xinlei3166/vuepress-plugin-waline): Waline comment system for VuePress2.
 - [vuepress-plugin-comment-plus](https://github.com/SivanLaai/vuepress-plugin-comment-plus): Comment system plugin for VuePress.
 
 ## Theme
@@ -77,4 +76,4 @@ Others:
 
 We are looking forward to more clients and plugins from the community to expand the Waline ecosystem. :tada:
 
-If you implement any Waline client, ecological plugin or theme including Waline, please comment and let us know!
+If you implement any Waline client, ecological plugin or theme including Waline, please send a PR and let us know!

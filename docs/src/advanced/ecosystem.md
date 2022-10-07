@@ -47,7 +47,6 @@ Waline 是经典的前后端分离 Client/Server 架构，提供了较为完善�
 
 Others:
 
-- [vuepress-plugin-waline](https://github.com/xinlei3166/vuepress-plugin-waline): Waline comment system for VuePress2.
 - [vuepress-plugin-comment-plus](https://github.com/SivanLaai/vuepress-plugin-comment-plus): Comment system plugin for VuePress.
 
 ## 主题
@@ -80,4 +79,4 @@ Others:
 
 我们期待来自社区的更多客户端和插件以扩展 Waline 生态。:tada:
 
-如果你实现了 Waline 的客户端、生态插件与支持 Waline 的主题，欢迎在评论区中留言！
+如果你实现了 Waline 的客户端、生态插件与支持 Waline 的主题，欢迎发送 PR！
