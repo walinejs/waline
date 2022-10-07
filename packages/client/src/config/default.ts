@@ -14,9 +14,8 @@ export const defaultLang = 'zh-CN';
 
 export const defaultUploadImage = (file: File): Promise<string> =>
   new Promise((resolve, reject) => {
-    if (file.size > 128 * 1000) {
+    if (file.size > 128 * 1000)
       return reject(new Error('File too large! File size limit 128KB'));
-    }
 
     const reader = new FileReader();
 
@@ -31,20 +30,20 @@ export const defaultTexRenderer = (blockMode: boolean): string =>
     : '<span class="wl-tex">Tex is not available in preview</span>';
 
 export const getDefaultSearchOptions = (lang: string): WalineSearchOptions => {
-  interface Result {
+  interface GifsResult {
+    data: IGif[];
     meta: {
       msg: string;
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       response_id: string;
       status: number;
     };
     pagination: {
       count: number;
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       total_count: number;
       offset: number;
     };
-  }
-  interface GifsResult extends Result {
-    data: IGif[];
   }
 
   const fetchGiphy = async (
@@ -55,6 +54,7 @@ export const getDefaultSearchOptions = (lang: string): WalineSearchOptions => {
       lang,
       limit: '20',
       rating: 'g',
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       api_key: '6CIMLkNMMOhRcXPoMCPkFy4Ybk2XUiMp',
       ...params,
     }).toString();

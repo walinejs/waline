@@ -133,7 +133,7 @@ export default defineComponent({
       window.scrollTo({ top: scrollY });
     };
 
-    const imageLoad = (e: Event) => {
+    const imageLoad = (e: Event): void => {
       state.value[(e.target as HTMLImageElement).src] = true;
     };
 

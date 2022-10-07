@@ -1,18 +1,19 @@
 :root {
-  --waline-rank-gold-bgcolor: #FA3939;
-  --waline-rank-silver-bgcolor: #FB811C;
-  --waline-rank-copper-bgcolor: #FEB207;
+  --waline-rank-gold-bgcolor: #fa3939;
+  --waline-rank-silver-bgcolor: #fb811c;
+  --waline-rank-copper-bgcolor: #feb207;
 }
 
 .wl-user-list {
-  list-style: none;
   padding: 0;
+  list-style: none;
 
   > li + li {
     margin-top: 10px;
   }
 
-  > li, > li > a {
+  > li,
+  > li > a {
     display: flex;
     flex-direction: row;
     gap: 10px;
@@ -21,8 +22,8 @@
   a,
   a:hover,
   a:visited {
-    text-decoration: none;
     color: var(--waline-color);
+    text-decoration: none;
   }
 
   .wl-user-avatar {
@@ -31,17 +32,20 @@
 
     > i {
       position: absolute;
-      bottom: 0;
       right: 0;
+      bottom: 0;
+
       min-width: 1.5em;
       height: 1.5em;
-      line-height: 1.5em;
-      background: var(--waline-info-bgcolor);
-      text-align: center;
-      font-size: 10px;
       border-radius: 2px;
-      font-style: normal;
+
+      background: var(--waline-info-bgcolor);
       color: var(--waline-info-color);
+
+      font-style: normal;
+      font-size: 10px;
+      line-height: 1.5em;
+      text-align: center;
     }
   }
 
@@ -54,15 +58,15 @@
   .wl-user-name {
     display: flex;
     flex-direction: row;
-    align-items: center;
     gap: 10px;
-  }
-  .wl-user-tag {
-    padding-bottom: 0;
-    border-bottom: none;
-    width: auto;
+    align-items: center;
   }
 
+  .wl-user-tag {
+    width: auto;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
 
   > li:nth-child(1) i {
     background: var(--waline-rank-gold-bgcolor);
@@ -86,13 +90,13 @@
 .wl-user-wall {
   display: flex;
   flex-direction: row;
-  list-style: none;
   padding: 0;
+  list-style: none;
 
   > li {
+    overflow: hidden;
     width: 48px;
     height: 48px;
-    overflow: hidden;
   }
 
   > li:hover img {
@@ -111,6 +115,3 @@
     display: none;
   }
 }
-
-
-

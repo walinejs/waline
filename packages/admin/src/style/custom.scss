@@ -74,8 +74,10 @@ div[tabindex='-1'] {
 
 .upgrade-tips {
   padding: 0 10px;
+  border-bottom: 1px solid rgb(212 167 44 / 40%);
+
   background: #fff8c5;
-  line-height: 36px;
-  border-bottom: 1px solid rgba(212,167,44,0.4);
   color: #24292f;
+
+  line-height: 36px;
 }

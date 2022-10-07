@@ -11,7 +11,6 @@ Waline supports displaying users rank list or users wall by widget, which is con
 
 The users rank list/users wall widget is named `UserList` and contains six options:
 
-
 - `el` (optional): the element to be mounted
 - `serverURL`: server link
 - `count` The number of users needed to get
@@ -23,7 +22,7 @@ The data format returned by the component should be `Promise<{ users: WalineUser
 
 - `users` property: an array of the user list with exact number of `count`
 - `destory` method: a function which will destroy the widget
-  
+
 ## Basic usage
 
 ### Users Rank List
@@ -51,7 +50,7 @@ The data format returned by the component should be `Promise<{ users: WalineUser
       el: '#waline-users',
       serverURL: 'http://waline.vercel.app',
       count: 50,
-      mode: 'wall'
+      mode: 'wall',
     });
   });
 </script>

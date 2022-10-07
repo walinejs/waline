@@ -26,6 +26,7 @@ Waline 通过 `UserList` 支持用户排行榜和读者墙的展示，方便在�
 ## 基本用法
 
 ### 用户排行榜
+
 ```html
 <div id="waline-users"></div>
 <script>
@@ -49,7 +50,7 @@ Waline 通过 `UserList` 支持用户排行榜和读者墙的展示，方便在�
       el: '#waline-users',
       serverURL: 'http://waline.vercel.app',
       count: 50,
-      mode: 'wall'
+      mode: 'wall',
     });
   });
 </script>
