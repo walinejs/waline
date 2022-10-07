@@ -127,8 +127,6 @@ export const UserList = ({
       )
       .join('')}</ul>`;
 
-    console.log(root, root.innerHTML);
-
     return {
       users,
       destroy: (): void => {

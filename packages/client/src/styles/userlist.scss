@@ -60,6 +60,7 @@
   .wl-user-tag {
     padding-bottom: 0;
     border-bottom: none;
+    width: auto;
   }
 
 
@@ -103,10 +104,6 @@
     height: 48px;
     border-radius: 0;
     transition: transform ease-in-out 400ms;
-  }
-
-  .wl-card {
-    width: auto;
   }
 
   .wl-user-avatar > i,
