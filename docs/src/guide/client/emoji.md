@@ -215,8 +215,7 @@ https://example.com/myemoji/
 
 ### 进阶
 
-我们更推荐你将图片上传到一个 GitHub 仓库，这样你可以使用 [cdn.jsdelivr.net](https://jsdelivr.com) ，它可以把 Github 仓库 转换为 CDN 链接，其格式为 `https://cdn.jsdelivr.net/gh/user/repo@version/file` 但当你发布版本后，将不会因图片调整而改变。（但你可以@latest以最新版本更新）     
-
+我们更推荐你将图片上传到一个 GitHub 仓库，并为每次修改添加一个 tag。这样你可以使用 [cdn.jsdelivr.net](https://www.jsdelivr.com/) 上带有版本的 CDN 链接作为你的预设，其格式为 `https://cdn.jsdelivr.net/gh/user/repo@version/file`。绑定标签后，历史评论引用的图片链接将不会因为调整图片而失效。
 
 ::: warning
 
@@ -224,13 +223,11 @@ https://example.com/myemoji/
 
 :::
 
-
 ::: tip
 
 官方预设就使用了 [walinejs/emojis](https://github.com/walinejs/emojis) 的 `v1.1.0` 版本。
 
 :::
-
 
 ## 使用配置对象
 
