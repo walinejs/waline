@@ -2,7 +2,17 @@ import { JSON_HEADERS, errorCheck } from './utils';
 import type { WalineComment, WalineCommentData } from '../typings';
 
 export interface FetchCommentOptions {
+  /**
+   * Waline 服务端地址
+   *
+   * Waline serverURL
+   */
   serverURL: string;
+  /**
+   * 待获取评论列hi奥德路径
+   *
+   * Path of comment list
+   */
   path: string;
   page: number;
   pageSize: number;
