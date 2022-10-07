@@ -17,6 +17,12 @@ Waline provides a series of emoji presets that can be used out of box. You can a
   https://unpkg.com/@waline/emojis@1.1.0/alus
   ```
 
+- Bmoji
+
+  ```http
+  https://unpkg.com/@waline/emojis@1.1.0/bmoji
+  ```
+
 - Bilibili
 
   ```http
@@ -213,7 +219,7 @@ We recommend you to upload images to a GitHub repo and add a tag after each modi
 
 ::: tip
 
-The official presets are using the `v1.0.0` version of [walinejs/emoji](https://github.com/walinejs/emoji).
+The official presets are using the `v1.1.0` version of [walinejs/emojis](https://github.com/walinejs/emojis).
 
 :::
 
