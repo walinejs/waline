@@ -11,6 +11,10 @@ You need to configure the `LEVELS` variable on the server to enable this functio
 
 You can customize these level labels via the locales option, see [Multilingual](./i18n.md#locale-option)
 
-## custom tags
+## Exclusive Label
 
 You can customize labels for users through the management side.
+
+![](../../../assets/label-admin-en.jpg)
+
+As a login user, you can also update your exclusive label at profile page.
