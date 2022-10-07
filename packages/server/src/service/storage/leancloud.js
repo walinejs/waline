@@ -260,6 +260,41 @@ module.exports = class extends Base {
       options.group.join('_'),
       where
     );
+
+    if (!where._complex) {
+      if (cacheData.length) {
+        return cacheData;
+      }
+
+      const counts = await this.select(where, { field: options.group });
+      const countsMap = {};
+
+      for (let i = 0; i < counts.length; i++) {
+        const key = options.group
+          .map((item) => counts[i][item] || undefined)
+          .join('_');
+
+        if (!countsMap[key]) {
+          countsMap[key] = {};
+
+          for (let j = 0; j < options.group.length; j++) {
+            const field = options.group[j];
+
+            countsMap[key][field] = counts[i][field];
+          }
+          countsMap[key].count = 0;
+        }
+        countsMap[key].count += 1;
+      }
+
+      const ret = Object.values(countsMap);
+
+      // cache data
+      await this._setCmtGroupByMailUserIdCache(options.group.join('_'), ret);
+
+      return ret;
+    }
+
     const cacheDataMap = {};
 
     for (let i = 0; i < cacheData.length; i++) {
