@@ -114,7 +114,7 @@ importers:
       file-loader: 6.2.0
       html-webpack-plugin: 5.5.0
       i18next: 21.9.2
-      i18next-browser-languagedetector: 6.1.5
+      i18next-browser-languagedetector: 6.1.8
       md5: 2.3.0
       qrcode.react: 3.1.0
       react: 18.2.0
@@ -147,7 +147,7 @@ importers:
       file-loader: 6.2.0_webpack@5.74.0
       html-webpack-plugin: 5.5.0_webpack@5.74.0
       i18next: 21.9.2
-      i18next-browser-languagedetector: 6.1.5
+      i18next-browser-languagedetector: 6.1.8
       md5: 2.3.0
       qrcode.react: 3.1.0_react@18.2.0
       react: 18.2.0
@@ -8635,8 +8635,8 @@ packages:
     hasBin: true
     dev: true
 
-  /i18next-browser-languagedetector/6.1.5:
-    resolution: {integrity: sha512-11t7b39oKeZe4uyMxLSPnfw28BCPNLZgUk7zyufex0zKXZ+Bv+JnmJgoB+IfQLZwDt1d71PM8vwBX1NCgliY3g==}
+  /i18next-browser-languagedetector/6.1.8:
+    resolution: {integrity: sha512-Svm+MduCElO0Meqpj1kJAriTC6OhI41VhlT/A0UPjGoPZBhAHIaGE5EfsHlTpgdH09UVX7rcc72pSDDBeKSQQA==}
     dependencies:
       '@babel/runtime': 7.19.0
     dev: true
