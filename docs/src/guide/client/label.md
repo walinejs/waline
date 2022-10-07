@@ -1,6 +1,6 @@
 ---
 title: 用户标签
-icon: tag
+icon: label
 ---
 
 Waline 支持你为登录用户，根据其互动情况设置等级标签和自定义标签。

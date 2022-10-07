@@ -1,6 +1,6 @@
 ---
 title: User label
-icon: tag
+icon: label
 ---
 
 Waline allows you to set level labels based on interactions and custom labels for logged-in users.
