@@ -41,6 +41,8 @@ Waline 内置了图像上传支持，默认将图片转为 Base64 内嵌，你�
 
 Waline 支持表情包搜索功能，默认使用 <https://giphy.com>。你也可以[自定义自己的表情包服务](./search.md)。
 
+Waline 允许你为用户设置互动等级标签和自定义标签，详见 [用户标签](./label.md)。
+
 ## 自定义样式
 
 Waline 带来了内置的暗黑模式支持，同时为了方便用户对 Waline 样式的调整，Waline 提供了很多可配置的 CSS 变量 (CSS Variables)。
