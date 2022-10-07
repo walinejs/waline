@@ -41,6 +41,8 @@ Waline has built-in image upload support, coverting image to Base64 , you can cu
 
 Waline supports emoji search feature and uses <https://giphy.com> by default. You can also [customize your own emoji service](./search.md).
 
+Waline allows you to set interaction level labels and custom labels for users, see [User Label](./label.md) for details.
+
 ## Style Customization
 
 To let users adjust the style of Waline, Waline provides some configurable CSS variables. Waline also brings a built-in Darkmode Support, see [Custom Style](./style.md) for details.
