@@ -40,6 +40,6 @@ export const getRecentComment = ({
     signal,
     headers,
   })
-    .then((resp) => resp.json() as Promise<WalineComment[]>)
+    .then((resp) => <Promise<WalineComment[]>>resp.json())
     .then((data) => errorCheck(data, 'recent comment'));
 };

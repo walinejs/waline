@@ -198,7 +198,7 @@ export const getTenorV1SearchOptions = (
         'Content-Type': 'application/json',
       },
     })
-      .then((resp) => resp.json() as Promise<FetchGifResponse>)
+      .then((resp) => <Promise<FetchGifResponse>>resp.json())
       .catch(() => ({ next: pos || '', results: [] }));
   };
 

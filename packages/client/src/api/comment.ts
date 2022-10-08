@@ -160,7 +160,7 @@ export const deleteComment = ({
     headers: {
       Authorization: `Bearer ${token}`,
     },
-  }).then((resp) => resp.json() as Promise<void>);
+  }).then((resp) => <Promise<void>>resp.json());
 
 export interface LikeCommentOptions extends BaseAPIOptions {
   /**

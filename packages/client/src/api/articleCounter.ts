@@ -24,25 +24,26 @@ export interface GetArticleCounterOptions extends BaseAPIOptions {
   signal?: AbortSignal;
 }
 
+export type GetArticleCounterResponse =
+  | Record<string, number>[]
+  | Record<string, number>
+  | number[]
+  | number;
+
 export const getArticleCounter = ({
   serverURL,
   lang,
   paths,
   type,
   signal,
-}: GetArticleCounterOptions): Promise<
-  Record<string, number>[] | Record<string, number> | number[] | number
-> =>
+}: GetArticleCounterOptions): Promise<GetArticleCounterResponse> =>
   fetch(
     `${serverURL}/article?path=${encodeURIComponent(
       paths.join(',')
     )}&type=${encodeURIComponent(type.join(','))}&lang=${lang}`,
     { signal }
   )
-    .then(
-      (resp) =>
-        resp.json() as Promise<Record<string, number>[] | number[] | number>
-    )
+    .then((resp) => <Promise<GetArticleCounterResponse>>resp.json())
     .then((data) => errorCheck(data, 'article count'));
 
 export interface UpdateArticleCounterOptions extends BaseAPIOptions {
@@ -82,5 +83,5 @@ export const updateArticleCounter = ({
     headers: JSON_HEADERS,
     body: JSON.stringify({ path, type, action }),
   })
-    .then((resp) => resp.json() as Promise<number>)
+    .then((resp) => <Promise<number>>resp.json())
     .then((data) => errorCheck(data, 'article count'));
