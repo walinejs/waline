@@ -1,4 +1,4 @@
-import { fetchRecentComment } from '../api';
+import { getRecentComment } from '../api';
 import { useUserInfo } from '../composables';
 import { getRoot } from '../utils';
 
@@ -62,7 +62,7 @@ export const RecentComments = ({
   const root = getRoot(el);
   const controller = new AbortController();
 
-  return fetchRecentComment({
+  return getRecentComment({
     serverURL,
     count,
     lang,

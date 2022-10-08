@@ -1,26 +1,69 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-
-export interface LoginOptions {
-  lang: string;
-  serverURL: string;
-}
+import type { BaseAPIOptions } from './utils';
 
 export interface UserInfo {
+  /**
+   * 显示姓名
+   *
+   * User name displayed
+   */
   // eslint-disable-next-line @typescript-eslint/naming-convention
   display_name: string;
+
+  /**
+   * 用户电子邮件地址
+   *
+   * User email
+   */
   email: string;
+
+  /**
+   * 用户网站地址
+   *
+   * User website
+   */
   url: string;
+
+  /**
+   * 用户令牌
+   *
+   * User token
+   */
   token: string;
+
+  /**
+   * 用户头像
+   *
+   * User avatar
+   */
   avatar: string;
+
+  /**
+   * 用户邮箱 MD5
+   *
+   * MD5 of User email
+   */
   mailMd5: string;
+
+  /**
+   * 用户对象 ID
+   *
+   * User object ID
+   */
   objectId: string | number;
+
+  /**
+   * 用户身份
+   *
+   * User role
+   */
   type: 'administrator' | 'guest';
 }
 
 export const login = ({
   lang,
   serverURL,
-}: LoginOptions): Promise<UserInfo & { remember: boolean }> => {
+}: BaseAPIOptions): Promise<UserInfo & { remember: boolean }> => {
   const width = 450;
   const height = 450;
   const left = (window.innerWidth - width) / 2;

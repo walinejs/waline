@@ -1,11 +1,21 @@
-import { WalineComment } from '../typings';
 import { errorCheck } from './utils';
+import type { BaseAPIOptions } from './utils';
+import type { WalineComment } from '../typings';
 
-export interface FetchUserListOptions {
-  serverURL: string;
+export interface GetUserListOptions extends BaseAPIOptions {
+  /**
+   * 每页个数
+   *
+   * Number per page
+   */
   pageSize: number;
-  signal: AbortSignal;
-  lang: string;
+
+  /**
+   * 取消请求的信号
+   *
+   * AbortSignal to cancel request
+   */
+  signal?: AbortSignal;
 }
 
 export interface WalineUser
@@ -13,23 +23,21 @@ export interface WalineUser
   count: number;
 }
 
-export const fetchUserList = ({
+export interface GetUserListResponse {
+  errno: number;
+  message: string;
+  data: WalineUser[];
+}
+
+export const getUserList = ({
   serverURL,
   signal,
   pageSize,
   lang,
-}: FetchUserListOptions): Promise<WalineUser[]> => {
-  return fetch(`${serverURL}/user?pageSize=${pageSize}&lang=${lang}`, {
+}: GetUserListOptions): Promise<WalineUser[]> =>
+  fetch(`${serverURL}/user?pageSize=${pageSize}&lang=${lang}`, {
     signal,
   })
-    .then(
-      (resp) =>
-        resp.json() as Promise<{
-          errno: number;
-          message: string;
-          data: WalineUser[];
-        }>
-    )
+    .then((resp) => resp.json() as Promise<GetUserListResponse>)
     .then((resp) => errorCheck(resp, 'user list'))
     .then((resp) => resp.data);
-};
