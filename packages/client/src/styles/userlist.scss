@@ -1,22 +1,26 @@
-:root {
-  --waline-rank-gold-bgcolor: #fa3939;
-  --waline-rank-silver-bgcolor: #fb811c;
-  --waline-rank-copper-bgcolor: #feb207;
-}
-
 .wl-user-list {
   padding: 0;
   list-style: none;
 
-  > li + li {
-    margin-top: 10px;
-  }
+  .wl-user-item {
+    margin: 10px 0;
 
-  > li,
-  > li > a {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
+    &:nth-child(1) .wl-user-badge {
+      background: var(--waline-rank-gold-bgcolor, #fa3939);
+      color: var(--waline-white);
+      font-weight: bold;
+    }
+
+    &:nth-child(2) .wl-user-badge {
+      background: var(--waline-rank-silver-bgcolor, #fb811c);
+      color: var(--waline-white);
+      font-weight: bold;
+    }
+
+    &:nth-child(3) .wl-user-badge {
+      background: var(--waline-rank-copper-bgcolor, #feb207);
+      color: var(--waline-white);
+    }
   }
 
   a,
@@ -28,89 +32,126 @@
 
   .wl-user-avatar {
     position: relative;
+
+    display: inline-block;
+
+    overflow: hidden;
+
+    margin-right: 10px;
+    border-radius: 4px;
+
     line-height: 0;
 
-    > i {
-      position: absolute;
-      right: 0;
-      bottom: 0;
-
-      min-width: 1.5em;
-      height: 1.5em;
-      border-radius: 2px;
-
-      background: var(--waline-info-bgcolor);
-      color: var(--waline-info-color);
-
-      font-style: normal;
-      font-size: 10px;
-      line-height: 1.5em;
-      text-align: center;
+    > img {
+      width: var(--waline-user-avatar-size, 48px);
+      height: var(--waline-user-avatar-size, 48px);
     }
   }
 
-  img {
-    width: 48px;
-    height: 48px;
-    border-radius: 2px;
-  }
+  .wl-user-badge {
+    position: absolute;
+    right: 0;
+    bottom: 0;
 
-  .wl-user-name {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    align-items: center;
-  }
+    min-width: 0.7em;
+    height: 1.5em;
+    padding: 0 0.4em;
+    border-radius: 4px;
 
-  .wl-user-tag {
-    width: auto;
-    padding-bottom: 0;
-    border-bottom: none;
-  }
+    background: var(--waline-info-bgcolor);
+    color: var(--waline-info-color);
 
-  > li:nth-child(1) i {
-    background: var(--waline-rank-gold-bgcolor);
-    color: var(--waline-white);
     font-weight: bold;
+    font-size: 10px;
+    line-height: 1.5em;
+    text-align: center;
   }
 
-  > li:nth-child(2) i {
-    background: var(--waline-rank-silver-bgcolor);
-    color: var(--waline-white);
-    font-weight: bold;
+  .wl-user-meta {
+    display: inline-block;
+    vertical-align: top;
   }
 
-  > li:nth-child(3) i {
-    background: var(--waline-rank-copper-bgcolor);
-    color: var(--waline-white);
-    font-weight: bold;
+  .wl-badge {
+    display: inline-block;
+    vertical-align: text-top;
+
+    margin-left: 0.5em;
+    padding: 0 0.3em;
+    border: 1px solid var(--waline-badge-color);
+    border-radius: 4px;
+
+    color: var(--waline-badge-color);
+
+    font-size: var(--waline-badge-font-size);
   }
 }
 
 .wl-user-wall {
-  display: flex;
-  flex-direction: row;
   padding: 0;
   list-style: none;
 
-  > li {
-    overflow: hidden;
-    width: 48px;
-    height: 48px;
+  .wl-user-item {
+    position: relative;
+    display: inline-block;
+    transition: transform ease-in-out 0.2s;
+
+    &::before,
+    &::after {
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      z-index: 10;
+
+      opacity: 0;
+      pointer-events: none;
+
+      transition: all 0.18s ease-out 0.18s;
+      transform: translate(-50%, 4px);
+      transform-origin: top;
+    }
+
+    &::before {
+      content: '';
+
+      width: 0;
+      height: 0;
+      border: 5px solid transparent;
+      border-top-color: rgb(16 16 16 / 95%);
+    }
+
+    &::after {
+      content: attr(aria-label);
+
+      margin-bottom: 10px;
+      padding: 0.5em 1em;
+      border-radius: 2px;
+
+      background: rgb(16 16 16 / 95%);
+      color: #fff;
+
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    &:hover {
+      transform: scale(1.1);
+
+      &::before,
+      &::after {
+        opacity: 1;
+        pointer-events: none;
+        transform: translate(-50%, 0);
+      }
+    }
+
+    img {
+      width: var(--waline-user-avatar-size, 48px);
+      height: var(--waline-user-avatar-size, 48px);
+    }
   }
 
-  > li:hover img {
-    transform: scale(1.25);
-  }
-
-  img {
-    width: 48px;
-    height: 48px;
-    border-radius: 0;
-    transition: transform ease-in-out 400ms;
-  }
-
-  .wl-user-avatar > i,
+  .wl-user-badge,
   .wl-user-meta {
     display: none;
   }

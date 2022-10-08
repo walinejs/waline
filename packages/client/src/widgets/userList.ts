@@ -101,23 +101,22 @@ export const UserList = ({
     root.innerHTML = `<ul class="wl-user-${mode}">${users
       .map((user, index) =>
         [
-          '<li class="wl-user-item">',
+          `<li class="wl-user-item" aria-label="${user.nick}">`,
           user.link && `<a href="${user.link}" target="_blank">`,
           '<div class="wl-user-avatar">',
           `<img src="${user.avatar}" alt="${user.nick}">`,
-          `<i>${index + 1}</i>`,
+          `<span class="wl-user-badge">${index + 1}</span>`,
           '</div>',
           '<div class="wl-user-meta">',
-          `<div class="wl-user-name"><div>${user.nick}</div>`,
-          '<div class="wl-user-tag wl-card">',
+          '<div class="wl-user-name">',
+          user.nick,
           user.level &&
             `<span class="wl-badge">${
               locale ? locale[`level${user.level}`] : `Level ${user.level}`
             }</span>`,
           user.label && `<span class="wl-badge">${user.label}</span>`,
           '</div>',
-          '</div>',
-          user.link && `<span class="wl-user-meta">${user.link}</span>`,
+          user.link && user.link,
           '</div>',
           user.link && '</a>',
           '</li>',
