@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Waline comment test</title>
+  </head>
+  <body>
+    评论数: <span id="/" class="waline-comment-count"></span>
+    <script type="module">
+      import { commentCount } from '../src/entrys/comment.ts';
+
+      commentCount({
+        serverURL: 'https://walinejs.comment.lithub.cc',
+        path: '/',
+      });
+    </script>
+  </body>
+</html>

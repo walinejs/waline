@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../dist/waline.js"></script>
+    <link rel="stylesheet" href="../dist/waline.css" />
+    <title>Waline widget test</title>
+  </head>
+  <body>
+    <h2>Recent Comments</h2>
+    <div id="recent-comment" />
+
+    <h2>User List</h2>
+    <div id="user-list" />
+    <h2>User Wall</h2>
+    <div id="user-wall" />
+
+    <script>
+      Waline.RecentComments({
+        el: '#recent-comment',
+        serverURL: 'https://walinejs.comment.lithub.cc',
+        count: 10,
+      });
+
+      Waline.UserList({
+        el: '#user-list',
+        serverURL: 'https://walinejs.comment.lithub.cc',
+        count: 10,
+      });
+
+      Waline.UserList({
+        el: '#user-wall',
+        serverURL: 'https://walinejs.comment.lithub.cc',
+        count: 50,
+        mode: 'wall',
+      });
+    </script>
+  </body>
+</html>

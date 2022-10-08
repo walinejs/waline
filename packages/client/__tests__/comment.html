@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Waline commentview test</title>
+    <script src="../dist/commentview.js"></script>
+  </head>
+  <body>
+    评论数: <span id="/" class="waline-comment-count"></span>
+    <script>
+      Waline.commentCount({
+        serverURL: 'https://walinejs.comment.lithub.cc',
+        path: '/',
+      });
+    </script>
+  </body>
+</html>

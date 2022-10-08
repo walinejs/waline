@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Waline widget test</title>
+  </head>
+  <body>
+    <h2>Recent Comments</h2>
+    <div id="recent-comment"></div>
+
+    <h2>User List</h2>
+    <div id="user-list"></div>
+    <h2>User Wall</h2>
+    <div id="user-wall"></div>
+
+    <script type="module">
+      import { RecentComments, UserList } from '../src/entrys/full.ts';
+      import '../src/styles/index.scss';
+
+      RecentComments({
+        el: '#recent-comment',
+        serverURL: 'https://walinejs.comment.lithub.cc',
+        count: 10,
+      });
+
+      UserList({
+        el: '#user-list',
+        serverURL: 'https://walinejs.comment.lithub.cc',
+        count: 10,
+      });
+
+      UserList({
+        el: '#user-wall',
+        serverURL: 'https://walinejs.comment.lithub.cc',
+        count: 50,
+        mode: 'wall',
+      });
+    </script>
+  </body>
+</html>
