@@ -16,7 +16,7 @@
   "author": "lizheming <i@imnerd.org>",
   "dependencies": {
     "@cloudbase/node-sdk": "2.9.1",
-    "@koa/cors": "3.4.2",
+    "@koa/cors": "3.4.3",
     "akismet": "2.0.7",
     "deta": "1.1.0",
     "dompurify": "2.4.0",
