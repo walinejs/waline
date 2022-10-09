@@ -1,6 +1,7 @@
 import { docsearchPlugin } from '@vuepress/plugin-docsearch';
 import { path } from '@vuepress/utils';
 import { defineUserConfig } from 'vuepress';
+import { redirectPlugin } from 'vuepress-plugin-redirect';
 import theme from './theme';
 
 export default defineUserConfig({
@@ -86,6 +87,7 @@ export default defineUserConfig({
         },
       },
     }),
+    redirectPlugin(),
   ],
 
   extendsBundlerOptions: (config, app) => {
