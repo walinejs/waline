@@ -24,13 +24,13 @@ The data format returned by the component should be `Promise<{ comment: WalineCo
 
 ```html
 <div id="waline-recent"></div>
-<script>
-  window.addEventListener('load', () => {
-    Waline.RecentComments({
-      el: '#waline-recent',
-      serverURL: 'http://waline.vercel.app',
-      count: 10,
-    });
+<script type="module">
+  import { RecentComments } from 'https://cdn.jsdelivr.net/npm/waline/dist/waline.mjs';
+
+  RecentComments({
+    el: '#waline-recent',
+    serverURL: 'http://waline.vercel.app',
+    count: 10,
   });
 </script>
 ```
@@ -49,16 +49,16 @@ Example:
 
 ```html
 <div id="waline-recent"></div>
-<script>
-  window.addEventListener('load', () => {
-    Waline.RecentComments({
-      serverURL: 'http://waline.vercel.app',
-      count: 10,
-    }).then(({ comments }) => {
-      document.getElementById('waline-recent').innerHTML = comments.map(
-        (comment) => `${comment.nick}: ${comment.comment}`
-      );
-    });
+<script type="module">
+  import { RecentComments } from 'https://cdn.jsdelivr.net/npm/waline/dist/waline.mjs';
+
+  RecentComments({
+    serverURL: 'http://waline.vercel.app',
+    count: 10,
+  }).then(({ comments }) => {
+    document.getElementById('waline-recent').innerHTML = comments.map(
+      (comment) => `${comment.nick}: ${comment.comment}`
+    );
   });
 </script>
 ```

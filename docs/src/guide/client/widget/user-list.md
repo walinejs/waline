@@ -29,13 +29,13 @@ Waline 通过 `UserList` 支持用户排行榜和读者墙的展示，方便在�
 
 ```html
 <div id="waline-users"></div>
-<script>
-  window.addEventListener('load', () => {
-    Waline.UserList({
-      el: '#waline-users',
-      serverURL: 'http://waline.vercel.app',
-      count: 10,
-    });
+<script type="module">
+  import { UserList } from 'https://cdn.jsdelivr.net/npm/waline/dist/waline.mjs';
+
+  UserList({
+    el: '#waline-users',
+    serverURL: 'http://waline.vercel.app',
+    count: 10,
   });
 </script>
 ```
@@ -44,14 +44,14 @@ Waline 通过 `UserList` 支持用户排行榜和读者墙的展示，方便在�
 
 ```html
 <div id="waline-users"></div>
-<script>
-  window.addEventListener('load', () => {
-    Waline.UserList({
-      el: '#waline-users',
-      serverURL: 'http://waline.vercel.app',
-      count: 50,
-      mode: 'wall',
-    });
+<script type="module">
+  import { UserList } from 'https://cdn.jsdelivr.net/npm/waline/dist/waline.mjs';
+
+  UserList({
+    el: '#waline-users',
+    serverURL: 'http://waline.vercel.app',
+    count: 50,
+    mode: 'wall',
   });
 </script>
 ```
@@ -64,16 +64,15 @@ Waline 通过 `UserList` 支持用户排行榜和读者墙的展示，方便在�
 
 ```html
 <div id="waline-users"></div>
-<script>
-  window.addEventListener('load', () => {
-    Waline.UserList({
-      serverURL: 'http://waline.vercel.app',
-      count: 10,
-    }).then(({ users }) => {
+<script type="module">
+  import { UserList } from 'https://cdn.jsdelivr.net/npm/waline/dist/waline.mjs';
+
+  UserList({ serverURL: 'http://waline.vercel.app', count: 10 }).then(
+    ({ users }) => {
       document.getElementById('waline-users').innerHTML = users.map(
         (user) => `<a href="${user.link}">${user.nick}</a>`
       );
-    });
-  });
+    }
+  );
 </script>
 ```
