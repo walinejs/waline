@@ -4,12 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Waline pageview test</title>
-    <script src="../dist/pageview.js"></script>
   </head>
   <body>
     阅读量: <span id="/" class="waline-pageview-count"></span>
-    <script>
-      Waline.pageviewCount({
+    <script type="module">
+      import { pageviewCount } from '../dist/pageview.mjs';
+
+      pageviewCount({
         serverURL: 'https://walinejs.comment.lithub.cc',
         path: '/',
       });

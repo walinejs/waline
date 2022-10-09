@@ -3,25 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Waline KaTeX demo</title>
-    <script src="../dist/waline.js"></script>
+    <title>Waline Katex 案例</title>
     <link rel="stylesheet" href="../dist/waline.css" />
-    <script src="https://unpkg.com/katex@v0.15"></script>
     <link
       rel="stylesheet"
-      href="https://unpkg.com/katex@v0.15/dist/katex.min.css"
+      href="https://unpkg.com/katex@v0.16/dist/katex.min.css"
     />
   </head>
   <body>
     <div id="waline" style="max-width: 800px; margin: 0 auto"></div>
-    <script>
-      const waline = Waline.init({
+    <script type="module">
+      import { init } from '../dist/waline.mjs';
+      import katex from 'https://unpkg.com/katex@0.16/dist/katex.mjs';
+
+      init({
         el: '#waline',
-        serverURL: 'https://walinejs.comment.lithub.cc',
+        serverURL: 'https://waline.vercel.app',
         path: '/',
         lang: 'en-US',
         texRenderer: (blockmode, tex) =>
-          window.katex.renderToString(tex, {
+          katex.renderToString(tex, {
             displayMode: blockmode,
             throwOnError: false,
           }),

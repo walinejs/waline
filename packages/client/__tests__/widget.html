@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="../dist/waline.js"></script>
     <link rel="stylesheet" href="../dist/waline.css" />
     <title>Waline widget test</title>
   </head>
@@ -17,19 +16,21 @@
     <div id="user-wall" />
 
     <script>
-      Waline.RecentComments({
+      import { RecentComments, UserList } from '../dist/waline.mjs';
+
+      RecentComments({
         el: '#recent-comment',
         serverURL: 'https://walinejs.comment.lithub.cc',
         count: 10,
       });
 
-      Waline.UserList({
+      UserList({
         el: '#user-list',
         serverURL: 'https://walinejs.comment.lithub.cc',
         count: 10,
       });
 
-      Waline.UserList({
+      UserList({
         el: '#user-wall',
         serverURL: 'https://walinejs.comment.lithub.cc',
         count: 50,
