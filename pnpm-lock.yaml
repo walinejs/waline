@@ -41,7 +41,7 @@ importers:
       typescript: 4.8.4
       vercel: 28.4.7
       vite: 3.1.4
-      vitest: 0.23.4
+      vitest: 0.24.3
     devDependencies:
       '@babel/core': 7.19.3
       '@babel/eslint-parser': 7.19.1_ogeofmzlraie6c2b5yqacorv6u
@@ -77,7 +77,7 @@ importers:
       typescript: 4.8.4
       vercel: 28.4.7
       vite: 3.1.4_sass@1.55.0
-      vitest: 0.23.4_sass@1.55.0
+      vitest: 0.24.3_sass@1.55.0
 
   docs:
     specifiers:
@@ -14307,8 +14307,8 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitest/0.23.4_sass@1.55.0:
-    resolution: {integrity: sha512-iukBNWqQAv8EKDBUNntspLp9SfpaVFbmzmM0sNcnTxASQZMzRw3PsM6DMlsHiI+I6GeO5/sYDg3ecpC+SNFLrQ==}
+  /vitest/0.24.3_sass@1.55.0:
+    resolution: {integrity: sha512-aM0auuPPgMSstWvr851hB74g/LKaKBzSxcG3da7ejfZbx08Y21JpZmbmDYrMTCGhVZKqTGwzcnLMwyfz2WzkhQ==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
     peerDependencies:
