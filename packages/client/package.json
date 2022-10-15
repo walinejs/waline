@@ -99,7 +99,7 @@
     "dev": "vite -c config/vite.config.js",
     "lint": "eslint --ext .ts,.vue .",
     "prepublishOnly": "pnpm clean && pnpm build",
-    "rollup": "rollup -c ./config/rollup.config.js",
+    "rollup": "rollup -c ./config/rollup.config.mjs",
     "style": "pnpm style:main && pnpm style:meta",
     "style:main": "sass ./src/styles/index.scss ./dist/waline.css --style=compressed",
     "style:meta": "sass ./src/styles/meta.scss ./dist/waline-meta.css --style=compressed"

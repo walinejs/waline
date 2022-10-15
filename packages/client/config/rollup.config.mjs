@@ -5,9 +5,10 @@ import ts from 'rollup-plugin-ts';
 import dts from 'rollup-plugin-dts';
 import { terser } from 'rollup-plugin-terser';
 import replace from '@rollup/plugin-replace';
-import { version } from '../package.json';
+import pkg from '../package.json' assert { type: "json" };
 import vue from '@vitejs/plugin-vue';
 
+const version = pkg.version;
 const commonOptions = {
   plugins: [
     vue({
