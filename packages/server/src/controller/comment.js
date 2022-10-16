@@ -57,6 +57,11 @@ async function formatCmt(
   }
   comment.comment = markdownParser(comment.comment);
   comment.like = Number(comment.like) || 0;
+  
+  // compat sql storage return number flag to string
+  if (typeof comment.sticky === 'string') {
+    comment.sticky = Boolean(Number(comment.sticky));
+  }
 
   return comment;
 }
