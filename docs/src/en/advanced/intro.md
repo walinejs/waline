@@ -24,7 +24,7 @@ A simple comment system with backend support fork from [Valine](https://valine.j
 | ---------------------------------------- | ----------------------------------- | ------------------------------------------------- |
 | **Client**                               | **Server**                          | **Storage**                                       |
 | [@waline/client](https://waline.js.org)  | [Vercel](https://vercel.com)        | [LeanCloud](https://leancloud.app)                |
-| [MiniValine](https://minivaline.js.org/) | [Deta](https://deta.sh)             | [CloudBase](https://clodbase.net)                 |
+| [MiniValine](https://minivaline.js.org/) | [Deta](https://deta.sh)             | [CloudBase](https://cloudbase.net)                |
 |                                          | [CloudBase](https://cloudbase.net/) | [MongoDB](https://mongodb.com)                    |
 |                                          | [Railway](https://railway.app)      | MySQL                                             |
 |                                          | [Render](https://render.com)        | SQLite                                            |
