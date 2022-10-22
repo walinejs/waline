@@ -85,8 +85,8 @@ module.exports = class extends think.Service {
       },
     };
 
-    title = nunjucks.renderString(title, data);
-    content = nunjucks.renderString(content, data);
+    title = this.ctx.locale(title, data);
+    content = this.ctx.locale(content, data);
 
     const form = new FormData();
 
@@ -134,8 +134,8 @@ module.exports = class extends think.Service {
 【内容】：{{self.comment}} 
 <a href='{{site.postUrl}}'>查看详情</a>`;
 
-    title = nunjucks.renderString(title, data);
-    const desp = nunjucks.renderString(contentWechat, data);
+    title = this.ctx.locale(title, data);
+    const desp = this.ctx.locale(contentWechat, data);
 
     content = desp.replace(/\n/g, '<br/>');
 
@@ -214,7 +214,7 @@ module.exports = class extends think.Service {
 
     const form = new FormData();
 
-    form.append('msg', nunjucks.renderString(contentQQ, data));
+    form.append('msg', this.ctx.locale(contentQQ, data));
     form.append('qq', QQ_ID);
 
     return fetch(`https://qmsg.zendee.cn/send/${QMSG_KEY}`, {
@@ -283,7 +283,7 @@ module.exports = class extends think.Service {
 
     const form = new FormData();
 
-    form.append('text', nunjucks.renderString(contentTG, data));
+    form.append('text', this.ctx.locale(contentTG, data));
     form.append('chat_id', TG_CHAT_ID);
     form.append('parse_mode', 'MarkdownV2');
 
@@ -327,8 +327,8 @@ module.exports = class extends think.Service {
       },
     };
 
-    title = nunjucks.renderString(title, data);
-    content = nunjucks.renderString(content, data);
+    title = this.ctx.locale(title, data);
+    content = this.ctx.locale(content, data);
 
     const form = new FormData();
 
@@ -364,8 +364,8 @@ module.exports = class extends think.Service {
       },
     };
 
-    title = nunjucks.renderString(title, data);
-    content = nunjucks.renderString(
+    title = this.ctx.locale(title, data);
+    content = this.ctx.locale(
       think.config('DiscordTemplate') ||
         `💬 {{site.name|safe}} 有新评论啦 
     【评论者昵称】：{{self.nick}}
