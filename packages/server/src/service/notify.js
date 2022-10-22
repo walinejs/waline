@@ -2,6 +2,8 @@ const FormData = require('form-data');
 const nodemailer = require('nodemailer');
 const fetch = require('node-fetch');
 const nunjucks = require('nunjucks');
+const crypto = require('crypto');
+
 
 module.exports = class extends think.Service {
   constructor(ctx) {
@@ -377,6 +379,91 @@ module.exports = class extends think.Service {
       header: form.getHeaders(),
       body: form,
     }).then((resp) => resp.json());
+  }
+
+  async feishu({ title, content }, self, parent) {
+    const { FEISHU_WEBHOOK,FEISHU_SECRET, SITE_NAME, SITE_URL } = process.env;
+
+    if (!FEISHU_WEBHOOK) {
+      return false;
+    }
+
+    const data = {
+      self,
+      parent,
+      site: {
+        name: SITE_NAME,
+        url: SITE_URL,
+        postUrl: SITE_URL + self.url + '#' + self.objectId,
+      },
+    };
+
+    content = nunjucks.renderString(
+      think.config('FeishuTemplate') ||
+        `📮 {{site.name|safe}} 有新评论啦 
+    【评论者昵称】：{{self.nick}}
+    【评论者邮箱】：{{self.mail}} 
+    【内容】：{{self.comment}} 
+    【地址】：{{site.postUrl}}`,
+      data
+    );
+
+    const lines = content.split('\n');
+
+    const contents = lines.map((line =>{
+      return [
+        {
+          "tag": "text",
+          "text": line
+        },
+      ]
+    }))
+
+    const post = {
+      "zh_cn": {
+        "title": title,
+        "content": contents
+      }
+    }
+
+    await this.sendFeiShuNotification(post, FEISHU_WEBHOOK, FEISHU_SECRET)
+
+  }
+
+  async sendFeiShuNotification(post,feishuWebhook,feishuSecret) {
+    let signData = {};
+    const msg = {
+      msg_type: 'post',
+      content: {
+        post
+      }
+    }
+    const sign = (timestamp, secret) => {
+      const signStr = timestamp + '\n' + secret;
+      return crypto.createHmac('sha256', signStr).update('').digest('base64')
+    }
+
+    if (feishuSecret) {
+      const timestamp = parseInt(+new Date() / 1000);
+      signData = { timestamp: timestamp, sign: sign(feishuSecret, timestamp) };
+    }
+
+    fetch(feishuWebhook, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        ...signData,
+        ...msg
+      }),
+    }).then(res => {
+      if (res.status === 200) {
+        if (res.data.StatusCode !== 0) {
+          console.log('FeiShu Notification Failed');
+        }
+      }
+    });
   }
 
   async run(comment, parent, disableAuthorNotify = false) {

@@ -38,6 +38,7 @@ const {
   TG_TEMPLATE,
   WX_TEMPLATE,
   DISCORD_TEMPLATE,
+  FEISHU_TEMPLATE,
 
   LEVELS,
 } = process.env;
@@ -124,4 +125,5 @@ module.exports = {
   TGTemplate: TG_TEMPLATE,
   WXTemplate: WX_TEMPLATE,
   DiscordTemplate: DISCORD_TEMPLATE,
+  FeishuTemplate: FEISHU_TEMPLATE,
 };
