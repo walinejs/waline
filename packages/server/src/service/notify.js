@@ -496,9 +496,11 @@ module.exports = class extends think.Service {
       const telegram = await this.telegram(comment, parent);
       const pushplus = await this.pushplus({ title, content }, comment, parent);
       const discord = await this.discord({ title, content }, comment, parent);
+      const feishu = await this.feishu({ title, content }, comment, parent);
+
 
       if (
-        [wechat, qq, telegram, qywxAmWechat, pushplus, discord].every(
+        [wechat, qq, telegram, qywxAmWechat, pushplus, discord,feishu].every(
           think.isEmpty
         ) &&
         !isReplyAuthor
