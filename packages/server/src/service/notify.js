@@ -289,11 +289,18 @@ module.exports = class extends think.Service {
     form.append('chat_id', TG_CHAT_ID);
     form.append('parse_mode', 'MarkdownV2');
 
-    return fetch(`https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`, {
-      method: 'POST',
-      header: form.getHeaders(),
-      body: form,
-    }).then((resp) => resp.json());
+    const resp = await fetch(
+      `https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`,
+      {
+        method: 'POST',
+        header: form.getHeaders(),
+        body: form,
+      }
+    ).then((resp) => resp.json());
+
+    if (!resp.ok) {
+      throw new Error(resp.description);
+    }
   }
 
   async pushplus({ title, content }, self, parent) {
