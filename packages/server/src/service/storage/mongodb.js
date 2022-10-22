@@ -1,4 +1,4 @@
-const { ObjectId } = require('mongodb');
+const { ObjectID: ObjectId } = require('think-mongo/lib/model');
 const Base = require('./base');
 
 module.exports = class extends Base {
