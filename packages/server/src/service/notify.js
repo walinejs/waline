@@ -388,6 +388,8 @@ module.exports = class extends think.Service {
       return false;
     }
 
+    self.comment = self.comment.replace(/(<([^>]+)>)/gi, '');
+
     const data = {
       self,
       parent,
@@ -398,31 +400,24 @@ module.exports = class extends think.Service {
       },
     };
 
+
     content = nunjucks.renderString(
-      think.config('FeishuTemplate') ||
-        `📮 {{site.name|safe}} 有新评论啦 
-    【评论者昵称】：{{self.nick}}
-    【评论者邮箱】：{{self.mail}} 
-    【内容】：{{self.comment}} 
-    【地址】：{{site.postUrl}}`,
+      think.config('FeishuTemplate') || `【网站名称】：{{site.name|safe}} \n【评论者昵称】：{{self.nick}}\n【评论者邮箱】：{{self.mail}}\n【内容】：{{self.comment}}【地址】：{{site.postUrl}}`,
       data
     );
 
-    const lines = content.split('\n');
-
-    const contents = lines.map((line =>{
-      return [
-        {
-          "tag": "text",
-          "text": line
-        },
-      ]
-    }))
 
     const post = {
       "zh_cn": {
-        "title": title,
-        "content": contents
+        "title": title == 'MAIL_SUBJECT_ADMIN'? nunjucks.renderString(`📮 {{site.name|safe}} 有新评论啦 `, data):title,
+        "content": [
+          [
+            {
+              "tag": "text",
+              "text": content
+            }
+          ]
+        ]
       }
     }
 
@@ -445,7 +440,7 @@ module.exports = class extends think.Service {
 
     if (feishuSecret) {
       const timestamp = parseInt(+new Date() / 1000);
-      signData = { timestamp: timestamp, sign: sign(feishuSecret, timestamp) };
+      signData = { timestamp: timestamp, sign: sign(timestamp, feishuSecret) };
     }
 
     fetch(feishuWebhook, {
@@ -458,10 +453,10 @@ module.exports = class extends think.Service {
         ...msg
       }),
     }).then(res => {
-      if (res.status === 200) {
-        if (res.data.StatusCode !== 0) {
-          console.log('FeiShu Notification Failed');
-        }
+      if (res.status !== 200) {
+        console.log('FeiShu Notification Failed:'+JSON.stringify(res));
+      }else{
+        console.log('FeiShu Notification  res:'+JSON.stringify(res));
       }
     });
   }
