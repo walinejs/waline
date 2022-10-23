@@ -298,7 +298,7 @@ module.exports = class extends think.Service {
     ).then((resp) => resp.json());
 
     if (!resp.ok) {
-      throw new Error(resp.description);
+      console.log('Telegram Notification Failed:' + JSON.stringify(resp));
     }
   }
 
