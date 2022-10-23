@@ -96,6 +96,17 @@ We use Discord Webhook to send Discord notification. You need to set the followi
 - `SITE_NAME`: Your site name, it will be displayed in notification message.
 - `SITE_URL`: Your site url, it will be displayed in notification message.
 
+## Lark Notification
+
+We use Lark Webhook to send its group notifications. The following env variables are required.
+
+- `LARK_WEBHOOK`: Lark Group Bot [Webhook Usages](https://open.larksuite.com/document/ukTMukTMukTM/ucTM5YjL3ETO24yNxkjN?lang=en-US)
+- `LARK_SECRET`: As clarified by the doc from Lark, this secret is used to sign your request to avoid abuse（Optional).
+- `LARK_TEMPLATE`: Message template
+- `SITE_NAME`: Your site name which will be displayed in notification messages.
+- `SITE_URL`: Your site url which will be displayed in notification messages.
+
+
 ## Notification Template
 
 Waline supports configuring your customized notification templates for each platform separately to achieve stronger customization capabilities and i18n compatibility.

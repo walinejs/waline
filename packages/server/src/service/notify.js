@@ -2,6 +2,7 @@ const FormData = require('form-data');
 const nodemailer = require('nodemailer');
 const fetch = require('node-fetch');
 const nunjucks = require('nunjucks');
+const crypto = require('crypto');
 
 module.exports = class extends think.Service {
   constructor(ctx) {
@@ -386,6 +387,83 @@ module.exports = class extends think.Service {
     }).then((resp) => resp.json());
   }
 
+  async lark({ title, content }, self, parent) {
+    const { LARK_WEBHOOK, LARK_SECRET, SITE_NAME, SITE_URL } = process.env;
+
+    if (!LARK_WEBHOOK) {
+      return false;
+    }
+
+    self.comment = self.comment.replace(/(<([^>]+)>)/gi, '');
+
+    const data = {
+      self,
+      parent,
+      site: {
+        name: SITE_NAME,
+        url: SITE_URL,
+        postUrl: SITE_URL + self.url + '#' + self.objectId,
+      },
+    };
+
+    content = nunjucks.renderString(
+      think.config('LarkTemplate') ||
+        `【网站名称】：{{site.name|safe}} \n【评论者昵称】：{{self.nick}}\n【评论者邮箱】：{{self.mail}}\n【内容】：{{self.comment}}【地址】：{{site.postUrl}}`,
+      data
+    );
+
+    const post = {
+      en_us: {
+        title: this.ctx.locale(title, data),
+        content: [
+          [
+            {
+              tag: 'text',
+              text: content,
+            },
+          ],
+        ],
+      },
+    };
+
+    let signData = {};
+    const msg = {
+      msg_type: 'post',
+      content: {
+        post,
+      },
+    };
+
+    const sign = (timestamp, secret) => {
+      const signStr = timestamp + '\n' + secret;
+
+      return crypto.createHmac('sha256', signStr).update('').digest('base64');
+    };
+
+    if (LARK_SECRET) {
+      const timestamp = parseInt(+new Date() / 1000);
+
+      signData = { timestamp: timestamp, sign: sign(timestamp, LARK_SECRET) };
+    }
+
+    const resp = await fetch(LARK_WEBHOOK, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        ...signData,
+        ...msg,
+      }),
+    }).then((resp) => resp.json());
+
+    if (resp.status !== 200) {
+      console.log('Lark Notification Failed:' + JSON.stringify(resp));
+    }
+
+    console.log('FeiShu Notification Success:' + JSON.stringify(resp));
+  }
+
   async run(comment, parent, disableAuthorNotify = false) {
     const { AUTHOR_EMAIL, DISABLE_AUTHOR_NOTIFY } = process.env;
     const { mailSubject, mailTemplate, mailSubjectAdmin, mailTemplateAdmin } =
@@ -416,9 +494,10 @@ module.exports = class extends think.Service {
       const telegram = await this.telegram(comment, parent);
       const pushplus = await this.pushplus({ title, content }, comment, parent);
       const discord = await this.discord({ title, content }, comment, parent);
+      const lark = await this.lark({ title, content }, comment, parent);
 
       if (
-        [wechat, qq, telegram, qywxAmWechat, pushplus, discord].every(
+        [wechat, qq, telegram, qywxAmWechat, pushplus, discord, lark].every(
           think.isEmpty
         ) &&
         !isReplyAuthor
