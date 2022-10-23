@@ -4,7 +4,6 @@ const fetch = require('node-fetch');
 const nunjucks = require('nunjucks');
 const crypto = require('crypto');
 
-
 module.exports = class extends think.Service {
   constructor(ctx) {
     super(ctx);
@@ -388,10 +387,10 @@ module.exports = class extends think.Service {
     }).then((resp) => resp.json());
   }
 
-  async feishu({ title, content }, self, parent) {
-    const { FEISHU_WEBHOOK,FEISHU_SECRET, SITE_NAME, SITE_URL } = process.env;
+  async lark({ title, content }, self, parent) {
+    const { LARK_WEBHOOK, LARK_SECRET, SITE_NAME, SITE_URL } = process.env;
 
-    if (!FEISHU_WEBHOOK) {
+    if (!LARK_WEBHOOK) {
       return false;
     }
 
@@ -407,65 +406,62 @@ module.exports = class extends think.Service {
       },
     };
 
-
     content = nunjucks.renderString(
-      think.config('FeishuTemplate') || `【网站名称】：{{site.name|safe}} \n【评论者昵称】：{{self.nick}}\n【评论者邮箱】：{{self.mail}}\n【内容】：{{self.comment}}【地址】：{{site.postUrl}}`,
+      think.config('LarkTemplate') ||
+        `【网站名称】：{{site.name|safe}} \n【评论者昵称】：{{self.nick}}\n【评论者邮箱】：{{self.mail}}\n【内容】：{{self.comment}}【地址】：{{site.postUrl}}`,
       data
     );
 
-
     const post = {
-      "zh_cn": {
-        "title": title == 'MAIL_SUBJECT_ADMIN'? nunjucks.renderString(`📮 {{site.name|safe}} 有新评论啦 `, data):title,
-        "content": [
+      en_us: {
+        title: this.ctx.locale(title, data),
+        content: [
           [
             {
-              "tag": "text",
-              "text": content
-            }
-          ]
-        ]
-      }
-    }
+              tag: 'text',
+              text: content,
+            },
+          ],
+        ],
+      },
+    };
 
-    await this.sendFeiShuNotification(post, FEISHU_WEBHOOK, FEISHU_SECRET)
-
-  }
-
-  async sendFeiShuNotification(post,feishuWebhook,feishuSecret) {
     let signData = {};
     const msg = {
       msg_type: 'post',
       content: {
-        post
-      }
-    }
+        post,
+      },
+    };
+
     const sign = (timestamp, secret) => {
       const signStr = timestamp + '\n' + secret;
-      return crypto.createHmac('sha256', signStr).update('').digest('base64')
-    }
 
-    if (feishuSecret) {
+      return crypto.createHmac('sha256', signStr).update('').digest('base64');
+    };
+
+    if (LARK_SECRET) {
       const timestamp = parseInt(+new Date() / 1000);
-      signData = { timestamp: timestamp, sign: sign(timestamp, feishuSecret) };
+
+      signData = { timestamp: timestamp, sign: sign(timestamp, LARK_SECRET) };
     }
 
-    fetch(feishuWebhook, {
+    const resp = await fetch(LARK_WEBHOOK, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         ...signData,
-        ...msg
+        ...msg,
       }),
-    }).then(res => {
-      if (res.status !== 200) {
-        console.log('FeiShu Notification Failed:'+JSON.stringify(res));
-      }else{
-        console.log('FeiShu Notification  res:'+JSON.stringify(res));
-      }
-    });
+    }).then((resp) => resp.json());
+
+    if (resp.status !== 200) {
+      console.log('Lark Notification Failed:' + JSON.stringify(resp));
+    }
+
+    console.log('FeiShu Notification Success:' + JSON.stringify(resp));
   }
 
   async run(comment, parent, disableAuthorNotify = false) {
@@ -498,11 +494,10 @@ module.exports = class extends think.Service {
       const telegram = await this.telegram(comment, parent);
       const pushplus = await this.pushplus({ title, content }, comment, parent);
       const discord = await this.discord({ title, content }, comment, parent);
-      const feishu = await this.feishu({ title, content }, comment, parent);
-
+      const lark = await this.lark({ title, content }, comment, parent);
 
       if (
-        [wechat, qq, telegram, qywxAmWechat, pushplus, discord,feishu].every(
+        [wechat, qq, telegram, qywxAmWechat, pushplus, discord, lark].every(
           think.isEmpty
         ) &&
         !isReplyAuthor

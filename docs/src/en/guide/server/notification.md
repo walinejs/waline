@@ -96,13 +96,13 @@ We use Discord Webhook to send Discord notification. You need to set the followi
 - `SITE_NAME`: Your site name, it will be displayed in notification message.
 - `SITE_URL`: Your site url, it will be displayed in notification message.
 
-## Feishu/Lark Notification
+## Lark Notification
 
-We use Feishu/Lark Webhook to send its group notifications. The following env variables are required.
+We use Lark Webhook to send its group notifications. The following env variables are required.
 
-- `FEISHU_WEBHOOK`: Feishu Group Bot [Webhook Usages](https://open.feishu.cn/document/ukTMukTMukTM/ucTM5YjL3ETO24yNxkjN?lang=zh-CN#-537b966)
-- `FEISHU_SECRET`: As clarified by the doc from Feishu/Lark, this secret is used to sign your request to avoid abuse
-- `FEISHU_TEMPLATE`: Message template
+- `LARK_WEBHOOK`: Lark Group Bot [Webhook Usages](https://open.larksuite.com/document/ukTMukTMukTM/ucTM5YjL3ETO24yNxkjN?lang=en-US)
+- `LARK_SECRET`: As clarified by the doc from Lark, this secret is used to sign your request to avoid abuse（Optional).
+- `LARK_TEMPLATE`: Message template
 - `SITE_NAME`: Your site name which will be displayed in notification messages.
 - `SITE_URL`: Your site url which will be displayed in notification messages.
 
