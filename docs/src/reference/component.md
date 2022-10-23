@@ -21,7 +21,9 @@ Waline 的服务端地址。
 
 请保证每个 _文章页_ 路径的唯一性，否则可能会出现不同 _文章页_ 下加载相同评论列表的情况。
 
-例子: 如果你站点的 `/example/path/` 和 `/example/path` 对应同一个页面，你最好将其设置为 `window.location.pathname.replace(/\/$/,'')`。
+例子 1: 如果你站点的 `/example/path/` 和 `/example/path` 对应同一个页面，你最好将其设置为 `window.location.pathname.replace(/\/$/,'')`。
+例子 2: 如果你想在站点的 `/en/path/` 和 `/path` 加载同样的评论，你最好将其设置为 `window.location.pathname.substring(3)`。
+
 
 :::
 
