@@ -21,8 +21,8 @@ Article path id. Used to distinguish different _article pages_ to ensure loading
 
 Please ensure the uniqueness of each _article page_ path, otherwise the same comment list may be loaded .
 
-e.g. 1: If on your site `/example/path/` and `/example/path` is the same page, you should probably set `window.location.pathname.replace(/\/$/,'')`.
-e.g. 2: If you want `/en/path/` and `/path` have the same comments list，you'd better remove the beginning `/en` with `window.location.pathname.substring(3)`。
+- e.g. 1: If on your site `/example/path/` and `/example/path` is the same page, you should probably set `window.location.pathname.replace(/\/$/,'')`.
+- e.g. 2: If you store en docs at root, while serve other language docs at `/zh/`, `/ja/`, etc, you should probaly set `window.location.pathname.replace(/^\/(fr|jp|zh)\//, '/')`.
 
 :::
 
