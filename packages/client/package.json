@@ -135,7 +135,7 @@
     "@types/autosize": "4.0.1",
     "@types/marked": "4.0.7",
     "@types/node": "18.11.3",
-    "@vitejs/plugin-vue": "3.1.2",
+    "@vitejs/plugin-vue": "3.2.0",
     "recaptcha-v3": "1.10.0",
     "rimraf": "3.0.2",
     "rollup": "3.2.3",

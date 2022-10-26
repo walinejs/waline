@@ -183,7 +183,7 @@ importers:
       '@types/autosize': 4.0.1
       '@types/marked': 4.0.7
       '@types/node': 18.11.3
-      '@vitejs/plugin-vue': 3.1.2
+      '@vitejs/plugin-vue': 3.2.0
       '@vueuse/core': ^9.3.1
       autosize: ^5.0.1
       marked: ^4.1.1
@@ -212,7 +212,7 @@ importers:
       '@types/autosize': 4.0.1
       '@types/marked': 4.0.7
       '@types/node': 18.11.3
-      '@vitejs/plugin-vue': 3.1.2_vite@3.1.8+vue@3.2.41
+      '@vitejs/plugin-vue': 3.2.0_vite@3.1.8+vue@3.2.41
       recaptcha-v3: 1.10.0
       rimraf: 3.0.2
       rollup: 3.2.3
@@ -3320,8 +3320,8 @@ packages:
       ts-morph: 12.0.0
     dev: true
 
-  /@vitejs/plugin-vue/3.1.2_vite@3.1.8+vue@3.2.41:
-    resolution: {integrity: sha512-3zxKNlvA3oNaKDYX0NBclgxTQ1xaFdL7PzwF6zj9tGFziKwmBa3Q/6XcJQxudlT81WxDjEhHmevvIC4Orc1LhQ==}
+  /@vitejs/plugin-vue/3.2.0_vite@3.1.8+vue@3.2.41:
+    resolution: {integrity: sha512-E0tnaL4fr+qkdCNxJ+Xd0yM31UwMkQje76fsDVBBUCoGOUPexu2VDUYHL8P4CwV+zMvWw6nlRw19OnRKmYAJpw==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
       vite: ^3.0.0
@@ -3452,7 +3452,7 @@ packages:
   /@vuepress/bundler-vite/2.0.0-beta.53:
     resolution: {integrity: sha512-zkqkV+EnoTi7cTRi6xjb0SRg0GzRYwceJu80/6q7Bd+h+VktqhapcHAZ8QaIsq8OxCXbg3sms/A9kg3UxBnRqg==}
     dependencies:
-      '@vitejs/plugin-vue': 3.1.2_vite@3.1.8+vue@3.2.41
+      '@vitejs/plugin-vue': 3.2.0_vite@3.1.8+vue@3.2.41
       '@vuepress/client': 2.0.0-beta.53
       '@vuepress/core': 2.0.0-beta.53
       '@vuepress/shared': 2.0.0-beta.53
