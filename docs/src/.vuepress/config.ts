@@ -90,13 +90,5 @@ export default defineUserConfig({
     redirectPlugin(),
   ],
 
-  extendsBundlerOptions: (config, app) => {
-    config.viteOptions.ssr = config.viteOptions.ssr ?? {};
-
-    config.viteOptions.ssr.noExternal = config.viteOptions.ssr.noExternal ?? [];
-
-    config.viteOptions.ssr.noExternal.push('vuepress-shared');
-  },
-
   shouldPrefetch: false,
 });

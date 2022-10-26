@@ -17,7 +17,7 @@ import { useDarkMode } from '@theme-hope/modules/outlook/composables/index.js';
 import type { VNode } from 'vue';
 import type { HopeThemeNormalPageFrontmatter } from 'vuepress-theme-hope';
 
-import 'vuepress-theme-hope/lib/client/styles/page.scss';
+import 'vuepress-theme-hope/styles/page.scss';
 
 export default defineComponent({
   name: 'NormalPage',
