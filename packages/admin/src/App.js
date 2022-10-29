@@ -32,7 +32,7 @@ function Access(props) {
     }
   }, [user, props.meta]);
 
-  return props.children;
+  return user ? props.children : null;
 }
 
 export default function () {

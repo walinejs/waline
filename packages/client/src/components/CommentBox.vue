@@ -590,8 +590,12 @@ export default defineComponent({
       const height = 800;
       const left = (window.innerWidth - width) / 2;
       const top = (window.innerHeight - height) / 2;
+      const query = new URLSearchParams({
+        lng: lang,
+        token: userInfo.value!.token,
+      });
       const handler = window.open(
-        `${serverURL}/ui/profile?lng=${encodeURIComponent(lang)}`,
+        `${serverURL}/ui/profile?${query.toString()}`,
         '_blank',
         `width=${width},height=${height},left=${left},top=${top},scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no`
       );
