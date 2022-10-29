@@ -5,7 +5,7 @@ icon: railway
 
 [Railway](https://railway.app/) 是一个可免费使用的 Serverless 部署平台。我们可以快速的将 Waline 部署到 Railway 平台上。
 
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template/eMua_y?referralCode=GqgvF0)
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template/UZB84v?referralCode=lizheming)
 
 点击上方按钮，跳转至 Railway 平台快速部署。登录之后会让你选择新建仓库的名称，环境变量部分不需要改动，直接点击下方的 <kbd>Deploy</kbd> 按钮进行部署即可。
 
