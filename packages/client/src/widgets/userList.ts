@@ -1,4 +1,4 @@
-import { fetchUserList, WalineUser } from '../api';
+import { getUserList, WalineUser } from '../api';
 import { defaultLang, defaultLocales } from '../config';
 import { WalineLocale } from '../typings';
 import { getRoot } from '../utils';
@@ -80,18 +80,17 @@ export const UserList = ({
   const root = getRoot(el);
   const controller = new AbortController();
 
-  return fetchUserList({
+  return getUserList({
     serverURL,
     pageSize: count,
     lang,
     signal: controller.signal,
   }).then((users) => {
-    if (!root || !users.length) {
+    if (!root || !users.length)
       return {
         users,
         destroy: (): void => controller.abort(),
       };
-    }
 
     locale = {
       ...(defaultLocales[lang] || defaultLocales[defaultLang]),

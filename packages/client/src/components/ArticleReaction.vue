@@ -28,7 +28,7 @@ import {
   onUnmounted,
   ref,
 } from 'vue';
-import { fetchArticleCounter, updateArticleCounter } from '../api';
+import { getArticleCounter, updateArticleCounter } from '../api';
 import { VOTE_IDENTIFIER, VOTE_INDEX, useVoteStorage } from '../composables';
 import type { WalineConfig } from '../utils';
 import type { WalineLocale } from '../typings';
@@ -70,7 +70,7 @@ export default defineComponent({
       if (reaction.length) {
         const controller = new AbortController();
 
-        fetchArticleCounter({
+        getArticleCounter({
           serverURL,
           lang,
           paths: [path],

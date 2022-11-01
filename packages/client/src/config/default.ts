@@ -49,25 +49,24 @@ export const getDefaultSearchOptions = (lang: string): WalineSearchOptions => {
   const fetchGiphy = async (
     url: string,
     params: Record<string, string> = {}
-  ): Promise<WalineSearchResult> => {
-    const querystring = new URLSearchParams({
-      lang,
-      limit: '20',
-      rating: 'g',
-      // eslint-disable-next-line @typescript-eslint/naming-convention
-      api_key: '6CIMLkNMMOhRcXPoMCPkFy4Ybk2XUiMp',
-      ...params,
-    }).toString();
-
-    const resp = await fetch(
-      `https://api.giphy.com/v1/gifs/${url}?${querystring}`
-    ).then((resp) => resp.json() as Promise<GifsResult>);
-
-    return resp.data.map((gif) => ({
-      title: gif.title,
-      src: gif.images.downsized_medium.url,
-    }));
-  };
+  ): Promise<WalineSearchResult> =>
+    fetch(
+      `https://api.giphy.com/v1/gifs/${url}?${new URLSearchParams({
+        lang,
+        limit: '20',
+        rating: 'g',
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        api_key: '6CIMLkNMMOhRcXPoMCPkFy4Ybk2XUiMp',
+        ...params,
+      }).toString()}`
+    )
+      .then((resp) => <Promise<GifsResult>>resp.json())
+      .then(({ data }) =>
+        data.map((gif) => ({
+          title: gif.title,
+          src: gif.images.downsized_medium.url,
+        }))
+      );
 
   return {
     search: (word: string): Promise<WalineSearchResult> =>

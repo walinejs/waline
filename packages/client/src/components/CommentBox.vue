@@ -287,7 +287,7 @@ import {
   GifIcon,
 } from './Icons';
 import ImageWall from './ImageWall.vue';
-import { login, postComment } from '../api';
+import { addComment, login } from '../api';
 import { useEditor, useUserMeta, useUserInfo } from '../composables';
 import {
   getEmojis,
@@ -532,7 +532,7 @@ export default defineComponent({
 
       isSubmitting.value = true;
 
-      postComment({
+      addComment({
         serverURL,
         lang,
         token: userInfo.value?.token,

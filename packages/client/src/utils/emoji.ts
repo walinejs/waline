@@ -22,7 +22,7 @@ const fetchEmoji = (link: string): Promise<WalineEmojiInfo> => {
   }
 
   return fetch(`${link}/info.json`)
-    .then((resp) => resp.json() as Promise<Omit<WalineEmojiInfo, 'folder'>>)
+    .then((resp) => <Promise<Omit<WalineEmojiInfo, 'folder'>>>resp.json())
     .then((emojiInfo) => {
       const info = {
         folder: link,
