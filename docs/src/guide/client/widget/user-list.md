@@ -30,7 +30,7 @@ Waline 通过 `UserList` 支持用户排行榜和读者墙的展示，方便在�
 ```html
 <div id="waline-users"></div>
 <script type="module">
-  import { UserList } from 'https://cdn.jsdelivr.net/npm/waline/dist/waline.mjs';
+  import { UserList } from 'https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.mjs';
 
   UserList({
     el: '#waline-users',
@@ -45,7 +45,7 @@ Waline 通过 `UserList` 支持用户排行榜和读者墙的展示，方便在�
 ```html
 <div id="waline-users"></div>
 <script type="module">
-  import { UserList } from 'https://cdn.jsdelivr.net/npm/waline/dist/waline.mjs';
+  import { UserList } from 'https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.mjs';
 
   UserList({
     el: '#waline-users',
@@ -65,7 +65,7 @@ Waline 通过 `UserList` 支持用户排行榜和读者墙的展示，方便在�
 ```html
 <div id="waline-users"></div>
 <script type="module">
-  import { UserList } from 'https://cdn.jsdelivr.net/npm/waline/dist/waline.mjs';
+  import { UserList } from 'https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.mjs';
 
   UserList({ serverURL: 'http://waline.vercel.app', count: 10 }).then(
     ({ users }) => {
