@@ -7,6 +7,7 @@ module.exports = class extends Base {
    * @apiVersion  0.0.1
    *
    * @apiParam  {String}  pageSize  page size
+   * @apiParam  {String}  lang  language
    *
    * @apiSuccess  (200) {Number}  errno 0
    * @apiSuccess  (200) {String}  errmsg  return error message if error
@@ -49,6 +50,7 @@ module.exports = class extends Base {
    * @apiParam  {String}  email user email
    * @apiParam  {String}  password user password
    * @apiParam  {String}  url user link
+   * @apiParam  {String}  lang  language
    *
    * @apiSuccess  (200) {Number}  errno 0
    * @apiSuccess  (200) {String}  errmsg  return error message if error
@@ -72,6 +74,7 @@ module.exports = class extends Base {
    * @apiParam  {String}  [url] user new link
    * @apiParam  {String}  [password] user new password
    * @apiParam  {String}  [github] user github account name
+   * @apiParam  {String}  lang  language
    *
    * @apiSuccess  (200) {Number}  errno 0
    * @apiSuccess  (200) {String}  errmsg  return error message if error

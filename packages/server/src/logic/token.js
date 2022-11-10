@@ -6,6 +6,8 @@ module.exports = class extends Base {
    * @apiGroup User
    * @apiVersion  0.0.1
    *
+   * @apiParam  {String}  lang  language
+   *
    * @apiSuccess  (200) {Number}  errno 0
    * @apiSuccess  (200) {String}  errmsg  return error message if error
    * @apiSuccess  (200) {Object}  data user info
@@ -28,6 +30,7 @@ module.exports = class extends Base {
    *
    * @apiParam  {String}  email login user email
    * @apiParam  {String}  password login user password
+   * @apiParam  {String}  lang  language
    *
    * @apiSuccess  (200) {Number}  errno 0
    * @apiSuccess  (200) {String}  errmsg  return error message if error
@@ -40,6 +43,8 @@ module.exports = class extends Base {
    * @api {DELETE} /token  user logout
    * @apiGroup User
    * @apiVersion  0.0.1
+   *
+   * @apiParam  {String}  lang  language
    *
    * @apiSuccess  (200) {Number}  errno 0
    * @apiSuccess  (200) {String}  errmsg  return error message if error

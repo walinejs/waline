@@ -19,6 +19,8 @@ module.exports = class extends Base {
    * @api {GET} /db export site data
    * @apiGroup Site
    * @apiVersion  0.0.1
+   *
+   * @apiParam  {String}  lang  language
    */
   async getAction() {}
 
@@ -26,6 +28,8 @@ module.exports = class extends Base {
    * @api {POST} /db import site data
    * @apiGroup Site
    * @apiVersion  0.0.1
+   *
+   * @apiParam  {String}  lang  language
    */
   async postAction() {
     this.rules = {
@@ -41,6 +45,8 @@ module.exports = class extends Base {
    * @api {PUT} /db update site table data
    * @apiGroup Site
    * @apiVersion  0.0.1
+   *
+   * @apiParam  {String}  lang  language
    */
   async putAction() {
     this.rules = {
@@ -60,6 +66,8 @@ module.exports = class extends Base {
    * @api {DELETE} /db clean site data
    * @apiGroup Site
    * @apiVersion  0.0.1
+   *
+   * @apiParam  {String}  lang  language
    */
   async deleteAction() {
     this.rules = {
