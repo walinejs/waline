@@ -20,7 +20,7 @@ module.exports = class extends Base {
    *
    * @apiParam  {String}  path  comment url path
    * @apiParam  {String}  page  page
-   * @apiParam  {String}  pagesize  page size
+   * @apiParam  {String}  pageSize  page size
    * @apiParam  {String}  sortBy  comment sort type, one of 'insertedAt_desc', 'insertedAt_asc', 'like_desc'
    * @apiParam  {String}  lang  language
    *
@@ -53,7 +53,7 @@ module.exports = class extends Base {
    * @apiVersion  0.0.1
    *
    * @apiParam  {String}  page  page
-   * @apiParam  {String}  pagesize  page size
+   * @apiParam  {String}  pageSize  page size
    * @apiParam  {String}  lang  language
    *
    * @apiSuccess  (200) {Number}  errno 0
