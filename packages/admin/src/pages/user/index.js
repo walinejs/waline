@@ -192,7 +192,7 @@ export default function () {
                 </div>
               </form>
 
-              <div className="typecho-list-operate clearfix">
+              <div className="typecho-list-operate clear-fix">
                 <form method="get">
                   <Paginator
                     current={list.page}

@@ -578,21 +578,21 @@
   }
 }
 
-/* Clearfix */
-.clearfix,
+/* clear-fix */
+.clear-fix,
 .row {
   zoom: 1;
 }
 
-.clearfix:before,
+.clear-fix:before,
 .row:before,
-.clearfix:after,
+.clear-fix:after,
 .row:after {
   content: ' ';
   display: table;
 }
 
-.clearfix:after,
+.clear-fix:after,
 .row:after {
   clear: both;
 }

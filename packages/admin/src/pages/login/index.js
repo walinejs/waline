@@ -21,7 +21,7 @@ export default function () {
     : () => '';
 
   const match = location.pathname.match(/(.*?\/)ui/);
-  const basepath = match && match[1] ? match[1] : '/';
+  const basePath = match && match[1] ? match[1] : '/';
 
   useEffect(() => {
     if (!user || !user.email) {
@@ -180,7 +180,7 @@ export default function () {
                 key={social}
                 href={`${baseUrl}oauth${
                   window.ALLOW_SOCIALS ? '/' + social + '?' : `?type=${social}`
-                }&redirect=${basepath}ui/profile`}
+                }&redirect=${basePath}ui/profile`}
               >
                 {React.createElement(Icons[social])}
               </a>

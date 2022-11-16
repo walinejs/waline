@@ -46,25 +46,25 @@ export default function () {
   };
 
   const match = location.pathname.match(/(.*?)\/ui/);
-  const basepath = match ? match[1] : '';
+  const basePath = match ? match[1] : '';
 
   return [
-    <div className="typecho-head-nav clearfix" role="navigation" key="header">
+    <div className="typecho-head-nav clear-fix" role="navigation" key="header">
       {user?.type === 'administrator' ? (
         <nav id="typecho-nav-list">
           <ul className="root">
             <li className="parent">
-              <Link to={basepath + '/ui'}>{t('management')}</Link>
+              <Link to={basePath + '/ui'}>{t('management')}</Link>
             </li>
             <ul className="child">
               <li className="last">
-                <Link to={basepath + '/ui'}>{t('comment')}</Link>
+                <Link to={basePath + '/ui'}>{t('comment')}</Link>
               </li>
               <li className="last">
-                <Link to={basepath + '/ui/user'}>{t('user')}</Link>
+                <Link to={basePath + '/ui/user'}>{t('user')}</Link>
               </li>
               <li className="last">
-                <Link to={basepath + '/ui/migration'}>{t('migration')}</Link>
+                <Link to={basePath + '/ui/migration'}>{t('migration')}</Link>
               </li>
             </ul>
           </ul>
@@ -85,7 +85,7 @@ export default function () {
           </select>
         </div>
         {user?.type ? (
-          <Link to={basepath + '/ui/profile'} className="author">
+          <Link to={basePath + '/ui/profile'} className="author">
             {user.display_name}
           </Link>
         ) : null}
@@ -98,7 +98,7 @@ export default function () {
       </div>
     </div>,
     latestVersion ? (
-      <div className="upgrade-tips clearfix" key="upgrade">
+      <div className="upgrade-tips clear-fix" key="upgrade">
         <Trans
           i18nKey="new version tips"
           defaults="New version @waline/vercel@{{version}} published, please upgrade it! Goto <a href='https://waline.js.org/en/advanced/faq.html#server' target='_blank'>FAQ</a> to find How to upgrade it."

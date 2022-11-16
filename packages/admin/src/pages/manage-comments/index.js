@@ -279,7 +279,7 @@ export default function () {
           </div>
           <div className="row typecho-page-main" role="main">
             <div className="col-mb-12 typecho-list">
-              <div className="clearfix">
+              <div className="clear-fix">
                 {FILTERS.map(([key, FILTER]) => (
                   <ul
                     key={key}
@@ -311,7 +311,7 @@ export default function () {
                 ))}
               </div>
 
-              <div className="typecho-list-operate clearfix">
+              <div className="typecho-list-operate clear-fix">
                 <form method="get">
                   <div className="operate">
                     <label>
@@ -678,7 +678,7 @@ export default function () {
                 </div>
               </form>
 
-              <div className="typecho-list-operate clearfix">
+              <div className="typecho-list-operate clear-fix">
                 <form method="get">
                   <Paginator
                     current={list.page}

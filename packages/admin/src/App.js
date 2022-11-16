@@ -37,17 +37,17 @@ function Access(props) {
 
 export default function () {
   const match = location.pathname.match(/(.*?)\/ui/);
-  const basepath = match ? match[1] : '/';
+  const basePath = match ? match[1] : '/';
 
   return (
     <Provider store={store}>
-      <Router basename={basepath}>
+      <Router basename={basePath}>
         <Routes>
           <Route
             path="/ui"
             exact
             element={
-              <Access meta={{ auth: 'administrator' }} basename={basepath}>
+              <Access meta={{ auth: 'administrator' }} basename={basePath}>
                 <ManageComments />
               </Access>
             }
@@ -56,7 +56,7 @@ export default function () {
             path="/ui/user"
             exact
             element={
-              <Access meta={{ auth: 'administrator' }} basename={basepath}>
+              <Access meta={{ auth: 'administrator' }} basename={basePath}>
                 <User />
               </Access>
             }
@@ -65,7 +65,7 @@ export default function () {
             path="/ui/migration"
             exact
             element={
-              <Access meta={{ auth: 'administrator' }} basename={basepath}>
+              <Access meta={{ auth: 'administrator' }} basename={basePath}>
                 <Migration />
               </Access>
             }

@@ -189,7 +189,7 @@ export default function () {
                 </form>
               </section>
               <br />
-              <section id="socical-account">
+              <section id="social-account">
                 <h3>{t('connect to social account')}</h3>
                 <div className="account-list">
                   {/** warning: compat with old server version */}
@@ -236,7 +236,7 @@ export default function () {
                           onClick={() => unbind(social)}
                         >
                           <svg
-                            className="vicon"
+                            className="close-icon"
                             viewBox="0 0 1024 1024"
                             xmlns="http://www.w3.org/2000/svg"
                             width="14"
