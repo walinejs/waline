@@ -281,16 +281,16 @@ You can import $\TeX$ renderer to provide preview feature. We recommend you to u
       rel="stylesheet"
       href="https://unpkg.com/@waline/client@v2/dist/waline.css"
     />
-    <script src="https://unpkg.com/katex@v0.15"></script>
     <link
       rel="stylesheet"
-      href="https://unpkg.com/katex@v0.15/dist/katex.min.css"
+      href="https://unpkg.com/katex@v0.16/dist/katex.min.css"
     />
   </head>
   <body>
     <div id="waline" style="max-width: 800px; margin: 0 auto"></div>
     <script type="module">
       import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
+      import katex from 'https://unpkg.com/katex@0.16/dist/katex.mjs';
 
       const waline = init({
         el: '#waline',
@@ -298,7 +298,7 @@ You can import $\TeX$ renderer to provide preview feature. We recommend you to u
         path: '/',
         lang: 'en-US',
         texRenderer: (blockmode, tex) =>
-          window.katex.renderToString(tex, {
+          katex.renderToString(tex, {
             displayMode: blockmode,
             throwOnError: false,
           }),
