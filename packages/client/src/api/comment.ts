@@ -1,10 +1,10 @@
 import { JSON_HEADERS, errorCheck } from './utils';
-import type { BaseAPIOptions } from './utils';
+import type { BaseAPIOptions, ErrorStatusResponse } from './utils';
 import type { WalineComment, WalineCommentData } from '../typings';
 
 export interface GetCommentOptions extends BaseAPIOptions {
   /**
-   * 待获取评论列hi奥德路径
+   * 待获取评论列表的 path
    *
    * Path of comment list
    */
@@ -18,7 +18,7 @@ export interface GetCommentOptions extends BaseAPIOptions {
   page: number;
 
   /**
-   * 评论每页个数
+   * 每页评论个数
    *
    * Comment number per page
    */
@@ -46,13 +46,27 @@ export interface GetCommentOptions extends BaseAPIOptions {
   signal?: AbortSignal;
 }
 
-export interface GetCommentResponse {
+export interface GetCommentResponse extends ErrorStatusResponse {
   /**
    * 评论数量
    *
    * Comment number
    */
   count: number;
+
+  /**
+   * 评论分页数
+   *
+   * Comment pagination number
+   */
+  page: number;
+
+  /**
+   * 每页评论个数
+   *
+   * Comment number per page
+   */
+  pageSize: number;
 
   /**
    * 评论数据
@@ -90,7 +104,7 @@ export const getComment = ({
     { signal, headers }
   )
     .then((resp) => <Promise<GetCommentResponse>>resp.json())
-    .then((data) => errorCheck(data, 'comment data'));
+    .then((data) => errorCheck(data, 'Get comment data'));
 };
 
 export interface AddCommentOptions extends BaseAPIOptions {
@@ -109,16 +123,13 @@ export interface AddCommentOptions extends BaseAPIOptions {
   comment: WalineCommentData;
 }
 
-export interface AddCommentResponse {
+export interface AddCommentResponse extends ErrorStatusResponse {
   /**
    * 渲染好的评论数据
    *
    * Comment data rendered
    */
   data?: WalineComment;
-
-  /** 错误原因 */
-  errmsg?: string;
 }
 
 export const addComment = ({
@@ -134,14 +145,11 @@ export const addComment = ({
 
   if (token) headers.Authorization = `Bearer ${token}`;
 
-  return fetch(
-    `${serverURL}/comment${comment.eid ? `/${comment.eid}` : ''}?lang=${lang}`,
-    {
-      method: 'PUT',
-      headers,
-      body: JSON.stringify(comment),
-    }
-  ).then((resp) => <Promise<AddCommentResponse>>resp.json());
+  return fetch(`${serverURL}/comment?lang=${lang}`, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify(comment),
+  }).then((resp) => <Promise<AddCommentResponse>>resp.json());
 };
 
 export interface DeleteCommentOptions extends BaseAPIOptions {
@@ -149,46 +157,24 @@ export interface DeleteCommentOptions extends BaseAPIOptions {
   objectId: string | number;
 }
 
+export interface DeleteCommentResponse extends ErrorStatusResponse {
+  data: '';
+}
+
 export const deleteComment = ({
   serverURL,
   lang,
   token,
   objectId,
-}: DeleteCommentOptions): Promise<void> =>
+}: DeleteCommentOptions): Promise<DeleteCommentResponse> =>
   fetch(`${serverURL}/comment/${objectId}?lang=${lang}`, {
     method: 'DELETE',
     headers: {
       Authorization: `Bearer ${token}`,
     },
-  }).then((resp) => <Promise<void>>resp.json());
-
-export interface LikeCommentOptions extends BaseAPIOptions {
-  /**
-   * 评论的 ID
-   *
-   * Comment ID
-   */
-  objectId: number | string;
-
-  /**
-   * 点赞还是取消点赞
-   *
-   * Like or dislike
-   */
-  like: boolean;
-}
-
-export const likeComment = ({
-  serverURL,
-  lang,
-  objectId,
-  like,
-}: LikeCommentOptions): Promise<void> =>
-  fetch(`${serverURL}/comment/${objectId}?lang=${lang}`, {
-    method: 'PUT',
-    headers: JSON_HEADERS,
-    body: JSON.stringify({ like }),
-  }).then((resp) => <Promise<void>>resp.json());
+  })
+    .then((resp) => <Promise<DeleteCommentResponse>>resp.json())
+    .then((resp) => errorCheck(resp, 'Delete comment'));
 
 export interface UpdateCommentOptions extends BaseAPIOptions {
   /**
@@ -204,6 +190,20 @@ export interface UpdateCommentOptions extends BaseAPIOptions {
    * Comment ID
    */
   objectId: number | string;
+
+  /**
+   * 评论数据
+   *
+   * Comment data
+   */
+  comment?: WalineCommentData;
+
+  /**
+   * 点赞还是取消点赞
+   *
+   * Like or dislike
+   */
+  like?: boolean;
 
   /**
    * 评论的状态
@@ -222,13 +222,22 @@ export interface UpdateCommentOptions extends BaseAPIOptions {
   sticky?: 0 | 1;
 }
 
+export interface UpdateCommentResponse extends ErrorStatusResponse {
+  /**
+   * 更新后的评论数据
+   *
+   * Comment data rendered
+   */
+  data: WalineComment;
+}
+
 export const updateComment = ({
   serverURL,
   lang,
   token,
   objectId,
   ...data
-}: UpdateCommentOptions): Promise<void> =>
+}: UpdateCommentOptions): Promise<UpdateCommentResponse> =>
   fetch(`${serverURL}/comment/${objectId}?lang=${lang}`, {
     method: 'PUT',
     headers: {
@@ -236,4 +245,6 @@ export const updateComment = ({
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(data),
-  }).then((resp) => <Promise<void>>resp.json());
+  })
+    .then((resp) => <Promise<UpdateCommentResponse>>resp.json())
+    .then((resp) => errorCheck(resp, 'Update comment'));

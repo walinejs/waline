@@ -17,7 +17,7 @@ interface GetPageviewOptions extends BaseAPIOptions {
   signal?: AbortSignal;
 }
 
-export const getPageviews = ({
+export const getPageview = ({
   serverURL,
   lang,
   paths,
@@ -44,7 +44,7 @@ export interface UpdatePageviewOptions extends BaseAPIOptions {
   path: string;
 }
 
-export const updatePageviews = (
+export const updatePageview = (
   options: UpdatePageviewOptions
 ): Promise<number> =>
   updateArticleCounter({

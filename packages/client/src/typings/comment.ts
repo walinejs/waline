@@ -41,14 +41,10 @@ export interface WalineCommentData {
   at?: string;
 
   /**
-   * edit comment id
-   */
-  eid?: string;
-
-  /**
    * Comment link
    */
   url: string;
+
   /**
    * Recaptcha Token
    */
