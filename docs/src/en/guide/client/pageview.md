@@ -58,9 +58,10 @@ If you only need to use the pageview statistics function, you can import the pag
     <span class="waline-pageview-count" data-path="/" />
   </li>
 </ul>
-<script src="https://unpkg.com/@waline/client/dist/pageview.js"></script>
-<script>
-  Waline.pageviewCount({
+<script type="module">
+  import { pageviewCount } from 'https://unpkg.com/@waline/client/dist/pageview.mjs';
+
+  pageviewCount({
     serverURL: '<YOUR_SERVER_URL>',
     path: window.location.pathname,
 

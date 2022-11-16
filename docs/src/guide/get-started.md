@@ -112,7 +112,6 @@ icon: creative
    ```html {3-7,12-18}:line-numbers
    <head>
      <!-- ... -->
-     <script src="https://unpkg.com/@waline/client@v2/dist/waline.js"></script>
      <link
        rel="stylesheet"
        href="https://unpkg.com/@waline/client@v2/dist/waline.css"
@@ -122,8 +121,10 @@ icon: creative
    <body>
      <!-- ... -->
      <div id="waline"></div>
-     <script>
-       Waline.init({
+     <script type="module">
+       import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
+
+       init({
          el: '#waline',
          serverURL: 'https://your-domain.vercel.app',
        });

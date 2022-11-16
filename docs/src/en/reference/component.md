@@ -146,16 +146,17 @@ A demo using api of `lsky - pro`.
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Waline imageUploader demo</title>
-    <script src="https://unpkg.com/@waline/client@v1/dist/waline.js"></script>
     <link
       rel="stylesheet"
-      href="https://unpkg.com/@waline/client@v1/dist/waline.css"
+      href="https://unpkg.com/@waline/client@v2/dist/waline.css"
     />
   </head>
   <body>
     <div id="waline" style="max-width: 800px; margin: 0 auto"></div>
-    <script>
-      const waline = Waline.init({
+    <script type="module">
+      import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
+
+      const waline = init({
         el: '#waline',
         serverURL: 'https://waline.vercel.app',
         path: '/',
@@ -209,10 +210,9 @@ A demo using prismjs to highlight code blocks.
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Waline highlighter demo</title>
-    <script src="https://unpkg.com/@waline/client@v1/dist/waline.js"></script>
     <link
       rel="stylesheet"
-      href="https://unpkg.com/@waline/client@v1/dist/waline.css"
+      href="https://unpkg.com/@waline/client@v2/dist/waline.css"
     />
     <script src="https://unpkg.com/prismjs@v1" data-manual></script>
     <script src="https://unpkg.com/prismjs@v1/plugins/autoloader/prism-autoloader.min.js"></script>
@@ -223,8 +223,10 @@ A demo using prismjs to highlight code blocks.
   </head>
   <body>
     <div id="waline" style="max-width: 800px; margin: 0 auto"></div>
-    <script>
-      const waline = Waline.init({
+    <script type="module">
+      import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
+
+      const waline = init({
         el: '#waline',
         serverURL: 'https://waline.vercel.app',
         path: '/',
@@ -275,10 +277,9 @@ You can import $\TeX$ renderer to provide preview feature. We recommend you to u
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Waline highlighter 案例</title>
-    <script src="https://unpkg.com/@waline/client@v1/dist/waline.js"></script>
     <link
       rel="stylesheet"
-      href="https://unpkg.com/@waline/client@v1/dist/waline.css"
+      href="https://unpkg.com/@waline/client@v2/dist/waline.css"
     />
     <script src="https://unpkg.com/katex@v0.15"></script>
     <link
@@ -288,8 +289,10 @@ You can import $\TeX$ renderer to provide preview feature. We recommend you to u
   </head>
   <body>
     <div id="waline" style="max-width: 800px; margin: 0 auto"></div>
-    <script>
-      const waline = Waline.init({
+    <script type="module">
+      import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
+
+      const waline = init({
         el: '#waline',
         serverURL: 'https://waline.vercel.app',
         path: '/',
@@ -314,17 +317,18 @@ You can import $\TeX$ renderer to provide preview feature. We recommend you to u
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Waline highlighter 案例</title>
-    <script src="https://unpkg.com/@waline/client@v1/dist/waline.js"></script>
     <link
       rel="stylesheet"
-      href="https://unpkg.com/@waline/client@v1/dist/waline.css"
+      href="https://unpkg.com/@waline/client@v2/dist/waline.css"
     />
     <script src="https://unpkg.com/mathjax@v3/es5/tex-svg.js"></script>
   </head>
   <body>
     <div id="waline" style="max-width: 800px; margin: 0 auto"></div>
-    <script>
-      const waline = Waline.init({
+    <script type="module">
+      import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
+
+      const waline = init({
         el: '#waline',
         serverURL: 'https://waline.vercel.app',
         path: '/',
