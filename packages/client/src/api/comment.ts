@@ -13,7 +13,7 @@ export interface GetCommentOptions extends BaseAPIOptions {
   /**
    * 评论分页数
    *
-   * Comment panination number
+   * Comment pagination number
    */
   page: number;
 

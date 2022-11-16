@@ -401,7 +401,7 @@ You can import $\TeX$ renderer to provide preview feature. We recommend you to u
      *
      * @default (word) => search(word)
      */
-    more?: (word: string, currectCount: number) => Promise<WalineSearchResult>;
+    more?: (word: string, currentCount: number) => Promise<WalineSearchResult>;
   }
   ```
 

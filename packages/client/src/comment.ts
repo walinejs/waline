@@ -13,7 +13,7 @@ export interface WalineCommentCountOptions {
   /**
    * 评论数 CSS 选择器
    *
-   * Commment count CSS selector
+   * Comment count CSS selector
    *
    * @default '.waline-comment-count'
    */

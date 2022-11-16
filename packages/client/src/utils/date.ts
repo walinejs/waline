@@ -30,15 +30,15 @@ export const getTimeAgo = (
       ? new Date(date.indexOf(' ') !== -1 ? date.replace(/-/g, '/') : date)
       : date;
 
-  const timepassed = now.getTime() - time.getTime();
+  const timePassed = now.getTime() - time.getTime();
 
-  const days = Math.floor(timepassed / (24 * 3600 * 1000));
+  const days = Math.floor(timePassed / (24 * 3600 * 1000));
 
   if (days === 0) {
     // 计算相差小时数
 
     // 计算天数后剩余的毫秒数
-    const leave1 = timepassed % (24 * 3600 * 1000);
+    const leave1 = timePassed % (24 * 3600 * 1000);
     const hours = Math.floor(leave1 / (3600 * 1000));
 
     if (hours === 0) {

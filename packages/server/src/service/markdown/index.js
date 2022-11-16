@@ -14,7 +14,7 @@ const getMarkdownParser = () => {
   // markdown-it instance
   const markdownIt = MarkdownIt({
     breaks: true,
-    linkify: true, // Autoconvert URL-like text to links
+    linkify: true, // Auto convert URL-like text to links
     typographer: true, // Enable some language-neutral replacement + quotes beautification
 
     // default highlight

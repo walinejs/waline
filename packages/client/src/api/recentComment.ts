@@ -6,7 +6,7 @@ export interface GetRecentCommentOptions extends BaseAPIOptions {
   /**
    * 获取评论的数量
    *
-   * Comment numebr to be fetched
+   * Comment number to be fetched
    */
   count: number;
 

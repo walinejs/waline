@@ -81,7 +81,7 @@ interface WalineSearchOptions {
    *
    * @default (word) => search(word)
    */
-  more?: (word: string, currectCount: number) => Promise<WalineSearchResult>;
+  more?: (word: string, currentCount: number) => Promise<WalineSearchResult>;
 }
 ```
 

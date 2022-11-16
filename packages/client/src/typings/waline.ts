@@ -194,7 +194,7 @@ export interface WalineProps {
    * Login mode status, optional values:
    *
    * - `'enable'`: enable login (default)
-   * - `'disable'`: Login is disabled, users should fill in infomation to comment
+   * - `'disable'`: Login is disabled, users should fill in information to comment
    * - `'force'`: Forced login, users must login to comment
    *
    * @default 'enable'

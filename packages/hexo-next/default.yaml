@@ -34,7 +34,7 @@ waline:
   #   - https://unpkg.com/@waline/emojis@1.1.0/tieba
   #   - https://unpkg.com/@waline/emojis@1.1.0/tw-emoji
 
-  # Comment infomation, valid meta are nick, mail and link
+  # Comment information, valid meta are nick, mail and link
   # meta:
   #   - nick
   #   - mail

@@ -44,7 +44,7 @@ export const covertOptions = (
     ...more
   } = options;
 
-  // error with those which can no longr be handled
+  // error with those which can no longer be handled
   DROPPED_OPTIONS_WHICH_CAN_NOT_BE_POLYFILLED.filter((item) =>
     Object.keys(options).includes(item)
   ).forEach((item) =>

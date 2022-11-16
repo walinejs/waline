@@ -401,7 +401,7 @@ Waline 的服务端地址。
      *
      * @default (word) => search(word)
      */
-    more?: (word: string, currectCount: number) => Promise<WalineSearchResult>;
+    more?: (word: string, currentCount: number) => Promise<WalineSearchResult>;
   }
   ```
 

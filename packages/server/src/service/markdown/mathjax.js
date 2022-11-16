@@ -8,7 +8,7 @@ const { AllPackages } = require('mathjax-full/js/input/tex/AllPackages.js');
 const { escapeHtml } = require('./utils');
 const { inlineTex, blockTex } = require('./mathCommon');
 
-// set MathJax as the renderer for markdown-it-simplemath
+// set MathJax as the renderer
 class MathToSvg {
   constructor() {
     const adaptor = liteAdaptor();
@@ -29,7 +29,7 @@ class MathToSvg {
       if (svg.includes('data-mml-node="merror"')) {
         const errorTitle = svg.match(/<title>(.*?)<\/title>/)[1];
 
-        svg = `<span class='katex-error' title='${escapeHtml(
+        svg = `<span class='mathjax-error' title='${escapeHtml(
           errorTitle
         )}'>${escapeHtml(tex)}</span>`;
       }
@@ -44,7 +44,7 @@ class MathToSvg {
       if (svg.includes('data-mml-node="merror"')) {
         const errorTitle = svg.match(/<title>(.*?)<\/title>/)[1];
 
-        svg = `<p class='katex-block katex-error' title='${escapeHtml(
+        svg = `<p class='mathjax-block mathjax-error' title='${escapeHtml(
           errorTitle
         )}'>${escapeHtml(tex)}</p>`;
       } else {

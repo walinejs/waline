@@ -1,5 +1,5 @@
 @use 'config';
-@use 'nomalize';
+@use 'normalize';
 
 @use 'base';
 
@@ -14,4 +14,4 @@
 @use 'highlight';
 
 @use 'recent';
-@use 'userlist';
+@use 'user-list';

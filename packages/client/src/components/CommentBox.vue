@@ -94,7 +94,7 @@
             v-show="emoji.tabs.length"
             ref="emojiButtonRef"
             class="wl-action"
-            :class="{ actived: showEmoji }"
+            :class="{ active: showEmoji }"
             :title="locale.emoji"
             @click="showEmoji = !showEmoji"
           >
@@ -105,7 +105,7 @@
             v-if="config.search"
             ref="gifButtonRef"
             class="wl-action"
-            :class="{ actived: showGif }"
+            :class="{ active: showGif }"
             :title="locale.gif"
             @click="showGif = !showGif"
           >
@@ -132,7 +132,7 @@
 
           <button
             class="wl-action"
-            :class="{ actived: showPreview }"
+            :class="{ active: showPreview }"
             :title="locale.preview"
             @click="showPreview = !showPreview"
           >
@@ -673,7 +673,7 @@ export default defineComponent({
     );
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const onMessageRecive = ({ data }: any): void => {
+    const onMessageReceive = ({ data }: any): void => {
       if (!data || data.type !== 'profile') return;
 
       userInfo.value = { ...userInfo.value, ...data.data };
@@ -687,7 +687,7 @@ export default defineComponent({
 
     onMounted(() => {
       document.body.addEventListener('click', popupHandler);
-      window.addEventListener('message', onMessageRecive);
+      window.addEventListener('message', onMessageReceive);
       if (props.edit?.objectId) {
         editor.value = props.edit.orig;
       }
@@ -745,7 +745,7 @@ export default defineComponent({
 
     onUnmounted(() => {
       document.body.removeEventListener('click', popupHandler);
-      window.removeEventListener('message', onMessageRecive);
+      window.removeEventListener('message', onMessageReceive);
     });
 
     return {
