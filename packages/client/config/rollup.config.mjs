@@ -3,17 +3,15 @@ import commonjs from '@rollup/plugin-commonjs';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import ts from 'rollup-plugin-ts';
 import dts from 'rollup-plugin-dts';
-import { terser } from 'rollup-plugin-terser';
+import terser from '@rollup/plugin-terser';
 import replace from '@rollup/plugin-replace';
-import pkg from '../package.json' assert { type: "json" };
+import pkg from '../package.json' assert { type: 'json' };
 import vue from '@vitejs/plugin-vue';
 
 const version = pkg.version;
 const commonOptions = {
   plugins: [
-    vue({
-      isProduction: true,
-    }),
+    vue({ isProduction: true }),
     ts(),
     replace({
       'process.env.NODE_ENV': JSON.stringify('production'),
@@ -54,9 +52,8 @@ export default [
     ],
     ...commonOptions,
     plugins: [
-      vue({
-        isProduction: true,
-      }),
+      vue({ isProduction: true }),
+
       ts(),
       replace({
         'process.env.NODE_ENV': JSON.stringify('production'),

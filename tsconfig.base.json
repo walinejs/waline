@@ -15,7 +15,7 @@
     "forceConsistentCasingInFileNames": true,
     "importHelpers": true,
     "inlineSourceMap": false,
-    "inlineSources": false,
+    "inlineSources": true,
     "lib": ["DOM", "ESNext"],
     "listEmittedFiles": false,
     "module": "ES2020",
