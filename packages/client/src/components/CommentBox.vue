@@ -696,7 +696,7 @@ export default defineComponent({
       watch(showGif, async (showGif) => {
         if (!showGif) return;
 
-        const searchOptions = <WalineSearchOptions>config.value.search;
+        const searchOptions = config.value.search as WalineSearchOptions;
 
         // clear input
         if (gifSearchInputRef.value) gifSearchInputRef.value.value = '';

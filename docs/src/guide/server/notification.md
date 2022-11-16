@@ -120,7 +120,7 @@ Discord 通知通过 Discord Webhook 实现，需要配置以下几个环境变�
 
 ## 飞书通知
 
-飞书群聊机器人支持通过Webhook发送消息，需配置以下几个环境变量。
+飞书群聊机器人支持通过 Webhook 发送消息，需配置以下几个环境变量。
 
 - `LARK_WEBHOOK`: 飞书群聊机器人 [使用指南](https://open.feishu.cn/document/ukTMukTMukTM/ucTM5YjL3ETO24yNxkjN?lang=zh-CN)
 - `LARK_SECRET`: 请参考上面的飞书文档，该密钥用于请求签名以避免接口被滥用（可选）

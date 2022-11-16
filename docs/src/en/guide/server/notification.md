@@ -106,7 +106,6 @@ We use Lark Webhook to send its group notifications. The following env variables
 - `SITE_NAME`: Your site name which will be displayed in notification messages.
 - `SITE_URL`: Your site url which will be displayed in notification messages.
 
-
 ## Notification Template
 
 Waline supports configuring your customized notification templates for each platform separately to achieve stronger customization capabilities and i18n compatibility.
