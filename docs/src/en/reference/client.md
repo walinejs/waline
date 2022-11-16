@@ -99,7 +99,7 @@ interface WalineCommentCountOptions {
   serverURL: string;
 
   /**
-   * Commment count CSS selector
+   * Comment count CSS selector
    *
    * @default '.waline-comment-count'
    */

@@ -53,7 +53,7 @@ A simple comment system with backend support fork from [Valine](https://valine.j
 - [x] Duplicate content check
 - [x] CloudBase deploy support
 - [x] Social account login
-- [x] Sitcky Comment
+- [x] Sticky Comment
 - [x] Comment Like
 - [ ] AWS, GCP, Azure deploy support
 

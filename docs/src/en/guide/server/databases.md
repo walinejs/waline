@@ -24,7 +24,7 @@ You only need to configure environment variables, and Waline will automatically 
 | `MONGO_AUTHSOURCE`   |          |           | MongoDB auth source                          |
 | `MONGO_OPT_SSL`      |          | `false`   | use SSL connection                           |
 
-Here is an example configuration for mongodb.com. Please note that you need set as JSON style for `MONGO_HOST` and `MONGO_PORT` when you has mulitple hosts.
+Here is an example configuration for mongodb.com. Please note that you need set as JSON style for `MONGO_HOST` and `MONGO_PORT` when you has multiple hosts.
 
 ```bash
 MONGO_HOST=["cluster0-shard-00-00.p4edw.mongodb.net","cluster0-shard-00-01.p4edw.mongodb.net","cluster0-shard-00-02.p4edw.mongodb.net"]
@@ -39,7 +39,7 @@ MONGO_OPT_SSL=true
 
 ## MySQL
 
-Using MySQL to store data is also a good choise. Besides our own MySQL service, we can also use <https://freedb.tech>, which provides 100M of database support for free, or [PlanetScale](https://planetscale.com) which provides 10GB.
+Using MySQL to store data is also a good choice. Besides our own MySQL service, we can also use <https://freedb.tech>, which provides 100M of database support for free, or [PlanetScale](https://planetscale.com) which provides 10GB.
 
 If you want to use MySQL as storage, you need to import [waline.sql](https://github.com/walinejs/waline/blob/main/assets/waline.sql) first to create table and table structure, then set these environment variables in project.
 
@@ -58,12 +58,12 @@ If you want to use MySQL as storage, you need to import [waline.sql](https://git
 
 Download [waline.sqlite](https://github.com/walinejs/waline/blob/main/assets/waline.sqlite) to your server if you want to use SQLite. Then set these environment variables in project.
 
-| Environment Variable | Required | Default | Description                                                         |
-| -------------------- | -------- | ------- | ------------------------------------------------------------------- |
-| `SQLITE_PATH`        | ✅       |         | SQLite storage file path, not include file name                     |
-| `JWT_TOKEN`          | ✅       |         | Random String for login token generator                             |
-| `SQLITE_DB`          |          | waline  | SQLite storage file name, change it if your filenamed is not waline |
-| `SQLITE_PREFIX`      |          | `wl_`   | SQLite table prefix                                                 |
+| Environment Variable | Required | Default | Description                                                        |
+| -------------------- | -------- | ------- | ------------------------------------------------------------------ |
+| `SQLITE_PATH`        | ✅       |         | SQLite storage file path, not include file name                    |
+| `JWT_TOKEN`          | ✅       |         | Random String for login token generator                            |
+| `SQLITE_DB`          |          | waline  | SQLite storage file name, change it if your filename is not waline |
+| `SQLITE_PREFIX`      |          | `wl_`   | SQLite table prefix                                                |
 
 ## PostgreSQL
 
@@ -91,7 +91,7 @@ Waline supports storing comment data in a CSV file on GitHub. To use GitHub as d
 
 ::: warning
 
-Due to preformance, using GitHub is not recommanded.
+Due to performance, using GitHub is not recommended.
 
 :::
 

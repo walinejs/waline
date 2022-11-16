@@ -21,7 +21,7 @@ Waline 通过 `UserList` 支持用户排行榜和读者墙的展示，方便在�
 组件返回的数据格式应为 `Promise<{ users: WalineUser[], destroy: () => void }>`。
 
 - `users` 属性: 包含 `count` 数量的用户列表
-- `destory` 方法: 销毁挂件的函数
+- `destroy` 方法: 销毁挂件的函数
 
 ## 基本用法
 

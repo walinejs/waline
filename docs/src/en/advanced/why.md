@@ -39,7 +39,7 @@ Since Valine is no longer open source, pull requests cannot be opened.
 
 :::
 
-Since the above method will completely restrict users in the scope of Markdown, Waline inludes `DOMPurify` on the client side since `0.15.0` to prevent XSS. Besides the regular XSS sterilization:
+Since the above method will completely restrict users in the scope of Markdown, Waline adds `DOMPurify` on the client side since `0.15.0` to prevent XSS. Besides the regular XSS sterilization:
 
 - `<form>` and `<input>` are disabled
 - style inject is disabled
@@ -56,7 +56,7 @@ In order to circumvent this problem, the author of Valine added the `recordIP` c
 
 There is still a problem with this option: Whether to record ip is based on the site owner's config, while commenters have no right to manage their own privacy.
 
-Leaking of email address are another major privacy issue. It is completely feasible to calculate and report the md5 of the user's email at frontend to obtain the Gravatar avatar. But if sending email notification when a comment being replyed is needed, it is inevitable to store the original value of the user's email address. This problem can theoretically be solved by RSA encryption. The private key can be stored in the environment variable of LeanCloud. The client reports both the email md5 and the email encrypted by the public key. When LeanCloud wants to send email notifications, it reads the private key in the environment in the cloud function, and then decrypt to get the user email. However, considering the size and performance of the frontend RSA encryption library, it's not actual. Adding a server layer to filter sensitive information through the server side is definitely a better practice.
+Leaking of email address are another major privacy issue. It is completely feasible to calculate and report the md5 of the user's email at frontend to obtain the Gravatar avatar. But if sending email notification when a comment being replied is needed, it is inevitable to store the original value of the user's email address. This problem can theoretically be solved by RSA encryption. The private key can be stored in the environment variable of LeanCloud. The client reports both the email md5 and the email encrypted by the public key. When LeanCloud wants to send email notifications, it reads the private key in the environment in the cloud function, and then decrypt to get the user email. However, considering the size and performance of the frontend RSA encryption library, it's not actual. Adding a server layer to filter sensitive information through the server side is definitely a better practice.
 
 ### Read Statistics Tampering
 

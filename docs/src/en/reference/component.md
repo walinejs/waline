@@ -22,7 +22,7 @@ Article path id. Used to distinguish different _article pages_ to ensure loading
 Please ensure the uniqueness of each _article page_ path, otherwise the same comment list may be loaded .
 
 - e.g. 1: If on your site `/example/path/` and `/example/path` is the same page, you should probably set `window.location.pathname.replace(/\/$/,'')`.
-- e.g. 2: If you store en docs at root, while serve other language docs at `/zh/`, `/ja/`, etc, you should probaly set `window.location.pathname.replace(/^\/(fr|jp|zh)\//, '/')`.
+- e.g. 2: If you store en docs at root, while serve other language docs at `/zh/`, `/ja/`, etc, you should probably set `window.location.pathname.replace(/^\/(fr|jp|zh)\//, '/')`.
 
 :::
 
@@ -405,7 +405,7 @@ You can import $\TeX$ renderer to provide preview feature. We recommend you to u
   }
   ```
 
-Customize search featreus, you can disable search function by setting it to `false`.
+Customize search features, you can disable search function by setting it to `false`.
 
 ## copyright
 

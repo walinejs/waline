@@ -8,7 +8,7 @@ The following options need to be configured in the server entry file `index.js`.
 
 If you are using template, please note that you need to save these configurations yourself, because they will be overwritten when you pull the latest official template.
 
-We recommand you to create a repo from the official template and make your changes there.
+We recommend you to create a repo from the official template and make your changes there.
 
 :::
 
@@ -108,7 +108,7 @@ Customize the content of the new comment notification email, which is equivalent
 
 The QQ comment notification template, which is equivalent to the environment variable `QQ_TEMPLATE`.
 
-### TGTempalte
+### TGTemplate
 
 - Type: `string`
 
@@ -130,7 +130,7 @@ const Waline = require('@waline/vercel');
 
 module.exports = Waline({
   async preSave(comment) {
-    const isSapm = await Akismet.check(comment);
+    const isSpam = await Akismet.check(comment);
     if (isSpam) {
       return { errmsg: "It's a spam!" };
     }

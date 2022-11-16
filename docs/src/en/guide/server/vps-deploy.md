@@ -57,7 +57,7 @@ services:
       AUTHOR_EMAIL: 'mail@example.com'
 ```
 
-## Run directly (Recommanded)
+## Run directly (Recommended)
 
 It's easy to run without using docker deployment, after setting environment variables, just run the `vanilla.js` file in the module after installing.
 

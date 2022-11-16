@@ -51,7 +51,7 @@ Meanwhile, `@waline/client` also has built-in dark mode support.
   --waline-info-color: #999;
   --waline-info-font-size: 0.625em;
 
-  /* Render choise */
+  /* Render choice */
   --waline-border: 1px solid var(--waline-border-color);
   --waline-avatar-radius: 50%;
   --waline-box-shadow: none;
@@ -65,7 +65,7 @@ You can use the `dark` option to enable Waline's dark mode support.
 Usually websites will enable dark mode support in two ways:
 
 - Use the `@media` selector to automatically switch according to the device color mode status through `prefers-color-scheme`
-- Dynamically apply othe dark mode color style by modifying the attributes and class of the dom root element (`html` or `body`).
+- Dynamically apply other dark mode color style by modifying the attributes and class of the dom root element (`html` or `body`).
 
 If you enable Waline on the site of the first method, you only need to set `dark` to `'auto'`.
 

@@ -201,7 +201,7 @@ This includes the following restrictions:
 
   You can set Tex rendering during preview by setting the `texRenderer` option.
 
-- Code blocks will be highlighted in random colors splited by specific characters
+- Code blocks will be highlighted in random colors splitted by specific characters
 
 ::: tip Principle
 

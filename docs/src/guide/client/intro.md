@@ -61,7 +61,7 @@ Waline 支持在页面的其他部分显示评论数，请参阅 [评论统计](
 
 ## 单页应用支持
 
-Waline 为 SPA(**S**ingle **P**age **A**pplication, 单页应用) 带来了支持。如果你想要在使用 history.pushState 的网站中使用，你可以使用 `Waline()` 实例的 `update()` 方法刷新评论区的配置，也可已使用实例上的 `destory()` 方法销毁 Waline。详见 [SPA 支持](./spa.md).
+Waline 为 SPA(**S**ingle **P**age **A**pplication, 单页应用) 带来了支持。如果你想要在使用 history.pushState 的网站中使用，你可以使用 `Waline()` 实例的 `update()` 方法刷新评论区的配置，也可已使用实例上的 `destroy()` 方法销毁 Waline。详见 [SPA 支持](./spa.md).
 
 ## 无障碍支持
 

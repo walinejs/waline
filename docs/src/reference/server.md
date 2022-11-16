@@ -110,7 +110,7 @@ module.exports = Waline({
 
 QQ 评论通知模板，等同于环境变量 `QQ_TEMPLATE`。
 
-### TGTempalte
+### TGTemplate
 
 - 类型: `string`
 
@@ -134,7 +134,7 @@ const Waline = require('@waline/vercel');
 
 module.exports = Waline({
   async preSave(comment) {
-    const isSapm = await Akismet.check(comment);
+    const isSpam = await Akismet.check(comment);
     if (isSpam) {
       return { errmsg: '这是垃圾邮件!' };
     }
