@@ -185,7 +185,7 @@ module.exports = class extends Base {
    * @apiParam  {String}  mail  post comment user mail address
    * @apiParam  {String}  link  post comment user link
    * @apiParam  {String}  comment  post comment text
-   * @apiParam  {String}  url  the artcile url path of comment
+   * @apiParam  {String}  url  the article url path of comment
    * @apiParam  {String}  ua  browser user agent
    * @apiParam  {String}  pid parent comment id
    * @apiParam  {String}  rid root comment id
@@ -229,7 +229,7 @@ module.exports = class extends Base {
    * @apiParam  {String}  [mail]  post comment user mail address
    * @apiParam  {String}  [link]  post comment user link
    * @apiParam  {String}  [comment]  post comment text
-   * @apiParam  {String}  [url]  the artcile url path of comment
+   * @apiParam  {String}  [url]  the article url path of comment
    * @apiParam  {Boolean} [like] like comment
    * @apiParam  {String}  lang  language
    *
