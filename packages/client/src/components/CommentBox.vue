@@ -672,23 +672,6 @@ export default defineComponent({
       { immediate: true }
     );
 
-    watch(showGif, async (showGif) => {
-      if (!showGif) return;
-
-      const searchOptions = config.value.search as WalineSearchOptions;
-
-      // clear input
-      if (gifSearchInputRef.value) gifSearchInputRef.value.value = '';
-
-      searchResults.loading = true;
-
-      searchResults.list = searchOptions.default
-        ? await searchOptions.default()
-        : await searchOptions.search('');
-
-      searchResults.loading = false;
-    });
-
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const onMessageRecive = ({ data }: any): void => {
       if (!data || data.type !== 'profile') return;
@@ -708,6 +691,24 @@ export default defineComponent({
       if (props.edit?.objectId) {
         editor.value = props.edit.orig;
       }
+
+      // watch gif
+      watch(showGif, async (showGif) => {
+        if (!showGif) return;
+
+        const searchOptions = <WalineSearchOptions>config.value.search;
+
+        // clear input
+        if (gifSearchInputRef.value) gifSearchInputRef.value.value = '';
+
+        searchResults.loading = true;
+
+        searchResults.list = searchOptions.default
+          ? await searchOptions.default()
+          : await searchOptions.search('');
+
+        searchResults.loading = false;
+      });
 
       // watch editor
       watch(

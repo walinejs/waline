@@ -27,6 +27,7 @@ import {
   onMounted,
   onUnmounted,
   ref,
+  watch,
 } from 'vue';
 import { getArticleCounter, updateArticleCounter } from '../api';
 import { VOTE_IDENTIFIER, VOTE_INDEX, useVoteStorage } from '../composables';
@@ -128,7 +129,15 @@ export default defineComponent({
         voteStorage.value = voteStorage.value.slice(-50);
     };
 
-    onMounted(() => fetchCounter());
+    onMounted(() => {
+      watch(
+        () => [config.value.serverURL, config.value.path],
+        () => {
+          fetchCounter();
+        },
+        { immediate: true }
+      );
+    });
     onUnmounted(() => abort?.());
 
     return {

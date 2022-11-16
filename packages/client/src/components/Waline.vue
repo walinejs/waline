@@ -81,7 +81,15 @@
 
 <script lang="ts">
 import { useStyleTag } from '@vueuse/core';
-import { computed, defineComponent, onMounted, provide, ref, watch } from 'vue';
+import {
+  computed,
+  defineComponent,
+  onMounted,
+  onUnmounted,
+  provide,
+  ref,
+  watch,
+} from 'vue';
 import Reaction from './ArticleReaction.vue';
 import CommentBox from './CommentBox.vue';
 import CommentCard from './CommentCard.vue';
@@ -258,8 +266,9 @@ export default defineComponent({
 
   props: SHOULD_VALIDATE ? propsWithValidate : props,
 
-  setup(props) {
-    const config = computed(() => getConfig(props as unknown as WalineProps));
+  setup(_props) {
+    const props = _props as unknown as WalineProps;
+    const config = computed(() => getConfig(props));
 
     const userInfo = useUserInfo();
     const likeStorage = useLikeStorage();
@@ -457,9 +466,14 @@ export default defineComponent({
 
     provide('config', config);
 
-    watch(() => (props as unknown as WalineProps).path, refresh);
-
-    onMounted(() => refresh());
+    onMounted(() => {
+      watch(
+        () => [props.serverURL, props.path],
+        () => refresh(),
+        { immediate: true }
+      );
+    });
+    onUnmounted(() => abort?.());
 
     return {
       config,

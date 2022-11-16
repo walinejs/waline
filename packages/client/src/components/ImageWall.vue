@@ -137,23 +137,23 @@ export default defineComponent({
       state.value[(e.target as HTMLImageElement).src] = true;
     };
 
-    watch(
-      () => [props.items],
-      () => {
-        state.value = {};
-        redraw(true);
-      }
-    );
-    watch(
-      () => [props.columnWidth, props.gap],
-      () => redraw()
-    );
-
     onMounted(() => {
       redraw(true);
-      resizeObserver = new ResizeObserver(() => redraw());
 
+      resizeObserver = new ResizeObserver(() => redraw());
       resizeObserver.observe(wall.value!);
+
+      watch(
+        () => [props.items],
+        () => {
+          state.value = {};
+          redraw(true);
+        }
+      );
+      watch(
+        () => [props.columnWidth, props.gap],
+        () => redraw()
+      );
     });
 
     onBeforeUnmount(() => resizeObserver!.unobserve(wall.value!));
