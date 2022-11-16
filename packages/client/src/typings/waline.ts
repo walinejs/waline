@@ -1,4 +1,5 @@
 import type {
+  WalineCommentSorting,
   WalineHighlighter,
   WalineEmojiInfo,
   WalineImageUploader,
@@ -129,6 +130,15 @@ export interface WalineProps {
    * @see [I18n](https://waline.js.org/en/client/i18n.html)
    */
   locale?: Partial<WalineLocale>;
+
+  /**
+   * 评论列表排序方式
+   *
+   * Sorting method for comment list
+   *
+   * @default 'latest'
+   */
+  commentSorting?: WalineCommentSorting;
 
   /**
    * 是否启用暗黑模式适配

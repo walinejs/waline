@@ -9,12 +9,12 @@
       </div>
       <ul class="wl-sort">
         <li
-          v-for="item in sortByItems"
-          :key="item.key"
-          :class="[item.key === sortBy ? 'active' : '']"
-          @click="onSortByChange(item.key)"
+          v-for="item in sortingMethods"
+          :key="item"
+          :class="[item === commentSorting ? 'active' : '']"
+          @click="onSortByChange(item)"
         >
-          {{ i18n[item.name] }}
+          {{ i18n[item] }}
         </li>
       </ul>
     </div>
@@ -102,6 +102,7 @@ import { getConfig, getDarkStyle } from '../utils';
 import type { PropType } from 'vue';
 import type {
   WalineComment,
+  WalineCommentSorting,
   WalineCommentStatus,
   WalineEmojiInfo,
   WalineLoginStatus,
@@ -123,6 +124,7 @@ const props = [
   'meta',
   'requiredMeta',
   'dark',
+  'commentSorting',
   'lang',
   'locale',
   'pageSize',
@@ -138,23 +140,12 @@ const props = [
   'reaction',
 ];
 
-type SortKeyItems = 'insertedAt_desc' | 'insertedAt_asc' | 'like_desc';
-type SortNameItems = 'latest' | 'oldest' | 'hottest';
-type SortByItems = { key: SortKeyItems; name: SortNameItems }[];
-const sortByItems: SortByItems = [
-  {
-    key: 'insertedAt_desc',
-    name: 'latest',
-  },
-  {
-    key: 'insertedAt_asc',
-    name: 'oldest',
-  },
-  {
-    key: 'like_desc',
-    name: 'hottest',
-  },
-];
+type SortKey = 'insertedAt_desc' | 'insertedAt_asc' | 'like_desc';
+const sortKeyMap: Record<WalineCommentSorting, SortKey> = {
+  latest: 'insertedAt_desc',
+  oldest: 'insertedAt_asc',
+  hottest: 'like_desc',
+};
 
 const propsWithValidate = {
   serverURL: {
@@ -184,6 +175,14 @@ const propsWithValidate = {
   },
 
   dark: [String, Boolean],
+
+  commentSorting: {
+    type: String,
+    default: 'latest',
+    validator: (value: unknown): boolean =>
+      typeof value === 'string' &&
+      ['latest', 'oldest', 'hottest'].includes(value),
+  },
 
   lang: {
     type: String,
@@ -279,7 +278,7 @@ export default defineComponent({
     const count = ref(0);
     const page = ref(1);
     const totalPages = ref(0);
-    const sortBy = ref<SortKeyItems>(sortByItems[0].key);
+    const commentSorting = ref(config.value.commentSorting);
 
     const data = ref<WalineComment[]>([]);
     const reply = ref<WalineComment | null>(null);
@@ -305,7 +304,7 @@ export default defineComponent({
         lang: config.value.lang,
         path,
         pageSize,
-        sortBy: sortBy.value,
+        sortBy: sortKeyMap[commentSorting.value],
         page: pageNumber,
         signal: controller.signal,
         token: userInfo.value?.token,
@@ -335,12 +334,11 @@ export default defineComponent({
       getCommentData(1);
     };
 
-    const onSortByChange = (item: SortKeyItems): void => {
-      if (sortBy.value === item) {
-        return;
+    const onSortByChange = (item: WalineCommentSorting): void => {
+      if (commentSorting.value !== item) {
+        commentSorting.value = item;
+        refresh();
       }
-      sortBy.value = item;
-      refresh();
     };
 
     const onReply = (comment: WalineComment | null): void => {
@@ -485,8 +483,8 @@ export default defineComponent({
       count,
       page,
       totalPages,
-      sortBy,
-      sortByItems,
+      commentSorting,
+      sortingMethods: <WalineCommentSorting[]>Object.keys(sortKeyMap),
       data,
       reply,
       edit,

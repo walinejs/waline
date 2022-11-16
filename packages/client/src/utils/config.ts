@@ -67,6 +67,7 @@ export const getConfig = ({
   search,
   reaction,
   recaptchaV3Key = '',
+  commentSorting = 'latest',
   ...more
 }: WalineProps): WalineConfig => ({
   serverURL: getServerURL(serverURL),
@@ -94,5 +95,6 @@ export const getConfig = ({
     : reaction === true
     ? defaultReaction
     : [],
+  commentSorting,
   ...more,
 });

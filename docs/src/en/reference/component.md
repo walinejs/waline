@@ -78,6 +78,13 @@ Darkmode support
 
 For details of custom style and darkmode, please see [Custom Style](../guide/client/style.md).
 
+## commentSorting
+
+- Type: `WalineCommentSorting`
+- Default: `'latest'`
+
+Comment list sorting methods. Optional values: `'latest'`, `'oldest'`, `'hottest'`
+
 ## meta
 
 - Type: `string[]`
