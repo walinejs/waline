@@ -2,6 +2,7 @@ import type {
   WalineHighlighter,
   WalineEmojiInfo,
   WalineImageUploader,
+  WalineLoginStatus,
   WalineMeta,
   WalineTexRenderer,
   WalineSearchOptions,
@@ -199,7 +200,7 @@ export interface WalineProps {
    *
    * @default 'enable'
    */
-  login?: 'enable' | 'disable' | 'force';
+  login?: WalineLoginStatus;
 
   /**
    * 是否在页脚展示版权信息

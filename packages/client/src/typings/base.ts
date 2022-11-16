@@ -39,6 +39,8 @@ export interface WalineEmojiInfo {
 
 export type WalineEmojiMaps = Record<string, string>;
 
+export type WalineLoginStatus = 'enable' | 'disable' | 'force';
+
 export interface WalineSearchImageData extends Record<string, unknown> {
   /**
    * 图片链接

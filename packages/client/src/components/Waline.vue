@@ -104,6 +104,7 @@ import type {
   WalineComment,
   WalineCommentStatus,
   WalineEmojiInfo,
+  WalineLoginStatus,
   WalineHighlighter,
   WalineTexRenderer,
   WalineImageUploader,
@@ -223,7 +224,7 @@ const propsWithValidate = {
         )),
   },
 
-  login: String as PropType<'enable' | 'disable' | 'force'>,
+  login: String as PropType<WalineLoginStatus>,
 
   highlighter: Function as PropType<WalineHighlighter>,
 
