@@ -21,7 +21,7 @@ The users rank list/users wall widget is named `UserList` and contains six optio
 The data format returned by the component should be `Promise<{ users: WalineUser[], destroy: () => void }>`.
 
 - `users` property: an array of the user list with exact number of `count`
-- `destory` method: a function which will destroy the widget
+- `destroy` method: a function which will destroy the widget
 
 ## Basic usage
 
@@ -58,7 +58,7 @@ The data format returned by the component should be `Promise<{ users: WalineUser
 
 ## Advanced usage
 
-If you are not satisfied with the default output format, you can call the component by omiting the `el` option to get the data and render it yourself.
+If you are not satisfied with the default output format, you can call the component by omitting the `el` option to get the data and render it yourself.
 
 Example:
 

@@ -19,7 +19,7 @@ You can find an instance property `el` and two methods: `update()` and `destroy(
 
 ### update
 
-You can call `update()`to update Waline at any time (e.g.: when user visite a new route). The `update` method receives an optional parameter `options`, except for `el`, other Waline initial options can be updated by passing in new values.
+You can call `update()` to update Waline at any time (e.g.: when user visits a new route). The `update` method receives an optional parameter `options`, except for `el`, other Waline initial options can be updated by passing in new values.
 
 E.g.:
 
@@ -89,7 +89,7 @@ There is only one attribute `errMsg` on `WalineErrorInstance` to indicate the re
 
 ### Precautions
 
-::: warning Remember to destory the instance
+::: warning Remember to destroy the instance
 
 In order for Waline to properly release resources, please manually call `WalineInstance.destroy()` before removing the element where Waline is mounted.
 

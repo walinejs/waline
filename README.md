@@ -14,7 +14,7 @@ A simple comment system with backend support.
 
 > [中文 README](https://github.com/walinejs/waline/blob/main/README_CN.md)
 
-## Documatation
+## Documentation
 
 ### [English](https://waline.js.org/en/) | [简体中文](https://waline.js.org/)
 
@@ -59,7 +59,7 @@ A simple comment system with backend support.
 - [x] Duplicate content check
 - [x] CloudBase deploy support
 - [x] Social account login
-- [x] Sitcky Comment
+- [x] Sticky Comment
 - [x] Comment Like
 - [ ] AWS, GCP, Azure deploy support
 

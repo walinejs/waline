@@ -51,7 +51,7 @@ Waline provides a series of emoji presets that can be used out of box. You can a
 
   ::: details Others presets
 
-  - Full: (Not recommand)
+  - Full: (Not recommended)
 
     ```http
     https://unpkg.com/@waline/emojis@1.1.0/tw
@@ -133,7 +133,7 @@ Waline provides a series of emoji presets that can be used out of box. You can a
 
 ::: warning
 
-Waline DO NOT have any copright of above emojis, use them at your own risk.
+Waline DO NOT have any copyright of above emojis, use them at your own risk.
 
 :::
 
@@ -162,7 +162,7 @@ You need to place all emoticons in an accessible server folder, then create `inf
 
 - `prefix` (optional): The general prefix of images' filename
 
-  ::: tip Recommanded
+  ::: tip Recommended
 
   When you set multiple emojis tabs, we recommend you to add a common prefix to all emoji images in one tab to prevent conflicts with other emoji titles.
 

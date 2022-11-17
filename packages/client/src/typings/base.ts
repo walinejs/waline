@@ -1,3 +1,5 @@
+export type WalineCommentSorting = 'latest' | 'oldest' | 'hottest';
+
 export interface WalineEmojiInfo {
   /**
    * 选项卡上的 Emoji 名称
@@ -38,6 +40,8 @@ export interface WalineEmojiInfo {
 }
 
 export type WalineEmojiMaps = Record<string, string>;
+
+export type WalineLoginStatus = 'enable' | 'disable' | 'force';
 
 export interface WalineSearchImageData extends Record<string, unknown> {
   /**

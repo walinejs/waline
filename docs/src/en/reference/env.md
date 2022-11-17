@@ -30,8 +30,8 @@ You should set through `Settings` - `Environment Variables` when using Vercel.
 
 | Environment Variables   | Default                                                                 | Description                                                       |
 | ----------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `DISABLE_USERAGENT`     |                                                                         | wether hide the user agent of commentor. Default value is `false` |
-| `DISABLE_REGION`        |                                                                         | wether hide commentor's region. Default value is `false`          |
+| `DISABLE_USERAGENT`     |                                                                         | wether hide the user agent of commenter. Default value is `false` |
+| `DISABLE_REGION`        |                                                                         | wether hide commenter's region. Default value is `false`          |
 | `DISABLE_AUTHOR_NOTIFY` |                                                                         | wether disable author notification                                |
 | `AVATAR_PROXY`          | `https://avatar.75cdn.workers.dev`                                      | Avatar proxy service url. You can set `false` to disable it       |
 | `GRAVATAR_STR`          | <span v-pre>`https://seccdn.libravatar.org/avatar/{{mail\|md5}}`</span> | Gravatar render string，base on nunjucks template                 |
@@ -156,12 +156,12 @@ Please pay special attention that some mailboxes use separate SMTP passwords.
 
 ### SQLite
 
-| Environment Variable | Required | Default | Description                                                         |
-| -------------------- | -------- | ------- | ------------------------------------------------------------------- |
-| `SQLITE_PATH`        | ✅       |         | SQLite storage file path, not include file name                     |
-| `JWT_TOKEN`          | ✅       |         | Random String for login token generator                             |
-| `SQLITE_DB`          |          | waline  | SQLite storage file name, change it if your filenamed is not waline |
-| `SQLITE_PREFIX`      |          | `wl_`   | SQLite table prefix                                                 |
+| Environment Variable | Required | Default | Description                                                        |
+| -------------------- | -------- | ------- | ------------------------------------------------------------------ |
+| `SQLITE_PATH`        | ✅       |         | SQLite storage file path, not include file name                    |
+| `JWT_TOKEN`          | ✅       |         | Random String for login token generator                            |
+| `SQLITE_DB`          |          | waline  | SQLite storage file name, change it if your filename is not waline |
+| `SQLITE_PREFIX`      |          | `wl_`   | SQLite table prefix                                                |
 
 ### PostgreSQL
 

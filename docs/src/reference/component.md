@@ -78,6 +78,13 @@ Waline 的服务端地址。
 
 自定义样式与暗黑模式详见 [自定义样式](../guide/client/style.md)。
 
+## commentSorting
+
+- 类型: `WalineCommentSorting`
+- 默认值: `'latest'`
+
+评论列表排序方式。可选值: `'latest'`, `'oldest'`, `'hottest'`
+
 ## meta
 
 - 类型: `string[]`

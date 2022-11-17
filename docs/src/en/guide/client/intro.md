@@ -60,7 +60,7 @@ If you are building a Vue project, you can directly import and use Waline compon
 
 ## SPA support
 
-Waline brings support for SPA (**S**ingle **P**age **A**pplication). If you are using an app with `history.pushState`, you can use the `update()` method of the `Waline.init()` instance to refresh config for the comment area, or you can use the `destory()` method on the instance to destroy Waline instance. See [SPA Support](./spa.md) for details.
+Waline brings support for SPA (**S**ingle **P**age **A**pplication). If you are using an app with `history.pushState`, you can use the `update()` method of the `Waline.init()` instance to refresh config for the comment area, or you can use the `destroy()` method on the instance to destroy Waline instance. See [SPA Support](./spa.md) for details.
 
 ## Accessibility support
 
