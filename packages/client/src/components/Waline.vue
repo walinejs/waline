@@ -146,6 +146,7 @@ const sortKeyMap: Record<WalineCommentSorting, SortKey> = {
   oldest: 'insertedAt_asc',
   hottest: 'like_desc',
 };
+const sortingMethods: WalineCommentSorting[] = Object.keys(sortKeyMap);
 
 const propsWithValidate = {
   serverURL: {
@@ -484,7 +485,7 @@ export default defineComponent({
       page,
       totalPages,
       commentSorting,
-      sortingMethods: <WalineCommentSorting[]>Object.keys(sortKeyMap),
+      sortingMethods,
       data,
       reply,
       edit,
