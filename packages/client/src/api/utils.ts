@@ -14,8 +14,19 @@ export interface BaseAPIOptions {
   lang: string;
 }
 
-export interface APIErrorResponse {
+export interface ErrorStatusResponse {
+  /**
+   * 错误代码
+   *
+   * Error number
+   */
   errno: number;
+
+  /**
+   * 错误消息
+   *
+   * Error msg
+   */
   errmsg: string;
 }
 
@@ -24,16 +35,12 @@ export const JSON_HEADERS: Record<string, string> = {
   'Content-Type': 'application/json',
 };
 
-export const errorCheck = <T = unknown>(
-  data: T | APIErrorResponse,
+export const errorCheck = <T extends ErrorStatusResponse>(
+  data: T,
   name = ''
 ): T => {
-  if (typeof data === 'object' && (data as APIErrorResponse).errno)
-    throw new TypeError(
-      `Fetch ${name} failed with ${(data as APIErrorResponse).errno}: ${
-        (data as APIErrorResponse).errmsg
-      }`
-    );
+  if (typeof data === 'object' && data.errno)
+    throw new TypeError(`${name} failed with ${data.errno}: ${data.errmsg}`);
 
-  return data as T;
+  return data;
 };

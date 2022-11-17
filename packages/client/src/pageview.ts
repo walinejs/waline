@@ -1,4 +1,4 @@
-import { getPageviews, updatePageviews } from './api';
+import { getPageview, updatePageview } from './api';
 import { errorHandler, getQuery, getServerURL } from './utils';
 
 import type { WalineAbort } from './typings';
@@ -78,7 +78,7 @@ export const pageviewCount = ({
   };
 
   const fetch = (elements: HTMLElement[]): Promise<void> =>
-    getPageviews({
+    getPageview({
       serverURL: getServerURL(serverURL),
       paths: elements.map((element) => getQuery(element) || path),
       lang,
@@ -92,7 +92,7 @@ export const pageviewCount = ({
     const normalElements = elements.filter((element) => !filter(element));
     const elementsNeedstoBeFetched = elements.filter(filter);
 
-    void updatePageviews({
+    void updatePageview({
       serverURL: getServerURL(serverURL),
       path,
       lang,

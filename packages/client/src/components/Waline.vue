@@ -96,7 +96,7 @@ import CommentCard from './CommentCard.vue';
 import { LoadingIcon } from './Icons';
 import { useUserInfo, useLikeStorage } from '../composables';
 import { defaultLocales } from '../config';
-import { deleteComment, getComment, likeComment, updateComment } from '../api';
+import { deleteComment, getComment, updateComment } from '../api';
 import { getConfig, getDarkStyle } from '../utils';
 
 import type { PropType } from 'vue';
@@ -146,7 +146,7 @@ const sortKeyMap: Record<WalineCommentSorting, SortKey> = {
   oldest: 'insertedAt_asc',
   hottest: 'like_desc',
 };
-const sortingMethods: WalineCommentSorting[] = Object.keys(sortKeyMap);
+const sortingMethods = Object.keys(sortKeyMap) as WalineCommentSorting[];
 
 const propsWithValidate = {
   serverURL: {
@@ -445,10 +445,11 @@ export default defineComponent({
       const { objectId } = comment;
       const hasLiked = likeStorage.value.includes(objectId);
 
-      await likeComment({
+      await updateComment({
         serverURL,
         lang,
         objectId,
+        token: userInfo.value?.token,
         like: !hasLiked,
       });
 

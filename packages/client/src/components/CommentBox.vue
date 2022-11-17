@@ -287,7 +287,7 @@ import {
   GifIcon,
 } from './Icons';
 import ImageWall from './ImageWall.vue';
-import { addComment, login } from '../api';
+import { addComment, login, updateComment } from '../api';
 import { useEditor, useUserMeta, useUserInfo } from '../composables';
 import {
   getEmojis,
@@ -526,18 +526,21 @@ export default defineComponent({
         comment.pid = props.replyId;
         comment.rid = props.rootId;
         comment.at = props.replyUser;
-      } else if (props.edit) {
-        comment.eid = props.edit.objectId;
       }
 
       isSubmitting.value = true;
 
-      addComment({
+      const options = {
         serverURL,
         lang,
         token: userInfo.value?.token,
         comment,
-      })
+      };
+
+      (props.edit
+        ? updateComment({ objectId: props.edit.objectId, ...options })
+        : addComment(options)
+      )
         .then((resp) => {
           isSubmitting.value = false;
 

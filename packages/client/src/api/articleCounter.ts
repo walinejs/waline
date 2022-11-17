@@ -1,4 +1,4 @@
-import { JSON_HEADERS, errorCheck } from './utils';
+import { JSON_HEADERS } from './utils';
 import type { BaseAPIOptions } from './utils';
 
 export interface GetArticleCounterOptions extends BaseAPIOptions {
@@ -42,9 +42,7 @@ export const getArticleCounter = ({
       paths.join(',')
     )}&type=${encodeURIComponent(type.join(','))}&lang=${lang}`,
     { signal }
-  )
-    .then((resp) => <Promise<GetArticleCounterResponse>>resp.json())
-    .then((data) => errorCheck(data, 'article count'));
+  ).then((resp) => <Promise<GetArticleCounterResponse>>resp.json());
 
 export interface UpdateArticleCounterOptions extends BaseAPIOptions {
   /**
@@ -82,6 +80,4 @@ export const updateArticleCounter = ({
     method: 'POST',
     headers: JSON_HEADERS,
     body: JSON.stringify({ path, type, action }),
-  })
-    .then((resp) => <Promise<number>>resp.json())
-    .then((data) => errorCheck(data, 'article count'));
+  }).then((resp) => <Promise<number>>resp.json());

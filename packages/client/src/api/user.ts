@@ -1,4 +1,4 @@
-import { errorCheck } from './utils';
+import { errorCheck, ErrorStatusResponse } from './utils';
 import type { BaseAPIOptions } from './utils';
 import type { WalineComment } from '../typings';
 
@@ -23,9 +23,7 @@ export interface WalineUser
   count: number;
 }
 
-export interface GetUserListResponse {
-  errno: number;
-  message: string;
+export interface GetUserListResponse extends ErrorStatusResponse {
   data: WalineUser[];
 }
 

@@ -1,4 +1,3 @@
-import { errorCheck } from './utils';
 import type { BaseAPIOptions } from './utils';
 import type { WalineComment } from '../typings';
 
@@ -39,7 +38,5 @@ export const getRecentComment = ({
   return fetch(`${serverURL}/comment?type=recent&count=${count}&lang=${lang}`, {
     signal,
     headers,
-  })
-    .then((resp) => <Promise<WalineComment[]>>resp.json())
-    .then((data) => errorCheck(data, 'recent comment'));
+  }).then((resp) => <Promise<WalineComment[]>>resp.json());
 };
