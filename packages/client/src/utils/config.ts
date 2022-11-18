@@ -88,7 +88,7 @@ export const getConfig = ({
   pageSize,
   login,
   copyright,
-  search: search || getDefaultSearchOptions(lang),
+  search: search ?? getDefaultSearchOptions(lang),
   recaptchaV3Key,
   reaction: Array.isArray(reaction)
     ? reaction
