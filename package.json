@@ -62,10 +62,10 @@
     "conventional-changelog-cli": "2.2.2",
     "cross-env": "7.0.3",
     "cz-conventional-changelog": "3.3.0",
-    "eslint": "8.27.0",
+    "eslint": "8.28.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-prettier": "4.2.1",
-    "eslint-plugin-react": "7.31.10",
+    "eslint-plugin-react": "7.31.11",
     "eslint-plugin-vue": "9.7.0",
     "husky": "8.0.2",
     "lint-staged": "13.0.3",
@@ -80,11 +80,11 @@
     "stylelint-config-standard-scss": "6.1.0",
     "stylelint-order": "5.0.0",
     "typescript": "4.9.3",
-    "vercel": "28.5.3",
+    "vercel": "28.5.5",
     "vite": "3.2.4",
     "vitest": "0.25.2"
   },
-  "packageManager": "pnpm@7.16.0",
+  "packageManager": "pnpm@7.16.1",
   "apidoc": {
     "title": "Waline API Documentation"
   },
