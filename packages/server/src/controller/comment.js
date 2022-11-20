@@ -538,13 +538,9 @@ module.exports = class extends BaseRest {
       think.logger.debug(`Comment post frequence check OK!`);
 
       /** Akismet */
-      const { COMMENT_AUDIT, AUTHOR_EMAIL } = process.env;
-      const AUTHOR = AUTHOR_EMAIL;
-      const isAuthorComment = AUTHOR
-        ? data.mail.toLowerCase() === AUTHOR.toLowerCase()
-        : false;
+      const { COMMENT_AUDIT } = process.env;
 
-      data.status = COMMENT_AUDIT && !isAuthorComment ? 'waiting' : 'approved';
+      data.status = COMMENT_AUDIT ? 'waiting' : 'approved';
 
       think.logger.debug(`Comment initial status is ${data.status}`);
 
