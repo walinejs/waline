@@ -71,7 +71,7 @@
     "lint-staged": "13.0.3",
     "markdownlint-cli": "0.32.2",
     "postcss": "8.4.19",
-    "prettier": "2.7.1",
+    "prettier": "2.8.0",
     "sass": "1.56.1",
     "sort-package-json": "2.1.0",
     "stylelint": "14.15.0",
