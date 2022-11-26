@@ -1,6 +1,7 @@
 ---
 title: 设计目标
 icon: goal
+redirectFrom: /advanced/why.html
 ---
 
 ## Valine
