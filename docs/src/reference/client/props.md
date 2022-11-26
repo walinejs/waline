@@ -86,7 +86,7 @@ Waline 的服务端地址。
 
 - 默认值: `['//unpkg.com/@waline/emojis@1.1.0/weibo']`
 
-表情设置，详见 [自定义表情](../../guide/features/emoji.md)
+表情设置，详见 [自定义表情](../../features/emoji.md)
 
 ## dark
 

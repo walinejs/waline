@@ -160,4 +160,4 @@ Waline 不含有上述 Emoji 表情的任何版权，你需要自行承担使用
 
 ## 创建自己的预设
 
-除了 Waline 提供的预设外，你可以创建自己的预设，参见 [指南 → 创建 emoji 预设](../../cookbook/emoji.md)。
+除了 Waline 提供的预设外，你可以创建自己的预设，参见 [指南 → 创建 emoji 预设](../cookbook/emoji.md)。
