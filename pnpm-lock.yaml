@@ -89,7 +89,7 @@ importers:
       vue: 3.2.45
       vuepress: 2.0.0-beta.53
       vuepress-plugin-redirect: 2.0.0-beta.124
-      vuepress-shared: 2.0.0-beta.124
+      vuepress-shared: 2.0.0-beta.130
       vuepress-theme-hope: 2.0.0-beta.130
     devDependencies:
       '@fancyapps/ui': 4.0.31
@@ -100,7 +100,7 @@ importers:
       vue: 3.2.45
       vuepress: 2.0.0-beta.53_54nmke4n2vj3tdp5cd33kvtiom
       vuepress-plugin-redirect: 2.0.0-beta.124
-      vuepress-shared: 2.0.0-beta.124
+      vuepress-shared: 2.0.0-beta.130
       vuepress-theme-hope: 2.0.0-beta.130_vuepress@2.0.0-beta.53
 
   packages/admin:
