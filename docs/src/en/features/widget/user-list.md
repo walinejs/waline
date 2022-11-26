@@ -1,6 +1,7 @@
 ---
 title: Users Rank List/Users Wall Widget
 icon: user
+redirectFrom: /en/guide/client/widget/user-list.html
 ---
 
 Waline supports displaying users rank list or users wall by widget, which is convenient for displaying the commentor's info in the sidebar of the blog.
@@ -15,8 +16,8 @@ The users rank list/users wall widget is named `UserList` and contains six optio
 - `serverURL`: server link
 - `count` The number of users needed to get
 - `mode`: `list` means users rank list, `wall` means users wall
-- `lang`: i18n support, more ref to [i18n](../../client/i18n.md)
-- `locale`: customize the language, more ref to [i18n](../../client/i18n.md)
+- `lang`: i18n support, more ref to [i18n](../i18n.md)
+- `locale`: customize the language, more ref to [i18n](../i18n.md)
 
 The data format returned by the component should be `Promise<{ users: WalineUser[], destroy: () => void }>`.
 
