@@ -4,7 +4,9 @@ icon: server
 redirectFrom: /guide/server/vps-deploy.html
 ---
 
-如果你不想将服务端部署在 Vercel 上的话，你也可以选择部署在自己的服务器上。
+如果你担忧免费平台的请求延时，你也可以选择部署在自己的服务器上。
+
+<!-- more -->
 
 ## Docker 部署
 

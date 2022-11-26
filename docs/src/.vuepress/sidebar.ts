@@ -59,6 +59,7 @@ export const zhSidebarConfig = sidebar({
       icon: 'deploy',
       prefix: 'deploy/',
       children: [
+        'vercel',
         'cloudbase',
         'deta',
         'railway',
@@ -102,6 +103,7 @@ export const zhSidebarConfig = sidebar({
           icon: 'deploy',
           prefix: 'deploy/',
           children: [
+            'vercel',
             'cloudbase',
             'deta',
             'railway',
@@ -240,7 +242,7 @@ export const enSidebarConfig = sidebar({
       text: 'Deploy',
       icon: 'deploy',
       prefix: 'deploy/',
-      children: ['deta', 'railway', 'vps'],
+      children: ['vercel', 'deta', 'railway', 'vps'],
     },
   ],
   '/en/': [
@@ -276,7 +278,7 @@ export const enSidebarConfig = sidebar({
           text: 'Deploy',
           icon: 'deploy',
           prefix: 'deploy/',
-          children: ['deta', 'railway', 'vps'],
+          children: ['vercel', 'deta', 'railway', 'vps'],
         },
       ],
     },

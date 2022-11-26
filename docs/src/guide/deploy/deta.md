@@ -6,6 +6,10 @@ redirectFrom: /guide/server/deta.html
 
 [Deta](https://www.deta.sh/) 是一个可免费使用的 Serverless 部署平台。我们可以快速的将 Waline 部署到 Deta 平台上。
 
+<!-- more -->
+
+## 如何部署
+
 [![Deploy with Deta](https://button.deta.dev/1/svg)](https://go.deta.dev/deploy?repo=https://github.com/walinejs/deta-starter)
 
 点击上方按钮，跳转至 Deta 平台快速部署。登录之后会让你选择部署的位置，同时需要你输入环境变量。

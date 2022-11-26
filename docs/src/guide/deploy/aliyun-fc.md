@@ -6,6 +6,8 @@ redirectFrom: /guide/server/aliyun-fc.html
 
 [阿里云函数计算](https://fc.console.aliyun.com/) 是阿里云推出的 Serverless 平台。我们可以快速的将 Waline 部署到阿里云函数计算平台上。
 
+<!-- more -->
+
 ## 如何部署
 
 1. [aliyun-fc-starter](https://github.com/walinejs/aliyun-fc-starter/generate) 访问该地址基于官方模板创建仓库并将其克隆下来

@@ -6,6 +6,8 @@ redirectFrom: /guide/server/baidu-cfc.html
 
 [百度云函数计算](https://console.bce.baidu.com/cfc/#/cfc/functions) 是百度云推出的 Serverless 平台。我们可以快速的将 Waline 部署到百度云函数计算平台上。
 
+<!-- more -->
+
 ## 如何部署
 
 1. Clone 该项目 <https://github.com/walinejs/baidu-cfc-starter>

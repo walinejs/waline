@@ -6,6 +6,8 @@ redirectFrom: /en/guide/server/vps-deploy.html
 
 If you don't want to deploy the server on Vercel, you can also choose to deploy on your own server.
 
+<!-- more -->
+
 ## Docker Deploy
 
 ```bash

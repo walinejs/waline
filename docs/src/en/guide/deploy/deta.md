@@ -6,17 +6,21 @@ redirectFrom: /en/guide/server/deta.html
 
 [Deta](https://www.deta.sh/) is a free Serverless platform, we can deploy Waline to Deta platform easily.
 
+<!-- more -->
+
+## How to Deploy
+
 [![Deploy with Deta](https://button.deta.dev/1/svg)](https://go.deta.dev/deploy?repo=https://github.com/walinejs/deta-starter)
 
 Click this button and it'll redirect to deta platform to quickly deploy. You need select your deploy project and environment variables after login.
 
-![Deta-1](../../assets/deta-1.png)
+![Deta-1](../../../assets/deta-1.png)
 
 When everything is ok, just click <kbd>Deploy</kbd> button. It'll deploy successful after a moment. Then deta will show you deploy site url. Copy the site url and input it into client `serverURL` configuration. Then you can enjoy waline!
 
-![Deta-2](../../assets/deta-2.png)
+![Deta-2](../../../assets/deta-2.png)
 
-## How to update
+## How to Update
 
 Deta uses CLI command line tools to manage projects. Follow the [documentation](https://docs.deta.sh/docs/cli/install) guide to install Deta's command line tools.
 
@@ -32,7 +36,7 @@ After installation, we use `deta login` to log in to the command line, during wh
 
 We need to clone the project before updating. Enter the setting page of our project, copy and execute the `deta clone` command on the page, and the project will be downloaded after a while.
 
-![Deta-2](../../assets/deta-3.jpg)
+![Deta-2](../../../assets/deta-3.jpg)
 
 After that, we can modify the project code locally, for example, modify the dependency version in `package.json` to the latest.
 

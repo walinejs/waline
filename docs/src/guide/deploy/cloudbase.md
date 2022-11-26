@@ -4,9 +4,15 @@ icon: tencloud
 redirectFrom: /guide/server/cloudbase.html
 ---
 
+Waline 支持一键部署到腾讯云开发上。
+
+<!-- more -->
+
+## 如何部署
+
 [![CloudBase](https://main.qcloudimg.com/raw/67f5a389f1ac6f3b4d04c7256438e44f.svg)](https://console.cloud.tencent.com/tcb/env/index?action=CreateAndDeployCloudBaseProject&appUrl=https%3A%2F%2Fgithub.com%2Fwalinejs%2Ftcb-starter&branch=master&appName=waline)
 
-Waline 支持一键部署到腾讯云开发上。点击上方按钮，跳转至腾讯云开发进行快速部署。
+点击上方按钮，跳转至腾讯云开发进行快速部署。
 
 登录之后会让你选择部署的位置，你可以选择已有的应用，也可以选择新建应用。
 
