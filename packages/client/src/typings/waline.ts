@@ -2,6 +2,7 @@ import type {
   WalineCommentSorting,
   WalineHighlighter,
   WalineEmojiInfo,
+  WalineEmojiPresets,
   WalineImageUploader,
   WalineLoginStatus,
   WalineMeta,
@@ -158,7 +159,7 @@ export interface WalineProps {
    *
    * @default ['//unpkg.com/@waline/emojis@1.1.0/weibo']
    */
-  emoji?: (string | WalineEmojiInfo)[] | false;
+  emoji?: (WalineEmojiInfo | WalineEmojiPresets)[] | false;
 
   /**
    * 设置搜索功能
