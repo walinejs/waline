@@ -31,6 +31,8 @@ Please ensure the uniqueness of each _article page_ path, otherwise the same com
 
 - Type: `string`
 - Default: `'zh-CN'`
+- Details:
+  - [Guide → I18n](../../guide/client/i18n.md)
 
 Display language.
 
@@ -47,14 +49,46 @@ Optional value:
 - `'ru'`
 - `'ru-RU'`
 
-If you need a custom language, please refer to [i18n](../../guide/client/i18n.md).
-
 ## emoji
 
 - Type: `(string | WalineEmojiInfo)[] | false`
-- Default: `['//unpkg.com/@waline/emojis@1.1.0/weibo']`
 
-Emoji settings, for details see [Custom Emoji](../../features/emoji.md)
+  ```ts
+  type WalineEmojiPresets = `http://${string}` | `https://${string}`;
+
+  interface WalineEmojiInfo {
+    /**
+     * Emoji name show on tab
+     */
+    name: string;
+    /**
+     * Current folder link
+     */
+    folder?: string;
+    /**
+     * Common prefix of Emoji icons
+     */
+    prefix?: string;
+    /**
+     * Type of Emoji icons, will be regarded as file extension
+     */
+    type?: string;
+    /**
+     * Emoji icon show on tab
+     */
+    icon: string;
+    /**
+     * Emoji image list
+     */
+    items: string[];
+  }
+  ```
+
+- Default: `['//unpkg.com/@waline/emojis@1.1.0/weibo']`
+- Details:
+  - [Guide → Emoji](../../features/emoji.md)
+
+Emoji settings.
 
 ## dark
 
@@ -132,66 +166,19 @@ number of comments per page.
 ## imageUploader
 
 - Type: `WalineImageUploader | false`
-- Required: No
-- Details:
 
   ```ts
   type WalineImageUploader = (image: File) => Promise<string>;
   ```
 
+- Required: No
+
+- Details:
+  - [Cookbook → Upload Image](../../cookbook/upload-image.md)
+
 Custom image upload method. The default behavior is to embed images Base 64 encoded, you can set this to `false` to disable image uploading.
 
 The function should receive an image object and return a Promise that provides the image address.
-
-::: details Demo
-
-A demo using api of `lsky - pro`.
-
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Waline imageUploader demo</title>
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/@waline/client@v2/dist/waline.css"
-    />
-  </head>
-  <body>
-    <div id="waline" style="max-width: 800px; margin: 0 auto"></div>
-    <script type="module">
-      import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
-
-      const waline = init({
-        el: '#waline',
-        serverURL: 'https://waline.vercel.app',
-        path: '/',
-        lang: 'en-US',
-        imageUploader: function (file) {
-          let formData = new FormData();
-          let headers = new Headers();
-
-          formData.append('file', file);
-          headers.append('Authorization', '!{API TOKEN}');
-          headers.append('Accept', 'application/json');
-
-          return fetch('!{API URL}', {
-            method: 'POST',
-            headers: headers,
-            body: formData,
-          })
-            .then((resp) => resp.json())
-            .then((resp) => resp.data.links.url);
-        },
-      });
-    </script>
-  </body>
-</html>
-```
-
-:::
 
 ## highlighter
 

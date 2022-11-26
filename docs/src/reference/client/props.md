@@ -31,6 +31,8 @@ Waline 的服务端地址。
 
 - 类型: `string`
 - 默认值: `'zh-CN'`
+- 详情:
+  - [指南 → 多语言](../../guide/client/i18n.md)
 
 多语言支持。
 
@@ -47,11 +49,41 @@ Waline 的服务端地址。
 - `'ru'`
 - `'ru-RU'`
 
-如需 _自定义语言_，请参考 [i18n](../guide/client/i18n.md)。
-
 ## emoji
 
-- 类型: `(string | WalineEmojiInfo)[] | false`
+- 类型: `(WalineEmojiInfo | WalineEmojiPresets)[] | false`
+
+  ```ts
+  type WalineEmojiPresets = `http://${string}` | `https://${string}`;
+
+  interface WalineEmojiInfo {
+    /**
+     * 选项卡上的 Emoji 名称
+     */
+    name: string;
+    /**
+     * 所在文件夹链接
+     */
+    folder?: string;
+    /**
+     * Emoji 通用路径前缀
+     */
+    prefix?: string;
+    /**
+     * Emoji 图片的类型，会作为文件扩展名使用
+     */
+    type?: string;
+    /**
+     * 选项卡显示的 Emoji 图标
+     */
+    icon: string;
+    /**
+     * Emoji 图片列表
+     */
+    items: string[];
+  }
+  ```
+
 - 默认值: `['//unpkg.com/@waline/emojis@1.1.0/weibo']`
 
 表情设置，详见 [自定义表情](../../guide/features/emoji.md)
@@ -77,7 +109,7 @@ Waline 的服务端地址。
 
 :::
 
-自定义样式与暗黑模式详见 [自定义样式](../guide/client/style.md)。
+自定义样式与暗黑模式详见 [自定义样式](../../guide/client/style.md)。
 
 ## commentSorting
 
@@ -139,59 +171,12 @@ Waline 的服务端地址。
   type WalineImageUploader = (image: File) => Promise<string>;
   ```
 
+- 参考:
+  - [上传图片](../../cookbook/upload-image.md)
+
 自定义图片上传方法。默认行为是将图片 Base 64 编码嵌入，你可以设置为 `false` 以禁用图片上传功能。
 
 函数应该接收图片对象，返回一个提供图片地址的 Promise。
-
-::: details 案例
-
-一个使用 `lsky - pro` 图床的案例。
-
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Waline imageUploader 案例</title>
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/@waline/client@v2/dist/waline.css"
-    />
-  </head>
-  <body>
-    <div id="waline" style="max-width: 800px; margin: 0 auto"></div>
-    <script type="module">
-      import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
-
-      const waline = init({
-        el: '#waline',
-        serverURL: 'https://waline.vercel.app',
-        path: '/',
-        lang: 'en-US',
-        imageUploader: function (file) {
-          let formData = new FormData();
-          let headers = new Headers();
-
-          formData.append('file', file);
-          headers.append('Authorization', '!{API TOKEN}');
-          headers.append('Accept', 'application/json');
-
-          return fetch('!{API URL}', {
-            method: 'POST',
-            headers: headers,
-            body: formData,
-          })
-            .then((resp) => resp.json())
-            .then((resp) => resp.data.links.url);
-        },
-      });
-    </script>
-  </body>
-</html>
-```
-
-:::
 
 ## highlighter
 
