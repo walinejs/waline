@@ -1,29 +1,181 @@
 ---
-title: Comment Syntax Support
+title: Comment Format Support
 icon: format
 ---
 
-You can use many syntax in your comment, including expanded Markdown syntax and HTML tags.
+The supported Markdown syntax in comments is as follows.
 
 <!-- more -->
 
 ## Markdown Support
 
-We support full Markdown syntax and the following extensions.
+::: details Headings
 
-### GFM Markdown Favor
+# Heading1
 
-::: details Delete lines
+## Heading2
 
-This is ~~deleted~~.
+### Heading3
+
+#### Heading4
+
+##### Heading5
+
+###### Heading7
 
 ```md
-This is ~~deleted~~.
+# Heading1
+
+## Heading2
+
+### Heading3
+
+#### Heading4
+
+##### Heading5
+
+###### Heading7
 ```
 
 :::
 
-::: details Tables
+::: details Text
+
+This sentence has **bold**、_italic_ and ~~delete~~ style text.
+
+```md
+This sentence has **bold**、_italic_ and ~~delete~~ style text.
+```
+
+:::
+
+::: details Paragraph
+
+This is a paragraph.
+
+This is another paragraph.
+
+```md
+This is a paragraph.
+
+This is another paragraph.
+```
+
+:::
+
+::: details Line Break
+
+I would like to line break at  
+this point
+
+```md
+I would like to line break at  
+this point
+```
+
+:::
+
+::: details Blockquotes
+
+> Blockquotes can also be nested...
+>
+> > ...by using greater-than signs right next to each other...
+> >
+> > > ...or with spaces between arrows.
+
+```md
+> Blockquotes can also be nested...
+>
+> > ...by using greater-than signs right next to each other...
+> >
+> > > ...or with spaces between arrows.
+```
+
+:::
+
+::: details Unordered List
+
+- Create a list by starting a line with `-`
+- Make sub-lists by indenting 2 spaces:
+
+  - Marker character change forces new list start:
+
+    - Ac tristique libero volutpat at
+    - Facilisis in pretium nisl aliquet
+    - Nulla volutpat aliquam velit  
+      link break
+
+      New paragraph
+
+- It’s easy!
+
+```md
+- Create a list by starting a line with `-`
+- Sub-lists are made by indenting 2 spaces:
+
+  - Marker character change forces new list start:
+
+    - Ac tristique libero volutpat at
+    - Facilisis in pretium nisl aliquet
+    - Nulla volutpat aliquam velit  
+      link break
+
+      New paragraph
+
+- Very easy!
+```
+
+:::
+
+::: details Ordered List
+
+1. Lorem ipsum dolor sit amet
+1. Consectetur adipiscing elit  
+   line break  
+   line break again
+1. Integer molestie lorem at massa
+
+```md
+1. Lorem ipsum dolor sit amet
+1. Consectetur adipiscing elit  
+   line break  
+   line break again
+1. Integer molestie lorem at massa
+```
+
+:::
+
+::: details HR
+
+---
+
+```md
+---
+```
+
+:::
+
+::: details Link
+
+[HomePage](/)
+
+```md
+[HomePage](/)
+```
+
+:::
+
+::: details Image
+
+![Logo](/logo.png)
+
+```md
+![Logo](/logo.png)
+```
+
+:::
+
+::: details Table
 
 |           center           |                    right | left                    |
 | :------------------------: | -----------------------: | :---------------------- |
@@ -41,7 +193,39 @@ This is ~~deleted~~.
 
 :::
 
-### Superscript and Subscript
+::: details Code
+
+Inline Code: `code`
+
+```md
+Inline Code: `code`
+```
+
+Block code:
+
+```js
+var foo = function (bar) {
+  return bar++;
+};
+
+console.log(foo(5));
+```
+
+````md
+Block code:
+
+```js
+var foo = function (bar) {
+  return bar++;
+};
+
+console.log(foo(5));
+```
+````
+
+:::
+
+## Superscript and Subscript
 
 Use `^` and `~` to mark the superscript and subscript.
 
@@ -57,21 +241,31 @@ Use `^` and `~` to mark the superscript and subscript.
 
 :::
 
-### Emojis
+## Emojis
 
 Besides user-configured or built-in Weibo emojis, we also support complete Emoji shorthand emoticons.
 
 ::: details Demo
 
-:) :( :smile: :laughing: :blush: :smiley: :smirk: :heart_eyes: :kissing_heart:
+Classic:
+
+:wink: :cry: :laughing: :yum:
 
 ```md
-:) :( :smile: :laughing: :blush: :smiley: :smirk: :heart_eyes: :kissing_heart:
+:wink: :cry: :laughing: :yum:
+```
+
+Shortcuts:
+
+8-) :) :\* :( :-) :-( ;)
+
+```md
+8-) :) :\* :( :-) :-( ;)
 ```
 
 :::
 
-### Code Block Highlight
+## Code Block Highlight
 
 We support highlighting in almost all languages.
 
@@ -137,10 +331,11 @@ footer p {
 
 :::
 
-### Mathematical formula
+## Mathematical formula
 
 You can use `$ ... $` to create inline formulas, or use `$$ ... $$` to create block-level formulas.
 
+:::
 ::: details Demo
 
 Euler’s identity $e^{i\pi}+1=0$ is a beautiful formula in $\mathbb{R}^2$.
@@ -166,51 +361,3 @@ $$
 ## Embed HTML
 
 Feel free to add any HTML content unless triggering the protection mechanism below.
-
-## Restrictions
-
-::: info Spam protection
-
-- To prevent users from creating submitable forms in the comment area to trick other visitors submitting information, `<form>` and `<input>` are not allowed
-
-- To prevent users from using style tag to revise website pages or modify their own comment styles to implant spam ads, the `<style>` tag and the `style` attribute are not allowed.
-
-- To prevent users from abusing media autoplay feature, `autoplay` attribute is not allowed.
-
-:::
-
-::: info XSS prevention
-
-- We use [DOMPurify](https://github.com/cure53/DOMPurify) to sanitize every comment input to prevent potential XSS attacks. This means you can't use `<iframe>` or any form of script.
-
-- All links will be automatically set `rel="noreferrer noopener"` and opened in a new window with `target="_ blank"`.
-
-:::
-
-### Restricted preview function
-
-In order to control the size of `@waline/client` on client side, we only provides a simple Markdown parser in client side, so many syntax can **correctly rendered in the comment area**, but they **cannot be displayed correctly in the preview panel**.
-
-This includes the following restrictions:
-
-- Standard emoji syntax (e.g.: tada: `:tada:`) cannot be rendered correctly
-
-- Superscript and subscript (e.g.: `H~2~O`, `x^2^`) cannot be rendered correctly
-
-- Tex syntax, or mathematical formulas (e.g.: `$a = 1$`) cannot be rendered correctly by default
-
-  You can set Tex rendering during preview by setting the `texRenderer` option.
-
-- Code blocks will be highlighted in random colors splitted by specific characters
-
-::: tip Principle
-
-1. Considering the size, the client uses `marked` for rendering and a < 1kb highlighter, which will have the above limitations.
-
-1. When a user submits a comment, the client embeds custom Emoji images, and the raw comment will be sent to the server.
-
-1. The server receives the comment, uses `markdown-it` to render markdown correctly with related plugins, and uses `prismjs` to highlight code blocks according to the language, then render Tex according to users' settings, and finally executes XSS sanitizing.
-
-1. After successfully processed, the server storage the render content in database, and returns it to the client when needed so comment will be displayed normally.
-
-:::
