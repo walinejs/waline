@@ -1,5 +1,5 @@
 ---
-title: Using custom TEX renderer
+title: Customize TEX renderer
 ---
 
 This cookbook will guide you through setting up your own Tex renderer.

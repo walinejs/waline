@@ -183,81 +183,33 @@ The function should receive an image object and return a Promise that provides t
 ## highlighter
 
 - Type: `WalineHighlighter | false`
-- Required: No
-- Details:
 
   ```ts
   type WalineHighlighter = (code: string, lang: string) => string;
   ```
 
+- Required: No
+
+- Details:
+  - [Cookbook → Customize Highlighter](../../cookbook/highlighter.md)
+
 **Code highlighting**, use `hanabi` by default. The function passes in original content of code block and language of the code block. You should trigger the callback function or return a string directly.
 
 You can pass in a code highlighter of your own, or set to `false` to disable code highlighting.
 
-::: details Demo
-
-A demo using prismjs to highlight code blocks.
-
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Waline highlighter demo</title>
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/@waline/client@v2/dist/waline.css"
-    />
-    <script src="https://unpkg.com/prismjs@v1" data-manual></script>
-    <script src="https://unpkg.com/prismjs@v1/plugins/autoloader/prism-autoloader.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/prismjs@v1/themes/prism-tomorrow.min.css"
-    />
-  </head>
-  <body>
-    <div id="waline" style="max-width: 800px; margin: 0 auto"></div>
-    <script type="module">
-      import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
-
-      const waline = init({
-        el: '#waline',
-        serverURL: 'https://waline.vercel.app',
-        path: '/',
-        lang: 'en-US',
-        highlighter: (code, lang) => {
-          if (!window.Prism.languages[lang]) {
-            window.Prism.plugins.autoloader.loadLanguages(lang);
-          }
-
-          return window.Prism.highlight(
-            code,
-            window.Prism.languages[lang] || window.Prism.languages.text,
-            lang
-          );
-        },
-      });
-    </script>
-  </body>
-</html>
-```
-
-:::
-
 ## texRenderer
 
 - Type: `WalineTexRenderer | false`
-- Required: No
-- Details:
 
   ```ts
   type WalineTexRenderer = (blockMode: boolean, tex: string) => string;
   ```
 
-- Reference:
+- Required: No
 
-  - [Set your own $\TeX$ renderer](../../cookbook/tex.md)
+- Details:
+
+  - [Cookbook → Customize $\TeX$ Renderer](../../cookbook/tex.md)
   - [MathJax](https://www.mathjax.org/)
   - [KaTeX](https://katex.org/)
 
@@ -268,8 +220,6 @@ You can import $\TeX$ renderer to provide preview feature. We recommend you to u
 ## search
 
 - Type: `WalineSearchOptions | false`
-- Required: No
-- Details:
 
   ```ts
   interface WalineSearchImageData extends Record<string, unknown> {
@@ -320,6 +270,9 @@ You can import $\TeX$ renderer to provide preview feature. We recommend you to u
     more?: (word: string, currentCount: number) => Promise<WalineSearchResult>;
   }
   ```
+
+- Required: No
+- Details:
 
 Customize search features, you can disable search function by setting it to `false`.
 

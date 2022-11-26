@@ -181,78 +181,31 @@ Waline 的服务端地址。
 ## highlighter
 
 - 类型: `WalineHighlighter | false`
-- 必填: 否
-- 详情:
 
   ```ts
   type WalineHighlighter = (code: string, lang: string) => string;
   ```
 
+- 必填: 否
+
+- 详情:
+  - [Cookbook → 代码高亮](../../cookbook/highlighter.md)
+
 **代码高亮**，默认使用一个 < 1kb 的简单高亮器。函数传入代码块的原始字符和代码块的语言。你应该触发回调函数或者直接返回一个字符串。
 
 你可以传入一个自己的代码高亮器，也可以设置为 `false` 以禁用代码高亮功能。
 
-::: details 案例
-
-一个使用 PrismJS 高亮代码块的案例。
-
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Waline highlighter 案例</title>
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/@waline/client@v2/dist/waline.css"
-    />
-    <script src="https://unpkg.com/prismjs@v1" data-manual></script>
-    <script src="https://unpkg.com/prismjs@v1/plugins/autoloader/prism-autoloader.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/prismjs@v1/themes/prism-tomorrow.min.css"
-    />
-  </head>
-  <body>
-    <div id="waline" style="max-width: 800px; margin: 0 auto"></div>
-    <script type="module">
-      import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
-
-      const waline = init({
-        el: '#waline',
-        serverURL: 'https://waline.vercel.app',
-        path: '/',
-        highlighter: (code, lang) => {
-          if (!window.Prism.languages[lang]) {
-            window.Prism.plugins.autoloader.loadLanguages(lang);
-          }
-
-          return window.Prism.highlight(
-            code,
-            window.Prism.languages[lang] || window.Prism.languages.text,
-            lang
-          );
-        },
-      });
-    </script>
-  </body>
-</html>
-```
-
-:::
-
 ## texRenderer
 
 - 类型: `WalineTexRenderer | false`
-- 必填: 否
-- 详情:
 
   ```ts
   type WalineTexRenderer = (blockMode: boolean, tex: string) => string;
   ```
 
-- 参见:
+- 必填: 否
+
+- 详情:
 
   - [添加 $\TeX$ 渲染器](../../cookbook/tex.md)
   - [MathJax](https://www.mathjax.org/)
@@ -265,8 +218,6 @@ Waline 的服务端地址。
 ## search
 
 - 类型: `WalineSearchOptions | false`
-- 必填: 否
-- 详情:
 
   ```ts
   interface WalineSearchImageData extends Record<string, unknown> {
@@ -317,6 +268,9 @@ Waline 的服务端地址。
     more?: (word: string, currentCount: number) => Promise<WalineSearchResult>;
   }
   ```
+
+- 必填: 否
+- 详情:
 
 自定义搜索功能，设置 `false` 可禁用搜索。
 
