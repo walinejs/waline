@@ -55,7 +55,7 @@ import '@waline/client/waline-meta.css';
 
 ### CSS 变量
 
-你可以在 [客户端参考 → CSS 变量](../reference/client/style.md) 找到 Waline 正常和夜间模式下使用的 CSS 变量默认值。
+你可以在 [客户端参考 → CSS 变量](../../reference/client/style.md) 找到 Waline 正常和夜间模式下使用的 CSS 变量默认值。
 
 如果它和你的站点样式不同，你可以自行覆盖对应的 CSS 变量。
 

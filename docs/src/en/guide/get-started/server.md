@@ -12,11 +12,11 @@ Beside free deployment on Vercel, you can deploy through docker or directly depl
 
 Most of the server config can be configured through environment variables, and you can also configure some advanced options in the main entry file.
 
-For detailed information please refer to [Reference → Server Environment Variables](../reference/server/env.md) and [Reference → Server Config](../reference/server/config.md).
+For detailed information please refer to [Reference → Server Environment Variables](../../reference/server/env.md) and [Reference → Server Config](../../reference/server/config.md).
 
 ## Comment notification
 
-We support multiple ways to notify users or bloggers when users comment, see [Comment Notification](../../features/notification.md) for details.
+We support multiple ways to notify users or bloggers when users comment, see [Comment Notification](../features/notification.md) for details.
 
 ## Social Login
 
@@ -34,4 +34,4 @@ Besides LeanCloud, Waline also supports a variety of databases, including MySQL,
 
 You only need to configure environment variables, and Waline will automatically switch to the corresponding data storage service based on the environment variables you configure.
 
-See [Multi-database service support](../../database.md) section for details.
+See [Multi-database service support](../database.md) section for details.

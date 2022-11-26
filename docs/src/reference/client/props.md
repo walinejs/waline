@@ -32,7 +32,7 @@ Waline 的服务端地址。
 - 类型: `string`
 - 默认值: `'zh-CN'`
 - 详情:
-  - [指南 → 多语言](../../features/i18n.md#设置语言)
+  - [指南 → 多语言](../../guide/features/i18n.md#设置语言)
 
 多语言支持。
 
@@ -86,7 +86,7 @@ Waline 的服务端地址。
 
 - 默认值: `['//unpkg.com/@waline/emojis@1.1.0/weibo']`
 
-表情设置，详见 [自定义表情](../../features/emoji.md)
+表情设置，详见 [自定义表情](../../guide/features/emoji.md)
 
 ## dark
 
@@ -109,7 +109,7 @@ Waline 的服务端地址。
 
 :::
 
-自定义样式与暗黑模式详见 [自定义样式](../../features/style.md)。
+自定义样式与暗黑模式详见 [自定义样式](../../guide/features/style.md)。
 
 ## commentSorting
 

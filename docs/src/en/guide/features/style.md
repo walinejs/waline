@@ -54,7 +54,7 @@ import '@waline/client/dist/waline-meta.css';
 
 ### CSS Variables
 
-You can find default values for CSS variables used by Waline in normal and darkmode at [Client Reference → CSS Variables](../reference/client/style.md).
+You can find default values for CSS variables used by Waline in normal and darkmode at [Client Reference → CSS Variables](../../reference/client/style.md).
 
 If it differs from your site style, you can override the corresponding CSS variable yourself.
 

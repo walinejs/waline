@@ -12,7 +12,7 @@ redirectFrom: /guide/server/intro.html
 
 服务端大部分的配置可以通过通过环境变量进行配置，你也可以在主入口文件中配置一些高级选项。
 
-有关配置的详细信息，详见 [服务端参考 → 环境变量](../reference/server/env.md) 和 [服务端参考 → 配置](../reference/server/config.md)。
+有关配置的详细信息，详见 [服务端参考 → 环境变量](../../reference/server/env.md) 和 [服务端参考 → 配置](../../reference/server/config.md)。
 
 ## 评论通知
 

@@ -38,4 +38,4 @@ The option accepts three functions, each of which should return a Promise, and t
 - `default`: list of images to display by default (optional)
 - `more`: The function that starts when the image is scrolled to the bottom, where the search term and the current number are passed in as the first two parameters (optional)
 
-For tutorials on custom search, see [Cookbook → Custom Emoji Search](../cookbook/search.md).
+For tutorials on custom search, see [Cookbook → Custom Emoji Search](../../cookbook/search.md).

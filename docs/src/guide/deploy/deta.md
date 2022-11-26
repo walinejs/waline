@@ -10,11 +10,11 @@ redirectFrom: /guide/server/deta.html
 
 点击上方按钮，跳转至 Deta 平台快速部署。登录之后会让你选择部署的位置，同时需要你输入环境变量。
 
-![Deta-1](../assets/deta-1.png)
+![Deta-1](../../assets/deta-1.png)
 
 填写好后点击 <kbd>Deploy</kbd> 按钮，稍等片刻会提示你部署成功，并为你展示部署后的网站地址。将其填入前端脚本的 `serverURL` 配置中，即可完成全部配置。
 
-![Deta-2](../assets/deta-2.png)
+![Deta-2](../../assets/deta-2.png)
 
 ## 如何更新
 
@@ -32,7 +32,7 @@ iwr https://get.deta.dev/cli.ps1 -useb | iex
 
 更新之前我们需要将项目克隆下来。进入到我们的项目的设置页，复制并执行页面中的 `deta clone` 命令，稍等一会儿项目就下载下来了。
 
-![Deta-2](../assets/deta-3.jpg)
+![Deta-2](../../assets/deta-3.jpg)
 
 之后我们可以在本地对项目代码进行修改，比如将 `package.json` 中的依赖版本修改至最新。
 

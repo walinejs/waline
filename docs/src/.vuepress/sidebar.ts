@@ -28,7 +28,7 @@ export const zhSidebarConfig = sidebar({
       children: ['legacy', 'emoji-compact'],
     },
   ],
-  '/': [
+  '/guide/': [
     {
       text: '快速上手',
       icon: 'creative',
@@ -65,6 +65,51 @@ export const zhSidebarConfig = sidebar({
         'vps',
       ],
     },
+  ],
+  '/': [
+    {
+      text: '指南',
+      icon: 'creative',
+      prefix: 'guide/',
+      children: [
+        {
+          text: '快速上手',
+          icon: 'creative',
+          prefix: 'get-started/',
+          children: ['', 'client', 'server'],
+        },
+        {
+          text: '功能',
+          icon: 'discover',
+          prefix: 'features/',
+          children: [
+            'syntax',
+            'emoji',
+            'search',
+            'reaction',
+            'label',
+            'i18n',
+            'pageview',
+            'comment',
+            'widget/',
+          ],
+        },
+        'database',
+        {
+          text: '部署',
+          icon: 'deploy',
+          prefix: 'deploy/',
+          children: [
+            'cloudbase',
+            'deta',
+            'railway',
+            'baidu-cfc',
+            'aliyun-fc',
+            'vps',
+          ],
+        },
+      ],
+    },
     {
       text: 'Cookbook',
       icon: 'guide',
@@ -97,7 +142,6 @@ export const zhSidebarConfig = sidebar({
         },
       ],
     },
-
     {
       text: '参考',
       icon: 'reference',
@@ -162,7 +206,7 @@ export const enSidebarConfig = sidebar({
       children: ['legacy', 'emoji-compact'],
     },
   ],
-  '/en/': [
+  '/en/guide/': [
     {
       text: 'Get Started',
       icon: 'creative',
@@ -191,6 +235,44 @@ export const enSidebarConfig = sidebar({
       icon: 'deploy',
       prefix: 'deploy/',
       children: ['deta', 'railway', 'vps'],
+    },
+  ],
+  '/en/': [
+    {
+      text: 'Guide',
+      icon: 'creative',
+      prefix: 'guide/',
+      children: [
+        {
+          text: 'Get Started',
+          icon: 'creative',
+          prefix: 'get-started/',
+          children: ['', 'client', 'server'],
+        },
+        {
+          text: 'Features',
+          icon: 'discover',
+          prefix: 'features/',
+          children: [
+            'syntax',
+            'emoji',
+            'search',
+            'reaction',
+            'label',
+            'i18n',
+            'pageview',
+            'comment',
+            'widget/',
+          ],
+        },
+        'database',
+        {
+          text: 'Deploy',
+          icon: 'deploy',
+          prefix: 'deploy/',
+          children: ['deta', 'railway', 'vps'],
+        },
+      ],
     },
     {
       text: 'Cookbook',

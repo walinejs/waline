@@ -8,7 +8,7 @@ Waline allows you to set level labels based on interactions and custom labels fo
 
 ## Grade labels
 
-You need to configure the `LEVELS` variable on the server to enable this function, see [Server Environment Variable Configuration](../reference/server/env.md#display).
+You need to configure the `LEVELS` variable on the server to enable this function, see [Server Environment Variable Configuration](../../reference/server/env.md#display).
 
 You can customize these level labels via the locales option, see [Multilingual](./i18n.md#customize)
 

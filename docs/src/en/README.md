@@ -5,7 +5,7 @@ icon: home
 heroImage: /logo.png
 actions:
   - text: 💡 Get Started
-    link: /en/guide/get-started.html
+    link: /en/guide/get-started/
     type: primary
 
   - text: ℹ️ Intro
@@ -16,7 +16,7 @@ features:
   - title: Comment the way you like
     icon: markdown
     details: Full Markdown support, with emoji, mathematical formulas and HTML embedding support
-    link: /en/feature/syntax.html
+    link: /en/guide/features/syntax.html
 
   - title: LightWeight
     icon: light
@@ -33,12 +33,12 @@ features:
   - title: Article Reaction
     icon: reaction
     details: Show your attitude towards the article quickly
-    link: /en/feature/reaction.html
+    link: /en/guide/features/reaction.html
 
   - title: Pageview Counter
     icon: counter
     details: Count pageviews accurately with < 1kb code
-    link: /en/feature/pageview.html
+    link: /en/guide/features/pageview.html
 
   - title: Completely free
     icon: free

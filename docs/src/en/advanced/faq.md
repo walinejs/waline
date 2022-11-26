@@ -50,7 +50,7 @@ Go to the corresponding GitHub repository and modify the version number of `@wal
 
 #### Deta
 
-[Deta - How to update?](../deploy/deta.md#how-to-update)
+[Deta - How to update?](../guide/deploy/deta.md#how-to-update)
 
 #### CloudBase
 

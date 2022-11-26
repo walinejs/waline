@@ -32,7 +32,7 @@ Please ensure the uniqueness of each _article page_ path, otherwise the same com
 - Type: `string`
 - Default: `'zh-CN'`
 - Details:
-  - [Guide → I18n](../../features/i18n.md#set-language)
+  - [Guide → I18n](../../guide/features/i18n.md#set-language)
 
 Display language.
 
@@ -86,7 +86,7 @@ Optional value:
 
 - Default: `['//unpkg.com/@waline/emojis@1.1.0/weibo']`
 - Details:
-  - [Guide → Emoji](../../features/emoji.md)
+  - [Guide → Emoji](../../guide/features/emoji.md)
 
 Emoji settings.
 
@@ -111,7 +111,7 @@ Darkmode support
 
 :::
 
-For details of custom style and darkmode, please see [Custom Style](../../features/style.md).
+For details of custom style and darkmode, please see [Custom Style](../../guide/features/style.md).
 
 ## commentSorting
 
