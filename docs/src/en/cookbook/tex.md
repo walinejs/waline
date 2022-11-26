@@ -2,7 +2,7 @@
 title: Using custom TEX renderer
 ---
 
-This guide will guide you through setting up your own Tex renderer.
+This cookbook will guide you through setting up your own Tex renderer.
 
 <!-- more -->
 

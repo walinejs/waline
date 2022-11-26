@@ -43,16 +43,13 @@ Waline 会在初始化以及每次 path 更新时，自动查找页面中 `class
 
 ```html
 当前页共有
-<span
-  class="waline-comment-count"
-  data-path="/guide/cookbook/comment.html"
-/>条评论。
+<span class="waline-comment-count" data-path="/cookbook/comment.html" />条评论。
 ```
 
 当前页共有
 <span
   class="waline-comment-count"
-  data-path="/guide/cookbook/comment.html"
+  data-path="/cookbook/comment.html"
 />条评论。
 
 :::

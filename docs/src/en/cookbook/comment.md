@@ -41,12 +41,12 @@ Every time you call `WalineInstance.update()`, Waline will search the page conte
 
 ```html
 The current page has
-<span class="waline-comment-count" data-path="/en/guide/cookbook/comment" />
+<span class="waline-comment-count" data-path="/en/cookbook/comment" />
 comments.
 ```
 
 The current page has
-<span data-path="/en/guide/cookbook/comment" class="waline-comment-count" /> comments.
+<span data-path="/en/cookbook/comment" class="waline-comment-count" /> comments.
 
 :::
 

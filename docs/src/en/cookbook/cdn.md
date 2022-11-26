@@ -59,8 +59,6 @@ Comments count:
 </script>
 ```
 
-:::
-
 ## More
 
 ::: info Specifies version

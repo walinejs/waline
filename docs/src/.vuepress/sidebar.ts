@@ -1,6 +1,7 @@
 import { sidebar } from 'vuepress-theme-hope';
 
 export const zhSidebarConfig = sidebar({
+  '/cookbook/': 'structure',
   '/guide/': [
     '/guide/get-started',
     {
@@ -87,6 +88,7 @@ export const zhSidebarConfig = sidebar({
 });
 
 export const enSidebarConfig = sidebar({
+  '/en/cookbook/': 'structure',
   '/en/guide/': [
     'get-started',
     {

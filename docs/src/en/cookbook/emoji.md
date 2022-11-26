@@ -3,7 +3,7 @@ title: Create your own Emoji presets
 icon: emoji
 ---
 
-This guide will show you how to create and use your own Emoji presets.
+This cookbook will show you how to create and use your own Emoji presets.
 
 <!-- more -->
 

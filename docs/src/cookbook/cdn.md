@@ -59,8 +59,6 @@ icon: import
 </script>
 ```
 
-:::
-
 ## 更多
 
 ::: info 指定版本
