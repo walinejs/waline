@@ -66,6 +66,12 @@ export const zhSidebarConfig = sidebar({
       prefix: '/reference/',
       children: ['component', 'client', 'env', 'server', 'api', 'contribution'],
     },
+    {
+      text: '高级',
+      icon: 'advanced',
+      prefix: '/advanced/',
+      children: ['contribution'],
+    },
   ],
 });
 
@@ -131,6 +137,12 @@ export const enSidebarConfig = sidebar({
       icon: 'reference',
       prefix: 'reference/',
       children: ['component', 'client', 'env', 'server', 'api', 'contribution'],
+    },
+    {
+      text: 'Advanced',
+      icon: 'advanced',
+      prefix: '/advanced/',
+      children: ['contribution'],
     },
   ],
 });

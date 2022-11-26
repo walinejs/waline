@@ -1,11 +1,14 @@
 ---
 title: Development Guide
 icon: guide
+redirectFrom: /en/reference/contribution.html
 ---
 
 We welcome everyone to open Pull Requests for waline! :tada:
 
 If you want to contribute to waline, here is a guide.
+
+<!-- more -->
 
 ## Preparation
 

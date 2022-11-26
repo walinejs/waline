@@ -99,12 +99,9 @@ icon: creative
 
 在你的网页中进行如下设置:
 
-1. 使用 CDN 引入 Waline:
+1. 导入 Waline 样式 `https://unpkg.com/@waline/client@v2/dist/waline.css`。
 
-   - `https://unpkg.com/@waline/client@v2/dist/waline.js`。
-   - `https://unpkg.com/@waline/client@v2/dist/waline.css`。
-
-1. 创建 `<script>` 标签使用 `Waline.init()` 初始化，并传入必要的 `el` 与 `serverURL` 选项。
+1. 创建 `<script>` 标签使用来自 `https://unpkg.com/@waline/client@v2/dist/waline.mjs` 的 `init()` 函数初始化，并传入必要的 `el` 与 `serverURL` 选项。
 
    - `el` 选项是 Waline 渲染使用的元素，你可以设置一个字符串形式的 CSS 选择器或者一个 HTMLElement 对象。
    - `serverURL` 是服务端的地址，即上一步获取到的值。

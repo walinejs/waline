@@ -88,7 +88,7 @@ importers:
       marked: 4.2.3
       vue: 3.2.45
       vuepress: 2.0.0-beta.53
-      vuepress-plugin-redirect: 2.0.0-beta.124
+      vuepress-plugin-redirect: 2.0.0-beta.130
       vuepress-shared: 2.0.0-beta.124
       vuepress-theme-hope: 2.0.0-beta.130
     devDependencies:
@@ -99,7 +99,7 @@ importers:
       marked: 4.2.3
       vue: 3.2.45
       vuepress: 2.0.0-beta.53_54nmke4n2vj3tdp5cd33kvtiom
-      vuepress-plugin-redirect: 2.0.0-beta.124
+      vuepress-plugin-redirect: 2.0.0-beta.130_vuepress@2.0.0-beta.53
       vuepress-shared: 2.0.0-beta.124
       vuepress-theme-hope: 2.0.0-beta.130_vuepress@2.0.0-beta.53
 
@@ -14746,16 +14746,28 @@ packages:
       - supports-color
     dev: true
 
-  /vuepress-plugin-redirect/2.0.0-beta.124:
-    resolution: {integrity: sha512-A/ATFI9vKnKXA2923zyoQmG7mJzPfn6PMqii/Qy24fkSsp14v5zGiRYoqkVdsIZ70LXIH1lPpjRDmKbkm6aT9g==}
+  /vuepress-plugin-redirect/2.0.0-beta.130_vuepress@2.0.0-beta.53:
+    resolution: {integrity: sha512-VMNu8C/c5fs63JpuWAJ9XjBJR5+E69CzdKlfQ5CVeJ26KvayXGMnvXFlbHIYeXps6FLqiKOHIraUZc8ia8AuJQ==}
     hasBin: true
+    peerDependencies:
+      vuepress: 2.0.0-beta.53
+      vuepress-vite: 2.0.0-beta.53
+      vuepress-webpack: 2.0.0-beta.53
+    peerDependenciesMeta:
+      vuepress:
+        optional: true
+      vuepress-vite:
+        optional: true
+      vuepress-webpack:
+        optional: true
     dependencies:
       '@vuepress/cli': 2.0.0-beta.53
       '@vuepress/core': 2.0.0-beta.53
       '@vuepress/shared': 2.0.0-beta.53
       '@vuepress/utils': 2.0.0-beta.53
       cac: 6.7.14
-      vuepress-shared: 2.0.0-beta.124
+      vuepress: 2.0.0-beta.53_54nmke4n2vj3tdp5cd33kvtiom
+      vuepress-shared: 2.0.0-beta.130
     transitivePeerDependencies:
       - supports-color
     dev: true
