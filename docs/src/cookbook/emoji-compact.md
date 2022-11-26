@@ -8,7 +8,7 @@ title: 兼容历史版本的 Emoji
 
 ## 兼容 Valine
 
-Waline 提供了一个 legacy 版本，对 Valine 的 emoji 选项进行了兼容。
+Waline 提供了一个 [legacy 版本](./legacy.md)，对 Valine 的 emoji 选项进行了兼容。
 
 在 legacy 版本中，你可以使用 `emojiCDN` 设置 emoji 图片地址前缀，并使用 `emojiMaps` 设置表情 title 与图片的映射。
 

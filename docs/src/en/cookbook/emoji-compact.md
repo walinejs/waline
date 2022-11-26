@@ -8,7 +8,7 @@ This cookbook will show you how to display emoji well with Valine, as well as ol
 
 ## Compatible with Valine
 
-Valine provides a legacy version that is compatible with Valine's emoji options.
+Valine provides a [legacy version](./legacy.md) that is compatible with Valine's emoji options.
 
 In legacy version, you can use `emojiCDN` to set emoji image link prefix, and use `emojiMaps` to set the mapping between emoji title and image.
 
