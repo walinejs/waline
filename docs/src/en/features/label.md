@@ -1,6 +1,7 @@
 ---
 title: User label
 icon: label
+redirectFrom: /en/guide/client/label.html
 ---
 
 Waline allows you to set level labels based on interactions and custom labels for logged-in users.

@@ -1,6 +1,7 @@
 ---
 title: 浏览量统计
 icon: counter
+redirectFrom: /guide/client/pageview.html
 ---
 
 Waline 支持浏览量统计。
@@ -11,15 +12,26 @@ Waline 支持浏览量统计。
 
 如果你正在使用 Waline 的评论服务，你可以在初始化时设置 `pageview` 选项为 `true` 来开启浏览量统计功能:
 
-```js
-Waline.init({
-  el: '#waline',
-  // ...
-  pageview: true, // 浏览量统计
-});
+```html
+<div id="article-info">
+  <!-- ... -->
+  阅读量: <span class="waline-pageview-count" data-path="<Your/Path/Name>" />
+  <!-- ... -->
+</div>
+<!-- 文章内容 -->
+<div id="waline"></div>
+<script type="module">
+  import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
+
+  init({
+    el: '#waline',
+    // ...
+    pageview: true, // 浏览量统计
+  });
+</script>
 ```
 
-Waline 会自动查找页面中 `class` 值为 `waline-pageview-count` 的元素，获取其 `data-path` 为查询条件，并将得到的值填充到其中:
+Waline 会在初始化以及每次 path 更新时，自动查找页面中 `class` 值为 `waline-pageview-count` 的元素，获取其 `data-path` 为查询条件，并将得到的值填充到其中:
 
 如果你需要一个不一样的选择器，你可以设置 `pageview` 选项为这个选择器。
 
@@ -83,14 +95,18 @@ Waline 会自动查找页面中 `class` 值为 `waline-pageview-count` 的元素
 
 `pageviewCount` 会返回一个函数，调用后即可取消此次更新:
 
-```js
-const abort = Waline.pageviewCount({
-  serverURL: '<YOUR_SERVER_URL>',
-  path: window.location.pathname,
-});
+```html
+<script type="module">
+  import { pageviewCount } from 'https://unpkg.com/@waline/client/dist/pageview.mjs';
 
-// 在 500ms 后，如果网络请求仍未完成，取消本次操作
-setTimeout(() => abort(), 500);
+  const abort = pageviewCount({
+    serverURL: '<YOUR_SERVER_URL>',
+    path: window.location.pathname,
+  });
+
+  // 在 500ms 后，如果网络请求仍未完成，取消本次操作
+  setTimeout(() => abort(), 500);
+</script>
 ```
 
 :::
