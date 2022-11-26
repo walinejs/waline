@@ -11,10 +11,10 @@ html[data-theme='dark'] {
 }
 
 .home .waline-wrapper {
-  --waline-accent-color: var(--c-brand, #3eaf7c);
-  --waline-text-color: var(--c-text, #2c3e50);
-  --waline-active-color: var(--c-brand-light, #4abf8a);
+  --waline-theme-color: var(--c-brand);
+  --waline-text-color: var(--c-text);
+  --waline-active-color: var(--c-brand-light);
   --waline-border: 1px solid var(--dark-grey);
-  --waline-bgcolor: var(--c-bg, #fff);
-  --waline-bgcolor-light: var(--c-bg-light, #f3f4f5);
+  --waline-bgcolor: var(--c-bg);
+  --waline-bgcolor-light: var(--c-bg-light);
 }
