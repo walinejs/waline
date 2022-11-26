@@ -44,15 +44,15 @@ export const zhSidebarConfig = sidebar({
   '/': [
     {
       text: '指南',
-      icon: 'creative',
+      icon: 'guide',
       prefix: '/guide/',
       children: ['get-started', 'client/intro', 'server/intro'],
     },
     {
-      text: '更多',
-      icon: 'advanced',
-      prefix: '/advanced/',
-      children: ['intro', 'why', 'ecosystem', 'faq'],
+      text: '功能',
+      icon: 'creative',
+      prefix: '/features/',
+      children: ['emoji'],
     },
     {
       text: '迁移',
@@ -70,7 +70,7 @@ export const zhSidebarConfig = sidebar({
       text: '高级',
       icon: 'advanced',
       prefix: '/advanced/',
-      children: ['contribution'],
+      children: ['intro', 'why', 'ecosystem', 'faq', 'contribution'],
     },
   ],
 });
@@ -116,15 +116,15 @@ export const enSidebarConfig = sidebar({
   '/en/': [
     {
       text: 'Guide',
-      icon: 'creative',
+      icon: 'guide',
       prefix: 'guide/',
       children: ['get-started', 'client/intro', 'server/intro'],
     },
     {
-      text: 'Learn More',
-      icon: 'advanced',
-      prefix: 'advanced/',
-      children: ['intro', 'why', 'ecosystem', 'faq'],
+      text: 'Features',
+      icon: 'creative',
+      prefix: 'features/',
+      children: ['emoji'],
     },
     {
       text: 'Migration',
@@ -142,7 +142,7 @@ export const enSidebarConfig = sidebar({
       text: 'Advanced',
       icon: 'advanced',
       prefix: '/advanced/',
-      children: ['contribution'],
+      children: ['intro', 'why', 'ecosystem', 'faq', 'contribution'],
     },
   ],
 });

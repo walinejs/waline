@@ -3,12 +3,6 @@ import { navbar } from 'vuepress-theme-hope';
 export const zhNavbarConfig = navbar([
   '/guide/get-started',
   {
-    text: '了解更多',
-    icon: 'advanced',
-    prefix: '/advanced/',
-    children: ['intro', 'why', 'ecosystem', 'faq'],
-  },
-  {
     text: '迁移',
     icon: 'migration',
     prefix: '/migration/',
@@ -24,18 +18,12 @@ export const zhNavbarConfig = navbar([
     text: '高级',
     icon: 'advanced',
     prefix: '/advanced/',
-    children: ['contribution'],
+    children: ['intro', 'why', 'ecosystem', 'faq', 'contribution'],
   },
 ]);
 
 export const enNavbarConfig = navbar([
   '/en/guide/get-started',
-  {
-    text: 'Learn More',
-    icon: 'advanced',
-    prefix: '/en/advanced/',
-    children: ['intro', 'why', 'ecosystem', 'faq'],
-  },
   {
     text: 'Migration',
     icon: 'migration',
@@ -51,7 +39,7 @@ export const enNavbarConfig = navbar([
   {
     text: 'Advanced',
     icon: 'advanced',
-    prefix: '/advanced/',
-    children: ['contribution'],
+    prefix: '/en/advanced/',
+    children: ['intro', 'why', 'ecosystem', 'faq', 'contribution'],
   },
 ]);
