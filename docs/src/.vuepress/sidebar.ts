@@ -5,12 +5,14 @@ export const zhSidebarConfig = sidebar({
     {
       text: '导入',
       icon: 'import',
+      prefix: 'import/',
       children: ['cdn', 'project'],
     },
     'syntax',
     {
       text: '自定义',
       icon: 'customize',
+      prefix: 'customize/',
       children: [
         'emoji',
         'locale',
@@ -118,12 +120,14 @@ export const zhSidebarConfig = sidebar({
         {
           text: '导入',
           icon: 'import',
+          prefix: 'import/',
           children: ['cdn', 'project'],
         },
         'syntax',
         {
           text: '自定义',
           icon: 'customize',
+          prefix: 'customize/',
           children: [
             'emoji',
             'locale',
@@ -183,12 +187,14 @@ export const enSidebarConfig = sidebar({
     {
       text: 'Import',
       icon: 'import',
+      prefix: 'import/',
       children: ['cdn', 'project'],
     },
     'syntax',
     {
       text: 'Customize',
       icon: 'customize',
+      prefix: 'customize/',
       children: [
         'emoji',
         'locale',
@@ -282,12 +288,14 @@ export const enSidebarConfig = sidebar({
         {
           text: 'Import',
           icon: 'import',
+          prefix: 'import/',
           children: ['cdn', 'project'],
         },
         'syntax',
         {
           text: 'Customize',
           icon: 'customize',
+          prefix: 'customize/',
           children: [
             'emoji',
             'locale',

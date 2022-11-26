@@ -174,7 +174,7 @@ number of comments per page.
 - Required: No
 
 - Details:
-  - [Cookbook → Upload Image](../../cookbook/upload-image.md)
+  - [Cookbook → Upload Image](../../cookbook/customize/upload-image.md)
 
 Custom image upload method. The default behavior is to embed images Base 64 encoded, you can set this to `false` to disable image uploading.
 
@@ -191,7 +191,7 @@ The function should receive an image object and return a Promise that provides t
 - Required: No
 
 - Details:
-  - [Cookbook → Customize Highlighter](../../cookbook/highlighter.md)
+  - [Cookbook → Customize Highlighter](../../cookbook/customize/highlighter.md)
 
 **Code highlighting**, use `hanabi` by default. The function passes in original content of code block and language of the code block. You should trigger the callback function or return a string directly.
 
@@ -209,7 +209,7 @@ You can pass in a code highlighter of your own, or set to `false` to disable cod
 
 - Details:
 
-  - [Cookbook → Customize $\TeX$ Renderer](../../cookbook/tex-renderer.md)
+  - [Cookbook → Customize $\TeX$ Renderer](../../cookbook/customize/tex-renderer.md)
   - [MathJax](https://www.mathjax.org/)
   - [KaTeX](https://katex.org/)
 

@@ -34,7 +34,7 @@ yarn add -D @waline/client
 
 :::
 
-For the modules exported by `@waline/client`, see [Client Reference → Files](../reference/client/file.md).
+For the modules exported by `@waline/client`, see [Client Reference → Files](../../reference/client/file.md).
 
 ## Import in Normal Project
 
@@ -74,7 +74,7 @@ init({
 
 Since `@waline/client` itself is based on Vue3, we directly export a responsive Vue component.
 
-All properties of components are reactive, you can find all supported properties in [Reference → Component Properties](../reference/client/props.md).
+All properties of components are reactive, you can find all supported properties in [Reference → Component Properties](../../reference/client/props.md).
 
 ::: details Demo
 

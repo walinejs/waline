@@ -12,8 +12,8 @@ Waline 官方提供了 [`@waline/client`](https://www.npmjs.com/package/@waline/
 
 如果你在此过程中有问题，详见:
 
-- [Cookbook → CDN 引入](../../cookbook/cdn.md)
-- [Cookbook → 项目引入](../../cookbook/project.md)
+- [Cookbook → CDN 引入](../../cookbook/import/cdn.md)
+- [Cookbook → 项目引入](../../cookbook/import/project.md)
 
 ## 调用 Waline
 
@@ -37,8 +37,8 @@ Waline 支持页面浏览量统计，如果你不需要评论服务而只是需�
 
 `@waline/client` 还支持在评论框中实时预览评论输入，但一些功能因体积原因被默认阉割。如果你希望恢复这些功能，详见:
 
-- [Cookbook → 自定义预览代码高亮器](../../cookbook/highlighter.md)
-- [Cookbook → 自定义预览 $\TeX$ 渲染器](../../cookbook/tex-renderer.md)
+- [Cookbook → 自定义预览代码高亮器](../../cookbook/customize/highlighter.md)
+- [Cookbook → 自定义预览 $\TeX$ 渲染器](../../cookbook/customize/tex-renderer.md)
 
 ## 文章反应
 
@@ -57,27 +57,27 @@ Waline 允许你为用户设置互动等级标签和自定义标签，详见 [�
 有关 `@waline/client` 的表情选项卡，详见:
 
 - [功能 → 表情选项卡](../features/emoji.md)
-- [Cookbook → 自定义 Emoji](../../cookbook/emoji.md)
+- [Cookbook → 自定义 Emoji](../../cookbook/customize/emoji.md)
 
 ## 图片上传
 
 `@waline/client` 内置了图像上传支持，默认将图片转为 Base64 内嵌，当然，你也可以使用自己喜欢的图床。
 
-关于 `@waline/client` 的图片上传配置，详见 [Cookbook → 自定义图片上传](../../cookbook/upload-image.md)。
+关于 `@waline/client` 的图片上传配置，详见 [Cookbook → 自定义图片上传](../../cookbook/customize/upload-image.md)。
 
 ## 表情包搜索
 
 `@waline/client` 通过 [giphy](https://giphy.com) 提供了表情包搜索功能，并允许你自定义表情包搜索服务，详见:
 
 - [功能 → 表情包搜索](../features/search.md)
-- [Cookbook → 自定义表情包搜索](../../cookbook/search.md)
+- [Cookbook → 自定义表情包搜索](../../cookbook/customize/search.md)
 
 ## 多语言支持
 
 `@waline/client` 含有多种语言的内置支持，同时你可以在此基础上新增语言支持或修改 UI 文字，详见:
 
 - [功能 → 设置语言](../features/i18n.md)。
-- [Cookbook → 自定义语言](../features/i18n.md)。
+- [Cookbook → 自定义语言](../../cookbook/customize/locale.md)。
 
 ## 无障碍支持
 
@@ -92,7 +92,7 @@ Waline 完整支持了全部的无障碍标准:
 
 Waline 带来了内置的暗黑模式支持，同时为了方便用户对 Waline 样式的调整，Waline 提供了很多可配置的 CSS 变量 (CSS Variables)。
 
-详见 [自定义样式](../features//style.md)。
+详见 [自定义样式](../features/style.md)。
 
 ## 高级开发
 

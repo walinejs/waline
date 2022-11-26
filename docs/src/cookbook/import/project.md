@@ -34,7 +34,7 @@ yarn add -D @waline/client
 
 :::
 
-有关于 `@waline/client` 导出的模块，详见 [客户端参考 → 文件](../reference/client/file.md)。
+有关于 `@waline/client` 导出的模块，详见 [客户端参考 → 文件](../../reference/client/file.md)。
 
 ## 在普通项目中导入
 
@@ -74,7 +74,7 @@ init({
 
 由于 `@waline/client` 本身基于 Vue3，因此我们直接导出了一个响应式的 Vue 组件。
 
-组件的所有属性都是响应式的，你可以在 [参考 → 组件属性](../reference/client/props.md) 找到全部支持的属性。
+组件的所有属性都是响应式的，你可以在 [参考 → 组件属性](../../reference/client/props.md) 找到全部支持的属性。
 
 ::: details 案例
 

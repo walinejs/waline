@@ -38,4 +38,4 @@ Waline.init({
 - `default`: 默认展示的图片列表 (可选)
 - `more`: 当图片滚动到底部时出发的函数，其中搜索词和当前数量会作为前两个参数传入 (可选)
 
-关于自定义搜索的教程，详见 [Cookbook → 自定义表情包搜索](../../cookbook/search.md)。
+关于自定义搜索的教程，详见 [Cookbook → 自定义表情包搜索](../../cookbook/customize/search.md)。

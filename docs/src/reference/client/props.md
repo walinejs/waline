@@ -172,7 +172,7 @@ Waline 的服务端地址。
   ```
 
 - 参考:
-  - [上传图片](../../cookbook/upload-image.md)
+  - [Cookbook → 自定义图片上传](../../cookbook/customize/upload-image.md)
 
 自定义图片上传方法。默认行为是将图片 Base 64 编码嵌入，你可以设置为 `false` 以禁用图片上传功能。
 
@@ -189,7 +189,7 @@ Waline 的服务端地址。
 - 必填: 否
 
 - 详情:
-  - [Cookbook → 代码高亮](../../cookbook/highlighter.md)
+  - [Cookbook → 自定义代码高亮](../../cookbook/customize/highlighter.md)
 
 **代码高亮**，默认使用一个 < 1kb 的简单高亮器。函数传入代码块的原始字符和代码块的语言。你应该触发回调函数或者直接返回一个字符串。
 
@@ -207,7 +207,7 @@ Waline 的服务端地址。
 
 - 详情:
 
-  - [添加 $\TeX$ 渲染器](../../cookbook/tex-renderer.md)
+  - [Cookbook → 自定义 $\TeX$ 渲染器](../../cookbook/customize/tex-renderer.md)
   - [MathJax](https://www.mathjax.org/)
   - [KaTeX](https://katex.org/)
 

@@ -160,4 +160,4 @@ Waline DO NOT have any copyright of above emojis, use them at your own risk.
 
 ## Create your own presets
 
-Besides the presets provided by Waline, you can create your own presets, see [Guide → Create Emoji Presets](../../cookbook/emoji.md).
+Besides the presets provided by Waline, you can create your own presets, see [Guide → Create Emoji Presets](../../cookbook/customize/emoji.md).
