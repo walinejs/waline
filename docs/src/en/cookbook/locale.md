@@ -1,48 +1,21 @@
 ---
-title: I18n Support
+title: Customize Locale
 icon: i18n
 ---
 
-Waline has built-in multi-language support, and you can also customize Waline's locale config.
+This cookbook guides you to customize `@waline/client` multilingual and display text.
 
 <!-- more -->
 
-## Basic Usage
+## Introduction
 
-You can set the language used by Waline through the `lang` option. The supported languages are:
+`@waline/client` provides the `locale` option, through which you can customize multiple languages and display text.
 
-- zh
-- zh-CN
-- zh-TW
-- en
-- en-US
-- jp
-- jp-JP
-- pt-BR
-- ru
-- ru-RU
+By default it uses the built-in multilingual literals and falls back to `en-US` (English US) if the language is not supported.
 
-E.g.:
+You can pass a completed multilingual configuration to the `locale` option to add language support, or set several of these to override existing UI text.
 
-```js
-Waline.init({
-  el: '#waline',
-  // ...
-  lang: 'en',
-});
-```
-
-::: tip
-
-If you want to help Waline add more language support, we welcome you to send a PR to [client/config/i18n](https://github.com/walinejs/waline/tree/main/packages/client/src/config/i18n).
-
-:::
-
-## Customize
-
-You can customize the language through the `locale` option, or set some fields to overwrite the existing UI text.
-
-### `locale` option
+### Locale Options
 
 - Level related:
 
@@ -50,7 +23,7 @@ You can customize the language through the `locale` option, or set some fields t
 
   ::: tip
 
-  For example, you can cutomize the labels for 6 levels like this:
+  For example, you can customize the labels for 6 levels like this:
 
   ```ts
   Waline.init({
@@ -89,7 +62,7 @@ You can customize the language through the `locale` option, or set some fields t
   - `sofa`: Display text when the comment area is empty
   - `submit`: Submit button text
   - `comment`: Comment button text
-  - `refresh`: Refresj button text
+  - `refresh`: Refresh button text
   - `more`: Load more button text
   - `uploading`: display text when uploading
   - `login`: login button text
@@ -149,7 +122,7 @@ You can customize the language through the `locale` option, or set some fields t
 
   :::
 
-### Example
+## Example
 
 ```js
 // en default

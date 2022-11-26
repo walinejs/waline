@@ -1,48 +1,21 @@
 ---
-title: 多语言支持
+title: 自定义语言支持
 icon: i18n
 ---
 
-Waline 内置多种语言支持，你也可以自定义 Waline 的语言配置。
+本教程指引你自定义 `@waline/client` 多语言与显示文字。
 
 <!-- more -->
 
-## 设置语言
+## 简介
 
-你可以通过 `lang` 选项设置 Waline 所用的语言，支持的语言有:
+`@waline/client` 提供了 `locale` 选项，你可以通过它自定义多语言与显示文字。
 
-- zh
-- zh-CN
-- zh-TW
-- en
-- en-US
-- jp
-- jp-JP
-- pt-BR
-- ru
-- ru-RU
+默认情况下，它会使用内置的多语言文字，并在语言不受支持时，回退到 `en-US` (英语美国)。
 
-例如:
+你可以传递一个完成的多语言配置给 `locale` 选项来新增语言支持，或者设置其中的几项对现有的 UI 文字进行覆盖。
 
-```js
-Waline.init({
-  el: '#waline',
-  // ...
-  lang: 'en',
-});
-```
-
-::: tip
-
-如果你想要帮助 Waline 添加更多语言支持，我们欢迎你发送 PR 到 [client/config/i18n](https://github.com/walinejs/waline/tree/main/packages/client/src/config/i18n)。
-
-:::
-
-## 自定义语言
-
-你可以通过 `locale` 选项自定义语言，或者设置其中的几项对现有的 UI 文字进行覆盖。
-
-### `locale` 选项
+## locale 选项
 
 - 等级相关:
 
@@ -149,7 +122,7 @@ Waline.init({
 
   :::
 
-### 例子
+## 例子
 
 ```js
 // 中文默认
