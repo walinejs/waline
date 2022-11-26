@@ -1,7 +1,31 @@
 import { sidebar } from 'vuepress-theme-hope';
 
 export const zhSidebarConfig = sidebar({
-  '/cookbook/': 'structure',
+  '/cookbook/': [
+    {
+      text: '导入',
+      icon: 'import',
+      children: ['cdn', 'project'],
+    },
+    'syntax',
+    {
+      text: '自定义',
+      icon: 'customize',
+      children: [
+        'emoji',
+        'highlighter',
+        'image-preview',
+        'search',
+        'tex',
+        'upload-image',
+      ],
+    },
+    {
+      text: '兼容',
+      icon: 'time',
+      children: ['legacy', 'emoji-compact'],
+    },
+  ],
   '/guide/': [
     '/guide/get-started',
     {
@@ -39,12 +63,7 @@ export const zhSidebarConfig = sidebar({
     },
   ],
   '/': [
-    {
-      text: '指南',
-      icon: 'guide',
-      prefix: 'guide/',
-      children: ['get-started', 'client/intro', 'server/intro'],
-    },
+    'guide/get-started',
     {
       text: '功能',
       icon: 'creative',
@@ -55,7 +74,31 @@ export const zhSidebarConfig = sidebar({
       text: 'Cookbook',
       icon: 'guide',
       prefix: 'cookbook/',
-      children: 'structure',
+      children: [
+        {
+          text: '导入',
+          icon: 'import',
+          children: ['cdn', 'project'],
+        },
+        'syntax',
+        {
+          text: '自定义',
+          icon: 'customize',
+          children: [
+            'emoji',
+            'highlighter',
+            'image-preview',
+            'search',
+            'tex',
+            'upload-image',
+          ],
+        },
+        {
+          text: '兼容',
+          icon: 'time',
+          children: ['legacy', 'emoji-compact'],
+        },
+      ],
     },
     {
       text: '迁移',
@@ -90,7 +133,31 @@ export const zhSidebarConfig = sidebar({
 });
 
 export const enSidebarConfig = sidebar({
-  '/en/cookbook/': 'structure',
+  '/en/cookbook/': [
+    {
+      text: 'Import',
+      icon: 'import',
+      children: ['cdn', 'project'],
+    },
+    'syntax',
+    {
+      text: 'Customize',
+      icon: 'customize',
+      children: [
+        'emoji',
+        'highlighter',
+        'image-preview',
+        'search',
+        'tex',
+        'upload-image',
+      ],
+    },
+    {
+      text: 'Compatibility',
+      icon: 'time',
+      children: ['legacy', 'emoji-compact'],
+    },
+  ],
   '/en/guide/': [
     'get-started',
     {
@@ -125,12 +192,7 @@ export const enSidebarConfig = sidebar({
     },
   ],
   '/en/': [
-    {
-      text: 'Guide',
-      icon: 'guide',
-      prefix: 'guide/',
-      children: ['get-started', 'client/intro', 'server/intro'],
-    },
+    'guide/get-started',
     {
       text: 'Features',
       icon: 'creative',
@@ -141,7 +203,31 @@ export const enSidebarConfig = sidebar({
       text: 'Cookbook',
       icon: 'guide',
       prefix: 'cookbook/',
-      children: 'structure',
+      children: [
+        {
+          text: 'Import',
+          icon: 'import',
+          children: ['cdn', 'project'],
+        },
+        'syntax',
+        {
+          text: 'Customize',
+          icon: 'customize',
+          children: [
+            'emoji',
+            'highlighter',
+            'image-preview',
+            'search',
+            'tex',
+            'upload-image',
+          ],
+        },
+        {
+          text: 'Compatibility',
+          icon: 'time',
+          children: ['legacy', 'emoji-compact'],
+        },
+      ],
     },
     {
       text: 'Migration',

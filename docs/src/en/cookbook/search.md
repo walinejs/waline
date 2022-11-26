@@ -3,31 +3,15 @@ title: Emoticons Search
 icon: search
 ---
 
-Waline allows users to add emoticons search services and customize this feature.
+This tutorial guides you on how to customize the emoji search service via the `search` option provided by `@waline/client`.
 
 <!-- more -->
 
-## Introduction
+## search result conversion
 
-By default, Waline provides meme search service through [Giphy](https://giphy.com/). This will allow you to search for images and add to comments while commenting.
+You may get different results when using different third-party image search services. After getting the search result, you need to convert it to the format required by `@waline/client`.
 
-## disable
-
-If you don't need the default images search service, you can disable it by setting the `search` option to `false`.
-
-```js
-Waline.init({
-  el: '#waline',
-  // ...
-  search: false,
-});
-```
-
-## customize
-
-You can customize the images search service through the search option.
-
-For each action, you should return an array containing the image information as the search result.
+For any of the following operations, `@waline/client` requires you to return an array of image information in the following format:
 
 ```ts
 interface WalineSearchImageData extends Record<string, unknown> {
@@ -56,9 +40,21 @@ interface WalineSearchImageData extends Record<string, unknown> {
 type WalineSearchResult = WalineSearchImageData[];
 ```
 
-The plugin doesn't care if there are extra attributes in the image result, but you should provide an alt text `title` whenever possible to help with accessibility and in case the image service fails. At the same time, in order to make the list load faster, if the image service returns image addresses of multiple sizes, you should choose a small size image as `preview` to improve the loading speed of the list image.
+You need to ensure that each object of the array contains at least the `src` attribute to indicate the address of the image.
 
-The three functions you need to pass in are as follows.
+Also, where possible, you should provide an alt text `title` to help with accessibility and in case of image service failures.
+
+In order to make the list load faster, as long as the image service can return multiple sizes of image URLs, you should choose a small size image as `preview` to improve the loading speed of the list image.
+
+::: note
+
+`@waline/client` doesn't care if there are extra properties in the image result, so you don't need to deliberately remove other keys from the returned result.
+
+:::
+
+## Search Option
+
+`@waline/client` provides three sub-options to control search behavior:
 
 ```ts
 interface WalineSearchOptions {
@@ -85,9 +81,9 @@ interface WalineSearchOptions {
 }
 ```
 
-Since you need to implement at least the search logic, `search` is required. Waline will pass in the user search terms and expect this function to return a Promise containing the search results.
+Since you need to implement at least the search logic, `search` is required. `@waline/client` will pass in the user search term and call this option function, and wait for this function to return a Promise to complete the search result.
 
-We hope that users can see some hot pictures or emoji results when they open it, so we provide the `default` function to achieve this. If your service provider provides an api for popular pictures or emoticons, you should use this api to return content. Also, since the default behavior of this function is to search for empty strings, if your search provider returns empty results in this case, we recommend that you add a brief implementation of random preset words to avoid showing an empty list.
+We want users to see some hot images or emoji results when they open it, so we provide the `default` function to implement this behavior. If your service provider provides an interface for popular pictures or emoticons, you should use this interface to return content. Also, since the default behavior of this function is to search for empty strings, if your search provider returns empty results in this situation, we recommend that you add a brief implementation of random preset words to avoid showing an empty list.
 
 ```js
 const search = (word) => {
@@ -109,25 +105,21 @@ Waline.init({
 });
 ```
 
-Usually, your search service will support pagination, so we provide a `more` function to trigger when the user swipes to the bottom and load more images to let you return more results.
+Usually, your search service will support pagination, so we provide a `more` function to trigger when the user swipes to the bottom and load more images to let you return more results. For a better experience, we recommend setting the number of pagination to 20 - 40, that is, 20 - 40 images are loaded each time.
 
-::: tip
+::: tip An example to help understand
 
-For a better experience, we recommend setting the number of pagination to 20 - 40, that is, 20 - 40 images are loaded each time.
-
-:::
-
-::: info
-
-Here is an example to help you understand the process. When the user clicks the search button, we will trigger `default()`, if this function is missing, we will trigger `search('')`, and we will wait for the Promise to execute and render with the returned result.
+When the user clicks the search button, we will trigger `default()`, if this function is missing, we will trigger `search('')`, and we will wait for the Promise to execute and render with the returned result.
 
 When the user searches for `smile`, we execute `search('smile')`. Suppose you return 20 results each time, when the user continues to scroll down, we will trigger `more('smile', 20)`, `more('smile', 40)`, `more('smile', 60 )` ...
 
 :::
 
+## Examples
+
 ::: details Default implementation
 
-@[code{33-79}](../../../../../packages/client/src/config/default.ts)
+@[code{33-79}](../../../../packages/client/src/config/default.ts)
 
 :::
 

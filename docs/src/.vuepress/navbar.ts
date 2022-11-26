@@ -2,6 +2,7 @@ import { navbar } from 'vuepress-theme-hope';
 
 export const zhNavbarConfig = navbar([
   '/guide/get-started',
+  '/cookbook/',
   {
     text: '迁移',
     icon: 'migration',
@@ -29,12 +30,13 @@ export const zhNavbarConfig = navbar([
     text: '高级',
     icon: 'advanced',
     prefix: '/advanced/',
-    children: ['intro', 'why', 'ecosystem', 'faq', 'contribution'],
+    children: ['intro', 'design', 'ecosystem', 'faq', 'contribution'],
   },
 ]);
 
 export const enNavbarConfig = navbar([
   '/en/guide/get-started',
+  '/en/cookbook/',
   {
     text: 'Migration',
     icon: 'migration',
@@ -62,6 +64,6 @@ export const enNavbarConfig = navbar([
     text: 'Advanced',
     icon: 'advanced',
     prefix: '/en/advanced/',
-    children: ['intro', 'why', 'ecosystem', 'faq', 'contribution'],
+    children: ['intro', 'design', 'ecosystem', 'faq', 'contribution'],
   },
 ]);
