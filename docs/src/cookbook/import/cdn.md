@@ -3,7 +3,7 @@ title: 通过 CDN 导入 Waline
 icon: import
 ---
 
-本指南引导你如何使用 CDN 导入 Waline。
+本教程引导你如何使用 CDN 导入 Waline。
 
 <!-- more -->
 
@@ -11,7 +11,7 @@ icon: import
 
 为了让 Waline SSR 友好，我们在 V2 版本中拆分了 Waline 的样式。这意味着，你需要导入 Waline 的 CSS 样式文件，并导入 Waline 脚本文件并调用 Waline。
 
-## 评论
+## 评论功能
 
 通常情况下，你希望 Waline 渲染评论列表，你可以按照如下方式引入 Waline:
 

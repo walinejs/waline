@@ -74,7 +74,7 @@ init({
 
 由于 `@waline/client` 本身基于 Vue3，因此我们直接导出了一个响应式的 Vue 组件。
 
-组件的所有属性都是响应式的，你可以在 [参考 → 组件属性](../../reference/client/props.md) 找到全部支持的属性。
+组件的所有属性都是响应式的，你可以在 [客户端参考 → 组件属性](../../reference/client/props.md) 找到全部支持的属性。
 
 ::: details 案例
 

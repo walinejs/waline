@@ -74,7 +74,7 @@ init({
 
 Since `@waline/client` itself is based on Vue3, we directly export a responsive Vue component.
 
-All properties of components are reactive, you can find all supported properties in [Reference → Component Properties](../../reference/client/props.md).
+All properties of components are reactive, you can find all supported properties in [Client Reference → Component Props](../../reference/client/props.md).
 
 ::: details Demo
 

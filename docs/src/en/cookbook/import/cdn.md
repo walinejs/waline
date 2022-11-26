@@ -3,7 +3,7 @@ title: Import Waline via CDN
 icon: import
 ---
 
-This cookbook is about importing Waline with a CDN.
+This cookbook is about importing Waline via CDN.
 
 <!-- more -->
 
@@ -13,7 +13,7 @@ To make Waline SSR friendly, we split Waline's styles in V2 version. This means,
 
 ## Comment
 
-Normally, you want Waline to render a list of comments, you can import Waline as follows:
+Normally, you may want Waline to render a list of comments, you can import Waline as follows:
 
 ```html
 <!-- style file -->
@@ -31,7 +31,7 @@ Normally, you want Waline to render a list of comments, you can import Waline as
 </script>
 ```
 
-## Views and comments
+## Pageviews and comments
 
 Sometimes, you may want to display the number of page views and comments of the article on the home page or article list, but do not need to load the comment component, then you can import a Gzip < 1KB script file in the following ways:
 

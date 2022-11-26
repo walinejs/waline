@@ -3,9 +3,11 @@ title: Customize Code Highlighter
 icon: style
 ---
 
-This cookbook will guide you through setting up your own code highlighter.
+This cookbook guides you how to add your own code highlighter.
 
 <!-- more -->
+
+`@waline/client` provides the `highlighter` function. The client passes in the original character of the code block and the language of the code block. You should return a string directly.
 
 ## An Example Using prism.js
 

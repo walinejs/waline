@@ -360,4 +360,4 @@ $$
 
 ## Embed HTML
 
-Feel free to add any HTML content unless triggering the protection mechanism below.
+Feel free to add any HTML content unless triggering [the protection mechanism](../guide/features/syntax.md#html-content-restrictions).

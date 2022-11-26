@@ -1,5 +1,5 @@
 ---
-title: Emoticons Search
+title: Customize Emoticons Search
 icon: search
 ---
 

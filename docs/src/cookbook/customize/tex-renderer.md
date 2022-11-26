@@ -1,11 +1,13 @@
 ---
-title: 使用自定义 TEX 渲染器
+title: 添加 TEX 渲染器
 icon: tex
 ---
 
 本教程将指导你设置自己的 Tex 渲染器。
 
 <!-- more -->
+
+`@waline/client` 提供了 `texRenderer` 函数。 客户端会传入是否为显示模式和原始 $\TeX$ 字符串作为参数。你应该返回一个字符串。
 
 ## 一个使用 KaTeX 的案例
 

@@ -2,11 +2,13 @@
 title: Customize TEX renderer
 ---
 
-This cookbook will guide you through setting up your own Tex renderer.
+This cookbook guides you on how to add your own Tex renderer.
 
 <!-- more -->
 
-## A case using KaTeX
+`@waline/client` provides the `texRenderer` function. The client will pass whether in display mode and the original $\TeX$ string as parameters. You should return a string.
+
+## A Example Using KaTeX
 
 For KaTeX options, see [KaTeX API](https://katex.org/docs/api.html#server-side-rendering-or-rendering-to-a-string).
 

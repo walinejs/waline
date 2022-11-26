@@ -193,7 +193,7 @@ The function should receive an image object and return a Promise that provides t
 - Details:
   - [Cookbook → Customize Highlighter](../../cookbook/customize/highlighter.md)
 
-**Code highlighting**, use `hanabi` by default. The function passes in original content of code block and language of the code block. You should trigger the callback function or return a string directly.
+**Code highlighting**, use `hanabi` by default. The function passes in original content of code block and language of the code block. You should return a string directly.
 
 You can pass in a code highlighter of your own, or set to `false` to disable code highlighting.
 
