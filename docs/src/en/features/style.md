@@ -9,55 +9,6 @@ Meanwhile, `@waline/client` also has built-in dark mode support.
 
 <!-- more -->
 
-## Variables
-
-```css
-:root {
-  /* Font Size */
-  --waline-font-size: 16px;
-
-  /* Regular color */
-  --waline-white: #fff;
-  --waline-light-grey: #999;
-  --waline-dark-grey: #666;
-
-  /* Theme Color */
-  --waline-theme-color: #27ae60;
-  --waline-active-color: #2ecc71;
-
-  /* Layout Color */
-  --waline-color: #444;
-  --waline-bgcolor: #fff;
-  --waline-bgcolor-light: #f8f8f8;
-  --waline-bgcolor-hover: #f0f0f0;
-  --waline-border-color: #ddd;
-  --waline-disable-bgcolor: #f8f8f8;
-  --waline-disable-color: #bbb;
-  --waline-code-bgcolor: #282c34;
-
-  /* Special Color */
-  --waline-bq-color: #f0f0f0;
-
-  /* Avatar */
-  --waline-avatar-size: 3.25rem;
-  --waline-m-avatar-size: calc(var(--waline-avatar-size) * 9 / 13);
-
-  /* Badge */
-  --waline-badge-color: #3498db;
-  --waline-badge-font-size: 0.775em;
-
-  /* Information */
-  --waline-info-bgcolor: #f8f8f8;
-  --waline-info-color: #999;
-  --waline-info-font-size: 0.625em;
-
-  /* Render choice */
-  --waline-border: 1px solid var(--waline-border-color);
-  --waline-avatar-radius: 50%;
-  --waline-box-shadow: none;
-}
-```
-
 ## Dark mode support
 
 You can use the `dark` option to enable Waline's dark mode support.
@@ -79,37 +30,6 @@ For the second type of site, you need to set dark to the CSS selector that makes
 
 :::
 
-### Darkmode Palette
-
-When using the `dark` option to configure the dark mode, waline will use the following colors by default:
-
-```css
-/* ↓ According to user settings */
-darkmode-selector {
-  /* Regular color */
-  --waline-white: #000;
-  --waline-light-grey: #666;
-  --waline-dark-grey: #999;
-
-  /* Layout color */
-  --waline-color: #888;
-  --waline-bgcolor: #1e1e1e;
-  --waline-bgcolor-light: #272727;
-  --waline-border-color: #333;
-  --waline-disable-bgcolor: #444;
-  --waline-disable-color: #272727;
-
-  /* Special color */
-  --waline-bq-color: #272727;
-
-  /* Other color */
-  --waline-info-bgcolor: #272727;
-  --waline-info-color: #666;
-}
-```
-
-If the above colors are different from the darkmode palette of your site, you can override them instead of setting the `dark` option.
-
 ## Meta Icons
 
 If you want to add icons to user comment meta data, you can import `waline-meta.css` to use it.
@@ -130,6 +50,14 @@ For NPM users, you can import via:
 import '@waline/client/dist/waline-meta.css';
 ```
 
+## Customize Styles
+
+### CSS Variables
+
+You can find default values for CSS variables used by Waline in normal and darkmode at [Client Reference → CSS Variables](../reference/client/style.md).
+
+If it differs from your site style, you can override the corresponding CSS variable yourself.
+
 ## Box Shadow
 
 If you are using a theme that uses shadows (`box-shadow`) instead of borders, you can modify the display effect of Waline by modifying `--waline-border` and `--waline-box-shadow`, e.g.:
@@ -147,6 +75,6 @@ If you are using a theme that uses shadows (`box-shadow`) instead of borders, yo
 }
 ```
 
-## More
+### More
 
 If the above CSS variables cannot meet your custom requirements for Waline styles, you can write your own css file.

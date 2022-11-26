@@ -17,7 +17,7 @@ export const zhNavbarConfig = navbar([
       {
         text: '客户端',
         prefix: 'client/',
-        children: ['api', 'props'],
+        children: ['api', 'props', 'file', 'style'],
       },
       {
         text: '服务端',
@@ -51,7 +51,7 @@ export const enNavbarConfig = navbar([
       {
         text: 'Client',
         prefix: 'client/',
-        children: ['api', 'props'],
+        children: ['api', 'props', 'file', 'style'],
       },
       {
         text: 'server',

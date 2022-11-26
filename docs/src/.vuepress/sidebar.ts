@@ -21,6 +21,7 @@ export const zhSidebarConfig = sidebar({
         'upload-image',
       ],
     },
+    'reactive',
     {
       text: '兼容',
       icon: 'time',
@@ -38,10 +39,12 @@ export const zhSidebarConfig = sidebar({
         'syntax',
         'emoji',
         'search',
+        'reaction',
         'label',
         'i18n',
         'pageview',
         'comment',
+        'widget/',
       ],
     },
     {
@@ -68,6 +71,7 @@ export const zhSidebarConfig = sidebar({
             'upload-image',
           ],
         },
+        'reactive',
         {
           text: '兼容',
           icon: 'time',
@@ -103,7 +107,7 @@ export const zhSidebarConfig = sidebar({
           text: '客户端',
           icon: 'client',
           prefix: 'client/',
-          children: ['api', 'props'],
+          children: ['api', 'props', 'file', 'style'],
         },
         {
           text: '服务端',
@@ -143,6 +147,7 @@ export const enSidebarConfig = sidebar({
         'upload-image',
       ],
     },
+    'reactive',
     {
       text: 'Compatibility',
       icon: 'time',
@@ -160,10 +165,12 @@ export const enSidebarConfig = sidebar({
         'syntax',
         'emoji',
         'search',
+        'reaction',
         'label',
         'i18n',
         'pageview',
         'comment',
+        'widget/',
       ],
     },
     {
@@ -190,6 +197,7 @@ export const enSidebarConfig = sidebar({
             'upload-image',
           ],
         },
+        'reactive',
         {
           text: 'Compatibility',
           icon: 'time',
@@ -218,7 +226,7 @@ export const enSidebarConfig = sidebar({
           text: 'Client',
           icon: 'client',
           prefix: 'client/',
-          children: ['api', 'props'],
+          children: ['api', 'props', 'file', 'style'],
         },
         {
           text: 'server',

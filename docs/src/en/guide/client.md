@@ -1,6 +1,7 @@
 ---
 title: Client Intro
 icon: intro
+redirectFrom: /en/guide/client/intro.html
 ---
 
 Waline official provides the [`@waline/client`](https://www.npmjs.com/package/@waline/client), written in Vue + TypeScript, and the size is only 53kb gzip.
@@ -15,11 +16,11 @@ For details about Waline import, please refer to [Importing Client](./import.md)
 
 You can use `Waline.init(options)` to initialize a Waline instance, where `el` and `serverURL` options are required. The `el` option should be the element or element selector that Waline mounts, and `serverURL` options should be the server URL.
 
-For available options, please refer to [Reference → Client Options](../../reference/client.md).
+For available options, please refer to [Reference → Client Options](../../reference/client/api.md).
 
 ## Pageview Counting
 
-Waline supports pageview counting. If you don't need comment service but only need pageview feature, Waline provides a < 1KB Gzip package, please refer to [Pageview Counting](pageview.md).
+Waline supports pageview counting. If you don't need comment service but only need pageview feature, Waline provides a < 1KB Gzip package, please refer to [Pageview Counting](../features/pageview.md).
 
 ## Rich Comment Syntax Support
 
@@ -75,4 +76,4 @@ This is our little support for the visually impaired and mobility impaired peopl
 
 You can easily use Waline with plugins on Hexo, VuePress and other tools, and even use third-party clients.
 
-For details about third-party clients, themes and plugins that support Waline, please see [Learn more → Ecosystem](../../advanced/ecosystem.md).
+For details about third-party clients, themes and plugins that support Waline, please see [Learn more → Ecosystem](../advanced/ecosystem.md).

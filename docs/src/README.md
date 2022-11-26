@@ -16,7 +16,7 @@ features:
   - title: 自由评论
     icon: markdown
     details: 完全的 Markdown 支持，同时包含表情、数学公式、HTML 嵌入
-    link: /guide/client/syntax.html
+    link: /feature/syntax.html
 
   - title: 轻量
     icon: light
@@ -33,12 +33,12 @@ features:
   - title: 文章反应
     icon: reaction
     details: 快速表达你对文章的态度
-    link: /guide/client/reaction.html
+    link: /feature/reaction.html
 
   - title: 浏览量统计
     icon: counter
     details: 通过 <1kb 代码可靠统计文章浏览量
-    link: /guide/client/pageview.html
+    link: /feature/pageview.html
 
   - title: 完全免费部署
     icon: free

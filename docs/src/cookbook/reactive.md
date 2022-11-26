@@ -1,13 +1,16 @@
 ---
-title: 单页应用支持
+title: 响应式的 Waline 实例
 icon: spa
+redirectFrom: /guide/client/spa.html
 ---
 
-Waline 为 SPA(**S**ingle **P**age **A**pplication, 单页应用) 带来了支持。
+官方客户端 `@waline/client` 基于 Vue3，提供了响应式的组件和实例，为 SPA(**S**ingle **P**age **A**pplication, 单页应用) 带来了支持。
+
+<!-- more -->
 
 ## Vue 组件
 
-如果你在使用一个 Vue 项目，你可以通过导入 `@waline/client/dist/components` 来使用 Waline 组件。
+如果你在使用一个 Vue 项目，你可以通过 `@waline/client/components` 导入命名导出 `Waline` 来获得并使用 Waline 组件。
 
 所有组件的属性都是响应式的，这意味着当你更改属性时，评论框会自动更新。
 

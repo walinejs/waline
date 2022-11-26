@@ -1,6 +1,7 @@
 ---
 title: 自定义样式
 icon: style
+redirectFrom: /guide/client/style.html
 ---
 
 `@waline/client` 提供了一些 CSS 变量。你可以很轻松的通过这些变量配置 waline 的样式。
@@ -8,55 +9,6 @@ icon: style
 同时 `@waline/client` 还拥有内置的暗黑模式支持。
 
 <!-- more -->
-
-## 提供的变量
-
-```css
-:root {
-  /* 字体大小 */
-  --waline-font-size: 16px;
-
-  /* 常规颜色 */
-  --waline-white: #fff;
-  --waline-light-grey: #999;
-  --waline-dark-grey: #666;
-
-  /* 主题色 */
-  --waline-theme-color: #27ae60;
-  --waline-active-color: #2ecc71;
-
-  /* 布局颜色 */
-  --waline-color: #444;
-  --waline-bgcolor: #fff;
-  --waline-bgcolor-light: #f8f8f8;
-  --waline-bgcolor-hover: #f0f0f0;
-  --waline-border-color: #ddd;
-  --waline-disable-bgcolor: #f8f8f8;
-  --waline-disable-color: #bbb;
-  --waline-code-bgcolor: #282c34;
-
-  /* 特殊颜色 */
-  --waline-bq-color: #f0f0f0;
-
-  /* 头像 */
-  --waline-avatar-size: 3.25rem;
-  --waline-m-avatar-size: calc(var(--waline-avatar-size) * 9 / 13);
-
-  /* 徽章 */
-  --waline-badge-color: #3498db;
-  --waline-badge-font-size: 0.775em;
-
-  /* 信息 */
-  --waline-info-bgcolor: #f8f8f8;
-  --waline-info-color: #999;
-  --waline-info-font-size: 0.625em;
-
-  /* 渲染选择 */
-  --waline-border: 1px solid var(--waline-border-color);
-  --waline-avatar-radius: 50%;
-  --waline-box-shadow: none;
-}
-```
 
 ## 暗黑模式支持
 
@@ -79,37 +31,6 @@ icon: style
 
 :::
 
-### 夜间模式默认颜色
-
-在使用 `dark` 选项配置暗黑模式时，waline 会默认使用以下颜色:
-
-```css
-/* 根据用户设置 ↓ */
-darkmode-selector {
-  /* 常规颜色 */
-  --waline-white: #000;
-  --waline-light-grey: #666;
-  --waline-dark-grey: #999;
-
-  /* 布局颜色 */
-  --waline-color: #888;
-  --waline-bgcolor: #1e1e1e;
-  --waline-bgcolor-light: #272727;
-  --waline-border-color: #333;
-  --waline-disable-bgcolor: #444;
-  --waline-disable-color: #272727;
-
-  /* 特殊颜色 */
-  --waline-bq-color: #272727;
-
-  /* 其他颜色 */
-  --waline-info-bgcolor: #272727;
-  --waline-info-color: #666;
-}
-```
-
-如果上述颜色与你的站点夜间模式颜色不同，你可以考虑手动添加 CSS 并自行覆盖他们。
-
 ## Meta 图标
 
 如果你希望给用户评论的 meta 数据加上图标的话，你可以导入 `waline-meta.css` 来使用它。
@@ -127,10 +48,18 @@ darkmode-selector {
 对于 NPM 用户，你可以通过以下方式导入:
 
 ```js
-import '@waline/client/dist/waline-meta.css';
+import '@waline/client/waline-meta.css';
 ```
 
-## 阴影样式
+## 自定义样式
+
+### CSS 变量
+
+你可以在 [客户端参考 → CSS 变量](../reference/client/style.md) 找到 Waline 正常和夜间模式下使用的 CSS 变量默认值。
+
+如果它和你的站点样式不同，你可以自行覆盖对应的 CSS 变量。
+
+### 阴影样式
 
 如果你在使用一个大量运用阴影 (`box-shadow`) 的主题，你可以通过修改 `--waline-border` 和 `--waline-box-shadow` 来更改 Waline 的显示效果，如:
 
@@ -147,6 +76,6 @@ import '@waline/client/dist/waline-meta.css';
 }
 ```
 
-## 更多
+### 更多
 
 如果上面的 CSS 变量无法满足你对 Waline 样式的定制要求，你可以停止导入 Waline 官方提供的样式，并自己制作 CSS。

@@ -1,6 +1,7 @@
 ---
 title: 客户端介绍
 icon: intro
+redirectFrom: /guide/client/intro.html
 ---
 
 Waline 官方提供了 [`@waline/client`](https://www.npmjs.com/package/@waline/client) 客户端，使用 Vue + TypeScript 编写，大小仅为 53kb gzip。
@@ -15,7 +16,7 @@ Waline 官方提供了 [`@waline/client`](https://www.npmjs.com/package/@waline/
 
 你可以使用 `Waline.init(options)` 初始化 Waline 实例，其中 `el` 和 `serverURL` 两个选项是必填的。前者为 Waline 挂载的元素或元素选择器，后者为服务端地址。
 
-关于 Waline 的全部初始化参数，详见 [参考 → Waline 客户端配置](../../reference/client/api.md)。
+关于 Waline 的全部初始化参数，详见 [参考 → Waline 客户端配置](../reference/client/api.md)。
 
 ## 浏览量统计
 
@@ -76,4 +77,4 @@ Waline 完整支持了全部的无障碍标准:
 
 你可以很方便的在 Hexo，VuePress 等工具上通过插件使用 Waline，甚至使用第三方客户端。
 
-有关支持 Waline 的第三方客户端、主题与插件，详见[了解更多 → 生态系统](../../advanced/ecosystem.md)。
+有关支持 Waline 的第三方客户端、主题与插件，详见[了解更多 → 生态系统](../advanced/ecosystem.md)。

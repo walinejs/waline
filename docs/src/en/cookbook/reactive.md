@@ -1,13 +1,16 @@
 ---
-title: Single Page Application Support
+title: Reactive Waline Instance
 icon: spa
+redirectFrom: /en/guide/client/spa.html
 ---
 
-Waline brings support for SPA (**S**ingle **P**age **A** application).
+The official client `@waline/client` is based on Vue3, provides responsive components and instances, and brings SPA (**S**ingle **P**age **A**application) support.
+
+<!-- more -->
 
 ## Vue Component
 
-If you are building a Vue project, you can use Waline components by importing `@waline/client/dist/components`.
+If you are building a Vue project, you can obtain and use Waline component by importing named exports `Waline` from `@waline/client/components`.
 
 All component properties are reactive, which means that when you change the properties, the comment box will get an automatically update.
 

@@ -16,7 +16,7 @@ features:
   - title: Comment the way you like
     icon: markdown
     details: Full Markdown support, with emoji, mathematical formulas and HTML embedding support
-    link: /en/guide/client/syntax.html
+    link: /en/feature/syntax.html
 
   - title: LightWeight
     icon: light
@@ -33,12 +33,12 @@ features:
   - title: Article Reaction
     icon: reaction
     details: Show your attitude towards the article quickly
-    link: /en/guide/client/reaction.html
+    link: /en/feature/reaction.html
 
   - title: Pageview Counter
     icon: counter
     details: Count pageviews accurately with < 1kb code
-    link: /en/guide/client/pageview.html
+    link: /en/feature/pageview.html
 
   - title: Completely free
     icon: free
