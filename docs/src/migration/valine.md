@@ -5,8 +5,8 @@ icon: valine
 
 由于 Waline 在存储上完全复用了 Valine 的数据结构，所以从 Valine 迁移至 Waline 非常简单。
 
-1. 按照 [Vercel 部署](../guide/get-started.md#vercel-部署-服务端) 一节部署服务端。`LEAN_ID` 和 `LEAN_KEY` 和之前使用 Valine 申请的保持一致即可。同时请不要忘记为 Waline 设置 `LEAN_MASTER_KEY`。
-1. 按照 [HTML 片段](../guide/get-started.md#html-引入-客户端) 一节修改对应的前端脚本。
+1. 按照 [Vercel 部署](../get-started/README.md#vercel-部署-服务端) 一节部署服务端。`LEAN_ID` 和 `LEAN_KEY` 和之前使用 Valine 申请的保持一致即可。同时请不要忘记为 Waline 设置 `LEAN_MASTER_KEY`。
+1. 按照 [HTML 片段](../get-started/README.md#html-引入-客户端) 一节修改对应的前端脚本。
 
    ::: warning
 

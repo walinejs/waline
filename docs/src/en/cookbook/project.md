@@ -34,7 +34,7 @@ yarn add -D @waline/client
 
 :::
 
-For the modules exported by `@waline/client`, see [Client Reference → Files](../reference/client/files.md).
+For the modules exported by `@waline/client`, see [Client Reference → Files](../reference/client/file.md).
 
 ## Import in Normal Project
 

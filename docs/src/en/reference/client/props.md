@@ -111,7 +111,7 @@ Darkmode support
 
 :::
 
-For details of custom style and darkmode, please see [Custom Style](../../guide/client/style.md).
+For details of custom style and darkmode, please see [Custom Style](../../features/style.md).
 
 ## commentSorting
 
@@ -209,7 +209,7 @@ You can pass in a code highlighter of your own, or set to `false` to disable cod
 
 - Details:
 
-  - [Cookbook → Customize $\TeX$ Renderer](../../cookbook/tex.md)
+  - [Cookbook → Customize $\TeX$ Renderer](../../cookbook/tex-renderer.md)
   - [MathJax](https://www.mathjax.org/)
   - [KaTeX](https://katex.org/)
 

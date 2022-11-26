@@ -34,7 +34,7 @@ yarn add -D @waline/client
 
 :::
 
-有关于 `@waline/client` 导出的模块，详见 [客户端参考 → 文件](../reference/client/files.md)。
+有关于 `@waline/client` 导出的模块，详见 [客户端参考 → 文件](../reference/client/file.md)。
 
 ## 在普通项目中导入
 

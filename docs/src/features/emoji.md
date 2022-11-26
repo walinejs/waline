@@ -1,5 +1,5 @@
 ---
-title: 自定义表情
+title: 表情选项卡
 icon: emoji
 redirectFrom: /guide/client/emoji.html
 ---

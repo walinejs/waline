@@ -109,7 +109,7 @@ Waline 的服务端地址。
 
 :::
 
-自定义样式与暗黑模式详见 [自定义样式](../../guide/client/style.md)。
+自定义样式与暗黑模式详见 [自定义样式](../../features/style.md)。
 
 ## commentSorting
 
@@ -207,7 +207,7 @@ Waline 的服务端地址。
 
 - 详情:
 
-  - [添加 $\TeX$ 渲染器](../../cookbook/tex.md)
+  - [添加 $\TeX$ 渲染器](../../cookbook/tex-renderer.md)
   - [MathJax](https://www.mathjax.org/)
   - [KaTeX](https://katex.org/)
 

@@ -59,7 +59,7 @@ This includes the following restrictions:
 
 - Tex syntax, i.e. math formulas (eg: `$a = 1$`) cannot be rendered by default.
 
-  When using the official client, you can customize the Tex rendering in preview by setting the `texRenderer` option, see [Cookbook → Use a custom TEX renderer](../../cookbook/tex.md).
+  When using the official client, you can customize the Tex rendering in preview by setting the `texRenderer` option, see [Cookbook → Use a custom TEX renderer](../../cookbook/tex-renderer.md).
 
 - Under the default highlighter, code blocks will be highlighted with random colors with specific delimiters.
 

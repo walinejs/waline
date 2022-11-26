@@ -59,7 +59,7 @@ Github Flavored Markdown, 即 Github 风格语法
 
 - Tex 语法，也就是数学公式 (如: `$a = 1$`) 默认无法渲染。
 
-  在官方客户端下，你可以通过设置 `texRenderer` 选项来设置预览时的 Tex 渲染,，参见 [Cookbook → 使用自定义 TEX 渲染器](../cookbook/tex.md)。
+  在官方客户端下，你可以通过设置 `texRenderer` 选项来设置预览时的 Tex 渲染,，参见 [Cookbook → 使用自定义 TEX 渲染器](../cookbook/tex-renderer.md)。
 
 - 在默认的高亮器下，代码块将通过特定分隔符使用随机颜色进行高亮。
 

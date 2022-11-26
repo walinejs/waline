@@ -17,7 +17,7 @@ export const zhSidebarConfig = sidebar({
         'highlighter',
         'image-preview',
         'search',
-        'tex',
+        'tex-renderer',
         'upload-image',
       ],
     },
@@ -29,11 +29,15 @@ export const zhSidebarConfig = sidebar({
     },
   ],
   '/': [
-    'guide/get-started',
-    'guide/server',
+    {
+      text: '快速上手',
+      icon: 'creative',
+      prefix: 'get-started/',
+      children: ['', 'client', 'server'],
+    },
     {
       text: '功能',
-      icon: 'creative',
+      icon: 'discover',
       prefix: 'features/',
       children: [
         'syntax',
@@ -67,7 +71,7 @@ export const zhSidebarConfig = sidebar({
             'highlighter',
             'image-preview',
             'search',
-            'tex',
+            'tex-renderer',
             'upload-image',
           ],
         },
@@ -143,7 +147,7 @@ export const enSidebarConfig = sidebar({
         'highlighter',
         'image-preview',
         'search',
-        'tex',
+        'tex-renderer',
         'upload-image',
       ],
     },
@@ -155,11 +159,15 @@ export const enSidebarConfig = sidebar({
     },
   ],
   '/en/': [
-    'guide/get-started',
-    'guide/server',
+    {
+      text: 'Get Started',
+      icon: 'creative',
+      prefix: 'get-started/',
+      children: ['', 'client', 'server'],
+    },
     {
       text: 'Features',
-      icon: 'creative',
+      icon: 'discover',
       prefix: 'features/',
       children: [
         'syntax',
@@ -193,7 +201,7 @@ export const enSidebarConfig = sidebar({
             'highlighter',
             'image-preview',
             'search',
-            'tex',
+            'tex-renderer',
             'upload-image',
           ],
         },

@@ -1,6 +1,7 @@
 ---
 title: Get Started
 icon: creative
+redirectFrom: /en/guide/get-started.html
 ---
 
 Welcome to Waline. In just a few steps, you can enable Waline to provide comments and pageviews on your site.
