@@ -64,7 +64,18 @@ export const zhSidebarConfig = sidebar({
       text: '参考',
       icon: 'reference',
       prefix: '/reference/',
-      children: ['component', 'client', 'env', 'server', 'api', 'contribution'],
+      children: [
+        {
+          text: '客户端',
+          prefix: 'client/',
+          children: ['api', 'props'],
+        },
+        {
+          text: '服务端',
+          prefix: 'server/',
+          children: ['api', 'config', 'env'],
+        },
+      ],
     },
     {
       text: '高级',
@@ -136,7 +147,18 @@ export const enSidebarConfig = sidebar({
       text: 'Reference',
       icon: 'reference',
       prefix: 'reference/',
-      children: ['component', 'client', 'env', 'server', 'api', 'contribution'],
+      children: [
+        {
+          text: 'Client',
+          prefix: 'client/',
+          children: ['api', 'props'],
+        },
+        {
+          text: 'server',
+          prefix: 'server/',
+          children: ['api', 'config', 'env'],
+        },
+      ],
     },
     {
       text: 'Advanced',

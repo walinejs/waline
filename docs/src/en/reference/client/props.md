@@ -1,6 +1,7 @@
 ---
 title: Component Props
 icon: config
+redirectFrom: /en/reference/component.html
 ---
 
 ## serverURL
@@ -46,14 +47,14 @@ Optional value:
 - `'ru'`
 - `'ru-RU'`
 
-If you need a custom language, please refer to [i18n](../guide/client/i18n.md).
+If you need a custom language, please refer to [i18n](../../guide/client/i18n.md).
 
 ## emoji
 
 - Type: `(string | WalineEmojiInfo)[] | false`
 - Default: `['//unpkg.com/@waline/emojis@1.1.0/weibo']`
 
-Emoji settings, for details see [Custom Emoji](../guide/client/emoji.md)
+Emoji settings, for details see [Custom Emoji](../../features/emoji.md)
 
 ## dark
 
@@ -76,7 +77,7 @@ Darkmode support
 
 :::
 
-For details of custom style and darkmode, please see [Custom Style](../guide/client/style.md).
+For details of custom style and darkmode, please see [Custom Style](../../guide/client/style.md).
 
 ## commentSorting
 
@@ -267,94 +268,15 @@ A demo using prismjs to highlight code blocks.
   type WalineTexRenderer = (blockMode: boolean, tex: string) => string;
   ```
 
+- Reference:
+
+  - [Set your own $\TeX$ renderer](../../cookbook/tex.md)
+  - [MathJax](https://www.mathjax.org/)
+  - [KaTeX](https://katex.org/)
+
 Customize $\TeX$ rendering, the default behavior is to prompt that the preview mode does not support $\TeX$. The function provides two parameters, the first parameter indicates whether it should be rendered in block level, and the second parameter is the string of the $\TeX$ content, and return a HTML string as render result.
 
-You can import $\TeX$ renderer to provide preview feature. We recommend you to use Katex or MathJax, or you can set to `false` to disable parsing $\TeX$. For more information, please refer to [KaTeX API](https://katex.org/docs/api.html#server-side-rendering-or-rendering-to-a-string) or [MathJax API](http://docs.mathjax.org/en/latest/web/typeset.html#converting-a-math-string-to-other-formats).
-
-:::: details Demo
-
-::: code-tabs
-
-@tab KaTex
-
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Waline highlighter 案例</title>
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/@waline/client@v2/dist/waline.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/katex@v0.16/dist/katex.min.css"
-    />
-  </head>
-  <body>
-    <div id="waline" style="max-width: 800px; margin: 0 auto"></div>
-    <script type="module">
-      import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
-      import katex from 'https://unpkg.com/katex@0.16/dist/katex.mjs';
-
-      const waline = init({
-        el: '#waline',
-        serverURL: 'https://waline.vercel.app',
-        path: '/',
-        lang: 'en-US',
-        texRenderer: (blockmode, tex) =>
-          katex.renderToString(tex, {
-            displayMode: blockmode,
-            throwOnError: false,
-          }),
-      });
-    </script>
-  </body>
-</html>
-```
-
-@tab MathJax
-
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Waline highlighter 案例</title>
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/@waline/client@v2/dist/waline.css"
-    />
-    <script src="https://unpkg.com/mathjax@v3/es5/tex-svg.js"></script>
-  </head>
-  <body>
-    <div id="waline" style="max-width: 800px; margin: 0 auto"></div>
-    <script type="module">
-      import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
-
-      const waline = init({
-        el: '#waline',
-        serverURL: 'https://waline.vercel.app',
-        path: '/',
-        lang: 'en-US',
-        texRenderer: (blockmode, tex) =>
-          window.MathJax.startup.adaptor.outerHTML(
-            window.MathJax.tex2svg(tex, {
-              display: blockmode,
-            })
-          ),
-      });
-    </script>
-  </body>
-</html>
-```
-
-:::
-
-::::
+You can import $\TeX$ renderer to provide preview feature. We recommend you to use Katex or MathJax, or you can set to `false` to disable parsing $\TeX$.
 
 ## search
 

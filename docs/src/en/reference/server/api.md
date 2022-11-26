@@ -1,6 +1,7 @@
 ---
 title: API
 icon: api
+redirectFrom: /en/reference/api.html
 ---
 
 ## Comment

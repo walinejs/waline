@@ -1,5 +1,7 @@
 ---
 title: Server Config
+icon: config
+redirectFrom: /en/reference/server.html
 ---
 
 The following options need to be configured in the server entry file `index.js`.

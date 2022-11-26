@@ -1,6 +1,7 @@
 ---
 title: 服务端配置
 icon: config
+redirectFrom: /reference/server.html
 ---
 
 你可以在服务端入口文件 `index.js` 中配置下列选项。

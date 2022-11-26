@@ -1,5 +1,7 @@
 ---
 title: Server Environment Variables
+icon: config
+redirectFrom: /en/reference/env.html
 ---
 
 You can customize Waline Server through the following environment variables.

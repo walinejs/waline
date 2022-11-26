@@ -1,6 +1,7 @@
 ---
 title: API
 icon: api
+redirectFrom: /reference/api.html
 ---
 
 ## 评论接口
