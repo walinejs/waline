@@ -24,11 +24,11 @@ Write the following content before your HTML `<head>`, where `#waline-comment` i
 <srciprt src="https://unpkg.com/lightgallery@v2/lightgallery.umd.min.js" />
 <script>
   document.addEventListener('click', (e) => {
-    const imgs = [].slice
+    const images = [].slice
       .call(document.querySelectorAll('#waline-comment .vcontent img'))
       .filter((img) => img.width > 20);
 
-    if (imgs.indexOf(e.target) === -1) {
+    if (images.indexOf(e.target) === -1) {
       return;
     }
     if (!e.target.gallery) {
@@ -53,11 +53,11 @@ Write the following content before your HTML `<head>`, where `#waline-comment` i
 <script src="//cdn.jsdelivr.net/gh/cbeyls/slimbox/js/slimbox2.js"></script>
 <script>
   document.addEventListener('click', (e) => {
-    const imgs = [].slice
+    const images = [].slice
       .call(document.querySelectorAll('#waline-comment .vcontent img'))
       .filter((img) => img.width > 20);
 
-    const idx = imgs.indexOf(e.target);
+    const idx = images.indexOf(e.target);
     if (idx === -1) {
       return;
     }
@@ -80,11 +80,11 @@ Write the following content before your HTML `<head>`, where `#waline-comment` i
 <script>
   document.addEventListener('click', (e) => {
     const lightbox = new Lightbox();
-    const imgs = [].slice
+    const images = [].slice
       .call(document.querySelectorAll('#waline-comment .vcontent img'))
       .filter((img) => img.width > 20);
 
-    if (imgs.indexOf(e.target) === -1) {
+    if (images.indexOf(e.target) === -1) {
       return;
     }
 

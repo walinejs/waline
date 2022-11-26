@@ -37,7 +37,7 @@ You can easily use the presets provided by Waline or create new presets to custo
 
 If you want users to quickly express their reactions to articles outside of comments, you can manually enable the [Article Reaction](./reaction.md) feature.
 
-Waline has built-in image upload support, coverting image to Base64 , you can customize the image upload through [`imageUploader`](../../reference/client.md#uploadimage) option.
+Waline has built-in image upload support, converting image to Base64 , you can customize the image upload through [`imageUploader`](../../reference/client.md#uploadimage) option.
 
 Waline supports emoji search feature and uses <https://giphy.com> by default. You can also [customize your own emoji service](./search.md).
 

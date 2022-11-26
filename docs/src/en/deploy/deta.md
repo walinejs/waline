@@ -10,11 +10,11 @@ redirectFrom: /en/guide/server/deta.html
 
 Click this button and it'll redirect to deta platform to quickly deploy. You need select your deploy project and environment variables after login.
 
-![Deta-1](../../../assets/deta-1.png)
+![Deta-1](../../assets/deta-1.png)
 
 When everything is ok, just click <kbd>Deploy</kbd> button. It'll deploy successful after a moment. Then deta will show you deploy site url. Copy the site url and input it into client `serverURL` configuration. Then you can enjoy waline!
 
-![Deta-2](../../../assets/deta-2.png)
+![Deta-2](../../assets/deta-2.png)
 
 ## How to update
 
@@ -32,7 +32,7 @@ After installation, we use `deta login` to log in to the command line, during wh
 
 We need to clone the project before updating. Enter the setting page of our project, copy and execute the `deta clone` command on the page, and the project will be downloaded after a while.
 
-![Deta-2](../../../assets/deta-3.jpg)
+![Deta-2](../../assets/deta-3.jpg)
 
 After that, we can modify the project code locally, for example, modify the dependency version in `package.json` to the latest.
 

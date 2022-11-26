@@ -63,7 +63,7 @@ This includes the following restrictions:
 
 - Under the default highlighter, code blocks will be highlighted with random colors with specific delimiters.
 
-  When using the official client, you can customize the code highlighting when previewing by setting the `highlighter` option, see [Cookbook → Custom Code Highlighting](../../cookbook/highlight.md).
+  When using the official client, you can customize the code highlighting when previewing by setting the `highlighter` option, see [Cookbook → Custom Code Highlighting](../../cookbook/highlighter.md).
 
 ## More
 

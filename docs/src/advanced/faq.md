@@ -48,7 +48,7 @@ Waline 主要由前端和服务端两部分组成。
 
 #### Deta
 
-[Deta - 如何更新](../guide/server/deta.md#deta-%E5%A6%82%E4%BD%95%E6%9B%B4%E6%96%B0)
+[Deta - 如何更新](..//deploy/deta.md#如何更新)
 
 #### CloudBase
 

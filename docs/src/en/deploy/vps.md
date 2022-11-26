@@ -31,7 +31,7 @@ docker build -t lizheming/waline -f packages/server/Dockerfile .
 
 ### via [docker stack deploy](https://docs.docker.com/engine/reference/commandline/stack_deploy/) or [docker-compose](https://github.com/docker/compose)
 
-The SQLite is used here as an example. For SQLite and supported database services, please refer to [Multi-database service support](./databases.md#sqlite).
+The SQLite is used here as an example. For SQLite and supported database services, please refer to [Multi-database service support](../database.md#sqlite).
 
 Example `docker-compose.yml` for `waline`:
 

@@ -31,5 +31,4 @@ dist/
 **/.vuepress/.temp/
 
 # editors
-.vscode/
 .idea/

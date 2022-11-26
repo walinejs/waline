@@ -66,7 +66,7 @@ POST /comment
 | mail      | string | commentator email                   |
 | nick      | string | commentator nick                    |
 | pid       | string | comment id which one replied        |
-| rid       | string | root comment id which one ownerd    |
+| rid       | string | root comment id which one owned     |
 | ua        | string | commentator's user agent            |
 | url       | string | Article id for comment              |
 | at        | string | comment nick name which one replied |

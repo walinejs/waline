@@ -82,7 +82,7 @@ We use Telegram bot to send Telegram notification. You need to set the following
 - `PUSH_PLUS_TEMPLATE`：Send template
 - `PUSH_PLUS_CHANNEL`：Send channel
 - `PUSH_PLUS_WEBHOOK`：webhook is required if `PUSH_PLUS_CHANNEL` equals `webhook` or `cp`.
-- `PUSH_PLUS_CALLBACKURL`：callback url after send responsed.
+- `PUSH_PLUS_CALLBACKURL`：callback url after send response.
 - `AUTHOR_EMAIL`: The blogger’s email is used to distinguish whether the posted comment is posted by the blogger himself. If it is posted by the blogger, there will be no reminder notification.
 - `SITE_NAME`: Your site name, it will be displayed in notification message.
 - `SITE_URL`: Your site url, it will be displayed in notification message.
@@ -123,7 +123,7 @@ The template passes parameters through `self`, `parent` and `site` objects, whic
   | mail            | Commenter's email    |
   | link            | Commenter's website  |
   | url             | Article address      |
-  | comment         | Comment cotent       |
+  | comment         | Comment content      |
   | browser         | Browser name         |
   | os              | Operate system name  |
   | avatar          | avatar               |
@@ -278,7 +278,7 @@ The default template is attached here for your reference:
   仅供评论预览，点击[查看完整內容]({{site.postUrl}})
   ````
 
-### Addtional Info
+### Additional Info
 
 1. Vercel’s environment variable size is limited to `4KB`, so if your template is long, you should config if in main entry file, see [issue#106](https://github.com/walinejs/waline/issues/106).
 1. The specific information of variables may change during the development process. The variable descriptions here are for reference only. Please refer to the specific code examples for specific content.

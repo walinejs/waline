@@ -1,7 +1,7 @@
 ---
 title: 评论数统计
 icon: counter
-redirectFrom: /guide/client/cmment.html
+redirectFrom: /guide/client/comment.html
 ---
 
 Waline 支持显示评论数。

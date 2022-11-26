@@ -6,7 +6,7 @@ icon: valine
 Since Waline completely reuses Valine's data structure in storage, migrating from Valine to Waline is very simple.
 
 1. Deploy backend according to [Vercel Deploy](../guide/get-started.md#deploy-to-vercel-server) in _Get Started_ section. `LEAN_ID` and `LEAN_KEY` should be the same as those applied for when using Valine before. Don't forget to set `LEAN_MASTER_KEY` for Waline.
-1. Modifiy frontend scripts according to [HTML](../guide/get-started.md#importing-in-html-client) in _Get Started_ section. Please remind we should remove old configuration `appId` and `appKey` from Valine, and add `serverURL` option.
+1. Modify frontend scripts according to [HTML](../guide/get-started.md#importing-in-html-client) in _Get Started_ section. Please remind we should remove old configuration `appId` and `appKey` from Valine, and add `serverURL` option.
 
    ```diff
    - <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
@@ -62,7 +62,7 @@ Compared with Valine, Waline has the following highlights:
 
 ### More features
 
-1. Markdown supports more syntax, including superscript and subscript, emoji, tables, strikethrough, mathematical formulas, HTML tags, footnotes, etc.
+1. Markdown supports more syntax, including superscript and subscript, emoji, tables, strike-through, mathematical formulas, HTML tags, footnotes, etc.
 1. Image upload feature, which allows customized image provider service or embedding images directly.
 1. The brand new label system adds level labels for users according to the frequency of user interaction, and support custom labels for registered users.
 1. Emoji presets and tab support, allowing multiple sets of Emoji, while allowing anyone to publish and use Emoji presets.

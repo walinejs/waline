@@ -21,10 +21,10 @@ icon: emoji
 
 ### 编写预设信息
 
-我们假定你已经在 `https://example.com` 的 `myemoji` 目录下放置了一些表情图片，如下所示：
+我们假定你已经在 `https://example.com` 的 `my-emoji` 目录下放置了一些表情图片，如下所示：
 
 ```
-https://example.com/myemoji/
+https://example.com/my-emoji/
   ├─ my_laugh.png
   ├─ my_cute.png
   ├─ my_rage.png
@@ -69,7 +69,7 @@ https://example.com/myemoji/
 
 这样，你就完成了 `info.json` 的编写，请将它上传到同一个文件夹。
 
-这样你就成功的创建了一个 `myemoji` 预设，地址为 `https://example.com/myemoji/'` 预设。
+这样你就成功的创建了一个 `my-emoji` 预设，地址为 `https://example.com/my-emoji/'` 预设。
 
 ## 利用 GitHub 标签与仓库镜像
 
@@ -102,7 +102,7 @@ https://example.com/myemoji/
 和前文类似，我们假设你有下列文件结构:
 
 ```
-https://example.com/myemoji/
+https://example.com/my-emoji/
 ├─ my_laugh.png
 ├─ my_cute.png
 ├─ my_rage.png
@@ -114,7 +114,7 @@ https://example.com/myemoji/
 ```js
 {
   name: "我的 Emoji",
-  folder: "https://example.com/myemoji",
+  folder: "https://example.com/my-emoji",
   prefix: "my_",
   type: "png",
   icon: "cute",

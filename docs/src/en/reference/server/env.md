@@ -8,7 +8,7 @@ You can customize Waline Server through the following environment variables.
 
 ::: warning
 
-You MUST **redeploy** after updating Environment variables to make changes applyed.
+You MUST **redeploy** after updating Environment variables to make changes applied.
 
 You should set through `Settings` - `Environment Variables` when using Vercel.
 
@@ -86,7 +86,7 @@ By default, only 6 levels of copywriting are provided, but it does not mean that
 
 Recaptcha Key and Secret can be requested at <https://www.google.com/recaptcha>.
 
-When setting security domains, you need to add the site addresss and the Waline server address at the same time.
+When setting security domains, you need to add the site address and the Waline server address at the same time.
 
 :::
 
@@ -116,7 +116,7 @@ The email service is used for email notification of user registration and commen
 | `SMTP_PASS`               | SMTP Password.             |
 | `SMTP_SECURE`             | SMTP connect with SSL      |
 | `SENDER_NAME`             | Customize sender name      |
-| `SENDER_EMAIL`            | Customize sender eamil     |
+| `SENDER_EMAIL`            | Customize sender email     |
 
 ::: tip
 

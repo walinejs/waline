@@ -32,7 +32,7 @@ Please ensure the uniqueness of each _article page_ path, otherwise the same com
 - Type: `string`
 - Default: `'zh-CN'`
 - Details:
-  - [Guide → I18n](../../guide/client/i18n.md)
+  - [Guide → I18n](../../features/i18n.md#set-language)
 
 Display language.
 

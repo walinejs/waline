@@ -35,7 +35,7 @@ Welcome to Waline. In just a few steps, you can enable Waline to provide comment
 
    ![Create Project](../../assets/vercel-1.png)
 
-1. Repo which named you input before will be created and initiallized automatically base on waline example template by Vercel.
+1. Repo which named you input before will be created and initialized automatically base on waline example template by Vercel.
 
    ![deploy](../../assets/vercel-3.png)
 
@@ -43,7 +43,7 @@ Welcome to Waline. In just a few steps, you can enable Waline to provide comment
 
    ![deploy](../../assets/vercel-4.png)
 
-1. Click `Settings` menu on the top, and `Environment Variables` button on the side to go to envrionment variables setting page. Then set `LEAN_ID`, `LEAN_KEY` and `LEAN_MASTER_KEY`. The variables' value should be the ones you got in the previous step. `APP ID` is the value of `LEAN_ID`, and `APP Key` to `LEAN_KEY`, `Master Key` to `LEAN_MASTER_KEY`.
+1. Click `Settings` menu on the top, and `Environment Variables` button on the side to go to environment variables setting page. Then set `LEAN_ID`, `LEAN_KEY` and `LEAN_MASTER_KEY`. The variables' value should be the ones you got in the previous step. `APP ID` is the value of `LEAN_ID`, and `APP Key` to `LEAN_KEY`, `Master Key` to `LEAN_MASTER_KEY`.
 
    ![set environment variables](../../assets/vercel-5.png)
 
@@ -63,7 +63,7 @@ Welcome to Waline. In just a few steps, you can enable Waline to provide comment
 
    ![Add domain](../../assets/vercel-8.png)
 
-1. Add a new `CANME` record in your domain service server.
+1. Add a new `CNAME` record in your domain service server.
 
    | Type  | Name    | Value                |
    | ----- | ------- | -------------------- |
@@ -71,8 +71,8 @@ Welcome to Waline. In just a few steps, you can enable Waline to provide comment
 
 1. You can use your own domain to visit waline comment system after go into effect. :tada:
 
-   - serverURL：example.yourdomain.com
-   - admin panel：example.yourdomain.com/ui
+   - serverURL：example.your-domain.com
+   - admin panel：example.your-domain.com/ui
 
    ![success](../../assets/vercel-9.png)
 

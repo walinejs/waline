@@ -9,13 +9,13 @@ This cookbook will show you how to create and use your own Emoji presets.
 
 ## Create your own presets
 
-First of all, you need to prepare some emoji images. Then, pleaase follow the steps to create your prreset.
+First of all, you need to prepare some emoji images. Then, please follow the steps to create your preset.
 
 ### Name the emoji and upload it
 
 For the sake of simplicity, Waline will directly use the name of the emoji image as the key of the emoji. This means that if you import two different presets, and they both contain a laugh.png image, both emotes will correspond to the same emoji `:laugh:`.
 
-Therefore, the best practice is that each emoji preset creator should add a prese-name-related prefix to all names in emoji files.
+Therefore, the best practice is that each emoji preset creator should add a preset-name-related prefix to all names in emoji files.
 
 After naming them appropriately, you need to upload them to your server.
 
@@ -24,7 +24,7 @@ After naming them appropriately, you need to upload them to your server.
 We assume that you have placed some emoji images in the `
 
 ```
-https://example.com/myemoji/
+https://example.com/my-emoji/
 ├─ my_laugh.png
 ├─ my_cute.png
 ├─ my_rage.png
@@ -71,7 +71,7 @@ After that, please select a representative emoji as the icon displayed in the ta
 
 With these, you are done writing `info.json`, please upload it to the same folder.
 
-You now successfully created a `myemoji` preset with `https://example.com/myemoji/'`.
+You now successfully created a `my-emoji` preset with `https://example.com/my-emoji/'`.
 
 ## Use GitHub mirror with tags
 
@@ -104,7 +104,7 @@ Since cdn.jsdelivr.net is polluted in China, you can replace `cdn.jsdelivr.net` 
 Similar to the previous article, we assume you have the following file structure:
 
 ```
-https://example.com/myemoji/
+https://example.com/my-emoji/
 ├─ my_laugh.png
 ├─ my_cute.png
 ├─ my_rage.png
@@ -116,7 +116,7 @@ In addition to creating an `info.json` upload and using a link as a preset, you 
 ```js
 {
   name: "My Emoji",
-  folder: "https://example.com/myemoji",
+  folder: "https://example.com/my-emoji",
   prefix: "my_",
   type: "png",
   icon: "cute",

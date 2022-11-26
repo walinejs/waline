@@ -224,7 +224,7 @@ interface WalineRecentCommentsResult {
 
 ### UserList
 
-`UserList` is a widget that displays user interaction leaderboards or comment walls.
+`UserList` is a widget that displays user interaction leader boards or comment walls.
 
 Type:
 
