@@ -1,7 +1,7 @@
 import { navbar } from 'vuepress-theme-hope';
 
 export const zhNavbarConfig = navbar([
-  '/guide/get-started',
+  '/get-started/',
   '/cookbook/',
   {
     text: '迁移',
@@ -35,7 +35,7 @@ export const zhNavbarConfig = navbar([
 ]);
 
 export const enNavbarConfig = navbar([
-  '/en/guide/get-started',
+  '/en/get-started/',
   '/en/cookbook/',
   {
     text: 'Migration',

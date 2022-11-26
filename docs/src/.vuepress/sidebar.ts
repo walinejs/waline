@@ -21,7 +21,7 @@ export const zhSidebarConfig = sidebar({
         'upload-image',
       ],
     },
-    'reactive',
+    'reactivity',
     {
       text: '兼容',
       icon: 'time',
@@ -51,6 +51,20 @@ export const zhSidebarConfig = sidebar({
         'widget/',
       ],
     },
+    'database',
+    {
+      text: '部署',
+      icon: 'deploy',
+      prefix: 'deploy/',
+      children: [
+        'cloudbase',
+        'deta',
+        'railway',
+        'baidu-cfc',
+        'aliyun-fc',
+        'vps',
+      ],
+    },
     {
       text: 'Cookbook',
       icon: 'guide',
@@ -75,7 +89,7 @@ export const zhSidebarConfig = sidebar({
             'upload-image',
           ],
         },
-        'reactive',
+        'reactivity',
         {
           text: '兼容',
           icon: 'time',
@@ -83,25 +97,7 @@ export const zhSidebarConfig = sidebar({
         },
       ],
     },
-    {
-      text: '部署',
-      icon: 'deploy',
-      prefix: 'deploy/',
-      children: [
-        'cloudbase',
-        'deta',
-        'railway',
-        'baidu-cfc',
-        'aliyun-fc',
-        'vps',
-      ],
-    },
-    {
-      text: '迁移',
-      icon: 'migration',
-      prefix: 'migration/',
-      children: ['client', 'valine', 'tool'],
-    },
+
     {
       text: '参考',
       icon: 'reference',
@@ -122,10 +118,18 @@ export const zhSidebarConfig = sidebar({
       ],
     },
     {
+      text: '迁移',
+      icon: 'migration',
+      prefix: 'migration/',
+      collapsible: true,
+      children: ['client', 'valine', 'tool'],
+    },
+    {
       text: '高级',
       icon: 'advanced',
       prefix: 'advanced/',
-      children: ['intro', 'why', 'ecosystem', 'faq', 'contribution'],
+      collapsible: true,
+      children: ['intro', 'design', 'ecosystem', 'faq', 'contribution'],
     },
   ],
 });
@@ -151,7 +155,7 @@ export const enSidebarConfig = sidebar({
         'upload-image',
       ],
     },
-    'reactive',
+    'reactivity',
     {
       text: 'Compatibility',
       icon: 'time',
@@ -181,6 +185,13 @@ export const enSidebarConfig = sidebar({
         'widget/',
       ],
     },
+    'database',
+    {
+      text: 'Deploy',
+      icon: 'deploy',
+      prefix: 'deploy/',
+      children: ['deta', 'railway', 'vps'],
+    },
     {
       text: 'Cookbook',
       icon: 'guide',
@@ -205,25 +216,13 @@ export const enSidebarConfig = sidebar({
             'upload-image',
           ],
         },
-        'reactive',
+        'reactivity',
         {
           text: 'Compatibility',
           icon: 'time',
           children: ['legacy', 'emoji-compact'],
         },
       ],
-    },
-    {
-      text: '部署Deploy',
-      icon: 'deploy',
-      prefix: 'deploy/',
-      children: ['deta', 'railway', 'vps'],
-    },
-    {
-      text: 'Migration',
-      icon: 'migration',
-      prefix: 'migration/',
-      children: ['client', 'valine', 'tool'],
     },
     {
       text: 'Reference',
@@ -245,10 +244,18 @@ export const enSidebarConfig = sidebar({
       ],
     },
     {
+      text: 'Migration',
+      icon: 'migration',
+      prefix: 'migration/',
+      collapsible: true,
+      children: ['client', 'valine', 'tool'],
+    },
+    {
       text: 'Advanced',
       icon: 'advanced',
       prefix: '/advanced/',
-      children: ['intro', 'why', 'ecosystem', 'faq', 'contribution'],
+      collapsible: true,
+      children: ['intro', 'design', 'ecosystem', 'faq', 'contribution'],
     },
   ],
 });
