@@ -1,6 +1,7 @@
 ---
 title: 独立部署
 icon: server
+redirectFrom: /guide/server/vps-deploy.html
 ---
 
 如果你不想将服务端部署在 Vercel 上的话，你也可以选择部署在自己的服务器上。

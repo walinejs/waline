@@ -13,6 +13,7 @@ export const zhSidebarConfig = sidebar({
       icon: 'customize',
       children: [
         'emoji',
+        'locale',
         'highlighter',
         'image-preview',
         'search',
@@ -26,49 +27,22 @@ export const zhSidebarConfig = sidebar({
       children: ['legacy', 'emoji-compact'],
     },
   ],
-  '/guide/': [
-    '/guide/get-started',
-    {
-      text: '客户端',
-      icon: 'client',
-      prefix: '/guide/client/',
-      children: [
-        'intro',
-        'syntax',
-        'reaction',
-        'search',
-        'label',
-        'style',
-        'i18n',
-        'spa',
-        'pageview',
-        'widget/',
-      ],
-    },
-    {
-      text: '服务端',
-      icon: 'server',
-      prefix: '/guide/server/',
-      children: [
-        'intro',
-        'notification',
-        'databases',
-        'cloudbase',
-        'deta',
-        'railway',
-        'baidu-cfc',
-        'aliyun-fc',
-        'vps-deploy',
-      ],
-    },
-  ],
   '/': [
     'guide/get-started',
+    'guide/server',
     {
       text: '功能',
       icon: 'creative',
       prefix: 'features/',
-      children: ['emoji'],
+      children: [
+        'syntax',
+        'emoji',
+        'search',
+        'label',
+        'i18n',
+        'pageview',
+        'comment',
+      ],
     },
     {
       text: 'Cookbook',
@@ -86,6 +60,7 @@ export const zhSidebarConfig = sidebar({
           icon: 'customize',
           children: [
             'emoji',
+            'locale',
             'highlighter',
             'image-preview',
             'search',
@@ -101,6 +76,19 @@ export const zhSidebarConfig = sidebar({
       ],
     },
     {
+      text: '部署',
+      icon: 'deploy',
+      prefix: 'deploy/',
+      children: [
+        'cloudbase',
+        'deta',
+        'railway',
+        'baidu-cfc',
+        'aliyun-fc',
+        'vps',
+      ],
+    },
+    {
       text: '迁移',
       icon: 'migration',
       prefix: 'migration/',
@@ -113,11 +101,13 @@ export const zhSidebarConfig = sidebar({
       children: [
         {
           text: '客户端',
+          icon: 'client',
           prefix: 'client/',
           children: ['api', 'props'],
         },
         {
           text: '服务端',
+          icon: 'server',
           prefix: 'server/',
           children: ['api', 'config', 'env'],
         },
@@ -145,6 +135,7 @@ export const enSidebarConfig = sidebar({
       icon: 'customize',
       children: [
         'emoji',
+        'locale',
         'highlighter',
         'image-preview',
         'search',
@@ -158,46 +149,22 @@ export const enSidebarConfig = sidebar({
       children: ['legacy', 'emoji-compact'],
     },
   ],
-  '/en/guide/': [
-    'get-started',
-    {
-      text: 'Client',
-      icon: 'client',
-      prefix: 'client/',
-      children: [
-        'intro',
-        'syntax',
-        'reaction',
-        'search',
-        'label',
-        'style',
-        'i18n',
-        'spa',
-        'pageview',
-        'widget/',
-      ],
-    },
-    {
-      text: 'Server',
-      icon: 'server',
-      prefix: 'server/',
-      children: [
-        'intro',
-        'notification',
-        'databases',
-        'deta',
-        'railway',
-        'vps-deploy',
-      ],
-    },
-  ],
   '/en/': [
     'guide/get-started',
+    'guide/server',
     {
       text: 'Features',
       icon: 'creative',
       prefix: 'features/',
-      children: ['emoji'],
+      children: [
+        'syntax',
+        'emoji',
+        'search',
+        'label',
+        'i18n',
+        'pageview',
+        'comment',
+      ],
     },
     {
       text: 'Cookbook',
@@ -215,6 +182,7 @@ export const enSidebarConfig = sidebar({
           icon: 'customize',
           children: [
             'emoji',
+            'locale',
             'highlighter',
             'image-preview',
             'search',
@@ -230,6 +198,12 @@ export const enSidebarConfig = sidebar({
       ],
     },
     {
+      text: '部署Deploy',
+      icon: 'deploy',
+      prefix: 'deploy/',
+      children: ['deta', 'railway', 'vps'],
+    },
+    {
       text: 'Migration',
       icon: 'migration',
       prefix: 'migration/',
@@ -242,11 +216,13 @@ export const enSidebarConfig = sidebar({
       children: [
         {
           text: 'Client',
+          icon: 'client',
           prefix: 'client/',
           children: ['api', 'props'],
         },
         {
           text: 'server',
+          icon: 'server',
           prefix: 'server/',
           children: ['api', 'config', 'env'],
         },

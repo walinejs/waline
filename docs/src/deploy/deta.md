@@ -1,6 +1,7 @@
 ---
 title: Deta 部署
 icon: deta
+redirectFrom: /guide/server/deta.html
 ---
 
 [Deta](https://www.deta.sh/) 是一个可免费使用的 Serverless 部署平台。我们可以快速的将 Waline 部署到 Deta 平台上。

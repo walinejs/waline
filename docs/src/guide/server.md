@@ -1,6 +1,7 @@
 ---
 title: 服务端介绍
 icon: intro
+redirectFrom: /guide/server/intro.html
 ---
 
 ## 部署

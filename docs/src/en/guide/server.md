@@ -1,6 +1,7 @@
 ---
 title: Server introduction
 icon: intro
+redirectFrom: /en/guide/server/intro.html
 ---
 
 ## Deployment

@@ -1,6 +1,7 @@
 ---
 title: 多数据库服务支持
 icon: database
+redirectFrom: /guide/server/databases.html
 ---
 
 除了官方默认的 LeanCloud 之外，Waline 还支持多种数据库，包括 MySQL, PostgreSQL, SQLite 以及 MongoDB。

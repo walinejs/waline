@@ -1,6 +1,7 @@
 ---
 title: Multi-database service support
 icon: database
+redirectFrom: /en/guide/server/databases.html
 ---
 
 Besides LeanCloud, Waline also supports a variety of databases, including MySQL, PostgreSQL, SQLite and MongoDB.
