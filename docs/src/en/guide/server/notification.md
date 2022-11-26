@@ -5,7 +5,7 @@ icon: notice
 
 When a user posts a comment on the website or a user responds to a comment, Waline supports email or WeChat notification to the blogger and the author who responded to the comment.
 
-- We support mutiple types notifications for blogger
+- We support multiple types notifications for blogger
 - We will email a visitor once his comment gets a reply.
 
 <!-- more -->

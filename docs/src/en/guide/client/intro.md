@@ -5,9 +5,9 @@ icon: intro
 
 Waline official provides the [`@waline/client`](https://www.npmjs.com/package/@waline/client), written in Vue + TypeScript, and the size is only 53kb gzip.
 
-## Introduce
+## Introduction
 
-You can use CDN or npm to import Waline. We provide mutiple versions.
+You can use CDN or npm to import Waline. We provide multiple versions.
 
 For details about Waline import, please refer to [Importing Client](./import.md).
 
@@ -31,7 +31,7 @@ You can learn about the complete syntax supported by Waline in the [Supported Sy
 
 Waline has many features, including login, avatar, multi-language, custom Emoji, image upload and real-time preview. You can try these features in the demo below.
 
-Waline officially added support for mutiple languages, and you can also customize locales. See [I18n Support](./i18n.md) for details.
+Waline officially added support for multiple languages, and you can also customize locales. See [I18n Support](./i18n.md) for details.
 
 You can easily use the presets provided by Waline or create new presets to customize the Emoji popup in the comment box, see [Custom Emoji](./emoji.md) for details.
 
