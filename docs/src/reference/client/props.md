@@ -32,7 +32,7 @@ Waline 的服务端地址。
 - 类型: `string`
 - 默认值: `'zh-CN'`
 - 详情:
-  - [指南 → 多语言](../../guide/features/i18n.md#设置语言)
+  - [功能 → 多语言](../../guide/features/i18n.md#设置语言)
 
 多语言支持。
 
