@@ -125,7 +125,7 @@
     "vue": "^3.2.45"
   },
   "devDependencies": {
-    "@babel/core": "7.20.2",
+    "@babel/core": "7.20.5",
     "@babel/preset-env": "7.20.2",
     "@giphy/js-types": "4.2.1",
     "@rollup/plugin-babel": "6.0.3",
