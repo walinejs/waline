@@ -175,7 +175,7 @@ importers:
     specifiers:
       '@babel/core': 7.20.2
       '@babel/preset-env': 7.20.2
-      '@giphy/js-types': 4.2.1
+      '@giphy/js-types': 4.4.0
       '@rollup/plugin-babel': 6.0.3
       '@rollup/plugin-commonjs': 23.0.2
       '@rollup/plugin-node-resolve': 15.0.1
@@ -204,7 +204,7 @@ importers:
     devDependencies:
       '@babel/core': 7.20.2
       '@babel/preset-env': 7.20.2_@babel+core@7.20.2
-      '@giphy/js-types': 4.2.1
+      '@giphy/js-types': 4.4.0
       '@rollup/plugin-babel': 6.0.3_ecxuj7zm5zl7qcys7nvyfh7ewm
       '@rollup/plugin-commonjs': 23.0.2_rollup@3.4.0
       '@rollup/plugin-node-resolve': 15.0.1_rollup@3.4.0
@@ -2102,8 +2102,8 @@ packages:
     dev: false
     optional: true
 
-  /@giphy/js-types/4.2.1:
-    resolution: {integrity: sha512-Ii+TvBhQsDHaeS79Y/dSqJTCeH3TirHv9DpbuIzxJ2VDKpsXVuIMrxAybwQ7Ve/mF+kjvEiL7TXtrz9Sc8Zxeg==}
+  /@giphy/js-types/4.4.0:
+    resolution: {integrity: sha512-W9G6crS2oqTn7g0RpvYu1l/sna4LnivRTk25jmxdzujOFb9kvQ+VFM/v9RPYV2GIBnzT/maW/EwjFIba9jkflA==}
     dev: true
 
   /@humanwhocodes/config-array/0.11.7:
