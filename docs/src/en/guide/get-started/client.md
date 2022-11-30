@@ -4,76 +4,106 @@ icon: intro
 redirectFrom: /en/guide/client/intro.html
 ---
 
-Waline official provides the [`@waline/client`](https://www.npmjs.com/package/@waline/client), written in Vue + TypeScript, and the size is only 53kb gzip.
+Waline officially provides [`@waline/client`](https://www.npmjs.com/package/@waline/client), written in Vue + TypeScript, the size is only 53kb gzip.
 
-## Introduction
+## Import
 
-You can use CDN or npm to import Waline. We provide multiple versions.
+You can use CDN or npm to import Waline client, and we provide multiple versions of files to meet different scenarios.
 
-For details about Waline import, please refer to [Importing Client](./import.md).
+If you have problems during this process, see:
 
-## Initialization
+- [Cookbook → CDN import](../../cookbook/import/cdn.md)
+- [Cookbook → Project Import](../../cookbook/import/project.md)
 
-You can use `Waline.init(options)` to initialize a Waline instance, where `el` and `serverURL` options are required. The `el` option should be the element or element selector that Waline mounts, and `serverURL` options should be the server URL.
+## Use Waline
 
-For available options, please refer to [Reference → Client Options](../../reference/client/api.md).
+The easiest way to use Waline is [the way in the quick start](./README.md#importing-in-html-client), import the `init` function from Waline and initialize the Waline instance through `init(yourOptions)`.
 
-## Pageview Counting
+In `init` options, two options `el` and `serverURL` are required. The former is the element or element selector mounted by Waline, and the latter is the server address. For all initialization parameters of `@waline/client`, see [Client Reference → API](../../reference/client/api.md) for details.
 
-Waline supports pageview counting. If you don't need comment service but only need pageview feature, Waline provides a < 1KB Gzip package, please refer to [Pageview Counting](../features/pageview.md).
+## Comment Counts
 
-## Rich Comment Syntax Support
+`@waline/client` also provides a sub-package of comment statistics, you can use it to display comment numbers in blog post list or other pages without comments. , see [Features → Comment Count](../features/comment.md) for details
 
-Waline has a good support for syntax.Besides using standard Markdown and GFM in the comment box, you can also embed HTML tags or use mathematical formulas.
+## Pageview Counts
 
-You can learn about the complete syntax supported by Waline in the [Supported Syntax](./syntax.md) section.
+Waline supports pageview statistics. If you don't need comment service but just pageview function, Waline provides a statistics plugin whose Gzip size is < 1KB.
 
-## Features
+About `@waline/client` pageview count, see [Features → Pageview Count](../features/pageview.md)
 
-Waline has many features, including login, avatar, multi-language, custom Emoji, image upload and real-time preview. You can try these features in the demo below.
+## Comment Format Support
 
-Waline officially added support for multiple languages, and you can also customize locales. See [I18n Support](./i18n.md) for details.
+`@waline/client` supports many comment syntax. Besides standard Markdown and GFM syntax extensions, you can also embed HTML tags, use mathematical formulas in comment box, see [Features → Supported syntax](../features/syntax.md) for details.
 
-You can easily use the presets provided by Waline or create new presets to customize the Emoji popup in the comment box, see [Custom Emoji](./emoji.md) for details.
+`@waline/client` also supports real-time preview of comment input in the comment box, but some functions are dropped by default due to size reasons. If you wish to restore these functions, see:
 
-If you want users to quickly express their reactions to articles outside of comments, you can manually enable the [Article Reaction](./reaction.md) feature.
+- [Cookbook → Customize Preview Code Highlighter](../../cookbook/customize/highlighter.md)
+- [Cookbook → Customize Preview $\TeX$ Renderer](../../cookbook/customize/tex-renderer.md)
 
-Waline has built-in image upload support, converting image to Base64 , you can customize the image upload through [`imageUploader`](../../reference/client.md#uploadimage) option.
+## Article Reaction
 
-Waline supports emoji search feature and uses <https://giphy.com> by default. You can also [customize your own emoji service](./search.md).
+Feel that writing a comment is too complicated? Waline allows your visitors to quickly express reactions to articles, such as likes, dislikes, doubts, boredom, surprises, etc. You can manually enable this feature, see [Features → Article Reactions](../features/reaction.md) .
 
-Waline allows you to set interaction level labels and custom labels for users, see [User Label](./label.md) for details.
+## Comment Features
 
-## Style Customization
+Waline supports many basic functions, including login, avatar, [multilingual](../features/i18n.md) and real-time preview.
 
-To let users adjust the style of Waline, Waline provides some configurable CSS variables. Waline also brings a built-in Darkmode Support, see [Custom Style](./style.md) for details.
+Waline allows you to set interaction level labels and custom labels for users, see [User Labels](../features/label.md) for details.
 
-## Comment Counting
+## Emoji tab
 
-Waline supports comment and pageview statistics. For more information, please refer to [Comment count](comment.md) and [Pageview count](pageview.md).
+`@waline/client` supports multiple Emoji tabs, and allows users to easily introduce Emoji tabs through presets. In addition to the official presets, you can easily create your own presets.
 
-## Vue Component
+For details about the expression tab of `@waline/client`, see:
 
-Since Waline's official client is based on Vue3, Waline also provides a 18KB Gzip Vue component, and all component properties are reactive.
+- [Features → Emoji tab](../features/emoji.md)
+- [Cookbook → Customize Emoji](../../cookbook/customize/emoji.md)
 
-If you are building a Vue project, you can directly import and use Waline components in the project, see [Vue Components](./如果你在使用基于 Vue 的项目，你可以直接在项目中导入并使用 Waline 组件，详见 [Vue 组件](./component.md)。
-.md) for details.
+## Inset Image
 
-## SPA support
+`@waline/client` has built-in image upload support, and by default images are converted to base64. Of course, you can also use your own image hosting service.
 
-Waline brings support for SPA (**S**ingle **P**age **A**pplication). If you are using an app with `history.pushState`, you can use the `update()` method of the `Waline.init()` instance to refresh config for the comment area, or you can use the `destroy()` method on the instance to destroy Waline instance. See [SPA Support](./spa.md) for details.
+For the image upload settings of `@waline/client`, see [Cookbook → Customize Image Upload](../../cookbook/customize/upload-image.md) for details.
 
-## Accessibility support
+## Emoji Search
 
-Waline fully complies with all accessibility standards:
+`@waline/client` provides meme search function through [giphy](https://giphy.com), and allows you to customize search service, see:
+
+- [Features → Emoji Search](../features/search.md)
+- [Cookbook → Customize emoticon search](../../cookbook/customize/search.md)
+
+## Multilingual Support
+
+`@waline/client` has built-in support for multiple languages, and you can add language support or modify UI text based on this, see:
+
+- [Features → Set language](../features/i18n.md).
+- [Cookbook → Customize Language](../../cookbook/customize/locale.md).
+
+## Accessibility Support
+
+Waline fully supports all accessibility standards:
 
 - All icons and controls have their corresponding accessibility labels.
-- You can use the keyboard or head-mounted pointing device to complete the interaction with all Waline controls.
+- You can interact with all of Waline's controls using either a keyboard or a head-mounted pointing device.
 
 This is our little support for the visually impaired and mobility impaired people around the world! :heart:
 
-## Ecosystem
+## Customize Outlook
 
-You can easily use Waline with plugins on Hexo, VuePress and other tools, and even use third-party clients.
+Waline brings built-in dark mode support, and in order to facilitate users to adjust the Waline style, Waline provides many configurable CSS variables (CSS Variables).
 
-For details about third-party clients, themes and plugins that support Waline, please see [Learn more → Ecosystem](../advanced/ecosystem.md).
+See [Custom Styles](../features/style.md) for details.
+
+## Advanced Development
+
+### Single Page Application Support
+
+Waline brings support for SPA(**S**ingle **P**age **A**application, Single Page Application).
+
+If you want to use it in a website or application based on the history API, you can use the `update()` method on the initialized instance to refresh the configuration of the comment area, or use the `destroy()` method on the instance to destroy it Waline. To learn more about the reactivity of `@waline/client`, see [Cookbook → Reactivity](../../cookbook/reactivity.md).
+
+### Ecosystem
+
+You can easily use Waline through plugins on Hexo, VuePress and other tools, and even use third-party clients.
+
+For third-party clients, themes and plugins that support Waline, see [Learn more → Ecosystem](../../advanced/ecosystem.md).
