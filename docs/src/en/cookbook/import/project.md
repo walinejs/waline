@@ -80,8 +80,7 @@ All properties of components are reactive, you can find all supported properties
 
 ```vue
 <template>
-  <button @click="toggleDarkmode">Toggle Mode</button>
-  <Waline :serverURL="serverURL" :path="path" :darkmode="darkmode" />
+  <Waline :serverURL="serverURL" :path="path" />
 </template>
 <script setup>
 import { Waline } from '@waline/client/component';
@@ -90,12 +89,6 @@ import { useRoute } from 'vue-router';
 
 const serverURL = 'https://waline.vercel.app';
 const path = computed(() => useRoute().path);
-
-const darkmode = ref(false);
-
-const toggleDarkmode = () => {
-  darkmode.value = !darkmode.value;
-};
 </script>
 ```
 
