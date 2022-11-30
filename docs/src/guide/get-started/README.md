@@ -47,19 +47,19 @@ redirectFrom: /guide/get-started.html
 
 1. 输入一个你喜欢的 Vercel 项目名称并点击 `Create` 继续:
 
-   ![创建项目](../assets/vercel-1.png)
+   ![创建项目](../../assets/vercel-1.png)
 
 1. 此时 Vercel 会基于 Waline 模板帮助你新建并初始化仓库，仓库名为你之前输入的项目名。
 
-   ![deploy](../assets/vercel-3.png)
+   ![deploy](../../assets/vercel-3.png)
 
    一两分钟后，满屏的烟花会庆祝你部署成功。此时点击 `Go to Dashboard` 可以跳转到应用的控制台。
 
-   ![deploy](../assets/vercel-4.png)
+   ![deploy](../../assets/vercel-4.png)
 
 1. 点击顶部的 `Settings` - `Environment Variables` 进入环境变量配置页，并配置三个环境变量 `LEAN_ID`, `LEAN_KEY` 和 `LEAN_MASTER_KEY` 。它们的值分别对应上一步在 LeanCloud 中获得的 `APP ID`, `APP KEY`, `Master Key`。
 
-   ![设置环境变量](../assets/vercel-5.png)
+   ![设置环境变量](../../assets/vercel-5.png)
 
    ::: note
 
@@ -69,11 +69,11 @@ redirectFrom: /guide/get-started.html
 
 1. 环境变量配置完成之后点击顶部的 `Deployments` 点击顶部最新的一次部署右侧的 `Redeploy` 按钮进行重新部署。该步骤是为了让刚才设置的环境变量生效。
 
-   ![redeploy](../assets/vercel-6.png)
+   ![redeploy](../../assets/vercel-6.png)
 
 1. 此时会跳转到 `Overview` 界面开始部署，等待片刻后 `STATUS` 会变成 `Ready`。此时请点击 `Visit` ，即可跳转到部署好的网站地址，此地址即为你的服务端地址。
 
-   ![redeploy success](../assets/vercel-7.png)
+   ![redeploy success](../../assets/vercel-7.png)
 
 ## 绑定域名 (可选)
 
@@ -81,7 +81,7 @@ redirectFrom: /guide/get-started.html
 
 1. 输入需要绑定的域名并点击 `Add`
 
-   ![Add domain](../assets/vercel-8.png)
+   ![Add domain](../../assets/vercel-8.png)
 
 1. 在域名服务器商处添加新的 `CNAME` 解析记录
 
@@ -94,7 +94,7 @@ redirectFrom: /guide/get-started.html
    - 评论系统：example.yourdomain.com
    - 评论管理：example.yourdomain.com/ui
 
-   ![success](../assets/vercel-9.png)
+   ![success](../../assets/vercel-9.png)
 
 ## HTML 引入 (客户端)
 
