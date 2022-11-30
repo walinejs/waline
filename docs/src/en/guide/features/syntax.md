@@ -25,27 +25,7 @@ Github Flavored Markdown
 
 :::
 
-Meanwhile, you can freely embed any HTML content without triggering the following protection mechanism.
-
-## HTML Content Restrictions
-
-::: info Spam protection
-
-- To prevent users from creating submitable forms in the comment area to trick other visitors submitting information, `<form>` and `<input>` are not allowed
-
-- To prevent users from using style tag to revise website pages or modify their own comment styles to implant spam ads, the `<style>` tag and the `style` attribute are not allowed.
-
-- To prevent users from abusing media autoplay feature, `autoplay` attribute is not allowed.
-
-:::
-
-::: info XSS prevention
-
-- We use [DOMPurify](https://github.com/cure53/DOMPurify) to sanitize every comment input to prevent potential XSS attacks. This means you can't use `<iframe>` or any form of script.
-
-- All links will be automatically set `rel="noreferrer noopener"` and opened in a new window with `target="_ blank"`.
-
-:::
+Meanwhile, you can freely embed any HTML content without triggering the [protection mechanism](./safety.md#anti-xss-attack).
 
 ## Limited Preview Support
 

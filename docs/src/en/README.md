@@ -25,6 +25,7 @@ features:
   - title: Improved Security
     icon: safe
     details: Content verification, anti-irrigation, protection of sensitive data, etc.
+    link: /en/guide/features/safety.html
 
   - title: Login support
     icon: register

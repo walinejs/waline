@@ -25,6 +25,7 @@ features:
   - title: 强大的安全性
     icon: safe
     details: 内容校验、防灌水、保护敏感数据等
+    link: /guide/features/safety.html
 
   - title: 登录支持
     icon: register
