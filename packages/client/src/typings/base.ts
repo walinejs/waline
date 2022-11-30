@@ -1,5 +1,10 @@
 export type WalineCommentSorting = 'latest' | 'oldest' | 'hottest';
 
+export type WalineEmojiPresets =
+  | `//${string}`
+  | `http://${string}`
+  | `https://${string}`;
+
 export interface WalineEmojiInfo {
   /**
    * 选项卡上的 Emoji 名称

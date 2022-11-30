@@ -48,7 +48,7 @@ Waline 主要由前端和服务端两部分组成。
 
 #### Deta
 
-[Deta - 如何更新](../guide/server/deta.md#deta-%E5%A6%82%E4%BD%95%E6%9B%B4%E6%96%B0)
+[Deta - 如何更新](../guide/deploy/deta.md#如何更新)
 
 #### CloudBase
 
@@ -69,108 +69,3 @@ Waline 主要由前端和服务端两部分组成。
 ## 发布评论很慢怎么办？
 
 因为一些技术性原因，在发布评论的时垃圾邮件检测、评论通知都是串联操作。其中垃圾邮件检测使用的是国外 Akismet 提供的服务，可能访问很慢，用户可以通过 `AKISMET_KEY=false` 环境变量关闭垃圾评论检测功能。除了垃圾评论检测服务，评论通知中的邮件通知也有可能造成超时，可以通过关闭评论通知测试是否是该功能导致的。
-
-## 如何增加灯箱效果？
-
-有很多插件可以实现灯箱效果，这里我以 [lightGallery](https://www.lightgalleryjs.com/), [Slimbox2](https://www.digitalia.be/software/slimbox2/), [lightbox2](https://lokeshdhakar.com/projects/lightbox2/) 和 [Fancybox](https://fancyapps.com/docs/ui/fancybox/) 为例。
-
-### LightGallery
-
-在你的 HTML `<head>` 前写入以下内容，其中 `#waline-comment` 是你的 Waline 评论框，需要根据实际场景进行替换。
-
-```html
-<link
-  rel="stylesheet"
-  href="https://unpkg.com/lightgallery@v2/css/lightgallery-bundle.css"
-/>
-<srciprt src="https://unpkg.com/lightgallery@v2/lightgallery.umd.min.js" />
-<script>
-  document.addEventListener('click', (e) => {
-    const imgs = [].slice
-      .call(document.querySelectorAll('#waline-comment .vcontent img'))
-      .filter((img) => img.width > 20);
-
-    if (imgs.indexOf(e.target) === -1) {
-      return;
-    }
-    if (!e.target.gallery) {
-      e.target.gallery = window.lightGallery(e.target.parentNode);
-    }
-    e.target.gallery.openGallery(0);
-  });
-</script>
-```
-
-<!--
-### Slimbox2
-
-在你的 HTML `<head>` 前写入以下内容，其中 `#waline-comment` 是你的 Waline 评论框，需要根据实际场景进行替换。
-
-```html
-<link
-  rel="stylesheet"
-  href="//cdn.jsdelivr.net/gh/cbeyls/slimbox/css/slimbox2.css"
-/>
-<script src="https://unpkg.com/jquery@v1/dist/jquery.min.js"></script>
-<script src="//cdn.jsdelivr.net/gh/cbeyls/slimbox/js/slimbox2.js"></script>
-<script>
-  document.addEventListener('click', (e) => {
-    const imgs = [].slice
-      .call(document.querySelectorAll('#waline-comment .vcontent img'))
-      .filter((img) => img.width > 20);
-
-    const idx = imgs.indexOf(e.target);
-    if (idx === -1) {
-      return;
-    }
-
-    $.slimbox(e.target.src, e.target.alt, {});
-  });
-</script>
-``` -->
-
-### Lightbox2
-
-在你的 HTML `<head>` 前写入以下内容，其中 `#waline-comment` 是你的 Waline 评论框，需要根据实际场景进行替换。
-
-```html
-<link
-  rel="stylesheet"
-  href="https://unpkg.com/lightbox2@v2/dist/css/lightbox.min.css"
-/>
-<script src="https://unpkg.com/lightbox2@v2/dist/js/lightbox-plus-jquery.min.js"></script>
-<script>
-  document.addEventListener('click', (e) => {
-    const lightbox = new Lightbox();
-    const imgs = [].slice
-      .call(document.querySelectorAll('#waline-comment .vcontent img'))
-      .filter((img) => img.width > 20);
-
-    if (imgs.indexOf(e.target) === -1) {
-      return;
-    }
-
-    const $link = $('<a />', {
-      href: e.target.src,
-      'data-title': e.target.alt,
-      rel: 'lightbox',
-    });
-    lightbox.start($link);
-  });
-</script>
-```
-
-### Fancybox
-
-在你的 HTML `<head>` 前写入以下内容，其中 `#waline-comment` 是你的 Waline 评论框，需要根据实际场景进行替换。
-
-```html
-<script src="https://unpkg.com/@fancyapps/ui/dist/fancybox.umd.js"></script>
-<link
-  rel="stylesheet"
-  href="https://unpkg.com/@fancyapps/ui/dist/fancybox.css"
-/>
-<script>
-  Fancybox.bind('#waline-comment .vcontent img');
-</script>
-```

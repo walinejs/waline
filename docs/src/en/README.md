@@ -5,7 +5,7 @@ icon: home
 heroImage: /logo.png
 actions:
   - text: 💡 Get Started
-    link: /en/guide/get-started.html
+    link: /en/guide/get-started/
     type: primary
 
   - text: ℹ️ Intro
@@ -16,7 +16,7 @@ features:
   - title: Comment the way you like
     icon: markdown
     details: Full Markdown support, with emoji, mathematical formulas and HTML embedding support
-    link: /en/guide/client/syntax.html
+    link: /en/guide/features/syntax.html
 
   - title: LightWeight
     icon: light
@@ -25,6 +25,7 @@ features:
   - title: Improved Security
     icon: safe
     details: Content verification, anti-irrigation, protection of sensitive data, etc.
+    link: /en/guide/features/safety.html
 
   - title: Login support
     icon: register
@@ -33,12 +34,12 @@ features:
   - title: Article Reaction
     icon: reaction
     details: Show your attitude towards the article quickly
-    link: /en/guide/client/reaction.html
+    link: /en/guide/features/reaction.html
 
   - title: Pageview Counter
     icon: counter
     details: Count pageviews accurately with < 1kb code
-    link: /en/guide/client/pageview.html
+    link: /en/guide/features/pageview.html
 
   - title: Completely free
     icon: free
@@ -48,5 +49,5 @@ features:
     icon: strong
     details: Multiple deployment methods and storage service support
 
-footer: GPL-2.0 LICENSE | Copyright © 2020-present <a href="https://github.com/lizheming" rel="noopenner noreferrer " target="_blank">lizheming</a> | Theme by <a href="https://vuepress-theme-hope.github.io/v2/" rel="noopenner noreferrer " target="_blank">vuepress-theme-hope</a>
+footer: GPL-2.0 LICENSE | Copyright © 2020-present <a href="https://github.com/lizheming" rel="noopener noreferrer " target="_blank">lizheming</a> | Theme by <a href="https://vuepress-theme-hope.github.io/v2/" rel="noopener noreferrer " target="_blank">vuepress-theme-hope</a>
 ---

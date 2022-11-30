@@ -34,7 +34,7 @@ export default hopeTheme({
     },
   },
 
-  iconAssets: '//at.alicdn.com/t/c/font_3180165_zmwravx0fq.css',
+  iconAssets: '//at.alicdn.com/t/c/font_3180165_u7vein90ekb.css',
 
   plugins: {
     blog: false,
