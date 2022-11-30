@@ -1,6 +1,6 @@
 ---
 title: Security
-icon: safety
+icon: safe
 ---
 
 The security of the Waline commenting system is our top priority. We'll cover Waline's security here.
