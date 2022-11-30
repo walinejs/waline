@@ -71,12 +71,12 @@ module.exports = class extends BaseRest {
       SMTP_USER,
       SITE_NAME,
     } = process.env;
-    const hasMailServie = SMTP_HOST || SMTP_SERVICE;
+    const hasMailService = SMTP_HOST || SMTP_SERVICE;
 
     const token = Array.from({ length: 4 }, () =>
       Math.round(Math.random() * 9)
     ).join('');
-    const normalType = hasMailServie
+    const normalType = hasMailService
       ? `verify:${token}:${Date.now() + 1 * 60 * 60 * 1000}`
       : 'guest';
 
@@ -119,7 +119,7 @@ module.exports = class extends BaseRest {
 
       return this.fail(
         this.locale(
-          'Registeration confirm mail send failed, please {%- if isAdmin -%}check your mail configuration{%- else -%}check your email address and contact administrator{%- endif -%}.',
+          'Registration confirm mail send failed, please {%- if isAdmin -%}check your mail configuration{%- else -%}check your email address and contact administrator{%- endif -%}.',
           { isAdmin: think.isEmpty(count) }
         )
       );

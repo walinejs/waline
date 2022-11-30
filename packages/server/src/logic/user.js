@@ -109,7 +109,7 @@ module.exports = class extends Base {
       return this.fail();
     }
 
-    // you should be a administrator to update otherself info
+    // you should be a administrator to update others info
     if (this.id && userInfo.type !== 'administrator') {
       return this.fail();
     }

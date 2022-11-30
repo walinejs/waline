@@ -296,7 +296,7 @@ module.exports = class extends BaseRest {
           if (order === 'desc') {
             selectOptions.desc = field;
           } else if (order === 'asc') {
-            // do nothing because of ascending order is default behaviour
+            // do nothing because of ascending order is default behavior
           }
         }
 
@@ -311,9 +311,9 @@ module.exports = class extends BaseRest {
          *
          * Why we have limit and the limit is 1000?
          * Many serverless storages have fetch data limit, for example LeanCloud is 100, and CloudBase is 1000
-         * If we have much commments, We should use more request to fetch all comments
+         * If we have much comments, We should use more request to fetch all comments
          * If we have 3000 comments, We have to use 30 http request to fetch comments, things go athwart.
-         * And Serverless Service like vercel have excute time limit
+         * And Serverless Service like vercel have execute time limit
          * if we have more http requests in a serverless function, it may timeout easily.
          * so we use limit to avoid it.
          */
@@ -521,7 +521,7 @@ module.exports = class extends BaseRest {
 
       think.logger.debug('Comment duplicate check OK!');
 
-      /** IP Frequence */
+      /** IP frequency */
       const { IPQPS = 60 } = process.env;
 
       const recent = await this.modelInstance.select({
@@ -530,12 +530,12 @@ module.exports = class extends BaseRest {
       });
 
       if (!think.isEmpty(recent)) {
-        think.logger.debug(`The author has posted in ${IPQPS} seconeds.`);
+        think.logger.debug(`The author has posted in ${IPQPS} seconds.`);
 
         return this.fail(this.locale('Comment too fast!'));
       }
 
-      think.logger.debug(`Comment post frequence check OK!`);
+      think.logger.debug(`Comment post frequency check OK!`);
 
       /** Akismet */
       const { COMMENT_AUDIT } = process.env;

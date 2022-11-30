@@ -11,9 +11,9 @@ module.exports = class extends BaseRest {
       SMTP_USER,
       SITE_NAME,
     } = process.env;
-    const hasMailServie = SMTP_HOST || SMTP_SERVICE;
+    const hasMailService = SMTP_HOST || SMTP_SERVICE;
 
-    if (!hasMailServie) {
+    if (!hasMailService) {
       return this.fail();
     }
 
