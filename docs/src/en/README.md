@@ -49,5 +49,5 @@ features:
     icon: strong
     details: Multiple deployment methods and storage service support
 
-footer: GPL-2.0 LICENSE | Copyright © 2020-present <a href="https://github.com/lizheming" rel="noopenner noreferrer " target="_blank">lizheming</a> | Theme by <a href="https://vuepress-theme-hope.github.io/v2/" rel="noopenner noreferrer " target="_blank">vuepress-theme-hope</a>
+footer: GPL-2.0 LICENSE | Copyright © 2020-present <a href="https://github.com/lizheming" rel="noopener noreferrer " target="_blank">lizheming</a> | Theme by <a href="https://vuepress-theme-hope.github.io/v2/" rel="noopener noreferrer " target="_blank">vuepress-theme-hope</a>
 ---
