@@ -1,5 +1,6 @@
 ---
 title: Legacy Mode
+icon: history
 ---
 
 This cookbook will guide how to import Legacy packages for smooth migration from Valine or v0.x v1.x versions of `@waline/client`.

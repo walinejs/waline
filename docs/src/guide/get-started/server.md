@@ -1,6 +1,6 @@
 ---
 title: 服务端介绍
-icon: intro
+icon: server
 redirectFrom: /guide/server/intro.html
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: Compatible with historical versions of Emoji
+icon: emoji
 ---
 
 This cookbook will show you how to display emoji well with Valine, as well as older versions of Waline.

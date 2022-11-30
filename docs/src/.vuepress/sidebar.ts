@@ -26,7 +26,7 @@ export const zhSidebarConfig = sidebar({
     'reactivity',
     {
       text: '兼容',
-      icon: 'time',
+      icon: 'history',
       children: ['legacy', 'emoji-compact'],
     },
   ],
@@ -39,7 +39,7 @@ export const zhSidebarConfig = sidebar({
     },
     {
       text: '功能',
-      icon: 'discover',
+      icon: 'feature',
       prefix: 'features/',
       children: [
         'syntax',
@@ -75,15 +75,10 @@ export const zhSidebarConfig = sidebar({
       icon: 'creative',
       prefix: 'guide/',
       children: [
-        {
-          text: '快速上手',
-          icon: 'creative',
-          prefix: 'get-started/',
-          children: ['', 'client', 'server'],
-        },
+        'get-started/',
         {
           text: '功能',
-          icon: 'discover',
+          icon: 'feature',
           prefix: 'features/',
           children: [
             'syntax',
@@ -98,56 +93,10 @@ export const zhSidebarConfig = sidebar({
           ],
         },
         'database',
-        {
-          text: '部署',
-          icon: 'deploy',
-          prefix: 'deploy/',
-          children: [
-            'vercel',
-            'cloudbase',
-            'deta',
-            'railway',
-            'baidu-cfc',
-            'aliyun-fc',
-            'vps',
-          ],
-        },
+        'deploy/',
       ],
     },
-    {
-      text: 'Cookbook',
-      icon: 'guide',
-      prefix: 'cookbook/',
-      children: [
-        {
-          text: '导入',
-          icon: 'import',
-          prefix: 'import/',
-          children: ['cdn', 'project'],
-        },
-        'syntax',
-        {
-          text: '自定义',
-          icon: 'customize',
-          prefix: 'customize/',
-          children: [
-            'emoji',
-            'locale',
-            'highlighter',
-            'image-preview',
-            'search',
-            'tex-renderer',
-            'upload-image',
-          ],
-        },
-        'reactivity',
-        {
-          text: '兼容',
-          icon: 'time',
-          children: ['legacy', 'emoji-compact'],
-        },
-      ],
-    },
+    'cookbook/',
     {
       text: '参考',
       icon: 'reference',
@@ -210,7 +159,7 @@ export const enSidebarConfig = sidebar({
     'reactivity',
     {
       text: 'Compatibility',
-      icon: 'time',
+      icon: 'history',
       children: ['legacy', 'emoji-compact'],
     },
   ],
@@ -223,7 +172,7 @@ export const enSidebarConfig = sidebar({
     },
     {
       text: 'Features',
-      icon: 'discover',
+      icon: 'feature',
       prefix: 'features/',
       children: [
         'syntax',
@@ -251,15 +200,10 @@ export const enSidebarConfig = sidebar({
       icon: 'creative',
       prefix: 'guide/',
       children: [
-        {
-          text: 'Get Started',
-          icon: 'creative',
-          prefix: 'get-started/',
-          children: ['', 'client', 'server'],
-        },
+        'get-started/',
         {
           text: 'Features',
-          icon: 'discover',
+          icon: 'feature',
           prefix: 'features/',
           children: [
             'syntax',
@@ -274,48 +218,10 @@ export const enSidebarConfig = sidebar({
           ],
         },
         'database',
-        {
-          text: 'Deploy',
-          icon: 'deploy',
-          prefix: 'deploy/',
-          children: ['vercel', 'deta', 'railway', 'vps'],
-        },
+        'deploy/',
       ],
     },
-    {
-      text: 'Cookbook',
-      icon: 'guide',
-      prefix: 'cookbook/',
-      children: [
-        {
-          text: 'Import',
-          icon: 'import',
-          prefix: 'import/',
-          children: ['cdn', 'project'],
-        },
-        'syntax',
-        {
-          text: 'Customize',
-          icon: 'customize',
-          prefix: 'customize/',
-          children: [
-            'emoji',
-            'locale',
-            'highlighter',
-            'image-preview',
-            'search',
-            'tex-renderer',
-            'upload-image',
-          ],
-        },
-        'reactivity',
-        {
-          text: 'Compatibility',
-          icon: 'time',
-          children: ['legacy', 'emoji-compact'],
-        },
-      ],
-    },
+    'cookbook/',
     {
       text: 'Reference',
       icon: 'reference',

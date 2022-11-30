@@ -1,6 +1,6 @@
 ---
 title: 贡献指南
-icon: guide
+icon: contribute
 redirectFrom: /reference/contribution.html
 ---
 

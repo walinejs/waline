@@ -1,5 +1,6 @@
 ---
 title: 兼容历史版本的 Emoji
+icon: emoji
 ---
 
 本指南将指导如何兼容 Valine，以及上古版本的 Waline。

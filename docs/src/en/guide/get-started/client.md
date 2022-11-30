@@ -1,6 +1,6 @@
 ---
 title: Client Intro
-icon: intro
+icon: client
 redirectFrom: /en/guide/client/intro.html
 ---
 

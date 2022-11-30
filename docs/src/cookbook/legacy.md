@@ -1,5 +1,6 @@
 ---
 title: Legacy 模式
+icon: history
 ---
 
 本指南将指导如何引入 Legacy 包，来平滑的从 Valine 或者 v0.x v1.x 的 `@waline/client` 迁移。

@@ -1,6 +1,6 @@
 ---
 title: Server introduction
-icon: intro
+icon: server
 redirectFrom: /en/guide/server/intro.html
 ---
 

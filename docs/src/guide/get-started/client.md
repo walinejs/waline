@@ -1,6 +1,6 @@
 ---
 title: 客户端简介
-icon: intro
+icon: client
 redirectFrom: /guide/client/intro.html
 ---
 
