@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/unbound-method */
 import { describe, expect, it } from 'vitest';
 import MarkdownIt from 'markdown-it';
 import { katexPlugin } from '../src/service/markdown/katex';
@@ -46,7 +47,6 @@ describe('inline katex', () => {
   });
 
   it('Should render error msg when content is wrong', () => {
-    // eslint-disable-next-line @typescript-eslint/unbound-method
     const originalWarn = global.console.warn;
 
     global.console.warn = vi.fn();
@@ -55,7 +55,6 @@ describe('inline katex', () => {
       "<p><span class='katex-error' title='ParseError: KaTeX parse error: Undefined control sequence: \\fra at position 1: \\̲f̲r̲a̲{a}{b}'>\\fra{a}{b}</span></p>\n"
     );
 
-    // eslint-disable-next-line @typescript-eslint/unbound-method
     expect(global.console.warn).toHaveBeenCalledTimes(1);
     global.console.warn = originalWarn;
   });
@@ -118,7 +117,6 @@ $$
   });
 
   it('Should render error msg when content is wrong', () => {
-    // eslint-disable-next-line @typescript-eslint/unbound-method
     const originalWarn = global.console.warn;
 
     global.console.warn = vi.fn();
@@ -136,7 +134,6 @@ $$
       /<p class='katex-block katex-error' title='[\s\S]*?'>[\s\S]*?<\/p>/
     );
 
-    // eslint-disable-next-line @typescript-eslint/unbound-method
     expect(global.console.warn).toHaveBeenCalledTimes(2);
     global.console.warn = originalWarn;
   });
