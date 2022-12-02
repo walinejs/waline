@@ -90,7 +90,7 @@ export default [
         file: './dist/waline.js',
         format: 'esm',
         sourcemap: true,
-        plugins: [babelPlugin],
+        plugins: [babelPlugin, terser()],
       },
       {
         file: './dist/waline.cjs',
@@ -200,7 +200,7 @@ export default [
         file: './dist/comment.js',
         format: 'esm',
         sourcemap: true,
-        plugins: [babelPlugin],
+        plugins: [babelPlugin, terser()],
       },
       {
         file: './dist/comment.cjs',
@@ -235,7 +235,7 @@ export default [
         file: './dist/pageview.js',
         format: 'esm',
         sourcemap: true,
-        plugins: [babelPlugin],
+        plugins: [babelPlugin, terser()],
       },
       {
         file: './dist/pageview.cjs',

@@ -1,2 +1,2 @@
-export { default as Waline } from '../components/Waline.vue';
+export { default as Waline } from '../components/WalineComment.vue';
 export * from '../version';

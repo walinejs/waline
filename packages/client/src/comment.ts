@@ -43,8 +43,7 @@ export const commentCount = ({
   path = window.location.pathname,
   selector = '.waline-comment-count',
   lang = 'zh-CN',
-}: // eslint-disable-next-line @typescript-eslint/no-explicit-any
-WalineCommentCountOptions): WalineAbort => {
+}: WalineCommentCountOptions): WalineAbort => {
   const controller = new AbortController();
 
   // comment count

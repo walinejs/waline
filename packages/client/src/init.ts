@@ -1,6 +1,6 @@
 import { createApp, h, reactive, watchEffect } from 'vue';
 
-import Waline from './components/Waline.vue';
+import Waline from './components/WalineComment.vue';
 import { commentCount } from './comment';
 import { pageviewCount } from './pageview';
 import { getRoot } from './utils';
