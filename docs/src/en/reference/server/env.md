@@ -75,7 +75,7 @@ By default, only 6 levels of copywriting are provided, but it does not mean that
 
 | Environment Variables | Default        | Description                                                                                                              |
 | --------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| `IPQPS`               | `60`           | Comment rate limit based on ip, which it's unit is second. `0` means no limit.                                           |
+| `IPQPS`               | `60`           | IP-based comment posting frequency limit in seconds. Set to 0 for no limit                                           |
 | `SECURE_DOMAINS`      |                | Secure Domains config. Supports multiple domain with Comma separated                                                     |
 | `AKISMET_KEY`         | `70542d86693e` | Akismet antispam service key, set `false` if you wanna close it.                                                         |
 | `COMMENT_AUDIT`       | `false`        | Comment audit switcher. When enabled, every comment needs to be approved by admin, so hint in placeholder is recommended |
@@ -193,7 +193,7 @@ Please pay special attention that some mailboxes use separate SMTP passwords.
 
 ## Advanced
 
-| Environment Variables           | 默认值                      | Description                                                                                      |
+| Environment Variables           | Default                     | Description                                                                                      |
 | ------------------------------- | --------------------------- | ------------------------------------------------------------------------------------------------ |
 | `OAUTH_URL`                     | `https://oauth.lithub.cc`   | OAuth Social Login Service URL. You can [build your own auth](https://github.com/walinejs/auth). |
 | `WEBHOOK`                       |                             | You can set a Webhook URL that will be triggered when you have new comment.                      |
