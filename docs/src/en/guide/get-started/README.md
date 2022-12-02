@@ -87,6 +87,7 @@ Here is how you can implement Waline on your web page:
 
    - The `el` option is the element used for Waline rendering. You can set a CSS selector in the form of a string or an HTMLElement object.
    - `serverURL` is the link of the server, which you just created in Vercel.
+   - For more options, visit the [Component Props page](https://waline.js.org/en/reference/client/props.html)
 
    Here is an example:
 
