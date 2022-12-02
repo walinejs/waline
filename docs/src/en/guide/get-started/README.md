@@ -28,7 +28,7 @@ Welcome to Waline. In just a few steps, you can enable Waline to provide comment
 
    ::: note
 
-   If you haven't logined, we recommend you to sign in with GitHub.
+   If you haven't logged ine, we recommend you to sign in with GitHub.
 
    :::
 
@@ -44,7 +44,7 @@ Welcome to Waline. In just a few steps, you can enable Waline to provide comment
 
    ![deploy](../../../assets/vercel-4.png)
 
-1. Click `Settings` menu on the top, and `Environment Variables` button on the side to go to environment variables setting page. Then set `LEAN_ID`, `LEAN_KEY` and `LEAN_MASTER_KEY`. The variables' value should be the ones you got in the previous step. `APP ID` is the value of `LEAN_ID`, and `APP Key` to `LEAN_KEY`, `Master Key` to `LEAN_MASTER_KEY`.
+1. Click `Settings` menu on the top, and `Environment Variables` button on the side to go to environment variables setting page. Then set `LEAN_ID`, `LEAN_KEY` and `LEAN_MASTER_KEY`. The variables' value should be the ones you got in the previous step. `APP ID` is the value of `LEAN_ID`, and `APP Key` to `LEAN_KEY`, `Master Key` to `LEAN_MASTER_KEY`. You can learn more about [other variables here](https://waline.js.org/en/reference/server/env.html).
 
    ![set environment variables](../../../assets/vercel-5.png)
 
@@ -79,14 +79,16 @@ Welcome to Waline. In just a few steps, you can enable Waline to provide comment
 
 ## Importing in HTML (Client)
 
-Make the following settings on your web page:
+Here is how you can implement Waline on your web page:
 
-1. Import style file `https://unpkg.com/@waline/client@v2/dist/waline.css`
+1. Import the stylesheet `https://unpkg.com/@waline/client@v2/dist/waline.css` in the `<head>`
 
 1. Create a `<script>` tag and initialize with `init()` from `https://unpkg.com/@waline/client@v2/dist/waline.mjs` while passing in the necessary `el` and `serverURL` options.
 
    - The `el` option is the element used for Waline rendering. You can set a CSS selector in the form of a string or an HTMLElement object.
-   - `serverURL` is the link of the server, which you just got.
+   - `serverURL` is the link of the server, which you just created in Vercel.
+
+   Here is an example:
 
    ```html {3-7,12-18}:line-numbers
    <head>
@@ -105,6 +107,7 @@ Make the following settings on your web page:
        init({
          el: '#waline',
          serverURL: 'https://your-domain.vercel.app',
+         lang: 'en',
        });
      </script>
    </body>
@@ -120,6 +123,6 @@ Make the following settings on your web page:
 
 ## Video Tutorial
 
-The following is the enthusiastic user made video tutorial, the above operation is not clear can also refer to it.
+An enthusiastic Waline user made the following video tutorial. If the instructions above are not clear, you can refer to the video:
 
 <YouTube id="SzEHzsme8uY" />
