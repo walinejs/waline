@@ -20,11 +20,11 @@ features:
 
   - title: LightWeight
     icon: light
-    details: 53kb gzip size of whole client
+    details: Full client size of 53kb gzip
 
   - title: Improved Security
     icon: safe
-    details: Content verification, anti-irrigation, protection of sensitive data, etc.
+    details: Content verification, anti-spamming, protection of sensitive data, etc.
     link: /en/guide/features/safety.html
 
   - title: Login support
@@ -33,7 +33,7 @@ features:
 
   - title: Article Reaction
     icon: reaction
-    details: Show your attitude towards the article quickly
+    details: Quickly show your attitude towards the article
     link: /en/guide/features/reaction.html
 
   - title: Pageview Counter
