@@ -1,5 +1,6 @@
 import type { IGif } from '@giphy/js-types';
 import type {
+  WalineEmojiPresets,
   WalineMeta,
   WalineSearchOptions,
   WalineSearchResult,
@@ -9,6 +10,10 @@ const availableMeta: WalineMeta[] = ['nick', 'mail', 'link'];
 
 export const getMeta = (meta: WalineMeta[]): WalineMeta[] =>
   meta.filter((item) => availableMeta.includes(item));
+
+export const defaultEmoji: WalineEmojiPresets[] = [
+  '//unpkg.com/@waline/emojis@1.1.0/weibo',
+];
 
 export const defaultLang = 'zh-CN';
 

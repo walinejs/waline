@@ -751,11 +751,9 @@ onMounted(() => {
   watch(
     () => config.value.emoji,
     (emojiConfig) =>
-      getEmojis(Array.isArray(emojiConfig) ? emojiConfig : []).then(
-        (config) => {
-          emoji.value = config;
-        }
-      ),
+      getEmojis(emojiConfig).then((config) => {
+        emoji.value = config;
+      }),
     { immediate: true }
   );
 });
