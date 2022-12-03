@@ -11,7 +11,10 @@ import vue from '@vitejs/plugin-vue';
 const version = pkg.version;
 const commonOptions = {
   plugins: [
-    vue({ isProduction: true }),
+    vue({
+      isProduction: true,
+      template: { compilerOptions: { comments: false } },
+    }),
     ts(),
     replace({
       'process.env.NODE_ENV': JSON.stringify('production'),
@@ -51,8 +54,10 @@ export default [
     ],
     ...commonOptions,
     plugins: [
-      vue({ isProduction: true }),
-
+      vue({
+        isProduction: true,
+        template: { compilerOptions: { comments: false } },
+      }),
       ts(),
       replace({
         'process.env.NODE_ENV': JSON.stringify('production'),
