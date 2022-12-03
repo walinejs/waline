@@ -130,7 +130,7 @@ importers:
       rimraf: 3.0.2
       sass-loader: 13.2.0
       style-loader: 3.3.1
-      ts-loader: 9.4.1
+      ts-loader: 9.4.2
       typescript: 4.9.3
       url-loader: 4.1.1
       webpack: 5.75.0
@@ -163,7 +163,7 @@ importers:
       rimraf: 3.0.2
       sass-loader: 13.2.0_webpack@5.75.0
       style-loader: 3.3.1_webpack@5.75.0
-      ts-loader: 9.4.1_vfotqvx6lgcbf3upbs6hgaza4q
+      ts-loader: 9.4.2_vfotqvx6lgcbf3upbs6hgaza4q
       typescript: 4.9.3
       url-loader: 4.1.1_p5dl6emkcwslbw72e37w4ug7em
       webpack: 5.75.0_webpack-cli@5.0.0
@@ -13721,8 +13721,8 @@ packages:
     resolution: {integrity: sha512-+1iDGY6NmOGidq7i7xZGA4cm8DAa6fqdYcvO5Z6yBevH++Bdo9Qt/mN0TzHUgcCcKv1gmh9+W5dHqz8pMWbCbg==}
     dev: true
 
-  /ts-loader/9.4.1_vfotqvx6lgcbf3upbs6hgaza4q:
-    resolution: {integrity: sha512-384TYAqGs70rn9F0VBnh6BPTfhga7yFNdC5gXbQpDrBj9/KsT4iRkGqKXhziofHOlE2j6YEaiTYVGKKvPhGWvw==}
+  /ts-loader/9.4.2_vfotqvx6lgcbf3upbs6hgaza4q:
+    resolution: {integrity: sha512-OmlC4WVmFv5I0PpaxYb+qGeGOdm5giHU7HwDDUjw59emP2UYMHy9fFSDcYgSNoH8sXcj4hGCSEhlDZ9ULeDraA==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
       typescript: '*'
