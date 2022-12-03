@@ -284,7 +284,6 @@
 
 <script setup lang="ts">
 import { useDebounceFn } from '@vueuse/core';
-import { useReCaptcha } from '../composables/index.js';
 import autosize from 'autosize';
 import {
   computed,
@@ -299,15 +298,20 @@ import {
 import {
   CloseIcon,
   EmojiIcon,
+  GifIcon,
   ImageIcon,
+  LoadingIcon,
   MarkdownIcon,
   PreviewIcon,
-  LoadingIcon,
-  GifIcon,
 } from './Icons';
 import ImageWall from './ImageWall.vue';
 import { addComment, login, updateComment } from '../api/index.js';
-import { useEditor, useUserMeta, useUserInfo } from '../composables/index.js';
+import {
+  useEditor,
+  useReCaptcha,
+  useUserInfo,
+  useUserMeta,
+} from '../composables/index.js';
 import {
   getEmojis,
   getImageFromDataTransfer,

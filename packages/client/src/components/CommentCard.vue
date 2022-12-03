@@ -174,13 +174,14 @@
 </template>
 
 <script setup lang="ts">
+import { useNow } from '@vueuse/core';
 import { computed, inject } from 'vue';
 import CommentBox from './CommentBox.vue';
 import {
   DeleteIcon,
+  EditIcon,
   LikeIcon,
   ReplyIcon,
-  EditIcon,
   VerifiedIcon,
 } from './Icons.js';
 import { getTimeAgo, isLinkHttp } from '../utils';
@@ -189,7 +190,6 @@ import { useLikeStorage, useUserInfo } from '../composables/index.js';
 import type { ComputedRef } from 'vue';
 import type { WalineConfig } from '../utils/index.js';
 import type { WalineComment, WalineCommentStatus } from '../typings/index.js';
-import { useNow } from '@vueuse/core';
 
 const props = withDefaults(
   defineProps<{

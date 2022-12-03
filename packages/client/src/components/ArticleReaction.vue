@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import { inject, computed, onMounted, onUnmounted, ref, watch } from 'vue';
+import { computed, inject, onMounted, onUnmounted, ref, watch } from 'vue';
 import { getArticleCounter, updateArticleCounter } from '../api/index.js';
 import {
   VOTE_IDENTIFIER,
@@ -31,8 +31,8 @@ import {
 } from '../composables/index.js';
 
 import type { ComputedRef } from 'vue';
-import type { WalineConfig } from '../utils/index.js';
 import type { WalineLocale } from '../typings/index.js';
+import type { WalineConfig } from '../utils/index.js';
 
 defineExpose();
 
