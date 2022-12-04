@@ -27,7 +27,7 @@ importers:
       eslint-plugin-react: 7.31.11
       eslint-plugin-vue: 9.8.0
       husky: 8.0.2
-      lint-staged: 13.0.4
+      lint-staged: 13.1.0
       markdownlint-cli: 0.32.2
       postcss: 8.4.19
       prettier: 2.8.0
@@ -63,7 +63,7 @@ importers:
       eslint-plugin-react: 7.31.11_eslint@8.28.0
       eslint-plugin-vue: 9.8.0_eslint@8.28.0
       husky: 8.0.2
-      lint-staged: 13.0.4
+      lint-staged: 13.1.0
       markdownlint-cli: 0.32.2
       postcss: 8.4.19
       prettier: 2.8.0
@@ -9622,8 +9622,8 @@ packages:
     dependencies:
       uc.micro: 1.0.6
 
-  /lint-staged/13.0.4:
-    resolution: {integrity: sha512-HxlHCXoYRsq9QCby5wFozmZW00hMs/9e3l+/dz6Qr8Kle4UH0kJTdABAbqhzG+3pcG6QjL9kz7NgGBfph+a5dw==}
+  /lint-staged/13.1.0:
+    resolution: {integrity: sha512-pn/sR8IrcF/T0vpWLilih8jmVouMlxqXxKuAojmbiGX5n/gDnz+abdPptlj0vYnbfE0SQNl3CY/HwtM0+yfOVQ==}
     engines: {node: ^14.13.1 || >=16.0.0}
     hasBin: true
     dependencies:
