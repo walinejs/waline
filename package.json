@@ -84,7 +84,7 @@
     "vite": "3.2.4",
     "vitest": "0.25.3"
   },
-  "packageManager": "pnpm@7.17.1",
+  "packageManager": "pnpm@7.18.1",
   "apidoc": {
     "title": "Waline API Documentation"
   },
