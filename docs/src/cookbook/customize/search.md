@@ -119,7 +119,7 @@ Waline.init({
 
 ::: details 默认实现
 
-@[code{33-79}](../../../packages/client/src/config/default.ts)
+@[code{33-79}](../../../../packages/client/src/config/default.ts)
 
 :::
 

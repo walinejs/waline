@@ -92,7 +92,7 @@ const path = computed(() => useRoute().path);
 </script>
 ```
 
-由于我们使用了响应式的 `path`，当路由变动时，`@waline/client` 会自动刷新并显示相应路由的评论，同时，当你按下切换按钮时，`@waline/client` 会切换主题模式。
+由于我们使用了响应式的 `path`，当路由变动时，`@waline/client` 会自动刷新并显示相应路由的评论。
 
 :::
 

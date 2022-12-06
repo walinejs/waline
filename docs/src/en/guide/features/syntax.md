@@ -25,7 +25,7 @@ Github Flavored Markdown
 
 :::
 
-Meanwhile, you can freely embed any HTML content without triggering the [protection mechanism](./safety.md#anti-xss-attack).
+Meanwhile, you can freely embed any HTML content without triggering the [protection mechanism](./safety.md#comment-security).
 
 ## Limited Preview Support
 

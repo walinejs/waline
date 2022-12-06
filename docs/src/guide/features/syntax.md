@@ -25,7 +25,7 @@ Github Flavored Markdown, 即 Github 风格语法
 
 :::
 
-同时，你可以在不触发 [保护机制](./safety.md) 的情况下自由嵌入任何的 HTML 内容。
+同时，你可以在不触发 [保护机制](./safety.md#评论安全) 的情况下自由嵌入任何的 HTML 内容。
 
 ## 有限的预览支持
 

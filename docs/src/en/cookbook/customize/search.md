@@ -119,7 +119,7 @@ When the user searches for `smile`, we execute `search('smile')`. Suppose you re
 
 ::: details Default implementation
 
-@[code{33-79}](../../../../packages/client/src/config/default.ts)
+@[code{33-79}](../../../../../packages/client/src/config/default.ts)
 
 :::
 

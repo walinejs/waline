@@ -92,7 +92,7 @@ const path = computed(() => useRoute().path);
 </script>
 ```
 
-Since we use responsive `path`, when the route changes, `@waline/client` will automatically refresh and display the comments of the corresponding route, and at the same time, when you press the toggle button, `@waline/client` will toggle theme mode.
+Since we use responsive `path`, when the route changes, `@waline/client` will automatically refresh and display the comments of the corresponding route.
 
 :::
 

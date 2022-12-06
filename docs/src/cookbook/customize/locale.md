@@ -19,7 +19,7 @@ icon: i18n
 
 - 等级相关:
 
-  - `level${number}`: `${number}` 等级的文字
+  - `level${number}`: number 等级的文字
 
   ::: tip
 
