@@ -84,7 +84,7 @@ importers:
       '@fancyapps/ui': 4.0.31
       '@vuepress/client': 2.0.0-beta.58
       '@vuepress/plugin-docsearch': 2.0.0-beta.58
-      '@vuepress/utils': 2.0.0-beta.58
+      '@vuepress/utils': 2.0.0-beta.50-pre.1
       marked: 4.2.4
       vue: 3.2.45
       vuepress: 2.0.0-beta.58
@@ -95,7 +95,7 @@ importers:
       '@fancyapps/ui': 4.0.31
       '@vuepress/client': 2.0.0-beta.58
       '@vuepress/plugin-docsearch': 2.0.0-beta.58
-      '@vuepress/utils': 2.0.0-beta.58
+      '@vuepress/utils': 2.0.0-beta.50-pre.1
       marked: 4.2.4
       vue: 3.2.45
       vuepress: 2.0.0-beta.58_ybgj3atskieb3xgfp7o6cfegvq
@@ -3935,6 +3935,12 @@ packages:
       - supports-color
     dev: true
 
+  /@vuepress/shared/2.0.0-beta.50-pre.1:
+    resolution: {integrity: sha512-Gk6ikIV2V8LMokc+H/juH+kBOigo38Woup42Q2pmmWqmlwdLqbUcCYZSt/z+opeOUAqC9s3CZnKR8xCw+qo8BQ==}
+    dependencies:
+      '@vue/shared': 3.2.45
+    dev: true
+
   /@vuepress/shared/2.0.0-beta.58:
     resolution: {integrity: sha512-f6qEwhFz2YyIxVxD1NqIp2Dwos/ioY+hSFFM4d7Io124WhjYsVzvBY1v6uXVafu2crpbkiGfCcLeDT7b6fw8HQ==}
     dependencies:
@@ -3970,6 +3976,24 @@ packages:
       vue-router: 4.1.6_vue@3.2.45
     transitivePeerDependencies:
       - '@vue/composition-api'
+      - supports-color
+    dev: true
+
+  /@vuepress/utils/2.0.0-beta.50-pre.1:
+    resolution: {integrity: sha512-ODJP1kboA+c12Nf6gqkk4vU9JLnrjOaYI9+NsLtv/MXEXulWVr65ZWZK3SmF+RiNFJZDfTs9kXLbwujetkNBhQ==}
+    dependencies:
+      '@types/debug': 4.1.7
+      '@types/fs-extra': 9.0.13
+      '@types/hash-sum': 1.0.0
+      '@vuepress/shared': 2.0.0-beta.50-pre.1
+      chalk: 5.1.2
+      debug: 4.3.4
+      fs-extra: 10.1.0
+      globby: 13.1.2
+      hash-sum: 2.0.0
+      ora: 6.1.2
+      upath: 2.0.1
+    transitivePeerDependencies:
       - supports-color
     dev: true
 
@@ -8482,7 +8506,7 @@ packages:
     dependencies:
       dir-glob: 3.0.1
       fast-glob: 3.2.12
-      ignore: 5.2.0
+      ignore: 5.2.1
       merge2: 1.4.1
       slash: 4.0.0
     dev: true

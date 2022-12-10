@@ -10,7 +10,7 @@
     "@fancyapps/ui": "4.0.31",
     "@vuepress/client": "2.0.0-beta.58",
     "@vuepress/plugin-docsearch": "2.0.0-beta.58",
-    "@vuepress/utils": "2.0.0-beta.58",
+    "@vuepress/utils": "2.0.0-beta.50-pre.1",
     "marked": "4.2.4",
     "vue": "3.2.45",
     "vuepress": "2.0.0-beta.58",
