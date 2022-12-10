@@ -121,7 +121,7 @@
   "dependencies": {
     "@vueuse/core": "^9.6.0",
     "autosize": "^5.0.2",
-    "marked": "^4.2.3",
+    "marked": "^4.2.4",
     "vue": "^3.2.45"
   },
   "devDependencies": {
@@ -129,21 +129,21 @@
     "@babel/preset-env": "7.20.2",
     "@giphy/js-types": "4.4.0",
     "@rollup/plugin-babel": "6.0.3",
-    "@rollup/plugin-commonjs": "23.0.3",
+    "@rollup/plugin-commonjs": "23.0.4",
     "@rollup/plugin-node-resolve": "15.0.1",
     "@rollup/plugin-replace": "5.0.1",
     "@rollup/plugin-terser": "0.1.0",
     "@types/autosize": "4.0.1",
-    "@types/marked": "4.0.7",
-    "@types/node": "18.11.9",
-    "@vitejs/plugin-vue": "3.2.0",
+    "@types/marked": "4.0.8",
+    "@types/node": "18.11.12",
+    "@vitejs/plugin-vue": "4.0.0",
     "recaptcha-v3": "1.10.0",
     "rimraf": "3.0.2",
-    "rollup": "3.5.1",
+    "rollup": "3.7.2",
     "rollup-plugin-dts": "5.0.0",
     "rollup-plugin-ts": "3.0.2",
-    "typescript": "4.9.3",
-    "vite": "3.2.4"
+    "typescript": "4.9.4",
+    "vite": "4.0.0"
   },
   "engines": {
     "node": ">=14"
