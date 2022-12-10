@@ -180,7 +180,7 @@ importers:
       '@rollup/plugin-commonjs': 23.0.4
       '@rollup/plugin-node-resolve': 15.0.1
       '@rollup/plugin-replace': 5.0.1
-      '@rollup/plugin-terser': 0.1.0
+      '@rollup/plugin-terser': 0.2.0
       '@types/autosize': 4.0.1
       '@types/marked': 4.0.8
       '@types/node': 18.11.12
@@ -209,7 +209,7 @@ importers:
       '@rollup/plugin-commonjs': 23.0.4_rollup@3.7.2
       '@rollup/plugin-node-resolve': 15.0.1_rollup@3.7.2
       '@rollup/plugin-replace': 5.0.1_rollup@3.7.2
-      '@rollup/plugin-terser': 0.1.0_rollup@3.7.2
+      '@rollup/plugin-terser': 0.2.0_rollup@3.7.2
       '@types/autosize': 4.0.1
       '@types/marked': 4.0.8
       '@types/node': 18.11.12
@@ -2767,8 +2767,8 @@ packages:
       rollup: 3.7.2
     dev: true
 
-  /@rollup/plugin-terser/0.1.0_rollup@3.7.2:
-    resolution: {integrity: sha512-N2KK+qUfHX2hBzVzM41UWGLrEmcjVC37spC8R3c9mt3oEDFKh3N2e12/lLp9aVSt86veR0TQiCNQXrm8C6aiUQ==}
+  /@rollup/plugin-terser/0.2.0_rollup@3.7.2:
+    resolution: {integrity: sha512-UBr4WNXBFipKW2C2db9JIzIdq9bFZsaTZwKeAd9Y0N9Pv9G2XgRhaimGdotx1+Wf/2XTuTJ+FVS2SO+y2WyiUQ==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       rollup: ^2.x || ^3.x
@@ -2777,6 +2777,8 @@ packages:
         optional: true
     dependencies:
       rollup: 3.7.2
+      serialize-javascript: 6.0.0
+      smob: 0.0.6
       terser: 5.15.1
     dev: true
 
@@ -12853,6 +12855,10 @@ packages:
     engines: {node: '>= 6.0.0', npm: '>= 3.0.0'}
     dev: false
     optional: true
+
+  /smob/0.0.6:
+    resolution: {integrity: sha512-V21+XeNni+tTyiST1MHsa84AQhT1aFZipzPpOFAVB8DkHzwJyjjAmt9bgwnuZiZWnIbMo2duE29wybxv/7HWUw==}
+    dev: true
 
   /sockjs/0.3.24:
     resolution: {integrity: sha512-GJgLTZ7vYb/JtPSSZ10hsOYIvEYsjbNU+zPdIHcUaWVNUEPivzxku31865sSSud0Da0W4lEeOPlmw93zLQchuQ==}
