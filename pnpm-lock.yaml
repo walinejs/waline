@@ -89,7 +89,7 @@ importers:
       vue: 3.2.45
       vuepress: 2.0.0-beta.58
       vuepress-plugin-redirect: 2.0.0-beta.140
-      vuepress-shared: 2.0.0-beta.140
+      vuepress-shared: 2.0.0-beta.141
       vuepress-theme-hope: 2.0.0-beta.140
     devDependencies:
       '@fancyapps/ui': 4.0.31
@@ -100,7 +100,7 @@ importers:
       vue: 3.2.45
       vuepress: 2.0.0-beta.58_ybgj3atskieb3xgfp7o6cfegvq
       vuepress-plugin-redirect: 2.0.0-beta.140_vuepress@2.0.0-beta.58
-      vuepress-shared: 2.0.0-beta.140
+      vuepress-shared: 2.0.0-beta.141
       vuepress-theme-hope: 2.0.0-beta.140_vuepress@2.0.0-beta.58
 
   packages/admin:
@@ -15217,6 +15217,24 @@ packages:
 
   /vuepress-shared/2.0.0-beta.140:
     resolution: {integrity: sha512-1ZcdhW2IkSrFyoHSIDqJpttRhDHnSP+tKv+/MlMwHTVSa7ssSv9GVLHr7qX96gzlBi/XLpWXGzxo+xZkGQ6tuw==}
+    dependencies:
+      '@vuepress/client': 2.0.0-beta.58
+      '@vuepress/shared': 2.0.0-beta.58
+      '@vuepress/utils': 2.0.0-beta.58
+      cheerio: 1.0.0-rc.12
+      dayjs: 1.11.7
+      execa: 6.1.0
+      fflate: 0.7.4
+      gray-matter: 4.0.3
+      striptags: 3.2.0
+      vue: 3.2.45
+      vue-router: 4.1.6_vue@3.2.45
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  /vuepress-shared/2.0.0-beta.141:
+    resolution: {integrity: sha512-/GziKfZ/9hz+MJW/pkTEMtbmBI2ghJtx3QqBABN0KdDWD9XVZ8l+txmTgippZ1NM53YwxD8y9j+KMFc/2JQXaA==}
     dependencies:
       '@vuepress/client': 2.0.0-beta.58
       '@vuepress/shared': 2.0.0-beta.58
