@@ -88,7 +88,7 @@ importers:
       marked: 4.2.4
       vue: 3.2.45
       vuepress: 2.0.0-beta.58
-      vuepress-plugin-redirect: 2.0.0-beta.140
+      vuepress-plugin-redirect: 2.0.0-beta.141
       vuepress-shared: 2.0.0-beta.140
       vuepress-theme-hope: 2.0.0-beta.140
     devDependencies:
@@ -99,7 +99,7 @@ importers:
       marked: 4.2.4
       vue: 3.2.45
       vuepress: 2.0.0-beta.58_ybgj3atskieb3xgfp7o6cfegvq
-      vuepress-plugin-redirect: 2.0.0-beta.140_vuepress@2.0.0-beta.58
+      vuepress-plugin-redirect: 2.0.0-beta.141_vuepress@2.0.0-beta.58
       vuepress-shared: 2.0.0-beta.140
       vuepress-theme-hope: 2.0.0-beta.140_vuepress@2.0.0-beta.58
 
@@ -15114,8 +15114,8 @@ packages:
       - supports-color
     dev: true
 
-  /vuepress-plugin-redirect/2.0.0-beta.140_vuepress@2.0.0-beta.58:
-    resolution: {integrity: sha512-qorXpb2A9EyhsoYPnmZRCrsOtGWxwjMCk3bOxdMLxb6CMrFMfeq1Qv4ENN0kEVtj7zmIGK69ci1BJYmJqncLhQ==}
+  /vuepress-plugin-redirect/2.0.0-beta.141_vuepress@2.0.0-beta.58:
+    resolution: {integrity: sha512-Poh36Mfc+oSSmqprpUlc0HxqLxtXZYVMSn+GVx1TlO23Kv370waMGhXoCJCi7dH2LEco/MvoF1vfhPvdJ79f8w==}
     engines: {node: ^14.18.0 || >=16.0.0, npm: '>=8', pnpm: '>=7'}
     hasBin: true
     peerDependencies:
@@ -15136,7 +15136,7 @@ packages:
       '@vuepress/utils': 2.0.0-beta.58
       cac: 6.7.14
       vuepress: 2.0.0-beta.58_ybgj3atskieb3xgfp7o6cfegvq
-      vuepress-shared: 2.0.0-beta.140
+      vuepress-shared: 2.0.0-beta.141
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -15217,6 +15217,24 @@ packages:
 
   /vuepress-shared/2.0.0-beta.140:
     resolution: {integrity: sha512-1ZcdhW2IkSrFyoHSIDqJpttRhDHnSP+tKv+/MlMwHTVSa7ssSv9GVLHr7qX96gzlBi/XLpWXGzxo+xZkGQ6tuw==}
+    dependencies:
+      '@vuepress/client': 2.0.0-beta.58
+      '@vuepress/shared': 2.0.0-beta.58
+      '@vuepress/utils': 2.0.0-beta.58
+      cheerio: 1.0.0-rc.12
+      dayjs: 1.11.7
+      execa: 6.1.0
+      fflate: 0.7.4
+      gray-matter: 4.0.3
+      striptags: 3.2.0
+      vue: 3.2.45
+      vue-router: 4.1.6_vue@3.2.45
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  /vuepress-shared/2.0.0-beta.141:
+    resolution: {integrity: sha512-/GziKfZ/9hz+MJW/pkTEMtbmBI2ghJtx3QqBABN0KdDWD9XVZ8l+txmTgippZ1NM53YwxD8y9j+KMFc/2JQXaA==}
     dependencies:
       '@vuepress/client': 2.0.0-beta.58
       '@vuepress/shared': 2.0.0-beta.58
