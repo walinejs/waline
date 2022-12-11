@@ -479,7 +479,7 @@ module.exports = class extends BaseRest {
     };
 
     if (pid) {
-      data.comment = `[@${at}](#${pid}): ` + data.comment;
+      data.comment = `[@${at}](#${pid}):\n` + data.comment;
     }
 
     think.logger.debug('Post Comment initial Data:', data);
