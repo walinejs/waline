@@ -70,7 +70,7 @@
     "husky": "8.0.2",
     "lint-staged": "13.1.0",
     "markdownlint-cli": "0.32.2",
-    "postcss": "8.4.19",
+    "postcss": "8.4.20",
     "prettier": "2.8.1",
     "sass": "1.56.2",
     "sort-package-json": "2.1.0",
