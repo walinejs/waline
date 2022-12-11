@@ -82,7 +82,7 @@
     "typescript": "4.9.4",
     "vercel": "28.8.0",
     "vite": "4.0.0",
-    "vitest": "0.25.6"
+    "vitest": "0.25.7"
   },
   "packageManager": "pnpm@7.18.1",
   "apidoc": {
