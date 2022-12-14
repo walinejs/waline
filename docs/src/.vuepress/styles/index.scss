@@ -17,4 +17,6 @@ html[data-theme='dark'] {
   --waline-border: 1px solid var(--dark-grey);
   --waline-bgcolor: var(--c-bg);
   --waline-bgcolor-light: var(--c-bg-light);
+
+  max-width: var(--home-width);
 }

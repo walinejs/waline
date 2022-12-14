@@ -6,7 +6,6 @@ import { enSidebarConfig, zhSidebarConfig } from './sidebar';
 export default hopeTheme({
   hostname: 'https://waline.js.org',
 
-  iconPrefix: 'iconfont icon-',
   logo: '/logo.png',
   repo: 'walinejs/waline',
   docsDir: 'docs/src',
@@ -67,11 +66,14 @@ export default hopeTheme({
       },
     },
 
-    components: ['BiliBili', 'YouTube'],
+    components: {
+      components: ['BiliBili', 'YouTube'],
+    },
 
     mdEnhance: {
       codetabs: true,
-      katex: true,
+      figure: true,
+      mathjax: true,
       sub: true,
       sup: true,
       tasklist: true,

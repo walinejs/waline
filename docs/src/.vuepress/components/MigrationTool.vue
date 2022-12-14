@@ -43,9 +43,9 @@
 <script setup>
 import { useRouteLocale } from '@vuepress/client';
 import { computed, ref } from 'vue';
-import { exportRaw } from './exportRaw';
-import { migrateI18n } from './i18n';
-import { transform } from './transform';
+import { exportRaw } from './exportRaw.js';
+import { migrateI18n } from './i18n.js';
+import { transform } from './transform/index.js';
 
 const routeLocalePath = useRouteLocale();
 const from = ref('valine');

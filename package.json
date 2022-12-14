@@ -52,8 +52,8 @@
     "@babel/eslint-parser": "7.19.1",
     "@commitlint/cli": "17.3.0",
     "@commitlint/config-conventional": "17.3.0",
-    "@typescript-eslint/eslint-plugin": "5.46.0",
-    "@typescript-eslint/parser": "5.46.0",
+    "@typescript-eslint/eslint-plugin": "5.46.1",
+    "@typescript-eslint/parser": "5.46.1",
     "@vue/eslint-config-prettier": "7.0.0",
     "@vue/eslint-config-typescript": "11.0.2",
     "apidoc": "0.53.1",
@@ -70,7 +70,7 @@
     "husky": "8.0.2",
     "lint-staged": "13.1.0",
     "markdownlint-cli": "0.32.2",
-    "postcss": "8.4.19",
+    "postcss": "8.4.20",
     "prettier": "2.8.1",
     "sass": "1.56.2",
     "sort-package-json": "2.1.0",
@@ -81,8 +81,8 @@
     "stylelint-order": "5.0.0",
     "typescript": "4.9.4",
     "vercel": "28.8.0",
-    "vite": "4.0.0",
-    "vitest": "0.25.7"
+    "vite": "4.0.1",
+    "vitest": "0.25.8"
   },
   "packageManager": "pnpm@7.18.1",
   "apidoc": {
