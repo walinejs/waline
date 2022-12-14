@@ -114,7 +114,7 @@ importers:
       '@svgr/webpack': 6.5.1
       babel-loader: 9.1.0
       classnames: 2.3.2
-      css-loader: 6.7.2
+      css-loader: 6.7.3
       file-loader: 6.2.0
       html-webpack-plugin: 5.5.0
       i18next: 22.3.0
@@ -147,7 +147,7 @@ importers:
       '@svgr/webpack': 6.5.1
       babel-loader: 9.1.0_ztqwsvkb6z73luspkai6ilstpu
       classnames: 2.3.2
-      css-loader: 6.7.2_webpack@5.75.0
+      css-loader: 6.7.3_webpack@5.75.0
       file-loader: 6.2.0_webpack@5.75.0
       html-webpack-plugin: 5.5.0_webpack@5.75.0
       i18next: 22.3.0
@@ -5853,8 +5853,8 @@ packages:
     engines: {node: '>=12.22'}
     dev: true
 
-  /css-loader/6.7.2_webpack@5.75.0:
-    resolution: {integrity: sha512-oqGbbVcBJkm8QwmnNzrFrWTnudnRZC+1eXikLJl0n4ljcfotgRifpg2a1lKy8jTrc4/d9A/ap1GFq1jDKG7J+Q==}
+  /css-loader/6.7.3_webpack@5.75.0:
+    resolution: {integrity: sha512-qhOH1KlBMnZP8FzRO6YCH9UHXQhVMcEGLyNdb7Hv2cpcmJbW0YrddO+tG1ab5nT41KpHIYGsbeHqxB9xPu1pKQ==}
     engines: {node: '>= 12.13.0'}
     peerDependencies:
       webpack: ^5.0.0
@@ -11588,7 +11588,7 @@ packages:
     dependencies:
       icss-utils: 5.1.0_postcss@8.4.20
       postcss: 8.4.20
-      postcss-selector-parser: 6.0.10
+      postcss-selector-parser: 6.0.11
       postcss-value-parser: 4.2.0
     dev: true
 
@@ -11599,7 +11599,7 @@ packages:
       postcss: ^8.1.0
     dependencies:
       postcss: 8.4.20
-      postcss-selector-parser: 6.0.10
+      postcss-selector-parser: 6.0.11
     dev: true
 
   /postcss-modules-values/4.0.0_postcss@8.4.20:
