@@ -249,7 +249,7 @@ importers:
       jsdom: 20.0.3
       jsonwebtoken: 8.5.1
       katex: 0.16.4
-      leancloud-storage: 4.13.4
+      leancloud-storage: 4.14.0
       markdown-it: 13.0.1
       markdown-it-emoji: 2.0.2
       markdown-it-sub: 1.0.0
@@ -283,7 +283,7 @@ importers:
       jsdom: 20.0.3
       jsonwebtoken: 8.5.1
       katex: 0.16.4
-      leancloud-storage: 4.13.4
+      leancloud-storage: 4.14.0
       markdown-it: 13.0.1
       markdown-it-emoji: 2.0.2
       markdown-it-sub: 1.0.0
@@ -1694,7 +1694,7 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       core-js-pure: 3.26.1
-      regenerator-runtime: 0.13.10
+      regenerator-runtime: 0.13.11
     dev: false
 
   /@babel/runtime/7.20.6:
@@ -9878,8 +9878,8 @@ packages:
       - utf-8-validate
     dev: false
 
-  /leancloud-storage/4.13.4:
-    resolution: {integrity: sha512-U2kcuokRljC2uyeCcK11yW02hPNuAu5LVXOYCsfVM8K/inRSbq4nKQbkAuzBfZKQsDOsryq16ztAeOB3fItcYg==}
+  /leancloud-storage/4.14.0:
+    resolution: {integrity: sha512-DCJ67Dk6jrmCnoKZ/zTDwZSeBg2Gk2vHG8wnk2oWEJgcR290BB/2nDSe0H0xPT6nY36qfYYbNmM/tHPtLzRO0A==}
     dependencies:
       '@babel/runtime-corejs3': 7.20.1
       '@leancloud/adapter-types': 5.0.0
@@ -12135,10 +12135,6 @@ packages:
   /regenerate/1.4.2:
     resolution: {integrity: sha512-zrceR/XhGYU/d/opr2EKO7aRHUeiBI8qjtfHqADTwZd6Szfy16la6kqD0MIUs5z5hx6AaKa+PixpPrR289+I0A==}
     dev: true
-
-  /regenerator-runtime/0.13.10:
-    resolution: {integrity: sha512-KepLsg4dU12hryUO7bp/axHAKvwGOCV0sGloQtpagJ12ai+ojVDqkeGSiRX1zlq+kjIMZ1t7gpze+26QqtdGqw==}
-    dev: false
 
   /regenerator-runtime/0.13.11:
     resolution: {integrity: sha512-kY1AZVr2Ra+t+piVaJ4gxaFaReZVH40AKNo7UCX6W+dEwBo/2oZJzqfuN1qLq1oL45o56cPaTXELwrTh8Fpggg==}
