@@ -33,7 +33,7 @@ export interface WalineCommentCountOptions {
    *
    * Language of error message
    *
-   * @default 'zh-CN'
+   * @default navigator.language
    */
   lang?: string;
 }
@@ -42,7 +42,7 @@ export const commentCount = ({
   serverURL,
   path = window.location.pathname,
   selector = '.waline-comment-count',
-  lang = 'zh-CN',
+  lang = navigator.language,
 }: WalineCommentCountOptions): WalineAbort => {
   const controller = new AbortController();
 

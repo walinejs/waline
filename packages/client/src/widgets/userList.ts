@@ -30,7 +30,7 @@ export interface WalineUserListOptions {
    *
    * Language of error message
    *
-   * @default 'zh-CN'
+   * @default navigator.language
    */
   lang?: string;
 
@@ -74,7 +74,7 @@ export const UserList = ({
   serverURL,
   count,
   locale,
-  lang = defaultLang,
+  lang = navigator.language,
   mode = 'list',
 }: WalineUserListOptions): Promise<WalineUserListResult> => {
   const root = getRoot(el);

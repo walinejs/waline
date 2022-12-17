@@ -31,7 +31,7 @@ export interface WalineRecentCommentsOptions {
    *
    * Language of error message
    *
-   * @default 'zh-CN'
+   * @default navigator.language
    */
   lang?: string;
 }
@@ -56,7 +56,7 @@ export const RecentComments = ({
   el,
   serverURL,
   count,
-  lang = 'zh-CN',
+  lang = navigator.language,
 }: WalineRecentCommentsOptions): Promise<WalineRecentCommentsResult> => {
   const userInfo = useUserInfo();
   const root = getRoot(el);

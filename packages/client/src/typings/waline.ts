@@ -117,7 +117,7 @@ export interface WalineProps {
    * - `'ru-ru'`
    * - `'ru-RU'`
    *
-   * @default 'zh-CN'
+   * @default navigator.language
    */
   lang?: string;
 
