@@ -588,7 +588,7 @@ const onStatusChange = async ({
     lang,
     token: userInfo.value?.token,
     objectId: comment.objectId,
-    status,
+    comment: { status },
   });
 
   comment.status = status;
@@ -604,7 +604,7 @@ const onSticky = async (comment: WalineComment): Promise<void> => {
     lang,
     token: userInfo.value?.token,
     objectId: comment.objectId,
-    sticky: comment.sticky ? 0 : 1,
+    comment: { sticky: comment.sticky ? 0 : 1 },
   });
 
   comment.sticky = !comment.sticky;
@@ -654,7 +654,7 @@ const onLike = async (comment: WalineComment): Promise<void> => {
     lang,
     objectId,
     token: userInfo.value?.token,
-    like: !hasLiked,
+    comment: { like: !hasLiked },
   });
 
   if (hasLiked)
