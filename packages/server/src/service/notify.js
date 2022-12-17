@@ -499,8 +499,7 @@ module.exports = class extends think.Service {
       if (
         [wechat, qq, telegram, qywxAmWechat, pushplus, discord, lark].every(
           think.isEmpty
-        ) &&
-        !isReplyAuthor
+        )
       ) {
         mailList.push({ to: AUTHOR, title, content });
       }
@@ -515,6 +514,7 @@ module.exports = class extends think.Service {
       parent &&
       !fakeMail.test(parent.mail) &&
       !isCommentSelf &&
+      !isReplyAuthor &&
       comment.status !== 'waiting'
     ) {
       mailList.push({
