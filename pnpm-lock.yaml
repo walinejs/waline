@@ -177,7 +177,7 @@ importers:
       '@babel/preset-env': 7.20.2
       '@giphy/js-types': 4.4.0
       '@rollup/plugin-babel': 6.0.3
-      '@rollup/plugin-commonjs': 23.0.4
+      '@rollup/plugin-commonjs': 23.0.7
       '@rollup/plugin-node-resolve': 15.0.1
       '@rollup/plugin-replace': 5.0.1
       '@rollup/plugin-terser': 0.1.0
@@ -206,7 +206,7 @@ importers:
       '@babel/preset-env': 7.20.2_@babel+core@7.20.5
       '@giphy/js-types': 4.4.0
       '@rollup/plugin-babel': 6.0.3_oerm5pvp5pq373eh6ovad5yhdi
-      '@rollup/plugin-commonjs': 23.0.4_rollup@3.7.4
+      '@rollup/plugin-commonjs': 23.0.7_rollup@3.7.4
       '@rollup/plugin-node-resolve': 15.0.1_rollup@3.7.4
       '@rollup/plugin-replace': 5.0.1_rollup@3.7.4
       '@rollup/plugin-terser': 0.1.0_rollup@3.7.4
@@ -2692,8 +2692,8 @@ packages:
       rollup: 3.7.4
     dev: true
 
-  /@rollup/plugin-commonjs/23.0.4_rollup@3.7.4:
-    resolution: {integrity: sha512-bOPJeTZg56D2MCm+TT4psP8e8Jmf1Jsi7pFUMl8BN5kOADNzofNHe47+84WVCt7D095xPghC235/YKuNDEhczg==}
+  /@rollup/plugin-commonjs/23.0.7_rollup@3.7.4:
+    resolution: {integrity: sha512-hsSD5Qzyuat/swzrExGG5l7EuIlPhwTsT7KwKbSCQzIcJWjRxiimi/0tyMYY2bByitNb3i1p+6JWEDGa0NvT0Q==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       rollup: ^2.68.0||^3.0.0
@@ -2706,7 +2706,7 @@ packages:
       estree-walker: 2.0.2
       glob: 8.0.3
       is-reference: 1.2.1
-      magic-string: 0.26.7
+      magic-string: 0.27.0
       rollup: 3.7.4
     dev: true
 
@@ -10285,6 +10285,13 @@ packages:
     engines: {node: '>=12'}
     dependencies:
       sourcemap-codec: 1.4.8
+    dev: true
+
+  /magic-string/0.27.0:
+    resolution: {integrity: sha512-8UnnX2PeRAPZuN12svgR9j7M1uWMovg/CEnIwIG0LFkXSJJe4PdfUGiTGl8V9bsBHFUtfVINcSyYxd7q+kx9fA==}
+    engines: {node: '>=12'}
+    dependencies:
+      '@jridgewell/sourcemap-codec': 1.4.14
     dev: true
 
   /make-dir/3.1.0:
