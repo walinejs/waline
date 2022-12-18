@@ -12,5 +12,9 @@ icon: helper
 :::
 
 <script setup lang="ts">
-import MigrationTool from '@MigrationTool';
+import { defineAsyncComponent } from 'vue'
+
+const MigrationTool = defineAsyncComponent(() =>
+  import( '@MigrationTool')
+)
 </script>

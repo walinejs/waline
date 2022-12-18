@@ -1,7 +1,7 @@
 /**
  * twikoo 数据结构转 leancloud
  */
-export const tk2lc = (input) => {
+export const tk2lc = (input: string) => {
   const data = input
     .trim()
     .split(/[\r\n]+/)

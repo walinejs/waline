@@ -2,7 +2,7 @@
  * commento 数据结构转 leancloud
  */
 
-export const commento2lc = (input) => {
+export const commento2lc = (input: string) => {
   const data = JSON.parse(input);
 
   const { comments } = data;
@@ -10,7 +10,7 @@ export const commento2lc = (input) => {
   const hexMaps = {};
   const rootHexMaps = {};
 
-  if (Array.isArray(data.commenters)) {
+  if (Array.isArray(data.commenters))
     data.commenters.forEach((commenter) => {
       commenters[commenter.commenterHex] = {
         nick: commenter.name,
@@ -18,7 +18,6 @@ export const commento2lc = (input) => {
         link: commenter.link !== 'undefined' ? commenter.link : undefined,
       };
     });
-  }
 
   comments
     .filter((comment) => comment.parentHex && comment.parentHex !== 'root')

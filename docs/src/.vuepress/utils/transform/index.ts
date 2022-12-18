@@ -1,9 +1,9 @@
-import { artalk2lc } from './artalk2lc';
-import { commento2lc } from './commento2lc';
-import { disqus2lc } from './disqus2lc';
-import { lc2csv } from './lc2csv';
-import { lc2tcb } from './lc2tcb';
-import { tk2lc } from './tk2lc';
+import { artalk2lc } from './artalk2lc.js';
+import { commento2lc } from './commento2lc.js';
+import { disqus2lc } from './disqus2lc.js';
+import { lc2csv } from './lc2csv.js';
+import { lc2tcb } from './lc2tcb.js';
+import { tk2lc } from './tk2lc.js';
 
 export const transform = {
   disqus: {
