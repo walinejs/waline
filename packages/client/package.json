@@ -53,36 +53,7 @@
     },
     "./waline.css": "./dist/waline.css",
     "./waline-meta.css": "./dist/waline-meta.css",
-    "./dist/api": {
-      "types": "./dist/api.d.ts",
-      "require": "./dist/api.cjs",
-      "default": "./dist/api.mjs"
-    },
-    "./dist/component": {
-      "default": "./dist/component.mjs"
-    },
-    "./dist/comment": {
-      "types": "./dist/comment.d.ts",
-      "import": "./dist/comment.mjs",
-      "require": "./dist/comment.cjs",
-      "default": "./dist/comment.js"
-    },
-    "./dist/pageview": {
-      "types": "./dist/pageview.d.ts",
-      "import": "./dist/pageview.mjs",
-      "require": "./dist/pageview.cjs",
-      "default": "./dist/pageview.js"
-    },
-    "./dist/waline": {
-      "types": "./dist/waline.d.ts",
-      "import": "./dist/waline.mjs",
-      "require": "./dist/waline.cjs",
-      "default": "./dist/waline.js"
-    },
-    "./dist/waline.css": "./dist/waline.css",
-    "./dist/waline-meta.css": "./dist/waline-meta.css",
     "./dist/*": "./dist/*",
-    "./src/*": "./src/*",
     "./package.json": "./package.json"
   },
   "main": "./dist/shim.cjs",
@@ -90,8 +61,7 @@
   "browser": "./dist/legacy.umd.js",
   "types": "./dist/shim.d.mts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "scripts": {
     "build": "pnpm rollup && pnpm style",
