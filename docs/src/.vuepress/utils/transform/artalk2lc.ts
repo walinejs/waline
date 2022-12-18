@@ -39,7 +39,6 @@ export const artalk2lc = (input) => {
         const url = parseKey(page_key);
         return {
           objectId: id,
-          QQAvatar: '',
           comment: marked.parse(content),
           insertedAt: {
             __type: 'Date',

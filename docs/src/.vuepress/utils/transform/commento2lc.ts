@@ -58,7 +58,6 @@ export const commento2lc = (input: string) => {
           return Object.assign(
             {
               objectId: commentHex,
-              QQAvatar: '',
               comment: html || markdown,
               insertedAt: {
                 __type: 'Date',

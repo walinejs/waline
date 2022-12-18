@@ -71,7 +71,6 @@ export const disqus2lc = (input: string) => {
 
     return {
       objectId,
-      QQAvatar: '',
       comment,
       insertedAt: {
         __type: 'Date',

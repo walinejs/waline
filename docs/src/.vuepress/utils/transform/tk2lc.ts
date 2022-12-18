@@ -24,7 +24,6 @@ export const tk2lc = (input: string) => {
       } = JSON.parse(text);
       return {
         objectId: typeof _id === 'string' ? _id : _id.$oid,
-        QQAvatar: '',
         comment: comment,
         insertedAt: {
           __type: 'Date',
