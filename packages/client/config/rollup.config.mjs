@@ -38,53 +38,6 @@ const babelPlugin = getBabelOutputPlugin({
 });
 
 export default [
-  // TODO: Remove this in future
-
-  // legacy package
-  {
-    input: './src/entrys/legacy.ts',
-    output: [
-      {
-        file: './dist/legacy.umd.js',
-        format: 'umd',
-        name: 'Waline',
-        exports: 'default',
-        sourcemap: true,
-      },
-    ],
-    ...commonOptions,
-    plugins: [
-      vue({
-        isProduction: true,
-        template: { compilerOptions: { comments: false } },
-      }),
-      ts(),
-      replace({
-        'process.env.NODE_ENV': JSON.stringify('production'),
-        'process.env["NODE_ENV"]': JSON.stringify('production'),
-        "process.env['NODE_ENV']": JSON.stringify('production'),
-        __VUE_OPTIONS_API__: false,
-        __VUE_PROD_DEVTOOLS__: false,
-        VERSION: JSON.stringify(version),
-        preventAssignment: false,
-      }),
-      nodeResolve({ preferBuiltins: true }),
-      commonjs(),
-      babel({
-        babelHelpers: 'bundled',
-        presets: [['@babel/preset-env']],
-      }),
-      terser(),
-    ],
-  },
-
-  // legacy declaration files
-  {
-    input: './src/entrys/legacy.ts',
-    output: [{ file: './dist/legacy.umd.d.ts', format: 'esm' }],
-    plugins: [dts({ compilerOptions: { preserveSymlinks: false } })],
-  },
-
   // full package
   {
     input: './src/entrys/full.ts',
