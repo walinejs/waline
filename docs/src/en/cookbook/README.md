@@ -26,11 +26,6 @@ This cookbook will introduce Waline in more depth.
 - [Add TEX renderer](./customize/tex-renderer.md)
 - [Upload Image](./customize/upload-image.md)
 
-## Compatibility
-
-- [Legacy Mode](./legacy.md)
-- [Compatible with historical versions of Emoji](./emoji-compact.md)
-
 ## Advanced
 
 - [Reactive Waline instance](reactivity.md)
