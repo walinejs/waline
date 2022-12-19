@@ -33,7 +33,7 @@
     &.active .wl-reaction {
       &-votes {
         background: var(--waline-theme-color);
-        color: var(--waline-bgcolor);
+        color: var(--waline-bg-color);
       }
 
       &-text {
@@ -69,7 +69,7 @@
     border: 1px solid var(--waline-theme-color);
     border-radius: 1em;
 
-    background: var(--waline-bgcolor);
+    background: var(--waline-bg-color);
     color: var(--waline-theme-color);
 
     font-weight: 700;

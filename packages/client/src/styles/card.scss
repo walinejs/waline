@@ -39,7 +39,7 @@
 
       border-radius: 50%;
 
-      background: var(--waline-bgcolor);
+      background: var(--waline-bg-color);
       box-shadow: var(--waline-box-shadow);
     }
   }
@@ -113,7 +113,7 @@
       padding: 2px 4px;
       border-radius: 0.2em;
 
-      background: var(--waline-info-bgcolor);
+      background: var(--waline-info-bg-color);
       color: var(--waline-info-color);
 
       font-size: var(--waline-info-font-size);

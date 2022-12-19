@@ -37,7 +37,7 @@
   hr {
     margin: 0.825em 0;
     border-style: dashed;
-    border-color: var(--waline-bgcolor-light);
+    border-color: var(--waline-bg-color-light);
   }
 
   code,
@@ -46,7 +46,7 @@
     padding: 0.2em 0.4em;
     border-radius: 3px;
 
-    background: var(--waline-bgcolor-light);
+    background: var(--waline-bg-color-light);
 
     font-size: 85%;
   }
