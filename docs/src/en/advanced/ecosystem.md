@@ -61,6 +61,7 @@ Others:
 - 🐴 [Stun](https://github.com/liuyib/hexo-theme-stun)
 - 🤖 [Yun](https://github.com/YunYouJun/hexo-theme-yun)
 - 🦄 [Unicorn](https://github.com/Uzizkp/hexo-theme-unicorn)
+- 💀 [freemind.bithack](https://github.com/Ares-X/hexo-theme-freemind.bithack)
 
 ### VuePress
 
