@@ -1,0 +1,12 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "jsx": "preserve",
+    "module": "ESNext",
+    "rootDir": "./src/.vuepress",
+    "paths": {
+      "@theme-hope/*": ["vuepress-theme-hope/lib/client/*"]
+    }
+  },
+  "include": ["./src/.vuepress/**/*.ts", "./src/.vuepress/**/*.vue"]
+}

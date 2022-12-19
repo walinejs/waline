@@ -46,8 +46,10 @@ import { useLocaleConfig } from 'vuepress-shared/client';
 
 import { exportRaw, transform } from '../utils/index.js';
 
-const from = ref('valine');
-const to = ref('wcloudbase');
+import type { OriginalType, TransformType } from '../utils/index.js';
+
+const from = ref<OriginalType>('valine');
+const to = ref<TransformType>('wcloudbase');
 const source = ref('');
 
 const i18n = useLocaleConfig({
@@ -85,12 +87,10 @@ const i18n = useLocaleConfig({
   },
 });
 
-const click = (event) => {
+const click = (event: FormDataEvent) => {
   event.preventDefault();
 
-  if (!source.value) {
-    return alert('请输入内容');
-  }
+  if (!source.value) return alert('请输入内容');
 
   if (from.value === 'valine') {
     // 适配 LeanCloud 国内版导出非标准 JSON 情况

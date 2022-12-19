@@ -5,7 +5,19 @@ import { lc2csv } from './lc2csv.js';
 import { lc2tcb } from './lc2tcb.js';
 import { tk2lc } from './tk2lc.js';
 
-export const transform = {
+export type OriginalType =
+  | 'disqus'
+  | 'valine'
+  | 'twikoo'
+  | 'artalk'
+  | 'commento';
+
+export type TransformType = 'wleancloud' | 'wcloudbase' | 'wsql' | 'wgithub';
+
+export const transform: Record<
+  OriginalType,
+  Record<TransformType, (data: string) => unknown>
+> = {
   disqus: {
     wleancloud: disqus2lc,
     wcloudbase(data) {
@@ -19,6 +31,7 @@ export const transform = {
     },
   },
   valine: {
+    wleancloud: (data) => data,
     wcloudbase: lc2tcb,
     wsql: lc2csv,
     wgithub: lc2csv,
