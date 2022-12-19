@@ -6,7 +6,7 @@ import './Fancybox.scss';
 export default defineComponent({
   name: 'Fancybox',
   setup() {
-    onMounted(() => NativeFancybox.bind('#waline-comment .vcontent img'));
+    onMounted(() => NativeFancybox.bind('#waline-comment .wl-content img'));
     onBeforeUnmount(() => NativeFancybox.destroy());
   },
 });
