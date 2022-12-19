@@ -24,11 +24,6 @@ export const zhSidebarConfig = sidebar({
       ],
     },
     'reactivity',
-    {
-      text: '兼容',
-      icon: 'history',
-      children: ['legacy', 'emoji-compact'],
-    },
   ],
   '/guide/': [
     {
@@ -163,11 +158,6 @@ export const enSidebarConfig = sidebar({
       ],
     },
     'reactivity',
-    {
-      text: 'Compatibility',
-      icon: 'history',
-      children: ['legacy', 'emoji-compact'],
-    },
   ],
   '/en/guide/': [
     {

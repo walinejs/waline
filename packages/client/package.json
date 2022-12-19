@@ -87,7 +87,7 @@
   },
   "main": "./dist/shim.cjs",
   "module": "./dist/shim.mjs",
-  "browser": "./dist/legacy.umd.js",
+  "browser": "./dist/waline.js",
   "types": "./dist/shim.d.mts",
   "files": [
     "dist",

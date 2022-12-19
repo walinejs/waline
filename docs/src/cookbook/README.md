@@ -26,11 +26,6 @@ icon: cookbook
 - [添加 TEX 渲染器](./customize/tex-renderer.md)
 - [上传图片](./customize/upload-image.md)
 
-## 兼容
-
-- [Legacy 模式](./legacy.md)
-- [兼容历史版本的 Emoji](./emoji-compact.md)
-
 ## 高级
 
 - [响应式的 Waline 实例](reactivity.md)
