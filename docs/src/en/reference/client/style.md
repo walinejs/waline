@@ -25,13 +25,13 @@ icon: style
 
   /* Layout Color */
   --waline-color: #444;
-  --waline-bgcolor: #fff;
-  --waline-bgcolor-light: #f8f8f8;
-  --waline-bgcolor-hover: #f0f0f0;
+  --waline-bg-color: #fff;
+  --waline-bg-color-light: #f8f8f8;
+  --waline-bg-color-hover: #f0f0f0;
   --waline-border-color: #ddd;
-  --waline-disable-bgcolor: #f8f8f8;
+  --waline-disable-bg-color: #f8f8f8;
   --waline-disable-color: #bbb;
-  --waline-code-bgcolor: #282c34;
+  --waline-code-bg-color: #282c34;
 
   /* Special Color */
   --waline-bq-color: #f0f0f0;
@@ -45,7 +45,7 @@ icon: style
   --waline-badge-font-size: 0.775em;
 
   /* Information */
-  --waline-info-bgcolor: #f8f8f8;
+  --waline-info-bg-color: #f8f8f8;
   --waline-info-color: #999;
   --waline-info-font-size: 0.625em;
 
@@ -64,17 +64,17 @@ darkmode-selector {
 
   /* Layout color */
   --waline-color: #888;
-  --waline-bgcolor: #1e1e1e;
-  --waline-bgcolor-light: #272727;
+  --waline-bg-color: #1e1e1e;
+  --waline-bg-color-light: #272727;
   --waline-border-color: #333;
-  --waline-disable-bgcolor: #444;
+  --waline-disable-bg-color: #444;
   --waline-disable-color: #272727;
 
   /* Special color */
   --waline-bq-color: #272727;
 
   /* Other color */
-  --waline-info-bgcolor: #272727;
+  --waline-info-bg-color: #272727;
   --waline-info-color: #666;
 }
 ```

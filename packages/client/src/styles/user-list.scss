@@ -37,7 +37,7 @@
     padding: 0 0.4em;
     border-radius: 4px;
 
-    background: var(--waline-info-bgcolor);
+    background: var(--waline-info-bg-color);
     color: var(--waline-info-color);
 
     font-weight: bold;
@@ -50,19 +50,19 @@
     margin: 10px 0;
 
     &:nth-child(1) .wl-user-badge {
-      background: var(--waline-rank-gold-bgcolor, #fa3939);
+      background: var(--waline-rank-gold-bg-color, #fa3939);
       color: var(--waline-white);
       font-weight: bold;
     }
 
     &:nth-child(2) .wl-user-badge {
-      background: var(--waline-rank-silver-bgcolor, #fb811c);
+      background: var(--waline-rank-silver-bg-color, #fb811c);
       color: var(--waline-white);
       font-weight: bold;
     }
 
     &:nth-child(3) .wl-user-badge {
-      background: var(--waline-rank-copper-bgcolor, #feb207);
+      background: var(--waline-rank-copper-bg-color, #feb207);
       color: var(--waline-white);
     }
   }
