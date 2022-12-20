@@ -144,7 +144,7 @@
           :reply-id="reply?.objectId"
           :reply-user="comment.nick"
           :root-id="rootId"
-          :refresh="props.refresh"
+          :refresh="refresh"
           @cancel-reply="$emit('reply', null)"
           @cancel-edit="$emit('edit', null)"
           @submit="$emit('submit', $event)"
@@ -213,7 +213,7 @@ const props = withDefaults(
     /**
      * Refresh function
      */
-    refresh: () => void;
+    refresh?: () => void;
   }>(),
   {
     edit: null,
