@@ -144,6 +144,7 @@
           :reply-id="reply?.objectId"
           :reply-user="comment.nick"
           :root-id="rootId"
+          :refresh="props.refresh"
           @cancel-reply="$emit('reply', null)"
           @cancel-edit="$emit('edit', null)"
           @submit="$emit('submit', $event)"
@@ -209,6 +210,10 @@ const props = withDefaults(
      * Current comment to be replied
      */
     reply?: WalineComment | null;
+    /**
+     * Refresh function
+     */
+    refresh?: () => void;
   }>(),
   {
     edit: null,
