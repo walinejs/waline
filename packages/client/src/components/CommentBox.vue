@@ -348,17 +348,12 @@ const props = withDefaults(
      * User name to be replied
      */
     replyUser?: string;
-    /**
-     * Refresh function
-     */
-    refresh?: () => void;
   }>(),
   {
     edit: null,
     rootId: '',
     replyId: '',
     replyUser: '',
-    refresh: () => {},
   }
 );
 
@@ -600,7 +595,6 @@ const onLogin = (event: Event): void => {
       'WALINE_USER',
       JSON.stringify(data)
     );
-    props.refresh()
   });
 };
 
@@ -608,169 +602,168 @@ const onLogout = (): void => {
   userInfo.value = {};
   localStorage.setItem('WALINE_USER', 'null');
   sessionStorage.setItem('WALINE_USER', 'null');
-  props.refresh();
 };
 
 const onProfile = (event: Event): void => {
- event.preventDefault();
+  event.preventDefault();
 
- const { lang, serverURL } = config.value;
+  const { lang, serverURL } = config.value;
 
   const width = 800;
   const height = 800;
   const left = (window.innerWidth - width) / 2;
-  const top = (window.innerHeight - hight) / 2;
-  const query  new URLSearchParams({
+  const top = (window.innerHeight - height) / 2;
+  const query = new URLSearchParams({
     lng: lang,
-    tken: userInfo.value!.token,
+    token: userInfo.value!.token,
   });
   const handler = window.open(
-    `${serverRL}/ui/profile?${query.toString()}`,
+    `${serverURL}/ui/profile?${query.toString()}`,
     '_blank',
-    width=${width},height=${height},left=${left},top=${top},scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no`
- );
+    `width=${width},height=${height},left=${left},top=${top},scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no`
+  );
 
-  andler?.postMessage({ type: 'TOKEN', data: userInfo.value!.token }, '*');
-;
+  handler?.postMessage({ type: 'TOKEN', data: userInfo.value!.token }, '*');
+};
 
-const opupHandler = (event: MouseEvent): void => {
+const popupHandler = (event: MouseEvent): void => {
   if (
-    !emojiButtonRef.value!.contains(event.target as Node &&
-   !emojiPopupRef.value!.contains(event.target as Node)
+    !emojiButtonRef.value!.contains(event.target as Node) &&
+    !emojiPopupRef.value!.contains(event.target as Node)
   )
-   showEmoji.value = false;
+    showEmoji.value = false;
 
   if (
-    !gifButtonRef.value!.contains(event.target as Node &&
-   !gifPopupRef.value!.contains(event.target as Node)
+    !gifButtonRef.value!.contains(event.target as Node) &&
+    !gifPopupRef.value!.contains(event.target as Node)
   )
-   showGif.value = false;
-;
+    showGif.value = false;
+};
 
-const onImageWallScroll = async (event: Event): Proise<void> => {
-  const { scrollTop, clientHeight, crollHeight } =
+const onImageWallScroll = async (event: Event): Promise<void> => {
+  const { scrollTop, clientHeight, scrollHeight } =
     event.target as HTMLDivElement;
   const percent = (clientHeight + scrollTop) / scrollHeight;
-  const searchOptions = config.value.search as WalineSerchOptions;
- const keyword = gifSearchInputRef.value?.value || '';
+  const searchOptions = config.value.search as WalineSearchOptions;
+  const keyword = gifSearchInputRef.value?.value || '';
 
- if (percent < 0.9 || searchResults.loading) return;
+  if (percent < 0.9 || searchResults.loading) return;
 
- searchResults.loading = true;
+  searchResults.loading = true;
 
   searchResults.list = [
     ...searchResults.list,
     ...(searchOptions.more && searchResults.list.length
-      ? await searchOptions.more(keyword, seachResults.list.length)
-     : await searchOptions.search(keyword)),
- ];
+      ? await searchOptions.more(keyword, searchResults.list.length)
+      : await searchOptions.search(keyword)),
+  ];
 
- searchResults.loading = false;
+  searchResults.loading = false;
 
   setTimeout(() => {
-    (even.target as HTMLDivElement).scrollTop = scrollTop;
-  , 50);
-;
+    (event.target as HTMLDivElement).scrollTop = scrollTop;
+  }, 50);
+};
 
-const onGifSearch = useDebunceFn((event: Event) => {
+const onGifSearch = useDebounceFn((event: Event) => {
   searchResults.list = [];
-  onImagWallScroll(event);
-, 300);
+  onImageWallScroll(event);
+}, 300);
 
-// updte wordNumber
+// update wordNumber
 watch(
   [config, wordNumber],
   ([config, wordNumber]) => {
-   const { wordLimit: limit } = config;
+    const { wordLimit: limit } = config;
 
     if (limit) {
-      if (wordNumber < limit[0] && imit[0] !== 0) {
+      if (wordNumber < limit[0] && limit[0] !== 0) {
         wordLimit.value = limit[0];
         isWordNumberLegal.value = false;
-      } else if (wordNumber > limit1]) {
+      } else if (wordNumber > limit[1]) {
         wordLimit.value = limit[1];
-        isWordumberLegal.value = false;
+        isWordNumberLegal.value = false;
       } else {
         wordLimit.value = limit[1];
-       isWordNumberLegal.value = true;
+        isWordNumberLegal.value = true;
       }
     } else {
       wordLimit.value = 0;
-     isWordNumberLegal.value = true;
-    
+      isWordNumberLegal.value = true;
+    }
   },
-   immediate: true }
-;
+  { immediate: true }
+);
 
-// eslint-disable-next-line @typescript-eslint/no-eplicit-any
-const onMessageReceive = ({ data }: any): void > {
- if (!data || data.type !== 'profile') return;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const onMessageReceive = ({ data }: any): void => {
+  if (!data || data.type !== 'profile') return;
 
- userInfo.value = { ...userInfo.value, ...data.data };
+  userInfo.value = { ...userInfo.value, ...data.data };
 
   [localStorage, sessionStorage]
     .filter((store) => store.getItem('WALINE_USER'))
-   .forEach((store) => store.setItem('WALINE_USER', JSON.stringify(userInfo)));
-;
+    .forEach((store) => store.setItem('WALINE_USER', JSON.stringify(userInfo)));
+};
 
 onMounted(() => {
-  document.body.addEventListener('click', popupHandler)
-  window.addEventListener('mesage', onMessageReceive);
+  document.body.addEventListener('click', popupHandler);
+  window.addEventListener('message', onMessageReceive);
   if (props.edit?.objectId) {
-   editor.value = props.edit.orig;
- }
+    editor.value = props.edit.orig;
+  }
 
   // watch gif
-  watch(showGif, async (sowGif) => {
-   if (!showGif) return;
+  watch(showGif, async (showGif) => {
+    if (!showGif) return;
 
-   const searchOptions = config.value.search as WalineSearchOptions;
+    const searchOptions = config.value.search as WalineSearchOptions;
 
     // clear input
-   if (gifSearchInputRef.value) gifSearchInputRef.value.value = '';
+    if (gifSearchInputRef.value) gifSearchInputRef.value.value = '';
 
-   searchResults.loading = true;
+    searchResults.loading = true;
 
-    searchResults.list = searchOption.default
+    searchResults.list = searchOptions.default
       ? await searchOptions.default()
-     : await searchOptions.search('');
+      : await searchOptions.search('');
 
-    sarchResults.loading = false;
- });
+    searchResults.loading = false;
+  });
 
-  // wath editor
+  // watch editor
   watch(
-    () => editorvalue,
+    () => editor.value,
     (value) => {
-     const { highlighter, texRenderer } = config.value;
+      const { highlighter, texRenderer } = config.value;
 
       content.value = value;
-      previewText.value = parseMardown(value, {
-        emojiMap: emji.value.map,
+      previewText.value = parseMarkdown(value, {
+        emojiMap: emoji.value.map,
         highlighter,
-        txRenderer,
+        texRenderer,
       });
-     wordNumber.value = getWordNumber(value);
+      wordNumber.value = getWordNumber(value);
 
       if (value) autosize(editorRef.value!);
-      lse autosize.destroy(editorRef.value!);
+      else autosize.destroy(editorRef.value!);
     },
-     immediate: true }
- );
+    { immediate: true }
+  );
 
-  // wath emoji value change
+  // watch emoji value change
   watch(
-    () => config.vale.emoji,
+    () => config.value.emoji,
     (emojiConfig) =>
-      getEmojis(emojiConfig).hen((config) => {
-        eoji.value = config;
+      getEmojis(emojiConfig).then((config) => {
+        emoji.value = config;
       }),
-     immediate: true }
-  )
-);
+    { immediate: true }
+  );
+});
 
 onUnmounted(() => {
-  document.body.removeEventListener('click', popupHandler)
-  wndow.removeEventListener('message', onMessageReceive);
+  document.body.removeEventListener('click', popupHandler);
+  window.removeEventListener('message', onMessageReceive);
 });
 </script>
