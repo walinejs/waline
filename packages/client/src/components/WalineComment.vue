@@ -2,7 +2,7 @@
   <div data-waline>
     <Reaction />
 
-    <CommentBox v-if="!reply" @submit="onSubmit" />
+    <CommentBox v-if="!reply" :refresh="refresh" @submit="onSubmit" />
 
     <div class="wl-meta-head">
       <div class="wl-count">
@@ -30,6 +30,7 @@
         :comment="comment"
         :reply="reply"
         :edit="edit"
+        :refresh="refresh"
         @reply="onReply"
         @edit="onEdit"
         @submit="onSubmit"

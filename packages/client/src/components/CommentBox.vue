@@ -348,12 +348,18 @@ const props = withDefaults(
      * User name to be replied
      */
     replyUser?: string;
+    /**
+     * Refresh function
+     */
+    refresh?: () => void;
   }>(),
   {
     edit: null,
     rootId: '',
     replyId: '',
     replyUser: '',
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    refresh: () => {},
   }
 );
 
@@ -595,6 +601,7 @@ const onLogin = (event: Event): void => {
       'WALINE_USER',
       JSON.stringify(data)
     );
+    props.refresh();
   });
 };
 
@@ -602,6 +609,7 @@ const onLogout = (): void => {
   userInfo.value = {};
   localStorage.setItem('WALINE_USER', 'null');
   sessionStorage.setItem('WALINE_USER', 'null');
+  props.refresh();
 };
 
 const onProfile = (event: Event): void => {
