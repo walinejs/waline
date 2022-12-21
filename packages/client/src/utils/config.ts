@@ -34,6 +34,7 @@ export interface WalineConfig
       | 'texRenderer'
       | 'wordLimit'
       | 'reaction'
+      | 'search'
     >
   > {
   locale: WalineLocale;
@@ -43,6 +44,7 @@ export interface WalineConfig
   highlighter: Exclude<WalineProps['highlighter'], true | undefined>;
   imageUploader: Exclude<WalineProps['imageUploader'], true | undefined>;
   texRenderer: Exclude<WalineProps['texRenderer'], true | undefined>;
+  search: Exclude<WalineProps['search'], true | undefined>;
 }
 
 export const getServerURL = (serverURL: string): string => {
@@ -103,7 +105,12 @@ export const getConfig = ({
   pageSize,
   login,
   copyright,
-  search: search ?? getDefaultSearchOptions(lang),
+  search:
+    search === false
+      ? false
+      : typeof search === 'object'
+      ? search
+      : getDefaultSearchOptions(lang),
   recaptchaV3Key,
   reaction: Array.isArray(reaction)
     ? reaction
