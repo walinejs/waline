@@ -358,6 +358,7 @@ const props = withDefaults(
 );
 
 const emit = defineEmits<{
+  (event: 'log'): void;
   (event: 'cancelEdit'): void;
   (event: 'cancelReply'): void;
   (event: 'submit', comment: WalineComment): void;
@@ -595,6 +596,7 @@ const onLogin = (event: Event): void => {
       'WALINE_USER',
       JSON.stringify(data)
     );
+    emit('log');
   });
 };
 
@@ -602,6 +604,7 @@ const onLogout = (): void => {
   userInfo.value = {};
   localStorage.setItem('WALINE_USER', 'null');
   sessionStorage.setItem('WALINE_USER', 'null');
+  emit('log');
 };
 
 const onProfile = (event: Event): void => {

@@ -144,6 +144,7 @@
           :reply-id="reply?.objectId"
           :reply-user="comment.nick"
           :root-id="rootId"
+          @log="$emit('log')"
           @cancel-reply="$emit('reply', null)"
           @cancel-edit="$emit('edit', null)"
           @submit="$emit('submit', $event)"
@@ -160,6 +161,7 @@
           :reply="reply"
           :edit="edit"
           :root-id="rootId"
+          @log="$emit('log')"
           @delete="$emit('delete', $event)"
           @edit="$emit('edit', $event)"
           @like="$emit('like', $event)"
@@ -217,6 +219,7 @@ const props = withDefaults(
 );
 
 defineEmits<{
+  (event: 'log'): void;
   (event: 'submit', comment: WalineComment): void;
   (event: 'delete', comment: WalineComment): void;
   (event: 'edit', comment: WalineComment | null): void;
