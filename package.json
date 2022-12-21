@@ -23,7 +23,12 @@
     "server:dev": "vercel dev ./example --listen 9090",
     "test": "vitest"
   },
-  "lint-staged": {
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "nano-staged": {
     "*.md": [
       "markdownlint --fix",
       "prettier --write"
@@ -38,11 +43,6 @@
     "package.json": [
       "sort-package-json"
     ]
-  },
-  "config": {
-    "commitizen": {
-      "path": "cz-conventional-changelog"
-    }
   },
   "prettier": {
     "singleQuote": true
@@ -67,7 +67,7 @@
     "eslint-plugin-react": "7.31.11",
     "eslint-plugin-vue": "9.8.0",
     "husky": "8.0.2",
-    "lint-staged": "13.1.0",
+    "nano-staged": "0.8.0",
     "markdownlint-cli": "0.32.2",
     "postcss": "8.4.20",
     "prettier": "2.8.1",

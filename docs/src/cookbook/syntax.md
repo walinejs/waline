@@ -11,7 +11,11 @@ icon: format
 
 ::: details 标题
 
+<!-- markdownlint-disable MD025 -->
+
 # 一级标题
+
+<!-- markdownlint-enable MD025 -->
 
 ## 二级标题
 
@@ -102,7 +106,7 @@ icon: format
 
     而且由很多个段落构成。
 
-    甚至最后一个段落还包含了[链接](#链接)。
+    甚至最后一个段落还包含了[链接](#markdown-支持)。
 
 - 无序列表项
 

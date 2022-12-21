@@ -11,7 +11,11 @@ The supported Markdown syntax in comments is as follows.
 
 ::: details Headings
 
+<!-- markdownlint-disable MD025 -->
+
 # Heading1
+
+<!-- markdownlint-enable MD025 -->
 
 ## Heading2
 
