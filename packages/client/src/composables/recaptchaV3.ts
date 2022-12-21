@@ -9,12 +9,10 @@ interface ReCaptcha {
 }
 
 export const useReCaptcha = (key: string): ReCaptcha => {
-  const init =
-    recaptchaStore[key] ??
-    (recaptchaStore[key] = load(key, {
-      useRecaptchaNet: true,
-      autoHideBadge: true,
-    }));
+  const init = (recaptchaStore[key] ??= load(key, {
+    useRecaptchaNet: true,
+    autoHideBadge: true,
+  }));
 
   return {
     execute: (action: string) =>
