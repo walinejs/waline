@@ -5,7 +5,7 @@ import ts from 'rollup-plugin-ts';
 import dts from 'rollup-plugin-dts';
 import terser from '@rollup/plugin-terser';
 import replace from '@rollup/plugin-replace';
-import pkg from '../package.json' assert { type: 'json' };
+import pkg from './package.json' assert { type: 'json' };
 import vue from '@vitejs/plugin-vue';
 
 const version = pkg.version;
@@ -42,7 +42,7 @@ export default [
 
   // legacy package
   {
-    input: './src/entrys/legacy.ts',
+    input: './src/entries/legacy.ts',
     output: [
       {
         file: './dist/legacy.umd.js',
@@ -80,14 +80,14 @@ export default [
 
   // legacy declaration files
   {
-    input: './src/entrys/legacy.ts',
+    input: './src/entries/legacy.ts',
     output: [{ file: './dist/legacy.umd.d.ts', format: 'esm' }],
     plugins: [dts({ compilerOptions: { preserveSymlinks: false } })],
   },
 
   // full package
   {
-    input: './src/entrys/full.ts',
+    input: './src/entries/full.ts',
     output: [
       {
         file: './dist/waline.js',
@@ -111,7 +111,7 @@ export default [
 
   // full declaration files
   {
-    input: './src/entrys/full.ts',
+    input: './src/entries/full.ts',
     output: [
       { file: './dist/waline.d.ts', format: 'esm' },
       { file: './dist/waline.d.cts', format: 'esm' },
@@ -122,7 +122,7 @@ export default [
 
   // shim package
   {
-    input: './src/entrys/full.ts',
+    input: './src/entries/full.ts',
     output: [
       {
         file: './dist/shim.cjs',
@@ -141,7 +141,7 @@ export default [
 
   // shim declaration files
   {
-    input: './src/entrys/full.ts',
+    input: './src/entries/full.ts',
     output: [
       { file: './dist/shim.d.cts', format: 'esm' },
       { file: './dist/shim.d.mts', format: 'esm' },
@@ -151,7 +151,7 @@ export default [
 
   // components
   {
-    input: './src/entrys/components.ts',
+    input: './src/entries/components.ts',
     output: [
       {
         file: './dist/component.mjs',
@@ -168,7 +168,7 @@ export default [
 
   // api
   {
-    input: './src/entrys/api.ts',
+    input: './src/entries/api.ts',
     output: [
       {
         file: './dist/api.cjs',
@@ -186,7 +186,7 @@ export default [
 
   // api declaration files
   {
-    input: './src/entrys/api.ts',
+    input: './src/entries/api.ts',
     output: [
       { file: './dist/api.d.ts', format: 'esm' },
       { file: './dist/api.d.cts', format: 'esm' },
@@ -197,7 +197,7 @@ export default [
 
   // comment
   {
-    input: './src/entrys/comment.ts',
+    input: './src/entries/comment.ts',
     output: [
       {
         file: './dist/comment.js',
@@ -221,7 +221,7 @@ export default [
 
   // comment declaration files
   {
-    input: './src/entrys/comment.ts',
+    input: './src/entries/comment.ts',
     output: [
       { file: './dist/comment.d.ts', format: 'esm' },
       { file: './dist/comment.d.cts', format: 'esm' },
@@ -232,7 +232,7 @@ export default [
 
   // pageview
   {
-    input: './src/entrys/pageview.ts',
+    input: './src/entries/pageview.ts',
     output: [
       {
         file: './dist/pageview.js',
@@ -256,7 +256,7 @@ export default [
 
   // pageview declaration files
   {
-    input: './src/entrys/pageview.ts',
+    input: './src/entries/pageview.ts',
     output: [
       { file: './dist/pageview.d.ts', format: 'esm' },
       { file: './dist/pageview.d.cts', format: 'esm' },
