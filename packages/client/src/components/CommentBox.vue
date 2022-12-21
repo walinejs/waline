@@ -628,14 +628,14 @@ const onProfile = (event: Event): void => {
 
 const popupHandler = (event: MouseEvent): void => {
   if (
-    !emojiButtonRef.value!.contains(event.target as Node) &&
-    !emojiPopupRef.value!.contains(event.target as Node)
+    !emojiButtonRef.value?.contains(event.target as Node) &&
+    !emojiPopupRef.value?.contains(event.target as Node)
   )
     showEmoji.value = false;
 
   if (
-    !gifButtonRef.value!.contains(event.target as Node) &&
-    !gifPopupRef.value!.contains(event.target as Node)
+    !gifButtonRef.value?.contains(event.target as Node) &&
+    !gifPopupRef.value?.contains(event.target as Node)
   )
     showGif.value = false;
 };
