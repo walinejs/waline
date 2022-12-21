@@ -99,7 +99,7 @@
     "dev": "vite",
     "lint": "eslint --ext .ts,.vue .",
     "prepublishOnly": "pnpm clean && pnpm build",
-    "rollup": "rollup -c rollup.config.ts --configPlugin esbuild",
+    "rollup": "rollup -c",
     "style": "pnpm style:main && pnpm style:meta",
     "style:main": "sass ./src/styles/index.scss ./dist/waline.css --style=compressed",
     "style:meta": "sass ./src/styles/meta.scss ./dist/waline-meta.css --style=compressed"
@@ -107,6 +107,7 @@
   "browserslist": {
     "production": [
       ">0.5%",
+      "maintained node versions",
       "not dead",
       "not ie 11",
       "not op_mini all",
