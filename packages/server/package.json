@@ -24,7 +24,7 @@
     "fast-csv": "4.3.6",
     "form-data": "4.0.0",
     "jsdom": "20.0.3",
-    "jsonwebtoken": "8.5.1",
+    "jsonwebtoken": "9.0.0",
     "katex": "0.16.4",
     "leancloud-storage": "4.14.0",
     "markdown-it": "13.0.1",
