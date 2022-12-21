@@ -15,7 +15,7 @@
           v-for="item in sortingMethods"
           :key="item"
           :class="[item === commentSorting ? 'active' : '']"
-          @click="() => onSortByChange(item)"
+          @click="onSortByChange(item)"
         >
           {{ i18n[item] }}
         </li>
@@ -523,7 +523,7 @@ const getCommentData = (pageNumber: number): void => {
       page.value = pageNumber;
       totalPages.value = resp.totalPages;
     })
-    .catch((err) => {
+    .catch((err: Error) => {
       if (err.name !== 'AbortError') {
         console.error(err.message);
         status.value = 'error';

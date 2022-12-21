@@ -144,21 +144,25 @@ const imageLoad = (e: Event): void => {
 };
 
 onMounted(() => {
-  redraw(true);
+  void redraw(true);
 
-  resizeObserver = new ResizeObserver(() => redraw());
+  resizeObserver = new ResizeObserver(() => {
+    void redraw();
+  });
   resizeObserver.observe(wall.value!);
 
   watch(
     () => [props.items],
     () => {
       state.value = {};
-      redraw(true);
+      void redraw(true);
     }
   );
   watch(
     () => [props.columnWidth, props.gap],
-    () => redraw()
+    () => {
+      void redraw();
+    }
   );
 });
 

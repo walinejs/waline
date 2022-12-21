@@ -17,6 +17,12 @@ module.exports = {
     sourceType: 'module',
   },
 
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
+
   globals: {
     VERSION: 'readonly',
     think: 'readonly',

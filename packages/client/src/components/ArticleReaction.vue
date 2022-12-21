@@ -40,6 +40,7 @@ import { useReactionStorage } from '../composables/index.js';
 
 import type { ComputedRef } from 'vue';
 import type { WalineConfig } from '../utils/index.js';
+import type { WalineReactionLocale } from '../typings';
 
 defineExpose();
 
@@ -63,33 +64,34 @@ const reactionsInfo = computed<ReactionItem[]>(() => {
 
   return reaction.map((icon, index) => ({
     icon,
-    desc: locale.value[`reaction${index}`],
+    desc: locale.value[`reaction${index}` as keyof WalineReactionLocale],
     active: reactionStorage.value[path] === index,
   }));
 });
 
 let abort: () => void;
 
-const fetchReaction = (): void => {
+const fetchReaction = async (): Promise<void> => {
   if (isReactionEnabled.value) {
     const { serverURL, lang, path, reaction } = config.value;
     const controller = new AbortController();
 
     abort = controller.abort.bind(controller);
 
-    getArticleCounter({
+    const resp = await getArticleCounter({
       serverURL,
       lang,
       paths: [path],
       type: reaction.map((_reaction, index) => `reaction${index}`),
       signal: controller.signal,
-    }).then((resp) => {
-      if (Array.isArray(resp) || typeof resp === 'number') return;
-
-      voteNumbers.value = reaction.map(
-        (_reaction, index) => resp[`reaction${index}`]
-      );
     });
+
+    // TODO: Remove this compact code
+    if (Array.isArray(resp) || typeof resp === 'number') return;
+
+    voteNumbers.value = reaction.map(
+      (_reaction, index) => resp[`reaction${index}`]
+    );
   }
 };
 
@@ -104,7 +106,7 @@ const vote = async (index: number): Promise<void> => {
 
     // if user already vote current article, decrease the voted item number
     if (currentVoteItemIndex !== undefined) {
-      updateArticleCounter({
+      await updateArticleCounter({
         serverURL,
         lang,
         path,
@@ -142,7 +144,7 @@ onMounted(() => {
   watch(
     () => [config.value.serverURL, config.value.path],
     () => {
-      fetchReaction();
+      void fetchReaction();
     },
     { immediate: true }
   );

@@ -97,7 +97,6 @@
     "build": "pnpm rollup && pnpm style",
     "clean": "rimraf ./dist",
     "dev": "vite",
-    "lint": "eslint --ext .ts,.vue .",
     "prepublishOnly": "pnpm clean && pnpm build",
     "rollup": "rollup -c",
     "style": "pnpm style:main && pnpm style:meta",
