@@ -68,7 +68,7 @@ export const getConfig = ({
   serverURL,
 
   path = location.pathname,
-  lang = defaultLang,
+  lang = navigator.language,
   locale,
   emoji = defaultEmoji,
   meta = ['nick', 'mail', 'link'],

@@ -20,6 +20,7 @@ export const defaultLocales: Locales = {
   'en-US': en,
   'en-us': en,
   jp: jp,
+  ja: jp,
   'jp-jp': jp,
   'jp-JP': jp,
   'pt-br': ptBR,

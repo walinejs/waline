@@ -43,7 +43,7 @@ export interface WalinePageviewCountOptions {
    *
    * Language of error message
    *
-   * @default 'zh-CN'
+   * @default navigator.language
    */
   lang?: string;
 }
@@ -62,7 +62,7 @@ export const pageviewCount = ({
   path = window.location.pathname,
   selector = '.waline-pageview-count',
   update = true,
-  lang = 'zh-CN',
+  lang = navigator.language,
 }: WalinePageviewCountOptions): WalineAbort => {
   const controller = new AbortController();
 

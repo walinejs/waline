@@ -15,7 +15,7 @@ export const defaultEmoji: WalineEmojiPresets[] = [
   '//unpkg.com/@waline/emojis@1.1.0/weibo',
 ];
 
-export const defaultLang = 'zh-CN';
+export const defaultLang = 'en-US';
 
 export const defaultUploadImage = (file: File): Promise<string> =>
   new Promise((resolve, reject) => {
