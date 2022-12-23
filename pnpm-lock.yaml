@@ -8,6 +8,7 @@ importers:
   .:
     specifiers:
       '@babel/core': 7.20.5
+      '@babel/eslint-parser': 7.19.1
       '@commitlint/cli': 17.3.0
       '@commitlint/config-conventional': 17.3.0
       '@typescript-eslint/eslint-plugin': 5.46.1
@@ -43,6 +44,7 @@ importers:
       vitest: 0.26.0
     devDependencies:
       '@babel/core': 7.20.5
+      '@babel/eslint-parser': 7.19.1_ak4stjm4k2uvd2drmeegtfb5ly
       '@commitlint/cli': 17.3.0
       '@commitlint/config-conventional': 17.3.0
       '@typescript-eslint/eslint-plugin': 5.46.1_mqzxmroayievgzgel6yrqgih5i
@@ -123,7 +125,7 @@ importers:
       react-dom: 18.2.0
       react-i18next: 12.1.1
       react-redux: 8.0.5
-      react-router-dom: 6.5.0
+      react-router-dom: 6.6.1
       redux: 4.2.0
       rimraf: 3.0.2
       sass-loader: 13.2.0
@@ -156,7 +158,7 @@ importers:
       react-dom: 18.2.0_react@18.2.0
       react-i18next: 12.1.1_6vygckh2jgtx4nucc3no6lnm3y
       react-redux: 8.0.5_e42enmjmqb4imi3q3iaq2rrebm
-      react-router-dom: 6.5.0_biqbaboplfbrettd7655fr4n2y
+      react-router-dom: 6.6.1_biqbaboplfbrettd7655fr4n2y
       redux: 4.2.0
       rimraf: 3.0.2
       sass-loader: 13.2.0_webpack@5.75.0
@@ -472,6 +474,20 @@ packages:
       semver: 6.3.0
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /@babel/eslint-parser/7.19.1_ak4stjm4k2uvd2drmeegtfb5ly:
+    resolution: {integrity: sha512-AqNf2QWt1rtu2/1rLswy6CDP7H9Oh3mMhk177Y67Rg8d7RD9WfOLLv8CGn6tisFvS2htm86yIe1yLF6I1UDaGQ==}
+    engines: {node: ^10.13.0 || ^12.13.0 || >=14.0.0}
+    peerDependencies:
+      '@babel/core': '>=7.11.0'
+      eslint: ^7.5.0 || ^8.0.0
+    dependencies:
+      '@babel/core': 7.20.5
+      '@nicolo-ribaudo/eslint-scope-5-internals': 5.1.1-v1
+      eslint: 8.30.0
+      eslint-visitor-keys: 2.1.0
+      semver: 6.3.0
     dev: true
 
   /@babel/generator/7.20.5:
@@ -2547,6 +2563,12 @@ packages:
       js-yaml: 4.1.0
     dev: false
 
+  /@nicolo-ribaudo/eslint-scope-5-internals/5.1.1-v1:
+    resolution: {integrity: sha512-54/JRvkLIzzDWshCWfuhadfrfZVPiElY8Fcgmg1HroEly/EDSszzhBAsarCux+D/kOslTRquNzuyGSmUSTTHGg==}
+    dependencies:
+      eslint-scope: 5.1.1
+    dev: true
+
   /@nodelib/fs.scandir/2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
     engines: {node: '>= 8'}
@@ -2599,8 +2621,8 @@ packages:
       redux: 4.2.0
     dev: true
 
-  /@remix-run/router/1.1.0:
-    resolution: {integrity: sha512-rGl+jH/7x1KBCQScz9p54p0dtPLNeKGb3e0wD2H5/oZj41bwQUnXdzbj2TbUAFhvD7cp9EyEQA4dEgpUFa1O7Q==}
+  /@remix-run/router/1.2.1:
+    resolution: {integrity: sha512-XiY0IsyHR+DXYS5vBxpoBe/8veTeoRpMHP+vDosLZxL5bnpetzI0igkxkLZS235ldLzyfkxF+2divEwWHP3vMQ==}
     engines: {node: '>=14'}
     dev: true
 
@@ -11654,8 +11676,8 @@ packages:
       use-sync-external-store: 1.2.0_react@18.2.0
     dev: true
 
-  /react-router-dom/6.5.0_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-/XzRc5fq80gW1ctiIGilyKFZC/j4kfe75uivMsTChFbkvrK4ZrF3P3cGIc1f/SSkQ4JiJozPrf+AwUHHWVehVg==}
+  /react-router-dom/6.6.1_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-u+8BKUtelStKbZD5UcY0NY90WOzktrkJJhyhNg7L0APn9t1qJNLowzrM9CHdpB6+rcPt6qQrlkIXsTvhuXP68g==}
     engines: {node: '>=14'}
     peerDependencies:
       react: '>=16.8'
@@ -11666,14 +11688,14 @@ packages:
       react-dom:
         optional: true
     dependencies:
-      '@remix-run/router': 1.1.0
+      '@remix-run/router': 1.2.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      react-router: 6.5.0_react@18.2.0
+      react-router: 6.6.1_react@18.2.0
     dev: true
 
-  /react-router/6.5.0_react@18.2.0:
-    resolution: {integrity: sha512-fqqUSU0NC0tSX0sZbyuxzuAzvGqbjiZItBQnyicWlOUmzhAU8YuLgRbaCL2hf3sJdtRy4LP/WBrWtARkMvdGPQ==}
+  /react-router/6.6.1_react@18.2.0:
+    resolution: {integrity: sha512-YkvlYRusnI/IN0kDtosUCgxqHeulN5je+ew8W+iA1VvFhf86kA+JEI/X/8NqYcr11hCDDp906S+SGMpBheNeYQ==}
     engines: {node: '>=14'}
     peerDependencies:
       react: '>=16.8'
@@ -11681,7 +11703,7 @@ packages:
       react:
         optional: true
     dependencies:
-      '@remix-run/router': 1.1.0
+      '@remix-run/router': 1.2.1
       react: 18.2.0
     dev: true
 
