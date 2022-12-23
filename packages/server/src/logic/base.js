@@ -50,7 +50,13 @@ module.exports = class extends think.Logic {
       return;
     }
     const token = state || authorization.replace(/^Bearer /, '');
-    const userMail = jwt.verify(token, think.config('jwtKey'));
+    let userMail = '';
+
+    try {
+      userMail = jwt.verify(token, think.config('jwtKey'));
+    } catch (e) {
+      think.logger.debug(e);
+    }
 
     if (think.isEmpty(userMail) || !think.isString(userMail)) {
       return;
