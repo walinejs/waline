@@ -176,28 +176,7 @@ export const deleteComment = ({
     .then((resp) => <Promise<DeleteCommentResponse>>resp.json())
     .then((resp) => errorCheck(resp, 'Delete comment'));
 
-export interface UpdateCommentOptions extends BaseAPIOptions {
-  /**
-   * 用户令牌
-   *
-   * User token
-   */
-  token: string;
-
-  /**
-   * 评论的 ID
-   *
-   * Comment ID
-   */
-  objectId: number | string;
-
-  /**
-   * 评论数据
-   *
-   * Comment data
-   */
-  comment?: WalineCommentData;
-
+interface UpdateWalineCommentData extends Partial<WalineCommentData> {
   /**
    * 点赞还是取消点赞
    *
@@ -221,6 +200,28 @@ export interface UpdateCommentOptions extends BaseAPIOptions {
    */
   sticky?: 0 | 1;
 }
+export interface UpdateCommentOptions extends BaseAPIOptions {
+  /**
+   * 用户令牌
+   *
+   * User token
+   */
+  token: string;
+
+  /**
+   * 评论的 ID
+   *
+   * Comment ID
+   */
+  objectId: number | string;
+
+  /**
+   * 评论数据
+   *
+   * Comment data
+   */
+  comment?: UpdateWalineCommentData;
+}
 
 export interface UpdateCommentResponse extends ErrorStatusResponse {
   /**
@@ -236,7 +237,7 @@ export const updateComment = ({
   lang,
   token,
   objectId,
-  ...data
+  comment,
 }: UpdateCommentOptions): Promise<UpdateCommentResponse> =>
   fetch(`${serverURL}/comment/${objectId}?lang=${lang}`, {
     method: 'PUT',
@@ -244,7 +245,7 @@ export const updateComment = ({
       ...JSON_HEADERS,
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify(comment),
   })
     .then((resp) => <Promise<UpdateCommentResponse>>resp.json())
     .then((resp) => errorCheck(resp, 'Update comment'));
