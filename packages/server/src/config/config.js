@@ -18,6 +18,7 @@ const {
   AVATAR_PROXY,
   GITHUB_TOKEN,
   DETA_PROJECT_KEY,
+  AIRCODE_SECRET,
   OAUTH_URL,
 
   MARKDOWN_CONFIG = '{}',
@@ -68,6 +69,9 @@ if (LEAN_KEY) {
 } else if (DETA_PROJECT_KEY) {
   storage = 'deta';
   jwtKey = jwtKey || DETA_PROJECT_KEY;
+} else if (AIRCODE_SECRET) {
+  storage = 'aircode';
+  jwtKey = jwtKey || AIRCODE_SECRET;
 }
 
 if (think.env === 'cloudbase' && storage === 'sqlite') {
