@@ -1,6 +1,7 @@
 .wl-reaction {
   margin-bottom: 1.75em;
   text-align: center;
+  overflow-x: auto;
 
   img {
     width: 100%;
@@ -8,7 +9,14 @@
     transition: all 250ms ease-in-out;
   }
 
-  &-list {
+  .reaction-title {
+    margin: 16px auto;
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .reaction-list {
+    padding: 8px;
     display: flex;
     flex-direction: row;
     gap: 16px;
@@ -17,9 +25,13 @@
     margin: 0;
 
     list-style-type: none;
+
+    @media (max-width: 580px) {
+      gap: 12px;
+    }
   }
 
-  &-item {
+  .reaction-item {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -30,25 +42,30 @@
       transform: scale(1.15);
     }
 
-    &.active .wl-reaction {
-      &-votes {
+    &.active {
+      .reaction-votes {
         background: var(--waline-theme-color);
         color: var(--waline-bgcolor);
       }
 
-      &-text {
+      .reaction-text {
         color: var(--waline-theme-color);
       }
     }
   }
 
-  &-img {
+  .reaction-img {
     position: relative;
     width: 42px;
     height: 42px;
+
+    @media (max-width: 580px) {
+      width: 32px;
+      height: 32px;
+    }
   }
 
-  &-loading {
+  .reaction-loading {
     position: absolute;
     top: -4px;
     right: -5px;
@@ -59,10 +76,10 @@
     color: var(--waline-theme-color);
   }
 
-  &-votes {
+  .reaction-votes {
     position: absolute;
-    top: -4px;
-    right: -5px;
+    top: -9px;
+    right: -9px;
 
     min-width: 1em;
     padding: 2px;
@@ -77,7 +94,7 @@
     line-height: 1;
   }
 
-  &-text {
+  .reaction-text {
     font-size: 0.875em;
   }
 }
