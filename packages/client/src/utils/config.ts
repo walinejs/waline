@@ -99,7 +99,7 @@ export const getConfig = ({
   imageUploader: fallback(imageUploader, defaultUploadImage),
   highlighter: fallback(highlighter, defaultHighlighter),
   texRenderer: fallback(texRenderer, defaultTexRenderer),
-  lang,
+  lang: Object.keys(defaultLocales).includes(lang) ? lang : 'en-US',
   dark,
   emoji: typeof emoji === 'boolean' ? (emoji ? defaultEmoji : []) : emoji,
   pageSize,

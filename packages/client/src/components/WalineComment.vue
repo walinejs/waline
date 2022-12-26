@@ -98,372 +98,34 @@ import { version } from '../version.js';
 
 import type {
   WalineComment,
+  WalineCommentSorting,
   WalineCommentStatus,
-  WalineLocale,
+  WalineProps,
 } from '../typings/index.js';
 
 type SortKey = 'insertedAt_desc' | 'insertedAt_asc' | 'like_desc';
 
-// TODO: Currently complex types and type imports from other files are not supported. It is possible to support type imports in the future.
-// @see https://vuejs.org/api/sfc-script-setup.html#typescript-only-features
-// this issue may be addressed in Vue3.3
-// the following line is the same as WalineProps
-
-type WalineCommentSorting = 'latest' | 'oldest' | 'hottest';
-
-type WalineEmojiPresets =
-  | `//${string}`
-  | `http://${string}`
-  | `https://${string}`;
-
-interface WalineEmojiInfo {
-  /**
-   * 选项卡上的 Emoji 名称
-   *
-   * Emoji name show on tab
-   */
-  name: string;
-  /**
-   * 所在文件夹链接
-   *
-   * Current folder link
-   */
-  folder?: string;
-  /**
-   * Emoji 通用路径前缀
-   *
-   * Common prefix of Emoji icons
-   */
-  prefix?: string;
-  /**
-   * Emoji 图片的类型，会作为文件扩展名使用
-   *
-   * Type of Emoji icons, will be regarded as file extension
-   */
-  type?: string;
-  /**
-   * 选项卡显示的 Emoji 图标
-   *
-   * Emoji icon show on tab
-   */
-  icon: string;
-  /**
-   * Emoji 图片列表
-   *
-   * Emoji image list
-   */
-  items: string[];
-}
-
-type WalineLoginStatus = 'enable' | 'disable' | 'force';
-
-interface WalineSearchImageData extends Record<string, unknown> {
-  /**
-   * 图片链接
-   *
-   * Image link
-   */
-  src: string;
-
-  /**
-   * 图片标题
-   *
-   * @description 用于图片的 alt 属性
-   *
-   * Image title
-   *
-   * @description Used for alt attribute of image
-   */
-  title?: string;
-
-  /**
-   * 图片缩略图
-   *
-   * @description 为了更好的加载性能，我们会优先在列表中使用此缩略图
-   *
-   * Image preview link
-   *
-   * @description For better loading performance, we will use this thumbnail first in the list
-   *
-   * @default src
-   */
-  preview?: string;
-}
-
-type WalineSearchResult = WalineSearchImageData[];
-
-interface WalineSearchOptions {
-  /**
-   * 搜索操作
-   *
-   * Search action
-   */
-  search: (word: string) => Promise<WalineSearchResult>;
-
-  /**
-   * 打开列表时展示的默认结果
-   *
-   * Default result when opening list
-   *
-   * @default () => search('')
-   */
-  default?: () => Promise<WalineSearchResult>;
-
-  /**
-   * 获取更多的操作
-   *
-   * @description 会在列表滚动到底部时触发，如果你的搜索服务支持分页功能，你应该设置此项实现无限滚动
-   *
-   * Fetch more action
-   *
-   * @description It will be triggered when the list scrolls to the bottom. If your search service supports paging, you should set this to achieve infinite scrolling
-   *
-   * @default (word) => search(word)
-   */
-  more?: (word: string, currentCount: number) => Promise<WalineSearchResult>;
-}
-
-type WalineMeta = 'nick' | 'mail' | 'link';
-
-type WalineImageUploader = (image: File) => Promise<string>;
-
-type WalineHighlighter = (code: string, lang: string) => string;
-
-type WalineTexRenderer = (blockMode: boolean, tex: string) => string;
-
-const props = defineProps<{
-  /**
-   * Waline 的服务端地址
-   *
-   * Waline server address url
-   */
-  serverURL: string;
-
-  /**
-   * 当前 _文章页_ 路径，用于区分不同的 _文章页_ ，以保证正确读取该 _文章页_ 下的评论列表
-   *
-   * 你可以将其设置为 `window.location.pathname`
-   *
-   * Article path id. Used to distinguish different _article pages_ to ensure loading the correct comment list under the _article page_.
-   *
-   * You can set it to `window.location.pathname`
-   */
-  path: string;
-
-  /**
-   * 评论者相关属性
-   *
-   * `Meta` 可选值: `'nick'`, `'mail'`, `'link'`
-   *
-   * Reviewer attributes.
-   *
-   * Optional values for `Meta`: `'nick'`, `'mail'`, `'link'`
-   *
-   * @default ['nick', 'mail', 'link']
-   */
-  meta?: WalineMeta[];
-
-  /**
-   * 设置**必填项**，默认昵称为匿名
-   *
-   * Set required fields, default anonymous with nickname
-   *
-   * @default []
-   */
-  requiredMeta?: WalineMeta[];
-
-  /**
-   * 评论字数限制。填入单个数字时为最大字数限制
-   *
-   * @more 设置为 `0` 时无限制
-   *
-   * Comment word s limit. When a single number is filled in, it 's the maximum number of comment words.
-   *
-   * @more No limit when set to `0`.
-   *
-   * @default 0
-   */
-  wordLimit?: number | [number, number];
-
-  /**
-   * 评论列表分页，每页条数
-   *
-   * number of pages per page
-   *
-   * @default 10
-   */
-  pageSize?: number;
-
-  /**
-   * Waline 显示语言
-   *
-   * 可选值:
-   *
-   * - `'zh'`
-   * - `'zh-cn'`
-   * - `'zh-CN'`
-   * - `'zh-tw'`
-   * - `'zh-TW'`
-   * - `'en'`
-   * - `'en-US'`
-   * - `'en-us'`
-   * - `'jp'`
-   * - `'jp-jp'`
-   * - `'jp-JP'`
-   * - `'pt-br'`
-   * - `'pt-BR'`
-   * - `'ru'`
-   * - `'ru-ru'`
-   * - `'ru-RU'`
-   *
-   * Display language for waline
-   *
-   * Optional value:
-   *
-   * - `'zh'`
-   * - `'zh-cn'`
-   * - `'zh-CN'`
-   * - `'zh-tw'`
-   * - `'zh-TW'`
-   * - `'en'`
-   * - `'en-US'`
-   * - `'en-us'`
-   * - `'jp'`
-   * - `'jp-jp'`
-   * - `'jp-JP'`
-   * - `'pt-br'`
-   * - `'pt-BR'`
-   * - `'ru'`
-   * - `'ru-ru'`
-   * - `'ru-RU'`
-   *
-   * @default 'zh-CN'
-   */
-  lang?: string;
-
-  /**
-   * 自定义 waline 语言显示
-   *
-   * @see [自定义语言](https://waline.js.org/client/i18n.html)
-   *
-   * Custom display language in waline
-   *
-   * @see [I18n](https://waline.js.org/en/client/i18n.html)
-   */
-  locale?: Partial<WalineLocale>;
-
-  /**
-   * 评论列表排序方式
-   *
-   * Sorting method for comment list
-   *
-   * @default 'latest'
-   */
-  commentSorting?: WalineCommentSorting;
-
-  /**
-   * 是否启用暗黑模式适配
-   *
-   * @more 设置 `'auto'` 会根据设备暗黑模式自适应。填入 CSS 选择器会在对应选择器生效时启用夜间模式。
-   *
-   * Whether to enable darkmode support
-   *
-   * @more Setting `'auto'` will display darkmode due to device settings. Filling in CSS selector will enable darkmode only when the selector match waline ancestor nodes.
-   */
-  dark?: string | boolean;
-
-  /**
-   * 设置表情包
-   *
-   * Set Emojis
-   *
-   * @default ['//unpkg.com/@waline/emojis@1.1.0/weibo']
-   */
-  emoji?: (WalineEmojiInfo | WalineEmojiPresets)[] | boolean;
-
-  /**
-   * 设置搜索功能
-   *
-   * Customize Search feature
-   *
-   * @default true
-   */
-  search?: WalineSearchOptions | boolean;
-
-  /**
-   * 代码高亮
-   *
-   * Code highlighting
-   *
-   * @default true
-   */
-
-  highlighter?: WalineHighlighter | boolean;
-
-  /**
-   * 自定义图片上传方法，方便更好的存储图片
-   *
-   * 方法执行时会将图片对象传入。
-   *
-   * Custom image upload callback to manage picture by yourself.
-   *
-   * We will pass a picture file object when execute it.
-   *
-   * @default true
-   */
-
-  imageUploader?: WalineImageUploader | boolean;
-
-  /**
-   * 自定义数学公式处理方法，用于预览。
-   *
-   * Custom math formula parse callback for preview.
-   *
-   * @default true
-   */
-  texRenderer?: WalineTexRenderer | boolean;
-
-  /**
-   *
-   * 登录模式状态，可选值:
-   *
-   * - `'enable'`: 启用登录 (默认)
-   * - `'disable'`: 禁用登录，用户只能填写信息评论
-   * - `'force'`: 强制登录，用户必须注册并登录才可发布评论
-   *
-   * Login mode status, optional values:
-   *
-   * - `'enable'`: enable login (default)
-   * - `'disable'`: Login is disabled, users should fill in information to comment
-   * - `'force'`: Forced login, users must login to comment
-   *
-   * @default 'enable'
-   */
-  login?: WalineLoginStatus;
-
-  /**
-   * 是否在页脚展示版权信息
-   *
-   * 为了支持 Waline，我们强烈建议你开启它
-   *
-   * Whether show copyright in footer
-   *
-   * We strongly recommended you to keep it on to support waline
-   *
-   * @default true
-   */
-  copyright?: boolean;
-
-  /**
-   * recaptcha v3 client key
-   */
-  recaptchaV3Key?: string;
-
-  /**
-   * reaction
-   */
-  reaction?: string[] | boolean;
-}>();
+const props = defineProps([
+  'serverURL',
+  'path',
+  'meta',
+  'requiredMeta',
+  'dark',
+  'commentSorting',
+  'lang',
+  'locale',
+  'pageSize',
+  'wordLimit',
+  'emoji',
+  'login',
+  'highlighter',
+  'texRenderer',
+  'imageUploader',
+  'search',
+  'copyright',
+  'recaptchaV3Key',
+  'reaction',
+]);
 
 const sortKeyMap: Record<WalineCommentSorting, SortKey> = {
   latest: 'insertedAt_desc',
@@ -481,7 +143,7 @@ const count = ref(0);
 const page = ref(1);
 const totalPages = ref(0);
 
-const config = computed(() => getConfig(props));
+const config = computed(() => getConfig(props as WalineProps));
 
 // eslint-disable-next-line vue/no-ref-object-destructure
 const commentSorting = ref(config.value.commentSorting);
