@@ -68,7 +68,7 @@ export const getConfig = ({
   serverURL,
 
   path = location.pathname,
-  lang = navigator.language,
+  lang = typeof navigator === 'undefined' ? 'en-US' : navigator.language,
   locale,
   emoji = defaultEmoji,
   meta = ['nick', 'mail', 'link'],
