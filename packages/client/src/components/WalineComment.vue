@@ -84,7 +84,7 @@
 </template>
 
 <script setup lang="ts">
-/* eslint-disable vue/no-unused-properties */
+/* eslint-disable vue/no-unused-properties vue/require-prop-comment vue/require-prop-types */
 import { useStyleTag } from '@vueuse/core';
 import { computed, onMounted, onUnmounted, provide, ref, watch } from 'vue';
 import Reaction from './ArticleReaction.vue';
