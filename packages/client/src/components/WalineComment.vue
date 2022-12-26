@@ -84,6 +84,7 @@
 </template>
 
 <script setup lang="ts">
+/* eslint-disable vue/define-props-declaration */
 /* eslint-disable vue/no-unused-properties */
 /* eslint-disable vue/require-prop-comment */
 /* eslint-disable vue/require-prop-types */
@@ -338,6 +339,7 @@ provide('config', config);
 
 onMounted(() => {
   watch(
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     () => [props.serverURL, props.path],
     () => refresh(),
     { immediate: true }
