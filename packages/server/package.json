@@ -17,6 +17,7 @@
   "dependencies": {
     "@cloudbase/node-sdk": "2.9.1",
     "@koa/cors": "4.0.0",
+    "aircode": "^0.1.3",
     "akismet": "2.0.7",
     "deta": "1.1.0",
     "dompurify": "2.4.1",
