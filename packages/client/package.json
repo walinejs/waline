@@ -119,7 +119,7 @@
     ]
   },
   "dependencies": {
-    "@vueuse/core": "^9.9.0",
+    "@vueuse/core": "^9.10.0",
     "autosize": "^5.0.2",
     "marked": "^4.2.5",
     "vue": "^3.2.45"
@@ -135,15 +135,15 @@
     "@rollup/plugin-terser": "0.2.1",
     "@types/autosize": "4.0.1",
     "@types/marked": "4.0.8",
-    "@types/node": "18.11.17",
+    "@types/node": "18.11.18",
     "@vitejs/plugin-vue": "4.0.0",
     "recaptcha-v3": "1.10.0",
     "rimraf": "3.0.2",
-    "rollup": "3.8.1",
+    "rollup": "3.9.1",
     "rollup-plugin-dts": "5.1.0",
     "rollup-plugin-ts": "3.0.2",
     "typescript": "4.9.4",
-    "vite": "4.0.3"
+    "vite": "4.0.4"
   },
   "engines": {
     "node": ">=14"
