@@ -20,7 +20,7 @@
   span.wl-tex {
     display: inline-block;
 
-    margin-right: 0.25em;
+    margin-inline-end: 0.25em;
     padding: 2px 4px;
     border-radius: 0.2em;
 
@@ -74,7 +74,7 @@
   padding: 0.5em 0;
   color: var(--waline-light-grey);
   font-size: var(--waline-info-font-size);
-  text-align: right;
+  text-align: end;
 }
 
 .wl-meta-head {
@@ -84,22 +84,22 @@
   padding: 0.375em;
 }
 
-ul.wl-sort {
+.wl-sort {
   margin: 0;
   list-style-type: none;
-}
 
-.wl-sort li {
-  display: inline-block;
-  color: var(--waline-info-color);
-  font-size: 0.75em;
-  cursor: pointer;
-}
+  li {
+    display: inline-block;
+    color: var(--waline-info-color);
+    font-size: 0.75em;
+    cursor: pointer;
 
-.wl-sort li + li {
-  margin-left: 1em;
-}
+    &.active {
+      color: var(--waline-theme-color);
+    }
 
-.wl-sort li.active {
-  color: var(--waline-theme-color);
+    + li {
+      margin-inline-start: 1em;
+    }
+  }
 }

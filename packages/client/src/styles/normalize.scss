@@ -1,6 +1,10 @@
 [data-waline] {
   font-size: var(--waline-font-size);
-  text-align: left;
+  text-align: start;
+
+  [dir='rtl'] & {
+    direction: rtl;
+  }
 
   * {
     box-sizing: content-box;
@@ -88,7 +92,7 @@
   blockquote {
     margin: 0.5em 0;
     padding: 0.5em 0 0.5em 1em;
-    border-left: 8px solid var(--waline-bq-color);
+    border-inline-start: 8px solid var(--waline-bq-color);
     color: var(--waline-dark-grey);
 
     > p {
@@ -98,7 +102,7 @@
 
   ol,
   ul {
-    margin-left: 1.25em;
+    margin-inline-start: 1.25em;
     padding: 0;
   }
 
