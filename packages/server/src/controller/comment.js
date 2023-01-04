@@ -57,9 +57,9 @@ async function formatCmt(
       comment.addr = await think.ip2region(ip, { depth: 3 });
     }else{
       comment.addr = await think.ip2region(ip, { depth: 1 });
-      if(comment.addr == "" || commit.addr == null){
+      if(comment.addr == "" || comment.addr == null){
         comment.addr = await think.ip2region(ip, { depth: 2 });
-        if(commit.addr == "" || commit.addr == null){
+        if(comment.addr == "" || comment.addr == null){
           comment.addr = await think.ip2region(ip, { depth: 3 });
         }
       }
