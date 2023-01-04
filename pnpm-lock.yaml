@@ -112,7 +112,7 @@ importers:
       '@babel/runtime': 7.20.7
       '@rematch/core': 2.2.0
       '@svgr/webpack': 6.5.1
-      babel-loader: 9.1.0
+      babel-loader: 9.1.2
       classnames: 2.3.2
       css-loader: 6.7.3
       file-loader: 6.2.0
@@ -145,7 +145,7 @@ importers:
       '@babel/runtime': 7.20.7
       '@rematch/core': 2.2.0_redux@4.2.0
       '@svgr/webpack': 6.5.1
-      babel-loader: 9.1.0_lkd654lvpl423ugsqn5olungie
+      babel-loader: 9.1.2_lkd654lvpl423ugsqn5olungie
       classnames: 2.3.2
       css-loader: 6.7.3_webpack@5.75.0
       file-loader: 6.2.0_webpack@5.75.0
@@ -4782,8 +4782,8 @@ packages:
       - debug
     dev: false
 
-  /babel-loader/9.1.0_lkd654lvpl423ugsqn5olungie:
-    resolution: {integrity: sha512-Antt61KJPinUMwHwIIz9T5zfMgevnfZkEVWYDWlG888fgdvRRGD0JTuf/fFozQnfT+uq64sk1bmdHDy/mOEWnA==}
+  /babel-loader/9.1.2_lkd654lvpl423ugsqn5olungie:
+    resolution: {integrity: sha512-mN14niXW43tddohGl8HPu5yfQq70iUThvFL/4QzESA7GcZoC0eVOhvWdQ8+3UlSjaDE9MVtsW9mxDY07W7VpVA==}
     engines: {node: '>= 14.15.0'}
     peerDependencies:
       '@babel/core': ^7.12.0
