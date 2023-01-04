@@ -53,7 +53,17 @@ async function formatCmt(
 
   // administrator can always show region
   if (isAdmin || !think.config('disableRegion')) {
-    comment.addr = await think.ip2region(ip, { depth: isAdmin ? 3 : 1 });
+    if(isAdmin){
+      comment.addr = await think.ip2region(ip, { depth: 3 });
+    }else{
+      comment.addr = await think.ip2region(ip, { depth: 1 });
+      if(comment.addr == "" || commit.addr == null){
+        comment.addr = await think.ip2region(ip, { depth: 2 });
+        if(commit.addr == "" || commit.addr == null){
+          comment.addr = await think.ip2region(ip, { depth: 3 });
+        }
+      }
+    }
   }
   comment.comment = markdownParser(comment.comment);
   comment.like = Number(comment.like) || 0;
