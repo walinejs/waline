@@ -3,7 +3,7 @@
     <div class="wl-user" aria-hidden="true">
       <img v-if="comment.avatar" :src="comment.avatar" />
 
-      <VerifiedIcon v-if="comment.type" />
+      <VerifiedIcon v-if="comment.type === 'administrator'" />
     </div>
 
     <div class="wl-card">
