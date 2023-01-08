@@ -117,7 +117,7 @@ importers:
       css-loader: 6.7.3
       file-loader: 6.2.0
       html-webpack-plugin: 5.5.0
-      i18next: 22.4.8
+      i18next: 22.4.9
       i18next-browser-languagedetector: 7.0.1
       md5: 2.3.0
       qrcode.react: 3.1.0
@@ -150,13 +150,13 @@ importers:
       css-loader: 6.7.3_webpack@5.75.0
       file-loader: 6.2.0_webpack@5.75.0
       html-webpack-plugin: 5.5.0_webpack@5.75.0
-      i18next: 22.4.8
+      i18next: 22.4.9
       i18next-browser-languagedetector: 7.0.1
       md5: 2.3.0
       qrcode.react: 3.1.0_react@18.2.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      react-i18next: 12.1.1_25zoxyjt3sfdpelgxivbzvmrha
+      react-i18next: 12.1.1_iakk3dtjhjpukdoa4oua5khgci
       react-redux: 8.0.5_e42enmjmqb4imi3q3iaq2rrebm
       react-router-dom: 6.6.1_biqbaboplfbrettd7655fr4n2y
       redux: 4.2.0
@@ -8752,8 +8752,8 @@ packages:
       '@babel/runtime': 7.20.7
     dev: true
 
-  /i18next/22.4.8:
-    resolution: {integrity: sha512-XSOy17ZWqflOiJRYE/dzv6vDle2Se32dnHREHb93UnZzZ1+UnvQ8yKtt1fpNL3zvXz5AwCqqixrtTVZmRetaiQ==}
+  /i18next/22.4.9:
+    resolution: {integrity: sha512-8gWMmUz460KJDQp/ob3MNUX84cVuDRY9PLFPnV8d+Qezz/6dkjxwOaH70xjrCNDO+JrUL25iXfAIN9wUkInNZw==}
     dependencies:
       '@babel/runtime': 7.20.7
     dev: true
@@ -11715,7 +11715,7 @@ packages:
       scheduler: 0.23.0
     dev: true
 
-  /react-i18next/12.1.1_25zoxyjt3sfdpelgxivbzvmrha:
+  /react-i18next/12.1.1_iakk3dtjhjpukdoa4oua5khgci:
     resolution: {integrity: sha512-mFdieOI0LDy84q3JuZU6Aou1DoWW2fhapcTGeBS8+vWSJuViuoCLQAMYSb0QoHhXS8B0WKUOPpx4cffAP7r/aA==}
     peerDependencies:
       i18next: '>= 19.0.0'
@@ -11732,7 +11732,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.20.7
       html-parse-stringify: 3.0.1
-      i18next: 22.4.8
+      i18next: 22.4.9
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     dev: true
