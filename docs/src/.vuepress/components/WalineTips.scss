@@ -1,7 +1,13 @@
 @use 'vuepress-shared/styles/wrapper';
 
-.waline-tips-wrapper:not(.home) {
-  @include wrapper.horizontal-wrapper();
+.waline-tips-wrapper {
+  @media print {
+    display: none;
+  }
+
+  &:not(.home) {
+    @include wrapper.horizontal-wrapper();
+  }
 }
 
 .waline-tips {
