@@ -152,21 +152,6 @@
   }
 }
 
-.wl-editor,
-.wl-input {
-  max-width: 100%;
-  border: none;
-
-  color: var(--waline-color);
-  outline: none;
-
-  transition: all 0.25s ease;
-
-  &:focus {
-    background: var(--waline-bgcolor-light);
-  }
-}
-
 .wl-editor {
   position: relative;
 
@@ -180,6 +165,21 @@
   font-size: 0.875em;
 
   resize: vertical;
+}
+
+.wl-editor,
+.wl-input {
+  max-width: 100%;
+  border: none;
+
+  color: var(--waline-color);
+  outline: none;
+
+  transition: all 0.25s ease;
+
+  &:focus {
+    background: var(--waline-bgcolor-light);
+  }
 }
 
 .wl-preview {

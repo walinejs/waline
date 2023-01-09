@@ -1,20 +1,4 @@
 .wl-cards {
-  .wl-item {
-    position: relative;
-    display: flex;
-    padding: 0.5em;
-
-    &:last-child .wl-card {
-      border-bottom: none;
-    }
-  }
-
-  .wl-card {
-    .wl-item {
-      padding-inline-end: 0;
-    }
-  }
-
   .wl-user {
     --avatar-size: var(--waline-avatar-size);
 
@@ -45,6 +29,16 @@
   }
 }
 
+.wl-card-item {
+  position: relative;
+  display: flex;
+  padding: 0.5em;
+
+  .wl-card-item {
+    padding-inline-end: 0;
+  }
+}
+
 .wl-card {
   flex: 1;
   width: 0;
@@ -55,8 +49,13 @@
     margin-inline-start: 1em;
   }
 
+  .wl-card-item:last-child & {
+    border-bottom: none;
+  }
+
   .wl-head {
-    overflow: hidden; // bfc to fix https://github.com/walinejs/waline/issues/1415
+    // bfc to fix https://github.com/walinejs/waline/issues/1415
+    overflow: hidden;
     line-height: 1.5;
   }
 

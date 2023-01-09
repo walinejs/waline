@@ -13,11 +13,13 @@
     line-height: 1.4;
 
     code {
-      direction: ltr;
       padding: 0;
       border-radius: 0;
+
       background: transparent !important;
       color: #bbb;
+
+      direction: ltr;
     }
   }
 

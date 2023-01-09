@@ -1,24 +1,31 @@
 <template>
   <div v-if="reactionsInfo.length" class="wl-reaction">
-    <div class="reaction-title" v-text="locale.reactionTitle" />
+    <div class="wl-reaction-title" v-text="locale.reactionTitle" />
 
-    <ul class="reaction-list">
+    <ul class="wl-reaction-list">
       <li
         v-for="({ active, icon, desc }, index) in reactionsInfo"
         :key="index"
-        class="reaction-item"
+        class="wl-reaction-item"
         :class="{ active }"
         @click="vote(index)"
       >
-        <div class="reaction-img">
+        <div class="wl-reaction-img">
           <img :src="icon" :alt="desc" />
 
-          <LoadingIcon v-if="votingIndex === index" class="reaction-loading" />
+          <LoadingIcon
+            v-if="votingIndex === index"
+            class="wl-reaction-loading"
+          />
 
-          <div v-else class="reaction-votes" v-text="voteNumbers[index] || 0" />
+          <div
+            v-else
+            class="wl-reaction-votes"
+            v-text="voteNumbers[index] || 0"
+          />
         </div>
 
-        <div class="reaction-text" v-text="desc" />
+        <div class="wl-reaction-text" v-text="desc" />
       </li>
     </ul>
   </div>
