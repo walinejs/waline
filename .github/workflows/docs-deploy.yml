@@ -7,24 +7,21 @@ on:
 
 jobs:
   deploy-docs:
-    strategy:
-      matrix:
-        node-version: [16]
-        os: [ubuntu-latest]
-
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Install pnpm
         uses: pnpm/action-setup@v2
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Install Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 18
           cache: pnpm
 
       - name: Install Dependencies
@@ -39,7 +36,7 @@ jobs:
           > docs/src/.vuepress/dist/.nojekyll
 
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4.4.1
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
           folder: docs/src/.vuepress/dist
