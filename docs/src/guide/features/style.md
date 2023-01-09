@@ -53,7 +53,7 @@ import '@waline/client/waline-meta.css';
 
 ## RTL 支持
 
-`@waline/client` 支持 RTL 布局，你只需要在 `<html>` 标签添加 dir="rtl"` 即可。
+`@waline/client` 支持 RTL 布局，你只需要在 `<html>` 标签添加 `dir="rtl"` 即可。
 
 ## 自定义样式
 
