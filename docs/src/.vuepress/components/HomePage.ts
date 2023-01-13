@@ -2,7 +2,7 @@ import { defineComponent, h, resolveComponent } from 'vue';
 import HopeHomePage from 'vuepress-theme-hope/components/HomePage';
 import WalineTips from './WalineTips.js';
 
-import { useDarkMode } from '@theme-hope/modules/outlook/composables/index';
+import { useDarkmode } from '@theme-hope/modules/outlook/composables/index';
 
 import type { VNode } from 'vue';
 
@@ -10,7 +10,7 @@ export default defineComponent({
   name: 'HopePage',
 
   setup() {
-    const { isDarkMode } = useDarkMode();
+    const { isDarkMode } = useDarkmode();
 
     return (): VNode =>
       h(
