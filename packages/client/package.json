@@ -121,7 +121,7 @@
   "dependencies": {
     "@vueuse/core": "^9.10.0",
     "autosize": "^5.0.2",
-    "marked": "^4.2.5",
+    "marked": "^4.2.12",
     "vue": "^3.2.45"
   },
   "devDependencies": {

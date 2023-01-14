@@ -10,7 +10,7 @@ export default defineComponent({
   name: 'HopePage',
 
   setup() {
-    const { isDarkMode } = useDarkmode();
+    const { isDarkmode } = useDarkmode();
 
     return (): VNode =>
       h(
@@ -21,7 +21,7 @@ export default defineComponent({
             h(WalineTips),
             h(
               h(resolveComponent('CommentService'), {
-                darkmode: isDarkMode.value,
+                darkmode: isDarkmode.value,
               })
             ),
           ],
