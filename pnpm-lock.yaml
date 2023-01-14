@@ -30,7 +30,7 @@ importers:
         version: 5.48.1(eslint@8.31.0)(typescript@4.9.4)
       '@vue/eslint-config-prettier':
         specifier: 7.0.0
-        version: 7.0.0(eslint@8.31.0)(prettier@2.8.2)
+        version: 7.0.0(eslint@8.31.0)(prettier@2.8.3)
       '@vue/eslint-config-typescript':
         specifier: 11.0.2
         version: 11.0.2(eslint-plugin-vue@9.9.0)(eslint@8.31.0)(typescript@4.9.4)
@@ -60,7 +60,7 @@ importers:
         version: 8.6.0(eslint@8.31.0)
       eslint-plugin-prettier:
         specifier: 4.2.1
-        version: 4.2.1(eslint-config-prettier@8.6.0)(eslint@8.31.0)(prettier@2.8.2)
+        version: 4.2.1(eslint-config-prettier@8.6.0)(eslint@8.31.0)(prettier@2.8.3)
       eslint-plugin-react:
         specifier: 7.32.0
         version: 7.32.0(eslint@8.31.0)
@@ -77,8 +77,8 @@ importers:
         specifier: 0.8.0
         version: 0.8.0
       prettier:
-        specifier: 2.8.2
-        version: 2.8.2
+        specifier: 2.8.3
+        version: 2.8.3
       rimraf:
         specifier: 4.0.4
         version: 4.0.4
@@ -3853,7 +3853,7 @@ packages:
     resolution: {integrity: sha512-JD5fcdIuFxU4fQyXUu3w2KpAJHzTVdN+p4iOX2lMWSHMOoQdMAcpFLZzm9Z/2nmsoZ1a96QEhZ26e50xLBsgOQ==}
     dev: true
 
-  /@vue/eslint-config-prettier@7.0.0(eslint@8.31.0)(prettier@2.8.2):
+  /@vue/eslint-config-prettier@7.0.0(eslint@8.31.0)(prettier@2.8.3):
     resolution: {integrity: sha512-/CTc6ML3Wta1tCe1gUeO0EYnVXfo3nJXsIhZ8WJr3sov+cGASr6yuiibJTL6lmIBm7GobopToOuB3B6AWyV0Iw==}
     peerDependencies:
       eslint: '>= 7.28.0'
@@ -3861,8 +3861,8 @@ packages:
     dependencies:
       eslint: 8.31.0
       eslint-config-prettier: 8.6.0(eslint@8.31.0)
-      eslint-plugin-prettier: 4.2.1(eslint-config-prettier@8.6.0)(eslint@8.31.0)(prettier@2.8.2)
-      prettier: 2.8.2
+      eslint-plugin-prettier: 4.2.1(eslint-config-prettier@8.6.0)(eslint@8.31.0)(prettier@2.8.3)
+      prettier: 2.8.3
     dev: true
 
   /@vue/eslint-config-typescript@11.0.2(eslint-plugin-vue@9.9.0)(eslint@8.31.0)(typescript@4.9.4):
@@ -7249,7 +7249,7 @@ packages:
       eslint: 8.31.0
     dev: true
 
-  /eslint-plugin-prettier@4.2.1(eslint-config-prettier@8.6.0)(eslint@8.31.0)(prettier@2.8.2):
+  /eslint-plugin-prettier@4.2.1(eslint-config-prettier@8.6.0)(eslint@8.31.0)(prettier@2.8.3):
     resolution: {integrity: sha512-f/0rXLXUt0oFYs8ra4w49wYZBG5GKZpAYsJSm6rnYL5uVDjd+zowwMwVZHnAjf4edNrKpCDYfXDgmRE/Ak7QyQ==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
@@ -7262,7 +7262,7 @@ packages:
     dependencies:
       eslint: 8.31.0
       eslint-config-prettier: 8.6.0(eslint@8.31.0)
-      prettier: 2.8.2
+      prettier: 2.8.3
       prettier-linter-helpers: 1.0.0
     dev: true
 
@@ -11328,8 +11328,8 @@ packages:
       fast-diff: 1.2.0
     dev: true
 
-  /prettier@2.8.2:
-    resolution: {integrity: sha512-BtRV9BcncDyI2tsuS19zzhzoxD8Dh8LiCx7j7tHzrkz8GFXAexeWFdi22mjE1d16dftH2qNaytVxqiRTGlMfpw==}
+  /prettier@2.8.3:
+    resolution: {integrity: sha512-tJ/oJ4amDihPoufT5sM0Z1SKEuKay8LfVAMlbbhnnkvt6BUserZylqo2PN+p9KeljLr0OHa2rXHU1T8reeoTrw==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true
