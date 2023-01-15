@@ -19,6 +19,13 @@ const {
   MYSQL_PREFIX,
   MYSQL_CHARSET,
   MYSQL_SSL,
+  TIDB_HOST,
+  TIDB_PORT,
+  TIDB_DB,
+  TIDB_USER,
+  TIDB_PASSWORD,
+  TIDB_PREFIX,
+  TIDB_CHARSET,
   SQLITE_PATH,
   SQLITE_DB,
   SQLITE_PREFIX,
@@ -62,6 +69,8 @@ if (MONGO_DB) {
   type = 'sqlite';
 } else if (MYSQL_DB) {
   type = 'mysql';
+} else if (TIDB_DB) {
+  type = 'tidb';
 }
 
 exports.model = {
@@ -129,6 +138,22 @@ exports.model = {
             rejectUnauthorized: false,
           }
         : null,
+  },
+
+  tidb: {
+    handle: Mysql,
+    dateStrings: true,
+    host: TIDB_HOST || '127.0.0.1',
+    port: TIDB_PORT || '4000',
+    database: TIDB_DB,
+    user: TIDB_USER,
+    password: TIDB_PASSWORD,
+    prefix: TIDB_PREFIX || 'wl_',
+    charset: TIDB_CHARSET || 'utf8mb4',
+    ssl: {
+      minVersion: 'TLSv1.2',
+      rejectUnauthorized: true,
+    },
   },
 };
 

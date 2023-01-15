@@ -27,7 +27,7 @@
 - 免费部署
 - 多种部署方式和存储服务支持，每列选择一项多达 84 种部署方式任君选择
   | | Waline | |
-  | -------------------------------------------------------- | --------------------------------------------------------------- | ------------------------------------------------------------------ |
+  | ---------------------------------------- | --------------------------------------------------------------- | ------------------------------------------------- |
   | **客户端脚本** | **服务端部署** | **数据存储** |
   | [@waline/client](https://waline.js.org) | [Vercel](https://vercel.com) | [LeanCloud](https://leancloud.app) |
   | [MiniValine](https://minivaline.js.org/) | [Deta](https://deta.sh) | [CloudBase](https://cloudbase.net) |
@@ -37,7 +37,7 @@
   | | [Railway](https://railway.app) | PostgreSQL |
   | | [Render](https://render.com) | [GitHub](https://github.com) |
   | | Docker | [Deta Base](https://docs.deta.sh/docs/base/about) |
-  | | 独立部署 | |
+  | | 独立部署 | [TiDB](https://tidbcloud.com/) |
 
 ## Todo
 
