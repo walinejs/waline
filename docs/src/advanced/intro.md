@@ -33,7 +33,6 @@ icon: intro
 |                                          | Docker                                                          | [Deta Base](https://docs.deta.sh/docs/base/about) |
 |                                          | 独立部署                                                        | [TiDB](https://tidbcloud.com/)                    |
 
-
 ## Todo
 
 - [x] 邮件通知

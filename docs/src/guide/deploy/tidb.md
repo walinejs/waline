@@ -8,15 +8,15 @@ icon: tidb
 ## 创建数据库
 
 1. 登录 [TiDB Cloud](https://tidbcloud.com) 后会自动创建实 TiDB 实例，直接点击 <kbd>cluster0</kbd> 进入实例
-   
-    ![](../../assets/tidb-1.png)
+
+   ![](../../assets/tidb-1.png)
 
 2. 左侧列表选择 <kbd>Chat2Query</kbd> 并将 [waline.tidb](https://github.com/walinejs/waline/blob/main/assets/waline.tidb) 内容按照 `;` 为语句分布贴近界面执行。每贴一句点击右上角的<kdb>运行</kbd>蓝色按钮，或者使用 <kbd>Ctrl\/Command</kbd> + <kbd>Enter</kbd> 快捷键执行
-    ![](../../assets/tidb-2.png)
-    ![](../../assets/tidb-3.png)
-    ![](../../assets/tidb-4.png)
-    ![](../../assets/tidb-5.png)
-    ![](../../assets/tidb-6.png)
+   ![](../../assets/tidb-2.png)
+   ![](../../assets/tidb-3.png)
+   ![](../../assets/tidb-4.png)
+   ![](../../assets/tidb-5.png)
+   ![](../../assets/tidb-6.png)
 
 至此 Waline 数据库就已经创建完成！
 

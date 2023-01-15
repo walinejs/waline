@@ -160,15 +160,15 @@ Please pay special attention that some mailboxes use separate SMTP passwords.
 
 [Create a database on TiDB](../../../en/guide/deploy/tidb.md)
 
-| Environment Variable | Required | Default | Description                                                        |
-| --------------- | ---- | --------- | ------------------- |
-| `TIDB_DB`           | ✅       |           | TiDB database name        |
-| `TIDB_USER`         | ✅       |           | TiDB server username      |
-| `TIDB_PASSWORD`     | ✅       |           | TiDB server password      |
-| `TIDB_HOST`         |          | 127.0.0.1 | TiDB server address       |
-| `TIDB_PORT`         |          | 4000      | TiDB server port          |
-| `TIDB_PREFIX`       |          | `wl_`     | TiDB table prefix         |
-| `TIDB_CHARSET`      |          | `utf8mb4` | TiDB table charset        |
+| Environment Variable | Required | Default   | Description          |
+| -------------------- | -------- | --------- | -------------------- |
+| `TIDB_DB`            | ✅       |           | TiDB database name   |
+| `TIDB_USER`          | ✅       |           | TiDB server username |
+| `TIDB_PASSWORD`      | ✅       |           | TiDB server password |
+| `TIDB_HOST`          |          | 127.0.0.1 | TiDB server address  |
+| `TIDB_PORT`          |          | 4000      | TiDB server port     |
+| `TIDB_PREFIX`        |          | `wl_`     | TiDB table prefix    |
+| `TIDB_CHARSET`       |          | `utf8mb4` | TiDB table charset   |
 
 ### SQLite
 
