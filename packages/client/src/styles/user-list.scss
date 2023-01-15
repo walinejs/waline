@@ -2,6 +2,50 @@
   padding: 0;
   list-style: none;
 
+  a,
+  a:hover,
+  a:visited {
+    color: var(--waline-color);
+    text-decoration: none;
+  }
+
+  .wl-user-avatar {
+    position: relative;
+
+    display: inline-block;
+
+    overflow: hidden;
+
+    margin-inline-end: 10px;
+    border-radius: 4px;
+
+    line-height: 0;
+
+    > img {
+      width: var(--waline-user-avatar-size, 48px);
+      height: var(--waline-user-avatar-size, 48px);
+    }
+  }
+
+  .wl-user-badge {
+    position: absolute;
+    bottom: 0;
+    inset-inline-end: 0;
+
+    min-width: 0.7em;
+    height: 1.5em;
+    padding: 0 0.4em;
+    border-radius: 4px;
+
+    background: var(--waline-info-bgcolor);
+    color: var(--waline-info-color);
+
+    font-weight: bold;
+    font-size: 10px;
+    line-height: 1.5em;
+    text-align: center;
+  }
+
   .wl-user-item {
     margin: 10px 0;
 
@@ -23,50 +67,6 @@
     }
   }
 
-  a,
-  a:hover,
-  a:visited {
-    color: var(--waline-color);
-    text-decoration: none;
-  }
-
-  .wl-user-avatar {
-    position: relative;
-
-    display: inline-block;
-
-    overflow: hidden;
-
-    margin-right: 10px;
-    border-radius: 4px;
-
-    line-height: 0;
-
-    > img {
-      width: var(--waline-user-avatar-size, 48px);
-      height: var(--waline-user-avatar-size, 48px);
-    }
-  }
-
-  .wl-user-badge {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-
-    min-width: 0.7em;
-    height: 1.5em;
-    padding: 0 0.4em;
-    border-radius: 4px;
-
-    background: var(--waline-info-bgcolor);
-    color: var(--waline-info-color);
-
-    font-weight: bold;
-    font-size: 10px;
-    line-height: 1.5em;
-    text-align: center;
-  }
-
   .wl-user-meta {
     display: inline-block;
     vertical-align: top;
@@ -76,7 +76,7 @@
     display: inline-block;
     vertical-align: text-top;
 
-    margin-left: 0.5em;
+    margin-inline-start: 0.5em;
     padding: 0 0.3em;
     border: 1px solid var(--waline-badge-color);
     border-radius: 4px;
@@ -90,6 +90,12 @@
 .wl-user-wall {
   padding: 0;
   list-style: none;
+
+  // stylelint-disable-next-line no-descending-specificity
+  .wl-user-badge,
+  .wl-user-meta {
+    display: none;
+  }
 
   .wl-user-item {
     position: relative;
@@ -149,10 +155,5 @@
       width: var(--waline-user-avatar-size, 48px);
       height: var(--waline-user-avatar-size, 48px);
     }
-  }
-
-  .wl-user-badge,
-  .wl-user-meta {
-    display: none;
   }
 }

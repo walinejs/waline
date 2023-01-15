@@ -401,6 +401,8 @@ const content = ref('');
 
 const isSubmitting = ref(false);
 
+const isImageListEnd = ref(false);
+
 const locale = computed(() => config.value.locale);
 
 const isLogin = computed(() => Boolean(userInfo.value?.token));
@@ -651,16 +653,23 @@ const onImageWallScroll = async (event: Event): Promise<void> => {
   const searchOptions = config.value.search as WalineSearchOptions;
   const keyword = gifSearchInputRef.value?.value || '';
 
-  if (percent < 0.9 || searchResults.loading) return;
+  if (percent < 0.9 || searchResults.loading || isImageListEnd.value) return;
 
   searchResults.loading = true;
 
-  searchResults.list = [
-    ...searchResults.list,
-    ...(searchOptions.more && searchResults.list.length
+  const searchResult =
+    searchOptions.more && searchResults.list.length
       ? await searchOptions.more(keyword, searchResults.list.length)
-      : await searchOptions.search(keyword)),
-  ];
+      : await searchOptions.search(keyword);
+
+  if (searchResult.length)
+    searchResults.list = [
+      ...searchResults.list,
+      ...(searchOptions.more && searchResults.list.length
+        ? await searchOptions.more(keyword, searchResults.list.length)
+        : await searchOptions.search(keyword)),
+    ];
+  else isImageListEnd.value = true;
 
   searchResults.loading = false;
 
@@ -671,6 +680,7 @@ const onImageWallScroll = async (event: Event): Promise<void> => {
 
 const onGifSearch = useDebounceFn((event: Event) => {
   searchResults.list = [];
+  isImageListEnd.value = false;
   void onImageWallScroll(event);
 }, 300);
 

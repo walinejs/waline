@@ -1,6 +1,6 @@
 <template>
   <div v-if="reactionsInfo.length" class="wl-reaction">
-    <h4 v-text="locale.reactionTitle" />
+    <div class="wl-reaction-title" v-text="locale.reactionTitle" />
 
     <ul class="wl-reaction-list">
       <li

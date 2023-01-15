@@ -50,6 +50,10 @@ For NPM users, you can import via:
 import '@waline/client/dist/waline-meta.css';
 ```
 
+## RTL support
+
+`@waline/client` supports RTL layout, you just need to add `dir="rtl"` in `<html>` tag.
+
 ## Customize Styles
 
 ### CSS Variables

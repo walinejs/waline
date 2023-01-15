@@ -1,4 +1,5 @@
 .wl-reaction {
+  overflow: auto hidden;
   margin-bottom: 1.75em;
   text-align: center;
 
@@ -7,77 +8,96 @@
     height: 100%;
     transition: all 250ms ease-in-out;
   }
+}
 
-  &-list {
-    display: flex;
-    flex-direction: row;
-    gap: 16px;
-    justify-content: center;
+.wl-reaction-title {
+  margin: 16px auto;
+  font-weight: bold;
+  font-size: 18px;
+}
 
-    margin: 0;
+.wl-reaction-list {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  justify-content: center;
 
-    list-style-type: none;
+  margin: 0;
+  padding: 8px;
+
+  list-style-type: none;
+
+  @media (max-width: 580px) {
+    gap: 12px;
   }
 
-  &-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-
-    &:hover img,
-    &.active img {
-      transform: scale(1.15);
-    }
-
-    &.active .wl-reaction {
-      &-votes {
-        background: var(--waline-theme-color);
-        color: var(--waline-bgcolor);
-      }
-
-      &-text {
-        color: var(--waline-theme-color);
-      }
-    }
+  // normalize reset
+  [data-waline] & {
+    margin-inline-start: 0;
   }
+}
 
-  &-img {
-    position: relative;
-    width: 42px;
-    height: 42px;
+.wl-reaction-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+
+  &:hover img,
+  &.active img {
+    transform: scale(1.15);
   }
+}
 
-  &-loading {
-    position: absolute;
-    top: -4px;
-    right: -5px;
+.wl-reaction-img {
+  position: relative;
+  width: 42px;
+  height: 42px;
 
-    width: 18px;
-    height: 18px;
+  @media (max-width: 580px) {
+    width: 32px;
+    height: 32px;
+  }
+}
 
+.wl-reaction-loading {
+  position: absolute;
+  top: -4px;
+  inset-inline-end: -5px;
+
+  width: 18px;
+  height: 18px;
+
+  color: var(--waline-theme-color);
+}
+
+.wl-reaction-votes {
+  position: absolute;
+  top: -9px;
+  inset-inline-end: -9px;
+
+  min-width: 1em;
+  padding: 2px;
+  border: 1px solid var(--waline-theme-color);
+  border-radius: 1em;
+
+  background: var(--waline-bgcolor);
+  color: var(--waline-theme-color);
+
+  font-weight: 700;
+  font-size: 0.75em;
+  line-height: 1;
+
+  .wl-reaction-item.active & {
+    background: var(--waline-theme-color);
+    color: var(--waline-bgcolor);
+  }
+}
+
+.wl-reaction-text {
+  font-size: 0.875em;
+
+  .wl-reaction-item.active & {
     color: var(--waline-theme-color);
-  }
-
-  &-votes {
-    position: absolute;
-    top: -4px;
-    right: -5px;
-
-    min-width: 1em;
-    padding: 2px;
-    border: 1px solid var(--waline-theme-color);
-    border-radius: 1em;
-
-    background: var(--waline-bgcolor);
-    color: var(--waline-theme-color);
-
-    font-weight: 700;
-    font-size: 0.75em;
-    line-height: 1;
-  }
-
-  &-text {
-    font-size: 0.875em;
   }
 }

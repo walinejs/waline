@@ -1,25 +1,9 @@
 .wl-cards {
-  .wl-item {
-    position: relative;
-    display: flex;
-    padding: 0.5em;
-
-    &:last-child .wl-card {
-      border-bottom: none;
-    }
-  }
-
-  .wl-card {
-    .wl-item {
-      padding-right: 0;
-    }
-  }
-
   .wl-user {
     --avatar-size: var(--waline-avatar-size);
 
     position: relative;
-    margin-right: 0.75em;
+    margin-inline-end: 0.75em;
 
     @media (max-width: 720px) {
       --avatar-size: var(--waline-m-avatar-size);
@@ -35,13 +19,23 @@
     .verified-icon {
       position: absolute;
       top: calc(var(--avatar-size) * 3 / 4);
-      left: calc(var(--avatar-size) * 3 / 4);
+      inset-inline-start: calc(var(--avatar-size) * 3 / 4);
 
       border-radius: 50%;
 
       background: var(--waline-bgcolor);
       box-shadow: var(--waline-box-shadow);
     }
+  }
+}
+
+.wl-card-item {
+  position: relative;
+  display: flex;
+  padding: 0.5em;
+
+  .wl-card-item {
+    padding-inline-end: 0;
   }
 }
 
@@ -52,11 +46,16 @@
   border-bottom: 1px dashed var(--waline-border-color);
 
   &:first-child {
-    margin-left: 1em;
+    margin-inline-start: 1em;
+  }
+
+  .wl-card-item:last-child & {
+    border-bottom: none;
   }
 
   .wl-head {
-    overflow: hidden; // bfc to fix https://github.com/walinejs/waline/issues/1415
+    // bfc to fix https://github.com/walinejs/waline/issues/1415
+    overflow: hidden;
     line-height: 1.5;
   }
 
@@ -65,7 +64,7 @@
 
     display: inline-block;
 
-    margin-right: 0.5em;
+    margin-inline-end: 0.5em;
 
     font-weight: bold;
     font-size: 0.875em;
@@ -86,7 +85,7 @@
   .wl-badge {
     display: inline-block;
 
-    margin-right: 1em;
+    margin-inline-end: 1em;
     padding: 0 0.3em;
     border: 1px solid var(--waline-badge-color);
     border-radius: 4px;
@@ -97,7 +96,7 @@
   }
 
   .wl-time {
-    margin-right: 0.875em;
+    margin-inline-end: 0.875em;
     color: var(--waline-info-color);
     font-size: 0.75em;
   }
@@ -109,7 +108,7 @@
     > span {
       display: inline-block;
 
-      margin-right: 0.25em;
+      margin-inline-end: 0.25em;
       padding: 2px 4px;
       border-radius: 0.2em;
 
@@ -128,6 +127,10 @@
   .wl-comment-actions {
     float: right;
     line-height: 1;
+
+    [dir='rtl'] & {
+      float: left;
+    }
   }
 
   .wl-delete,
@@ -179,7 +182,7 @@
         position: absolute;
         top: 0;
         bottom: 3.15em;
-        left: 0;
+        inset-inline-start: 0;
         z-index: 999;
 
         display: block;
@@ -194,7 +197,7 @@
 
         position: absolute;
         bottom: 0;
-        left: 0;
+        inset-inline-start: 0;
         z-index: 999;
 
         display: block;
@@ -232,19 +235,19 @@
       border-radius: 0;
 
       &:first-child {
-        border-right: 0;
+        border-inline-end: 0;
         border-radius: 0.5em 0 0 0.5em;
       }
 
       &:last-child {
-        border-left: 0;
+        border-inline-start: 0;
         border-radius: 0 0.5em 0.5em 0;
       }
     }
   }
 
   .wl-quote {
-    border-left: 1px dashed rgb(237 237 237 / 50%);
+    border-inline-start: 1px dashed rgb(237 237 237 / 50%);
 
     .wl-user {
       --avatar-size: var(--waline-m-avatar-size);

@@ -1,5 +1,5 @@
 <template>
-  <div :id="comment.objectId" class="wl-item">
+  <div :id="comment.objectId" class="wl-card-item">
     <div class="wl-user" aria-hidden="true">
       <img v-if="comment.avatar" :src="comment.avatar" />
 

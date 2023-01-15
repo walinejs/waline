@@ -68,7 +68,7 @@ export const getConfig = ({
   serverURL,
 
   path = location.pathname,
-  lang = navigator.language,
+  lang = typeof navigator === 'undefined' ? 'en-US' : navigator.language,
   locale,
   emoji = defaultEmoji,
   meta = ['nick', 'mail', 'link'],
@@ -99,7 +99,7 @@ export const getConfig = ({
   imageUploader: fallback(imageUploader, defaultUploadImage),
   highlighter: fallback(highlighter, defaultHighlighter),
   texRenderer: fallback(texRenderer, defaultTexRenderer),
-  lang,
+  lang: Object.keys(defaultLocales).includes(lang) ? lang : 'en-US',
   dark,
   emoji: typeof emoji === 'boolean' ? (emoji ? defaultEmoji : []) : emoji,
   pageSize,

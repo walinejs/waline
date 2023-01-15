@@ -7,7 +7,7 @@
 .wl-close {
   position: absolute;
   top: -4px;
-  right: -4px;
+  inset-inline-end: -4px;
 
   padding: 0;
   border: none;
@@ -28,7 +28,7 @@
 .wl-logout-btn {
   position: absolute;
   top: -10px;
-  right: -10px;
+  inset-inline-end: -10px;
 
   padding: 3px;
   border: none;
@@ -152,21 +152,6 @@
   }
 }
 
-.wl-editor,
-.wl-input {
-  max-width: 100%;
-  border: none;
-
-  color: var(--waline-color);
-  outline: none;
-
-  transition: all 0.25s ease;
-
-  &:focus {
-    background: var(--waline-bgcolor-light);
-  }
-}
-
 .wl-editor {
   position: relative;
 
@@ -180,6 +165,21 @@
   font-size: 0.875em;
 
   resize: vertical;
+}
+
+.wl-editor,
+.wl-input {
+  max-width: 100%;
+  border: none;
+
+  color: var(--waline-color);
+  outline: none;
+
+  transition: all 0.25s ease;
+
+  &:focus {
+    background: var(--waline-bgcolor-light);
+  }
 }
 
 .wl-preview {
@@ -275,7 +275,7 @@
   }
 
   button {
-    margin-left: 0.75em;
+    margin-inline-start: 0.75em;
 
     svg {
       display: block;

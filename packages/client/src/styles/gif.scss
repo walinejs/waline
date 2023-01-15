@@ -1,7 +1,7 @@
 .wl-gif-popup {
   position: absolute;
   top: 100%;
-  left: 1.25em;
+  inset-inline-start: 1.25em;
   z-index: 10;
 
   width: calc(100% - 3em);
