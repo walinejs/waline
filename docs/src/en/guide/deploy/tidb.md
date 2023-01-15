@@ -15,7 +15,7 @@ icon: tidb
    ![](../../../assets/tidb-2.png)
    ![](../../../assets/tidb-3.png)
    ![](../../../assets/tidb-4.png)
-   ![](../../assets/tidb-5.png)
+   ![](../../../assets/tidb-5.png)
    ![](../../../assets/tidb-6.png)
 
 So far the Waline database has been created!
