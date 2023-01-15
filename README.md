@@ -38,6 +38,7 @@ A simple comment system with backend support.
 |                                          | Docker                              | PostgreSQL                                        |
 |                                          | self host                           | [GitHub](https://github.com)                      |
 |                                          |                                     | [Deta Base](https://docs.deta.sh/docs/base/about) |
+|                                          |                                     | [TiDB](https://tidbcloud.com/)                    |
 
 ## Todo
 

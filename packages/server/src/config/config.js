@@ -3,6 +3,8 @@ const {
   LEAN_KEY,
   MYSQL_DB,
   MYSQL_PASSWORD,
+  TIDB_DB,
+  TIDB_PASSWORD,
   SQLITE_PATH,
   PG_DB,
   PG_PASSWORD,
@@ -59,6 +61,9 @@ if (LEAN_KEY) {
 } else if (MYSQL_DB) {
   storage = 'mysql';
   jwtKey = jwtKey || MYSQL_PASSWORD;
+} else if (TIDB_DB) {
+  storage = 'tidb';
+  jwtKey = jwtKey || TIDB_PASSWORD;
 } else if (GITHUB_TOKEN) {
   storage = 'github';
   jwtKey = jwtKey || GITHUB_TOKEN;

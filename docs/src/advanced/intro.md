@@ -31,7 +31,7 @@ icon: intro
 |                                          | [Railway](https://railway.app)                                  | PostgreSQL                                        |
 |                                          | [Render](https://render.com)                                    | [GitHub](https://github.com)                      |
 |                                          | Docker                                                          | [Deta Base](https://docs.deta.sh/docs/base/about) |
-|                                          | 独立部署                                                        |                                                   |
+|                                          | 独立部署                                                        | [TiDB](https://tidbcloud.com/)                    |
 
 ## Todo
 
