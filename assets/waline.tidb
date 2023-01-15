@@ -1,3 +1,7 @@
+CREATE DATABASE `waline`;
+
+USE waline;
+
 CREATE TABLE `wl_Comment` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,

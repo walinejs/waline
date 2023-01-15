@@ -144,17 +144,19 @@ SMTP 的用户名通常均支持用户的完整邮箱，而密码大多同邮箱
 | `MYSQL_SSL`      |      | `false`   | 是否使用 SSL MYSQL 连接数据库 |
 
 
-### TIDB
+### TiDB
+
+[在 TiDB 上创建数据库](../../guide/deploy/tidb.md)
 
 | 环境变量名称    | 必填 | 默认值    | 备注                |
 | --------------- | ---- | --------- | ------------------- |
-| `TIDB_DB`       | ✅    |           | TIDB 数据库库名     |
-| `TIDB_USER`     | ✅    |           | TIDB 数据库的用户名 |
-| `TIDB_PASSWORD` | ✅    |           | TIDB 数据库的密码   |
-| `TIDB_HOST`     |      | 127.0.0.1 | TIDB 服务的地址     |
-| `TIDB_PORT`     |      | 3306      | TIDB 服务的端口     |
-| `TIDB_PREFIX`   |      | `wl_`     | TIDB 数据表的表前缀 |
-| `TIDB_CHARSET`  |      | `utf8mb4` | TIDB 数据表的字符集 |
+| `TIDB_DB`       | ✅    |           | TiDB 数据库库名     |
+| `TIDB_USER`     | ✅    |           | TiDB 数据库的用户名 |
+| `TIDB_PASSWORD` | ✅    |           | TiDB 数据库的密码   |
+| `TIDB_HOST`     |      | 127.0.0.1 | TiDB 服务的地址     |
+| `TIDB_PORT`     |      | 4000      | TiDB 服务的端口     |
+| `TIDB_PREFIX`   |      | `wl_`     | TiDB 数据表的表前缀 |
+| `TIDB_CHARSET`  |      | `utf8mb4` | TiDB 数据表的字符集 |
 
 ### SQLite
 
