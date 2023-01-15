@@ -11,7 +11,7 @@ icon: tidb
 
    ![](../../assets/tidb-1.png)
 
-2. 左侧列表选择 <kbd>Chat2Query</kbd> 并将 [waline.tidb](https://github.com/walinejs/waline/blob/main/assets/waline.tidb) 内容按照 `;` 为语句分布贴近界面执行。每贴一句点击右上角的<kdb>运行</kbd>蓝色按钮，或者使用 <kbd>Ctrl\/Command</kbd> + <kbd>Enter</kbd> 快捷键执行
+2. 左侧列表选择 <kbd>Chat2Query</kbd> 并将 [waline.tidb](https://github.com/walinejs/waline/blob/main/assets/waline.tidb) 内容按照 `;` 为语句分布贴近界面执行。每贴一句点击右上角的<kbd>运行</kbd>蓝色按钮，或者使用 <kbd>Ctrl\/Command</kbd> + <kbd>Enter</kbd> 快捷键执行
    ![](../../assets/tidb-2.png)
    ![](../../assets/tidb-3.png)
    ![](../../assets/tidb-4.png)
