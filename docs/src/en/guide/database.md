@@ -16,9 +16,9 @@ You only need to configure environment variables, and Waline will automatically 
 
 | Environment Variable | Required | Default   | Description                                  |
 | -------------------- | -------- | --------- | -------------------------------------------- |
-| `MONGO_DB`           | ✅       |           | MongoDB database name                        |
-| `MONGO_USER`         | ✅       |           | MongoDB server username                      |
-| `MONGO_PASSWORD`     | ✅       |           | MongoDB server password                      |
+| `MONGO_DB`           | ✅        |           | MongoDB database name                        |
+| `MONGO_USER`         | ✅        |           | MongoDB server username                      |
+| `MONGO_PASSWORD`     | ✅        |           | MongoDB server password                      |
 | `MONGO_HOST`         |          | 127.0.0.1 | MongoDB server address, support array format |
 | `MONGO_PORT`         |          | 27017     | MongoDB server port, support array format    |
 | `MONGO_REPLICASET`   |          |           | MongoDB replica set                          |
@@ -46,14 +46,30 @@ If you want to use MySQL as storage, you need to import [waline.sql](https://git
 
 | Environment Variable | Required | Default   | Description                |
 | -------------------- | -------- | --------- | -------------------------- |
-| `MYSQL_DB`           | ✅       |           | MySQL database name        |
-| `MYSQL_USER`         | ✅       |           | MySQL server username      |
-| `MYSQL_PASSWORD`     | ✅       |           | MySQL server password      |
+| `MYSQL_DB`           | ✅        |           | MySQL database name        |
+| `MYSQL_USER`         | ✅        |           | MySQL server username      |
+| `MYSQL_PASSWORD`     | ✅        |           | MySQL server password      |
 | `MYSQL_HOST`         |          | 127.0.0.1 | MySQL server address       |
 | `MYSQL_PORT`         |          | 3306      | MySQL server port          |
 | `MYSQL_PREFIX`       |          | `wl_`     | MySQL table prefix         |
 | `MYSQL_CHARSET`      |          | `utf8mb4` | MySQL table charset        |
 | `MYSQL_SSL`          |          | `false`   | whether use SSL connection |
+
+## TiDB
+
+[TiDB](https://github.com/pingcap/tidb) is an open source NewSQL database. [TiDB Cloud](https://tidbcloud.com/) is the official online version, which provides 5GB of free quota for everyone to use.
+
+Please refer to [Create TiDB database](../../en/guide/deploy/tidb.md) to understand the initialization process.
+
+| Environment Variable | Required | Default   | Description                     |
+| -------------------- | -------- | --------- | ------------------------------- |
+| `TIDB_DB`            | ✅        |           | TiDB database name              |
+| `TIDB_USER`          | ✅        |           | TiDB database user name         |
+| `TIDB_PASSWORD`      | ✅        |           | TiDB database password          |
+| `TIDB_HOST`          |          | 127.0.0.1 | Address of TiDB service         |
+| `TIDB_PORT`          |          | 4000      | Port of TiDB service            |
+| `TIDB_PREFIX`        |          | `wl_`     | Table prefix of TiDB data table |
+| `TIDB_CHARSET`       |          | `utf8mb4` | TiDB data table character set   |
 
 ## SQLite
 
@@ -61,8 +77,8 @@ Download [waline.sqlite](https://github.com/walinejs/waline/blob/main/assets/wal
 
 | Environment Variable | Required | Default | Description                                                        |
 | -------------------- | -------- | ------- | ------------------------------------------------------------------ |
-| `SQLITE_PATH`        | ✅       |         | SQLite storage file path, not include file name                    |
-| `JWT_TOKEN`          | ✅       |         | Random String for login token generator                            |
+| `SQLITE_PATH`        | ✅        |         | SQLite storage file path, not include file name                    |
+| `JWT_TOKEN`          | ✅        |         | Random String for login token generator                            |
 | `SQLITE_DB`          |          | waline  | SQLite storage file name, change it if your filename is not waline |
 | `SQLITE_PREFIX`      |          | `wl_`   | SQLite table prefix                                                |
 
@@ -72,9 +88,9 @@ Download [waline.sqlite](https://github.com/walinejs/waline/blob/main/assets/wal
 
 | Environment Variable | Required | Default   | Description                         |
 | -------------------- | -------- | --------- | ----------------------------------- |
-| `PG_DB`              | ✅       |           | PostgreSQL database name            |
-| `PG_USER`            | ✅       |           | PostgreSQL server username          |
-| `PG_PASSWORD`        | ✅       |           | PostgreSQL server password          |
+| `PG_DB`              | ✅        |           | PostgreSQL database name            |
+| `PG_USER`            | ✅        |           | PostgreSQL server username          |
+| `PG_PASSWORD`        | ✅        |           | PostgreSQL server password          |
 | `PG_HOST`            |          | 127.0.0.1 | PostgreSQL server address           |
 | `PG_PORT`            |          | 3211      | PostgreSQL server port              |
 | `PG_PREFIX`          |          | `wl_`     | PostgreSQL table prefix             |
@@ -86,8 +102,8 @@ Waline supports storing comment data in a CSV file on GitHub. To use GitHub as d
 
 | Environment Variable | Required | Default | Description                                                                                                      |
 | -------------------- | -------- | ------- | ---------------------------------------------------------------------------------------------------------------- |
-| `GITHUB_TOKEN`       | ✅       |         | [Personal access tokens](https://github.com/settings/tokens)                                                     |
-| `GITHUB_REPO`        | ✅       |         | repository name, such as `walinejs/waline`                                                                       |
+| `GITHUB_TOKEN`       | ✅        |         | [Personal access tokens](https://github.com/settings/tokens)                                                     |
+| `GITHUB_REPO`        | ✅        |         | repository name, such as `walinejs/waline`                                                                       |
 | GITHUB_PATH          |          |         | The data storage directory, such as `data` means it is stored in the `data` directory, root directory by default |
 
 ::: warning
@@ -102,7 +118,7 @@ Deta provides [Deta Base](https://docs.deta.sh/docs/base/about) free database su
 
 | Environment Variable | Required | Default | Description             |
 | -------------------- | -------- | ------- | ----------------------- |
-| `DETA_PROJECT_KEY`   | ✅       |         | Deta project secret key |
+| `DETA_PROJECT_KEY`   | ✅        |         | Deta project secret key |
 
 ## Custom
 
