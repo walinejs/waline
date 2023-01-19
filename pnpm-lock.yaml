@@ -62,8 +62,8 @@ importers:
         specifier: 4.2.1
         version: 4.2.1(eslint-config-prettier@8.6.0)(eslint@8.32.0)(prettier@2.8.3)
       eslint-plugin-react:
-        specifier: 7.32.0
-        version: 7.32.0(eslint@8.32.0)
+        specifier: 7.32.1
+        version: 7.32.1(eslint@8.32.0)
       eslint-plugin-vue:
         specifier: 9.9.0
         version: 9.9.0(eslint@8.32.0)
@@ -7266,8 +7266,8 @@ packages:
       prettier-linter-helpers: 1.0.0
     dev: true
 
-  /eslint-plugin-react@7.32.0(eslint@8.32.0):
-    resolution: {integrity: sha512-vSBi1+SrPiLZCGvxpiZIa28fMEUaMjXtCplrvxcIxGzmFiYdsXQDwInEjuv5/i/2CTTxbkS87tE8lsQ0Qxinbw==}
+  /eslint-plugin-react@7.32.1(eslint@8.32.0):
+    resolution: {integrity: sha512-vOjdgyd0ZHBXNsmvU+785xY8Bfe57EFbTYYk8XrROzWpr9QBvpjITvAXt9xqcE6+8cjR/g1+mfumPToxsl1www==}
     engines: {node: '>=4'}
     peerDependencies:
       eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8
