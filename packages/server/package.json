@@ -47,7 +47,7 @@
     "think-mongo": "2.2.1",
     "think-router-rest": "1.0.5",
     "thinkjs": "3.2.14",
-    "ua-parser-js": "1.0.32"
+    "ua-parser-js": "1.0.33"
   },
   "engines": {
     "node": ">=14"
