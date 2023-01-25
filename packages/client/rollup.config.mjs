@@ -195,6 +195,35 @@ export default [
     plugins: [dts({ compilerOptions: { preserveSymlinks: false } })],
   },
 
+  // utils
+  {
+    input: './src/entries/utils.ts',
+    output: [
+      {
+        file: './dist/utils.cjs',
+        format: 'cjs',
+        sourcemap: true,
+      },
+      {
+        file: './dist/utils.mjs',
+        format: 'esm',
+        sourcemap: true,
+      },
+    ],
+    ...commonOptions,
+  },
+
+  // utils declaration files
+  {
+    input: './src/entries/utils.ts',
+    output: [
+      { file: './dist/utils.d.ts', format: 'esm' },
+      { file: './dist/utils.d.cts', format: 'esm' },
+      { file: './dist/utils.d.mts', format: 'esm' },
+    ],
+    plugins: [dts({ compilerOptions: { preserveSymlinks: false } })],
+  },
+
   // comment
   {
     input: './src/entries/comment.ts',
