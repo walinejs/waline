@@ -2,6 +2,7 @@
 home: true
 title: Waline
 icon: home
+heroText: Waline
 heroImage: /logo.png
 actions:
   - text: 💡 Get Started
