@@ -63,7 +63,7 @@
     "react-dom": "18.2.0",
     "react-i18next": "12.1.4",
     "react-redux": "8.0.5",
-    "react-router-dom": "6.7.0",
+    "react-router-dom": "6.8.0",
     "redux": "4.2.0",
     "sass-loader": "13.2.0",
     "style-loader": "3.3.1",
