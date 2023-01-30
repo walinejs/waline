@@ -378,8 +378,8 @@ importers:
         specifier: 2.6.8
         version: 2.6.8
       nodemailer:
-        specifier: 6.9.0
-        version: 6.9.0
+        specifier: 6.9.1
+        version: 6.9.1
       nunjucks:
         specifier: 3.2.3
         version: 3.2.3
@@ -10603,8 +10603,8 @@ packages:
       sorted-array-functions: 1.3.0
     dev: false
 
-  /nodemailer@6.9.0:
-    resolution: {integrity: sha512-jFaCEGTeT3E/m/5R2MHWiyQH3pSARECRUDM+1hokOYc3lQAAG7ASuy+2jIsYVf+RVa9zePopSQwKNVFH8DKUpA==}
+  /nodemailer@6.9.1:
+    resolution: {integrity: sha512-qHw7dOiU5UKNnQpXktdgQ1d3OFgRAekuvbJLcdG5dnEo/GtcTHRYM7+UfJARdOFU9WUQO8OiIamgWPmiSFHYAA==}
     engines: {node: '>=6.0.0'}
     dev: false
 
