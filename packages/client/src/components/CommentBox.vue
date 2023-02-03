@@ -329,6 +329,7 @@ import type {
   WalineSearchResult,
 } from '../typings/index.js';
 import type { WalineConfig, WalineEmojiConfig } from '../utils/index.js';
+import { useTurnstile } from '../composables/turnstile';
 
 const props = withDefaults(
   defineProps<{
@@ -488,6 +489,9 @@ const submitComment = async (): Promise<void> => {
   if (config.value.recaptchaV3Key)
     token = await useReCaptcha(config.value.recaptchaV3Key).execute('social');
 
+  if (config.value.turnstileKey)
+    token = await useTurnstile(config.value.turnstileKey).execute('social');
+
   const comment: WalineCommentData = {
     comment: content.value,
     nick: userMeta.value.nick,
@@ -496,6 +500,7 @@ const submitComment = async (): Promise<void> => {
     ua: navigator.userAgent,
     url: config.value.path,
     recaptchaV3: token,
+    turnstile: token,
   };
 
   if (userInfo.value?.token) {

@@ -84,6 +84,7 @@ export const getConfig = ({
   search,
   reaction,
   recaptchaV3Key = '',
+  turnstileKey = '',
   commentSorting = 'latest',
   ...more
 }: WalineProps): WalineConfig => ({
@@ -112,6 +113,7 @@ export const getConfig = ({
       ? search
       : getDefaultSearchOptions(lang),
   recaptchaV3Key,
+  turnstileKey,
   reaction: Array.isArray(reaction)
     ? reaction
     : reaction === true

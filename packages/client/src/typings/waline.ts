@@ -240,6 +240,11 @@ export interface WalineProps {
   recaptchaV3Key?: string;
 
   /**
+   * turnstile client key
+   */
+  turnstileKey?: string;
+
+  /**
    * reaction
    */
   reaction?: string[] | boolean;
