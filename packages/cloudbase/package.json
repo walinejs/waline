@@ -14,7 +14,7 @@
   "author": "lizheming<i@imnerd.org>",
   "main": "index.js",
   "dependencies": {
-    "@waline/vercel": "workspace:^1.25.2",
+    "@waline/vercel": "workspace:^1.26.0",
     "thinkjs": "^3.2.14"
   }
 }
