@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import useScript from './useScript';
 
-export function useRecaptcha({
+export function useTurnstile({
   sitekey,
   hideDefaultBadge = false,
   checkForExisting = true,
 }) {
-  const [recaptcha, setRecaptcha] = useState();
+  const [turnstile, setTurnstile] = useState();
 
   useEffect(() => {
     if (isBrowser && hideDefaultBadge) {
@@ -15,30 +15,30 @@ export function useRecaptcha({
   }, [hideDefaultBadge]);
 
   useScript({
-    src: window.recaptchaV3Key
-      ? `https://recaptcha.net/recaptcha/api.js?render=${sitekey}`
+    src: window.turnstileKey
+      ? `https://challenges.cloudflare.com/turnstile/v0/api.js?compat=recaptcha&render=${sitekey}`
       : undefined,
     onload: () =>
       window.grecaptcha.ready(() => {
-        setRecaptcha(window.grecaptcha);
+        setTurnstile(window.grecaptcha);
       }),
     checkForExisting,
   });
 
   useEffect(() => {
-    if (window.grecaptcha && window.recaptchaV3Key) {
+    if (window.grecaptcha && window.turnstileKey) {
       window.grecaptcha.ready(() => {
-        setRecaptcha(window.grecaptcha);
+        setTurnstile(window.turnstile);
       });
     }
   }, []);
 
   return (action) => {
     return new Promise((resolve, reject) => {
-      if (recaptcha) {
-        resolve(recaptcha.execute(sitekey, { action }));
+      if (turnstile) {
+        resolve(turnstile.execute(sitekey, { action }));
       } else {
-        reject(new Error('Recaptcha script not available'));
+        reject(new Error('Turnstile script not available'));
       }
     });
   };

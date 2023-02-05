@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { get2FAToken } from '../../services/user';
-import { useRecaptcha } from '../../components/useRecaptchaV3';
+import { useCaptcha } from '../../components/useCaptcha';
 
 import Header from '../../components/Header';
 
@@ -16,9 +16,10 @@ export default function () {
   const user = useSelector((state) => state.user);
   const [error, setError] = useState(false);
   const [is2FAEnabled, enable2FA] = useState(false);
-  const execute = window.recaptchaV3Key
-    ? useRecaptcha({ sitekey: window.recaptchaV3Key, hideDefaultBadge: true })
-    : () => '';
+  const execute = useCaptcha({
+    sitekey: window.turnstileKey || window.recaptchaV3Key,
+    hideDefaultBadge: true,
+  });
 
   const match = location.pathname.match(/(.*?\/)ui/);
   const basePath = match && match[1] ? match[1] : '/';
