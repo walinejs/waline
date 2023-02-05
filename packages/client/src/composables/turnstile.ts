@@ -9,10 +9,28 @@ interface Turnstile {
 }
 
 export const useTurnstile = (key: string): Turnstile => {
+  const _createElement = document.createElement.bind(document);
+
+  document.createElement = function (
+    tag: string,
+    options?: ElementCreationOptions
+  ): HTMLElement {
+    const el = _createElement(tag, options);
+
+    if (el.tagName === 'SCRIPT') {
+      (el as HTMLScriptElement).async = false;
+    }
+
+    return el;
+  };
+
   const init = (turnstileStore[key] ??= load(key, {
     customUrl:
       'https://challenges.cloudflare.com/turnstile/v0/api.js?compat=recaptcha',
     autoHideBadge: true,
+    explicitRenderParameters: {
+      container: document.body,
+    },
   }));
 
   return {
