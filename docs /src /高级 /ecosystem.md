@@ -80,6 +80,7 @@ Others:
 - [hugo-theme-stack](https://github.com/CaiJimmy/hugo-theme-stack)
 - [DoIt](https://github.com/HEIGE-PCloud/DoIt)
 - [FixIt](https://github.com/hugo-fixit/FixIt)
+- [Kenny](https://github.com/Kindle-deep/hugo-theme-Kenny)
 
 ## 更多
 
