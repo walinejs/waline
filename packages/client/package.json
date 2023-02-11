@@ -119,10 +119,10 @@
     ]
   },
   "dependencies": {
-    "@vueuse/core": "^9.11.1",
+    "@vueuse/core": "^9.12.0",
     "autosize": "^5.0.2",
     "marked": "^4.2.12",
-    "vue": "^3.2.45"
+    "vue": "^3.2.47"
   },
   "devDependencies": {
     "@babel/core": "7.20.12",
