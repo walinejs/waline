@@ -28,6 +28,10 @@ Waline 是经典的前后端分离 Client/Server 架构，提供了较为完善�
   </script>
   ```
 
+- [sodesu](https://github.com/BeiyanYunyi/sodesu)
+
+  作者 [@BeiyanYunyi](https://github.com/BeiyanYunyi)。使用 Solid.js 构建，使用方式详见项目页面和[说明文档](https://BeiyanYunyi.github.io/sodesu/)。
+
 ## 插件
 
 你可以使用下列插件来在不同工具上使用 Waline:
