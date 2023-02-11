@@ -1,5 +1,6 @@
 const { Console } = require('think-logger3');
 const Mysql = require('think-model-mysql');
+const Mysql2 = require('think-model-mysql2');
 const Postgresql = require('think-model-postgresql');
 
 let Sqlite = class {};
@@ -141,7 +142,7 @@ exports.model = {
   },
 
   tidb: {
-    handle: Mysql,
+    handle: Mysql2,
     dateStrings: true,
     host: TIDB_HOST || '127.0.0.1',
     port: TIDB_PORT || '4000',
