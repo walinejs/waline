@@ -84,8 +84,8 @@ importers:
         specifier: 4.1.2
         version: 4.1.2
       sass:
-        specifier: 1.58.1
-        version: 1.58.1
+        specifier: 1.58.3
+        version: 1.58.3
       sort-package-json:
         specifier: 2.4.1
         version: 2.4.1
@@ -103,10 +103,10 @@ importers:
         version: 28.16.0
       vite:
         specifier: 4.1.1
-        version: 4.1.1(@types/node@18.13.0)(sass@1.58.1)
+        version: 4.1.1(@types/node@18.13.0)(sass@1.58.3)
       vitest:
         specifier: 0.28.5
-        version: 0.28.5(sass@1.58.1)
+        version: 0.28.5(sass@1.58.3)
 
   docs:
     devDependencies:
@@ -4750,7 +4750,7 @@ packages:
       '@vuepress/shared': 2.0.0-beta.60
       '@vuepress/utils': 2.0.0-beta.60
       '@vueuse/core': 9.12.0(vue@3.2.47)
-      sass: 1.58.1
+      sass: 1.58.3
       vue: 3.2.47
       vue-router: 4.1.6(vue@3.2.47)
     transitivePeerDependencies:
@@ -14091,8 +14091,8 @@ packages:
       webpack: 5.75.0(webpack-cli@5.0.1)
     dev: true
 
-  /sass@1.58.1:
-    resolution: {integrity: sha512-bnINi6nPXbP1XNRaranMFEBZWUfdW/AF16Ql5+ypRxfTvCRTTKrLsMIakyDcayUt2t/RZotmL4kgJwNH5xO+bg==}
+  /sass@1.58.3:
+    resolution: {integrity: sha512-Q7RaEtYf6BflYrQ+buPudKR26/lH+10EmO9bBqbmPh/KeLqv8bjpTNqxe71ocONqXq+jYiCbpPUmQMS+JJPk4A==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     dependencies:
@@ -16273,7 +16273,7 @@ packages:
       vfile-message: 3.1.4
     dev: true
 
-  /vite-node@0.28.5(@types/node@18.13.0)(sass@1.58.1):
+  /vite-node@0.28.5(@types/node@18.13.0)(sass@1.58.3):
     resolution: {integrity: sha512-LmXb9saMGlrMZbXTvOveJKwMTBTNUH66c8rJnQ0ZPNX+myPEol64+szRzXtV5ORb0Hb/91yq+/D3oERoyAt6LA==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
@@ -16285,7 +16285,7 @@ packages:
       picocolors: 1.0.0
       source-map: 0.6.1
       source-map-support: 0.5.21
-      vite: 4.1.1(@types/node@18.13.0)(sass@1.58.1)
+      vite: 4.1.1(@types/node@18.13.0)(sass@1.58.3)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -16363,7 +16363,7 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vite@4.1.1(@types/node@18.13.0)(sass@1.58.1):
+  /vite@4.1.1(@types/node@18.13.0)(sass@1.58.3):
     resolution: {integrity: sha512-LM9WWea8vsxhr782r9ntg+bhSFS06FJgCvvB0+8hf8UWtvaiDagKYWXndjfX6kGl74keHJUcpzrQliDXZlF5yg==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -16393,12 +16393,12 @@ packages:
       postcss: 8.4.21
       resolve: 1.22.1
       rollup: 3.15.0
-      sass: 1.58.1
+      sass: 1.58.3
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
 
-  /vitest@0.28.5(sass@1.58.1):
+  /vitest@0.28.5(sass@1.58.3):
     resolution: {integrity: sha512-pyCQ+wcAOX7mKMcBNkzDwEHRGqQvHUl0XnoHR+3Pb1hytAHISgSxv9h0gUiSiYtISXUU3rMrKiKzFYDrI6ZIHA==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
@@ -16441,8 +16441,8 @@ packages:
       tinybench: 2.3.1
       tinypool: 0.3.1
       tinyspy: 1.1.1
-      vite: 4.1.1(@types/node@18.13.0)(sass@1.58.1)
-      vite-node: 0.28.5(@types/node@18.13.0)(sass@1.58.1)
+      vite: 4.1.1(@types/node@18.13.0)(sass@1.58.3)
+      vite-node: 0.28.5(@types/node@18.13.0)(sass@1.58.3)
       why-is-node-running: 2.2.2
     transitivePeerDependencies:
       - less
@@ -17045,7 +17045,7 @@ packages:
       '@vuepress/shared': 2.0.0-beta.60
       '@vuepress/utils': 2.0.0-beta.60
       chokidar: 3.5.3
-      sass: 1.58.1
+      sass: 1.58.3
       vuepress: 2.0.0-beta.60(@vuepress/client@2.0.0-beta.60)(vue@3.2.47)
       vuepress-shared: 2.0.0-beta.175(@vuepress/client@2.0.0-beta.60)(vuepress@2.0.0-beta.60)
     transitivePeerDependencies:

@@ -75,7 +75,7 @@
     "nano-staged": "0.8.0",
     "prettier": "2.8.4",
     "rimraf": "4.1.2",
-    "sass": "1.58.1",
+    "sass": "1.58.3",
     "sort-package-json": "2.4.1",
     "stylelint": "15.1.0",
     "stylelint-config-hope": "2.0.1",
