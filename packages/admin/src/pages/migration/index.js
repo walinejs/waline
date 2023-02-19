@@ -67,7 +67,7 @@ export default function () {
           if (tableName === 'Users') {
             const user = await request('user?email=' + tableData[j].email);
 
-            if (user && user.objectId) {
+            if (user.objectId) {
               existUserObjectId = user.objectId;
             }
           }
