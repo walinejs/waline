@@ -2,7 +2,7 @@ const ip2region = require('dy-node-ip2region');
 const helper = require('think-helper');
 const preventMessage = 'PREVENT_NEXT_PROCESS';
 
-const regionSearch = ip2region.create();
+const regionSearch = ip2region.create(process.env.IP2REGION_DB);
 
 module.exports = {
   prevent() {
@@ -70,7 +70,9 @@ module.exports = {
       }
       const { region } = result;
       const [, , province, city, isp] = region.split('|');
-      const address = Array.from(new Set([province, city, isp]));
+      const address = Array.from(
+        new Set([province, city, isp].filter((v) => v))
+      );
 
       return address.slice(0, depth).join(' ');
     } catch (e) {
