@@ -77,6 +77,7 @@ Others:
 
 - [hugo-theme-stack](https://github.com/CaiJimmy/hugo-theme-stack)
 - [DoIt](https://github.com/HEIGE-PCloud/DoIt)
+- [Kenny](https://github.com/Kindle-deep/hugo-theme-Kenny)
 
 ## More
 
