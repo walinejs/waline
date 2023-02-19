@@ -45,26 +45,23 @@ export default function () {
     navigate('/ui/login');
   };
 
-  const match = location.pathname.match(/(.*?)\/ui/);
-  const basePath = match ? match[1] : '';
-
   return [
     <div className="typecho-head-nav clear-fix" role="navigation" key="header">
       {user?.type === 'administrator' ? (
         <nav id="typecho-nav-list">
           <ul className="root">
             <li className="parent">
-              <Link to={basePath + '/ui'}>{t('management')}</Link>
+              <Link to="/ui">{t('management')}</Link>
             </li>
             <ul className="child">
               <li className="last">
-                <Link to={basePath + '/ui'}>{t('comment')}</Link>
+                <Link to="/ui">{t('comment')}</Link>
               </li>
               <li className="last">
-                <Link to={basePath + '/ui/user'}>{t('user')}</Link>
+                <Link to="/ui/user">{t('user')}</Link>
               </li>
               <li className="last">
-                <Link to={basePath + '/ui/migration'}>{t('migration')}</Link>
+                <Link to="/ui/migration">{t('migration')}</Link>
               </li>
             </ul>
           </ul>
@@ -85,7 +82,7 @@ export default function () {
           </select>
         </div>
         {user?.type ? (
-          <Link to={basePath + '/ui/profile'} className="author">
+          <Link to="/ui/profile" className="author">
             {user.display_name}
           </Link>
         ) : null}
