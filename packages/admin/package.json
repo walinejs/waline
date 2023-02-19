@@ -1,6 +1,6 @@
 {
   "name": "@waline/admin",
-  "version": "0.23.1",
+  "version": "0.23.3",
   "description": "management system for waline",
   "keywords": [
     "waline",
@@ -26,7 +26,7 @@
     "build": "webpack --mode=production",
     "clean": "rimraf ./dist",
     "dev": "webpack serve --mode=development",
-    "prepublish": "pnpm build"
+    "prepublishOnly": "pnpm build"
   },
   "browserslist": {
     "production": [
