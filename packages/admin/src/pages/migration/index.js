@@ -62,24 +62,39 @@ export default function () {
         }
 
         for (let j = 0; j < tableData.length; j++) {
-          let exitUserObjectId = false;
+          let existUserObjectId = false;
 
           if (tableName === 'Users') {
             const user = await request('user?email=' + tableData[j].email);
 
-            if (user && user.objectId) {
-              exitUserObjectId = user.objectId;
+            if (user.objectId) {
+              existUserObjectId = user.objectId;
             }
           }
 
-          const method =
-            tableName !== 'Users' || !exitUserObjectId ? 'POST' : 'PUT';
+          const shouldEditorUser = tableName == 'Users' && existUserObjectId;
+          const method = shouldEditorUser ? 'PUT' : 'POST';
+          const body =
+            tableName === 'Comment'
+              ? Object.assign({}, tableData[j], {
+                  rid: undefined,
+                  pid: undefined,
+                  user_id: undefined,
+                })
+              : tableData[j];
+
+          for (const k in body) {
+            if (body[k] === null || body[k] === undefined) {
+              delete body[k];
+            }
+          }
+
           const resp = await request({
             url: `db?table=${tableName}${
-              method === 'PUT' ? `&objectId=${exitUserObjectId}` : ''
+              method === 'PUT' ? `&objectId=${existUserObjectId}` : ''
             }`,
             method,
-            body: tableData[j],
+            body,
           });
 
           idMaps[tableName][tableData[j].objectId] = resp.objectId;
@@ -144,6 +159,7 @@ export default function () {
       alert(t('import success'));
       location.reload();
     } catch (e) {
+      console.log(e);
       alert(e.message);
       throw e;
     } finally {
