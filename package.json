@@ -77,7 +77,7 @@
     "rimraf": "4.1.2",
     "sass": "1.58.3",
     "sort-package-json": "2.4.1",
-    "stylelint": "15.1.0",
+    "stylelint": "15.2.0",
     "stylelint-config-hope": "2.0.1",
     "typescript": "4.9.5",
     "vercel": "28.16.2",
