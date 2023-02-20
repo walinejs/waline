@@ -14,8 +14,8 @@
     "marked": "4.2.12",
     "vue": "3.2.47",
     "vuepress": "2.0.0-beta.60",
-    "vuepress-plugin-redirect": "2.0.0-beta.177",
-    "vuepress-shared": "2.0.0-beta.177",
-    "vuepress-theme-hope": "2.0.0-beta.177"
+    "vuepress-plugin-redirect": "2.0.0-beta.178",
+    "vuepress-shared": "2.0.0-beta.178",
+    "vuepress-theme-hope": "2.0.0-beta.178"
   }
 }
