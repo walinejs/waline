@@ -102,8 +102,8 @@ importers:
         specifier: 28.16.2
         version: 28.16.2
       vite:
-        specifier: 4.1.2
-        version: 4.1.2(@types/node@18.14.0)(sass@1.58.3)
+        specifier: 4.1.4
+        version: 4.1.4(@types/node@18.14.0)(sass@1.58.3)
       vitest:
         specifier: 0.28.5
         version: 0.28.5(sass@1.58.3)
@@ -287,7 +287,7 @@ importers:
         version: 18.14.0
       '@vitejs/plugin-vue':
         specifier: 4.0.0
-        version: 4.0.0(vite@4.1.2)(vue@3.2.47)
+        version: 4.0.0(vite@4.1.4)(vue@3.2.47)
       recaptcha-v3:
         specifier: 1.10.0
         version: 1.10.0
@@ -304,8 +304,8 @@ importers:
         specifier: 4.9.5
         version: 4.9.5
       vite:
-        specifier: 4.1.2
-        version: 4.1.2(@types/node@18.14.0)
+        specifier: 4.1.4
+        version: 4.1.4(@types/node@18.14.0)
 
   packages/cloudbase:
     dependencies:
@@ -4334,14 +4334,14 @@ packages:
       vue: 3.2.47
     dev: true
 
-  /@vitejs/plugin-vue@4.0.0(vite@4.1.2)(vue@3.2.47):
+  /@vitejs/plugin-vue@4.0.0(vite@4.1.4)(vue@3.2.47):
     resolution: {integrity: sha512-e0X4jErIxAB5oLtDqbHvHpJe/uWNkdpYV83AOG2xo2tEVSzCzewgJMtREZM30wXnM5ls90hxiOtAuVU6H5JgbA==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
       vite: ^4.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 4.1.2(@types/node@18.14.0)
+      vite: 4.1.4(@types/node@18.14.0)
       vue: 3.2.47
     dev: true
 
@@ -16285,7 +16285,7 @@ packages:
       picocolors: 1.0.0
       source-map: 0.6.1
       source-map-support: 0.5.21
-      vite: 4.1.2(@types/node@18.14.0)(sass@1.58.3)
+      vite: 4.1.4(@types/node@18.14.0)(sass@1.58.3)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -16329,8 +16329,8 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vite@4.1.2(@types/node@18.14.0):
-    resolution: {integrity: sha512-MWDb9Rfy3DI8omDQySbMK93nQqStwbsQWejXRY2EBzEWKmLAXWb1mkI9Yw2IJrc+oCvPCI1Os5xSSIBYY6DEAw==}
+  /vite@4.1.4(@types/node@18.14.0):
+    resolution: {integrity: sha512-3knk/HsbSTKEin43zHu7jTwYWv81f8kgAL99G5NWBcA1LKvtvcVAC4JjBH1arBunO9kQka+1oGbrMKOjk4ZrBg==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
@@ -16363,8 +16363,8 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vite@4.1.2(@types/node@18.14.0)(sass@1.58.3):
-    resolution: {integrity: sha512-MWDb9Rfy3DI8omDQySbMK93nQqStwbsQWejXRY2EBzEWKmLAXWb1mkI9Yw2IJrc+oCvPCI1Os5xSSIBYY6DEAw==}
+  /vite@4.1.4(@types/node@18.14.0)(sass@1.58.3):
+    resolution: {integrity: sha512-3knk/HsbSTKEin43zHu7jTwYWv81f8kgAL99G5NWBcA1LKvtvcVAC4JjBH1arBunO9kQka+1oGbrMKOjk4ZrBg==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
@@ -16441,7 +16441,7 @@ packages:
       tinybench: 2.3.1
       tinypool: 0.3.1
       tinyspy: 1.1.1
-      vite: 4.1.2(@types/node@18.14.0)(sass@1.58.3)
+      vite: 4.1.4(@types/node@18.14.0)(sass@1.58.3)
       vite-node: 0.28.5(@types/node@18.14.0)(sass@1.58.3)
       why-is-node-running: 2.2.2
     transitivePeerDependencies:
