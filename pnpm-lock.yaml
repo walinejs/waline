@@ -30,8 +30,8 @@ importers:
         specifier: 5.52.0
         version: 5.52.0(eslint@8.34.0)(typescript@4.9.5)
       '@vue/eslint-config-prettier':
-        specifier: 7.0.0
-        version: 7.0.0(eslint@8.34.0)(prettier@2.8.4)
+        specifier: 7.1.0
+        version: 7.1.0(eslint@8.34.0)(prettier@2.8.4)
       '@vue/eslint-config-typescript':
         specifier: 11.0.2
         version: 11.0.2(eslint-plugin-vue@9.9.0)(eslint@8.34.0)(typescript@4.9.5)
@@ -4415,8 +4415,8 @@ packages:
     resolution: {integrity: sha512-o9KfBeaBmCKl10usN4crU53fYtC1r7jJwdGKjPT24t348rHxgfpZ0xL3Xm/gLUYnc0oTp8LAmrxOeLyu6tbk2Q==}
     dev: true
 
-  /@vue/eslint-config-prettier@7.0.0(eslint@8.34.0)(prettier@2.8.4):
-    resolution: {integrity: sha512-/CTc6ML3Wta1tCe1gUeO0EYnVXfo3nJXsIhZ8WJr3sov+cGASr6yuiibJTL6lmIBm7GobopToOuB3B6AWyV0Iw==}
+  /@vue/eslint-config-prettier@7.1.0(eslint@8.34.0)(prettier@2.8.4):
+    resolution: {integrity: sha512-Pv/lVr0bAzSIHLd9iz0KnvAr4GKyCEl+h52bc4e5yWuDVtLgFwycF7nrbWTAQAS+FU6q1geVd07lc6EWfJiWKQ==}
     peerDependencies:
       eslint: '>= 7.28.0'
       prettier: '>= 2.0.0'
