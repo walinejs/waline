@@ -135,7 +135,7 @@
     "@rollup/plugin-terser": "0.4.0",
     "@types/autosize": "4.0.1",
     "@types/marked": "4.0.8",
-    "@types/node": "18.14.1",
+    "@types/node": "18.14.2",
     "@vitejs/plugin-vue": "4.0.0",
     "recaptcha-v3": "1.10.0",
     "rollup": "3.17.3",
