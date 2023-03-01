@@ -98,7 +98,7 @@
           v-if="comment.os"
           class="wl-os"
           :data-value="comment.os"
-          v-text="comment.os"
+          v-text="comment.os === 'Windows 10' ? 'Windows 10/11' : comment.os"
         />
       </div>
       <!-- eslint-disable vue/no-v-html -->
