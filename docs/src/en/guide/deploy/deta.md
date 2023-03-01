@@ -19,6 +19,8 @@ Click the button above to jump to the Waline page of the Deta application market
 
 Wait for a while to see the application on the https://deta.space homepage, and click it to open the deployed website address. Fill it in the `serverURL` configuration of the front-end script to complete the entire configuration.
 
+Add `/ui` after this URL can enter the admin dashboard.
+
 ![](../../../assets/deta-1.png)
 ## How to update
 

@@ -19,6 +19,8 @@ https://deta.space/discovery/@lizheming/waline)
 
 稍等片刻即可在 https://deta.space 首页上看到应用，点击后会打开部署后的网站地址。将其填入前端脚本的 `serverURL` 配置中，即可完成全部配置。
 
+在该网址后增加 `/ui` 可以进入后台管理界面。
+
 ![](../../assets/deta-1.png)
 ## 如何更新
 
