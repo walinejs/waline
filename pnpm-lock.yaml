@@ -337,8 +337,8 @@ importers:
         specifier: 1.1.0
         version: 1.1.0
       dompurify:
-        specifier: 3.0.0
-        version: 3.0.0
+        specifier: 3.0.1
+        version: 3.0.1
       dy-node-ip2region:
         specifier: 1.0.1
         version: 1.0.1
@@ -7481,8 +7481,8 @@ packages:
     resolution: {integrity: sha512-q6QaLcakcRjebxjg8/+NP+h0rPfatOgOzc46Fst9VAA3jF2ApfKBNKMzdP4DYTqtUMXSCd5pRS/8Po/OmoCHZQ==}
     dev: true
 
-  /dompurify@3.0.0:
-    resolution: {integrity: sha512-0g/yr2IJn4nTbxwL785YxS7/AvvgGFJw6LLWP+BzWzB1+BYOqPUT9Hy0rXrZh5HLdHnxH72aDdzvC9SdTjsuaA==}
+  /dompurify@3.0.1:
+    resolution: {integrity: sha512-60tsgvPKwItxZZdfLmamp0MTcecCta3avOhsLgPZ0qcWt96OasFfhkeIRbJ6br5i0fQawT1/RBGB5L58/Jpwuw==}
     dev: false
 
   /domutils@2.8.0:
