@@ -4,48 +4,35 @@ icon: deta
 redirectFrom: /en/guide/server/deta.html
 ---
 
-[Deta](https://www.deta.sh/) is a free Serverless platform, we can deploy Waline to Deta platform easily.
+[Deta](https://deta.space/) is a free-to-use serverless deployment platform. We can quickly deploy Waline to the Deta platform.
 
 <!-- more -->
 
-## How to Deploy
+## How to deploy
 
-[![Deploy with Deta](https://button.deta.dev/1/svg)](https://go.deta.dev/deploy?repo=https://github.com/walinejs/deta-starter)
+[![Deploy with Deta](https://button.deta.dev/1/svg)](
+https://deta.space/discovery/@lizheming/waline)
 
-Click this button and it'll redirect to deta platform to quickly deploy. You need select your deploy project and environment variables after login.
+Click the button above to jump to the Waline page of the Deta application market, click <kbd>Install on Space</kbd> to automatically install the application after logging in.
 
-![Deta-1](../../../assets/deta-1.png)
+![](../../../assets/deta.png)
 
-When everything is ok, just click <kbd>Deploy</kbd> button. It'll deploy successful after a moment. Then deta will show you deploy site url. Copy the site url and input it into client `serverURL` configuration. Then you can enjoy waline!
+Wait for a while to see the application on the https://deta.space homepage, and click it to open the deployed website address. Fill it in the `serverURL` configuration of the front-end script to complete the entire configuration.
 
-![Deta-2](../../../assets/deta-2.png)
+![](../../../assets/deta-1.png)
+## How to update
 
-## How to Update
+When there is an update, you will see a yellow bubble prompt on your application list page, click More to see the <kbd>Update App</kbd> option.
 
-Deta uses CLI command line tools to manage projects. Follow the [documentation](https://docs.deta.sh/docs/cli/install) guide to install Deta's command line tools.
+![](../../../assets/deta-2.png)
 
-```sh
-# Mac or Linux
-curl -fsSL https://get.deta.dev/cli.sh | sh
 
-# Windows for powershell
-iwr https://get.deta.dev/cli.ps1 -useb | iex
-```
+After clicking, select <kbd>Install App Update</kbd> and wait for a while to update successfully.
 
-After installation, we use `deta login` to log in to the command line, during which a browser will be opened for login.
-
-We need to clone the project before updating. Enter the setting page of our project, copy and execute the `deta clone` command on the page, and the project will be downloaded after a while.
-
-![Deta-2](../../../assets/deta-3.jpg)
-
-After that, we can modify the project code locally, for example, modify the dependency version in `package.json` to the latest.
-
-Finally, we can use the `deta deploy` command in the command line to implement the update deployment of the website.
+![](../../../assets/deta-3.png)
 
 ## How to modify environment variables
 
-Modifying environment variable also requires the CLI to operate.
+Click <kbd>...</kbd> - <kbd>Settings</kbd> - <kbd>Configuration</kbd> under the application list Waline App to configure all environment variables. After the configuration is complete, click <kbd>Save Changes</kbd> at the bottom to save.
 
-After clone the project to the local according to the steps before said. Then add a `.env` file to the project, and write the environment variables that need to be modified in the file line by line in the form of `VAR_NAME=VALUE`. Finally, use `deta update -e .env` to complete the environment variable update.
-
-For details, please refer to [Deta Environment Variables Documentation](https://docs.deta.sh/docs/micros/env_vars#setting-environment-variables).
+![](../../../assets/deta-4.png)

@@ -4,48 +4,34 @@ icon: deta
 redirectFrom: /guide/server/deta.html
 ---
 
-[Deta](https://www.deta.sh/) 是一个可免费使用的 Serverless 部署平台。我们可以快速的将 Waline 部署到 Deta 平台上。
+[Deta](https://deta.space/) 是一个可免费使用的 Serverless 部署平台。我们可以快速的将 Waline 部署到 Deta 平台上。
 
 <!-- more -->
 
 ## 如何部署
 
-[![Deploy with Deta](https://button.deta.dev/1/svg)](https://go.deta.dev/deploy?repo=https://github.com/walinejs/deta-starter)
+[![Deploy with Deta](https://button.deta.dev/1/svg)](
+https://deta.space/discovery/@lizheming/waline)
 
-点击上方按钮，跳转至 Deta 平台快速部署。登录之后会让你选择部署的位置，同时需要你输入环境变量。
+点击上方按钮，跳转至 Deta 应用市场 Waline 页，点击 <kbd>Install on Space</kbd> 登录后即可自动安装应用。
 
-![Deta-1](../../assets/deta-1.png)
+![](../../assets/deta.png)
 
-填写好后点击 <kbd>Deploy</kbd> 按钮，稍等片刻会提示你部署成功，并为你展示部署后的网站地址。将其填入前端脚本的 `serverURL` 配置中，即可完成全部配置。
+稍等片刻即可在 https://deta.space 首页上看到应用，点击后会打开部署后的网站地址。将其填入前端脚本的 `serverURL` 配置中，即可完成全部配置。
 
-![Deta-2](../../assets/deta-2.png)
-
+![](../../assets/deta-1.png)
 ## 如何更新
 
-Deta 使用 CLI 命令行工具对项目进行管理。按照[文档](https://docs.deta.sh/docs/cli/install)指示安装 Deta 的命令行工具。
+当有更新时，在你的应用程序列表页会看到黄色气泡提示，点击更多可以看到 <kbd>Update App</kbd> 选项。
 
-```sh
-# Mac or Linux
-curl -fsSL https://get.deta.dev/cli.sh | sh
+![](../../assets/deta-2.png)
 
-# Windows for powershell
-iwr https://get.deta.dev/cli.ps1 -useb | iex
-```
 
-装好之后我们使用 `deta login` 来登录命令行，期间会打开浏览器用于登录。
+点击后选择 <kbd>Install App Update</kbd> 稍等片刻后即可更新成功。
 
-更新之前我们需要将项目克隆下来。进入到我们的项目的设置页，复制并执行页面中的 `deta clone` 命令，稍等一会儿项目就下载下来了。
-
-![Deta-2](../../assets/deta-3.jpg)
-
-之后我们可以在本地对项目代码进行修改，比如将 `package.json` 中的依赖版本修改至最新。
-
-最后我们在命令行中使用 `deta deploy` 命令即可实现网站的更新部署。
+![](../../assets/deta-3.png)
 
 ## 如何修改环境变量
 
-修改换进变量同样需要使用 CLI 进行操作。
-
-按照刚才的步骤将项目克隆到本地后，在项目中新增 `.env` 文件，将需要修改的环境变量使用 `VAR_NAME=VALUE` 的形式一行一个写在文件中。最后使用 `deta update -e .env` 即可完成环境变量更新。
-
-具体可参考 [Deta 环境变量文档](https://docs.deta.sh/docs/micros/env_vars#setting-environment-variables)。
+在应用程序列表 Waline App 下点击 <kbd>...</kbd> - <kbd>Settings</kbd> - <kbd>Configuration</kbd> 可以对所有的环境变量进行配置。配置完成后点击底部的 <kbd>Save Changes</kbd> 保存即可。
+![](../../assets/deta-4.png)
