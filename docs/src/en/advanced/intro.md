@@ -24,13 +24,13 @@ A simple comment system with backend support fork from [Valine](https://valine.j
 | ----------------------------------------------- | ----------------------------------- | ------------------------------------------------- |
 | **Client**                                      | **Server**                          | **Storage**                                       |
 | [@waline/client](https://waline.js.org)         | [Vercel](https://vercel.com)        | [LeanCloud](https://leancloud.app)                |
-| [MiniValine](https://minivaline.js.org/)        | [Deta](https://deta.sh)             | [CloudBase](https://cloudbase.net)                |
+| [MiniValine](https://minivaline.js.org/)        | [Deta](https://deta.space)             | [CloudBase](https://cloudbase.net)                |
 | [sodesu](https://github.com/BeiyanYunyi/sodesu) | [CloudBase](https://cloudbase.net/) | [MongoDB](https://mongodb.com)                    |
 |                                                 | [Railway](https://railway.app)      | MySQL                                             |
 |                                                 | [Render](https://render.com)        | SQLite                                            |
 |                                                 | Docker                              | PostgreSQL                                        |
 |                                                 | self host                           | [GitHub](https://github.com)                      |
-|                                                 |                                     | [Deta Base](https://docs.deta.sh/docs/base/about) |
+|                                                 |                                     | [Deta Base](https://deta.space/docs/en/reference/base/about) |
 |                                                 |                                     | [TiDB](https://tidbcloud.com/)                    |
 
 ## Todo

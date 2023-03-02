@@ -10,7 +10,7 @@ redirectFrom: /en/guide/server/deta.html
 
 ## How to deploy
 
-[![Deploy with Deta](https://button.deta.dev/1/svg)](
+[![Deploy with Deta](https://deta.space/buttons/dark.svg)](
 https://deta.space/discovery/@lizheming/waline)
 
 Click the button above to jump to the Waline page of the Deta application market, click <kbd>Install on Space</kbd> to automatically install the application after logging in.

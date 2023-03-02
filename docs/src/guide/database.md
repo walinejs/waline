@@ -133,7 +133,7 @@ Waline 支持将评论数据以 CSV 文件的格式存储在 GitHub 仓库中。
 
 ## Deta Base
 
-Deta 提供了 [Deta Base](https://docs.deta.sh/docs/base/about) 免费数据库支持，即使不部署在 Deta 上也可以使用。如果部署在 Deta 上，不需要配置任何环境变量，Waline 默认会使用 Deta Base 作为数据库存储数据。如果是部署在其它地方，需要配置以下环境变量。
+Deta 提供了 [Deta Base](https://deta.space/docs/en/reference/base/about) 免费数据库支持，即使不部署在 Deta 上也可以使用。如果部署在 Deta 上，不需要配置任何环境变量，Waline 默认会使用 Deta Base 作为数据库存储数据。如果是部署在其它地方，需要配置以下环境变量。
 
 | 环境变量名称       | 必填 | 默认值 | 备注          |
 | ------------------ | ---- | ------ | ------------- |
