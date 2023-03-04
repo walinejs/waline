@@ -134,6 +134,9 @@ importers:
       vuepress-plugin-redirect:
         specifier: 2.0.0-beta.187
         version: 2.0.0-beta.187(vuepress-shared@2.0.0-beta.187)(vuepress@2.0.0-beta.61)
+      vuepress-plugin-remove-pwa:
+        specifier: 2.0.0-beta.187
+        version: 2.0.0-beta.187(vuepress@2.0.0-beta.61)
       vuepress-shared:
         specifier: 2.0.0-beta.187
         version: 2.0.0-beta.187(@vuepress/client@2.0.0-beta.61)(vuepress@2.0.0-beta.61)
@@ -4093,7 +4096,7 @@ packages:
       '@babel/plugin-syntax-typescript': 7.20.0(@babel/core@7.21.0)
       '@vanilla-extract/babel-plugin-debug-ids': 1.0.2
       '@vanilla-extract/css': 1.9.5
-      esbuild: 0.16.3
+      esbuild: 0.16.17
       eval: 0.1.6
       find-up: 5.0.0
       javascript-stringify: 2.1.0
@@ -9173,7 +9176,7 @@ packages:
       '@types/glob': 7.2.0
       array-union: 2.1.0
       dir-glob: 3.0.1
-      fast-glob: 3.2.11
+      fast-glob: 3.2.12
       glob: 7.2.3
       ignore: 5.2.4
       merge2: 1.4.1
@@ -17030,6 +17033,30 @@ packages:
       cac: 6.7.14
       vuepress: 2.0.0-beta.61(@vuepress/client@2.0.0-beta.61)(vue@3.2.47)
       vuepress-shared: 2.0.0-beta.187(@vuepress/client@2.0.0-beta.61)(vuepress@2.0.0-beta.61)
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  /vuepress-plugin-remove-pwa@2.0.0-beta.187(vuepress@2.0.0-beta.61):
+    resolution: {integrity: sha512-taG6JrlWzbO7Dx1p6ij7dfwZ2SAvSaofu34gvG2kaJ6I7HYQU0wBKAaHbgvsNKhsDfBYqdJtwaFsGVGqvGEjbQ==}
+    engines: {node: ^14.18.0 || >=16.0.0, npm: '>=8', pnpm: '>=7'}
+    peerDependencies:
+      vuepress: 2.0.0-beta.61
+      vuepress-vite: 2.0.0-beta.61
+      vuepress-webpack: 2.0.0-beta.61
+    peerDependenciesMeta:
+      vuepress:
+        optional: true
+      vuepress-vite:
+        optional: true
+      vuepress-webpack:
+        optional: true
+    dependencies:
+      '@vuepress/client': 2.0.0-beta.61
+      '@vuepress/shared': 2.0.0-beta.61
+      '@vuepress/utils': 2.0.0-beta.61
+      vue: 3.2.47
+      vuepress: 2.0.0-beta.61(@vuepress/client@2.0.0-beta.61)(vue@3.2.47)
     transitivePeerDependencies:
       - supports-color
     dev: true
