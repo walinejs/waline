@@ -1,7 +1,7 @@
 import { hopeTheme } from 'vuepress-theme-hope';
 
-import { enNavbarConfig, zhNavbarConfig } from './navbar';
-import { enSidebarConfig, zhSidebarConfig } from './sidebar';
+import { enNavbarConfig, zhNavbarConfig } from './navbar.js';
+import { enSidebarConfig, zhSidebarConfig } from './sidebar.js';
 
 export default hopeTheme({
   hostname: 'https://waline.js.org',

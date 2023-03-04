@@ -4,7 +4,8 @@ import { defineUserConfig } from 'vuepress';
 import { redirectPlugin } from 'vuepress-plugin-redirect';
 import { removePWAPlugin } from 'vuepress-plugin-remove-pwa';
 import { addViteSsrNoExternal } from 'vuepress-shared';
-import theme from './theme';
+
+import theme from './theme.js';
 
 export default defineUserConfig({
   locales: {
@@ -96,6 +97,4 @@ export default defineUserConfig({
   extendsBundlerOptions: (bundlerOptions, app) => {
     addViteSsrNoExternal(bundlerOptions, app, '@fancyapps/ui');
   },
-
-  shouldPrefetch: false,
 });
