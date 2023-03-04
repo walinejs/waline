@@ -248,9 +248,6 @@ importers:
       marked:
         specifier: ^4.2.12
         version: 4.2.12
-      user-agent-data-types:
-        specifier: ^0.3.1
-        version: 0.3.1
       vue:
         specifier: ^3.2.47
         version: 3.2.47
@@ -306,6 +303,9 @@ importers:
       typescript:
         specifier: 4.9.5
         version: 4.9.5
+      user-agent-data-types:
+        specifier: ^0.3.1
+        version: 0.3.1
       vite:
         specifier: 4.1.4
         version: 4.1.4(@types/node@18.14.2)
@@ -16155,7 +16155,7 @@ packages:
 
   /user-agent-data-types@0.3.1:
     resolution: {integrity: sha512-vS7pZmuEVPlf2CQf+PfNbwWJZA4aQAEa8sH7xhMrjZ1zXNvW7HHEdzmSvI7z/qyyIRVD50DEi4ckuzZcebKHGg==}
-    dev: false
+    dev: true
 
   /util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
