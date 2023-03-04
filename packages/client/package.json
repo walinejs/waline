@@ -1,6 +1,6 @@
 {
   "name": "@waline/client",
-  "version": "2.14.7",
+  "version": "2.14.8",
   "description": "client for waline comment system",
   "keywords": [
     "valine",
