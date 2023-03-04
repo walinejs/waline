@@ -329,6 +329,7 @@ import type {
   WalineSearchResult,
 } from '../typings/index.js';
 import type { WalineConfig, WalineEmojiConfig } from '../utils/index.js';
+import { userAgent } from '../utils/userAgent';
 
 const props = withDefaults(
   defineProps<{
@@ -488,14 +489,15 @@ const submitComment = async (): Promise<void> => {
   if (config.value.recaptchaV3Key)
     token = await useReCaptcha(config.value.recaptchaV3Key).execute('social');
 
+  const ua = await userAgent();
   const comment: WalineCommentData = {
     comment: content.value,
     nick: userMeta.value.nick,
     mail: userMeta.value.mail,
     link: userMeta.value.link,
-    ua: navigator.userAgent,
     url: config.value.path,
     recaptchaV3: token,
+    ua,
   };
 
   if (userInfo.value?.token) {
