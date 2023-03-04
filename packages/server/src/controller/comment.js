@@ -1,4 +1,3 @@
-const parser = require('ua-parser-js');
 const BaseRest = require('./rest');
 const akismet = require('../service/akismet');
 const { getMarkdownParser } = require('../service/markdown');
@@ -11,7 +10,7 @@ async function formatCmt(
   { avatarProxy },
   loginUser
 ) {
-  ua = parser(ua);
+  ua = think.uaParser(ua);
   if (!think.config('disableUserAgent')) {
     comment.browser = `${ua.browser.name || ''}${(ua.browser.version || '')
       .split('.')
