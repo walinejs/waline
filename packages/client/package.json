@@ -122,6 +122,7 @@
     "@vueuse/core": "^9.13.0",
     "autosize": "^6.0.1",
     "marked": "^4.2.12",
+    "user-agent-data-types": "^0.3.1",
     "vue": "^3.2.47"
   },
   "devDependencies": {
