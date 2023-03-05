@@ -9,7 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: lizheming/issues-translate-action@main
+      - uses: lizheming/issues-translate-action@v1.0.0-beta.1
         with:
           BOT_GITHUB_TOKEN: ${{ secrets.TRANSLATE_BOT_TOKEN }}
           APPEND_TRANSLATION: true
