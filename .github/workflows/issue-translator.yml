@@ -11,5 +11,5 @@ jobs:
     steps:
       - uses: lizheming/issues-translate-action@main
         with:
-          BOT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BOT_GITHUB_TOKEN: ${{ secrets.TRANSLATE_BOT_TOKEN }}
           APPEND_TRANSLATION: true
