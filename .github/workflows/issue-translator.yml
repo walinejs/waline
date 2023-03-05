@@ -1,14 +1,19 @@
-name: 'issue-translator'
-on: 
-  issue_comment: 
+name: 'issues-translator'
+on:
+  issue_comment:
     types: [created]
-  issues: 
+  issues:
     types: [opened]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: lizheming/issues-translate-action:main
+      - uses: a631807682/issues-translator@v1.2.1
         with:
-          APPEND_CONTENT: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          match-languages: cmn
+          min-match-percent: 0
+          modify-title: true
+          modify-body: true
+          modify-comment: true
