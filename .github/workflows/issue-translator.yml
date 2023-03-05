@@ -9,11 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: a631807682/issues-translator@v1.2.1
+      - uses: lizheming/issues-translate-action:main
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          match-languages: cmn
-          min-match-percent: 0
-          modify-title: true
-          modify-body: true
-          modify-comment: true
+          BOT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          APPEND_CONTENT: true
