@@ -1,0 +1,14 @@
+name: 'issue-translator'
+on: 
+  issue_comment: 
+    types: [created]
+  issues: 
+    types: [opened]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: lizheming/issues-translate-action:main
+        with:
+          APPEND_CONTENT: true
