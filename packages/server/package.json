@@ -8,6 +8,9 @@
     "comment",
     "blog"
   ],
+  "scripts": {
+    "postpublish": "sh ./deta.build.sh"
+  },
   "repository": {
     "url": "https://github.com/walinejs/waline",
     "directory": "packages/server"
