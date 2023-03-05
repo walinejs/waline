@@ -36,7 +36,7 @@ jobs:
         id: pkg-version
         run: |
           version=$(cat packages/server/package.json | python -c 'import json,sys;obj=json.load(sys.stdin);print(obj["version"]);')
-          echo "::set-output name=version::$version"
+          echo "version=${version}" >> $GITHUB_OUTPUT
 
       - name: Build and push alpine
         if: contains(github.event.head_commit.message, 'release @waline/vercel')
