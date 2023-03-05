@@ -2,7 +2,10 @@ import { docsearchPlugin } from '@vuepress/plugin-docsearch';
 import { path } from '@vuepress/utils';
 import { defineUserConfig } from 'vuepress';
 import { redirectPlugin } from 'vuepress-plugin-redirect';
-import theme from './theme';
+import { removePWAPlugin } from 'vuepress-plugin-remove-pwa';
+import { addViteSsrNoExternal } from 'vuepress-shared';
+
+import theme from './theme.js';
 
 export default defineUserConfig({
   locales: {
@@ -76,6 +79,7 @@ export default defineUserConfig({
       },
     }),
     redirectPlugin(),
+    removePWAPlugin(),
   ],
 
   alias: {
@@ -90,5 +94,7 @@ export default defineUserConfig({
     ),
   },
 
-  shouldPrefetch: false,
+  extendsBundlerOptions: (bundlerOptions, app) => {
+    addViteSsrNoExternal(bundlerOptions, app, '@fancyapps/ui');
+  },
 });
