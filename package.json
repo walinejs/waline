@@ -74,7 +74,7 @@
     "markdownlint-cli": "0.33.0",
     "nano-staged": "0.8.0",
     "prettier": "2.8.4",
-    "rimraf": "4.3.0",
+    "rimraf": "4.4.0",
     "sass": "1.58.3",
     "sort-package-json": "2.4.1",
     "stylelint": "15.2.0",
