@@ -50,17 +50,17 @@ In most cases, this just means the following changes:
 
 The following options have long been marked as deprecated APIs in V1, they have been removed in V2.
 
-- `langMode`
-- `placeholder`
-- `emojiCDN`
-- `emojiMaps`
-- `requiredFields`
-- `avatar`
-- `avatarCDN`
-- `avatarForce`
-- `anonymous`
-- `mathTagSupport`
-- `copyRight`
+- `langMode`: use `locales`
+- `placeholder`: use `locales.placeholder`
+- `emojiCDN`: use `emoji`
+- `emojiMaps`: use `emoji`
+- `requiredFields`: use `requiredMeta`
+- `avatar`: use server variable `AVATAR_PROXY`
+- `avatarCDN`: use server variable `AVATAR_PROXY`
+- `avatarForce`: refresh by default
+- `anonymous`: use `login`
+- `mathTagSupport`: use `texRenderer`
+- `copyRight`: use `copyright`
 
 ## Other changes
 
