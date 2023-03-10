@@ -49,7 +49,7 @@
     margin-inline-start: 1em;
   }
 
-  .wl-card-item:last-child & {
+  .wl-card-item:last-child > & {
     border-bottom: none;
   }
 
