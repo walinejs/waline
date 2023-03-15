@@ -10,7 +10,7 @@ redirectFrom: /en/guide/server/railway.html
 
 ## How to Deploy
 
-[![Deploy on Railway](https://railway.app/new/template/UZB84v?referralCode=lizheming)
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template/UZB84v?referralCode=lizheming)
 
 Click this button and it'll redirect to railway.app platform to quickly deploy. You can input your new GitHub repo name or just use default after login, then click <kbd>Deploy</kbd> button at the bottom to deploy. You should notice that the part of environment variables should not be modified.
 
