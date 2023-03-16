@@ -125,7 +125,7 @@
     "vue": "^3.2.47"
   },
   "devDependencies": {
-    "@babel/core": "7.21.0",
+    "@babel/core": "7.21.3",
     "@babel/preset-env": "7.20.2",
     "@giphy/js-types": "4.4.0",
     "@rollup/plugin-babel": "6.0.3",
@@ -135,10 +135,10 @@
     "@rollup/plugin-terser": "0.4.0",
     "@types/autosize": "4.0.1",
     "@types/marked": "4.0.8",
-    "@types/node": "18.14.6",
+    "@types/node": "18.15.3",
     "@vitejs/plugin-vue": "4.0.0",
     "recaptcha-v3": "1.10.0",
-    "rollup": "3.18.0",
+    "rollup": "3.19.1",
     "rollup-plugin-dts": "5.2.0",
     "rollup-plugin-ts": "3.2.0",
     "typescript": "4.9.5",
