@@ -10,7 +10,11 @@ export default defineConfig({
     VERSION: JSON.stringify(version),
   },
 
-  plugins: [react(), reiconify()],
+  plugins: [
+    react(),
+    // eslint-disable-next-line
+    reiconify(),
+  ],
 
   build: {
     lib: {
@@ -24,7 +28,9 @@ export default defineConfig({
   server: {
     port: 9010,
     proxy: {
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       '/token': 'http://localhost:9090',
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       '/user': 'http://localhost:9090',
     },
   },
