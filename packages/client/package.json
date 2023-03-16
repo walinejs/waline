@@ -141,7 +141,7 @@
     "rollup": "3.19.1",
     "rollup-plugin-dts": "5.2.0",
     "rollup-plugin-ts": "3.2.0",
-    "typescript": "4.9.5",
+    "typescript": "5.0.2",
     "user-agent-data-types": "^0.3.1",
     "vite": "4.1.4"
   },
