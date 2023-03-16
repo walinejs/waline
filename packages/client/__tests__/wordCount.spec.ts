@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { getWords, getChinese, getWordNumber } from '../src/utils/wordCount';
 
 describe('Words test', () => {
-  it('Should count emplty content correctly', () => {
+  it('Should count empty content correctly', () => {
     expect(getWordNumber('')).toEqual(0);
   });
   it('Should count english words correctly', () => {
@@ -14,9 +14,10 @@ describe('Words test', () => {
   });
 
   it('Should pick chinese words correctly', () => {
-    const chineseWords = getChinese(
-      'Waline - 一款从 Valine 衍生的带后端评论系统。可以将 Waline 等价成 With backend Valine.'
-    );
+    const chineseWords =
+      getChinese(
+        'Waline - 一款从 Valine 衍生的带后端评论系统。可以将 Waline 等价成 With backend Valine.'
+      ) || [];
 
     expect(chineseWords.join('')).toEqual(
       '一款从衍生的带后端评论系统可以将等价成'
@@ -53,12 +54,12 @@ describe('Words test', () => {
     ).toEqual(25);
   });
 
-  it('Addtional counts with Markdown links and images', () => {
+  it('Additional counts with Markdown links and images', () => {
     const linkAddress = '//unpkg.com/@waline/client/dist/Waline.min.js';
     const linkMarkdown = `You can found Waline [here](${linkAddress}).`;
     const imageMarkdown = `Here is a image.\n\n![Alt](https://a/fake/link)`;
 
-    const linkWords = getWords(linkAddress)
+    const linkWords = (getWords(linkAddress) ?? [])
       .map((word) => word.trim())
       .filter((word) => word);
 
@@ -103,11 +104,11 @@ describe('Words test', () => {
 \`\`\`
 `;
 
-    const codeBlockwords = getWords(codeBlock)
+    const codeBlockWords = (getWords(codeBlock) ?? [])
       .map((word) => word.trim())
       .filter((word) => word);
 
-    expect(codeBlockwords).toEqual([
+    expect(codeBlockWords).toEqual([
       'html',
       'head',
       'script src',

@@ -5,13 +5,13 @@ const DOMPurify = createDOMPurify(new JSDOM('').window);
 
 /**
  * Add a hook to make all links open a new window
- * and force their rel to be 'noreferrer noopener'
+ * and force their rel to be 'nofollow noreferrer noopener'
  */
 DOMPurify.addHook('afterSanitizeAttributes', function (node) {
   // set all elements owning target to target=_blank
   if ('target' in node && node.href && !node.href.startsWith('about:blank#')) {
     node.setAttribute('target', '_blank');
-    node.setAttribute('rel', 'noreferrer noopener');
+    node.setAttribute('rel', 'nofollow noreferrer noopener');
   }
 
   // set non-HTML/MathML links to xlink:show=new

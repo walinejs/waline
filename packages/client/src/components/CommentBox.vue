@@ -527,14 +527,14 @@ const submitComment = async (): Promise<void> => {
       return alert(locale.value.mailError);
     }
 
-    // check comment
-    if (!comment.comment) {
-      editorRef.value?.focus();
-
-      return;
-    }
-
     if (!comment.nick) comment.nick = locale.value.anonymous;
+  }
+
+  // check comment
+  if (!comment.comment) {
+    editorRef.value?.focus();
+
+    return;
   }
 
   if (!isWordNumberLegal.value)

@@ -49,6 +49,15 @@ Optional value:
 - `'ru'`
 - `'ru-RU'`
 
+## locale
+
+- Type: `WalineLocale`
+- Default: Built-in value based on `lang`
+- Details:
+  - [Cookbook → Customize Locale](../../cookbook/customize/locale.md)
+
+Waline Locales.
+
 ## emoji
 
 - Type: `(string | WalineEmojiInfo)[] | false`

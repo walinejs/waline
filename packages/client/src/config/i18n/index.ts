@@ -10,7 +10,7 @@ import type { WalineLocale } from '../../typings';
 
 export type Locales = Record<string, WalineLocale>;
 
-export const defaultLocales: Locales = {
+export const DEFAULT_LOCALES: Locales = {
   zh: zhCN,
   'zh-cn': zhCN,
   'zh-CN': zhCN,

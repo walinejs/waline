@@ -26,7 +26,7 @@
     "dy-node-ip2region": "1.0.1",
     "fast-csv": "4.3.6",
     "form-data": "4.0.0",
-    "jsdom": "21.1.0",
+    "jsdom": "21.1.1",
     "jsonwebtoken": "9.0.0",
     "katex": "0.16.4",
     "leancloud-storage": "4.14.0",
@@ -51,7 +51,7 @@
     "think-mongo": "2.2.1",
     "think-router-rest": "1.0.5",
     "thinkjs": "3.2.14",
-    "ua-parser-js": "1.0.33"
+    "ua-parser-js": "1.0.34"
   },
   "engines": {
     "node": ">=14"

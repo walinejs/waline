@@ -6,7 +6,7 @@ const preventMessage = 'PREVENT_NEXT_PROCESS';
 const regionSearch = ip2region.create(process.env.IP2REGION_DB);
 
 const OS_VERSION_MAP = {
-  'Windows': {
+  Windows: {
     'NT 11.0': '11',
   },
 };

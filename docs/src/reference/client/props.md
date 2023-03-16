@@ -49,6 +49,15 @@ Waline 的服务端地址。
 - `'ru'`
 - `'ru-RU'`
 
+## locale
+
+- 类型: `WalineLocale`
+- 默认值: 通过 `lang` 选项自动设置
+- 详情:
+  - [Cookbook → 自定义语言](../../cookbook/customize/locale.md)
+
+Waline 多语言配置。
+
 ## emoji
 
 - 类型: `(WalineEmojiInfo | WalineEmojiPresets)[] | false`
