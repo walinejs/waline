@@ -10,9 +10,6 @@ importers:
       '@babel/core':
         specifier: 7.21.3
         version: 7.21.3
-      '@babel/eslint-parser':
-        specifier: 7.21.3
-        version: 7.21.3(@babel/core@7.21.3)(eslint@8.36.0)
       '@babel/plugin-transform-runtime':
         specifier: 7.21.0
         version: 7.21.0(@babel/core@7.21.3)
@@ -567,20 +564,6 @@ packages:
       semver: 6.3.0
     transitivePeerDependencies:
       - supports-color
-    dev: true
-
-  /@babel/eslint-parser@7.21.3(@babel/core@7.21.3)(eslint@8.36.0):
-    resolution: {integrity: sha512-kfhmPimwo6k4P8zxNs8+T7yR44q1LdpsZdE1NkCsVlfiuTPRfnGgjaF8Qgug9q9Pou17u6wneYF0lDCZJATMFg==}
-    engines: {node: ^10.13.0 || ^12.13.0 || >=14.0.0}
-    peerDependencies:
-      '@babel/core': '>=7.11.0'
-      eslint: ^7.5.0 || ^8.0.0
-    dependencies:
-      '@babel/core': 7.21.3
-      '@nicolo-ribaudo/eslint-scope-5-internals': 5.1.1-v1
-      eslint: 8.36.0
-      eslint-visitor-keys: 2.1.0
-      semver: 6.3.0
     dev: true
 
   /@babel/generator@7.21.3:
@@ -3264,12 +3247,6 @@ packages:
       hexo-util: 2.5.0
       js-yaml: 4.1.0
     dev: false
-
-  /@nicolo-ribaudo/eslint-scope-5-internals@5.1.1-v1:
-    resolution: {integrity: sha512-54/JRvkLIzzDWshCWfuhadfrfZVPiElY8Fcgmg1HroEly/EDSszzhBAsarCux+D/kOslTRquNzuyGSmUSTTHGg==}
-    dependencies:
-      eslint-scope: 5.1.1
-    dev: true
 
   /@nodelib/fs.scandir@2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
