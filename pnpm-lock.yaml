@@ -54,7 +54,7 @@ importers:
         version: 5.55.0(eslint@8.36.0)(typescript@5.0.2)
       '@vitejs/plugin-react':
         specifier: 3.1.0
-        version: 3.1.0(vite@4.1.4)
+        version: 3.1.0(vite@4.2.0)
       '@vue/eslint-config-prettier':
         specifier: 7.1.0
         version: 7.1.0(eslint@8.36.0)(prettier@2.8.4)
@@ -140,11 +140,11 @@ importers:
         specifier: 28.16.15
         version: 28.16.15(@types/node@18.15.3)(sass@1.59.3)
       vite:
-        specifier: 4.1.4
-        version: 4.1.4(@types/node@18.15.3)(sass@1.59.3)
+        specifier: 4.2.0
+        version: 4.2.0(@types/node@18.15.3)(sass@1.59.3)
       vite-plugin-reiconify:
         specifier: 1.1.2
-        version: 1.1.2(vite@4.1.4)
+        version: 1.1.2(vite@4.2.0)
       vitest:
         specifier: 0.29.3
         version: 0.29.3(sass@1.59.3)
@@ -265,7 +265,7 @@ importers:
         version: 18.15.3
       '@vitejs/plugin-vue':
         specifier: 4.0.0
-        version: 4.0.0(vite@4.1.4)(vue@3.2.47)
+        version: 4.0.0(vite@4.2.0)(vue@3.2.47)
       recaptcha-v3:
         specifier: 1.10.0
         version: 1.10.0
@@ -273,8 +273,8 @@ importers:
         specifier: ^0.3.1
         version: 0.3.1
       vite:
-        specifier: 4.1.4
-        version: 4.1.4(@types/node@18.15.3)
+        specifier: 4.2.0
+        version: 4.2.0(@types/node@18.15.3)
 
   packages/cloudbase:
     dependencies:
@@ -4015,7 +4015,7 @@ packages:
       lodash: 4.17.21
       mlly: 1.2.0
       outdent: 0.8.0
-      vite: 4.1.4(@types/node@18.15.3)(sass@1.59.3)
+      vite: 4.2.0(@types/node@18.15.3)(sass@1.59.3)
       vite-node: 0.28.5(@types/node@18.15.3)(sass@1.59.3)
     transitivePeerDependencies:
       - '@types/node'
@@ -4262,7 +4262,7 @@ packages:
       ts-morph: 12.0.0
     dev: true
 
-  /@vitejs/plugin-react@3.1.0(vite@4.1.4):
+  /@vitejs/plugin-react@3.1.0(vite@4.2.0):
     resolution: {integrity: sha512-AfgcRL8ZBhAlc3BFdigClmTUMISmmzHn7sB2h9U1odvc5U/MjWXsAaz18b/WoppUTDBzxOJwo2VdClfUcItu9g==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
@@ -4273,7 +4273,7 @@ packages:
       '@babel/plugin-transform-react-jsx-source': 7.19.6(@babel/core@7.21.3)
       magic-string: 0.27.0
       react-refresh: 0.14.0
-      vite: 4.1.4(@types/node@18.15.3)(sass@1.59.3)
+      vite: 4.2.0(@types/node@18.15.3)(sass@1.59.3)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -4285,7 +4285,18 @@ packages:
       vite: ^4.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 4.1.4(@types/node@18.15.3)
+      vite: 4.1.4
+      vue: 3.2.47
+    dev: true
+
+  /@vitejs/plugin-vue@4.0.0(vite@4.2.0)(vue@3.2.47):
+    resolution: {integrity: sha512-e0X4jErIxAB5oLtDqbHvHpJe/uWNkdpYV83AOG2xo2tEVSzCzewgJMtREZM30wXnM5ls90hxiOtAuVU6H5JgbA==}
+    engines: {node: ^14.18.0 || >=16.0.0}
+    peerDependencies:
+      vite: ^4.0.0
+      vue: ^3.2.25
+    dependencies:
+      vite: 4.2.0(@types/node@18.15.3)
       vue: 3.2.47
     dev: true
 
@@ -15860,7 +15871,7 @@ packages:
       picocolors: 1.0.0
       source-map: 0.6.1
       source-map-support: 0.5.21
-      vite: 4.1.4(@types/node@18.15.3)(sass@1.59.3)
+      vite: 4.2.0(@types/node@18.15.3)(sass@1.59.3)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -15881,7 +15892,7 @@ packages:
       mlly: 1.2.0
       pathe: 1.1.0
       picocolors: 1.0.0
-      vite: 4.1.4(@types/node@18.15.3)(sass@1.59.3)
+      vite: 4.2.0(@types/node@18.15.3)(sass@1.59.3)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -15892,7 +15903,7 @@ packages:
       - terser
     dev: true
 
-  /vite-plugin-reiconify@1.1.2(vite@4.1.4):
+  /vite-plugin-reiconify@1.1.2(vite@4.2.0):
     resolution: {integrity: sha512-yENngOv7XJ7Yh0lJFe+Q5wj1vGz/WPTisl6duoTlbVfKs1kNa6lG9BGsXW/v71KEFlIB9fBWBTb5YhCK3D5nCw==}
     peerDependencies:
       react: '>=16.14.0'
@@ -15903,7 +15914,7 @@ packages:
     dependencies:
       base-icon: 2.2.1
       reiconify: 2.8.0
-      vite: 4.1.4(@types/node@18.15.3)(sass@1.59.3)
+      vite: 4.2.0(@types/node@18.15.3)(sass@1.59.3)
     dev: true
 
   /vite@4.1.4:
@@ -15939,8 +15950,8 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vite@4.1.4(@types/node@18.15.3):
-    resolution: {integrity: sha512-3knk/HsbSTKEin43zHu7jTwYWv81f8kgAL99G5NWBcA1LKvtvcVAC4JjBH1arBunO9kQka+1oGbrMKOjk4ZrBg==}
+  /vite@4.2.0(@types/node@18.15.3):
+    resolution: {integrity: sha512-AbDTyzzwuKoRtMIRLGNxhLRuv1FpRgdIw+1y6AQG73Q5+vtecmvzKo/yk8X/vrHDpETRTx01ABijqUHIzBXi0g==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
@@ -15965,7 +15976,7 @@ packages:
         optional: true
     dependencies:
       '@types/node': 18.15.3
-      esbuild: 0.16.17
+      esbuild: 0.17.6
       postcss: 8.4.21
       resolve: 1.22.1
       rollup: 3.19.1
@@ -15973,8 +15984,8 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vite@4.1.4(@types/node@18.15.3)(sass@1.59.3):
-    resolution: {integrity: sha512-3knk/HsbSTKEin43zHu7jTwYWv81f8kgAL99G5NWBcA1LKvtvcVAC4JjBH1arBunO9kQka+1oGbrMKOjk4ZrBg==}
+  /vite@4.2.0(@types/node@18.15.3)(sass@1.59.3):
+    resolution: {integrity: sha512-AbDTyzzwuKoRtMIRLGNxhLRuv1FpRgdIw+1y6AQG73Q5+vtecmvzKo/yk8X/vrHDpETRTx01ABijqUHIzBXi0g==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
@@ -15999,7 +16010,7 @@ packages:
         optional: true
     dependencies:
       '@types/node': 18.15.3
-      esbuild: 0.16.17
+      esbuild: 0.17.6
       postcss: 8.4.21
       resolve: 1.22.1
       rollup: 3.19.1
@@ -16051,7 +16062,7 @@ packages:
       tinybench: 2.4.0
       tinypool: 0.3.1
       tinyspy: 1.1.1
-      vite: 4.1.4(@types/node@18.15.3)(sass@1.59.3)
+      vite: 4.2.0(@types/node@18.15.3)(sass@1.59.3)
       vite-node: 0.29.3(@types/node@18.15.3)(sass@1.59.3)
       why-is-node-running: 2.2.2
     transitivePeerDependencies:
