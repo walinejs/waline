@@ -12,7 +12,7 @@
 export const getWords = (content: string): RegExpMatchArray | null =>
   // \u00C0-\u024F are Latin Supplement letters, maybe used in language like french
   // \u0400-\u04FF are Cyrillic letters, used in russian
-  content.match(/[\w\d\s,.\u00C0-\u024F\u0400-\u04FF]+/giu);
+  content.match(/[\w\d\s\u00C0-\u024F\u0400-\u04FF]+/giu);
 
 /**
  * Extract Chinese Characters from content
