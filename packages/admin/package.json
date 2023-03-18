@@ -57,8 +57,6 @@
     "react-i18next": "12.2.0",
     "react-redux": "8.0.5",
     "react-router-dom": "6.9.0",
-    "redux": "4.2.1",
-    "typescript": "5.0.2",
-    "vite-plugin-css-injected-by-js": "^3.1.0"
+    "redux": "4.2.1"
   }
 }

@@ -4,7 +4,7 @@
     "noImplicitAny": false,
     "noUnusedParameters": false,
     "jsx": "preserve",
-    "module": "ESNext",
+    "module": "NodeNext",
     "moduleResolution": "nodenext",
     "rootDir": "./src"
   },

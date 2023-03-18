@@ -25,11 +25,6 @@
       "require": "./dist/shim.cjs",
       "default": "./dist/shim.cjs"
     },
-    "./api": {
-      "types": "./dist/api.d.ts",
-      "require": "./dist/api.cjs",
-      "default": "./dist/api.mjs"
-    },
     "./component": {
       "default": "./dist/component.mjs"
     },
@@ -68,7 +63,7 @@
     "clean": "rimraf ./dist",
     "dev": "vite",
     "prepublishOnly": "pnpm clean && pnpm build",
-    "rollup": "rollup -c",
+    "rollup": "rollup -c rollup.config.mts --configPlugin esbuild",
     "style": "pnpm style:main && pnpm style:meta",
     "style:main": "sass ./src/styles/index.scss ./dist/waline.css --style=compressed",
     "style:meta": "sass ./src/styles/meta.scss ./dist/waline-meta.css --style=compressed"
@@ -90,6 +85,7 @@
   },
   "dependencies": {
     "@vueuse/core": "^9.13.0",
+    "@waline/api": "workspace:*",
     "autosize": "^6.0.1",
     "marked": "^4.2.12",
     "vue": "^3.2.47"

@@ -1,2 +1,2 @@
-export * from '../comment';
-export * from '../version';
+export * from '../comment.js';
+export * from '../version.js';

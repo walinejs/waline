@@ -177,6 +177,7 @@
 
 <script setup lang="ts">
 import { useNow } from '@vueuse/core';
+import { type WalineComment, type WalineCommentStatus } from '@waline/api';
 import { type ComputedRef, computed, inject } from 'vue';
 
 import CommentBox from './CommentBox.vue';
@@ -188,10 +189,6 @@ import {
   VerifiedIcon,
 } from './Icons.js';
 import { useLikeStorage, useUserInfo } from '../composables/index.js';
-import {
-  type WalineComment,
-  type WalineCommentStatus,
-} from '../typings/index.js';
 import { type WalineConfig, getTimeAgo, isLinkHttp } from '../utils/index.js';
 
 const props = withDefaults(

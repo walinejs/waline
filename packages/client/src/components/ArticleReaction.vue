@@ -32,11 +32,18 @@
 </template>
 
 <script setup lang="ts">
-import { type ComputedRef } from 'vue';
-import { computed, inject, onMounted, onUnmounted, ref, watch } from 'vue';
+import { getArticleCounter, updateArticleCounter } from '@waline/api';
+import {
+  type ComputedRef,
+  computed,
+  inject,
+  onMounted,
+  onUnmounted,
+  ref,
+  watch,
+} from 'vue';
 
 import { LoadingIcon } from './Icons.js';
-import { getArticleCounter, updateArticleCounter } from '../api/index.js';
 import { useReactionStorage } from '../composables/index.js';
 import { type WalineReactionLocale } from '../typings/index.js';
 import { type WalineConfig } from '../utils/index.js';

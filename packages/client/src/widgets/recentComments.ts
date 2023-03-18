@@ -1,6 +1,6 @@
-import { getRecentComment } from '../api/index.js';
+import { type WalineComment, getRecentComment } from '@waline/api';
+
 import { useUserInfo } from '../composables/index.js';
-import { type WalineComment } from '../typings/index.js';
 import { getRoot } from '../utils/index.js';
 
 export interface WalineRecentCommentsOptions {
