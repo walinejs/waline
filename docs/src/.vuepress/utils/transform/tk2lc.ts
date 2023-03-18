@@ -1,7 +1,7 @@
 /**
  * twikoo 数据结构转 leancloud
  */
-export const tk2lc = (input) => {
+export const tk2lc = (input: string) => {
   const data = input
     .trim()
     .split(/[\r\n]+/)
@@ -24,7 +24,6 @@ export const tk2lc = (input) => {
       } = JSON.parse(text);
       return {
         objectId: typeof _id === 'string' ? _id : _id.$oid,
-        QQAvatar: '',
         comment: comment,
         insertedAt: {
           __type: 'Date',

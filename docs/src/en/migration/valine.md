@@ -88,5 +88,9 @@ Compared with Valine, Waline has the following highlights:
 1. Front-end management, administrators can review, edit or delete comments directly through the Waline comment component.
 
 <script setup lang="ts">
-import MigrationTool from '@MigrationTool';
+import { defineAsyncComponent } from 'vue'
+
+const MigrationTool = defineAsyncComponent(() =>
+  import( '@MigrationTool')
+)
 </script>
