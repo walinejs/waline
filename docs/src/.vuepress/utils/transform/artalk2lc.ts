@@ -1,8 +1,10 @@
 import { marked } from 'marked';
 
-const parseKey = (key) => {
+const parseKey = (key: string): string => {
   const anchor = document.createElement('a');
+
   anchor.href = key;
+
   return anchor.pathname || key;
 };
 
@@ -21,15 +23,11 @@ export const artalk2lc = (input) => {
   }
 
   for (let i = 0; i < input.length; i++) {
-    if (!input[i].rid) {
-      continue;
-    }
+    if (!input[i].rid) continue;
 
     let rid = input[i].rid;
 
-    while (idMap[rid]) {
-      rid = idMap[rid];
-    }
+    while (idMap[rid]) rid = idMap[rid];
 
     rootIdMap[input[i].id] = rid;
   }
@@ -41,7 +39,6 @@ export const artalk2lc = (input) => {
         const url = parseKey(page_key);
         return {
           objectId: id,
-          QQAvatar: '',
           comment: marked.parse(content),
           insertedAt: {
             __type: 'Date',

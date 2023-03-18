@@ -1,4 +1,4 @@
-const fakeClick = (obj) => {
+const fakeClick = (element: HTMLElement): void => {
   const ev = document.createEvent('MouseEvents');
 
   ev.initMouseEvent(
@@ -19,19 +19,19 @@ const fakeClick = (obj) => {
     null
   );
 
-  obj.dispatchEvent(ev);
+  element.dispatchEvent(ev);
 };
 
-export const exportRaw = (name, data) => {
+export const exportRaw = (name: string, data: BlobPart): void => {
   const urlObject = window.URL || window.webkitURL || window;
   const export_blob = new Blob([data]);
-  const save_link = document.createElementNS(
+  const saveAnchor = document.createElementNS(
     'http://www.w3.org/1999/xhtml',
     'a'
-  );
+  ) as HTMLAnchorElement;
 
-  save_link.href = urlObject.createObjectURL(export_blob);
-  save_link.download = name;
+  saveAnchor.href = urlObject.createObjectURL(export_blob);
+  saveAnchor.download = name;
 
-  fakeClick(save_link);
+  fakeClick(saveAnchor);
 };

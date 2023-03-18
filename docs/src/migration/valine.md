@@ -61,7 +61,11 @@ Waline 具体的配置详见 [客户端配置](../reference/client/api.md)。你
 <MigrationTool />
 
 <script setup lang="ts">
-import MigrationTool from '@MigrationTool';
+import { defineAsyncComponent } from 'vue'
+
+const MigrationTool = defineAsyncComponent(() =>
+  import( '@MigrationTool')
+)
 </script>
 
 ## Waline 亮点
