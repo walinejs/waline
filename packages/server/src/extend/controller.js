@@ -12,6 +12,9 @@ module.exports = {
 
     return think.prevent();
   },
+  jsonOrSuccess(...args) {
+    return this[this.ctx.state.deprecated ? 'json' : 'success'](...args);
+  },
   locale(message, variables) {
     const { lang } = this.get();
     const locale = locales[(lang || 'zh-cn').toLowerCase()] || locales['zh-cn'];

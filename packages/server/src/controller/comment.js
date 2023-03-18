@@ -147,7 +147,7 @@ module.exports = class extends BaseRest {
           );
         }
 
-        return this.json(
+        return this.jsonOrSuccess(
           await Promise.all(
             comments.map((cmt) =>
               formatCmt(cmt, users, { ...this.config(), deprecated: this.ctx.state.deprecated }, userInfo)
@@ -171,18 +171,18 @@ module.exports = class extends BaseRest {
           };
         }
 
-        if (Array.isArray(url) && url.length > 1) {
+        if (Array.isArray(url) && (url.length > 1 || !this.ctx.state.deprecated)) {
           const data = await this.modelInstance.select(where, {
             field: ['url'],
           });
 
-          return this.json(
+          return this.jsonOrSuccess(
             url.map((u) => data.filter(({ url }) => url === u).length)
           );
         }
         const data = await this.modelInstance.count(where);
 
-        return this.json(data);
+        return this.jsonOrSuccess(data);
       }
 
       case 'list': {
@@ -437,7 +437,7 @@ module.exports = class extends BaseRest {
           });
         }
 
-        return this.json({
+        return this[this.ctx.state.deprecated ? 'json' : 'success']({
           page,
           totalPages: Math.ceil(rootCount / pageSize),
           pageSize,
