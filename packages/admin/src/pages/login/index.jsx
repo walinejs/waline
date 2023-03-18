@@ -169,9 +169,9 @@ export default function () {
                 />{' '}
                 {t('remember me')}
               </label>
-              <div className="right forgot-password">
+              <span className="right forgot-password">
                 <Link to="/ui/forgot">{t('forgot password')}</Link>
-              </div>
+              </span>
             </p>
           </form>
           <div className="social-accounts">
