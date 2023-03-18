@@ -8,6 +8,7 @@ import { version } from './package.json';
 export default defineConfig({
   define: {
     VERSION: JSON.stringify(version),
+    'process.env.NODE_ENV': JSON.stringify('production'),
   },
 
   plugins: [
