@@ -90,7 +90,7 @@
     "rollup-plugin-ts": "3.2.0",
     "sass": "1.59.3",
     "sort-package-json": "2.4.1",
-    "stylelint": "15.2.0",
+    "stylelint": "15.3.0",
     "stylelint-config-hope": "2.0.1",
     "typescript": "5.0.2",
     "vercel": "28.16.15",
