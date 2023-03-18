@@ -1,5 +1,7 @@
-const { Deta } = require('deta');
 const { performance } = require('perf_hooks');
+
+const { Deta } = require('deta');
+
 const Base = require('./base');
 
 module.exports = class extends Base {

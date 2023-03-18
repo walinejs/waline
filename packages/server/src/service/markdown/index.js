@@ -2,9 +2,10 @@ const MarkdownIt = require('markdown-it');
 const emojiPlugin = require('markdown-it-emoji');
 const subPlugin = require('markdown-it-sub');
 const supPlugin = require('markdown-it-sup');
+
+const { resolveHighlighter } = require('./highlight');
 const { katexPlugin } = require('./katex');
 const { mathjaxPlugin } = require('./mathjax');
-const { resolveHighlighter } = require('./highlight');
 const { sanitize } = require('./xss');
 
 const getMarkdownParser = () => {

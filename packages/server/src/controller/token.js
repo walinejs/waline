@@ -1,7 +1,8 @@
-const speakeasy = require('speakeasy');
 const jwt = require('jsonwebtoken');
-const helper = require('think-helper');
 const { PasswordHash } = require('phpass');
+const speakeasy = require('speakeasy');
+const helper = require('think-helper');
+
 const BaseRest = require('./rest');
 
 module.exports = class extends BaseRest {
