@@ -92,7 +92,7 @@
     "sort-package-json": "2.4.1",
     "stylelint": "15.2.0",
     "stylelint-config-hope": "2.0.1",
-    "typescript": "4.9.5",
+    "typescript": "5.0.2",
     "vercel": "28.16.15",
     "vite": "4.1.4",
     "vite-plugin-reiconify": "1.1.2",
