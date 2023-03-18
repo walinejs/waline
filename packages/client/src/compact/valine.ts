@@ -1,9 +1,9 @@
-import type {
-  WalineEmojiInfo,
-  WalineEmojiMaps,
-  WalineLocale,
-  WalineMeta,
-} from '../typings';
+import {
+  type WalineEmojiInfo,
+  type WalineEmojiMaps,
+  type WalineLocale,
+  type WalineMeta,
+} from '../typings/index.js';
 
 export type DeprecatedAvatar =
   | ''

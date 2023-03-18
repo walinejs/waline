@@ -1,11 +1,10 @@
 import { createApp, h, reactive, watchEffect } from 'vue';
 
+import { commentCount } from './comment.js';
 import Waline from './components/WalineComment.vue';
-import { commentCount } from './comment';
-import { pageviewCount } from './pageview';
-import { getRoot } from './utils';
-
-import type { WalineInitOptions } from './typings';
+import { pageviewCount } from './pageview.js';
+import { type WalineInitOptions } from './typings/index.js';
+import { getRoot } from './utils/index.js';
 
 export interface WalineInstance {
   /**

@@ -1,4 +1,5 @@
 const { PasswordHash } = require('phpass');
+
 const BaseRest = require('./rest');
 
 module.exports = class extends BaseRest {

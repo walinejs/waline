@@ -32,15 +32,14 @@
 </template>
 
 <script setup lang="ts">
+import { type ComputedRef } from 'vue';
 import { computed, inject, onMounted, onUnmounted, ref, watch } from 'vue';
 
 import { LoadingIcon } from './Icons.js';
 import { getArticleCounter, updateArticleCounter } from '../api/index.js';
 import { useReactionStorage } from '../composables/index.js';
-
-import type { ComputedRef } from 'vue';
-import type { WalineConfig } from '../utils/index.js';
-import type { WalineReactionLocale } from '../typings';
+import { type WalineReactionLocale } from '../typings/index.js';
+import { type WalineConfig } from '../utils/index.js';
 
 defineExpose();
 

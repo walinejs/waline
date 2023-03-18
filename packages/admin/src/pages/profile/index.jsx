@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
 import cls from 'classnames';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
-import Header from '../../components/Header';
-import { updateProfile } from '../../services/user';
-import TwoFactorAuth from './twoFactorAuth';
+import { useDispatch, useSelector } from 'react-redux';
 
+import TwoFactorAuth from './twoFactorAuth';
+import Header from '../../components/Header';
 import * as Icons from '../../components/icon';
+import { updateProfile } from '../../services/user';
 
 export default function () {
   const [isPasswordUpdating, setPasswordUpdating] = useState(false);

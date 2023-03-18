@@ -1,7 +1,7 @@
 import { useStorage } from '@vueuse/core';
+import { type Ref } from 'vue';
 
-import type { Ref } from 'vue';
-import type { UserInfo } from '../api';
+import { type UserInfo } from '../api/index.js';
 
 export const USER_KEY = 'WALINE_USER';
 

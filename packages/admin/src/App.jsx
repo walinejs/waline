@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Provider, useSelector } from 'react-redux';
-import { store } from './store';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+import Forgot from './pages/forgot';
 import Login from './pages/login';
 import ManageComments from './pages/manage-comments';
-import Register from './pages/register';
-import Profile from './pages/profile';
 import Migration from './pages/migration';
-import Forgot from './pages/forgot';
+import Profile from './pages/profile';
+import Register from './pages/register';
 import User from './pages/user';
+import { store } from './store';
 
 function Access(props) {
   const user = useSelector((state) => state.user);
