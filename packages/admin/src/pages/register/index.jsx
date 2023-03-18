@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { useRecaptcha } from '../../components/useRecaptchaV3';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 
 import Header from '../../components/Header';
+import { useRecaptcha } from '../../components/useRecaptchaV3';
 
 export default function () {
   const { t } = useTranslation();

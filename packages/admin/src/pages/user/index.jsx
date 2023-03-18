@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+
 import Header from '../../components/Header';
 import Paginator from '../../components/Paginator';
-import { useTranslation } from 'react-i18next';
 import { getUserList, updateUser } from '../../services/user';
 import { buildAvatar } from '../manage-comments/utils';
-import { useSelector } from 'react-redux';
 
 export default function () {
   const currentUser = useSelector((state) => state.user);

@@ -16,5 +16,5 @@ globals:
   think: readonly
 
 rules:
-  reactdisplay-name: off
+  react/display-name: off
   react/prop-types: off
