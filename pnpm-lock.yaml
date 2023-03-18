@@ -264,8 +264,8 @@ importers:
         specifier: 18.15.3
         version: 18.15.3
       '@vitejs/plugin-vue':
-        specifier: 4.0.0
-        version: 4.0.0(vite@4.2.0)(vue@3.2.47)
+        specifier: 4.1.0
+        version: 4.1.0(vite@4.2.0)(vue@3.2.47)
       recaptcha-v3:
         specifier: 1.10.0
         version: 1.10.0
@@ -4278,8 +4278,8 @@ packages:
       - supports-color
     dev: true
 
-  /@vitejs/plugin-vue@4.0.0(vite@4.1.4)(vue@3.2.47):
-    resolution: {integrity: sha512-e0X4jErIxAB5oLtDqbHvHpJe/uWNkdpYV83AOG2xo2tEVSzCzewgJMtREZM30wXnM5ls90hxiOtAuVU6H5JgbA==}
+  /@vitejs/plugin-vue@4.1.0(vite@4.1.4)(vue@3.2.47):
+    resolution: {integrity: sha512-++9JOAFdcXI3lyer9UKUV4rfoQ3T1RN8yDqoCLar86s0xQct5yblxAE+yWgRnU5/0FOlVCpTZpYSBV/bGWrSrQ==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
       vite: ^4.0.0
@@ -4289,8 +4289,8 @@ packages:
       vue: 3.2.47
     dev: true
 
-  /@vitejs/plugin-vue@4.0.0(vite@4.2.0)(vue@3.2.47):
-    resolution: {integrity: sha512-e0X4jErIxAB5oLtDqbHvHpJe/uWNkdpYV83AOG2xo2tEVSzCzewgJMtREZM30wXnM5ls90hxiOtAuVU6H5JgbA==}
+  /@vitejs/plugin-vue@4.1.0(vite@4.2.0)(vue@3.2.47):
+    resolution: {integrity: sha512-++9JOAFdcXI3lyer9UKUV4rfoQ3T1RN8yDqoCLar86s0xQct5yblxAE+yWgRnU5/0FOlVCpTZpYSBV/bGWrSrQ==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
       vite: ^4.0.0
@@ -4452,7 +4452,7 @@ packages:
   /@vuepress/bundler-vite@2.0.0-beta.61:
     resolution: {integrity: sha512-J9/DGfsqr9rGJT+0osL9uL+jrrGHeAsWuZoCCbQIDbe0rEO2whvou51PJpwko3R0vvCTWsolh6rXYeb0N0+yFg==}
     dependencies:
-      '@vitejs/plugin-vue': 4.0.0(vite@4.1.4)(vue@3.2.47)
+      '@vitejs/plugin-vue': 4.1.0(vite@4.1.4)(vue@3.2.47)
       '@vuepress/client': 2.0.0-beta.61
       '@vuepress/core': 2.0.0-beta.61
       '@vuepress/shared': 2.0.0-beta.61

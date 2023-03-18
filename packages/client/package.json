@@ -131,7 +131,7 @@
     "@types/autosize": "4.0.1",
     "@types/marked": "4.0.8",
     "@types/node": "18.15.3",
-    "@vitejs/plugin-vue": "4.0.0",
+    "@vitejs/plugin-vue": "4.1.0",
     "recaptcha-v3": "1.10.0",
     "user-agent-data-types": "^0.3.1",
     "vite": "4.2.0"
