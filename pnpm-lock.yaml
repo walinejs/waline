@@ -116,8 +116,8 @@ importers:
         specifier: 3.19.1
         version: 3.19.1
       rollup-plugin-dts:
-        specifier: 5.2.0
-        version: 5.2.0(rollup@3.19.1)(typescript@5.0.2)
+        specifier: 5.3.0
+        version: 5.3.0(rollup@3.19.1)(typescript@5.0.2)
       rollup-plugin-ts:
         specifier: 3.2.0
         version: 3.2.0(@babel/core@7.21.3)(@babel/plugin-transform-runtime@7.21.0)(@babel/preset-env@7.20.2)(@babel/runtime@7.21.0)(rollup@3.19.1)(typescript@5.0.2)
@@ -10801,8 +10801,8 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.14
     dev: true
 
-  /magic-string@0.29.0:
-    resolution: {integrity: sha512-WcfidHrDjMY+eLjlU+8OvwREqHwpgCeKVBUpQ3OhYYuvfaYCUgcbuBzappNzZvg/v8onU3oQj+BYpkOJe9Iw4Q==}
+  /magic-string@0.30.0:
+    resolution: {integrity: sha512-LA+31JYDJLs82r2ScLrlz1GjSgu66ZV518eyWT+S8VhyQn/JL0u9MeBOvQMGYiPk1DBiSN9DDMOcXvigJZaViQ==}
     engines: {node: '>=12'}
     dependencies:
       '@jridgewell/sourcemap-codec': 1.4.14
@@ -13574,17 +13574,17 @@ packages:
     resolution: {integrity: sha512-ndEIpszUHiG4HtDsQLeIuMvRsDnn8c8rYStabochtUeCvfuvNptb5TUbVD68LRAILPX7p9nqQGh4xJgn3EHS/g==}
     dev: true
 
-  /rollup-plugin-dts@5.2.0(rollup@3.19.1)(typescript@5.0.2):
-    resolution: {integrity: sha512-B68T/haEu2MKcz4kNUhXB8/h5sq4gpplHAJIYNHbh8cp4ZkvzDvNca/11KQdFrB9ZeKucegQIotzo5T0JUtM8w==}
+  /rollup-plugin-dts@5.3.0(rollup@3.19.1)(typescript@5.0.2):
+    resolution: {integrity: sha512-8FXp0ZkyZj1iU5klkIJYLjIq/YZSwBoERu33QBDxm/1yw5UU4txrEtcmMkrq+ZiKu3Q4qvPCNqc3ovX6rjqzbQ==}
     engines: {node: '>=v14'}
     peerDependencies:
       rollup: ^3.0.0
-      typescript: ^4.1
+      typescript: ^4.1 || ^5.0
     peerDependenciesMeta:
       typescript:
         optional: true
     dependencies:
-      magic-string: 0.29.0
+      magic-string: 0.30.0
       rollup: 3.19.1
       typescript: 5.0.2
     optionalDependencies:
