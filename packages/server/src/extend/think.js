@@ -1,6 +1,7 @@
-const parser = require('ua-parser-js');
 const ip2region = require('dy-node-ip2region');
 const helper = require('think-helper');
+const parser = require('ua-parser-js');
+
 const preventMessage = 'PREVENT_NEXT_PROCESS';
 
 const regionSearch = ip2region.create(process.env.IP2REGION_DB);

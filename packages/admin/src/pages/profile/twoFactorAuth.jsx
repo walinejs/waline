@@ -1,10 +1,9 @@
-import React from 'react';
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import QRCode from 'qrcode.react';
-import { useEffect } from 'react';
-import { gen2FAToken, get2FAToken, updateProfile } from '../../services/user';
+import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+
+import { gen2FAToken, get2FAToken, updateProfile } from '../../services/user';
 
 export default function () {
   const { t } = useTranslation();

@@ -1,5 +1,5 @@
-import React from 'react';
 import cls from 'classnames';
+import React from 'react';
 
 export default function ({ current, total, onChange }) {
   if (total < 1) {

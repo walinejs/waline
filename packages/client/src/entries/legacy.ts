@@ -1,13 +1,13 @@
-import { covertOptions, warning } from '../compact';
-import { init, WalineInstance } from '../init';
+import {
+  type DeprecatedValineOptions,
+  type DeprecatedWalineOptions,
+  covertOptions,
+  warning,
+} from '../compact/index.js';
+import { init, WalineInstance } from '../init.js';
+import { type WalineInitOptions } from '../typings/index.js';
 
-import type {
-  DeprecatedValineOptions,
-  DeprecatedWalineOptions,
-} from '../compact';
-import type { WalineInitOptions } from '../typings';
-
-export { WalineInstance } from '../init';
+export { WalineInstance } from '../init.js';
 
 warning(
   ' This is a legacy package compatible with Valine and Waline@v1, please switch to Waline@v2 using https://<CDN.LINK>/@waline/client/dist/waline.js instead!'

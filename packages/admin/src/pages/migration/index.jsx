@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
+
 import Header from '../../components/Header';
 import download from '../../utils/download';
 import readFileAsync from '../../utils/readFileAsync';

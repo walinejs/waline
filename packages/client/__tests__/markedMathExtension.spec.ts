@@ -1,7 +1,8 @@
-import { describe, expect, it } from 'vitest';
 import { marked } from 'marked';
-import { defaultTexRenderer } from '../src/config';
-import { markedTexExtensions } from '../src/utils/markedMathExtension';
+import { describe, expect, it } from 'vitest';
+
+import { defaultTexRenderer } from '../src/config/index.js';
+import { markedTexExtensions } from '../src/utils/markedMathExtension.js';
 
 const extensions = markedTexExtensions(defaultTexRenderer);
 

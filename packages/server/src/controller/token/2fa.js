@@ -1,4 +1,5 @@
 const speakeasy = require('speakeasy');
+
 const BaseRest = require('../rest');
 
 module.exports = class extends BaseRest {
