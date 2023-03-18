@@ -229,6 +229,9 @@ importers:
       typescript:
         specifier: 5.0.2
         version: 5.0.2
+      vite-plugin-css-injected-by-js:
+        specifier: ^3.1.0
+        version: 3.1.0
 
   packages/client:
     dependencies:
@@ -15902,6 +15905,12 @@ packages:
       - sugarss
       - supports-color
       - terser
+    dev: true
+
+  /vite-plugin-css-injected-by-js@3.1.0:
+    resolution: {integrity: sha512-qogCmpocZfcbSAYZQjS88ieIY0PzLUm7RkLFWFgAxkXdz3N6roZbSTNTxeIOj5IxFbZWACUPuVBBoo6qCuXDcw==}
+    peerDependencies:
+      vite: '>2.0.0-0'
     dev: true
 
   /vite-plugin-reiconify@1.1.2(vite@4.2.0):

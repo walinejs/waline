@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 // @ts-ignore
 import reiconify from 'vite-plugin-reiconify';
+import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 import { version } from './package.json';
 
 export default defineConfig({
@@ -13,8 +14,8 @@ export default defineConfig({
 
   plugins: [
     react(),
-    // eslint-disable-next-line
     reiconify(),
+    cssInjectedByJsPlugin(),
   ],
 
   build: {
