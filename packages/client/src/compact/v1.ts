@@ -1,8 +1,8 @@
-import type {
-  WalineHighlighter,
-  WalineImageUploader,
-  WalineTexRenderer,
-} from '../typings';
+import {
+  type WalineHighlighter,
+  type WalineImageUploader,
+  type WalineTexRenderer,
+} from '../typings/index.js';
 
 export interface DeprecatedWalineOptions {
   /**

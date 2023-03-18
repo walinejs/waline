@@ -15,11 +15,57 @@ ignorePatterns:
   - .temp/**
   - example/**
 
+plugins:
+  - import
+
 parserOptions:
   ecmaVersion: 2021
   extraFileExtensions:
     - .vue
+
 rules:
+  import/consistent-type-specifier-style:
+    - error
+    - prefer-inline
+
+  import/dynamic-import-chunkname:
+    - error
+
+  import/first:
+    - error
+
+  import/newline-after-import:
+    - error
+
+  import/no-commonjs:
+    - error
+
+  import/no-cycle:
+    - error
+
+  import/no-duplicates:
+    - error
+    - considerQueryString: true
+      prefer-inline: true
+
+  import/no-named-default:
+    - error
+
+  import/order:
+    - error
+    - alphabetize:
+        order: asc
+        orderImportKind: asc
+      groups:
+        - builtin
+        - external
+        - internal
+        - - parent
+          - sibling
+        - index
+        - object
+      newlines-between: always
+
   padding-line-between-statements:
     - error
     - blankLine: always
@@ -308,4 +354,10 @@ overrides:
       '@typescript-eslint/no-unsafe-assignment':
         - off
       '@typescript-eslint/no-unsafe-member-access':
+        - off
+
+  - files:
+      - commitlint.config.js
+    rules:
+      import/no-commonjs:
         - off

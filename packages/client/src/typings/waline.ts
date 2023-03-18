@@ -1,15 +1,15 @@
-import type {
-  WalineCommentSorting,
-  WalineHighlighter,
-  WalineEmojiInfo,
-  WalineEmojiPresets,
-  WalineImageUploader,
-  WalineLoginStatus,
-  WalineMeta,
-  WalineTexRenderer,
-  WalineSearchOptions,
-} from './base';
-import type { WalineLocale } from './locale';
+import {
+  type WalineCommentSorting,
+  type WalineHighlighter,
+  type WalineEmojiInfo,
+  type WalineEmojiPresets,
+  type WalineImageUploader,
+  type WalineLoginStatus,
+  type WalineMeta,
+  type WalineTexRenderer,
+  type WalineSearchOptions,
+} from './base.js';
+import { type WalineLocale } from './locale.js';
 
 export interface WalineProps {
   /**

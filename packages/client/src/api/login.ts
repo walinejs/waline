@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import type { BaseAPIOptions } from './utils';
+import { type BaseAPIOptions } from './utils.js';
 
 export interface UserInfo {
   /**

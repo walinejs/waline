@@ -1,5 +1,4 @@
-import { useStorage } from '@vueuse/core';
-import type { RemovableRef } from '@vueuse/core';
+import { type RemovableRef, useStorage } from '@vueuse/core';
 
 export interface UserMeta {
   nick: string;

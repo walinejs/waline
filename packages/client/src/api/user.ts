@@ -1,6 +1,9 @@
-import { errorCheck, ErrorStatusResponse } from './utils';
-import type { BaseAPIOptions } from './utils';
-import type { WalineComment } from '../typings';
+import {
+  type BaseAPIOptions,
+  errorCheck,
+  ErrorStatusResponse,
+} from './utils.js';
+import { type WalineComment } from '../typings/index.js';
 
 export interface GetUserListOptions extends BaseAPIOptions {
   /**

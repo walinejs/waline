@@ -1,6 +1,6 @@
-import { fetchCommentCount } from './api';
-import { decodePath, errorHandler, getServerURL } from './utils';
-import type { WalineAbort } from './typings';
+import { fetchCommentCount } from './api/index.js';
+import { type WalineAbort } from './typings/index.js';
+import { decodePath, errorHandler, getServerURL } from './utils/index.js';
 
 export interface WalineCommentCountOptions {
   /**

@@ -1,6 +1,5 @@
 import { useStorage } from '@vueuse/core';
-
-import type { Ref } from 'vue';
+import { type Ref } from 'vue';
 
 const REACTION_KEY = 'WALINE_REACTION';
 
