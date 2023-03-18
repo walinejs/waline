@@ -76,14 +76,14 @@ Waline is a good framework. :money:
 
   it('Should resolve links', () => {
     expect(parser('[link](https://example.com)')).toEqual(
-      '<p><a href="https://example.com" target="_blank" rel="noreferrer noopener">link</a></p>\n'
+      '<p><a href="https://example.com" target="_blank" rel="nofollow noreferrer noopener">link</a></p>\n'
     );
     expect(
       parser(
         '<p><a href="https://example.com" rel="opener prefetch">link</a></p>'
       )
     ).toEqual(
-      '<p><a rel="noreferrer noopener" href="https://example.com" target="_blank">link</a></p>'
+      '<p><a rel="nofollow noreferrer noopener" href="https://example.com" target="_blank">link</a></p>'
     );
   });
 

@@ -8,10 +8,9 @@ jobs:
   build-test:
     strategy:
       matrix:
-        node-version: [16]
-        os: [ubuntu-latest]
+        node-version: [16, 18]
 
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
@@ -57,5 +56,5 @@ jobs:
       - name: Linter test
         run: pnpm lint
 
-      # - name: Unit test
-      # run: pnpm test
+      - name: Unit test
+        run: pnpm test
