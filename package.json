@@ -3,7 +3,6 @@
   "version": "0.0.2",
   "private": true,
   "scripts": {
-    "admin:analyze": "npm --dir=packages/admin analyze",
     "admin:build": "pnpm --dir=packages/admin build",
     "admin:dev": "pnpm --dir=packages/admin dev",
     "apidoc": "apidoc -i packages/server/src/logic -o docs/src/.vuepress/dist/api",
