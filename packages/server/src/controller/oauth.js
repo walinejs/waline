@@ -20,7 +20,7 @@ module.exports = class extends think.Controller {
 
     if (!hasCode) {
       const { serverURL } = this.ctx;
-      const redirectUrl = `${serverURL}/oauth?${new URLSearchParams({
+      const redirectUrl = `${serverURL}/api/oauth?${new URLSearchParams({
         redirect,
         type,
       }).toString()}`;
@@ -40,7 +40,7 @@ module.exports = class extends think.Controller {
 
     if (type === 'facebook') {
       const { serverURL } = this.ctx;
-      const redirectUrl = `${serverURL}/oauth?${new URLSearchParams({
+      const redirectUrl = `${serverURL}/api/oauth?${new URLSearchParams({
         redirect,
         type,
       }).toString()}`;
