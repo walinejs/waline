@@ -67,7 +67,7 @@
     "@rollup/plugin-terser": "0.4.0",
     "@vue/eslint-config-prettier": "7.1.0",
     "@vue/eslint-config-typescript": "11.0.2",
-    "@vitejs/plugin-react": "3.0.0",
+    "@vitejs/plugin-react": "3.1.0",
     "apidoc": "0.54.0",
     "c8": "7.13.0",
     "commitizen": "4.3.0",
