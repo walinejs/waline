@@ -86,7 +86,7 @@
     "prettier": "2.8.4",
     "rimraf": "4.4.0",
     "rollup": "3.19.1",
-    "rollup-plugin-dts": "5.2.0",
+    "rollup-plugin-dts": "5.3.0",
     "rollup-plugin-ts": "3.2.0",
     "sass": "1.59.3",
     "sort-package-json": "2.4.1",
@@ -94,7 +94,7 @@
     "stylelint-config-hope": "2.0.1",
     "typescript": "5.0.2",
     "vercel": "28.16.15",
-    "vite": "4.1.4",
+    "vite": "4.2.0",
     "vite-plugin-reiconify": "1.1.2",
     "vitest": "0.29.3"
   },
