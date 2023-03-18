@@ -7,7 +7,7 @@ const markdownParser = getMarkdownParser();
 async function formatCmt(
   { ua, ip, ...comment },
   users = [],
-  { avatarProxy },
+  { avatarProxy, deprecated },
   loginUser
 ) {
   ua = think.uaParser(ua);
@@ -61,6 +61,13 @@ async function formatCmt(
   if (typeof comment.sticky === 'string') {
     comment.sticky = Boolean(Number(comment.sticky));
   }
+  
+  comment.time = new Date(comment.insertedAt).getTime();
+  if (!deprecated) {
+    delete comment.insertedAt;
+  }
+  delete comment.createdAt;
+  delete comment.updatedAt;
 
   return comment;
 }
@@ -143,7 +150,7 @@ module.exports = class extends BaseRest {
         return this.json(
           await Promise.all(
             comments.map((cmt) =>
-              formatCmt(cmt, users, this.config(), userInfo)
+              formatCmt(cmt, users, { ...this.config(), deprecated: this.ctx.state.deprecated }, userInfo)
             )
           )
         );
@@ -246,7 +253,7 @@ module.exports = class extends BaseRest {
           waitingCount,
           data: await Promise.all(
             comments.map((cmt) =>
-              formatCmt(cmt, users, this.config(), userInfo)
+              formatCmt(cmt, users, { ...this.config(), deprecated: this.ctx.state.deprecated }, userInfo)
             )
           ),
         });
@@ -440,14 +447,14 @@ module.exports = class extends BaseRest {
               const cmt = await formatCmt(
                 comment,
                 users,
-                this.config(),
-                userInfo
+                { ...this.config(), deprecated: this.ctx.state.deprecated },
+                userInfo,
               );
 
               cmt.children = await Promise.all(
                 comments
                   .filter(({ rid }) => rid === cmt.objectId)
-                  .map((cmt) => formatCmt(cmt, users, this.config(), userInfo))
+                  .map((cmt) => formatCmt(cmt, users, { ...this.config(), deprecated: this.ctx.state.deprecated }, userInfo))
                   .reverse()
               );
 
@@ -610,14 +617,14 @@ module.exports = class extends BaseRest {
     const cmtReturn = await formatCmt(
       resp,
       [userInfo],
-      this.config(),
+      { ...this.config(), deprecated: this.ctx.state.deprecated },
       userInfo
     );
     const parentReturn = parentComment
       ? await formatCmt(
           parentComment,
           parentUser ? [parentUser] : [],
-          this.config(),
+          { ...this.config(), deprecated: this.ctx.state.deprecated },
           userInfo
         )
       : undefined;
@@ -638,7 +645,7 @@ module.exports = class extends BaseRest {
     think.logger.debug(`Comment post hooks postSave done!`);
 
     return this.success(
-      await formatCmt(resp, [userInfo], this.config(), userInfo)
+      await formatCmt(resp, [userInfo], { ...this.config(), deprecated: this.ctx.state.deprecated }, userInfo)
     );
   }
 
@@ -688,7 +695,7 @@ module.exports = class extends BaseRest {
     const cmtReturn = await formatCmt(
       newData[0],
       cmtUser ? [cmtUser] : [],
-      this.config(),
+      { ...this.config(), deprecated: this.ctx.state.deprecated },
       userInfo
     );
 
@@ -719,7 +726,7 @@ module.exports = class extends BaseRest {
       const pcmtReturn = await formatCmt(
         pComment,
         pUser ? [pUser] : [],
-        this.config(),
+        { ...this.config(), deprecated: this.ctx.state.deprecated },
         userInfo
       );
 
