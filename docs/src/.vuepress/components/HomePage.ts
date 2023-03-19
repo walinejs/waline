@@ -1,5 +1,5 @@
 import { defineComponent, h, resolveComponent } from 'vue';
-import HopeHomePage from 'vuepress-theme-hope/components/HomePage';
+import HopeHomePage from 'vuepress-theme-hope/components/HomePage.js';
 import WalineTips from './WalineTips.js';
 
 import { useDarkmode } from '@theme-hope/modules/outlook/composables/index';

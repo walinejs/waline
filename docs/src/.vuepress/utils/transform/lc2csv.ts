@@ -1,4 +1,4 @@
-import CSV from './csv.js';
+import CSV from '../csv.js';
 
 /**
  * leancloud 数据结构转 csv

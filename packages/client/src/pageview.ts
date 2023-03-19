@@ -1,7 +1,6 @@
-import { getPageview, updatePageview } from './api';
-import { errorHandler, getQuery, getServerURL } from './utils';
-
-import type { WalineAbort } from './typings';
+import { getPageview, updatePageview } from './api/index.js';
+import { type WalineAbort } from './typings/index.js';
+import { errorHandler, getQuery, getServerURL } from './utils/index.js';
 
 export interface WalinePageviewCountOptions {
   /**

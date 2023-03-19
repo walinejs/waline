@@ -1,5 +1,6 @@
-import type { marked } from 'marked';
-import type { WalineTexRenderer } from '../typings';
+import { type marked } from 'marked';
+
+import { type WalineTexRenderer } from '../typings/index.js';
 
 const inlineMathStart = /\$.*?\$/;
 const inlineMathReg = /^\$(.*?)\$/;

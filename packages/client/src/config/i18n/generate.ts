@@ -1,4 +1,4 @@
-import type { WalineLocale } from '../../typings';
+import { type WalineLocale } from '../../typings/index.js';
 
 const localeKeys = [
   'nick',

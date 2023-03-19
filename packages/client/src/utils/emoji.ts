@@ -1,8 +1,8 @@
 import { useStorage } from '@vueuse/core';
-import { removeEndingSplash } from './path';
 
-import type { WalineEmojiConfig } from './config';
-import type { WalineEmojiInfo } from '../typings';
+import { type WalineEmojiConfig } from './config.js';
+import { removeEndingSplash } from './path.js';
+import { type WalineEmojiInfo } from '../typings/index.js';
 
 const hasVersion = (url: string): boolean =>
   Boolean(/@[0-9]+\.[0-9]+\.[0-9]+/.test(url));

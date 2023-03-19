@@ -13,11 +13,11 @@ export function buildAvatar(email = '', avatar = '') {
 }
 
 export function getPostUrl(url) {
-  if (!globalThis.SITE_URL) {
+  if (!window.SITE_URL) {
     return url;
   }
 
-  return globalThis.SITE_URL + url;
+  return window.SITE_URL + url;
 }
 
 export function formatDate(time) {

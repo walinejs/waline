@@ -1,5 +1,5 @@
-import type { BaseAPIOptions } from './utils';
-import type { WalineComment } from '../typings';
+import { type BaseAPIOptions } from './utils.js';
+import { type WalineComment } from '../typings/index.js';
 
 export interface GetRecentCommentOptions extends BaseAPIOptions {
   /**

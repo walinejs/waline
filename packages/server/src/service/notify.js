@@ -1,8 +1,9 @@
-const FormData = require('form-data');
-const nodemailer = require('nodemailer');
-const fetch = require('node-fetch');
-const nunjucks = require('nunjucks');
 const crypto = require('crypto');
+
+const FormData = require('form-data');
+const fetch = require('node-fetch');
+const nodemailer = require('nodemailer');
+const nunjucks = require('nunjucks');
 
 module.exports = class extends think.Service {
   constructor(ctx) {

@@ -1,4 +1,5 @@
 const nunjucks = require('nunjucks');
+
 const locales = require('../locales');
 
 module.exports = {
