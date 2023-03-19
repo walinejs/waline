@@ -36,8 +36,9 @@
   | | [阿里云 FC](https://fc.console.aliyun.com/) | SQLite |
   | | [Railway](https://railway.app) | PostgreSQL |
   | | [Render](https://render.com) | [GitHub](https://github.com) |
-  | | Docker | [Deta Base](https://deta.space/docs/en/reference/base/about) |
-  | | 独立部署 | [TiDB](https://tidbcloud.com/) |
+  | | [Zeabur](https://zeabur.com) | [Deta Base](https://deta.space/docs/en/reference/base/about) |
+  | | Docker | [TiDB](https://tidbcloud.com/) |
+  | | 独立部署 |  |
 
 ## Todo
 

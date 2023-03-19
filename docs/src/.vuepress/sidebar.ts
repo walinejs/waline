@@ -61,6 +61,7 @@ export const zhSidebarConfig = sidebar({
         'cloudbase',
         'deta',
         'railway',
+        'zeabur',
         'baidu-cfc',
         'aliyun-fc',
         'vps',
@@ -190,7 +191,7 @@ export const enSidebarConfig = sidebar({
       text: 'Deploy',
       icon: 'deploy',
       prefix: 'deploy/',
-      children: ['vercel', 'deta', 'railway', 'vps'],
+      children: ['vercel', 'deta', 'railway', 'zeabur', 'vps'],
     },
   ],
   '/en/': [
