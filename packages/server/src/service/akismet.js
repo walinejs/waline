@@ -1,4 +1,5 @@
 const Akismet = require('akismet');
+
 const DEFAULT_KEY = '70542d86693e';
 
 module.exports = function (comment, blog) {

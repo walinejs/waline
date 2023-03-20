@@ -1,4 +1,4 @@
-import type { WalineProps } from './waline';
+import { type WalineProps } from './waline.js';
 
 export interface WalineInitOptions extends Omit<WalineProps, 'path'> {
   /**

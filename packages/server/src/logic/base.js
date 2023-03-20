@@ -1,7 +1,8 @@
 const path = require('path');
 const qs = require('querystring');
-const fetch = require('node-fetch');
+
 const jwt = require('jsonwebtoken');
+const fetch = require('node-fetch');
 const helper = require('think-helper');
 
 module.exports = class extends think.Logic {

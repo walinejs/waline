@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+
 const BaseRest = require('../rest');
 
 module.exports = class extends BaseRest {

@@ -59,8 +59,7 @@
 import { nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 
 import { LoadingIcon } from './Icons.js';
-
-import type { WalineSearchResult } from '../typings/index.js';
+import { type WalineSearchResult } from '../typings/index.js';
 
 type Column = number[];
 

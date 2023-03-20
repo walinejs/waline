@@ -1,3 +1,4 @@
+import { decodePath, isLinkHttp, removeEndingSplash } from './path.js';
 import {
   DEFAULT_EMOJI,
   DEFAULT_LANG,
@@ -8,16 +9,13 @@ import {
   defaultTexRenderer,
   getDefaultSearchOptions,
   getMeta,
-} from '../config';
-
-import { decodePath, isLinkHttp, removeEndingSplash } from './path';
-
-import type {
-  WalineEmojiInfo,
-  WalineEmojiMaps,
-  WalineLocale,
-  WalineProps,
-} from '../typings';
+} from '../config/index.js';
+import {
+  type WalineEmojiInfo,
+  type WalineEmojiMaps,
+  type WalineLocale,
+  type WalineProps,
+} from '../typings/index.js';
 
 export interface WalineEmojiConfig {
   tabs: Pick<WalineEmojiInfo, 'name' | 'icon' | 'items'>[];

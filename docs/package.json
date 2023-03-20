@@ -2,12 +2,13 @@
   "name": "docs",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "vuepress build src",
     "dev": "vuepress dev src"
   },
   "devDependencies": {
-    "@fancyapps/ui": "5.0.7",
+    "@fancyapps/ui": "5.0.8",
     "@vuepress/client": "2.0.0-beta.61",
     "@vuepress/plugin-docsearch": "2.0.0-beta.61",
     "@vuepress/utils": "2.0.0-beta.61",

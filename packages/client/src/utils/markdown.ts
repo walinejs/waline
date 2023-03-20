@@ -1,11 +1,11 @@
 import { marked } from 'marked';
-import { markedTexExtensions } from './markedMathExtension';
 
-import type {
-  WalineEmojiMaps,
-  WalineHighlighter,
-  WalineTexRenderer,
-} from '../typings';
+import { markedTexExtensions } from './markedMathExtension.js';
+import {
+  type WalineEmojiMaps,
+  type WalineHighlighter,
+  type WalineTexRenderer,
+} from '../typings/index.js';
 
 export const parseEmoji = (text = '', emojiMap: WalineEmojiMaps = {}): string =>
   text.replace(/:(.+?):/g, (placeholder, key: string) =>
