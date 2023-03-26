@@ -97,9 +97,9 @@
     "vercel": "28.17.0",
     "vite": "4.2.0",
     "vite-plugin-reiconify": "1.1.2",
-    "vitest": "0.29.3"
+    "vitest": "0.29.7"
   },
-  "packageManager": "pnpm@7.29.3",
+  "packageManager": "pnpm@7.30.0",
   "apidoc": {
     "title": "Waline API Documentation"
   },
