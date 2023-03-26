@@ -16,7 +16,7 @@ module.exports = [
   {
     handle: 'prefix-warning',
   },
-  
+
   {
     handle: 'meta',
     options: {
@@ -62,7 +62,7 @@ module.exports = [
   {
     handle: 'router',
     options: {
-      prefix: ['/api']
+      prefix: ['/api'],
     },
   },
 
