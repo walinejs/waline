@@ -70,7 +70,7 @@ export const login = ({
   const top = (window.innerHeight - height) / 2;
 
   const handler = window.open(
-    `${serverURL}/ui/login?lng=${encodeURIComponent(lang)}`,
+    `${serverURL.replace(/\/$/, '')}/ui/login?lng=${encodeURIComponent(lang)}`,
     '_blank',
     `width=${width},height=${height},left=${left},top=${top},scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no`
   );

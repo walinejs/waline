@@ -1,4 +1,4 @@
-import { type BaseAPIOptions } from './utils.js';
+import { type BaseAPIOptions, getFetchPrefix } from './utils.js';
 
 export interface GetCommentCountOptions extends BaseAPIOptions {
   /**
@@ -23,7 +23,7 @@ export const fetchCommentCount = ({
   signal,
 }: GetCommentCountOptions): Promise<number[]> =>
   fetch(
-    `${serverURL}/comment?type=count&url=${encodeURIComponent(
+    `${getFetchPrefix(serverURL)}comment?type=count&url=${encodeURIComponent(
       paths.join(',')
     )}&lang=${lang}`,
     { signal }

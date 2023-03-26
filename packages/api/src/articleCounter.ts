@@ -1,4 +1,4 @@
-import { type BaseAPIOptions, JSON_HEADERS } from './utils.js';
+import { type BaseAPIOptions, JSON_HEADERS, getFetchPrefix } from './utils.js';
 
 export interface GetArticleCounterOptions extends BaseAPIOptions {
   /**
@@ -37,7 +37,7 @@ export const getArticleCounter = ({
   signal,
 }: GetArticleCounterOptions): Promise<GetArticleCounterResponse> =>
   fetch(
-    `${serverURL}/article?path=${encodeURIComponent(
+    `${getFetchPrefix(serverURL)}article?path=${encodeURIComponent(
       paths.join(',')
     )}&type=${encodeURIComponent(type.join(','))}&lang=${lang}`,
     { signal }
@@ -75,7 +75,7 @@ export const updateArticleCounter = ({
   type,
   action,
 }: UpdateArticleCounterOptions): Promise<number> =>
-  fetch(`${serverURL}/article?lang=${lang}`, {
+  fetch(`${getFetchPrefix(serverURL)}article?lang=${lang}`, {
     method: 'POST',
     headers: JSON_HEADERS,
     body: JSON.stringify({ path, type, action }),

@@ -35,6 +35,9 @@ export const JSON_HEADERS: Record<string, string> = {
   'Content-Type': 'application/json',
 };
 
+export const getFetchPrefix = (serverURL: string): string =>
+  `${serverURL.replace(/\/?$/, '/')}api/`;
+
 export const errorCheck = <T extends ErrorStatusResponse>(
   data: T,
   name = ''

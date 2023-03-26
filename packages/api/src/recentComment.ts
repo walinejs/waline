@@ -1,5 +1,5 @@
-import { type WalineComment } from './typings.js';
-import { type BaseAPIOptions } from './utils.js';
+import { type BaseWalineResponseComment } from './typings.js';
+import { type BaseAPIOptions, getFetchPrefix } from './utils.js';
 
 export interface GetRecentCommentOptions extends BaseAPIOptions {
   /**
@@ -24,19 +24,33 @@ export interface GetRecentCommentOptions extends BaseAPIOptions {
   token?: string;
 }
 
+export interface RecentCommentData extends BaseWalineResponseComment {
+  /**
+   * Page url where comment locales
+   *
+   * 评论所在页面地址
+   */
+  url: string;
+}
+
 export const getRecentComment = ({
   serverURL,
   lang,
   count,
   signal,
   token,
-}: GetRecentCommentOptions): Promise<WalineComment[]> => {
+}: GetRecentCommentOptions): Promise<RecentCommentData[]> => {
   const headers: Record<string, string> = {};
 
   if (token) headers.Authorization = `Bearer ${token}`;
 
-  return fetch(`${serverURL}/comment?type=recent&count=${count}&lang=${lang}`, {
-    signal,
-    headers,
-  }).then((resp) => <Promise<WalineComment[]>>resp.json());
+  return fetch(
+    `${getFetchPrefix(
+      serverURL
+    )}comment?type=recent&count=${count}&lang=${lang}`,
+    {
+      signal,
+      headers,
+    }
+  ).then((resp) => <Promise<RecentCommentData[]>>resp.json());
 };

@@ -1,4 +1,4 @@
-import { type WalineComment, getRecentComment } from '@waline/api';
+import { type RecentCommentData, getRecentComment } from '@waline/api';
 
 import { useUserInfo } from '../composables/index.js';
 import { getRoot } from '../utils/index.js';
@@ -41,7 +41,7 @@ export interface WalineRecentCommentsResult {
    *
    * Comment Data
    */
-  comments: WalineComment[];
+  comments: RecentCommentData[];
 
   /**
    * 取消挂载挂件
