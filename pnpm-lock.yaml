@@ -125,8 +125,8 @@ importers:
         specifier: 3.2.0
         version: 3.2.0(@babel/core@7.21.3)(@babel/plugin-transform-runtime@7.21.0)(@babel/preset-env@7.20.2)(@babel/runtime@7.21.0)(rollup@3.19.1)(typescript@5.0.2)
       sass:
-        specifier: 1.59.3
-        version: 1.59.3
+        specifier: 1.60.0
+        version: 1.60.0
       sort-package-json:
         specifier: 2.4.1
         version: 2.4.1
@@ -144,16 +144,16 @@ importers:
         version: 5.0.2
       vercel:
         specifier: 28.17.0
-        version: 28.17.0(@types/node@18.15.3)(sass@1.59.3)
+        version: 28.17.0(@types/node@18.15.3)(sass@1.60.0)
       vite:
         specifier: 4.2.0
-        version: 4.2.0(@types/node@18.15.3)(sass@1.59.3)
+        version: 4.2.0(@types/node@18.15.3)(sass@1.60.0)
       vite-plugin-reiconify:
         specifier: 1.1.2
         version: 1.1.2(vite@4.2.0)
       vitest:
         specifier: 0.29.7
-        version: 0.29.7(sass@1.59.3)
+        version: 0.29.7(sass@1.60.0)
 
   docs:
     devDependencies:
@@ -4014,7 +4014,7 @@ packages:
       outdent: 0.8.0
     dev: true
 
-  /@vanilla-extract/integration@6.2.1(@types/node@18.15.3)(sass@1.59.3):
+  /@vanilla-extract/integration@6.2.1(@types/node@18.15.3)(sass@1.60.0):
     resolution: {integrity: sha512-+xYJz07G7TFAMZGrOqArOsURG+xcYvqctujEkANjw2McCBvGEK505RxQqOuNiA9Mi9hgGdNp2JedSa94f3eoLg==}
     dependencies:
       '@babel/core': 7.21.3
@@ -4028,8 +4028,8 @@ packages:
       lodash: 4.17.21
       mlly: 1.2.0
       outdent: 0.8.0
-      vite: 4.2.0(@types/node@18.15.3)(sass@1.59.3)
-      vite-node: 0.28.5(@types/node@18.15.3)(sass@1.59.3)
+      vite: 4.2.0(@types/node@18.15.3)(sass@1.60.0)
+      vite-node: 0.28.5(@types/node@18.15.3)(sass@1.60.0)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -4143,10 +4143,10 @@ packages:
       - supports-color
     dev: true
 
-  /@vercel/remix-builder@1.7.0(@types/node@18.15.3)(sass@1.59.3):
+  /@vercel/remix-builder@1.7.0(@types/node@18.15.3)(sass@1.60.0):
     resolution: {integrity: sha512-7y4qJ4axKMt04mKtr4SwoNf/gmj0xncVKEVsFNgF7LnakoyHRc7aONyJnhKyWC3vqrl0I/Kis+frnqE2ZeivFw==}
     dependencies:
-      '@remix-run/dev': /@vercel/remix-run-dev@1.14.2(@types/node@18.15.3)(sass@1.59.3)
+      '@remix-run/dev': /@vercel/remix-run-dev@1.14.2(@types/node@18.15.3)(sass@1.60.0)
       '@vercel/build-utils': 6.4.0
       '@vercel/nft': 0.22.5
       '@vercel/static-config': 2.0.14
@@ -4168,7 +4168,7 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@vercel/remix-run-dev@1.14.2(@types/node@18.15.3)(sass@1.59.3):
+  /@vercel/remix-run-dev@1.14.2(@types/node@18.15.3)(sass@1.60.0):
     resolution: {integrity: sha512-lsJFO2pnQoHYe2gcvj/VY8c0lVHZFnoEfMB3w+CQU8xql2hpneK2XrbKT/mHm+HDeaaJPT+mxAf7jpbFXeZhWA==}
     engines: {node: '>=14'}
     hasBin: true
@@ -4190,7 +4190,7 @@ packages:
       '@esbuild-plugins/node-modules-polyfill': 0.1.4(esbuild@0.16.3)
       '@npmcli/package-json': 2.0.0
       '@remix-run/server-runtime': 1.14.2
-      '@vanilla-extract/integration': 6.2.1(@types/node@18.15.3)(sass@1.59.3)
+      '@vanilla-extract/integration': 6.2.1(@types/node@18.15.3)(sass@1.60.0)
       arg: 5.0.2
       cacache: 15.3.0
       chalk: 4.1.2
@@ -4287,7 +4287,7 @@ packages:
       '@babel/plugin-transform-react-jsx-source': 7.19.6(@babel/core@7.21.3)
       magic-string: 0.27.0
       react-refresh: 0.14.0
-      vite: 4.2.0(@types/node@18.15.3)(sass@1.59.3)
+      vite: 4.2.0(@types/node@18.15.3)(sass@1.60.0)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -4720,7 +4720,7 @@ packages:
       '@vuepress/shared': 2.0.0-beta.61
       '@vuepress/utils': 2.0.0-beta.61
       '@vueuse/core': 9.13.0(vue@3.2.47)
-      sass: 1.59.3
+      sass: 1.60.0
       vue: 3.2.47
       vue-router: 4.1.6(vue@3.2.47)
     transitivePeerDependencies:
@@ -13865,8 +13865,8 @@ packages:
     dev: false
     optional: true
 
-  /sass@1.59.3:
-    resolution: {integrity: sha512-QCq98N3hX1jfTCoUAsF3eyGuXLsY7BCnCEg9qAact94Yc21npG2/mVOqoDvE0fCbWDqiM4WlcJQla0gWG2YlxQ==}
+  /sass@1.60.0:
+    resolution: {integrity: sha512-updbwW6fNb5gGm8qMXzVO7V4sWf7LMXnMly/JEyfbfERbVH46Fn6q02BX7/eHTdKpE7d+oTkMMQpFWNUMfFbgQ==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     dependencies:
@@ -15904,7 +15904,7 @@ packages:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
     engines: {node: '>= 0.8'}
 
-  /vercel@28.17.0(@types/node@18.15.3)(sass@1.59.3):
+  /vercel@28.17.0(@types/node@18.15.3)(sass@1.60.0):
     resolution: {integrity: sha512-EekRftqZbXBmOwvKKDbBkiy8+7I8xp1aZfXA3PAqLRlmbQqPwRmhYDasDmWj7YNP1cSZktPv++PKH/RjzJleEg==}
     engines: {node: '>= 14'}
     hasBin: true
@@ -15917,7 +15917,7 @@ packages:
       '@vercel/node': 2.9.13
       '@vercel/python': 3.1.54
       '@vercel/redwood': 1.1.10
-      '@vercel/remix-builder': 1.7.0(@types/node@18.15.3)(sass@1.59.3)
+      '@vercel/remix-builder': 1.7.0(@types/node@18.15.3)(sass@1.60.0)
       '@vercel/ruby': 1.3.71
       '@vercel/static-build': 1.3.17
     transitivePeerDependencies:
@@ -15970,7 +15970,7 @@ packages:
       vfile-message: 3.1.4
     dev: true
 
-  /vite-node@0.28.5(@types/node@18.15.3)(sass@1.59.3):
+  /vite-node@0.28.5(@types/node@18.15.3)(sass@1.60.0):
     resolution: {integrity: sha512-LmXb9saMGlrMZbXTvOveJKwMTBTNUH66c8rJnQ0ZPNX+myPEol64+szRzXtV5ORb0Hb/91yq+/D3oERoyAt6LA==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
@@ -15982,7 +15982,7 @@ packages:
       picocolors: 1.0.0
       source-map: 0.6.1
       source-map-support: 0.5.21
-      vite: 4.2.0(@types/node@18.15.3)(sass@1.59.3)
+      vite: 4.2.0(@types/node@18.15.3)(sass@1.60.0)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -15993,7 +15993,7 @@ packages:
       - terser
     dev: true
 
-  /vite-node@0.29.7(@types/node@18.15.3)(sass@1.59.3):
+  /vite-node@0.29.7(@types/node@18.15.3)(sass@1.60.0):
     resolution: {integrity: sha512-PakCZLvz37yFfUPWBnLa1OYHPCGm5v4pmRrTcFN4V/N/T3I6tyP3z07S//9w+DdeL7vVd0VSeyMZuAh+449ZWw==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
@@ -16003,7 +16003,7 @@ packages:
       mlly: 1.2.0
       pathe: 1.1.0
       picocolors: 1.0.0
-      vite: 4.2.0(@types/node@18.15.3)(sass@1.59.3)
+      vite: 4.2.0(@types/node@18.15.3)(sass@1.60.0)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -16031,7 +16031,7 @@ packages:
     dependencies:
       base-icon: 2.2.1
       reiconify: 2.8.0
-      vite: 4.2.0(@types/node@18.15.3)(sass@1.59.3)
+      vite: 4.2.0(@types/node@18.15.3)(sass@1.60.0)
     dev: true
 
   /vite@4.1.4:
@@ -16101,7 +16101,7 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vite@4.2.0(@types/node@18.15.3)(sass@1.59.3):
+  /vite@4.2.0(@types/node@18.15.3)(sass@1.60.0):
     resolution: {integrity: sha512-AbDTyzzwuKoRtMIRLGNxhLRuv1FpRgdIw+1y6AQG73Q5+vtecmvzKo/yk8X/vrHDpETRTx01ABijqUHIzBXi0g==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -16131,12 +16131,12 @@ packages:
       postcss: 8.4.21
       resolve: 1.22.1
       rollup: 3.19.1
-      sass: 1.59.3
+      sass: 1.60.0
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
 
-  /vitest@0.29.7(sass@1.59.3):
+  /vitest@0.29.7(sass@1.60.0):
     resolution: {integrity: sha512-aWinOSOu4jwTuZHkb+cCyrqQ116Q9TXaJrNKTHudKBknIpR0VplzeaOUuDF9jeZcrbtQKZQt6yrtd+eakbaxHg==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
@@ -16185,8 +16185,8 @@ packages:
       tinybench: 2.4.0
       tinypool: 0.4.0
       tinyspy: 1.1.1
-      vite: 4.2.0(@types/node@18.15.3)(sass@1.59.3)
-      vite-node: 0.29.7(@types/node@18.15.3)(sass@1.59.3)
+      vite: 4.2.0(@types/node@18.15.3)(sass@1.60.0)
+      vite-node: 0.29.7(@types/node@18.15.3)(sass@1.60.0)
       why-is-node-running: 2.2.2
     transitivePeerDependencies:
       - less
@@ -16814,7 +16814,7 @@ packages:
       '@vuepress/shared': 2.0.0-beta.61
       '@vuepress/utils': 2.0.0-beta.61
       chokidar: 3.5.3
-      sass: 1.59.3
+      sass: 1.60.0
       vuepress: 2.0.0-beta.61(@vuepress/client@2.0.0-beta.61)(vue@3.2.47)
       vuepress-shared: 2.0.0-beta.193(@vuepress/client@2.0.0-beta.61)(vuepress@2.0.0-beta.61)
     transitivePeerDependencies:
