@@ -13,7 +13,7 @@
           class="wl-nick"
           :href="link"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="nofollow noopener noreferrer"
           >{{ comment.nick }}</a
         >
 
