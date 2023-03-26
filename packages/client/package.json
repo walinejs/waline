@@ -121,7 +121,7 @@
   "dependencies": {
     "@vueuse/core": "^9.13.0",
     "autosize": "^6.0.1",
-    "marked": "^4.2.12",
+    "marked": "^4.3.0",
     "vue": "^3.2.47"
   },
   "devDependencies": {
@@ -130,11 +130,10 @@
     "@giphy/js-types": "4.4.0",
     "@types/autosize": "4.0.1",
     "@types/marked": "4.0.8",
-    "@types/node": "18.15.3",
     "@vitejs/plugin-vue": "4.1.0",
     "recaptcha-v3": "1.10.0",
-    "user-agent-data-types": "^0.3.1",
-    "vite": "4.2.0"
+    "user-agent-data-types": "0.3.1",
+    "vite": "4.2.1"
   },
   "engines": {
     "node": ">=14"
