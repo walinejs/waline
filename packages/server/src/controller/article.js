@@ -11,10 +11,11 @@ module.exports = class extends BaseRest {
 
   async getAction() {
     const { path, type } = this.get();
+    const { deprecated } = this.ctx.state;
 
     // path is required
     if (!Array.isArray(path) || !path.length) {
-      return this.json(0);
+      return this.jsonOrSuccess(0);
     }
 
     const resp = await this.modelInstance.select({ url: ['IN', path] });
@@ -26,7 +27,7 @@ module.exports = class extends BaseRest {
         return o;
       }, {});
 
-      return this.json(type.length === 1 ? data[type[0]] : data);
+      return this.jsonOrSuccess((type.length === 1 && deprecated) ? data[type[0]] : data);
     }
 
     const respObj = resp.reduce((o, n) => {
@@ -48,22 +49,23 @@ module.exports = class extends BaseRest {
           respObj[url] && respObj[url][field] ? respObj[url][field] : 0;
       }
 
-      if (type.length === 1) {
+      if (type.length === 1 && deprecated) {
         counters = counters[type[0]];
       }
       data.push(counters);
     }
 
-    return this.json(path.length === 1 ? data[0] : data);
+    return this.jsonOrSuccess(path.length === 1 && deprecated ? data[0] : data);
   }
 
   async postAction() {
     const { path, type, action } = this.post();
     const resp = await this.modelInstance.select({ url: path });
+    const { deprecated } = this.ctx.state;
 
     if (think.isEmpty(resp)) {
       if (action === 'desc') {
-        return this.json(0);
+        return this.jsonOrSuccess(deprecated ? 0 : [0]);
       }
 
       const count = 1;
@@ -73,7 +75,7 @@ module.exports = class extends BaseRest {
         { access: { read: true, write: true } }
       );
 
-      return this.json(count);
+      return this.jsonOrSuccess(deprecated ? count : [count]);
     }
 
     const ret = await this.modelInstance.update(
@@ -86,6 +88,6 @@ module.exports = class extends BaseRest {
       { objectId: ['IN', resp.map(({ objectId }) => objectId)] }
     );
 
-    return this.json(ret[0][type]);
+    return this.jsonOrSuccess(deprecated ? ret[0][type] : [ret[0][type]]);
   }
 };

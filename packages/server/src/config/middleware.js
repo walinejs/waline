@@ -14,6 +14,10 @@ module.exports = [
   },
 
   {
+    handle: 'prefix-warning',
+  },
+  
+  {
     handle: 'meta',
     options: {
       logRequest: isDev,
@@ -57,7 +61,9 @@ module.exports = [
 
   {
     handle: 'router',
-    options: {},
+    options: {
+      prefix: ['/api']
+    },
   },
 
   { handle: routerREST },
