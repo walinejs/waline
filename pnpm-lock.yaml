@@ -307,6 +307,18 @@ importers:
       '@koa/cors':
         specifier: 4.0.0
         version: 4.0.0
+      '@mdit/plugin-katex':
+        specifier: 0.4.0
+        version: 0.4.0
+      '@mdit/plugin-mathjax':
+        specifier: 0.4.0
+        version: 0.4.0
+      '@mdit/plugin-sub':
+        specifier: 0.4.0
+        version: 0.4.0
+      '@mdit/plugin-sup':
+        specifier: 0.4.0
+        version: 0.4.0
       akismet:
         specifier: 2.0.7
         version: 2.0.7
@@ -331,9 +343,6 @@ importers:
       jsonwebtoken:
         specifier: 9.0.0
         version: 9.0.0
-      katex:
-        specifier: 0.16.4
-        version: 0.16.4
       leancloud-storage:
         specifier: 4.14.0
         version: 4.14.0
@@ -343,15 +352,6 @@ importers:
       markdown-it-emoji:
         specifier: 2.0.2
         version: 2.0.2
-      markdown-it-sub:
-        specifier: 1.0.0
-        version: 1.0.0
-      markdown-it-sup:
-        specifier: 1.0.0
-        version: 1.0.0
-      mathjax-full:
-        specifier: 3.2.2
-        version: 3.2.2
       node-fetch:
         specifier: 2.6.9
         version: 2.6.9
@@ -3367,6 +3367,17 @@ packages:
       markdown-it: 13.0.1
     dev: true
 
+  /@mdit/plugin-katex@0.4.0:
+    resolution: {integrity: sha512-PZfEhCFGuqGb6h13VFZSXYuaPtMlsqnLQfnNseC3kFDcItirUYZgiUKssqL1RA6qkErDWtw/QkRLVUJq70rZDg==}
+    engines: {node: '>= 14'}
+    dependencies:
+      '@mdit/plugin-tex': 0.4.0
+      '@types/katex': 0.16.0
+      '@types/markdown-it': 12.2.3
+      katex: 0.16.4
+      markdown-it: 13.0.1
+    dev: false
+
   /@mdit/plugin-mark@0.3.0:
     resolution: {integrity: sha512-LRCjS/q8ryg/yWnKCGIKWVxCRu36WBfUGDlCuw+cb59ptkbF24Q6Khs8pnZZGq6q+XSFHmYUCCHqp2q79XAvyA==}
     engines: {node: '>= 14'}
@@ -3386,6 +3397,17 @@ packages:
       upath: 2.0.1
     dev: true
 
+  /@mdit/plugin-mathjax@0.4.0:
+    resolution: {integrity: sha512-HqWDOOH5NeyyKV6ApLYMQUSSlynRqwryn+vtsxz2BYmvDwCWavXDzO56jaLa5LHQbVc/C1dHSayZlcmlBJInRA==}
+    engines: {node: '>= 14'}
+    dependencies:
+      '@mdit/plugin-tex': 0.4.0
+      '@types/markdown-it': 12.2.3
+      markdown-it: 13.0.1
+      mathjax-full: 3.2.2
+      upath: 2.0.1
+    dev: false
+
   /@mdit/plugin-stylize@0.3.0:
     resolution: {integrity: sha512-WT+ts6/Xd+K3ASlHDWa4ZHqDx4KgRsuHgLhmyvyAGY9ApNP1Q0ROY5Ik4bn92WVRU3WEfK8ICOEOnoEPEP2NJA==}
     engines: {node: '>= 14'}
@@ -3402,6 +3424,14 @@ packages:
       markdown-it: 13.0.1
     dev: true
 
+  /@mdit/plugin-sub@0.4.0:
+    resolution: {integrity: sha512-Eq/I9DRrrpk4FVbIH+BKZdtFEZZnXEI9pWBLJfEhQANLUZwl7xkEkWygmh3MXrLOhcBP0KZGGl0O+yu7S9aEJQ==}
+    engines: {node: '>= 14'}
+    dependencies:
+      '@types/markdown-it': 12.2.3
+      markdown-it: 13.0.1
+    dev: false
+
   /@mdit/plugin-sup@0.3.0:
     resolution: {integrity: sha512-K6L1/WK94XwFG+Oo54GVM9m+Y0cjinoiVtWjT0OIswCQWDuuXG7H4JH2uxBxQJb8MWNsnnQRUFnaG1RPiRP94Q==}
     engines: {node: '>= 14'}
@@ -3409,6 +3439,14 @@ packages:
       '@types/markdown-it': 12.2.3
       markdown-it: 13.0.1
     dev: true
+
+  /@mdit/plugin-sup@0.4.0:
+    resolution: {integrity: sha512-6rGPWlp7+oGfFfw+iRwZEbTnT4J2xx20f4UVoeIbMk2w3+88p2WEY/0nVqvVU/7iD7AOiOfvhs15kb3kkvn9TA==}
+    engines: {node: '>= 14'}
+    dependencies:
+      '@types/markdown-it': 12.2.3
+      markdown-it: 13.0.1
+    dev: false
 
   /@mdit/plugin-tab@0.3.0:
     resolution: {integrity: sha512-mHnj+AZRem7Jilc1Auu7wL5Uo/S32Slp1WU3Of3RJn0LiQnEpZHKr/kpQutEWV+kZo/rIcTIxdCYWXBZqj38ng==}
@@ -3432,6 +3470,14 @@ packages:
       '@types/markdown-it': 12.2.3
       markdown-it: 13.0.1
     dev: true
+
+  /@mdit/plugin-tex@0.4.0:
+    resolution: {integrity: sha512-uuVSKZJn0mIKslvXFub9GAVYuhwWW7BL/bQAboqlYH17pEC0zMU00+7t3g2aIm3Fqbmf+HS5OwN7h/VPyHGpKw==}
+    engines: {node: '>= 14'}
+    dependencies:
+      '@types/markdown-it': 12.2.3
+      markdown-it: 13.0.1
+    dev: false
 
   /@mdit/plugin-uml@0.3.0:
     resolution: {integrity: sha512-QS00olhRy3Ct5qwjFYBk6YtCZK5oLM8K4SyPND7LCrqiV3PiAtH8jXN9BnDmKQN+EhXXzFe3NlxRjNLvGu/JUw==}
@@ -3857,7 +3903,6 @@ packages:
 
   /@types/katex@0.16.0:
     resolution: {integrity: sha512-hz+S3nV6Mym5xPbT9fnO8dDhBFQguMYpY0Ipxv06JMi1ORgnEM4M1ymWDUhUNer3ElLmT583opRo4RzxKmh9jw==}
-    dev: true
 
   /@types/keyv@3.1.4:
     resolution: {integrity: sha512-BQ5aZNSCpj7D6K2ksrRCTmKRLEpnPvWDiLPfoGyhZ++8YtiK9d/3DBKPJgry359X/P1PfruyYwvnvwFjuEiEIg==}
@@ -3867,7 +3912,6 @@ packages:
 
   /@types/linkify-it@3.0.2:
     resolution: {integrity: sha512-HZQYqbiFVWufzCwexrvh694SOim8z2d+xJl5UNamcvQFejLY/2YUtzXHYi3cHdI7PMlS8ejH2slRAOJQ32aNbA==}
-    dev: true
 
   /@types/markdown-it-emoji@2.0.2:
     resolution: {integrity: sha512-2ln8Wjbcj/0oRi/6VnuMeWEHHuK8uapFttvcLmDIe1GKCsFBLOLBX+D+xhDa9oWOQV0IpvxwrSfKKssAqqroog==}
@@ -3880,7 +3924,6 @@ packages:
     dependencies:
       '@types/linkify-it': 3.0.2
       '@types/mdurl': 1.0.2
-    dev: true
 
   /@types/marked@4.0.8:
     resolution: {integrity: sha512-HVNzMT5QlWCOdeuBsgXP8EZzKUf0+AXzN+sLmjvaB3ZlLqO+e4u0uXrdw9ub69wBKFs+c6/pA4r9sy6cCDvImw==}
@@ -3894,7 +3937,6 @@ packages:
 
   /@types/mdurl@1.0.2:
     resolution: {integrity: sha512-eC4U9MlIcu2q0KQmXszyn5Akca/0jrQmwDRgpAMJai7qBWq4amIQhZyNau4VYGtCeALvW1/NtjzJJ567aZxfKA==}
-    dev: true
 
   /@types/minimatch@5.1.2:
     resolution: {integrity: sha512-K0VQKziLUWkVKiRVrx4a40iPaxTUefQmjtkQofBkYRcoaaL/8rhwDWww9qWbrgicNOgnpIsMxyNIUM4+n6dUIA==}
@@ -9215,7 +9257,7 @@ packages:
       '@types/glob': 7.2.0
       array-union: 2.1.0
       dir-glob: 3.0.1
-      fast-glob: 3.2.11
+      fast-glob: 3.2.12
       glob: 7.2.3
       ignore: 5.2.4
       merge2: 1.4.1
@@ -11096,14 +11138,6 @@ packages:
 
   /markdown-it-emoji@2.0.2:
     resolution: {integrity: sha512-zLftSaNrKuYl0kR5zm4gxXjHaOI3FAOEaloKmRA5hijmJZvSjmxcokOLlzycb/HXlUFWzXqpIEoyEMCE4i9MvQ==}
-
-  /markdown-it-sub@1.0.0:
-    resolution: {integrity: sha512-z2Rm/LzEE1wzwTSDrI+FlPEveAAbgdAdPhdWarq/ZGJrGW/uCQbKAnhoCsE4hAbc3SEym26+W2z/VQB0cQiA9Q==}
-    dev: false
-
-  /markdown-it-sup@1.0.0:
-    resolution: {integrity: sha512-E32m0nV9iyhRR7CrhnzL5msqic7rL1juWre6TQNxsnApg7Uf+F97JOKxUijg5YwXz86lZ0mqfOnutoryyNdntQ==}
-    dev: false
 
   /markdown-it@12.3.2:
     resolution: {integrity: sha512-TchMembfxfNVpHkbtriWltGWc+m3xszaRD0CZup7GFFhzIgQqxIfn3eGj1yZpfuflzPvfkt611B2Q/Bsk1YnGg==}
@@ -15845,7 +15879,6 @@ packages:
   /upath@2.0.1:
     resolution: {integrity: sha512-1uEe95xksV1O0CYKXo8vQvN1JEbtJp7lb7C5U9HMsIp6IVwntkH/oNUzyVNQSd4S1sYk2FpSSW44FqMc8qee5w==}
     engines: {node: '>=4'}
-    dev: true
 
   /update-browserslist-db@1.0.10(browserslist@4.21.5):
     resolution: {integrity: sha512-OztqDenkfFkbSG+tRxBeAnCVPckDBcvibKd35yDONx6OU8N7sqgwc7rCbkJ/WcYtVRZ4ba68d6byhC21GFh7sQ==}

@@ -1,12 +1,15 @@
+const { katex: katexPlugin } = require('@mdit/plugin-katex');
+const {
+  createMathjaxInstance,
+  mathjax: mathjaxPlugin,
+} = require('@mdit/plugin-mathjax');
+const { sub: subPlugin } = require('@mdit/plugin-sub');
+const { sup: supPlugin } = require('@mdit/plugin-sup');
 const MarkdownIt = require('markdown-it');
 const emojiPlugin = require('markdown-it-emoji');
-const subPlugin = require('markdown-it-sub');
-const supPlugin = require('markdown-it-sup');
 
-const { resolveHighlighter } = require('./highlight');
-const { katexPlugin } = require('./katex');
-const { mathjaxPlugin } = require('./mathjax');
-const { sanitize } = require('./xss');
+const { resolveHighlighter } = require('./highlight.js');
+const { sanitize } = require('./xss.js');
 
 const getMarkdownParser = () => {
   const { markdown = {} } = think.config();
@@ -55,7 +58,10 @@ const getMarkdownParser = () => {
       output: 'mathml',
     });
   } else if (tex !== false) {
-    markdownIt.use(mathjaxPlugin, mathjax);
+    markdownIt.use(
+      mathjaxPlugin,
+      createMathjaxInstance({ ...mathjax, output: 'svg' })
+    );
   }
 
   return (content) => sanitize(markdownIt.render(content));

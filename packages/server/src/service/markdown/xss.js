@@ -7,9 +7,13 @@ const DOMPurify = createDOMPurify(new JSDOM('').window);
  * Add a hook to make all links open a new window
  * and force their rel to be 'nofollow noreferrer noopener'
  */
-DOMPurify.addHook('afterSanitizeAttributes', function (node) {
+DOMPurify.addHook('afterSanitizeAttributes', (node) => {
   // set all elements owning target to target=_blank
-  if ('target' in node && node.href && !node.href.startsWith('about:blank#')) {
+  if (
+    node.hasAttribute('target') &&
+    node.hasAttribute('href') &&
+    !node.href.startsWith('about:blank#')
+  ) {
     node.setAttribute('target', '_blank');
     node.setAttribute('rel', 'nofollow noreferrer noopener');
   }
