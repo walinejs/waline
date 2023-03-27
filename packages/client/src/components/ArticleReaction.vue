@@ -84,19 +84,16 @@ const fetchReaction = async (): Promise<void> => {
 
     abort = controller.abort.bind(controller);
 
-    const resp = await getArticleCounter({
+    const resp = (await getArticleCounter({
       serverURL,
       lang,
       paths: [path],
       type: reaction.map((_reaction, index) => `reaction${index}`),
       signal: controller.signal,
-    });
-
-    // TODO: Remove this compact code
-    if (Array.isArray(resp) || typeof resp === 'number') return;
+    })) as Record<string, number>[];
 
     voteNumbers.value = reaction.map(
-      (_reaction, index) => resp[`reaction${index}`]
+      (_reaction, index) => resp[0][`reaction${index}`]
     );
   }
 };

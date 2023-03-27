@@ -262,6 +262,15 @@ const isOwner = computed(
     props.comment.user_id && userInfo.value.objectId === props.comment.user_id
 );
 
+const comment = computed(
+  () =>
+    `${
+      'at' in props.comment
+        ? `<a href="#${props.comment.objectId}">@${props.comment.at!}</a> `
+        : ''
+    }${props.comment.comment}`
+);
+
 const isReplyingCurrent = computed(
   () => props.comment.objectId === props.reply?.objectId
 );

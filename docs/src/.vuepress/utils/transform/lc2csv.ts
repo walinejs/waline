@@ -51,7 +51,6 @@ export const lc2csv = (input) => {
     if (id) {
       row.id = keyMaps[id].toString();
     }
-    row.pid = keyMaps[row.pid];
     row.rid = keyMaps[row.rid];
     row.status = row.status || 'approved';
 

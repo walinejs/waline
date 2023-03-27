@@ -188,7 +188,11 @@ export interface BaseWalineResponseComment {
   /**
    * User label
    *
+   * @description Only available when being set
+   *
    * 用户标签
+   *
+   * @description 仅当设置时可用
    */
   label?: string;
 
@@ -204,22 +208,19 @@ export interface BaseWalineResponseComment {
   status?: WalineCommentStatus;
 }
 
-export interface WalineChildComment extends BaseWalineResponseComment {
+export interface WalineReplyComment extends BaseWalineResponseComment {
   /**
-   * Parent comment id
-   */
-
-  pid: string;
-
-  /**
-   * Root comment id
+   * Reply comment id
+   *
+   * 回复的评论 ID
    */
   rid: string;
 
   /**
-   * User id being at
+   * User Name being at
+   *
+   * 被 @ 的用户名称
    */
-  // TODO: Support this field
   at?: string;
 }
 
@@ -236,7 +237,7 @@ export interface WalineRootComment extends BaseWalineResponseComment {
    *
    * 子评论
    */
-  children: WalineChildComment[];
+  children: WalineReplyComment[];
 }
 
-export type WalineComment = WalineRootComment | WalineChildComment;
+export type WalineComment = WalineRootComment | WalineReplyComment;

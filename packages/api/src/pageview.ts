@@ -29,11 +29,7 @@ export const getPageview = ({
     paths,
     type: ['time'],
     signal,
-  })
-    // TODO: Improve this API
-    .then((counts) => (Array.isArray(counts) ? counts : [counts])) as Promise<
-    number[]
-  >;
+  }).then((counts) => counts) as Promise<number[]>;
 
 export interface UpdatePageviewOptions extends BaseAPIOptions {
   /**

@@ -23,11 +23,7 @@ export interface GetArticleCounterOptions extends BaseAPIOptions {
   signal?: AbortSignal;
 }
 
-export type GetArticleCounterResponse =
-  | Record<string, number>[]
-  | Record<string, number>
-  | number[]
-  | number;
+export type GetArticleCounterResponse = Record<string, number>[] | number[];
 
 export const getArticleCounter = ({
   serverURL,

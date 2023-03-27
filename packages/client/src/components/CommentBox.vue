@@ -554,7 +554,6 @@ const submitComment = async (): Promise<void> => {
   comment.comment = parseEmoji(comment.comment, emoji.value.map);
 
   if (props.replyId && props.rootId) {
-    comment.pid = props.replyId;
     comment.rid = props.rootId;
     comment.at = props.replyUser;
   }

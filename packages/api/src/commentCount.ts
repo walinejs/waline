@@ -28,6 +28,5 @@ export const fetchCommentCount = ({
     )}&lang=${lang}`,
     { signal }
   )
-    .then((resp) => <Promise<number | number[]>>resp.json())
-    // TODO: Improve this API
-    .then((counts) => (Array.isArray(counts) ? counts : [counts]));
+    .then((resp) => <Promise<number[]>>resp.json())
+    .then((counts) => counts);
