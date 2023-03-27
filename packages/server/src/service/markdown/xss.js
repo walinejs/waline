@@ -9,11 +9,7 @@ const DOMPurify = createDOMPurify(new JSDOM('').window);
  */
 DOMPurify.addHook('afterSanitizeAttributes', (node) => {
   // set all elements owning target to target=_blank
-  if (
-    node.hasAttribute('target') &&
-    node.hasAttribute('href') &&
-    !node.href.startsWith('about:blank#')
-  ) {
+  if ('target' in node && node.href && !node.href.startsWith('about:blank#')) {
     node.setAttribute('target', '_blank');
     node.setAttribute('rel', 'nofollow noreferrer noopener');
   }
