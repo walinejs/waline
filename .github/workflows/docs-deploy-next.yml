@@ -3,7 +3,7 @@ name: Deploy next Docs
 on:
   push:
     branches:
-      - main
+      - next
 
 jobs:
   deploy-docs:
