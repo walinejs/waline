@@ -96,7 +96,7 @@
     "@giphy/js-types": "4.4.0",
     "@types/autosize": "4.0.1",
     "@types/marked": "4.0.8",
-    "@types/node": "18.15.10",
+    "@types/node": "18.15.11",
     "@vitejs/plugin-vue": "4.1.0",
     "recaptcha-v3": "1.10.0",
     "user-agent-data-types": "0.3.1",
