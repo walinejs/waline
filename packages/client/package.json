@@ -83,26 +83,24 @@
       "last 2 safari version"
     ]
   },
+  "engines": {
+    "node": ">=16"
+  },
   "dependencies": {
     "@vueuse/core": "^9.13.0",
     "@waline/api": "workspace:*",
     "autosize": "^6.0.1",
     "marked": "^4.3.0",
+    "recaptcha-v3": "1.10.0",
     "vue": "^3.2.47"
   },
   "devDependencies": {
-    "@babel/core": "7.21.3",
-    "@babel/preset-env": "7.20.2",
     "@giphy/js-types": "4.4.0",
     "@types/autosize": "4.0.1",
     "@types/marked": "4.0.8",
     "@types/node": "18.15.11",
     "@vitejs/plugin-vue": "4.1.0",
-    "recaptcha-v3": "1.10.0",
     "user-agent-data-types": "0.3.1",
     "vite": "4.2.1"
-  },
-  "engines": {
-    "node": ">=14"
   }
 }
