@@ -11,7 +11,7 @@ redirectFrom: /en/reference/api.html
 Get comment list for article
 
 ```http
-GET /comment
+GET /api/comment
 ```
 
 **Parameters**:
@@ -28,7 +28,7 @@ GET /comment
 Get comment count for article
 
 ```http
-GET /comment?type=count
+GET /api/comment?type=count
 ```
 
 **Parameters**:
@@ -42,7 +42,7 @@ GET /comment?type=count
 Get recent comment
 
 ```http
-GET /comment?type=recent
+GET /api/comment?type=recent
 ```
 
 **Parameters**:
@@ -54,7 +54,7 @@ GET /comment?type=recent
 ### Submit comment
 
 ```http
-POST /comment
+POST /api/comment
 ```
 
 **Parameters**:
@@ -78,7 +78,7 @@ POST /comment
 Get the number of readings corresponding to an article or multiple articles.
 
 ```http
-GET /article
+GET /api/article
 ```
 
 **Parameters**:
@@ -91,7 +91,7 @@ GET /article
 Update the reading count of an article.
 
 ```http
-POST /article
+POST /api/article
 ```
 
 **Parameters**:
