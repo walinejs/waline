@@ -15,7 +15,7 @@ const netlifyFunctionPrefix = `/.netlify/functions/${process.env._HANDLER.replac
 module.exports = [
   {
     handle: 'dashboard',
-    match: /^\/ui/,
+    match: isNetlify ? new RegExp(`${netlifyFunctionPrefix}/ui`, 'i') : /^\/ui/,
   },
 
   {
