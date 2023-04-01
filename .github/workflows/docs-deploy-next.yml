@@ -1,9 +1,9 @@
-name: Deploy Docs
+name: Deploy next Docs
 
 on:
   push:
     branches:
-      - main
+      - next
 
 jobs:
   deploy-docs:
@@ -41,4 +41,4 @@ jobs:
           branch: gh-pages
           folder: docs/src/.vuepress/dist
           ssh-key: ${{ secrets.SSH_TOKEN }}
-          repository-name: walinejs/walinejs.github.io
+          repository-name: walinejs/next
