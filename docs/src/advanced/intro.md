@@ -31,7 +31,8 @@ icon: intro
 |                                                 | [Railway](https://railway.app)                                  | PostgreSQL                                                   |
 |                                                 | [Render](https://render.com)                                    | [GitHub](https://github.com)                                 |
 |                                                 | [Zeabur](https://zeabur.com)                                    | [Deta Base](https://deta.space/docs/en/reference/base/about) |
-|                                                 | Docker                                                          | [TiDB](https://tidbcloud.com/)                               |
+|                                                 | [Netlify](https://netlify.com)                                  | [TiDB](https://tidbcloud.com/)                               |
+|                                                 | Docker                                                          |                                                              |
 |                                                 | 独立部署                                                        |                                                              |
 
 ## Todo

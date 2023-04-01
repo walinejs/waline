@@ -2,6 +2,8 @@ const fetch = require('node-fetch');
 const Model = require('think-model');
 const Mongo = require('think-mongo');
 
+const { isNetlify, netlifyFunctionPrefix } = require('./netlify');
+
 module.exports = [
   Model(think.app),
   Mongo(think.app),
@@ -15,6 +17,10 @@ module.exports = [
         }
 
         const { protocol, host } = this;
+
+        if (isNetlify) {
+          return `${protocol}://${host}${netlifyFunctionPrefix}`;
+        }
 
         return `${protocol}://${host}`;
       },
