@@ -62,6 +62,7 @@ export const zhSidebarConfig = sidebar({
         'deta',
         'railway',
         'zeabur',
+        'netlify',
         'baidu-cfc',
         'aliyun-fc',
         'vps',
@@ -191,7 +192,7 @@ export const enSidebarConfig = sidebar({
       text: 'Deploy',
       icon: 'deploy',
       prefix: 'deploy/',
-      children: ['vercel', 'deta', 'railway', 'zeabur', 'vps'],
+      children: ['vercel', 'deta', 'railway', 'zeabur', 'netlify', 'vps'],
     },
   ],
   '/en/': [

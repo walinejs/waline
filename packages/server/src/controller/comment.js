@@ -332,7 +332,10 @@ module.exports = class extends BaseRest {
             (cmt) => rootIds[cmt.objectId] || rootIds[cmt.rid]
           );
         } else {
-          comments = await this.modelInstance.select({ ...where, rid: undefined }, {...selectOptions});
+          comments = await this.modelInstance.select(
+            { ...where, rid: undefined },
+            { ...selectOptions }
+          );
           rootCount = comments.length;
           rootComments = [
             ...comments.filter(({ rid, sticky }) => !rid && sticky),
@@ -442,7 +445,17 @@ module.exports = class extends BaseRest {
               cmt.children = await Promise.all(
                 comments
                   .filter(({ rid }) => rid === cmt.objectId)
-                  .map((cmt) => formatCmt(cmt, users, this.config(), userInfo))
+                  .map((cmt) =>
+                    formatCmt(
+                      cmt,
+                      users,
+                      {
+                        ...this.config(),
+                        deprecated: this.ctx.state.deprecated,
+                      },
+                      userInfo
+                    )
+                  )
                   .reverse()
               );
 

@@ -36,9 +36,9 @@ A simple comment system with backend support.
 |                                                 | [Railway](https://railway.app)      | MySQL                                                        |
 |                                                 | [Render](https://render.com)        | SQLite                                                       |
 |                                                 | [Zeabur](https://zeabur.com)        | [GitHub](https://github.com)                                 |
-|                                                 | Docker                              | PostgreSQL                                                   |
-|                                                 | self host                           | [Deta Base](https://deta.space/docs/en/reference/base/about) |
-|                                                 |                                     | [TiDB](https://tidbcloud.com/)                               |
+|                                                 | [Netlify](https://netlify.com)      | PostgreSQL                                                   |
+|                                                 | Docker                              | [Deta Base](https://deta.space/docs/en/reference/base/about) |
+|                                                 | self host                           | [TiDB](https://tidbcloud.com/)                               |
 
 ## Todo
 
