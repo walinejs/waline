@@ -32,15 +32,16 @@ div[tabindex='-1'] {
   display: block;
 }
 
-.account-item.github path,
+.account-item.github a path,
 .account-item.twitter circle,
-.account-item.facebook path,
-.account-item.weibo circle {
+.account-item.facebook a path,
+.account-item.weibo circle,
+.account-item.qq a path {
   fill: #808080;
 }
 
-.account-item.github:hover path,
-.account-item.github.bind path {
+.account-item.github:hover a path,
+.account-item.github.bind a path {
   fill: #1b1f23;
 }
 
@@ -49,14 +50,19 @@ div[tabindex='-1'] {
   fill: #2daae1;
 }
 
-.account-item.facebook:hover path,
-.account-item.facebook.bind path {
+.account-item.facebook:hover a path,
+.account-item.facebook.bind a path {
   fill: #1877f2;
 }
 
 .account-item.weibo:hover circle,
 .account-item.weibo.bind circle {
   fill: #d34237;
+}
+
+.account-item.qq:hover a path, 
+.account-item.qq.bind a path {
+  fill: #259BE0;
 }
 
 // remain for historical reasons
