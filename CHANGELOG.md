@@ -1,3 +1,8 @@
+# (2023-04-02)
+
+### Features
+
+- `@waline/vercel@1.28.0` add netlify deploy support
 # (2023-04-01)
 
 ### Features
