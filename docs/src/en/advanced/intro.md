@@ -29,9 +29,9 @@ A simple comment system with backend support fork from [Valine](https://valine.j
 |                                                 | [Railway](https://railway.app)      | MySQL                                                        |
 |                                                 | [Render](https://render.com)        | SQLite                                                       |
 |                                                 | [Zeabur](https://zeabur.com)        | PostgreSQL                                                   |
-|                                                 | Docker                              | [GitHub](https://github.com)                                 |
-|                                                 | self host                           | [Deta Base](https://deta.space/docs/en/reference/base/about) |
-|                                                 |                                     | [TiDB](https://tidbcloud.com/)                               |
+|                                                 | [Netlify](https://netlify.com)      | [GitHub](https://github.com)                                 |
+|                                                 | Docker                              | [Deta Base](https://deta.space/docs/en/reference/base/about) |
+|                                                 | self host                           | [TiDB](https://tidbcloud.com/)                               |
 
 ## Todo
 
