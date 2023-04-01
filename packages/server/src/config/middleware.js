@@ -64,7 +64,7 @@ module.exports = [
   {
     handle: 'router',
     options: {
-      prefix: ['/api', netlifyFunctionPrefix, `${netlifyFunctionPrefix}/api`],
+      prefix: ['/api', `${netlifyFunctionPrefix}/api`, netlifyFunctionPrefix],
     },
   },
 
