@@ -1,5 +1,4 @@
-import { h } from 'vue';
-import type { FunctionalComponent } from 'vue';
+import { type FunctionalComponent, h } from 'vue';
 
 export const CloseIcon: FunctionalComponent<{ size: number }> = ({ size }) =>
   h(
@@ -127,7 +126,9 @@ export const VerifiedIcon: FunctionalComponent = () =>
     })
   );
 
-export const LoadingIcon: FunctionalComponent<{ size: number }> = ({ size }) =>
+export const LoadingIcon: FunctionalComponent<{ size?: number }> = ({
+  size = 100,
+}) =>
   h(
     'svg',
     {

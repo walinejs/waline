@@ -1,5 +1,6 @@
 const nunjucks = require('nunjucks');
 const helper = require('think-helper');
+
 const { GRAVATAR_STR } = process.env;
 
 const env = new nunjucks.Environment();

@@ -1,4 +1,4 @@
-export { defaultLocales } from '../config';
+export { DEFAULT_LOCALES as defaultLocales } from '../config';
 export * from '../comment';
 export * from '../init';
 export * from '../pageview';

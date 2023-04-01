@@ -1,5 +1,4 @@
-import { JSON_HEADERS } from './utils';
-import type { BaseAPIOptions } from './utils';
+import { type BaseAPIOptions, JSON_HEADERS } from './utils.js';
 
 export interface GetArticleCounterOptions extends BaseAPIOptions {
   /**

@@ -1,6 +1,6 @@
 /// <reference types="user-agent-data-types" />
 
-export const userAgent = async () => {
+export const userAgent = async (): Promise<string> => {
   if (!navigator) {
     return '';
   }

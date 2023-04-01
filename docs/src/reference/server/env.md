@@ -73,7 +73,7 @@ Vercel 需要在 <kbd>Settings</kbd> - <kbd>Environment Variables</kbd> 中进�
 
 Recaptcha Key 和 Secret 可在 <https://www.google.com/recaptcha> 申请。
 
-配置时安全域名需要同时添加网站地址和 Waline 服务端地址。
+配置时安全域名需要同时添加网站地址和 Waline 服务端地址（不包含传输协议，即 `http://` 或 `https://`）。
 
 :::
 

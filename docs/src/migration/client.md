@@ -50,17 +50,17 @@ icon: migration
 
 以下选项已在 V1 中长时间标记为废弃 API，它们已在 V2 中移除。
 
-- `langMode`
-- `placeholder`
-- `emojiCDN`
-- `emojiMaps`
-- `requiredFields`
-- `avatar`
-- `avatarCDN`
-- `avatarForce`
-- `anonymous`
-- `mathTagSupport`
-- `copyRight`
+- `langMode`: 使用 `locales`
+- `placeholder`: 使用 `locales.placeholder`
+- `emojiCDN`: 使用 `emoji`
+- `emojiMaps`: 使用 `emoji`
+- `requiredFields`: 使用 `requiredMeta`
+- `avatar`: 使用服务端变量 `AVATAR_PROXY`
+- `avatarCDN`: 使用服务端变量 `AVATAR_PROXY`
+- `avatarForce`: 默认刷新
+- `anonymous`: 使用 `login`
+- `mathTagSupport`: 不再需要
+- `copyRight`: 使用 `copyright`
 
 ## 其他变更
 

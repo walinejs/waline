@@ -7,7 +7,7 @@ const markdownParser = getMarkdownParser();
 async function formatCmt(
   { ua, ip, ...comment },
   users = [],
-  { avatarProxy },
+  { avatarProxy, deprecated },
   loginUser
 ) {
   ua = think.uaParser(ua);
@@ -61,6 +61,13 @@ async function formatCmt(
   if (typeof comment.sticky === 'string') {
     comment.sticky = Boolean(Number(comment.sticky));
   }
+  
+  comment.time = new Date(comment.insertedAt).getTime();
+  if (!deprecated) {
+    delete comment.insertedAt;
+  }
+  delete comment.createdAt;
+  delete comment.updatedAt;
 
   return comment;
 }
@@ -140,10 +147,10 @@ module.exports = class extends BaseRest {
           );
         }
 
-        return this.json(
+        return this.jsonOrSuccess(
           await Promise.all(
             comments.map((cmt) =>
-              formatCmt(cmt, users, this.config(), userInfo)
+              formatCmt(cmt, users, { ...this.config(), deprecated: this.ctx.state.deprecated }, userInfo)
             )
           )
         );
@@ -164,18 +171,18 @@ module.exports = class extends BaseRest {
           };
         }
 
-        if (Array.isArray(url) && url.length > 1) {
+        if (Array.isArray(url) && (url.length > 1 || !this.ctx.state.deprecated)) {
           const data = await this.modelInstance.select(where, {
             field: ['url'],
           });
 
-          return this.json(
+          return this.jsonOrSuccess(
             url.map((u) => data.filter(({ url }) => url === u).length)
           );
         }
         const data = await this.modelInstance.count(where);
 
-        return this.json(data);
+        return this.jsonOrSuccess(data);
       }
 
       case 'list': {
@@ -246,7 +253,7 @@ module.exports = class extends BaseRest {
           waitingCount,
           data: await Promise.all(
             comments.map((cmt) =>
-              formatCmt(cmt, users, this.config(), userInfo)
+              formatCmt(cmt, users, { ...this.config(), deprecated: this.ctx.state.deprecated }, userInfo)
             )
           ),
         });
@@ -332,14 +339,13 @@ module.exports = class extends BaseRest {
             (cmt) => rootIds[cmt.objectId] || rootIds[cmt.rid]
           );
         } else {
-          rootComments = await this.modelInstance.select(
-            { ...where, rid: undefined },
-            {
-              ...selectOptions,
-              offset: pageOffset,
-              limit: pageSize,
-            }
-          );
+          comments = await this.modelInstance.select({ ...where, rid: undefined }, {...selectOptions});
+          rootCount = comments.length;
+          rootComments = [
+            ...comments.filter(({ rid, sticky }) => !rid && sticky),
+            ...comments.filter(({ rid, sticky }) => !rid && !sticky),
+          ].slice(pageOffset, pageOffset + pageSize);
+
           const children = await this.modelInstance.select(
             {
               ...where,
@@ -349,10 +355,6 @@ module.exports = class extends BaseRest {
           );
 
           comments = [...rootComments, ...children];
-          rootCount = await this.modelInstance.count({
-            ...where,
-            rid: undefined,
-          });
         }
 
         const userModel = this.service(
@@ -430,7 +432,7 @@ module.exports = class extends BaseRest {
           });
         }
 
-        return this.json({
+        return this[this.ctx.state.deprecated ? 'json' : 'success']({
           page,
           totalPages: Math.ceil(rootCount / pageSize),
           pageSize,
@@ -440,14 +442,14 @@ module.exports = class extends BaseRest {
               const cmt = await formatCmt(
                 comment,
                 users,
-                this.config(),
-                userInfo
+                { ...this.config(), deprecated: this.ctx.state.deprecated },
+                userInfo,
               );
 
               cmt.children = await Promise.all(
                 comments
                   .filter(({ rid }) => rid === cmt.objectId)
-                  .map((cmt) => formatCmt(cmt, users, this.config(), userInfo))
+                  .map((cmt) => formatCmt(cmt, users, { ...this.config(), deprecated: this.ctx.state.deprecated }, userInfo))
                   .reverse()
               );
 
@@ -477,7 +479,7 @@ module.exports = class extends BaseRest {
       user_id: this.ctx.state.userInfo.objectId,
     };
 
-    if (pid) {
+    if (pid && this.ctx.deprecated) {
       data.comment = `[@${at}](#${pid}): ` + data.comment;
     }
 
@@ -610,14 +612,14 @@ module.exports = class extends BaseRest {
     const cmtReturn = await formatCmt(
       resp,
       [userInfo],
-      this.config(),
+      { ...this.config(), deprecated: this.ctx.state.deprecated },
       userInfo
     );
     const parentReturn = parentComment
       ? await formatCmt(
           parentComment,
           parentUser ? [parentUser] : [],
-          this.config(),
+          { ...this.config(), deprecated: this.ctx.state.deprecated },
           userInfo
         )
       : undefined;
@@ -638,7 +640,7 @@ module.exports = class extends BaseRest {
     think.logger.debug(`Comment post hooks postSave done!`);
 
     return this.success(
-      await formatCmt(resp, [userInfo], this.config(), userInfo)
+      await formatCmt(resp, [userInfo], { ...this.config(), deprecated: this.ctx.state.deprecated }, userInfo)
     );
   }
 
@@ -688,7 +690,7 @@ module.exports = class extends BaseRest {
     const cmtReturn = await formatCmt(
       newData[0],
       cmtUser ? [cmtUser] : [],
-      this.config(),
+      { ...this.config(), deprecated: this.ctx.state.deprecated },
       userInfo
     );
 
@@ -719,7 +721,7 @@ module.exports = class extends BaseRest {
       const pcmtReturn = await formatCmt(
         pComment,
         pUser ? [pUser] : [],
-        this.config(),
+        { ...this.config(), deprecated: this.ctx.state.deprecated },
         userInfo
       );
 

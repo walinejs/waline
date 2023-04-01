@@ -1,5 +1,5 @@
 import { getUserList, WalineUser } from '../api';
-import { defaultLang, defaultLocales } from '../config';
+import { DEFAULT_LANG, DEFAULT_LOCALES } from '../config';
 import { WalineLocale } from '../typings';
 import { getRoot } from '../utils';
 
@@ -93,7 +93,7 @@ export const UserList = ({
       };
 
     locale = {
-      ...(defaultLocales[lang] || defaultLocales[defaultLang]),
+      ...(DEFAULT_LOCALES[lang] || DEFAULT_LOCALES[DEFAULT_LANG]),
       ...(typeof locale === 'object' ? locale : {}),
     } as WalineLocale;
 

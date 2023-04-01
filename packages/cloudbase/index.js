@@ -1,5 +1,6 @@
 const os = require('node:os');
 const path = require('node:path');
+
 const Application = require('thinkjs');
 const Loader = require('thinkjs/lib/loader');
 

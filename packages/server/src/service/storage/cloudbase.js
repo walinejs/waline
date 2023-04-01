@@ -1,4 +1,5 @@
 const cloudbase = require('@cloudbase/node-sdk');
+
 const Base = require('./base');
 
 const { TCB_ENV, TCB_ID, TCB_KEY } = process.env;

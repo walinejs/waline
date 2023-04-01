@@ -1,2 +1,6 @@
 globals:
   think: readonly
+
+rules:
+  import/no-commonjs:
+    - off
