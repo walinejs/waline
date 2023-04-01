@@ -339,14 +339,13 @@ module.exports = class extends BaseRest {
             (cmt) => rootIds[cmt.objectId] || rootIds[cmt.rid]
           );
         } else {
-          rootComments = await this.modelInstance.select(
-            { ...where, rid: undefined },
-            {
-              ...selectOptions,
-              offset: pageOffset,
-              limit: pageSize,
-            }
-          );
+          comments = await this.modelInstance.select({ ...where, rid: undefined }, {...selectOptions});
+          rootCount = comments.length;
+          rootComments = [
+            ...comments.filter(({ rid, sticky }) => !rid && sticky),
+            ...comments.filter(({ rid, sticky }) => !rid && !sticky),
+          ].slice(pageOffset, pageOffset + pageSize);
+
           const children = await this.modelInstance.select(
             {
               ...where,
@@ -356,10 +355,6 @@ module.exports = class extends BaseRest {
           );
 
           comments = [...rootComments, ...children];
-          rootCount = await this.modelInstance.count({
-            ...where,
-            rid: undefined,
-          });
         }
 
         const userModel = this.service(
