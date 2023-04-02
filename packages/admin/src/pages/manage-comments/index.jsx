@@ -419,6 +419,7 @@ export default function () {
                             rid,
                             pid,
                             sticky,
+                            time,
                             insertedAt,
                           },
                           idx
@@ -590,7 +591,7 @@ export default function () {
                                 className="comment-body"
                               >
                                 <div className="comment-date">
-                                  {formatDate(insertedAt)} {t('at')}{' '}
+                                  {formatDate(insertedAt || time)} {t('at')}{' '}
                                   <a
                                     href={getPostUrl(url)}
                                     target="_blank"
