@@ -29,7 +29,9 @@ module.exports = class extends think.Logic {
         '127.0.0.1',
         'github.com',
         'api.twitter.com',
-        'www.facebook.com'
+        'www.facebook.com',
+        'api.weibo.com',
+        'graph.qq.com'
       );
 
       const match = secureDomains.some((domain) =>
