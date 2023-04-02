@@ -1,4 +1,5 @@
 const DEPRECATE_ROUTER_NEXT_VERSION = [
+  '/article',
   '/comment',
   '/db',
   '/oauth',
