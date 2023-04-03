@@ -22,8 +22,8 @@ https://dash.zeabur.com 登录 Zeabur 控制台，如果没有项目需要先为
 
 为我们的 MongoDB 数据库服务起个名字，点击 <kbd>Deploy</kbd> 按钮，我们的数据库服务就部署好了。
 
-| ![zeabur2](../../assets/zeabur-3.png) | ![zeabur4](../../assets/zeabur-4.png) | ![zeabur5](../../assets/zeabur-5.png) |
-| ------------------------------------- | ------------------------------------- | ------------------------------------- |
+| ![zeabur2](../../assets/zeabur-3.png) | ![zeabur4](../../assets/zeabur-4.png) |     |
+| ------------------------------------- | ------------------------------------- | --- |
 
 接下来我们继续点击 <kbd>Add New Service</kbd> 创建 Waline 服务，这次我们选择点击 <kbd>Deploy Your Source Code</kbd>。在接下来的 GitHub 项目列表中找到最开始我们 Fork 出来的项目，点击对应的 <kbd>Import</kbd> 按钮。
 
@@ -32,7 +32,7 @@ https://dash.zeabur.com 登录 Zeabur 控制台，如果没有项目需要先为
 | ![zeabur6](../../assets/zeabur-6.png) | ![zeabur7](../../assets/zeabur-7.png) |
 | ------------------------------------- | ------------------------------------- |
 
-不要着急关闭 Waline 服务的面板，服务部署完毕之后，我们还需要给服务添加访问域名。点击 <kbd>Settings</kbd> 选项卡下的 <kbd>Generate Domain</kbd> 按钮，输入自己想要的域名前缀并点击 <kbd>Save</kbd> 按钮，就给我们的服务添加好访问域名了。
+不要着急关闭 Waline 服务的面板，服务部署完毕之后，我们还需要给服务添加访问域名。点击 <kbd>Domains</kbd> 选项卡下的 <kbd>Generate Domain</kbd> 按钮，输入自己想要的域名前缀并点击 <kbd>Save</kbd> 按钮，就给我们的服务添加好访问域名了。
 
 | ![zeabur8](../../assets/zeabur-8.png) | ![zeabur9](../../assets/zeabur-9.png) |
 | ------------------------------------- | ------------------------------------- |
