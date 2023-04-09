@@ -3,12 +3,10 @@ title: Privacy Policy
 icon: privacy
 ---
 
-
-
 Thank you for using the Waline commenting system. We take your privacy and data security very seriously. This privacy policy will inform you how we collect, use, process and protect your personal data.
 
 Data Types
-In order to provide the service, we may collect and store information such as your IP address and browser User-Agent (UA). However, if you have made the corresponding settings in the Waline configuration file, we will stop storing this information according to your request.
+In order to provide services, we may collect and store your IP address, browser User-Agent (UA) and other related information, but if you have made the corresponding settings in the Waline configuration file, we will stop storing these according to your request information.
 
 Data Usage
 We only use your information to provide commenting services and will not disclose, sell or rent it to third parties. We will make every effort to protect your information security and comply with local laws, regulations and relevant standards.

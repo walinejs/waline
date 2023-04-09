@@ -1,30 +1,30 @@
 ---
-title: Privacy Policy
+title: 隐私协议
 icon: privacy
 ---
 
-Thank you for using the Waline comment system, we take your privacy and data security very seriously. This Privacy Policy will inform you how we collect, use, process and protect your personal data.
+感谢您使用 Waline 评论系统，我们非常重视您的隐私权和数据安全。本隐私协议将告知您我们如何收集、使用、处理和保护您的个人数据。
 
-## type of data
+## 数据类型
 
-In order to provide services, we collect and store relevant information such as your IP address, browser User-Agent (UA), etc., which are necessary and unavoidable. We do not use any cookie-related functions by default.
+为了提供服务，我们会收集和存储您的 IP 地址、浏览器 User-Agent (UA) 等相关信息，这些信息是必要的并且无法避免。默认我们不会使用任何和 Cookie 相关的功能。
 
-## Data usage
+## 数据用途
 
-We will only use your information to provide review services and will not disclose, sell or lease it to third parties. We will do our best to protect your information security and comply with local laws and regulations and relevant standards.
+我们仅会使用您的信息来提供评论服务，并且不会泄露、出售或租赁给第三方。我们会尽最大努力保护您的信息安全，并遵守当地法律法规和相关标准。
 
-## data processing
+## 数据处理
 
-In order to provide you with better services, we may transfer your information to our servers, the servers of our partners or the servers of third-party service providers, and these servers may be located inside or outside China. We will take reasonable measures to protect your information security and comply with local laws, regulations and relevant standards.
+为了向您提供更好的服务，我们可能将您的信息传输到我们的服务器、合作伙伴的服务器或第三方服务商的服务器，这些服务器有可能位于境内或境外。我们会采取合理的措施保护您的信息安全，并遵守当地法律法规和相关标准。
 
-## Data Protection
+## 数据保护
 
-We will take technical measures and management measures to protect your information security and prevent unauthorized access, use or disclosure. If a data security problem occurs, we will notify you in time and take measures to fix it. But please note that due to the characteristics of the Internet itself and technical limitations, we cannot guarantee that your information is 100% safe.
+我们会采取技术措施和管理措施来保护您的信息安全，防止未经授权的访问、使用或泄露。如果发生了数据安全问题，我们会及时通知您并采取措施进行修复。但请注意，因互联网本身的特性和技术限制，我们无法保证您的信息100%安全。
 
-## legal liability
+## 法律责任
 
-We will abide by local laws, regulations and relevant standards to protect users' privacy and data security. If necessary, we may provide user information in accordance with legal requirements. In addition, we will not actively disclose user information.
+我们将遵守当地法律、法规和相关标准，保护用户的隐私权和数据安全。如果有必要，我们可能会根据法律要求提供用户的信息。除此之外，我们不会主动泄露用户信息。
 
-## other conditions
+## 其他条款
 
-This Privacy Policy applies to all products and services in the default configuration of the Waline Commenting System. For the additional functions added after the transformation of some websites based on Waline, this privacy agreement does not guarantee the application. We reserve the right to modify the privacy agreement and will update the privacy agreement in time. If you have any questions or suggestions about this Privacy Policy, please contact us.
+本隐私协议适用于 Waline 评论系统的默认配置下所有产品和服务。对于部分网站基于 Waline 改造后增加的额外功能，本隐私协议不保证适用。我们保留对隐私协议的修改权利，并会及时更新隐私协议。如果您对本隐私协议有任何疑问或建议，请联系我们。
