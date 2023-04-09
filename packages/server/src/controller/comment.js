@@ -7,7 +7,7 @@ const markdownParser = getMarkdownParser();
 async function formatCmt(
   { ua, ip, ...comment },
   users = [],
-  { avatarProxy, deprecated },
+  { avatarProxy },
   loginUser
 ) {
   ua = think.uaParser(ua);
