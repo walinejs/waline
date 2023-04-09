@@ -125,8 +125,8 @@
     "vue": "^3.2.47"
   },
   "devDependencies": {
-    "@babel/core": "7.21.3",
-    "@babel/preset-env": "7.20.2",
+    "@babel/core": "7.21.4",
+    "@babel/preset-env": "7.21.4",
     "@giphy/js-types": "4.4.0",
     "@types/autosize": "4.0.1",
     "@types/marked": "4.0.8",
