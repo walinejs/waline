@@ -8,6 +8,8 @@ import { addViteSsrNoExternal } from 'vuepress-shared';
 import theme from './theme.js';
 
 export default defineUserConfig({
+  base: '/next/',
+
   locales: {
     '/': {
       lang: 'zh-CN',

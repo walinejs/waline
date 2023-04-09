@@ -3,7 +3,7 @@ name: Deploy next Docs
 on:
   push:
     branches:
-      - main
+      - next
 
 jobs:
   deploy-docs:
@@ -26,6 +26,9 @@ jobs:
 
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: Build API
+        run: pnpm api:build
 
       - name: Build Client
         run: pnpm client:build
