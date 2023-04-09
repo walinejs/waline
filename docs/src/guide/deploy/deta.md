@@ -10,8 +10,7 @@ redirectFrom: /guide/server/deta.html
 
 ## 如何部署
 
-[![Deploy with Deta](https://deta.space/buttons/dark.svg)](
-https://deta.space/discovery/@lizheming/waline)
+[![Deploy with Deta](https://deta.space/buttons/dark.svg)](https://deta.space/discovery/@lizheming/waline)
 
 点击上方按钮，跳转至 Deta 应用市场 Waline 页，点击 <kbd>Install on Space</kbd> 登录后即可自动安装应用。
 
@@ -22,12 +21,12 @@ https://deta.space/discovery/@lizheming/waline)
 在该网址后增加 `/ui` 可以进入后台管理界面。
 
 ![](../../assets/deta-1.png)
+
 ## 如何更新
 
 当有更新时，在你的应用程序列表页会看到黄色气泡提示，点击更多可以看到 <kbd>Update App</kbd> 选项。
 
 ![](../../assets/deta-2.png)
-
 
 点击后选择 <kbd>Install App Update</kbd> 稍等片刻后即可更新成功。
 

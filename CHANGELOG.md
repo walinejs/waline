@@ -3,11 +3,13 @@
 ### Features
 
 - `@waline/vercel@1.28.0` add netlify deploy support
+
 # (2023-04-01)
 
 ### Features
 
 - `@waline/admin@0.24.4` add QQ login support
+
 ### Bug Fixes
 
 - Fix #1898

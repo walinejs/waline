@@ -26,20 +26,20 @@
 - 轻量易用
 - 免费部署
 - 多种部署方式和存储服务支持，每列选择一项多达 243 种部署方式任君选择
-  |                                                 | Waline                                                          |                                                              |
+  | | Waline | |
   | ----------------------------------------------- | --------------------------------------------------------------- | ------------------------------------------------------------ |
-  | **客户端脚本**                                  | **服务端部署**                                                  | **数据存储**                                                 |
-  | [@waline/client](https://waline.js.org)         | [Vercel](https://vercel.com)                                    | [LeanCloud](https://leancloud.app)                           |
-  | [MiniValine](https://minivaline.js.org/)        | [Deta](https://deta.space)                                      | [CloudBase](https://cloudbase.net)                           |
-  | [sodesu](https://github.com/BeiyanYunyi/sodesu) | [CloudBase](https://cloudbase.net/)                             | [MongoDB](https://mongodb.com)                               |
-  |                                                 | [百度云 CFC](https://console.bce.baidu.com/cfc/#/cfc/functions) | MySQL                                                        |
-  |                                                 | [阿里云 FC](https://fc.console.aliyun.com/)                     | SQLite                                                       |
-  |                                                 | [Railway](https://railway.app)                                  | PostgreSQL                                                   |
-  |                                                 | [Render](https://render.com)                                    | [GitHub](https://github.com)                                 |
-  |                                                 | [Zeabur](https://zeabur.com)                                    | [Deta Base](https://deta.space/docs/en/reference/base/about) |
-  |                                                 | [Netlify](https://netlify.com)                                  | [TiDB](https://tidbcloud.com/)                               |
-  |                                                 | Docker                                                          |                                                              |
-  |                                                 | 独立部署                                                        |                                                              |
+  | **客户端脚本** | **服务端部署** | **数据存储** |
+  | [@waline/client](https://waline.js.org) | [Vercel](https://vercel.com) | [LeanCloud](https://leancloud.app) |
+  | [MiniValine](https://minivaline.js.org/) | [Deta](https://deta.space) | [CloudBase](https://cloudbase.net) |
+  | [sodesu](https://github.com/BeiyanYunyi/sodesu) | [CloudBase](https://cloudbase.net/) | [MongoDB](https://mongodb.com) |
+  | | [百度云 CFC](https://console.bce.baidu.com/cfc/#/cfc/functions) | MySQL |
+  | | [阿里云 FC](https://fc.console.aliyun.com/) | SQLite |
+  | | [Railway](https://railway.app) | PostgreSQL |
+  | | [Render](https://render.com) | [GitHub](https://github.com) |
+  | | [Zeabur](https://zeabur.com) | [Deta Base](https://deta.space/docs/en/reference/base/about) |
+  | | [Netlify](https://netlify.com) | [TiDB](https://tidbcloud.com/) |
+  | | Docker | |
+  | | 独立部署 | |
 
 ## Todo
 
