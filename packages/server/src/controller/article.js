@@ -27,7 +27,9 @@ module.exports = class extends BaseRest {
         return o;
       }, {});
 
-      return this.json(type.length === 1 ? data[type[0]] : data);
+      return this.jsonOrSuccess(
+        type.length === 1 && deprecated ? data[type[0]] : data
+      );
     }
 
     const respObj = resp.reduce((o, n) => {
