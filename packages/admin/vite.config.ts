@@ -12,7 +12,9 @@ export default defineConfig({
   define: {
     VERSION: JSON.stringify(version),
     // eslint-disable-next-line @typescript-eslint/naming-convention
-    'process.env.NODE_ENV': JSON.stringify('production'),
+    'process.env.NODE_ENV': JSON.stringify(
+      process.env.NODE_ENV || 'development'
+    ),
   },
 
   plugins: [

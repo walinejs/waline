@@ -25,7 +25,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "vite build",
+    "build": "NODE_ENV=production vite build",
     "clean": "rimraf ./dist",
     "dev": "vite",
     "prepublishOnly": "pnpm build"
