@@ -14,12 +14,12 @@ If you don't want to deploy the server on Vercel, you can also choose to deploy 
 docker run -d \
   -e LEAN_ID=xxx \
   -e LEAN_KEY=xxx \
-  -e LEAN_SERVER=https://xxx.com \
+  -e LEAN_MASTER_KEY=xxx \
   -p 8360:8360 \
   lizheming/waline
 ```
 
-`LEAN_ID` and `LEAN_KEY` correspond to the App Id and App Key obtained in the background respectively. If you are not a LeanCloud International version user, you need to bind the registered domain name in the background and configure `LEAN_SERVER`.
+`LEAN_ID` `LEAN_KEY` and `LEAN_MASTER_KEY` correspond to the App Id, App Key and Master Key obtained in the background respectively. If you are not a LeanCloud International version user, you need to bind the registered domain name in the background and configure `LEAN_SERVER`.
 
 ::: tip How to build image?
 

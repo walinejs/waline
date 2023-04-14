@@ -48,7 +48,7 @@
     "@rematch/core": "2.2.0",
     "base-icon": "2.2.1",
     "classnames": "2.3.2",
-    "i18next": "22.4.13",
+    "i18next": "22.4.14",
     "i18next-browser-languagedetector": "7.0.1",
     "md5": "2.3.0",
     "qrcode.react": "3.1.0",
@@ -56,9 +56,9 @@
     "react-dom": "18.2.0",
     "react-i18next": "12.2.0",
     "react-redux": "8.0.5",
-    "react-router-dom": "6.9.0",
+    "react-router-dom": "6.10.0",
     "redux": "4.2.1",
-    "typescript": "5.0.2",
+    "typescript": "5.0.4",
     "vite-plugin-css-injected-by-js": "^3.1.0"
   }
 }

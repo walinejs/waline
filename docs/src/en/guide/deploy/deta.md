@@ -10,8 +10,7 @@ redirectFrom: /en/guide/server/deta.html
 
 ## How to deploy
 
-[![Deploy with Deta](https://deta.space/buttons/dark.svg)](
-https://deta.space/discovery/@lizheming/waline)
+[![Deploy with Deta](https://deta.space/buttons/dark.svg)](https://deta.space/discovery/@lizheming/waline)
 
 Click the button above to jump to the Waline page of the Deta application market, click <kbd>Install on Space</kbd> to automatically install the application after logging in.
 
@@ -22,12 +21,12 @@ Wait for a while to see the application on the https://deta.space homepage, and 
 Add `/ui` after this URL can enter the admin dashboard.
 
 ![](../../../assets/deta-1.png)
+
 ## How to update
 
 When there is an update, you will see a yellow bubble prompt on your application list page, click More to see the <kbd>Update App</kbd> option.
 
 ![](../../../assets/deta-2.png)
-
 
 After clicking, select <kbd>Install App Update</kbd> and wait for a while to update successfully.
 
