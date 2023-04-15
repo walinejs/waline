@@ -14,7 +14,7 @@ module.exports = class extends Base {
   }
 
   /**
-   * @api {GET} /comment Get comment list for client
+   * @api {GET} /api/comment Get comment list for client
    * @apiGroup Comment
    * @apiVersion  0.0.1
    *
@@ -48,7 +48,7 @@ module.exports = class extends Base {
    * @apiSuccess  (200) {String}  data.children.type comment login user type
    */
   /**
-   * @api {GET} /comment?type=list Get comment list for admin
+   * @api {GET} /api/comment?type=list Get comment list for admin
    * @apiGroup Comment
    * @apiVersion  0.0.1
    *
@@ -77,7 +77,7 @@ module.exports = class extends Base {
    * @apiSuccess  (200) {String}  data.data.url comment article link
    */
   /**
-   * @api {GET} /comment?type=count Get comment count for articles
+   * @api {GET} /api/comment?type=count Get comment count for articles
    * @apiGroup Comment
    * @apiVersion  0.0.1
    *
@@ -90,7 +90,7 @@ module.exports = class extends Base {
    * [300, 100]
    */
   /**
-   * @api {GET} /comment?type=recent Get recent comments
+   * @api {GET} /api/comment?type=recent Get recent comments
    * @apiGroup Comment
    * @apiVersion  0.0.1
    *
@@ -177,7 +177,7 @@ module.exports = class extends Base {
   }
 
   /**
-   * @api {POST} /comment post comment
+   * @api {POST} /api/comment post comment
    * @apiGroup Comment
    * @apiVersion  0.0.1
    *
@@ -221,7 +221,7 @@ module.exports = class extends Base {
   }
 
   /**
-   * @api {PUT} /comment/:id update comment data
+   * @api {PUT} /api/comment/:id update comment data
    * @apiGroup Comment
    * @apiVersion  0.0.1
    *
@@ -279,7 +279,7 @@ module.exports = class extends Base {
   }
 
   /**
-   * @api {DELETE} /comment/:id delete comment
+   * @api {DELETE} /api/comment/:id delete comment
    * @apiGroup Comment
    * @apiVersion  0.0.1
    *

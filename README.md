@@ -25,20 +25,20 @@ A simple comment system with backend support.
 - Support full markdown syntax
 - Simple and lightweight
 - Deploy free!
-- Multiple deployment and storage service support, at least 84 deployment choice!
+- Multiple deployment and storage service support, at least 243 deployment choice!
 
-|                                          | Waline                              |                                                   |
-| ---------------------------------------- | ----------------------------------- | ------------------------------------------------- |
-| **Client**                               | **Server**                          | **Storage**                                       |
-| [@waline/client](https://waline.js.org)  | [Vercel](https://vercel.com)        | [LeanCloud](https://leancloud.app)                |
-| [MiniValine](https://minivaline.js.org/) | [Deta](https://deta.sh)             | [CloudBase](https://clodbase.net)                 |
-|                                          | [CloudBase](https://cloudbase.net/) | [MongoDB](https://mongodb.com)                    |
-|                                          | [Railway](https://railway.app)      | MySQL                                             |
-|                                          | [Render](https://render.com)        | SQLite                                            |
-|                                          | Docker                              | PostgreSQL                                        |
-|                                          | self host                           | [GitHub](https://github.com)                      |
-|                                          |                                     | [Deta Base](https://docs.deta.sh/docs/base/about) |
-|                                          |                                     | [TiDB](https://tidbcloud.com/)                    |
+|                                                 | Waline                              |                                                              |
+| ----------------------------------------------- | ----------------------------------- | ------------------------------------------------------------ |
+| **Client**                                      | **Server**                          | **Storage**                                                  |
+| [@waline/client](https://waline.js.org)         | [Vercel](https://vercel.com)        | [LeanCloud](https://leancloud.app)                           |
+| [MiniValine](https://minivaline.js.org/)        | [Deta](https://deta.space)          | [CloudBase](https://clodbase.net)                            |
+| [sodesu](https://github.com/BeiyanYunyi/sodesu) | [CloudBase](https://cloudbase.net/) | [MongoDB](https://mongodb.com)                               |
+|                                                 | [Railway](https://railway.app)      | MySQL                                                        |
+|                                                 | [Render](https://render.com)        | SQLite                                                       |
+|                                                 | [Zeabur](https://zeabur.com)        | [GitHub](https://github.com)                                 |
+|                                                 | [Netlify](https://netlify.com)      | PostgreSQL                                                   |
+|                                                 | Docker                              | [Deta Base](https://deta.space/docs/en/reference/base/about) |
+|                                                 | self host                           | [TiDB](https://tidbcloud.com/)                               |
 
 ## Todo
 

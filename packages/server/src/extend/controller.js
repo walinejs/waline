@@ -1,4 +1,5 @@
 const nunjucks = require('nunjucks');
+
 const locales = require('../locales');
 
 module.exports = {
@@ -11,6 +12,9 @@ module.exports = {
     this.ctx.fail(...args);
 
     return think.prevent();
+  },
+  jsonOrSuccess(...args) {
+    return this[this.ctx.state.deprecated ? 'json' : 'success'](...args);
   },
   locale(message, variables) {
     const { lang } = this.get();

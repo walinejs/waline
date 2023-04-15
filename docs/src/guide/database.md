@@ -16,9 +16,9 @@ redirectFrom: /guide/server/databases.html
 
 | 环境变量名称       | 必填 | 默认值    | 备注                             |
 | ------------------ | ---- | --------- | -------------------------------- |
-| `MONGO_DB`         | ✅    |           | MongoDB 数据库名称               |
-| `MONGO_USER`       | ✅    |           | MongoDB 服务的用户名             |
-| `MONGO_PASSWORD`   | ✅    |           | MongoDB 服务的密码               |
+| `MONGO_DB`         | ✅   |           | MongoDB 数据库名称               |
+| `MONGO_USER`       | ✅   |           | MongoDB 服务的用户名             |
+| `MONGO_PASSWORD`   | ✅   |           | MongoDB 服务的密码               |
 | `MONGO_HOST`       |      | 127.0.0.1 | MongoDB 服务的地址，支持数组格式 |
 | `MONGO_PORT`       |      | 27017     | MongoDB 服务的端口，支持数组格式 |
 | `MONGO_REPLICASET` |      |           | MongoDB 集群                     |
@@ -48,9 +48,9 @@ MONGO_OPT_SSL=true
 | ---------------- | ---- | --------- | ----------------------------- |
 | `MYSQL_HOST`     |      | 127.0.0.1 | MySQL 服务的地址              |
 | `MYSQL_PORT`     |      | 3306      | MySQL 服务的端口              |
-| `MYSQL_DB`       | ✅    |           | MySQL 数据库库名              |
-| `MYSQL_USER`     | ✅    |           | MySQL 数据库的用户名          |
-| `MYSQL_PASSWORD` | ✅    |           | MySQL 数据库的密码            |
+| `MYSQL_DB`       | ✅   |           | MySQL 数据库库名              |
+| `MYSQL_USER`     | ✅   |           | MySQL 数据库的用户名          |
+| `MYSQL_PASSWORD` | ✅   |           | MySQL 数据库的密码            |
 | `MYSQL_PREFIX`   |      | `wl_`     | MySQL 数据表的表前缀          |
 | `MYSQL_CHARSET`  |      | `utf8mb4` | MySQL 数据表的字符集          |
 | `MYSQL_SSL`      |      | `false`   | 是否使用 SSL MYSQL 连接数据库 |
@@ -63,9 +63,9 @@ MONGO_OPT_SSL=true
 
 | 环境变量名称    | 必填 | 默认值    | 备注                |
 | --------------- | ---- | --------- | ------------------- |
-| `TIDB_DB`       | ✅    |           | TiDB 数据库库名     |
-| `TIDB_USER`     | ✅    |           | TiDB 数据库的用户名 |
-| `TIDB_PASSWORD` | ✅    |           | TiDB 数据库的密码   |
+| `TIDB_DB`       | ✅   |           | TiDB 数据库库名     |
+| `TIDB_USER`     | ✅   |           | TiDB 数据库的用户名 |
+| `TIDB_PASSWORD` | ✅   |           | TiDB 数据库的密码   |
 | `TIDB_HOST`     |      | 127.0.0.1 | TiDB 服务的地址     |
 | `TIDB_PORT`     |      | 4000      | TiDB 服务的端口     |
 | `TIDB_PREFIX`   |      | `wl_`     | TiDB 数据表的表前缀 |
@@ -77,8 +77,8 @@ MONGO_OPT_SSL=true
 
 | 环境变量名称    | 必填 | 默认值 | 备注                                              |
 | --------------- | ---- | ------ | ------------------------------------------------- |
-| `SQLITE_PATH`   | ✅    |        | SQLite 数据库文件的路径，该路径不包含文件名本身   |
-| `JWT_TOKEN`     | ✅    |        | 用户登录密钥，随机字符串即可                      |
+| `SQLITE_PATH`   | ✅   |        | SQLite 数据库文件的路径，该路径不包含文件名本身   |
+| `JWT_TOKEN`     | ✅   |        | 用户登录密钥，随机字符串即可                      |
 | `SQLITE_DB`     |      | waline | SQLite 数据库文件名，若文件名变化需要修改该字段值 |
 | `SQLITE_PREFIX` |      | `wl_`  | SQLite 数据表的表前缀                             |
 
@@ -90,9 +90,9 @@ MONGO_OPT_SSL=true
 
 | 环境变量名称  | 必填 | 默认值    | 备注                                |
 | ------------- | ---- | --------- | ----------------------------------- |
-| `PG_DB`       | ✅    |           | PostgreSQL 数据库库名               |
-| `PG_USER`     | ✅    |           | PostgreSQL 数据库的用户名           |
-| `PG_PASSWORD` | ✅    |           | PostgreSQL 数据库的密码             |
+| `PG_DB`       | ✅   |           | PostgreSQL 数据库库名               |
+| `PG_USER`     | ✅   |           | PostgreSQL 数据库的用户名           |
+| `PG_PASSWORD` | ✅   |           | PostgreSQL 数据库的密码             |
 | `PG_HOST`     |      | 127.0.0.1 | PostgreSQL 服务的地址               |
 | `PG_PORT`     |      | 3211      | PostgreSQL 服务的端口               |
 | `PG_PREFIX`   |      | `wl_`     | PostgreSQL 数据表的表前缀           |
@@ -104,9 +104,9 @@ MONGO_OPT_SSL=true
 
 | 环境变量名称 | 必填 | 默认值 | 备注                                                                   |
 | ------------ | ---- | ------ | ---------------------------------------------------------------------- |
-| `TCB_ENV`    | ✅    |        | 腾讯云开发环境 ID                                                      |
-| `TCB_ID`     | ✅    |        | 腾讯云 API 密钥 ID                                                     |
-| `TCB_KEY`    | ✅    |        | 腾讯云 API 密钥 Key                                                    |
+| `TCB_ENV`    | ✅   |        | 腾讯云开发环境 ID                                                      |
+| `TCB_ID`     | ✅   |        | 腾讯云 API 密钥 ID                                                     |
+| `TCB_KEY`    | ✅   |        | 腾讯云 API 密钥 Key                                                    |
 | `JWT_TOKEN`  |      |        | 用户登录密钥，如果没有配任何环境变量的话需要配置此变量，随机字符串即可 |
 
 ::: tip
@@ -121,8 +121,8 @@ Waline 支持将评论数据以 CSV 文件的格式存储在 GitHub 仓库中。
 
 | 环境变量名称   | 必填 | 默认值 | 备注                                                                     |
 | -------------- | ---- | ------ | ------------------------------------------------------------------------ |
-| `GITHUB_TOKEN` | ✅    |        | [Personal access tokens](https://github.com/settings/tokens)             |
-| `GITHUB_REPO`  | ✅    |        | 仓库名称，例如 `walinejs/waline`                                         |
+| `GITHUB_TOKEN` | ✅   |        | [Personal access tokens](https://github.com/settings/tokens)             |
+| `GITHUB_REPO`  | ✅   |        | 仓库名称，例如 `walinejs/waline`                                         |
 | `GITHUB_PATH`  |      |        | 数据存储目录，例如 `data` 表示存储在 `data` 目录下，默认存在仓库根目录下 |
 
 ::: warning
@@ -133,11 +133,11 @@ Waline 支持将评论数据以 CSV 文件的格式存储在 GitHub 仓库中。
 
 ## Deta Base
 
-Deta 提供了 [Deta Base](https://docs.deta.sh/docs/base/about) 免费数据库支持，即使不部署在 Deta 上也可以使用。如果部署在 Deta 上，不需要配置任何环境变量，Waline 默认会使用 Deta Base 作为数据库存储数据。如果是部署在其它地方，需要配置以下环境变量。
+Deta 提供了 [Deta Base](https://deta.space/docs/en/reference/base/about) 免费数据库支持，即使不部署在 Deta 上也可以使用。如果部署在 Deta 上，不需要配置任何环境变量，Waline 默认会使用 Deta Base 作为数据库存储数据。如果是部署在其它地方，需要配置以下环境变量。
 
 | 环境变量名称       | 必填 | 默认值 | 备注          |
 | ------------------ | ---- | ------ | ------------- |
-| `DETA_PROJECT_KEY` | ✅    |        | Deta 项目密钥 |
+| `DETA_PROJECT_KEY` | ✅   |        | Deta 项目密钥 |
 
 ## 更多
 

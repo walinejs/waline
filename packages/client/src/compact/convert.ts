@@ -1,13 +1,12 @@
-import { warning } from './logger';
-import { resolveOldEmojiMap } from './valine';
 import {
   DROPPED_OPTIONS_WHICH_CAN_NOT_BE_POLYFILLED,
   DROPPED_OPTIONS_WHICH_CAN_STILL_BE_POLYFILLED,
-} from './dropped';
-
-import type { DeprecatedValineOptions } from './valine';
-import type { DeprecatedWalineOptions } from './v1';
-import type { WalineInitOptions } from '../typings';
+} from './dropped.js';
+import { warning } from './logger.js';
+import { type DeprecatedWalineOptions } from './v1.js';
+import { resolveOldEmojiMap } from './valine.js';
+import { type DeprecatedValineOptions } from './valine.js';
+import { type WalineInitOptions } from '../typings/index.js';
 
 export const covertOptions = (
   options: WalineInitOptions & DeprecatedValineOptions & DeprecatedWalineOptions

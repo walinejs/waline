@@ -10,8 +10,6 @@ body:
     attributes:
       label: 问题描述 | Describe the bug
       description: 请描述你的问题现象 | A clear and concise description of what the bug is.
-      placeholder:
-      value:
     validations:
       required: true
 
@@ -35,17 +33,18 @@ body:
       required: true
     attributes:
       label: 服务部署在哪里？ | Where your waline deploy?
-      description:
       options:
         - Vercel (Default)
         - Deta
         - CloudBase
         - Docker
-        - VPS, VirtualHost
+        - Self Host
         - Baidu CFC
         - Aliyun FC
         - Render
         - Railway.app
+        - Zeabur
+        - Netlify
         - Other
 
   - type: dropdown
@@ -54,7 +53,6 @@ body:
       required: true
     attributes:
       label: 数据存储在哪里？| Where your comment data store?
-      description:
       options:
         - LeanCloud(https://leancloud.app)
         - LeanCloud(https://leancloud.cn)
@@ -65,3 +63,4 @@ body:
         - PostgreSQL
         - GitHub
         - Deta Base
+        - TiDB

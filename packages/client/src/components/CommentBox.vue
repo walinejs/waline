@@ -286,6 +286,8 @@
 import { useDebounceFn } from '@vueuse/core';
 import autosize from 'autosize';
 import {
+  type ComputedRef,
+  type DeepReadonly,
   computed,
   inject,
   onMounted,
@@ -303,7 +305,7 @@ import {
   LoadingIcon,
   MarkdownIcon,
   PreviewIcon,
-} from './Icons';
+} from './Icons.js';
 import ImageWall from './ImageWall.vue';
 import { addComment, login, updateComment, UserInfo } from '../api/index.js';
 import {
@@ -312,24 +314,24 @@ import {
   useUserInfo,
   useUserMeta,
 } from '../composables/index.js';
+import { useTurnstile } from '../composables/turnstile';
 import {
+  type WalineComment,
+  type WalineCommentData,
+  type WalineImageUploader,
+  type WalineSearchOptions,
+  type WalineSearchResult,
+} from '../typings/index.js';
+import {
+  type WalineConfig,
+  type WalineEmojiConfig,
   getEmojis,
   getImageFromDataTransfer,
   getWordNumber,
   parseEmoji,
   parseMarkdown,
+  userAgent,
 } from '../utils/index.js';
-
-import type { ComputedRef, DeepReadonly } from 'vue';
-import type {
-  WalineComment,
-  WalineCommentData,
-  WalineImageUploader,
-  WalineSearchOptions,
-  WalineSearchResult,
-} from '../typings/index.js';
-import type { WalineConfig, WalineEmojiConfig } from '../utils/index.js';
-import { useTurnstile } from '../composables/turnstile';
 
 const props = withDefaults(
   defineProps<{
@@ -492,15 +494,16 @@ const submitComment = async (): Promise<void> => {
   if (config.value.turnstileKey)
     token = await useTurnstile(config.value.turnstileKey).execute('social');
 
+  const ua = await userAgent();
   const comment: WalineCommentData = {
     comment: content.value,
     nick: userMeta.value.nick,
     mail: userMeta.value.mail,
     link: userMeta.value.link,
-    ua: navigator.userAgent,
     url: config.value.path,
     recaptchaV3: token,
     turnstile: token,
+    ua,
   };
 
   if (userInfo.value?.token) {
@@ -530,14 +533,14 @@ const submitComment = async (): Promise<void> => {
       return alert(locale.value.mailError);
     }
 
-    // check comment
-    if (!comment.comment) {
-      editorRef.value?.focus();
-
-      return;
-    }
-
     if (!comment.nick) comment.nick = locale.value.anonymous;
+  }
+
+  // check comment
+  if (!comment.comment) {
+    editorRef.value?.focus();
+
+    return;
   }
 
   if (!isWordNumberLegal.value)

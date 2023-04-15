@@ -212,3 +212,4 @@ Please pay special attention that some mailboxes use separate SMTP passwords.
 | `OAUTH_URL`                     | `https://oauth.lithub.cc`   | OAuth Social Login Service URL. You can [build your own auth](https://github.com/walinejs/auth). |
 | `WEBHOOK`                       |                             | You can set a Webhook URL that will be triggered when you have new comment.                      |
 | `WALINE_ADMIN_MODULE_ASSET_URL` | `//unpkg.com/@waline/admin` | Waline admin link                                                                                |
+| `IP2REGION_DB`                  |                             | customized IP query library path                                                                 |

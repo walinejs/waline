@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/unbound-method */
-import { describe, expect, it } from 'vitest';
 import MarkdownIt from 'markdown-it';
+import { describe, expect, it, vi } from 'vitest';
+
 import { katexPlugin } from '../src/service/markdown/katex';
-import { vi } from 'vitest';
 
 const markdownIt = MarkdownIt({ linkify: true }).use(katexPlugin, {
   output: 'mathml',

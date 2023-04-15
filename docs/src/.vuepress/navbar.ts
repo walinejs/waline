@@ -30,7 +30,14 @@ export const zhNavbarConfig = navbar([
     text: '高级',
     icon: 'advanced',
     prefix: '/advanced/',
-    children: ['intro', 'design', 'ecosystem', 'faq', 'contribution'],
+    children: [
+      'intro',
+      'design',
+      'ecosystem',
+      'faq',
+      'contribution',
+      'privacy',
+    ],
   },
 ]);
 
@@ -64,6 +71,13 @@ export const enNavbarConfig = navbar([
     text: 'Advanced',
     icon: 'advanced',
     prefix: '/en/advanced/',
-    children: ['intro', 'design', 'ecosystem', 'faq', 'contribution'],
+    children: [
+      'intro',
+      'design',
+      'ecosystem',
+      'faq',
+      'contribution',
+      'privacy',
+    ],
   },
 ]);

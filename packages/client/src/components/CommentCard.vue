@@ -13,7 +13,7 @@
           class="wl-nick"
           :href="link"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="nofollow noopener noreferrer"
           >{{ comment.nick }}</a
         >
 
@@ -177,7 +177,8 @@
 
 <script setup lang="ts">
 import { useNow } from '@vueuse/core';
-import { computed, inject } from 'vue';
+import { type ComputedRef, computed, inject } from 'vue';
+
 import CommentBox from './CommentBox.vue';
 import {
   DeleteIcon,
@@ -186,12 +187,12 @@ import {
   ReplyIcon,
   VerifiedIcon,
 } from './Icons.js';
-import { getTimeAgo, isLinkHttp } from '../utils';
 import { useLikeStorage, useUserInfo } from '../composables/index.js';
-
-import type { ComputedRef } from 'vue';
-import type { WalineConfig } from '../utils/index.js';
-import type { WalineComment, WalineCommentStatus } from '../typings/index.js';
+import {
+  type WalineComment,
+  type WalineCommentStatus,
+} from '../typings/index.js';
+import { type WalineConfig, getTimeAgo, isLinkHttp } from '../utils/index.js';
 
 const props = withDefaults(
   defineProps<{

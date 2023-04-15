@@ -27,7 +27,7 @@ jobs:
             ${{ runner.os }}-buildx-
 
       - name: Build alpine
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           file: ./packages/server/Dockerfile.alpine
           platforms: linux/amd64,linux/arm64,linux/arm/v7
@@ -35,7 +35,7 @@ jobs:
           cache-to: type=local,dest=/tmp/.buildx-cache,mode=max
 
       - name: Build debian
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           file: ./packages/server/Dockerfile
           platforms: linux/amd64,linux/arm64,linux/arm/v7

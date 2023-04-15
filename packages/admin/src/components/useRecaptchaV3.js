@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import useScript from './useScript';
+
+import useScript from './useScript.js';
 
 export function useRecaptcha({
   sitekey,

@@ -1,4 +1,5 @@
-export { ReactComponent as github } from './github.svg';
-export { ReactComponent as twitter } from './twitter.svg';
-export { ReactComponent as facebook } from './facebook.svg';
-export { ReactComponent as weibo } from './weibo.svg';
+export { default as github } from './github.svg?react';
+export { default as twitter } from './twitter.svg?react';
+export { default as facebook } from './facebook.svg?react';
+export { default as weibo } from './weibo.svg?react';
+export { default as qq } from './qq.svg?react';

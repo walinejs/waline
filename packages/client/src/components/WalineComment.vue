@@ -90,21 +90,21 @@
 /* eslint-disable vue/require-prop-types */
 import { useStyleTag } from '@vueuse/core';
 import { computed, onMounted, onUnmounted, provide, ref, watch } from 'vue';
+
 import Reaction from './ArticleReaction.vue';
 import CommentBox from './CommentBox.vue';
 import CommentCard from './CommentCard.vue';
 import { LoadingIcon } from './Icons.js';
 import { deleteComment, getComment, updateComment } from '../api/index.js';
 import { useUserInfo, useLikeStorage } from '../composables/index.js';
+import {
+  type WalineComment,
+  type WalineCommentSorting,
+  type WalineCommentStatus,
+  type WalineProps,
+} from '../typings/index.js';
 import { getConfig, getDarkStyle } from '../utils/index.js';
 import { version } from '../version.js';
-
-import type {
-  WalineComment,
-  WalineCommentSorting,
-  WalineCommentStatus,
-  WalineProps,
-} from '../typings/index.js';
 
 type SortKey = 'insertedAt_desc' | 'insertedAt_asc' | 'like_desc';
 

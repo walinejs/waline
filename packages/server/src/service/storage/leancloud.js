@@ -1,5 +1,7 @@
 const AV = require('leancloud-storage');
+
 const Base = require('./base');
+
 const { LEAN_ID, LEAN_KEY, LEAN_MASTER_KEY, LEAN_SERVER } = process.env;
 
 if (LEAN_ID && LEAN_KEY && LEAN_MASTER_KEY) {

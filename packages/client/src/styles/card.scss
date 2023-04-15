@@ -49,32 +49,34 @@
     margin-inline-start: 1em;
   }
 
-  .wl-card-item:last-child & {
+  .wl-card-item:last-child > & {
     border-bottom: none;
+  }
+
+  .wl-nick {
+    svg {
+      position: relative;
+      bottom: -0.125em;
+      line-height: 1;
+    }
   }
 
   .wl-head {
     // bfc to fix https://github.com/walinejs/waline/issues/1415
     overflow: hidden;
     line-height: 1.5;
-  }
 
-  .wl-nick {
-    position: relative;
-
-    display: inline-block;
-
-    margin-inline-end: 0.5em;
-
-    font-weight: bold;
-    font-size: 0.875em;
-    line-height: 1;
-    text-decoration: none;
-
-    svg {
+    .wl-nick {
       position: relative;
-      bottom: -0.125em;
+
+      display: inline-block;
+
+      margin-inline-end: 0.5em;
+
+      font-weight: bold;
+      font-size: 0.875em;
       line-height: 1;
+      text-decoration: none;
     }
   }
 

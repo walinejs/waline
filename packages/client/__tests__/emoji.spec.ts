@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import { parseEmoji } from '../src/utils/markdown';
-import { emojiMaps } from './__fixtures__/emojiMap';
+
+import { emojiMaps } from './__fixtures__/emojiMap.js';
+import { parseEmoji } from '../src/utils/markdown.js';
 
 describe('Emoji test', () => {
   it('Should not parse', () => {

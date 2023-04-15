@@ -1,4 +1,4 @@
-import type { BaseAPIOptions } from './utils';
+import { type BaseAPIOptions } from './utils.js';
 
 export interface GetCommentCountOptions extends BaseAPIOptions {
   /**

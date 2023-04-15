@@ -1,0 +1,64 @@
+---
+title: 'Q: '
+labels:
+  - question
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the bug | 问题描述
+      description: A clear and concise description of what the bug is. | 请描述你的问题现象
+    validations:
+      required: true
+
+  - type: input
+    id: url
+    attributes:
+      label: Website URL | 问题网站
+      description: Please supply a website url which can reproduce problem. | 请提供下可复现网站地址
+      placeholder: ex. https://waline.js.org/en/
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ## Deploy Type | 部署方式
+
+  - type: dropdown
+    id: server
+    validations:
+      required: true
+    attributes:
+      label: Where your waline deploy? | 服务部署在哪里？
+      options:
+        - Vercel (Default)
+        - Deta
+        - CloudBase
+        - Docker
+        - Self Host
+        - Baidu CFC
+        - Aliyun FC
+        - Render
+        - Railway.app
+        - Zeabur
+        - Netlify
+        - Other
+
+  - type: dropdown
+    id: database
+    validations:
+      required: true
+    attributes:
+      label: Where your comment data store? | 数据存储在哪里？
+      options:
+        - LeanCloud(https://leancloud.app)
+        - LeanCloud(https://leancloud.cn)
+        - CloudBase
+        - MongoDB
+        - MySQL
+        - SQLite
+        - PostgreSQL
+        - GitHub
+        - Deta Base
+        - TiDB

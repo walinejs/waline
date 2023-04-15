@@ -1,8 +1,16 @@
 const ip2region = require('dy-node-ip2region');
 const helper = require('think-helper');
+const parser = require('ua-parser-js');
+
 const preventMessage = 'PREVENT_NEXT_PROCESS';
 
-const regionSearch = ip2region.create();
+const regionSearch = ip2region.create(process.env.IP2REGION_DB);
+
+const OS_VERSION_MAP = {
+  Windows: {
+    'NT 11.0': '11',
+  },
+};
 
 module.exports = {
   prevent() {
@@ -70,7 +78,9 @@ module.exports = {
       }
       const { region } = result;
       const [, , province, city, isp] = region.split('|');
-      const address = Array.from(new Set([province, city, isp]));
+      const address = Array.from(
+        new Set([province, city, isp].filter((v) => v))
+      );
 
       return address.slice(0, depth).join(' ');
     } catch (e) {
@@ -78,5 +88,17 @@ module.exports = {
 
       return '';
     }
+  },
+  uaParser(uaText) {
+    const ua = parser(uaText);
+
+    if (
+      OS_VERSION_MAP[ua.os.name] &&
+      OS_VERSION_MAP[ua.os.name][ua.os.version]
+    ) {
+      ua.os.version = OS_VERSION_MAP[ua.os.name][ua.os.version];
+    }
+
+    return ua;
   },
 };

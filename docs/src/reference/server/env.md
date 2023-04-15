@@ -73,7 +73,7 @@ Vercel 需要在 <kbd>Settings</kbd> - <kbd>Environment Variables</kbd> 中进�
 
 Recaptcha Key 和 Secret 可在 <https://www.google.com/recaptcha> 申请。
 
-配置时安全域名需要同时添加网站地址和 Waline 服务端地址。
+配置时安全域名需要同时添加网站地址和 Waline 服务端地址（不包含传输协议，即 `http://` 或 `https://`）。
 
 :::
 
@@ -214,3 +214,4 @@ SMTP 的用户名通常均支持用户的完整邮箱，而密码大多同邮箱
 | `OAUTH_URL`                     | `https://oauth.lithub.cc`   | OAuth 第三方登录服务地址，可以 [自建 auth](https://github.com/walinejs/auth) 这是能让用户使用 GitHub, Twitter, Facebook, Google, 微博等第三方账户登录最简单的方式。 |
 | `WEBHOOK`                       |                             | 评论成功后会向 WEBHOOK 配置的地址发送一条 POST 请求                                                                                                                 |
 | `WALINE_ADMIN_MODULE_ASSET_URL` | `//unpkg.com/@waline/admin` | Waline admin 地址                                                                                                                                                   |
+| `IP2REGION_DB`                  |                             | 自定义 IP 查询库路径                                                                                                                                                |

@@ -36,11 +36,11 @@ jobs:
         id: pkg-version
         run: |
           version=$(cat packages/server/package.json | python -c 'import json,sys;obj=json.load(sys.stdin);print(obj["version"]);')
-          echo "::set-output name=version::$version"
+          echo "version=${version}" >> $GITHUB_OUTPUT
 
       - name: Build and push alpine
         if: contains(github.event.head_commit.message, 'release @waline/vercel')
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           file: ./packages/server/Dockerfile.alpine
           platforms: linux/amd64,linux/arm64,linux/arm/v7
@@ -53,7 +53,7 @@ jobs:
 
       - name: Build and push debian
         if: contains(github.event.head_commit.message, 'release @waline/vercel')
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           file: ./packages/server/Dockerfile
           platforms: linux/amd64,linux/arm64,linux/arm/v7
