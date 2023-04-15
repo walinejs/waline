@@ -28,9 +28,11 @@ interface LoadScriptParameters {
 const isBrowser =
   typeof window !== 'undefined' && typeof window.document !== 'undefined';
 
-async function loadScript(options: LoadScriptParameters): Promise<Event> {
+async function loadScript(
+  options: LoadScriptParameters
+): Promise<Event | undefined> {
   if (!isBrowser) {
-    return Promise.reject();
+    return Promise.resolve(undefined);
   }
 
   const el = document.createElement('script');
