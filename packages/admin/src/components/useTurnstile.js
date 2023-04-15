@@ -33,7 +33,7 @@ export function useTurnstile({ sitekey, checkForExisting = true }) {
         return reject(new Error('Turnstile script not available'));
       }
 
-      turnstile?.render('.captcha-container', {
+      turnstile.render('.captcha-container', {
         sitekey,
         action,
         callback: resolve,

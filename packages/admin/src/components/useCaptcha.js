@@ -5,5 +5,12 @@ export function useCaptcha(config) {
   const recaptchaV3 = useRecaptcha(config);
   const turnstile = useTurnstile(config);
 
-  return turnstile || recaptchaV3;
+  if (window.turnstileKey) {
+    return turnstile;
+  }
+  if (window.recaptchaV3Key) {
+    return recaptchaV3;
+  }
+
+  return () => {};
 }

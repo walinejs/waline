@@ -577,7 +577,7 @@ const submitComment = async (): Promise<void> => {
 
     const resp = await (props.edit
       ? updateComment({
-          objectId: props.edit?.objectId,
+          objectId: props.edit.objectId,
           ...options,
         })
       : addComment(options));
