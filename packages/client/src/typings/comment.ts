@@ -49,6 +49,11 @@ export interface WalineCommentData {
    * Recaptcha Token
    */
   recaptchaV3?: string;
+
+  /**
+   * Turnstile Token
+   */
+  turnstile?: string;
 }
 
 export type WalineCommentStatus = 'approved' | 'waiting' | 'spam';

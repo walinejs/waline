@@ -154,6 +154,8 @@
         </div>
 
         <div class="wl-info">
+          <div class="wl-captcha-container"></div>
+
           <div class="wl-text-number">
             {{ wordNumber }}
 
@@ -314,6 +316,7 @@ import {
   useUserInfo,
   useUserMeta,
 } from '../composables/index.js';
+import { useTurnstile } from '../composables/turnstile';
 import {
   type WalineComment,
   type WalineCommentData,
@@ -483,12 +486,15 @@ const onChange = (): void => {
 };
 
 const submitComment = async (): Promise<void> => {
-  const { serverURL, lang, login, wordLimit, requiredMeta } = config.value;
-
-  let token = '';
-
-  if (config.value.recaptchaV3Key)
-    token = await useReCaptcha(config.value.recaptchaV3Key).execute('social');
+  const {
+    serverURL,
+    lang,
+    login,
+    wordLimit,
+    requiredMeta,
+    recaptchaV3Key,
+    turnstileKey,
+  } = config.value;
 
   const ua = await userAgent();
   const comment: WalineCommentData = {
@@ -497,7 +503,6 @@ const submitComment = async (): Promise<void> => {
     mail: userMeta.value.mail,
     link: userMeta.value.link,
     url: config.value.path,
-    recaptchaV3: token,
     ua,
   };
 
@@ -556,37 +561,44 @@ const submitComment = async (): Promise<void> => {
 
   isSubmitting.value = true;
 
-  const options = {
-    serverURL,
-    lang,
-    token: userInfo.value?.token,
-    comment,
-  };
+  try {
+    if (recaptchaV3Key)
+      comment.recaptchaV3 = await useReCaptcha(recaptchaV3Key).execute('social');
 
-  void (
-    props.edit
-      ? updateComment({ objectId: props.edit.objectId, ...options })
-      : addComment(options)
-  )
-    .then((resp) => {
-      isSubmitting.value = false;
+    if (turnstileKey)
+      comment.turnstile = await useTurnstile(turnstileKey).execute('social');
 
-      if (resp.errmsg) return alert(resp.errmsg);
+    const options = {
+      serverURL,
+      lang,
+      token: userInfo.value?.token,
+      comment,
+    };
 
-      emit('submit', resp.data!);
+    const resp = await (props.edit
+      ? updateComment({
+          objectId: props.edit.objectId,
+          ...options,
+        })
+      : addComment(options));
 
-      editor.value = '';
+    isSubmitting.value = false;
 
-      previewText.value = '';
+    if (resp.errmsg) return alert(resp.errmsg);
 
-      if (props.replyId) emit('cancelReply');
-      if (props.edit?.objectId) emit('cancelEdit');
-    })
-    .catch((err: TypeError) => {
-      isSubmitting.value = false;
+    emit('submit', resp.data!);
 
-      alert(err.message);
-    });
+    editor.value = '';
+
+    previewText.value = '';
+
+    if (props.replyId) emit('cancelReply');
+    if (props.edit?.objectId) emit('cancelEdit');
+  } catch (err: unknown) {
+    isSubmitting.value = false;
+
+    alert((err as TypeError).message);
+  }
 };
 
 const onLogin = (event: Event): void => {
