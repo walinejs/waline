@@ -26,6 +26,10 @@ interface LoadScriptParameters {
 }
 
 async function loadScript(options: LoadScriptParameters): Promise<Event> {
+  if (!document) {
+    return Promise.reject();
+  }
+
   const el = document.createElement('script');
 
   el.async = Boolean(options.async);
