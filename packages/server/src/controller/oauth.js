@@ -5,10 +5,7 @@ const { PasswordHash } = require('phpass');
 module.exports = class extends think.Controller {
   constructor(ctx) {
     super(ctx);
-    this.modelInstance = this.service(
-      `storage/${this.config('storage')}`,
-      'Users'
-    );
+    this.modelInstance = this.getModel('Users');
   }
 
   async indexAction() {

@@ -26,4 +26,17 @@ module.exports = {
 
     return nunjucks.renderString(message, variables);
   },
+  getModel(modelName) {
+    const { storage, model } = this.config('storage');
+
+    if (typeof model === 'function') {
+      const modelInstance = model(modelName, this);
+
+      if (modelInstance) {
+        return modelInstance;
+      }
+    }
+
+    return this.service(`storage/${storage}`, modelName);
+  },
 };

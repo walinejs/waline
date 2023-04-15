@@ -5,10 +5,7 @@ const BaseRest = require('./rest');
 module.exports = class extends BaseRest {
   constructor(...args) {
     super(...args);
-    this.modelInstance = this.service(
-      `storage/${this.config('storage')}`,
-      'Users'
-    );
+    this.modelInstance = this.getModel('Users');
   }
 
   async getAction() {
@@ -187,10 +184,7 @@ module.exports = class extends BaseRest {
 
   async getUsersListByCount() {
     const { pageSize } = this.get();
-    const commentModel = this.service(
-      `storage/${this.config('storage')}`,
-      'Comment'
-    );
+    const commentModel = this.getModel('Comment');
     const counts = await commentModel.count(
       {
         status: ['NOT IN', ['waiting', 'spam']],
