@@ -68,8 +68,12 @@ Vercel 需要在 <kbd>Settings</kbd> - <kbd>Environment Variables</kbd> 中进�
 | `COMMENT_AUDIT`       | `false`        | 评论发布审核开关。开启后评论需要经过管理员审核后才能显示，所以建议在评论框默认文字上提供提示 |
 | `RECAPTCHA_V3_KEY`    |                | reCAPTCHA V3 key，须与客户端同时配置                                                         |
 | `RECAPTCHA_V3_SECRET` |                | reCAPTCHA V3 secret，服务端使用，不可泄漏                                                    |
+| `TURNSTILE_KEY`    |                | Turnstile key，须与客户端同时配置                                                         |
+| `TURNSTILE_SECRET` |                | Turnstile secret，服务端使用，不可泄漏                                                    |
 
-::: tip Recaptcha
+::: tip Recaptcha 和 Turnstile
+
+Turnstile Key 和 Secret 可在 <https://www.cloudflare.com/zh-cn/products/turnstile/> 申请。
 
 Recaptcha Key 和 Secret 可在 <https://www.google.com/recaptcha> 申请。
 
