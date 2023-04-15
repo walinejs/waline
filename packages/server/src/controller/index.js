@@ -28,6 +28,7 @@ module.exports = class extends think.Controller {
           lang: params.get('lng'),
           serverURL: location.protocol + '//' + location.host + location.pathname.replace(/\\/+$/, ''),
           recaptchaV3Key: '${process.env.RECAPTCHA_V3_KEY || ''}',
+          turnstileKey: '${process.env.TURNSTILE_KEY || ''}',
         });
       </script>
     </body>

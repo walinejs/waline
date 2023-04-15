@@ -32,12 +32,13 @@ export const user = {
 
       return dispatch.user.setUser(user);
     },
-    async login({ email, password, code, remember, recaptchaV3 }) {
+    async login({ email, password, code, remember, recaptchaV3, turnstile }) {
       const { token, ...user } = await login({
         email,
         password,
         code,
         recaptchaV3,
+        turnstile,
       });
 
       if (token) {
