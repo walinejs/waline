@@ -1,40 +1,51 @@
-import { load } from 'recaptcha-v3';
-
-import type { ReCaptchaInstance as TurnstileInstance } from 'recaptcha-v3';
-
-const turnstileStore: Record<string, Promise<TurnstileInstance>> = {};
-
 interface Turnstile {
   execute: (action: string) => Promise<string>;
 }
 
+interface LoadScriptParameters {
+  src: string;
+  async?: boolean;
+  defer?: boolean;
+}
+
+async function loadScript(options: LoadScriptParameters): Promise<Event> {
+  const el = document.createElement('script');
+
+  el.async = Boolean(options.async);
+  el.defer = Boolean(options.defer);
+
+  return new Promise((resolve, reject) => {
+    el.onload = resolve;
+    el.onerror = reject;
+    el.src = options.src;
+
+    document.head.appendChild(el);
+  });
+}
+
+const turnstileScriptPromise = loadScript({
+  src: 'https://challenges.cloudflare.com/turnstile/v0/api.js',
+  async: false,
+});
+
 export const useTurnstile = (key: string): Turnstile => {
-  const _createElement = document.createElement.bind(document);
+  async function execute(action: string): Promise<string> {
+    await turnstileScriptPromise;
+    const turnstile = globalThis?.turnstile;
 
-  document.createElement = function (
-    tag: string,
-    options?: ElementCreationOptions
-  ): HTMLElement {
-    const el = _createElement(tag, options);
+    return new Promise((resolve) => {
+      const options = {
+        sitekey: key,
+        action,
+        size: 'compact',
+        callback(token: string): void {
+          resolve(token);
+        },
+      };
 
-    if (el.tagName === 'SCRIPT') {
-      (el as HTMLScriptElement).async = false;
-    }
+      turnstile?.ready(() => turnstile?.render('.wl-captcha-container', options));
+    });
+  }
 
-    return el;
-  };
-
-  const init = (turnstileStore[key] ??= load(key, {
-    customUrl:
-      'https://challenges.cloudflare.com/turnstile/v0/api.js?compat=recaptcha',
-    autoHideBadge: true,
-    explicitRenderParameters: {
-      container: document.body,
-    },
-  }));
-
-  return {
-    execute: (action: string) =>
-      init.then((instance) => instance.execute(action)),
-  };
+  return { execute };
 };

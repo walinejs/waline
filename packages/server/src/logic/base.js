@@ -177,6 +177,7 @@ module.exports = class extends think.Logic {
       method === 'GET'
         ? {}
         : {
+            method,
             headers: {
               'content-type':
                 'application/x-www-form-urlencoded; charset=UTF-8',
