@@ -1,3 +1,20 @@
+interface TurnstileOptions {
+  sitekey: string;
+  action?: string;
+  size?: 'normal' | 'compact';
+  callback?: (token: string) => void;
+}
+interface TurnstileInstance {
+  ready: (fn: () => void) => void;
+  render: (className: string, options?: TurnstileOptions) => void;
+}
+
+declare global {
+  interface Window {
+    turnstile?: TurnstileInstance;
+  }
+}
+
 interface Turnstile {
   execute: (action: string) => Promise<string>;
 }
@@ -31,10 +48,10 @@ const turnstileScriptPromise = loadScript({
 export const useTurnstile = (key: string): Turnstile => {
   async function execute(action: string): Promise<string> {
     await turnstileScriptPromise;
-    const turnstile = globalThis?.turnstile;
+    const turnstile = window?.turnstile;
 
     return new Promise((resolve) => {
-      const options = {
+      const options: TurnstileOptions = {
         sitekey: key,
         action,
         size: 'compact',
@@ -43,7 +60,9 @@ export const useTurnstile = (key: string): Turnstile => {
         },
       };
 
-      turnstile?.ready(() => turnstile?.render('.wl-captcha-container', options));
+      turnstile?.ready(() =>
+        turnstile?.render('.wl-captcha-container', options)
+      );
     });
   }
 
