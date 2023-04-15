@@ -594,7 +594,7 @@ const submitComment = async (): Promise<void> => {
 
     if (props.replyId) emit('cancelReply');
     if (props.edit?.objectId) emit('cancelEdit');
-  } catch (err: any) {
+  } catch (err: unknown) {
     isSubmitting.value = false;
 
     alert((err as TypeError).message);
