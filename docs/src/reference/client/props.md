@@ -303,6 +303,14 @@ Waline 多语言配置。
 
 reCAPTCHA V3 是 Google 提供的验证码服务，配置 reCAPTCHA V3 网站密钥即可开启该功能。服务端需要同步配置 `RECAPTCHA_V3_SECRET` 环境变量。
 
+
+## turnstileKey
+
+- 类型: `string`
+- 必填: 否
+
+Turnstile 是 Cloudflare 提供的验证码服务，配置 turnstileKey 网站密钥即可开启该功能。服务端需要同步配置 `TURNSTILE_SECRET` 环境变量。
+
 ## reaction
 
 - 类型: `boolean | string[]`

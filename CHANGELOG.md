@@ -1,3 +1,9 @@
+# (2023-04-16)
+
+### Features
+
+- `@waline/vercel@1.29.0` and `@waline/client@2.15.0` add Turnstile captcha service support.
+
 # (2023-04-02)
 
 ### Features

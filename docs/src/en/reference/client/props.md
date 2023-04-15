@@ -305,6 +305,14 @@ We hope you can keep it on to support Waline.
 
 reCAPTCHA V3 is a captcha service provided by Google. You can add reCAPTCHA V3 site key with `recaptchaV3Key` to enable it. Notice you should also set environment variable `RECAPTCHA_V3_SECRET` for server.
 
+## turnstileKey
+
+
+- Type: `string`
+- Required: No
+
+Turnstile is a captcha service provided by Cloudflare. You can add turnstile site key with `turnstileKey` to enable it. Notice you should also set environment variable `TURNSTILE_SECRET` for server.
+
 ## reaction
 
 - Type: `boolean | string[]`
