@@ -8,10 +8,7 @@ const helper = require('think-helper');
 module.exports = class extends think.Logic {
   constructor(...args) {
     super(...args);
-    this.modelInstance = this.service(
-      `storage/${this.config('storage')}`,
-      'Users'
-    );
+    this.modelInstance = this.getModel('Users');
     this.resource = this.getResource();
     this.id = this.getId();
   }

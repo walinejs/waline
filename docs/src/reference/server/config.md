@@ -117,6 +117,18 @@ QQ 评论通知模板，等同于环境变量 `QQ_TEMPLATE`。
 
 Telegram 评论通知模板，等同于环境变量 `TG_TEMPLATE`。
 
+### model
+
+- 类型：`class`
+
+详情见 [自定义数据库服务](../../cookbook/customize/database.md)
+
+### encryptPassword
+
+- 类型：`function`
+
+详情见 [自定义用户系统](../../cookbook/customize/userdb.md)
+
 ## 评论 Hooks
 
 Waline 提供了一些自定义 Hook，方便用户根据自身业务需求对 Waline 服务端行为进行定制。

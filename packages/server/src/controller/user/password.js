@@ -19,10 +19,7 @@ module.exports = class extends BaseRest {
     }
 
     const { email } = this.post();
-    const userModel = this.service(
-      `storage/${this.config('storage')}`,
-      'Users'
-    );
+    const userModel = this.getModel('Users');
     const user = await userModel.select({ email });
 
     if (think.isEmpty(user)) {

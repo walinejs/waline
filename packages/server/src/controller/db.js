@@ -16,8 +16,7 @@ module.exports = class extends BaseRest {
 
     for (let i = 0; i < exportData.tables.length; i++) {
       const tableName = exportData.tables[i];
-      const storage = this.config('storage');
-      const model = this.service(`storage/${storage}`, tableName);
+      const model = this.getModel(tableName);
 
       const data = await model.select({});
 
@@ -31,7 +30,7 @@ module.exports = class extends BaseRest {
     const { table } = this.get();
     const item = this.post();
     const storage = this.config('storage');
-    const model = this.service(`storage/${storage}`, table);
+    const model = this.getModel(table);
 
     if (storage === 'leancloud' || storage === 'mysql') {
       item.insertedAt && (item.insertedAt = new Date(item.insertedAt));
@@ -48,8 +47,7 @@ module.exports = class extends BaseRest {
   async putAction() {
     const { table, objectId } = this.get();
     const data = this.post();
-    const storage = this.config('storage');
-    const model = this.service(`storage/${storage}`, table);
+    const model = this.getModel(table);
 
     delete data.objectId;
     delete data.createdAt;
@@ -61,8 +59,7 @@ module.exports = class extends BaseRest {
 
   async deleteAction() {
     const { table } = this.get();
-    const storage = this.config('storage');
-    const model = this.service(`storage/${storage}`, table);
+    const model = this.getModel(table);
 
     await model.delete({});
 

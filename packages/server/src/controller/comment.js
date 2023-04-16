@@ -68,10 +68,7 @@ async function formatCmt(
 module.exports = class extends BaseRest {
   constructor(ctx) {
     super(ctx);
-    this.modelInstance = this.service(
-      `storage/${this.config('storage')}`,
-      'Comment'
-    );
+    this.modelInstance = this.getModel('Comment');
   }
 
   async getAction() {
@@ -114,10 +111,7 @@ module.exports = class extends BaseRest {
           ],
         });
 
-        const userModel = this.service(
-          `storage/${this.config('storage')}`,
-          'Users'
-        );
+        const userModel = this.getModel('Users');
         const user_ids = Array.from(
           new Set(comments.map(({ user_id }) => user_id).filter((v) => v))
         );
@@ -212,10 +206,7 @@ module.exports = class extends BaseRest {
           offset: Math.max((page - 1) * pageSize, 0),
         });
 
-        const userModel = this.service(
-          `storage/${this.config('storage')}`,
-          'Users'
-        );
+        const userModel = this.getModel('Users');
         const user_ids = Array.from(
           new Set(comments.map(({ user_id }) => user_id).filter((v) => v))
         );
@@ -353,10 +344,7 @@ module.exports = class extends BaseRest {
           comments = [...rootComments, ...children];
         }
 
-        const userModel = this.service(
-          `storage/${this.config('storage')}`,
-          'Users'
-        );
+        const userModel = this.getModel('Users');
         const user_ids = Array.from(
           new Set(comments.map(({ user_id }) => user_id).filter((v) => v))
         );
@@ -600,10 +588,7 @@ module.exports = class extends BaseRest {
       parentComment = await this.modelInstance.select({ objectId: pid });
       parentComment = parentComment[0];
       if (parentComment.user_id) {
-        parentUser = await this.service(
-          `storage/${this.config('storage')}`,
-          'Users'
-        ).select({
+        parentUser = await this.getModel('Users').select({
           objectId: parentComment.user_id,
         });
         parentUser = parentUser[0];
@@ -685,10 +670,7 @@ module.exports = class extends BaseRest {
     let cmtUser;
 
     if (!think.isEmpty(newData) && newData[0].user_id) {
-      cmtUser = await this.service(
-        `storage/${this.config('storage')}`,
-        'Users'
-      ).select({
+      cmtUser = await this.getModel('Users').select({
         objectId: newData[0].user_id,
       });
       cmtUser = cmtUser[0];
@@ -714,10 +696,7 @@ module.exports = class extends BaseRest {
       let pUser;
 
       if (pComment.user_id) {
-        pUser = await this.service(
-          `storage/${this.config('storage')}`,
-          'Users'
-        ).select({
+        pUser = await this.getModel('Users').select({
           objectId: pComment.user_id,
         });
         pUser = pUser[0];
