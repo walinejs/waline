@@ -25,6 +25,8 @@ This cookbook will introduce Waline in more depth.
 - [Customize emoticon search](./customize/search.md)
 - [Add TEX renderer](./customize/tex-renderer.md)
 - [Upload Image](./customize/upload-image.md)
+- [Custom Database Service](./customize/database.md)
+- [Custom User System](./customize/userdb.md)
 
 ## Compatibility
 

@@ -25,6 +25,8 @@ icon: cookbook
 - [自定义表情包搜索](./customize/search.md)
 - [添加 TEX 渲染器](./customize/tex-renderer.md)
 - [上传图片](./customize/upload-image.md)
+- [自定义数据库服务](./customize/database.md)
+- [自定义用户系统](./customize/userdb.md)
 
 ## 兼容
 
