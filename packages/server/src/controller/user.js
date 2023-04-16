@@ -1,14 +1,9 @@
-const { PasswordHash } = require('phpass');
-
 const BaseRest = require('./rest');
 
 module.exports = class extends BaseRest {
   constructor(...args) {
     super(...args);
-    this.modelInstance = this.service(
-      `storage/${this.config('storage')}`,
-      'Users'
-    );
+    this.modelInstance = this.getModel('Users');
   }
 
   async getAction() {
@@ -81,7 +76,7 @@ module.exports = class extends BaseRest {
       ? `verify:${token}:${Date.now() + 1 * 60 * 60 * 1000}`
       : 'guest';
 
-    data.password = new PasswordHash().hashPassword(data.password);
+    data.password = this.hashPassword(data.password);
     data.type = think.isEmpty(count) ? 'administrator' : normalType;
 
     if (think.isEmpty(resp)) {
@@ -157,7 +152,7 @@ module.exports = class extends BaseRest {
     }
 
     if (password) {
-      updateData.password = new PasswordHash().hashPassword(password);
+      updateData.password = this.hashPassword(password);
     }
 
     if (think.isString(twoFactorAuth)) {
@@ -187,10 +182,7 @@ module.exports = class extends BaseRest {
 
   async getUsersListByCount() {
     const { pageSize } = this.get();
-    const commentModel = this.service(
-      `storage/${this.config('storage')}`,
-      'Comment'
-    );
+    const commentModel = this.getModel('Comment');
     const counts = await commentModel.count(
       {
         status: ['NOT IN', ['waiting', 'spam']],

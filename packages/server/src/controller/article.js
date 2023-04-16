@@ -3,10 +3,7 @@ const BaseRest = require('./rest');
 module.exports = class extends BaseRest {
   constructor(ctx) {
     super(ctx);
-    this.modelInstance = this.service(
-      `storage/${this.config('storage')}`,
-      'Counter'
-    );
+    this.modelInstance = this.getModel('Counter');
   }
 
   async getAction() {

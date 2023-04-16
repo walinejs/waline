@@ -116,6 +116,18 @@ The QQ comment notification template, which is equivalent to the environment var
 
 Telegram comment notification template, which is equivalent to the environment variable `TG_TEMPLATE`.
 
+### model
+
+- type: `class`
+
+For details, see [Customize Database Service](../../cookbook/customize/database.md)
+
+### encryptPassword
+
+- type: `function`
+
+See [Customize User System](../../cookbook/customize/userdb.md) for details
+
 ## Comment Hooks
 
 Besides environment variable configuration, Waline also provides some custom hooks to facilitate the processing of custom requirements. It only needs to be configured in the server entry file `index.js`.
