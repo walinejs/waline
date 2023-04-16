@@ -28,7 +28,7 @@ module.exports = {
     return nunjucks.renderString(message, variables);
   },
   getModel(modelName) {
-    const { storage, model } = this.config('storage');
+    const { storage, model } = this.config();
 
     if (typeof model === 'function') {
       const modelInstance = model(modelName, this);
