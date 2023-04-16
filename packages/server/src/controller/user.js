@@ -1,5 +1,3 @@
-const { PasswordHash } = require('phpass');
-
 const BaseRest = require('./rest');
 
 module.exports = class extends BaseRest {
@@ -78,7 +76,7 @@ module.exports = class extends BaseRest {
       ? `verify:${token}:${Date.now() + 1 * 60 * 60 * 1000}`
       : 'guest';
 
-    data.password = new PasswordHash().hashPassword(data.password);
+    data.password = this.hashPassword(data.password);
     data.type = think.isEmpty(count) ? 'administrator' : normalType;
 
     if (think.isEmpty(resp)) {
@@ -154,7 +152,7 @@ module.exports = class extends BaseRest {
     }
 
     if (password) {
-      updateData.password = new PasswordHash().hashPassword(password);
+      updateData.password = this.hashPassword(password);
     }
 
     if (think.isString(twoFactorAuth)) {

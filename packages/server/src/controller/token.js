@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const { PasswordHash } = require('phpass');
 const speakeasy = require('speakeasy');
 const helper = require('think-helper');
 
@@ -23,10 +22,7 @@ module.exports = class extends BaseRest {
       return this.fail();
     }
 
-    const checkPassword = new PasswordHash().checkPassword(
-      password,
-      user[0].password
-    );
+    const checkPassword = this.checkPassword(password, user[0].password);
 
     if (!checkPassword) {
       return this.fail();

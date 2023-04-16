@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken');
 const fetch = require('node-fetch');
-const { PasswordHash } = require('phpass');
 
 module.exports = class extends think.Controller {
   constructor(ctx) {
@@ -106,7 +105,7 @@ module.exports = class extends think.Controller {
         url: user.url,
         avatar: user.avatar,
         [type]: user.id,
-        password: new PasswordHash().hashPassword(Math.random()),
+        password: this.hashPassword(Math.random()),
         type: think.isEmpty(count) ? 'administrator' : 'guest',
       };
 

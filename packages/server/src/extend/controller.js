@@ -1,4 +1,5 @@
 const nunjucks = require('nunjucks');
+const { PasswordHash } = require('phpass');
 
 const locales = require('../locales');
 
@@ -38,5 +39,17 @@ module.exports = {
     }
 
     return this.service(`storage/${storage}`, modelName);
+  },
+  hashPassword(password) {
+    const PwdHash = this.config('encryptPassword') || PasswordHash;
+    const pwdHash = new PwdHash();
+
+    return pwdHash.hashPassword(password);
+  },
+  checkPassword(password, storeHash) {
+    const PwdHash = this.config('encryptPassword') || PasswordHash;
+    const pwdHash = new PwdHash();
+
+    return pwdHash.checkPassword(password, storeHash);
   },
 };
