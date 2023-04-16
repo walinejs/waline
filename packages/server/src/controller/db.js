@@ -29,6 +29,7 @@ module.exports = class extends BaseRest {
   async postAction() {
     const { table } = this.get();
     const item = this.post();
+    const storage = this.config('storage');
     const model = this.getModel(table);
 
     if (storage === 'leancloud' || storage === 'mysql') {
