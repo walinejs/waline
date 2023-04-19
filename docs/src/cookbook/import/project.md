@@ -87,6 +87,8 @@ import { Waline } from '@waline/client/component';
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 
+import '@waline/client/dist/waline.css';
+
 const serverURL = 'https://waline.vercel.app';
 const path = computed(() => useRoute().path);
 </script>
@@ -102,9 +104,13 @@ const path = computed(() => useRoute().path);
 
 ```tsx
 import React, { useEffect, useRef } from 'react';
-import { init } from '@waline/client';
+import {
+  type WalineInstance,
+  type WalineInitOptions,
+  init,
+} from '@waline/client';
 
-import type { WalineInstance, WalineInitOptions } from '@waline/client';
+import '@waline/client/dist/waline.css';
 
 export type WalineOptions = Omit<WalineInitOptions, 'el'> & { path: string };
 
