@@ -1,6 +1,6 @@
 {
   "name": "@waline/admin",
-  "version": "0.24.4",
+  "version": "0.25.0",
   "description": "management system for waline",
   "keywords": [
     "waline",
@@ -25,7 +25,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "vite build",
+    "build": "NODE_ENV=production vite build",
     "clean": "rimraf ./dist",
     "dev": "vite",
     "prepublishOnly": "pnpm build"
@@ -57,6 +57,8 @@
     "react-i18next": "12.2.0",
     "react-redux": "8.0.5",
     "react-router-dom": "6.10.0",
-    "redux": "4.2.1"
+    "redux": "4.2.1",
+    "typescript": "5.0.4",
+    "vite-plugin-css-injected-by-js": "^3.1.0"
   }
 }

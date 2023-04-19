@@ -132,6 +132,7 @@ const props = defineProps([
   'search',
   'copyright',
   'recaptchaV3Key',
+  'turnstileKey',
   'reaction',
 ]);
 

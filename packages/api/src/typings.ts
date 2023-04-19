@@ -61,6 +61,11 @@ export interface WalineCommentData {
    */
   // FIXME: Rename it to `verifyToken`
   recaptchaV3?: string;
+
+  /**
+   * Turnstile Token
+   */
+  turnstile?: string;
 }
 
 export interface BaseWalineResponseComment {

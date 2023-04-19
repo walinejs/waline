@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
 import Header from '../../components/Header';
-import { useRecaptcha } from '../../components/useRecaptchaV3';
+import { useCaptcha } from '../../components/useCaptcha';
 
 export default function () {
   const { t } = useTranslation();
@@ -13,9 +13,10 @@ export default function () {
   const user = useSelector((state) => state.user);
   const [error, setError] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const execute = window.recaptchaV3Key
-    ? useRecaptcha({ sitekey: window.recaptchaV3Key, hideDefaultBadge: true })
-    : () => '';
+  const execute = useCaptcha({
+    sitekey: window.turnstileKey || window.recaptchaV3Key,
+    hideDefaultBadge: true,
+  });
 
   useEffect(() => {
     if (user && user.email) {

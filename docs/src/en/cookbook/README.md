@@ -28,6 +28,11 @@ This cookbook will introduce Waline in more depth.
 - [Custom Database Service](./customize/database.md)
 - [Custom User System](./customize/userdb.md)
 
+## Compatibility
+
+- [Legacy Mode](./legacy.md)
+- [Compatible with historical versions of Emoji](./emoji-compact.md)
+
 ## Advanced
 
 - [Reactive Waline instance](reactivity.md)

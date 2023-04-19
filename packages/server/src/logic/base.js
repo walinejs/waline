@@ -132,30 +132,64 @@ module.exports = class extends think.Logic {
   }
 
   async useCaptchaCheck() {
-    const { RECAPTCHA_V3_SECRET } = process.env;
+    const { RECAPTCHA_V3_SECRET, TURNSTILE_SECRET } = process.env;
+    const { turnstile, recaptchaV3 } = this.post();
 
-    if (!RECAPTCHA_V3_SECRET) {
+    if (TURNSTILE_SECRET) {
+      return this.useRecaptchaOrTurnstileCheck({
+        secret: TURNSTILE_SECRET,
+        token: turnstile,
+        api: 'https://challenges.cloudflare.com/turnstile/v0/siteverify',
+        method: 'POST',
+      });
+    }
+
+    if (RECAPTCHA_V3_SECRET) {
+      return this.useRecaptchaOrTurnstileCheck({
+        secret: RECAPTCHA_V3_SECRET,
+        token: recaptchaV3,
+        api: 'https://recaptcha.net/recaptcha/api/siteverify',
+        method: 'GET',
+      });
+    }
+  }
+
+  async useRecaptchaOrTurnstileCheck({ secret, token, api, method }) {
+    if (!secret) {
       return;
     }
-    const { recaptchaV3 } = this.post();
 
-    if (!recaptchaV3) {
+    if (!token) {
       return this.ctx.throw(403);
     }
 
     const query = qs.stringify({
-      secret: RECAPTCHA_V3_SECRET,
-      response: recaptchaV3,
+      secret,
+      response: token,
       remoteip: this.ctx.ip,
     });
-    const recaptchaV3Result = await fetch(
-      `https://recaptcha.net/recaptcha/api/siteverify?${query}`
-    ).then((resp) => resp.json());
 
-    if (!recaptchaV3Result.success) {
+    const requestUrl = method === 'GET' ? api + '?' + query : api;
+    const options =
+      method === 'GET'
+        ? {}
+        : {
+            method,
+            headers: {
+              'content-type':
+                'application/x-www-form-urlencoded; charset=UTF-8',
+            },
+            body: query,
+          };
+
+    const response = await fetch(requestUrl, options).then((resp) =>
+      resp.json()
+    );
+
+    if (!response.success) {
       think.logger.debug(
-        'RecaptchaV3 Result:',
-        JSON.stringify(recaptchaV3Result, null, '\t')
+        'RecaptchaV3 or Turnstile Result:',
+        JSON.stringify(response, null, '\t')
       );
 
       return this.ctx.throw(403);
