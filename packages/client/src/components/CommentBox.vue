@@ -205,6 +205,7 @@
           />
 
           <ImageWall
+            v-if="searchResults.list.length"
             :items="searchResults.list"
             :column-width="200"
             :gap="6"
