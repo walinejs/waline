@@ -314,10 +314,10 @@ import { addComment, login, updateComment, UserInfo } from '../api/index.js';
 import {
   useEditor,
   useReCaptcha,
+  useTurnstile,
   useUserInfo,
   useUserMeta,
 } from '../composables/index.js';
-import { useTurnstile } from '../composables/turnstile';
 import {
   type WalineComment,
   type WalineCommentData,
@@ -564,7 +564,9 @@ const submitComment = async (): Promise<void> => {
 
   try {
     if (recaptchaV3Key)
-      comment.recaptchaV3 = await useReCaptcha(recaptchaV3Key).execute('social');
+      comment.recaptchaV3 = await useReCaptcha(recaptchaV3Key).execute(
+        'social'
+      );
 
     if (turnstileKey)
       comment.turnstile = await useTurnstile(turnstileKey).execute('social');
