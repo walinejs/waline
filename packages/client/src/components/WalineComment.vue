@@ -81,6 +81,8 @@
       v{{ version }}
     </div>
   </div>
+
+  <HightComment></HightComment>
 </template>
 
 <script setup lang="ts">
@@ -94,6 +96,7 @@ import { computed, onMounted, onUnmounted, provide, ref, watch } from 'vue';
 import Reaction from './ArticleReaction.vue';
 import CommentBox from './CommentBox.vue';
 import CommentCard from './CommentCard.vue';
+import HightComment from './HightComment.vue';
 import { LoadingIcon } from './Icons.js';
 import { deleteComment, getComment, updateComment } from '../api/index.js';
 import { useUserInfo, useLikeStorage } from '../composables/index.js';
@@ -185,6 +188,7 @@ const getCommentData = (pageNumber: number): void => {
     .then((resp) => {
       status.value = 'success';
       count.value = resp.count;
+      console.log(resp.data);
       data.value.push(...resp.data);
       page.value = pageNumber;
       totalPages.value = resp.totalPages;

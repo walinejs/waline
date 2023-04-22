@@ -179,3 +179,22 @@ export const GifIcon: FunctionalComponent = () =>
       }),
     ]
   );
+
+export const CommentOutlinedIcon: FunctionalComponent = () =>
+  h(
+    'svg',
+    {
+      width: 24,
+      height: 24,
+      fill: 'currentcolor',
+      viewBox: '0 0 24 24',
+    },
+    [
+      h('path', {
+        d: 'M7 11a1 1 0 0 1 1-1h8a1 1 0 1 1 0 2H8a1 1 0 0 1-1-1Z'
+      }),
+      h('path', {
+        d: 'M2 5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v11.5a2 2 0 0 1-2 2h-3.812a.5.5 0 0 0-.33.124l-2.541 2.224a2 2 0 0 1-2.634 0l-2.542-2.224a.5.5 0 0 0-.329-.124H4a2 2 0 0 1-2-2V5Zm2 0v11.5h3.812a2.5 2.5 0 0 1 1.646.619L12 19.343l2.542-2.224a2.5 2.5 0 0 1 1.646-.619H20V5H4Z'
+      }),
+    ]
+  );

@@ -6,6 +6,255 @@
     <title>Waline init test</title>
   </head>
   <body>
+    <article>
+      <div class="content">
+        <blockquote>
+<p>有些你不知道是正常的……因为他们基本都没怎么被浏览器实现 🥶</p>
+</blockquote>
+<h2 id="css-toggles">CSS Toggles</h2>
+<p><a href="https://tabatkins.github.io/css-toggle/">https://tabatkins.github.io/css-toggle/</a></p>
+<p>纯 CSS 实现状态切换一般使用 Checkbox 或者 Radio 配合选择器来实现。实现起来麻烦不说，而且 CheckBox/Radio 的位置限制了你可控制的范围，用起来很不方便。</p>
+<style>iframe { width: 100%; height: 300px; border: 1px solid #EFEFEF; }</style>
+<iframe src="https://code.juejin.cn/pen/7136486392506351649"></iframe>
+<p>交互中越来越多依赖状态，比如 Tab, 弹窗, Summary 等，所以有了原生的状态切换草案。目前还是草案中，不过已经有对应的 Polyfill 了 <a href="https://github.com/oddbird/css-toggles">https://github.com/oddbird/css-toggles</a></p>
+<iframe src="https://code.juejin.cn/pen/7136467557795495973"></iframe>
+<ul>
+<li>
+<p><code>toggle-root</code>：定义该元素可切换状态</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">  &lt;toggle-root&gt; = &lt;custom-ident&gt;
+</span></span><span class="line"><span class="cl">  [
+</span></span><span class="line"><span class="cl">    &lt;toggle-states&gt; [at &lt;toggle-value&gt;]? ||
+</span></span><span class="line"><span class="cl">    &lt;toggle-overflow&gt; ||
+</span></span><span class="line"><span class="cl">    group ||
+</span></span><span class="line"><span class="cl">    self
+</span></span><span class="line"><span class="cl">  ]?
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;toggle-states&gt; = &lt;integer [1,∞]&gt; | '[' &lt;custom-ident&gt;{2,} ']'
+</span></span><span class="line"><span class="cl">&lt;toggle-value&gt; = &lt;integer [0,∞]&gt; | &lt;custom-ident&gt;
+</span></span><span class="line"><span class="cl">&lt;toggle-overflow&gt; = cycle | cycle-on | sticky
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">// mode
+</span></span><span class="line"><span class="cl">// mode 1 at 0 cycle wide
+</span></span><span class="line"><span class="cl">// mode 3 at 0
+</span></span><span class="line"><span class="cl">// mode [light dark] at light
+</span></span></code></pre></div></li>
+<li>
+<p><code>toggle-overflow</code> 定义设置的值超出之后的行为，针对数字类型有效</p>
+<ul>
+<li>cycle / cycle-on: 比最小值小则为最大值，比最大值大则为 0 / 1</li>
+<li>sticky: 最小值 &lt;= value &lt;= 最大值</li>
+</ul>
+</li>
+<li>
+<p><code>self</code> 定义触发元素和可切换元素的查找关系：</p>
+<ul>
+<li>wide: 任意</li>
+<li>narrow: 必须是父子关系</li>
+</ul>
+</li>
+<li>
+<p><code>toggle-rigger</code>：定义该元素为 <a href="https://drafts.csswg.org/css-values-4/#identifier-value"><custom-ident></custom-ident></a> 的切换触发器</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;toggle-trigger&gt; = &lt;custom-ident&gt; &lt;trigger-action&gt;?
+</span></span><span class="line"><span class="cl">&lt;trigger-action&gt; =
+</span></span><span class="line"><span class="cl">  [prev | next] &lt;integer [1,∞]&gt;? |
+</span></span><span class="line"><span class="cl">  set &lt;toggle-value&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">// mode
+</span></span><span class="line"><span class="cl">// mode next 1
+</span></span><span class="line"><span class="cl">// mode prev 1
+</span></span><span class="line"><span class="cl">// mode next 2 
+</span></span><span class="line"><span class="cl">// mode 2
+</span></span><span class="line"><span class="cl">// mode set light
+</span></span></code></pre></div></li>
+<li>
+<p><code>:toggle()</code>：根据 <a href="https://drafts.csswg.org/css-values-4/#identifier-value"><custom-ident></custom-ident></a> 值选择元素</p>
+</li>
+<li>
+<p><code>toggle</code>：当可切换元素和切换触发器元素为同一个时，可使用 <code>toggle</code> 进行简写</p>
+</li>
+<li>
+<p><code>toggle-group</code>：指定该元素为 <a href="https://drafts.csswg.org/css-values-4/#identifier-value"><custom-ident></custom-ident></a> 的组内元素</p>
+</li>
+</ul>
+<p>我们可以通过 <code>Element.toggles()</code> 来获取可切换元素的所有切换状态枚举，也通过 <code>Element.addEventListener('togglechange', ...)</code> 获取当前可切换元素的当前状态。</p>
+<p>更多示例见：<a href="https://toggles.oddbird.net">https://toggles.oddbird.net</a></p>
+<h2 id="popup-api">PopUp API</h2>
+<p><a href="https://open-ui.org/components/popup.research.explainer">https://open-ui.org/components/popup.research.explainer</a></p>
+<p>如果要自己从 0 开始写一个弹窗是比较麻烦的，需要考虑很多事情：全屏浮层，内容居中，页面滚动失效，遮罩点击关闭，ESC 按下关闭…</p>
+<p>所以就有好多组件封装，虽然原生已经有 <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog">&lt;dialog&gt;</a> 标签可以干类似的事情了。但毕竟还是有点原始，所以 Chrome 就将 PopUp 原生实现了~~（真卷啊）~~。</p>
+<iframe src="https://code.juejin.cn/pen/7136554639964504097"></iframe>
+<ul>
+<li><code>popup</code>: auto | hint | manual 默认为 auto，指定多弹窗的关系</li>
+<li>popuptoggletarget：指向带有 <code>popup</code> 属性的元素 id，用来切换 popup 元素的显隐</li>
+<li>popupshowtarget：指向带有 <code>popup</code> 属性的元素 id，用来显示 popup 元素</li>
+<li>popuphidetarget：指向带有 <code>popup</code> 属性的元素 id，用来隐藏 popup 元素</li>
+<li><code>Element.showPopUp()</code> <code>Element.hidePopUp()</code></li>
+</ul>
+<p>目前仅最新的 Chromium 生效 :-) 还有些问题~ <a href="https://chromestatus.com/feature/5463833265045504">https://chromestatus.com/feature/5463833265045504</a></p>
+<h2 id="css-作用域">CSS 作用域</h2>
+<p><a href="https://www.w3.org/TR/css-scoping-1/">https://www.w3.org/TR/css-scoping-1/</a></p>
+<p>以往我们要实现 CSS 作用域，组件之间样式不互相影响，一般就是 BEM 命名或者 CSS Module, CSS in JS 之流最终生成带 hash 的唯一选择器伪实现，亦或是使用 Shadow DOM 这种高成本的完美实现。</p>
+<p>现在我们能直接使用 <code>@``scope</code> 来实现样式隔离了！</p>
+<p><img src="https://p.upyun.lithub.cc/imnerd.org/assets/2022/front-end-new-feature-you-dont-know/1.png" alt=""></p>
+<blockquote>
+<p>图来自：<a href="https://weibo.com/1708684567/LzHEY1wGm">https://weibo.com/1708684567/LzHEY1wGm</a></p>
+</blockquote>
+<p>不用太多介绍，简单好用~</p>
+<h2 id="structuredclone">structuredClone</h2>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/structuredClone">https://developer.mozilla.org/en-US/docs/Web/API/structuredClone</a></p>
+<p>原生的深拷贝方法，可以对结构化数据进行深拷贝，避免 <code>JSON.parse(JSON.stringify())</code> 的尴尬。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js hljs javascript" data-lang="js"><span class="line"><span class="cl"><span class="nx">structuredClone</span><span class="p">(</span><span class="nx">value</span><span class="o">:</span> <span class="nx">any</span><span class="p">,</span> <span class="p">{</span> <span class="nx">transfer</span><span class="o">?:</span> <span class="nx">any</span><span class="p">[]</span> <span class="p">})</span>
+</span></span></code></pre></div><ul>
+<li>不允许克隆<code>Error</code>、<code>Function</code>和<code>DOM</code>对象，如果对象中含有，将抛出<code>DATA_CLONE_ERR</code>异常。</li>
+<li>不保留<code>RegExp</code> 对象的 <code>lastIndex</code> 字段。</li>
+<li>不保留属性描述符，<code>setters</code> 以及 <code>getters</code>（以及其他类似元数据的功能）。例如，如果一个对象用属性描述符标记为 <code>read-only</code>，它将会被复制为 <code>read-write</code>。</li>
+<li>不保留原型链。</li>
+</ul>
+<h2 id="navigation-api">Navigation API</h2>
+<p>SPA 的基石路由管理，早有 History API 支持，但因为本质是历史记录的管理，缺少一些切换后的控制等功能，所以 Chrome 从新提出了 Navigation API 来专门实现路由管理。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js hljs javascript" data-lang="js"><span class="line"><span class="cl"><span class="nx">navigation</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1"><span class="hljs-string">'navigate'</span></span><span class="p">,</span> <span class="nx"><span class="hljs-function"><span class="hljs-params">navigateEvent</span></span></span><span class="hljs-function"> </span><span class="p"><span class="hljs-function">=&gt;</span></span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k"><span class="hljs-keyword">if</span></span> <span class="p">(</span><span class="nx">shouldNotIntercept</span><span class="p">(</span><span class="nx">navigateEvent</span><span class="p">))</span> <span class="k"><span class="hljs-keyword">return</span></span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kr"><span class="hljs-keyword">const</span></span> <span class="nx">url</span> <span class="o">=</span> <span class="k"><span class="hljs-keyword">new</span></span> <span class="nx">URL</span><span class="p">(</span><span class="nx">navigateEvent</span><span class="p">.</span><span class="nx">destination</span><span class="p">.</span><span class="nx">url</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k"><span class="hljs-keyword">if</span></span> <span class="p">(</span><span class="nx">url</span><span class="p">.</span><span class="nx">pathname</span> <span class="o">===</span> <span class="s1"><span class="hljs-string">'/'</span></span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">navigateEvent</span><span class="p">.</span><span class="nx">intercept</span><span class="p">({</span><span class="nx"><span class="hljs-attr">handler</span></span><span class="o">:</span> <span class="nx">loadIndexPage</span><span class="p">});</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span> <span class="k"><span class="hljs-keyword">else</span></span> <span class="k"><span class="hljs-keyword">if</span></span> <span class="p">(</span><span class="nx">url</span><span class="p">.</span><span class="nx">pathname</span> <span class="o">===</span> <span class="s1"><span class="hljs-string">'/cats/'</span></span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">navigateEvent</span><span class="p">.</span><span class="nx">intercept</span><span class="p">({</span><span class="nx"><span class="hljs-attr">handler</span></span><span class="o">:</span> <span class="nx">loadCatsPage</span><span class="p">});</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></div><p><code>navigateEvent</code>包含以下信息：</p>
+<ul>
+<li><code>canIntercept</code> 是否支持拦截，跨域等无法拦截场景会返回 <code>false</code></li>
+<li><code>destination.url</code> 跳转目标地址</li>
+<li><code>hashChange</code>是否是锚点跳转</li>
+<li><code>userInitiated</code> 是否是由页面内 <code>&lt;a&gt;</code> 标签触发的跳转，为 <code>false</code> 表示是浏览器前进后退等触发的跳转</li>
+<li><code>downloadRequest</code>是否是由具有<code>download</code>属性的链接带来的跳转</li>
+<li><code>formData</code>表单跳转时对应提交的表单数据，可以针对 Form 表单拦截后发送数据</li>
+<li><code>navigationType</code>枚举值<code>"reload"</code>, <code>"push"</code>,<code>"replace"</code>或<code>"traverse"</code>（类似 <code>history.goBack()</code>）之一。如果是<code>"traverse"</code>，则无法通过<code>preventDefault()</code>阻止跳转</li>
+<li><code>signal</code> 提供给拦截 handler 中异步请求使用，方便当跳转终端后同步中断请求</li>
+<li><code>scroll()</code>控制跳转后滚动，在异步 handler 中比较有用，可能会多次滚动</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js hljs javascript" data-lang="js"><span class="line"><span class="cl"><span class="kd"><span class="hljs-function"><span class="hljs-keyword">function</span></span></span><span class="hljs-function"> </span><span class="nx"><span class="hljs-function"><span class="hljs-title">shouldNotIntercept</span></span></span><span class="p"><span class="hljs-function">(</span></span><span class="nx"><span class="hljs-function"><span class="hljs-params">navigationEvent</span></span></span><span class="p"><span class="hljs-function">)</span></span><span class="hljs-function"> </span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k"><span class="hljs-keyword">return</span></span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="o">!</span><span class="nx">navigationEvent</span><span class="p">.</span><span class="nx">canIntercept</span> <span class="o">||</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">navigationEvent</span><span class="p">.</span><span class="nx">hashChange</span> <span class="o">||</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">navigationEvent</span><span class="p">.</span><span class="nx">downloadRequest</span> <span class="o">||</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">navigationEvent</span><span class="p">.</span><span class="nx">formData</span>
+</span></span><span class="line"><span class="cl">  <span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><code>signal</code> 和 <code>scroll()</code> 的例子：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js hljs javascript" data-lang="js"><span class="line"><span class="cl"><span class="nx">navigation</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1"><span class="hljs-string">'navigate'</span></span><span class="p">,</span> <span class="nx"><span class="hljs-function"><span class="hljs-params">navigateEvent</span></span></span><span class="hljs-function"> </span><span class="p"><span class="hljs-function">=&gt;</span></span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k"><span class="hljs-keyword">if</span></span> <span class="p">(</span><span class="nx">shouldNotIntercept</span><span class="p">(</span><span class="nx">navigateEvent</span><span class="p">))</span> <span class="k"><span class="hljs-keyword">return</span></span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kr"><span class="hljs-keyword">const</span></span> <span class="nx">url</span> <span class="o">=</span> <span class="k"><span class="hljs-keyword">new</span></span> <span class="nx">URL</span><span class="p">(</span><span class="nx">navigateEvent</span><span class="p">.</span><span class="nx">destination</span><span class="p">.</span><span class="nx">url</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k"><span class="hljs-keyword">if</span></span> <span class="p">(</span><span class="nx">url</span><span class="p">.</span><span class="nx">pathname</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="s1"><span class="hljs-string">'/articles/'</span></span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">navigateEvent</span><span class="p">.</span><span class="nx">intercept</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">      <span class="kr"><span class="hljs-keyword">async</span></span> <span class="nx">handler</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"><span class="hljs-comment">// The URL has already changed, so quickly show a placeholder.</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">renderArticlePagePlaceholder</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"><span class="hljs-comment">// Then fetch the real data.</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kr"><span class="hljs-keyword">const</span></span> <span class="nx">articleContentURL</span> <span class="o">=</span> <span class="k"><span class="hljs-keyword">new</span></span> <span class="nx">URL</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">          <span class="s1"><span class="hljs-string">'/get-article-content'</span></span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="nx">location</span><span class="p">.</span><span class="nx">href</span>
+</span></span><span class="line"><span class="cl">        <span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">articleContentURL</span><span class="p">.</span><span class="nx">searchParams</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1"><span class="hljs-string">'path'</span></span><span class="p">,</span> <span class="nx">url</span><span class="p">.</span><span class="nx">pathname</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="kr"><span class="hljs-keyword">const</span></span> <span class="nx">response</span> <span class="o">=</span> <span class="kr"><span class="hljs-keyword">await</span></span> <span class="nx">fetch</span><span class="p">(</span><span class="nx">articleContentURL</span><span class="p">,</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="nx"><span class="hljs-attr">signal</span></span><span class="o">:</span> <span class="nx">navigateEvent</span><span class="p">.</span><span class="nx">signal</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">});</span>
+</span></span><span class="line"><span class="cl">        <span class="kr"><span class="hljs-keyword">const</span></span> <span class="nx">articleContent</span> <span class="o">=</span> <span class="kr"><span class="hljs-keyword">await</span></span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">renderArticlePage</span><span class="p">(</span><span class="nx">articleContent</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">navigateEvent</span><span class="p">.</span><span class="nx">scroll</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="kr"><span class="hljs-keyword">const</span></span> <span class="nx">secondaryContent</span> <span class="o">=</span> <span class="kr"><span class="hljs-keyword">await</span></span> <span class="nx">getSecondaryContent</span><span class="p">(</span><span class="nx">url</span><span class="p">.</span><span class="nx">pathname</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">addSecondaryContent</span><span class="p">(</span><span class="nx">secondaryContent</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"><span class="hljs-comment">// navigate</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr"><span class="hljs-keyword">const</span></span> <span class="p">{</span> <span class="nx">committed</span><span class="p">,</span> <span class="nx">finished</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">navigation</span><span class="p">.</span><span class="nx">navigate</span><span class="p">(</span><span class="s1"><span class="hljs-string">'/articles/hello-world'</span></span><span class="p">);</span>
+</span></span></code></pre></div><p>设置好跳转拦截回调后，我们就能正常使用 <code>navigation.navigate()</code> 进行跳转了。返回两个 Promise 对象，分别对应 Navigate 完成的状态 <code>committed</code>，以及导航拦截的回调 Handler 结束的状态 <code>finished</code>。</p>
+<p>比起 History API 惊喜的是，我们可以通过 <code>navigation.entries()</code> 获取当前所有的历史记录。通过 <code>navigation.currentEntry</code> 返回当前的记录。</p>
+<blockquote>
+<p><code>navigation.entries()</code> 获取的只能是同域的历史记录，跨域的无法获取。</p>
+</blockquote>
+<p><img src="https://p.upyun.lithub.cc/imnerd.org/assets/2022/front-end-new-feature-you-dont-know/2.png" alt=""></p>
+<p>兼容性：<a href="https://caniuse.com/mdn-api_navigation_navigate">https://caniuse.com/mdn-api_navigation_navigate</a></p>
+<h2 id="urlpattern">URLPattern</h2>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/URL_Pattern_API">https://developer.mozilla.org/en-US/docs/Web/API/URL_Pattern_API</a></p>
+<p>可以算是原生版的 <a href="https://github.com/pillarjs/path-to-regexp">path-to-regexp</a> ，用来做 URL 格式匹配解析的。最开始是因为 service worker 场景有解析拦截的资源请求地址的需求创造，但适用所有 URL 解析场景。</p>
+<p>虽然 URLPattern 可以解析完整的域名，但一般 hostname 相关可以用 URL 解析，query 可以使用 URLSearchParams 解析。所以其实用的比较多的场景还是 pathname 的解析。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js hljs javascript" data-lang="js"><span class="line"><span class="cl"><span class="kr"><span class="hljs-keyword">const</span></span> <span class="nx">pattern</span> <span class="o">=</span> <span class="k"><span class="hljs-keyword">new</span></span> <span class="nx">URLPattern</span><span class="p">({</span> <span class="nx"><span class="hljs-attr">pathname</span></span><span class="o">:</span> <span class="s1"><span class="hljs-string">'/books/:id(\\d+)'</span></span> <span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="nx"><span class="hljs-built_in">console</span></span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">pattern</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="s1"><span class="hljs-string">'https://example.com/books/123'</span></span><span class="p">));</span> <span class="c1"><span class="hljs-comment">// true</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx"><span class="hljs-built_in">console</span></span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">pattern</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="s1"><span class="hljs-string">'https://example.com/books/123'</span></span><span class="p">).</span><span class="nx">pathname</span><span class="p">.</span><span class="nx">groups</span><span class="p">);</span> <span class="c1"><span class="hljs-comment">// { id: '123' }</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx"><span class="hljs-built_in">console</span></span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">pattern</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="s1"><span class="hljs-string">'https://example.com/books/detail'</span></span><span class="p">));</span> <span class="c1"><span class="hljs-comment">// false</span>
+</span></span></span></code></pre></div><ul>
+<li>使用 <code>:&lt;group&gt;</code> 来为当前匹配内容分组</li>
+<li><code>{}</code>是非捕获组，相当于正则中的 <code>(?:)</code>，可以在后面增加<code>{}?</code>表示可选，不加的话其实可有可无</li>
+<li><code>(正则表达式)</code>也可以通过正则进行精确匹配，可以跟在命名分组的后面，相当于<code>(?&lt;group&gt;正则表达式)</code>。内部正则关键字需要做转义处理。</li>
+<li><code>*</code> 表示贪婪匹配，独立使用相当于正则 <code>.*</code>，也可以搭配在前几个规则后使用，例如 <code>:id*</code></li>
+<li><code>+</code> 相当于 <code>{1,}</code> 不可独立使用</li>
+</ul>
+<p>使用 URLPattern 而不是自己使用正则解析的一个好处就是它会帮助我们把 URL 规范化之后再进行解析，而不是简单的做一个字符串的正则转换匹配。</p>
+<p><img src="https://p.upyun.lithub.cc/imnerd.org/assets/2022/front-end-new-feature-you-dont-know/3.png" alt=""></p>
+<p>目前仅 Chrome 系<a href="https://caniuse.com/mdn-api_urlpattern">兼容性</a>还行，Node 也暂时还没有跟上版本。不过有对应的 <a href="https://github.com/kenchris/urlpattern-polyfill">Polyfill</a> 了已经。</p>
+<h2 id="图片">图片</h2>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio">https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio</a></p>
+<p>如果需要按比例显示图片，一般会保持比例设置 DOM 尺寸后使用 <code>background-image</code> 或者使用 <code>&lt;img&gt;</code> 来展示，比较不便。所以增加了 <code>aspectio-ratio</code> 属性直接支持设置图片显示的比例。</p>
+<p>配合 <code>object-fit</code> 属性指定图片比例不对的时候填充模式，食用更加。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css hljs" data-lang="css"><span class="line"><span class="cl"><span class="nt"><span class="hljs-selector-tag">img</span></span> <span class="p">{</span> 
+</span></span><span class="line"><span class="cl">  <span class="n"><span class="hljs-attribute">aspect-ratio</span></span><span class="p">:</span> <span class="mi"><span class="hljs-number">16</span></span> <span class="o">/</span> <span class="mi"><span class="hljs-number">9</span></span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">  <span class="k"><span class="hljs-attribute">object-fit</span></span><span class="p">:</span> <span class="kc">contain</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-loading">https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-loading</a></p>
+<blockquote>
+<p><code>object-fit</code> 的兄弟属性 <code>object-position</code>：用于指定图片的展示区域</p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/object-position">https://developer.mozilla.org/en-US/docs/Web/CSS/object-position</a></p>
+</blockquote>
+<p>为了性能优化我们一般都会为图片增加懒加载的支持，这个官方也做了原生的支持。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html hljs xml" data-lang="html"><span class="line"><span class="cl"><span class="p"><span class="hljs-tag">&lt;</span></span><span class="nt"><span class="hljs-tag"><span class="hljs-name">img</span></span></span><span class="hljs-tag"> </span><span class="na"><span class="hljs-tag"><span class="hljs-attr">src</span></span></span><span class="o"><span class="hljs-tag">=</span></span><span class="s"><span class="hljs-tag"><span class="hljs-string">"image.jpg"</span></span></span><span class="hljs-tag"> </span><span class="na"><span class="hljs-tag"><span class="hljs-attr">alt</span></span></span><span class="o"><span class="hljs-tag">=</span></span><span class="s"><span class="hljs-tag"><span class="hljs-string">"..."</span></span></span><span class="hljs-tag"> </span><span class="na"><span class="hljs-tag"><span class="hljs-attr">loading</span></span></span><span class="o"><span class="hljs-tag">=</span></span><span class="s"><span class="hljs-tag"><span class="hljs-string">"lazy"</span></span></span><span class="p"><span class="hljs-tag">&gt;</span></span>
+</span></span></code></pre></div><p><a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images">https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images</a></p>
+<p>为了更好的性能优化，我们一般会从图片尺寸和图片格式上对图片资源进行处理，此为响应式图片。</p>
+<p>关于图片格式，静图有 <code>jpg</code>,<code>png</code>,<code>webp</code>,<code>avif</code>,<code>jpeg XL</code> 这些格式。动图有 <code>gif</code>,<code>apng</code>,<code>webp</code>,<code>avif</code>之这些格式。<code>avif</code> 是基于视频编码 AV1 衍生的图片格式。针对不同的浏览器适配不同的格式，我们可以使用 <code>&lt;picture&gt;</code> 进行图片渲染。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html hljs xml" data-lang="html"><span class="line"><span class="cl"><span class="p"><span class="hljs-tag">&lt;</span></span><span class="nt"><span class="hljs-tag"><span class="hljs-name">picture</span></span></span><span class="p"><span class="hljs-tag">&gt;</span></span>
+</span></span><span class="line"><span class="cl">  <span class="p"><span class="hljs-tag">&lt;</span></span><span class="nt"><span class="hljs-tag"><span class="hljs-name">source</span></span></span><span class="hljs-tag"> </span><span class="na"><span class="hljs-tag"><span class="hljs-attr">type</span></span></span><span class="o"><span class="hljs-tag">=</span></span><span class="s"><span class="hljs-tag"><span class="hljs-string">"image/avif"</span></span></span><span class="hljs-tag"> </span><span class="na"><span class="hljs-tag"><span class="hljs-attr">srcset</span></span></span><span class="o"><span class="hljs-tag">=</span></span><span class="s"><span class="hljs-tag"><span class="hljs-string">"....avif"</span></span></span><span class="hljs-tag"> </span><span class="p"><span class="hljs-tag">/&gt;</span></span>
+</span></span><span class="line"><span class="cl">  <span class="p"><span class="hljs-tag">&lt;</span></span><span class="nt"><span class="hljs-tag"><span class="hljs-name">img</span></span></span><span class="hljs-tag"> </span><span class="na"><span class="hljs-tag"><span class="hljs-attr">src</span></span></span><span class="o"><span class="hljs-tag">=</span></span><span class="s"><span class="hljs-tag"><span class="hljs-string">"....webp"</span></span></span><span class="hljs-tag"> </span><span class="na"><span class="hljs-tag"><span class="hljs-attr">loading</span></span></span><span class="o"><span class="hljs-tag">=</span></span><span class="s"><span class="hljs-tag"><span class="hljs-string">"lazy"</span></span></span><span class="hljs-tag"> </span><span class="p"><span class="hljs-tag">/&gt;</span></span>
+</span></span><span class="line"><span class="cl"><span class="p"><span class="hljs-tag">&lt;/</span></span><span class="nt"><span class="hljs-tag"><span class="hljs-name">picture</span></span></span><span class="p"><span class="hljs-tag">&gt;</span></span>
+</span></span></code></pre></div><p>除了格式之外，我们还可以按照分辨率来设置，图片尺寸也不在话下。综合如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html hljs xml" data-lang="html"><span class="line"><span class="cl"><span class="p"><span class="hljs-tag">&lt;</span></span><span class="nt"><span class="hljs-tag"><span class="hljs-name">style</span></span></span><span class="p"><span class="hljs-tag">&gt;</span></span><span class="css">
+</span></span></span><span class="line"><span class="cl"><span class="nt"><span class="css"><span class="hljs-selector-tag">img</span></span></span><span class="css"> </span><span class="p"><span class="css">{</span></span><span class="css"> 
+</span></span></span><span class="line"><span class="cl"><span class="css">    </span><span class="k"><span class="css"><span class="hljs-attribute">width</span></span></span><span class="p"><span class="css">:</span></span><span class="css"> </span><span class="mi"><span class="css"><span class="hljs-number">320</span></span></span><span class="kt"><span class="css"><span class="hljs-number">px</span></span></span><span class="p"><span class="css">;</span></span><span class="css">
+</span></span></span><span class="line"><span class="cl"><span class="css">    </span><span class="n"><span class="css"><span class="hljs-attribute">aspect-ratio</span></span></span><span class="p"><span class="css">:</span></span><span class="css"> </span><span class="mi"><span class="css"><span class="hljs-number">320</span></span></span><span class="css"> </span><span class="o"><span class="css">/</span></span><span class="css"> </span><span class="mi"><span class="css"><span class="hljs-number">240</span></span></span><span class="p"><span class="css">;</span></span><span class="css"> 
+</span></span></span><span class="line"><span class="cl"><span class="css">    </span><span class="k"><span class="css"><span class="hljs-attribute">object-fit</span></span></span><span class="p"><span class="css">:</span></span><span class="css"> </span><span class="kc"><span class="css">contain</span></span><span class="p"><span class="css">;</span></span><span class="css"> 
+</span></span></span><span class="line"><span class="cl"><span class="p"><span class="css">}</span></span><span class="css">
+</span></span></span><span class="line"><span class="cl"><span class="p"><span class="hljs-tag">&lt;/</span></span><span class="nt"><span class="hljs-tag"><span class="hljs-name">style</span></span></span><span class="p"><span class="hljs-tag">&gt;</span></span>
+</span></span><span class="line"><span class="cl"><span class="p"><span class="hljs-tag">&lt;</span></span><span class="nt"><span class="hljs-tag"><span class="hljs-name">picture</span></span></span><span class="p"><span class="hljs-tag">&gt;</span></span>
+</span></span><span class="line"><span class="cl">  <span class="p"><span class="hljs-tag">&lt;</span></span><span class="nt"><span class="hljs-tag"><span class="hljs-name">source</span></span></span><span class="hljs-tag"> 
+</span></span></span><span class="line"><span class="cl"><span class="hljs-tag">      </span><span class="na"><span class="hljs-tag"><span class="hljs-attr">type</span></span></span><span class="o"><span class="hljs-tag">=</span></span><span class="s"><span class="hljs-tag"><span class="hljs-string">"image/avif"</span></span></span><span class="hljs-tag"> 
+</span></span></span><span class="line"><span class="cl"><span class="hljs-tag">      </span><span class="na"><span class="hljs-tag"><span class="hljs-attr">srcset</span></span></span><span class="o"><span class="hljs-tag">=</span></span><span class="s"><span class="hljs-tag"><span class="hljs-string">"...320x240.avif 1x ...640x480.avif 2x ...960x720.avif 3x"</span></span></span><span class="hljs-tag"> 
+</span></span></span><span class="line"><span class="cl"><span class="hljs-tag">  </span><span class="p"><span class="hljs-tag">/&gt;</span></span>
+</span></span><span class="line"><span class="cl">  <span class="p"><span class="hljs-tag">&lt;</span></span><span class="nt"><span class="hljs-tag"><span class="hljs-name">img</span></span></span><span class="hljs-tag"> 
+</span></span></span><span class="line"><span class="cl"><span class="hljs-tag">      </span><span class="na"><span class="hljs-tag"><span class="hljs-attr">srcset</span></span></span><span class="o"><span class="hljs-tag">=</span></span><span class="s"><span class="hljs-tag"><span class="hljs-string">"...320x240.webp 1x ...640x480.webp 2x ...960x720.webp 3x"</span></span></span><span class="hljs-tag"> 
+</span></span></span><span class="line"><span class="cl"><span class="hljs-tag">      </span><span class="na"><span class="hljs-tag"><span class="hljs-attr">src</span></span></span><span class="o"><span class="hljs-tag">=</span></span><span class="s"><span class="hljs-tag"><span class="hljs-string">"....webp"</span></span></span><span class="hljs-tag"> 
+</span></span></span><span class="line"><span class="cl"><span class="hljs-tag">      </span><span class="na"><span class="hljs-tag"><span class="hljs-attr">loading</span></span></span><span class="o"><span class="hljs-tag">=</span></span><span class="s"><span class="hljs-tag"><span class="hljs-string">"lazy"</span></span></span><span class="hljs-tag"> 
+</span></span></span><span class="line"><span class="cl"><span class="hljs-tag">  </span><span class="p"><span class="hljs-tag">/&gt;</span></span>
+</span></span><span class="line"><span class="cl"><span class="p"><span class="hljs-tag">&lt;/</span></span><span class="nt"><span class="hljs-tag"><span class="hljs-name">picture</span></span></span><span class="p"><span class="hljs-tag">&gt;</span></span>
+</span></span></code></pre></div><p><strong>参考资料：</strong></p>
+<ul>
+<li><a href="https://www.bram.us/2022/04/20/the-future-of-css-css-toggles/">The Future of CSS: CSS Toggles</a></li>
+<li><a href="https://www.zhihu.com/question/546390030/answer/2603655667">有哪些以往需要使用javascript实现的功能现在可以直接使用html或者css实现? - 知乎</a></li>
+<li><a href="https://css.oddbird.net/scope/explainer/">Scope Proposal &amp; Explainer</a></li>
+<li><a href="https://css-tricks.com/proposal-for-css-when/">Proposal for CSS @when | CSS-Tricks</a></li>
+<li><a href="https://juejin.cn/post/7080433165264748557">JS 深拷贝的原生终结者 structuredClone API - 掘金</a></li>
+<li><a href="https://developer.chrome.com/docs/web-platform/navigation-api/">https://developer.chrome.com/docs/web-platform/navigation-api/</a></li>
+<li><a href="https://web.dev/urlpattern/">URLPattern brings routing to the web platform</a></li>
+<li><a href="https://web.dev/learn/design/picture-element/">https://web.dev/learn/design/picture-element/</a></li>
+</ul>
+
+    </div>
+    </article>
     阅读量: <span id="/" class="waline-pageview-count"></span> 评论数:
     <span id="/" class="waline-comment-count"></span>
     <div id="waline" style="max-width: 800px; margin: 0 auto"></div>
@@ -26,6 +275,7 @@
         ],
         // recaptchaV3Key: '6Lfz4-shAAAAANgsYRR0datkzv6zLIaKrSqfHsiG',
         turnstileKey: '0x4AAAAAAACTzOE6F_3MuL-L',
+        highlightComment: 'article',
       });
     </script>
   </body>
