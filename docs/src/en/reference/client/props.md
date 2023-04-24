@@ -30,7 +30,7 @@ Please ensure the uniqueness of each _article page_ path, otherwise the same com
 ## lang
 
 - Type: `string`
-- Default: `'zh-CN'`
+- Default: `navigator.language`
 - Details:
   - [Guide → I18n](../../guide/features/i18n.md#set-language)
 
@@ -306,7 +306,6 @@ We hope you can keep it on to support Waline.
 reCAPTCHA V3 is a captcha service provided by Google. You can add reCAPTCHA V3 site key with `recaptchaV3Key` to enable it. Notice you should also set environment variable `RECAPTCHA_V3_SECRET` for server.
 
 ## turnstileKey
-
 
 - Type: `string`
 - Required: No
