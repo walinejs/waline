@@ -30,7 +30,7 @@ Waline 的服务端地址。
 ## lang
 
 - 类型: `string`
-- 默认值: `'zh-CN'`
+- 默认值: `navigator.language`
 - 详情:
   - [功能 → 多语言](../../guide/features/i18n.md#设置语言)
 
@@ -302,7 +302,6 @@ Waline 多语言配置。
 - 必填: 否
 
 reCAPTCHA V3 是 Google 提供的验证码服务，配置 reCAPTCHA V3 网站密钥即可开启该功能。服务端需要同步配置 `RECAPTCHA_V3_SECRET` 环境变量。
-
 
 ## turnstileKey
 

@@ -160,7 +160,7 @@ const darkmodeStyle = computed(() => getDarkStyle(config.value.dark));
 
 const i18n = computed(() => config.value.locale);
 
-useStyleTag(darkmodeStyle);
+useStyleTag(darkmodeStyle, { id: 'waline-darkmode' });
 
 let abort: () => void;
 
