@@ -25,21 +25,18 @@ jobs:
         with:
           token: ${{ secrets.NPM_TOKEN }}
           package: ./packages/client
-          dry-run: true
 
       - name: "publish @waline/admin"
         uses: JS-DevTools/npm-publish@v2
         with:
           token: ${{ secrets.NPM_TOKEN }}
           package: ./packages/admin
-          dry-run: true
 
       - name: "publish @waline/vercel"
         uses: JS-DevTools/npm-publish@v2
         with:
           token: ${{ secrets.NPM_TOKEN }}
           package: ./packages/server
-          dry-run: true
 
   
   docker:

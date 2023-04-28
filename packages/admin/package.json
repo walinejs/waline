@@ -30,6 +30,9 @@
     "dev": "vite",
     "prepublishOnly": "pnpm build"
   },
+  "publishConfig": {
+    "provenance": true
+  },
   "browserslist": {
     "production": [
       ">0.5%",
