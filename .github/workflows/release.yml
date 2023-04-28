@@ -1,4 +1,4 @@
-name: '[docker] CI for releases'
+name: 'Publish Waline'
 
 on:
   push:
@@ -6,7 +6,45 @@ on:
       - main
 
 jobs:
-  path-context:
+  npm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          
+      - uses: pnpm/action-setup@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      
+      - name: "publish @waline/client"
+        uses: JS-DevTools/npm-publish@v2
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          package: ./packages/client
+          dry-run: true
+
+      - name: "publish @waline/admin"
+        uses: JS-DevTools/npm-publish@v2
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          package: ./packages/admin
+          dry-run: true
+
+      - name: "publish @waline/vercel"
+        uses: JS-DevTools/npm-publish@v2
+        working-directory: packages/server
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          package: ./packages/server
+          dry-run: true
+
+  
+  docker:
+    needs: npm
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -77,3 +115,6 @@ jobs:
       #     tags: |
       #       ghcr.io/lizheming/waline:alpine
       #       ghcr.io/lizheming/waline:${{steps.pkg-version.outputs.version}}-alpine
+
+
+      

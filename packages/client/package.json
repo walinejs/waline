@@ -103,6 +103,9 @@
     "style:main": "sass ./src/styles/index.scss ./dist/waline.css --style=compressed",
     "style:meta": "sass ./src/styles/meta.scss ./dist/waline-meta.css --style=compressed"
   },
+  "publishConfig": {
+    "provenance": true
+  },
   "browserslist": {
     "production": [
       ">0.5%",
