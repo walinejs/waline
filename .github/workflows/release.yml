@@ -6,9 +6,10 @@ on:
       - main
     paths:
       - .github/workflows/release.yml
-      - packages/client
-      - packages/admin
-      - packages/server
+      - packages/client/**
+      - packages/admin/**
+      - packages/server/**
+      - docs/**
 
 permissions:
   contents: write
