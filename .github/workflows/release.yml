@@ -14,8 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 0
-          
+          fetch-depth: 0  
       - uses: pnpm/action-setup@v2
       - uses: actions/setup-node@v3
         with:
@@ -24,26 +23,27 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm --filter ./packages/client --filter ./packages/admin run build
       
-      - name: "publish @waline/client"
+      - id: publishClient
+        name: "publish @waline/client"
         uses: JS-DevTools/npm-publish@v2
         with:
           token: ${{ secrets.NPM_TOKEN }}
           package: ./packages/client
-          dry-run: true
 
-      - name: "publish @waline/admin"
+      - id: publishAdmin
+        name: "publish @waline/admin"
         uses: JS-DevTools/npm-publish@v2
         with:
           token: ${{ secrets.NPM_TOKEN }}
           package: ./packages/admin
 
-      - name: "publish @waline/vercel"
+      - id: publishServer
+        name: "publish @waline/vercel"
         uses: JS-DevTools/npm-publish@v2
         with:
           token: ${{ secrets.NPM_TOKEN }}
           package: ./packages/server
 
-  
   docker:
     needs: npm
     runs-on: ubuntu-latest
@@ -71,14 +71,15 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Return Package Version
-        id: pkg-version
-        run: |
-          version=$(cat packages/server/package.json | python -c 'import json,sys;obj=json.load(sys.stdin);print(obj["version"]);')
-          echo "version=${version}" >> $GITHUB_OUTPUT
+      # - name: Return Package Version
+      #   id: pkg-version
+      #   run: |
+      #     version=$(cat packages/server/package.json | python -c 'import json,sys;obj=json.load(sys.stdin);print(obj["version"]);')
+      #     echo "version=${version}" >> $GITHUB_OUTPUT
 
       - name: Build and push alpine
-        if: contains(github.event.head_commit.message, 'release @waline/vercel')
+        if: ${{ steps.publishServer.outputs.old-version != steps.publishServer.outputs.version }}
+        # if: contains(github.event.head_commit.message, 'release @waline/vercel')
         uses: docker/build-push-action@v4
         with:
           file: ./packages/server/Dockerfile.alpine
@@ -86,12 +87,13 @@ jobs:
           push: true
           tags: |
             lizheming/waline:alpine
-            lizheming/waline:${{steps.pkg-version.outputs.version}}-alpine
+            lizheming/waline:${{ steps.publishServer.outputs.version }}-alpine
           # cache-from: type=local,src=/tmp/.buildx-cache
           # cache-to: type=local,dest=/tmp/.buildx-cache,mode=max
 
       - name: Build and push debian
-        if: contains(github.event.head_commit.message, 'release @waline/vercel')
+        if: ${{ steps.publishServer.outputs.old-version != steps.publishServer.outputs.version }}
+        # if: contains(github.event.head_commit.message, 'release @waline/vercel')
         uses: docker/build-push-action@v4
         with:
           file: ./packages/server/Dockerfile
@@ -99,7 +101,7 @@ jobs:
           push: true
           tags: |
             lizheming/waline:latest
-            lizheming/waline:${{steps.pkg-version.outputs.version}}
+            lizheming/waline:${{ steps.publishServer.outputs.version }}
           # cache-from: type=local,src=/tmp/.buildx-cache
           # cache-to: type=local,dest=/tmp/.buildx-cache,mode=max
 
