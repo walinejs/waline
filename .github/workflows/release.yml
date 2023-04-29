@@ -104,6 +104,10 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+    - run: |
+      ls -l
+      ls -R
+      
     - id: publishServer
       name: "publish @waline/vercel"
       uses: JS-DevTools/npm-publish@v2
