@@ -27,7 +27,6 @@ jobs:
         node-version: 20
         cache: pnpm
     - run: pnpm install --frozen-lockfile
-    - run: pnpm --filter ./packages/client --filter ./packages/admin run build
 
   client:
     needs: build
@@ -36,21 +35,49 @@ jobs:
     - uses: marceloprado/has-changed-path@v1.0.1
       id: changed-client
       with:
-        paths: packages/client/package.json
+        paths: packages/client
+    
+    - uses: marceloprado/has-changed-path@v1.0.1
+      id: changed-docs
+      with:
+        paths: docs
 
-    - name: Exit
-      if: steps.changed-client.outputs.changed != 'true'
+    - if: steps.changed-client.outputs.changed == 'true' || steps.changed-docs.outputs.changed == 'true'
       run: |
-        echo '@waline/client does not need to release a new version';
-        exit 0;
+        pnpm --filter ./packages/client run build
 
     - id: publishClient
       name: "publish @waline/client"
+      if: steps.changed-client.outputs.changed == 'true'
       uses: JS-DevTools/npm-publish@v2
       with:
         token: ${{ secrets.NPM_TOKEN }}
         package: ./packages/client
   
+  docs:
+    needs: client
+    runs-on: ubuntu-latest
+    steps:
+    - uses: marceloprado/has-changed-path@v1.0.1
+      id: changed-docs
+      with:
+        paths: docs
+
+    - name: Build Docs
+      if: steps.changed-docs.outputs.changed == 'true'
+      run: |-
+        pnpm docs:build
+        > docs/src/.vuepress/dist/.nojekyll
+
+    - name: Deploy
+      uses: JamesIves/github-pages-deploy-action@v4
+      if: steps.changed-docs.outputs.changed == 'true'
+      with:
+        branch: gh-pages
+        folder: docs/src/.vuepress/dist
+        ssh-key: ${{ secrets.SSH_TOKEN }}
+        repository-name: walinejs/walinejs.github.io
+
   admin:
     needs: build
     runs-on: ubuntu-latest
@@ -58,16 +85,15 @@ jobs:
     - uses: marceloprado/has-changed-path@v1.0.1
       id: changed-admin
       with:
-        paths: packages/admin/package.json
-      
-    - name: Exit
-      if: steps.changed-admin.outputs.changed != 'true'
+        paths: packages/admin
+    
+    - if: steps.changed-admin.outputs.changed == 'true'
       run: |
-        echo '@waline/admin does not need to release a new version';
-        exit 0;
-
+        pnpm --filter ./packages/admin run build
+    
     - id: publishAdmin
       name: "publish @waline/admin"
+      if: steps.changed-admin.outputs.changed == 'true'
       uses: JS-DevTools/npm-publish@v2
       with:
         token: ${{ secrets.NPM_TOKEN }}
@@ -77,18 +103,6 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-    # publish to npm
-    - uses: marceloprado/has-changed-path@v1.0.1
-      id: changed-server
-      with:
-        paths: packages/server/package.json
-    
-    - name: Exit NPM
-      if: steps.changed-server.outputs.changed != 'true'
-      run: |
-        echo '@waline/vercel does not need to release a new version';
-        exit 0;
-
     - id: publishServer
       name: "publish @waline/vercel"
       uses: JS-DevTools/npm-publish@v2
@@ -96,13 +110,11 @@ jobs:
         token: ${{ secrets.NPM_TOKEN }}
         package: ./packages/server
 
-    # publish to docker
-    - name: Exit Docker
-      if: steps.publishServer.outputs.old-version != steps.publishServer.outputs.version
-      run: |
-        echo '@waline/vercel no new releases';
-        exit 0;
-
+  docker:
+    needs: server
+    if: needs.server.steps.publishServer.outputs.old-version != needs.server.steps.publishServer.outputs.version
+    runs-on: ubuntu-latest
+    steps:
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v2
     - name: Set up Docker Buildx
