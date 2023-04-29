@@ -104,9 +104,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-    - run: |
-      ls -l
-      ls -R
+    - run: ls -alh
       
     - id: publishServer
       name: "publish @waline/vercel"
