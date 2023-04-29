@@ -22,7 +22,7 @@ jobs:
           node-version: 20
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: pnpm run build --filter ./packages/client --filter ./packages/admin
+      - run: pnpm --filter ./packages/client --filter ./packages/admin run build
       
       - name: "publish @waline/client"
         uses: JS-DevTools/npm-publish@v2
