@@ -4,120 +4,128 @@ on:
   push:
     branches:
       - main
+    paths:
+      - .github/workflows/release.yml
+      - packages/client
+      - packages/admin
+      - packages/server
+
+permissions:
+  contents: write
+  id-token: write
 
 jobs:
-  npm:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      id-token: write
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0  
-      - uses: pnpm/action-setup@v2
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 20
-          cache: pnpm
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm --filter ./packages/client --filter ./packages/admin run build
-      
-      - id: publishClient
-        name: "publish @waline/client"
-        uses: JS-DevTools/npm-publish@v2
-        with:
-          token: ${{ secrets.NPM_TOKEN }}
-          package: ./packages/client
-
-      - id: publishAdmin
-        name: "publish @waline/admin"
-        uses: JS-DevTools/npm-publish@v2
-        with:
-          token: ${{ secrets.NPM_TOKEN }}
-          package: ./packages/admin
-
-      - id: publishServer
-        name: "publish @waline/vercel"
-        uses: JS-DevTools/npm-publish@v2
-        with:
-          token: ${{ secrets.NPM_TOKEN }}
-          package: ./packages/server
-
-  docker:
-    needs: npm
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0  
+    - uses: pnpm/action-setup@v2
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 20
+        cache: pnpm
+    - run: pnpm install --frozen-lockfile
+    - run: pnpm --filter ./packages/client --filter ./packages/admin run build
 
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
+  client:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: marceloprado/has-changed-path@v1.0.1
+      id: changed-client
+      with:
+        paths: packages/client
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
+    - name: Exit
+      if: steps.changed-client.outputs.changed != 'true'
+      run: |
+        exit 1;
 
-      # - name: Cache Docker layers
-      #   uses: actions/cache@v2.1.6
-      #   with:
-      #     path: /tmp/.buildx-cache
-      #     key: ${{ runner.os }}-buildx-${{ github.sha }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-buildx-
-
-      - name: Login to DockerHub
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      # - name: Return Package Version
-      #   id: pkg-version
-      #   run: |
-      #     version=$(cat packages/server/package.json | python -c 'import json,sys;obj=json.load(sys.stdin);print(obj["version"]);')
-      #     echo "version=${version}" >> $GITHUB_OUTPUT
-
-      - name: Build and push alpine
-        if: ${{ steps.publishServer.outputs.old-version != steps.publishServer.outputs.version }}
-        # if: contains(github.event.head_commit.message, 'release @waline/vercel')
-        uses: docker/build-push-action@v4
-        with:
-          file: ./packages/server/Dockerfile.alpine
-          platforms: linux/amd64,linux/arm64,linux/arm/v7
-          push: true
-          tags: |
-            lizheming/waline:alpine
-            lizheming/waline:${{ steps.publishServer.outputs.version }}-alpine
-          # cache-from: type=local,src=/tmp/.buildx-cache
-          # cache-to: type=local,dest=/tmp/.buildx-cache,mode=max
-
-      - name: Build and push debian
-        if: ${{ steps.publishServer.outputs.old-version != steps.publishServer.outputs.version }}
-        # if: contains(github.event.head_commit.message, 'release @waline/vercel')
-        uses: docker/build-push-action@v4
-        with:
-          file: ./packages/server/Dockerfile
-          platforms: linux/amd64,linux/arm64,linux/arm/v7
-          push: true
-          tags: |
-            lizheming/waline:latest
-            lizheming/waline:${{ steps.publishServer.outputs.version }}
-          # cache-from: type=local,src=/tmp/.buildx-cache
-          # cache-to: type=local,dest=/tmp/.buildx-cache,mode=max
-
-      # - name: Login to ghcr.io
-      #   run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-
-      # - name: Build and push alpine - ghcr.io
-      #   if: contains(github.event.head_commit.message, 'release @waline/vercel')
-      #   uses: docker/build-push-action@v3
-      #   with:
-      #     file: ./packages/server/Dockerfile.alpine
-      #     platforms: linux/amd64,linux/arm64,linux/arm/v7
-      #     push: true
-      #     tags: |
-      #       ghcr.io/lizheming/waline:alpine
-      #       ghcr.io/lizheming/waline:${{steps.pkg-version.outputs.version}}-alpine
-
-
+    - id: publishClient
+      name: "publish @waline/client"
+      uses: JS-DevTools/npm-publish@v2
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/client
+  
+  admin:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: marceloprado/has-changed-path@v1.0.1
+      id: changed-admin
+      with:
+        paths: packages/admin
       
+    - name: Exit
+      if: steps.changed-admin.outputs.changed != 'true'
+      run: |
+        exit 1;
+
+    - id: publishAdmin
+      name: "publish @waline/admin"
+      uses: JS-DevTools/npm-publish@v2
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/admin
+  
+  server:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    # publish to npm
+    - uses: marceloprado/has-changed-path@v1.0.1
+      id: changed-server
+      with:
+        paths: packages/server
+    
+    - name: Exit NPM
+      if: steps.changed-server.outputs.changed != 'true'
+      run: |
+        exit 1;
+
+    - id: publishServer
+      name: "publish @waline/vercel"
+      uses: JS-DevTools/npm-publish@v2
+      with:
+        token: ${{ secrets.NPM_TOKEN }}
+        package: ./packages/server
+
+    # publish to docker
+    - name: Exit Docker
+      if: steps.publishServer.outputs.old-version != steps.publishServer.outputs.version
+      run: |
+        exit 1;
+
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v2
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    - name: Login to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Build and push alpine
+      uses: docker/build-push-action@v4
+      with:
+        file: ./packages/server/Dockerfile.alpine
+        platforms: linux/amd64,linux/arm64,linux/arm/v7
+        push: true
+        tags: |
+          lizheming/waline:alpine
+          lizheming/waline:${{ steps.publishServer.outputs.version }}-alpine
+
+    - name: Build and push debian
+      uses: docker/build-push-action@v4
+      with:
+        file: ./packages/server/Dockerfile
+        platforms: linux/amd64,linux/arm64,linux/arm/v7
+        push: true
+        tags: |
+          lizheming/waline:latest
+          lizheming/waline:${{ steps.publishServer.outputs.version }}
