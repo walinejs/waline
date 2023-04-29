@@ -36,12 +36,13 @@ jobs:
     - uses: marceloprado/has-changed-path@v1.0.1
       id: changed-client
       with:
-        paths: packages/client
+        paths: packages/client/package.json
 
     - name: Exit
       if: steps.changed-client.outputs.changed != 'true'
       run: |
-        exit 1;
+        echo '@waline/client does not need to release a new version';
+        exit 0;
 
     - id: publishClient
       name: "publish @waline/client"
@@ -57,12 +58,13 @@ jobs:
     - uses: marceloprado/has-changed-path@v1.0.1
       id: changed-admin
       with:
-        paths: packages/admin
+        paths: packages/admin/package.json
       
     - name: Exit
       if: steps.changed-admin.outputs.changed != 'true'
       run: |
-        exit 1;
+        echo '@waline/admin does not need to release a new version';
+        exit 0;
 
     - id: publishAdmin
       name: "publish @waline/admin"
@@ -79,12 +81,13 @@ jobs:
     - uses: marceloprado/has-changed-path@v1.0.1
       id: changed-server
       with:
-        paths: packages/server
+        paths: packages/server/package.json
     
     - name: Exit NPM
       if: steps.changed-server.outputs.changed != 'true'
       run: |
-        exit 1;
+        echo '@waline/vercel does not need to release a new version';
+        exit 0;
 
     - id: publishServer
       name: "publish @waline/vercel"
@@ -97,7 +100,8 @@ jobs:
     - name: Exit Docker
       if: steps.publishServer.outputs.old-version != steps.publishServer.outputs.version
       run: |
-        exit 1;
+        echo '@waline/vercel no new releases';
+        exit 0;
 
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v2
