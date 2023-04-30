@@ -17,7 +17,8 @@ jobs:
   npm:
     runs-on: ubuntu-latest
     outputs:
-      publish: ${{ steps.publish-server.outputs.old-version != steps.publish-server.outputs.version }}
+      old-version: steps.publish-server.outputs.old-version
+      versioin: steps.publish-server.outputs.version
     steps:
     - uses: actions/checkout@v3
       with:
@@ -38,7 +39,7 @@ jobs:
 
   docker:
     needs: npm
-    if: ${{ needs.npm.outputs.publish || github.event_name == 'workflow_dispatch' }}
+    if: ${{ needs.npm.outputs.old-version != needs.npm.outputs.version || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -63,7 +64,7 @@ jobs:
         push: true
         tags: |
           lizheming/waline:alpine
-          lizheming/waline:${{ needs.npm.steps.publishServer.outputs.version }}-alpine
+          lizheming/waline:${{ needs.npm.outputs.version }}-alpine
 
     - name: Build and push debian
       uses: docker/build-push-action@v4
@@ -73,4 +74,4 @@ jobs:
         push: true
         tags: |
           lizheming/waline:latest
-          lizheming/waline:${{ needs.npm.steps.publishServer.outputs.version }}
+          lizheming/waline:${{ needs.npm.outputs.version }}
