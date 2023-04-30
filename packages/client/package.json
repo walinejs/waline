@@ -1,6 +1,6 @@
 {
   "name": "@waline/client",
-  "version": "2.15.1",
+  "version": "2.15.5-alpha.0",
   "description": "client for waline comment system",
   "keywords": [
     "valine",
@@ -68,6 +68,9 @@
     "style:main": "sass ./src/styles/index.scss ./dist/waline.css --style=compressed",
     "style:meta": "sass ./src/styles/meta.scss ./dist/waline-meta.css --style=compressed"
   },
+  "publishConfig": {
+    "provenance": true
+  },
   "browserslist": {
     "production": [
       ">0.5%",
@@ -87,7 +90,7 @@
     "node": ">=16"
   },
   "dependencies": {
-    "@vueuse/core": "^9.13.0",
+    "@vueuse/core": "^10.1.0",
     "@waline/api": "workspace:*",
     "autosize": "^6.0.1",
     "marked": "^4.3.0",
@@ -101,6 +104,6 @@
     "@types/node": "18.15.11",
     "@vitejs/plugin-vue": "4.1.0",
     "user-agent-data-types": "0.3.1",
-    "vite": "4.2.1"
+    "vite": "4.3.1"
   }
 }

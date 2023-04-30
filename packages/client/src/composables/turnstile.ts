@@ -41,6 +41,9 @@ export const useTurnstile = (key: string): Turnstile => {
           turnstile?.ready(() =>
             turnstile?.render('.wl-captcha-container', options)
           );
+        },
+        {
+          async: false,
         }
       );
     });
