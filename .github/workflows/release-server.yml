@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       old-version: ${{ steps.publish-server.outputs.old-version }}
-      versioin: ${{ steps.publish-server.outputs.version }}
+      version: ${{ steps.publish-server.outputs.version }}
     steps:
     - uses: actions/checkout@v3
       with:
