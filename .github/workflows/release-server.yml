@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - .github/workflows/release.yml
+      - .github/workflows/release-server.yml
       - packages/server/**
 
 permissions:

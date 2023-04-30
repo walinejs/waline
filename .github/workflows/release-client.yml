@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - .github/workflows/client-release.yml
+      - .github/workflows/release-client.yml
       - packages/client/**
       - docs/**
 
