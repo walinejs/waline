@@ -24,9 +24,7 @@ jobs:
       with:
         node-version: 20
         cache: pnpm
-    - run: |
-      pnpm install --frozen-lockfile
-      pnpm --filter ./packages/admin run build
+    - run: pnpm install --frozen-lockfile && pnpm --filter ./packages/admin run build
     
     - name: "publish @waline/admin"
       uses: JS-DevTools/npm-publish@v2

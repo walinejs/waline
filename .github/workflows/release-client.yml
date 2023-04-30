@@ -25,9 +25,7 @@ jobs:
       with:
         node-version: 20
         cache: pnpm
-    - run: |
-        pnpm install --frozen-lockfile
-        pnpm --filter ./packages/client run build
+    - run: pnpm install --frozen-lockfile && pnpm --filter ./packages/client run build
 
     - name: Publish NPM
       uses: JS-DevTools/npm-publish@v2
