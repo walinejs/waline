@@ -1,6 +1,7 @@
 name: 'publish @waline/vercel'
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -15,6 +16,8 @@ permissions:
 jobs:
   npm:
     runs-on: ubuntu-latest
+    outputs:
+      publish: ${{ steps.publish-server.outputs.old-version != steps.publish-server.outputs.version }}
     steps:
     - uses: actions/checkout@v3
       with:
@@ -26,7 +29,7 @@ jobs:
         cache: pnpm
     - run: pnpm install --frozen-lockfile
       
-    - id: publishServer
+    - id: publish-server
       name: "publish @waline/vercel"
       uses: JS-DevTools/npm-publish@v2
       with:
@@ -35,7 +38,7 @@ jobs:
 
   docker:
     needs: npm
-    if: needs.npm.steps.publishServer.outputs.old-version != needs.npm.steps.publishServer.outputs.version
+    if: ${{ needs.npm.outputs.publish || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
