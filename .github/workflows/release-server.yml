@@ -37,6 +37,8 @@ jobs:
         token: ${{ secrets.NPM_TOKEN }}
         package: ./packages/server
 
+    - run: echo ${{ toJSON(steps.publish-server.outputs) }}
+
   debug:
     needs: npm
     runs-on: ubuntu-latest
