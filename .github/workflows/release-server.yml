@@ -37,6 +37,12 @@ jobs:
         token: ${{ secrets.NPM_TOKEN }}
         package: ./packages/server
 
+  debug:
+    needs: npm
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo ${{ needs.npm.outputs.old-version }} && echo ${{ needs.npm.outputs.version }} && echo ${{ needs.npm.outputs.old-version != needs.npm.outputs.version || github.event_name == 'workflow_dispatch' }} && echo ${{ github.event_name }}
+
   docker:
     needs: npm
     if: ${{ needs.npm.outputs.old-version != needs.npm.outputs.version || github.event_name == 'workflow_dispatch' }}
