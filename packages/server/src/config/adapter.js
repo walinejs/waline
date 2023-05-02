@@ -31,12 +31,19 @@ const {
   SQLITE_DB,
   SQLITE_PREFIX,
   PG_DB,
+  POSTGRES_DATABASE,
   PG_HOST,
+  POSTGRES_HOST,
   PG_PASSWORD,
+  POSTGRES_PASSWORD,
   PG_PORT,
+  POSTGRES_PORT,
   PG_PREFIX,
+  POSTGRES_PREFIX,
   PG_USER,
+  POSTGRES_USER,
   PG_SSL,
+  POSTGRES_SSL,
   MONGO_AUTHSOURCE,
   MONGO_DB,
   MONGO_HOST,
@@ -64,7 +71,7 @@ if (MONGO_DB) {
       mongoOpt[key] = process.env[envKeys];
     }
   }
-} else if (PG_DB) {
+} else if (PG_DB || POSTGRES_DATABASE) {
   type = 'postgresql';
 } else if (SQLITE_PATH) {
   type = 'sqlite';
@@ -73,6 +80,11 @@ if (MONGO_DB) {
 } else if (TIDB_DB) {
   type = 'tidb';
 }
+
+const isVercelPostgres =
+  type === 'postgresql' &&
+  POSTGRES_HOST &&
+  POSTGRES_HOST.endsWith('vercel-storage.com');
 
 exports.model = {
   type,
@@ -100,15 +112,15 @@ exports.model = {
 
   postgresql: {
     handle: Postgresql,
-    user: PG_USER,
-    password: PG_PASSWORD,
-    database: PG_DB,
-    host: PG_HOST || '127.0.0.1',
-    port: PG_PORT || '3211',
+    user: PG_USER || POSTGRES_USER,
+    password: PG_PASSWORD || POSTGRES_PASSWORD,
+    database: PG_DB || POSTGRES_DATABASE,
+    host: PG_HOST || POSTGRES_HOST || '127.0.0.1',
+    port: PG_PORT || POSTGRES_PORT || (isVercelPostgres ? '5432' : '3211'),
     connectionLimit: 1,
-    prefix: PG_PREFIX || 'wl_',
+    prefix: PG_PREFIX || POSTGRES_PREFIX || 'wl_',
     ssl:
-      PG_SSL == 'true'
+      (PG_SSL || POSTGRES_SSL) == 'true' || isVercelPostgres
         ? {
             rejectUnauthorized: false,
           }

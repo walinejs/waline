@@ -16,9 +16,9 @@ redirectFrom: /guide/server/databases.html
 
 | 环境变量名称       | 必填 | 默认值    | 备注                             |
 | ------------------ | ---- | --------- | -------------------------------- |
-| `MONGO_DB`         | ✅   |           | MongoDB 数据库名称               |
-| `MONGO_USER`       | ✅   |           | MongoDB 服务的用户名             |
-| `MONGO_PASSWORD`   | ✅   |           | MongoDB 服务的密码               |
+| `MONGO_DB`         | ✅    |           | MongoDB 数据库名称               |
+| `MONGO_USER`       | ✅    |           | MongoDB 服务的用户名             |
+| `MONGO_PASSWORD`   | ✅    |           | MongoDB 服务的密码               |
 | `MONGO_HOST`       |      | 127.0.0.1 | MongoDB 服务的地址，支持数组格式 |
 | `MONGO_PORT`       |      | 27017     | MongoDB 服务的端口，支持数组格式 |
 | `MONGO_REPLICASET` |      |           | MongoDB 集群                     |
@@ -48,9 +48,9 @@ MONGO_OPT_SSL=true
 | ---------------- | ---- | --------- | ----------------------------- |
 | `MYSQL_HOST`     |      | 127.0.0.1 | MySQL 服务的地址              |
 | `MYSQL_PORT`     |      | 3306      | MySQL 服务的端口              |
-| `MYSQL_DB`       | ✅   |           | MySQL 数据库库名              |
-| `MYSQL_USER`     | ✅   |           | MySQL 数据库的用户名          |
-| `MYSQL_PASSWORD` | ✅   |           | MySQL 数据库的密码            |
+| `MYSQL_DB`       | ✅    |           | MySQL 数据库库名              |
+| `MYSQL_USER`     | ✅    |           | MySQL 数据库的用户名          |
+| `MYSQL_PASSWORD` | ✅    |           | MySQL 数据库的密码            |
 | `MYSQL_PREFIX`   |      | `wl_`     | MySQL 数据表的表前缀          |
 | `MYSQL_CHARSET`  |      | `utf8mb4` | MySQL 数据表的字符集          |
 | `MYSQL_SSL`      |      | `false`   | 是否使用 SSL MYSQL 连接数据库 |
@@ -63,9 +63,9 @@ MONGO_OPT_SSL=true
 
 | 环境变量名称    | 必填 | 默认值    | 备注                |
 | --------------- | ---- | --------- | ------------------- |
-| `TIDB_DB`       | ✅   |           | TiDB 数据库库名     |
-| `TIDB_USER`     | ✅   |           | TiDB 数据库的用户名 |
-| `TIDB_PASSWORD` | ✅   |           | TiDB 数据库的密码   |
+| `TIDB_DB`       | ✅    |           | TiDB 数据库库名     |
+| `TIDB_USER`     | ✅    |           | TiDB 数据库的用户名 |
+| `TIDB_PASSWORD` | ✅    |           | TiDB 数据库的密码   |
 | `TIDB_HOST`     |      | 127.0.0.1 | TiDB 服务的地址     |
 | `TIDB_PORT`     |      | 4000      | TiDB 服务的端口     |
 | `TIDB_PREFIX`   |      | `wl_`     | TiDB 数据表的表前缀 |
@@ -77,8 +77,8 @@ MONGO_OPT_SSL=true
 
 | 环境变量名称    | 必填 | 默认值 | 备注                                              |
 | --------------- | ---- | ------ | ------------------------------------------------- |
-| `SQLITE_PATH`   | ✅   |        | SQLite 数据库文件的路径，该路径不包含文件名本身   |
-| `JWT_TOKEN`     | ✅   |        | 用户登录密钥，随机字符串即可                      |
+| `SQLITE_PATH`   | ✅    |        | SQLite 数据库文件的路径，该路径不包含文件名本身   |
+| `JWT_TOKEN`     | ✅    |        | 用户登录密钥，随机字符串即可                      |
 | `SQLITE_DB`     |      | waline | SQLite 数据库文件名，若文件名变化需要修改该字段值 |
 | `SQLITE_PREFIX` |      | `wl_`  | SQLite 数据表的表前缀                             |
 
@@ -88,15 +88,22 @@ MONGO_OPT_SSL=true
 
 同 MySQL，使用 PostgreSQL 也需要先导入 [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) 创建好表和表结构。之后在项目中配置如下环境变量。
 
-| 环境变量名称  | 必填 | 默认值    | 备注                                |
-| ------------- | ---- | --------- | ----------------------------------- |
-| `PG_DB`       | ✅   |           | PostgreSQL 数据库库名               |
-| `PG_USER`     | ✅   |           | PostgreSQL 数据库的用户名           |
-| `PG_PASSWORD` | ✅   |           | PostgreSQL 数据库的密码             |
-| `PG_HOST`     |      | 127.0.0.1 | PostgreSQL 服务的地址               |
-| `PG_PORT`     |      | 3211      | PostgreSQL 服务的端口               |
-| `PG_PREFIX`   |      | `wl_`     | PostgreSQL 数据表的表前缀           |
-| `PG_SSL`      |      | `false`   | 是否使用 SSL 连接 PostgreSQL 数据库 |
+| 环境变量名称        | 必填 | 默认值    | 备注                                |
+| ------------------- | ---- | --------- | ----------------------------------- |
+| `PG_DB`             | ✅    |           | PostgreSQL 数据库库名               |
+| `PG_USER`           | ✅    |           | PostgreSQL 数据库的用户名           |
+| `PG_PASSWORD`       | ✅    |           | PostgreSQL 数据库的密码             |
+| `PG_HOST`           |      | 127.0.0.1 | PostgreSQL 服务的地址               |
+| `PG_PORT`           |      | 3211      | PostgreSQL 服务的端口               |
+| `PG_PREFIX`         |      | `wl_`     | PostgreSQL 数据表的表前缀           |
+| `PG_SSL`            |      | `false`   | 是否使用 SSL 连接 PostgreSQL 数据库 |
+| `POSTGRES_DATABASE` |      |           | 同 `PG_DB`                          |
+| `POSTGRES_USER`     |      |           | 同 `PG_USER`                        |
+| `POSTGRES_PASSWORD` |      |           | 同 `PG_PASSWORD`                    |
+| `POSTGRES_HOST`     |      | 127.0.0.1 | 同 `PG_HOST`                        |
+| `POSTGRES_PORT`     |      | 3211      | 同 `PG_PORT`                        |
+| `POSTGRES_PREFIX`   |      | `wl_`     | 同 `PG_PREFIX`                      |
+| `POSTGRES_SSL`      |      | `false`   | 同 `POSTGRES_SSL`                   |
 
 ## CloudBase
 
@@ -104,9 +111,9 @@ MONGO_OPT_SSL=true
 
 | 环境变量名称 | 必填 | 默认值 | 备注                                                                   |
 | ------------ | ---- | ------ | ---------------------------------------------------------------------- |
-| `TCB_ENV`    | ✅   |        | 腾讯云开发环境 ID                                                      |
-| `TCB_ID`     | ✅   |        | 腾讯云 API 密钥 ID                                                     |
-| `TCB_KEY`    | ✅   |        | 腾讯云 API 密钥 Key                                                    |
+| `TCB_ENV`    | ✅    |        | 腾讯云开发环境 ID                                                      |
+| `TCB_ID`     | ✅    |        | 腾讯云 API 密钥 ID                                                     |
+| `TCB_KEY`    | ✅    |        | 腾讯云 API 密钥 Key                                                    |
 | `JWT_TOKEN`  |      |        | 用户登录密钥，如果没有配任何环境变量的话需要配置此变量，随机字符串即可 |
 
 ::: tip
@@ -121,8 +128,8 @@ Waline 支持将评论数据以 CSV 文件的格式存储在 GitHub 仓库中。
 
 | 环境变量名称   | 必填 | 默认值 | 备注                                                                     |
 | -------------- | ---- | ------ | ------------------------------------------------------------------------ |
-| `GITHUB_TOKEN` | ✅   |        | [Personal access tokens](https://github.com/settings/tokens)             |
-| `GITHUB_REPO`  | ✅   |        | 仓库名称，例如 `walinejs/waline`                                         |
+| `GITHUB_TOKEN` | ✅    |        | [Personal access tokens](https://github.com/settings/tokens)             |
+| `GITHUB_REPO`  | ✅    |        | 仓库名称，例如 `walinejs/waline`                                         |
 | `GITHUB_PATH`  |      |        | 数据存储目录，例如 `data` 表示存储在 `data` 目录下，默认存在仓库根目录下 |
 
 ::: warning
@@ -137,7 +144,7 @@ Deta 提供了 [Deta Base](https://deta.space/docs/en/reference/base/about) 免�
 
 | 环境变量名称       | 必填 | 默认值 | 备注          |
 | ------------------ | ---- | ------ | ------------- |
-| `DETA_PROJECT_KEY` | ✅   |        | Deta 项目密钥 |
+| `DETA_PROJECT_KEY` | ✅    |        | Deta 项目密钥 |
 
 ## 更多
 
