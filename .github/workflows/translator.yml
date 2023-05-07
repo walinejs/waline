@@ -1,13 +1,13 @@
-name: 'issue translator'
+name: 'issue and discussion translator'
 on:
   issues:
     types: [opened, edited]
   issue_comment:
     types: [created, edited]
-  # discussion:
-  #   types: [created, edited]
-  # discussion_comment:
-  #   types: [created, edited]
+  discussion:
+    types: [created, edited]
+  discussion_comment:
+    types: [created, edited]
 
 jobs:
   translate:
