@@ -493,7 +493,7 @@ module.exports = class extends BaseRest {
       user_id: this.ctx.state.userInfo.objectId,
     };
 
-    if (pid && this.ctx.deprecated) {
+    if (pid && this.ctx.state.deprecated) {
       data.comment = `[@${at}](#${pid}): ` + data.comment;
     }
 
