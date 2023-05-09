@@ -1,0 +1,84 @@
+{
+  "name": "@waline/client-presets",
+  "version": "0.1.0-alpha.0",
+  "description": "Presets for official Waline client",
+  "private": true,
+  "keywords": [
+    "waline",
+    "presets"
+  ],
+  "repository": {
+    "url": "https://github.com/walinejs/waline",
+    "directory": "packages/client-presets"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Mr.Hope",
+    "email": "mister-hope@outlook.com",
+    "url": "https://mrhope.site"
+  },
+  "exports": {
+    "./recaptcha-v3": {
+      "types": "./dist/recaptcha-v3.d.mts",
+      "import": "./dist/recaptcha-v3.mjs",
+      "require": "./dist/recaptcha-v3.cjs"
+    },
+    "./turnstile": {
+      "types": "./dist/turnstile.d.mts",
+      "import": "./dist/turnstile.mjs",
+      "require": "./dist/turnstile.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rollup -c rollup.config.ts --configPlugin esbuild='{target:\"esnext\"}'",
+    "clean": "rimraf ./dist",
+    "dev": "vite",
+    "prepublishOnly": "pnpm clean && pnpm build"
+  },
+  "browserslist": {
+    "production": [
+      ">0.5%",
+      "maintained node versions",
+      "not dead",
+      "not ie 11",
+      "not op_mini all",
+      "last 2 years"
+    ],
+    "development": [
+      "last 2 chrome version",
+      "last 2 firefox version",
+      "last 2 safari version"
+    ]
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "dependencies": {
+    "@types/markdown-it-emoji": "^2.0.2",
+    "@types/katex": "0.16.0",
+    "@mdit/plugin-tex": "^0.4.5",
+    "@types/marked": "^4.3.0",
+    "@types/markdown-it": "^12.2.3",
+    "@types/prismjs": "^1.26.0",
+    "katex": "^0.16.7",
+    "mathjax-full": "^3.2.2",
+    "marked": "^5.0.1",
+    "marked-highlight": "^1.0.1",
+    "marked-emoji": "^1.0.1",
+    "markdown-it": "^13.0.1",
+    "markdown-it-emoji": "^2.0.2",
+    "prismjs": "^1.29.0",
+    "shiki": "^0.14.2"
+  },
+  "devDependencies": {
+    "@types/node": "18.15.11",
+    "@vitejs/plugin-vue": "4.1.0",
+    "recaptcha-v3": "1.10.0",
+    "user-agent-data-types": "0.3.1",
+    "vite": "4.2.1"
+  }
+}

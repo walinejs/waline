@@ -12,7 +12,7 @@
     "@vuepress/client": "2.0.0-beta.61",
     "@vuepress/plugin-docsearch": "2.0.0-beta.61",
     "@vuepress/utils": "2.0.0-beta.61",
-    "marked": "4.3.0",
+    "marked": "5.0.1",
     "vue": "3.2.47",
     "vuepress": "2.0.0-beta.61",
     "vuepress-plugin-redirect": "2.0.0-beta.208",
