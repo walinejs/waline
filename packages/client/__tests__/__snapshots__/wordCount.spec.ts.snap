@@ -1,0 +1,55 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Words test > Additional counts with Markdown links and images 1`] = `
+[
+  "unpkg.com",
+  "waline",
+  "client",
+  "dist",
+  "Waline.min.js",
+]
+`;
+
+exports[`Words test > Can count code block 1`] = `
+[
+  "html",
+  "head",
+  "...",
+  "script src",
+  "https",
+  "unpkg.com",
+  "waline",
+  "client",
+  "script",
+  "link
+    rel",
+  "stylesheet",
+  "href",
+  "https",
+  "unpkg.com",
+  "waline",
+  "client",
+  "v2",
+  "dist",
+  "waline.css",
+  "...",
+  "head",
+  "body",
+  "...",
+  "div id",
+  "waline",
+  "div",
+  "script",
+  "Waline.init",
+  "el",
+  "waline",
+  ",
+      serverURL",
+  "https",
+  "your",
+  "domain.vercel.app",
+  ",",
+  "script",
+  "body",
+]
+`;
