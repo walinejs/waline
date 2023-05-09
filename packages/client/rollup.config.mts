@@ -38,7 +38,7 @@ export default [
       }),
       esbuild({
         charset: 'utf8',
-        target: ['chrome79', 'firefox79', 'edge79', 'safari13', 'node14'],
+        target: ['chrome79', 'firefox79', 'edge79', 'safari13', 'node16'],
         minify: true,
       }),
       replace({
@@ -94,7 +94,7 @@ export default [
       }),
       esbuild({
         charset: 'utf8',
-        target: ['chrome79', 'firefox79', 'edge79', 'safari13', 'node14'],
+        target: ['chrome79', 'firefox79', 'edge79', 'safari13', 'node16'],
         minify: true,
       }),
       replace({
@@ -151,7 +151,7 @@ export default [
       }),
       esbuild({
         charset: 'utf8',
-        target: ['chrome79', 'firefox79', 'edge79', 'safari13', 'node14'],
+        target: ['chrome79', 'firefox79', 'edge79', 'safari13', 'node16'],
         minify: true,
       }),
       replace({
@@ -205,7 +205,7 @@ export default [
       }),
       esbuild({
         charset: 'utf8',
-        target: ['chrome79', 'firefox79', 'edge79', 'safari13', 'node14'],
+        target: ['chrome79', 'firefox79', 'edge79', 'safari13', 'node16'],
         minify: true,
       }),
       replace({
@@ -267,7 +267,7 @@ export default [
       }),
       esbuild({
         charset: 'utf8',
-        target: ['chrome79', 'firefox79', 'edge79', 'safari13', 'node14'],
+        target: ['chrome79', 'firefox79', 'edge79', 'safari13', 'node16'],
         minify: true,
       }),
       replace({

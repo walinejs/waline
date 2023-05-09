@@ -16,7 +16,7 @@ export default [
         sourcemap: true,
       },
     ],
-    plugins: [esbuild({ charset: 'utf8', minify: true, target: 'node14' })],
+    plugins: [esbuild({ charset: 'utf8', minify: true, target: 'node16' })],
     treeshake: 'smallest',
   },
   {
