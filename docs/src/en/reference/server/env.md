@@ -20,9 +20,9 @@ You should set through `Settings` - `Environment Variables` when using Vercel.
 
 | Environment Variables | Required | Description                                             |
 | --------------------- | -------- | ------------------------------------------------------- |
-| `LEAN_ID`             | ✅        | LeanCloud Application ID                                |
-| `LEAN_KEY`            | ✅        | LeanCloud Application Key                               |
-| `LEAN_MASTER_KEY`     | ✅        | LeanCloud Application Master Key                        |
+| `LEAN_ID`             | ✅       | LeanCloud Application ID                                |
+| `LEAN_KEY`            | ✅       | LeanCloud Application Key                               |
+| `LEAN_MASTER_KEY`     | ✅       | LeanCloud Application Master Key                        |
 | `LEAN_SERVER`         | ⚠        | LeanCloud server address if you're leancloud china user |
 | `SITE_NAME`           |          | site name                                               |
 | `SITE_URL`            |          | site url                                                |
@@ -84,9 +84,7 @@ By default, only 6 levels of copywriting are provided, but it does not mean that
 | `TURNSTILE_KEY`       |                | Turnstile key,should set along with client                                                                               |
 | `TURNSTILE_SECRET`    |                | Turnstile secret for server                                                                                              |
 
-
 ::: tip Recaptcha and Turnstile
-
 
 Turnstile Key and Secret can be requested at <https://www.cloudflare.com/products/turnstile/>.
 
@@ -140,9 +138,9 @@ Please pay special attention that some mailboxes use separate SMTP passwords.
 
 | Environment Variable | Required | Default   | Description                                  |
 | -------------------- | -------- | --------- | -------------------------------------------- |
-| `MONGO_DB`           | ✅        |           | MongoDB database name                        |
-| `MONGO_USER`         | ✅        |           | MongoDB server username                      |
-| `MONGO_PASSWORD`     | ✅        |           | MongoDB server password                      |
+| `MONGO_DB`           | ✅       |           | MongoDB database name                        |
+| `MONGO_USER`         | ✅       |           | MongoDB server username                      |
+| `MONGO_PASSWORD`     | ✅       |           | MongoDB server password                      |
 | `MONGO_HOST`         |          | 127.0.0.1 | MongoDB server address, support array format |
 | `MONGO_PORT`         |          | 27017     | MongoDB server port, support array format    |
 | `MONGO_REPLICASET`   |          |           | MongoDB replica set                          |
@@ -153,9 +151,9 @@ Please pay special attention that some mailboxes use separate SMTP passwords.
 
 | Environment Variable | Required | Default   | Description                |
 | -------------------- | -------- | --------- | -------------------------- |
-| `MYSQL_DB`           | ✅        |           | MySQL database name        |
-| `MYSQL_USER`         | ✅        |           | MySQL server username      |
-| `MYSQL_PASSWORD`     | ✅        |           | MySQL server password      |
+| `MYSQL_DB`           | ✅       |           | MySQL database name        |
+| `MYSQL_USER`         | ✅       |           | MySQL server username      |
+| `MYSQL_PASSWORD`     | ✅       |           | MySQL server password      |
 | `MYSQL_HOST`         |          | 127.0.0.1 | MySQL server address       |
 | `MYSQL_PORT`         |          | 3306      | MySQL server port          |
 | `MYSQL_PREFIX`       |          | `wl_`     | MySQL table prefix         |
@@ -168,9 +166,9 @@ Please pay special attention that some mailboxes use separate SMTP passwords.
 
 | Environment Variable | Required | Default   | Description          |
 | -------------------- | -------- | --------- | -------------------- |
-| `TIDB_DB`            | ✅        |           | TiDB database name   |
-| `TIDB_USER`          | ✅        |           | TiDB server username |
-| `TIDB_PASSWORD`      | ✅        |           | TiDB server password |
+| `TIDB_DB`            | ✅       |           | TiDB database name   |
+| `TIDB_USER`          | ✅       |           | TiDB server username |
+| `TIDB_PASSWORD`      | ✅       |           | TiDB server password |
 | `TIDB_HOST`          |          | 127.0.0.1 | TiDB server address  |
 | `TIDB_PORT`          |          | 4000      | TiDB server port     |
 | `TIDB_PREFIX`        |          | `wl_`     | TiDB table prefix    |
@@ -180,8 +178,8 @@ Please pay special attention that some mailboxes use separate SMTP passwords.
 
 | Environment Variable | Required | Default | Description                                                        |
 | -------------------- | -------- | ------- | ------------------------------------------------------------------ |
-| `SQLITE_PATH`        | ✅        |         | SQLite storage file path, not include file name                    |
-| `JWT_TOKEN`          | ✅        |         | Random String for login token generator                            |
+| `SQLITE_PATH`        | ✅       |         | SQLite storage file path, not include file name                    |
+| `JWT_TOKEN`          | ✅       |         | Random String for login token generator                            |
 | `SQLITE_DB`          |          | waline  | SQLite storage file name, change it if your filename is not waline |
 | `SQLITE_PREFIX`      |          | `wl_`   | SQLite table prefix                                                |
 
@@ -189,9 +187,9 @@ Please pay special attention that some mailboxes use separate SMTP passwords.
 
 | Environment Variable | Required | Default   | Description                         |
 | -------------------- | -------- | --------- | ----------------------------------- |
-| `PG_DB`              | ✅        |           | PostgreSQL database name            |
-| `PG_USER`            | ✅        |           | PostgreSQL server username          |
-| `PG_PASSWORD`        | ✅        |           | PostgreSQL server password          |
+| `PG_DB`              | ✅       |           | PostgreSQL database name            |
+| `PG_USER`            | ✅       |           | PostgreSQL server username          |
+| `PG_PASSWORD`        | ✅       |           | PostgreSQL server password          |
 | `PG_HOST`            |          | 127.0.0.1 | PostgreSQL server address           |
 | `PG_PORT`            |          | 3211      | PostgreSQL server port              |
 | `PG_PREFIX`          |          | `wl_`     | PostgreSQL table prefix             |
@@ -208,15 +206,15 @@ Please pay special attention that some mailboxes use separate SMTP passwords.
 
 | Environment Variable | Required | Default | Description                                                                                                      |
 | -------------------- | -------- | ------- | ---------------------------------------------------------------------------------------------------------------- |
-| `GITHUB_TOKEN`       | ✅        |         | [Personal access tokens](https://github.com/settings/tokens)                                                     |
-| `GITHUB_REPO`        | ✅        |         | repository name, such as `walinejs/waline`                                                                       |
+| `GITHUB_TOKEN`       | ✅       |         | [Personal access tokens](https://github.com/settings/tokens)                                                     |
+| `GITHUB_REPO`        | ✅       |         | repository name, such as `walinejs/waline`                                                                       |
 | GITHUB_PATH          |          |         | The data storage directory, such as `data` means it is stored in the `data` directory, root directory by default |
 
 ### Deta Base
 
 | Environment Variable | Required | Default | Description             |
 | -------------------- | -------- | ------- | ----------------------- |
-| `DETA_PROJECT_KEY`   | ✅        |         | Deta project secret key |
+| `DETA_PROJECT_KEY`   | ✅       |         | Deta project secret key |
 
 ## Advanced
 
