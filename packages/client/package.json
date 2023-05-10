@@ -93,8 +93,6 @@
     "@vueuse/core": "^10.1.2",
     "@waline/api": "workspace:*",
     "autosize": "^6.0.1",
-    "marked": "^4.3.0",
-    "recaptcha-v3": "1.10.0",
     "vue": "^3.2.47"
   },
   "devDependencies": {
