@@ -2,7 +2,7 @@
 title: Customize TEX renderer
 ---
 
-This cookbook guides you on how to add your own Tex renderer.
+This cookbook guides you on how to add your own $\TeX$ renderer.
 
 <!-- more -->
 
