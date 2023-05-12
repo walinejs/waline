@@ -270,8 +270,8 @@ importers:
         specifier: 4.0.8
         version: 4.0.8
       '@vitejs/plugin-vue':
-        specifier: 4.1.0
-        version: 4.1.0(vite@4.3.1)(vue@3.2.47)
+        specifier: 4.2.3
+        version: 4.2.3(vite@4.3.1)(vue@3.2.47)
       recaptcha-v3:
         specifier: 1.10.0
         version: 1.10.0
@@ -4450,7 +4450,7 @@ packages:
       recast: 0.21.5
       remark-frontmatter: 4.0.1
       remark-mdx-frontmatter: 1.1.1
-      semver: 7.3.8
+      semver: 7.5.0
       sort-package-json: 1.57.0
       tar-fs: 2.1.1
       tsconfig-paths: 4.2.0
@@ -4517,8 +4517,8 @@ packages:
       - supports-color
     dev: true
 
-  /@vitejs/plugin-vue@4.1.0(vite@4.1.4)(vue@3.2.47):
-    resolution: {integrity: sha512-++9JOAFdcXI3lyer9UKUV4rfoQ3T1RN8yDqoCLar86s0xQct5yblxAE+yWgRnU5/0FOlVCpTZpYSBV/bGWrSrQ==}
+  /@vitejs/plugin-vue@4.2.3(vite@4.1.4)(vue@3.2.47):
+    resolution: {integrity: sha512-R6JDUfiZbJA9cMiguQ7jxALsgiprjBeHL5ikpXfJCH62pPHtI+JdJ5xWj6Ev73yXSlYl86+blXn1kZHQ7uElxw==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
       vite: ^4.0.0
@@ -4528,8 +4528,8 @@ packages:
       vue: 3.2.47
     dev: true
 
-  /@vitejs/plugin-vue@4.1.0(vite@4.3.1)(vue@3.2.47):
-    resolution: {integrity: sha512-++9JOAFdcXI3lyer9UKUV4rfoQ3T1RN8yDqoCLar86s0xQct5yblxAE+yWgRnU5/0FOlVCpTZpYSBV/bGWrSrQ==}
+  /@vitejs/plugin-vue@4.2.3(vite@4.3.1)(vue@3.2.47):
+    resolution: {integrity: sha512-R6JDUfiZbJA9cMiguQ7jxALsgiprjBeHL5ikpXfJCH62pPHtI+JdJ5xWj6Ev73yXSlYl86+blXn1kZHQ7uElxw==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
       vite: ^4.0.0
@@ -4699,7 +4699,7 @@ packages:
   /@vuepress/bundler-vite@2.0.0-beta.61(@types/node@18.16.0)(sass@1.62.0):
     resolution: {integrity: sha512-J9/DGfsqr9rGJT+0osL9uL+jrrGHeAsWuZoCCbQIDbe0rEO2whvou51PJpwko3R0vvCTWsolh6rXYeb0N0+yFg==}
     dependencies:
-      '@vitejs/plugin-vue': 4.1.0(vite@4.1.4)(vue@3.2.47)
+      '@vitejs/plugin-vue': 4.2.3(vite@4.1.4)(vue@3.2.47)
       '@vuepress/client': 2.0.0-beta.61
       '@vuepress/core': 2.0.0-beta.61
       '@vuepress/shared': 2.0.0-beta.61
@@ -9388,7 +9388,7 @@ packages:
       '@types/glob': 7.2.0
       array-union: 2.1.0
       dir-glob: 3.0.1
-      fast-glob: 3.2.11
+      fast-glob: 3.2.12
       glob: 7.2.3
       ignore: 5.2.4
       merge2: 1.4.1
