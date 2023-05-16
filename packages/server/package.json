@@ -1,6 +1,6 @@
 {
   "name": "@waline/vercel",
-  "version": "1.30.4",
+  "version": "1.30.5",
   "description": "vercel server for waline comment system",
   "keywords": [
     "waline",
@@ -32,8 +32,8 @@
     "markdown-it-sub": "^1.0.0",
     "markdown-it-sup": "^1.0.0",
     "mathjax-full": "^3.2.2",
-    "node-fetch": "^2.6.10",
-    "nodemailer": "^6.9.1",
+    "node-fetch": "^2.6.11",
+    "nodemailer": "^6.9.2",
     "nunjucks": "^3.2.4",
     "phpass": "^0.1.1",
     "prismjs": "^1.29.0",

@@ -9,7 +9,7 @@ export const LANGUAGE_OPTIONS = [
     alias: ['zh-CN', 'zh-cn'],
   },
   {
-    label: '中文繁体',
+    label: '中文繁體',
     value: 'zh-TW',
     alias: ['zh-TW'],
   },
