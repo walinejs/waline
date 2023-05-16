@@ -330,6 +330,7 @@ import {
   type WalineEmojiConfig,
   getEmojis,
   getImageFromDataTransfer,
+  isValidEmail,
   getWordNumber,
   parseEmoji,
   parseMarkdown,
@@ -526,8 +527,7 @@ const submitComment = async (): Promise<void> => {
     // check mail
     if (
       (requiredMeta.indexOf('mail') > -1 && !comment.mail) ||
-      (comment.mail &&
-        !/^\w(?:[\w._-]*\w)?@(?:\w(?:[\w-]*\w)?\.)*\w+$/.exec(comment.mail))
+      (comment.mail && !isValidEmail(comment.mail))
     ) {
       inputRefs.value.mail?.focus();
 
