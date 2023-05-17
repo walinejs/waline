@@ -84,7 +84,7 @@
     "nano-staged": "0.8.0",
     "postcss": "8.4.23",
     "prettier": "2.8.8",
-    "rimraf": "5.0.0",
+    "rimraf": "5.0.1",
     "rollup": "3.21.7",
     "rollup-plugin-dts": "5.3.0",
     "rollup-plugin-ts": "3.2.0",
