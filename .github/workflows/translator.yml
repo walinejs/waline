@@ -6,7 +6,11 @@ on:
     types: [created, edited]
   discussion:
     types: [created, edited]
-  discussion_comment:
+#   discussion_comment:
+#     types: [created, edited]
+  pull_request_target:
+    types: [opened, edited]
+  pull_request_review_comment:
     types: [created, edited]
 
 jobs:
@@ -14,10 +18,11 @@ jobs:
     permissions:
       issues: write
       discussions: write
+      pull-requests: write
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: lizheming/issues-translate-action@main
+      - uses: lizheming/github-translate-action@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
