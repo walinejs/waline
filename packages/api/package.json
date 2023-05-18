@@ -33,8 +33,11 @@
     "build": "rollup -c rollup.config.ts --configPlugin esbuild",
     "prepublishOnly": "pnpm clean && pnpm build"
   },
+  "files": [
+    "dist"
+  ],
   "engines": {
-    "node": ">=14"
+    "node": ">=16"
   },
   "publishConfig": {
     "access": "public"
