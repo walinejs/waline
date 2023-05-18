@@ -241,7 +241,10 @@ const onSubmit = (comment: WalineComment): void => {
     if (!Array.isArray(repliedComment.children)) repliedComment.children = [];
 
     repliedComment.children.push(comment);
-  } else data.value.unshift(comment);
+  } else {
+    data.value.unshift(comment);
+    count.value += 1;
+  }
 };
 
 const onStatusChange = async ({
@@ -291,7 +294,7 @@ const onDelete = async ({ objectId }: WalineComment): Promise<void> => {
     serverURL,
     lang,
     token: userInfo.value?.token,
-    objectId: objectId,
+    objectId,
   });
 
   // delete comment from data
