@@ -45,6 +45,7 @@ const {
   LARK_TEMPLATE,
 
   LEVELS,
+  COMMENT_AUDIT,
 } = process.env;
 
 let storage = 'leancloud';
@@ -121,6 +122,8 @@ module.exports = {
     !LEVELS || isFalse(LEVELS)
       ? false
       : LEVELS.split(/\s*,\s*/).map((v) => Number(v)),
+
+  audit: !isFalse(COMMENT_AUDIT),
   avatarProxy,
   oauthUrl,
   markdown,
