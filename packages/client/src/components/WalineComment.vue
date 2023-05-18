@@ -50,23 +50,21 @@
       />
     </div>
 
-    <template v-else>
-      <div v-if="status === 'loading'" class="wl-loading">
-        <LoadingIcon :size="30" />
-      </div>
+    <div v-else-if="status === 'loading'" class="wl-loading">
+      <LoadingIcon :size="30" />
+    </div>
 
-      <div v-else-if="!data.length" class="wl-empty" v-text="i18n.sofa" />
+    <div v-else-if="!data.length" class="wl-empty" v-text="i18n.sofa" />
 
-      <!-- Load more button -->
-      <div v-else-if="page < totalPages" class="wl-operation">
-        <button
-          type="button"
-          class="wl-btn"
-          @click="loadMore"
-          v-text="i18n.more"
-        />
-      </div>
-    </template>
+    <!-- Load more button -->
+    <div v-else-if="page < totalPages" class="wl-operation">
+      <button
+        type="button"
+        class="wl-btn"
+        @click="loadMore"
+        v-text="i18n.more"
+      />
+    </div>
 
     <!-- Copyright Information -->
     <div v-if="config.copyright" class="wl-power">
