@@ -1,7 +1,7 @@
 <template>
   <div :id="comment.objectId" class="wl-card-item">
     <div class="wl-user" aria-hidden="true">
-      <img v-if="comment.avatar" :src="comment.avatar" />
+      <img v-if="comment.avatar" class="wl-user-avatar" :src="comment.avatar" />
 
       <VerifiedIcon v-if="comment.type" />
     </div>
@@ -67,8 +67,7 @@
             @click="emit('like', comment)"
           >
             <LikeIcon :active="like" />
-
-            <span v-if="'like' in comment" v-text="comment.like" />
+            {{ 'like' in comment ? comment.like : '' }}
           </button>
 
           <button
