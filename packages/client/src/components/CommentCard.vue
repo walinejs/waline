@@ -83,26 +83,15 @@
       </div>
 
       <div class="wl-meta" aria-hidden="true">
-        <span
-          v-if="comment.addr"
-          class="wl-addr"
-          :data-value="comment.addr"
-          v-text="comment.addr"
-        />
-
-        <span
-          v-if="comment.browser"
-          class="wl-browser"
-          :data-value="comment.browser"
-          v-text="comment.browser"
-        />
-
-        <span
-          v-if="comment.os"
-          class="wl-os"
-          :data-value="comment.os"
-          v-text="comment.os"
-        />
+        <template v-for="item in ['addr', 'browser', 'os']">
+          <span
+            v-if="comment[item]"
+            :key="item"
+            :class="`wl-${item}`"
+            :data-value="comment[item]"
+            v-text="comment[item]"
+          />
+        </template>
       </div>
       <!-- eslint-disable vue/no-v-html -->
       <div
