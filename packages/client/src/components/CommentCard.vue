@@ -34,7 +34,7 @@
         />
 
         <span
-          v-if="comment.level !== undefined && comment.level >= 0"
+          v-if="typeof comment.level === 'number'"
           :class="`wl-badge level${comment.level}`"
           v-text="locale[`level${comment.level}`] || `Level ${comment.level}`"
         />
@@ -42,29 +42,29 @@
         <span class="wl-time" v-text="time" />
 
         <div class="wl-comment-actions">
-          <button
-            v-if="isAdmin || isOwner"
-            type="button"
-            class="wl-edit"
-            @click="() => $emit('edit', comment)"
-          >
-            <EditIcon />
-          </button>
+          <template v-if="isAdmin || isOwner">
+            <button
+              type="button"
+              class="wl-edit"
+              @click="emit('edit', comment)"
+            >
+              <EditIcon />
+            </button>
 
-          <button
-            v-if="isAdmin || isOwner"
-            type="button"
-            class="wl-delete"
-            @click="$emit('delete', comment)"
-          >
-            <DeleteIcon />
-          </button>
+            <button
+              type="button"
+              class="wl-delete"
+              @click="emit('delete', comment)"
+            >
+              <DeleteIcon />
+            </button>
+          </template>
 
           <button
             type="button"
             class="wl-like"
             :title="like ? locale.cancelLike : locale.like"
-            @click="$emit('like', comment)"
+            @click="emit('like', comment)"
           >
             <LikeIcon :active="like" />
 
@@ -76,7 +76,7 @@
             class="wl-reply"
             :class="{ active: isReplyingCurrent }"
             :title="isReplyingCurrent ? locale.cancelReply : locale.reply"
-            @click="$emit('reply', isReplyingCurrent ? null : comment)"
+            @click="emit('reply', isReplyingCurrent ? null : comment)"
           >
             <ReplyIcon />
           </button>
@@ -121,7 +121,7 @@
             type="submit"
             :class="`wl-btn wl-${status}`"
             :disabled="comment.status === status"
-            @click="$emit('status', { status, comment })"
+            @click="emit('status', { status, comment })"
             v-text="locale[status]"
           />
         </span>
@@ -130,7 +130,7 @@
           v-if="isAdmin && !('rid' in comment)"
           type="submit"
           class="wl-btn wl-sticky"
-          @click="$emit('sticky', comment)"
+          @click="emit('sticky', comment)"
         >
           {{ comment.sticky ? locale.unsticky : locale.sticky }}
         </button>
@@ -148,16 +148,14 @@
           :reply-id="reply?.objectId"
           :reply-user="comment.nick"
           :root-id="rootId"
-          @log="$emit('log')"
-          @cancel-reply="$emit('reply', null)"
-          @cancel-edit="$emit('edit', null)"
-          @submit="$emit('submit', $event)"
+          @log="emit('log')"
+          @cancel-reply="emit('reply', null)"
+          @cancel-edit="emit('edit', null)"
+          @submit="emit('submit', $event)"
         />
       </div>
 
       <div v-if="'children' in comment" class="wl-quote">
-        <!-- FIXME: This is a upstream bug -->
-        <!-- eslint-disable-next-line vue/no-undef-components -->
         <CommentCard
           v-for="child in comment.children"
           :key="child.objectId"
@@ -165,14 +163,14 @@
           :reply="reply"
           :edit="edit"
           :root-id="rootId"
-          @log="$emit('log')"
-          @delete="$emit('delete', $event)"
-          @edit="$emit('edit', $event)"
-          @like="$emit('like', $event)"
-          @reply="$emit('reply', $event)"
-          @status="$emit('status', $event)"
-          @sticky="$emit('sticky', $event)"
-          @submit="$emit('submit', $event)"
+          @log="emit('log')"
+          @delete="emit('delete', $event)"
+          @edit="emit('edit', $event)"
+          @like="emit('like', $event)"
+          @reply="emit('reply', $event)"
+          @status="emit('status', $event)"
+          @sticky="emit('sticky', $event)"
+          @submit="emit('submit', $event)"
         />
       </div>
     </div>
@@ -220,7 +218,7 @@ const props = withDefaults(
   }
 );
 
-defineEmits<{
+const emit = defineEmits<{
   (event: 'log'): void;
   (event: 'submit', comment: WalineComment): void;
   (event: 'delete', comment: WalineComment): void;
@@ -258,8 +256,7 @@ const time = computed(() =>
 const isAdmin = computed(() => userInfo.value.type === 'administrator');
 
 const isOwner = computed(
-  () =>
-    props.comment.user_id && userInfo.value.objectId === props.comment.user_id
+  () => userInfo.value.objectId === props.comment.user_id
 );
 
 const isReplyingCurrent = computed(
