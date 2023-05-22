@@ -94,7 +94,7 @@
     "stylelint-config-hope": "3.0.0",
     "tslib": "2.5.0",
     "typescript": "5.0.4",
-    "vercel": "29.3.0",
+    "vercel": "29.4.0",
     "vite": "4.3.6",
     "vite-plugin-reiconify": "1.1.2",
     "vitest": "0.31.0"
