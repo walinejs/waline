@@ -136,7 +136,7 @@
     "@vitejs/plugin-vue": "4.2.3",
     "recaptcha-v3": "1.10.0",
     "user-agent-data-types": "0.3.1",
-    "vite": "4.3.6"
+    "vite": "4.3.9"
   },
   "engines": {
     "node": ">=14"

@@ -54,7 +54,7 @@ importers:
         version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
       '@vitejs/plugin-react':
         specifier: 4.0.0
-        version: 4.0.0(vite@4.3.6)
+        version: 4.0.0(vite@4.3.9)
       '@vue/eslint-config-prettier':
         specifier: 7.1.0
         version: 7.1.0(eslint@8.40.0)(prettier@2.8.8)
@@ -146,11 +146,11 @@ importers:
         specifier: 29.3.0
         version: 29.3.0(@types/node@20.1.5)(sass@1.62.1)
       vite:
-        specifier: 4.3.6
-        version: 4.3.6(@types/node@20.1.5)(sass@1.62.1)
+        specifier: 4.3.9
+        version: 4.3.9(@types/node@20.1.5)(sass@1.62.1)
       vite-plugin-reiconify:
         specifier: 1.1.2
-        version: 1.1.2(vite@4.3.6)
+        version: 1.1.2(vite@4.3.9)
       vitest:
         specifier: 0.31.0
         version: 0.31.0(sass@1.62.1)
@@ -237,7 +237,7 @@ importers:
         version: 5.0.4
       vite-plugin-css-injected-by-js:
         specifier: ^3.1.1
-        version: 3.1.1(vite@4.3.6)
+        version: 3.1.1(vite@4.3.9)
 
   packages/client:
     dependencies:
@@ -271,7 +271,7 @@ importers:
         version: 4.3.0
       '@vitejs/plugin-vue':
         specifier: 4.2.3
-        version: 4.2.3(vite@4.3.6)(vue@3.3.2)
+        version: 4.2.3(vite@4.3.9)(vue@3.3.2)
       recaptcha-v3:
         specifier: 1.10.0
         version: 1.10.0
@@ -279,8 +279,8 @@ importers:
         specifier: 0.3.1
         version: 0.3.1
       vite:
-        specifier: 4.3.6
-        version: 4.3.6(@types/node@20.1.5)(sass@1.62.1)
+        specifier: 4.3.9
+        version: 4.3.9(@types/node@20.1.5)(sass@1.62.1)
 
   packages/cloudbase:
     dependencies:
@@ -4061,7 +4061,7 @@ packages:
       lodash: 4.17.21
       mlly: 1.2.1
       outdent: 0.8.0
-      vite: 4.3.6(@types/node@20.1.5)(sass@1.62.1)
+      vite: 4.3.9(@types/node@20.1.5)(sass@1.62.1)
       vite-node: 0.28.5(@types/node@20.1.5)(sass@1.62.1)
     transitivePeerDependencies:
       - '@types/node'
@@ -4267,7 +4267,7 @@ packages:
       recast: 0.21.5
       remark-frontmatter: 4.0.1
       remark-mdx-frontmatter: 1.1.1
-      semver: 7.3.8
+      semver: 7.5.1
       sort-package-json: 1.57.0
       tar-fs: 2.1.1
       tsconfig-paths: 4.2.0
@@ -4321,7 +4321,7 @@ packages:
       ts-morph: 12.0.0
     dev: true
 
-  /@vitejs/plugin-react@4.0.0(vite@4.3.6):
+  /@vitejs/plugin-react@4.0.0(vite@4.3.9):
     resolution: {integrity: sha512-HX0XzMjL3hhOYm+0s95pb0Z7F8O81G7joUHgfDd/9J/ZZf5k4xX6QAMFkKsHFxaHlf6X7GD7+XuaZ66ULiJuhQ==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
@@ -4331,19 +4331,19 @@ packages:
       '@babel/plugin-transform-react-jsx-self': 7.21.0(@babel/core@7.21.8)
       '@babel/plugin-transform-react-jsx-source': 7.19.6(@babel/core@7.21.8)
       react-refresh: 0.14.0
-      vite: 4.3.6(@types/node@20.1.5)(sass@1.62.1)
+      vite: 4.3.9(@types/node@20.1.5)(sass@1.62.1)
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /@vitejs/plugin-vue@4.2.3(vite@4.3.6)(vue@3.3.2):
+  /@vitejs/plugin-vue@4.2.3(vite@4.3.9)(vue@3.3.2):
     resolution: {integrity: sha512-R6JDUfiZbJA9cMiguQ7jxALsgiprjBeHL5ikpXfJCH62pPHtI+JdJ5xWj6Ev73yXSlYl86+blXn1kZHQ7uElxw==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
       vite: ^4.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 4.3.6(@types/node@20.1.5)(sass@1.62.1)
+      vite: 4.3.9(@types/node@20.1.5)(sass@1.62.1)
       vue: 3.3.2
     dev: true
 
@@ -4507,7 +4507,7 @@ packages:
   /@vuepress/bundler-vite@2.0.0-beta.62(@types/node@20.1.5)(sass@1.62.1):
     resolution: {integrity: sha512-Dpb4rJycssM1gs3MlQ5z0cwQ0KCx9Iliojt+qs5lVIUHP9vfw6ANYx51R3ojctt3dCoWfC4bAL4NhGQndGKvrQ==}
     dependencies:
-      '@vitejs/plugin-vue': 4.2.3(vite@4.3.6)(vue@3.3.2)
+      '@vitejs/plugin-vue': 4.2.3(vite@4.3.9)(vue@3.3.2)
       '@vuepress/client': 2.0.0-beta.62
       '@vuepress/core': 2.0.0-beta.62
       '@vuepress/shared': 2.0.0-beta.62
@@ -4517,7 +4517,7 @@ packages:
       postcss: 8.4.23
       postcss-load-config: 4.0.1(postcss@8.4.23)
       rollup: 3.21.7
-      vite: 4.3.6(@types/node@20.1.5)(sass@1.62.1)
+      vite: 4.3.9(@types/node@20.1.5)(sass@1.62.1)
       vue: 3.3.2
       vue-router: 4.2.0(vue@3.3.2)
     transitivePeerDependencies:
@@ -9126,7 +9126,7 @@ packages:
       '@types/glob': 7.2.0
       array-union: 2.1.0
       dir-glob: 3.0.1
-      fast-glob: 3.2.11
+      fast-glob: 3.2.12
       glob: 7.2.3
       ignore: 5.2.4
       merge2: 1.4.1
@@ -16049,7 +16049,7 @@ packages:
       picocolors: 1.0.0
       source-map: 0.6.1
       source-map-support: 0.5.21
-      vite: 4.3.6(@types/node@20.1.5)(sass@1.62.1)
+      vite: 4.3.9(@types/node@20.1.5)(sass@1.62.1)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -16070,7 +16070,7 @@ packages:
       mlly: 1.2.1
       pathe: 1.1.0
       picocolors: 1.0.0
-      vite: 4.3.6(@types/node@20.1.5)(sass@1.62.1)
+      vite: 4.3.9(@types/node@20.1.5)(sass@1.62.1)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -16081,15 +16081,15 @@ packages:
       - terser
     dev: true
 
-  /vite-plugin-css-injected-by-js@3.1.1(vite@4.3.6):
+  /vite-plugin-css-injected-by-js@3.1.1(vite@4.3.9):
     resolution: {integrity: sha512-mwrFvEEy0TuH8Ul0cb2HgjmNboQ/JnEFy+kHCWqAJph3ikMOiIuyYVdx0JO4nEIWJyzSnc4TTdmoTulsikvJEg==}
     peerDependencies:
       vite: '>2.0.0-0'
     dependencies:
-      vite: 4.3.6(@types/node@20.1.5)(sass@1.62.1)
+      vite: 4.3.9(@types/node@20.1.5)(sass@1.62.1)
     dev: true
 
-  /vite-plugin-reiconify@1.1.2(vite@4.3.6):
+  /vite-plugin-reiconify@1.1.2(vite@4.3.9):
     resolution: {integrity: sha512-yENngOv7XJ7Yh0lJFe+Q5wj1vGz/WPTisl6duoTlbVfKs1kNa6lG9BGsXW/v71KEFlIB9fBWBTb5YhCK3D5nCw==}
     peerDependencies:
       react: '>=16.14.0'
@@ -16100,11 +16100,11 @@ packages:
     dependencies:
       base-icon: 2.2.1(react@18.2.0)
       reiconify: 2.8.0
-      vite: 4.3.6(@types/node@20.1.5)(sass@1.62.1)
+      vite: 4.3.9(@types/node@20.1.5)(sass@1.62.1)
     dev: true
 
-  /vite@4.3.6(@types/node@20.1.5)(sass@1.62.1):
-    resolution: {integrity: sha512-cqIyLSbA6gornMS659AXTVKF7cvSHMdKmJJwQ9DXq3lwsT1uZSdktuBRlpHQ8VnOWx0QHtjDwxPpGtyo9Fh/Qg==}
+  /vite@4.3.9(@types/node@20.1.5)(sass@1.62.1):
+    resolution: {integrity: sha512-qsTNZjO9NoJNW7KnOrgYwczm0WctJ8m/yqYAMAK9Lxt4SoySUfS5S8ia9K7JHpa3KEeMfyF8LoJ3c5NeBJy6pg==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
@@ -16190,7 +16190,7 @@ packages:
       strip-literal: 1.0.1
       tinybench: 2.5.0
       tinypool: 0.5.0
-      vite: 4.3.6(@types/node@20.1.5)(sass@1.62.1)
+      vite: 4.3.9(@types/node@20.1.5)(sass@1.62.1)
       vite-node: 0.31.0(@types/node@20.1.5)(sass@1.62.1)
       why-is-node-running: 2.2.2
     transitivePeerDependencies:
