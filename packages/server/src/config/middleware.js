@@ -71,5 +71,8 @@ module.exports = [
   { handle: routerREST },
 
   'logic',
+  {
+    handle: 'plugin',
+  },
   'controller',
 ];

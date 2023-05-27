@@ -16,6 +16,12 @@ We recommend you to create a repo from the official template and make your chang
 
 ## Basic Options
 
+### plugins
+
+- Type: `plugin[]`
+
+See [Plugin System](./plugin.md) for details
+
 ### secureDomains
 
 - Type: `string | RegExp | string[] | RegExp[]`
