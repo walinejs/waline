@@ -1,6 +1,6 @@
 ---
 title: plugin system
-icon: plugin
+icon: api
 ---
 
 Users can extend the custom hook function through the Hook provided by Waline to realize custom functions. But if users want to share custom Hook methods, they can only use the copy method. To solve this problem, the Waline plugin system came into being.

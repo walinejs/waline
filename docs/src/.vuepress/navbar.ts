@@ -22,7 +22,7 @@ export const zhNavbarConfig = navbar([
       {
         text: '服务端',
         prefix: 'server/',
-        children: ['api', 'config', 'env'],
+        children: ['api', 'config', 'env', 'plugin'],
       },
     ],
   },
@@ -63,7 +63,7 @@ export const enNavbarConfig = navbar([
       {
         text: 'server',
         prefix: 'server/',
-        children: ['api', 'config', 'env'],
+        children: ['api', 'config', 'env', 'plugin'],
       },
     ],
   },
