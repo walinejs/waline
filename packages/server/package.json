@@ -26,6 +26,7 @@
     "jsdom": "^22.0.0",
     "jsonwebtoken": "^9.0.0",
     "katex": "^0.16.7",
+    "koa-compose": "^4.1.0",
     "leancloud-storage": "^4.15.0",
     "markdown-it": "^13.0.1",
     "markdown-it-emoji": "^2.0.2",
