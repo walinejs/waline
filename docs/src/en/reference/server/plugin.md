@@ -17,7 +17,7 @@ const HelloWorldPlugin = require('@waline-plugins/hello-world');
 
 module.exports = Waline({
    plugins: [
-     Hello World Plugin,
+     HelloWorldPlugin,
    ],
 });
 ```
