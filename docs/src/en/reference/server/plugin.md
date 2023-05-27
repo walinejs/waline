@@ -22,7 +22,7 @@ module.exports = Waline({
 });
 ```
 
-In addition to directly installing other people's plug-ins, we can also configure our own plug-in logic here.
+To install others' plugin directly, you can also place plugin hooks direct in `plugins`:
 
 
 ```js
@@ -35,7 +35,7 @@ module.exports = Waline({
      {
        hooks: {
          async postSave() {
-           // do what ever you want after save comment
+           // do what ever you want after comment saved
          }
        },
        middlewares: [
@@ -57,7 +57,7 @@ It is also very simple to develop a plug-in, which is basically the same as the 
 module.exports = {
    hooks: {
      async postSave() {
-       // do what ever you want after save comment
+       // do what ever you want after comment saved
      }
    }
 }

@@ -35,7 +35,7 @@ module.exports = Waline({
     {
       hooks: {
         async postSave() {
-          // do what ever you want after save comment
+          // do what ever you want after comment saved
         }
       },
       middlewares: [
@@ -57,7 +57,7 @@ module.exports = Waline({
 module.exports = {
   hooks: {
     async postSave() {
-      // do what ever you want after save comment
+      // do what ever you want after comment saved
     }
   }
 }
