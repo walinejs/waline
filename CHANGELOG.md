@@ -1,3 +1,9 @@
+# (2023-05-27)
+
+### Features
+
+- `@waline/vercel@1.31.0` add plugin system support.
+
 # (2023-04-16)
 
 ### Features
