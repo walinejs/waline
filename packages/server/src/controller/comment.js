@@ -171,9 +171,7 @@ module.exports = class extends BaseRest {
       think.logger.debug(`Comment post frequency check OK!`);
 
       /** Akismet */
-      const { COMMENT_AUDIT } = process.env;
-
-      data.status = COMMENT_AUDIT ? 'waiting' : 'approved';
+      data.status = this.config('audit') ? 'waiting' : 'approved';
 
       think.logger.debug(`Comment initial status is ${data.status}`);
 

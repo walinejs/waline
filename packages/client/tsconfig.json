@@ -2,6 +2,7 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "noImplicitAny": false,
+    "noUnusedLocals": false,
     "noUnusedParameters": false,
     "jsx": "preserve",
     "module": "NodeNext",
