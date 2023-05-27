@@ -20,19 +20,19 @@
 
       RecentComments({
         el: '#recent-comment',
-        serverURL: 'https://walinejs.comment.lithub.cc',
+        serverURL: import.meta.env.SERVERURL || 'https://walinejs.comment.lithub.cc',
         count: 10,
       });
 
       UserList({
         el: '#user-list',
-        serverURL: 'https://walinejs.comment.lithub.cc',
+        serverURL: import.meta.env.SERVERURL || 'https://walinejs.comment.lithub.cc',
         count: 10,
       });
 
       UserList({
         el: '#user-wall',
-        serverURL: 'https://walinejs.comment.lithub.cc',
+        serverURL: import.meta.env.SERVERURL || 'https://walinejs.comment.lithub.cc',
         count: 50,
         mode: 'wall',
       });

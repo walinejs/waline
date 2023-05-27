@@ -95,6 +95,13 @@ Download [waline.sqlite](https://github.com/walinejs/waline/blob/main/assets/wal
 | `PG_PORT`            |          | 3211      | PostgreSQL server port              |
 | `PG_PREFIX`          |          | `wl_`     | PostgreSQL table prefix             |
 | `PG_SSL`             |          | `false`   | set to `true` to use SSL connection |
+| `POSTGRES_DATABASE`  |          |           | alias for `PG_DB`                   |
+| `POSTGRES_USER`      |          |           | alias for `PG_USER`                 |
+| `POSTGRES_PASSWORD`  |          |           | alias for `PG_PASSWORD`             |
+| `POSTGRES_HOST`      |          | 127.0.0.1 | alias for `PG_HOST`                 |
+| `POSTGRES_PORT`      |          | 3211      | alias for `PG_PORT`                 |
+| `POSTGRES_PREFIX`    |          | `wl_`     | alias for `PG_PREFIX`               |
+| `POSTGRES_SSL`       |          | `false`   | alias for `POSTGRES_SSL`            |
 
 ## GitHub
 

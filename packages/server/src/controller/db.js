@@ -38,6 +38,24 @@ module.exports = class extends BaseRest {
       item.updatedAt && (item.updatedAt = new Date(item.updatedAt));
     }
 
+    if (storage === 'mysql') {
+      item.insertedAt &&
+        (item.insertedAt = think.datetime(
+          item.insertedAt,
+          'YYYY-MM-DD HH:mm:ss'
+        ));
+      item.createdAt &&
+        (item.createdAt = think.datetime(
+          item.createdAt,
+          'YYYY-MM-DD HH:mm:ss'
+        ));
+      item.updatedAt &&
+        (item.updatedAt = think.datetime(
+          item.updatedAt,
+          'YYYY-MM-DD HH:mm:ss'
+        ));
+    }
+
     delete item.objectId;
     const resp = await model.add(item);
 

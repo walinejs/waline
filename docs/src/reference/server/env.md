@@ -68,8 +68,8 @@ Vercel 需要在 <kbd>Settings</kbd> - <kbd>Environment Variables</kbd> 中进�
 | `COMMENT_AUDIT`       | `false`        | 评论发布审核开关。开启后评论需要经过管理员审核后才能显示，所以建议在评论框默认文字上提供提示 |
 | `RECAPTCHA_V3_KEY`    |                | reCAPTCHA V3 key，须与客户端同时配置                                                         |
 | `RECAPTCHA_V3_SECRET` |                | reCAPTCHA V3 secret，服务端使用，不可泄漏                                                    |
-| `TURNSTILE_KEY`    |                | Turnstile key，须与客户端同时配置                                                         |
-| `TURNSTILE_SECRET` |                | Turnstile secret，服务端使用，不可泄漏                                                    |
+| `TURNSTILE_KEY`       |                | Turnstile key，须与客户端同时配置                                                            |
+| `TURNSTILE_SECRET`    |                | Turnstile secret，服务端使用，不可泄漏                                                       |
 
 ::: tip Recaptcha 和 Turnstile
 
@@ -83,16 +83,16 @@ Recaptcha Key 和 Secret 可在 <https://www.google.com/recaptcha> 申请。
 
 ## Markdown
 
-| 环境变量名称         | 默认值    | 备注                                                 |
-| -------------------- | --------- | ---------------------------------------------------- |
-| `MARKDOWN_CONFIG`    | `{}`      | MarkdownIt 配置                                      |
-| `MARKDOWN_HIGHLIGHT` | `true`    | 是否启用高亮                                         |
-| `MARKDOWN_EMOJI`     | `true`    | 是否启用 Emoji 缩写支持                              |
-| `MARKDOWN_SUB`       | `true`    | 是否启用下角标支持                                   |
-| `MARKDOWN_SUP`       | `true`    | 是否启用上角标支持                                   |
-| `MARKDOWN_TEX`       | `mathjax` | 解析 $\TeX$ 的服务，支持 `mathjax`、`katex`、`false` |
-| `MARKDOWN_MATHJAX`   | `{}`      | MathJax 选项                                         |
-| `MARKDOWN_KATEX`     | `{}`      | Katex 选项                                           |
+| 环境变量名称         | 默认值    | 备注                                              |
+| -------------------- | --------- | ------------------------------------------------- |
+| `MARKDOWN_CONFIG`    | `{}`      | MarkdownIt 配置                                   |
+| `MARKDOWN_HIGHLIGHT` | `true`    | 是否启用高亮                                      |
+| `MARKDOWN_EMOJI`     | `true`    | 是否启用 Emoji 缩写支持                           |
+| `MARKDOWN_SUB`       | `true`    | 是否启用下角标支持                                |
+| `MARKDOWN_SUP`       | `true`    | 是否启用上角标支持                                |
+| `MARKDOWN_TEX`       | `mathjax` | 解析 Tex 的服务，支持 `mathjax`、`katex`、`false` |
+| `MARKDOWN_MATHJAX`   | `{}`      | MathJax 选项                                      |
+| `MARKDOWN_KATEX`     | `{}`      | Katex 选项                                        |
 
 ## 邮件
 
@@ -172,15 +172,22 @@ SMTP 的用户名通常均支持用户的完整邮箱，而密码大多同邮箱
 
 ### PostgreSQL
 
-| 环境变量名称  | 必填 | 默认值    | 备注                                |
-| ------------- | ---- | --------- | ----------------------------------- |
-| `PG_DB`       | ✅   |           | PostgreSQL 数据库库名               |
-| `PG_USER`     | ✅   |           | PostgreSQL 数据库的用户名           |
-| `PG_PASSWORD` | ✅   |           | PostgreSQL 数据库的密码             |
-| `PG_HOST`     |      | 127.0.0.1 | PostgreSQL 服务的地址               |
-| `PG_PORT`     |      | 3211      | PostgreSQL 服务的端口               |
-| `PG_PREFIX`   |      | `wl_`     | PostgreSQL 数据表的表前缀           |
-| `PG_SSL`      |      | `false`   | 是否使用 SSL 连接 PostgreSQL 数据库 |
+| 环境变量名称        | 必填 | 默认值    | 备注                                |
+| ------------------- | ---- | --------- | ----------------------------------- |
+| `PG_DB`             | ✅   |           | PostgreSQL 数据库库名               |
+| `PG_USER`           | ✅   |           | PostgreSQL 数据库的用户名           |
+| `PG_PASSWORD`       | ✅   |           | PostgreSQL 数据库的密码             |
+| `PG_HOST`           |      | 127.0.0.1 | PostgreSQL 服务的地址               |
+| `PG_PORT`           |      | 3211      | PostgreSQL 服务的端口               |
+| `PG_PREFIX`         |      | `wl_`     | PostgreSQL 数据表的表前缀           |
+| `PG_SSL`            |      | `false`   | 是否使用 SSL 连接 PostgreSQL 数据库 |
+| `POSTGRES_DATABASE` |      |           | 同 `PG_DB`                          |
+| `POSTGRES_USER`     |      |           | 同 `PG_USER`                        |
+| `POSTGRES_PASSWORD` |      |           | 同 `PG_PASSWORD`                    |
+| `POSTGRES_HOST`     |      | 127.0.0.1 | 同 `PG_HOST`                        |
+| `POSTGRES_PORT`     |      | 3211      | 同 `PG_PORT`                        |
+| `POSTGRES_PREFIX`   |      | `wl_`     | 同 `PG_PREFIX`                      |
+| `POSTGRES_SSL`      |      | `false`   | 同 `POSTGRES_SSL`                   |
 
 ### CloudBase
 

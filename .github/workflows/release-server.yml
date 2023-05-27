@@ -1,6 +1,7 @@
 name: 'publish @waline/vercel'
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -15,6 +16,9 @@ permissions:
 jobs:
   npm:
     runs-on: ubuntu-latest
+    outputs:
+      old-version: ${{ steps.publish-server.outputs.old-version }}
+      version: ${{ steps.publish-server.outputs.version }}
     steps:
     - uses: actions/checkout@v3
       with:
@@ -26,7 +30,7 @@ jobs:
         cache: pnpm
     - run: pnpm install --frozen-lockfile
       
-    - id: publishServer
+    - id: publish-server
       name: "publish @waline/vercel"
       uses: JS-DevTools/npm-publish@v2
       with:
@@ -35,7 +39,7 @@ jobs:
 
   docker:
     needs: npm
-    if: needs.npm.steps.publishServer.outputs.old-version != needs.npm.steps.publishServer.outputs.version
+    if: ${{ needs.npm.outputs.old-version != needs.npm.outputs.version || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -60,7 +64,7 @@ jobs:
         push: true
         tags: |
           lizheming/waline:alpine
-          lizheming/waline:${{ needs.npm.steps.publishServer.outputs.version }}-alpine
+          lizheming/waline:${{ needs.npm.outputs.version }}-alpine
 
     - name: Build and push debian
       uses: docker/build-push-action@v4
@@ -70,4 +74,4 @@ jobs:
         push: true
         tags: |
           lizheming/waline:latest
-          lizheming/waline:${{ needs.npm.steps.publishServer.outputs.version }}
+          lizheming/waline:${{ needs.npm.outputs.version }}

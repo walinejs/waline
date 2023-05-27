@@ -55,7 +55,7 @@ export interface GetCommentOptions extends BaseAPIOptions {
   signal?: AbortSignal;
 }
 
-export interface GetCommentResponse extends ErrorStatusResponse {
+export interface GetCommentResponse {
   /**
    * 评论数量
    *
@@ -112,8 +112,11 @@ export const getComment = ({
     )}&pageSize=${pageSize}&page=${page}&lang=${lang}&sortBy=${sortBy}`,
     { signal, headers }
   )
-    .then((resp) => <Promise<GetCommentResponse>>resp.json())
-    .then((data) => errorCheck(data, 'Get comment data'));
+    .then(
+      (resp) =>
+        <Promise<{ data: GetCommentResponse } & ErrorStatusResponse>>resp.json()
+    )
+    .then((data) => errorCheck(data, 'Get comment data').data);
 };
 
 export interface AddCommentOptions extends BaseAPIOptions {

@@ -80,399 +80,17 @@ module.exports = class extends BaseRest {
 
   async getAction() {
     const { type } = this.get();
-    const { userInfo } = this.ctx.state;
 
-    switch (type) {
-      case 'recent': {
-        const { count } = this.get();
-        const where = {};
+    const fnMap = {
+      recent: this.getRecentCommentList,
+      count: this.getCommentCount,
+      list: this.getAdminCommentList,
+    };
 
-        if (think.isEmpty(userInfo) || this.config('storage') === 'deta') {
-          where.status = ['NOT IN', ['waiting', 'spam']];
-        } else {
-          where._complex = {
-            _logic: 'or',
-            status: ['NOT IN', ['waiting', 'spam']],
-            user_id: userInfo.objectId,
-          };
-        }
+    const fn = fnMap[type] || this.getCommentList;
+    const data = await fn.call(this);
 
-        const comments = await this.modelInstance.select(where, {
-          desc: 'insertedAt',
-          limit: count,
-          field: [
-            'status',
-            'comment',
-            'insertedAt',
-            'link',
-            'mail',
-            'nick',
-            'url',
-            'pid',
-            'rid',
-            'ua',
-            'ip',
-            'user_id',
-            'sticky',
-            'like',
-          ],
-        });
-
-        const userModel = this.getModel('Users');
-        const user_ids = Array.from(
-          new Set(comments.map(({ user_id }) => user_id).filter((v) => v))
-        );
-
-        let users = [];
-
-        if (user_ids.length) {
-          users = await userModel.select(
-            { objectId: ['IN', user_ids] },
-            {
-              field: [
-                'display_name',
-                'email',
-                'url',
-                'type',
-                'avatar',
-                'label',
-              ],
-            }
-          );
-        }
-
-        return this.jsonOrSuccess(
-          await Promise.all(
-            comments.map((cmt) =>
-              formatCmt(
-                cmt,
-                users,
-                { ...this.config(), deprecated: this.ctx.state.deprecated },
-                userInfo
-              )
-            )
-          )
-        );
-      }
-
-      case 'count': {
-        const { url } = this.get();
-        const where =
-          Array.isArray(url) && url.length ? { url: ['IN', url] } : {};
-
-        if (think.isEmpty(userInfo) || this.config('storage') === 'deta') {
-          where.status = ['NOT IN', ['waiting', 'spam']];
-        } else {
-          where._complex = {
-            _logic: 'or',
-            status: ['NOT IN', ['waiting', 'spam']],
-            user_id: userInfo.objectId,
-          };
-        }
-
-        if (
-          Array.isArray(url) &&
-          (url.length > 1 || !this.ctx.state.deprecated)
-        ) {
-          const data = await this.modelInstance.select(where, {
-            field: ['url'],
-          });
-
-          return this.jsonOrSuccess(
-            url.map((u) => data.filter(({ url }) => url === u).length)
-          );
-        }
-        const data = await this.modelInstance.count(where);
-
-        return this.jsonOrSuccess(data);
-      }
-
-      case 'list': {
-        const { page, pageSize, owner, status, keyword } = this.get();
-        const where = {};
-
-        if (owner === 'mine') {
-          const { userInfo } = this.ctx.state;
-
-          where.mail = userInfo.email;
-        }
-
-        if (status) {
-          where.status = status;
-
-          // compat with valine old data without status property
-          if (status === 'approved') {
-            where.status = ['NOT IN', ['waiting', 'spam']];
-          }
-        }
-
-        if (keyword) {
-          where.comment = ['LIKE', `%${keyword}%`];
-        }
-
-        const count = await this.modelInstance.count(where);
-        const spamCount = await this.modelInstance.count({ status: 'spam' });
-        const waitingCount = await this.modelInstance.count({
-          status: 'waiting',
-        });
-        const comments = await this.modelInstance.select(where, {
-          desc: 'insertedAt',
-          limit: pageSize,
-          offset: Math.max((page - 1) * pageSize, 0),
-        });
-
-        const userModel = this.getModel('Users');
-        const user_ids = Array.from(
-          new Set(comments.map(({ user_id }) => user_id).filter((v) => v))
-        );
-
-        let users = [];
-
-        if (user_ids.length) {
-          users = await userModel.select(
-            { objectId: ['IN', user_ids] },
-            {
-              field: [
-                'display_name',
-                'email',
-                'url',
-                'type',
-                'avatar',
-                'label',
-              ],
-            }
-          );
-        }
-
-        return this.success({
-          page,
-          totalPages: Math.ceil(count / pageSize),
-          pageSize,
-          spamCount,
-          waitingCount,
-          data: await Promise.all(
-            comments.map((cmt) =>
-              formatCmt(
-                cmt,
-                users,
-                { ...this.config(), deprecated: this.ctx.state.deprecated },
-                userInfo
-              )
-            )
-          ),
-        });
-      }
-
-      default: {
-        const { path: url, page, pageSize, sortBy } = this.get();
-        const where = { url };
-
-        if (think.isEmpty(userInfo) || this.config('storage') === 'deta') {
-          where.status = ['NOT IN', ['waiting', 'spam']];
-        } else if (userInfo.type !== 'administrator') {
-          where._complex = {
-            _logic: 'or',
-            status: ['NOT IN', ['waiting', 'spam']],
-            user_id: userInfo.objectId,
-          };
-        }
-
-        const totalCount = await this.modelInstance.count(where);
-        const pageOffset = Math.max((page - 1) * pageSize, 0);
-        let comments = [];
-        let rootComments = [];
-        let rootCount = 0;
-        const selectOptions = {
-          field: [
-            'status',
-            'comment',
-            'insertedAt',
-            'link',
-            'mail',
-            'nick',
-            'pid',
-            'rid',
-            'ua',
-            'ip',
-            'user_id',
-            'sticky',
-            'like',
-          ],
-        };
-
-        if (sortBy) {
-          const [field, order] = sortBy.split('_');
-
-          if (order === 'desc') {
-            selectOptions.desc = field;
-          } else if (order === 'asc') {
-            // do nothing because of ascending order is default behavior
-          }
-        }
-
-        /**
-         * most of case we have just little comments
-         * while if we want get rootComments, rootCount, childComments with pagination
-         * we have to query three times from storage service
-         * That's so expensive for user, especially in the serverless.
-         * so we have a comments length check
-         * If you have less than 1000 comments, then we'll get all comments one time
-         * then we'll compute rootComment, rootCount, childComments in program to reduce http request query
-         *
-         * Why we have limit and the limit is 1000?
-         * Many serverless storages have fetch data limit, for example LeanCloud is 100, and CloudBase is 1000
-         * If we have much comments, We should use more request to fetch all comments
-         * If we have 3000 comments, We have to use 30 http request to fetch comments, things go athwart.
-         * And Serverless Service like vercel have execute time limit
-         * if we have more http requests in a serverless function, it may timeout easily.
-         * so we use limit to avoid it.
-         */
-        if (totalCount < 1000) {
-          comments = await this.modelInstance.select(where, selectOptions);
-          rootCount = comments.filter(({ rid }) => !rid).length;
-          rootComments = [
-            ...comments.filter(({ rid, sticky }) => !rid && sticky),
-            ...comments.filter(({ rid, sticky }) => !rid && !sticky),
-          ].slice(pageOffset, pageOffset + pageSize);
-          const rootIds = {};
-
-          rootComments.forEach(({ objectId }) => {
-            rootIds[objectId] = true;
-          });
-          comments = comments.filter(
-            (cmt) => rootIds[cmt.objectId] || rootIds[cmt.rid]
-          );
-        } else {
-          comments = await this.modelInstance.select(
-            { ...where, rid: undefined },
-            { ...selectOptions }
-          );
-          rootCount = comments.length;
-          rootComments = [
-            ...comments.filter(({ rid, sticky }) => !rid && sticky),
-            ...comments.filter(({ rid, sticky }) => !rid && !sticky),
-          ].slice(pageOffset, pageOffset + pageSize);
-
-          const children = await this.modelInstance.select(
-            {
-              ...where,
-              rid: ['IN', rootComments.map(({ objectId }) => objectId)],
-            },
-            selectOptions
-          );
-
-          comments = [...rootComments, ...children];
-        }
-
-        const userModel = this.getModel('Users');
-        const user_ids = Array.from(
-          new Set(comments.map(({ user_id }) => user_id).filter((v) => v))
-        );
-        let users = [];
-
-        if (user_ids.length) {
-          users = await userModel.select(
-            { objectId: ['IN', user_ids] },
-            {
-              field: [
-                'display_name',
-                'email',
-                'url',
-                'type',
-                'avatar',
-                'label',
-              ],
-            }
-          );
-        }
-
-        if (think.isArray(this.config('levels'))) {
-          const countWhere = {
-            status: ['NOT IN', ['waiting', 'spam']],
-            _complex: {},
-          };
-
-          if (user_ids.length) {
-            countWhere._complex.user_id = ['IN', user_ids];
-          }
-          const mails = Array.from(
-            new Set(comments.map(({ mail }) => mail).filter((v) => v))
-          );
-
-          if (mails.length) {
-            countWhere._complex.mail = ['IN', mails];
-          }
-          if (!think.isEmpty(countWhere._complex)) {
-            countWhere._complex._logic = 'or';
-          } else {
-            delete countWhere._complex;
-          }
-          const counts = await this.modelInstance.count(countWhere, {
-            group: ['user_id', 'mail'],
-          });
-
-          comments.forEach((cmt) => {
-            const countItem = (counts || []).find(({ mail, user_id }) => {
-              if (cmt.user_id) {
-                return user_id === cmt.user_id;
-              }
-
-              return mail === cmt.mail;
-            });
-
-            let level = 0;
-
-            if (countItem) {
-              const _level = think.findLastIndex(
-                this.config('levels'),
-                (l) => l <= countItem.count
-              );
-
-              if (_level !== -1) {
-                level = _level;
-              }
-            }
-            cmt.level = level;
-          });
-        }
-
-        return this[this.ctx.state.deprecated ? 'json' : 'success']({
-          page,
-          totalPages: Math.ceil(rootCount / pageSize),
-          pageSize,
-          count: totalCount,
-          data: await Promise.all(
-            rootComments.map(async (comment) => {
-              const cmt = await formatCmt(
-                comment,
-                users,
-                { ...this.config(), deprecated: this.ctx.state.deprecated },
-                userInfo
-              );
-
-              cmt.children = await Promise.all(
-                comments
-                  .filter(({ rid }) => rid === cmt.objectId)
-                  .map((cmt) =>
-                    formatCmt(
-                      cmt,
-                      users,
-                      {
-                        ...this.config(),
-                        deprecated: this.ctx.state.deprecated,
-                      },
-                      userInfo
-                    )
-                  )
-                  .reverse()
-              );
-
-              return cmt;
-            })
-          ),
-        });
-      }
-    }
+    return this.jsonOrSuccess(data);
   }
 
   async postAction() {
@@ -493,7 +111,7 @@ module.exports = class extends BaseRest {
       user_id: this.ctx.state.userInfo.objectId,
     };
 
-    if (pid && this.ctx.deprecated) {
+    if (pid && this.ctx.state.deprecated) {
       data.comment = `[@${at}](#${pid}): ` + data.comment;
     }
 
@@ -765,5 +383,354 @@ module.exports = class extends BaseRest {
     await this.hook('postDelete', this.id);
 
     return this.success();
+  }
+
+  async getCommentList() {
+    const { userInfo } = this.ctx.state;
+    const { path: url, page, pageSize, sortBy } = this.get();
+    const where = { url };
+
+    if (think.isEmpty(userInfo) || this.config('storage') === 'deta') {
+      where.status = ['NOT IN', ['waiting', 'spam']];
+    } else if (userInfo.type !== 'administrator') {
+      where._complex = {
+        _logic: 'or',
+        status: ['NOT IN', ['waiting', 'spam']],
+        user_id: userInfo.objectId,
+      };
+    }
+
+    const totalCount = await this.modelInstance.count(where);
+    const pageOffset = Math.max((page - 1) * pageSize, 0);
+    let comments = [];
+    let rootComments = [];
+    let rootCount = 0;
+    const selectOptions = {
+      field: [
+        'status',
+        'comment',
+        'insertedAt',
+        'link',
+        'mail',
+        'nick',
+        'pid',
+        'rid',
+        'ua',
+        'ip',
+        'user_id',
+        'sticky',
+        'like',
+      ],
+    };
+
+    if (sortBy) {
+      const [field, order] = sortBy.split('_');
+
+      if (order === 'desc') {
+        selectOptions.desc = field;
+      } else if (order === 'asc') {
+        // do nothing because of ascending order is default behavior
+      }
+    }
+
+    /**
+     * most of case we have just little comments
+     * while if we want get rootComments, rootCount, childComments with pagination
+     * we have to query three times from storage service
+     * That's so expensive for user, especially in the serverless.
+     * so we have a comments length check
+     * If you have less than 1000 comments, then we'll get all comments one time
+     * then we'll compute rootComment, rootCount, childComments in program to reduce http request query
+     *
+     * Why we have limit and the limit is 1000?
+     * Many serverless storages have fetch data limit, for example LeanCloud is 100, and CloudBase is 1000
+     * If we have much comments, We should use more request to fetch all comments
+     * If we have 3000 comments, We have to use 30 http request to fetch comments, things go athwart.
+     * And Serverless Service like vercel have execute time limit
+     * if we have more http requests in a serverless function, it may timeout easily.
+     * so we use limit to avoid it.
+     */
+    if (totalCount < 1000) {
+      comments = await this.modelInstance.select(where, selectOptions);
+      rootCount = comments.filter(({ rid }) => !rid).length;
+      rootComments = [
+        ...comments.filter(({ rid, sticky }) => !rid && sticky),
+        ...comments.filter(({ rid, sticky }) => !rid && !sticky),
+      ].slice(pageOffset, pageOffset + pageSize);
+      const rootIds = {};
+
+      rootComments.forEach(({ objectId }) => {
+        rootIds[objectId] = true;
+      });
+      comments = comments.filter(
+        (cmt) => rootIds[cmt.objectId] || rootIds[cmt.rid]
+      );
+    } else {
+      comments = await this.modelInstance.select(
+        { ...where, rid: undefined },
+        { ...selectOptions }
+      );
+      rootCount = comments.length;
+      rootComments = [
+        ...comments.filter(({ rid, sticky }) => !rid && sticky),
+        ...comments.filter(({ rid, sticky }) => !rid && !sticky),
+      ].slice(pageOffset, pageOffset + pageSize);
+
+      const children = await this.modelInstance.select(
+        {
+          ...where,
+          rid: ['IN', rootComments.map(({ objectId }) => objectId)],
+        },
+        selectOptions
+      );
+
+      comments = [...rootComments, ...children];
+    }
+
+    const userModel = this.getModel('Users');
+    const user_ids = Array.from(
+      new Set(comments.map(({ user_id }) => user_id).filter((v) => v))
+    );
+    let users = [];
+
+    if (user_ids.length) {
+      users = await userModel.select(
+        { objectId: ['IN', user_ids] },
+        {
+          field: ['display_name', 'email', 'url', 'type', 'avatar', 'label'],
+        }
+      );
+    }
+
+    if (think.isArray(this.config('levels'))) {
+      const countWhere = {
+        status: ['NOT IN', ['waiting', 'spam']],
+        _complex: {},
+      };
+
+      if (user_ids.length) {
+        countWhere._complex.user_id = ['IN', user_ids];
+      }
+      const mails = Array.from(
+        new Set(comments.map(({ mail }) => mail).filter((v) => v))
+      );
+
+      if (mails.length) {
+        countWhere._complex.mail = ['IN', mails];
+      }
+      if (!think.isEmpty(countWhere._complex)) {
+        countWhere._complex._logic = 'or';
+      } else {
+        delete countWhere._complex;
+      }
+      const counts = await this.modelInstance.count(countWhere, {
+        group: ['user_id', 'mail'],
+      });
+
+      comments.forEach((cmt) => {
+        const countItem = (counts || []).find(({ mail, user_id }) =>
+          cmt.user_id ? user_id === cmt.user_id : mail === cmt.mail
+        );
+
+        cmt.level = think.getLevel(countItem?.count);
+      });
+    }
+
+    return {
+      page,
+      totalPages: Math.ceil(rootCount / pageSize),
+      pageSize,
+      count: totalCount,
+      data: await Promise.all(
+        rootComments.map(async (comment) => {
+          const cmt = await formatCmt(
+            comment,
+            users,
+            { ...this.config(), deprecated: this.ctx.state.deprecated },
+            userInfo
+          );
+
+          cmt.children = await Promise.all(
+            comments
+              .filter(({ rid }) => rid === cmt.objectId)
+              .map((cmt) =>
+                formatCmt(
+                  cmt,
+                  users,
+                  {
+                    ...this.config(),
+                    deprecated: this.ctx.state.deprecated,
+                  },
+                  userInfo
+                )
+              )
+              .reverse()
+          );
+
+          return cmt;
+        })
+      ),
+    };
+  }
+
+  async getAdminCommentList() {
+    const { userInfo } = this.ctx.state;
+    const { page, pageSize, owner, status, keyword } = this.get();
+    const where = {};
+
+    if (owner === 'mine') {
+      const { userInfo } = this.ctx.state;
+
+      where.mail = userInfo.email;
+    }
+
+    if (status) {
+      where.status = status;
+
+      // compat with valine old data without status property
+      if (status === 'approved') {
+        where.status = ['NOT IN', ['waiting', 'spam']];
+      }
+    }
+
+    if (keyword) {
+      where.comment = ['LIKE', `%${keyword}%`];
+    }
+
+    const count = await this.modelInstance.count(where);
+    const spamCount = await this.modelInstance.count({ status: 'spam' });
+    const waitingCount = await this.modelInstance.count({
+      status: 'waiting',
+    });
+    const comments = await this.modelInstance.select(where, {
+      desc: 'insertedAt',
+      limit: pageSize,
+      offset: Math.max((page - 1) * pageSize, 0),
+    });
+
+    const userModel = this.getModel('Users');
+    const user_ids = Array.from(
+      new Set(comments.map(({ user_id }) => user_id).filter((v) => v))
+    );
+
+    let users = [];
+
+    if (user_ids.length) {
+      users = await userModel.select(
+        { objectId: ['IN', user_ids] },
+        {
+          field: ['display_name', 'email', 'url', 'type', 'avatar', 'label'],
+        }
+      );
+    }
+
+    return {
+      page,
+      totalPages: Math.ceil(count / pageSize),
+      pageSize,
+      spamCount,
+      waitingCount,
+      data: await Promise.all(
+        comments.map((cmt) =>
+          formatCmt(
+            cmt,
+            users,
+            { ...this.config(), deprecated: this.ctx.state.deprecated },
+            userInfo
+          )
+        )
+      ),
+    };
+  }
+
+  async getRecentCommentList() {
+    const { count } = this.get();
+    const { userInfo } = this.ctx.state;
+    const where = {};
+
+    if (think.isEmpty(userInfo) || this.config('storage') === 'deta') {
+      where.status = ['NOT IN', ['waiting', 'spam']];
+    } else {
+      where._complex = {
+        _logic: 'or',
+        status: ['NOT IN', ['waiting', 'spam']],
+        user_id: userInfo.objectId,
+      };
+    }
+
+    const comments = await this.modelInstance.select(where, {
+      desc: 'insertedAt',
+      limit: count,
+      field: [
+        'status',
+        'comment',
+        'insertedAt',
+        'link',
+        'mail',
+        'nick',
+        'url',
+        'pid',
+        'rid',
+        'ua',
+        'ip',
+        'user_id',
+        'sticky',
+        'like',
+      ],
+    });
+
+    const userModel = this.getModel('Users');
+    const user_ids = Array.from(
+      new Set(comments.map(({ user_id }) => user_id).filter((v) => v))
+    );
+
+    let users = [];
+
+    if (user_ids.length) {
+      users = await userModel.select(
+        { objectId: ['IN', user_ids] },
+        {
+          field: ['display_name', 'email', 'url', 'type', 'avatar', 'label'],
+        }
+      );
+    }
+
+    return Promise.all(
+      comments.map((cmt) =>
+        formatCmt(
+          cmt,
+          users,
+          { ...this.config(), deprecated: this.ctx.state.deprecated },
+          userInfo
+        )
+      )
+    );
+  }
+
+  async getCommentCount() {
+    const { url } = this.get();
+    const { userInfo } = this.ctx.state;
+    const where = Array.isArray(url) && url.length ? { url: ['IN', url] } : {};
+
+    if (think.isEmpty(userInfo) || this.config('storage') === 'deta') {
+      where.status = ['NOT IN', ['waiting', 'spam']];
+    } else {
+      where._complex = {
+        _logic: 'or',
+        status: ['NOT IN', ['waiting', 'spam']],
+        user_id: userInfo.objectId,
+      };
+    }
+
+    if (Array.isArray(url) && (url.length > 1 || !this.ctx.state.deprecated)) {
+      const data = await this.modelInstance.select(where, {
+        field: ['url'],
+      });
+
+      return url.map((u) => data.filter(({ url }) => url === u).length);
+    }
+    const data = await this.modelInstance.count(where);
+
+    return data;
   }
 };

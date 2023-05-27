@@ -1,6 +1,6 @@
 {
   "name": "@waline/api",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0-alpha.1",
   "description": "Client API for Waline comment system",
   "keywords": [
     "api",
@@ -33,7 +33,13 @@
     "build": "rollup -c rollup.config.ts --configPlugin esbuild",
     "prepublishOnly": "pnpm clean && pnpm build"
   },
+  "files": [
+    "dist"
+  ],
   "engines": {
-    "node": ">=14"
+    "node": ">=16"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

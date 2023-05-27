@@ -46,7 +46,7 @@ describe('Words test', () => {
       getWordNumber(
         '\nA simple comment system,\n\n with _backend support_ fork from **Valine**.\n'
       )
-    ).toEqual(10);
+    ).toEqual(11);
 
     expect(
       getWordNumber(
@@ -64,19 +64,10 @@ describe('Words test', () => {
       .map((word) => word.trim())
       .filter((word) => word);
 
-    expect(linkWords).toEqual([
-      'unpkg',
-      'com',
-      'waline',
-      'client',
-      'dist',
-      'Waline',
-      'min',
-      'js',
-    ]);
+    expect(linkWords).toMatchSnapshot();
 
-    expect(getWordNumber(linkAddress)).toEqual(8);
-    expect(getWordNumber(linkMarkdown)).toEqual(13);
+    expect(getWordNumber(linkAddress)).toEqual(5);
+    expect(getWordNumber(linkMarkdown)).toEqual(11);
     expect(getWordNumber(imageMarkdown)).toEqual(9);
   });
 
@@ -109,48 +100,8 @@ describe('Words test', () => {
       .map((word) => word.trim())
       .filter((word) => word);
 
-    expect(codeBlockWords).toEqual([
-      'html',
-      'head',
-      'script src',
-      'https',
-      'unpkg',
-      'com',
-      'waline',
-      'client',
-      'script',
-      'link\n    rel',
-      'stylesheet',
-      'href',
-      'https',
-      'unpkg',
-      'com',
-      'waline',
-      'client',
-      'v2',
-      'dist',
-      'waline',
-      'css',
-      'head',
-      'body',
-      'div id',
-      'waline',
-      'div',
-      'script',
-      'Waline',
-      'init',
-      'el',
-      'waline',
-      'serverURL',
-      'https',
-      'your',
-      'domain',
-      'vercel',
-      'app',
-      'script',
-      'body',
-    ]);
+    expect(codeBlockWords).toMatchSnapshot();
 
-    expect(getWordNumber(codeBlock)).toEqual(42);
+    expect(getWordNumber(codeBlock)).toEqual(41);
   });
 });

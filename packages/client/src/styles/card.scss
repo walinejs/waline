@@ -9,7 +9,7 @@
       --avatar-size: var(--waline-m-avatar-size);
     }
 
-    img {
+    .wl-user-avatar {
       width: var(--avatar-size);
       height: var(--avatar-size);
       border-radius: var(--waline-avatar-radius);

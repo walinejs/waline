@@ -101,4 +101,16 @@ module.exports = {
 
     return ua;
   },
+  getLevel(val) {
+    const levels = this.config('levels');
+    const defaultLevel = 0;
+
+    if (!val) {
+      return defaultLevel;
+    }
+
+    const level = think.findLastIndex(levels, (l) => l <= val);
+
+    return level === -1 ? defaultLevel : level;
+  },
 };
