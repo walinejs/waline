@@ -51,7 +51,7 @@ module.exports = Waline({
 ## Create plugin
 ### Create based on Hook
 
-It is also very simple to develop a plug-in, which is basically the same as the previous [Hook](./config.md#%E8%AF%84%E8%AE%BA-hooks) method of use, but with a layer of encapsulation.
+It's easy to build a plugin. A plugin is contained by a collection of [hooks.](./config.md#hooks)
 
 ```js
 module.exports = {
