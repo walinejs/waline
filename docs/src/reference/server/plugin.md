@@ -85,5 +85,5 @@ module.exports = {
 
 ### 插件列表
 
-- @waline-plugins/hello-world
-- @waline-plugins/privacy
+- [@waline-plugins/hello-world](https://github.com/walinejs/plugins/tree/master/packages/hello-world)
+- [@waline-plugins/privacy](https://github.com/walinejs/plugins/tree/master/packages/privacy)

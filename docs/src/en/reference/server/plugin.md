@@ -85,5 +85,7 @@ Of course, you can put the logic of Hook-type plug-ins and middleware-type plug-
 
 ### List of plugins
 
-- @waline-plugins/hello-world
-- @waline-plugins/privacy
+Welcome to submit plugins~
+
+- [@waline-plugins/hello-world](https://github.com/walinejs/plugins/tree/master/packages/hello-world)
+- [@waline-plugins/privacy](https://github.com/walinejs/plugins/tree/master/packages/privacy)
