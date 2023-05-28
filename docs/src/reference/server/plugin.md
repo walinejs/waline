@@ -39,8 +39,8 @@ module.exports = Waline({
         }
       },
       middlewares: [
-        (ctx, next) => {
-          next();
+        async (ctx, next) => {
+          await next();
         }
       ]
     },
@@ -69,13 +69,13 @@ module.exports = {
 
 如果 Hook 没办法满足你的需求，则可以使用更强大的中间件模式来自定义开发。Waline 最底层是使用了 Node.js 框架 [Koa](https://koajs.com)，我们将 Koa 的中间件配置整体暴露出来，这样可以满足高级开发者的各种自定义需求。
 
-如果你不清楚 Koa 中间件是什么，可以先搜索了解一下。使用中间件模式制作插件需要注意的是，回调方法一定要写 `next()` 的执行，否则不会执行后续操作。
+如果你不清楚 Koa 中间件是什么，可以先搜索了解一下。使用中间件模式制作插件需要注意的是，回调方法一定要写 `await next()` 的执行，否则不会执行后续操作。
 
 ```js
 module.exports = {
   middlewares: [
-    (ctx, next) => {
-      next();
+    async (ctx, next) => {
+      await next();
     },
   ]
 }

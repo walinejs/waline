@@ -39,8 +39,8 @@ module.exports = Waline({
          }
        },
        middlewares: [
-         (ctx, next) => {
-           next();
+         async (ctx, next) => {
+           await next();
          }
        ]
      },
@@ -69,13 +69,13 @@ It should be noted that if the user installs multiple Hook plugins, the executio
 
 If Hook can't meet your needs, you can use a more powerful middleware mode to customize development. The bottom layer of Waline uses the Node.js framework [Koa](https://koajs.com), and we expose Koa's middleware configuration as a whole, which can meet various customization needs of advanced developers.
 
-If you don't know what Koa middleware is, you can search for it first. What you need to pay attention to when using the middleware mode to make plug-ins is that the callback method must write the execution of `next()`, otherwise the follow-up operations will not be executed.
+If you don't know what Koa middleware is, you can search for it first. What you need to pay attention to when using the middleware mode to make plug-ins is that the callback method must write the execution of `await next()`, otherwise the follow-up operations will not be executed.
 
 ```js
 module.exports = {
    middlewares: [
-     (ctx, next) => {
-       next();
+     async (ctx, next) => {
+       await next();
      },
    ]
 }
