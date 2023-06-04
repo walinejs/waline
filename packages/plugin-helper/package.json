@@ -31,12 +31,13 @@
   "engines": {
     "node": ">=14"
   },
-  "dependencies": {
+  "devDependencies": {
     "@types/koa": "^2.13.6",
     "@waline/client": "workspace:^2.15.5",
     "koa": "^2.14.2",
     "rollup": "3.23.0",
     "rollup-plugin-ts": "3.2.0",
+    "thinkjs": "^3.2.14",
     "typescript": "5.0.4"
   }
 }
