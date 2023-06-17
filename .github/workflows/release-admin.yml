@@ -16,19 +16,18 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-      with:
-        fetch-depth: 0  
-    - uses: pnpm/action-setup@v2
-    - uses: actions/setup-node@v3
-      with:
-        node-version: 20
-        cache: pnpm
-    - run: pnpm install --frozen-lockfile && pnpm --filter ./packages/admin run build
-    
-    - name: "publish @waline/admin"
-      uses: JS-DevTools/npm-publish@v2
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/admin
-  
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile && pnpm --filter ./packages/admin run build
+
+      - name: 'publish @waline/admin'
+        uses: JS-DevTools/npm-publish@v2
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          package: ./packages/admin

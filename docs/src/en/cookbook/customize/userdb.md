@@ -13,13 +13,13 @@ const Application = require('@waline/vercel');
 class UserModel {}
 
 module.exports = Application({
-   model(tableName) {
-     if (tableName !== 'Users') {
-       return;
-     }
+  model(tableName) {
+    if (tableName !== 'Users') {
+      return;
+    }
 
-     return new UserModel();
-   }
+    return new UserModel();
+  },
 });
 ```
 
@@ -29,30 +29,47 @@ If you are more familiar with TypeScript, you can refer to the type definition b
 
 ```typescript
 type strNum = string | number;
-type UserFields = 'objectId' | 'display_name' | 'email' | 'password' | 'type' | 'label' | 'url' | 'avatar' | 'github' | 'twitter' | 'facebook' | 'google' | 'weibo' | 'qq' | '2fa' | 'createdAt' | 'updatedAt';
+type UserFields =
+  | 'objectId'
+  | 'display_name'
+  | 'email'
+  | 'password'
+  | 'type'
+  | 'label'
+  | 'url'
+  | 'avatar'
+  | 'github'
+  | 'twitter'
+  | 'facebook'
+  | 'google'
+  | 'weibo'
+  | 'qq'
+  | '2fa'
+  | 'createdAt'
+  | 'updatedAt';
 type UserData = Record<UserFields, strNum>;
 type UsersWhere = Record<UserFields, strNum | ['IN', strNum[]]>;
 interface UsersOptions {
-   field: string[];
-   desc?: UserFields;
-   limit?: number;
-   offset?: number;
+  field: string[];
+  desc?: UserFields;
+  limit?: number;
+  offset?: number;
 }
 
 interface UsersModel {
-   select: (where: UsersWhere, options: UsersOptions) => UserData[];
-   add: (user: Partial<UserData>) => UserData;
-   update: (user: Partial<UserData>, where: UsersWhere) => UserData;
-   delete: (where: UsersWhere) => void;
-   count: (where: UsersWhere) => number;
+  select: (where: UsersWhere, options: UsersOptions) => UserData[];
+  add: (user: Partial<UserData>) => UserData;
+  update: (user: Partial<UserData>, where: UsersWhere) => UserData;
+  delete: (where: UsersWhere) => void;
+  count: (where: UsersWhere) => number;
 }
 
 function model(modelName): UsersModel | undefined {
-   if (modelName !== 'Users') {
-     return;
-   }
+  if (modelName !== 'Users') {
+    return;
+  }
 
-   //...
+  //...
 }
 ```
 

@@ -14,7 +14,7 @@
         <li
           v-for="item in sortingMethods"
           :key="item"
-          :class="[item === commentSorting ? 'active' : '']"
+          :class="[item === commentSortingRef ? 'active' : '']"
           @click="onSortByChange(item)"
         >
           {{ i18n[item] }}
@@ -150,7 +150,7 @@ const totalPages = ref(0);
 const config = computed(() => getConfig(props as WalineProps));
 
 // eslint-disable-next-line vue/no-ref-object-destructure
-const commentSorting = ref(config.value.commentSorting);
+const commentSortingRef = ref(config.value.commentSorting);
 
 const data = ref<WalineComment[]>([]);
 const reply = ref<WalineComment | null>(null);
@@ -177,7 +177,7 @@ const getCommentData = (pageNumber: number): void => {
     lang: config.value.lang,
     path,
     pageSize,
-    sortBy: sortKeyMap[commentSorting.value],
+    sortBy: sortKeyMap[commentSortingRef.value],
     page: pageNumber,
     signal: controller.signal,
     token: userInfo.value?.token,
@@ -208,8 +208,8 @@ const refresh = (): void => {
 };
 
 const onSortByChange = (item: WalineCommentSorting): void => {
-  if (commentSorting.value !== item) {
-    commentSorting.value = item;
+  if (commentSortingRef.value !== item) {
+    commentSortingRef.value = item;
     refresh();
   }
 };

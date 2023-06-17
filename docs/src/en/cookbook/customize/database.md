@@ -10,7 +10,7 @@ Waline classifies database operations into several operations such as CURD, and 
 const Application = require('@waline/vercel');
 
 module.exports = Application({
-   model: class CustomModel {}
+  model: class CustomModel {},
 });
 ```
 
@@ -18,30 +18,30 @@ Waline provides the `model` option to customize the database model, and we will 
 
 ```js
 class CustomModel {
-   constructor(tableName) {
-     this. tableName = tableName;
-   }
+  constructor(tableName) {
+    this.tableName = tableName;
+  }
 
-   async select(where, { desc, limit, offset, field } = {}) {
-     //to be implemented
-   }
+  async select(where, { desc, limit, offset, field } = {}) {
+    //to be implemented
+  }
 
-   async count(where = {}, options = {}) {
-     //to be implemented
-   }
+  async count(where = {}, options = {}) {
+    //to be implemented
+  }
 
-   async add(data) {
-     //to be implemented
-   }
+  async add(data) {
+    //to be implemented
+  }
 
-   async update(data, where) {
-     //to be implemented
-   }
+  async update(data, where) {
+    //to be implemented
+  }
 
-   async delete(where) {
-     //to be implemented
-   }
-};
+  async delete(where) {
+    //to be implemented
+  }
+}
 ```
 
 The above is the basic structure that the `CustomModel` class must implement, and it must include the implementation of several basic methods `select`, `add`, `update`, `delete` and `count`. Waline is developed based on the [ThinkJS](https://thinkjs.org/en) framework, and the underlying database operations use the database operation syntax that comes with the framework. Before implementing these methods, you need to have some basic understanding of the syntax of database conditional queries.
@@ -53,6 +53,7 @@ For the complete conditional query syntax, please refer to [ThinkJS Documentatio
 Multiple conditional queries can be passed in through the object, and the default is equal to the condition. When the value is a two-dimensional array, the first bit can be passed to other judgment operations, and the second bit corresponds to the value, such as `{user_id: ['!=', 0]}`. Currently supported are `!=`, `>`, `IN`, `NOT IN`, `LIKE` centralized operations.
 
 Similar to MySQL, in the `LIKE` operation, we define the mode of the fuzzy query through the position of `%`:
+
 - `content%` means search for content starting with `content`
 - `%content` means search for content ending with `content`
 - `%content%` means search for content containing `content`
@@ -63,67 +64,66 @@ The text may not be well understood. Let's take a look at the query examples use
 
 1. General query:
 
-     ```js
-     const model = new CustomModel('Comment');
-     await model. select({
-       url: '/',
-       user_id: ['!=', 0],
-       createdAt: ['>', '2023-04-16 00:00:00']
-     });
-     // SELECT * FROM Comment WHERE url = '/' AND user_id != 0 AND createdAt > "2023-04-16 00:00:00";
-     ```
+   ```js
+   const model = new CustomModel('Comment');
+   await model.select({
+     url: '/',
+     user_id: ['!=', 0],
+     createdAt: ['>', '2023-04-16 00:00:00'],
+   });
+   // SELECT * FROM Comment WHERE url = '/' AND user_id != 0 AND createdAt > "2023-04-16 00:00:00";
+   ```
 
 2. IN / NOT IN query
 
-     ```js
-     const model = new CustomModel('Users');
-     await model. select({ objectId: ['IN', [1,2,3,4]] });
-     // SELECT * FROM Users WHERE objectId IN (1,2,3,4);
-     ```
+   ```js
+   const model = new CustomModel('Users');
+   await model.select({ objectId: ['IN', [1, 2, 3, 4]] });
+   // SELECT * FROM Users WHERE objectId IN (1,2,3,4);
+   ```
 
-     ```js
-     const model = new CustomModel('Comment');
-     await model.select({ status: ['NOT IN', ['waiting', 'spam']] });
-     // SELECT * FROM Comment WHERE status NOT IN ('waiting', 'spam');
-     ```
+   ```js
+   const model = new CustomModel('Comment');
+   await model.select({ status: ['NOT IN', ['waiting', 'spam']] });
+   // SELECT * FROM Comment WHERE status NOT IN ('waiting', 'spam');
+   ```
 
 3. LIKE query
 
-
-     ```js
-     const model = new CustomModel('Comment');
-     await model. select({ content: ['LIKE', '%content%'] });
-     // SELECT * FROM Comment WHERE content LIKE "%content%";
-     ```
+   ```js
+   const model = new CustomModel('Comment');
+   await model.select({ content: ['LIKE', '%content%'] });
+   // SELECT * FROM Comment WHERE content LIKE "%content%";
+   ```
 
 4. Multi-condition query
 
-     ```js
-     const model = new CustomModel('Comment');
-     await model. select({
-       url: '/',
-       user_id: ['!=', 0],
-       createdAt: ['>', '2023-04-16 00:00:00'],
-       _logic: 'OR'
-     });
-     // SELECT * FROM Comment WHERE url = '/' OR user_id != 0 OR createdAt > "2023-04-16 00:00:00";
-     ```
+   ```js
+   const model = new CustomModel('Comment');
+   await model.select({
+     url: '/',
+     user_id: ['!=', 0],
+     createdAt: ['>', '2023-04-16 00:00:00'],
+     _logic: 'OR',
+   });
+   // SELECT * FROM Comment WHERE url = '/' OR user_id != 0 OR createdAt > "2023-04-16 00:00:00";
+   ```
 
 5. Compound query
 
-     ```js
-     const model = new CustomModel('Comment');
-     await model. select({
-       url: '/',
-       _complex: {
-         user_id: 0,
-         status: ['NOT IN', ['waiting', 'spam']]
-         _logic: 'OR'
-       }
-     });
-     // SELECT * FROM Comment WHERE url = '/' AND ( user_id = 0 OR status NOT IN ('waiting', 'spam'));
-     ```
-    
+   ```js
+   const model = new CustomModel('Comment');
+   await model. select({
+     url: '/',
+     _complex: {
+       user_id: 0,
+       status: ['NOT IN', ['waiting', 'spam']]
+       _logic: 'OR'
+     }
+   });
+   // SELECT * FROM Comment WHERE url = '/' AND ( user_id = 0 OR status NOT IN ('waiting', 'spam'));
+   ```
+
 If you are more familiar with TypeScript, there are type definitions for conditional queries [here](https://github.com/walinejs/dittorm/blob/master/src/types/where.ts).
 
 ## Implement query
@@ -137,7 +137,6 @@ The `select()` method has a second argument `{desc, limit, offset, field}`. This
 - `offset`: Specify the returned data from which item to return
 - `field`: Specify the field to return data, all fields are returned by default
 
-
 The `update()` method needs to be compatible with scenarios where the `data` input parameter may be a calculation function, such as adding 1 to the number of page viewers:
 
 ```js
@@ -150,7 +149,6 @@ Return data type `select()` always returns an array, `add()` and `update()` need
 ## refer to
 
 Based on the above logic, in addition to implementing the storage service of professional databases, the official also implemented the GitHub storage service very interestingly. We store the data in GitHub in the form of a CSV file, and obtain the content of the CSV file each time we query, and filter out the final data according to the conditional query statement in JS and return it. The following is the official implementation, hoping to give you some reference.
-
 
 ```js
 //source code: https://github.com/walinejs/waline/blob/main/packages/server/src/service/storage/github.js

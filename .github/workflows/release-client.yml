@@ -17,32 +17,32 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-      with:
-        fetch-depth: 0  
-    - uses: pnpm/action-setup@v2
-    - uses: actions/setup-node@v3
-      with:
-        node-version: 20
-        cache: pnpm
-    - run: pnpm install --frozen-lockfile && pnpm --filter ./packages/client run build
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile && pnpm --filter ./packages/client run build
 
-    - name: Publish NPM
-      uses: JS-DevTools/npm-publish@v2
-      with:
-        token: ${{ secrets.NPM_TOKEN }}
-        package: ./packages/client
-  
-    - name: Build Docs
-      run: |-
-        pnpm docs:build
-        > docs/src/.vuepress/dist/.nojekyll
+      - name: Publish NPM
+        uses: JS-DevTools/npm-publish@v2
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          package: ./packages/client
 
-    - name: Deploy Docs
-      uses: JamesIves/github-pages-deploy-action@v4
-      if: steps.changed-docs.outputs.changed == 'true'
-      with:
-        branch: gh-pages
-        folder: docs/src/.vuepress/dist
-        ssh-key: ${{ secrets.SSH_TOKEN }}
-        repository-name: walinejs/walinejs.github.io
+      - name: Build Docs
+        run: |-
+          pnpm docs:build
+          > docs/src/.vuepress/dist/.nojekyll
+
+      - name: Deploy Docs
+        uses: JamesIves/github-pages-deploy-action@v4
+        if: steps.changed-docs.outputs.changed == 'true'
+        with:
+          branch: gh-pages
+          folder: docs/src/.vuepress/dist
+          ssh-key: ${{ secrets.SSH_TOKEN }}
+          repository-name: walinejs/walinejs.github.io

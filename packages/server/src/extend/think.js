@@ -120,16 +120,16 @@ module.exports = {
     if (!think.isArray(plugins)) {
       return fns;
     }
-  
 
     for (let i = 0; i < plugins.length; i++) {
       const plugin = plugins[i];
-  
+
       if (!plugin || !plugin[type]) {
         continue;
       }
 
       const res = callback(plugin[type]);
+
       if (!res) {
         continue;
       }
@@ -144,15 +144,19 @@ module.exports = {
       if (think.isFunction(middleware)) {
         return middleware;
       }
-  
+
       if (think.isArray(middleware)) {
-       return middleware.filter((m) => think.isFunction(m));
+        return middleware.filter((m) => think.isFunction(m));
       }
     });
-    
+
     return middlewares.flat();
   },
   getPluginHook(hookName) {
-    return think.pluginMap('hooks', (hook) => think.isFunction(hook[hookName]) ? hook[hookName] : undefined).filter(v => v);
-  }
+    return think
+      .pluginMap('hooks', (hook) =>
+        think.isFunction(hook[hookName]) ? hook[hookName] : undefined
+      )
+      .filter((v) => v);
+  },
 };

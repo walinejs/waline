@@ -19,7 +19,7 @@ module.exports = Application({
     }
 
     return new UserModel();
-  }
+  },
 });
 ```
 
@@ -29,7 +29,24 @@ module.exports = Application({
 
 ```typescript
 type strNum = string | number;
-type UserFields = 'objectId' | 'display_name' | 'email' | 'password' | 'type' | 'label' | 'url' | 'avatar' | 'github' | 'twitter' | 'facebook' | 'google' | 'weibo' | 'qq' | '2fa' | 'createdAt' | 'updatedAt';
+type UserFields =
+  | 'objectId'
+  | 'display_name'
+  | 'email'
+  | 'password'
+  | 'type'
+  | 'label'
+  | 'url'
+  | 'avatar'
+  | 'github'
+  | 'twitter'
+  | 'facebook'
+  | 'google'
+  | 'weibo'
+  | 'qq'
+  | '2fa'
+  | 'createdAt'
+  | 'updatedAt';
 type UserData = Record<UserFields, strNum>;
 type UsersWhere = Record<UserFields, strNum | ['IN', strNum[]]>;
 interface UsersOptions {

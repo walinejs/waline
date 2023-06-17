@@ -14,16 +14,12 @@ Waline 初始化配置新增了 `plugins` 属性，支持配置多个插件。
 const Waline = require('@waline/vercel');
 const HelloWorldPlugin = require('@waline-plugins/hello-world');
 
-
 module.exports = Waline({
-  plugins: [
-    HelloWorldPlugin,
-  ],
+  plugins: [HelloWorldPlugin],
 });
 ```
 
 除了直接安装别人的插件之外，我们也可以在这里配置自己的插件逻辑。
-
 
 ```js
 // index.js
@@ -36,19 +32,20 @@ module.exports = Waline({
       hooks: {
         async postSave() {
           // do what ever you want after comment saved
-        }
+        },
       },
       middlewares: [
         async (ctx, next) => {
           await next();
-        }
-      ]
+        },
+      ],
     },
   ],
 });
 ```
 
 ## 制作插件
+
 ### 基于 Hook 制作
 
 开发一款插件也非常的简单，基本和之前 [Hook](./config.md#%E8%AF%84%E8%AE%BA-hooks) 的使用方法一致，只是做了一层封装。
@@ -58,9 +55,9 @@ module.exports = {
   hooks: {
     async postSave() {
       // do what ever you want after comment saved
-    }
-  }
-}
+    },
+  },
+};
 ```
 
 需要注意，如果用户安装了多个 Hook 类插件，同一个钩子函数的执行是安装插件加载的先后顺序来执行的。如果前置有钩子方法提前返回的话，就不会执行后续的操作了。
@@ -77,8 +74,8 @@ module.exports = {
     async (ctx, next) => {
       await next();
     },
-  ]
-}
+  ],
+};
 ```
 
 当然你完全可以讲 Hook 类插件和中间件类插件逻辑放在一块，这些 Waline 都是支持的。
@@ -89,4 +86,3 @@ module.exports = {
 
 - [@waline-plugins/hello-world](https://github.com/walinejs/plugins/tree/master/packages/hello-world)
 - [@waline-plugins/privacy](https://github.com/walinejs/plugins/tree/master/packages/privacy)
-
