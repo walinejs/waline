@@ -86,3 +86,4 @@ Welcome to submit plugins~
 
 - [@waline-plugins/hello-world](https://github.com/walinejs/plugins/tree/master/packages/hello-world)
 - [@waline-plugins/privacy](https://github.com/walinejs/plugins/tree/master/packages/privacy)
+- [@waline-plugins/tencent-tms](https://github.com/walinejs/plugins/tree/master/packages/tencent-tms)
