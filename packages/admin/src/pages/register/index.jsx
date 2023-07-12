@@ -144,6 +144,7 @@ export default function () {
                 placeholder={t('password again')}
               />
             </p>
+            <p className="captcha-container" />
             <p className="submit">
               <button
                 type="submit"
