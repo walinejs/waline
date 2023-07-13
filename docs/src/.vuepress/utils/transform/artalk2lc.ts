@@ -34,8 +34,8 @@ export const artalk2lc = (input) => {
 
   return {
     results: input.map(
-      ({ content, date, email, id, ip, link, nick, page_key, rid, ua }) => {
-        const time = new Date(date.replace(/-/g, '/')).toISOString();
+      ({ content, date, created_at, email, id, ip, link, nick, page_key, rid, ua, is_pinned, is_pending, vote_down, vote_up }) => {
+        const time = date||created_at ? new Date((date||created_at).replace(/-/g, '/')).toISOString() : '';
         const url = parseKey(page_key);
         return {
           objectId: id,
@@ -54,7 +54,9 @@ export const artalk2lc = (input) => {
           url,
           pid: rid || null,
           rid: rootIdMap[id] || null,
-          status: 'approved',
+          status: is_pending !== 'false' ? 'waiting' : 'approved',
+          sticky: is_pinned === 'true',
+          like: vote_up && vote_down ? vote_up - vote_down : 0,
         };
       }
     ),
