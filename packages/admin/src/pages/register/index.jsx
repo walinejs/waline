@@ -48,13 +48,14 @@ export default function () {
 
     try {
       setSubmitting(true);
-      const recaptchaV3 = await execute('login');
+      const token = await execute('login');
       const resp = await dispatch.user.register({
         display_name: nick,
         email,
         url: link,
         password,
-        recaptchaV3,
+        recaptchaV3: window.recaptchaV3Key ? token : undefined,
+        turnstile: window.turnstileKey ? token : undefined,
       });
 
       if (resp && resp.verify) {
