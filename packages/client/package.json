@@ -31,7 +31,8 @@
       "default": "./dist/api.mjs"
     },
     "./component": {
-      "default": "./dist/component.mjs"
+      "default": "./dist/component.mjs",
+      "types": "./dist/component.d.ts"
     },
     "./full": {
       "types": "./dist/waline.d.ts",
@@ -59,7 +60,8 @@
       "default": "./dist/api.mjs"
     },
     "./dist/component": {
-      "default": "./dist/component.mjs"
+      "default": "./dist/component.mjs",
+      "types": "./dist/component.d.ts"
     },
     "./dist/comment": {
       "types": "./dist/comment.d.ts",
