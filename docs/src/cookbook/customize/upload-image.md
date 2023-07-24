@@ -35,22 +35,32 @@ icon: pic
         serverURL: 'https://waline.vercel.app',
         path: '/',
         lang: 'en-US',
-        imageUploader: (file) => {
-          let formData = new FormData();
-          let headers = new Headers();
+        imageUploader: function (file) {    
+    let formData = new FormData();
 
-          formData.append('file', file);
-          headers.append('Authorization', '!{API TOKEN}');
-          headers.append('Accept', 'application/json');
+    let headers = new Headers();
 
-          return fetch('!{API URL}', {
-            method: 'POST',
-            headers: headers,
-            body: formData,
-          })
-            .then((resp) => resp.json())
-            .then((resp) => resp.data.links.url);
-        },
+    formData.append('file', file);
+
+    headers.append('Authorization', '!{API TOKEN}');
+
+    headers.append('Accept', 'application/json');
+
+    return fetch('!{API URL}', {
+
+    method: 'POST',
+
+    headers: headers,
+
+    body: formData,
+
+    })
+
+    .then((resp) => resp.json())
+
+    .then((resp) => resp.data.links.url);
+
+    },
       });
     </script>
   </body>
