@@ -293,9 +293,7 @@ module.exports = class extends BaseRest {
       data.like =
         (Number(oldData.like) || 0) +
         (data.like ? Math.ceil(Math.random() * likeIncMax) : -1);
-      if (data.like < 0) {
-        return this.fail(this.locale('Like less than zero'));
-      }
+      data.like = Math.max(data.like, 0);
     }
 
     const preUpdateResp = await this.hook('preUpdate', {
