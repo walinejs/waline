@@ -90,7 +90,7 @@ Recaptcha Key 和 Secret 可在 <https://www.google.com/recaptcha> 申请。
 | `MARKDOWN_EMOJI`     | `true`    | 是否启用 Emoji 缩写支持                           |
 | `MARKDOWN_SUB`       | `true`    | 是否启用下角标支持                                |
 | `MARKDOWN_SUP`       | `true`    | 是否启用上角标支持                                |
-| `MARKDOWN_TEX`       | `mathjax` | 解析 Tex 的服务，支持 `mathjax`、`katex`、`false` |
+| `MARKDOWN_TEX`       | `mathjax` | 解析 TeX 的服务，支持 `mathjax`、`katex`、`false` |
 | `MARKDOWN_MATHJAX`   | `{}`      | MathJax 选项                                      |
 | `MARKDOWN_KATEX`     | `{}`      | Katex 选项                                        |
 

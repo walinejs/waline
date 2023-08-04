@@ -1,10 +1,10 @@
 import { marked } from 'marked';
 
-import { markedTexExtensions } from './markedMathExtension.js';
+import { markedTeXExtensions } from './markedMathExtension.js';
 import {
   type WalineEmojiMaps,
   type WalineHighlighter,
-  type WalineTexRenderer,
+  type WalineTeXRenderer,
 } from '../typings/index.js';
 
 export const parseEmoji = (text = '', emojiMap: WalineEmojiMaps = {}): string =>
@@ -17,7 +17,7 @@ export const parseEmoji = (text = '', emojiMap: WalineEmojiMaps = {}): string =>
 export interface ParseMarkdownOptions {
   emojiMap: WalineEmojiMaps;
   highlighter: WalineHighlighter | false;
-  texRenderer: WalineTexRenderer | false;
+  texRenderer: WalineTeXRenderer | false;
 }
 
 export const parseMarkdown = (
@@ -32,7 +32,7 @@ export const parseMarkdown = (
   });
 
   if (texRenderer) {
-    const extensions = markedTexExtensions(texRenderer);
+    const extensions = markedTeXExtensions(texRenderer);
 
     marked.use({ extensions });
   }

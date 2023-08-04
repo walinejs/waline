@@ -1,10 +1,10 @@
 import { marked } from 'marked';
 import { describe, expect, it } from 'vitest';
 
-import { defaultTexRenderer } from '../src/config/index.js';
-import { markedTexExtensions } from '../src/utils/markedMathExtension.js';
+import { defaultTeXRenderer } from '../src/config/index.js';
+import { markedTeXExtensions } from '../src/utils/markedMathExtension.js';
 
-const extensions = markedTexExtensions(defaultTexRenderer);
+const extensions = markedTeXExtensions(defaultTeXRenderer);
 
 marked.setOptions({
   highlight: undefined,
@@ -17,55 +17,55 @@ marked.use({ extensions });
 describe('Should parse inline tex', () => {
   it('Single word', () => {
     expect(marked.parse('$a$')).toEqual(
-      '<p><span class="wl-tex">Tex is not available in preview</span></p>\n'
+      '<p><span class="wl-tex">TeX is not available in preview</span></p>\n'
     );
 
     expect(marked.parse('$a$ is at beginning')).toEqual(
-      '<p><span class="wl-tex">Tex is not available in preview</span> is at beginning</p>\n'
+      '<p><span class="wl-tex">TeX is not available in preview</span> is at beginning</p>\n'
     );
 
     expect(marked.parse('Here ends a single tex $a$')).toEqual(
-      '<p>Here ends a single tex <span class="wl-tex">Tex is not available in preview</span></p>\n'
+      '<p>Here ends a single tex <span class="wl-tex">TeX is not available in preview</span></p>\n'
     );
 
     expect(marked.parse('Here is a single tex $a$ in the sentence')).toEqual(
-      '<p>Here is a single tex <span class="wl-tex">Tex is not available in preview</span> in the sentence</p>\n'
+      '<p>Here is a single tex <span class="wl-tex">TeX is not available in preview</span> in the sentence</p>\n'
     );
 
     expect(marked.parse('$-$')).toEqual(
-      '<p><span class="wl-tex">Tex is not available in preview</span></p>\n'
+      '<p><span class="wl-tex">TeX is not available in preview</span></p>\n'
     );
   });
 
   it('Mutiple words', () => {
     expect(marked.parse('$a = 1$')).toEqual(
-      '<p><span class="wl-tex">Tex is not available in preview</span></p>\n'
+      '<p><span class="wl-tex">TeX is not available in preview</span></p>\n'
     );
 
     expect(marked.parse('$a = 1$ is at beginning')).toEqual(
-      '<p><span class="wl-tex">Tex is not available in preview</span> is at beginning</p>\n'
+      '<p><span class="wl-tex">TeX is not available in preview</span> is at beginning</p>\n'
     );
 
     expect(marked.parse('Here ends a single tex $a = 1$')).toEqual(
-      '<p>Here ends a single tex <span class="wl-tex">Tex is not available in preview</span></p>\n'
+      '<p>Here ends a single tex <span class="wl-tex">TeX is not available in preview</span></p>\n'
     );
 
     expect(
       marked.parse('Here is a single tex $a = 1$ in the sentence')
     ).toEqual(
-      '<p>Here is a single tex <span class="wl-tex">Tex is not available in preview</span> in the sentence</p>\n'
+      '<p>Here is a single tex <span class="wl-tex">TeX is not available in preview</span> in the sentence</p>\n'
     );
 
     expect(marked.parse('$-\\sqrt{x}$')).toEqual(
-      '<p><span class="wl-tex">Tex is not available in preview</span></p>\n'
+      '<p><span class="wl-tex">TeX is not available in preview</span></p>\n'
     );
 
     expect(marked.parse('$-\\sqrt{x}$ is at beginning')).toEqual(
-      '<p><span class="wl-tex">Tex is not available in preview</span> is at beginning</p>\n'
+      '<p><span class="wl-tex">TeX is not available in preview</span> is at beginning</p>\n'
     );
 
     expect(marked.parse('Here ends a single tex $-\\sqrt{x}$')).toEqual(
-      '<p>Here ends a single tex <span class="wl-tex">Tex is not available in preview</span></p>\n'
+      '<p>Here ends a single tex <span class="wl-tex">TeX is not available in preview</span></p>\n'
     );
   });
 
@@ -77,13 +77,13 @@ describe('Should parse inline tex', () => {
 describe('Should parse block tex', () => {
   it('Single line', () => {
     expect(marked.parse('$$a$$')).toEqual(
-      '<p class="wl-tex">Tex is not available in preview</p>'
+      '<p class="wl-tex">TeX is not available in preview</p>'
     );
   });
 
   it('Mutiple lines', () => {
     expect(marked.parse('$$\na\n$$')).toEqual(
-      '<p class="wl-tex">Tex is not available in preview</p>'
+      '<p class="wl-tex">TeX is not available in preview</p>'
     );
   });
 

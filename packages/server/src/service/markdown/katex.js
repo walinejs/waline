@@ -1,6 +1,6 @@
 const katex = require('katex');
 
-const { inlineTex, blockTex } = require('./mathCommon');
+const { inlineTeX, blockTeX } = require('./mathCommon');
 const { escapeHtml } = require('./utils');
 
 // set KaTeX as the renderer for markdown-it-simplemath
@@ -31,17 +31,17 @@ const katexBlock = (tex, options) => {
 };
 
 const katexPlugin = (md, options = { throwOnError: false }) => {
-  md.inline.ruler.after('escape', 'inlineTex', inlineTex);
+  md.inline.ruler.after('escape', 'inlineTeX', inlineTeX);
 
   // It’s a workaround here because types issue
-  md.block.ruler.after('blockquote', 'blockTex', blockTex, {
+  md.block.ruler.after('blockquote', 'blockTeX', blockTeX, {
     alt: ['paragraph', 'reference', 'blockquote', 'list'],
   });
 
-  md.renderer.rules.inlineTex = (tokens, idx) =>
+  md.renderer.rules.inlineTeX = (tokens, idx) =>
     katexInline(tokens[idx].content, options);
 
-  md.renderer.rules.blockTex = (tokens, idx) =>
+  md.renderer.rules.blockTeX = (tokens, idx) =>
     `${katexBlock(tokens[idx].content, options)}\n`;
 };
 
