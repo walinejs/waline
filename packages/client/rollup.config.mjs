@@ -164,7 +164,15 @@ export default [
   },
 
   // components declaration files
-  // TODO: Generate declaration files
+  {
+    input: './src/entries/components.ts',
+    output: [
+      { file: './dist/component.d.cts', format: 'esm' },
+      { file: './dist/component.d.mts', format: 'esm' },
+      { file: './dist/component.d.ts', format: 'esm'}
+    ],
+    plugins: [vue(), ts(), dts({ compilerOptions: { preserveSymlinks: false } })],
+  },
 
   // api
   {
