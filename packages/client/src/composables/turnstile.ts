@@ -8,6 +8,7 @@ interface TurnstileOptions {
 }
 interface TurnstileInstance {
   ready: (fn: () => void) => void;
+  excute: (className: string, options?: TurnstileOptions) => void;
   render: (className: string, options?: TurnstileOptions) => void;
 }
 
@@ -22,31 +23,28 @@ interface Turnstile {
 }
 
 export const useTurnstile = (key: string): Turnstile => {
-  const execute = (action: string): Promise<string> =>
-    new Promise((resolve) => {
-      useScriptTag(
-        'https://challenges.cloudflare.com/turnstile/v0/api.js',
-        () => {
-          const turnstile = window?.turnstile;
+  const execute = async (action: string): Promise<string> => {
+    const { load } = useScriptTag(
+      'https://challenges.cloudflare.com/turnstile/v0/api.js',
+      undefined,
+      { async: false }
+    );
 
-          const options: TurnstileOptions = {
-            sitekey: key,
-            action,
-            size: 'compact',
-            callback(token: string): void {
-              resolve(token);
-            },
-          };
+    await load();
 
-          turnstile?.ready(() =>
-            turnstile?.render('.wl-captcha-container', options)
-          );
-        },
-        {
-          async: false,
-        }
-      );
+    const turnstile = window?.turnstile;
+
+    return new Promise((resolve) => {
+      turnstile?.ready(() => {
+        turnstile?.render('.wl-captcha-container', {
+          sitekey: key,
+          action,
+          size: 'compact',
+          callback: resolve,
+        });
+      });
     });
+  };
 
   return { execute };
 };
