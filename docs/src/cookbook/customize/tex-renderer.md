@@ -1,9 +1,9 @@
 ---
-title: 添加 TEX 渲染器
+title: 添加 TeX 渲染器
 icon: tex
 ---
 
-本教程将指导你设置自己的 Tex 渲染器。
+本教程将指导你设置自己的 TeX 渲染器。
 
 <!-- more -->
 

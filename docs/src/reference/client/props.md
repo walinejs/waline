@@ -206,10 +206,10 @@ Waline 多语言配置。
 
 ## texRenderer
 
-- 类型: `WalineTexRenderer | false`
+- 类型: `WalineTeXRenderer | false`
 
   ```ts
-  type WalineTexRenderer = (blockMode: boolean, tex: string) => string;
+  type WalineTeXRenderer = (blockMode: boolean, tex: string) => string;
   ```
 
 - 必填: 否

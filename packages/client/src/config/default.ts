@@ -39,10 +39,10 @@ export const defaultUploadImage = (file: File): Promise<string> =>
     reader.onerror = reject;
   });
 
-export const defaultTexRenderer = (blockMode: boolean): string =>
+export const defaultTeXRenderer = (blockMode: boolean): string =>
   blockMode === true
-    ? '<p class="wl-tex">Tex is not available in preview</p>'
-    : '<span class="wl-tex">Tex is not available in preview</span>';
+    ? '<p class="wl-tex">TeX is not available in preview</p>'
+    : '<span class="wl-tex">TeX is not available in preview</span>';
 
 export const getDefaultSearchOptions = (lang: string): WalineSearchOptions => {
   interface GifResult {

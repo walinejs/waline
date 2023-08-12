@@ -1,7 +1,7 @@
 import {
   type WalineHighlighter,
   type WalineImageUploader,
-  type WalineTexRenderer,
+  type WalineTeXRenderer,
 } from '../typings/index.js';
 
 export interface DeprecatedWalineOptions {
@@ -80,11 +80,11 @@ export interface DeprecatedWalineOptions {
   /**
    * @deprecated Use `texRenderer` instead, dropped in V2
    *
-   * 自定义 Tex 处理方法，用于预览。
+   * 自定义 TeX 处理方法，用于预览。
    *
    * Custom math formula parse callback for preview.
    */
-  previewMath?: WalineTexRenderer | false;
+  previewMath?: WalineTeXRenderer | false;
 
   /**
    * @deprecated use `copyright` instead, dropped in V2

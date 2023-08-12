@@ -20,7 +20,7 @@ const isValidDelim = (state, pos) => {
   };
 };
 
-const inlineTex = (state, silent) => {
+const inlineTeX = (state, silent) => {
   let match;
   let pos;
   let res;
@@ -83,7 +83,7 @@ const inlineTex = (state, silent) => {
   }
 
   if (!silent) {
-    token = state.push('inlineTex', 'math', 0);
+    token = state.push('inlineTeX', 'math', 0);
     token.markup = '$';
     token.content = state.src.slice(start, match);
   }
@@ -93,7 +93,7 @@ const inlineTex = (state, silent) => {
   return true;
 };
 
-const blockTex = (state, start, end, silent) => {
+const blockTeX = (state, start, end, silent) => {
   let firstLine;
   let lastLine;
   let next;
@@ -133,7 +133,7 @@ const blockTex = (state, start, end, silent) => {
 
   state.line = next + 1;
 
-  const token = state.push('blockTex', 'math', 0);
+  const token = state.push('blockTeX', 'math', 0);
 
   token.block = true;
   token.content =
@@ -151,6 +151,6 @@ const blockTex = (state, start, end, silent) => {
 };
 
 module.exports = {
-  inlineTex,
-  blockTex,
+  inlineTeX,
+  blockTeX,
 };

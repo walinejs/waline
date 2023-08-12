@@ -6,7 +6,7 @@ import {
   DEFAULT_REACTION,
   defaultUploadImage,
   defaultHighlighter,
-  defaultTexRenderer,
+  defaultTeXRenderer,
   getDefaultSearchOptions,
   getMeta,
 } from '../config/index.js';
@@ -97,7 +97,7 @@ export const getConfig = ({
   requiredMeta: getMeta(requiredMeta),
   imageUploader: fallback(imageUploader, defaultUploadImage),
   highlighter: fallback(highlighter, defaultHighlighter),
-  texRenderer: fallback(texRenderer, defaultTexRenderer),
+  texRenderer: fallback(texRenderer, defaultTeXRenderer),
   lang: Object.keys(DEFAULT_LOCALES).includes(lang) ? lang : 'en-US',
   dark,
   emoji: typeof emoji === 'boolean' ? (emoji ? DEFAULT_EMOJI : []) : emoji,

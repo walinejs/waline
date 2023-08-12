@@ -1,5 +1,5 @@
 ---
-title: Customize TEX renderer
+title: Customize TeX renderer
 ---
 
 This cookbook guides you on how to add your own $\TeX$ renderer.
