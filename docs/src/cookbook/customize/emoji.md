@@ -87,13 +87,13 @@ https://example.com/my-emoji/
 
 为链接绑定标签是十分必要的，这可以防止因修改你的预设导致历史评论引用的图片链接失效。
 
-官方的表情包预设，就是通过创建 [walinejs/emojis](https://github.com/walinejs/emojis) 仓库，并使用 CDN 链接来实现的。目前我们正在使用 `v1.1.0` 版本。
+官方的表情包预设，就是通过创建 [walinejs/emojis](https://github.com/walinejs/emojis) 仓库，并使用 CDN 链接来实现的。目前我们正在使用 `v1.2.0` 版本。
 
 :::
 
 ::: warning
 
-由于 cdn.jsdelivr.net 在国内受到污染，你可以将 `cdn.jsdelivr.net` 换成 `gcore.jsdelivr.net`
+ cdn.jsdelivr.net 可能在国内受到污染，你可以将 `cdn.jsdelivr.net` 换成 `gcore.jsdelivr.net`，或代理`cdn.jsdelivr.net`使用，
 
 :::
 
