@@ -1,0 +1,44 @@
+{
+  "name": "@waline/plugin-helper",
+  "version": "1.0.0",
+  "description": "Waline plugin helper",
+  "scripts": {
+    "clean": "rimraf ./dist",
+    "prepublishOnly": "pnpm clean && pnpm build",
+    "build": "rollup -c"
+  },
+  "keywords": [
+    "waline",
+    "plugin",
+    "builder",
+    "helper"
+  ],
+  "repository": {
+    "url": "https://github.com/walinejs/waline",
+    "directory": "packages/plugin-helper"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "lizheming",
+    "email": "i@imnerd.org",
+    "url": "https://imnerd.org"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/type.d.ts",
+  "publishConfig": {
+    "provenance": true
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "devDependencies": {
+    "@types/koa": "^2.13.6",
+    "@waline/client": "workspace:^2.15.5",
+    "dittorm": "^1.0.0",
+    "koa": "^2.14.2",
+    "rollup": "3.23.0",
+    "rollup-plugin-ts": "3.2.0",
+    "thinkjs": "^3.2.14",
+    "typescript": "5.0.4"
+  }
+}

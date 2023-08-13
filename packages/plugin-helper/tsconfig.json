@@ -1,0 +1,13 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "jsx": "preserve",
+    "module": "ESNext",
+    "moduleResolution": "nodenext",
+    "rootDir": "./src"
+  },
+  "include": ["./src/**/*.ts"]
+}
