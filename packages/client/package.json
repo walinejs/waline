@@ -124,7 +124,7 @@
     ]
   },
   "dependencies": {
-    "@vueuse/core": "^10.1.2",
+    "@vueuse/core": "^10.4.1",
     "autosize": "^6.0.1",
     "marked": "^4.3.0",
     "vue": "^3.3.4"

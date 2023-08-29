@@ -5,7 +5,7 @@ import replace from '@rollup/plugin-replace';
 import terser from '@rollup/plugin-terser';
 import vue from '@vitejs/plugin-vue';
 import dts from 'rollup-plugin-dts';
-import ts from 'rollup-plugin-ts';
+import typescript from 'rollup-plugin-typescript2';
 
 import pkg from './package.json' assert { type: 'json' };
 
@@ -16,7 +16,7 @@ const commonOptions = {
       isProduction: true,
       template: { compilerOptions: { comments: false } },
     }),
-    ts(),
+    typescript(),
     replace({
       'process.env.NODE_ENV': JSON.stringify('production'),
       'process.env["NODE_ENV"]': JSON.stringify('production'),
@@ -59,7 +59,7 @@ export default [
         isProduction: true,
         template: { compilerOptions: { comments: false } },
       }),
-      ts(),
+      typescript(),
       replace({
         'process.env.NODE_ENV': JSON.stringify('production'),
         'process.env["NODE_ENV"]': JSON.stringify('production'),
