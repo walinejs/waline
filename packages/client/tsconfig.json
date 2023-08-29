@@ -5,8 +5,8 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "jsx": "preserve",
-    "module": "ESNext",
-    "moduleResolution": "nodenext",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "rootDir": "./src"
   },
   "include": ["./src/**/*.ts", "./src/**/*.vue"]

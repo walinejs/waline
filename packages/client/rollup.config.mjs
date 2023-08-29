@@ -1,12 +1,13 @@
 import { babel, getBabelOutputPlugin } from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
-import ts from 'rollup-plugin-ts';
-import dts from 'rollup-plugin-dts';
-import terser from '@rollup/plugin-terser';
 import replace from '@rollup/plugin-replace';
-import pkg from './package.json' assert { type: 'json' };
+import terser from '@rollup/plugin-terser';
 import vue from '@vitejs/plugin-vue';
+import dts from 'rollup-plugin-dts';
+import ts from 'rollup-plugin-ts';
+
+import pkg from './package.json' assert { type: 'json' };
 
 const version = pkg.version;
 const commonOptions = {
@@ -169,9 +170,13 @@ export default [
     output: [
       { file: './dist/component.d.cts', format: 'esm' },
       { file: './dist/component.d.mts', format: 'esm' },
-      { file: './dist/component.d.ts', format: 'esm'}
+      { file: './dist/component.d.ts', format: 'esm' },
     ],
-    plugins: [vue(), ts(), dts({ compilerOptions: { preserveSymlinks: false } })],
+    plugins: [
+      vue(),
+      ts(),
+      dts({ compilerOptions: { preserveSymlinks: false } }),
+    ],
   },
 
   // api
