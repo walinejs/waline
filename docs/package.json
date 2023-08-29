@@ -8,16 +8,16 @@
     "dev": "vuepress dev src"
   },
   "devDependencies": {
-    "@fancyapps/ui": "5.0.19",
-    "@vuepress/client": "2.0.0-beta.62",
-    "@vuepress/plugin-docsearch": "2.0.0-beta.62",
-    "@vuepress/utils": "2.0.0-beta.62",
-    "marked": "5.0.3",
+    "@fancyapps/ui": "5.0.22",
+    "@vuepress/client": "2.0.0-beta.66",
+    "@vuepress/plugin-docsearch": "2.0.0-beta.66",
+    "@vuepress/utils": "2.0.0-beta.66",
+    "marked": "4.3.0",
     "vue": "3.3.4",
-    "vuepress": "2.0.0-beta.62",
-    "vuepress-plugin-redirect": "2.0.0-beta.215",
-    "vuepress-plugin-remove-pwa": "2.0.0-beta.215",
-    "vuepress-shared": "2.0.0-beta.215",
-    "vuepress-theme-hope": "2.0.0-beta.215"
+    "vuepress": "2.0.0-beta.66",
+    "vuepress-plugin-redirect": "2.0.0-beta.235",
+    "vuepress-plugin-remove-pwa": "2.0.0-beta.235",
+    "vuepress-shared": "2.0.0-beta.235",
+    "vuepress-theme-hope": "2.0.0-beta.235"
   }
 }
