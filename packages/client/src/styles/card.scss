@@ -5,7 +5,7 @@
     position: relative;
     margin-inline-end: 0.75em;
 
-    @media (width <= 720px) {
+    @media (max-width: 720px) {
       --avatar-size: var(--waline-m-avatar-size);
     }
 

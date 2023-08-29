@@ -49,7 +49,7 @@
   border: var(--waline-border);
   border-radius: var(--waline-avatar-radius);
 
-  @media (width <= 720px) {
+  @media (max-width: 720px) {
     width: var(--waline-m-avatar-size);
     height: var(--waline-m-avatar-size);
   }
@@ -92,7 +92,7 @@
   border-top-left-radius: 0.75em;
   border-top-right-radius: 0.75em;
 
-  @media (width <= 580px) {
+  @media (max-width: 580px) {
     display: block;
   }
 
@@ -125,7 +125,7 @@
   flex: 1;
 
   &:not(:last-child) {
-    @media (width <= 580px) {
+    @media (max-width: 580px) {
       border-bottom: 2px dashed var(--waline-border-color);
     }
   }
@@ -137,7 +137,7 @@
   .wl-header-2 & {
     width: 50%;
 
-    @media (width <= 580px) {
+    @media (max-width: 580px) {
       flex: 0;
       width: 100%;
     }
@@ -146,7 +146,7 @@
   .wl-header-3 & {
     width: 33.33%;
 
-    @media (width <= 580px) {
+    @media (max-width: 580px) {
       width: 100%;
     }
   }
