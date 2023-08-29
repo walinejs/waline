@@ -71,9 +71,9 @@ Example:
   UserList({ serverURL: 'http://waline.vercel.app', count: 10 }).then(
     ({ users }) => {
       document.getElementById('waline-users').innerHTML = users.map(
-        (user) => `<a href="${user.link}">${user.nick}</a>`
+        (user) => `<a href="${user.link}">${user.nick}</a>`,
       );
-    }
+    },
   );
 </script>
 ```

@@ -14,7 +14,7 @@ icon: tex
 有关 KaTeX 选项，请参阅 [KaTeX API](https://katex.org/docs/api.html#server-side-rendering-or-rendering-to-a-string)。
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <meta charset="UTF-8" />
@@ -56,7 +56,7 @@ icon: tex
 有关 MathJax 选项，请参阅 [MathJax API](http://docs.mathjax.org/en/latest/web/typeset.html#converting-a-math-string-to-other-formats)。
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <meta charset="UTF-8" />
@@ -82,7 +82,7 @@ icon: tex
           window.MathJax.startup.adaptor.outerHTML(
             window.MathJax.tex2svg(tex, {
               display: blockMode,
-            })
+            }),
           ),
       });
     </script>

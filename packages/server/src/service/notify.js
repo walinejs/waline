@@ -152,7 +152,7 @@ module.exports = class extends think.Service {
         headers: {
           'content-type': 'application/json',
         },
-      }
+      },
     ).then((resp) => resp.json());
 
     return fetch(
@@ -179,7 +179,7 @@ module.exports = class extends think.Service {
             ],
           },
         }),
-      }
+      },
     ).then((resp) => resp.json());
   }
 
@@ -295,7 +295,7 @@ module.exports = class extends think.Service {
         method: 'POST',
         header: form.getHeaders(),
         body: form,
-      }
+      },
     ).then((resp) => resp.json());
 
     if (!resp.ok) {
@@ -374,7 +374,7 @@ module.exports = class extends think.Service {
     【评论者邮箱】：{{self.mail}} 
     【内容】：{{self.comment}} 
     【地址】：{{site.postUrl}}`,
-      data
+      data,
     );
 
     const form = new FormData();
@@ -410,7 +410,7 @@ module.exports = class extends think.Service {
     content = nunjucks.renderString(
       think.config('LarkTemplate') ||
         `【网站名称】：{{site.name|safe}} \n【评论者昵称】：{{self.nick}}\n【评论者邮箱】：{{self.mail}}\n【内容】：{{self.comment}}【地址】：{{site.postUrl}}`,
-      data
+      data,
     );
 
     const post = {
@@ -489,7 +489,7 @@ module.exports = class extends think.Service {
       const qywxAmWechat = await this.qywxAmWechat(
         { title, content },
         comment,
-        parent
+        parent,
       );
       const qq = await this.qq(comment, parent);
       const telegram = await this.telegram(comment, parent);
@@ -499,7 +499,7 @@ module.exports = class extends think.Service {
 
       if (
         [wechat, qq, telegram, qywxAmWechat, pushplus, discord, lark].every(
-          think.isEmpty
+          think.isEmpty,
         )
       ) {
         mailList.push({ to: AUTHOR, title, content });
@@ -507,7 +507,7 @@ module.exports = class extends think.Service {
     }
 
     const disallowList = ['github', 'twitter', 'facebook', 'qq', 'weibo'].map(
-      (social) => 'mail.' + social
+      (social) => 'mail.' + social,
     );
     const fakeMail = new RegExp(`@(${disallowList.join('|')})$`, 'i');
 

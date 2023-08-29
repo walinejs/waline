@@ -35,7 +35,7 @@ async function run() {
   await Promise.all([store.dispatch({ type: 'user/loadUserInfo' })]).catch(
     (e) => {
       console.error(e);
-    }
+    },
   );
 
   const container = document.createElement('div');
@@ -48,13 +48,13 @@ async function run() {
   root.render(
     <React.StrictMode>
       <App />
-    </React.StrictMode>
+    </React.StrictMode>,
   );
 }
 
 console.log(
   '%c @waline/admin %c v' + VERSION + ' ',
   'color: white; background: #0078E7; padding:5px 0;',
-  'padding:4px;border:1px solid #0078E7;'
+  'padding:4px;border:1px solid #0078E7;',
 );
 run();

@@ -274,7 +274,7 @@ console.log(foo(5));
 ::: details 例子
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <script>
@@ -302,7 +302,7 @@ console.log(foo(5));
 Prism.fileHighlight = function () {
   if (!logged) {
     console.warn(
-      'Prism.fileHighlight is deprecated. Use `Prism.plugins.fileHighlight.highlight` instead.'
+      'Prism.fileHighlight is deprecated. Use `Prism.plugins.fileHighlight.highlight` instead.',
     );
     logged = true;
   }
@@ -327,7 +327,10 @@ section h1,
 #features li strong,
 header h2,
 footer p {
-  font: 100% Rockwell, Arvo, serif;
+  font:
+    100% Rockwell,
+    Arvo,
+    serif;
 }
 ```
 

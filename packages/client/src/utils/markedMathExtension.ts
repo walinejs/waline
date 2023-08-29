@@ -7,7 +7,7 @@ const inlineMathReg = /^\$(.*?)\$/;
 const blockMathReg = /^(?:\s{0,3})\$\$((?:[^\n]|\n[^\n])+?)\n{0,1}\$\$/;
 
 export const markedTeXExtensions = (
-  texRenderer: WalineTeXRenderer
+  texRenderer: WalineTeXRenderer,
 ): marked.TokenizerExtension[] => {
   const blockMathExtension: marked.TokenizerExtension = {
     name: 'blockMath',

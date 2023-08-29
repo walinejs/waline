@@ -93,7 +93,7 @@ https://example.com/my-emoji/
 
 ::: warning
 
- cdn.jsdelivr.net 可能在国内受到污染，你可以将 `cdn.jsdelivr.net` 换成 `gcore.jsdelivr.net`，或代理`cdn.jsdelivr.net`使用，
+cdn.jsdelivr.net 可能在国内受到污染，你可以将 `cdn.jsdelivr.net` 换成 `gcore.jsdelivr.net`，或代理`cdn.jsdelivr.net`使用，
 
 :::
 

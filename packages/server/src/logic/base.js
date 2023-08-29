@@ -28,13 +28,13 @@ module.exports = class extends think.Logic {
         'api.twitter.com',
         'www.facebook.com',
         'api.weibo.com',
-        'graph.qq.com'
+        'graph.qq.com',
       );
 
       const match = secureDomains.some((domain) =>
         think.isFunction(domain.test)
           ? domain.test(referrer)
-          : domain === referrer
+          : domain === referrer,
       );
 
       if (!match) {
@@ -81,7 +81,7 @@ module.exports = class extends think.Logic {
           '2fa',
           'label',
         ],
-      }
+      },
     );
 
     if (think.isEmpty(user)) {
@@ -183,13 +183,13 @@ module.exports = class extends think.Logic {
           };
 
     const response = await fetch(requestUrl, options).then((resp) =>
-      resp.json()
+      resp.json(),
     );
 
     if (!response.success) {
       think.logger.debug(
         'RecaptchaV3 or Turnstile Result:',
-        JSON.stringify(response, null, '\t')
+        JSON.stringify(response, null, '\t'),
       );
 
       return this.ctx.throw(403);

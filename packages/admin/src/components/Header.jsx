@@ -14,7 +14,7 @@ export default function () {
 
   const defaultLanguage = useMemo(() => {
     const option = LANGUAGE_OPTIONS.find((option) =>
-      option.alias.includes(i18n.language)
+      option.alias.includes(i18n.language),
     );
 
     return option?.value ?? '';

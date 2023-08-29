@@ -63,7 +63,7 @@ export const getDefaultSearchOptions = (lang: string): WalineSearchOptions => {
 
   const fetchGiphy = async (
     url: string,
-    params: Record<string, string> = {}
+    params: Record<string, string> = {},
   ): Promise<WalineSearchResult> =>
     fetch(
       `https://api.giphy.com/v1/gifs/${url}?${new URLSearchParams({
@@ -73,14 +73,14 @@ export const getDefaultSearchOptions = (lang: string): WalineSearchOptions => {
         // eslint-disable-next-line @typescript-eslint/naming-convention
         api_key: '6CIMLkNMMOhRcXPoMCPkFy4Ybk2XUiMp',
         ...params,
-      }).toString()}`
+      }).toString()}`,
     )
       .then((resp) => <Promise<GifResult>>resp.json())
       .then(({ data }) =>
         data.map((gif) => ({
           title: gif.title,
           src: gif.images.downsized_medium.url,
-        }))
+        })),
       );
 
   return {

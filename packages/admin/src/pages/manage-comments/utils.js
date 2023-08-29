@@ -27,7 +27,7 @@ export function formatDate(time) {
     d = new Date(time);
   } else {
     d = new Date(
-      /\d+-\d+-\d+\s\d+:\d+:\d+/.test(time) ? time.replace(/-/g, '/') : time
+      /\d+-\d+-\d+\s\d+:\d+:\d+/.test(time) ? time.replace(/-/g, '/') : time,
     );
   }
 

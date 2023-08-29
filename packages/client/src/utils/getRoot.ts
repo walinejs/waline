@@ -1,5 +1,5 @@
 export const getRoot = (
-  el: string | HTMLElement | undefined
+  el: string | HTMLElement | undefined,
 ): HTMLElement | null =>
   el instanceof HTMLElement
     ? el

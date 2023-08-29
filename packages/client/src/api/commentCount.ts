@@ -24,9 +24,9 @@ export const fetchCommentCount = ({
 }: GetCommentCountOptions): Promise<number[]> =>
   fetch(
     `${serverURL}/comment?type=count&url=${encodeURIComponent(
-      paths.join(',')
+      paths.join(','),
     )}&lang=${lang}`,
-    { signal }
+    { signal },
   )
     .then((resp) => <Promise<number | number[]>>resp.json())
     // TODO: Improve this API

@@ -32,8 +32,15 @@
 </template>
 
 <script setup lang="ts">
-import { type ComputedRef } from 'vue';
-import { computed, inject, onMounted, onUnmounted, ref, watch } from 'vue';
+import {
+  type ComputedRef,
+  computed,
+  inject,
+  onMounted,
+  onUnmounted,
+  ref,
+  watch,
+} from 'vue';
 
 import { LoadingIcon } from './Icons.js';
 import { getArticleCounter, updateArticleCounter } from '../api/index.js';
@@ -89,7 +96,7 @@ const fetchReaction = async (): Promise<void> => {
     if (Array.isArray(resp) || typeof resp === 'number') return;
 
     voteNumbers.value = reaction.map(
-      (_reaction, index) => resp[`reaction${index}`]
+      (_reaction, index) => resp[`reaction${index}`],
     );
   }
 };
@@ -115,7 +122,7 @@ const vote = async (index: number): Promise<void> => {
 
       voteNumbers.value[currentVoteItemIndex] = Math.max(
         voteNumbers.value[currentVoteItemIndex] - 1,
-        0
+        0,
       );
     }
 
@@ -145,7 +152,7 @@ onMounted(() => {
     () => {
       void fetchReaction();
     },
-    { immediate: true }
+    { immediate: true },
   );
 });
 onUnmounted(() => abort?.());

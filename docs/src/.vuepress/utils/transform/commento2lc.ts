@@ -72,9 +72,9 @@ export const commento2lc = (input: string) => {
               rid: rootHexMaps[commentHex] ? rootHexMaps[commentHex] : '',
               status: state === 'approved' ? 'approved' : 'waiting',
             },
-            commenter
+            commenter,
           );
-        }
+        },
       ),
   };
 };

@@ -11,7 +11,7 @@ export const parseEmoji = (text = '', emojiMap: WalineEmojiMaps = {}): string =>
   text.replace(/:(.+?):/g, (placeholder, key: string) =>
     emojiMap[key]
       ? `<img class="wl-emoji" src="${emojiMap[key]}" alt="${key}">`
-      : placeholder
+      : placeholder,
   );
 
 export interface ParseMarkdownOptions {
@@ -22,7 +22,7 @@ export interface ParseMarkdownOptions {
 
 export const parseMarkdown = (
   content: string,
-  { emojiMap, highlighter, texRenderer }: ParseMarkdownOptions
+  { emojiMap, highlighter, texRenderer }: ParseMarkdownOptions,
 ): string => {
   marked.setOptions({
     highlight: highlighter || undefined,

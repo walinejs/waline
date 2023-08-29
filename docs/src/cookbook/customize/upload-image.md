@@ -14,7 +14,7 @@ icon: pic
 一个使用 `lsky - pro` 图床的案例。
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <meta charset="UTF-8" />

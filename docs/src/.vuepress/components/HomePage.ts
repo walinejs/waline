@@ -22,10 +22,10 @@ export default defineComponent({
             h(
               h(resolveComponent('CommentService'), {
                 darkmode: isDarkmode.value,
-              })
+              }),
             ),
           ],
-        }
+        },
       );
   },
 });

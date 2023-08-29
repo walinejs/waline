@@ -38,7 +38,7 @@ export default function useScript({
   }
 
   const [loading, setLoading] = useState(
-    status ? status.loading : Boolean(src)
+    status ? status.loading : Boolean(src),
   );
   const [error, setError] = useState(status ? status.error : null);
   // Tracks if script is loaded so we can avoid duplicate script tags

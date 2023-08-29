@@ -10,7 +10,7 @@ import { type WalineInitOptions } from '../typings/index.js';
 export { WalineInstance } from '../init.js';
 
 warning(
-  ' This is a legacy package compatible with Valine and Waline@v1, please switch to Waline@v2 using https://<CDN.LINK>/@waline/client/dist/waline.js instead!'
+  ' This is a legacy package compatible with Valine and Waline@v1, please switch to Waline@v2 using https://<CDN.LINK>/@waline/client/dist/waline.js instead!',
 );
 
 // inject css styles
@@ -23,7 +23,9 @@ link.href = '//unpkg.com/@waline/client@v2/dist/waline.css';
 document.head.appendChild(link);
 
 export default function legacyWaline(
-  options: WalineInitOptions & DeprecatedValineOptions & DeprecatedWalineOptions
+  options: WalineInitOptions &
+    DeprecatedValineOptions &
+    DeprecatedWalineOptions,
 ): WalineInstance | null {
   return init(covertOptions(options));
 }

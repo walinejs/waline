@@ -72,7 +72,7 @@ export const login = ({
   const handler = window.open(
     `${serverURL}/ui/login?lng=${encodeURIComponent(lang)}`,
     '_blank',
-    `width=${width},height=${height},left=${left},top=${top},scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no`
+    `width=${width},height=${height},left=${left},top=${top},scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no`,
   );
 
   handler?.postMessage({ type: 'TOKEN', data: null }, '*');

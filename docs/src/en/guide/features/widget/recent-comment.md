@@ -58,7 +58,7 @@ Example:
     count: 10,
   }).then(({ comments }) => {
     document.getElementById('waline-recent').innerHTML = comments.map(
-      (comment) => `${comment.nick}: ${comment.comment}`
+      (comment) => `${comment.nick}: ${comment.comment}`,
     );
   });
 </script>

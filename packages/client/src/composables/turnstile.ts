@@ -27,7 +27,7 @@ export const useTurnstile = (key: string): Turnstile => {
     const { load } = useScriptTag(
       'https://challenges.cloudflare.com/turnstile/v0/api.js',
       undefined,
-      { async: false }
+      { async: false },
     );
 
     await load();
