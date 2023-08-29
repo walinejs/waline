@@ -14,7 +14,7 @@ Click the [Fork](https://github.com/walinejs/zeabur-starter/fork) button to crea
 
 ![zeabur1](../../../assets/zeabur-1.png)
 
-https://dash.zeabur.com Log in to the Zeabur console. If there is no project, you need to set a name for the new project first.
+<https://dash.zeabur.com> Log in to the Zeabur console. If there is no project, you need to set a name for the new project first.
 
 ![zeabur2](../../../assets/zeabur-2.png)
 
