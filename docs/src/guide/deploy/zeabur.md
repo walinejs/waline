@@ -14,7 +14,7 @@ redirectFrom: /guide/server/zeabur.html
 
 ![zeabur1](../../assets/zeabur-1.png)
 
-https://dash.zeabur.com 登录 Zeabur 控制台，如果没有项目需要先为新项目设置名称。
+<https://dash.zeabur.com> 登录 Zeabur 控制台，如果没有项目需要先为新项目设置名称。
 
 ![zeabur2](../../assets/zeabur-2.png)
 

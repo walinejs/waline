@@ -33,7 +33,7 @@ module.exports = class extends BaseRest {
         desc: 'createdAt',
         limit: pageSize,
         offset: Math.max((page - 1) * pageSize, 0),
-      }
+      },
     );
 
     return this.success({
@@ -70,7 +70,7 @@ module.exports = class extends BaseRest {
     const hasMailService = SMTP_HOST || SMTP_SERVICE;
 
     const token = Array.from({ length: 4 }, () =>
-      Math.round(Math.random() * 9)
+      Math.round(Math.random() * 9),
     ).join('');
     const normalType = hasMailService
       ? `verify:${token}:${Date.now() + 1 * 60 * 60 * 1000}`
@@ -107,7 +107,7 @@ module.exports = class extends BaseRest {
         }),
         html: this.locale(
           'Please click <a href="{{url}}">{{url}}<a/> to confirm registration, the link is valid for 1 hour. If you are not registering, please ignore this email.',
-          { url: apiUrl }
+          { url: apiUrl },
         ),
       });
     } catch (e) {
@@ -116,8 +116,8 @@ module.exports = class extends BaseRest {
       return this.fail(
         this.locale(
           'Registration confirm mail send failed, please {%- if isAdmin -%}check your mail configuration{%- else -%}check your email address and contact administrator{%- endif -%}.',
-          { isAdmin: think.isEmpty(count) }
-        )
+          { isAdmin: think.isEmpty(count) },
+        ),
       );
     }
 
@@ -189,7 +189,7 @@ module.exports = class extends BaseRest {
       },
       {
         group: ['user_id', 'mail'],
-      }
+      },
     );
 
     counts.sort((a, b) => b.count - a.count);
@@ -226,7 +226,7 @@ module.exports = class extends BaseRest {
         if (user.count) {
           const _level = think.findLastIndex(
             this.config('levels'),
-            (l) => l <= user.count
+            (l) => l <= user.count,
           );
 
           if (_level !== -1) {
@@ -255,7 +255,7 @@ module.exports = class extends BaseRest {
 
       const comments = await commentModel.select(
         { mail: count.mail },
-        { limit: 1 }
+        { limit: 1 },
       );
 
       if (think.isEmpty(comments)) {

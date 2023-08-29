@@ -15,7 +15,7 @@ const markdownItWithError = MarkdownIt({ linkify: true }).use(katexPlugin, {
 describe('inline katex', () => {
   it('Should render', () => {
     expect(markdownIt.render(`$a=1$`)).toEqual(
-      `<p><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">a=1</annotation></semantics></math></span></p>\n`
+      `<p><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">a=1</annotation></semantics></math></span></p>\n`,
     );
   });
 
@@ -30,19 +30,19 @@ describe('inline katex', () => {
 
   it('Should not render when the ending tag is followed by number', () => {
     expect(markdownIt.render(`Of course $1 = $1`)).toEqual(
-      '<p>Of course $1 = $1</p>\n'
+      '<p>Of course $1 = $1</p>\n',
     );
   });
 
   it('Should render when the first one is after a character', () => {
     expect(markdownIt.render(`The next$a = 1$ won't work`)).toEqual(
-      `<p>The next<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">a = 1</annotation></semantics></math></span> won't work</p>\n`
+      `<p>The next<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">a = 1</annotation></semantics></math></span> won't work</p>\n`,
     );
   });
 
   it('Should not render error msg when content is wrong', () => {
     expect(markdownIt.render('$\\fra{a}{b}$')).toEqual(
-      `<p><span class='katex-error' title='ParseError: KaTeX parse error: Undefined control sequence: \\fra at position 1: \\̲f̲r̲a̲{a}{b}'>\\fra{a}{b}</span></p>\n`
+      `<p><span class='katex-error' title='ParseError: KaTeX parse error: Undefined control sequence: \\fra at position 1: \\̲f̲r̲a̲{a}{b}'>\\fra{a}{b}</span></p>\n`,
     );
   });
 
@@ -52,7 +52,7 @@ describe('inline katex', () => {
     global.console.warn = vi.fn();
 
     expect(markdownItWithError.render('$\\fra{a}{b}$')).toEqual(
-      "<p><span class='katex-error' title='ParseError: KaTeX parse error: Undefined control sequence: \\fra at position 1: \\̲f̲r̲a̲{a}{b}'>\\fra{a}{b}</span></p>\n"
+      "<p><span class='katex-error' title='ParseError: KaTeX parse error: Undefined control sequence: \\fra at position 1: \\̲f̲r̲a̲{a}{b}'>\\fra{a}{b}</span></p>\n",
     );
 
     expect(global.console.warn).toHaveBeenCalledTimes(1);
@@ -63,7 +63,7 @@ describe('inline katex', () => {
 describe('block katex', () => {
   it('Should render', () => {
     expect(markdownIt.render(`$$a=1$$`)).toEqual(
-      `<p class='katex-block'><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>a</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">a=1\n</annotation></semantics></math></span></p>\n`
+      `<p class='katex-block'><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>a</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">a=1\n</annotation></semantics></math></span></p>\n`,
     );
 
     expect(
@@ -71,9 +71,9 @@ describe('block katex', () => {
 $$
 a = 1
 $$
-`)
+`),
     ).toEqual(
-      `<p class='katex-block'><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>a</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">a = 1\n</annotation></semantics></math></span></p>\n`
+      `<p class='katex-block'><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>a</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">a = 1\n</annotation></semantics></math></span></p>\n`,
     );
   });
 
@@ -84,7 +84,7 @@ $$
 \\$\\$
 a = 1
 \\$\\$
-`)
+`),
     ).toEqual(`<p>$$
 a = 1
 $$</p>\n`);
@@ -92,17 +92,17 @@ $$</p>\n`);
 
   it('Should render when having spaces', () => {
     expect(markdownIt.render(`$$ a = 1 $$`)).toEqual(
-      `<p class='katex-block'><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>a</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">a = 1 \n</annotation></semantics></math></span></p>\n`
+      `<p class='katex-block'><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>a</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">a = 1 \n</annotation></semantics></math></span></p>\n`,
     );
 
     expect(markdownIt.render(`All $$ a = 1 $$ is true.`)).toEqual(
-      '<p>All $$ a = 1 $$ is true.</p>\n'
+      '<p>All $$ a = 1 $$ is true.</p>\n',
     );
   });
 
   it('Should not render error msg when content is wrong', () => {
     expect(markdownIt.render('$$\\fra{a}{b}$$')).toEqual(
-      `<p class='katex-block katex-error' title='ParseError: KaTeX parse error: Undefined control sequence: \\fra at position 1: \\̲f̲r̲a̲{a}{b}\n'>\\fra{a}{b}\n</p>\n`
+      `<p class='katex-block katex-error' title='ParseError: KaTeX parse error: Undefined control sequence: \\fra at position 1: \\̲f̲r̲a̲{a}{b}\n'>\\fra{a}{b}\n</p>\n`,
     );
 
     expect(
@@ -110,9 +110,9 @@ $$</p>\n`);
 $$
 \\fra{a}{b}
 $$
-`)
+`),
     ).toEqual(
-      `<p class='katex-block katex-error' title='ParseError: KaTeX parse error: Undefined control sequence: \\fra at position 1: \\̲f̲r̲a̲{a}{b}\n'>\\fra{a}{b}\n</p>\n`
+      `<p class='katex-block katex-error' title='ParseError: KaTeX parse error: Undefined control sequence: \\fra at position 1: \\̲f̲r̲a̲{a}{b}\n'>\\fra{a}{b}\n</p>\n`,
     );
   });
 
@@ -121,7 +121,7 @@ $$
 
     global.console.warn = vi.fn();
     expect(markdownItWithError.render('$$\\fra{a}{b}$$')).toMatch(
-      /<p class='katex-block katex-error' title='[\s\S]*?'>[\s\S]*?<\/p>/
+      /<p class='katex-block katex-error' title='[\s\S]*?'>[\s\S]*?<\/p>/,
     );
 
     expect(
@@ -129,9 +129,9 @@ $$
 $$
 \\fra{a}{b}
 $$
-`)
+`),
     ).toMatch(
-      /<p class='katex-block katex-error' title='[\s\S]*?'>[\s\S]*?<\/p>/
+      /<p class='katex-block katex-error' title='[\s\S]*?'>[\s\S]*?<\/p>/,
     );
 
     expect(global.console.warn).toHaveBeenCalledTimes(2);

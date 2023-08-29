@@ -30,7 +30,7 @@ export default function () {
     function (state, action) {
       return { ...state, ...action };
     },
-    { owner: 'all', status: 'approved', keyword: '' }
+    { owner: 'all', status: 'approved', keyword: '' },
   );
   const [cmtHandler, setCmtHandler] = useState({});
   const [actDropStatus, setActDropStatus] = useState(false);
@@ -72,7 +72,7 @@ export default function () {
           if (comment) {
             await updateComment(comment.objectId, { status: 'approved' });
             list.data = list.data.filter(
-              ({ objectId }) => objectId !== comment.objectId
+              ({ objectId }) => objectId !== comment.objectId,
             );
             switch (comment.status) {
               case 'waiting':
@@ -86,8 +86,8 @@ export default function () {
           } else {
             await Promise.all(
               commentIds.map((objectId) =>
-                updateComment(objectId, { status: 'approved' })
-              )
+                updateComment(objectId, { status: 'approved' }),
+              ),
             );
             getCommentList({ page: list.page, filter }).then((data) => {
               setList({ ...list, ...data });
@@ -105,7 +105,7 @@ export default function () {
           if (comment) {
             await updateComment(comment.objectId, { status: 'waiting' });
             list.data = list.data.filter(
-              ({ objectId }) => objectId !== comment.objectId
+              ({ objectId }) => objectId !== comment.objectId,
             );
             if (comment.status === 'spam') {
               list.spamCount -= 1;
@@ -115,8 +115,8 @@ export default function () {
           } else {
             await Promise.all(
               commentIds.map((objectId) =>
-                updateComment(objectId, { status: 'waiting' })
-              )
+                updateComment(objectId, { status: 'waiting' }),
+              ),
             );
             getCommentList({ page: list.page, filter }).then((data) => {
               setList({ ...list, ...data });
@@ -134,15 +134,15 @@ export default function () {
           if (comment) {
             await updateComment(comment.objectId, { status: 'spam' });
             list.data = list.data.filter(
-              ({ objectId }) => objectId !== comment.objectId
+              ({ objectId }) => objectId !== comment.objectId,
             );
             list.spamCount += 1;
             setList({ ...list });
           } else {
             await Promise.all(
               commentIds.map((objectId) =>
-                updateComment(objectId, { status: 'spam' })
-              )
+                updateComment(objectId, { status: 'spam' }),
+              ),
             );
             getCommentList({ page: list.page, filter }).then((data) => {
               setList({ ...list, ...data });
@@ -219,7 +219,7 @@ export default function () {
           if (comment) {
             await deleteComment(comment.objectId);
             list.data = list.data.filter(
-              ({ objectId }) => objectId !== comment.objectId
+              ({ objectId }) => objectId !== comment.objectId,
             );
             setList({ ...list });
           } else {
@@ -325,7 +325,7 @@ export default function () {
                           setCommentIds(
                             allSelected
                               ? []
-                              : list.data.map(({ objectId }) => objectId)
+                              : list.data.map(({ objectId }) => objectId),
                           )
                         }
                       />
@@ -422,7 +422,7 @@ export default function () {
                             time,
                             insertedAt,
                           },
-                          idx
+                          idx,
                         ) =>
                           cmtHandler.id === objectId &&
                           cmtHandler.action === 'edit' ? (
@@ -530,9 +530,9 @@ export default function () {
                                     setCommentIds(
                                       commentIds.includes(objectId)
                                         ? commentIds.filter(
-                                            (id) => id !== objectId
+                                            (id) => id !== objectId,
                                           )
-                                        : [...commentIds, objectId]
+                                        : [...commentIds, objectId],
                                     )
                                   }
                                 />
@@ -668,12 +668,12 @@ export default function () {
                                       >
                                         {name}
                                       </a>
-                                    )
+                                    ),
                                   )}
                                 </div>
                               </td>
                             </tr>
-                          )
+                          ),
                       )}
                     </tbody>
                   </table>

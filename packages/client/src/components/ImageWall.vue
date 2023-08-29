@@ -82,7 +82,7 @@ const props = withDefaults(
     items: () => [] as WalineSearchResult,
     columnWidth: 300,
     gap: 0,
-  }
+  },
 );
 
 defineEmits<{
@@ -99,7 +99,7 @@ const columns = ref<Column[]>([]);
 const getColumnCount = (): number => {
   const count = Math.floor(
     (wall.value!.getBoundingClientRect().width + props.gap) /
-      (props.columnWidth + props.gap)
+      (props.columnWidth + props.gap),
   );
 
   return count > 0 ? count : 1;
@@ -118,7 +118,7 @@ const fillColumns = async (itemIndex: number): Promise<void> => {
   const target = columnDivs.reduce((prev, curr) =>
     curr.getBoundingClientRect().height < prev.getBoundingClientRect().height
       ? curr
-      : prev
+      : prev,
   );
 
   columns.value[Number(target.dataset.index)].push(itemIndex);
@@ -155,13 +155,13 @@ onMounted(() => {
     () => {
       state.value = {};
       void redraw(true);
-    }
+    },
   );
   watch(
     () => [props.columnWidth, props.gap],
     () => {
       void redraw();
-    }
+    },
   );
 });
 

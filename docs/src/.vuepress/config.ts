@@ -86,11 +86,11 @@ export default defineUserConfig({
     '@MigrationTool': path.resolve(__dirname, './components/MigrationTool.vue'),
     '@theme-hope/components/HomePage': path.resolve(
       __dirname,
-      './components/HomePage'
+      './components/HomePage',
     ),
     '@theme-hope/components/NormalPage': path.resolve(
       __dirname,
-      './components/NormalPage'
+      './components/NormalPage',
     ),
   },
 

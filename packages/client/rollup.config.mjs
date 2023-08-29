@@ -1,12 +1,13 @@
 import { babel, getBabelOutputPlugin } from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
-import ts from 'rollup-plugin-ts';
-import dts from 'rollup-plugin-dts';
-import terser from '@rollup/plugin-terser';
 import replace from '@rollup/plugin-replace';
-import pkg from './package.json' assert { type: 'json' };
+import terser from '@rollup/plugin-terser';
 import vue from '@vitejs/plugin-vue';
+import dts from 'rollup-plugin-dts';
+import typescript from 'rollup-plugin-typescript2';
+
+import pkg from './package.json' assert { type: 'json' };
 
 const version = pkg.version;
 const commonOptions = {
@@ -15,7 +16,7 @@ const commonOptions = {
       isProduction: true,
       template: { compilerOptions: { comments: false } },
     }),
-    ts(),
+    typescript(),
     replace({
       'process.env.NODE_ENV': JSON.stringify('production'),
       'process.env["NODE_ENV"]': JSON.stringify('production'),
@@ -58,7 +59,7 @@ export default [
         isProduction: true,
         template: { compilerOptions: { comments: false } },
       }),
-      ts(),
+      typescript(),
       replace({
         'process.env.NODE_ENV': JSON.stringify('production'),
         'process.env["NODE_ENV"]': JSON.stringify('production'),
@@ -164,15 +165,7 @@ export default [
   },
 
   // components declaration files
-  {
-    input: './src/entries/components.ts',
-    output: [
-      { file: './dist/component.d.cts', format: 'esm' },
-      { file: './dist/component.d.mts', format: 'esm' },
-      { file: './dist/component.d.ts', format: 'esm'}
-    ],
-    plugins: [vue(), ts(), dts({ compilerOptions: { preserveSymlinks: false } })],
-  },
+  // TODO: Generate declaration files
 
   // api
   {

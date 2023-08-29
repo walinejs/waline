@@ -53,7 +53,7 @@ export const commentCount = ({
     void fetchCommentCount({
       serverURL: getServerURL(serverURL),
       paths: Array.from(elements).map((element) =>
-        decodePath(element.dataset.path || element.getAttribute('id') || path)
+        decodePath(element.dataset.path || element.getAttribute('id') || path),
       ),
       lang,
       signal: controller.signal,

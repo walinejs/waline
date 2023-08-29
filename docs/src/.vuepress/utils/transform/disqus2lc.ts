@@ -12,7 +12,7 @@ export const disqus2lc = (input: string) => {
         .textContent!.toLowerCase();
 
       return isDeleted === 'false';
-    }
+    },
   );
   const threads = Array.from(dom.querySelectorAll('disqus > thread'));
 
@@ -58,7 +58,7 @@ export const disqus2lc = (input: string) => {
     const objectId = postEl.getAttribute('dsq:id')!;
     const comment = postEl.querySelector('message')!.textContent;
     const insertedAt = new Date(
-      postEl.querySelector('createdAt')!.textContent!
+      postEl.querySelector('createdAt')!.textContent!,
     ).toISOString();
     const nick = postEl.querySelector('author name')!.textContent;
     const threadId = postEl.querySelector('thread')!.getAttribute('dsq:id')!;

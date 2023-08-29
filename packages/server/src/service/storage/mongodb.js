@@ -166,7 +166,7 @@ module.exports = class extends Base {
         await instance.update(updateData);
 
         return { ...item, ...updateData };
-      })
+      }),
     );
   }
 

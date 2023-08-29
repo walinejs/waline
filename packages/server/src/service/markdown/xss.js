@@ -35,8 +35,8 @@ const sanitize = (content) =>
         FORBID_TAGS: ['form', 'input', 'style'],
         FORBID_ATTR: ['autoplay', 'style'],
       },
-      think.config('domPurify') || {}
-    )
+      think.config('domPurify') || {},
+    ),
   );
 
 module.exports = {

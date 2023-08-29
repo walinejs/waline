@@ -12,7 +12,7 @@ This cookbook guides you how to add your own code highlighter.
 ## An Example Using prism.js
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <meta charset="UTF-8" />
@@ -46,7 +46,7 @@ This cookbook guides you how to add your own code highlighter.
           return window.Prism.highlight(
             code,
             window.Prism.languages[lang] || window.Prism.languages.text,
-            lang
+            lang,
           );
         },
       });

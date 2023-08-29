@@ -49,7 +49,7 @@ export interface WalinePageviewCountOptions {
 
 const renderVisitorCount = (
   counts: number[],
-  countElements: HTMLElement[]
+  countElements: HTMLElement[],
 ): void => {
   countElements.forEach((element, index) => {
     element.innerText = counts[index].toString();
@@ -67,7 +67,7 @@ export const pageviewCount = ({
 
   const elements = Array.from(
     // pageview selectors
-    document.querySelectorAll<HTMLElement>(selector)
+    document.querySelectorAll<HTMLElement>(selector),
   );
 
   const filter = (element: HTMLElement): boolean => {
@@ -98,8 +98,8 @@ export const pageviewCount = ({
     }).then((count) =>
       renderVisitorCount(
         new Array<number>(normalElements.length).fill(count),
-        normalElements
-      )
+        normalElements,
+      ),
     );
 
     // if we should fetch count of other pages

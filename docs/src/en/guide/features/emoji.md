@@ -136,7 +136,7 @@ Waline provides a series of emoji presets that can be used out of box. You can a
 
   ```http
   https://unpkg.com/@waline/emojis@1.2.0/soul-emoji
-  ```  
+  ```
 
 ::: warning
 

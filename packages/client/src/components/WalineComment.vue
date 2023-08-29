@@ -228,7 +228,7 @@ const onSubmit = (comment: WalineComment): void => {
     edit.value.orig = comment.orig;
   } else if (comment.rid) {
     const repliedComment = data.value.find(
-      ({ objectId }) => objectId === comment.rid
+      ({ objectId }) => objectId === comment.rid,
     );
 
     if (!repliedComment) return;
@@ -303,7 +303,7 @@ const onDelete = async ({ objectId }: WalineComment): Promise<void> => {
     return item.children.some((child, childIndex) => {
       if (child.objectId === objectId) {
         data.value[index].children = item.children.filter(
-          (_item, i) => i !== childIndex
+          (_item, i) => i !== childIndex,
         );
 
         return true;
@@ -346,7 +346,7 @@ onMounted(() => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     () => [props.serverURL, props.path],
     () => refresh(),
-    { immediate: true }
+    { immediate: true },
   );
 });
 onUnmounted(() => abort?.());

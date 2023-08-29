@@ -41,7 +41,7 @@ module.exports = class extends BaseRest {
       }),
       html: this.locale(
         'Please click <a href="{{url}}">{{url}}</a> to login and change your password as soon as possible!',
-        { url: profileUrl }
+        { url: profileUrl },
       ),
     });
 

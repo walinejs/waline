@@ -16,7 +16,7 @@ const fakeClick = (element: HTMLElement): void => {
     false,
     false,
     0,
-    null
+    null,
   );
 
   element.dispatchEvent(ev);
@@ -27,7 +27,7 @@ export const exportRaw = (name: string, data: BlobPart): void => {
   const export_blob = new Blob([data]);
   const saveAnchor = document.createElementNS(
     'http://www.w3.org/1999/xhtml',
-    'a'
+    'a',
   ) as HTMLAnchorElement;
 
   saveAnchor.href = urlObject.createObjectURL(export_blob);

@@ -14,7 +14,7 @@ module.exports = class extends BaseRest {
         { email },
         {
           field: ['2fa'],
-        }
+        },
       );
       const is2FAEnabled = !think.isEmpty(user) && Boolean(user[0]['2fa']);
 

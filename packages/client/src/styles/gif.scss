@@ -15,7 +15,9 @@
   opacity: 0;
   visibility: hidden;
 
-  transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+  transition:
+    transform 0.2s ease-out,
+    opacity 0.2s ease-out;
   transform: scale(0.9, 0.9);
   transform-origin: 0 0;
 

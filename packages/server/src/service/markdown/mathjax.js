@@ -30,7 +30,7 @@ class MathToSvg {
         const errorTitle = svg.match(/<title>(.*?)<\/title>/)[1];
 
         svg = `<span class='mathjax-error' title='${escapeHtml(
-          errorTitle
+          errorTitle,
         )}'>${escapeHtml(tex)}</span>`;
       }
 
@@ -45,7 +45,7 @@ class MathToSvg {
         const errorTitle = svg.match(/<title>(.*?)<\/title>/)[1];
 
         svg = `<p class='mathjax-block mathjax-error' title='${escapeHtml(
-          errorTitle
+          errorTitle,
         )}'>${escapeHtml(tex)}</p>`;
       } else {
         svg = svg.replace(/(width=".*?")/, 'width="100%"');

@@ -23,7 +23,7 @@ Vercel 需要在 <kbd>Settings</kbd> - <kbd>Environment Variables</kbd> 中进�
 | `LEAN_ID`         | ✅   | LeanCloud 应用的 App ID                      |
 | `LEAN_KEY`        | ✅   | LeanCloud 应用的 App Key                     |
 | `LEAN_MASTER_KEY` | ✅   | LeanCloud 应用的 Master Key 用于后台修改数据 |
-| `LEAN_SERVER`     | ⚠    | LeanCloud 服务地址，国内版用户需要配置此项   |
+| `LEAN_SERVER`     | ⚠   | LeanCloud 服务地址，国内版用户需要配置此项   |
 | `SITE_NAME`       |      | 博客名称                                     |
 | `SITE_URL`        |      | 博客地址                                     |
 | `LOGIN`           |      | 当设置为 LOGIN=force 时会要求登录才能评论    |

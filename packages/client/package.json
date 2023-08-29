@@ -124,21 +124,21 @@
     ]
   },
   "dependencies": {
-    "@vueuse/core": "^10.1.2",
+    "@vueuse/core": "^10.4.1",
     "autosize": "^6.0.1",
     "marked": "^4.3.0",
     "vue": "^3.3.4"
   },
   "devDependencies": {
-    "@babel/core": "7.22.1",
-    "@babel/preset-env": "7.22.2",
+    "@babel/core": "7.22.11",
+    "@babel/preset-env": "7.22.10",
     "@giphy/js-types": "4.4.0",
     "@types/autosize": "4.0.1",
     "@types/marked": "4.3.1",
-    "@vitejs/plugin-vue": "4.2.3",
+    "@vitejs/plugin-vue": "4.3.3",
     "recaptcha-v3": "1.10.0",
     "user-agent-data-types": "0.3.1",
-    "vite": "4.3.9"
+    "vite": "4.4.9"
   },
   "engines": {
     "node": ">=14"

@@ -79,7 +79,7 @@ module.exports = {
       const { region } = result;
       const [, , province, city, isp] = region.split('|');
       const address = Array.from(
-        new Set([province, city, isp].filter((v) => v))
+        new Set([province, city, isp].filter((v) => v)),
       );
 
       return address.slice(0, depth).join(' ');
@@ -155,7 +155,7 @@ module.exports = {
   getPluginHook(hookName) {
     return think
       .pluginMap('hooks', (hook) =>
-        think.isFunction(hook[hookName]) ? hook[hookName] : undefined
+        think.isFunction(hook[hookName]) ? hook[hookName] : undefined,
       )
       .filter((v) => v);
   },

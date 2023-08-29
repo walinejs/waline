@@ -12,5 +12,5 @@ let userInfoStorage: UserInfoRef | null = null;
 export const useUserInfo = (): UserInfoRef =>
   (userInfoStorage ??= useStorage<UserInfo | Record<string, never>>(
     USER_KEY,
-    {}
+    {},
   ));

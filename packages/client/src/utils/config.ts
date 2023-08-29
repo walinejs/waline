@@ -52,13 +52,13 @@ export const getServerURL = (serverURL: string): string => {
 };
 
 const getWordLimit = (
-  wordLimit: WalineProps['wordLimit']
+  wordLimit: WalineProps['wordLimit'],
 ): [number, number] | false =>
   Array.isArray(wordLimit) ? wordLimit : wordLimit ? [0, wordLimit] : false;
 
 const fallback = <T = unknown>(
   value: T | boolean | undefined,
-  fallback: T
+  fallback: T,
 ): T | false =>
   typeof value === 'function' ? value : value === false ? false : fallback;
 
