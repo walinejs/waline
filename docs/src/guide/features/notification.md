@@ -78,6 +78,7 @@ ww479cadfqfe8c151f,MPKN9gX97w4e4b4h4u7u4i4i4i4iO6mN_dDedBFzqC5c,@all,1000002,2S8
 QQ 通知使用了 [Qmsg 酱](https://qmsg.zendee.cn) 提供的服务，需要在环境变量中配置在 Qmsg 酱中申请的 `QMSG_KEY`。
 
 - `QMSG_KEY`: Qmsg 酱提供的 KEY，必填。
+- `QMSG_Host`: Qmsg 酱提供的私有化 HOST，选填。默认为 `https://qmsg.zendee.cn`。
 - `QQ_ID`: 接收消息的 QQ 号 (不支持 QQ 群)，可以添加多个，以半角逗号分割，如: `1244453393,2952937634` (必须均在您的 Qmsg 酱 QQ 号列表中)。
 - `AUTHOR_EMAIL`: 博主邮箱，用来区分发布的评论是否是博主本身发布的。如果是博主发布的则不进行提醒通知。
 - `SITE_NAME`: 网站名称，用于在消息中显示。
