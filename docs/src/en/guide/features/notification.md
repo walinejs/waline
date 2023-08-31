@@ -56,6 +56,7 @@ We use [Mr. Server](http://sc.ftqq.com/3.version) to wechat notification. You ne
 We use [Mr. Qmsg](https://qmsg.zendee.cn) to send QQ notification. You need to set `QMSG_KEY` in env which applied in Mr. Qmsg.
 
 - `QMSG_KEY`: KEY applied in Mr. Qmsg, It's required for this service.
+- `QMSG_HOST`: HOST applied in Mr. QmsgPrivate, It's required for this host. Defalut is `https://qmsg.zendee.cn`
 - `QQ_ID`: The QQ ID of the receiver(s), except for QQ group. If there are more than one QQ ID, use commas to separate multiple values, e.g. `1244453393,2952937634` (should all be included in your Mr. Qmsg's QQ ID list).
 - `AUTHOR_EMAIL`: The blogger’s email is used to distinguish whether the posted comment is posted by the blogger himself. If it is posted by the blogger, there will be no reminder notification.
 - `SITE_NAME`: Your site name, it will be displayed in notification message.
