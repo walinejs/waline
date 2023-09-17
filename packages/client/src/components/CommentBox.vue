@@ -443,6 +443,7 @@ const uploadImage = (file: File): Promise<void> => {
   const uploadText = `![${config.value.locale.uploading} ${file.name}]()`;
 
   insert(uploadText);
+  isSubmitting.value = true;
 
   return Promise.resolve()
     .then(() => (config.value.imageUploader as WalineImageUploader)(file))
@@ -455,6 +456,9 @@ const uploadImage = (file: File): Promise<void> => {
     .catch((err: Error) => {
       alert(err.message);
       editor.value = editor.value.replace(uploadText, '');
+    })
+    .then(() => {
+      isSubmitting.value = false;
     });
 };
 
