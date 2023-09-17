@@ -34,10 +34,10 @@ export const tk2lc = (input: string) => {
       comment: comment,
       insertedAt: {
         __type: 'Date',
-        iso: new Date(created).toISOString(),
+        iso: new Date(created && created.$numberLong ? Number(created.$numberLong) : created).toISOString(),
       },
-      createdAt: new Date(created).toISOString(),
-      updatedAt: new Date(updated).toISOString(),
+      createdAt: new Date(created && created.$numberLong ? Number(created.$numberLong) : created).toISOString(),
+      updatedAt: new Date(updated && updated.$numberLong ? Number(updated.$numberLong) : updated).toISOString(),
       ip,
       link,
       mail,
