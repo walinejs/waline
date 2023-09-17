@@ -27,7 +27,7 @@
 
   list-style-type: none;
 
-  @media (width <= 580px) {
+  @media (max-width: 580px) {
     gap: 12px;
   }
 
@@ -54,7 +54,7 @@
   width: 42px;
   height: 42px;
 
-  @media (width <= 580px) {
+  @media (max-width: 580px) {
     width: 32px;
     height: 32px;
   }

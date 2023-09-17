@@ -132,10 +132,12 @@ Waline 提供了一系列开箱即用的表情预设。你可以直接将它们�
   https://unpkg.com/@waline/emojis@1.2.0/weibo
   ```
 
-- 《元气骑士》 
+- 《元气骑士》
+
   ```http
   https://unpkg.com/@waline/emojis@1.2.0/soul-emoji
   ``
+  ```
 
 ::: warning
 

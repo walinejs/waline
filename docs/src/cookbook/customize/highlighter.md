@@ -12,7 +12,7 @@ icon: style
 ## 一个使用 prism.js 的案例
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <meta charset="UTF-8" />
@@ -46,7 +46,7 @@ icon: style
           return window.Prism.highlight(
             code,
             window.Prism.languages[lang] || window.Prism.languages.text,
-            lang
+            lang,
           );
         },
       });

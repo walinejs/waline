@@ -17,15 +17,25 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      - uses: pnpm/action-setup@v2
-      - uses: actions/setup-node@v3
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: 20
+          node-version: 18
           cache: pnpm
-      - run: pnpm install --frozen-lockfile && pnpm --filter ./packages/client run build
+
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Client
+        run: pnpm client:build
 
       - name: Publish NPM
         uses: JS-DevTools/npm-publish@v2

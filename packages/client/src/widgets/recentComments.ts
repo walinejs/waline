@@ -72,7 +72,7 @@ export const RecentComments = ({
       root.innerHTML = `<ul class="wl-recent-list">${comments
         .map(
           (comment) =>
-            `<li class="wl-recent-item"><a href="${comment.url}">${comment.nick}</a>：${comment.comment}</li>`
+            `<li class="wl-recent-item"><a href="${comment.url}">${comment.nick}</a>：${comment.comment}</li>`,
         )
         .join('')}</ul>`;
 

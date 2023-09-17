@@ -179,7 +179,7 @@ module.exports = class extends Base {
 
         return this.add(item);
       }),
-      1
+      1,
     );
     this.tableName = currentTableName;
   }
@@ -240,7 +240,7 @@ module.exports = class extends Base {
           return;
         }
         throw e;
-      }
+      },
     );
     this.tableName = currentTableName;
   }
@@ -260,7 +260,7 @@ module.exports = class extends Base {
     // get group count cache by group field where data
     const cacheData = await this._getCmtGroupByMailUserIdCache(
       options.group.join('_'),
-      where
+      where,
     );
 
     if (!where._complex) {
@@ -330,7 +330,7 @@ module.exports = class extends Base {
               ({
                 ...groupFlatValue,
                 [groupName]: where._complex[groupName][1][j],
-              }[item] || undefined)
+              })[item] || undefined,
           )
           .join('_');
 
@@ -368,7 +368,9 @@ module.exports = class extends Base {
 
   async add(
     data,
-    { access: { read = true, write = true } = { read: true, write: true } } = {}
+    {
+      access: { read = true, write = true } = { read: true, write: true },
+    } = {},
   ) {
     const Table = AV.Object.extend(this.tableName);
     const instance = new Table();
@@ -417,7 +419,7 @@ module.exports = class extends Base {
         const resp = await item.save();
 
         return resp.toJSON();
-      })
+      }),
     );
   }
 

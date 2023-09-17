@@ -38,9 +38,9 @@ export const getArticleCounter = ({
 }: GetArticleCounterOptions): Promise<GetArticleCounterResponse> =>
   fetch(
     `${serverURL}/article?path=${encodeURIComponent(
-      paths.join(',')
+      paths.join(','),
     )}&type=${encodeURIComponent(type.join(','))}&lang=${lang}`,
-    { signal }
+    { signal },
   ).then((resp) => <Promise<GetArticleCounterResponse>>resp.json());
 
 export interface UpdateArticleCounterOptions extends BaseAPIOptions {

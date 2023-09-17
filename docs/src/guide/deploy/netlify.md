@@ -14,7 +14,7 @@ redirectFrom: /guide/server/netlify.html
 
 ![netlify](../../assets/netlify-1.png)
 
-https://app.netlify.com 登录 Netlify 控制台，选择 <kbd>Add new site</kbd> - <kbd>Import an exist project</kbd> 添加网站。选择 GitHub 认证读取我们的 GitHub 项目列表。在列表中搜索我们刚才 Fork 生成的仓库名，点击该项目开始基于该仓库创建我们的 Netlify 网站。
+<https://app.netlify.com> 登录 Netlify 控制台，选择 <kbd>Add new site</kbd> - <kbd>Import an exist project</kbd> 添加网站。选择 GitHub 认证读取我们的 GitHub 项目列表。在列表中搜索我们刚才 Fork 生成的仓库名，点击该项目开始基于该仓库创建我们的 Netlify 网站。
 
 | ![netlify](../../assets/netlify-2.png) | ![netlify](../../assets/netlify-3.png) |
 | -------------------------------------- | -------------------------------------- |

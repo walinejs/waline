@@ -5,7 +5,7 @@ const { TeX } = require('mathjax-full/js/input/tex.js');
 const { mathjax } = require('mathjax-full/js/mathjax');
 const { SVG } = require('mathjax-full/js/output/svg.js');
 
-const { inlineTex, blockTex } = require('./mathCommon');
+const { inlineTeX, blockTeX } = require('./mathCommon');
 const { escapeHtml } = require('./utils');
 
 // set MathJax as the renderer
@@ -30,7 +30,7 @@ class MathToSvg {
         const errorTitle = svg.match(/<title>(.*?)<\/title>/)[1];
 
         svg = `<span class='mathjax-error' title='${escapeHtml(
-          errorTitle
+          errorTitle,
         )}'>${escapeHtml(tex)}</span>`;
       }
 
@@ -45,7 +45,7 @@ class MathToSvg {
         const errorTitle = svg.match(/<title>(.*?)<\/title>/)[1];
 
         svg = `<p class='mathjax-block mathjax-error' title='${escapeHtml(
-          errorTitle
+          errorTitle,
         )}'>${escapeHtml(tex)}</p>`;
       } else {
         svg = svg.replace(/(width=".*?")/, 'width="100%"');
@@ -59,17 +59,17 @@ class MathToSvg {
 const mathjaxPlugin = (md) => {
   const mathToSvg = new MathToSvg();
 
-  md.inline.ruler.after('escape', 'inlineTex', inlineTex);
+  md.inline.ruler.after('escape', 'inlineTeX', inlineTeX);
 
   // It’s a workaround here because types issue
-  md.block.ruler.after('blockquote', 'blockTex', blockTex, {
+  md.block.ruler.after('blockquote', 'blockTeX', blockTeX, {
     alt: ['paragraph', 'reference', 'blockquote', 'list'],
   });
 
-  md.renderer.rules.inlineTex = (tokens, idx) =>
+  md.renderer.rules.inlineTeX = (tokens, idx) =>
     mathToSvg.inline(tokens[idx].content);
 
-  md.renderer.rules.blockTex = (tokens, idx) =>
+  md.renderer.rules.blockTeX = (tokens, idx) =>
     `${mathToSvg.block(tokens[idx].content)}\n`;
 };
 

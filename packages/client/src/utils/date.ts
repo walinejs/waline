@@ -21,7 +21,7 @@ export const dateFormat = (date: Date): string => {
 export const getTimeAgo = (
   date: Date | string,
   now: Date,
-  locale: WalineDateLocale
+  locale: WalineDateLocale,
 ): string => {
   if (!date) return '';
 

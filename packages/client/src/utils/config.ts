@@ -6,7 +6,7 @@ import {
   DEFAULT_REACTION,
   defaultUploadImage,
   defaultHighlighter,
-  defaultTexRenderer,
+  defaultTeXRenderer,
   getDefaultSearchOptions,
   getMeta,
 } from '../config/index.js';
@@ -52,13 +52,13 @@ export const getServerURL = (serverURL: string): string => {
 };
 
 const getWordLimit = (
-  wordLimit: WalineProps['wordLimit']
+  wordLimit: WalineProps['wordLimit'],
 ): [number, number] | false =>
   Array.isArray(wordLimit) ? wordLimit : wordLimit ? [0, wordLimit] : false;
 
 const fallback = <T = unknown>(
   value: T | boolean | undefined,
-  fallback: T
+  fallback: T,
 ): T | false =>
   typeof value === 'function' ? value : value === false ? false : fallback;
 
@@ -97,7 +97,7 @@ export const getConfig = ({
   requiredMeta: getMeta(requiredMeta),
   imageUploader: fallback(imageUploader, defaultUploadImage),
   highlighter: fallback(highlighter, defaultHighlighter),
-  texRenderer: fallback(texRenderer, defaultTexRenderer),
+  texRenderer: fallback(texRenderer, defaultTeXRenderer),
   lang: Object.keys(DEFAULT_LOCALES).includes(lang) ? lang : 'en-US',
   dark,
   emoji: typeof emoji === 'boolean' ? (emoji ? DEFAULT_EMOJI : []) : emoji,

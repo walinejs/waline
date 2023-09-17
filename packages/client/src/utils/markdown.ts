@@ -1,28 +1,28 @@
 import { marked } from 'marked';
 
-import { markedTexExtensions } from './markedMathExtension.js';
+import { markedTeXExtensions } from './markedMathExtension.js';
 import {
   type WalineEmojiMaps,
   type WalineHighlighter,
-  type WalineTexRenderer,
+  type WalineTeXRenderer,
 } from '../typings/index.js';
 
 export const parseEmoji = (text = '', emojiMap: WalineEmojiMaps = {}): string =>
   text.replace(/:(.+?):/g, (placeholder, key: string) =>
     emojiMap[key]
       ? `<img class="wl-emoji" src="${emojiMap[key]}" alt="${key}">`
-      : placeholder
+      : placeholder,
   );
 
 export interface ParseMarkdownOptions {
   emojiMap: WalineEmojiMaps;
   highlighter: WalineHighlighter | false;
-  texRenderer: WalineTexRenderer | false;
+  texRenderer: WalineTeXRenderer | false;
 }
 
 export const parseMarkdown = (
   content: string,
-  { emojiMap, highlighter, texRenderer }: ParseMarkdownOptions
+  { emojiMap, highlighter, texRenderer }: ParseMarkdownOptions,
 ): string => {
   marked.setOptions({
     highlight: highlighter || undefined,
@@ -32,7 +32,7 @@ export const parseMarkdown = (
   });
 
   if (texRenderer) {
-    const extensions = markedTexExtensions(texRenderer);
+    const extensions = markedTeXExtensions(texRenderer);
 
     marked.use({ extensions });
   }

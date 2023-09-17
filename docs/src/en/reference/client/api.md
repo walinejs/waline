@@ -181,7 +181,7 @@ Type:
 
 ```ts
 const RecentComments: (
-  options: WalineRecentCommentsOptions
+  options: WalineRecentCommentsOptions,
 ) => Promise<WalineRecentCommentsResult>;
 ```
 
@@ -230,7 +230,7 @@ Type:
 
 ```ts
 const RecentComments: (
-  options: WalineRecentCommentsOptions
+  options: WalineRecentCommentsOptions,
 ) => Promise<WalineRecentCommentsResult>;
 ```
 

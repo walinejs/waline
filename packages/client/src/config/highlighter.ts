@@ -30,7 +30,7 @@ const LINE_COMMENT_REGEXP = /(?:^|\s)\/\/(.+?)$/gm;
 const BLOCK_COMMENT_REGEXP = /\/\*([\S\s]*?)\*\//gm;
 const REGEXP = new RegExp(
   `(${WORD_REGEXP.source}|${LEFT_ANGLE_REGEXP.source})|((?:${LINE_COMMENT_REGEXP.source})|(?:${BLOCK_COMMENT_REGEXP.source}))`,
-  'gmi'
+  'gmi',
 );
 
 const COLORS = [

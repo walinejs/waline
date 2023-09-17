@@ -14,7 +14,7 @@ This cookbook guides you on how to set up your own image service to upload image
 An example of using the `lsky-pro` graph bed.
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <meta charset="UTF-8" />

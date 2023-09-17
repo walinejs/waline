@@ -39,10 +39,10 @@ export const defaultUploadImage = (file: File): Promise<string> =>
     reader.onerror = reject;
   });
 
-export const defaultTexRenderer = (blockMode: boolean): string =>
+export const defaultTeXRenderer = (blockMode: boolean): string =>
   blockMode === true
-    ? '<p class="wl-tex">Tex is not available in preview</p>'
-    : '<span class="wl-tex">Tex is not available in preview</span>';
+    ? '<p class="wl-tex">TeX is not available in preview</p>'
+    : '<span class="wl-tex">TeX is not available in preview</span>';
 
 export const getDefaultSearchOptions = (lang: string): WalineSearchOptions => {
   interface GifResult {
@@ -63,7 +63,7 @@ export const getDefaultSearchOptions = (lang: string): WalineSearchOptions => {
 
   const fetchGiphy = async (
     url: string,
-    params: Record<string, string> = {}
+    params: Record<string, string> = {},
   ): Promise<WalineSearchResult> =>
     fetch(
       `https://api.giphy.com/v1/gifs/${url}?${new URLSearchParams({
@@ -73,14 +73,14 @@ export const getDefaultSearchOptions = (lang: string): WalineSearchOptions => {
         // eslint-disable-next-line @typescript-eslint/naming-convention
         api_key: '6CIMLkNMMOhRcXPoMCPkFy4Ybk2XUiMp',
         ...params,
-      }).toString()}`
+      }).toString()}`,
     )
       .then((resp) => <Promise<GifResult>>resp.json())
       .then(({ data }) =>
         data.map((gif) => ({
           title: gif.title,
           src: gif.images.downsized_medium.url,
-        }))
+        })),
       );
 
   return {

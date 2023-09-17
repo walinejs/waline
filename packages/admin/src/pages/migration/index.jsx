@@ -31,7 +31,7 @@ export default function () {
 
       const maxLength = data.tables.reduce(
         (count, tableName) => count + (data.data[tableName]?.length || 0),
-        0
+        0,
       );
       let importedLength = 0;
 
@@ -176,7 +176,7 @@ export default function () {
       download(
         JSON.stringify(data, null, '\t'),
         'waline.json',
-        'application/javascript'
+        'application/javascript',
       );
     } finally {
       setExportLoading(false);

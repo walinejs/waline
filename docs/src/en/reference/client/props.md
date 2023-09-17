@@ -208,10 +208,10 @@ You can pass in a code highlighter of your own, or set to `false` to disable cod
 
 ## texRenderer
 
-- Type: `WalineTexRenderer | false`
+- Type: `WalineTeXRenderer | false`
 
   ```ts
-  type WalineTexRenderer = (blockMode: boolean, tex: string) => string;
+  type WalineTeXRenderer = (blockMode: boolean, tex: string) => string;
   ```
 
 - Required: No

@@ -106,9 +106,9 @@ export const getComment = ({
 
   return fetch(
     `${serverURL}/comment?path=${encodeURIComponent(
-      path
+      path,
     )}&pageSize=${pageSize}&page=${page}&lang=${lang}&sortBy=${sortBy}`,
-    { signal, headers }
+    { signal, headers },
   )
     .then((resp) => <Promise<GetCommentResponse>>resp.json())
     .then((data) => errorCheck(data, 'Get comment data'));

@@ -34,7 +34,7 @@ export default defineComponent({
         h('div', {
           class: 'waline-tips',
           innerHTML: text.value,
-        })
+        }),
       );
   },
 });

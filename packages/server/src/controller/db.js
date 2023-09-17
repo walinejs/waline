@@ -42,17 +42,17 @@ module.exports = class extends BaseRest {
       item.insertedAt &&
         (item.insertedAt = think.datetime(
           item.insertedAt,
-          'YYYY-MM-DD HH:mm:ss'
+          'YYYY-MM-DD HH:mm:ss',
         ));
       item.createdAt &&
         (item.createdAt = think.datetime(
           item.createdAt,
-          'YYYY-MM-DD HH:mm:ss'
+          'YYYY-MM-DD HH:mm:ss',
         ));
       item.updatedAt &&
         (item.updatedAt = think.datetime(
           item.updatedAt,
-          'YYYY-MM-DD HH:mm:ss'
+          'YYYY-MM-DD HH:mm:ss',
         ));
     }
 

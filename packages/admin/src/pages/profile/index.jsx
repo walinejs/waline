@@ -247,7 +247,7 @@ export default function () {
                             </svg>
                           </div>
                         </div>
-                      )
+                      ),
                     )}
                 </div>
               </section>

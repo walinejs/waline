@@ -112,7 +112,7 @@ export interface DeprecatedValineOptions {
 // TODO: remove
 export const resolveOldEmojiMap = (
   emojiMaps: DeprecatedEmojiMaps,
-  emojiCDN = ''
+  emojiCDN = '',
 ): WalineEmojiInfo[] => {
   const resolvedEmojiMaps: WalineEmojiMaps = {};
 

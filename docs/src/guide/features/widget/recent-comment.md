@@ -58,7 +58,7 @@ Waline 通过 `RecentComments` 支持最新评论挂件显示，方便在博客�
     count: 10,
   }).then(({ comments }) => {
     document.getElementById('waline-recent').innerHTML = comments.map(
-      (comment) => `${comment.nick}: ${comment.comment}`
+      (comment) => `${comment.nick}: ${comment.comment}`,
     );
   });
 </script>
