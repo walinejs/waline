@@ -184,7 +184,7 @@ module.exports = class extends think.Service {
   }
 
   async qq(self, parent) {
-    const { QMSG_KEY, QQ_ID, SITE_NAME, SITE_URL } = process.env;
+    const { QMSG_KEY, QQ_ID, SITE_NAME, SITE_URL, QMSG_HOST } = process.env;
 
     if (!QMSG_KEY) {
       return false;
@@ -219,7 +219,9 @@ module.exports = class extends think.Service {
     form.append('msg', this.ctx.locale(contentQQ, data));
     form.append('qq', QQ_ID);
 
-    return fetch(`https://qmsg.zendee.cn/send/${QMSG_KEY}`, {
+    const qmsgHost = QMSG_HOST ? QMSG_HOST.replace(/\/$/, '') : 'https://qmsg.zendee.cn';
+
+    return fetch(`${qmsgHost}/send/${QMSG_KEY}`, {
       method: 'POST',
       header: form.getHeaders(),
       body: form,
