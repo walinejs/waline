@@ -83,6 +83,7 @@ module.exports = class extends BaseRest {
           action === 'desc'
             ? (counter[type] || 1) - 1
             : (counter[type] || 0) + 1,
+        updatedAt: new Date(),
       }),
       { objectId: ['IN', resp.map(({ objectId }) => objectId)] },
     );
