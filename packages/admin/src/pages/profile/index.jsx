@@ -27,8 +27,13 @@ export default function () {
     }
 
     setProfileUpdating(true);
-    await dispatch.user.updateProfile({ display_name, url, label });
-    setProfileUpdating(false);
+    try {
+      await dispatch.user.updateProfile({ display_name, url, label });
+    } catch (e) {
+      alert(e);
+    } finally {
+      setProfileUpdating(false);
+    }
   };
 
   const onPasswordUpdate = async function (e) {
