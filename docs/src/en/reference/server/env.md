@@ -105,7 +105,7 @@ When setting security domains, you need to add the site address and the Waline s
 | `MARKDOWN_SUP`        | `true`    | Whether enable superscript                                         |
 | `MARKDOWN_TEX`        | `mathjax` | Service to parse math, `mathjax` `katex` and `false` are supported |
 | `MARKDOWN_MATHJAX`    | `{}`      | MathJax Options                                                    |
-| `MARKDOWN_KATEX`      | `{}`      | Katex Options                                                      |
+| `MARKDOWN_KATEX`      | `{}`      | KaTeX Options                                                      |
 
 ## Mail Service
 
