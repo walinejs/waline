@@ -405,11 +405,15 @@ module.exports = class extends Base {
       ret.map(async (item) => {
         const _oldStatus = item.get('status');
 
+        var newData
         if (think.isFunction(data)) {
-          item.set(data(item.toJSON()));
-        } else {
-          item.set(data);
+          newData = data(item.toJSON())
         }
+        if ('updatedAt' in newData) {
+          delete newData.updatedAt
+        }
+        item.set(newData)
+        
         const _newStatus = item.get('status');
 
         if (_newStatus && _oldStatus !== _newStatus) {
