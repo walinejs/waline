@@ -406,10 +406,14 @@ module.exports = class extends Base {
         const _oldStatus = item.get('status');
 
         var updateData = typeof data === 'function' ? data(item.toJSON()) : data;
-        if (updateData.hasOwnProperty('updatedAt')) {
-          delete updateData.updatedAt;
+        
+        const REVERSED_KEYS = ['createdAt', 'updatedAt'];
+        for (const k in updateData) {
+          if (REVERSED_KEYS.includes(k)) {
+            continue;
+          }
+          instance.set(k, updateData[k]);
         }
-        item.set(updateData);
 
         const _newStatus = item.get('status');
 
