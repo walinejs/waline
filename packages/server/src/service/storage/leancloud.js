@@ -412,7 +412,7 @@ module.exports = class extends Base {
           if (REVERSED_KEYS.includes(k)) {
             continue;
           }
-          instance.set(k, updateData[k]);
+          item.set(k, updateData[k]);
         }
 
         const _newStatus = item.get('status');
