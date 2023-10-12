@@ -49,11 +49,11 @@
     "singleQuote": true
   },
   "devDependencies": {
-    "@babel/core": "7.23.0",
-    "@babel/plugin-transform-runtime": "7.22.15",
-    "@babel/preset-env": "7.22.20",
+    "@babel/core": "7.23.2",
+    "@babel/plugin-transform-runtime": "7.23.2",
+    "@babel/preset-env": "7.23.2",
     "@babel/preset-react": "7.22.15",
-    "@babel/runtime": "7.23.1",
+    "@babel/runtime": "7.23.2",
     "@commitlint/cli": "17.7.2",
     "@commitlint/config-conventional": "17.7.0",
     "@rollup/plugin-babel": "6.0.4",
