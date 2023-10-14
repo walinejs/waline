@@ -92,7 +92,7 @@ Recaptcha Key 和 Secret 可在 <https://www.google.com/recaptcha> 申请。
 | `MARKDOWN_SUP`       | `true`    | 是否启用上角标支持                                |
 | `MARKDOWN_TEX`       | `mathjax` | 解析 TeX 的服务，支持 `mathjax`、`katex`、`false` |
 | `MARKDOWN_MATHJAX`   | `{}`      | MathJax 选项                                      |
-| `MARKDOWN_KATEX`     | `{}`      | Katex 选项                                        |
+| `MARKDOWN_KATEX`     | `{}`      | KaTeX 选项                                        |
 
 ## 邮件
 
