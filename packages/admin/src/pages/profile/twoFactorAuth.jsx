@@ -21,14 +21,19 @@ export default function () {
 
     const code = e.target.code.value;
 
-    if (!code || code.length < 6) {
+    if (!code || code.length < 6 || code.length > 6) {
       return alert(t('minimum 6 characters required'));
     }
 
-    setUpdating(true);
-    await gen2FAToken({ code, secret: data.secret });
-    setUpdating(false);
-    location.reload();
+    try {
+      setUpdating(true);
+      await gen2FAToken({ code, secret: data.secret });
+    } catch (e) {
+      alert(e);
+    } finally {
+      setUpdating(false);
+      location.reload();
+    }
   };
 
   const close2FA = async () => {
