@@ -36,12 +36,12 @@ describe('inline mathjax', () => {
 
 describe('block mathjax', () => {
   it('Should render', () => {
-    const result1 = markdownIt.render(`$$a=1$$`);
+    const result1 = markdownIt.render(`$$a=1$$`).trim();
     const result2 = markdownIt.render(`
 $$
 a = 1
 $$
-`);
+`).trim();
 
     expect(result1).toMatch(/^<svg/);
     expect(result1).toMatch(/<\/svg>$/);
@@ -65,7 +65,7 @@ $$</p>\n`);
   });
 
   it('Should render when having spaces', () => {
-    const result1 = markdownIt.render(`$$ a = 1 $$`);
+    const result1 = markdownIt.render(`$$ a = 1 $$`).trim();
 
     expect(result1).toMatch(/^<svg/);
     expect(result1).toMatch(/<\/svg>$/);
@@ -77,12 +77,12 @@ $$</p>\n`);
   });
 
   it('Should not render error msg when content is wrong', () => {
-    const result1 = markdownIt.render('$$\\fra{a}{b}$$');
+    const result1 = markdownIt.render('$$\\fra{a}{b}$$').trim();
     const result2 = markdownIt.render(`
 $$
 \\fra{a}{b}
 $$
-`);
+`).trim();
 
     expect(result1).toMatch(/^<svg/);
     expect(result1).toMatch(/<\/svg>$/);
