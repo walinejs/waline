@@ -90,4 +90,15 @@ module.exports = class extends BaseRest {
 
     return this.jsonOrSuccess(deprecated ? ret[0][type] : [ret[0][type]]);
   }
+
+  async deleteAction() {
+    let { path } = this.get();
+
+    // if last symbol is '/' than all children articles will be deleted
+    // otherwise only exactly matched
+    const where = path[path.length - 1] === '/' ? { url: ['like', `${path}%`] } : { url: path };
+    await this.getModel('Comment').delete(where);
+
+    return this.success();
+  }
 };

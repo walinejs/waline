@@ -24,4 +24,15 @@ module.exports = class extends Base {
       },
     };
   }
+
+  deleteAction() {
+    const { path } = this.get();
+
+    this.rules = {
+      path: {
+        string: true,
+        required: !path,
+      }
+    }
+  }
 };

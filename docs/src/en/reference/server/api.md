@@ -99,3 +99,17 @@ POST /api/article
 | Parameter | Type   | Description            |
 | --------- | ------ | ---------------------- |
 | path      | string | Article id for comment |
+
+### Delete article comments
+
+Delete all comment for provided article path. If path is provided with '/' at the end then all comments that contains this path will be deleted. Otherwise comments where url fully match path will be deleted.
+
+```http
+DELETE /api/article
+```
+
+**Parameters**:
+
+| Parameter | Type   | Description            |
+| --------- | ------ | ---------------------- |
+| path      | string | Article id for comment |
