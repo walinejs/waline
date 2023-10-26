@@ -219,7 +219,9 @@ module.exports = class extends think.Service {
     form.append('msg', this.ctx.locale(contentQQ, data));
     form.append('qq', QQ_ID);
 
-    const qmsgHost = QMSG_HOST ? QMSG_HOST.replace(/\/$/, '') : 'https://qmsg.zendee.cn';
+    const qmsgHost = QMSG_HOST
+      ? QMSG_HOST.replace(/\/$/, '')
+      : 'https://qmsg.zendee.cn';
 
     return fetch(`${qmsgHost}/send/${QMSG_KEY}`, {
       method: 'POST',
@@ -239,7 +241,7 @@ module.exports = class extends think.Service {
     const href = self.comment.match(/<a href="(.*?)">(.*?)<\/a>/g);
 
     if (href !== null) {
-      for (var i = 0; i < href.length; i++) {
+      for (let i = 0; i < href.length; i++) {
         href[i] =
           '[Link: ' +
           href[i].replace(/<a href="(.*?)">(.*?)<\/a>/g, '$2') +

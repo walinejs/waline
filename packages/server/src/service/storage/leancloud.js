@@ -405,9 +405,11 @@ module.exports = class extends Base {
       ret.map(async (item) => {
         const _oldStatus = item.get('status');
 
-        var updateData = typeof data === 'function' ? data(item.toJSON()) : data;
-        
+        const updateData =
+          typeof data === 'function' ? data(item.toJSON()) : data;
+
         const REVERSED_KEYS = ['createdAt', 'updatedAt'];
+
         for (const k in updateData) {
           if (REVERSED_KEYS.includes(k)) {
             continue;
