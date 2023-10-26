@@ -27,7 +27,7 @@ jobs:
       - run: pnpm install --frozen-lockfile && pnpm --filter ./packages/admin run build
 
       - name: 'publish @waline/admin'
-        uses: JS-DevTools/npm-publish@v2
+        uses: JS-DevTools/npm-publish@v3
         with:
           token: ${{ secrets.NPM_TOKEN }}
           package: ./packages/admin
