@@ -39,7 +39,7 @@ jobs:
 
       - id: publish-server
         name: 'publish @waline/vercel'
-        uses: JS-DevTools/npm-publish@v2
+        uses: JS-DevTools/npm-publish@v3
         with:
           token: ${{ secrets.NPM_TOKEN }}
           package: ./packages/server
