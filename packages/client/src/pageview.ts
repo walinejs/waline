@@ -47,6 +47,8 @@ export interface WalinePageviewCountOptions {
   lang?: string;
 }
 
+export { type WalineAbort } from './typings/index.js';
+
 const renderVisitorCount = (
   counts: number[],
   countElements: HTMLElement[],
