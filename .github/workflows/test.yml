@@ -5,11 +5,10 @@ on:
   - pull_request
 
 jobs:
-  build-test:
+  test:
     strategy:
       matrix:
         node-version:
-          - 16
           - 18
           - 20
         os: [ubuntu-latest]
@@ -35,30 +34,11 @@ jobs:
       - name: Package Build Test
         run: pnpm build
 
-      - name: Docs Build Test
-        run: pnpm docs:build
-
-  test:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-          cache: pnpm
-
-      - name: Install Dependencies
-        run: pnpm install --frozen-lockfile
-
       - name: Linter test
         run: pnpm lint
 
       - name: Unit test
         run: pnpm test
+
+      - name: Docs Build Test
+        run: pnpm docs:build
