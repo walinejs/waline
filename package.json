@@ -8,7 +8,7 @@
     "apidoc": "apidoc -i packages/server/src/logic -o docs/src/.vuepress/dist/api",
     "build": "pnpm admin:build && pnpm client:build",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
-    "clean": "lerna run clean --stream",
+    "clean": "pnpm -r clean",
     "client:build": "pnpm --dir=packages/client build",
     "client:dev": "pnpm --dir=packages/client dev",
     "docs:build": "pnpm --dir=docs run build && pnpm apidoc",
