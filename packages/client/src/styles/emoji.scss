@@ -8,7 +8,7 @@
   border: var(--waline-border);
   border-radius: 6px;
 
-  background: var(--waline-bgcolor);
+  background: var(--waline-bg-color);
   box-shadow: var(--waline-box-shadow);
 
   opacity: 0;
@@ -44,7 +44,7 @@
     cursor: pointer;
 
     &:hover {
-      background: var(--waline-bgcolor-hover);
+      background: var(--waline-bg-color-hover);
     }
   }
 
@@ -131,7 +131,7 @@
       border-bottom-right-radius: 6px;
       border-bottom-left-radius: 6px;
 
-      background: var(--waline-bgcolor);
+      background: var(--waline-bg-color);
     }
   }
 }

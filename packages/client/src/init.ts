@@ -61,7 +61,9 @@ export const init = ({
       commentCount({
         serverURL: props.serverURL,
         path: state.path,
-        selector: typeof state.comment === 'string' ? state.comment : undefined,
+        ...(typeof state.comment === 'string'
+          ? { selector: state.comment }
+          : {}),
       });
   };
 
@@ -70,8 +72,9 @@ export const init = ({
       pageviewCount({
         serverURL: props.serverURL,
         path: state.path,
-        selector:
-          typeof state.pageview === 'string' ? state.pageview : undefined,
+        ...(typeof state.pageview === 'string'
+          ? { selector: state.pageview }
+          : {}),
       });
   };
 

@@ -46,7 +46,7 @@ export interface UpdatePageviewOptions extends BaseAPIOptions {
 
 export const updatePageview = (
   options: UpdatePageviewOptions,
-): Promise<number> =>
+): Promise<number[]> =>
   updateArticleCounter({
     ...options,
     type: 'time',

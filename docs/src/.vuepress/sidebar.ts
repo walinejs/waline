@@ -26,11 +26,6 @@ export const zhSidebarConfig = sidebar({
       ],
     },
     'reactivity',
-    {
-      text: '兼容',
-      icon: 'history',
-      children: ['legacy', 'emoji-compact'],
-    },
   ],
   '/guide/': [
     {
@@ -131,7 +126,7 @@ export const zhSidebarConfig = sidebar({
       icon: 'migration',
       prefix: 'migration/',
       collapsible: true,
-      children: ['client', 'valine', 'tool'],
+      children: ['v3', 'v2', 'valine', 'tool'],
     },
     {
       text: '高级',
@@ -169,11 +164,6 @@ export const enSidebarConfig = sidebar({
       ],
     },
     'reactivity',
-    {
-      text: 'Compatibility',
-      icon: 'history',
-      children: ['legacy', 'emoji-compact'],
-    },
   ],
   '/en/guide/': [
     {
@@ -264,7 +254,7 @@ export const enSidebarConfig = sidebar({
       icon: 'migration',
       prefix: 'migration/',
       collapsible: true,
-      children: ['client', 'valine', 'tool'],
+      children: ['v3', 'v2', 'valine', 'tool'],
     },
     {
       text: 'Advanced',

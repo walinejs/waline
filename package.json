@@ -5,8 +5,9 @@
   "scripts": {
     "admin:build": "pnpm --dir=packages/admin build",
     "admin:dev": "pnpm --dir=packages/admin dev",
+    "api:build": "pnpm --dir=packages/api build",
     "apidoc": "apidoc -i packages/server/src/logic -o docs/src/.vuepress/dist/api",
-    "build": "pnpm admin:build && pnpm client:build",
+    "build": "pnpm admin:build && pnpm api:build && pnpm client:build",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "clean": "pnpm -r clean",
     "client:build": "pnpm --dir=packages/client build",
@@ -56,11 +57,9 @@
     "@babel/runtime": "7.23.2",
     "@commitlint/cli": "18.2.0",
     "@commitlint/config-conventional": "18.1.0",
-    "@rollup/plugin-babel": "6.0.4",
     "@rollup/plugin-commonjs": "25.0.7",
     "@rollup/plugin-node-resolve": "15.2.3",
     "@rollup/plugin-replace": "5.0.5",
-    "@rollup/plugin-terser": "0.4.4",
     "@types/node": "20.8.9",
     "@typescript-eslint/eslint-plugin": "6.9.1",
     "@typescript-eslint/parser": "6.9.1",
@@ -87,7 +86,8 @@
     "rimraf": "5.0.5",
     "rollup": "4.1.6",
     "rollup-plugin-dts": "6.1.0",
-    "rollup-plugin-typescript2": "0.36.0",
+    "rollup-plugin-esbuild": "6.1.0",
+    "rollup-plugin-ts": "3.4.5",
     "sass": "1.69.5",
     "sort-package-json": "2.6.0",
     "stylelint": "15.11.0",
@@ -102,10 +102,5 @@
   "packageManager": "pnpm@8.10.0",
   "apidoc": {
     "title": "Waline API Documentation"
-  },
-  "pnpm": {
-    "overrides": {
-      "@waline/client": "workspace:*"
-    }
   }
 }

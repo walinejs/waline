@@ -1,4 +1,5 @@
-import { getPageview, updatePageview } from './api/index.js';
+import { getPageview, updatePageview } from '@waline/api';
+
 import { type WalineAbort } from './typings/index.js';
 import { errorHandler, getQuery, getServerURL } from './utils/index.js';
 
@@ -97,7 +98,7 @@ export const pageviewCount = ({
       serverURL: getServerURL(serverURL),
       path,
       lang,
-    }).then((count) =>
+    }).then(([count]) =>
       renderVisitorCount(
         new Array<number>(normalElements.length).fill(count),
         normalElements,

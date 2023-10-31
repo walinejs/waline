@@ -287,6 +287,14 @@
 
 <script setup lang="ts">
 import { useDebounceFn } from '@vueuse/core';
+import {
+  type WalineComment,
+  type WalineCommentData,
+  addComment,
+  login,
+  updateComment,
+  UserInfo,
+} from '@waline/api';
 import autosize from 'autosize';
 import {
   type ComputedRef,
@@ -310,7 +318,6 @@ import {
   PreviewIcon,
 } from './Icons.js';
 import ImageWall from './ImageWall.vue';
-import { addComment, login, updateComment, UserInfo } from '../api/index.js';
 import {
   useEditor,
   useReCaptcha,
@@ -319,8 +326,6 @@ import {
   useUserMeta,
 } from '../composables/index.js';
 import {
-  type WalineComment,
-  type WalineCommentData,
   type WalineImageUploader,
   type WalineSearchOptions,
   type WalineSearchResult,

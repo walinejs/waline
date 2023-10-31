@@ -1,4 +1,5 @@
-import { marked } from 'marked';
+import { Marked } from 'marked';
+import { markedHighlight } from 'marked-highlight';
 
 import { markedTeXExtensions } from './markedMathExtension.js';
 import {
@@ -24,12 +25,11 @@ export const parseMarkdown = (
   content: string,
   { emojiMap, highlighter, texRenderer }: ParseMarkdownOptions,
 ): string => {
-  marked.setOptions({
-    highlight: highlighter || undefined,
-    breaks: true,
-    smartLists: true,
-    smartypants: true,
-  });
+  const marked = new Marked();
+
+  marked.setOptions({ breaks: true });
+
+  if (highlighter) marked.use(markedHighlight({ highlight: highlighter }));
 
   if (texRenderer) {
     const extensions = markedTeXExtensions(texRenderer);
@@ -37,5 +37,5 @@ export const parseMarkdown = (
     marked.use({ extensions });
   }
 
-  return marked.parse(parseEmoji(content, emojiMap));
+  return <string>marked.parse(parseEmoji(content, emojiMap));
 };
