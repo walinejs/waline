@@ -317,6 +317,18 @@ importers:
       '@koa/cors':
         specifier: ^4.0.0
         version: 4.0.0
+      '@mdit/plugin-katex':
+        specifier: ^0.5.2
+        version: 0.5.2(katex@0.16.9)(markdown-it@13.0.2)
+      '@mdit/plugin-mathjax':
+        specifier: ^0.5.2
+        version: 0.5.2(markdown-it@13.0.2)(mathjax-full@3.2.2)
+      '@mdit/plugin-sub':
+        specifier: ^0.5.2
+        version: 0.5.2(markdown-it@13.0.2)
+      '@mdit/plugin-sup':
+        specifier: ^0.5.2
+        version: 0.5.2(markdown-it@13.0.2)
       akismet:
         specifier: ^2.0.7
         version: 2.0.7
@@ -356,12 +368,6 @@ importers:
       markdown-it-emoji:
         specifier: ^2.0.2
         version: 2.0.2
-      markdown-it-sub:
-        specifier: ^1.0.0
-        version: 1.0.0
-      markdown-it-sup:
-        specifier: ^1.0.0
-        version: 1.0.0
       mathjax-full:
         specifier: ^3.2.2
         version: 3.2.2
@@ -3006,7 +3012,7 @@ packages:
       upath: 2.0.1
     dev: true
 
-  /@mdit/plugin-katex@0.5.2(markdown-it@13.0.2):
+  /@mdit/plugin-katex@0.5.2(katex@0.16.9)(markdown-it@13.0.2):
     resolution: {integrity: sha512-SkDGwBsNosOK0B734vYBaSEbvfB5kdok9nIJskKvU9Fm2WldnQ2mh7RYeodxyB6FQDR62xt1x1qntYtHQyiZHg==}
     engines: {node: '>= 18'}
     peerDependencies:
@@ -3021,8 +3027,8 @@ packages:
       '@mdit/plugin-tex': 0.5.2(markdown-it@13.0.2)
       '@types/katex': 0.16.5
       '@types/markdown-it': 13.0.5
+      katex: 0.16.9
       markdown-it: 13.0.2
-    dev: true
 
   /@mdit/plugin-mark@0.5.2(markdown-it@13.0.2):
     resolution: {integrity: sha512-9crdRx/auXIoIZ2Ze02WirfiY0/zMVNwbTDEjgqFdF4OL5p2ort1l6rkw0cieiSKNo+GoaV+prrCFbTXeDlLIg==}
@@ -3054,7 +3060,6 @@ packages:
       markdown-it: 13.0.2
       mathjax-full: 3.2.2
       upath: 2.0.1
-    dev: true
 
   /@mdit/plugin-stylize@0.5.2(markdown-it@13.0.2):
     resolution: {integrity: sha512-uOjdrjbkPmvu+aqcRN8ZJswSylT3420m8qPqLagJWyfFVeaJBNhBJN3OZ/eSyz/OdQawn93t3nMmka/gETcyJA==}
@@ -3080,7 +3085,6 @@ packages:
     dependencies:
       '@types/markdown-it': 13.0.5
       markdown-it: 13.0.2
-    dev: true
 
   /@mdit/plugin-sup@0.5.2(markdown-it@13.0.2):
     resolution: {integrity: sha512-7Qqqq8TQgRxY14KfAnq+FZHT0XE9rZKgX6HmWGBn8plkF3pkQe2UEw0OH6b+4VDlbAwB8McM/yejihuaFubr5A==}
@@ -3093,7 +3097,6 @@ packages:
     dependencies:
       '@types/markdown-it': 13.0.5
       markdown-it: 13.0.2
-    dev: true
 
   /@mdit/plugin-tab@0.5.2(markdown-it@13.0.2):
     resolution: {integrity: sha512-a67AwFJWRW7weFOOBbvACMHGVZTkT6Z092oID8r3MNMrS0m4IUx94zBj+uGhTHt6QWWBr07XQfQMYX+0U+Gf6A==}
@@ -3131,7 +3134,6 @@ packages:
     dependencies:
       '@types/markdown-it': 13.0.5
       markdown-it: 13.0.2
-    dev: true
 
   /@mdit/plugin-uml@0.5.2(markdown-it@13.0.2):
     resolution: {integrity: sha512-zpXA5GyZUsKAJMEc6tTSqGfCKGAcnw0560159YJ5YH7eMIXMyz3dDLF1Rlj/4CMo2QvBQ/2nIxyCRuND3KLzKg==}
@@ -3637,11 +3639,9 @@ packages:
 
   /@types/katex@0.16.5:
     resolution: {integrity: sha512-DD2Y3xMlTQvAnN6d8803xdgnOeYZ+HwMglb7/9YCf49J9RkJL53azf9qKa40MkEYhqVwxZ1GS2+VlShnz4Z1Bw==}
-    dev: true
 
   /@types/linkify-it@3.0.4:
     resolution: {integrity: sha512-hPpIeeHb/2UuCw06kSNAOVWgehBLXEo0/fUs0mw3W2qhqX89PI2yvok83MnuctYGCPrabGIoi0fFso4DQ+sNUQ==}
-    dev: true
 
   /@types/markdown-it-emoji@2.0.3:
     resolution: {integrity: sha512-YjoZM0vP2KZSTwDh/5LamI58Cynk+lCfRJWM2nBAiWwclfyfj2wpaoDEo6ZVpH6Fn1f0RYs8q7u2biHL5YuEOg==}
@@ -3654,7 +3654,6 @@ packages:
     dependencies:
       '@types/linkify-it': 3.0.4
       '@types/mdurl': 1.0.4
-    dev: true
 
   /@types/marked@5.0.2:
     resolution: {integrity: sha512-OucS4KMHhFzhz27KxmWg7J+kIYqyqoW5kdIEI319hqARQQUTqhao3M/F+uFnDXD0Rg72iDDZxZNxq5gvctmLlg==}
@@ -3662,7 +3661,6 @@ packages:
 
   /@types/mdurl@1.0.4:
     resolution: {integrity: sha512-ARVxjAEX5TARFRzpDRVC6cEk0hUIXCCwaMhz8y7S1/PxU6zZS1UMjyobz7q4w/D/R552r4++EhwmXK1N2rAy0A==}
-    dev: true
 
   /@types/minimist@1.2.4:
     resolution: {integrity: sha512-Kfe/D3hxHTusnPNRbycJE1N77WHDsdS4AjUYIzlDzhDrS47NrwuL3YW4VITxwR7KCVpzwgy4Rbj829KSSQmwXQ==}
@@ -5962,7 +5960,6 @@ packages:
   /commander@8.3.0:
     resolution: {integrity: sha512-OkTL9umf+He2DZkUq8f8J9of7yL6RJKI24dVITBmNfZBmri9zYZQrKkuXiKhyfPSu8tUhnVBB1iKXevvnlR4Ww==}
     engines: {node: '>= 12'}
-    dev: false
 
   /commander@9.2.0:
     resolution: {integrity: sha512-e2i4wANQiSXgnrBlIatyHtP1odfUp0BbV5Y5nEGbxtIrStkEOAAzCUirvLBNXHLr7kwLvJl6V+4V3XV9x7Wd9w==}
@@ -9552,7 +9549,6 @@ packages:
     hasBin: true
     dependencies:
       commander: 8.3.0
-    dev: false
 
   /keygrip@1.1.0:
     resolution: {integrity: sha512-iYSchDJ+liQ8iwbSI2QqsQOvqv58eJCEanyJPJi+Khyu8smkcKSFUCbPwzFcL7YVtZ6eONjqRX/38caJ7QjRAQ==}
@@ -10109,14 +10105,6 @@ packages:
 
   /markdown-it-emoji@2.0.2:
     resolution: {integrity: sha512-zLftSaNrKuYl0kR5zm4gxXjHaOI3FAOEaloKmRA5hijmJZvSjmxcokOLlzycb/HXlUFWzXqpIEoyEMCE4i9MvQ==}
-
-  /markdown-it-sub@1.0.0:
-    resolution: {integrity: sha512-z2Rm/LzEE1wzwTSDrI+FlPEveAAbgdAdPhdWarq/ZGJrGW/uCQbKAnhoCsE4hAbc3SEym26+W2z/VQB0cQiA9Q==}
-    dev: false
-
-  /markdown-it-sup@1.0.0:
-    resolution: {integrity: sha512-E32m0nV9iyhRR7CrhnzL5msqic7rL1juWre6TQNxsnApg7Uf+F97JOKxUijg5YwXz86lZ0mqfOnutoryyNdntQ==}
-    dev: false
 
   /markdown-it@12.3.2:
     resolution: {integrity: sha512-TchMembfxfNVpHkbtriWltGWc+m3xszaRD0CZup7GFFhzIgQqxIfn3eGj1yZpfuflzPvfkt611B2Q/Bsk1YnGg==}
@@ -14199,7 +14187,6 @@ packages:
   /upath@2.0.1:
     resolution: {integrity: sha512-1uEe95xksV1O0CYKXo8vQvN1JEbtJp7lb7C5U9HMsIp6IVwntkH/oNUzyVNQSd4S1sYk2FpSSW44FqMc8qee5w==}
     engines: {node: '>=4'}
-    dev: true
 
   /update-browserslist-db@1.0.13(browserslist@4.22.1):
     resolution: {integrity: sha512-xebP81SNcPuNpPP3uzeW1NYXxI3rxyJzF3pD6sH4jE7o/IX+WtSpwnVU+qIsDPyk0d3hmFQ7mjqc6AtV604hbg==}
@@ -14889,7 +14876,7 @@ packages:
       '@mdit/plugin-img-mark': 0.5.2(markdown-it@13.0.2)
       '@mdit/plugin-img-size': 0.5.2(markdown-it@13.0.2)
       '@mdit/plugin-include': 0.5.2(markdown-it@13.0.2)
-      '@mdit/plugin-katex': 0.5.2(markdown-it@13.0.2)
+      '@mdit/plugin-katex': 0.5.2(katex@0.16.9)(markdown-it@13.0.2)
       '@mdit/plugin-mark': 0.5.2(markdown-it@13.0.2)
       '@mdit/plugin-mathjax': 0.5.2(markdown-it@13.0.2)(mathjax-full@3.2.2)
       '@mdit/plugin-stylize': 0.5.2(markdown-it@13.0.2)
