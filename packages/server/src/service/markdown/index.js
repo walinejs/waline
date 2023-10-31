@@ -60,7 +60,7 @@ const getMarkdownParser = () => {
   } else if (tex !== false) {
     markdownIt.use(
       mathjaxPlugin,
-      createMathjaxInstance({ ...mathjax, output: 'svg' })
+      createMathjaxInstance({ ...mathjax, output: 'svg' }),
     );
   }
 
