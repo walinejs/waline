@@ -21,6 +21,7 @@ redirectFrom: /reference/server.html
 - 类型： `plugin[]`
 
 详情见 [插件系统](./plugin.md)
+
 ### secureDomains
 
 - 类型: `string | RegExp | string[] | RegExp[]`

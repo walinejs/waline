@@ -103,7 +103,7 @@ const click = (event: FormDataEvent) => {
       source.value = JSON.parse(source.value);
     } else {
       source.value = JSON.parse(
-        `{"results":[ ${source.value.split(/[\r\n]+/).join(',')} ]}`
+        `{"results":[ ${source.value.split(/[\r\n]+/).join(',')} ]}`,
       );
     }
   }

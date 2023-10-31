@@ -20,7 +20,7 @@ module.exports = () => async (ctx, next) => {
 
   if (ctx.state.deprecated) {
     think.logger.warn(
-      `[Deprecated] ${ctx.path} API will be deprecated in the next major version, please don't use it anymore. If you are using \`@waline/client\` please upgrade to \`@waline/client@3\`. For other scenarios, you can use \`/api${ctx.path}\` to replace it.`
+      `[Deprecated] ${ctx.path} API will be deprecated in the next major version, please don't use it anymore. If you are using \`@waline/client\` please upgrade to \`@waline/client@3\`. For other scenarios, you can use \`/api${ctx.path}\` to replace it.`,
     );
   }
 

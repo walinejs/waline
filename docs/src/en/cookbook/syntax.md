@@ -276,7 +276,7 @@ We support highlighting in almost all languages.
 ::: details Demo
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <script>
@@ -304,7 +304,7 @@ We support highlighting in almost all languages.
 Prism.fileHighlight = function () {
   if (!logged) {
     console.warn(
-      'Prism.fileHighlight is deprecated. Use `Prism.plugins.fileHighlight.highlight` instead.'
+      'Prism.fileHighlight is deprecated. Use `Prism.plugins.fileHighlight.highlight` instead.',
     );
     logged = true;
   }
@@ -329,7 +329,10 @@ section h1,
 #features li strong,
 header h2,
 footer p {
-  font: 100% Rockwell, Arvo, serif;
+  font:
+    100% Rockwell,
+    Arvo,
+    serif;
 }
 ```
 

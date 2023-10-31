@@ -210,7 +210,7 @@ module.exports = class extends Base {
         await instance.doc(item._id).update(updateData);
 
         return { ...item, ...updateData };
-      })
+      }),
     );
   }
 

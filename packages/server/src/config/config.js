@@ -123,7 +123,7 @@ module.exports = {
       ? false
       : LEVELS.split(/\s*,\s*/).map((v) => Number(v)),
 
-  audit: !isFalse(COMMENT_AUDIT),
+  audit: COMMENT_AUDIT && !isFalse(COMMENT_AUDIT),
   avatarProxy,
   oauthUrl,
   markdown,

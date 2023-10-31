@@ -1,5 +1,5 @@
 ---
-title: Customize TEX renderer
+title: Customize TeX renderer
 ---
 
 This cookbook guides you on how to add your own $\TeX$ renderer.
@@ -13,7 +13,7 @@ This cookbook guides you on how to add your own $\TeX$ renderer.
 For KaTeX options, see [KaTeX API](https://katex.org/docs/api.html#server-side-rendering-or-rendering-to-a-string).
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <meta charset="UTF-8" />
@@ -55,7 +55,7 @@ For KaTeX options, see [KaTeX API](https://katex.org/docs/api.html#server-side-r
 For MathJax options, see [MathJax API](http://docs.mathjax.org/en/latest/web/typeset.html#converting-a-math-string-to-other-formats).
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <meta charset="UTF-8" />
@@ -81,7 +81,7 @@ For MathJax options, see [MathJax API](http://docs.mathjax.org/en/latest/web/typ
           window.MathJax.startup.adaptor.outerHTML(
             window.MathJax.tex2svg(tex, {
               display: blockMode,
-            })
+            }),
           ),
       });
     </script>

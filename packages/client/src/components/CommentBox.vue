@@ -366,7 +366,7 @@ const props = withDefaults(
     rootId: '',
     replyId: '',
     replyUser: '',
-  }
+  },
 );
 
 const emit = defineEmits<{
@@ -448,18 +448,22 @@ const uploadImage = (file: File): Promise<void> => {
   const uploadText = `![${config.value.locale.uploading} ${file.name}]()`;
 
   insert(uploadText);
+  isSubmitting.value = true;
 
   return Promise.resolve()
     .then(() => (config.value.imageUploader as WalineImageUploader)(file))
     .then((url) => {
       editor.value = editor.value.replace(
         uploadText,
-        `\r\n![${file.name}](${url})`
+        `\r\n![${file.name}](${url})`,
       );
     })
     .catch((err: Error) => {
       alert(err.message);
       editor.value = editor.value.replace(uploadText, '');
+    })
+    .then(() => {
+      isSubmitting.value = false;
     });
 };
 
@@ -554,7 +558,7 @@ const submitComment = async (): Promise<void> => {
       locale.value.wordHint
         .replace('$0', (wordLimit as [number, number])[0].toString())
         .replace('$1', (wordLimit as [number, number])[1].toString())
-        .replace('$2', wordNumber.value.toString())
+        .replace('$2', wordNumber.value.toString()),
     );
 
   comment.comment = parseEmoji(comment.comment, emoji.value.map);
@@ -569,9 +573,8 @@ const submitComment = async (): Promise<void> => {
 
   try {
     if (recaptchaV3Key)
-      comment.recaptchaV3 = await useReCaptcha(recaptchaV3Key).execute(
-        'social'
-      );
+      comment.recaptchaV3 =
+        await useReCaptcha(recaptchaV3Key).execute('social');
 
     if (turnstileKey)
       comment.turnstile = await useTurnstile(turnstileKey).execute('social');
@@ -620,7 +623,7 @@ const onLogin = (event: Event): void => {
     userInfo.value = data;
     (data.remember ? localStorage : sessionStorage).setItem(
       'WALINE_USER',
-      JSON.stringify(data)
+      JSON.stringify(data),
     );
     emit('log');
   });
@@ -649,7 +652,7 @@ const onProfile = (event: Event): void => {
   const handler = window.open(
     `${serverURL}/ui/profile?${query.toString()}`,
     '_blank',
-    `width=${width},height=${height},left=${left},top=${top},scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no`
+    `width=${width},height=${height},left=${left},top=${top},scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no`,
   );
 
   handler?.postMessage({ type: 'TOKEN', data: userInfo.value.token }, '*');
@@ -729,7 +732,7 @@ watch(
       isWordNumberLegal.value = true;
     }
   },
-  { immediate: true }
+  { immediate: true },
 );
 
 const onMessageReceive = ({
@@ -788,7 +791,7 @@ onMounted(() => {
       if (value) autosize(editorRef.value!);
       else autosize.destroy(editorRef.value!);
     },
-    { immediate: true }
+    { immediate: true },
   );
 
   // watch emoji value change
@@ -798,7 +801,7 @@ onMounted(() => {
       getEmojis(emojiConfig).then((config) => {
         emoji.value = config;
       }),
-    { immediate: true }
+    { immediate: true },
   );
 });
 

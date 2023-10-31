@@ -1,6 +1,6 @@
 {
   "name": "@waline/admin",
-  "version": "0.25.0",
+  "version": "0.25.3",
   "description": "management system for waline",
   "keywords": [
     "waline",
@@ -51,17 +51,17 @@
     "@rematch/core": "2.2.0",
     "base-icon": "2.2.1",
     "classnames": "2.3.2",
-    "i18next": "22.5.0",
-    "i18next-browser-languagedetector": "7.0.1",
+    "i18next": "23.6.0",
+    "i18next-browser-languagedetector": "7.1.0",
     "md5": "2.3.0",
     "qrcode.react": "3.1.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-i18next": "12.3.1",
-    "react-redux": "8.0.5",
-    "react-router-dom": "6.11.2",
+    "react-i18next": "13.3.1",
+    "react-redux": "8.1.3",
+    "react-router-dom": "6.17.0",
     "redux": "4.2.1",
-    "typescript": "5.0.4",
-    "vite-plugin-css-injected-by-js": "^3.1.1"
+    "typescript": "5.2.2",
+    "vite-plugin-css-injected-by-js": "^3.3.0"
   }
 }

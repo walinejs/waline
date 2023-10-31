@@ -203,7 +203,7 @@ const props = withDefaults(
   {
     edit: null,
     reply: null,
-  }
+  },
 );
 
 const emit = defineEmits<{
@@ -214,7 +214,7 @@ const emit = defineEmits<{
   (event: 'like', comment: WalineComment): void;
   (
     event: 'status',
-    statusInfo: { status: WalineCommentStatus; comment: WalineComment }
+    statusInfo: { status: WalineCommentStatus; comment: WalineComment },
   ): void;
   (event: 'sticky', comment: WalineComment): void;
   (event: 'reply', comment: WalineComment | null): void;
@@ -238,20 +238,21 @@ const link = computed(() => {
 const like = computed(() => likes.value.includes(props.comment.objectId));
 
 const time = computed(() =>
-  getTimeAgo(props.comment.insertedAt, now.value, locale.value)
+  getTimeAgo(props.comment.insertedAt, now.value, locale.value),
 );
 
 const isAdmin = computed(() => userInfo.value.type === 'administrator');
 
 const isOwner = computed(
-  () => userInfo.value.objectId === props.comment.user_id
+  () =>
+    props.comment.user_id && userInfo.value.objectId === props.comment.user_id,
 );
 
 const isReplyingCurrent = computed(
-  () => props.comment.objectId === props.reply?.objectId
+  () => props.comment.objectId === props.reply?.objectId,
 );
 
 const isEditingCurrent = computed(
-  () => props.comment.objectId === props.edit?.objectId
+  () => props.comment.objectId === props.edit?.objectId,
 );
 </script>

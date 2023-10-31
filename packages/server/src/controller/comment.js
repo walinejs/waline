@@ -8,7 +8,7 @@ async function formatCmt(
   { ua, ip, ...comment },
   users = [],
   { avatarProxy, deprecated },
-  loginUser
+  loginUser,
 ) {
   ua = think.uaParser(ua);
   if (!think.config('disableUserAgent')) {
@@ -146,7 +146,7 @@ module.exports = class extends BaseRest {
 
       if (!think.isEmpty(duplicate)) {
         think.logger.debug(
-          'The comment author had post same comment content before'
+          'The comment author had post same comment content before',
         );
 
         return this.fail(this.locale('Duplicate Content'));
@@ -177,7 +177,7 @@ module.exports = class extends BaseRest {
 
       if (data.status === 'approved') {
         const spam = await akismet(data, this.ctx.serverURL).catch((e) =>
-          console.log(e)
+          console.log(e),
         ); // ignore akismet error
 
         if (spam === true) {
@@ -240,14 +240,14 @@ module.exports = class extends BaseRest {
       resp,
       [userInfo],
       { ...this.config(), deprecated: this.ctx.state.deprecated },
-      userInfo
+      userInfo,
     );
     const parentReturn = parentComment
       ? await formatCmt(
           parentComment,
           parentUser ? [parentUser] : [],
           { ...this.config(), deprecated: this.ctx.state.deprecated },
-          userInfo
+          userInfo,
         )
       : undefined;
 
@@ -256,7 +256,9 @@ module.exports = class extends BaseRest {
 
       await notify.run(
         { ...cmtReturn, mail: resp.mail, rawComment: comment },
-        parentReturn ? { ...parentReturn, mail: parentComment.mail } : undefined
+        parentReturn
+          ? { ...parentReturn, mail: parentComment.mail }
+          : undefined,
       );
     }
 
@@ -271,8 +273,8 @@ module.exports = class extends BaseRest {
         resp,
         [userInfo],
         { ...this.config(), deprecated: this.ctx.state.deprecated },
-        userInfo
-      )
+        userInfo,
+      ),
     );
   }
 
@@ -293,6 +295,7 @@ module.exports = class extends BaseRest {
       data.like =
         (Number(oldData.like) || 0) +
         (data.like ? Math.ceil(Math.random() * likeIncMax) : -1);
+      data.like = Math.max(data.like, 0);
     }
 
     const preUpdateResp = await this.hook('preUpdate', {
@@ -320,7 +323,7 @@ module.exports = class extends BaseRest {
       newData[0],
       cmtUser ? [cmtUser] : [],
       { ...this.config(), deprecated: this.ctx.state.deprecated },
-      userInfo
+      userInfo,
     );
 
     if (
@@ -348,13 +351,13 @@ module.exports = class extends BaseRest {
         pComment,
         pUser ? [pUser] : [],
         { ...this.config(), deprecated: this.ctx.state.deprecated },
-        userInfo
+        userInfo,
       );
 
       await notify.run(
         { ...cmtReturn, mail: newData[0].mail },
         { ...pcmtReturn, mail: pComment.mail },
-        true
+        true,
       );
     }
 
@@ -461,12 +464,12 @@ module.exports = class extends BaseRest {
         rootIds[objectId] = true;
       });
       comments = comments.filter(
-        (cmt) => rootIds[cmt.objectId] || rootIds[cmt.rid]
+        (cmt) => rootIds[cmt.objectId] || rootIds[cmt.rid],
       );
     } else {
       comments = await this.modelInstance.select(
         { ...where, rid: undefined },
-        { ...selectOptions }
+        { ...selectOptions },
       );
       rootCount = comments.length;
       rootComments = [
@@ -479,7 +482,7 @@ module.exports = class extends BaseRest {
           ...where,
           rid: ['IN', rootComments.map(({ objectId }) => objectId)],
         },
-        selectOptions
+        selectOptions,
       );
 
       comments = [...rootComments, ...children];
@@ -487,7 +490,7 @@ module.exports = class extends BaseRest {
 
     const userModel = this.getModel('Users');
     const user_ids = Array.from(
-      new Set(comments.map(({ user_id }) => user_id).filter((v) => v))
+      new Set(comments.map(({ user_id }) => user_id).filter((v) => v)),
     );
     let users = [];
 
@@ -496,7 +499,7 @@ module.exports = class extends BaseRest {
         { objectId: ['IN', user_ids] },
         {
           field: ['display_name', 'email', 'url', 'type', 'avatar', 'label'],
-        }
+        },
       );
     }
 
@@ -510,7 +513,7 @@ module.exports = class extends BaseRest {
         countWhere._complex.user_id = ['IN', user_ids];
       }
       const mails = Array.from(
-        new Set(comments.map(({ mail }) => mail).filter((v) => v))
+        new Set(comments.map(({ mail }) => mail).filter((v) => v)),
       );
 
       if (mails.length) {
@@ -527,7 +530,7 @@ module.exports = class extends BaseRest {
 
       comments.forEach((cmt) => {
         const countItem = (counts || []).find(({ mail, user_id }) =>
-          cmt.user_id ? user_id === cmt.user_id : mail === cmt.mail
+          cmt.user_id ? user_id === cmt.user_id : mail === cmt.mail,
         );
 
         cmt.level = think.getLevel(countItem?.count);
@@ -545,7 +548,7 @@ module.exports = class extends BaseRest {
             comment,
             users,
             { ...this.config(), deprecated: this.ctx.state.deprecated },
-            userInfo
+            userInfo,
           );
 
           cmt.children = await Promise.all(
@@ -559,14 +562,14 @@ module.exports = class extends BaseRest {
                     ...this.config(),
                     deprecated: this.ctx.state.deprecated,
                   },
-                  userInfo
-                )
+                  userInfo,
+                ),
               )
-              .reverse()
+              .reverse(),
           );
 
           return cmt;
-        })
+        }),
       ),
     };
   }
@@ -608,7 +611,7 @@ module.exports = class extends BaseRest {
 
     const userModel = this.getModel('Users');
     const user_ids = Array.from(
-      new Set(comments.map(({ user_id }) => user_id).filter((v) => v))
+      new Set(comments.map(({ user_id }) => user_id).filter((v) => v)),
     );
 
     let users = [];
@@ -618,7 +621,7 @@ module.exports = class extends BaseRest {
         { objectId: ['IN', user_ids] },
         {
           field: ['display_name', 'email', 'url', 'type', 'avatar', 'label'],
-        }
+        },
       );
     }
 
@@ -634,9 +637,9 @@ module.exports = class extends BaseRest {
             cmt,
             users,
             { ...this.config(), deprecated: this.ctx.state.deprecated },
-            userInfo
-          )
-        )
+            userInfo,
+          ),
+        ),
       ),
     };
   }
@@ -679,7 +682,7 @@ module.exports = class extends BaseRest {
 
     const userModel = this.getModel('Users');
     const user_ids = Array.from(
-      new Set(comments.map(({ user_id }) => user_id).filter((v) => v))
+      new Set(comments.map(({ user_id }) => user_id).filter((v) => v)),
     );
 
     let users = [];
@@ -689,7 +692,7 @@ module.exports = class extends BaseRest {
         { objectId: ['IN', user_ids] },
         {
           field: ['display_name', 'email', 'url', 'type', 'avatar', 'label'],
-        }
+        },
       );
     }
 
@@ -699,9 +702,9 @@ module.exports = class extends BaseRest {
           cmt,
           users,
           { ...this.config(), deprecated: this.ctx.state.deprecated },
-          userInfo
-        )
-      )
+          userInfo,
+        ),
+      ),
     );
   }
 

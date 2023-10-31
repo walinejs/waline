@@ -5,7 +5,7 @@ module.exports = class extends MySQL {
     const instance = this.model(this.tableName);
 
     return instance.query(
-      `UPDATE SQLITE_SEQUENCE SET SEQ=${id} WHERE NAME='${instance.tableName}';`
+      `UPDATE SQLITE_SEQUENCE SET SEQ=${id} WHERE NAME='${instance.tableName}';`,
     );
   }
 };

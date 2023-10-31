@@ -25,7 +25,7 @@ module.exports = class extends think.Controller {
         `${oauthUrl}/${type}?${new URLSearchParams({
           redirect: redirectUrl,
           state: this.ctx.state.token || '',
-        }).toString()}`
+        }).toString()}`,
       );
     }
 
@@ -54,7 +54,7 @@ module.exports = class extends think.Controller {
         headers: {
           'user-agent': '@waline',
         },
-      }
+      },
     ).then((resp) => resp.json());
 
     if (!user || !user.id) {
@@ -68,7 +68,7 @@ module.exports = class extends think.Controller {
 
       if (redirect) {
         return this.redirect(
-          redirect + (redirect.includes('?') ? '&' : '?') + 'token=' + token
+          redirect + (redirect.includes('?') ? '&' : '?') + 'token=' + token,
         );
       }
 
@@ -123,7 +123,7 @@ module.exports = class extends think.Controller {
 
     if (redirect) {
       return this.redirect(
-        redirect + (redirect.includes('?') ? '&' : '?') + 'token=' + token
+        redirect + (redirect.includes('?') ? '&' : '?') + 'token=' + token,
       );
     }
 

@@ -183,7 +183,7 @@ export default function () {
                                     {name}
                                   </a>
                                 );
-                              }
+                              },
                             )}
                           </td>
                         </tr>

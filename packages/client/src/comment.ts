@@ -44,6 +44,8 @@ export interface WalineCommentCountOptions {
   lang?: string;
 }
 
+export { type WalineAbort } from './typings/index.js';
+
 export const commentCount = ({
   serverURL,
   path = window.location.pathname,

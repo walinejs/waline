@@ -181,7 +181,7 @@ type WalineAbort = (reason?: any) => void;
 
 ```ts
 const RecentComments: (
-  options: WalineRecentCommentsOptions
+  options: WalineRecentCommentsOptions,
 ) => Promise<WalineRecentCommentsResult>;
 ```
 
@@ -230,7 +230,7 @@ interface WalineRecentCommentsResult {
 
 ```ts
 const UserList: (
-  options: WalineUserListOptions
+  options: WalineUserListOptions,
 ) => Promise<WalineUserListResult>;
 ```
 

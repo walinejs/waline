@@ -10,7 +10,7 @@ Waline 通过将数据库操作归类为 CURD 等几个操作，所有的上层�
 const Application = require('@waline/vercel');
 
 module.exports = Application({
-  model: class CustomModel {}
+  model: class CustomModel {},
 });
 ```
 
@@ -41,7 +41,7 @@ class CustomModel {
   async delete(where) {
     //to be implemented
   }
-};
+}
 ```
 
 上面这个是 `CustomModel` 类必须要实现的基础结构，它必须包含 `select`, `add`, `update`, `delete` 以及 `count` 几个基础方法的实现。Waline 是基于 [ThinkJS](https://thinkjs.org) 框架开发的，底层数据库操作采用了框架自带的数据库操作语法。在实现这几个方法之前，需要对数据库条件查询的语法有一些基础的理解。
@@ -53,6 +53,7 @@ class CustomModel {
 通过对象可以传入多条件查询，默认是等于条件。当值为二维数组时，第一位可以传入其他的判断操作，第二位则对应值，例如 `{user_id: ['!=', 0]}`。目前支持的主要有 `!=`, `>`, `IN`, `NOT IN`, `LIKE` 集中运算操作。
 
 和 MySQL 比较类似，`LIKE` 操作中，我们通过 `%` 的位置来定义模糊查询的模式：
+
 - `content%` 表示搜索以 `content` 开头的内容
 - `%content` 表示搜索以 `content` 结尾的内容
 - `%content%` 表示搜索包含 `content` 的内容
@@ -63,67 +64,66 @@ class CustomModel {
 
 1. 普通查询：
 
-    ```js
-    const model = new CustomModel('Comment');
-    await model.select({ 
-      url: '/', 
-      user_id: ['!=', 0], 
-      createdAt: ['>', '2023-04-16 00:00:00'] 
-    });
-    // SELECT * FROM Comment WHERE url = '/' AND user_id != 0 AND createdAt > "2023-04-16 00:00:00";
-    ```
+   ```js
+   const model = new CustomModel('Comment');
+   await model.select({
+     url: '/',
+     user_id: ['!=', 0],
+     createdAt: ['>', '2023-04-16 00:00:00'],
+   });
+   // SELECT * FROM Comment WHERE url = '/' AND user_id != 0 AND createdAt > "2023-04-16 00:00:00";
+   ```
 
 2. IN / NOT IN 查询
 
-    ```js
-    const model = new CustomModel('Users');
-    await model.select({ objectId: ['IN', [1,2,3,4]] });
-    // SELECT * FROM Users WHERE objectId IN (1,2,3,4);
-    ```
+   ```js
+   const model = new CustomModel('Users');
+   await model.select({ objectId: ['IN', [1, 2, 3, 4]] });
+   // SELECT * FROM Users WHERE objectId IN (1,2,3,4);
+   ```
 
-    ```js
-    const model = new CustomModel('Comment');
-    await model.select({ status: ['NOT IN', ['waiting', 'spam']] });
-    // SELECT * FROM Comment WHERE status NOT IN ('waiting', 'spam');
-    ```
+   ```js
+   const model = new CustomModel('Comment');
+   await model.select({ status: ['NOT IN', ['waiting', 'spam']] });
+   // SELECT * FROM Comment WHERE status NOT IN ('waiting', 'spam');
+   ```
 
 3. LIKE 查询
 
-
-    ```js
-    const model = new CustomModel('Comment');
-    await model.select({ content: ['LIKE', '%content%'] });
-    // SELECT * FROM Comment WHERE content LIKE "%content%";
-    ```
+   ```js
+   const model = new CustomModel('Comment');
+   await model.select({ content: ['LIKE', '%content%'] });
+   // SELECT * FROM Comment WHERE content LIKE "%content%";
+   ```
 
 4. 多条件查询
 
-    ```js
-    const model = new CustomModel('Comment');
-    await model.select({ 
-      url: '/', 
-      user_id: ['!=', 0], 
-      createdAt: ['>', '2023-04-16 00:00:00'],
-      _logic: 'OR'
-    });
-    // SELECT * FROM Comment WHERE url = '/' OR user_id != 0 OR createdAt > "2023-04-16 00:00:00";
-    ```
+   ```js
+   const model = new CustomModel('Comment');
+   await model.select({
+     url: '/',
+     user_id: ['!=', 0],
+     createdAt: ['>', '2023-04-16 00:00:00'],
+     _logic: 'OR',
+   });
+   // SELECT * FROM Comment WHERE url = '/' OR user_id != 0 OR createdAt > "2023-04-16 00:00:00";
+   ```
 
 5. 复合查询
 
-    ```js
-    const model = new CustomModel('Comment');
-    await model.select({ 
-      url: '/', 
-      _complex: {
-        user_id: 0,
-        status: ['NOT IN', ['waiting', 'spam']]
-        _logic: 'OR'
-      }
-    });
-    // SELECT * FROM Comment WHERE url = '/' AND ( user_id = 0 OR status NOT IN ('waiting', 'spam'));
-    ```
-    
+   ```js
+   const model = new CustomModel('Comment');
+   await model.select({
+     url: '/',
+     _complex: {
+       user_id: 0,
+       status: ['NOT IN', ['waiting', 'spam']]
+       _logic: 'OR'
+     }
+   });
+   // SELECT * FROM Comment WHERE url = '/' AND ( user_id = 0 OR status NOT IN ('waiting', 'spam'));
+   ```
+
 如果你比较熟悉 TypeScript，[这里](https://github.com/walinejs/dittorm/blob/master/src/types/where.ts)有条件查询的类型定义。
 
 ## 实现查询
@@ -137,8 +137,7 @@ class CustomModel {
 - `offset`：指定返回的数据从第几条开始返回
 - `field`：指定返回数据的字段，默认返回所有字段
 
-
-`update()` 方法需要兼容 `data` 入参可能是计算函数的场景，例如页面浏览人数加1：
+`update()` 方法需要兼容 `data` 入参可能是计算函数的场景，例如页面浏览人数加 1：
 
 ```js
 const model = new CustomModel('Count');
@@ -217,7 +216,7 @@ class Github {
           authorization: 'token ' + this.token,
           'user-agent': 'Waline',
         },
-      }
+      },
     )
       .then((resp) => resp.json())
       .catch((e) => {
@@ -248,7 +247,7 @@ class Github {
           authorization: 'token ' + this.token,
           'user-agent': 'Waline',
         },
-      }
+      },
     ).then((resp) => resp.json());
 
     const file = tree.find(({ path }) => path === filename);
@@ -285,7 +284,7 @@ class Github {
           message: 'feat(waline): update comment data',
           content: Buffer.from(content, 'utf-8').toString('base64'),
         }),
-      }
+      },
     );
   }
 }
@@ -423,7 +422,7 @@ module.exports = class extends Base {
     const logicFn = logicMap[where._complex._logic];
 
     return data.filter((item) =>
-      logicFn.call(filters, (filter) => filter.every((fn) => fn(item)))
+      logicFn.call(filters, (filter) => filter.every((fn) => fn(item))),
     );
   }
 
@@ -492,7 +491,7 @@ module.exports = class extends Base {
   }
 
   async add(
-    data
+    data,
     // { access: { read = true, write = true } = { read: true, write: true } } = {}
   ) {
     const instance = await this.collection(this.tableName);

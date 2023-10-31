@@ -40,7 +40,7 @@ export const getFetchPrefix = (serverURL: string): string =>
 
 export const errorCheck = <T extends ErrorStatusResponse>(
   data: T,
-  name = ''
+  name = '',
 ): T => {
   if (typeof data === 'object' && data.errno)
     throw new TypeError(`${name} failed with ${data.errno}: ${data.errmsg}`);

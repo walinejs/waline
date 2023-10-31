@@ -35,7 +35,7 @@ export default async function request(url, opts = {}) {
   const joiner = opts.url.includes('?') ? '&' : '?';
   const resp = await fetch(
     `${baseUrl}${opts.url}${joiner}lang=${i18n.language}`,
-    opts
+    opts,
   );
 
   if (!resp.ok) {
@@ -52,7 +52,7 @@ export default async function request(url, opts = {}) {
     }
 
     throw new Error(
-      `${resp.status}: ${(result && result.errmsg) || resp.statusText}`
+      `${resp.status}: ${(result && result.errmsg) || resp.statusText}`,
     );
   }
 

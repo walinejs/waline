@@ -15,6 +15,6 @@
   "main": "index.js",
   "dependencies": {
     "@waline/vercel": "workspace:*",
-    "thinkjs": "^3.2.14"
+    "thinkjs": "^3.2.15"
   }
 }

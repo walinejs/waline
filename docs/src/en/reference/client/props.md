@@ -208,10 +208,10 @@ You can pass in a code highlighter of your own, or set to `false` to disable cod
 
 ## texRenderer
 
-- Type: `WalineTexRenderer | false`
+- Type: `WalineTeXRenderer | false`
 
   ```ts
-  type WalineTexRenderer = (blockMode: boolean, tex: string) => string;
+  type WalineTeXRenderer = (blockMode: boolean, tex: string) => string;
   ```
 
 - Required: No
@@ -224,7 +224,7 @@ You can pass in a code highlighter of your own, or set to `false` to disable cod
 
 Customize $\TeX$ rendering, the default behavior is to prompt that the preview mode does not support $\TeX$. The function provides two parameters, the first parameter indicates whether it should be rendered in block level, and the second parameter is the string of the $\TeX$ content, and return a HTML string as render result.
 
-You can import $\TeX$ renderer to provide preview feature. We recommend you to use Katex or MathJax, or you can set to `false` to disable parsing $\TeX$.
+You can import $\TeX$ renderer to provide preview feature. We recommend you to use KaTeX or MathJax, or you can set to `false` to disable parsing $\TeX$.
 
 ## search
 

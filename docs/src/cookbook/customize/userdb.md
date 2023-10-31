@@ -19,7 +19,7 @@ module.exports = Application({
     }
 
     return new UserModel();
-  }
+  },
 });
 ```
 
@@ -29,7 +29,24 @@ module.exports = Application({
 
 ```typescript
 type strNum = string | number;
-type UserFields = 'objectId' | 'display_name' | 'email' | 'password' | 'type' | 'label' | 'url' | 'avatar' | 'github' | 'twitter' | 'facebook' | 'google' | 'weibo' | 'qq' | '2fa' | 'createdAt' | 'updatedAt';
+type UserFields =
+  | 'objectId'
+  | 'display_name'
+  | 'email'
+  | 'password'
+  | 'type'
+  | 'label'
+  | 'url'
+  | 'avatar'
+  | 'github'
+  | 'twitter'
+  | 'facebook'
+  | 'google'
+  | 'weibo'
+  | 'qq'
+  | '2fa'
+  | 'createdAt'
+  | 'updatedAt';
 type UserData = Record<UserFields, strNum>;
 type UsersWhere = Record<UserFields, strNum | ['IN', strNum[]]>;
 interface UsersOptions {
@@ -56,7 +73,7 @@ function model(modelName): UsersModel | undefined {
 }
 ```
 
-以上仅能保证数据库的查询没有问题，但受限于密码的加密方式不同，Waline 内部的加密方式病不能和第三方网站中使用的加密方式一致。针对这种情况，你需要自定义密码加密和验证的方法。
+以上仅能保证数据库的查询没有问题，但受限于密码的加密方式不同，Waline 内部的加密方式并不能和第三方网站中使用的加密方式一致。针对这种情况，你需要自定义密码加密和验证的方法。
 
 ```js
 // index.js

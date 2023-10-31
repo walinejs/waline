@@ -122,7 +122,7 @@ export const UserList = ({
           '</li>',
         ]
           .filter((v) => v)
-          .join('')
+          .join(''),
       )
       .join('')}</ul>`;
 

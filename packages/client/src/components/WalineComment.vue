@@ -14,7 +14,7 @@
         <li
           v-for="item in sortingMethods"
           :key="item"
-          :class="[item === commentSorting ? 'active' : '']"
+          :class="[item === commentSortingRef ? 'active' : '']"
           @click="onSortByChange(item)"
         >
           {{ i18n[item] }}
@@ -153,7 +153,7 @@ const totalPages = ref(0);
 const config = computed(() => getConfig(props as WalineProps));
 
 // eslint-disable-next-line vue/no-ref-object-destructure
-const commentSorting = ref(config.value.commentSorting);
+const commentSortingRef = ref(config.value.commentSorting);
 
 const data = ref<WalineRootComment[]>([]);
 const reply = ref<WalineComment | null>(null);
@@ -180,7 +180,7 @@ const getCommentData = (pageNumber: number): void => {
     lang: config.value.lang,
     path,
     pageSize,
-    sortBy: sortKeyMap[commentSorting.value],
+    sortBy: sortKeyMap[commentSortingRef.value],
     page: pageNumber,
     signal: controller.signal,
     token: userInfo.value?.token,
@@ -211,8 +211,8 @@ const refresh = (): void => {
 };
 
 const onSortByChange = (item: WalineCommentSorting): void => {
-  if (commentSorting.value !== item) {
-    commentSorting.value = item;
+  if (commentSortingRef.value !== item) {
+    commentSortingRef.value = item;
     refresh();
   }
 };
@@ -231,7 +231,7 @@ const onSubmit = (comment: WalineComment): void => {
     edit.value.orig = comment.orig;
   } else if ('rid' in comment) {
     const repliedComment = data.value.find(
-      ({ objectId }) => objectId === comment.rid
+      ({ objectId }) => objectId === comment.rid,
     );
 
     if (!repliedComment) return;
@@ -306,7 +306,7 @@ const onDelete = async ({ objectId }: WalineComment): Promise<void> => {
     return item.children.some((child, childIndex) => {
       if (child.objectId === objectId) {
         data.value[index].children = item.children.filter(
-          (_item, i) => i !== childIndex
+          (_item, i) => i !== childIndex,
         );
 
         return true;
@@ -349,7 +349,7 @@ onMounted(() => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     () => [props.serverURL, props.path],
     () => refresh(),
-    { immediate: true }
+    { immediate: true },
   );
 });
 onUnmounted(() => abort?.());

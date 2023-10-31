@@ -23,7 +23,7 @@ You should set through `Settings` - `Environment Variables` when using Vercel.
 | `LEAN_ID`             | ✅       | LeanCloud Application ID                                |
 | `LEAN_KEY`            | ✅       | LeanCloud Application Key                               |
 | `LEAN_MASTER_KEY`     | ✅       | LeanCloud Application Master Key                        |
-| `LEAN_SERVER`         | ⚠        | LeanCloud server address if you're leancloud china user |
+| `LEAN_SERVER`         | ⚠       | LeanCloud server address if you're leancloud china user |
 | `SITE_NAME`           |          | site name                                               |
 | `SITE_URL`            |          | site url                                                |
 | `LOGIN`               |          | User need login before comment when `LOGIN=force`       |
@@ -105,7 +105,7 @@ When setting security domains, you need to add the site address and the Waline s
 | `MARKDOWN_SUP`        | `true`    | Whether enable superscript                                         |
 | `MARKDOWN_TEX`        | `mathjax` | Service to parse math, `mathjax` `katex` and `false` are supported |
 | `MARKDOWN_MATHJAX`    | `{}`      | MathJax Options                                                    |
-| `MARKDOWN_KATEX`      | `{}`      | Katex Options                                                      |
+| `MARKDOWN_KATEX`      | `{}`      | KaTeX Options                                                      |
 
 ## Mail Service
 

@@ -54,12 +54,13 @@ module.exports = class extends think.Controller {
       plugins.unshift(fn);
     }
 
-    for(let i = 0; i < plugins.length; i++) {
+    for (let i = 0; i < plugins.length; i++) {
       if (!think.isFunction(plugins[i])) {
         continue;
       }
-      
+
       const resp = await plugins[i].call(this, ...args);
+
       if (resp) {
         return resp;
       }

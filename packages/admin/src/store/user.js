@@ -26,7 +26,7 @@ export const user = {
 
         window.opener.postMessage(
           { type: 'userInfo', data: { token, remember, ...user } },
-          '*'
+          '*',
         );
       }
 
@@ -50,7 +50,7 @@ export const user = {
         if (window.opener) {
           window.opener.postMessage(
             { type: 'userInfo', data: { token, remember, ...user } },
-            '*'
+            '*',
           );
         }
       }

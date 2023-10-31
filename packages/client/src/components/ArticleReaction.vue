@@ -96,7 +96,7 @@ const fetchReaction = async (): Promise<void> => {
     if (Array.isArray(resp) || typeof resp === 'number') return;
 
     voteNumbers.value = reaction.map(
-      (_reaction, index) => resp[`reaction${index}`]
+      (_reaction, index) => resp[`reaction${index}`],
     );
   }
 };
@@ -122,7 +122,7 @@ const vote = async (index: number): Promise<void> => {
 
       voteNumbers.value[currentVoteItemIndex] = Math.max(
         voteNumbers.value[currentVoteItemIndex] - 1,
-        0
+        0,
       );
     }
 
@@ -152,7 +152,7 @@ onMounted(() => {
     () => {
       void fetchReaction();
     },
-    { immediate: true }
+    { immediate: true },
   );
 });
 onUnmounted(() => abort?.());

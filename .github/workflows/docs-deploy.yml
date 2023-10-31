@@ -1,9 +1,9 @@
-name: Deploy next Docs
+name: Deploy theme docs
 
 on:
   push:
     branches:
-      - next
+      - main
 
 jobs:
   deploy-docs:
@@ -27,9 +27,6 @@ jobs:
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build API
-        run: pnpm api:build
-
       - name: Build Client
         run: pnpm client:build
 
@@ -44,4 +41,4 @@ jobs:
           branch: gh-pages
           folder: docs/src/.vuepress/dist
           ssh-key: ${{ secrets.SSH_TOKEN }}
-          repository-name: walinejs/next
+          repository-name: walinejs/walinejs.github.io
