@@ -1,6 +1,6 @@
 const speakeasy = require('speakeasy');
 
-const BaseRest = require('../rest');
+const BaseRest = require('../rest.js');
 
 module.exports = class extends BaseRest {
   async getAction() {

@@ -2,7 +2,7 @@ const { performance } = require('perf_hooks');
 
 const { Deta } = require('deta');
 
-const Base = require('./base');
+const Base = require('./base.js');
 
 module.exports = class extends Base {
   constructor(tableName) {

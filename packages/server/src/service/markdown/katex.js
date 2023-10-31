@@ -1,7 +1,7 @@
 const katex = require('katex');
 
-const { inlineTeX, blockTeX } = require('./mathCommon');
-const { escapeHtml } = require('./utils');
+const { inlineTeX, blockTeX } = require('./mathCommon.js');
+const { escapeHtml } = require('./utils.js');
 
 // set KaTeX as the renderer for markdown-it-simplemath
 const katexInline = (tex, options) => {

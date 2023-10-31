@@ -1,7 +1,7 @@
 const nunjucks = require('nunjucks');
 const { PasswordHash } = require('phpass');
 
-const locales = require('../locales');
+const locales = require('../locales/index.js');
 
 module.exports = {
   success(...args) {

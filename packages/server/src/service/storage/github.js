@@ -1,9 +1,9 @@
-const path = require('path');
+const path = require('node:path');
 
 const { parseString, writeToString } = require('fast-csv');
 const fetch = require('node-fetch');
 
-const Base = require('./base');
+const Base = require('./base.js');
 
 const CSV_HEADERS = {
   Comment: [

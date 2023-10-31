@@ -1,5 +1,5 @@
-const path = require('path');
-const qs = require('querystring');
+const path = require('node:path');
+const qs = require('node:querystring');
 
 const jwt = require('jsonwebtoken');
 const fetch = require('node-fetch');

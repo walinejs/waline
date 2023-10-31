@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-const BaseRest = require('../rest');
+const BaseRest = require('../rest.js');
 
 module.exports = class extends BaseRest {
   async putAction() {

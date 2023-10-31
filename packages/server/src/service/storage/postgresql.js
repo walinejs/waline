@@ -1,4 +1,4 @@
-const MySQL = require('./mysql');
+const MySQL = require('./mysql.js');
 
 module.exports = class extends MySQL {
   model(tableName) {

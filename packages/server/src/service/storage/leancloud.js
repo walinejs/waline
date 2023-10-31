@@ -1,6 +1,6 @@
 const AV = require('leancloud-storage');
 
-const Base = require('./base');
+const Base = require('./base.js');
 
 const { LEAN_ID, LEAN_KEY, LEAN_MASTER_KEY, LEAN_SERVER } = process.env;
 

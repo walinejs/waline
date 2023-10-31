@@ -1,4 +1,4 @@
-const crypto = require('crypto');
+const crypto = require('node:crypto');
 
 const FormData = require('form-data');
 const fetch = require('node-fetch');

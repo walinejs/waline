@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const speakeasy = require('speakeasy');
 const helper = require('think-helper');
 
-const BaseRest = require('./rest');
+const BaseRest = require('./rest.js');
 
 module.exports = class extends BaseRest {
   constructor(...args) {

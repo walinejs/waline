@@ -1,6 +1,6 @@
-const BaseRest = require('./rest');
-const akismet = require('../service/akismet');
-const { getMarkdownParser } = require('../service/markdown');
+const BaseRest = require('./rest.js');
+const akismet = require('../service/akismet.js');
+const { getMarkdownParser } = require('../service/markdown/index.js');
 
 const markdownParser = getMarkdownParser();
 

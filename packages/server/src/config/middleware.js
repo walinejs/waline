@@ -1,7 +1,7 @@
 const cors = require('@koa/cors');
 const routerREST = require('think-router-rest');
 
-const { isNetlify, netlifyFunctionPrefix } = require('./netlify');
+const { isNetlify, netlifyFunctionPrefix } = require('./netlify.js');
 
 const isDev = think.env === 'development';
 const isTcb = think.env === 'cloudbase';

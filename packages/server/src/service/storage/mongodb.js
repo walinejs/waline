@@ -1,6 +1,6 @@
 const { ObjectID: ObjectId } = require('think-mongo/lib/model');
 
-const Base = require('./base');
+const Base = require('./base.js');
 
 module.exports = class extends Base {
   parseWhere(where) {
