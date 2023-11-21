@@ -1,14 +1,20 @@
-name: Deploy next Docs
+name: 'publish @waline/api'
 
 on:
   push:
     branches:
-      - next
+      - main
+    paths:
+      - .github/workflows/release-api.yml
+      - packages/api/**
+
+permissions:
+  contents: write
+  id-token: write
 
 jobs:
-  deploy-docs:
+  publish:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -21,7 +27,7 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
           cache: pnpm
 
       - name: Install Dependencies
@@ -33,15 +39,8 @@ jobs:
       - name: Build Client
         run: pnpm client:build
 
-      - name: Build Docs
-        run: |-
-          pnpm docs:build
-          > docs/src/.vuepress/dist/.nojekyll
-
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Publish NPM
+        uses: JS-DevTools/npm-publish@v3
         with:
-          branch: gh-pages
-          folder: docs/src/.vuepress/dist
-          ssh-key: ${{ secrets.SSH_TOKEN }}
-          repository-name: walinejs/next
+          token: ${{ secrets.NPM_TOKEN }}
+          package: ./packages/client
