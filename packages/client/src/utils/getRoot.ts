@@ -4,5 +4,5 @@ export const getRoot = (
   el instanceof HTMLElement
     ? el
     : typeof el === 'string'
-    ? document.querySelector(el)
-    : null;
+      ? document.querySelector(el)
+      : null;

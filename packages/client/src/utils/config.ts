@@ -108,15 +108,15 @@ export const getConfig = ({
     search === false
       ? false
       : typeof search === 'object'
-      ? search
-      : getDefaultSearchOptions(lang),
+        ? search
+        : getDefaultSearchOptions(lang),
   recaptchaV3Key,
   turnstileKey,
   reaction: Array.isArray(reaction)
     ? reaction
     : reaction === true
-    ? DEFAULT_REACTION
-    : [],
+      ? DEFAULT_REACTION
+      : [],
   commentSorting,
   ...more,
 });
