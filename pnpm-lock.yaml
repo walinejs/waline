@@ -321,8 +321,8 @@ importers:
         specifier: ^0.6.5
         version: 0.6.5(katex@0.16.9)(markdown-it@13.0.2)
       '@mdit/plugin-mathjax':
-        specifier: ^0.6.5
-        version: 0.6.5(markdown-it@13.0.2)(mathjax-full@3.2.2)
+        specifier: ^0.7.0
+        version: 0.7.0(markdown-it@13.0.2)(mathjax-full@3.2.2)
       '@mdit/plugin-sub':
         specifier: ^0.6.5
         version: 0.6.5(markdown-it@13.0.2)
@@ -1931,6 +1931,7 @@ packages:
   /@commitlint/config-validator@18.4.3:
     resolution: {integrity: sha512-FPZZmTJBARPCyef9ohRC9EANiQEKSWIdatx5OlgeHKu878dWwpyeFauVkhzuBRJFcCA4Uvz/FDtlDKs008IHcA==}
     engines: {node: '>=v18'}
+    requiresBuild: true
     dependencies:
       '@commitlint/types': 18.4.3
       ajv: 8.12.0
@@ -1951,6 +1952,7 @@ packages:
   /@commitlint/execute-rule@18.4.3:
     resolution: {integrity: sha512-t7FM4c+BdX9WWZCPrrbV5+0SWLgT3kCq7e7/GhHCreYifg3V8qyvO127HF796vyFql75n4TFF+5v1asOOWkV1Q==}
     engines: {node: '>=v18'}
+    requiresBuild: true
     dev: true
 
   /@commitlint/format@18.4.3:
@@ -2027,6 +2029,7 @@ packages:
   /@commitlint/resolve-extends@18.4.3:
     resolution: {integrity: sha512-30sk04LZWf8+SDgJrbJCjM90gTg2LxsD9cykCFeFu+JFHvBFq5ugzp2eO/DJGylAdVaqxej3c7eTSE64hR/lnw==}
     engines: {node: '>=v18'}
+    requiresBuild: true
     dependencies:
       '@commitlint/config-validator': 18.4.3
       '@commitlint/types': 18.4.3
@@ -3093,6 +3096,26 @@ packages:
       markdown-it: 13.0.2
       mathjax-full: 3.2.2
       upath: 2.0.1
+    dev: true
+
+  /@mdit/plugin-mathjax@0.7.0(markdown-it@13.0.2)(mathjax-full@3.2.2):
+    resolution: {integrity: sha512-SLGIQ0LuWypNSWzKb1MP9krUpLkrW4ek1lLAyx0hOtfYru427CkT39XqaxRRACd58etVlL+hsvyqImNSohjqcg==}
+    engines: {node: '>= 18'}
+    peerDependencies:
+      markdown-it: ^13.0.2
+      mathjax-full: ^3.2.2
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
+      mathjax-full:
+        optional: true
+    dependencies:
+      '@mdit/plugin-tex': 0.7.0(markdown-it@13.0.2)
+      '@types/markdown-it': 13.0.7
+      markdown-it: 13.0.2
+      mathjax-full: 3.2.2
+      upath: 2.0.1
+    dev: false
 
   /@mdit/plugin-stylize@0.6.5(markdown-it@13.0.2):
     resolution: {integrity: sha512-qQJAzY4FpNeYZk9Wqb0qjtAaJd4aqllmXRts9TpfqGlpdH1HPiSPy+qAq4hs1OnMwimerlJ0tLtn1vFcc1CayQ==}
@@ -3167,6 +3190,19 @@ packages:
     dependencies:
       '@types/markdown-it': 13.0.7
       markdown-it: 13.0.2
+
+  /@mdit/plugin-tex@0.7.0(markdown-it@13.0.2):
+    resolution: {integrity: sha512-wFv6j2Hk8w7p9evAQpuorNdCsvappmHGsSJ3sAYBQO6JTVWwdlmdrpyE94wkhn4t8+1eFcEcR1QibEj2xSE5vg==}
+    engines: {node: '>= 18'}
+    peerDependencies:
+      markdown-it: ^13.0.2
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
+    dependencies:
+      '@types/markdown-it': 13.0.7
+      markdown-it: 13.0.2
+    dev: false
 
   /@mdit/plugin-uml@0.6.5(markdown-it@13.0.2):
     resolution: {integrity: sha512-xWB03mUnzrHE13Rv7ke6Mlw6b33hTB/GNqb+Z5L6vYFHSM3tAbxhZQIlxJ69hQuAh/mJkrY59JYKSxIbk2u6XA==}
@@ -3722,6 +3758,7 @@ packages:
 
   /@types/node@18.18.11:
     resolution: {integrity: sha512-c1vku6qnTeujJneYH94/4aq73XrVcsJe35UPyAsSok1ijiKrkRzK+AxQPSpNMUnC03roWBBwJx/9I8V7lQoxmA==}
+    requiresBuild: true
     dependencies:
       undici-types: 5.26.5
     dev: true
@@ -6243,6 +6280,7 @@ packages:
   /cosmiconfig-typescript-loader@5.0.0(@types/node@18.18.11)(cosmiconfig@8.3.6)(typescript@5.3.2):
     resolution: {integrity: sha512-+8cK7jRAReYkMwMiG+bxhcNKiHJDM6bR9FD/nGBXOWdMLuYawjF5cGrtLilJ+LGd3ZjCXnJjR5DkfWPoIVlqJA==}
     engines: {node: '>=v16'}
+    requiresBuild: true
     peerDependencies:
       '@types/node': '*'
       cosmiconfig: '>=8.2'
@@ -15292,7 +15330,7 @@ packages:
     hasBin: true
     peerDependencies:
       '@vuepress/client': 2.0.0-rc.0
-      vue: 3.3.8
+      vue: ^3.3.4
     dependencies:
       '@vuepress/bundler-vite': 2.0.0-rc.0(@types/node@20.9.3)(sass@1.69.5)(typescript@5.3.2)
       '@vuepress/cli': 2.0.0-rc.0(typescript@5.3.2)
