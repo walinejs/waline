@@ -15,7 +15,7 @@
     "@waline/client": "workspace:*",
     "marked": "10.0.0",
     "mathjax-full": "3.2.2",
-    "vue": "3.3.8",
+    "vue": "3.3.9",
     "vuepress": "2.0.0-rc.0",
     "vuepress-plugin-redirect": "2.0.0-rc.0",
     "vuepress-plugin-remove-pwa": "2.0.0-rc.0",
