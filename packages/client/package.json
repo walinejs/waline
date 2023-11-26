@@ -97,7 +97,7 @@
     "autosize": "^6.0.1",
     "marked": "^10.0.0",
     "marked-highlight": "^2.0.7",
-    "vue": "^3.3.8"
+    "vue": "^3.3.9"
   },
   "devDependencies": {
     "@babel/core": "7.23.3",
