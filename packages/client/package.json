@@ -93,7 +93,7 @@
   },
   "dependencies": {
     "@vueuse/core": "^10.6.1",
-    "@waline/api": "workspace:*",
+    "@waline/api": "workspace:^*",
     "autosize": "^6.0.1",
     "marked": "^10.0.0",
     "marked-highlight": "^2.0.7",
