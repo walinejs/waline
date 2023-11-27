@@ -129,7 +129,7 @@ export const Waline = (props: WalineOptions) => {
 
   useEffect(() => {
     walineInstanceRef.current?.update(props);
-  }, props);
+  }, [props]);
 
   return <div ref={containerRef} />;
 };
