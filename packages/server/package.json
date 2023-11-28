@@ -27,7 +27,7 @@
     "dy-node-ip2region": "^1.0.1",
     "fast-csv": "^4.3.6",
     "form-data": "^4.0.0",
-    "jsdom": "^22.1.0",
+    "jsdom": "^23.0.0",
     "jsonwebtoken": "^9.0.2",
     "katex": "^0.16.9",
     "koa-compose": "^4.1.0",
