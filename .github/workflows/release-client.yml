@@ -41,3 +41,5 @@ jobs:
         with:
           token: ${{ secrets.NPM_TOKEN }}
           package: ./packages/client
+          package-manager: pnpm
+          dry-run: true
