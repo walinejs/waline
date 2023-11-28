@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - feat/pnpm-publish
     paths:
       - .github/workflows/release-client.yml
       - packages/client/**
