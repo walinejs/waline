@@ -95,7 +95,7 @@
     "@vueuse/core": "^10.6.1",
     "@waline/api": "^1.0.0-alpha.3",
     "autosize": "^6.0.1",
-    "marked": "^10.0.0",
+    "marked": "^11.0.0",
     "marked-highlight": "^2.0.7",
     "vue": "^3.3.9"
   },
