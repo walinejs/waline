@@ -273,8 +273,8 @@ importers:
         specifier: 7.23.3
         version: 7.23.3(@babel/core@7.23.3)
       '@giphy/js-types':
-        specifier: 4.4.0
-        version: 4.4.0
+        specifier: 5.0.0
+        version: 5.0.0
       '@types/autosize':
         specifier: 4.0.3
         version: 4.0.3
@@ -2672,8 +2672,8 @@ packages:
     dev: false
     optional: true
 
-  /@giphy/js-types@4.4.0:
-    resolution: {integrity: sha512-W9G6crS2oqTn7g0RpvYu1l/sna4LnivRTk25jmxdzujOFb9kvQ+VFM/v9RPYV2GIBnzT/maW/EwjFIba9jkflA==}
+  /@giphy/js-types@5.0.0:
+    resolution: {integrity: sha512-L7q1Skf8nDiShtuU3VfOZs8Ce95SP6FjDefZH3p9qBvl58hlRDfJ0l4k/35+RYUy8t0orU+cEde1QCj0Z8U+uQ==}
     dev: true
 
   /@humanwhocodes/config-array@0.11.13:
