@@ -92,22 +92,22 @@
     "node": ">=18"
   },
   "dependencies": {
-    "@vueuse/core": "^10.6.1",
+    "@vueuse/core": "^10.7.0",
     "@waline/api": "^1.0.0-alpha.3",
     "autosize": "^6.0.1",
     "marked": "^11.0.0",
-    "marked-highlight": "^2.0.7",
-    "vue": "^3.3.9"
+    "marked-highlight": "^2.0.9",
+    "vue": "^3.3.10"
   },
   "devDependencies": {
-    "@babel/core": "7.23.3",
-    "@babel/preset-env": "7.23.3",
+    "@babel/core": "7.23.5",
+    "@babel/preset-env": "7.23.5",
     "@giphy/js-types": "5.0.0",
     "@types/autosize": "4.0.3",
     "@types/marked": "5.0.2",
-    "@vitejs/plugin-vue": "4.5.0",
+    "@vitejs/plugin-vue": "4.5.1",
     "recaptcha-v3": "1.10.0",
     "user-agent-data-types": "0.4.2",
-    "vite": "5.0.0"
+    "vite": "5.0.5"
   }
 }
