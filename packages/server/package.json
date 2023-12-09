@@ -32,7 +32,7 @@
     "katex": "^0.16.9",
     "koa-compose": "^4.1.0",
     "leancloud-storage": "^4.15.2",
-    "markdown-it": "^13.0.2",
+    "markdown-it": "^14.0.0",
     "markdown-it-emoji": "^2.0.2",
     "mathjax-full": "^3.2.2",
     "node-fetch": "^2.7.0",
