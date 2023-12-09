@@ -321,8 +321,8 @@ importers:
         specifier: ^0.7.5
         version: 0.7.5(katex@0.16.9)(markdown-it@13.0.2)
       '@mdit/plugin-mathjax':
-        specifier: ^0.7.5
-        version: 0.7.5(markdown-it@13.0.2)(mathjax-full@3.2.2)
+        specifier: ^0.8.0
+        version: 0.8.0(markdown-it@13.0.2)(mathjax-full@3.2.2)
       '@mdit/plugin-sub':
         specifier: ^0.7.5
         version: 0.7.5(markdown-it@13.0.2)
@@ -3108,6 +3108,26 @@ packages:
       markdown-it: 13.0.2
       mathjax-full: 3.2.2
       upath: 2.0.1
+    dev: true
+
+  /@mdit/plugin-mathjax@0.8.0(markdown-it@13.0.2)(mathjax-full@3.2.2):
+    resolution: {integrity: sha512-y016KQHa3PoXDUIcQseISMAz5q2mZJ/qocEs2EABT4PjquXPEh/4rw7Ql7KX9gf/SQIUyzj8hYs4bHyRZc6x4w==}
+    engines: {node: '>= 18'}
+    peerDependencies:
+      markdown-it: ^14.0.0
+      mathjax-full: ^3.2.2
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
+      mathjax-full:
+        optional: true
+    dependencies:
+      '@mdit/plugin-tex': 0.8.0(markdown-it@13.0.2)
+      '@types/markdown-it': 13.0.7
+      markdown-it: 13.0.2
+      mathjax-full: 3.2.2
+      upath: 2.0.1
+    dev: false
 
   /@mdit/plugin-stylize@0.7.5(markdown-it@13.0.2):
     resolution: {integrity: sha512-+yJKp6iAdA69lP6MkScaBlowLReqXo0vMsKJ1mfdB6c78604Y8+SMAFhj1d2xmDgiysEFHZfnOR2E+XFOwr/ag==}
@@ -3182,6 +3202,19 @@ packages:
     dependencies:
       '@types/markdown-it': 13.0.7
       markdown-it: 13.0.2
+
+  /@mdit/plugin-tex@0.8.0(markdown-it@13.0.2):
+    resolution: {integrity: sha512-uh4kOhwBVEESz6dMmHk4Hn/AVfVtUhMA1UKpwMc1EL9qelodJ0YzSYfNXp6d/PS+E1l53yp8nMZK90DUO+3vpA==}
+    engines: {node: '>= 18'}
+    peerDependencies:
+      markdown-it: ^14.0.0
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
+    dependencies:
+      '@types/markdown-it': 13.0.7
+      markdown-it: 13.0.2
+    dev: false
 
   /@mdit/plugin-uml@0.7.5(markdown-it@13.0.2):
     resolution: {integrity: sha512-xRuBr0mbueVYpV0BvdWO/VmqHbMeKfHflTN5dFazFFclk7a/5XR/XcmCJG0VaFHxDIWkSH7+BxcgjsugbSBcWQ==}
@@ -6453,7 +6486,7 @@ packages:
       supports-color:
         optional: true
     dependencies:
-      ms: 2.1.1
+      ms: 2.1.3
     dev: true
 
   /debug@4.3.4(supports-color@5.5.0):
