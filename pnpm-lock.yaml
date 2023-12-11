@@ -228,8 +228,8 @@ importers:
         specifier: 13.5.0
         version: 13.5.0(i18next@23.7.7)(react-dom@18.2.0)(react@18.2.0)
       react-redux:
-        specifier: 9.0.1
-        version: 9.0.1(react-dom@18.2.0)(react@18.2.0)(redux@5.0.0)
+        specifier: 9.0.4
+        version: 9.0.4(react@18.2.0)(redux@5.0.0)
       react-router-dom:
         specifier: 6.20.1
         version: 6.20.1(react-dom@18.2.0)(react@18.2.0)
@@ -841,6 +841,7 @@ packages:
   /@babel/highlight@7.23.4:
     resolution: {integrity: sha512-acGdbYSfp2WheJoJm/EBBBLh/ID8KDc64ISZ9DYtBmC8/Q204PZJLHyzeB5qMzJ5trcOkybd78M4x2KWsUq++A==}
     engines: {node: '>=6.9.0'}
+    requiresBuild: true
     dependencies:
       '@babel/helper-validator-identifier': 7.22.20
       chalk: 2.4.2
@@ -11738,21 +11739,15 @@ packages:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
     dev: true
 
-  /react-redux@9.0.1(react-dom@18.2.0)(react@18.2.0)(redux@5.0.0):
-    resolution: {integrity: sha512-d+S89OqyChnY2J0O8wv8boRgnGo0tjvxkMLV78wx7h2ZyJvyeOQcBg4yrm7IxY36gxc63iOCfjjQAyhohKWJbA==}
+  /react-redux@9.0.4(react@18.2.0)(redux@5.0.0):
+    resolution: {integrity: sha512-9J1xh8sWO0vYq2sCxK2My/QO7MzUMRi3rpiILP/+tDr8krBHixC6JMM17fMK88+Oh3e4Ae6/sHIhNBgkUivwFA==}
     peerDependencies:
-      '@types/react': ^18.2.41
-      '@types/react-dom': ^18.2.17
+      '@types/react': ^18.2.25
       react: ^18.0
-      react-dom: ^18.0
-      react-native: '>=0.71'
+      react-native: '>=0.69'
       redux: ^5.0.0
     peerDependenciesMeta:
       '@types/react':
-        optional: true
-      '@types/react-dom':
-        optional: true
-      react-dom:
         optional: true
       react-native:
         optional: true
@@ -11761,7 +11756,6 @@ packages:
     dependencies:
       '@types/use-sync-external-store': 0.0.3
       react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
       redux: 5.0.0
       use-sync-external-store: 1.2.0(react@18.2.0)
     dev: true
