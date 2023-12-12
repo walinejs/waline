@@ -16,7 +16,7 @@
   "author": "lizheming <i@imnerd.org>",
   "dependencies": {
     "@cloudbase/node-sdk": "^2.11.0",
-    "@koa/cors": "^4.0.0",
+    "@koa/cors": "^5.0.0",
     "@mdit/plugin-katex": "^0.7.5",
     "@mdit/plugin-mathjax": "^0.7.5",
     "@mdit/plugin-sub": "^0.7.5",
