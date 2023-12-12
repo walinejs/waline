@@ -14,7 +14,7 @@ Click the [Fork](https://github.com/walinejs/zeabur-starter/fork) button to crea
 
 ![zeabur1](../../../assets/zeabur-1.png)
 
-https://dash.zeabur.com Log in to the Zeabur console. If there is no project, you need to set a name for the new project first.
+<https://dash.zeabur.com> Log in to the Zeabur console. If there is no project, you need to set a name for the new project first.
 
 ![zeabur2](../../../assets/zeabur-2.png)
 
@@ -22,8 +22,8 @@ After entering, click <kbd>Add New Service</kbd> to create a service, select <kb
 
 Give our MongoDB database service a name, click the <kbd>Deploy</kbd> button, and our database service is deployed.
 
-| ![zeabur2](../../../assets/zeabur-3.png) | ![zeabur4](../../../assets/zeabur-4.png) | ![zeabur5](../. ./assets/zeabur-5.png) |
-| ---------------------------------------- | ---------------------------------------- | -------------------------------------- |
+| ![zeabur2](../../../assets/zeabur-3.png) | ![zeabur4](../../../assets/zeabur-4.png) |
+| ---------------------------------------- | ---------------------------------------- |
 
 Next, we continue to click <kbd>Add New Service</kbd> to create the Waline service, this time we choose to click <kbd>Deploy Your Source Code</kbd>. In the following GitHub project list, find the project that we forked at the beginning, and click the corresponding <kbd>Import</kbd> button.
 
@@ -32,7 +32,7 @@ Give our Waline service a name, click the <kbd>Deploy</kbd> button, and our Wali
 | ![zeabur6](../../../assets/zeabur-6.png) | ![zeabur7](../../../assets/zeabur-7.png) |
 | ---------------------------------------- | ---------------------------------------- |
 
-Don't rush to close the Waline service panel. After the service is deployed, we need to add an access domain name to the service. Click the <kbd>Generate Domain</kbd> button under the <kbd>Settings</kbd> tab, enter the domain name prefix you want and click the <kbd>Save</kbd> button to add it to our service Visit the domain name.
+Don't rush to close the Waline service panel. After the service is deployed, we need to add an access domain name to the service. Click the <kbd>Generate Domain</kbd> button under the <kbd>Domains</kbd> tab, enter the domain name prefix you want and click the <kbd>Save</kbd> button to add it to our service Visit the domain name.
 
 | ![zeabur8](../../../assets/zeabur-8.png) | ![zeabur9](../../../assets/zeabur-9.png) |
 | ---------------------------------------- | ---------------------------------------- |

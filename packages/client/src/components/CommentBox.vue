@@ -154,6 +154,8 @@
         </div>
 
         <div class="wl-info">
+          <div class="wl-captcha-container"></div>
+
           <div class="wl-text-number">
             {{ wordNumber }}
 
@@ -205,6 +207,7 @@
           />
 
           <ImageWall
+            v-if="searchResults.list.length"
             :items="searchResults.list"
             :column-width="200"
             :gap="6"
@@ -284,6 +287,14 @@
 
 <script setup lang="ts">
 import { useDebounceFn } from '@vueuse/core';
+import {
+  type WalineComment,
+  type WalineCommentData,
+  addComment,
+  login,
+  updateComment,
+  UserInfo,
+} from '@waline/api';
 import autosize from 'autosize';
 import {
   type ComputedRef,
@@ -307,16 +318,14 @@ import {
   PreviewIcon,
 } from './Icons.js';
 import ImageWall from './ImageWall.vue';
-import { addComment, login, updateComment, UserInfo } from '../api/index.js';
 import {
   useEditor,
   useReCaptcha,
+  useTurnstile,
   useUserInfo,
   useUserMeta,
 } from '../composables/index.js';
 import {
-  type WalineComment,
-  type WalineCommentData,
   type WalineImageUploader,
   type WalineSearchOptions,
   type WalineSearchResult,
@@ -326,6 +335,7 @@ import {
   type WalineEmojiConfig,
   getEmojis,
   getImageFromDataTransfer,
+  isValidEmail,
   getWordNumber,
   parseEmoji,
   parseMarkdown,
@@ -356,7 +366,7 @@ const props = withDefaults(
     rootId: '',
     replyId: '',
     replyUser: '',
-  }
+  },
 );
 
 const emit = defineEmits<{
@@ -438,18 +448,22 @@ const uploadImage = (file: File): Promise<void> => {
   const uploadText = `![${config.value.locale.uploading} ${file.name}]()`;
 
   insert(uploadText);
+  isSubmitting.value = true;
 
   return Promise.resolve()
     .then(() => (config.value.imageUploader as WalineImageUploader)(file))
     .then((url) => {
       editor.value = editor.value.replace(
         uploadText,
-        `\r\n![${file.name}](${url})`
+        `\r\n![${file.name}](${url})`,
       );
     })
     .catch((err: Error) => {
       alert(err.message);
       editor.value = editor.value.replace(uploadText, '');
+    })
+    .then(() => {
+      isSubmitting.value = false;
     });
 };
 
@@ -483,12 +497,15 @@ const onChange = (): void => {
 };
 
 const submitComment = async (): Promise<void> => {
-  const { serverURL, lang, login, wordLimit, requiredMeta } = config.value;
-
-  let token = '';
-
-  if (config.value.recaptchaV3Key)
-    token = await useReCaptcha(config.value.recaptchaV3Key).execute('social');
+  const {
+    serverURL,
+    lang,
+    login,
+    wordLimit,
+    requiredMeta,
+    recaptchaV3Key,
+    turnstileKey,
+  } = config.value;
 
   const ua = await userAgent();
   const comment: WalineCommentData = {
@@ -497,7 +514,6 @@ const submitComment = async (): Promise<void> => {
     mail: userMeta.value.mail,
     link: userMeta.value.link,
     url: config.value.path,
-    recaptchaV3: token,
     ua,
   };
 
@@ -520,8 +536,7 @@ const submitComment = async (): Promise<void> => {
     // check mail
     if (
       (requiredMeta.indexOf('mail') > -1 && !comment.mail) ||
-      (comment.mail &&
-        !/^\w(?:[\w._-]*\w)?@(?:\w(?:[\w-]*\w)?\.)*\w+$/.exec(comment.mail))
+      (comment.mail && !isValidEmail(comment.mail))
     ) {
       inputRefs.value.mail?.focus();
 
@@ -543,7 +558,7 @@ const submitComment = async (): Promise<void> => {
       locale.value.wordHint
         .replace('$0', (wordLimit as [number, number])[0].toString())
         .replace('$1', (wordLimit as [number, number])[1].toString())
-        .replace('$2', wordNumber.value.toString())
+        .replace('$2', wordNumber.value.toString()),
     );
 
   comment.comment = parseEmoji(comment.comment, emoji.value.map);
@@ -556,37 +571,45 @@ const submitComment = async (): Promise<void> => {
 
   isSubmitting.value = true;
 
-  const options = {
-    serverURL,
-    lang,
-    token: userInfo.value?.token,
-    comment,
-  };
+  try {
+    if (recaptchaV3Key)
+      comment.recaptchaV3 =
+        await useReCaptcha(recaptchaV3Key).execute('social');
 
-  void (
-    props.edit
-      ? updateComment({ objectId: props.edit.objectId, ...options })
-      : addComment(options)
-  )
-    .then((resp) => {
-      isSubmitting.value = false;
+    if (turnstileKey)
+      comment.turnstile = await useTurnstile(turnstileKey).execute('social');
 
-      if (resp.errmsg) return alert(resp.errmsg);
+    const options = {
+      serverURL,
+      lang,
+      token: userInfo.value?.token,
+      comment,
+    };
 
-      emit('submit', resp.data!);
+    const resp = await (props.edit
+      ? updateComment({
+          objectId: props.edit.objectId,
+          ...options,
+        })
+      : addComment(options));
 
-      editor.value = '';
+    isSubmitting.value = false;
 
-      previewText.value = '';
+    if (resp.errmsg) return alert(resp.errmsg);
 
-      if (props.replyId) emit('cancelReply');
-      if (props.edit?.objectId) emit('cancelEdit');
-    })
-    .catch((err: TypeError) => {
-      isSubmitting.value = false;
+    emit('submit', resp.data!);
 
-      alert(err.message);
-    });
+    editor.value = '';
+
+    previewText.value = '';
+
+    if (props.replyId) emit('cancelReply');
+    if (props.edit?.objectId) emit('cancelEdit');
+  } catch (err: unknown) {
+    isSubmitting.value = false;
+
+    alert((err as TypeError).message);
+  }
 };
 
 const onLogin = (event: Event): void => {
@@ -600,7 +623,7 @@ const onLogin = (event: Event): void => {
     userInfo.value = data;
     (data.remember ? localStorage : sessionStorage).setItem(
       'WALINE_USER',
-      JSON.stringify(data)
+      JSON.stringify(data),
     );
     emit('log');
   });
@@ -629,7 +652,7 @@ const onProfile = (event: Event): void => {
   const handler = window.open(
     `${serverURL}/ui/profile?${query.toString()}`,
     '_blank',
-    `width=${width},height=${height},left=${left},top=${top},scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no`
+    `width=${width},height=${height},left=${left},top=${top},scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no`,
   );
 
   handler?.postMessage({ type: 'TOKEN', data: userInfo.value.token }, '*');
@@ -709,7 +732,7 @@ watch(
       isWordNumberLegal.value = true;
     }
   },
-  { immediate: true }
+  { immediate: true },
 );
 
 const onMessageReceive = ({
@@ -768,7 +791,7 @@ onMounted(() => {
       if (value) autosize(editorRef.value!);
       else autosize.destroy(editorRef.value!);
     },
-    { immediate: true }
+    { immediate: true },
   );
 
   // watch emoji value change
@@ -778,7 +801,7 @@ onMounted(() => {
       getEmojis(emojiConfig).then((config) => {
         emoji.value = config;
       }),
-    { immediate: true }
+    { immediate: true },
   );
 });
 

@@ -35,7 +35,7 @@ module.exports = function (comment, blog) {
             return reject(err);
           }
           resolve(spam);
-        }
+        },
       );
     });
   });

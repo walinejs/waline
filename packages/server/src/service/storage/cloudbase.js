@@ -1,6 +1,6 @@
 const cloudbase = require('@cloudbase/node-sdk');
 
-const Base = require('./base');
+const Base = require('./base.js');
 
 const { TCB_ENV, TCB_ID, TCB_KEY } = process.env;
 const app = cloudbase.init({
@@ -210,7 +210,7 @@ module.exports = class extends Base {
         await instance.doc(item._id).update(updateData);
 
         return { ...item, ...updateData };
-      })
+      }),
     );
   }
 

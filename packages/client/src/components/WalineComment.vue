@@ -14,7 +14,7 @@
         <li
           v-for="item in sortingMethods"
           :key="item"
-          :class="[item === commentSorting ? 'active' : '']"
+          :class="[item === commentSortingRef ? 'active' : '']"
           @click="onSortByChange(item)"
         >
           {{ i18n[item] }}
@@ -50,23 +50,21 @@
       />
     </div>
 
-    <template v-else>
-      <div v-if="status === 'loading'" class="wl-loading">
-        <LoadingIcon :size="30" />
-      </div>
+    <div v-else-if="status === 'loading'" class="wl-loading">
+      <LoadingIcon :size="30" />
+    </div>
 
-      <div v-else-if="!data.length" class="wl-empty" v-text="i18n.sofa" />
+    <div v-else-if="!data.length" class="wl-empty" v-text="i18n.sofa" />
 
-      <!-- Load more button -->
-      <div v-else-if="page < totalPages" class="wl-operation">
-        <button
-          type="button"
-          class="wl-btn"
-          @click="loadMore"
-          v-text="i18n.more"
-        />
-      </div>
-    </template>
+    <!-- Load more button -->
+    <div v-else-if="page < totalPages" class="wl-operation">
+      <button
+        type="button"
+        class="wl-btn"
+        @click="loadMore"
+        v-text="i18n.more"
+      />
+    </div>
 
     <!-- Copyright Information -->
     <div v-if="config.copyright" class="wl-power">
@@ -89,18 +87,23 @@
 /* eslint-disable vue/require-prop-comment */
 /* eslint-disable vue/require-prop-types */
 import { useStyleTag } from '@vueuse/core';
+import {
+  type WalineComment,
+  type WalineCommentStatus,
+  type WalineRootComment,
+  deleteComment,
+  getComment,
+  updateComment,
+} from '@waline/api';
 import { computed, onMounted, onUnmounted, provide, ref, watch } from 'vue';
 
 import Reaction from './ArticleReaction.vue';
 import CommentBox from './CommentBox.vue';
 import CommentCard from './CommentCard.vue';
 import { LoadingIcon } from './Icons.js';
-import { deleteComment, getComment, updateComment } from '../api/index.js';
 import { useUserInfo, useLikeStorage } from '../composables/index.js';
 import {
-  type WalineComment,
   type WalineCommentSorting,
-  type WalineCommentStatus,
   type WalineProps,
 } from '../typings/index.js';
 import { getConfig, getDarkStyle } from '../utils/index.js';
@@ -127,6 +130,7 @@ const props = defineProps([
   'search',
   'copyright',
   'recaptchaV3Key',
+  'turnstileKey',
   'reaction',
 ]);
 
@@ -149,9 +153,9 @@ const totalPages = ref(0);
 const config = computed(() => getConfig(props as WalineProps));
 
 // eslint-disable-next-line vue/no-ref-object-destructure
-const commentSorting = ref(config.value.commentSorting);
+const commentSortingRef = ref(config.value.commentSorting);
 
-const data = ref<WalineComment[]>([]);
+const data = ref<WalineRootComment[]>([]);
 const reply = ref<WalineComment | null>(null);
 const edit = ref<WalineComment | null>(null);
 
@@ -159,7 +163,7 @@ const darkmodeStyle = computed(() => getDarkStyle(config.value.dark));
 
 const i18n = computed(() => config.value.locale);
 
-useStyleTag(darkmodeStyle);
+useStyleTag(darkmodeStyle, { id: 'waline-darkmode' });
 
 let abort: () => void;
 
@@ -176,7 +180,7 @@ const getCommentData = (pageNumber: number): void => {
     lang: config.value.lang,
     path,
     pageSize,
-    sortBy: sortKeyMap[commentSorting.value],
+    sortBy: sortKeyMap[commentSortingRef.value],
     page: pageNumber,
     signal: controller.signal,
     token: userInfo.value?.token,
@@ -207,8 +211,8 @@ const refresh = (): void => {
 };
 
 const onSortByChange = (item: WalineCommentSorting): void => {
-  if (commentSorting.value !== item) {
-    commentSorting.value = item;
+  if (commentSortingRef.value !== item) {
+    commentSortingRef.value = item;
     refresh();
   }
 };
@@ -225,9 +229,9 @@ const onSubmit = (comment: WalineComment): void => {
   if (edit.value) {
     edit.value.comment = comment.comment;
     edit.value.orig = comment.orig;
-  } else if (comment.rid) {
+  } else if ('rid' in comment) {
     const repliedComment = data.value.find(
-      ({ objectId }) => objectId === comment.rid
+      ({ objectId }) => objectId === comment.rid,
     );
 
     if (!repliedComment) return;
@@ -235,7 +239,10 @@ const onSubmit = (comment: WalineComment): void => {
     if (!Array.isArray(repliedComment.children)) repliedComment.children = [];
 
     repliedComment.children.push(comment);
-  } else data.value.unshift(comment);
+  } else {
+    data.value.unshift(comment);
+    count.value += 1;
+  }
 };
 
 const onStatusChange = async ({
@@ -261,7 +268,7 @@ const onStatusChange = async ({
 };
 
 const onSticky = async (comment: WalineComment): Promise<void> => {
-  if (comment.rid) return;
+  if ('rid' in comment) return;
 
   const { serverURL, lang } = config.value;
 
@@ -285,7 +292,7 @@ const onDelete = async ({ objectId }: WalineComment): Promise<void> => {
     serverURL,
     lang,
     token: userInfo.value?.token,
-    objectId: objectId,
+    objectId,
   });
 
   // delete comment from data
@@ -299,7 +306,7 @@ const onDelete = async ({ objectId }: WalineComment): Promise<void> => {
     return item.children.some((child, childIndex) => {
       if (child.objectId === objectId) {
         data.value[index].children = item.children.filter(
-          (_item, i) => i !== childIndex
+          (_item, i) => i !== childIndex,
         );
 
         return true;
@@ -342,7 +349,7 @@ onMounted(() => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     () => [props.serverURL, props.path],
     () => refresh(),
-    { immediate: true }
+    { immediate: true },
   );
 });
 onUnmounted(() => abort?.());

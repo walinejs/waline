@@ -10,13 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
+        uses: docker/setup-qemu-action@v3
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
+        uses: docker/setup-buildx-action@v3
 
       - name: Cache Docker layers
         uses: actions/cache@v3
@@ -27,7 +27,7 @@ jobs:
             ${{ runner.os }}-buildx-
 
       - name: Build alpine
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v5
         with:
           file: ./packages/server/Dockerfile.alpine
           platforms: linux/amd64,linux/arm64,linux/arm/v7
@@ -35,7 +35,7 @@ jobs:
           cache-to: type=local,dest=/tmp/.buildx-cache,mode=max
 
       - name: Build debian
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v5
         with:
           file: ./packages/server/Dockerfile
           platforms: linux/amd64,linux/arm64,linux/arm/v7

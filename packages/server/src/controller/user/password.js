@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-const BaseRest = require('../rest');
+const BaseRest = require('../rest.js');
 
 module.exports = class extends BaseRest {
   async putAction() {
@@ -19,10 +19,7 @@ module.exports = class extends BaseRest {
     }
 
     const { email } = this.post();
-    const userModel = this.service(
-      `storage/${this.config('storage')}`,
-      'Users'
-    );
+    const userModel = this.getModel('Users');
     const user = await userModel.select({ email });
 
     if (think.isEmpty(user)) {
@@ -44,7 +41,7 @@ module.exports = class extends BaseRest {
       }),
       html: this.locale(
         'Please click <a href="{{url}}">{{url}}</a> to login and change your password as soon as possible!',
-        { url: profileUrl }
+        { url: profileUrl },
       ),
     });
 

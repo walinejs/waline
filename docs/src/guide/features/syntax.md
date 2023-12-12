@@ -37,9 +37,9 @@ Github Flavored Markdown, 即 Github 风格语法
 
 - 上下角标 (如: `H~2~O`、`x^2^`) 无法正确渲染
 
-- Tex 语法，也就是数学公式 (如: `$a = 1$`) 默认无法渲染。
+- $\TeX$ 语法，也就是数学公式 (如: `$a = 1$`) 默认无法渲染。
 
-  在官方客户端下，你可以通过设置 `texRenderer` 选项来设置预览时的 Tex 渲染,，参见 [Cookbook → 使用自定义 TEX 渲染器](../../cookbook/customize/tex-renderer.md)。
+  在官方客户端下，你可以通过设置 `texRenderer` 选项来设置预览时的 $\TeX$ 渲染,，参见 [Cookbook → 使用自定义 TeX 渲染器](../../cookbook/customize/tex-renderer.md)。
 
 - 在默认的高亮器下，代码块将通过特定分隔符使用随机颜色进行高亮。
 
@@ -49,11 +49,11 @@ Github Flavored Markdown, 即 Github 风格语法
 
 ::: tip 运行原理
 
-1. 考虑到体积问题，客户端使用 `marked` 进行渲染并默认使用 < 1kb 的高亮器进行高亮，同时不包含 Tex 渲染器，导致以上限制。
+1. 考虑到体积问题，客户端使用 `marked` 进行渲染并默认使用 < 1kb 的高亮器进行高亮，同时不包含 $\TeX$ 渲染器，导致以上限制。
 
 1. 用户提交评论时，客户端嵌入自定义 Emoji 表情图片、并将评论原文会发送到服务端。
 
-1. 服务端接收到原文，使用 `markdown-it` 以相关插件对 markdown 进行正确的渲染，同时使用 `prism.js` 为代码块根据语言进行高亮，并按照用户设置进行 Tex 渲染，最后执行 XSS 处理。
+1. 服务端接收到原文，使用 `markdown-it` 以相关插件对 markdown 进行正确的渲染，同时使用 `prism.js` 为代码块根据语言进行高亮，并按照用户设置进行 $\TeX$ 渲染，最后执行 XSS 处理。
 
 1. 处理完成后，服务端会将正确的渲染内容进行储存，并在需要时返回给客户端，保证评论区正常显示。
 

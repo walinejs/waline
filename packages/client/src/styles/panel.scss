@@ -78,7 +78,7 @@
   border: var(--waline-border);
   border-radius: 0.75em;
 
-  background: var(--waline-bgcolor);
+  background: var(--waline-bg-color);
   box-shadow: var(--waline-box-shadow);
 }
 
@@ -178,7 +178,7 @@
   transition: all 0.25s ease;
 
   &:focus {
-    background: var(--waline-bgcolor-light);
+    background: var(--waline-bg-color-light);
   }
 }
 

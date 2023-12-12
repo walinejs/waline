@@ -1,14 +1,10 @@
 const jwt = require('jsonwebtoken');
 const fetch = require('node-fetch');
-const { PasswordHash } = require('phpass');
 
 module.exports = class extends think.Controller {
   constructor(ctx) {
     super(ctx);
-    this.modelInstance = this.service(
-      `storage/${this.config('storage')}`,
-      'Users'
-    );
+    this.modelInstance = this.getModel('Users');
   }
 
   async indexAction() {
@@ -29,7 +25,7 @@ module.exports = class extends think.Controller {
         `${oauthUrl}/${type}?${new URLSearchParams({
           redirect: redirectUrl,
           state: this.ctx.state.token || '',
-        }).toString()}`
+        }).toString()}`,
       );
     }
 
@@ -58,7 +54,7 @@ module.exports = class extends think.Controller {
         headers: {
           'user-agent': '@waline',
         },
-      }
+      },
     ).then((resp) => resp.json());
 
     if (!user || !user.id) {
@@ -72,7 +68,7 @@ module.exports = class extends think.Controller {
 
       if (redirect) {
         return this.redirect(
-          redirect + (redirect.includes('?') ? '&' : '?') + 'token=' + token
+          redirect + (redirect.includes('?') ? '&' : '?') + 'token=' + token,
         );
       }
 
@@ -109,7 +105,7 @@ module.exports = class extends think.Controller {
         url: user.url,
         avatar: user.avatar,
         [type]: user.id,
-        password: new PasswordHash().hashPassword(Math.random()),
+        password: this.hashPassword(Math.random()),
         type: think.isEmpty(count) ? 'administrator' : 'guest',
       };
 
@@ -127,7 +123,7 @@ module.exports = class extends think.Controller {
 
     if (redirect) {
       return this.redirect(
-        redirect + (redirect.includes('?') ? '&' : '?') + 'token=' + token
+        redirect + (redirect.includes('?') ? '&' : '?') + 'token=' + token,
       );
     }
 

@@ -1,12 +1,9 @@
-const BaseRest = require('./rest');
+const BaseRest = require('./rest.js');
 
 module.exports = class extends BaseRest {
   constructor(ctx) {
     super(ctx);
-    this.modelInstance = this.service(
-      `storage/${this.config('storage')}`,
-      'Counter'
-    );
+    this.modelInstance = this.getModel('Counter');
   }
 
   async getAction() {
@@ -27,7 +24,9 @@ module.exports = class extends BaseRest {
         return o;
       }, {});
 
-      return this.jsonOrSuccess((type.length === 1 && deprecated) ? data[type[0]] : data);
+      return this.jsonOrSuccess(
+        type.length === 1 && deprecated ? data[type[0]] : data,
+      );
     }
 
     const respObj = resp.reduce((o, n) => {
@@ -72,7 +71,7 @@ module.exports = class extends BaseRest {
 
       await this.modelInstance.add(
         { url: path, [type]: count },
-        { access: { read: true, write: true } }
+        { access: { read: true, write: true } },
       );
 
       return this.jsonOrSuccess(deprecated ? count : [count]);
@@ -84,8 +83,9 @@ module.exports = class extends BaseRest {
           action === 'desc'
             ? (counter[type] || 1) - 1
             : (counter[type] || 0) + 1,
+        updatedAt: new Date(),
       }),
-      { objectId: ['IN', resp.map(({ objectId }) => objectId)] }
+      { objectId: ['IN', resp.map(({ objectId }) => objectId)] },
     );
 
     return this.jsonOrSuccess(deprecated ? ret[0][type] : [ret[0][type]]);

@@ -21,14 +21,11 @@ export const zhSidebarConfig = sidebar({
         'search',
         'tex-renderer',
         'upload-image',
+        'database',
+        'userdb',
       ],
     },
     'reactivity',
-    {
-      text: '兼容',
-      icon: 'history',
-      children: ['legacy', 'emoji-compact'],
-    },
   ],
   '/guide/': [
     {
@@ -120,7 +117,7 @@ export const zhSidebarConfig = sidebar({
           text: '服务端',
           icon: 'server',
           prefix: 'server/',
-          children: ['api', 'config', 'env'],
+          children: ['api', 'config', 'env', 'plugin'],
         },
       ],
     },
@@ -129,7 +126,7 @@ export const zhSidebarConfig = sidebar({
       icon: 'migration',
       prefix: 'migration/',
       collapsible: true,
-      children: ['client', 'valine', 'tool'],
+      children: ['v3', 'v2', 'valine', 'tool'],
     },
     {
       text: '高级',
@@ -162,14 +159,11 @@ export const enSidebarConfig = sidebar({
         'search',
         'tex-renderer',
         'upload-image',
+        'database',
+        'userdb',
       ],
     },
     'reactivity',
-    {
-      text: 'Compatibility',
-      icon: 'history',
-      children: ['legacy', 'emoji-compact'],
-    },
   ],
   '/en/guide/': [
     {
@@ -251,7 +245,7 @@ export const enSidebarConfig = sidebar({
           text: 'server',
           icon: 'server',
           prefix: 'server/',
-          children: ['api', 'config', 'env'],
+          children: ['api', 'config', 'env', 'plugin'],
         },
       ],
     },
@@ -260,7 +254,7 @@ export const enSidebarConfig = sidebar({
       icon: 'migration',
       prefix: 'migration/',
       collapsible: true,
-      children: ['client', 'valine', 'tool'],
+      children: ['v3', 'v2', 'valine', 'tool'],
     },
     {
       text: 'Advanced',

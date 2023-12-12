@@ -10,31 +10,30 @@ redirectFrom: /en/guide/server/deta.html
 
 ## How to deploy
 
-[![Deploy with Deta](https://deta.space/buttons/dark.svg)](
-https://deta.space/discovery/@lizheming/waline)
+[![Deploy with Deta](https://deta.space/buttons/dark.svg)](https://deta.space/discovery/@lizheming/waline)
 
 Click the button above to jump to the Waline page of the Deta application market, click <kbd>Install on Space</kbd> to automatically install the application after logging in.
 
-![](../../../assets/deta.png)
+![Deta homepage](../../../assets/deta.png)
 
-Wait for a while to see the application on the https://deta.space homepage, and click it to open the deployed website address. Fill it in the `serverURL` configuration of the front-end script to complete the entire configuration.
+Wait for a while to see the application on the <https://deta.space> homepage, and click it to open the deployed website address. Fill it in the `serverURL` configuration of the front-end script to complete the entire configuration.
 
 Add `/ui` after this URL can enter the admin dashboard.
 
-![](../../../assets/deta-1.png)
+![Deta dashboard](../../../assets/deta-1.png)
+
 ## How to update
 
 When there is an update, you will see a yellow bubble prompt on your application list page, click More to see the <kbd>Update App</kbd> option.
 
-![](../../../assets/deta-2.png)
-
+![Update app](../../../assets/deta-2.png)
 
 After clicking, select <kbd>Install App Update</kbd> and wait for a while to update successfully.
 
-![](../../../assets/deta-3.png)
+![Apply update](../../../assets/deta-3.png)
 
 ## How to modify environment variables
 
 Click <kbd>...</kbd> - <kbd>Settings</kbd> - <kbd>Configuration</kbd> under the application list Waline App to configure all environment variables. After the configuration is complete, click <kbd>Save Changes</kbd> at the bottom to save.
 
-![](../../../assets/deta-4.png)
+![Update env vars](../../../assets/deta-4.png)

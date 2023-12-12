@@ -6,7 +6,7 @@ import {
   type WalineImageUploader,
   type WalineLoginStatus,
   type WalineMeta,
-  type WalineTexRenderer,
+  type WalineTeXRenderer,
   type WalineSearchOptions,
 } from './base.js';
 import { type WalineLocale } from './locale.js';
@@ -201,7 +201,7 @@ export interface WalineProps {
    *
    * @default true
    */
-  texRenderer?: WalineTexRenderer | boolean;
+  texRenderer?: WalineTeXRenderer | boolean;
 
   /**
    *
@@ -238,6 +238,11 @@ export interface WalineProps {
    * recaptcha v3 client key
    */
   recaptchaV3Key?: string;
+
+  /**
+   * turnstile client key
+   */
+  turnstileKey?: string;
 
   /**
    * reaction

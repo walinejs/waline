@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
 import Header from '../../components/Header';
-import { useRecaptcha } from '../../components/useRecaptchaV3';
+import { useCaptcha } from '../../components/useCaptcha';
 
 export default function () {
   const { t } = useTranslation();
@@ -13,9 +13,10 @@ export default function () {
   const user = useSelector((state) => state.user);
   const [error, setError] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const execute = window.recaptchaV3Key
-    ? useRecaptcha({ sitekey: window.recaptchaV3Key, hideDefaultBadge: true })
-    : () => '';
+  const execute = useCaptcha({
+    sitekey: window.turnstileKey || window.recaptchaV3Key,
+    hideDefaultBadge: true,
+  });
 
   useEffect(() => {
     if (user && user.email) {
@@ -47,13 +48,14 @@ export default function () {
 
     try {
       setSubmitting(true);
-      const recaptchaV3 = await execute('login');
+      const token = await execute('login');
       const resp = await dispatch.user.register({
         display_name: nick,
         email,
         url: link,
         password,
-        recaptchaV3,
+        recaptchaV3: window.recaptchaV3Key ? token : undefined,
+        turnstile: window.turnstileKey ? token : undefined,
       });
 
       if (resp && resp.verify) {
@@ -143,6 +145,7 @@ export default function () {
                 placeholder={t('password again')}
               />
             </p>
+            <p className="captcha-container" />
             <p className="submit">
               <button
                 type="submit"

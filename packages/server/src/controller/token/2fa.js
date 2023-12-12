@@ -1,6 +1,6 @@
 const speakeasy = require('speakeasy');
 
-const BaseRest = require('../rest');
+const BaseRest = require('../rest.js');
 
 module.exports = class extends BaseRest {
   async getAction() {
@@ -8,16 +8,13 @@ module.exports = class extends BaseRest {
     const { email } = this.get();
 
     if (think.isEmpty(userInfo) && email) {
-      const userModel = this.service(
-        `storage/${this.config('storage')}`,
-        'Users'
-      );
+      const userModel = this.getModel('Users');
 
       const user = await userModel.select(
         { email },
         {
           field: ['2fa'],
-        }
+        },
       );
       const is2FAEnabled = !think.isEmpty(user) && Boolean(user[0]['2fa']);
 
@@ -54,10 +51,7 @@ module.exports = class extends BaseRest {
       return this.fail(this.locale('TWO_FACTOR_AUTH_ERROR_DETAIL'));
     }
 
-    const userModel = this.service(
-      `storage/${this.config('storage')}`,
-      'Users'
-    );
+    const userModel = this.getModel('Users');
     const { objectId } = this.ctx.state.userInfo;
 
     await userModel.update({ ['2fa']: data.secret }, { objectId });

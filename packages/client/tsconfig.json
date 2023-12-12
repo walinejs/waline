@@ -2,10 +2,10 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "noImplicitAny": false,
+    "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "jsx": "preserve",
     "module": "ESNext",
-    "moduleResolution": "nodenext",
+    "moduleResolution": "Bundler",
     "rootDir": "./src"
   },
   "include": ["./src/**/*.ts", "./src/**/*.vue"]

@@ -9,14 +9,14 @@ icon: tidb
 
 1. 登录 [TiDB Cloud](https://tidbcloud.com) 后会自动创建实 TiDB 实例，直接点击 <kbd>cluster0</kbd> 进入实例
 
-   ![](../../assets/tidb-1.png)
+   ![进入实例](../../assets/tidb-1.png)
 
 2. 左侧列表选择 <kbd>Chat2Query</kbd> 并将 [waline.tidb](https://github.com/walinejs/waline/blob/main/assets/waline.tidb) 内容按照 `;` 为语句分布贴近界面执行。每贴一句点击右上角的<kbd>运行</kbd>蓝色按钮，或者使用 <kbd>Ctrl\/Command</kbd> + <kbd>Enter</kbd> 快捷键执行
-   ![](../../assets/tidb-2.png)
-   ![](../../assets/tidb-3.png)
-   ![](../../assets/tidb-4.png)
-   ![](../../assets/tidb-5.png)
-   ![](../../assets/tidb-6.png)
+   ![步骤1](../../assets/tidb-2.png)
+   ![步骤2](../../assets/tidb-3.png)
+   ![步骤3](../../assets/tidb-4.png)
+   ![步骤4](../../assets/tidb-5.png)
+   ![步骤5](../../assets/tidb-6.png)
 
 至此 Waline 数据库就已经创建完成！
 
@@ -28,4 +28,4 @@ Connect with 选择 `Node.js`。此外还需要点击右下角的 <kbd>Reset pas
 
 这样你就能获取到连接相关的配置了。
 
-![](../../assets/tidb-7.png)
+![获取链接配置](../../assets/tidb-7.png)

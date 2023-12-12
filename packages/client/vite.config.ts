@@ -12,4 +12,6 @@ export default defineConfig({
     VERSION: JSON.stringify(pkg.version),
   },
   plugins: [vue()],
+  envDir: resolve(__dirname),
+  envPrefix: ['VITE_', 'SERVERURL'],
 });

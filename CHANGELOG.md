@@ -1,13 +1,28 @@
+# (2023-05-27)
+
+### Features
+
+- `@waline/vercel@1.31.0` add plugin system support.
+
+# (2023-04-16)
+
+### Features
+
+- `@waline/vercel@1.30.0` add custom model and integrate third-party user systems support.
+- `@waline/vercel@1.29.0` and `@waline/client@2.15.0` add Turnstile captcha service support.
+
 # (2023-04-02)
 
 ### Features
 
 - `@waline/vercel@1.28.0` add netlify deploy support
+
 # (2023-04-01)
 
 ### Features
 
 - `@waline/admin@0.24.4` add QQ login support
+
 ### Bug Fixes
 
 - Fix #1898

@@ -20,10 +20,10 @@ Vercel 需要在 <kbd>Settings</kbd> - <kbd>Environment Variables</kbd> 中进�
 
 | 环境变量名称      | 必填 | 备注                                         |
 | ----------------- | ---- | -------------------------------------------- |
-| `LEAN_ID`         | ✅    | LeanCloud 应用的 App ID                      |
-| `LEAN_KEY`        | ✅    | LeanCloud 应用的 App Key                     |
-| `LEAN_MASTER_KEY` | ✅    | LeanCloud 应用的 Master Key 用于后台修改数据 |
-| `LEAN_SERVER`     | ⚠    | LeanCloud 服务地址，国内版用户需要配置此项   |
+| `LEAN_ID`         | ✅   | LeanCloud 应用的 App ID                      |
+| `LEAN_KEY`        | ✅   | LeanCloud 应用的 App Key                     |
+| `LEAN_MASTER_KEY` | ✅   | LeanCloud 应用的 Master Key 用于后台修改数据 |
+| `LEAN_SERVER`     | ⚠   | LeanCloud 服务地址，国内版用户需要配置此项   |
 | `SITE_NAME`       |      | 博客名称                                     |
 | `SITE_URL`        |      | 博客地址                                     |
 | `LOGIN`           |      | 当设置为 LOGIN=force 时会要求登录才能评论    |
@@ -68,8 +68,12 @@ Vercel 需要在 <kbd>Settings</kbd> - <kbd>Environment Variables</kbd> 中进�
 | `COMMENT_AUDIT`       | `false`        | 评论发布审核开关。开启后评论需要经过管理员审核后才能显示，所以建议在评论框默认文字上提供提示 |
 | `RECAPTCHA_V3_KEY`    |                | reCAPTCHA V3 key，须与客户端同时配置                                                         |
 | `RECAPTCHA_V3_SECRET` |                | reCAPTCHA V3 secret，服务端使用，不可泄漏                                                    |
+| `TURNSTILE_KEY`       |                | Turnstile key，须与客户端同时配置                                                            |
+| `TURNSTILE_SECRET`    |                | Turnstile secret，服务端使用，不可泄漏                                                       |
 
-::: tip Recaptcha
+::: tip Recaptcha 和 Turnstile
+
+Turnstile Key 和 Secret 可在 <https://www.cloudflare.com/zh-cn/products/turnstile/> 申请。
 
 Recaptcha Key 和 Secret 可在 <https://www.google.com/recaptcha> 申请。
 
@@ -86,9 +90,9 @@ Recaptcha Key 和 Secret 可在 <https://www.google.com/recaptcha> 申请。
 | `MARKDOWN_EMOJI`     | `true`    | 是否启用 Emoji 缩写支持                           |
 | `MARKDOWN_SUB`       | `true`    | 是否启用下角标支持                                |
 | `MARKDOWN_SUP`       | `true`    | 是否启用上角标支持                                |
-| `MARKDOWN_TEX`       | `mathjax` | 解析 Tex 的服务，支持 `mathjax`、`katex`、`false` |
+| `MARKDOWN_TEX`       | `mathjax` | 解析 TeX 的服务，支持 `mathjax`、`katex`、`false` |
 | `MARKDOWN_MATHJAX`   | `{}`      | MathJax 选项                                      |
-| `MARKDOWN_KATEX`     | `{}`      | Katex 选项                                        |
+| `MARKDOWN_KATEX`     | `{}`      | KaTeX 选项                                        |
 
 ## 邮件
 
@@ -121,9 +125,9 @@ SMTP 的用户名通常均支持用户的完整邮箱，而密码大多同邮箱
 
 | 环境变量名称       | 必填 | 默认值    | 备注                             |
 | ------------------ | ---- | --------- | -------------------------------- |
-| `MONGO_DB`         | ✅    |           | MongoDB 数据库名称               |
-| `MONGO_USER`       | ✅    |           | MongoDB 服务的用户名             |
-| `MONGO_PASSWORD`   | ✅    |           | MongoDB 服务的密码               |
+| `MONGO_DB`         | ✅   |           | MongoDB 数据库名称               |
+| `MONGO_USER`       | ✅   |           | MongoDB 服务的用户名             |
+| `MONGO_PASSWORD`   | ✅   |           | MongoDB 服务的密码               |
 | `MONGO_HOST`       |      | 127.0.0.1 | MongoDB 服务的地址，支持数组格式 |
 | `MONGO_PORT`       |      | 27017     | MongoDB 服务的端口，支持数组格式 |
 | `MONGO_REPLICASET` |      |           | MongoDB 集群                     |
@@ -134,9 +138,9 @@ SMTP 的用户名通常均支持用户的完整邮箱，而密码大多同邮箱
 
 | 环境变量名称     | 必填 | 默认值    | 备注                          |
 | ---------------- | ---- | --------- | ----------------------------- |
-| `MYSQL_DB`       | ✅    |           | MySQL 数据库库名              |
-| `MYSQL_USER`     | ✅    |           | MySQL 数据库的用户名          |
-| `MYSQL_PASSWORD` | ✅    |           | MySQL 数据库的密码            |
+| `MYSQL_DB`       | ✅   |           | MySQL 数据库库名              |
+| `MYSQL_USER`     | ✅   |           | MySQL 数据库的用户名          |
+| `MYSQL_PASSWORD` | ✅   |           | MySQL 数据库的密码            |
 | `MYSQL_HOST`     |      | 127.0.0.1 | MySQL 服务的地址              |
 | `MYSQL_PORT`     |      | 3306      | MySQL 服务的端口              |
 | `MYSQL_PREFIX`   |      | `wl_`     | MySQL 数据表的表前缀          |
@@ -149,9 +153,9 @@ SMTP 的用户名通常均支持用户的完整邮箱，而密码大多同邮箱
 
 | 环境变量名称    | 必填 | 默认值    | 备注                |
 | --------------- | ---- | --------- | ------------------- |
-| `TIDB_DB`       | ✅    |           | TiDB 数据库库名     |
-| `TIDB_USER`     | ✅    |           | TiDB 数据库的用户名 |
-| `TIDB_PASSWORD` | ✅    |           | TiDB 数据库的密码   |
+| `TIDB_DB`       | ✅   |           | TiDB 数据库库名     |
+| `TIDB_USER`     | ✅   |           | TiDB 数据库的用户名 |
+| `TIDB_PASSWORD` | ✅   |           | TiDB 数据库的密码   |
 | `TIDB_HOST`     |      | 127.0.0.1 | TiDB 服务的地址     |
 | `TIDB_PORT`     |      | 4000      | TiDB 服务的端口     |
 | `TIDB_PREFIX`   |      | `wl_`     | TiDB 数据表的表前缀 |
@@ -161,30 +165,37 @@ SMTP 的用户名通常均支持用户的完整邮箱，而密码大多同邮箱
 
 | 环境变量名称    | 必填 | 默认值 | 备注                                              |
 | --------------- | ---- | ------ | ------------------------------------------------- |
-| `SQLITE_PATH`   | ✅    |        | SQLite 数据库文件的路径，该路径不包含文件名本身   |
-| `JWT_TOKEN`     | ✅    |        | 用户登录密钥，随机字符串即可                      |
+| `SQLITE_PATH`   | ✅   |        | SQLite 数据库文件的路径，该路径不包含文件名本身   |
+| `JWT_TOKEN`     | ✅   |        | 用户登录密钥，随机字符串即可                      |
 | `SQLITE_DB`     |      | waline | SQLite 数据库文件名，若文件名变化需要修改该字段值 |
 | `SQLITE_PREFIX` |      | `wl_`  | SQLite 数据表的表前缀                             |
 
 ### PostgreSQL
 
-| 环境变量名称  | 必填 | 默认值    | 备注                                |
-| ------------- | ---- | --------- | ----------------------------------- |
-| `PG_DB`       | ✅    |           | PostgreSQL 数据库库名               |
-| `PG_USER`     | ✅    |           | PostgreSQL 数据库的用户名           |
-| `PG_PASSWORD` | ✅    |           | PostgreSQL 数据库的密码             |
-| `PG_HOST`     |      | 127.0.0.1 | PostgreSQL 服务的地址               |
-| `PG_PORT`     |      | 3211      | PostgreSQL 服务的端口               |
-| `PG_PREFIX`   |      | `wl_`     | PostgreSQL 数据表的表前缀           |
-| `PG_SSL`      |      | `false`   | 是否使用 SSL 连接 PostgreSQL 数据库 |
+| 环境变量名称        | 必填 | 默认值    | 备注                                |
+| ------------------- | ---- | --------- | ----------------------------------- |
+| `PG_DB`             | ✅   |           | PostgreSQL 数据库库名               |
+| `PG_USER`           | ✅   |           | PostgreSQL 数据库的用户名           |
+| `PG_PASSWORD`       | ✅   |           | PostgreSQL 数据库的密码             |
+| `PG_HOST`           |      | 127.0.0.1 | PostgreSQL 服务的地址               |
+| `PG_PORT`           |      | 3211      | PostgreSQL 服务的端口               |
+| `PG_PREFIX`         |      | `wl_`     | PostgreSQL 数据表的表前缀           |
+| `PG_SSL`            |      | `false`   | 是否使用 SSL 连接 PostgreSQL 数据库 |
+| `POSTGRES_DATABASE` |      |           | 同 `PG_DB`                          |
+| `POSTGRES_USER`     |      |           | 同 `PG_USER`                        |
+| `POSTGRES_PASSWORD` |      |           | 同 `PG_PASSWORD`                    |
+| `POSTGRES_HOST`     |      | 127.0.0.1 | 同 `PG_HOST`                        |
+| `POSTGRES_PORT`     |      | 3211      | 同 `PG_PORT`                        |
+| `POSTGRES_PREFIX`   |      | `wl_`     | 同 `PG_PREFIX`                      |
+| `POSTGRES_SSL`      |      | `false`   | 同 `POSTGRES_SSL`                   |
 
 ### CloudBase
 
 | 环境变量名称 | 必填 | 默认值 | 备注                                                                   |
 | ------------ | ---- | ------ | ---------------------------------------------------------------------- |
-| `TCB_ENV`    | ✅    |        | 腾讯云开发环境 ID                                                      |
-| `TCB_ID`     | ✅    |        | 腾讯云 API 密钥 ID                                                     |
-| `TCB_KEY`    | ✅    |        | 腾讯云 API 密钥 Key                                                    |
+| `TCB_ENV`    | ✅   |        | 腾讯云开发环境 ID                                                      |
+| `TCB_ID`     | ✅   |        | 腾讯云 API 密钥 ID                                                     |
+| `TCB_KEY`    | ✅   |        | 腾讯云 API 密钥 Key                                                    |
 | `JWT_TOKEN`  |      |        | 用户登录密钥，如果没有配任何环境变量的话需要配置此变量，随机字符串即可 |
 
 ::: tip
@@ -197,15 +208,15 @@ SMTP 的用户名通常均支持用户的完整邮箱，而密码大多同邮箱
 
 | 环境变量名称   | 必填 | 默认值 | 备注                                                                     |
 | -------------- | ---- | ------ | ------------------------------------------------------------------------ |
-| `GITHUB_TOKEN` | ✅    |        | [Personal access tokens](https://github.com/settings/tokens)             |
-| `GITHUB_REPO`  | ✅    |        | 仓库名称，例如 `walinejs/waline`                                         |
+| `GITHUB_TOKEN` | ✅   |        | [Personal access tokens](https://github.com/settings/tokens)             |
+| `GITHUB_REPO`  | ✅   |        | 仓库名称，例如 `walinejs/waline`                                         |
 | `GITHUB_PATH`  |      |        | 数据存储目录，例如 `data` 表示存储在 `data` 目录下，默认存在仓库根目录下 |
 
 ### Deta Base
 
 | 环境变量名称       | 必填 | 默认值 | 备注          |
 | ------------------ | ---- | ------ | ------------- |
-| `DETA_PROJECT_KEY` | ✅    |        | Deta 项目密钥 |
+| `DETA_PROJECT_KEY` | ✅   |        | Deta 项目密钥 |
 
 ## 高级配置
 

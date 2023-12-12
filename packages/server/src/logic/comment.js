@@ -1,4 +1,4 @@
-const Base = require('./base');
+const Base = require('./base.js');
 
 module.exports = class extends Base {
   checkAdmin() {
@@ -262,10 +262,7 @@ module.exports = class extends Base {
     }
 
     // 3. comment author modify comment content
-    const modelInstance = this.service(
-      `storage/${this.config('storage')}`,
-      'Comment'
-    );
+    const modelInstance = this.getModel('Comment');
     const commentData = await modelInstance.select({
       user_id: userInfo.objectId,
       objectId: this.id,
@@ -299,10 +296,7 @@ module.exports = class extends Base {
       return;
     }
 
-    const modelInstance = this.service(
-      `storage/${this.config('storage')}`,
-      'Comment'
-    );
+    const modelInstance = this.getModel('Comment');
     const commentData = await modelInstance.select({
       user_id: userInfo.objectId,
       objectId: this.id,

@@ -73,7 +73,7 @@ export default function () {
                 />
                 <p className="description" style={{ textAlign: 'left' }}>
                   {t(
-                    'you will receive an email which contains a link to create new password'
+                    'you will receive an email which contains a link to create new password',
                   )}
                 </p>
               </li>

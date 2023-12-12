@@ -1,2 +1,2 @@
-export * from '../version';
-export * from '../pageview';
+export * from '../version.js';
+export * from '../pageview.js';

@@ -1,15 +1,15 @@
-import { type marked } from 'marked';
+import { type TokenizerExtension } from 'marked';
 
-import { type WalineTexRenderer } from '../typings/index.js';
+import { type WalineTeXRenderer } from '../typings/index.js';
 
 const inlineMathStart = /\$.*?\$/;
 const inlineMathReg = /^\$(.*?)\$/;
 const blockMathReg = /^(?:\s{0,3})\$\$((?:[^\n]|\n[^\n])+?)\n{0,1}\$\$/;
 
-export const markedTexExtensions = (
-  texRenderer: WalineTexRenderer
-): marked.TokenizerExtension[] => {
-  const blockMathExtension: marked.TokenizerExtension = {
+export const markedTeXExtensions = (
+  texRenderer: WalineTeXRenderer,
+): TokenizerExtension[] => {
+  const blockMathExtension: TokenizerExtension = {
     name: 'blockMath',
     level: 'block',
     tokenizer(src: string) {
@@ -27,7 +27,7 @@ export const markedTexExtensions = (
     },
   };
 
-  const inlineMathExtension: marked.TokenizerExtension = {
+  const inlineMathExtension: TokenizerExtension = {
     name: 'inlineMath',
     level: 'inline',
     start(src: string) {
