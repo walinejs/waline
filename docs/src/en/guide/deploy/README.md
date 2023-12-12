@@ -12,3 +12,5 @@ Waline supports multiple deployment methods, you can choose from the following d
 - [Railway](./railway.md)
 
 - [Self Host](./vps.md)
+
+- [Zeabur](./zeabur.md)
