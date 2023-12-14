@@ -240,7 +240,7 @@ importers:
         specifier: 5.3.3
         version: 5.3.3
       vite-plugin-css-injected-by-js:
-        specifier: ^3.3.0
+        specifier: 3.3.0
         version: 3.3.0(vite@5.0.8)
 
   packages/api: {}
@@ -251,7 +251,7 @@ importers:
         specifier: ^10.7.0
         version: 10.7.0(vue@3.3.11)
       '@waline/api':
-        specifier: ^1.0.0-alpha.3
+        specifier: ^1.0.0-alpha.4
         version: link:../api
       autosize:
         specifier: ^6.0.1
@@ -6330,6 +6330,7 @@ packages:
   /cosmiconfig@8.3.6(typescript@5.3.3):
     resolution: {integrity: sha512-kcZ6+W5QzcJ3P1Mt+83OUv/oHFqZHIx8DuxG6eZ5RGMERoLqp4BuGjhHLYGK+Kf5XVkQvqBSmAy/nGWN3qDgEA==}
     engines: {node: '>=14'}
+    requiresBuild: true
     peerDependencies:
       typescript: '>=4.9.5'
     peerDependenciesMeta:

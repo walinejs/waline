@@ -62,6 +62,6 @@
     "react-router-dom": "6.21.0",
     "redux": "5.0.0",
     "typescript": "5.3.3",
-    "vite-plugin-css-injected-by-js": "^3.3.0"
+    "vite-plugin-css-injected-by-js": "3.3.0"
   }
 }
