@@ -14,6 +14,7 @@ export const zhNavbarConfig = navbar([
     icon: 'reference',
     prefix: '/reference/',
     children: [
+      'api/',
       {
         text: '客户端',
         prefix: 'client/',
@@ -55,6 +56,7 @@ export const enNavbarConfig = navbar([
     icon: 'reference',
     prefix: '/en/reference/',
     children: [
+      'api/',
       {
         text: 'Client',
         prefix: 'client/',

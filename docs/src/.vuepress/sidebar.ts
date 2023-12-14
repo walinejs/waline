@@ -107,6 +107,7 @@ export const zhSidebarConfig = sidebar({
       icon: 'reference',
       prefix: 'reference/',
       children: [
+        'api/',
         {
           text: '客户端',
           icon: 'client',
@@ -235,6 +236,7 @@ export const enSidebarConfig = sidebar({
       icon: 'reference',
       prefix: 'reference/',
       children: [
+        'api/',
         {
           text: 'Client',
           icon: 'client',

@@ -1,6 +1,6 @@
 {
   "name": "@waline/api",
-  "version": "1.0.0-alpha.3",
+  "version": "1.0.0-alpha.4",
   "type": "module",
   "description": "Client API for Waline comment system",
   "keywords": [
@@ -18,15 +18,15 @@
     "url": "https://mrhope.site"
   },
   "main": "./dist/api.cjs",
-  "module": "./dist/api.mjs",
-  "browser": "./dist/api.js",
+  "module": "./dist/api.js",
+  "browser": "./dist/api.umd.js",
   "types": "./dist/api.d.ts",
   "exports": {
     ".": {
       "types": "./dist/api.d.ts",
-      "import": "./dist/api.mjs",
+      "import": "./dist/api.js",
       "require": "./dist/api.cjs",
-      "default": "./dist/api.cjs"
+      "default": "./dist/api.js"
     }
   },
   "scripts": {

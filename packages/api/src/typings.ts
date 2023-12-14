@@ -144,6 +144,7 @@ export interface BaseWalineResponseComment {
    * @description 仅在登录用户时可用
    */
   // FIXME: Rename it to `userId`
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   user_id?: string;
 
   /**
