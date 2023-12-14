@@ -3,8 +3,7 @@ import { resolve } from 'node:path';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
-// @ts-ignore
-import reiconify from 'vite-plugin-reiconify';
+import svgr from 'vite-plugin-svgr';
 
 import { version } from './package.json';
 
@@ -17,12 +16,7 @@ export default defineConfig({
     ),
   },
 
-  plugins: [
-    react(),
-    // eslint-disable-next-line
-    reiconify(),
-    cssInjectedByJsPlugin(),
-  ],
+  plugins: [react(), svgr({ libraryDir: undefined }), cssInjectedByJsPlugin()],
 
   build: {
     lib: {
