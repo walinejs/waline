@@ -1,6 +1,6 @@
 {
   "name": "@waline/client",
-  "version": "3.0.0-alpha.6",
+  "version": "3.0.0-alpha.7",
   "description": "client for waline comment system",
   "keywords": [
     "valine",
@@ -91,6 +91,7 @@
     "autosize": "^6.0.1",
     "marked": "^11.1.0",
     "marked-highlight": "^2.0.9",
+    "recaptcha-v3": "^1.10.0",
     "vue": "^3.3.11"
   },
   "devDependencies": {
@@ -100,7 +101,6 @@
     "@types/autosize": "4.0.3",
     "@types/marked": "5.0.2",
     "@vitejs/plugin-vue": "4.5.2",
-    "recaptcha-v3": "1.10.0",
     "user-agent-data-types": "0.4.2",
     "vite": "5.0.8"
   }

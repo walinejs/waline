@@ -262,6 +262,9 @@ importers:
       marked-highlight:
         specifier: ^2.0.9
         version: 2.0.9(marked@11.1.0)
+      recaptcha-v3:
+        specifier: ^1.10.0
+        version: 1.10.0
       vue:
         specifier: ^3.3.11
         version: 3.3.11(typescript@5.3.3)
@@ -284,9 +287,6 @@ importers:
       '@vitejs/plugin-vue':
         specifier: 4.5.2
         version: 4.5.2(vite@5.0.8)(vue@3.3.11)
-      recaptcha-v3:
-        specifier: 1.10.0
-        version: 1.10.0
       user-agent-data-types:
         specifier: 0.4.2
         version: 0.4.2
@@ -11994,7 +11994,7 @@ packages:
 
   /recaptcha-v3@1.10.0:
     resolution: {integrity: sha512-aGTxYSk3FFNKnXeKDbLpgRDRyIHRZNBF5HyaXXAN1Aj4TSyyZvmoAn9CylvpqLV3pYpIQavwc+2rzhNFn5SsLQ==}
-    dev: true
+    dev: false
 
   /rechoir@0.7.1:
     resolution: {integrity: sha512-/njmZ8s1wVeR6pjTZ+0nCnv8SpZNRMT2D1RLOJQESlYFDBvwpTA4KWJpZ+sBJ4+vhjILRcK7JIFdGCdxEAAitg==}
