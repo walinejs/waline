@@ -36,11 +36,8 @@ jobs:
       - name: Build API
         run: pnpm api:build
 
-      - name: Build Client
-        run: pnpm client:build
-
       - name: Publish NPM
         uses: JS-DevTools/npm-publish@v3
         with:
           token: ${{ secrets.NPM_TOKEN }}
-          package: ./packages/client
+          package: ./packages/api
