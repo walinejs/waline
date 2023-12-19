@@ -90,9 +90,9 @@
     "@waline/api": "^1.0.0-alpha.4",
     "autosize": "^6.0.1",
     "marked": "^11.1.0",
-    "marked-highlight": "^2.0.9",
+    "marked-highlight": "^2.1.0",
     "recaptcha-v3": "^1.10.0",
-    "vue": "^3.3.11"
+    "vue": "^3.3.12"
   },
   "devDependencies": {
     "@babel/core": "7.23.6",
@@ -102,6 +102,6 @@
     "@types/marked": "5.0.2",
     "@vitejs/plugin-vue": "4.5.2",
     "user-agent-data-types": "0.4.2",
-    "vite": "5.0.8"
+    "vite": "5.0.10"
   }
 }
