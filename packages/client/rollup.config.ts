@@ -21,6 +21,12 @@ export default [
         format: 'esm',
         sourcemap: true,
       },
+      {
+        file: './dist/waline.umd.js',
+        format: 'umd',
+        name: 'Waline',
+        sourcemap: true,
+      },
     ],
     plugins: [
       vue({
@@ -52,19 +58,22 @@ export default [
     treeshake: 'smallest',
   },
 
-  // full declaration files
+  // full and slim declaration files
   {
     input: './src/entries/full.ts',
-    output: [{ file: './dist/waline.d.ts', format: 'esm' }],
+    output: [
+      { file: './dist/waline.d.ts', format: 'esm' },
+      { file: './dist/slim.d.ts', format: 'esm' },
+    ],
     plugins: [dts({ compilerOptions: { preserveSymlinks: false } })],
   },
 
-  // shim package
+  // slim package
   {
     input: './src/entries/full.ts',
     output: [
       {
-        file: './dist/shim.js',
+        file: './dist/slim.js',
         format: 'esm',
         sourcemap: true,
       },
@@ -105,12 +114,7 @@ export default [
       'vue',
     ],
   },
-  // shim declaration files
-  {
-    input: './src/entries/full.ts',
-    output: [{ file: './dist/shim.d.ts', format: 'esm' }],
-    plugins: [dts({ compilerOptions: { preserveSymlinks: false } })],
-  },
+
   // components
   {
     input: './src/entries/components.ts',
@@ -168,12 +172,6 @@ export default [
     input: './src/entries/comment.ts',
     output: [
       {
-        file: './dist/comment.umd.js',
-        format: 'umd',
-        name: 'Waline',
-        sourcemap: true,
-      },
-      {
         file: './dist/comment.mjs',
         format: 'esm',
         sourcemap: true,
@@ -220,12 +218,6 @@ export default [
   {
     input: './src/entries/pageview.ts',
     output: [
-      {
-        file: './dist/pageview.umd.js',
-        format: 'umd',
-        name: 'Waline',
-        sourcemap: true,
-      },
       {
         file: './dist/pageview.js',
         format: 'esm',

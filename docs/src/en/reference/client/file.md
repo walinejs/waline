@@ -9,13 +9,15 @@ icon: file
 
 ## CDN File List
 
+- `dist/waline.js`: full version, ESM format
+
+  This file is the recommend version to import `@waline/client`, 53 KB Gzip size
+
 - `dist/waline.umd.js`: full version, UMD format
 
-  This file is the default file for CDN import `@waline/client`, 53 KB Gzip size
+- `dist/slim.js`: full version without dependency bundles, ES Module format
 
-- `dist/shim.js`: full version without dependency bundles, ES Module format
-
-  This file is the default file for `import` to import `@waline/client`, 19.39 KB Gzip size
+  This file is the default file to import `@waline/client` with Node.js, 19.39 KB Gzip size
 
 - `dist/waline.css`: Waline CSS styles
 
@@ -25,13 +27,13 @@ icon: file
 
   This file is for using Waline comments in component mode in a Vue project, 18.28 KB Gzip size
 
-- `dist/comment.umd.js`: Waline's comment count module, UMD format, < 1KB Gzip size
+- `dist/comment.js`: Waline's comment count module, ESM format, < 1KB Gzip size
 
-  This file is used for CDN ingestion, when only the number of page comments is required
+  This file is used for CDN import, when only the number of page comments is required
 
-- `dist/pageview.umd.js`: Waline's pageview module, UMD format, < 1KB Gzip size
+- `dist/pageview.js`: Waline's pageview module, ESM format, < 1KB Gzip size
 
-  This file is used for CDN ingestion, when only page views are required
+  This file is used for CDN import, when only page views are required
 
 ## Module exports
 

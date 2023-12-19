@@ -21,8 +21,8 @@
   },
   "exports": {
     ".": {
-      "types": "./dist/shim.d.ts",
-      "default": "./dist/shim.js"
+      "types": "./dist/slim.d.ts",
+      "default": "./dist/slim.js"
     },
     "./component": {
       "types": "./dist/component.d.ts",
@@ -47,10 +47,10 @@
     "./waline-meta.css": "./dist/waline-meta.css",
     "./package.json": "./package.json"
   },
-  "main": "./dist/shim.js",
-  "module": "./dist/shim.js",
+  "main": "./dist/slim.js",
+  "module": "./dist/slim.js",
   "browser": "./dist/waline.umd.js",
-  "types": "./dist/shim.d.ts",
+  "types": "./dist/slim.d.ts",
   "files": [
     "dist"
   ],

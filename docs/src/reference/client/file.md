@@ -9,13 +9,15 @@ icon: file
 
 ## CDN 文件列表
 
-- `dist/waline.umd.js`: 完整版本，UMD 格式
+- `dist/waline.js`: 完整版本, ESM 格式
 
   此文件为 CDN 引入 `@waline/client` 的默认文件，53 KB Gzip 大小
 
-- `dist/shim.js`: 不含依赖捆绑的完整版本， ES Module 格式
+- `dist/waline.umd.js`: 完整版本，UMD 格式
 
-  此文件为 `import` 引入 `@waline/client` 的默认文件, 19.39 KB Gzip 大小
+- `dist/slim.js`: 不含依赖捆绑的完整版本， ES Module 格式
+
+  此文件为 Node.js 导入 `@waline/client` 的默认文件, 19.39 KB Gzip 大小
 
 - `dist/waline.css`: Waline CSS 样式
 
@@ -25,11 +27,11 @@ icon: file
 
   此文件用于在 Vue 项目中以组件模式使用 Waline 评论, 18.28 KB Gzip 大小
 
-- `dist/comment.umd.js`: Waline 的评论数模块，UMD 格式， < 1KB Gzip 大小
+- `dist/comment.js`: Waline 的评论数模块，ESM 格式， < 1KB Gzip 大小
 
   此文件用于 CDN 引入，用于仅需页面评论数的情况
 
-- `dist/pageview.umd.js`: Waline 的浏览量模块，UMD 格式， < 1KB Gzip 大小
+- `dist/pageview.js`: Waline 的浏览量模块，ESM 格式， < 1KB Gzip 大小
 
   此文件用于 CDN 引入，用于仅需页面浏览量的情况
 
