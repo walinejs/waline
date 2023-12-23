@@ -159,8 +159,8 @@ importers:
   docs:
     devDependencies:
       '@fancyapps/ui':
-        specifier: 5.0.31
-        version: 5.0.31
+        specifier: 5.0.32
+        version: 5.0.32
       '@vuepress/client':
         specifier: 2.0.0-rc.0
         version: 2.0.0-rc.0(typescript@5.3.3)
@@ -2643,8 +2643,8 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
 
-  /@fancyapps/ui@5.0.31:
-    resolution: {integrity: sha512-SW2QAmBCVdrggOT8koPu1K3RM4NECu0+klyAhe4zfwG//0NOPkr12QK3iscycA1YiON7u2Pt35CEvpMgODgtQQ==}
+  /@fancyapps/ui@5.0.32:
+    resolution: {integrity: sha512-jggsU+7W1nxLY4CM/GKcLNpBiaq9TcC8hxIDpTc/YEVTtVgj+ma1etkg9oVT1Q8BVGvcAcS24wScCCbIjeCufw==}
     dev: true
 
   /@fast-csv/format@4.3.5:
@@ -9054,6 +9054,7 @@ packages:
 
   /is-arrayish@0.2.1:
     resolution: {integrity: sha512-zz06S8t0ozoDXMG+ube26zeCTNXcKIPJZJi8hBrF4idCLms4CG9QtK7qBl1boi5ODzFpjswb5JPmHCbMpjaYzg==}
+    requiresBuild: true
     dev: true
 
   /is-arrayish@0.3.2:
@@ -9885,6 +9886,7 @@ packages:
 
   /lines-and-columns@1.2.4:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
+    requiresBuild: true
     dev: true
 
   /lines-and-columns@2.0.4:

@@ -8,7 +8,7 @@
     "dev": "vuepress dev src"
   },
   "devDependencies": {
-    "@fancyapps/ui": "5.0.31",
+    "@fancyapps/ui": "5.0.32",
     "@vuepress/client": "2.0.0-rc.0",
     "@vuepress/plugin-docsearch": "2.0.0-rc.0",
     "@vuepress/utils": "2.0.0-rc.0",
