@@ -202,7 +202,7 @@ importers:
     devDependencies:
       '@rematch/core':
         specifier: 2.2.0
-        version: 2.2.0(redux@5.0.0)
+        version: 2.2.0(redux@5.0.1)
       base-icon:
         specifier: 2.2.1
         version: 2.2.1(react@18.2.0)
@@ -232,13 +232,13 @@ importers:
         version: 14.0.0(i18next@23.7.11)(react-dom@18.2.0)(react@18.2.0)
       react-redux:
         specifier: 9.0.4
-        version: 9.0.4(react@18.2.0)(redux@5.0.0)
+        version: 9.0.4(react@18.2.0)(redux@5.0.1)
       react-router-dom:
         specifier: 6.21.1
         version: 6.21.1(react-dom@18.2.0)(react@18.2.0)
       redux:
-        specifier: 5.0.0
-        version: 5.0.0
+        specifier: 5.0.1
+        version: 5.0.1
       typescript:
         specifier: 5.3.3
         version: 5.3.3
@@ -3357,13 +3357,13 @@ packages:
       tslib: 2.6.2
     dev: true
 
-  /@rematch/core@2.2.0(redux@5.0.0):
+  /@rematch/core@2.2.0(redux@5.0.1):
     resolution: {integrity: sha512-Sj3nC/2X+bOBZeOf4jdJ00nhCcx9wLbVK9SOs6eFR4Y1qKXqRY0hGigbQgfTpCdjRFlwTHHfN3m41MlNvMhDgw==}
     engines: {node: '>=10'}
     peerDependencies:
       redux: '>=4'
     dependencies:
-      redux: 5.0.0
+      redux: 5.0.1
     dev: true
 
   /@remix-run/router@1.14.1:
@@ -11864,7 +11864,7 @@ packages:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
     dev: true
 
-  /react-redux@9.0.4(react@18.2.0)(redux@5.0.0):
+  /react-redux@9.0.4(react@18.2.0)(redux@5.0.1):
     resolution: {integrity: sha512-9J1xh8sWO0vYq2sCxK2My/QO7MzUMRi3rpiILP/+tDr8krBHixC6JMM17fMK88+Oh3e4Ae6/sHIhNBgkUivwFA==}
     peerDependencies:
       '@types/react': ^18.2.25
@@ -11881,7 +11881,7 @@ packages:
     dependencies:
       '@types/use-sync-external-store': 0.0.3
       react: 18.2.0
-      redux: 5.0.0
+      redux: 5.0.1
       use-sync-external-store: 1.2.0(react@18.2.0)
     dev: true
 
@@ -12023,8 +12023,8 @@ packages:
       strip-indent: 3.0.0
     dev: true
 
-  /redux@5.0.0:
-    resolution: {integrity: sha512-blLIYmYetpZMET6Q6uCY7Jtl/Im5OBldy+vNPauA8vvsdqyt66oep4EUpAMWNHauTC6xa9JuRPhRB72rY82QGA==}
+  /redux@5.0.1:
+    resolution: {integrity: sha512-M9/ELqF6fy8FwmkpnF0S3YKOqMyoWJ4+CS5Efg2ct3oY9daQvd/Pc71FpGZsVsbl3Cpb+IIcjBDUnnyBdQbq4w==}
     dev: true
 
   /reflect.getprototypeof@1.0.4:
