@@ -42,6 +42,7 @@ export default hopeTheme(
 
       comment: {
         provider: 'Waline',
+        login: 'force',
         serverURL: 'https://walinejs.comment.lithub.cc',
         recaptchaV3Key: '6Lfz4-shAAAAANgsYRR0datkzv6zLIaKrSqfHsiG',
         pageview: true,
