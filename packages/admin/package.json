@@ -51,8 +51,8 @@
   "devDependencies": {
     "@rematch/core": "2.2.0",
     "base-icon": "2.2.1",
-    "classnames": "2.3.2",
-    "i18next": "23.7.11",
+    "classnames": "2.5.1",
+    "i18next": "23.7.12",
     "i18next-browser-languagedetector": "7.2.0",
     "md5": "2.3.0",
     "qrcode.react": "3.1.0",
@@ -61,7 +61,7 @@
     "react-i18next": "14.0.0",
     "react-redux": "9.0.4",
     "react-router-dom": "6.21.1",
-    "redux": "5.0.0",
+    "redux": "5.0.1",
     "typescript": "5.3.3"
   }
 }
