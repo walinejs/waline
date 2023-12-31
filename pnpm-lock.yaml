@@ -285,8 +285,8 @@ importers:
         specifier: 5.0.2
         version: 5.0.2
       '@vitejs/plugin-vue':
-        specifier: 5.0.1
-        version: 5.0.1(vite@5.0.10)(vue@3.4.0)
+        specifier: 5.0.2
+        version: 5.0.2(vite@5.0.10)(vue@3.4.0)
       user-agent-data-types:
         specifier: 0.4.2
         version: 0.4.2
@@ -4348,8 +4348,8 @@ packages:
       vue: 3.4.0(typescript@5.3.3)
     dev: true
 
-  /@vitejs/plugin-vue@5.0.1(vite@5.0.10)(vue@3.4.0):
-    resolution: {integrity: sha512-lwvZX5tDhJpRJEKsjoUSWgaD26Lk9X4aDYGAPpr/Q6cLTT3PC8LPu2dsnYEweAZiNgHsbyKL2Svc/CDrFOsbtw==}
+  /@vitejs/plugin-vue@5.0.2(vite@5.0.10)(vue@3.4.0):
+    resolution: {integrity: sha512-kEjJHrLb5ePBvjD0SPZwJlw1QTRcjjCA9sB5VyfonoXVBxTS7TMnqL6EkLt1Eu61RDeiuZ/WN9Hf6PxXhPI2uA==}
     engines: {node: ^18.0.0 || >=20.0.0}
     peerDependencies:
       vite: ^5.0.0
