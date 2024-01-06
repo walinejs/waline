@@ -80,7 +80,7 @@
     "husky": "8.0.3",
     "markdownlint-cli": "0.38.0",
     "nano-staged": "0.8.0",
-    "postcss": "8.4.32",
+    "postcss": "8.4.33",
     "prettier": "3.1.1",
     "rimraf": "5.0.5",
     "rollup": "4.9.1",
