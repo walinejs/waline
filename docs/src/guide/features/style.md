@@ -48,7 +48,7 @@ redirectFrom: /guide/client/style.html
 对于 NPM 用户，你可以通过以下方式导入:
 
 ```js
-import '@waline/client/waline-meta.css';
+import '@waline/client/meta';
 ```
 
 ## RTL 支持

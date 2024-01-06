@@ -47,7 +47,7 @@ For CDN users, you can import via the following link:
 For NPM users, you can import via:
 
 ```js
-import '@waline/client/dist/waline-meta.css';
+import '@waline/client/meta';
 ```
 
 ## RTL support
