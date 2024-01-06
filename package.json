@@ -30,20 +30,10 @@
     }
   },
   "nano-staged": {
-    "*.md": [
-      "markdownlint --fix",
-      "prettier --write"
-    ],
-    "*.{js,vue}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "*.{json,yml}": [
-      "prettier --write"
-    ],
-    "package.json": [
-      "sort-package-json"
-    ]
+    "**/*": "prettier --write --ignore-unknown",
+    "*.md": "markdownlint --fix",
+    "*.{js,ts,vue}": "eslint --fix",
+    "package.json": "sort-package-json"
   },
   "prettier": {
     "singleQuote": true
