@@ -43,6 +43,8 @@
       "import": "./dist/pageview.js",
       "default": "./dist/pageview.umd.js"
     },
+    "./style": "./dist/waline.css",
+    "./meta": "./dist/waline-meta.css",
     "./waline.css": "./dist/waline.css",
     "./waline-meta.css": "./dist/waline-meta.css",
     "./package.json": "./package.json"
