@@ -159,8 +159,8 @@ importers:
   docs:
     devDependencies:
       '@fancyapps/ui':
-        specifier: 5.0.32
-        version: 5.0.32
+        specifier: 5.0.33
+        version: 5.0.33
       '@vuepress/client':
         specifier: 2.0.0-rc.0
         version: 2.0.0-rc.0(typescript@5.3.3)
@@ -2643,8 +2643,8 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
 
-  /@fancyapps/ui@5.0.32:
-    resolution: {integrity: sha512-jggsU+7W1nxLY4CM/GKcLNpBiaq9TcC8hxIDpTc/YEVTtVgj+ma1etkg9oVT1Q8BVGvcAcS24wScCCbIjeCufw==}
+  /@fancyapps/ui@5.0.33:
+    resolution: {integrity: sha512-nYW7ntjhrpqoLz/vA9KpJ2zJ5gXRB7rpFKXWjW4GC1f2st/IoI1Oy2TEEz0xABIlvPTCuoMXaT1X3UC7bP97rA==}
     dev: true
 
   /@fast-csv/format@4.3.5:
