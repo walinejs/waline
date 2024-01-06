@@ -91,19 +91,19 @@
     "@vueuse/core": "^10.7.1",
     "@waline/api": "^1.0.0-alpha.4",
     "autosize": "^6.0.1",
-    "marked": "^11.1.0",
+    "marked": "^11.1.1",
     "marked-highlight": "^2.1.0",
     "recaptcha-v3": "^1.10.0",
-    "vue": "^3.4.0"
+    "vue": "^3.4.5"
   },
   "devDependencies": {
-    "@babel/core": "7.23.6",
-    "@babel/preset-env": "7.23.6",
+    "@babel/core": "7.23.7",
+    "@babel/preset-env": "7.23.7",
     "@giphy/js-types": "5.0.0",
     "@types/autosize": "4.0.3",
     "@types/marked": "5.0.2",
     "@vitejs/plugin-vue": "5.0.2",
     "user-agent-data-types": "0.4.2",
-    "vite": "5.0.10"
+    "vite": "5.0.11"
   }
 }
