@@ -41,7 +41,7 @@ redirectFrom: /guide/client/style.html
 <!-- Meta 图标 (可选) -->
 <link
   rel="stylesheet"
-  href="https://unpkg.com/@waline/client@v2/dist/waline-meta.css"
+  href="https://unpkg.com/@waline/client@v3/dist/waline-meta.css"
 />
 ```
 

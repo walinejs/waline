@@ -40,7 +40,7 @@ For CDN users, you can import via the following link:
 <!-- Meta icon (optional) -->
 <link
   rel="stylesheet"
-  href="https://unpkg.com/@waline/client@v2/dist/waline-meta.css"
+  href="https://unpkg.com/@waline/client@v3/dist/waline-meta.css"
 />
 ```
 

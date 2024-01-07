@@ -14,7 +14,7 @@ You can enable comment counting in the `init` function by setting the `comment` 
 
 ```html
 <script type="module">
-  import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
+  import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
 
   init({
     el: '#waline',
@@ -56,7 +56,7 @@ Besides automatically update via the `init` function, you can manually update th
 
 ```html
 <script type="module">
-  import { commentCount } from 'https://unpkg.com/@waline/client@v2/dist/comment.mjs';
+  import { commentCount } from 'https://unpkg.com/@waline/client@v3/dist/comment.js';
 
   commentCount({
     serverURL,
@@ -92,7 +92,7 @@ Sometimes, you may want to display the comment count of some pages in the articl
 
 ```html
 <script type="module">
-  import { commentCount } from 'https://unpkg.com/@waline/client@v2/dist/comment.mjs';
+  import { commentCount } from 'https://unpkg.com/@waline/client@v3/dist/comment.js';
 
   commentCount({
     serverURL,

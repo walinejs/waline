@@ -20,7 +20,7 @@ This cookbook guides you how to add your own code highlighter.
     <title>Waline highlighter case</title>
     <link
       rel="stylesheet"
-      href="https://unpkg.com/@waline/client@v2/dist/waline.css"
+      href="https://unpkg.com/@waline/client@v3/dist/waline.css"
     />
     <script src="https://unpkg.com/prismjs@v1" data-manual></script>
     <script src="https://unpkg.com/prismjs@v1/plugins/autoloader/prism-autoloader.min.js"></script>
@@ -32,7 +32,7 @@ This cookbook guides you how to add your own code highlighter.
   <body>
     <div id="waline" style="max-width: 800px; margin: 0 auto"></div>
     <script type="module">
-      import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
+      import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
 
       const waline = init({
         el: '#waline',
