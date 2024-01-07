@@ -51,7 +51,7 @@ function encodeForHTML(str) {
 
 攻击者除了可以任意存储，也可以任意读取，数据库的字段开放读取权限后，该字段的内容对攻击者是完全透明的。
 
-在评论数据中，IP 和邮箱两个字段包含了用户的敏感数据。灯大甚至专门写了一篇文章来批判该问题 [《请马上停止使用 Valine.js 评论系统，除非它修复了用户隐私泄露问题》](https://ttys3.net/post/hugo/please-stop-using-valine-js-comment-system-until-it-fixed-the-privacy-leaking-problem/)。甚至掘金社区在早期使用 LeanCloud 的时候也暴出过 [泄露用户手机号](https://m.weibo.cn/detail/4568007327622344?cid=4568044392682999) 的安全问题。
+在评论数据中，IP 和邮箱两个字段包含了用户的敏感数据。灯大甚至专门写了一篇文章来批判该问题 [《请马上停止使用 Valine.js 评论系统，除非它修复了用户隐私泄露问题》](https://ttys3.dev/blog/please-stop-using-valine-js-comment-system-until-it-fixed-the-privacy-leaking-problem)。甚至掘金社区在早期使用 LeanCloud 的时候也暴出过 [泄露用户手机号](https://m.weibo.cn/detail/4568007327622344?cid=4568044392682999) 的安全问题。
 
 为了规避这个问题，Valine 作者增加了 `recordIP` 配置用来设置是否允许记录用户 IP。由于无服务端，只能通过不存储的方式解决。
 
