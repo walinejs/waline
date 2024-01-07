@@ -20,8 +20,9 @@
   },
   "license": "MIT",
   "author": "lizheming <i@imnerd.org>",
-  "main": "dist/admin.mjs",
-  "browser": "dist/admin.mjs",
+  "main": "dist/admin.js",
+  "browser": "dist/admin.js",
+  "exports": "./dist/admin.js",
   "files": [
     "dist"
   ],
