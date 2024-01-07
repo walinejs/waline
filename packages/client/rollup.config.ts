@@ -172,7 +172,7 @@ export default [
     input: './src/entries/comment.ts',
     output: [
       {
-        file: './dist/comment.mjs',
+        file: './dist/comment.js',
         format: 'esm',
         sourcemap: true,
       },
