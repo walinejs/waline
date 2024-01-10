@@ -2,27 +2,28 @@
   "name": "waline-root",
   "private": true,
   "scripts": {
-    "admin:build": "pnpm --dir=packages/admin build",
-    "admin:dev": "pnpm --dir=packages/admin dev",
-    "api:build": "pnpm --dir=packages/api build",
-    "apidoc": "apidoc -i packages/server/src/logic -o docs/src/.vuepress/dist/api",
-    "build": "pnpm admin:build && pnpm api:build && pnpm client:build",
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "clean": "turbo run clean",
+    "prepare": "husky install",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
-    "clean": "pnpm -r clean",
-    "client:build": "pnpm --dir=packages/client build",
-    "client:dev": "pnpm --dir=packages/client dev",
-    "docs:build": "pnpm --dir=docs run build && pnpm apidoc",
-    "docs:dev": "pnpm --dir=docs run dev",
-    "lint": "pnpm lint:eslint && pnpm lint:prettier && pnpm lint:stylelint",
+    "apidoc": "apidoc -i packages/server/src/logic -o docs/src/.vuepress/dist/api",
+    "packages:check-update": "pnpm dlx npm-check-updates --deep",
+    "packages:update": "pnpm dlx npm-check-updates --deep -u && pnpm i && pnpm -r up",
+    "admin:build": "turbo run build --filter=admin",
+    "admin:dev": "turbo run dev --filter=admin",
+    "api:build": "turbo run build --filter=api",
+    "client:build": "turbo run build --filter=client",
+    "client:dev": "turbo run dev --filter=client",
+    "docs:build": "turbo run build --filter=docs && pnpm apidoc",
+    "docs:dev": "turbo run dev --filter=docs",
+    "server:dev": "vercel dev ./example --listen 9090",
     "lint:eslint": "eslint --ext .js,.jsx,.vue,.ts --fix .",
     "lint:md": "markdownlint docs/ --fix",
     "lint:prettier": "prettier --check --write .",
-    "lint:stylelint": "stylelint packages/*/src/**/*.scss --fix",
-    "packages:check-update": "pnpm dlx npm-check-updates --deep",
-    "packages:update": "pnpm dlx npm-check-updates --deep -u && pnpm i && pnpm -r up",
-    "prepare": "husky install",
-    "server:dev": "vercel dev ./example --listen 9090",
-    "test": "vitest"
+    "lint:stylelint": "stylelint packages/*/src/**/*.scss --fix"
   },
   "config": {
     "commitizen": {
@@ -91,5 +92,13 @@
   "packageManager": "pnpm@8.14.0",
   "apidoc": {
     "title": "Waline API Documentation"
+  },
+  "workspaces": [
+    "packages/*",
+    "docs"
+  ],
+  "dependencies": {
+    "turbo": "^1.11.3",
+    "waline-root": "link:"
   }
 }
