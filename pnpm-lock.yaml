@@ -225,8 +225,8 @@ importers:
         specifier: 14.0.0
         version: 14.0.0(i18next@23.7.16)(react-dom@18.2.0)(react@18.2.0)
       react-redux:
-        specifier: 9.0.4
-        version: 9.0.4(react@18.2.0)(redux@5.0.1)
+        specifier: 9.1.0
+        version: 9.1.0(react@18.2.0)(redux@5.0.1)
       react-router-dom:
         specifier: 6.21.1
         version: 6.21.1(react-dom@18.2.0)(react@18.2.0)
@@ -11586,8 +11586,8 @@ packages:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
     dev: true
 
-  /react-redux@9.0.4(react@18.2.0)(redux@5.0.1):
-    resolution: {integrity: sha512-9J1xh8sWO0vYq2sCxK2My/QO7MzUMRi3rpiILP/+tDr8krBHixC6JMM17fMK88+Oh3e4Ae6/sHIhNBgkUivwFA==}
+  /react-redux@9.1.0(react@18.2.0)(redux@5.0.1):
+    resolution: {integrity: sha512-6qoDzIO+gbrza8h3hjMA9aq4nwVFCKFtY2iLxCtVT38Swyy2C/dJCGBXHeHLtx6qlg/8qzc2MrhOeduf5K32wQ==}
     peerDependencies:
       '@types/react': ^18.2.25
       react: ^18.0
