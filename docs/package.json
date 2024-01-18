@@ -15,7 +15,7 @@
     "@waline/client": "2.15.8",
     "marked": "11.1.1",
     "mathjax-full": "3.2.2",
-    "vue": "3.4.5",
+    "vue": "3.4.15",
     "vuepress": "2.0.0-rc.0",
     "vuepress-plugin-redirect": "2.0.0-rc.10",
     "vuepress-shared": "2.0.0-rc.10",
