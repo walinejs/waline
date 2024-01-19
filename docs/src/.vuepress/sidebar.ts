@@ -261,7 +261,7 @@ export const enSidebarConfig = sidebar({
     {
       text: 'Advanced',
       icon: 'advanced',
-      prefix: '/advanced/',
+      prefix: 'advanced/',
       collapsible: true,
       children: ['intro', 'design', 'ecosystem', 'faq', 'contribution'],
     },
