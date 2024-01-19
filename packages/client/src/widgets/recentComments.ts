@@ -1,8 +1,7 @@
-import { getRecentComment } from '../api';
-import { useUserInfo } from '../composables';
-import { getRoot } from '../utils';
+import { type RecentCommentData, getRecentComment } from '@waline/api';
 
-import type { WalineComment } from '../typings';
+import { useUserInfo } from '../composables/index.js';
+import { getRoot } from '../utils/index.js';
 
 export interface WalineRecentCommentsOptions {
   /**
@@ -31,7 +30,7 @@ export interface WalineRecentCommentsOptions {
    *
    * Language of error message
    *
-   * @default 'zh-CN'
+   * @default navigator.language
    */
   lang?: string;
 }
@@ -42,7 +41,7 @@ export interface WalineRecentCommentsResult {
    *
    * Comment Data
    */
-  comments: WalineComment[];
+  comments: RecentCommentData[];
 
   /**
    * 取消挂载挂件
@@ -56,7 +55,7 @@ export const RecentComments = ({
   el,
   serverURL,
   count,
-  lang = 'zh-CN',
+  lang = navigator.language,
 }: WalineRecentCommentsOptions): Promise<WalineRecentCommentsResult> => {
   const userInfo = useUserInfo();
   const root = getRoot(el);
@@ -73,7 +72,7 @@ export const RecentComments = ({
       root.innerHTML = `<ul class="wl-recent-list">${comments
         .map(
           (comment) =>
-            `<li class="wl-recent-item"><a href="${comment.url}">${comment.nick}</a>：${comment.comment}</li>`
+            `<li class="wl-recent-item"><a href="${comment.url}">${comment.nick}</a>：${comment.comment}</li>`,
         )
         .join('')}</ul>`;
 

@@ -40,15 +40,19 @@ For CDN users, you can import via the following link:
 <!-- Meta icon (optional) -->
 <link
   rel="stylesheet"
-  href="https://unpkg.com/@waline/client@v2/dist/waline-meta.css"
+  href="https://unpkg.com/@waline/client@v3/dist/waline-meta.css"
 />
 ```
 
 For NPM users, you can import via:
 
 ```js
-import '@waline/client/dist/waline-meta.css';
+import '@waline/client/meta';
 ```
+
+## RTL support
+
+`@waline/client` supports RTL layout, you just need to add `dir="rtl"` in `<html>` tag.
 
 ## Customize Styles
 

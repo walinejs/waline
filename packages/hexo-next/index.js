@@ -3,11 +3,12 @@
 'use strict';
 
 const Util = require('@next-theme/utils');
+
 const utils = new Util(hexo, __dirname);
 
 const warn = (...args) => {
   hexo.log.warn(
-    `Since ${args[0]} is turned on, the ${args[1]} is disabled to avoid potential hazards.`
+    `Since ${args[0]} is turned on, the ${args[1]} is disabled to avoid potential hazards.`,
   );
 };
 
@@ -36,7 +37,7 @@ hexo.extend.filter.register('theme_inject', (injects) => {
     'waline',
     '<div class="comments" id="waline"></div>',
     {},
-    { cache: true }
+    { cache: true },
   );
 
   injects.bodyEnd.raw('waline', utils.getFileContent('waline.njk'));
@@ -45,7 +46,7 @@ hexo.extend.filter.register('theme_inject', (injects) => {
     'waline',
     `<link rel="dns-prefetch" href="${config.serverURL}">`,
     {},
-    {}
+    {},
   );
 });
 
@@ -68,7 +69,7 @@ hexo.extend.filter.register('theme_inject', (injects) => {
   {% endif %}
   `,
     {},
-    {}
+    {},
   );
 
   if (config.pageview) {
@@ -95,7 +96,7 @@ hexo.extend.filter.register('theme_inject', (injects) => {
     </span>
   `,
       {},
-      {}
+      {},
     );
   }
 });

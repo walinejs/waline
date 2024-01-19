@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import useScript from './useScript';
+
+import useScript from './useScript.js';
 
 export function useRecaptcha({
   sitekey,
@@ -15,7 +16,9 @@ export function useRecaptcha({
   }, [hideDefaultBadge]);
 
   useScript({
-    src: `https://recaptcha.net/recaptcha/api.js?render=${sitekey}`,
+    src: window.recaptchaV3Key
+      ? `https://recaptcha.net/recaptcha/api.js?render=${sitekey}`
+      : undefined,
     onload: () =>
       window.grecaptcha.ready(() => {
         setRecaptcha(window.grecaptcha);
@@ -24,7 +27,7 @@ export function useRecaptcha({
   });
 
   useEffect(() => {
-    if (window.grecaptcha) {
+    if (window.grecaptcha && window.recaptchaV3Key) {
       window.grecaptcha.ready(() => {
         setRecaptcha(window.grecaptcha);
       });

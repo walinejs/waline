@@ -154,6 +154,8 @@
         </div>
 
         <div class="wl-info">
+          <div class="wl-captcha-container"></div>
+
           <div class="wl-text-number">
             {{ wordNumber }}
 
@@ -205,6 +207,7 @@
           />
 
           <ImageWall
+            v-if="searchResults.list.length"
             :items="searchResults.list"
             :column-width="200"
             :gap="6"
@@ -284,9 +287,18 @@
 
 <script setup lang="ts">
 import { useDebounceFn } from '@vueuse/core';
-import { useReCaptcha } from '../composables/index.js';
+import {
+  type WalineComment,
+  type WalineCommentData,
+  addComment,
+  login,
+  updateComment,
+  UserInfo,
+} from '@waline/api';
 import autosize from 'autosize';
 import {
+  type ComputedRef,
+  type DeepReadonly,
   computed,
   inject,
   onMounted,
@@ -299,32 +311,36 @@ import {
 import {
   CloseIcon,
   EmojiIcon,
+  GifIcon,
   ImageIcon,
+  LoadingIcon,
   MarkdownIcon,
   PreviewIcon,
-  LoadingIcon,
-  GifIcon,
-} from './Icons';
+} from './Icons.js';
 import ImageWall from './ImageWall.vue';
-import { addComment, login, updateComment } from '../api/index.js';
-import { useEditor, useUserMeta, useUserInfo } from '../composables/index.js';
 import {
+  useEditor,
+  useReCaptcha,
+  useTurnstile,
+  useUserInfo,
+  useUserMeta,
+} from '../composables/index.js';
+import {
+  type WalineImageUploader,
+  type WalineSearchOptions,
+  type WalineSearchResult,
+} from '../typings/index.js';
+import {
+  type WalineConfig,
+  type WalineEmojiConfig,
   getEmojis,
   getImageFromDataTransfer,
+  isValidEmail,
   getWordNumber,
   parseEmoji,
   parseMarkdown,
+  userAgent,
 } from '../utils/index.js';
-
-import type { ComputedRef, DeepReadonly } from 'vue';
-import type {
-  WalineComment,
-  WalineCommentData,
-  WalineImageUploader,
-  WalineSearchOptions,
-  WalineSearchResult,
-} from '../typings/index.js';
-import type { WalineConfig, WalineEmojiConfig } from '../utils/index.js';
 
 const props = withDefaults(
   defineProps<{
@@ -350,10 +366,11 @@ const props = withDefaults(
     rootId: '',
     replyId: '',
     replyUser: '',
-  }
+  },
 );
 
 const emit = defineEmits<{
+  (event: 'log'): void;
   (event: 'cancelEdit'): void;
   (event: 'cancelReply'): void;
   (event: 'submit', comment: WalineComment): void;
@@ -396,6 +413,8 @@ const content = ref('');
 
 const isSubmitting = ref(false);
 
+const isImageListEnd = ref(false);
+
 const locale = computed(() => config.value.locale);
 
 const isLogin = computed(() => Boolean(userInfo.value?.token));
@@ -422,25 +441,29 @@ const onKeyDown = (event: KeyboardEvent): void => {
   const key = event.key;
 
   // Shortcut key
-  if ((event.ctrlKey || event.metaKey) && key === 'Enter') submitComment();
+  if ((event.ctrlKey || event.metaKey) && key === 'Enter') void submitComment();
 };
 
 const uploadImage = (file: File): Promise<void> => {
   const uploadText = `![${config.value.locale.uploading} ${file.name}]()`;
 
   insert(uploadText);
+  isSubmitting.value = true;
 
   return Promise.resolve()
     .then(() => (config.value.imageUploader as WalineImageUploader)(file))
     .then((url) => {
       editor.value = editor.value.replace(
         uploadText,
-        `\r\n![${file.name}](${url})`
+        `\r\n![${file.name}](${url})`,
       );
     })
-    .catch((e) => {
-      alert(e.message);
+    .catch((err: Error) => {
+      alert(err.message);
       editor.value = editor.value.replace(uploadText, '');
+    })
+    .then(() => {
+      isSubmitting.value = false;
     });
 };
 
@@ -449,7 +472,7 @@ const onDrop = (event: DragEvent): void => {
     const file = getImageFromDataTransfer(event.dataTransfer.items);
 
     if (file && canUploadImage.value) {
-      uploadImage(file);
+      void uploadImage(file);
       event.preventDefault();
     }
   }
@@ -459,7 +482,7 @@ const onPaste = (event: ClipboardEvent): void => {
   if (event.clipboardData) {
     const file = getImageFromDataTransfer(event.clipboardData.items);
 
-    if (file && canUploadImage.value) uploadImage(file);
+    if (file && canUploadImage.value) void uploadImage(file);
   }
 };
 
@@ -467,28 +490,31 @@ const onChange = (): void => {
   const inputElement = imageUploadRef.value!;
 
   if (inputElement.files && canUploadImage.value)
-    uploadImage(inputElement.files[0]).then(() => {
+    void uploadImage(inputElement.files[0]).then(() => {
       // clear input so a same image can be uploaded later
       inputElement.value = '';
     });
 };
 
 const submitComment = async (): Promise<void> => {
-  const { serverURL, lang, login, wordLimit, requiredMeta } = config.value;
+  const {
+    serverURL,
+    lang,
+    login,
+    wordLimit,
+    requiredMeta,
+    recaptchaV3Key,
+    turnstileKey,
+  } = config.value;
 
-  let token = '';
-
-  if (config.value.recaptchaV3Key)
-    token = await useReCaptcha(config.value.recaptchaV3Key).execute('social');
-
+  const ua = await userAgent();
   const comment: WalineCommentData = {
     comment: content.value,
     nick: userMeta.value.nick,
     mail: userMeta.value.mail,
     link: userMeta.value.link,
-    ua: navigator.userAgent,
     url: config.value.path,
-    recaptchaV3: token,
+    ua,
   };
 
   if (userInfo.value?.token) {
@@ -510,22 +536,21 @@ const submitComment = async (): Promise<void> => {
     // check mail
     if (
       (requiredMeta.indexOf('mail') > -1 && !comment.mail) ||
-      (comment.mail &&
-        !/^\w(?:[\w._-]*\w)?@(?:\w(?:[\w-]*\w)?\.)*\w+$/.exec(comment.mail))
+      (comment.mail && !isValidEmail(comment.mail))
     ) {
       inputRefs.value.mail?.focus();
 
       return alert(locale.value.mailError);
     }
 
-    // check comment
-    if (!comment.comment) {
-      editorRef.value?.focus();
-
-      return;
-    }
-
     if (!comment.nick) comment.nick = locale.value.anonymous;
+  }
+
+  // check comment
+  if (!comment.comment) {
+    editorRef.value?.focus();
+
+    return;
   }
 
   if (!isWordNumberLegal.value)
@@ -533,7 +558,7 @@ const submitComment = async (): Promise<void> => {
       locale.value.wordHint
         .replace('$0', (wordLimit as [number, number])[0].toString())
         .replace('$1', (wordLimit as [number, number])[1].toString())
-        .replace('$2', wordNumber.value.toString())
+        .replace('$2', wordNumber.value.toString()),
     );
 
   comment.comment = parseEmoji(comment.comment, emoji.value.map);
@@ -546,51 +571,61 @@ const submitComment = async (): Promise<void> => {
 
   isSubmitting.value = true;
 
-  const options = {
-    serverURL,
-    lang,
-    token: userInfo.value?.token,
-    comment,
-  };
+  try {
+    if (recaptchaV3Key)
+      comment.recaptchaV3 =
+        await useReCaptcha(recaptchaV3Key).execute('social');
 
-  (props.edit
-    ? updateComment({ objectId: props.edit.objectId, ...options })
-    : addComment(options)
-  )
-    .then((resp) => {
-      isSubmitting.value = false;
+    if (turnstileKey)
+      comment.turnstile = await useTurnstile(turnstileKey).execute('social');
 
-      if (resp.errmsg) return alert(resp.errmsg);
+    const options = {
+      serverURL,
+      lang,
+      token: userInfo.value?.token,
+      comment,
+    };
 
-      emit('submit', resp.data!);
+    const resp = await (props.edit
+      ? updateComment({
+          objectId: props.edit.objectId,
+          ...options,
+        })
+      : addComment(options));
 
-      editor.value = '';
+    isSubmitting.value = false;
 
-      previewText.value = '';
+    if (resp.errmsg) return alert(resp.errmsg);
 
-      if (props.replyId) emit('cancelReply');
-      if (props.edit?.objectId) emit('cancelEdit');
-    })
-    .catch((err: TypeError) => {
-      isSubmitting.value = false;
+    emit('submit', resp.data!);
 
-      alert(err.message);
-    });
+    editor.value = '';
+
+    previewText.value = '';
+
+    if (props.replyId) emit('cancelReply');
+    if (props.edit?.objectId) emit('cancelEdit');
+  } catch (err: unknown) {
+    isSubmitting.value = false;
+
+    alert((err as TypeError).message);
+  }
 };
 
 const onLogin = (event: Event): void => {
   event.preventDefault();
   const { lang, serverURL } = config.value;
 
-  login({
+  void login({
     serverURL,
     lang,
   }).then((data) => {
     userInfo.value = data;
     (data.remember ? localStorage : sessionStorage).setItem(
       'WALINE_USER',
-      JSON.stringify(data)
+      JSON.stringify(data),
     );
+    emit('log');
   });
 };
 
@@ -598,6 +633,7 @@ const onLogout = (): void => {
   userInfo.value = {};
   localStorage.setItem('WALINE_USER', 'null');
   sessionStorage.setItem('WALINE_USER', 'null');
+  emit('log');
 };
 
 const onProfile = (event: Event): void => {
@@ -611,27 +647,27 @@ const onProfile = (event: Event): void => {
   const top = (window.innerHeight - height) / 2;
   const query = new URLSearchParams({
     lng: lang,
-    token: userInfo.value!.token,
+    token: userInfo.value.token,
   });
   const handler = window.open(
     `${serverURL}/ui/profile?${query.toString()}`,
     '_blank',
-    `width=${width},height=${height},left=${left},top=${top},scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no`
+    `width=${width},height=${height},left=${left},top=${top},scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no`,
   );
 
-  handler?.postMessage({ type: 'TOKEN', data: userInfo.value!.token }, '*');
+  handler?.postMessage({ type: 'TOKEN', data: userInfo.value.token }, '*');
 };
 
 const popupHandler = (event: MouseEvent): void => {
   if (
-    !emojiButtonRef.value!.contains(event.target as Node) &&
-    !emojiPopupRef.value!.contains(event.target as Node)
+    !emojiButtonRef.value?.contains(event.target as Node) &&
+    !emojiPopupRef.value?.contains(event.target as Node)
   )
     showEmoji.value = false;
 
   if (
-    !gifButtonRef.value!.contains(event.target as Node) &&
-    !gifPopupRef.value!.contains(event.target as Node)
+    !gifButtonRef.value?.contains(event.target as Node) &&
+    !gifPopupRef.value?.contains(event.target as Node)
   )
     showGif.value = false;
 };
@@ -643,16 +679,23 @@ const onImageWallScroll = async (event: Event): Promise<void> => {
   const searchOptions = config.value.search as WalineSearchOptions;
   const keyword = gifSearchInputRef.value?.value || '';
 
-  if (percent < 0.9 || searchResults.loading) return;
+  if (percent < 0.9 || searchResults.loading || isImageListEnd.value) return;
 
   searchResults.loading = true;
 
-  searchResults.list = [
-    ...searchResults.list,
-    ...(searchOptions.more && searchResults.list.length
+  const searchResult =
+    searchOptions.more && searchResults.list.length
       ? await searchOptions.more(keyword, searchResults.list.length)
-      : await searchOptions.search(keyword)),
-  ];
+      : await searchOptions.search(keyword);
+
+  if (searchResult.length)
+    searchResults.list = [
+      ...searchResults.list,
+      ...(searchOptions.more && searchResults.list.length
+        ? await searchOptions.more(keyword, searchResults.list.length)
+        : await searchOptions.search(keyword)),
+    ];
+  else isImageListEnd.value = true;
 
   searchResults.loading = false;
 
@@ -663,7 +706,8 @@ const onImageWallScroll = async (event: Event): Promise<void> => {
 
 const onGifSearch = useDebounceFn((event: Event) => {
   searchResults.list = [];
-  onImageWallScroll(event);
+  isImageListEnd.value = false;
+  void onImageWallScroll(event);
 }, 300);
 
 // update wordNumber
@@ -688,11 +732,14 @@ watch(
       isWordNumberLegal.value = true;
     }
   },
-  { immediate: true }
+  { immediate: true },
 );
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const onMessageReceive = ({ data }: any): void => {
+const onMessageReceive = ({
+  data,
+}: {
+  data: { type: 'profile'; data: UserInfo };
+}): void => {
   if (!data || data.type !== 'profile') return;
 
   userInfo.value = { ...userInfo.value, ...data.data };
@@ -744,19 +791,17 @@ onMounted(() => {
       if (value) autosize(editorRef.value!);
       else autosize.destroy(editorRef.value!);
     },
-    { immediate: true }
+    { immediate: true },
   );
 
   // watch emoji value change
   watch(
     () => config.value.emoji,
     (emojiConfig) =>
-      getEmojis(Array.isArray(emojiConfig) ? emojiConfig : []).then(
-        (config) => {
-          emoji.value = config;
-        }
-      ),
-    { immediate: true }
+      getEmojis(emojiConfig).then((config) => {
+        emoji.value = config;
+      }),
+    { immediate: true },
   );
 });
 

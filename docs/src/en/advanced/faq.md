@@ -56,7 +56,7 @@ Go to the corresponding GitHub repository and modify the version number of `@wal
 
 Enter the code editing page, click <kbd>Save and reinstall dependencies</kbd>. If it still doesn’t work, enter <kbd>My Application</kbd> and select <kbd>Deploy</kbd> to redeploy.
 
-::: danger
+::: caution
 
 Redeployment will clear the previous files. If there is a configuration in the previous file, it needs to be backed up first.
 

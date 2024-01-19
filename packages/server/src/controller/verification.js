@@ -1,12 +1,9 @@
-const BaseRest = require('./rest');
+const BaseRest = require('./rest.js');
 
 module.exports = class extends BaseRest {
   constructor(...args) {
     super(...args);
-    this.modelInstance = this.service(
-      `storage/${this.config('storage')}`,
-      'Users'
-    );
+    this.modelInstance = this.getModel('Users');
   }
 
   async getAction() {

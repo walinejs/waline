@@ -1,15 +1,15 @@
-import type {
-  WalineCommentSorting,
-  WalineHighlighter,
-  WalineEmojiInfo,
-  WalineEmojiPresets,
-  WalineImageUploader,
-  WalineLoginStatus,
-  WalineMeta,
-  WalineTexRenderer,
-  WalineSearchOptions,
-} from './base';
-import type { WalineLocale } from './locale';
+import {
+  type WalineCommentSorting,
+  type WalineHighlighter,
+  type WalineEmojiInfo,
+  type WalineEmojiPresets,
+  type WalineImageUploader,
+  type WalineLoginStatus,
+  type WalineMeta,
+  type WalineTeXRenderer,
+  type WalineSearchOptions,
+} from './base.js';
+import { type WalineLocale } from './locale.js';
 
 export interface WalineProps {
   /**
@@ -117,7 +117,7 @@ export interface WalineProps {
    * - `'ru-ru'`
    * - `'ru-RU'`
    *
-   * @default 'zh-CN'
+   * @default navigator.language
    */
   lang?: string;
 
@@ -159,22 +159,26 @@ export interface WalineProps {
    *
    * @default ['//unpkg.com/@waline/emojis@1.1.0/weibo']
    */
-  emoji?: (WalineEmojiInfo | WalineEmojiPresets)[] | false;
+  emoji?: (WalineEmojiInfo | WalineEmojiPresets)[] | boolean;
 
   /**
    * 设置搜索功能
    *
    * Customize Search feature
+   *
+   * @default true
    */
-  search?: WalineSearchOptions | false;
+  search?: WalineSearchOptions | boolean;
 
   /**
    * 代码高亮
    *
    * Code highlighting
+   *
+   * @default true
    */
 
-  highlighter?: WalineHighlighter | false;
+  highlighter?: WalineHighlighter | boolean;
 
   /**
    * 自定义图片上传方法，方便更好的存储图片
@@ -184,16 +188,20 @@ export interface WalineProps {
    * Custom image upload callback to manage picture by yourself.
    *
    * We will pass a picture file object when execute it.
+   *
+   * @default true
    */
 
-  imageUploader?: WalineImageUploader | false;
+  imageUploader?: WalineImageUploader | boolean;
 
   /**
    * 自定义数学公式处理方法，用于预览。
    *
    * Custom math formula parse callback for preview.
+   *
+   * @default true
    */
-  texRenderer?: WalineTexRenderer | false;
+  texRenderer?: WalineTeXRenderer | boolean;
 
   /**
    *
@@ -230,6 +238,11 @@ export interface WalineProps {
    * recaptcha v3 client key
    */
   recaptchaV3Key?: string;
+
+  /**
+   * turnstile client key
+   */
+  turnstileKey?: string;
 
   /**
    * reaction

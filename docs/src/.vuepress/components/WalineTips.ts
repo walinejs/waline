@@ -3,8 +3,8 @@ import { computed, defineComponent, h } from 'vue';
 
 import type { VNode } from 'vue';
 import type {
-  HopeThemeProjectHomePageFrontmatter,
-  HopeThemeNormalPageFrontmatter,
+  ThemeProjectHomePageFrontmatter,
+  ThemeNormalPageFrontmatter,
 } from 'vuepress-theme-hope';
 
 const i18n: Record<string, string> = {
@@ -20,7 +20,7 @@ export default defineComponent({
 
   setup() {
     const frontmatter = usePageFrontmatter<
-      HopeThemeProjectHomePageFrontmatter | HopeThemeNormalPageFrontmatter
+      ThemeProjectHomePageFrontmatter | ThemeNormalPageFrontmatter
     >();
     const routeLocale = useRouteLocale();
 
@@ -34,7 +34,7 @@ export default defineComponent({
         h('div', {
           class: 'waline-tips',
           innerHTML: text.value,
-        })
+        }),
       );
   },
 });

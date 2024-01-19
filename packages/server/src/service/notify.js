@@ -1,8 +1,9 @@
+const crypto = require('node:crypto');
+
 const FormData = require('form-data');
-const nodemailer = require('nodemailer');
 const fetch = require('node-fetch');
+const nodemailer = require('nodemailer');
 const nunjucks = require('nunjucks');
-const crypto = require('crypto');
 
 module.exports = class extends think.Service {
   constructor(ctx) {
@@ -151,7 +152,7 @@ module.exports = class extends think.Service {
         headers: {
           'content-type': 'application/json',
         },
-      }
+      },
     ).then((resp) => resp.json());
 
     return fetch(
@@ -178,12 +179,12 @@ module.exports = class extends think.Service {
             ],
           },
         }),
-      }
+      },
     ).then((resp) => resp.json());
   }
 
   async qq(self, parent) {
-    const { QMSG_KEY, QQ_ID, SITE_NAME, SITE_URL } = process.env;
+    const { QMSG_KEY, QQ_ID, SITE_NAME, SITE_URL, QMSG_HOST } = process.env;
 
     if (!QMSG_KEY) {
       return false;
@@ -218,7 +219,11 @@ module.exports = class extends think.Service {
     form.append('msg', this.ctx.locale(contentQQ, data));
     form.append('qq', QQ_ID);
 
-    return fetch(`https://qmsg.zendee.cn/send/${QMSG_KEY}`, {
+    const qmsgHost = QMSG_HOST
+      ? QMSG_HOST.replace(/\/$/, '')
+      : 'https://qmsg.zendee.cn';
+
+    return fetch(`${qmsgHost}/send/${QMSG_KEY}`, {
       method: 'POST',
       header: form.getHeaders(),
       body: form,
@@ -236,7 +241,7 @@ module.exports = class extends think.Service {
     const href = self.comment.match(/<a href="(.*?)">(.*?)<\/a>/g);
 
     if (href !== null) {
-      for (var i = 0; i < href.length; i++) {
+      for (let i = 0; i < href.length; i++) {
         href[i] =
           '[Link: ' +
           href[i].replace(/<a href="(.*?)">(.*?)<\/a>/g, '$2') +
@@ -294,7 +299,7 @@ module.exports = class extends think.Service {
         method: 'POST',
         header: form.getHeaders(),
         body: form,
-      }
+      },
     ).then((resp) => resp.json());
 
     if (!resp.ok) {
@@ -373,7 +378,7 @@ module.exports = class extends think.Service {
     【评论者邮箱】：{{self.mail}} 
     【内容】：{{self.comment}} 
     【地址】：{{site.postUrl}}`,
-      data
+      data,
     );
 
     const form = new FormData();
@@ -384,7 +389,9 @@ module.exports = class extends think.Service {
       method: 'POST',
       header: form.getHeaders(),
       body: form,
-    }).then((resp) => resp.json());
+    }).then((resp) => resp.statusText);
+    // Expected return value: No Content
+    // Since Discord doesn't return any response body on success, we just return the status text.
   }
 
   async lark({ title, content }, self, parent) {
@@ -409,7 +416,7 @@ module.exports = class extends think.Service {
     content = nunjucks.renderString(
       think.config('LarkTemplate') ||
         `【网站名称】：{{site.name|safe}} \n【评论者昵称】：{{self.nick}}\n【评论者邮箱】：{{self.mail}}\n【内容】：{{self.comment}}【地址】：{{site.postUrl}}`,
-      data
+      data,
     );
 
     const post = {
@@ -488,7 +495,7 @@ module.exports = class extends think.Service {
       const qywxAmWechat = await this.qywxAmWechat(
         { title, content },
         comment,
-        parent
+        parent,
       );
       const qq = await this.qq(comment, parent);
       const telegram = await this.telegram(comment, parent);
@@ -498,16 +505,15 @@ module.exports = class extends think.Service {
 
       if (
         [wechat, qq, telegram, qywxAmWechat, pushplus, discord, lark].every(
-          think.isEmpty
-        ) &&
-        !isReplyAuthor
+          think.isEmpty,
+        )
       ) {
         mailList.push({ to: AUTHOR, title, content });
       }
     }
 
-    const disallowList = ['github', 'twitter', 'facebook'].map(
-      (social) => 'mail.' + social
+    const disallowList = ['github', 'twitter', 'facebook', 'qq', 'weibo'].map(
+      (social) => 'mail.' + social,
     );
     const fakeMail = new RegExp(`@(${disallowList.join('|')})$`, 'i');
 
@@ -515,6 +521,7 @@ module.exports = class extends think.Service {
       parent &&
       !fakeMail.test(parent.mail) &&
       !isCommentSelf &&
+      !isReplyAuthor &&
       comment.status !== 'waiting'
     ) {
       mailList.push({

@@ -59,8 +59,7 @@
 import { nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 
 import { LoadingIcon } from './Icons.js';
-
-import type { WalineSearchResult } from '../typings/index.js';
+import { type WalineSearchResult } from '../typings/index.js';
 
 type Column = number[];
 
@@ -83,7 +82,7 @@ const props = withDefaults(
     items: () => [] as WalineSearchResult,
     columnWidth: 300,
     gap: 0,
-  }
+  },
 );
 
 defineEmits<{
@@ -100,7 +99,7 @@ const columns = ref<Column[]>([]);
 const getColumnCount = (): number => {
   const count = Math.floor(
     (wall.value!.getBoundingClientRect().width + props.gap) /
-      (props.columnWidth + props.gap)
+      (props.columnWidth + props.gap),
   );
 
   return count > 0 ? count : 1;
@@ -119,7 +118,7 @@ const fillColumns = async (itemIndex: number): Promise<void> => {
   const target = columnDivs.reduce((prev, curr) =>
     curr.getBoundingClientRect().height < prev.getBoundingClientRect().height
       ? curr
-      : prev
+      : prev,
   );
 
   columns.value[Number(target.dataset.index)].push(itemIndex);
@@ -144,21 +143,25 @@ const imageLoad = (e: Event): void => {
 };
 
 onMounted(() => {
-  redraw(true);
+  void redraw(true);
 
-  resizeObserver = new ResizeObserver(() => redraw());
+  resizeObserver = new ResizeObserver(() => {
+    void redraw();
+  });
   resizeObserver.observe(wall.value!);
 
   watch(
     () => [props.items],
     () => {
       state.value = {};
-      redraw(true);
-    }
+      void redraw(true);
+    },
   );
   watch(
     () => [props.columnWidth, props.gap],
-    () => redraw()
+    () => {
+      void redraw();
+    },
   );
 });
 

@@ -1,7 +1,9 @@
+const path = require('node:path');
+
 const { parseString, writeToString } = require('fast-csv');
 const fetch = require('node-fetch');
-const path = require('path');
-const Base = require('./base');
+
+const Base = require('./base.js');
 
 const CSV_HEADERS = {
   Comment: [
@@ -59,7 +61,7 @@ class Github {
           authorization: 'token ' + this.token,
           'user-agent': 'Waline',
         },
-      }
+      },
     )
       .then((resp) => resp.json())
       .catch((e) => {
@@ -90,7 +92,7 @@ class Github {
           authorization: 'token ' + this.token,
           'user-agent': 'Waline',
         },
-      }
+      },
     ).then((resp) => resp.json());
 
     const file = tree.find(({ path }) => path === filename);
@@ -127,7 +129,7 @@ class Github {
           message: 'feat(waline): update comment data',
           content: Buffer.from(content, 'utf-8').toString('base64'),
         }),
-      }
+      },
     );
   }
 }
@@ -265,7 +267,7 @@ module.exports = class extends Base {
     const logicFn = logicMap[where._complex._logic];
 
     return data.filter((item) =>
-      logicFn.call(filters, (filter) => filter.every((fn) => fn(item)))
+      logicFn.call(filters, (filter) => filter.every((fn) => fn(item))),
     );
   }
 
@@ -334,7 +336,7 @@ module.exports = class extends Base {
   }
 
   async add(
-    data
+    data,
     // { access: { read = true, write = true } = { read: true, write: true } } = {}
   ) {
     const instance = await this.collection(this.tableName);

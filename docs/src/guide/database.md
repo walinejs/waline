@@ -55,6 +55,22 @@ MONGO_OPT_SSL=true
 | `MYSQL_CHARSET`  |      | `utf8mb4` | MySQL 数据表的字符集          |
 | `MYSQL_SSL`      |      | `false`   | 是否使用 SSL MYSQL 连接数据库 |
 
+## TiDB
+
+[TiDB](https://github.com/pingcap/tidb) 是一款开源的 NewSQL 数据库。[TiDB Cloud](https://tidbcloud.com/) 则是官方提供的在线版本，它提供了 5GB 的免费额度可供大家使用。
+
+使用时请查阅[创建 TiDB 数据库](../guide/deploy/tidb.md)了解初始化流程。
+
+| 环境变量名称    | 必填 | 默认值    | 备注                |
+| --------------- | ---- | --------- | ------------------- |
+| `TIDB_DB`       | ✅   |           | TiDB 数据库库名     |
+| `TIDB_USER`     | ✅   |           | TiDB 数据库的用户名 |
+| `TIDB_PASSWORD` | ✅   |           | TiDB 数据库的密码   |
+| `TIDB_HOST`     |      | 127.0.0.1 | TiDB 服务的地址     |
+| `TIDB_PORT`     |      | 4000      | TiDB 服务的端口     |
+| `TIDB_PREFIX`   |      | `wl_`     | TiDB 数据表的表前缀 |
+| `TIDB_CHARSET`  |      | `utf8mb4` | TiDB 数据表的字符集 |
+
 ## SQLite
 
 使用 SQLite 时需要下载 [waline.sqlite](https://github.com/walinejs/waline/blob/main/assets/waline.sqlite) 文件至合适的位置。之后在项目中配置如下环境变量。
@@ -72,15 +88,22 @@ MONGO_OPT_SSL=true
 
 同 MySQL，使用 PostgreSQL 也需要先导入 [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) 创建好表和表结构。之后在项目中配置如下环境变量。
 
-| 环境变量名称  | 必填 | 默认值    | 备注                                |
-| ------------- | ---- | --------- | ----------------------------------- |
-| `PG_DB`       | ✅   |           | PostgreSQL 数据库库名               |
-| `PG_USER`     | ✅   |           | PostgreSQL 数据库的用户名           |
-| `PG_PASSWORD` | ✅   |           | PostgreSQL 数据库的密码             |
-| `PG_HOST`     |      | 127.0.0.1 | PostgreSQL 服务的地址               |
-| `PG_PORT`     |      | 3211      | PostgreSQL 服务的端口               |
-| `PG_PREFIX`   |      | `wl_`     | PostgreSQL 数据表的表前缀           |
-| `PG_SSL`      |      | `false`   | 是否使用 SSL 连接 PostgreSQL 数据库 |
+| 环境变量名称        | 必填 | 默认值    | 备注                                |
+| ------------------- | ---- | --------- | ----------------------------------- |
+| `PG_DB`             | ✅   |           | PostgreSQL 数据库库名               |
+| `PG_USER`           | ✅   |           | PostgreSQL 数据库的用户名           |
+| `PG_PASSWORD`       | ✅   |           | PostgreSQL 数据库的密码             |
+| `PG_HOST`           |      | 127.0.0.1 | PostgreSQL 服务的地址               |
+| `PG_PORT`           |      | 3211      | PostgreSQL 服务的端口               |
+| `PG_PREFIX`         |      | `wl_`     | PostgreSQL 数据表的表前缀           |
+| `PG_SSL`            |      | `false`   | 是否使用 SSL 连接 PostgreSQL 数据库 |
+| `POSTGRES_DATABASE` |      |           | 同 `PG_DB`                          |
+| `POSTGRES_USER`     |      |           | 同 `PG_USER`                        |
+| `POSTGRES_PASSWORD` |      |           | 同 `PG_PASSWORD`                    |
+| `POSTGRES_HOST`     |      | 127.0.0.1 | 同 `PG_HOST`                        |
+| `POSTGRES_PORT`     |      | 3211      | 同 `PG_PORT`                        |
+| `POSTGRES_PREFIX`   |      | `wl_`     | 同 `PG_PREFIX`                      |
+| `POSTGRES_SSL`      |      | `false`   | 同 `POSTGRES_SSL`                   |
 
 ## CloudBase
 
@@ -111,13 +134,13 @@ Waline 支持将评论数据以 CSV 文件的格式存储在 GitHub 仓库中。
 
 ::: warning
 
-处于国内 Github 服务访问稳定性与 CSV 读取与存储性能的原因，我们不建议国内用户使用 Github 作为存储库。
+出于国内 Github 服务访问稳定性与 CSV 读取与存储性能的原因，我们不建议国内用户使用 Github 作为存储库。
 
 :::
 
 ## Deta Base
 
-Deta 提供了 [Deta Base](https://docs.deta.sh/docs/base/about) 免费数据库支持，即使不部署在 Deta 上也可以使用。如果部署在 Deta 上，不需要配置任何环境变量，Waline 默认会使用 Deta Base 作为数据库存储数据。如果是部署在其它地方，需要配置以下环境变量。
+Deta 提供了 [Deta Base](https://deta.space/docs/en/reference/base/about) 免费数据库支持，即使不部署在 Deta 上也可以使用。如果部署在 Deta 上，不需要配置任何环境变量，Waline 默认会使用 Deta Base 作为数据库存储数据。如果是部署在其它地方，需要配置以下环境变量。
 
 | 环境变量名称       | 必填 | 默认值 | 备注          |
 | ------------------ | ---- | ------ | ------------- |

@@ -11,16 +11,61 @@ extends:
 ignorePatterns:
   - '**/dist/**'
   - '**/node_modules/**'
-  - example/
+  - .cache/**
+  - .temp/**
+  - example/**
+
+plugins:
+  - import
 
 parserOptions:
-  ecmaVersion: 2020
-
-settings:
-  react:
-    version: detect
+  ecmaVersion: 2021
+  extraFileExtensions:
+    - .vue
 
 rules:
+  import/consistent-type-specifier-style:
+    - error
+    - prefer-inline
+
+  import/dynamic-import-chunkname:
+    - error
+
+  import/first:
+    - error
+
+  import/newline-after-import:
+    - error
+
+  import/no-commonjs:
+    - error
+
+  import/no-cycle:
+    - error
+
+  import/no-duplicates:
+    - error
+    - considerQueryString: true
+      prefer-inline: true
+
+  import/no-named-default:
+    - error
+
+  import/order:
+    - error
+    - alphabetize:
+        order: asc
+        orderImportKind: asc
+      groups:
+        - builtin
+        - external
+        - internal
+        - - parent
+          - sibling
+        - index
+        - object
+      newlines-between: always
+
   padding-line-between-statements:
     - error
     - blankLine: always
@@ -42,6 +87,149 @@ rules:
       next:
         - return
 
+  vue/block-lang:
+    - error
+    - script:
+        lang: ts
+
+  vue/block-tag-newline:
+    - error
+
+  vue/component-api-style:
+    - error
+
+  vue/component-name-in-template-casing:
+    - error
+
+  vue/component-options-name-casing:
+    - error
+
+  vue/custom-event-name-casing:
+    - error
+
+  vue/define-emits-declaration:
+    - error
+
+  vue/define-macros-order:
+    - error
+
+  vue/define-props-declaration:
+    - error
+
+  vue/html-button-has-type:
+    - error
+
+  vue/html-comment-content-newline:
+    - error
+
+  vue/html-comment-content-spacing:
+    - error
+
+  vue/html-comment-indent:
+    - error
+
+  vue/match-component-file-name:
+    - error
+
+  vue/match-component-import-name:
+    - error
+
+  vue/new-line-between-multi-line-property:
+    - error
+
+  vue/next-tick-style:
+    - error
+
+  vue/no-boolean-default:
+    - warn
+
+  vue/no-duplicate-attr-inheritance:
+    - error
+
+  vue/no-empty-component-block:
+    - error
+
+  vue/no-multiple-objects-in-class:
+    - error
+
+  vue/no-potential-component-option-typo:
+    - error
+
+  vue/no-ref-object-destructure:
+    - error
+
+  vue/no-required-prop-with-default:
+    - error
+
+  vue/no-static-inline-styles:
+    - error
+
+  vue/no-template-target-blank:
+    - error
+
+  vue/no-this-in-before-route-enter:
+    - error
+
+  vue/no-undef-components:
+    - error
+
+  vue/no-undef-properties:
+    - warn
+
+  vue/no-unsupported-features:
+    - error
+
+  vue/no-unused-properties:
+    - error
+
+  vue/no-unused-refs:
+    - error
+
+  vue/no-useless-mustaches:
+    - error
+
+  vue/no-useless-v-bind:
+    - error
+
+  vue/padding-line-between-blocks:
+    - error
+
+  vue/padding-line-between-tags:
+    - error
+
+  vue/prefer-prop-type-boolean-first:
+    - error
+
+  vue/prefer-separate-static-class:
+    - error
+
+  vue/prefer-true-attribute-shorthand:
+    - error
+
+  vue/require-direct-export:
+    - error
+
+  vue/require-emit-validator:
+    - warn
+
+  vue/require-expose:
+    - error
+
+  vue/require-name-property:
+    - error
+
+  vue/require-prop-comment:
+    - error
+
+  vue/script-indent:
+    - error
+
+  vue/static-class-names-order:
+    - error
+
+  vue/v-for-delimiter-style:
+    - error
+
 overrides:
   - files:
       - '*.ts'
@@ -52,9 +240,6 @@ overrides:
       - plugin:@typescript-eslint/recommended-requiring-type-checking
       - plugin:prettier/recommended
 
-    plugins:
-      - '@typescript-eslint'
-
     parser: '@typescript-eslint/parser'
 
     parserOptions:
@@ -62,6 +247,9 @@ overrides:
         - './tsconfig.json'
 
     rules:
+      '@typescript-eslint/ban-ts-comment':
+        - off
+
       '@typescript-eslint/explicit-function-return-type':
         - warn
         - allowTypedFunctionExpressions: true
@@ -71,7 +259,7 @@ overrides:
         - selector: default
           format:
             - camelCase
-          leadingUnderscore: allow
+          leadingUnderscore: allowSingleOrDouble
           trailingUnderscore: allow
 
         - selector:
@@ -80,8 +268,8 @@ overrides:
             - camelCase
             - PascalCase
             - UPPER_CASE
-          leadingUnderscore: allow
-          trailingUnderscore: allow
+          leadingUnderscore: allowSingleOrDouble
+          trailingUnderscore: allowSingleOrDouble
 
         - selector:
             - parameter
@@ -93,12 +281,28 @@ overrides:
 
         - selector:
             - property
+          format: null
+          custom:
+            regex: (^/.*/$|^@|^[a-z]+(?:-[a-z]+)*?$)
+            match: true
+          # allow locales path like `/zh/`, alias starting with `@` and css property like `line-width`
+          filter: (^/.*/$|^@|^[a-z]+(?:-[a-z]+)*?$)
+          leadingUnderscore: allow
+          trailingUnderscore: allow
+
+        - selector:
+            - property
           format:
             - camelCase
             - PascalCase
             - UPPER_CASE
           leadingUnderscore: allow
           trailingUnderscore: allow
+
+        - selector: import
+          format:
+            - PascalCase
+            - camelCase
 
         - selector: typeLike
           format:
@@ -113,3 +317,52 @@ overrides:
 
       '@typescript-eslint/no-unsafe-member-access':
         - warn
+
+  - files:
+      - '*.vue'
+
+    extends:
+      - plugin:vue/vue3-recommended
+      - plugin:@typescript-eslint/recommended
+      - plugin:@typescript-eslint/recommended-requiring-type-checking
+      - plugin:prettier/recommended
+
+    parser: vue-eslint-parser
+
+    parserOptions:
+      parser: '@typescript-eslint/parser'
+      project:
+        - './tsconfig.json'
+      extraFileExtensions:
+        - .vue
+      vueFeatures:
+        filter: false
+
+    rules:
+      '@typescript-eslint/no-non-null-assertion':
+        - off
+
+  - files:
+      - '*.d.ts'
+    rules:
+      no-underscore-dangle:
+        - off
+
+  - files:
+      - '**/__tests__/**/*.spec.{j,t}s?(x)'
+
+    rules:
+      '@typescript-eslint/no-explicit-any':
+        - off
+      '@typescript-eslint/no-unsafe-call':
+        - off
+      '@typescript-eslint/no-unsafe-assignment':
+        - off
+      '@typescript-eslint/no-unsafe-member-access':
+        - off
+
+  - files:
+      - commitlint.config.js
+    rules:
+      import/no-commonjs:
+        - off

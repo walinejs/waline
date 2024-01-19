@@ -11,7 +11,11 @@ icon: format
 
 ::: details 标题
 
+<!-- markdownlint-disable MD025 -->
+
 # 一级标题
+
+<!-- markdownlint-enable MD025 -->
 
 ## 二级标题
 
@@ -102,7 +106,7 @@ icon: format
 
     而且由很多个段落构成。
 
-    甚至最后一个段落还包含了[链接](#链接)。
+    甚至最后一个段落还包含了[链接](#markdown-支持)。
 
 - 无序列表项
 
@@ -270,7 +274,7 @@ console.log(foo(5));
 ::: details 例子
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <script>
@@ -298,7 +302,7 @@ console.log(foo(5));
 Prism.fileHighlight = function () {
   if (!logged) {
     console.warn(
-      'Prism.fileHighlight is deprecated. Use `Prism.plugins.fileHighlight.highlight` instead.'
+      'Prism.fileHighlight is deprecated. Use `Prism.plugins.fileHighlight.highlight` instead.',
     );
     logged = true;
   }
@@ -323,7 +327,10 @@ section h1,
 #features li strong,
 header h2,
 footer p {
-  font: 100% Rockwell, Arvo, serif;
+  font:
+    100% Rockwell,
+    Arvo,
+    serif;
 }
 ```
 
@@ -357,4 +364,4 @@ $$
 
 ## 嵌入 HTML
 
-你可以在不触发 [保护机制](../guide/features/syntax.md#html-内容限制) 的情况下自由嵌入任何的 HTML 内容。
+你可以在不触发 [保护机制](../guide/features/safety.md#评论安全) 的情况下自由嵌入任何的 HTML 内容。

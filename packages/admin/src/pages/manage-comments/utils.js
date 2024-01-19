@@ -13,17 +13,24 @@ export function buildAvatar(email = '', avatar = '') {
 }
 
 export function getPostUrl(url) {
-  if (!global.SITE_URL) {
+  if (!window.SITE_URL) {
     return url;
   }
 
-  return global.SITE_URL + url;
+  return window.SITE_URL + url;
 }
 
 export function formatDate(time) {
-  const d = new Date(
-    /\d+-\d+-\d+\s\d+:\d+:\d+/.test(time) ? time.replace(/-/g, '/') : time
-  );
+  let d;
+
+  if (typeof time === 'number') {
+    d = new Date(time);
+  } else {
+    d = new Date(
+      /\d+-\d+-\d+\s\d+:\d+:\d+/.test(time) ? time.replace(/-/g, '/') : time,
+    );
+  }
+
   const p = (n) => (n < 10 ? '0' + n : n);
   const localDate = [d.getFullYear(), d.getMonth() + 1, d.getDate()]
     .map(p)

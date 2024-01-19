@@ -1,4 +1,4 @@
-const Base = require('./base');
+const Base = require('./base.js');
 
 module.exports = class extends Base {
   async __before(...args) {
@@ -16,7 +16,7 @@ module.exports = class extends Base {
   }
 
   /**
-   * @api {GET} /db export site data
+   * @api {GET} /api/db export site data
    * @apiGroup Site
    * @apiVersion  0.0.1
    *
@@ -25,7 +25,7 @@ module.exports = class extends Base {
   async getAction() {}
 
   /**
-   * @api {POST} /db import site data
+   * @api {POST} /api/db import site data
    * @apiGroup Site
    * @apiVersion  0.0.1
    *
@@ -42,7 +42,7 @@ module.exports = class extends Base {
   }
 
   /**
-   * @api {PUT} /db update site table data
+   * @api {PUT} /api/db update site table data
    * @apiGroup Site
    * @apiVersion  0.0.1
    *
@@ -63,7 +63,7 @@ module.exports = class extends Base {
   }
 
   /**
-   * @api {DELETE} /db clean site data
+   * @api {DELETE} /api/db clean site data
    * @apiGroup Site
    * @apiVersion  0.0.1
    *

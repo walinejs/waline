@@ -55,6 +55,22 @@ If you want to use MySQL as storage, you need to import [waline.sql](https://git
 | `MYSQL_CHARSET`      |          | `utf8mb4` | MySQL table charset        |
 | `MYSQL_SSL`          |          | `false`   | whether use SSL connection |
 
+## TiDB
+
+[TiDB](https://github.com/pingcap/tidb) is an open source NewSQL database. [TiDB Cloud](https://tidbcloud.com/) is the official online version, which provides 5GB of free quota for everyone to use.
+
+Please refer to [Create TiDB database](../../en/guide/deploy/tidb.md) to understand the initialization process.
+
+| Environment Variable | Required | Default   | Description                     |
+| -------------------- | -------- | --------- | ------------------------------- |
+| `TIDB_DB`            | ✅       |           | TiDB database name              |
+| `TIDB_USER`          | ✅       |           | TiDB database user name         |
+| `TIDB_PASSWORD`      | ✅       |           | TiDB database password          |
+| `TIDB_HOST`          |          | 127.0.0.1 | Address of TiDB service         |
+| `TIDB_PORT`          |          | 4000      | Port of TiDB service            |
+| `TIDB_PREFIX`        |          | `wl_`     | Table prefix of TiDB data table |
+| `TIDB_CHARSET`       |          | `utf8mb4` | TiDB data table character set   |
+
 ## SQLite
 
 Download [waline.sqlite](https://github.com/walinejs/waline/blob/main/assets/waline.sqlite) to your server if you want to use SQLite. Then set these environment variables in project.
@@ -79,6 +95,13 @@ Download [waline.sqlite](https://github.com/walinejs/waline/blob/main/assets/wal
 | `PG_PORT`            |          | 3211      | PostgreSQL server port              |
 | `PG_PREFIX`          |          | `wl_`     | PostgreSQL table prefix             |
 | `PG_SSL`             |          | `false`   | set to `true` to use SSL connection |
+| `POSTGRES_DATABASE`  |          |           | alias for `PG_DB`                   |
+| `POSTGRES_USER`      |          |           | alias for `PG_USER`                 |
+| `POSTGRES_PASSWORD`  |          |           | alias for `PG_PASSWORD`             |
+| `POSTGRES_HOST`      |          | 127.0.0.1 | alias for `PG_HOST`                 |
+| `POSTGRES_PORT`      |          | 3211      | alias for `PG_PORT`                 |
+| `POSTGRES_PREFIX`    |          | `wl_`     | alias for `PG_PREFIX`               |
+| `POSTGRES_SSL`       |          | `false`   | alias for `POSTGRES_SSL`            |
 
 ## GitHub
 
@@ -98,7 +121,7 @@ Due to performance, using GitHub is not recommended.
 
 ## Deta Base
 
-Deta provides [Deta Base](https://docs.deta.sh/docs/base/about) free database support, which can be used even if it is not deployed on Deta. If deployed on Deta, there is no need to configure any environment variables. By default, Waline will use Deta Base as the database to store data. If it is deployed elsewhere, the following environment variables need to be configured.
+Deta provides [Deta Base](https://deta.space/docs/en/reference/base/about) free database support, which can be used even if it is not deployed on Deta. If deployed on Deta, there is no need to configure any environment variables. By default, Waline will use Deta Base as the database to store data. If it is deployed elsewhere, the following environment variables need to be configured.
 
 | Environment Variable | Required | Default | Description             |
 | -------------------- | -------- | ------- | ----------------------- |

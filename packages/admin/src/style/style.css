@@ -742,7 +742,7 @@ select {
 .typecho-login {
   display: table-cell;
   padding: 30px 0 100px;
-  width: 280px;
+  /* width: 280px; */
   text-align: center;
   vertical-align: middle;
 }

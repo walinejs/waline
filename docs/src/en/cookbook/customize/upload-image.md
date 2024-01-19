@@ -14,7 +14,7 @@ This cookbook guides you on how to set up your own image service to upload image
 An example of using the `lsky-pro` graph bed.
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <meta charset="UTF-8" />
@@ -22,13 +22,13 @@ An example of using the `lsky-pro` graph bed.
     <title>Waline imageUploader demo</title>
     <link
       rel="stylesheet"
-      href="https://unpkg.com/@waline/client@v2/dist/waline.css"
+      href="https://unpkg.com/@waline/client@v3/dist/waline.css"
     />
   </head>
   <body>
     <div id="waline" style="max-width: 800px; margin: 0 auto"></div>
     <script type="module">
-      import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
+      import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
 
       const waline = init({
         el: '#waline',

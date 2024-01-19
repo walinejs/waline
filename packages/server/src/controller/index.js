@@ -13,21 +13,23 @@ module.exports = class extends think.Controller {
     </head>
     <body>
       <div id="waline" style="max-width: 800px;margin: 0 auto;"></div>
-      <script src="https://unpkg.com/@waline/client@v2/dist/waline.js"></script>
-      <link href='//unpkg.com/@waline/client@v2/dist/waline.css' rel='stylesheet' />
-      <script>
+      <link href='//unpkg.com/@waline/client@v3/dist/waline.css' rel='stylesheet' />
+      <script type="module">
+        import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
+
         console.log(
           '%c @waline/server %c v${version} ',
           'color: white; background: #0078E7; padding:5px 0;',
           'padding:4px;border:1px solid #0078E7;'
         );
         const params = new URLSearchParams(location.search.slice(1));
-        const waline = Waline.init({
+        const waline = init({
           el: '#waline',
           path: params.get('path') || '/',
           lang: params.get('lng'),
           serverURL: location.protocol + '//' + location.host + location.pathname.replace(/\\/+$/, ''),
           recaptchaV3Key: '${process.env.RECAPTCHA_V3_KEY || ''}',
+          turnstileKey: '${process.env.TURNSTILE_KEY || ''}',
         });
       </script>
     </body>

@@ -1,7 +1,8 @@
 {
   "name": "@waline/admin",
-  "version": "0.23.1",
+  "version": "0.25.3",
   "description": "management system for waline",
+  "type": "module",
   "keywords": [
     "waline",
     "valine",
@@ -21,12 +22,18 @@
   "author": "lizheming <i@imnerd.org>",
   "main": "dist/admin.js",
   "browser": "dist/admin.js",
+  "exports": "./dist/admin.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "analyze": "cross-env ANALYZE=true webpack --mode=production",
-    "build": "webpack --mode=production",
+    "build": "NODE_ENV=production vite build",
     "clean": "rimraf ./dist",
-    "dev": "webpack serve --mode=development",
-    "prepublish": "pnpm build"
+    "dev": "vite",
+    "prepublishOnly": "pnpm build"
+  },
+  "publishConfig": {
+    "provenance": true
   },
   "browserslist": {
     "production": [
@@ -43,37 +50,19 @@
     ]
   },
   "devDependencies": {
-    "@babel/core": "7.20.5",
-    "@babel/plugin-transform-runtime": "7.19.6",
-    "@babel/preset-env": "7.20.2",
-    "@babel/preset-react": "7.18.6",
-    "@babel/runtime": "7.20.6",
     "@rematch/core": "2.2.0",
-    "@svgr/webpack": "6.5.1",
-    "babel-loader": "9.1.0",
-    "classnames": "2.3.2",
-    "css-loader": "6.7.2",
-    "file-loader": "6.2.0",
-    "html-webpack-plugin": "5.5.0",
-    "i18next": "22.0.6",
-    "i18next-browser-languagedetector": "7.0.1",
+    "base-icon": "2.2.1",
+    "classnames": "2.5.1",
+    "i18next": "23.7.16",
+    "i18next-browser-languagedetector": "7.2.0",
     "md5": "2.3.0",
     "qrcode.react": "3.1.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-i18next": "12.0.0",
-    "react-redux": "8.0.5",
-    "react-router-dom": "6.4.3",
-    "redux": "4.2.0",
-    "rimraf": "3.0.2",
-    "sass-loader": "13.2.0",
-    "style-loader": "3.3.1",
-    "ts-loader": "9.4.1",
-    "typescript": "4.9.3",
-    "url-loader": "4.1.1",
-    "webpack": "5.75.0",
-    "webpack-bundle-analyzer": "4.7.0",
-    "webpack-cli": "5.0.0",
-    "webpack-dev-server": "4.11.1"
+    "react-i18next": "14.0.0",
+    "react-redux": "9.0.4",
+    "react-router-dom": "6.21.1",
+    "redux": "5.0.1",
+    "typescript": "5.3.3"
   }
 }

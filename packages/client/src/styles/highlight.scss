@@ -8,15 +8,18 @@
     padding: 1rem 1.25rem;
     border-radius: 6px;
 
-    background: var(--waline-code-bgcolor);
+    background: var(--waline-code-bg-color);
 
     line-height: 1.4;
 
     code {
       padding: 0;
       border-radius: 0;
+
       background: transparent !important;
       color: #bbb;
+
+      direction: ltr;
     }
   }
 

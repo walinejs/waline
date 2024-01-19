@@ -14,7 +14,7 @@ Waline 支持显示评论数。
 
 ```html
 <script type="module">
-  import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
+  import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
 
   init({
     el: '#waline',
@@ -60,7 +60,7 @@ Waline 会在初始化以及每次 path 更新时，自动查找页面中 `class
 
 ```html
 <script type="module">
-  import { commentCount } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
+  import { commentCount } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
 
   commentCount({
     serverURL,
@@ -96,7 +96,7 @@ setTimeout(() => abort(), 500);
 
 ```html
 <script type="module">
-  import { commentCount } from 'https://unpkg.com/@waline/client@v2/dist/comment.mjs';
+  import { commentCount } from 'https://unpkg.com/@waline/client@v3/dist/comment.js';
 
   commentCount({
     serverURL,

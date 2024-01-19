@@ -12,7 +12,7 @@ icon: style
 ## 一个使用 prism.js 的案例
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <meta charset="UTF-8" />
@@ -20,7 +20,7 @@ icon: style
     <title>Waline highlighter 案例</title>
     <link
       rel="stylesheet"
-      href="https://unpkg.com/@waline/client@v2/dist/waline.css"
+      href="https://unpkg.com/@waline/client@v3/dist/waline.css"
     />
     <script src="https://unpkg.com/prismjs@v1" data-manual></script>
     <script src="https://unpkg.com/prismjs@v1/plugins/autoloader/prism-autoloader.min.js"></script>
@@ -32,7 +32,7 @@ icon: style
   <body>
     <div id="waline" style="max-width: 800px; margin: 0 auto"></div>
     <script type="module">
-      import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
+      import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
 
       const waline = init({
         el: '#waline',
@@ -46,7 +46,7 @@ icon: style
           return window.Prism.highlight(
             code,
             window.Prism.languages[lang] || window.Prism.languages.text,
-            lang
+            lang,
           );
         },
       });

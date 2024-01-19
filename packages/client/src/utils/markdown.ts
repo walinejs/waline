@@ -1,41 +1,41 @@
-import { marked } from 'marked';
-import { markedTexExtensions } from './markedMathExtension';
+import { Marked } from 'marked';
+import { markedHighlight } from 'marked-highlight';
 
-import type {
-  WalineEmojiMaps,
-  WalineHighlighter,
-  WalineTexRenderer,
-} from '../typings';
+import { markedTeXExtensions } from './markedMathExtension.js';
+import {
+  type WalineEmojiMaps,
+  type WalineHighlighter,
+  type WalineTeXRenderer,
+} from '../typings/index.js';
 
 export const parseEmoji = (text = '', emojiMap: WalineEmojiMaps = {}): string =>
   text.replace(/:(.+?):/g, (placeholder, key: string) =>
     emojiMap[key]
       ? `<img class="wl-emoji" src="${emojiMap[key]}" alt="${key}">`
-      : placeholder
+      : placeholder,
   );
 
 export interface ParseMarkdownOptions {
   emojiMap: WalineEmojiMaps;
   highlighter: WalineHighlighter | false;
-  texRenderer: WalineTexRenderer | false;
+  texRenderer: WalineTeXRenderer | false;
 }
 
 export const parseMarkdown = (
   content: string,
-  { emojiMap, highlighter, texRenderer }: ParseMarkdownOptions
+  { emojiMap, highlighter, texRenderer }: ParseMarkdownOptions,
 ): string => {
-  marked.setOptions({
-    highlight: highlighter || undefined,
-    breaks: true,
-    smartLists: true,
-    smartypants: true,
-  });
+  const marked = new Marked();
+
+  marked.setOptions({ breaks: true });
+
+  if (highlighter) marked.use(markedHighlight({ highlight: highlighter }));
 
   if (texRenderer) {
-    const extensions = markedTexExtensions(texRenderer);
+    const extensions = markedTeXExtensions(texRenderer);
 
     marked.use({ extensions });
   }
 
-  return marked.parse(parseEmoji(content, emojiMap));
+  return <string>marked.parse(parseEmoji(content, emojiMap));
 };

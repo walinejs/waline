@@ -16,6 +16,12 @@ redirectFrom: /reference/server.html
 
 ## 基本配置
 
+### plugins
+
+- 类型： `plugin[]`
+
+详情见 [插件系统](./plugin.md)
+
 ### secureDomains
 
 - 类型: `string | RegExp | string[] | RegExp[]`
@@ -116,6 +122,18 @@ QQ 评论通知模板，等同于环境变量 `QQ_TEMPLATE`。
 - 类型: `string`
 
 Telegram 评论通知模板，等同于环境变量 `TG_TEMPLATE`。
+
+### model
+
+- 类型：`class`
+
+详情见 [自定义数据库服务](../../cookbook/customize/database.md)
+
+### encryptPassword
+
+- 类型：`function`
+
+详情见 [自定义用户系统](../../cookbook/customize/userdb.md)
 
 ## 评论 Hooks
 

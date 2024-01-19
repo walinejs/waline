@@ -1,3 +1,46 @@
+# (2023-05-27)
+
+### Features
+
+- `@waline/vercel@1.31.0` add plugin system support.
+
+# (2023-04-16)
+
+### Features
+
+- `@waline/vercel@1.30.0` add custom model and integrate third-party user systems support.
+- `@waline/vercel@1.29.0` and `@waline/client@2.15.0` add Turnstile captcha service support.
+
+# (2023-04-02)
+
+### Features
+
+- `@waline/vercel@1.28.0` add netlify deploy support
+
+# (2023-04-01)
+
+### Features
+
+- `@waline/admin@0.24.4` add QQ login support
+
+### Bug Fixes
+
+- Fix #1898
+
+# (2023-03-26)
+
+### Features
+
+This version mainly upgrades the previous paradigm of the API. Ordinary users can ignore it. Developers who use the API need to pay attention:
+
+- Add `/api` prefix to all APIs for better front-end and back-end isolation. But please rest assured that the previous routing is still compatible, but it will output a deprecation warning in the terminal. We plan to officially deprecate the old route in the next major release of `@waline/vercel@2`.
+- For the new route starting with `/api`, we unified the return data structure of all APIs into `{errno, errmsg, data}`, which is convenient for callers to uniformly process the API return data.
+- For the `/api/comment?type=count` and `/api/article` APIs, when there is only one piece of data, the array format is also returned
+- The GET `/api/comment` interface discards the insertedAt field and uses the time timestamp field to indicate the release time of the comment.
+- When the POST `/api/comment` interface publishes a reply to a comment, discard the pid and at fields, and the server will no longer stitch `@xxx`
+
+The above modifications are not perceived by ordinary users, and the API is compatible with the old version. If there is any problem after the upgrade, please feedback. At the same time, developers who use the API are requested to release a new version and migrate to the new Sever version as soon as possible.
+
 # (2021-12-12)
 
 ### Features

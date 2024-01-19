@@ -42,7 +42,7 @@ Waline V2 已经移除了 Valine 支持进而转向更好的配置方案。以�
 - `langMode`: 重命名为 `locales`
 - `emojiCDN`, `emojiMap`: 使用更强大的 `emoji` 选项
 
-Waline 具体的配置详见 [客户端配置](../reference/client/api.md)。你也可以查看 [Waline 客户端 V2 迁移指南](./client.md) 来了解与 Valine 不兼容的选项。
+Waline 具体的配置详见 [客户端配置](../reference/client/api.md)。你也可以查看 [Waline 客户端 V2 迁移指南](./v2.md) 来了解与 Valine 不兼容的选项。
 
 :::
 
@@ -61,7 +61,11 @@ Waline 具体的配置详见 [客户端配置](../reference/client/api.md)。你
 <MigrationTool />
 
 <script setup lang="ts">
-import MigrationTool from '@MigrationTool';
+import { defineAsyncComponent } from 'vue'
+
+const MigrationTool = defineAsyncComponent(() =>
+  import( '@MigrationTool')
+)
 </script>
 
 ## Waline 亮点

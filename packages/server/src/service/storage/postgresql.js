@@ -1,4 +1,4 @@
-const MySQL = require('./mysql');
+const MySQL = require('./mysql.js');
 
 module.exports = class extends MySQL {
   model(tableName) {
@@ -78,7 +78,7 @@ module.exports = class extends MySQL {
     const instance = this.model(this.tableName);
 
     return instance.query(
-      `ALTER SEQUENCE ${instance.tableName}_seq RESTART WITH ${id};`
+      `ALTER SEQUENCE ${instance.tableName}_seq RESTART WITH ${id};`,
     );
   }
 };

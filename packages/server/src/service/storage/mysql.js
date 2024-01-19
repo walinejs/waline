@@ -1,4 +1,4 @@
-const Base = require('./base');
+const Base = require('./base.js');
 
 module.exports = class extends Base {
   parseWhere(filter) {
@@ -103,7 +103,7 @@ module.exports = class extends Base {
           .update(updateData);
 
         return { ...item, ...updateData };
-      })
+      }),
     );
   }
 
@@ -117,7 +117,7 @@ module.exports = class extends Base {
     const instance = this.model(this.tableName);
 
     return instance.query(
-      `ALTER TABLE ${instance.tableName} AUTO_INCREMENT = ${id};`
+      `ALTER TABLE ${instance.tableName} AUTO_INCREMENT = ${id};`,
     );
   }
 };

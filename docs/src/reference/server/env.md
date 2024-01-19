@@ -23,7 +23,7 @@ Vercel 需要在 <kbd>Settings</kbd> - <kbd>Environment Variables</kbd> 中进�
 | `LEAN_ID`         | ✅   | LeanCloud 应用的 App ID                      |
 | `LEAN_KEY`        | ✅   | LeanCloud 应用的 App Key                     |
 | `LEAN_MASTER_KEY` | ✅   | LeanCloud 应用的 Master Key 用于后台修改数据 |
-| `LEAN_SERVER`     | ⚠    | LeanCloud 服务地址，国内版用户需要配置此项   |
+| `LEAN_SERVER`     | ⚠   | LeanCloud 服务地址，国内版用户需要配置此项   |
 | `SITE_NAME`       |      | 博客名称                                     |
 | `SITE_URL`        |      | 博客地址                                     |
 | `LOGIN`           |      | 当设置为 LOGIN=force 时会要求登录才能评论    |
@@ -68,12 +68,16 @@ Vercel 需要在 <kbd>Settings</kbd> - <kbd>Environment Variables</kbd> 中进�
 | `COMMENT_AUDIT`       | `false`        | 评论发布审核开关。开启后评论需要经过管理员审核后才能显示，所以建议在评论框默认文字上提供提示 |
 | `RECAPTCHA_V3_KEY`    |                | reCAPTCHA V3 key，须与客户端同时配置                                                         |
 | `RECAPTCHA_V3_SECRET` |                | reCAPTCHA V3 secret，服务端使用，不可泄漏                                                    |
+| `TURNSTILE_KEY`       |                | Turnstile key，须与客户端同时配置                                                            |
+| `TURNSTILE_SECRET`    |                | Turnstile secret，服务端使用，不可泄漏                                                       |
 
-::: tip Recaptcha
+::: tip Recaptcha 和 Turnstile
+
+Turnstile Key 和 Secret 可在 <https://www.cloudflare.com/zh-cn/products/turnstile/> 申请。
 
 Recaptcha Key 和 Secret 可在 <https://www.google.com/recaptcha> 申请。
 
-配置时安全域名需要同时添加网站地址和 Waline 服务端地址。
+配置时安全域名需要同时添加网站地址和 Waline 服务端地址（不包含传输协议，即 `http://` 或 `https://`）。
 
 :::
 
@@ -86,9 +90,9 @@ Recaptcha Key 和 Secret 可在 <https://www.google.com/recaptcha> 申请。
 | `MARKDOWN_EMOJI`     | `true`    | 是否启用 Emoji 缩写支持                           |
 | `MARKDOWN_SUB`       | `true`    | 是否启用下角标支持                                |
 | `MARKDOWN_SUP`       | `true`    | 是否启用上角标支持                                |
-| `MARKDOWN_TEX`       | `mathjax` | 解析 Tex 的服务，支持 `mathjax`、`katex`、`false` |
+| `MARKDOWN_TEX`       | `mathjax` | 解析 TeX 的服务，支持 `mathjax`、`katex`、`false` |
 | `MARKDOWN_MATHJAX`   | `{}`      | MathJax 选项                                      |
-| `MARKDOWN_KATEX`     | `{}`      | Katex 选项                                        |
+| `MARKDOWN_KATEX`     | `{}`      | KaTeX 选项                                        |
 
 ## 邮件
 
@@ -143,6 +147,20 @@ SMTP 的用户名通常均支持用户的完整邮箱，而密码大多同邮箱
 | `MYSQL_CHARSET`  |      | `utf8mb4` | MySQL 数据表的字符集          |
 | `MYSQL_SSL`      |      | `false`   | 是否使用 SSL MYSQL 连接数据库 |
 
+### TiDB
+
+[在 TiDB 上创建数据库](../../guide/deploy/tidb.md)
+
+| 环境变量名称    | 必填 | 默认值    | 备注                |
+| --------------- | ---- | --------- | ------------------- |
+| `TIDB_DB`       | ✅   |           | TiDB 数据库库名     |
+| `TIDB_USER`     | ✅   |           | TiDB 数据库的用户名 |
+| `TIDB_PASSWORD` | ✅   |           | TiDB 数据库的密码   |
+| `TIDB_HOST`     |      | 127.0.0.1 | TiDB 服务的地址     |
+| `TIDB_PORT`     |      | 4000      | TiDB 服务的端口     |
+| `TIDB_PREFIX`   |      | `wl_`     | TiDB 数据表的表前缀 |
+| `TIDB_CHARSET`  |      | `utf8mb4` | TiDB 数据表的字符集 |
+
 ### SQLite
 
 | 环境变量名称    | 必填 | 默认值 | 备注                                              |
@@ -154,15 +172,22 @@ SMTP 的用户名通常均支持用户的完整邮箱，而密码大多同邮箱
 
 ### PostgreSQL
 
-| 环境变量名称  | 必填 | 默认值    | 备注                                |
-| ------------- | ---- | --------- | ----------------------------------- |
-| `PG_DB`       | ✅   |           | PostgreSQL 数据库库名               |
-| `PG_USER`     | ✅   |           | PostgreSQL 数据库的用户名           |
-| `PG_PASSWORD` | ✅   |           | PostgreSQL 数据库的密码             |
-| `PG_HOST`     |      | 127.0.0.1 | PostgreSQL 服务的地址               |
-| `PG_PORT`     |      | 3211      | PostgreSQL 服务的端口               |
-| `PG_PREFIX`   |      | `wl_`     | PostgreSQL 数据表的表前缀           |
-| `PG_SSL`      |      | `false`   | 是否使用 SSL 连接 PostgreSQL 数据库 |
+| 环境变量名称        | 必填 | 默认值    | 备注                                |
+| ------------------- | ---- | --------- | ----------------------------------- |
+| `PG_DB`             | ✅   |           | PostgreSQL 数据库库名               |
+| `PG_USER`           | ✅   |           | PostgreSQL 数据库的用户名           |
+| `PG_PASSWORD`       | ✅   |           | PostgreSQL 数据库的密码             |
+| `PG_HOST`           |      | 127.0.0.1 | PostgreSQL 服务的地址               |
+| `PG_PORT`           |      | 3211      | PostgreSQL 服务的端口               |
+| `PG_PREFIX`         |      | `wl_`     | PostgreSQL 数据表的表前缀           |
+| `PG_SSL`            |      | `false`   | 是否使用 SSL 连接 PostgreSQL 数据库 |
+| `POSTGRES_DATABASE` |      |           | 同 `PG_DB`                          |
+| `POSTGRES_USER`     |      |           | 同 `PG_USER`                        |
+| `POSTGRES_PASSWORD` |      |           | 同 `PG_PASSWORD`                    |
+| `POSTGRES_HOST`     |      | 127.0.0.1 | 同 `PG_HOST`                        |
+| `POSTGRES_PORT`     |      | 3211      | 同 `PG_PORT`                        |
+| `POSTGRES_PREFIX`   |      | `wl_`     | 同 `PG_PREFIX`                      |
+| `POSTGRES_SSL`      |      | `false`   | 同 `POSTGRES_SSL`                   |
 
 ### CloudBase
 
@@ -200,3 +225,4 @@ SMTP 的用户名通常均支持用户的完整邮箱，而密码大多同邮箱
 | `OAUTH_URL`                     | `https://oauth.lithub.cc`   | OAuth 第三方登录服务地址，可以 [自建 auth](https://github.com/walinejs/auth) 这是能让用户使用 GitHub, Twitter, Facebook, Google, 微博等第三方账户登录最简单的方式。 |
 | `WEBHOOK`                       |                             | 评论成功后会向 WEBHOOK 配置的地址发送一条 POST 请求                                                                                                                 |
 | `WALINE_ADMIN_MODULE_ASSET_URL` | `//unpkg.com/@waline/admin` | Waline admin 地址                                                                                                                                                   |
+| `IP2REGION_DB`                  |                             | 自定义 IP 查询库路径                                                                                                                                                |

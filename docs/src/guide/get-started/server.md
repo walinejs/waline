@@ -8,7 +8,7 @@ redirectFrom: /guide/server/intro.html
 
 除了在 Vercel 免费部署外，你可以通过 docker 进行部署或直接部署在自托管环境上，也可以部署到其他常见云平台。详见
 
-- [独立部署](../deploy/vps.md)。
+- [独立部署](../deploy/vps.md)
 
 - [阿里云函数计算](../deploy/aliyun-fc.md)
 

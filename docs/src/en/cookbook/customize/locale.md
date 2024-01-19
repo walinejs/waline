@@ -19,7 +19,7 @@ You can pass a completed multilingual configuration to the `locale` option to ad
 
 - Level related:
 
-  - `level${number}`: Label for level `${number}`
+  - `level${number}`: Label for level number
 
   ::: tip
 

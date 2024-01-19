@@ -11,7 +11,11 @@ The supported Markdown syntax in comments is as follows.
 
 ::: details Headings
 
+<!-- markdownlint-disable MD025 -->
+
 # Heading1
+
+<!-- markdownlint-enable MD025 -->
 
 ## Heading2
 
@@ -272,7 +276,7 @@ We support highlighting in almost all languages.
 ::: details Demo
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <script>
@@ -300,7 +304,7 @@ We support highlighting in almost all languages.
 Prism.fileHighlight = function () {
   if (!logged) {
     console.warn(
-      'Prism.fileHighlight is deprecated. Use `Prism.plugins.fileHighlight.highlight` instead.'
+      'Prism.fileHighlight is deprecated. Use `Prism.plugins.fileHighlight.highlight` instead.',
     );
     logged = true;
   }
@@ -325,7 +329,10 @@ section h1,
 #features li strong,
 header h2,
 footer p {
-  font: 100% Rockwell, Arvo, serif;
+  font:
+    100% Rockwell,
+    Arvo,
+    serif;
 }
 ```
 
@@ -360,4 +367,4 @@ $$
 
 ## Embed HTML
 
-Feel free to add any HTML content unless triggering [the protection mechanism](../guide/features/syntax.md#html-content-restrictions).
+Feel free to add any HTML content unless triggering [the protection mechanism](../guide/features/safety.md#comment-security).

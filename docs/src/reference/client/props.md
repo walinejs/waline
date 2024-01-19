@@ -30,7 +30,7 @@ Waline 的服务端地址。
 ## lang
 
 - 类型: `string`
-- 默认值: `'zh-CN'`
+- 默认值: `navigator.language`
 - 详情:
   - [功能 → 多语言](../../guide/features/i18n.md#设置语言)
 
@@ -48,6 +48,15 @@ Waline 的服务端地址。
 - `'pt-BR'`
 - `'ru'`
 - `'ru-RU'`
+
+## locale
+
+- 类型: `WalineLocale`
+- 默认值: 通过 `lang` 选项自动设置
+- 详情:
+  - [Cookbook → 自定义语言](../../cookbook/customize/locale.md)
+
+Waline 多语言配置。
 
 ## emoji
 
@@ -197,10 +206,10 @@ Waline 的服务端地址。
 
 ## texRenderer
 
-- 类型: `WalineTexRenderer | false`
+- 类型: `WalineTeXRenderer | false`
 
   ```ts
-  type WalineTexRenderer = (blockMode: boolean, tex: string) => string;
+  type WalineTeXRenderer = (blockMode: boolean, tex: string) => string;
   ```
 
 - 必填: 否
@@ -213,7 +222,7 @@ Waline 的服务端地址。
 
 自定义 $\TeX$ 渲染，默认行为是提示预览模式不支持 $\TeX$。函数提供两个参数，第一个参数表示渲染模式是否为块级，第二个参数是 $\TeX$ 的字符串，并返回一段 HTML 字符串作为渲染结果。
 
-你可以自行引入 $\TeX$ 渲染器并提供预览渲染，建议使用 Katex 或 MathJax，也可以设置为 `false` 以禁止渲染 $\TeX$。
+你可以自行引入 $\TeX$ 渲染器并提供预览渲染，建议使用 KaTeX 或 MathJax，也可以设置为 `false` 以禁止渲染 $\TeX$。
 
 ## search
 
@@ -293,6 +302,13 @@ Waline 的服务端地址。
 - 必填: 否
 
 reCAPTCHA V3 是 Google 提供的验证码服务，配置 reCAPTCHA V3 网站密钥即可开启该功能。服务端需要同步配置 `RECAPTCHA_V3_SECRET` 环境变量。
+
+## turnstileKey
+
+- 类型: `string`
+- 必填: 否
+
+Turnstile 是 Cloudflare 提供的验证码服务，配置 turnstileKey 网站密钥即可开启该功能。服务端需要同步配置 `TURNSTILE_SECRET` 环境变量。
 
 ## reaction
 

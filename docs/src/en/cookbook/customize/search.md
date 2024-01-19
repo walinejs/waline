@@ -99,7 +99,7 @@ Waline.init({
     default: () =>
       search(
         // random between 3 words
-        ['laugh', 'cry', 'smile'][(Math.random() * 3) | 0]
+        ['laugh', 'cry', 'smile'][(Math.random() * 3) | 0],
       ),
   },
 });
@@ -119,7 +119,7 @@ When the user searches for `smile`, we execute `search('smile')`. Suppose you re
 
 ::: details Default implementation
 
-@[code{33-79}](../../../../packages/client/src/config/default.ts)
+@[code{33-79}](../../../../../packages/client/src/config/default.ts)
 
 :::
 
@@ -169,7 +169,7 @@ interface FetchGifResponse {
 }
 
 export const getTenorV1SearchOptions = (
-  key = 'PAY5JLFIH6V6'
+  key = 'PAY5JLFIH6V6',
 ): WalineSearchOptions => {
   const state = { next: '' };
 

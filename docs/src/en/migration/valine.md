@@ -36,7 +36,7 @@ Waline V2 has removed Valine support and moved to a better configuration. The fo
 - `langMode`: renamed to `locales`
 - `emojiCDN`, `emojiMap`: use more powerful `emoji` options
 
-For waline config, please refer to [Client Config](../reference/client/api.md). You can also check [Waline Client V2 Migration Guide](./client.md) to learn about the options that are not compatible with Valine.
+For waline config, please refer to [Client Config](../reference/client/api.md). You can also check [Waline Client V2 Migration Guide](./v2.md) to learn about the options that are not compatible with Valine.
 
 :::
 
@@ -88,5 +88,9 @@ Compared with Valine, Waline has the following highlights:
 1. Front-end management, administrators can review, edit or delete comments directly through the Waline comment component.
 
 <script setup lang="ts">
-import MigrationTool from '@MigrationTool';
+import { defineAsyncComponent } from 'vue'
+
+const MigrationTool = defineAsyncComponent(() =>
+  import( '@MigrationTool')
+)
 </script>

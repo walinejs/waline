@@ -14,7 +14,7 @@ icon: pic
 一个使用 `lsky - pro` 图床的案例。
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <meta charset="UTF-8" />
@@ -22,13 +22,13 @@ icon: pic
     <title>Waline imageUploader 案例</title>
     <link
       rel="stylesheet"
-      href="https://unpkg.com/@waline/client@v2/dist/waline.css"
+      href="https://unpkg.com/@waline/client@v3/dist/waline.css"
     />
   </head>
   <body>
     <div id="waline" style="max-width: 800px; margin: 0 auto"></div>
     <script type="module">
-      import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
+      import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
 
       const waline = init({
         el: '#waline',

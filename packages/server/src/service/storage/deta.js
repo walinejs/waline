@@ -1,6 +1,8 @@
-const { Deta } = require('deta');
 const { performance } = require('perf_hooks');
-const Base = require('./base');
+
+const { Deta } = require('deta');
+
+const Base = require('./base.js');
 
 module.exports = class extends Base {
   constructor(tableName) {
@@ -151,8 +153,8 @@ module.exports = class extends Base {
     if (think.isArray(conditions)) {
       return Promise.all(
         conditions.map((condition) =>
-          this.select(condition, { limit, offset, field })
-        )
+          this.select(condition, { limit, offset, field }),
+        ),
       ).then((data) => data.flat());
     }
 
@@ -228,7 +230,7 @@ module.exports = class extends Base {
 
       if (think.isArray(conditions)) {
         return Promise.all(
-          conditions.map((condition) => this.count(condition))
+          conditions.map((condition) => this.count(condition)),
         ).then((counts) => counts.reduce((a, b) => a + b, 0));
       }
 
@@ -293,7 +295,7 @@ module.exports = class extends Base {
         await this.instance.put(nextData, item.objectId);
 
         return nextData;
-      })
+      }),
     );
   }
 
@@ -301,7 +303,7 @@ module.exports = class extends Base {
     const items = await this.select(where);
 
     return Promise.all(
-      items.map(({ objectId }) => this.instance.delete(objectId))
+      items.map(({ objectId }) => this.instance.delete(objectId)),
     );
   }
 };

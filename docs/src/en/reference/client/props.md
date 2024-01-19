@@ -30,7 +30,7 @@ Please ensure the uniqueness of each _article page_ path, otherwise the same com
 ## lang
 
 - Type: `string`
-- Default: `'zh-CN'`
+- Default: `navigator.language`
 - Details:
   - [Guide → I18n](../../guide/features/i18n.md#set-language)
 
@@ -48,6 +48,15 @@ Optional value:
 - `'pt-BR'`
 - `'ru'`
 - `'ru-RU'`
+
+## locale
+
+- Type: `WalineLocale`
+- Default: Built-in value based on `lang`
+- Details:
+  - [Cookbook → Customize Locale](../../cookbook/customize/locale.md)
+
+Waline Locales.
 
 ## emoji
 
@@ -199,10 +208,10 @@ You can pass in a code highlighter of your own, or set to `false` to disable cod
 
 ## texRenderer
 
-- Type: `WalineTexRenderer | false`
+- Type: `WalineTeXRenderer | false`
 
   ```ts
-  type WalineTexRenderer = (blockMode: boolean, tex: string) => string;
+  type WalineTeXRenderer = (blockMode: boolean, tex: string) => string;
   ```
 
 - Required: No
@@ -215,7 +224,7 @@ You can pass in a code highlighter of your own, or set to `false` to disable cod
 
 Customize $\TeX$ rendering, the default behavior is to prompt that the preview mode does not support $\TeX$. The function provides two parameters, the first parameter indicates whether it should be rendered in block level, and the second parameter is the string of the $\TeX$ content, and return a HTML string as render result.
 
-You can import $\TeX$ renderer to provide preview feature. We recommend you to use Katex or MathJax, or you can set to `false` to disable parsing $\TeX$.
+You can import $\TeX$ renderer to provide preview feature. We recommend you to use KaTeX or MathJax, or you can set to `false` to disable parsing $\TeX$.
 
 ## search
 
@@ -295,6 +304,13 @@ We hope you can keep it on to support Waline.
 - Required: No
 
 reCAPTCHA V3 is a captcha service provided by Google. You can add reCAPTCHA V3 site key with `recaptchaV3Key` to enable it. Notice you should also set environment variable `RECAPTCHA_V3_SECRET` for server.
+
+## turnstileKey
+
+- Type: `string`
+- Required: No
+
+Turnstile is a captcha service provided by Cloudflare. You can add turnstile site key with `turnstileKey` to enable it. Notice you should also set environment variable `TURNSTILE_SECRET` for server.
 
 ## reaction
 

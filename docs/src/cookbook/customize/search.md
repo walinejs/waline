@@ -99,7 +99,7 @@ Waline.init({
     default: () =>
       search(
         // 在三个单词之间随机
-        ['开心', '失落', '赞同'][(Math.random() * 3) | 0]
+        ['开心', '失落', '赞同'][(Math.random() * 3) | 0],
       ),
   },
 });
@@ -119,7 +119,7 @@ Waline.init({
 
 ::: details 默认实现
 
-@[code{33-79}](../../../packages/client/src/config/default.ts)
+@[code{33-79}](../../../../packages/client/src/config/default.ts)
 
 :::
 
@@ -169,7 +169,7 @@ interface FetchGifResponse {
 }
 
 export const getTenorV1SearchOptions = (
-  key = 'PAY5JLFIH6V6'
+  key = 'PAY5JLFIH6V6',
 ): WalineSearchOptions => {
   const state = { next: '' };
 

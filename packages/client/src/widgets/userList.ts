@@ -1,7 +1,8 @@
-import { getUserList, WalineUser } from '../api';
-import { defaultLang, defaultLocales } from '../config';
-import { WalineLocale } from '../typings';
-import { getRoot } from '../utils';
+import { getUserList, WalineUser } from '@waline/api';
+
+import { DEFAULT_LANG, DEFAULT_LOCALES } from '../config/index.js';
+import { type WalineLocale } from '../typings/index.js';
+import { getRoot } from '../utils/index.js';
 
 export interface WalineUserListOptions {
   /**
@@ -30,7 +31,7 @@ export interface WalineUserListOptions {
    *
    * Language of error message
    *
-   * @default 'zh-CN'
+   * @default navigator.language
    */
   lang?: string;
 
@@ -74,7 +75,7 @@ export const UserList = ({
   serverURL,
   count,
   locale,
-  lang = defaultLang,
+  lang = navigator.language,
   mode = 'list',
 }: WalineUserListOptions): Promise<WalineUserListResult> => {
   const root = getRoot(el);
@@ -93,7 +94,7 @@ export const UserList = ({
       };
 
     locale = {
-      ...(defaultLocales[lang] || defaultLocales[defaultLang]),
+      ...(DEFAULT_LOCALES[lang] || DEFAULT_LOCALES[DEFAULT_LANG]),
       ...(typeof locale === 'object' ? locale : {}),
     } as WalineLocale;
 
@@ -121,7 +122,7 @@ export const UserList = ({
           '</li>',
         ]
           .filter((v) => v)
-          .join('')
+          .join(''),
       )
       .join('')}</ul>`;
 

@@ -100,9 +100,9 @@ redirectFrom: /guide/get-started.html
 
 在你的网页中进行如下设置:
 
-1. 导入 Waline 样式 `https://unpkg.com/@waline/client@v2/dist/waline.css`。
+1. 导入 Waline 样式 `https://unpkg.com/@waline/client@v3/dist/waline.css`。
 
-1. 创建 `<script>` 标签使用来自 `https://unpkg.com/@waline/client@v2/dist/waline.mjs` 的 `init()` 函数初始化，并传入必要的 `el` 与 `serverURL` 选项。
+1. 创建 `<script>` 标签使用来自 `https://unpkg.com/@waline/client@v3/dist/waline.js` 的 `init()` 函数初始化，并传入必要的 `el` 与 `serverURL` 选项。
 
    - `el` 选项是 Waline 渲染使用的元素，你可以设置一个字符串形式的 CSS 选择器或者一个 HTMLElement 对象。
    - `serverURL` 是服务端的地址，即上一步获取到的值。
@@ -112,7 +112,7 @@ redirectFrom: /guide/get-started.html
      <!-- ... -->
      <link
        rel="stylesheet"
-       href="https://unpkg.com/@waline/client@v2/dist/waline.css"
+       href="https://unpkg.com/@waline/client@v3/dist/waline.css"
      />
      <!-- ... -->
    </head>
@@ -120,7 +120,7 @@ redirectFrom: /guide/get-started.html
      <!-- ... -->
      <div id="waline"></div>
      <script type="module">
-       import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
+       import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
 
        init({
          el: '#waline',

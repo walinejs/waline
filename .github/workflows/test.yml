@@ -5,23 +5,25 @@ on:
   - pull_request
 
 jobs:
-  build-test:
+  test:
     strategy:
       matrix:
-        node-version: [16]
+        node-version:
+          - 18
+          - 20
         os: [ubuntu-latest]
 
     runs-on: ${{ matrix.os }}
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install pnpm
         uses: pnpm/action-setup@v2
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           cache: pnpm
@@ -32,30 +34,11 @@ jobs:
       - name: Package Build Test
         run: pnpm build
 
-      - name: Docs Build Test
-        run: pnpm docs:build
-
-  test:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: pnpm
-
-      - name: Install Dependencies
-        run: pnpm install --frozen-lockfile
-
       - name: Linter test
         run: pnpm lint
 
-      # - name: Unit test
-      # run: pnpm test
+      - name: Unit test
+        run: pnpm test
+
+      - name: Docs Build Test
+        run: pnpm docs:build

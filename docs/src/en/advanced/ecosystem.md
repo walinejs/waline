@@ -28,6 +28,10 @@ Waline is a classic Client/Server architecture, which provides a relatively comp
   </script>
   ```
 
+- [sodesu](https://github.com/BeiyanYunyi/sodesu)
+
+  By [@BeiyanYunyi](https://github.com/BeiyanYunyi), build with Solid.js. For usage, see its README and [website](https://BeiyanYunyi.github.io/sodesu/)。
+
 ## Plugins
 
 ### Hexo
@@ -61,6 +65,8 @@ Others:
 - 🐴 [Stun](https://github.com/liuyib/hexo-theme-stun)
 - 🤖 [Yun](https://github.com/YunYouJun/hexo-theme-yun)
 - 🦄 [Unicorn](https://github.com/Uzizkp/hexo-theme-unicorn)
+- 💀 [freemind.bithack](https://github.com/Ares-X/hexo-theme-freemind.bithack)
+- 🤡 [Redefine](https://github.com/EvanNotFound/hexo-theme-redefine)
 
 ### VuePress
 
@@ -71,6 +77,7 @@ Others:
 
 - [hugo-theme-stack](https://github.com/CaiJimmy/hugo-theme-stack)
 - [DoIt](https://github.com/HEIGE-PCloud/DoIt)
+- [Kenny](https://github.com/Kindle-deep/hugo-theme-Kenny)
 
 ## More
 

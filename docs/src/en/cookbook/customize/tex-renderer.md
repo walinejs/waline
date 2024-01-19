@@ -1,8 +1,8 @@
 ---
-title: Customize TEX renderer
+title: Customize TeX renderer
 ---
 
-This cookbook guides you on how to add your own Tex renderer.
+This cookbook guides you on how to add your own $\TeX$ renderer.
 
 <!-- more -->
 
@@ -13,7 +13,7 @@ This cookbook guides you on how to add your own Tex renderer.
 For KaTeX options, see [KaTeX API](https://katex.org/docs/api.html#server-side-rendering-or-rendering-to-a-string).
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <meta charset="UTF-8" />
@@ -21,7 +21,7 @@ For KaTeX options, see [KaTeX API](https://katex.org/docs/api.html#server-side-r
     <title>Waline highlighter case</title>
     <link
       rel="stylesheet"
-      href="https://unpkg.com/@waline/client@v2/dist/waline.css"
+      href="https://unpkg.com/@waline/client@v3/dist/waline.css"
     />
     <link
       rel="stylesheet"
@@ -31,7 +31,7 @@ For KaTeX options, see [KaTeX API](https://katex.org/docs/api.html#server-side-r
   <body>
     <div id="waline" style="max-width: 800px; margin: 0 auto"></div>
     <script type="module">
-      import { init } from '"https://unpkg.com/@waline/client@v2/dist/waline.mjs"';
+      import { init } from '"https://unpkg.com/@waline/client@v3/dist/waline.js"';
       import katex from 'https://unpkg.com/katex@0.16/dist/katex.mjs';
 
       init({
@@ -55,7 +55,7 @@ For KaTeX options, see [KaTeX API](https://katex.org/docs/api.html#server-side-r
 For MathJax options, see [MathJax API](http://docs.mathjax.org/en/latest/web/typeset.html#converting-a-math-string-to-other-formats).
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <meta charset="UTF-8" />
@@ -63,14 +63,14 @@ For MathJax options, see [MathJax API](http://docs.mathjax.org/en/latest/web/typ
     <title>Waline highlighter case</title>
     <link
       rel="stylesheet"
-      href="https://unpkg.com/@waline/client@v2/dist/waline.css"
+      href="https://unpkg.com/@waline/client@v3/dist/waline.css"
     />
     <script src="https://unpkg.com/mathjax@v3/es5/tex-svg.js"></script>
   </head>
   <body>
     <div id="waline" style="max-width: 800px; margin: 0 auto"></div>
     <script type="module">
-      import { init } from '"https://unpkg.com/@waline/client@v2/dist/waline.mjs"';
+      import { init } from '"https://unpkg.com/@waline/client@v3/dist/waline.js"';
 
       init({
         el: '#waline',
@@ -81,7 +81,7 @@ For MathJax options, see [MathJax API](http://docs.mathjax.org/en/latest/web/typ
           window.MathJax.startup.adaptor.outerHTML(
             window.MathJax.tex2svg(tex, {
               display: blockMode,
-            })
+            }),
           ),
       });
     </script>

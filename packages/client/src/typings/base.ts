@@ -120,4 +120,4 @@ export type WalineImageUploader = (image: File) => Promise<string>;
 
 export type WalineHighlighter = (code: string, lang: string) => string;
 
-export type WalineTexRenderer = (blockMode: boolean, tex: string) => string;
+export type WalineTeXRenderer = (blockMode: boolean, tex: string) => string;

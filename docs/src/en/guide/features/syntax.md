@@ -25,7 +25,7 @@ Github Flavored Markdown
 
 :::
 
-Meanwhile, you can freely embed any HTML content without triggering the [protection mechanism](./safety.md#anti-xss-attack).
+Meanwhile, you can freely embed any HTML content without triggering the [protection mechanism](./safety.md#comment-security).
 
 ## Limited Preview Support
 
@@ -37,9 +37,9 @@ This includes the following restrictions:
 
 - The upper and lower subscripts (eg: `H~2~O`, `x^2^`) cannot be rendered correctly
 
-- Tex syntax, i.e. math formulas (eg: `$a = 1$`) cannot be rendered by default.
+- $\TeX$ syntax, i.e. math formulas (eg: `$a = 1$`) cannot be rendered by default.
 
-  When using the official client, you can customize the Tex rendering in preview by setting the `texRenderer` option, see [Cookbook → Use a custom TEX renderer](../../cookbook/customize/tex-renderer.md).
+  When using the official client, you can customize the $\TeX$ rendering in preview by setting the `texRenderer` option, see [Cookbook → Use a custom $\TeX$ renderer](../../cookbook/customize/tex-renderer.md).
 
 - Under the default highlighter, code blocks will be highlighted with random colors with specific delimiters.
 
@@ -49,11 +49,11 @@ This includes the following restrictions:
 
 ::: tip Principle
 
-1. Considering package size, the client uses `marked` for rendering and uses a < 1kb highlighter for highlighting by default, and does not include a Tex renderer, resulting in the above limitations.
+1. Considering package size, the client uses `marked` for rendering and uses a < 1kb highlighter for highlighting by default, and does not include a $\TeX$ renderer, resulting in the above limitations.
 
 1. When a user submits a comment, the client embeds a custom Emoji image and sends the original comment to the server.
 
-1. The server receives the original text, uses `markdown-it` to render markdown correctly with relevant plug-ins, uses `prismjs` to highlight code blocks according to the language, and performs Tex rendering according to user settings, and finally performs XSS processing .
+1. The server receives the original text, uses `markdown-it` to render markdown correctly with relevant plug-ins, uses `prismjs` to highlight code blocks according to the language, and performs $\TeX$ rendering according to user settings, and finally performs XSS processing .
 
 1. After the processing is completed, the server will store the correct rendering content and return it to the client when needed to ensure the normal display of the comment area.
 

@@ -11,7 +11,7 @@ redirectFrom: /reference/api.html
 获取某篇文章对应的评论列表
 
 ```http
-GET /comment
+GET /api/comment
 ```
 
 **参数**:
@@ -28,7 +28,7 @@ GET /comment
 获取某篇文章对应的评论总数
 
 ```http
-GET /comment?type=count
+GET /api/comment?type=count
 ```
 
 **参数**:
@@ -42,7 +42,7 @@ GET /comment?type=count
 获取当前网站的最近评论
 
 ```http
-GET /comment?type=recent
+GET /api/comment?type=recent
 ```
 
 **参数**:
@@ -56,7 +56,7 @@ GET /comment?type=recent
 发布一条评论
 
 ```http
-POST /comment
+POST /api/comment
 ```
 
 **参数**:
@@ -80,7 +80,7 @@ POST /comment
 获取某篇文章或者多篇文章对应的阅读数
 
 ```http
-GET /article
+GET /api/article
 ```
 
 **参数**:
@@ -94,7 +94,7 @@ GET /article
 更新某篇文章的阅读数
 
 ```http
-POST /article
+POST /api/article
 ```
 
 **参数**:

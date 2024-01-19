@@ -1,5 +1,8 @@
 const cors = require('@koa/cors');
 const routerREST = require('think-router-rest');
+
+const { isNetlify, netlifyFunctionPrefix } = require('./netlify.js');
+
 const isDev = think.env === 'development';
 const isTcb = think.env === 'cloudbase';
 const isDeta = think.env === 'deta' || process.env.DETA_RUNTIME === 'true';
@@ -9,15 +12,19 @@ const isAliyunFC =
 module.exports = [
   {
     handle: 'dashboard',
-    match: /^\/ui/,
+    match: isNetlify ? new RegExp(`${netlifyFunctionPrefix}/ui`, 'i') : /^\/ui/,
   },
 
+  {
+    handle: 'prefix-warning',
+  },
   {
     handle: 'meta',
     options: {
       logRequest: isDev,
       sendResponseTime: isDev,
-      requestTimeoutCallback: isTcb || isDeta || isAliyunFC ? false : () => {},
+      requestTimeoutCallback:
+        isTcb || isDeta || isAliyunFC || isNetlify ? false : () => {},
     },
   },
 
@@ -56,11 +63,16 @@ module.exports = [
 
   {
     handle: 'router',
-    options: {},
+    options: {
+      prefix: ['/api', `${netlifyFunctionPrefix}/api`, netlifyFunctionPrefix],
+    },
   },
 
   { handle: routerREST },
 
   'logic',
+  {
+    handle: 'plugin',
+  },
   'controller',
 ];

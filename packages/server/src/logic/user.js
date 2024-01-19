@@ -1,8 +1,8 @@
-const Base = require('./base');
+const Base = require('./base.js');
 
 module.exports = class extends Base {
   /**
-   * @api {GET} /user user top list without admin
+   * @api {GET} /api/user user top list without admin
    * @apiGroup User
    * @apiVersion  0.0.1
    *
@@ -19,7 +19,7 @@ module.exports = class extends Base {
    * @apiSuccess  (200) {String}  data.count user comment count
    */
   /**
-   * @api {GET} /user?token user list with admin login
+   * @api {GET} /api/user?token user list with admin login
    * @apiGroup User
    * @apiVersion  0.0.1
    *
@@ -70,7 +70,7 @@ module.exports = class extends Base {
   }
 
   /**
-   * @api {POST} /user user register
+   * @api {POST} /api/user user register
    * @apiGroup User
    * @apiVersion  0.0.1
    *
@@ -88,7 +88,7 @@ module.exports = class extends Base {
   }
 
   /**
-   * @api {PUT} /user update user profile
+   * @api {PUT} /api/user update user profile
    * @apiGroup User
    * @apiVersion  0.0.1
    *

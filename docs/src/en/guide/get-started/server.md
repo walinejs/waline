@@ -8,7 +8,7 @@ redirectFrom: /en/guide/server/intro.html
 
 Besides deploying on Vercel for free, you can deploy via docker or directly on a self-hosted environment, or to other common cloud platforms. See details
 
-- [Standalone deployment](../deploy/vps.md).
+- [Standalone deployment](../deploy/vps.md)
 
 - [Deta](../deploy/deta.md)
 

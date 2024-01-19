@@ -19,11 +19,11 @@ icon: import
 <!-- 样式文件 -->
 <link
   rel="stylesheet"
-  href="https://unpkg.com/@waline/client@v2/dist/waline.css"
+  href="https://unpkg.com/@waline/client@v3/dist/waline.css"
 />
 <!-- 脚本文件 -->
 <script type="module">
-  import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
+  import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
 
   init({
     // options
@@ -39,7 +39,7 @@ icon: import
 
 ```html
 <script type="module">
-  import { pageviewCount } from 'https://unpkg.com/@waline/client@v2/dist/pageview.mjs';
+  import { pageviewCount } from 'https://unpkg.com/@waline/client@v3/dist/pageview.js';
 
   pageviewCount({
     // options
@@ -51,7 +51,7 @@ icon: import
 
 ```html
 <script type="module">
-  import { commentCount } from 'https://unpkg.com/@waline/client@v2/dist/comment.mjs';
+  import { commentCount } from 'https://unpkg.com/@waline/client@v3/dist/comment.js';
 
   commentCount({
     // options
@@ -63,6 +63,6 @@ icon: import
 
 ::: info 指定版本
 
-你可能已经注意到，上述案例中，我们都在 `@aline/client` 后显式声明了 `@v2` 版本，这是推荐的，因为这能有效避免日后 Waline 客户端发布 V3 版本后，导致你的网站工作异常。
+你可能已经注意到，上述案例中，我们都在 `@waline/client` 后显式声明了 `@v2` 版本，这是推荐的，因为这能有效避免日后 Waline 客户端发布 V3 版本后，导致你的网站工作异常。
 
 :::

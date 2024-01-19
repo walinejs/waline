@@ -1,8 +1,8 @@
 import { useStorage } from '@vueuse/core';
-import { removeEndingSplash } from './path';
 
-import type { WalineEmojiConfig } from './config';
-import type { WalineEmojiInfo } from '../typings';
+import { type WalineEmojiConfig } from './config.js';
+import { removeEndingSplash } from './path.js';
+import { type WalineEmojiInfo } from '../typings/index.js';
 
 const hasVersion = (url: string): boolean =>
   Boolean(/@[0-9]+\.[0-9]+\.[0-9]+/.test(url));
@@ -10,7 +10,7 @@ const hasVersion = (url: string): boolean =>
 const fetchEmoji = (link: string): Promise<WalineEmojiInfo> => {
   const emojiStore = useStorage<Record<string, WalineEmojiInfo>>(
     'WALINE_EMOJI',
-    {}
+    {},
   );
 
   const result = hasVersion(link);
@@ -39,14 +39,14 @@ const getLink = (name: string, folder = '', prefix = '', type = ''): string =>
   `${folder ? `${folder}/` : ''}${prefix}${name}${type ? `.${type}` : ''}`;
 
 export const getEmojis = (
-  emojis: (string | WalineEmojiInfo)[]
+  emojis: (string | WalineEmojiInfo)[],
 ): Promise<WalineEmojiConfig> =>
   Promise.all(
     emojis.map((emoji) =>
       typeof emoji === 'string'
         ? fetchEmoji(removeEndingSplash(emoji))
-        : Promise.resolve(emoji)
-    )
+        : Promise.resolve(emoji),
+    ),
   ).then((emojiInfos) => {
     const emojiConfig: WalineEmojiConfig = {
       tabs: [],

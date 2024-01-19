@@ -23,7 +23,7 @@ You should set through `Settings` - `Environment Variables` when using Vercel.
 | `LEAN_ID`             | ✅       | LeanCloud Application ID                                |
 | `LEAN_KEY`            | ✅       | LeanCloud Application Key                               |
 | `LEAN_MASTER_KEY`     | ✅       | LeanCloud Application Master Key                        |
-| `LEAN_SERVER`         | ⚠        | LeanCloud server address if you're leancloud china user |
+| `LEAN_SERVER`         | ⚠       | LeanCloud server address if you're leancloud china user |
 | `SITE_NAME`           |          | site name                                               |
 | `SITE_URL`            |          | site url                                                |
 | `LOGIN`               |          | User need login before comment when `LOGIN=force`       |
@@ -75,14 +75,18 @@ By default, only 6 levels of copywriting are provided, but it does not mean that
 
 | Environment Variables | Default        | Description                                                                                                              |
 | --------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| `IPQPS`               | `60`           | Comment rate limit based on ip, which it's unit is second. `0` means no limit.                                           |
+| `IPQPS`               | `60`           | IP-based comment posting frequency limit in seconds. Set to 0 for no limit                                               |
 | `SECURE_DOMAINS`      |                | Secure Domains config. Supports multiple domain with Comma separated                                                     |
 | `AKISMET_KEY`         | `70542d86693e` | Akismet antispam service key, set `false` if you wanna close it.                                                         |
 | `COMMENT_AUDIT`       | `false`        | Comment audit switcher. When enabled, every comment needs to be approved by admin, so hint in placeholder is recommended |
 | `RECAPTCHA_V3_KEY`    |                | reCAPTCHA V3 key,should set along with client                                                                            |
 | `RECAPTCHA_V3_SECRET` |                | reCAPTCHA V3 secret for server.                                                                                          |
+| `TURNSTILE_KEY`       |                | Turnstile key,should set along with client                                                                               |
+| `TURNSTILE_SECRET`    |                | Turnstile secret for server                                                                                              |
 
-::: tip Recaptcha
+::: tip Recaptcha and Turnstile
+
+Turnstile Key and Secret can be requested at <https://www.cloudflare.com/products/turnstile/>.
 
 Recaptcha Key and Secret can be requested at <https://www.google.com/recaptcha>.
 
@@ -101,7 +105,7 @@ When setting security domains, you need to add the site address and the Waline s
 | `MARKDOWN_SUP`        | `true`    | Whether enable superscript                                         |
 | `MARKDOWN_TEX`        | `mathjax` | Service to parse math, `mathjax` `katex` and `false` are supported |
 | `MARKDOWN_MATHJAX`    | `{}`      | MathJax Options                                                    |
-| `MARKDOWN_KATEX`      | `{}`      | Katex Options                                                      |
+| `MARKDOWN_KATEX`      | `{}`      | KaTeX Options                                                      |
 
 ## Mail Service
 
@@ -156,6 +160,20 @@ Please pay special attention that some mailboxes use separate SMTP passwords.
 | `MYSQL_CHARSET`      |          | `utf8mb4` | MySQL table charset        |
 | `MYSQL_SSL`          |          | `false`   | whether use SSL connection |
 
+### TiDB
+
+[Create a database on TiDB](../../../en/guide/deploy/tidb.md)
+
+| Environment Variable | Required | Default   | Description          |
+| -------------------- | -------- | --------- | -------------------- |
+| `TIDB_DB`            | ✅       |           | TiDB database name   |
+| `TIDB_USER`          | ✅       |           | TiDB server username |
+| `TIDB_PASSWORD`      | ✅       |           | TiDB server password |
+| `TIDB_HOST`          |          | 127.0.0.1 | TiDB server address  |
+| `TIDB_PORT`          |          | 4000      | TiDB server port     |
+| `TIDB_PREFIX`        |          | `wl_`     | TiDB table prefix    |
+| `TIDB_CHARSET`       |          | `utf8mb4` | TiDB table charset   |
+
 ### SQLite
 
 | Environment Variable | Required | Default | Description                                                        |
@@ -176,6 +194,13 @@ Please pay special attention that some mailboxes use separate SMTP passwords.
 | `PG_PORT`            |          | 3211      | PostgreSQL server port              |
 | `PG_PREFIX`          |          | `wl_`     | PostgreSQL table prefix             |
 | `PG_SSL`             |          | `false`   | set to `true` to use SSL connection |
+| `POSTGRES_DATABASE`  |          |           | alias for `PG_DB`                   |
+| `POSTGRES_USER`      |          |           | alias for `PG_USER`                 |
+| `POSTGRES_PASSWORD`  |          |           | alias for `PG_PASSWORD`             |
+| `POSTGRES_HOST`      |          | 127.0.0.1 | alias for `PG_HOST`                 |
+| `POSTGRES_PORT`      |          | 3211      | alias for `PG_PORT`                 |
+| `POSTGRES_PREFIX`    |          | `wl_`     | alias for `PG_PREFIX`               |
+| `POSTGRES_SSL`       |          | `false`   | alias for `POSTGRES_SSL`            |
 
 ### GitHub
 
@@ -193,8 +218,9 @@ Please pay special attention that some mailboxes use separate SMTP passwords.
 
 ## Advanced
 
-| Environment Variables           | 默认值                      | Description                                                                                      |
+| Environment Variables           | Default                     | Description                                                                                      |
 | ------------------------------- | --------------------------- | ------------------------------------------------------------------------------------------------ |
 | `OAUTH_URL`                     | `https://oauth.lithub.cc`   | OAuth Social Login Service URL. You can [build your own auth](https://github.com/walinejs/auth). |
 | `WEBHOOK`                       |                             | You can set a Webhook URL that will be triggered when you have new comment.                      |
 | `WALINE_ADMIN_MODULE_ASSET_URL` | `//unpkg.com/@waline/admin` | Waline admin link                                                                                |
+| `IP2REGION_DB`                  |                             | customized IP query library path                                                                 |
