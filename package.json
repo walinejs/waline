@@ -76,7 +76,7 @@
     "rollup-plugin-dts": "6.1.0",
     "rollup-plugin-esbuild": "6.1.0",
     "rollup-plugin-ts": "3.4.5",
-    "sass": "1.69.7",
+    "sass": "1.70.0",
     "sort-package-json": "2.6.0",
     "stylelint": "16.1.0",
     "stylelint-config-hope": "5.0.1",
