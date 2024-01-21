@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import en from './en.js';
+import fr from './fr.js';
 import jp from './jp.js';
 import ptBR from './pt-BR.js';
 import ru from './ru.js';
@@ -27,4 +28,5 @@ export const DEFAULT_LOCALES: Locales = {
   ru: ru,
   'ru-ru': ru,
   'ru-RU': ru,
+  fr: fr,
 };
