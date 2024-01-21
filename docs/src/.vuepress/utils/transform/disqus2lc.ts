@@ -7,26 +7,30 @@ export const disqus2lc = (input: string) => {
   const dom = parser.parseFromString(input, 'application/xml');
   const posts = Array.from(dom.querySelectorAll<HTMLElement>('post')).filter(
     (postEl) => {
-      const isDeleted = postEl
-        .querySelector('isDeleted')!
-        .textContent!.toLowerCase();
+      const isDeletedEl = postEl.querySelector('isDeleted');
+      if (isDeletedEl && isDeletedEl.textContent?.toLocaleLowerCase() === 'true') {
+        return false;
+      }
 
-      return isDeleted === 'false';
+      return true;
     },
   );
   const threads = Array.from(dom.querySelectorAll('disqus > thread'));
 
-  const articleMap = {};
+  const articleMap: Record<string, string> = {};
 
   threads.forEach((threadEl) => {
-    const url = threadEl.querySelector('link')!.textContent!;
-    const anchor = new URL(url);
+    const urlEl = threadEl.querySelector('link');
     const threadId = threadEl.getAttribute('dsq:id')!;
-
-    articleMap[threadId] = anchor.pathname;
+    
+    articleMap[threadId] = '';
+    if (urlEl && urlEl.textContent) {
+      const anchor = new URL(urlEl.textContent);
+      articleMap[threadId] = anchor.pathname;
+    }
   });
 
-  const idMap = {};
+  const idMap: Record<string, string> = {};
 
   posts.forEach((postEl) => {
     const objectId = postEl.getAttribute('dsq:id')!;
@@ -36,18 +40,22 @@ export const disqus2lc = (input: string) => {
     if (parent) {
       const pid = parent.getAttribute('dsq:id');
 
+      if (!pid) {
+        return;
+      }
+
       idMap[objectId] = pid;
     }
   });
 
-  const rootIdMap = {};
+  const rootIdMap: Record<string, string> = {};
 
   posts
     .filter((postEl) => postEl.querySelector('parent'))
     .forEach((postEl) => {
       const objectId = postEl.getAttribute('dsq:id')!;
 
-      let rid = postEl.querySelector('parent')!.getAttribute('dsq:id')!;
+      let rid = postEl.querySelector('parent')?.getAttribute('dsq:id')!;
 
       while (idMap[rid]) rid = idMap[rid];
 
@@ -56,18 +64,18 @@ export const disqus2lc = (input: string) => {
 
   const data = posts.map((postEl) => {
     const objectId = postEl.getAttribute('dsq:id')!;
-    const comment = postEl.querySelector('message')!.textContent;
+    const comment = postEl.querySelector('message')?.textContent;
     const insertedAt = new Date(
-      postEl.querySelector('createdAt')!.textContent!,
+      postEl.querySelector('createdAt')?.textContent!,
     ).toISOString();
-    const nick = postEl.querySelector('author name')!.textContent;
-    const threadId = postEl.querySelector('thread')!.getAttribute('dsq:id')!;
+    const nick = postEl.querySelector('author name')?.textContent;
+    const threadId = postEl.querySelector('thread')?.getAttribute('dsq:id')!;
     const url = articleMap[threadId];
     const parent = postEl.querySelector('parent');
     const pid = parent ? parent.getAttribute('dsq:id') : null;
     const rid = parent ? rootIdMap[objectId] : null;
     const isSpam =
-      postEl.querySelector('isSpam')!.textContent!.toLowerCase() !== 'false';
+      postEl.querySelector('isSpam')?.textContent?.toLowerCase() !== 'false';
 
     return {
       objectId,
