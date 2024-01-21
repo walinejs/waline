@@ -8,7 +8,11 @@ redirectFrom: /guide/server/zeabur.html
 
 <!-- more -->
 
-## How to deploy
+## Deploy with one click
+
+[![Deploy on Zeabur](https://zeabur.com/button.svg)](https://zeabur.com/templates/1IBY26?utm_source=waline)
+
+## Deploy from scratch
 
 Click the [Fork](https://github.com/walinejs/zeabur-starter/fork) button to create a Zeabur starter scaffold.
 

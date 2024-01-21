@@ -21,7 +21,7 @@ Waline 支持浏览量统计。
 <!-- 文章内容 -->
 <div id="waline"></div>
 <script type="module">
-  import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
+  import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
 
   init({
     el: '#waline',
@@ -70,7 +70,7 @@ Waline 会在初始化以及每次 path 更新时，自动查找页面中 `class
   </li>
 </ul>
 <script type="module">
-  import { pageviewCount } from 'https://unpkg.com/@waline/client/dist/pageview.mjs';
+  import { pageviewCount } from 'https://unpkg.com/@waline/client@v3/dist/pageview.js';
 
   pageviewCount({
     serverURL: '<YOUR_SERVER_URL>',
@@ -97,7 +97,7 @@ Waline 会在初始化以及每次 path 更新时，自动查找页面中 `class
 
 ```html
 <script type="module">
-  import { pageviewCount } from 'https://unpkg.com/@waline/client/dist/pageview.mjs';
+  import { pageviewCount } from 'https://unpkg.com/@waline/client@v3/dist/pageview.js';
 
   const abort = pageviewCount({
     serverURL: '<YOUR_SERVER_URL>',

@@ -60,7 +60,7 @@ If you only need to use the pageview statistics function, you can import the pag
   </li>
 </ul>
 <script type="module">
-  import { pageviewCount } from 'https://unpkg.com/@waline/client/dist/pageview.mjs';
+  import { pageviewCount } from 'https://unpkg.com/@waline/client@v3/dist/pageview.js';
 
   pageviewCount({
     serverURL: '<YOUR_SERVER_URL>',
@@ -85,14 +85,18 @@ Since pageview fetching is an asynchronous network operation, you may need to ca
 
 `pageviewCount` returns a function that can be called to cancel the update:
 
-```js
-const abort = Waline.pageviewCount({
-  serverURL: '<YOUR_SERVER_URL>',
-  path: window.location.pathname,
-});
+```html
+<script type="module">
+  import { pageviewCount } from 'https://unpkg.com/@waline/client@v3/dist/pageview.js';
 
-// After 500ms, if the network request has not been completed, cancel this operation
-setTimeout(() => abort(), 500);
+  const abort = Waline.pageviewCount({
+    serverURL: '<YOUR_SERVER_URL>',
+    path: window.location.pathname,
+  });
+
+  // After 500ms, if the network request has not been completed, cancel this operation
+  setTimeout(() => abort(), 500);
+</script>
 ```
 
 :::

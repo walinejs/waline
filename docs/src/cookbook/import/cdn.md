@@ -19,11 +19,11 @@ icon: import
 <!-- 样式文件 -->
 <link
   rel="stylesheet"
-  href="https://unpkg.com/@waline/client@v2/dist/waline.css"
+  href="https://unpkg.com/@waline/client@v3/dist/waline.css"
 />
 <!-- 脚本文件 -->
 <script type="module">
-  import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
+  import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
 
   init({
     // options
@@ -39,7 +39,7 @@ icon: import
 
 ```html
 <script type="module">
-  import { pageviewCount } from 'https://unpkg.com/@waline/client@v2/dist/pageview.mjs';
+  import { pageviewCount } from 'https://unpkg.com/@waline/client@v3/dist/pageview.js';
 
   pageviewCount({
     // options
@@ -51,7 +51,7 @@ icon: import
 
 ```html
 <script type="module">
-  import { commentCount } from 'https://unpkg.com/@waline/client@v2/dist/comment.mjs';
+  import { commentCount } from 'https://unpkg.com/@waline/client@v3/dist/comment.js';
 
   commentCount({
     // options

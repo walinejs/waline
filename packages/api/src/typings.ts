@@ -75,19 +75,9 @@ export interface BaseWalineResponseComment {
   objectId: string;
 
   /**
-   * Time ISOString when the comment is created
+   * Timestamp of the comment
    */
-  createdAt: string;
-
-  /**
-   * Time ISOString when the comment is inserted
-   */
-  insertedAt: string;
-
-  /**
-   * Time ISOString when the comment is updated
-   */
-  updatedAt: string;
+  time: number;
 
   /**
    * Content of comment
@@ -144,6 +134,7 @@ export interface BaseWalineResponseComment {
    * @description 仅在登录用户时可用
    */
   // FIXME: Rename it to `userId`
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   user_id?: string;
 
   /**

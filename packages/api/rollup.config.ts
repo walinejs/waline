@@ -6,7 +6,7 @@ export default [
     input: './src/index.ts',
     output: [
       {
-        file: './dist/api.mjs',
+        file: './dist/api.js',
         format: 'esm',
         sourcemap: true,
       },
@@ -23,7 +23,7 @@ export default [
     input: './src/index.ts',
     output: [
       {
-        file: './dist/api.js',
+        file: './dist/api.umd.js',
         format: 'umd',
         name: 'WalineAPI',
         sourcemap: true,
@@ -40,11 +40,7 @@ export default [
 
   {
     input: './src/index.ts',
-    output: [
-      { file: './dist/api.d.ts', format: 'esm' },
-      { file: './dist/api.d.cts', format: 'esm' },
-      { file: './dist/api.d.mts', format: 'esm' },
-    ],
+    output: [{ file: './dist/api.d.ts', format: 'esm' }],
     plugins: [dts({ compilerOptions: { preserveSymlinks: false } })],
   },
 ];

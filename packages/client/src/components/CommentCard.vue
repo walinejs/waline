@@ -238,7 +238,7 @@ const link = computed(() => {
 const like = computed(() => likes.value.includes(props.comment.objectId));
 
 const time = computed(() =>
-  getTimeAgo(props.comment.insertedAt, now.value, locale.value),
+  getTimeAgo(new Date(props.comment.time), now.value, locale.value),
 );
 
 const isAdmin = computed(() => userInfo.value.type === 'administrator');

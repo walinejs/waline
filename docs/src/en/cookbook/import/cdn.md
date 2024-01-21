@@ -19,11 +19,11 @@ Normally, you may want Waline to render a list of comments, you can import Walin
 <!-- style file -->
 <link
   rel="stylesheet"
-  href="https://unpkg.com/@waline/client@v2/dist/waline.css"
+  href="https://unpkg.com/@waline/client@v3/dist/waline.css"
 />
 <!-- script file -->
 <script type="module">
-  import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
+  import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
 
   init({
     // options
@@ -39,7 +39,7 @@ Pageviews:
 
 ```html
 <script type="module">
-  import { pageviewCount } from 'https://unpkg.com/@waline/client@v2/dist/pageview.mjs';
+  import { pageviewCount } from 'https://unpkg.com/@waline/client@v3/dist/pageview.js';
 
   pageviewCount({
     // options
@@ -51,7 +51,7 @@ Comments count:
 
 ```html
 <script type="module">
-  import { commentCount } from 'https://unpkg.com/@waline/client@v2/dist/comment.mjs';
+  import { commentCount } from 'https://unpkg.com/@waline/client@v3/dist/comment.js';
 
   commentCount({
     // options

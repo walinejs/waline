@@ -149,7 +149,7 @@ Waline DO NOT have any copyright of above emojis, use them at your own risk.
 ```html
 <div id="waline"></div>
 <script type="module">
-  import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
+  import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
 
   init({
     el: '#waline',

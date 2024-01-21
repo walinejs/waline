@@ -41,14 +41,14 @@ redirectFrom: /guide/client/style.html
 <!-- Meta 图标 (可选) -->
 <link
   rel="stylesheet"
-  href="https://unpkg.com/@waline/client@v2/dist/waline-meta.css"
+  href="https://unpkg.com/@waline/client@v3/dist/waline-meta.css"
 />
 ```
 
 对于 NPM 用户，你可以通过以下方式导入:
 
 ```js
-import '@waline/client/waline-meta.css';
+import '@waline/client/meta';
 ```
 
 ## RTL 支持

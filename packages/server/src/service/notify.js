@@ -389,7 +389,9 @@ module.exports = class extends think.Service {
       method: 'POST',
       header: form.getHeaders(),
       body: form,
-    }).then((resp) => resp.json());
+    }).then((resp) => resp.statusText);
+    // Expected return value: No Content
+    // Since Discord doesn't return any response body on success, we just return the status text.
   }
 
   async lark({ title, content }, self, parent) {

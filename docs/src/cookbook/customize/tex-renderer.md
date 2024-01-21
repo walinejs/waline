@@ -22,7 +22,7 @@ icon: tex
     <title>Waline highlighter 案例</title>
     <link
       rel="stylesheet"
-      href="https://unpkg.com/@waline/client@v2/dist/waline.css"
+      href="https://unpkg.com/@waline/client@v3/dist/waline.css"
     />
     <link
       rel="stylesheet"
@@ -32,7 +32,7 @@ icon: tex
   <body>
     <div id="waline" style="max-width: 800px; margin: 0 auto"></div>
     <script type="module">
-      import { init } from '"https://unpkg.com/@waline/client@v2/dist/waline.mjs"';
+      import { init } from '"https://unpkg.com/@waline/client@v3/dist/waline.js"';
       import katex from 'https://unpkg.com/katex@0.16/dist/katex.mjs';
 
       init({
@@ -64,14 +64,14 @@ icon: tex
     <title>Waline highlighter 案例</title>
     <link
       rel="stylesheet"
-      href="https://unpkg.com/@waline/client@v2/dist/waline.css"
+      href="https://unpkg.com/@waline/client@v3/dist/waline.css"
     />
     <script src="https://unpkg.com/mathjax@v3/es5/tex-svg.js"></script>
   </head>
   <body>
     <div id="waline" style="max-width: 800px; margin: 0 auto"></div>
     <script type="module">
-      import { init } from '"https://unpkg.com/@waline/client@v2/dist/waline.mjs"';
+      import { init } from '"https://unpkg.com/@waline/client@v3/dist/waline.js"';
 
       init({
         el: '#waline',

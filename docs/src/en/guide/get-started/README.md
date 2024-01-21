@@ -81,9 +81,9 @@ Welcome to Waline. In just a few steps, you can enable Waline to provide comment
 
 Here is how you can implement Waline on your web page:
 
-1. Import the stylesheet `https://unpkg.com/@waline/client@v2/dist/waline.css` in the `<head>`
+1. Import the stylesheet `https://unpkg.com/@waline/client@v3/dist/waline.css` in the `<head>`
 
-1. Create a `<script>` tag and initialize with `init()` from `https://unpkg.com/@waline/client@v2/dist/waline.mjs` while passing in the necessary `el` and `serverURL` options.
+1. Create a `<script>` tag and initialize with `init()` from `https://unpkg.com/@waline/client@v3/dist/waline.js` while passing in the necessary `el` and `serverURL` options.
 
    - The `el` option is the element used for Waline rendering. You can set a CSS selector in the form of a string or an HTMLElement object.
    - `serverURL` is the link of the server, which you just created in Vercel.
@@ -96,14 +96,14 @@ Here is how you can implement Waline on your web page:
      <!-- ... -->
      <link
        rel="stylesheet"
-       href="https://unpkg.com/@waline/client@v2/dist/waline.css"
+       href="https://unpkg.com/@waline/client@v3/dist/waline.css"
      />
    </head>
    <body>
      <!-- ... -->
      <div id="waline"></div>
      <script type="module">
-       import { init } from 'https://unpkg.com/@waline/client@v2/dist/waline.mjs';
+       import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
 
        init({
          el: '#waline',

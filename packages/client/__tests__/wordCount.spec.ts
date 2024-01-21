@@ -82,17 +82,18 @@ describe('Words test', () => {
 \`\`\`html
 <head>
   <!-- ... -->
-  <script src="https://unpkg.com/@waline/client"></script>
   <link
     rel="stylesheet"
-    href="https://unpkg.com/@waline/client@v2/dist/waline.css"
+    href="https://unpkg.com/@waline/client@v3/dist/waline.css"
   />
   <!-- ... -->
 </head>
 <body>
   <!-- ... -->
   <div id="waline"></div>
-  <script>
+  <script type="module">
+    import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
+
     Waline.init({
       el: '#waline',
       serverURL: 'https://your-domain.vercel.app',
