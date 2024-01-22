@@ -257,7 +257,7 @@ module.exports = class extends think.Service {
     const comment = self.comment
       .replace(/<a href="(.*?)">(.*?)<\/a>/g, '[Link:$2]')
       .replace(/<[^>]+>/g, '')
-      .replace(/([._-[\]()~`>#+=|{}!])/g, '\\$1');
+      .replace(/([\._\-\[\]\(\)~`>\#\+=\|{}!])/g, '\\$1');
 
     const contentTG =
       think.config('TGTemplate') ||
