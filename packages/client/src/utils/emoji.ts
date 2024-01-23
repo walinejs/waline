@@ -2,6 +2,7 @@ import { useStorage } from '@vueuse/core';
 
 import { type WalineEmojiConfig } from './config.js';
 import { removeEndingSplash } from './path.js';
+import { isString } from './type.js';
 import { type WalineEmojiInfo } from '../typings/index.js';
 
 const hasVersion = (url: string): boolean =>
@@ -43,7 +44,7 @@ export const getEmojis = (
 ): Promise<WalineEmojiConfig> =>
   Promise.all(
     emojis.map((emoji) =>
-      typeof emoji === 'string'
+      isString(emoji)
         ? fetchEmoji(removeEndingSplash(emoji))
         : Promise.resolve(emoji),
     ),

@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import en from './en.js';
+import fr from './fr.js';
 import jp from './jp.js';
 import ptBR from './pt-BR.js';
 import ru from './ru.js';
@@ -9,22 +10,27 @@ import { type WalineLocale } from '../../typings/index.js';
 
 export type Locales = Record<string, WalineLocale>;
 
+export const DEFAULT_LANG = 'en-US';
+
 export const DEFAULT_LOCALES: Locales = {
   zh: zhCN,
   'zh-cn': zhCN,
-  'zh-CN': zhCN,
   'zh-tw': zhTW,
-  'zh-TW': zhTW,
-  en: en,
-  'en-US': en,
+  en,
   'en-us': en,
-  jp: jp,
-  ja: jp,
+  fr,
+  'fr-fr': fr,
+  jp,
   'jp-jp': jp,
-  'jp-JP': jp,
   'pt-br': ptBR,
-  'pt-BR': ptBR,
-  ru: ru,
+  ru,
   'ru-ru': ru,
-  'ru-RU': ru,
 };
+
+export const getLocale = (lang: string): WalineLocale =>
+  DEFAULT_LOCALES[lang.toLowerCase()] || DEFAULT_LOCALES[DEFAULT_LANG];
+
+export const getLang = (lang: string): string =>
+  Object.keys(DEFAULT_LOCALES).includes(lang.toLowerCase())
+    ? lang
+    : DEFAULT_LANG;

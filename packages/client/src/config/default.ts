@@ -16,8 +16,6 @@ export const DEFAULT_EMOJI: WalineEmojiPresets[] = [
   '//unpkg.com/@waline/emojis@1.1.0/weibo',
 ];
 
-export const DEFAULT_LANG = 'en-US';
-
 export const DEFAULT_REACTION = [
   '//unpkg.com/@waline/emojis/tieba/tieba_agree.png',
   '//unpkg.com/@waline/emojis/tieba/tieba_look_down.png',
