@@ -30,7 +30,7 @@ features:
 
   - title: Login support
     icon: register
-    details: Anonymous comments, account registration, and social login is supported to maintain identity
+    details: Anonymous comments, account registration and social login are supported
 
   - title: Article Reaction
     icon: reaction
