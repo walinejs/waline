@@ -20,6 +20,8 @@
     "waline",
     "wechat",
     "weibo",
-    "walinejs"
+    "walinejs",
+
+    "tidb"
   ]
 }
