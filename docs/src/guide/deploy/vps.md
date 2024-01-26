@@ -47,7 +47,7 @@ services:
     image: lizheming/waline:latest
     restart: always
     ports:
-      - 127.0.0.1:8360:8360
+      - 8360:8360
     volumes:
       - ${PWD}/data:/app/data
     environment:
