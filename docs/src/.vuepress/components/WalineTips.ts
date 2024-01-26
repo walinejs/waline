@@ -1,4 +1,4 @@
-import { usePageFrontmatter, useRouteLocale } from '@vuepress/client';
+import { usePageFrontmatter, useRouteLocale } from 'vuepress/client';
 import { computed, defineComponent, h } from 'vue';
 
 import type { VNode } from 'vue';

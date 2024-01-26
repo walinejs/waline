@@ -2,7 +2,6 @@
   "name": "@waline/admin",
   "version": "0.25.3",
   "description": "management system for waline",
-  "type": "module",
   "keywords": [
     "waline",
     "valine",
@@ -20,9 +19,10 @@
   },
   "license": "MIT",
   "author": "lizheming <i@imnerd.org>",
+  "type": "module",
+  "exports": "./dist/admin.js",
   "main": "dist/admin.js",
   "browser": "dist/admin.js",
-  "exports": "./dist/admin.js",
   "files": [
     "dist"
   ],
@@ -31,9 +31,6 @@
     "clean": "rimraf ./dist",
     "dev": "vite",
     "prepublishOnly": "pnpm build"
-  },
-  "publishConfig": {
-    "provenance": true
   },
   "browserslist": {
     "production": [
@@ -53,7 +50,7 @@
     "@rematch/core": "2.2.0",
     "base-icon": "2.2.1",
     "classnames": "2.5.1",
-    "i18next": "23.7.18",
+    "i18next": "23.7.20",
     "i18next-browser-languagedetector": "7.2.0",
     "md5": "2.3.0",
     "qrcode.react": "3.1.0",
@@ -64,5 +61,8 @@
     "react-router-dom": "6.21.3",
     "redux": "5.0.1",
     "typescript": "5.3.3"
+  },
+  "publishConfig": {
+    "provenance": true
   }
 }

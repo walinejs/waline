@@ -21,36 +21,36 @@
     "lint:stylelint": "stylelint packages/*/src/**/*.scss --fix",
     "packages:check-update": "pnpm dlx npm-check-updates --deep",
     "packages:update": "pnpm dlx npm-check-updates --deep -u && pnpm i && pnpm -r up",
-    "prepare": "husky install",
+    "prepare": "husky",
     "server:dev": "vercel dev ./example --listen 9090",
     "test": "vitest"
+  },
+  "nano-staged": {
+    "**/*": "prettier --write --ignore-unknown",
+    "*.md": "markdownlint --fix",
+    "*.{js,ts,vue}": "eslint --fix",
+    "**/package.json": "sort-package-json"
   },
   "config": {
     "commitizen": {
       "path": "cz-conventional-changelog"
     }
   },
-  "nano-staged": {
-    "**/*": "prettier --write --ignore-unknown",
-    "*.md": "markdownlint --fix",
-    "*.{js,ts,vue}": "eslint --fix",
-    "package.json": "sort-package-json"
-  },
   "prettier": {
     "singleQuote": true
   },
   "devDependencies": {
-    "@babel/core": "7.23.7",
-    "@babel/plugin-transform-runtime": "7.23.7",
-    "@babel/preset-env": "7.23.8",
+    "@babel/core": "7.23.9",
+    "@babel/plugin-transform-runtime": "7.23.9",
+    "@babel/preset-env": "7.23.9",
     "@babel/preset-react": "7.23.3",
-    "@babel/runtime": "7.23.8",
-    "@commitlint/cli": "18.5.0",
-    "@commitlint/config-conventional": "18.5.0",
+    "@babel/runtime": "7.23.9",
+    "@commitlint/cli": "18.6.0",
+    "@commitlint/config-conventional": "18.6.0",
     "@rollup/plugin-commonjs": "25.0.7",
     "@rollup/plugin-node-resolve": "15.2.3",
     "@rollup/plugin-replace": "5.0.5",
-    "@types/node": "20.11.6",
+    "@types/node": "20.11.7",
     "@typescript-eslint/eslint-plugin": "6.19.1",
     "@typescript-eslint/parser": "6.19.1",
     "@vitejs/plugin-react": "4.2.1",
@@ -67,7 +67,7 @@
     "eslint-plugin-prettier": "5.1.3",
     "eslint-plugin-react": "7.33.2",
     "eslint-plugin-vue": "9.20.1",
-    "husky": "8.0.3",
+    "husky": "9.0.6",
     "markdownlint-cli": "0.38.0",
     "nano-staged": "0.8.0",
     "postcss": "8.4.33",
@@ -75,7 +75,7 @@
     "rimraf": "5.0.5",
     "rollup": "4.9.6",
     "rollup-plugin-dts": "6.1.0",
-    "rollup-plugin-esbuild": "6.1.0",
+    "rollup-plugin-esbuild": "6.1.1",
     "rollup-plugin-ts": "3.4.5",
     "sass": "1.70.0",
     "sort-package-json": "2.6.0",
@@ -83,7 +83,7 @@
     "stylelint-config-hope": "5.0.1",
     "tslib": "2.6.2",
     "typescript": "5.3.3",
-    "vercel": "33.2.0",
+    "vercel": "33.3.0",
     "vite": "5.0.12",
     "vite-plugin-css-injected-by-js": "3.3.1",
     "vite-plugin-svgr": "4.2.0",

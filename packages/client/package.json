@@ -8,7 +8,6 @@
     "comment",
     "blog"
   ],
-  "type": "module",
   "repository": {
     "url": "https://github.com/walinejs/waline",
     "directory": "packages/client"
@@ -19,6 +18,7 @@
     "email": "mister-hope@outlook.com",
     "url": "https://mister-hope.com"
   },
+  "type": "module",
   "exports": {
     ".": {
       "types": "./dist/slim.d.ts",
@@ -66,9 +66,6 @@
     "style:main": "sass ./src/styles/index.scss ./dist/waline.css --style=compressed",
     "style:meta": "sass ./src/styles/meta.scss ./dist/waline-meta.css --style=compressed"
   },
-  "publishConfig": {
-    "provenance": true
-  },
   "browserslist": {
     "production": [
       ">0.5%",
@@ -84,9 +81,6 @@
       "last 2 safari version"
     ]
   },
-  "engines": {
-    "node": ">=18"
-  },
   "dependencies": {
     "@vueuse/core": "^10.7.2",
     "@waline/api": "^1.0.0-alpha.5",
@@ -97,13 +91,19 @@
     "vue": "^3.4.15"
   },
   "devDependencies": {
-    "@babel/core": "7.23.7",
-    "@babel/preset-env": "7.23.8",
+    "@babel/core": "7.23.9",
+    "@babel/preset-env": "7.23.9",
     "@giphy/js-types": "5.0.0",
     "@types/autosize": "4.0.3",
     "@types/marked": "5.0.2",
     "@vitejs/plugin-vue": "5.0.3",
     "user-agent-data-types": "0.4.2",
     "vite": "5.0.12"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "provenance": true
   }
 }
