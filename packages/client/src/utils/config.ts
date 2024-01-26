@@ -1,14 +1,14 @@
 import { decodePath, isLinkHttp, removeEndingSplash } from './path.js';
 import {
   DEFAULT_EMOJI,
-  DEFAULT_LANG,
-  DEFAULT_LOCALES,
   DEFAULT_REACTION,
   defaultUploadImage,
   defaultHighlighter,
   defaultTeXRenderer,
   getDefaultSearchOptions,
   getMeta,
+  getLocale,
+  getLang,
 } from '../config/index.js';
 import {
   type WalineEmojiInfo,
@@ -88,8 +88,9 @@ export const getConfig = ({
 }: WalineProps): WalineConfig => ({
   serverURL: getServerURL(serverURL),
   path: decodePath(path),
+  lang: getLang(lang),
   locale: {
-    ...(DEFAULT_LOCALES[lang] || DEFAULT_LOCALES[DEFAULT_LANG]),
+    ...getLocale(lang),
     ...(typeof locale === 'object' ? locale : {}),
   } as WalineLocale,
   wordLimit: getWordLimit(wordLimit),
@@ -98,7 +99,6 @@ export const getConfig = ({
   imageUploader: fallback(imageUploader, defaultUploadImage),
   highlighter: fallback(highlighter, defaultHighlighter),
   texRenderer: fallback(texRenderer, defaultTeXRenderer),
-  lang: Object.keys(DEFAULT_LOCALES).includes(lang) ? lang : 'en-US',
   dark,
   emoji: typeof emoji === 'boolean' ? (emoji ? DEFAULT_EMOJI : []) : emoji,
   pageSize,

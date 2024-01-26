@@ -6,12 +6,12 @@
   "portsAttributes": {
     "5173": {
       "label": "Waline Client",
-      "onAutoForward": "openPreview"
-    }
+      "onAutoForward": "openPreview",
+    },
   },
   "customizations": {
     "codespaces": {
-      "openFiles": ["packages/client/src/init.ts"]
-    }
-  }
+      "openFiles": ["packages/client/src/init.ts"],
+    },
+  },
 }

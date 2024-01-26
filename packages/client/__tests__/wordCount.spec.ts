@@ -94,7 +94,7 @@ describe('Words test', () => {
   <script type="module">
     import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
 
-    Waline.init({
+    init({
       el: '#waline',
       serverURL: 'https://your-domain.vercel.app',
     });
@@ -111,12 +111,6 @@ describe('Words test', () => {
       'html',
       'head',
       '...',
-      'script src',
-      'https',
-      'unpkg.com',
-      'waline',
-      'client',
-      'script',
       'link\n    rel',
       'stylesheet',
       'href',
@@ -124,7 +118,7 @@ describe('Words test', () => {
       'unpkg.com',
       'waline',
       'client',
-      'v2',
+      'v3',
       'dist',
       'waline.css',
       '...',
@@ -134,8 +128,19 @@ describe('Words test', () => {
       'div id',
       'waline',
       'div',
-      'script',
-      'Waline.init',
+      'script type',
+      'module',
+      'import',
+      'init',
+      'from',
+      'https',
+      'unpkg.com',
+      'waline',
+      'client',
+      'v3',
+      'dist',
+      'waline.js',
+      'init',
       'el',
       'waline',
       `,
@@ -148,6 +153,6 @@ describe('Words test', () => {
       'body',
     ]);
 
-    expect(getWordNumber(codeBlock)).toEqual(40);
+    expect(getWordNumber(codeBlock)).toEqual(45);
   });
 });

@@ -8,7 +8,10 @@ export const disqus2lc = (input: string) => {
   const posts = Array.from(dom.querySelectorAll<HTMLElement>('post')).filter(
     (postEl) => {
       const isDeletedEl = postEl.querySelector('isDeleted');
-      if (isDeletedEl && isDeletedEl.textContent?.toLocaleLowerCase() === 'true') {
+      if (
+        isDeletedEl &&
+        isDeletedEl.textContent?.toLocaleLowerCase() === 'true'
+      ) {
         return false;
       }
 
@@ -22,7 +25,7 @@ export const disqus2lc = (input: string) => {
   threads.forEach((threadEl) => {
     const urlEl = threadEl.querySelector('link');
     const threadId = threadEl.getAttribute('dsq:id')!;
-    
+
     articleMap[threadId] = '';
     if (urlEl && urlEl.textContent) {
       const anchor = new URL(urlEl.textContent);

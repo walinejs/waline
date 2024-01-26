@@ -9,5 +9,6 @@ export * from './image.js';
 export * from './markdown.js';
 export * from './path.js';
 export * from './query.js';
+export * from './type.js';
 export * from './wordCount.js';
 export * from './userAgent.js';

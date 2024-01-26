@@ -6,8 +6,8 @@
     "moduleResolution": "nodenext",
     "rootDir": "./src/.vuepress",
     "paths": {
-      "@theme-hope/*": ["vuepress-theme-hope/lib/client/*.js"]
-    }
+      "@theme-hope/*": ["vuepress-theme-hope/lib/client/*.js"],
+    },
   },
-  "include": ["./src/.vuepress/**/*.ts", "./src/.vuepress/**/*.vue"]
+  "include": ["./src/.vuepress/**/*.ts", "./src/.vuepress/**/*.vue"],
 }

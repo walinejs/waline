@@ -6,7 +6,7 @@
     "noUnusedParameters": false,
     "module": "ESNext",
     "moduleResolution": "Bundler",
-    "rootDir": "./src"
+    "rootDir": "./src",
   },
-  "include": ["./src/**/*.ts", "./src/**/*.vue"]
+  "include": ["./src/**/*.ts", "./src/**/*.vue"],
 }

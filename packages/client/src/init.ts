@@ -4,7 +4,7 @@ import { commentCount } from './comment.js';
 import Waline from './components/WalineComment.vue';
 import { pageviewCount } from './pageview.js';
 import { type WalineInitOptions } from './typings/index.js';
-import { getRoot } from './utils/index.js';
+import { getRoot, isString } from './utils/index.js';
 
 export interface WalineInstance {
   /**
@@ -61,9 +61,7 @@ export const init = ({
       commentCount({
         serverURL: props.serverURL,
         path: state.path,
-        ...(typeof state.comment === 'string'
-          ? { selector: state.comment }
-          : {}),
+        ...(isString(state.comment) ? { selector: state.comment } : {}),
       });
   };
 
@@ -72,9 +70,7 @@ export const init = ({
       pageviewCount({
         serverURL: props.serverURL,
         path: state.path,
-        ...(typeof state.pageview === 'string'
-          ? { selector: state.pageview }
-          : {}),
+        ...(isString(state.pageview) ? { selector: state.pageview } : {}),
       });
   };
 

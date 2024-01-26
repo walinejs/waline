@@ -16,7 +16,7 @@ actions:
 features:
   - title: Comment the way you like
     icon: markdown
-    details: Full Markdown support, with emoji, mathematical formulas and HTML embedding support
+    details: Full Markdown support, with emojis, math equations, image uploads, and HTML embedding support
     link: /en/guide/features/syntax.html
 
   - title: LightWeight
@@ -25,12 +25,12 @@ features:
 
   - title: Improved Security
     icon: safe
-    details: Content verification, anti-spamming, protection of sensitive data, etc.
+    details: Content verification, anti-spamming, protection of sensitive data, and more
     link: /en/guide/features/safety.html
 
   - title: Login support
     icon: register
-    details: Besides anonymous comments, account registration is supported to maintain identity
+    details: Anonymous comments, account registration and social login are supported
 
   - title: Article Reaction
     icon: reaction
