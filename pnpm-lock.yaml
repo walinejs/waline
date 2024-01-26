@@ -245,7 +245,7 @@ importers:
         specifier: ^10.7.2
         version: 10.7.2(vue@3.4.15)
       '@waline/api':
-        specifier: ^1.0.0-alpha.4
+        specifier: ^1.0.0-alpha.5
         version: link:../api
       autosize:
         specifier: ^6.0.1

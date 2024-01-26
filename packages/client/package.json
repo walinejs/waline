@@ -1,6 +1,6 @@
 {
   "name": "@waline/client",
-  "version": "3.0.0-alpha.10",
+  "version": "3.0.0-alpha.11",
   "description": "client for waline comment system",
   "keywords": [
     "valine",
@@ -89,7 +89,7 @@
   },
   "dependencies": {
     "@vueuse/core": "^10.7.2",
-    "@waline/api": "^1.0.0-alpha.4",
+    "@waline/api": "^1.0.0-alpha.5",
     "autosize": "^6.0.1",
     "marked": "^11.1.1",
     "marked-highlight": "^2.1.0",
