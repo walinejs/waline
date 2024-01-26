@@ -1,6 +1,6 @@
 {
   "name": "@waline/api",
-  "version": "1.0.0-alpha.4",
+  "version": "1.0.0-alpha.5",
   "type": "module",
   "description": "Client API for Waline comment system",
   "keywords": [
