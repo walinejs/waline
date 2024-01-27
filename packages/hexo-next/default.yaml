@@ -44,7 +44,7 @@ waline:
   # requiredMeta:
   #   - nick
 
-  # Language, available values: en-US, zh-CN, zh-TW, pt-BR, ru-RU, jp-JP
+  # Language, available values: en-US, zh-CN, zh-TW, pt-BR, ru-RU, jp-JP, fr-FR
   # lang: zh-CN
 
   # Word limit, no limit when setting to 0

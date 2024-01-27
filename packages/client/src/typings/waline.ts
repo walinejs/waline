@@ -95,6 +95,8 @@ export interface WalineProps {
    * - `'ru'`
    * - `'ru-ru'`
    * - `'ru-RU'`
+   * - `'fr-FR'`
+   * - `'fr'`
    *
    * Display language for waline
    *
@@ -116,6 +118,8 @@ export interface WalineProps {
    * - `'ru'`
    * - `'ru-ru'`
    * - `'ru-RU'`
+   * - `'fr-FR'`
+   * - `'fr'`
    *
    * @default navigator.language
    */
