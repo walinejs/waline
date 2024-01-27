@@ -48,6 +48,8 @@ Optional value:
 - `'pt-BR'`
 - `'ru'`
 - `'ru-RU'`
+- `fr-FR`
+- `fr`
 
 ## locale
 

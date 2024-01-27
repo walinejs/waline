@@ -48,6 +48,8 @@ Waline 的服务端地址。
 - `'pt-BR'`
 - `'ru'`
 - `'ru-RU'`
+- `fr-FR`
+- `fr`
 
 ## locale
 
