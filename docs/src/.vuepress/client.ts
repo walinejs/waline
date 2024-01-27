@@ -1,6 +1,6 @@
-import { defineClientConfig } from '@vuepress/client';
-import { onMounted, onBeforeUnmount } from 'vue';
 import { Fancybox } from '@fancyapps/ui/dist/fancybox/fancybox.esm.js';
+import { onMounted, onBeforeUnmount } from 'vue';
+import { defineClientConfig } from 'vuepress/client';
 
 export default defineClientConfig({
   setup() {

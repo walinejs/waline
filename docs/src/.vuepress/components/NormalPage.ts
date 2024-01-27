@@ -1,4 +1,4 @@
-import { usePageFrontmatter } from '@vuepress/client';
+import { usePageFrontmatter } from 'vuepress/client';
 import {
   type ComponentOptions,
   type VNode,
