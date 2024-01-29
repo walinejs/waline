@@ -41,6 +41,7 @@ const {
   QQ_TEMPLATE,
   TG_TEMPLATE,
   WX_TEMPLATE,
+  SC_TEMPLATE,
   DISCORD_TEMPLATE,
   LARK_TEMPLATE,
 
@@ -134,6 +135,7 @@ module.exports = {
   QQTemplate: QQ_TEMPLATE,
   TGTemplate: TG_TEMPLATE,
   WXTemplate: WX_TEMPLATE,
+  SCTemplate: SC_TEMPLATE,
   DiscordTemplate: DISCORD_TEMPLATE,
   LarkTemplate: LARK_TEMPLATE,
 };
