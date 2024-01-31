@@ -50,7 +50,7 @@
     "@rematch/core": "2.2.0",
     "base-icon": "2.2.1",
     "classnames": "2.5.1",
-    "i18next": "23.7.20",
+    "i18next": "23.8.2",
     "i18next-browser-languagedetector": "7.2.0",
     "md5": "2.3.0",
     "qrcode.react": "3.1.0",
