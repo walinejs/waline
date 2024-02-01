@@ -87,8 +87,16 @@ module.exports = class extends think.Service {
       },
     };
 
+    const contentWechat =
+      think.config('SCTemplate') ||
+      `{{site.name|safe}} 有新评论啦
+【评论者昵称】：{{self.nick}}
+【评论者邮箱】：{{self.mail}} 
+【内容】：{{self.comment}}
+【地址】：{{site.postUrl}}`;
+
     title = this.ctx.locale(title, data);
-    content = this.ctx.locale(content, data);
+    content = this.ctx.locale(contentWechat, data);
 
     const form = new FormData();
 

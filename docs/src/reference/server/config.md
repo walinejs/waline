@@ -123,6 +123,12 @@ QQ 评论通知模板，等同于环境变量 `QQ_TEMPLATE`。
 
 Telegram 评论通知模板，等同于环境变量 `TG_TEMPLATE`。
 
+### SCTemplate
+
+- 类型: `string`
+
+Server酱 评论通知模板，等同于环境变量 `SC_TEMPLATE`。
+
 ### model
 
 - 类型：`class`
