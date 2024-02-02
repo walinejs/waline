@@ -10,14 +10,14 @@
   "devDependencies": {
     "@fancyapps/ui": "5.0.33",
     "@vuepress/bundler-vite": "2.0.0-rc.2",
-    "@vuepress/plugin-docsearch": "2.0.0-rc.1",
+    "@vuepress/plugin-docsearch": "2.0.0-rc.7",
     "@waline/client": "workspace:*",
-    "marked": "11.1.1",
+    "marked": "11.2.0",
     "mathjax-full": "3.2.2",
     "vue": "3.4.15",
     "vuepress": "2.0.0-rc.2",
-    "vuepress-plugin-redirect": "2.0.0-rc.14",
-    "vuepress-shared": "2.0.0-rc.14",
-    "vuepress-theme-hope": "2.0.0-rc.14"
+    "vuepress-plugin-redirect": "2.0.0-rc.19",
+    "vuepress-shared": "2.0.0-rc.19",
+    "vuepress-theme-hope": "2.0.0-rc.19"
   }
 }
