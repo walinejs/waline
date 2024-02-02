@@ -16,7 +16,7 @@
     "docs:dev": "pnpm --dir=docs run dev",
     "lint": "pnpm lint:eslint && pnpm lint:prettier && pnpm lint:stylelint",
     "lint:eslint": "eslint --ext .js,.jsx,.vue,.ts --fix .",
-    "lint:md": "markdownlint docs/ --fix",
+    "lint:md": "markdownlint-cli2 '**/*.md'",
     "lint:prettier": "prettier --check --write .",
     "lint:stylelint": "stylelint packages/*/src/**/*.scss --fix",
     "packages:check-update": "pnpm dlx npm-check-updates --deep",
@@ -27,7 +27,7 @@
   },
   "nano-staged": {
     "**/*": "prettier --write --ignore-unknown",
-    "*.md": "markdownlint --fix",
+    "*.md": "markdownlint-cli2 --fix",
     "*.{js,ts,vue}": "eslint --fix",
     "**/package.json": "sort-package-json"
   },
@@ -68,7 +68,7 @@
     "eslint-plugin-react": "7.33.2",
     "eslint-plugin-vue": "9.21.1",
     "husky": "9.0.10",
-    "markdownlint-cli": "0.39.0",
+    "markdownlint-cli2": "0.12.1",
     "nano-staged": "0.8.0",
     "postcss": "8.4.33",
     "prettier": "3.2.4",

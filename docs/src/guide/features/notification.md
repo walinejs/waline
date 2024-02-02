@@ -54,7 +54,6 @@ redirectFrom: /guide/server/notification.html
 - `SITE_URL`: 网站地址，用于在消息中显示。
 - `SC_TEMPLATE`: Server酱 使用的通知模板，变量与具体格式可参见下文的通知模板。未配置则使用默认模板。
 
-
 ## 企业微信应用通知
 
 由于 [Server 酱](http://sc.ftqq.com/3.version) 提供的推送服务对发送消息数量有限制，如果消息数量较多时，建议使用企业微信应用通知。

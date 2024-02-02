@@ -1,6 +1,8 @@
-<img src="./assets/logo.png" width="200" align="right" />
+<!-- markdownlint-disable MD033 MD041 -->
 
-# Waline 
+<img src="./assets/logo.png" width="200" align="right" alt="Waline logo" />
+
+# Waline
 
 ![Author](https://img.shields.io/badge/author-lizheming,%20Mr.Hope-blue?style=for-the-badge) ![License](https://img.shields.io/github/license/walinejs/waline?style=for-the-badge) [![qq](https://img.shields.io/badge/qq-waline交流群-f75137?logo=TencentQQ&style=for-the-badge)](https://jq.qq.com/?_wv=1027&k=bKoVBppG) [![telegram](https://img.shields.io/badge/telegram-walinejs-2ca5e0?logo=telegram&style=for-the-badge)](https://t.me/walinejs)
 
@@ -71,7 +73,7 @@ We **really** welcome you to contribute to waline!
 You can contact me through [discussions](https://github.com/walinejs/waline/discussions). Join our [telegram](https://t.me/walinejs) group or scan [QQ group](https://qm.qq.com/cgi-bin/qm/qr?k=rPZvq_EBfwQa6QZX7sToVlhH49c6ed0R&jump_from=webapi) qrcode to communicate about waline!
 
 <a href="https://qm.qq.com/cgi-bin/qm/qr?k=rPZvq_EBfwQa6QZX7sToVlhH49c6ed0R&jump_from=webapi" target="_blank">
-  <img src="./assets/qqgroup.jpg" width="300" />
+  <img src="./assets/qqgroup.jpg" width="300" alt="qq group qrcode" />
 </a>
 
 ## License
