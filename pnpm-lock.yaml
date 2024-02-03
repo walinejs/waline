@@ -168,8 +168,8 @@ importers:
         specifier: workspace:*
         version: link:../packages/client
       marked:
-        specifier: 11.2.0
-        version: 11.2.0
+        specifier: 12.0.0
+        version: 12.0.0
       mathjax-full:
         specifier: 3.2.2
         version: 3.2.2
@@ -248,11 +248,11 @@ importers:
         specifier: ^6.0.1
         version: 6.0.1
       marked:
-        specifier: ^11.2.0
-        version: 11.2.0
+        specifier: ^12.0.0
+        version: 12.0.0
       marked-highlight:
         specifier: ^2.1.0
-        version: 2.1.0(marked@11.2.0)
+        version: 2.1.0(marked@12.0.0)
       recaptcha-v3:
         specifier: ^1.10.0
         version: 1.10.0
@@ -9838,16 +9838,16 @@ packages:
       markdownlint-micromark: 0.1.8
     dev: true
 
-  /marked-highlight@2.1.0(marked@11.2.0):
+  /marked-highlight@2.1.0(marked@12.0.0):
     resolution: {integrity: sha512-peBvgGZZqUw074Vy/N8Y7/6JQhSnR54/T0Ozq2/fAIBzcYfVfExFdQJptIhQxreR1elpwvJRrqhp6S/Prk8prA==}
     peerDependencies:
       marked: '>=4 <12'
     dependencies:
-      marked: 11.2.0
+      marked: 12.0.0
     dev: false
 
-  /marked@11.2.0:
-    resolution: {integrity: sha512-HR0m3bvu0jAPYiIvLUUQtdg1g6D247//lvcekpHO1WMvbwDlwSkZAX9Lw4F4YHE1T0HaaNve0tuAWuV1UJ6vtw==}
+  /marked@12.0.0:
+    resolution: {integrity: sha512-Vkwtq9rLqXryZnWaQc86+FHLC6tr/fycMfYAhiOIXkrNmeGAyhSxjqu0Rs1i0bBqw5u0S7+lV9fdH2ZSVaoa0w==}
     engines: {node: '>= 18'}
     hasBin: true
 
