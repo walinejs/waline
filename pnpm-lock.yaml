@@ -144,8 +144,8 @@ importers:
         specifier: 5.0.12
         version: 5.0.12(@types/node@20.11.16)(sass@1.70.0)
       vite-plugin-css-injected-by-js:
-        specifier: 3.3.1
-        version: 3.3.1(vite@5.0.12)
+        specifier: 3.4.0
+        version: 3.4.0(vite@5.0.12)
       vite-plugin-svgr:
         specifier: 4.2.0
         version: 4.2.0(rollup@4.9.6)(typescript@5.3.3)(vite@5.0.12)
@@ -13800,8 +13800,8 @@ packages:
       - terser
     dev: true
 
-  /vite-plugin-css-injected-by-js@3.3.1(vite@5.0.12):
-    resolution: {integrity: sha512-PjM/X45DR3/V1K1fTRs8HtZHEQ55kIfdrn+dzaqNBFrOYO073SeSNCxp4j7gSYhV9NffVHaEnOL4myoko0ePAg==}
+  /vite-plugin-css-injected-by-js@3.4.0(vite@5.0.12):
+    resolution: {integrity: sha512-wS5+UYtJXQ/vNornsqTQxOLBVO/UjXU54ZsYMeX0mj2OrbStMQ4GLgvneVDQGPwyGJcm/ntBPawc2lA7xx+Lpg==}
     peerDependencies:
       vite: '>2.0.0-0'
     dependencies:
