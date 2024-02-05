@@ -1,7 +1,7 @@
+import { addViteSsrNoExternal } from '@vuepress/helper';
+import { redirectPlugin } from '@vuepress/plugin-redirect';
 import { type UserConfig, defineUserConfig } from 'vuepress';
 import { path } from 'vuepress/utils';
-import { redirectPlugin } from 'vuepress-plugin-redirect';
-import { addViteSsrNoExternal } from 'vuepress-shared';
 
 import theme from './theme.js';
 
