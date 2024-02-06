@@ -119,9 +119,9 @@ Here is how you can add Waline to your web page or website:
 ## Comment Management (Management)
 
 1. After the deployment is complete, please visit `<serverURL>/ui/register` to register. The first person to register will be set as an administrator.
-   
+
 1. After you log in as administrator, you'll be able to access the comment management dashboard. You can edit, mark or delete comments here.
-   
+
 1. Users can also register for an account via the comment box, and will be redirected to their profile page after logging in.
 
 ## Video Tutorial

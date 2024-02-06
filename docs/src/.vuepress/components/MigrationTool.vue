@@ -41,8 +41,8 @@
   </form>
 </template>
 <script setup lang="ts">
+import { useLocaleConfig } from '@vuepress/helper/client';
 import { ref } from 'vue';
-import { useLocaleConfig } from 'vuepress-shared/client';
 
 import {
   type OriginalType,

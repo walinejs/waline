@@ -32,7 +32,7 @@ For configuration details, see [Server Reference → Environment Variables](../.
 
 We support multiple ways of notifying you or your commenters when someone comments or replies. See [Comment Notifications](../features/notification.md) for more details.
 
-## User Acccount Registration and Social Login 
+## User Account Registration and Social Login
 
 Waline supports in-app account creation and social login using GitHub, Twitter, and Facebook.
 

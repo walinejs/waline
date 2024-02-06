@@ -9,10 +9,11 @@ extends:
   - plugin:prettier/recommended
 
 ignorePatterns:
+  - '!.vuepress/**'
+  - .vuepress/.cache/**
+  - .vuepress/.temp/**
   - '**/dist/**'
   - '**/node_modules/**'
-  - .cache/**
-  - .temp/**
   - example/**
 
 plugins:

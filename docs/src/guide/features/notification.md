@@ -52,6 +52,7 @@ redirectFrom: /guide/server/notification.html
 - `AUTHOR_EMAIL`: 博主邮箱，用来区分发布的评论是否是博主本身发布的。如果是博主发布的则不进行提醒通知。
 - `SITE_NAME`: 网站名称，用于在消息中显示。
 - `SITE_URL`: 网站地址，用于在消息中显示。
+- `SC_TEMPLATE`: Server酱 使用的通知模板，变量与具体格式可参见下文的通知模板。未配置则使用默认模板。
 
 ## 企业微信应用通知
 
@@ -209,6 +210,16 @@ Waline 支持为每个平台分别配置您自定义的通知模板，从而实�
 
   仅供评论预览，点击 [查看完整內容]({{site.postUrl}})
   ````
+
+- SC_TEMPLATE:
+
+  ```plain
+  {{site.name|safe}} 有新评论啦
+  【评论者昵称】：{{self.nick}}
+  【评论者邮箱】：{{self.mail}}
+  【内容】：{{self.comment}}
+  【地址】：{{site.postUrl}}
+  ```
 
 ### 附加说明
 

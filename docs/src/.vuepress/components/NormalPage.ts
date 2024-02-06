@@ -1,3 +1,4 @@
+import { hasGlobalComponent } from '@vuepress/helper/client';
 import { usePageFrontmatter } from 'vuepress/client';
 import {
   type ComponentOptions,
@@ -7,7 +8,7 @@ import {
   h,
   resolveComponent,
 } from 'vue';
-import { RenderDefault, hasGlobalComponent } from 'vuepress-shared/client';
+import { RenderDefault } from 'vuepress-shared/client';
 
 import BreadCrumb from '@theme-hope/components/BreadCrumb';
 import MarkdownContent from '@theme-hope/components/MarkdownContent';

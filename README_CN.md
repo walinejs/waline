@@ -1,4 +1,6 @@
-<img src="./assets/logo.png" width='200' align="right" />
+<!-- markdownlint-disable MD033 MD041 -->
+
+<img src="./assets/logo.png" width="200" align="right" alt="Waline 图标" />
 
 # Waline
 
@@ -72,7 +74,7 @@
 你可以在 [GitHub Discussions](https://github.com/walinejs/waline/discussions) 中发布问题获取支持。当然你也可以加入我们的 [Telegram](https://t.me/walinejs) 小组或者是扫描下方二维码加入我们的 [Waline 用户交流 QQ 群](https://qm.qq.com/cgi-bin/qm/qr?k=rPZvq_EBfwQa6QZX7sToVlhH49c6ed0R&jump_from=webapi) 以获取更多的支持。
 
 <a href="https://qm.qq.com/cgi-bin/qm/qr?k=rPZvq_EBfwQa6QZX7sToVlhH49c6ed0R&jump_from=webapi" target="_blank">
-  <img src="./assets/qqgroup.jpg" width="300" />
+  <img src="./assets/qqgroup.jpg" width="300" alt="QQ群二维码" />
 </a>
 
 ## 协议
