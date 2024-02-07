@@ -38,7 +38,7 @@ const getMarkdownParser = () => {
 
   // parse emoji
   if (emoji !== false) {
-    markdownIt.use(emojiPlugin, typeof emoji === 'object' ? emoji : {});
+    markdownIt.use(emojiPlugin.full, typeof emoji === 'object' ? emoji : {});
   }
 
   // parse sub
