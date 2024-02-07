@@ -1,6 +1,6 @@
 {
   "name": "@waline/vercel",
-  "version": "1.31.10",
+  "version": "1.31.11",
   "description": "vercel server for waline comment system",
   "keywords": [
     "waline",
@@ -54,7 +54,7 @@
     "ua-parser-js": "^1.0.37"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=16"
   },
   "publishConfig": {
     "provenance": true
