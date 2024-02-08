@@ -34,11 +34,11 @@ jobs:
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
 
-      # - name: Build API
-      #   run: pnpm api:build
+      - name: Build API
+        run: pnpm api:build
 
-      - name: Build Client
-        run: pnpm client:build
+      # - name: Build Client
+      #   run: pnpm client:build
 
       - name: Publish NPM
         uses: JS-DevTools/npm-publish@v3
