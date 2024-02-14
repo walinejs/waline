@@ -22,9 +22,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: WorkSpace DepCheck
-        run: node scripts/workspace-publish.cjs @waline/client
-
       - name: Install pnpm
         uses: pnpm/action-setup@v2
 
@@ -37,8 +34,12 @@ jobs:
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: WorkSpace DepCheck
+        run: node scripts/workspace-publish.cjs @waline/client
+
       - name: Publish NPM
         uses: JS-DevTools/npm-publish@v3
         with:
           token: ${{ secrets.NPM_TOKEN }}
           package: ./packages/client
+          dry-run: true
