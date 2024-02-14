@@ -34,6 +34,12 @@ jobs:
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Build API
+        run: pnpm api:build
+
+      - name: Build Client
+        run: pnpm client:build
+
       - name: WorkSpace DepCheck
         run: node scripts/workspace-publish.cjs @waline/client
 
@@ -43,4 +49,3 @@ jobs:
           token: ${{ secrets.NPM_TOKEN }}
           package: ./packages/client
           dry-run: true
-          ignore-scripts: false
