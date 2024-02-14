@@ -209,6 +209,17 @@ module.exports = class extends Base {
     const { LOGIN } = process.env;
     const { userInfo } = this.ctx.state;
 
+    this.rules = {
+      url: {
+        string: true,
+        required: true,
+      },
+      comment: {
+        string: true,
+        required: true,
+      },
+    };
+
     if (!think.isEmpty(userInfo)) {
       return;
     }
