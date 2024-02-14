@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - fix/workspace-publish
     paths:
       - .github/workflows/release-client.yml
       - packages/client/**
@@ -21,6 +22,9 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: WorkSpace DepCheck
+        run: node scripts/workspace-publish.cjs @waline/client
+
       - name: Install pnpm
         uses: pnpm/action-setup@v2
 
@@ -32,12 +36,6 @@ jobs:
 
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
-
-      - name: Build API
-        run: pnpm api:build
-
-      - name: Build Client
-        run: pnpm client:build
 
       - name: Publish NPM
         uses: JS-DevTools/npm-publish@v3
