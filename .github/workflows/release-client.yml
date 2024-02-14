@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - fix/workspace-publish
     paths:
       - .github/workflows/release-client.yml
       - packages/client/**
@@ -48,4 +47,3 @@ jobs:
         with:
           token: ${{ secrets.NPM_TOKEN }}
           package: ./packages/client
-          dry-run: true
