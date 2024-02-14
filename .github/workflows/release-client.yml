@@ -39,6 +39,9 @@ jobs:
       - name: Build Client
         run: pnpm client:build
 
+      - name: WorkSpace DepCheck
+        run: node scripts/workspace-publish.cjs @waline/client
+
       - name: Publish NPM
         uses: JS-DevTools/npm-publish@v3
         with:
