@@ -88,6 +88,8 @@ module.exports = class extends BaseRest {
       { objectId: ['IN', resp.map(({ objectId }) => objectId)] },
     );
 
-    return this.jsonOrSuccess(deprecated ? ret[0][type] : ret);
+    return this.jsonOrSuccess(
+      deprecated ? ret[0][type] : [{ [type]: ret[0][type] }],
+    );
   }
 };
