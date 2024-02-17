@@ -29,11 +29,23 @@ export interface GetArticleCounterOptions extends BaseAPIOptions {
   signal?: AbortSignal;
 }
 
-export type GetArticleCounterResponse =
-  | Record<string, number>[]
-  | Record<string, number>
-  | number[]
-  | number;
+export interface CounterFields {
+  time?: number;
+  reaction0?: number;
+  reaction1?: number;
+  reaction2?: number;
+  reaction3?: number;
+  reaction4?: number;
+  reaction5?: number;
+  reaction6?: number;
+  reaction7?: number;
+  reaction8?: number;
+}
+
+export type GetArticleCounterResponseItem = Record<string, number> &
+  CounterFields;
+
+export type GetArticleCounterResponse = GetArticleCounterResponseItem[];
 
 export const getArticleCounter = ({
   serverURL,
@@ -80,13 +92,16 @@ export const updateArticleCounter = ({
   path,
   type,
   action,
-}: UpdateArticleCounterOptions): Promise<number[]> =>
+}: UpdateArticleCounterOptions): Promise<GetArticleCounterResponse> =>
   fetch(`${getFetchPrefix(serverURL)}article?lang=${lang}`, {
     method: 'POST',
     headers: JSON_HEADERS,
     body: JSON.stringify({ path, type, action }),
   })
     .then(
-      (resp) => <Promise<{ data: number[] } & ErrorStatusResponse>>resp.json(),
+      (resp) =>
+        <Promise<{ data: GetArticleCounterResponse } & ErrorStatusResponse>>(
+          resp.json()
+        ),
     )
     .then((data) => errorCheck(data, 'Update counter').data);
