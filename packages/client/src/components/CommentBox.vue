@@ -517,9 +517,9 @@ const submitComment = async (): Promise<void> => {
     ua,
   };
 
-  if (userInfo.value?.token) {
+  // https://github.com/walinejs/waline/issues/2163
+  if (userInfo.value?.token && !props.edit) {
     // login user
-
     comment.nick = userInfo.value.display_name;
     comment.mail = userInfo.value.email;
     comment.link = userInfo.value.url;
