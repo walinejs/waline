@@ -4,6 +4,7 @@ import fr from './fr.js';
 import jp from './jp.js';
 import ptBR from './pt-BR.js';
 import ru from './ru.js';
+import viVN from './vi-VN.js';
 import zhCN from './zh-CN.js';
 import zhTW from './zh-TW.js';
 import { type WalineLocale } from '../../typings/index.js';
@@ -25,6 +26,8 @@ export const DEFAULT_LOCALES: Locales = {
   'pt-br': ptBR,
   ru,
   'ru-ru': ru,
+  vi: viVN,
+  'vi-vn': viVN,
 };
 
 export const getLocale = (lang: string): WalineLocale =>
