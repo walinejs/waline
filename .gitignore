@@ -32,3 +32,6 @@ dist/
 
 # editors
 .idea/
+
+# npm config file
+.npmrc
