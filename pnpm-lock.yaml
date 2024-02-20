@@ -241,7 +241,7 @@ importers:
         specifier: ^10.7.2
         version: 10.7.2(vue@3.4.19)
       '@waline/api':
-        specifier: workspace:1.0.0-alpha.5
+        specifier: workspace:1.0.0-alpha.6
         version: link:../api
       autosize:
         specifier: ^6.0.1
