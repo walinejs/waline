@@ -59,7 +59,14 @@ export const getArticleCounter = ({
       paths.join(','),
     )}&type=${encodeURIComponent(type.join(','))}&lang=${lang}`,
     { signal },
-  ).then((resp) => <Promise<GetArticleCounterResponse>>resp.json());
+  )
+    .then(
+      (resp) =>
+        <Promise<{ data: GetArticleCounterResponse } & ErrorStatusResponse>>(
+          resp.json()
+        ),
+    )
+    .then((data) => errorCheck(data, 'Get counter').data);
 
 export interface UpdateArticleCounterOptions extends BaseAPIOptions {
   /**
