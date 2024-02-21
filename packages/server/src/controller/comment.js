@@ -568,6 +568,21 @@ module.exports = class extends BaseRest {
               .reverse(),
           );
 
+          const childCommentsMap = new Map();
+
+          childCommentsMap.set(cmt.objectId, cmt);
+          cmt.children.forEach((c) => childCommentsMap.set(c.objectId, c));
+
+          cmt.children.forEach((c) => {
+            const parent = childCommentsMap.get(c.pid);
+
+            c.reply_user = {
+              nick: parent.nick,
+              link: parent.link,
+              avatar: parent.avatar,
+            };
+          });
+
           return cmt;
         }),
       ),
