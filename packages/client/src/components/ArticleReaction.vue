@@ -78,27 +78,26 @@ const reactionsInfo = computed<ReactionItem[]>(() => {
 let abort: () => void;
 
 const fetchReaction = async (): Promise<void> => {
-  if (isReactionEnabled.value) {
-    const { serverURL, lang, path, reaction } = config.value;
-    const controller = new AbortController();
-
-    abort = controller.abort.bind(controller);
-
-    const resp = await getArticleCounter({
-      serverURL,
-      lang,
-      paths: [path],
-      type: reaction.map((_reaction, index) => `reaction${index}`),
-      signal: controller.signal,
-    });
-
-    // TODO: Remove this compact code
-    if (Array.isArray(resp) || typeof resp === 'number') return;
-
-    voteNumbers.value = reaction.map(
-      (_reaction, index) => resp[`reaction${index}`],
-    );
+  if (!isReactionEnabled.value) {
+    return;
   }
+
+  const { serverURL, lang, path, reaction } = config.value;
+  const controller = new AbortController();
+
+  abort = controller.abort.bind(controller);
+
+  const resp = await getArticleCounter({
+    serverURL,
+    lang,
+    paths: [path],
+    type: reaction.map((_reaction, index) => `reaction${index}`),
+    signal: controller.signal,
+  });
+
+  voteNumbers.value = reaction.map(
+    (_reaction, index) => resp[0][`reaction${index}`],
+  );
 };
 
 const vote = async (index: number): Promise<void> => {
