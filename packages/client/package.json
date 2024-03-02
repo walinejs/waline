@@ -82,23 +82,23 @@
     ]
   },
   "dependencies": {
-    "@vueuse/core": "^10.8.0",
+    "@vueuse/core": "^10.9.0",
     "@waline/api": "workspace:1.0.0-alpha.7",
     "autosize": "^6.0.1",
     "marked": "^12.0.0",
     "marked-highlight": "^2.1.1",
     "recaptcha-v3": "^1.10.0",
-    "vue": "^3.4.19"
+    "vue": "^3.4.21"
   },
   "devDependencies": {
-    "@babel/core": "7.23.9",
-    "@babel/preset-env": "7.23.9",
+    "@babel/core": "7.24.0",
+    "@babel/preset-env": "7.24.0",
     "@giphy/js-types": "5.0.0",
     "@types/autosize": "4.0.3",
     "@types/marked": "5.0.2",
     "@vitejs/plugin-vue": "5.0.4",
     "user-agent-data-types": "0.4.2",
-    "vite": "5.1.3"
+    "vite": "5.1.4"
   },
   "engines": {
     "node": ">=18"
