@@ -55,7 +55,7 @@
     "@typescript-eslint/parser": "7.1.0",
     "@vitejs/plugin-react": "4.2.1",
     "@vue/eslint-config-prettier": "9.0.0",
-    "@vue/eslint-config-typescript": "12.0.0",
+    "@vue/eslint-config-typescript": "13.0.0",
     "apidoc": "1.2.0",
     "commitizen": "4.3.0",
     "conventional-changelog-cli": "4.1.0",
