@@ -198,8 +198,8 @@ importers:
         specifier: 2.2.0
         version: 2.2.0(redux@5.0.1)
       base-icon:
-        specifier: 2.2.1
-        version: 2.2.1(react@18.2.0)
+        specifier: 2.3.1
+        version: 2.3.1(react@18.2.0)
       classnames:
         specifier: 2.5.1
         version: 2.5.1
@@ -5750,8 +5750,8 @@ packages:
     resolution: {integrity: sha512-urXwkHgwp6GsXVF+it01485Z2Cj4pnW02ICnM0TemOlkKmCNnDLmyy+ZZiRXBpwldUXO+aRNr7Hdia4CBvXJ5A==}
     dev: true
 
-  /base-icon@2.2.1(react@18.2.0):
-    resolution: {integrity: sha512-7QxmYpFceEZ7Jqc57lHtEDj9kSAWmP7IS3rU9P0S7cKu4KKeoxOBTerdgVo3a7ircfkZf5NN5j6HLBjDO5rYRQ==}
+  /base-icon@2.3.1(react@18.2.0):
+    resolution: {integrity: sha512-9HgDJEz5GU85UekrkMVqw5N7FgzO7KAo3ddI1bz+iaDuLGA5Xp6LtuKrVNb62XiMJxahEBisN0Ll1VJY2VkmPg==}
     peerDependencies:
       react: '>=16.14.0'
     dependencies:

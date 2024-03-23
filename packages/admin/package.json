@@ -48,7 +48,7 @@
   },
   "devDependencies": {
     "@rematch/core": "2.2.0",
-    "base-icon": "2.2.1",
+    "base-icon": "2.3.1",
     "classnames": "2.5.1",
     "i18next": "23.10.0",
     "i18next-browser-languagedetector": "7.2.0",
