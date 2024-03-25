@@ -168,8 +168,8 @@ importers:
         specifier: 2.0.0-rc.18
         version: 2.0.0-rc.18(@algolia/client-search@4.22.1)(search-insights@2.13.0)(typescript@5.3.3)(vuepress@2.0.0-rc.8)
       '@vuepress/plugin-redirect':
-        specifier: 2.0.0-rc.18
-        version: 2.0.0-rc.18(typescript@5.3.3)(vuepress@2.0.0-rc.8)
+        specifier: 2.0.0-rc.21
+        version: 2.0.0-rc.21(typescript@5.3.3)(vuepress@2.0.0-rc.8)
       '@waline/client':
         specifier: workspace:*
         version: link:../packages/client
@@ -190,7 +190,7 @@ importers:
         version: 2.0.0-rc.27(typescript@5.3.3)(vuepress@2.0.0-rc.8)
       vuepress-theme-hope:
         specifier: 2.0.0-rc.27
-        version: 2.0.0-rc.27(@vuepress/plugin-docsearch@2.0.0-rc.18)(@vuepress/plugin-redirect@2.0.0-rc.18)(@waline/client@packages+client)(markdown-it@14.0.0)(mathjax-full@3.2.2)(typescript@5.3.3)(vuepress@2.0.0-rc.8)
+        version: 2.0.0-rc.27(@vuepress/plugin-docsearch@2.0.0-rc.18)(@vuepress/plugin-redirect@2.0.0-rc.21)(@waline/client@packages+client)(markdown-it@14.0.0)(mathjax-full@3.2.2)(typescript@5.3.3)(vuepress@2.0.0-rc.8)
 
   packages/admin:
     devDependencies:
@@ -566,14 +566,6 @@ packages:
       '@jridgewell/trace-mapping': 0.3.25
     dev: true
 
-  /@babel/code-frame@7.23.5:
-    resolution: {integrity: sha512-CgH3s1a96LipHCmSUmYFPwY7MNx8C3avkq7i4Wl3cfa662ldtUe4VM1TPXX70pfmrlWTb6jLqTYrZyT2ZTJBgA==}
-    engines: {node: '>=6.9.0'}
-    dependencies:
-      '@babel/highlight': 7.23.4
-      chalk: 2.4.2
-    dev: true
-
   /@babel/code-frame@7.24.2:
     resolution: {integrity: sha512-y5+tLQyV8pg3fsiln67BVLD1P13Eg4lh5RW9mF0zUuvLrv9uIQ4MCL+CRT+FTsBlBjcIan6PGsLcBN0m3ClUyQ==}
     engines: {node: '>=6.9.0'}
@@ -838,16 +830,6 @@ packages:
       '@babel/types': 7.24.0
     transitivePeerDependencies:
       - supports-color
-    dev: true
-
-  /@babel/highlight@7.23.4:
-    resolution: {integrity: sha512-acGdbYSfp2WheJoJm/EBBBLh/ID8KDc64ISZ9DYtBmC8/Q204PZJLHyzeB5qMzJ5trcOkybd78M4x2KWsUq++A==}
-    engines: {node: '>=6.9.0'}
-    requiresBuild: true
-    dependencies:
-      '@babel/helper-validator-identifier': 7.22.20
-      chalk: 2.4.2
-      js-tokens: 4.0.0
     dev: true
 
   /@babel/highlight@7.24.2:
@@ -4789,6 +4771,21 @@ packages:
       - typescript
     dev: true
 
+  /@vuepress/helper@2.0.0-rc.21(typescript@5.3.3)(vuepress@2.0.0-rc.8):
+    resolution: {integrity: sha512-yKIG8hwsrA63uWo9hx9u7KBc0HvotKe2/0wVZtUdvdsibG3UYNI9enYQNa8MdqbxF92mmlFkPZdosGjUTA+BYw==}
+    peerDependencies:
+      vuepress: 2.0.0-rc.9
+    dependencies:
+      '@vue/shared': 3.4.21
+      cheerio: 1.0.0-rc.12
+      fflate: 0.8.2
+      gray-matter: 4.0.3
+      vue: 3.4.21(typescript@5.3.3)
+      vuepress: 2.0.0-rc.8(@vuepress/bundler-vite@2.0.0-rc.8)(typescript@5.3.3)(vue@3.4.21)
+    transitivePeerDependencies:
+      - typescript
+    dev: true
+
   /@vuepress/markdown@2.0.0-rc.8:
     resolution: {integrity: sha512-BJfun3rFpKbq3WwVNyJGZyc9QXN6sXKwMY2PRFiJqpG0A1ZxjZQFUvDRnSUgWEsBiluB23hZ4Pd0WP+6YNAq9w==}
     dependencies:
@@ -4992,13 +4989,13 @@ packages:
       - typescript
     dev: true
 
-  /@vuepress/plugin-redirect@2.0.0-rc.18(typescript@5.3.3)(vuepress@2.0.0-rc.8):
-    resolution: {integrity: sha512-DFqUglUkuSdLsgxHP+4Hw6blblEWxzBgca0sV/P2H0vQtr7pn2guHLOyhDqEBRHkt0ssCmdpr6wgBPgucDPi1A==}
+  /@vuepress/plugin-redirect@2.0.0-rc.21(typescript@5.3.3)(vuepress@2.0.0-rc.8):
+    resolution: {integrity: sha512-bFHGE8bVsKhPDfUw7Wi2W7IJCuuYx+7Bm6Q9BgUkS7Oom8NGGNhuO9DTYdpRaDSiNvijsgusCyrdSr0chl1kiw==}
     hasBin: true
     peerDependencies:
-      vuepress: 2.0.0-rc.8
+      vuepress: 2.0.0-rc.9
     dependencies:
-      '@vuepress/helper': 2.0.0-rc.18(typescript@5.3.3)(vuepress@2.0.0-rc.8)
+      '@vuepress/helper': 2.0.0-rc.21(typescript@5.3.3)(vuepress@2.0.0-rc.8)
       '@vueuse/core': 10.9.0(vue@3.4.21)
       cac: 6.7.14
       vue: 3.4.21(typescript@5.3.3)
@@ -11289,7 +11286,7 @@ packages:
     resolution: {integrity: sha512-ayCKvm/phCGxOkYRSCM82iDwct8/EonSEgCSxWxD7ve6jHggsFl4fZVQBPRNgQoKiuV/odhFrGzQXZwbifC8Rg==}
     engines: {node: '>=8'}
     dependencies:
-      '@babel/code-frame': 7.23.5
+      '@babel/code-frame': 7.24.2
       error-ex: 1.3.2
       json-parse-even-better-errors: 2.3.1
       lines-and-columns: 1.2.4
@@ -11299,7 +11296,7 @@ packages:
     resolution: {integrity: sha512-SgOTCX/EZXtZxBE5eJ97P4yGM5n37BwRU+YMsH4vNzFqJV/oWFXXCmwFlgWUM4PrakybVOueJJ6pwHqSVhTFDw==}
     engines: {node: '>=16'}
     dependencies:
-      '@babel/code-frame': 7.23.5
+      '@babel/code-frame': 7.24.2
       error-ex: 1.3.2
       json-parse-even-better-errors: 3.0.1
       lines-and-columns: 2.0.4
@@ -12241,7 +12238,7 @@ packages:
       rollup: 4.12.0
       typescript: 5.3.3
     optionalDependencies:
-      '@babel/code-frame': 7.23.5
+      '@babel/code-frame': 7.24.2
     dev: true
 
   /rollup-plugin-esbuild@6.1.1(esbuild@0.20.1)(rollup@4.12.0):
@@ -14635,7 +14632,7 @@ packages:
       - typescript
     dev: true
 
-  /vuepress-theme-hope@2.0.0-rc.27(@vuepress/plugin-docsearch@2.0.0-rc.18)(@vuepress/plugin-redirect@2.0.0-rc.18)(@waline/client@packages+client)(markdown-it@14.0.0)(mathjax-full@3.2.2)(typescript@5.3.3)(vuepress@2.0.0-rc.8):
+  /vuepress-theme-hope@2.0.0-rc.27(@vuepress/plugin-docsearch@2.0.0-rc.18)(@vuepress/plugin-redirect@2.0.0-rc.21)(@waline/client@packages+client)(markdown-it@14.0.0)(mathjax-full@3.2.2)(typescript@5.3.3)(vuepress@2.0.0-rc.8):
     resolution: {integrity: sha512-6/TqFrehr/hk/I5SGmOXVTY0urTvKNaifCuP1v2o8eVmdnYlnFzGHhQk89yZz0zeza54kzYJAUkQbqO0Fc6J8A==}
     engines: {node: '>=18.16.0', npm: '>=8', pnpm: '>=7', yarn: '>=2'}
     peerDependencies:
@@ -14681,7 +14678,7 @@ packages:
       '@vuepress/plugin-photo-swipe': 2.0.0-rc.18(typescript@5.3.3)(vuepress@2.0.0-rc.8)
       '@vuepress/plugin-prismjs': 2.0.0-rc.15(vuepress@2.0.0-rc.8)
       '@vuepress/plugin-reading-time': 2.0.0-rc.18(typescript@5.3.3)(vuepress@2.0.0-rc.8)
-      '@vuepress/plugin-redirect': 2.0.0-rc.18(typescript@5.3.3)(vuepress@2.0.0-rc.8)
+      '@vuepress/plugin-redirect': 2.0.0-rc.21(typescript@5.3.3)(vuepress@2.0.0-rc.8)
       '@vuepress/plugin-rtl': 2.0.0-rc.15(typescript@5.3.3)(vuepress@2.0.0-rc.8)
       '@vuepress/plugin-seo': 2.0.0-rc.18(typescript@5.3.3)(vuepress@2.0.0-rc.8)
       '@vuepress/plugin-sitemap': 2.0.0-rc.18(typescript@5.3.3)(vuepress@2.0.0-rc.8)
