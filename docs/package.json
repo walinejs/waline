@@ -4,8 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "vuepress-vite build src",
-    "dev": "vuepress-vite dev src"
+    "build": "vuepress build src",
+    "dev": "vuepress dev src"
   },
   "devDependencies": {
     "@fancyapps/ui": "5.0.35",

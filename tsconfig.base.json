@@ -18,7 +18,7 @@
     "inlineSources": true,
     "lib": ["DOM", "ESNext"],
     "listEmittedFiles": false,
-    "module": "ES2020",
+    "module": "ES2022",
     "moduleResolution": "NodeNext",
     "newLine": "lf",
     "noEmitHelpers": true,
@@ -37,6 +37,6 @@
     "strict": true,
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
-    "target": "es2020"
+    "target": "ES2022"
   }
 }
