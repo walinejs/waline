@@ -186,8 +186,8 @@ importers:
         specifier: 2.0.0-rc.8
         version: 2.0.0-rc.8(@vuepress/bundler-vite@2.0.0-rc.8)(typescript@5.3.3)(vue@3.4.21)
       vuepress-shared:
-        specifier: 2.0.0-rc.27
-        version: 2.0.0-rc.27(typescript@5.3.3)(vuepress@2.0.0-rc.8)
+        specifier: 2.0.0-rc.32
+        version: 2.0.0-rc.32(typescript@5.3.3)(vuepress@2.0.0-rc.8)
       vuepress-theme-hope:
         specifier: 2.0.0-rc.27
         version: 2.0.0-rc.27(@vuepress/plugin-docsearch@2.0.0-rc.18)(@vuepress/plugin-redirect@2.0.0-rc.21)(@waline/client@packages+client)(markdown-it@14.0.0)(mathjax-full@3.2.2)(typescript@5.3.3)(vuepress@2.0.0-rc.8)
@@ -14623,6 +14623,27 @@ packages:
       vuepress: 2.0.0-rc.8
     dependencies:
       '@vuepress/helper': 2.0.0-rc.18(typescript@5.3.3)(vuepress@2.0.0-rc.8)
+      '@vueuse/core': 10.9.0(vue@3.4.21)
+      cheerio: 1.0.0-rc.12
+      dayjs: 1.11.10
+      execa: 8.0.1
+      fflate: 0.8.2
+      gray-matter: 4.0.3
+      semver: 7.6.0
+      vue: 3.4.21(typescript@5.3.3)
+      vuepress: 2.0.0-rc.8(@vuepress/bundler-vite@2.0.0-rc.8)(typescript@5.3.3)(vue@3.4.21)
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - typescript
+    dev: true
+
+  /vuepress-shared@2.0.0-rc.32(typescript@5.3.3)(vuepress@2.0.0-rc.8):
+    resolution: {integrity: sha512-wGPPUoP6rxy7QnulD0sNz3r7iEHwp+TJroNmI+AT6FuCo1WCD4ZWfnRnm3dVcAkobc3nuOvSmDTvM9pIDCaxsA==}
+    engines: {node: '>=18.16.0', npm: '>=8', pnpm: '>=7', yarn: '>=2'}
+    peerDependencies:
+      vuepress: 2.0.0-rc.9
+    dependencies:
+      '@vuepress/helper': 2.0.0-rc.21(typescript@5.3.3)(vuepress@2.0.0-rc.8)
       '@vueuse/core': 10.9.0(vue@3.4.21)
       cheerio: 1.0.0-rc.12
       dayjs: 1.11.10
