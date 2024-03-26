@@ -165,8 +165,8 @@ importers:
         specifier: 2.0.0-rc.21
         version: 2.0.0-rc.21(typescript@5.3.3)(vuepress@2.0.0-rc.8)
       '@vuepress/plugin-docsearch':
-        specifier: 2.0.0-rc.18
-        version: 2.0.0-rc.18(@algolia/client-search@4.22.1)(search-insights@2.13.0)(typescript@5.3.3)(vuepress@2.0.0-rc.8)
+        specifier: 2.0.0-rc.21
+        version: 2.0.0-rc.21(@algolia/client-search@4.22.1)(search-insights@2.13.0)(typescript@5.3.3)(vuepress@2.0.0-rc.8)
       '@vuepress/plugin-redirect':
         specifier: 2.0.0-rc.21
         version: 2.0.0-rc.21(typescript@5.3.3)(vuepress@2.0.0-rc.8)
@@ -190,7 +190,7 @@ importers:
         version: 2.0.0-rc.27(typescript@5.3.3)(vuepress@2.0.0-rc.8)
       vuepress-theme-hope:
         specifier: 2.0.0-rc.27
-        version: 2.0.0-rc.27(@vuepress/plugin-docsearch@2.0.0-rc.18)(@vuepress/plugin-redirect@2.0.0-rc.21)(@waline/client@packages+client)(markdown-it@14.0.0)(mathjax-full@3.2.2)(typescript@5.3.3)(vuepress@2.0.0-rc.8)
+        version: 2.0.0-rc.27(@vuepress/plugin-docsearch@2.0.0-rc.21)(@vuepress/plugin-redirect@2.0.0-rc.21)(@waline/client@packages+client)(markdown-it@14.0.0)(mathjax-full@3.2.2)(typescript@5.3.3)(vuepress@2.0.0-rc.8)
 
   packages/admin:
     devDependencies:
@@ -2126,14 +2126,14 @@ packages:
     engines: {node: '>=10.0.0'}
     dev: true
 
-  /@docsearch/css@3.5.2:
-    resolution: {integrity: sha512-SPiDHaWKQZpwR2siD0KQUwlStvIAnEyK6tAE2h2Wuoq8ue9skzhlyVQ1ddzOxX6khULnAALDiR/isSF3bnuciA==}
+  /@docsearch/css@3.6.0:
+    resolution: {integrity: sha512-+sbxb71sWre+PwDK7X2T8+bhS6clcVMLwBPznX45Qu6opJcgRjAp7gYSDzVFp187J+feSj5dNBN1mJoi6ckkUQ==}
     dev: true
 
-  /@docsearch/js@3.5.2(@algolia/client-search@4.22.1)(search-insights@2.13.0):
-    resolution: {integrity: sha512-p1YFTCDflk8ieHgFJYfmyHBki1D61+U9idwrLh+GQQMrBSP3DLGKpy0XUJtPjAOPltcVbqsTjiPFfH7JImjUNg==}
+  /@docsearch/js@3.6.0(@algolia/client-search@4.22.1)(search-insights@2.13.0):
+    resolution: {integrity: sha512-QujhqINEElrkIfKwyyyTfbsfMAYCkylInLYMRqHy7PHc8xTBQCow73tlo/Kc7oIwBrCLf0P3YhjlOeV4v8hevQ==}
     dependencies:
-      '@docsearch/react': 3.5.2(@algolia/client-search@4.22.1)(search-insights@2.13.0)
+      '@docsearch/react': 3.6.0(@algolia/client-search@4.22.1)(search-insights@2.13.0)
       preact: 10.19.6
     transitivePeerDependencies:
       - '@algolia/client-search'
@@ -2143,8 +2143,8 @@ packages:
       - search-insights
     dev: true
 
-  /@docsearch/react@3.5.2(@algolia/client-search@4.22.1)(search-insights@2.13.0):
-    resolution: {integrity: sha512-9Ahcrs5z2jq/DcAvYtvlqEBHImbm4YJI8M9y0x6Tqg598P40HTEkX7hsMcIuThI+hTFxRGZ9hll0Wygm2yEjng==}
+  /@docsearch/react@3.6.0(@algolia/client-search@4.22.1)(search-insights@2.13.0):
+    resolution: {integrity: sha512-HUFut4ztcVNmqy9gp/wxNbC7pTOHhgVVkHVGCACTuLhUKUhKAF9KYHJtMiLUJxEqiFLQiuri1fWF8zqwM/cu1w==}
     peerDependencies:
       '@types/react': '>= 16.8.0 < 19.0.0'
       react: '>= 16.8.0 < 19.0.0'
@@ -2162,7 +2162,7 @@ packages:
     dependencies:
       '@algolia/autocomplete-core': 1.9.3(@algolia/client-search@4.22.1)(algoliasearch@4.22.1)(search-insights@2.13.0)
       '@algolia/autocomplete-preset-algolia': 1.9.3(@algolia/client-search@4.22.1)(algoliasearch@4.22.1)
-      '@docsearch/css': 3.5.2
+      '@docsearch/css': 3.6.0
       algoliasearch: 4.22.1
       search-insights: 2.13.0
     transitivePeerDependencies:
@@ -4889,14 +4889,14 @@ packages:
       - typescript
     dev: true
 
-  /@vuepress/plugin-docsearch@2.0.0-rc.18(@algolia/client-search@4.22.1)(search-insights@2.13.0)(typescript@5.3.3)(vuepress@2.0.0-rc.8):
-    resolution: {integrity: sha512-IJzSMKB2o3tbY6euymz1NpBNJtkWMdAwSq6IU0wzw9xFPaQFJqkW8i8O6mObwDgBNFiQG3cDRDTv+NyttY0BzQ==}
+  /@vuepress/plugin-docsearch@2.0.0-rc.21(@algolia/client-search@4.22.1)(search-insights@2.13.0)(typescript@5.3.3)(vuepress@2.0.0-rc.8):
+    resolution: {integrity: sha512-ekbtJyqcnd+J00rb905B8/9KTa4isA+MIsy/r2N+a8Fn0v/GMnGVSseqJs8q74YmHlIx4GawDfKy7F84zxMfjA==}
     peerDependencies:
-      vuepress: 2.0.0-rc.8
+      vuepress: 2.0.0-rc.9
     dependencies:
-      '@docsearch/css': 3.5.2
-      '@docsearch/js': 3.5.2(@algolia/client-search@4.22.1)(search-insights@2.13.0)
-      '@docsearch/react': 3.5.2(@algolia/client-search@4.22.1)(search-insights@2.13.0)
+      '@docsearch/css': 3.6.0
+      '@docsearch/js': 3.6.0(@algolia/client-search@4.22.1)(search-insights@2.13.0)
+      '@docsearch/react': 3.6.0(@algolia/client-search@4.22.1)(search-insights@2.13.0)
       '@vueuse/core': 10.9.0(vue@3.4.21)
       ts-debounce: 4.0.0
       vue: 3.4.21(typescript@5.3.3)
@@ -14637,7 +14637,7 @@ packages:
       - typescript
     dev: true
 
-  /vuepress-theme-hope@2.0.0-rc.27(@vuepress/plugin-docsearch@2.0.0-rc.18)(@vuepress/plugin-redirect@2.0.0-rc.21)(@waline/client@packages+client)(markdown-it@14.0.0)(mathjax-full@3.2.2)(typescript@5.3.3)(vuepress@2.0.0-rc.8):
+  /vuepress-theme-hope@2.0.0-rc.27(@vuepress/plugin-docsearch@2.0.0-rc.21)(@vuepress/plugin-redirect@2.0.0-rc.21)(@waline/client@packages+client)(markdown-it@14.0.0)(mathjax-full@3.2.2)(typescript@5.3.3)(vuepress@2.0.0-rc.8):
     resolution: {integrity: sha512-6/TqFrehr/hk/I5SGmOXVTY0urTvKNaifCuP1v2o8eVmdnYlnFzGHhQk89yZz0zeza54kzYJAUkQbqO0Fc6J8A==}
     engines: {node: '>=18.16.0', npm: '>=8', pnpm: '>=7', yarn: '>=2'}
     peerDependencies:
@@ -14675,7 +14675,7 @@ packages:
       '@vuepress/plugin-catalog': 2.0.0-rc.18(typescript@5.3.3)(vuepress@2.0.0-rc.8)
       '@vuepress/plugin-copy-code': 2.0.0-rc.18(typescript@5.3.3)(vuepress@2.0.0-rc.8)
       '@vuepress/plugin-copyright': 2.0.0-rc.18(typescript@5.3.3)(vuepress@2.0.0-rc.8)
-      '@vuepress/plugin-docsearch': 2.0.0-rc.18(@algolia/client-search@4.22.1)(search-insights@2.13.0)(typescript@5.3.3)(vuepress@2.0.0-rc.8)
+      '@vuepress/plugin-docsearch': 2.0.0-rc.21(@algolia/client-search@4.22.1)(search-insights@2.13.0)(typescript@5.3.3)(vuepress@2.0.0-rc.8)
       '@vuepress/plugin-external-link-icon': 2.0.0-rc.18(typescript@5.3.3)(vuepress@2.0.0-rc.8)
       '@vuepress/plugin-git': 2.0.0-rc.15(vuepress@2.0.0-rc.8)
       '@vuepress/plugin-links-check': 2.0.0-rc.18(typescript@5.3.3)(vuepress@2.0.0-rc.8)
