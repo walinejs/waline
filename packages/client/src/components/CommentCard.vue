@@ -94,11 +94,15 @@
         </template>
       </div>
       <!-- eslint-disable vue/no-v-html -->
-      <div
-        v-if="!isEditingCurrent"
-        class="wl-content"
-        v-html="comment.comment"
-      />
+      <div v-if="!isEditingCurrent" class="wl-content">
+        <p v-if="comment.reply_user">
+          <a :href="'#' + comment.pid">@{{ comment.reply_user.nick }}</a>
+
+          <span>: </span>
+        </p>
+
+        <div v-html="comment.comment" />
+      </div>
       <!-- eslint-enable vue/no-v-html -->
 
       <div v-if="isAdmin && !isEditingCurrent" class="wl-admin-actions">

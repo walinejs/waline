@@ -14,4 +14,12 @@ export default defineConfig({
   plugins: [vue()],
   envDir: resolve(__dirname),
   envPrefix: ['VITE_', 'SERVERURL'],
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:9090',
+        changeOrigin: true,
+      },
+    },
+  },
 });
