@@ -79,7 +79,7 @@
     "rollup-plugin-ts": "3.4.5",
     "sass": "1.72.0",
     "sort-package-json": "2.8.0",
-    "stylelint": "16.3.0",
+    "stylelint": "16.3.1",
     "stylelint-config-hope": "5.0.1",
     "tslib": "2.6.2",
     "typescript": "5.4.3",
