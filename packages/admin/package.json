@@ -60,7 +60,7 @@
     "react-redux": "9.1.0",
     "react-router-dom": "6.22.3",
     "redux": "5.0.1",
-    "typescript": "5.4.3"
+    "typescript": "5.4.5"
   },
   "publishConfig": {
     "provenance": true
