@@ -8,7 +8,7 @@
     "dev": "vuepress dev src"
   },
   "devDependencies": {
-    "@fancyapps/ui": "5.0.35",
+    "@fancyapps/ui": "5.0.36",
     "@vuepress/bundler-vite": "2.0.0-rc.9",
     "@vuepress/helper": "2.0.0-rc.21",
     "@vuepress/plugin-docsearch": "2.0.0-rc.21",
