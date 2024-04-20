@@ -84,7 +84,7 @@
     "tslib": "2.6.2",
     "typescript": "5.4.3",
     "vercel": "33.6.1",
-    "vite": "5.2.6",
+    "vite": "5.2.10",
     "vite-plugin-css-injected-by-js": "3.5.0",
     "vite-plugin-svgr": "4.2.0",
     "vitest": "1.4.0"

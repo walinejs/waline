@@ -98,7 +98,7 @@
     "@types/marked": "6.0.0",
     "@vitejs/plugin-vue": "5.0.4",
     "user-agent-data-types": "0.4.2",
-    "vite": "5.2.6"
+    "vite": "5.2.10"
   },
   "engines": {
     "node": ">=18"
