@@ -1,7 +1,9 @@
 {
   "extends": "./tsconfig.base.json",
-  "paths": {
-    "@theme-hope/*": ["vuepress-theme-hope/lib/client/*.js"]
+  "compilerOptions": {
+    "paths": {
+      "@theme-hope/*": ["vuepress-theme-hope/lib/client/*.js"]
+    }
   },
   "include": [
     "**/*.ts",
