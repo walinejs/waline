@@ -11,7 +11,7 @@
     "@fancyapps/ui": "5.0.35",
     "@vuepress/bundler-vite": "2.0.0-rc.9",
     "@vuepress/helper": "2.0.0-rc.21",
-    "@vuepress/plugin-docsearch": "2.0.0-rc.21",
+    "@vuepress/plugin-docsearch": "2.0.0-rc.26",
     "@vuepress/plugin-redirect": "2.0.0-rc.21",
     "@waline/client": "workspace:*",
     "marked": "12.0.1",
