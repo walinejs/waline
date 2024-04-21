@@ -1,4 +1,8 @@
-import { getArticleCounter, updateArticleCounter } from './articleCounter.js';
+import {
+  type GetArticleCounterResponse,
+  getArticleCounter,
+  updateArticleCounter,
+} from './articleCounter.js';
 import { type BaseAPIOptions } from './utils.js';
 
 interface GetPageviewOptions extends BaseAPIOptions {
@@ -22,7 +26,7 @@ export const getPageview = ({
   lang,
   paths,
   signal,
-}: GetPageviewOptions) =>
+}: GetPageviewOptions): Promise<GetArticleCounterResponse> =>
   getArticleCounter({
     serverURL,
     lang,
@@ -40,7 +44,9 @@ export interface UpdatePageviewOptions extends BaseAPIOptions {
   path: string;
 }
 
-export const updatePageview = (options: UpdatePageviewOptions) =>
+export const updatePageview = (
+  options: UpdatePageviewOptions,
+): Promise<GetArticleCounterResponse> =>
   updateArticleCounter({
     ...options,
     type: 'time',
