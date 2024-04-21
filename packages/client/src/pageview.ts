@@ -92,7 +92,7 @@ export const pageviewCount = ({
   const fetch = (elements: HTMLElement[]): Promise<void> =>
     getPageview({
       serverURL: getServerURL(serverURL),
-      paths: elements.map((element) => getQuery(element) || path),
+      paths: elements.map((element) => getQuery(element) ?? path),
       lang,
       signal: controller.signal,
     })

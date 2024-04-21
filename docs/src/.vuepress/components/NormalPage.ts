@@ -33,9 +33,7 @@ export default defineComponent({
     const themeLocale = useThemeLocaleData();
 
     const tocEnable = computed(
-      () =>
-        frontmatter.value.toc ||
-        (frontmatter.value.toc !== false && themeLocale.value.toc !== false),
+      () => frontmatter.value.toc ?? themeLocale.value.toc ?? false,
     );
 
     return (): VNode =>
@@ -44,10 +42,10 @@ export default defineComponent({
         { class: 'vp-page', id: 'main-content' },
         h(
           hasGlobalComponent('LocalEncrypt')
-            ? <ComponentOptions>resolveComponent('LocalEncrypt')
+            ? (resolveComponent('LocalEncrypt') as ComponentOptions)
             : RenderDefault,
           () => [
-            slots['top']?.(),
+            slots.top?.(),
             h(BreadCrumb),
             h(PageTitle),
             tocEnable.value
@@ -60,14 +58,14 @@ export default defineComponent({
                       2,
                   },
                   {
-                    before: () => slots['tocBefore']?.(),
-                    after: () => slots['tocAfter']?.(),
+                    before: () => slots.tocBefore?.(),
+                    after: () => slots.tocAfter?.(),
                   },
                 )
               : null,
-            slots['contentBefore']?.(),
+            slots.contentBefore?.(),
             h(MarkdownContent),
-            slots['contentAfter']?.(),
+            slots.contentAfter?.(),
             h(PageMeta),
             h(PageNav),
             h(WalineTips),
@@ -76,7 +74,7 @@ export default defineComponent({
                   darkmode: isDarkmode.value,
                 })
               : null,
-            slots['bottom']?.(),
+            slots.bottom?.(),
           ],
         ),
       );

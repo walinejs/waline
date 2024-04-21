@@ -1,15 +1,6 @@
 @use 'fancybox';
 
 .waline-wrapper {
-  // FIXME: FIX in theme
-  --waline-bg-color: var(--bg-color);
-  --waline-bg-color-light: var(--bg-color-secondary);
-  --waline-text-color: var(--text-color);
-  --waline-border: 1px solid var(--border-color);
-  --waline-border-color: var(--border-color);
-  --waline-theme-color: var(--theme-color);
-  --waline-active-color: var(--theme-color-light);
-
   // fancybox
   img {
     cursor: zoom-in;

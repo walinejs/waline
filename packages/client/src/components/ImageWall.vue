@@ -85,9 +85,7 @@ const props = withDefaults(
   },
 );
 
-defineEmits<{
-  (event: 'insert', content: string): void;
-}>();
+defineEmits<(event: 'insert', content: string) => void>();
 
 defineExpose();
 
@@ -113,7 +111,7 @@ const fillColumns = async (itemIndex: number): Promise<void> => {
 
   await nextTick();
 
-  const columnDivs = Array.from(wall.value?.children || []) as HTMLDivElement[];
+  const columnDivs = Array.from(wall.value?.children ?? []) as HTMLDivElement[];
 
   const target = columnDivs.reduce((prev, curr) =>
     curr.getBoundingClientRect().height < prev.getBoundingClientRect().height

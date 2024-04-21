@@ -12,5 +12,7 @@ export function useCaptcha(config) {
     return recaptchaV3;
   }
 
-  return () => {};
+  return () => {
+    // do nothing
+  };
 }

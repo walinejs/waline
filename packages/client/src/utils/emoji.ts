@@ -23,7 +23,7 @@ const fetchEmoji = (link: string): Promise<WalineEmojiInfo> => {
   }
 
   return fetch(`${link}/info.json`)
-    .then((resp) => <Promise<Omit<WalineEmojiInfo, 'folder'>>>resp.json())
+    .then((resp) => resp.json() as Promise<Omit<WalineEmojiInfo, 'folder'>>)
     .then((emojiInfo) => {
       const info = {
         folder: link,
@@ -55,13 +55,13 @@ export const getEmojis = (
     };
 
     emojiInfos.forEach((emojiInfo) => {
-      const { name, folder, icon, prefix, type, items } = emojiInfo;
+      const { name, folder, icon, prefix = '', type, items } = emojiInfo;
 
       emojiConfig.tabs.push({
         name,
         icon: getLink(icon, folder, prefix, type),
         items: items.map((item) => {
-          const key = `${prefix || ''}${item}`;
+          const key = `${prefix}${item}`;
 
           emojiConfig.map[key] = getLink(item, folder, prefix, type);
 

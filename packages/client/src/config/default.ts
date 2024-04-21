@@ -33,7 +33,7 @@ export const defaultUploadImage = (file: File): Promise<string> =>
     const reader = new FileReader();
 
     reader.readAsDataURL(file);
-    reader.onload = (): void => resolve(reader.result?.toString() || '');
+    reader.onload = (): void => resolve(reader.result?.toString() ?? '');
     reader.onerror = reject;
   });
 
@@ -73,7 +73,7 @@ export const getDefaultSearchOptions = (lang: string): WalineSearchOptions => {
         ...params,
       }).toString()}`,
     )
-      .then((resp) => <Promise<GifResult>>resp.json())
+      .then((resp) => resp.json() as Promise<GifResult>)
       .then(({ data }) =>
         data.map((gif) => ({
           title: gif.title,

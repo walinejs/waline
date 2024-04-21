@@ -52,5 +52,5 @@ export const getRecentComment = ({
       signal,
       headers,
     },
-  ).then((resp) => <Promise<RecentCommentData[]>>resp.json());
+  ).then((resp) => resp.json() as Promise<RecentCommentData[]>);
 };

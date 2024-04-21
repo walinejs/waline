@@ -57,7 +57,7 @@ module.exports = class extends think.Controller {
       },
     ).then((resp) => resp.json());
 
-    if (!user || !user.id) {
+    if (!user?.id) {
       return this.fail(user);
     }
 

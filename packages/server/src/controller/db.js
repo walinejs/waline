@@ -14,8 +14,7 @@ module.exports = class extends BaseRest {
       },
     };
 
-    for (let i = 0; i < exportData.tables.length; i++) {
-      const tableName = exportData.tables[i];
+    for (const tableName of exportData.tables) {
       const model = this.getModel(tableName);
 
       const data = await model.select({});

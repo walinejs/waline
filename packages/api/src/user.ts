@@ -40,6 +40,6 @@ export const getUserList = ({
   fetch(`${getFetchPrefix(serverURL)}user?pageSize=${pageSize}&lang=${lang}`, {
     signal,
   })
-    .then((resp) => <Promise<GetUserListResponse>>resp.json())
+    .then((resp) => resp.json() as Promise<GetUserListResponse>)
     .then((resp) => errorCheck(resp, 'user list'))
     .then((resp) => resp.data);

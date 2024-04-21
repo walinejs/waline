@@ -18,7 +18,7 @@ describe('Words test', () => {
     const chineseWords =
       getChinese(
         'Waline - 一款从 Valine 衍生的带后端评论系统。可以将 Waline 等价成 With backend Valine.',
-      ) || [];
+      ) ?? [];
 
     expect(chineseWords.join('')).toEqual(
       '一款从衍生的带后端评论系统可以将等价成',

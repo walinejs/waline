@@ -21,7 +21,7 @@ module.exports = {
     const { lang } = this.get();
     const locale = locales[(lang || 'zh-cn').toLowerCase()] || locales['zh-cn'];
 
-    if (locale && locale[message]) {
+    if (locale?.[message]) {
       message = locale[message];
     }
 

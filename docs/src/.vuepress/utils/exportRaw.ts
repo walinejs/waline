@@ -24,13 +24,12 @@ const fakeClick = (element: HTMLElement): void => {
 
 export const exportRaw = (name: string, data: BlobPart): void => {
   const urlObject = window.URL || window.webkitURL || window;
-  const export_blob = new Blob([data]);
   const saveAnchor = document.createElementNS(
     'http://www.w3.org/1999/xhtml',
     'a',
   ) as HTMLAnchorElement;
 
-  saveAnchor.href = urlObject.createObjectURL(export_blob);
+  saveAnchor.href = urlObject.createObjectURL(new Blob([data]));
   saveAnchor.download = name;
 
   fakeClick(saveAnchor);

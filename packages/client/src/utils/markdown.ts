@@ -37,5 +37,5 @@ export const parseMarkdown = (
     marked.use({ extensions });
   }
 
-  return <string>marked.parse(parseEmoji(content, emojiMap));
+  return marked.parse(parseEmoji(content, emojiMap)) as string;
 };

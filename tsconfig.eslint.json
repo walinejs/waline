@@ -1,14 +1,20 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
+    "allowJs": true,
     "paths": {
       "@theme-hope/*": ["vuepress-theme-hope/lib/client/*.js"]
     }
   },
   "include": [
+    "**/*.js",
+    "**/*.cjs",
+    "**/*.mjs",
+    "**/*.jsx",
     "**/*.ts",
     "**/*.vue",
     "**/.vuepress/**/*.ts",
-    "**/.vuepress/**/*.vue"
+    "**/.vuepress/**/*.vue",
+    ".markdownlint-cli2.mjs"
   ]
 }

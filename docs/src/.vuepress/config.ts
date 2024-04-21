@@ -1,11 +1,11 @@
 import { viteBundler } from '@vuepress/bundler-vite';
 import { redirectPlugin } from '@vuepress/plugin-redirect';
-import { type UserConfig, defineUserConfig } from 'vuepress';
+import { defineUserConfig } from 'vuepress';
 import { path } from 'vuepress/utils';
 
 import theme from './theme.js';
 
-export default <UserConfig>defineUserConfig({
+export default defineUserConfig({
   locales: {
     '/': {
       lang: 'zh-CN',

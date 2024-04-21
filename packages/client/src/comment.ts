@@ -61,7 +61,7 @@ export const commentCount = ({
     void fetchCommentCount({
       serverURL: getServerURL(serverURL),
       paths: Array.from(elements).map((element) =>
-        decodePath(getQuery(element) || path),
+        decodePath(getQuery(element) ?? path),
       ),
       lang,
       signal: controller.signal,

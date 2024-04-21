@@ -677,7 +677,7 @@ const onImageWallScroll = async (event: Event): Promise<void> => {
     event.target as HTMLDivElement;
   const percent = (clientHeight + scrollTop) / scrollHeight;
   const searchOptions = config.value.search as WalineSearchOptions;
-  const keyword = gifSearchInputRef.value?.value || '';
+  const keyword = gifSearchInputRef.value?.value ?? '';
 
   if (percent < 0.9 || searchResults.loading || isImageListEnd.value) return;
 

@@ -29,10 +29,9 @@ async function formatCmt(
     comment.label = user.label;
   }
 
-  const avatarUrl =
-    user && user.avatar
-      ? user.avatar
-      : await think.service('avatar').stringify(comment);
+  const avatarUrl = user?.avatar
+    ? user.avatar
+    : await think.service('avatar').stringify(comment);
 
   comment.avatar =
     avatarProxy && !avatarUrl.includes(avatarProxy)

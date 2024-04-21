@@ -320,6 +320,8 @@ module.exports = class extends Base {
 
     const counts = {};
 
+    // FIXME: The loop is weird @lizheming
+    // eslint-disable-next-line @typescript-eslint/prefer-for-of
     for (let i = 0; i < data.length; i++) {
       const key = group.map((field) => data[field]).join();
 

@@ -82,9 +82,7 @@ if (MONGO_DB) {
 }
 
 const isVercelPostgres =
-  type === 'postgresql' &&
-  POSTGRES_HOST &&
-  POSTGRES_HOST.endsWith('vercel-storage.com');
+  type === 'postgresql' && POSTGRES_HOST?.endsWith('vercel-storage.com');
 
 exports.model = {
   type,

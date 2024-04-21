@@ -17,7 +17,7 @@ function Access(props) {
   useEffect(() => {
     const meta = props.meta || {};
     const basename = props.basename || '';
-    const emptyUser = !user || !user.email;
+    const emptyUser = !user?.email;
 
     if (emptyUser) {
       return (location.href =

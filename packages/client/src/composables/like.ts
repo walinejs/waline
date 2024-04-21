@@ -10,4 +10,4 @@ export type LikeRef = Ref<LikeID[]>;
 let likeStorage: LikeRef | null = null;
 
 export const useLikeStorage = (): LikeRef =>
-  likeStorage || (likeStorage = useStorage<LikeID[]>(LIKE_KEY, []));
+  likeStorage ?? (likeStorage = useStorage<LikeID[]>(LIKE_KEY, []));
