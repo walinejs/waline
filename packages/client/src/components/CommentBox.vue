@@ -278,7 +278,7 @@
       type="button"
       class="wl-close"
       :title="locale.cancelReply"
-      @click="$emit(replyId ? 'cancelReply' : 'cancelEdit')"
+      @click="replyId ? emit('cancelReply') : emit('cancelEdit')"
     >
       <CloseIcon :size="24" />
     </button>
@@ -286,7 +286,7 @@
 </template>
 
 <script setup lang="ts">
-import { useDebounceFn } from '@vueuse/core';
+import { useDebounceFn, useEventListener } from '@vueuse/core';
 import {
   type WalineComment,
   type WalineCommentData,
@@ -302,7 +302,6 @@ import {
   computed,
   inject,
   onMounted,
-  onUnmounted,
   reactive,
   ref,
   watch,
@@ -375,8 +374,6 @@ const emit = defineEmits<{
   (event: 'cancelReply'): void;
   (event: 'submit', comment: WalineComment): void;
 }>();
-
-defineExpose();
 
 const config = inject<ComputedRef<WalineConfig>>('config')!;
 
@@ -586,7 +583,7 @@ const submitComment = async (): Promise<void> => {
       comment,
     };
 
-    const resp = await (props.edit
+    const response = await (props.edit
       ? updateComment({
           objectId: props.edit.objectId,
           ...options,
@@ -595,9 +592,9 @@ const submitComment = async (): Promise<void> => {
 
     isSubmitting.value = false;
 
-    if (resp.errmsg) return alert(resp.errmsg);
+    if (response.errmsg) return alert(response.errmsg);
 
-    emit('submit', resp.data!);
+    emit('submit', response.data!);
 
     editor.value = '';
 
@@ -735,44 +732,43 @@ watch(
   { immediate: true },
 );
 
-const onMessageReceive = ({
-  data,
-}: {
-  data: { type: 'profile'; data: UserInfo };
-}): void => {
-  if (!data || data.type !== 'profile') return;
+useEventListener('click', popupHandler);
+useEventListener(
+  'message',
+  ({ data }: { data: { type: 'profile'; data: UserInfo } }): void => {
+    if (!data || data.type !== 'profile') return;
 
-  userInfo.value = { ...userInfo.value, ...data.data };
+    userInfo.value = { ...userInfo.value, ...data.data };
 
-  [localStorage, sessionStorage]
-    .filter((store) => store.getItem('WALINE_USER'))
-    .forEach((store) => store.setItem('WALINE_USER', JSON.stringify(userInfo)));
-};
+    [localStorage, sessionStorage]
+      .filter((store) => store.getItem('WALINE_USER'))
+      .forEach((store) =>
+        store.setItem('WALINE_USER', JSON.stringify(userInfo)),
+      );
+  },
+);
+
+// watch gif
+watch(showGif, async (showGif) => {
+  if (!showGif) return;
+
+  const searchOptions = config.value.search as WalineSearchOptions;
+
+  // clear input
+  if (gifSearchInputRef.value) gifSearchInputRef.value.value = '';
+
+  searchResults.loading = true;
+
+  searchResults.list = await (searchOptions.default?.() ??
+    searchOptions.search(''));
+
+  searchResults.loading = false;
+});
 
 onMounted(() => {
-  document.body.addEventListener('click', popupHandler);
-  window.addEventListener('message', onMessageReceive);
   if (props.edit?.objectId) {
     editor.value = props.edit.orig;
   }
-
-  // watch gif
-  watch(showGif, async (showGif) => {
-    if (!showGif) return;
-
-    const searchOptions = config.value.search as WalineSearchOptions;
-
-    // clear input
-    if (gifSearchInputRef.value) gifSearchInputRef.value.value = '';
-
-    searchResults.loading = true;
-
-    searchResults.list = searchOptions.default
-      ? await searchOptions.default()
-      : await searchOptions.search('');
-
-    searchResults.loading = false;
-  });
 
   // watch editor
   watch(
@@ -803,10 +799,5 @@ onMounted(() => {
       }),
     { immediate: true },
   );
-});
-
-onUnmounted(() => {
-  document.body.removeEventListener('click', popupHandler);
-  window.removeEventListener('message', onMessageReceive);
 });
 </script>
