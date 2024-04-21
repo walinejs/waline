@@ -30,8 +30,8 @@ importers:
         specifier: 19.2.2
         version: 19.2.2
       '@eslint/js':
-        specifier: 8.57.0
-        version: 8.57.0
+        specifier: 9.1.1
+        version: 9.1.1
       '@rollup/plugin-commonjs':
         specifier: 25.0.7
         version: 25.0.7(rollup@4.16.0)
@@ -1588,6 +1588,10 @@ packages:
   '@eslint/js@8.57.0':
     resolution: {integrity: sha512-Ys+3g2TaW7gADOJzPt83SJtCDhMjndcDMFVQ/Tj9iA1BfJzFKD9mAUXT3OenpuPHbI6P/myECxRJrofUsDx/5g==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+
+  '@eslint/js@9.1.1':
+    resolution: {integrity: sha512-5WoDz3Y19Bg2BnErkZTp0en+c/i9PvgFS7MBe1+m60HjFr0hrphlAGp4yzI7pxpt4xShln4ZyYp4neJm8hmOkQ==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   '@fancyapps/ui@5.0.36':
     resolution: {integrity: sha512-GMygQzp1MBTFNTT6AzpbL6pXTD6bTxwjmmpI1fe8Ozmmiseu8/g82Sudl1YhcbZmS4bJgaBOF5THDFGpXQ1fDw==}
@@ -9457,6 +9461,8 @@ snapshots:
       - supports-color
 
   '@eslint/js@8.57.0': {}
+
+  '@eslint/js@9.1.1': {}
 
   '@fancyapps/ui@5.0.36': {}
 
