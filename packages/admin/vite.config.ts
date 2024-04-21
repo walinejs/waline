@@ -16,13 +16,13 @@ export default defineConfig({
     ),
   },
 
-  plugins: [react(), svgr({ libraryDir: undefined }), cssInjectedByJsPlugin()],
+  plugins: [react(), svgr(), cssInjectedByJsPlugin()],
 
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.jsx'),
-      formats: ['es'],
       fileName: 'admin',
+      formats: ['es'],
     },
   },
 
