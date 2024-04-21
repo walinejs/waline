@@ -87,13 +87,13 @@ const fetchReaction = async (): Promise<void> => {
 
   abort = controller.abort.bind(controller);
 
-  const resp = await getArticleCounter({
+  const resp = (await getArticleCounter({
     serverURL,
     lang,
     paths: [path],
     type: reaction.map((_reaction, index) => `reaction${index}`),
     signal: controller.signal,
-  });
+  })) as Record<string, number>[];
 
   voteNumbers.value = reaction.map(
     (_reaction, index) => resp[0][`reaction${index}`],
