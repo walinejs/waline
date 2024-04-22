@@ -249,7 +249,6 @@ export default tseslint.config(
       'packages/hexo-next/**/*.js',
       'packages/server/**/*.{js,ts}',
       'scripts/**.cjs',
-      'commitlint.config.cjs',
     ],
     languageOptions: {
       globals: globals.node,
