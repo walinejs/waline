@@ -69,7 +69,7 @@
     "eslint-plugin-react": "7.34.1",
     "eslint-plugin-vitest": "0.5.3",
     "eslint-plugin-vue": "9.25.0",
-    "globals": "15.0.0",
+    "globals": "15.1.0",
     "husky": "9.0.11",
     "markdownlint-cli2": "0.13.0",
     "nano-staged": "0.8.0",
