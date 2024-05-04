@@ -282,8 +282,8 @@ importers:
         specifier: 7.24.4
         version: 7.24.4(@babel/core@7.24.4)
       '@giphy/js-types':
-        specifier: 5.0.0
-        version: 5.0.0
+        specifier: 5.1.0
+        version: 5.1.0
       '@types/autosize':
         specifier: 4.0.3
         version: 4.0.3
@@ -1605,8 +1605,8 @@ packages:
   '@gar/promisify@1.1.3':
     resolution: {integrity: sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==}
 
-  '@giphy/js-types@5.0.0':
-    resolution: {integrity: sha512-L7q1Skf8nDiShtuU3VfOZs8Ce95SP6FjDefZH3p9qBvl58hlRDfJ0l4k/35+RYUy8t0orU+cEde1QCj0Z8U+uQ==}
+  '@giphy/js-types@5.1.0':
+    resolution: {integrity: sha512-BZYCDtYNRR7cUWkbDLB4wmm3qmWMsVCQdUiBNOfmZ3yAazCgygKJoDI/5Rq4CK5MBaOc5LVdF8viC2WtoBdaPA==}
 
   '@humanwhocodes/config-array@0.11.14':
     resolution: {integrity: sha512-3T8LkOmg45BV5FICb15QQMsyUSWrQ8AygVfC7ZG32zOalnqrilm018ZVCw0eapXux8FtA33q8PSRSstjee3jSg==}
@@ -9607,7 +9607,7 @@ snapshots:
   '@gar/promisify@1.1.3':
     optional: true
 
-  '@giphy/js-types@5.0.0': {}
+  '@giphy/js-types@5.1.0': {}
 
   '@humanwhocodes/config-array@0.11.14':
     dependencies:

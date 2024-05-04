@@ -93,7 +93,7 @@
   "devDependencies": {
     "@babel/core": "7.24.4",
     "@babel/preset-env": "7.24.4",
-    "@giphy/js-types": "5.0.0",
+    "@giphy/js-types": "5.1.0",
     "@types/autosize": "4.0.3",
     "@types/marked": "6.0.0",
     "@vitejs/plugin-vue": "5.0.4",
