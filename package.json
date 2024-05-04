@@ -88,7 +88,7 @@
     "typescript": "5.4.5",
     "typescript-eslint": "7.7.0",
     "vercel": "34.1.7",
-    "vite": "5.2.10",
+    "vite": "5.2.11",
     "vite-plugin-css-injected-by-js": "3.5.0",
     "vite-plugin-svgr": "4.2.0",
     "vitest": "1.5.0"
