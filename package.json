@@ -59,7 +59,7 @@
     "@vue/eslint-config-typescript": "13.0.0",
     "apidoc": "1.2.0",
     "commitizen": "4.3.0",
-    "conventional-changelog-cli": "4.1.0",
+    "conventional-changelog-cli": "5.0.0",
     "cross-env": "7.0.3",
     "cz-conventional-changelog": "3.3.0",
     "eslint": "8.57.0",
