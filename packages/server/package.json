@@ -17,7 +17,7 @@
   "dependencies": {
     "@cloudbase/node-sdk": "^2.11.0",
     "@koa/cors": "^5.0.0",
-    "@mdit/plugin-katex": "0.8.0",
+    "@mdit/plugin-katex": "0.10.1",
     "@mdit/plugin-mathjax": "0.4.8",
     "@mdit/plugin-sub": "0.8.0",
     "@mdit/plugin-sup": "0.8.0",
