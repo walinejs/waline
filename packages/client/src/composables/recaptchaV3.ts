@@ -1,4 +1,5 @@
-import { type ReCaptchaInstance, load } from 'recaptcha-v3';
+import type { ReCaptchaInstance } from 'recaptcha-v3';
+import { load } from 'recaptcha-v3';
 
 const recaptchaStore: Record<string, Promise<ReCaptchaInstance>> = {};
 

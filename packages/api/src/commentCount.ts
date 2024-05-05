@@ -1,9 +1,5 @@
-import {
-  type BaseAPIOptions,
-  type ErrorStatusResponse,
-  getFetchPrefix,
-  errorCheck,
-} from './utils.js';
+import type { BaseAPIOptions, ErrorStatusResponse } from './utils.js';
+import { errorCheck, getFetchPrefix } from './utils.js';
 
 export interface GetCommentCountOptions extends BaseAPIOptions {
   /**

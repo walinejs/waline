@@ -24,42 +24,11 @@
   SOFTWARE. 
 -->
 
-<template>
-  <div ref="wall" class="wl-gallery" :style="{ gap: `${gap}px` }">
-    <div
-      v-for="(column, columnIndex) in columns"
-      :key="columnIndex"
-      class="wl-gallery-column"
-      :data-index="columnIndex"
-      :style="{ gap: `${gap}px` }"
-    >
-      <template v-for="itemIndex in column" :key="itemIndex">
-        <!-- eslint-disable vue/no-static-inline-styles -->
-        <LoadingIcon
-          v-if="!state[items[itemIndex].src]"
-          :size="36"
-          style="margin: 20px auto"
-        />
-        <!-- eslint-enable vue/no-static-inline-styles -->
-
-        <img
-          class="wl-gallery-item"
-          :src="items[itemIndex].src"
-          :title="items[itemIndex].title"
-          loading="lazy"
-          @load="imageLoad"
-          @click="$emit('insert', `![](${items[itemIndex].src})`)"
-        />
-      </template>
-    </div>
-  </div>
-</template>
-
 <script setup lang="ts">
 import { nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 
 import { LoadingIcon } from './Icons.js';
-import { type WalineSearchResult } from '../typings/index.js';
+import type { WalineSearchResult } from '../typings/index.js';
 
 type Column = number[];
 
@@ -165,3 +134,34 @@ onMounted(() => {
 
 onBeforeUnmount(() => resizeObserver!.unobserve(wall.value!));
 </script>
+
+<template>
+  <div ref="wall" class="wl-gallery" :style="{ gap: `${gap}px` }">
+    <div
+      v-for="(column, columnIndex) in columns"
+      :key="columnIndex"
+      class="wl-gallery-column"
+      :data-index="columnIndex"
+      :style="{ gap: `${gap}px` }"
+    >
+      <template v-for="itemIndex in column" :key="itemIndex">
+        <!-- eslint-disable vue/no-static-inline-styles -->
+        <LoadingIcon
+          v-if="!state[items[itemIndex].src]"
+          :size="36"
+          style="margin: 20px auto"
+        />
+        <!-- eslint-enable vue/no-static-inline-styles -->
+
+        <img
+          class="wl-gallery-item"
+          :src="items[itemIndex].src"
+          :title="items[itemIndex].title"
+          loading="lazy"
+          @load="imageLoad"
+          @click="$emit('insert', `![](${items[itemIndex].src})`)"
+        />
+      </template>
+    </div>
+  </div>
+</template>

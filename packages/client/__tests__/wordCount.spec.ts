@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { getWords, getChinese, getWordNumber } from '../src/utils/wordCount.js';
+import { getChinese, getWordNumber, getWords } from '../src/utils/wordCount.js';
 
 describe('Words test', () => {
   it('Should count empty content correctly', () => {

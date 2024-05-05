@@ -1,10 +1,7 @@
-import {
-  GetArticleCounterResponse,
-  getPageview,
-  updatePageview,
-} from '@waline/api';
+import type { GetArticleCounterResponse } from '@waline/api';
+import { getPageview, updatePageview } from '@waline/api';
 
-import { type WalineAbort } from './typings/index.js';
+import type { WalineAbort } from './typings/index.js';
 import { errorHandler, getQuery, getServerURL } from './utils/index.js';
 
 export interface WalinePageviewCountOptions {
@@ -51,8 +48,6 @@ export interface WalinePageviewCountOptions {
    */
   lang?: string;
 }
-
-export { type WalineAbort } from './typings/index.js';
 
 const renderVisitorCount = (
   counts: GetArticleCounterResponse,

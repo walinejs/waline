@@ -1,3 +1,97 @@
+<script setup lang="ts">
+import { useNow } from '@vueuse/core';
+import type { WalineComment, WalineCommentStatus } from '@waline/api';
+import type { ComputedRef } from 'vue';
+import { computed, inject } from 'vue';
+
+import CommentBox from './CommentBox.vue';
+import {
+  DeleteIcon,
+  EditIcon,
+  LikeIcon,
+  ReplyIcon,
+  VerifiedIcon,
+} from './Icons.js';
+import { useLikeStorage, useUserInfo } from '../composables/index.js';
+import type { WalineConfig } from '../utils/index.js';
+import { getTimeAgo, isLinkHttp } from '../utils/index.js';
+
+const props = withDefaults(
+  defineProps<{
+    /**
+     * Comment data
+     */
+    comment: WalineComment;
+    /**
+     * Current comment to be edited
+     */
+    edit?: WalineComment | null;
+    /**
+     * Root comment id
+     */
+    rootId: string;
+    /**
+     * Current comment to be replied
+     */
+    reply?: WalineComment | null;
+  }>(),
+  {
+    edit: null,
+    reply: null,
+  },
+);
+
+const emit = defineEmits<{
+  (event: 'log'): void;
+  (event: 'submit', comment: WalineComment): void;
+  (event: 'delete', comment: WalineComment): void;
+  (event: 'edit', comment: WalineComment | null): void;
+  (event: 'like', comment: WalineComment): void;
+  (
+    event: 'status',
+    statusInfo: { status: WalineCommentStatus; comment: WalineComment },
+  ): void;
+  (event: 'sticky', comment: WalineComment): void;
+  (event: 'reply', comment: WalineComment | null): void;
+}>();
+
+const commentStatus: WalineCommentStatus[] = ['approved', 'waiting', 'spam'];
+
+const config = inject<ComputedRef<WalineConfig>>('config')!;
+const likes = useLikeStorage();
+const now = useNow();
+const userInfo = useUserInfo();
+
+const locale = computed(() => config.value.locale);
+
+const link = computed(() => {
+  const { link } = props.comment;
+
+  return link ? (isLinkHttp(link) ? link : `https://${link}`) : '';
+});
+
+const like = computed(() => likes.value.includes(props.comment.objectId));
+
+const time = computed(() =>
+  getTimeAgo(new Date(props.comment.time), now.value, locale.value),
+);
+
+const isAdmin = computed(() => userInfo.value.type === 'administrator');
+
+const isOwner = computed(
+  () =>
+    props.comment.user_id && userInfo.value.objectId === props.comment.user_id,
+);
+
+const isReplyingCurrent = computed(
+  () => props.comment.objectId === props.reply?.objectId,
+);
+
+const isEditingCurrent = computed(
+  () => props.comment.objectId === props.edit?.objectId,
+);
+</script>
+
 <template>
   <div :id="comment.objectId" class="wl-card-item">
     <div class="wl-user" aria-hidden="true">
@@ -168,95 +262,3 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { useNow } from '@vueuse/core';
-import { type WalineComment, type WalineCommentStatus } from '@waline/api';
-import { type ComputedRef, computed, inject } from 'vue';
-
-import CommentBox from './CommentBox.vue';
-import {
-  DeleteIcon,
-  EditIcon,
-  LikeIcon,
-  ReplyIcon,
-  VerifiedIcon,
-} from './Icons.js';
-import { useLikeStorage, useUserInfo } from '../composables/index.js';
-import { type WalineConfig, getTimeAgo, isLinkHttp } from '../utils/index.js';
-
-const props = withDefaults(
-  defineProps<{
-    /**
-     * Comment data
-     */
-    comment: WalineComment;
-    /**
-     * Current comment to be edited
-     */
-    edit?: WalineComment | null;
-    /**
-     * Root comment id
-     */
-    rootId: string;
-    /**
-     * Current comment to be replied
-     */
-    reply?: WalineComment | null;
-  }>(),
-  {
-    edit: null,
-    reply: null,
-  },
-);
-
-const emit = defineEmits<{
-  (event: 'log'): void;
-  (event: 'submit', comment: WalineComment): void;
-  (event: 'delete', comment: WalineComment): void;
-  (event: 'edit', comment: WalineComment | null): void;
-  (event: 'like', comment: WalineComment): void;
-  (
-    event: 'status',
-    statusInfo: { status: WalineCommentStatus; comment: WalineComment },
-  ): void;
-  (event: 'sticky', comment: WalineComment): void;
-  (event: 'reply', comment: WalineComment | null): void;
-}>();
-
-const commentStatus: WalineCommentStatus[] = ['approved', 'waiting', 'spam'];
-
-const config = inject<ComputedRef<WalineConfig>>('config')!;
-const likes = useLikeStorage();
-const now = useNow();
-const userInfo = useUserInfo();
-
-const locale = computed(() => config.value.locale);
-
-const link = computed(() => {
-  const { link } = props.comment;
-
-  return link ? (isLinkHttp(link) ? link : `https://${link}`) : '';
-});
-
-const like = computed(() => likes.value.includes(props.comment.objectId));
-
-const time = computed(() =>
-  getTimeAgo(new Date(props.comment.time), now.value, locale.value),
-);
-
-const isAdmin = computed(() => userInfo.value.type === 'administrator');
-
-const isOwner = computed(
-  () =>
-    props.comment.user_id && userInfo.value.objectId === props.comment.user_id,
-);
-
-const isReplyingCurrent = computed(
-  () => props.comment.objectId === props.reply?.objectId,
-);
-
-const isEditingCurrent = computed(
-  () => props.comment.objectId === props.edit?.objectId,
-);
-</script>

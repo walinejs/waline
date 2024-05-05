@@ -1,10 +1,10 @@
-import { type IGif } from '@giphy/js-types';
+import type { IGif } from '@giphy/js-types';
 
-import {
-  type WalineEmojiPresets,
-  type WalineMeta,
-  type WalineSearchOptions,
-  type WalineSearchResult,
+import type {
+  WalineEmojiPresets,
+  WalineMeta,
+  WalineSearchOptions,
+  WalineSearchResult,
 } from '../typings/index.js';
 
 const AVAILABLE_META: WalineMeta[] = ['nick', 'mail', 'link'];

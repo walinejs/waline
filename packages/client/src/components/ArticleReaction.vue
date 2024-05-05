@@ -1,52 +1,12 @@
-<template>
-  <div v-if="reactionsInfo.length" class="wl-reaction">
-    <div class="wl-reaction-title" v-text="locale.reactionTitle" />
-
-    <ul class="wl-reaction-list">
-      <li
-        v-for="({ active, icon, desc }, index) in reactionsInfo"
-        :key="index"
-        class="wl-reaction-item"
-        :class="{ active }"
-        @click="vote(index)"
-      >
-        <div class="wl-reaction-img">
-          <img :src="icon" :alt="desc" />
-
-          <LoadingIcon
-            v-if="votingIndex === index"
-            class="wl-reaction-loading"
-          />
-
-          <div
-            v-else
-            class="wl-reaction-votes"
-            v-text="voteNumbers[index] || 0"
-          />
-        </div>
-
-        <div class="wl-reaction-text" v-text="desc" />
-      </li>
-    </ul>
-  </div>
-</template>
-
 <script setup lang="ts">
 import { getArticleCounter, updateArticleCounter } from '@waline/api';
-import {
-  type ComputedRef,
-  computed,
-  inject,
-  onMounted,
-  onUnmounted,
-  ref,
-  watch,
-} from 'vue';
+import type { ComputedRef } from 'vue';
+import { computed, inject, onMounted, onUnmounted, ref, watch } from 'vue';
 
 import { LoadingIcon } from './Icons.js';
 import { useReactionStorage } from '../composables/index.js';
-import { type WalineReactionLocale } from '../typings/index.js';
-import { type WalineConfig } from '../utils/index.js';
+import type { WalineReactionLocale } from '../typings/index.js';
+import type { WalineConfig } from '../utils/index.js';
 
 defineExpose();
 
@@ -156,3 +116,36 @@ onMounted(() => {
 });
 onUnmounted(() => abort?.());
 </script>
+
+<template>
+  <div v-if="reactionsInfo.length" class="wl-reaction">
+    <div class="wl-reaction-title" v-text="locale.reactionTitle" />
+
+    <ul class="wl-reaction-list">
+      <li
+        v-for="({ active, icon, desc }, index) in reactionsInfo"
+        :key="index"
+        class="wl-reaction-item"
+        :class="{ active }"
+        @click="vote(index)"
+      >
+        <div class="wl-reaction-img">
+          <img :src="icon" :alt="desc" />
+
+          <LoadingIcon
+            v-if="votingIndex === index"
+            class="wl-reaction-loading"
+          />
+
+          <div
+            v-else
+            class="wl-reaction-votes"
+            v-text="voteNumbers[index] || 0"
+          />
+        </div>
+
+        <div class="wl-reaction-text" v-text="desc" />
+      </li>
+    </ul>
+  </div>
+</template>

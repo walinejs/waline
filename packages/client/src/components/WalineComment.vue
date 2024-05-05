@@ -1,111 +1,23 @@
-<template>
-  <div data-waline>
-    <Reaction />
-
-    <CommentBox v-if="!reply" @log="refresh" @submit="onSubmit" />
-
-    <div class="wl-meta-head">
-      <div class="wl-count">
-        <span v-if="count" class="wl-num" v-text="count" />
-        {{ i18n.comment }}
-      </div>
-
-      <ul class="wl-sort">
-        <li
-          v-for="item in sortingMethods"
-          :key="item"
-          :class="[item === commentSortingRef ? 'active' : '']"
-          @click="onSortByChange(item)"
-        >
-          {{ i18n[item] }}
-        </li>
-      </ul>
-    </div>
-
-    <div class="wl-cards">
-      <CommentCard
-        v-for="comment in data"
-        :key="comment.objectId"
-        :root-id="comment.objectId"
-        :comment="comment"
-        :reply="reply"
-        :edit="edit"
-        @log="refresh"
-        @reply="onReply"
-        @edit="onEdit"
-        @submit="onSubmit"
-        @status="onStatusChange"
-        @delete="onDelete"
-        @sticky="onSticky"
-        @like="onLike"
-      />
-    </div>
-
-    <div v-if="status === 'error'" class="wl-operation">
-      <button
-        type="button"
-        class="wl-btn"
-        @click="refresh"
-        v-text="i18n.refresh"
-      />
-    </div>
-
-    <div v-else-if="status === 'loading'" class="wl-loading">
-      <LoadingIcon :size="30" />
-    </div>
-
-    <div v-else-if="!data.length" class="wl-empty" v-text="i18n.sofa" />
-
-    <!-- Load more button -->
-    <div v-else-if="page < totalPages" class="wl-operation">
-      <button
-        type="button"
-        class="wl-btn"
-        @click="loadMore"
-        v-text="i18n.more"
-      />
-    </div>
-
-    <!-- Copyright Information -->
-    <div v-if="config.copyright" class="wl-power">
-      Powered by
-      <a
-        href="https://github.com/walinejs/waline"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Waline
-      </a>
-      v{{ version }}
-    </div>
-  </div>
-</template>
-
 <script setup lang="ts">
 /* eslint-disable vue/define-props-declaration */
 /* eslint-disable vue/no-unused-properties */
 /* eslint-disable vue/require-prop-comment */
 /* eslint-disable vue/require-prop-types */
 import { useStyleTag } from '@vueuse/core';
-import {
-  type WalineComment,
-  type WalineCommentStatus,
-  type WalineRootComment,
-  deleteComment,
-  getComment,
-  updateComment,
+import type {
+  WalineComment,
+  WalineCommentStatus,
+  WalineRootComment,
 } from '@waline/api';
+import { deleteComment, getComment, updateComment } from '@waline/api';
 import { computed, onMounted, onUnmounted, provide, ref, watch } from 'vue';
 
 import Reaction from './ArticleReaction.vue';
 import CommentBox from './CommentBox.vue';
 import CommentCard from './CommentCard.vue';
 import { LoadingIcon } from './Icons.js';
-import { useUserInfo, useLikeStorage } from '../composables/index.js';
-import {
-  type WalineCommentSorting,
-  type WalineProps,
-} from '../typings/index.js';
+import { useLikeStorage, useUserInfo } from '../composables/index.js';
+import type { WalineCommentSorting, WalineProps } from '../typings/index.js';
 import { getConfig, getDarkStyle } from '../utils/index.js';
 import { version } from '../version.js';
 
@@ -354,3 +266,86 @@ onMounted(() => {
 });
 onUnmounted(() => abort?.());
 </script>
+
+<template>
+  <div data-waline>
+    <Reaction />
+
+    <CommentBox v-if="!reply" @log="refresh" @submit="onSubmit" />
+
+    <div class="wl-meta-head">
+      <div class="wl-count">
+        <span v-if="count" class="wl-num" v-text="count" />
+        {{ i18n.comment }}
+      </div>
+
+      <ul class="wl-sort">
+        <li
+          v-for="item in sortingMethods"
+          :key="item"
+          :class="[item === commentSortingRef ? 'active' : '']"
+          @click="onSortByChange(item)"
+        >
+          {{ i18n[item] }}
+        </li>
+      </ul>
+    </div>
+
+    <div class="wl-cards">
+      <CommentCard
+        v-for="comment in data"
+        :key="comment.objectId"
+        :root-id="comment.objectId"
+        :comment="comment"
+        :reply="reply"
+        :edit="edit"
+        @log="refresh"
+        @reply="onReply"
+        @edit="onEdit"
+        @submit="onSubmit"
+        @status="onStatusChange"
+        @delete="onDelete"
+        @sticky="onSticky"
+        @like="onLike"
+      />
+    </div>
+
+    <div v-if="status === 'error'" class="wl-operation">
+      <button
+        type="button"
+        class="wl-btn"
+        @click="refresh"
+        v-text="i18n.refresh"
+      />
+    </div>
+
+    <div v-else-if="status === 'loading'" class="wl-loading">
+      <LoadingIcon :size="30" />
+    </div>
+
+    <div v-else-if="!data.length" class="wl-empty" v-text="i18n.sofa" />
+
+    <!-- Load more button -->
+    <div v-else-if="page < totalPages" class="wl-operation">
+      <button
+        type="button"
+        class="wl-btn"
+        @click="loadMore"
+        v-text="i18n.more"
+      />
+    </div>
+
+    <!-- Copyright Information -->
+    <div v-if="config.copyright" class="wl-power">
+      Powered by
+      <a
+        href="https://github.com/walinejs/waline"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Waline
+      </a>
+      v{{ version }}
+    </div>
+  </div>
+</template>

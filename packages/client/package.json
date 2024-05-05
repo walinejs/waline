@@ -88,17 +88,17 @@
     "marked": "^12.0.2",
     "marked-highlight": "^2.1.1",
     "recaptcha-v3": "^1.10.0",
-    "vue": "^3.4.23"
+    "vue": "^3.4.26"
   },
   "devDependencies": {
-    "@babel/core": "7.24.4",
-    "@babel/preset-env": "7.24.4",
-    "@giphy/js-types": "5.0.0",
+    "@babel/core": "7.24.5",
+    "@babel/preset-env": "7.24.5",
+    "@giphy/js-types": "5.1.0",
     "@types/autosize": "4.0.3",
     "@types/marked": "6.0.0",
     "@vitejs/plugin-vue": "5.0.4",
     "user-agent-data-types": "0.4.2",
-    "vite": "5.2.10"
+    "vite": "5.2.11"
   },
   "engines": {
     "node": ">=18"

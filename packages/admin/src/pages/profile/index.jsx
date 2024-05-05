@@ -1,6 +1,6 @@
 import cls from 'classnames';
 import React, { useState } from 'react';
-import { useTranslation, Trans } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import TwoFactorAuth from './twoFactorAuth';

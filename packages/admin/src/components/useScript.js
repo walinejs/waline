@@ -1,6 +1,6 @@
 // The hooks original author is @hupe1980 fork from https://github.com/hupe1980/react-script-hook/blob/master/src/use-script.tsx
 
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 // Previously loading/loaded scripts and their current status
 export const scripts = {};

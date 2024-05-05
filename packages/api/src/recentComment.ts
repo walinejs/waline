@@ -1,5 +1,6 @@
-import { type BaseWalineResponseComment } from './typings.js';
-import { type BaseAPIOptions, getFetchPrefix } from './utils.js';
+import type { BaseWalineResponseComment } from './typings.js';
+import type { BaseAPIOptions } from './utils.js';
+import { getFetchPrefix } from './utils.js';
 
 export interface GetRecentCommentOptions extends BaseAPIOptions {
   /**

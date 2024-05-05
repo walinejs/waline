@@ -1,15 +1,10 @@
-import {
-  type WalineComment,
-  type WalineCommentData,
-  type WalineRootComment,
+import type {
+  WalineComment,
+  WalineCommentData,
+  WalineRootComment,
 } from './typings.js';
-import {
-  type BaseAPIOptions,
-  type ErrorStatusResponse,
-  JSON_HEADERS,
-  errorCheck,
-  getFetchPrefix,
-} from './utils.js';
+import type { BaseAPIOptions, ErrorStatusResponse } from './utils.js';
+import { JSON_HEADERS, errorCheck, getFetchPrefix } from './utils.js';
 
 export interface GetCommentOptions extends BaseAPIOptions {
   /**

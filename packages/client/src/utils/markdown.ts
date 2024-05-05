@@ -2,10 +2,10 @@ import { Marked } from 'marked';
 import { markedHighlight } from 'marked-highlight';
 
 import { markedTeXExtensions } from './markedMathExtension.js';
-import {
-  type WalineEmojiMaps,
-  type WalineHighlighter,
-  type WalineTeXRenderer,
+import type {
+  WalineEmojiMaps,
+  WalineHighlighter,
+  WalineTeXRenderer,
 } from '../typings/index.js';
 
 export const parseEmoji = (text = '', emojiMap: WalineEmojiMaps = {}): string =>

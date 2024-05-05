@@ -1,9 +1,6 @@
-import {
-  type GetArticleCounterResponse,
-  getArticleCounter,
-  updateArticleCounter,
-} from './articleCounter.js';
-import { type BaseAPIOptions } from './utils.js';
+import type { GetArticleCounterResponse } from './articleCounter.js';
+import { getArticleCounter, updateArticleCounter } from './articleCounter.js';
+import type { BaseAPIOptions } from './utils.js';
 
 interface GetPageviewOptions extends BaseAPIOptions {
   /**

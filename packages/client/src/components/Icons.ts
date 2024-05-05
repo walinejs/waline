@@ -1,4 +1,5 @@
-import { type FunctionalComponent, h } from 'vue';
+import type { FunctionalComponent } from 'vue';
+import { h } from 'vue';
 
 export const CloseIcon: FunctionalComponent<{ size: number }> = ({ size }) =>
   h(

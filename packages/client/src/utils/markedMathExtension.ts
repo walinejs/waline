@@ -1,6 +1,6 @@
-import { type TokenizerExtension } from 'marked';
+import type { TokenizerExtension } from 'marked';
 
-import { type WalineTeXRenderer } from '../typings/index.js';
+import type { WalineTeXRenderer } from '../typings/index.js';
 
 const inlineMathStart = /\$.*?\$/;
 const inlineMathReg = /^\$(.*?)\$/;

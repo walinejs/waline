@@ -1,10 +1,5 @@
-import {
-  type BaseAPIOptions,
-  type ErrorStatusResponse,
-  JSON_HEADERS,
-  getFetchPrefix,
-  errorCheck,
-} from './utils.js';
+import type { BaseAPIOptions, ErrorStatusResponse } from './utils.js';
+import { JSON_HEADERS, errorCheck, getFetchPrefix } from './utils.js';
 
 export interface GetArticleCounterOptions extends BaseAPIOptions {
   /**
