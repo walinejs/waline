@@ -59,7 +59,7 @@
     "eslint": "8.57.0",
     "eslint-config-mister-hope": "0.0.10",
     "eslint-plugin-react": "7.34.1",
-    "eslint-plugin-vue": "9.25.0",
+    "eslint-plugin-vue": "9.26.0",
     "husky": "9.0.11",
     "markdownlint-cli2": "0.13.0",
     "nano-staged": "0.8.0",
