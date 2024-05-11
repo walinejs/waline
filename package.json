@@ -57,7 +57,7 @@
     "cross-env": "7.0.3",
     "cz-conventional-changelog": "3.3.0",
     "eslint": "8.57.0",
-    "eslint-config-mister-hope": "0.0.10",
+    "eslint-config-mister-hope": "0.1.0",
     "eslint-plugin-react": "7.34.1",
     "eslint-plugin-vue": "9.25.0",
     "husky": "9.0.11",

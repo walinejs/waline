@@ -60,8 +60,8 @@ importers:
         specifier: 8.57.0
         version: 8.57.0
       eslint-config-mister-hope:
-        specifier: 0.0.10
-        version: 0.0.10(@types/eslint@8.56.10)(@typescript-eslint/parser@7.8.0(eslint@8.57.0)(typescript@5.4.5))(eslint-plugin-vue@9.25.0(eslint@8.57.0))(eslint@8.57.0)(prettier@3.2.5)(typescript@5.4.5)(vitest@1.6.0(@edge-runtime/vm@3.2.0)(@types/node@20.12.10)(jsdom@24.0.0)(sass@1.76.0)(terser@5.31.0))(vue-eslint-parser@9.4.2(eslint@8.57.0))
+        specifier: 0.1.0
+        version: 0.1.0(@types/eslint@8.56.10)(@typescript-eslint/parser@7.8.0(eslint@8.57.0)(typescript@5.4.5))(eslint-plugin-vue@9.25.0(eslint@8.57.0))(eslint@8.57.0)(prettier@3.2.5)(typescript@5.4.5)(vitest@1.6.0(@edge-runtime/vm@3.2.0)(@types/node@20.12.10)(jsdom@24.0.0)(sass@1.76.0)(terser@5.31.0))(vue-eslint-parser@9.4.2(eslint@8.57.0))
       eslint-plugin-react:
         specifier: 7.34.1
         version: 7.34.1(eslint@8.57.0)
@@ -4004,8 +4004,8 @@ packages:
     resolution: {integrity: sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==}
     engines: {node: '>=10'}
 
-  eslint-config-mister-hope@0.0.10:
-    resolution: {integrity: sha512-Tulbp4DOnns4K0ru1I8tkuH1YglcjTmehFsI00XgOnDhZbfqAHNY/xtogC4kbBvoh+Eq8Z5oqyysqeye63uTOg==}
+  eslint-config-mister-hope@0.1.0:
+    resolution: {integrity: sha512-nGLzq6t9Go4NQzdSX+q1bAsr0bKUfi/IoWPESZJmOCEANWVMJ9HL6pyya+oGWmLl/MZzGZV8K/88fM+Ub/BRmQ==}
     peerDependencies:
       eslint: ^8.57.0
       eslint-plugin-vue: ^9.25.0
@@ -12203,7 +12203,7 @@ snapshots:
 
   escape-string-regexp@4.0.0: {}
 
-  eslint-config-mister-hope@0.0.10(@types/eslint@8.56.10)(@typescript-eslint/parser@7.8.0(eslint@8.57.0)(typescript@5.4.5))(eslint-plugin-vue@9.25.0(eslint@8.57.0))(eslint@8.57.0)(prettier@3.2.5)(typescript@5.4.5)(vitest@1.6.0(@edge-runtime/vm@3.2.0)(@types/node@20.12.10)(jsdom@24.0.0)(sass@1.76.0)(terser@5.31.0))(vue-eslint-parser@9.4.2(eslint@8.57.0)):
+  eslint-config-mister-hope@0.1.0(@types/eslint@8.56.10)(@typescript-eslint/parser@7.8.0(eslint@8.57.0)(typescript@5.4.5))(eslint-plugin-vue@9.25.0(eslint@8.57.0))(eslint@8.57.0)(prettier@3.2.5)(typescript@5.4.5)(vitest@1.6.0(@edge-runtime/vm@3.2.0)(@types/node@20.12.10)(jsdom@24.0.0)(sass@1.76.0)(terser@5.31.0))(vue-eslint-parser@9.4.2(eslint@8.57.0)):
     dependencies:
       '@eslint/js': 8.57.0
       eslint: 8.57.0
