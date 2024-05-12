@@ -35,16 +35,14 @@ export const tk2lc = (input: string) => {
       insertedAt: {
         __type: 'Date',
         iso: new Date(
-          created && created.$numberLong
-            ? Number(created.$numberLong)
-            : created,
+          created?.$numberLong ? Number(created.$numberLong) : created,
         ).toISOString(),
       },
       createdAt: new Date(
-        created && created.$numberLong ? Number(created.$numberLong) : created,
+        created?.$numberLong ? Number(created.$numberLong) : created,
       ).toISOString(),
       updatedAt: new Date(
-        updated && updated.$numberLong ? Number(updated.$numberLong) : updated,
+        updated?.$numberLong ? Number(updated.$numberLong) : updated,
       ).toISOString(),
       ip,
       link,

@@ -12,17 +12,17 @@ export default defineConfig({
     VERSION: JSON.stringify(version),
     // eslint-disable-next-line @typescript-eslint/naming-convention
     'process.env.NODE_ENV': JSON.stringify(
-      process.env.NODE_ENV || 'development',
+      process.env.NODE_ENV ?? 'development',
     ),
   },
 
-  plugins: [react(), svgr({ libraryDir: undefined }), cssInjectedByJsPlugin()],
+  plugins: [react(), svgr(), cssInjectedByJsPlugin()],
 
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.jsx'),
-      formats: ['es'],
       fileName: 'admin',
+      formats: ['es'],
     },
   },
 

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Header from '../../components/Header';
@@ -42,8 +42,7 @@ export default function () {
 
       const idMaps = {};
 
-      for (let i = 0; i < data.tables.length; i++) {
-        const tableName = data.tables[i];
+      for (const tableName of data.tables) {
         const tableData = data.data[tableName];
 
         // clean table data if not user table
@@ -61,11 +60,11 @@ export default function () {
           continue;
         }
 
-        for (let j = 0; j < tableData.length; j++) {
+        for (const data of tableData) {
           let existUserObjectId = false;
 
           if (tableName === 'Users') {
-            const user = await request('user?email=' + tableData[j].email);
+            const user = await request('user?email=' + data.email);
 
             if (user.objectId) {
               existUserObjectId = user.objectId;
@@ -76,12 +75,12 @@ export default function () {
           const method = shouldEditorUser ? 'PUT' : 'POST';
           const body =
             tableName === 'Comment'
-              ? Object.assign({}, tableData[j], {
+              ? Object.assign({}, data, {
                   rid: undefined,
                   pid: undefined,
                   user_id: undefined,
                 })
-              : tableData[j];
+              : data;
 
           for (const k in body) {
             if (body[k] === null || body[k] === undefined) {
@@ -97,7 +96,7 @@ export default function () {
             body,
           });
 
-          idMaps[tableName][tableData[j].objectId] = resp.objectId;
+          idMaps[tableName][data.objectId] = resp.objectId;
           importedLength += 1;
           setImportLoading([
             'importing {{importedLength}}/{{maxLength}}',
@@ -110,8 +109,7 @@ export default function () {
       const commentData = data.data.Comment;
       const willUpdateData = [];
 
-      for (let i = 0; i < commentData.length; i++) {
-        const cmt = commentData[i];
+      for (const cmt of commentData) {
         const willUpdateItem = {};
 
         [
@@ -140,9 +138,7 @@ export default function () {
       }
 
       importedLength = 0;
-      for (let i = 0; i < willUpdateData.length; i++) {
-        const [willUpdateItem, where] = willUpdateData[i];
-
+      for (const [willUpdateItem, where] of willUpdateData) {
         await request({
           url: `db?table=Comment&objectId=${where.objectId}`,
           method: 'PUT',

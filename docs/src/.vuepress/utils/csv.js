@@ -1,3 +1,4 @@
+/* eslint-disable */
 var CSV = {};
 !(function (p) {
   'use strict';

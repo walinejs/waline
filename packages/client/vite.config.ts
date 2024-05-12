@@ -14,4 +14,13 @@ export default defineConfig({
   plugins: [vue()],
   envDir: resolve(__dirname),
   envPrefix: ['VITE_', 'SERVERURL'],
+  server: {
+    proxy: {
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      '/api': {
+        target: 'http://localhost:9090',
+        changeOrigin: true,
+      },
+    },
+  },
 });

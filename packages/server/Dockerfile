@@ -6,7 +6,7 @@ RUN set -eux; \
 	# npm config set registry https://registry.npm.taobao.org; \
 	npm install --production --silent @waline/vercel
 
-FROM node:lts-buster-slim
+FROM node:lts-slim
 WORKDIR /app
 ENV TZ Asia/Shanghai
 ENV NODE_ENV production

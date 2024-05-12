@@ -7,6 +7,7 @@ export default hopeTheme(
   {
     hostname: 'https://waline.js.org',
     favicon: '/favicon.ico',
+    iconAssets: '//at.alicdn.com/t/c/font_3180165_u7vein90ekb.css',
 
     logo: '/logo.png',
     repo: 'walinejs/waline',
@@ -14,7 +15,6 @@ export default hopeTheme(
     docsBranch: 'main',
 
     pageInfo: ['ReadingTime', 'PageView'],
-
     contributors: false,
 
     locales: {
@@ -35,11 +35,7 @@ export default hopeTheme(
       },
     },
 
-    iconAssets: '//at.alicdn.com/t/c/font_3180165_u7vein90ekb.css',
-
     plugins: {
-      blog: false,
-
       comment: {
         provider: 'Waline',
         login: 'force',
@@ -57,7 +53,7 @@ export default hopeTheme(
             level4: '元婴',
             level5: '化神',
           },
-          '/en': {
+          '/en/': {
             admin: 'GM',
             level0: 'Dwarves',
             level1: 'Hobbits',

@@ -206,16 +206,15 @@ module.exports = class extends BaseRest {
         objectId: ['IN', userIds],
       });
 
-      for (let i = 0; i < users.length; i++) {
-        usersMap[users[i].objectId] = users;
+      for (const user of users) {
+        usersMap[user.objectId] = users;
       }
     }
 
     const users = [];
     const { avatarProxy } = this.config();
 
-    for (let i = 0; i < counts.length; i++) {
-      const count = counts[i];
+    for (const count of counts) {
       const user = {
         count: count.count,
       };

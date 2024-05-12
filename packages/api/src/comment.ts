@@ -1,15 +1,10 @@
-import {
-  type WalineComment,
-  type WalineCommentData,
-  type WalineRootComment,
+import type {
+  WalineComment,
+  WalineCommentData,
+  WalineRootComment,
 } from './typings.js';
-import {
-  type BaseAPIOptions,
-  type ErrorStatusResponse,
-  JSON_HEADERS,
-  errorCheck,
-  getFetchPrefix,
-} from './utils.js';
+import type { BaseAPIOptions, ErrorStatusResponse } from './utils.js';
+import { JSON_HEADERS, errorCheck, getFetchPrefix } from './utils.js';
 
 export interface GetCommentOptions extends BaseAPIOptions {
   /**
@@ -114,9 +109,9 @@ export const getComment = ({
   )
     .then(
       (resp) =>
-        <Promise<{ data: GetCommentResponse } & ErrorStatusResponse>>(
-          resp.json()
-        ),
+        resp.json() as Promise<
+          { data: GetCommentResponse } & ErrorStatusResponse
+        >,
     )
     .then((data) => errorCheck(data, 'Get comment data').data);
 };
@@ -163,7 +158,7 @@ export const addComment = ({
     method: 'POST',
     headers,
     body: JSON.stringify(comment),
-  }).then((resp) => <Promise<AddCommentResponse>>resp.json());
+  }).then((resp) => resp.json() as Promise<AddCommentResponse>);
 };
 
 export interface DeleteCommentOptions extends BaseAPIOptions {
@@ -198,7 +193,7 @@ export const deleteComment = ({
       Authorization: `Bearer ${token}`,
     },
   })
-    .then((resp) => <Promise<DeleteCommentResponse>>resp.json())
+    .then((resp) => resp.json() as Promise<DeleteCommentResponse>)
     .then((resp) => errorCheck(resp, 'Delete comment'));
 
 interface UpdateWalineCommentData extends Partial<WalineCommentData> {
@@ -272,5 +267,5 @@ export const updateComment = ({
     },
     body: JSON.stringify(comment),
   })
-    .then((resp) => <Promise<UpdateCommentResponse>>resp.json())
+    .then((resp) => resp.json() as Promise<UpdateCommentResponse>)
     .then((resp) => errorCheck(resp, 'Update comment'));

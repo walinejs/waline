@@ -1,10 +1,5 @@
-import {
-  type BaseAPIOptions,
-  type ErrorStatusResponse,
-  JSON_HEADERS,
-  getFetchPrefix,
-  errorCheck,
-} from './utils.js';
+import type { BaseAPIOptions, ErrorStatusResponse } from './utils.js';
+import { JSON_HEADERS, errorCheck, getFetchPrefix } from './utils.js';
 
 export interface GetArticleCounterOptions extends BaseAPIOptions {
   /**
@@ -62,9 +57,9 @@ export const getArticleCounter = ({
   )
     .then(
       (resp) =>
-        <Promise<{ data: GetArticleCounterResponse } & ErrorStatusResponse>>(
-          resp.json()
-        ),
+        resp.json() as Promise<
+          { data: GetArticleCounterResponse } & ErrorStatusResponse
+        >,
     )
     .then((data) => errorCheck(data, 'Get counter').data);
 
@@ -107,8 +102,8 @@ export const updateArticleCounter = ({
   })
     .then(
       (resp) =>
-        <Promise<{ data: GetArticleCounterResponse } & ErrorStatusResponse>>(
-          resp.json()
-        ),
+        resp.json() as Promise<
+          { data: GetArticleCounterResponse } & ErrorStatusResponse
+        >,
     )
     .then((data) => errorCheck(data, 'Update counter').data);

@@ -487,13 +487,14 @@ module.exports = class extends think.Service {
 
     const mailList = [];
     const isAuthorComment = AUTHOR
-      ? comment.mail.toLowerCase() === AUTHOR.toLowerCase()
+      ? (comment.mail || '').toLowerCase() === AUTHOR.toLowerCase()
       : false;
     const isReplyAuthor = AUTHOR
-      ? parent && parent.mail.toLowerCase() === AUTHOR.toLowerCase()
+      ? parent && (parent.mail || '').toLowerCase() === AUTHOR.toLowerCase()
       : false;
     const isCommentSelf =
-      parent && parent.mail.toLowerCase() === comment.mail.toLowerCase();
+      parent &&
+      (parent.mail || '').toLowerCase() === (comment.mail || '').toLowerCase();
 
     const title = mailSubjectAdmin || 'MAIL_SUBJECT_ADMIN';
     const content = mailTemplateAdmin || 'MAIL_TEMPLATE_ADMIN';
@@ -539,9 +540,9 @@ module.exports = class extends think.Service {
       });
     }
 
-    for (let i = 0; i < mailList.length; i++) {
+    for (const mail of mailList) {
       try {
-        const response = await this.mail(mailList[i], comment, parent);
+        const response = await this.mail(mail, comment, parent);
 
         console.log('Notification mail send success: %s', response);
       } catch (e) {

@@ -25,7 +25,7 @@ describe('Emoji test', () => {
   });
 
   it('Should not throw errors', () => {
-    expect(parseEmoji());
-    expect(parseEmoji(''));
+    expect(() => parseEmoji()).not.toThrowError();
+    expect(() => parseEmoji('')).not.toThrowError();
   });
 });

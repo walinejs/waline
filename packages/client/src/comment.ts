@@ -1,6 +1,6 @@
 import { fetchCommentCount } from '@waline/api';
 
-import { type WalineAbort } from './typings/index.js';
+import type { WalineAbort } from './typings/index.js';
 import {
   decodePath,
   errorHandler,
@@ -44,8 +44,6 @@ export interface WalineCommentCountOptions {
   lang?: string;
 }
 
-export { type WalineAbort } from './typings/index.js';
-
 export const commentCount = ({
   serverURL,
   path = window.location.pathname,
@@ -61,7 +59,7 @@ export const commentCount = ({
     void fetchCommentCount({
       serverURL: getServerURL(serverURL),
       paths: Array.from(elements).map((element) =>
-        decodePath(getQuery(element) || path),
+        decodePath(getQuery(element) ?? path),
       ),
       lang,
       signal: controller.signal,

@@ -37,15 +37,11 @@ module.exports = class extends BaseRest {
 
     const data = [];
 
-    for (let i = 0; i < path.length; i++) {
-      const url = path[i];
+    for (const url of path) {
       let counters = {};
 
-      for (let j = 0; j < type.length; j++) {
-        const field = type[j];
-
-        counters[field] =
-          respObj[url] && respObj[url][field] ? respObj[url][field] : 0;
+      for (const field of type) {
+        counters[field] = respObj[url]?.[field] ? respObj[url][field] : 0;
       }
 
       if (type.length === 1 && deprecated) {

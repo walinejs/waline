@@ -74,10 +74,7 @@ hexo.extend.filter.register('theme_inject', (injects) => {
 
   if (config.pageview) {
     // ensure to turn of valine visitor
-    if (
-      hexo.theme.config.leancloud_visitors &&
-      hexo.theme.config.leancloud_visitors.enable
-    ) {
+    if (hexo.theme.config.leancloud_visitors?.enable) {
       warn('waline.pageview', 'leancloud_visitors');
       hexo.theme.config.leancloud_visitors.enable = false;
 

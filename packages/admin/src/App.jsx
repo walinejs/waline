@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Provider, useSelector } from 'react-redux';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
 import Forgot from './pages/forgot';
 import Login from './pages/login';
@@ -17,7 +17,7 @@ function Access(props) {
   useEffect(() => {
     const meta = props.meta || {};
     const basename = props.basename || '';
-    const emptyUser = !user || !user.email;
+    const emptyUser = !user?.email;
 
     if (emptyUser) {
       return (location.href =

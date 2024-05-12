@@ -12,7 +12,7 @@ module.exports = class extends MySQL {
       lowerWhere[i.toLowerCase()] = where[i];
     }
 
-    if (options && options.desc) {
+    if (options?.desc) {
       options.desc = options.desc.toLowerCase();
     }
 

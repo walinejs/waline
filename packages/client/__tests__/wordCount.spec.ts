@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { getWords, getChinese, getWordNumber } from '../src/utils/wordCount.js';
+import { getChinese, getWordNumber, getWords } from '../src/utils/wordCount.js';
 
 describe('Words test', () => {
   it('Should count empty content correctly', () => {
@@ -18,7 +18,7 @@ describe('Words test', () => {
     const chineseWords =
       getChinese(
         'Waline - 一款从 Valine 衍生的带后端评论系统。可以将 Waline 等价成 With backend Valine.',
-      ) || [];
+      ) ?? [];
 
     expect(chineseWords.join('')).toEqual(
       '一款从衍生的带后端评论系统可以将等价成',

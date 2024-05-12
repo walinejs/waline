@@ -1,13 +1,12 @@
 {
   "extends": "../tsconfig.base.json",
   "compilerOptions": {
-    "jsx": "preserve",
-    "module": "NodeNext",
-    "moduleResolution": "nodenext",
     "rootDir": "./src/.vuepress",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "paths": {
-      "@theme-hope/*": ["vuepress-theme-hope/lib/client/*.js"],
-    },
+      "@theme-hope/*": ["vuepress-theme-hope/lib/client/*.js"]
+    }
   },
-  "include": ["./src/.vuepress/**/*.ts", "./src/.vuepress/**/*.vue"],
+  "include": ["./src/.vuepress/**/*.ts", "./src/.vuepress/**/*.vue"]
 }

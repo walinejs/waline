@@ -92,10 +92,7 @@ module.exports = {
   uaParser(uaText) {
     const ua = parser(uaText);
 
-    if (
-      OS_VERSION_MAP[ua.os.name] &&
-      OS_VERSION_MAP[ua.os.name][ua.os.version]
-    ) {
+    if (OS_VERSION_MAP[ua.os.name]?.[ua.os.version]) {
       ua.os.version = OS_VERSION_MAP[ua.os.name][ua.os.version];
     }
 
@@ -121,10 +118,8 @@ module.exports = {
       return fns;
     }
 
-    for (let i = 0; i < plugins.length; i++) {
-      const plugin = plugins[i];
-
-      if (!plugin || !plugin[type]) {
+    for (const plugin of plugins) {
+      if (!plugin?.[type]) {
         continue;
       }
 

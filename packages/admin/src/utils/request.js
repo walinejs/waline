@@ -51,9 +51,7 @@ export default async function request(url, opts = {}) {
       // ignore
     }
 
-    throw new Error(
-      `${resp.status}: ${(result && result.errmsg) || resp.statusText}`,
-    );
+    throw new Error(`${resp.status}: ${result?.errmsg || resp.statusText}`);
   }
 
   const result = await resp.json();

@@ -24,7 +24,7 @@ export default defineComponent({
     >();
     const routeLocale = useRouteLocale();
 
-    const isHome = computed(() => frontmatter.value.home || false);
+    const isHome = computed(() => frontmatter.value.home ?? false);
     const text = computed(() => i18n[routeLocale.value]);
 
     return (): VNode =>

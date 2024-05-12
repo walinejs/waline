@@ -1,7 +1,8 @@
-import { getUserList, WalineUser } from '@waline/api';
+import type { WalineUser } from '@waline/api';
+import { getUserList } from '@waline/api';
 
 import { getLocale } from '../config/index.js';
-import { type WalineLocale } from '../typings/index.js';
+import type { WalineLocale } from '../typings/index.js';
 import { getRoot } from '../utils/index.js';
 
 export interface WalineUserListOptions {

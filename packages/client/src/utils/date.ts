@@ -1,5 +1,5 @@
 import { isString } from './type.js';
-import { WalineDateLocale } from '../typings/index.js';
+import type { WalineDateLocale } from '../typings/index.js';
 
 const padWithZeros = (vNumber: number, width: number): string => {
   let numAsString = vNumber.toString();
