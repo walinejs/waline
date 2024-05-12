@@ -487,13 +487,14 @@ module.exports = class extends think.Service {
 
     const mailList = [];
     const isAuthorComment = AUTHOR
-      ? comment.mail.toLowerCase() === AUTHOR.toLowerCase()
+      ? (comment.mail || '').toLowerCase() === AUTHOR.toLowerCase()
       : false;
     const isReplyAuthor = AUTHOR
-      ? parent && parent.mail.toLowerCase() === AUTHOR.toLowerCase()
+      ? parent && (parent.mail || '').toLowerCase() === AUTHOR.toLowerCase()
       : false;
     const isCommentSelf =
-      parent && parent.mail.toLowerCase() === comment.mail.toLowerCase();
+      parent &&
+      (parent.mail || '').toLowerCase() === (comment.mail || '').toLowerCase();
 
     const title = mailSubjectAdmin || 'MAIL_SUBJECT_ADMIN';
     const content = mailTemplateAdmin || 'MAIL_TEMPLATE_ADMIN';
