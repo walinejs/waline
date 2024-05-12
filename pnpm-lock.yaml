@@ -186,8 +186,8 @@ importers:
         specifier: 23.11.3
         version: 23.11.3
       i18next-browser-languagedetector:
-        specifier: 7.2.1
-        version: 7.2.1
+        specifier: 8.0.0
+        version: 8.0.0
       md5:
         specifier: 2.3.0
         version: 2.3.0
@@ -4719,8 +4719,8 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  i18next-browser-languagedetector@7.2.1:
-    resolution: {integrity: sha512-h/pM34bcH6tbz8WgGXcmWauNpQupCGr25XPp9cZwZInR9XHSjIFDYp1SIok7zSPsTOMxdvuLyu86V+g2Kycnfw==}
+  i18next-browser-languagedetector@8.0.0:
+    resolution: {integrity: sha512-zhXdJXTTCoG39QsrOCiOabnWj2jecouOqbchu3EfhtSHxIB5Uugnm9JaizenOy39h7ne3+fLikIjeW88+rgszw==}
 
   i18next@23.11.3:
     resolution: {integrity: sha512-Pq/aSKowir7JM0rj+Wa23Kb6KKDUGno/HjG+wRQu0PxoTbpQ4N89MAT0rFGvXmLkRLNMb1BbBOKGozl01dabzg==}
@@ -13077,7 +13077,7 @@ snapshots:
 
   husky@9.0.11: {}
 
-  i18next-browser-languagedetector@7.2.1:
+  i18next-browser-languagedetector@8.0.0:
     dependencies:
       '@babel/runtime': 7.24.5
 
