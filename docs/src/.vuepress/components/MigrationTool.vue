@@ -1,45 +1,3 @@
-<template>
-  <form>
-    <div style="margin-bottom: 20px">
-      <div class="input-group">
-        <label for="from">{{ i18n.from }}&nbsp;</label>
-        <select id="from" v-model="from">
-          <option value="valine">Valine</option>
-          <option value="disqus">Disqus</option>
-          <option value="twikoo">Twikoo</option>
-          <option value="typecho">Typecho</option>
-          <option value="artalk">Artalk</option>
-          <option value="commento">Commento</option>
-        </select>
-      </div>
-      <div class="input-group">
-        <label for="to">&nbsp;{{ i18n.to }}&nbsp;</label
-        ><select id="to" v-model="to">
-          <option value="wleancloud">Waline LeanCloud</option>
-          <option value="wcloudbase">Waline CloudBase</option>
-          <option value="wsql">Waline MySQL/PostgreSQL/SQLite</option>
-          <option value="wgithub">Github</option>
-        </select>
-      </div>
-      <div class="input-group">&nbsp;{{ i18n.storage }}</div>
-    </div>
-    <div class="warning custom-block" v-if="from === 'typecho'">
-      <p class="custom-block-title">{{ i18n.tip }}</p>
-      <p v-html="i18n.typeecho" />
-    </div>
-    <div
-      class="warning custom-block"
-      v-else-if="from === 'valine' && to === 'wleancloud'"
-    >
-      <p class="custom-block-title">{{ i18n.tip }}</p>
-      <p v-text="i18n.tip" />
-    </div>
-    <div v-else>
-      <textarea :placeholder="i18n.placeholder" v-model="source"></textarea>
-      <button @click="click">{{ i18n.convert }}</button>
-    </div>
-  </form>
-</template>
 <script setup lang="ts">
 import { useLocaleConfig } from '@vuepress/helper/client';
 import { ref } from 'vue';
@@ -112,6 +70,7 @@ const click = (event: FormDataEvent) => {
 
   if (typeof act === 'function') {
     let text = act(source.value);
+
     console.log(text);
 
     if (typeof text !== 'string') {
@@ -122,6 +81,67 @@ const click = (event: FormDataEvent) => {
   }
 };
 </script>
+
+<template>
+  <form>
+    <div style="margin-bottom: 20px">
+      <div class="input-group">
+        <label for="from">{{ i18n.from }}&nbsp;</label>
+
+        <select id="from" v-model="from">
+          <option value="valine">Valine</option>
+
+          <option value="disqus">Disqus</option>
+
+          <option value="twikoo">Twikoo</option>
+
+          <option value="typecho">Typecho</option>
+
+          <option value="artalk">Artalk</option>
+
+          <option value="commento">Commento</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label for="to">&nbsp;{{ i18n.to }}&nbsp;</label>
+
+        <select id="to" v-model="to">
+          <option value="wleancloud">Waline LeanCloud</option>
+
+          <option value="wcloudbase">Waline CloudBase</option>
+
+          <option value="wsql">Waline MySQL/PostgreSQL/SQLite</option>
+
+          <option value="wgithub">Github</option>
+        </select>
+      </div>
+
+      <div class="input-group">&nbsp;{{ i18n.storage }}</div>
+    </div>
+
+    <div v-if="from === 'typecho'" class="custom-block warning">
+      <p class="custom-block-title">{{ i18n.tip }}</p>
+
+      <p v-html="i18n.typeecho" />
+    </div>
+
+    <div
+      v-else-if="from === 'valine' && to === 'wleancloud'"
+      class="custom-block warning"
+    >
+      <p class="custom-block-title">{{ i18n.tip }}</p>
+
+      <p v-text="i18n.tip" />
+    </div>
+
+    <div v-else>
+      <textarea v-model="source" :placeholder="i18n.placeholder"></textarea>
+
+      <button @click="click">{{ i18n.convert }}</button>
+    </div>
+  </form>
+</template>
 
 <style lang="scss" scoped>
 textarea {
