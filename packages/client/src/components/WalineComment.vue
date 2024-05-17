@@ -46,6 +46,16 @@ const props = defineProps([
   'reaction',
 ]);
 
+const emit = defineEmits<{
+  (event: 'update', data: WalineRootComment[]): void;
+  (event: 'fail', err: Error): void;
+  (event: 'submit', data: WalineComment): void;
+  (event: 'like', data: WalineComment, isLike: boolean): void;
+  (event: 'delete', data: WalineComment): void;
+  (event: 'status', data: WalineComment): void;
+  (event: 'sticky', data: WalineComment): void;
+}>();
+
 const sortKeyMap: Record<WalineCommentSorting, SortKey> = {
   latest: 'insertedAt_desc',
   oldest: 'insertedAt_asc',
@@ -79,7 +89,7 @@ useStyleTag(darkmodeStyle, { id: 'waline-darkmode' });
 
 let abort: () => void;
 
-const getCommentData = (pageNumber: number): void => {
+const getCommentData = (pageNumber: number): Promise<void> => {
   const { serverURL, path, pageSize } = config.value;
   const controller = new AbortController();
 
@@ -87,7 +97,9 @@ const getCommentData = (pageNumber: number): void => {
 
   abort?.();
 
-  getComment({
+  abort = controller.abort.bind(controller);
+
+  return getComment({
     serverURL,
     lang: config.value.lang,
     path,
@@ -103,29 +115,31 @@ const getCommentData = (pageNumber: number): void => {
       data.value.push(...resp.data);
       page.value = pageNumber;
       totalPages.value = resp.totalPages;
+      emit('update', data.value);
     })
     .catch((err: Error) => {
       if (err.name !== 'AbortError') {
         console.error(err.message);
         status.value = 'error';
+        emit('fail', err);
       }
     });
-
-  abort = controller.abort.bind(controller);
 };
 
-const loadMore = (): void => getCommentData(page.value + 1);
+const loadMore = (): Promise<void> => getCommentData(page.value + 1);
 
-const refresh = (): void => {
+const refresh = (): Promise<void> => {
   count.value = 0;
   data.value = [];
-  getCommentData(1);
+
+  return getCommentData(1);
 };
 
-const onSortByChange = (item: WalineCommentSorting): void => {
+const onSortByChange = async (item: WalineCommentSorting): Promise<void> => {
   if (commentSortingRef.value !== item) {
     commentSortingRef.value = item;
-    refresh();
+
+    return refresh();
   }
 };
 
@@ -155,6 +169,8 @@ const onSubmit = (comment: WalineComment): void => {
     data.value.unshift(comment);
     count.value += 1;
   }
+
+  emit('submit', comment);
 };
 
 const onStatusChange = async ({
@@ -177,6 +193,8 @@ const onStatusChange = async ({
   });
 
   comment.status = status;
+
+  emit('status', comment);
 };
 
 const onSticky = async (comment: WalineComment): Promise<void> => {
@@ -193,10 +211,13 @@ const onSticky = async (comment: WalineComment): Promise<void> => {
   });
 
   comment.sticky = !comment.sticky;
+
+  emit('sticky', comment);
 };
 
-const onDelete = async ({ objectId }: WalineComment): Promise<void> => {
+const onDelete = async (comment: WalineComment): Promise<void> => {
   if (!confirm('Are you sure you want to delete this comment?')) return;
+  const { objectId } = comment;
 
   const { serverURL, lang } = config.value;
 
@@ -227,6 +248,8 @@ const onDelete = async ({ objectId }: WalineComment): Promise<void> => {
       return false;
     });
   });
+
+  emit('delete', comment);
 };
 
 const onLike = async (comment: WalineComment): Promise<void> => {
@@ -252,6 +275,8 @@ const onLike = async (comment: WalineComment): Promise<void> => {
   }
 
   comment.like = (comment.like || 0) + (hasLiked ? -1 : 1);
+
+  emit('like', comment, !hasLiked);
 };
 
 provide('config', config);
