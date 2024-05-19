@@ -66,7 +66,7 @@ export default hopeTheme(
       },
 
       components: {
-        components: ['BiliBili', 'YouTube'],
+        components: ['BiliBili', 'VidStack'],
       },
 
       docsearch: {

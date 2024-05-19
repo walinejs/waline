@@ -19,7 +19,7 @@ export default {
         'span',
         'BiliBili',
         'MigrationTool',
-        'YouTube',
+        'VidStack',
       ],
     },
     MD035: {
