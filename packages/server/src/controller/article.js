@@ -18,14 +18,28 @@ module.exports = class extends BaseRest {
     const resp = await this.modelInstance.select({ url: ['IN', path] });
 
     if (think.isEmpty(resp)) {
-      const data = type.reduce((o, field) => {
-        o[field] = 0;
+      const counters = new Array(path.length).fill(
+        type.length === 1 && deprecated
+          ? 0
+          : type.reduce((o, field) => {
+              o[field] = 0;
 
-        return o;
-      }, {});
+              return o;
+            }, {}),
+      );
 
+      // - deprecated:
+      //   - single path and single type: 0
+      //   - single path and multiple type: {[type]: 0}
+      //   - multiple path and single type: [0, 0]
+      //   - multiple path and multiple type: [{[type]: 0},{[type]: 0}]
+      // - latest
+      //   - single path and single type: [{[type]: 0}]
+      //   - single path and multiple type: [{[type]: 0}]
+      //   - multiple path and single type: [{[type]: 0}]
+      //   - multiple path and multiple type: [{[type]: 0}]
       return this.jsonOrSuccess(
-        type.length === 1 && deprecated ? data[type[0]] : data,
+        path.length === 1 && deprecated ? counters[0] : counters,
       );
     }
 
