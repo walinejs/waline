@@ -575,10 +575,15 @@ module.exports = class extends BaseRest {
           cmt.children.forEach((c) => {
             const parent = childCommentsMap.get(c.pid);
 
+            // fix https://github.com/walinejs/waline/issues/2518 avoid some abnormal comment data
+            if (!parent) {
+              return;
+            }
+
             c.reply_user = {
-              nick: parent.nick,
-              link: parent.link,
-              avatar: parent.avatar,
+              nick: parent?.nick,
+              link: parent?.link,
+              avatar: parent?.avatar,
             };
           });
 
