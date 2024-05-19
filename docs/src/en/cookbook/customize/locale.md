@@ -3,11 +3,11 @@ title: Customize Locale
 icon: i18n
 ---
 
-This cookbook guides you to customize `@waline/client` multilingual and display text.
+This cookbook guides you to customize Waline multilingual and display text.
 
 <!-- more -->
 
-## Introduction
+## Customize client language and text
 
 `@waline/client` provides the `locale` option, through which you can customize multiple languages and display text.
 
@@ -122,7 +122,7 @@ You can pass a completed multilingual configuration to the `locale` option to ad
 
   :::
 
-## Example
+### Example
 
 ```js
 // en default
@@ -185,5 +185,64 @@ Waline.init({
   serverURL: 'YOUR_SERVER_URL',
   // ...
   locale,
+});
+```
+
+## Customize server response text
+
+`@waline/vercel` provides a `locales` option that allows you to customize the response text.
+
+By default, it uses the built-in multilingual text, and falls back to `en-US` language text if the language is not supported.
+
+You can pass a completed multilingual configuration to the `locales` option to add language support, or set some of them to override the existing text.
+::: tip
+
+All custom text will eventually be rendered using the nunjucks template engine, which supports writing some relatively complex logical expressions. For example:
+
+```
+Registration confirm mail send failed, please {%- if isAdmin -%}check your mail configuration{%- else -%}check your email address and contact administrator{%- endif -%}.
+```
+
+:::
+
+### locale 选项
+
+- Prompt information related:
+
+  - `import data format not support!`
+  - `USER_EXIST`
+  - `USER_NOT_EXIST`
+  - `USER_REGISTERED`
+  - `TOKEN_EXPIRED`
+  - `TWO_FACTOR_AUTH_ERROR_DETAIL`
+  - `Duplicate Content`
+  - `Comment too fast`
+
+- Register/Login mail notification related:
+
+  - `[{{name | safe}}] Registration Confirm Mail`
+  - `Please click <a href=\"{{url}}\">{{url}}<a/> to confirm registration, the link is valid for 1 hour. If you are not registering, please ignore this email.`
+  - `[{{name | safe}}] Reset Password`
+  - `Please click <a href=\"{{url}}\">{{url}}</a> to login and change your password as soon as possible!`
+  - `Registration confirm mail send failed, please {%- if isAdmin -%}check your mail configuration{%- else -%}check your email address and contact administrator{%- endif -%}.`
+
+- Comment mail notification related:
+  - `MAIL_SUBJECT`：`Your comment on {{site.name | safe}} received a reply`
+  - `MAIL_TEMPLATE`：`<div style='border-top:2px solid #12ADDB;box-shadow:0 1px 3px #AAAAAA;line-height:180%;padding:0 15px 12px;margin:50px auto;font-size:12px;'> <h2 style='border-bottom:1px solid #DDD;font-size:14px;font-weight:normal;padding:13px 0 10px 8px;'> Your comment on <a style='text-decoration:none;color: #12ADDB;' href='{{site.url}}' target='_blank'>{{site.name}}</a> received a reply </h2>{{parent.nick}}, you wrote: <div style='padding:0 12px 0 12px;margin-top:18px'> <div style='background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;'>{{parent.comment | safe}}</div><p><strong>{{self.nick}}</strong> replied:</p><div style='background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;'>{{self.comment | safe}}</div><p><a style='text-decoration:none; color:#12addb' href='{{site.postUrl}}' target='_blank'>View full reply</a> or visit <a style='text-decoration:none; color:#12addb' href='{{site.url}}' target='_blank'>{{site.name}}</a>.</p><br/> </div></div>`
+  - `MAIL_SUBJECT_ADMIN`：`New comment on {{site.name | safe}}`
+  - `MAIL_TEMPLATE_ADMIN`：`<div style='border-top:2px solid #12ADDB;box-shadow:0 1px 3px #AAAAAA;line-height:180%;padding:0 15px 12px;margin:50px auto;font-size:12px;'> <h2 style='border-bottom:1px solid #DDD;font-size:14px;font-weight:normal;padding:13px 0 10px 8px;'> New comment on <a style='text-decoration:none;color: #12ADDB;' href='{{site.url}}' target='_blank'>{{site.name}}</a> </h2> <p><strong>{{self.nick}}</strong> wrote:</p><div style='background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;'>{{self.comment | safe}}</div><p><a style='text-decoration:none; color:#12addb' href='{{site.postUrl}}' target='_blank'>View page</a></p><br/></div>`
+
+### Example
+
+```js
+// index.js
+const Waline = require('@waline/vercel');
+
+module.exports = Waline({
+  locales: {
+    'en-US': {
+      USER_EXIST: 'Warning! User exist!',
+    },
+  },
 });
 ```

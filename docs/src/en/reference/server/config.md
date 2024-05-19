@@ -134,6 +134,12 @@ For details, see [Customize Database Service](../../cookbook/customize/database.
 
 See [Customize User System](../../cookbook/customize/userdb.md) for details
 
+### locales
+
+- type: `Record<string, Record<string, string>>`
+
+See [Custom Locale](../../cookbook/customize/locale.md)
+
 ## Comment Hooks
 
 Besides environment variable configuration, Waline also provides some custom hooks to facilitate the processing of custom requirements. It only needs to be configured in the server entry file `index.js`.

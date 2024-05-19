@@ -3,11 +3,11 @@ title: 自定义语言
 icon: i18n
 ---
 
-本教程指引你自定义 `@waline/client` 多语言与显示文字。
+本教程指引你自定义 Waline 多语言与显示文字。
 
 <!-- more -->
 
-## 简介
+## 自定义客户端语言和文字
 
 `@waline/client` 提供了 `locale` 选项，你可以通过它自定义多语言与显示文字。
 
@@ -15,7 +15,7 @@ icon: i18n
 
 你可以传递一个完成的多语言配置给 `locale` 选项来新增语言支持，或者设置其中的几项对现有的 UI 文字进行覆盖。
 
-## locale 选项
+### locale 选项
 
 - 等级相关:
 
@@ -122,7 +122,7 @@ icon: i18n
 
   :::
 
-## 例子
+### 例子
 
 ```js
 // 中文默认
@@ -184,5 +184,68 @@ Waline.init({
   path: location.pathname,
   // ...
   locale,
+});
+```
+
+## 自定义服务端文字
+
+`@waline/vercel` 提供了 `locales` 选项，你可以通过它自定义文字。
+
+默认情况下，它会使用内置的多语言文字，并在语言不受支持时，回退到 `en-US` (英语美国)对应的文字。
+
+你可以传递一个完成的多语言配置给 `locales` 选项来新增语言支持，或者设置其中的几项对现有的文字进行覆盖。
+
+::: tip
+
+所有的自定义文字最终都会使用 nunjucks 模板引擎进行渲染，支持写一些比较复杂的逻辑表达式。例如：
+
+```
+注册确认邮件发送失败，请{%- if isAdmin -%}检查一下网站的邮件相关配置{% else %}确认你的邮箱输入无误并联系管理员{%- endif -%}。
+```
+
+:::
+
+### locale 选项
+
+- 提示信息相关：
+
+  - `import data format not support!`：文件格式不支持
+  - `USER_EXIST`：用户已存在
+  - `USER_NOT_EXIST`：用户不存在
+  - `USER_REGISTERED`：用户已注册
+  - `TOKEN_EXPIRED`：密钥已过期
+  - `TWO_FACTOR_AUTH_ERROR_DETAIL`：二步验证失败
+  - `Duplicate Content`：发送的内容之前已经发过
+  - `Comment too fast`：评论太快啦，请慢点！
+
+- 登录邮件通知相关：
+
+  - `[{{name | safe}}] Registration Confirm Mail`：`【{{name | safe}}】注册确认邮件`
+  - `Please click <a href=\"{{url}}\">{{url}}<a/> to confirm registration, the link is valid for 1 hour. If you are not registering, please ignore this email.`：`请点击 <a href=\"{{url}}\">{{url}}</a> 确认注册，链接有效时间为 1 个小时。如果不是你在注册，请忽略这封邮件。`
+  - `[{{name | safe}}] Reset Password`：`【{{name | safe}}】重置密码`
+  - `Please click <a href=\"{{url}}\">{{url}}</a> to login and change your password as soon as possible!`：`请尽快点击链接 <a href=\"{{url}}\">{{url}}</a> 登录并修改你的密码！`
+  - `Registration confirm mail send failed, please {%- if isAdmin -%}check your mail configuration{%- else -%}check your email address and contact administrator{%- endif -%}.`：`注册确认邮件发送失败，请{%- if isAdmin -%}检查一下网站的邮件相关配置{% else %}确认你的邮箱输入无误并联系管理员{%- endif -%}。`
+
+- 邮件通知相关：
+  - `MAIL_SUBJECT`：`{{parent.nick | safe}}，『{{site.name | safe}}』上的评论收到了回复`
+  - `MAIL_TEMPLATE`：`<div style='border-top:2px solid #12ADDB;box-shadow:0 1px 3px #AAAAAA;line-height:180%;padding:0 15px 12px;margin:50px auto;font-size:12px;'> <h2 style='border-bottom:1px solid #DDD;font-size:14px;font-weight:normal;padding:13px 0 10px 8px;'> 您在<a style='text-decoration:none;color: #12ADDB;' href='{{site.url}}' target='_blank'>{{site.name}}</a>上的评论有了新的回复 </h2>{{parent.nick}}同学，您曾发表评论： <div style='padding:0 12px 0 12px;margin-top:18px'> <div style='background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;'>{{parent.comment | safe}}</div><p><strong>{{self.nick}}</strong>回复说：</p><div style='background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;'>{{self.comment | safe}}</div><p>您可以点击<a style='text-decoration:none; color:#12addb' href='{{site.postUrl}}' target='_blank'>查看回复的完整內容</a>，欢迎再次光临<a style='text-decoration:none; color:#12addb' href='{{site.url}}' target='_blank'>{{site.name}}</a>。</p><br/> </div></div>`
+  - `MAIL_SUBJECT_ADMIN`：`{{site.name | safe}} 上有新评论了`
+  - `MAIL_TEMPLATE_ADMIN`：`<div style='border-top:2px solid #12ADDB;box-shadow:0 1px 3px #AAAAAA;line-height:180%;padding:0 15px 12px;margin:50px auto;font-size:12px;'> <h2 style='border-bottom:1px solid #DDD;font-size:14px;font-weight:normal;padding:13px 0 10px 8px;'> 您在<a style='text-decoration:none;color: #12ADDB;' href='{{site.url}}' target='_blank'>{{site.name}}</a>上的文章有了新的评论 </h2> <p><strong>{{self.nick}}</strong>回复说：</p><div style='background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;'>{{self.comment | safe}}</div><p>您可以点击<a style='text-decoration:none; color:#12addb' href='{{site.postUrl}}' target='_blank'>查看回复的完整內容</a></p><br/> </div>`
+
+### 例子
+
+```js
+// index.js
+const Waline = require('@waline/vercel');
+
+module.exports = Waline({
+  locales: {
+    'zh-CN': {
+      USER_EXIST: '用户已存在',
+    },
+    'en-US': {
+      USER_EXIST: 'user exist!',
+    },
+  },
 });
 ```

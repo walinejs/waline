@@ -141,6 +141,12 @@ Server酱 评论通知模板，等同于环境变量 `SC_TEMPLATE`。
 
 详情见 [自定义用户系统](../../cookbook/customize/userdb.md)
 
+### locales
+
+- 类型：`Record<string, Record<string, string>>`
+
+详情见 [自定义语言支持](../../cookbook/customize/locale.md)
+
 ## 评论 Hooks
 
 Waline 提供了一些自定义 Hook，方便用户根据自身业务需求对 Waline 服务端行为进行定制。
