@@ -4,7 +4,15 @@ import type { WalineComment, WalineCommentData } from '@waline/api';
 import { UserInfo, addComment, login, updateComment } from '@waline/api';
 import autosize from 'autosize';
 import type { ComputedRef, DeepReadonly } from 'vue';
-import { computed, inject, onMounted, reactive, ref, watch, nextTick } from 'vue';
+import {
+  computed,
+  inject,
+  nextTick,
+  onMounted,
+  reactive,
+  ref,
+  watch,
+} from 'vue';
 
 import {
   CloseIcon,
@@ -298,9 +306,8 @@ const submitComment = async (): Promise<void> => {
 
     previewText.value = '';
 
-    // https://github.com/walinejs/waline/issues/2371
-    await nextTick()
-
+    // ensure changes are applied to dom to avoid  https://github.com/walinejs/waline/issues/2371
+    await nextTick();
 
     if (props.replyId) emit('cancelReply');
     if (props.edit?.objectId) emit('cancelEdit');
