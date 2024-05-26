@@ -444,7 +444,7 @@ watch(
 useEventListener('click', popupHandler);
 useEventListener(
   'message',
-  ({ data }: { data: { type: 'profile'; data: UserInfo } }): void => {
+  async ({ data }: { data: { type: 'profile'; data: UserInfo } }) => {
     if (!data || data.type !== 'profile') return;
 
     userInfo.value = { ...userInfo.value, ...data.data };
@@ -454,6 +454,9 @@ useEventListener(
       .forEach((store) =>
         store.setItem('WALINE_USER', JSON.stringify(userInfo)),
       );
+
+    // try add nextTrick to fix https://github.com/walinejs/waline/issues/2422 some user login will not refresh client UI.
+    await nextTick();
   },
 );
 
