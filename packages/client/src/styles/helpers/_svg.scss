@@ -1,8 +1,6 @@
 @use 'sass:math';
 @use 'sass:string';
 
-/* stylelint-disable scss/operator-no-newline-after */
-
 @function string-replace($string, $search, $replace: '') {
   $index: string.index($string, $search);
   @return if(
