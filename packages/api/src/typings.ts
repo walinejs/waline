@@ -217,6 +217,15 @@ export interface WalineChildComment extends BaseWalineResponseComment {
    */
   // TODO: Support this field
   at?: string;
+
+  /**
+   * Reply user information
+   */
+  reply_user: {
+    nick: string;
+    link: string;
+    avatar: string;
+  };
 }
 
 export interface WalineRootComment extends BaseWalineResponseComment {
