@@ -221,7 +221,7 @@ export interface WalineChildComment extends BaseWalineResponseComment {
   /**
    * Reply user information
    */
-  reply_user: {
+  reply_user?: {
     nick: string;
     link: string;
     avatar: string;
