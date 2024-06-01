@@ -18,7 +18,7 @@
     "mathjax-full": "3.2.2",
     "vidstack": "1.11.21",
     "vue": "3.4.27",
-    "vuepress": "2.0.0-rc.12",
+    "vuepress": "2.0.0-rc.13",
     "vuepress-shared": "2.0.0-rc.45",
     "vuepress-theme-hope": "2.0.0-rc.46"
   }
