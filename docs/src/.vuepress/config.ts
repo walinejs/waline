@@ -19,12 +19,6 @@ export default defineUserConfig({
     },
   },
 
-  markdown: {
-    code: {
-      lineNumbers: 20,
-    },
-  },
-
   bundler: viteBundler({
     viteOptions: {
       ssr: {
