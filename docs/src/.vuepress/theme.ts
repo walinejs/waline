@@ -7,7 +7,7 @@ export default hopeTheme(
   {
     hostname: 'https://waline.js.org',
     favicon: '/favicon.ico',
-    iconAssets: '//at.alicdn.com/t/c/font_3180165_u7vein90ekb.css',
+    iconAssets: '//at.alicdn.com/t/c/font_3180165_6o97v6oir2j.css',
 
     logo: '/logo.png',
     repo: 'walinejs/waline',

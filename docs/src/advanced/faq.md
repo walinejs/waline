@@ -1,6 +1,7 @@
 ---
 title: FAQ
 icon: faq
+order: 4
 ---
 
 Waline 诞生之初就已经作了很明确的定位:

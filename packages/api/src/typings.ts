@@ -215,12 +215,12 @@ export interface WalineChildComment extends BaseWalineResponseComment {
   /**
    * User id being at
    */
-  // TODO: Support this field
   at?: string;
 
   /**
    * Reply user information
    */
+  // eslint-disable-nextline @typescript-eslint/naming-convention
   reply_user?: {
     nick: string;
     link: string;

@@ -1,6 +1,7 @@
 ---
 title: 安全性
 icon: safe
+order: -10
 ---
 
 Waline 评论系统的安全性是我们的首要考虑。我们将在这里介绍 Waline 的安全性。

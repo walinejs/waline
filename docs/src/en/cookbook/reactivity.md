@@ -1,7 +1,7 @@
 ---
 title: Reactive Waline Instance
 icon: spa
-redirectFrom: /en/guide/client/spa.html
+order: -1
 ---
 
 The official client `@waline/client` is based on Vue3, provides responsive components and instances, and brings SPA (**S**ingle **P**age **A**application) support.

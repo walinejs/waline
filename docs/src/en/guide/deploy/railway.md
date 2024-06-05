@@ -1,7 +1,6 @@
 ---
 title: Railway Deployment
 icon: railway
-redirectFrom: /en/guide/server/railway.html
 ---
 
 [Railway](https://railway.app/) is a free Serverless platform, we can deploy Waline to Railway platform easily.

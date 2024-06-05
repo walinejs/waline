@@ -1,7 +1,7 @@
 ---
 title: Development Guide
 icon: contribute
-redirectFrom: /en/reference/contribution.html
+order: -1
 ---
 
 We welcome everyone to open Pull Requests for waline! :tada:

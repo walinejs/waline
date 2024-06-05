@@ -1,6 +1,7 @@
 ---
 title: Security
 icon: safe
+order: -10
 ---
 
 The security of the Waline commenting system is our top priority. We'll cover Waline's security here.

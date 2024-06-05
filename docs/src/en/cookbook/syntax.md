@@ -1,6 +1,7 @@
 ---
 title: Comment Format Support
 icon: format
+order: 2
 ---
 
 The supported Markdown syntax in comments is as follows.

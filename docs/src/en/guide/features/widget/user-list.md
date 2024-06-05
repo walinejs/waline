@@ -1,7 +1,6 @@
 ---
 title: Users Rank List/Users Wall Widget
-icon: user
-redirectFrom: /en/guide/client/widget/user-list.html
+icon: rank
 ---
 
 Waline supports displaying users rank list or users wall by widget, which is convenient for displaying the commentor's info in the sidebar of the blog.

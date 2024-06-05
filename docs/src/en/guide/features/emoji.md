@@ -1,7 +1,7 @@
 ---
 title: Emoji Customize
 icon: emoji
-redirectFrom: /en/guide/client/emoji.html
+order: 2
 ---
 
 You can customize the emoji of the comment box by setting `emoji` option, you should set it to an **array** containing _preset link_ or _preset config object_. If you don't want it, just set it to `false`.

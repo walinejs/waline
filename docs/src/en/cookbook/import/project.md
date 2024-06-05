@@ -1,7 +1,7 @@
 ---
 title: Import in project
 icon: import
-redirectFrom: /en/guide/client/component.html
+order: 2
 ---
 
 Waline official client provides various versions of files. You can import and use the official client in several ways.

@@ -95,7 +95,7 @@
     "@babel/preset-env": "7.24.6",
     "@giphy/js-types": "5.1.0",
     "@types/autosize": "4.0.3",
-    "@vitejs/plugin-vue": "5.0.4",
+    "@vitejs/plugin-vue": "5.0.5",
     "user-agent-data-types": "0.4.2",
     "vite": "5.2.11"
   },

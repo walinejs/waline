@@ -18,6 +18,7 @@ export default {
         'script',
         'span',
         'BiliBili',
+        'Catalog',
         'MigrationTool',
         'VidStack',
       ],

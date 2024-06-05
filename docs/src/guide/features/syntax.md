@@ -1,7 +1,7 @@
 ---
 title: 评论格式支持
 icon: format
-redirectFrom: /guide/client/syntax.html
+order: 1
 ---
 
 你可以在评论中添加多样化的内容，包括经过扩展的 Markdown 语法和 HTML 标签。

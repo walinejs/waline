@@ -1,7 +1,6 @@
 ---
 title: Railway 部署
 icon: railway
-redirectFrom: /guide/server/railway.html
 ---
 
 [Railway](https://railway.app/) 是一个可免费使用的 Serverless 部署平台。我们可以快速的将 Waline 部署到 Railway 平台上。

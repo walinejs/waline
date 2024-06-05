@@ -1,7 +1,7 @@
 ---
 title: 表情选项卡
 icon: emoji
-redirectFrom: /guide/client/emoji.html
+order: 2
 ---
 
 你可以通过设置 `emoji` 选项自定义评论输入框的表情，你应该将它设置为包含*预设地址*或*预设配置对象*的**数组**。如果你不需要它，只需将它设置为 `false`。

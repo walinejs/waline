@@ -1,7 +1,7 @@
 ---
 title: Comment Counter
 icon: counter
-redirectFrom: /en/guide/client/comment.html
+order: 8
 ---
 
 Waline supports displaying the number of comments separately in the non-comment area.

@@ -1,7 +1,7 @@
 ---
 title: Self Host
 icon: server
-redirectFrom: /en/guide/server/vps-deploy.html
+order: -1
 ---
 
 If you don't want to deploy the server on Vercel, you can also choose to deploy on your own server.

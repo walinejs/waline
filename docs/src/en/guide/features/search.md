@@ -1,7 +1,7 @@
 ---
 title: Emoticons Search
 icon: search
-redirectFrom: /en/guide/client/search.html
+order: 3
 ---
 
 `@waline/client` allows users to add emoji search services and customize this functionality.

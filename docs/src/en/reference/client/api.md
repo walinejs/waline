@@ -1,7 +1,6 @@
 ---
 title: Client API
 icon: config
-redirectFrom: /en/reference/client.html
 ---
 
 ## Client API

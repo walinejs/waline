@@ -1,6 +1,7 @@
 ---
 title: FAQ
 icon: faq
+order: 4
 ---
 
 Waline has a very clear position since its birth:

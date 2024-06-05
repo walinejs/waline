@@ -1,7 +1,6 @@
 ---
 title: Recent comment Widget
 icon: recent
-redirectFrom: /en/guide/client/widget/recent-comment.html
 ---
 
 Waline supports displaying recent comments by widget, which is convenient for displaying the latest comments in the sidebar of the blog.

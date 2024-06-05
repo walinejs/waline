@@ -1,6 +1,7 @@
 ---
 title: Vercel Deployment
 icon: vercel
+order: 1
 ---
 
 We released the `@waline/vercel` package as server package, Vercel deployment is also our most recommended way.

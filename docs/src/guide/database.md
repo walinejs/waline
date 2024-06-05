@@ -1,7 +1,7 @@
 ---
 title: 多数据库服务支持
 icon: database
-redirectFrom: /guide/server/databases.html
+order: 2
 ---
 
 除了官方默认的 LeanCloud 之外，Waline 还支持多种数据库，包括 MySQL, PostgreSQL, SQLite 以及 MongoDB。
@@ -57,7 +57,7 @@ MONGO_OPT_SSL=true
 
 ## TiDB
 
-[TiDB](https://github.com/pingcap/tidb) 是一款开源的 NewSQL 数据库。[TiDB Cloud](https://tidbcloud.com/) 则是官方提供的在线版本，它提供了 5GB 的免费额度可供大家使用。
+[TiDB](https://github.com/pingcap/tidb) 是一款开源的 NewSQL 数据库。[TiDB Cloud](https://tidbcloud.com/) 则是官方提供的在线版本，它提供了 5GB 的免费额度。
 
 使用时请查阅[创建 TiDB 数据库](../guide/deploy/tidb.md)了解初始化流程。
 
