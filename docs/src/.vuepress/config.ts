@@ -1,5 +1,4 @@
 import { viteBundler } from '@vuepress/bundler-vite';
-import { redirectPlugin } from '@vuepress/plugin-redirect';
 import { defineUserConfig } from 'vuepress';
 import { path } from 'vuepress/utils';
 
@@ -28,8 +27,6 @@ export default defineUserConfig({
   }),
 
   theme,
-
-  plugins: [redirectPlugin()],
 
   alias: {
     '@MigrationTool': path.resolve(__dirname, './components/MigrationTool.vue'),
