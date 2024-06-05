@@ -50,5 +50,5 @@ features:
     details: 通过 <1kb 代码可靠统计文章浏览量
     link: /guide/features/pageview.html
 
-footer: GPL-2.0 协议 | Copyright © 2020-present <a href="https://github.com/lizheming" rel="noopener noreferrer " target="_blank">lizheming</a> | 主题使用 <a href="https://vuepress-theme-hope.github.io/v2/zh/" rel="noopener noreferrer " target="_blank">vuepress-theme-hope</a>
+footer: GPL-2.0 协议 | Copyright © 2020-present <a href="https://github.com/lizheming" rel="noopener noreferrer " target="_blank">lizheming</a> | 主题使用 <a href="https://vuepress-theme-hope.github.io/v2/zh/" rel="noopener noreferrer " target="_blank">VuePress Theme Hope</a>
 ---
