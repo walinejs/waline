@@ -49,7 +49,7 @@
     "@commitlint/config-conventional": "19.2.2",
     "@rollup/plugin-commonjs": "25.0.8",
     "@rollup/plugin-node-resolve": "15.2.3",
-    "@rollup/plugin-replace": "5.0.6",
+    "@rollup/plugin-replace": "5.0.7",
     "@types/node": "20.14.2",
     "@vitejs/plugin-react": "4.3.0",
     "apidoc": "1.2.0",
