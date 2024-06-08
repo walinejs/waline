@@ -108,8 +108,8 @@ importers:
         specifier: 16.6.1
         version: 16.6.1(typescript@5.4.5)
       stylelint-config-hope:
-        specifier: 6.0.1
-        version: 6.0.1(postcss@8.4.38)(stylelint@16.6.1(typescript@5.4.5))
+        specifier: 7.0.2
+        version: 7.0.2(postcss@8.4.38)(stylelint@16.6.1(typescript@5.4.5))
       tslib:
         specifier: 2.6.3
         version: 2.6.3
@@ -7067,10 +7067,10 @@ packages:
     peerDependencies:
       webpack: ^5.0.0
 
-  stylelint-config-hope@6.0.1:
-    resolution: {integrity: sha512-s5Ezk1ux6GTUl6yWVqVNp1jQxAs96f237ywB0feWGaq/Su0/mlcvh8Tjg2X0b0ETcqCovqixs7tg7HyD4hL1LQ==}
+  stylelint-config-hope@7.0.2:
+    resolution: {integrity: sha512-p4VsKQMcDvXtyH8Xj2LFDowvTayG/eYvDnhdvUoFjZ1Rwzrten/zA4P4fOk4dl4xEQ4hIOY9X0w9DLq8XUXbvg==}
     peerDependencies:
-      stylelint: ^16.0.0
+      stylelint: ^16.6.1
 
   stylelint-config-recommended-scss@14.0.0:
     resolution: {integrity: sha512-HDvpoOAQ1RpF+sPbDOT2Q2/YrBDEJDnUymmVmZ7mMCeNiFSdhRdyGEimBkz06wsN+HaFwUh249gDR+I9JR7Onw==}
@@ -15609,7 +15609,7 @@ snapshots:
     dependencies:
       webpack: 5.91.0(esbuild@0.20.2)(webpack-cli@4.10.0)
 
-  stylelint-config-hope@6.0.1(postcss@8.4.38)(stylelint@16.6.1(typescript@5.4.5)):
+  stylelint-config-hope@7.0.2(postcss@8.4.38)(stylelint@16.6.1(typescript@5.4.5)):
     dependencies:
       stylelint: 16.6.1(typescript@5.4.5)
       stylelint-config-standard-scss: 13.1.0(postcss@8.4.38)(stylelint@16.6.1(typescript@5.4.5))
