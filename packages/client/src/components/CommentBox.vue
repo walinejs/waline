@@ -12,6 +12,7 @@ import {
   reactive,
   ref,
   watch,
+  getCurrentInstance,
 } from 'vue';
 
 import {
@@ -444,7 +445,7 @@ watch(
 useEventListener('click', popupHandler);
 useEventListener(
   'message',
-  async ({ data }: { data: { type: 'profile'; data: UserInfo } }) => {
+  ({ data }: { data: { type: 'profile'; data: UserInfo } }) => {
     if (!data || data.type !== 'profile') return;
 
     userInfo.value = { ...userInfo.value, ...data.data };
@@ -455,8 +456,10 @@ useEventListener(
         store.setItem('WALINE_USER', JSON.stringify(userInfo)),
       );
 
-    // try add nextTrick to fix https://github.com/walinejs/waline/issues/2422 some user login will not refresh client UI.
-    await nextTick();
+    // try forceUpdate to fix https://github.com/walinejs/waline/issues/2422 some user login will not refresh client UI.
+    const instance = getCurrentInstance();
+
+    instance?.proxy?.$forceUpdate();
   },
 );
 
