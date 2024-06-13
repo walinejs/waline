@@ -1,7 +1,7 @@
 ---
 title: Comment Notification
 icon: notice
-redirectFrom: /en/guide/server/notification.html
+order: 10
 ---
 
 When a user posts a comment on the website or a user responds to a comment, Waline supports email or WeChat notification to the blogger and the author who responded to the comment.

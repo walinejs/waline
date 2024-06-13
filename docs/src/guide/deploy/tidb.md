@@ -3,7 +3,7 @@ title: 创建 TiDB 数据库
 icon: tidb
 ---
 
-[TiDB](https://github.com/pingcap/tidb) 是一款开源的 NewSQL 数据库。[TiDB Cloud](https://tidbcloud.com/) 则是官方提供的在线版本，它提供了 5GB 的免费额度可供大家使用。下面介绍下如何再 TiDB Cloud 上创建 Waline 数据库。
+[TiDB](https://github.com/pingcap/tidb) 是一款开源的 NewSQL 数据库。[TiDB Cloud](https://tidbcloud.com/) 则是官方提供的在线版本，它提供了 5GB 的免费额度。下面介绍下如何在 TiDB Cloud 上创建 Waline 数据库。
 
 ## 创建数据库
 

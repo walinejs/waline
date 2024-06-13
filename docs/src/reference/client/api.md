@@ -1,7 +1,6 @@
 ---
 title: 客户端 API
 icon: config
-redirectFrom: /reference/client.html
 ---
 
 ## 客户端 API

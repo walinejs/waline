@@ -1,7 +1,6 @@
 ---
 title: Component Props
 icon: config
-redirectFrom: /en/reference/component.html
 ---
 
 ## serverURL

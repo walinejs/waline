@@ -1,7 +1,7 @@
 ---
 title: 自定义样式
 icon: style
-redirectFrom: /guide/client/style.html
+order: -2
 ---
 
 `@waline/client` 提供了一些 CSS 变量。你可以很轻松的通过这些变量配置 waline 的样式。

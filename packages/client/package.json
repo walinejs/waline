@@ -83,7 +83,7 @@
   },
   "dependencies": {
     "@vueuse/core": "^10.10.0",
-    "@waline/api": "workspace:1.0.0-alpha.7",
+    "@waline/api": "1.0.0-alpha.8",
     "autosize": "^6.0.1",
     "marked": "^12.0.2",
     "marked-highlight": "^2.1.1",
@@ -95,7 +95,7 @@
     "@babel/preset-env": "7.24.6",
     "@giphy/js-types": "5.1.0",
     "@types/autosize": "4.0.3",
-    "@vitejs/plugin-vue": "5.0.4",
+    "@vitejs/plugin-vue": "5.0.5",
     "user-agent-data-types": "0.4.2",
     "vite": "5.2.11"
   },

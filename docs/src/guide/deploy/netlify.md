@@ -1,7 +1,6 @@
 ---
 title: Netlify 部署
 icon: netlify
-redirectFrom: /guide/server/netlify.html
 ---
 
 [Netlify](https://netlify.com) 是知名的静态网站部署服务提供商，[Edge Functions](https://www.netlify.com/blog/edge-functions-explained/) 是 Netlify 平台推出的一种服务，它允许在网站的边缘节点上运行 JavaScript 代码。
@@ -16,8 +15,7 @@ redirectFrom: /guide/server/netlify.html
 
 <https://app.netlify.com> 登录 Netlify 控制台，选择 <kbd>Add new site</kbd> - <kbd>Import an exist project</kbd> 添加网站。选择 GitHub 认证读取我们的 GitHub 项目列表。在列表中搜索我们刚才 Fork 生成的仓库名，点击该项目开始基于该仓库创建我们的 Netlify 网站。
 
-| ![netlify](../../assets/netlify-2.png) | ![netlify](../../assets/netlify-3.png) |
-| -------------------------------------- | -------------------------------------- |
+![netlify](../../assets/netlify-2.png) ![netlify](../../assets/netlify-3.png)
 
 创建 Netlify 网站之前，需要我们填入一些配置信息。除了环境变量，其它信息我们使用默认的即可。以 LeanCloud 部署服务为例，我们在这里增加上 Waline 需要的数据库服务环境变量。点击底部的 <kbd>Deploy site</kbd> 开始部署网站。
 
@@ -29,8 +27,7 @@ redirectFrom: /guide/server/netlify.html
 
 在详情页中，`Endpoint` 列出来的地址即为我们的 Waline 服务的部署地址。点击右边的复制按钮，在新标签页中打开它，测试下评论发布，一切成功~ 接下来就将这个域名配置在客户端中就可以愉快的评论了！
 
-| ![netlify](../../assets/netlify-6.png) | ![netlify](../../assets/netlify-8.png) |
-| -------------------------------------- | -------------------------------------- |
+![netlify](../../assets/netlify-6.png) ![netlify](../../assets/netlify-8.png)
 
 ## 如何更新
 
@@ -42,5 +39,4 @@ redirectFrom: /guide/server/netlify.html
 
 编辑完环境变量后，我们需要进入 `Deploys` 页面，选择 `Trigger deploy` - `Deploy site` 对网站进行重新部署才能使环境变量生效。
 
-| ![netlify](../../assets/netlify-9.png) | ![netlify](../../assets/netlify-10.png) |
-| -------------------------------------- | --------------------------------------- |
+![netlify](../../assets/netlify-9.png) ![netlify](../../assets/netlify-10.png)

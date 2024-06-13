@@ -1,7 +1,6 @@
 ---
 title: 组件属性
 icon: config
-redirectFrom: /reference/component.html
 ---
 
 ## serverURL

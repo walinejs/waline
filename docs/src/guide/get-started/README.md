@@ -1,7 +1,9 @@
 ---
 title: 快速上手
 icon: creative
-redirectFrom: /guide/get-started.html
+dir:
+  collapsible: false
+  order: 1
 ---
 
 欢迎使用 Waline，只需几个步骤，你就可以在你的网站中启用 Waline 提供评论与浏览量服务。

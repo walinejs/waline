@@ -1,7 +1,7 @@
 ---
 title: Comment Counter
 icon: counter
-redirectFrom: /en/guide/client/comment.html
+order: 8
 ---
 
 Waline supports displaying the number of comments separately in the non-comment area.
@@ -40,13 +40,12 @@ Every time you call `WalineInstance.update()`, Waline will search the page conte
 ::: tip Examples
 
 ```html
-The current page has
-<span class="waline-comment-count" data-path="/en/cookbook/comment" />
-comments.
+The current page has <span class="waline-comment-count" /> comments, the home
+page has <span data-path="/en/" class="waline-comment-count" /> comments.
 ```
 
-The current page has
-<span data-path="/en/cookbook/comment" class="waline-comment-count" /> comments.
+The current page has <span class="waline-comment-count" /> comments, the home
+page has <span data-path="/en/" class="waline-comment-count" /> comments.
 
 :::
 
@@ -103,3 +102,20 @@ Sometimes, you may want to display the comment count of some pages in the articl
   });
 </script>
 ```
+
+<script setup>
+import { walineOptions } from '@source/.vuepress/client.ts'
+import { commentCount } from '@waline/client/comment'
+import { onMounted } from 'vue'
+import { useRoute } from 'vuepress/client'
+
+const { serverURL } = walineOptions
+const route = useRoute()
+
+onMounted(()=>{
+  commentCount({
+    serverURL: serverURL,
+    path: route.path,
+  })
+})
+</script>

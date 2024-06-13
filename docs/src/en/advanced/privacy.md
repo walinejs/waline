@@ -1,6 +1,7 @@
 ---
 title: Privacy Policy
 icon: privacy
+order: -2
 ---
 
 Thank you for using the Waline commenting system. We take your privacy and data security very seriously. This privacy policy will inform you how we collect, use, process and protect your personal data.

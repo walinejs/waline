@@ -1,7 +1,7 @@
 ---
 title: Article Reactions
 icon: reaction
-redirectFrom: /en/guide/client/reaction.html
+order: 4
 ---
 
 Waline allows users to express reactions for article content.

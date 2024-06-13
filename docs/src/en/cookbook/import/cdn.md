@@ -1,6 +1,7 @@
 ---
 title: Import Waline via CDN
 icon: import
+order: 1
 ---
 
 This cookbook is about importing Waline via CDN.

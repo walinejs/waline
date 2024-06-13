@@ -1,7 +1,7 @@
 ---
 title: 浏览量统计
 icon: counter
-redirectFrom: /guide/client/pageview.html
+order: 7
 ---
 
 Waline 支持浏览量统计。

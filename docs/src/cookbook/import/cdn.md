@@ -1,6 +1,7 @@
 ---
 title: 通过 CDN 导入 Waline
 icon: import
+order: 1
 ---
 
 本教程引导你如何使用 CDN 导入 Waline。

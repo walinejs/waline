@@ -1,7 +1,6 @@
 ---
 title: CloudBase 云开发部署
 icon: tencloud
-redirectFrom: /guide/server/cloudbase.html
 ---
 
 Waline 支持一键部署到腾讯云开发上。

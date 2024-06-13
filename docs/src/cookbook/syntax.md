@@ -1,6 +1,7 @@
 ---
 title: 评论格式支持
 icon: format
+order: 2
 ---
 
 评论中支持的 Markdown 语法如下。

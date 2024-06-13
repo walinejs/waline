@@ -1,6 +1,7 @@
 ---
 title: Vercel 部署
 icon: vercel
+order: 1
 ---
 
 我们发布了 `@waline/vercel` 包作为服务端。Vercel 部署也是我们最推荐的方式。

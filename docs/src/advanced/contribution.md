@@ -1,7 +1,7 @@
 ---
 title: 贡献指南
 icon: contribute
-redirectFrom: /reference/contribution.html
+order: -1
 ---
 
 欢迎大家为 waline 提交 Pull Request！:tada:

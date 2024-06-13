@@ -1,7 +1,6 @@
 ---
 title: 排行榜/读者墙挂件
-icon: user
-redirectFrom: /guide/client/widget/user-list.html
+icon: rank
 ---
 
 Waline 通过 `UserList` 支持用户排行榜和读者墙的展示，方便在博客侧边栏展示评论用户信息。

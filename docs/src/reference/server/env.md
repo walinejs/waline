@@ -1,7 +1,6 @@
 ---
 title: 服务端环境变量
 icon: config
-redirectFrom: /reference/env.html
 ---
 
 你可以通过下面的环境变量对 Waline 服务端进行配置。

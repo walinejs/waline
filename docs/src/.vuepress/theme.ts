@@ -7,7 +7,7 @@ export default hopeTheme(
   {
     hostname: 'https://waline.js.org',
     favicon: '/favicon.ico',
-    iconAssets: '//at.alicdn.com/t/c/font_3180165_u7vein90ekb.css',
+    iconAssets: '//at.alicdn.com/t/c/font_3180165_6o97v6oir2j.css',
 
     logo: '/logo.png',
     repo: 'walinejs/waline',
@@ -38,12 +38,6 @@ export default hopeTheme(
     plugins: {
       comment: {
         provider: 'Waline',
-        login: 'force',
-        serverURL: 'https://walinejs.comment.lithub.cc',
-        recaptchaV3Key: '6Lfz4-shAAAAANgsYRR0datkzv6zLIaKrSqfHsiG',
-        comment: true,
-        pageview: true,
-        reaction: true,
         locales: {
           '/': {
             admin: '可爱的管理员',
@@ -83,6 +77,10 @@ export default hopeTheme(
         sub: true,
         sup: true,
         tasklist: true,
+      },
+
+      redirect: {
+        switchLocale: 'modal',
       },
     },
   },

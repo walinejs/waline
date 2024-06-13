@@ -1,7 +1,7 @@
 ---
 title: 评论通知
 icon: notice
-redirectFrom: /guide/server/notification.html
+order: 10
 ---
 
 当网站有用户发布评论或者用户回复评论时，Waline 支持对博主和回复评论作者进行通知。

@@ -1,7 +1,7 @@
 ---
 title: Comment Format Support
 icon: format
-redirectFrom: /en/guide/client/syntax.html
+order: 1
 ---
 
 You can add different contents to comment, including extended Markdown syntax and HTML tags.
