@@ -51,7 +51,7 @@
     "@rollup/plugin-node-resolve": "15.2.3",
     "@rollup/plugin-replace": "5.0.6",
     "@types/node": "20.14.2",
-    "@vitejs/plugin-react": "4.3.0",
+    "@vitejs/plugin-react": "4.3.1",
     "apidoc": "1.2.0",
     "commitizen": "4.3.0",
     "cross-env": "7.0.3",
