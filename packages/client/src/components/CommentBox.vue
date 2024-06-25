@@ -12,7 +12,7 @@ import {
   reactive,
   ref,
   watch,
-  // getCurrentInstance,
+  getCurrentInstance,
 } from 'vue';
 
 import {
@@ -326,7 +326,7 @@ const onLogin = (event: Event): void => {
   void login({
     serverURL,
     lang,
-  }).then(async (data) => {
+  }).then((data) => {
     userInfo.value = data;
     (data.remember ? localStorage : sessionStorage).setItem(
       'WALINE_USER',
@@ -334,7 +334,9 @@ const onLogin = (event: Event): void => {
     );
 
     // try forceUpdate to fix https://github.com/walinejs/waline/issues/2422 some user login will not refresh client UI.
-    await nextTick();
+    const instance = getCurrentInstance();
+
+    instance?.proxy?.$forceUpdate();
 
     emit('log');
   });
@@ -459,10 +461,6 @@ useEventListener(
       .forEach((store) =>
         store.setItem('WALINE_USER', JSON.stringify(userInfo)),
       );
-
-    // const instance = getCurrentInstance();
-
-    // instance?.proxy?.$forceUpdate();
   },
 );
 
