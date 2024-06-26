@@ -512,7 +512,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div :key="Number(isLogin)" class="wl-comment">
+  <div :key="userInfo.token" class="wl-comment">
     <div
       v-if="config.login !== 'disable' && isLogin && !edit?.objectId"
       class="wl-login-info"
