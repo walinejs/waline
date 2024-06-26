@@ -90,7 +90,7 @@ export const getConfig = ({
   path: decodePath(path),
   lang: getLang(lang),
   locale: {
-    ...getLocale(lang),
+    ...getLocale(getLang(lang)),
     ...(typeof locale === 'object' ? locale : {}),
   } as WalineLocale,
   wordLimit: getWordLimit(wordLimit),
