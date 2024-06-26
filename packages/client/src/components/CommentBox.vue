@@ -12,7 +12,6 @@ import {
   reactive,
   ref,
   watch,
-  getCurrentInstance,
 } from 'vue';
 
 import {
@@ -332,12 +331,6 @@ const onLogin = (event: Event): void => {
       'WALINE_USER',
       JSON.stringify(data),
     );
-
-    // try forceUpdate to fix https://github.com/walinejs/waline/issues/2422 some user login will not refresh client UI.
-    const instance = getCurrentInstance();
-
-    instance?.proxy?.$forceUpdate();
-
     emit('log');
   });
 };
@@ -519,7 +512,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="wl-comment">
+  <div :key="Number(isLogin)" class="wl-comment">
     <div
       v-if="config.login !== 'disable' && isLogin && !edit?.objectId"
       class="wl-login-info"
