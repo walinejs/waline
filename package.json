@@ -75,7 +75,7 @@
     "stylelint": "16.6.1",
     "stylelint-config-hope": "6.0.1",
     "tslib": "2.6.3",
-    "typescript": "5.4.5",
+    "typescript": "5.5.3",
     "vercel": "34.2.7",
     "vite": "5.2.11",
     "vite-plugin-css-injected-by-js": "3.5.1",
