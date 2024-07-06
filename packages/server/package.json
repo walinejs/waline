@@ -15,7 +15,7 @@
   "license": "MIT",
   "author": "lizheming <i@imnerd.org>",
   "dependencies": {
-    "@cloudbase/node-sdk": "^2.11.0",
+    "@cloudbase/node-sdk": "^3.0.0",
     "@koa/cors": "^5.0.0",
     "@mdit/plugin-katex": "0.8.0",
     "@mdit/plugin-mathjax": "0.4.8",
