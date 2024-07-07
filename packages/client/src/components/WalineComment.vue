@@ -271,7 +271,7 @@ onUnmounted(() => abort?.());
   <div data-waline>
     <Reaction />
 
-    <CommentBox v-if="!reply" @log="refresh" @submit="onSubmit" />
+    <CommentBox v-if="!reply && !edit" @log="refresh" @submit="onSubmit" />
 
     <div class="wl-meta-head">
       <div class="wl-count">
