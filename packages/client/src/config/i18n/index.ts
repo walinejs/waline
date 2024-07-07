@@ -7,6 +7,7 @@ import ru from './ru.js';
 import viVN from './vi-VN.js';
 import zhCN from './zh-CN.js';
 import zhTW from './zh-TW.js';
+import de from './de.js';
 import type { WalineLocale } from '../../typings/index.js';
 
 export type Locales = Record<string, WalineLocale>;
@@ -28,6 +29,7 @@ export const DEFAULT_LOCALES: Locales = {
   'ru-ru': ru,
   vi: viVN,
   'vi-vn': viVN,
+  de,
 };
 
 export const getLocale = (lang: string): WalineLocale =>
