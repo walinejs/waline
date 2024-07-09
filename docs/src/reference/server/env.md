@@ -26,7 +26,7 @@ Vercel 需要在 <kbd>Settings</kbd> - <kbd>Environment Variables</kbd> 中进�
 | `SITE_NAME`       |      | 博客名称                                     |
 | `SITE_URL`        |      | 博客地址                                     |
 | `LOGIN`           |      | 当设置为 LOGIN=force 时会要求登录才能评论    |
-| `SERVER_URL`      |      | 设置从外部访问 Waline 的地址，适合在自动生成的地址不正确时填写     |
+| `SERVER_URL`      |      | 设置 Waline Server 的地址，适合在自动生成的地址不正确时填写    |
 
 ## 显示
 
