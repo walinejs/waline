@@ -26,7 +26,7 @@ You should set through `Settings` - `Environment Variables` when using Vercel.
 | `SITE_NAME`           |          | site name                                               |
 | `SITE_URL`            |          | site url                                                |
 | `LOGIN`               |          | User need login before comment when `LOGIN=force`       |
-| `SERVER_URL`          |          | the public url of Waline, useful when Waline auto-generates an incorrect one |
+| `SERVER_URL`          |          | the url of the Waline Server, useful when the automatically generated address is incorrect |
 
 ## Display
 
