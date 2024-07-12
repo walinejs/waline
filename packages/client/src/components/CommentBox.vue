@@ -220,33 +220,35 @@ const submitComment = async (): Promise<void> => {
     ua,
   };
 
-  // https://github.com/walinejs/waline/issues/2163
-  if (userInfo.value?.token && !props.edit) {
-    // login user
-    comment.nick = userInfo.value.display_name;
-    comment.mail = userInfo.value.email;
-    comment.link = userInfo.value.url;
-  } else {
-    if (login === 'force') return;
+  if (!props.edit) {
+    // https://github.com/walinejs/waline/issues/2163
+    if (userInfo.value?.token) {
+      // login user
+      comment.nick = userInfo.value.display_name;
+      comment.mail = userInfo.value.email;
+      comment.link = userInfo.value.url;
+    } else {
+      if (login === 'force') return;
 
-    // check nick
-    if (requiredMeta.indexOf('nick') > -1 && !comment.nick) {
-      inputRefs.value.nick?.focus();
+      // check nick
+      if (requiredMeta.indexOf('nick') > -1 && !comment.nick) {
+        inputRefs.value.nick?.focus();
 
-      return alert(locale.value.nickError);
+        return alert(locale.value.nickError);
+      }
+
+      // check mail
+      if (
+        (requiredMeta.indexOf('mail') > -1 && !comment.mail) ||
+        (comment.mail && !isValidEmail(comment.mail))
+      ) {
+        inputRefs.value.mail?.focus();
+
+        return alert(locale.value.mailError);
+      }
+
+      if (!comment.nick) comment.nick = locale.value.anonymous;
     }
-
-    // check mail
-    if (
-      (requiredMeta.indexOf('mail') > -1 && !comment.mail) ||
-      (comment.mail && !isValidEmail(comment.mail))
-    ) {
-      inputRefs.value.mail?.focus();
-
-      return alert(locale.value.mailError);
-    }
-
-    if (!comment.nick) comment.nick = locale.value.anonymous;
   }
 
   // check comment

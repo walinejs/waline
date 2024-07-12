@@ -59,7 +59,7 @@
     "eslint": "8.57.0",
     "eslint-config-mister-hope": "0.1.0",
     "eslint-plugin-react": "7.34.2",
-    "eslint-plugin-vue": "9.26.0",
+    "eslint-plugin-vue": "9.27.0",
     "husky": "9.0.11",
     "markdownlint-cli2": "0.13.0",
     "nano-staged": "0.8.0",
@@ -82,7 +82,7 @@
     "vite-plugin-svgr": "4.2.0",
     "vitest": "1.6.0"
   },
-  "packageManager": "pnpm@9.1.4",
+  "packageManager": "pnpm@9.5.0",
   "apidoc": {
     "title": "Waline API Documentation"
   }
