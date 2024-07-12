@@ -643,6 +643,7 @@ onMounted(() => {
             id="wl-image-upload"
             ref="imageUploadRef"
             class="upload"
+            aria-hidden="true"
             type="file"
             accept=".png,.jpg,.jpeg,.webp,.bmp,.gif"
             @change="onChange"
