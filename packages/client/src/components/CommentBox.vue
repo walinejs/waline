@@ -654,8 +654,8 @@ onMounted(() => {
             for="wl-image-upload"
             class="wl-action"
             :title="locale.uploadImage"
+            :aria-label="locale.uploadImage"
           >
-            <span class="wl-sr-only">Upload</span>
             <ImageIcon />
           </label>
 
