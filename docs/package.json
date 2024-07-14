@@ -17,7 +17,7 @@
     "@waline/client": "workspace:*",
     "marked": "13.0.2",
     "mathjax-full": "3.2.2",
-    "vidstack": "1.11.28",
+    "vidstack": "1.11.29",
     "vue": "3.4.31",
     "vuepress": "2.0.0-rc.14",
     "vuepress-shared": "2.0.0-rc.51",
