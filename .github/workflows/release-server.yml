@@ -64,7 +64,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build and push alpine
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           file: ./packages/server/Dockerfile.alpine
           platforms: linux/amd64,linux/arm64,linux/arm/v7
@@ -74,7 +74,7 @@ jobs:
             lizheming/waline:${{ needs.npm.outputs.version }}-alpine
 
       - name: Build and push debian
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           file: ./packages/server/Dockerfile
           platforms: linux/amd64,linux/arm64,linux/arm/v7
