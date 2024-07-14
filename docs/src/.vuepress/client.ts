@@ -1,8 +1,6 @@
 import { Fancybox } from '@fancyapps/ui/dist/fancybox/fancybox.esm.js';
-import {
-  type WalineOptions,
-  defineWalineConfig,
-} from '@vuepress/plugin-comment/client';
+import type { WalineOptions } from '@vuepress/plugin-comment/client';
+import { defineWalineConfig } from '@vuepress/plugin-comment/client';
 import { onBeforeUnmount, onMounted } from 'vue';
 import { defineClientConfig } from 'vuepress/client';
 
