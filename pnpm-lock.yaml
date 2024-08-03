@@ -294,8 +294,8 @@ importers:
         specifier: ^5.0.0
         version: 5.0.0
       '@mdit/plugin-katex':
-        specifier: 0.8.0
-        version: 0.8.0(katex@0.16.11)(markdown-it@14.1.0)
+        specifier: 0.13.0
+        version: 0.13.0(markdown-it@14.1.0)
       '@mdit/plugin-mathjax':
         specifier: 0.4.8
         version: 0.4.8
@@ -1788,15 +1788,12 @@ packages:
       markdown-it:
         optional: true
 
-  '@mdit/plugin-katex@0.8.0':
-    resolution: {integrity: sha512-u7CX3Xv5nuc2bu2sHrk1nil83/9ETKTBMmy0icbW8zlqBC0ykLo1xTCEBXmdhXtnJtPi9f/wUZVs6iMZrJzbNg==}
+  '@mdit/plugin-katex@0.13.0':
+    resolution: {integrity: sha512-rTFeJwTloMno6z9YtOAPw9Rq7aJkc/GG53m6pcPyiM/nmAdhwptHHwX0/Sjbc6RTOtJuc3dj60yDCa0BSXZBpg==}
     engines: {node: '>= 18'}
     peerDependencies:
-      katex: ^0.16.9
-      markdown-it: ^14.0.0
+      markdown-it: ^14.1.0
     peerDependenciesMeta:
-      katex:
-        optional: true
       markdown-it:
         optional: true
 
@@ -1913,18 +1910,18 @@ packages:
       markdown-it:
         optional: true
 
-  '@mdit/plugin-tex@0.4.8':
-    resolution: {integrity: sha512-HgWb8l0Can+NsxFfLu358Xwj1plxXHXf2YkjxM316pUeVZhNhjPjoqIpR46ebCwWbWW+GmwT0YdeUvQrDgM3ig==}
-    engines: {node: '>= 14'}
-
-  '@mdit/plugin-tex@0.8.0':
-    resolution: {integrity: sha512-uh4kOhwBVEESz6dMmHk4Hn/AVfVtUhMA1UKpwMc1EL9qelodJ0YzSYfNXp6d/PS+E1l53yp8nMZK90DUO+3vpA==}
+  '@mdit/plugin-tex@0.13.0':
+    resolution: {integrity: sha512-sfm7CXcPfO+FqcFcEBJOB+Pp8R+WjacSAvXPhTTjENM9h341D46p2oQYpyWC2IWNZbhxn/eluW6/rsy0v5yrcQ==}
     engines: {node: '>= 18'}
     peerDependencies:
-      markdown-it: ^14.0.0
+      markdown-it: ^14.1.0
     peerDependenciesMeta:
       markdown-it:
         optional: true
+
+  '@mdit/plugin-tex@0.4.8':
+    resolution: {integrity: sha512-HgWb8l0Can+NsxFfLu358Xwj1plxXHXf2YkjxM316pUeVZhNhjPjoqIpR46ebCwWbWW+GmwT0YdeUvQrDgM3ig==}
+    engines: {node: '>= 14'}
 
   '@mdit/plugin-uml@0.12.0':
     resolution: {integrity: sha512-EfVMmq0CwLJcssxhkvGS2ESenNNEMeK04j702Z9v3am1M9DdEj6zHTrHQd9tA0jNVuFY8ZlmMgDfkkG5k6Rm3Q==}
@@ -2287,6 +2284,9 @@ packages:
 
   '@types/markdown-it@14.1.1':
     resolution: {integrity: sha512-4NpsnpYl2Gt1ljyBGrKMxFYAYvpqbnnkgP/i/g+NLpjEUa3obn1XJCur9YbEXKDAkaXqsR1LbDnGEJ0MmKFxfg==}
+
+  '@types/markdown-it@14.1.2':
+    resolution: {integrity: sha512-promo4eFwuiW+TfGxhi+0x3czqTYJkG8qB17ZUJiVF10Xm7NLVRSLUsfRTU/6h1e24VvRnXCx+hG7li58lkzog==}
 
   '@types/mdurl@1.0.5':
     resolution: {integrity: sha512-6L6VymKTzYSrEf4Nev4Xa1LCHKrlTlYCBMTlQKFuddo1CvQcE52I0mwfOJayueUC7MJuXOeHTcIU683lzd0cUA==}
@@ -9769,13 +9769,13 @@ snapshots:
       katex: 0.16.11
       markdown-it: 14.1.0
 
-  '@mdit/plugin-katex@0.8.0(katex@0.16.11)(markdown-it@14.1.0)':
+  '@mdit/plugin-katex@0.13.0(markdown-it@14.1.0)':
     dependencies:
-      '@mdit/plugin-tex': 0.8.0(markdown-it@14.1.0)
+      '@mdit/plugin-tex': 0.13.0(markdown-it@14.1.0)
       '@types/katex': 0.16.7
-      '@types/markdown-it': 13.0.8
-    optionalDependencies:
+      '@types/markdown-it': 14.1.2
       katex: 0.16.11
+    optionalDependencies:
       markdown-it: 14.1.0
 
   '@mdit/plugin-mark@0.12.0(markdown-it@14.1.0)':
@@ -9862,16 +9862,16 @@ snapshots:
     optionalDependencies:
       markdown-it: 14.1.0
 
+  '@mdit/plugin-tex@0.13.0(markdown-it@14.1.0)':
+    dependencies:
+      '@types/markdown-it': 14.1.2
+    optionalDependencies:
+      markdown-it: 14.1.0
+
   '@mdit/plugin-tex@0.4.8':
     dependencies:
       '@types/markdown-it': 12.2.3
       markdown-it: 13.0.2
-
-  '@mdit/plugin-tex@0.8.0(markdown-it@14.1.0)':
-    dependencies:
-      '@types/markdown-it': 13.0.8
-    optionalDependencies:
-      markdown-it: 14.1.0
 
   '@mdit/plugin-uml@0.12.0(markdown-it@14.1.0)':
     dependencies:
@@ -10206,6 +10206,11 @@ snapshots:
       '@types/mdurl': 1.0.5
 
   '@types/markdown-it@14.1.1':
+    dependencies:
+      '@types/linkify-it': 5.0.0
+      '@types/mdurl': 2.0.0
+
+  '@types/markdown-it@14.1.2':
     dependencies:
       '@types/linkify-it': 5.0.0
       '@types/mdurl': 2.0.0
@@ -12417,7 +12422,7 @@ snapshots:
       eslint: 8.57.0
       eslint-config-prettier: 9.1.0(eslint@8.57.0)
       eslint-import-resolver-typescript: 3.6.1(@typescript-eslint/parser@7.16.0(eslint@8.57.0)(typescript@5.5.3))(eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.16.0(eslint@8.57.0)(typescript@5.5.3))(eslint@8.57.0))(eslint@8.57.0)
-      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.16.0(eslint@8.57.0)(typescript@5.5.3))(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@7.16.0(eslint@8.57.0)(typescript@5.5.3))(eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.16.0(eslint@8.57.0)(typescript@5.5.3))(eslint@8.57.0))(eslint@8.57.0))(eslint@8.57.0)
+      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.16.0(eslint@8.57.0)(typescript@5.5.3))(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0)
       eslint-plugin-prettier: 5.1.3(@types/eslint@8.56.10)(eslint-config-prettier@9.1.0(eslint@8.57.0))(eslint@8.57.0)(prettier@3.3.3)
       eslint-plugin-vitest: 0.5.4(eslint@8.57.0)(typescript@5.5.3)(vitest@2.0.2(@edge-runtime/vm@3.2.0)(@types/node@20.14.10)(jsdom@24.1.0)(sass@1.77.8)(terser@5.31.2))
       globals: 15.8.0
@@ -12454,7 +12459,7 @@ snapshots:
       enhanced-resolve: 5.17.0
       eslint: 8.57.0
       eslint-module-utils: 2.8.1(@typescript-eslint/parser@7.16.0(eslint@8.57.0)(typescript@5.5.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@7.16.0(eslint@8.57.0)(typescript@5.5.3))(eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.16.0(eslint@8.57.0)(typescript@5.5.3))(eslint@8.57.0))(eslint@8.57.0))(eslint@8.57.0)
-      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.16.0(eslint@8.57.0)(typescript@5.5.3))(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@7.16.0(eslint@8.57.0)(typescript@5.5.3))(eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.16.0(eslint@8.57.0)(typescript@5.5.3))(eslint@8.57.0))(eslint@8.57.0))(eslint@8.57.0)
+      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.16.0(eslint@8.57.0)(typescript@5.5.3))(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0)
       fast-glob: 3.3.2
       get-tsconfig: 4.7.5
       is-core-module: 2.14.0
@@ -12476,7 +12481,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.16.0(eslint@8.57.0)(typescript@5.5.3))(eslint-import-resolver-typescript@3.6.1(@typescript-eslint/parser@7.16.0(eslint@8.57.0)(typescript@5.5.3))(eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.16.0(eslint@8.57.0)(typescript@5.5.3))(eslint@8.57.0))(eslint@8.57.0))(eslint@8.57.0):
+  eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.16.0(eslint@8.57.0)(typescript@5.5.3))(eslint-import-resolver-typescript@3.6.1)(eslint@8.57.0):
     dependencies:
       array-includes: 3.1.8
       array.prototype.findlastindex: 1.2.5
