@@ -3,10 +3,10 @@ import React, { useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
-import TwoFactorAuth from './twoFactorAuth';
-import Header from '../../components/Header';
-import * as Icons from '../../components/icon';
-import { updateProfile } from '../../services/user';
+import TwoFactorAuth from './twoFactorAuth.jsx';
+import Header from '../../components/Header.jsx';
+import * as Icons from '../../components/icon/index.js';
+import { updateProfile } from '../../services/user.js';
 
 export default function () {
   const [isPasswordUpdating, setPasswordUpdating] = useState(false);
@@ -235,7 +235,10 @@ export default function () {
                             target={user[social] ? '_blank' : '_self'}
                             rel="noreferrer"
                           >
-                            {React.createElement(Icons[social])}
+                            {
+                              /* eslint-disable-next-line import-x/namespace */
+                              React.createElement(Icons[social])
+                            }
                           </a>
                           <div
                             className="account-unbind"

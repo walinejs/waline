@@ -1,5 +1,11 @@
-import { forgot, getUserInfo, login, logout, register } from '../services/auth';
-import { updateProfile } from '../services/user';
+import {
+  forgot,
+  getUserInfo,
+  login,
+  logout,
+  register,
+} from '../services/auth.js';
+import { updateProfile } from '../services/user.js';
 
 export const user = {
   state: null,

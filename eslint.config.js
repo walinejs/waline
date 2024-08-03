@@ -1,4 +1,4 @@
-// @ts-check
+/* eslint-disable import-x/no-unresolved */
 import hopeConfig, {
   config,
   globals,
@@ -34,27 +34,6 @@ export default config(
         tsconfigDirName: import.meta.dirname,
         project: ['./tsconfig.eslint.json'],
         extraFileExtensions: ['.vue'],
-      },
-    },
-  },
-
-  {
-    files: ['packages/admin/src/**.{js,jsx}'],
-    ...reactRecommended,
-    languageOptions: {
-      ...reactRecommended.languageOptions,
-      globals: {
-        ...globals.browser,
-        VERSION: 'readonly',
-      },
-    },
-    rules: {
-      'react/display-name': 'off',
-      'react/prop-types': 'off',
-    },
-    settings: {
-      react: {
-        version: 'detect',
       },
     },
   },
@@ -110,6 +89,37 @@ export default config(
   },
 
   {
+    files: ['**/*.vue'],
+    rules: {
+      // FIXME: Issues with vue files
+      'import-x/no-unresolved': 'off',
+    },
+  },
+
+  // @ts-expect-error: react plugin types
+  {
+    files: ['packages/admin/src/**/*.{js,jsx}'],
+    ...reactRecommended,
+    languageOptions: {
+      ...reactRecommended.languageOptions,
+      globals: {
+        ...globals.browser,
+        VERSION: 'readonly',
+      },
+    },
+
+    settings: {
+      react: {
+        version: 'detect',
+      },
+    },
+
+    rules: {
+      'import-x/no-unresolved': ['error', { ignore: ['\\.svg\\?react$'] }],
+    },
+  },
+
+  {
     files: ['packages/client/src/**/*.{ts,vue}'],
     rules: {
       'vue/block-lang': [
@@ -132,8 +142,8 @@ export default config(
       globals: globals.node,
     },
     rules: {
-      '@typescript-eslint/no-var-requires': 'off',
-      'import/no-commonjs': 'off',
+      '@typescript-eslint/no-require-imports': 'off',
+      'import-x/no-commonjs': 'off',
     },
   },
 

@@ -3,7 +3,11 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
-import { gen2FAToken, get2FAToken, updateProfile } from '../../services/user';
+import {
+  gen2FAToken,
+  get2FAToken,
+  updateProfile,
+} from '../../services/user.js';
 
 export default function () {
   const { t } = useTranslation();

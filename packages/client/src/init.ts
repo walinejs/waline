@@ -94,7 +94,6 @@ export const init = ({
       Object.entries(newProps).forEach(([key, value]) => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        // eslint-disable-next-line
         props[key] = value;
       });
 

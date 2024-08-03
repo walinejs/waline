@@ -15,7 +15,7 @@ let config = {};
 
 try {
   config = require('./config.js');
-} catch (e) {
+} catch {
   // do nothing
 }
 for (const k in config) {

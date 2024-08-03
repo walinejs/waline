@@ -32,27 +32,21 @@ module.exports = class extends BaseRest {
     const model = this.getModel(table);
 
     if (storage === 'leancloud' || storage === 'mysql') {
-      item.insertedAt && (item.insertedAt = new Date(item.insertedAt));
-      item.createdAt && (item.createdAt = new Date(item.createdAt));
-      item.updatedAt && (item.updatedAt = new Date(item.updatedAt));
+      if (item.insertedAt) item.insertedAt = new Date(item.insertedAt);
+      if (item.createdAt) item.createdAt = new Date(item.createdAt);
+      if (item.updatedAt) item.updatedAt = new Date(item.updatedAt);
     }
 
     if (storage === 'mysql') {
-      item.insertedAt &&
-        (item.insertedAt = think.datetime(
+      if (item.insertedAt)
+        item.insertedAt = think.datetime(
           item.insertedAt,
           'YYYY-MM-DD HH:mm:ss',
-        ));
-      item.createdAt &&
-        (item.createdAt = think.datetime(
-          item.createdAt,
-          'YYYY-MM-DD HH:mm:ss',
-        ));
-      item.updatedAt &&
-        (item.updatedAt = think.datetime(
-          item.updatedAt,
-          'YYYY-MM-DD HH:mm:ss',
-        ));
+        );
+      if (item.createdAt)
+        item.createdAt = think.datetime(item.createdAt, 'YYYY-MM-DD HH:mm:ss');
+      if (item.updatedAt)
+        item.updatedAt = think.datetime(item.updatedAt, 'YYYY-MM-DD HH:mm:ss');
     }
 
     delete item.objectId;

@@ -24,7 +24,7 @@ function getPkgs(workspaceRoot) {
         const stat = fs.statSync(path.join(dirname, 'package.json'));
 
         return stat.isFile();
-      } catch (e) {
+      } catch {
         return false;
       }
     })
@@ -81,7 +81,7 @@ function setPkg(pkg, pkgs) {
     ? fs.writeFileSync.bind(fs, path.join(pkgMap.dirname, 'package.json'))
     : console.log.bind(console);
 
-  writeFlag && handler(JSON.stringify(pkgMap.info, null, '\t'));
+  if (writeFlag) handler(JSON.stringify(pkgMap.info, null, '\t'));
 }
 
 function isCI() {

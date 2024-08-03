@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
-import Header from '../../components/Header';
+import Header from '../../components/Header.jsx';
 
 export default function () {
   const { t } = useTranslation();
@@ -36,7 +36,7 @@ export default function () {
       });
       alert(t('find password success! please go to your mailbox to reset it!'));
       navigate('/ui/login');
-    } catch (e) {
+    } catch {
       setError(t('find password error! try again later'));
     } finally {
       setSubmitting(false);

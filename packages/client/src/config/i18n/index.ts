@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import de from './de.js';
 import en from './en.js';
 import fr from './fr.js';

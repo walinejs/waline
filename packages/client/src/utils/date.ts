@@ -27,7 +27,7 @@ export const getTimeAgo = (
   if (!date) return '';
 
   const time = isString(date)
-    ? new Date(date.indexOf(' ') !== -1 ? date.replace(/-/g, '/') : date)
+    ? new Date(date.includes(' ') ? date.replace(/-/g, '/') : date)
     : date;
 
   const timePassed = now.getTime() - time.getTime();

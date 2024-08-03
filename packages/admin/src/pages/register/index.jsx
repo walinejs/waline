@@ -3,8 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
-import Header from '../../components/Header';
-import { useCaptcha } from '../../components/useCaptcha';
+import Header from '../../components/Header.jsx';
+import { useCaptcha } from '../../components/useCaptcha.js';
 
 export default function () {
   const { t } = useTranslation();

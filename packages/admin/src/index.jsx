@@ -13,7 +13,7 @@ async function run() {
     new Promise((resolve) => setTimeout(resolve, 50)),
     new Promise((resolve) => {
       window.addEventListener('message', (data) => {
-        data && data.type === 'TOKEN' && data.data && resolve(data);
+        if (data && data.type === 'TOKEN' && data.data) resolve(data);
       });
     }),
     new Promise((resolve) => {

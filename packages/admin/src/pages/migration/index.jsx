@@ -1,10 +1,10 @@
 import React, { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import Header from '../../components/Header';
-import download from '../../utils/download';
-import readFileAsync from '../../utils/readFileAsync';
-import request from '../../utils/request';
+import Header from '../../components/Header.jsx';
+import download from '../../utils/download.js';
+import readFileAsync from '../../utils/readFileAsync.js';
+import request from '../../utils/request.js';
 
 export default function () {
   const [importLoading, setImportLoading] = useState(false);

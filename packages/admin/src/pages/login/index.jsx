@@ -3,10 +3,10 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
-import Header from '../../components/Header';
-import * as Icons from '../../components/icon';
-import { useCaptcha } from '../../components/useCaptcha';
-import { get2FAToken } from '../../services/user';
+import Header from '../../components/Header.jsx';
+import * as Icons from '../../components/icon/index.js';
+import { useCaptcha } from '../../components/useCaptcha.js';
+import { get2FAToken } from '../../services/user.js';
 
 export default function () {
   const { t } = useTranslation();
@@ -73,7 +73,7 @@ export default function () {
         recaptchaV3: window.recaptchaV3Key ? token : undefined,
         turnstile: window.turnstileKey ? token : undefined,
       });
-    } catch (e) {
+    } catch {
       setError(t('email or password error'));
     } finally {
       setLoading(false);
@@ -192,7 +192,10 @@ export default function () {
                   window.ALLOW_SOCIALS ? '/' + social + '?' : `?type=${social}`
                 }&redirect=${basePath}ui/profile`}
               >
-                {React.createElement(Icons[social])}
+                {
+                  /* eslint-disable-next-line import-x/namespace */
+                  React.createElement(Icons[social])
+                }
               </a>
             ))}
           </div>

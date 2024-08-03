@@ -220,7 +220,7 @@ export interface WalineChildComment extends BaseWalineResponseComment {
   /**
    * Reply user information
    */
-  // eslint-disable-nextline @typescript-eslint/naming-convention
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   reply_user?: {
     nick: string;
     link: string;

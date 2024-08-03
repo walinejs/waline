@@ -231,7 +231,7 @@ const submitComment = async (): Promise<void> => {
       if (login === 'force') return;
 
       // check nick
-      if (requiredMeta.indexOf('nick') > -1 && !comment.nick) {
+      if (requiredMeta.includes('nick') && !comment.nick) {
         inputRefs.value.nick?.focus();
 
         return alert(locale.value.nickError);
@@ -239,7 +239,7 @@ const submitComment = async (): Promise<void> => {
 
       // check mail
       if (
-        (requiredMeta.indexOf('mail') > -1 && !comment.mail) ||
+        (requiredMeta.includes('mail') && !comment.mail) ||
         (comment.mail && !isValidEmail(comment.mail))
       ) {
         inputRefs.value.mail?.focus();
