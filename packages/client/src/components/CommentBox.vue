@@ -231,7 +231,7 @@ const submitComment = async (): Promise<void> => {
       if (login === 'force') return;
 
       // check nick
-      if (requiredMeta.indexOf('nick') > -1 && !comment.nick) {
+      if (requiredMeta.includes('nick') && !comment.nick) {
         inputRefs.value.nick?.focus();
 
         return alert(locale.value.nickError);
@@ -239,7 +239,7 @@ const submitComment = async (): Promise<void> => {
 
       // check mail
       if (
-        (requiredMeta.indexOf('mail') > -1 && !comment.mail) ||
+        (requiredMeta.includes('mail') && !comment.mail) ||
         (comment.mail && !isValidEmail(comment.mail))
       ) {
         inputRefs.value.mail?.focus();
@@ -643,6 +643,7 @@ onMounted(() => {
             id="wl-image-upload"
             ref="imageUploadRef"
             class="upload"
+            aria-hidden="true"
             type="file"
             accept=".png,.jpg,.jpeg,.webp,.bmp,.gif"
             @change="onChange"
@@ -653,6 +654,7 @@ onMounted(() => {
             for="wl-image-upload"
             class="wl-action"
             :title="locale.uploadImage"
+            :aria-label="locale.uploadImage"
           >
             <ImageIcon />
           </label>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import useScript from './useScript';
+import useScript from './useScript.js';
 
 export function useTurnstile({ sitekey, checkForExisting = true }) {
   const [turnstile, setTurnstile] = useState();

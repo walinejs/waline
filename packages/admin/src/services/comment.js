@@ -1,4 +1,4 @@
-import request from '../utils/request';
+import request from '../utils/request.js';
 
 export async function getCommentList({ page = 1, filter }) {
   return request({

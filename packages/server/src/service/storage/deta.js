@@ -172,7 +172,7 @@ module.exports = class extends Base {
        */
       const item = await this.instance.get(conditions.key);
 
-      item && data.push(item);
+      if (item) data.push(item);
     } else if (offset) {
       /**
        * deta base need last data key when pagination

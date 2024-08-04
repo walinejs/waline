@@ -17,15 +17,16 @@ You should set through `Settings` - `Environment Variables` when using Vercel.
 
 ## Basic
 
-| Environment Variables | Required | Description                                             |
-| --------------------- | -------- | ------------------------------------------------------- |
-| `LEAN_ID`             | ✅       | LeanCloud Application ID                                |
-| `LEAN_KEY`            | ✅       | LeanCloud Application Key                               |
-| `LEAN_MASTER_KEY`     | ✅       | LeanCloud Application Master Key                        |
-| `LEAN_SERVER`         | ⚠       | LeanCloud server address if you're leancloud china user |
-| `SITE_NAME`           |          | site name                                               |
-| `SITE_URL`            |          | site url                                                |
-| `LOGIN`               |          | User need login before comment when `LOGIN=force`       |
+| Environment Variables | Required | Description                                                                                |
+| --------------------- | -------- | ------------------------------------------------------------------------------------------ |
+| `LEAN_ID`             | ✅       | LeanCloud Application ID                                                                   |
+| `LEAN_KEY`            | ✅       | LeanCloud Application Key                                                                  |
+| `LEAN_MASTER_KEY`     | ✅       | LeanCloud Application Master Key                                                           |
+| `LEAN_SERVER`         | ⚠       | LeanCloud server address if you're leancloud china user                                    |
+| `SITE_NAME`           |          | site name                                                                                  |
+| `SITE_URL`            |          | site url                                                                                   |
+| `LOGIN`               |          | User need login before comment when `LOGIN=force`                                          |
+| `SERVER_URL`          |          | the url of the Waline Server, useful when the automatically generated address is incorrect |
 
 ## Display
 

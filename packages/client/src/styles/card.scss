@@ -18,8 +18,8 @@
 
     .verified-icon {
       position: absolute;
-      top: calc(var(--avatar-size) * 3 / 4);
       inset-inline-start: calc(var(--avatar-size) * 3 / 4);
+      top: calc(var(--avatar-size) * 3 / 4);
 
       border-radius: 50%;
 
@@ -182,9 +182,9 @@
         content: '';
 
         position: absolute;
+        inset-inline-start: 0;
         top: 0;
         bottom: 3.15em;
-        inset-inline-start: 0;
         z-index: 999;
 
         display: block;
@@ -198,8 +198,8 @@
         content: attr(data-expand);
 
         position: absolute;
-        bottom: 0;
         inset-inline-start: 0;
+        bottom: 0;
         z-index: 999;
 
         display: block;

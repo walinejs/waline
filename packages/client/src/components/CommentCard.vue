@@ -95,7 +95,12 @@ const isEditingCurrent = computed(
 <template>
   <div :id="comment.objectId" class="wl-card-item">
     <div class="wl-user" aria-hidden="true">
-      <img v-if="comment.avatar" class="wl-user-avatar" :src="comment.avatar" />
+      <img
+        v-if="comment.avatar"
+        class="wl-user-avatar"
+        :src="comment.avatar"
+        alt=""
+      />
 
       <VerifiedIcon v-if="comment.type" />
     </div>

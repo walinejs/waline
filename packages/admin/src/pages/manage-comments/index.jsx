@@ -3,15 +3,15 @@ import React, { useEffect, useReducer, useRef, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
-import { buildAvatar, formatDate, getPostUrl } from './utils';
-import Header from '../../components/Header';
-import Paginator from '../../components/Paginator';
+import { buildAvatar, formatDate, getPostUrl } from './utils.js';
+import Header from '../../components/Header.jsx';
+import Paginator from '../../components/Paginator.jsx';
 import {
   deleteComment,
   getCommentList,
   replyComment,
   updateComment,
-} from '../../services/comment';
+} from '../../services/comment.js';
 
 export default function () {
   const { t } = useTranslation();

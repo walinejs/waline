@@ -29,8 +29,8 @@
 
   .wl-user-badge {
     position: absolute;
-    bottom: 0;
     inset-inline-end: 0;
+    bottom: 0;
 
     min-width: 0.7em;
     height: 1.5em;
@@ -112,6 +112,7 @@
       pointer-events: none;
 
       transition: all 0.18s ease-out 0.18s;
+
       transform: translate(-50%, 4px);
       transform-origin: top;
     }

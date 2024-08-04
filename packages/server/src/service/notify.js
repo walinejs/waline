@@ -346,13 +346,13 @@ module.exports = class extends think.Service {
 
     const form = new FormData();
 
-    topic && form.append('topic', topic);
-    template && form.append('template', template);
-    channel && form.append('channel', channel);
-    webhook && form.append('webhook', webhook);
-    callbackUrl && form.append('callbackUrl', callbackUrl);
-    title && form.append('title', title);
-    content && form.append('content', content);
+    if (topic) form.append('topic', topic);
+    if (template) form.append('template', template);
+    if (channel) form.append('channel', channel);
+    if (webhook) form.append('webhook', webhook);
+    if (callbackUrl) form.append('callbackUrl', callbackUrl);
+    if (title) form.append('title', title);
+    if (content) form.append('content', content);
 
     return fetch(`http://www.pushplus.plus/send/${PUSH_PLUS_KEY}`, {
       method: 'POST',

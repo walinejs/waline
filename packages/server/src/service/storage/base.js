@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable no-unused-vars */
 
 module.exports = class extends think.Service {
   constructor(tableName) {

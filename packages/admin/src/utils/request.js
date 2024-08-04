@@ -47,7 +47,7 @@ export default async function request(url, opts = {}) {
 
     try {
       result = await resp.json();
-    } catch (e) {
+    } catch {
       // ignore
     }
 

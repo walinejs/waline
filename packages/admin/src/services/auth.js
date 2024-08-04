@@ -1,4 +1,4 @@
-import request from '../utils/request';
+import request from '../utils/request.js';
 
 export async function getUserInfo() {
   return request('token').catch(() => {
