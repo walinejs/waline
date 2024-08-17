@@ -117,8 +117,8 @@ importers:
         specifier: 5.5.4
         version: 5.5.4
       vercel:
-        specifier: 35.2.3
-        version: 35.2.3(encoding@0.1.13)
+        specifier: 36.0.0
+        version: 36.0.0(encoding@0.1.13)
       vite:
         specifier: 5.3.5
         version: 5.3.5(@types/node@22.1.0)(sass@1.77.8)(terser@5.31.3)
@@ -2467,8 +2467,8 @@ packages:
   '@vercel/redwood@2.1.3':
     resolution: {integrity: sha512-lpsdQSHS2hvSX29/rJNm4q38dVXKstS4MVg875KE6zyXpACwviXuet0Cadyv0E60w7f2B6Ra+nJMpwKz6oJ5xg==}
 
-  '@vercel/remix-builder@2.2.3':
-    resolution: {integrity: sha512-rXb0cgCIe8xCSl6gw+j5cjMEcmgQc5nbnpyMuaQ8+lRBSN0eEl8RkufkVQ4FblGQbnPnPFBCmraUx58HxKxfZw==}
+  '@vercel/remix-builder@2.2.5':
+    resolution: {integrity: sha512-7wFnQkWBk6AWb7vszS6FHDJEEZQbKctL/fID5XdsZEZpZYrwNfhIhlLILVPSt6l9jOno8rYLpTl0P5Uqb2hKow==}
 
   '@vercel/routing-utils@3.1.0':
     resolution: {integrity: sha512-Ci5xTjVTJY/JLZXpCXpLehMft97i9fH34nu9PGav6DtwkVUF6TOPX86U0W0niQjMZ5n6/ZP0BwcJK2LOozKaGw==}
@@ -7688,8 +7688,8 @@ packages:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
     engines: {node: '>= 0.8'}
 
-  vercel@35.2.3:
-    resolution: {integrity: sha512-sfDUnP7dmerNZ/2PrUXLC9dJnJASFMy/UGW7Y2W0LVZbMtwH+jdLnViioRUEQaA2zbkkAipKza6w9rvD4sDvrA==}
+  vercel@36.0.0:
+    resolution: {integrity: sha512-pNp+m/mGMWb6ISf+fasXWuYQLvrKGH308q+Hf71iwU6NZqIYKI4zQR88F7G7IoGlQi4MPHm4SSFDKLv0ya2I9Q==}
     engines: {node: '>= 16'}
     hasBin: true
 
@@ -10284,7 +10284,7 @@ snapshots:
 
   '@types/sax@1.2.7':
     dependencies:
-      '@types/node': 17.0.45
+      '@types/node': 22.1.0
 
   '@types/semver@7.5.8': {}
 
@@ -10544,7 +10544,7 @@ snapshots:
       - encoding
       - supports-color
 
-  '@vercel/remix-builder@2.2.3(encoding@0.1.13)':
+  '@vercel/remix-builder@2.2.5(encoding@0.1.13)':
     dependencies:
       '@vercel/error-utils': 2.0.2
       '@vercel/nft': 0.27.3(encoding@0.1.13)
@@ -16540,7 +16540,7 @@ snapshots:
 
   vary@1.1.2: {}
 
-  vercel@35.2.3(encoding@0.1.13):
+  vercel@36.0.0(encoding@0.1.13):
     dependencies:
       '@vercel/build-utils': 8.3.6
       '@vercel/fun': 1.1.0(encoding@0.1.13)
@@ -16550,7 +16550,7 @@ snapshots:
       '@vercel/node': 3.2.8(encoding@0.1.13)
       '@vercel/python': 4.3.1
       '@vercel/redwood': 2.1.3(encoding@0.1.13)
-      '@vercel/remix-builder': 2.2.3(encoding@0.1.13)
+      '@vercel/remix-builder': 2.2.5(encoding@0.1.13)
       '@vercel/ruby': 2.1.0
       '@vercel/static-build': 2.5.18
       chokidar: 3.3.1
