@@ -82,7 +82,7 @@
     ]
   },
   "dependencies": {
-    "@vueuse/core": "^10.11.0",
+    "@vueuse/core": "^11.0.0",
     "@waline/api": "1.0.0-alpha.8",
     "autosize": "^6.0.1",
     "marked": "^13.0.3",
