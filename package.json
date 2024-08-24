@@ -74,7 +74,7 @@
     "sort-package-json": "2.10.0",
     "stylelint": "16.8.1",
     "stylelint-config-hope": "7.0.2",
-    "tslib": "2.6.3",
+    "tslib": "2.7.0",
     "typescript": "5.5.4",
     "vercel": "35.2.3",
     "vite": "5.3.5",
