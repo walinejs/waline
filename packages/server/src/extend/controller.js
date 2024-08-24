@@ -38,10 +38,10 @@ module.exports = {
     return nunjucks.renderString(message, variables);
   },
   getModel(modelName) {
-    const { storage, model } = this.config();
+    const { storage, customModel } = this.config();
 
-    if (typeof model === 'function') {
-      const modelInstance = model(modelName, this);
+    if (typeof customModel === 'function') {
+      const modelInstance = customModel(modelName, this);
 
       if (modelInstance) {
         return modelInstance;
