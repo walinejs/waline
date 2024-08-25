@@ -141,6 +141,10 @@ const insert = (content: string): void => {
 };
 
 const onKeyDown = (event: KeyboardEvent): void => {
+  if (isSubmitting.value) {
+    return;
+  }
+
   const key = event.key;
 
   // Shortcut key
