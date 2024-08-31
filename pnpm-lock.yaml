@@ -297,8 +297,8 @@ importers:
         specifier: 0.8.0
         version: 0.8.0(katex@0.16.11)(markdown-it@14.1.0)
       '@mdit/plugin-mathjax':
-        specifier: 0.4.8
-        version: 0.4.8
+        specifier: 0.13.1
+        version: 0.13.1(markdown-it@14.1.0)
       '@mdit/plugin-sub':
         specifier: 0.8.0
         version: 0.8.0(markdown-it@14.1.0)
@@ -1823,9 +1823,14 @@ packages:
       mathjax-full:
         optional: true
 
-  '@mdit/plugin-mathjax@0.4.8':
-    resolution: {integrity: sha512-eFFYR6Qo9eZnS+3vUVIHd1lLasx6Upybu3tvdNJ119CUkVd3edtvDqI286RJuApfyDM0uAzkqEgmSKCr4pT8NA==}
-    engines: {node: '>= 14'}
+  '@mdit/plugin-mathjax@0.13.1':
+    resolution: {integrity: sha512-IAZRs1K2Ao1Nf7yQ5KE0AzZfuvaRmqfN/Ja9bD/BK1ex1P4JwGxbiGrsZbu7lh5kBXsirRgvIdJaF61KT7TM/A==}
+    engines: {node: '>= 18'}
+    peerDependencies:
+      markdown-it: ^14.1.0
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
 
   '@mdit/plugin-plantuml@0.12.0':
     resolution: {integrity: sha512-m1pk6PA9+kWUs8kylLqjnQ7Lex68x3c4Ato8zAh+omkhugfWzuQXfFiXRiJ9C7wkdqHoJx/E5XobP3HJnhCpoA==}
@@ -1915,9 +1920,14 @@ packages:
       markdown-it:
         optional: true
 
-  '@mdit/plugin-tex@0.4.8':
-    resolution: {integrity: sha512-HgWb8l0Can+NsxFfLu358Xwj1plxXHXf2YkjxM316pUeVZhNhjPjoqIpR46ebCwWbWW+GmwT0YdeUvQrDgM3ig==}
-    engines: {node: '>= 14'}
+  '@mdit/plugin-tex@0.13.1':
+    resolution: {integrity: sha512-lkRf6XrfVfS11FzT3hiooWdOUPJfAd/cnAv4NN/4WU7qOEz0e0HBVQO8PQb5CPwrE94Ld4+E6rQwJfVH1grkwQ==}
+    engines: {node: '>= 18'}
+    peerDependencies:
+      markdown-it: ^14.1.0
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
 
   '@mdit/plugin-tex@0.8.0':
     resolution: {integrity: sha512-uh4kOhwBVEESz6dMmHk4Hn/AVfVtUhMA1UKpwMc1EL9qelodJ0YzSYfNXp6d/PS+E1l53yp8nMZK90DUO+3vpA==}
@@ -2280,9 +2290,6 @@ packages:
 
   '@types/markdown-it-emoji@3.0.1':
     resolution: {integrity: sha512-cz1j8R35XivBqq9mwnsrP2fsz2yicLhB8+PDtuVkKOExwEdsVBNI+ROL3sbhtR5occRZ66vT0QnwFZCqdjf3pA==}
-
-  '@types/markdown-it@12.2.3':
-    resolution: {integrity: sha512-GKMHFfv3458yYy+v/N8gjufHO6MSZKCOXpZc5GXIWWy8uldwfmPn98vp81gZ5f9SVw8YYBctgfJ22a2d7AOMeQ==}
 
   '@types/markdown-it@13.0.9':
     resolution: {integrity: sha512-1XPwR0+MgXLWfTn9gCsZ55AHOKW1WN+P9vr0PaQh5aerR9LLQXUbjfEAFhjmEmyoYFWAyuN2Mqkn40MZ4ukjBw==}
@@ -3855,10 +3862,6 @@ packages:
   entities@2.2.0:
     resolution: {integrity: sha512-p92if5Nz619I0w+akJrLZH0MX0Pb5DX39XOwQTtXSdQQOaYH03S1uIQp4mhOZtAXrxq4ViO67YTiLBo2638o9A==}
 
-  entities@3.0.1:
-    resolution: {integrity: sha512-WiyBqoomrwMdFG1e0kqvASYfnlb0lp8M5o5Fw2OFq1hNZxxcNk8Ik0Xm7LxzBhuidnZB/UtBqVCgUz3kBOP51Q==}
-    engines: {node: '>=0.12'}
-
   entities@4.5.0:
     resolution: {integrity: sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw==}
     engines: {node: '>=0.12'}
@@ -5359,9 +5362,6 @@ packages:
   linkify-it@3.0.3:
     resolution: {integrity: sha512-ynTsyrFSdE5oZ/O9GEf00kPngmOfVwazR5GKDq6EYfhlpFug3J2zybX56a2PRRpc9P+FuSoGNAwjlbDs9jJBPQ==}
 
-  linkify-it@4.0.1:
-    resolution: {integrity: sha512-C7bfi1UZmoj8+PQx22XyeXCuBlokoyWQL5pWSP+EI6nzRylyThouddufc2c1NDIcP9k5agmN9fLpA7VNJfIiqw==}
-
   linkify-it@5.0.0:
     resolution: {integrity: sha512-5aHCbzQRADcdP+ATqnDuhhJ/MRIqDkZX5pyjFHRRysS8vZ5AbqGEoFIb6pYHPZ+L/OC2Lc+xT8uHVVR5CAK/wQ==}
 
@@ -5571,10 +5571,6 @@ packages:
 
   markdown-it@12.3.2:
     resolution: {integrity: sha512-TchMembfxfNVpHkbtriWltGWc+m3xszaRD0CZup7GFFhzIgQqxIfn3eGj1yZpfuflzPvfkt611B2Q/Bsk1YnGg==}
-    hasBin: true
-
-  markdown-it@13.0.2:
-    resolution: {integrity: sha512-FtwnEuuK+2yVU7goGn/MJ0WBZMM9ZPgU9spqlFs7/A/pDIUNSOQZhUgOqYCficIuR2QaFnrt8LHqBWsbTAoI5w==}
     hasBin: true
 
   markdown-it@14.1.0:
@@ -9847,13 +9843,14 @@ snapshots:
       markdown-it: 14.1.0
       mathjax-full: 3.2.2
 
-  '@mdit/plugin-mathjax@0.4.8':
+  '@mdit/plugin-mathjax@0.13.1(markdown-it@14.1.0)':
     dependencies:
-      '@mdit/plugin-tex': 0.4.8
-      '@types/markdown-it': 12.2.3
-      markdown-it: 13.0.2
+      '@mdit/plugin-tex': 0.13.1(markdown-it@14.1.0)
+      '@types/markdown-it': 14.1.2
       mathjax-full: 3.2.2
       upath: 2.0.1
+    optionalDependencies:
+      markdown-it: 14.1.0
 
   '@mdit/plugin-plantuml@0.12.0(markdown-it@14.1.0)':
     dependencies:
@@ -9916,10 +9913,11 @@ snapshots:
     optionalDependencies:
       markdown-it: 14.1.0
 
-  '@mdit/plugin-tex@0.4.8':
+  '@mdit/plugin-tex@0.13.1(markdown-it@14.1.0)':
     dependencies:
-      '@types/markdown-it': 12.2.3
-      markdown-it: 13.0.2
+      '@types/markdown-it': 14.1.2
+    optionalDependencies:
+      markdown-it: 14.1.0
 
   '@mdit/plugin-tex@0.8.0(markdown-it@14.1.0)':
     dependencies:
@@ -10248,11 +10246,6 @@ snapshots:
   '@types/markdown-it-emoji@3.0.1':
     dependencies:
       '@types/markdown-it': 14.1.2
-
-  '@types/markdown-it@12.2.3':
-    dependencies:
-      '@types/linkify-it': 5.0.0
-      '@types/mdurl': 2.0.0
 
   '@types/markdown-it@13.0.9':
     dependencies:
@@ -12244,8 +12237,6 @@ snapshots:
 
   entities@2.2.0: {}
 
-  entities@3.0.1: {}
-
   entities@4.5.0: {}
 
   env-paths@2.2.1: {}
@@ -14029,10 +14020,6 @@ snapshots:
     dependencies:
       uc.micro: 1.0.6
 
-  linkify-it@4.0.1:
-    dependencies:
-      uc.micro: 1.0.6
-
   linkify-it@5.0.0:
     dependencies:
       uc.micro: 2.1.0
@@ -14245,14 +14232,6 @@ snapshots:
       argparse: 2.0.1
       entities: 2.1.0
       linkify-it: 3.0.3
-      mdurl: 1.0.1
-      uc.micro: 1.0.6
-
-  markdown-it@13.0.2:
-    dependencies:
-      argparse: 2.0.1
-      entities: 3.0.1
-      linkify-it: 4.0.1
       mdurl: 1.0.1
       uc.micro: 1.0.6
 
