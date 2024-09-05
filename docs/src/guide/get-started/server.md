@@ -16,8 +16,6 @@ order: 2
 
 - [Cloudbase](../deploy/cloudbase.md)
 
-- [Deta](../deploy/deta.md)
-
 - [Railway](../deploy/railway.md)
 
 ## 多数据库支持

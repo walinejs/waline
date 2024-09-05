@@ -35,7 +35,6 @@ body:
       label: 服务部署在哪里？ | Where your waline deploy?
       options:
         - Vercel (Default)
-        - Deta
         - CloudBase
         - Docker
         - Self Host
@@ -62,5 +61,4 @@ body:
         - SQLite
         - PostgreSQL
         - GitHub
-        - Deta Base
         - TiDB

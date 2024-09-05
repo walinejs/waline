@@ -210,12 +210,6 @@ Please pay special attention that some mailboxes use separate SMTP passwords.
 | `GITHUB_REPO`        | ✅       |         | repository name, such as `walinejs/waline`                                                                       |
 | GITHUB_PATH          |          |         | The data storage directory, such as `data` means it is stored in the `data` directory, root directory by default |
 
-### Deta Base
-
-| Environment Variable | Required | Default | Description             |
-| -------------------- | -------- | ------- | ----------------------- |
-| `DETA_PROJECT_KEY`   | ✅       |         | Deta project secret key |
-
 ## Advanced
 
 | Environment Variables           | Default                     | Description                                                                                      |
