@@ -61,13 +61,13 @@ importers:
         version: 9.8.0
       eslint-config-mister-hope:
         specifier: 0.2.2
-        version: 0.2.2(@types/eslint@9.6.0)(@typescript-eslint/parser@8.0.0(eslint@9.8.0)(typescript@5.5.4))(eslint-plugin-import@2.29.1(@typescript-eslint/parser@8.0.0(eslint@9.8.0)(typescript@5.5.4))(eslint@9.8.0))(eslint-plugin-vue@9.27.0(eslint@9.8.0))(eslint@9.8.0)(prettier@3.3.3)(typescript@5.5.4)(vitest@2.0.5(@edge-runtime/vm@3.2.0)(@types/node@22.1.0)(jsdom@24.1.1)(sass@1.77.8)(terser@5.31.3))(vue-eslint-parser@9.4.3(eslint@9.8.0))
+        version: 0.2.2(@types/eslint@9.6.0)(@typescript-eslint/parser@8.0.0(eslint@9.8.0)(typescript@5.5.4))(eslint-plugin-import@2.29.1(@typescript-eslint/parser@8.0.0(eslint@9.8.0)(typescript@5.5.4))(eslint@9.8.0))(eslint-plugin-vue@9.28.0(eslint@9.8.0))(eslint@9.8.0)(prettier@3.3.3)(typescript@5.5.4)(vitest@2.0.5(@edge-runtime/vm@3.2.0)(@types/node@22.1.0)(jsdom@24.1.1)(sass@1.77.8)(terser@5.31.3))(vue-eslint-parser@9.4.3(eslint@9.8.0))
       eslint-plugin-react:
         specifier: 7.35.0
         version: 7.35.0(eslint@9.8.0)
       eslint-plugin-vue:
-        specifier: 9.27.0
-        version: 9.27.0(eslint@9.8.0)
+        specifier: 9.28.0
+        version: 9.28.0(eslint@9.8.0)
       husky:
         specifier: 9.1.4
         version: 9.1.4
@@ -4168,8 +4168,8 @@ packages:
       vitest:
         optional: true
 
-  eslint-plugin-vue@9.27.0:
-    resolution: {integrity: sha512-5Dw3yxEyuBSXTzT5/Ge1X5kIkRTQ3nvBn/VwPwInNiZBSJOO/timWMUaflONnFBzU6NhB68lxnCda7ULV5N7LA==}
+  eslint-plugin-vue@9.28.0:
+    resolution: {integrity: sha512-ShrihdjIhOTxs+MfWun6oJWuk+g/LAhN+CiuOl/jjkG3l0F2AuK5NMTaWqyvBgkFtpYmyks6P4603mLmhNJW8g==}
     engines: {node: ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: ^6.2.0 || ^7.0.0 || ^8.0.0 || ^9.0.0
@@ -12507,7 +12507,7 @@ snapshots:
 
   escape-string-regexp@4.0.0: {}
 
-  eslint-config-mister-hope@0.2.2(@types/eslint@9.6.0)(@typescript-eslint/parser@8.0.0(eslint@9.8.0)(typescript@5.5.4))(eslint-plugin-import@2.29.1(@typescript-eslint/parser@8.0.0(eslint@9.8.0)(typescript@5.5.4))(eslint@9.8.0))(eslint-plugin-vue@9.27.0(eslint@9.8.0))(eslint@9.8.0)(prettier@3.3.3)(typescript@5.5.4)(vitest@2.0.5(@edge-runtime/vm@3.2.0)(@types/node@22.1.0)(jsdom@24.1.1)(sass@1.77.8)(terser@5.31.3))(vue-eslint-parser@9.4.3(eslint@9.8.0)):
+  eslint-config-mister-hope@0.2.2(@types/eslint@9.6.0)(@typescript-eslint/parser@8.0.0(eslint@9.8.0)(typescript@5.5.4))(eslint-plugin-import@2.29.1(@typescript-eslint/parser@8.0.0(eslint@9.8.0)(typescript@5.5.4))(eslint@9.8.0))(eslint-plugin-vue@9.28.0(eslint@9.8.0))(eslint@9.8.0)(prettier@3.3.3)(typescript@5.5.4)(vitest@2.0.5(@edge-runtime/vm@3.2.0)(@types/node@22.1.0)(jsdom@24.1.1)(sass@1.77.8)(terser@5.31.3))(vue-eslint-parser@9.4.3(eslint@9.8.0)):
     dependencies:
       '@eslint/eslintrc': 3.1.0
       '@eslint/js': 9.8.0
@@ -12520,7 +12520,7 @@ snapshots:
       globals: 15.9.0
       typescript-eslint: 8.0.0(eslint@9.8.0)(typescript@5.5.4)
     optionalDependencies:
-      eslint-plugin-vue: 9.27.0(eslint@9.8.0)
+      eslint-plugin-vue: 9.28.0(eslint@9.8.0)
       vue-eslint-parser: 9.4.3(eslint@9.8.0)
     transitivePeerDependencies:
       - '@types/eslint'
@@ -12669,7 +12669,7 @@ snapshots:
       - supports-color
       - typescript
 
-  eslint-plugin-vue@9.27.0(eslint@9.8.0):
+  eslint-plugin-vue@9.28.0(eslint@9.8.0):
     dependencies:
       '@eslint-community/eslint-utils': 4.4.0(eslint@9.8.0)
       eslint: 9.8.0
