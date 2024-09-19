@@ -49,6 +49,8 @@ Waline 的服务端地址。
 - `'ru-RU'`
 - `fr-FR`
 - `fr`
+- `'es'`
+- `'es-MX'`
 
 ## locale
 
