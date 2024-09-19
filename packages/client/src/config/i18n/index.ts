@@ -1,4 +1,3 @@
-import type { WalineLocale } from '../../typings/index.js';
 import de from './de.js';
 import en from './en.js';
 import es from './es.js';
@@ -9,6 +8,7 @@ import ru from './ru.js';
 import viVN from './vi-VN.js';
 import zhCN from './zh-CN.js';
 import zhTW from './zh-TW.js';
+import type { WalineLocale } from '../../typings/index.js';
 
 export type Locales = Record<string, WalineLocale>;
 

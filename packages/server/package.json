@@ -15,7 +15,7 @@
   "license": "MIT",
   "author": "lizheming <i@imnerd.org>",
   "dependencies": {
-    "@cloudbase/node-sdk": "^3.3.5",
+    "@cloudbase/node-sdk": "^3.3.7",
     "@koa/cors": "^5.0.0",
     "@mdit/plugin-katex": "0.8.0",
     "@mdit/plugin-mathjax": "0.4.8",
@@ -51,7 +51,7 @@
     "think-mongo": "^2.2.1",
     "think-router-rest": "^1.0.5",
     "thinkjs": "^3.2.15",
-    "ua-parser-js": "^1.0.38"
+    "ua-parser-js": "^1.0.39"
   },
   "engines": {
     "node": ">=16"
