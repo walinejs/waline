@@ -70,10 +70,17 @@ export default hopeTheme(
         indexName: 'waline',
       },
 
-      mdEnhance: {
-        codetabs: true,
+      markdownImage: {
         figure: true,
-        mathjax: true,
+      },
+
+      markdownMath: {
+        type: 'mathjax',
+      },
+
+      markdownTab: { codeTabs: true },
+
+      mdEnhance: {
         sub: true,
         sup: true,
         tasklist: true,

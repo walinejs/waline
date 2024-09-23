@@ -88,7 +88,7 @@
     "marked": "^14.1.2",
     "marked-highlight": "^2.1.4",
     "recaptcha-v3": "^1.11.3",
-    "vue": "^3.5.6"
+    "vue": "^3.5.8"
   },
   "devDependencies": {
     "@babel/core": "7.25.2",
@@ -97,7 +97,7 @@
     "@types/autosize": "4.0.3",
     "@vitejs/plugin-vue": "5.1.4",
     "user-agent-data-types": "0.4.2",
-    "vite": "5.4.6"
+    "vite": "5.4.7"
   },
   "engines": {
     "node": ">=18"
