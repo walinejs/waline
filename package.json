@@ -53,7 +53,7 @@
     "@types/node": "22.5.5",
     "@vitejs/plugin-react": "4.3.1",
     "apidoc": "1.2.0",
-    "commitizen": "4.3.0",
+    "commitizen": "4.3.1",
     "cross-env": "7.0.3",
     "cz-conventional-changelog": "3.3.0",
     "eslint": "9.11.0",

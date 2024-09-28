@@ -48,8 +48,8 @@ importers:
         specifier: 1.2.0
         version: 1.2.0(esbuild@0.21.5)
       commitizen:
-        specifier: 4.3.0
-        version: 4.3.0(@types/node@22.5.5)(typescript@5.6.2)
+        specifier: 4.3.1
+        version: 4.3.1(@types/node@22.5.5)(typescript@5.6.2)
       cross-env:
         specifier: 7.0.3
         version: 7.0.3
@@ -3580,8 +3580,8 @@ packages:
     resolution: {integrity: sha512-e2i4wANQiSXgnrBlIatyHtP1odfUp0BbV5Y5nEGbxtIrStkEOAAzCUirvLBNXHLr7kwLvJl6V+4V3XV9x7Wd9w==}
     engines: {node: ^12.20.0 || >=14}
 
-  commitizen@4.3.0:
-    resolution: {integrity: sha512-H0iNtClNEhT0fotHvGV3E9tDejDeS04sN1veIebsKYGMuGscFaswRoYJKmT3eW85eIJAs0F28bG2+a/9wCOfPw==}
+  commitizen@4.3.1:
+    resolution: {integrity: sha512-gwAPAVTy/j5YcOOebcCRIijn+mSjWJC+IYKivTu6aG8Ei/scoXgfsMRnuAk6b0GRste2J4NGxVdMN3ZpfNaVaw==}
     engines: {node: '>= 12'}
     hasBin: true
 
@@ -12326,7 +12326,7 @@ snapshots:
 
   commander@9.2.0: {}
 
-  commitizen@4.3.0(@types/node@22.5.5)(typescript@5.6.2):
+  commitizen@4.3.1(@types/node@22.5.5)(typescript@5.6.2):
     dependencies:
       cachedir: 2.3.0
       cz-conventional-changelog: 3.3.0(@types/node@22.5.5)(typescript@5.6.2)
@@ -12495,7 +12495,7 @@ snapshots:
   cz-conventional-changelog@3.3.0(@types/node@22.5.5)(typescript@5.6.2):
     dependencies:
       chalk: 2.4.2
-      commitizen: 4.3.0(@types/node@22.5.5)(typescript@5.6.2)
+      commitizen: 4.3.1(@types/node@22.5.5)(typescript@5.6.2)
       conventional-commit-types: 3.0.0
       lodash.map: 4.6.0
       longest: 2.0.1
