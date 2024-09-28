@@ -50,7 +50,7 @@
     "@rollup/plugin-commonjs": "26.0.1",
     "@rollup/plugin-node-resolve": "15.2.4",
     "@rollup/plugin-replace": "5.0.7",
-    "@types/node": "22.5.5",
+    "@types/node": "22.7.4",
     "@vitejs/plugin-react": "4.3.1",
     "apidoc": "1.2.0",
     "commitizen": "4.3.0",
