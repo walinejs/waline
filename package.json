@@ -47,7 +47,7 @@
     "@babel/runtime": "7.25.6",
     "@commitlint/cli": "19.5.0",
     "@commitlint/config-conventional": "19.5.0",
-    "@rollup/plugin-commonjs": "26.0.1",
+    "@rollup/plugin-commonjs": "28.0.0",
     "@rollup/plugin-node-resolve": "15.2.4",
     "@rollup/plugin-replace": "5.0.7",
     "@types/node": "22.5.5",
