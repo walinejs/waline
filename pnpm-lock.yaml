@@ -123,8 +123,8 @@ importers:
         specifier: 5.4.7
         version: 5.4.7(@types/node@22.5.5)(sass-embedded@1.79.3)(terser@5.33.0)
       vite-plugin-css-injected-by-js:
-        specifier: 3.5.1
-        version: 3.5.1(vite@5.4.7(@types/node@22.5.5)(sass-embedded@1.79.3)(terser@5.33.0))
+        specifier: 3.5.2
+        version: 3.5.2(vite@5.4.7(@types/node@22.5.5)(sass-embedded@1.79.3)(terser@5.33.0))
       vite-plugin-svgr:
         specifier: 4.2.0
         version: 4.2.0(rollup@4.22.5)(typescript@5.6.2)(vite@5.4.7(@types/node@22.5.5)(sass-embedded@1.79.3)(terser@5.33.0))
@@ -8041,8 +8041,8 @@ packages:
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
 
-  vite-plugin-css-injected-by-js@3.5.1:
-    resolution: {integrity: sha512-9ioqwDuEBxW55gNoWFEDhfLTrVKXEEZgl5adhWmmqa88EQGKfTmexy4v1Rh0pAS6RhKQs2bUYQArprB32JpUZQ==}
+  vite-plugin-css-injected-by-js@3.5.2:
+    resolution: {integrity: sha512-2MpU/Y+SCZyWUB6ua3HbJCrgnF0KACAsmzOQt1UvRVJCGF6S8xdA3ZUhWcWdM9ivG4I5az8PnQmwwrkC2CAQrQ==}
     peerDependencies:
       vite: '>2.0.0-0'
 
@@ -17230,7 +17230,7 @@ snapshots:
       - supports-color
       - terser
 
-  vite-plugin-css-injected-by-js@3.5.1(vite@5.4.7(@types/node@22.5.5)(sass-embedded@1.79.3)(terser@5.33.0)):
+  vite-plugin-css-injected-by-js@3.5.2(vite@5.4.7(@types/node@22.5.5)(sass-embedded@1.79.3)(terser@5.33.0)):
     dependencies:
       vite: 5.4.7(@types/node@22.5.5)(sass-embedded@1.79.3)(terser@5.33.0)
 
