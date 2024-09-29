@@ -42,8 +42,8 @@ importers:
         specifier: 22.5.5
         version: 22.5.5
       '@vitejs/plugin-react':
-        specifier: 4.3.1
-        version: 4.3.1(vite@5.4.7(@types/node@22.5.5)(sass-embedded@1.79.3)(terser@5.33.0))
+        specifier: 4.3.2
+        version: 4.3.2(vite@5.4.7(@types/node@22.5.5)(sass-embedded@1.79.3)(terser@5.33.0))
       apidoc:
         specifier: 1.2.0
         version: 1.2.0(esbuild@0.21.5)
@@ -2588,8 +2588,8 @@ packages:
   '@vercel/static-config@3.0.0':
     resolution: {integrity: sha512-2qtvcBJ1bGY0dYGYh3iM7yGKkk971FujLEDXzuW5wcZsPr1GSEjO/w2iSr3qve6nDDtBImsGoDEnus5FI4+fIw==}
 
-  '@vitejs/plugin-react@4.3.1':
-    resolution: {integrity: sha512-m/V2syj5CuVnaxcUJOQRel/Wr31FFXRFlnOoq1TVtkCxsY5veGMTEmpWHndrhB2U8ScHtCQB1e+4hWYExQc6Lg==}
+  '@vitejs/plugin-react@4.3.2':
+    resolution: {integrity: sha512-hieu+o05v4glEBucTcKMK3dlES0OeJlD9YVOAPraVMOInBCwzumaIFiUjr4bHK7NPgnAHgiskUoceKercrN8vg==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
       vite: ^4.2.0 || ^5.0.0
@@ -10998,7 +10998,7 @@ snapshots:
       json-schema-to-ts: 1.6.4
       ts-morph: 12.0.0
 
-  '@vitejs/plugin-react@4.3.1(vite@5.4.7(@types/node@22.5.5)(sass-embedded@1.79.3)(terser@5.33.0))':
+  '@vitejs/plugin-react@4.3.2(vite@5.4.7(@types/node@22.5.5)(sass-embedded@1.79.3)(terser@5.33.0))':
     dependencies:
       '@babel/core': 7.25.2
       '@babel/plugin-transform-react-jsx-self': 7.24.7(@babel/core@7.25.2)
