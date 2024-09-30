@@ -85,10 +85,6 @@ export default hopeTheme(
         sup: true,
         tasklist: true,
       },
-
-      redirect: {
-        switchLocale: 'modal',
-      },
     },
   },
   { custom: true },
