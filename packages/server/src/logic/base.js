@@ -15,9 +15,18 @@ module.exports = class extends think.Logic {
 
   async __before() {
     const referrer = this.ctx.referrer(true);
+    let origin = this.ctx.request.header.origin;
+    if (origin) {
+      try {
+        const parsedOrigin = new URL(origin);
+        origin = parsedOrigin.hostname;
+      } catch (error) {
+        console.error('Invalid origin format:', origin);
+      }
+    }
     let { secureDomains } = this.config();
 
-    if (secureDomains && referrer && this.ctx.host.indexOf(referrer) !== 0) {
+    if (secureDomains) {
       secureDomains = think.isArray(secureDomains)
         ? secureDomains
         : [secureDomains];
@@ -31,13 +40,35 @@ module.exports = class extends think.Logic {
         'graph.qq.com',
       );
 
-      const match = secureDomains.some((domain) =>
+      // 转换可能的正则表达式字符串为正则表达式对象
+      secureDomains = secureDomains
+        .map((domain) => {
+          // 如果是正则表达式字符串，创建一个 RegExp 对象
+          if (
+            typeof domain === 'string' &&
+            domain.startsWith('/') &&
+            domain.endsWith('/')
+          ) {
+            try {
+              return new RegExp(domain.slice(1, -1)); // 去掉斜杠并创建 RegExp 对象
+            } catch (e) {
+              console.error('Invalid regex pattern in secureDomains:', domain);
+              return null;
+            }
+          }
+          return domain;
+        })
+        .filter(Boolean); // 过滤掉无效的正则表达式
+
+      // 有 referrer 检查 referrer，没有则检查 origin
+      const checking = referrer ? referrer : origin;
+      const isSafe = secureDomains.some((domain) =>
         think.isFunction(domain.test)
-          ? domain.test(referrer)
-          : domain === referrer,
+          ? domain.test(checking)
+          : domain === checking
       );
 
-      if (!match) {
+      if (!isSafe) {
         return this.ctx.throw(403);
       }
     }
@@ -81,7 +112,7 @@ module.exports = class extends think.Logic {
           '2fa',
           'label',
         ],
-      },
+      }
     );
 
     if (think.isEmpty(user)) {
@@ -183,13 +214,13 @@ module.exports = class extends think.Logic {
           };
 
     const response = await fetch(requestUrl, options).then((resp) =>
-      resp.json(),
+      resp.json()
     );
 
     if (!response.success) {
       think.logger.debug(
         'RecaptchaV3 or Turnstile Result:',
-        JSON.stringify(response, null, '\t'),
+        JSON.stringify(response, null, '\t')
       );
 
       return this.ctx.throw(403);
