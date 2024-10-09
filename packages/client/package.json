@@ -88,11 +88,11 @@
     "marked": "^14.1.2",
     "marked-highlight": "^2.1.4",
     "recaptcha-v3": "^1.11.3",
-    "vue": "^3.5.10"
+    "vue": "^3.5.11"
   },
   "devDependencies": {
-    "@babel/core": "7.25.2",
-    "@babel/preset-env": "7.25.4",
+    "@babel/core": "7.25.7",
+    "@babel/preset-env": "7.25.7",
     "@giphy/js-types": "5.1.0",
     "@types/autosize": "4.0.3",
     "@vitejs/plugin-vue": "5.1.4",
