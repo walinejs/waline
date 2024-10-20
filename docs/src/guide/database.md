@@ -40,7 +40,7 @@ MONGO_OPT_SSL=true
 
 ## MySQL
 
-使用 MySQL 存储数据也是一个很好的选择，除了使用自建的 MySQL 服务之外，我们也可以使用 [PlanetScale](https://planetscale.com)，它免费提供了 10GB 的数据库支持。或者 <https://freedb.tech>，它免费提供了 100M 的数据库支持。
+使用 MySQL 存储数据也是一个很好的选择，除了使用自建的 MySQL 服务之外，我们可以使用 [PlanetScale](https://planetscale.com)(目前仅支持付费计划),或者 [FreeDB](https://freedb.tech)，它免费提供了 25M 的数据库支持。
 
 使用时请先导入 [waline.sql](https://github.com/walinejs/waline/blob/main/assets/waline.sql) 以完成表和表结构的创建，之后在项目中配置如下环境变量。
 
