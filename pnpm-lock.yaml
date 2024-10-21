@@ -10423,7 +10423,7 @@ snapshots:
 
   '@types/sax@1.2.7':
     dependencies:
-      '@types/node': 17.0.45
+      '@types/node': 22.7.7
 
   '@types/semver@7.5.8': {}
 
