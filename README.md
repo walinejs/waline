@@ -29,17 +29,18 @@ A simple comment system with backend support.
 - Deploy free!
 - Multiple deployment and storage service support, at least 243 deployment choice!
 
-|                                                 | Waline                              |                                    |
-| ----------------------------------------------- | ----------------------------------- | ---------------------------------- |
-| **Client**                                      | **Server**                          | **Storage**                        |
-| [@waline/client](https://waline.js.org)         | [Vercel](https://vercel.com)        | [LeanCloud](https://leancloud.app) |
-| [MiniValine](https://minivaline.js.org/)        | [CloudBase](https://cloudbase.net/) | [CloudBase](https://clodbase.net)  |
-| [sodesu](https://github.com/BeiyanYunyi/sodesu) | [Railway](https://railway.app)      | [MongoDB](https://mongodb.com)     |
-|                                                 | [Render](https://render.com)        | MySQL                              |
-|                                                 | [Zeabur](https://zeabur.com)        | SQLite                             |
-|                                                 | [Netlify](https://netlify.com)      | [GitHub](https://github.com)       |
-|                                                 | Docker                              | PostgreSQL                         |
-|                                                 | self host                           | [TiDB](https://tidbcloud.com/)     |
+|                                                 | Waline                                                              |                                   |
+| ----------------------------------------------- |---------------------------------------------------------------------| --------------------------------- |
+| **Client**                                      | **Server**                                                          | **Storage**                       |
+| [@waline/client](https://waline.js.org)         | [Vercel](https://vercel.com)                                        | [LeanCloud](https://leancloud.app) |
+| [MiniValine](https://minivaline.js.org/)        | [CloudBase](https://cloudbase.net/)                                 | [CloudBase](https://clodbase.net) |
+| [sodesu](https://github.com/BeiyanYunyi/sodesu) | [Railway](https://railway.app)                                      | [MongoDB](https://mongodb.com)    |
+|                                                 | [Render](https://render.com)                                        | MySQL                             |
+|                                                 | [Zeabur](https://zeabur.com)                                        | SQLite                            |
+|                                                 | [Netlify](https://netlify.com)                                      | [GitHub](https://github.com)      |
+|                                                 | [Alibaba Cloud ComputeNest](https://computenest.console.aliyun.com) | SQLite       |
+|                                                 | Docker                                                              | PostgreSQL                        |
+|                                                 | self host                                                           | [TiDB](https://tidbcloud.com/)    |
 
 ## Todo
 

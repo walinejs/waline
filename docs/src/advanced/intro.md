@@ -28,6 +28,7 @@ order: 1
 | [MiniValine](https://minivaline.js.org/)        | [CloudBase](https://cloudbase.net/)                             | [CloudBase](https://cloudbase.net) |
 | [sodesu](https://github.com/BeiyanYunyi/sodesu) | [百度云 CFC](https://console.bce.baidu.com/cfc/#/cfc/functions) | [MongoDB](https://mongodb.com)     |
 |                                                 | [阿里云 FC](https://fc.console.aliyun.com/)                     | MySQL                              |
+|                                                 | [阿里云 计算巢](https://computenest.console.aliyun.com) | SQLite                              |
 |                                                 | [Railway](https://railway.app)                                  | SQLite                             |
 |                                                 | [Render](https://render.com)                                    | PostgreSQL                         |
 |                                                 | [Zeabur](https://zeabur.com)                                    | [GitHub](https://github.com)       |

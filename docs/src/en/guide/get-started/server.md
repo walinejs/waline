@@ -12,6 +12,8 @@ In addition to deploying on Vercel for free, you can deploy via docker or direct
 
 - [Railway](../deploy/railway.md)
 
+- [Alibaba Cloud Compute Nest](../deploy/aliyun-computenest.md)
+
 ## Multiple Database Support
 
 Besides the default LeanCloud, Waline also supports a variety of databases, including MySQL, PostgreSQL, SQLite, and MongoDB.
