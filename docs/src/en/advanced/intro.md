@@ -30,6 +30,7 @@ A simple comment system with backend support fork from [Valine](https://valine.j
 |                                                 | [Render](https://render.com)        | MySQL                              |
 |                                                 | [Zeabur](https://zeabur.com)        | SQLite                             |
 |                                                 | [Netlify](https://netlify.com)      | PostgreSQL                         |
+|                                                 | [Alibaba Cloud ComputeNest](https://computenest.console.aliyun.com) | SQLite       |
 |                                                 | Docker                              | [GitHub](https://github.com)       |
 |                                                 | self host                           | [TiDB](https://tidbcloud.com/)     |
 
