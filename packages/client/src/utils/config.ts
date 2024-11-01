@@ -48,7 +48,7 @@ export interface WalineConfig
 export const getServerURL = (serverURL: string): string => {
   const result = removeEndingSplash(serverURL);
 
-  return isLinkHttp(result) ? result : `https://${result}`;
+  return isLinkHttp(result) ? result : `https://${removeEndingSplash(result)}`;
 };
 
 const getWordLimit = (
