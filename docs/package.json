@@ -12,7 +12,7 @@
     "@vuepress/bundler-vite": "2.0.0-rc.18",
     "@vuepress/helper": "2.0.0-rc.56",
     "@vuepress/plugin-comment": "2.0.0-rc.56",
-    "@vuepress/plugin-docsearch": "2.0.0-rc.56",
+    "@vuepress/plugin-docsearch": "2.0.0-rc.60",
     "@vuepress/plugin-redirect": "2.0.0-rc.56",
     "@waline/client": "workspace:*",
     "marked": "14.1.3",
