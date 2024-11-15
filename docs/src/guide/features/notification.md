@@ -69,6 +69,8 @@ ww479cadfqfe8c151f,MPKN9gX97w4e4b4h4u7u4i4i4i4iO6mN_dDedBFzqC5c,@all,1000002,2S8
 [参考文档 1](https://note.youdao.com/ynoteshare/index.html?id=351e08a72378206f9dd64d2281e9b83b&type=note&_time=1642141216026) | [参考文档 2](https://note.youdao.com/ynoteshare1/index.html?id=1a0c8aff284ad28cbd011b29b3ad0191&type=note)
 
 - `QYWX_AM`: 用于发送企业应用消息的变量，必填。
+- `QYWX_PROXY`: 指定企业微信接口的反向代理服务器地址（可信IP），未配置则不使用代理。
+- `QYWX_PROXY_PORT`: 指定企业微信接口的反向代理服务器端口（默认 80）
 - `AUTHOR_EMAIL`: 博主邮箱，用来区分发布的评论是否是博主本身发布的。如果是博主发布的则不进行提醒通知。
 - `SITE_NAME`: 网站名称，用于在消息中显示。
 - `SITE_URL`: 网站地址，用于在消息中显示。
