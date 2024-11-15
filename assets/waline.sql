@@ -30,6 +30,13 @@ CREATE TABLE `wl_Comment` (
   `createdAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
+  ADD INDEX `idx_comment_url` (`url`),
+  ADD INDEX `idx_comment_user_id` (`user_id`),
+  ADD INDEX `idx_comment_status` (`status`),
+  ADD INDEX `idx_comment_pid_rid` (`pid`, `rid`),
+  ADD INDEX `idx_comment_created_at` (`createdAt`),
+  ADD INDEX `idx_comment_updated_at` (`updatedAt`),
+  ADD INDEX `idx_comment_sticky` (`sticky`);
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
@@ -53,6 +60,9 @@ CREATE TABLE `wl_Counter` (
   `createdAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
+  ADD INDEX `idx_counter_url` (`url`),
+  ADD INDEX `idx_counter_time` (`time`),
+  ADD INDEX `idx_counter_created_at` (`createdAt`);
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
@@ -79,6 +89,9 @@ CREATE TABLE `wl_Users` (
   `createdAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
+  ADD UNIQUE INDEX `idx_user_email` (`email`),
+  ADD INDEX `idx_user_type` (`type`),
+  ADD INDEX `idx_user_created_at` (`createdAt`);
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
