@@ -82,20 +82,20 @@
     ]
   },
   "dependencies": {
-    "@vueuse/core": "^11.2.0",
+    "@vueuse/core": "12.0.0-beta.1",
     "@waline/api": "1.0.0-alpha.8",
     "autosize": "^6.0.1",
-    "marked": "^15.0.0",
+    "marked": "^15.0.2",
     "marked-highlight": "^2.2.1",
     "recaptcha-v3": "^1.11.3",
-    "vue": "^3.5.12"
+    "vue": "^3.5.13"
   },
   "devDependencies": {
     "@babel/core": "7.26.0",
     "@babel/preset-env": "7.26.0",
     "@giphy/js-types": "5.1.0",
     "@types/autosize": "4.0.3",
-    "@vitejs/plugin-vue": "5.1.5",
+    "@vitejs/plugin-vue": "5.2.0",
     "user-agent-data-types": "0.4.2",
     "vite": "5.4.11"
   },

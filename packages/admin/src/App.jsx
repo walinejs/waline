@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Provider, useSelector } from 'react-redux';
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Routes } from 'react-router';
 
 import Forgot from './pages/forgot/index.jsx';
 import Login from './pages/login/index.jsx';

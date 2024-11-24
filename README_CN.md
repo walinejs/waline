@@ -29,20 +29,20 @@
 - 免费部署
 - 多种部署方式和存储服务支持，每列选择一项多达 243 种部署方式任君选择
 
-  |                                                 | Waline                                                                |                                    |
-  |-----------------------------------------------------------------------| --------------------------------------------------------------- | ---------------------------------- |
-  | **客户端脚本**                                  | **服务端部署**                                                             | **数据存储**                       |
-  | [@waline/client](https://waline.js.org)         | [Vercel](https://vercel.com)                                          | [LeanCloud](https://leancloud.app) |
-  | [MiniValine](https://minivaline.js.org/)        | [CloudBase](https://cloudbase.net/)                                   | [CloudBase](https://cloudbase.net) |
-  | [sodesu](https://github.com/BeiyanYunyi/sodesu) | [百度云 CFC](https://console.bce.baidu.com/cfc/#/cfc/functions)          | [MongoDB](https://mongodb.com)     |
-  |                                                 | [阿里云 FC](https://fc.console.aliyun.com/)                              | MySQL                              |
-  |                                                 | [阿里云 计算巢](https://computenest.console.aliyun.com) | SQLite                              |
-  |                                                 | [Railway](https://railway.app)                                        | SQLite                             |
-  |                                                 | [Render](https://render.com)                                          | PostgreSQL                         |
-  |                                                 | [Zeabur](https://zeabur.com)                                          | [GitHub](https://github.com)       |
-  |                                                 | [Netlify](https://netlify.com)                                        | [TiDB](https://tidbcloud.com/)     |
-  |                                                 | Docker                                                                |                                    |
-  |                                                 | 独立部署                                                                  |                                    |
+  |                                                 | Waline                                                          |                                    |
+  | ----------------------------------------------- | --------------------------------------------------------------- | ---------------------------------- |
+  | **客户端脚本**                                  | **服务端部署**                                                  | **数据存储**                       |
+  | [@waline/client](https://waline.js.org)         | [Vercel](https://vercel.com)                                    | [LeanCloud](https://leancloud.app) |
+  | [MiniValine](https://minivaline.js.org/)        | [CloudBase](https://cloudbase.net/)                             | [CloudBase](https://cloudbase.net) |
+  | [sodesu](https://github.com/BeiyanYunyi/sodesu) | [百度云 CFC](https://console.bce.baidu.com/cfc/#/cfc/functions) | [MongoDB](https://mongodb.com)     |
+  |                                                 | [阿里云 FC](https://fc.console.aliyun.com/)                     | MySQL                              |
+  |                                                 | [阿里云 计算巢](https://computenest.console.aliyun.com)         | SQLite                             |
+  |                                                 | [Railway](https://railway.app)                                  | SQLite                             |
+  |                                                 | [Render](https://render.com)                                    | PostgreSQL                         |
+  |                                                 | [Zeabur](https://zeabur.com)                                    | [GitHub](https://github.com)       |
+  |                                                 | [Netlify](https://netlify.com)                                  | [TiDB](https://tidbcloud.com/)     |
+  |                                                 | Docker                                                          |                                    |
+  |                                                 | 独立部署                                                        |                                    |
 
 ## Todo
 

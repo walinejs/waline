@@ -58,14 +58,12 @@
     }
 
     &::-webkit-scrollbar-track-piece:vertical {
-      -webkit-border-radius: 6px;
       border-radius: 6px;
       background: rgb(0 0 0 / 10%);
     }
 
     &::-webkit-scrollbar-thumb:vertical {
       width: 6px;
-      -webkit-border-radius: 6px;
       border-radius: 6px;
       background: var(--waline-theme-color);
     }
@@ -97,14 +95,12 @@
     }
 
     &::-webkit-scrollbar-track-piece:horizontal {
-      -webkit-border-radius: 6px;
       border-radius: 6px;
       background: rgb(0 0 0 / 10%);
     }
 
     &::-webkit-scrollbar-thumb:horizontal {
       height: 6px;
-      -webkit-border-radius: 6px;
       border-radius: 6px;
       background: var(--waline-theme-color);
     }

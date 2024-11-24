@@ -111,7 +111,8 @@ module.exports = class extends think.Service {
   }
 
   async qywxAmWechat({ title, content }, self, parent) {
-    const { QYWX_AM, QYWX_PROXY, QYWX_PROXY_PORT, SITE_NAME, SITE_URL } = process.env;
+    const { QYWX_AM, QYWX_PROXY, QYWX_PROXY_PORT, SITE_NAME, SITE_URL } =
+      process.env;
 
     if (!QYWX_AM) {
       return false;
@@ -156,6 +157,7 @@ module.exports = class extends think.Service {
     querystring.set('corpsecret', `${QYWX_AM_AY[1]}`);
 
     let baseUrl = 'https://qyapi.weixin.qq.com';
+
     if (QYWX_PROXY) {
       if (!QYWX_PROXY_PORT) {
         baseUrl = `http://${QYWX_PROXY}`;
