@@ -82,7 +82,7 @@
     ]
   },
   "dependencies": {
-    "@vueuse/core": "12.0.0-beta.1",
+    "@vueuse/core": "12.0.0",
     "@waline/api": "1.0.0-alpha.8",
     "autosize": "^6.0.1",
     "marked": "^15.0.2",
@@ -95,9 +95,9 @@
     "@babel/preset-env": "7.26.0",
     "@giphy/js-types": "5.1.0",
     "@types/autosize": "4.0.3",
-    "@vitejs/plugin-vue": "5.2.0",
+    "@vitejs/plugin-vue": "5.2.1",
     "user-agent-data-types": "0.4.2",
-    "vite": "5.4.11"
+    "vite": "6.0.1"
   },
   "engines": {
     "node": ">=18"

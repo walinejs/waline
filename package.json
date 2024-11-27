@@ -50,8 +50,8 @@
     "@rollup/plugin-commonjs": "28.0.1",
     "@rollup/plugin-node-resolve": "15.3.0",
     "@rollup/plugin-replace": "6.0.1",
-    "@types/node": "22.9.3",
-    "@vitejs/plugin-react": "4.3.3",
+    "@types/node": "22.10.0",
+    "@vitejs/plugin-react": "4.3.4",
     "apidoc": "1.2.0",
     "commitizen": "4.3.1",
     "cross-env": "7.0.3",
@@ -64,7 +64,7 @@
     "markdownlint-cli2": "0.15.0",
     "nano-staged": "0.8.0",
     "postcss": "8.4.49",
-    "prettier": "3.3.3",
+    "prettier": "3.4.1",
     "rimraf": "6.0.1",
     "rollup": "4.27.4",
     "rollup-plugin-dts": "6.1.1",
@@ -76,11 +76,10 @@
     "stylelint-config-hope": "7.0.4",
     "tslib": "2.8.1",
     "typescript": "5.7.2",
-    "vercel": "39.1.1",
-    "vite": "5.4.11",
+    "vercel": "39.1.2",
     "vite-plugin-css-injected-by-js": "3.5.2",
     "vite-plugin-svgr": "4.3.0",
-    "vitest": "2.1.5"
+    "vitest": "2.1.6"
   },
   "packageManager": "pnpm@9.14.2",
   "apidoc": {
