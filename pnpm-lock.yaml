@@ -117,8 +117,8 @@ importers:
         specifier: 5.7.2
         version: 5.7.2
       vercel:
-        specifier: 39.1.2
-        version: 39.1.2(encoding@0.1.13)
+        specifier: 39.1.3
+        version: 39.1.3(encoding@0.1.13)
       vite-plugin-css-injected-by-js:
         specifier: 3.5.2
         version: 3.5.2(vite@6.0.1(@types/node@22.10.0)(jiti@1.21.6)(sass-embedded@1.81.0)(terser@5.36.0))
@@ -2149,55 +2149,46 @@ packages:
     resolution: {integrity: sha512-9OwUnK/xKw6DyRlgx8UizeqRFOfi9mf5TYCw1uolDaJSbUmBxP85DE6T4ouCMoN6pXw8ZoTeZCSEfSaYo+/s1w==}
     cpu: [arm]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-arm-musleabihf@4.27.4':
     resolution: {integrity: sha512-Vgdo4fpuphS9V24WOV+KwkCVJ72u7idTgQaBoLRD0UxBAWTF9GWurJO9YD9yh00BzbkhpeXtm6na+MvJU7Z73A==}
     cpu: [arm]
     os: [linux]
-    libc: [musl]
 
   '@rollup/rollup-linux-arm64-gnu@4.27.4':
     resolution: {integrity: sha512-pleyNgyd1kkBkw2kOqlBx+0atfIIkkExOTiifoODo6qKDSpnc6WzUY5RhHdmTdIJXBdSnh6JknnYTtmQyobrVg==}
     cpu: [arm64]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-arm64-musl@4.27.4':
     resolution: {integrity: sha512-caluiUXvUuVyCHr5DxL8ohaaFFzPGmgmMvwmqAITMpV/Q+tPoaHZ/PWa3t8B2WyoRcIIuu1hkaW5KkeTDNSnMA==}
     cpu: [arm64]
     os: [linux]
-    libc: [musl]
 
   '@rollup/rollup-linux-powerpc64le-gnu@4.27.4':
     resolution: {integrity: sha512-FScrpHrO60hARyHh7s1zHE97u0KlT/RECzCKAdmI+LEoC1eDh/RDji9JgFqyO+wPDb86Oa/sXkily1+oi4FzJQ==}
     cpu: [ppc64]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-riscv64-gnu@4.27.4':
     resolution: {integrity: sha512-qyyprhyGb7+RBfMPeww9FlHwKkCXdKHeGgSqmIXw9VSUtvyFZ6WZRtnxgbuz76FK7LyoN8t/eINRbPUcvXB5fw==}
     cpu: [riscv64]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-s390x-gnu@4.27.4':
     resolution: {integrity: sha512-PFz+y2kb6tbh7m3A7nA9++eInGcDVZUACulf/KzDtovvdTizHpZaJty7Gp0lFwSQcrnebHOqxF1MaKZd7psVRg==}
     cpu: [s390x]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-x64-gnu@4.27.4':
     resolution: {integrity: sha512-Ni8mMtfo+o/G7DVtweXXV/Ol2TFf63KYjTtoZ5f078AUgJTmaIJnj4JFU7TK/9SVWTaSJGxPi5zMDgK4w+Ez7Q==}
     cpu: [x64]
     os: [linux]
-    libc: [glibc]
 
   '@rollup/rollup-linux-x64-musl@4.27.4':
     resolution: {integrity: sha512-5AeeAF1PB9TUzD+3cROzFTnAJAcVUGLuR8ng0E0WXGkYhp6RD6L+6szYVX+64Rs0r72019KHZS1ka1q+zU/wUw==}
     cpu: [x64]
     os: [linux]
-    libc: [musl]
 
   '@rollup/rollup-win32-arm64-msvc@4.27.4':
     resolution: {integrity: sha512-yOpVsA4K5qVwu2CaS3hHxluWIK5HQTjNV4tWjQXluMiiiu4pJj4BN98CvxohNCpcjMeTXk/ZMJBRbgRg8HBB6A==}
@@ -2567,8 +2558,8 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
-  '@vercel/node@3.2.27':
-    resolution: {integrity: sha512-vvTBD8Rz2jgbnm9/mTe+wB1rh/uISr7HRkyECUt92IlI4tYxOf/vS7ARgR86TGzb9WDwTrnRVxCl92q//f7hHA==}
+  '@vercel/node@3.2.28':
+    resolution: {integrity: sha512-1TJqaBs8iiZX8l18rW2UGWB9XhHIBpkigFitqMRPapU3W8AaS29Uns64lgH4t9OVlcH4Jd9+3gNcy7amB7vhLQ==}
 
   '@vercel/python@4.5.1':
     resolution: {integrity: sha512-nZX1oezs5E+Un5Pw21P7cEXV9WBohRSq8gDAqipu7KHFfdAQ7ubfBclRmDTGaHOiYvdLsJPiE599vsUfKKob/w==}
@@ -8100,8 +8091,8 @@ packages:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
     engines: {node: '>= 0.8'}
 
-  vercel@39.1.2:
-    resolution: {integrity: sha512-L6oidHoWgcHsP58p7yHbYJL6ZErO2HmloBJs75+qu9tDND7/X/NaMLDb2F0PMiwuWRnMk93k+qVgtpWmAgR6lg==}
+  vercel@39.1.3:
+    resolution: {integrity: sha512-dB9soUMRY+MHg5JDyztBWpOWYPTAS5PoU/4YwyrOI+QfF9d5GUVIQ3TVb/CccFSXGrpAgLdkoaEBNDmg9+700g==}
     engines: {node: '>= 16'}
     hasBin: true
 
@@ -10769,7 +10760,7 @@ snapshots:
 
   '@types/sax@1.2.7':
     dependencies:
-      '@types/node': 17.0.45
+      '@types/node': 22.10.0
 
   '@types/semver@7.5.8': {}
 
@@ -10953,7 +10944,7 @@ snapshots:
       - encoding
       - supports-color
 
-  '@vercel/node@3.2.27(encoding@0.1.13)':
+  '@vercel/node@3.2.28(encoding@0.1.13)':
     dependencies:
       '@edge-runtime/node-utils': 2.3.0
       '@edge-runtime/primitives': 4.1.0
@@ -12629,7 +12620,7 @@ snapshots:
 
   debug@4.1.1:
     dependencies:
-      ms: 2.1.1
+      ms: 2.1.3
 
   debug@4.3.7(supports-color@5.5.0):
     dependencies:
@@ -17284,14 +17275,14 @@ snapshots:
 
   vary@1.1.2: {}
 
-  vercel@39.1.2(encoding@0.1.13):
+  vercel@39.1.3(encoding@0.1.13):
     dependencies:
       '@vercel/build-utils': 8.6.0
       '@vercel/fun': 1.1.0(encoding@0.1.13)
       '@vercel/go': 3.2.1
       '@vercel/hydrogen': 1.0.9
       '@vercel/next': 4.4.0(encoding@0.1.13)
-      '@vercel/node': 3.2.27(encoding@0.1.13)
+      '@vercel/node': 3.2.28(encoding@0.1.13)
       '@vercel/python': 4.5.1
       '@vercel/redwood': 2.1.8(encoding@0.1.13)
       '@vercel/remix-builder': 2.2.14(encoding@0.1.13)
