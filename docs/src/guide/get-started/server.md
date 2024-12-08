@@ -12,11 +12,11 @@ order: 2
 
 - [阿里云函数计算](../deploy/aliyun-fc.md)
 
+- [阿里云计算巢](../deploy/aliyun-computenest.md)
+
 - [百度云函数计算](../deploy/baidu-cfc.md)
 
 - [Cloudbase](../deploy/cloudbase.md)
-
-- [Deta](../deploy/deta.md)
 
 - [Railway](../deploy/railway.md)
 

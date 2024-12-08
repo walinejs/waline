@@ -28,20 +28,21 @@
 - 轻量易用
 - 免费部署
 - 多种部署方式和存储服务支持，每列选择一项多达 243 种部署方式任君选择
-  | | Waline | |
-  | ----------------------------------------------- | --------------------------------------------------------------- | ------------------------------------------------------------ |
-  | **客户端脚本** | **服务端部署** | **数据存储** |
-  | [@waline/client](https://waline.js.org) | [Vercel](https://vercel.com) | [LeanCloud](https://leancloud.app) |
-  | [MiniValine](https://minivaline.js.org/) | [Deta](https://deta.space) | [CloudBase](https://cloudbase.net) |
-  | [sodesu](https://github.com/BeiyanYunyi/sodesu) | [CloudBase](https://cloudbase.net/) | [MongoDB](https://mongodb.com) |
-  | | [百度云 CFC](https://console.bce.baidu.com/cfc/#/cfc/functions) | MySQL |
-  | | [阿里云 FC](https://fc.console.aliyun.com/) | SQLite |
-  | | [Railway](https://railway.app) | PostgreSQL |
-  | | [Render](https://render.com) | [GitHub](https://github.com) |
-  | | [Zeabur](https://zeabur.com) | [Deta Base](https://deta.space/docs/en/reference/base/about) |
-  | | [Netlify](https://netlify.com) | [TiDB](https://tidbcloud.com/) |
-  | | Docker | |
-  | | 独立部署 | |
+
+  |                                                 | Waline                                                          |                                    |
+  | ----------------------------------------------- | --------------------------------------------------------------- | ---------------------------------- |
+  | **客户端脚本**                                  | **服务端部署**                                                  | **数据存储**                       |
+  | [@waline/client](https://waline.js.org)         | [Vercel](https://vercel.com)                                    | [LeanCloud](https://leancloud.app) |
+  | [MiniValine](https://minivaline.js.org/)        | [CloudBase](https://cloudbase.net/)                             | [CloudBase](https://cloudbase.net) |
+  | [sodesu](https://github.com/BeiyanYunyi/sodesu) | [百度云 CFC](https://console.bce.baidu.com/cfc/#/cfc/functions) | [MongoDB](https://mongodb.com)     |
+  |                                                 | [阿里云 FC](https://fc.console.aliyun.com/)                     | MySQL                              |
+  |                                                 | [阿里云 计算巢](https://computenest.console.aliyun.com)         | SQLite                             |
+  |                                                 | [Railway](https://railway.app)                                  | SQLite                             |
+  |                                                 | [Render](https://render.com)                                    | PostgreSQL                         |
+  |                                                 | [Zeabur](https://zeabur.com)                                    | [GitHub](https://github.com)       |
+  |                                                 | [Netlify](https://netlify.com)                                  | [TiDB](https://tidbcloud.com/)     |
+  |                                                 | Docker                                                          |                                    |
+  |                                                 | 独立部署                                                        |                                    |
 
 ## Todo
 
@@ -56,7 +57,7 @@
 - [x] 登录支持
 - [x] 评论管理
 - [x] 评论删除
-- [x] 其它数据库服务支持 (已支持 LeanCloud, MySQL, MongoDB, SQLite, PostgreSQL, CloudBase, Deta Base, GitHub)
+- [x] 其它数据库服务支持 (已支持 LeanCloud, MySQL, MongoDB, SQLite, PostgreSQL, CloudBase Base, GitHub)
 - [x] 基于 IP 的评论发布频率限制
 - [x] 基于关键词的评论过滤限制
 - [x] IP 黑名单

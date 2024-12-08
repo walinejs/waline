@@ -1,4 +1,4 @@
-import i18n from 'i18next';
+import I18n from 'i18next';
 
 export default async function request(url, opts = {}) {
   if (typeof url === 'object') {
@@ -34,7 +34,7 @@ export default async function request(url, opts = {}) {
 
   const joiner = opts.url.includes('?') ? '&' : '?';
   const resp = await fetch(
-    `${baseUrl}${opts.url}${joiner}lang=${i18n.language}`,
+    `${baseUrl}${opts.url}${joiner}lang=${I18n.language}`,
     opts,
   );
 

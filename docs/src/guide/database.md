@@ -40,7 +40,7 @@ MONGO_OPT_SSL=true
 
 ## MySQL
 
-使用 MySQL 存储数据也是一个很好的选择，除了使用自建的 MySQL 服务之外，我们也可以使用 [PlanetScale](https://planetscale.com)，它免费提供了 10GB 的数据库支持。或者 <https://freedb.tech>，它免费提供了 100M 的数据库支持。
+使用 MySQL 存储数据也是一个很好的选择，除了使用自建的 MySQL 服务之外，我们可以使用 [PlanetScale](https://planetscale.com)(目前仅支持付费计划),或者 [FreeDB](https://freedb.tech)，它免费提供了 25M 的数据库支持。
 
 使用时请先导入 [waline.sql](https://github.com/walinejs/waline/blob/main/assets/waline.sql) 以完成表和表结构的创建，之后在项目中配置如下环境变量。
 
@@ -137,14 +137,6 @@ Waline 支持将评论数据以 CSV 文件的格式存储在 GitHub 仓库中。
 出于国内 Github 服务访问稳定性与 CSV 读取与存储性能的原因，我们不建议国内用户使用 Github 作为存储库。
 
 :::
-
-## Deta Base
-
-Deta 提供了 [Deta Base](https://deta.space/docs/en/reference/base/about) 免费数据库支持，即使不部署在 Deta 上也可以使用。如果部署在 Deta 上，不需要配置任何环境变量，Waline 默认会使用 Deta Base 作为数据库存储数据。如果是部署在其它地方，需要配置以下环境变量。
-
-| 环境变量名称       | 必填 | 默认值 | 备注          |
-| ------------------ | ---- | ------ | ------------- |
-| `DETA_PROJECT_KEY` | ✅   |        | Deta 项目密钥 |
 
 ## 更多
 

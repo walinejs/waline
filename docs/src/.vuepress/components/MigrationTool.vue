@@ -147,7 +147,7 @@ const click = (event: FormDataEvent) => {
 textarea {
   width: 100%;
   height: 200px;
-  border: 1px solid var(--vp-brc);
+  border: 1px solid var(--vp-c-border);
   border-radius: 3px;
   padding: 10px;
   outline: none;
@@ -156,7 +156,7 @@ textarea {
 select {
   padding: 4px 8px;
   font-size: 0.8em;
-  border: 1px solid var(--vp-brc);
+  border: 1px solid var(--vp-c-border);
   border-radius: 4px;
   outline: none;
 }
@@ -166,8 +166,8 @@ button {
   line-height: 2em;
   padding: 0 20px;
   border: none;
-  background: var(--vp-tc);
-  color: var(--white);
+  background: var(--vp-c-accent-bg);
+  color: var(--vp-c-white);
   border-radius: 3px;
   cursor: pointer;
 }

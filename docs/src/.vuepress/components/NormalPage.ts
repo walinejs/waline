@@ -16,7 +16,7 @@ import WalineTips from './WalineTips.js';
 
 import type { ThemeNormalPageFrontmatter } from 'vuepress-theme-hope';
 
-import 'vuepress-theme-hope/styles/page.scss';
+import 'vuepress-theme-hope/styles/normal-page.scss';
 
 export default defineComponent({
   name: 'NormalPage',

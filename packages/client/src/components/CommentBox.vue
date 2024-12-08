@@ -500,6 +500,7 @@ onMounted(() => {
       wordNumber.value = getWordNumber(value);
 
       if (value) autosize(editorRef.value!);
+      // eslint-disable-next-line import-x/no-named-as-default-member
       else autosize.destroy(editorRef.value!);
     },
     { immediate: true },

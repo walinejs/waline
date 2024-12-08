@@ -111,7 +111,8 @@ module.exports = class extends think.Service {
   }
 
   async qywxAmWechat({ title, content }, self, parent) {
-    const { QYWX_AM, SITE_NAME, SITE_URL } = process.env;
+    const { QYWX_AM, QYWX_PROXY, QYWX_PROXY_PORT, SITE_NAME, SITE_URL } =
+      process.env;
 
     if (!QYWX_AM) {
       return false;
@@ -136,6 +137,7 @@ module.exports = class extends think.Service {
         postUrl: SITE_URL + self.url + '#' + self.objectId,
       },
     };
+
     const contentWechat =
       think.config('WXTemplate') ||
       `💬 {{site.name|safe}}的文章《{{postName}}》有新评论啦 
@@ -154,8 +156,18 @@ module.exports = class extends think.Service {
     querystring.set('corpid', `${QYWX_AM_AY[0]}`);
     querystring.set('corpsecret', `${QYWX_AM_AY[1]}`);
 
+    let baseUrl = 'https://qyapi.weixin.qq.com';
+
+    if (QYWX_PROXY) {
+      if (!QYWX_PROXY_PORT) {
+        baseUrl = `http://${QYWX_PROXY}`;
+      } else {
+        baseUrl = `http://${QYWX_PROXY}:${QYWX_PROXY_PORT}`;
+      }
+    }
+
     const { access_token } = await fetch(
-      `https://qyapi.weixin.qq.com/cgi-bin/gettoken?${querystring.toString()}`,
+      `${baseUrl}/cgi-bin/gettoken?${querystring.toString()}`,
       {
         headers: {
           'content-type': 'application/json',
@@ -164,7 +176,7 @@ module.exports = class extends think.Service {
     ).then((resp) => resp.json());
 
     return fetch(
-      `https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=${access_token}`,
+      `${baseUrl}/cgi-bin/message/send?access_token=${access_token}`,
       {
         method: 'POST',
         headers: {

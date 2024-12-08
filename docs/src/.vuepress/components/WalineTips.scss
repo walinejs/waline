@@ -1,4 +1,4 @@
-@use 'vuepress-shared/styles/wrapper';
+@use 'vuepress-theme-hope/styles/wrapper';
 
 .waline-tips-wrapper {
   @include wrapper.horizontal-wrapper();
@@ -11,8 +11,7 @@
 .waline-tips {
   margin: 1rem auto;
   padding: 10px;
-  border-left: 5px solid var(--warning-border-color);
   border-radius: 8px;
-  background: var(--warning-bg-color);
-  color: var(--warning-text-color);
+  background: var(--warning-c-soft);
+  color: var(--warning-c-text);
 }

@@ -1,4 +1,3 @@
-/* eslint-disable import-x/no-unresolved */
 import hopeConfig, {
   config,
   globals,

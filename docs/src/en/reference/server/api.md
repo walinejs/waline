@@ -81,9 +81,10 @@ GET /api/article
 ```
 
 **Parameters**:
-| Parameter | Type | Description |
+
+| Parameter | Type   | Description                                                         |
 | --------- | ------ | ------------------------------------------------------------------- |
-| path | string | Article id for comment，multiple ids should be spliced with commas. |
+| path      | string | Article id for comment，multiple ids should be spliced with commas. |
 
 ### Update reading statistics
 

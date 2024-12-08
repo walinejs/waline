@@ -11,6 +11,13 @@ export default defineConfig({
   define: {
     VERSION: JSON.stringify(pkg.version),
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: 'modern',
+      },
+    },
+  },
   plugins: [vue()],
   envDir: resolve(__dirname),
   envPrefix: ['VITE_', 'SERVERURL'],
