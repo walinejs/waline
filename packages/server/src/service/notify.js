@@ -3,7 +3,6 @@ const crypto = require('node:crypto');
 const FormData = require('form-data');
 const fetch = require('node-fetch');
 const nodemailer = require('nodemailer');
-const nunjucks = require('nunjucks');
 
 module.exports = class extends think.Service {
   constructor(ctx) {
@@ -421,44 +420,121 @@ module.exports = class extends think.Service {
       return false;
     }
 
-    self.comment = self.comment.replace(/(<([^>]+)>)/gi, '');
-
-    const data = {
-      self,
-      parent,
-      site: {
-        name: SITE_NAME,
-        url: SITE_URL,
-        postUrl: SITE_URL + self.url + '#' + self.objectId,
-      },
-    };
-
-    content = nunjucks.renderString(
-      think.config('LarkTemplate') ||
-        `【网站名称】：{{site.name|safe}} \n【评论者昵称】：{{self.nick}}\n【评论者邮箱】：{{self.mail}}\n【内容】：{{self.comment}}【地址】：{{site.postUrl}}`,
-      data,
-    );
-
-    const post = {
-      en_us: {
-        title: this.ctx.locale(title, data),
-        content: [
-          [
-            {
-              tag: 'text',
-              text: content,
-            },
-          ],
-        ],
-      },
-    };
+    // 文章地址
+    const postUrl = SITE_URL + self.url;
+    // 评论地址
+    const commentUrl = SITE_URL + self.url + '#' + self.objectId;
 
     let signData = {};
     const msg = {
-      msg_type: 'post',
-      content: {
-        post,
-      },
+      "msg_type": "interactive",
+      "card": {
+        "header": {
+          "template": "blue",
+          "title": {
+            "tag": "plain_text",
+            "content": `🌥️🌥️🌥️ ${SITE_NAME} 有新评论啦`
+          }
+        },
+        "elements": [
+          {
+            "tag": "markdown",
+            "content": `**文章地址:** [${postUrl}](${postUrl})`
+          },
+          {
+            "tag": "hr"
+          },
+          {
+            "tag": "column_set",
+            "flex_mode": "none",
+            "background_style": "default",
+            "columns": [
+              {
+                "tag": "column",
+                "width": "weighted",
+                "weight": 1,
+                "vertical_align": "top",
+                "elements": [
+                  {
+                    "tag": "markdown",
+                    "content": `**🌥️ 站点名称\n<font color='red'> ${SITE_NAME}</font>** `,
+                    "text_align": "center"
+                  }
+                ]
+              },
+              {
+                "tag": "column",
+                "width": "weighted",
+                "weight": 1,
+                "vertical_align": "top",
+                "elements": [
+                  {
+                    "tag": "markdown",
+                    "content": `**👤 昵称** \n[${self.nick}](${self.link})`,
+                    "text_align": "center"
+                  }
+                ]
+              },
+              {
+                "tag": "column",
+                "width": "weighted",
+                "weight": 1,
+                "vertical_align": "top",
+                "elements": [
+                  {
+                    "tag": "markdown",
+                    "content": `**📪 邮箱\n<font color='green'> ${self.mail}</font>**`,
+                    "text_align": "center"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "column_set",
+            "flex_mode": "none",
+            "background_style": "grey",
+            "columns": [
+              {
+                "tag": "column",
+                "width": "weighted",
+                "weight": 1,
+                "vertical_align": "top",
+                "elements": [
+                  {
+                    "tag": "markdown",
+                    "content": "**📝 评论内容 📝**",
+                    "text_align": "center"
+                  },
+                  {
+                    "tag": "markdown",
+                    "content": self.comment
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "action",
+            "actions": [
+              {
+                "tag": "button",
+                "text": {
+                  "tag": "plain_text",
+                  "content": "查看完整內容"
+                },
+                "type": "primary",
+                "multi_url": {
+                  "url": commentUrl,
+                  "pc_url": "",
+                  "android_url": "",
+                  "ios_url": ""
+                }
+              }
+            ]
+          }
+        ]
+      }
     };
 
     const sign = (timestamp, secret) => {
