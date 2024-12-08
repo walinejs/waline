@@ -85,7 +85,7 @@
     "@vueuse/core": "12.0.0",
     "@waline/api": "1.0.0-alpha.8",
     "autosize": "^6.0.1",
-    "marked": "^15.0.2",
+    "marked": "^15.0.3",
     "marked-highlight": "^2.2.1",
     "recaptcha-v3": "^1.11.3",
     "vue": "^3.5.13"
@@ -97,7 +97,7 @@
     "@types/autosize": "4.0.3",
     "@vitejs/plugin-vue": "5.2.1",
     "user-agent-data-types": "0.4.2",
-    "vite": "6.0.1"
+    "vite": "6.0.3"
   },
   "engines": {
     "node": ">=18"

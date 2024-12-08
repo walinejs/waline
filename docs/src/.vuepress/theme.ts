@@ -35,6 +35,17 @@ export default hopeTheme(
       },
     },
 
+    markdown: {
+      codeTabs: true,
+      figure: true,
+      math: {
+        type: 'mathjax',
+      },
+      sub: true,
+      sup: true,
+      tasklist: true,
+    },
+
     plugins: {
       comment: {
         provider: 'Waline',
@@ -68,22 +79,6 @@ export default hopeTheme(
         appId: 'W34KABV4KM',
         apiKey: 'd189586c601d439f9247bdaf95b3555f',
         indexName: 'waline',
-      },
-
-      markdownImage: {
-        figure: true,
-      },
-
-      markdownMath: {
-        type: 'mathjax',
-      },
-
-      markdownTab: { codeTabs: true },
-
-      mdEnhance: {
-        sub: true,
-        sup: true,
-        tasklist: true,
       },
     },
   },
