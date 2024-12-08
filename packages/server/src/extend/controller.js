@@ -20,7 +20,7 @@ module.exports = {
     return this[this.ctx.state.deprecated ? 'json' : 'success'](...args);
   },
   locale(message, variables) {
-    const { userLang } = this.get();
+    const { lang: userLang } = this.get();
     const lang = (userLang || defaultLang).toLowerCase();
 
     const customLocales = this.config('locales');
