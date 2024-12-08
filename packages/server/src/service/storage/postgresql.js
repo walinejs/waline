@@ -1,5 +1,21 @@
 const MySQL = require('./mysql.js');
 
+function mapKeys({ insertedat, createdat, updatedat, ...item }) {
+  const mapFields = {
+    insertedAt: insertedat,
+    createdAt: createdat,
+    updatedAt: updatedat,
+  };
+
+  for (const field in mapFields) {
+    if (!mapFields[field]) {
+      continue;
+    }
+    item[field] = mapFields[field];
+  }
+
+  return item;
+}
 module.exports = class extends MySQL {
   model(tableName) {
     return super.model(tableName.toLowerCase());
@@ -22,22 +38,7 @@ module.exports = class extends MySQL {
 
     const data = await super.select(lowerWhere, options);
 
-    return data.map(({ insertedat, createdat, updatedat, ...item }) => {
-      const mapFields = {
-        insertedAt: insertedat,
-        createdAt: createdat,
-        updatedAt: updatedat,
-      };
-
-      for (const field in mapFields) {
-        if (!mapFields[field]) {
-          continue;
-        }
-        item[field] = mapFields[field];
-      }
-
-      return item;
-    });
+    return data.map(mapKeys);
   }
 
   async add(data) {
@@ -53,7 +54,7 @@ module.exports = class extends MySQL {
         delete data[key];
       });
 
-    return super.add(data);
+    return super.add(data).then(mapKeys);
   }
 
   async count(...args) {
