@@ -251,7 +251,7 @@ const onLike = async (comment: WalineComment): Promise<void> => {
       likeStorage.value = likeStorage.value.slice(-50);
   }
 
-  comment.like = (comment.like || 0) + (hasLiked ? -1 : 1);
+  comment.like = Math.max(0, (comment.like || 0) + (hasLiked ? -1 : 1));
 };
 
 provide('config', config);
