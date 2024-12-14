@@ -61,7 +61,7 @@
     "eslint-plugin-react": "7.37.2",
     "eslint-plugin-vue": "9.32.0",
     "husky": "9.1.7",
-    "markdownlint-cli2": "0.15.0",
+    "markdownlint-cli2": "0.16.0",
     "nano-staged": "0.8.0",
     "postcss": "8.4.49",
     "prettier": "3.4.2",
