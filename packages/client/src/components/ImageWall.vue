@@ -25,7 +25,14 @@
 -->
 
 <script setup lang="ts">
-import { nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue';
+import {
+  nextTick,
+  onBeforeUnmount,
+  onMounted,
+  ref,
+  useTemplateRef,
+  watch,
+} from 'vue';
 
 import { LoadingIcon } from './Icons.js';
 import type { WalineSearchResult } from '../typings/index.js';
@@ -59,12 +66,13 @@ defineEmits<(event: 'insert', content: string) => void>();
 defineExpose();
 
 let resizeObserver: ResizeObserver | null = null;
-const wall = ref<HTMLDivElement | null>(null);
+const wall = useTemplateRef<HTMLDivElement>('wall');
 const state = ref<Record<string, boolean>>({});
 const columns = ref<Column[]>([]);
 
 const getColumnCount = (): number => {
   const count = Math.floor(
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     (wall.value!.getBoundingClientRect().width + props.gap) /
       (props.columnWidth + props.gap),
   );
@@ -80,7 +88,8 @@ const fillColumns = async (itemIndex: number): Promise<void> => {
 
   await nextTick();
 
-  const columnDivs = Array.from(wall.value?.children ?? []) as HTMLDivElement[];
+  // @ts-expect-error: Type is Element not HTMLElement
+  const columnDivs = Array.from<HTMLElement>(wall.value?.children ?? []);
 
   const target = columnDivs.reduce((prev, curr) =>
     curr.getBoundingClientRect().height < prev.getBoundingClientRect().height
@@ -115,6 +124,7 @@ onMounted(() => {
   resizeObserver = new ResizeObserver(() => {
     void redraw();
   });
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   resizeObserver.observe(wall.value!);
 
   watch(
@@ -132,7 +142,10 @@ onMounted(() => {
   );
 });
 
-onBeforeUnmount(() => resizeObserver!.unobserve(wall.value!));
+onBeforeUnmount(() => {
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  resizeObserver!.unobserve(wall.value!);
+});
 </script>
 
 <template>

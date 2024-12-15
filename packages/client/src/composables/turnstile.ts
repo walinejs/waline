@@ -32,11 +32,11 @@ export const useTurnstile = (key: string): Turnstile => {
 
     await load();
 
-    const turnstile = window?.turnstile;
+    const turnstile = window.turnstile;
 
     return new Promise((resolve) => {
       turnstile?.ready(() => {
-        turnstile?.render('.wl-captcha-container', {
+        turnstile.render('.wl-captcha-container', {
           sitekey: key,
           action,
           size: 'compact',

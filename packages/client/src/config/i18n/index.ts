@@ -35,6 +35,7 @@ export const DEFAULT_LOCALES: Locales = {
 };
 
 export const getLocale = (lang: string): WalineLocale =>
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   DEFAULT_LOCALES[lang.toLowerCase()] ||
   DEFAULT_LOCALES[DEFAULT_LANG.toLowerCase()];
 

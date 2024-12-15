@@ -51,6 +51,7 @@ module.exports = class extends MySQL {
           val instanceof Date
             ? think.datetime(val, 'YYYY-MM-DD HH:mm:ss')
             : val;
+        // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
         delete data[key];
       });
 

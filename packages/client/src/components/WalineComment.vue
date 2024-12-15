@@ -20,8 +20,7 @@ import { useLikeStorage, useUserInfo } from '../composables/index.js';
 import type { WalineCommentSorting, WalineProps } from '../typings/index.js';
 import { getConfig, getDarkStyle } from '../utils/index.js';
 import { version } from '../version.js';
-
-type SortKey = 'insertedAt_desc' | 'insertedAt_asc' | 'like_desc';
+import { configKey, sortingMethods, sortKeyMap } from '../config/index.js';
 
 const props = defineProps([
   'serverURL',
@@ -45,13 +44,6 @@ const props = defineProps([
   'turnstileKey',
   'reaction',
 ]);
-
-const sortKeyMap: Record<WalineCommentSorting, SortKey> = {
-  latest: 'insertedAt_desc',
-  oldest: 'insertedAt_asc',
-  hottest: 'like_desc',
-};
-const sortingMethods = Object.keys(sortKeyMap) as WalineCommentSorting[];
 
 const userInfo = useUserInfo();
 const likeStorage = useLikeStorage();
@@ -77,7 +69,7 @@ const i18n = computed(() => config.value.locale);
 
 useStyleTag(darkmodeStyle, { id: 'waline-darkmode' });
 
-let abort: () => void;
+let abort: (() => void) | null = null;
 
 const getCommentData = (pageNumber: number): void => {
   const { serverURL, path, pageSize } = config.value;
@@ -95,7 +87,7 @@ const getCommentData = (pageNumber: number): void => {
     sortBy: sortKeyMap[commentSortingRef.value],
     page: pageNumber,
     signal: controller.signal,
-    token: userInfo.value?.token,
+    token: userInfo.value.token,
   })
     .then((resp) => {
       status.value = 'success';
@@ -104,9 +96,9 @@ const getCommentData = (pageNumber: number): void => {
       page.value = pageNumber;
       totalPages.value = resp.totalPages;
     })
-    .catch((err: Error) => {
-      if (err.name !== 'AbortError') {
-        console.error(err.message);
+    .catch((err: unknown) => {
+      if ((err as Error).name !== 'AbortError') {
+        console.error((err as Error).message);
         status.value = 'error';
       }
     });
@@ -114,7 +106,9 @@ const getCommentData = (pageNumber: number): void => {
   abort = controller.abort.bind(controller);
 };
 
-const loadMore = (): void => getCommentData(page.value + 1);
+const loadMore = (): void => {
+  getCommentData(page.value + 1);
+};
 
 const refresh = (): void => {
   count.value = 0;
@@ -171,7 +165,7 @@ const onStatusChange = async ({
   await updateComment({
     serverURL,
     lang,
-    token: userInfo.value?.token,
+    token: userInfo.value.token,
     objectId: comment.objectId,
     comment: { status },
   });
@@ -187,7 +181,7 @@ const onSticky = async (comment: WalineComment): Promise<void> => {
   await updateComment({
     serverURL,
     lang,
-    token: userInfo.value?.token,
+    token: userInfo.value.token,
     objectId: comment.objectId,
     comment: { sticky: comment.sticky ? 0 : 1 },
   });
@@ -203,7 +197,7 @@ const onDelete = async ({ objectId }: WalineComment): Promise<void> => {
   await deleteComment({
     serverURL,
     lang,
-    token: userInfo.value?.token,
+    token: userInfo.value.token,
     objectId,
   });
 
@@ -238,7 +232,7 @@ const onLike = async (comment: WalineComment): Promise<void> => {
     serverURL,
     lang,
     objectId,
-    token: userInfo.value?.token,
+    token: userInfo.value.token,
     comment: { like: !hasLiked },
   });
 
@@ -254,17 +248,21 @@ const onLike = async (comment: WalineComment): Promise<void> => {
   comment.like = Math.max(0, (comment.like || 0) + (hasLiked ? -1 : 1));
 };
 
-provide('config', config);
+provide(configKey, config);
 
 onMounted(() => {
   watch(
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     () => [props.serverURL, props.path],
-    () => refresh(),
+    () => {
+      refresh();
+    },
     { immediate: true },
   );
 });
-onUnmounted(() => abort?.());
+onUnmounted(() => {
+  abort?.();
+});
 </script>
 
 <template>

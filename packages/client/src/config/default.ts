@@ -33,12 +33,12 @@ export const defaultUploadImage = (file: File): Promise<string> =>
     const reader = new FileReader();
 
     reader.readAsDataURL(file);
-    reader.onload = (): void => resolve(reader.result?.toString() ?? '');
+    reader.onload = (): void => resolve(reader.result as string);
     reader.onerror = reject;
   });
 
 export const defaultTeXRenderer = (blockMode: boolean): string =>
-  blockMode === true
+  blockMode
     ? '<p class="wl-tex">TeX is not available in preview</p>'
     : '<span class="wl-tex">TeX is not available in preview</span>';
 

@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import { getArticleCounter, updateArticleCounter } from '@waline/api';
-import type { ComputedRef } from 'vue';
 import { computed, inject, onMounted, onUnmounted, ref, watch } from 'vue';
 
 import { LoadingIcon } from './Icons.js';
 import { useReactionStorage } from '../composables/index.js';
 import type { WalineReactionLocale } from '../typings/index.js';
-import type { WalineConfig } from '../utils/index.js';
+import { configKey } from '../config/index.js';
 
 defineExpose();
 
@@ -17,7 +16,8 @@ interface ReactionItem {
 }
 
 const reactionStorage = useReactionStorage();
-const config = inject<ComputedRef<WalineConfig>>('config')!;
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+const config = inject(configKey)!;
 
 const votingIndex = ref(-1);
 const voteNumbers = ref<number[]>([]);
@@ -114,7 +114,9 @@ onMounted(() => {
     { immediate: true },
   );
 });
-onUnmounted(() => abort?.());
+onUnmounted(() => {
+  abort();
+});
 </script>
 
 <template>
