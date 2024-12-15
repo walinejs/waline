@@ -69,7 +69,6 @@
     "rollup": "4.28.1",
     "rollup-plugin-dts": "6.1.1",
     "rollup-plugin-esbuild": "6.1.1",
-    "rollup-plugin-ts": "3.4.5",
     "sass-embedded": "1.83.0",
     "sort-package-json": "2.12.0",
     "stylelint": "16.11.0",
@@ -79,7 +78,7 @@
     "vercel": "39.2.2",
     "vite-plugin-css-injected-by-js": "3.5.2",
     "vite-plugin-svgr": "4.3.0",
-    "vitest": "2.1.8"
+    "vitest": "3.0.0-beta.2"
   },
   "packageManager": "pnpm@9.15.0",
   "apidoc": {
