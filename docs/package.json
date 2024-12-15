@@ -15,7 +15,7 @@
     "@vuepress/plugin-docsearch": "2.0.0-rc.66",
     "@vuepress/plugin-redirect": "2.0.0-rc.66",
     "@waline/client": "workspace:*",
-    "marked": "15.0.3",
+    "marked": "15.0.4",
     "mathjax-full": "3.2.2",
     "sass-embedded": "1.83.0",
     "vidstack": "1.12.12",

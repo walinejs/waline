@@ -150,8 +150,8 @@ importers:
         specifier: workspace:*
         version: link:../packages/client
       marked:
-        specifier: 15.0.3
-        version: 15.0.3
+        specifier: 15.0.4
+        version: 15.0.4
       mathjax-full:
         specifier: 3.2.2
         version: 3.2.2
