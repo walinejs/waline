@@ -45,7 +45,7 @@
     "@babel/preset-env": "7.26.0",
     "@babel/preset-react": "7.26.3",
     "@babel/runtime": "7.26.0",
-    "@commitlint/cli": "19.6.0",
+    "@commitlint/cli": "19.6.1",
     "@commitlint/config-conventional": "19.6.0",
     "@rollup/plugin-commonjs": "28.0.1",
     "@rollup/plugin-node-resolve": "15.3.0",
