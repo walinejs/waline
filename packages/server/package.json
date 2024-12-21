@@ -29,7 +29,6 @@
     "form-data": "^4.0.1",
     "jsdom": "^25.0.1",
     "jsonwebtoken": "^9.0.2",
-    "katex": "^0.16.15",
     "koa-compose": "^4.1.0",
     "leancloud-storage": "^4.15.2",
     "markdown-it": "^14.1.0",
