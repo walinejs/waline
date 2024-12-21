@@ -186,8 +186,8 @@ importers:
         specifier: 2.5.1
         version: 2.5.1
       i18next:
-        specifier: 24.1.0
-        version: 24.1.0(typescript@5.7.2)
+        specifier: 24.2.0
+        version: 24.2.0(typescript@5.7.2)
       i18next-browser-languagedetector:
         specifier: 8.0.2
         version: 8.0.2
@@ -205,7 +205,7 @@ importers:
         version: 19.0.0(react@19.0.0)
       react-i18next:
         specifier: 15.2.0
-        version: 15.2.0(i18next@24.1.0(typescript@5.7.2))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        version: 15.2.0(i18next@24.2.0(typescript@5.7.2))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react-redux:
         specifier: 9.2.0
         version: 9.2.0(react@19.0.0)(redux@5.0.1)
@@ -5001,8 +5001,8 @@ packages:
   i18next-browser-languagedetector@8.0.2:
     resolution: {integrity: sha512-shBvPmnIyZeD2VU5jVGIOWP7u9qNG3Lj7mpaiPFpbJ3LVfHZJvVzKR4v1Cb91wAOFpNw442N+LGPzHOHsten2g==}
 
-  i18next@24.1.0:
-    resolution: {integrity: sha512-suKlX82AlptkMUO5YRfaAeH4FQyyKvR66jNaubTMiyPPMx7INU6PXAiy3PGULc0q6K+t9nxmDf/TRj9KjAivmw==}
+  i18next@24.2.0:
+    resolution: {integrity: sha512-ArJJTS1lV6lgKH7yEf4EpgNZ7+THl7bsGxxougPYiXRTJ/Fe1j08/TBpV9QsXCIYVfdE/HWG/xLezJ5DOlfBOA==}
     peerDependencies:
       typescript: ^5
     peerDependenciesMeta:
@@ -13895,7 +13895,7 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.26.0
 
-  i18next@24.1.0(typescript@5.7.2):
+  i18next@24.2.0(typescript@5.7.2):
     dependencies:
       '@babel/runtime': 7.26.0
     optionalDependencies:
@@ -15564,11 +15564,11 @@ snapshots:
       react: 19.0.0
       scheduler: 0.25.0
 
-  react-i18next@15.2.0(i18next@24.1.0(typescript@5.7.2))(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+  react-i18next@15.2.0(i18next@24.2.0(typescript@5.7.2))(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
     dependencies:
       '@babel/runtime': 7.26.0
       html-parse-stringify: 3.0.1
-      i18next: 24.1.0(typescript@5.7.2)
+      i18next: 24.2.0(typescript@5.7.2)
       react: 19.0.0
     optionalDependencies:
       react-dom: 19.0.0(react@19.0.0)
