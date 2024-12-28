@@ -58,7 +58,7 @@
     "cz-conventional-changelog": "3.3.0",
     "eslint": "9.17.0",
     "eslint-config-mister-hope": "0.4.0",
-    "eslint-plugin-react": "7.37.2",
+    "eslint-plugin-react": "7.37.3",
     "eslint-plugin-vue": "9.32.0",
     "husky": "9.1.7",
     "markdownlint-cli2": "0.16.0",
