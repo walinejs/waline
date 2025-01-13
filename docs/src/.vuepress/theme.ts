@@ -7,7 +7,6 @@ export default hopeTheme(
   {
     hostname: 'https://waline.js.org',
     favicon: '/favicon.ico',
-    iconAssets: '//at.alicdn.com/t/c/font_3180165_6o97v6oir2j.css',
 
     logo: '/logo.png',
     repo: 'walinejs/waline',
@@ -79,6 +78,10 @@ export default hopeTheme(
         appId: 'W34KABV4KM',
         apiKey: 'd189586c601d439f9247bdaf95b3555f',
         indexName: 'waline',
+      },
+
+      icon: {
+        assets: '//at.alicdn.com/t/c/font_3180165_6o97v6oir2j.css',
       },
     },
   },

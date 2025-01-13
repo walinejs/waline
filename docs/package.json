@@ -11,9 +11,8 @@
     "@fancyapps/ui": "5.0.36",
     "@vuepress/bundler-vite": "2.0.0-rc.19",
     "@vuepress/helper": "2.0.0-rc.66",
-    "@vuepress/plugin-comment": "2.0.0-rc.67",
-    "@vuepress/plugin-docsearch": "2.0.0-rc.67",
-    "@vuepress/plugin-redirect": "2.0.0-rc.66",
+    "@vuepress/plugin-comment": "2.0.0-rc.70",
+    "@vuepress/plugin-docsearch": "2.0.0-rc.70",
     "@waline/client": "workspace:*",
     "marked": "15.0.6",
     "mathjax-full": "3.2.2",
@@ -21,7 +20,7 @@
     "vidstack": "1.12.12",
     "vue": "3.5.13",
     "vuepress": "2.0.0-rc.19",
-    "vuepress-shared": "2.0.0-rc.64",
-    "vuepress-theme-hope": "2.0.0-rc.66"
+    "vuepress-shared": "2.0.0-rc.68",
+    "vuepress-theme-hope": "2.0.0-rc.68"
   }
 }
