@@ -13,7 +13,7 @@
     "@vuepress/helper": "2.0.0-rc.66",
     "@vuepress/plugin-comment": "2.0.0-rc.67",
     "@vuepress/plugin-docsearch": "2.0.0-rc.67",
-    "@vuepress/plugin-redirect": "2.0.0-rc.66",
+    "@vuepress/plugin-redirect": "2.0.0-rc.70",
     "@waline/client": "workspace:*",
     "marked": "15.0.6",
     "mathjax-full": "3.2.2",
