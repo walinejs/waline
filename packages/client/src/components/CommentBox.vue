@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useDebounceFn, useEventListener } from '@vueuse/core';
+import { useDebounceFn, useEventListener, watchImmediate } from '@vueuse/core';
 import type { WalineComment, WalineCommentData, UserInfo } from '@waline/api';
 import { addComment, login, updateComment } from '@waline/api';
 import autosize from 'autosize';
@@ -39,7 +39,7 @@ import type {
 } from '../typings/index.js';
 import type { WalineEmojiConfig } from '../utils/index.js';
 import {
-  getEmojis,
+  getEmojisInfo,
   getImageFromDataTransfer,
   getWordNumber,
   isValidEmail,
@@ -142,15 +142,12 @@ const insert = (content: string): void => {
   textArea.scrollTop = scrollTop;
 };
 
-const onKeyDown = (event: KeyboardEvent): void => {
-  if (isSubmitting.value) {
-    return;
-  }
+const onEditorKeyDown = ({ key, ctrlKey, metaKey }: KeyboardEvent): void => {
+  // avoid submitting same comment multiple times
+  if (isSubmitting.value) return;
 
-  const key = event.key;
-
-  // Shortcut key
-  if ((event.ctrlKey || event.metaKey) && key === 'Enter') void submitComment();
+  // submit comment when pressing cmd|ctrl + enter
+  if ((ctrlKey || metaKey) && key === 'Enter') void submitComment();
 };
 
 const uploadImage = (file: File): Promise<void> => {
@@ -176,7 +173,7 @@ const uploadImage = (file: File): Promise<void> => {
     });
 };
 
-const onDrop = (event: DragEvent): void => {
+const onEditorDrop = (event: DragEvent): void => {
   if (event.dataTransfer?.items) {
     const file = getImageFromDataTransfer(event.dataTransfer.items);
 
@@ -187,7 +184,7 @@ const onDrop = (event: DragEvent): void => {
   }
 };
 
-const onPaste = (event: ClipboardEvent): void => {
+const onEditorPaste = (event: ClipboardEvent): void => {
   if (event.clipboardData) {
     const file = getImageFromDataTransfer(event.clipboardData.items);
 
@@ -195,7 +192,7 @@ const onPaste = (event: ClipboardEvent): void => {
   }
 };
 
-const onChange = (): void => {
+const onImageChange = (): void => {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const inputElement = imageUploaderRef.value!;
 
@@ -437,31 +434,6 @@ const onGifSearch = useDebounceFn((event: Event) => {
   void onImageWallScroll(event);
 }, 300);
 
-// update wordNumber
-watch(
-  [config, wordNumber],
-  ([config, wordNumber]) => {
-    const { wordLimit: limit } = config;
-
-    if (limit) {
-      if (wordNumber < limit[0] && limit[0] !== 0) {
-        wordLimit.value = limit[0];
-        isWordNumberLegal.value = false;
-      } else if (wordNumber > limit[1]) {
-        wordLimit.value = limit[1];
-        isWordNumberLegal.value = false;
-      } else {
-        wordLimit.value = limit[1];
-        isWordNumberLegal.value = true;
-      }
-    } else {
-      wordLimit.value = 0;
-      isWordNumberLegal.value = true;
-    }
-  },
-  { immediate: true },
-);
-
 useEventListener('click', popupHandler);
 useEventListener(
   'message',
@@ -479,6 +451,27 @@ useEventListener(
   },
 );
 
+// start tracking comment word number
+watchImmediate([config, wordNumber], ([config, wordNumber]) => {
+  const { wordLimit: limit } = config;
+
+  if (limit) {
+    if (wordNumber < limit[0] && limit[0] !== 0) {
+      wordLimit.value = limit[0];
+      isWordNumberLegal.value = false;
+    } else if (wordNumber > limit[1]) {
+      wordLimit.value = limit[1];
+      isWordNumberLegal.value = false;
+    } else {
+      wordLimit.value = limit[1];
+      isWordNumberLegal.value = true;
+    }
+  } else {
+    wordLimit.value = 0;
+    isWordNumberLegal.value = true;
+  }
+});
+
 // watch gif
 watch(showGif, async (showGif) => {
   if (!showGif) return;
@@ -488,11 +481,14 @@ watch(showGif, async (showGif) => {
   // clear input
   if (gifSearchRef.value) gifSearchRef.value.value = '';
 
+  // set loading state
   searchResults.loading = true;
 
+  // display default results
   searchResults.list = await (searchOptions.default?.() ??
     searchOptions.search(''));
 
+  // clear loading state
   searchResults.loading = false;
 });
 
@@ -502,7 +498,7 @@ onMounted(() => {
   }
 
   // watch editor
-  watch(
+  watchImmediate(
     () => editor.value,
     (value) => {
       const { highlighter, texRenderer } = config.value;
@@ -520,17 +516,14 @@ onMounted(() => {
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, import-x/no-named-as-default-member
       else autosize.destroy(textAreaRef.value!);
     },
-    { immediate: true },
   );
 
   // watch emoji value change
-  watch(
+  watchImmediate(
     () => config.value.emoji,
-    (emojiConfig) =>
-      getEmojis(emojiConfig).then((config) => {
-        emoji.value = config;
-      }),
-    { immediate: true },
+    async (emojiConfig) => {
+      emoji.value = await getEmojisInfo(emojiConfig);
+    },
   );
 });
 </script>
@@ -611,9 +604,9 @@ onMounted(() => {
         v-model="editor"
         class="wl-editor"
         :placeholder="replyUser ? `@${replyUser}` : locale.placeholder"
-        @keydown="onKeyDown"
-        @drop="onDrop"
-        @paste="onPaste"
+        @keydown="onEditorKeyDown"
+        @drop="onEditorDrop"
+        @paste="onEditorPaste"
       />
 
       <div v-show="showPreview" class="wl-preview">
@@ -668,7 +661,7 @@ onMounted(() => {
             aria-hidden="true"
             type="file"
             accept=".png,.jpg,.jpeg,.webp,.bmp,.gif"
-            @change="onChange"
+            @change="onImageChange"
           />
 
           <label

@@ -5,18 +5,21 @@ import { removeEndingSplash } from './path.js';
 import { isString } from './type.js';
 import type { WalineEmojiInfo } from '../typings/index.js';
 
-const hasVersion = (url: string): boolean =>
+const EMOJI_STORE_KEY = 'WALINE_EMOJI';
+
+const checkVersionAnnotation = (url: string): boolean =>
   Boolean(/@[0-9]+\.[0-9]+\.[0-9]+/.test(url));
 
 const fetchEmoji = (link: string): Promise<WalineEmojiInfo> => {
   const emojiStore = useStorage<Record<string, WalineEmojiInfo | undefined>>(
-    'WALINE_EMOJI',
+    EMOJI_STORE_KEY,
     {},
   );
 
-  const result = hasVersion(link);
+  const containsVersion = checkVersionAnnotation(link);
 
-  if (result) {
+  // if the link contains version annotation, check if it's in the cache store
+  if (containsVersion) {
     const info = emojiStore.value[link];
 
     if (info) return Promise.resolve(info);
@@ -30,7 +33,8 @@ const fetchEmoji = (link: string): Promise<WalineEmojiInfo> => {
         ...emojiInfo,
       };
 
-      if (result) emojiStore.value[link] = info;
+      // cache the emoji info if the link contains version annotation
+      if (containsVersion) emojiStore.value[link] = info;
 
       return info;
     });
@@ -39,7 +43,7 @@ const fetchEmoji = (link: string): Promise<WalineEmojiInfo> => {
 const getLink = (name: string, folder = '', prefix = '', type = ''): string =>
   `${folder ? `${folder}/` : ''}${prefix}${name}${type ? `.${type}` : ''}`;
 
-export const getEmojis = (
+export const getEmojisInfo = (
   emojis: (string | WalineEmojiInfo)[],
 ): Promise<WalineEmojiConfig> =>
   Promise.all(
@@ -49,7 +53,7 @@ export const getEmojis = (
         : Promise.resolve(emoji),
     ),
   ).then((emojiInfos) => {
-    const emojiConfig: WalineEmojiConfig = {
+    const emojisConfig: WalineEmojiConfig = {
       tabs: [],
       map: {},
     };
@@ -57,18 +61,18 @@ export const getEmojis = (
     emojiInfos.forEach((emojiInfo) => {
       const { name, folder, icon, prefix = '', type, items } = emojiInfo;
 
-      emojiConfig.tabs.push({
+      emojisConfig.tabs.push({
         name,
         icon: getLink(icon, folder, prefix, type),
         items: items.map((item) => {
           const key = `${prefix}${item}`;
 
-          emojiConfig.map[key] = getLink(item, folder, prefix, type);
+          emojisConfig.map[key] = getLink(item, folder, prefix, type);
 
           return key;
         }),
       });
     });
 
-    return emojiConfig;
+    return emojisConfig;
   });

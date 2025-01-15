@@ -63,8 +63,6 @@ const props = withDefaults(
 
 defineEmits<(event: 'insert', content: string) => void>();
 
-defineExpose();
-
 let resizeObserver: ResizeObserver | null = null;
 const wall = useTemplateRef<HTMLDivElement>('wall');
 const state = ref<Record<string, boolean>>({});
