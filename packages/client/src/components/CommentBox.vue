@@ -1,5 +1,10 @@
 <script setup lang="ts">
-import { useDebounceFn, useEventListener, watchImmediate } from '@vueuse/core';
+import {
+  isDef,
+  useDebounceFn,
+  useEventListener,
+  watchImmediate,
+} from '@vueuse/core';
 import type { WalineComment, WalineCommentData, UserInfo } from '@waline/api';
 import { addComment, login, updateComment } from '@waline/api';
 import autosize from 'autosize';
@@ -32,11 +37,7 @@ import {
   useUserInfo,
   useUserMeta,
 } from '../composables/index.js';
-import type {
-  WalineImageUploader,
-  WalineSearchOptions,
-  WalineSearchResult,
-} from '../typings/index.js';
+import type { WalineSearchResult } from '../typings/index.js';
 import type { WalineEmojiConfig } from '../utils/index.js';
 import {
   getEmojisInfo,
@@ -49,32 +50,24 @@ import {
 } from '../utils/index.js';
 import { configKey } from '../config/index.js';
 
-const props = withDefaults(
-  defineProps<{
-    /**
-     * Current comment to be edited
-     */
-    edit?: WalineComment | null;
-    /**
-     * Root comment id
-     */
-    rootId?: string;
-    /**
-     * Comment id to be replied
-     */
-    replyId?: string;
-    /**
-     * User name to be replied
-     */
-    replyUser?: string;
-  }>(),
-  {
-    edit: null,
-    rootId: '',
-    replyId: '',
-    replyUser: '',
-  },
-);
+const props = defineProps<{
+  /**
+   * Current comment to be edited
+   */
+  edit?: WalineComment | null;
+  /**
+   * Root comment id
+   */
+  rootId?: number;
+  /**
+   * Comment id to be replied
+   */
+  replyId?: number;
+  /**
+   * User name to be replied
+   */
+  replyUser?: string;
+}>();
 
 const emit = defineEmits<{
   (event: 'log' | 'cancelEdit' | 'cancelReply'): void;
@@ -123,7 +116,7 @@ const locale = computed(() => config.value.locale);
 
 const isLogin = computed(() => Boolean(userInfo.value.token));
 
-const canUploadImage = computed(() => config.value.imageUploader !== false);
+const canUploadImage = computed(() => isDef(config.value.imageUploader));
 
 const insert = (content: string): void => {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -150,27 +143,26 @@ const onEditorKeyDown = ({ key, ctrlKey, metaKey }: KeyboardEvent): void => {
   if ((ctrlKey || metaKey) && key === 'Enter') void submitComment();
 };
 
-const uploadImage = (file: File): Promise<void> => {
+const uploadImage = async (file: File): Promise<void> => {
   const uploadText = `![${config.value.locale.uploading} ${file.name}]()`;
 
   insert(uploadText);
   isSubmitting.value = true;
 
-  return Promise.resolve()
-    .then(() => (config.value.imageUploader as WalineImageUploader)(file))
-    .then((url) => {
-      editor.value = editor.value.replace(
-        uploadText,
-        `\r\n![${file.name}](${url})`,
-      );
-    })
-    .catch((err: unknown) => {
-      alert((err as Error).message);
-      editor.value = editor.value.replace(uploadText, '');
-    })
-    .then(() => {
-      isSubmitting.value = false;
-    });
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const url = await config.value.imageUploader!(file);
+
+    editor.value = editor.value.replace(
+      uploadText,
+      `\r\n![${file.name}](${url})`,
+    );
+  } catch (err) {
+    alert((err as Error).message);
+    editor.value = editor.value.replace(uploadText, '');
+  } finally {
+    isSubmitting.value = false;
+  }
 };
 
 const onEditorDrop = (event: DragEvent): void => {
@@ -400,7 +392,8 @@ const onImageWallScroll = async (event: Event): Promise<void> => {
   const { scrollTop, clientHeight, scrollHeight } =
     event.target as HTMLDivElement;
   const percent = (clientHeight + scrollTop) / scrollHeight;
-  const searchOptions = config.value.search as WalineSearchOptions;
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const searchOptions = config.value.search!;
   const keyword = gifSearchRef.value?.value ?? '';
 
   if (percent < 0.9 || searchResults.loading || isImageListEnd.value) return;
@@ -476,7 +469,8 @@ watchImmediate([config, wordNumber], ([config, wordNumber]) => {
 watch(showGif, async (showGif) => {
   if (!showGif) return;
 
-  const searchOptions = config.value.search as WalineSearchOptions;
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const searchOptions = config.value.search!;
 
   // clear input
   if (gifSearchRef.value) gifSearchRef.value.value = '';

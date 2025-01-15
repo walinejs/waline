@@ -44,14 +44,16 @@ const getLink = (name: string, folder = '', prefix = '', type = ''): string =>
   `${folder ? `${folder}/` : ''}${prefix}${name}${type ? `.${type}` : ''}`;
 
 export const getEmojisInfo = (
-  emojis: (string | WalineEmojiInfo)[],
+  emojis: (string | WalineEmojiInfo)[] | null,
 ): Promise<WalineEmojiConfig> =>
   Promise.all(
-    emojis.map((emoji) =>
-      isString(emoji)
-        ? fetchEmoji(removeEndingSplash(emoji))
-        : Promise.resolve(emoji),
-    ),
+    emojis
+      ? emojis.map((emoji) =>
+          isString(emoji)
+            ? fetchEmoji(removeEndingSplash(emoji))
+            : Promise.resolve(emoji),
+        )
+      : [],
   ).then((emojiInfos) => {
     const emojisConfig: WalineEmojiConfig = {
       tabs: [],

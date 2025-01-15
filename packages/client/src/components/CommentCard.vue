@@ -28,7 +28,7 @@ const props = withDefaults(
     /**
      * Root comment id
      */
-    rootId: string;
+    rootId: number;
     /**
      * Current comment to be replied
      */
@@ -92,7 +92,7 @@ const isEditingCurrent = computed(
 </script>
 
 <template>
-  <div :id="comment.objectId" class="wl-card-item">
+  <div :id="comment.objectId.toString()" class="wl-card-item">
     <div class="wl-user" aria-hidden="true">
       <img
         v-if="comment.avatar"

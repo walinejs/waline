@@ -17,8 +17,8 @@ export const parseEmoji = (text = '', emojiMap: WalineEmojiMaps = {}): string =>
 
 export interface ParseMarkdownOptions {
   emojiMap: WalineEmojiMaps;
-  highlighter: WalineHighlighter | false;
-  texRenderer: WalineTeXRenderer | false;
+  highlighter: WalineHighlighter | null;
+  texRenderer: WalineTeXRenderer | null;
 }
 
 export const parseMarkdown = (

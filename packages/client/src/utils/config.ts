@@ -13,8 +13,13 @@ import {
 import type {
   WalineEmojiInfo,
   WalineEmojiMaps,
+  WalineEmojiPresets,
+  WalineHighlighter,
+  WalineImageUploader,
   WalineLocale,
   WalineProps,
+  WalineSearchOptions,
+  WalineTeXRenderer,
 } from '../typings/index.js';
 
 export interface WalineEmojiConfig {
@@ -37,12 +42,12 @@ export interface WalineConfig
   > {
   locale: WalineLocale;
   wordLimit: [number, number] | false;
-  reaction: string[];
-  emoji: Exclude<WalineProps['emoji'], boolean | undefined>;
-  highlighter: Exclude<WalineProps['highlighter'], true | undefined>;
-  imageUploader: Exclude<WalineProps['imageUploader'], true | undefined>;
-  texRenderer: Exclude<WalineProps['texRenderer'], true | undefined>;
-  search: Exclude<WalineProps['search'], true | undefined>;
+  emoji: (WalineEmojiInfo | WalineEmojiPresets)[] | null;
+  highlighter: WalineHighlighter | null;
+  imageUploader: WalineImageUploader | null;
+  texRenderer: WalineTeXRenderer | null;
+  search: WalineSearchOptions | null;
+  reaction: string[] | null;
 }
 
 export const getServerURL = (serverURL: string): string => {
@@ -56,11 +61,15 @@ const getWordLimit = (
 ): [number, number] | false =>
   Array.isArray(wordLimit) ? wordLimit : wordLimit ? [0, wordLimit] : false;
 
-const fallback = <T = unknown>(
-  value: T | boolean | undefined,
+const fallback = <T>(
+  value: T | 'disabled' | 'built-in' | undefined,
   fallback: T,
-): T | false =>
-  typeof value === 'function' ? value : value === false ? false : fallback;
+): T | null =>
+  value === 'built-in' || !value
+    ? fallback
+    : value === 'disabled'
+      ? null
+      : value;
 
 export const getConfig = ({
   serverURL,
@@ -77,7 +86,7 @@ export const getConfig = ({
   imageUploader,
   highlighter,
   texRenderer,
-  copyright = true,
+  noCopyright = false,
   login = 'enable',
   search,
   reaction,
@@ -99,24 +108,15 @@ export const getConfig = ({
   imageUploader: fallback(imageUploader, defaultUploadImage),
   highlighter: fallback(highlighter, defaultHighlighter),
   texRenderer: fallback(texRenderer, defaultTeXRenderer),
+  emoji: fallback(emoji, DEFAULT_EMOJI),
+  search: fallback(search, getDefaultSearchOptions(lang)),
   dark,
-  emoji: typeof emoji === 'boolean' ? (emoji ? DEFAULT_EMOJI : []) : emoji,
   pageSize,
   login,
-  copyright,
-  search:
-    search === false
-      ? false
-      : typeof search === 'object'
-        ? search
-        : getDefaultSearchOptions(lang),
+  noCopyright,
   recaptchaV3Key,
   turnstileKey,
-  reaction: Array.isArray(reaction)
-    ? reaction
-    : reaction === true
-      ? DEFAULT_REACTION
-      : [],
+  reaction: fallback(reaction, DEFAULT_REACTION),
   commentSorting,
   ...more,
 });
