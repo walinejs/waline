@@ -76,6 +76,15 @@ ww479cadfqfe8c151f,MPKN9gX97w4e4b4h4u7u4i4i4i4iO6mN_dDedBFzqC5c,@all,1000002,2S8
 - `SITE_URL`: 网站地址，用于在消息中显示。
 - `WX_TEMPLATE`: QYWX_AM 使用的通知模板，变量与具体格式可参见下文 QQ 的通知模板。未配置则使用默认模板。
 
+## 企业微信群机器人通知
+
+企业微信群机器人支持通过 Webhook 发送消息，需配置以下几个环境变量:
+
+- `WECOM_GROUP_WEBHOOK`: 企微群机器人 [使用指南](https://developer.work.weixin.qq.com/document/path/91770)，必填。
+- `WX_TEMPLATE`: 消息模板，可参考下面通知模版配置，未配置则使用默认模板。
+- `SITE_NAME`: 网站名称，用于在消息中显示。
+- `SITE_URL`: 网站地址，用于在消息中显示。
+
 ## QQ 通知
 
 QQ 通知使用了 [Qmsg 酱](https://qmsg.zendee.cn) 提供的服务，需要在环境变量中配置在 Qmsg 酱中申请的 `QMSG_KEY`。

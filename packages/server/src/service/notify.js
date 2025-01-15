@@ -110,6 +110,57 @@ module.exports = class extends think.Service {
     }).then((resp) => resp.json());
   }
 
+  async wecomgroup({ title, content }, self, parent) {
+    const { WECOM_GROUP_WEBHOOK, SITE_NAME, SITE_URL } = process.env;
+
+    if (!WECOM_GROUP_WEBHOOK) {
+      return false;
+    }
+
+    self.comment = self.comment.replace(/(<([^>]+)>)/gi, '');
+
+    const data = {
+      self,
+      parent,
+      site: {
+        name: SITE_NAME,
+        url: SITE_URL,
+        postUrl: SITE_URL + self.url + '#' + self.objectId,
+      },
+    };
+
+    content = nunjucks.renderString(
+      think.config('WXTemplate') ||
+        `{{site.name|safe}}的文章《{{postName}}》有新评论啦
+【昵称】：{{self.nick}}
+【邮箱】：{{self.mail}}
+【内容】：{{self.comment}}
+【地址】：{{site.postUrl}}`,
+      data,
+    );
+
+    const msg = {
+      msgtype: 'text',
+      text: {
+        content: `${this.ctx.locale(title, data)}\n${content}`,
+      },
+    };
+
+    const resp = await fetch(WECOM_GROUP_WEBHOOK, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(msg),
+    }).then((resp) => resp.json());
+
+    if (resp.errcode !== 0) {
+      console.log('Wecom Group Notification Failed:', JSON.stringify(resp));
+    }
+
+    console.log('Wecom Group Notification Success:', JSON.stringify(resp));
+  }
+
   async qywxAmWechat({ title, content }, self, parent) {
     const { QYWX_AM, QYWX_PROXY, QYWX_PROXY_PORT, SITE_NAME, SITE_URL } =
       process.env;
@@ -518,6 +569,11 @@ module.exports = class extends think.Service {
         comment,
         parent,
       );
+      const wecomgroup = await this.wecomgroup(
+        { title, content },
+        comment,
+        parent,
+      );
       const qq = await this.qq(comment, parent);
       const telegram = await this.telegram(comment, parent);
       const pushplus = await this.pushplus({ title, content }, comment, parent);
@@ -525,9 +581,16 @@ module.exports = class extends think.Service {
       const lark = await this.lark({ title, content }, comment, parent);
 
       if (
-        [wechat, qq, telegram, qywxAmWechat, pushplus, discord, lark].every(
-          think.isEmpty,
-        )
+        [
+          wechat,
+          qq,
+          telegram,
+          qywxAmWechat,
+          wecomgroup,
+          pushplus,
+          discord,
+          lark,
+        ].every(think.isEmpty)
       ) {
         mailList.push({ to: AUTHOR, title, content });
       }
