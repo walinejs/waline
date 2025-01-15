@@ -30,8 +30,6 @@ const count = ref(0);
 const page = ref(1);
 const totalPages = ref(0);
 
-console.log(props);
-
 const config = computed(() => getConfig(props as WalineProps));
 
 // eslint-disable-next-line vue/no-ref-object-destructure
