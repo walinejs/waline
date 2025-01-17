@@ -1,18 +1,16 @@
 <script setup lang="ts">
-/* eslint-disable vue/define-props-declaration */
 /* eslint-disable vue/no-unused-properties */
-/* eslint-disable vue/require-prop-comment */
-/* eslint-disable vue/require-prop-types */
-import { useStyleTag } from '@vueuse/core';
+
+import { useStyleTag, watchImmediate } from '@vueuse/core';
 import type {
   WalineComment,
   WalineCommentStatus,
   WalineRootComment,
 } from '@waline/api';
 import { deleteComment, getComment, updateComment } from '@waline/api';
-import { computed, onMounted, onUnmounted, provide, ref, watch } from 'vue';
+import { computed, onMounted, onUnmounted, provide, ref } from 'vue';
 
-import Reaction from './ArticleReaction.vue';
+import ArticleReaction from './ArticleReaction.vue';
 import CommentBox from './CommentBox.vue';
 import CommentCard from './CommentCard.vue';
 import { LoadingIcon } from './Icons.js';
@@ -22,28 +20,7 @@ import { getConfig, getDarkStyle } from '../utils/index.js';
 import { version } from '../version.js';
 import { configKey, sortingMethods, sortKeyMap } from '../config/index.js';
 
-const props = defineProps([
-  'serverURL',
-  'path',
-  'meta',
-  'requiredMeta',
-  'dark',
-  'commentSorting',
-  'lang',
-  'locale',
-  'pageSize',
-  'wordLimit',
-  'emoji',
-  'login',
-  'highlighter',
-  'texRenderer',
-  'imageUploader',
-  'search',
-  'copyright',
-  'recaptchaV3Key',
-  'turnstileKey',
-  'reaction',
-]);
+const props = defineProps<WalineProps>();
 
 const userInfo = useUserInfo();
 const likeStorage = useLikeStorage();
@@ -110,7 +87,7 @@ const loadMore = (): void => {
   getCommentData(page.value + 1);
 };
 
-const refresh = (): void => {
+const refreshComments = (): void => {
   count.value = 0;
   data.value = [];
   getCommentData(1);
@@ -119,7 +96,7 @@ const refresh = (): void => {
 const onSortByChange = (item: WalineCommentSorting): void => {
   if (commentSortingRef.value !== item) {
     commentSortingRef.value = item;
-    refresh();
+    refreshComments();
   }
 };
 
@@ -251,13 +228,11 @@ const onLike = async (comment: WalineComment): Promise<void> => {
 provide(configKey, config);
 
 onMounted(() => {
-  watch(
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+  watchImmediate(
     () => [props.serverURL, props.path],
     () => {
-      refresh();
+      refreshComments();
     },
-    { immediate: true },
   );
 });
 onUnmounted(() => {
@@ -267,9 +242,13 @@ onUnmounted(() => {
 
 <template>
   <div data-waline>
-    <Reaction />
+    <ArticleReaction />
 
-    <CommentBox v-if="!reply && !edit" @log="refresh" @submit="onSubmit" />
+    <CommentBox
+      v-if="!reply && !edit"
+      @log="refreshComments"
+      @submit="onSubmit"
+    />
 
     <div class="wl-meta-head">
       <div class="wl-count">
@@ -297,7 +276,7 @@ onUnmounted(() => {
         :comment="comment"
         :reply="reply"
         :edit="edit"
-        @log="refresh"
+        @log="refreshComments"
         @reply="onReply"
         @edit="onEdit"
         @submit="onSubmit"
@@ -312,7 +291,7 @@ onUnmounted(() => {
       <button
         type="button"
         class="wl-btn"
-        @click="refresh"
+        @click="refreshComments"
         v-text="i18n.refresh"
       />
     </div>
@@ -334,7 +313,7 @@ onUnmounted(() => {
     </div>
 
     <!-- Copyright Information -->
-    <div v-if="config.copyright" class="wl-power">
+    <div v-if="!config.noCopyright" class="wl-power">
       Powered by
       <a
         href="https://github.com/walinejs/waline"
