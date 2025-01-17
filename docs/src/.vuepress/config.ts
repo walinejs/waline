@@ -26,6 +26,15 @@ export default defineUserConfig({
     },
   }),
 
+  markdown: {
+    importCode: {
+      handleImportPath: (str) =>
+        str === '@waline/api/types'
+          ? path.resolve(__dirname, '../../../packages/api/dist/api.d.ts')
+          : str,
+    },
+  },
+
   theme,
 
   alias: {
