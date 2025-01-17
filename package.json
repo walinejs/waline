@@ -83,7 +83,7 @@
   "packageManager": "pnpm@10.0.0",
   "pnpm": {
     "overrides": {
-      "stylelint>ignore": "7.0.0"
+      "@waline/api": "workspace:*"
     }
   },
   "apidoc": {
