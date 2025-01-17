@@ -15,30 +15,24 @@ import { useLikeStorage, useUserInfo } from '../composables/index.js';
 import { getTimeAgo, isLinkHttp } from '../utils/index.js';
 import { configKey } from '../config/index.js';
 
-const props = withDefaults(
-  defineProps<{
-    /**
-     * Comment data
-     */
-    comment: WalineComment;
-    /**
-     * Current comment to be edited
-     */
-    edit?: WalineComment | null;
-    /**
-     * Root comment id
-     */
-    rootId: number;
-    /**
-     * Current comment to be replied
-     */
-    reply?: WalineComment | null;
-  }>(),
-  {
-    edit: null,
-    reply: null,
-  },
-);
+const props = defineProps<{
+  /**
+   * Comment data
+   */
+  comment: WalineComment;
+  /**
+   * Current comment to be edited
+   */
+  edit?: WalineComment | null;
+  /**
+   * Root comment id
+   */
+  rootId: number;
+  /**
+   * Current comment to be replied
+   */
+  reply?: WalineComment | null;
+}>();
 
 const emit = defineEmits<{
   (event: 'log'): void;
