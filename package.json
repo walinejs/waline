@@ -72,7 +72,7 @@
     "sass-embedded": "1.83.1",
     "sort-package-json": "2.13.0",
     "stylelint": "16.13.2",
-    "stylelint-config-hope": "7.0.4",
+    "stylelint-config-hope": "8.0.0",
     "tslib": "2.8.1",
     "typescript": "5.7.3",
     "vercel": "39.2.6",
