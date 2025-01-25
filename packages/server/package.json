@@ -15,7 +15,7 @@
   "license": "MIT",
   "author": "lizheming <i@imnerd.org>",
   "dependencies": {
-    "@cloudbase/node-sdk": "^3.3.7",
+    "@cloudbase/node-sdk": "^3.4.0",
     "@koa/cors": "^5.0.0",
     "@mdit/plugin-katex": "0.8.0",
     "@mdit/plugin-mathjax": "0.4.8",
@@ -35,7 +35,7 @@
     "markdown-it-emoji": "^3.0.0",
     "mathjax-full": "^3.2.2",
     "node-fetch": "^2.7.0",
-    "nodemailer": "^6.9.16",
+    "nodemailer": "^6.10.0",
     "nunjucks": "^3.2.4",
     "phpass": "^0.1.1",
     "prismjs": "^1.29.0",
