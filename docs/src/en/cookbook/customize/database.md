@@ -157,7 +157,6 @@ Based on the above logic, in addition to implementing the storage service of pro
 const path = require('path');
 
 const { parseString, writeToString } = require('fast-csv');
-const fetch = require('node-fetch');
 
 const Base = require('./base');
 

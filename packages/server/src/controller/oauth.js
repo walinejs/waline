@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const fetch = require('node-fetch');
 
 module.exports = class extends think.Controller {
   constructor(ctx) {
