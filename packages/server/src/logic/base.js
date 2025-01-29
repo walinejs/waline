@@ -14,15 +14,18 @@ module.exports = class extends think.Logic {
 
   async __before() {
     const referrer = this.ctx.referrer(true);
-    let origin = this.ctx.request.header.origin;
+    let origin = this.ctx.origin;
+
     if (origin) {
       try {
         const parsedOrigin = new URL(origin);
+
         origin = parsedOrigin.hostname;
-      } catch (error) {
-        console.error('Invalid origin format:', origin);
+      } catch (e) {
+        console.error('Invalid origin format:', origin, e);
       }
     }
+
     let { secureDomains } = this.config();
 
     if (secureDomains) {
@@ -51,10 +54,16 @@ module.exports = class extends think.Logic {
             try {
               return new RegExp(domain.slice(1, -1)); // 去掉斜杠并创建 RegExp 对象
             } catch (e) {
-              console.error('Invalid regex pattern in secureDomains:', domain);
+              console.error(
+                'Invalid regex pattern in secureDomains:',
+                domain,
+                e,
+              );
+
               return null;
             }
           }
+
           return domain;
         })
         .filter(Boolean); // 过滤掉无效的正则表达式
@@ -64,7 +73,7 @@ module.exports = class extends think.Logic {
       const isSafe = secureDomains.some((domain) =>
         think.isFunction(domain.test)
           ? domain.test(checking)
-          : domain === checking
+          : domain === checking,
       );
 
       if (!isSafe) {
@@ -111,7 +120,7 @@ module.exports = class extends think.Logic {
           '2fa',
           'label',
         ],
-      }
+      },
     );
 
     if (think.isEmpty(user)) {
@@ -213,13 +222,13 @@ module.exports = class extends think.Logic {
           };
 
     const response = await fetch(requestUrl, options).then((resp) =>
-      resp.json()
+      resp.json(),
     );
 
     if (!response.success) {
       think.logger.debug(
         'RecaptchaV3 or Turnstile Result:',
-        JSON.stringify(response, null, '\t')
+        JSON.stringify(response, null, '\t'),
       );
 
       return this.ctx.throw(403);
