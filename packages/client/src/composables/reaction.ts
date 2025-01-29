@@ -10,7 +10,6 @@ export type WalineReactionStore = Record<
 
 export type VoteRef = Ref<WalineReactionStore>;
 
-let reactionStorage: VoteRef | null = null;
+const reactionStorage = useStorage<WalineReactionStore>(REACTION_KEY, {});
 
-export const useReactionStorage = (): VoteRef =>
-  (reactionStorage ??= useStorage<WalineReactionStore>(REACTION_KEY, {}));
+export const useReactionStorage = (): VoteRef => reactionStorage;

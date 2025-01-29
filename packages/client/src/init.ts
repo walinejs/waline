@@ -1,3 +1,4 @@
+import type { App } from 'vue';
 import { createApp, h, reactive, watchEffect } from 'vue';
 
 import { commentCount } from './comment.js';
@@ -74,11 +75,13 @@ export const init = ({
       });
   };
 
-  const app = root
-    ? createApp(() => h(Waline, { path: state.path, ...props }))
-    : null;
+  let app: App<Element> | null = null;
 
-  if (app) app.mount(root!);
+  if (root) {
+    app = createApp(() => h(Waline, { path: state.path, ...props }));
+
+    app.mount(root);
+  }
 
   const stopComment = watchEffect(updateCommentCount);
   const stopPageview = watchEffect(updatePageviewCount);

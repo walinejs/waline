@@ -1,4 +1,3 @@
-const fetch = require('node-fetch');
 const Model = require('think-model');
 const Mongo = require('think-mongo');
 
