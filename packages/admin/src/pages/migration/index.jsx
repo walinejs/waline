@@ -82,9 +82,10 @@ export default function () {
                 })
               : data;
 
-          for (const k in body) {
-            if (body[k] === null || body[k] === undefined) {
-              delete body[k];
+          for (const key in body) {
+            if (body[key] === null || body[key] === undefined) {
+              // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+              delete body[key];
             }
           }
 

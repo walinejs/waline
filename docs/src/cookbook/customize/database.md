@@ -157,7 +157,6 @@ await model.update((thread) => ({ view: thread.view + 1 }), { url: '/' });
 const path = require('path');
 
 const { parseString, writeToString } = require('fast-csv');
-const fetch = require('node-fetch');
 
 const Base = require('./base');
 

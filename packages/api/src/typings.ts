@@ -40,14 +40,14 @@ export interface WalineCommentData {
    * @description Only available when replying comment
    */
 
-  pid?: string;
+  pid?: number;
 
   /**
    * Root comment id
    *
    * @description Only available when replying comment
    */
-  rid?: string;
+  rid?: number;
 
   /**
    * User id being at
@@ -72,7 +72,7 @@ export interface BaseWalineResponseComment {
   /**
    * Comment object ID
    */
-  objectId: string;
+  objectId: number;
 
   /**
    * Timestamp of the comment
@@ -135,7 +135,7 @@ export interface BaseWalineResponseComment {
    */
   // FIXME: Rename it to `userId`
   // eslint-disable-next-line @typescript-eslint/naming-convention
-  user_id?: string;
+  user_id?: number;
 
   /**
    * User location
@@ -205,12 +205,12 @@ export interface WalineChildComment extends BaseWalineResponseComment {
    * Parent comment id
    */
 
-  pid: string;
+  pid: number;
 
   /**
    * Root comment id
    */
-  rid: string;
+  rid: number;
 
   /**
    * User id being at

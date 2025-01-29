@@ -1,6 +1,23 @@
+import type {
+  WalineEmojiInfo,
+  WalineEmojiPresets,
+  WalineHighlighter,
+  WalineImageUploader,
+  WalineSearchOptions,
+  WalineTeXRenderer,
+} from './base.js';
 import type { WalineProps } from './waline.js';
 
-export interface WalineInitOptions extends Omit<WalineProps, 'path'> {
+export interface WalineInitOptions
+  extends Omit<
+    WalineProps,
+    | 'path'
+    | 'emoji'
+    | 'search'
+    | 'highlighter'
+    | 'imageUploader'
+    | 'texRenderer'
+  > {
   /**
    * Waline 的初始化挂载器。必须是一个**有效的** CSS 选择器 或 HTML 元素
    *
@@ -13,7 +30,7 @@ export interface WalineInitOptions extends Omit<WalineProps, 'path'> {
    *
    * Comment number support
    *
-   * @default false
+   * @default true
    */
   comment?: string | boolean;
 
@@ -22,7 +39,7 @@ export interface WalineInitOptions extends Omit<WalineProps, 'path'> {
    *
    * Pageview number support
    *
-   * @default false
+   * @default true
    */
   pageview?: string | boolean;
 
@@ -38,6 +55,57 @@ export interface WalineInitOptions extends Omit<WalineProps, 'path'> {
    * @default window.location.pathname
    */
   path?: string;
+
+  /**
+   * 设置表情包
+   *
+   * Set Emojis
+   *
+   * @default ['//unpkg.com/@waline/emojis@1.1.0/weibo']
+   */
+  emoji?: (WalineEmojiInfo | WalineEmojiPresets)[] | boolean;
+
+  /**
+   * 设置搜索功能
+   *
+   * Customize Search feature
+   *
+   * @default true
+   */
+  search?: WalineSearchOptions | boolean;
+
+  /**
+   * 代码高亮
+   *
+   * Code highlighting
+   *
+   * @default true
+   */
+
+  highlighter?: WalineHighlighter | boolean;
+
+  /**
+   * 自定义图片上传方法，方便更好的存储图片
+   *
+   * 方法执行时会将图片对象传入。
+   *
+   * Custom image upload callback to manage picture by yourself.
+   *
+   * We will pass a picture file object when execute it.
+   *
+   * @default true
+   */
+
+  imageUploader?: WalineImageUploader | boolean;
+
+  /**
+   * 自定义数学公式处理方法，用于预览。
+   *
+   * Custom math formula parse callback for preview.
+   *
+   * @default true
+   */
+  texRenderer?: WalineTeXRenderer | boolean;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

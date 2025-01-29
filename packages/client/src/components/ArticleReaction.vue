@@ -1,14 +1,12 @@
 <script setup lang="ts">
 import { getArticleCounter, updateArticleCounter } from '@waline/api';
-import type { ComputedRef } from 'vue';
-import { computed, inject, onMounted, onUnmounted, ref, watch } from 'vue';
+import { computed, inject, onMounted, onUnmounted, ref } from 'vue';
 
 import { LoadingIcon } from './Icons.js';
 import { useReactionStorage } from '../composables/index.js';
 import type { WalineReactionLocale } from '../typings/index.js';
-import type { WalineConfig } from '../utils/index.js';
-
-defineExpose();
+import { configKey } from '../config/index.js';
+import { watchImmediate } from '@vueuse/core';
 
 interface ReactionItem {
   icon: string;
@@ -17,7 +15,8 @@ interface ReactionItem {
 }
 
 const reactionStorage = useReactionStorage();
-const config = inject<ComputedRef<WalineConfig>>('config')!;
+// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+const config = inject(configKey)!;
 
 const votingIndex = ref(-1);
 const voteNumbers = ref<number[]>([]);
@@ -25,8 +24,10 @@ const voteNumbers = ref<number[]>([]);
 const locale = computed(() => config.value.locale);
 const isReactionEnabled = computed(() => config.value.reaction.length > 0);
 
-const reactionsInfo = computed<ReactionItem[]>(() => {
+const reactionsInfo = computed<ReactionItem[] | null>(() => {
   const { reaction, path } = config.value;
+
+  if (!reaction.length) return null;
 
   return reaction.map((icon, index) => ({
     icon,
@@ -35,90 +36,88 @@ const reactionsInfo = computed<ReactionItem[]>(() => {
   }));
 });
 
-let abort: () => void;
+let abort: (() => void) | undefined;
 
 const fetchReaction = async (): Promise<void> => {
-  if (!isReactionEnabled.value) {
-    return;
-  }
+  if (!isReactionEnabled.value) return;
 
   const { serverURL, lang, path, reaction } = config.value;
   const controller = new AbortController();
 
   abort = controller.abort.bind(controller);
 
-  const resp = (await getArticleCounter({
+  const [reactionData] = (await getArticleCounter({
     serverURL,
     lang,
     paths: [path],
-    type: reaction.map((_reaction, index) => `reaction${index}`),
+    type: reaction.map((_, index) => `reaction${index}`),
     signal: controller.signal,
   })) as Record<string, number>[];
 
   voteNumbers.value = reaction.map(
-    (_reaction, index) => resp[0][`reaction${index}`],
+    (_, index) => reactionData[`reaction${index}`],
   );
 };
 
 const vote = async (index: number): Promise<void> => {
   // we should ensure that only one vote request is sent at a time
-  if (votingIndex.value === -1) {
-    const { serverURL, lang, path } = config.value;
-    const currentVoteItemIndex = reactionStorage.value[path];
+  if (votingIndex.value !== -1) return;
 
-    // mark voting status
-    votingIndex.value = index;
+  const { serverURL, lang, path } = config.value;
+  const currentVoteItemIndex = reactionStorage.value[path];
 
-    // if user already vote current article, decrease the voted item number
-    if (currentVoteItemIndex !== undefined) {
-      await updateArticleCounter({
-        serverURL,
-        lang,
-        path,
-        type: `reaction${currentVoteItemIndex}`,
-        action: 'desc',
-      });
+  // mark voting status
+  votingIndex.value = index;
 
-      voteNumbers.value[currentVoteItemIndex] = Math.max(
-        voteNumbers.value[currentVoteItemIndex] - 1,
-        0,
-      );
-    }
+  // if user already vote current article, decrease the voted item number
+  if (currentVoteItemIndex !== undefined) {
+    await updateArticleCounter({
+      serverURL,
+      lang,
+      path,
+      type: `reaction${currentVoteItemIndex}`,
+      action: 'desc',
+    });
 
-    // increase voting number if current reaction item is not been voted
-    if (currentVoteItemIndex !== index) {
-      await updateArticleCounter({
-        serverURL,
-        lang,
-        path,
-        type: `reaction${index}`,
-      });
-      voteNumbers.value[index] = (voteNumbers.value[index] || 0) + 1;
-    }
-
-    // update vote info in local storage
-    if (currentVoteItemIndex === index) delete reactionStorage.value[path];
-    else reactionStorage.value[path] = index;
-
-    // voting is completed
-    votingIndex.value = -1;
+    voteNumbers.value[currentVoteItemIndex] = Math.max(
+      voteNumbers.value[currentVoteItemIndex] - 1,
+      0,
+    );
   }
+
+  // increase voting number if current reaction item is not been voted
+  if (currentVoteItemIndex !== index) {
+    await updateArticleCounter({
+      serverURL,
+      lang,
+      path,
+      type: `reaction${index}`,
+    });
+    voteNumbers.value[index] = (voteNumbers.value[index] || 0) + 1;
+  }
+
+  // update vote info in local storage
+  if (currentVoteItemIndex === index) delete reactionStorage.value[path];
+  else reactionStorage.value[path] = index;
+
+  // voting is completed
+  votingIndex.value = -1;
 };
 
 onMounted(() => {
-  watch(
+  watchImmediate(
     () => [config.value.serverURL, config.value.path],
-    () => {
-      void fetchReaction();
-    },
-    { immediate: true },
+    () => fetchReaction(),
   );
 });
-onUnmounted(() => abort?.());
+
+onUnmounted(() => {
+  abort?.();
+});
 </script>
 
 <template>
-  <div v-if="reactionsInfo.length" class="wl-reaction">
+  <div v-if="reactionsInfo" class="wl-reaction">
     <div class="wl-reaction-title" v-text="locale.reactionTitle" />
 
     <ul class="wl-reaction-list">

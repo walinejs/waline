@@ -1,7 +1,6 @@
 const crypto = require('node:crypto');
 
 const FormData = require('form-data');
-const fetch = require('node-fetch');
 const nodemailer = require('nodemailer');
 const nunjucks = require('nunjucks');
 

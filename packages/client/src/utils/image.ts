@@ -6,5 +6,5 @@ export const getImageFromDataTransfer = (
 ): File | null => {
   const image = Array.from(items).find(isImage);
 
-  return image ? image.getAsFile()! : null;
+  return image ? image.getAsFile() : null;
 };

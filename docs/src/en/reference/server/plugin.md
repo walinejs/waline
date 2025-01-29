@@ -89,3 +89,8 @@ Welcome to submit plugins~
 - [@waline-plugins/tencent-tms](https://github.com/walinejs/plugins/tree/master/packages/tencent-tms)
 - [@waline-plugins/link-interceptor](https://github.com/walinejs/plugins/tree/master/packages/link-interceptor)
 - [waline-plugin-llm-reviewer](https://github.com/zhullyb/waline-plugin-llm-reviewer)
+- [waline-notification-bark](https://github.com/wnwd/waline-notification-bark)
+- [waline-notification-telegram-bot](https://github.com/wnwd/waline-notification-telegram-bot)
+- [waline-notification-wecom-group-bot](https://github.com/wnwd/waline-notification-wecom-group-bot)
+- [waline-notification-lark-group-bot](https://github.com/wnwd/waline-notification-lark-group-bot)
+- [waline-notification-slack-app](https://github.com/wnwd/waline-notification-slack-app)

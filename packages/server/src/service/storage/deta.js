@@ -213,9 +213,10 @@ module.exports = class extends Base {
 
       fieldMap.add('objectId');
       data.forEach((item) => {
-        for (const k in item) {
-          if (!fieldMap.has(k)) {
-            delete item[k];
+        for (const key in item) {
+          if (!fieldMap.has(key)) {
+            // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+            delete item[key];
           }
         }
       });
