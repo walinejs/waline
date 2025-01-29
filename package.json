@@ -22,7 +22,8 @@
     "packages:check-update": "pnpm dlx npm-check-updates --deep",
     "packages:update": "pnpm dlx npm-check-updates --deep -u && pnpm i && pnpm -r up",
     "prepare": "husky",
-    "server:dev": "vercel dev ./example --listen 9090",
+    "server:dev": "pnpm --dir=packages/server dev",
+    "server:vercel": "vercel dev ./example --listen 9090",
     "test": "vitest"
   },
   "nano-staged": {

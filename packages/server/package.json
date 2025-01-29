@@ -14,6 +14,9 @@
   },
   "license": "MIT",
   "author": "lizheming <i@imnerd.org>",
+  "scripts": {
+    "dev": "node development.js 9090"
+  },
   "dependencies": {
     "@cloudbase/node-sdk": "^3.3.7",
     "@koa/cors": "^5.0.0",
@@ -53,8 +56,12 @@
     "thinkjs": "^3.2.15",
     "ua-parser-js": "^2.0.0"
   },
+  "devDependencies": {
+    "dotenv": "^16.4.7",
+    "think-watcher": "^3.0.4"
+  },
   "engines": {
-    "node": ">=16"
+    "node": ">=20"
   },
   "publishConfig": {
     "provenance": true

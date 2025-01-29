@@ -49,8 +49,8 @@ If you want to contribute to waline, here is a guide.
 
   ::: tip
 
-  In order to run `@waline/server` locally, you need to configure some local environment variables to `example/.env`.
+  In order to run `@waline/server` locally, you need to configure some local environment variables to `.env`.
 
-  We provide an example for you in `example/.env.example`.
+  We provide an example for you in `.env.example`.
 
   :::
