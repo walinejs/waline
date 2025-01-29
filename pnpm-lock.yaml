@@ -392,6 +392,13 @@ importers:
       ua-parser-js:
         specifier: ^2.0.0
         version: 2.0.0
+    devDependencies:
+      dotenv:
+        specifier: ^16.4.7
+        version: 16.4.7
+      think-watcher:
+        specifier: ^3.0.4
+        version: 3.0.4
 
 packages:
 
@@ -4052,6 +4059,10 @@ packages:
   dot-prop@5.3.0:
     resolution: {integrity: sha512-QM8q3zDe58hqUqjraQOmzZ1LIH9SWQJTlEKCH4kJ2oQvLZk7RbQXvtDM2XEq3fwkV9CCvvH4LA0AV+ogFsBM2Q==}
     engines: {node: '>=8'}
+
+  dotenv@16.4.7:
+    resolution: {integrity: sha512-47qPchRCykZC03FhkYAhrvwU4xDBFIj1QPqaarj6mdM/hgUzfPHcpkHJOn3mJAufFeeAxAzeGsr5X0M4k6fLZQ==}
+    engines: {node: '>=12'}
 
   dunder-proto@1.0.1:
     resolution: {integrity: sha512-KIN/nDJBQRcXw0MLVhZE9iQHmG68qAVIBg9CqmUYjmQIhgij9U5MFvrqkUL5FbtyyzZuOeOt0zdeRe4UY7ct+A==}
@@ -7875,6 +7886,10 @@ packages:
 
   think-validator@1.6.7:
     resolution: {integrity: sha512-igc0kNrfjucJ+CCeG33wsAxMHGPW3UdP1R3lFE8WJj5n9MdgqwxNZsT3sqHqp1TuowAV+1hCM+DV+1fXAF6XxA==}
+
+  think-watcher@3.0.4:
+    resolution: {integrity: sha512-wLF7EAf4vAOEEg7tQWXhsXgrtLxtcIpFXmCQenUNOTyTQvY7NpI0GYJ8UOpQZ7qScMJk99fOV8+sVHRphHxynw==}
+    engines: {node: '>=6.0.0'}
 
   thinkjs@3.2.15:
     resolution: {integrity: sha512-/jPy+QIIS+92uetRA7itigrlJXL6c/j+xBPJGaVT3LX2/zwlQ1VvjDUWu9SaaatWDYPVY44Em647QxsEjY9TXQ==}
@@ -12899,6 +12914,8 @@ snapshots:
     dependencies:
       is-obj: 2.0.0
 
+  dotenv@16.4.7: {}
+
   dunder-proto@1.0.1:
     dependencies:
       call-bind-apply-helpers: 1.0.1
@@ -17350,6 +17367,13 @@ snapshots:
     dependencies:
       think-helper: 1.1.4
       validator: 9.4.1
+
+  think-watcher@3.0.4:
+    dependencies:
+      debug: 2.6.9
+      think-helper: 1.1.4
+    transitivePeerDependencies:
+      - supports-color
 
   thinkjs@3.2.15:
     dependencies:

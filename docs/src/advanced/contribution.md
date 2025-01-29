@@ -49,8 +49,8 @@ order: -1
 
   ::: tip
 
-  为了使 `@waline/server` 能在本地正常运行，你需要配置必要的本地环境变量至 `example/.env`。
+  为了使 `@waline/server` 能在本地正常运行，你需要配置必要的本地环境变量至 `.env`。
 
-  在 `example/.env.example` 我们准备了示例供你参考
+  在 `.env.example` 我们准备了示例供你参考
 
   :::
