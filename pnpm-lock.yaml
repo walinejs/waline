@@ -394,10 +394,10 @@ importers:
         version: 2.0.0
     devDependencies:
       dotenv:
-        specifier: ^16.4.7
+        specifier: 16.4.7
         version: 16.4.7
       think-watcher:
-        specifier: ^3.0.4
+        specifier: 3.0.4
         version: 3.0.4
 
 packages:
