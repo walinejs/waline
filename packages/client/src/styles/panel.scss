@@ -156,7 +156,7 @@
   position: relative;
 
   resize: vertical;
-
+  box-sizing: border-box;
   width: calc(100% - 1em);
   min-height: 8.75em;
   margin: 0.75em 0.5em;
