@@ -1,43 +1,28 @@
-import {
-  config,
-  globals,
-  js,
-  jsImport,
-  prettier,
-  ts,
-  tsImport,
-  tsParser,
-  vitest,
-} from 'eslint-config-mister-hope';
-import { vue, vueParser } from 'eslint-config-mister-hope/vue';
+import { globals, hope, tsParser } from 'eslint-config-mister-hope';
+import { vue } from 'eslint-config-mister-hope/vue';
 import reactRecommended from 'eslint-plugin-react/configs/recommended.js';
 
-export default config(
-  ...js,
-  ...jsImport,
-  ...ts,
-  ...tsImport,
-  vitest,
-  ...vue,
+export default hope(
   {
     ignores: [
-      '**/.vuepress/.cache/**',
-      '**/.vuepress/.temp/**',
       // FIXME: Handle alias correctly
       '**/.vuepress/components/**',
       // FIXME: Correctly type these files
       '**/.vuepress/utils/transform/**',
-      '**/dist/**',
+      '**/.vuepress/utils/csv.js',
       'example/**',
-      '**/node_modules/**',
     ],
+    js: {
+      'no-console': 'off',
+    },
+    ts: {
+      rules: {
+        'no-console': 'off',
+      },
+    },
   },
-
   {
     languageOptions: {
-      ecmaVersion: 'latest',
-      sourceType: 'module',
-      parser: vueParser,
       parserOptions: {
         parser: tsParser,
         tsconfigDirName: import.meta.dirname,
@@ -46,10 +31,8 @@ export default config(
       },
     },
   },
-
-  {
-    files: ['**/*.{ts,vue}'],
-    rules: {
+  ...vue(
+    {
       '@typescript-eslint/naming-convention': [
         'warn',
         {
@@ -95,7 +78,15 @@ export default config(
         },
       ],
     },
-  },
+    {
+      'vue/block-lang': [
+        'error',
+        {
+          script: { lang: 'ts' },
+        },
+      ],
+    },
+  ),
 
   // @ts-expect-error: react plugin types
   {
@@ -121,23 +112,10 @@ export default config(
   },
 
   {
-    files: ['packages/client/src/**/*.{ts,vue}'],
-    rules: {
-      'vue/block-lang': [
-        'error',
-        {
-          script: { lang: 'ts' },
-        },
-      ],
-    },
-  },
-
-  {
     files: [
       'packages/cloudbase/**/*.js',
       'packages/hexo-next/**/*.js',
       'packages/server/**/*.{js,ts}',
-      'scripts/**.cjs',
     ],
     languageOptions: {
       globals: globals.node,
@@ -171,5 +149,4 @@ export default config(
       globals: globals.node,
     },
   },
-  prettier,
 );
