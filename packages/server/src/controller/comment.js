@@ -175,8 +175,8 @@ module.exports = class extends BaseRest {
       think.logger.debug(`Comment initial status is ${data.status}`);
 
       if (data.status === 'approved') {
-        const spam = await akismet(data, this.ctx.serverURL).catch((e) =>
-          console.log(e),
+        const spam = await akismet(data, this.ctx.serverURL).catch((err) =>
+          console.log(err),
         ); // ignore akismet error
 
         if (spam === true) {

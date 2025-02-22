@@ -1,4 +1,8 @@
-import { globals, hope, tsParser } from 'eslint-config-mister-hope';
+import {
+  defaultNamingConventionRules,
+  globals,
+  hope,
+} from 'eslint-config-mister-hope';
 import { vue } from 'eslint-config-mister-hope/vue';
 import reactRecommended from 'eslint-plugin-react/configs/recommended.js';
 
@@ -12,47 +16,18 @@ export default hope(
       '**/.vuepress/utils/csv.js',
       'example/**',
     ],
-    js: {
-      'no-console': 'off',
-    },
-    ts: {
-      rules: {
-        'no-console': 'off',
-      },
-    },
-  },
-  {
     languageOptions: {
       parserOptions: {
-        parser: tsParser,
-        tsconfigDirName: import.meta.dirname,
         project: ['./tsconfig.eslint.json'],
         extraFileExtensions: ['.vue'],
       },
     },
   },
-  ...vue(
-    {
+
+  ...vue({
+    all: {
       '@typescript-eslint/naming-convention': [
         'warn',
-        {
-          selector: 'default',
-          format: ['camelCase'],
-          leadingUnderscore: 'allowSingleOrDouble',
-          trailingUnderscore: 'allow',
-        },
-        {
-          selector: ['variable'],
-          format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
-          leadingUnderscore: 'allowSingleOrDouble',
-          trailingUnderscore: 'allowSingleOrDouble',
-        },
-        {
-          selector: ['parameter'],
-          format: ['camelCase', 'PascalCase'],
-          leadingUnderscore: 'allow',
-          trailingUnderscore: 'allow',
-        },
         {
           selector: ['property'],
           format: null,
@@ -62,23 +37,10 @@ export default hope(
           },
           filter: '(^\\/$|^/.*/$|^@|^[a-z]+(?:-[a-z]+)*?$)',
         },
-        {
-          selector: ['property'],
-          format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
-          leadingUnderscore: 'allow',
-          trailingUnderscore: 'allow',
-        },
-        {
-          selector: 'import',
-          format: ['PascalCase', 'camelCase'],
-        },
-        {
-          selector: 'typeLike',
-          format: ['PascalCase'],
-        },
+        ...defaultNamingConventionRules,
       ],
     },
-    {
+    sfc: {
       'vue/block-lang': [
         'error',
         {
@@ -86,12 +48,14 @@ export default hope(
         },
       ],
     },
-  ),
+  }),
 
   // @ts-expect-error: react plugin types
   {
     files: ['packages/admin/src/**/*.{js,jsx}'],
+
     ...reactRecommended,
+
     languageOptions: {
       ...reactRecommended.languageOptions,
       globals: {
@@ -140,6 +104,7 @@ export default hope(
     rules: {
       '@typescript-eslint/class-literal-property-style': 'off',
       '@typescript-eslint/no-empty-function': 'off',
+      'no-console': 'off',
     },
   },
 

@@ -25,16 +25,16 @@ async function run() {
       }
     }),
   ]).then((token) => {
-    if (!token) {
-      return;
-    }
+    if (!token) return;
+
     window.TOKEN = token;
     sessionStorage.setItem('TOKEN', token);
   });
 
   await Promise.all([store.dispatch({ type: 'user/loadUserInfo' })]).catch(
-    (e) => {
-      console.error(e);
+    (err) => {
+      // eslint-disable-next-line no-console
+      console.error(err);
     },
   );
 
@@ -52,6 +52,7 @@ async function run() {
   );
 }
 
+// eslint-disable-next-line no-console
 console.log(
   '%c @waline/admin %c v' + VERSION + ' ',
   'color: white; background: #0078E7; padding:5px 0;',

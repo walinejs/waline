@@ -22,26 +22,31 @@ const votingIndex = ref(-1);
 const voteNumbers = ref<number[]>([]);
 
 const locale = computed(() => config.value.locale);
-const isReactionEnabled = computed(() => config.value.reaction.length > 0);
+const reaction = computed(() => {
+  const { reaction } = config.value;
+
+  return reaction?.length ? reaction : null;
+});
 
 const reactionsInfo = computed<ReactionItem[] | null>(() => {
-  const { reaction, path } = config.value;
+  const { path } = config.value;
 
-  if (!reaction.length) return null;
-
-  return reaction.map((icon, index) => ({
-    icon,
-    desc: locale.value[`reaction${index}` as keyof WalineReactionLocale],
-    active: reactionStorage.value[path] === index,
-  }));
+  return (
+    reaction.value?.map((icon, index) => ({
+      icon,
+      desc: locale.value[`reaction${index}` as keyof WalineReactionLocale],
+      active: reactionStorage.value[path] === index,
+    })) ?? null
+  );
 });
 
 let abort: (() => void) | undefined;
 
 const fetchReaction = async (): Promise<void> => {
-  if (!isReactionEnabled.value) return;
+  const { serverURL, lang, path } = config.value;
 
-  const { serverURL, lang, path, reaction } = config.value;
+  if (!reaction.value) return;
+
   const controller = new AbortController();
 
   abort = controller.abort.bind(controller);
@@ -50,11 +55,11 @@ const fetchReaction = async (): Promise<void> => {
     serverURL,
     lang,
     paths: [path],
-    type: reaction.map((_, index) => `reaction${index}`),
+    type: reaction.value.map((_, index) => `reaction${index}`),
     signal: controller.signal,
   })) as Record<string, number>[];
 
-  voteNumbers.value = reaction.map(
+  voteNumbers.value = reaction.value.map(
     (_, index) => reactionData[`reaction${index}`],
   );
 };

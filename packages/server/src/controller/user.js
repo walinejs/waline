@@ -110,8 +110,8 @@ module.exports = class extends BaseRest {
           { url: apiUrl },
         ),
       });
-    } catch (e) {
-      console.log(e);
+    } catch (err) {
+      console.log(err);
 
       return this.fail(
         this.locale(

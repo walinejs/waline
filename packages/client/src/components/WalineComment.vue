@@ -75,6 +75,7 @@ const getCommentData = (pageNumber: number): void => {
     })
     .catch((err: unknown) => {
       if ((err as Error).name !== 'AbortError') {
+        // eslint-disable-next-line no-console
         console.error((err as Error).message);
         status.value = 'error';
       }

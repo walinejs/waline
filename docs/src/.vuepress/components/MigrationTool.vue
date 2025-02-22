@@ -71,8 +71,6 @@ const click = (event: FormDataEvent) => {
   if (typeof act === 'function') {
     let text = act(source.value);
 
-    console.log(text);
-
     if (typeof text !== 'string') {
       text = JSON.stringify(text, null, '\t');
     }
