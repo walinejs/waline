@@ -117,7 +117,7 @@ export default [
 
   // components
   {
-    input: './src/entries/components.ts',
+    input: './src/entries/component.ts',
     output: [
       {
         file: './dist/component.js',
@@ -166,7 +166,7 @@ export default [
 
   // components declaration files
   {
-    input: './src/components/WalineComment.d.ts',
+    input: './src/entries/component-type.d.ts',
     output: [{ file: './dist/component.d.ts', format: 'esm' }],
     plugins: [dts({ compilerOptions: { preserveSymlinks: false } })],
   },

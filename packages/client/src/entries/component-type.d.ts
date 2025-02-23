@@ -8,7 +8,7 @@ import type {
 
 import type { WalineProps } from '../typings/index.js';
 
-declare const _default: DefineComponent<
+export const Waline: DefineComponent<
   WalineProps,
   {},
   {},
@@ -30,4 +30,4 @@ declare const _default: DefineComponent<
   {},
   HTMLDivElement
 >;
-export default _default;
+export const version: string;
