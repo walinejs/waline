@@ -230,7 +230,7 @@ export default function () {
                             href={
                               user[social]
                                 ? `https://${social}.com/${user[social]}`
-                                : `${baseUrl}oauth/?type=${social}&state=${token}`
+                                : `${baseUrl}oauth?type=${social}&state=${token}`
                             }
                             target={user[social] ? '_blank' : '_self'}
                             rel="noreferrer"
