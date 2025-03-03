@@ -84,7 +84,7 @@ Download [waline.sqlite](https://github.com/walinejs/waline/blob/main/assets/wal
 
 ## PostgreSQL
 
-[Supabase](https://supabase.com) offers a free 512M database,while [elephantSQL](https://www.elephantsql.com/) provides 20M PG database support for free. Same as MySQL, you need to import [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) to create table and table structure before using PostgreSQL.
+[Supabase](https://supabase.com) and [Neon](https://neon.tech/home) offer a free 512M database, while [Tembo](https://tembo.io/) provides 10G PG database support for free. Same as MySQL, you need to import [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) to create table and table structure before using PostgreSQL.
 
 | Environment Variable | Required | Default   | Description                         |
 | -------------------- | -------- | --------- | ----------------------------------- |
