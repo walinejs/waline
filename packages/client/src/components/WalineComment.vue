@@ -33,7 +33,7 @@ const totalPages = ref(0);
 
 const config = computed(() => getConfig(props as WalineProps));
 
-// eslint-disable-next-line vue/no-ref-object-destructure
+// eslint-disable-next-line vue/no-ref-object-reactivity-loss
 const commentSortingRef = ref(config.value.commentSorting);
 
 const data = ref<WalineRootComment[]>([]);

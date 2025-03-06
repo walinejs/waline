@@ -76,6 +76,13 @@ export default hope(
   },
 
   {
+    files: ['packages/client/src/**/*.{ts,vue}'],
+    languageOptions: {
+      globals: globals.browser,
+    },
+  },
+
+  {
     files: [
       'packages/cloudbase/**/*.js',
       'packages/hexo-next/**/*.js',
