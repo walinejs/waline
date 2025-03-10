@@ -355,7 +355,7 @@ importers:
         version: 0.1.1
       prismjs:
         specifier: ^1.29.0
-        version: 1.29.0
+        version: 1.30.0
       speakeasy:
         specifier: ^2.0.0
         version: 2.0.0
@@ -4437,6 +4437,10 @@ packages:
     resolution: {integrity: sha512-PHlWUfG6lvPc3yvP5A4PNyBL1W8fkDUccmI21JUu/+GKZBoH/W5u6usENXUrWFRsyoW5ACUjFGgAFQp5gUlb/A==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
+  eslint-scope@8.3.0:
+    resolution: {integrity: sha512-pUNxi75F8MJ/GdeKtVLSbYg4ZI34J6C0C7sbL4YOp2exGwen7ZsuBqKzUhXd0qMQ362yET3z+uPwKeg/0C2XCQ==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
   eslint-visitor-keys@3.4.3:
     resolution: {integrity: sha512-wpc+LXeiyiisxPlEkUzU6svyS1frIO3Mgxj1fdy7Pm8Ygzguax2N3Fa/D/ag1WqbOprdI+uY6wMUl8/a2G+iag==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
@@ -5786,8 +5790,8 @@ packages:
     resolution: {integrity: sha512-jumlc0BIUrS3qJGgIkWZsyfAM7NCWiBcCDhnd+3NNM5KbBmLTgHVfWBcg6W+rLUsIpzpERPsvwUP7CckAQSOoA==}
     engines: {node: '>=12'}
 
-  lru.min@1.1.1:
-    resolution: {integrity: sha512-FbAj6lXil6t8z4z3j0E5mfRlPzxkySotzUHwRXjlpRh10vc6AI6WN62ehZj82VG7M20rqogJ0GLwar2Xa05a8Q==}
+  lru.min@1.1.2:
+    resolution: {integrity: sha512-Nv9KddBcQSlQopmBHXSsZVY5xsdlZkdH/Iey0BlcBYggMd4two7cZnKOK9vmy3nY0O5RGH99z1PCeTpPqszUYg==}
     engines: {bun: '>=1.0.0', deno: '>=1.30.0', node: '>=8.0.0'}
 
   magic-string@0.30.17:
@@ -6709,8 +6713,8 @@ packages:
     resolution: {integrity: sha512-4yf0QO/sllf/1zbZWYnvWw3NxCQwLXKzIj0G849LSufP15BXKM0rbD2Z3wVnkMfjdn/CB0Dpp444gYAACdsplg==}
     engines: {node: '>=18'}
 
-  prismjs@1.29.0:
-    resolution: {integrity: sha512-Kx/1w86q/epKcmte75LNrEoT+lX8pBpavuAbvJWRXar7Hz8jrtF+e3vY751p0R8H9HdArwaCTNDDzHg/ScJK1Q==}
+  prismjs@1.30.0:
+    resolution: {integrity: sha512-DEvV2ZF2r2/63V+tK8hQvrR2ZGn10srHbXviTlcv7Kpzw8jWiNTqbVgjO3IY8RxrrOUF8VPMQQFysYYYv0YZxw==}
     engines: {node: '>=6'}
 
   process-nextick-args@2.0.1:
@@ -11982,7 +11986,7 @@ snapshots:
       lodash: 4.17.21
       markdown-it: 12.3.2
       nodemon: 3.1.9
-      prismjs: 1.29.0
+      prismjs: 1.30.0
       semver: 7.7.1
       style-loader: 3.3.4(webpack@5.98.0)
       webpack: 5.98.0(esbuild@0.25.0)(webpack-cli@4.10.0)
@@ -13413,6 +13417,11 @@ snapshots:
       esrecurse: 4.3.0
       estraverse: 5.3.0
 
+  eslint-scope@8.3.0:
+    dependencies:
+      esrecurse: 4.3.0
+      estraverse: 5.3.0
+
   eslint-visitor-keys@3.4.3: {}
 
   eslint-visitor-keys@4.2.0: {}
@@ -14014,7 +14023,7 @@ snapshots:
       deepmerge: 4.3.1
       highlight.js: 10.7.3
       htmlparser2: 6.1.0
-      prismjs: 1.29.0
+      prismjs: 1.30.0
       strip-indent: 3.0.0
 
   hexoid@1.0.0: {}
@@ -14906,7 +14915,7 @@ snapshots:
 
   lru-cache@7.18.3: {}
 
-  lru.min@1.1.1: {}
+  lru.min@1.1.2: {}
 
   magic-string@0.30.17:
     dependencies:
@@ -15365,7 +15374,7 @@ snapshots:
       generate-function: 2.3.1
       iconv-lite: 0.6.3
       long: 5.3.1
-      lru.min: 1.1.1
+      lru.min: 1.1.2
       named-placeholders: 1.1.3
       seq-queue: 0.0.5
       sqlstring: 2.3.3
@@ -15909,7 +15918,7 @@ snapshots:
     dependencies:
       parse-ms: 4.0.0
 
-  prismjs@1.29.0: {}
+  prismjs@1.30.0: {}
 
   process-nextick-args@2.0.1: {}
 
@@ -17774,7 +17783,7 @@ snapshots:
     dependencies:
       debug: 4.4.0(supports-color@5.5.0)
       eslint: 9.21.0(jiti@2.4.2)
-      eslint-scope: 8.2.0
+      eslint-scope: 8.3.0
       eslint-visitor-keys: 4.2.0
       espree: 10.3.0
       esquery: 1.6.0
