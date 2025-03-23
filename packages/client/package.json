@@ -91,13 +91,13 @@
     "vue": "^3.5.13"
   },
   "devDependencies": {
-    "@babel/core": "7.26.9",
+    "@babel/core": "7.26.10",
     "@babel/preset-env": "7.26.9",
     "@giphy/js-types": "5.1.0",
     "@types/autosize": "4.0.3",
-    "@vitejs/plugin-vue": "5.2.1",
+    "@vitejs/plugin-vue": "5.2.3",
     "user-agent-data-types": "0.4.2",
-    "vite": "6.2.1"
+    "vite": "6.2.2"
   },
   "engines": {
     "node": ">=18"
