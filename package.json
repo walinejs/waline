@@ -81,7 +81,7 @@
     "vite-plugin-svgr": "4.3.0",
     "vitest": "3.0.9"
   },
-  "packageManager": "pnpm@10.7.0",
+  "packageManager": "pnpm@10.8.0",
   "pnpm": {
     "overrides": {
       "@waline/api": "workspace:*"
