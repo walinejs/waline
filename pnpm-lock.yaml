@@ -150,8 +150,8 @@ importers:
         specifier: workspace:*
         version: link:../packages/client
       marked:
-        specifier: 15.0.7
-        version: 15.0.7
+        specifier: 15.0.8
+        version: 15.0.8
       mathjax-full:
         specifier: 3.2.2
         version: 3.2.2
@@ -5957,6 +5957,11 @@ packages:
 
   marked@15.0.7:
     resolution: {integrity: sha512-dgLIeKGLx5FwziAnsk4ONoGwHwGPJzselimvlVskE9XLN4Orv9u2VA3GWw/lYUqjfA0rUT/6fqKwfZJapP9BEg==}
+    engines: {node: '>= 18'}
+    hasBin: true
+
+  marked@15.0.8:
+    resolution: {integrity: sha512-rli4l2LyZqpQuRve5C0rkn6pj3hT8EWPC+zkAxFTAJLxRbENfTAhEQq9itrmf1Y81QtAX5D/MYlGlIomNgj9lA==}
     engines: {node: '>= 18'}
     hasBin: true
 
@@ -15211,6 +15216,8 @@ snapshots:
       marked: 15.0.7
 
   marked@15.0.7: {}
+
+  marked@15.0.8: {}
 
   math-intrinsics@1.1.0: {}
 
