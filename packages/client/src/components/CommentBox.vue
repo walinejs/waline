@@ -1,10 +1,5 @@
 <script setup lang="ts">
-import {
-  isDef,
-  useDebounceFn,
-  useEventListener,
-  watchImmediate,
-} from '@vueuse/core';
+import { useDebounceFn, useEventListener, watchImmediate } from '@vueuse/core';
 import type { WalineComment, WalineCommentData, UserInfo } from '@waline/api';
 import { addComment, login, updateComment } from '@waline/api';
 import autosize from 'autosize';
@@ -116,7 +111,7 @@ const locale = computed(() => config.value.locale);
 
 const isLogin = computed(() => Boolean(userInfo.value.token));
 
-const canUploadImage = computed(() => isDef(config.value.imageUploader));
+const canUploadImage = computed(() => config.value.imageUploader !== null);
 
 const insert = (content: string): void => {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -246,7 +241,7 @@ const submitComment = async (): Promise<void> => {
         return;
       }
 
-      if (!comment.nick) comment.nick = locale.value.anonymous;
+      comment.nick ??= locale.value.anonymous;
     }
   }
 
