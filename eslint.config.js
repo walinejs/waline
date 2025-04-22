@@ -1,3 +1,6 @@
+import path from 'path';
+import { fileURLToPath } from 'url';
+
 import {
   defaultNamingConventionRules,
   globals,
@@ -5,6 +8,8 @@ import {
 } from 'eslint-config-mister-hope';
 import { vue } from 'eslint-config-mister-hope/vue';
 import reactRecommended from 'eslint-plugin-react/configs/recommended.js';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default hope(
   {
@@ -19,6 +24,7 @@ export default hope(
     languageOptions: {
       parserOptions: {
         project: ['./tsconfig.eslint.json'],
+        tsconfigRootDir: path.resolve(__dirname, '.'),
         extraFileExtensions: ['.vue'],
       },
     },
