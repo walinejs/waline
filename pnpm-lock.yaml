@@ -46,7 +46,7 @@ importers:
         version: 22.13.14
       '@vitejs/plugin-react':
         specifier: 4.4.1
-        version: 4.4.1(vite@6.2.6(@types/node@22.13.14)(jiti@2.4.2)(sass-embedded@1.86.0)(terser@5.39.0))
+        version: 4.4.1(vite@6.3.3(@types/node@22.13.14)(jiti@2.4.2)(sass-embedded@1.86.0)(terser@5.39.0))
       apidoc:
         specifier: 1.2.0
         version: 1.2.0(esbuild@0.25.1)
@@ -121,10 +121,10 @@ importers:
         version: 41.4.1(encoding@0.1.13)(rollup@4.40.0)
       vite-plugin-css-injected-by-js:
         specifier: 3.5.2
-        version: 3.5.2(vite@6.2.6(@types/node@22.13.14)(jiti@2.4.2)(sass-embedded@1.86.0)(terser@5.39.0))
+        version: 3.5.2(vite@6.3.3(@types/node@22.13.14)(jiti@2.4.2)(sass-embedded@1.86.0)(terser@5.39.0))
       vite-plugin-svgr:
         specifier: 4.3.0
-        version: 4.3.0(rollup@4.40.0)(typescript@5.8.2)(vite@6.2.6(@types/node@22.13.14)(jiti@2.4.2)(sass-embedded@1.86.0)(terser@5.39.0))
+        version: 4.3.0(rollup@4.40.0)(typescript@5.8.2)(vite@6.3.3(@types/node@22.13.14)(jiti@2.4.2)(sass-embedded@1.86.0)(terser@5.39.0))
       vitest:
         specifier: 3.0.9
         version: 3.0.9(@edge-runtime/vm@3.2.0)(@types/debug@4.1.12)(@types/node@22.13.14)(jiti@2.4.2)(jsdom@26.0.0)(sass-embedded@1.86.0)(terser@5.39.0)
@@ -219,8 +219,8 @@ importers:
         specifier: 5.8.2
         version: 5.8.2
       vite:
-        specifier: 6.2.6
-        version: 6.2.6(@types/node@22.13.14)(jiti@2.4.2)(sass-embedded@1.86.0)(terser@5.39.0)
+        specifier: 6.3.3
+        version: 6.3.3(@types/node@22.13.14)(jiti@2.4.2)(sass-embedded@1.86.0)(terser@5.39.0)
 
   packages/api: {}
 
@@ -262,13 +262,13 @@ importers:
         version: 4.0.3
       '@vitejs/plugin-vue':
         specifier: 5.2.3
-        version: 5.2.3(vite@6.2.6(@types/node@22.13.14)(jiti@2.4.2)(sass-embedded@1.86.0)(terser@5.39.0))(vue@3.5.13(typescript@5.8.2))
+        version: 5.2.3(vite@6.3.3(@types/node@22.13.14)(jiti@2.4.2)(sass-embedded@1.86.0)(terser@5.39.0))(vue@3.5.13(typescript@5.8.2))
       user-agent-data-types:
         specifier: 0.4.2
         version: 0.4.2
       vite:
-        specifier: 6.2.6
-        version: 6.2.6(@types/node@22.13.14)(jiti@2.4.2)(sass-embedded@1.86.0)(terser@5.39.0)
+        specifier: 6.3.3
+        version: 6.3.3(@types/node@22.13.14)(jiti@2.4.2)(sass-embedded@1.86.0)(terser@5.39.0)
 
   packages/cloudbase:
     dependencies:
@@ -4815,6 +4815,14 @@ packages:
       picomatch:
         optional: true
 
+  fdir@6.4.4:
+    resolution: {integrity: sha512-1NZP+GK4GfuAv3PqKvxQRDMjdSRZjnkq7KfhlNrCNNlZ0ygQFpebfrnfnq/W7fpUnAv9aGWmY1zKx7FYL3gwhg==}
+    peerDependencies:
+      picomatch: ^3 || ^4
+    peerDependenciesMeta:
+      picomatch:
+        optional: true
+
   fecha@4.2.3:
     resolution: {integrity: sha512-OP2IUU6HeYKJi3i0z4A19kHMQoLVs4Hc+DPqqxI2h/DPZHTm/vjsfC6P0b4jCMy14XizLBqvndQ+UilD7707Jw==}
 
@@ -8094,6 +8102,10 @@ packages:
     resolution: {integrity: sha512-qkf4trmKSIiMTs/E63cxH+ojC2unam7rJ0WrauAzpT3ECNTxGRMlaXxVbfxMUC/w0LaYk6jQ4y/nGR9uBO3tww==}
     engines: {node: '>=12.0.0'}
 
+  tinyglobby@0.2.13:
+    resolution: {integrity: sha512-mEwzpUgrLySlveBwEVDMKk5B57bhLPYovRfPAXD5gA/98Opn0rCDj3GtLwFvCvH5RK9uPCExUROW5NjDwvqkxw==}
+    engines: {node: '>=12.0.0'}
+
   tinypool@1.0.2:
     resolution: {integrity: sha512-al6n+QEANGFOMf/dmUMsuS5/r9B06uwlyNjZZql/zv8J7ybHCgoihBNORZCY2mzUuAnomQa2JdhyHKzZxPCrFA==}
     engines: {node: ^18.0.0 || >=20.0.0}
@@ -8489,8 +8501,8 @@ packages:
       yaml:
         optional: true
 
-  vite@6.2.6:
-    resolution: {integrity: sha512-9xpjNl3kR4rVDZgPNdTL0/c6ao4km69a/2ihNQbcANz8RuCOK3hQBmLSJf3bRKVQjVMda+YvizNE8AwvogcPbw==}
+  vite@6.3.3:
+    resolution: {integrity: sha512-5nXH+QsELbFKhsEfWLkHrvgRpTdGJzqOZ+utSdmPTvwHmvU6ITTm3xx+mRusihkcI8GeC7lCDyn3kDtiki9scw==}
     engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
     hasBin: true
     peerDependencies:
@@ -11530,14 +11542,14 @@ snapshots:
       json-schema-to-ts: 1.6.4
       ts-morph: 12.0.0
 
-  '@vitejs/plugin-react@4.4.1(vite@6.2.6(@types/node@22.13.14)(jiti@2.4.2)(sass-embedded@1.86.0)(terser@5.39.0))':
+  '@vitejs/plugin-react@4.4.1(vite@6.3.3(@types/node@22.13.14)(jiti@2.4.2)(sass-embedded@1.86.0)(terser@5.39.0))':
     dependencies:
       '@babel/core': 7.26.10
       '@babel/plugin-transform-react-jsx-self': 7.25.9(@babel/core@7.26.10)
       '@babel/plugin-transform-react-jsx-source': 7.25.9(@babel/core@7.26.10)
       '@types/babel__core': 7.20.5
       react-refresh: 0.17.0
-      vite: 6.2.6(@types/node@22.13.14)(jiti@2.4.2)(sass-embedded@1.86.0)(terser@5.39.0)
+      vite: 6.3.3(@types/node@22.13.14)(jiti@2.4.2)(sass-embedded@1.86.0)(terser@5.39.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -11546,9 +11558,9 @@ snapshots:
       vite: 6.1.2(@types/node@22.13.14)(jiti@2.4.2)(sass-embedded@1.86.0)(terser@5.39.0)
       vue: 3.5.13(typescript@5.8.2)
 
-  '@vitejs/plugin-vue@5.2.3(vite@6.2.6(@types/node@22.13.14)(jiti@2.4.2)(sass-embedded@1.86.0)(terser@5.39.0))(vue@3.5.13(typescript@5.8.2))':
+  '@vitejs/plugin-vue@5.2.3(vite@6.3.3(@types/node@22.13.14)(jiti@2.4.2)(sass-embedded@1.86.0)(terser@5.39.0))(vue@3.5.13(typescript@5.8.2))':
     dependencies:
-      vite: 6.2.6(@types/node@22.13.14)(jiti@2.4.2)(sass-embedded@1.86.0)(terser@5.39.0)
+      vite: 6.3.3(@types/node@22.13.14)(jiti@2.4.2)(sass-embedded@1.86.0)(terser@5.39.0)
       vue: 3.5.13(typescript@5.8.2)
 
   '@vitest/eslint-plugin@1.1.38(@typescript-eslint/utils@8.28.0(eslint@9.25.0(jiti@2.4.2))(typescript@5.8.2))(eslint@9.25.0(jiti@2.4.2))(typescript@5.8.2)(vitest@3.0.9(@edge-runtime/vm@3.2.0)(@types/debug@4.1.12)(@types/node@22.13.14)(jiti@2.4.2)(jsdom@26.0.0)(sass-embedded@1.86.0)(terser@5.39.0))':
@@ -11566,13 +11578,13 @@ snapshots:
       chai: 5.2.0
       tinyrainbow: 2.0.0
 
-  '@vitest/mocker@3.0.9(vite@6.2.6(@types/node@22.13.14)(jiti@2.4.2)(sass-embedded@1.86.0)(terser@5.39.0))':
+  '@vitest/mocker@3.0.9(vite@6.3.3(@types/node@22.13.14)(jiti@2.4.2)(sass-embedded@1.86.0)(terser@5.39.0))':
     dependencies:
       '@vitest/spy': 3.0.9
       estree-walker: 3.0.3
       magic-string: 0.30.17
     optionalDependencies:
-      vite: 6.2.6(@types/node@22.13.14)(jiti@2.4.2)(sass-embedded@1.86.0)(terser@5.39.0)
+      vite: 6.3.3(@types/node@22.13.14)(jiti@2.4.2)(sass-embedded@1.86.0)(terser@5.39.0)
 
   '@vitest/pretty-format@3.0.9':
     dependencies:
@@ -13968,6 +13980,10 @@ snapshots:
       pend: 1.2.0
 
   fdir@6.4.3(picomatch@4.0.2):
+    optionalDependencies:
+      picomatch: 4.0.2
+
+  fdir@6.4.4(picomatch@4.0.2):
     optionalDependencies:
       picomatch: 4.0.2
 
@@ -17757,6 +17773,11 @@ snapshots:
       fdir: 6.4.3(picomatch@4.0.2)
       picomatch: 4.0.2
 
+  tinyglobby@0.2.13:
+    dependencies:
+      fdir: 6.4.4(picomatch@4.0.2)
+      picomatch: 4.0.2
+
   tinypool@1.0.2: {}
 
   tinyrainbow@2.0.0: {}
@@ -18117,7 +18138,7 @@ snapshots:
       debug: 4.4.0(supports-color@5.5.0)
       es-module-lexer: 1.6.0
       pathe: 2.0.3
-      vite: 6.2.6(@types/node@22.13.14)(jiti@2.4.2)(sass-embedded@1.86.0)(terser@5.39.0)
+      vite: 6.3.3(@types/node@22.13.14)(jiti@2.4.2)(sass-embedded@1.86.0)(terser@5.39.0)
     transitivePeerDependencies:
       - '@types/node'
       - jiti
@@ -18132,16 +18153,16 @@ snapshots:
       - tsx
       - yaml
 
-  vite-plugin-css-injected-by-js@3.5.2(vite@6.2.6(@types/node@22.13.14)(jiti@2.4.2)(sass-embedded@1.86.0)(terser@5.39.0)):
+  vite-plugin-css-injected-by-js@3.5.2(vite@6.3.3(@types/node@22.13.14)(jiti@2.4.2)(sass-embedded@1.86.0)(terser@5.39.0)):
     dependencies:
-      vite: 6.2.6(@types/node@22.13.14)(jiti@2.4.2)(sass-embedded@1.86.0)(terser@5.39.0)
+      vite: 6.3.3(@types/node@22.13.14)(jiti@2.4.2)(sass-embedded@1.86.0)(terser@5.39.0)
 
-  vite-plugin-svgr@4.3.0(rollup@4.40.0)(typescript@5.8.2)(vite@6.2.6(@types/node@22.13.14)(jiti@2.4.2)(sass-embedded@1.86.0)(terser@5.39.0)):
+  vite-plugin-svgr@4.3.0(rollup@4.40.0)(typescript@5.8.2)(vite@6.3.3(@types/node@22.13.14)(jiti@2.4.2)(sass-embedded@1.86.0)(terser@5.39.0)):
     dependencies:
       '@rollup/pluginutils': 5.1.4(rollup@4.40.0)
       '@svgr/core': 8.1.0(typescript@5.8.2)
       '@svgr/plugin-jsx': 8.1.0(@svgr/core@8.1.0(typescript@5.8.2))
-      vite: 6.2.6(@types/node@22.13.14)(jiti@2.4.2)(sass-embedded@1.86.0)(terser@5.39.0)
+      vite: 6.3.3(@types/node@22.13.14)(jiti@2.4.2)(sass-embedded@1.86.0)(terser@5.39.0)
     transitivePeerDependencies:
       - rollup
       - supports-color
@@ -18159,11 +18180,14 @@ snapshots:
       sass-embedded: 1.86.0
       terser: 5.39.0
 
-  vite@6.2.6(@types/node@22.13.14)(jiti@2.4.2)(sass-embedded@1.86.0)(terser@5.39.0):
+  vite@6.3.3(@types/node@22.13.14)(jiti@2.4.2)(sass-embedded@1.86.0)(terser@5.39.0):
     dependencies:
       esbuild: 0.25.1
+      fdir: 6.4.4(picomatch@4.0.2)
+      picomatch: 4.0.2
       postcss: 8.5.3
-      rollup: 4.38.0
+      rollup: 4.40.0
+      tinyglobby: 0.2.13
     optionalDependencies:
       '@types/node': 22.13.14
       fsevents: 2.3.3
@@ -18174,7 +18198,7 @@ snapshots:
   vitest@3.0.9(@edge-runtime/vm@3.2.0)(@types/debug@4.1.12)(@types/node@22.13.14)(jiti@2.4.2)(jsdom@26.0.0)(sass-embedded@1.86.0)(terser@5.39.0):
     dependencies:
       '@vitest/expect': 3.0.9
-      '@vitest/mocker': 3.0.9(vite@6.2.6(@types/node@22.13.14)(jiti@2.4.2)(sass-embedded@1.86.0)(terser@5.39.0))
+      '@vitest/mocker': 3.0.9(vite@6.3.3(@types/node@22.13.14)(jiti@2.4.2)(sass-embedded@1.86.0)(terser@5.39.0))
       '@vitest/pretty-format': 3.0.9
       '@vitest/runner': 3.0.9
       '@vitest/snapshot': 3.0.9
@@ -18190,7 +18214,7 @@ snapshots:
       tinyexec: 0.3.2
       tinypool: 1.0.2
       tinyrainbow: 2.0.0
-      vite: 6.2.6(@types/node@22.13.14)(jiti@2.4.2)(sass-embedded@1.86.0)(terser@5.39.0)
+      vite: 6.3.3(@types/node@22.13.14)(jiti@2.4.2)(sass-embedded@1.86.0)(terser@5.39.0)
       vite-node: 3.0.9(@types/node@22.13.14)(jiti@2.4.2)(sass-embedded@1.86.0)(terser@5.39.0)
       why-is-node-running: 2.3.0
     optionalDependencies:
