@@ -81,7 +81,7 @@
     "vite-plugin-svgr": "4.3.0",
     "vitest": "3.0.9"
   },
-  "packageManager": "pnpm@10.8.1",
+  "packageManager": "pnpm@10.10.0",
   "pnpm": {
     "onlyBuiltDependencies": [
       "core-js-pure",
