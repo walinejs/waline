@@ -186,8 +186,8 @@ importers:
         specifier: 2.5.1
         version: 2.5.1
       i18next:
-        specifier: 25.0.0
-        version: 25.0.0(typescript@5.8.2)
+        specifier: 25.0.2
+        version: 25.0.2(typescript@5.8.2)
       i18next-browser-languagedetector:
         specifier: 8.0.5
         version: 8.0.5
@@ -205,7 +205,7 @@ importers:
         version: 19.1.0(react@19.1.0)
       react-i18next:
         specifier: 15.5.1
-        version: 15.5.1(i18next@25.0.0(typescript@5.8.2))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.8.2)
+        version: 15.5.1(i18next@25.0.2(typescript@5.8.2))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.8.2)
       react-redux:
         specifier: 9.2.0
         version: 9.2.0(react@19.1.0)(redux@5.0.1)
@@ -237,10 +237,10 @@ importers:
         version: 6.0.1
       marked:
         specifier: ^15.0.7
-        version: 15.0.7
+        version: 15.0.8
       marked-highlight:
         specifier: ^2.2.1
-        version: 2.2.1(marked@15.0.7)
+        version: 2.2.1(marked@15.0.8)
       recaptcha-v3:
         specifier: ^1.11.3
         version: 1.11.3
@@ -5291,8 +5291,8 @@ packages:
   i18next-browser-languagedetector@8.0.5:
     resolution: {integrity: sha512-OstebRKqKiQw8xEvQF5aRyUujsCatanj7Q9eo5iiH2gJpoXGZ7483ol3sVBwfqbobTQPNH1J+NAyJ1aCQoEC+w==}
 
-  i18next@25.0.0:
-    resolution: {integrity: sha512-POPvwjOPR1GQvRnbikTMPEhQD+ekd186MHE6NtVxl3Lby+gPp0iq60eCqGrY6wfRnp1lejjFNu0EKs1afA322w==}
+  i18next@25.0.2:
+    resolution: {integrity: sha512-xWxgK8GAaPYkV9ia2tdgbtdM+qiC+ysVTBPvXhpCORU/+QkeQe3BSI7Crr+c4ZXULN1PfnXG/HY2n7HGx4KKBg==}
     peerDependencies:
       typescript: ^5
     peerDependenciesMeta:
@@ -6058,11 +6058,6 @@ packages:
     resolution: {integrity: sha512-SiCIeEiQbs9TxGwle9/OwbOejHCZsohQRaNTY2u8euEXYt2rYUFoiImUirThU3Gd/o6Q1gHGtH9qloHlbJpNIA==}
     peerDependencies:
       marked: '>=4 <16'
-
-  marked@15.0.7:
-    resolution: {integrity: sha512-dgLIeKGLx5FwziAnsk4ONoGwHwGPJzselimvlVskE9XLN4Orv9u2VA3GWw/lYUqjfA0rUT/6fqKwfZJapP9BEg==}
-    engines: {node: '>= 18'}
-    hasBin: true
 
   marked@15.0.8:
     resolution: {integrity: sha512-rli4l2LyZqpQuRve5C0rkn6pj3hT8EWPC+zkAxFTAJLxRbENfTAhEQq9itrmf1Y81QtAX5D/MYlGlIomNgj9lA==}
@@ -14551,7 +14546,7 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.27.0
 
-  i18next@25.0.0(typescript@5.8.2):
+  i18next@25.0.2(typescript@5.8.2):
     dependencies:
       '@babel/runtime': 7.27.0
     optionalDependencies:
@@ -15386,11 +15381,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  marked-highlight@2.2.1(marked@15.0.7):
+  marked-highlight@2.2.1(marked@15.0.8):
     dependencies:
-      marked: 15.0.7
-
-  marked@15.0.7: {}
+      marked: 15.0.8
 
   marked@15.0.8: {}
 
@@ -16408,11 +16401,11 @@ snapshots:
       react: 19.1.0
       scheduler: 0.26.0
 
-  react-i18next@15.5.1(i18next@25.0.0(typescript@5.8.2))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.8.2):
+  react-i18next@15.5.1(i18next@25.0.2(typescript@5.8.2))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.8.2):
     dependencies:
       '@babel/runtime': 7.27.0
       html-parse-stringify: 3.0.1
-      i18next: 25.0.0(typescript@5.8.2)
+      i18next: 25.0.2(typescript@5.8.2)
       react: 19.1.0
     optionalDependencies:
       react-dom: 19.1.0(react@19.1.0)
