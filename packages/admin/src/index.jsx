@@ -1,11 +1,10 @@
 import React from 'react';
 import * as ReactDOM from 'react-dom/client';
 
-import App from './App';
-import { store } from './store';
+import App from './App.jsx';
+import { store } from './store/index.js';
 
-import './i18n';
-
+import './i18n.js';
 import './style/index.scss';
 
 async function run() {

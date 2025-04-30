@@ -239,6 +239,8 @@ onMounted(() => {
 onUnmounted(() => {
   abort?.();
 });
+
+/* eslint-enable vue/no-unused-properties */
 </script>
 
 <template>

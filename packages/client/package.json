@@ -82,10 +82,10 @@
     ]
   },
   "dependencies": {
-    "@vueuse/core": "^13.0.0",
+    "@vueuse/core": "^13.1.0",
     "@waline/api": "workspace:*",
     "autosize": "^6.0.1",
-    "marked": "^15.0.7",
+    "marked": "^15.0.11",
     "marked-highlight": "^2.2.1",
     "recaptcha-v3": "^1.11.3",
     "vue": "^3.5.13"
@@ -97,7 +97,7 @@
     "@types/autosize": "4.0.3",
     "@vitejs/plugin-vue": "5.2.3",
     "user-agent-data-types": "0.4.2",
-    "vite": "6.2.6"
+    "vite": "6.3.3"
   },
   "engines": {
     "node": ">=18"
