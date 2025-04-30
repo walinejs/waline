@@ -6,7 +6,7 @@ export interface WalineCommentData {
   /**
    * User Nickname
    */
-  nick?: string;
+  nick: string;
 
   /**
    * User email

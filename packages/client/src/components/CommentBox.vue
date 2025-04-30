@@ -241,8 +241,8 @@ const submitComment = async (): Promise<void> => {
         return;
       }
 
-      // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
-      if (!comment.nick) comment.nick = locale.value.anonymous;
+       
+      comment.nick ||= locale.value.anonymous;
     }
   }
 
