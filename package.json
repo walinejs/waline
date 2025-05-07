@@ -41,57 +41,47 @@
     "singleQuote": true
   },
   "devDependencies": {
-    "@babel/core": "7.26.10",
-    "@babel/plugin-transform-runtime": "7.26.10",
-    "@babel/preset-env": "7.26.9",
-    "@babel/preset-react": "7.26.3",
-    "@babel/runtime": "7.27.0",
+    "@babel/core": "7.27.1",
+    "@babel/plugin-transform-runtime": "7.27.1",
+    "@babel/preset-env": "7.27.2",
+    "@babel/preset-react": "7.27.1",
+    "@babel/runtime": "7.27.1",
     "@commitlint/cli": "19.8.0",
     "@commitlint/config-conventional": "19.8.0",
     "@rollup/plugin-commonjs": "28.0.3",
     "@rollup/plugin-node-resolve": "16.0.1",
     "@rollup/plugin-replace": "6.0.2",
-    "@types/node": "22.15.3",
+    "@types/node": "22.15.15",
     "@vitejs/plugin-react": "4.4.1",
     "apidoc": "1.2.0",
     "commitizen": "4.3.1",
     "cross-env": "7.0.3",
     "cz-conventional-changelog": "3.3.0",
-    "eslint": "9.25.1",
-    "eslint-config-mister-hope": "0.9.1",
+    "eslint": "9.26.0",
+    "eslint-config-mister-hope": "0.9.3",
     "eslint-plugin-react": "7.37.5",
-    "eslint-plugin-vue": "10.0.1",
+    "eslint-plugin-vue": "10.1.0",
     "husky": "9.1.7",
     "markdownlint-cli2": "0.17.2",
     "nano-staged": "0.8.0",
     "postcss": "8.5.3",
     "prettier": "3.5.3",
     "rimraf": "6.0.1",
-    "rollup": "4.40.1",
+    "rollup": "4.40.2",
     "rollup-plugin-dts": "6.2.1",
     "rollup-plugin-esbuild": "6.2.1",
     "sass-embedded": "1.87.0",
-    "sort-package-json": "3.1.0",
+    "sort-package-json": "3.2.0",
     "stylelint": "16.19.1",
     "stylelint-config-hope": "9.0.0",
     "tslib": "2.8.1",
     "typescript": "5.8.3",
-    "vercel": "41.7.0",
+    "vercel": "41.7.3",
     "vite-plugin-css-injected-by-js": "3.5.2",
     "vite-plugin-svgr": "4.3.0",
-    "vitest": "3.1.2"
+    "vitest": "3.1.3"
   },
   "packageManager": "pnpm@10.10.0",
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "core-js-pure",
-      "esbuild",
-      "sqlite3"
-    ],
-    "overrides": {
-      "@waline/api": "workspace:*"
-    }
-  },
   "apidoc": {
     "title": "Waline API Documentation"
   }

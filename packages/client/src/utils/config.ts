@@ -113,7 +113,8 @@ export const getConfig = ({
   recaptchaV3Key,
   turnstileKey,
   ...more,
-  reaction: fallback(reaction, DEFAULT_REACTION),
+  // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+  reaction: reaction === true ? DEFAULT_REACTION : reaction || null,
   imageUploader: fallback(imageUploader, defaultUploadImage),
   highlighter: fallback(highlighter, defaultHighlighter),
   texRenderer: fallback(texRenderer, defaultTeXRenderer),

@@ -204,8 +204,10 @@ export interface WalineProps {
    * 文章反应
    *
    * Article reaction
+   *
+   * @default false
    */
-  reaction?: string[];
+  reaction?: string[] | boolean;
 
   /**
    * 设置表情包

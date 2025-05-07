@@ -39,13 +39,5 @@ export default defineUserConfig({
 
   alias: {
     '@MigrationTool': path.resolve(__dirname, './components/MigrationTool.vue'),
-    '@theme-hope/components/HomePage': path.resolve(
-      __dirname,
-      './components/HomePage',
-    ),
-    '@theme-hope/components/NormalPage': path.resolve(
-      __dirname,
-      './components/NormalPage',
-    ),
   },
 });
