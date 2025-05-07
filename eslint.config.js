@@ -14,8 +14,6 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 export default hope(
   {
     ignores: [
-      // FIXME: Handle alias correctly
-      '**/.vuepress/components/**',
       // FIXME: Correctly type these files
       '**/.vuepress/utils/transform/**',
       '**/.vuepress/utils/csv.js',
@@ -78,6 +76,13 @@ export default hope(
 
     rules: {
       'import-x/no-unresolved': ['error', { ignore: ['\\.svg\\?react$'] }],
+    },
+  },
+
+  {
+    files: ['docs/src/.vuepress/components/**/*.{ts,vue}'],
+    languageOptions: {
+      globals: globals.browser,
     },
   },
 

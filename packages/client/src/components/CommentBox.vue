@@ -241,7 +241,6 @@ const submitComment = async (): Promise<void> => {
         return;
       }
 
-       
       comment.nick ||= locale.value.anonymous;
     }
   }
