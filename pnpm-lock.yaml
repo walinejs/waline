@@ -295,8 +295,8 @@ importers:
         specifier: ^5.0.0
         version: 5.0.0
       '@mdit/plugin-katex':
-        specifier: 0.16.6-cjs.0
-        version: 0.16.6-cjs.0(markdown-it@14.1.0)
+        specifier: 0.18.0
+        version: 0.18.0(markdown-it@14.1.0)
       '@mdit/plugin-mathjax':
         specifier: 0.16.6-cjs.0
         version: 0.16.6-cjs.0(markdown-it@14.1.0)
@@ -1821,8 +1821,8 @@ packages:
       markdown-it:
         optional: true
 
-  '@mdit/plugin-katex@0.16.6-cjs.0':
-    resolution: {integrity: sha512-pMoDoRCXy7FqgS0jgWOPcwr6Ckyujkia0zklJWpZX5gp8t/HgDwsZg/003pUAU2F4RnhoYqGs3Qe0vjd6s5AmA==}
+  '@mdit/plugin-katex@0.18.0':
+    resolution: {integrity: sha512-LioIueFcJUBZL5IbAhcvB0JZEQMb3eLza9bk1u3Xl+/cQ84Ld0WcfEsk5iEXkGa0ckM22pIlJg6XzAA3uck97Q==}
     engines: {node: '>= 18'}
     peerDependencies:
       markdown-it: ^14.1.0
@@ -5524,10 +5524,6 @@ packages:
 
   jws@3.2.2:
     resolution: {integrity: sha512-YHlZCB6lMTllWDtSPHz/ZXTsi8S00usEV6v1tjq8tOUZzw7DpSDWVXjXDre6ed1w/pd495ODpHZYSdkRTsa0HA==}
-
-  katex@0.16.21:
-    resolution: {integrity: sha512-XvqR7FgOHtWupfMiigNzmh+MgUVmDGU2kXZm899ZkPfcuoPuFxyHmXsgATDpFZDAXCI8tvinaVcDo8PIIJSo4A==}
-    hasBin: true
 
   katex@0.16.22:
     resolution: {integrity: sha512-XCHRdUw4lf3SKBaJe4EvgqIuWwkPSo9XoeO8GjQW94Bp7TWv9hNhzZjZ+OH9yf1UmLygb7DIT5GSFQiyt16zYg==}
@@ -10365,12 +10361,12 @@ snapshots:
       katex: 0.16.22
       markdown-it: 14.1.0
 
-  '@mdit/plugin-katex@0.16.6-cjs.0(markdown-it@14.1.0)':
+  '@mdit/plugin-katex@0.18.0(markdown-it@14.1.0)':
     dependencies:
-      '@mdit/helper': 0.16.6-cjs.0(markdown-it@14.1.0)
-      '@mdit/plugin-tex': 0.16.6-cjs.0(markdown-it@14.1.0)
+      '@mdit/helper': 0.18.0(markdown-it@14.1.0)
+      '@mdit/plugin-tex': 0.18.0(markdown-it@14.1.0)
       '@types/markdown-it': 14.1.2
-      katex: 0.16.21
+      katex: 0.16.22
     optionalDependencies:
       markdown-it: 14.1.0
 
@@ -14684,10 +14680,6 @@ snapshots:
     dependencies:
       jwa: 1.4.2
       safe-buffer: 5.2.1
-
-  katex@0.16.21:
-    dependencies:
-      commander: 8.3.0
 
   katex@0.16.22:
     dependencies:
