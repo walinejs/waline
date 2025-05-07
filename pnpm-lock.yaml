@@ -304,8 +304,8 @@ importers:
         specifier: 0.16.6-cjs.0
         version: 0.16.6-cjs.0(markdown-it@14.1.0)
       '@mdit/plugin-sup':
-        specifier: 0.16.6-cjs.0
-        version: 0.16.6-cjs.0(markdown-it@14.1.0)
+        specifier: 0.18.0
+        version: 0.18.0(markdown-it@14.1.0)
       akismet:
         specifier: ^2.0.7
         version: 2.0.7
@@ -1897,15 +1897,6 @@ packages:
 
   '@mdit/plugin-sub@0.18.0':
     resolution: {integrity: sha512-VqNwTeUjbLP2AZv9WGbGJPY7q32nf24fkFbuXlalzJk5FNArOo4qHCqWmswjBmfGWbtG5ZkrRM0v+f4adRELrQ==}
-    engines: {node: '>= 18'}
-    peerDependencies:
-      markdown-it: ^14.1.0
-    peerDependenciesMeta:
-      markdown-it:
-        optional: true
-
-  '@mdit/plugin-sup@0.16.6-cjs.0':
-    resolution: {integrity: sha512-i1lVs3ebnj2gfgkQzEZSRNHy38cy09uTD2KVvRzaMxqvLU+TpCS+3ZIWw01Gu0L2dJQPP5Xlc/t9+CaA0dOu2w==}
     engines: {node: '>= 18'}
     peerDependencies:
       markdown-it: ^14.1.0
@@ -10427,13 +10418,6 @@ snapshots:
   '@mdit/plugin-sub@0.18.0(markdown-it@14.1.0)':
     dependencies:
       '@mdit/helper': 0.18.0(markdown-it@14.1.0)
-      '@types/markdown-it': 14.1.2
-    optionalDependencies:
-      markdown-it: 14.1.0
-
-  '@mdit/plugin-sup@0.16.6-cjs.0(markdown-it@14.1.0)':
-    dependencies:
-      '@mdit/helper': 0.16.6-cjs.0(markdown-it@14.1.0)
       '@types/markdown-it': 14.1.2
     optionalDependencies:
       markdown-it: 14.1.0
