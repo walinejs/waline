@@ -151,8 +151,8 @@ importers:
         specifier: workspace:*
         version: link:../packages/client
       marked:
-        specifier: 15.0.11
-        version: 15.0.11
+        specifier: 15.0.12
+        version: 15.0.12
       mathjax-full:
         specifier: 3.2.2
         version: 3.2.2
@@ -238,10 +238,10 @@ importers:
         version: 6.0.1
       marked:
         specifier: ^15.0.11
-        version: 15.0.11
+        version: 15.0.12
       marked-highlight:
         specifier: ^2.2.1
-        version: 2.2.1(marked@15.0.11)
+        version: 2.2.1(marked@15.0.12)
       recaptcha-v3:
         specifier: ^1.11.3
         version: 1.11.3
@@ -5879,8 +5879,8 @@ packages:
     peerDependencies:
       marked: '>=4 <16'
 
-  marked@15.0.11:
-    resolution: {integrity: sha512-1BEXAU2euRCG3xwgLVT1y0xbJEld1XOrmRJpUwRCcy7rxhSCwMrmEu9LXoPhHSCJG41V7YcQ2mjKRr5BA3ITIA==}
+  marked@15.0.12:
+    resolution: {integrity: sha512-8dD6FusOQSrpv9Z1rdNMdlSgQOIP880DHqnohobOmYLElGEqAL/JvxvuxZO16r4HtjTlfPRDC1hbvxC9dPN2nA==}
     engines: {node: '>= 18'}
     hasBin: true
 
@@ -15217,11 +15217,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  marked-highlight@2.2.1(marked@15.0.11):
+  marked-highlight@2.2.1(marked@15.0.12):
     dependencies:
-      marked: 15.0.11
+      marked: 15.0.12
 
-  marked@15.0.11: {}
+  marked@15.0.12: {}
 
   math-intrinsics@1.1.0: {}
 
