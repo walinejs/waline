@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "@fancyapps/ui": "5.0.36",
-    "@vuepress/bundler-vite": "2.0.0-rc.22",
+    "@vuepress/bundler-vite": "2.0.0-rc.23",
     "@vuepress/helper": "2.0.0-rc.102",
     "@vuepress/plugin-comment": "2.0.0-rc.102",
     "@vuepress/plugin-docsearch": "2.0.0-rc.102",
