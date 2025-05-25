@@ -117,7 +117,7 @@ module.exports = class extends think.Logic {
           'weibo',
           'qq',
           'avatar',
-          '2fa',
+          'two_fa',
           'label',
         ],
       },

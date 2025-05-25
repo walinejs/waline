@@ -28,7 +28,7 @@ module.exports = class extends BaseRest {
       return this.fail();
     }
 
-    const twoFactorAuthSecret = user[0]['2fa'];
+    const twoFactorAuthSecret = user[0].two_fa;
 
     if (twoFactorAuthSecret) {
       const verified = speakeasy.totp.verify({

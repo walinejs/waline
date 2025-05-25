@@ -156,7 +156,7 @@ module.exports = class extends BaseRest {
     }
 
     if (think.isString(twoFactorAuth)) {
-      updateData['2fa'] = twoFactorAuth;
+      updateData['two_fa'] = twoFactorAuth;
     }
 
     const socials = ['github', 'twitter', 'facebook', 'google', 'weibo', 'qq'];

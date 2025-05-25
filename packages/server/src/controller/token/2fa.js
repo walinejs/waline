@@ -13,20 +13,22 @@ module.exports = class extends BaseRest {
       const user = await userModel.select(
         { email },
         {
-          field: ['2fa'],
+          field: ['two_fa'],
         },
       );
-      const is2FAEnabled = !think.isEmpty(user) && Boolean(user[0]['2fa']);
+
+      const is2FAEnabled = !think.isEmpty(user) && Boolean(user[0].two_fa);
 
       return this.success({ enable: is2FAEnabled });
     }
 
     const name = `waline_${userInfo.objectId}`;
+    const twoFactorAuth = userInfo.two_fa;
 
-    if (userInfo['2fa'] && userInfo['2fa'].length == 32) {
+    if (twoFactorAuth && twoFactorAuth.length === 32) {
       return this.success({
-        otpauth_url: `otpauth://totp/${name}?secret=${userInfo['2fa']}`,
-        secret: userInfo['2fa'],
+        otpauth_url: `otpauth://totp/${name}?secret=${twoFactorAuth}`,
+        secret: twoFactorAuth,
       });
     }
 
@@ -54,7 +56,7 @@ module.exports = class extends BaseRest {
     const userModel = this.getModel('Users');
     const { objectId } = this.ctx.state.userInfo;
 
-    await userModel.update({ ['2fa']: data.secret }, { objectId });
+    await userModel.update({ two_fa: data.secret }, { objectId });
 
     return this.success();
   }
