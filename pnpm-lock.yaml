@@ -139,8 +139,8 @@ importers:
         specifier: 2.0.0-rc.23
         version: 2.0.0-rc.23(@types/node@22.15.21)(jiti@2.4.2)(sass-embedded@1.89.0)(terser@5.39.2)(typescript@5.8.3)
       '@vuepress/helper':
-        specifier: 2.0.0-rc.102
-        version: 2.0.0-rc.102(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@22.15.21)(jiti@2.4.2)(sass-embedded@1.89.0)(terser@5.39.2)(typescript@5.8.3))(typescript@5.8.3)(vue@3.5.14(typescript@5.8.3)))
+        specifier: 2.0.0-rc.105
+        version: 2.0.0-rc.105(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@22.15.21)(jiti@2.4.2)(sass-embedded@1.89.0)(terser@5.39.2)(typescript@5.8.3))(typescript@5.8.3)(vue@3.5.14(typescript@5.8.3)))
       '@vuepress/plugin-comment':
         specifier: 2.0.0-rc.102
         version: 2.0.0-rc.102(@waline/client@packages+client)(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@22.15.21)(jiti@2.4.2)(sass-embedded@1.89.0)(terser@5.39.2)(typescript@5.8.3))(typescript@5.8.3)(vue@3.5.14(typescript@5.8.3)))
