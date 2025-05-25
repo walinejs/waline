@@ -1,75 +1,37 @@
+import path from 'path';
+import { fileURLToPath } from 'url';
+
 import {
-  config,
+  defaultNamingConventionRules,
   globals,
-  js,
-  jsImport,
-  prettier,
-  ts,
-  tsImport,
-  tsParser,
-  vitest,
+  hope,
 } from 'eslint-config-mister-hope';
-import { vue, vueParser } from 'eslint-config-mister-hope/vue';
+import { vue } from 'eslint-config-mister-hope/vue';
 import reactRecommended from 'eslint-plugin-react/configs/recommended.js';
 
-export default config(
-  ...js,
-  ...jsImport,
-  ...ts,
-  ...tsImport,
-  vitest,
-  ...vue,
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+export default hope(
   {
     ignores: [
-      '**/.vuepress/.cache/**',
-      '**/.vuepress/.temp/**',
-      // FIXME: Handle alias correctly
-      '**/.vuepress/components/**',
       // FIXME: Correctly type these files
       '**/.vuepress/utils/transform/**',
-      '**/dist/**',
+      '**/.vuepress/utils/csv.js',
       'example/**',
-      '**/node_modules/**',
     ],
-  },
-
-  {
     languageOptions: {
-      ecmaVersion: 'latest',
-      sourceType: 'module',
-      parser: vueParser,
       parserOptions: {
-        parser: tsParser,
-        tsconfigDirName: import.meta.dirname,
         project: ['./tsconfig.eslint.json'],
+        tsconfigRootDir: path.resolve(__dirname, '.'),
         extraFileExtensions: ['.vue'],
       },
     },
   },
 
-  {
-    files: ['**/*.{ts,vue}'],
-    rules: {
+  ...vue({
+    all: {
       '@typescript-eslint/naming-convention': [
         'warn',
-        {
-          selector: 'default',
-          format: ['camelCase'],
-          leadingUnderscore: 'allowSingleOrDouble',
-          trailingUnderscore: 'allow',
-        },
-        {
-          selector: ['variable'],
-          format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
-          leadingUnderscore: 'allowSingleOrDouble',
-          trailingUnderscore: 'allowSingleOrDouble',
-        },
-        {
-          selector: ['parameter'],
-          format: ['camelCase', 'PascalCase'],
-          leadingUnderscore: 'allow',
-          trailingUnderscore: 'allow',
-        },
         {
           selector: ['property'],
           format: null,
@@ -79,28 +41,25 @@ export default config(
           },
           filter: '(^\\/$|^/.*/$|^@|^[a-z]+(?:-[a-z]+)*?$)',
         },
+        ...defaultNamingConventionRules,
+      ],
+    },
+    sfc: {
+      'vue/block-lang': [
+        'error',
         {
-          selector: ['property'],
-          format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
-          leadingUnderscore: 'allow',
-          trailingUnderscore: 'allow',
-        },
-        {
-          selector: 'import',
-          format: ['PascalCase', 'camelCase'],
-        },
-        {
-          selector: 'typeLike',
-          format: ['PascalCase'],
+          script: { lang: 'ts' },
         },
       ],
     },
-  },
+  }),
 
   // @ts-expect-error: react plugin types
   {
     files: ['packages/admin/src/**/*.{js,jsx}'],
+
     ...reactRecommended,
+
     languageOptions: {
       ...reactRecommended.languageOptions,
       globals: {
@@ -121,14 +80,16 @@ export default config(
   },
 
   {
+    files: ['docs/src/.vuepress/components/**/*.{ts,vue}'],
+    languageOptions: {
+      globals: globals.browser,
+    },
+  },
+
+  {
     files: ['packages/client/src/**/*.{ts,vue}'],
-    rules: {
-      'vue/block-lang': [
-        'error',
-        {
-          script: { lang: 'ts' },
-        },
-      ],
+    languageOptions: {
+      globals: globals.browser,
     },
   },
 
@@ -137,7 +98,6 @@ export default config(
       'packages/cloudbase/**/*.js',
       'packages/hexo-next/**/*.js',
       'packages/server/**/*.{js,ts}',
-      'scripts/**.cjs',
     ],
     languageOptions: {
       globals: globals.node,
@@ -162,6 +122,7 @@ export default config(
     rules: {
       '@typescript-eslint/class-literal-property-style': 'off',
       '@typescript-eslint/no-empty-function': 'off',
+      'no-console': 'off',
     },
   },
 
@@ -171,5 +132,4 @@ export default config(
       globals: globals.node,
     },
   },
-  prettier,
 );

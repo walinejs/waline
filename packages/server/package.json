@@ -18,7 +18,7 @@
     "dev": "node development.js 9090"
   },
   "dependencies": {
-    "@cloudbase/node-sdk": "^3.4.0",
+    "@cloudbase/node-sdk": "^3.7.0",
     "@koa/cors": "^5.0.0",
     "@mdit/plugin-katex": "0.16.6-cjs.0",
     "@mdit/plugin-mathjax": "0.16.6-cjs.0",
@@ -26,21 +26,21 @@
     "@mdit/plugin-sup": "0.16.6-cjs.0",
     "akismet": "^2.0.7",
     "deta": "^2.0.0",
-    "dompurify": "^3.2.3",
+    "dompurify": "^3.2.5",
     "dy-node-ip2region": "^1.0.1",
     "fast-csv": "^5.0.2",
-    "form-data": "^4.0.1",
-    "jsdom": "^26.0.0",
+    "form-data": "^4.0.2",
+    "jsdom": "^26.1.0",
     "jsonwebtoken": "^9.0.2",
     "koa-compose": "^4.1.0",
     "leancloud-storage": "^4.15.2",
     "markdown-it": "^14.1.0",
     "markdown-it-emoji": "^3.0.0",
     "mathjax-full": "^3.2.2",
-    "nodemailer": "^6.10.0",
+    "nodemailer": "^7.0.2",
     "nunjucks": "^3.2.4",
     "phpass": "^0.1.1",
-    "prismjs": "^1.29.0",
+    "prismjs": "^1.30.0",
     "speakeasy": "^2.0.0",
     "think-helper": "^1.1.4",
     "think-logger3": "^1.4.0",
@@ -52,11 +52,11 @@
     "think-mongo": "^2.2.1",
     "think-router-rest": "^1.0.5",
     "thinkjs": "^3.2.15",
-    "ua-parser-js": "^2.0.0"
+    "ua-parser-js": "^2.0.3"
   },
   "devDependencies": {
-    "dotenv": "^16.4.7",
-    "think-watcher": "^3.0.4"
+    "dotenv": "16.5.0",
+    "think-watcher": "3.0.4"
   },
   "engines": {
     "node": ">=20"

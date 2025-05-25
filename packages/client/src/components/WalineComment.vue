@@ -33,7 +33,7 @@ const totalPages = ref(0);
 
 const config = computed(() => getConfig(props as WalineProps));
 
-// eslint-disable-next-line vue/no-ref-object-destructure
+// eslint-disable-next-line vue/no-ref-object-reactivity-loss
 const commentSortingRef = ref(config.value.commentSorting);
 
 const data = ref<WalineRootComment[]>([]);
@@ -75,6 +75,7 @@ const getCommentData = (pageNumber: number): void => {
     })
     .catch((err: unknown) => {
       if ((err as Error).name !== 'AbortError') {
+        // eslint-disable-next-line no-console
         console.error((err as Error).message);
         status.value = 'error';
       }
@@ -238,6 +239,8 @@ onMounted(() => {
 onUnmounted(() => {
   abort?.();
 });
+
+/* eslint-enable vue/no-unused-properties */
 </script>
 
 <template>

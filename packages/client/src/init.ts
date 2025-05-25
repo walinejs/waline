@@ -78,6 +78,8 @@ export const init = ({
   let app: App<Element> | null = null;
 
   if (root) {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore: Some props design are bad
     app = createApp(() => h(Waline, { path: state.path, ...props }));
 
     app.mount(root);

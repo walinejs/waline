@@ -20,7 +20,6 @@ export default function () {
 
   useEffect(() => {
     getUserList({ page: list.page }).then((data) => {
-      console.log(data);
       setList({ ...list, ...data });
     });
   }, [list.page]);

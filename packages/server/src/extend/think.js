@@ -83,8 +83,8 @@ module.exports = {
       );
 
       return address.slice(0, depth).join(' ');
-    } catch (e) {
-      console.log(e);
+    } catch (err) {
+      console.log(err);
 
       return '';
     }

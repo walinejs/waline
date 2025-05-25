@@ -48,6 +48,7 @@ export default function () {
     setUpdating(true);
     await updateProfile({ ['2fa']: '' }).catch((reason) => {
       alert(reason);
+      // eslint-disable-next-line no-console
       console.error(reason);
     });
     setUpdating(false);

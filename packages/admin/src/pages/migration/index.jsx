@@ -155,10 +155,11 @@ export default function () {
 
       alert(t('import success'));
       location.reload();
-    } catch (e) {
-      console.log(e);
-      alert(e.message);
-      throw e;
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.log(err);
+      alert(err.message);
+      throw err;
     } finally {
       setImportLoading(false);
       e.target.value = null;

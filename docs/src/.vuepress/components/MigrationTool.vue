@@ -9,11 +9,12 @@ import {
   transform,
 } from '../utils/index.js';
 
-const from = ref<OriginalType>('valine');
+const from = ref<OriginalType | 'typecho'>('valine');
 const to = ref<TransformType>('wcloudbase');
 const source = ref('');
 
 const i18n = useLocaleConfig({
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   '/': {
     from: '从',
     to: '迁移至',
@@ -21,7 +22,7 @@ const i18n = useLocaleConfig({
     placeholder: '请将源文件粘贴至此',
     convert: '转换',
     title: '友情提示',
-    typeecho: `Typecho 用户可以使用
+    typecho: `Typecho 用户可以使用
         <a
           href="https://github.com/lizheming/typecho-export-valine"
           target="_blank"
@@ -30,6 +31,7 @@ const i18n = useLocaleConfig({
         插件将评论数据导出成 Valine 数据后直接使用。`,
     tip: 'Waline 和 Valine 的 LeanCloud 配置是可以共用的，不需要进行数据转换哦！',
   },
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   '/en/': {
     from: 'Migrate from',
     to: 'to',
@@ -37,7 +39,7 @@ const i18n = useLocaleConfig({
     placeholder: 'Please paste your source file here',
     convert: 'Convert',
     title: 'Tip',
-    typeecho: `Typecho users can use
+    typecho: `Typecho users can use
         <a
           href="https://github.com/lizheming/typecho-export-valine"
           target="_blank"
@@ -48,43 +50,51 @@ const i18n = useLocaleConfig({
   },
 });
 
-const click = (event: FormDataEvent) => {
-  event.preventDefault();
+const click = (): void => {
+  if (!source.value) {
+    alert('请输入内容');
 
-  if (!source.value) return alert('请输入内容');
+    return;
+  }
+
+  let data = source.value;
 
   if (from.value === 'valine') {
     // 适配 LeanCloud 国内版导出非标准 JSON 情况
-    source.value = source.value.trim();
-
-    if (source.value.match(/},[\r\n]+/)) {
-      source.value = JSON.parse(source.value);
+    if (/},[\r\n]+/.test(source.value)) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      data = JSON.parse(source.value.trim());
     } else {
-      source.value = JSON.parse(
-        `{"results":[ ${source.value.split(/[\r\n]+/).join(',')} ]}`,
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      data = JSON.parse(
+        `{"results":[ ${source.value
+          .trim()
+          .split(/[\r\n]+/)
+          .join(',')} ]}`,
       );
     }
   }
 
-  const act = transform[from.value][to.value];
+  const act = transform[from.value as OriginalType][to.value];
 
   if (typeof act === 'function') {
-    let text = act(source.value);
-
-    console.log(text);
+    let text = act(data);
 
     if (typeof text !== 'string') {
       text = JSON.stringify(text, null, '\t');
     }
 
-    exportRaw('output.' + (to.value !== 'wsql' ? 'json' : 'csv'), text);
+    exportRaw(
+      'output.' + (to.value !== 'wsql' ? 'json' : 'csv'),
+      text as string,
+    );
   }
 };
 </script>
 
 <template>
   <form>
-    <div style="margin-bottom: 20px">
+    <div class="selector">
       <div class="input-group">
         <label for="from">{{ i18n.from }}&nbsp;</label>
 
@@ -123,7 +133,8 @@ const click = (event: FormDataEvent) => {
     <div v-if="from === 'typecho'" class="custom-block warning">
       <p class="custom-block-title">{{ i18n.tip }}</p>
 
-      <p v-html="i18n.typeecho" />
+      <!-- eslint-disable-next-line vue/no-v-html -->
+      <p v-html="i18n.typecho" />
     </div>
 
     <div
@@ -138,7 +149,7 @@ const click = (event: FormDataEvent) => {
     <div v-else>
       <textarea v-model="source" :placeholder="i18n.placeholder"></textarea>
 
-      <button @click="click">{{ i18n.convert }}</button>
+      <button type="submit" @click.prevent="click">{{ i18n.convert }}</button>
     </div>
   </form>
 </template>
@@ -170,6 +181,10 @@ button {
   color: var(--vp-c-white);
   border-radius: 3px;
   cursor: pointer;
+}
+
+.selector {
+  margin-bottom: 20px;
 }
 
 .input-group {

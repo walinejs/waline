@@ -38,7 +38,6 @@ export default function () {
         ? query.get('redirect')
         : defaultRedirect;
 
-    console.log(redirect);
     navigate(redirect.replace(/\/+/g, '/'));
   }, [user]);
 

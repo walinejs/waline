@@ -1,26 +1,24 @@
 {
   "cSpell.words": [
+    "akismet",
+    "aliyun",
+    "cloudbase",
     "darkmode",
+    "docsify",
+    "fancybox",
+    "jsdelivr",
+    "katex",
+    "lizheming",
     "pageview",
     "pageviews",
     "serverurl",
-    "unsticky",
-
-    "lizheming",
-
-    "aliyun",
-    "akismet",
-    "cloudbase",
-    "docsify",
-    "jsdelivr",
-    "katex",
     "tencloud",
+    "tidb",
+    "unsticky",
     "vuepress",
     "waline",
-    "wechat",
-    "weibo",
     "walinejs",
-
-    "tidb"
+    "wechat",
+    "weibo"
   ]
 }
