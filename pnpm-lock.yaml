@@ -145,8 +145,8 @@ importers:
         specifier: 2.0.0-rc.105
         version: 2.0.0-rc.105(@waline/client@packages+client)(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@22.15.21)(jiti@2.4.2)(sass-embedded@1.89.0)(terser@5.39.2)(typescript@5.8.3))(typescript@5.8.3)(vue@3.5.14(typescript@5.8.3)))
       '@vuepress/plugin-docsearch':
-        specifier: 2.0.0-rc.102
-        version: 2.0.0-rc.102(@algolia/client-search@5.25.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(search-insights@2.17.3)(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@22.15.21)(jiti@2.4.2)(sass-embedded@1.89.0)(terser@5.39.2)(typescript@5.8.3))(typescript@5.8.3)(vue@3.5.14(typescript@5.8.3)))
+        specifier: 2.0.0-rc.105
+        version: 2.0.0-rc.105(@algolia/client-search@5.25.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(search-insights@2.17.3)(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@22.15.21)(jiti@2.4.2)(sass-embedded@1.89.0)(terser@5.39.2)(typescript@5.8.3))(typescript@5.8.3)(vue@3.5.14(typescript@5.8.3)))
       '@waline/client':
         specifier: workspace:*
         version: link:../packages/client
@@ -173,7 +173,7 @@ importers:
         version: 2.0.0-rc.88(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@22.15.21)(jiti@2.4.2)(sass-embedded@1.89.0)(terser@5.39.2)(typescript@5.8.3))(typescript@5.8.3)(vue@3.5.14(typescript@5.8.3)))
       vuepress-theme-hope:
         specifier: 2.0.0-rc.88
-        version: 2.0.0-rc.88(@vuepress/plugin-docsearch@2.0.0-rc.102(@algolia/client-search@5.25.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(search-insights@2.17.3)(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@22.15.21)(jiti@2.4.2)(sass-embedded@1.89.0)(terser@5.39.2)(typescript@5.8.3))(typescript@5.8.3)(vue@3.5.14(typescript@5.8.3))))(@waline/client@packages+client)(katex@0.16.22)(markdown-it@14.1.0)(mathjax-full@3.2.2)(sass-embedded@1.89.0)(typescript@5.8.3)(vidstack@1.12.13)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@22.15.21)(jiti@2.4.2)(sass-embedded@1.89.0)(terser@5.39.2)(typescript@5.8.3))(typescript@5.8.3)(vue@3.5.14(typescript@5.8.3)))
+        version: 2.0.0-rc.88(@vuepress/plugin-docsearch@2.0.0-rc.105(@algolia/client-search@5.25.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(search-insights@2.17.3)(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@22.15.21)(jiti@2.4.2)(sass-embedded@1.89.0)(terser@5.39.2)(typescript@5.8.3))(typescript@5.8.3)(vue@3.5.14(typescript@5.8.3))))(@waline/client@packages+client)(katex@0.16.22)(markdown-it@14.1.0)(mathjax-full@3.2.2)(sass-embedded@1.89.0)(typescript@5.8.3)(vidstack@1.12.13)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@22.15.21)(jiti@2.4.2)(sass-embedded@1.89.0)(terser@5.39.2)(typescript@5.8.3))(typescript@5.8.3)(vue@3.5.14(typescript@5.8.3)))
 
   packages/admin:
     devDependencies:
@@ -2655,11 +2655,6 @@ packages:
   '@vuepress/core@2.0.0-rc.23':
     resolution: {integrity: sha512-CkXDOCKJATxFciEuLCDtAzdCkGyNfCcmBYyhsvYLSJU8oiXgt27EjmXNKTpN+MNXSl934/353UERExGafhsTfg==}
 
-  '@vuepress/helper@2.0.0-rc.102':
-    resolution: {integrity: sha512-cDh8IZ1b+duDCBxFR/6UeWl6MYYyCDIRnaWXhg0pToyBibMKA9prYRBrrLgKsmnCcCAZ1WDTVT6eruos9RKpgw==}
-    peerDependencies:
-      vuepress: 2.0.0-rc.22
-
   '@vuepress/helper@2.0.0-rc.104':
     resolution: {integrity: sha512-GmsFstdmryNLjCDF+wVTP6wBmHYAenAbtd04TG4se/ZB+pfhCNT5Zq6dEO3TG35JLcdUm/bI4uE3BE4WVBkSgw==}
     peerDependencies:
@@ -2742,10 +2737,10 @@ packages:
     peerDependencies:
       vuepress: 2.0.0-rc.23
 
-  '@vuepress/plugin-docsearch@2.0.0-rc.102':
-    resolution: {integrity: sha512-DKCn+awaAc/VBySE1pTzzzLw/rhgyKyv0XgJLd+SnLje7tL4J6O9I0sqkohpIYz5iPU/Cqq+ge905olfEvDjVA==}
+  '@vuepress/plugin-docsearch@2.0.0-rc.105':
+    resolution: {integrity: sha512-kHlXFik+wU6XQfG2H49YzoNI1yEyxUB5hj9PT9A1D7g89rWrTgAyCxPbKKiiFgOKoE2vuxz3dFUX0s3RpZOiRg==}
     peerDependencies:
-      vuepress: 2.0.0-rc.22
+      vuepress: 2.0.0-rc.23
 
   '@vuepress/plugin-git@2.0.0-rc.104':
     resolution: {integrity: sha512-Gw9aLcrMKJ+ThLCFSeYMZRXkW2tak3OhuwyObchij63SiR8G8I6EZWzGaZAT8ad3BUUcst6qLX6phXVkShtQWQ==}
@@ -11254,18 +11249,6 @@ snapshots:
       - supports-color
       - typescript
 
-  '@vuepress/helper@2.0.0-rc.102(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@22.15.21)(jiti@2.4.2)(sass-embedded@1.89.0)(terser@5.39.2)(typescript@5.8.3))(typescript@5.8.3)(vue@3.5.14(typescript@5.8.3)))':
-    dependencies:
-      '@vue/shared': 3.5.14
-      '@vueuse/core': 13.2.0(vue@3.5.14(typescript@5.8.3))
-      cheerio: 1.0.0
-      fflate: 0.8.2
-      gray-matter: 4.0.3
-      vue: 3.5.14(typescript@5.8.3)
-      vuepress: 2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@22.15.21)(jiti@2.4.2)(sass-embedded@1.89.0)(terser@5.39.2)(typescript@5.8.3))(typescript@5.8.3)(vue@3.5.14(typescript@5.8.3))
-    transitivePeerDependencies:
-      - typescript
-
   '@vuepress/helper@2.0.0-rc.104(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@22.15.21)(jiti@2.4.2)(sass-embedded@1.89.0)(terser@5.39.2)(typescript@5.8.3))(typescript@5.8.3)(vue@3.5.14(typescript@5.8.3)))':
     dependencies:
       '@vue/shared': 3.5.14
@@ -11393,12 +11376,12 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  '@vuepress/plugin-docsearch@2.0.0-rc.102(@algolia/client-search@5.25.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(search-insights@2.17.3)(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@22.15.21)(jiti@2.4.2)(sass-embedded@1.89.0)(terser@5.39.2)(typescript@5.8.3))(typescript@5.8.3)(vue@3.5.14(typescript@5.8.3)))':
+  '@vuepress/plugin-docsearch@2.0.0-rc.105(@algolia/client-search@5.25.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(search-insights@2.17.3)(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@22.15.21)(jiti@2.4.2)(sass-embedded@1.89.0)(terser@5.39.2)(typescript@5.8.3))(typescript@5.8.3)(vue@3.5.14(typescript@5.8.3)))':
     dependencies:
       '@docsearch/css': 3.9.0
       '@docsearch/js': 3.9.0(@algolia/client-search@5.25.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(search-insights@2.17.3)
       '@docsearch/react': 3.9.0(@algolia/client-search@5.25.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(search-insights@2.17.3)
-      '@vuepress/helper': 2.0.0-rc.102(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@22.15.21)(jiti@2.4.2)(sass-embedded@1.89.0)(terser@5.39.2)(typescript@5.8.3))(typescript@5.8.3)(vue@3.5.14(typescript@5.8.3)))
+      '@vuepress/helper': 2.0.0-rc.105(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@22.15.21)(jiti@2.4.2)(sass-embedded@1.89.0)(terser@5.39.2)(typescript@5.8.3))(typescript@5.8.3)(vue@3.5.14(typescript@5.8.3)))
       '@vueuse/core': 13.2.0(vue@3.5.14(typescript@5.8.3))
       ts-debounce: 4.0.0
       vue: 3.5.14(typescript@5.8.3)
@@ -17819,7 +17802,7 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  vuepress-theme-hope@2.0.0-rc.88(@vuepress/plugin-docsearch@2.0.0-rc.102(@algolia/client-search@5.25.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(search-insights@2.17.3)(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@22.15.21)(jiti@2.4.2)(sass-embedded@1.89.0)(terser@5.39.2)(typescript@5.8.3))(typescript@5.8.3)(vue@3.5.14(typescript@5.8.3))))(@waline/client@packages+client)(katex@0.16.22)(markdown-it@14.1.0)(mathjax-full@3.2.2)(sass-embedded@1.89.0)(typescript@5.8.3)(vidstack@1.12.13)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@22.15.21)(jiti@2.4.2)(sass-embedded@1.89.0)(terser@5.39.2)(typescript@5.8.3))(typescript@5.8.3)(vue@3.5.14(typescript@5.8.3))):
+  vuepress-theme-hope@2.0.0-rc.88(@vuepress/plugin-docsearch@2.0.0-rc.105(@algolia/client-search@5.25.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(search-insights@2.17.3)(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@22.15.21)(jiti@2.4.2)(sass-embedded@1.89.0)(terser@5.39.2)(typescript@5.8.3))(typescript@5.8.3)(vue@3.5.14(typescript@5.8.3))))(@waline/client@packages+client)(katex@0.16.22)(markdown-it@14.1.0)(mathjax-full@3.2.2)(sass-embedded@1.89.0)(typescript@5.8.3)(vidstack@1.12.13)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@22.15.21)(jiti@2.4.2)(sass-embedded@1.89.0)(terser@5.39.2)(typescript@5.8.3))(typescript@5.8.3)(vue@3.5.14(typescript@5.8.3))):
     dependencies:
       '@vuepress/helper': 2.0.0-rc.105(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@22.15.21)(jiti@2.4.2)(sass-embedded@1.89.0)(terser@5.39.2)(typescript@5.8.3))(typescript@5.8.3)(vue@3.5.14(typescript@5.8.3)))
       '@vuepress/plugin-active-header-links': 2.0.0-rc.103(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@22.15.21)(jiti@2.4.2)(sass-embedded@1.89.0)(terser@5.39.2)(typescript@5.8.3))(typescript@5.8.3)(vue@3.5.14(typescript@5.8.3)))
@@ -17860,7 +17843,7 @@ snapshots:
       vuepress-plugin-md-enhance: 2.0.0-rc.88(markdown-it@14.1.0)(sass-embedded@1.89.0)(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@22.15.21)(jiti@2.4.2)(sass-embedded@1.89.0)(terser@5.39.2)(typescript@5.8.3))(typescript@5.8.3)(vue@3.5.14(typescript@5.8.3)))
       vuepress-shared: 2.0.0-rc.88(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@22.15.21)(jiti@2.4.2)(sass-embedded@1.89.0)(terser@5.39.2)(typescript@5.8.3))(typescript@5.8.3)(vue@3.5.14(typescript@5.8.3)))
     optionalDependencies:
-      '@vuepress/plugin-docsearch': 2.0.0-rc.102(@algolia/client-search@5.25.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(search-insights@2.17.3)(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@22.15.21)(jiti@2.4.2)(sass-embedded@1.89.0)(terser@5.39.2)(typescript@5.8.3))(typescript@5.8.3)(vue@3.5.14(typescript@5.8.3)))
+      '@vuepress/plugin-docsearch': 2.0.0-rc.105(@algolia/client-search@5.25.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(search-insights@2.17.3)(typescript@5.8.3)(vuepress@2.0.0-rc.23(@vuepress/bundler-vite@2.0.0-rc.23(@types/node@22.15.21)(jiti@2.4.2)(sass-embedded@1.89.0)(terser@5.39.2)(typescript@5.8.3))(typescript@5.8.3)(vue@3.5.14(typescript@5.8.3)))
       sass-embedded: 1.89.0
     transitivePeerDependencies:
       - '@vue/repl'
