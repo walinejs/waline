@@ -301,8 +301,8 @@ importers:
         specifier: 0.19.0
         version: 0.19.0(markdown-it@14.1.0)
       '@mdit/plugin-sub':
-        specifier: 0.18.0
-        version: 0.18.0(markdown-it@14.1.0)
+        specifier: 0.19.0
+        version: 0.19.0(markdown-it@14.1.0)
       '@mdit/plugin-sup':
         specifier: 0.18.0
         version: 0.18.0(markdown-it@14.1.0)
@@ -1888,6 +1888,15 @@ packages:
 
   '@mdit/plugin-sub@0.18.0':
     resolution: {integrity: sha512-VqNwTeUjbLP2AZv9WGbGJPY7q32nf24fkFbuXlalzJk5FNArOo4qHCqWmswjBmfGWbtG5ZkrRM0v+f4adRELrQ==}
+    engines: {node: '>= 18'}
+    peerDependencies:
+      markdown-it: ^14.1.0
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
+
+  '@mdit/plugin-sub@0.19.0':
+    resolution: {integrity: sha512-2EtiZx5eqpIXq4oSpKUXvmzo6USQbh1ghSRm1LkbP0+B/1NmPGnokBgX2fzzIupmd6otaMqrI6VOXje+jowsEw==}
     engines: {node: '>= 18'}
     peerDependencies:
       markdown-it: ^14.1.0
@@ -10327,6 +10336,13 @@ snapshots:
   '@mdit/plugin-sub@0.18.0(markdown-it@14.1.0)':
     dependencies:
       '@mdit/helper': 0.18.0(markdown-it@14.1.0)
+      '@types/markdown-it': 14.1.2
+    optionalDependencies:
+      markdown-it: 14.1.0
+
+  '@mdit/plugin-sub@0.19.0(markdown-it@14.1.0)':
+    dependencies:
+      '@mdit/helper': 0.19.0(markdown-it@14.1.0)
       '@types/markdown-it': 14.1.2
     optionalDependencies:
       markdown-it: 14.1.0
