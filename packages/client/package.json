@@ -91,7 +91,7 @@
     "vue": "^3.5.14"
   },
   "devDependencies": {
-    "@babel/core": "7.27.1",
+    "@babel/core": "7.27.4",
     "@babel/preset-env": "7.27.2",
     "@giphy/js-types": "5.1.0",
     "@types/autosize": "4.0.3",
