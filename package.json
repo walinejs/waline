@@ -41,11 +41,11 @@
     "singleQuote": true
   },
   "devDependencies": {
-    "@babel/core": "7.27.1",
-    "@babel/plugin-transform-runtime": "7.27.1",
+    "@babel/core": "7.27.4",
+    "@babel/plugin-transform-runtime": "7.27.4",
     "@babel/preset-env": "7.27.2",
     "@babel/preset-react": "7.27.1",
-    "@babel/runtime": "7.27.1",
+    "@babel/runtime": "7.27.6",
     "@commitlint/cli": "19.8.1",
     "@commitlint/config-conventional": "19.8.1",
     "@rollup/plugin-commonjs": "28.0.3",
