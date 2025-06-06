@@ -72,7 +72,7 @@
     "rollup-plugin-esbuild": "6.2.1",
     "sass-embedded": "1.89.0",
     "sort-package-json": "3.2.1",
-    "stylelint": "16.19.1",
+    "stylelint": "16.20.0",
     "stylelint-config-hope": "9.0.0",
     "tslib": "2.8.1",
     "typescript": "5.8.3",
