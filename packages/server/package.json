@@ -22,7 +22,7 @@
     "@koa/cors": "^5.0.0",
     "@mdit/plugin-katex": "0.16.6-cjs.0",
     "@mdit/plugin-mathjax": "0.16.6-cjs.0",
-    "@mdit/plugin-sub": "0.16.6-cjs.0",
+    "@mdit/plugin-sub": "0.22.0",
     "@mdit/plugin-sup": "0.16.6-cjs.0",
     "akismet": "^2.0.7",
     "deta": "^2.0.0",

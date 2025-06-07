@@ -301,8 +301,8 @@ importers:
         specifier: 0.16.6-cjs.0
         version: 0.16.6-cjs.0(markdown-it@14.1.0)
       '@mdit/plugin-sub':
-        specifier: 0.16.6-cjs.0
-        version: 0.16.6-cjs.0(markdown-it@14.1.0)
+        specifier: 0.22.0
+        version: 0.22.0(markdown-it@14.1.0)
       '@mdit/plugin-sup':
         specifier: 0.16.6-cjs.0
         version: 0.16.6-cjs.0(markdown-it@14.1.0)
@@ -1735,6 +1735,15 @@ packages:
       markdown-it:
         optional: true
 
+  '@mdit/helper@0.22.0':
+    resolution: {integrity: sha512-2iJYa2PW59VhZgUYZKB88eYsq7Rn20gZbpe+Pnz3bRH/8goMA1YfbRM6oMhKSMX5C8IaK66IGutRJkHrRHhJEA==}
+    engines: {node: '>= 18'}
+    peerDependencies:
+      markdown-it: ^14.1.0
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
+
   '@mdit/plugin-alert@0.18.0':
     resolution: {integrity: sha512-nm6BJPZG6ux6hTUGstKEDL14AWwMTxTU7mxZFKUVqC/qDgCgmzeoFINE4N+4mrDKAnAF5uF5APfIZCh481PnaQ==}
     peerDependencies:
@@ -1913,8 +1922,8 @@ packages:
       markdown-it:
         optional: true
 
-  '@mdit/plugin-sub@0.16.6-cjs.0':
-    resolution: {integrity: sha512-6ZCOKOAGTgjFM7Z1iegeorxsamG1r+89KsXMZMyyOxZgW58ku96ZJiH3p1Q7XjeiBQaBCEvIIp1ocmjY977o8g==}
+  '@mdit/plugin-sub@0.18.0':
+    resolution: {integrity: sha512-VqNwTeUjbLP2AZv9WGbGJPY7q32nf24fkFbuXlalzJk5FNArOo4qHCqWmswjBmfGWbtG5ZkrRM0v+f4adRELrQ==}
     engines: {node: '>= 18'}
     peerDependencies:
       markdown-it: ^14.1.0
@@ -1922,8 +1931,8 @@ packages:
       markdown-it:
         optional: true
 
-  '@mdit/plugin-sub@0.18.0':
-    resolution: {integrity: sha512-VqNwTeUjbLP2AZv9WGbGJPY7q32nf24fkFbuXlalzJk5FNArOo4qHCqWmswjBmfGWbtG5ZkrRM0v+f4adRELrQ==}
+  '@mdit/plugin-sub@0.22.0':
+    resolution: {integrity: sha512-PJBopzzDWyv1wR/RaiacMULCt2ZILeTLrdqckn74uMmMJLYo1YihuA8IwWU/hev9uTRKIvk8y+hhKn+k7JWjiA==}
     engines: {node: '>= 18'}
     peerDependencies:
       markdown-it: ^14.1.0
@@ -10239,6 +10248,12 @@ snapshots:
     optionalDependencies:
       markdown-it: 14.1.0
 
+  '@mdit/helper@0.22.0(markdown-it@14.1.0)':
+    dependencies:
+      '@types/markdown-it': 14.1.2
+    optionalDependencies:
+      markdown-it: 14.1.0
+
   '@mdit/plugin-alert@0.18.0(markdown-it@14.1.0)':
     dependencies:
       '@types/markdown-it': 14.1.2
@@ -10376,16 +10391,16 @@ snapshots:
     optionalDependencies:
       markdown-it: 14.1.0
 
-  '@mdit/plugin-sub@0.16.6-cjs.0(markdown-it@14.1.0)':
+  '@mdit/plugin-sub@0.18.0(markdown-it@14.1.0)':
     dependencies:
-      '@mdit/helper': 0.16.6-cjs.0(markdown-it@14.1.0)
+      '@mdit/helper': 0.18.0(markdown-it@14.1.0)
       '@types/markdown-it': 14.1.2
     optionalDependencies:
       markdown-it: 14.1.0
 
-  '@mdit/plugin-sub@0.18.0(markdown-it@14.1.0)':
+  '@mdit/plugin-sub@0.22.0(markdown-it@14.1.0)':
     dependencies:
-      '@mdit/helper': 0.18.0(markdown-it@14.1.0)
+      '@mdit/helper': 0.22.0(markdown-it@14.1.0)
       '@types/markdown-it': 14.1.2
     optionalDependencies:
       markdown-it: 14.1.0
