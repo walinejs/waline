@@ -298,8 +298,8 @@ importers:
         specifier: 0.16.6-cjs.0
         version: 0.16.6-cjs.0(markdown-it@14.1.0)
       '@mdit/plugin-mathjax':
-        specifier: 0.16.6-cjs.0
-        version: 0.16.6-cjs.0(markdown-it@14.1.0)
+        specifier: 0.22.0
+        version: 0.22.0(markdown-it@14.1.0)
       '@mdit/plugin-sub':
         specifier: 0.16.6-cjs.0
         version: 0.16.6-cjs.0(markdown-it@14.1.0)
@@ -1878,8 +1878,8 @@ packages:
       mathjax-full:
         optional: true
 
-  '@mdit/plugin-mathjax@0.16.6-cjs.0':
-    resolution: {integrity: sha512-t4qHlprzDaPXBPund8gKkIKpqM5+Ron6iFWt0PNv0Rq1egRNmT4luaeg5eT6P7sNpm+ra112uKwh3BdPtXbDkg==}
+  '@mdit/plugin-mathjax@0.22.0':
+    resolution: {integrity: sha512-fMoPsQTLmMNF8TJPuVJyw1xIHnXVO+dPehuGTy/ox8tu6E62MJ3hogWEdV6b54rfTA26P7LZDq5GpCW70chdVA==}
     engines: {node: '>= 18'}
     peerDependencies:
       markdown-it: ^14.1.0
@@ -1977,6 +1977,15 @@ packages:
 
   '@mdit/plugin-tex@0.18.0':
     resolution: {integrity: sha512-k4xSML1N6gFkCm/zsiRO1eI0IFpi+Nr6WcYs1Y8NojyuIgDUZSrKbIJTwuqIo/TrCUfgUQANpibYskRxQpgZLg==}
+    engines: {node: '>= 18'}
+    peerDependencies:
+      markdown-it: ^14.1.0
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
+
+  '@mdit/plugin-tex@0.22.0':
+    resolution: {integrity: sha512-YcjHf2O4jH0PNMYc4IaOHy1AXU+Prj3nGWAAZ4sHOblW5++1EvfBOAQZVeq5fwIHgFVlCwBi9BBktSFxwr/htg==}
     engines: {node: '>= 18'}
     peerDependencies:
       markdown-it: ^14.1.0
@@ -10348,9 +10357,9 @@ snapshots:
       markdown-it: 14.1.0
       mathjax-full: 3.2.2
 
-  '@mdit/plugin-mathjax@0.16.6-cjs.0(markdown-it@14.1.0)':
+  '@mdit/plugin-mathjax@0.22.0(markdown-it@14.1.0)':
     dependencies:
-      '@mdit/plugin-tex': 0.16.6-cjs.0(markdown-it@14.1.0)
+      '@mdit/plugin-tex': 0.22.0(markdown-it@14.1.0)
       '@types/markdown-it': 14.1.2
       mathjax-full: 3.2.2
       upath: 2.0.1
@@ -10424,6 +10433,12 @@ snapshots:
       markdown-it: 14.1.0
 
   '@mdit/plugin-tex@0.18.0(markdown-it@14.1.0)':
+    dependencies:
+      '@types/markdown-it': 14.1.2
+    optionalDependencies:
+      markdown-it: 14.1.0
+
+  '@mdit/plugin-tex@0.22.0(markdown-it@14.1.0)':
     dependencies:
       '@types/markdown-it': 14.1.2
     optionalDependencies:
