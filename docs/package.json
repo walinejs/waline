@@ -16,7 +16,7 @@
     "@waline/client": "workspace:*",
     "marked": "15.0.12",
     "mathjax-full": "3.2.2",
-    "sass-embedded": "1.89.1",
+    "sass-embedded": "1.89.2",
     "vidstack": "1.12.13",
     "vue": "3.5.16",
     "vuepress": "2.0.0-rc.23",
