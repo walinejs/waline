@@ -298,8 +298,8 @@ importers:
         specifier: 0.16.6-cjs.0
         version: 0.16.6-cjs.0(markdown-it@14.1.0)
       '@mdit/plugin-mathjax':
-        specifier: 0.16.6-cjs.0
-        version: 0.16.6-cjs.0(markdown-it@14.1.0)
+        specifier: 0.23.1
+        version: 0.23.1(markdown-it@14.1.0)
       '@mdit/plugin-sub':
         specifier: 0.16.6-cjs.0
         version: 0.16.6-cjs.0(markdown-it@14.1.0)
@@ -1863,8 +1863,8 @@ packages:
       mathjax-full:
         optional: true
 
-  '@mdit/plugin-mathjax@0.16.6-cjs.0':
-    resolution: {integrity: sha512-t4qHlprzDaPXBPund8gKkIKpqM5+Ron6iFWt0PNv0Rq1egRNmT4luaeg5eT6P7sNpm+ra112uKwh3BdPtXbDkg==}
+  '@mdit/plugin-mathjax@0.23.1':
+    resolution: {integrity: sha512-GV2NKG+GIUAKyuf74GViyV1pIuMZMcDZ+aZTcuFX71n0zVRJyI4d0KAa/k2C/7u4vApvKAkizkiJB5zrJK7fiw==}
     engines: {node: '>= 18'}
     peerDependencies:
       markdown-it: ^14.1.0
@@ -1962,6 +1962,15 @@ packages:
 
   '@mdit/plugin-tex@0.21.0':
     resolution: {integrity: sha512-Jx6w2wIhXXNroLfvc1aHwzgw9TdZxCuziqpekqa0Xm5RIkcXpoi89vGSnRREBtzEIE5yvd6EO/RXkdlPt8rNhA==}
+    engines: {node: '>= 18'}
+    peerDependencies:
+      markdown-it: ^14.1.0
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
+
+  '@mdit/plugin-tex@0.22.1':
+    resolution: {integrity: sha512-sCoOHznJjECeWCd0SggYpiZfwDfGGZ5mN3sKQA9PCHVRRXHh0dEl3wwNNvp/L8f6jZ4SpG5mxtPqBvxlPbE5nw==}
     engines: {node: '>= 18'}
     peerDependencies:
       markdown-it: ^14.1.0
@@ -6555,6 +6564,7 @@ packages:
 
   path-match@1.2.4:
     resolution: {integrity: sha512-UWlehEdqu36jmh4h5CWJ7tARp1OEVKGHKm6+dg9qMq5RKUTV5WJrGgaZ3dN2m7WFAXDbjlHzvJvL/IUpy84Ktw==}
+    deprecated: This package is archived and no longer maintained. For support, visit https://github.com/expressjs/express/discussions
 
   path-parse@1.0.7:
     resolution: {integrity: sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==}
@@ -10403,9 +10413,9 @@ snapshots:
       markdown-it: 14.1.0
       mathjax-full: 3.2.2
 
-  '@mdit/plugin-mathjax@0.16.6-cjs.0(markdown-it@14.1.0)':
+  '@mdit/plugin-mathjax@0.23.1(markdown-it@14.1.0)':
     dependencies:
-      '@mdit/plugin-tex': 0.16.6-cjs.0(markdown-it@14.1.0)
+      '@mdit/plugin-tex': 0.22.1(markdown-it@14.1.0)
       '@types/markdown-it': 14.1.2
       mathjax-full: 3.2.2
       upath: 2.0.1
@@ -10479,6 +10489,12 @@ snapshots:
       markdown-it: 14.1.0
 
   '@mdit/plugin-tex@0.21.0(markdown-it@14.1.0)':
+    dependencies:
+      '@types/markdown-it': 14.1.2
+    optionalDependencies:
+      markdown-it: 14.1.0
+
+  '@mdit/plugin-tex@0.22.1(markdown-it@14.1.0)':
     dependencies:
       '@types/markdown-it': 14.1.2
     optionalDependencies:
