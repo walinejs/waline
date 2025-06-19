@@ -118,8 +118,8 @@ importers:
         specifier: 5.8.3
         version: 5.8.3
       vercel:
-        specifier: 43.1.0
-        version: 43.1.0(encoding@0.1.13)(rollup@4.43.0)
+        specifier: 43.3.0
+        version: 43.3.0(encoding@0.1.13)(rollup@4.43.0)
       vite-plugin-css-injected-by-js:
         specifier: 3.5.2
         version: 3.5.2(vite@6.3.5(@types/node@24.0.3)(jiti@2.4.2)(sass-embedded@1.89.2)(terser@5.42.0))
@@ -2606,8 +2606,8 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  '@vercel/node@5.2.2':
-    resolution: {integrity: sha512-BcpCn6NVLBBWDSKUVCMmmM1mUoYttGwWIuOL8HpF2AbOnx1NzUTlrR6pvBLxs403DIjEfPzqgYHLxITg85oi7w==}
+  '@vercel/node@5.3.0':
+    resolution: {integrity: sha512-NeE5c7dRt9PXUzq7zUA+rj94l7AoXBw2cE+xK0hIoYDcWbIJVYBhbkBtzNdZx8CGncUJ2wMq01gn8pCwoQ0xYA==}
 
   '@vercel/python@4.7.2':
     resolution: {integrity: sha512-i2QBNMvNxUZQ2e5vLIL7mUkLg5Qkl9nqxUNXCYezdyvk2Ql6xYKjg7tMhpK/uiy094KfZSOECpDbDxkIN0jUSw==}
@@ -6555,6 +6555,7 @@ packages:
 
   path-match@1.2.4:
     resolution: {integrity: sha512-UWlehEdqu36jmh4h5CWJ7tARp1OEVKGHKm6+dg9qMq5RKUTV5WJrGgaZ3dN2m7WFAXDbjlHzvJvL/IUpy84Ktw==}
+    deprecated: This package is archived and no longer maintained. For support, visit https://github.com/expressjs/express/discussions
 
   path-parse@1.0.7:
     resolution: {integrity: sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==}
@@ -8233,8 +8234,8 @@ packages:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
     engines: {node: '>= 0.8'}
 
-  vercel@43.1.0:
-    resolution: {integrity: sha512-r+2KGg6/pGKlU1oYd8RgKlu059/62JGhwMwHLPVckGkCmAq7T9DgNGOZ5dtEvT4h09ztGVqaI2EKAc3ncuJjVw==}
+  vercel@43.3.0:
+    resolution: {integrity: sha512-EID1ooEAp8F6JxR9WEckDX91qBuLhNvEltHbdKVmYwAbaPyB8q/G/51DJgDoT4ZALdbDujsVxGXDUp0nU26ouQ==}
     engines: {node: '>= 18'}
     hasBin: true
 
@@ -10890,7 +10891,7 @@ snapshots:
 
   '@types/sax@1.2.7':
     dependencies:
-      '@types/node': 17.0.45
+      '@types/node': 24.0.3
 
   '@types/superagent@4.1.24':
     dependencies:
@@ -11148,7 +11149,7 @@ snapshots:
       - rollup
       - supports-color
 
-  '@vercel/node@5.2.2(encoding@0.1.13)(rollup@4.43.0)':
+  '@vercel/node@5.3.0(encoding@0.1.13)(rollup@4.43.0)':
     dependencies:
       '@edge-runtime/node-utils': 2.3.0
       '@edge-runtime/primitives': 4.1.0
@@ -17813,7 +17814,7 @@ snapshots:
 
   vary@1.1.2: {}
 
-  vercel@43.1.0(encoding@0.1.13)(rollup@4.43.0):
+  vercel@43.3.0(encoding@0.1.13)(rollup@4.43.0):
     dependencies:
       '@vercel/blob': 1.0.2
       '@vercel/build-utils': 10.6.1
@@ -17821,7 +17822,7 @@ snapshots:
       '@vercel/go': 3.2.1
       '@vercel/hydrogen': 1.2.2
       '@vercel/next': 4.9.0(encoding@0.1.13)(rollup@4.43.0)
-      '@vercel/node': 5.2.2(encoding@0.1.13)(rollup@4.43.0)
+      '@vercel/node': 5.3.0(encoding@0.1.13)(rollup@4.43.0)
       '@vercel/python': 4.7.2
       '@vercel/redwood': 2.3.3(encoding@0.1.13)(rollup@4.43.0)
       '@vercel/remix-builder': 5.4.9(encoding@0.1.13)(rollup@4.43.0)
