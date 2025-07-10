@@ -37,7 +37,7 @@
     "markdown-it": "^14.1.0",
     "markdown-it-emoji": "^3.0.0",
     "mathjax-full": "^3.2.2",
-    "nodemailer": "^7.0.3",
+    "nodemailer": "^7.0.5",
     "nunjucks": "^3.2.4",
     "phpass": "^0.1.1",
     "prismjs": "^1.30.0",
@@ -52,10 +52,10 @@
     "think-mongo": "^2.2.1",
     "think-router-rest": "^1.0.5",
     "thinkjs": "4.0.0-alpha.0",
-    "ua-parser-js": "^2.0.3"
+    "ua-parser-js": "^2.0.4"
   },
   "devDependencies": {
-    "dotenv": "16.5.0",
+    "dotenv": "17.2.0",
     "think-watcher": "3.0.4"
   },
   "engines": {

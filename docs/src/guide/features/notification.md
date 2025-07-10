@@ -22,7 +22,6 @@ order: 10
   你可以在 [这里](https://github.com/nodemailer/nodemailer/blob/master/lib/well-known/services.json) 查看所有支持的运营商。
 
   如果你的运营商不受支持，你必须填写 `SMTP_HOST` 和 `SMTP_PORT`。
-
   - `SMTP_HOST`: SMTP 服务器地址，一般可以在邮箱的设置中找到。
   - `SMTP_PORT`: SMTP 服务器端口，一般可以在邮箱的设置中找到。
 

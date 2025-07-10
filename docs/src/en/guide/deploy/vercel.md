@@ -59,7 +59,6 @@ We released the `@waline/vercel` package as server package, Vercel deployment is
    | CNAME | example | cname.vercel-dns.com |
 
 1. You can use your own domain to visit waline comment system after go into effect. :tada:
-
    - serverURL：example.your-domain.com
    - admin panel：example.your-domain.com/ui
 

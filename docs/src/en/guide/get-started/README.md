@@ -73,7 +73,6 @@ Welcome to Waline. In just a few steps, you can enable Waline to provide comment
    | CNAME | example | cname.vercel-dns.com |
 
 1. Once that's set, you can visit your new waline comment system using your own domain. :tada:
-
    - serverURL：example.your-domain.com
    - admin panel：example.your-domain.com/ui
 
@@ -86,7 +85,6 @@ Here is how you can add Waline to your web page or website:
 1. Import the stylesheet `https://unpkg.com/@waline/client@v3/dist/waline.css` in the `<head>`
 
 1. Create a `<script>` tag and initialize with `init()` from `https://unpkg.com/@waline/client@v3/dist/waline.js` while passing in the necessary `el` and `serverURL` options.
-
    - The `el` option is the element used for Waline rendering. You can set a CSS selector in the form of a string or an HTMLElement object.
    - `serverURL` is the link to your deployment server, which you just created in Vercel.
    - For more options, visit the [Component Props page](https://waline.js.org/en/reference/client/props.html)

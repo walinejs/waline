@@ -102,9 +102,7 @@ this point
 
 - Create a list by starting a line with `-`
 - Make sub-lists by indenting 2 spaces:
-
   - Marker character change forces new list start:
-
     - Ac tristique libero volutpat at
     - Facilisis in pretium nisl aliquet
     - Nulla volutpat aliquam velit  
@@ -117,9 +115,7 @@ this point
 ```md
 - Create a list by starting a line with `-`
 - Sub-lists are made by indenting 2 spaces:
-
   - Marker character change forces new list start:
-
     - Ac tristique libero volutpat at
     - Facilisis in pretium nisl aliquet
     - Nulla volutpat aliquam velit  

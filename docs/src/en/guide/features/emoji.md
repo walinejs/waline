@@ -43,7 +43,6 @@ Waline provides a series of emoji presets that can be used out of box. You can a
   ```
 
 - Twemoji
-
   - Emoji:
 
     ```http
@@ -51,7 +50,6 @@ Waline provides a series of emoji presets that can be used out of box. You can a
     ```
 
   ::: details Others presets
-
   - Full: (Not recommended)
 
     ```http

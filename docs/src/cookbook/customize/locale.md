@@ -18,7 +18,6 @@ icon: i18n
 ### locale 选项
 
 - 等级相关:
-
   - `level${number}`: number 等级的文字
 
   ::: tip
@@ -41,7 +40,6 @@ icon: i18n
   :::
 
 - 反应相关:
-
   - `reactionTitle`: 反应标题
   - `reaction0`: 反应 1 文字
   - `reaction1`: 反应 2 文字
@@ -54,7 +52,6 @@ icon: i18n
   - `reaction8`: 反应 9 文字
 
 - UI 相关:
-
   - `nick`: 昵称
   - `mail`: 邮箱
   - `link`: 网址
@@ -83,13 +80,11 @@ icon: i18n
   :::
 
 - 提示信息相关:
-
   - `nickError`: 昵称不满足条件的错误信息
   - `mailError`: 邮箱不满足条件的错误信息
   - `wordHint`: 评论字数的错误提示，其中 `$0` `$1` `$2` 会被自动替换为字数允许下限、字数允许上限、当前字数。
 
 - 评论时间相关:
-
   - `seconds`: 秒前
   - `minutes`: 分钟前
   - `hours`: 小时前
@@ -97,14 +92,12 @@ icon: i18n
   - `now`: 刚刚
 
 - 管理相关:
-
   - `approved`: 审核通过
   - `waiting`: 等待审核
   - `spam`: 垃圾评论
   - `unsticky`: 取消置顶
 
 - 无障碍相关:
-
   - `like`: 喜欢文字
   - `cancelLike`: 取消喜欢文字
   - `reply`: 回复按钮的标签文字
@@ -208,7 +201,6 @@ Waline.init({
 ### locale 选项
 
 - 提示信息相关：
-
   - `import data format not support!`：文件格式不支持
   - `USER_EXIST`：用户已存在
   - `USER_NOT_EXIST`：用户不存在
@@ -219,7 +211,6 @@ Waline.init({
   - `Comment too fast`：评论太快啦，请慢点！
 
 - 登录邮件通知相关：
-
   - `[{{name | safe}}] Registration Confirm Mail`：`【{{name | safe}}】注册确认邮件`
   - `Please click <a href=\"{{url}}\">{{url}}<a/> to confirm registration, the link is valid for 1 hour. If you are not registering, please ignore this email.`：`请点击 <a href=\"{{url}}\">{{url}}</a> 确认注册，链接有效时间为 1 个小时。如果不是你在注册，请忽略这封邮件。`
   - `[{{name | safe}}] Reset Password`：`【{{name | safe}}】重置密码`
