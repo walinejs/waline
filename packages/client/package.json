@@ -97,7 +97,7 @@
     "@types/autosize": "4.0.3",
     "@vitejs/plugin-vue": "6.0.0",
     "user-agent-data-types": "0.4.2",
-    "vite": "7.0.3"
+    "vite": "7.0.5"
   },
   "engines": {
     "node": ">=18"
