@@ -94,3 +94,4 @@ module.exports = {
 - [waline-notification-wecom-group-bot](https://github.com/wnwd/waline-notification-wecom-group-bot)
 - [waline-notification-lark-group-bot](https://github.com/wnwd/waline-notification-lark-group-bot)
 - [waline-notification-slack-app](https://github.com/wnwd/waline-notification-slack-app)
+- [waline-openai-moderation](https://github.com/chenxv399/waline-openai-moderation)
