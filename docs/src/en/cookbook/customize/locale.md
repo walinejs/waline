@@ -18,7 +18,6 @@ You can pass a completed multilingual configuration to the `locale` option to ad
 ### Locale Options
 
 - Level related:
-
   - `level${number}`: Label for level number
 
   ::: tip
@@ -41,7 +40,6 @@ You can pass a completed multilingual configuration to the `locale` option to ad
   :::
 
 - Reaction related:
-
   - `reactionTitle`: Reaction title
   - `reaction0`: Reaction 1 text
   - `reaction1`: Reaction 2 text
@@ -54,7 +52,6 @@ You can pass a completed multilingual configuration to the `locale` option to ad
   - `reaction8`: Reaction 9 text
 
 - UI related:
-
   - `nick`: nickname
   - `mail`: Email
   - `link`: Link
@@ -83,13 +80,11 @@ You can pass a completed multilingual configuration to the `locale` option to ad
   :::
 
 - Prompt information related:
-
   - `nickError`: Error message that the nickname does not meet the conditions
   - `mailError`: The error message that the mailbox does not meet the conditions
   - `wordHint`: Error prompt for comment word count, where `$0` `$1` `$2` will be automatically replaced with the lower limit of the allowed word count, the upper limit of the allowed word count, and the current word count.
 
 - Comment time related:
-
   - `seconds`: seconds ago
   - `minutes`: minutes ago
   - `hours`: hours ago
@@ -97,14 +92,12 @@ You can pass a completed multilingual configuration to the `locale` option to ad
   - `now`: just now
 
 - Management related:
-
   - `approved`: Button which marks comment as approved
   - `waiting`: Button which marks comment waiting for review
   - `spam`: Button which marks comments as spam
   - `unsticky`: Button which unsticky comment
 
 - Accessibility related:
-
   - `like`: the label text of like button
   - `cancelLike`: the label text of the cancel like button
   - `reply`: the label text of the reply button
@@ -208,7 +201,6 @@ Registration confirm mail send failed, please {%- if isAdmin -%}check your mail 
 ### locale 选项
 
 - Prompt information related:
-
   - `import data format not support!`
   - `USER_EXIST`
   - `USER_NOT_EXIST`
@@ -219,7 +211,6 @@ Registration confirm mail send failed, please {%- if isAdmin -%}check your mail 
   - `Comment too fast`
 
 - Register/Login mail notification related:
-
   - `[{{name | safe}}] Registration Confirm Mail`
   - `Please click <a href=\"{{url}}\">{{url}}<a/> to confirm registration, the link is valid for 1 hour. If you are not registering, please ignore this email.`
   - `[{{name | safe}}] Reset Password`

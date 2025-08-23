@@ -220,7 +220,6 @@ You can pass in a code highlighter of your own, or set to `false` to disable cod
 - Required: No
 
 - Details:
-
   - [Cookbook → Customize $\TeX$ Renderer](../../cookbook/customize/tex-renderer.md)
   - [MathJax](https://www.mathjax.org/)
   - [KaTeX](https://katex.org/)

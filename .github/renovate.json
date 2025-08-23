@@ -11,8 +11,8 @@
   ],
   "packageRules": [
     {
-      "excludePackageNames": ["vuepress"],
-      "excludePackagePrefixes": ["@vuepress/", "vuepress-"],
+      "excludePackageNames": ["think-model-postgresql", "vuepress"],
+      "excludePackagePrefixes": ["@mdit/", "@vuepress/", "vuepress-"],
       "matchPackagePatterns": ["*"]
     },
     {

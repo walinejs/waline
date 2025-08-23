@@ -218,7 +218,6 @@ Waline 多语言配置。
 - 必填: 否
 
 - 详情:
-
   - [Cookbook → 自定义 $\TeX$ 渲染器](../../cookbook/customize/tex-renderer.md)
   - [MathJax](https://www.mathjax.org/)
   - [KaTeX](https://katex.org/)

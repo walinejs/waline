@@ -125,7 +125,7 @@ The text may not be well understood. Let's take a look at the query examples use
    // SELECT * FROM Comment WHERE url = '/' AND ( user_id = 0 OR status NOT IN ('waiting', 'spam'));
    ```
 
-If you are more familiar with TypeScript, there are type definitions for conditional queries [here](https://github.com/walinejs/dittorm/blob/master/src/types/where.ts).
+If you are more familiar with TypeScript, [type definitions for conditional queries is here](https://github.com/walinejs/dittorm/blob/master/src/types/where.ts).
 
 ## Implement query
 

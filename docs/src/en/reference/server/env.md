@@ -124,7 +124,7 @@ The email service is used for email notification of user registration and commen
 
 ::: tip
 
-Supported service providers can be found [here](https://github.com/nodemailer/nodemailer/blob/master/lib/well-known/services.json). You can choose one of `SMTP_SERVICE` and (`SMTP_HOST`, `SMTP_PORT`). If you don't know the corresponding `SMTP_SERVICE` in the list, you need to configure `SMTP_HOST` and `SMTP_PORT`, which can probably be found in the mailbox settings.
+Supported service providers can be found [nodemailer services](https://github.com/nodemailer/nodemailer/blob/master/lib/well-known/services.json). You can choose one of `SMTP_SERVICE` and (`SMTP_HOST`, `SMTP_PORT`). If you don't know the corresponding `SMTP_SERVICE` in the list, you need to configure `SMTP_HOST` and `SMTP_PORT`, which can probably be found in the mailbox settings.
 
 The user name of SMTP usually supports the complete mailbox of the user, and the password is mostly the same as the mailbox password.
 

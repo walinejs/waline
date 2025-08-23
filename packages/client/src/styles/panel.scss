@@ -195,7 +195,7 @@
   .wl-content {
     min-height: 1.25em;
     padding: 0.25em;
-    word-break: break-word;
+    overflow-wrap: break-word;
     hyphens: auto;
 
     > *:first-child {

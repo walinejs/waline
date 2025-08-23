@@ -92,7 +92,6 @@ dir:
    | CNAME | example | cname.vercel-dns.com |
 
 1. 等待生效，你可以通过自己的域名来访问了:tada:
-
    - 评论系统：example.yourdomain.com
    - 评论管理：example.yourdomain.com/ui
 
@@ -105,7 +104,6 @@ dir:
 1. 导入 Waline 样式 `https://unpkg.com/@waline/client@v3/dist/waline.css`。
 
 1. 创建 `<script>` 标签使用来自 `https://unpkg.com/@waline/client@v3/dist/waline.js` 的 `init()` 函数初始化，并传入必要的 `el` 与 `serverURL` 选项。
-
    - `el` 选项是 Waline 渲染使用的元素，你可以设置一个字符串形式的 CSS 选择器或者一个 HTMLElement 对象。
    - `serverURL` 是服务端的地址，即上一步获取到的值。
 

@@ -60,14 +60,14 @@ Waline is a good framework. :money:
 
   it('Should not autoplay or preload media', () => {
     expect(parser('<audio autoplay preload="auto" src="x">')).toEqual(
-      '<audio src="x" preload="none"></audio>',
+      '<audio preload="none" src="x"></audio>',
     );
     expect(parser('<audio autoplay src="x"></audio>')).toEqual(
       '<p><audio src="x" preload="none"></audio></p>\n',
     );
 
     expect(parser('<video autoplay preload="auto" src="x">')).toEqual(
-      '<video src="x" preload="none"></video>',
+      '<video preload="none" src="x"></video>',
     );
     expect(parser('<video autoplay src="x"></video>')).toEqual(
       '<p><video src="x" preload="none"></video></p>\n',
@@ -83,7 +83,7 @@ Waline is a good framework. :money:
         '<p><a href="https://example.com" rel="opener prefetch">link</a></p>',
       ),
     ).toEqual(
-      '<p><a rel="nofollow noreferrer noopener" href="https://example.com" target="_blank">link</a></p>',
+      '<p><a href="https://example.com" rel="nofollow noreferrer noopener" target="_blank">link</a></p>',
     );
   });
 
