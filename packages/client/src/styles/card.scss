@@ -217,10 +217,19 @@
 
     > *:first-child {
       margin-top: 0;
+      display: inline;
     }
 
     > *:last-child {
       margin-bottom: 0;
+    }
+
+    div {
+      display: inline;
+      
+      > p {
+        display: inline;
+      }
     }
   }
 
