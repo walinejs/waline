@@ -43,7 +43,7 @@ jobs:
         run: node scripts/workspace-publish.js @waline/client
 
       - name: Publish NPM
-        uses: JS-DevTools/npm-publish@v3
+        uses: JS-DevTools/npm-publish@v4
         with:
           token: ${{ secrets.NPM_TOKEN }}
           package: ./packages/client
