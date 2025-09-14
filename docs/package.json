@@ -14,7 +14,7 @@
     "@vuepress/plugin-comment": "2.0.0-rc.112",
     "@vuepress/plugin-docsearch": "2.0.0-rc.112",
     "@waline/client": "workspace:*",
-    "marked": "16.0.0",
+    "marked": "16.3.0",
     "mathjax-full": "3.2.2",
     "sass-embedded": "1.89.2",
     "vidstack": "1.12.13",
