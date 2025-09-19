@@ -65,13 +65,13 @@ importers:
         version: 9.30.1(jiti@2.4.2)
       eslint-config-mister-hope:
         specifier: 0.9.6
-        version: 0.9.6(eslint-plugin-vue@10.3.0(@typescript-eslint/parser@8.36.0(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3))(eslint@9.30.1(jiti@2.4.2))(vue-eslint-parser@10.2.0(eslint@9.30.1(jiti@2.4.2))))(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3)(vitest@3.2.4(@edge-runtime/vm@3.2.0)(@types/debug@4.1.12)(@types/node@24.0.12)(jiti@2.4.2)(jsdom@26.1.0)(sass-embedded@1.89.2)(terser@5.43.1))(vue-eslint-parser@10.2.0(eslint@9.30.1(jiti@2.4.2)))
+        version: 0.9.6(eslint-plugin-vue@10.4.0(@typescript-eslint/parser@8.36.0(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3))(eslint@9.30.1(jiti@2.4.2))(vue-eslint-parser@10.2.0(eslint@9.30.1(jiti@2.4.2))))(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3)(vitest@3.2.4(@edge-runtime/vm@3.2.0)(@types/debug@4.1.12)(@types/node@24.0.12)(jiti@2.4.2)(jsdom@26.1.0)(sass-embedded@1.89.2)(terser@5.43.1))(vue-eslint-parser@10.2.0(eslint@9.30.1(jiti@2.4.2)))
       eslint-plugin-react:
         specifier: 7.37.5
         version: 7.37.5(eslint@9.30.1(jiti@2.4.2))
       eslint-plugin-vue:
-        specifier: 10.3.0
-        version: 10.3.0(@typescript-eslint/parser@8.36.0(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3))(eslint@9.30.1(jiti@2.4.2))(vue-eslint-parser@10.2.0(eslint@9.30.1(jiti@2.4.2)))
+        specifier: 10.4.0
+        version: 10.4.0(@typescript-eslint/parser@8.36.0(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3))(eslint@9.30.1(jiti@2.4.2))(vue-eslint-parser@10.2.0(eslint@9.30.1(jiti@2.4.2)))
       husky:
         specifier: 9.1.7
         version: 9.1.7
@@ -4486,8 +4486,8 @@ packages:
     peerDependencies:
       eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9.7
 
-  eslint-plugin-vue@10.3.0:
-    resolution: {integrity: sha512-A0u9snqjCfYaPnqqOaH6MBLVWDUIN4trXn8J3x67uDcXvR7X6Ut8p16N+nYhMCQ9Y7edg2BIRGzfyZsY0IdqoQ==}
+  eslint-plugin-vue@10.4.0:
+    resolution: {integrity: sha512-K6tP0dW8FJVZLQxa2S7LcE1lLw3X8VvB3t887Q6CLrFVxHYBXGANbXvwNzYIu6Ughx1bSJ5BDT0YB3ybPT39lw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       '@typescript-eslint/parser': ^7.0.0 || ^8.0.0
@@ -13396,7 +13396,7 @@ snapshots:
 
   escape-string-regexp@4.0.0: {}
 
-  eslint-config-mister-hope@0.9.6(eslint-plugin-vue@10.3.0(@typescript-eslint/parser@8.36.0(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3))(eslint@9.30.1(jiti@2.4.2))(vue-eslint-parser@10.2.0(eslint@9.30.1(jiti@2.4.2))))(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3)(vitest@3.2.4(@edge-runtime/vm@3.2.0)(@types/debug@4.1.12)(@types/node@24.0.12)(jiti@2.4.2)(jsdom@26.1.0)(sass-embedded@1.89.2)(terser@5.43.1))(vue-eslint-parser@10.2.0(eslint@9.30.1(jiti@2.4.2))):
+  eslint-config-mister-hope@0.9.6(eslint-plugin-vue@10.4.0(@typescript-eslint/parser@8.36.0(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3))(eslint@9.30.1(jiti@2.4.2))(vue-eslint-parser@10.2.0(eslint@9.30.1(jiti@2.4.2))))(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3)(vitest@3.2.4(@edge-runtime/vm@3.2.0)(@types/debug@4.1.12)(@types/node@24.0.12)(jiti@2.4.2)(jsdom@26.1.0)(sass-embedded@1.89.2)(terser@5.43.1))(vue-eslint-parser@10.2.0(eslint@9.30.1(jiti@2.4.2))):
     dependencies:
       '@eslint-community/eslint-plugin-eslint-comments': 4.5.0(eslint@9.30.1(jiti@2.4.2))
       '@eslint/js': 9.30.1
@@ -13410,7 +13410,7 @@ snapshots:
       globals: 16.3.0
       typescript-eslint: 8.36.0(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3)
     optionalDependencies:
-      eslint-plugin-vue: 10.3.0(@typescript-eslint/parser@8.36.0(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3))(eslint@9.30.1(jiti@2.4.2))(vue-eslint-parser@10.2.0(eslint@9.30.1(jiti@2.4.2)))
+      eslint-plugin-vue: 10.4.0(@typescript-eslint/parser@8.36.0(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3))(eslint@9.30.1(jiti@2.4.2))(vue-eslint-parser@10.2.0(eslint@9.30.1(jiti@2.4.2)))
       vue-eslint-parser: 10.2.0(eslint@9.30.1(jiti@2.4.2))
     transitivePeerDependencies:
       - eslint-import-resolver-node
@@ -13484,7 +13484,7 @@ snapshots:
       string.prototype.matchall: 4.0.12
       string.prototype.repeat: 1.0.0
 
-  eslint-plugin-vue@10.3.0(@typescript-eslint/parser@8.36.0(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3))(eslint@9.30.1(jiti@2.4.2))(vue-eslint-parser@10.2.0(eslint@9.30.1(jiti@2.4.2))):
+  eslint-plugin-vue@10.4.0(@typescript-eslint/parser@8.36.0(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3))(eslint@9.30.1(jiti@2.4.2))(vue-eslint-parser@10.2.0(eslint@9.30.1(jiti@2.4.2))):
     dependencies:
       '@eslint-community/eslint-utils': 4.7.0(eslint@9.30.1(jiti@2.4.2))
       eslint: 9.30.1(jiti@2.4.2)
