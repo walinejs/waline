@@ -55,7 +55,7 @@
     "@vitejs/plugin-react": "4.6.0",
     "apidoc": "1.2.0",
     "commitizen": "4.3.1",
-    "cross-env": "7.0.3",
+    "cross-env": "10.0.0",
     "cz-conventional-changelog": "3.3.0",
     "eslint": "9.30.1",
     "eslint-config-mister-hope": "0.9.6",
