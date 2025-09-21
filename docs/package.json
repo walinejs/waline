@@ -8,17 +8,17 @@
     "dev": "vuepress dev src"
   },
   "devDependencies": {
-    "@fancyapps/ui": "6.0.9",
+    "@fancyapps/ui": "6.0.32",
     "@vuepress/bundler-vite": "2.0.0-rc.24",
     "@vuepress/helper": "2.0.0-rc.112",
     "@vuepress/plugin-comment": "2.0.0-rc.112",
     "@vuepress/plugin-docsearch": "2.0.0-rc.112",
     "@waline/client": "workspace:*",
-    "marked": "16.0.0",
+    "marked": "16.3.0",
     "mathjax-full": "3.2.2",
-    "sass-embedded": "1.89.2",
+    "sass-embedded": "1.93.0",
     "vidstack": "1.12.13",
-    "vue": "3.5.17",
+    "vue": "3.5.21",
     "vuepress": "2.0.0-rc.24",
     "vuepress-shared": "2.0.0-rc.94",
     "vuepress-theme-hope": "2.0.0-rc.94"
