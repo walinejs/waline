@@ -8,7 +8,7 @@
     "dev": "vuepress dev src"
   },
   "devDependencies": {
-    "@fancyapps/ui": "6.0.32",
+    "@fancyapps/ui": "6.0.34",
     "@vuepress/bundler-vite": "2.0.0-rc.24",
     "@vuepress/helper": "2.0.0-rc.112",
     "@vuepress/plugin-comment": "2.0.0-rc.112",
