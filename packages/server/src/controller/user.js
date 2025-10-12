@@ -91,10 +91,7 @@ module.exports = class extends BaseRest {
 
     try {
       const notify = this.service('notify', this);
-      const apiUrl =
-        this.ctx.serverURL +
-        '/verification?' +
-        new URLSearchParams({ token, email: data.email }).toString();
+      const apiUrl = think.buildUrl(this.ctx.serverURL + '/verification', { token, email: data.email });
 
       await notify.transporter.sendMail({
         from:

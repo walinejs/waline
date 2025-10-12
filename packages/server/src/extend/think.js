@@ -154,4 +154,27 @@ module.exports = {
       )
       .filter((v) => v);
   },
+  buildUrl(path, query = {}) {
+    const notEmptyQuery = {};
+
+    for(const key in query) {
+      if (!query[key]) {
+        continue;
+      }
+      notEmptyQuery[key] = query[key];
+    }
+
+    const notEmptyQueryStr = new URLSearchParams(notEmptyQuery).toString();
+
+    let destUrl = path;
+
+    if (destUrl && notEmptyQueryStr) {
+      destUrl += destUrl.indexOf('?') !== -1 ? '&' : '?';
+    }
+    if (notEmptyQueryStr) {
+      destUrl += notEmptyQueryStr;
+    }
+
+    return destUrl;
+  }
 };
