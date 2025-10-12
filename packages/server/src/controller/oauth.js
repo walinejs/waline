@@ -58,9 +58,7 @@ module.exports = class extends think.Controller {
       const token = jwt.sign(userBySocial[0].email, this.config('jwtKey'));
 
       if (redirect) {
-        return this.redirect(
-          redirect + (redirect.includes('?') ? '&' : '?') + 'token=' + token,
-        );
+        return this.redirect(think.buildUrl(redirect, { token }));
       }
 
       return this.success();

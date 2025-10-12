@@ -168,7 +168,7 @@ module.exports = {
 
     let destUrl = path;
 
-    if (destUrl & notEmptyQueryStr) {
+    if (destUrl && notEmptyQueryStr) {
       destUrl += destUrl.indexOf('?') !== -1 ? '&' : '?';
     }
     if (notEmptyQueryStr) {
