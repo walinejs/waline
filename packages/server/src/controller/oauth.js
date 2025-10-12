@@ -15,17 +15,12 @@ module.exports = class extends think.Controller {
 
     if (!hasCode) {
       const { serverURL } = this.ctx;
-      const redirectUrl = `${serverURL}/api/oauth?${new URLSearchParams({
-        redirect,
-        type,
-      }).toString()}`;
+      const redirectUrl = think.buildUrl(`${serverURL}/api/oauth`, {redirect, type});
 
-      return this.redirect(
-        `${oauthUrl}/${type}?${new URLSearchParams({
-          redirect: redirectUrl,
-          state: this.ctx.state.token || '',
-        }).toString()}`,
-      );
+      return this.redirect(think.buildUrl(`${oauthUrl}/${type}`, {
+        redirect: redirectUrl, 
+        state: this.ctx.state.token || ''
+      }));
     }
 
     /**
@@ -35,19 +30,16 @@ module.exports = class extends think.Controller {
 
     if (type === 'facebook') {
       const { serverURL } = this.ctx;
-      const redirectUrl = `${serverURL}/api/oauth?${new URLSearchParams({
-        redirect,
-        type,
-      }).toString()}`;
+      const redirectUrl = think.buildUrl(`${serverURL}/api/oauth`, {redirect, type});
 
-      params.state = new URLSearchParams({
+      params.state = think.buildUrl(undefined, {
         redirect: redirectUrl,
         state: this.ctx.state.token || '',
       });
     }
 
     const user = await fetch(
-      `${oauthUrl}/${type}?${new URLSearchParams(params).toString()}`,
+      think.buildUrl(`${oauthUrl}/${type}`, params),
       {
         method: 'GET',
         headers: {
