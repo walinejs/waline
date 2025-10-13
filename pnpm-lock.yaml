@@ -301,11 +301,11 @@ importers:
         specifier: 0.23.4-cjs.0
         version: 0.23.4-cjs.0(markdown-it@14.1.0)
       '@mdit/plugin-sub':
-        specifier: 0.22.4-cjs.0
-        version: 0.22.4-cjs.0(markdown-it@14.1.0)
+        specifier: 0.22.5-cjs.0
+        version: 0.22.5-cjs.0(markdown-it@14.1.0)
       '@mdit/plugin-sup':
-        specifier: 0.22.4-cjs.0
-        version: 0.22.4-cjs.0(markdown-it@14.1.0)
+        specifier: 0.22.5-cjs.0
+        version: 0.22.5-cjs.0(markdown-it@14.1.0)
       akismet:
         specifier: ^2.0.7
         version: 2.0.7
@@ -1941,8 +1941,8 @@ packages:
       markdown-it:
         optional: true
 
-  '@mdit/plugin-sub@0.22.4-cjs.0':
-    resolution: {integrity: sha512-ZWWVDPwblrT9TQlWEy/ingkGII6U3QULt20dY/M+0hJIn2+NJsH4apKswO2L8lHETUWg65e5gaxuYCHXN/ALwg==}
+  '@mdit/plugin-sub@0.22.5-cjs.0':
+    resolution: {integrity: sha512-Cl0Cir7z45bdlP5ZXhJeDHQwJ1MDwdt+RMAqc/9zIYN6HuAQ0RgF+faPXzpf3VXrRVdE9SvSwME03z6SmewiJA==}
     engines: {node: '>= 18'}
     peerDependencies:
       markdown-it: ^14.1.0
@@ -1959,8 +1959,8 @@ packages:
       markdown-it:
         optional: true
 
-  '@mdit/plugin-sup@0.22.4-cjs.0':
-    resolution: {integrity: sha512-FZBlw+6tbHzohJGjP22BT+AuPGtA+37SkTrh5oAB2rjFir2CRmtBLi/mvnsvuJoc3eoECFa2BuBcFchIMJUKIA==}
+  '@mdit/plugin-sup@0.22.5-cjs.0':
+    resolution: {integrity: sha512-KFB1dezd7nHJ3ocOfO9x0jNbT/9LaaMpRXAY7qufvLT8wotLdj0oJflvjG3yS7nyEPkVgIs0OtbNPQj3Hu09cQ==}
     engines: {node: '>= 18'}
     peerDependencies:
       markdown-it: ^14.1.0
@@ -10773,7 +10773,7 @@ snapshots:
     optionalDependencies:
       markdown-it: 14.1.0
 
-  '@mdit/plugin-sub@0.22.4-cjs.0(markdown-it@14.1.0)':
+  '@mdit/plugin-sub@0.22.5-cjs.0(markdown-it@14.1.0)':
     dependencies:
       '@mdit/helper': 0.22.3-cjs.0(markdown-it@14.1.0)
       '@types/markdown-it': 14.1.2
@@ -10787,7 +10787,7 @@ snapshots:
     optionalDependencies:
       markdown-it: 14.1.0
 
-  '@mdit/plugin-sup@0.22.4-cjs.0(markdown-it@14.1.0)':
+  '@mdit/plugin-sup@0.22.5-cjs.0(markdown-it@14.1.0)':
     dependencies:
       '@mdit/helper': 0.22.3-cjs.0(markdown-it@14.1.0)
       '@types/markdown-it': 14.1.2
