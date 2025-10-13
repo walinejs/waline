@@ -50,18 +50,18 @@
     "@rematch/core": "2.2.0",
     "base-icon": "2.3.2",
     "classnames": "2.5.1",
-    "i18next": "25.5.2",
+    "i18next": "25.6.0",
     "i18next-browser-languagedetector": "8.2.0",
     "md5": "2.3.0",
     "qrcode.react": "4.2.0",
-    "react": "19.1.1",
-    "react-dom": "19.1.1",
-    "react-i18next": "15.7.3",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "react-i18next": "16.0.0",
     "react-redux": "9.2.0",
-    "react-router": "7.9.1",
+    "react-router": "7.9.4",
     "redux": "5.0.1",
-    "typescript": "5.9.2",
-    "vite": "7.1.6"
+    "typescript": "5.9.3",
+    "vite": "7.1.9"
   },
   "engines": {
     "node": ">=20"
