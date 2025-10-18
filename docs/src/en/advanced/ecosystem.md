@@ -33,6 +33,10 @@ Waline is a classic Client/Server architecture, which provides a relatively comp
 
   By [@BeiyanYunyi](https://github.com/BeiyanYunyi), build with Solid.js. For usage, see its README and [website](https://BeiyanYunyi.github.io/sodesu/)。
 
+## Rusty
+
+[waline-mini](https://github.com/JQiue/waline-mini) is a server-side implementation in Rust, highly suitable for running in resource-constrained server environments.
+
 ## Plugins
 
 ### Hexo
