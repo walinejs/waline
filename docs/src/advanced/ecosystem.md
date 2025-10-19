@@ -33,6 +33,10 @@ Waline 是经典的前后端分离 Client/Server 架构，提供了较为完善�
 
   作者 [@BeiyanYunyi](https://github.com/BeiyanYunyi)。使用 Solid.js 构建，使用方式详见项目页面和[说明文档](https://BeiyanYunyi.github.io/sodesu/)。
 
+## Rust 实现
+
+得益于前后端 API 分离的架构设计，[waline-mini](https://github.com/JQiue/waline-mini) 是 Rust 实现的服务端，非常适合运行在服务器资源受限的环境上。
+
 ## 插件
 
 你可以使用下列插件来在不同工具上使用 Waline:

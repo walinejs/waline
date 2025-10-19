@@ -15,111 +15,111 @@ Waline provides a series of emoji presets that can be used out of box. You can a
 - Alus
 
   ```http
-  https://unpkg.com/@waline/emojis@1.2.0/alus
+  https://unpkg.com/@waline/emojis@1.4.0/alus
   ```
 
 - Bmoji
 
   ```http
-  https://unpkg.com/@waline/emojis@1.2.0/bmoji
+  https://unpkg.com/@waline/emojis@1.4.0/bmoji
   ```
 
 - Bilibili
 
   ```http
-  https://unpkg.com/@waline/emojis@1.2.0/bilibili
+  https://unpkg.com/@waline/emojis@1.4.0/bilibili
   ```
 
 - QQ
 
   ```http
-  https://unpkg.com/@waline/emojis@1.2.0/qq
+  https://unpkg.com/@waline/emojis@1.4.0/qq
   ```
 
 - Tieba
 
   ```http
-  https://unpkg.com/@waline/emojis@1.2.0/tieba
+  https://unpkg.com/@waline/emojis@1.4.0/tieba
   ```
 
 - Twemoji
   - Emoji:
 
     ```http
-    https://unpkg.com/@waline/emojis@1.2.0/tw-emoji
+    https://unpkg.com/@waline/emojis@1.4.0/tw-emoji
     ```
 
   ::: details Others presets
   - Full: (Not recommended)
 
     ```http
-    https://unpkg.com/@waline/emojis@1.2.0/tw
+    https://unpkg.com/@waline/emojis@1.4.0/tw
     ```
 
   - Body:
 
     ```http
-    https://unpkg.com/@waline/emojis@1.2.0/tw-body
+    https://unpkg.com/@waline/emojis@1.4.0/tw-body
     ```
 
   - Food:
 
     ```http
-    https://unpkg.com/@waline/emojis@1.2.0/tw-food
+    https://unpkg.com/@waline/emojis@1.4.0/tw-food
     ```
 
   - Natural:
 
     ```http
-    https://unpkg.com/@waline/emojis@1.2.0/tw-natural
+    https://unpkg.com/@waline/emojis@1.4.0/tw-natural
     ```
 
   - Object:
 
     ```http
-    https://unpkg.com/@waline/emojis@1.2.0/tw-object
+    https://unpkg.com/@waline/emojis@1.4.0/tw-object
     ```
 
   - Symbol:
 
     ```http
-    https://unpkg.com/@waline/emojis@1.2.0/tw-symbol
+    https://unpkg.com/@waline/emojis@1.4.0/tw-symbol
     ```
 
   - People:
 
     ```http
-    https://unpkg.com/@waline/emojis@1.2.0/tw-people
+    https://unpkg.com/@waline/emojis@1.4.0/tw-people
     ```
 
   - Sport:
 
     ```http
-    https://unpkg.com/@waline/emojis@1.2.0/tw-sport
+    https://unpkg.com/@waline/emojis@1.4.0/tw-sport
     ```
 
   - Time:
 
     ```http
-    https://unpkg.com/@waline/emojis@1.2.0/tw-time
+    https://unpkg.com/@waline/emojis@1.4.0/tw-time
     ```
 
   - Travel:
 
     ```http
-    https://unpkg.com/@waline/emojis@1.2.0/tw-travel
+    https://unpkg.com/@waline/emojis@1.4.0/tw-travel
     ```
 
   - Weather:
 
     ```http
-    https://unpkg.com/@waline/emojis@1.2.0/tw-weather
+    https://unpkg.com/@waline/emojis@1.4.0/tw-weather
     ```
 
   - Flag:
 
     ```http
-    https://unpkg.com/@waline/emojis@1.2.0/tw-flag
+    https://unpkg.com/@waline/emojis@1.4.0/tw-flag
     ```
 
   :::
@@ -127,13 +127,13 @@ Waline provides a series of emoji presets that can be used out of box. You can a
 - Weibo
 
   ```http
-  https://unpkg.com/@waline/emojis@1.2.0/weibo
+  https://unpkg.com/@waline/emojis@1.4.0/weibo
   ```
 
 - Soul knight Emoji
 
   ```http
-  https://unpkg.com/@waline/emojis@1.2.0/soul-emoji
+  https://unpkg.com/@waline/emojis@1.4.0/soul-emoji
   ```
 
 ::: warning
@@ -155,8 +155,8 @@ Waline DO NOT have any copyright of above emojis, use them at your own risk.
 
     // Set emoji to Weibo and Bmoji
     emoji: [
-      '//unpkg.com/@waline/emojis@1.2.0/weibo',
-      '//unpkg.com/@waline/emojis@1.2.0/bmoji',
+      '//unpkg.com/@waline/emojis@1.4.0/weibo',
+      '//unpkg.com/@waline/emojis@1.4.0/bmoji',
     ],
   });
 </script>
