@@ -118,8 +118,8 @@ importers:
         specifier: 5.9.3
         version: 5.9.3
       vercel:
-        specifier: 48.3.0
-        version: 48.3.0(encoding@0.1.13)(rollup@4.52.4)
+        specifier: 48.4.1
+        version: 48.4.1(encoding@0.1.13)(rollup@4.52.4)
       vite-plugin-css-injected-by-js:
         specifier: 3.5.2
         version: 3.5.2(vite@7.1.10(@types/node@24.7.2)(jiti@2.6.1)(sass-embedded@1.93.2)(sass@1.93.2)(terser@5.44.0))
@@ -2833,8 +2833,8 @@ packages:
   '@vercel/error-utils@2.0.3':
     resolution: {integrity: sha512-CqC01WZxbLUxoiVdh9B/poPbNpY9U+tO1N9oWHwTl5YAZxcqXmmWJ8KNMFItJCUUWdY3J3xv8LvAuQv2KZ5YdQ==}
 
-  '@vercel/express@0.0.25':
-    resolution: {integrity: sha512-PlgrRy/Esakm/ZMa2H/yal5s3wX8zBIkuBu17iAarHbG4GE+rWxU8Be7IuC23WOJN4+iSnClm7wPLMJttsxtYQ==}
+  '@vercel/express@0.0.26':
+    resolution: {integrity: sha512-a1q9lOIFX/lv5hNzuHOtc8UOPM0pImLPH5pTcYvS5pe2YUc/h+ons5xiy0A6QX3RAzZz09vrg4Ej+7xRXxln9w==}
 
   '@vercel/fun@1.1.6':
     resolution: {integrity: sha512-xDiM+bD0fSZyzcjsAua3D+guXclvHOSTzr03UcZEQwYzIjwWjLduT7bl2gAaeNIe7fASAIZd0P00clcj0On4rQ==}
@@ -2849,25 +2849,25 @@ packages:
   '@vercel/go@3.2.3':
     resolution: {integrity: sha512-PErgHlV7cf8hyPq31aRsL4xm5t4rCSO6vN5AQLlAGSy3ctdgqG7sI6hq/CAKo3CfgIhVHUwNYapFJgGJB/s4OA==}
 
-  '@vercel/h3@0.1.5':
-    resolution: {integrity: sha512-c8/ds+I79jKg3CGLT4o09yhvXvRllITXytSv5tzfFOxlsse7l2NyV9CwQKVnsAHi/Oo7KAXRyp/Lt6ujTXt+ow==}
+  '@vercel/h3@0.1.6':
+    resolution: {integrity: sha512-RjdgVVEClEBsFNwXENoRxuU0IH7wfjKlhPbol7714zIfNkhb7BlvEUq15CPyJYFKrnQ3W3RjdrNenZycAU0NgA==}
 
-  '@vercel/hono@0.1.6':
-    resolution: {integrity: sha512-ilpevE0o6iySJ8muuO/4bHxhy93wrki/HV21+s5KvSric0kKvMUD5Ga4oYCnb9vMVwK+b+6lGFtEppn93IVgWA==}
+  '@vercel/hono@0.1.7':
+    resolution: {integrity: sha512-fBMeyG7HoXkDgyeL7yRfl3AE+BH1QH7XeVwWysxQRlbSNOjXijVYgTHH2UffcD8mUzTx4Ejw+VqiQncA1wydCA==}
 
   '@vercel/hydrogen@1.2.4':
     resolution: {integrity: sha512-eb16oesfgHuBlXxe+WqI+rMdP4QpeHXLJh9ropFy+StkWC2F0ZFKegutEpvJCRg0FHttRnn9uMzMmzJ2F4xKkg==}
 
-  '@vercel/next@4.13.3':
-    resolution: {integrity: sha512-Gyn6mEsoXVmHrRmKEZlZ+xFWwV4gkDGAg5v44lkeIksFefMHaTiCbo9YOPDqzHrwQ9w/QAsX1xOI4mrnicSy3g==}
+  '@vercel/next@4.13.4':
+    resolution: {integrity: sha512-jX2EPi+8B2DnfWXsuuiFHIY5mG+ktpdV9POAF9rhQnWsWUvwJ9EZbwLEtbJkbKcNez4ODuA8bfN42Dia/IjRxg==}
 
   '@vercel/nft@0.30.1':
     resolution: {integrity: sha512-2mgJZv4AYBFkD/nJ4QmiX5Ymxi+AisPLPcS/KPXVqniyQNqKXX+wjieAbDXQP3HcogfEbpHoRMs49Cd4pfkk8g==}
     engines: {node: '>=18'}
     hasBin: true
 
-  '@vercel/node@5.4.0':
-    resolution: {integrity: sha512-HZ6DohO1w59lmu+wn90hIblkEQQ0QQ11MH0XE5TrQdEHDX6qHyaO0BFS1jL8M79H7IUdEaJmgAgU6mJ78cYyig==}
+  '@vercel/node@5.4.1':
+    resolution: {integrity: sha512-FEEy/fZq/HY1D+IgVT3hdYncg3DdwuXmi8lgVdZCWiJTdV7AhOgblFFObbF1vRps7ehk4aBq4d+kSfoueiJMGQ==}
 
   '@vercel/oidc@3.0.2':
     resolution: {integrity: sha512-JekxQ0RApo4gS4un/iMGsIL1/k4KUBe3HmnGcDvzHuFBdQdudEJgTqcsJC7y6Ul4Yw5CeykgvQbX2XeEJd0+DA==}
@@ -8035,12 +8035,12 @@ packages:
   superagent@5.3.1:
     resolution: {integrity: sha512-wjJ/MoTid2/RuGCOFtlacyGNxN9QLMgcpYLDQlWFIhhdJ93kNscFonGvrpAHSCVjRVj++DGCglocF7Aej1KHvQ==}
     engines: {node: '>= 7.0.0'}
-    deprecated: Please upgrade to v9.0.0+ as we have fixed a public vulnerability with formidable dependency. Note that v9.0.0+ requires Node.js v14.18.0+. See https://github.com/ladjs/superagent/pull/1800 for insight. This project is supported and maintained by the team at Forward Email @ https://forwardemail.net
+    deprecated: Please upgrade to superagent v10.2.2+, see release notes at https://github.com/forwardemail/superagent/releases/tag/v10.2.2 - maintenance is supported by Forward Email @ https://forwardemail.net
 
   superagent@8.1.2:
     resolution: {integrity: sha512-6WTxW1EB6yCxV5VFOIPQruWGHqc3yI7hEmZK6h+pyk69Lk/Ut7rLUY6W/ONF2MjBuGjvmMiIpsrVJ2vjrHlslA==}
     engines: {node: '>=6.4.0 <13 || >=14'}
-    deprecated: Please upgrade to v9.0.0+ as we have fixed a public vulnerability with formidable dependency. Note that v9.0.0+ requires Node.js v14.18.0+. See https://github.com/ladjs/superagent/pull/1800 for insight. This project is supported and maintained by the team at Forward Email @ https://forwardemail.net
+    deprecated: Please upgrade to superagent v10.2.2+, see release notes at https://github.com/forwardemail/superagent/releases/tag/v10.2.2 - maintenance is supported by Forward Email @ https://forwardemail.net
 
   superjson@2.2.2:
     resolution: {integrity: sha512-5JRxVqC8I8NuOUjzBbvVJAKNM8qoVuH0O77h4WInc/qC2q5IreqKxYwgkga3PfA22OayK2ikceb/B26dztPl+Q==}
@@ -8632,8 +8632,8 @@ packages:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
     engines: {node: '>= 0.8'}
 
-  vercel@48.3.0:
-    resolution: {integrity: sha512-UxpPaOAx1m5QIwjmeEtsJO3DxRlkU6Ec4Kh1CdnYZGzL9cpL1vwYMfxzD8EFwYo89vPEELjAY+oe3MaT6Qvz3g==}
+  vercel@48.4.1:
+    resolution: {integrity: sha512-EzunA8iHf55CDM5CUQQYR2+xp+1n8AqJziuOJx19w8Io2aQK1NjsRhmsHsogw9zsQ3xpdofaCs4MTjPHFNhdtA==}
     engines: {node: '>= 18'}
     hasBin: true
 
@@ -11512,7 +11512,7 @@ snapshots:
 
   '@types/sax@1.2.7':
     dependencies:
-      '@types/node': 17.0.45
+      '@types/node': 24.7.2
 
   '@types/superagent@4.1.24':
     dependencies:
@@ -11703,10 +11703,10 @@ snapshots:
 
   '@vercel/error-utils@2.0.3': {}
 
-  '@vercel/express@0.0.25(encoding@0.1.13)(rollup@4.52.4)':
+  '@vercel/express@0.0.26(encoding@0.1.13)(rollup@4.52.4)':
     dependencies:
       '@vercel/nft': 0.30.1(encoding@0.1.13)(rollup@4.52.4)
-      '@vercel/node': 5.4.0(encoding@0.1.13)(rollup@4.52.4)
+      '@vercel/node': 5.4.1(encoding@0.1.13)(rollup@4.52.4)
       '@vercel/static-config': 3.1.2
       fs-extra: 11.1.0
       path-to-regexp: 8.3.0
@@ -11758,9 +11758,9 @@ snapshots:
 
   '@vercel/go@3.2.3': {}
 
-  '@vercel/h3@0.1.5(encoding@0.1.13)(rollup@4.52.4)':
+  '@vercel/h3@0.1.6(encoding@0.1.13)(rollup@4.52.4)':
     dependencies:
-      '@vercel/node': 5.4.0(encoding@0.1.13)(rollup@4.52.4)
+      '@vercel/node': 5.4.1(encoding@0.1.13)(rollup@4.52.4)
       '@vercel/static-config': 3.1.2
     transitivePeerDependencies:
       - '@swc/core'
@@ -11769,10 +11769,10 @@ snapshots:
       - rollup
       - supports-color
 
-  '@vercel/hono@0.1.6(encoding@0.1.13)(rollup@4.52.4)':
+  '@vercel/hono@0.1.7(encoding@0.1.13)(rollup@4.52.4)':
     dependencies:
       '@vercel/nft': 0.30.1(encoding@0.1.13)(rollup@4.52.4)
-      '@vercel/node': 5.4.0(encoding@0.1.13)(rollup@4.52.4)
+      '@vercel/node': 5.4.1(encoding@0.1.13)(rollup@4.52.4)
       '@vercel/static-config': 3.1.2
       fs-extra: 11.1.0
       path-to-regexp: 8.3.0
@@ -11791,7 +11791,7 @@ snapshots:
       '@vercel/static-config': 3.1.2
       ts-morph: 12.0.0
 
-  '@vercel/next@4.13.3(encoding@0.1.13)(rollup@4.52.4)':
+  '@vercel/next@4.13.4(encoding@0.1.13)(rollup@4.52.4)':
     dependencies:
       '@vercel/nft': 0.30.1(encoding@0.1.13)(rollup@4.52.4)
     transitivePeerDependencies:
@@ -11818,7 +11818,7 @@ snapshots:
       - rollup
       - supports-color
 
-  '@vercel/node@5.4.0(encoding@0.1.13)(rollup@4.52.4)':
+  '@vercel/node@5.4.1(encoding@0.1.13)(rollup@4.52.4)':
     dependencies:
       '@edge-runtime/node-utils': 2.3.0
       '@edge-runtime/primitives': 4.1.0
@@ -18649,19 +18649,19 @@ snapshots:
 
   vary@1.1.2: {}
 
-  vercel@48.3.0(encoding@0.1.13)(rollup@4.52.4):
+  vercel@48.4.1(encoding@0.1.13)(rollup@4.52.4):
     dependencies:
       '@vercel/blob': 1.0.2
       '@vercel/build-utils': 12.1.3
       '@vercel/detect-agent': 1.0.0
-      '@vercel/express': 0.0.25(encoding@0.1.13)(rollup@4.52.4)
+      '@vercel/express': 0.0.26(encoding@0.1.13)(rollup@4.52.4)
       '@vercel/fun': 1.1.6(encoding@0.1.13)
       '@vercel/go': 3.2.3
-      '@vercel/h3': 0.1.5(encoding@0.1.13)(rollup@4.52.4)
-      '@vercel/hono': 0.1.6(encoding@0.1.13)(rollup@4.52.4)
+      '@vercel/h3': 0.1.6(encoding@0.1.13)(rollup@4.52.4)
+      '@vercel/hono': 0.1.7(encoding@0.1.13)(rollup@4.52.4)
       '@vercel/hydrogen': 1.2.4
-      '@vercel/next': 4.13.3(encoding@0.1.13)(rollup@4.52.4)
-      '@vercel/node': 5.4.0(encoding@0.1.13)(rollup@4.52.4)
+      '@vercel/next': 4.13.4(encoding@0.1.13)(rollup@4.52.4)
+      '@vercel/node': 5.4.1(encoding@0.1.13)(rollup@4.52.4)
       '@vercel/python': 5.0.10
       '@vercel/redwood': 2.3.6(encoding@0.1.13)(rollup@4.52.4)
       '@vercel/remix-builder': 5.4.13(encoding@0.1.13)(rollup@4.52.4)
