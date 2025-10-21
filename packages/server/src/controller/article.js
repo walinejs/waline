@@ -84,7 +84,7 @@ module.exports = class extends BaseRest {
         { access: { read: true, write: true } },
       );
 
-      return this.jsonOrSuccess(deprecated ? count : [count]);
+      return this.jsonOrSuccess(deprecated ? count : [{ [type]: count }]);
     }
 
     const ret = await this.modelInstance.update(
