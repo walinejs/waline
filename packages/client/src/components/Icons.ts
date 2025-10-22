@@ -131,7 +131,7 @@ export const AdministratorIcon: FunctionalComponent = () =>
   h(
     'svg',
     {
-      class: 'verified-icon adnimistrator-icon',
+      class: 'verified-icon administrator-icon',
       viewBox: '0 0 1024 1024',
       width: '14',
       height: '14',
