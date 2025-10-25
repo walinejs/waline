@@ -61,7 +61,7 @@
     "react-router": "7.9.4",
     "redux": "5.0.1",
     "typescript": "5.9.3",
-    "vite": "7.1.10"
+    "vite": "7.1.12"
   },
   "engines": {
     "node": ">=20"
