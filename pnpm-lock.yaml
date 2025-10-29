@@ -133,8 +133,8 @@ importers:
   docs:
     devDependencies:
       '@fancyapps/ui':
-        specifier: 6.0.34
-        version: 6.0.34
+        specifier: 6.1.2
+        version: 6.1.2
       '@vuepress/bundler-vite':
         specifier: 2.0.0-rc.26
         version: 2.0.0-rc.26(@types/node@24.9.1)(jiti@2.6.1)(sass-embedded@1.93.2)(sass@1.93.2)(terser@5.44.0)(typescript@5.9.3)
@@ -1574,8 +1574,8 @@ packages:
     resolution: {integrity: sha512-sB5uyeq+dwCWyPi31B2gQlVlo+j5brPlWx4yZBrEaRo/nhdDE8Xke1gsGgtiBdaBTxuTkceLVuVt/pclrasb0A==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@fancyapps/ui@6.0.34':
-    resolution: {integrity: sha512-lLIraSWkQ03tbOmcFqG2C2maeoEC4rudY3nmzV0WPbrUPwNoNCgxhrY5esUuHdDO6pjYVC7UZgXnRzOMF4ptEQ==}
+  '@fancyapps/ui@6.1.2':
+    resolution: {integrity: sha512-84jCcQOiiKnTxMeqYiJ9Zt45t8fWnwnESna60RVAABOjA+d6qjvO8zzNcG1P7Vdw1I7+ViixXqeKMfy4pobkTg==}
 
   '@fast-csv/format@5.0.5':
     resolution: {integrity: sha512-0P9SJXXnqKdmuWlLaTelqbrfdgN37Mvrb369J6eNmqL41IEIZQmV4sNM4GgAK2Dz3aH04J0HKGDMJFkYObThTw==}
@@ -5874,6 +5874,7 @@ packages:
   keygrip@1.1.0:
     resolution: {integrity: sha512-iYSchDJ+liQ8iwbSI2QqsQOvqv58eJCEanyJPJi+Khyu8smkcKSFUCbPwzFcL7YVtZ6eONjqRX/38caJ7QjRAQ==}
     engines: {node: '>= 0.6'}
+    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
 
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
@@ -10396,7 +10397,7 @@ snapshots:
       '@eslint/core': 0.16.0
       levn: 0.4.1
 
-  '@fancyapps/ui@6.0.34': {}
+  '@fancyapps/ui@6.1.2': {}
 
   '@fast-csv/format@5.0.5':
     dependencies:
