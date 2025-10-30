@@ -82,10 +82,10 @@
     ]
   },
   "dependencies": {
-    "@vueuse/core": "^13.9.0",
+    "@vueuse/core": "^14.0.0",
     "@waline/api": "workspace:*",
     "autosize": "^6.0.1",
-    "marked": "^16.4.0",
+    "marked": "^16.4.1",
     "marked-highlight": "^2.2.2",
     "recaptcha-v3": "^1.11.3",
     "vue": "^3.5.22"

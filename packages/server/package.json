@@ -18,7 +18,7 @@
     "dev": "node development.js 9090"
   },
   "dependencies": {
-    "@cloudbase/node-sdk": "^3.10.1",
+    "@cloudbase/node-sdk": "^3.14.1",
     "@koa/cors": "^5.0.0",
     "@mdit/plugin-katex": "0.23.4-cjs.0",
     "@mdit/plugin-mathjax": "0.23.4-cjs.0",
@@ -37,7 +37,7 @@
     "markdown-it": "^14.1.0",
     "markdown-it-emoji": "^3.0.0",
     "mathjax-full": "^3.2.2",
-    "nodemailer": "^7.0.9",
+    "nodemailer": "^7.0.10",
     "nunjucks": "^3.2.4",
     "phpass": "^0.1.1",
     "prismjs": "^1.30.0",
