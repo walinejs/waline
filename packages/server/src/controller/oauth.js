@@ -15,12 +15,17 @@ module.exports = class extends think.Controller {
 
     if (!hasCode) {
       const { serverURL } = this.ctx;
-      const redirectUrl = think.buildUrl(`${serverURL}/api/oauth`, {redirect, type});
+      const redirectUrl = think.buildUrl(`${serverURL}/api/oauth`, {
+        redirect,
+        type,
+      });
 
-      return this.redirect(think.buildUrl(`${oauthUrl}/${type}`, {
-        redirect: redirectUrl, 
-        state: this.ctx.state.token || ''
-      }));
+      return this.redirect(
+        think.buildUrl(`${oauthUrl}/${type}`, {
+          redirect: redirectUrl,
+          state: this.ctx.state.token || '',
+        }),
+      );
     }
 
     /**
@@ -30,7 +35,10 @@ module.exports = class extends think.Controller {
 
     if (type === 'facebook') {
       const { serverURL } = this.ctx;
-      const redirectUrl = think.buildUrl(`${serverURL}/api/oauth`, {redirect, type});
+      const redirectUrl = think.buildUrl(`${serverURL}/api/oauth`, {
+        redirect,
+        type,
+      });
 
       params.state = think.buildUrl(undefined, {
         redirect: redirectUrl,
@@ -38,15 +46,12 @@ module.exports = class extends think.Controller {
       });
     }
 
-    const user = await fetch(
-      think.buildUrl(`${oauthUrl}/${type}`, params),
-      {
-        method: 'GET',
-        headers: {
-          'user-agent': '@waline',
-        },
+    const user = await fetch(think.buildUrl(`${oauthUrl}/${type}`, params), {
+      method: 'GET',
+      headers: {
+        'user-agent': '@waline',
       },
-    ).then((resp) => resp.json());
+    }).then((resp) => resp.json());
 
     if (!user?.id) {
       return this.fail(user);

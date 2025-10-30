@@ -96,7 +96,6 @@
     "@giphy/js-types": "5.1.0",
     "@types/autosize": "4.0.3",
     "@vitejs/plugin-vue": "6.0.1",
-    "user-agent-data-types": "0.4.2",
     "vite": "7.1.12"
   },
   "engines": {

@@ -157,7 +157,7 @@ module.exports = {
   buildUrl(path, query = {}) {
     const notEmptyQuery = {};
 
-    for(const key in query) {
+    for (const key in query) {
       if (!query[key]) {
         continue;
       }
@@ -176,5 +176,5 @@ module.exports = {
     }
 
     return destUrl;
-  }
+  },
 };

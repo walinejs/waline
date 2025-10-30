@@ -172,7 +172,7 @@
 
     font-size: 0.875em;
     line-height: 2;
-    word-wrap: break-word;
+    overflow-wrap: break-word;
 
     &.expand {
       overflow: hidden;
