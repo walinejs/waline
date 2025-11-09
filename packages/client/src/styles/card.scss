@@ -16,7 +16,8 @@
       box-shadow: var(--waline-box-shadow);
     }
 
-    .verified-icon {
+    .verified-icon,
+    .administrator-icon {
       position: absolute;
       inset-inline-start: calc(var(--avatar-size) * 3 / 4);
       top: calc(var(--avatar-size) * 3 / 4);
@@ -171,7 +172,7 @@
 
     font-size: 0.875em;
     line-height: 2;
-    word-wrap: break-word;
+    overflow-wrap: break-word;
 
     &.expand {
       overflow: hidden;

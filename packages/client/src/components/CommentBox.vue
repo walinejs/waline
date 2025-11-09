@@ -427,7 +427,7 @@ useEventListener(
   'message',
   ({ data }: { data: { type: 'profile'; data: UserInfo } }) => {
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-    if (!data || data.type !== 'profile') return;
+    if (data?.type !== 'profile') return;
 
     userInfo.value = { ...userInfo.value, ...data.data };
 

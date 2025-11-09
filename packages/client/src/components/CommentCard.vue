@@ -5,6 +5,7 @@ import { computed, inject } from 'vue';
 
 import CommentBox from './CommentBox.vue';
 import {
+  AdministratorIcon,
   DeleteIcon,
   EditIcon,
   LikeIcon,
@@ -95,7 +96,9 @@ const isEditingCurrent = computed(
         alt=""
       />
 
-      <VerifiedIcon v-if="comment.type" />
+      <VerifiedIcon v-if="comment.type === 'guest'" />
+
+      <AdministratorIcon v-if="comment.type === 'administrator'" />
     </div>
 
     <div class="wl-card">
@@ -110,12 +113,6 @@ const isEditingCurrent = computed(
         >
 
         <span v-else class="wl-nick">{{ comment.nick }}</span>
-
-        <span
-          v-if="comment.type === 'administrator'"
-          class="wl-badge"
-          v-text="locale.admin"
-        />
 
         <span v-if="comment.label" class="wl-badge" v-text="comment.label" />
 
