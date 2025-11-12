@@ -1,0 +1,19 @@
+{
+  "import data format not support!": "Formato dati di importazione non supportato",
+  "USER_EXIST": "L'utente esiste già",
+  "USER_NOT_EXIST": "L'utente non esiste",
+  "USER_REGISTERED": "L'utente si è registrato",
+  "TOKEN_EXPIRED": "Il token è scaduto",
+  "TWO_FACTOR_AUTH_ERROR_DETAIL": "Verifica in due passaggi non riuscita",
+  "[{{name | safe}}] Registration Confirm Mail": "[{{name | safe}}] Email di conferma registrazione",
+  "Please click <a href=\"{{url}}\">{{url}}<a/> to confirm registration, the link is valid for 1 hour. If you are not registering, please ignore this email.": "Clicca su <a href=\"{{url}}\">{{url}}<a/> per confermare la registrazione. Il link è valido per 1 ora. Se non sei stato tu a richiedere la registrazione, ignora questa email.",
+  "[{{name | safe}}] Reset Password": "[{{name | safe}}] Reimposta password",
+  "Please click <a href=\"{{url}}\">{{url}}</a> to login and change your password as soon as possible!": "Clicca su <a href=\"{{url}}\">{{url}}</a> per effettuare il login e cambiare la password il prima possibile.",
+  "Duplicate Content": "Contenuto duplicato",
+  "Comment too fast": "Stai commentando troppo velocemente",
+  "Registration confirm mail send failed, please {%- if isAdmin -%}check your mail configuration{%- else -%}check your email address and contact administrator{%- endif -%}.": "Impossibile inviare l'e-mail di conferma della registrazione. {%- if isAdmin -%}Controlla la configurazione della tua posta elettronica{%- else -%}Controlla il tuo indirizzo e-mail e contatta l'amministratore{%- endif -%}.",
+  "MAIL_SUBJECT": "Il tuo commento {{site.name | safe}} ha ricevuto una risposta",
+  "MAIL_TEMPLATE": "<div style='border-top:2px solid #12ADDB;box-shadow:0 1px 3px #AAAAAA;line-height:180%;padding:0 15px 12px;margin:50px auto;font-size:12px;'> <h2 style='border-bottom:1px solid #DDD;font-size:14px;font-weight:normal;padding:13px 0 10px 8px;'> Il tuo commento su <a style='text-decoration:none;color: #12ADDB;' href='{{site.url}}' target='_blank'>{{site.name}}</a> ha ricevuto una risposta </h2>{{parent.nick}}. Tu hai scritto: <div style='padding:0 12px 0 12px;margin-top:18px'> <div style='background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;'>{{parent.comment | safe}}</div><p><strong>{{self.nick}}</strong> ha risposto:</p><div style='background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;'>{{self.comment | safe}}</div><p><a style='text-decoration:none; color:#12addb' href='{{site.postUrl}}' target='_blank'>Visualizza la risposta completa</a> oppure vai su <a style='text-decoration:none; color:#12addb' href='{{site.url}}' target='_blank'>{{site.name}}</a>.</p><br/> </div></div>",
+  "MAIL_SUBJECT_ADMIN": "Nuovo commento su {{site.name | safe}}",
+  "MAIL_TEMPLATE_ADMIN": "<div style='border-top:2px solid #12ADDB;box-shadow:0 1px 3px #AAAAAA;line-height:180%;padding:0 15px 12px;margin:50px auto;font-size:12px;'> <h2 style='border-bottom:1px solid #DDD;font-size:14px;font-weight:normal;padding:13px 0 10px 8px;'> Nuovo commento su <a style='text-decoration:none;color: #12ADDB;' href='{{site.url}}' target='_blank'>{{site.name}}</a> </h2> <p><strong>{{self.nick}}</strong> ha scritto:</p><div style='background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;'>{{self.comment | safe}}</div><p><a style='text-decoration:none; color:#12addb' href='{{site.postUrl}}' target='_blank'>Vai alla pagina</a></p><br/></div>"
+}
