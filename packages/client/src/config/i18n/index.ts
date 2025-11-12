@@ -2,6 +2,7 @@ import de from './de.js';
 import en from './en.js';
 import es from './es.js';
 import fr from './fr.js';
+import it from './it.js';
 import jp from './jp.js';
 import ptBR from './pt-BR.js';
 import ru from './ru.js';
@@ -22,6 +23,8 @@ export const DEFAULT_LOCALES: Locales = {
   'en-us': en,
   fr,
   'fr-fr': fr,
+  it,
+  'it-it': it,
   jp,
   'jp-jp': jp,
   'pt-br': ptBR,
