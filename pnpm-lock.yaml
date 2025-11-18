@@ -151,8 +151,8 @@ importers:
         specifier: workspace:*
         version: link:../packages/client
       marked:
-        specifier: 16.4.1
-        version: 16.4.1
+        specifier: 16.4.2
+        version: 16.4.2
       mathjax-full:
         specifier: 3.2.2
         version: 3.2.2
@@ -6371,6 +6371,11 @@ packages:
     engines: {node: '>= 20'}
     hasBin: true
 
+  marked@16.4.2:
+    resolution: {integrity: sha512-TI3V8YYWvkVf3KJe1dRkpnjs68JUPyEa5vjKrp1XEEJUAOaQc+Qj+L1qWbPd0SJuAdQkFU0h73sXXqwDYxsiDA==}
+    engines: {node: '>= 20'}
+    hasBin: true
+
   math-intrinsics@1.1.0:
     resolution: {integrity: sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==}
     engines: {node: '>= 0.4'}
@@ -10376,7 +10381,7 @@ snapshots:
       '@docsearch/css': 4.2.0
       ai: 5.0.82(zod@4.1.12)
       algoliasearch: 5.42.0
-      marked: 16.4.1
+      marked: 16.4.2
       zod: 4.1.12
     optionalDependencies:
       react: 19.2.0
@@ -16041,6 +16046,8 @@ snapshots:
       marked: 16.4.1
 
   marked@16.4.1: {}
+
+  marked@16.4.2: {}
 
   math-intrinsics@1.1.0: {}
 
