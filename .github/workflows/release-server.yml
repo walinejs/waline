@@ -67,7 +67,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           file: ./packages/server/Dockerfile.alpine
-          platforms: linux/amd64,linux/arm64,linux/arm/v7
+          platforms: linux/amd64,linux/arm64,linux/arm/v8
           push: true
           tags: |
             lizheming/waline:alpine
@@ -77,7 +77,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           file: ./packages/server/Dockerfile
-          platforms: linux/amd64,linux/arm64,linux/arm/v7
+          platforms: linux/amd64,linux/arm64,linux/arm/v8
           push: true
           tags: |
             lizheming/waline:latest
