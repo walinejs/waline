@@ -133,8 +133,8 @@ importers:
   docs:
     devDependencies:
       '@fancyapps/ui':
-        specifier: 6.1.2
-        version: 6.1.2
+        specifier: 6.1.6
+        version: 6.1.6
       '@vuepress/bundler-vite':
         specifier: 2.0.0-rc.26
         version: 2.0.0-rc.26(@types/node@24.9.2)(jiti@2.6.1)(sass-embedded@1.93.2)(sass@1.93.2)(terser@5.44.0)(tsx@4.19.2)(typescript@5.9.3)
@@ -1719,8 +1719,8 @@ packages:
     resolution: {integrity: sha512-43/qtrDUokr7LJqoF2c3+RInu/t4zfrpYdoSDfYyhg52rwLV6TnOvdG4fXm7IkSB3wErkcmJS9iEhjVtOSEjjA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@fancyapps/ui@6.1.2':
-    resolution: {integrity: sha512-84jCcQOiiKnTxMeqYiJ9Zt45t8fWnwnESna60RVAABOjA+d6qjvO8zzNcG1P7Vdw1I7+ViixXqeKMfy4pobkTg==}
+  '@fancyapps/ui@6.1.6':
+    resolution: {integrity: sha512-7kgvuufdwlT79rrveCq1s3O9WzLY6REKG2NOlWji5GL3aalRU2f+7kfppfpg29WQh6NFP/bXAAkWOzF5dd3GTg==}
 
   '@fast-csv/format@5.0.5':
     resolution: {integrity: sha512-0P9SJXXnqKdmuWlLaTelqbrfdgN37Mvrb369J6eNmqL41IEIZQmV4sNM4GgAK2Dz3aH04J0HKGDMJFkYObThTw==}
@@ -10687,7 +10687,7 @@ snapshots:
       '@eslint/core': 0.17.0
       levn: 0.4.1
 
-  '@fancyapps/ui@6.1.2': {}
+  '@fancyapps/ui@6.1.6': {}
 
   '@fast-csv/format@5.0.5':
     dependencies:
