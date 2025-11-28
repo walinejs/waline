@@ -28,6 +28,7 @@ export default {
     },
     MD040: false,
     MD046: false,
+    MD060: false,
   },
   ignores: ['**/node_modules/**', '**/__tests__/**', 'CHANGELOG.md', 'LICENSE'],
 };

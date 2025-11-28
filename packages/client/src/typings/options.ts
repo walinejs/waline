@@ -8,16 +8,10 @@ import type {
 } from './base.js';
 import type { WalineProps } from './waline.js';
 
-export interface WalineInitOptions
-  extends Omit<
-    WalineProps,
-    | 'path'
-    | 'emoji'
-    | 'search'
-    | 'highlighter'
-    | 'imageUploader'
-    | 'texRenderer'
-  > {
+export interface WalineInitOptions extends Omit<
+  WalineProps,
+  'path' | 'emoji' | 'search' | 'highlighter' | 'imageUploader' | 'texRenderer'
+> {
   /**
    * Waline 的初始化挂载器。必须是一个**有效的** CSS 选择器 或 HTML 元素
    *
