@@ -10,7 +10,7 @@ on:
       - packages/server/**
 
 permissions:
-  contents: write
+  contents: read
   id-token: write
 
 jobs:

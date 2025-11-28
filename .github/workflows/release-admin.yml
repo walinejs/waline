@@ -9,7 +9,7 @@ on:
       - packages/admin/**
 
 permissions:
-  contents: write
+  contents: read
   id-token: write
 
 jobs:

@@ -1,4 +1,5 @@
 name: 'issue and discussion translator'
+
 on:
   issues:
     types: [opened, edited]
