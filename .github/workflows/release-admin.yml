@@ -29,5 +29,4 @@ jobs:
       - name: 'publish @waline/admin'
         uses: JS-DevTools/npm-publish@v4
         with:
-          token: ${{ secrets.NPM_TOKEN }}
           package: ./packages/admin
