@@ -3,7 +3,7 @@ import { useDebounceFn, useEventListener, watchImmediate } from '@vueuse/core';
 import type { WalineComment, WalineCommentData, UserInfo } from '@waline/api';
 import { addComment, login, updateComment } from '@waline/api';
 import autosize from 'autosize';
-import type { DeepReadonly } from 'vue';
+import type { DeepReadonly, CSSProperties } from 'vue';
 import {
   computed,
   inject,
@@ -88,6 +88,35 @@ const gifSearchRef = useTemplateRef<HTMLInputElement>('gif-search');
 const emoji = ref<DeepReadonly<WalineEmojiConfig>>({ tabs: [], map: {} });
 const emojiTabIndex = ref(0);
 const showEmoji = ref(false);
+const previewEmoji = ref('');
+const previewStyle = ref<CSSProperties>({});
+let leaveTimer: ReturnType<typeof setTimeout>;
+
+const onEmojiHover = (event: MouseEvent, key: string): void => {
+  clearTimeout(leaveTimer);
+  previewEmoji.value = key;
+
+  const target = event.currentTarget as HTMLElement | null;
+  const popup = emojiPopupRef.value;
+
+  if (target && popup) {
+    const targetRect = target.getBoundingClientRect();
+    const popupRect = popup.getBoundingClientRect();
+
+    previewStyle.value = {
+      left: `${targetRect.left - popupRect.left + targetRect.width / 2}px`,
+      top: `${targetRect.top - popupRect.top}px`,
+      transform: 'translate(-50%, -100%)',
+    };
+  }
+};
+
+const onEmojiLeave = (): void => {
+  leaveTimer = setTimeout(() => {
+    previewEmoji.value = '';
+  }, 50);
+};
+
 const showGif = ref(false);
 const showPreview = ref(false);
 const previewText = ref('');
@@ -746,13 +775,19 @@ onMounted(() => {
             v-for="(emojiItem, index) in emoji.tabs"
             :key="emojiItem.name"
           >
-            <div v-if="index === emojiTabIndex" class="wl-tab-wrapper">
+            <div
+              v-if="index === emojiTabIndex"
+              class="wl-tab-wrapper"
+              @scroll="onEmojiLeave"
+            >
               <button
                 v-for="key in emojiItem.items"
                 :key="key"
                 type="button"
                 :title="key"
                 @click="insert(`:${key}:`)"
+                @mouseenter="onEmojiHover($event, key)"
+                @mouseleave="onEmojiLeave"
               >
                 <img
                   v-if="showEmoji"
@@ -765,6 +800,18 @@ onMounted(() => {
               </button>
             </div>
           </template>
+
+          <div>
+            <img
+              v-if="previewEmoji"
+              class="wl-emoji-preview"
+              :src="emoji.map[previewEmoji]"
+              alt="preview"
+              loading="lazy"
+              referrerPolicy="no-referrer"
+              :style="previewStyle"
+            />
+          </div>
 
           <div v-if="emoji.tabs.length > 1" class="wl-tabs">
             <button
