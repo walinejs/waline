@@ -47,6 +47,23 @@
     max-height: 1.5em;
   }
 
+  .wl-emoji-preview {
+    position: absolute;
+    top: -4em;
+    left: 0;
+    z-index: 1;
+
+    display: block;
+    max-width: 3em;
+    max-height: 3em;
+    padding: 0.25em;
+    border: var(--waline-border);
+    border-radius: 4px;
+
+    background: var(--waline-bg-color);
+    box-shadow: var(--waline-box-shadow);
+  }
+
   .wl-tab-wrapper {
     overflow-y: auto;
     max-height: 145px;
