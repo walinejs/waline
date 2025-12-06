@@ -298,8 +298,8 @@ importers:
         specifier: 0.23.4-cjs.0
         version: 0.23.4-cjs.0(markdown-it@14.1.0)
       '@mdit/plugin-sub':
-        specifier: 0.22.5-cjs.0
-        version: 0.22.5-cjs.0(markdown-it@14.1.0)
+        specifier: 0.23.0
+        version: 0.23.0(markdown-it@14.1.0)
       '@mdit/plugin-sup':
         specifier: 0.22.5-cjs.0
         version: 0.22.5-cjs.0(markdown-it@14.1.0)
@@ -2089,8 +2089,8 @@ packages:
       markdown-it:
         optional: true
 
-  '@mdit/plugin-sub@0.22.5-cjs.0':
-    resolution: {integrity: sha512-Cl0Cir7z45bdlP5ZXhJeDHQwJ1MDwdt+RMAqc/9zIYN6HuAQ0RgF+faPXzpf3VXrRVdE9SvSwME03z6SmewiJA==}
+  '@mdit/plugin-sub@0.23.0':
+    resolution: {integrity: sha512-wlwIP2eiAvFOL73vgoZ9/6K9jaOc/GO4EvZKHthTT5CD48SORtncB4KOyX45NefVbnYekXWbKYowgKFkuODqnA==}
     engines: {node: '>= 18'}
     peerDependencies:
       markdown-it: ^14.1.0
@@ -4501,6 +4501,7 @@ packages:
 
   deta@2.0.0:
     resolution: {integrity: sha512-ve+WITlmfT5nJhhdPkUWRHL3x1x9J5mZouIS0zfYR9N/WXYVWdX8muBpFVS5L0Jwxmsvgnbe4I7e1aOrrjIctg==}
+    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
 
   detect-europe-js@0.1.2:
     resolution: {integrity: sha512-lgdERlL3u0aUdHocoouzT10d9I89VVhk0qNRmll7mXdGfJT1/wqZ2ZLA4oJAjeACPY5fT1wsbq2AT+GkuInsow==}
@@ -11082,9 +11083,9 @@ snapshots:
     optionalDependencies:
       markdown-it: 14.1.0
 
-  '@mdit/plugin-sub@0.22.5-cjs.0(markdown-it@14.1.0)':
+  '@mdit/plugin-sub@0.23.0(markdown-it@14.1.0)':
     dependencies:
-      '@mdit/helper': 0.22.3-cjs.0(markdown-it@14.1.0)
+      '@mdit/helper': 0.22.1(markdown-it@14.1.0)
       '@types/markdown-it': 14.1.2
     optionalDependencies:
       markdown-it: 14.1.0
