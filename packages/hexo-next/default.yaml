@@ -8,6 +8,9 @@ waline:
 
   # Waline server address url, you should set this to your own link
   serverURL: https://waline.vercel.app
+  
+  # If false, disable the comment
+  comment: true
 
   # Waline library CDN url, you can set this to your preferred CDN
   # libUrl: https://unpkg.com/@waline/client@v3/dist/waline.umd.js
