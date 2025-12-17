@@ -20,14 +20,6 @@ module.exports = class extends think.Controller {
         type,
       });
 
-      if (type === 'oidc') {
-        return this.redirect(
-          think.buildUrl(`${oauthUrl}/${type}`, {
-            redirect: redirectUrl,
-          }),
-        );
-      }
-
       return this.redirect(
         think.buildUrl(`${oauthUrl}/${type}`, {
           redirect: redirectUrl,
