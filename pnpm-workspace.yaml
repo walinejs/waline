@@ -1,11 +1,14 @@
 packages:
   - docs
   - packages/*
+
 onlyBuiltDependencies:
+  - '@parcel/watcher'
   - core-js-pure
   - esbuild
   - sqlite3
   - unrs-resolver
+
 overrides:
   '@waline/api': workspace:*
   '@waline/client': workspace:*

@@ -18,8 +18,10 @@ export interface GetUserListOptions extends BaseAPIOptions {
   signal?: AbortSignal;
 }
 
-export interface WalineUser
-  extends Pick<WalineComment, 'nick' | 'link' | 'avatar' | 'label' | 'level'> {
+export interface WalineUser extends Pick<
+  WalineComment,
+  'nick' | 'link' | 'avatar' | 'label' | 'level'
+> {
   count: number;
 }
 

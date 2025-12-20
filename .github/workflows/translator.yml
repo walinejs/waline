@@ -1,4 +1,5 @@
 name: 'issue and discussion translator'
+
 on:
   issues:
     types: [opened, edited]
@@ -21,7 +22,7 @@ jobs:
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: lizheming/github-translate-action@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

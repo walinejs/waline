@@ -27,19 +27,18 @@ export interface WalineEmojiConfig {
   map: WalineEmojiMaps;
 }
 
-export interface WalineConfig
-  extends Required<
-    Omit<
-      WalineProps,
-      | 'emoji'
-      | 'imageUploader'
-      | 'highlighter'
-      | 'texRenderer'
-      | 'wordLimit'
-      | 'reaction'
-      | 'search'
-    >
-  > {
+export interface WalineConfig extends Required<
+  Omit<
+    WalineProps,
+    | 'emoji'
+    | 'imageUploader'
+    | 'highlighter'
+    | 'texRenderer'
+    | 'wordLimit'
+    | 'reaction'
+    | 'search'
+  >
+> {
   locale: WalineLocale;
   wordLimit: [number, number] | false;
   emoji: (WalineEmojiInfo | WalineEmojiPresets)[] | null;
