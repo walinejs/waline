@@ -99,7 +99,9 @@ export default function () {
     baseUrl = match ? match[1] : '/';
   }
 
-  const socials = ['oidc', 'qq', 'weibo', 'github', 'twitter', 'facebook'];
+  const socials = Array.isArray(window.oauthServices)
+    ? window.oauthServices.map(({ name }) => name)
+    : ['oidc', 'qq', 'weibo', 'github', 'twitter', 'facebook'];
 
   return (
     <>
@@ -184,12 +186,10 @@ export default function () {
             </p>
           </form>
           <div className="social-accounts">
-            {(window.ALLOW_SOCIALS || socials).map((social) => (
+            {socials.map((social) => (
               <a
                 key={social}
-                href={`${baseUrl}oauth${
-                  window.ALLOW_SOCIALS ? '/' + social + '?' : `?type=${social}`
-                }&redirect=${basePath}ui/profile`}
+                href={`${baseUrl}oauth?type=${social}&redirect=${basePath}ui/profile`}
               >
                 {
                   /* eslint-disable-next-line import-x/namespace */
