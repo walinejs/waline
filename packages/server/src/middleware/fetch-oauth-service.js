@@ -12,5 +12,5 @@ module.exports = () => async (ctx, next) => {
   }
   ctx.state.oauthServices = oauthResp.services || [];
 
-  next();
+  await next();
 };
