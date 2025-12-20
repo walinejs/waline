@@ -38,6 +38,7 @@ const CSV_HEADERS = {
     'google',
     'weibo',
     'qq',
+    'oidc',
     'createdAt',
     'updatedAt',
   ],

@@ -32,14 +32,18 @@ module.exports = class extends think.Logic {
       secureDomains = think.isArray(secureDomains)
         ? secureDomains
         : [secureDomains];
+
       secureDomains.push(
         'localhost',
         '127.0.0.1',
-        'github.com',
-        'api.twitter.com',
-        'www.facebook.com',
-        'api.weibo.com',
-        'graph.qq.com',
+        // 'github.com',
+        // 'api.twitter.com',
+        // 'www.facebook.com',
+        // 'api.weibo.com',
+        // 'graph.qq.com',
+      );
+      secureDomains = secureDomains.concat(
+        this.ctx.state.oauthServices.map(({ origin }) => origin),
       );
 
       // 转换可能的正则表达式字符串为正则表达式对象
@@ -110,15 +114,10 @@ module.exports = class extends think.Logic {
           'url',
           'display_name',
           'type',
-          'github',
-          'twitter',
-          'facebook',
-          'google',
-          'weibo',
-          'qq',
           'avatar',
           '2fa',
           'label',
+          ...this.ctx.state.oauthServices.map(({ name }) => name),
         ],
       },
     );

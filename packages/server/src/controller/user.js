@@ -159,7 +159,7 @@ module.exports = class extends BaseRest {
       updateData['2fa'] = twoFactorAuth;
     }
 
-    const socials = ['github', 'twitter', 'facebook', 'google', 'weibo', 'qq'];
+    const socials = this.ctx.state.oauthServices.map(({ name }) => name);
 
     socials.forEach((social) => {
       const nextSocial = this.post(social);
