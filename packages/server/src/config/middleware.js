@@ -11,6 +11,9 @@ const isAliyunFC =
 
 module.exports = [
   {
+    handle: 'fetch-oauth-service',
+  },
+  {
     handle: 'dashboard',
     match: isNetlify ? new RegExp(`${netlifyFunctionPrefix}/ui`, 'i') : /^\/ui/,
   },

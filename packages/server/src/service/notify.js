@@ -532,8 +532,8 @@ module.exports = class extends think.Service {
       }
     }
 
-    const disallowList = ['github', 'twitter', 'facebook', 'qq', 'weibo'].map(
-      (social) => 'mail.' + social,
+    const disallowList = this.ctx.state.oauthServices.map(
+      ({ name }) => 'mail.' + name,
     );
     const fakeMail = new RegExp(`@(${disallowList.join('|')})$`, 'i');
 
