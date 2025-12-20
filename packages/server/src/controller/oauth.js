@@ -9,16 +9,13 @@ module.exports = class extends think.Controller {
   async indexAction() {
     const { code, oauth_verifier, oauth_token, type, redirect } = this.get();
     const { oauthUrl } = this.config();
+    const { serverURL } = this.ctx;
 
     const hasCode =
       type === 'twitter' ? oauth_token && oauth_verifier : Boolean(code);
 
     if (!hasCode) {
-      const { serverURL } = this.ctx;
-      const redirectUrl = think.buildUrl(`${serverURL}/api/oauth`, {
-        redirect,
-        type,
-      });
+      const redirectUrl = `${serverURL}/api/oauth`;
 
       return this.redirect(
         think.buildUrl(`${oauthUrl}/${type}`, {
@@ -31,10 +28,17 @@ module.exports = class extends think.Controller {
     /**
      * user = { id, name, email, avatar,url };
      */
-    const params = { code, oauth_verifier, oauth_token };
+    const params = {
+      code,
+      oauth_verifier,
+      oauth_token,
+    };
+
+    if (type === 'oidc') {
+      params.redirect = `${serverURL}/api/oauth`;
+    }
 
     if (type === 'facebook') {
-      const { serverURL } = this.ctx;
       const redirectUrl = think.buildUrl(`${serverURL}/api/oauth`, {
         redirect,
         type,
