@@ -32,11 +32,8 @@ module.exports = class extends think.Controller {
       code,
       oauth_verifier,
       oauth_token,
+      redirect: `${serverURL}/api/oauth`,
     };
-
-    if (type === 'oidc') {
-      params.redirect = `${serverURL}/api/oauth`;
-    }
 
     if (type === 'facebook') {
       const redirectUrl = think.buildUrl(`${serverURL}/api/oauth`, {
