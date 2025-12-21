@@ -7,15 +7,26 @@ module.exports = class extends think.Controller {
   }
 
   async indexAction() {
-    const { code, oauth_verifier, oauth_token, type, redirect } = this.get();
-    const { oauthUrl } = this.config();
+    const {
+      code,
+      oauth_verifier,
+      oauth_token,
+      type: rawType,
+      redirect,
+    } = this.get();
+    const type = rawType ? rawType.replace(/\/$/, '') : rawType;
+    const { oauthUrl: rawOauthUrl } = this.config();
+    const oauthUrl = rawOauthUrl ? rawOauthUrl.replace(/\/$/, '') : rawOauthUrl;
     const { serverURL } = this.ctx;
 
     const hasCode =
       type === 'twitter' ? oauth_token && oauth_verifier : Boolean(code);
 
     if (!hasCode) {
-      const redirectUrl = `${serverURL}/api/oauth`;
+      const redirectUrl = think.buildUrl(`${serverURL}/api/oauth`, {
+        type,
+        redirect,
+      });
 
       return this.redirect(
         think.buildUrl(`${oauthUrl}/${type}`, {
@@ -32,7 +43,10 @@ module.exports = class extends think.Controller {
       code,
       oauth_verifier,
       oauth_token,
-      redirect: `${serverURL}/api/oauth`,
+      redirect: think.buildUrl(`${serverURL}/api/oauth`, {
+        type,
+        redirect,
+      }),
     };
 
     if (type === 'facebook') {
@@ -47,12 +61,23 @@ module.exports = class extends think.Controller {
       });
     }
 
-    const user = await fetch(think.buildUrl(`${oauthUrl}/${type}`, params), {
+    const fetchUrl = think.buildUrl(`${oauthUrl}/${type}`, params);
+
+    const user = await fetch(fetchUrl, {
       method: 'GET',
       headers: {
         'user-agent': '@waline',
       },
-    }).then((resp) => resp.json());
+    }).then(async (resp) => {
+      const contentType = resp.headers.get('content-type');
+
+      if (contentType && contentType.includes('application/json')) {
+        return resp.json();
+      }
+      const text = await resp.text();
+
+      return { error: `Failed to fetch user info: ${resp.status} ${text}` };
+    });
 
     if (!user?.id) {
       return this.fail(user);
