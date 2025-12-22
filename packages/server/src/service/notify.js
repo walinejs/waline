@@ -5,10 +5,10 @@ const nodemailer = require('nodemailer');
 const nunjucks = require('nunjucks');
 
 module.exports = class extends think.Service {
-  constructor(ctx) {
-    super(ctx);
+  constructor(controller) {
+    super(controller);
 
-    this.ctx = ctx;
+    this.controller = controller;
     const {
       SMTP_USER,
       SMTP_PASS,
@@ -55,8 +55,8 @@ module.exports = class extends think.Service {
       },
     };
 
-    title = this.ctx.locale(title, data);
-    content = this.ctx.locale(content, data);
+    title = this.controller.locale(title, data);
+    content = this.controller.locale(content, data);
 
     return this.transporter.sendMail({
       from:
@@ -94,8 +94,8 @@ module.exports = class extends think.Service {
 【内容】：{{self.comment}}
 【地址】：{{site.postUrl}}`;
 
-    title = this.ctx.locale(title, data);
-    content = this.ctx.locale(contentWechat, data);
+    title = this.controller.locale(title, data);
+    content = this.controller.locale(contentWechat, data);
 
     const form = new FormData();
 
@@ -145,8 +145,8 @@ module.exports = class extends think.Service {
 【内容】：{{self.comment}} 
 <a href='{{site.postUrl}}'>查看详情</a>`;
 
-    title = this.ctx.locale(title, data);
-    const desp = this.ctx.locale(contentWechat, data);
+    title = this.controller.locale(title, data);
+    const desp = this.controller.locale(contentWechat, data);
 
     content = desp.replace(/\n/g, '<br/>');
 
@@ -235,7 +235,7 @@ module.exports = class extends think.Service {
 
     const form = new FormData();
 
-    form.append('msg', this.ctx.locale(contentQQ, data));
+    form.append('msg', this.controller.locale(contentQQ, data));
     form.append('qq', QQ_ID);
 
     const qmsgHost = QMSG_HOST
@@ -308,7 +308,7 @@ module.exports = class extends think.Service {
 
     const form = new FormData();
 
-    form.append('text', this.ctx.locale(contentTG, data));
+    form.append('text', this.controller.locale(contentTG, data));
     form.append('chat_id', TG_CHAT_ID);
     form.append('parse_mode', 'MarkdownV2');
 
@@ -352,8 +352,8 @@ module.exports = class extends think.Service {
       },
     };
 
-    title = this.ctx.locale(title, data);
-    content = this.ctx.locale(content, data);
+    title = this.controller.locale(title, data);
+    content = this.controller.locale(content, data);
 
     const form = new FormData();
 
@@ -389,8 +389,8 @@ module.exports = class extends think.Service {
       },
     };
 
-    title = this.ctx.locale(title, data);
-    content = this.ctx.locale(
+    title = this.controller.locale(title, data);
+    content = this.controller.locale(
       think.config('DiscordTemplate') ||
         `💬 {{site.name|safe}} 有新评论啦 
     【评论者昵称】：{{self.nick}}
@@ -440,7 +440,7 @@ module.exports = class extends think.Service {
 
     const post = {
       en_us: {
-        title: this.ctx.locale(title, data),
+        title: this.controller.locale(title, data),
         content: [
           [
             {
@@ -532,7 +532,7 @@ module.exports = class extends think.Service {
       }
     }
 
-    const disallowList = this.ctx.state.oauthServices.map(
+    const disallowList = this.controller.ctx.state.oauthServices.map(
       ({ name }) => 'mail.' + name,
     );
     const fakeMail = new RegExp(`@(${disallowList.join('|')})$`, 'i');
