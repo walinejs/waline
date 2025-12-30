@@ -82,11 +82,15 @@ module.exports = class extends BaseRest {
   async getAction() {
     const { type } = this.get();
 
+    // Handle RSS feed separately to bypass JSON conversion
+    if (type === 'rss') {
+      return this.getRSSFeed();
+    }
+
     const fnMap = {
       recent: this.getRecentCommentList,
       count: this.getCommentCount,
       list: this.getAdminCommentList,
-      rss: this.getRSSFeed,
     };
 
     const fn = fnMap[type] || this.getCommentList;
@@ -731,7 +735,7 @@ module.exports = class extends BaseRest {
   }
 
   async getRSSFeed() {
-    const { count = 50, url: filterUrl } = this.get();
+    const { count = 50, url: filterUrl, lang: userLang } = this.get();
     const { userInfo } = this.ctx.state;
     const where = {};
 
@@ -788,21 +792,30 @@ module.exports = class extends BaseRest {
       );
     }
 
-    // Format comments
-    const formattedComments = await Promise.all(
-      comments.map((cmt) =>
-        formatCmt(
+    // Format comments (keep raw insertedAt for date handling)
+    const rawComments = await Promise.all(
+      comments.map(async (cmt) => {
+        const formatted = await formatCmt(
           cmt,
           users,
           { ...this.config(), deprecated: this.ctx.state.deprecated },
           userInfo,
-        ),
-      ),
+        );
+
+        // Preserve insertedAt for proper date handling
+        formatted.insertedAt = cmt.insertedAt;
+
+        return formatted;
+      }),
     );
 
     // Get site URL from request
     const siteUrl =
       this.ctx.serverURL || this.ctx.protocol + '://' + this.ctx.host;
+
+    // Determine language for feed
+    const lang = (userLang || 'en-us').toLowerCase();
+    const feedLang = lang.startsWith('zh') ? 'zh-cn' : 'en';
 
     // Create RSS feed
     const feed = new RSS({
@@ -810,22 +823,27 @@ module.exports = class extends BaseRest {
       description: 'Recent comments from Waline',
       feed_url: `${siteUrl}/api/comment?type=rss`,
       site_url: siteUrl,
-      language: 'zh-cn',
+      language: feedLang,
       pubDate: new Date(),
       ttl: 60,
     });
 
     // Add each comment as an item
-    formattedComments.forEach((cmt) => {
+    rawComments.forEach((cmt) => {
       const itemUrl = `${siteUrl}${cmt.url}#${cmt.objectId}`;
+      // Use language-appropriate title format
+      const title =
+        feedLang === 'zh-cn'
+          ? `${cmt.nick} 评论于 ${cmt.url}`
+          : `${cmt.nick} commented on ${cmt.url}`;
 
       feed.item({
-        title: `${cmt.nick} 评论于 ${cmt.url}`,
+        title: title,
         description: cmt.comment,
         url: itemUrl,
         guid: cmt.objectId,
         author: cmt.nick,
-        date: new Date(cmt.time),
+        date: cmt.insertedAt, // Use original Date object
       });
     });
 
