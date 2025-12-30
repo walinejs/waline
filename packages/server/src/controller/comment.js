@@ -811,11 +811,15 @@ module.exports = class extends BaseRest {
 
     // Get site URL from request
     const siteUrl =
-      this.ctx.serverURL || this.ctx.protocol + '://' + this.ctx.host;
+      this.ctx.serverURL ||
+      (this.ctx.protocol && this.ctx.host
+        ? `${this.ctx.protocol}://${this.ctx.host}`
+        : 'http://localhost');
 
-    // Determine language for feed
+    // Determine language for feed - support common language codes
     const lang = (userLang || 'en-us').toLowerCase();
-    const feedLang = lang.startsWith('zh') ? 'zh-cn' : 'en';
+    const feedLang =
+      lang.includes('zh') || lang.includes('cn') ? 'zh-cn' : 'en';
 
     // Create RSS feed
     const feed = new RSS({
