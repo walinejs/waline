@@ -1,3 +1,5 @@
+const RSS = require('rss');
+
 const BaseRest = require('./rest.js');
 const akismet = require('../service/akismet.js');
 const { getMarkdownParser } = require('../service/markdown/index.js');
@@ -84,6 +86,7 @@ module.exports = class extends BaseRest {
       recent: this.getRecentCommentList,
       count: this.getCommentCount,
       list: this.getAdminCommentList,
+      rss: this.getRSSFeed,
     };
 
     const fn = fnMap[type] || this.getCommentList;
@@ -725,6 +728,112 @@ module.exports = class extends BaseRest {
         ),
       ),
     );
+  }
+
+  async getRSSFeed() {
+    const { count = 50, url: filterUrl } = this.get();
+    const { userInfo } = this.ctx.state;
+    const where = {};
+
+    // Only show approved comments
+    if (think.isEmpty(userInfo) || this.config('storage') === 'deta') {
+      where.status = ['NOT IN', ['waiting', 'spam']];
+    } else {
+      where._complex = {
+        _logic: 'or',
+        status: ['NOT IN', ['waiting', 'spam']],
+        user_id: userInfo.objectId,
+      };
+    }
+
+    // Optionally filter by URL (specific article)
+    if (filterUrl) {
+      where.url = filterUrl;
+    }
+
+    const comments = await this.modelInstance.select(where, {
+      desc: 'insertedAt',
+      limit: Math.min(count, 100), // Limit to 100 items max
+      field: [
+        'status',
+        'comment',
+        'insertedAt',
+        'link',
+        'mail',
+        'nick',
+        'url',
+        'pid',
+        'rid',
+        'ua',
+        'ip',
+        'user_id',
+        'sticky',
+        'like',
+      ],
+    });
+
+    const userModel = this.getModel('Users');
+    const user_ids = Array.from(
+      new Set(comments.map(({ user_id }) => user_id).filter((v) => v)),
+    );
+
+    let users = [];
+
+    if (user_ids.length) {
+      users = await userModel.select(
+        { objectId: ['IN', user_ids] },
+        {
+          field: ['display_name', 'email', 'url', 'type', 'avatar', 'label'],
+        },
+      );
+    }
+
+    // Format comments
+    const formattedComments = await Promise.all(
+      comments.map((cmt) =>
+        formatCmt(
+          cmt,
+          users,
+          { ...this.config(), deprecated: this.ctx.state.deprecated },
+          userInfo,
+        ),
+      ),
+    );
+
+    // Get site URL from request
+    const siteUrl =
+      this.ctx.serverURL || this.ctx.protocol + '://' + this.ctx.host;
+
+    // Create RSS feed
+    const feed = new RSS({
+      title: 'Waline Comments',
+      description: 'Recent comments from Waline',
+      feed_url: `${siteUrl}/api/comment?type=rss`,
+      site_url: siteUrl,
+      language: 'zh-cn',
+      pubDate: new Date(),
+      ttl: 60,
+    });
+
+    // Add each comment as an item
+    formattedComments.forEach((cmt) => {
+      const itemUrl = `${siteUrl}${cmt.url}#${cmt.objectId}`;
+
+      feed.item({
+        title: `${cmt.nick} 评论于 ${cmt.url}`,
+        description: cmt.comment,
+        url: itemUrl,
+        guid: cmt.objectId,
+        author: cmt.nick,
+        date: new Date(cmt.time),
+      });
+    });
+
+    // Set content type to XML and return the RSS feed
+    this.type = 'xml';
+    this.body = feed.xml();
+
+    return;
   }
 
   async getCommentCount() {
