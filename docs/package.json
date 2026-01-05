@@ -12,7 +12,7 @@
     "@vuepress/bundler-vite": "2.0.0-rc.26",
     "@vuepress/helper": "2.0.0-rc.121",
     "@vuepress/plugin-comment": "2.0.0-rc.121",
-    "@vuepress/plugin-docsearch": "2.0.0-rc.118",
+    "@vuepress/plugin-docsearch": "2.0.0-rc.121",
     "@waline/client": "workspace:*",
     "marked": "17.0.1",
     "mathjax-full": "3.2.2",
