@@ -16,7 +16,6 @@ module.exports = class extends Base {
    * @apiSuccess  (200) {String}  data.display_name user nick name
    * @apiSuccess  (200) {String}  data.email user email address
    * @apiSuccess  (200) {String}  data.github user github account name
-   * @apiSuccess  (200) {String}  data.mailMd5 user mail md5
    * @apiSuccess  (200) {String}  data.objectId user id
    * @apiSuccess  (200) {String}  data.type user type, administrator or guest
    * @apiSuccess  (200) {String}  data.url user link
