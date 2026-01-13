@@ -50,6 +50,24 @@ GET /api/comment?type=recent
 | --------- | ------ | -------------------- |
 | count     | number | comment count return |
 
+### RSS Feed
+
+Get RSS feed for comments
+
+```http
+GET /api/comment?type=rss
+```
+
+**Parameters**:
+
+| Parameter | Type   | Description                                                   |
+| --------- | ------ | ------------------------------------------------------------- |
+| count     | number | comment count return, default 50, maximum 100                 |
+| url       | string | Optional, filter comments for a specific article              |
+| lang      | string | Optional, set RSS feed language, default en-us, supports i18n |
+
+**Returns**: RSS 2.0 format XML feed
+
 ### Submit comment
 
 ```http
