@@ -46,6 +46,7 @@ const {
   POSTGRES_USER,
   PG_SSL,
   POSTGRES_SSL,
+  POSTGRES_URL,
   MONGO_AUTHSOURCE,
   MONGO_DB,
   MONGO_HOST,
@@ -83,9 +84,6 @@ if (MONGO_DB) {
   type = 'tidb';
 }
 
-const isVercelPostgres =
-  type === 'postgresql' && POSTGRES_HOST?.endsWith('vercel-storage.com');
-
 exports.model = {
   type,
   common: {
@@ -116,11 +114,12 @@ exports.model = {
     password: PG_PASSWORD || POSTGRES_PASSWORD,
     database: PG_DB || POSTGRES_DATABASE,
     host: PG_HOST || POSTGRES_HOST || '127.0.0.1',
-    port: PG_PORT || POSTGRES_PORT || (isVercelPostgres ? '5432' : '3211'),
+    port: PG_PORT || POSTGRES_PORT || '5432',
     connectionLimit: 1,
     prefix: PG_PREFIX || POSTGRES_PREFIX || 'wl_',
     ssl:
-      (PG_SSL || POSTGRES_SSL) == 'true' || isVercelPostgres
+      (PG_SSL || POSTGRES_SSL) == 'true' ||
+      POSTGRES_URL?.includes('sslmode=require')
         ? {
             rejectUnauthorized: false,
           }
