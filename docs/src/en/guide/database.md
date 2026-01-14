@@ -4,7 +4,7 @@ icon: database
 order: 2
 ---
 
-Besides LeanCloud, Waline also supports a variety of databases, including MySQL, PostgreSQL, SQLite and MongoDB.
+Waline supports a variety of databases, including MySQL, PostgreSQL, SQLite and MongoDB.
 
 You only need to configure environment variables, and Waline will automatically switch to the corresponding data storage service based on the environment variables you configure.
 

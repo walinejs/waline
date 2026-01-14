@@ -12,14 +12,11 @@ If you don't want to deploy the server on Vercel, you can also choose to deploy 
 
 ```bash
 docker run -d \
-  -e LEAN_ID=xxx \
-  -e LEAN_KEY=xxx \
-  -e LEAN_MASTER_KEY=xxx \
   -p 8360:8360 \
   lizheming/waline
 ```
 
-`LEAN_ID` `LEAN_KEY` and `LEAN_MASTER_KEY` correspond to the App Id, App Key and Master Key obtained in the background respectively. If you are not a LeanCloud International version user, you need to bind the registered domain name in the background and configure `LEAN_SERVER`.
+It's a demo for how to run waline. You also need add some database environment if you want all comment function works well.
 
 ::: tip How to build image?
 

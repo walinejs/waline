@@ -23,16 +23,16 @@ A simple comment system with backend support fork from [Valine](https://valine.j
 
 |                                                 | Waline                                                              |                                    |
 | ----------------------------------------------- | ------------------------------------------------------------------- | ---------------------------------- |
-| **Client**                                      | **Server**                                                          | **Storage**                        |
-| [@waline/client](https://waline.js.org)         | [Vercel](https://vercel.com)                                        | [LeanCloud](https://leancloud.app) |
-| [MiniValine](https://minivaline.js.org/)        | [CloudBase](https://cloudbase.net/)                                 | [CloudBase](https://cloudbase.net) |
-| [sodesu](https://github.com/BeiyanYunyi/sodesu) | [Railway](https://railway.app)                                      | [MongoDB](https://mongodb.com)     |
-|                                                 | [Render](https://render.com)                                        | MySQL                              |
-|                                                 | [Zeabur](https://zeabur.com)                                        | SQLite                             |
-|                                                 | [Netlify](https://netlify.com)                                      | PostgreSQL                         |
-|                                                 | [Alibaba Cloud ComputeNest](https://computenest.console.aliyun.com) | SQLite                             |
-|                                                 | Docker                                                              | [GitHub](https://github.com)       |
-|                                                 | self host                                                           | [TiDB](https://tidbcloud.com/)     |
+| **Client**                                      | **Server**                                                          | **Database**                       |
+| [@waline/client](https://waline.js.org)         | [Vercel](https://vercel.com)                                        | [MongoDB](https://mongodb.com)     |
+| [MiniValine](https://minivaline.js.org/)        | [CloudBase](https://cloudbase.net/)                                 | MySQL                              |
+| [sodesu](https://github.com/BeiyanYunyi/sodesu) | [Railway](https://railway.app)                                      | SQLite                             |
+|                                                 | [Render](https://render.com)                                        | PostgreSQL                         |
+|                                                 | [Zeabur](https://zeabur.com)                                        | [TiDB](https://tidbcloud.com/)     |
+|                                                 | [Netlify](https://netlify.com)                                      | [CloudBase](https://cloudbase.net) |
+|                                                 | [Alibaba Cloud ComputeNest](https://computenest.console.aliyun.com) | [GitHub](https://github.com)       |
+|                                                 | Docker                                                              |                                    |
+|                                                 | self host                                                           |                                    |
 
 ## Todo
 
