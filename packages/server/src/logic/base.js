@@ -2,7 +2,6 @@ const path = require('node:path');
 const qs = require('node:querystring');
 
 const jwt = require('jsonwebtoken');
-const helper = require('think-helper');
 
 module.exports = class extends think.Logic {
   constructor(...args) {
@@ -141,7 +140,6 @@ module.exports = class extends think.Logic {
       avatarUrl = avatarProxy + '?url=' + encodeURIComponent(avatarUrl);
     }
     userInfo.avatar = avatarUrl;
-    userInfo.mailMd5 = helper.md5(userInfo.email);
     this.ctx.state.userInfo = userInfo;
     this.ctx.state.token = token;
   }

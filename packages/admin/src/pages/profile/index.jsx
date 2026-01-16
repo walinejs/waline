@@ -110,13 +110,7 @@ export default function () {
                   rel="noreferrer"
                   onClick={changeAvatar}
                 >
-                  <img
-                    className="profile-avatar"
-                    src={
-                      user.avatar ||
-                      `https://seccdn.libravatar.org/avatar/${user.mailMd5}?s=220&amp;r=X&amp;d=mm`
-                    }
-                  />
+                  <img className="profile-avatar" src={user.avatar} />
                 </a>
               </p>
               <h2>{user.display_name}</h2>
