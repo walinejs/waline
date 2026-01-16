@@ -9,76 +9,79 @@ dir:
 Welcome to Waline. In just a few steps, you can enable Waline to provide comments and pageviews on your site.
 
 <!-- more -->
-
-## LeanCloud Settings (Database)
-
-1. [sign in](https://console.leancloud.app/login) or [sign up](https://console.leancloud.app/register) for LeanCloud and go to the [Console](https://console.leancloud.app/apps).
-
-1. Click the [Create app](https://console.leancloud.app/apps) button to create a new app. Enter the app name of your choice, and select the Developer price plan:
-
-   ![Create App](./assets/leancloud-1.png)
-
-1. Enter the app, then select `Settings` > `App Keys` at the left bottom corner. You will see `APP ID`, `APP Key` and `Master Key` for your app. Note these credentials, as you will need them later.
-
-   ![ID and Key](./assets/leancloud-2.png)
-
-## Deploy to Vercel (Server)
+## Server Deploy
 
 [![Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fwalinejs%2Fwaline%2Ftree%2Fmain%2Fexample)
 
-1. Click the "Deploy" button above. You will be redirected to Vercel to deploy the Waline template.
+1. Click the button above to go to Vercel and deploy the server.
 
    ::: note
 
-   If you haven't logged in, we recommend signing in with GitHub.
+   If you are not logged in, Vercel will prompt you to sign up or log in. Please use your GitHub account for quick login.
 
    :::
 
-1. Enter a Vercel project name of your choice, then click `Create`.
+1. Enter a Vercel project name you like and click `Create` to continue:
 
-   ![Create Project](../../../assets/vercel-1.png)
+   ![create](../../../assets/vercel-1.png)
 
-1. Vercel will create a new repository based on the Waline template with the project name you entered earlier.
+1. Vercel will now create and initialize a new repository based on the Waline template. The repository name will be the project name you just entered.
+
+   ![deploy](../../../assets/vercel-2.png)
+
+   After one or two minutes, fireworks will appear on the screen to celebrate a successful deployment. Click `Go to Dashboard` to jump to the application dashboard.
 
    ![deploy](../../../assets/vercel-3.png)
 
-   After a minute or two, Vercel should finish the deployment. Click on the `Go to Dashboard` button to be redirected to your application dashboard.
+## Create a Database
 
-   ![deploy](../../../assets/vercel-4.png)
+1. Click `Storage` at the top to enter the storage configuration page, then choose `Create Database`. Select `Neon` as the `Marketplace Database Providers`, and click `Continue` to proceed.
 
-1. Click on your project's `Settings` tab at the top. On the left-hand sidebar, select `Environment Variables` to go to environment variables settings page. You will need to create three new environment variables: `LEAN_ID`, `LEAN_KEY` and `LEAN_MASTER_KEY`. The values of each variables correspond to the credentials saved from LeanCloud: `APP ID` is the value for the `LEAN_ID` variable, `APP Key` for `LEAN_KEY`, and `Master Key` for `LEAN_MASTER_KEY`. You can learn more about [other variables here](https://waline.js.org/en/reference/server/env.html).
+   ![neon](../../../assets/vercel-4.png)
 
-   ![set environment variables](../../../assets/vercel-5.png)
+1. You will be prompted to create a Neon account. Click `Accept and Create` to accept and create it. Next, you will choose the database plan, including region and quota. You can leave everything as default and click `Continue`.
 
-1. Once the environment variables have been configured, you'll need to redeploy your application. Click on your project's `Deployments` tab at the top, find the latest deployment at the top of list, and select `Redeploy` in the dropdown menu on the right.
+   ![neon](../../../assets/vercel-5.png)
 
-   ![redeploy](../../../assets/vercel-6.png)
+1. You will then be asked to define the database name. You can also leave it unchanged and click `Continue`.
 
-1. If everything is ok, Vercel will redirect you to the `Overview` page to start redeployment. Wait for the `STATUS` to change to `Ready`. You can now click `Visit` to visit the site. This link is your server address.
+   ![neon](../../../assets/vercel-6.png)
 
-   ![redeploy success](../../../assets/vercel-7.png)
+1. Now you should see the database service you just created under `Storage`. Click it and select `Open in Neon` to jump to Neon. In the Neon interface, choose `SQL Editor` from the left sidebar, paste the SQL statements from [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) into the editor, and click `Run` to create the tables.
 
-## Assign Domain (Optional)
+   ![neon](../../../assets/vercel-7.png)
 
-1. Go to <kbd>Settings</kbd> > <kbd>Domains</kbd> to go to domain setting page.
+   ![neon](../../../assets/vercel-8.png)
 
-1. Enter the domain you want to assign and click the <kbd>Add</kbd> button.
+1. After a short while, you will be notified that the creation was successful. Go back to Vercel, click `Deployments` at the top, and click the `Redeploy` button on the right of the latest deployment. This step ensures that the newly configured database service takes effect.
 
-   ![Add domain](../../../assets/vercel-8.png)
+   ![redeploy success](../../../assets/vercel-9.png)
 
-1. Add a new `CNAME` record in your domain name service provider.
+1. You will be redirected to the `Overview` page and the deployment will start. After a moment, the `STATUS` will change to `Ready`. Click `Visit` to open the deployed website. This URL is your server address.
+
+   ![visit](../../../assets/vercel-10.png)
+
+## Bind a Custom Domain
+
+1. Click `Settings` → `Domains` at the top to enter the domain configuration page.
+
+1. Enter the domain you want to bind and click `Add`.
+
+   ![Add domain](../../../assets/vercel-11.png)
+
+1. Add a new `CNAME` record at your domain provider:
 
    | Type  | Name    | Value                |
    | ----- | ------- | -------------------- |
    | CNAME | example | cname.vercel-dns.com |
 
-1. Once that's set, you can visit your new waline comment system using your own domain. :tada:
-   - serverURL：example.your-domain.com
-   - admin panel：example.your-domain.com/ui
+1. Wait for the DNS record to take effect. You can then access Waline using your own domain 🎉
+   - Comment system: example.yourdomain.com
+   - Comment management: example.yourdomain.com/ui
 
-   ![success](../../../assets/vercel-9.png)
+   ![success](../../../assets/vercel-12.png)
 
-## Importing in HTML (Client)
+## Importing in HTML
 
 Here is how you can add Waline to your web page or website:
 

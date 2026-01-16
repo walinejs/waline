@@ -10,32 +10,7 @@ dir:
 
 <!-- more -->
 
-## LeanCloud 设置 (数据库)
-
-1. [登录](https://console.leancloud.app/login) 或 [注册](https://console.leancloud.app/register) `LeanCloud 国际版` 并进入 [控制台](https://console.leancloud.app/apps)
-
-1. 点击左上角 [创建应用](https://console.leancloud.app/apps) 并起一个你喜欢的名字 (请选择免费的开发版):
-
-   ![创建应用](./assets/leancloud-1.png)
-
-1. 进入应用，选择左下角的 `设置` > `应用 Key`。你可以看到你的 `APP ID`,`APP Key` 和 `Master Key`。请记录它们，以便后续使用。
-
-   ![ID 和 Key](./assets/leancloud-2.png)
-
-::: warning 国内版需要完成备案接入
-
-如果你正在使用 Leancloud 国内版 ([leancloud.cn](https://leancloud.cn))，我们推荐你切换到国际版 ([leancloud.app](https://leancloud.app))。否则，你需要为应用额外绑定**已备案**的域名，同时购买独立 IP 并完成备案接入:
-
-- 登录国内版并进入需要使用的应用
-- 选择 `设置` > `域名绑定` > `API 访问域名` > `绑定新域名` > 输入域名 > `确定`。
-- 按照页面上的提示按要求在 DNS 上完成 CNAME 解析。
-- 购买独立 IP 并提交工单完成备案接入。(独立 IP 目前价格为 ￥ 50/个/月)
-
-![域名设置](./assets/leancloud-3.png)
-
-:::
-
-## Vercel 部署 (服务端)
+## 部署服务端
 
 [![Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fwalinejs%2Fwaline%2Ftree%2Fmain%2Fexample)
 
@@ -49,41 +24,51 @@ dir:
 
 1. 输入一个你喜欢的 Vercel 项目名称并点击 `Create` 继续:
 
-   ![创建项目](../../assets/vercel-1.png)
+   ![create](../../assets/vercel-1.png)
 
 1. 此时 Vercel 会基于 Waline 模板帮助你新建并初始化仓库，仓库名为你之前输入的项目名。
 
-   ![deploy](../../assets/vercel-3.png)
+   ![](../../assets/vercel-2.png)
 
    一两分钟后，满屏的烟花会庆祝你部署成功。此时点击 `Go to Dashboard` 可以跳转到应用的控制台。
 
-   ![deploy](../../assets/vercel-4.png)
+   ![](../../assets/vercel-3.png)
 
-1. 点击顶部的 `Settings` - `Environment Variables` 进入环境变量配置页，并配置三个环境变量 `LEAN_ID`, `LEAN_KEY` 和 `LEAN_MASTER_KEY` 。它们的值分别对应上一步在 LeanCloud 中获得的 `APP ID`, `APP KEY`, `Master Key`。
+## 创建数据库
 
-   ![设置环境变量](../../assets/vercel-5.png)
+1. 点击顶部的 `Storage` 进入存储服务配置页，选择 `Create Database` 创建数据库。`Marketplace Database Providers` 数据库服务选择 `Neon`，点击 `Continue` 进行下一步。
 
-   ::: note
+   ![](../../assets/vercel-4.png)
 
-   如果你使用 LeanCloud 国内版，请额外配置 `LEAN_SERVER` 环境变量，值为你绑定好的域名。
+1. 此时会让你创建一个 Neno 账号，此时选择 `Accept and Create` 接受并创建。后续选择数据库的套餐配置，包括地区和额度。这里可以什么都不操作直接选择 `Continue` 下一步。
 
-   :::
+   ![neon](../../assets/vercel-5.png)
 
-1. 环境变量配置完成之后点击顶部的 `Deployments` 点击顶部最新的一次部署右侧的 `Redeploy` 按钮进行重新部署。该步骤是为了让刚才设置的环境变量生效。
+1. 此时会让你定义数据库名称，这里也可以不用修改直接 `Continue` 进行下一步。
 
-   ![redeploy](../../assets/vercel-6.png)
+   ![neon](../../assets/vercel-6.png)
+
+1. 这时候 `Storage` 下就有你创建的数据库服务了，点击进去选择 `Open in Neon` 跳转到 Neon。在 Neon 界面左侧选择 `SQL Editor`，将 [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) 中的 SQL 语句粘贴进编辑器中，点击 `Run` 执行创建表操作。
+
+   ![neon](../../assets/vercel-7.png)
+
+   ![neon](../../assets/vercel-8.png)
+
+1. 稍等片刻之后会告知你创建成功。此时回到 Vercel，点击顶部的 `Deployments` 点击顶部最新的一次部署右侧的 `Redeploy` 按钮进行重新部署。该步骤是为了让刚才配置的数据库服务生效。
+
+   ![redeploy success](../../assets/vercel-9.png)
 
 1. 此时会跳转到 `Overview` 界面开始部署，等待片刻后 `STATUS` 会变成 `Ready`。此时请点击 `Visit` ，即可跳转到部署好的网站地址，此地址即为你的服务端地址。
 
-   ![redeploy success](../../assets/vercel-7.png)
+   ![visit](../../assets/vercel-10.png)
 
-## 绑定域名 (可选)
+## 绑定域名
 
 1. 点击顶部的 `Settings` - `Domains` 进入域名配置页
 
 1. 输入需要绑定的域名并点击 `Add`
 
-   ![Add domain](../../assets/vercel-8.png)
+   ![Add domain](../../assets/vercel-11.png)
 
 1. 在域名服务器商处添加新的 `CNAME` 解析记录
 
@@ -95,9 +80,9 @@ dir:
    - 评论系统：example.yourdomain.com
    - 评论管理：example.yourdomain.com/ui
 
-   ![success](../../assets/vercel-9.png)
+   ![success](../../assets/vercel-12.png)
 
-## HTML 引入 (客户端)
+## HTML 引入
 
 在你的网页中进行如下设置:
 

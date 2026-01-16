@@ -16,7 +16,7 @@ In addition to deploying on Vercel for free, you can deploy via docker or direct
 
 ## Multiple Database Support
 
-Besides the default LeanCloud, Waline also supports a variety of databases, including MySQL, PostgreSQL, SQLite, and MongoDB.
+Waline supports a variety of databases, including MySQL, PostgreSQL, SQLite, and MongoDB.
 
 You only need to configure the environment variables of the corresponding database, and Waline will automatically switch to the corresponding data storage service.
 
