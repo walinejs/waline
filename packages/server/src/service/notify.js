@@ -244,7 +244,7 @@ module.exports = class extends think.Service {
 
     return fetch(`${qmsgHost}/send/${QMSG_KEY}`, {
       method: 'POST',
-      header: form.getHeaders(),
+      headers: form.getHeaders(),
       body: form,
     }).then((resp) => resp.json());
   }
@@ -288,7 +288,7 @@ module.exports = class extends think.Service {
 \`\`\`
 {{-self.commentLink}}
 *邮箱：*\`{{self.mail}}\`
-*审核：*{{self.status}} 
+*审核：*{{self.status}}
 
 仅供评论预览，点击[查看完整內容]({{site.postUrl}})`;
 
@@ -306,18 +306,18 @@ module.exports = class extends think.Service {
       },
     };
 
-    const form = new FormData();
-
-    form.append('text', this.controller.locale(contentTG, data));
-    form.append('chat_id', TG_CHAT_ID);
-    form.append('parse_mode', 'MarkdownV2');
-
     const resp = await fetch(
       `https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`,
       {
         method: 'POST',
-        header: form.getHeaders(),
-        body: form,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          chat_id: TG_CHAT_ID,
+          text: this.controller.locale(contentTG, data),
+          parse_mode: 'MarkdownV2',
+        }),
       },
     ).then((resp) => resp.json());
 
@@ -367,7 +367,7 @@ module.exports = class extends think.Service {
 
     return fetch(`http://www.pushplus.plus/send/${PUSH_PLUS_KEY}`, {
       method: 'POST',
-      header: form.getHeaders(),
+      headers: form.getHeaders(),
       body: form,
     }).then((resp) => resp.json());
   }
@@ -406,7 +406,7 @@ module.exports = class extends think.Service {
 
     return fetch(DISCORD_WEBHOOK, {
       method: 'POST',
-      header: form.getHeaders(),
+      headers: form.getHeaders(),
       body: form,
     }).then((resp) => resp.statusText);
     // Expected return value: No Content
