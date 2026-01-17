@@ -244,7 +244,7 @@ module.exports = class extends think.Service {
 
     return fetch(`${qmsgHost}/send/${QMSG_KEY}`, {
       method: 'POST',
-      header: form.getHeaders(),
+      headers: form.getHeaders(),
       body: form,
     }).then((resp) => resp.json());
   }
@@ -316,7 +316,7 @@ module.exports = class extends think.Service {
       `https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`,
       {
         method: 'POST',
-        header: form.getHeaders(),
+        headers: form.getHeaders(),
         body: form,
       },
     ).then((resp) => resp.json());
@@ -367,7 +367,7 @@ module.exports = class extends think.Service {
 
     return fetch(`http://www.pushplus.plus/send/${PUSH_PLUS_KEY}`, {
       method: 'POST',
-      header: form.getHeaders(),
+      headers: form.getHeaders(),
       body: form,
     }).then((resp) => resp.json());
   }
@@ -406,7 +406,7 @@ module.exports = class extends think.Service {
 
     return fetch(DISCORD_WEBHOOK, {
       method: 'POST',
-      header: form.getHeaders(),
+      headers: form.getHeaders(),
       body: form,
     }).then((resp) => resp.statusText);
     // Expected return value: No Content
