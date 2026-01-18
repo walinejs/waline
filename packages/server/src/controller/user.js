@@ -141,7 +141,10 @@ module.exports = class extends BaseRest {
     }
 
     if (email) {
-      const user = await this.modelInstance.select({ email });
+      const user = await this.modelInstance.select({
+        email,
+        objectId: ['!=', objectId],
+      });
 
       if (!think.isEmpty(user)) {
         return this.fail();
