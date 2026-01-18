@@ -92,20 +92,20 @@ module.exports = class extends think.Logic {
       return;
     }
     const token = state || authorization.replace(/^Bearer /, '');
-    let userMail = '';
+    let userId = '';
 
     try {
-      userMail = jwt.verify(token, think.config('jwtKey'));
+      userId = jwt.verify(token, think.config('jwtKey'));
     } catch (e) {
       think.logger.debug(e);
     }
 
-    if (think.isEmpty(userMail) || !think.isString(userMail)) {
+    if (think.isEmpty(userId) || !think.isString(userId)) {
       return;
     }
 
     const user = await this.modelInstance.select(
-      { email: userMail },
+      { objectId: userId },
       {
         field: [
           'id',

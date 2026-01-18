@@ -59,8 +59,10 @@ module.exports = class extends think.Controller {
 
     const userBySocial = await this.modelInstance.select({ [type]: user.id });
 
+    // when the social account has been linked, then redirect to this linked account profile page. It may be current account or another.
+    // If it's another account, user should unlink the social type in that account and then link it.
     if (!think.isEmpty(userBySocial)) {
-      const token = jwt.sign(userBySocial[0].email, this.config('jwtKey'));
+      const token = jwt.sign(userBySocial[0].objectId, this.config('jwtKey'));
 
       if (redirect) {
         return this.redirect(think.buildUrl(redirect, { token }));
@@ -69,12 +71,9 @@ module.exports = class extends think.Controller {
       return this.success();
     }
 
-    if (!user.email) {
-      user.email = `${user.id}@mail.${type}`;
-    }
-
     const current = this.ctx.state.userInfo;
 
+    // when login user link social type, then update data
     if (!think.isEmpty(current)) {
       const updateData = { [type]: user.id };
 
@@ -89,38 +88,29 @@ module.exports = class extends think.Controller {
       return this.redirect('/ui/profile');
     }
 
-    const userByEmail = await this.modelInstance.select({ email: user.email });
+    // when user has not login, then we create account by the social type!
+    const count = await this.modelInstance.count();
+    const data = {
+      display_name: user.name,
+      email: user.email,
+      url: user.url,
+      avatar: user.avatar,
+      [type]: user.id,
+      passowrd: this.hashPassword(Math.random()),
+      type: this.isEmpty(count) ? 'administrator' : 'guest',
+    };
 
-    if (think.isEmpty(userByEmail)) {
-      const count = await this.modelInstance.count();
-      const data = {
-        display_name: user.name,
-        email: user.email,
-        url: user.url,
-        avatar: user.avatar,
-        [type]: user.id,
-        password: this.hashPassword(Math.random()),
-        type: think.isEmpty(count) ? 'administrator' : 'guest',
-      };
+    await this.modelInstance.add(data);
 
-      await this.modelInstance.add(data);
-    } else {
-      const updateData = { [type]: user.id };
-
-      if (!userByEmail.avatar && user.avatar) {
-        updateData.avatar = user.avatar;
-      }
-      await this.modelInstance.update(updateData, { email: user.email });
+    if (!redirect) {
+      return this.success();
     }
 
-    const token = jwt.sign(user.email, this.config('jwtKey'));
+    // and then generate token!
+    const token = jwt.sign(user.objectId, this.config('jwtKey'));
 
-    if (redirect) {
-      return this.redirect(
-        redirect + (redirect.includes('?') ? '&' : '?') + 'token=' + token,
-      );
-    }
-
-    return this.success();
+    return this.redirect(
+      redirect + (redirect.includes('?') ? '&' : '?') + 'token=' + token,
+    );
   }
 };

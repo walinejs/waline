@@ -125,7 +125,8 @@ module.exports = class extends BaseRest {
   }
 
   async putAction() {
-    const { display_name, url, avatar, password, type, label } = this.post();
+    const { display_name, url, avatar, password, type, label, email } =
+      this.post();
     const { objectId } = this.ctx.state.userInfo;
     const twoFactorAuth = this.post('2fa');
 
@@ -137,6 +138,19 @@ module.exports = class extends BaseRest {
 
     if (think.isString(label)) {
       updateData.label = label;
+    }
+
+    if (email) {
+      const user = await this.modelInstance.select({
+        email,
+        objectId: ['!=', objectId],
+      });
+
+      if (!think.isEmpty(user)) {
+        return this.fail();
+      }
+
+      updateData.email = email;
     }
 
     if (display_name) {
