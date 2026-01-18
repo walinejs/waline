@@ -39,13 +39,6 @@ export interface UserInfo {
   avatar: string;
 
   /**
-   * 用户邮箱 MD5
-   *
-   * MD5 of User email
-   */
-  mailMd5: string;
-
-  /**
    * 用户对象 ID
    *
    * User object ID
