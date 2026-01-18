@@ -93,6 +93,7 @@ module.exports = class extends Base {
    * @apiVersion  0.0.1
    *
    * @apiParam  {String}  [display_name]  user new nick name
+   * @apiParam  {String}  [email] user email
    * @apiParam  {String}  [url] user new link
    * @apiParam  {String}  [password] user new password
    * @apiParam  {String}  [github] user github account name
@@ -113,5 +114,12 @@ module.exports = class extends Base {
     if (this.id && userInfo.type !== 'administrator') {
       return this.fail();
     }
+
+    this.rules = {
+      email: {
+        require: false,
+        email: true,
+      },
+    };
   }
 };
