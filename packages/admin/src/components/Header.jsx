@@ -109,5 +109,17 @@ export default function () {
         />
       </div>
     ) : null,
+    user?.type ? (
+      <div className="upgrade-tips clear-fix" key="leancloud-warning">
+        <Trans
+          i18nKey="leancloud warning"
+          defaults="<a href='https://github.com/orgs/walinejs/discussions/3370' target='_blank'>Leancloud will cease external services soon</a>. If you are using it, please migration your comment data as soon as possible."
+          components={{
+            a: <a />,
+          }}
+          transKeepBasicHtmlNodesFor={['a']}
+        />
+      </div>
+    ) : null,
   ];
 }
