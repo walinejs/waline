@@ -59,7 +59,7 @@ module.exports = class extends BaseRest {
     return this.success({
       ...user[0],
       password: null,
-      token: jwt.sign(user[0].email, this.config('jwtKey')),
+      token: jwt.sign(user[0].objectId, this.config('jwtKey')),
     });
   }
 
