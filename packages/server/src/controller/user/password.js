@@ -27,7 +27,7 @@ module.exports = class extends BaseRest {
     }
 
     const notify = this.service('notify', this);
-    const token = jwt.sign(user[0].email, this.config('jwtKey'));
+    const token = jwt.sign(user[0].objectId, this.config('jwtKey'));
     const profileUrl = `${this.ctx.serverURL}/ui/profile?token=${token}`;
 
     await notify.transporter.sendMail({
