@@ -97,7 +97,7 @@ export default function () {
             body,
           });
 
-          idMaps[tableName][data.objectId] = resp.objectId;
+          idMaps[tableName][data.objectId] = resp.objectId || existUserObjectId;
           importedLength += 1;
           setImportLoading([
             'importing {{importedLength}}/{{maxLength}}',
