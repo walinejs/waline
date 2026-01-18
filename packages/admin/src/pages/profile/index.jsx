@@ -21,6 +21,7 @@ export default function () {
     const display_name = e.target.screenName.value;
     const url = e.target.url.value;
     const label = e.target.label.value;
+    const email = e.target.email.value;
 
     if (!display_name || !url) {
       return alert(t('nickname and homepage are required'));
@@ -28,7 +29,7 @@ export default function () {
 
     setProfileUpdating(true);
     try {
-      await dispatch.user.updateProfile({ display_name, url, label });
+      await dispatch.user.updateProfile({ display_name, url, label, email });
     } catch (e) {
       alert(e);
     } finally {
@@ -148,11 +149,27 @@ export default function () {
 
                   <ul className="typecho-option">
                     <li>
-                      <label className="typecho-label" htmlFor="url-0-2">
+                      <label className="typecho-label" htmlFor="email-0-2">
+                        {t('email')}
+                      </label>
+                      <input
+                        id="email-0-2"
+                        name="email"
+                        type="text"
+                        className="text"
+                        defaultValue={user.email}
+                      />
+                      <p className="description"></p>
+                    </li>
+                  </ul>
+
+                  <ul className="typecho-option">
+                    <li>
+                      <label className="typecho-label" htmlFor="url-0-3">
                         {t('homepage')}
                       </label>
                       <input
-                        id="url-0-2"
+                        id="url-0-3"
                         name="url"
                         type="text"
                         className="text"
