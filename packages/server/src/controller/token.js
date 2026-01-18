@@ -61,7 +61,7 @@ module.exports = class extends BaseRest {
       ...user[0],
       password: null,
       mailMd5: helper.md5(user[0].email.toLowerCase()),
-      token: jwt.sign(user[0].email, this.config('jwtKey')),
+      token: jwt.sign(user[0].objectId, this.config('jwtKey')),
     });
   }
 

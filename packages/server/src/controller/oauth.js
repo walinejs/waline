@@ -60,7 +60,7 @@ module.exports = class extends think.Controller {
     const userBySocial = await this.modelInstance.select({ [type]: user.id });
 
     if (!think.isEmpty(userBySocial)) {
-      const token = jwt.sign(userBySocial[0].email, this.config('jwtKey'));
+      const token = jwt.sign(userBySocial[0].objectId, this.config('jwtKey'));
 
       if (redirect) {
         return this.redirect(think.buildUrl(redirect, { token }));
