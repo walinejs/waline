@@ -110,7 +110,13 @@ export default function () {
                   rel="noreferrer"
                   onClick={changeAvatar}
                 >
-                  <img className="profile-avatar" src={user.avatar} />
+                  {user && user.avatar && (
+                    <img
+                      className="profile-avatar"
+                      src={user.avatar}
+                      alt={t('avatar')}
+                    />
+                  )}
                 </a>
               </p>
               <h2>{user.display_name}</h2>
