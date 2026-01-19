@@ -97,7 +97,7 @@ module.exports = class extends think.Controller {
       avatar: user.avatar,
       [type]: user.id,
       passowrd: this.hashPassword(Math.random()),
-      type: this.isEmpty(count) ? 'administrator' : 'guest',
+      type: think.isEmpty(count) ? 'administrator' : 'guest',
     };
 
     await this.modelInstance.add(data);
