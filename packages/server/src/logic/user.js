@@ -116,8 +116,7 @@ module.exports = class extends Base {
     }
 
     this.rules = {
-      email: {
-        require: false,
+      email: 
         email: true,
       },
     };
