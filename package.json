@@ -79,7 +79,7 @@
     "vercel": "50.4.9",
     "vite-plugin-css-injected-by-js": "3.5.2",
     "vite-plugin-svgr": "4.5.0",
-    "vitest": "4.0.16"
+    "vitest": "4.0.18"
   },
   "packageManager": "pnpm@10.27.0",
   "apidoc": {
