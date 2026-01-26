@@ -81,7 +81,7 @@
     "vite-plugin-svgr": "4.5.0",
     "vitest": "4.0.16"
   },
-  "packageManager": "pnpm@10.27.0",
+  "packageManager": "pnpm@10.28.2",
   "apidoc": {
     "title": "Waline API Documentation"
   }
