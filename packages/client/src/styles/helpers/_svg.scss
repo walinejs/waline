@@ -1,49 +1,57 @@
+// stylelint-disable scss/operator-no-newline-after
 @use 'sass:math';
 @use 'sass:string';
 
-@function string-replace($string, $search, $replace: '') {
-  $index: string.index($string, $search);
-  @return if(
-    $index,
-    string.slice($string, 1, $index - 1) + $replace +
-      string-replace(
-        string.slice($string, $index + string.length($search)),
-        $search,
-        $replace
-      ),
-    $string
-  );
-}
-
-@function svg-url($svg) {
+@function encode-svg($svg) {
   $encoded: '';
   $slice: 2000;
   $index: 0;
   $loops: math.ceil(math.div(string.length($svg), $slice));
 
   @if not string.index($svg, xmlns) {
-    $svg: string-replace(
-      $svg,
-      '<svg',
-      '<svg xmlns="http://www.w3.org/2000/svg"'
-    );
+    $svg: str-replace($svg, '<svg', '<svg xmlns="http://www.w3.org/2000/svg"');
   }
 
   @for $i from 1 through $loops {
     $chunk: string.slice($svg, $index, $index + $slice - 1);
-    $chunk: string-replace($chunk, '"', "'");
-    $chunk: string-replace($chunk, '%', '%25');
-    $chunk: string-replace($chunk, '#', '%23');
-    $chunk: string-replace($chunk, '{', '%7B');
-    $chunk: string-replace($chunk, '}', '%7D');
-    $chunk: string-replace($chunk, '<', '%3C');
-    $chunk: string-replace($chunk, '>', '%3E');
+    $chunk: str-replace($chunk, '"', "'");
+    $chunk: str-replace($chunk, '%', '%25');
+    $chunk: str-replace($chunk, '#', '%23');
+    $chunk: str-replace($chunk, '{', '%7B');
+    $chunk: str-replace($chunk, '}', '%7D');
+    $chunk: str-replace($chunk, '<', '%3C');
+    $chunk: str-replace($chunk, '>', '%3E');
     $encoded: #{$encoded}#{$chunk};
     $index: $index + $slice;
   }
-  @return url('data:image/svg+xml,#{$encoded}');
+
+  @return url('data:image/svg+xml;utf8,#{$encoded}');
 }
 
 @mixin background-svg($svg) {
-  background-image: svg-url($svg);
+  background-image: encode-svg($svg);
+}
+
+@mixin mask-svg($svg, $color: currentColor) {
+  background-color: $color;
+
+  mask-image: encode-svg($svg);
+  mask-position: 50%;
+  mask-size: 1em;
+  mask-repeat: no-repeat;
+}
+
+@function str-replace($string, $search, $replace: '') {
+  $index: string.index($string, $search);
+
+  @if $index {
+    @return string.slice($string, 1, $index - 1) + $replace +
+      str-replace(
+        string.slice($string, $index + string.length($search)),
+        $search,
+        $replace
+      );
+  }
+
+  @return $string;
 }

@@ -8,7 +8,7 @@ waline:
 
   # Waline server address url, you should set this to your own link
   serverURL: https://waline.vercel.app
-  
+
   # If false, disable the comment
   comment: true
 

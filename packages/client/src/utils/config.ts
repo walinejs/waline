@@ -73,6 +73,7 @@ const fallback = <T = unknown>(
 export const getConfig = ({
   serverURL,
 
+  // eslint-disable-next-line @typescript-eslint/no-useless-default-assignment
   path = location.pathname,
   lang = typeof navigator === 'undefined' ? 'en-US' : navigator.language,
   locale,

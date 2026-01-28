@@ -104,7 +104,7 @@ Recaptcha Key 和 Secret 可在 <https://www.google.com/recaptcha> 申请。
 | `SMTP_SECURE`  | 是否使用 SSL 连接 SMTP   |
 | `SENDER_NAME`  | 自定义发送邮件的发件人   |
 | `SENDER_EMAIL` | 自定义发送邮件的发件地址 |
-| `AUTHOR_EMAIL` | 博主邮箱，接收新评论通知  |
+| `AUTHOR_EMAIL` | 博主邮箱，接收新评论通知 |
 
 ::: tip
 
@@ -118,12 +118,12 @@ SMTP 的用户名通常均支持用户的完整邮箱，而密码大多同邮箱
 
 以下是选填的环境变量:
 
-| 环境变量名称            | 备注                   |
-| --------------------- | --------------------- |
-| `MAIL_SUBJECT`        | 自定义评论回复邮件标题    |
-| `MAIL_TEMPLATE`       | 自定义评论回复邮件内容    |
-| `MAIL_SUBJECT_ADMIN`  | 自定义新评论通知邮件标题  |
-| `MAIL_TEMPLATE_ADMIN` | 自定义新评论通知邮件内容  |
+| 环境变量名称          | 备注                     |
+| --------------------- | ------------------------ |
+| `MAIL_SUBJECT`        | 自定义评论回复邮件标题   |
+| `MAIL_TEMPLATE`       | 自定义评论回复邮件内容   |
+| `MAIL_SUBJECT_ADMIN`  | 自定义新评论通知邮件标题 |
+| `MAIL_TEMPLATE_ADMIN` | 自定义新评论通知邮件内容 |
 
 ## 数据库
 
