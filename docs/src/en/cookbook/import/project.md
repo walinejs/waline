@@ -104,11 +104,7 @@ With a simple wrapper, you can turn Waline into a React component:
 
 ```tsx
 import React, { useEffect, useRef } from 'react';
-import {
-  type WalineInstance,
-  type WalineInitOptions,
-  init,
-} from '@waline/client';
+import { type WalineInstance, type WalineInitOptions, init } from '@waline/client';
 
 import '@waline/client/style';
 

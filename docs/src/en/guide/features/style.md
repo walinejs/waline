@@ -39,10 +39,7 @@ For CDN users, you can import via the following link:
 
 ```html
 <!-- Meta icon (optional) -->
-<link
-  rel="stylesheet"
-  href="https://unpkg.com/@waline/client@v3/dist/waline-meta.css"
-/>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline-meta.css" />
 ```
 
 For NPM users, you can import via:

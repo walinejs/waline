@@ -71,9 +71,7 @@ export default function () {
         async action() {
           if (comment) {
             await updateComment(comment.objectId, { status: 'approved' });
-            list.data = list.data.filter(
-              ({ objectId }) => objectId !== comment.objectId,
-            );
+            list.data = list.data.filter(({ objectId }) => objectId !== comment.objectId);
             switch (comment.status) {
               case 'waiting':
                 list.waitingCount -= 1;
@@ -85,9 +83,7 @@ export default function () {
             setList({ ...list });
           } else {
             await Promise.all(
-              commentIds.map((objectId) =>
-                updateComment(objectId, { status: 'approved' }),
-              ),
+              commentIds.map((objectId) => updateComment(objectId, { status: 'approved' })),
             );
             getCommentList({ page: list.page, filter }).then((data) => {
               setList({ ...list, ...data });
@@ -104,9 +100,7 @@ export default function () {
         async action() {
           if (comment) {
             await updateComment(comment.objectId, { status: 'waiting' });
-            list.data = list.data.filter(
-              ({ objectId }) => objectId !== comment.objectId,
-            );
+            list.data = list.data.filter(({ objectId }) => objectId !== comment.objectId);
             if (comment.status === 'spam') {
               list.spamCount -= 1;
             }
@@ -114,9 +108,7 @@ export default function () {
             setList({ ...list });
           } else {
             await Promise.all(
-              commentIds.map((objectId) =>
-                updateComment(objectId, { status: 'waiting' }),
-              ),
+              commentIds.map((objectId) => updateComment(objectId, { status: 'waiting' })),
             );
             getCommentList({ page: list.page, filter }).then((data) => {
               setList({ ...list, ...data });
@@ -133,16 +125,12 @@ export default function () {
         async action() {
           if (comment) {
             await updateComment(comment.objectId, { status: 'spam' });
-            list.data = list.data.filter(
-              ({ objectId }) => objectId !== comment.objectId,
-            );
+            list.data = list.data.filter(({ objectId }) => objectId !== comment.objectId);
             list.spamCount += 1;
             setList({ ...list });
           } else {
             await Promise.all(
-              commentIds.map((objectId) =>
-                updateComment(objectId, { status: 'spam' }),
-              ),
+              commentIds.map((objectId) => updateComment(objectId, { status: 'spam' })),
             );
             getCommentList({ page: list.page, filter }).then((data) => {
               setList({ ...list, ...data });
@@ -176,10 +164,7 @@ export default function () {
         action() {
           const handler = {};
 
-          if (
-            cmtHandler.id !== comment.objectId &&
-            cmtHandler.action !== 'edit'
-          ) {
+          if (cmtHandler.id !== comment.objectId && cmtHandler.action !== 'edit') {
             handler.id = comment.objectId;
             handler.action = 'edit';
           }
@@ -193,10 +178,7 @@ export default function () {
         action() {
           const handler = {};
 
-          if (
-            cmtHandler.id !== comment.objectId &&
-            cmtHandler.action !== 'reply'
-          ) {
+          if (cmtHandler.id !== comment.objectId && cmtHandler.action !== 'reply') {
             handler.id = comment.objectId;
             handler.action = 'reply';
           }
@@ -218,9 +200,7 @@ export default function () {
 
           if (comment) {
             await deleteComment(comment.objectId);
-            list.data = list.data.filter(
-              ({ objectId }) => objectId !== comment.objectId,
-            );
+            list.data = list.data.filter(({ objectId }) => objectId !== comment.objectId);
             setList({ ...list });
           } else {
             await Promise.all(commentIds.map(deleteComment));
@@ -267,8 +247,7 @@ export default function () {
   };
 
   const allSelected =
-    list.data.length &&
-    list.data.every(({ objectId }) => commentIds.includes(objectId));
+    list.data.length && list.data.every(({ objectId }) => commentIds.includes(objectId));
 
   return (
     <>
@@ -289,21 +268,11 @@ export default function () {
                     })}
                   >
                     {FILTER.map(({ type, name }) => (
-                      <li
-                        className={cls({ current: type === filter[key] })}
-                        key={type}
-                      >
-                        <a
-                          href="javascript:void(0)"
-                          onClick={() => dispatch({ [key]: type })}
-                        >
+                      <li className={cls({ current: type === filter[key] })} key={type}>
+                        <a href="javascript:void(0)" onClick={() => dispatch({ [key]: type })}>
                           {name}
-                          {key === 'status' &&
-                          type !== 'approved' &&
-                          list[`${type}Count`] > 0 ? (
-                            <span className="balloon">
-                              {list[`${type}Count`]}
-                            </span>
+                          {key === 'status' && type !== 'approved' && list[`${type}Count`] > 0 ? (
+                            <span className="balloon">{list[`${type}Count`]}</span>
                           ) : null}
                         </a>
                       </li>
@@ -323,9 +292,7 @@ export default function () {
                         checked={allSelected}
                         onChange={() =>
                           setCommentIds(
-                            allSelected
-                              ? []
-                              : list.data.map(({ objectId }) => objectId),
+                            allSelected ? [] : list.data.map(({ objectId }) => objectId),
                           )
                         }
                       />
@@ -381,11 +348,7 @@ export default function () {
                 </form>
               </div>
 
-              <form
-                method="post"
-                name="manage_comments"
-                className="operate-form"
-              >
+              <form method="post" name="manage_comments" className="operate-form">
                 <div className="typecho-table-wrap">
                   <table className="typecho-list-table">
                     <colgroup>
@@ -424,16 +387,13 @@ export default function () {
                           },
                           idx,
                         ) =>
-                          cmtHandler.id === objectId &&
-                          cmtHandler.action === 'edit' ? (
+                          cmtHandler.id === objectId && cmtHandler.action === 'edit' ? (
                             <tr className="comment-edit" key={objectId}>
                               <td> </td>
                               <td colSpan="2" style={{ verticalAlign: 'top' }}>
                                 <div className="comment-edit-info">
                                   <p>
-                                    <label
-                                      htmlFor={`comment-${objectId}-author`}
-                                    >
+                                    <label htmlFor={`comment-${objectId}-author`}>
                                       {t('username')}
                                     </label>
                                     <input
@@ -443,15 +403,12 @@ export default function () {
                                       type="text"
                                       defaultValue={nick}
                                       onChange={(e) =>
-                                        (editCommentRef.current.nick =
-                                          e.target.value)
+                                        (editCommentRef.current.nick = e.target.value)
                                       }
                                     />
                                   </p>
                                   <p>
-                                    <label htmlFor={`comment-${objectId}-mail`}>
-                                      {t('email')}
-                                    </label>
+                                    <label htmlFor={`comment-${objectId}-mail`}>{t('email')}</label>
                                     <input
                                       className="text-s w-100"
                                       type="email"
@@ -459,8 +416,7 @@ export default function () {
                                       id={`comment-${objectId}-mail`}
                                       defaultValue={mail}
                                       onChange={(e) =>
-                                        (editCommentRef.current.mail =
-                                          e.target.value)
+                                        (editCommentRef.current.mail = e.target.value)
                                       }
                                     />
                                   </p>
@@ -475,8 +431,7 @@ export default function () {
                                       id={`comment-${objectId}-author`}
                                       defaultValue={link}
                                       onChange={(e) =>
-                                        (editCommentRef.current.link =
-                                          e.target.value)
+                                        (editCommentRef.current.link = e.target.value)
                                       }
                                     />
                                   </p>
@@ -495,8 +450,7 @@ export default function () {
                                       className="w-90 mono"
                                       defaultValue={comment}
                                       onChange={(e) =>
-                                        (editCommentRef.current.comment =
-                                          e.target.value)
+                                        (editCommentRef.current.comment = e.target.value)
                                       }
                                     />
                                   </p>
@@ -529,9 +483,7 @@ export default function () {
                                   onChange={() =>
                                     setCommentIds(
                                       commentIds.includes(objectId)
-                                        ? commentIds.filter(
-                                            (id) => id !== objectId,
-                                          )
+                                        ? commentIds.filter((id) => id !== objectId)
                                         : [...commentIds, objectId],
                                     )
                                   }
@@ -548,21 +500,14 @@ export default function () {
                                   />
                                 </div>
                               </td>
-                              <td
-                                style={{ verticalalign: 'top' }}
-                                className="comment-head"
-                              >
+                              <td style={{ verticalalign: 'top' }} className="comment-head">
                                 <div className="comment-meta">
                                   <strong className="comment-author">
                                     {!link ? (
                                       nick
                                     ) : (
                                       <a
-                                        href={
-                                          !/^https:\/\//.test(link)
-                                            ? 'https://' + link
-                                            : link
-                                        }
+                                        href={!/^https:\/\//.test(link) ? 'https://' + link : link}
                                         rel="external nofollow noreferrer"
                                         target="_blank"
                                       >
@@ -572,11 +517,7 @@ export default function () {
                                   </strong>
                                   <br />
                                   <span>
-                                    <a
-                                      href={`mailto:${mail}`}
-                                      target="_blank"
-                                      rel="noreferrer"
-                                    >
+                                    <a href={`mailto:${mail}`} target="_blank" rel="noreferrer">
                                       {mail}
                                     </a>
                                   </span>
@@ -586,17 +527,10 @@ export default function () {
                                   <span>{addr}</span>
                                 </div>
                               </td>
-                              <td
-                                style={{ verticalalign: 'top' }}
-                                className="comment-body"
-                              >
+                              <td style={{ verticalalign: 'top' }} className="comment-body">
                                 <div className="comment-date">
                                   {formatDate(insertedAt || time)} {t('at')}{' '}
-                                  <a
-                                    href={getPostUrl(url)}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                  >
+                                  <a href={getPostUrl(url)} target="_blank" rel="noreferrer">
                                     {url}
                                   </a>
                                 </div>
@@ -604,8 +538,7 @@ export default function () {
                                   className="comment-content"
                                   dangerouslySetInnerHTML={{ __html: comment }}
                                 ></div>
-                                {cmtHandler.id === objectId &&
-                                cmtHandler.action === 'reply' ? (
+                                {cmtHandler.id === objectId && cmtHandler.action === 'reply' ? (
                                   <form className="comment-reply">
                                     <p>
                                       <label htmlFor="text" className="sr-only">

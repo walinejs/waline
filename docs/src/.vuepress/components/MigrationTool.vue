@@ -2,12 +2,7 @@
 import { useLocaleConfig } from '@vuepress/helper/client';
 import { ref } from 'vue';
 
-import {
-  type OriginalType,
-  type TransformType,
-  exportRaw,
-  transform,
-} from '../utils/index.js';
+import { type OriginalType, type TransformType, exportRaw, transform } from '../utils/index.js';
 
 const from = ref<OriginalType | 'typecho'>('valine');
 const to = ref<TransformType>('wcloudbase');
@@ -84,10 +79,7 @@ const click = (): void => {
       text = JSON.stringify(text, null, '\t');
     }
 
-    exportRaw(
-      'output.' + (to.value !== 'wsql' ? 'json' : 'csv'),
-      text as string,
-    );
+    exportRaw('output.' + (to.value !== 'wsql' ? 'json' : 'csv'), text as string);
   }
 };
 </script>
@@ -137,10 +129,7 @@ const click = (): void => {
       <p v-html="i18n.typecho" />
     </div>
 
-    <div
-      v-else-if="from === 'valine' && to === 'wleancloud'"
-      class="custom-block warning"
-    >
+    <div v-else-if="from === 'valine' && to === 'wleancloud'" class="custom-block warning">
       <p class="custom-block-title">{{ i18n.tip }}</p>
 
       <p v-text="i18n.tip" />

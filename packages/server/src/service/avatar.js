@@ -8,9 +8,7 @@ const { GRAVATAR_STR } = process.env;
 const env = new nunjucks.Environment();
 
 env.addFilter('md5', (str) => helper.md5(str));
-env.addFilter('sha256', (str) =>
-  crypto.createHash('sha256').update(str).digest('hex'),
-);
+env.addFilter('sha256', (str) => crypto.createHash('sha256').update(str).digest('hex'));
 
 const DEFAULT_GRAVATAR_STR = `{%- set numExp = r/^[0-9]+$/g -%}
 {%- set qqMailExp = r/^[0-9]+@qq.com$/ig -%}

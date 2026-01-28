@@ -85,8 +85,7 @@ if (think.env === 'cloudbase' && storage === 'sqlite') {
 
 const forbiddenWords = FORBIDDEN_WORDS ? FORBIDDEN_WORDS.split(/\s*,\s*/) : [];
 
-const isFalse = (content) =>
-  content && ['0', 'false'].includes(content.toLowerCase());
+const isFalse = (content) => content && ['0', 'false'].includes(content.toLowerCase());
 
 const markdown = {
   config: JSON.parse(MARKDOWN_CONFIG),
@@ -119,10 +118,7 @@ module.exports = {
   secureDomains: SECURE_DOMAINS ? SECURE_DOMAINS.split(/\s*,\s*/) : undefined,
   disableUserAgent: DISABLE_USERAGENT && !isFalse(DISABLE_USERAGENT),
   disableRegion: DISABLE_REGION && !isFalse(DISABLE_REGION),
-  levels:
-    !LEVELS || isFalse(LEVELS)
-      ? false
-      : LEVELS.split(/\s*,\s*/).map((v) => Number(v)),
+  levels: !LEVELS || isFalse(LEVELS) ? false : LEVELS.split(/\s*,\s*/).map((v) => Number(v)),
 
   audit: COMMENT_AUDIT && !isFalse(COMMENT_AUDIT),
   avatarProxy,

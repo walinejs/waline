@@ -27,15 +27,7 @@ export default function ({ current, total, onChange }) {
           </li>
         </>
       ) : null}
-      {[
-        current - 3,
-        current - 2,
-        current - 1,
-        current,
-        current + 1,
-        current + 2,
-        current + 3,
-      ]
+      {[current - 3, current - 2, current - 1, current, current + 1, current + 2, current + 3]
         .filter((page) => page > 0 && page <= total)
         .map((page) => (
           <li key={page} className={cls({ current: page === current })}>

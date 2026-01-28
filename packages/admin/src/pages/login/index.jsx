@@ -33,10 +33,7 @@ export default function () {
     const isAdmin = user.type === 'administrator';
 
     const defaultRedirect = isAdmin ? '/ui/profile' : '/ui';
-    const redirect =
-      isAdmin && query.get('redirect')
-        ? query.get('redirect')
-        : defaultRedirect;
+    const redirect = isAdmin && query.get('redirect') ? query.get('redirect') : defaultRedirect;
 
     navigate(redirect.replace(/\/+/g, '/'));
   }, [user]);
@@ -162,22 +159,13 @@ export default function () {
             )}
             <p className="captcha-container" />
             <p className="submit">
-              <button
-                type="submit"
-                className="btn btn-l w-100 primary"
-                disabled={loading}
-              >
+              <button type="submit" className="btn btn-l w-100 primary" disabled={loading}>
                 {t('login')}
               </button>
             </p>
             <p style={{ display: 'flex', justifyContent: 'space-between' }}>
               <label htmlFor="remember">
-                <input
-                  type="checkbox"
-                  name="remember"
-                  className="checkbox"
-                  id="remember"
-                />{' '}
+                <input type="checkbox" name="remember" className="checkbox" id="remember" />{' '}
                 {t('remember me')}
               </label>
               <span className="right forgot-password">

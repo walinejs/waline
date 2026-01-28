@@ -2,11 +2,7 @@ import { useEffect, useState } from 'react';
 
 import useScript from './useScript.js';
 
-export function useRecaptcha({
-  sitekey,
-  hideDefaultBadge = false,
-  checkForExisting = true,
-}) {
+export function useRecaptcha({ sitekey, hideDefaultBadge = false, checkForExisting = true }) {
   const [recaptcha, setRecaptcha] = useState();
 
   useEffect(() => {
@@ -45,8 +41,7 @@ export function useRecaptcha({
   };
 }
 
-const isBrowser =
-  typeof window !== 'undefined' && typeof window.document !== 'undefined';
+const isBrowser = typeof window !== 'undefined' && typeof window.document !== 'undefined';
 
 const injectStyle = (rule) => {
   const styleEl = document.createElement('style');

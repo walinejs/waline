@@ -38,10 +38,7 @@ export const JSON_HEADERS: Record<string, string> = {
 export const getFetchPrefix = (serverURL: string): string =>
   `${serverURL.replace(/\/?$/, '/')}api/`;
 
-export const errorCheck = <T extends ErrorStatusResponse>(
-  data: T,
-  name = '',
-): T => {
+export const errorCheck = <T extends ErrorStatusResponse>(data: T, name = ''): T => {
   if (typeof data === 'object' && data.errno)
     throw new TypeError(`${name} failed with ${data.errno}: ${data.errmsg}`);
 

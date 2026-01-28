@@ -82,8 +82,7 @@ export default function () {
     baseUrl = match ? match[1] : '/';
   }
   const qs = new URLSearchParams(location.search);
-  let token =
-    window.TOKEN || sessionStorage.getItem('TOKEN') || qs.get('token');
+  let token = window.TOKEN || sessionStorage.getItem('TOKEN') || qs.get('token');
 
   if (!token) {
     token = localStorage.getItem('TOKEN');
@@ -112,11 +111,7 @@ export default function () {
                   onClick={changeAvatar}
                 >
                   {user && user.avatar && (
-                    <img
-                      className="profile-avatar"
-                      src={user.avatar}
-                      alt={t('avatar')}
-                    />
+                    <img className="profile-avatar" src={user.avatar} alt={t('avatar')} />
                   )}
                 </a>
               </p>
@@ -124,10 +119,7 @@ export default function () {
               <p>{user.email}</p>
             </div>
 
-            <div
-              className="col-mb-12 col-tb-6 col-tb-offset-1 typecho-content-panel"
-              role="form"
-            >
+            <div className="col-mb-12 col-tb-6 col-tb-offset-1 typecho-content-panel" role="form">
               <section>
                 <h3>{t('profile')}</h3>
                 <form method="post" onSubmit={onProfileUpdate}>
@@ -203,11 +195,7 @@ export default function () {
 
                   <ul className="typecho-option typecho-option-submit">
                     <li>
-                      <button
-                        type="submit"
-                        className="btn primary"
-                        disabled={isProfileUpdating}
-                      >
+                      <button type="submit" className="btn primary" disabled={isProfileUpdating}>
                         {t('update my profile')}
                       </button>
                     </li>
@@ -241,10 +229,7 @@ export default function () {
                           React.createElement(Icons[social])
                         }
                       </a>
-                      <div
-                        className="account-unbind"
-                        onClick={() => unbind(social)}
-                      >
+                      <div className="account-unbind" onClick={() => unbind(social)}>
                         <svg
                           className="close-icon"
                           viewBox="0 0 1024 1024"
@@ -300,11 +285,7 @@ export default function () {
                   </ul>
                   <ul className="typecho-option typecho-option-submit">
                     <li>
-                      <button
-                        type="submit"
-                        className="btn primary"
-                        disabled={isPasswordUpdating}
-                      >
+                      <button type="submit" className="btn primary" disabled={isPasswordUpdating}>
                         {t('update password')}
                       </button>
                     </li>

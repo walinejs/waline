@@ -29,10 +29,7 @@ Waline 会在初始化以及每次 path 更新时，自动查找页面中 `class
 ```html
 <!-- data-path 将作为查询条件 -->
 当前页共有
-<span
-  class="waline-comment-count"
-  data-path="/guide/client/count.html"
-/>条评论。
+<span class="waline-comment-count" data-path="/guide/client/count.html" />条评论。
 ```
 
 如果你需要一个不一样的选择器，你可以设置 `comment` 选项为这个选择器。

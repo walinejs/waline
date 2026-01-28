@@ -59,9 +59,7 @@ const fetchReaction = async (): Promise<void> => {
     signal: controller.signal,
   })) as Record<string, number>[];
 
-  voteNumbers.value = reaction.value.map(
-    (_, index) => reactionData[`reaction${index}`],
-  );
+  voteNumbers.value = reaction.value.map((_, index) => reactionData[`reaction${index}`]);
 };
 
 const vote = async (index: number): Promise<void> => {
@@ -136,16 +134,9 @@ onUnmounted(() => {
         <div class="wl-reaction-img">
           <img :src="icon" :alt="desc" />
 
-          <LoadingIcon
-            v-if="votingIndex === index"
-            class="wl-reaction-loading"
-          />
+          <LoadingIcon v-if="votingIndex === index" class="wl-reaction-loading" />
 
-          <div
-            v-else
-            class="wl-reaction-votes"
-            v-text="voteNumbers[index] || 0"
-          />
+          <div v-else class="wl-reaction-votes" v-text="voteNumbers[index] || 0" />
         </div>
 
         <div class="wl-reaction-text" v-text="desc" />

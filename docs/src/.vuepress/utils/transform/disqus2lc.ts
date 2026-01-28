@@ -5,19 +5,14 @@
 export const disqus2lc = (input: string) => {
   const parser = new DOMParser();
   const dom = parser.parseFromString(input, 'application/xml');
-  const posts = Array.from(dom.querySelectorAll<HTMLElement>('post')).filter(
-    (postEl) => {
-      const isDeletedEl = postEl.querySelector('isDeleted');
-      if (
-        isDeletedEl &&
-        isDeletedEl.textContent?.toLocaleLowerCase() === 'true'
-      ) {
-        return false;
-      }
+  const posts = Array.from(dom.querySelectorAll<HTMLElement>('post')).filter((postEl) => {
+    const isDeletedEl = postEl.querySelector('isDeleted');
+    if (isDeletedEl && isDeletedEl.textContent?.toLocaleLowerCase() === 'true') {
+      return false;
+    }
 
-      return true;
-    },
-  );
+    return true;
+  });
   const threads = Array.from(dom.querySelectorAll('disqus > thread'));
 
   const articleMap: Record<string, string> = {};
@@ -68,17 +63,14 @@ export const disqus2lc = (input: string) => {
   const data = posts.map((postEl) => {
     const objectId = postEl.getAttribute('dsq:id')!;
     const comment = postEl.querySelector('message')?.textContent;
-    const insertedAt = new Date(
-      postEl.querySelector('createdAt')?.textContent!,
-    ).toISOString();
+    const insertedAt = new Date(postEl.querySelector('createdAt')?.textContent!).toISOString();
     const nick = postEl.querySelector('author name')?.textContent;
     const threadId = postEl.querySelector('thread')?.getAttribute('dsq:id')!;
     const url = articleMap[threadId];
     const parent = postEl.querySelector('parent');
     const pid = parent ? parent.getAttribute('dsq:id') : null;
     const rid = parent ? rootIdMap[objectId] : null;
-    const isSpam =
-      postEl.querySelector('isSpam')?.textContent?.toLowerCase() !== 'false';
+    const isSpam = postEl.querySelector('isSpam')?.textContent?.toLowerCase() !== 'false';
 
     return {
       objectId,

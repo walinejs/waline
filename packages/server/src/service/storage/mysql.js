@@ -90,17 +90,13 @@ module.exports = class extends Base {
   }
 
   async update(data, where) {
-    const list = await this.model(this.tableName)
-      .where(this.parseWhere(where))
-      .select();
+    const list = await this.model(this.tableName).where(this.parseWhere(where)).select();
 
     return Promise.all(
       list.map(async (item) => {
         const updateData = typeof data === 'function' ? data(item) : data;
 
-        await this.model(this.tableName)
-          .where({ id: item.id })
-          .update(updateData);
+        await this.model(this.tableName).where({ id: item.id }).update(updateData);
 
         return { ...item, ...updateData };
       }),
@@ -116,8 +112,6 @@ module.exports = class extends Base {
   async setSeqId(id) {
     const instance = this.model(this.tableName);
 
-    return instance.query(
-      `ALTER TABLE ${instance.tableName} AUTO_INCREMENT = ${id};`,
-    );
+    return instance.query(`ALTER TABLE ${instance.tableName} AUTO_INCREMENT = ${id};`);
   }
 };

@@ -38,9 +38,7 @@ module.exports = class extends BaseRest {
       //   - single path and multiple type: [{[type]: 0}]
       //   - multiple path and single type: [{[type]: 0}]
       //   - multiple path and multiple type: [{[type]: 0}]
-      return this.jsonOrSuccess(
-        path.length === 1 && deprecated ? counters[0] : counters,
-      );
+      return this.jsonOrSuccess(path.length === 1 && deprecated ? counters[0] : counters);
     }
 
     const respObj = resp.reduce((o, n) => {
@@ -89,17 +87,12 @@ module.exports = class extends BaseRest {
 
     const ret = await this.modelInstance.update(
       (counter) => ({
-        [type]:
-          action === 'desc'
-            ? (counter[type] || 1) - 1
-            : (counter[type] || 0) + 1,
+        [type]: action === 'desc' ? (counter[type] || 1) - 1 : (counter[type] || 0) + 1,
         updatedAt: new Date(),
       }),
       { objectId: ['IN', resp.map(({ objectId }) => objectId)] },
     );
 
-    return this.jsonOrSuccess(
-      deprecated ? ret[0][type] : [{ [type]: ret[0][type] }],
-    );
+    return this.jsonOrSuccess(deprecated ? ret[0][type] : [{ [type]: ret[0][type] }]);
   }
 };

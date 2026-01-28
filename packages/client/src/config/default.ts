@@ -12,9 +12,7 @@ const AVAILABLE_META: WalineMeta[] = ['nick', 'mail', 'link'];
 export const getMeta = (meta: WalineMeta[]): WalineMeta[] =>
   meta.filter((item) => AVAILABLE_META.includes(item));
 
-export const DEFAULT_EMOJI: WalineEmojiPresets[] = [
-  '//unpkg.com/@waline/emojis@1.1.0/weibo',
-];
+export const DEFAULT_EMOJI: WalineEmojiPresets[] = ['//unpkg.com/@waline/emojis@1.1.0/weibo'];
 
 export const DEFAULT_REACTION = [
   '//unpkg.com/@waline/emojis/tieba/tieba_agree.png',
@@ -27,8 +25,7 @@ export const DEFAULT_REACTION = [
 
 export const defaultUploadImage = (file: File): Promise<string> =>
   new Promise((resolve, reject) => {
-    if (file.size > 128 * 1000)
-      return reject(new Error('File too large! File size limit 128KB'));
+    if (file.size > 128 * 1000) return reject(new Error('File too large! File size limit 128KB'));
 
     const reader = new FileReader();
 

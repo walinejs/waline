@@ -10,8 +10,7 @@ module.exports = class extends think.Controller {
     const { code, oauth_verifier, oauth_token, type, redirect } = this.get();
     const { oauthUrl } = this.config();
 
-    const hasCode =
-      type === 'twitter' ? oauth_token && oauth_verifier : Boolean(code);
+    const hasCode = type === 'twitter' ? oauth_token && oauth_verifier : Boolean(code);
 
     if (!hasCode) {
       const { serverURL } = this.ctx;
@@ -109,8 +108,6 @@ module.exports = class extends think.Controller {
     // and then generate token!
     const token = jwt.sign(user.objectId, this.config('jwtKey'));
 
-    return this.redirect(
-      redirect + (redirect.includes('?') ? '&' : '?') + 'token=' + token,
-    );
+    return this.redirect(redirect + (redirect.includes('?') ? '&' : '?') + 'token=' + token);
   }
 };

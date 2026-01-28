@@ -18,10 +18,7 @@ order: 1
 
 ```html
 <!-- 样式文件 -->
-<link
-  rel="stylesheet"
-  href="https://unpkg.com/@waline/client@v3/dist/waline.css"
-/>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css" />
 <!-- 脚本文件 -->
 <script type="module">
   import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';

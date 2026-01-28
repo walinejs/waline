@@ -150,8 +150,7 @@ const locale = {
   admin: 'Admin',
   sticky: 'Sticky',
   word: 'Words',
-  wordHint:
-    'Please input comments between $0 and $1 words!\n Current word number: $2',
+  wordHint: 'Please input comments between $0 and $1 words!\n Current word number: $2',
   anonymous: 'Anonymous',
   level0: 'Dwarves',
   level1: 'Hobbits',

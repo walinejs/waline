@@ -3,17 +3,20 @@
   "version": "1.36.4",
   "description": "vercel server for waline comment system",
   "keywords": [
-    "waline",
-    "vercel",
+    "blog",
     "comment",
-    "blog"
+    "vercel",
+    "waline"
   ],
+  "license": "MIT",
+  "author": "lizheming <i@imnerd.org>",
   "repository": {
     "url": "https://github.com/walinejs/waline",
     "directory": "packages/server"
   },
-  "license": "MIT",
-  "author": "lizheming <i@imnerd.org>",
+  "publishConfig": {
+    "provenance": true
+  },
   "scripts": {
     "dev": "node development.js 9090"
   },
@@ -60,8 +63,5 @@
   },
   "engines": {
     "node": ">=20"
-  },
-  "publishConfig": {
-    "provenance": true
   }
 }

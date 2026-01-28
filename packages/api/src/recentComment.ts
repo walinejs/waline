@@ -45,13 +45,8 @@ export const getRecentComment = ({
 
   if (token) headers.Authorization = `Bearer ${token}`;
 
-  return fetch(
-    `${getFetchPrefix(
-      serverURL,
-    )}comment?type=recent&count=${count}&lang=${lang}`,
-    {
-      signal,
-      headers,
-    },
-  ).then((resp) => resp.json() as Promise<RecentCommentData[]>);
+  return fetch(`${getFetchPrefix(serverURL)}comment?type=recent&count=${count}&lang=${lang}`, {
+    signal,
+    headers,
+  }).then((resp) => resp.json() as Promise<RecentCommentData[]>);
 };

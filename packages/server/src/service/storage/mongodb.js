@@ -40,8 +40,7 @@ module.exports = class extends Base {
               break;
             case 'NOT IN':
               filter[parseKey(k)] = {
-                $nin:
-                  k === 'objectId' ? where[k][1].map(ObjectId) : where[k][1],
+                $nin: k === 'objectId' ? where[k][1].map(ObjectId) : where[k][1],
               };
               break;
             case 'LIKE': {

@@ -7,11 +7,9 @@ describe('Words test', () => {
     expect(getWordNumber('')).toEqual(0);
   });
   it('Should count english words correctly', () => {
-    expect(
-      getWordNumber(
-        'A simple comment system with backend support fork from Valine',
-      ),
-    ).toEqual(10);
+    expect(getWordNumber('A simple comment system with backend support fork from Valine')).toEqual(
+      10,
+    );
   });
 
   it('Should pick chinese words correctly', () => {
@@ -20,16 +18,12 @@ describe('Words test', () => {
         'Waline - 一款从 Valine 衍生的带后端评论系统。可以将 Waline 等价成 With backend Valine.',
       ) ?? [];
 
-    expect(chineseWords.join('')).toEqual(
-      '一款从衍生的带后端评论系统可以将等价成',
-    );
+    expect(chineseWords.join('')).toEqual('一款从衍生的带后端评论系统可以将等价成');
   });
 
   it('Should count word correctly', () => {
     expect(
-      getWordNumber(
-        'A simple comment system, with backend support fork from Valine.',
-      ),
+      getWordNumber('A simple comment system, with backend support fork from Valine.'),
     ).toEqual(10);
 
     expect(
@@ -64,13 +58,7 @@ describe('Words test', () => {
       .map((word) => word.trim())
       .filter((word) => word);
 
-    expect(linkWords).toEqual([
-      'unpkg.com',
-      'waline',
-      'client',
-      'dist',
-      'Waline.min.js',
-    ]);
+    expect(linkWords).toEqual(['unpkg.com', 'waline', 'client', 'dist', 'Waline.min.js']);
 
     expect(getWordNumber(linkAddress)).toEqual(5);
     expect(getWordNumber(linkMarkdown)).toEqual(10);

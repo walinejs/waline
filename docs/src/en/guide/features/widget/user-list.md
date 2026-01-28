@@ -67,12 +67,10 @@ Example:
 <script type="module">
   import { UserList } from 'https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.mjs';
 
-  UserList({ serverURL: 'http://waline.vercel.app', count: 10 }).then(
-    ({ users }) => {
-      document.getElementById('waline-users').innerHTML = users.map(
-        (user) => `<a href="${user.link}">${user.nick}</a>`,
-      );
-    },
-  );
+  UserList({ serverURL: 'http://waline.vercel.app', count: 10 }).then(({ users }) => {
+    document.getElementById('waline-users').innerHTML = users.map(
+      (user) => `<a href="${user.link}">${user.nick}</a>`,
+    );
+  });
 </script>
 ```

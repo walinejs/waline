@@ -14,12 +14,7 @@ module.exports = class extends think.Service {
     //to be implemented
   }
 
-  async add(
-    data,
-    {
-      access: { read = true, write = true } = { read: true, write: true },
-    } = {},
-  ) {
+  async add(data, { access: { read = true, write = true } = { read: true, write: true } } = {}) {
     //to be implemented
   }
 

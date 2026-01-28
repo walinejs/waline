@@ -15,28 +15,12 @@ export const tk2lc = (input: string) => {
   }
 
   const data = arr.map(
-    ({
-      _id,
-      comment,
-      created,
-      updated,
-      ip,
-      link,
-      mail,
-      nick,
-      ua,
-      url,
-      pid,
-      rid,
-      isSpam,
-    }) => ({
+    ({ _id, comment, created, updated, ip, link, mail, nick, ua, url, pid, rid, isSpam }) => ({
       objectId: typeof _id === 'string' ? _id : _id.$oid,
       comment: comment,
       insertedAt: {
         __type: 'Date',
-        iso: new Date(
-          created?.$numberLong ? Number(created.$numberLong) : created,
-        ).toISOString(),
+        iso: new Date(created?.$numberLong ? Number(created.$numberLong) : created).toISOString(),
       },
       createdAt: new Date(
         created?.$numberLong ? Number(created.$numberLong) : created,

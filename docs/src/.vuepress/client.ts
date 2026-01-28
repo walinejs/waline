@@ -44,9 +44,7 @@ export default defineClientConfig({
         {},
         {
           contentAfter: () =>
-            frontmatter.value.home
-              ? h(resolveComponent('CommentService'))
-              : null,
+            frontmatter.value.home ? h(resolveComponent('CommentService')) : null,
         },
       );
     },

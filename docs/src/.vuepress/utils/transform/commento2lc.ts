@@ -38,43 +38,32 @@ export const commento2lc = (input: string) => {
   return {
     results: comments
       .filter(({ deleted }) => !deleted)
-      .map(
-        ({
-          commentHex,
-          commenterHex,
-          parentHex,
-          creationDate,
-          html,
-          markdown,
-          url,
-          state,
-        }) => {
-          const commenter = commenters[commenterHex] || {
-            nick: 'Anonymous',
-            mail: '',
-            link: '',
-          };
+      .map(({ commentHex, commenterHex, parentHex, creationDate, html, markdown, url, state }) => {
+        const commenter = commenters[commenterHex] || {
+          nick: 'Anonymous',
+          mail: '',
+          link: '',
+        };
 
-          return Object.assign(
-            {
-              objectId: commentHex,
-              comment: html || markdown,
-              insertedAt: {
-                __type: 'Date',
-                iso: creationDate,
-              },
-              createdAt: creationDate,
-              updatedAt: creationDate,
-              ip: '',
-              ua: '',
-              url: url,
-              pid: parentHex !== 'root' ? parentHex : '',
-              rid: rootHexMaps[commentHex] ? rootHexMaps[commentHex] : '',
-              status: state === 'approved' ? 'approved' : 'waiting',
+        return Object.assign(
+          {
+            objectId: commentHex,
+            comment: html || markdown,
+            insertedAt: {
+              __type: 'Date',
+              iso: creationDate,
             },
-            commenter,
-          );
-        },
-      ),
+            createdAt: creationDate,
+            updatedAt: creationDate,
+            ip: '',
+            ua: '',
+            url: url,
+            pid: parentHex !== 'root' ? parentHex : '',
+            rid: rootHexMaps[commentHex] ? rootHexMaps[commentHex] : '',
+            status: state === 'approved' ? 'approved' : 'waiting',
+          },
+          commenter,
+        );
+      }),
   };
 };

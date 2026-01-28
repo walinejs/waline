@@ -3,22 +3,29 @@
   "version": "3.8.0",
   "description": "client for waline comment system",
   "keywords": [
-    "valine",
-    "waline",
+    "blog",
     "comment",
-    "blog"
+    "valine",
+    "waline"
   ],
-  "repository": {
-    "url": "https://github.com/walinejs/waline",
-    "directory": "packages/client"
-  },
   "license": "MIT",
   "author": {
     "name": "Mr.Hope",
     "email": "mister-hope@outlook.com",
     "url": "https://mister-hope.com"
   },
+  "repository": {
+    "url": "https://github.com/walinejs/waline",
+    "directory": "packages/client"
+  },
+  "files": [
+    "dist"
+  ],
   "type": "module",
+  "main": "./dist/slim.js",
+  "module": "./dist/slim.js",
+  "browser": "./dist/waline.umd.js",
+  "types": "./dist/slim.d.ts",
   "exports": {
     ".": {
       "types": "./dist/slim.d.ts",
@@ -49,13 +56,9 @@
     "./waline-meta.css": "./dist/waline-meta.css",
     "./package.json": "./package.json"
   },
-  "main": "./dist/slim.js",
-  "module": "./dist/slim.js",
-  "browser": "./dist/waline.umd.js",
-  "types": "./dist/slim.d.ts",
-  "files": [
-    "dist"
-  ],
+  "publishConfig": {
+    "provenance": true
+  },
   "scripts": {
     "build": "pnpm rollup && pnpm style",
     "clean": "rimraf ./dist",
@@ -65,21 +68,6 @@
     "style": "pnpm style:main && pnpm style:meta",
     "style:main": "sass ./src/styles/index.scss ./dist/waline.css --style=compressed",
     "style:meta": "sass ./src/styles/meta.scss ./dist/waline-meta.css --style=compressed"
-  },
-  "browserslist": {
-    "production": [
-      ">0.5%",
-      "maintained node versions",
-      "not dead",
-      "not ie 11",
-      "not op_mini all",
-      "last 2 years"
-    ],
-    "development": [
-      "last 2 chrome version",
-      "last 2 firefox version",
-      "last 2 safari version"
-    ]
   },
   "dependencies": {
     "@vueuse/core": "^14.1.0",
@@ -98,10 +86,22 @@
     "@vitejs/plugin-vue": "6.0.3",
     "vite": "7.3.1"
   },
+  "browserslist": {
+    "production": [
+      ">0.5%",
+      "maintained node versions",
+      "not dead",
+      "not ie 11",
+      "not op_mini all",
+      "last 2 years"
+    ],
+    "development": [
+      "last 2 chrome version",
+      "last 2 firefox version",
+      "last 2 safari version"
+    ]
+  },
   "engines": {
     "node": ">=18"
-  },
-  "publishConfig": {
-    "provenance": true
   }
 }

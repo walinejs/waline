@@ -29,8 +29,5 @@ export const fetchCommentCount = ({
     )}&lang=${lang}`,
     { signal },
   )
-    .then(
-      (resp) =>
-        resp.json() as Promise<{ data: number[] } & ErrorStatusResponse>,
-    )
+    .then((resp) => resp.json() as Promise<{ data: number[] } & ErrorStatusResponse>)
     .then((data) => errorCheck(data, 'Get comment count').data);

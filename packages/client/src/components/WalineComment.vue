@@ -2,11 +2,7 @@
 /* eslint-disable vue/no-unused-properties */
 
 import { useStyleTag, watchImmediate } from '@vueuse/core';
-import type {
-  WalineComment,
-  WalineCommentStatus,
-  WalineRootComment,
-} from '@waline/api';
+import type { WalineComment, WalineCommentStatus, WalineRootComment } from '@waline/api';
 import { deleteComment, getComment, updateComment } from '@waline/api';
 import { computed, onMounted, onUnmounted, provide, ref } from 'vue';
 
@@ -114,9 +110,7 @@ const onSubmit = (comment: WalineComment): void => {
     edit.value.comment = comment.comment;
     edit.value.orig = comment.orig;
   } else if ('rid' in comment) {
-    const repliedComment = data.value.find(
-      ({ objectId }) => objectId === comment.rid,
-    );
+    const repliedComment = data.value.find(({ objectId }) => objectId === comment.rid);
 
     if (!repliedComment) return;
 
@@ -189,9 +183,7 @@ const onDelete = async ({ objectId }: WalineComment): Promise<void> => {
 
     return item.children.some((child, childIndex) => {
       if (child.objectId === objectId) {
-        data.value[index].children = item.children.filter(
-          (_item, i) => i !== childIndex,
-        );
+        data.value[index].children = item.children.filter((_item, i) => i !== childIndex);
 
         return true;
       }
@@ -214,13 +206,11 @@ const onLike = async (comment: WalineComment): Promise<void> => {
     comment: { like: !hasLiked },
   });
 
-  if (hasLiked)
-    likeStorage.value = likeStorage.value.filter((id) => id !== objectId);
+  if (hasLiked) likeStorage.value = likeStorage.value.filter((id) => id !== objectId);
   else {
     likeStorage.value = [...likeStorage.value, objectId];
 
-    if (likeStorage.value.length > 50)
-      likeStorage.value = likeStorage.value.slice(-50);
+    if (likeStorage.value.length > 50) likeStorage.value = likeStorage.value.slice(-50);
   }
 
   comment.like = Math.max(0, (comment.like || 0) + (hasLiked ? -1 : 1));
@@ -247,11 +237,7 @@ onUnmounted(() => {
   <div data-waline>
     <ArticleReaction />
 
-    <CommentBox
-      v-if="!reply && !edit"
-      @log="refreshComments"
-      @submit="onSubmit"
-    />
+    <CommentBox v-if="!reply && !edit" @log="refreshComments" @submit="onSubmit" />
 
     <div class="wl-meta-head">
       <div class="wl-count">
@@ -291,12 +277,7 @@ onUnmounted(() => {
     </div>
 
     <div v-if="status === 'error'" class="wl-operation">
-      <button
-        type="button"
-        class="wl-btn"
-        @click="refreshComments"
-        v-text="i18n.refresh"
-      />
+      <button type="button" class="wl-btn" @click="refreshComments" v-text="i18n.refresh" />
     </div>
 
     <div v-else-if="status === 'loading'" class="wl-loading">
@@ -307,22 +288,13 @@ onUnmounted(() => {
 
     <!-- Load more button -->
     <div v-else-if="page < totalPages" class="wl-operation">
-      <button
-        type="button"
-        class="wl-btn"
-        @click="loadMore"
-        v-text="i18n.more"
-      />
+      <button type="button" class="wl-btn" @click="loadMore" v-text="i18n.more" />
     </div>
 
     <!-- Copyright Information -->
     <div v-if="!config.noCopyright" class="wl-power">
       Powered by
-      <a
-        href="https://github.com/walinejs/waline"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <a href="https://github.com/walinejs/waline" target="_blank" rel="noopener noreferrer">
         Waline
       </a>
       v{{ version }}

@@ -9,14 +9,7 @@ module.exports = class extends think.Service {
     super(controller);
 
     this.controller = controller;
-    const {
-      SMTP_USER,
-      SMTP_PASS,
-      SMTP_HOST,
-      SMTP_PORT,
-      SMTP_SECURE,
-      SMTP_SERVICE,
-    } = process.env;
+    const { SMTP_USER, SMTP_PASS, SMTP_HOST, SMTP_PORT, SMTP_SECURE, SMTP_SERVICE } = process.env;
 
     if (SMTP_HOST || SMTP_SERVICE) {
       const config = {
@@ -43,8 +36,7 @@ module.exports = class extends think.Service {
       return;
     }
 
-    const { SITE_NAME, SITE_URL, SMTP_USER, SENDER_EMAIL, SENDER_NAME } =
-      process.env;
+    const { SITE_NAME, SITE_URL, SMTP_USER, SENDER_EMAIL, SENDER_NAME } = process.env;
     const data = {
       self,
       parent,
@@ -59,10 +51,7 @@ module.exports = class extends think.Service {
     content = this.controller.locale(content, data);
 
     return this.transporter.sendMail({
-      from:
-        SENDER_EMAIL && SENDER_NAME
-          ? `"${SENDER_NAME}" <${SENDER_EMAIL}>`
-          : SMTP_USER,
+      from: SENDER_EMAIL && SENDER_NAME ? `"${SENDER_NAME}" <${SENDER_EMAIL}>` : SMTP_USER,
       to,
       subject: title,
       html: content,
@@ -110,8 +99,7 @@ module.exports = class extends think.Service {
   }
 
   async qywxAmWechat({ title, content }, self, parent) {
-    const { QYWX_AM, QYWX_PROXY, QYWX_PROXY_PORT, SITE_NAME, SITE_URL } =
-      process.env;
+    const { QYWX_AM, QYWX_PROXY, QYWX_PROXY_PORT, SITE_NAME, SITE_URL } = process.env;
 
     if (!QYWX_AM) {
       return false;
@@ -165,41 +153,35 @@ module.exports = class extends think.Service {
       }
     }
 
-    const { access_token } = await fetch(
-      `${baseUrl}/cgi-bin/gettoken?${querystring.toString()}`,
-      {
-        headers: {
-          'content-type': 'application/json',
-        },
+    const { access_token } = await fetch(`${baseUrl}/cgi-bin/gettoken?${querystring.toString()}`, {
+      headers: {
+        'content-type': 'application/json',
       },
-    ).then((resp) => resp.json());
+    }).then((resp) => resp.json());
 
-    return fetch(
-      `${baseUrl}/cgi-bin/message/send?access_token=${access_token}`,
-      {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json',
-        },
-        body: JSON.stringify({
-          touser: `${QYWX_AM_AY[2]}`,
-          agentid: `${QYWX_AM_AY[3]}`,
-          msgtype: 'mpnews',
-          mpnews: {
-            articles: [
-              {
-                title,
-                thumb_media_id: `${QYWX_AM_AY[4]}`,
-                author: `Waline Comment`,
-                content_source_url: `${data.site.postUrl}`,
-                content: `${content}`,
-                digest: `${desp}`,
-              },
-            ],
-          },
-        }),
+    return fetch(`${baseUrl}/cgi-bin/message/send?access_token=${access_token}`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
       },
-    ).then((resp) => resp.json());
+      body: JSON.stringify({
+        touser: `${QYWX_AM_AY[2]}`,
+        agentid: `${QYWX_AM_AY[3]}`,
+        msgtype: 'mpnews',
+        mpnews: {
+          articles: [
+            {
+              title,
+              thumb_media_id: `${QYWX_AM_AY[4]}`,
+              author: `Waline Comment`,
+              content_source_url: `${data.site.postUrl}`,
+              content: `${content}`,
+              digest: `${desp}`,
+            },
+          ],
+        },
+      }),
+    }).then((resp) => resp.json());
   }
 
   async qq(self, parent) {
@@ -209,9 +191,7 @@ module.exports = class extends think.Service {
       return false;
     }
 
-    const comment = self.comment
-      .replace(/<a href="(.*?)">(.*?)<\/a>/g, '')
-      .replace(/<[^>]+>/g, '');
+    const comment = self.comment.replace(/<a href="(.*?)">(.*?)<\/a>/g, '').replace(/<[^>]+>/g, '');
 
     const data = {
       self: {
@@ -238,9 +218,7 @@ module.exports = class extends think.Service {
     form.append('msg', this.controller.locale(contentQQ, data));
     form.append('qq', QQ_ID);
 
-    const qmsgHost = QMSG_HOST
-      ? QMSG_HOST.replace(/\/$/, '')
-      : 'https://qmsg.zendee.cn';
+    const qmsgHost = QMSG_HOST ? QMSG_HOST.replace(/\/$/, '') : 'https://qmsg.zendee.cn';
 
     return fetch(`${qmsgHost}/send/${QMSG_KEY}`, {
       method: 'POST',
@@ -306,20 +284,17 @@ module.exports = class extends think.Service {
       },
     };
 
-    const resp = await fetch(
-      `https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          chat_id: TG_CHAT_ID,
-          text: this.controller.locale(contentTG, data),
-          parse_mode: 'MarkdownV2',
-        }),
+    const resp = await fetch(`https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
       },
-    ).then((resp) => resp.json());
+      body: JSON.stringify({
+        chat_id: TG_CHAT_ID,
+        text: this.controller.locale(contentTG, data),
+        parse_mode: 'MarkdownV2',
+      }),
+    }).then((resp) => resp.json());
 
     if (!resp.ok) {
       console.log('Telegram Notification Failed:' + JSON.stringify(resp));
@@ -492,8 +467,7 @@ module.exports = class extends think.Service {
 
   async run(comment, parent, disableAuthorNotify = false) {
     const { AUTHOR_EMAIL, DISABLE_AUTHOR_NOTIFY } = process.env;
-    const { mailSubject, mailTemplate, mailSubjectAdmin, mailTemplateAdmin } =
-      think.config();
+    const { mailSubject, mailTemplate, mailSubjectAdmin, mailTemplateAdmin } = think.config();
     const AUTHOR = AUTHOR_EMAIL;
 
     const mailList = [];
@@ -504,37 +478,26 @@ module.exports = class extends think.Service {
       ? parent && (parent.mail || '').toLowerCase() === AUTHOR.toLowerCase()
       : false;
     const isCommentSelf =
-      parent &&
-      (parent.mail || '').toLowerCase() === (comment.mail || '').toLowerCase();
+      parent && (parent.mail || '').toLowerCase() === (comment.mail || '').toLowerCase();
 
     const title = mailSubjectAdmin || 'MAIL_SUBJECT_ADMIN';
     const content = mailTemplateAdmin || 'MAIL_TEMPLATE_ADMIN';
 
     if (!DISABLE_AUTHOR_NOTIFY && !isAuthorComment && !disableAuthorNotify) {
       const wechat = await this.wechat({ title, content }, comment, parent);
-      const qywxAmWechat = await this.qywxAmWechat(
-        { title, content },
-        comment,
-        parent,
-      );
+      const qywxAmWechat = await this.qywxAmWechat({ title, content }, comment, parent);
       const qq = await this.qq(comment, parent);
       const telegram = await this.telegram(comment, parent);
       const pushplus = await this.pushplus({ title, content }, comment, parent);
       const discord = await this.discord({ title, content }, comment, parent);
       const lark = await this.lark({ title, content }, comment, parent);
 
-      if (
-        [wechat, qq, telegram, qywxAmWechat, pushplus, discord, lark].every(
-          think.isEmpty,
-        )
-      ) {
+      if ([wechat, qq, telegram, qywxAmWechat, pushplus, discord, lark].every(think.isEmpty)) {
         mailList.push({ to: AUTHOR, title, content });
       }
     }
 
-    const disallowList = this.controller.ctx.state.oauthServices.map(
-      ({ name }) => 'mail.' + name,
-    );
+    const disallowList = this.controller.ctx.state.oauthServices.map(({ name }) => 'mail.' + name);
     const fakeMail = new RegExp(`@(${disallowList.join('|')})$`, 'i');
 
     if (

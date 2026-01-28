@@ -60,8 +60,7 @@ const mathjaxPlugin = (md) => {
 
   md.renderer.rules.inlineTeX = (tokens, idx) => inline(tokens[idx].content);
 
-  md.renderer.rules.blockTeX = (tokens, idx) =>
-    `${block(tokens[idx].content)}\n`;
+  md.renderer.rules.blockTeX = (tokens, idx) => `${block(tokens[idx].content)}\n`;
 };
 
 module.exports = {

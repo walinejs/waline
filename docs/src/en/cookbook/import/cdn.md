@@ -18,10 +18,7 @@ Normally, you may want Waline to render a list of comments, you can import Walin
 
 ```html
 <!-- style file -->
-<link
-  rel="stylesheet"
-  href="https://unpkg.com/@waline/client@v3/dist/waline.css"
-/>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css" />
 <!-- script file -->
 <script type="module">
   import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';

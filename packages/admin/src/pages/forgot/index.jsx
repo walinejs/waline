@@ -72,18 +72,12 @@ export default function () {
                   className="text-l w-100"
                 />
                 <p className="description" style={{ textAlign: 'left' }}>
-                  {t(
-                    'you will receive an email which contains a link to create new password',
-                  )}
+                  {t('you will receive an email which contains a link to create new password')}
                 </p>
               </li>
             </ul>
             <p className="submit">
-              <button
-                type="submit"
-                disabled={submitting}
-                className="btn btn-l w-100 primary"
-              >
+              <button type="submit" disabled={submitting} className="btn btn-l w-100 primary">
                 {t('get new password')}
               </button>
             </p>

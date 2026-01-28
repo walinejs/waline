@@ -28,9 +28,7 @@ module.exports = class extends think.Logic {
     let { secureDomains } = this.config();
 
     if (secureDomains) {
-      secureDomains = think.isArray(secureDomains)
-        ? secureDomains
-        : [secureDomains];
+      secureDomains = think.isArray(secureDomains) ? secureDomains : [secureDomains];
 
       secureDomains.push(
         'localhost',
@@ -49,19 +47,11 @@ module.exports = class extends think.Logic {
       secureDomains = secureDomains
         .map((domain) => {
           // 如果是正则表达式字符串，创建一个 RegExp 对象
-          if (
-            typeof domain === 'string' &&
-            domain.startsWith('/') &&
-            domain.endsWith('/')
-          ) {
+          if (typeof domain === 'string' && domain.startsWith('/') && domain.endsWith('/')) {
             try {
               return new RegExp(domain.slice(1, -1)); // 去掉斜杠并创建 RegExp 对象
             } catch (e) {
-              console.error(
-                'Invalid regex pattern in secureDomains:',
-                domain,
-                e,
-              );
+              console.error('Invalid regex pattern in secureDomains:', domain, e);
 
               return null;
             }
@@ -74,9 +64,7 @@ module.exports = class extends think.Logic {
       // 有 referrer 检查 referrer，没有则检查 origin
       const checking = referrer ? referrer : origin;
       const isSafe = secureDomains.some((domain) =>
-        think.isFunction(domain.test)
-          ? domain.test(checking)
-          : domain === checking,
+        think.isFunction(domain.test) ? domain.test(checking) : domain === checking,
       );
 
       if (!isSafe) {
@@ -212,21 +200,15 @@ module.exports = class extends think.Logic {
         : {
             method,
             headers: {
-              'content-type':
-                'application/x-www-form-urlencoded; charset=UTF-8',
+              'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
             },
             body: query,
           };
 
-    const response = await fetch(requestUrl, options).then((resp) =>
-      resp.json(),
-    );
+    const response = await fetch(requestUrl, options).then((resp) => resp.json());
 
     if (!response.success) {
-      think.logger.debug(
-        'RecaptchaV3 or Turnstile Result:',
-        JSON.stringify(response, null, '\t'),
-      );
+      think.logger.debug('RecaptchaV3 or Turnstile Result:', JSON.stringify(response, null, '\t'));
 
       return this.ctx.throw(403);
     }

@@ -26,9 +26,7 @@ var CSV = {};
         r = t.encoding || 'UTF-8';
       ((e.onload = function (e) {
         var r = p.extractFields(p.parse(e.target.result, t), t);
-        ((r.useMemoryStore = !0),
-          (r.metadata = { filename: t.file.name }),
-          n.resolve(r));
+        ((r.useMemoryStore = !0), (r.metadata = { filename: t.file.name }), n.resolve(r));
       }),
         (e.onerror = function (e) {
           n.reject({
@@ -67,8 +65,7 @@ var CSV = {};
         .catch(function (e, r) {
           n.reject({
             error: {
-              message:
-                'Failed to load file. ' + e.statusText + '. Code: ' + e.status,
+              message: 'Failed to load file. ' + e.statusText + '. Code: ' + e.status,
               request: e,
             },
           });
@@ -90,10 +87,7 @@ var CSV = {};
         skipinitialspace: !0,
         skipinitialrows: 0,
       };
-      for (var t in e)
-        'trim' === t
-          ? (r.skipinitialspace = e.trim)
-          : (r[t.toLowerCase()] = e[t]);
+      for (var t in e) 'trim' === t ? (r.skipinitialspace = e.trim) : (r[t.toLowerCase()] = e[t]);
       return r;
     }),
     (p.parse = function (e, r) {
@@ -103,10 +97,7 @@ var CSV = {};
         i = p.normalizeDialectOptions(r);
       ((t = e),
         (n = i.lineterminator),
-        (e =
-          t.charAt(t.length - n.length) !== n
-            ? t
-            : t.substring(0, t.length - n.length)));
+        (e = t.charAt(t.length - n.length) !== n ? t : t.substring(0, t.length - n.length)));
       var o,
         a,
         l = '',
@@ -120,9 +111,7 @@ var CSV = {};
           return (
             !0 !== u &&
               ('' === e ? (e = null) : !0 === i.skipinitialspace && (e = v(e)),
-              h.test(e)
-                ? (e = parseInt(e, 10))
-                : m.test(e) && (e = parseFloat(e, 10))),
+              h.test(e) ? (e = parseInt(e, 10)) : m.test(e) && (e = parseFloat(e, 10))),
             e
           );
         },
@@ -145,17 +134,11 @@ var CSV = {};
               (c = ''),
               (u = !1)));
       return (
-        (c = a(c)),
-        f.push(c),
-        d.push(f),
-        i.skipinitialrows && (d = d.slice(i.skipinitialrows)),
-        d
+        (c = a(c)), f.push(c), d.push(f), i.skipinitialrows && (d = d.slice(i.skipinitialrows)), d
       );
     }),
     (p.normalizeLineTerminator = function (e, r) {
-      return (r = r || {}).lineterminator
-        ? e
-        : e.replace(/(\r\n|\n|\r)/gm, '\n');
+      return (r = r || {}).lineterminator ? e : e.replace(/(\r\n|\n|\r)/gm, '\n');
     }),
     (p.objectToArray = function (e) {
       for (var r = [], t = [], n = [], i = 0; i < e.fields.length; i++) {
@@ -166,8 +149,7 @@ var CSV = {};
       }
       r.push(t);
       for (i = 0; i < e.records.length; i++) {
-        for (var l = [], s = e.records[i], u = 0; u < n.length; u++)
-          l.push(s[n[u]]);
+        for (var l = [], s = e.records[i], u = 0; u < n.length; u++) l.push(s[n[u]]);
         r.push(l);
       }
       return r;

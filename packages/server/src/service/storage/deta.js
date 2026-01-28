@@ -18,9 +18,7 @@ module.exports = class extends Base {
     for (let i = 0; i < result.length; i++) {
       result[i] = { ...obj };
       for (let n = 0; n < keys.length; n++) {
-        const divisor = keys
-          .slice(n + 1)
-          .reduce((a, b) => a * obj[b].length, 1);
+        const divisor = keys.slice(n + 1).reduce((a, b) => a * obj[b].length, 1);
         const idx = Math.floor(i / divisor) % obj[keys[n]].length;
 
         result[i][keys[n]] = obj[keys[n]][idx];
@@ -152,19 +150,13 @@ module.exports = class extends Base {
 
     if (think.isArray(conditions)) {
       return Promise.all(
-        conditions.map((condition) =>
-          this.select(condition, { limit, offset, field }),
-        ),
+        conditions.map((condition) => this.select(condition, { limit, offset, field })),
       ).then((data) => data.flat());
     }
 
     let data = [];
 
-    if (
-      think.isObject(conditions) &&
-      think.isString(conditions.key) &&
-      conditions.key
-    ) {
+    if (think.isObject(conditions) && think.isString(conditions.key) && conditions.key) {
       /**
        * deta base doesn't support fetch with key field query
        * if you want query by key field
@@ -230,9 +222,9 @@ module.exports = class extends Base {
       const conditions = this.where(where);
 
       if (think.isArray(conditions)) {
-        return Promise.all(
-          conditions.map((condition) => this.count(condition)),
-        ).then((counts) => counts.reduce((a, b) => a + b, 0));
+        return Promise.all(conditions.map((condition) => this.count(condition))).then((counts) =>
+          counts.reduce((a, b) => a + b, 0),
+        );
       }
 
       const { count } = await this.instance.fetch(conditions);
@@ -303,8 +295,6 @@ module.exports = class extends Base {
   async delete(where) {
     const items = await this.select(where);
 
-    return Promise.all(
-      items.map(({ objectId }) => this.instance.delete(objectId)),
-    );
+    return Promise.all(items.map(({ objectId }) => this.instance.delete(objectId)));
   }
 };
