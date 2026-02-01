@@ -213,18 +213,29 @@ module.exports = class extends think.Service {
 {{self.comment}}
 仅供预览评论，请前往上述页面查看完整內容。`;
 
-    const form = new FormData();
-
-    form.append('msg', this.controller.locale(contentQQ, data));
-    form.append('qq', QQ_ID);
-
     const qmsgHost = QMSG_HOST ? QMSG_HOST.replace(/\/$/, '') : 'https://qmsg.zendee.cn';
+
+    const postBodyData = {
+      qq: QQ_ID,
+      msg: this.controller.locale(contentQQ, data),
+    };
+    const postBody = Object.keys(postBodyData)
+      .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(postBodyData[key]))
+      .join('&');
 
     return fetch(`${qmsgHost}/send/${QMSG_KEY}`, {
       method: 'POST',
-      headers: form.getHeaders(),
-      body: form,
-    }).then((resp) => resp.json());
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: postBody,
+    }).then((resp) => {
+      return resp.json().then((json) => {
+        think.logger.debug(`qq notify response: ${JSON.stringify(json)}`);
+
+        return json;
+      });
+    });
   }
 
   async telegram(self, parent) {
