@@ -10,7 +10,7 @@
   "devDependencies": {
     "@fancyapps/ui": "6.1.9",
     "@vuepress/bundler-vite": "2.0.0-rc.26",
-    "@vuepress/helper": "2.0.0-rc.121",
+    "@vuepress/helper": "2.0.0-rc.122",
     "@vuepress/plugin-comment": "2.0.0-rc.121",
     "@vuepress/plugin-docsearch": "2.0.0-rc.121",
     "@waline/client": "workspace:*",
