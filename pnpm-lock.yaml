@@ -301,8 +301,8 @@ importers:
         specifier: 0.23.4-cjs.0
         version: 0.23.4-cjs.0(markdown-it@14.1.0)
       '@mdit/plugin-sub':
-        specifier: 0.22.5-cjs.0
-        version: 0.22.5-cjs.0(markdown-it@14.1.0)
+        specifier: 0.23.1
+        version: 0.23.1(markdown-it@14.1.0)
       '@mdit/plugin-sup':
         specifier: 0.22.5-cjs.0
         version: 0.22.5-cjs.0(markdown-it@14.1.0)
@@ -2176,15 +2176,6 @@ packages:
 
   '@mdit/plugin-stylize@0.22.4':
     resolution: {integrity: sha512-958PhPmeM9XiSJWH/eMtASY9sQsDkpiSEjS+GjCij1wfPF+LFqLEQOqX2QgxYYVp+lYF6g0gxMFz+1ICiZ3JxA==}
-    engines: {node: '>= 18'}
-    peerDependencies:
-      markdown-it: ^14.1.0
-    peerDependenciesMeta:
-      markdown-it:
-        optional: true
-
-  '@mdit/plugin-sub@0.22.5-cjs.0':
-    resolution: {integrity: sha512-Cl0Cir7z45bdlP5ZXhJeDHQwJ1MDwdt+RMAqc/9zIYN6HuAQ0RgF+faPXzpf3VXrRVdE9SvSwME03z6SmewiJA==}
     engines: {node: '>= 18'}
     peerDependencies:
       markdown-it: ^14.1.0
@@ -11183,13 +11174,6 @@ snapshots:
 
   '@mdit/plugin-stylize@0.22.4(markdown-it@14.1.0)':
     dependencies:
-      '@types/markdown-it': 14.1.2
-    optionalDependencies:
-      markdown-it: 14.1.0
-
-  '@mdit/plugin-sub@0.22.5-cjs.0(markdown-it@14.1.0)':
-    dependencies:
-      '@mdit/helper': 0.22.3-cjs.0(markdown-it@14.1.0)
       '@types/markdown-it': 14.1.2
     optionalDependencies:
       markdown-it: 14.1.0
