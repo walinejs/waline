@@ -4,16 +4,7 @@ import type { WalineComment, WalineCommentData, UserInfo } from '@waline/api';
 import { addComment, login, updateComment } from '@waline/api';
 import autosize from 'autosize';
 import type { DeepReadonly, CSSProperties } from 'vue';
-import {
-  computed,
-  inject,
-  nextTick,
-  onMounted,
-  reactive,
-  ref,
-  useTemplateRef,
-  watch,
-} from 'vue';
+import { computed, inject, nextTick, onMounted, reactive, ref, useTemplateRef, watch } from 'vue';
 
 import {
   CloseIcon,
@@ -177,10 +168,7 @@ const uploadImage = async (file: File): Promise<void> => {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const url = await config.value.imageUploader!(file);
 
-    editor.value = editor.value.replace(
-      uploadText,
-      `\r\n![${file.name}](${url})`,
-    );
+    editor.value = editor.value.replace(uploadText, `\r\n![${file.name}](${url})`);
   } catch (err) {
     alert((err as Error).message);
     editor.value = editor.value.replace(uploadText, '');
@@ -220,15 +208,8 @@ const onImageChange = (): void => {
 };
 
 const submitComment = async (): Promise<void> => {
-  const {
-    serverURL,
-    lang,
-    login,
-    wordLimit,
-    requiredMeta,
-    recaptchaV3Key,
-    turnstileKey,
-  } = config.value;
+  const { serverURL, lang, login, wordLimit, requiredMeta, recaptchaV3Key, turnstileKey } =
+    config.value;
 
   const comment: WalineCommentData = {
     comment: content.value,
@@ -304,12 +285,9 @@ const submitComment = async (): Promise<void> => {
   isSubmitting.value = true;
 
   try {
-    if (recaptchaV3Key)
-      comment.recaptchaV3 =
-        await useReCaptcha(recaptchaV3Key).execute('social');
+    if (recaptchaV3Key) comment.recaptchaV3 = await useReCaptcha(recaptchaV3Key).execute('social');
 
-    if (turnstileKey)
-      comment.turnstile = await useTurnstile(turnstileKey).execute('social');
+    if (turnstileKey) comment.turnstile = await useTurnstile(turnstileKey).execute('social');
 
     const options = {
       serverURL,
@@ -361,10 +339,7 @@ const onLogin = (event: Event): void => {
     lang,
   }).then((data) => {
     userInfo.value = data;
-    (data.remember ? localStorage : sessionStorage).setItem(
-      'WALINE_USER',
-      JSON.stringify(data),
-    );
+    (data.remember ? localStorage : sessionStorage).setItem('WALINE_USER', JSON.stringify(data));
     emit('log');
   });
 };
@@ -413,8 +388,7 @@ const popupHandler = (event: MouseEvent): void => {
 };
 
 const onImageWallScroll = async (event: Event): Promise<void> => {
-  const { scrollTop, clientHeight, scrollHeight } =
-    event.target as HTMLDivElement;
+  const { scrollTop, clientHeight, scrollHeight } = event.target as HTMLDivElement;
   const percent = (clientHeight + scrollTop) / scrollHeight;
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const searchOptions = config.value.search!;
@@ -452,21 +426,18 @@ const onGifSearch = useDebounceFn((event: Event) => {
 }, 300);
 
 useEventListener('click', popupHandler);
-useEventListener(
-  'message',
-  ({ data }: { data: { type: 'profile'; data: UserInfo } }) => {
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-    if (data?.type !== 'profile') return;
+useEventListener('message', ({ data }: { data: { type: 'profile'; data: UserInfo } }) => {
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  if (data?.type !== 'profile') return;
 
-    userInfo.value = { ...userInfo.value, ...data.data };
+  userInfo.value = { ...userInfo.value, ...data.data };
 
-    [localStorage, sessionStorage]
-      .filter((store) => store.getItem('WALINE_USER'))
-      .forEach((store) => {
-        store.setItem('WALINE_USER', JSON.stringify(userInfo));
-      });
-  },
-);
+  [localStorage, sessionStorage]
+    .filter((store) => store.getItem('WALINE_USER'))
+    .forEach((store) => {
+      store.setItem('WALINE_USER', JSON.stringify(userInfo));
+    });
+});
 
 // start tracking comment word number
 watchImmediate([config, wordNumber], ([config, wordNumber]) => {
@@ -503,8 +474,7 @@ watch(showGif, async (showGif) => {
   searchResults.loading = true;
 
   // display default results
-  searchResults.list = await (searchOptions.default?.() ??
-    searchOptions.search(''));
+  searchResults.list = await (searchOptions.default?.() ?? searchOptions.search(''));
 
   // clear loading state
   searchResults.loading = false;
@@ -548,17 +518,9 @@ onMounted(() => {
 
 <template>
   <div :key="userInfo.token" class="wl-comment">
-    <div
-      v-if="config.login !== 'disable' && isLogin && !edit?.objectId"
-      class="wl-login-info"
-    >
+    <div v-if="config.login !== 'disable' && isLogin && !edit?.objectId" class="wl-login-info">
       <div class="wl-avatar">
-        <button
-          type="submit"
-          class="wl-logout-btn"
-          :title="locale.logout"
-          @click="onLogout"
-        >
+        <button type="submit" class="wl-logout-btn" :title="locale.logout" @click="onLogout">
           <CloseIcon :size="14" />
         </button>
 
@@ -711,10 +673,7 @@ onMounted(() => {
 
             <span v-if="config.wordLimit">
               &nbsp;/&nbsp;
-              <span
-                :class="{ illegal: !isWordNumberLegal }"
-                v-text="wordLimit"
-              />
+              <span :class="{ illegal: !isWordNumberLegal }" v-text="wordLimit" />
             </span>
 
             &nbsp;{{ locale.word }}
@@ -766,20 +725,9 @@ onMounted(() => {
           </div>
         </div>
 
-        <div
-          ref="emoji-popup"
-          class="wl-emoji-popup"
-          :class="{ display: showEmoji }"
-        >
-          <template
-            v-for="(emojiItem, index) in emoji.tabs"
-            :key="emojiItem.name"
-          >
-            <div
-              v-if="index === emojiTabIndex"
-              class="wl-tab-wrapper"
-              @scroll="onEmojiLeave"
-            >
+        <div ref="emoji-popup" class="wl-emoji-popup" :class="{ display: showEmoji }">
+          <template v-for="(emojiItem, index) in emoji.tabs" :key="emojiItem.name">
+            <div v-if="index === emojiTabIndex" class="wl-tab-wrapper" @scroll="onEmojiLeave">
               <button
                 v-for="key in emojiItem.items"
                 :key="key"

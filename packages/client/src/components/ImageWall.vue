@@ -25,14 +25,7 @@
 -->
 
 <script setup lang="ts">
-import {
-  nextTick,
-  onBeforeUnmount,
-  onMounted,
-  ref,
-  useTemplateRef,
-  watch,
-} from 'vue';
+import { nextTick, onBeforeUnmount, onMounted, ref, useTemplateRef, watch } from 'vue';
 
 import { LoadingIcon } from './Icons.js';
 import type { WalineSearchResult } from '../typings/index.js';
@@ -71,15 +64,13 @@ const columns = ref<Column[]>([]);
 const getColumnCount = (): number => {
   const count = Math.floor(
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    (wall.value!.getBoundingClientRect().width + props.gap) /
-      (props.columnWidth + props.gap),
+    (wall.value!.getBoundingClientRect().width + props.gap) / (props.columnWidth + props.gap),
   );
 
   return count > 0 ? count : 1;
 };
 
-const createColumns = (count: number): Column[] =>
-  new Array(count).fill(null).map(() => []);
+const createColumns = (count: number): Column[] => new Array(count).fill(null).map(() => []);
 
 const fillColumns = async (itemIndex: number): Promise<void> => {
   if (itemIndex >= props.items.length) return;
@@ -90,9 +81,7 @@ const fillColumns = async (itemIndex: number): Promise<void> => {
   const columnDivs = Array.from<HTMLElement>(wall.value?.children ?? []);
 
   const target = columnDivs.reduce((prev, curr) =>
-    curr.getBoundingClientRect().height < prev.getBoundingClientRect().height
-      ? curr
-      : prev,
+    curr.getBoundingClientRect().height < prev.getBoundingClientRect().height ? curr : prev,
   );
 
   columns.value[Number(target.dataset.index)].push(itemIndex);
@@ -157,11 +146,7 @@ onBeforeUnmount(() => {
     >
       <template v-for="itemIndex in column" :key="itemIndex">
         <!-- eslint-disable vue/no-static-inline-styles -->
-        <LoadingIcon
-          v-if="!state[items[itemIndex].src]"
-          :size="36"
-          style="margin: 20px auto"
-        />
+        <LoadingIcon v-if="!state[items[itemIndex].src]" :size="36" style="margin: 20px auto" />
         <!-- eslint-enable vue/no-static-inline-styles -->
 
         <img

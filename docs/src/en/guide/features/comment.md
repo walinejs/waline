@@ -40,8 +40,8 @@ Every time you call `WalineInstance.update()`, Waline will search the page conte
 ::: tip Examples
 
 ```html
-The current page has <span class="waline-comment-count" /> comments, the home
-page has <span data-path="/en/" class="waline-comment-count" /> comments.
+The current page has <span class="waline-comment-count" /> comments, the home page has
+<span data-path="/en/" class="waline-comment-count" /> comments.
 ```
 
 The current page has <span class="waline-comment-count" /> comments, the home

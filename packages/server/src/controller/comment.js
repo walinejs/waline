@@ -29,9 +29,7 @@ async function formatCmt(
     comment.label = user.label;
   }
 
-  const avatarUrl = user?.avatar
-    ? user.avatar
-    : await think.service('avatar').stringify(comment);
+  const avatarUrl = user?.avatar ? user.avatar : await think.service('avatar').stringify(comment);
 
   comment.avatar =
     avatarProxy && !avatarUrl.includes(avatarProxy)
@@ -144,9 +142,7 @@ module.exports = class extends BaseRest {
       });
 
       if (!think.isEmpty(duplicate)) {
-        think.logger.debug(
-          'The comment author had post same comment content before',
-        );
+        think.logger.debug('The comment author had post same comment content before');
 
         return this.fail(this.locale('Duplicate Content'));
       }
@@ -175,9 +171,7 @@ module.exports = class extends BaseRest {
       think.logger.debug(`Comment initial status is ${data.status}`);
 
       if (data.status === 'approved') {
-        const spam = await akismet(data, this.ctx.serverURL).catch((err) =>
-          console.log(err),
-        ); // ignore akismet error
+        const spam = await akismet(data, this.ctx.serverURL).catch((err) => console.log(err)); // ignore akismet error
 
         if (spam === true) {
           data.status = 'spam';
@@ -255,9 +249,7 @@ module.exports = class extends BaseRest {
 
       await notify.run(
         { ...cmtReturn, mail: resp.mail, rawComment: comment },
-        parentReturn
-          ? { ...parentReturn, mail: parentComment.mail }
-          : undefined,
+        parentReturn ? { ...parentReturn, mail: parentComment.mail } : undefined,
       );
     }
 
@@ -292,8 +284,7 @@ module.exports = class extends BaseRest {
       const likeIncMax = this.config('LIKE_INC_MAX') || 1;
 
       data.like =
-        (Number(oldData.like) || 0) +
-        (data.like ? Math.ceil(Math.random() * likeIncMax) : -1);
+        (Number(oldData.like) || 0) + (data.like ? Math.ceil(Math.random() * likeIncMax) : -1);
       data.like = Math.max(data.like, 0);
     }
 
@@ -325,11 +316,7 @@ module.exports = class extends BaseRest {
       userInfo,
     );
 
-    if (
-      oldData.status === 'waiting' &&
-      data.status === 'approved' &&
-      oldData.pid
-    ) {
+    if (oldData.status === 'waiting' && data.status === 'approved' && oldData.pid) {
       let pComment = await this.modelInstance.select({
         objectId: oldData.pid,
       });
@@ -462,9 +449,7 @@ module.exports = class extends BaseRest {
       rootComments.forEach(({ objectId }) => {
         rootIds[objectId] = true;
       });
-      comments = comments.filter(
-        (cmt) => rootIds[cmt.objectId] || rootIds[cmt.rid],
-      );
+      comments = comments.filter((cmt) => rootIds[cmt.objectId] || rootIds[cmt.rid]);
     } else {
       comments = await this.modelInstance.select(
         { ...where, rid: undefined },
@@ -488,9 +473,7 @@ module.exports = class extends BaseRest {
     }
 
     const userModel = this.getModel('Users');
-    const user_ids = Array.from(
-      new Set(comments.map(({ user_id }) => user_id).filter((v) => v)),
-    );
+    const user_ids = Array.from(new Set(comments.map(({ user_id }) => user_id).filter((v) => v)));
     let users = [];
 
     if (user_ids.length) {
@@ -511,9 +494,7 @@ module.exports = class extends BaseRest {
       if (user_ids.length) {
         countWhere._complex.user_id = ['IN', user_ids];
       }
-      const mails = Array.from(
-        new Set(comments.map(({ mail }) => mail).filter((v) => v)),
-      );
+      const mails = Array.from(new Set(comments.map(({ mail }) => mail).filter((v) => v)));
 
       if (mails.length) {
         countWhere._complex.mail = ['IN', mails];
@@ -629,9 +610,7 @@ module.exports = class extends BaseRest {
     });
 
     const userModel = this.getModel('Users');
-    const user_ids = Array.from(
-      new Set(comments.map(({ user_id }) => user_id).filter((v) => v)),
-    );
+    const user_ids = Array.from(new Set(comments.map(({ user_id }) => user_id).filter((v) => v)));
 
     let users = [];
 
@@ -700,9 +679,7 @@ module.exports = class extends BaseRest {
     });
 
     const userModel = this.getModel('Users');
-    const user_ids = Array.from(
-      new Set(comments.map(({ user_id }) => user_id).filter((v) => v)),
-    );
+    const user_ids = Array.from(new Set(comments.map(({ user_id }) => user_id).filter((v) => v)));
 
     let users = [];
 

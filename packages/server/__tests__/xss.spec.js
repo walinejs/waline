@@ -3,8 +3,7 @@ import { describe, expect, it } from 'vitest';
 
 import { sanitize } from '../src/service/markdown/xss';
 
-const parser = (content) =>
-  sanitize(new MarkdownIt({ html: true }).render(content));
+const parser = (content) => sanitize(new MarkdownIt({ html: true }).render(content));
 
 describe('XSS test', () => {
   it('Should render', () => {
@@ -36,20 +35,16 @@ Waline is a good framework. :money:
   });
 
   it('Should protect', () => {
-    expect(parser(`<img src="x" onerror="alert('img')">`)).toEqual(
-      '<img src="x">',
-    );
+    expect(parser(`<img src="x" onerror="alert('img')">`)).toEqual('<img src="x">');
     expect(parser('<script>alert("hello world")</script>')).toEqual('');
 
     expect(
-      parser(
-        '<p>Waline is <iframe//src=jaVa&Tab;script:alert(3)></iframe>awesome</p>',
-      ),
+      parser('<p>Waline is <iframe//src=jaVa&Tab;script:alert(3)></iframe>awesome</p>'),
     ).toEqual('<p>Waline is awesome</p>');
 
-    expect(
-      parser('<p>Waline is <iframe//src=jaVa&Tab;script:alert(3)>awesome</p>'),
-    ).toEqual('<p>Waline is </p>');
+    expect(parser('<p>Waline is <iframe//src=jaVa&Tab;script:alert(3)>awesome</p>')).toEqual(
+      '<p>Waline is </p>',
+    );
   });
 
   it('Should resolve unmatching html tags', () => {
@@ -78,11 +73,7 @@ Waline is a good framework. :money:
     expect(parser('[link](https://example.com)')).toEqual(
       '<p><a href="https://example.com" target="_blank" rel="nofollow noreferrer noopener">link</a></p>\n',
     );
-    expect(
-      parser(
-        '<p><a href="https://example.com" rel="opener prefetch">link</a></p>',
-      ),
-    ).toEqual(
+    expect(parser('<p><a href="https://example.com" rel="opener prefetch">link</a></p>')).toEqual(
       '<p><a href="https://example.com" rel="nofollow noreferrer noopener" target="_blank">link</a></p>',
     );
   });
@@ -94,9 +85,7 @@ Waline is a good framework. :money:
 
   it('Should forbid style', () => {
     expect(
-      parser(
-        '<div style="position:fixed;top:0;left:0;width:100vh;height:100vh;">广告文字</div>',
-      ),
+      parser('<div style="position:fixed;top:0;left:0;width:100vh;height:100vh;">广告文字</div>'),
     ).toEqual('<div>广告文字</div>');
     expect(
       parser(

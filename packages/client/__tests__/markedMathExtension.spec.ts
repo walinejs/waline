@@ -50,9 +50,7 @@ describe('Should parse inline tex', () => {
       '<p>Here ends a single tex <span class="wl-tex">TeX is not available in preview</span></p>\n',
     );
 
-    expect(
-      marked.parse('Here is a single tex $a = 1$ in the sentence'),
-    ).toEqual(
+    expect(marked.parse('Here is a single tex $a = 1$ in the sentence')).toEqual(
       '<p>Here is a single tex <span class="wl-tex">TeX is not available in preview</span> in the sentence</p>\n',
     );
 
@@ -76,9 +74,7 @@ describe('Should parse inline tex', () => {
 
 describe('Should parse block tex', () => {
   it('Single line', () => {
-    expect(marked.parse('$$a$$')).toEqual(
-      '<p class="wl-tex">TeX is not available in preview</p>',
-    );
+    expect(marked.parse('$$a$$')).toEqual('<p class="wl-tex">TeX is not available in preview</p>');
   });
 
   it('Mutiple lines', () => {
@@ -88,12 +84,8 @@ describe('Should parse block tex', () => {
   });
 
   it('Code block', () => {
-    expect(marked.parse('    $$a$$')).toEqual(
-      '<pre><code>$$a$$\n</code></pre>\n',
-    );
+    expect(marked.parse('    $$a$$')).toEqual('<pre><code>$$a$$\n</code></pre>\n');
 
-    expect(marked.parse('```\n$$\na\n$$\n```')).toEqual(
-      '<pre><code>$$\na\n$$\n</code></pre>\n',
-    );
+    expect(marked.parse('```\n$$\na\n$$\n```')).toEqual('<pre><code>$$\na\n$$\n</code></pre>\n');
   });
 });

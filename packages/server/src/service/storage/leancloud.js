@@ -185,10 +185,7 @@ module.exports = class extends Base {
   }
 
   async _updateCmtGroupByMailUserIdCache(data, method) {
-    if (
-      this.tableName !== 'Comment' ||
-      !think.isArray(think.config('levels'))
-    ) {
+    if (this.tableName !== 'Comment' || !think.isArray(think.config('levels'))) {
       return;
     }
 
@@ -200,9 +197,7 @@ module.exports = class extends Base {
     const cacheData = await this.select({
       _complex: {
         _logic: 'or',
-        user_id: think.isObject(data.user_id)
-          ? data.user_id.toString()
-          : data.user_id,
+        user_id: think.isObject(data.user_id) ? data.user_id.toString() : data.user_id,
         mail: data.mail,
       },
     });
@@ -234,14 +229,12 @@ module.exports = class extends Base {
     const currentTableName = this.tableName;
 
     this.tableName = cacheTableName;
-    await this.update({ count }, { objectId: cacheData[0].objectId }).catch(
-      (e) => {
-        if (e.code === 101) {
-          return;
-        }
-        throw e;
-      },
-    );
+    await this.update({ count }, { objectId: cacheData[0].objectId }).catch((e) => {
+      if (e.code === 101) {
+        return;
+      }
+      throw e;
+    });
     this.tableName = currentTableName;
   }
 
@@ -258,10 +251,7 @@ module.exports = class extends Base {
     }
 
     // get group count cache by group field where data
-    const cacheData = await this._getCmtGroupByMailUserIdCache(
-      options.group.join('_'),
-      where,
-    );
+    const cacheData = await this._getCmtGroupByMailUserIdCache(options.group.join('_'), where);
 
     if (!where._complex) {
       if (cacheData.length) {
@@ -272,9 +262,7 @@ module.exports = class extends Base {
       const countsMap = {};
 
       for (const count of counts) {
-        const key = options.group
-          .map((item) => count[item] || undefined)
-          .join('_');
+        const key = options.group.map((item) => count[item] || undefined).join('_');
 
         if (!countsMap[key]) {
           countsMap[key] = {};
@@ -298,9 +286,7 @@ module.exports = class extends Base {
     const cacheDataMap = {};
 
     for (const item of cacheData) {
-      const key = options.group
-        .map((item) => item[item] || undefined)
-        .join('_');
+      const key = options.group.map((item) => item[item] || undefined).join('_');
 
       cacheDataMap[key] = item;
     }
@@ -364,12 +350,7 @@ module.exports = class extends Base {
     return [...cacheData, ...counts];
   }
 
-  async add(
-    data,
-    {
-      access: { read = true, write = true } = { read: true, write: true },
-    } = {},
-  ) {
+  async add(data, { access: { read = true, write = true } = { read: true, write: true } } = {}) {
     const Table = AV.Object.extend(this.tableName);
     const instance = new Table();
 
@@ -403,8 +384,7 @@ module.exports = class extends Base {
       ret.map(async (item) => {
         const _oldStatus = item.get('status');
 
-        const updateData =
-          typeof data === 'function' ? data(item.toJSON()) : data;
+        const updateData = typeof data === 'function' ? data(item.toJSON()) : data;
 
         const REVERSED_KEYS = ['createdAt', 'updatedAt'];
 

@@ -1,11 +1,7 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-import {
-  defaultNamingConventionRules,
-  globals,
-  hope,
-} from 'eslint-config-mister-hope';
+import { defaultNamingConventionRules, globals, hope } from 'eslint-config-mister-hope';
 import { vue } from 'eslint-config-mister-hope/vue';
 import reactRecommended from 'eslint-plugin-react/configs/recommended.js';
 

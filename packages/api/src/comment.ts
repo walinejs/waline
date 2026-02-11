@@ -1,8 +1,4 @@
-import type {
-  WalineComment,
-  WalineCommentData,
-  WalineRootComment,
-} from './typings.js';
+import type { WalineComment, WalineCommentData, WalineRootComment } from './typings.js';
 import type { BaseAPIOptions, ErrorStatusResponse } from './utils.js';
 import { JSON_HEADERS, errorCheck, getFetchPrefix } from './utils.js';
 
@@ -107,12 +103,7 @@ export const getComment = ({
     )}&pageSize=${pageSize}&page=${page}&lang=${lang}&sortBy=${sortBy}`,
     { signal, headers },
   )
-    .then(
-      (resp) =>
-        resp.json() as Promise<
-          { data: GetCommentResponse } & ErrorStatusResponse
-        >,
-    )
+    .then((resp) => resp.json() as Promise<{ data: GetCommentResponse } & ErrorStatusResponse>)
     .then((data) => errorCheck(data, 'Get comment data').data);
 };
 

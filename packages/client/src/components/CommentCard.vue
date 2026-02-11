@@ -37,15 +37,9 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   (event: 'log'): void;
-  (
-    event: 'submit' | 'delete' | 'like' | 'sticky',
-    comment: WalineComment,
-  ): void;
+  (event: 'submit' | 'delete' | 'like' | 'sticky', comment: WalineComment): void;
   (event: 'edit' | 'reply', comment: WalineComment | null): void;
-  (
-    event: 'status',
-    statusInfo: { status: WalineCommentStatus; comment: WalineComment },
-  ): void;
+  (event: 'status', statusInfo: { status: WalineCommentStatus; comment: WalineComment }): void;
 }>();
 
 const commentStatus: WalineCommentStatus[] = ['approved', 'waiting', 'spam'];
@@ -66,35 +60,23 @@ const link = computed(() => {
 
 const like = computed(() => likes.value.includes(props.comment.objectId));
 
-const time = computed(() =>
-  getTimeAgo(new Date(props.comment.time), now.value, locale.value),
-);
+const time = computed(() => getTimeAgo(new Date(props.comment.time), now.value, locale.value));
 
 const isAdmin = computed(() => userInfo.value.type === 'administrator');
 
 const isOwner = computed(
-  () =>
-    props.comment.user_id && userInfo.value.objectId === props.comment.user_id,
+  () => props.comment.user_id && userInfo.value.objectId === props.comment.user_id,
 );
 
-const isReplyingCurrent = computed(
-  () => props.comment.objectId === props.reply?.objectId,
-);
+const isReplyingCurrent = computed(() => props.comment.objectId === props.reply?.objectId);
 
-const isEditingCurrent = computed(
-  () => props.comment.objectId === props.edit?.objectId,
-);
+const isEditingCurrent = computed(() => props.comment.objectId === props.edit?.objectId);
 </script>
 
 <template>
   <div :id="comment.objectId.toString()" class="wl-card-item">
     <div class="wl-user" aria-hidden="true">
-      <img
-        v-if="comment.avatar"
-        class="wl-user-avatar"
-        :src="comment.avatar"
-        alt=""
-      />
+      <img v-if="comment.avatar" class="wl-user-avatar" :src="comment.avatar" alt="" />
 
       <VerifiedIcon v-if="comment.type === 'guest'" />
 
@@ -116,11 +98,7 @@ const isEditingCurrent = computed(
 
         <span v-if="comment.label" class="wl-badge" v-text="comment.label" />
 
-        <span
-          v-if="comment['sticky']"
-          class="wl-badge"
-          v-text="locale.sticky"
-        />
+        <span v-if="comment['sticky']" class="wl-badge" v-text="locale.sticky" />
 
         <span
           v-if="typeof comment.level === 'number'"
@@ -132,19 +110,11 @@ const isEditingCurrent = computed(
 
         <div class="wl-comment-actions">
           <template v-if="isAdmin || isOwner">
-            <button
-              type="button"
-              class="wl-edit"
-              @click="emit('edit', comment)"
-            >
+            <button type="button" class="wl-edit" @click="emit('edit', comment)">
               <EditIcon />
             </button>
 
-            <button
-              type="button"
-              class="wl-delete"
-              @click="emit('delete', comment)"
-            >
+            <button type="button" class="wl-delete" @click="emit('delete', comment)">
               <DeleteIcon />
             </button>
           </template>

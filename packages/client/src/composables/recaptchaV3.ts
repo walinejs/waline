@@ -14,7 +14,6 @@ export const useReCaptcha = (key: string): ReCaptcha => {
   }));
 
   return {
-    execute: (action: string) =>
-      init.then((instance) => instance.execute(action)),
+    execute: (action: string) => init.then((instance) => instance.execute(action)),
   };
 };

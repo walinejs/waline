@@ -19,14 +19,8 @@ For KaTeX options, see [KaTeX API](https://katex.org/docs/api.html#server-side-r
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Waline highlighter case</title>
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/@waline/client@v3/dist/waline.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/katex@v0.16/dist/katex.min.css"
-    />
+    <link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css" />
+    <link rel="stylesheet" href="https://unpkg.com/katex@v0.16/dist/katex.min.css" />
   </head>
   <body>
     <div id="waline" style="max-width: 800px; margin: 0 auto"></div>
@@ -61,10 +55,7 @@ For MathJax options, see [MathJax API](http://docs.mathjax.org/en/latest/web/typ
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Waline highlighter case</title>
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/@waline/client@v3/dist/waline.css"
-    />
+    <link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css" />
     <script src="https://unpkg.com/mathjax@v3/es5/tex-svg.js"></script>
   </head>
   <body>

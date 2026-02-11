@@ -17,10 +17,7 @@ icon: pic
 在你的 HTML `<head>` 前写入以下内容，其中 `#waline-comment` 是你的 Waline 评论框，需要根据实际场景进行替换。
 
 ```html
-<link
-  rel="stylesheet"
-  href="https://unpkg.com/lightgallery@v2/css/lightgallery-bundle.css"
-/>
+<link rel="stylesheet" href="https://unpkg.com/lightgallery@v2/css/lightgallery-bundle.css" />
 <srciprt src="https://unpkg.com/lightgallery@v2/lightgallery.umd.min.js" />
 <script>
   document.addEventListener('click', (e) => {
@@ -72,10 +69,7 @@ icon: pic
 在你的 HTML `<head>` 前写入以下内容，其中 `#waline-comment` 是你的 Waline 评论框，需要根据实际场景进行替换。
 
 ```html
-<link
-  rel="stylesheet"
-  href="https://unpkg.com/lightbox2@v2/dist/css/lightbox.min.css"
-/>
+<link rel="stylesheet" href="https://unpkg.com/lightbox2@v2/dist/css/lightbox.min.css" />
 <script src="https://unpkg.com/lightbox2@v2/dist/js/lightbox-plus-jquery.min.js"></script>
 <script>
   document.addEventListener('click', (e) => {
@@ -104,10 +98,7 @@ icon: pic
 
 ```html
 <script src="https://unpkg.com/@fancyapps/ui/dist/fancybox.umd.js"></script>
-<link
-  rel="stylesheet"
-  href="https://unpkg.com/@fancyapps/ui/dist/fancybox.css"
-/>
+<link rel="stylesheet" href="https://unpkg.com/@fancyapps/ui/dist/fancybox.css" />
 <script>
   Fancybox.bind('#waline-comment .vcontent img');
 </script>

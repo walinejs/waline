@@ -52,9 +52,7 @@ export const artalk2lc = (input) => {
         vote_up,
       }) => {
         const time =
-          date || created_at
-            ? new Date((date || created_at).replace(/-/g, '/')).toISOString()
-            : '';
+          date || created_at ? new Date((date || created_at).replace(/-/g, '/')).toISOString() : '';
         const url = parseKey(page_key);
         return {
           objectId: id,

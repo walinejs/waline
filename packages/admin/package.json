@@ -3,34 +3,54 @@
   "version": "0.29.0",
   "description": "management system for waline",
   "keywords": [
-    "waline",
-    "valine",
     "comment",
     "management",
-    "system"
+    "system",
+    "valine",
+    "waline"
   ],
   "homepage": "https://github.com/walinejs/waline#readme",
   "bugs": {
     "url": "https://github.com/walinejs/waline/issues"
   },
+  "license": "MIT",
+  "author": "lizheming <i@imnerd.org>",
   "repository": {
     "url": "https://github.com/walinejs/waline.git",
     "directory": "packages/admin"
   },
-  "license": "MIT",
-  "author": "lizheming <i@imnerd.org>",
-  "type": "module",
-  "exports": "./dist/admin.js",
-  "main": "dist/admin.js",
-  "browser": "dist/admin.js",
   "files": [
     "dist"
   ],
+  "type": "module",
+  "main": "dist/admin.js",
+  "browser": "dist/admin.js",
+  "exports": "./dist/admin.js",
+  "publishConfig": {
+    "provenance": true
+  },
   "scripts": {
     "build": "NODE_ENV=production vite build",
     "clean": "rimraf ./dist",
     "dev": "vite",
     "prepublishOnly": "pnpm build"
+  },
+  "devDependencies": {
+    "@rematch/core": "2.2.0",
+    "base-icon": "2.3.2",
+    "classnames": "2.5.1",
+    "i18next": "25.8.0",
+    "i18next-browser-languagedetector": "8.2.0",
+    "md5": "2.3.0",
+    "qrcode.react": "4.2.0",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "react-i18next": "16.5.4",
+    "react-redux": "9.2.0",
+    "react-router": "7.13.0",
+    "redux": "5.0.1",
+    "typescript": "5.9.3",
+    "vite": "7.3.1"
   },
   "browserslist": {
     "production": [
@@ -46,27 +66,7 @@
       "last 2 safari version"
     ]
   },
-  "devDependencies": {
-    "@rematch/core": "2.2.0",
-    "base-icon": "2.3.2",
-    "classnames": "2.5.1",
-    "i18next": "25.7.2",
-    "i18next-browser-languagedetector": "8.2.0",
-    "md5": "2.3.0",
-    "qrcode.react": "4.2.0",
-    "react": "19.2.3",
-    "react-dom": "19.2.3",
-    "react-i18next": "16.3.5",
-    "react-redux": "9.2.0",
-    "react-router": "7.9.6",
-    "redux": "5.0.1",
-    "typescript": "5.9.3",
-    "vite": "7.2.4"
-  },
   "engines": {
     "node": ">=20"
-  },
-  "publishConfig": {
-    "provenance": true
   }
 }

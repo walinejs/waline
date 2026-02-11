@@ -5,19 +5,11 @@ import { lc2csv } from './lc2csv.js';
 import { lc2tcb } from './lc2tcb.js';
 import { tk2lc } from './tk2lc.js';
 
-export type OriginalType =
-  | 'disqus'
-  | 'valine'
-  | 'twikoo'
-  | 'artalk'
-  | 'commento';
+export type OriginalType = 'disqus' | 'valine' | 'twikoo' | 'artalk' | 'commento';
 
 export type TransformType = 'wcloudbase' | 'wsql' | 'wgithub';
 
-export const transform: Record<
-  OriginalType,
-  Record<TransformType, (data: string) => unknown>
-> = {
+export const transform: Record<OriginalType, Record<TransformType, (data: string) => unknown>> = {
   disqus: {
     wcloudbase(data) {
       return lc2tcb(disqus2lc(data));

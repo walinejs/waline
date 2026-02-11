@@ -12,8 +12,7 @@ const warn = (...args) => {
   );
 };
 
-const capitalize = (input) =>
-  input.toString().charAt(0).toUpperCase() + input.toString().substr(1);
+const capitalize = (input) => input.toString().charAt(0).toUpperCase() + input.toString().substr(1);
 
 const iconText = (icon, key, defaultValue = capitalize(key)) =>
   `
@@ -34,22 +33,12 @@ hexo.extend.filter.register('theme_inject', (injects) => {
   if (!config.enable || !config.serverURL) return;
 
   if (config.comment) {
-    injects.comment.raw(
-      'waline',
-      '<div class="comments" id="waline"></div>',
-      {},
-      { cache: true },
-    );
+    injects.comment.raw('waline', '<div class="comments" id="waline"></div>', {}, { cache: true });
   }
 
   injects.bodyEnd.raw('waline', utils.getFileContent('waline.njk'));
 
-  injects.head.raw(
-    'waline',
-    `<link rel="dns-prefetch" href="${config.serverURL}">`,
-    {},
-    {},
-  );
+  injects.head.raw('waline', `<link rel="dns-prefetch" href="${config.serverURL}">`, {}, {});
 });
 
 // Add post_meta

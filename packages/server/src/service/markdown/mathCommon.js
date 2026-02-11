@@ -12,11 +12,7 @@ const isValidDelim = (state, pos) => {
      * Check non-whitespace conditions for opening and closing, and
      * check that closing delimiter isn’t followed by a number
      */
-    canClose: !(
-      prevChar === ' ' ||
-      prevChar === '\t' ||
-      /[0-9]/u.exec(nextChar)
-    ),
+    canClose: !(prevChar === ' ' || prevChar === '\t' || /[0-9]/u.exec(nextChar)),
   };
 };
 
@@ -141,9 +137,7 @@ const blockTeX = (state, start, end, silent) => {
       ? `${firstLine}\n`
       : '') +
     state.getLines(start + 1, next, state.tShift[start], true) +
-    ((lastLine === null || lastLine === void 0 ? void 0 : lastLine.trim())
-      ? lastLine
-      : '');
+    ((lastLine === null || lastLine === void 0 ? void 0 : lastLine.trim()) ? lastLine : '');
   token.map = [start, state.line];
   token.markup = '$$';
 

@@ -168,15 +168,10 @@ interface FetchGifResponse {
   results: GifObject[];
 }
 
-export const getTenorV1SearchOptions = (
-  key = 'PAY5JLFIH6V6',
-): WalineSearchOptions => {
+export const getTenorV1SearchOptions = (key = 'PAY5JLFIH6V6'): WalineSearchOptions => {
   const state = { next: '' };
 
-  const fetchGif = ({
-    keyword,
-    pos,
-  }: FetchGifRequest): Promise<FetchGifResponse> => {
+  const fetchGif = ({ keyword, pos }: FetchGifRequest): Promise<FetchGifResponse> => {
     const baseUrl = `https://g.tenor.com/v1/search`;
     const query = new URLSearchParams('media_filter=minimal');
 

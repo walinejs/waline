@@ -9,6 +9,7 @@ dir:
 Welcome to Waline. In just a few steps, you can enable Waline to provide comments and pageviews on your site.
 
 <!-- more -->
+
 ## Server Deploy
 
 [![Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fwalinejs%2Fwaline%2Ftree%2Fmain%2Fexample)
@@ -97,10 +98,7 @@ Here is how you can add Waline to your web page or website:
    ```html {3-7,12-18}:line-numbers
    <head>
      <!-- ... -->
-     <link
-       rel="stylesheet"
-       href="https://unpkg.com/@waline/client@v3/dist/waline.css"
-     />
+     <link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css" />
    </head>
    <body>
      <!-- ... -->

@@ -13,9 +13,7 @@ export default function () {
   const [latestVersion, setLatestVersion] = useState(null);
 
   const defaultLanguage = useMemo(() => {
-    const option = LANGUAGE_OPTIONS.find((option) =>
-      option.alias.includes(i18n.language),
-    );
+    const option = LANGUAGE_OPTIONS.find((option) => option.alias.includes(i18n.language));
 
     return option?.value ?? '';
   }, [i18n.language]);
@@ -69,11 +67,7 @@ export default function () {
       ) : null}
       <div className="operate">
         <div className="language-select">
-          <select
-            defaultValue={defaultLanguage}
-            onChange={updateLanguage}
-            style={{ width: 120 }}
-          >
+          <select defaultValue={defaultLanguage} onChange={updateLanguage} style={{ width: 120 }}>
             {LANGUAGE_OPTIONS.map((options) => (
               <option key={options.value} value={options.value}>
                 {options.label}

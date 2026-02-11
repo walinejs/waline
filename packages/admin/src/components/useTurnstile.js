@@ -6,9 +6,7 @@ export function useTurnstile({ sitekey, checkForExisting = true }) {
   const [turnstile, setTurnstile] = useState();
 
   useScript({
-    src: window.turnstileKey
-      ? `https://challenges.cloudflare.com/turnstile/v0/api.js`
-      : undefined,
+    src: window.turnstileKey ? `https://challenges.cloudflare.com/turnstile/v0/api.js` : undefined,
     onload: () =>
       window.turnstile.ready(() => {
         setTurnstile(window.turnstile);

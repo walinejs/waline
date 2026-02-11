@@ -2,17 +2,11 @@ import { Marked } from 'marked';
 import { markedHighlight } from 'marked-highlight';
 
 import { markedTeXExtensions } from './markedMathExtension.js';
-import type {
-  WalineEmojiMaps,
-  WalineHighlighter,
-  WalineTeXRenderer,
-} from '../typings/index.js';
+import type { WalineEmojiMaps, WalineHighlighter, WalineTeXRenderer } from '../typings/index.js';
 
 export const parseEmoji = (text = '', emojiMap: WalineEmojiMaps = {}): string =>
   text.replace(/:(.+?):/g, (placeholder, key: string) =>
-    emojiMap[key]
-      ? `<img class="wl-emoji" src="${emojiMap[key]}" alt="${key}">`
-      : placeholder,
+    emojiMap[key] ? `<img class="wl-emoji" src="${emojiMap[key]}" alt="${key}">` : placeholder,
   );
 
 export interface ParseMarkdownOptions {

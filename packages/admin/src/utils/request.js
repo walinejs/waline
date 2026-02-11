@@ -33,10 +33,7 @@ export default async function request(url, opts = {}) {
   }
 
   const joiner = opts.url.includes('?') ? '&' : '?';
-  const resp = await fetch(
-    `${baseUrl}${opts.url}${joiner}lang=${I18n.language}`,
-    opts,
-  );
+  const resp = await fetch(`${baseUrl}${opts.url}${joiner}lang=${I18n.language}`, opts);
 
   if (!resp.ok) {
     if (resp.status === 401) {

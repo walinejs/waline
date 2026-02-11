@@ -6,9 +6,7 @@ const inlineMathStart = /\$.*?\$/;
 const inlineMathReg = /^\$(.*?)\$/;
 const blockMathReg = /^(?:\s{0,3})\$\$((?:[^\n]|\n[^\n])+?)\n{0,1}\$\$/;
 
-export const markedTeXExtensions = (
-  texRenderer: WalineTeXRenderer,
-): TokenizerExtension[] => {
+export const markedTeXExtensions = (texRenderer: WalineTeXRenderer): TokenizerExtension[] => {
   const blockMathExtension: TokenizerExtension = {
     name: 'blockMath',
     level: 'block',

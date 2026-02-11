@@ -90,9 +90,7 @@ export default function () {
           }
 
           const resp = await request({
-            url: `db?table=${tableName}${
-              method === 'PUT' ? `&objectId=${existUserObjectId}` : ''
-            }`,
+            url: `db?table=${tableName}${method === 'PUT' ? `&objectId=${existUserObjectId}` : ''}`,
             method,
             body,
           });
@@ -132,10 +130,7 @@ export default function () {
           continue;
         }
 
-        willUpdateData.push([
-          willUpdateItem,
-          { objectId: idMaps.Comment[cmt.objectId] },
-        ]);
+        willUpdateData.push([willUpdateItem, { objectId: idMaps.Comment[cmt.objectId] }]);
       }
 
       importedLength = 0;
@@ -171,11 +166,7 @@ export default function () {
     try {
       const data = await request('db');
 
-      download(
-        JSON.stringify(data, null, '\t'),
-        'waline.json',
-        'application/javascript',
-      );
+      download(JSON.stringify(data, null, '\t'), 'waline.json', 'application/javascript');
     } finally {
       setExportLoading(false);
     }
@@ -207,9 +198,7 @@ export default function () {
                 onClick={importDB}
                 disabled={importLoading}
               >
-                {Array.isArray(importLoading)
-                  ? t(...importLoading)
-                  : t('import')}
+                {Array.isArray(importLoading) ? t(...importLoading) : t('import')}
               </button>
               <input
                 ref={uploadRef}

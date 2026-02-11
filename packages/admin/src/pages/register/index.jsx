@@ -147,11 +147,7 @@ export default function () {
             </p>
             <p className="captcha-container" />
             <p className="submit">
-              <button
-                type="submit"
-                disabled={submitting}
-                className="btn btn-l w-100 primary"
-              >
+              <button type="submit" disabled={submitting} className="btn btn-l w-100 primary">
                 {t('register')}
               </button>
             </p>

@@ -104,11 +104,7 @@ const path = computed(() => useRoute().path);
 
 ```tsx
 import React, { useEffect, useRef } from 'react';
-import {
-  type WalineInstance,
-  type WalineInitOptions,
-  init,
-} from '@waline/client';
+import { type WalineInstance, type WalineInitOptions, init } from '@waline/client';
 
 import '@waline/client/style';
 

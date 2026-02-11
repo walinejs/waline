@@ -97,11 +97,7 @@ exports.model = {
         ? JSON.parse(MONGO_HOST)
         : MONGO_HOST
       : '127.0.0.1',
-    port: MONGO_PORT
-      ? MONGO_PORT.startsWith('[')
-        ? JSON.parse(MONGO_PORT)
-        : MONGO_PORT
-      : 27017,
+    port: MONGO_PORT ? (MONGO_PORT.startsWith('[') ? JSON.parse(MONGO_PORT) : MONGO_PORT) : 27017,
     user: MONGO_USER,
     password: MONGO_PASSWORD,
     database: MONGO_DB,
@@ -118,8 +114,7 @@ exports.model = {
     connectionLimit: 1,
     prefix: PG_PREFIX || POSTGRES_PREFIX || 'wl_',
     ssl:
-      (PG_SSL || POSTGRES_SSL) == 'true' ||
-      POSTGRES_URL?.includes('sslmode=require')
+      (PG_SSL || POSTGRES_SSL) == 'true' || POSTGRES_URL?.includes('sslmode=require')
         ? {
             rejectUnauthorized: false,
           }

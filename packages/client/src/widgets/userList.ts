@@ -51,8 +51,10 @@ export interface WalineUserListOptions {
    * 列表模式还是头像墙模式
    *
    * list mode or avatar wall mode
+   *
+   * @default 'list'
    */
-  mode: 'list' | 'wall';
+  mode?: 'list' | 'wall';
 }
 
 export interface WalineUserListResult {

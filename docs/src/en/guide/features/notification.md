@@ -170,24 +170,17 @@ The default template is attached here for your reference:
   <h2
     style="border-bottom:1px solid #DDD;font-size:14px;font-weight:normal;padding:13px 0 10px 8px;"
   >
-    您在<a
-      style="text-decoration:none;color: #12ADDB;"
-      href="{{site.url}}"
-      target="_blank"
+    您在<a style="text-decoration:none;color: #12ADDB;" href="{{site.url}}" target="_blank"
       >{{site.name}}</a
     >上的评论有了新的回复
   </h2>
   {{parent.nick}} 同学，您曾发表评论：
   <div style="padding:0 12px 0 12px;margin-top:18px">
-    <div
-      style="background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;"
-    >
+    <div style="background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;">
       {{parent.comment | safe}}
     </div>
     <p><strong>{{self.nick}}</strong>回复说：</p>
-    <div
-      style="background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;"
-    >
+    <div style="background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;">
       {{self.comment | safe}}
     </div>
     <p>
@@ -223,24 +216,16 @@ The default template is attached here for your reference:
   <h2
     style="border-bottom:1px solid #DDD;font-size:14px;font-weight:normal;padding:13px 0 10px 8px;"
   >
-    您在<a
-      style="text-decoration:none;color: #12ADDB;"
-      href="{{site.url}}"
-      target="_blank"
+    您在<a style="text-decoration:none;color: #12ADDB;" href="{{site.url}}" target="_blank"
       >{{site.name}}</a
     >上的文章有了新的评论
   </h2>
   <p><strong>{{self.nick}}</strong>回复说：</p>
-  <div
-    style="background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;"
-  >
+  <div style="background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;">
     {{self.comment | safe}}
   </div>
   <p>
-    您可以点击<a
-      style="text-decoration:none; color:#12addb"
-      href="{{site.postUrl}}"
-      target="_blank"
+    您可以点击<a style="text-decoration:none; color:#12addb" href="{{site.postUrl}}" target="_blank"
       >查看回复的完整內容</a
     >
   </p>

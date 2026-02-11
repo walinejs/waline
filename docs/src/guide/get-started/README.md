@@ -28,17 +28,17 @@ dir:
 
 1. 此时 Vercel 会基于 Waline 模板帮助你新建并初始化仓库，仓库名为你之前输入的项目名。
 
-   ![](../../assets/vercel-2.png)
+   ![init](../../assets/vercel-2.png)
 
    一两分钟后，满屏的烟花会庆祝你部署成功。此时点击 `Go to Dashboard` 可以跳转到应用的控制台。
 
-   ![](../../assets/vercel-3.png)
+   ![success](../../assets/vercel-3.png)
 
 ## 创建数据库
 
 1. 点击顶部的 `Storage` 进入存储服务配置页，选择 `Create Database` 创建数据库。`Marketplace Database Providers` 数据库服务选择 `Neon`，点击 `Continue` 进行下一步。
 
-   ![](../../assets/vercel-4.png)
+   ![database](../../assets/vercel-4.png)
 
 1. 此时会让你创建一个 Neno 账号，此时选择 `Accept and Create` 接受并创建。后续选择数据库的套餐配置，包括地区和额度。这里可以什么都不操作直接选择 `Continue` 下一步。
 
@@ -95,10 +95,7 @@ dir:
    ```html {3-7,12-18}:line-numbers
    <head>
      <!-- ... -->
-     <link
-       rel="stylesheet"
-       href="https://unpkg.com/@waline/client@v3/dist/waline.css"
-     />
+     <link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css" />
      <!-- ... -->
    </head>
    <body>

@@ -2,12 +2,7 @@
 import { useLocaleConfig } from '@vuepress/helper/client';
 import { ref } from 'vue';
 
-import {
-  type OriginalType,
-  type TransformType,
-  exportRaw,
-  transform,
-} from '../utils/index.js';
+import { type OriginalType, type TransformType, exportRaw, transform } from '../utils/index.js';
 
 const from = ref<OriginalType | 'typecho'>('valine');
 const to = ref<TransformType>('wcloudbase');
@@ -82,10 +77,7 @@ const click = (): void => {
       text = JSON.stringify(text, null, '\t');
     }
 
-    exportRaw(
-      'output.' + (to.value !== 'wsql' ? 'json' : 'csv'),
-      text as string,
-    );
+    exportRaw('output.' + (to.value !== 'wsql' ? 'json' : 'csv'), text as string);
   }
 };
 </script>

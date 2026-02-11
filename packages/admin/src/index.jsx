@@ -30,12 +30,10 @@ async function run() {
     sessionStorage.setItem('TOKEN', token);
   });
 
-  await Promise.all([store.dispatch({ type: 'user/loadUserInfo' })]).catch(
-    (err) => {
-      // eslint-disable-next-line no-console
-      console.error(err);
-    },
-  );
+  await Promise.all([store.dispatch({ type: 'user/loadUserInfo' })]).catch((err) => {
+    // eslint-disable-next-line no-console
+    console.error(err);
+  });
 
   const container = document.createElement('div');
 

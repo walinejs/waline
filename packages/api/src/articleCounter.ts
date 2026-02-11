@@ -37,8 +37,7 @@ export interface CounterFields {
   reaction8?: number;
 }
 
-export type GetArticleCounterResponseItem = Record<string, number> &
-  CounterFields;
+export type GetArticleCounterResponseItem = Record<string, number> & CounterFields;
 
 export type GetArticleCounterResponse = GetArticleCounterResponseItem[];
 
@@ -56,10 +55,7 @@ export const getArticleCounter = ({
     { signal },
   )
     .then(
-      (resp) =>
-        resp.json() as Promise<
-          { data: GetArticleCounterResponse } & ErrorStatusResponse
-        >,
+      (resp) => resp.json() as Promise<{ data: GetArticleCounterResponse } & ErrorStatusResponse>,
     )
     .then((data) => errorCheck(data, 'Get counter').data);
 
@@ -101,9 +97,6 @@ export const updateArticleCounter = ({
     body: JSON.stringify({ path, type, action }),
   })
     .then(
-      (resp) =>
-        resp.json() as Promise<
-          { data: GetArticleCounterResponse } & ErrorStatusResponse
-        >,
+      (resp) => resp.json() as Promise<{ data: GetArticleCounterResponse } & ErrorStatusResponse>,
     )
     .then((data) => errorCheck(data, 'Update counter').data);

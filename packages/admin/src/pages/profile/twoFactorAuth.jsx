@@ -3,11 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
-import {
-  gen2FAToken,
-  get2FAToken,
-  updateProfile,
-} from '../../services/user.js';
+import { gen2FAToken, get2FAToken, updateProfile } from '../../services/user.js';
 
 export default function () {
   const { t } = useTranslation();
@@ -64,12 +60,7 @@ export default function () {
           <QRCodeSVG value={data.otpauth_url} size={256} />
           <br />
           <br />
-          <button
-            className="btn primary"
-            type="submit"
-            onClick={close2FA}
-            disabled={updating}
-          >
+          <button className="btn primary" type="submit" onClick={close2FA} disabled={updating}>
             {t('disable 2fa')}
           </button>
         </div>
@@ -96,10 +87,7 @@ export default function () {
             </li>
             <li>
               For Android and iOS:
-              <a href="http://guide.duosecurity.com/third-party-accounts">
-                {' '}
-                Duo Mobile
-              </a>
+              <a href="http://guide.duosecurity.com/third-party-accounts"> Duo Mobile</a>
             </li>
             <li>
               For Windows Phone:
@@ -109,11 +97,7 @@ export default function () {
               </a>
             </li>
           </ul>
-          <button
-            className="btn primary"
-            type="submit"
-            onClick={() => setStep(3)}
-          >
+          <button className="btn primary" type="submit" onClick={() => setStep(3)}>
             {t('next step')}
           </button>
         </div>
@@ -134,11 +118,7 @@ export default function () {
             </ul>
             <ul className="typecho-option typecho-option-submit">
               <li>
-                <button
-                  type="submit"
-                  className="btn primary"
-                  disabled={updating}
-                >
+                <button type="submit" className="btn primary" disabled={updating}>
                   {t('enable 2fa')}
                 </button>
               </li>

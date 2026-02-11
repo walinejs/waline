@@ -48,9 +48,7 @@ module.exports = class extends MySQL {
         const val = data[key];
 
         data[key.toLowerCase()] =
-          val instanceof Date
-            ? think.datetime(val, 'YYYY-MM-DD HH:mm:ss')
-            : val;
+          val instanceof Date ? think.datetime(val, 'YYYY-MM-DD HH:mm:ss') : val;
         // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
         delete data[key];
       });
@@ -79,8 +77,6 @@ module.exports = class extends MySQL {
   async setSeqId(id) {
     const instance = this.model(this.tableName);
 
-    return instance.query(
-      `ALTER SEQUENCE ${instance.tableName}_seq RESTART WITH ${id};`,
-    );
+    return instance.query(`ALTER SEQUENCE ${instance.tableName}_seq RESTART WITH ${id};`);
   }
 };

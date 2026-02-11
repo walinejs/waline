@@ -45,8 +45,7 @@ Waline 会在初始化以及每次 path 更新时，自动查找页面中 `class
 ::: tip 例子
 
 ```html
-当前页阅读量为:
-<span class="waline-pageview-count" data-path="/guide/client/count.html" />
+当前页阅读量为: <span class="waline-pageview-count" data-path="/guide/client/count.html" />
 ```
 
 当前页阅读量为:

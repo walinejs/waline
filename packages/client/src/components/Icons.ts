@@ -144,9 +144,7 @@ export const AdministratorIcon: FunctionalComponent = () =>
     ],
   );
 
-export const LoadingIcon: FunctionalComponent<{ size?: number }> = ({
-  size = 100,
-}) =>
+export const LoadingIcon: FunctionalComponent<{ size?: number }> = ({ size = 100 }) =>
   h(
     'svg',
     {

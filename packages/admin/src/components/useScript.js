@@ -23,11 +23,7 @@ const checkExisting = (src) => {
   return undefined;
 };
 
-export default function useScript({
-  src,
-  checkForExisting = false,
-  ...attributes
-}) {
+export default function useScript({ src, checkForExisting = false, ...attributes }) {
   // Check whether some instance of this hook considered this src.
   let status = src ? scripts[src] : undefined;
 
@@ -37,9 +33,7 @@ export default function useScript({
     status = checkExisting(src);
   }
 
-  const [loading, setLoading] = useState(
-    status ? status.loading : Boolean(src),
-  );
+  const [loading, setLoading] = useState(status ? status.loading : Boolean(src));
   const [error, setError] = useState(status ? status.error : null);
   // Tracks if script is loaded so we can avoid duplicate script tags
   const [scriptLoaded, setScriptLoaded] = useState(false);
@@ -107,5 +101,4 @@ export default function useScript({
   return [loading, error];
 }
 
-const isBrowser =
-  typeof window !== 'undefined' && typeof window.document !== 'undefined';
+const isBrowser = typeof window !== 'undefined' && typeof window.document !== 'undefined';

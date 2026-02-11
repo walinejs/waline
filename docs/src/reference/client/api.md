@@ -179,9 +179,7 @@ type WalineAbort = (reason?: any) => void;
 类型:
 
 ```ts
-const RecentComments: (
-  options: WalineRecentCommentsOptions,
-) => Promise<WalineRecentCommentsResult>;
+const RecentComments: (options: WalineRecentCommentsOptions) => Promise<WalineRecentCommentsResult>;
 ```
 
 选项:
@@ -228,9 +226,7 @@ interface WalineRecentCommentsResult {
 类型:
 
 ```ts
-const UserList: (
-  options: WalineUserListOptions,
-) => Promise<WalineUserListResult>;
+const UserList: (options: WalineUserListOptions) => Promise<WalineUserListResult>;
 ```
 
 选项:

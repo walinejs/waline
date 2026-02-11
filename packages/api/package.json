@@ -6,17 +6,24 @@
     "api",
     "waline"
   ],
-  "repository": {
-    "url": "https://github.com/walinejs/waline",
-    "directory": "packages/api"
-  },
   "license": "MIT",
   "author": {
     "name": "Mr.Hope",
     "email": "mister-hope@outlook.com",
     "url": "https://mister-hope.com"
   },
+  "repository": {
+    "url": "https://github.com/walinejs/waline",
+    "directory": "packages/api"
+  },
+  "files": [
+    "dist"
+  ],
   "type": "module",
+  "main": "./dist/api.cjs",
+  "module": "./dist/api.js",
+  "browser": "./dist/api.umd.js",
+  "types": "./dist/api.d.ts",
   "exports": {
     ".": {
       "types": "./dist/api.d.ts",
@@ -25,13 +32,9 @@
       "default": "./dist/api.js"
     }
   },
-  "main": "./dist/api.cjs",
-  "module": "./dist/api.js",
-  "browser": "./dist/api.umd.js",
-  "types": "./dist/api.d.ts",
-  "files": [
-    "dist"
-  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "rollup -c rollup.config.ts --configPlugin esbuild",
     "clean": "rimraf ./dist",
@@ -39,8 +42,5 @@
   },
   "engines": {
     "node": ">=18"
-  },
-  "publishConfig": {
-    "access": "public"
   }
 }

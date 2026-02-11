@@ -103,11 +103,7 @@ export default function () {
           </div>
           <div className="row typecho-page-main" role="main">
             <div className="col-mb-12 typecho-list">
-              <form
-                method="post"
-                name="manage_comments"
-                className="operate-form"
-              >
+              <form method="post" name="manage_comments" className="operate-form">
                 <div className="typecho-table-wrap">
                   <table className="typecho-list-table">
                     <colgroup>
@@ -144,9 +140,7 @@ export default function () {
                           <td>
                             <a
                               href={
-                                !/^https:\/\//.test(user.url)
-                                  ? 'https://' + user.url
-                                  : user.url
+                                !/^https:\/\//.test(user.url) ? 'https://' + user.url : user.url
                               }
                               rel="external nofollow noreferrer"
                               target="_blank"
@@ -155,35 +149,29 @@ export default function () {
                             </a>
                           </td>
                           <td>
-                            <a
-                              href={`mailto:${user.email}`}
-                              target="_blank"
-                              rel="noreferrer"
-                            >
+                            <a href={`mailto:${user.email}`} target="_blank" rel="noreferrer">
                               {user.email}
                             </a>
                           </td>
                           <td>{getRole(user.type)}</td>
                           <td>{user.label}</td>
                           <td className="comment-action">
-                            {createActions(user).map(
-                              ({ key, disable, name, action }) => {
-                                return disable ? (
-                                  <span className="weak" key={key}>
-                                    {name}
-                                  </span>
-                                ) : (
-                                  <a
-                                    key={key}
-                                    href="javascript:void(0)"
-                                    className={`operate-${key}`}
-                                    onClick={action}
-                                  >
-                                    {name}
-                                  </a>
-                                );
-                              },
-                            )}
+                            {createActions(user).map(({ key, disable, name, action }) => {
+                              return disable ? (
+                                <span className="weak" key={key}>
+                                  {name}
+                                </span>
+                              ) : (
+                                <a
+                                  key={key}
+                                  href="javascript:void(0)"
+                                  className={`operate-${key}`}
+                                  onClick={action}
+                                >
+                                  {name}
+                                </a>
+                              );
+                            })}
                           </td>
                         </tr>
                       ))}
