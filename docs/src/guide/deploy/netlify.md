@@ -17,7 +17,7 @@ icon: netlify
 
 ![netlify](../../assets/netlify-2.png) ![netlify](../../assets/netlify-3.png)
 
-创建 Netlify 网站之前，需要我们填入一些配置信息。除了环境变量，其它信息我们使用默认的即可。以 LeanCloud 部署服务为例，我们在这里增加上 Waline 需要的数据库服务环境变量。点击底部的 <kbd>Deploy site</kbd> 开始部署网站。
+创建 Netlify 网站之前，需要我们填入一些配置信息。除了环境变量，其它信息我们使用默认的即可。 参考[多数据库服务支持](../database.md)添加对应存储服务的环境变量，点击底部的 <kbd>Deploy site</kbd> 开始部署网站。
 
 ![netlify](../../assets/netlify-4.png)
 

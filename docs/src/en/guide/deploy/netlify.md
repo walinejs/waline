@@ -17,7 +17,7 @@ Click the [Fork](https://github.com/walinejs/netlify-starter/fork) button to cre
 
 ![netlify](../../../assets/netlify-2.png) ![netlify](../../../assets/netlify-3.png)
 
-Before creating a Netlify website, we need to fill in some configuration information. In addition to environment variables, we can use the default for other information. Taking the LeanCloud deployment service as an example, here we add the database service environment variables required by Waline. Click <kbd>Deploy site</kbd> at the bottom to start deploying the site.
+Before creating a Netlify website, we need to fill in some configuration information. In addition to environment variables, we can use the default for other information. Refer to [Multi Database Support](../database.md) to add the corresponding storage service environment variables, then click <kbd>Deploy site</kbd> at the bottom to start deploying the site.
 
 ![netlify](../../../assets/netlify-4.png)
 

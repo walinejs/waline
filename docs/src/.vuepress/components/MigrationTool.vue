@@ -29,7 +29,6 @@ const i18n = useLocaleConfig({
           >Export2Valine</a
         >
         插件将评论数据导出成 Valine 数据后直接使用。`,
-    tip: 'Waline 和 Valine 的 LeanCloud 配置是可以共用的，不需要进行数据转换哦！',
   },
   // eslint-disable-next-line @typescript-eslint/naming-convention
   '/en/': {
@@ -46,7 +45,6 @@ const i18n = useLocaleConfig({
           >Export2Valine Plugin</a
         >
         to export comment data to Valine format.`,
-    tip: 'The LeanCloud configuration of Waline and Valine can be shared, no data conversion is required!',
   },
 });
 
@@ -117,7 +115,6 @@ const click = (): void => {
         <label for="to">&nbsp;{{ i18n.to }}&nbsp;</label>
 
         <select id="to" v-model="to">
-          <option value="wleancloud">Waline LeanCloud</option>
 
           <option value="wcloudbase">Waline CloudBase</option>
 
@@ -135,15 +132,6 @@ const click = (): void => {
 
       <!-- eslint-disable-next-line vue/no-v-html -->
       <p v-html="i18n.typecho" />
-    </div>
-
-    <div
-      v-else-if="from === 'valine' && to === 'wleancloud'"
-      class="custom-block warning"
-    >
-      <p class="custom-block-title">{{ i18n.tip }}</p>
-
-      <p v-text="i18n.tip" />
     </div>
 
     <div v-else>
