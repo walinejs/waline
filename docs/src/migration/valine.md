@@ -4,7 +4,7 @@ icon: valine
 ---
 
 1. 按照 [Vercel 部署](../guide/get-started/README.md#vercel-部署-服务端) 一节部署服务端。
-  
+
 2. 按照 [HTML 片段](../guide/get-started/README.md#html-引入-客户端) 一节修改对应的前端脚本。
 
    ::: warning
@@ -45,7 +45,7 @@ Waline 具体的配置详见 [客户端配置](../reference/client/api.md)。你
 
 :::
 
-3. 迁移数据
+1. 迁移数据
 
 在 LeanCloud 后台选择 <kbd>导入导出</kbd> > <kbd>限定 Class</kbd> > <kbd>Comment</kbd> > <kbd>导出</kbd>，之后会收到导出成功的邮件。
 

@@ -26,17 +26,17 @@ We released the `@waline/vercel` package as server package, Vercel deployment is
 
 1. Repo which named you input before will be created and initialized automatically base on waline example template by Vercel.
 
-   ![](../../../assets/vercel-2.png)
+   ![new project](../../../assets/vercel-2.png)
 
    After one minute or two, vercel should finish the deployment. Click `Go to Dashboard` button to redirect to your application dashboard.
 
-   ![](../../../assets/vercel-3.png)
+   ![dashboard](../../../assets/vercel-3.png)
 
 ## Create Database
 
 1. Click `Storage` at the top to enter the storage service page, choose `Create Database`. Under `Marketplace Database Providers`, select `Neon`, then click `Continue`.
 
-   ![](../../../assets/vercel-4.png)
+   ![storage](../../../assets/vercel-4.png)
 
 1. You will be prompted to create a Neon account. Choose `Accept and Create`. Next, select the database plan configuration, including region and quota. You can leave defaults and click `Continue`.
 
@@ -92,10 +92,7 @@ Set up as follows in your webpage:
 ```html {3-7,12-18}:line-numbers
 <head>
   <!-- ... -->
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/@waline/client@v3/dist/waline.css"
-  />
+  <link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css" />
   <!-- ... -->
 </head>
 <body>
