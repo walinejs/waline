@@ -12,7 +12,8 @@
   "rules": {
     "no-alert": "off",
     "no-warning-comments": "off",
-    "prefer-global-this": "off"
+    "prefer-global-this": "off",
+    "eqeqeq": "off"
   },
   "overrides": [
     {
@@ -26,7 +27,9 @@
       "files": ["packages/admin/src/**"],
       "plugins": ["react"],
       "rules": {
-        "react/jsx-max-depth": "off"
+        "react/jsx-max-depth": "off",
+        "typescript/no-floating-promises": "off",
+        "typescript/unbound-method": "off"
       }
     },
     {
@@ -48,7 +51,8 @@
         "import/unambiguous": "off",
         "import/no-commonjs": "off",
         "typescript/no-required-calls": "off",
-        "typescript/no-require-imports": "off"
+        "typescript/no-require-imports": "off",
+        "no-callback-in-promise": "off"
       }
     },
     {

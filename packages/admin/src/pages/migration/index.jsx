@@ -81,7 +81,7 @@ export default function Migration() {
               ? {
                   ...data,
                   // add default approved status to avoid unsetted status comments import issue
-                  status: data.status || 'approved',
+                  status: data.status ?? 'approved',
                   // reset relationship fields
                   rid: undefined,
                   pid: undefined,

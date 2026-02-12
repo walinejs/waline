@@ -46,7 +46,7 @@ module.exports = class extends Base {
     const filter = {};
     const parseKey = (k) => (k === 'objectId' ? '_id' : k);
 
-    for (let k in where) {
+    for (const k in where) {
       if (k === '_complex') {
         continue;
       }
@@ -154,7 +154,7 @@ module.exports = class extends Base {
   async select(where, options = {}) {
     let data = [];
     let ret = [];
-    let offset = options.offset ?? 0;
+    const offset = options.offset ?? 0;
 
     do {
       options.offset = offset + data.length;

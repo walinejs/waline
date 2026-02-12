@@ -197,7 +197,7 @@ module.exports = class UserController extends BaseRest {
 
     const userIds = counts.filter(({ user_id }) => user_id).map(({ user_id }) => user_id);
 
-    let usersMap = {};
+    const usersMap = {};
 
     if (userIds.length > 0) {
       const users = await this.modelInstance.select({

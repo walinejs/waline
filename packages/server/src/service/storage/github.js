@@ -182,7 +182,7 @@ module.exports = class extends Base {
 
     const filters = [];
 
-    for (let k in where) {
+    for (const k in where) {
       if (k === '_complex') {
         continue;
       }

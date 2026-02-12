@@ -54,7 +54,7 @@ describe('Words test', () => {
     const linkMarkdown = `You can found Waline [here](${linkAddress}).`;
     const imageMarkdown = `Here is a image.\n\n![Alt](https://a/fake/link)`;
 
-    const linkWords = (getWords(linkAddress) ?? <string[]>[])
+    const linkWords = (getWords(linkAddress) ?? ([] as string[]))
       .map((word) => word.trim())
       .filter(Boolean);
 
@@ -91,7 +91,7 @@ describe('Words test', () => {
 \`\`\`
 `;
 
-    const codeBlockWords = (getWords(codeBlock) ?? <string[]>[])
+    const codeBlockWords = (getWords(codeBlock) ?? ([] as string[]))
       .map((word) => word.trim())
       .filter(Boolean);
 

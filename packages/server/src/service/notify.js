@@ -229,13 +229,13 @@ module.exports = class NotifyService extends think.Service {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: postBody,
-    }).then((resp) => {
-      return resp.json().then((json) => {
+    }).then((resp) =>
+      resp.json().then((json) => {
         think.logger.debug(`qq notify response: ${JSON.stringify(json)}`);
 
         return json;
-      });
-    });
+      }),
+    );
   }
 
   async telegram(self, parent) {

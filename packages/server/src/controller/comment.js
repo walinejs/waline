@@ -80,12 +80,12 @@ module.exports = class extends BaseRest {
     const { type } = this.get();
 
     const fnMap = {
-      recent: this.getRecentCommentList,
-      count: this.getCommentCount,
-      list: this.getAdminCommentList,
+      recent: this['getRecentCommentList'],
+      count: this['getCommentCount'],
+      list: this['getAdminCommentList'],
     };
 
-    const fn = fnMap[type] || this.getCommentList;
+    const fn = fnMap[type] || this['getCommentList'];
     const data = await fn.call(this);
 
     return this.jsonOrSuccess(data);
@@ -275,7 +275,7 @@ module.exports = class extends BaseRest {
   async putAction() {
     const { userInfo } = this.ctx.state;
     const isAdmin = userInfo.type === 'administrator';
-    let data = isAdmin ? this.post() : this.post('comment,like');
+    const data = isAdmin ? this.post() : this.post('comment,like');
     let oldData = await this.modelInstance.select({ objectId: this.id });
 
     if (think.isEmpty(oldData) || think.isEmpty(data)) {

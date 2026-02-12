@@ -11,7 +11,7 @@ module.exports = class extends Base {
     const filter = {};
     const parseKey = (k) => (k === 'objectId' ? '_id' : k);
 
-    for (let k in where) {
+    for (const k in where) {
       if (k === '_complex') {
         continue;
       }

@@ -5,7 +5,7 @@ import { initReactI18next } from 'react-i18next';
 import langs from './locales/index.js';
 
 // oxlint-disable-next-line import-x/no-named-as-default-member
-I18n.use(LanguageDetector)
+void I18n.use(LanguageDetector)
   .use(initReactI18next)
   .init({
     // we init with resources
