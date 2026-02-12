@@ -10,16 +10,7 @@ import { version } from './package.json';
 export default defineConfig({
   define: {
     VERSION: JSON.stringify(version),
-    // eslint-disable-next-line @typescript-eslint/naming-convention
     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV ?? 'development'),
-  },
-
-  css: {
-    preprocessorOptions: {
-      scss: {
-        api: 'modern',
-      },
-    },
   },
 
   plugins: [react(), svgr(), cssInjectedByJsPlugin()],
@@ -35,9 +26,7 @@ export default defineConfig({
   server: {
     port: 9010,
     proxy: {
-      // eslint-disable-next-line @typescript-eslint/naming-convention
       '/token': 'http://localhost:9090',
-      // eslint-disable-next-line @typescript-eslint/naming-convention
       '/user': 'http://localhost:9090',
     },
   },
