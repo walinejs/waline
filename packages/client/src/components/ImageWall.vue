@@ -61,7 +61,7 @@ const columns = ref<Column[]>([]);
 const getColumnCount = (): number => {
   const count = Math.floor(
     // oxlint-disable-next-line typescript/no-non-null-assertion
-    (wall.value!.getBoundingClientRect().width + props.gap) / (props.columnWidth + props.gap),
+    (wall.value!.getBoundingClientRect().width + gap) / (columnWidth + gap),
   );
 
   return count > 0 ? count : 1;
@@ -70,7 +70,7 @@ const getColumnCount = (): number => {
 const createColumns = (count: number): Column[] => Array.from({ length: count }, () => []);
 
 const fillColumns = async (itemIndex: number): Promise<void> => {
-  if (itemIndex >= props.items.length) return;
+  if (itemIndex >= items.length) return;
 
   await nextTick();
 
@@ -112,14 +112,14 @@ onMounted(() => {
   resizeObserver.observe(wall.value!);
 
   watch(
-    () => [props.items],
+    () => [items],
     () => {
       state.value = {};
       void redraw(true);
     },
   );
   watch(
-    () => [props.columnWidth, props.gap],
+    () => [columnWidth, gap],
     () => {
       void redraw();
     },

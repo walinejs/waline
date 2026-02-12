@@ -37,7 +37,7 @@ import {
 } from '../utils/index.js';
 import { configKey } from '../config/index.js';
 
-const { edit, rootId, replyId, replyUser } = defineProps<{
+const props = defineProps<{
   /**
    * Current comment to be edited
    */

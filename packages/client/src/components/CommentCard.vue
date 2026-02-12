@@ -53,24 +53,22 @@ const userInfo = useUserInfo();
 const locale = computed(() => config.value.locale);
 
 const link = computed(() => {
-  const { link } = props.comment;
+  const { link } = comment;
 
   return link ? (isLinkHttp(link) ? link : `https://${link}`) : '';
 });
 
-const like = computed(() => likes.value.includes(props.comment.objectId));
+const like = computed(() => likes.value.includes(comment.objectId));
 
-const time = computed(() => getTimeAgo(new Date(props.comment.time), now.value, locale.value));
+const time = computed(() => getTimeAgo(new Date(comment.time), now.value, locale.value));
 
 const isAdmin = computed(() => userInfo.value.type === 'administrator');
 
-const isOwner = computed(
-  () => props.comment.user_id && userInfo.value.objectId === props.comment.user_id,
-);
+const isOwner = computed(() => comment.user_id && userInfo.value.objectId === comment.user_id);
 
-const isReplyingCurrent = computed(() => props.comment.objectId === props.reply?.objectId);
+const isReplyingCurrent = computed(() => comment.objectId === reply?.objectId);
 
-const isEditingCurrent = computed(() => props.comment.objectId === props.edit?.objectId);
+const isEditingCurrent = computed(() => comment.objectId === edit?.objectId);
 </script>
 
 <template>
