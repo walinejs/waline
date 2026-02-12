@@ -78,7 +78,15 @@ export default function Migration() {
           const method = shouldEditorUser ? 'PUT' : 'POST';
           const body =
             tableName === 'Comment'
-              ? { ...data, rid: undefined, pid: undefined, user_id: undefined }
+              ? {
+                  ...data,
+                  // add default approved status to avoid unsetted status comments import issue
+                  status: data.status || 'approved',
+                  // reset relationship fields
+                  rid: undefined,
+                  pid: undefined,
+                  user_id: undefined,
+                }
               : data;
 
           for (const key in body) {
