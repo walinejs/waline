@@ -57,9 +57,7 @@ const fallback = <T = unknown>(value: T | boolean | undefined, fallback: T): T |
 
 export const getConfig = ({
   serverURL,
-
-  // eslint-disable-next-line @typescript-eslint/no-useless-default-assignment
-  path = location.pathname,
+  path,
   lang = typeof navigator === 'undefined' ? 'en-US' : navigator.language,
   locale,
   meta = ['nick', 'mail', 'link'],
@@ -79,31 +77,30 @@ export const getConfig = ({
   search,
   reaction,
   ...more
-}: WalineProps): WalineConfig =>
-  ({
-    serverURL: getServerURL(serverURL),
-    path: decodePath(path),
-    lang: getLang(lang),
-    locale: {
-      ...getLocale(getLang(lang)),
-      ...(typeof locale === 'object' ? locale : {}),
-    } as WalineLocale,
-    wordLimit: getWordLimit(wordLimit),
-    meta: getMeta(meta),
-    requiredMeta: getMeta(requiredMeta),
-    dark,
-    pageSize,
-    commentSorting,
-    login,
-    noCopyright,
-    recaptchaV3Key,
-    turnstileKey,
-    ...more,
-    // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
-    reaction: reaction === true ? DEFAULT_REACTION : reaction || null,
-    imageUploader: fallback(imageUploader, defaultUploadImage),
-    highlighter: fallback(highlighter, defaultHighlighter),
-    texRenderer: fallback(texRenderer, defaultTeXRenderer),
-    emoji: fallback(emoji, DEFAULT_EMOJI),
-    search: fallback(search, getDefaultSearchOptions(lang)),
-  });
+}: WalineProps): WalineConfig => ({
+  serverURL: getServerURL(serverURL),
+  path: decodePath(path),
+  lang: getLang(lang),
+  locale: {
+    ...getLocale(getLang(lang)),
+    ...(typeof locale === 'object' ? locale : {}),
+  } as WalineLocale,
+  wordLimit: getWordLimit(wordLimit),
+  meta: getMeta(meta),
+  requiredMeta: getMeta(requiredMeta),
+  dark,
+  pageSize,
+  commentSorting,
+  login,
+  noCopyright,
+  recaptchaV3Key,
+  turnstileKey,
+  ...more,
+  // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+  reaction: reaction === true ? DEFAULT_REACTION : reaction || null,
+  imageUploader: fallback(imageUploader, defaultUploadImage),
+  highlighter: fallback(highlighter, defaultHighlighter),
+  texRenderer: fallback(texRenderer, defaultTeXRenderer),
+  emoji: fallback(emoji, DEFAULT_EMOJI),
+  search: fallback(search, getDefaultSearchOptions(lang)),
+});

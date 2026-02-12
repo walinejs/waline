@@ -377,7 +377,7 @@ module.exports = class extends BaseRest {
     const { path: url, page, pageSize, sortBy } = this.get();
     const where = { url };
 
-    if (think.isEmpty(userInfo) || this.config('storage') === 'deta') {
+    if (think.isEmpty(userInfo)) {
       where.status = ['NOT IN', ['waiting', 'spam']];
     } else if (userInfo.type !== 'administrator') {
       where._complex = {
@@ -647,7 +647,7 @@ module.exports = class extends BaseRest {
     const { userInfo } = this.ctx.state;
     const where = {};
 
-    if (think.isEmpty(userInfo) || this.config('storage') === 'deta') {
+    if (think.isEmpty(userInfo)) {
       where.status = ['NOT IN', ['waiting', 'spam']];
     } else {
       where._complex = {
@@ -709,7 +709,7 @@ module.exports = class extends BaseRest {
     const { userInfo } = this.ctx.state;
     const where = Array.isArray(url) && url.length ? { url: ['IN', url] } : {};
 
-    if (think.isEmpty(userInfo) || this.config('storage') === 'deta') {
+    if (think.isEmpty(userInfo)) {
       where.status = ['NOT IN', ['waiting', 'spam']];
     } else {
       where._complex = {
