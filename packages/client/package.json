@@ -70,20 +70,20 @@
     "style:meta": "sass ./src/styles/meta.scss ./dist/waline-meta.css --style=compressed"
   },
   "dependencies": {
-    "@vueuse/core": "^14.1.0",
+    "@vueuse/core": "^14.2.1",
     "@waline/api": "workspace:*",
     "autosize": "^6.0.1",
-    "marked": "^17.0.1",
+    "marked": "^17.0.2",
     "marked-highlight": "^2.2.3",
     "recaptcha-v3": "^1.11.3",
-    "vue": "^3.5.27"
+    "vue": "^3.5.28"
   },
   "devDependencies": {
-    "@babel/core": "7.28.6",
-    "@babel/preset-env": "7.28.6",
+    "@babel/core": "7.29.0",
+    "@babel/preset-env": "7.29.0",
     "@giphy/js-types": "5.1.0",
     "@types/autosize": "4.0.3",
-    "@vitejs/plugin-vue": "6.0.3",
+    "@vitejs/plugin-vue": "6.0.4",
     "vite": "7.3.1"
   },
   "browserslist": {
