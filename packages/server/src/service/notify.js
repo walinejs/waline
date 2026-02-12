@@ -337,20 +337,22 @@ module.exports = class NotifyService extends think.Service {
     title = this.controller.locale(title, data);
     content = this.controller.locale(content, data);
 
-    const form = new FormData();
+    const form = new URLSearchParams();
 
-    if (topic) form.append('topic', topic);
-    if (template) form.append('template', template);
-    if (channel) form.append('channel', channel);
-    if (webhook) form.append('webhook', webhook);
-    if (callbackUrl) form.append('callbackUrl', callbackUrl);
-    if (title) form.append('title', title);
-    if (content) form.append('content', content);
+    if (topic) form.set('topic', topic);
+    if (template) form.set('template', template);
+    if (channel) form.set('channel', channel);
+    if (webhook) form.set('webhook', webhook);
+    if (callbackUrl) form.set('callbackUrl', callbackUrl);
+    if (title) form.set('title', title);
+    if (content) form.set('content', content);
 
     return fetch(`http://www.pushplus.plus/send/${PUSH_PLUS_KEY}`, {
       method: 'POST',
-      headers: form.getHeaders(),
-      body: form,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: form.toString(),
     }).then((resp) => resp.json());
   }
 
