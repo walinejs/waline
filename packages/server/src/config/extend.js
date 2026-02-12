@@ -3,8 +3,6 @@ const Mongo = require('think-mongo');
 
 const { isNetlify, netlifyFunctionPrefix } = require('./netlify');
 
-const isDeta = think.env === 'deta' || process.env.DETA_RUNTIME === 'true';
-
 module.exports = [
   Model(think.app),
   Mongo(think.app),
@@ -21,10 +19,6 @@ module.exports = [
 
         if (isNetlify) {
           return `${protocol}://${host}${netlifyFunctionPrefix}`;
-        }
-
-        if (isDeta) {
-          return `https://${host}`;
         }
 
         return `${protocol}://${host}`;
