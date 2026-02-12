@@ -46,9 +46,11 @@ export const init = ({
   ...initProps
 }: WalineInitOptions): WalineInstance | null => {
   // check el element
+  // oxlint-disable-next-line typescript/strict-boolean-expressions
   const root = el ? getRoot(el) : null;
 
   // check root
+  // oxlint-disable-next-line typescript/strict-boolean-expressions
   if (el && !root) throw new Error(`Option 'el' do not match any domElement!`);
 
   // check serverURL
@@ -58,6 +60,7 @@ export const init = ({
   const state = reactive({ comment, pageview, path });
 
   const updateCommentCount = (): void => {
+    // oxlint-disable-next-line typescript/strict-boolean-expressions
     if (state.comment)
       commentCount({
         serverURL: props.serverURL,
@@ -67,6 +70,7 @@ export const init = ({
   };
 
   const updatePageviewCount = (): void => {
+    // oxlint-disable-next-line typescript/strict-boolean-expressions
     if (state.pageview)
       pageviewCount({
         serverURL: props.serverURL,
@@ -78,8 +82,6 @@ export const init = ({
   let app: App<Element> | null = null;
 
   if (root) {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore: Some props design are bad
     app = createApp(() => h(Waline, { path: state.path, ...props }));
 
     app.mount(root);
@@ -97,14 +99,12 @@ export const init = ({
       ...newProps
     }: Partial<Omit<WalineInitOptions, 'el'>> = {}): void => {
       Object.entries(newProps).forEach(([key, value]) => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
         props[key] = value;
       });
 
       state.path = path;
-      if (comment !== undefined) state.comment = comment;
-      if (pageview !== undefined) state.pageview = pageview;
+      if (comment != null) state.comment = comment;
+      if (pageview != null) state.pageview = pageview;
     },
     destroy: (): void => {
       app?.unmount();

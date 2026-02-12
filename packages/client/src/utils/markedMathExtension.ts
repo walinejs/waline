@@ -13,15 +13,13 @@ export const markedTeXExtensions = (texRenderer: WalineTeXRenderer): TokenizerEx
     tokenizer(src: string) {
       const cap = blockMathReg.exec(src);
 
-      if (cap !== null) {
+      if (cap != null) {
         return {
           type: 'html',
           raw: cap[0],
           text: texRenderer(true, cap[1]),
         };
       }
-
-      return undefined;
     },
   };
 
@@ -29,22 +27,20 @@ export const markedTeXExtensions = (texRenderer: WalineTeXRenderer): TokenizerEx
     name: 'inlineMath',
     level: 'inline',
     start(src: string) {
-      const idx = src.search(inlineMathStart);
+      const index = src.search(inlineMathStart);
 
-      return idx !== -1 ? idx : src.length;
+      return index === -1 ? src.length : index;
     },
     tokenizer(src: string) {
       const cap = inlineMathReg.exec(src);
 
-      if (cap !== null) {
+      if (cap != null) {
         return {
           type: 'html',
           raw: cap[0],
           text: texRenderer(false, cap[1]),
         };
       }
-
-      return undefined;
     },
   };
 
