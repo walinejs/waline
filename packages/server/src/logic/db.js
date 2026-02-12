@@ -1,6 +1,6 @@
 const Base = require('./base.js');
 
-module.exports = class extends Base {
+module.exports = class DatabaseLogic extends Base {
   async __before(...args) {
     await super.__before(...args);
 

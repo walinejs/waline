@@ -1,6 +1,6 @@
 const BaseRest = require('./rest.js');
 
-module.exports = class extends BaseRest {
+module.exports = class UserController extends BaseRest {
   constructor(...args) {
     super(...args);
     this.modelInstance = this.getModel('Users');
@@ -80,7 +80,7 @@ module.exports = class extends BaseRest {
 
     try {
       const notify = this.service('notify', this);
-      const apiUrl = think.buildUrl(this.ctx.serverURL + '/verification', {
+      const apiUrl = think.buildUrl(`${this.ctx.serverURL}/verification`, {
         token,
         email: data.email,
       });
@@ -179,6 +179,7 @@ module.exports = class extends BaseRest {
     return this.success();
   }
 
+  // oxlint-disable-next-line max-statements
   async getUsersListByCount() {
     const { pageSize } = this.get();
     const commentModel = this.getModel('Comment');
@@ -198,7 +199,7 @@ module.exports = class extends BaseRest {
 
     let usersMap = {};
 
-    if (userIds.length) {
+    if (userIds.length > 0) {
       const users = await this.modelInstance.select({
         objectId: ['IN', userIds],
       });
@@ -220,7 +221,7 @@ module.exports = class extends BaseRest {
         let level = 0;
 
         if (user.count) {
-          const _level = think.findLastIndex(this.config('levels'), (l) => l <= user.count);
+          const _level = think.findLastIndex(this.config('levels'), (level) => level <= user.count);
 
           if (_level !== -1) {
             level = _level;
@@ -233,7 +234,7 @@ module.exports = class extends BaseRest {
         const { display_name: nick, url: link, avatar: avatarUrl, label } = users[count.user_id];
         const avatar =
           avatarProxy && !avatarUrl.includes(avatarProxy)
-            ? avatarProxy + '?url=' + encodeURIComponent(avatarUrl)
+            ? `${avatarProxy}?url=${encodeURIComponent(avatarUrl)}`
             : avatarUrl;
 
         Object.assign(user, { nick, link, avatar, label });
@@ -246,7 +247,7 @@ module.exports = class extends BaseRest {
       if (think.isEmpty(comments)) {
         continue;
       }
-      const comment = comments[0];
+      const [comment] = comments;
 
       if (think.isEmpty(comment)) {
         continue;
@@ -255,7 +256,7 @@ module.exports = class extends BaseRest {
       const avatarUrl = await think.service('avatar').stringify(comment);
       const avatar =
         avatarProxy && !avatarUrl.includes(avatarProxy)
-          ? avatarProxy + '?url=' + encodeURIComponent(avatarUrl)
+          ? `${avatarProxy}?url=${encodeURIComponent(avatarUrl)}`
           : avatarUrl;
 
       Object.assign(user, { nick, link, avatar });

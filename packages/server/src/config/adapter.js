@@ -6,9 +6,10 @@ const Postgresql = require('think-model-postgresql');
 let Sqlite;
 
 try {
+  // oxlint-disable-next-line node/global-require
   Sqlite = require('think-model-sqlite');
 } catch (err) {
-  // eslint-disable-next-line @typescript-eslint/no-extraneous-class
+  // oxlint-disable-next-line typescript/no-extraneous-class
   Sqlite = class {};
   console.log(err);
 }
@@ -65,11 +66,11 @@ if (MONGO_AUTHSOURCE) mongoOpt.authSource = MONGO_AUTHSOURCE;
 if (MONGO_DB) {
   type = 'mongo';
   for (const envKeys in process.env) {
-    if (/MONGO_OPT_/.test(envKeys)) {
+    if (envKeys.includes('MONGO_OPT_')) {
       const key = envKeys
         .slice(10)
         .toLocaleLowerCase()
-        .replace(/_([a-z])/g, (_, b) => b.toUpperCase());
+        .replaceAll(/_([a-z])/g, (_, b) => b.toUpperCase());
 
       mongoOpt[key] = process.env[envKeys];
     }
@@ -88,7 +89,9 @@ exports.model = {
   type,
   common: {
     logSql: true,
-    logger: (msg) => think.logger.info(msg),
+    logger: (msg) => {
+      think.logger.info(msg);
+    },
   },
 
   mongo: {
@@ -114,7 +117,7 @@ exports.model = {
     connectionLimit: 1,
     prefix: PG_PREFIX || POSTGRES_PREFIX || 'wl_',
     ssl:
-      (PG_SSL || POSTGRES_SSL) == 'true' || POSTGRES_URL?.includes('sslmode=require')
+      (PG_SSL || POSTGRES_SSL) === 'true' || POSTGRES_URL?.includes('sslmode=require')
         ? {
             rejectUnauthorized: false,
           }

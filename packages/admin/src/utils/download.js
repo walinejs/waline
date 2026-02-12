@@ -5,10 +5,10 @@ export default function download(data, filename, type) {
 
   a.href = url;
   a.download = filename;
-  document.body.appendChild(a);
+  document.body.append(a);
   a.click();
   setTimeout(() => {
-    document.body.removeChild(a);
+    a.remove();
     window.URL.revokeObjectURL(url);
   }, 0);
 }

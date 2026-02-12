@@ -139,7 +139,6 @@ export const addComment = ({
   comment,
 }: AddCommentOptions): Promise<AddCommentResponse> => {
   const headers: Record<string, string> = {
-    // eslint-disable-next-line @typescript-eslint/naming-convention
     'Content-Type': 'application/json',
   };
 

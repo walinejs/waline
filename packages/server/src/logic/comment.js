@@ -1,6 +1,6 @@
 const Base = require('./base.js');
 
-module.exports = class extends Base {
+module.exports = class CommentLogic extends Base {
   checkAdmin() {
     const { userInfo } = this.ctx.state;
 
@@ -117,7 +117,7 @@ module.exports = class extends Base {
     }
 
     switch (type) {
-      case 'recent':
+      case 'recent': {
         this.rules = {
           count: {
             int: { max: 50 },
@@ -125,14 +125,16 @@ module.exports = class extends Base {
           },
         };
         break;
+      }
 
-      case 'count':
+      case 'count': {
         this.rules = {
           url: {
             array: true,
           },
         };
         break;
+      }
 
       case 'list': {
         const { userInfo } = this.ctx.state;
@@ -153,7 +155,7 @@ module.exports = class extends Base {
         break;
       }
 
-      default:
+      default: {
         this.rules = {
           path: {
             string: true,
@@ -173,6 +175,7 @@ module.exports = class extends Base {
           },
         };
         break;
+      }
     }
   }
 

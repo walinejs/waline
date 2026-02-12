@@ -28,16 +28,11 @@ DOMPurify.addHook('afterSanitizeAttributes', (node) => {
 });
 
 const sanitize = (content) =>
-  DOMPurify.sanitize(
-    content,
-    Object.assign(
-      {
-        FORBID_TAGS: ['form', 'input', 'style'],
-        FORBID_ATTR: ['autoplay', 'style'],
-      },
-      think.config('domPurify') || {},
-    ),
-  );
+  DOMPurify.sanitize(content, {
+    FORBID_TAGS: ['form', 'input', 'style'],
+    FORBID_ATTR: ['autoplay', 'style'],
+    ...think.config('domPurify'),
+  });
 
 module.exports = {
   sanitize,

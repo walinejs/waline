@@ -8,6 +8,9 @@
 
 /**
  * Extract Latin words from content
+ *
+ * @param content - input string
+ * @returns matched words
  */
 export const getWords = (content: string): RegExpMatchArray | null =>
   // \u00C0-\u024F are Latin Supplement letters, maybe used in language like french
@@ -16,12 +19,18 @@ export const getWords = (content: string): RegExpMatchArray | null =>
 
 /**
  * Extract Chinese Characters from content
+ *
+ * @param content - input string
+ * @returns matched Chinese characters
  */
 export const getChinese = (content: string): RegExpMatchArray | null =>
   content.match(/[\u4E00-\u9FD5]/gu);
 
 /**
  * Get word number of given string
+ *
+ * @param content - input string
+ * @returns word number
  */
 export const getWordNumber = (content: string): number =>
   (getWords(content)?.reduce<number>(

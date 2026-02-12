@@ -60,7 +60,7 @@ const renderVisitorCount = (
       return;
     }
 
-    element.innerText = count.toString();
+    element.textContent = count.toString();
   });
 };
 
@@ -73,15 +73,12 @@ export const pageviewCount = ({
 }: WalinePageviewCountOptions): WalineAbort => {
   const controller = new AbortController();
 
-  const elements = Array.from(
-    // pageview selectors
-    document.querySelectorAll<HTMLElement>(selector),
-  );
+  const elements = [...document.querySelectorAll<HTMLElement>(selector)];
 
   const filter = (element: HTMLElement): boolean => {
     const query = getQuery(element);
 
-    return query !== null && path !== query;
+    return query != null && path !== query;
   };
 
   const fetch = (elements: HTMLElement[]): Promise<void> =>
@@ -91,22 +88,26 @@ export const pageviewCount = ({
       lang,
       signal: controller.signal,
     })
-      .then((counts) => renderVisitorCount(counts, elements))
+      .then((counts) => {
+        renderVisitorCount(counts, elements);
+      })
       .catch(errorHandler);
 
   // we should update pageviews
   if (update) {
     const normalElements = elements.filter((element) => !filter(element));
-    const elementsNeedstoBeFetched = elements.filter(filter);
+    const elementsNeedstoBeFetched = elements.filter((element) => filter(element));
 
     void updatePageview({
       serverURL: getServerURL(serverURL),
       path,
       lang,
-    }).then((counts) => renderVisitorCount(counts, normalElements));
+    }).then((counts) => {
+      renderVisitorCount(counts, normalElements);
+    });
 
     // if we should fetch count of other pages
-    if (elementsNeedstoBeFetched.length) {
+    if (elementsNeedstoBeFetched.length > 0) {
       void fetch(elementsNeedstoBeFetched);
     }
   }

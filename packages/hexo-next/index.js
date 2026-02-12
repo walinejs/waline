@@ -12,7 +12,7 @@ const warn = (...args) => {
   );
 };
 
-const capitalize = (input) => input.toString().charAt(0).toUpperCase() + input.toString().substr(1);
+const capitalize = (input) => input.toString().charAt(0).toUpperCase() + input.toString().slice(1);
 
 const iconText = (icon, key, defaultValue = capitalize(key)) =>
   `

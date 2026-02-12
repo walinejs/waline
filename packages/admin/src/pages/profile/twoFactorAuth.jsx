@@ -5,7 +5,8 @@ import { useSelector } from 'react-redux';
 
 import { gen2FAToken, get2FAToken, updateProfile } from '../../services/user.js';
 
-export default function () {
+// oxlint-disable-next-line max-lines-per-function
+export default function TwoFactorAuth() {
   const { t } = useTranslation();
   const [step, setStep] = useState(1);
   const [updating, setUpdating] = useState(false);
@@ -16,20 +17,22 @@ export default function () {
     get2FAToken().then(setData);
   }, []);
 
-  const on2faUpdate = async (e) => {
-    e.preventDefault();
+  const on2faUpdate = async (event) => {
+    event.preventDefault();
 
-    const code = e.target.code.value;
+    const code = event.target.code.value;
 
     if (!code || code.length < 6 || code.length > 6) {
-      return alert(t('minimum 6 characters required'));
+      alert(t('minimum 6 characters required'));
+
+      return;
     }
 
     try {
       setUpdating(true);
       await gen2FAToken({ code, secret: data.secret });
-    } catch (e) {
-      alert(e);
+    } catch (err) {
+      alert(err);
     } finally {
       setUpdating(false);
       location.reload();
@@ -42,10 +45,10 @@ export default function () {
     }
 
     setUpdating(true);
-    await updateProfile({ ['2fa']: '' }).catch((reason) => {
-      alert(reason);
-      // eslint-disable-next-line no-console
-      console.error(reason);
+    await updateProfile({ '2fa': '' }).catch((err) => {
+      alert(err);
+      // oxlint-disable-next-line no-console
+      console.error(err);
     });
     setUpdating(false);
     location.reload();
@@ -113,7 +116,7 @@ export default function () {
                   {t('input 2fa code')}
                 </label>
                 <input id="code-0-1" name="code" type="text" className="text" />
-                <p className="description"></p>
+                <p className="description" />
               </li>
             </ul>
             <ul className="typecho-option typecho-option-submit">

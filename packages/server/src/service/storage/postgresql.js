@@ -49,7 +49,7 @@ module.exports = class extends MySQL {
 
         data[key.toLowerCase()] =
           val instanceof Date ? think.datetime(val, 'YYYY-MM-DD HH:mm:ss') : val;
-        // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+        // oxlint-disable-next-line typescript/no-dynamic-delete
         delete data[key];
       });
 
@@ -62,13 +62,13 @@ module.exports = class extends MySQL {
     try {
       if (Array.isArray(result)) {
         result.forEach((r) => {
-          r.count = parseInt(r.count);
+          r.count = Number.parseInt(r.count);
         });
       } else {
-        result = parseInt(result);
+        result = Number.parseInt(result);
       }
-    } catch (e) {
-      console.log(e);
+    } catch (err) {
+      console.log(err);
     }
 
     return result;

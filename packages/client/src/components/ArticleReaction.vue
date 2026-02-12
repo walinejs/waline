@@ -15,7 +15,7 @@ interface ReactionItem {
 }
 
 const reactionStorage = useReactionStorage();
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+// oxlint-disable-next-line typescript/no-non-null-assertion
 const config = inject(configKey)!;
 
 const votingIndex = ref(-1);
@@ -73,7 +73,7 @@ const vote = async (index: number): Promise<void> => {
   votingIndex.value = index;
 
   // if user already vote current article, decrease the voted item number
-  if (currentVoteItemIndex !== undefined) {
+  if (currentVoteItemIndex != null) {
     await updateArticleCounter({
       serverURL,
       lang,
@@ -100,6 +100,7 @@ const vote = async (index: number): Promise<void> => {
   }
 
   // update vote info in local storage
+  // oxlint-disable-next-line typescript/no-dynamic-delete
   if (currentVoteItemIndex === index) delete reactionStorage.value[path];
   else reactionStorage.value[path] = index;
 

@@ -21,7 +21,7 @@ defineWalineConfig(walineOptions);
 
 export default defineClientConfig({
   enhance({ app }) {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    // oxlint-disable-next-line typescript/no-non-null-assertion
     const CommentService = app.component('CommentService')!;
 
     // delete
@@ -30,14 +30,17 @@ export default defineClientConfig({
     app.component('CommentService', () => [h(WalineTips), h(CommentService)]);
   },
   setup() {
-    onMounted(() => Fancybox.bind('#vp-comment .wl-content img'));
-    onBeforeUnmount(() => Fancybox.destroy());
+    onMounted(() => {
+      Fancybox.bind('#vp-comment .wl-content img');
+    });
+    onBeforeUnmount(() => {
+      Fancybox.destroy();
+    });
   },
 
   layouts: {
-    // eslint-disable-next-line @typescript-eslint/naming-convention
     Layout: () => {
-      const frontmatter = useFrontmatter();
+      const frontmatter = useFrontmatter<{ home: boolean }>();
 
       return h(
         Layout,

@@ -29,7 +29,7 @@ module.exports = class extends Base {
           const handler = where[k][0].toUpperCase();
 
           switch (handler) {
-            case 'IN':
+            case 'IN': {
               if (k === 'objectId') {
                 filter[parseKey(k)] = { $in: where[k][1].map(ObjectId) };
               } else {
@@ -38,11 +38,13 @@ module.exports = class extends Base {
                 };
               }
               break;
-            case 'NOT IN':
+            }
+            case 'NOT IN': {
               filter[parseKey(k)] = {
                 $nin: k === 'objectId' ? where[k][1].map(ObjectId) : where[k][1],
               };
               break;
+            }
             case 'LIKE': {
               const first = where[k][1][0];
               const last = where[k][1].slice(-1);
@@ -61,12 +63,14 @@ module.exports = class extends Base {
               }
               break;
             }
-            case '!=':
+            case '!=': {
               filter[parseKey(k)] = { $ne: where[k][1] };
               break;
-            case '>':
+            }
+            case '>': {
               filter[parseKey(k)] = { $gt: where[k][1] };
               break;
+            }
           }
         }
       }
@@ -108,7 +112,7 @@ module.exports = class extends Base {
       instance.order(`${desc} DESC`);
     }
     if (limit || offset) {
-      instance.limit(offset || 0, limit);
+      instance.limit(offset ?? 0, limit);
     }
     if (field) {
       instance.field(field);

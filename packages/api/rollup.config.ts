@@ -16,6 +16,7 @@ export default [
         sourcemap: true,
       },
     ],
+    // oxlint-disable-next-line unicorn/text-encoding-identifier-case
     plugins: [esbuild({ charset: 'utf8', minify: true, target: 'node18' })],
     treeshake: 'smallest',
   },

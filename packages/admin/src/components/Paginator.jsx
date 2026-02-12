@@ -1,7 +1,7 @@
 import cls from 'classnames';
 import React from 'react';
 
-export default function ({ current, total, onChange }) {
+export default function Paginator({ current, total, onChange }) {
   if (total < 1) {
     return null;
   }

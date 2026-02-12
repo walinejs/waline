@@ -1,31 +1,27 @@
 import request from '../utils/request.js';
 
-export async function getCommentList({ page = 1, filter }) {
-  return request({
+export const getCommentList = ({ page = 1, filter }) =>
+  request({
     url: `comment?type=list&owner=${filter.owner}&status=${filter.status}&keyword=${filter.keyword}&page=${page}`,
     method: 'GET',
   });
-}
 
-export async function updateComment(id, data) {
-  return request({
+export const updateComment = (id, data) =>
+  request({
     url: `comment/${id}`,
     method: 'PUT',
     body: data,
   });
-}
 
-export async function replyComment(data) {
-  return request({
+export const replyComment = (data) =>
+  request({
     url: 'comment',
     method: 'POST',
     body: data,
   });
-}
 
-export async function deleteComment(id) {
-  return request({
+export const deleteComment = (id) =>
+  request({
     url: `comment/${id}`,
     method: 'DELETE',
   });
-}

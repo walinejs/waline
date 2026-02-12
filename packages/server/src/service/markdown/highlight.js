@@ -7,7 +7,7 @@ rawLoadLanguages.silent = true;
 const loadLanguages = (languages = []) => {
   const langsToLoad = languages.filter((item) => !prism.languages[item]);
 
-  if (langsToLoad.length) {
+  if (langsToLoad.length > 0) {
     rawLoadLanguages(langsToLoad);
   }
 };

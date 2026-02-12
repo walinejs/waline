@@ -13,18 +13,20 @@ const instance = new Application({
   env: 'cloudbase',
 });
 
-module.exports = function (config = {}) {
+module.exports = function main(config = {}) {
   const loader = new Loader(instance.options);
 
   loader.loadAll('worker');
 
-  for (const k in config) {
-    think.config(k, config[k]);
+  for (const key in config) {
+    think.config(key, config[key]);
   }
 
   return {
     async tcbGetApp() {
-      await think.beforeStartServer().catch((err) => think.logger.error(err));
+      await think.beforeStartServer().catch((err) => {
+        think.logger.error(err);
+      });
       await instance._getWorkerInstance(instance.parseArgv());
       think.app.emit('appReady');
 

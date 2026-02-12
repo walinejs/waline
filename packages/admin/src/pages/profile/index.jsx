@@ -8,47 +8,54 @@ import Header from '../../components/Header.jsx';
 import * as Icons from '../../components/icon/index.js';
 import { updateProfile } from '../../services/user.js';
 
-export default function () {
+// oxlint-disable-next-line max-lines-per-function
+export default function Profile() {
   const [isPasswordUpdating, setPasswordUpdating] = useState(false);
   const [isProfileUpdating, setProfileUpdating] = useState(false);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const { t } = useTranslation();
 
-  const onProfileUpdate = async function (e) {
-    e.preventDefault();
+  const onProfileUpdate = async (event) => {
+    event.preventDefault();
 
-    const display_name = e.target.screenName.value;
-    const url = e.target.url.value;
-    const label = e.target.label.value;
-    const email = e.target.email.value;
+    const display_name = event.target.screenName.value;
+    const url = event.target.url.value;
+    const label = event.target.label.value;
+    const email = event.target.email.value;
 
     if (!display_name || !url) {
-      return alert(t('nickname and homepage are required'));
+      alert(t('nickname and homepage are required'));
+
+      return;
     }
 
     setProfileUpdating(true);
     try {
       await dispatch.user.updateProfile({ display_name, url, label, email });
-    } catch (e) {
-      alert(e);
+    } catch (err) {
+      alert(err);
     } finally {
       setProfileUpdating(false);
     }
   };
 
-  const onPasswordUpdate = async function (e) {
-    e.preventDefault();
+  const onPasswordUpdate = async (event) => {
+    event.preventDefault();
 
-    const password = e.target.password.value;
-    const confirm = e.target.confirm.value;
+    const password = event.target.password.value;
+    const confirm = event.target.confirm.value;
 
     if (!password || !confirm) {
-      return alert(t('please input password'));
+      alert(t('please input password'));
+
+      return;
     }
 
     if (password !== confirm) {
-      return alert(t("passwords don't match"));
+      alert(t("passwords don't match"));
+
+      return;
     }
 
     setPasswordUpdating(true);
@@ -56,13 +63,13 @@ export default function () {
     setPasswordUpdating(false);
   };
 
-  const unbind = async function (type) {
+  const unbind = async (type) => {
     await updateProfile({ [type]: '' });
     location.reload();
   };
 
-  const changeAvatar = async function (e) {
-    e.preventDefault();
+  const changeAvatar = async (event) => {
+    event.preventDefault();
 
     const url = prompt(t('please input avatar url'));
 
@@ -82,11 +89,9 @@ export default function () {
     baseUrl = match ? match[1] : '/';
   }
   const qs = new URLSearchParams(location.search);
-  let token = window.TOKEN || sessionStorage.getItem('TOKEN') || qs.get('token');
+  let token = window.TOKEN ?? sessionStorage.getItem('TOKEN') ?? qs.get('token');
 
-  if (!token) {
-    token = localStorage.getItem('TOKEN');
-  }
+  token ??= localStorage.getItem('TOKEN');
 
   const socials = Array.isArray(window.oauthServices)
     ? window.oauthServices.map(({ name }) => name)
@@ -104,7 +109,6 @@ export default function () {
             <div className="col-mb-12 col-tb-3">
               <p>
                 <a
-                  href="javascript:void(0)"
                   title={t('change avatar')}
                   target="_blank"
                   rel="noreferrer"
@@ -135,7 +139,7 @@ export default function () {
                         className="text"
                         defaultValue={user.display_name}
                       />
-                      <p className="description"></p>
+                      <p className="description" />
                     </li>
                   </ul>
 
@@ -151,7 +155,7 @@ export default function () {
                         className="text"
                         defaultValue={user.email}
                       />
-                      <p className="description"></p>
+                      <p className="description" />
                     </li>
                   </ul>
 
@@ -189,7 +193,7 @@ export default function () {
                         className="text"
                         defaultValue={user.label}
                       />
-                      <p className="description"></p>
+                      <p className="description" />
                     </li>
                   </ul>
 
@@ -217,17 +221,14 @@ export default function () {
                         href={
                           user[social]
                             ? social === 'oidc'
-                              ? 'javascript:void(0)'
+                              ? ''
                               : `https://${social}.com/${user[social]}`
                             : `${baseUrl}oauth?type=${social}&state=${token}`
                         }
                         target={user[social] ? '_blank' : '_self'}
                         rel="noreferrer"
                       >
-                        {
-                          /* eslint-disable-next-line import-x/namespace */
-                          React.createElement(Icons[social])
-                        }
+                        {React.createElement(Icons[social])}
                       </a>
                       <div className="account-unbind" onClick={() => unbind(social)}>
                         <svg
@@ -261,7 +262,7 @@ export default function () {
                         autoComplete="new-password"
                       />
                       <p className="description">
-                        <Trans i18nKey="password tips"></Trans>
+                        <Trans i18nKey="password tips" />
                       </p>
                     </li>
                   </ul>
@@ -279,7 +280,7 @@ export default function () {
                         autoComplete="new-password"
                       />
                       <p className="description">
-                        <Trans i18nKey="password again tips"></Trans>
+                        <Trans i18nKey="password again tips" />
                       </p>
                     </li>
                   </ul>

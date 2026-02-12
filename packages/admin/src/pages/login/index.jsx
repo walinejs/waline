@@ -8,7 +8,8 @@ import * as Icons from '../../components/icon/index.js';
 import { useCaptcha } from '../../components/useCaptcha.js';
 import { get2FAToken } from '../../services/user.js';
 
-export default function () {
+// oxlint-disable-next-line max-lines-per-function
+export default function Login() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ export default function () {
   const [error, setError] = useState(false);
   const [is2FAEnabled, enable2FA] = useState(false);
   const execute = useCaptcha({
-    sitekey: window.turnstileKey || window.recaptchaV3Key,
+    sitekey: window.turnstileKey ?? window.recaptchaV3Key,
     hideDefaultBadge: true,
   });
 
@@ -35,18 +36,18 @@ export default function () {
     const defaultRedirect = isAdmin ? '/ui/profile' : '/ui';
     const redirect = isAdmin && query.get('redirect') ? query.get('redirect') : defaultRedirect;
 
-    navigate(redirect.replace(/\/+/g, '/'));
+    navigate(redirect.replaceAll(/\/+/g, '/'));
   }, [user]);
 
-  const onSubmit = async function (e) {
-    e.preventDefault();
+  const onSubmit = async (event) => {
+    event.preventDefault();
     setError(false);
     setLoading(true);
 
-    const email = e.target.email.value;
-    const password = e.target.password.value;
-    const code = e.target.code ? e.target.code.value : '';
-    const remember = e.target.remember.checked;
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+    const code = event.target.code ? event.target.code.value : '';
+    const remember = event.target.remember.checked;
 
     if (!email) {
       return setError(t('please input email'));
@@ -54,7 +55,7 @@ export default function () {
     if (!password) {
       return setError(t('please input password'));
     }
-    if (e.target.code && !code) {
+    if (event.target.code && !code) {
       return setError(t('please input 2fa code'));
     }
 
@@ -76,8 +77,8 @@ export default function () {
     }
   };
 
-  const check2FACode = async (e) => {
-    const email = e.target.value;
+  const check2FACode = async (event) => {
+    const email = event.target.value;
 
     if (!email) {
       return;
@@ -179,10 +180,7 @@ export default function () {
                 key={social}
                 href={`${baseUrl}oauth?type=${social}&redirect=${basePath}ui/profile`}
               >
-                {
-                  /* eslint-disable-next-line import-x/namespace */
-                  React.createElement(Icons[social])
-                }
+                {React.createElement(Icons[social])}
               </a>
             ))}
           </div>

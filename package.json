@@ -14,9 +14,9 @@
     "client:dev": "pnpm --dir=packages/client dev",
     "docs:build": "pnpm --dir=docs run build && pnpm apidoc",
     "docs:dev": "pnpm --dir=docs run dev",
-    "lint": "pnpm lint:eslint && oxfmt && pnpm lint:stylelint",
-    "lint:eslint": "eslint --fix .",
+    "lint": "pnpm lint:oxlint && oxfmt && pnpm lint:stylelint",
     "lint:md": "markdownlint-cli2 '**/*.md'",
+    "lint:oxlint": "oxlint --fix --type-aware --type-check --report-unused-disable-directives --deny-warnings",
     "lint:stylelint": "stylelint packages/*/src/**/*.scss --fix",
     "packages:check-update": "pnpm dlx npm-check-updates --deep",
     "packages:update": "pnpm dlx npm-check-updates --deep -u && pnpm i && pnpm -r up",
@@ -42,10 +42,6 @@
     "commitizen": "4.3.1",
     "cross-env": "10.1.0",
     "cz-conventional-changelog": "3.3.0",
-    "eslint": "10.0.0",
-    "eslint-config-mister-hope": "0.9.6",
-    "eslint-plugin-react": "7.37.5",
-    "eslint-plugin-vue": "10.7.0",
     "husky": "9.1.7",
     "markdownlint-cli2": "0.20.0",
     "nano-staged": "0.9.0",
@@ -69,8 +65,8 @@
   },
   "nano-staged": {
     "**/*": "oxfmt --no-error-on-unmatched-pattern",
-    "*.md": "markdownlint-cli2 --fix",
-    "*.{js,ts,vue}": "eslint --fix"
+    "*.{js,ts,vue}": "oxlint --fix --type-aware --type-check --deny-warnings --report-unused-disable-directives",
+    "*.md": "markdownlint-cli2 --fix"
   },
   "config": {
     "commitizen": {

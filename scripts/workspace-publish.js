@@ -1,4 +1,4 @@
-// example: node scripts/workspace-publish.cjs @waline/client
+// example: node scripts/workspace-publish.js @waline/client
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -39,7 +39,7 @@ const getPkgs = async (pkgDir) => {
   return new Map(dirs);
 };
 
-function setPkg(pkg, pkgs) {
+const setPkg = (pkg, pkgs) => {
   const pkgMap = pkgs.get(pkg);
 
   if (!pkgMap) return;
@@ -57,9 +57,7 @@ function setPkg(pkg, pkgs) {
   DEP_KEYS.forEach((depKey) => {
     if (!pkgMap.info[depKey]) return;
 
-    for (const depName in pkgMap.info[depKey]) {
-      const version = pkgMap.info[depKey][depName];
-
+    for (const [depName, version] of Object.entries(pkgMap.info[depKey])) {
       if (!version.startsWith('workspace:')) continue;
 
       const workPkg = pkgs.get(depName);
@@ -79,7 +77,7 @@ function setPkg(pkg, pkgs) {
     ? fs.writeFileSync.bind(fs, path.join(pkgMap.dirname, 'package.json'))
     : console.log.bind(console);
 
-  if (writeFlag) handler(JSON.stringify(pkgMap.info, null, 2) + '\n');
-}
+  if (writeFlag) handler(`${JSON.stringify(pkgMap.info, null, 2)}\n`);
+};
 
 setPkg(process.argv[2], await getPkgs(packagesDir));

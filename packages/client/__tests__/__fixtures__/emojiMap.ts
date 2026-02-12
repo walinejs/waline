@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
-
 export const emojiMaps = {
   bb_doge: 'https://cdn.jsdelivr.net/gh/walinejs/emojis/bilibili/bb_doge.png',
   bb_miantian: 'https://cdn.jsdelivr.net/gh/walinejs/emojis/bilibili/bb_miantian.png',

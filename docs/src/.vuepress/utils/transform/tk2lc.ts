@@ -5,7 +5,7 @@ export const tk2lc = (input: string) => {
   let arr: any[];
   try {
     arr = JSON.parse(input);
-  } catch (e) {
+  } catch {
     // compat old twikoo output json format
     arr = input
       .trim()

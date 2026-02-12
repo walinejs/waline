@@ -11,7 +11,7 @@ module.exports = class extends BaseRest {
     const { deprecated } = this.ctx.state;
 
     // path is required
-    if (!Array.isArray(path) || !path.length) {
+    if (!Array.isArray(path) || path.length === 0) {
       return this.jsonOrSuccess(0);
     }
 

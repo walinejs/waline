@@ -4,7 +4,7 @@ const FormData = require('form-data');
 const nodemailer = require('nodemailer');
 const nunjucks = require('nunjucks');
 
-module.exports = class extends think.Service {
+module.exports = class NotifyService extends think.Service {
   constructor(controller) {
     super(controller);
 
@@ -20,7 +20,7 @@ module.exports = class extends think.Service {
         config.service = SMTP_SERVICE;
       } else {
         config.host = SMTP_HOST;
-        config.port = parseInt(SMTP_PORT);
+        config.port = Number.parseInt(SMTP_PORT, 10);
         config.secure = SMTP_SECURE && SMTP_SECURE !== 'false';
       }
       this.transporter = nodemailer.createTransport(config);
@@ -28,7 +28,9 @@ module.exports = class extends think.Service {
   }
 
   async sleep(second) {
-    return new Promise((resolve) => setTimeout(resolve, second * 1000));
+    return new Promise((resolve) => {
+      setTimeout(resolve, second * 1000);
+    });
   }
 
   async mail({ to, title, content }, self, parent) {
@@ -43,7 +45,7 @@ module.exports = class extends think.Service {
       site: {
         name: SITE_NAME,
         url: SITE_URL,
-        postUrl: SITE_URL + self.url + '#' + self.objectId,
+        postUrl: `${SITE_URL}${self.url}#${self.objectId}`,
       },
     };
 
@@ -71,7 +73,7 @@ module.exports = class extends think.Service {
       site: {
         name: SITE_NAME,
         url: SITE_URL,
-        postUrl: SITE_URL + self.url + '#' + self.objectId,
+        postUrl: `${SITE_URL}${self.url}#${self.objectId}`,
       },
     };
 
@@ -107,8 +109,8 @@ module.exports = class extends think.Service {
 
     const QYWX_AM_AY = QYWX_AM.split(',');
     const comment = self.comment
-      .replace(/<a href="(.*?)">(.*?)<\/a>/g, '\n[$2] $1\n')
-      .replace(/<[^>]+>/g, '');
+      .replaceAll(/<a href="(.*?)">(.*?)<\/a>/g, '\n[$2] $1\n')
+      .replaceAll(/<[^>]+>/g, '');
     const postName = self.url;
 
     const data = {
@@ -121,7 +123,7 @@ module.exports = class extends think.Service {
       site: {
         name: SITE_NAME,
         url: SITE_URL,
-        postUrl: SITE_URL + self.url + '#' + self.objectId,
+        postUrl: `${SITE_URL}${self.url}#${self.objectId}`,
       },
     };
 
@@ -136,7 +138,7 @@ module.exports = class extends think.Service {
     title = this.controller.locale(title, data);
     const desp = this.controller.locale(contentWechat, data);
 
-    content = desp.replace(/\n/g, '<br/>');
+    content = desp.replaceAll('\n', '<br/>');
 
     const querystring = new URLSearchParams();
 
@@ -146,11 +148,7 @@ module.exports = class extends think.Service {
     let baseUrl = 'https://qyapi.weixin.qq.com';
 
     if (QYWX_PROXY) {
-      if (!QYWX_PROXY_PORT) {
-        baseUrl = `http://${QYWX_PROXY}`;
-      } else {
-        baseUrl = `http://${QYWX_PROXY}:${QYWX_PROXY_PORT}`;
-      }
+      baseUrl = `http://${QYWX_PROXY}${QYWX_PROXY_PORT ? `:${QYWX_PROXY_PORT}` : ''}`;
     }
 
     const { access_token } = await fetch(`${baseUrl}/cgi-bin/gettoken?${querystring.toString()}`, {
@@ -191,7 +189,9 @@ module.exports = class extends think.Service {
       return false;
     }
 
-    const comment = self.comment.replace(/<a href="(.*?)">(.*?)<\/a>/g, '').replace(/<[^>]+>/g, '');
+    const comment = self.comment
+      .replaceAll(/<a href="(.*?)">(.*?)<\/a>/g, '')
+      .replaceAll(/<[^>]+>/g, '');
 
     const data = {
       self: {
@@ -202,7 +202,7 @@ module.exports = class extends think.Service {
       site: {
         name: SITE_NAME,
         url: SITE_URL,
-        postUrl: SITE_URL + self.url + '#' + self.objectId,
+        postUrl: `${SITE_URL}${self.url}#${self.objectId}`,
       },
     };
 
@@ -248,23 +248,19 @@ module.exports = class extends think.Service {
     let commentLink = '';
     const href = self.comment.match(/<a href="(.*?)">(.*?)<\/a>/g);
 
-    if (href !== null) {
+    if (href != null) {
       for (let i = 0; i < href.length; i++) {
         href[i] =
-          '[Link: ' +
-          href[i].replace(/<a href="(.*?)">(.*?)<\/a>/g, '$2') +
-          '](' +
-          href[i].replace(/<a href="(.*?)">(.*?)<\/a>/g, '$1') +
-          ')  ';
-        commentLink = commentLink + href[i];
+          `[Link: ${href[i].replaceAll(/<a href="(.*?)">(.*?)<\/a>/g, '$2')}](${href[i].replaceAll(/<a href="(.*?)">(.*?)<\/a>/g, '$1')})  `;
+        commentLink += href[i];
       }
     }
     if (commentLink !== '') {
-      commentLink = `\n` + commentLink + `\n`;
+      commentLink = `\n${commentLink}\n`;
     }
     const comment = self.comment
-      .replace(/<a href="(.*?)">(.*?)<\/a>/g, '[Link:$2]')
-      .replace(/<[^>]+>/g, '');
+      .replaceAll(/<a href="(.*?)">(.*?)<\/a>/g, '[Link:$2]')
+      .replaceAll(/<[^>]+>/g, '');
 
     const contentTG =
       think.config('TGTemplate') ||
@@ -291,7 +287,7 @@ module.exports = class extends think.Service {
       site: {
         name: SITE_NAME,
         url: SITE_URL,
-        postUrl: SITE_URL + self.url + '#' + self.objectId,
+        postUrl: `${SITE_URL}${self.url}#${self.objectId}`,
       },
     };
 
@@ -308,7 +304,7 @@ module.exports = class extends think.Service {
     }).then((resp) => resp.json());
 
     if (!resp.ok) {
-      console.log('Telegram Notification Failed:' + JSON.stringify(resp));
+      console.log(`Telegram Notification Failed:${JSON.stringify(resp)}`);
     }
   }
 
@@ -334,7 +330,7 @@ module.exports = class extends think.Service {
       site: {
         name: SITE_NAME,
         url: SITE_URL,
-        postUrl: SITE_URL + self.url + '#' + self.objectId,
+        postUrl: `${SITE_URL}${self.url}#${self.objectId}`,
       },
     };
 
@@ -371,7 +367,7 @@ module.exports = class extends think.Service {
       site: {
         name: SITE_NAME,
         url: SITE_URL,
-        postUrl: SITE_URL + self.url + '#' + self.objectId,
+        postUrl: `${SITE_URL}${self.url}#${self.objectId}`,
       },
     };
 
@@ -406,7 +402,7 @@ module.exports = class extends think.Service {
       return false;
     }
 
-    self.comment = self.comment.replace(/(<([^>]+)>)/gi, '');
+    self.comment = self.comment.replaceAll(/(<([^>]+)>)/gi, '');
 
     const data = {
       self,
@@ -414,7 +410,7 @@ module.exports = class extends think.Service {
       site: {
         name: SITE_NAME,
         url: SITE_URL,
-        postUrl: SITE_URL + self.url + '#' + self.objectId,
+        postUrl: `${SITE_URL}${self.url}#${self.objectId}`,
       },
     };
 
@@ -447,13 +443,13 @@ module.exports = class extends think.Service {
     };
 
     const sign = (timestamp, secret) => {
-      const signStr = timestamp + '\n' + secret;
+      const signStr = `${timestamp}\n${secret}`;
 
       return crypto.createHmac('sha256', signStr).update('').digest('base64');
     };
 
     if (LARK_SECRET) {
-      const timestamp = parseInt(+new Date() / 1000);
+      const timestamp = Number.parseInt(Date.now() / 1000, 10);
 
       signData = { timestamp: timestamp, sign: sign(timestamp, LARK_SECRET) };
     }
@@ -470,10 +466,10 @@ module.exports = class extends think.Service {
     }).then((resp) => resp.json());
 
     if (resp.status !== 200) {
-      console.log('Lark Notification Failed:' + JSON.stringify(resp));
+      console.log(`Lark Notification Failed:${JSON.stringify(resp)}`);
     }
 
-    console.log('FeiShu Notification Success:' + JSON.stringify(resp));
+    console.log(`FeiShu Notification Success:${JSON.stringify(resp)}`);
   }
 
   async run(comment, parent, disableAuthorNotify = false) {
@@ -503,12 +499,16 @@ module.exports = class extends think.Service {
       const discord = await this.discord({ title, content }, comment, parent);
       const lark = await this.lark({ title, content }, comment, parent);
 
-      if ([wechat, qq, telegram, qywxAmWechat, pushplus, discord, lark].every(think.isEmpty)) {
+      if (
+        [wechat, qq, telegram, qywxAmWechat, pushplus, discord, lark].every((item) =>
+          think.isEmpty(item),
+        )
+      ) {
         mailList.push({ to: AUTHOR, title, content });
       }
     }
 
-    const disallowList = this.controller.ctx.state.oauthServices.map(({ name }) => 'mail.' + name);
+    const disallowList = this.controller.ctx.state.oauthServices.map(({ name }) => `mail.${name}`);
     const fakeMail = new RegExp(`@(${disallowList.join('|')})$`, 'i');
 
     if (
@@ -530,8 +530,8 @@ module.exports = class extends think.Service {
         const response = await this.mail(mail, comment, parent);
 
         console.log('Notification mail send success: %s', response);
-      } catch (e) {
-        console.log('Mail send fail:', e);
+      } catch (err) {
+        console.log('Mail send fail:', err);
       }
     }
   }

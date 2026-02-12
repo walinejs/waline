@@ -1,4 +1,5 @@
 <script setup lang="ts">
+// oxlint-disable import/max-dependencies
 import { useDebounceFn, useEventListener, watchImmediate } from '@vueuse/core';
 import type { WalineComment, WalineCommentData, UserInfo } from '@waline/api';
 import { addComment, login, updateComment } from '@waline/api';
@@ -36,7 +37,7 @@ import {
 } from '../utils/index.js';
 import { configKey } from '../config/index.js';
 
-const props = defineProps<{
+const { edit, rootId, replyId, replyUser } = defineProps<{
   /**
    * Current comment to be edited
    */
@@ -60,7 +61,7 @@ const emit = defineEmits<{
   (event: 'submit', comment: WalineComment): void;
 }>();
 
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+// oxlint-disable-next-line typescript/no-non-null-assertion
 const config = inject(configKey)!;
 
 const editor = useEditor();
@@ -131,19 +132,17 @@ const locale = computed(() => config.value.locale);
 
 const isLogin = computed(() => Boolean(userInfo.value.token));
 
-const canUploadImage = computed(() => config.value.imageUploader !== null);
+const canUploadImage = computed(() => config.value.imageUploader != null);
 
 const insert = (content: string): void => {
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  // oxlint-disable-next-line typescript/no-non-null-assertion
   const textArea = textAreaRef.value!;
   const startPosition = textArea.selectionStart;
   const endPosition = textArea.selectionEnd || 0;
-  const scrollTop = textArea.scrollTop;
+  const { scrollTop } = textArea;
 
   editor.value =
-    textArea.value.substring(0, startPosition) +
-    content +
-    textArea.value.substring(endPosition, textArea.value.length);
+    textArea.value.slice(0, startPosition) + content + textArea.value.slice(endPosition);
   textArea.focus();
   textArea.selectionStart = startPosition + content.length;
   textArea.selectionEnd = startPosition + content.length;
@@ -165,7 +164,7 @@ const uploadImage = async (file: File): Promise<void> => {
   isSubmitting.value = true;
 
   try {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    // oxlint-disable-next-line typescript/no-non-null-assertion
     const url = await config.value.imageUploader!(file);
 
     editor.value = editor.value.replace(uploadText, `\r\n![${file.name}](${url})`);
@@ -197,7 +196,7 @@ const onEditorPaste = (event: ClipboardEvent): void => {
 };
 
 const onImageChange = (): void => {
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  // oxlint-disable-next-line typescript/no-non-null-assertion
   const inputElement = imageUploaderRef.value!;
 
   if (inputElement.files && canUploadImage.value)
@@ -207,6 +206,7 @@ const onImageChange = (): void => {
     });
 };
 
+// oxlint-disable-next-line complexity, max-statements
 const submitComment = async (): Promise<void> => {
   const { serverURL, lang, login, wordLimit, requiredMeta, recaptchaV3Key, turnstileKey } =
     config.value;
@@ -257,7 +257,7 @@ const submitComment = async (): Promise<void> => {
 
   // check comment
   if (!comment.comment) {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    // oxlint-disable-next-line typescript/no-non-null-assertion
     textAreaRef.value!.focus();
 
     return;
@@ -311,7 +311,7 @@ const submitComment = async (): Promise<void> => {
       return;
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    // oxlint-disable-next-line typescript/no-non-null-assertion
     emit('submit', response.data!);
 
     editor.value = '';
@@ -390,7 +390,7 @@ const popupHandler = (event: MouseEvent): void => {
 const onImageWallScroll = async (event: Event): Promise<void> => {
   const { scrollTop, clientHeight, scrollHeight } = event.target as HTMLDivElement;
   const percent = (clientHeight + scrollTop) / scrollHeight;
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  // oxlint-disable-next-line typescript/no-non-null-assertion
   const searchOptions = config.value.search!;
   const keyword = gifSearchRef.value?.value ?? '';
 
@@ -399,14 +399,14 @@ const onImageWallScroll = async (event: Event): Promise<void> => {
   searchResults.loading = true;
 
   const searchResult =
-    searchOptions.more && searchResults.list.length
+    searchOptions.more && searchResults.list.length > 0
       ? await searchOptions.more(keyword, searchResults.list.length)
       : await searchOptions.search(keyword);
 
-  if (searchResult.length)
+  if (searchResult.length > 0)
     searchResults.list = [
       ...searchResults.list,
-      ...(searchOptions.more && searchResults.list.length
+      ...(searchOptions.more && searchResults.list.length > 0
         ? await searchOptions.more(keyword, searchResults.list.length)
         : await searchOptions.search(keyword)),
     ];
@@ -427,7 +427,6 @@ const onGifSearch = useDebounceFn((event: Event) => {
 
 useEventListener('click', popupHandler);
 useEventListener('message', ({ data }: { data: { type: 'profile'; data: UserInfo } }) => {
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (data?.type !== 'profile') return;
 
   userInfo.value = { ...userInfo.value, ...data.data };
@@ -445,13 +444,13 @@ watchImmediate([config, wordNumber], ([config, wordNumber]) => {
 
   if (limit) {
     if (wordNumber < limit[0] && limit[0] !== 0) {
-      wordLimit.value = limit[0];
+      [wordLimit.value] = limit;
       isWordNumberLegal.value = false;
     } else if (wordNumber > limit[1]) {
-      wordLimit.value = limit[1];
+      [, wordLimit.value] = limit;
       isWordNumberLegal.value = false;
     } else {
-      wordLimit.value = limit[1];
+      [, wordLimit.value] = limit;
       isWordNumberLegal.value = true;
     }
   } else {
@@ -464,7 +463,7 @@ watchImmediate([config, wordNumber], ([config, wordNumber]) => {
 watch(showGif, async (showGif) => {
   if (!showGif) return;
 
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  // oxlint-disable-next-line typescript/no-non-null-assertion
   const searchOptions = config.value.search!;
 
   // clear input
@@ -499,9 +498,9 @@ onMounted(() => {
       });
       wordNumber.value = getWordNumber(value);
 
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      // oxlint-disable-next-line typescript/no-non-null-assertion
       if (value) autosize(textAreaRef.value!);
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, import-x/no-named-as-default-member
+      // oxlint-disable-next-line typescript/no-non-null-assertion
       else autosize.destroy(textAreaRef.value!);
     },
   );
