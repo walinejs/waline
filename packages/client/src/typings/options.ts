@@ -102,5 +102,5 @@ export interface WalineInitOptions extends Omit<
   texRenderer?: WalineTeXRenderer | boolean;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// oxlint-disable-next-line typescript/explicit-module-boundary-types, typescript/no-explicit-any
 export type WalineAbort = (reason?: any) => void;

@@ -50,15 +50,13 @@ export const getServerURL = (serverURL: string): string => {
 };
 
 const getWordLimit = (wordLimit: WalineProps['wordLimit']): [number, number] | false =>
-  Array.isArray(wordLimit) ? wordLimit : wordLimit ? [0, wordLimit] : false;
+  Array.isArray(wordLimit) ? wordLimit : typeof wordLimit === 'number' ? [0, wordLimit] : false;
 
 const fallback = <T = unknown>(value: T | boolean | undefined, fallback: T): T | null =>
-  value == undefined || value === true ? fallback : value === false ? null : value;
+  value == null || value === true ? fallback : value === false ? null : value;
 
 export const getConfig = ({
   serverURL,
-
-  // eslint-disable-next-line @typescript-eslint/no-useless-default-assignment
   path = location.pathname,
   lang = typeof navigator === 'undefined' ? 'en-US' : navigator.language,
   locale,
@@ -79,31 +77,30 @@ export const getConfig = ({
   search,
   reaction,
   ...more
-}: WalineProps): WalineConfig =>
-  ({
-    serverURL: getServerURL(serverURL),
-    path: decodePath(path),
-    lang: getLang(lang),
-    locale: {
-      ...getLocale(getLang(lang)),
-      ...(typeof locale === 'object' ? locale : {}),
-    } as WalineLocale,
-    wordLimit: getWordLimit(wordLimit),
-    meta: getMeta(meta),
-    requiredMeta: getMeta(requiredMeta),
-    dark,
-    pageSize,
-    commentSorting,
-    login,
-    noCopyright,
-    recaptchaV3Key,
-    turnstileKey,
-    ...more,
-    // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
-    reaction: reaction === true ? DEFAULT_REACTION : reaction || null,
-    imageUploader: fallback(imageUploader, defaultUploadImage),
-    highlighter: fallback(highlighter, defaultHighlighter),
-    texRenderer: fallback(texRenderer, defaultTeXRenderer),
-    emoji: fallback(emoji, DEFAULT_EMOJI),
-    search: fallback(search, getDefaultSearchOptions(lang)),
-  });
+}: WalineProps): WalineConfig => ({
+  serverURL: getServerURL(serverURL),
+  path: decodePath(path),
+  lang: getLang(lang),
+  locale: {
+    ...getLocale(getLang(lang)),
+    ...(typeof locale === 'object' ? locale : {}),
+  } as WalineLocale,
+  wordLimit: getWordLimit(wordLimit),
+  meta: getMeta(meta),
+  requiredMeta: getMeta(requiredMeta),
+  dark,
+  pageSize,
+  commentSorting,
+  login,
+  noCopyright,
+  recaptchaV3Key,
+  turnstileKey,
+  ...more,
+  // oxlint-disable-next-line typescript/strict-boolean-expressions, typescript/prefer-nullish-coalescing
+  reaction: reaction === true ? DEFAULT_REACTION : reaction || null,
+  imageUploader: fallback(imageUploader, defaultUploadImage),
+  highlighter: fallback(highlighter, defaultHighlighter),
+  texRenderer: fallback(texRenderer, defaultTeXRenderer),
+  emoji: fallback(emoji, DEFAULT_EMOJI),
+  search: fallback(search, getDefaultSearchOptions(lang)),
+});

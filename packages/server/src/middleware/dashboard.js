@@ -1,3 +1,4 @@
+// oxlint-disable-next-line func-names
 module.exports = function () {
   return (ctx) => {
     ctx.type = 'html';

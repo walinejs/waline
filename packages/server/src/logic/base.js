@@ -3,7 +3,7 @@ const qs = require('node:querystring');
 
 const jwt = require('jsonwebtoken');
 
-module.exports = class extends think.Logic {
+module.exports = class BaseLogic extends think.Logic {
   constructor(...args) {
     super(...args);
     this.modelInstance = this.getModel('Users');
@@ -11,17 +11,18 @@ module.exports = class extends think.Logic {
     this.id = this.getId();
   }
 
+  // oxlint-disable-next-line max-statements
   async __before() {
     const referrer = this.ctx.referrer(true);
-    let origin = this.ctx.origin;
+    let { origin } = this.ctx;
 
     if (origin) {
       try {
         const parsedOrigin = new URL(origin);
 
         origin = parsedOrigin.hostname;
-      } catch (e) {
-        console.error('Invalid origin format:', origin, e);
+      } catch (err) {
+        console.error('Invalid origin format:', origin, err);
       }
     }
 
@@ -39,9 +40,10 @@ module.exports = class extends think.Logic {
         // 'api.weibo.com',
         // 'graph.qq.com',
       );
-      secureDomains = secureDomains.concat(
-        this.ctx.state.oauthServices.map(({ origin }) => origin),
-      );
+      secureDomains = [
+        ...secureDomains,
+        ...this.ctx.state.oauthServices.map(({ origin }) => origin),
+      ];
 
       // 转换可能的正则表达式字符串为正则表达式对象
       secureDomains = secureDomains
@@ -50,8 +52,8 @@ module.exports = class extends think.Logic {
           if (typeof domain === 'string' && domain.startsWith('/') && domain.endsWith('/')) {
             try {
               return new RegExp(domain.slice(1, -1)); // 去掉斜杠并创建 RegExp 对象
-            } catch (e) {
-              console.error('Invalid regex pattern in secureDomains:', domain, e);
+            } catch (err) {
+              console.error('Invalid regex pattern in secureDomains:', domain, err);
 
               return null;
             }
@@ -62,7 +64,7 @@ module.exports = class extends think.Logic {
         .filter(Boolean); // 过滤掉无效的正则表达式
 
       // 有 referrer 检查 referrer，没有则检查 origin
-      const checking = referrer ? referrer : origin;
+      const checking = referrer || origin;
       const isSafe = secureDomains.some((domain) =>
         think.isFunction(domain.test) ? domain.test(checking) : domain === checking,
       );
@@ -84,8 +86,8 @@ module.exports = class extends think.Logic {
 
     try {
       userId = jwt.verify(token, think.config('jwtKey'));
-    } catch (e) {
-      think.logger.debug(e);
+    } catch (err) {
+      think.logger.debug(err);
     }
 
     if (think.isEmpty(userId) || !think.isString(userId)) {
@@ -113,19 +115,19 @@ module.exports = class extends think.Logic {
       return;
     }
 
-    const userInfo = user[0];
+    const [userInfo] = user;
 
-    let avatarUrl = userInfo.avatar
-      ? userInfo.avatar
-      : await think.service('avatar').stringify({
-          mail: userInfo.email,
-          nick: userInfo.display_name,
-          link: userInfo.url,
-        });
+    let avatarUrl =
+      userInfo.avatar ||
+      (await think.service('avatar').stringify({
+        mail: userInfo.email,
+        nick: userInfo.display_name,
+        link: userInfo.url,
+      }));
     const { avatarProxy } = think.config();
 
     if (avatarProxy) {
-      avatarUrl = avatarProxy + '?url=' + encodeURIComponent(avatarUrl);
+      avatarUrl = `${avatarProxy}?url=${encodeURIComponent(avatarUrl)}`;
     }
     userInfo.avatar = avatarUrl;
     this.ctx.state.userInfo = userInfo;
@@ -136,7 +138,7 @@ module.exports = class extends think.Logic {
     const filename = this.__filename || __filename;
     const last = filename.lastIndexOf(path.sep);
 
-    return filename.substr(last + 1, filename.length - last - 4);
+    return filename.slice(last + 1, filename.length - last - 4);
   }
 
   getId() {
@@ -193,7 +195,7 @@ module.exports = class extends think.Logic {
       remoteip: this.ctx.ip,
     });
 
-    const requestUrl = method === 'GET' ? api + '?' + query : api;
+    const requestUrl = method === 'GET' ? `${api}?${query}` : api;
     const options =
       method === 'GET'
         ? {}

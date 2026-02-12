@@ -25,7 +25,7 @@ module.exports = class extends Base {
       }
 
       if (Array.isArray(filter[k])) {
-        if (filter[k][0] === 'IN' && !filter[k][1].length) {
+        if (filter[k][0] === 'IN' && filter[k][1].length === 0) {
           continue;
         }
         if (think.isDate(filter[k][1])) {
@@ -47,7 +47,7 @@ module.exports = class extends Base {
       instance.order({ [desc]: 'DESC' });
     }
     if (limit || offset) {
-      instance.limit(offset || 0, limit);
+      instance.limit(offset ?? 0, limit);
     }
     if (field) {
       field.push('id');
@@ -80,8 +80,8 @@ module.exports = class extends Base {
     }
     const date = new Date();
 
-    if (!data.createdAt) data.createdAt = date;
-    if (!data.updatedAt) data.updatedAt = date;
+    data.createdAt ??= date;
+    data.updatedAt ??= date;
 
     const instance = this.model(this.tableName);
     const id = await instance.add(data);

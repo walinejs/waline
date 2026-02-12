@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import useScript from './useScript.js';
 
-export function useTurnstile({ sitekey, checkForExisting = true }) {
+export const useTurnstile = ({ sitekey, checkForExisting = true }) => {
   const [turnstile, setTurnstile] = useState();
 
   useScript({
@@ -25,10 +25,12 @@ export function useTurnstile({ sitekey, checkForExisting = true }) {
     });
   }, []);
 
-  return (action) => {
-    return new Promise((resolve, reject) => {
+  return (action) =>
+    new Promise((resolve, reject) => {
       if (!turnstile) {
-        return reject(new Error('Turnstile script not available'));
+        reject(new Error('Turnstile script not available'));
+
+        return;
       }
 
       turnstile.render('.captcha-container', {
@@ -37,5 +39,4 @@ export function useTurnstile({ sitekey, checkForExisting = true }) {
         callback: resolve,
       });
     });
-  };
-}
+};

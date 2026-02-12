@@ -7,7 +7,8 @@ import Paginator from '../../components/Paginator.jsx';
 import { getUserList, updateUser } from '../../services/user.js';
 import { buildAvatar } from '../manage-comments/utils.js';
 
-export default function () {
+// oxlint-disable-next-line max-lines-per-function
+export default function User() {
   const currentUser = useSelector((state) => state.user);
   const { t } = useTranslation();
   const [list, setList] = useState({
@@ -30,8 +31,8 @@ export default function () {
         key: 'administrator',
         name: t('set administrator'),
         show: user.type === 'guest',
-        async action(e) {
-          e.preventDefault();
+        async action(event) {
+          event.preventDefault();
 
           await updateUser({
             id: user.objectId,
@@ -45,10 +46,12 @@ export default function () {
         key: 'guest',
         name: t('set guest'),
         show: user.type === 'administrator',
-        async action(e) {
-          e.preventDefault();
+        async action(event) {
+          event.preventDefault();
           if (user.objectId === currentUser.objectId) {
-            return alert(t("You can't set yourself to be guest!"));
+            alert(t("You can't set yourself to be guest!"));
+
+            return;
           }
 
           await updateUser({
@@ -63,8 +66,8 @@ export default function () {
         key: 'label',
         name: t('set label'),
         show: true,
-        async action(e) {
-          e.preventDefault();
+        async action(event) {
+          event.preventDefault();
 
           const label = prompt(t('please enter an exclusive label'));
 
@@ -86,7 +89,7 @@ export default function () {
     ].filter(({ show }) => show);
 
   const getRole = (type) => {
-    if (/^verify/.test(type)) {
+    if (type.startsWith('verify')) {
       return t('verify');
     }
 
@@ -140,7 +143,7 @@ export default function () {
                           <td>
                             <a
                               href={
-                                !/^https:\/\//.test(user.url) ? 'https://' + user.url : user.url
+                                user.url.startsWith('https://') ? user.url : `https://${user.url}`
                               }
                               rel="external nofollow noreferrer"
                               target="_blank"
@@ -156,22 +159,17 @@ export default function () {
                           <td>{getRole(user.type)}</td>
                           <td>{user.label}</td>
                           <td className="comment-action">
-                            {createActions(user).map(({ key, disable, name, action }) => {
-                              return disable ? (
+                            {createActions(user).map(({ key, disable, name, action }) =>
+                              disable ? (
                                 <span className="weak" key={key}>
                                   {name}
                                 </span>
                               ) : (
-                                <a
-                                  key={key}
-                                  href="javascript:void(0)"
-                                  className={`operate-${key}`}
-                                  onClick={action}
-                                >
+                                <a key={key} className={`operate-${key}`} onClick={action}>
                                   {name}
                                 </a>
-                              );
-                            })}
+                              ),
+                            )}
                           </td>
                         </tr>
                       ))}

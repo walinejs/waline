@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import useScript from './useScript.js';
 
-export function useRecaptcha({ sitekey, hideDefaultBadge = false, checkForExisting = true }) {
+export const useRecaptcha = ({ sitekey, hideDefaultBadge = false, checkForExisting = true }) => {
   const [recaptcha, setRecaptcha] = useState();
 
   useEffect(() => {
@@ -30,23 +30,22 @@ export function useRecaptcha({ sitekey, hideDefaultBadge = false, checkForExisti
     }
   }, []);
 
-  return (action) => {
-    return new Promise((resolve, reject) => {
+  return (action) =>
+    new Promise((resolve, reject) => {
       if (recaptcha) {
         resolve(recaptcha.execute(sitekey, { action }));
       } else {
         reject(new Error('Recaptcha script not available'));
       }
     });
-  };
-}
+};
 
-const isBrowser = typeof window !== 'undefined' && typeof window.document !== 'undefined';
+const isBrowser = typeof window !== 'undefined' && Boolean(window.document);
 
 const injectStyle = (rule) => {
   const styleEl = document.createElement('style');
 
-  document.head.appendChild(styleEl);
+  document.head.append(styleEl);
 
   const styleSheet = styleEl.sheet;
 

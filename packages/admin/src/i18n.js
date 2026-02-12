@@ -4,7 +4,7 @@ import { initReactI18next } from 'react-i18next';
 
 import langs from './locales/index.js';
 
-// eslint-disable-next-line import-x/no-named-as-default-member
+// oxlint-disable-next-line import-x/no-named-as-default-member
 I18n.use(LanguageDetector)
   .use(initReactI18next)
   .init({

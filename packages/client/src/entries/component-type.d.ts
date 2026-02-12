@@ -1,4 +1,5 @@
-/* eslint-disable @typescript-eslint/no-empty-object-type */
+// oxlint-disable typescript/ban-types
+/* eslint-disable typescript/no-empty-object-type */
 import type {
   ComponentOptionsMixin,
   ComponentProvideOptions,

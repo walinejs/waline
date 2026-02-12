@@ -1,3 +1,6 @@
+// oxlint-disable import/max-dependencies
+// oxlint-disable max-lines-per-function
+// oxlint-disable max-lines
 import cls from 'classnames';
 import React, { useEffect, useReducer, useRef, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
@@ -13,7 +16,7 @@ import {
   updateComment,
 } from '../../services/comment.js';
 
-export default function () {
+export default function ManageComments() {
   const { t } = useTranslation();
   const keywordRef = useRef(null);
   const replyTextAreaRef = useRef(null);
@@ -26,12 +29,11 @@ export default function () {
     waitingCount: 0,
     data: [],
   });
-  const [filter, dispatch] = useReducer(
-    function (state, action) {
-      return { ...state, ...action };
-    },
-    { owner: 'all', status: 'approved', keyword: '' },
-  );
+  const [filter, dispatch] = useReducer((state, action) => ({ ...state, ...action }), {
+    owner: 'all',
+    status: 'approved',
+    keyword: '',
+  });
   const [cmtHandler, setCmtHandler] = useState({});
   const [actDropStatus, setActDropStatus] = useState(false);
   const [commentIds, setCommentIds] = useState([]);
@@ -40,16 +42,16 @@ export default function () {
     [
       'owner',
       [
-        { type: 'all', name: <Trans i18nKey="all"></Trans> },
-        { type: 'mine', name: <Trans i18nKey="mine"></Trans> },
+        { type: 'all', name: <Trans i18nKey="all" /> },
+        { type: 'mine', name: <Trans i18nKey="mine" /> },
       ],
     ],
     [
       'status',
       [
-        { type: 'approved', name: <Trans i18nKey="approved"></Trans> },
-        { type: 'waiting', name: <Trans i18nKey="waiting"></Trans> },
-        { type: 'spam', name: <Trans i18nKey="spam"></Trans> },
+        { type: 'approved', name: <Trans i18nKey="approved" /> },
+        { type: 'waiting', name: <Trans i18nKey="waiting" /> },
+        { type: 'spam', name: <Trans i18nKey="spam" /> },
       ],
     ],
   ];
@@ -61,6 +63,7 @@ export default function () {
     });
   }, [filter, list.page]);
 
+  // oxlint-disable-next-line max-lines-per-function
   const createActions = (comment) =>
     [
       {
@@ -73,12 +76,14 @@ export default function () {
             await updateComment(comment.objectId, { status: 'approved' });
             list.data = list.data.filter(({ objectId }) => objectId !== comment.objectId);
             switch (comment.status) {
-              case 'waiting':
+              case 'waiting': {
                 list.waitingCount -= 1;
                 break;
-              case 'spam':
+              }
+              case 'spam': {
                 list.spamCount -= 1;
                 break;
+              }
             }
             setList({ ...list });
           } else {
@@ -143,8 +148,8 @@ export default function () {
         key: 'sticky',
         show: comment && !comment.rid && comment.status === 'approved',
         name: comment && comment.sticky ? t('disable sticky') : t('sticky'),
-        async action(e) {
-          e.preventDefault();
+        async action(event) {
+          event.preventDefault();
 
           const sticky = !comment.sticky;
 
@@ -203,7 +208,7 @@ export default function () {
             list.data = list.data.filter(({ objectId }) => objectId !== comment.objectId);
             setList({ ...list });
           } else {
-            await Promise.all(commentIds.map(deleteComment));
+            await Promise.all(commentIds.map((id) => deleteComment(id)));
             getCommentList({ page: list.page, filter }).then((data) => {
               setList({ ...list, ...data });
               setCommentIds([]);
@@ -229,7 +234,7 @@ export default function () {
       url,
       comment,
       pid,
-      rid: rid || pid,
+      rid: rid ?? pid,
       at,
     });
     location.reload();
@@ -247,7 +252,7 @@ export default function () {
   };
 
   const allSelected =
-    list.data.length && list.data.every(({ objectId }) => commentIds.includes(objectId));
+    list.data.length > 0 && list.data.every(({ objectId }) => commentIds.includes(objectId));
 
   return (
     <>
@@ -269,7 +274,17 @@ export default function () {
                   >
                     {FILTER.map(({ type, name }) => (
                       <li className={cls({ current: type === filter[key] })} key={type}>
-                        <a href="javascript:void(0)" onClick={() => dispatch({ [key]: type })}>
+                        <a
+                          role="button"
+                          tabIndex={0}
+                          onClick={() => dispatch({ [key]: type })}
+                          onKeyDown={(event) => {
+                            if (event.key === 'Enter' || event.key === ' ') {
+                              event.preventDefault();
+                              dispatch({ [key]: type });
+                            }
+                          }}
+                        >
                           {name}
                           {key === 'status' && type !== 'approved' && list[`${type}Count`] > 0 ? (
                             <span className="balloon">{list[`${type}Count`]}</span>
@@ -304,7 +319,7 @@ export default function () {
                         onClick={() => setActDropStatus(!actDropStatus)}
                       >
                         <i className="sr-only">{t('action')}</i>
-                        {t('selected items')} <i className="i-caret-down"></i>
+                        {t('selected items')} <i className="i-caret-down" />
                       </button>
                       <ul
                         className="dropdown-menu"
@@ -313,7 +328,17 @@ export default function () {
                       >
                         {createActions().map(({ key, name, action }) => (
                           <li key={key}>
-                            <a href="javascript:void(0)" onClick={action}>
+                            <a
+                              role="button"
+                              tabIndex={0}
+                              onClick={action}
+                              onKeyDown={(event) => {
+                                if (event.key === 'Enter' || event.key === ' ') {
+                                  event.preventDefault();
+                                  action(event);
+                                }
+                              }}
+                            >
                               {name}
                             </a>
                           </li>
@@ -337,8 +362,8 @@ export default function () {
                     <button
                       type="submit"
                       className="btn btn-s"
-                      onClick={(e) => {
-                        e.preventDefault();
+                      onClick={(event) => {
+                        event.preventDefault();
                         dispatch({ keyword: keywordRef.current.value });
                       }}
                     >
@@ -402,8 +427,8 @@ export default function () {
                                       name="author"
                                       type="text"
                                       defaultValue={nick}
-                                      onChange={(e) =>
-                                        (editCommentRef.current.nick = e.target.value)
+                                      onChange={(event) =>
+                                        (editCommentRef.current.nick = event.target.value)
                                       }
                                     />
                                   </p>
@@ -415,8 +440,8 @@ export default function () {
                                       name="mail"
                                       id={`comment-${objectId}-mail`}
                                       defaultValue={mail}
-                                      onChange={(e) =>
-                                        (editCommentRef.current.mail = e.target.value)
+                                      onChange={(event) =>
+                                        (editCommentRef.current.mail = event.target.value)
                                       }
                                     />
                                   </p>
@@ -430,8 +455,8 @@ export default function () {
                                       name="url"
                                       id={`comment-${objectId}-author`}
                                       defaultValue={link}
-                                      onChange={(e) =>
-                                        (editCommentRef.current.link = e.target.value)
+                                      onChange={(event) =>
+                                        (editCommentRef.current.link = event.target.value)
                                       }
                                     />
                                   </p>
@@ -449,8 +474,8 @@ export default function () {
                                       rows="6"
                                       className="w-90 mono"
                                       defaultValue={comment}
-                                      onChange={(e) =>
-                                        (editCommentRef.current.comment = e.target.value)
+                                      onChange={(event) =>
+                                        (editCommentRef.current.comment = event.target.value)
                                       }
                                     />
                                   </p>
@@ -503,16 +528,18 @@ export default function () {
                               <td style={{ verticalalign: 'top' }} className="comment-head">
                                 <div className="comment-meta">
                                   <strong className="comment-author">
-                                    {!link ? (
-                                      nick
-                                    ) : (
+                                    {link ? (
                                       <a
-                                        href={!/^https:\/\//.test(link) ? 'https://' + link : link}
+                                        href={
+                                          link.startsWith('https://') ? link : `https://${link}`
+                                        }
                                         rel="external nofollow noreferrer"
                                         target="_blank"
                                       >
                                         {nick}
                                       </a>
+                                    ) : (
+                                      nick
                                     )}
                                   </strong>
                                   <br />
@@ -529,7 +556,7 @@ export default function () {
                               </td>
                               <td style={{ verticalalign: 'top' }} className="comment-body">
                                 <div className="comment-date">
-                                  {formatDate(insertedAt || time)} {t('at')}{' '}
+                                  {formatDate(insertedAt ?? time)} {t('at')}{' '}
                                   <a href={getPostUrl(url)} target="_blank" rel="noreferrer">
                                     {url}
                                   </a>
@@ -537,7 +564,7 @@ export default function () {
                                 <div
                                   className="comment-content"
                                   dangerouslySetInnerHTML={{ __html: comment }}
-                                ></div>
+                                />
                                 {cmtHandler.id === objectId && cmtHandler.action === 'reply' ? (
                                   <form className="comment-reply">
                                     <p>
@@ -550,14 +577,14 @@ export default function () {
                                         className="w-90 mono"
                                         rows="3"
                                         ref={replyTextAreaRef}
-                                      ></textarea>
+                                      />
                                     </p>
                                     <p>
                                       <button
                                         type="button"
                                         className="btn btn-s primary"
-                                        onClick={(e) => {
-                                          e.preventDefault();
+                                        onClick={(event) => {
+                                          event.preventDefault();
                                           cmtReply({
                                             rid,
                                             pid: objectId,
@@ -593,12 +620,7 @@ export default function () {
                                         {name}
                                       </span>
                                     ) : (
-                                      <a
-                                        key={key}
-                                        href="javascript:void(0)"
-                                        className={`operate-${key}`}
-                                        onClick={action}
-                                      >
+                                      <a key={key} className={`operate-${key}`} onClick={action}>
                                         {name}
                                       </a>
                                     ),

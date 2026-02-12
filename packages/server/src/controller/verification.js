@@ -21,10 +21,11 @@ module.exports = class extends BaseRest {
       return this.fail(this.locale('USER_REGISTERED'));
     }
 
-    if (token === match[1] && Date.now() < parseInt(match[2])) {
+    if (token === match[1] && Date.now() < Number.parseInt(match[2])) {
       await this.modelInstance.update({ type: 'guest' }, { email });
 
-      return this.redirect('/ui/login');
+      this.redirect('/ui/login');
+      return;
     }
 
     return this.fail(this.locale('TOKEN_EXPIRED'));

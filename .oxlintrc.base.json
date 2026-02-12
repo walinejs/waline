@@ -1,0 +1,348 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "categories": {
+    "correctness": "error",
+    "suspicious": "warn",
+    "pedantic": "warn",
+    "perf": "warn",
+    "style": "warn",
+    "restriction": "warn"
+  },
+  "rules": {
+    // oxlint core rules
+    // we should not enforce capitalized comments
+    "capitalized-comments": "off",
+    "complexity": ["warn", { "variant": "modified" }],
+    // we allow == and != with null
+    "eqeqeq": ["error", "smart", { "null": "never" }],
+    // function names can be omitted if the name can be inferred from the context
+    "func-names": ["warn", "as-needed"],
+    // prefer to export declarations instead of exporting at the end
+    "group-exports": "off",
+    // this rule is too restrictive
+    "init-declarations": "off",
+    // re-export is needed in many cases
+    "no-barrel-file": "off",
+    // allow continue in complicated loops
+    "no-continue": "off",
+    // warn about console usage but allow it
+    "no-console": "warn",
+    // type imports can be duplicated with value imports
+    "no-duplicate-imports": ["error", { "allowSeparateTypeImports": true }],
+    // we use == null to check for both null and undefined
+    "no-eq-null": "off",
+    // inline comments shall be allowed
+    "no-inline-comments": "off",
+    // magic numbers shall be allowed in some cases
+    "no-magic-numbers": "off",
+    // allow nested ternary for better readability in some cases
+    "no-nested-ternary": "off",
+    // allow null usage
+    "no-null": "off",
+    // NOTE: this rule currently do not allow to forbid change with read operations, a single expression like `a++;` shall be allowed with loops
+    // "no-plusplus": ["warn", { "allowForLoopAfterthoughts": true }],
+    "no-plusplus": "off",
+    // ternary operator shall be allowed for simple expressions
+    "no-ternary": "off",
+    // we use void operator to mark those promise that shall not be awaited
+    "no-void": "off",
+    // normally we do not enforce numeric separator usage
+    "numeric-separators-style": "off",
+    // Only warn if all variables in a destructuring assignment should be const
+    "prefer-const": ["warn", { "destructuring": "all" }],
+    // some functions that return promise and plain values in different conditions
+    // need an async declaration while not always using await
+    "require-await": "off",
+    // we prefer to sort imports with its pkg name
+    "sort-imports": "off",
+    // object keys are not supposed to be sorted in many cases
+    "sort-keys": "off",
+
+    // import plugin rules
+    // exports shall be at their declaration location
+    "import/exports-last": "off",
+    // type imports should be ignored
+    "import/max-dependencies": ["warn", { "ignoreTypeImports": true, "max": 15 }],
+    // usually we just export vue components as default export without naming it
+    "import/no-anonymous-default-export": "off",
+    // config file may use default export
+    "import/no-default-export": "off",
+    // a rule that shall not be enabled anyway
+    "import/no-named-export": "off",
+    // we allow relative parent imports in some cases, e.g. for monorepo packages
+    "import/no-relative-parent-imports": "off",
+    // allow importing stylesheets
+    "import/no-unassigned-import": ["error", { "allow": ["**/*.css", "**/*.scss"] }],
+    // named export is preferred
+    "import/prefer-default-export": "off",
+
+    // jsdoc plugin rules
+    // duplicated typescript related jsdoc shall be warned
+    "jsdoc/check-tag-names": ["warn", { "typed": true }],
+    "jsdoc/require-param": ["warn", { "checkConstructors": true, "checkDestructuredRoots": false }],
+    // we do not require types in jsdoc since we use TypeScript
+    "jsdoc/require-param-type": "off",
+    // getter does not need a @returns tag
+    "jsdoc/require-returns": ["warn", { "checkGetters": false }],
+    // we do not require types in jsdoc since we use TypeScript
+    "jsdoc/require-returns-type": "off",
+
+    "promise/always-return": "off",
+    // we sometimes need to create new Promise instance
+    "promise/avoid-new": "off",
+    // we prefer async/await syntax
+    "promise/prefer-await-to-then": "off",
+
+    // oxc plugin rules
+    // our environment supports object rest/spread properties
+    "oxc/no-rest-spread-properties": "off",
+    // optional chaining is widely supported in our target environments
+    "oxc/no-optional-chaining": "off",
+    // async/await is widely supported in our target environments
+    "oxc/no-async-await": "off",
+
+    // react plugin rules
+    // allow jsx in tsx files
+    "react/jsx-filename-extension": ["warn", { "extensions": [".jsx", ".tsx"] }],
+    // default 2 levels is too low for complex components
+    "react/jsx-max-depth": ["warn", { "max": 6 }],
+    // React 17+ does not require React in scope
+    "react/react-in-jsx-scope": "off",
+
+    // typescript plugin rules
+    // shall be disabled with isolateDeclarations: true since type that can be inferred
+    // will be required to be explicitly declared
+    "typescript/no-inferrable-types": "off",
+    // disable unsafe type assertion checks
+    "typescript/no-unsafe-type-assertion": "off",
+    // enforce naming conventions
+    // NOTE: not implemented yet by the moment: https://github.com/oxc-project/tsgolint/tree/main?tab=readme-ov-file#implemented-rules
+    "typescript/naming-convention": [
+      "warn",
+      [
+        { "selector": "default", "format": ["camelCase"] },
+        {
+          "selector": "variable",
+          "filter": { "regex": "^__(?:dirname|filename)$", "match": true },
+          "format": null
+        },
+        {
+          "selector": "variable",
+          "filter": {
+            "regex": "^(?:_{0,2})[A-Z][A-z0-9]*(?:_[A-Z][A-z0-9]*)*$",
+            "match": true
+          },
+          "format": null
+        },
+        {
+          "selector": ["variable"],
+          "format": ["camelCase", "PascalCase", "UPPER_CASE"],
+          "leadingUnderscore": "allow"
+        },
+        {
+          "selector": ["parameter"],
+          "format": ["camelCase", "PascalCase"],
+          "leadingUnderscore": "allow"
+        },
+        {
+          "selector": ["property"],
+          "format": ["camelCase", "PascalCase", "UPPER_CASE"],
+          "leadingUnderscore": "allow",
+          "trailingUnderscore": "allow"
+        },
+        { "selector": "import", "format": ["PascalCase", "camelCase"] },
+        { "selector": "typeLike", "format": ["PascalCase"] },
+        { "selector": "enumMember", "format": ["PascalCase"] }
+      ]
+    ],
+    // allow non-null assertions in some cases
+    "typescript/strict-boolean-expressions": [
+      "warn",
+      { "allowNullableString": true, "allowNullableBoolean": true }
+    ],
+    // missing async with await will be reported by typescript itself
+    "typescript/promise-function-async": "off",
+
+    // unicorn plugin rules
+    // filename should not be enforced strictly, e.g. Vue SFC files shall be PascalCased
+    // we shall expect a project level setting
+    "unicorn/filename-case": "off",
+    // this rule introduce too many false positives
+    "unicorn/explicit-length-check": "off",
+    // sometimes we do need to use reduce for better readability
+    "unicorn/no-array-reduce": "off",
+    // toReversed can introduce memory overhead,
+    // in some chained calls it is better to use reverse as the "reversed" array is also a temp variable.
+    "unicorn/no-array-reverse": "off",
+    // toSorted can introduce memory overhead
+    // in some chained calls it is better to use reverse as the "sorted" array is also a temp variable.
+    "unicorn/no-array-sort": "off",
+    // Array.forEach has its use cases
+    "unicorn/no-array-for-each": "off",
+    // for code simplicity we may not want to create temp variables for single use
+    "unicorn/no-await-expression-member": "off",
+    // conflicts with oxfmt code style
+    "unicorn/no-nested-ternary": "off",
+    // conflicts with oxfmt code style
+    "unicorn/number-literal-case": "off",
+    // Array.at() is too modern for browser targets
+    "unicorn/prefer-at": "off",
+    // support starts with chrome71, firefox68. safari12.1, node12
+    // leaving it to warn for edge cases
+    "unicorn/prefer-global-this": "warn",
+    // prefer utf-8 over utf8
+    "unicorn/text-encoding-identifier-case": ["error", { "withDash": true }],
+
+    // allow 5 props in vue components
+    "vue/max-props": ["warn", { "maxProps": 5 }],
+
+    // stylistic rules with default being tweaked
+    "catch-error-name": ["warn", { "name": "err" }],
+    // FIXME: https://github.com/oxc-project/oxc/issues/18566
+    // "curly": ["warn", "multi-or-nest", "consistent"],
+    "curly": "off",
+    "id-length": [
+      "warn",
+      {
+        "min": 2,
+        "exceptions": [
+          // sorting
+          "a",
+          "b",
+          // loops
+          "i",
+          "j",
+          "k",
+          // position
+          "x",
+          "y",
+          "z",
+          // Type parameter
+          "T",
+          // parameter name for unused variables
+          "_"
+        ]
+      }
+    ],
+    "max-dependencies": ["warn", { "ignoreTypeImports": true, "max": 15 }],
+    "max-lines": ["warn", { "max": 500, "skipBlankLines": true, "skipComments": true }],
+    "max-lines-per-function": [
+      "warn",
+      { "max": 100, "skipBlankLines": true, "skipComments": true }
+    ],
+    "max-params": ["warn", 4],
+    "max-statements": ["warn", { "max": 30 }]
+  },
+  "overrides": [
+    {
+      "files": ["**/scripts/**/*.{js,ts}", "*.config.{js,ts,mjs,mts,cjs,cts}"],
+      "plugins": ["node"],
+      "rules": {
+        // allow console usage in scripts and config files
+        "no-console": "off",
+        // allow importing node built-in modules in config files and scripts
+        "import/no-nodejs-modules": "off",
+        // config files shall be allowed to access process.env
+        "node/no-process-env": "off"
+      }
+    },
+    {
+      "files": ["**/{cli,node}/**/*.{js,ts}", "**/{cli,node}.{js,ts}"],
+      "rules": {
+        // allow importing node built-in modules in node files
+        "import/no-nodejs-modules": "off"
+      }
+    },
+    {
+      "files": ["**/worker/**/*.{js,ts}", "*.worker.{js,ts}", "worker.{js,ts}"],
+      "rules": {
+        "unicorn/require-post-message-target-origin": "off"
+      }
+    },
+    {
+      "files": ["*.{jsx,tsx}"],
+      "rules": {
+        // disable jsdoc rules in react components
+        "jsdoc/require-param": "off",
+        // disable jsdoc rules in react components
+        "jsdoc/require-returns": "off",
+        // allow loose boolean expressions in react components
+        "typescript/strict-boolean-expressions": "off"
+      }
+    },
+    {
+      "files": ["**/components/**/*.{ts,vue}"],
+      "rules": {
+        // loose max lines for components setup blocks
+        "max-lines-per-function": [
+          "warn",
+          { "max": 300, "skipBlankLines": true, "skipComments": true }
+        ]
+
+        // FIXME: This does not work unless plugin vue is enabled
+        // increase max props for vue components to 5
+        // "vue/max-props": ["warn", { "maxProps": 5 }]
+      }
+    },
+    {
+      "files": ["*.d.ts"],
+      "rules": {
+        // to extend existing modules, import/export must not appear in declaration files at top level
+        "import/unambiguous": "off",
+        // we need `export {}` to convert a file to a module
+        "unicorn/require-module-specifiers": "off"
+      }
+    },
+    {
+      "files": ["*.{bench,spec,test}.{js,ts}", "*.{spec,test}.{js,ts}", "*.{spec,test}-d.ts"],
+      "plugins": ["vitest"],
+      "rules": {
+        "id-length": "off",
+        "max-classes-per-file": "off",
+        "max-lines-per-function": "off",
+        "max-lines": "off",
+        "max-statements": "off",
+        "no-empty-function": "off",
+        "no-undefined": "off",
+        "import/no-nodejs-modules": "off",
+        "typescript/ban-ts-comment": "off",
+        "typescript/no-non-null-assertion": "off",
+        "typescript/prefer-ts-expect-error": "off",
+        "typescript/require-array-sort-compare": "off",
+        "vitest/consistent-test-filename": [
+          "warn",
+          {
+            "allTestPattern": "(^|\\/)__tests__\\/",
+            "pattern": ".*\\.((bench|spec)\\.[tj]sx?|spec-d\\.ts)$"
+          }
+        ],
+        "vitest/prefer-called-once": "off",
+        "vitest/prefer-to-be-falsy": "off",
+        "vitest/prefer-to-be-truthy": "off",
+        "unicorn/consistent-function-scoping": "off"
+      }
+    },
+    // disable type related rules for js files
+    {
+      "files": ["**/*.{js,cjs,mjs,jsx}"],
+      "rules": {
+        // types
+        "typescript/no-unsafe-assignment": "off",
+        "typescript/no-unsafe-argument": "off",
+        "typescript/no-unsafe-call": "off",
+        "typescript/no-unsafe-member-access": "off",
+        "typescript/no-unsafe-return": "off",
+        "typescript/strict-boolean-expressions": "off",
+        "typescript/use-unknown-in-catch-callback-variable": "off"
+      }
+    },
+    // for playwright e2e tests
+    {
+      "files": ["e2e/**/*.{spec,test}.{js,ts}"],
+      "rules": {
+        // e2e tests navigation and locators are async
+        "no-await-in-loop": "off"
+      }
+    }
+  ]
+}

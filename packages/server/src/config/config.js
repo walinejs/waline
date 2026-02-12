@@ -100,7 +100,7 @@ if (isFalse(MARKDOWN_HIGHLIGHT)) markdown.config.highlight = false;
 let avatarProxy = '';
 
 if (AVATAR_PROXY) {
-  avatarProxy = !isFalse(AVATAR_PROXY) ? AVATAR_PROXY : '';
+  avatarProxy = isFalse(AVATAR_PROXY) ? '' : AVATAR_PROXY;
 }
 
 const oauthUrl = OAUTH_URL || 'https://oauth.lithub.cc';
@@ -111,10 +111,10 @@ module.exports = {
   jwtKey,
   forbiddenWords,
   disallowIPList: [],
-  secureDomains: SECURE_DOMAINS ? SECURE_DOMAINS.split(/\s*,\s*/) : undefined,
+  secureDomains: SECURE_DOMAINS ? SECURE_DOMAINS.split(/\s*,\s*/) : null,
   disableUserAgent: DISABLE_USERAGENT && !isFalse(DISABLE_USERAGENT),
   disableRegion: DISABLE_REGION && !isFalse(DISABLE_REGION),
-  levels: !LEVELS || isFalse(LEVELS) ? false : LEVELS.split(/\s*,\s*/).map((v) => Number(v)),
+  levels: !LEVELS || isFalse(LEVELS) ? false : LEVELS.split(/\s*,\s*/).map(Number),
 
   audit: COMMENT_AUDIT && !isFalse(COMMENT_AUDIT),
   avatarProxy,

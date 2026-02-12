@@ -16,7 +16,7 @@ import { useLikeStorage, useUserInfo } from '../composables/index.js';
 import { getTimeAgo, isLinkHttp } from '../utils/index.js';
 import { configKey } from '../config/index.js';
 
-const props = defineProps<{
+const { comment, edit, rootId, reply } = defineProps<{
   /**
    * Comment data
    */
@@ -44,7 +44,7 @@ const emit = defineEmits<{
 
 const commentStatus: WalineCommentStatus[] = ['approved', 'waiting', 'spam'];
 
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+// oxlint-disable-next-line typescript/no-non-null-assertion
 const config = inject(configKey)!;
 const likes = useLikeStorage();
 const now = useNow();

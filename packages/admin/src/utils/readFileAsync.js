@@ -1,9 +1,11 @@
-export default function (file) {
-  return new Promise((resolve, reject) => {
+export default (file) =>
+  new Promise((resolve, reject) => {
     const reader = new FileReader();
 
-    reader.onload = (evt) => resolve(evt.target.result);
-    reader.onerror = reject;
+    reader.addEventListener('load', (event) => {
+      resolve(event.target.result);
+    });
+    reader.addEventListener('error', reject);
+    // oxlint-disable-next-line unicorn/prefer-blob-reading-methods
     reader.readAsText(file);
   });
-}

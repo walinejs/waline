@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable typescript/no-unsafe-member-access */
 import type { BaseAPIOptions } from './utils.js';
 
 export interface UserInfo {
@@ -7,7 +7,6 @@ export interface UserInfo {
    *
    * User name displayed
    */
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   display_name: string;
 
   /**
@@ -71,10 +70,12 @@ export const login = ({
   handler?.postMessage({ type: 'TOKEN', data: null }, '*');
 
   return new Promise((resolve) => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // oxlint-disable-next-line typescript/no-explicit-any
     const receiver = ({ data }: any): void => {
+      // oxlint-disable-next-line typescript/strict-boolean-expressions
       if (!data || typeof data !== 'object' || data.type !== 'userInfo') return;
 
+      // oxlint-disable-next-line typescript/strict-boolean-expressions
       if (data.data.token) {
         handler?.close();
 

@@ -27,14 +27,14 @@ module.exports = class extends Base {
       collections[tableName] = true;
 
       return db.collection(tableName);
-    } catch (e) {
-      if (e.code === 'DATABASE_COLLECTION_NOT_EXIST') {
+    } catch (err) {
+      if (err.code === 'DATABASE_COLLECTION_NOT_EXIST') {
         await db.createCollection(tableName);
         collections[tableName] = true;
 
         return db.collection(tableName);
       }
-      throw e;
+      throw err;
     }
   }
 
@@ -62,12 +62,14 @@ module.exports = class extends Base {
           const handler = where[k][0].toUpperCase();
 
           switch (handler) {
-            case 'IN':
+            case 'IN': {
               filter[parseKey(k)] = _.in(where[k][1]);
               break;
-            case 'NOT IN':
+            }
+            case 'NOT IN': {
               filter[parseKey(k)] = _.nin(where[k][1]);
               break;
+            }
             case 'LIKE': {
               const first = where[k][1][0];
               const last = where[k][1].slice(-1);
@@ -152,7 +154,7 @@ module.exports = class extends Base {
   async select(where, options = {}) {
     let data = [];
     let ret = [];
-    let offset = options.offset || 0;
+    let offset = options.offset ?? 0;
 
     do {
       options.offset = offset + data.length;

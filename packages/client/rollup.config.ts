@@ -1,3 +1,4 @@
+// oxlint-disable unicorn/text-encoding-identifier-case
 import { createRequire } from 'node:module';
 
 import commonjs from '@rollup/plugin-commonjs';
@@ -39,15 +40,10 @@ export default [
         minify: true,
       }),
       replace({
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         'process.env.NODE_ENV': JSON.stringify('production'),
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         'process.env["NODE_ENV"]': JSON.stringify('production'),
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         "process.env['NODE_ENV']": JSON.stringify('production'),
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         __VUE_OPTIONS_API__: false,
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         __VUE_PROD_DEVTOOLS__: false,
         VERSION: JSON.stringify(version),
         preventAssignment: false,
@@ -89,15 +85,10 @@ export default [
         minify: true,
       }),
       replace({
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         'process.env.NODE_ENV': JSON.stringify('production'),
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         'process.env["NODE_ENV"]': JSON.stringify('production'),
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         "process.env['NODE_ENV']": JSON.stringify('production'),
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         __VUE_OPTIONS_API__: false,
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         __VUE_PROD_DEVTOOLS__: false,
         VERSION: JSON.stringify(version),
         preventAssignment: false,
@@ -145,15 +136,10 @@ export default [
         minify: true,
       }),
       replace({
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         'process.env.NODE_ENV': JSON.stringify('production'),
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         'process.env["NODE_ENV"]': JSON.stringify('production'),
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         "process.env['NODE_ENV']": JSON.stringify('production'),
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         __VUE_OPTIONS_API__: false,
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         __VUE_PROD_DEVTOOLS__: false,
         VERSION: JSON.stringify(version),
         preventAssignment: false,
@@ -192,15 +178,10 @@ export default [
         minify: true,
       }),
       replace({
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         'process.env.NODE_ENV': JSON.stringify('production'),
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         'process.env["NODE_ENV"]': JSON.stringify('production'),
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         "process.env['NODE_ENV']": JSON.stringify('production'),
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         __VUE_OPTIONS_API__: false,
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         __VUE_PROD_DEVTOOLS__: false,
         VERSION: JSON.stringify(version),
         preventAssignment: false,
@@ -239,15 +220,10 @@ export default [
         minify: true,
       }),
       replace({
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         'process.env.NODE_ENV': JSON.stringify('production'),
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         'process.env["NODE_ENV"]': JSON.stringify('production'),
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         "process.env['NODE_ENV']": JSON.stringify('production'),
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         __VUE_OPTIONS_API__: false,
-        // eslint-disable-next-line @typescript-eslint/naming-convention
         __VUE_PROD_DEVTOOLS__: false,
         VERSION: JSON.stringify(version),
         preventAssignment: false,

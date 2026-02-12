@@ -21,6 +21,7 @@ instance.run();
 let config = {};
 
 try {
+  // oxlint-disable-next-line node/global-require
   config = require('./config.js');
 } catch {
   // do nothing

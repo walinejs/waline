@@ -1,4 +1,4 @@
-const crypto = require('crypto');
+const crypto = require('node:crypto');
 
 const nunjucks = require('nunjucks');
 const helper = require('think-helper');

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-/* eslint-disable vue/no-unused-properties */
+// oxlint-disable import/max-dependencies
 
 import { useStyleTag, watchImmediate } from '@vueuse/core';
 import type { WalineComment, WalineCommentStatus, WalineRootComment } from '@waline/api';
@@ -16,6 +16,7 @@ import { getConfig, getDarkStyle } from '../utils/index.js';
 import { version } from '../version.js';
 import { configKey, sortingMethods, sortKeyMap } from '../config/index.js';
 
+// oxlint-disable-next-line vue/define-props-destructuring
 const props = defineProps<WalineProps>();
 
 const userInfo = useUserInfo();
@@ -29,7 +30,6 @@ const totalPages = ref(0);
 
 const config = computed(() => getConfig(props as WalineProps));
 
-// eslint-disable-next-line vue/no-ref-object-reactivity-loss
 const commentSortingRef = ref(config.value.commentSorting);
 
 const data = ref<WalineRootComment[]>([]);
@@ -69,9 +69,10 @@ const getCommentData = (pageNumber: number): void => {
       page.value = pageNumber;
       totalPages.value = resp.totalPages;
     })
+    // oxlint-disable-next-line promise/prefer-await-to-callbacks
     .catch((err: unknown) => {
       if ((err as Error).name !== 'AbortError') {
-        // eslint-disable-next-line no-console
+        // oxlint-disable-next-line no-console
         console.error((err as Error).message);
         status.value = 'error';
       }
@@ -229,8 +230,6 @@ onMounted(() => {
 onUnmounted(() => {
   abort?.();
 });
-
-/* eslint-enable vue/no-unused-properties */
 </script>
 
 <template>

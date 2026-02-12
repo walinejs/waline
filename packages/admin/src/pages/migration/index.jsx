@@ -6,7 +6,7 @@ import download from '../../utils/download.js';
 import readFileAsync from '../../utils/readFileAsync.js';
 import request from '../../utils/request.js';
 
-export default function () {
+export default function Migration() {
   const [importLoading, setImportLoading] = useState(false);
   const [exportLoading, setExportLoading] = useState(false);
 
@@ -20,17 +20,20 @@ export default function () {
     uploadRef.current.click();
   };
 
-  const importData = async (e) => {
+  // oxlint-disable-next-line max-lines-per-function max-statements
+  const importData = async (event) => {
     try {
-      const text = await readFileAsync(e.target.files[0]);
+      const text = await readFileAsync(event.target.files[0]);
       const data = JSON.parse(text);
 
       if (!data || data.type !== 'waline') {
-        return alert('import data format not support!');
+        alert('import data format not support!');
+
+        return;
       }
 
       const maxLength = data.tables.reduce(
-        (count, tableName) => count + (data.data[tableName]?.length || 0),
+        (count, tableName) => count + (data.data[tableName]?.length ?? 0),
         0,
       );
       let importedLength = 0;
@@ -47,15 +50,14 @@ export default function () {
 
         // clean table data if not user table
         if (tableName !== 'Users') {
+          // oxlint-disable-next-line no-await-in-loop
           await request({
-            url: 'db?table=' + tableName,
+            url: `db?table=${tableName}`,
             method: 'DELETE',
           });
         }
 
-        if (!idMaps[tableName]) {
-          idMaps[tableName] = {};
-        }
+        idMaps[tableName] ??= {};
         if (!Array.isArray(tableData)) {
           continue;
         }
@@ -64,38 +66,36 @@ export default function () {
           let existUserObjectId = false;
 
           if (tableName === 'Users') {
-            const user = await request('user?email=' + data.email);
+            // oxlint-disable-next-line no-await-in-loop
+            const user = await request(`user?email=${data.email}`);
 
             if (user.objectId) {
               existUserObjectId = user.objectId;
             }
           }
 
-          const shouldEditorUser = tableName == 'Users' && existUserObjectId;
+          const shouldEditorUser = tableName === 'Users' && existUserObjectId;
           const method = shouldEditorUser ? 'PUT' : 'POST';
           const body =
             tableName === 'Comment'
-              ? Object.assign({}, data, {
-                  rid: undefined,
-                  pid: undefined,
-                  user_id: undefined,
-                })
+              ? { ...data, rid: undefined, pid: undefined, user_id: undefined }
               : data;
 
           for (const key in body) {
             if (body[key] === null || body[key] === undefined) {
-              // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+              // oxlint-disable-next-line typescript/no-dynamic-delete
               delete body[key];
             }
           }
 
+          // oxlint-disable-next-line no-await-in-loop
           const resp = await request({
             url: `db?table=${tableName}${method === 'PUT' ? `&objectId=${existUserObjectId}` : ''}`,
             method,
             body,
           });
 
-          idMaps[tableName][data.objectId] = resp.objectId || existUserObjectId;
+          idMaps[tableName][data.objectId] = resp.objectId ?? existUserObjectId;
           importedLength += 1;
           setImportLoading([
             'importing {{importedLength}}/{{maxLength}}',
@@ -126,7 +126,7 @@ export default function () {
             willUpdateItem[field] = newId;
           }
         });
-        if (!Object.keys(willUpdateItem).length) {
+        if (Object.keys(willUpdateItem).length === 0) {
           continue;
         }
 
@@ -135,6 +135,7 @@ export default function () {
 
       importedLength = 0;
       for (const [willUpdateItem, where] of willUpdateData) {
+        // oxlint-disable-next-line no-await-in-loop
         await request({
           url: `db?table=Comment&objectId=${where.objectId}`,
           method: 'PUT',
@@ -151,13 +152,13 @@ export default function () {
       alert(t('import success'));
       location.reload();
     } catch (err) {
-      // eslint-disable-next-line no-console
+      // oxlint-disable-next-line no-console
       console.log(err);
       alert(err.message);
       throw err;
     } finally {
       setImportLoading(false);
-      e.target.value = null;
+      event.target.value = null;
     }
   };
 

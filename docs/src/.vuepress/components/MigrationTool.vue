@@ -2,14 +2,14 @@
 import { useLocaleConfig } from '@vuepress/helper/client';
 import { ref } from 'vue';
 
-import { type OriginalType, type TransformType, exportRaw, transform } from '../utils/index.js';
+import { exportRaw, transform } from '../utils/index.js';
+import type { OriginalType, TransformType } from '../utils/index.js';
 
 const from = ref<OriginalType | 'typecho'>('valine');
 const to = ref<TransformType>('wcloudbase');
 const source = ref('');
 
 const i18n = useLocaleConfig({
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   '/': {
     from: '从',
     to: '迁移至',
@@ -25,7 +25,6 @@ const i18n = useLocaleConfig({
         >
         插件将评论数据导出成 Valine 数据后直接使用。`,
   },
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   '/en/': {
     from: 'Migrate from',
     to: 'to',
@@ -55,10 +54,8 @@ const click = (): void => {
   if (from.value === 'valine') {
     // 适配 LeanCloud 国内版导出非标准 JSON 情况
     if (/},[\r\n]+/.test(source.value)) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       data = JSON.parse(source.value.trim());
     } else {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       data = JSON.parse(
         `{"results":[ ${source.value
           .trim()
@@ -77,7 +74,7 @@ const click = (): void => {
       text = JSON.stringify(text, null, '\t');
     }
 
-    exportRaw('output.' + (to.value !== 'wsql' ? 'json' : 'csv'), text as string);
+    exportRaw(`output.${to.value === 'wsql' ? 'csv' : 'json'}`, text as string);
   }
 };
 </script>
@@ -107,7 +104,6 @@ const click = (): void => {
         <label for="to">&nbsp;{{ i18n.to }}&nbsp;</label>
 
         <select id="to" v-model="to">
-
           <option value="wcloudbase">Waline CloudBase</option>
 
           <option value="wsql">Waline MySQL/PostgreSQL/SQLite</option>

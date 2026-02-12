@@ -19,12 +19,13 @@ module.exports = class extends think.Controller {
         type,
       });
 
-      return this.redirect(
+      this.redirect(
         think.buildUrl(`${oauthUrl}/${type}`, {
           redirect: redirectUrl,
           state: this.ctx.state.token || '',
         }),
       );
+      return;
     }
 
     /**
@@ -64,7 +65,8 @@ module.exports = class extends think.Controller {
       const token = jwt.sign(userBySocial[0].objectId, this.config('jwtKey'));
 
       if (redirect) {
-        return this.redirect(think.buildUrl(redirect, { token }));
+        this.redirect(think.buildUrl(redirect, { token }));
+        return;
       }
 
       return this.success();
@@ -84,7 +86,8 @@ module.exports = class extends think.Controller {
         objectId: current.objectId,
       });
 
-      return this.redirect('/ui/profile');
+      this.redirect('/ui/profile');
+      return;
     }
 
     // when user has not login, then we create account by the social type!
@@ -108,6 +111,6 @@ module.exports = class extends think.Controller {
     // and then generate token!
     const token = jwt.sign(user.objectId, this.config('jwtKey'));
 
-    return this.redirect(redirect + (redirect.includes('?') ? '&' : '?') + 'token=' + token);
+    this.redirect(redirect + (redirect.includes('?') ? '&' : '?') + 'token=' + token);
   }
 };

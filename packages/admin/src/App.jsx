@@ -11,30 +11,29 @@ import Register from './pages/register/index.jsx';
 import User from './pages/user/index.jsx';
 import { store } from './store/index.js';
 
-function Access(props) {
+const Access = (props) => {
   const user = useSelector((state) => state.user);
 
   useEffect(() => {
-    const meta = props.meta || {};
-    const basename = props.basename || '';
+    const meta = props.meta ?? {};
+    const basename = props.basename ?? '';
     const emptyUser = !user?.email;
 
     if (emptyUser) {
-      return (location.href =
-        basename + '/ui/login?redirect=' + location.pathname.replace(basename, ''));
+      return (location.href = `${basename}/ui/login?redirect=${location.pathname.replace(basename, '')}`);
     }
 
     const noPermission = meta.auth ? props.meta.auth !== user.type : false;
 
     if (noPermission) {
-      return (location.href = basename + '/ui/profile');
+      return (location.href = `${basename}/ui/profile`);
     }
   }, [user, props.meta]);
 
   return user ? props.children : null;
-}
+};
 
-export default function () {
+export default function App() {
   const match = location.pathname.match(/(.*?)\/ui/);
   const basePath = match ? match[1] : '/';
 

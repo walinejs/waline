@@ -8,20 +8,25 @@ export const buildAvatar = (email = '', avatar = '') => {
   return `https://sdn.geekzu.org/avatar/${md5(email)}?s=40&r=G&d=`;
 };
 
-export const getPostUrl = (url) => (window.SITE_URL || '') + url;
+export const getPostUrl = (url) => (window.SITE_URL ?? '') + url;
 
-export function formatDate(time) {
+const padZero = (num) => (num < 10 ? `0${num}` : num);
+
+export const formatDate = (time) => {
   let d;
 
   if (typeof time === 'number') {
     d = new Date(time);
   } else {
-    d = new Date(/\d+-\d+-\d+\s\d+:\d+:\d+/.test(time) ? time.replace(/-/g, '/') : time);
+    d = new Date(/\d+-\d+-\d+\s\d+:\d+:\d+/.test(time) ? time.replaceAll('-', '/') : time);
   }
 
-  const p = (n) => (n < 10 ? '0' + n : n);
-  const localDate = [d.getFullYear(), d.getMonth() + 1, d.getDate()].map(p).join('-');
-  const localTime = [d.getHours(), d.getMinutes(), d.getSeconds()].map(p).join(':');
+  const localDate = [d.getFullYear(), d.getMonth() + 1, d.getDate()]
+    .map((item) => padZero(item))
+    .join('-');
+  const localTime = [d.getHours(), d.getMinutes(), d.getSeconds()]
+    .map((item) => padZero(item))
+    .join(':');
 
-  return localDate + ' ' + localTime;
-}
+  return `${localDate} ${localTime}`;
+};

@@ -1,0 +1,83 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "extends": ["./.oxlintrc.base.json"],
+  "ignorePatterns": [
+    "coverage/",
+    "dist/",
+    "example/",
+    "**/.vuepress/utils/transform/",
+    "**/.vuepress/utils/csv.js"
+  ],
+  "plugins": ["typescript", "oxc", "import", "jsdoc", "promise", "unicorn", "node"],
+  "rules": {
+    "no-alert": "off",
+    "no-warning-comments": "off",
+    "prefer-global-this": "off"
+  },
+  "overrides": [
+    {
+      "files": ["**/*.ts"],
+      "rules": {
+        // we need `export {}` to convert a file to a module
+        // "unicorn/require-module-specifiers": "off"
+      }
+    },
+    {
+      "files": ["packages/admin/src/**"],
+      "plugins": ["react"],
+      "rules": {
+        "react/jsx-max-depth": "off"
+      }
+    },
+    {
+      "files": ["packages/client/src/**"],
+      "plugins": ["vue"],
+      "rules": {
+        "vue/max-props": ["warn", { "maxProps": 5 }]
+      }
+    },
+    {
+      "files": [
+        "packages/cloudbase/**",
+        "packages/hexo-next/**",
+        "packages/server/**",
+        "scripts/thinkjs-mock.js"
+      ],
+      "rules": {
+        // cjs related rules
+        "import/unambiguous": "off",
+        "import/no-commonjs": "off",
+        "typescript/no-required-calls": "off",
+        "typescript/no-require-imports": "off"
+      }
+    },
+    {
+      "files": ["packages/server/**"],
+      "rules": {
+        "no-console": "off",
+        "no-await-in-loop": "off",
+        "require-await": "off",
+        "jsdoc/check-tag-names": [
+          "warn",
+          {
+            "definedTags": [
+              "apiParam",
+              "apiSuccess",
+              "apiSuccessExample",
+              "apiVersion",
+              "api",
+              "apiGroup"
+            ]
+          }
+        ],
+        "jsdoc/require-returns": "off",
+        "node/no-process-env": "off",
+
+        // disable currently to avoid empty env variables falling to empty string
+        "typescript/prefer-nullish-coalescing": "off",
+        "typescript/prefer-promise-reject-errors": "off",
+        "typescript/require-await": "off"
+      }
+    }
+  ]
+}

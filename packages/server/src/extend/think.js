@@ -34,15 +34,17 @@ module.exports = {
   },
   promiseAllQueue(promises, taskNum) {
     return new Promise((resolve, reject) => {
-      if (!promises.length) {
-        return resolve();
+      if (promises.length === 0) {
+        resolve();
+
+        return;
       }
 
       const ret = [];
       let index = 0;
       let count = 0;
 
-      function runTask() {
+      const runTask = () => {
         const idx = index;
 
         index += 1;
@@ -59,7 +61,7 @@ module.exports = {
 
           return runTask();
         }, reject);
-      }
+      };
 
       for (let i = 0; i < taskNum; i++) {
         runTask();
@@ -77,8 +79,8 @@ module.exports = {
         return '';
       }
       const { region } = result;
-      const [, , province, city, isp] = region.split('|');
-      const address = Array.from(new Set([province, city, isp].filter((v) => v)));
+      const [_, __, province, city, isp] = region.split('|');
+      const address = [...new Set([province, city, isp].filter(Boolean))];
 
       return address.slice(0, depth).join(' ');
     } catch (err) {
@@ -104,7 +106,7 @@ module.exports = {
       return defaultLevel;
     }
 
-    const level = think.findLastIndex(levels, (l) => l <= val);
+    const level = think.findLastIndex(levels, (level) => level <= val);
 
     return level === -1 ? defaultLevel : level;
   },
@@ -139,7 +141,7 @@ module.exports = {
       }
 
       if (think.isArray(middleware)) {
-        return middleware.filter((m) => think.isFunction(m));
+        return middleware.filter((middleware) => think.isFunction(middleware));
       }
     });
 
@@ -147,8 +149,8 @@ module.exports = {
   },
   getPluginHook(hookName) {
     return think
-      .pluginMap('hooks', (hook) => (think.isFunction(hook[hookName]) ? hook[hookName] : undefined))
-      .filter((v) => v);
+      .pluginMap('hooks', (hook) => (think.isFunction(hook[hookName]) ? hook[hookName] : null))
+      .filter(Boolean);
   },
   buildUrl(path, query = {}) {
     const notEmptyQuery = {};
@@ -165,7 +167,7 @@ module.exports = {
     let destUrl = path;
 
     if (destUrl && notEmptyQueryStr) {
-      destUrl += destUrl.indexOf('?') !== -1 ? '&' : '?';
+      destUrl += destUrl.includes('?') ? '&' : '?';
     }
     if (notEmptyQueryStr) {
       destUrl += notEmptyQueryStr;

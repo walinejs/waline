@@ -5,7 +5,8 @@ import { Link, useNavigate } from 'react-router';
 
 import { LANGUAGE_OPTIONS } from '../locales/index.js';
 
-export default function () {
+// oxlint-disable-next-line max-lines-per-function
+export default function Header() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
@@ -33,12 +34,12 @@ export default function () {
       });
   }, [user?.email]);
 
-  const updateLanguage = function (e) {
-    i18n.changeLanguage(e.target.value);
+  const updateLanguage = (event) => {
+    i18n.changeLanguage(event.target.value);
   };
 
-  const onLogout = function (e) {
-    e.preventDefault();
+  const onLogout = (event) => {
+    event.preventDefault();
     dispatch.user.logout();
     navigate('/ui/login');
   };

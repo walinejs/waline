@@ -32,27 +32,24 @@ import type { WalineSearchResult } from '../typings/index.js';
 
 type Column = number[];
 
-const props = withDefaults(
-  defineProps<{
-    /**
-     * Image Items
-     */
-    items?: WalineSearchResult;
-    /**
-     * width in pixels of each column
-     */
-    columnWidth?: number;
-    /**
-     * gap in pixels between columns
-     */
-    gap?: number;
-  }>(),
-  {
-    items: () => [] as WalineSearchResult,
-    columnWidth: 300,
-    gap: 0,
-  },
-);
+const {
+  items = [],
+  columnWidth = 300,
+  gap = 0,
+} = defineProps<{
+  /**
+   * Image Items
+   */
+  items?: WalineSearchResult;
+  /**
+   * width in pixels of each column
+   */
+  columnWidth?: number;
+  /**
+   * gap in pixels between columns
+   */
+  gap?: number;
+}>();
 
 defineEmits<(event: 'insert', content: string) => void>();
 
@@ -63,14 +60,14 @@ const columns = ref<Column[]>([]);
 
 const getColumnCount = (): number => {
   const count = Math.floor(
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    // oxlint-disable-next-line typescript/no-non-null-assertion
     (wall.value!.getBoundingClientRect().width + props.gap) / (props.columnWidth + props.gap),
   );
 
   return count > 0 ? count : 1;
 };
 
-const createColumns = (count: number): Column[] => new Array(count).fill(null).map(() => []);
+const createColumns = (count: number): Column[] => Array.from({ length: count }, () => []);
 
 const fillColumns = async (itemIndex: number): Promise<void> => {
   if (itemIndex >= props.items.length) return;
@@ -78,7 +75,7 @@ const fillColumns = async (itemIndex: number): Promise<void> => {
   await nextTick();
 
   // @ts-expect-error: Type is Element not HTMLElement
-  const columnDivs = Array.from<HTMLElement>(wall.value?.children ?? []);
+  const columnDivs = [...(wall.value?.children ?? [])];
 
   const target = columnDivs.reduce((prev, curr) =>
     curr.getBoundingClientRect().height < prev.getBoundingClientRect().height ? curr : prev,
@@ -94,15 +91,15 @@ const redraw = async (force = false): Promise<void> => {
 
   columns.value = createColumns(getColumnCount());
 
-  const scrollY = window.scrollY;
+  const { scrollY } = window;
 
   await fillColumns(0);
 
   window.scrollTo({ top: scrollY });
 };
 
-const imageLoad = (e: Event): void => {
-  state.value[(e.target as HTMLImageElement).src] = true;
+const imageLoad = (event: Event): void => {
+  state.value[(event.target as HTMLImageElement).src] = true;
 };
 
 onMounted(() => {
@@ -111,7 +108,7 @@ onMounted(() => {
   resizeObserver = new ResizeObserver(() => {
     void redraw();
   });
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  // oxlint-disable-next-line typescript/no-non-null-assertion
   resizeObserver.observe(wall.value!);
 
   watch(
@@ -130,7 +127,7 @@ onMounted(() => {
 });
 
 onBeforeUnmount(() => {
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  // oxlint-disable-next-line typescript/no-non-null-assertion
   resizeObserver!.unobserve(wall.value!);
 });
 </script>

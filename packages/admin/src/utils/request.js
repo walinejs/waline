@@ -7,19 +7,15 @@ export default async function request(url, opts = {}) {
     opts.url = url;
   }
 
-  if (!opts.headers) {
-    opts.headers = {};
-  }
+  opts.headers ??= {};
   if (opts.body && !(opts.body instanceof FormData)) {
     opts.headers['Content-Type'] = 'application/json';
     opts.body = JSON.stringify(opts.body);
   }
 
-  let token = window.TOKEN || sessionStorage.getItem('TOKEN');
+  let token = window.TOKEN ?? sessionStorage.getItem('TOKEN');
 
-  if (!token) {
-    token = localStorage.getItem('TOKEN');
-  }
+  token ??= localStorage.getItem('TOKEN');
   if (token) {
     opts.headers.Authorization = `Bearer ${token}`;
   }
@@ -48,7 +44,7 @@ export default async function request(url, opts = {}) {
       // ignore
     }
 
-    throw new Error(`${resp.status}: ${result?.errmsg || resp.statusText}`);
+    throw new Error(`${resp.status}: ${result?.errmsg ?? resp.statusText}`);
   }
 
   const result = await resp.json();
