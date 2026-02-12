@@ -164,6 +164,17 @@
     }
   }
 
+  .wl-warning {
+    font-size: 0.875em;
+    color: var(--waline-warning-color);
+    background: var(--waline-warning-bg-color);
+    line-height: 1em;
+    padding: 0.5em 1em;
+    border: 1px dashed var(--waline-warning-color);
+    border-radius: 5px;
+    margin-top: 1em;
+  }
+
   .wl-content {
     position: relative;
 

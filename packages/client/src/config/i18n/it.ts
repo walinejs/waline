@@ -53,4 +53,5 @@ export default generateLocale([
   'Più recenti',
   'Più popolari',
   'Cosa ne pensi?',
+  "Il tuo commento è in fase di revisione ed è attualmente visibile solo a te. Sarà visibile pubblicamente dopo l'approvazione.",
 ]);

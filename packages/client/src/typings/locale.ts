@@ -67,4 +67,5 @@ export interface WalineLocale extends WalineDateLocale, WalineLevelLocale, Walin
   uploadImage: string;
   profile: string;
   logout: string;
+  commentUnderReview: string;
 }

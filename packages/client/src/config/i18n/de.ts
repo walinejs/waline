@@ -52,4 +52,5 @@ export default generateLocale([
   'Neueste',
   'Am beliebtesten',
   'Was denken Sie?',
+  'Ihr Kommentar wird überprüft und ist derzeit nur für Sie sichtbar. Nach der Genehmigung wird er öffentlich angezeigt.',
 ]);

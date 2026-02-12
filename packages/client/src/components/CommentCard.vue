@@ -150,6 +150,11 @@ const isEditingCurrent = computed(() => comment.objectId === edit?.objectId);
           />
         </template>
       </div>
+
+      <div class="wl-warning" aria-hidden="true" v-if="comment.status === 'waiting' && !isAdmin">
+        {{ locale.commentUnderReview }}
+      </div>
+
       <!-- eslint-disable vue/no-v-html -->
       <div v-if="!isEditingCurrent" class="wl-content">
         <p v-if="'reply_user' in comment && comment.reply_user">
