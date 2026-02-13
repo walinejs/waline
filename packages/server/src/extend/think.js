@@ -3,6 +3,23 @@ const parser = require('ua-parser-js');
 
 const preventMessage = 'PREVENT_NEXT_PROCESS';
 
+// Cached IP2Region instance using IIFE closure pattern
+// Instance is created on first access and reused for all subsequent calls
+const getIP2RegionInstance = (() => {
+  let instance = null;
+
+  return () => {
+    if (!instance) {
+      instance = new IP2Region({
+        ipv4db: process.env.IP2REGION_DB_V4 || process.env.IP2REGION_DB,
+        ipv6db: process.env.IP2REGION_DB_V6,
+      });
+    }
+
+    return instance;
+  };
+})();
+
 const OS_VERSION_MAP = {
   Windows: {
     'NT 11.0': '11',
@@ -69,11 +86,7 @@ module.exports = {
     if (!ip) return '';
 
     try {
-      const query = new IP2Region({
-        ipv4db: process.env.IP2REGION_DB_V4 || process.env.IP2REGION_DB,
-        ipv6db: process.env.IP2REGION_DB_V6,
-      });
-      const res = query.search(ip);
+      const res = getIP2RegionInstance().search(ip);
 
       if (!res) {
         return '';
