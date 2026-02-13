@@ -3,8 +3,22 @@ const parser = require('ua-parser-js');
 
 const preventMessage = 'PREVENT_NEXT_PROCESS';
 
-// Cached IP2Region instance to avoid repeated initialization
-let cachedIP2RegionInstance = null;
+// Initialize IP2Region instance once at module load time to avoid race conditions
+// and ensure efficient reuse across all ip2region calls
+const getIP2RegionInstance = (() => {
+  let instance = null;
+
+  return () => {
+    if (!instance) {
+      instance = new IP2Region({
+        ipv4db: process.env.IP2REGION_DB_V4 || process.env.IP2REGION_DB,
+        ipv6db: process.env.IP2REGION_DB_V6,
+      });
+    }
+
+    return instance;
+  };
+})();
 
 const OS_VERSION_MAP = {
   Windows: {
@@ -72,14 +86,7 @@ module.exports = {
     if (!ip) return '';
 
     try {
-      // Lazy-initialize and cache the IP2Region instance
-      if (!cachedIP2RegionInstance) {
-        cachedIP2RegionInstance = new IP2Region({
-          ipv4db: process.env.IP2REGION_DB_V4 || process.env.IP2REGION_DB,
-          ipv6db: process.env.IP2REGION_DB_V6,
-        });
-      }
-      const res = cachedIP2RegionInstance.search(ip);
+      const res = getIP2RegionInstance().search(ip);
 
       if (!res) {
         return '';
