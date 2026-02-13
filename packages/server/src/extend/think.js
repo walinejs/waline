@@ -1,10 +1,7 @@
-const ip2region = require('dy-node-ip2region');
-const helper = require('think-helper');
+const IP2Region = require('ip2region').default;
 const parser = require('ua-parser-js');
 
 const preventMessage = 'PREVENT_NEXT_PROCESS';
-
-const regionSearch = ip2region.create(process.env.IP2REGION_DB);
 
 const OS_VERSION_MAP = {
   Windows: {
@@ -69,19 +66,22 @@ module.exports = {
     });
   },
   async ip2region(ip, { depth = 1 }) {
-    if (!ip || ip.includes(':')) return '';
+    if (!ip) return '';
 
     try {
-      const search = helper.promisify(regionSearch.btreeSearch, regionSearch);
-      const result = await search(ip);
+      const query = new IP2Region({
+        ipv4db: process.env.IP2REGION_DB_V4 || process.env.IP2REGION_DB,
+        ipv6db: process.env.IP2REGION_DB_V6,
+      });
+      const res = query.search(ip);
 
-      if (!result) {
+      if (!res) {
         return '';
       }
-      const { region } = result;
-      const [_, __, province, city, isp] = region.split('|');
-      const address = [...new Set([province, city, isp].filter(Boolean))];
 
+      const { country, province, city, isp } = res;
+      const address = [...new Set([country, province, city, isp].filter(Boolean))];
+      console.log(ip, address);
       return address.slice(0, depth).join(' ');
     } catch (err) {
       console.log(err);
