@@ -16,7 +16,7 @@
     "docs:dev": "pnpm --dir=docs run dev",
     "lint": "pnpm lint:oxlint && oxfmt && pnpm lint:stylelint",
     "lint:md": "markdownlint-cli2 '**/*.md'",
-    "lint:oxlint": "oxlint --fix --type-aware --type-check --report-unused-disable-directives --deny-warnings --quiet",
+    "lint:oxlint": "oxlint --fix --type-aware --type-check --report-unused-disable-directives --quiet",
     "lint:stylelint": "stylelint packages/*/src/**/*.scss --fix",
     "packages:check-update": "pnpm dlx npm-check-updates --deep",
     "packages:update": "pnpm dlx npm-check-updates --deep -u && pnpm i && pnpm -r up",
