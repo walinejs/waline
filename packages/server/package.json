@@ -1,6 +1,6 @@
 {
   "name": "@waline/vercel",
-  "version": "1.36.5",
+  "version": "1.37.0",
   "description": "vercel server for waline comment system",
   "keywords": [
     "blog",
@@ -29,9 +29,9 @@
     "@mdit/plugin-sup": "0.22.5-cjs.0",
     "akismet": "^2.0.7",
     "dompurify": "^3.3.1",
-    "dy-node-ip2region": "^1.0.1",
     "fast-csv": "^5.0.5",
     "form-data": "^4.0.5",
+    "ip2region": "^2.3.0",
     "jsdom": "^19.0.0",
     "jsonwebtoken": "^9.0.3",
     "koa-compose": "^4.1.0",

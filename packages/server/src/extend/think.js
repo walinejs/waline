@@ -1,10 +1,24 @@
-const ip2region = require('dy-node-ip2region');
-const helper = require('think-helper');
+const IP2Region = require('ip2region').default;
 const parser = require('ua-parser-js');
 
 const preventMessage = 'PREVENT_NEXT_PROCESS';
 
-const regionSearch = ip2region.create(process.env.IP2REGION_DB);
+// Cached IP2Region instance using IIFE closure pattern
+// Instance is created on first access and reused for all subsequent calls
+const getIP2RegionInstance = (() => {
+  let instance = null;
+
+  return () => {
+    if (!instance) {
+      instance = new IP2Region({
+        ipv4db: process.env.IP2REGION_DB_V4 || process.env.IP2REGION_DB,
+        ipv6db: process.env.IP2REGION_DB_V6,
+      });
+    }
+
+    return instance;
+  };
+})();
 
 const OS_VERSION_MAP = {
   Windows: {
@@ -69,19 +83,17 @@ module.exports = {
     });
   },
   async ip2region(ip, { depth = 1 }) {
-    if (!ip || ip.includes(':')) return '';
+    if (!ip) return '';
 
     try {
-      const search = helper.promisify(regionSearch.btreeSearch, regionSearch);
-      const result = await search(ip);
+      const res = getIP2RegionInstance().search(ip);
 
-      if (!result) {
+      if (!res) {
         return '';
       }
-      const { region } = result;
-      const [_, __, province, city, isp] = region.split('|');
-      const address = [...new Set([province, city, isp].filter(Boolean))];
 
+      const { province, city, isp } = res;
+      const address = [...new Set([province, city, isp].filter(Boolean))];
       return address.slice(0, depth).join(' ');
     } catch (err) {
       console.log(err);
