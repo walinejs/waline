@@ -3,8 +3,8 @@ const parser = require('ua-parser-js');
 
 const preventMessage = 'PREVENT_NEXT_PROCESS';
 
-// Initialize IP2Region instance once at module load time to avoid race conditions
-// and ensure efficient reuse across all ip2region calls
+// Cached IP2Region instance using IIFE closure pattern
+// Instance is created on first access and reused for all subsequent calls
 const getIP2RegionInstance = (() => {
   let instance = null;
 
