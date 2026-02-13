@@ -79,9 +79,8 @@ module.exports = {
         return '';
       }
 
-      const { country, province, city, isp } = res;
-      const address = [...new Set([country, province, city, isp].filter(Boolean))];
-      console.log(ip, address);
+      const { province, city, isp } = res;
+      const address = [...new Set([province, city, isp].filter(Boolean))];
       return address.slice(0, depth).join(' ');
     } catch (err) {
       console.log(err);
