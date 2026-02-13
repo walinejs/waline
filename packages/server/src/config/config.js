@@ -48,11 +48,12 @@ const {
   COMMENT_AUDIT,
 } = process.env;
 
-let storage = 'leancloud';
-let jwtKey = JWT_TOKEN || LEAN_KEY;
+let storage = null;
+let jwtKey = JWT_TOKEN;
 
 if (LEAN_KEY) {
   storage = 'leancloud';
+  jwtKey = jwtKey || LEAN_KEY;
 } else if (MONGO_DB) {
   storage = 'mongodb';
   jwtKey = jwtKey || MONGO_PASSWORD;
@@ -73,6 +74,10 @@ if (LEAN_KEY) {
 } else if (think.env === 'cloudbase' || TCB_ENV) {
   storage = 'cloudbase';
   jwtKey = jwtKey || TENCENTCLOUD_SECRETKEY || TCB_KEY || TCB_ENV;
+}
+
+if (storage === null) {
+  throw new Error('No valid storage found. Please check your environment variables.');
 }
 
 if (think.env === 'cloudbase' && storage === 'sqlite') {
