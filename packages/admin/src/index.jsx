@@ -59,4 +59,4 @@ console.log(
   'padding:4px;border:1px solid #0078E7;',
 );
 
-await run();
+run();
