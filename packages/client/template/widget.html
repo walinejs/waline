@@ -9,13 +9,15 @@
     <h2>Recent Comments</h2>
     <div id="recent-comment"></div>
 
+    <h2>Star</h2>
+    <div id="user-star" style="width: 300px"></div>
     <h2>User List</h2>
     <div id="user-list"></div>
     <h2>User Wall</h2>
     <div id="user-wall"></div>
 
     <script type="module">
-      import { RecentComments, UserList } from '../src/entries/full.ts';
+      import { RecentComments, UserList, Star } from '../src/entries/full.ts';
       import '../src/styles/index.scss';
 
       RecentComments({
@@ -35,6 +37,12 @@
         serverURL: import.meta.env.SERVERURL || 'https://walinejs.comment.lithub.cc',
         count: 50,
         mode: 'wall',
+      });
+
+      Star({
+        el: '#user-star',
+        path: '/',
+        serverURL: import.meta.env.SERVERURL || 'https://walinejs.comment.lithub.cc',
       });
     </script>
   </body>
