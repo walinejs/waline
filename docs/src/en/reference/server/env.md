@@ -210,7 +210,9 @@ Please pay special attention that some mailboxes use separate SMTP passwords.
 
 | Environment Variables           | Default                     | Description                                                                                      |
 | ------------------------------- | --------------------------- | ------------------------------------------------------------------------------------------------ |
-| `OAUTH_URL`                     | `https://oauth.lithub.cc`   | OAuth Social Login Service URL. You can [build your own auth](https://github.com/walinejs/auth). |
-| `WEBHOOK`                       |                             | You can set a Webhook URL that will be triggered when you have new comment.                      |
-| `WALINE_ADMIN_MODULE_ASSET_URL` | `//unpkg.com/@waline/admin` | Waline admin link                                                                                |
-| `IP2REGION_DB`                  |                             | customized IP query library path                                                                 |
+| `OAUTH_URL`                     | `https://oauth.lithub.cc`   | OAuth Social Login Service URL. You can [build your own auth](https://github.com/walinejs/auth).                          |
+| `WEBHOOK`                       |                             | You can set a Webhook URL that will be triggered when you have new comment.                                               |
+| `WALINE_ADMIN_MODULE_ASSET_URL` | `//unpkg.com/@waline/admin` | Waline admin link                                                                                                         |
+| `IP2REGION_DB`                  |                             | customized IPv4 IP query library path (deprecated, use `IP2REGION_DB_V4` instead)                                          |
+| `IP2REGION_DB_V4`               |                             | customized IPv4 IP query library path. Falls back to `IP2REGION_DB` if not set                                             |
+| `IP2REGION_DB_V6`               |                             | customized IPv6 IP query library path. Set this to enable IPv6 address location lookup                                     |
