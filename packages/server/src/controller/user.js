@@ -183,6 +183,7 @@ module.exports = class UserController extends BaseRest {
     const users = await this.modelInstance.select({
       objectId: this.id,
     });
+
     if (think.isEmpty(users)) {
       return this.fail();
     }

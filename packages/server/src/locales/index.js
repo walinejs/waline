@@ -4,10 +4,10 @@ const zhCN = require('./zh-CN.json');
 const zhTW = require('./zh-TW.json');
 const jp = require('./jp.json');
 const de = require('./de.json');
-const esMX = require('./es-MX.json');
+const esMX = require('./es.json');
 const fr = require('./fr.json');
 const ru = require('./ru.json');
-const vi = require('./vi.json');
+const vi = require('./vi-VN.json');
 const ptBR = require('./pt-BR.json');
 
 module.exports = {

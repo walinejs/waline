@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import cls from 'classnames';
 
 import Header from '../../components/Header.jsx';
 import Paginator from '../../components/Paginator.jsx';
 import { getUserList, updateUser, deleteUser } from '../../services/user.js';
 import { buildAvatar } from '../manage-comments/utils.js';
+import * as Icons from '../../components/icon/index.js';
 
 // oxlint-disable-next-line max-lines-per-function
 export default function User() {
@@ -109,6 +111,10 @@ export default function User() {
     return t(type);
   };
 
+  const socials = Array.isArray(window.oauthServices)
+    ? window.oauthServices.map(({ name }) => name)
+    : ['oidc', 'qq', 'weibo', 'github', 'twitter', 'facebook'];
+
   return (
     <>
       <Header />
@@ -168,6 +174,23 @@ export default function User() {
                             <a href={`mailto:${user.email}`} target="_blank" rel="noreferrer">
                               {user.email}
                             </a>
+                            <br />
+                            {socials.map((social) => (
+                              <a
+                                href={
+                                  user[social] && social !== 'oidc'
+                                    ? `https://${social}.com/${user[social]}`
+                                    : ``
+                                }
+                                target={user[social] ? '_blank' : '_self'}
+                                rel="noreferrer"
+                                className={cls('account-item', 'user-page-account-item', social, {
+                                  bind: user[social],
+                                })}
+                              >
+                                {React.createElement(Icons[social])}
+                              </a>
+                            ))}
                           </td>
                           <td>{getRole(user.type)}</td>
                           <td>{user.label}</td>

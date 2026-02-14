@@ -122,6 +122,17 @@ module.exports = class extends Base {
     };
   }
 
+  /**
+   * @api {DELETE} /api/user delete user account when user is in verify status, or forbid user to login when user is other status.
+   * @apiGroup User
+   * @apiVersion  0.0.1
+   *
+   * @apiParam  {String}  id user id
+   * @apiParam  {String}  lang  language
+   *
+   * @apiSuccess  (200) {Number}  errno 0
+   * @apiSuccess  (200) {String}  errmsg  return error message if error
+   */
   deleteAction() {
     // you need login to update yourself profile
     const { userInfo } = this.ctx.state;

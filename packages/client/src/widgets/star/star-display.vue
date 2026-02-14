@@ -25,9 +25,8 @@ export default defineComponent({
     // clampScore should be available in the consuming module scope
     const displayScore = computed(() => clampScore(props.score));
 
-    const displayClass = (val: number) => {
-      return displayScore.value >= val ? 'wl-star-solid' : 'wl-star-outline';
-    };
+    const displayClass = (val: number) =>
+      displayScore.value >= val ? 'wl-star-solid' : 'wl-star-outline';
 
     return {
       displayScore,

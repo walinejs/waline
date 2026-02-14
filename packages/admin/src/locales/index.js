@@ -1,6 +1,14 @@
 import en from './en.json';
 import zhCN from './zh-CN.json';
 import zhTW from './zh-TW.json';
+import jp from './jp.json';
+import de from './de.json';
+import es from './es.json';
+import fr from './fr.json';
+import ru from './ru.json';
+import viVN from './vi-VN.json';
+import ptBR from './pt-BR.json';
+import it from './it.json';
 
 export const LANGUAGE_OPTIONS = [
   {
@@ -70,8 +78,8 @@ export default {
   'fr-FR': { translations: fr },
   it: { translations: it },
   'it-IT': { translations: it },
-  jp: { translations: en },
-  'jp-JP': { translations: en },
+  jp: { translations: jp },
+  'jp-JP': { translations: jp },
   'pt-BR': { translations: ptBR },
   ru: { translations: ru },
   'ru-RU': { translations: ru },

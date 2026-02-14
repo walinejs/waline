@@ -19,4 +19,4 @@ export const getUserList = ({ page }) =>
 export const updateUser = ({ id, ...data }) =>
   request({ url: `user/${id}`, method: 'PUT', body: data });
 
-export const deleteUser = (id) => request({ url: `user/${id}`, method: 'DELETE' });
+export const deleteUser = ({ id }) => request({ url: `user/${id}`, method: 'DELETE' });
