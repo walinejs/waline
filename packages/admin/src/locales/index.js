@@ -48,7 +48,7 @@ export const LANGUAGE_OPTIONS = [
     alias: ['it', 'it-IT'],
   },
   {
-    label: '日本語',
+    label: 'Japanese',
     value: 'jp',
     alias: ['jp', 'jp-JP'],
   },
