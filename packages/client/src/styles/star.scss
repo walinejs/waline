@@ -46,22 +46,27 @@
   display: flex;
   gap: 8px;
   align-items: center;
+
   .wl-star-rate {
     gap: 3px;
     align-items: center;
   }
+
   .wl-star-item {
+    display: flex;
     width: 12px;
     height: 12px;
-    display: flex;
   }
 }
 
 .wl-star-progress {
   flex: 1;
+
   overflow: hidden;
+
   height: 6px;
   border-radius: 999px;
+
   background: var(--waline-bg-color-light);
 }
 

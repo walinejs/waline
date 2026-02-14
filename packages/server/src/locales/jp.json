@@ -1,0 +1,19 @@
+{
+  "import data format not support!": "ファイル形式はサポートされていません",
+  "USER_EXIST": "ユーザーは既に存在します",
+  "USER_NOT_EXIST": "ユーザーが存在しません",
+  "USER_REGISTERED": "ユーザーは既に登録されています",
+  "TOKEN_EXPIRED": "トークンの有効期限が切れています",
+  "TWO_FACTOR_AUTH_ERROR_DETAIL": "二段階認証に失敗しました",
+  "[{{name | safe}}] Registration Confirm Mail": "【{{name | safe}}】 登録確認メール",
+  "Please click <a href=\"{{url}}\">{{url}}<a/> to confirm registration, the link is valid for 1 hour. If you are not registering, please ignore this email.": "登録を確認するには <a href=\"{{url}}\">{{url}}</a> をクリックしてください。リンクの有効期限は1時間です。登録していない場合は、このメールを無視してください。",
+  "[{{name | safe}}] Reset Password": "【{{name | safe}}】 パスワードリセット",
+  "Please click <a href=\"{{url}}\">{{url}}</a> to login and change your password as soon as possible!": "できるだけ早く <a href=\"{{url}}\">{{url}}</a> をクリックしてログインし、パスワードを変更してください！",
+  "Duplicate Content": "重複した内容が送信されました",
+  "Comment too fast": "コメントが速すぎます。少し待ってください！",
+  "Registration confirm mail send failed, please {%- if isAdmin -%}check your mail configuration{%- else -%}check your email address and contact administrator{%- endif -%}.": "登録確認メールの送信に失敗しました。{%- if isAdmin -%}メール設定を確認してください{%- else -%}メールアドレスを確認し、管理者に連絡してください{%- endif -%}。",
+  "MAIL_SUBJECT": "{{parent.nick | safe}}、『{{site.name | safe}}』にあなたのコメントへの返信があります",
+  "MAIL_TEMPLATE": "<div style='border-top:2px solid #12ADDB;box-shadow:0 1px 3px #AAAAAA;line-height:180%;padding:0 15px 12px;margin:50px auto;font-size:12px;'> <h2 style='border-bottom:1px solid #DDD;font-size:14px;font-weight:normal;padding:13px 0 10px 8px;'> <a style='text-decoration:none;color: #12ADDB;' href='{{site.url}}' target='_blank'>{{site.name}}</a> にあなたのコメントへの新しい返信があります </h2>{{parent.nick}}さん、あなたは次のようにコメントしました： <div style='padding:0 12px 0 12px;margin-top:18px'> <div style='background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;'>{{parent.comment | safe}}</div><p><strong>{{self.nick}}</strong> が次のように返信しました：</p><div style='background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;'>{{self.comment | safe}}</div><p>返信の全文は <a style='text-decoration:none; color:#12addb' href='{{site.postUrl}}' target='_blank'>こちら</a> で確認できます。<a style='text-decoration:none; color:#12addb' href='{{site.url}}' target='_blank'>{{site.name}}</a> にまたお越しください。</p><br/> </div></div>",
+  "MAIL_SUBJECT_ADMIN": "{{site.name | safe}} に新しいコメントがあります",
+  "MAIL_TEMPLATE_ADMIN": "<div style='border-top:2px solid #12ADDB;box-shadow:0 1px 3px #AAAAAA;line-height:180%;padding:0 15px 12px;margin:50px auto;font-size:12px;'> <h2 style='border-bottom:1px solid #DDD;font-size:14px;font-weight:normal;padding:13px 0 10px 8px;'> <a style='text-decoration:none;color: #12ADDB;' href='{{site.url}}' target='_blank'>{{site.name}}</a> に新しいコメントがあります </h2> <p><strong>{{self.nick}}</strong> が次のようにコメントしました：</p><div style='background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;'>{{self.comment | safe}}</div><p>全文は <a style='text-decoration:none; color:#12addb' href='{{site.postUrl}}' target='_blank'>こちら</a> で確認できます。</p><br/> </div>"
+}

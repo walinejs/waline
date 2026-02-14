@@ -32,16 +32,17 @@ div[tabindex='-1'] {
   display: block;
 }
 
-.account-item.github a path,
+.account-item.github path,
 .account-item.twitter circle,
-.account-item.facebook a path,
+.account-item.facebook path,
 .account-item.weibo circle,
-.account-item.qq a path {
+.account-item.qq path,
+.account-item.oidc path {
   fill: #808080;
 }
 
-.account-item.github:hover a path,
-.account-item.github.bind a path {
+.account-item.github:hover path,
+.account-item.github.bind path {
   fill: #1b1f23;
 }
 
@@ -50,8 +51,8 @@ div[tabindex='-1'] {
   fill: #2daae1;
 }
 
-.account-item.facebook:hover a path,
-.account-item.facebook.bind a path {
+.account-item.facebook:hover path,
+.account-item.facebook.bind path {
   fill: #1877f2;
 }
 
@@ -60,9 +61,28 @@ div[tabindex='-1'] {
   fill: #d34237;
 }
 
-.account-item.qq:hover a path,
-.account-item.qq.bind a path {
+.account-item.qq:hover path,
+.account-item.qq.bind path {
   fill: #259be0;
+}
+
+.account-item.oidc:hover path,
+.account-item.oidc.bind path {
+  fill: #ff9626;
+}
+
+.user-page-account-item {
+  margin-right: 6px;
+  opacity: 0.5;
+
+  &.bind {
+    opacity: 1;
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
 }
 
 // remain for historical reasons
