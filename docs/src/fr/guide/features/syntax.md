@@ -21,7 +21,7 @@ We support the full CommonMark (standard Markdown syntax), along with the follow
 
 ::: info GFM
 
-Github Flavored Markdown
+GitHub Flavored Markdown
 
 :::
 
