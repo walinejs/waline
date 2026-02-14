@@ -505,3 +505,49 @@ export const zhTWSidebarConfig = sidebar({
 
   '/zh-TW/guide/': 'structure',
 });
+
+export const koKRSidebarConfig = sidebar({
+  '/ko-KR/': [
+    {
+      text: '가이드',
+      icon: 'creative',
+      prefix: 'guide/',
+      children: ['get-started/', 'features/', 'database', 'deploy/'],
+    },
+    'cookbook/',
+    {
+      text: '참조',
+      icon: 'reference',
+      prefix: 'reference/',
+      children: [
+        'api/',
+        {
+          text: '클라이언트',
+          icon: 'client',
+          prefix: 'client/',
+          children: ['api', 'props', 'file', 'style'],
+        },
+        {
+          text: '서버',
+          icon: 'server',
+          prefix: 'server/',
+          children: ['api', 'config', 'env', 'plugin'],
+        },
+      ],
+    },
+    {
+      text: '마이그레이션',
+      icon: 'migration',
+      prefix: 'migration/',
+      collapsible: true,
+      children: ['v3', 'v2', 'valine', 'tool'],
+    },
+    'advanced/',
+  ],
+
+  '/ko-KR/advanced/': 'structure',
+
+  '/ko-KR/cookbook/': 'structure',
+
+  '/ko-KR/guide/': 'structure',
+});
