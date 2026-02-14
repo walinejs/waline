@@ -10,7 +10,7 @@ Waline supports pageview counting.
 
 ## Using with comment
 
-Waline supIf you are using Waline's commenting service, you can enable pageview statistics by setting the `pageview` option to `true` during initialization:
+If you are using Waline's commenting service, you can enable pageview statistics by setting the `pageview` option to `true` during initialization:
 
 ```js
 Waline.init({
