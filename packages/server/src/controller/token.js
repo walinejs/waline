@@ -17,7 +17,9 @@ module.exports = class extends BaseRest {
     const { email, password, code } = this.post();
     const user = await this.modelInstance.select({ email });
 
-    if (think.isEmpty(user) || /^verify:/i.test(user[0].type)) {
+    const isVerifyUser = /^verify:/i.test(user?.[0]?.type);
+    const isBannedUser = user?.[0]?.type === 'banned';
+    if (think.isEmpty(user) || isVerifyUser || isBannedUser) {
       return this.fail();
     }
 

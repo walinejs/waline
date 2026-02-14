@@ -75,9 +75,9 @@ export default defineComponent({
               lang: props.lang,
             });
             internalDistribution.value = normalizeDistribution(reaction.value);
-          } catch (error) {
+          } catch (err) {
             // eslint-disable-next-line no-console
-            console.error('Failed to fetch reaction data:', error);
+            console.error('Failed to fetch reaction data:', err);
           }
         },
       );
@@ -156,7 +156,7 @@ export default defineComponent({
           (internalDistribution.value[nextScoreKeyIndex] ?? 0) + 1;
 
         emit('rate', nextScore);
-      } catch (error) {
+      } catch (err) {
         // Revert optimistic UI update on failure
         selectedScore.value = prevScore;
         if (prevScore) {
@@ -164,7 +164,7 @@ export default defineComponent({
         } else {
           delete reactionStorage.value[props.path];
         }
-        console.error('[Waline] Failed to update reaction counter', error);
+        console.error('[Waline] Failed to update reaction counter', err);
       } finally {
         isVoting.value = false;
       }

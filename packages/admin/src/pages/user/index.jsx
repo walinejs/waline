@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import cls from 'classnames';
 
 import Header from '../../components/Header.jsx';
 import Paginator from '../../components/Paginator.jsx';
-import { getUserList, updateUser } from '../../services/user.js';
+import { getUserList, updateUser, deleteUser } from '../../services/user.js';
 import { buildAvatar } from '../manage-comments/utils.js';
+import * as Icons from '../../components/icon/index.js';
 
 // oxlint-disable-next-line max-lines-per-function
 export default function User() {
@@ -79,13 +81,26 @@ export default function User() {
           setList({ ...list });
         },
       },
-      // todo
-      // {
-      //   key: 'delete',
-      //   name: t('delete'),
-      //   show: true,
-      //   async action() {},
-      // },
+      {
+        key: 'delete',
+        name: t('delete'),
+        show: user.objectId !== currentUser.objectId,
+        async action(event) {
+          event.preventDefault();
+
+          if (!confirm(t('delete user confirm'))) {
+            return;
+          }
+
+          await deleteUser({
+            id: user.objectId,
+          });
+          setList({
+            ...list,
+            data: list.data.filter(({ objectId }) => objectId !== user.objectId),
+          });
+        },
+      },
     ].filter(({ show }) => show);
 
   const getRole = (type) => {
@@ -95,6 +110,10 @@ export default function User() {
 
     return t(type);
   };
+
+  const socials = Array.isArray(window.oauthServices)
+    ? window.oauthServices.map(({ name }) => name)
+    : ['oidc', 'qq', 'weibo', 'github', 'twitter', 'facebook'];
 
   return (
     <>
@@ -127,52 +146,74 @@ export default function User() {
                       </tr>
                     </thead>
                     <tbody>
-                      {list.data.map((user) => (
-                        <tr id={`user-${user.objectId}`} key={user.objectId}>
-                          <td style={{ verticalAlign: 'top' }}>
-                            <div className="user-avatar">
-                              <img
-                                className="avatar"
-                                src={buildAvatar(user.email, user.avatar)}
-                                alt={user.display_name}
-                                width="40"
-                                height="40"
-                              />
-                            </div>
-                          </td>
-                          <td>
-                            <a
-                              href={
-                                user.url.startsWith('https://') ? user.url : `https://${user.url}`
-                              }
-                              rel="external nofollow noreferrer"
-                              target="_blank"
-                            >
-                              {user.display_name}
-                            </a>
-                          </td>
-                          <td>
-                            <a href={`mailto:${user.email}`} target="_blank" rel="noreferrer">
-                              {user.email}
-                            </a>
-                          </td>
-                          <td>{getRole(user.type)}</td>
-                          <td>{user.label}</td>
-                          <td className="comment-action">
-                            {createActions(user).map(({ key, disable, name, action }) =>
-                              disable ? (
-                                <span className="weak" key={key}>
-                                  {name}
-                                </span>
-                              ) : (
-                                <a key={key} className={`operate-${key}`} onClick={action}>
-                                  {name}
+                      {list.data
+                        .filter((user) => user)
+                        .map((user) => (
+                          <tr id={`user-${user.objectId}`} key={user.objectId}>
+                            <td style={{ verticalAlign: 'top' }}>
+                              <div className="user-avatar">
+                                <img
+                                  className="avatar"
+                                  src={buildAvatar(user.email, user.avatar)}
+                                  alt={user.display_name}
+                                  width="40"
+                                  height="40"
+                                />
+                              </div>
+                            </td>
+                            <td>
+                              <a
+                                href={
+                                  user.url?.startsWith('https://')
+                                    ? user.url
+                                    : `https://${user.url}`
+                                }
+                                rel="external nofollow noreferrer"
+                                target="_blank"
+                              >
+                                {user.display_name}
+                              </a>
+                            </td>
+                            <td>
+                              <a href={`mailto:${user.email}`} target="_blank" rel="noreferrer">
+                                {user.email}
+                              </a>
+                              <br />
+                              {socials.map((social) => (
+                                <a
+                                  key={social}
+                                  href={
+                                    user[social] && social !== 'oidc'
+                                      ? `https://${social}.com/${user[social]}`
+                                      : ``
+                                  }
+                                  target={user[social] ? '_blank' : '_self'}
+                                  rel="noreferrer"
+                                  className={cls('account-item', 'user-page-account-item', social, {
+                                    bind: user[social],
+                                  })}
+                                >
+                                  {React.createElement(Icons[social])}
                                 </a>
-                              ),
-                            )}
-                          </td>
-                        </tr>
-                      ))}
+                              ))}
+                            </td>
+                            <td>{getRole(user.type)}</td>
+                            <td>{user.label}</td>
+                            <td className="comment-action">
+                              {createActions(user).map(({ key, disable, name, action }) =>
+                                disable ? (
+                                  <span className="weak" key={key}>
+                                    {name}
+                                  </span>
+                                ) : (
+                                  <a key={key} className={`operate-${key}`} onClick={action}>
+                                    {name}
+                                  </a>
+                                ),
+                              )}
+                            </td>
+                          </tr>
+                        ))}
                     </tbody>
                   </table>
                 </div>

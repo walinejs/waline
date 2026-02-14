@@ -98,5 +98,6 @@
   "You can't set yourself to be guest!": "You can't set yourself to be guest!",
   "please enter an exclusive label": "Please enter an exclusive label",
   "new version tips": "New version @waline/vercel@{{version}} published, please upgrade it! Goto <a href='https://waline.js.org/en/advanced/faq.html#server' target='_blank'>FAQ</a> to find How to upgrade it.",
-  "leancloud warning": "<a href='https://github.com/orgs/walinejs/discussions/3370' target='_blank'>Leancloud will cease external services soon</a>. If you are using it, please migration your comment data as soon as possible."
+  "leancloud warning": "<a href='https://github.com/orgs/walinejs/discussions/3370' target='_blank'>Leancloud will cease external services soon</a>. If you are using it, please migration your comment data as soon as possible.",
+  "delete user confirm": "Are you sure to delete this user? Verify user will be deleted directly, while other users will be forbidden to login."
 }

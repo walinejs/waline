@@ -1,0 +1,19 @@
+{
+  "import data format not support!": "Formato de archivo no compatible",
+  "USER_EXIST": "El usuario ya existe",
+  "USER_NOT_EXIST": "El usuario no existe",
+  "USER_REGISTERED": "Usuario ya registrado",
+  "TOKEN_EXPIRED": "El token ha expirado",
+  "TWO_FACTOR_AUTH_ERROR_DETAIL": "Error de autenticación en dos pasos",
+  "[{{name | safe}}] Registration Confirm Mail": "【{{name | safe}}】Correo de confirmación de registro",
+  "Please click <a href=\"{{url}}\">{{url}}<a/> to confirm registration, the link is valid for 1 hour. If you are not registering, please ignore this email.": "Por favor haga clic en <a href=\"{{url}}\">{{url}}</a> para confirmar el registro. El enlace es válido por 1 hora. Si no se ha registrado, ignore este correo.",
+  "[{{name | safe}}] Reset Password": "【{{name | safe}}】Restablecer contraseña",
+  "Please click <a href=\"{{url}}\">{{url}}</a> to login and change your password as soon as possible!": "Por favor haga clic en <a href=\"{{url}}\">{{url}}</a> para iniciar sesión y cambiar su contraseña lo antes posible!",
+  "Duplicate Content": "Contenido duplicado enviado",
+  "Comment too fast": "Comentarios muy rápidos, por favor espere un momento!",
+  "Registration confirm mail send failed, please {%- if isAdmin -%}check your mail configuration{%- else -%}check your email address and contact administrator{%- endif -%}.": "Error al enviar el correo de confirmación. Por favor {%- if isAdmin -%}verifique su configuración de correo{%- else -%}verifique su dirección de correo y contacte al administrador{%- endif -%}.",
+  "MAIL_SUBJECT": "{{parent.nick | safe}}，Su comentario en '{{site.name | safe}}' ha recibido una respuesta",
+  "MAIL_TEMPLATE": "<div style='border-top:2px solid #12ADDB;box-shadow:0 1px 3px #AAAAAA;line-height:180%;padding:0 15px 12px;margin:50px auto;font-size:12px;'> <h2 style='border-bottom:1px solid #DDD;font-size:14px;font-weight:normal;padding:13px 0 10px 8px;'> Su comentario en <a style='text-decoration:none;color: #12ADDB;' href='{{site.url}}' target='_blank'>{{site.name}}</a> tiene una nueva respuesta </h2>{{parent.nick}}, usted comentó: <div style='padding:0 12px 0 12px;margin-top:18px'> <div style='background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;'>{{parent.comment | safe}}</div><p><strong>{{self.nick}}</strong> respondió:</p><div style='background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;'>{{self.comment | safe}}</div><p>Puedes ver la respuesta completa en <a style='text-decoration:none; color:#12addb' href='{{site.postUrl}}' target='_blank'>aquí</a>, y visita de nuevo <a style='text-decoration:none; color:#12addb' href='{{site.url}}' target='_blank'>{{site.name}}</a>.</p><br/> </div></div>",
+  "MAIL_SUBJECT_ADMIN": "Nuevo comentario en {{site.name | safe}}",
+  "MAIL_TEMPLATE_ADMIN": "<div style='border-top:2px solid #12ADDB;box-shadow:0 1px 3px #AAAAAA;line-height:180%;padding:0 15px 12px;margin:50px auto;font-size:12px;'> <h2 style='border-bottom:1px solid #DDD;font-size:14px;font-weight:normal;padding:13px 0 10px 8px;'> Su artículo en <a style='text-decoration:none;color: #12ADDB;' href='{{site.url}}' target='_blank'>{{site.name}}</a> tiene nuevos comentarios </h2> <p><strong>{{self.nick}}</strong> dijo:</p><div style='background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;'>{{self.comment | safe}}</div><p>Puedes ver la respuesta completa en <a style='text-decoration:none; color:#12addb' href='{{site.postUrl}}' target='_blank'>aquí</a></p><br/> </div>"
+}
