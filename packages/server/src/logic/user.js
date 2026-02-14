@@ -134,14 +134,14 @@ module.exports = class extends Base {
    * @apiSuccess  (200) {String}  errmsg  return error message if error
    */
   deleteAction() {
-    // you need login to update yourself profile
+    // you need to be logged in to delete users
     const { userInfo } = this.ctx.state;
 
     if (think.isEmpty(userInfo)) {
       return this.fail();
     }
 
-    // you should be a administrator to update others info
+    // you must be an administrator to delete other users and cannot delete yourself
     if (userInfo.type !== 'administrator' || this.id === userInfo.objectId) {
       return this.fail();
     }
