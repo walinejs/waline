@@ -61,6 +61,6 @@ Comments count:
 
 ::: info Specifies version
 
-You may have noticed that in the above cases, we have explicitly declared the `@v2` version after `@aline/client`. Your website is not working properly.
+You may have noticed that in the above cases, we have explicitly declared the `@v3` version after `@waline/client`. Your website is not working properly.
 
 :::
