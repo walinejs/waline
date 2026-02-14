@@ -1,7 +1,31 @@
 import { hopeTheme } from 'vuepress-theme-hope';
 
-import { enNavbarConfig, zhNavbarConfig } from './navbar.js';
-import { enSidebarConfig, zhSidebarConfig } from './sidebar.js';
+import {
+  deNavbarConfig,
+  enNavbarConfig,
+  esNavbarConfig,
+  frNavbarConfig,
+  itNavbarConfig,
+  jpNavbarConfig,
+  ptBRNavbarConfig,
+  ruNavbarConfig,
+  viVNNavbarConfig,
+  zhNavbarConfig,
+  zhTWNavbarConfig,
+} from './navbar.js';
+import {
+  deSidebarConfig,
+  enSidebarConfig,
+  esSidebarConfig,
+  frSidebarConfig,
+  itSidebarConfig,
+  jpSidebarConfig,
+  ptBRSidebarConfig,
+  ruSidebarConfig,
+  viVNSidebarConfig,
+  zhSidebarConfig,
+  zhTWSidebarConfig,
+} from './sidebar.js';
 
 export default hopeTheme(
   {
@@ -30,6 +54,83 @@ export default hopeTheme(
         sidebar: enSidebarConfig,
 
         footer: 'GPL-2.0 LICENSE | Copyright © 2020-present lizheming',
+        displayFooter: true,
+      },
+
+      '/de/': {
+        navbar: deNavbarConfig,
+        sidebar: deSidebarConfig,
+
+        footer: 'GPL-2.0 LICENSE | Copyright © 2020-present lizheming',
+        displayFooter: true,
+      },
+
+      '/es/': {
+        navbar: esNavbarConfig,
+        sidebar: esSidebarConfig,
+
+        footer: 'GPL-2.0 LICENSE | Copyright © 2020-present lizheming',
+        displayFooter: true,
+      },
+
+      '/jp/': {
+        navbar: jpNavbarConfig,
+        sidebar: jpSidebarConfig,
+
+        footer: 'GPL-2.0 LICENSE | Copyright © 2020-present lizheming',
+        displayFooter: true,
+      },
+
+      '/fr/': {
+        navbar: frNavbarConfig,
+        sidebar: frSidebarConfig,
+
+        footer: 'GPL-2.0 LICENSE | Copyright © 2020-present lizheming',
+        displayFooter: true,
+      },
+
+      '/it/': {
+        navbar: itNavbarConfig,
+        sidebar: itSidebarConfig,
+
+        footer: 'GPL-2.0 LICENSE | Copyright © 2020-present lizheming',
+        displayFooter: true,
+
+        navbarLocales: {
+          langName: 'Italiano',
+          selectLangAriaLabel: 'Seleziona lingua',
+        },
+      },
+
+      '/pt-BR/': {
+        navbar: ptBRNavbarConfig,
+        sidebar: ptBRSidebarConfig,
+
+        footer: 'GPL-2.0 LICENSE | Copyright © 2020-present lizheming',
+        displayFooter: true,
+      },
+
+      '/ru/': {
+        navbar: ruNavbarConfig,
+        sidebar: ruSidebarConfig,
+
+        footer: 'GPL-2.0 LICENSE | Copyright © 2020-present lizheming',
+        displayFooter: true,
+      },
+
+      '/vi-VN/': {
+        navbar: viVNNavbarConfig,
+        sidebar: viVNSidebarConfig,
+
+        footer: 'GPL-2.0 LICENSE | Copyright © 2020-present lizheming',
+        displayFooter: true,
+      },
+
+      '/zh-TW/': {
+        navbar: zhTWNavbarConfig,
+        sidebar: zhTWSidebarConfig,
+
+        footer: 'GPL-2.0 協議 | Copyright © 2020-present lizheming',
         displayFooter: true,
       },
     },
@@ -66,6 +167,87 @@ export default hopeTheme(
             level3: 'Wizards',
             level4: 'Elves',
             level5: 'Maiar',
+          },
+          '/de/': {
+            admin: 'GM',
+            level0: 'Zwerge',
+            level1: 'Hobbits',
+            level2: 'Ents',
+            level3: 'Zauberer',
+            level4: 'Elfen',
+            level5: 'Maiar',
+          },
+          '/es/': {
+            admin: 'GM',
+            level0: 'Enanos',
+            level1: 'Hobbits',
+            level2: 'Ents',
+            level3: 'Magos',
+            level4: 'Elfos',
+            level5: 'Maiar',
+          },
+          '/jp/': {
+            admin: 'GM',
+            level0: 'ドワーフ',
+            level1: 'ホビット',
+            level2: 'エント',
+            level3: '魔法使い',
+            level4: 'エルフ',
+            level5: 'マイアー',
+          },
+          '/fr/': {
+            admin: 'GM',
+            level0: 'Nains',
+            level1: 'Hobbits',
+            level2: 'Ents',
+            level3: 'Magiciens',
+            level4: 'Elfes',
+            level5: 'Maiar',
+          },
+          '/it/': {
+            admin: 'GM',
+            level0: 'Nani',
+            level1: 'Hobbit',
+            level2: 'Ents',
+            level3: 'Maghi',
+            level4: 'Elfi',
+            level5: 'Maiar',
+          },
+          '/pt-BR/': {
+            admin: 'GM',
+            level0: 'Anões',
+            level1: 'Hobbits',
+            level2: 'Ents',
+            level3: 'Magos',
+            level4: 'Elfos',
+            level5: 'Maiar',
+          },
+          '/ru/': {
+            admin: 'GM',
+            level0: 'Гномы',
+            level1: 'Хоббиты',
+            level2: 'Энты',
+            level3: 'Волшебники',
+            level4: 'Эльфы',
+            level5: 'Майар',
+          },
+          '/vi-VN/': {
+            admin: 'GM',
+            level0: 'Người lùn',
+            level1: 'Hobbits',
+            level2: 'Ents',
+            level3: 'Phù thủy',
+            level4: 'Yêu tinh',
+            level5: 'Maiar',
+          },
+          '/zh-TW/': {
+            admin: '可愛的管理員',
+            level0: '鍛體',
+            level1: '煉氣',
+            level2: '築基',
+            level3: '金丹',
+            level4: '元嬰',
+            level5: '化神',
           },
         },
       },
