@@ -21,7 +21,7 @@ After naming them appropriately, you need to upload them to your server.
 
 ### Write preset information
 
-We assume that you have placed some emoji images in the `
+We assume that you have placed some emoji images in the following directory:
 
 ```
 https://example.com/my-emoji/
