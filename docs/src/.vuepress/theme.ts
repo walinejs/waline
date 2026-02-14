@@ -7,6 +7,7 @@ import {
   frNavbarConfig,
   itNavbarConfig,
   jpNavbarConfig,
+  koKRNavbarConfig,
   ptBRNavbarConfig,
   ruNavbarConfig,
   viVNNavbarConfig,
@@ -20,6 +21,7 @@ import {
   frSidebarConfig,
   itSidebarConfig,
   jpSidebarConfig,
+  koKRSidebarConfig,
   ptBRSidebarConfig,
   ruSidebarConfig,
   viVNSidebarConfig,
@@ -131,6 +133,14 @@ export default hopeTheme(
         sidebar: zhTWSidebarConfig,
 
         footer: 'GPL-2.0 協議 | Copyright © 2020-present lizheming',
+        displayFooter: true,
+      },
+
+      '/ko-KR/': {
+        navbar: koKRNavbarConfig,
+        sidebar: koKRSidebarConfig,
+
+        footer: 'GPL-2.0 라이선스 | Copyright © 2020-present lizheming',
         displayFooter: true,
       },
     },
@@ -248,6 +258,15 @@ export default hopeTheme(
             level3: '金丹',
             level4: '元嬰',
             level5: '化神',
+          },
+          '/ko-KR/': {
+            admin: 'GM',
+            level0: '난쟁이',
+            level1: '호빗',
+            level2: '엔트',
+            level3: '마법사',
+            level4: '엘프',
+            level5: '마이아',
           },
         },
       },

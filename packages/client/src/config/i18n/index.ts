@@ -4,6 +4,7 @@ import es from './es.js';
 import fr from './fr.js';
 import it from './it.js';
 import jp from './jp.js';
+import koKR from './ko-KR.js';
 import ptBR from './pt-BR.js';
 import ru from './ru.js';
 import viVN from './vi-VN.js';
@@ -27,6 +28,8 @@ export const DEFAULT_LOCALES: Locales = {
   'it-it': it,
   jp,
   'jp-jp': jp,
+  ko: koKR,
+  'ko-kr': koKR,
   'pt-br': ptBR,
   ru,
   'ru-ru': ru,

@@ -384,3 +384,38 @@ export const zhTWNavbarConfig = navbar([
     children: ['intro', 'design', 'ecosystem', 'faq', 'contribution', 'privacy'],
   },
 ]);
+
+export const koKRNavbarConfig = navbar([
+  '/ko-KR/guide/get-started/',
+  '/ko-KR/cookbook/',
+  {
+    text: '마이그레이션',
+    icon: 'migration',
+    prefix: '/ko-KR/migration/',
+    children: ['v3', 'v2', 'valine', 'tool'],
+  },
+  {
+    text: '참조',
+    icon: 'reference',
+    prefix: '/ko-KR/reference/',
+    children: [
+      'api/',
+      {
+        text: '클라이언트',
+        prefix: 'client/',
+        children: ['api', 'props', 'file', 'style'],
+      },
+      {
+        text: '서버',
+        prefix: 'server/',
+        children: ['api', 'config', 'env', 'plugin'],
+      },
+    ],
+  },
+  {
+    text: '고급',
+    icon: 'advanced',
+    prefix: '/ko-KR/advanced/',
+    children: ['intro', 'design', 'ecosystem', 'faq', 'contribution', 'privacy'],
+  },
+]);

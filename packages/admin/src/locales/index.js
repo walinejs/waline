@@ -2,6 +2,7 @@ import en from './en.json';
 import zhCN from './zh-CN.json';
 import zhTW from './zh-TW.json';
 import jp from './jp.json';
+import koKR from './ko-KR.json';
 import de from './de.json';
 import es from './es.json';
 import fr from './fr.json';
@@ -47,9 +48,14 @@ export const LANGUAGE_OPTIONS = [
     alias: ['it', 'it-IT'],
   },
   {
-    label: 'Japanese',
+    label: '日本語',
     value: 'jp',
     alias: ['jp', 'jp-JP'],
+  },
+  {
+    label: '한국어',
+    value: 'ko-KR',
+    alias: ['ko', 'ko-KR'],
   },
   {
     label: 'Português (Brasil)',
@@ -80,6 +86,8 @@ export default {
   'it-IT': { translations: it },
   jp: { translations: jp },
   'jp-JP': { translations: jp },
+  ko: { translations: koKR },
+  'ko-KR': { translations: koKR },
   'pt-BR': { translations: ptBR },
   ru: { translations: ru },
   'ru-RU': { translations: ru },

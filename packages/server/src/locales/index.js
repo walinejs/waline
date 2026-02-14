@@ -3,6 +3,7 @@ const it = require('./it.json');
 const zhCN = require('./zh-CN.json');
 const zhTW = require('./zh-TW.json');
 const jp = require('./jp.json');
+const koKR = require('./ko-KR.json');
 const de = require('./de.json');
 const esMX = require('./es.json');
 const fr = require('./fr.json');
@@ -19,6 +20,8 @@ module.exports = {
   'it-it': it,
   jp,
   'jp-jp': jp,
+  ko: koKR,
+  'ko-kr': koKR,
   de,
   esMX,
   fr,
