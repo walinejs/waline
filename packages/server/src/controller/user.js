@@ -179,6 +179,26 @@ module.exports = class UserController extends BaseRest {
     return this.success();
   }
 
+  async deleteAction() {
+    const users = await this.modelInstance.select({
+      objectId: this.id,
+    });
+    if (think.isEmpty(users)) {
+      return this.fail();
+    }
+
+    const user = users[0];
+    const isVerifyUser = /^verify:/i.test(user.type);
+
+    if (isVerifyUser) {
+      await this.modelInstance.delete({ objectId: this.id });
+    } else {
+      await this.modelInstance.update({ type: 'banned' }, { objectId: this.id });
+    }
+
+    return this.success();
+  }
+
   // oxlint-disable-next-line max-statements
   async getUsersListByCount() {
     const { pageSize } = this.get();

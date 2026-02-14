@@ -95,7 +95,7 @@ module.exports = class BaseLogic extends think.Logic {
     }
 
     const user = await this.modelInstance.select(
-      { objectId: userId },
+      { objectId: userId, type: ['!=', 'banned'] },
       {
         field: [
           'id',

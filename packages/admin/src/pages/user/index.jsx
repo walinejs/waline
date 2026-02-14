@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 import Header from '../../components/Header.jsx';
 import Paginator from '../../components/Paginator.jsx';
-import { getUserList, updateUser } from '../../services/user.js';
+import { getUserList, updateUser, deleteUser } from '../../services/user.js';
 import { buildAvatar } from '../manage-comments/utils.js';
 
 // oxlint-disable-next-line max-lines-per-function
@@ -79,13 +79,26 @@ export default function User() {
           setList({ ...list });
         },
       },
-      // todo
-      // {
-      //   key: 'delete',
-      //   name: t('delete'),
-      //   show: true,
-      //   async action() {},
-      // },
+      {
+        key: 'delete',
+        name: t('delete'),
+        show: user.objectId !== currentUser.objectId,
+        async action(event) {
+          event.preventDefault();
+
+          if (!confirm(t('delete user confirm'))) {
+            return;
+          }
+
+          await deleteUser({
+            id: user.objectId,
+          });
+          setList({
+            ...list,
+            data: list.data.filter(({ objectId }) => objectId !== user.objectId),
+          });
+        },
+      },
     ].filter(({ show }) => show);
 
   const getRole = (type) => {
@@ -143,7 +156,7 @@ export default function User() {
                           <td>
                             <a
                               href={
-                                user.url.startsWith('https://') ? user.url : `https://${user.url}`
+                                user?.url?.startsWith('https://') ? user.url : `https://${user.url}`
                               }
                               rel="external nofollow noreferrer"
                               target="_blank"

@@ -121,4 +121,18 @@ module.exports = class extends Base {
       },
     };
   }
+
+  deleteAction() {
+    // you need login to update yourself profile
+    const { userInfo } = this.ctx.state;
+
+    if (think.isEmpty(userInfo)) {
+      return this.fail();
+    }
+
+    // you should be a administrator to update others info
+    if (userInfo.type !== 'administrator' || this.id === userInfo.objectId) {
+      return this.fail();
+    }
+  }
 };
