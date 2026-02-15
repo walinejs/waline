@@ -68,4 +68,8 @@ export interface WalineLocale extends WalineDateLocale, WalineLevelLocale, Walin
   profile: string;
   logout: string;
   commentUnderReview: string;
+
+  subPostComment: string;
+  subSiteComment: string;
+  subscribeToReplies: string;
 }

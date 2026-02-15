@@ -9,7 +9,7 @@ import { computed, onMounted, onUnmounted, provide, ref } from 'vue';
 import ArticleReaction from './ArticleReaction.vue';
 import CommentBox from './CommentBox.vue';
 import CommentCard from './CommentCard.vue';
-import { LoadingIcon } from './Icons.js';
+import { LoadingIcon, RssIcon } from './Icons.js';
 import { useLikeStorage, useUserInfo } from '../composables/index.js';
 import type { WalineCommentSorting, WalineProps } from '../typings/index.js';
 import { getConfig, getDarkStyle } from '../utils/index.js';
@@ -290,13 +290,31 @@ onUnmounted(() => {
       <button type="button" class="wl-btn" @click="loadMore" v-text="i18n.more" />
     </div>
 
-    <!-- Copyright Information -->
-    <div v-if="!config.noCopyright" class="wl-power">
-      Powered by
-      <a href="https://github.com/walinejs/waline" target="_blank" rel="noopener noreferrer">
-        Waline
-      </a>
-      v{{ version }}
+    <div class="wl-meta-foot" v-if="data.length || status !== 'loading'">
+      <div class="wl-rss">
+        <a
+          :href="`${config.serverURL}/api/comment/rss?path=${config.path}`"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <RssIcon />
+          <span v-text="i18n.subPostComment" />
+        </a>
+
+        <a :href="`${config.serverURL}/api/comment/rss`" target="_blank" rel="noopener noreferrer">
+          <RssIcon />
+          <span v-text="i18n.subSiteComment" />
+        </a>
+      </div>
+
+      <!-- Copyright Information -->
+      <div v-if="!config.noCopyright" class="wl-power">
+        Powered by
+        <a href="https://github.com/walinejs/waline" target="_blank" rel="noopener noreferrer">
+          Waline
+        </a>
+        v{{ version }}
+      </div>
     </div>
   </div>
 </template>

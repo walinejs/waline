@@ -103,3 +103,25 @@
     }
   }
 }
+
+.wl-meta-foot {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wl-rss {
+  display: flex;
+  gap: 5px;
+
+  > a {
+    display: flex;
+    gap: 2px;
+  }
+  span {
+    color: var(--waline-light-grey);
+    font-size: var(--waline-info-font-size);
+    text-align: end;
+  }
+}
