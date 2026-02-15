@@ -18,7 +18,7 @@ icon: pic
 
 ```html
 <link rel="stylesheet" href="https://unpkg.com/lightgallery@v2/css/lightgallery-bundle.css" />
-<srciprt src="https://unpkg.com/lightgallery@v2/lightgallery.umd.min.js" />
+<script src="https://unpkg.com/lightgallery@v2/lightgallery.umd.min.js"></script>
 <script>
   document.addEventListener('click', (e) => {
     const images = [].slice
