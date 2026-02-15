@@ -1,0 +1,19 @@
+{
+  "import data format not support!": "가져오기 데이터 형식이 지원되지 않습니다!",
+  "USER_EXIST": "이미 존재하는 사용자입니다",
+  "USER_NOT_EXIST": "사용자가 존재하지 않습니다",
+  "USER_REGISTERED": "사용자가 등록되었습니다",
+  "TOKEN_EXPIRED": "토큰이 만료되었습니다",
+  "TWO_FACTOR_AUTH_ERROR_DETAIL": "2단계 인증 오류 상세",
+  "[{{name | safe}}] Registration Confirm Mail": "[{{name | safe}}] 가입 확인 메일",
+  "Please click <a href=\"{{url}}\">{{url}}<a/> to confirm registration, the link is valid for 1 hour. If you are not registering, please ignore this email.": "<a href=\"{{url}}\">{{url}}</a>을 클릭하여 가입을 확인해 주세요. 링크는 1시간 동안 유효합니다. 가입하지 않으셨다면 이 이메일을 무시해 주세요.",
+  "[{{name | safe}}] Reset Password": "[{{name | safe}}] 비밀번호 재설정",
+  "Please click <a href=\"{{url}}\">{{url}}</a> to login and change your password as soon as possible!": "<a href=\"{{url}}\">{{url}}</a>을 클릭하여 로그인하고 가능한 빨리 비밀번호를 변경해 주세요!",
+  "Duplicate Content": "중복된 내용",
+  "Comment too fast": "댓글 작성이 너무 빠릅니다",
+  "Registration confirm mail send failed, please {%- if isAdmin -%}check your mail configuration{%- else -%}check your email address and contact administrator{%- endif -%}.": "가입 확인 메일 발송에 실패했습니다. {%- if isAdmin -%}메일 설정을 확인해 주세요{%- else -%}이메일 주소를 확인하고 관리자에게 문의해 주세요{%- endif -%}.",
+  "MAIL_SUBJECT": "{{site.name | safe}}에서 댓글에 답글이 달렸습니다",
+  "MAIL_TEMPLATE": "<div style='border-top:2px solid #12ADDB;box-shadow:0 1px 3px #AAAAAA;line-height:180%;padding:0 15px 12px;margin:50px auto;font-size:12px;'> <h2 style='border-bottom:1px solid #DDD;font-size:14px;font-weight:normal;padding:13px 0 10px 8px;'> <a style='text-decoration:none;color: #12ADDB;' href='{{site.url}}' target='_blank'>{{site.name}}</a>에서 댓글에 답글이 달렸습니다 </h2>{{parent.nick}}님이 작성한 댓글: <div style='padding:0 12px 0 12px;margin-top:18px'> <div style='background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;'>{{parent.comment | safe}}</div><p><strong>{{self.nick}}</strong>님이 답글을 남겼습니다:</p><div style='background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;'>{{self.comment | safe}}</div><p><a style='text-decoration:none; color:#12addb' href='{{site.postUrl}}' target='_blank'>전체 답글 보기</a> 또는 <a style='text-decoration:none; color:#12addb' href='{{site.url}}' target='_blank'>{{site.name}}</a> 방문.</p><br/> </div></div>",
+  "MAIL_SUBJECT_ADMIN": "{{site.name | safe}}에 새 댓글이 달렸습니다",
+  "MAIL_TEMPLATE_ADMIN": "<div style='border-top:2px solid #12ADDB;box-shadow:0 1px 3px #AAAAAA;line-height:180%;padding:0 15px 12px;margin:50px auto;font-size:12px;'> <h2 style='border-bottom:1px solid #DDD;font-size:14px;font-weight:normal;padding:13px 0 10px 8px;'> <a style='text-decoration:none;color: #12ADDB;' href='{{site.url}}' target='_blank'>{{site.name}}</a>에 새 댓글이 달렸습니다 </h2> <p><strong>{{self.nick}}</strong>님이 작성했습니다:</p><div style='background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;'>{{self.comment | safe}}</div><p><a style='text-decoration:none; color:#12addb' href='{{site.postUrl}}' target='_blank'>페이지 보기</a></p><br/></div>"
+}

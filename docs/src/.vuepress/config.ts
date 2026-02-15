@@ -61,6 +61,11 @@ export default defineUserConfig({
       title: 'Waline',
       description: '一款簡潔、安全的評論系統。',
     },
+    '/ko-KR/': {
+      lang: 'ko-KR',
+      title: 'Waline',
+      description: '간단하고 안전한 댓글 시스템.',
+    },
   },
 
   bundler: viteBundler({
