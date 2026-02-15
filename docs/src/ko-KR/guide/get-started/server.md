@@ -26,7 +26,7 @@ Waline은 MySQL, PostgreSQL, SQLite, MongoDB를 포함한 다양한 데이터베
 
 서버 측의 대부분의 설정은 환경 변수를 통해 수행할 수 있으며, 메인 엔트리 파일에서 일부 고급 옵션을 설정할 수도 있습니다.
 
-설정에 대한 자세한 내용은 [서버 참조 → 환경 변수](../../reference/server/env.md) 및 [서버 참조 → 설정](../../reference/server/ config.md)을 참조하세요.
+설정에 대한 자세한 내용은 [서버 참조 → 환경 변수](../../reference/server/env.md) 및 [서버 참조 → 설정](../../reference/server/config.md)을 참조하세요.
 
 ## 댓글 알림
 
