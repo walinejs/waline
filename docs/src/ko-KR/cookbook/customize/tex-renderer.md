@@ -25,7 +25,7 @@ KaTeX 옵션은 [KaTeX API](https://katex.org/docs/api.html#server-side-renderin
   <body>
     <div id="waline" style="max-width: 800px; margin: 0 auto"></div>
     <script type="module">
-      import { init } from '"https://unpkg.com/@waline/client@v3/dist/waline.js"';
+      import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
       import katex from 'https://unpkg.com/katex@0.16/dist/katex.mjs';
 
       init({
@@ -61,7 +61,7 @@ MathJax 옵션은 [MathJax API](http://docs.mathjax.org/ko-KR/latest/web/typeset
   <body>
     <div id="waline" style="max-width: 800px; margin: 0 auto"></div>
     <script type="module">
-      import { init } from '"https://unpkg.com/@waline/client@v3/dist/waline.js"';
+      import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
 
       init({
         el: '#waline',
