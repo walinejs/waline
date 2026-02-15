@@ -1,54 +1,54 @@
 ---
-title: Comment Notification
+title: 댓글 알림
 icon: notice
 order: 10
 ---
 
-When a user posts a comment on the website or a user responds to a comment, Waline supports email or WeChat notification to the blogger and the author who responded to the comment.
+사용자가 웹사이트에 댓글을 작성하거나 다른 사용자의 댓글에 답글을 달면, Waline은 블로거와 답글 대상 작성자에게 이메일 또는 WeChat 알림을 보낼 수 있습니다.
 
-- We support multiple types notifications for blogger
-- We will email a visitor once his comment gets a reply.
+- 블로거를 위한 다양한 유형의 알림을 지원합니다.
+- 방문자의 댓글에 답글이 달리면 해당 방문자에게 이메일을 발송합니다.
 
 <!-- more -->
 
-## Email Notification
+## 이메일 알림
 
-Email notification needs the following environment variables to be configured:
+이메일 알림을 사용하려면 다음 환경 변수를 설정해야 합니다:
 
-- `SMTP_SERVICE`: SMTP Mail delivery service provider
+- `SMTP_SERVICE`: SMTP 메일 전송 서비스 제공자
 
   ::: tip
 
-  You can find all support provider in [nodemailer services](https://github.com/nodemailer/nodemailer/blob/master/lib/well-known/services.json). If your provider is not listed, you must config `SMTP_HOST` and `SMTP_PORT`.
-  - `SMTP_HOST`: SMTP server address, it can be found in mailbox's setting page generally.
-  - `SMTP_PORT`: SMTP server port, it can be found in mailbox's setting page generally.
+  [nodemailer services](https://github.com/nodemailer/nodemailer/blob/master/lib/well-known/services.json)에서 지원하는 모든 제공자를 확인할 수 있습니다. 목록에 없는 제공자를 사용하는 경우 `SMTP_HOST`와 `SMTP_PORT`를 설정해야 합니다.
+  - `SMTP_HOST`: SMTP 서버 주소, 일반적으로 메일함 설정 페이지에서 확인할 수 있습니다.
+  - `SMTP_PORT`: SMTP 서버 포트, 일반적으로 메일함 설정 페이지에서 확인할 수 있습니다.
 
   :::
 
-- `SMTP_USER`: SMTP Mail delivery service account, it's your email address.
-- `SMTP_PASS`: SMTP Mail delivery service password, it's your email password.
-- `SMTP_SECURE`: SMTP connect with SSL, either `true` or `false`.
-- `SITE_NAME`: Your site name, will be displayed in notification message.
-- `SITE_URL`: Your site url, will be displayed in notification message.
+- `SMTP_USER`: SMTP 메일 전송 서비스 계정, 이메일 주소입니다.
+- `SMTP_PASS`: SMTP 메일 전송 서비스 비밀번호, 이메일 비밀번호입니다.
+- `SMTP_SECURE`: SMTP SSL 연결 여부, `true` 또는 `false`.
+- `SITE_NAME`: 사이트 이름, 알림 메시지에 표시됩니다.
+- `SITE_URL`: 사이트 URL, 알림 메시지에 표시됩니다.
 
-The following environment variables are optional:
+다음 환경 변수는 선택 사항입니다:
 
-- `SENDER_NAME`: Custom sender's name in notification
-- `SENDER_EMAIL`: Custom sender's name in notification, required for some SMTP services.
-- `MAIL_SUBJECT`: Custom comment reply email title
-- `MAIL_TEMPLATE`: Custom reply email content
-- `MAIL_SUBJECT_ADMIN`: Custom new comment notification email title
-- `MAIL_TEMPLATE_ADMIN`: Custom new comment notification email content
-- `AUTHOR_EMAIL`: The blogger’s email, used to judge whether posted comment is posted by the blogger. If it is posted by the blogger, there will be no reminder notification.
+- `SENDER_NAME`: 알림의 사용자 지정 발신자 이름
+- `SENDER_EMAIL`: 알림의 사용자 지정 발신자 이메일, 일부 SMTP 서비스에서 필수입니다.
+- `MAIL_SUBJECT`: 사용자 지정 댓글 답글 이메일 제목
+- `MAIL_TEMPLATE`: 사용자 지정 답글 이메일 내용
+- `MAIL_SUBJECT_ADMIN`: 사용자 지정 새 댓글 알림 이메일 제목
+- `MAIL_TEMPLATE_ADMIN`: 사용자 지정 새 댓글 알림 이메일 내용
+- `AUTHOR_EMAIL`: 블로거의 이메일, 작성된 댓글이 블로거가 쓴 것인지 판단하는 데 사용됩니다. 블로거가 작성한 댓글인 경우 알림이 발송되지 않습니다.
 
-## Wechat Notification
+## WeChat 알림
 
-We use [Mr. Server](http://sc.ftqq.com/3.version) to wechat notification. You need to set `SC_KEY` in env which applied in Mr. Server.
+WeChat 알림을 위해 [Mr. Server](http://sc.ftqq.com/3.version)를 사용합니다. Mr. Server에서 발급받은 `SC_KEY`를 환경 변수에 설정해야 합니다.
 
-- `SC_KEY`: Token applied in Mr. Server, It's required for this service.
-- `AUTHOR_EMAIL`: The blogger’s email is used to distinguish whether the posted comment is posted by the blogger himself. If it is posted by the blogger, there will be no reminder notification.
-- `SITE_NAME`: Your site name, it will be displayed in notification message.
-- `SITE_URL`: Your site url, it will be displayed in notification message.
+- `SC_KEY`: Mr. Server에서 발급받은 토큰, 이 서비스에 필수입니다.
+- `AUTHOR_EMAIL`: 블로거의 이메일, 작성된 댓글이 블로거가 쓴 것인지 판단하는 데 사용됩니다. 블로거가 작성한 댓글인 경우 알림이 발송되지 않습니다.
+- `SITE_NAME`: 사이트 이름, 알림 메시지에 표시됩니다.
+- `SITE_URL`: 사이트 URL, 알림 메시지에 표시됩니다.
 
 ## QQ Notification
 
@@ -73,87 +73,87 @@ We use Telegram bot to send Telegram notification. You need to set the following
 - `SITE_URL`: Your site url, it will be displayed in notification message.
 - `TG_TEMPLATE`: Notification template used by Telegram. Variables and specific formats can be found in the notification template below. If not configured, the default template is used.
 
-## PushPlus Notification
+## PushPlus 알림
 
-[pushplus](http://www.pushplus.plus/) is a message push platform which supports many channels like wechat, wechat work, ding talk, sms or email. You need to set the following env. You can go to [pushplus documentation](http://www.pushplus.plus/doc/guide/api.html#%E4%B8%80%E3%80%81%E5%8F%91%E9%80%81%E6%B6%88%E6%81%AF%E6%8E%A5%E5%8F%A3) to get more parameter format detail.
+[pushplus](http://www.pushplus.plus/)는 WeChat, 기업용 WeChat, DingTalk, SMS, 이메일 등 다양한 채널을 지원하는 메시지 푸시 플랫폼입니다. 다음 환경 변수를 설정해야 합니다. 더 자세한 매개변수 형식은 [pushplus 문서](http://www.pushplus.plus/doc/guide/api.html#%E4%B8%80%E3%80%81%E5%8F%91%E9%80%81%E6%B6%88%E6%81%AF%E6%8E%A5%E5%8F%A3)를 참조하세요.
 
-- `PUSH_PLUS_KEY`： user token. It's required for this service.
-- `PUSH_PLUS_TOPIC`：group id. Send yourself if it's empty. And It's unuseful if `PUSH_PLUS_CHANNEL` equals `webhook`.
-- `PUSH_PLUS_TEMPLATE`：Send template
-- `PUSH_PLUS_CHANNEL`：Send channel
-- `PUSH_PLUS_WEBHOOK`：webhook is required if `PUSH_PLUS_CHANNEL` equals `webhook` or `cp`.
-- `PUSH_PLUS_CALLBACKURL`：callback url after send response.
-- `AUTHOR_EMAIL`: The blogger’s email is used to distinguish whether the posted comment is posted by the blogger himself. If it is posted by the blogger, there will be no reminder notification.
-- `SITE_NAME`: Your site name, it will be displayed in notification message.
-- `SITE_URL`: Your site url, it will be displayed in notification message.
+- `PUSH_PLUS_KEY`：사용자 토큰, 이 서비스에 필수입니다.
+- `PUSH_PLUS_TOPIC`：그룹 ID, 비어 있으면 자신에게 발송됩니다. `PUSH_PLUS_CHANNEL`이 `webhook`인 경우 사용되지 않습니다.
+- `PUSH_PLUS_TEMPLATE`：발송 템플릿
+- `PUSH_PLUS_CHANNEL`：발송 채널
+- `PUSH_PLUS_WEBHOOK`：`PUSH_PLUS_CHANNEL`이 `webhook` 또는 `cp`인 경우 webhook이 필수입니다.
+- `PUSH_PLUS_CALLBACKURL`：발송 응답 후 콜백 URL.
+- `AUTHOR_EMAIL`: 블로거의 이메일, 작성된 댓글이 블로거가 쓴 것인지 판단하는 데 사용됩니다. 블로거가 작성한 댓글인 경우 알림이 발송되지 않습니다.
+- `SITE_NAME`: 사이트 이름, 알림 메시지에 표시됩니다.
+- `SITE_URL`: 사이트 URL, 알림 메시지에 표시됩니다.
 
-## Discord Notification
+## Discord 알림
 
-We use Discord Webhook to send Discord notification. You need to set the following env.
+Discord 알림을 보내기 위해 Discord Webhook을 사용합니다. 다음 환경 변수를 설정해야 합니다.
 
-- `DISCORD_WEBHOOK`: Discord Webhook url, [How to create Discord Webhook url](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks)?
-- `DISCORD_TEMPLATE`: Send template
-- `AUTHOR_EMAIL`: The blogger’s email is used to distinguish whether the posted comment is posted by the blogger himself. If it is posted by the blogger, there will be no reminder notification.
-- `SITE_NAME`: Your site name, it will be displayed in notification message.
-- `SITE_URL`: Your site url, it will be displayed in notification message.
+- `DISCORD_WEBHOOK`: Discord Webhook URL, [Discord Webhook URL 생성 방법](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks)
+- `DISCORD_TEMPLATE`: 발송 템플릿
+- `AUTHOR_EMAIL`: 블로거의 이메일, 작성된 댓글이 블로거가 쓴 것인지 판단하는 데 사용됩니다. 블로거가 작성한 댓글인 경우 알림이 발송되지 않습니다.
+- `SITE_NAME`: 사이트 이름, 알림 메시지에 표시됩니다.
+- `SITE_URL`: 사이트 URL, 알림 메시지에 표시됩니다.
 
-## Lark Notification
+## Lark 알림
 
-We use Lark Webhook to send its group notifications. The following env variables are required.
+Lark 그룹 알림을 보내기 위해 Lark Webhook을 사용합니다. 다음 환경 변수가 필요합니다.
 
-- `LARK_WEBHOOK`: Lark Group Bot [Webhook Usages](https://open.larksuite.com/document/ukTMukTMukTM/ucTM5YjL3ETO24yNxkjN?lang=en-US)
-- `LARK_SECRET`: As clarified by the doc from Lark, this secret is used to sign your request to avoid abuse（Optional).
-- `LARK_TEMPLATE`: Message template
-- `SITE_NAME`: Your site name which will be displayed in notification messages.
-- `SITE_URL`: Your site url which will be displayed in notification messages.
+- `LARK_WEBHOOK`: Lark 그룹 봇 [Webhook 사용법](https://open.larksuite.com/document/ukTMukTMukTM/ucTM5YjL3ETO24yNxkjN?lang=en-US)
+- `LARK_SECRET`: Lark 문서에 설명된 대로, 악용 방지를 위해 요청에 서명하는 데 사용되는 시크릿입니다（선택 사항).
+- `LARK_TEMPLATE`: 메시지 템플릿
+- `SITE_NAME`: 사이트 이름, 알림 메시지에 표시됩니다.
+- `SITE_URL`: 사이트 URL, 알림 메시지에 표시됩니다.
 
-## Notification Template
+## 알림 템플릿
 
-Waline supports configuring your customized notification templates for each platform separately to achieve stronger customization capabilities and i18n compatibility.
+Waline은 각 플랫폼별로 사용자 지정 알림 템플릿을 설정하여 더 강력한 사용자 지정 기능과 i18n 호환성을 제공합니다.
 
-### Supported variables
+### 지원되는 변수
 
-The template passes parameters through `self`, `parent` and `site` objects, which contain the following variables respectively:
+템플릿은 `self`, `parent`, `site` 객체를 통해 매개변수를 전달하며, 각각 다음 변수를 포함합니다:
 
-- `self`: The comment itself
+- `self`: 댓글 자체
 
-  | variable        | description          |
+  | 변수            | 설명                 |
   | --------------- | -------------------- |
-  | nick            | Commenter's nickname |
-  | mail            | Commenter's email    |
-  | link            | Commenter's website  |
-  | url             | Article address      |
-  | comment         | Comment content      |
-  | browser         | Browser name         |
-  | os              | Operate system name  |
-  | avatar          | avatar               |
-  | _commentLink_\* | Links in comments    |
+  | nick            | 댓글 작성자 닉네임   |
+  | mail            | 댓글 작성자 이메일   |
+  | link            | 댓글 작성자 웹사이트 |
+  | url             | 글 주소              |
+  | comment         | 댓글 내용            |
+  | browser         | 브라우저 이름        |
+  | os              | 운영 체제 이름       |
+  | avatar          | 아바타               |
+  | _commentLink_\* | 댓글 내 링크         |
 
-  \*: commentLink is only provided in Telegram notifications and will be automatically encapsulated in Markdown format.
+  \*: commentLink는 Telegram 알림에서만 제공되며 자동으로 Markdown 형식으로 캡슐화됩니다.
 
-- `parent`: Comment which is replied (parent comment).
+- `parent`: 답글 대상 댓글 (부모 댓글)
 
-  | variable | description          |
-  | -------- | -------------------- |
-  | nick     | Commenter's nickname |
-  | mail     | Commenter's email    |
-  | link     | Commenter's website  |
-  | browser  | Browser name         |
-  | os       | Operate system name  |
-  | avatar   | avatar               |
-  | comment  | Comment content      |
+  | 변수    | 설명                 |
+  | ------- | -------------------- |
+  | nick    | 댓글 작성자 닉네임   |
+  | mail    | 댓글 작성자 이메일   |
+  | link    | 댓글 작성자 웹사이트 |
+  | browser | 브라우저 이름        |
+  | os      | 운영 체제 이름       |
+  | avatar  | 아바타               |
+  | comment | 댓글 내용            |
 
-- `site`: Website configuration
+- `site`: 웹사이트 설정
 
-  | variable | description          |
-  | -------- | -------------------- |
-  | name     | Site name            |
-  | url      | Site URL             |
-  | postUrl  | Comment full address |
+  | 변수    | 설명           |
+  | ------- | -------------- |
+  | name    | 사이트 이름    |
+  | url     | 사이트 URL     |
+  | postUrl | 댓글 전체 주소 |
 
-### Default template
+### 기본 템플릿
 
-The default template is attached here for your reference:
+기본 템플릿은 참고용으로 아래에 첨부합니다:
 
 - MAIL_SUBJECT:
 
@@ -263,7 +263,7 @@ The default template is attached here for your reference:
   仅供评论预览，点击[查看完整內容]({{site.postUrl}})
   ````
 
-### Additional Info
+### 추가 정보
 
-1. Vercel’s environment variable size is limited to `4KB`, so if your template is long, you should config if in main entry file, see [issue#106](https://github.com/walinejs/waline/issues/106).
-1. The specific information of variables may change during the development process. The variable descriptions here are for reference only. Please refer to the specific code examples for specific content.
+1. Vercel의 환경 변수 크기는 `4KB`로 제한되므로, 템플릿이 긴 경우 메인 엔트리 파일에서 설정해야 합니다. [issue#106](https://github.com/walinejs/waline/issues/106)을 참조하세요.
+1. 변수의 구체적인 정보는 개발 과정에서 변경될 수 있습니다. 여기의 변수 설명은 참고용이며, 구체적인 내용은 실제 코드 예제를 참조하세요.

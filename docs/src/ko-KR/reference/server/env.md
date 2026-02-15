@@ -1,54 +1,54 @@
 ---
-title: Server Environment Variables
+title: 서버 환경 변수
 icon: config
 ---
 
-You can customize Waline Server through the following environment variables.
+다음 환경 변수를 통해 Waline 서버를 사용자 정의할 수 있습니다.
 
 ::: warning
 
-You MUST **redeploy** after updating Environment variables to make changes applied.
+환경 변수를 업데이트한 후 변경 사항을 적용하려면 반드시 **재배포**해야 합니다.
 
-You should set through `Settings` - `Environment Variables` when using Vercel.
+Vercel을 사용하는 경우 `Settings` - `Environment Variables`에서 설정해야 합니다.
 
 :::
 
 <!-- more -->
 
-## Basic
+## 기본
 
-| Environment Variables | Required | Description                                                                                |
-| --------------------- | -------- | ------------------------------------------------------------------------------------------ |
-| `SITE_NAME`           |          | site name                                                                                  |
-| `SITE_URL`            |          | site url                                                                                   |
-| `LOGIN`               |          | User need login before comment when `LOGIN=force`                                          |
-| `SERVER_URL`          |          | the url of the Waline Server, useful when the automatically generated address is incorrect |
+| 환경 변수    | 필수 | 설명                                                              |
+| ------------ | ---- | ----------------------------------------------------------------- |
+| `SITE_NAME`  |      | 사이트 이름                                                       |
+| `SITE_URL`   |      | 사이트 URL                                                        |
+| `LOGIN`      |      | `LOGIN=force`로 설정하면 댓글 작성 전 로그인이 필요합니다         |
+| `SERVER_URL` |      | Waline 서버의 URL, 자동 생성된 주소가 올바르지 않을 때 유용합니다 |
 
-## Display
+## 표시
 
-| Environment Variables   | Default                                                                 | Description                                                       |
+| 환경 변수               | 기본값                                                                  | 설명                                                              |
 | ----------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `DISABLE_USERAGENT`     |                                                                         | wether hide the user agent of commenter. Default value is `false` |
-| `DISABLE_REGION`        |                                                                         | wether hide commenter's region. Default value is `false`          |
-| `DISABLE_AUTHOR_NOTIFY` |                                                                         | wether disable author notification                                |
-| `AVATAR_PROXY`          | `https://avatar.75cdn.workers.dev`                                      | Avatar proxy service url. You can set `false` to disable it       |
-| `GRAVATAR_STR`          | <span v-pre>`https://seccdn.libravatar.org/avatar/{{mail\|md5}}`</span> | Gravatar render string，base on nunjucks template                 |
-| `LEVELS`                |                                                                         | Give each user a rating label based on the number of comments     |
+| `DISABLE_USERAGENT`     |                                                                         | 댓글 작성자의 유저 에이전트를 숨길지 여부. 기본값은 `false`입니다 |
+| `DISABLE_REGION`        |                                                                         | 댓글 작성자의 지역을 숨길지 여부. 기본값은 `false`입니다          |
+| `DISABLE_AUTHOR_NOTIFY` |                                                                         | 작성자 알림을 비활성화할지 여부                                   |
+| `AVATAR_PROXY`          | `https://avatar.75cdn.workers.dev`                                      | 아바타 프록시 서비스 URL. `false`로 설정하면 비활성화됩니다       |
+| `GRAVATAR_STR`          | <span v-pre>`https://seccdn.libravatar.org/avatar/{{mail\|md5}}`</span> | Gravatar 렌더링 문자열, nunjucks 템플릿 기반                      |
+| `LEVELS`                |                                                                         | 댓글 수에 따라 각 사용자에게 등급 라벨을 부여합니다               |
 
-::: tip Level Label
+::: tip 등급 라벨
 
-According number of user comments, a level label will be added to the commenter based on rating Conditions. This feature is disabled by default and can be enabled by setting the environment variable `LEVELS`. The configuration is in the form of a comma concatenation of a given number, for example `0,10,20,50,100,200` means:
+사용자의 댓글 수에 따라 등급 조건을 기반으로 댓글 작성자에게 등급 라벨이 추가됩니다. 이 기능은 기본적으로 비활성화되어 있으며 환경 변수 `LEVELS`를 설정하여 활성화할 수 있습니다. 구성은 주어진 숫자의 쉼표 연결 형식으로, 예를 들어 `0,10,20,50,100,200`은 다음을 의미합니다:
 
-| Grades | Conditions         | Default Grade Labels |
-| ------ | ------------------ | -------------------- |
-| 0      | 0 <= count < 10    | Dwarves              |
-| 1      | 10 <= count < 20   | Hobbits              |
-| 2      | 20 <= count < 50   | Ents                 |
-| 3      | 50 <= count < 100  | Wizards              |
-| 4      | 100 <= count < 200 | Elves                |
-| 5      | 200 <= count       | Maiar                |
+| 등급 | 조건               | 기본 등급 라벨 |
+| ---- | ------------------ | -------------- |
+| 0    | 0 <= count < 10    | Dwarves        |
+| 1    | 10 <= count < 20   | Hobbits        |
+| 2    | 20 <= count < 50   | Ents           |
+| 3    | 50 <= count < 100  | Wizards        |
+| 4    | 100 <= count < 200 | Elves          |
+| 5    | 200 <= count       | Maiar          |
 
-In addition to customizing the level judgment rules, we can also customize the level label. Configure the text in the client as follows:
+등급 판정 규칙을 사용자 정의하는 것 외에도 등급 라벨도 사용자 정의할 수 있습니다. 클라이언트에서 다음과 같이 텍스트를 설정합니다:
 
 ```js
 Waline.init({
@@ -63,68 +63,68 @@ Waline.init({
 });
 ```
 
-By default, only 6 levels of copywriting are provided, but it does not mean that there can only be 6 levels. The specific level cap is based on the level judgment rules you set. To add a new level, it is recommended to configure the label text corresponding to the level by yourself. If no label text is provided, the default label text such as `Level 10` will be displayed by default.
+기본적으로 6개 등급의 텍스트만 제공되지만, 이것이 등급이 6개뿐이라는 것을 의미하지는 않습니다. 구체적인 등급 상한은 설정한 등급 판정 규칙에 따라 달라집니다. 새 등급을 추가하려면 해당 등급에 대응하는 라벨 텍스트를 직접 설정하는 것이 좋습니다. 라벨 텍스트를 제공하지 않으면 기본적으로 `Level 10` 같은 기본 라벨 텍스트가 표시됩니다.
 
 :::
 
 ## Safety
 
-| Environment Variables | Default        | Description                                                                                                              |
-| --------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| `IPQPS`               | `60`           | IP-based comment posting frequency limit in seconds. Set to 0 for no limit                                               |
-| `SECURE_DOMAINS`      |                | Secure Domains config. Supports multiple domain with Comma separated                                                     |
-| `AKISMET_KEY`         | `70542d86693e` | Akismet antispam service key, set `false` if you wanna close it.                                                         |
-| `COMMENT_AUDIT`       | `false`        | Comment audit switcher. When enabled, every comment needs to be approved by admin, so hint in placeholder is recommended |
-| `RECAPTCHA_V3_KEY`    |                | reCAPTCHA V3 key,should set along with client                                                                            |
-| `RECAPTCHA_V3_SECRET` |                | reCAPTCHA V3 secret for server.                                                                                          |
-| `TURNSTILE_KEY`       |                | Turnstile key,should set along with client                                                                               |
-| `TURNSTILE_SECRET`    |                | Turnstile secret for server                                                                                              |
+| Environment Variables | Default        | Description                                                                |
+| --------------------- | -------------- | -------------------------------------------------------------------------- |
+| `IPQPS`               | `60`           | IP-based comment posting frequency limit in seconds. Set to 0 for no limit |
+| `SECURE_DOMAINS`      |                | Secure Domains config. Supports multiple domain with Comma separated       |
+| `AKISMET_KEY`         | `70542d86693e` | Akismet 스팸 방지 서비스 키, 비활성화하려면 `false`로 설정                 |
+| `COMMENT_AUDIT`       | `false`        | 댓글 감시 스위치. 활성화하면 모든 댓글이 관리자의 승인이 필요합니다        |
+| `RECAPTCHA_V3_KEY`    |                | reCAPTCHA V3 key,should set along with client                              |
+| `RECAPTCHA_V3_SECRET` |                | reCAPTCHA V3 secret for server.                                            |
+| `TURNSTILE_KEY`       |                | Turnstile key,should set along with client                                 |
+| `TURNSTILE_SECRET`    |                | Turnstile secret for server                                                |
 
 ::: tip Recaptcha and Turnstile
 
-Turnstile Key and Secret can be requested at <https://www.cloudflare.com/products/turnstile/>.
+Turnstile 키와 시크릿은 <https://www.cloudflare.com/products/turnstile/>에서 요청할 수 있습니다.
 
-Recaptcha Key and Secret can be requested at <https://www.google.com/recaptcha>.
+Recaptcha 키와 시크릿은 <https://www.google.com/recaptcha>에서 요청할 수 있습니다.
 
-When setting security domains, you need to add the site address and the Waline server address at the same time.
+보안 도메인을 설정할 때는 사이트 주소와 Waline 서버 주소를 동시에 추가해야 합니다.
 
 :::
 
 ## Markdown
 
-| Environment Variables | Default   | Description                                                        |
-| --------------------- | --------- | ------------------------------------------------------------------ |
-| `MARKDOWN_CONFIG`     | `{}`      | MarkdownIt Config                                                  |
-| `MARKDOWN_HIGHLIGHT`  | `true`    | Whether enable highlight                                           |
-| `MARKDOWN_EMOJI`      | `true`    | Whether enable emoji                                               |
-| `MARKDOWN_SUB`        | `true`    | Whether enable subscript                                           |
-| `MARKDOWN_SUP`        | `true`    | Whether enable superscript                                         |
-| `MARKDOWN_TEX`        | `mathjax` | Service to parse math, `mathjax` `katex` and `false` are supported |
-| `MARKDOWN_MATHJAX`    | `{}`      | MathJax Options                                                    |
-| `MARKDOWN_KATEX`      | `{}`      | KaTeX Options                                                      |
+| Environment Variables | Default   | Description                                        |
+| --------------------- | --------- | -------------------------------------------------- |
+| `MARKDOWN_CONFIG`     | `{}`      | MarkdownIt Config                                  |
+| `MARKDOWN_HIGHLIGHT`  | `true`    | Whether enable highlight                           |
+| `MARKDOWN_EMOJI`      | `true`    | Whether enable emoji                               |
+| `MARKDOWN_SUB`        | `true`    | 아래 첨자 활성화 여부                              |
+| `MARKDOWN_SUP`        | `true`    | 위 첨자 활성화 여부                                |
+| `MARKDOWN_TEX`        | `mathjax` | 수학 파싱 서비스, `mathjax`, `katex`, `false` 지원 |
+| `MARKDOWN_MATHJAX`    | `{}`      | MathJax 옵션                                       |
+| `MARKDOWN_KATEX`      | `{}`      | KaTeX 옵션                                         |
 
-## Mail Service
+## 메일 서비스
 
-The email service is used for email notification of user registration and comments. After configuring the variables related to the mail service, user registration will add operations related to email verification code confirmation to prevent malicious registration.
+메일 서비스는 사용자 등록 및 댓글의 이메일 알림에 사용됩니다. 메일 서비스 관련 변수를 구성한 후, 사용자 등록 시 이메일 검증 코드 확인과 관련된 작업을 추가하여 악의적인 등록을 방지합니다.
 
-| Environment variable name | Remarks                    |
-| ------------------------- | -------------------------- |
-| `SMTP_SERVICE`            | SMTP mail service provider |
-| `SMTP_HOST`               | SMTP server address        |
-| `SMTP_PORT`               | SMTP server port           |
-| `SMTP_USER`               | SMTP username              |
-| `SMTP_PASS`               | SMTP Password.             |
-| `SMTP_SECURE`             | SMTP connect with SSL      |
-| `SENDER_NAME`             | Customize sender name      |
-| `SENDER_EMAIL`            | Customize sender email     |
+| 환경 변수 이름 | 설명                      |
+| -------------- | ------------------------- |
+| `SMTP_SERVICE` | SMTP 메일 서비스 제공자   |
+| `SMTP_HOST`    | SMTP 서버 주소            |
+| `SMTP_PORT`    | SMTP 서버 포트            |
+| `SMTP_USER`    | SMTP 사용자명             |
+| `SMTP_PASS`    | SMTP 비밀번호.            |
+| `SMTP_SECURE`  | SSL로 SMTP 연결           |
+| `SENDER_NAME`  | 발신자 이름 사용자 정의   |
+| `SENDER_EMAIL` | 발신자 이메일 사용자 정의 |
 
 ::: tip
 
-Supported service providers can be found [nodemailer services](https://github.com/nodemailer/nodemailer/blob/master/lib/well-known/services.json). You can choose one of `SMTP_SERVICE` and (`SMTP_HOST`, `SMTP_PORT`). If you don't know the corresponding `SMTP_SERVICE` in the list, you need to configure `SMTP_HOST` and `SMTP_PORT`, which can probably be found in the mailbox settings.
+지원되는 서비스 제공자는 [nodemailer 서비스](https://github.com/nodemailer/nodemailer/blob/master/lib/well-known/services.json)에서 찾을 수 있습니다. `SMTP_SERVICE`와 (`SMTP_HOST`, `SMTP_PORT`) 중 하나를 선택할 수 있습니다. 목록에서 해당 `SMTP_SERVICE`를 모를 경우 `SMTP_HOST`와 `SMTP_PORT`를 구성해야 하며, 메일박스 설정에서 찾을 수 있습니다.
 
-The user name of SMTP usually supports the complete mailbox of the user, and the password is mostly the same as the mailbox password.
+SMTP 사용자명은 일반적으로 전체 메일박스를 지원하며, 비밀번호는 대부분 메일박스 비밀번호와 동일합니다.
 
-Please pay special attention that some mailboxes use separate SMTP passwords.
+일부 메일박스는 별도의 SMTP 비밀번호를 사용한다는 점에 특히 주의하세요.
 
 :::
 

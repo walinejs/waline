@@ -1,23 +1,23 @@
 ---
-title: User label
+title: 사용자 라벨
 icon: label
 order: 5
 ---
 
-Waline allows you to set level labels based on interactions and custom labels for logged-in users.
+Waline은 상호작용 기반의 등급 라벨과 로그인 사용자를 위한 맞춤 라벨을 설정할 수 있습니다.
 
-## Grade labels
+## 등급 라벨
 
-You need to configure the `LEVELS` variable on the server to enable this function, see [Server Environment Variable Configuration](../../reference/server/env.md#display).
+이 기능을 활성화하려면 서버에서 `LEVELS` 변수를 설정해야 합니다. [서버 환경 변수 설정](../../reference/server/env.md#display)을 참조하세요.
 
-You can customize these level labels via the locales option, see [Multilingual](./i18n.md#customize)
+locales 옵션을 통해 등급 라벨을 맞춤 설정할 수 있습니다. [다국어 설정](./i18n.md#customize)을 참조하세요.
 
-## Exclusive Label
+## 전용 라벨
 
-You can customize labels for users through the management side.
+관리 페이지를 통해 사용자에 대한 라벨을 맞춤 설정할 수 있습니다.
 
 ![Admin Label](./assets/label-admin.jpg)
 
-As a login user, you can also update your exclusive label at profile page.
+로그인 사용자는 프로필 페이지에서 자신의 전용 라벨을 업데이트할 수도 있습니다.
 
 ![Profile Label](./assets/label-profile.jpg)

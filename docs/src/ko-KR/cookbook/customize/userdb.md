@@ -1,12 +1,12 @@
 ---
-title: Custom User System
+title: 사용자 정의 사용자 시스템
 icon: users
 order: -1
 ---
 
-Although Waline provides a comment service based on user system storage, this user system is Waline's own. Many third-party websites have their own user systems, so some niche users want to integrate their own user systems into Waline.
+Waline은 사용자 시스템 저장소 기반의 댓글 서비스를 제공하지만, 이 사용자 시스템은 Waline 자체의 것입니다. 많은 서드파티 웹사이트는 자체 사용자 시스템을 가지고 있으므로, 일부 사용자는 자신의 사용자 시스템을 Waline에 통합하고 싶어합니다.
 
-We can use [custom database service](./database.md) to realize this function, the essence is to do the mapping of the underlying table.
+[사용자 정의 데이터베이스 서비스](./database.md)를 사용하여 이 기능을 구현할 수 있으며, 본질적으로 하위 테이블의 매핑을 수행하는 것입니다.
 
 ```js
 // index.js
@@ -24,9 +24,9 @@ module.exports = Application({
 });
 ```
 
-Through the above configuration, we have isolated the reading of the Waline user table. Next, we need to do field mapping for the input and output parameters. The input parameters map the fields back to the table fields in the third-party system, and the output parameters map the table fields in the third-party system back to Waline fields.
+위의 구성을 통해 Waline 사용자 테이블의 읽기를 분리했습니다. 다음으로, 입력 및 출력 매개변수에 대한 필드 매핑을 수행해야 합니다. 입력 매개변수는 필드를 서드파티 시스템의 테이블 필드로 다시 매핑하고, 출력 매개변수는 서드파티 시스템의 테이블 필드를 Waline 필드로 다시 매핑합니다.
 
-If you are more familiar with TypeScript, you can refer to the type definition below.
+TypeScript에 더 익숙하다면, 아래의 타입 정의를 참조할 수 있습니다.
 
 ```typescript
 type strNum = string | number;
@@ -74,7 +74,7 @@ function model(modelName): UsersModel | undefined {
 }
 ```
 
-The above can only ensure that there is no problem with the query of the database, but limited by the different encryption methods of the password, the encryption method inside Waline cannot be consistent with the encryption method used in the third-party website. For this situation, you need to customize the method of password encryption and verification.
+위의 방법으로 데이터베이스 쿼리에 문제가 없는지 확인할 수 있지만, 비밀번호의 암호화 방식이 다르기 때문에 Waline 내부의 암호화 방식이 서드파티 웹사이트에서 사용하는 암호화 방식과 일치하지 않을 수 있습니다. 이러한 상황에서는 비밀번호 암호화 및 검증 방법을 사용자 정의해야 합니다.
 
 ```js
 // index.js
@@ -95,4 +95,4 @@ module.exports = Application({
 });
 ```
 
-Based on the above two expansion capabilities, we can realize that Waline can use the user system of the third-party website.
+위의 두 가지 확장 기능을 기반으로, Waline이 서드파티 웹사이트의 사용자 시스템을 사용할 수 있도록 구현할 수 있습니다.

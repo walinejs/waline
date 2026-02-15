@@ -1,31 +1,31 @@
 ---
-title: Create a database on TiDB
+title: TiDB에서 데이터베이스 생성하기
 icon: tidb
 ---
 
-[TiDB](https://github.com/pingcap/tidb) is an open source NewSQL database. [TiDB Cloud](https://tidbcloud.com/) is the official online version, which provides 5GB of free storage for everyone to use. The following describes how to create a Waline database on TiDB Cloud.
+[TiDB](https://github.com/pingcap/tidb)는 오픈 소스 NewSQL 데이터베이스입니다. [TiDB Cloud](https://tidbcloud.com/)는 공식 온라인 버전으로, 모든 사용자에게 5GB의 무료 스토리지를 제공합니다. 다음은 TiDB Cloud에서 Waline 데이터베이스를 생성하는 방법을 설명합니다.
 
-## Create Database
+## 데이터베이스 생성
 
-1. After logging in to [TiDB Cloud](https://tidbcloud.com), a TiDB instance will be created automatically, directly click <kbd>cluster0</kbd> to enter the instance
+1. [TiDB Cloud](https://tidbcloud.com)에 로그인하면 TiDB 인스턴스가 자동으로 생성됩니다. <kbd>cluster0</kbd>를 직접 클릭하여 인스턴스로 진입합니다.
 
-   ![Enter instance](../../../assets/tidb-1.png)
+   ![인스턴스 진입](../../../assets/tidb-1.png)
 
-2. Select <kbd>Chat2Query</kbd> in the list on the left and change the content of [waline.tidb](https://github.com/walinejs/waline/blob/main/assets/waline.tidb) to `;` The distribution of statements is executed close to the interface. Click the <kbd>Run</kbd> blue button in the upper right corner for each sentence, or use the <kbd>Ctrl\/Command</kbd> + <kbd>Enter</kbd> shortcut key to execute
+2. 왼쪽 목록에서 <kbd>Chat2Query</kbd>를 선택하고, [waline.tidb](https://github.com/walinejs/waline/blob/main/assets/waline.tidb)의 내용을 `;` 기준으로 문장별로 나누어 인터페이스에서 실행합니다. 각 문장마다 오른쪽 상단의 <kbd>Run</kbd> 파란색 버튼을 클릭하거나, <kbd>Ctrl\/Command</kbd> + <kbd>Enter</kbd> 단축키를 사용하여 실행합니다.
    ![Step1](../../../assets/tidb-2.png)
    ![Step2](../../../assets/tidb-3.png)
    ![Step3](../../../assets/tidb-4.png)
    ![Step4](../../../assets/tidb-5.png)
    ![Step5](../../../assets/tidb-6.png)
 
-So far the Waline database has been created!
+여기까지 Waline 데이터베이스가 생성되었습니다!
 
-## Get Connection Configuration
+## 연결 설정 가져오기
 
-Click the <kbd>Overview</kbd> button on the left to enter the homepage, and select <kbd>Connect</kbd> in the upper right corner to get connection information.
+왼쪽의 <kbd>Overview</kbd> 버튼을 클릭하여 홈페이지로 이동하고, 오른쪽 상단의 <kbd>Connect</kbd>를 선택하여 연결 정보를 가져옵니다.
 
-'Connect with' select `Node.js`. In addition, you need to click <kbd>Reset password</kbd> in the lower right corner to generate a password.
+'Connect with'에서 `Node.js`를 선택합니다. 또한, 오른쪽 하단의 <kbd>Reset password</kbd>를 클릭하여 비밀번호를 생성해야 합니다.
 
-In this way, you can get the configuration related to the connection.
+이렇게 하면 연결 관련 설정을 얻을 수 있습니다.
 
-![Connection](../../../assets/tidb-7.png)
+![연결 정보](../../../assets/tidb-7.png)

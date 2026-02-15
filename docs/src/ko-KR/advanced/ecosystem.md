@@ -4,17 +4,17 @@ icon: ecosystem
 order: 3
 ---
 
-Waline is a classic Client/Server architecture, which provides a relatively complete API interface. you can implement your own client implementation based on the API provided by the server.
+Waline은 클래식한 클라이언트/서버 아키텍처로, 비교적 완전한 API 인터페이스를 제공합니다. 서버에서 제공하는 API를 기반으로 자체 클라이언트를 구현할 수 있습니다.
 
-## Clients
+## 클라이언트
 
 - [@waline/client](https://npmjs.com/@waline/client)
 
-  Official client implementation, build with Vue and TypeScript.
+  공식 클라이언트 구현체로, Vue와 TypeScript로 구축되었습니다.
 
 - [MiniValine](https://github.com/MiniValine/MiniValine)
 
-  By [@MHuiG](https://github.com/MHuiG) , supports Waline API. Usage:
+  [@MHuiG](https://github.com/MHuiG) 제작, Waline API를 지원합니다. 사용법:
 
   ```html
   <script src="https://unpkg.com/minivaline/dist/MiniValine.min.js"></script>
@@ -31,36 +31,36 @@ Waline is a classic Client/Server architecture, which provides a relatively comp
 
 - [sodesu](https://github.com/BeiyanYunyi/sodesu)
 
-  By [@BeiyanYunyi](https://github.com/BeiyanYunyi), build with Solid.js. For usage, see its README and [website](https://BeiyanYunyi.github.io/sodesu/)。
+  [@BeiyanYunyi](https://github.com/BeiyanYunyi) 제작, Solid.js로 구축되었습니다. 사용법은 README와 [웹사이트](https://BeiyanYunyi.github.io/sodesu/)를 참고하세요。
 
-## Rusty
+## Rust 구현
 
-[waline-mini](https://github.com/JQiue/waline-mini) is a server-side implementation in Rust, highly suitable for running in resource-constrained server environments.
+[waline-mini](https://github.com/JQiue/waline-mini)는 Rust로 구현된 서버 측 구현체로, 리소스가 제한된 서버 환경에서 실행하기에 매우 적합합니다.
 
-## Plugins
+## 플러그인
 
 ### Hexo
 
-- [@waline/hexo-next](https://npmjs.com/@waline/hexo-next): Waline comment system for NexT.
+- [@waline/hexo-next](https://npmjs.com/@waline/hexo-next): NexT용 Waline 댓글 시스템.
 
 ### Docsify
 
-- [docsify-waline](https://github.com/cxcn/docsify-waline): A simple comment plugin for docsify.
+- [docsify-waline](https://github.com/cxcn/docsify-waline): Docsify용 간단한 댓글 플러그인.
 
 ### VuePress
 
-- [vuepress-plugin-comment2](https://vuepress-theme-hope.github.io/v2/comment/): Comment system for VuePress2.
-- [@mr-hope/vuepress-plugin-comment](https://vuepress-theme-hope.github.io/v1/comment/): Comment system for VuePress1.
+- [vuepress-plugin-comment2](https://vuepress-theme-hope.github.io/v2/comment/): VuePress2용 댓글 시스템.
+- [@mr-hope/vuepress-plugin-comment](https://vuepress-theme-hope.github.io/v1/comment/): VuePress1용 댓글 시스템.
 
 ### Gatsby
 
-- [gatsby-plugin-waline](https://www.npmjs.com/package/gatsby-plugin-waline): Comment system plugin for Gatsby.
+- [gatsby-plugin-waline](https://www.npmjs.com/package/gatsby-plugin-waline): Gatsby용 댓글 시스템 플러그인.
 
-Others:
+기타:
 
-- [vuepress-plugin-comment-plus](https://github.com/SivanLaai/vuepress-plugin-comment-plus): Comment system plugin for VuePress.
+- [vuepress-plugin-comment-plus](https://github.com/SivanLaai/vuepress-plugin-comment-plus): VuePress용 댓글 시스템 플러그인.
 
-## Theme
+## 테마
 
 ### Hexo
 
@@ -88,8 +88,8 @@ Others:
 - [DoIt](https://github.com/HEIGE-PCloud/DoIt)
 - [Kenny](https://github.com/Kindle-deep/hugo-theme-Kenny)
 
-## More
+## 더 보기
 
-We are looking forward to more clients and plugins from the community to expand the Waline ecosystem. :tada:
+커뮤니티에서 Waline 생태계를 확장하기 위한 더 많은 클라이언트와 플러그인을 기대합니다. :tada:
 
-If you implement any Waline client, ecological plugin or theme including Waline, please send a PR and let us know!
+Waline 클라이언트, 생태계 플러그인 또는 Waline을 포함한 테마를 구현하셨다면, PR을 보내 알려주세요!

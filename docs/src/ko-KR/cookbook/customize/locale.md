@@ -1,28 +1,28 @@
 ---
-title: Customize Locale
+title: 로케일 사용자 정의
 icon: i18n
 ---
 
-This cookbook guides you to customize Waline multilingual and display text.
+이 가이드는 Waline의 다국어 설정과 표시 텍스트를 사용자 정의하는 방법을 안내합니다.
 
 <!-- more -->
 
-## Customize client language and text
+## 클라이언트 언어 및 텍스트 사용자 정의
 
-`@waline/client` provides the `locale` option, through which you can customize multiple languages and display text.
+`@waline/client`는 `locale` 옵션을 제공하며, 이를 통해 다국어 및 표시 텍스트를 사용자 정의할 수 있습니다.
 
-By default it uses the built-in multilingual literals and falls back to `en-US` (English US) if the language is not supported.
+기본적으로 내장된 다국어 리터럴을 사용하며, 지원되지 않는 언어의 경우 `en-US`(미국 영어)로 대체됩니다.
 
-You can pass a completed multilingual configuration to the `locale` option to add language support, or set several of these to override existing UI text.
+`locale` 옵션에 완성된 다국어 구성을 전달하여 언어 지원을 추가하거나, 일부를 설정하여 기존 UI 텍스트를 재정의할 수 있습니다.
 
-### Locale Options
+### locale 옵션
 
-- Level related:
-  - `level${number}`: Label for level number
+- 레벨 관련:
+  - `level${number}`: 레벨 번호의 라벨
 
   ::: tip
 
-  For example, you can customize the labels for 6 levels like this:
+  예를 들어, 6개 레벨의 라벨을 다음과 같이 사용자 정의할 수 있습니다:
 
   ```ts
   Waline.init({
@@ -39,83 +39,83 @@ You can pass a completed multilingual configuration to the `locale` option to ad
 
   :::
 
-- Reaction related:
-  - `reactionTitle`: Reaction title
-  - `reaction0`: Reaction 1 text
-  - `reaction1`: Reaction 2 text
-  - `reaction2`: Reaction 3 text
-  - `reaction3`: Reaction 4 text
-  - `reaction4`: Reaction 5 text
-  - `reaction5`: Reaction 6 text
-  - `reaction6`: Reaction 7 text
-  - `reaction7`: Reaction 8 text
-  - `reaction8`: Reaction 9 text
+- 리액션 관련:
+  - `reactionTitle`: 리액션 제목
+  - `reaction0`: 리액션 1 텍스트
+  - `reaction1`: 리액션 2 텍스트
+  - `reaction2`: 리액션 3 텍스트
+  - `reaction3`: 리액션 4 텍스트
+  - `reaction4`: 리액션 5 텍스트
+  - `reaction5`: 리액션 6 텍스트
+  - `reaction6`: 리액션 7 텍스트
+  - `reaction7`: 리액션 8 텍스트
+  - `reaction8`: 리액션 9 텍스트
 
-- UI related:
-  - `nick`: nickname
-  - `mail`: Email
-  - `link`: Link
-  - `placeholder`: Default text of comment box
-  - `sofa`: Display text when the comment area is empty
-  - `submit`: Submit button text
-  - `comment`: Comment button text
-  - `refresh`: Refresh button text
-  - `more`: Load more button text
-  - `uploading`: display text when uploading
-  - `login`: login button text
-  - `admin`: The label of the administrator
-  - `sticky`: Sticky text
-  - `word`: word
-  - `anonymous`: anonymous user default name
-  - `optional`: text indicating optional options
-  - `gifSearchPlaceholder`: emoji search placeholder text
-  - `oldest`: oldest comment
-  - `latest`: latest comment
-  - `hottest`: hottest comment
-
-  ::: info
-
-  The above text will be displayed in page.
-
-  :::
-
-- Prompt information related:
-  - `nickError`: Error message that the nickname does not meet the conditions
-  - `mailError`: The error message that the mailbox does not meet the conditions
-  - `wordHint`: Error prompt for comment word count, where `$0` `$1` `$2` will be automatically replaced with the lower limit of the allowed word count, the upper limit of the allowed word count, and the current word count.
-
-- Comment time related:
-  - `seconds`: seconds ago
-  - `minutes`: minutes ago
-  - `hours`: hours ago
-  - `days`: days ago
-  - `now`: just now
-
-- Management related:
-  - `approved`: Button which marks comment as approved
-  - `waiting`: Button which marks comment waiting for review
-  - `spam`: Button which marks comments as spam
-  - `unsticky`: Button which unsticky comment
-
-- Accessibility related:
-  - `like`: the label text of like button
-  - `cancelLike`: the label text of the cancel like button
-  - `reply`: the label text of the reply button
-  - `cancelReply`: the label text of the cancel reply button
-  - `preview`: Preview button label text
-  - `emoji`: the label text of the emoji button
-  - `gif`: The label text of Gif button
-  - `uploadImage`: the label text of the upload image button
-  - `profile`: The link title of profile page
-  - `logout`: the label text of the logout button
+- UI 관련:
+  - `nick`: 닉네임
+  - `mail`: 이메일
+  - `link`: 링크
+  - `placeholder`: 댓글 입력란 기본 텍스트
+  - `sofa`: 댓글 영역이 비어있을 때 표시되는 텍스트
+  - `submit`: 제출 버튼 텍스트
+  - `comment`: 댓글 버튼 텍스트
+  - `refresh`: 새로고침 버튼 텍스트
+  - `more`: 더 보기 버튼 텍스트
+  - `uploading`: 업로드 중 표시 텍스트
+  - `login`: 로그인 버튼 텍스트
+  - `admin`: 관리자 라벨
+  - `sticky`: 고정 텍스트
+  - `word`: 단어
+  - `anonymous`: 익명 사용자 기본 이름
+  - `optional`: 선택 사항을 나타내는 텍스트
+  - `gifSearchPlaceholder`: 이모지 검색 플레이스홀더 텍스트
+  - `oldest`: 가장 오래된 댓글
+  - `latest`: 최신 댓글
+  - `hottest`: 인기 댓글
 
   ::: info
 
-  These texts are only for accessibility purpose and will not be displayed on the page.
+  위 텍스트는 페이지에 표시됩니다.
 
   :::
 
-### Example
+- 프롬프트 정보 관련:
+  - `nickError`: 닉네임이 조건을 충족하지 않을 때의 오류 메시지
+  - `mailError`: 이메일이 조건을 충족하지 않을 때의 오류 메시지
+  - `wordHint`: 댓글 글자 수에 대한 오류 프롬프트로, `$0` `$1` `$2`는 각각 허용 글자 수의 하한, 상한, 현재 글자 수로 자동 대체됩니다.
+
+- 댓글 시간 관련:
+  - `seconds`: 초 전
+  - `minutes`: 분 전
+  - `hours`: 시간 전
+  - `days`: 일 전
+  - `now`: 방금 전
+
+- 관리 관련:
+  - `approved`: 댓글을 승인으로 표시하는 버튼
+  - `waiting`: 댓글을 검토 대기로 표시하는 버튼
+  - `spam`: 댓글을 스팸으로 표시하는 버튼
+  - `unsticky`: 댓글 고정을 해제하는 버튼
+
+- 접근성 관련:
+  - `like`: 좋아요 버튼의 라벨 텍스트
+  - `cancelLike`: 좋아요 취소 버튼의 라벨 텍스트
+  - `reply`: 답글 버튼의 라벨 텍스트
+  - `cancelReply`: 답글 취소 버튼의 라벨 텍스트
+  - `preview`: 미리보기 버튼 라벨 텍스트
+  - `emoji`: 이모지 버튼의 라벨 텍스트
+  - `gif`: GIF 버튼의 라벨 텍스트
+  - `uploadImage`: 이미지 업로드 버튼의 라벨 텍스트
+  - `profile`: 프로필 페이지 링크 제목
+  - `logout`: 로그아웃 버튼의 라벨 텍스트
+
+  ::: info
+
+  이 텍스트들은 접근성 용도로만 사용되며 페이지에 표시되지 않습니다.
+
+  :::
+
+### 예시
 
 ```js
 // en default
@@ -180,16 +180,16 @@ Waline.init({
 });
 ```
 
-## Customize server response text
+## 서버 응답 텍스트 사용자 정의
 
-`@waline/vercel` provides a `locales` option that allows you to customize the response text.
+`@waline/vercel`은 응답 텍스트를 사용자 정의할 수 있는 `locales` 옵션을 제공합니다.
 
-By default, it uses the built-in multilingual text, and falls back to `en-US` language text if the language is not supported.
+기본적으로 내장된 다국어 텍스트를 사용하며, 지원되지 않는 언어의 경우 `en-US` 언어 텍스트로 대체됩니다.
 
-You can pass a completed multilingual configuration to the `locales` option to add language support, or set some of them to override the existing text.
+`locales` 옵션에 완성된 다국어 구성을 전달하여 언어 지원을 추가하거나, 일부를 설정하여 기존 텍스트를 재정의할 수 있습니다.
 ::: tip
 
-All custom text will eventually be rendered using the nunjucks template engine, which supports writing some relatively complex logical expressions. For example:
+모든 사용자 정의 텍스트는 최종적으로 nunjucks 템플릿 엔진을 사용하여 렌더링되며, 비교적 복잡한 논리 표현식을 작성할 수 있습니다. 예를 들어:
 
 ```
 Registration confirm mail send failed, please {%- if isAdmin -%}check your mail configuration{%- else -%}check your email address and contact administrator{%- endif -%}.
@@ -197,9 +197,9 @@ Registration confirm mail send failed, please {%- if isAdmin -%}check your mail 
 
 :::
 
-### locale 选项
+### locale 옵션
 
-- Prompt information related:
+- 프롬프트 정보 관련:
   - `import data format not support!`
   - `USER_EXIST`
   - `USER_NOT_EXIST`
@@ -209,20 +209,20 @@ Registration confirm mail send failed, please {%- if isAdmin -%}check your mail 
   - `Duplicate Content`
   - `Comment too fast`
 
-- Register/Login mail notification related:
+- 가입/로그인 메일 알림 관련:
   - `[{{name | safe}}] Registration Confirm Mail`
   - `Please click <a href=\"{{url}}\">{{url}}<a/> to confirm registration, the link is valid for 1 hour. If you are not registering, please ignore this email.`
   - `[{{name | safe}}] Reset Password`
   - `Please click <a href=\"{{url}}\">{{url}}</a> to login and change your password as soon as possible!`
   - `Registration confirm mail send failed, please {%- if isAdmin -%}check your mail configuration{%- else -%}check your email address and contact administrator{%- endif -%}.`
 
-- Comment mail notification related:
+- 댓글 메일 알림 관련:
   - `MAIL_SUBJECT`：`Your comment on {{site.name | safe}} received a reply`
   - `MAIL_TEMPLATE`：`<div style='border-top:2px solid #12ADDB;box-shadow:0 1px 3px #AAAAAA;line-height:180%;padding:0 15px 12px;margin:50px auto;font-size:12px;'> <h2 style='border-bottom:1px solid #DDD;font-size:14px;font-weight:normal;padding:13px 0 10px 8px;'> Your comment on <a style='text-decoration:none;color: #12ADDB;' href='{{site.url}}' target='_blank'>{{site.name}}</a> received a reply </h2>{{parent.nick}}, you wrote: <div style='padding:0 12px 0 12px;margin-top:18px'> <div style='background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;'>{{parent.comment | safe}}</div><p><strong>{{self.nick}}</strong> replied:</p><div style='background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;'>{{self.comment | safe}}</div><p><a style='text-decoration:none; color:#12addb' href='{{site.postUrl}}' target='_blank'>View full reply</a> or visit <a style='text-decoration:none; color:#12addb' href='{{site.url}}' target='_blank'>{{site.name}}</a>.</p><br/> </div></div>`
   - `MAIL_SUBJECT_ADMIN`：`New comment on {{site.name | safe}}`
   - `MAIL_TEMPLATE_ADMIN`：`<div style='border-top:2px solid #12ADDB;box-shadow:0 1px 3px #AAAAAA;line-height:180%;padding:0 15px 12px;margin:50px auto;font-size:12px;'> <h2 style='border-bottom:1px solid #DDD;font-size:14px;font-weight:normal;padding:13px 0 10px 8px;'> New comment on <a style='text-decoration:none;color: #12ADDB;' href='{{site.url}}' target='_blank'>{{site.name}}</a> </h2> <p><strong>{{self.nick}}</strong> wrote:</p><div style='background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;'>{{self.comment | safe}}</div><p><a style='text-decoration:none; color:#12addb' href='{{site.postUrl}}' target='_blank'>View page</a></p><br/></div>`
 
-### Example
+### 예시
 
 ```js
 // index.js

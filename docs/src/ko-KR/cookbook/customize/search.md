@@ -1,17 +1,17 @@
 ---
-title: Customize Emoticons Search
+title: 이모티콘 검색 사용자 정의
 icon: search
 ---
 
-This tutorial guides you on how to customize the emoji search service via the `search` option provided by `@waline/client`.
+이 튜토리얼에서는 `@waline/client`에서 제공하는 `search` 옵션을 통해 이모지 검색 서비스를 사용자 정의하는 방법을 안내합니다.
 
 <!-- more -->
 
-## search result conversion
+## 검색 결과 변환
 
-You may get different results when using different third-party image search services. After getting the search result, you need to convert it to the format required by `@waline/client`.
+서로 다른 타사 이미지 검색 서비스를 사용하면 다른 결과를 얻을 수 있습니다. 검색 결과를 가져온 후, `@waline/client`에서 요구하는 형식으로 변환해야 합니다.
 
-For any of the following operations, `@waline/client` requires you to return an array of image information in the following format:
+다음 작업을 수행하려면 `@waline/client`에서 다음 형식의 이미지 정보 배열을 반환해야 합니다:
 
 ```ts
 interface WalineSearchImageData extends Record<string, unknown> {
@@ -40,21 +40,21 @@ interface WalineSearchImageData extends Record<string, unknown> {
 type WalineSearchResult = WalineSearchImageData[];
 ```
 
-You need to ensure that each object of the array contains at least the `src` attribute to indicate the address of the image.
+배열의 각 객체에 최소한 `src` 속성이 포함되어 이미지 주소를 나타내야 합니다.
 
-Also, where possible, you should provide an alt text `title` to help with accessibility and in case of image service failures.
+또한 가능한 경우 접근성 향상 및 이미지 서비스 장애 시를 대비하여 alt 텍스트 `title`을 제공해야 합니다.
 
-In order to make the list load faster, as long as the image service can return multiple sizes of image URLs, you should choose a small size image as `preview` to improve the loading speed of the list image.
+목록 로딩 속도를 높이기 위해, 이미지 서비스에서 여러 크기의 이미지 URL을 반환할 수 있다면 작은 크기의 이미지를 `preview`로 선택하여 목록 이미지 로딩 속도를 개선해야 합니다.
 
 ::: note
 
-`@waline/client` doesn't care if there are extra properties in the image result, so you don't need to deliberately remove other keys from the returned result.
+`@waline/client`는 이미지 결과에 추가 속성이 있는지 신경 쓰지 않으므로, 반환된 결과에서 다른 키를 일부러 제거할 필요가 없습니다.
 
 :::
 
-## Search Option
+## 검색 옵션
 
-`@waline/client` provides three sub-options to control search behavior:
+`@waline/client`는 검색 동작을 제어하기 위한 세 가지 하위 옵션을 제공합니다:
 
 ```ts
 interface WalineSearchOptions {
@@ -81,9 +81,9 @@ interface WalineSearchOptions {
 }
 ```
 
-Since you need to implement at least the search logic, `search` is required. `@waline/client` will pass in the user search term and call this option function, and wait for this function to return a Promise to complete the search result.
+최소한 검색 로직을 구현해야 하므로 `search`는 필수입니다. `@waline/client`는 사용자 검색어를 전달하고 이 옵션 함수를 호출하며, 이 함수가 Promise를 반환하여 검색 결과를 완성할 때까지 기다립니다.
 
-We want users to see some hot images or emoji results when they open it, so we provide the `default` function to implement this behavior. If your service provider provides an interface for popular pictures or emoticons, you should use this interface to return content. Also, since the default behavior of this function is to search for empty strings, if your search provider returns empty results in this situation, we recommend that you add a brief implementation of random preset words to avoid showing an empty list.
+사용자가 목록을 열 때 인기 이미지나 이모지 결과를 볼 수 있도록 `default` 함수를 제공합니다. 서비스 제공업체에서 인기 이미지나 이모티콘 인터페이스를 제공하는 경우, 이 인터페이스를 사용하여 콘텐츠를 반환해야 합니다. 또한 이 함수의 기본 동작은 빈 문자열을 검색하는 것이므로, 검색 제공업체에서 이 경우 빈 결과를 반환한다면 빈 목록이 표시되는 것을 방지하기 위해 랜덤 프리셋 단어의 간단한 구현을 추가하는 것이 좋습니다.
 
 ```js
 const search = (word) => {
@@ -105,19 +105,19 @@ Waline.init({
 });
 ```
 
-Usually, your search service will support pagination, so we provide a `more` function to trigger when the user swipes to the bottom and load more images to let you return more results. For a better experience, we recommend setting the number of pagination to 20 - 40, that is, 20 - 40 images are loaded each time.
+일반적으로 검색 서비스는 페이지네이션을 지원하므로, 사용자가 하단으로 스크롤할 때 더 많은 이미지를 로드하여 더 많은 결과를 반환할 수 있는 `more` 함수를 제공합니다. 더 나은 경험을 위해 페이지네이션 수를 20 - 40으로 설정하는 것을 권장합니다. 즉, 매번 20 - 40개의 이미지가 로드됩니다.
 
-::: tip An example to help understand
+::: tip 이해를 돕기 위한 예시
 
-When the user clicks the search button, we will trigger `default()`, if this function is missing, we will trigger `search('')`, and we will wait for the Promise to execute and render with the returned result.
+사용자가 검색 버튼을 클릭하면 `default()`를 트리거합니다. 이 함수가 없으면 `search('')`를 트리거하고, Promise가 실행될 때까지 기다린 후 반환된 결과로 렌더링합니다.
 
-When the user searches for `smile`, we execute `search('smile')`. Suppose you return 20 results each time, when the user continues to scroll down, we will trigger `more('smile', 20)`, `more('smile', 40)`, `more('smile', 60 )` ...
+사용자가 `smile`을 검색하면 `search('smile')`을 실행합니다. 매번 20개의 결과를 반환한다고 가정하면, 사용자가 계속 아래로 스크롤하면 `more('smile', 20)`, `more('smile', 40)`, `more('smile', 60)` ... 을 트리거합니다.
 
 :::
 
-## Examples
+## 예시
 
-::: details Default implementation
+::: details 기본 구현
 
 @[code{33-79}](../../../../../packages/client/src/config/default.ts)
 

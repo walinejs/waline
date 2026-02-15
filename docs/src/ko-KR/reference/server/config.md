@@ -1,33 +1,33 @@
 ---
-title: Server Config
+title: 서버 설정
 icon: config
 ---
 
-The following options need to be configured in the server entry file `index.js`.
+다음 옵션은 서버 진입 파일 `index.js`에서 설정해야 합니다.
 
 ::: warning
 
-If you are using template, please note that you need to save these configurations yourself, because they will be overwritten when you pull the latest official template.
+템플릿을 사용하는 경우, 최신 공식 템플릿을 가져올 때 덮어쓰기되므로 이러한 설정을 직접 저장해야 합니다.
 
-We recommend you to create a repo from the official template and make your changes there.
+공식 템플릿에서 저장소를 생성하고 거기에서 변경하는 것을 권장합니다.
 
 :::
 
-## Basic Options
+## 기본 옵션
 
 ### plugins
 
-- Type: `plugin[]`
+- 타입: `plugin[]`
 
-See [Plugin System](./plugin.md) for details
+자세한 내용은 [플러그인 시스템](./plugin.md)을 참조하세요.
 
 ### secureDomains
 
-- Type: `string | RegExp | string[] | RegExp[]`
+- 타입: `string | RegExp | string[] | RegExp[]`
 
-Secure domain settings. Requests from other domain will receive 403 status code. It supports String, Regexp, and Array type. Leaving this config means that all domain referrer are allowed.
+보안 도메인 설정. 다른 도메인의 요청은 403 상태 코드를 받습니다. String, Regexp, Array 타입을 지원합니다. 이 설정을 비워두면 모든 도메인 리퍼러가 허용됩니다.
 
-::: details Example
+::: details 예시
 
 ```js
 // index.js
@@ -42,18 +42,18 @@ module.exports = Waline({
 
 ::: tip
 
-- To make local development easier, `localhost` and `127.0.0.1` will be added to the list of secure domain names by default.
-- Env variable `SECURE_DOMAINS` won't work when this option is set.
+- 로컬 개발을 용이하게 하기 위해 `localhost`와 `127.0.0.1`이 기본적으로 보안 도메인 목록에 추가됩니다.
+- 이 옵션이 설정되면 환경 변수 `SECURE_DOMAINS`는 작동하지 않습니다.
 
 :::
 
 ### forbiddenWords
 
-- Type: `string[]`
+- 타입: `string[]`
 
-If a comment match forbidden word, it will be marked as spam.
+댓글이 금지 단어와 일치하면 스팸으로 표시됩니다.
 
-::: details Example
+::: details 예시
 
 ```js
 // index.js
@@ -68,11 +68,11 @@ module.exports = Waline({
 
 ### disallowIPList
 
-- Type: `string[]`
+- 타입: `string[]`
 
-If a comment ip match this list, 403 status code is returned.
+댓글 IP가 이 목록과 일치하면 403 상태 코드가 반환됩니다.
 
-::: details Example
+::: details 예시
 
 ```js
 // index.js
@@ -87,67 +87,67 @@ module.exports = Waline({
 
 ### mailSubject
 
-- Type: `string`
+- 타입: `string`
 
-Customize the title of the comment reply email, which is equivalent to environment variable `MAIL_SUBJECT`.
+댓글 답글 이메일의 제목을 사용자 정의합니다. 환경 변수 `MAIL_SUBJECT`와 동일합니다.
 
 ### mailTemplate
 
-- Type: `string`
+- 타입: `string`
 
-Customize the content of the comment reply email, which is equivalent to environment variable `MAIL_TEMPLATE`.
+댓글 답글 이메일의 내용을 사용자 정의합니다. 환경 변수 `MAIL_TEMPLATE`와 동일합니다.
 
 ### mailSubjectAdmin
 
-- Type: `string`
+- 타입: `string`
 
-Customize the title of the new comment notification email, which is equivalent to the environment variable `MAIL_SUBJECT_ADMIN`.
+새 댓글 알림 이메일의 제목을 사용자 정의합니다. 환경 변수 `MAIL_SUBJECT_ADMIN`과 동일합니다.
 
 ### mailTemplateAdmin
 
-- Type: `string`
+- 타입: `string`
 
-Customize the content of the new comment notification email, which is equivalent to the environment variable `MAIL_TEMPLATE_ADMIN`.
+새 댓글 알림 이메일의 내용을 사용자 정의합니다. 환경 변수 `MAIL_TEMPLATE_ADMIN`과 동일합니다.
 
 ### QQTemplate
 
-- Type: `string`
+- 타입: `string`
 
-The QQ comment notification template, which is equivalent to the environment variable `QQ_TEMPLATE`.
+QQ 댓글 알림 템플릿으로, 환경 변수 `QQ_TEMPLATE`와 동일합니다.
 
 ### TGTemplate
 
-- Type: `string`
+- 타입: `string`
 
-Telegram comment notification template, which is equivalent to the environment variable `TG_TEMPLATE`.
+Telegram 댓글 알림 템플릿으로, 환경 변수 `TG_TEMPLATE`와 동일합니다.
 
 ### model
 
-- type: `class`
+- 타입: `class`
 
-For details, see [Customize Database Service](../../cookbook/customize/database.md)
+자세한 내용은 [데이터베이스 서비스 사용자 정의](../../cookbook/customize/database.md)를 참조하세요.
 
 ### encryptPassword
 
-- type: `function`
+- 타입: `function`
 
-See [Customize User System](../../cookbook/customize/userdb.md) for details
+자세한 내용은 [사용자 시스템 사용자 정의](../../cookbook/customize/userdb.md)를 참조하세요.
 
 ### locales
 
-- type: `Record<string, Record<string, string>>`
+- 타입: `Record<string, Record<string, string>>`
 
-See [Custom Locale](../../cookbook/customize/locale.md)
+[사용자 정의 로케일](../../cookbook/customize/locale.md)을 참조하세요.
 
-## Comment Hooks
+## 댓글 훅
 
-Besides environment variable configuration, Waline also provides some custom hooks to facilitate the processing of custom requirements. It only needs to be configured in the server entry file `index.js`.
+환경 변수 설정 외에도 Waline은 사용자 정의 요구 사항을 쉽게 처리할 수 있도록 일부 사용자 정의 훅을 제공합니다. 서버 진입 파일 `index.js`에서 설정하면 됩니다.
 
 ### preSave(comment)
 
-Waline provides some custom hooks to let users customize Waline server behavior according to their own needs.
+Waline은 사용자가 자신의 필요에 따라 Waline 서버 동작을 사용자 정의할 수 있도록 일부 사용자 정의 훅을 제공합니다.
 
-::: details Example
+::: details 예시
 
 ```js
 // index.js
@@ -167,11 +167,11 @@ module.exports = Waline({
 
 ### postSave(comment, pComment)
 
-The action performed after the comment is posted.
+댓글이 게시된 후 수행되는 동작입니다.
 
-When the method is executed, the comment data will be passed as the first param, and if it's a reply to the comment, the parent comment will be passed as the second param.
+메서드가 실행될 때 댓글 데이터가 첫 번째 매개변수로 전달되며, 댓글에 대한 답글인 경우 부모 댓글이 두 번째 매개변수로 전달됩니다.
 
-::: details Example
+::: details 예시
 
 ```js
 // index.js
@@ -191,9 +191,9 @@ module.exports = Waline({
 
 ### preUpdate(comment)
 
-Action before a comment content is updated in the dashboard. If the method returns content, the interface will return directly without updating the comment data.
+대시보드에서 댓글 내용이 업데이트되기 전의 동작입니다. 메서드가 내용을 반환하면 댓글 데이터를 업데이트하지 않고 인터페이스가 바로 반환됩니다.
 
-::: details Example
+::: details 예시
 
 ```js
 // index.js
@@ -210,9 +210,9 @@ module.exports = Waline({
 
 ### afterUpdate(comment)
 
-Action after a comment content is updated in the dashboard. Comment data will be passed in when the method is executed.
+대시보드에서 댓글 내용이 업데이트된 후의 동작입니다. 메서드가 실행될 때 댓글 데이터가 전달됩니다.
 
-::: details Example
+::: details 예시
 
 ```js
 // index.js
@@ -229,9 +229,9 @@ module.exports = Waline({
 
 ### preDelete(commentId)
 
-Action before a comment is deleted. When the method is executed, the comment Id to be operated will be passed in. If the method returns content, the interface will return directly without updating the comment data.
+댓글이 삭제되기 전의 동작입니다. 메서드가 실행될 때 작업할 댓글 ID가 전달됩니다. 메서드가 내용을 반환하면 댓글 데이터를 업데이트하지 않고 인터페이스가 바로 반환됩니다.
 
-::: details Example
+::: details 예시
 
 ```js
 // index.js
@@ -248,9 +248,9 @@ module.exports = Waline({
 
 ### afterDelete(commentId)
 
-Action after a comment is deleted, the comment Id will be passed as the only param.
+댓글이 삭제된 후의 동작으로, 댓글 ID가 유일한 매개변수로 전달됩니다.
 
-::: details Example
+::: details 예시
 
 ```js
 // index.js

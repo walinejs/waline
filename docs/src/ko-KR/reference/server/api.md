@@ -3,99 +3,99 @@ title: API
 icon: api
 ---
 
-## Comment
+## 댓글
 
-### Comment List
+### 댓글 목록
 
-Get comment list for article
+게시글의 댓글 목록을 가져옵니다.
 
 ```http
 GET /api/comment
 ```
 
-**Parameters**:
+**매개변수**:
 
-| Parameter | Type   | Description                                                                                                                                               |
-| --------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| path      | string | Article id for comment                                                                                                                                    |
-| page      | number | Comment page                                                                                                                                              |
-| pageSize  | number | Comment list page size                                                                                                                                    |
-| sortBy    | string | Which sort type for comment list, default descending sort by create time, also you can ascending sort by create_time, or descending sort by comment like. |
+| 매개변수 | 타입   | 설명                                                                                                                                   |
+| -------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------- |
+| path     | string | 댓글의 게시글 ID                                                                                                                       |
+| page     | number | 댓글 페이지                                                                                                                            |
+| pageSize | number | 댓글 목록 페이지 크기                                                                                                                  |
+| sortBy   | string | 댓글 목록의 정렬 방식, 기본적으로 생성 시간 기준 내림차순 정렬이며, 생성 시간 기준 오름차순 또는 좋아요 수 기준 내림차순도 가능합니다. |
 
-### Comment Count
+### 댓글 수
 
-Get comment count for article
+게시글의 댓글 수를 가져옵니다.
 
 ```http
 GET /api/comment?type=count
 ```
 
-**Parameters**:
+**매개변수**:
 
-| Parameter | Type   | Description                                                   |
-| --------- | ------ | ------------------------------------------------------------- |
-| url       | string | Article id for comment, return site comment count if it empty |
+| 매개변수 | 타입   | 설명                                                     |
+| -------- | ------ | -------------------------------------------------------- |
+| url      | string | 댓글의 게시글 ID, 비어 있으면 사이트 전체 댓글 수를 반환 |
 
-### Recent Comment
+### 최근 댓글
 
-Get recent comment
+최근 댓글을 가져옵니다.
 
 ```http
 GET /api/comment?type=recent
 ```
 
-**Parameters**:
+**매개변수**:
 
-| Parameter | Type   | Description          |
-| --------- | ------ | -------------------- |
-| count     | number | comment count return |
+| 매개변수 | 타입   | 설명           |
+| -------- | ------ | -------------- |
+| count    | number | 반환할 댓글 수 |
 
-### Submit comment
+### 댓글 제출
 
 ```http
 POST /api/comment
 ```
 
-**Parameters**:
+**매개변수**:
 
-| Parameter | Type   | Description                         |
-| --------- | ------ | ----------------------------------- |
-| comment   | string | comment content                     |
-| link      | string | commentator site                    |
-| mail      | string | commentator email                   |
-| nick      | string | commentator nick                    |
-| pid       | string | comment id which one replied        |
-| rid       | string | root comment id which one owned     |
-| ua        | string | commentator's user agent            |
-| url       | string | Article id for comment              |
-| at        | string | comment nick name which one replied |
+| 매개변수 | 타입   | 설명                         |
+| -------- | ------ | ---------------------------- |
+| comment  | string | 댓글 내용                    |
+| link     | string | 댓글 작성자 사이트           |
+| mail     | string | 댓글 작성자 이메일           |
+| nick     | string | 댓글 작성자 닉네임           |
+| pid      | string | 답글 대상 댓글 ID            |
+| rid      | string | 소속 루트 댓글 ID            |
+| ua       | string | 댓글 작성자의 User Agent     |
+| url      | string | 댓글의 게시글 ID             |
+| at       | string | 답글 대상 댓글 작성자 닉네임 |
 
-## Reading statistics
+## 조회수 통계
 
-### Get reading statistics
+### 조회수 통계 가져오기
 
-Get the number of readings corresponding to an article or multiple articles.
+하나 또는 여러 게시글에 해당하는 조회수를 가져옵니다.
 
 ```http
 GET /api/article
 ```
 
-**Parameters**:
+**매개변수**:
 
-| Parameter | Type   | Description                                                         |
-| --------- | ------ | ------------------------------------------------------------------- |
-| path      | string | Article id for comment，multiple ids should be spliced with commas. |
+| 매개변수 | 타입   | 설명                                                |
+| -------- | ------ | --------------------------------------------------- |
+| path     | string | 댓글의 게시글 ID, 여러 ID는 쉼표로 연결해야 합니다. |
 
-### Update reading statistics
+### 조회수 통계 업데이트
 
-Update the reading count of an article.
+게시글의 조회수를 업데이트합니다.
 
 ```http
 POST /api/article
 ```
 
-**Parameters**:
+**매개변수**:
 
-| Parameter | Type   | Description            |
-| --------- | ------ | ---------------------- |
-| path      | string | Article id for comment |
+| 매개변수 | 타입   | 설명             |
+| -------- | ------ | ---------------- |
+| path     | string | 댓글의 게시글 ID |

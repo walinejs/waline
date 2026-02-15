@@ -1,14 +1,14 @@
 ---
-title: Self Host
+title: 자체 호스팅
 icon: server
 order: -1
 ---
 
-If you don't want to deploy the server on Vercel, you can also choose to deploy on your own server.
+서버를 Vercel에 배포하고 싶지 않다면, 자체 서버에 배포할 수도 있습니다.
 
 <!-- more -->
 
-## Docker Deploy
+## Docker 배포
 
 ```bash
 docker run -d \
@@ -16,9 +16,9 @@ docker run -d \
   lizheming/waline
 ```
 
-It's a demo for how to run waline. You also need add some database environment if you want all comment function works well.
+이것은 waline을 실행하는 방법에 대한 데모입니다. 모든 댓글 기능이 정상적으로 작동하려면 데이터베이스 환경 변수도 추가해야 합니다.
 
-::: tip How to build image?
+::: tip 이미지를 빌드하는 방법은?
 
 ```bash
 git clone https://github.com/lizheming/waline.git
@@ -28,11 +28,11 @@ docker build -t lizheming/waline -f packages/server/Dockerfile .
 
 :::
 
-### via [docker stack deploy](https://docs.docker.com/engine/reference/commandline/stack_deploy/) or [docker-compose](https://github.com/docker/compose)
+### [docker stack deploy](https://docs.docker.com/engine/reference/commandline/stack_deploy/) 또는 [docker-compose](https://github.com/docker/compose) 사용
 
-The SQLite is used here as an example. For SQLite and supported database services, please refer to [Multi-database service support](../database.md#sqlite).
+여기서는 SQLite를 예시로 사용합니다. SQLite 및 지원되는 데이터베이스 서비스에 대해서는 [다중 데이터베이스 서비스 지원](../database.md#sqlite)을 참고하세요.
 
-Example `docker-compose.yml` for `waline`:
+`waline`을 위한 `docker-compose.yml` 예시:
 
 ```yaml
 # docker-compose.yml
@@ -57,9 +57,9 @@ services:
       AUTHOR_EMAIL: 'mail@example.com'
 ```
 
-## Run directly (Recommended)
+## 직접 실행 (권장)
 
-It's easy to run without using docker deployment, after setting environment variables, just run the `vanilla.js` file in the module after installing.
+Docker 배포를 사용하지 않고도 쉽게 실행할 수 있습니다. 환경 변수를 설정한 후, 모듈을 설치하고 `vanilla.js` 파일을 실행하면 됩니다.
 
 ::: code-tabs#shell
 
@@ -79,9 +79,9 @@ node node_modules/@waline/vercel/vanilla.js
 
 :::
 
-## Nginx config
+## Nginx 설정
 
-If you don't want to use port in server url, you can use Nginx proxy pass to 80 and 443. Refer to the following configuration:
+서버 URL에 포트를 사용하고 싶지 않다면, Nginx 프록시 패스를 사용하여 80 및 443 포트로 전달할 수 있습니다. 다음 설정을 참고하세요:
 
 ```nginx
 server

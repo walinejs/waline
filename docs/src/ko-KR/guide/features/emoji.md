@@ -1,16 +1,16 @@
 ---
-title: Emoji Customize
+title: 이모지 사용자 정의
 icon: emoji
 order: 2
 ---
 
-You can customize the emoji of the comment box by setting `emoji` option, you should set it to an **array** containing _preset link_ or _preset config object_. If you don't want it, just set it to `false`.
+`emoji` 옵션을 설정하여 댓글 상자의 이모지를 사용자 정의할 수 있습니다. _프리셋 링크_ 또는 _프리셋 설정 객체_를 포함하는 **배열**로 설정해야 합니다. 이모지를 원하지 않는 경우 `false`로 설정하면 됩니다.
 
 <!-- more -->
 
-## Presets
+## 프리셋
 
-Waline provides a series of emoji presets that can be used out of box. You can add them directly to the `emoji` options:
+Waline은 바로 사용할 수 있는 일련의 이모지 프리셋을 제공합니다. `emoji` 옵션에 직접 추가할 수 있습니다:
 
 - Alus
 
@@ -49,8 +49,8 @@ Waline provides a series of emoji presets that can be used out of box. You can a
     https://unpkg.com/@waline/emojis@1.4.0/tw-emoji
     ```
 
-  ::: details Others presets
-  - Full: (Not recommended)
+  ::: details 기타 프리셋
+  - Full: (권장하지 않음)
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw
@@ -138,11 +138,11 @@ Waline provides a series of emoji presets that can be used out of box. You can a
 
 ::: warning
 
-Waline DO NOT have any copyright of above emojis, use them at your own risk.
+Waline은 위 이모지에 대한 저작권을 보유하고 있지 않으며, 사용에 따른 책임은 본인에게 있습니다.
 
 :::
 
-### Example
+### 예시
 
 ```html
 <div id="waline"></div>
@@ -159,6 +159,6 @@ Waline DO NOT have any copyright of above emojis, use them at your own risk.
 </script>
 ```
 
-## Create your own presets
+## 나만의 프리셋 만들기
 
-Besides the presets provided by Waline, you can create your own presets, see [Guide → Create Emoji Presets](../../cookbook/customize/emoji.md).
+Waline에서 제공하는 프리셋 외에도 나만의 프리셋을 만들 수 있습니다. [가이드 → 이모지 프리셋 만들기](../../cookbook/customize/emoji.md)를 참조하세요.

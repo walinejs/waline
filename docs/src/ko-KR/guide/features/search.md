@@ -1,18 +1,18 @@
 ---
-title: Emoticons Search
+title: 이모티콘 검색
 icon: search
 order: 3
 ---
 
-`@waline/client` allows users to add emoji search services and customize this functionality.
+`@waline/client`는 사용자가 이모지 검색 서비스를 추가하고 이 기능을 커스터마이즈할 수 있도록 합니다.
 
-By default, `@waline/client` provides meme search service via [Giphy](https://giphy.com/). This will allow you to search images and add them to the comment.
+기본적으로 `@waline/client`는 [Giphy](https://giphy.com/)를 통해 밈 검색 서비스를 제공합니다. 이를 통해 이미지를 검색하고 댓글에 추가할 수 있습니다.
 
 <!-- more -->
 
-## Disable
+## 비활성화
 
-If you don't need the default images search service, you can disable it by setting the `search` option to `false`.
+기본 이미지 검색 서비스가 필요하지 않은 경우 `search` 옵션을 `false`로 설정하여 비활성화할 수 있습니다.
 
 ```js
 Waline.init({
@@ -22,20 +22,20 @@ Waline.init({
 });
 ```
 
-## Customize
+## 커스터마이즈
 
-You can customize the image search service through the search option.
+search 옵션을 통해 이미지 검색 서비스를 커스터마이즈할 수 있습니다.
 
-For each operation, you should return an array containing the image information as the search result, and each item should be an object with the following properties:
+각 작업에 대해 검색 결과로 이미지 정보를 포함하는 배열을 반환해야 하며, 각 항목은 다음 속성을 가진 객체여야 합니다:
 
-- `src`: the link address of the image
-- `title`: image title and alt text (optional)
-- `preview`: Thumbnail of the image to use in the result list (optional)
+- `src`: 이미지의 링크 주소
+- `title`: 이미지 제목 및 대체 텍스트 (선택 사항)
+- `preview`: 결과 목록에서 사용할 이미지의 썸네일 (선택 사항)
 
-The option accepts three functions, each of which should return a Promise, and the result is the array of search results above.
+이 옵션은 세 가지 함수를 받으며, 각 함수는 Promise를 반환해야 하고 결과는 위의 검색 결과 배열입니다.
 
-- `search`: search operation, the search term will be passed as the first parameter of the function
-- `default`: list of images to display by default (optional)
-- `more`: The function that starts when the image is scrolled to the bottom, where the search term and the current number are passed in as the first two parameters (optional)
+- `search`: 검색 작업, 검색어가 함수의 첫 번째 매개변수로 전달됩니다
+- `default`: 기본적으로 표시할 이미지 목록 (선택 사항)
+- `more`: 이미지가 하단으로 스크롤될 때 시작되는 함수, 검색어와 현재 개수가 처음 두 매개변수로 전달됩니다 (선택 사항)
 
-For tutorials on custom search, see [Cookbook → Custom Emoji Search](../../cookbook/customize/search.md).
+커스텀 검색에 대한 튜토리얼은 [Cookbook → 커스텀 이모지 검색](../../cookbook/customize/search.md)을 참조하세요.

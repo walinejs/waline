@@ -1,15 +1,15 @@
 ---
-title: Customize Code Highlighter
+title: 코드 하이라이터 사용자 정의
 icon: style
 ---
 
-This cookbook guides you how to add your own code highlighter.
+이 요리책에서는 사용자 정의 코드 하이라이터를 추가하는 방법을 안내합니다.
 
 <!-- more -->
 
-`@waline/client` provides the `highlighter` function. The client passes in the original character of the code block and the language of the code block. You should return a string directly.
+`@waline/client`는 `highlighter` 함수를 제공합니다. 클라이언트는 코드 블록의 원본 문자와 코드 블록의 언어를 전달합니다. 문자열을 직접 반환해야 합니다.
 
-## An Example Using prism.js
+## prism.js를 사용한 예제
 
 ```html
 <!doctype html>

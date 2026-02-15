@@ -1,13 +1,13 @@
 ---
-title: plugin system
+title: 플러그인 시스템
 icon: api
 ---
 
-Users can extend the custom hook function through the Hook provided by Waline to realize custom functions. But if users want to share custom Hook methods, they can only use the copy method. To solve this problem, the Waline plugin system came into being.
+사용자는 Waline이 제공하는 Hook을 통해 사용자 정의 훅 함수를 확장하여 사용자 정의 기능을 실현할 수 있습니다. 하지만 사용자가 사용자 정의 Hook 메서드를 공유하고 싶다면, 복사 방법만 사용할 수 있습니다. 이 문제를 해결하기 위해 Waline 플러그인 시스템이 탄생했습니다.
 
-## Install the plugin
+## 플러그인 설치
 
-A new `plugins` attribute has been added to Waline's initial configuration, which supports configuring multiple plugins.
+Waline의 초기화 설정에 새로운 `plugins` 속성이 추가되었으며, 여러 플러그인을 구성할 수 있습니다.
 
 ```js
 // index.js
@@ -19,7 +19,7 @@ module.exports = Waline({
 });
 ```
 
-To install others' plugin directly, you can also place plugin hooks direct in `plugins`:
+다른 플러그인을 직접 설치하거나, 플러그인 훈칠 기능을 직접 `plugins`에 배치할 수도 있습니다:
 
 ```js
 // index.js
@@ -44,11 +44,11 @@ module.exports = Waline({
 });
 ```
 
-## Create plugin
+## 플러그인 생성
 
-### Create based on Hook
+### Hook 기반으로 만들기
 
-It's easy to build a plugin. A plugin is contained by a collection of [hooks.](./config.md#hooks)
+플러그인을 만드는 것은 코운단 일입니다. 플러그인은 [훈칢](./config.md#hooks)의 콜난심으로 구성됩니다.
 
 ```js
 module.exports = {
@@ -60,13 +60,15 @@ module.exports = {
 };
 ```
 
-It should be noted that if the user installs multiple Hook plugins, the execution of the same hook function is executed in the order in which the plugins are installed. If the pre-hook method returns early, no subsequent operations will be performed.
+사용자가 여러 Hook 플러그인을 설치하면, 동일한 훈칢 함수의 실행은 플러그인이 설치된 순서대로 실행되멋니다. pre-훈칢 메서드가 조기 반환되면 후속 작업이 수행되지 않습니다.
 
 ### Create based on middleware
 
-If Hook can't meet your needs, you can use a more powerful middleware mode to customize development. The bottom layer of Waline uses the Node.js framework [Koa](https://koajs.com), and we expose Koa's middleware configuration as a whole, which can meet various customization needs of advanced developers.
+### 미들웨어 기반으로 만들기
 
-If you don't know what Koa middleware is, you can search for it first. What you need to pay attention to when using the middleware mode to make plug-ins is that the callback method must write the execution of `await next()`, otherwise the follow-up operations will not be executed.
+Hook으로 충분하지 않다면, 더 강력한 미들웨어 모드를 사용하여 커스터마이징 개발할 수 있습니다. Waline의 하단에는 Node.js 프레임워크 [Koa](https://koajs.com)가 사용되고 있으며, Koa의 미들웨어 구성을 노출하고 있어 고급 개발자의 다양한 커스터마이징 요구를 만족할 수 있습니다.
+
+Koa 미들웨어가 무엇인지 모른다면, 먼저 검색해 보세요. 미들웨어 모드를 사용하여 플러그인을 만들 때 주의할 점은 콜속 메서드가 반드시 `await next()` 실행을 짧짐다는 것입니다. 그렇지 않으면 후속 작업이 실행되지 않습니다.
 
 ```js
 module.exports = {
@@ -78,11 +80,11 @@ module.exports = {
 };
 ```
 
-Of course, you can put the logic of Hook-type plug-ins and middleware-type plug-ins together, and Waline supports them.
+Hook 타입 플러그인과 미들웨어 타입 플러그인을 함균 배치할 수 있으며, Waline이 이를 지원합니다.
 
-### List of plugins
+### 플러그인 목록
 
-Welcome to submit plugins~
+플러그인 제출을 환영합니다~
 
 - [@waline-plugins/hello-world](https://github.com/walinejs/plugins/tree/master/packages/hello-world)
 - [@waline-plugins/privacy](https://github.com/walinejs/plugins/tree/master/packages/privacy)

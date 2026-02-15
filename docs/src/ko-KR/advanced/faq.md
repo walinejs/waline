@@ -4,58 +4,58 @@ icon: faq
 order: 4
 ---
 
-Waline has a very clear position since its birth:
+Waline은 탄생 이래 매우 명확한 포지션을 가지고 있습니다:
 
-::: info A simple comment system with backend.
+::: info 백엔드를 갖춘 간단한 댓글 시스템.
 
 :::
 
-All versions released afterwards are modifications made around this position.
+이후 출시된 모든 버전은 이 포지션을 중심으로 수정된 것입니다.
 
-## What is the relationship with Valine?
+## Valine과의 관계는?
 
 ::: info Waline = With backend Valine
 
 :::
 
-Consulting with the open source version of Valine, the comment list in frontend is rewritten with React. The style and structure as well as some internal tools and methods are all from Valine.
+Valine의 오픈 소스 버전을 참고하여, 프론트엔드의 댓글 목록을 React로 다시 작성했습니다. 스타일과 구조, 그리고 일부 내부 도구와 메서드는 모두 Valine에서 가져왔습니다.
 
-## Do I still need to deploy Valine-Admin on LeanCloud?
+## LeanCloud에 Valine-Admin을 추가로 배포해야 하나요?
 
-No. Waline is a three-in-one deployment of data storage, server, and client. The server interface is already equivalent to Valine's LeanCloud cloud engine. The server already includes comment management and email notifications feature provided by the previous cloud engine. It doesn't need the additional LeanCloud cloud engine, so it won't be restricted by the LeanCloud cloud engine's sleep strategy.
+아니요. Waline은 데이터 스토리지, 서버, 클라이언트를 하나로 통합한 배포 방식입니다. 서버 인터페이스가 이미 Valine의 LeanCloud 클라우드 엔진과 동등합니다. 서버에는 이미 이전 클라우드 엔진에서 제공하던 댓글 관리 및 이메일 알림 기능이 포함되어 있습니다. 추가적인 LeanCloud 클라우드 엔진이 필요하지 않으므로, LeanCloud 클라우드 엔진의 휴면 정책에 의한 제약을 받지 않습니다.
 
-## How can I upgrade?
+## 어떻게 업그레이드할 수 있나요?
 
-Waline is mainly composed of two parts: the frontend and the server.
+Waline은 주로 프론트엔드와 서버 두 부분으로 구성됩니다.
 
-### Frontend
+### 프론트엔드
 
-The front end inserts comment lists and comment boxes by including JS scripts in the web page. In most scenarios, the link will use the address of the latest version of the online CDN, and the latest version will be automatically applied, without the need for users to manually update.
+프론트엔드는 웹 페이지에 JS 스크립트를 포함하여 댓글 목록과 댓글 입력창을 삽입합니다. 대부분의 시나리오에서 링크는 온라인 CDN의 최신 버전 주소를 사용하며, 최신 버전이 자동으로 적용되므로 사용자가 수동으로 업데이트할 필요가 없습니다.
 
-::: note Need manually update in following situations
+::: note 다음의 경우 수동 업데이트가 필요합니다
 
-1. The version number is forcibly specified in the CDN address. In this situation, you need to manually modify the version number to be the latest.
-1. Use NPM to require and pack the module into code. In this situation, you need to modify the version number in the dependency to ensure that the latest version of the dependency can be obtained during installation.
+1. CDN 주소에 버전 번호가 강제 지정된 경우. 이 경우 버전 번호를 최신으로 수동으로 수정해야 합니다.
+1. NPM을 사용하여 모듈을 가져와 코드에 패키징하는 경우. 이 경우 설치 시 최신 버전의 의존성을 가져올 수 있도록 의존성의 버전 번호를 수정해야 합니다.
 
 :::
 
-### Server
+### 서버
 
-The server refers to the backend service corresponding to the `serverURL` configured in frontend script, and its update will be slightly different depending on different deployment environments. Server updates will be more frequent.
+서버는 프론트엔드 스크립트에서 설정한 `serverURL`에 해당하는 백엔드 서비스를 말하며, 배포 환경에 따라 업데이트 방법이 약간 다릅니다. 서버 업데이트는 더 자주 이루어집니다.
 
 #### Vercel
 
-Go to the corresponding GitHub repository and modify the version number of `@waline/vercel` in the package.json file to the latest.
+해당 GitHub 저장소에 접속하여 package.json 파일의 `@waline/vercel` 버전 번호를 최신으로 수정합니다.
 
 ![vercel](./assets/vercel-update.png)
 
 #### CloudBase
 
-Enter the code editing page, click <kbd>Save and reinstall dependencies</kbd>. If it still doesn’t work, enter <kbd>My Application</kbd> and select <kbd>Deploy</kbd> to redeploy.
+코드 편집 페이지에 들어가서 <kbd>저장 후 의존성 재설치</kbd>를 클릭합니다. 그래도 작동하지 않으면 <kbd>내 애플리케이션</kbd>에 들어가서 <kbd>배포</kbd>를 선택하여 재배포합니다.
 
 ::: caution
 
-Redeployment will clear the previous files. If there is a configuration in the previous file, it needs to be backed up first.
+재배포 시 이전 파일이 모두 삭제됩니다. 이전 파일에 설정이 있는 경우 먼저 백업해야 합니다.
 
 :::
 
@@ -63,8 +63,8 @@ Redeployment will clear the previous files. If there is a configuration in the p
 
 #### Docker
 
-Run `docker pull lizheming/waline` directly to pull the latest image.
+`docker pull lizheming/waline`을 직접 실행하여 최신 이미지를 가져옵니다.
 
-## Why posting comments are slow?
+## 댓글 게시가 왜 느린가요?
 
-Due to some technical reasons, spam detection and comment notification are all serial operations when posting comments. The spam detection uses the service provided by Akismet abroad, which may be slow to access. Users can turn off the spam detection function through the `AKISMET_KEY=false` environment variable. Beside the spam detection service, the email notification in the comment notification may also cause a timeout. You can turn off the comment notification to test whether it is caused by this feature.
+일부 기술적인 이유로, 댓글 게시 시 스팸 감지와 댓글 알림은 모두 직렬 작업입니다. 스팸 감지는 해외의 Akismet에서 제공하는 서비스를 사용하므로, 접속이 느릴 수 있습니다. 사용자는 `AKISMET_KEY=false` 환경 변수를 통해 스팸 감지 기능을 끌 수 있습니다. 스팸 감지 서비스 외에, 댓글 알림의 이메일 알림도 타임아웃을 유발할 수 있습니다. 이 기능으로 인한 것인지 테스트하려면 댓글 알림을 끄면 됩니다.

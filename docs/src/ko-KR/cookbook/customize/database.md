@@ -1,10 +1,10 @@
 ---
-title: Custom Database Service
+title: 사용자 정의 데이터베이스 서비스
 icon: database
 order: -2
 ---
 
-Waline classifies database operations into several operations such as CURD, and all upper-level logic is completed through the superposition of these basic operations. Through the adapter mode, different types of database storage services only need to implement these low-level atomic operations to run through all system logic.
+Waline은 데이터베이스 작업을 CURD와 같은 여러 작업으로 분류하며, 모든 상위 수준의 로직은 이러한 기본 작업의 조합을 통해 완성됩니다. 어댑터 패턴을 통해 다양한 유형의 데이터베이스 저장 서비스는 이러한 하위 수준의 원자적 작업만 구현하면 전체 시스템 로직을 실행할 수 있습니다.
 
 ```js
 // index.js
@@ -15,7 +15,7 @@ module.exports = Application({
 });
 ```
 
-Waline provides the `model` option to customize the database model, and we will uniformly use the incoming model for database operations. All that remains is that we need to implement this `CustomModel` class.
+Waline은 데이터베이스 모델을 사용자 정의할 수 있는 `model` 옵션을 제공하며, 전달된 모델을 데이터베이스 작업에 일관되게 사용합니다. 남은 것은 이 `CustomModel` 클래스를 구현하는 것입니다.
 
 ```js
 class CustomModel {
@@ -45,25 +45,25 @@ class CustomModel {
 }
 ```
 
-The above is the basic structure that the `CustomModel` class must implement, and it must include the implementation of several basic methods `select`, `add`, `update`, `delete` and `count`. Waline is developed based on the [ThinkJS](https://thinkjs.org/en) framework, and the underlying database operations use the database operation syntax that comes with the framework. Before implementing these methods, you need to have some basic understanding of the syntax of database conditional queries.
+위는 `CustomModel` 클래스가 구현해야 하는 기본 구조이며, `select`, `add`, `update`, `delete`, `count` 등 여러 기본 메서드의 구현을 포함해야 합니다. Waline은 [ThinkJS](https://thinkjs.org/en) 프레임워크를 기반으로 개발되었으며, 하위 수준의 데이터베이스 작업은 프레임워크에 내장된 데이터베이스 작업 구문을 사용합니다. 이러한 메서드를 구현하기 전에 데이터베이스 조건부 쿼리 구문에 대한 기본적인 이해가 필요합니다.
 
-## Condition query
+## 조건부 쿼리
 
-For the complete conditional query syntax, please refer to [ThinkJS Documentation](https://thinkjs.org/ko-KR/doc/3.0/relation_model.html#toc-d47), and the implementation of Waline is a subset of it.
+완전한 조건부 쿼리 구문은 [ThinkJS 문서](https://thinkjs.org/ko-KR/doc/3.0/relation_model.html#toc-d47)를 참조하세요. Waline의 구현은 그 하위 집합입니다.
 
-Multiple conditional queries can be passed in through the object, and the default is equal to the condition. When the value is a two-dimensional array, the first bit can be passed to other judgment operations, and the second bit corresponds to the value, such as `{user_id: ['!=', 0]}`. Currently supported are `!=`, `>`, `IN`, `NOT IN`, `LIKE` centralized operations.
+객체를 통해 여러 조건부 쿼리를 전달할 수 있으며, 기본값은 동등 조건입니다. 값이 2차원 배열인 경우 첫 번째 요소에 다른 판단 연산을 전달할 수 있고, 두 번째 요소는 값에 해당합니다. 예를 들어 `{user_id: ['!=', 0]}`과 같습니다. 현재 지원되는 연산은 `!=`, `>`, `IN`, `NOT IN`, `LIKE`입니다.
 
-Similar to MySQL, in the `LIKE` operation, we define the mode of the fuzzy query through the position of `%`:
+MySQL과 유사하게, `LIKE` 연산에서 `%`의 위치를 통해 퍼지 쿼리의 모드를 정의합니다:
 
-- `content%` means search for content starting with `content`
-- `%content` means search for content ending with `content`
-- `%content%` means search for content containing `content`
+- `content%`는 `content`로 시작하는 내용을 검색합니다
+- `%content`는 `content`로 끝나는 내용을 검색합니다
+- `%content%`는 `content`를 포함하는 내용을 검색합니다
 
-The conditional query object supports passing in multiple query conditions. The default relationship between these conditions is `AND`, and the `_logic` magic keyword can be used to specify their relationship as `OR`. When there are `AND` and `OR`, we can use `_complex` magic keyword expression.
+조건부 쿼리 객체는 여러 쿼리 조건을 전달하는 것을 지원합니다. 이러한 조건 간의 기본 관계는 `AND`이며, `_logic` 매직 키워드를 사용하여 관계를 `OR`로 지정할 수 있습니다. `AND`와 `OR`가 모두 있는 경우, `_complex` 매직 키워드 표현식을 사용할 수 있습니다.
 
-The text may not be well understood. Let's take a look at the query examples used in the project to deepen our impression.
+텍스트만으로는 이해하기 어려울 수 있습니다. 프로젝트에서 사용된 쿼리 예제를 살펴보며 이해를 깊이해 봅시다.
 
-1. General query:
+1. 일반 쿼리:
 
    ```js
    const model = new CustomModel('Comment');
@@ -75,7 +75,7 @@ The text may not be well understood. Let's take a look at the query examples use
    // SELECT * FROM Comment WHERE url = '/' AND user_id != 0 AND createdAt > "2023-04-16 00:00:00";
    ```
 
-2. IN / NOT IN query
+2. IN / NOT IN 쿼리
 
    ```js
    const model = new CustomModel('Users');
@@ -89,7 +89,7 @@ The text may not be well understood. Let's take a look at the query examples use
    // SELECT * FROM Comment WHERE status NOT IN ('waiting', 'spam');
    ```
 
-3. LIKE query
+3. LIKE 쿼리
 
    ```js
    const model = new CustomModel('Comment');
@@ -97,7 +97,7 @@ The text may not be well understood. Let's take a look at the query examples use
    // SELECT * FROM Comment WHERE content LIKE "%content%";
    ```
 
-4. Multi-condition query
+4. 다중 조건 쿼리
 
    ```js
    const model = new CustomModel('Comment');
@@ -110,7 +110,7 @@ The text may not be well understood. Let's take a look at the query examples use
    // SELECT * FROM Comment WHERE url = '/' OR user_id != 0 OR createdAt > "2023-04-16 00:00:00";
    ```
 
-5. Compound query
+5. 복합 쿼리
 
    ```js
    const model = new CustomModel('Comment');
@@ -125,31 +125,31 @@ The text may not be well understood. Let's take a look at the query examples use
    // SELECT * FROM Comment WHERE url = '/' AND ( user_id = 0 OR status NOT IN ('waiting', 'spam'));
    ```
 
-If you are more familiar with TypeScript, [type definitions for conditional queries is here](https://github.com/walinejs/dittorm/blob/master/src/types/where.ts).
+TypeScript에 더 익숙하다면, [조건부 쿼리의 타입 정의는 여기에서](https://github.com/walinejs/dittorm/blob/master/src/types/where.ts) 확인할 수 있습니다.
 
-## Implement query
+## 쿼리 구현
 
-The `select`, `update`, `delete`, `count` methods in the adapter are actually complicated in the conditional query. After understanding the conditional query syntax in the previous part, the subsequent logic is the database operation. surface.
+어댑터의 `select`, `update`, `delete`, `count` 메서드에서 실제로 복잡한 부분은 조건부 쿼리입니다. 이전 부분에서 조건부 쿼리 구문을 이해했다면, 나머지 로직은 간단한 데이터베이스 작업입니다.
 
-The `select()` method has a second argument `{desc, limit, offset, field}`. This is also easier to understand:
+`select()` 메서드에는 두 번째 인수 `{desc, limit, offset, field}`가 있습니다. 이것도 이해하기 쉽습니다:
 
-- `desc`: Specify a field to sort in descending order of the value of the field
-- `limit`: specify the number of data returned
-- `offset`: Specify the returned data from which item to return
-- `field`: Specify the field to return data, all fields are returned by default
+- `desc`: 해당 필드의 값을 기준으로 내림차순 정렬할 필드를 지정합니다
+- `limit`: 반환할 데이터의 수를 지정합니다
+- `offset`: 어느 항목부터 데이터를 반환할지 지정합니다
+- `field`: 반환할 데이터의 필드를 지정하며, 기본적으로 모든 필드가 반환됩니다
 
-The `update()` method needs to be compatible with scenarios where the `data` input parameter may be a calculation function, such as adding 1 to the number of page viewers:
+`update()` 메서드는 `data` 입력 매개변수가 계산 함수일 수 있는 시나리오와 호환되어야 합니다. 예를 들어 페이지 조회수에 1을 더하는 경우:
 
 ```js
 const model = new CustomModel('Count');
 await model.update((thread) => ({ view: thread.view + 1 }), { url: '/' });
 ```
 
-Return data type `select()` always returns an array, `add()` and `update()` need to include the full data of the indexed field.
+반환 데이터 타입에서 `select()`는 항상 배열을 반환하며, `add()`와 `update()`는 인덱싱된 필드의 전체 데이터를 포함해야 합니다.
 
-## refer to
+## 참고
 
-Based on the above logic, in addition to implementing the storage service of professional databases, the official also implemented the GitHub storage service very interestingly. We store the data in GitHub in the form of a CSV file, and obtain the content of the CSV file each time we query, and filter out the final data according to the conditional query statement in JS and return it. The following is the official implementation, hoping to give you some reference.
+위의 로직을 기반으로, 전문적인 데이터베이스의 저장 서비스를 구현하는 것 외에도, 공식적으로 GitHub 저장 서비스도 매우 흥미롭게 구현되었습니다. 데이터를 CSV 파일 형태로 GitHub에 저장하고, 쿼리할 때마다 CSV 파일의 내용을 가져온 후 JS에서 조건부 쿼리 문에 따라 최종 데이터를 필터링하여 반환합니다. 다음은 공식 구현이며, 참고가 되길 바랍니다.
 
 ```js
 //source code: https://github.com/walinejs/waline/blob/main/packages/server/src/service/storage/github.js

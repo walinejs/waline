@@ -1,37 +1,37 @@
 ---
-title: Client API
+title: 클라이언트 API
 icon: config
 ---
 
-## Client API
+## 클라이언트 API
 
-Waline provides three APIs:
+Waline은 세 가지 API를 제공합니다:
 
-- `init`: Initialize Waline
+- `init`: Waline 초기화
 
-- `commentCount`: Count comments
+- `commentCount`: 댓글 수 카운트
 
-- `pageviewCount`: Count pageviews
+- `pageviewCount`: 페이지뷰 수 카운트
 
-As well as:
+추가로:
 
-- `RecentComment`: Waline recent comments widget
+- `RecentComment`: Waline 최근 댓글 위젯
 
-- `UserList`: User List
+- `UserList`: 사용자 목록
 
-- `version`: Waline client version
+- `version`: Waline 클라이언트 버전
 
 ## init
 
-The `init` API accepts a `WalineInitOptions` options and returns a `WalineInstance`.
+`init` API는 `WalineInitOptions` 옵션을 받아 `WalineInstance`를 반환합니다.
 
-Type:
+타입:
 
 ```ts
 const init: (options: WalineInitOptions) => WalineInstance;
 ```
 
-Return:
+반환값:
 
 ```ts
 interface WalineInstance {
@@ -56,42 +56,42 @@ interface WalineInstance {
 }
 ```
 
-The initialization options accept all [Waline Component Props](props.md), in addition, the following options are added.
+초기화 옵션은 모든 [Waline 컴포넌트 Props](props.md)를 받으며, 추가로 다음 옵션이 제공됩니다.
 
 ### el
 
-- Type: `string | HTMLElement | null`
-- Default: `'#waline'`
+- 타입: `string | HTMLElement | null`
+- 기본값: `'#waline'`
 
-The DOM element to be mounted on initialization. It must be a valid **CSS selector string** or HTMLElement Object.
+초기화 시 마운트할 DOM 요소입니다. 유효한 **CSS 선택자 문자열** 또는 HTMLElement 객체여야 합니다.
 
-If you only want the counter below, set this option to `null`.
+아래의 카운터 기능만 사용하려면 이 옵션을 `null`로 설정하세요.
 
 ### comment
 
-- Type: `boolean | string`
-- Default: `false`
+- 타입: `boolean | string`
+- 기본값: `false`
 
-Article comment count counter, when filled in a string, it will be used as a CSS selector.
+글 댓글 수 카운터이며, 문자열을 입력하면 CSS 선택자로 사용됩니다.
 
 ### pageview
 
-- Type: `boolean | string`
-- Default: `false`
+- 타입: `boolean | string`
+- 기본값: `false`
 
-Pageview counter. When filled in a string, it will be used as a CSS selector.
+페이지뷰 카운터입니다. 문자열을 입력하면 CSS 선택자로 사용됩니다.
 
 ## commentCount
 
-The `commentCount` function receives the `WalineCommentCountOptions` option and updates the number of article comments on the page, and returns a function `WalineAbort` that can cancel the current operation.
+`commentCount` 함수는 `WalineCommentCountOptions` 옵션을 받아 페이지의 글 댓글 수를 업데이트하며, 현재 작업을 취소할 수 있는 `WalineAbort` 함수를 반환합니다.
 
-Type:
+타입:
 
 ```ts
 const commentCount: (options: WalineCommentCountOptions) => WalineAbort;
 ```
 
-Options:
+옵션:
 
 ```ts
 interface WalineCommentCountOptions {
@@ -116,7 +116,7 @@ interface WalineCommentCountOptions {
 }
 ```
 
-Returns:
+반환값:
 
 ```ts
 type WalineAbort = (reason?: any) => void;
@@ -124,15 +124,15 @@ type WalineAbort = (reason?: any) => void;
 
 ## pageviewCount
 
-The `pageviewCount` function receives the `WalinePageviewCountOptions` option and updates the number of article comments on the page, and returns a function `WalineAbort` that can cancel the current operation.
+`pageviewCount` 함수는 `WalinePageviewCountOptions` 옵션을 받아 페이지의 페이지뷰 수를 업데이트하며, 현재 작업을 취소할 수 있는 `WalineAbort` 함수를 반환합니다.
 
-Type:
+타입:
 
 ```ts
 const pageviewCount: (options: WalinePageviewCountOptions) => WalineAbort;
 ```
 
-Options:
+옵션:
 
 ```ts
 interface WalinePageviewCountOptions {
@@ -164,25 +164,25 @@ interface WalinePageviewCountOptions {
 }
 ```
 
-Returns:
+반환값:
 
 ```ts
 type WalineAbort = (reason?: any) => void;
 ```
 
-## Widgets
+## 위젯
 
 ### RecentComments
 
-`RecentComments` is a widget displaying recent comments.
+`RecentComments`는 최근 댓글을 표시하는 위젯입니다.
 
-Type:
+타입:
 
 ```ts
 const RecentComments: (options: WalineRecentCommentsOptions) => Promise<WalineRecentCommentsResult>;
 ```
 
-Options:
+옵션:
 
 ```ts
 interface WalineRecentCommentsOptions {
@@ -203,7 +203,7 @@ interface WalineRecentCommentsOptions {
 }
 ```
 
-Returns:
+반환값:
 
 ```ts
 interface WalineRecentCommentsResult {
@@ -221,15 +221,15 @@ interface WalineRecentCommentsResult {
 
 ### UserList
 
-`UserList` is a widget that displays user interaction leader boards or comment walls.
+`UserList`는 사용자 상호작용 리더보드 또는 댓글 담벼락을 표시하는 위젯입니다.
 
-Type:
+타입:
 
 ```ts
 const RecentComments: (options: WalineRecentCommentsOptions) => Promise<WalineRecentCommentsResult>;
 ```
 
-Options:
+옵션:
 
 ```ts
 interface WalineUserListOptions {
@@ -269,7 +269,7 @@ interface WalineUserListOptions {
 }
 ```
 
-Returns:
+반환값:
 
 ```ts
 interface WalineUserListResult {

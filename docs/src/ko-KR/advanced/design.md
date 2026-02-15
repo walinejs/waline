@@ -1,26 +1,26 @@
 ---
-title: Design Goal
+title: 설계 목표
 icon: goal
 order: 2
 ---
 
-[Valine](https://valine.js.org) an exquisite style, simple operation, and efficient deployment review system. The first time I came into contact, I was attracted by its exquisite style and serverless characteristics. It doesn't require the backend service. The frontend interacts with the LeanCloud storage service directly, which is really cool! But as I understand deeper, I find out it's problems.
+[Valine](https://valine.js.org)은 세련된 스타일, 간단한 조작, 효율적인 배포의 댓글 시스템입니다. 처음 접했을 때, 세련된 스타일과 서버리스 특성에 매료되었습니다. 백엔드 서비스가 필요 없이, 프론트엔드가 LeanCloud 스토리지 서비스와 직접 상호작용하는 것이 정말 멋졌습니다! 하지만 깊이 이해하면 할수록, 문제점들을 발견하게 되었습니다.
 
-## Problem of Valine
+## Valine의 문제점
 
-### Not Open Source
+### 비공개 소스
 
-The author only push the compiled files to the GitHub repository starting from version `1.4.0`, and the source code stop updating. May be the author have a broken heart in open source. While for users like me who want to add or modify project, this problem is a bit uncomfortable.
+`1.4.0` 버전부터 작성자는 컴파일된 파일만 GitHub 저장소에 푸시했고, 소스 코드 업데이트를 중단했습니다. 아마도 작성자가 오픈 소스에 대해 상심했을 수도 있습니다. 하지만 프로젝트를 추가하거나 수정하고 싶은 저같은 사용자에게는 이 문제가 다소 불편했습니다.
 
 ### XSS
 
-Since the very early version, users have reported Valine's XSS problems, and the community is also using various methods to fix these problems. Including the addition of verification codes, frontend XSS filtering and other methods. However, the author later realized that all the frontend verification can only prevent the gentleman, so the restriction such as verification code is removed.
+아주 초기 버전부터 사용자들은 Valine의 XSS 문제를 보고했고, 커뮤니티에서도 다양한 방법으로 이러한 문제를 해결하려 했습니다. 인증 코드 추가, 프론트엔드 XSS 필터링 등의 방법이 있었습니다. 그러나 작성자는 나중에 모든 프론트엔드 검증은 선의의 사용자만 막을 수 있다는 것을 깨달아, 인증 코드 같은 제한을 제거했습니다.
 
-Now when the frontend publishes a comment, Markdown will be converted into HTML, and then execute an XSS filter function on the frontend before be submitted to LeanCloud. After getting the data from LeanCloud, it is directly inserted to DOM. Obviously, the process is problematic. As long as the HTML is submitted directly and displayed directly after the HTML is obtained, XSS cannot be eradicated fundamentally.
+현재 프론트엔드에서 댓글을 게시하면, Markdown이 HTML로 변환된 후 LeanCloud에 제출하기 전에 프론트엔드에서 XSS 필터 함수를 실행합니다. LeanCloud에서 데이터를 가져온 후에는 바로 DOM에 삽입됩니다. 이 과정은 분명히 문제가 있습니다. HTML이 직접 제출되고 가져온 후 직접 표시되는 한, XSS는 근본적으로 해결될 수 없습니다.
 
-::: note Fundamental solution
+::: note 근본적인 해결책
 
-For stored XSS attacks, we can use escape HTML codes to solve them permanently. Just like old BBCode, only markdown content is submit to the database. The frontend reads the content and encodes all HTML before displaying it after Markdown conversion.
+저장형 XSS 공격의 경우, HTML 코드를 이스케이프하여 영구적으로 해결할 수 있습니다. 오래된 BBCode처럼, Markdown 콘텐츠만 데이터베이스에 제출합니다. 프론트엔드는 콘텐츠를 읽고 Markdown 변환 후 표시하기 전에 모든 HTML을 인코딩합니다.
 
 ```js
 function encodeForHTML(str) {
@@ -34,34 +34,34 @@ function encodeForHTML(str) {
 }
 ```
 
-Since Valine is a serverless system, attackers can directly reach the storage stage. All precautions before data storage are invalid and can only be processed during the displaying process. Because all HTML cannot be parsed after being escaped, we can ensure that the converted HTML has no chance of being inserted.
+Valine은 서버리스 시스템이므로, 공격자가 스토리지 단계에 직접 접근할 수 있습니다. 데이터 저장 전의 모든 예방 조치는 무효하며, 표시 과정에서만 처리할 수 있습니다. 이스케이프된 후에는 모든 HTML이 파싱될 수 없으므로, 변환된 HTML이 삽입될 기회가 없음을 보장할 수 있습니다.
 
-Since Valine is no longer open source, pull requests cannot be opened.
+Valine이 더 이상 오픈 소스가 아니므로, Pull Request를 열 수 없습니다.
 
 :::
 
-Since the above method will completely restrict users in the scope of Markdown, Waline adds `DOMPurify` on the client side since `0.15.0` to prevent XSS. Besides the regular XSS sterilization:
+위의 방법은 사용자를 완전히 Markdown 범위에 제한하므로, Waline은 `0.15.0` 버전부터 클라이언트 측에 `DOMPurify`를 추가하여 XSS를 방지합니다. 일반적인 XSS 소독 외에도:
 
-- `<form>` and `<input>` are disabled
-- style inject is disabled
-- autoplay of the media is disabled
-- all external links will be processed and opened in a new window with rel of `noopener noreferrer`.
+- `<form>`과 `<input>`이 비활성화됩니다
+- 스타일 주입이 비활성화됩니다
+- 미디어의 자동 재생이 비활성화됩니다
+- 모든 외부 링크는 처리되어 `noopener noreferrer` rel 속성과 함께 새 창에서 열립니다.
 
-### Privacy Leak
+### 개인정보 유출
 
-Besides direct access to storage, the attacker can also read any data directly. If a database field has read permission to everyone, the content of the field is completely transparent to the attacker.
+스토리지에 대한 직접 접근 외에도, 공격자는 모든 데이터를 직접 읽을 수 있습니다. 데이터베이스 필드가 모든 사람에게 읽기 권한이 있는 경우, 해당 필드의 내용은 공격자에게 완전히 투명합니다.
 
-In the comment data, the two fields IP and mailbox contain the user's sensitive data. Mr.Deng wrote an article specifically to criticize the problem [Please stop using the Valine.js comment system immediately unless it fixes the user privacy leak](https://ttys3.net/post/hugo/please-stop-using-valine-js-comment-system-until-it-fixed-the-privacy-leaking-problem/). Even when the [JueJin](https://juejin.cn) community used LeanCloud in early years, the security problem of [disclosed user's mobile phone number](https://m.weibo.cn/detail/4568007327622344?cid=4568044392682999) was exposed.
+댓글 데이터에서 IP와 이메일 두 필드에는 사용자의 민감한 데이터가 포함되어 있습니다. Mr.Deng은 이 문제를 비판하기 위해 전용 글을 작성했습니다: [사용자 개인정보 유출을 수정하지 않는 한 Valine.js 댓글 시스템 사용을 즉시 중단하십시오](https://ttys3.net/post/hugo/please-stop-using-valine-js-comment-system-until-it-fixed-the-privacy-leaking-problem/). 심지어 [JueJin](https://juejin.cn) 커뮤니티가 초기에 LeanCloud를 사용했을 때도 [사용자 휴대폰 번호 유출](https://m.weibo.cn/detail/4568007327622344?cid=4568044392682999) 보안 문제가 노출되었습니다.
 
-In order to circumvent this problem, the author of Valine added the `recordIP` configuration to set whether to allow recording of user IP. Since there is no server, it can only be solved by not storing the value.
+이 문제를 회피하기 위해, Valine의 작성자는 사용자 IP 기록 허용 여부를 설정하는 `recordIP` 설정을 추가했습니다. 서버가 없기 때문에 값을 저장하지 않는 것으로만 해결할 수 있었습니다.
 
-There is still a problem with this option: Whether to record ip is based on the site owner's config, while commenters have no right to manage their own privacy.
+이 옵션에는 여전히 문제가 있습니다: IP 기록 여부가 사이트 소유자의 설정에 기반하므로, 댓글 작성자는 자신의 개인정보를 관리할 권리가 없습니다.
 
-Leaking of email address are another major privacy issue. It is completely feasible to calculate and report the md5 of the user's email at frontend to obtain the Gravatar avatar. But if sending email notification when a comment being replied is needed, it is inevitable to store the original value of the user's email address. This problem can theoretically be solved by RSA encryption. The private key can be stored in the environment variable of LeanCloud. The client reports both the email md5 and the email encrypted by the public key. When LeanCloud wants to send email notifications, it reads the private key in the environment in the cloud function, and then decrypt to get the user email. However, considering the size and performance of the frontend RSA encryption library, it's not actual. Adding a server layer to filter sensitive information through the server side is definitely a better practice.
+이메일 주소 유출은 또 다른 주요 개인정보 문제입니다. 프론트엔드에서 사용자 이메일의 md5를 계산하여 Gravatar 아바타를 얻는 것은 완전히 가능합니다. 하지만 댓글에 답글이 달렸을 때 이메일 알림을 보내야 한다면, 사용자 이메일 주소의 원본 값을 저장하는 것은 불가피합니다. 이 문제는 이론적으로 RSA 암호화로 해결할 수 있습니다. 개인 키는 LeanCloud의 환경 변수에 저장할 수 있습니다. 클라이언트는 이메일의 md5와 공개 키로 암호화된 이메일을 모두 전송합니다. LeanCloud가 이메일 알림을 보내려 할 때, 클라우드 함수에서 환경의 개인 키를 읽은 다음 복호화하여 사용자 이메일을 얻습니다. 그러나 프론트엔드 RSA 암호화 라이브러리의 크기와 성능을 고려하면, 이는 현실적이지 않습니다. 서버 레이어를 추가하여 서버 측에서 민감한 정보를 필터링하는 것이 확실히 더 나은 방법입니다.
 
-### Read Statistics Tampering
+### 조회수 통계 조작
 
-Valien 1.2.0 adds the function of article reading statistics, the user visits the page and records the number of visits according to the url in the counter table in the background. Since the data needs to be updated every time the page is accessed, the permissions must be set to be writable in order to perform subsequent field updates. This creates a problem. In fact, the data can be updated to any value. If you interested in it, you can open the <https://valine.js.org/visitor.html> official website and enter the console and enter the following code to try. Remember to change the number back after trying it~
+Valine 1.2.0은 게시글 조회수 통계 기능을 추가했으며, 사용자가 페이지를 방문하면 백그라운드에서 counter 테이블의 url에 따라 방문 횟수를 기록합니다. 페이지에 접근할 때마다 데이터를 업데이트해야 하므로, 후속 필드 업데이트를 수행하기 위해 권한을 쓰기 가능으로 설정해야 합니다. 이것이 문제를 만듭니다. 실제로 데이터를 어떤 값으로든 업데이트할 수 있습니다. 관심이 있으시다면, <https://valine.js.org/visitor.html> 공식 웹사이트를 열고 콘솔에 다음 코드를 입력해 보세요. 시도한 후에는 숫자를 원래대로 되돌리는 것을 잊지 마세요~
 
 ```js
 const counter = new AV.Query('Counter');
@@ -70,12 +70,12 @@ resp[0].set('time', -100000).save();
 location.reload();
 ```
 
-Fortunately, the value of the `time` field is of type Number, so other values cannot be inserted. If the `time` field is of string type, it may be an XSS vulnerability. A possible solution to this problem is not to use the accumulative storage method. Changed to store a read-only access record for each visit, and use the `count()` method for statistics when reading. In this way, all data is read-only, which solves the problem of tampering. This solution also has a problem: when the amount of data is relatively large, it will cause a certain pressure on the query.
+다행히 `time` 필드의 값은 Number 타입이므로, 다른 값을 삽입할 수 없습니다. `time` 필드가 string 타입이라면, XSS 취약점이 될 수 있습니다. 이 문제에 대한 가능한 해결책은 누적 저장 방식을 사용하지 않는 것입니다. 각 방문마다 읽기 전용 접근 기록을 저장하고, 읽을 때 `count()` 메서드를 사용하여 통계를 내는 방식으로 변경합니다. 이렇게 하면 모든 데이터가 읽기 전용이 되어 조작 문제가 해결됩니다. 이 해결책에도 문제가 있습니다: 데이터 양이 비교적 많을 때, 쿼리에 일정한 부하를 줄 수 있습니다.
 
-If it is based on remaining the original data, only server layer can be added to isolate the modification permissions.
+원본 데이터를 유지하는 것을 기반으로 한다면, 수정 권한을 격리하기 위해 서버 레이어만 추가할 수 있습니다.
 
-## Born of Waline
+## Waline의 탄생
 
-Based on the above reasons, Waline was born. Waline's original goal was only to add backend to Valine, but because Valine is not open source, it can only be implemented with frontend. Of course, many codes and logic of the frontend have reference Valine in order to be consistent with Valine's configuration. Even in the project's name, I derived it from Valine, so that everyone can understand that this project is a derivative of Valine.
+위와 같은 이유로 Waline이 탄생했습니다. Waline의 원래 목표는 Valine에 백엔드를 추가하는 것뿐이었지만, Valine이 오픈 소스가 아니기 때문에 프론트엔드로만 구현할 수밖에 없었습니다. 물론 Valine의 설정과 일관성을 유지하기 위해, 프론트엔드의 많은 코드와 로직은 Valine을 참고했습니다. 프로젝트 이름도 Valine에서 파생하여, 모든 사람이 이 프로젝트가 Valine의 파생물임을 이해할 수 있도록 했습니다.
 
-Besides solving the above-mentioned security problems. the addition of the server side implement many features previously limited by no server side, including email notifications, spam comment filtering, etc.
+위에서 언급한 보안 문제를 해결하는 것 외에도, 서버 측의 추가는 이전에 서버가 없어 제한되었던 많은 기능을 구현할 수 있게 했습니다. 이메일 알림, 스팸 댓글 필터링 등이 포함됩니다.

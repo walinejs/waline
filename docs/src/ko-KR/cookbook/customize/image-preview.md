@@ -1,9 +1,9 @@
 ---
-title: Image Preview for Comment List
+title: 댓글 목록 이미지 미리보기
 icon: pic
 ---
 
-There are many plugins that can achieve the lightbox effect, here are some examples of these plugins:
+라이트박스 효과를 구현할 수 있는 많은 플러그인이 있습니다. 다음은 이러한 플러그인의 몇 가지 예입니다:
 
 - [lightGallery](https://www.lightgalleryjs.com/)
 <!-- - [Slimbox2](https://www.digitalia.be/software/slimbox2/) -->
@@ -14,7 +14,7 @@ There are many plugins that can achieve the lightbox effect, here are some examp
 
 ## LightGallery
 
-Write the following content before your HTML `<head>`, where `#waline-comment` is your Waline comment box, which needs to be replaced according to the actual scene.
+다음 내용을 HTML `<head>` 앞에 작성하세요. 여기서 `#waline-comment`는 Waline 댓글 상자이며, 실제 상황에 맞게 교체해야 합니다.
 
 ```html
 <link rel="stylesheet" href="https://unpkg.com/lightgallery@v2/css/lightgallery-bundle.css" />
@@ -66,7 +66,7 @@ Write the following content before your HTML `<head>`, where `#waline-comment` i
 
 ## Lightbox2
 
-Write the following content before your HTML `<head>`, where `#waline-comment` is your Waline comment box, which needs to be replaced according to the actual scene.
+다음 내용을 HTML `<head>` 앞에 작성하세요. 여기서 `#waline-comment`는 Waline 댓글 상자이며, 실제 상황에 맞게 교체해야 합니다.
 
 ```html
 <link rel="stylesheet" href="https://unpkg.com/lightbox2@v2/dist/css/lightbox.min.css" />
@@ -94,7 +94,7 @@ Write the following content before your HTML `<head>`, where `#waline-comment` i
 
 ## Fancybox
 
-Write the following content before your HTML `<head>`, where `#waline-comment` is your Waline comment box, which needs to be replaced according to the actual scene.
+다음 내용을 HTML `<head>` 앞에 작성하세요. 여기서 `#waline-comment`는 Waline 댓글 상자이며, 실제 상황에 맞게 교체해야 합니다.
 
 ```html
 <script src="https://unpkg.com/@fancyapps/ui/dist/fancybox.umd.js"></script>
