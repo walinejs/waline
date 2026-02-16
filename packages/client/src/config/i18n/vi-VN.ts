@@ -51,4 +51,7 @@ export default generateLocale([
   'nóng nhất',
   'What do you think?',
   'Bình luận của bạn đang được xem xét và hiện chỉ hiển thị với bạn. Nó sẽ được công khai sau khi được phê duyệt.',
+  'Đăng ký nhận xét của bài viết này',
+  'Đăng ký nhận xét của trang web này',
+  'Đăng ký nhận xét của bạn',
 ]);
