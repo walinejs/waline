@@ -114,10 +114,19 @@
 .wl-rss {
   display: flex;
   gap: 5px;
+  max-width: 16px;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    max-width: 100%;
+  }
 
   > a {
     display: flex;
     gap: 2px;
+    flex-shrink: 0;
   }
   span {
     color: var(--waline-light-grey);

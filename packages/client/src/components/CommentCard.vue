@@ -170,11 +170,11 @@ const isEditingCurrent = computed(() => comment.objectId === edit?.objectId);
 
       <!-- eslint-disable vue/no-v-html -->
       <div v-if="!isEditingCurrent" class="wl-content">
-        <p v-if="'reply_user' in comment && comment.reply_user">
+        <div v-if="'reply_user' in comment && comment.reply_user" class="wl-reply-to">
           <a :href="'#' + comment.pid">@{{ comment.reply_user.nick }}</a>
 
           <span>: </span>
-        </p>
+        </div>
 
         <div v-html="comment.comment" />
       </div>
