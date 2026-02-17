@@ -40,7 +40,7 @@ module.exports = class extends Base {
         string: true,
       },
       email: {
-        string: true,
+        email: true,
       },
       user_id: {
         string: true,

@@ -293,7 +293,7 @@ onUnmounted(() => {
     <div class="wl-meta-foot" v-if="data.length || status !== 'loading'">
       <div class="wl-rss">
         <a
-          :href="`${config.serverURL}/api/comment/rss?path=${config.path}`"
+          :href="`${config.serverURL}/api/comment/rss?path=${encodeURIComponent(config.path)}`"
           target="_blank"
           rel="noopener noreferrer"
           :alt="i18n.subPostComment"
