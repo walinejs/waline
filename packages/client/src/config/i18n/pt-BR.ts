@@ -51,4 +51,7 @@ export default generateLocale([
   'Mais quente',
   'O que você acha?',
   'Seu comentário está em revisão e atualmente está visível apenas para você. Ele será visível publicamente após a aprovação.',
+  'Assinar os comentários deste post',
+  'Assinar os comentários deste site',
+  'Assinar as respostas dos seus comentários',
 ]);

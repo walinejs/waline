@@ -10,6 +10,7 @@ import {
   EditIcon,
   LikeIcon,
   ReplyIcon,
+  RssLineIcon,
   VerifiedIcon,
 } from './Icons.js';
 import { useLikeStorage, useUserInfo } from '../composables/index.js';
@@ -116,6 +117,18 @@ const isEditingCurrent = computed(() => comment.objectId === edit?.objectId);
               <DeleteIcon />
             </button>
           </template>
+
+          <a
+            role="button"
+            class="wl-rss"
+            :title="locale.subscribeToReplies"
+            v-if="isOwner"
+            :href="`${config.serverURL}/api/comment/rss?user_id=${comment.user_id}`"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <RssLineIcon />
+          </a>
 
           <button
             type="button"

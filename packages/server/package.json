@@ -1,6 +1,6 @@
 {
   "name": "@waline/vercel",
-  "version": "1.38.0",
+  "version": "1.39.0",
   "description": "vercel server for waline comment system",
   "keywords": [
     "blog",
@@ -43,6 +43,7 @@
     "nunjucks": "^3.2.4",
     "phpass": "^0.1.1",
     "prismjs": "^1.30.0",
+    "rss": "^1.2.2",
     "speakeasy": "^2.0.0",
     "think-helper": "^1.1.4",
     "think-logger3": "^1.4.0",
