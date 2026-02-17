@@ -299,6 +299,13 @@ We hope you can keep it on to support Waline.
 
 :::
 
+## rss
+
+- Type: `boolean`
+- Default: `false`
+
+Whether to show RSS subscription links.
+
 ## recaptchaV3Key
 
 - Type: `string`

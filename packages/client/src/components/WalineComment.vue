@@ -291,7 +291,7 @@ onUnmounted(() => {
     </div>
 
     <div class="wl-meta-foot" v-if="data.length || status !== 'loading'">
-      <div class="wl-rss">
+      <div v-if="config.rss" class="wl-rss">
         <a
           :href="`${config.serverURL}/api/comment/rss?path=${encodeURIComponent(config.path)}`"
           target="_blank"
