@@ -296,12 +296,18 @@ onUnmounted(() => {
           :href="`${config.serverURL}/api/comment/rss?path=${encodeURIComponent(config.path)}`"
           target="_blank"
           rel="noopener noreferrer"
+          :alt="i18n.subPostComment"
         >
           <RssIcon />
           <span v-text="i18n.subPostComment" />
         </a>
 
-        <a :href="`${config.serverURL}/api/comment/rss`" target="_blank" rel="noopener noreferrer">
+        <a
+          :href="`${config.serverURL}/api/comment/rss`"
+          target="_blank"
+          rel="noopener noreferrer"
+          :alt="i18n.subSiteComment"
+        >
           <RssIcon />
           <span v-text="i18n.subSiteComment" />
         </a>

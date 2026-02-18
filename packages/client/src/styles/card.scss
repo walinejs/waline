@@ -237,6 +237,11 @@
     > *:last-child {
       margin-bottom: 0;
     }
+
+    .wl-reply-to {
+      float: left;
+      margin: 1em 0.5em 0 0;
+    }
   }
 
   .wl-admin-actions {
