@@ -13,65 +13,9 @@ module.exports = class BaseLogic extends think.Logic {
 
   // oxlint-disable-next-line max-statements
   async __before() {
-    const referrer = this.ctx.referrer(true);
-    let { origin } = this.ctx;
-
-    if (origin) {
-      try {
-        const parsedOrigin = new URL(origin);
-
-        origin = parsedOrigin.hostname;
-      } catch (err) {
-        console.error('Invalid origin format:', origin, err);
-      }
-    }
-
-    let { secureDomains } = this.config();
-
-    if (secureDomains) {
-      secureDomains = think.isArray(secureDomains) ? secureDomains : [secureDomains];
-
-      secureDomains.push(
-        'localhost',
-        '127.0.0.1',
-        // 'github.com',
-        // 'api.twitter.com',
-        // 'www.facebook.com',
-        // 'api.weibo.com',
-        // 'graph.qq.com',
-      );
-      secureDomains = [
-        ...secureDomains,
-        ...this.ctx.state.oauthServices.map(({ origin }) => origin),
-      ];
-
-      // 转换可能的正则表达式字符串为正则表达式对象
-      secureDomains = secureDomains
-        .map((domain) => {
-          // 如果是正则表达式字符串，创建一个 RegExp 对象
-          if (typeof domain === 'string' && domain.startsWith('/') && domain.endsWith('/')) {
-            try {
-              return new RegExp(domain.slice(1, -1)); // 去掉斜杠并创建 RegExp 对象
-            } catch (err) {
-              console.error('Invalid regex pattern in secureDomains:', domain, err);
-
-              return null;
-            }
-          }
-
-          return domain;
-        })
-        .filter(Boolean); // 过滤掉无效的正则表达式
-
-      // 有 referrer 检查 referrer，没有则检查 origin
-      const checking = referrer || origin;
-      const isSafe = secureDomains.some((domain) =>
-        think.isFunction(domain.test) ? domain.test(checking) : domain === checking,
-      );
-
-      if (!isSafe) {
-        return this.ctx.throw(403);
-      }
+    const referrerCheckResult = this.referrerCheck();
+    if (!referrerCheckResult) {
+      return this.ctx.throw(403);
     }
 
     this.ctx.state.userInfo = {};
@@ -132,6 +76,63 @@ module.exports = class BaseLogic extends think.Logic {
     userInfo.avatar = avatarUrl;
     this.ctx.state.userInfo = userInfo;
     this.ctx.state.token = token;
+  }
+
+  referrerCheck() {
+    let { secureDomains } = this.config();
+    if (!secureDomains) {
+      return true;
+    }
+
+    console.log(this.ctx.path);
+    const whitelistPath = ['/api/comment/rss'];
+    if (this.ctx.path && whitelistPath.includes(this.ctx.path)) {
+      return true;
+    }
+
+    const referrer = this.ctx.referrer(true);
+    let { origin } = this.ctx;
+    if (origin) {
+      try {
+        const parsedOrigin = new URL(origin);
+
+        origin = parsedOrigin.hostname;
+      } catch (err) {
+        console.error('Invalid origin format:', origin, err);
+      }
+    }
+
+    secureDomains = think.isArray(secureDomains) ? secureDomains : [secureDomains];
+    secureDomains.push('localhost', '127.0.0.1');
+    secureDomains = [...secureDomains, ...this.ctx.state.oauthServices.map(({ origin }) => origin)];
+
+    // 转换可能的正则表达式字符串为正则表达式对象
+    secureDomains = secureDomains
+      .map((domain) => {
+        // 如果是正则表达式字符串，创建一个 RegExp 对象
+        if (typeof domain === 'string' && domain.startsWith('/') && domain.endsWith('/')) {
+          try {
+            return new RegExp(domain.slice(1, -1)); // 去掉斜杠并创建 RegExp 对象
+          } catch (err) {
+            console.error('Invalid regex pattern in secureDomains:', domain, err);
+
+            return null;
+          }
+        }
+
+        return domain;
+      })
+      .filter(Boolean); // 过滤掉无效的正则表达式
+
+    // 有 referrer 检查 referrer，没有则检查 origin
+    const checking = referrer || origin;
+    const isSafe = secureDomains.some((domain) =>
+      think.isFunction(domain.test) ? domain.test(checking) : domain === checking,
+    );
+
+    if (!isSafe) {
+      return this.ctx.throw(403);
+    }
   }
 
   getResource() {
