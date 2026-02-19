@@ -84,7 +84,6 @@ module.exports = class BaseLogic extends think.Logic {
       return true;
     }
 
-    console.log(this.ctx.path);
     const whitelistPath = ['/api/comment/rss'];
     if (this.ctx.path && whitelistPath.includes(this.ctx.path)) {
       return true;
