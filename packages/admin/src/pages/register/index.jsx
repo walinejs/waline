@@ -20,7 +20,7 @@ export default function Register() {
   });
 
   useEffect(() => {
-    if (user && user.email) {
+    if (user && user.objectId) {
       navigate('/ui', { replace: true });
     }
   }, [navigate]);

@@ -17,7 +17,7 @@ const Access = (props) => {
   useEffect(() => {
     const meta = props.meta ?? {};
     const basename = props.basename ?? '';
-    const emptyUser = !user?.email;
+    const emptyUser = !user?.objectId;
 
     if (emptyUser) {
       return (location.href = `${basename}/ui/login?redirect=${location.pathname.replace(basename, '')}`);
