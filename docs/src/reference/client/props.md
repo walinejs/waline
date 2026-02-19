@@ -298,12 +298,12 @@ Waline 多语言配置。
 
 :::
 
-## rss
+## noRss
 
 - 类型: `boolean`
 - 默认值: `false`
 
-是否显示 RSS 订阅链接。
+是否隐藏 RSS 订阅链接。
 
 ## recaptchaV3Key
 

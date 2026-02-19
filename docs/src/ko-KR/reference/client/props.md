@@ -299,12 +299,12 @@ Waline을 지원하기 위해 이 옵션을 유지해 주시길 바랍니다.
 
 :::
 
-## rss
+## noRss
 
 - 타입: `boolean`
 - 기본값: `false`
 
-RSS 구독 링크를 표시할지 여부.
+RSS 구독 링크를 숨길지 여부.
 
 ## recaptchaV3Key
 

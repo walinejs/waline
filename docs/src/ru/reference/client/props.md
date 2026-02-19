@@ -299,12 +299,12 @@ We hope you can keep it on to support Waline.
 
 :::
 
-## rss
+## noRss
 
 - Type: `boolean`
 - Default: `false`
 
-Whether to show RSS subscription links.
+Whether to hide RSS subscription links.
 
 ## recaptchaV3Key
 

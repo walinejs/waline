@@ -187,13 +187,13 @@ export interface WalineProps {
   noCopyright?: boolean;
 
   /**
-   * 是否启用 RSS 订阅入口
+   * 是否隐藏 RSS 订阅入口
    *
-   * Whether to enable RSS subscription links
+   * Whether to hide RSS subscription links
    *
    * @default false
    */
-  rss?: boolean;
+  noRss?: boolean;
 
   /**
    * recaptcha v3 客户端 key
