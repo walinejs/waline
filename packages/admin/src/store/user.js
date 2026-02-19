@@ -15,7 +15,7 @@ export const user = {
     async loadUserInfo() {
       const user = await getUserInfo();
 
-      if (!user?.email) {
+      if (!user?.objectId) {
         return;
       }
       if (window.opener) {

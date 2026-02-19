@@ -26,7 +26,7 @@ export default function Login() {
   const basePath = match && match[1] ? match[1] : '/';
 
   useEffect(() => {
-    if (!user || !user.email) {
+    if (!user || !user.objectId) {
       return;
     }
 
