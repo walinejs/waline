@@ -122,7 +122,7 @@ const isEditingCurrent = computed(() => comment.objectId === edit?.objectId);
             role="button"
             class="wl-rss"
             :title="locale.subscribeToReplies"
-            v-if="isOwner"
+            v-if="isOwner && !config.noRss"
             :href="`${config.serverURL}/api/comment/rss?user_id=${comment.user_id}`"
             target="_blank"
             rel="noopener noreferrer"
