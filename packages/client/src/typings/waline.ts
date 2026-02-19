@@ -187,6 +187,15 @@ export interface WalineProps {
   noCopyright?: boolean;
 
   /**
+   * 是否隐藏 RSS 订阅入口
+   *
+   * Whether to hide RSS subscription links
+   *
+   * @default false
+   */
+  noRss?: boolean;
+
+  /**
    * recaptcha v3 客户端 key
    *
    * recaptcha v3 client key
