@@ -19,13 +19,19 @@ icon: tidb
    ![步骤5](../../assets/tidb-6.png)
 
 至此 Waline 数据库就已经创建完成！
-
+   
 ## 获取连接配置
 
 点击左侧的 <kbd>Overview</kbd> 按钮进入首页，选择右上角的 <kbd>Connect</kbd> 获取连接信息。
 
-Connect with 选择 `Node.js`。此外还需要点击右下角的 <kbd>Reset password</kbd> 生成下密码。
+Connect with 选择 `General`。此外还需要点击下一行的 <kbd>Reset password</kbd> 生成下新密码。
 
 这样你就能获取到连接相关的配置了。
 
 ![获取链接配置](../../assets/tidb-7.png)
+
+## Vercel 部署
+
+创建 Vercel 账号并创建项目和部署好 Waline 服务，然后点击左侧的 <kbd>Settings</kbd> 菜单项，再找到 `Environment Variables` 配置项，点击右上角的 <kbd>Add Environment Variable</kbd> 按钮，依次填写`TIDB_HOST`、`TIDB_PORT`、`TIDB_DB`、`TIDB_USER` 和 `TIDB_PASSWORD`的参数信息，然后重新部署下服务即可。
+
+![配置TiDB数据库连接](../../assets/tidb-8.png)
