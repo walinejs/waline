@@ -69,7 +69,12 @@ export const login = ({
   if (isMobile()) {
     location.href = `${serverURL.replace(/\/$/, '')}/ui/login?lng=${encodeURIComponent(lang)}&redirect=${encodeURIComponent(location.href)}`;
 
-    return Promise.resolve({} as UserInfo & { remember: boolean });
+    // On mobile, we perform a full-page redirect; the login flow is handled entirely
+    // in the redirected page, so this promise intentionally never resolves to avoid
+    // overwriting existing userInfo with an empty object.
+    return new Promise<UserInfo & { remember: boolean }>(() => {
+      // no-op
+    });
   }
 
   const handler = window.open(
