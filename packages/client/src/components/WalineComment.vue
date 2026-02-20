@@ -219,12 +219,40 @@ const onLike = async (comment: WalineComment): Promise<void> => {
 
 provide(configKey, config);
 
-onMounted(() => {
+onMounted(async () => {
   watchImmediate(
     () => [props.serverURL, props.path],
     () => {
       refreshComments();
     },
+  );
+
+  const qs = new URLSearchParams(location.search);
+  const token = qs.get('token');
+
+  if (!token) {
+    return;
+  }
+
+  const resp = await fetch(`${config?.value.serverURL}/token`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((res) => res.json())
+    .catch((err) => {
+      console.log(err);
+      return {};
+    });
+
+  if (!resp.errno && resp?.data?.objectId) {
+    userInfo.value = { ...resp.data, token };
+  }
+
+  history.replaceState(
+    null,
+    '',
+    location.pathname + location.search.replace(/([?&])token=[^&]+(&|$)/, '$1').replace(/&$/, ''),
   );
 });
 onUnmounted(() => {
