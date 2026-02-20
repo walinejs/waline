@@ -21,7 +21,7 @@ module.exports = class extends think.Controller {
     const filename = this.__filename || __filename;
     const last = filename.lastIndexOf(path.sep);
 
-    return filename.slice(last + 1, filename.length - last - 4);
+    return filename.slice(last + 1, - 3);
   }
 
   getId() {
@@ -32,7 +32,6 @@ module.exports = class extends think.Controller {
     }
 
     const last = decodeURIComponent(this.ctx.path.split('/').pop());
-
     if (last !== this.resource && /^([a-z0-9]+,?)*$/i.test(last)) {
       return last;
     }

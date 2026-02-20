@@ -20,7 +20,7 @@ export default function Header() {
   }, [i18n.language]);
 
   useEffect(() => {
-    if (!user?.email || !user?.__version) {
+    if (!user?.objectId || !user?.__version) {
       return;
     }
 
@@ -32,7 +32,7 @@ export default function Header() {
         }
         setLatestVersion(resp.version);
       });
-  }, [user?.email]);
+  }, [user?.objectId]);
 
   const updateLanguage = (event) => {
     i18n.changeLanguage(event.target.value);
