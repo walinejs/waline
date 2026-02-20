@@ -241,7 +241,7 @@ onMounted(async () => {
   })
     .then((res) => res.json())
     .catch((err) => {
-      console.log(err);
+      console.error(err);
       return {};
     });
 
