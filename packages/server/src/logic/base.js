@@ -138,7 +138,7 @@ module.exports = class BaseLogic extends think.Logic {
     const filename = this.__filename || __filename;
     const last = filename.lastIndexOf(path.sep);
 
-    return filename.slice(last + 1, filename.length - last - 4);
+    return filename.slice(last + 1, - 3);
   }
 
   getId() {
