@@ -249,10 +249,13 @@ onMounted(async () => {
     userInfo.value = { ...resp.data, token };
   }
 
+  const url = new URL(window.location.href);
+  url.searchParams.delete('token');
+
   history.replaceState(
     null,
     '',
-    location.pathname + location.search.replace(/([?&])token=[^&]+(&|$)/, '$1').replace(/&$/, ''),
+    url.pathname + (url.searchParams.toString() ? `?${url.searchParams.toString()}` : '') + url.hash,
   );
 });
 onUnmounted(() => {
