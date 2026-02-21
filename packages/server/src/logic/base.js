@@ -129,16 +129,14 @@ module.exports = class BaseLogic extends think.Logic {
       think.isFunction(domain.test) ? domain.test(checking) : domain === checking,
     );
 
-    if (!isSafe) {
-      return this.ctx.throw(403);
-    }
+    return isSafe;
   }
 
   getResource() {
     const filename = this.__filename || __filename;
     const last = filename.lastIndexOf(path.sep);
 
-    return filename.slice(last + 1, - 3);
+    return filename.slice(last + 1, -3);
   }
 
   getId() {
