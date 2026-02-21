@@ -11,7 +11,7 @@ icon: tidb
 
    ![Enter instance](../../../assets/tidb-1.png)
 
-2. Wählen Sie <kbd>Chat2Query</kbd> in der Liste auf der linken Seite aus und ändern Sie den Inhalt von [waline.tidb](https://github.com/walinejs/waline/blob/main/assets/waline.tidb) in `;` Die Verteilung der Anweisungen wird nahe an der Schnittstelle ausgeführt. Klicken Sie für jeden Satz auf die blaue Schaltfläche <kbd>Run</kbd> oben rechts oder verwenden Sie die Tastenkombination <kbd>Ctrl\/Command</kbd> + <kbd>Enter</kbd> zum Ausführen
+2. Wählen Sie <kbd>SQL Editor</kbd> in der Liste auf der linken Seite aus und ändern Sie den Inhalt von [waline.tidb](https://github.com/walinejs/waline/blob/main/assets/waline.tidb) in `;` Die Verteilung der Anweisungen wird nahe an der Schnittstelle ausgeführt. Klicken Sie für jeden Satz auf die blaue Schaltfläche <kbd>Run</kbd> oben rechts oder verwenden Sie die Tastenkombination <kbd>Ctrl\/Command</kbd> + <kbd>Enter</kbd> zum Ausführen
    ![Step1](../../../assets/tidb-2.png)
    ![Step2](../../../assets/tidb-3.png)
    ![Step3](../../../assets/tidb-4.png)
