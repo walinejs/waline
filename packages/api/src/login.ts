@@ -52,6 +52,11 @@ export interface UserInfo {
   type: 'administrator' | 'guest';
 }
 
+const isMobile = (): boolean => {
+  const ua = navigator.userAgent;
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
+};
+
 export const login = ({
   lang,
   serverURL,
@@ -60,6 +65,17 @@ export const login = ({
   const height = 450;
   const left = (window.innerWidth - width) / 2;
   const top = (window.innerHeight - height) / 2;
+
+  if (isMobile()) {
+    location.href = `${serverURL.replace(/\/$/, '')}/ui/login?lng=${encodeURIComponent(lang)}&redirect=${encodeURIComponent(location.href)}`;
+
+    // On mobile, we perform a full-page redirect; the login flow is handled entirely
+    // in the redirected page, so this promise intentionally never resolves to avoid
+    // overwriting existing userInfo with an empty object.
+    return new Promise<UserInfo & { remember: boolean }>(() => {
+      // no-op
+    });
+  }
 
   const handler = window.open(
     `${serverURL.replace(/\/$/, '')}/ui/login?lng=${encodeURIComponent(lang)}`,
