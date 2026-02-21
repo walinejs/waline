@@ -28,7 +28,7 @@ Wählen Sie unter "Connect with" die Option `Allgemein`. Außerdem müssen Sie i
 
 Auf diese Weise können Sie die Konfiguration im Zusammenhang mit der Verbindung abrufen.
 
-![Verbindungskonfiguration abrufen](../../assets/tidb-7.png)
+![Verbindungskonfiguration abrufen](../../../assets/tidb-7.png)
 
 ## Vercel-Bereitstellung
 
