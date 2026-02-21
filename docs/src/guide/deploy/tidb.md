@@ -19,7 +19,6 @@ icon: tidb
    ![步骤5](../../assets/tidb-6.png)
 
 至此 Waline 数据库就已经创建完成！
-   
 ## 获取连接配置
 
 点击左侧的 <kbd>Overview</kbd> 按钮进入首页，选择右上角的 <kbd>Connect</kbd> 获取连接信息。
