@@ -34,4 +34,4 @@ Auf diese Weise können Sie die Konfiguration im Zusammenhang mit der Verbindung
 
 Erstellen Sie ein Vercel-Konto, erstellen Sie ein Projekt und stellen Sie den Waline-Dienst bereit. Klicken Sie dann im Menü auf der linken Seite auf <kbd>Einstellungen</kbd>, suchen Sie die Konfigurationsoption `Umgebungsvariablen`, klicken Sie auf die Schaltfläche <kbd>Umgebungsvariable hinzufügen</kbd> oben rechts und geben Sie nacheinander die Parameterinformationen für `TIDB_HOST`, `TIDB_PORT`, `TIDB_DB`, `TIDB_USER` und `TIDB_PASSWORD` ein. Danach können Sie den Dienst erneut bereitstellen.
 
-![TiDB-Datenbankverbindung konfigurieren](../../assets/tidb-8.png)
+![TiDB-Datenbankverbindung konfigurieren](../../../assets/tidb-8.png)
