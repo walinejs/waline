@@ -34,4 +34,4 @@ In this way, you can get the configuration related to the connection.
 
 Create a Vercel account, add a project and deploy the Waline service. Then open the project <kbd>Settings</kbd> and go to `Environment Variables`. Click <kbd>Add Environment Variable</kbd> and add the following variables: `TIDB_HOST`, `TIDB_PORT`, `TIDB_DB`, `TIDB_USER`, and `TIDB_PASSWORD`. After adding these variables, redeploy the project.
 
-![Configure TiDB connection](../../assets/tidb-8.png)
+![Configure TiDB connection](../../../assets/tidb-8.png)
