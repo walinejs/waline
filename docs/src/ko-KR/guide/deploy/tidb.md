@@ -11,7 +11,7 @@ icon: tidb
 
    ![인스턴스 진입](../../../assets/tidb-1.png)
 
-2. 왼쪽 목록에서 <kbd>Chat2Query</kbd>를 선택하고, [waline.tidb](https://github.com/walinejs/waline/blob/main/assets/waline.tidb)의 내용을 `;` 기준으로 문장별로 나누어 인터페이스에서 실행합니다. 각 문장마다 오른쪽 상단의 <kbd>Run</kbd> 파란색 버튼을 클릭하거나, <kbd>Ctrl\/Command</kbd> + <kbd>Enter</kbd> 단축키를 사용하여 실행합니다.
+2. 왼쪽 목록에서 <kbd>SQL Editor</kbd>를 선택하고, [waline.tidb](https://github.com/walinejs/waline/blob/main/assets/waline.tidb)의 내용을 `;` 기준으로 문장별로 나누어 인터페이스에서 실행합니다. 각 문장마다 오른쪽 상단의 <kbd>Run</kbd> 파란색 버튼을 클릭하거나, <kbd>Ctrl\/Command</kbd> + <kbd>Enter</kbd> 단축키를 사용하여 실행합니다.
    ![Step1](../../../assets/tidb-2.png)
    ![Step2](../../../assets/tidb-3.png)
    ![Step3](../../../assets/tidb-4.png)
