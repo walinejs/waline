@@ -24,8 +24,14 @@ So far the Waline database has been created!
 
 Click the <kbd>Overview</kbd> button on the left to enter the homepage, and select <kbd>Connect</kbd> in the upper right corner to get connection information.
 
-'Connect with' select `Node.js`. In addition, you need to click <kbd>Reset password</kbd> in the lower right corner to generate a password.
+Set "Connect with" to `General`. Also click <kbd>Reset password</kbd> on the following line to generate a new password.
 
 In this way, you can get the configuration related to the connection.
 
 ![Connection](../../../assets/tidb-7.png)
+
+## Vercel deployment
+
+Create a Vercel account, add a project and deploy the Waline service. Then open the project <kbd>Settings</kbd> and go to `Environment Variables`. Click <kbd>Add Environment Variable</kbd> and add the following variables: `TIDB_HOST`, `TIDB_PORT`, `TIDB_DB`, `TIDB_USER`, and `TIDB_PASSWORD`. After adding these variables, redeploy the project.
+
+![Configure TiDB connection](../../../assets/tidb-8.png)

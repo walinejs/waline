@@ -24,8 +24,14 @@ icon: tidb
 
 왼쪽의 <kbd>Overview</kbd> 버튼을 클릭하여 홈페이지로 이동하고, 오른쪽 상단의 <kbd>Connect</kbd>를 선택하여 연결 정보를 가져옵니다.
 
-'Connect with'에서 `Node.js`를 선택합니다. 또한, 오른쪽 하단의 <kbd>Reset password</kbd>를 클릭하여 비밀번호를 생성해야 합니다.
+'Connect with'에서 `General`을 선택합니다. 또한 다음 줄의 <kbd>Reset password</kbd>를 클릭하여 새 비밀번호를 생성해야 합니다.
 
-이렇게 하면 연결 관련 설정을 얻을 수 있습니다.
+이렇게 하면 연결 관련 구성을 얻을 수 있습니다.
 
-![연결 정보](../../../assets/tidb-7.png)
+![연결 구성 가져오기](../../../assets/tidb-7.png)
+
+## Vercel 배포
+
+Vercel 계정을 생성하고 프로젝트를 생성하며 Waline 서비스를 배포한 다음, 왼쪽의 <kbd>Settings</kbd> 메뉴 항목을 클릭하고 `Environment Variables` 구성 항목을 찾아 오른쪽 상단의 <kbd>Add Environment Variable</kbd> 버튼을 클릭하여 `TIDB_HOST`, `TIDB_PORT`, `TIDB_DB`, `TIDB_USER` 및 `TIDB_PASSWORD`의 매개변수 정보를 차례대로 입력한 후 서비스를 다시 배포하면 됩니다.
+
+![TiDB 데이터베이스 연결 구성](../../../assets/tidb-8.png)

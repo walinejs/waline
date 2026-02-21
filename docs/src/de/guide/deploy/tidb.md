@@ -24,8 +24,14 @@ Bisher wurde die Waline-Datenbank erstellt!
 
 Klicken Sie links auf die Schaltfläche <kbd>Overview</kbd>, um die Startseite aufzurufen, und wählen Sie oben rechts <kbd>Connect</kbd> aus, um Verbindungsinformationen abzurufen.
 
-'Connect with' wählen Sie `Node.js`. Außerdem müssen Sie unten rechts auf <kbd>Reset password</kbd> klicken, um ein Passwort zu generieren.
+Wählen Sie unter "Connect with" die Option `Allgemein`. Außerdem müssen Sie in der nächsten Zeile auf <kbd>Passwort zurücksetzen</kbd> klicken, um ein neues Passwort zu generieren.
 
 Auf diese Weise können Sie die Konfiguration im Zusammenhang mit der Verbindung abrufen.
 
-![Connection](../../../assets/tidb-7.png)
+![Verbindungskonfiguration abrufen](../../../assets/tidb-7.png)
+
+## Vercel-Bereitstellung
+
+Erstellen Sie ein Vercel-Konto, erstellen Sie ein Projekt und stellen Sie den Waline-Dienst bereit. Klicken Sie dann im Menü auf der linken Seite auf <kbd>Einstellungen</kbd>, suchen Sie die Konfigurationsoption `Umgebungsvariablen`, klicken Sie auf die Schaltfläche <kbd>Umgebungsvariable hinzufügen</kbd> oben rechts und geben Sie nacheinander die Parameterinformationen für `TIDB_HOST`, `TIDB_PORT`, `TIDB_DB`, `TIDB_USER` und `TIDB_PASSWORD` ein. Danach können Sie den Dienst erneut bereitstellen.
+
+![TiDB-Datenbankverbindung konfigurieren](../../../assets/tidb-8.png)
