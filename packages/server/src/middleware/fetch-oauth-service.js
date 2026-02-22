@@ -7,6 +7,11 @@ module.exports = () => async (ctx, next) => {
     },
   }).then((resp) => resp.json());
 
+  // Check for error response in unified format { errno, message }
+  if (oauthResp?.errno) {
+    ctx.throw(oauthResp.errno, oauthResp.message);
+  }
+
   if (!oauthResp || !Array.isArray(oauthResp.services)) {
     ctx.throw(502);
   }

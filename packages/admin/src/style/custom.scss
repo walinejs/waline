@@ -11,6 +11,7 @@ div[tabindex='-1'] {
   position: relative;
   display: inline-block;
   margin-right: 16px;
+  transition: transform 0.2s ease-in-out;
 }
 
 .account-item .account-unbind svg {
@@ -37,7 +38,8 @@ div[tabindex='-1'] {
 .account-item.facebook path,
 .account-item.weibo circle,
 .account-item.qq path,
-.account-item.oidc path {
+.account-item.oidc path,
+.account-item.huawei path {
   fill: #808080;
 }
 
@@ -70,6 +72,19 @@ div[tabindex='-1'] {
 .account-item.oidc.bind path {
   fill: #ff9626;
 }
+.account-item.huawei:hover path, .account-item.huawei.bind path {
+    fill: #ff0000;
+}
+
+.account-item.google:not(.bind):not(:hover) path:not([fill="none"]){fill:gray;}
+.account-item:not(.bind) .account-unbind {display: none;}
+.account-item.bind{pointer-events: none;}
+.account-item:not(.bind){opacity:.75;}
+.account-list circle, .account-list path {transition: fill 0.2s ease;}
+.account-item:hover {
+    transform: translateY(-2px);
+}
+
 
 .user-page-account-item {
   margin-right: 6px;

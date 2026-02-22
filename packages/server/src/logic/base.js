@@ -1,6 +1,5 @@
 const path = require('node:path');
 const qs = require('node:querystring');
-
 const jwt = require('jsonwebtoken');
 
 module.exports = class BaseLogic extends think.Logic {
@@ -11,208 +10,92 @@ module.exports = class BaseLogic extends think.Logic {
     this.id = this.getId();
   }
 
-  // oxlint-disable-next-line max-statements
   async __before() {
     const referrer = this.ctx.referrer(true);
     let { origin } = this.ctx;
 
     if (origin) {
       try {
-        const parsedOrigin = new URL(origin);
-
-        origin = parsedOrigin.hostname;
+        origin = new URL(origin).hostname;
       } catch (err) {
-        console.error('Invalid origin format:', origin, err);
+        console.error('Invalid origin:', origin);
       }
     }
 
     let { secureDomains } = this.config();
+    const oauthServices = this.ctx.state.oauthServices || [];
 
     if (secureDomains) {
       secureDomains = think.isArray(secureDomains) ? secureDomains : [secureDomains];
+      secureDomains.push('localhost', '127.0.0.1');
+      secureDomains = [...secureDomains, ...oauthServices.map(s => s.origin)];
 
-      secureDomains.push(
-        'localhost',
-        '127.0.0.1',
-        // 'github.com',
-        // 'api.twitter.com',
-        // 'www.facebook.com',
-        // 'api.weibo.com',
-        // 'graph.qq.com',
-      );
-      secureDomains = [
-        ...secureDomains,
-        ...this.ctx.state.oauthServices.map(({ origin }) => origin),
-      ];
+      secureDomains = secureDomains.map(domain => {
+        if (typeof domain === 'string' && domain.startsWith('/') && domain.endsWith('/')) {
+          try { return new RegExp(domain.slice(1, -1)); } catch (e) { return null; }
+        }
+        return domain;
+      }).filter(Boolean);
 
-      // 转换可能的正则表达式字符串为正则表达式对象
-      secureDomains = secureDomains
-        .map((domain) => {
-          // 如果是正则表达式字符串，创建一个 RegExp 对象
-          if (typeof domain === 'string' && domain.startsWith('/') && domain.endsWith('/')) {
-            try {
-              return new RegExp(domain.slice(1, -1)); // 去掉斜杠并创建 RegExp 对象
-            } catch (err) {
-              console.error('Invalid regex pattern in secureDomains:', domain, err);
-
-              return null;
-            }
-          }
-
-          return domain;
-        })
-        .filter(Boolean); // 过滤掉无效的正则表达式
-
-      // 有 referrer 检查 referrer，没有则检查 origin
       const checking = referrer || origin;
-      const isSafe = secureDomains.some((domain) =>
-        think.isFunction(domain.test) ? domain.test(checking) : domain === checking,
+      const isSafe = secureDomains.some(domain => 
+        think.isFunction(domain.test) ? domain.test(checking) : domain === checking
       );
-
-      if (!isSafe) {
-        return this.ctx.throw(403);
-      }
+      if (!isSafe) return this.ctx.throw(403);
     }
 
-    this.ctx.state.userInfo = {};
+    this.ctx.state.userInfo = null;
+    this.ctx.state.token = null;
+
     const { authorization } = this.ctx.req.headers;
-    const { state } = this.get();
+    if (!authorization) return;
 
-    if (!authorization && !state) {
-      return;
-    }
-    const token = state || authorization.replace(/^Bearer /, '');
-    let userId = '';
-
+    const token = authorization.replace(/^Bearer /, '');
     try {
-      userId = jwt.verify(token, think.config('jwtKey'));
+      const decoded = jwt.verify(token, think.config('jwtKey'));
+      if (decoded && think.isString(decoded)) {
+        const users = await this.modelInstance.select(
+          { objectId: decoded, type: ['!=', 'banned'] },
+          { field: ['id', 'email', 'url', 'display_name', 'type', 'avatar', '2fa', ...oauthServices.map(s => s.name)] }
+        );
+
+        if (!think.isEmpty(users)) {
+          const [user] = users;
+          this.ctx.state.userInfo = user;
+          this.ctx.state.token = token;
+        }
+      }
     } catch (err) {
-      think.logger.debug(err);
+      think.logger.debug('JWT error:', err.message);
     }
-
-    if (think.isEmpty(userId) || !think.isString(userId)) {
-      return;
-    }
-
-    const user = await this.modelInstance.select(
-      { objectId: userId, type: ['!=', 'banned'] },
-      {
-        field: [
-          'id',
-          'email',
-          'url',
-          'display_name',
-          'type',
-          'avatar',
-          '2fa',
-          'label',
-          ...this.ctx.state.oauthServices.map(({ name }) => name),
-        ],
-      },
-    );
-
-    if (think.isEmpty(user)) {
-      return;
-    }
-
-    const [userInfo] = user;
-
-    let avatarUrl =
-      userInfo.avatar ||
-      (await think.service('avatar').stringify({
-        mail: userInfo.email,
-        nick: userInfo.display_name,
-        link: userInfo.url,
-      }));
-    const { avatarProxy } = think.config();
-
-    if (avatarProxy) {
-      avatarUrl = `${avatarProxy}?url=${encodeURIComponent(avatarUrl)}`;
-    }
-    userInfo.avatar = avatarUrl;
-    this.ctx.state.userInfo = userInfo;
-    this.ctx.state.token = token;
   }
 
   getResource() {
     const filename = this.__filename || __filename;
     const last = filename.lastIndexOf(path.sep);
-
     return filename.slice(last + 1, filename.length - last - 4);
   }
 
   getId() {
     const id = this.get('id');
-
-    if (id && (think.isString(id) || think.isNumber(id))) {
-      return id;
-    }
-
+    if (id && (think.isString(id) || think.isNumber(id))) return id;
     const last = decodeURIComponent(this.ctx.path.split('/').pop());
-
-    if (last !== this.resource && /^([a-z0-9]+,?)*$/i.test(last)) {
-      return last;
-    }
-
-    return '';
+    return (last !== this.resource && /^([a-z0-9]+,?)*$/i.test(last)) ? last : '';
   }
 
   async useCaptchaCheck() {
     const { RECAPTCHA_V3_SECRET, TURNSTILE_SECRET } = process.env;
     const { turnstile, recaptchaV3 } = this.post();
-
-    if (TURNSTILE_SECRET) {
-      return this.useRecaptchaOrTurnstileCheck({
-        secret: TURNSTILE_SECRET,
-        token: turnstile,
-        api: 'https://challenges.cloudflare.com/turnstile/v0/siteverify',
-        method: 'POST',
-      });
-    }
-
-    if (RECAPTCHA_V3_SECRET) {
-      return this.useRecaptchaOrTurnstileCheck({
-        secret: RECAPTCHA_V3_SECRET,
-        token: recaptchaV3,
-        api: 'https://recaptcha.net/recaptcha/api/siteverify',
-        method: 'GET',
-      });
-    }
+    if (TURNSTILE_SECRET) return this.verifyCaptcha(TURNSTILE_SECRET, turnstile, 'https://challenges.cloudflare.com/turnstile/v0/siteverify', 'POST');
+    if (RECAPTCHA_V3_SECRET) return this.verifyCaptcha(RECAPTCHA_V3_SECRET, recaptchaV3, 'https://recaptcha.net/recaptcha/api/siteverify', 'GET');
   }
 
-  async useRecaptchaOrTurnstileCheck({ secret, token, api, method }) {
-    if (!secret) {
-      return;
-    }
-
-    if (!token) {
-      return this.ctx.throw(403);
-    }
-
-    const query = qs.stringify({
-      secret,
-      response: token,
-      remoteip: this.ctx.ip,
-    });
-
-    const requestUrl = method === 'GET' ? `${api}?${query}` : api;
-    const options =
-      method === 'GET'
-        ? {}
-        : {
-            method,
-            headers: {
-              'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-            },
-            body: query,
-          };
-
-    const response = await fetch(requestUrl, options).then((resp) => resp.json());
-
-    if (!response.success) {
-      think.logger.debug('RecaptchaV3 or Turnstile Result:', JSON.stringify(response, null, '\t'));
-
-      return this.ctx.throw(403);
-    }
+  async verifyCaptcha(secret, token, api, method) {
+    if (!secret || !token) return this.ctx.throw(403);
+    const body = qs.stringify({ secret, response: token, remoteip: this.ctx.ip });
+    const options = method === 'POST' ? { method, headers: { 'content-type': 'application/x-www-form-urlencoded' }, body } : {};
+    const url = method === 'GET' ? `${api}?${body}` : api;
+    const res = await fetch(url, options).then(r => r.json());
+    if (!res.success) return this.ctx.throw(403);
   }
 };

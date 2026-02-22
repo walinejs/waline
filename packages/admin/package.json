@@ -1,6 +1,6 @@
 {
   "name": "@waline/admin",
-  "version": "0.30.0",
+  "version": "0.40.0",
   "description": "management system for waline",
   "keywords": [
     "comment",
@@ -30,7 +30,7 @@
     "provenance": true
   },
   "scripts": {
-    "build": "NODE_ENV=production vite build",
+    "build": "vite build",
     "clean": "rimraf ./dist",
     "dev": "vite",
     "prepublishOnly": "pnpm build"

@@ -113,7 +113,7 @@ export default function User() {
 
   const socials = Array.isArray(window.oauthServices)
     ? window.oauthServices.map(({ name }) => name)
-    : ['oidc', 'qq', 'weibo', 'github', 'twitter', 'facebook'];
+    : ['oidc', 'qq', 'weibo', 'github', 'twitter', 'facebook','huawei'];
 
   return (
     <>

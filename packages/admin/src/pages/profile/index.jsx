@@ -95,7 +95,7 @@ export default function Profile() {
 
   const socials = Array.isArray(window.oauthServices)
     ? window.oauthServices.map(({ name }) => name)
-    : ['oidc', 'qq', 'weibo', 'github', 'twitter', 'facebook'];
+    : ['oidc', 'qq', 'weibo', 'github', 'twitter', 'facebook','huawei'];
 
   return (
     <>
@@ -120,7 +120,7 @@ export default function Profile() {
                 </a>
               </p>
               <h2>{user.display_name}</h2>
-              <p>{user.email}</p>
+              <p>{user.email.replace(/.*@(.*)-uuid\.com$/, "通过 $1 账号登录")}</p>
             </div>
 
             <div className="col-mb-12 col-tb-6 col-tb-offset-1 typecho-content-panel" role="form">
@@ -153,7 +153,7 @@ export default function Profile() {
                         name="email"
                         type="text"
                         className="text"
-                        defaultValue={user.email}
+                        defaultValue={user.email.replace(/.*@(.*)-uuid\.com$/, "")}
                       />
                       <p className="description" />
                     </li>
