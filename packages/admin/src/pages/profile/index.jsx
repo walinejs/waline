@@ -1,5 +1,5 @@
 import cls from 'classnames';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -15,7 +15,17 @@ export default function Profile() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const { t } = useTranslation();
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const error = urlParams.get('error');
 
+    if (error) {
+      alert("Error: " + error);
+
+      const newUrl = window.location.origin + window.location.pathname;
+      window.history.replaceState({}, document.title, newUrl);
+    }
+  }, []);
   const onProfileUpdate = async (event) => {
     event.preventDefault();
 
