@@ -14,7 +14,8 @@ export default function Forgot() {
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
-    if (user && user.email) {
+    // if logged
+    if (user && user.objectId) {
       navigate('/ui', { replace: true });
     }
   }, [navigate]);
