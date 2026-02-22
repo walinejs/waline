@@ -33,6 +33,12 @@ importers:
       '@commitlint/config-conventional':
         specifier: 20.4.1
         version: 20.4.1
+      '@oxfmt/binding-win32-x64-msvc':
+        specifier: ^0.34.0
+        version: 0.34.0
+      '@oxlint/binding-win32-x64-msvc':
+        specifier: ^1.49.0
+        version: 1.49.0
       '@rollup/plugin-commonjs':
         specifier: 29.0.0
         version: 29.0.0(rollup@4.57.1)
@@ -2597,6 +2603,12 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  '@oxfmt/binding-win32-x64-msvc@0.34.0':
+    resolution: {integrity: sha512-CXKQM/VaF+yuvGru8ktleHLJoBdjBtTFmAsLGePiESiTN0NjCI/PiaiOCfHMJ1HdP1LykvARUwMvgaN3tDhcrg==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [x64]
+    os: [win32]
+
   '@oxlint-tsgolint/darwin-arm64@0.12.0':
     resolution: {integrity: sha512-0tY8yjj6EZUIaz4OOp/a7qonh0HioLsLTVRFOky1RouELUj95pSlVdIM0e8554csmJ2PsDXGfBCiYOiDVYrYDQ==}
     cpu: [arm64]
@@ -2745,6 +2757,12 @@ packages:
 
   '@oxlint/binding-win32-x64-msvc@1.46.0':
     resolution: {integrity: sha512-DJbQsSJUr4KSi9uU0QqOgI7PX2C+fKGZX+YDprt3vM2sC0dWZsgVTLoN2vtkNyEWJSY2mnvRFUshWXT3bmo0Ug==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [x64]
+    os: [win32]
+
+  '@oxlint/binding-win32-x64-msvc@1.49.0':
+    resolution: {integrity: sha512-VteIelt78kwzSglOozaQcs6BCS4Lk0j+QA+hGV0W8UeyaqQ3XpbZRhDU55NW1PPvCy1tg4VXsTlEaPovqto7nQ==}
     engines: {node: ^20.19.0 || >=22.12.0}
     cpu: [x64]
     os: [win32]
@@ -11164,6 +11182,8 @@ snapshots:
   '@oxfmt/binding-win32-x64-msvc@0.31.0':
     optional: true
 
+  '@oxfmt/binding-win32-x64-msvc@0.34.0': {}
+
   '@oxlint-tsgolint/darwin-arm64@0.12.0':
     optional: true
 
@@ -11238,6 +11258,8 @@ snapshots:
 
   '@oxlint/binding-win32-x64-msvc@1.46.0':
     optional: true
+
+  '@oxlint/binding-win32-x64-msvc@1.49.0': {}
 
   '@paralleldrive/cuid2@2.3.1':
     dependencies:
