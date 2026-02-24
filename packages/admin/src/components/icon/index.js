@@ -6,3 +6,4 @@ export { default as qq } from './qq.svg?react';
 export { default as oidc } from './oidc.svg?react';
 export { default as google } from './google.svg?react';
 export { default as huawei } from './huawei.svg?react';
+export { default as steam } from './steam.svg?react';

@@ -99,7 +99,7 @@ export default function Login() {
 
   const socials = Array.isArray(window.oauthServices)
     ? window.oauthServices.map(({ name }) => name)
-    : ['oidc', 'qq', 'weibo', 'github', 'twitter', 'facebook','huawei'];
+    : ['oidc', 'qq', 'weibo', 'github', 'twitter', 'facebook', 'huawei', 'steam', 'google'];
 
   return (
     <>
