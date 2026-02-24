@@ -72,19 +72,31 @@ div[tabindex='-1'] {
 .account-item.oidc.bind path {
   fill: #ff9626;
 }
-.account-item.huawei:hover path, .account-item.huawei.bind path {
-    fill: #ff0000;
+.account-item.huawei:hover path,
+.account-item.huawei.bind path {
+  fill: #ff0000;
 }
 
-.account-item.google:not(.bind):not(:hover) path:not([fill="none"]){fill:gray;}
-.account-item:not(.bind) .account-unbind {display: none;}
-.account-item.bind{pointer-events: none;}
-.account-item:not(.bind){opacity:.75;}
-.account-list circle, .account-list path {transition: fill 0.2s ease;}
+.account-item.google:not(.bind):not(:hover) path:not([fill='none']) {
+  fill: gray;
+}
+.account-item:not(.bind) .account-unbind {
+  display: none;
+}
+.account-item.bind {
+  pointer-events: none;
+}
+.account-item:not(.bind) {
+  opacity: 0.75;
+  filter: grayscale(1);
+}
+.account-list circle,
+.account-list path {
+  transition: fill 0.2s ease;
+}
 .account-item:hover {
-    transform: translateY(-2px);
+  transform: translateY(-2px);
 }
-
 
 .user-page-account-item {
   margin-right: 6px;
