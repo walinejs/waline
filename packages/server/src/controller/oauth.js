@@ -7,12 +7,10 @@ module.exports = class extends think.Controller {
   }
 
   async indexAction() {
-    const { code, oauth_verifier, oauth_token, type, redirect } = this.get();
+    const { code, state, type, redirect } = this.get();
     const { oauthUrl } = this.config();
 
-    const hasCode = type === 'twitter' ? oauth_token && oauth_verifier : Boolean(code);
-
-    if (!hasCode) {
+    if (!code) {
       const { serverURL } = this.ctx;
       const redirectUrl = think.buildUrl(`${serverURL}/api/oauth`, {
         redirect,
@@ -31,7 +29,7 @@ module.exports = class extends think.Controller {
     /**
      * user = { id, name, email, avatar,url };
      */
-    const params = { code, oauth_verifier, oauth_token };
+    const params = { code, state };
 
     if (type === 'facebook') {
       const { serverURL } = this.ctx;
@@ -102,14 +100,14 @@ module.exports = class extends think.Controller {
       type: think.isEmpty(count) ? 'administrator' : 'guest',
     };
 
-    await this.modelInstance.add(data);
+    const cmtUser = await this.modelInstance.add(data);
 
     if (!redirect) {
       return this.success();
     }
 
     // and then generate token!
-    const token = jwt.sign(user.objectId, this.config('jwtKey'));
+    const token = jwt.sign(cmtUser.objectId, this.config('jwtKey'));
 
     this.redirect(redirect + (redirect.includes('?') ? '&' : '?') + 'token=' + token);
   }
