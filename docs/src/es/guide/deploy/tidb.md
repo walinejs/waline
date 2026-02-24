@@ -11,7 +11,7 @@ icon: tidb
 
    ![Enter instance](../../../assets/tidb-1.png)
 
-2. Select <kbd>Chat2Query</kbd> in the list on the left and change the content of [waline.tidb](https://github.com/walinejs/waline/blob/main/assets/waline.tidb) to `;` The distribution of statements is executed close to the interface. Click the <kbd>Run</kbd> blue button in the upper right corner for each sentence, or use the <kbd>Ctrl\/Command</kbd> + <kbd>Enter</kbd> shortcut key to execute
+2. Select <kbd>SQL Editor</kbd> in the list on the left and change the content of [waline.tidb](https://github.com/walinejs/waline/blob/main/assets/waline.tidb) to `;` The distribution of statements is executed close to the interface. Click the <kbd>Run</kbd> blue button in the upper right corner for each sentence, or use the <kbd>Ctrl\/Command</kbd> + <kbd>Enter</kbd> shortcut key to execute
    ![Step1](../../../assets/tidb-2.png)
    ![Step2](../../../assets/tidb-3.png)
    ![Step3](../../../assets/tidb-4.png)
@@ -24,8 +24,14 @@ So far the Waline database has been created!
 
 Click the <kbd>Overview</kbd> button on the left to enter the homepage, and select <kbd>Connect</kbd> in the upper right corner to get connection information.
 
-'Connect with' select `Node.js`. In addition, you need to click <kbd>Reset password</kbd> in the lower right corner to generate a password.
+Set "Connect with" to `General`. Also click <kbd>Reset password</kbd> on the following line to generate a new password.
 
 In this way, you can get the configuration related to the connection.
 
 ![Connection](../../../assets/tidb-7.png)
+
+## Vercel deployment
+
+Create a Vercel account, add a project and deploy the Waline service. Then open the project <kbd>Settings</kbd> and go to `Environment Variables`. Click <kbd>Add Environment Variable</kbd> and add the following variables: `TIDB_HOST`, `TIDB_PORT`, `TIDB_DB`, `TIDB_USER`, and `TIDB_PASSWORD`. After adding these variables, redeploy the project.
+
+![Configure TiDB connection](../../../assets/tidb-8.png)

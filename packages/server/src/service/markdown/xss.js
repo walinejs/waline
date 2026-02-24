@@ -3,6 +3,13 @@ const { JSDOM } = require('jsdom');
 
 const DOMPurify = createDOMPurify(new JSDOM('').window);
 
+// try to fix https://github.com/walinejs/waline/issues/3238
+DOMPurify.addHook('uponSanitizeElement', (node, data) => {
+  if (data.tagName === 'annotation') {
+    node.remove();
+  }
+});
+
 /**
  * Add a hook to make all links open a new window
  * and force their rel to be 'nofollow noreferrer noopener'

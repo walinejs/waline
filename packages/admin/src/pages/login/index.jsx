@@ -24,16 +24,16 @@ export default function Login() {
 
   const match = location.pathname.match(/(.*?\/)ui/);
   const basePath = match && match[1] ? match[1] : '/';
+  const query = new URLSearchParams(location.search);
 
   useEffect(() => {
     if (!user || !user.objectId) {
       return;
     }
 
-    const query = new URLSearchParams(location.search);
     const isAdmin = user.type === 'administrator';
 
-    const defaultRedirect = isAdmin ? '/ui/profile' : '/ui';
+    const defaultRedirect = !isAdmin ? '/ui/profile' : '/ui';
     const redirect = isAdmin && query.get('redirect') ? query.get('redirect') : defaultRedirect;
 
     navigate(redirect.replaceAll(/\/+/g, '/'));
@@ -100,6 +100,11 @@ export default function Login() {
   const socials = Array.isArray(window.oauthServices)
     ? window.oauthServices.map(({ name }) => name)
     : ['oidc', 'qq', 'weibo', 'github', 'twitter', 'facebook'];
+
+  const buildOAuthURL = (social) => {
+    const redirect = query.get('redirect') ? query.get('redirect') : `${basePath}ui/profile`;
+    return `${baseUrl}oauth?type=${encodeURIComponent(social)}&redirect=${encodeURIComponent(redirect)}`;
+  };
 
   return (
     <>
@@ -176,10 +181,7 @@ export default function Login() {
           </form>
           <div className="social-accounts">
             {socials.map((social) => (
-              <a
-                key={social}
-                href={`${baseUrl}oauth?type=${social}&redirect=${basePath}ui/profile`}
-              >
+              <a key={social} href={buildOAuthURL(social)}>
                 {React.createElement(Icons[social])}
               </a>
             ))}
