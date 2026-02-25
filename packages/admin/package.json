@@ -1,6 +1,6 @@
 {
   "name": "@waline/admin",
-  "version": "0.30.1",
+  "version": "0.31.0",
   "description": "management system for waline",
   "keywords": [
     "comment",
