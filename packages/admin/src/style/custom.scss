@@ -37,7 +37,8 @@ div[tabindex='-1'] {
 .account-item.facebook path,
 .account-item.weibo circle,
 .account-item.qq path,
-.account-item.oidc path {
+.account-item.oidc path,
+.account-item.huawei path {
   fill: #808080;
 }
 
@@ -69,6 +70,11 @@ div[tabindex='-1'] {
 .account-item.oidc:hover path,
 .account-item.oidc.bind path {
   fill: #ff9626;
+}
+
+.account-item.huawei:hover path,
+.account-item.huawei.bind path {
+  fill: #ff0000;
 }
 
 .user-page-account-item {
