@@ -62,6 +62,7 @@ CREATE TABLE wl_users (
   weibo varchar(255) DEFAULT NULL,
   qq varchar(255) DEFAULT NULL,
   oidc varchar(255) DEFAULT NULL,
+  huawei varchar(255) DEFAULT NULL,
   "2fa" varchar(32) DEFAULT NULL,
   createdAt timestamp(0) without time zone NULL DEFAULT CURRENT_TIMESTAMP,
   updatedAt timestamp(0) without time zone NULL DEFAULT CURRENT_TIMESTAMP,
