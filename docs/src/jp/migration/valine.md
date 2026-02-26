@@ -1,11 +1,11 @@
 ---
-title: Migration from Valine
+title: Valineからの移行
 icon: valine
 ---
 
-1. Deploy backend according to [Vercel Deploy](../guide/get-started/README.md#deploy-to-vercel-server) in _Get Started_ section.
+1. _はじめに_ セクションの [Vercel Deploy](../guide/get-started/README.md#deploy-to-vercel-server) に従ってバックエンドをデプロイします。
 
-2. Modify frontend scripts according to [HTML](../guide/get-started/README.md#importing-in-html-client) in _Get Started_ section.
+2. _はじめに_ セクションの [HTML](../guide/get-started/README.md#importing-in-html-client) に従ってフロントエンドのスクリプトを修正します。
 
    ```diff
    - <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
@@ -23,66 +23,66 @@ icon: valine
      </script>
    ```
 
-::: tip Config
+::: tip 設定
 
-Waline V2 has removed Valine support and moved to a better configuration. The following is a migration summary of some options:
+Waline V2 では Valine サポートが削除され、より良い設定に移行しました。以下はいくつかのオプションの移行概要です：
 
-- `placeholder`: use `locales.placeholder`
-- `highlight`: use `highlighter`
-- `avatarForce`, `avatar`: use the server's `AVATAR_PROXY` environment variable
-- `recordIP`: no longer display the user IP, and provide the `DISABLE_USERAGENT` environment variable on the server
-- `requiredFields`: renamed to `requiredMeta`
-- `langMode`: renamed to `locales`
-- `emojiCDN`, `emojiMap`: use more powerful `emoji` options
+- `placeholder`: `locales.placeholder` を使用
+- `highlight`: `highlighter` を使用
+- `avatarForce`, `avatar`: サーバーの `AVATAR_PROXY` 環境変数を使用
+- `recordIP`: ユーザーの IP を表示しなくなり、サーバー側で `DISABLE_USERAGENT` 環境変数を提供
+- `requiredFields`: `requiredMeta` に名称変更
+- `langMode`: `locales` に名称変更
+- `emojiCDN`, `emojiMap`: より強力な `emoji` オプションを使用
 
-For waline config, please refer to [Client Config](../reference/client/api.md). You can also check [Waline Client V2 Migration Guide](./v2.md) to learn about the options that are not compatible with Valine.
+Waline の設定については [クライアント設定](../reference/client/api.md) を参照してください。また、[Waline Client V2 移行ガイド](./v2.md) で Valine と互換性のないオプションについて確認することもできます。
 
 :::
 
-1. Migrate data
+1. データの移行
 
-Select <kbd>Import/Export</kbd> > <kbd>Limit to certain classes</kbd> > <kbd>Comment</kbd> > <kbd>Export</kbd> in the LeanCloud background, and then you will receive a email notification.
+LeanCloud の管理画面で <kbd>Import/Export</kbd> > <kbd>Limit to certain classes</kbd> > <kbd>Comment</kbd> > <kbd>Export</kbd> を選択すると、メール通知が届きます。
 
-Paste the content of export file into the textarea below, and click the convert button to obtain the file to be imported.
+エクスポートファイルの内容を以下のテキストエリアに貼り付け、変換ボタンをクリックしてインポート用のファイルを取得します。
 
 <MigrationTool />
 
 ::: tip
 
-After you get the exported file through the tool above, you can import it in the corresponding storage service console.
+上記のツールでエクスポートファイルを取得したら、対応するストレージサービスのコンソールでインポートできます。
 
 :::
 
-## Waline Highlights
+## Waline の特長
 
-Compared with Valine, Waline has the following highlights:
+Valine と比較して、Waline には以下の特長があります：
 
-### More features
+### より多くの機能
 
-1. Markdown supports more syntax, including superscript and subscript, emoji, tables, strike-through, mathematical formulas, HTML tags, footnotes, etc.
-1. Image upload feature, which allows customized image provider service or embedding images directly.
-1. The brand new label system adds level labels for users according to the frequency of user interaction, and support custom labels for registered users.
-1. Emoji presets and tab support, allowing multiple sets of Emoji, while allowing anyone to publish and use Emoji presets.
-1. A brand new reaction system that allows visitors to express their attitude towards the article.
-1. Comment likes, express support for the comment you like.
-1. Pageviews, more accurate viewing and anti-tampering.
-1. Emoji search. Customizable service, allowing users to search and insert emoticons freely.
-1. Support registered users to edit and delete their published comments.
+1. Markdown でより多くの構文をサポート。上付き・下付き文字、絵文字、テーブル、取り消し線、数式、HTML タグ、脚注などを含みます。
+1. 画像アップロード機能。カスタム画像プロバイダーサービスの使用や、直接画像を埋め込むことが可能です。
+1. 新しいラベルシステムにより、ユーザーのインタラクション頻度に応じてレベルラベルが付与され、登録ユーザーへのカスタムラベルもサポートします。
+1. 絵文字プリセットとタブサポートにより、複数の絵文字セットを使用でき、誰でも絵文字プリセットを公開・使用できます。
+1. 新しいリアクションシステムにより、訪問者が記事に対する気持ちを表現できます。
+1. コメントへのいいね機能で、気に入ったコメントへの支持を表明できます。
+1. ページビュー機能。より正確な閲覧数カウントと改ざん防止を実現します。
+1. 絵文字検索機能。カスタマイズ可能なサービスで、ユーザーが自由に絵文字を検索・挿入できます。
+1. 登録ユーザーが自分の投稿したコメントを編集・削除できます。
 
-### Safer
+### より安全
 
-1. Zero privacy leakage, will not expose user mailboxes, IP addresses and other sensitive information, and can choose to hide user geographic location, browser and operating system at server
-1. Complete anti-spam system.
-   - All comments can be authenticated by anti-spam services and support additional validation logic.
-   - You can set the comment speed limit for a single IP or a single user, and Waline automatically identify duplicate comments.
-1. Comment review feature, in sensitive periods or when the website is under attack, you can enable comment review, manually review and approve the display of comments, and prevent malicious comments from causing site closure.
-1. Support user accounts. Besides registering an account, Waline also supports social media accounts, quickly synchronizes avatars and nicknames with authorized label to prevent identity fraud.
+1. プライバシー漏洩ゼロ。ユーザーのメールアドレスや IP アドレスなどの機密情報を公開せず、サーバー側でユーザーの地理的位置、ブラウザ、OS の表示を非表示にすることができます。
+1. 完全なスパム対策システム。
+   - すべてのコメントはスパム対策サービスによる認証が可能で、追加の検証ロジックもサポートします。
+   - 単一 IP または単一ユーザーへのコメント速度制限を設定でき、Waline は重複コメントを自動的に識別します。
+1. コメント審査機能。敏感な時期やサイトが攻撃を受けている場合に、コメント審査を有効にして手動でコメントの表示を確認・承認し、悪意あるコメントによるサイト閉鎖を防ぎます。
+1. ユーザーアカウントをサポート。アカウント登録に加えて、Waline はソーシャルメディアアカウントもサポートし、認証済みラベルでアバターとニックネームを素早く同期してなりすましを防ぎます。
 
-### more convenient
+### より便利
 
-1. Various methods (QQ, WeChat, DingTalk, E-mail), etc. to notify bloggers about comments
-1. Powerful management service, you can view all users and comments and perform related operations, and set custom labels and administrators for users
-1. Front-end management, administrators can review, edit or delete comments directly through the Waline comment component.
+1. QQ、WeChat、DingTalk、メールなど様々な方法でブロガーにコメントを通知します。
+1. 強力な管理サービス。すべてのユーザーとコメントを閲覧して関連操作を実行し、ユーザーにカスタムラベルや管理者権限を設定できます。
+1. フロントエンド管理機能。管理者は Waline コメントコンポーネントを通じて直接コメントの審査、編集、削除ができます。
 
 <script setup lang="ts">
 import { defineAsyncComponent } from 'vue'
