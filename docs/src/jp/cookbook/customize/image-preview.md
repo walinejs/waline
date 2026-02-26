@@ -1,9 +1,9 @@
 ---
-title: Image Preview for Comment List
+title: コメント一覧の画像プレビュー
 icon: pic
 ---
 
-There are many plugins that can achieve the lightbox effect, here are some examples of these plugins:
+ライトボックス効果を実現できるプラグインは多数あります。以下にいくつかの例を示します：
 
 - [lightGallery](https://www.lightgalleryjs.com/)
 <!-- - [Slimbox2](https://www.digitalia.be/software/slimbox2/) -->
@@ -14,7 +14,7 @@ There are many plugins that can achieve the lightbox effect, here are some examp
 
 ## LightGallery
 
-Write the following content before your HTML `<head>`, where `#waline-comment` is your Waline comment box, which needs to be replaced according to the actual scene.
+HTML の `<head>` の前に以下の内容を記述してください。`#waline-comment` は Waline のコメントボックスで、実際の状況に応じて置き換える必要があります。
 
 ```html
 <link rel="stylesheet" href="https://unpkg.com/lightgallery@v2/css/lightgallery-bundle.css" />
@@ -66,7 +66,7 @@ Write the following content before your HTML `<head>`, where `#waline-comment` i
 
 ## Lightbox2
 
-Write the following content before your HTML `<head>`, where `#waline-comment` is your Waline comment box, which needs to be replaced according to the actual scene.
+HTML の `<head>` の前に以下の内容を記述してください。`#waline-comment` は Waline のコメントボックスで、実際の状況に応じて置き換える必要があります。
 
 ```html
 <link rel="stylesheet" href="https://unpkg.com/lightbox2@v2/dist/css/lightbox.min.css" />
@@ -94,7 +94,7 @@ Write the following content before your HTML `<head>`, where `#waline-comment` i
 
 ## Fancybox
 
-Write the following content before your HTML `<head>`, where `#waline-comment` is your Waline comment box, which needs to be replaced according to the actual scene.
+HTML の `<head>` の前に以下の内容を記述してください。`#waline-comment` は Waline のコメントボックスで、実際の状況に応じて置き換える必要があります。
 
 ```html
 <script src="https://unpkg.com/@fancyapps/ui/dist/fancybox.umd.js"></script>
