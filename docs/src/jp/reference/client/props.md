@@ -1,41 +1,41 @@
 ---
-title: Component Props
+title: コンポーネント Props
 icon: config
 ---
 
 ## serverURL
 
-- Type: `string`
-- Required: Yes
+- 型: `string`
+- 必須: はい
 
-Waline server address url
+Waline サーバーのアドレス URL
 
 ## path
 
-- Type: `string`
-- Default: `window.location.pathname`
+- 型: `string`
+- デフォルト: `window.location.pathname`
 
-Article path id. Used to distinguish different _article pages_ to ensure loading the correct comment list under the _article page_.
+記事のパス ID。異なる _記事ページ_ を区別し、_記事ページ_ に対応する正しいコメントリストを読み込むために使用されます。
 
 ::: warning
 
-Please ensure the uniqueness of each _article page_ path, otherwise the same comment list may be loaded .
+各 _記事ページ_ のパスが一意であることを確認してください。そうでない場合、同じコメントリストが読み込まれる可能性があります。
 
-- e.g. 1: If on your site `/example/path/` and `/example/path` is the same page, you should probably set `window.location.pathname.replace(/\/$/,'')`.
-- e.g. 2: If you store en docs at root, while serve other language docs at `/zh/`, `/ja/`, etc, you should probably set `window.location.pathname.replace(/^\/(fr|jp|zh)\//, '/')`.
+- 例 1: サイト上の `/example/path/` と `/example/path` が同じページである場合、`window.location.pathname.replace(/\/$/,'')` と設定することを推奨します。
+- 例 2: 英語ドキュメントをルートに配置し、他の言語のドキュメントを `/zh/`、`/ja/` などで提供する場合、`window.location.pathname.replace(/^\/(fr|jp|zh)\//, '/')` と設定することを推奨します。
 
 :::
 
 ## lang
 
-- Type: `string`
-- Default: `navigator.language`
-- Details:
-  - [Guide → I18n](../../guide/features/i18n.md#set-language)
+- 型: `string`
+- デフォルト: `navigator.language`
+- 詳細:
+  - [ガイド → 国際化](../../guide/features/i18n.md#set-language)
 
-Display language.
+表示言語。
 
-Optional value:
+使用可能な値:
 
 - `'zh'`
 - `'zh-CN'`
@@ -54,16 +54,16 @@ Optional value:
 
 ## locale
 
-- Type: `WalineLocale`
-- Default: Built-in value based on `lang`
-- Details:
-  - [Cookbook → Customize Locale](../../cookbook/customize/locale.md)
+- 型: `WalineLocale`
+- デフォルト: `lang` に基づく組み込みの値
+- 詳細:
+  - [クックブック → ロケールのカスタマイズ](../../cookbook/customize/locale.md)
 
-Waline Locales.
+Waline のロケール設定。
 
 ## emoji
 
-- Type: `(string | WalineEmojiInfo)[] | boolean`
+- 型: `(string | WalineEmojiInfo)[] | boolean`
 
   ```ts
   type WalineEmojiPresets = `http://${string}` | `https://${string}`;
@@ -96,55 +96,55 @@ Waline Locales.
   }
   ```
 
-- Default: `['//unpkg.com/@waline/emojis@1.1.0/weibo']`
-- Details:
-  - [Guide → Emoji](../../guide/features/emoji.md)
+- デフォルト: `['//unpkg.com/@waline/emojis@1.1.0/weibo']`
+- 詳細:
+  - [ガイド → 絵文字](../../guide/features/emoji.md)
 
-Emoji settings.
+絵文字の設定。
 
 ## dark
 
-- Type: `string | boolean`
-- Default: `false`
+- 型: `string | boolean`
+- デフォルト: `false`
 
-Darkmode support
+ダークモードのサポート
 
-- Setting a boolean will set the dark mode according to its value.
-- Set it to `'auto'` will display darkmode due to device settings.
-- Filling in a CSS selector will enable darkmode only when the selector match waline ancestor nodes.
+- boolean を設定すると、その値に応じてダークモードが設定されます。
+- `'auto'` に設定すると、デバイスの設定に応じてダークモードが表示されます。
+- CSS セレクタを指定すると、そのセレクタが Waline の祖先ノードに一致する場合のみダークモードが有効になります。
 
-::: tip Examples
+::: tip 使用例
 
-- **Docusaurus**: It will enable darkmode by setting `data-theme="dark"` on the `<html>` tag itself. So you need to set `'html[data-theme="dark"]'` as `dark` option.
+- **Docusaurus**: `<html>` タグ自体に `data-theme="dark"` を設定してダークモードを有効にします。そのため、`dark` オプションに `'html[data-theme="dark"]'` を設定する必要があります。
 
-- **hexo-theme-fluid**: It will enable darkmode by setting `data-user-color-scheme="dark"` on the `<html>` tag itself. So you need to set `'html[data-user-color-scheme="dark"]'` as `dark` option.
+- **hexo-theme-fluid**: `<html>` タグ自体に `data-user-color-scheme="dark"` を設定してダークモードを有効にします。そのため、`dark` オプションに `'html[data-user-color-scheme="dark"]'` を設定する必要があります。
 
-- **vuepress-theme-hope**: It will enable darkmode by setting `theme-dark` class on the `<body>` tag itself. So you need to set `'body.theme-dark'` as `dark` option.
+- **vuepress-theme-hope**: `<body>` タグ自体に `theme-dark` クラスを設定してダークモードを有効にします。そのため、`dark` オプションに `'body.theme-dark'` を設定する必要があります。
 
 :::
 
-For details of custom style and darkmode, please see [Custom Style](../../guide/features/style.md).
+カスタムスタイルとダークモードの詳細については、[カスタムスタイル](../../guide/features/style.md) を参照してください。
 
 ## commentSorting
 
-- Type: `WalineCommentSorting`
-- Default: `'latest'`
+- 型: `WalineCommentSorting`
+- デフォルト: `'latest'`
 
-Comment list sorting methods. Optional values: `'latest'`, `'oldest'`, `'hottest'`
+コメントリストの並び替え方法。使用可能な値: `'latest'`、`'oldest'`、`'hottest'`
 
 ## meta
 
-- Type: `string[]`
-- Default: `['nick','mail','link']`
+- 型: `string[]`
+- デフォルト: `['nick','mail','link']`
 
-Reviewer attributes. Optional values: `'nick'`, `'mail'`, `'link'`
+レビュアーの属性。使用可能な値: `'nick'`、`'mail'`、`'link'`
 
 ## requiredMeta
 
-- Type: `string[]`
-- Default: `[]`
+- 型: `string[]`
+- デフォルト: `[]`
 
-Set required fields, default anonymous, optional values:
+必須フィールドを設定します。デフォルトは匿名で、使用可能な値:
 
 - `[]`
 - `['nick']`
@@ -152,85 +152,85 @@ Set required fields, default anonymous, optional values:
 
 ## login
 
-- Type: `string`
-- Default value: `'enable'`
+- 型: `string`
+- デフォルト値: `'enable'`
 
-Login mode status, optional values:
+ログインモードのステータス。使用可能な値:
 
-- `'enable'`: enable login (default)
-- `'disable'`: Login is disabled, users should fill in information to comment
-- `'force'`: Forced login, users must login to comment
+- `'enable'`: ログインを有効にする（デフォルト）
+- `'disable'`: ログインを無効にする。ユーザーは情報を入力してコメントする必要があります
+- `'force'`: 強制ログイン。ユーザーはログインしなければコメントできません
 
 ## wordLimit
 
-- Type: `number | [number, number]`
-- Default: `0`
+- 型: `number | [number, number]`
+- デフォルト: `0`
 
-Comment word s limit. When a single number is filled in, it 's the maximum number of comment words. No limit when set to `0`.
+コメントの文字数制限。単一の数値を指定した場合、コメントの最大文字数になります。`0` に設定すると制限なしになります。
 
 ## pageSize
 
-- Type: `number`
-- Default: `10`
+- 型: `number`
+- デフォルト: `10`
 
-number of comments per page.
+1 ページあたりのコメント数。
 
 ## imageUploader
 
-- Type: `WalineImageUploader | boolean`
+- 型: `WalineImageUploader | boolean`
 
   ```ts
   type WalineImageUploader = (image: File) => Promise<string>;
   ```
 
-- Required: No
+- 必須: いいえ
 
-- Details:
-  - [Cookbook → Upload Image](../../cookbook/customize/upload-image.md)
+- 詳細:
+  - [クックブック → 画像のアップロード](../../cookbook/customize/upload-image.md)
 
-Custom image upload method. The default behavior is to embed images Base 64 encoded, you can set this to `false` to disable image uploading.
+カスタム画像アップロード方法。デフォルトの動作は画像を Base64 エンコードで埋め込みます。`false` に設定すると画像のアップロードを無効にできます。
 
-The function should receive an image object and return a Promise that provides the image address.
+この関数は画像オブジェクトを受け取り、画像アドレスを提供する Promise を返す必要があります。
 
 ## highlighter
 
-- Type: `WalineHighlighter | boolean`
+- 型: `WalineHighlighter | boolean`
 
   ```ts
   type WalineHighlighter = (code: string, lang: string) => string;
   ```
 
-- Required: No
+- 必須: いいえ
 
-- Details:
-  - [Cookbook → Customize Highlighter](../../cookbook/customize/highlighter.md)
+- 詳細:
+  - [クックブック → ハイライターのカスタマイズ](../../cookbook/customize/highlighter.md)
 
-**Code highlighting**, use `hanabi` by default. The function passes in original content of code block and language of the code block. You should return a string directly.
+**コードハイライト**。デフォルトでは `hanabi` を使用します。この関数はコードブロックの元のコンテンツとコードブロックの言語を受け取り、文字列を直接返す必要があります。
 
-You can pass in a code highlighter of your own, or set to `false` to disable code highlighting.
+独自のコードハイライターを渡すことも、`false` に設定してコードハイライトを無効にすることもできます。
 
 ## texRenderer
 
-- Type: `WalineTeXRenderer | boolean`
+- 型: `WalineTeXRenderer | boolean`
 
   ```ts
   type WalineTeXRenderer = (blockMode: boolean, tex: string) => string;
   ```
 
-- Required: No
+- 必須: いいえ
 
-- Details:
-  - [Cookbook → Customize $\TeX$ Renderer](../../cookbook/customize/tex-renderer.md)
+- 詳細:
+  - [クックブック → $\TeX$ レンダラーのカスタマイズ](../../cookbook/customize/tex-renderer.md)
   - [MathJax](https://www.mathjax.org/)
   - [KaTeX](https://katex.org/)
 
-Customize $\TeX$ rendering, the default behavior is to prompt that the preview mode does not support $\TeX$. The function provides two parameters, the first parameter indicates whether it should be rendered in block level, and the second parameter is the string of the $\TeX$ content, and return a HTML string as render result.
+$\TeX$ レンダリングのカスタマイズ。デフォルトの動作は、プレビューモードが $\TeX$ をサポートしていないことを示すプロンプトを表示します。この関数は 2 つのパラメータを提供します。最初のパラメータはブロックレベルでレンダリングするかどうかを示し、2 番目のパラメータは $\TeX$ コンテンツの文字列で、レンダリング結果として HTML 文字列を返します。
 
-You can import $\TeX$ renderer to provide preview feature. We recommend you to use KaTeX or MathJax, or you can set to `false` to disable parsing $\TeX$.
+$\TeX$ レンダラーをインポートしてプレビュー機能を提供できます。KaTeX または MathJax の使用を推奨します。または `false` に設定して $\TeX$ の解析を無効にすることもできます。
 
 ## search
 
-- Type: `WalineSearchOptions | boolean`
+- 型: `WalineSearchOptions | boolean`
 
   ```ts
   interface WalineSearchImageData extends Record<string, unknown> {
@@ -282,47 +282,47 @@ You can import $\TeX$ renderer to provide preview feature. We recommend you to u
   }
   ```
 
-- Required: No
-- Details:
-  Customize search features, you can disable search function by setting it to `false`.
+- 必須: いいえ
+- 詳細:
+  検索機能をカスタマイズします。`false` に設定することで検索機能を無効にできます。
 
 ## noCopyright
 
-- Type: `boolean`
-- Default: `false`
+- 型: `boolean`
+- デフォルト: `false`
 
-Whether hide copyright and version in footer.
+フッターに著作権とバージョン情報を非表示にするかどうか。
 
 ::: tip
 
-We hope you can keep it on to support Waline.
+Waline をサポートするために、この設定をオンのままにしておくことを希望します。
 
 :::
 
 ## noRss
 
-- Type: `boolean`
-- Default: `false`
+- 型: `boolean`
+- デフォルト: `false`
 
-Whether to hide RSS subscription links.
+RSS 購読リンクを非表示にするかどうか。
 
 ## recaptchaV3Key
 
-- Type: `string`
-- Required: No
+- 型: `string`
+- 必須: いいえ
 
-reCAPTCHA V3 is a captcha service provided by Google. You can add reCAPTCHA V3 site key with `recaptchaV3Key` to enable it. Notice you should also set environment variable `RECAPTCHA_V3_SECRET` for server.
+reCAPTCHA V3 は Google が提供するキャプチャサービスです。`recaptchaV3Key` に reCAPTCHA V3 サイトキーを追加することで有効にできます。サーバー側で環境変数 `RECAPTCHA_V3_SECRET` も設定する必要があることに注意してください。
 
 ## turnstileKey
 
-- Type: `string`
-- Required: No
+- 型: `string`
+- 必須: いいえ
 
-Turnstile is a captcha service provided by Cloudflare. You can add turnstile site key with `turnstileKey` to enable it. Notice you should also set environment variable `TURNSTILE_SECRET` for server.
+Turnstile は Cloudflare が提供するキャプチャサービスです。`turnstileKey` に Turnstile サイトキーを追加することで有効にできます。サーバー側で環境変数 `TURNSTILE_SECRET` も設定する必要があることに注意してください。
 
 ## reaction
 
-- Type: `boolean | string[]`
-- Default: `false`
+- 型: `boolean | string[]`
+- デフォルト: `false`
 
-Add emoji interaction function to the article, set it to `true` to provide the default emoji, you can also customize the emoji image by setting the emoji url array, and supports a maximum of 8 emojis.
+記事に絵文字インタラクション機能を追加します。`true` に設定するとデフォルトの絵文字が表示されます。絵文字の画像 URL の配列を設定してカスタマイズすることもでき、最大 8 つの絵文字をサポートします。

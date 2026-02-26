@@ -1,37 +1,37 @@
 ---
-title: Client API
+title: クライアント API
 icon: config
 ---
 
-## Client API
+## クライアント API
 
-Waline provides three APIs:
+Waline は以下の 3 つの API を提供しています:
 
-- `init`: Initialize Waline
+- `init`: Waline を初期化する
 
-- `commentCount`: Count comments
+- `commentCount`: コメント数をカウントする
 
-- `pageviewCount`: Count pageviews
+- `pageviewCount`: ページビュー数をカウントする
 
-As well as:
+また、以下も提供しています:
 
-- `RecentComment`: Waline recent comments widget
+- `RecentComment`: Waline 最新コメントウィジェット
 
-- `UserList`: User List
+- `UserList`: ユーザーリスト
 
-- `version`: Waline client version
+- `version`: Waline クライアントのバージョン
 
 ## init
 
-The `init` API accepts a `WalineInitOptions` options and returns a `WalineInstance`.
+`init` API は `WalineInitOptions` オプションを受け取り、`WalineInstance` を返します。
 
-Type:
+型:
 
 ```ts
 const init: (options: WalineInitOptions) => WalineInstance;
 ```
 
-Return:
+戻り値:
 
 ```ts
 interface WalineInstance {
@@ -56,42 +56,42 @@ interface WalineInstance {
 }
 ```
 
-The initialization options accept all [Waline Component Props](props.md), in addition, the following options are added.
+初期化オプションはすべての [Waline コンポーネント Props](props.md) を受け付けるほか、以下のオプションが追加されています。
 
 ### el
 
-- Type: `string | HTMLElement | null`
-- Default: `'#waline'`
+- 型: `string | HTMLElement | null`
+- デフォルト: `'#waline'`
 
-The DOM element to be mounted on initialization. It must be a valid **CSS selector string** or HTMLElement Object.
+初期化時にマウントする DOM 要素。有効な **CSS セレクタ文字列** または HTMLElement オブジェクトを指定する必要があります。
 
-If you only want the counter below, set this option to `null`.
+カウンターのみを使用する場合は、このオプションを `null` に設定してください。
 
 ### comment
 
-- Type: `boolean | string`
-- Default: `false`
+- 型: `boolean | string`
+- デフォルト: `false`
 
-Article comment count counter, when filled in a string, it will be used as a CSS selector.
+記事のコメント数カウンター。文字列を指定した場合、CSS セレクタとして使用されます。
 
 ### pageview
 
-- Type: `boolean | string`
-- Default: `false`
+- 型: `boolean | string`
+- デフォルト: `false`
 
-Pageview counter. When filled in a string, it will be used as a CSS selector.
+ページビューカウンター。文字列を指定した場合、CSS セレクタとして使用されます。
 
 ## commentCount
 
-The `commentCount` function receives the `WalineCommentCountOptions` option and updates the number of article comments on the page, and returns a function `WalineAbort` that can cancel the current operation.
+`commentCount` 関数は `WalineCommentCountOptions` オプションを受け取り、ページ上の記事コメント数を更新して、現在の操作をキャンセルできる `WalineAbort` 関数を返します。
 
-Type:
+型:
 
 ```ts
 const commentCount: (options: WalineCommentCountOptions) => WalineAbort;
 ```
 
-Options:
+オプション:
 
 ```ts
 interface WalineCommentCountOptions {
@@ -116,7 +116,7 @@ interface WalineCommentCountOptions {
 }
 ```
 
-Returns:
+戻り値:
 
 ```ts
 type WalineAbort = (reason?: any) => void;
@@ -124,15 +124,15 @@ type WalineAbort = (reason?: any) => void;
 
 ## pageviewCount
 
-The `pageviewCount` function receives the `WalinePageviewCountOptions` option and updates the number of article comments on the page, and returns a function `WalineAbort` that can cancel the current operation.
+`pageviewCount` 関数は `WalinePageviewCountOptions` オプションを受け取り、ページ上の記事コメント数を更新して、現在の操作をキャンセルできる `WalineAbort` 関数を返します。
 
-Type:
+型:
 
 ```ts
 const pageviewCount: (options: WalinePageviewCountOptions) => WalineAbort;
 ```
 
-Options:
+オプション:
 
 ```ts
 interface WalinePageviewCountOptions {
@@ -164,25 +164,25 @@ interface WalinePageviewCountOptions {
 }
 ```
 
-Returns:
+戻り値:
 
 ```ts
 type WalineAbort = (reason?: any) => void;
 ```
 
-## Widgets
+## ウィジェット
 
 ### RecentComments
 
-`RecentComments` is a widget displaying recent comments.
+`RecentComments` は最新コメントを表示するウィジェットです。
 
-Type:
+型:
 
 ```ts
 const RecentComments: (options: WalineRecentCommentsOptions) => Promise<WalineRecentCommentsResult>;
 ```
 
-Options:
+オプション:
 
 ```ts
 interface WalineRecentCommentsOptions {
@@ -203,7 +203,7 @@ interface WalineRecentCommentsOptions {
 }
 ```
 
-Returns:
+戻り値:
 
 ```ts
 interface WalineRecentCommentsResult {
@@ -221,15 +221,15 @@ interface WalineRecentCommentsResult {
 
 ### UserList
 
-`UserList` is a widget that displays user interaction leader boards or comment walls.
+`UserList` はユーザーインタラクションのリーダーボードまたはコメントウォールを表示するウィジェットです。
 
-Type:
+型:
 
 ```ts
 const RecentComments: (options: WalineRecentCommentsOptions) => Promise<WalineRecentCommentsResult>;
 ```
 
-Options:
+オプション:
 
 ```ts
 interface WalineUserListOptions {
@@ -269,7 +269,7 @@ interface WalineUserListOptions {
 }
 ```
 
-Returns:
+戻り値:
 
 ```ts
 interface WalineUserListResult {
