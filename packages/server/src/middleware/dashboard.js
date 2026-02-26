@@ -15,13 +15,7 @@ module.exports = function () {
     window.SITE_NAME = ${JSON.stringify(process.env.SITE_NAME)};
     window.recaptchaV3Key = ${JSON.stringify(process.env.RECAPTCHA_V3_KEY)};
     window.turnstileKey = ${JSON.stringify(process.env.TURNSTILE_KEY)};
-    window.betterCaptcha = ${JSON.stringify(
-      process.env.RECAPTCHA_V3_KEY
-        ? { provider: 'recaptchaV3', siteKey: process.env.RECAPTCHA_V3_KEY }
-        : process.env.TURNSTILE_KEY
-          ? { provider: 'turnstile', siteKey: process.env.TURNSTILE_KEY }
-          : null,
-    )};
+    window.captcha = ${process.env.CAPTCHA};
     window.oauthServices = ${JSON.stringify(ctx.state.oauthServices || [])};
     window.serverURL = '${ctx.serverURL}/api/';
     </script>
