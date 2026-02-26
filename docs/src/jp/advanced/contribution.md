@@ -1,28 +1,28 @@
 ---
-title: Development Guide
+title: 開発ガイド
 icon: contribute
 order: -1
 ---
 
-We welcome everyone to open Pull Requests for waline! :tada:
+waline への Pull Request を歓迎します！ :tada:
 
-If you want to contribute to waline, here is a guide.
+waline にコントリビュートしたい場合は、以下のガイドをご参照ください。
 
 <!-- more -->
 
-## Preparation
+## 準備
 
-1. Use Git to clone the project
+1. Git を使ってプロジェクトをクローンします
 
    ```bash
    git clone https://github.com/walinejs/waline.git
    ```
 
-1. Installation dependencies
+1. 依存関係のインストール
 
    ::: warning
 
-   Install and use pnpm to install dependencies.
+   pnpm をインストールし、依存関係のインストールに使用してください。
 
    ```bash
    npm i -g pnpm@latest
@@ -35,22 +35,22 @@ If you want to contribute to waline, here is a guide.
    pnpm i
    ```
 
-## Development
+## 開発
 
-- Run `pnpm client:dev` to start `@waline/client` devServer
+- `pnpm client:dev` を実行して `@waline/client` の開発サーバーを起動します
 
   ::: tip
 
-  Since waline is based on Client/Server architecture, when debugging a client, you need to set `SERVERURL`, or start server devServer below at the same time and use the default `localhost:9090`.
+  waline は Client/Server アーキテクチャをベースにしているため、クライアントをデバッグする際には `SERVERURL` を設定するか、以下のサーバー開発サーバーを同時に起動してデフォルトの `localhost:9090` を使用する必要があります。
 
   :::
 
-- Run `pnpm server:dev` to start `@waline/server` devServer
+- `pnpm server:dev` を実行して `@waline/server` の開発サーバーを起動します
 
   ::: tip
 
-  In order to run `@waline/server` locally, you need to configure some local environment variables to `.env`.
+  `@waline/server` をローカルで実行するには、いくつかのローカル環境変数を `.env` に設定する必要があります。
 
-  We provide an example for you in `.env.example`.
+  `.env.example` にサンプルを用意しています。
 
   :::
