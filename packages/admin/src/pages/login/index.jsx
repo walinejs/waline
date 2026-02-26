@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router';
 
 import Header from '../../components/Header.jsx';
 import * as Icons from '../../components/icon/index.js';
-import { useCaptcha } from '../../components/useCaptcha.js';
+import { getCaptchaConfig, useCaptcha } from '../../components/useCaptcha.js';
 import { get2FAToken } from '../../services/user.js';
 
 // oxlint-disable-next-line max-lines-per-function
@@ -17,10 +17,8 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [is2FAEnabled, enable2FA] = useState(false);
-  const execute = useCaptcha({
-    sitekey: window.turnstileKey ?? window.recaptchaV3Key,
-    hideDefaultBadge: true,
-  });
+  const execute = useCaptcha({ hideDefaultBadge: true });
+  const captchaConfig = getCaptchaConfig();
 
   const match = location.pathname.match(/(.*?\/)ui/);
   const basePath = match && match[1] ? match[1] : '/';
@@ -67,8 +65,8 @@ export default function Login() {
         password,
         code,
         remember,
-        recaptchaV3: window.recaptchaV3Key ? token : undefined,
-        turnstile: window.turnstileKey ? token : undefined,
+        recaptchaV3: captchaConfig?.provider === 'recaptchaV3' ? token : undefined,
+        turnstile: captchaConfig?.provider === 'turnstile' ? token : undefined,
       });
     } catch {
       setError(t('email or password error'));

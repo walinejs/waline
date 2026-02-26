@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router';
 
 import Header from '../../components/Header.jsx';
-import { useCaptcha } from '../../components/useCaptcha.js';
+import { getCaptchaConfig, useCaptcha } from '../../components/useCaptcha.js';
 
 // oxlint-disable-next-line max-lines-per-function
 export default function Register() {
@@ -14,10 +14,8 @@ export default function Register() {
   const user = useSelector((state) => state.user);
   const [error, setError] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const execute = useCaptcha({
-    sitekey: window.turnstileKey ?? window.recaptchaV3Key,
-    hideDefaultBadge: true,
-  });
+  const execute = useCaptcha({ hideDefaultBadge: true });
+  const captchaConfig = getCaptchaConfig();
 
   useEffect(() => {
     if (user && user.objectId) {
@@ -55,8 +53,8 @@ export default function Register() {
         email,
         url: link,
         password,
-        recaptchaV3: window.recaptchaV3Key ? token : undefined,
-        turnstile: window.turnstileKey ? token : undefined,
+        recaptchaV3: captchaConfig?.provider === 'recaptchaV3' ? token : undefined,
+        turnstile: captchaConfig?.provider === 'turnstile' ? token : undefined,
       });
 
       if (resp && resp.verify) {
