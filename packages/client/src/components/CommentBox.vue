@@ -6,7 +6,9 @@ import { addComment, login, updateComment } from '@waline/api';
 import autosize from 'autosize';
 import type { DeepReadonly, CSSProperties } from 'vue';
 import { computed, inject, nextTick, onMounted, reactive, ref, useTemplateRef, watch } from 'vue';
+import { useCaptcha } from '@better-captcha/vue';
 
+import { CaptchaProviders, type CaptchaHandle } from './Captcha.js';
 import {
   CloseIcon,
   EmojiIcon,
@@ -17,13 +19,7 @@ import {
   PreviewIcon,
 } from './Icons.js';
 import ImageWall from './ImageWall.vue';
-import {
-  createRecaptchaAdapter,
-  createTurnstileAdapter,
-  useEditor,
-  useUserInfo,
-  useUserMeta,
-} from '../composables/index.js';
+import { useEditor, useUserInfo, useUserMeta } from '../composables/index.js';
 import type { WalineSearchResult } from '../typings/index.js';
 import type { WalineEmojiConfig } from '../utils/index.js';
 import {
@@ -67,6 +63,7 @@ const config = inject(configKey)!;
 const editor = useEditor();
 const userMeta = useUserMeta();
 const userInfo = useUserInfo();
+const captchaHandler = useCaptcha<CaptchaHandle>();
 
 const inputRefs = ref<Record<string, HTMLInputElement>>({});
 const textAreaRef = useTemplateRef<HTMLTextAreaElement>('textarea');
@@ -129,10 +126,15 @@ const isSubmitting = ref(false);
 const isImageListEnd = ref(false);
 
 const locale = computed(() => config.value.locale);
-
 const isLogin = computed(() => Boolean(userInfo.value.token));
 
 const canUploadImage = computed(() => config.value.imageUploader != null);
+
+const CaptchaComponent = computed(() => {
+  const provider = config.value.captcha?.provider;
+
+  return provider ? CaptchaProviders[provider] : null;
+});
 
 const insert = (content: string): void => {
   // oxlint-disable-next-line typescript/no-non-null-assertion
@@ -208,16 +210,7 @@ const onImageChange = (): void => {
 
 // oxlint-disable-next-line complexity, max-statements
 const submitComment = async (): Promise<void> => {
-  const {
-    serverURL,
-    lang,
-    login,
-    wordLimit,
-    requiredMeta,
-    betterCaptcha,
-    recaptchaV3Key,
-    turnstileKey,
-  } = config.value;
+  const { serverURL, lang, login, wordLimit, requiredMeta, captcha } = config.value;
 
   const comment: WalineCommentData = {
     comment: content.value,
@@ -293,26 +286,9 @@ const submitComment = async (): Promise<void> => {
   isSubmitting.value = true;
 
   try {
-    const captchaConfig =
-      betterCaptcha ??
-      (recaptchaV3Key
-        ? { provider: 'recaptchaV3', siteKey: recaptchaV3Key }
-        : turnstileKey
-          ? { provider: 'turnstile', siteKey: turnstileKey }
-          : null);
-
-    const captchaAdapter =
-      captchaConfig?.provider === 'recaptchaV3'
-        ? createRecaptchaAdapter(captchaConfig.siteKey)
-        : captchaConfig?.provider === 'turnstile'
-          ? createTurnstileAdapter(captchaConfig.siteKey)
-          : null;
-
-    if (captchaAdapter) {
-      const { provider, token } = await captchaAdapter.execute('social');
-
-      if (provider === 'recaptchaV3') comment.recaptchaV3 = token;
-      if (provider === 'turnstile') comment.turnstile = token;
+    if (config.value.captcha?.provider) {
+      captchaHandler.execute();
+      comment.captcha = captchaHandler.getResponse();
     }
 
     const options = {
@@ -691,7 +667,7 @@ onMounted(() => {
         </div>
 
         <div class="wl-info">
-          <div class="wl-captcha-container" />
+          <component :is="CaptchaComponent" v-if="CaptchaComponent" v-bind="config.captcha" />
 
           <div class="wl-text-number">
             {{ wordNumber }}

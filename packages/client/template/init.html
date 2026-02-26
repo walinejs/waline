@@ -20,8 +20,8 @@
         pageview: true,
         serverURL: import.meta.env.SERVERURL || 'https://walinejs.comment.lithub.cc',
         emoji: ['//unpkg.com/@waline/emojis@1.1.0/bilibili', '//unpkg.com/@waline/emojis@1.1.0/qq'],
-        // betterCaptcha: { provider: 'recaptchaV3', siteKey: '6Lfz4-shAAAAANgsYRR0datkzv6zLIaKrSqfHsiG' },
-        betterCaptcha: { provider: 'turnstile', siteKey: '0x4AAAAAAACTzOE6F_3MuL-L' },
+        // captcha: { provider: 'recaptchaV3', siteKey: '6Lfz4-shAAAAANgsYRR0datkzv6zLIaKrSqfHsiG' },
+        captcha: { provider: 'turnstile', siteKey: '0x4AAAAAAACTzOE6F_3MuL-L' },
       });
     </script>
   </body>

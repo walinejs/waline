@@ -11,7 +11,7 @@ import type {
 } from './base.js';
 import type { WalineLocale } from './locale.js';
 
-export interface WalineBetterCaptchaOptions {
+export interface WalineCaptchaOptions {
   /**
    * captcha provider name
    */
@@ -208,18 +208,18 @@ export interface WalineProps {
   noRss?: boolean;
 
   /**
-   * Better Captcha 配置
+   * Captcha 配置
    *
-   * Better Captcha options
+   * Captcha options
    */
-  betterCaptcha?: WalineBetterCaptchaOptions;
+  captcha?: WalineCaptchaOptions;
 
   /**
    * recaptcha v3 客户端 key
    *
    * recaptcha v3 client key
    *
-   * @deprecated Please use `betterCaptcha` instead.
+   * @deprecated Please use `captcha` instead.
    */
   recaptchaV3Key?: string;
 
@@ -228,7 +228,7 @@ export interface WalineProps {
    *
    * turnstile client key
    *
-   * @deprecated Please use `betterCaptcha` instead.
+   * @deprecated Please use `captcha` instead.
    */
   turnstileKey?: string;
 

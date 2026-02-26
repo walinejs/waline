@@ -233,9 +233,6 @@ importers:
       marked-highlight:
         specifier: ^2.2.3
         version: 2.2.3(marked@17.0.2)
-      recaptcha-v3:
-        specifier: ^1.11.3
-        version: 1.11.3
       vue:
         specifier: ^3.5.28
         version: 3.5.28(typescript@5.9.3)
@@ -246,6 +243,9 @@ importers:
       '@babel/preset-env':
         specifier: 7.29.0
         version: 7.29.0(@babel/core@7.29.0)
+      '@better-captcha/vue':
+        specifier: ^0.5.6
+        version: 0.5.6(typescript@5.9.3)(vue@3.5.28(typescript@5.9.3))
       '@giphy/js-types':
         specifier: 5.1.0
         version: 5.1.0
@@ -1025,6 +1025,17 @@ packages:
   '@babel/types@7.29.0':
     resolution: {integrity: sha512-LwdZHpScM4Qz8Xw2iKSzS+cfglZzJGvofQICy7W7v4caru4EaAmyUuO6BGrbyQ2mYV11W0U8j5mBhd14dd3B0A==}
     engines: {node: '>=6.9.0'}
+
+  '@better-captcha/core@0.5.6':
+    resolution: {integrity: sha512-t+VDA+cDh3dy1d2WxrNS/7wD60R7ERV5UJM2CyHZNkizvrK4ymW93VXgQfHBpT4YgpSri6i/zN16vO0RKKqKgA==}
+    peerDependencies:
+      typescript: ^5.0.0
+
+  '@better-captcha/vue@0.5.6':
+    resolution: {integrity: sha512-n1eIHLhs3DBHrepnUAK0Bq8BW/1gjYy2QjyTMVk0v7tyfkd1qYaELyjyP/gvamVZrmy2A1+th01bAr15lESkIQ==}
+    peerDependencies:
+      typescript: ^5.0.0
+      vue: ^3.3.0
 
   '@bufbuild/protobuf@2.11.0':
     resolution: {integrity: sha512-sBXGT13cpmPR5BMgHE6UEEfEaShh5Ror6rfN3yEK5si7QVrtZg8LEPQb0VVhiLRUslD2yLnXtnRzG035J/mZXQ==}
@@ -7285,9 +7296,6 @@ packages:
     resolution: {integrity: sha512-9u/XQ1pvrQtYyMpZe7DXKv2p5CNvyVwzUB6uhLAnQwHMSgKMBR62lc7AHljaeteeHXn11XTAaLLUVZYVZyuRBQ==}
     engines: {node: '>= 20.19.0'}
 
-  recaptcha-v3@1.11.3:
-    resolution: {integrity: sha512-sEE6J0RzUkS+sKEBpgCD/AqCU0ffrAVOADGjvAx9vcttN+VLK42SWMkj/J/I6vHu3Kew+xcfbBqDVb65N0QGDw==}
-
   rechoir@0.7.1:
     resolution: {integrity: sha512-/njmZ8s1wVeR6pjTZ+0nCnv8SpZNRMT2D1RLOJQESlYFDBvwpTA4KWJpZ+sBJ4+vhjILRcK7JIFdGCdxEAAitg==}
     engines: {node: '>= 0.10'}
@@ -9982,6 +9990,16 @@ snapshots:
     dependencies:
       '@babel/helper-string-parser': 7.27.1
       '@babel/helper-validator-identifier': 7.28.5
+
+  '@better-captcha/core@0.5.6(typescript@5.9.3)':
+    dependencies:
+      typescript: 5.9.3
+
+  '@better-captcha/vue@0.5.6(typescript@5.9.3)(vue@3.5.28(typescript@5.9.3))':
+    dependencies:
+      '@better-captcha/core': 0.5.6(typescript@5.9.3)
+      typescript: 5.9.3
+      vue: 3.5.28(typescript@5.9.3)
 
   '@bufbuild/protobuf@2.11.0': {}
 
@@ -16518,8 +16536,6 @@ snapshots:
   readdirp@4.1.2: {}
 
   readdirp@5.0.0: {}
-
-  recaptcha-v3@1.11.3: {}
 
   rechoir@0.7.1:
     dependencies:
