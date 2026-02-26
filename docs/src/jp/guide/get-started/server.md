@@ -1,43 +1,43 @@
 ---
-title: Server introduction
+title: サーバー紹介
 icon: server
 order: 2
 ---
 
-## Deployment
+## デプロイ
 
-In addition to deploying on Vercel for free, you can deploy via docker or directly on a self-hosted environment, as well as to other common cloud platforms. For more information, see:
+Vercel への無料デプロイのほか、Docker を使用したデプロイ、セルフホスト環境への直接デプロイ、その他の一般的なクラウドプラットフォームへのデプロイも可能です。詳細については以下を参照してください：
 
-- [Standalone deployment](../deploy/vps.md)
+- [スタンドアロンデプロイ](../deploy/vps.md)
 
 - [Railway](../deploy/railway.md)
 
 - [Alibaba Cloud Compute Nest](../deploy/aliyun-computenest.md)
 
-## Multiple Database Support
+## マルチデータベースのサポート
 
-Waline supports a variety of databases, including MySQL, PostgreSQL, SQLite, and MongoDB.
+Waline は MySQL、PostgreSQL、SQLite、MongoDB など、さまざまなデータベースをサポートしています。
 
-You only need to configure the environment variables of the corresponding database, and Waline will automatically switch to the corresponding data storage service.
+対応するデータベースの環境変数を設定するだけで、Waline は自動的に対応するデータストレージサービスに切り替わります。
 
-See [multi-database support](../database.md) for more details.
+詳細については [マルチデータベースのサポート](../database.md) を参照してください。
 
-## Configuration
+## 設定
 
-Most configurations on the server side can be done via environment variables, and you can also configure some advanced options in the main entry file.
+サーバー側のほとんどの設定は環境変数を通じて行うことができ、メインエントリファイルでいくつかの高度なオプションを設定することもできます。
 
-For configuration details, see [Server Reference → Environment Variables](../../reference/server/env.md) and [Server Reference → Configuration](../../reference/server/ config.md).
+設定の詳細については、[サーバーリファレンス → 環境変数](../../reference/server/env.md) および [サーバーリファレンス → 設定](../../reference/server/config.md) を参照してください。
 
-## Comment notification
+## コメント通知
 
-We support multiple ways of notifying you or your commenters when someone comments or replies. See [Comment Notifications](../features/notification.md) for more details.
+誰かがコメントや返信をしたときに、あなたやコメント投稿者に通知するための複数の方法をサポートしています。詳細については [コメント通知](../features/notification.md) を参照してください。
 
-## User Account Registration and Social Login
+## ユーザーアカウント登録とソーシャルログイン
 
-Waline supports in-app account creation and social login using GitHub, Twitter, and Facebook.
+Waline はアプリ内アカウントの作成と、GitHub、Twitter、Facebook を使用したソーシャルログインをサポートしています。
 
 ::: tip
 
-Stay tuned: We plan to add more social application support in future releases.
+今後のリリースでさらに多くのソーシャルアプリケーションのサポートを追加する予定ですので、ご期待ください。
 
 :::
