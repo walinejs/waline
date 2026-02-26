@@ -1,16 +1,16 @@
 ---
-title: Import in project
+title: プロジェクトへのインポート
 icon: import
 order: 2
 ---
 
-Waline official client provides various versions of files. You can import and use the official client in several ways.
+Waline 公式クライアントはさまざまなバージョンのファイルを提供しています。いくつかの方法で公式クライアントをインポートして使用できます。
 
 <!-- more -->
 
-## NPM Packages
+## NPM パッケージ
 
-Waline official client has been released to [npm](https://www.npmjs.com/package/@waline/client) via `@waline/client`, you can install it with the following command:
+Waline 公式クライアントは `@waline/client` として [npm](https://www.npmjs.com/package/@waline/client) に公開されており、以下のコマンドでインストールできます：
 
 ::: code-tabs#shell
 
@@ -34,11 +34,11 @@ yarn add -D @waline/client
 
 :::
 
-For the modules exported by `@waline/client`, see [Client Reference → Files](../../reference/client/file.md).
+`@waline/client` がエクスポートするモジュールについては、[クライアントリファレンス → ファイル](../../reference/client/file.md) を参照してください。
 
-## Import in Normal Project
+## 通常のプロジェクトへのインポート
 
-Here is an example of importing and using `@waline/client` in a normal website project.
+通常のウェブサイトプロジェクトで `@waline/client` をインポートして使用する例を示します。
 
 ::: code-tabs#lang
 
@@ -70,13 +70,13 @@ init({
 
 :::
 
-## Import in Vue Project
+## Vue プロジェクトへのインポート
 
-Since `@waline/client` itself is based on Vue3, we directly export a responsive Vue component.
+`@waline/client` 自体が Vue3 をベースとしているため、リアクティブな Vue コンポーネントを直接エクスポートしています。
 
-All properties of components are reactive, you can find all supported properties in [Client Reference → Component Props](../../reference/client/props.md).
+コンポーネントのすべてのプロパティはリアクティブです。サポートされているすべてのプロパティは [クライアントリファレンス → コンポーネント Props](../../reference/client/props.md) で確認できます。
 
-::: details Demo
+::: details デモ
 
 ```vue
 <template>
@@ -94,13 +94,13 @@ const path = computed(() => useRoute().path);
 </script>
 ```
 
-Since we use responsive `path`, when the route changes, `@waline/client` will automatically refresh and display the comments of the corresponding route.
+リアクティブな `path` を使用しているため、ルートが変わると `@waline/client` は自動的に更新され、対応するルートのコメントを表示します。
 
 :::
 
-## Import in React project
+## React プロジェクトへのインポート
 
-With a simple wrapper, you can turn Waline into a React component:
+簡単なラッパーを使って、Waline を React コンポーネントに変換できます：
 
 ```tsx
 import React, { useEffect, useRef } from 'react';

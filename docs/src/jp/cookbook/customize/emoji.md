@@ -1,27 +1,27 @@
 ---
-title: Create your own Emoji presets
+title: 独自の絵文字プリセットを作成する
 icon: emoji
 ---
 
-This cookbook will show you how to create and use your own Emoji presets.
+このクックブックでは、独自の絵文字プリセットを作成して使用する方法を説明します。
 
 <!-- more -->
 
-## Create your own presets
+## 独自のプリセットを作成する
 
-First of all, you need to prepare some emoji images. Then, please follow the steps to create your preset.
+まず、いくつかの絵文字画像を用意する必要があります。その後、以下の手順に従ってプリセットを作成してください。
 
-### Name the emoji and upload it
+### 絵文字に名前をつけてアップロードする
 
-For the sake of simplicity, Waline will directly use the name of the emoji image as the key of the emoji. This means that if you import two different presets, and they both contain a laugh.png image, both emotes will correspond to the same emoji `:laugh:`.
+シンプルさのために、Waline は絵文字画像のファイル名を絵文字のキーとして直接使用します。つまり、2 つの異なるプリセットをインポートし、どちらにも `laugh.png` という画像が含まれている場合、両方の絵文字は同じ絵文字 `:laugh:` に対応することになります。
 
-Therefore, the best practice is that each emoji preset creator should add a preset-name-related prefix to all names in emoji files.
+そのため、各絵文字プリセットの作成者は、絵文字ファイルのすべての名前にプリセット名に関連するプレフィックスを追加することがベストプラクティスです。
 
-After naming them appropriately, you need to upload them to your server.
+適切な名前をつけたら、それらをサーバーにアップロードする必要があります。
 
-### Write preset information
+### プリセット情報を記述する
 
-We assume that you have placed some emoji images in the `
+いくつかの絵文字画像を `
 
 ```
 https://example.com/my-emoji/
@@ -32,11 +32,11 @@ https://example.com/my-emoji/
 └─ info.json
 ```
 
-At this point, you'll also need to create an `info.json` file for this folder to let Waline know what emoji the Emoji presets contain.
+この時点で、Waline が絵文字プリセットにどのような絵文字が含まれているかを把握できるように、このフォルダに `info.json` ファイルも作成する必要があります。
 
-First, let's set a name for the Emoji preset, such as `My Emoji`, because you have set the `my_` prefix for the image, and the files are in `png` format. You need to add them in `info.json`.
+まず、絵文字プリセットに名前を設定しましょう。たとえば `My Emoji` とします。画像に `my_` プレフィックスを設定し、ファイルが `png` 形式であるため、それらを `info.json` に追加する必要があります。
 
-Your `info.json` can be:
+`info.json` の内容は次のようになります：
 
 ```json
 {
@@ -46,7 +46,7 @@ Your `info.json` can be:
 }
 ```
 
-Then, list all emoji names in `items` in the order you want, at the same time, remember to ignore the prefix and suffix you have set in `prefix` and `type`.
+次に、希望する順番ですべての絵文字名を `items` にリストアップします。同時に、`prefix` と `type` で設定したプレフィックスとサフィックスは無視することを忘れないでください。
 
 ```json
 {
@@ -57,7 +57,7 @@ Then, list all emoji names in `items` in the order you want, at the same time, r
 }
 ```
 
-After that, please select a representative emoji as the icon displayed in the tab:
+その後、タブに表示するアイコンとして代表的な絵文字を選択してください：
 
 ```json
 {
@@ -69,39 +69,39 @@ After that, please select a representative emoji as the icon displayed in the ta
 }
 ```
 
-With these, you are done writing `info.json`, please upload it to the same folder.
+これで `info.json` の記述が完了しました。同じフォルダにアップロードしてください。
 
-You now successfully created a `my-emoji` preset with `https://example.com/my-emoji/'`.
+これにより、`https://example.com/my-emoji/` で `my-emoji` プリセットの作成が完了しました。
 
-## Use GitHub mirror with tags
+## タグを使用した GitHub ミラー
 
-Usually, you might find it a bit cumbersome to have your own domain name and upload images to the domain name, and the link may expire over time, so an advanced approach is to use a GitHub repository and use tag function in git to mirror GitHub repo providing a emoji preset.
+通常、独自のドメイン名を持ち、そのドメイン名に画像をアップロードするのは少し面倒に感じるかもしれません。また、時間の経過とともにリンクが無効になる可能性があります。そのため、より高度なアプローチとして、GitHub リポジトリを使用し、git のタグ機能を活用して GitHub リポジトリを絵文字プリセットとして提供することが挙げられます。
 
-Similar to the steps above, you need to create a new GitHub repository, name the emoji as above, create `info.json` using the same steps, and upload them to the repository.
+上記の手順と同様に、新しい GitHub リポジトリを作成し、上記と同じように絵文字に名前をつけ、同じ手順で `info.json` を作成して、リポジトリにアップロードします。
 
-Then, please create a tag for the repository at this time, we recommend setting it in the format of `vx.x.x`, such as `v1.0.0`.
+次に、この時点でリポジトリにタグを作成してください。`vx.x.x` の形式（例：`v1.0.0`）で設定することをお勧めします。
 
-After adding tags, you can use the CDN link with the version on [cdn.jsdelivr.net](https://www.jsdelivr.com/) as your preset in the format `https://cdn.jsdelivr.net/gh/user/repo@version/file`.
+タグを追加したら、[cdn.jsdelivr.net](https://www.jsdelivr.com/) でバージョン付きの CDN リンクを `https://cdn.jsdelivr.net/gh/user/repo@version/file` の形式でプリセットとして使用できます。
 
-We assume that you have created the `example/emoji` repository, uploaded the emoji images and `info.json` directly, and have created the `v1.0.0` tag, then you can use `https://cdn.jsdelivr.net/gh/example/emoji@v1.0.0/` as your preset.
+`example/emoji` リポジトリを作成し、絵文字画像と `info.json` を直接アップロードし、`v1.0.0` タグを作成したと仮定すると、`https://cdn.jsdelivr.net/gh/example/emoji@v1.0.0/` をプリセットとして使用できます。
 
 ::: tip
 
-It is necessary to specific a tag with link to prevent the image link referenced by the historical comment from being invalidated by modifying your preset.
+プリセットを変更することで過去のコメントで参照されている画像リンクが無効にならないよう、リンクにタグを指定することが必要です。
 
-The official emoji preset is achieved by creating the [walinejs/emojis](https://github.com/walinejs/emojis) repository and using the CDN link. Currently we are using the `v1.1.0` version.
+公式の絵文字プリセットは、[walinejs/emojis](https://github.com/walinejs/emojis) リポジトリを作成し、CDN リンクを使用することで実現されています。現在は `v1.1.0` バージョンを使用しています。
 
 :::
 
 ::: warning
 
-Since cdn.jsdelivr.net is polluted in China, you can replace `cdn.jsdelivr.net` with `gcore.jsdelivr.net`
+cdn.jsdelivr.net は中国でブロックされているため、`cdn.jsdelivr.net` を `gcore.jsdelivr.net` に置き換えることができます。
 
 :::
 
-## Using config objects
+## 設定オブジェクトを使用する
 
-Similar to the previous article, we assume you have the following file structure:
+前のセクションと同様に、以下のファイル構造があると仮定します：
 
 ```
 https://example.com/my-emoji/
@@ -111,7 +111,7 @@ https://example.com/my-emoji/
 └─ my_sob.png
 ```
 
-In addition to creating an `info.json` upload and using a link as a preset, you can also use the following objects directly as a preset:
+`info.json` を作成してアップロードしてリンクをプリセットとして使用する方法に加えて、以下のオブジェクトを直接プリセットとして使用することもできます：
 
 ```js
 {
@@ -124,4 +124,4 @@ In addition to creating an `info.json` upload and using a link as a preset, you 
 }
 ```
 
-Here, we additionally add the `folder` property to tell Waline where the images are stored.
+ここでは、Waline に画像の保存場所を伝えるために `folder` プロパティを追加しています。
