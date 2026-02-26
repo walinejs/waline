@@ -116,7 +116,7 @@ Recaptchaのキーとシークレットはこちらからリクエストでき�
 | `SMTP_PASS`      | SMTPパスワード               |
 | `SMTP_SECURE`    | SSLでSMTP接続するかどうか    |
 | `SENDER_NAME`    | 送信者名のカスタマイズ       |
-| `SENDER_EMAIL`   | 送信者メールアドレスのカスタマイズ |
+| `SENDER_EMAIL`   | 送信者メールのカスタマイズ |
 
 ::: tip
 
@@ -196,7 +196,7 @@ SMTPのユーザー名は通常、ユーザーの完全なメールアドレス�
 | `POSTGRES_HOST`      |      | 127.0.0.1  | `PG_HOST`の別名                         |
 | `POSTGRES_PORT`      |      | 3211       | `PG_PORT`の別名                         |
 | `POSTGRES_PREFIX`    |      | `wl_`      | `PG_PREFIX`の別名                       |
-| `POSTGRES_SSL`       |      | `false`    | `POSTGRES_SSL`の別名                    |
+| `POSTGRES_SSL`       |      | `false`    | `PG_SSL`の別名                          |
 
 ### GitHub
 
