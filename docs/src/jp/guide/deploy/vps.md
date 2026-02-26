@@ -1,14 +1,14 @@
 ---
-title: Self Host
+title: セルフホスト
 icon: server
 order: -1
 ---
 
-If you don't want to deploy the server on Vercel, you can also choose to deploy on your own server.
+Vercel 以外にサーバーをデプロイしたい場合は、自分のサーバーにデプロイすることもできます。
 
 <!-- more -->
 
-## Docker Deploy
+## Docker デプロイ
 
 ```bash
 docker run -d \
@@ -16,9 +16,9 @@ docker run -d \
   lizheming/waline
 ```
 
-It's a demo for how to run waline. You also need add some database environment if you want all comment function works well.
+これは Waline を起動するデモです。コメント機能をすべて正しく動作させるには、データベース環境変数も追加する必要があります。
 
-::: tip How to build image?
+::: tip イメージのビルド方法
 
 ```bash
 git clone https://github.com/lizheming/waline.git
@@ -28,11 +28,11 @@ docker build -t lizheming/waline -f packages/server/Dockerfile .
 
 :::
 
-### via [docker stack deploy](https://docs.docker.com/engine/reference/commandline/stack_deploy/) or [docker-compose](https://github.com/docker/compose)
+### [docker stack deploy](https://docs.docker.com/engine/reference/commandline/stack_deploy/) または [docker-compose](https://github.com/docker/compose) を使用する場合
 
-The SQLite is used here as an example. For SQLite and supported database services, please refer to [Multi-database service support](../database.md#sqlite).
+ここでは SQLite を例として使用します。SQLite およびサポートされているデータベースサービスについては、[マルチデータベースサービスサポート](../database.md#sqlite) を参照してください。
 
-Example `docker-compose.yml` for `waline`:
+`waline` 用の `docker-compose.yml` の例:
 
 ```yaml
 # docker-compose.yml
@@ -57,9 +57,9 @@ services:
       AUTHOR_EMAIL: 'mail@example.com'
 ```
 
-## Run directly (Recommended)
+## 直接実行（推奨）
 
-It's easy to run without using docker deployment, after setting environment variables, just run the `vanilla.js` file in the module after installing.
+Docker を使わずに実行するのは簡単です。環境変数を設定した後、インストール済みのモジュール内の `vanilla.js` ファイルを実行するだけです。
 
 ::: code-tabs#shell
 
@@ -79,9 +79,9 @@ node node_modules/@waline/vercel/vanilla.js
 
 :::
 
-## Nginx config
+## Nginx 設定
 
-If you don't want to use port in server url, you can use Nginx proxy pass to 80 and 443. Refer to the following configuration:
+サーバー URL にポート番号を使いたくない場合は、Nginx のプロキシパスを使って 80 番・443 番ポートに転送できます。以下の設定を参考にしてください:
 
 ```nginx
 server

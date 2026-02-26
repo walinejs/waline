@@ -1,93 +1,93 @@
 ---
-title: Vercel Deployment
+title: Vercel デプロイ
 icon: vercel
 order: 1
 ---
 
-We released the `@waline/vercel` package as server package, Vercel deployment is also our most recommended way.
+サーバーパッケージとして `@waline/vercel` をリリースしました。Vercel へのデプロイは最も推奨する方法です。
 
 <!-- more -->
 
-## How to Deploy
+## デプロイ方法
 
 [![Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fwalinejs%2Fwaline%2Ftree%2Fmain%2Fexample)
 
-1. Click the blue button above, it will redirect you to vercel to deploy with waline template.
+1. 上の青いボタンをクリックすると、Waline テンプレートを使って Vercel にデプロイするページへリダイレクトされます。
 
    ::: note
 
-   If you haven't logined, we recommend you to sign in with GitHub.
+   まだログインしていない場合は、GitHub でサインインすることをお勧めします。
 
    :::
 
-1. Input your Vercel project name then click `Create`.
+1. Vercel プロジェクト名を入力し、`Create` をクリックします。
 
    ![Create Project](../../../assets/vercel-1.png)
 
-1. Repo which named you input before will be created and initialized automatically base on waline example template by Vercel.
+1. 入力した名前のリポジトリが Vercel によって Waline のサンプルテンプレートをもとに自動的に作成・初期化されます。
 
    ![new project](../../../assets/vercel-2.png)
 
-   After one minute or two, vercel should finish the deployment. Click `Go to Dashboard` button to redirect to your application dashboard.
+   1〜2分ほどで Vercel のデプロイが完了します。`Go to Dashboard` ボタンをクリックしてアプリケーションのダッシュボードに移動してください。
 
    ![dashboard](../../../assets/vercel-3.png)
 
-## Create Database
+## データベースの作成
 
-1. Click `Storage` at the top to enter the storage service page, choose `Create Database`. Under `Marketplace Database Providers`, select `Neon`, then click `Continue`.
+1. 上部の `Storage` をクリックしてストレージサービスページに進み、`Create Database` を選択します。`Marketplace Database Providers` の中から `Neon` を選択し、`Continue` をクリックします。
 
    ![storage](../../../assets/vercel-4.png)
 
-1. You will be prompted to create a Neon account. Choose `Accept and Create`. Next, select the database plan configuration, including region and quota. You can leave defaults and click `Continue`.
+1. Neon アカウントの作成を求めるプロンプトが表示されます。`Accept and Create` を選択します。次に、リージョンやクォータなどのデータベースプラン設定を選択します。デフォルトのままにして `Continue` をクリックしても構いません。
 
    ![neon](../../../assets/vercel-5.png)
 
-1. Define the database name. You can keep the default and click `Continue`.
+1. データベース名を定義します。デフォルトのままにして `Continue` をクリックできます。
 
    ![neon](../../../assets/vercel-6.png)
 
-1. Now the database appears under `Storage`. Click it and choose `Open in Neon` to jump to Neon. In Neon, select `SQL Editor` on the left, paste the SQL from [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) into the editor, and click `Run` to create tables.
+1. `Storage` の下にデータベースが表示されます。それをクリックして `Open in Neon` を選択し、Neon に移動します。Neon では左側の `SQL Editor` を選択し、[waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) の SQL をエディタに貼り付けて `Run` をクリックしてテーブルを作成します。
 
    ![neon](../../../assets/vercel-7.png)
 
    ![neon](../../../assets/vercel-8.png)
 
-1. After a short while you should see a success message. Go back to Vercel, click `Deployments`, then click `Redeploy` on the latest deployment to make the new database configuration take effect.
+1. しばらくすると成功メッセージが表示されます。Vercel に戻り、`Deployments` をクリックし、最新のデプロイの `Redeploy` をクリックして新しいデータベース設定を反映させます。
 
    ![redeploy success](../../../assets/vercel-9.png)
 
-1. Vercel will redirect to `Overview` and start deploying. When `STATUS` becomes `Ready`, click `Visit` to open the deployed site. This URL is your server address.
+1. Vercel が `Overview` にリダイレクトしてデプロイを開始します。`STATUS` が `Ready` になったら、`Visit` をクリックしてデプロイされたサイトを開きます。この URL がサーバーアドレスになります。
 
    ![visit](../../../assets/vercel-10.png)
 
-## Assign Domain
+## ドメインの設定
 
-1. Click <kbd>Settings</kbd> - <kbd>Domains</kbd> to go to domain setting page.
+1. <kbd>Settings</kbd> - <kbd>Domains</kbd> をクリックしてドメイン設定ページに移動します。
 
-1. Input domain you want to assign and click <kbd>Add</kbd> button.
+1. 割り当てたいドメインを入力し、<kbd>Add</kbd> ボタンをクリックします。
 
    ![Add domain](../../../assets/vercel-11.png)
 
-1. Add a new `CNAME` record in your domain service server.
+1. ドメインサービスのサーバーに新しい `CNAME` レコードを追加します。
 
    | Type  | Name    | Value                |
    | ----- | ------- | -------------------- |
    | CNAME | example | cname.vercel-dns.com |
 
-1. You can use your own domain to visit Waline after it takes effect. :tada:
-   - Comment system: example.your-domain.com
-   - Admin panel: example.your-domain.com/ui
+1. 反映後は独自ドメインで Waline にアクセスできます。 :tada:
+   - コメントシステム: example.your-domain.com
+   - 管理パネル: example.your-domain.com/ui
 
    ![success](../../../assets/vercel-12.png)
 
-## HTML Import
+## HTML への組み込み
 
-Set up as follows in your webpage:
+ウェブページに以下のように設定します:
 
-1. Import Waline styles from `https://unpkg.com/@waline/client@v3/dist/waline.css`.
-2. Create a `<script>` tag that uses `init()` from `https://unpkg.com/@waline/client@v3/dist/waline.js`, and pass required options `el` and `serverURL`.
-   - `el` is the element used to render Waline. It can be a CSS selector string or an HTMLElement.
-   - `serverURL` is your server address obtained in the previous step.
+1. `https://unpkg.com/@waline/client@v3/dist/waline.css` から Waline のスタイルをインポートします。
+2. `https://unpkg.com/@waline/client@v3/dist/waline.js` から `init()` を使用する `<script>` タグを作成し、必須オプション `el` と `serverURL` を渡します。
+   - `el` は Waline をレンダリングする要素です。CSS セレクター文字列または HTMLElement を指定できます。
+   - `serverURL` は前のステップで取得したサーバーアドレスです。
 
 ```html {3-7,12-18}:line-numbers
 <head>
@@ -109,8 +109,8 @@ Set up as follows in your webpage:
 </body>
 ```
 
-## Comment Admin
+## コメント管理
 
-1. After deployment, visit `<serverURL>/ui/register` to register. The first registered user becomes the administrator.
-2. After logging in, the administrator can manage comments: edit, mark, or delete.
-3. Users can also register via the comment box. After login they will be redirected to their profile page.
+1. デプロイ後、`<serverURL>/ui/register` にアクセスして登録します。最初に登録したユーザーが管理者になります。
+2. ログイン後、管理者はコメントの編集・マーク・削除などの管理ができます。
+3. ユーザーはコメント欄からも登録できます。ログイン後はプロフィールページにリダイレクトされます。
