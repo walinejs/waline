@@ -95,15 +95,7 @@ export default [
       }),
     ],
     treeshake: 'smallest',
-    external: [
-      '@vueuse/core',
-      '@waline/api',
-      'autosize',
-      'marked',
-      'marked-highlight',
-      'recaptcha-v3',
-      'vue',
-    ],
+    external: ['@vueuse/core', '@waline/api', 'autosize', 'marked', 'marked-highlight', 'vue'],
   },
 
   // components
@@ -116,15 +108,7 @@ export default [
         sourcemap: true,
       },
     ],
-    external: [
-      '@vueuse/core',
-      '@waline/api',
-      'autosize',
-      'marked',
-      'marked-highlight',
-      'recaptcha-v3',
-      'vue',
-    ],
+    external: ['@vueuse/core', '@waline/api', 'autosize', 'marked', 'marked-highlight', 'vue'],
     plugins: [
       vue({
         isProduction: true,

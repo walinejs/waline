@@ -18,9 +18,9 @@ import {
 } from './Icons.js';
 import ImageWall from './ImageWall.vue';
 import {
+  createRecaptchaAdapter,
+  createTurnstileAdapter,
   useEditor,
-  useReCaptcha,
-  useTurnstile,
   useUserInfo,
   useUserMeta,
 } from '../composables/index.js';
@@ -208,8 +208,16 @@ const onImageChange = (): void => {
 
 // oxlint-disable-next-line complexity, max-statements
 const submitComment = async (): Promise<void> => {
-  const { serverURL, lang, login, wordLimit, requiredMeta, recaptchaV3Key, turnstileKey } =
-    config.value;
+  const {
+    serverURL,
+    lang,
+    login,
+    wordLimit,
+    requiredMeta,
+    betterCaptcha,
+    recaptchaV3Key,
+    turnstileKey,
+  } = config.value;
 
   const comment: WalineCommentData = {
     comment: content.value,
@@ -285,9 +293,27 @@ const submitComment = async (): Promise<void> => {
   isSubmitting.value = true;
 
   try {
-    if (recaptchaV3Key) comment.recaptchaV3 = await useReCaptcha(recaptchaV3Key).execute('social');
+    const captchaConfig =
+      betterCaptcha ??
+      (recaptchaV3Key
+        ? { provider: 'recaptchaV3', siteKey: recaptchaV3Key }
+        : turnstileKey
+          ? { provider: 'turnstile', siteKey: turnstileKey }
+          : null);
 
-    if (turnstileKey) comment.turnstile = await useTurnstile(turnstileKey).execute('social');
+    const captchaAdapter =
+      captchaConfig?.provider === 'recaptchaV3'
+        ? createRecaptchaAdapter(captchaConfig.siteKey)
+        : captchaConfig?.provider === 'turnstile'
+          ? createTurnstileAdapter(captchaConfig.siteKey)
+          : null;
+
+    if (captchaAdapter) {
+      const { provider, token } = await captchaAdapter.execute('social');
+
+      if (provider === 'recaptchaV3') comment.recaptchaV3 = token;
+      if (provider === 'turnstile') comment.turnstile = token;
+    }
 
     const options = {
       serverURL,

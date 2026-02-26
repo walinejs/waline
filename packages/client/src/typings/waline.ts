@@ -11,6 +11,18 @@ import type {
 } from './base.js';
 import type { WalineLocale } from './locale.js';
 
+export interface WalineBetterCaptchaOptions {
+  /**
+   * captcha provider name
+   */
+  provider: 'recaptchaV3' | 'turnstile';
+
+  /**
+   * captcha provider site key
+   */
+  siteKey: string;
+}
+
 export interface WalineProps {
   /**
    * Waline 的服务端地址
@@ -196,9 +208,18 @@ export interface WalineProps {
   noRss?: boolean;
 
   /**
+   * Better Captcha 配置
+   *
+   * Better Captcha options
+   */
+  betterCaptcha?: WalineBetterCaptchaOptions;
+
+  /**
    * recaptcha v3 客户端 key
    *
    * recaptcha v3 client key
+   *
+   * @deprecated Please use `betterCaptcha` instead.
    */
   recaptchaV3Key?: string;
 
@@ -206,6 +227,8 @@ export interface WalineProps {
    * turnstile 客户端 key
    *
    * turnstile client key
+   *
+   * @deprecated Please use `betterCaptcha` instead.
    */
   turnstileKey?: string;
 
