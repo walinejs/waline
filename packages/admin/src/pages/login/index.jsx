@@ -5,8 +5,10 @@ import { Link, useNavigate } from 'react-router';
 
 import Header from '../../components/Header.jsx';
 import * as Icons from '../../components/icon/index.js';
-import { getCaptchaConfig, useCaptcha } from '../../components/useCaptcha.js';
+
 import { get2FAToken } from '../../services/user.js';
+
+import getCaptchaConfig from '../../utils/getCaptchaConfig.js';
 
 // oxlint-disable-next-line max-lines-per-function
 export default function Login() {
@@ -17,7 +19,8 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [is2FAEnabled, enable2FA] = useState(false);
-  const execute = useCaptcha({ hideDefaultBadge: true });
+  const captchaRef = useRef(null);
+
   const captchaConfig = getCaptchaConfig();
 
   const match = location.pathname.match(/(.*?\/)ui/);
@@ -57,7 +60,8 @@ export default function Login() {
       return setError(t('please input 2fa code'));
     }
 
-    const token = await execute('login');
+    await captchaRef.current?.execute?.();
+    const captchaToken = captchaRef.current.getResponse();
 
     try {
       await dispatch.user.login({
@@ -65,8 +69,7 @@ export default function Login() {
         password,
         code,
         remember,
-        recaptchaV3: captchaConfig?.provider === 'recaptchaV3' ? token : undefined,
-        turnstile: captchaConfig?.provider === 'turnstile' ? token : undefined,
+        captcha: captchaToken,
       });
     } catch {
       setError(t('email or password error'));
@@ -161,7 +164,13 @@ export default function Login() {
                 />
               </p>
             )}
-            <p className="captcha-container" />
+
+            {captchaConfig?.provider &&
+              React.createElement(CaptchaProviders[captchaConfig.provider], {
+                ...captchaConfig,
+                ref: captchaRef,
+              })}
+
             <p className="submit">
               <button type="submit" className="btn btn-l w-100 primary" disabled={loading}>
                 {t('login')}

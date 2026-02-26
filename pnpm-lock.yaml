@@ -168,6 +168,9 @@ importers:
 
   packages/admin:
     devDependencies:
+      '@better-captcha/react':
+        specifier: ^0.5.6
+        version: 0.5.6(react@19.2.4)(typescript@5.9.3)
       '@rematch/core':
         specifier: 2.2.0
         version: 2.2.0(redux@5.0.1)
@@ -1029,6 +1032,12 @@ packages:
   '@better-captcha/core@0.5.6':
     resolution: {integrity: sha512-t+VDA+cDh3dy1d2WxrNS/7wD60R7ERV5UJM2CyHZNkizvrK4ymW93VXgQfHBpT4YgpSri6i/zN16vO0RKKqKgA==}
     peerDependencies:
+      typescript: ^5.0.0
+
+  '@better-captcha/react@0.5.6':
+    resolution: {integrity: sha512-/NsTEx3y1LhYFLtgAOLkXEPKw88m5fFLp903rIoJZuKmZFtzrGr7i/T0ua0wK0flPPxe3dRNl8Fje3Sz9/HV7A==}
+    peerDependencies:
+      react: ^18 || ^19
       typescript: ^5.0.0
 
   '@better-captcha/vue@0.5.6':
@@ -9993,6 +10002,12 @@ snapshots:
 
   '@better-captcha/core@0.5.6(typescript@5.9.3)':
     dependencies:
+      typescript: 5.9.3
+
+  '@better-captcha/react@0.5.6(react@19.2.4)(typescript@5.9.3)':
+    dependencies:
+      '@better-captcha/core': 0.5.6(typescript@5.9.3)
+      react: 19.2.4
       typescript: 5.9.3
 
   '@better-captcha/vue@0.5.6(typescript@5.9.3)(vue@3.5.28(typescript@5.9.3))':

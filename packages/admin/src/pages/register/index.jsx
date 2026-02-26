@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router';
 
 import Header from '../../components/Header.jsx';
-import { getCaptchaConfig, useCaptcha } from '../../components/useCaptcha.js';
+import CaptchaProviders from '../../components/Captcha.js';
+import getCaptchaConfig from '../../utils/getCaptchaConfig.js';
 
 // oxlint-disable-next-line max-lines-per-function
 export default function Register() {
@@ -14,7 +15,8 @@ export default function Register() {
   const user = useSelector((state) => state.user);
   const [error, setError] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const execute = useCaptcha({ hideDefaultBadge: true });
+  const captchaRef = useRef(null);
+
   const captchaConfig = getCaptchaConfig();
 
   useEffect(() => {
@@ -47,14 +49,14 @@ export default function Register() {
 
     try {
       setSubmitting(true);
-      const token = await execute('login');
+      await captchaRef.current?.execute?.();
+      const captchaToken = captchaRef.current.getResponse();
       const resp = await dispatch.user.register({
         display_name: nick,
         email,
         url: link,
         password,
-        recaptchaV3: captchaConfig?.provider === 'recaptchaV3' ? token : undefined,
-        turnstile: captchaConfig?.provider === 'turnstile' ? token : undefined,
+        captcha: captchaToken,
       });
 
       if (resp && resp.verify) {
@@ -144,7 +146,13 @@ export default function Register() {
                 placeholder={t('password again')}
               />
             </p>
-            <p className="captcha-container" />
+
+            {captchaConfig?.provider &&
+              React.createElement(CaptchaProviders[captchaConfig.provider], {
+                ...captchaConfig,
+                ref: captchaRef,
+              })}
+
             <p className="submit">
               <button type="submit" disabled={submitting} className="btn btn-l w-100 primary">
                 {t('register')}
