@@ -1,54 +1,54 @@
 ---
-title: Server Environment Variables
+title: サーバー環境変数
 icon: config
 ---
 
-You can customize Waline Server through the following environment variables.
+以下の環境変数を使用してWalineサーバーをカスタマイズできます。
 
 ::: warning
 
-You MUST **redeploy** after updating Environment variables to make changes applied.
+環境変数を更新した後は、変更を反映させるために必ず**再デプロイ**してください。
 
-You should set through `Settings` - `Environment Variables` when using Vercel.
+Vercelを使用している場合は、`Settings` - `Environment Variables`から設定してください。
 
 :::
 
 <!-- more -->
 
-## Basic
+## 基本
 
-| Environment Variables | Required | Description                                                                                |
-| --------------------- | -------- | ------------------------------------------------------------------------------------------ |
-| `SITE_NAME`           |          | site name                                                                                  |
-| `SITE_URL`            |          | site url                                                                                   |
-| `LOGIN`               |          | User need login before comment when `LOGIN=force`                                          |
-| `SERVER_URL`          |          | the url of the Waline Server, useful when the automatically generated address is incorrect |
+| 環境変数       | 必須 | 説明                                                                                   |
+| -------------- | ---- | -------------------------------------------------------------------------------------- |
+| `SITE_NAME`    |      | サイト名                                                                               |
+| `SITE_URL`     |      | サイトURL                                                                              |
+| `LOGIN`        |      | `LOGIN=force`のとき、コメント前にログインが必要になります                             |
+| `SERVER_URL`   |      | WalineサーバーのURL。自動生成されたアドレスが正しくない場合に指定します               |
 
-## Display
+## 表示
 
-| Environment Variables   | Default                                                                 | Description                                                       |
-| ----------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `DISABLE_USERAGENT`     |                                                                         | wether hide the user agent of commenter. Default value is `false` |
-| `DISABLE_REGION`        |                                                                         | wether hide commenter's region. Default value is `false`          |
-| `DISABLE_AUTHOR_NOTIFY` |                                                                         | wether disable author notification                                |
-| `AVATAR_PROXY`          | `https://avatar.75cdn.workers.dev`                                      | Avatar proxy service url. You can set `false` to disable it       |
-| `GRAVATAR_STR`          | <span v-pre>`https://seccdn.libravatar.org/avatar/{{mail\|md5}}`</span> | Gravatar render string，base on nunjucks template                 |
-| `LEVELS`                |                                                                         | Give each user a rating label based on the number of comments     |
+| 環境変数                | デフォルト                                                                              | 説明                                                                   |
+| ----------------------- | --------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `DISABLE_USERAGENT`     |                                                                                         | コメント者のユーザーエージェントを非表示にするかどうか。デフォルトは`false` |
+| `DISABLE_REGION`        |                                                                                         | コメント者の地域を非表示にするかどうか。デフォルトは`false`             |
+| `DISABLE_AUTHOR_NOTIFY` |                                                                                         | 投稿者への通知を無効にするかどうか                                     |
+| `AVATAR_PROXY`          | `https://avatar.75cdn.workers.dev`                                                      | アバタープロキシサービスのURL。`false`に設定すると無効になります        |
+| `GRAVATAR_STR`          | <span v-pre>`https://seccdn.libravatar.org/avatar/{{mail\|md5}}`</span>                 | Gravatarのレンダリング文字列。nunjucksテンプレートに基づきます          |
+| `LEVELS`                |                                                                                         | コメント数に基づいて各ユーザーにレーティングラベルを付与します         |
 
-::: tip Level Label
+::: tip レベルラベル
 
-According number of user comments, a level label will be added to the commenter based on rating Conditions. This feature is disabled by default and can be enabled by setting the environment variable `LEVELS`. The configuration is in the form of a comma concatenation of a given number, for example `0,10,20,50,100,200` means:
+ユーザーのコメント数に応じて、レーティング条件に基づいてコメント者にレベルラベルが付与されます。この機能はデフォルトで無効になっており、環境変数`LEVELS`を設定することで有効にできます。設定は所定の数値をカンマで連結した形式で行います。例えば`0,10,20,50,100,200`は以下を意味します：
 
-| Grades | Conditions         | Default Grade Labels |
-| ------ | ------------------ | -------------------- |
-| 0      | 0 <= count < 10    | Dwarves              |
-| 1      | 10 <= count < 20   | Hobbits              |
-| 2      | 20 <= count < 50   | Ents                 |
-| 3      | 50 <= count < 100  | Wizards              |
-| 4      | 100 <= count < 200 | Elves                |
-| 5      | 200 <= count       | Maiar                |
+| グレード | 条件               | デフォルトのグレードラベル |
+| -------- | ------------------ | -------------------------- |
+| 0        | 0 <= count < 10    | Dwarves                    |
+| 1        | 10 <= count < 20   | Hobbits                    |
+| 2        | 20 <= count < 50   | Ents                       |
+| 3        | 50 <= count < 100  | Wizards                    |
+| 4        | 100 <= count < 200 | Elves                      |
+| 5        | 200 <= count       | Maiar                      |
 
-In addition to customizing the level judgment rules, we can also customize the level label. Configure the text in the client as follows:
+レベル判定ルールのカスタマイズに加え、レベルラベルもカスタマイズできます。クライアントでは以下のようにテキストを設定します：
 
 ```js
 Waline.init({
@@ -63,156 +63,156 @@ Waline.init({
 });
 ```
 
-By default, only 6 levels of copywriting are provided, but it does not mean that there can only be 6 levels. The specific level cap is based on the level judgment rules you set. To add a new level, it is recommended to configure the label text corresponding to the level by yourself. If no label text is provided, the default label text such as `Level 10` will be displayed by default.
+デフォルトでは6レベル分のラベル文字列のみ提供されていますが、レベルが6つまでしかないわけではありません。実際の最大レベルは設定したレベル判定ルールに基づきます。新しいレベルを追加する場合は、そのレベルに対応するラベルテキストをご自身で設定することをお勧めします。ラベルテキストが指定されていない場合、`Level 10`のようなデフォルトのラベルテキストが表示されます。
 
 :::
 
-## Safety
+## セキュリティ
 
-| Environment Variables | Default        | Description                                                                                                              |
-| --------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| `IPQPS`               | `60`           | IP-based comment posting frequency limit in seconds. Set to 0 for no limit                                               |
-| `SECURE_DOMAINS`      |                | Secure Domains config. Supports multiple domain with Comma separated                                                     |
-| `AKISMET_KEY`         | `70542d86693e` | Akismet antispam service key, set `false` if you wanna close it.                                                         |
-| `COMMENT_AUDIT`       | `false`        | Comment audit switcher. When enabled, every comment needs to be approved by admin, so hint in placeholder is recommended |
-| `RECAPTCHA_V3_KEY`    |                | reCAPTCHA V3 key,should set along with client                                                                            |
-| `RECAPTCHA_V3_SECRET` |                | reCAPTCHA V3 secret for server.                                                                                          |
-| `TURNSTILE_KEY`       |                | Turnstile key,should set along with client                                                                               |
-| `TURNSTILE_SECRET`    |                | Turnstile secret for server                                                                                              |
+| 環境変数              | デフォルト     | 説明                                                                                                                              |
+| --------------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `IPQPS`               | `60`           | IPごとのコメント投稿頻度制限（秒単位）。0に設定すると制限なし                                                                   |
+| `SECURE_DOMAINS`      |                | セキュアドメインの設定。カンマ区切りで複数のドメインを指定できます                                                              |
+| `AKISMET_KEY`         | `70542d86693e` | Akismetアンチスパムサービスキー。無効にする場合は`false`に設定                                                                   |
+| `COMMENT_AUDIT`       | `false`        | コメント審査のスイッチ。有効にすると全てのコメントが管理者の承認を必要とするため、プレースホルダーへのヒント記載を推奨します     |
+| `RECAPTCHA_V3_KEY`    |                | reCAPTCHA V3キー。クライアントと合わせて設定してください                                                                         |
+| `RECAPTCHA_V3_SECRET` |                | サーバー用reCAPTCHA V3シークレット                                                                                                |
+| `TURNSTILE_KEY`       |                | Turnstileキー。クライアントと合わせて設定してください                                                                            |
+| `TURNSTILE_SECRET`    |                | サーバー用Turnstileシークレット                                                                                                   |
 
-::: tip Recaptcha and Turnstile
+::: tip RecaptchaとTurnstile
 
-Turnstile Key and Secret can be requested at <https://www.cloudflare.com/products/turnstile/>.
+Turnstileのキーとシークレットはこちらからリクエストできます：<https://www.cloudflare.com/products/turnstile/>
 
-Recaptcha Key and Secret can be requested at <https://www.google.com/recaptcha>.
+Recaptchaのキーとシークレットはこちらからリクエストできます：<https://www.google.com/recaptcha>
 
-When setting security domains, you need to add the site address and the Waline server address at the same time.
+セキュリティドメインを設定する際は、サイトのアドレスとWalineサーバーのアドレスを同時に追加する必要があります。
 
 :::
 
 ## Markdown
 
-| Environment Variables | Default   | Description                                                        |
-| --------------------- | --------- | ------------------------------------------------------------------ |
-| `MARKDOWN_CONFIG`     | `{}`      | MarkdownIt Config                                                  |
-| `MARKDOWN_HIGHLIGHT`  | `true`    | Whether enable highlight                                           |
-| `MARKDOWN_EMOJI`      | `true`    | Whether enable emoji                                               |
-| `MARKDOWN_SUB`        | `true`    | Whether enable subscript                                           |
-| `MARKDOWN_SUP`        | `true`    | Whether enable superscript                                         |
-| `MARKDOWN_TEX`        | `mathjax` | Service to parse math, `mathjax` `katex` and `false` are supported |
-| `MARKDOWN_MATHJAX`    | `{}`      | MathJax Options                                                    |
-| `MARKDOWN_KATEX`      | `{}`      | KaTeX Options                                                      |
+| 環境変数             | デフォルト | 説明                                                                  |
+| -------------------- | ---------- | --------------------------------------------------------------------- |
+| `MARKDOWN_CONFIG`    | `{}`       | MarkdownItの設定                                                      |
+| `MARKDOWN_HIGHLIGHT` | `true`     | シンタックスハイライトを有効にするかどうか                            |
+| `MARKDOWN_EMOJI`     | `true`     | 絵文字を有効にするかどうか                                            |
+| `MARKDOWN_SUB`       | `true`     | 下付き文字を有効にするかどうか                                        |
+| `MARKDOWN_SUP`       | `true`     | 上付き文字を有効にするかどうか                                        |
+| `MARKDOWN_TEX`       | `mathjax`  | 数式の解析サービス。`mathjax`、`katex`、`false`をサポートしています   |
+| `MARKDOWN_MATHJAX`   | `{}`       | MathJaxのオプション                                                   |
+| `MARKDOWN_KATEX`     | `{}`       | KaTeXのオプション                                                     |
 
-## Mail Service
+## メールサービス
 
-The email service is used for email notification of user registration and comments. After configuring the variables related to the mail service, user registration will add operations related to email verification code confirmation to prevent malicious registration.
+メールサービスは、ユーザー登録およびコメントのメール通知に使用されます。メールサービス関連の変数を設定すると、ユーザー登録時に悪意ある登録を防ぐためのメール確認コードの操作が追加されます。
 
-| Environment variable name | Remarks                    |
-| ------------------------- | -------------------------- |
-| `SMTP_SERVICE`            | SMTP mail service provider |
-| `SMTP_HOST`               | SMTP server address        |
-| `SMTP_PORT`               | SMTP server port           |
-| `SMTP_USER`               | SMTP username              |
-| `SMTP_PASS`               | SMTP Password.             |
-| `SMTP_SECURE`             | SMTP connect with SSL      |
-| `SENDER_NAME`             | Customize sender name      |
-| `SENDER_EMAIL`            | Customize sender email     |
+| 環境変数名       | 備考                         |
+| ---------------- | ---------------------------- |
+| `SMTP_SERVICE`   | SMTPメールサービスプロバイダー |
+| `SMTP_HOST`      | SMTPサーバーアドレス         |
+| `SMTP_PORT`      | SMTPサーバーポート           |
+| `SMTP_USER`      | SMTPユーザー名               |
+| `SMTP_PASS`      | SMTPパスワード               |
+| `SMTP_SECURE`    | SSLでSMTP接続するかどうか    |
+| `SENDER_NAME`    | 送信者名のカスタマイズ       |
+| `SENDER_EMAIL`   | 送信者メールアドレスのカスタマイズ |
 
 ::: tip
 
-Supported service providers can be found [nodemailer services](https://github.com/nodemailer/nodemailer/blob/master/lib/well-known/services.json). You can choose one of `SMTP_SERVICE` and (`SMTP_HOST`, `SMTP_PORT`). If you don't know the corresponding `SMTP_SERVICE` in the list, you need to configure `SMTP_HOST` and `SMTP_PORT`, which can probably be found in the mailbox settings.
+サポートされているサービスプロバイダーは[nodemailer services](https://github.com/nodemailer/nodemailer/blob/master/lib/well-known/services.json)で確認できます。`SMTP_SERVICE`と（`SMTP_HOST`、`SMTP_PORT`）のどちらかを選択して設定できます。リストに対応する`SMTP_SERVICE`が見つからない場合は、メール設定で確認できることが多い`SMTP_HOST`と`SMTP_PORT`を設定する必要があります。
 
-The user name of SMTP usually supports the complete mailbox of the user, and the password is mostly the same as the mailbox password.
+SMTPのユーザー名は通常、ユーザーの完全なメールアドレスをサポートしており、パスワードはメールボックスのパスワードと同じことがほとんどです。
 
-Please pay special attention that some mailboxes use separate SMTP passwords.
+一部のメールボックスでは専用のSMTPパスワードを使用していることに特にご注意ください。
 
 :::
 
-## Database
+## データベース
 
 ### MongoDB
 
-| Environment Variable | Required | Default   | Description                                  |
-| -------------------- | -------- | --------- | -------------------------------------------- |
-| `MONGO_DB`           | ✅       |           | MongoDB database name                        |
-| `MONGO_USER`         | ✅       |           | MongoDB server username                      |
-| `MONGO_PASSWORD`     | ✅       |           | MongoDB server password                      |
-| `MONGO_HOST`         |          | 127.0.0.1 | MongoDB server address, support array format |
-| `MONGO_PORT`         |          | 27017     | MongoDB server port, support array format    |
-| `MONGO_REPLICASET`   |          |           | MongoDB replica set                          |
-| `MONGO_AUTHSOURCE`   |          |           | MongoDB auth source                          |
-| `MONGO_OPT_SSL`      |          | `false`   | use SSL connection                           |
+| 環境変数           | 必須 | デフォルト | 説明                                           |
+| ------------------ | ---- | ---------- | ---------------------------------------------- |
+| `MONGO_DB`         | ✅   |            | MongoDBデータベース名                          |
+| `MONGO_USER`       | ✅   |            | MongoDBサーバーのユーザー名                    |
+| `MONGO_PASSWORD`   | ✅   |            | MongoDBサーバーのパスワード                    |
+| `MONGO_HOST`       |      | 127.0.0.1  | MongoDBサーバーアドレス。配列形式をサポート    |
+| `MONGO_PORT`       |      | 27017      | MongoDBサーバーポート。配列形式をサポート      |
+| `MONGO_REPLICASET` |      |            | MongoDBレプリカセット                          |
+| `MONGO_AUTHSOURCE` |      |            | MongoDB認証ソース                              |
+| `MONGO_OPT_SSL`    |      | `false`    | SSL接続を使用するかどうか                      |
 
 ### MySQL
 
-| Environment Variable | Required | Default   | Description                |
-| -------------------- | -------- | --------- | -------------------------- |
-| `MYSQL_DB`           | ✅       |           | MySQL database name        |
-| `MYSQL_USER`         | ✅       |           | MySQL server username      |
-| `MYSQL_PASSWORD`     | ✅       |           | MySQL server password      |
-| `MYSQL_HOST`         |          | 127.0.0.1 | MySQL server address       |
-| `MYSQL_PORT`         |          | 3306      | MySQL server port          |
-| `MYSQL_PREFIX`       |          | `wl_`     | MySQL table prefix         |
-| `MYSQL_CHARSET`      |          | `utf8mb4` | MySQL table charset        |
-| `MYSQL_SSL`          |          | `false`   | whether use SSL connection |
+| 環境変数         | 必須 | デフォルト | 説明                         |
+| ---------------- | ---- | ---------- | ---------------------------- |
+| `MYSQL_DB`       | ✅   |            | MySQLデータベース名          |
+| `MYSQL_USER`     | ✅   |            | MySQLサーバーのユーザー名    |
+| `MYSQL_PASSWORD` | ✅   |            | MySQLサーバーのパスワード    |
+| `MYSQL_HOST`     |      | 127.0.0.1  | MySQLサーバーアドレス        |
+| `MYSQL_PORT`     |      | 3306       | MySQLサーバーポート          |
+| `MYSQL_PREFIX`   |      | `wl_`      | MySQLテーブルのプレフィックス |
+| `MYSQL_CHARSET`  |      | `utf8mb4`  | MySQLテーブルの文字セット    |
+| `MYSQL_SSL`      |      | `false`    | SSL接続を使用するかどうか    |
 
 ### TiDB
 
-[Create a database on TiDB](../../../jp/guide/deploy/tidb.md)
+[TiDBでデータベースを作成する](../../../jp/guide/deploy/tidb.md)
 
-| Environment Variable | Required | Default   | Description          |
-| -------------------- | -------- | --------- | -------------------- |
-| `TIDB_DB`            | ✅       |           | TiDB database name   |
-| `TIDB_USER`          | ✅       |           | TiDB server username |
-| `TIDB_PASSWORD`      | ✅       |           | TiDB server password |
-| `TIDB_HOST`          |          | 127.0.0.1 | TiDB server address  |
-| `TIDB_PORT`          |          | 4000      | TiDB server port     |
-| `TIDB_PREFIX`        |          | `wl_`     | TiDB table prefix    |
-| `TIDB_CHARSET`       |          | `utf8mb4` | TiDB table charset   |
+| 環境変数        | 必須 | デフォルト | 説明                          |
+| --------------- | ---- | ---------- | ----------------------------- |
+| `TIDB_DB`       | ✅   |            | TiDBデータベース名            |
+| `TIDB_USER`     | ✅   |            | TiDBサーバーのユーザー名      |
+| `TIDB_PASSWORD` | ✅   |            | TiDBサーバーのパスワード      |
+| `TIDB_HOST`     |      | 127.0.0.1  | TiDBサーバーアドレス          |
+| `TIDB_PORT`     |      | 4000       | TiDBサーバーポート            |
+| `TIDB_PREFIX`   |      | `wl_`      | TiDBテーブルのプレフィックス  |
+| `TIDB_CHARSET`  |      | `utf8mb4`  | TiDBテーブルの文字セット      |
 
 ### SQLite
 
-| Environment Variable | Required | Default | Description                                                        |
-| -------------------- | -------- | ------- | ------------------------------------------------------------------ |
-| `SQLITE_PATH`        | ✅       |         | SQLite storage file path, not include file name                    |
-| `JWT_TOKEN`          | ✅       |         | Random String for login token generator                            |
-| `SQLITE_DB`          |          | waline  | SQLite storage file name, change it if your filename is not waline |
-| `SQLITE_PREFIX`      |          | `wl_`   | SQLite table prefix                                                |
+| 環境変数        | 必須 | デフォルト | 説明                                                                      |
+| --------------- | ---- | ---------- | ------------------------------------------------------------------------- |
+| `SQLITE_PATH`   | ✅   |            | SQLiteストレージファイルのパス（ファイル名を除く）                        |
+| `JWT_TOKEN`     | ✅   |            | ログイントークン生成用のランダム文字列                                    |
+| `SQLITE_DB`     |      | waline     | SQLiteストレージファイル名。ファイル名がwaline以外の場合は変更してください |
+| `SQLITE_PREFIX` |      | `wl_`      | SQLiteテーブルのプレフィックス                                            |
 
 ### PostgreSQL
 
-| Environment Variable | Required | Default   | Description                         |
-| -------------------- | -------- | --------- | ----------------------------------- |
-| `PG_DB`              | ✅       |           | PostgreSQL database name            |
-| `PG_USER`            | ✅       |           | PostgreSQL server username          |
-| `PG_PASSWORD`        | ✅       |           | PostgreSQL server password          |
-| `PG_HOST`            |          | 127.0.0.1 | PostgreSQL server address           |
-| `PG_PORT`            |          | 3211      | PostgreSQL server port              |
-| `PG_PREFIX`          |          | `wl_`     | PostgreSQL table prefix             |
-| `PG_SSL`             |          | `false`   | set to `true` to use SSL connection |
-| `POSTGRES_DATABASE`  |          |           | alias for `PG_DB`                   |
-| `POSTGRES_USER`      |          |           | alias for `PG_USER`                 |
-| `POSTGRES_PASSWORD`  |          |           | alias for `PG_PASSWORD`             |
-| `POSTGRES_HOST`      |          | 127.0.0.1 | alias for `PG_HOST`                 |
-| `POSTGRES_PORT`      |          | 3211      | alias for `PG_PORT`                 |
-| `POSTGRES_PREFIX`    |          | `wl_`     | alias for `PG_PREFIX`               |
-| `POSTGRES_SSL`       |          | `false`   | alias for `POSTGRES_SSL`            |
+| 環境変数             | 必須 | デフォルト | 説明                                    |
+| -------------------- | ---- | ---------- | --------------------------------------- |
+| `PG_DB`              | ✅   |            | PostgreSQLデータベース名                |
+| `PG_USER`            | ✅   |            | PostgreSQLサーバーのユーザー名          |
+| `PG_PASSWORD`        | ✅   |            | PostgreSQLサーバーのパスワード          |
+| `PG_HOST`            |      | 127.0.0.1  | PostgreSQLサーバーアドレス              |
+| `PG_PORT`            |      | 3211       | PostgreSQLサーバーポート                |
+| `PG_PREFIX`          |      | `wl_`      | PostgreSQLテーブルのプレフィックス      |
+| `PG_SSL`             |      | `false`    | `true`に設定するとSSL接続を使用します   |
+| `POSTGRES_DATABASE`  |      |            | `PG_DB`の別名                           |
+| `POSTGRES_USER`      |      |            | `PG_USER`の別名                         |
+| `POSTGRES_PASSWORD`  |      |            | `PG_PASSWORD`の別名                     |
+| `POSTGRES_HOST`      |      | 127.0.0.1  | `PG_HOST`の別名                         |
+| `POSTGRES_PORT`      |      | 3211       | `PG_PORT`の別名                         |
+| `POSTGRES_PREFIX`    |      | `wl_`      | `PG_PREFIX`の別名                       |
+| `POSTGRES_SSL`       |      | `false`    | `POSTGRES_SSL`の別名                    |
 
 ### GitHub
 
-| Environment Variable | Required | Default | Description                                                                                                      |
-| -------------------- | -------- | ------- | ---------------------------------------------------------------------------------------------------------------- |
-| `GITHUB_TOKEN`       | ✅       |         | [Personal access tokens](https://github.com/settings/tokens)                                                     |
-| `GITHUB_REPO`        | ✅       |         | repository name, such as `walinejs/waline`                                                                       |
-| GITHUB_PATH          |          |         | The data storage directory, such as `data` means it is stored in the `data` directory, root directory by default |
+| 環境変数       | 必須 | デフォルト | 説明                                                                                                           |
+| -------------- | ---- | ---------- | -------------------------------------------------------------------------------------------------------------- |
+| `GITHUB_TOKEN` | ✅   |            | [個人アクセストークン](https://github.com/settings/tokens)                                                     |
+| `GITHUB_REPO`  | ✅   |            | リポジトリ名。例：`walinejs/waline`                                                                            |
+| GITHUB_PATH    |      |            | データ保存ディレクトリ。例：`data`は`data`ディレクトリに保存されることを意味します。デフォルトはルートディレクトリ |
 
-## Advanced
+## 高度な設定
 
-| Environment Variables           | Default                     | Description                                                                                      |
-| ------------------------------- | --------------------------- | ------------------------------------------------------------------------------------------------ |
-| `OAUTH_URL`                     | `https://oauth.lithub.cc`   | OAuth Social Login Service URL. You can [build your own auth](https://github.com/walinejs/auth). |
-| `WEBHOOK`                       |                             | You can set a Webhook URL that will be triggered when you have new comment.                      |
-| `WALINE_ADMIN_MODULE_ASSET_URL` | `//unpkg.com/@waline/admin` | Waline admin link                                                                                |
-| `IP2REGION_DB`                  |                             | customized IPv4 IP query library path (deprecated, use `IP2REGION_DB_V4` instead)                |
-| `IP2REGION_DB_V4`               |                             | customized IPv4 IP query library path. Falls back to `IP2REGION_DB` if not set                   |
-| `IP2REGION_DB_V6`               |                             | customized IPv6 IP query library path. Set this to enable IPv6 address location lookup           |
+| 環境変数                        | デフォルト                  | 説明                                                                                                              |
+| ------------------------------- | --------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `OAUTH_URL`                     | `https://oauth.lithub.cc`   | OAuthソーシャルログインサービスのURL。[独自の認証サービスを構築する](https://github.com/walinejs/auth)こともできます |
+| `WEBHOOK`                       |                             | 新しいコメントがあった際にトリガーされるWebhook URLを設定できます                                                |
+| `WALINE_ADMIN_MODULE_ASSET_URL` | `//unpkg.com/@waline/admin` | Waline管理画面のリンク                                                                                            |
+| `IP2REGION_DB`                  |                             | カスタムIPv4 IPクエリライブラリのパス（非推奨。代わりに`IP2REGION_DB_V4`を使用してください）                      |
+| `IP2REGION_DB_V4`               |                             | カスタムIPv4 IPクエリライブラリのパス。未設定の場合は`IP2REGION_DB`にフォールバックします                         |
+| `IP2REGION_DB_V6`               |                             | カスタムIPv6 IPクエリライブラリのパス。IPv6アドレスの位置情報検索を有効にするには設定してください                 |
