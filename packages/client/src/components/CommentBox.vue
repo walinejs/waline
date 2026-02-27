@@ -79,6 +79,8 @@ const emojiTabIndex = ref(0);
 const showEmoji = ref(false);
 const previewEmoji = ref('');
 const previewStyle = ref<CSSProperties>({});
+const captchaRef = captchaHandler.captchaRef;
+
 let leaveTimer: ReturnType<typeof setTimeout>;
 
 const onEmojiHover = (event: MouseEvent, key: string): void => {
@@ -287,8 +289,8 @@ const submitComment = async (): Promise<void> => {
 
   try {
     if (config.value.captcha?.provider) {
-      captchaHandler.execute();
-      comment.captcha = captchaHandler.getResponse();
+      await captchaHandler.execute();
+      comment.captcha = await captchaHandler.getResponse();
     }
 
     const options = {
@@ -667,7 +669,12 @@ onMounted(() => {
         </div>
 
         <div class="wl-info">
-          <component :is="CaptchaComponent" v-if="CaptchaComponent" v-bind="config.captcha" />
+          <component
+            v-if="CaptchaComponent"
+            :is="CaptchaComponent"
+            ref="captchaRef"
+            v-bind="config.captcha"
+          />
 
           <div class="wl-text-number">
             {{ wordNumber }}

@@ -107,9 +107,9 @@ export const getConfig = ({
   captcha:
     captcha ??
     (recaptchaV3Key
-      ? { provider: 'recaptchaV3', siteKey: recaptchaV3Key }
+      ? { provider: 'recaptchaV3', sitekey: recaptchaV3Key, options: { action: 'social' } }
       : turnstileKey
-        ? { provider: 'turnstile', siteKey: turnstileKey }
+        ? { provider: 'turnstile', sitekey: turnstileKey }
         : null),
   recaptchaV3Key,
   turnstileKey,

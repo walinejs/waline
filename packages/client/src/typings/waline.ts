@@ -20,7 +20,12 @@ export interface WalineCaptchaOptions {
   /**
    * captcha provider site key
    */
-  siteKey: string;
+  sitekey: string;
+
+  /**
+   * captcha provider options
+   */
+  options?: Record<string, any>;
 }
 
 export interface WalineProps {
