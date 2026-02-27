@@ -8,7 +8,8 @@ import type { DeepReadonly, CSSProperties } from 'vue';
 import { computed, inject, nextTick, onMounted, reactive, ref, useTemplateRef, watch } from 'vue';
 import { useCaptcha } from '@better-captcha/vue';
 
-import { CaptchaProviders, type CaptchaHandle } from './Captcha.js';
+import { CaptchaProviders } from './Captcha.js';
+import type { CaptchaHandle } from './Captcha.js';
 import {
   CloseIcon,
   EmojiIcon,
@@ -79,7 +80,7 @@ const emojiTabIndex = ref(0);
 const showEmoji = ref(false);
 const previewEmoji = ref('');
 const previewStyle = ref<CSSProperties>({});
-const captchaRef = captchaHandler.captchaRef;
+const { captchaRef } = captchaHandler;
 
 let leaveTimer: ReturnType<typeof setTimeout>;
 
@@ -212,7 +213,7 @@ const onImageChange = (): void => {
 
 // oxlint-disable-next-line complexity, max-statements
 const submitComment = async (): Promise<void> => {
-  const { serverURL, lang, login, wordLimit, requiredMeta, captcha } = config.value;
+  const { serverURL, lang, login, wordLimit, requiredMeta } = config.value;
 
   const comment: WalineCommentData = {
     comment: content.value,
