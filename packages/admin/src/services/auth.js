@@ -6,11 +6,11 @@ export const getUserInfo = () =>
     Promise.reject(new Error('get userinfo failed'));
   });
 
-export const login = ({ email, password, code, recaptchaV3, turnstile }) =>
+export const login = ({ email, password, code, recaptchaV3, turnstile, captcha }) =>
   request({
     url: 'token',
     method: 'POST',
-    body: { email, password, code, recaptchaV3, turnstile },
+    body: { email, password, code, recaptchaV3, turnstile, captcha },
   });
 
 export const logout = () => {
