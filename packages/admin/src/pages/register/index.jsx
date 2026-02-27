@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router';
 
 import Header from '../../components/Header.jsx';
-import CaptchaProviders from '../../components/Captcha.js';
+import { CaptchaProviders } from '../../components/Captcha.js';
 import getCaptchaConfig from '../../utils/getCaptchaConfig.js';
 
 // oxlint-disable-next-line max-lines-per-function
@@ -49,8 +49,10 @@ export default function Register() {
 
     try {
       setSubmitting(true);
-      await captchaRef.current?.execute?.();
-      const captchaToken = captchaRef.current.getResponse();
+
+      const captchaToken = CaptchaProviders[captchaConfig?.provider]
+        ? captchaRef.current.getResponse()
+        : '';
       const resp = await dispatch.user.register({
         display_name: nick,
         email,

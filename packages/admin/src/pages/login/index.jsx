@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router';
@@ -8,6 +8,7 @@ import * as Icons from '../../components/icon/index.js';
 
 import { get2FAToken } from '../../services/user.js';
 
+import { CaptchaProviders } from '../../components/Captcha.js';
 import getCaptchaConfig from '../../utils/getCaptchaConfig.js';
 
 // oxlint-disable-next-line max-lines-per-function
@@ -60,8 +61,9 @@ export default function Login() {
       return setError(t('please input 2fa code'));
     }
 
-    await captchaRef.current?.execute?.();
-    const captchaToken = captchaRef.current.getResponse();
+    const captchaToken = CaptchaProviders[captchaConfig?.provider]
+      ? captchaRef.current.getResponse()
+      : '';
 
     try {
       await dispatch.user.login({
@@ -165,7 +167,7 @@ export default function Login() {
               </p>
             )}
 
-            {captchaConfig?.provider &&
+            {CaptchaProviders[captchaConfig?.provider] &&
               React.createElement(CaptchaProviders[captchaConfig.provider], {
                 ...captchaConfig,
                 ref: captchaRef,

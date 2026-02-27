@@ -7,6 +7,9 @@ export default function () {
     return {
       provider: 'recaptchaV3',
       sitekey: window.recaptchaV3Key,
+      options: {
+        action: 'login',
+      },
     };
   }
 
