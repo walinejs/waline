@@ -169,12 +169,6 @@ module.exports = class BaseLogic extends think.Logic {
     }
 
     if (RECAPTCHA_V3_SECRET) {
-      console.log('lizheming', {
-        secret: RECAPTCHA_V3_SECRET,
-        token: captcha || recaptchaV3,
-        api: 'https://recaptcha.net/recaptcha/api/siteverify',
-        method: 'GET',
-      });
       return this.useRecaptchaOrTurnstileCheck({
         secret: RECAPTCHA_V3_SECRET,
         token: captcha || recaptchaV3,
