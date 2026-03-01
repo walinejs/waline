@@ -6,10 +6,9 @@ import { addComment, login, updateComment } from '@waline/api';
 import autosize from 'autosize';
 import type { DeepReadonly, CSSProperties } from 'vue';
 import { computed, inject, nextTick, onMounted, reactive, ref, useTemplateRef, watch } from 'vue';
-import { useCaptcha } from '@better-captcha/vue';
+import { useCaptcha, type CaptchaHandle } from '@better-captcha/vue';
 
 import { CaptchaProviders } from './Captcha.js';
-import type { CaptchaHandle } from './Captcha.js';
 import {
   CloseIcon,
   EmojiIcon,
@@ -133,10 +132,10 @@ const isLogin = computed(() => Boolean(userInfo.value.token));
 
 const canUploadImage = computed(() => config.value.imageUploader != null);
 
-const CaptchaComponent = computed(() => {
+const CaptchaProvider = computed(() => {
   const provider = config.value.captcha?.provider;
 
-  return provider ? CaptchaProviders[provider] : null;
+  return CaptchaProviders.find(({ name }) => name === provider);
 });
 
 const insert = (content: string): void => {
@@ -213,7 +212,7 @@ const onImageChange = (): void => {
 
 // oxlint-disable-next-line complexity, max-statements
 const submitComment = async (): Promise<void> => {
-  const { serverURL, lang, login, wordLimit, requiredMeta } = config.value;
+  const { serverURL, lang, login, wordLimit, requiredMeta, captcha } = config.value;
 
   const comment: WalineCommentData = {
     comment: content.value,
@@ -289,7 +288,7 @@ const submitComment = async (): Promise<void> => {
   isSubmitting.value = true;
 
   try {
-    if (config.value.captcha?.provider) {
+    if (captcha?.provider) {
       await captchaHandler.execute();
       comment.captcha = await captchaHandler.getResponse();
     }
@@ -671,8 +670,8 @@ onMounted(() => {
 
         <div class="wl-info">
           <component
-            v-if="CaptchaComponent"
-            :is="CaptchaComponent"
+            v-if="CaptchaProvider"
+            :is="CaptchaProvider.component"
             ref="captchaRef"
             v-bind="config.captcha"
           />
