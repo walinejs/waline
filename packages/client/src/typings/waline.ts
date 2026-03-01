@@ -1,3 +1,5 @@
+
+
 import type {
   WalineCommentSorting,
   WalineEmojiInfo,
@@ -9,24 +11,8 @@ import type {
   WalineSearchOptions,
   WalineTeXRenderer,
 } from './base.js';
+import type { WalineCaptchaOptions } from './captcha.js';
 import type { WalineLocale } from './locale.js';
-
-export interface WalineCaptchaOptions {
-  /**
-   * captcha provider name
-   */
-  provider: 'recaptchaV3' | 'turnstile';
-
-  /**
-   * captcha provider site key
-   */
-  sitekey: string;
-
-  /**
-   * captcha provider options
-   */
-  options?: Record<string, any>;
-}
 
 export interface WalineProps {
   /**
