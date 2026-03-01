@@ -288,7 +288,7 @@ const submitComment = async (): Promise<void> => {
   isSubmitting.value = true;
 
   try {
-    if (captcha?.provider) {
+    if (CaptchaProvider.value) {
       await captchaHandler.execute();
       comment.captcha = await captchaHandler.getResponse();
     }
