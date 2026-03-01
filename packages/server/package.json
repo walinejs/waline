@@ -58,7 +58,7 @@
     "ua-parser-js": "^2.0.9"
   },
   "devDependencies": {
-    "dotenv": "17.2.4",
+    "dotenv": "17.3.1",
     "think-watcher": "3.0.4"
   },
   "engines": {
