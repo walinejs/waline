@@ -6,7 +6,8 @@ import { addComment, login, updateComment } from '@waline/api';
 import autosize from 'autosize';
 import type { DeepReadonly, CSSProperties } from 'vue';
 import { computed, inject, nextTick, onMounted, reactive, ref, useTemplateRef, watch } from 'vue';
-import { useCaptcha, type CaptchaHandle } from '@better-captcha/vue';
+import { useCaptcha } from '@better-captcha/vue';
+import type { CaptchaHandle } from '@better-captcha/vue';
 
 import { CaptchaProviders } from './Captcha.js';
 import {
@@ -212,7 +213,7 @@ const onImageChange = (): void => {
 
 // oxlint-disable-next-line complexity, max-statements
 const submitComment = async (): Promise<void> => {
-  const { serverURL, lang, login, wordLimit, requiredMeta, captcha } = config.value;
+  const { serverURL, lang, login, wordLimit, requiredMeta } = config.value;
 
   const comment: WalineCommentData = {
     comment: content.value,
