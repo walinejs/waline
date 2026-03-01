@@ -95,7 +95,7 @@ export default [
       }),
     ],
     treeshake: 'smallest',
-    external: ['@vueuse/core', '@waline/api', 'autosize', 'marked', 'marked-highlight', 'vue'],
+    external: ['@better-captcha/vue', '@vueuse/core', '@waline/api', 'autosize', 'marked', 'marked-highlight', 'vue'],
   },
 
   // components
@@ -108,7 +108,7 @@ export default [
         sourcemap: true,
       },
     ],
-    external: ['@vueuse/core', '@waline/api', 'autosize', 'marked', 'marked-highlight', 'vue'],
+    external: ['@better-captcha/vue', '@vueuse/core', '@waline/api', 'autosize', 'marked', 'marked-highlight', 'vue'],
     plugins: [
       vue({
         isProduction: true,

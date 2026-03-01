@@ -70,6 +70,7 @@
     "style:meta": "sass ./src/styles/meta.scss ./dist/waline-meta.css --style=compressed"
   },
   "dependencies": {
+    "@better-captcha/vue": "^0.5.6",
     "@vueuse/core": "^14.2.1",
     "@waline/api": "workspace:*",
     "autosize": "^6.0.1",
@@ -80,7 +81,6 @@
   "devDependencies": {
     "@babel/core": "7.29.0",
     "@babel/preset-env": "7.29.0",
-    "@better-captcha/vue": "^0.5.6",
     "@giphy/js-types": "5.1.0",
     "@types/autosize": "4.0.3",
     "@vitejs/plugin-vue": "6.0.4",
