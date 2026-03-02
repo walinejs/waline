@@ -50,7 +50,7 @@
     "oxlint-tsgolint": "0.15.0",
     "postcss": "8.5.6",
     "rimraf": "6.1.2",
-    "rollup": "4.57.1",
+    "rollup": "4.59.0",
     "rollup-plugin-dts": "6.3.0",
     "rollup-plugin-esbuild": "6.2.1",
     "sass-embedded": "1.97.3",
