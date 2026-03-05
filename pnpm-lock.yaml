@@ -142,8 +142,8 @@ importers:
         specifier: workspace:*
         version: link:../packages/client
       marked:
-        specifier: 17.0.2
-        version: 17.0.2
+        specifier: 17.0.4
+        version: 17.0.4
       mathjax-full:
         specifier: 3.2.2
         version: 3.2.2
@@ -6273,6 +6273,11 @@ packages:
 
   marked@17.0.2:
     resolution: {integrity: sha512-s5HZGFQea7Huv5zZcAGhJLT3qLpAfnY7v7GWkICUr0+Wd5TFEtdlRR2XUL5Gg+RH7u2Df595ifrxR03mBaw7gA==}
+    engines: {node: '>= 20'}
+    hasBin: true
+
+  marked@17.0.4:
+    resolution: {integrity: sha512-NOmVMM+KAokHMvjWmC5N/ZOvgmSWuqJB8FoYI019j4ogb/PeRMKoKIjReZ2w3376kkA8dSJIP8uD993Kxc0iRQ==}
     engines: {node: '>= 20'}
     hasBin: true
 
@@ -15494,6 +15499,8 @@ snapshots:
       marked: 17.0.2
 
   marked@17.0.2: {}
+
+  marked@17.0.4: {}
 
   math-intrinsics@1.1.0: {}
 
