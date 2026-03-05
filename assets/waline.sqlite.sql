@@ -1,0 +1,61 @@
+BEGIN TRANSACTION;
+CREATE TABLE IF NOT EXISTS "wl_Comment" (
+	"id"	INTEGER,
+	"user_id"	INTEGER,
+	"comment"	TEXT,
+	"insertedAt"	DATETIME DEFAULT (datetime('now', 'localtime')),
+	"ip"	TEXT,
+	"link"	TEXT,
+	"mail"	TEXT,
+	"nick"	TEXT,
+	"rid"	INTEGER,
+	"pid"	INTEGER,
+	"sticky"	NUMERIC,
+	"status"	TEXT NOT NULL,
+	"like"	INTEGER,
+	"ua"	TEXT,
+	"url"	TEXT,
+	"createdAt"	DATETIME DEFAULT (datetime('now', 'localtime')),
+	"updatedAt"	DATETIME DEFAULT (datetime('now', 'localtime')),
+	PRIMARY KEY("id" AUTOINCREMENT)
+);
+CREATE TABLE IF NOT EXISTS "wl_Counter" (
+	"id"	INTEGER,
+	"time"	INTEGER,
+	"reaction0"	INTEGER,
+	"reaction1"	INTEGER,
+	"reaction2"	INTEGER,
+	"reaction3"	INTEGER,
+	"reaction4"	INTEGER,
+	"reaction5"	INTEGER,
+	"reaction6"	INTEGER,
+	"reaction7"	INTEGER,
+	"reaction8"	INTEGER,
+	"url"	TEXT,
+	"createdAt"	DATETIME DEFAULT (datetime('now', 'localtime')),
+	"updatedAt"	DATETIME DEFAULT (datetime('now', 'localtime')),
+	PRIMARY KEY("id" AUTOINCREMENT)
+);
+CREATE TABLE IF NOT EXISTS "wl_Users" (
+	"id"	INTEGER,
+	"display_name"	TEXT NOT NULL DEFAULT "",
+	"email"	TEXT NOT NULL DEFAULT "",
+	"password"	TEXT NOT NULL DEFAULT "",
+	"type"	TEXT NOT NULL DEFAULT "",
+	"label"	TEXT,
+	"github"	TEXT,
+	"twitter"	TEXT,
+	"facebook"	TEXT,
+	"google"	TEXT,
+	"weibo"	TEXT,
+	"qq"	TEXT,
+	"oidc"	TEXT,
+	"huawei"	TEXT,
+	"2fa"	TEXT,
+	"avatar"	TEXT,
+	"url"	TEXT,
+	"createdAt"	DATETIME DEFAULT (datetime('now', 'localtime')),
+	"updatedAt"	DATETIME DEFAULT (datetime('now', 'localtime')),
+	PRIMARY KEY("id" AUTOINCREMENT)
+);
+COMMIT;
