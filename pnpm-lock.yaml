@@ -109,8 +109,8 @@ importers:
         specifier: 5.9.3
         version: 5.9.3
       vercel:
-        specifier: 50.25.4
-        version: 50.25.4(encoding@0.1.13)(rollup@4.59.0)(typescript@5.9.3)
+        specifier: 50.28.0
+        version: 50.28.0(encoding@0.1.13)(rollup@4.59.0)(typescript@5.9.3)
       vite-plugin-css-injected-by-js:
         specifier: 4.0.1
         version: 4.0.1(vite@7.3.1(@types/node@25.3.3)(jiti@2.6.1)(sass-embedded@1.97.3)(sass@1.97.3)(terser@5.46.0)(tsx@4.21.0))
@@ -3290,8 +3290,8 @@ packages:
   '@ungap/structured-clone@1.3.0':
     resolution: {integrity: sha512-WmoN8qaIAo7WTYWbAZuG8PYEhn5fkz7dZrqTBZ7dtt//lL2Gwms1IcnQ5yHqjDfX8Ft5j4YzDM23f87zBfDe9g==}
 
-  '@vercel/backends@0.0.39':
-    resolution: {integrity: sha512-Jq6gEGs06Y4mjJQjen9qkPBdEXXBxGiH7bUvumqy0/+8XTx7IF84taGB6WoVL/r7xHpjQN3X+ewzYXhfu9eNxg==}
+  '@vercel/backends@0.0.41':
+    resolution: {integrity: sha512-XjikuYlrvVQEjfcdPIAQNrT4GqHJid1k1aueRIxtX33kvsCaMqd1xz2PwrNcyEHmwR7JRgGI1A8Twx9QDMq9eg==}
     peerDependencies:
       typescript: ^4.0.0 || ^5.0.0
 
@@ -3299,11 +3299,11 @@ packages:
     resolution: {integrity: sha512-oYWiJbWRQ7gz9Mj0X/NHFJ3OcLMOBzq/2b3j6zeNrQmtFo6dHwU8FAwNpxVIYddVMd+g8eqEi7iRueYx8FtM0Q==}
     engines: {node: '>=20.0.0'}
 
-  '@vercel/build-utils@13.6.1':
-    resolution: {integrity: sha512-/qRDC8swTUDrdQLkKBnyY8TSk+DeI8RTOIhAba2BwCVCHaZoLF8+sdOCeHud1QJk/3a8R5rAmMQOvEI4P2FRZQ==}
+  '@vercel/build-utils@13.6.3':
+    resolution: {integrity: sha512-KOxkJ38uzZoxvto1fL6H2Vxm69vbbKgpY7vq07M1mVdRM9q2jXFN5Lo6bebtuH/kuv0cLZNXCE1r8aFmaTwpTg==}
 
-  '@vercel/cervel@0.0.26':
-    resolution: {integrity: sha512-Y7bzTBJpGdqpBaB1oAe9U7IwILJEQHLLVkoJ6uKPeQPGVoSVec1RacS4/XBxqp5i6l+gqhZNF7kCU8TBWLmqFA==}
+  '@vercel/cervel@0.0.28':
+    resolution: {integrity: sha512-JanW95I8imjFzve1NCHv2JK5Bd/vd6DKULPaELAkC5pFV1lnqDHKmJEf21Trbg2qi9Rg5x0z08DbF44pcd6X+g==}
     hasBin: true
     peerDependencies:
       typescript: ^4.0.0 || ^5.0.0
@@ -3312,17 +3312,17 @@ packages:
     resolution: {integrity: sha512-Zfq6FbIcYl9gaAmVu6ROsqUiCNwpEj3Ljz/tMX5fl12Z95OFOxzf7vlO03WE5JBU/ri1tBDFHnW41dihMINOPQ==}
     engines: {node: '>=14'}
 
-  '@vercel/elysia@0.1.42':
-    resolution: {integrity: sha512-X+ellLiJ3oC8t2L92JhC4PXO922bVOJpk7/XAAXK+llJflanenKQj1fv7K0g3bp2acbnxLdQmyK/oi8tkDAqIQ==}
+  '@vercel/elysia@0.1.44':
+    resolution: {integrity: sha512-GYpOziLqPHoNopgpeogo20teEkcs2/2sbfitPd94UR+zpILHgaYXLAvk0im1OkOlRmptJACCGdD/O3Pc9flpnA==}
 
   '@vercel/error-utils@2.0.3':
     resolution: {integrity: sha512-CqC01WZxbLUxoiVdh9B/poPbNpY9U+tO1N9oWHwTl5YAZxcqXmmWJ8KNMFItJCUUWdY3J3xv8LvAuQv2KZ5YdQ==}
 
-  '@vercel/express@0.1.51':
-    resolution: {integrity: sha512-2xpyDstOWLUkunZ8FOEawHkPgwCjWiT8HMoyLGGYPsWid9BtzHngQD2Rx7tB6O/v/dt1ofo0MszEemC3z1+MHg==}
+  '@vercel/express@0.1.53':
+    resolution: {integrity: sha512-rgKtIsqv0g+q+78CIEt2sl4l7lFBa/VX1Curivj9E088BkC7GFEjHUHvmCp0pZ9zX7irpt5zRtSErQM63+U3Qg==}
 
-  '@vercel/fastify@0.1.45':
-    resolution: {integrity: sha512-dhWvmDr3owa7ah/ihhqtccvG9sAIf2c3mnRkuPQozcwXXbrp2Tk+a5HAUxShja7qB0kryijuIxK6N1OQJP9twg==}
+  '@vercel/fastify@0.1.47':
+    resolution: {integrity: sha512-lg0X5RuIGXP9Dkg7Kzs3f1XVjD7wHvpuUlVZyhmvmOsMn5nYDB4vo8QrLaDaWJo10PVDppm9BVBfdKp2HWvFQw==}
 
   '@vercel/fun@1.3.0':
     resolution: {integrity: sha512-8erw9uPe0dFg45THkNxmjtvMX143SkZebmjgSVbcM3XCkXu3RIiBaJMcMNG8aaS+rnTuw8+d4De9HVT0M/r3wg==}
@@ -3331,29 +3331,29 @@ packages:
   '@vercel/gatsby-plugin-vercel-analytics@1.0.11':
     resolution: {integrity: sha512-iTEA0vY6RBPuEzkwUTVzSHDATo1aF6bdLLspI68mQ/BTbi5UQEGjpjyzdKOVcSYApDtFU6M6vypZ1t4vIEnHvw==}
 
-  '@vercel/gatsby-plugin-vercel-builder@2.0.141':
-    resolution: {integrity: sha512-esJcrTXNobTe9bpiHeUVyDNtCDjG2TNQxtkw0yMq1RyLApJuRfpw47r9x6wGYKeS/Coy6FvCroVyeTo5pgWchw==}
+  '@vercel/gatsby-plugin-vercel-builder@2.0.143':
+    resolution: {integrity: sha512-UO0BLWfxi8SFQwSpMNNNRHvai5+cElRUzqasxFgC1zGyo7Bbw0FZA6JTkIIJ1Rdk/rHr9xhn7/8R8fGIvmGaKA==}
 
   '@vercel/go@3.4.3':
     resolution: {integrity: sha512-LDT4wpx7SW2UJHd3rOL4+2m2V4w7a5zjyuU0pu0yDBiuxp9bEh7QuAH5qZC7pINGLC3vGftiFVzynd5N454sVA==}
 
-  '@vercel/h3@0.1.51':
-    resolution: {integrity: sha512-4OrHj0f47N1O9ShUFNFIZQYtbr/cUq8TcUU4Q8yfYlVKooqXme0Ql79G7LohDivcoHL7RmnQ14o2/C6/JWTzLg==}
+  '@vercel/h3@0.1.53':
+    resolution: {integrity: sha512-98KBB5XFdvezLRzlFNUJKQEgoDRrwsJaied3fUCcMzWYy5FXqvO+XqmWUGk4bApOM86MFkCsp6h9KqIZkn53uA==}
 
-  '@vercel/hono@0.2.45':
-    resolution: {integrity: sha512-j5HNFtEU8NpV82bqPGG0v4VUxaJ/35RxW9ZQTrb2tKBQqGp0okBOnGr+zb3eJsUygs7VbnpEQ4Nb3qDtZ+DD+w==}
+  '@vercel/hono@0.2.47':
+    resolution: {integrity: sha512-JgS1j45JugQ4QXjkUZ7DFABZQ0AVIPbxF+IAlpfcKPUHViE1HKwsw7TnfY2zKktaMIY5EutkimDvQV1KtFmYjg==}
 
   '@vercel/hydrogen@1.3.5':
     resolution: {integrity: sha512-7EE6yVKcCnjMb1io9y069GkLyGyIzRbW3Krm3Q7EEfJ3P46h9xe9v/O5UhBoPrwtqDUHxmDngZp9YyfgY8IITA==}
 
-  '@vercel/koa@0.1.25':
-    resolution: {integrity: sha512-uDUe7FXsrhVGR6sX8Q5ynMTtQVagLJ4PnS1yuBLZSTg3k/3LrUrtNIenBQGEBOTTL9JmqUJ+AZdbwuBaUtU7Mg==}
+  '@vercel/koa@0.1.27':
+    resolution: {integrity: sha512-3fPAVVSMYRFhuz8BKh0yvDTmwp2q6KPodqYcNt10TvsMvU5RiQUVPxjgEUAS7a5dtI4J5lCGQ+7aG1Qeso8S+w==}
 
-  '@vercel/nestjs@0.2.46':
-    resolution: {integrity: sha512-0QTgF5P03BEir2apHgwh3cRkkOQTXgFz/2SPs+B1Aab64NnFvM7peFIuAjGnfFNvO1DwSLOyKEXTepihdifsYQ==}
+  '@vercel/nestjs@0.2.48':
+    resolution: {integrity: sha512-bYdyQt0ew1nY5SGdkByXpwoDwBwtCwkyKBuxypc+bFeTksNkp09YnoUYo8ppqhGoXFre9ZEubvVLwIOGS1/aLw==}
 
-  '@vercel/next@4.15.36':
-    resolution: {integrity: sha512-wlrxO/qj9IjO0SO5qM1kG5MVOks8LCEysGotbgtrL9EuGS2EEF6zK5/Ww8BLVqUzukcan7lv0Fxd2/oLh0R4Jg==}
+  '@vercel/next@4.15.41':
+    resolution: {integrity: sha512-xOU0/AT5UJuSoO6huVnYqmBNoGApbflzujsAe55ypiHW34d+Auv0BuP3cYvFCVFlp/YR61q27O/T5HQajBd5qA==}
 
   '@vercel/nft@1.1.1':
     resolution: {integrity: sha512-mKMGa7CEUcXU75474kOeqHbtvK1kAcu4wiahhmlUenB5JbTQB8wVlDI8CyHR3rpGo0qlzoRWqcDzI41FUoBJCA==}
@@ -3365,14 +3365,14 @@ packages:
     engines: {node: '>=20'}
     hasBin: true
 
-  '@vercel/node@5.6.9':
-    resolution: {integrity: sha512-SiLToxNIGNSaELFhMorNAWIW1LkBCOEIw7+P3MxDxeaY9RAn5nqymT4uLg95L94JvI4dAFZbdfS7ntgmEfB64A==}
+  '@vercel/node@5.6.11':
+    resolution: {integrity: sha512-nzoS+ufkxpT4JxEzrjSA9vCEr4XzjCsHvGzi37+O+wajMldxsfcrvk9xHHuz1ZRzclwuPhcvLOMrs+ViJu63oA==}
 
-  '@vercel/python-analysis@0.8.1':
-    resolution: {integrity: sha512-gW1pZDqJaTcjZYPvNhXXLOPgLu6vJW9PKweJoX2f8EKAoW+JIiYncl8AddcSlngNhQRG7SqUl2u3qosZM4kUBA==}
+  '@vercel/python-analysis@0.8.2':
+    resolution: {integrity: sha512-tLYH5LydD3deJio2/T7FxMRuW0Vvqhlo0Fy24fgZBQipqpOE7aMODoKTulHx5Z1b/tFLCPOV8NkbpwOY0EVa5g==}
 
-  '@vercel/python@6.19.0':
-    resolution: {integrity: sha512-As/ukwv6wBMpM37V5HEfuTX8TTixVjtuec4cD5RBCj1CJPDC6Lmbt/SMSNAlKOiiewww5TpniKelOV23EMMBrQ==}
+  '@vercel/python@6.20.2':
+    resolution: {integrity: sha512-8RY+LlSDxOaCToLp77uPXn4cC1leoUIRdfLsq87wiIR8trnhUHIjHpBC39dm4B5MoyFPZPRLirIsBond4kB3RQ==}
 
   '@vercel/redwood@2.4.9':
     resolution: {integrity: sha512-U7bYIuWfMEFMIcKKbX7lTT8pFNjig9Q3vLeCYRYQUrKVP8xLoUBXSEfW3ijtWJBUV8GmbZCDI30A16uUfNhN+g==}
@@ -3386,8 +3386,8 @@ packages:
   '@vercel/rust@1.0.5':
     resolution: {integrity: sha512-Y03g59nv1uT6Da+PvB/50WqJSHlaFZ9MSkG00R82dUcTySslMbQdOeaXymZtabrmU8zQYhWDb1/CwBki8sWnaQ==}
 
-  '@vercel/static-build@2.8.43':
-    resolution: {integrity: sha512-9zVgVA7sIvikRdmQFsSM/40NQ6kxaucpUpOW/+BBrEe9BAx9JcHsO6wkhkJ4rdeVQ5eSzZMzPS9NR4ifqv5Low==}
+  '@vercel/static-build@2.8.45':
+    resolution: {integrity: sha512-eIQBLGzCTgCMGYS4wu4OSUMENFOR7yl8dzd7xURh/AnZ42ypAa5sKc7u85Z5MSY9G3o+1It/8cxlD1RDgQa/XA==}
 
   '@vercel/static-config@3.1.2':
     resolution: {integrity: sha512-2d+TXr6K30w86a+WbMbGm2W91O0UzO5VeemZYBBUJbCjk/5FLLGIi8aV6RS2+WmaRvtcqNTn2pUA7nCOK3bGcQ==}
@@ -5386,10 +5386,6 @@ packages:
   glob-to-regexp@0.4.1:
     resolution: {integrity: sha512-lkX1HJXwyMcprw/5YUZc2s7DrpAiHB21/V+E1rHUrVNokkvB6bqMzT0VfV6/86ZNabt1k14YOIaT7nDvOX3Iiw==}
 
-  glob@13.0.2:
-    resolution: {integrity: sha512-035InabNu/c1lW0tzPhAgapKctblppqsKKG9ZaNzbr+gXwWMjXoiyGSyB9sArzrjG7jY+zntRq5ZSUYemrnWVQ==}
-    engines: {node: 20 || >=22}
-
   glob@13.0.6:
     resolution: {integrity: sha512-Wjlyrolmm8uDpm/ogGyXZXb1Z+Ca2B8NbJwqBVg0axK9GbBeoS7yGV6vjXnYdGm6X53iehEuxxbyiKp8QmN4Vw==}
     engines: {node: 18 || 20 || >=22}
@@ -6482,10 +6478,6 @@ packages:
     resolution: {integrity: sha512-enIvLvRAFZYXJzkCYG5RKmPfrFArdLv+R+lbQ53BmIMLIry74bjKzX6iHAm8WYamJkhSSEabrWN5D97XnKObjQ==}
     engines: {node: 20 || >=22}
 
-  minimatch@10.1.2:
-    resolution: {integrity: sha512-fu656aJ0n2kcXwsnwnv9g24tkU5uSmOlTjd6WyyaKm2Z+h1qmY6bAjrcaIxF/BslFqbZ8UBtbJi7KgQOZD2PTw==}
-    engines: {node: 20 || >=22}
-
   minimatch@10.2.4:
     resolution: {integrity: sha512-oRjTw/97aTBN0RHbYCdtF1MQfvusSIBQM0IZEgzl6426+8jSC0nF1a/GmnVLpfB9yyr6g6FTqWqiZVbxrtaCIg==}
     engines: {node: 18 || 20 || >=22}
@@ -6526,10 +6518,6 @@ packages:
   minipass@5.0.0:
     resolution: {integrity: sha512-3FnjYuehv9k6ovOEbyOswadCDPX1piCfhV8ncmYtHOjuPwylVWsghTLo7rabjC3Rx5xD4HDx8Wm1xnMF7S5qFQ==}
     engines: {node: '>=8'}
-
-  minipass@7.1.2:
-    resolution: {integrity: sha512-qOOzS1cBTWYF4BH8fVePDBOO9iptMnGUEZwNc/cMWnTV2nVLZ7VoNWEPHkYczZA0pdoA7dl6e7FL659nX9S2aw==}
-    engines: {node: '>=16 || 14 >=14.17'}
 
   minipass@7.1.3:
     resolution: {integrity: sha512-tEBHqDnIoM/1rXME1zgka9g6Q2lcoCkxHLuc7ODJ5BxbP5d4c2Z5cGgtXAku59200Cx7diuHTOYfSBD8n6mm8A==}
@@ -6958,10 +6946,6 @@ packages:
 
   path-parse@1.0.7:
     resolution: {integrity: sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==}
-
-  path-scurry@2.0.1:
-    resolution: {integrity: sha512-oWyT4gICAu+kaA7QWk/jvCHWarMKNs6pXOGWKDTr7cw4IGcUbW+PeTfbaQiLGheFRpjo6O9J0PmyMfQPjH71oA==}
-    engines: {node: 20 || >=22}
 
   path-scurry@2.0.2:
     resolution: {integrity: sha512-3O/iVVsJAPsOnpwWIeD+d6z/7PmqApyQePUtCndjatj/9I5LylHvt5qluFaBT3I5h3r1ejfR056c+FCv+NnNXg==}
@@ -8565,8 +8549,8 @@ packages:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
     engines: {node: '>= 0.8'}
 
-  vercel@50.25.4:
-    resolution: {integrity: sha512-fe8JlltG4ZQUssOWXMRGjj0GVr44TqW0PrUGSalIT4oYM/KdEU2hMY8gcuEOy5q1FxMmIn2IO2AzEduimxbF+A==}
+  vercel@50.28.0:
+    resolution: {integrity: sha512-h4J4Xv04oxNIdS6Bp72GbXRC1N1cJN6q5uTe7CBMjPxZ/Usg4twn+l716X4ZxHro1AydjJa2iuAsIxjudjeYsg==}
     engines: {node: '>= 18'}
     hasBin: true
 
@@ -10549,7 +10533,7 @@ snapshots:
 
   '@isaacs/fs-minipass@4.0.1':
     dependencies:
-      minipass: 7.1.2
+      minipass: 7.1.3
 
   '@jridgewell/gen-mapping@0.3.13':
     dependencies:
@@ -11680,9 +11664,9 @@ snapshots:
 
   '@ungap/structured-clone@1.3.0': {}
 
-  '@vercel/backends@0.0.39(encoding@0.1.13)(rollup@4.59.0)(typescript@5.9.3)':
+  '@vercel/backends@0.0.41(encoding@0.1.13)(rollup@4.59.0)(typescript@5.9.3)':
     dependencies:
-      '@vercel/build-utils': 13.6.1
+      '@vercel/build-utils': 13.6.3
       '@vercel/nft': 1.3.0(encoding@0.1.13)(rollup@4.59.0)
       execa: 3.2.0
       fs-extra: 11.1.0
@@ -11707,13 +11691,13 @@ snapshots:
       throttleit: 2.1.0
       undici: 6.23.0
 
-  '@vercel/build-utils@13.6.1':
+  '@vercel/build-utils@13.6.3':
     dependencies:
-      '@vercel/python-analysis': 0.8.1
+      '@vercel/python-analysis': 0.8.2
 
-  '@vercel/cervel@0.0.26(encoding@0.1.13)(rollup@4.59.0)(typescript@5.9.3)':
+  '@vercel/cervel@0.0.28(encoding@0.1.13)(rollup@4.59.0)(typescript@5.9.3)':
     dependencies:
-      '@vercel/backends': 0.0.39(encoding@0.1.13)(rollup@4.59.0)(typescript@5.9.3)
+      '@vercel/backends': 0.0.41(encoding@0.1.13)(rollup@4.59.0)(typescript@5.9.3)
       typescript: 5.9.3
     transitivePeerDependencies:
       - encoding
@@ -11722,9 +11706,9 @@ snapshots:
 
   '@vercel/detect-agent@1.1.0': {}
 
-  '@vercel/elysia@0.1.42(encoding@0.1.13)(rollup@4.59.0)':
+  '@vercel/elysia@0.1.44(encoding@0.1.13)(rollup@4.59.0)':
     dependencies:
-      '@vercel/node': 5.6.9(encoding@0.1.13)(rollup@4.59.0)
+      '@vercel/node': 5.6.11(encoding@0.1.13)(rollup@4.59.0)
       '@vercel/static-config': 3.1.2
     transitivePeerDependencies:
       - encoding
@@ -11733,11 +11717,11 @@ snapshots:
 
   '@vercel/error-utils@2.0.3': {}
 
-  '@vercel/express@0.1.51(encoding@0.1.13)(rollup@4.59.0)(typescript@5.9.3)':
+  '@vercel/express@0.1.53(encoding@0.1.13)(rollup@4.59.0)(typescript@5.9.3)':
     dependencies:
-      '@vercel/cervel': 0.0.26(encoding@0.1.13)(rollup@4.59.0)(typescript@5.9.3)
+      '@vercel/cervel': 0.0.28(encoding@0.1.13)(rollup@4.59.0)(typescript@5.9.3)
       '@vercel/nft': 1.1.1(encoding@0.1.13)(rollup@4.59.0)
-      '@vercel/node': 5.6.9(encoding@0.1.13)(rollup@4.59.0)
+      '@vercel/node': 5.6.11(encoding@0.1.13)(rollup@4.59.0)
       '@vercel/static-config': 3.1.2
       fs-extra: 11.1.0
       path-to-regexp: 8.3.0
@@ -11749,9 +11733,9 @@ snapshots:
       - supports-color
       - typescript
 
-  '@vercel/fastify@0.1.45(encoding@0.1.13)(rollup@4.59.0)':
+  '@vercel/fastify@0.1.47(encoding@0.1.13)(rollup@4.59.0)':
     dependencies:
-      '@vercel/node': 5.6.9(encoding@0.1.13)(rollup@4.59.0)
+      '@vercel/node': 5.6.11(encoding@0.1.13)(rollup@4.59.0)
       '@vercel/static-config': 3.1.2
     transitivePeerDependencies:
       - encoding
@@ -11786,29 +11770,29 @@ snapshots:
     dependencies:
       web-vitals: 0.2.4
 
-  '@vercel/gatsby-plugin-vercel-builder@2.0.141':
+  '@vercel/gatsby-plugin-vercel-builder@2.0.143':
     dependencies:
       '@sinclair/typebox': 0.25.24
-      '@vercel/build-utils': 13.6.1
+      '@vercel/build-utils': 13.6.3
       esbuild: 0.27.0
       etag: 1.8.1
       fs-extra: 11.1.0
 
   '@vercel/go@3.4.3': {}
 
-  '@vercel/h3@0.1.51(encoding@0.1.13)(rollup@4.59.0)':
+  '@vercel/h3@0.1.53(encoding@0.1.13)(rollup@4.59.0)':
     dependencies:
-      '@vercel/node': 5.6.9(encoding@0.1.13)(rollup@4.59.0)
+      '@vercel/node': 5.6.11(encoding@0.1.13)(rollup@4.59.0)
       '@vercel/static-config': 3.1.2
     transitivePeerDependencies:
       - encoding
       - rollup
       - supports-color
 
-  '@vercel/hono@0.2.45(encoding@0.1.13)(rollup@4.59.0)':
+  '@vercel/hono@0.2.47(encoding@0.1.13)(rollup@4.59.0)':
     dependencies:
       '@vercel/nft': 1.1.1(encoding@0.1.13)(rollup@4.59.0)
-      '@vercel/node': 5.6.9(encoding@0.1.13)(rollup@4.59.0)
+      '@vercel/node': 5.6.11(encoding@0.1.13)(rollup@4.59.0)
       '@vercel/static-config': 3.1.2
       fs-extra: 11.1.0
       path-to-regexp: 8.3.0
@@ -11824,25 +11808,25 @@ snapshots:
       '@vercel/static-config': 3.1.2
       ts-morph: 12.0.0
 
-  '@vercel/koa@0.1.25(encoding@0.1.13)(rollup@4.59.0)':
+  '@vercel/koa@0.1.27(encoding@0.1.13)(rollup@4.59.0)':
     dependencies:
-      '@vercel/node': 5.6.9(encoding@0.1.13)(rollup@4.59.0)
+      '@vercel/node': 5.6.11(encoding@0.1.13)(rollup@4.59.0)
       '@vercel/static-config': 3.1.2
     transitivePeerDependencies:
       - encoding
       - rollup
       - supports-color
 
-  '@vercel/nestjs@0.2.46(encoding@0.1.13)(rollup@4.59.0)':
+  '@vercel/nestjs@0.2.48(encoding@0.1.13)(rollup@4.59.0)':
     dependencies:
-      '@vercel/node': 5.6.9(encoding@0.1.13)(rollup@4.59.0)
+      '@vercel/node': 5.6.11(encoding@0.1.13)(rollup@4.59.0)
       '@vercel/static-config': 3.1.2
     transitivePeerDependencies:
       - encoding
       - rollup
       - supports-color
 
-  '@vercel/next@4.15.36(encoding@0.1.13)(rollup@4.59.0)':
+  '@vercel/next@4.15.41(encoding@0.1.13)(rollup@4.59.0)':
     dependencies:
       '@vercel/nft': 1.1.1(encoding@0.1.13)(rollup@4.59.0)
     transitivePeerDependencies:
@@ -11859,7 +11843,7 @@ snapshots:
       async-sema: 3.1.1
       bindings: 1.5.0
       estree-walker: 2.0.2
-      glob: 13.0.2
+      glob: 13.0.6
       graceful-fs: 4.2.11
       node-gyp-build: 4.8.4
       picomatch: 4.0.3
@@ -11878,7 +11862,7 @@ snapshots:
       async-sema: 3.1.1
       bindings: 1.5.0
       estree-walker: 2.0.2
-      glob: 13.0.2
+      glob: 13.0.6
       graceful-fs: 4.2.11
       node-gyp-build: 4.8.4
       picomatch: 4.0.3
@@ -11888,13 +11872,13 @@ snapshots:
       - rollup
       - supports-color
 
-  '@vercel/node@5.6.9(encoding@0.1.13)(rollup@4.59.0)':
+  '@vercel/node@5.6.11(encoding@0.1.13)(rollup@4.59.0)':
     dependencies:
       '@edge-runtime/node-utils': 2.3.0
       '@edge-runtime/primitives': 4.1.0
       '@edge-runtime/vm': 3.2.0
       '@types/node': 20.11.0
-      '@vercel/build-utils': 13.6.1
+      '@vercel/build-utils': 13.6.3
       '@vercel/error-utils': 2.0.3
       '@vercel/nft': 1.1.1(encoding@0.1.13)(rollup@4.59.0)
       '@vercel/static-config': 3.1.2
@@ -11917,7 +11901,7 @@ snapshots:
       - rollup
       - supports-color
 
-  '@vercel/python-analysis@0.8.1':
+  '@vercel/python-analysis@0.8.2':
     dependencies:
       '@bytecodealliance/preview2-shim': 0.17.6
       '@renovatebot/pep440': 4.2.1
@@ -11928,9 +11912,9 @@ snapshots:
       smol-toml: 1.5.2
       zod: 3.22.4
 
-  '@vercel/python@6.19.0':
+  '@vercel/python@6.20.2':
     dependencies:
-      '@vercel/python-analysis': 0.8.1
+      '@vercel/python-analysis': 0.8.2
 
   '@vercel/redwood@2.4.9(encoding@0.1.13)(rollup@4.59.0)':
     dependencies:
@@ -11963,10 +11947,10 @@ snapshots:
       '@iarna/toml': 2.2.5
       execa: 5.1.1
 
-  '@vercel/static-build@2.8.43':
+  '@vercel/static-build@2.8.45':
     dependencies:
       '@vercel/gatsby-plugin-vercel-analytics': 1.0.11
-      '@vercel/gatsby-plugin-vercel-builder': 2.0.141
+      '@vercel/gatsby-plugin-vercel-builder': 2.0.143
       '@vercel/static-config': 3.1.2
       ts-morph: 12.0.0
 
@@ -14419,12 +14403,6 @@ snapshots:
 
   glob-to-regexp@0.4.1: {}
 
-  glob@13.0.2:
-    dependencies:
-      minimatch: 10.1.2
-      minipass: 7.1.2
-      path-scurry: 2.0.1
-
   glob@13.0.6:
     dependencies:
       minimatch: 10.2.4
@@ -15772,10 +15750,6 @@ snapshots:
     dependencies:
       '@isaacs/brace-expansion': 5.0.1
 
-  minimatch@10.1.2:
-    dependencies:
-      '@isaacs/brace-expansion': 5.0.1
-
   minimatch@10.2.4:
     dependencies:
       brace-expansion: 5.0.4
@@ -15823,8 +15797,6 @@ snapshots:
 
   minipass@5.0.0: {}
 
-  minipass@7.1.2: {}
-
   minipass@7.1.3: {}
 
   miniprogram-api-typings@2.12.0: {}
@@ -15836,7 +15808,7 @@ snapshots:
 
   minizlib@3.1.0:
     dependencies:
-      minipass: 7.1.2
+      minipass: 7.1.3
 
   mitt@3.0.1: {}
 
@@ -16299,11 +16271,6 @@ snapshots:
   path-key@3.1.1: {}
 
   path-parse@1.0.7: {}
-
-  path-scurry@2.0.1:
-    dependencies:
-      lru-cache: 11.2.6
-      minipass: 7.1.2
 
   path-scurry@2.0.2:
     dependencies:
@@ -17543,7 +17510,7 @@ snapshots:
     dependencies:
       '@isaacs/fs-minipass': 4.0.1
       chownr: 3.0.0
-      minipass: 7.1.2
+      minipass: 7.1.3
       minizlib: 3.1.0
       yallist: 5.0.0
 
@@ -18115,30 +18082,30 @@ snapshots:
 
   vary@1.1.2: {}
 
-  vercel@50.25.4(encoding@0.1.13)(rollup@4.59.0)(typescript@5.9.3):
+  vercel@50.28.0(encoding@0.1.13)(rollup@4.59.0)(typescript@5.9.3):
     dependencies:
-      '@vercel/backends': 0.0.39(encoding@0.1.13)(rollup@4.59.0)(typescript@5.9.3)
+      '@vercel/backends': 0.0.41(encoding@0.1.13)(rollup@4.59.0)(typescript@5.9.3)
       '@vercel/blob': 2.3.0
-      '@vercel/build-utils': 13.6.1
+      '@vercel/build-utils': 13.6.3
       '@vercel/detect-agent': 1.1.0
-      '@vercel/elysia': 0.1.42(encoding@0.1.13)(rollup@4.59.0)
-      '@vercel/express': 0.1.51(encoding@0.1.13)(rollup@4.59.0)(typescript@5.9.3)
-      '@vercel/fastify': 0.1.45(encoding@0.1.13)(rollup@4.59.0)
+      '@vercel/elysia': 0.1.44(encoding@0.1.13)(rollup@4.59.0)
+      '@vercel/express': 0.1.53(encoding@0.1.13)(rollup@4.59.0)(typescript@5.9.3)
+      '@vercel/fastify': 0.1.47(encoding@0.1.13)(rollup@4.59.0)
       '@vercel/fun': 1.3.0(encoding@0.1.13)
       '@vercel/go': 3.4.3
-      '@vercel/h3': 0.1.51(encoding@0.1.13)(rollup@4.59.0)
-      '@vercel/hono': 0.2.45(encoding@0.1.13)(rollup@4.59.0)
+      '@vercel/h3': 0.1.53(encoding@0.1.13)(rollup@4.59.0)
+      '@vercel/hono': 0.2.47(encoding@0.1.13)(rollup@4.59.0)
       '@vercel/hydrogen': 1.3.5
-      '@vercel/koa': 0.1.25(encoding@0.1.13)(rollup@4.59.0)
-      '@vercel/nestjs': 0.2.46(encoding@0.1.13)(rollup@4.59.0)
-      '@vercel/next': 4.15.36(encoding@0.1.13)(rollup@4.59.0)
-      '@vercel/node': 5.6.9(encoding@0.1.13)(rollup@4.59.0)
-      '@vercel/python': 6.19.0
+      '@vercel/koa': 0.1.27(encoding@0.1.13)(rollup@4.59.0)
+      '@vercel/nestjs': 0.2.48(encoding@0.1.13)(rollup@4.59.0)
+      '@vercel/next': 4.15.41(encoding@0.1.13)(rollup@4.59.0)
+      '@vercel/node': 5.6.11(encoding@0.1.13)(rollup@4.59.0)
+      '@vercel/python': 6.20.2
       '@vercel/redwood': 2.4.9(encoding@0.1.13)(rollup@4.59.0)
       '@vercel/remix-builder': 5.6.0(encoding@0.1.13)(rollup@4.59.0)
       '@vercel/ruby': 2.3.2
       '@vercel/rust': 1.0.5
-      '@vercel/static-build': 2.8.43
+      '@vercel/static-build': 2.8.45
       chokidar: 4.0.0
       esbuild: 0.27.0
       form-data: 4.0.5
