@@ -11,7 +11,7 @@
     "@fancyapps/ui": "6.1.12",
     "@vuepress/bundler-vite": "2.0.0-rc.26",
     "@vuepress/helper": "2.0.0-rc.124",
-    "@vuepress/plugin-comment": "2.0.0-rc.124",
+    "@vuepress/plugin-comment": "2.0.0-rc.125",
     "@vuepress/plugin-docsearch": "2.0.0-rc.124",
     "@waline/client": "workspace:*",
     "marked": "17.0.2",
