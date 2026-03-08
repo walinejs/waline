@@ -230,17 +230,17 @@
       }
     }
 
-    > *:first-child {
-      margin-top: 0;
-    }
+    // > p:first-child {
+    //   margin-top: 0;
+    // }
 
-    > *:last-child {
-      margin-bottom: 0;
-    }
+    // > p:last-child {
+    //   margin-bottom: 0;
+    // }
 
     .wl-reply-to {
       float: left;
-      margin: 1em 0.5em 0 0;
+      margin-right: 0.5em;
     }
   }
 
