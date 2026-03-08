@@ -6,7 +6,8 @@
     "dist/",
     "example/",
     "**/.vuepress/utils/transform/",
-    "**/.vuepress/utils/csv.js"
+    "**/.vuepress/utils/csv.js",
+    "__tests__"
   ],
   "plugins": ["typescript", "oxc", "import", "jsdoc", "promise", "unicorn", "node"],
   "rules": {

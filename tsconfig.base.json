@@ -4,7 +4,6 @@
     "allowSyntheticDefaultImports": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
-    "alwaysStrict": false,
     "declaration": false,
     "declarationMap": false,
     "diagnostics": false,

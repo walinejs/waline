@@ -71,9 +71,11 @@
 }
 
 .wl-power {
-  padding: 0.5em 0;
   margin-inline-start: auto;
+  padding: 0.5em 0;
+
   color: var(--waline-light-grey);
+
   font-size: var(--waline-info-font-size);
   text-align: end;
 }
@@ -114,10 +116,13 @@
 
 .wl-rss {
   display: flex;
-  gap: 5px;
-  max-width: 16px;
   flex-wrap: nowrap;
+  gap: 5px;
+
   overflow: hidden;
+
+  max-width: 16px;
+
   transition: all 0.2s ease-in-out;
 
   &:hover {
@@ -126,9 +131,10 @@
 
   > a {
     display: flex;
-    gap: 2px;
     flex-shrink: 0;
+    gap: 2px;
   }
+
   span {
     color: var(--waline-light-grey);
     font-size: var(--waline-info-font-size);

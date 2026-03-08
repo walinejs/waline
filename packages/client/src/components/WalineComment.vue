@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// oxlint-disable import/max-dependencies
+//
 
 import { useStyleTag, watchImmediate } from '@vueuse/core';
 import type { WalineComment, WalineCommentStatus, WalineRootComment } from '@waline/api';
@@ -255,7 +255,9 @@ onMounted(async () => {
   history.replaceState(
     null,
     '',
-    url.pathname + (url.searchParams.toString() ? `?${url.searchParams.toString()}` : '') + url.hash,
+    url.pathname +
+      (url.searchParams.toString() ? `?${url.searchParams.toString()}` : '') +
+      url.hash,
   );
 });
 onUnmounted(() => {
