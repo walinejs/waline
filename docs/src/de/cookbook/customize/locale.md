@@ -1,28 +1,28 @@
 ---
-title: Customize Locale
+title: Sprache anpassen
 icon: i18n
 ---
 
-This cookbook guides you to customize Waline multilingual and display text.
+Dieser Artikel führt Sie durch die Anpassung der Waline-Mehrsprachigkeit und Anzeigetexte.
 
 <!-- more -->
 
-## Customize client language and text
+## Client-Sprache und -Text anpassen
 
-`@waline/client` provides the `locale` option, through which you can customize multiple languages and display text.
+`@waline/client` bietet die Option `locale`, über die Sie mehrere Sprachen und Anzeigetexte anpassen können.
 
-By default it uses the built-in multilingual literals and falls back to `en-US` (English US) if the language is not supported.
+Standardmäßig werden die integrierten mehrsprachigen Literale verwendet, und es wird auf `en-US` (Englisch US) zurückgegriffen, wenn die Sprache nicht unterstützt wird.
 
-You can pass a completed multilingual configuration to the `locale` option to add language support, or set several of these to override existing UI text.
+Sie können eine vollständige mehrsprachige Konfiguration an die Option `locale` übergeben, um Sprachunterstützung hinzuzufügen, oder einige davon festlegen, um vorhandenen UI-Text zu überschreiben.
 
-### Locale Options
+### Locale-Optionen
 
-- Level related:
-  - `level${number}`: Label for level number
+- Level-bezogen:
+  - `level${number}`: Bezeichnung für Levelnummer
 
   ::: tip
 
-  For example, you can customize the labels for 6 levels like this:
+  Sie können zum Beispiel die Bezeichnungen für 6 Level folgendermaßen anpassen:
 
   ```ts
   Waline.init({
@@ -39,83 +39,83 @@ You can pass a completed multilingual configuration to the `locale` option to ad
 
   :::
 
-- Reaction related:
-  - `reactionTitle`: Reaction title
-  - `reaction0`: Reaction 1 text
-  - `reaction1`: Reaction 2 text
-  - `reaction2`: Reaction 3 text
-  - `reaction3`: Reaction 4 text
-  - `reaction4`: Reaction 5 text
-  - `reaction5`: Reaction 6 text
-  - `reaction6`: Reaction 7 text
-  - `reaction7`: Reaction 8 text
-  - `reaction8`: Reaction 9 text
+- Reaction-bezogen:
+  - `reactionTitle`: Reaction-Titel
+  - `reaction0`: Reaction 1 Text
+  - `reaction1`: Reaction 2 Text
+  - `reaction2`: Reaction 3 Text
+  - `reaction3`: Reaction 4 Text
+  - `reaction4`: Reaction 5 Text
+  - `reaction5`: Reaction 6 Text
+  - `reaction6`: Reaction 7 Text
+  - `reaction7`: Reaction 8 Text
+  - `reaction8`: Reaction 9 Text
 
-- UI related:
-  - `nick`: nickname
-  - `mail`: Email
+- UI-bezogen:
+  - `nick`: Nickname
+  - `mail`: E-Mail
   - `link`: Link
-  - `placeholder`: Default text of comment box
-  - `sofa`: Display text when the comment area is empty
-  - `submit`: Submit button text
-  - `comment`: Comment button text
-  - `refresh`: Refresh button text
-  - `more`: Load more button text
-  - `uploading`: display text when uploading
-  - `login`: login button text
-  - `admin`: The label of the administrator
-  - `sticky`: Sticky text
-  - `word`: word
-  - `anonymous`: anonymous user default name
-  - `optional`: text indicating optional options
-  - `gifSearchPlaceholder`: emoji search placeholder text
-  - `oldest`: oldest comment
-  - `latest`: latest comment
-  - `hottest`: hottest comment
+  - `placeholder`: Standardtext der Kommentarbox
+  - `sofa`: Anzeigetext, wenn der Kommentarbereich leer ist
+  - `submit`: Text der Senden-Schaltfläche
+  - `comment`: Text der Kommentar-Schaltfläche
+  - `refresh`: Text der Aktualisieren-Schaltfläche
+  - `more`: Text der Mehr-Laden-Schaltfläche
+  - `uploading`: Anzeigetext beim Hochladen
+  - `login`: Text der Anmeldeschaltfläche
+  - `admin`: Die Bezeichnung des Administrators
+  - `sticky`: Angehefteter Text
+  - `word`: Wort
+  - `anonymous`: Standard-Name anonymer Benutzer
+  - `optional`: Text, der optionale Optionen anzeigt
+  - `gifSearchPlaceholder`: Emoji-Such-Platzhaltertext
+  - `oldest`: ältester Kommentar
+  - `latest`: neuester Kommentar
+  - `hottest`: beliebtester Kommentar
 
   ::: info
 
-  The above text will be displayed in page.
+  Der obige Text wird auf der Seite angezeigt.
 
   :::
 
-- Prompt information related:
-  - `nickError`: Error message that the nickname does not meet the conditions
-  - `mailError`: The error message that the mailbox does not meet the conditions
-  - `wordHint`: Error prompt for comment word count, where `$0` `$1` `$2` will be automatically replaced with the lower limit of the allowed word count, the upper limit of the allowed word count, and the current word count.
+- Aufforderungsinformationen-bezogen:
+  - `nickError`: Fehlermeldung, dass der Nickname die Bedingungen nicht erfüllt
+  - `mailError`: Die Fehlermeldung, dass das Postfach die Bedingungen nicht erfüllt
+  - `wordHint`: Fehleraufforderung für Kommentar-Wortanzahl, wobei `$0` `$1` `$2` automatisch durch die Untergrenze der zulässigen Wortanzahl, die Obergrenze der zulässigen Wortanzahl und die aktuelle Wortanzahl ersetzt werden.
 
-- Comment time related:
-  - `seconds`: seconds ago
-  - `minutes`: minutes ago
-  - `hours`: hours ago
-  - `days`: days ago
-  - `now`: just now
+- Kommentarzeit-bezogen:
+  - `seconds`: vor Sekunden
+  - `minutes`: vor Minuten
+  - `hours`: vor Stunden
+  - `days`: vor Tagen
+  - `now`: gerade jetzt
 
-- Management related:
-  - `approved`: Button which marks comment as approved
-  - `waiting`: Button which marks comment waiting for review
-  - `spam`: Button which marks comments as spam
-  - `unsticky`: Button which unsticky comment
+- Verwaltungsbezogen:
+  - `approved`: Schaltfläche, die Kommentar als genehmigt markiert
+  - `waiting`: Schaltfläche, die Kommentar als wartend auf Prüfung markiert
+  - `spam`: Schaltfläche, die Kommentare als Spam markiert
+  - `unsticky`: Schaltfläche zum Lösen der Anheftung des Kommentars
 
-- Accessibility related:
-  - `like`: the label text of like button
-  - `cancelLike`: the label text of the cancel like button
-  - `reply`: the label text of the reply button
-  - `cancelReply`: the label text of the cancel reply button
-  - `preview`: Preview button label text
-  - `emoji`: the label text of the emoji button
-  - `gif`: The label text of Gif button
-  - `uploadImage`: the label text of the upload image button
-  - `profile`: The link title of profile page
-  - `logout`: the label text of the logout button
+- Barrierefreiheitsbezogen:
+  - `like`: der Beschriftungstext der Like-Schaltfläche
+  - `cancelLike`: der Beschriftungstext der Like-Abbrechen-Schaltfläche
+  - `reply`: der Beschriftungstext der Antworten-Schaltfläche
+  - `cancelReply`: der Beschriftungstext der Antworten-Abbrechen-Schaltfläche
+  - `preview`: Beschriftungstext der Vorschau-Schaltfläche
+  - `emoji`: der Beschriftungstext der Emoji-Schaltfläche
+  - `gif`: Der Beschriftungstext der Gif-Schaltfläche
+  - `uploadImage`: der Beschriftungstext der Bild-hochladen-Schaltfläche
+  - `profile`: Der Link-Titel der Profilseite
+  - `logout`: der Beschriftungstext der Abmeldeschaltfläche
 
   ::: info
 
-  These texts are only for accessibility purpose and will not be displayed on the page.
+  Diese Texte dienen nur Barrierefreiheitszwecken und werden nicht auf der Seite angezeigt.
 
   :::
 
-### Example
+### Beispiel
 
 ```js
 // en default
@@ -180,16 +180,16 @@ Waline.init({
 });
 ```
 
-## Customize server response text
+## Server-Antworttext anpassen
 
-`@waline/vercel` provides a `locales` option that allows you to customize the response text.
+`@waline/vercel` bietet eine Option `locales`, mit der Sie den Antworttext anpassen können.
 
-By default, it uses the built-in multilingual text, and falls back to `en-US` language text if the language is not supported.
+Standardmäßig werden die integrierten mehrsprachigen Texte verwendet, und es wird auf die Sprachtexte `en-US` zurückgegriffen, wenn die Sprache nicht unterstützt wird.
 
-You can pass a completed multilingual configuration to the `locales` option to add language support, or set some of them to override the existing text.
+Sie können eine vollständige mehrsprachige Konfiguration an die Option `locales` übergeben, um Sprachunterstützung hinzuzufügen, oder einige davon festlegen, um den vorhandenen Text zu überschreiben.
 ::: tip
 
-All custom text will eventually be rendered using the nunjucks template engine, which supports writing some relatively complex logical expressions. For example:
+Alle benutzerdefinierten Texte werden schließlich unter Verwendung der nunjucks-Template-Engine gerendert, die das Schreiben relativ komplexer logischer Ausdrücke unterstützt. Zum Beispiel:
 
 ```
 Registration confirm mail send failed, please {%- if isAdmin -%}check your mail configuration{%- else -%}check your email address and contact administrator{%- endif -%}.
@@ -199,7 +199,7 @@ Registration confirm mail send failed, please {%- if isAdmin -%}check your mail 
 
 ### locale 选项
 
-- Prompt information related:
+- Aufforderungsinformationen-bezogen:
   - `import data format not support!`
   - `USER_EXIST`
   - `USER_NOT_EXIST`
@@ -209,20 +209,20 @@ Registration confirm mail send failed, please {%- if isAdmin -%}check your mail 
   - `Duplicate Content`
   - `Comment too fast`
 
-- Register/Login mail notification related:
+- Registrierung/Anmelde-E-Mail-Benachrichtigung-bezogen:
   - `[{{name | safe}}] Registration Confirm Mail`
   - `Please click <a href=\"{{url}}\">{{url}}<a/> to confirm registration, the link is valid for 1 hour. If you are not registering, please ignore this email.`
   - `[{{name | safe}}] Reset Password`
   - `Please click <a href=\"{{url}}\">{{url}}</a> to login and change your password as soon as possible!`
   - `Registration confirm mail send failed, please {%- if isAdmin -%}check your mail configuration{%- else -%}check your email address and contact administrator{%- endif -%}.`
 
-- Comment mail notification related:
+- Kommentar-E-Mail-Benachrichtigung-bezogen:
   - `MAIL_SUBJECT`：`Your comment on {{site.name | safe}} received a reply`
   - `MAIL_TEMPLATE`：`<div style='border-top:2px solid #12ADDB;box-shadow:0 1px 3px #AAAAAA;line-height:180%;padding:0 15px 12px;margin:50px auto;font-size:12px;'> <h2 style='border-bottom:1px solid #DDD;font-size:14px;font-weight:normal;padding:13px 0 10px 8px;'> Your comment on <a style='text-decoration:none;color: #12ADDB;' href='{{site.url}}' target='_blank'>{{site.name}}</a> received a reply </h2>{{parent.nick}}, you wrote: <div style='padding:0 12px 0 12px;margin-top:18px'> <div style='background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;'>{{parent.comment | safe}}</div><p><strong>{{self.nick}}</strong> replied:</p><div style='background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;'>{{self.comment | safe}}</div><p><a style='text-decoration:none; color:#12addb' href='{{site.postUrl}}' target='_blank'>View full reply</a> or visit <a style='text-decoration:none; color:#12addb' href='{{site.url}}' target='_blank'>{{site.name}}</a>.</p><br/> </div></div>`
   - `MAIL_SUBJECT_ADMIN`：`New comment on {{site.name | safe}}`
   - `MAIL_TEMPLATE_ADMIN`：`<div style='border-top:2px solid #12ADDB;box-shadow:0 1px 3px #AAAAAA;line-height:180%;padding:0 15px 12px;margin:50px auto;font-size:12px;'> <h2 style='border-bottom:1px solid #DDD;font-size:14px;font-weight:normal;padding:13px 0 10px 8px;'> New comment on <a style='text-decoration:none;color: #12ADDB;' href='{{site.url}}' target='_blank'>{{site.name}}</a> </h2> <p><strong>{{self.nick}}</strong> wrote:</p><div style='background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;'>{{self.comment | safe}}</div><p><a style='text-decoration:none; color:#12addb' href='{{site.postUrl}}' target='_blank'>View page</a></p><br/></div>`
 
-### Example
+### Beispiel
 
 ```js
 // index.js

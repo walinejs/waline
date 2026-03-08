@@ -12,8 +12,8 @@ Sie können CDN oder npm verwenden, um den Waline-Client zu importieren, und wir
 
 Wenn Sie während dieses Prozesses Probleme haben, siehe:
 
-- [Cookbook → CDN-Import](../../cookbook/import/cdn.md)
-- [Cookbook → Projekt-Import](../../cookbook/import/project.md)
+- [Kochbuch → CDN-Import](../../cookbook/import/cdn.md)
+- [Kochbuch → Projekt-Import](../../cookbook/import/project.md)
 
 ## Waline verwenden
 
@@ -37,8 +37,8 @@ Weitere Informationen zum Seitenaufruf-Zähler von `@waline/client` finden Sie u
 
 `@waline/client` unterstützt auch die Echtzeitvorschau der Kommentareingabe im Kommentarfeld. Das heißt, einige Funktionen werden standardmäßig aufgrund der Größe weggelassen. Wenn Sie diese Funktionen wiederherstellen möchten, siehe:
 
-- [Cookbook → Vorschau-Code-Highlighter anpassen](../../cookbook/customize/highlighter.md)
-- [Cookbook → Vorschau-$\TeX$-Renderer anpassen](../../cookbook/customize/tex-renderer.md)
+- [Kochbuch → Vorschau-Code-Highlighter anpassen](../../cookbook/customize/highlighter.md)
+- [Kochbuch → Vorschau-$\TeX$-Renderer anpassen](../../cookbook/customize/tex-renderer.md)
 
 ## Artikel-Reaktionen
 
@@ -57,27 +57,27 @@ Waline ermöglicht es Ihnen, Interaktionsebenen-Labels und benutzerdefinierte La
 Weitere Informationen zu `@waline/client` Emoji-Tabs finden Sie unter:
 
 - [Funktionen → Emoji-Tab](../features/emoji.md)
-- [Cookbook → Emoji anpassen](../../cookbook/customize/emoji.md)
+- [Kochbuch → Emoji anpassen](../../cookbook/customize/emoji.md)
 
 ## Bild einfügen
 
 `@waline/client` verfügt über eine integrierte Bildupload-Unterstützung. Standardmäßig werden Bilder in base64 konvertiert. Das heißt, Sie können auch Ihren eigenen Bildhosting-Dienst verwenden.
 
-Weitere Informationen zu den Bildupload-Einstellungen von `@waline/client` finden Sie unter [Cookbook → Bildupload anpassen](../../cookbook/customize/upload-image.md).
+Weitere Informationen zu den Bildupload-Einstellungen von `@waline/client` finden Sie unter [Kochbuch → Bildupload anpassen](../../cookbook/customize/upload-image.md).
 
 ## Emoji-Suche
 
 `@waline/client` bietet eine Meme- und Emoji-Suchfunktion über [giphy](https://giphy.com) und ermöglicht es Ihnen, den Suchdienst anzupassen. Siehe:
 
 - [Funktionen → Emoji-Suche](../features/search.md)
-- [Cookbook → Emoticon-Suche anpassen](../../cookbook/customize/search.md)
+- [Kochbuch → Emoticon-Suche anpassen](../../cookbook/customize/search.md)
 
 ## Mehrsprachige Unterstützung
 
 `@waline/client` verfügt über integrierte Unterstützung für mehrere Sprachen, und Sie können basierend darauf Sprachunterstützung hinzufügen oder UI-Text ändern. Siehe:
 
 - [Funktionen → Sprache festlegen](../features/i18n.md).
-- [Cookbook → Sprache anpassen](../../cookbook/customize/locale.md).
+- [Kochbuch → Sprache anpassen](../../cookbook/customize/locale.md).
 
 ## Barrierefreiheitsunterstützung
 
@@ -100,7 +100,7 @@ Siehe [Benutzerdefinierte Stile](../features/style.md) für weitere Details.
 
 Waline unterstützt SPAs (**S**ingle **P**age **A**pplications).
 
-Wenn Sie Waline in einer Website oder Anwendung verwenden möchten, die auf der History-API basiert, können Sie die Methode `update()` auf der initialisierten Instanz verwenden, um die Konfiguration des Kommentarbereichs zu aktualisieren, oder die Methode `destroy()` auf der Instanz verwenden, um Waline zu zerstören. Um mehr über die Reaktivität von `@waline/client` zu erfahren, siehe [Cookbook → Reaktivität](../../cookbook/reactivity.md).
+Wenn Sie Waline in einer Website oder Anwendung verwenden möchten, die auf der History-API basiert, können Sie die Methode `update()` auf der initialisierten Instanz verwenden, um die Konfiguration des Kommentarbereichs zu aktualisieren, oder die Methode `destroy()` auf der Instanz verwenden, um Waline zu zerstören. Um mehr über die Reaktivität von `@waline/client` zu erfahren, siehe [Kochbuch → Reaktivität](../../cookbook/reactivity.md).
 
 ### Ökosystem
 

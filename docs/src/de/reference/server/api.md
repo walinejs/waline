@@ -3,99 +3,99 @@ title: API
 icon: api
 ---
 
-## Comment
+## Kommentar
 
-### Comment List
+### Kommentarliste
 
-Get comment list for article
+Kommentarliste für Artikel abrufen
 
 ```http
 GET /api/comment
 ```
 
-**Parameters**:
+**Parameter**:
 
-| Parameter | Type   | Description                                                                                                                                               |
-| --------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| path      | string | Article id for comment                                                                                                                                    |
-| page      | number | Comment page                                                                                                                                              |
-| pageSize  | number | Comment list page size                                                                                                                                    |
-| sortBy    | string | Which sort type for comment list, default descending sort by create time, also you can ascending sort by create_time, or descending sort by comment like. |
+| Parameter | Typ    | Beschreibung                                                                                                                                                                                       |
+| --------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| path      | string | Artikel-ID für Kommentar                                                                                                                                                                           |
+| page      | number | Kommentarseite                                                                                                                                                                                     |
+| pageSize  | number | Seitengröße der Kommentarliste                                                                                                                                                                     |
+| sortBy    | string | Welcher Sortiertyp für die Kommentarliste, standardmäßig absteigende Sortierung nach Erstellungszeit, Sie können auch aufsteigend nach create_time oder absteigend nach Kommentar-Likes sortieren. |
 
-### Comment Count
+### Kommentaranzahl
 
-Get comment count for article
+Kommentaranzahl für Artikel abrufen
 
 ```http
 GET /api/comment?type=count
 ```
 
-**Parameters**:
+**Parameter**:
 
-| Parameter | Type   | Description                                                   |
-| --------- | ------ | ------------------------------------------------------------- |
-| url       | string | Article id for comment, return site comment count if it empty |
+| Parameter | Typ    | Beschreibung                                                            |
+| --------- | ------ | ----------------------------------------------------------------------- |
+| url       | string | Artikel-ID für Kommentar, gibt Seiten-Kommentaranzahl zurück, wenn leer |
 
-### Recent Comment
+### Neueste Kommentare
 
-Get recent comment
+Neueste Kommentare abrufen
 
 ```http
 GET /api/comment?type=recent
 ```
 
-**Parameters**:
+**Parameter**:
 
-| Parameter | Type   | Description          |
-| --------- | ------ | -------------------- |
-| count     | number | comment count return |
+| Parameter | Typ    | Beschreibung                          |
+| --------- | ------ | ------------------------------------- |
+| count     | number | Anzahl der zurückgegebenen Kommentare |
 
-### Submit comment
+### Kommentar absenden
 
 ```http
 POST /api/comment
 ```
 
-**Parameters**:
+**Parameter**:
 
-| Parameter | Type   | Description                         |
-| --------- | ------ | ----------------------------------- |
-| comment   | string | comment content                     |
-| link      | string | commentator site                    |
-| mail      | string | commentator email                   |
-| nick      | string | commentator nick                    |
-| pid       | string | comment id which one replied        |
-| rid       | string | root comment id which one owned     |
-| ua        | string | commentator's user agent            |
-| url       | string | Article id for comment              |
-| at        | string | comment nick name which one replied |
+| Parameter | Typ    | Beschreibung                                  |
+| --------- | ------ | --------------------------------------------- |
+| comment   | string | Kommentarinhalt                               |
+| link      | string | Website des Kommentators                      |
+| mail      | string | E-Mail des Kommentators                       |
+| nick      | string | Nickname des Kommentators                     |
+| pid       | string | Kommentar-ID, auf die geantwortet wurde       |
+| rid       | string | Wurzel-Kommentar-ID, zu der sie gehört        |
+| ua        | string | User-Agent des Kommentators                   |
+| url       | string | Artikel-ID für Kommentar                      |
+| at        | string | Kommentar-Nickname, auf den geantwortet wurde |
 
-## Reading statistics
+## Lesestatistik
 
-### Get reading statistics
+### Lesestatistik abrufen
 
-Get the number of readings corresponding to an article or multiple articles.
+Anzahl der Lesevorgänge für einen oder mehrere Artikel abrufen.
 
 ```http
 GET /api/article
 ```
 
-**Parameters**:
+**Parameter**:
 
-| Parameter | Type   | Description                                                         |
-| --------- | ------ | ------------------------------------------------------------------- |
-| path      | string | Article id for comment，multiple ids should be spliced with commas. |
+| Parameter | Typ    | Beschreibung                                                               |
+| --------- | ------ | -------------------------------------------------------------------------- |
+| path      | string | Artikel-ID für Kommentar, mehrere IDs sollten mit Kommas verbunden werden. |
 
-### Update reading statistics
+### Lesestatistik aktualisieren
 
-Update the reading count of an article.
+Lesezählung eines Artikels aktualisieren.
 
 ```http
 POST /api/article
 ```
 
-**Parameters**:
+**Parameter**:
 
-| Parameter | Type   | Description            |
-| --------- | ------ | ---------------------- |
-| path      | string | Article id for comment |
+| Parameter | Typ    | Beschreibung             |
+| --------- | ------ | ------------------------ |
+| path      | string | Artikel-ID für Kommentar |

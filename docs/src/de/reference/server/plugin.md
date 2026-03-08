@@ -1,13 +1,13 @@
 ---
-title: plugin system
+title: Plugin-System
 icon: api
 ---
 
-Users can extend the custom hook function through the Hook provided by Waline to realize custom functions. But if users want to share custom Hook methods, they can only use the copy method. To solve this problem, the Waline plugin system came into being.
+Benutzer können die benutzerdefinierte Hook-Funktion über das von Waline bereitgestellte Hook erweitern, um benutzerdefinierte Funktionen zu realisieren. Aber wenn Benutzer benutzerdefinierte Hook-Methoden teilen möchten, können sie nur die Kopiermethode verwenden. Um dieses Problem zu lösen, wurde das Waline-Plugin-System entwickelt.
 
-## Install the plugin
+## Plugin installieren
 
-A new `plugins` attribute has been added to Waline's initial configuration, which supports configuring multiple plugins.
+Der Erstkonfiguration von Waline wurde ein neues `plugins`-Attribut hinzugefügt, das die Konfiguration mehrerer Plugins unterstützt.
 
 ```js
 // index.js
@@ -19,7 +19,7 @@ module.exports = Waline({
 });
 ```
 
-To install others' plugin directly, you can also place plugin hooks direct in `plugins`:
+Um das Plugin anderer direkt zu installieren, können Sie auch Plugin-Hooks direkt in `plugins` platzieren:
 
 ```js
 // index.js
@@ -44,11 +44,11 @@ module.exports = Waline({
 });
 ```
 
-## Create plugin
+## Plugin erstellen
 
-### Create based on Hook
+### Erstellen basierend auf Hook
 
-It's easy to build a plugin. A plugin is contained by a collection of [hooks.](./config.md#hooks)
+Es ist einfach, ein Plugin zu erstellen. Ein Plugin besteht aus einer Sammlung von [Hooks.](./config.md#hooks)
 
 ```js
 module.exports = {
@@ -60,13 +60,13 @@ module.exports = {
 };
 ```
 
-It should be noted that if the user installs multiple Hook plugins, the execution of the same hook function is executed in the order in which the plugins are installed. If the pre-hook method returns early, no subsequent operations will be performed.
+Es ist zu beachten, dass wenn der Benutzer mehrere Hook-Plugins installiert, die Ausführung derselben Hook-Funktion in der Reihenfolge ausgeführt wird, in der die Plugins installiert wurden. Wenn die Pre-Hook-Methode vorzeitig zurückkehrt, werden keine nachfolgenden Operationen ausgeführt.
 
-### Create based on middleware
+### Erstellen basierend auf Middleware
 
-If Hook can't meet your needs, you can use a more powerful middleware mode to customize development. The bottom layer of Waline uses the Node.js framework [Koa](https://koajs.com), and we expose Koa's middleware configuration as a whole, which can meet various customization needs of advanced developers.
+Wenn Hook Ihre Anforderungen nicht erfüllen kann, können Sie einen leistungsfähigeren Middleware-Modus für die benutzerdefinierte Entwicklung verwenden. Die unterste Schicht von Waline verwendet das Node.js-Framework [Koa](https://koajs.com), und wir stellen Koas Middleware-Konfiguration als Ganzes zur Verfügung, die verschiedene Anpassungsbedürfnisse fortgeschrittener Entwickler erfüllen kann.
 
-If you don't know what Koa middleware is, you can search for it first. What you need to pay attention to when using the middleware mode to make plug-ins is that the callback method must write the execution of `await next()`, otherwise the follow-up operations will not be executed.
+Wenn Sie nicht wissen, was Koa-Middleware ist, können Sie zuerst danach suchen. Worauf Sie achten müssen, wenn Sie den Middleware-Modus verwenden, um Plugins zu erstellen, ist, dass die Callback-Methode die Ausführung von `await next()` schreiben muss, sonst werden die nachfolgenden Operationen nicht ausgeführt.
 
 ```js
 module.exports = {
@@ -78,11 +78,11 @@ module.exports = {
 };
 ```
 
-Of course, you can put the logic of Hook-type plug-ins and middleware-type plug-ins together, and Waline supports them.
+Natürlich können Sie die Logik von Hook-Typ-Plugins und Middleware-Typ-Plugins zusammenfügen, und Waline unterstützt sie.
 
-### List of plugins
+### Liste der Plugins
 
-Welcome to submit plugins~
+Willkommen, Plugins einzureichen~
 
 - [@waline-plugins/hello-world](https://github.com/walinejs/plugins/tree/master/packages/hello-world)
 - [@waline-plugins/privacy](https://github.com/walinejs/plugins/tree/master/packages/privacy)

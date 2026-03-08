@@ -1,36 +1,36 @@
 ---
-title: Customize Emoticons Search
+title: Emoticons-Suche anpassen
 icon: search
 ---
 
-This tutorial guides you on how to customize the emoji search service via the `search` option provided by `@waline/client`.
+Dieses Tutorial zeigt Ihnen, wie Sie den Emoji-Suchdienst über die Option `search` anpassen können, die von `@waline/client` bereitgestellt wird.
 
 <!-- more -->
 
-## search result conversion
+## Sucherergebnis-Konvertierung
 
-You may get different results when using different third-party image search services. After getting the search result, you need to convert it to the format required by `@waline/client`.
+Sie können unterschiedliche Ergebnisse erhalten, wenn Sie verschiedene Drittanbieter-Bildsuchdienste verwenden. Nachdem Sie das Suchergebnis erhalten haben, müssen Sie es in das von `@waline/client` geforderte Format konvertieren.
 
-For any of the following operations, `@waline/client` requires you to return an array of image information in the following format:
+Für alle nachfolgenden Operationen erfordert `@waline/client`, dass Sie ein Array von Bildinformationen im folgenden Format zurückgeben:
 
 ```ts
 interface WalineSearchImageData extends Record<string, unknown> {
   /**
-   * Image link
+   * Bild-Link
    */
   src: string;
 
   /**
-   * Image title
+   * Bild-Titel
    *
-   * @description Used for alt attribute of image
+   * @description Wird für das Alt-Attribut des Bildes verwendet
    */
   title?: string;
 
   /**
-   * Image preview link
+   * Bild-Vorschau-Link
    *
-   * @description For better loading performance, we will use this thumbnail first in the list
+   * @description Für eine bessere Ladeleistung verwenden wir zuerst dieses Thumbnail in der Liste
    *
    * @default src
    */
@@ -40,40 +40,40 @@ interface WalineSearchImageData extends Record<string, unknown> {
 type WalineSearchResult = WalineSearchImageData[];
 ```
 
-You need to ensure that each object of the array contains at least the `src` attribute to indicate the address of the image.
+Sie müssen sicherstellen, dass jedes Objekt des Arrays mindestens das Attribut `src` enthält, um die Adresse des Bildes anzugeben.
 
-Also, where possible, you should provide an alt text `title` to help with accessibility and in case of image service failures.
+Soweit möglich sollten Sie auch einen Alt-Text `title` angeben, um die Barrierefreiheit zu unterstützen und für den Fall eines Ausfalls des Bilddienstes.
 
-In order to make the list load faster, as long as the image service can return multiple sizes of image URLs, you should choose a small size image as `preview` to improve the loading speed of the list image.
+Um das Laden der Liste zu beschleunigen, sollten Sie, solange der Bilddienst mehrere Größen von Bild-URLs zurückgeben kann, ein kleines Bild als `preview` wählen, um die Ladegeschwindigkeit des Listenbildes zu verbessern.
 
 ::: note
 
-`@waline/client` doesn't care if there are extra properties in the image result, so you don't need to deliberately remove other keys from the returned result.
+`@waline/client` kümmert sich nicht darum, ob es zusätzliche Eigenschaften im Bildergebnis gibt, sodass Sie andere Schlüssel aus dem zurückgegebenen Ergebnis nicht absichtlich entfernen müssen.
 
 :::
 
-## Search Option
+## Such-Option
 
-`@waline/client` provides three sub-options to control search behavior:
+`@waline/client` bietet drei Unteroptionen zur Steuerung des Suchverhaltens:
 
 ```ts
 interface WalineSearchOptions {
   /**
-   * Search action
+   * Such-Aktion
    */
   search: (word: string) => Promise<WalineSearchResult>;
 
   /**
-   * Default result when opening list
+   * Standardergebnis beim Öffnen der Liste
    *
    * @default () => search('')
    */
   default?: () => Promise<WalineSearchResult>;
 
   /**
-   * Fetch more action
+   * Mehr-Laden-Aktion
    *
-   * @description It will be triggered when the list scrolls to the bottom. If your search service supports paging, you should set this to achieve infinite scrolling
+   * @description Wird ausgelöst, wenn die Liste nach unten scrollt. Wenn Ihr Suchdienst Paging unterstützt, sollten Sie dies festlegen, um unendliches Scrollen zu erreichen
    *
    * @default (word) => search(word)
    */
@@ -81,9 +81,9 @@ interface WalineSearchOptions {
 }
 ```
 
-Since you need to implement at least the search logic, `search` is required. `@waline/client` will pass in the user search term and call this option function, and wait for this function to return a Promise to complete the search result.
+Da Sie mindestens die Suchlogik implementieren müssen, ist `search` erforderlich. `@waline/client` übergibt den Benutzer-Suchbegriff und ruft diese Optionsfunktion auf und wartet darauf, dass diese Funktion ein Promise zurückgibt, um das Suchergebnis abzuschließen.
 
-We want users to see some hot images or emoji results when they open it, so we provide the `default` function to implement this behavior. If your service provider provides an interface for popular pictures or emoticons, you should use this interface to return content. Also, since the default behavior of this function is to search for empty strings, if your search provider returns empty results in this situation, we recommend that you add a brief implementation of random preset words to avoid showing an empty list.
+Wir möchten, dass Benutzer beim Öffnen einige beliebte Bilder oder Emoji-Ergebnisse sehen, daher bieten wir die Funktion `default` an, um dieses Verhalten zu implementieren. Wenn Ihr Dienstanbieter eine Schnittstelle für beliebte Bilder oder Emoticons bereitstellt, sollten Sie diese Schnittstelle verwenden, um Inhalte zurückzugeben. Da das Standardverhalten dieser Funktion darin besteht, nach leeren Strings zu suchen, empfehlen wir, wenn Ihr Suchanbieter in dieser Situation leere Ergebnisse zurückgibt, eine kurze Implementierung zufälliger voreingestellter Wörter hinzuzufügen, um die Anzeige einer leeren Liste zu vermeiden.
 
 ```js
 const search = (word) => {
@@ -105,19 +105,19 @@ Waline.init({
 });
 ```
 
-Usually, your search service will support pagination, so we provide a `more` function to trigger when the user swipes to the bottom and load more images to let you return more results. For a better experience, we recommend setting the number of pagination to 20 - 40, that is, 20 - 40 images are loaded each time.
+Normalerweise unterstützt Ihr Suchdienst Paginierung, daher bieten wir eine Funktion `more` an, die ausgeführt wird, wenn der Benutzer nach unten wischt, und weitere Bilder lädt, damit Sie mehr Ergebnisse zurückgeben können. Für eine bessere Benutzererfahrung empfehlen wir, die Anzahl der Paginierung auf 20 - 40 festzulegen, d. h. es werden jedes Mal 20 - 40 Bilder geladen.
 
-::: tip An example to help understand
+::: tip Ein Beispiel zum besseren Verständnis
 
-When the user clicks the search button, we will trigger `default()`, if this function is missing, we will trigger `search('')`, and we will wait for the Promise to execute and render with the returned result.
+Wenn der Benutzer auf die Suchschaltfläche klickt, lösen wir `default()` aus. Wenn diese Funktion fehlt, lösen wir `search('')` aus, und wir warten auf die Ausführung des Promise und rendern mit dem zurückgegebenen Ergebnis.
 
-When the user searches for `smile`, we execute `search('smile')`. Suppose you return 20 results each time, when the user continues to scroll down, we will trigger `more('smile', 20)`, `more('smile', 40)`, `more('smile', 60 )` ...
+Wenn der Benutzer nach `smile` sucht, führen wir `search('smile')` aus. Angenommen, Sie geben jedes Mal 20 Ergebnisse zurück. Wenn der Benutzer weiter nach unten scrollt, lösen wir `more('smile', 20)`, `more('smile', 40)`, `more('smile', 60)` ... aus.
 
 :::
 
-## Examples
+## Beispiele
 
-::: details Default implementation
+::: details Standardimplementierung
 
 @[code{33-79}](../../../../../packages/client/src/config/default.ts)
 

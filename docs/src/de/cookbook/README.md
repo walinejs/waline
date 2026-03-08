@@ -1,9 +1,9 @@
 ---
-title: Cookbook
+title: Kochbuch
 icon: cookbook
 ---
 
-Dieses Cookbook stellt Waline ausführlicher vor.
+Dieses Kochbuch stellt Waline ausführlicher vor.
 
 <!-- more -->
 

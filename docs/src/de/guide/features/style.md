@@ -60,7 +60,7 @@ Sie können Standardwerte für CSS-Variablen finden, die von Waline im Normal- u
 
 Wenn es sich von Ihrem Website-Stil unterscheidet, können Sie die entsprechende CSS-Variable selbst überschreiben.
 
-## Box Shadow
+## Box-Schatten
 
 Wenn Sie ein Theme verwenden, das Schatten (`box-shadow`) anstelle von Rahmen verwendet, können Sie den Anzeigeeffekt von Waline ändern, indem Sie `--waline-border` und `--waline-box-shadow` ändern, z. B.:
 

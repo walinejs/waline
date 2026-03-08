@@ -1,10 +1,10 @@
 ---
-title: Custom Database Service
+title: Benutzerdefinierter Datenbankdienst
 icon: database
 order: -2
 ---
 
-Waline classifies database operations into several operations such as CURD, and all upper-level logic is completed through the superposition of these basic operations. Through the adapter mode, different types of database storage services only need to implement these low-level atomic operations to run through all system logic.
+Waline klassifiziert Datenbankoperationen in mehrere Operationen wie CURD, und die gesamte Logik auf höherer Ebene wird durch die Überlagerung dieser grundlegenden Operationen abgeschlossen. Durch den Adapter-Modus müssen unterschiedliche Arten von Datenbankspeicherdiensten nur diese grundlegenden atomaren Operationen auf niedriger Ebene implementieren, um die gesamte Systemlogik durchzuführen.
 
 ```js
 // index.js
@@ -15,7 +15,7 @@ module.exports = Application({
 });
 ```
 
-Waline provides the `model` option to customize the database model, and we will uniformly use the incoming model for database operations. All that remains is that we need to implement this `CustomModel` class.
+Waline bietet die Option `model` zum Anpassen des Datenbankmodells, und wir werden das eingehende Modell einheitlich für Datenbankoperationen verwenden. Alles, was noch bleibt, ist, dass wir diese `CustomModel`-Klasse implementieren müssen.
 
 ```js
 class CustomModel {
@@ -45,25 +45,25 @@ class CustomModel {
 }
 ```
 
-The above is the basic structure that the `CustomModel` class must implement, and it must include the implementation of several basic methods `select`, `add`, `update`, `delete` and `count`. Waline is developed based on the [ThinkJS](https://thinkjs.org/en) framework, and the underlying database operations use the database operation syntax that comes with the framework. Before implementing these methods, you need to have some basic understanding of the syntax of database conditional queries.
+Das Obige ist die grundlegende Struktur, die die Klasse `CustomModel` implementieren muss, und sie muss die Implementierung mehrerer grundlegender Methoden `select`, `add`, `update`, `delete` und `count` enthalten. Waline wird basierend auf dem [ThinkJS](https://thinkjs.org/en)-Framework entwickelt, und die zugrunde liegenden Datenbankoperationen verwenden die mit dem Framework gelieferte Datenbank-Operationssyntax. Bevor Sie diese Methoden implementieren, müssen Sie ein grundlegendes Verständnis der Syntax von Datenbank-Bedingungsabfragen haben.
 
-## Condition query
+## Bedingungsabfrage
 
-For the complete conditional query syntax, please refer to [ThinkJS Documentation](https://thinkjs.org/de/doc/3.0/relation_model.html#toc-d47), and the implementation of Waline is a subset of it.
+Für die vollständige Syntax der Bedingungsabfrage siehe [ThinkJS-Dokumentation](https://thinkjs.org/de/doc/3.0/relation_model.html#toc-d47), und die Implementierung von Waline ist eine Teilmenge davon.
 
-Multiple conditional queries can be passed in through the object, and the default is equal to the condition. When the value is a two-dimensional array, the first bit can be passed to other judgment operations, and the second bit corresponds to the value, such as `{user_id: ['!=', 0]}`. Currently supported are `!=`, `>`, `IN`, `NOT IN`, `LIKE` centralized operations.
+Mehrere Bedingungsabfragen können über das Objekt übergeben werden, und standardmäßig entspricht es der Bedingung. Wenn der Wert ein zweidimensionales Array ist, kann das erste Bit an andere Beurteilungsoperationen übergeben werden, und das zweite Bit entspricht dem Wert, wie `{user_id: ['!=', 0]}`. Derzeit werden `!=`, `>`, `IN`, `NOT IN`, `LIKE` zentralisierte Operationen unterstützt.
 
-Similar to MySQL, in the `LIKE` operation, we define the mode of the fuzzy query through the position of `%`:
+Ähnlich wie bei MySQL definieren wir in der `LIKE`-Operation den Modus der unscharfen Suche über die Position von `%`:
 
-- `content%` means search for content starting with `content`
-- `%content` means search for content ending with `content`
-- `%content%` means search for content containing `content`
+- `content%` bedeutet Suche nach Inhalten, die mit `content` beginnen
+- `%content` bedeutet Suche nach Inhalten, die mit `content` enden
+- `%content%` bedeutet Suche nach Inhalten, die `content` enthalten
 
-The conditional query object supports passing in multiple query conditions. The default relationship between these conditions is `AND`, and the `_logic` magic keyword can be used to specify their relationship as `OR`. When there are `AND` and `OR`, we can use `_complex` magic keyword expression.
+Das Bedingungsabfrageobjekt unterstützt die Übergabe mehrerer Abfragebedingungen. Die Standardbeziehung zwischen diesen Bedingungen ist `AND`, und das magische Schlüsselwort `_logic` kann verwendet werden, um ihre Beziehung als `OR` anzugeben. Wenn es `AND` und `OR` gibt, können wir das magische Schlüsselwort `_complex` verwenden.
 
-The text may not be well understood. Let's take a look at the query examples used in the project to deepen our impression.
+Der Text kann nicht gut verstanden werden. Schauen wir uns die im Projekt verwendeten Abfragebeispiele an, um unseren Eindruck zu vertiefen.
 
-1. General query:
+1. Allgemeine Abfrage:
 
    ```js
    const model = new CustomModel('Comment');
@@ -75,7 +75,7 @@ The text may not be well understood. Let's take a look at the query examples use
    // SELECT * FROM Comment WHERE url = '/' AND user_id != 0 AND createdAt > "2023-04-16 00:00:00";
    ```
 
-2. IN / NOT IN query
+2. IN / NOT IN Abfrage
 
    ```js
    const model = new CustomModel('Users');
@@ -89,7 +89,7 @@ The text may not be well understood. Let's take a look at the query examples use
    // SELECT * FROM Comment WHERE status NOT IN ('waiting', 'spam');
    ```
 
-3. LIKE query
+3. LIKE Abfrage
 
    ```js
    const model = new CustomModel('Comment');
@@ -97,7 +97,7 @@ The text may not be well understood. Let's take a look at the query examples use
    // SELECT * FROM Comment WHERE content LIKE "%content%";
    ```
 
-4. Multi-condition query
+4. Mehrbedingungsabfrage
 
    ```js
    const model = new CustomModel('Comment');
@@ -110,7 +110,7 @@ The text may not be well understood. Let's take a look at the query examples use
    // SELECT * FROM Comment WHERE url = '/' OR user_id != 0 OR createdAt > "2023-04-16 00:00:00";
    ```
 
-5. Compound query
+5. Zusammengesetzte Abfrage
 
    ```js
    const model = new CustomModel('Comment');
@@ -125,31 +125,31 @@ The text may not be well understood. Let's take a look at the query examples use
    // SELECT * FROM Comment WHERE url = '/' AND ( user_id = 0 OR status NOT IN ('waiting', 'spam'));
    ```
 
-If you are more familiar with TypeScript, [type definitions for conditional queries is here](https://github.com/walinejs/dittorm/blob/master/src/types/where.ts).
+Wenn Sie mit TypeScript besser vertraut sind, [finden Sie hier Typdefinitionen für Bedingungsabfragen](https://github.com/walinejs/dittorm/blob/master/src/types/where.ts).
 
-## Implement query
+## Abfrage implementieren
 
-The `select`, `update`, `delete`, `count` methods in the adapter are actually complicated in the conditional query. After understanding the conditional query syntax in the previous part, the subsequent logic is the database operation. surface.
+Die Methoden `select`, `update`, `delete`, `count` im Adapter sind bei der Bedingungsabfrage tatsächlich kompliziert. Nachdem Sie die Bedingungsabfragesyntax im vorherigen Teil verstanden haben, ist die nachfolgende Logik die Datenbank-Operationsoberfläche.
 
-The `select()` method has a second argument `{desc, limit, offset, field}`. This is also easier to understand:
+Die Methode `select()` hat ein zweites Argument `{desc, limit, offset, field}`. Dies ist auch leichter zu verstehen:
 
-- `desc`: Specify a field to sort in descending order of the value of the field
-- `limit`: specify the number of data returned
-- `offset`: Specify the returned data from which item to return
-- `field`: Specify the field to return data, all fields are returned by default
+- `desc`: Geben Sie ein Feld an, um in absteigender Reihenfolge des Werts des Felds zu sortieren
+- `limit`: Geben Sie die Anzahl der zurückgegebenen Daten an
+- `offset`: Geben Sie die zurückgegebenen Daten an, ab welchem Element zurückgegeben werden soll
+- `field`: Geben Sie das Feld an, um Daten zurückzugeben, alle Felder werden standardmäßig zurückgegeben
 
-The `update()` method needs to be compatible with scenarios where the `data` input parameter may be a calculation function, such as adding 1 to the number of page viewers:
+Die Methode `update()` muss mit Szenarien kompatibel sein, in denen der Eingabeparameter `data` eine Berechnungsfunktion sein kann, z. B. das Hinzufügen von 1 zur Anzahl der Seitenaufrufe:
 
 ```js
 const model = new CustomModel('Count');
 await model.update((thread) => ({ view: thread.view + 1 }), { url: '/' });
 ```
 
-Return data type `select()` always returns an array, `add()` and `update()` need to include the full data of the indexed field.
+Rückgabedatentyp `select()` gibt immer ein Array zurück, `add()` und `update()` müssen die vollständigen Daten des indizierten Felds enthalten.
 
-## refer to
+## Referenz
 
-Based on the above logic, in addition to implementing the storage service of professional databases, the official also implemented the GitHub storage service very interestingly. We store the data in GitHub in the form of a CSV file, and obtain the content of the CSV file each time we query, and filter out the final data according to the conditional query statement in JS and return it. The following is the official implementation, hoping to give you some reference.
+Basierend auf der obigen Logik hat die offizielle Stelle neben der Implementierung des Speicherdienstes professioneller Datenbanken auch den GitHub-Speicherdienst sehr interessant implementiert. Wir speichern die Daten in GitHub in Form einer CSV-Datei und erhalten jedes Mal, wenn wir abfragen, den Inhalt der CSV-Datei und filtern die endgültigen Daten gemäß der Bedingungsabfrageanweisung in JS heraus und geben sie zurück. Das Folgende ist die offizielle Implementierung, die Ihnen hoffentlich als Referenz dient.
 
 ```js
 //source code: https://github.com/walinejs/waline/blob/main/packages/server/src/service/storage/github.js

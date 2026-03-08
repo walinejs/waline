@@ -1,26 +1,26 @@
 ---
-title: Recent comment Widget
+title: Neueste Kommentare Widget
 icon: recent
 ---
 
-Waline supports displaying recent comments by widget, which is convenient for displaying the latest comments in the sidebar of the blog.
+Waline unterstützt die Anzeige neuester Kommentare durch ein Widget, was es praktisch macht, die neuesten Kommentare in der Seitenleiste des Blogs anzuzeigen.
 
 <!-- more -->
 
-## Component options
+## Komponentenoptionen
 
-The latest comment widget is named `RecentComments` and contains three options:
+Das neueste Kommentar-Widget heißt `RecentComments` und enthält drei Optionen:
 
-- `el` (optional): the element to be mounted
-- `serverURL`: server link
-- `count` The number of recent comments needed to get
+- `el` (optional): das Element, das eingebunden werden soll
+- `serverURL`: Serverlink
+- `count` Die Anzahl der neuesten Kommentare, die abgerufen werden sollen
 
-The data format returned by the component should be `Promise<{ comment: WalineComment[], destroy: () => void }>`.
+Das von der Komponente zurückgegebene Datenformat sollte `Promise<{ comment: WalineComment[], destroy: () => void }>` sein.
 
-- `comment` property: an array of the most recent comments with exact number of `count`
-- `destroy` method: a function which will destroy the widget
+- `comment`-Eigenschaft: ein Array der neuesten Kommentare mit der genauen Anzahl von `count`
+- `destroy`-Methode: eine Funktion, die das Widget zerstört
 
-## Basic usage
+## Grundlegende Verwendung
 
 ```html
 <div id="waline-recent"></div>
@@ -37,15 +37,15 @@ The data format returned by the component should be `Promise<{ comment: WalineCo
 
 ::: tip
 
-This will be rendered on `#waline-recent` using the default style.
+Dies wird auf `#waline-recent` mit dem Standardstil gerendert.
 
 :::
 
-## Advanced usage
+## Erweiterte Verwendung
 
-If you are not satisfied with the default output format, you can call the component by omitting the `el` option to get the data and render it yourself.
+Wenn Sie mit dem Standardausgabeformat nicht zufrieden sind, können Sie die Komponente aufrufen, indem Sie die `el`-Option weglassen, um die Daten zu erhalten und sie selbst zu rendern.
 
-Example:
+Beispiel:
 
 ```html
 <div id="waline-recent"></div>

@@ -4,7 +4,7 @@ icon: import
 order: 1
 ---
 
-Dieses Cookbook behandelt den Import von Waline über CDN.
+Dieses Kochbuch behandelt den Import von Waline über CDN.
 
 <!-- more -->
 
