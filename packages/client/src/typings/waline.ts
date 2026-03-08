@@ -1,3 +1,5 @@
+
+
 import type {
   WalineCommentSorting,
   WalineEmojiInfo,
@@ -9,6 +11,7 @@ import type {
   WalineSearchOptions,
   WalineTeXRenderer,
 } from './base.js';
+import type { WalineCaptchaOptions } from './captcha.js';
 import type { WalineLocale } from './locale.js';
 
 export interface WalineProps {
@@ -196,9 +199,18 @@ export interface WalineProps {
   noRss?: boolean;
 
   /**
+   * Captcha 配置
+   *
+   * Captcha options
+   */
+  captcha?: WalineCaptchaOptions;
+
+  /**
    * recaptcha v3 客户端 key
    *
    * recaptcha v3 client key
+   *
+   * @deprecated Please use `captcha` instead.
    */
   recaptchaV3Key?: string;
 
@@ -206,6 +218,8 @@ export interface WalineProps {
    * turnstile 客户端 key
    *
    * turnstile client key
+   *
+   * @deprecated Please use `captcha` instead.
    */
   turnstileKey?: string;
 
