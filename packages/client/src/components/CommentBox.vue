@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// oxlint-disable import/max-dependencies
+//
 import { useDebounceFn, useEventListener, watchImmediate } from '@vueuse/core';
 import type { WalineComment, WalineCommentData, UserInfo } from '@waline/api';
 import { addComment, login, updateComment } from '@waline/api';

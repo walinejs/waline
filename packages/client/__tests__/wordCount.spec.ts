@@ -1,5 +1,3 @@
-import { describe, expect, it } from 'vitest';
-
 import { getChinese, getWordNumber, getWords } from '../src/utils/wordCount.js';
 
 describe('Words test', () => {

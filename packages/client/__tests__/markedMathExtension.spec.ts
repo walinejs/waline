@@ -1,5 +1,4 @@
 import { marked } from 'marked';
-import { describe, expect, it } from 'vitest';
 
 import { defaultTeXRenderer } from '../src/config/index.js';
 import { markedTeXExtensions } from '../src/utils/markedMathExtension.js';

@@ -4,7 +4,6 @@
     "allowSyntheticDefaultImports": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
-    "alwaysStrict": false,
     "declaration": false,
     "declarationMap": false,
     "diagnostics": false,
@@ -35,6 +34,7 @@
     "strict": true,
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
-    "target": "ES2022"
+    "target": "ES2022",
+    "types": ["vitest/globals"]
   }
 }
