@@ -1,3 +1,5 @@
+import { describe, expect, it } from 'vitest';
+
 import { emojiMaps } from './__fixtures__/emojiMap.js';
 import { parseEmoji } from '../src/utils/markdown.js';
 
