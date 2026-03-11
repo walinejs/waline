@@ -1,16 +1,16 @@
 ---
-title: Customize TeX renderer
+title: TeX レンダラーのカスタマイズ
 ---
 
-This cookbook guides you on how to add your own $\TeX$ renderer.
+このクックブックでは、独自の $\TeX$ レンダラーを追加する方法を説明します。
 
 <!-- more -->
 
-`@waline/client` provides the `texRenderer` function. The client will pass whether in display mode and the original $\TeX$ string as parameters. You should return a string.
+`@waline/client` は `texRenderer` 関数を提供しています。クライアントはディスプレイモードかどうかと元の $\TeX$ 文字列をパラメーターとして渡します。文字列を返す必要があります。
 
-## A Example Using KaTeX
+## KaTeX を使用した例
 
-For KaTeX options, see [KaTeX API](https://katex.org/docs/api.html#server-side-rendering-or-rendering-to-a-string).
+KaTeX のオプションについては、[KaTeX API](https://katex.org/docs/api.html#server-side-rendering-or-rendering-to-a-string) を参照してください。
 
 ```html
 <!doctype html>
@@ -44,9 +44,9 @@ For KaTeX options, see [KaTeX API](https://katex.org/docs/api.html#server-side-r
 </html>
 ```
 
-## A case using MathJax
+## MathJax を使用した例
 
-For MathJax options, see [MathJax API](http://docs.mathjax.org/jp/latest/web/typeset.html#converting-a-math-string-to-other-formats).
+MathJax のオプションについては、[MathJax API](http://docs.mathjax.org/jp/latest/web/typeset.html#converting-a-math-string-to-other-formats) を参照してください。
 
 ```html
 <!doctype html>

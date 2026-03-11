@@ -1,52 +1,52 @@
 ---
-title: Client Files
+title: クライアントファイル
 icon: file
 ---
 
-`@waline/client` provides multiple versions of files
+`@waline/client` は複数バージョンのファイルを提供しています
 
 <!-- more -->
 
-## CDN File List
+## CDN ファイル一覧
 
-- `dist/waline.js`: full version, ESM format
+- `dist/waline.js`: フルバージョン、ESM 形式
 
-  This file is the recommend version to import `@waline/client`, 53 KB Gzip size
+  このファイルは `@waline/client` をインポートする際に推奨されるバージョンです。Gzip サイズは 53 KB です。
 
-- `dist/waline.umd.js`: full version, UMD format
+- `dist/waline.umd.js`: フルバージョン、UMD 形式
 
-- `dist/slim.js`: full version without dependency bundles, ES Module format
+- `dist/slim.js`: 依存関係をバンドルしないフルバージョン、ES Module 形式
 
-  This file is the default file to import `@waline/client` with Node.js, 19.39 KB Gzip size
+  このファイルは Node.js で `@waline/client` をインポートする際のデフォルトファイルです。Gzip サイズは 19.39 KB です。
 
-- `dist/waline.css`: Waline CSS styles
+- `dist/waline.css`: Waline の CSS スタイル
 
-- `dist/waline-meta.css`: Waline Meta Icon CSS
+- `dist/waline-meta.css`: Waline メタアイコンの CSS
 
-- `dist/component.js`: Waline's Vue component, ES Module format, without dependency bundling
+- `dist/component.js`: Waline の Vue コンポーネント、ES Module 形式、依存関係のバンドルなし
 
-  This file is for using Waline comments in component mode in a Vue project, 18.28 KB Gzip size
+  このファイルは Vue プロジェクトでコンポーネントモードとして Waline コメントを使用するためのものです。Gzip サイズは 18.28 KB です。
 
-- `dist/comment.js`: Waline's comment count module, ESM format, < 1KB Gzip size
+- `dist/comment.js`: Waline のコメント数モジュール、ESM 形式、Gzip サイズ 1KB 未満
 
-  This file is used for CDN import, when only the number of page comments is required
+  このファイルは CDN インポート用で、ページのコメント数のみが必要な場合に使用します。
 
-- `dist/pageview.js`: Waline's pageview module, ESM format, < 1KB Gzip size
+- `dist/pageview.js`: Waline のページビューモジュール、ESM 形式、Gzip サイズ 1KB 未満
 
-  This file is used for CDN import, when only page views are required
+  このファイルは CDN インポート用で、ページビュー数のみが必要な場合に使用します。
 
-## Module exports
+## モジュールエクスポート
 
-`@waline/client` is a standard ESM module, requiring Node.js version >= 18:
+`@waline/client` は標準の ESM モジュールであり、Node.js バージョン >= 18 が必要です:
 
-- `@waline/client`: Waline main entry without dependencies bundled
+- `@waline/client`: 依存関係をバンドルしない Waline のメインエントリ
 
-- `@waline/client/waline.css`: Waline style file
+- `@waline/client/waline.css`: Waline スタイルファイル
 
-- `@waline/client/waline-meta.css`: Waline meta icon style file
+- `@waline/client/waline-meta.css`: Waline メタアイコンスタイルファイル
 
-- `@waline/client/comment`: Waline comment count module
+- `@waline/client/comment`: Waline コメント数モジュール
 
-- `@waline/client/pageview`: Waline pageview count module
+- `@waline/client/pageview`: Waline ページビュー数モジュール
 
-- `@waline/client/full`: Waline main entry with all dependencies bundled
+- `@waline/client/full`: すべての依存関係をバンドルした Waline のメインエントリ

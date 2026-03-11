@@ -1,68 +1,68 @@
 ---
-title: Style Customize
+title: スタイルのカスタマイズ
 icon: style
 order: -2
 ---
 
-`@waline/client` provides some CSS variables. You can easily configure the style of waline through these variables:
+`@waline/client` はいくつかの CSS 変数を提供しています。これらの変数を使って Waline のスタイルを簡単に設定できます:
 
-Meanwhile, `@waline/client` also has built-in dark mode support.
+また、`@waline/client` にはダークモードのサポートも組み込まれています。
 
 <!-- more -->
 
-## Dark mode support
+## ダークモードのサポート
 
-You can use the `dark` option to enable Waline's dark mode support.
+`dark` オプションを使用して Waline のダークモードサポートを有効にできます。
 
-Usually websites will enable dark mode support in two ways:
+ウェブサイトがダークモードを有効にする方法は通常 2 種類あります:
 
-- Use the `@media` selector to automatically switch according to the device color mode status through `prefers-color-scheme`
-- Dynamically apply other dark mode color style by modifying the attributes and class of the dom root element (`html` or `body`).
+- `@media` セレクターを使用して `prefers-color-scheme` によりデバイスのカラーモード状態に応じて自動的に切り替える方法
+- DOM のルート要素（`html` または `body`）の属性やクラスを変更することで動的にダークモードの色スタイルを適用する方法
 
-If you enable Waline on the site of the first method, you only need to set `dark` to `'auto'`.
+最初の方法を使用しているサイトで Waline を有効にする場合は、`dark` を `'auto'` に設定するだけです。
 
-For the second type of site, you need to set dark to the CSS selector that makes the dark mode effective. Here are a few examples:
+2 番目の方法のサイトでは、ダークモードを有効にする CSS セレクターを `dark` に設定する必要があります。以下にいくつかの例を示します:
 
-::: tip Examples
+::: tip 例
 
-- **vuepress-theme-hop v2**: It will enable darkmode by setting `data-theme="dark"` on the `<html>` tag itself. So you need to set `'html[data-theme="dark"]'` as `dark` option.
+- **vuepress-theme-hop v2**: `<html>` タグに `data-theme="dark"` を設定することでダークモードを有効にします。そのため、`dark` オプションに `'html[data-theme="dark"]'` を設定する必要があります。
 
-- **hexo-theme-fluid**: It will enable darkmode by setting `data-user-color-scheme="dark"` on the `<html>` tag itself. So you need to set `'html[data-user-color-scheme="dark"]'` as `dark` option.
+- **hexo-theme-fluid**: `<html>` タグに `data-user-color-scheme="dark"` を設定することでダークモードを有効にします。そのため、`dark` オプションに `'html[data-user-color-scheme="dark"]'` を設定する必要があります。
 
 :::
 
-## Meta Icons
+## メタアイコン
 
-If you want to add icons to user comment meta data, you can import `waline-meta.css` to use it.
+ユーザーコメントのメタデータにアイコンを追加したい場合は、`waline-meta.css` をインポートして使用できます。
 
-For CDN users, you can import via the following link:
+CDN ユーザーは以下のリンクからインポートできます:
 
 ```html
 <!-- Meta icon (optional) -->
 <link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline-meta.css" />
 ```
 
-For NPM users, you can import via:
+NPM ユーザーは以下のようにインポートできます:
 
 ```js
 import '@waline/client/meta';
 ```
 
-## RTL support
+## RTL サポート
 
-`@waline/client` supports RTL layout, you just need to add `dir="rtl"` in `<html>` tag.
+`@waline/client` は RTL レイアウトをサポートしています。`<html>` タグに `dir="rtl"` を追加するだけで使用できます。
 
-## Customize Styles
+## スタイルのカスタマイズ
 
-### CSS Variables
+### CSS 変数
 
-You can find default values for CSS variables used by Waline in normal and darkmode at [Client Reference → CSS Variables](../../reference/client/style.md).
+通常モードとダークモードで Waline が使用する CSS 変数のデフォルト値は [クライアントリファレンス → CSS 変数](../../reference/client/style.md) で確認できます。
 
-If it differs from your site style, you can override the corresponding CSS variable yourself.
+サイトのスタイルと異なる場合は、対応する CSS 変数を自分でオーバーライドできます。
 
-## Box Shadow
+## ボックスシャドウ
 
-If you are using a theme that uses shadows (`box-shadow`) instead of borders, you can modify the display effect of Waline by modifying `--waline-border` and `--waline-box-shadow`, e.g.:
+ボーダーの代わりにシャドウ（`box-shadow`）を使用するテーマを利用している場合は、`--waline-border` と `--waline-box-shadow` を変更することで Waline の表示効果を調整できます。例:
 
 ```css
 :root {
@@ -77,6 +77,6 @@ If you are using a theme that uses shadows (`box-shadow`) instead of borders, yo
 }
 ```
 
-### More
+### その他
 
-If the above CSS variables cannot meet your custom requirements for Waline styles, you can write your own css file.
+上記の CSS 変数で Waline スタイルのカスタマイズ要件を満たせない場合は、独自の CSS ファイルを記述することができます。
