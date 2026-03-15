@@ -36,11 +36,21 @@ module.exports = class UserController extends BaseRest {
       },
     );
 
+    const formatUsers = await Promise.all(
+      users.map(async (user) => {
+        user.avatar = user.avatar || (await think.service('avatar').stringify(user));
+        return {
+          ...user,
+          avatar: user.avatar,
+        };
+      }),
+    );
+
     return this.success({
       page,
       totalPages: Math.ceil(count / pageSize),
       pageSize,
-      data: users,
+      data: formatUsers,
     });
   }
 
