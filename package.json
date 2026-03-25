@@ -28,9 +28,9 @@
   "devDependencies": {
     "@babel/core": "7.29.0",
     "@babel/plugin-transform-runtime": "7.29.0",
-    "@babel/preset-env": "7.29.0",
+    "@babel/preset-env": "7.29.2",
     "@babel/preset-react": "7.28.5",
-    "@babel/runtime": "7.28.6",
+    "@babel/runtime": "7.29.2",
     "@commitlint/cli": "20.4.3",
     "@commitlint/config-conventional": "20.4.3",
     "@rollup/plugin-commonjs": "29.0.2",
