@@ -443,6 +443,12 @@ watchImmediate([config, wordNumber], ([config, wordNumber]) => {
   const { wordLimit: limit } = config;
 
   if (limit) {
+    // [0, 0] => no limit
+    if (!limit || (limit[0] === 0 && limit[1] === 0)) {
+      wordLimit.value = 0;
+      isWordNumberLegal.value = true;
+      return;
+    }
     if (wordNumber < limit[0] && limit[0] !== 0) {
       [wordLimit.value] = limit;
       isWordNumberLegal.value = false;
@@ -670,7 +676,7 @@ onMounted(() => {
           <div class="wl-text-number">
             {{ wordNumber }}
 
-            <span v-if="config.wordLimit">
+            <span v-if="config.wordLimit && !(config.wordLimit[0] === 0 && config.wordLimit[1] === 0)">
               &nbsp;/&nbsp;
               <span :class="{ illegal: !isWordNumberLegal }" v-text="wordLimit" />
             </span>
