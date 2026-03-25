@@ -444,7 +444,7 @@ watchImmediate([config, wordNumber], ([config, wordNumber]) => {
 
   if (limit) {
     // [0, 0] => no limit
-    if (!limit || (limit[0] === 0 && limit[1] === 0)) {
+    if (limit[0] === 0 && limit[1] === 0) {
       wordLimit.value = 0;
       isWordNumberLegal.value = true;
       return;
