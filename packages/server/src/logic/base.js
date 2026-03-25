@@ -157,12 +157,12 @@ module.exports = class BaseLogic extends think.Logic {
 
   async useCaptchaCheck() {
     const { RECAPTCHA_V3_SECRET, TURNSTILE_SECRET } = process.env;
-    const { turnstile, recaptchaV3 } = this.post();
+    const { turnstile, recaptchaV3, captcha } = this.post();
 
     if (TURNSTILE_SECRET) {
       return this.useRecaptchaOrTurnstileCheck({
         secret: TURNSTILE_SECRET,
-        token: turnstile,
+        token: captcha || turnstile,
         api: 'https://challenges.cloudflare.com/turnstile/v0/siteverify',
         method: 'POST',
       });
@@ -171,7 +171,7 @@ module.exports = class BaseLogic extends think.Logic {
     if (RECAPTCHA_V3_SECRET) {
       return this.useRecaptchaOrTurnstileCheck({
         secret: RECAPTCHA_V3_SECRET,
-        token: recaptchaV3,
+        token: captcha || recaptchaV3,
         api: 'https://recaptcha.net/recaptcha/api/siteverify',
         method: 'GET',
       });
