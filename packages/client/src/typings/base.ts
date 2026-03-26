@@ -1,4 +1,4 @@
-import type { WalineEmojiConfig } from "../utils";
+// import type { WalineEmojiConfig } from "../utils/config";
 
 export type WalineCommentSorting = 'latest' | 'oldest' | 'hottest';
 
@@ -45,8 +45,17 @@ export interface WalineEmojiInfo {
 
 export type WalineEmojiFactory = () =>
   | WalineEmojiInfo
-  | WalineEmojiConfig
-  | Promise<WalineEmojiInfo | WalineEmojiConfig>;
+  | {
+      tabs: Pick<WalineEmojiInfo, 'name' | 'icon' | 'items'>[];
+      map: WalineEmojiMaps;
+    }
+  | Promise<
+      | WalineEmojiInfo
+      | {
+          tabs: Pick<WalineEmojiInfo, 'name' | 'icon' | 'items'>[];
+          map: WalineEmojiMaps;
+        }
+    >;
 
 export type WalineEmojiMaps = Record<string, string>;
 
