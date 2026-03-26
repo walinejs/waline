@@ -104,7 +104,7 @@ export const getConfig = ({
   turnstileKey,
   ...more,
   // oxlint-disable-next-line typescript/strict-boolean-expressions, typescript/prefer-nullish-coalescing
-  reaction: reaction === true ? DEFAULT_REACTION : reaction ?? null,
+  reaction: reaction === true ? DEFAULT_REACTION : reaction || null,
   imageUploader: fallback(imageUploader, defaultUploadImage),
   highlighter: fallback(highlighter, defaultHighlighter),
   texRenderer: fallback(texRenderer, defaultTeXRenderer),
