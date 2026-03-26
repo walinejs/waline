@@ -1,3 +1,5 @@
+import type { WalineEmojiConfig } from "../utils";
+
 export type WalineCommentSorting = 'latest' | 'oldest' | 'hottest';
 
 export type WalineEmojiPresets = `//${string}` | `http://${string}` | `https://${string}`;
@@ -40,6 +42,11 @@ export interface WalineEmojiInfo {
    */
   items: string[];
 }
+
+export type WalineEmojiFactory = () =>
+  | WalineEmojiInfo
+  | WalineEmojiConfig
+  | Promise<WalineEmojiInfo | WalineEmojiConfig>;
 
 export type WalineEmojiMaps = Record<string, string>;
 
