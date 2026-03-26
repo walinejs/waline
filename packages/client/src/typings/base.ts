@@ -1,5 +1,3 @@
-// import type { WalineEmojiConfig } from "../utils/config";
-
 export type WalineCommentSorting = 'latest' | 'oldest' | 'hottest';
 
 export type WalineEmojiPresets = `//${string}` | `http://${string}` | `https://${string}`;
