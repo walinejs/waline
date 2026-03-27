@@ -122,11 +122,13 @@ dir:
 
 ## 视频教程
 
-以下是热心用户制作的视频教程，以上操作不清楚的也可以参考一二。
+以下是热心用户制作的视频教程，以上操作不清楚的也可以参考。
 
 ### Waline 部署教程（快速上手）
 
-> UP 主：[rickroll 摇](https://space.bilibili.com/381992209)
+> UP 主：[阿巴In](https://space.bilibili.com/381992209)
+
+<BiliBili bvid="BV1J2XuBtEGn" />
 
 <BiliBili bvid="BV1pB4y1E7fp" />
 
