@@ -1,16 +1,16 @@
 ---
-title: Comment Counter
+title: コメントカウンター
 icon: counter
 order: 8
 ---
 
-Waline supports displaying the number of comments separately in the non-comment area.
+Waline は、コメントエリア以外の場所でコメント数を個別に表示することをサポートしています。
 
 <!-- more -->
 
-## Automatically Update
+## 自動更新
 
-You can enable comment counting in the `init` function by setting the `comment` option to `true`.
+`init` 関数で `comment` オプションを `true` に設定することで、コメントカウントを有効にできます。
 
 ```html
 <script type="module">
@@ -19,39 +19,39 @@ You can enable comment counting in the `init` function by setting the `comment` 
   init({
     el: '#waline',
     // ...
-    comment: true, // enable comment counting
+    comment: true, // コメントカウントを有効にする
   });
 </script>
 ```
 
-Waline will try to fill in or update comment count whenever you called `init` function or update the path.
+`init` 関数を呼び出したり、パスを更新したりするたびに、Waline はコメント数の入力または更新を試みます。
 
-waline finds the elements having `waline-comment-count` class in the page, and get their `data-path` attribute as the query condition. And fill it with the obtained value:
+Waline はページ内で `waline-comment-count` クラスを持つ要素を探し、それらの `data-path` 属性をクエリ条件として取得します。そして取得した値を要素に反映します:
 
 ```html
-<!-- data-path will be the query condition -->
+<!-- data-path がクエリ条件になります -->
 <span data-path="<Your/Path/Name>" class="waline-comment-count" /> comments
 ```
 
-If you need a different selector, you can set the `comment` option to that selector.
+異なるセレクターが必要な場合は、`comment` オプションにそのセレクターを設定できます。
 
-Every time you call `WalineInstance.update()`, Waline will search the page content and automatically update the comment count.
+`WalineInstance.update()` を呼び出すたびに、Waline はページ内容を検索してコメント数を自動更新します。
 
-::: tip Examples
+::: tip 例
 
 ```html
 The current page has <span class="waline-comment-count" /> comments, the home page has
 <span data-path="/jp/" class="waline-comment-count" /> comments.
 ```
 
-The current page has <span class="waline-comment-count" /> comments, the home
-page has <span data-path="/jp/" class="waline-comment-count" /> comments.
+このページのコメント数は <span class="waline-comment-count" /> 件、
+ホームページのコメント数は <span data-path="/jp/" class="waline-comment-count" /> 件です。
 
 :::
 
-## Manual Update
+## 手動更新
 
-Besides automatically update via the `init` function, you can manually update the current page's comment count via the `commentCount` API:
+`init` 関数による自動更新に加えて、`commentCount` API を使って現在のページのコメント数を手動で更新することもできます:
 
 ```html
 <script type="module">
@@ -67,11 +67,11 @@ Besides automatically update via the `init` function, you can manually update th
 </script>
 ```
 
-::: info Aborting
+::: info 中断
 
-Since the comment count fetch is an asynchronous network operation, you may need to cancel an ongoing comment count update operation in certain circumstances.
+コメント数の取得は非同期のネットワーク操作であるため、状況によっては進行中のコメント数更新操作をキャンセルする必要が生じることがあります。
 
-`commentCount` returns a function that can be called to cancel the update:
+`commentCount` はキャンセルに使える関数を返します:
 
 ```js
 const abort = Waline.commentCount({
@@ -85,9 +85,9 @@ setTimeout(() => abort(), 500);
 
 :::
 
-## Import Counter Only
+## カウンターのみのインポート
 
-Sometimes, you may want to display the comment count of some pages in the article list or homepage, but do not want to load the entire Waline. At this point you can use a Gzip < 1KB `comment` module:
+記事一覧やホームページで一部のページのコメント数を表示したいが、Waline 全体を読み込みたくない場合があります。そのような場合は Gzip サイズが 1KB 未満の `comment` モジュールを使用できます:
 
 ```html
 <script type="module">

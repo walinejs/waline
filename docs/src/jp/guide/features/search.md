@@ -1,18 +1,18 @@
 ---
-title: Emoticons Search
+title: 絵文字検索
 icon: search
 order: 3
 ---
 
-`@waline/client` allows users to add emoji search services and customize this functionality.
+`@waline/client` では、絵文字検索サービスを追加したり、この機能をカスタマイズしたりすることができます。
 
-By default, `@waline/client` provides meme search service via [Giphy](https://giphy.com/). This will allow you to search images and add them to the comment.
+デフォルトでは、`@waline/client` は [Giphy](https://giphy.com/) 経由でミーム検索サービスを提供しています。これにより画像を検索してコメントに追加することができます。
 
 <!-- more -->
 
-## Disable
+## 無効化
 
-If you don't need the default images search service, you can disable it by setting the `search` option to `false`.
+デフォルトの画像検索サービスが不要な場合は、`search` オプションを `false` に設定することで無効にできます。
 
 ```js
 Waline.init({
@@ -22,20 +22,20 @@ Waline.init({
 });
 ```
 
-## Customize
+## カスタマイズ
 
-You can customize the image search service through the search option.
+`search` オプションを使って画像検索サービスをカスタマイズできます。
 
-For each operation, you should return an array containing the image information as the search result, and each item should be an object with the following properties:
+各操作では、検索結果として画像情報を含む配列を返す必要があります。各アイテムは以下のプロパティを持つオブジェクトである必要があります:
 
-- `src`: the link address of the image
-- `title`: image title and alt text (optional)
-- `preview`: Thumbnail of the image to use in the result list (optional)
+- `src`: 画像のリンクアドレス
+- `title`: 画像のタイトルおよび alt テキスト（オプション）
+- `preview`: 結果リストで使用する画像のサムネイル（オプション）
 
-The option accepts three functions, each of which should return a Promise, and the result is the array of search results above.
+このオプションは 3 つの関数を受け取ります。それぞれ Promise を返す必要があり、結果は上記の検索結果の配列です。
 
-- `search`: search operation, the search term will be passed as the first parameter of the function
-- `default`: list of images to display by default (optional)
-- `more`: The function that starts when the image is scrolled to the bottom, where the search term and the current number are passed in as the first two parameters (optional)
+- `search`: 検索操作。検索キーワードが関数の第一引数として渡されます
+- `default`: デフォルトで表示する画像一覧（オプション）
+- `more`: 画像が一番下までスクロールされたときに実行される関数。検索キーワードと現在の件数が最初の 2 つの引数として渡されます（オプション）
 
-For tutorials on custom search, see [Cookbook → Custom Emoji Search](../../cookbook/customize/search.md).
+カスタム検索のチュートリアルは [クックブック → カスタム絵文字検索](../../cookbook/customize/search.md) を参照してください。

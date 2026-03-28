@@ -1,16 +1,16 @@
 ---
-title: Emoji Customize
+title: 絵文字のカスタマイズ
 icon: emoji
 order: 2
 ---
 
-You can customize the emoji of the comment box by setting `emoji` option, you should set it to an **array** containing _preset link_ or _preset config object_. If you don't want it, just set it to `false`.
+`emoji` オプションを設定することで、コメントボックスの絵文字をカスタマイズできます。_プリセットリンク_ または _プリセット設定オブジェクト_ を含む**配列**として設定する必要があります。不要な場合は `false` に設定してください。
 
 <!-- more -->
 
-## Presets
+## プリセット
 
-Waline provides a series of emoji presets that can be used out of box. You can add them directly to the `emoji` options:
+Waline はすぐに使えるさまざまな絵文字プリセットを提供しています。`emoji` オプションに直接追加できます:
 
 - Alus
 
@@ -49,8 +49,8 @@ Waline provides a series of emoji presets that can be used out of box. You can a
     https://unpkg.com/@waline/emojis@1.4.0/tw-emoji
     ```
 
-  ::: details Others presets
-  - Full: (Not recommended)
+  ::: details その他のプリセット
+  - Full: (非推奨)
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw
@@ -130,7 +130,7 @@ Waline provides a series of emoji presets that can be used out of box. You can a
   https://unpkg.com/@waline/emojis@1.4.0/weibo
   ```
 
-- Soul knight Emoji
+- Soul Knight Emoji
 
   ```http
   https://unpkg.com/@waline/emojis@1.4.0/soul-emoji
@@ -138,11 +138,11 @@ Waline provides a series of emoji presets that can be used out of box. You can a
 
 ::: warning
 
-Waline DO NOT have any copyright of above emojis, use them at your own risk.
+Waline は上記の絵文字に関して一切の著作権を持っていません。ご利用は自己責任でお願いします。
 
 :::
 
-### Example
+### 例
 
 ```html
 <div id="waline"></div>
@@ -159,6 +159,6 @@ Waline DO NOT have any copyright of above emojis, use them at your own risk.
 </script>
 ```
 
-## Create your own presets
+## 独自プリセットの作成
 
-Besides the presets provided by Waline, you can create your own presets, see [Guide → Create Emoji Presets](../../cookbook/customize/emoji.md).
+Waline が提供するプリセットのほかに、独自のプリセットを作成することもできます。[ガイド → 絵文字プリセットの作成](../../cookbook/customize/emoji.md)を参照してください。

@@ -1,31 +1,31 @@
 ---
-title: Privacy Policy
+title: プライバシーポリシー
 icon: privacy
 order: -2
 ---
 
-Thank you for using the Waline commenting system. We take your privacy and data security very seriously. This privacy policy will inform you how we collect, use, process and protect your personal data.
+Waline コメントシステムをご利用いただきありがとうございます。私たちはお客様のプライバシーとデータセキュリティを非常に重視しています。このプライバシーポリシーでは、お客様の個人データをどのように収集・利用・処理・保護するかをご説明します。
 
-## Data Types
+## データの種類
 
-In order to provide services, we may collect and store your IP address, browser User-Agent (UA) and other related information, but if you have made the corresponding settings in the Waline configuration file, we will stop storing these according to your request information.
+サービスを提供するため、IPアドレス、ブラウザの User-Agent（UA）およびその他の関連情報を収集・保存することがあります。ただし、Waline の設定ファイルで対応する設定を行っている場合は、お客様の要請に従ってこれらの情報の保存を停止します。
 
-## Data Usage
+## データの利用
 
-We only use your information to provide commenting services and will not disclose, sell or rent it to third parties. We will make every effort to protect your information security and comply with local laws, regulations and relevant standards.
+収集した情報はコメントサービスの提供のみに使用し、第三者への開示・販売・賃貸は行いません。お客様の情報のセキュリティ保護に最善を尽くし、現地の法律・規制および関連する基準を遵守します。
 
-## Data Processing
+## データの処理
 
-In order to provide you with better services, we may transmit your information to our servers, partner servers, or third-party service provider's servers, which may be located within or outside the country. We will take reasonable measures to protect your information security and comply with local laws, regulations, and relevant standards.
+より良いサービスを提供するため、お客様の情報を当社のサーバー、パートナーのサーバー、またはサードパーティのサービスプロバイダーのサーバーに転送することがあります。これらのサーバーは国内外に所在する場合があります。お客様の情報のセキュリティを保護するための合理的な措置を講じ、現地の法律・規制および関連する基準を遵守します。
 
-## Data Protection
+## データの保護
 
-We will take technical and management measures to protect your information security, prevent unauthorized access, use or disclosure. If there are data security issues, we will promptly notify you and take measures to repair them. However, please note that due to the characteristics and technical limitations of the Internet itself, we cannot guarantee 100% security of your information.
+お客様の情報のセキュリティを保護し、不正アクセス・利用・開示を防ぐため、技術的・管理的な措置を講じます。データセキュリティに問題が発生した場合は、速やかにお客様に通知し、修復のための措置を講じます。ただし、インターネット自体の特性と技術的な制限により、お客様の情報の 100% の安全を保証することはできません。
 
-## Legal Responsibility
+## 法的責任
 
-We will comply with local laws, regulations, and relevant standards to protect the privacy rights and data security of users. If necessary, we may provide user information in accordance with legal requirements. In addition, we will not actively disclose user information.
+現地の法律・規制および関連する基準を遵守し、ユーザーのプライバシー権とデータセキュリティを保護します。必要な場合、法的要件に従ってユーザー情報を提供することがあります。また、ユーザー情報を積極的に開示することはありません。
 
-## Other Provisions
+## その他の規定
 
-This privacy policy applies to all products and services of the Waline commenting system under default configurations. For additional features added to the Waline commenting system by some websites based on modification, this privacy policy does not guarantee its applicability. We reserve the right to modify the privacy policy and will update it in a timely manner. If you have any questions or suggestions about this privacy policy, please contact us.
+このプライバシーポリシーは、デフォルト設定における Waline コメントシステムのすべての製品とサービスに適用されます。一部のウェブサイトが Waline コメントシステムを改変して追加した機能については、このプライバシーポリシーの適用を保証しません。プライバシーポリシーを変更する権利を留保し、変更があった場合は速やかに更新します。このプライバシーポリシーについてご質問やご意見がありましたら、お問い合わせください。
