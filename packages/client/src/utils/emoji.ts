@@ -61,7 +61,7 @@ export const getEmojisInfo = (
     emojiInfos.forEach((emojiInfo) => {
       if ('tabs' in emojiInfo) {
         emojisConfig.tabs.push(...emojiInfo.tabs);
-        emojisConfig.map = { ...emojisConfig.map, ...emojiInfo.map };
+        Object.assign(emojisConfig.map, emojiInfo.map);
         return;
       }
 
