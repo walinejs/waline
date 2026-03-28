@@ -11,6 +11,7 @@ import {
   getMeta,
 } from '../config/index.js';
 import type {
+  WalineEmojiFactory,
   WalineEmojiInfo,
   WalineEmojiMaps,
   WalineEmojiPresets,
@@ -35,7 +36,7 @@ export interface WalineConfig extends Required<
 > {
   locale: WalineLocale;
   wordLimit: [number, number] | false;
-  emoji: (WalineEmojiInfo | WalineEmojiPresets)[] | null;
+  emoji: (WalineEmojiInfo | WalineEmojiFactory | WalineEmojiPresets)[] | null;
   highlighter: WalineHighlighter | null;
   imageUploader: WalineImageUploader | null;
   texRenderer: WalineTeXRenderer | null;
@@ -50,7 +51,11 @@ export const getServerURL = (serverURL: string): string => {
 };
 
 const getWordLimit = (wordLimit: WalineProps['wordLimit']): [number, number] | false =>
-  Array.isArray(wordLimit) ? wordLimit : typeof wordLimit === 'number' && wordLimit > 0 ? [0, wordLimit] : false;
+  Array.isArray(wordLimit)
+    ? wordLimit
+    : typeof wordLimit === 'number' && wordLimit > 0
+      ? [0, wordLimit]
+      : false;
 
 const fallback = <T = unknown>(value: T | boolean | undefined, fallback: T): T | null =>
   value == null || value === true ? fallback : value === false ? null : value;

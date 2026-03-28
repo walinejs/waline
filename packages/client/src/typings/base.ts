@@ -41,6 +41,19 @@ export interface WalineEmojiInfo {
   items: string[];
 }
 
+/** It is actually the same as `WalineEmojiConfig`, but to avoid circular
+ * dependency issue while importing `WalineEmojiConfig`, we redefined a
+ * new type here */
+export interface WalineEmojiConfigFromFactory {
+  tabs: Pick<WalineEmojiInfo, 'name' | 'icon' | 'items'>[];
+  map: WalineEmojiMaps;
+}
+
+export type WalineEmojiFactory = () =>
+  | WalineEmojiInfo
+  | WalineEmojiConfigFromFactory
+  | Promise<WalineEmojiInfo | WalineEmojiConfigFromFactory>;
+
 export type WalineEmojiMaps = Record<string, string>;
 
 export type WalineLoginStatus = 'enable' | 'disable' | 'force';
