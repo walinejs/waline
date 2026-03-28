@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import { emojiMaps } from './__fixtures__/emojiMap.js';
 import { parseEmoji } from '../src/utils/markdown.js';
 import { getEmojisInfo } from '../src/utils/emoji.js';
-import { WalineEmojiConfig } from '../src/utils/config.js';
+import type { WalineEmojiConfig } from '../src/utils/config.js';
 
 describe('Emoji test', () => {
   it('Should not parse', () => {
