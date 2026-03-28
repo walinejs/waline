@@ -48,7 +48,7 @@ export const getEmojisInfo = (
           isString(emoji)
             ? fetchEmoji(removeEndingSplash(emoji))
             : typeof emoji === 'function'
-              ? emoji()
+              ? Promise.resolve().then(() => emoji())
               : Promise.resolve(emoji),
         )
       : [],
