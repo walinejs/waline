@@ -5,7 +5,6 @@ import { Link, useNavigate } from 'react-router';
 
 import { LANGUAGE_OPTIONS } from '../locales/index.js';
 
-// oxlint-disable-next-line max-lines-per-function
 export default function Header() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -30,6 +29,7 @@ export default function Header() {
         if (user.__version === resp.version) {
           return;
         }
+
         setLatestVersion(resp.version);
       });
   }, [user?.objectId]);

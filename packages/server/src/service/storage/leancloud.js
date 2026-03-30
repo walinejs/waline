@@ -60,6 +60,7 @@ module.exports = class extends Base {
               } else if (last === '%') {
                 instance.startsWith(k, where[k][1].slice(0, -1));
               }
+
               break;
             }
             case '!=': {
@@ -107,12 +108,15 @@ module.exports = class extends Base {
     if (desc) {
       instance.descending(desc);
     }
+
     if (limit) {
       instance.limit(limit);
     }
+
     if (offset) {
       instance.skip(offset);
     }
+
     if (field) {
       instance.select(field);
     }
@@ -121,6 +125,7 @@ module.exports = class extends Base {
       if (err.code === 101) {
         return [];
       }
+
       throw err;
     });
 
@@ -217,6 +222,7 @@ module.exports = class extends Base {
         if (data.status === 'approved') {
           count += 1;
         }
+
         break;
       }
       case 'udpate_status': {
@@ -225,6 +231,7 @@ module.exports = class extends Base {
         } else {
           count -= 1;
         }
+
         break;
       }
       case 'delete': {
@@ -240,6 +247,7 @@ module.exports = class extends Base {
       if (err.code === 101) {
         return;
       }
+
       throw err;
     });
     this.tableName = currentTableName;
@@ -253,6 +261,7 @@ module.exports = class extends Base {
         if (err.code === 101) {
           return 0;
         }
+
         throw err;
       });
     }
@@ -277,6 +286,7 @@ module.exports = class extends Base {
           for (const field of options.group) {
             countsMap[key][field] = count[field];
           }
+
           countsMap[key].count = 0;
         }
         countsMap[key].count += 1;
@@ -367,6 +377,7 @@ module.exports = class extends Base {
       if (REVERSED_KEYS.has(k)) {
         continue;
       }
+
       instance.set(k, data[k]);
     }
 
@@ -399,6 +410,7 @@ module.exports = class extends Base {
           if (REVERSED_KEYS.has(k)) {
             continue;
           }
+
           item.set(k, updateData[k]);
         }
 

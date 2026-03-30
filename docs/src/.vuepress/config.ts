@@ -1,3 +1,4 @@
+// oxlint-disable unicorn/prefer-module
 import { viteBundler } from '@vuepress/bundler-vite';
 import { defineUserConfig } from 'vuepress';
 import { path } from 'vuepress/utils';

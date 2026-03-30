@@ -1,4 +1,3 @@
-// oxlint-disable import/max-dependencies
 // oxlint-disable max-lines-per-function
 // oxlint-disable max-lines
 import cls from 'classnames';
@@ -6,7 +5,6 @@ import React, { useEffect, useReducer, useRef, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
-import { buildAvatar, formatDate, getPostUrl } from './utils.js';
 import Header from '../../components/Header.jsx';
 import Paginator from '../../components/Paginator.jsx';
 import {
@@ -15,6 +13,7 @@ import {
   replyComment,
   updateComment,
 } from '../../services/comment.js';
+import { buildAvatar, formatDate, getPostUrl } from './utils.js';
 
 export default function ManageComments() {
   const { t } = useTranslation();
@@ -109,6 +108,7 @@ export default function ManageComments() {
             if (comment.status === 'spam') {
               list.spamCount -= 1;
             }
+
             list.waitingCount += 1;
             setList({ ...list });
           } else {
@@ -224,6 +224,7 @@ export default function ManageComments() {
     if (!comment) {
       return null;
     }
+
     const { display_name, email, url: link } = user;
 
     await replyComment({

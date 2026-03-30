@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-module.exports = class extends think.Controller {
+module.exports = class OAuthController extends think.Controller {
   constructor(ctx) {
     super(ctx);
     this.modelInstance = this.getModel('Users');
@@ -38,6 +38,7 @@ module.exports = class extends think.Controller {
         type,
       });
 
+      // oxlint-disable-next-line no-undefined
       params.state = think.buildUrl(undefined, {
         redirect: redirectUrl,
         state: this.ctx.state.token || '',
@@ -109,6 +110,6 @@ module.exports = class extends think.Controller {
     // and then generate token!
     const token = jwt.sign(cmtUser.objectId, this.config('jwtKey'));
 
-    this.redirect(redirect + (redirect.includes('?') ? '&' : '?') + 'token=' + token);
+    this.redirect(`${redirect}${redirect.includes('?') ? '&' : '?'}token=${token}`);
   }
 };

@@ -50,7 +50,7 @@ export const commentCount = ({
   // comment count
   const elements = document.querySelectorAll<HTMLElement>(selector);
 
-  if (elements.length > 0)
+  if (elements.length > 0) {
     void fetchCommentCount({
       serverURL: getServerURL(serverURL),
       paths: Array.from(elements, (element) => decodePath(getQuery(element) ?? path)),
@@ -63,6 +63,7 @@ export const commentCount = ({
         });
       })
       .catch(errorHandler);
+  }
 
   return controller.abort.bind(controller);
 };

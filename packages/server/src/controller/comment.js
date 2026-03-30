@@ -4,7 +4,6 @@ const { getMarkdownParser } = require('../service/markdown/index.js');
 
 const markdownParser = getMarkdownParser();
 
-// oxlint-disable-next-line max-statements
 const formatCmt = async (
   { ua, ip, ...comment },
   users = [],
@@ -42,6 +41,7 @@ const formatCmt = async (
   if (loginUser) {
     comment.orig = comment.comment;
   }
+
   if (!isAdmin) {
     delete comment.mail;
   } else {
@@ -52,6 +52,7 @@ const formatCmt = async (
   if (isAdmin || !think.config('disableRegion')) {
     comment.addr = await think.ip2region(ip, { depth: isAdmin ? 3 : 1 });
   }
+
   comment.comment = markdownParser(comment.comment);
   comment.like = Number(comment.like) || 0;
 
@@ -64,6 +65,7 @@ const formatCmt = async (
   if (!deprecated) {
     delete comment.insertedAt;
   }
+
   delete comment.createdAt;
   delete comment.updatedAt;
 
@@ -497,16 +499,19 @@ module.exports = class extends BaseRest {
       if (user_ids.length > 0) {
         countWhere._complex.user_id = ['IN', user_ids];
       }
+
       const mails = [...new Set(comments.map(({ mail }) => mail).filter((v) => v))];
 
       if (mails.length > 0) {
         countWhere._complex.mail = ['IN', mails];
       }
+
       if (!think.isEmpty(countWhere._complex)) {
         countWhere._complex._logic = 'or';
       } else {
         delete countWhere._complex;
       }
+
       const counts = await this.modelInstance.count(countWhere, {
         group: ['user_id', 'mail'],
       });

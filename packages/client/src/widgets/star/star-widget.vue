@@ -29,11 +29,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed, onMounted, h } from 'vue';
 import { watchImmediate } from '@vueuse/core';
-import StarDisplay from './star-display.vue';
 import { updateArticleCounter } from '@waline/api';
+import { defineComponent, ref, computed, onMounted, h } from 'vue';
+
 import { useReactionStorage } from '../../composables';
+import StarDisplay from './star-display.vue';
 import { clampScore, fetchReaction, normalizeDistribution } from './utils';
 
 export default defineComponent({
@@ -56,6 +57,8 @@ export default defineComponent({
     },
   },
   emits: ['rate'],
+
+  // oxlint-disable-next-line max-lines-per-function
   setup(props, { emit }) {
     const ratingArea = ref<HTMLElement | null>(null);
     const reactionStorage = useReactionStorage();
@@ -95,10 +98,12 @@ export default defineComponent({
 
     const getScoreFromEvent = (event: MouseEvent): number => {
       if (!ratingArea.value) return 0;
+
       const { firstElementChild, lastElementChild } = ratingArea.value;
       if (!firstElementChild || !lastElementChild) {
         return 0;
       }
+
       const { left } = (firstElementChild as Element).getBoundingClientRect();
       const { right } = (lastElementChild as Element).getBoundingClientRect();
       const width = right - left;
@@ -162,22 +167,23 @@ export default defineComponent({
         if (prevScore) {
           reactionStorage.value[props.path] = prevScore - 1;
         } else {
+          // oxlint-disable-next-line typescript/no-dynamic-delete
           delete reactionStorage.value[props.path];
         }
+
+        // oxlint-disable-next-line no-console
         console.error('[Waline] Failed to update reaction counter', err);
       } finally {
         isVoting.value = false;
       }
     };
 
-    function countFor(score: number) {
-      return internalDistribution.value[score - 1] ?? 0;
-    }
+    const countFor = (score: number): number => internalDistribution.value[score - 1] ?? 0;
 
-    function percentText(score: number) {
+    const percentText = (score: number): string => {
       const percent = scorePercents.value[score - 1] ?? 0;
       return `${(percent * 100).toFixed(1)}%`;
-    }
+    };
 
     return {
       ratingArea,

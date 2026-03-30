@@ -10,6 +10,7 @@ const buildAbsoluteUrl = (baseUrl, path) => {
   if (!path) return baseUrl || '';
   if (isHttpUrl(path)) return path;
   if (!baseUrl) return path;
+
   const normalizedBase = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;
   const normalizedPath = path.startsWith('/') ? path : `/${path}`;
 

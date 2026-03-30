@@ -44,6 +44,7 @@ module.exports = [
         if (/favicon.ico$/.test(ctx.url)) {
           return;
         }
+
         if (think.isPrevent(err)) {
           return false;
         }

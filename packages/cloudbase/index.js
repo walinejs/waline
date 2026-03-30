@@ -19,7 +19,7 @@ module.exports = function main(config = {}) {
   loader.loadAll('worker');
 
   for (const key in config) {
-    think.config(key, config[key]);
+    if (Object.hasOwn(config, key)) think.config(key, config[key]);
   }
 
   return {

@@ -51,32 +51,38 @@ export const init = ({
 
   // check root
   // oxlint-disable-next-line typescript/strict-boolean-expressions
-  if (el && !root) throw new Error(`Option 'el' do not match any domElement!`);
+  if (el && !root) {
+    throw new Error(`Option 'el' do not match any domElement!`);
+  }
 
   // check serverURL
-  if (!initProps.serverURL) throw new Error("Option 'serverURL' is missing!");
+  if (!initProps.serverURL) {
+    throw new Error("Option 'serverURL' is missing!");
+  }
 
   const props = reactive({ ...initProps });
   const state = reactive({ comment, pageview, path });
 
   const updateCommentCount = (): void => {
     // oxlint-disable-next-line typescript/strict-boolean-expressions
-    if (state.comment)
+    if (state.comment) {
       commentCount({
         serverURL: props.serverURL,
         path: state.path,
         ...(isString(state.comment) ? { selector: state.comment } : {}),
       });
+    }
   };
 
   const updatePageviewCount = (): void => {
     // oxlint-disable-next-line typescript/strict-boolean-expressions
-    if (state.pageview)
+    if (state.pageview) {
       pageviewCount({
         serverURL: props.serverURL,
         path: state.path,
         ...(isString(state.pageview) ? { selector: state.pageview } : {}),
       });
+    }
   };
 
   let app: App<Element> | null = null;
@@ -93,8 +99,11 @@ export const init = ({
   return {
     el: root,
     update: ({
+      // oxlint-disable-next-line no-shadow
       comment,
+      // oxlint-disable-next-line no-shadow
       pageview,
+      // oxlint-disable-next-line no-shadow
       path = window.location.pathname,
       ...newProps
     }: Partial<Omit<WalineInitOptions, 'el'>> = {}): void => {
@@ -103,8 +112,12 @@ export const init = ({
       });
 
       state.path = path;
-      if (comment != null) state.comment = comment;
-      if (pageview != null) state.pageview = pageview;
+      if (comment != null) {
+        state.comment = comment;
+      }
+      if (pageview != null) {
+        state.pageview = pageview;
+      }
     },
     destroy: (): void => {
       app?.unmount();

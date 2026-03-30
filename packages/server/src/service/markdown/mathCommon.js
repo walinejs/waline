@@ -117,9 +117,10 @@ const blockTeX = (state, start, end, silent) => {
     if (next >= end) break;
     pos = state.bMarks[next] + state.tShift[next];
     max = state.eMarks[next];
-    if (pos < max && state.tShift[next] < state.blkIndent)
+    if (pos < max && state.tShift[next] < state.blkIndent) {
       // non-empty line with negative indent should stop the list:
       break;
+    }
     if (state.src.slice(pos, max).trim().endsWith('$$')) {
       lastPos = state.src.slice(0, max).lastIndexOf('$$');
       lastLine = state.src.slice(pos, lastPos);

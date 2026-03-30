@@ -52,9 +52,11 @@ export default function Login() {
     if (!email) {
       return setError(t('please input email'));
     }
+
     if (!password) {
       return setError(t('please input password'));
     }
+
     if (event.target.code && !code) {
       return setError(t('please input 2fa code'));
     }

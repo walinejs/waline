@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
-import { emojiMaps } from './__fixtures__/emojiMap.js';
 import { parseEmoji } from '../src/utils/markdown.js';
+import { emojiMaps } from './__fixtures__/emojiMap.js';
 
 describe('Emoji test', () => {
   it('Should not parse', () => {
@@ -23,7 +23,7 @@ describe('Emoji test', () => {
   });
 
   it('Should not throw errors', () => {
-    expect(() => parseEmoji()).not.toThrowError();
-    expect(() => parseEmoji('')).not.toThrowError();
+    expect(() => parseEmoji()).not.toThrow();
+    expect(() => parseEmoji('')).not.toThrow();
   });
 });

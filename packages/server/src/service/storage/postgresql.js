@@ -11,6 +11,7 @@ function mapKeys({ insertedat, createdat, updatedat, ...item }) {
     if (!mapFields[field]) {
       continue;
     }
+
     item[field] = mapFields[field];
   }
 

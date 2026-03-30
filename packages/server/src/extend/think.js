@@ -46,7 +46,7 @@ module.exports = {
 
     return -1;
   },
-  promiseAllQueue(promises, taskNum) {
+  async promiseAllQueue(promises, taskNum) {
     return new Promise((resolve, reject) => {
       if (promises.length === 0) {
         resolve();
@@ -171,6 +171,7 @@ module.exports = {
       if (!query[key]) {
         continue;
       }
+
       notEmptyQuery[key] = query[key];
     }
 
@@ -181,6 +182,7 @@ module.exports = {
     if (destUrl && notEmptyQueryStr) {
       destUrl += destUrl.includes('?') ? '&' : '?';
     }
+
     if (notEmptyQueryStr) {
       destUrl += notEmptyQueryStr;
     }

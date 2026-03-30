@@ -142,6 +142,7 @@ module.exports = class CommentLogic extends Base {
         if (userInfo.type !== 'administrator') {
           return this.fail();
         }
+
         this.rules = {
           page: {
             int: true,

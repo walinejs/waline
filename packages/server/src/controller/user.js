@@ -78,6 +78,7 @@ module.exports = class UserController extends BaseRest {
     data.password = this.hashPassword(data.password);
     data.type = think.isEmpty(count) ? 'administrator' : normalType;
 
+    // oxlint-disable-next-line unicorn/prefer-ternary
     if (think.isEmpty(resp)) {
       await this.modelInstance.add(data);
     } else {
@@ -198,9 +199,10 @@ module.exports = class UserController extends BaseRest {
       return this.fail();
     }
 
-    const user = users[0];
+    const [user] = users;
     const isVerifyUser = /^verify:/i.test(user.type);
 
+    // oxlint-disable-next-line unicorn/prefer-ternary
     if (isVerifyUser) {
       await this.modelInstance.delete({ objectId: this.id });
     } else {
@@ -210,7 +212,6 @@ module.exports = class UserController extends BaseRest {
     return this.success();
   }
 
-  // oxlint-disable-next-line max-statements
   async getUsersListByCount() {
     const { pageSize } = this.get();
     const commentModel = this.getModel('Comment');
@@ -278,11 +279,13 @@ module.exports = class UserController extends BaseRest {
       if (think.isEmpty(comments)) {
         continue;
       }
+
       const [comment] = comments;
 
       if (think.isEmpty(comment)) {
         continue;
       }
+
       const { nick, link } = comment;
       const avatarUrl = await think.service('avatar').stringify(comment);
       const avatar =

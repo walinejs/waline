@@ -3,6 +3,9 @@ import { useNow } from '@vueuse/core';
 import type { WalineComment, WalineCommentStatus } from '@waline/api';
 import { computed, inject } from 'vue';
 
+import { useLikeStorage, useUserInfo } from '../composables/index.js';
+import { configKey } from '../config/index.js';
+import { getTimeAgo, isLinkHttp } from '../utils/index.js';
 import CommentBox from './CommentBox.vue';
 import {
   AdministratorIcon,
@@ -13,9 +16,6 @@ import {
   RssLineIcon,
   VerifiedIcon,
 } from './Icons.js';
-import { useLikeStorage, useUserInfo } from '../composables/index.js';
-import { getTimeAgo, isLinkHttp } from '../utils/index.js';
-import { configKey } from '../config/index.js';
 
 const { comment, edit, rootId, reply } = defineProps<{
   /**

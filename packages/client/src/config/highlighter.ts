@@ -1,4 +1,3 @@
-// oxlint-disable jsdoc/check-tag-names FIXME:
 /**
  * The MIT License (MIT)
  *
@@ -56,18 +55,21 @@ export const defaultHighlighter = (input: string): string => {
 
   return input.replace(REGEXP, (_match, word: string, comment: string) => {
     if (comment) return `<span style="color: slategray">${comment}</span>`;
+
     if (word === '<') return '&lt;';
 
     let color: string;
 
-    if (cache[word]) color = cache[word];
-    else {
+    if (cache[word]) {
+      color = cache[word];
+    } else {
       color = COLORS[index];
       cache[word] = color;
     }
 
     const out = `<span style="color: #${color}">${word}</span>`;
 
+    // oxlint-disable-next-line no-plusplus
     index = ++index % COLORS.length;
 
     return out;

@@ -2,8 +2,8 @@ import { Fancybox } from '@fancyapps/ui/dist/fancybox/fancybox.js';
 import type { WalineOptions } from '@vuepress/plugin-comment/client';
 import { defineWalineConfig } from '@vuepress/plugin-comment/client';
 import { h, onBeforeUnmount, onMounted, resolveComponent } from 'vue';
-import { defineClientConfig, useFrontmatter } from 'vuepress/client';
 import { Layout } from 'vuepress-theme-hope/client';
+import { defineClientConfig, useFrontmatter } from 'vuepress/client';
 
 import '@fancyapps/ui/dist/fancybox/fancybox.css';
 import WalineTips from './components/WalineTips.js';
