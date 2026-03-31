@@ -12,13 +12,13 @@ DOMPurify.addHook('uponSanitizeElement', (node, data) => {
 
 /**
  * Add a hook to make all links open a new window
- * and force their rel to be 'nofollow noreferrer noopener'
+ * and force their rel to be 'ugc nofollow noreferrer noopener'
  */
 DOMPurify.addHook('afterSanitizeAttributes', (node) => {
   // set all elements owning target to target=_blank
   if ('target' in node && node.href && !node.href.startsWith('about:blank#')) {
     node.setAttribute('target', '_blank');
-    node.setAttribute('rel', 'nofollow noreferrer noopener');
+    node.setAttribute('rel', 'ugc nofollow noreferrer noopener');
   }
 
   // set non-HTML/MathML links to xlink:show=new
