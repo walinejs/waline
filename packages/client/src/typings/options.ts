@@ -1,4 +1,5 @@
 import type {
+  WalineEmojiFactory,
   WalineEmojiInfo,
   WalineEmojiPresets,
   WalineHighlighter,
@@ -57,7 +58,7 @@ export interface WalineInitOptions extends Omit<
    *
    * @default ['//unpkg.com/@waline/emojis@1.1.0/weibo']
    */
-  emoji?: (WalineEmojiInfo | WalineEmojiPresets)[] | boolean;
+  emoji?: (WalineEmojiInfo | WalineEmojiFactory | WalineEmojiPresets)[] | boolean;
 
   /**
    * 设置搜索功能

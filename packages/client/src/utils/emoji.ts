@@ -3,7 +3,7 @@ import { useStorage } from '@vueuse/core';
 import type { WalineEmojiConfig } from './config.js';
 import { removeEndingSplash } from './path.js';
 import { isString } from './type.js';
-import type { WalineEmojiInfo } from '../typings/index.js';
+import type { WalineEmojiFactory, WalineEmojiInfo } from '../typings/index.js';
 
 const EMOJI_STORE_KEY = 'WALINE_EMOJI';
 
@@ -40,12 +40,16 @@ const getLink = (name: string, folder = '', prefix = '', type = ''): string =>
   `${folder ? `${folder}/` : ''}${prefix}${name}${type ? `.${type}` : ''}`;
 
 export const getEmojisInfo = (
-  emojis: (string | WalineEmojiInfo)[] | null,
+  emojis: (string | WalineEmojiInfo | WalineEmojiFactory)[] | null,
 ): Promise<WalineEmojiConfig> =>
   Promise.all(
     emojis
       ? emojis.map((emoji) =>
-          isString(emoji) ? fetchEmoji(removeEndingSplash(emoji)) : Promise.resolve(emoji),
+          isString(emoji)
+            ? fetchEmoji(removeEndingSplash(emoji))
+            : typeof emoji === 'function'
+              ? Promise.resolve().then(() => emoji())
+              : Promise.resolve(emoji),
         )
       : [],
   ).then((emojiInfos) => {
@@ -55,6 +59,12 @@ export const getEmojisInfo = (
     };
 
     emojiInfos.forEach((emojiInfo) => {
+      if ('tabs' in emojiInfo) {
+        emojisConfig.tabs.push(...emojiInfo.tabs);
+        Object.assign(emojisConfig.map, emojiInfo.map);
+        return;
+      }
+
       const { name, folder, icon, prefix = '', type, items } = emojiInfo;
 
       emojisConfig.tabs.push({
