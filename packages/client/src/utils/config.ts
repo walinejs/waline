@@ -50,7 +50,7 @@ export const getServerURL = (serverURL: string): string => {
 };
 
 const getWordLimit = (wordLimit: WalineProps['wordLimit']): [number, number] | false =>
-  Array.isArray(wordLimit) ? wordLimit : typeof wordLimit === 'number' ? [0, wordLimit] : false;
+  Array.isArray(wordLimit) ? wordLimit : typeof wordLimit === 'number' && wordLimit > 0 ? [0, wordLimit] : false;
 
 const fallback = <T = unknown>(value: T | boolean | undefined, fallback: T): T | null =>
   value == null || value === true ? fallback : value === false ? null : value;
