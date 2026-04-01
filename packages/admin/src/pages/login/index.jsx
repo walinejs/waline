@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router';
 
 import Header from '../../components/Header.jsx';
 import * as Icons from '../../components/icon/index.js';
-import { useCaptcha } from '../../components/useCaptcha.js';
+
 import { get2FAToken } from '../../services/user.js';
+
+import { CaptchaProviders } from '../../components/Captcha.js';
+import getCaptchaConfig from '../../utils/getCaptchaConfig.js';
 
 // oxlint-disable-next-line max-lines-per-function
 export default function Login() {
@@ -17,10 +20,9 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [is2FAEnabled, enable2FA] = useState(false);
-  const execute = useCaptcha({
-    sitekey: window.turnstileKey ?? window.recaptchaV3Key,
-    hideDefaultBadge: true,
-  });
+  const captchaRef = useRef(null);
+
+  const captchaConfig = getCaptchaConfig();
 
   const match = location.pathname.match(/(.*?\/)ui/);
   const basePath = match && match[1] ? match[1] : '/';
@@ -59,7 +61,9 @@ export default function Login() {
       return setError(t('please input 2fa code'));
     }
 
-    const token = await execute('login');
+    const captchaToken = CaptchaProviders[captchaConfig?.provider]
+      ? captchaRef.current.getResponse()
+      : '';
 
     try {
       await dispatch.user.login({
@@ -67,8 +71,7 @@ export default function Login() {
         password,
         code,
         remember,
-        recaptchaV3: window.recaptchaV3Key ? token : undefined,
-        turnstile: window.turnstileKey ? token : undefined,
+        captcha: captchaToken,
       });
     } catch {
       setError(t('email or password error'));
@@ -163,7 +166,13 @@ export default function Login() {
                 />
               </p>
             )}
-            <p className="captcha-container" />
+
+            {CaptchaProviders[captchaConfig?.provider] &&
+              React.createElement(CaptchaProviders[captchaConfig.provider], {
+                ...captchaConfig,
+                ref: captchaRef,
+              })}
+
             <p className="submit">
               <button type="submit" className="btn btn-l w-100 primary" disabled={loading}>
                 {t('login')}

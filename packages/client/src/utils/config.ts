@@ -30,7 +30,14 @@ export interface WalineEmojiConfig {
 export interface WalineConfig extends Required<
   Omit<
     WalineProps,
-    'emoji' | 'imageUploader' | 'highlighter' | 'texRenderer' | 'wordLimit' | 'reaction' | 'search'
+    | 'emoji'
+    | 'imageUploader'
+    | 'highlighter'
+    | 'texRenderer'
+    | 'wordLimit'
+    | 'reaction'
+    | 'search'
+    | 'captcha'
   >
 > {
   locale: WalineLocale;
@@ -40,7 +47,8 @@ export interface WalineConfig extends Required<
   imageUploader: WalineImageUploader | null;
   texRenderer: WalineTeXRenderer | null;
   search: WalineSearchOptions | null;
-  reaction: string[] | null;
+  reaction: string[] | null | boolean;
+  captcha: WalineProps['captcha'] | null;
 }
 
 export const getServerURL = (serverURL: string): string => {
@@ -68,6 +76,7 @@ export const getConfig = ({
   noCopyright = false,
   noRss = false,
   login = 'enable',
+  captcha,
   recaptchaV3Key = '',
   turnstileKey = '',
   commentSorting = 'latest',
@@ -95,11 +104,18 @@ export const getConfig = ({
   login,
   noCopyright,
   noRss,
+  captcha:
+    captcha ??
+    (recaptchaV3Key
+      ? { provider: 'recaptchaV3', sitekey: recaptchaV3Key, options: { action: 'social' } }
+      : turnstileKey
+        ? { provider: 'turnstile', sitekey: turnstileKey }
+        : null),
   recaptchaV3Key,
   turnstileKey,
   ...more,
   // oxlint-disable-next-line typescript/strict-boolean-expressions, typescript/prefer-nullish-coalescing
-  reaction: reaction === true ? DEFAULT_REACTION : reaction || null,
+  reaction: reaction === true ? DEFAULT_REACTION : (reaction ?? null),
   imageUploader: fallback(imageUploader, defaultUploadImage),
   highlighter: fallback(highlighter, defaultHighlighter),
   texRenderer: fallback(texRenderer, defaultTeXRenderer),

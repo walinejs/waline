@@ -30,7 +30,9 @@
       "rules": {
         "react/jsx-max-depth": "off",
         "typescript/no-floating-promises": "off",
-        "typescript/unbound-method": "off"
+        "typescript/unbound-method": "off",
+        "typescript/no-base-to-string": "off",
+        "restrict-template-expressions": "off"
       }
     },
     {
