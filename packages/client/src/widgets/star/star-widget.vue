@@ -31,7 +31,7 @@
 <script lang="ts">
 import { watchImmediate } from '@vueuse/core';
 import { updateArticleCounter } from '@waline/api';
-import { defineComponent, ref, computed, onMounted, h } from 'vue';
+import { defineComponent, ref, computed, onMounted } from 'vue';
 
 import { useReactionStorage } from '../../composables';
 import StarDisplay from './star-display.vue';
