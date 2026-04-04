@@ -50,6 +50,7 @@ module.exports = class extends Base {
       if (k === '_complex') {
         continue;
       }
+
       if (think.isString(where[k])) {
         filter[parseKey(k)] = _.eq(where[k]);
         continue;
@@ -57,6 +58,7 @@ module.exports = class extends Base {
       if (where[k] === undefined) {
         filter[parseKey(k)] = _.eq(null);
       }
+
       if (Array.isArray(where[k])) {
         if (where[k][0]) {
           const handler = where[k][0].toUpperCase();
@@ -82,6 +84,7 @@ module.exports = class extends Base {
               } else if (last === '%') {
                 reg = new RegExp('^' + where[k][1].slice(0, -1));
               }
+
               filter[parseKey(k)] = reg;
               break;
             }
@@ -114,6 +117,7 @@ module.exports = class extends Base {
       if (k === '_logic') {
         continue;
       }
+
       filters.push({
         ...this.parseWhere({ [k]: where._complex[k] }),
         ...filter,
@@ -130,12 +134,15 @@ module.exports = class extends Base {
     if (desc) {
       instance = instance.orderBy(desc, 'desc');
     }
+
     if (limit) {
       instance = instance.limit(limit);
     }
+
     if (offset) {
       instance = instance.skip(offset);
     }
+
     if (field) {
       const filedObj = {};
 

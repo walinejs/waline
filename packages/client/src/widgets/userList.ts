@@ -90,13 +90,14 @@ export const UserList = ({
     lang,
     signal: controller.signal,
   }).then((users) => {
-    if (!root || users.length === 0)
+    if (!root || users.length === 0) {
       return {
         users,
         destroy: (): void => {
           controller.abort();
         },
       };
+    }
 
     const localeData = {
       ...getLocale(lang),

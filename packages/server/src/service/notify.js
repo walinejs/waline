@@ -258,6 +258,7 @@ module.exports = class NotifyService extends think.Service {
     if (commentLink !== '') {
       commentLink = `\n${commentLink}\n`;
     }
+
     const comment = self.comment
       .replaceAll(/<a href="(.*?)">(.*?)<\/a>/g, '[Link:$2]')
       .replaceAll(/<[^>]+>/g, '');
@@ -339,13 +340,27 @@ module.exports = class NotifyService extends think.Service {
 
     const form = new URLSearchParams();
 
-    if (topic) form.set('topic', topic);
-    if (template) form.set('template', template);
-    if (channel) form.set('channel', channel);
-    if (webhook) form.set('webhook', webhook);
-    if (callbackUrl) form.set('callbackUrl', callbackUrl);
-    if (title) form.set('title', title);
-    if (content) form.set('content', content);
+    if (topic) {
+      form.set('topic', topic);
+    }
+    if (template) {
+      form.set('template', template);
+    }
+    if (channel) {
+      form.set('channel', channel);
+    }
+    if (webhook) {
+      form.set('webhook', webhook);
+    }
+    if (callbackUrl) {
+      form.set('callbackUrl', callbackUrl);
+    }
+    if (title) {
+      form.set('title', title);
+    }
+    if (content) {
+      form.set('content', content);
+    }
 
     return fetch(`http://www.pushplus.plus/send/${PUSH_PLUS_KEY}`, {
       method: 'POST',

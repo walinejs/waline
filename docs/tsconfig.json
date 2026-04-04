@@ -2,8 +2,9 @@
   "extends": "../tsconfig.base.json",
   "compilerOptions": {
     "rootDir": "./src/.vuepress",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext"
+    "module": "Preserve",
+    "moduleResolution": "Bundler",
+    "types": ["node", "vite/client"]
   },
   "include": ["./src/.vuepress/**/*.ts", "./src/.vuepress/**/*.vue"]
 }

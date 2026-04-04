@@ -144,6 +144,7 @@ module.exports = class extends Base {
       if (err.statusCode === 404) {
         return '';
       }
+
       throw err;
     });
 
@@ -198,6 +199,7 @@ module.exports = class extends Base {
       if (where[k] === undefined) {
         filters.push((item) => item[k] === null || item[k] === undefined);
       }
+
       if (!Array.isArray(where[k]) || !where[k][0]) {
         continue;
       }
@@ -225,6 +227,7 @@ module.exports = class extends Base {
           } else if (last === '%') {
             reg = new RegExp('^' + where[k][1].slice(0, -1));
           }
+
           filters.push((item) => reg.test(item[k]));
           break;
         }
@@ -295,9 +298,7 @@ module.exports = class extends Base {
         const ret = {};
 
         for (const k in item) {
-          if (fieldObj[k]) {
-            ret[k] = item[k];
-          }
+          if (fieldObj[k]) ret[k] = item[k];
         }
 
         return ret;
@@ -357,9 +358,7 @@ module.exports = class extends Base {
       if (typeof data === 'function') {
         data(item);
       } else {
-        for (const k in data) {
-          item[k] = data[k];
-        }
+        for (const k in data) item[k] = data[k];
       }
     });
     await this.save(this.tableName, instance, instance.sha);

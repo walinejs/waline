@@ -56,6 +56,7 @@ module.exports = class extends BaseRest {
     if (avatarProxy) {
       avatarUrl = avatarProxy + '?url=' + encodeURIComponent(avatarUrl);
     }
+
     user[0].avatar = avatarUrl;
 
     return this.success({

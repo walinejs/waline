@@ -10,6 +10,7 @@ module.exports = () => async (ctx, next) => {
   if (!oauthResp || !Array.isArray(oauthResp.services)) {
     ctx.throw(502);
   }
+
   ctx.state.oauthServices = oauthResp.services || [];
 
   await next();

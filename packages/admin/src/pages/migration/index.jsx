@@ -17,6 +17,7 @@ export default function Migration() {
     if (!confirm(t('import clear data confirm'))) {
       return;
     }
+
     uploadRef.current.click();
   };
 
@@ -127,6 +128,7 @@ export default function Migration() {
           if (!cmt[field]) {
             return;
           }
+
           const oldId = cmt[field];
           const newId = idMaps[tableName][cmt[field]];
 

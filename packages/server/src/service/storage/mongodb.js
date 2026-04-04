@@ -15,6 +15,7 @@ module.exports = class extends Base {
       if (k === '_complex') {
         continue;
       }
+
       if (think.isString(where[k])) {
         filter[parseKey(k)] = {
           $eq: k === 'objectId' ? ObjectId(where[k]) : where[k],
@@ -24,6 +25,7 @@ module.exports = class extends Base {
       if (where[k] === undefined) {
         filter[parseKey(k)] = { $eq: null };
       }
+
       if (Array.isArray(where[k])) {
         if (where[k][0]) {
           const handler = where[k][0].toUpperCase();
@@ -61,6 +63,7 @@ module.exports = class extends Base {
               if (reg) {
                 filter[parseKey(k)] = { $regex: reg };
               }
+
               break;
             }
             case '!=': {
@@ -92,6 +95,7 @@ module.exports = class extends Base {
       if (k === '_logic') {
         continue;
       }
+
       filters.push({
         ...this.parseWhere({ [k]: where._complex[k] }),
         ...filter,
@@ -111,9 +115,11 @@ module.exports = class extends Base {
     if (desc) {
       instance.order(`${desc} DESC`);
     }
+
     if (limit || offset) {
       instance.limit(offset ?? 0, limit);
     }
+
     if (field) {
       instance.field(field);
     }
@@ -133,6 +139,7 @@ module.exports = class extends Base {
     if (group) {
       instance.group(group);
     }
+
     const data = await instance.count({ raw: group });
 
     if (!Array.isArray(data)) {

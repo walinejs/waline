@@ -9,7 +9,6 @@
     "diagnostics": false,
     "downlevelIteration": false,
     "experimentalDecorators": true,
-    "esModuleInterop": false,
     "forceConsistentCasingInFileNames": true,
     "importHelpers": true,
     "inlineSourceMap": false,
@@ -34,6 +33,7 @@
     "strict": true,
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
-    "target": "ES2022"
+    "target": "ES2022",
+    "types": ["node", "vite/client"]
   }
 }

@@ -8,6 +8,7 @@ export const useCaptcha = (config) => {
   if (window.turnstileKey) {
     return turnstile;
   }
+
   if (window.recaptchaV3Key) {
     return recaptchaV3;
   }

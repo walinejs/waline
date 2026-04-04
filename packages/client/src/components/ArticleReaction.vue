@@ -1,12 +1,12 @@
 <script setup lang="ts">
+import { watchImmediate } from '@vueuse/core';
 import { getArticleCounter, updateArticleCounter } from '@waline/api';
 import { computed, inject, onMounted, onUnmounted, ref } from 'vue';
 
-import { LoadingIcon } from './Icons.js';
 import { useReactionStorage } from '../composables/index.js';
-import type { WalineReactionLocale } from '../typings/index.js';
 import { configKey } from '../config/index.js';
-import { watchImmediate } from '@vueuse/core';
+import type { WalineReactionLocale } from '../typings/index.js';
+import { LoadingIcon } from './Icons.js';
 
 interface ReactionItem {
   icon: string;
@@ -45,7 +45,9 @@ let abort: (() => void) | undefined;
 const fetchReaction = async (): Promise<void> => {
   const { serverURL, lang, path } = config.value;
 
-  if (!reaction.value) return;
+  if (!reaction.value) {
+    return;
+  }
 
   const controller = new AbortController();
 
@@ -64,7 +66,9 @@ const fetchReaction = async (): Promise<void> => {
 
 const vote = async (index: number): Promise<void> => {
   // we should ensure that only one vote request is sent at a time
-  if (votingIndex.value !== -1) return;
+  if (votingIndex.value !== -1) {
+    return;
+  }
 
   const { serverURL, lang, path } = config.value;
   const currentVoteItemIndex = reactionStorage.value[path];
@@ -100,9 +104,12 @@ const vote = async (index: number): Promise<void> => {
   }
 
   // update vote info in local storage
-  // oxlint-disable-next-line typescript/no-dynamic-delete
-  if (currentVoteItemIndex === index) delete reactionStorage.value[path];
-  else reactionStorage.value[path] = index;
+  if (currentVoteItemIndex === index) {
+    // oxlint-disable-next-line typescript/no-dynamic-delete
+    delete reactionStorage.value[path];
+  } else {
+    reactionStorage.value[path] = index;
+  }
 
   // voting is completed
   votingIndex.value = -1;

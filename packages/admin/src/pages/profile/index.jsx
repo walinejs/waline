@@ -3,10 +3,10 @@ import React, { useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
-import TwoFactorAuth from './twoFactorAuth.jsx';
 import Header from '../../components/Header.jsx';
 import * as Icons from '../../components/icon/index.js';
 import { updateProfile } from '../../services/user.js';
+import TwoFactorAuth from './twoFactorAuth.jsx';
 
 // oxlint-disable-next-line max-lines-per-function
 export default function Profile() {

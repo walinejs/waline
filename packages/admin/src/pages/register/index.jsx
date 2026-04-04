@@ -20,10 +20,10 @@ export default function Register() {
   });
 
   useEffect(() => {
-    if (user && user.objectId) {
+    if (user?.objectId) {
       navigate('/ui', { replace: true });
     }
-  }, [navigate]);
+  }, [navigate, user?.objectId]);
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -34,11 +34,13 @@ export default function Register() {
     if (!nick || nick.length < 2) {
       return setError(t('nickname illegal'));
     }
+
     const email = event.target.email.value;
 
     if (!email) {
       return setError(t('please input email'));
     }
+
     const link = event.target.link.value;
     const password = event.target.password.value;
     const passwordAgain = event.target['password-again'].value;
@@ -62,6 +64,7 @@ export default function Register() {
       if (resp && resp.verify) {
         alert(t('register success! please go to your mailbox to verify it!'));
       }
+
       navigate('/ui/login');
     } catch (err) {
       setError(err.message);

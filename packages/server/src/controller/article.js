@@ -59,6 +59,7 @@ module.exports = class extends BaseRest {
       if (type.length === 1 && deprecated) {
         counters = counters[type[0]];
       }
+
       data.push(counters);
     }
 

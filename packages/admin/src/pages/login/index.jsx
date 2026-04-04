@@ -24,7 +24,7 @@ export default function Login() {
 
   const match = location.pathname.match(/(.*?\/)ui/);
   const basePath = match && match[1] ? match[1] : '/';
-  const query = new URLSearchParams(location.search);
+  const query = useMemo(() => new URLSearchParams(location.search), []);
 
   useEffect(() => {
     if (!user || !user.objectId) {
@@ -37,7 +37,7 @@ export default function Login() {
     const redirect = isAdmin && query.get('redirect') ? query.get('redirect') : defaultRedirect;
 
     navigate(redirect.replaceAll(/\/+/g, '/'));
-  }, [user]);
+  }, [user, query, navigate]);
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -52,9 +52,11 @@ export default function Login() {
     if (!email) {
       return setError(t('please input email'));
     }
+
     if (!password) {
       return setError(t('please input password'));
     }
+
     if (event.target.code && !code) {
       return setError(t('please input 2fa code'));
     }

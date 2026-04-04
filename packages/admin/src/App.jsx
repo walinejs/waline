@@ -28,7 +28,7 @@ const Access = (props) => {
     if (noPermission) {
       return (location.href = `${basename}/ui/profile`);
     }
-  }, [user, props.meta]);
+  }, [user, props.meta, props.basename]);
 
   return user ? props.children : null;
 };

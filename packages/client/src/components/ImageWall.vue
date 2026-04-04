@@ -27,8 +27,8 @@
 <script setup lang="ts">
 import { nextTick, onBeforeUnmount, onMounted, ref, useTemplateRef, watch } from 'vue';
 
-import { LoadingIcon } from './Icons.js';
 import type { WalineSearchResult } from '../typings/index.js';
+import { LoadingIcon } from './Icons.js';
 
 type Column = number[];
 

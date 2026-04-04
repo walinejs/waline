@@ -11,6 +11,7 @@
 
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
+
 import { clampScore } from './utils';
 
 export default defineComponent({
