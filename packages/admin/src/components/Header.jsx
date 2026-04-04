@@ -32,7 +32,7 @@ export default function Header() {
 
         setLatestVersion(resp.version);
       });
-  }, [user?.objectId]);
+  }, [user?.objectId, user?.__version]);
 
   const updateLanguage = (event) => {
     i18n.changeLanguage(event.target.value);

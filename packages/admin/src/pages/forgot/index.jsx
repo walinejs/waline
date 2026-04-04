@@ -15,10 +15,10 @@ export default function Forgot() {
 
   useEffect(() => {
     // if logged
-    if (user && user.objectId) {
+    if (user?.objectId) {
       navigate('/ui', { replace: true });
     }
-  }, [navigate]);
+  }, [navigate, user?.objectId]);
 
   const onSubmit = async (event) => {
     event.preventDefault();

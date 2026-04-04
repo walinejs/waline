@@ -24,7 +24,7 @@ export default function Login() {
 
   const match = location.pathname.match(/(.*?\/)ui/);
   const basePath = match && match[1] ? match[1] : '/';
-  const query = new URLSearchParams(location.search);
+  const query = useMemo(() => new URLSearchParams(location.search), []);
 
   useEffect(() => {
     if (!user || !user.objectId) {
@@ -37,7 +37,7 @@ export default function Login() {
     const redirect = isAdmin && query.get('redirect') ? query.get('redirect') : defaultRedirect;
 
     navigate(redirect.replaceAll(/\/+/g, '/'));
-  }, [user]);
+  }, [user, query, navigate]);
 
   const onSubmit = async (event) => {
     event.preventDefault();

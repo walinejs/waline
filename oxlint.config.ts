@@ -13,6 +13,7 @@ export default defineConfig({
     'example/',
     '**/.vuepress/utils/transform/',
     '**/.vuepress/utils/csv.js',
+    'packages/admin/src/components/useScript.js',
     // 'packages/admin/**',
     // 'packages/server/**',
   ],

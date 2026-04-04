@@ -57,7 +57,7 @@ export default function ManageComments() {
 
   useEffect(() => {
     getCommentList({ page: list.page, filter }).then((data) => {
-      setList({ ...list, ...data });
+      setList((list) => ({ ...list, ...data }));
       setCommentIds([]);
     });
   }, [filter, list.page]);

@@ -22,9 +22,7 @@ export default function User() {
   });
 
   useEffect(() => {
-    getUserList({ page: list.page }).then((data) => {
-      setList({ ...list, ...data });
-    });
+    getUserList({ page: list.page }).then((data) => setList((list) => ({ ...list, ...data })));
   }, [list.page]);
 
   const createActions = (user) =>
