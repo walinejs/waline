@@ -1,17 +1,17 @@
 ---
-title: Upload Image
+title: 画像のアップロード
 icon: pic
 ---
 
-This cookbook guides you on how to set up your own image service to upload images in comments.
+このクックブックでは、コメント内で画像をアップロードするために独自の画像サービスを設定する方法を説明します。
 
 <!-- more -->
 
-`@waline/client` provides the `imageUploader` option. You should handle the image object passed in by the client by yourself, and after uploading the image yourself, return an image address through Promise.
+`@waline/client` は `imageUploader` オプションを提供しています。クライアントから渡された画像オブジェクトを自分で処理し、画像をアップロードした後、Promise を通じて画像のアドレスを返す必要があります。
 
-## Demo
+## デモ
 
-An example of using the `lsky-pro` graph bed.
+`lsky-pro` 画像ホスティングサービスを使用した例です。
 
 ```html
 <!doctype html>

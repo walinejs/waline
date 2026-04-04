@@ -1,52 +1,52 @@
 ---
-title: Zeabur Deployment
+title: Zeabur デプロイ
 icon: zeabur
 ---
 
-[Zeabur](https://zeabur.com) is a platform that helps developers deploy their own services with one click. The whole is similar to Railway, but it has more functions than it, no need to bind a credit card, and the free limit is higher than it.
+[Zeabur](https://zeabur.com) は開発者が自分のサービスをワンクリックでデプロイできるプラットフォームです。Railway に似ていますが、より多くの機能を持ち、クレジットカードの登録が不要で、無料枠も Railway より大きくなっています。
 
 <!-- more -->
 
-## Deploy with one click
+## ワンクリックデプロイ
 
 [![Deploy on Zeabur](https://zeabur.com/button.svg)](https://zeabur.com/templates/1IBY26?utm_source=waline)
 
-## Deploy from scratch
+## ゼロからデプロイ
 
-Click the [Fork](https://github.com/walinejs/zeabur-starter/fork) button to create a Zeabur starter scaffold.
+[Fork](https://github.com/walinejs/zeabur-starter/fork) ボタンをクリックして Zeabur スターターのスキャフォールドを作成します。
 
 ![zeabur1](../../../assets/zeabur-1.png)
 
-<https://dash.zeabur.com> Log in to the Zeabur console. If there is no project, you need to set a name for the new project first.
+<https://dash.zeabur.com> にアクセスして Zeabur コンソールにログインします。プロジェクトがない場合は、まず新しいプロジェクトの名前を設定する必要があります。
 
 ![zeabur2](../../../assets/zeabur-2.png)
 
-After entering, click <kbd>Add New Service</kbd> to create a service, select <kbd>Deploy Other Service</kbd> - <kbd>Deploy MongoDB</kbd> to create a database service first.
+入力後、<kbd>Add New Service</kbd> をクリックしてサービスを作成し、<kbd>Deploy Other Service</kbd> - <kbd>Deploy MongoDB</kbd> を選択してまずデータベースサービスを作成します。
 
-Give our MongoDB database service a name, click the <kbd>Deploy</kbd> button, and our database service is deployed.
+MongoDB データベースサービスに名前を付け、<kbd>Deploy</kbd> ボタンをクリックすると、データベースサービスがデプロイされます。
 
 ![zeabur2](../../../assets/zeabur-3.png) ![zeabur4](../../../assets/zeabur-4.png)
 
-Next, we continue to click <kbd>Add New Service</kbd> to create the Waline service, this time we choose to click <kbd>Deploy Your Source Code</kbd>. In the following GitHub project list, find the project that we forked at the beginning, and click the corresponding <kbd>Import</kbd> button.
+次に、<kbd>Add New Service</kbd> を再度クリックして Waline サービスを作成します。今度は <kbd>Deploy Your Source Code</kbd> をクリックします。表示される GitHub プロジェクト一覧から最初に Fork したプロジェクトを見つけ、対応する <kbd>Import</kbd> ボタンをクリックします。
 
-Give our Waline service a name, click the <kbd>Deploy</kbd> button, and our Waline service is deployed.
+Waline サービスに名前を付け、<kbd>Deploy</kbd> ボタンをクリックすると、Waline サービスがデプロイされます。
 
 ![zeabur6](../../../assets/zeabur-6.png) ![zeabur7](../../../assets/zeabur-7.png)
 
-Don't rush to close the Waline service panel. After the service is deployed, we need to add an access domain name to the service. Click the <kbd>Generate Domain</kbd> button under the <kbd>Domains</kbd> tab, enter the domain name prefix you want and click the <kbd>Save</kbd> button to add it to our service Visit the domain name.
+Waline サービスパネルをすぐに閉じないでください。サービスがデプロイされた後、アクセス用のドメイン名をサービスに追加する必要があります。<kbd>Domains</kbd> タブの下にある <kbd>Generate Domain</kbd> ボタンをクリックし、希望するドメイン名のプレフィックスを入力して <kbd>Save</kbd> ボタンをクリックすると、サービスへのアクセスドメイン名が追加されます。
 
 ![zeabur8](../../../assets/zeabur-8.png) ![zeabur9](../../../assets/zeabur-9.png)
 
-Everything is ready, and the next step is to witness the miracle. Open the access domain name we just set up, test to post comments, everything is successful~ Next, configure this domain name in the client and you can comment happily!
+準備はすべて整いました。奇跡を目撃する瞬間です。設定したアクセスドメイン名を開いてコメントの投稿をテストすると、すべてうまくいきます〜 次は、このドメイン名をクライアントに設定すれば、快適にコメントできます！
 
 ![zeabur2](../../../assets/zeabur-10.png)
 
-## How to update
+## 更新方法
 
-Go to the GitHub repository and modify the `@waline/vercel` version number in the package.json file to the latest version.
+GitHub リポジトリに移動し、package.json ファイル内の `@waline/vercel` のバージョン番号を最新版に変更します。
 
-## How to modify environment variables
+## 環境変数の変更方法
 
-You can enter the environment variable management page through <kbd>Variables</kbd> Tab, and it will be automatically redeployed after modification.
+<kbd>Variables</kbd> タブから環境変数管理ページに入ることができ、変更後は自動的に再デプロイされます。
 
 ![zeabur11](../../../assets/zeabur-11.png)

@@ -1,20 +1,20 @@
 ---
-title: Import Waline via CDN
+title: CDN 経由で Waline をインポートする
 icon: import
 order: 1
 ---
 
-This cookbook is about importing Waline via CDN.
+このクックブックは、CDN 経由で Waline をインポートする方法について説明します。
 
 <!-- more -->
 
-For China Mainland users, we recommend using [unpkg](https://unpkg.com/@waline/client). For foreign users, we recommend using jsDelivr.
+中国本土のユーザーには [unpkg](https://unpkg.com/@waline/client) の使用を推奨します。海外ユーザーには jsDelivr の使用を推奨します。
 
-To make Waline SSR friendly, we split Waline's styles in V2 version. This means, you need to import Waline's CSS style file, and import Waline script file and call Waline.
+Waline を SSR フレンドリーにするため、V2 バージョンで Waline のスタイルを分離しました。つまり、Waline の CSS スタイルファイルをインポートし、Waline のスクリプトファイルをインポートして Waline を呼び出す必要があります。
 
-## Comment
+## コメント
 
-Normally, you may want Waline to render a list of comments, you can import Waline as follows:
+通常、Waline でコメント一覧を表示したい場合は、以下のように Waline をインポートします：
 
 ```html
 <!-- style file -->
@@ -29,11 +29,11 @@ Normally, you may want Waline to render a list of comments, you can import Walin
 </script>
 ```
 
-## Pageviews and comments
+## ページビューとコメント数
 
-Sometimes, you may want to display the number of page views and comments of the article on the home page or article list, but do not need to load the comment component, then you can import a Gzip < 1KB script file in the following ways:
+ホームページや記事一覧でページビュー数とコメント数を表示したいが、コメントコンポーネントは読み込む必要がない場合、以下の方法で Gzip 圧縮後 1KB 未満のスクリプトファイルをインポートできます：
 
-Pageviews:
+ページビュー:
 
 ```html
 <script type="module">
@@ -45,7 +45,7 @@ Pageviews:
 </script>
 ```
 
-Comments count:
+コメント数:
 
 ```html
 <script type="module">
@@ -57,10 +57,10 @@ Comments count:
 </script>
 ```
 
-## More
+## 詳細
 
-::: info Specifies version
+::: info バージョンの指定
 
-You may have noticed that in the above cases, we have explicitly declared the `@v2` version after `@aline/client`. Your website is not working properly.
+上記の例では、`@waline/client` の後に明示的に `@v2` バージョンを宣言していることに気づかれたかもしれません。これを行わないと、ウェブサイトが正常に動作しない場合があります。
 
 :::
