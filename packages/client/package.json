@@ -73,7 +73,7 @@
     "@vueuse/core": "^14.2.1",
     "@waline/api": "workspace:*",
     "autosize": "^6.0.1",
-    "marked": "^17.0.4",
+    "marked": "^18.0.0",
     "marked-highlight": "^2.2.3",
     "recaptcha-v3": "^1.11.3",
     "vue": "^3.5.29"
