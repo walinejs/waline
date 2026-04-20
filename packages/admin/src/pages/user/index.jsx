@@ -200,9 +200,14 @@ export default function User() {
                                   {name}
                                 </span>
                               ) : (
-                                <a key={key} className={`operate-${key}`} onClick={action}>
+                                <button
+                                  type="button"
+                                  key={key}
+                                  className={`operate-${key}`}
+                                  onClick={action}
+                                >
                                   {name}
-                                </a>
+                                </button>
                               ),
                             )}
                           </td>

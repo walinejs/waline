@@ -111,16 +111,11 @@ export default function Profile() {
           <div className="row typecho-page-main">
             <div className="col-mb-12 col-tb-3">
               <p>
-                <a
-                  title={t('change avatar')}
-                  target="_blank"
-                  rel="noreferrer"
-                  onClick={changeAvatar}
-                >
+                <button type="button" title={t('change avatar')} onClick={changeAvatar}>
                   {user && user.avatar && (
                     <img className="profile-avatar" src={user.avatar} alt={t('avatar')} />
                   )}
-                </a>
+                </button>
               </p>
               <h2>{user.display_name}</h2>
               <p>{user.email}</p>
@@ -233,7 +228,11 @@ export default function Profile() {
                       >
                         {React.createElement(Icons[social])}
                       </a>
-                      <div className="account-unbind" onClick={() => unbind(social)}>
+                      <button
+                        type="button"
+                        className="account-unbind"
+                        onClick={() => unbind(social)}
+                      >
                         <svg
                           className="close-icon"
                           viewBox="0 0 1024 1024"
@@ -243,7 +242,7 @@ export default function Profile() {
                         >
                           <path d="m568.569 512 170.267-170.267c15.556-15.556 15.556-41.012 0-56.569s-41.012-15.556-56.569 0L512 455.431 341.733 285.165c-15.556-15.556-41.012-15.556-56.569 0s-15.556 41.012 0 56.569L455.431 512 285.165 682.267c-15.556 15.556-15.556 41.012 0 56.569 15.556 15.556 41.012 15.556 56.569 0L512 568.569l170.267 170.267c15.556 15.556 41.012 15.556 56.569 0 15.556-15.556 15.556-41.012 0-56.569L568.569 512z" />
                         </svg>
-                      </div>
+                      </button>
                     </div>
                   ))}
                 </div>
