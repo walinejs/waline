@@ -101,6 +101,7 @@ export const init = ({
       ...newProps
     }: Partial<Omit<WalineInitOptions, 'el'>> = {}): void => {
       Object.entries(newProps).forEach(([key, value]) => {
+        // @ts-expect-error: index signature
         props[key] = value;
       });
 

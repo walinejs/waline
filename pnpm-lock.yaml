@@ -33,6 +33,9 @@ importers:
       '@commitlint/config-conventional':
         specifier: 20.5.0
         version: 20.5.0
+      '@mr-hope/tsconfig':
+        specifier: 0.0.3
+        version: 0.0.3(typescript@6.0.3)
       '@rollup/plugin-commonjs':
         specifier: 29.0.2
         version: 29.0.2(rollup@4.60.2)
@@ -2082,6 +2085,12 @@ packages:
     peerDependenciesMeta:
       markdown-it:
         optional: true
+
+  '@mr-hope/tsconfig@0.0.3':
+    resolution: {integrity: sha512-dpgwNf6puCRKL+JiR1CIXxlpon4eM/0yZN0c6W2riE4St/A+hu+GdbpLD9tgsGQw3E9abKj98mDTapt29Yg01g==}
+    engines: {node: '>=20.0.0'}
+    peerDependencies:
+      typescript: '>=5.4.0'
 
   '@napi-rs/wasm-runtime@1.1.4':
     resolution: {integrity: sha512-3NQNNgA1YSlJb/kMH1ildASP9HW7/7kYnRI2szWJaofaS1hWmbGI4H+d3+22aGzXXN9IJ+n+GiFVcGipJP18ow==}
@@ -10838,6 +10847,10 @@ snapshots:
       '@types/markdown-it': 14.1.2
     optionalDependencies:
       markdown-it: 14.1.1
+
+  '@mr-hope/tsconfig@0.0.3(typescript@6.0.3)':
+    dependencies:
+      typescript: 6.0.3
 
   '@napi-rs/wasm-runtime@1.1.4(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)':
     dependencies:

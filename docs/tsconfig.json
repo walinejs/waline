@@ -1,9 +1,7 @@
 {
-  "extends": "../tsconfig.base.json",
+  "extends": "@mr-hope/tsconfig/web.json",
   "compilerOptions": {
     "rootDir": "./src/.vuepress",
-    "module": "Preserve",
-    "moduleResolution": "Bundler",
     "types": ["node", "vite/client"]
   },
   "include": ["./src/.vuepress/**/*.ts", "./src/.vuepress/**/*.vue"]
