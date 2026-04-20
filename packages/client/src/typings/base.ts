@@ -56,7 +56,9 @@ export interface WalineSearchImageData extends Record<string, unknown> {
   /**
    * 图片标题
    *
-   * 用于图片的 alt 属性 Image title
+   * 用于图片的 alt 属性
+   *
+   * Image title
    *
    * Used for alt attribute of image
    */
