@@ -4,12 +4,12 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
 import Header from '../../components/Header.jsx';
+// oxlint-disable-next-line import/no-namespace
 import * as Icons from '../../components/icon/index.js';
 import Paginator from '../../components/Paginator.jsx';
 import { getUserList, updateUser, deleteUser } from '../../services/user.js';
 import { buildAvatar } from '../manage-comments/utils.js';
 
-// oxlint-disable-next-line max-lines-per-function
 export default function User() {
   const currentUser = useSelector((state) => state.user);
   const { t } = useTranslation();
@@ -200,9 +200,14 @@ export default function User() {
                                   {name}
                                 </span>
                               ) : (
-                                <a key={key} className={`operate-${key}`} onClick={action}>
+                                <button
+                                  type="button"
+                                  key={key}
+                                  className={`operate-${key}`}
+                                  onClick={action}
+                                >
                                   {name}
-                                </a>
+                                </button>
                               ),
                             )}
                           </td>

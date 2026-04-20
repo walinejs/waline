@@ -6,9 +6,9 @@ const markdownParser = getMarkdownParser();
 
 const formatCmt = async (
   { ua, ip, ...comment },
-  users = [],
   { avatarProxy, deprecated },
   loginUser,
+  users = [],
 ) => {
   ua = think.uaParser(ua);
   if (!think.config('disableUserAgent')) {
@@ -29,7 +29,7 @@ const formatCmt = async (
     comment.label = user.label;
   }
 
-  const avatarUrl = user?.avatar ? user.avatar : await think.service('avatar').stringify(comment);
+  const avatarUrl = user?.avatar || (await think.service('avatar').stringify(comment));
 
   comment.avatar =
     avatarProxy && !avatarUrl.includes(avatarProxy)
@@ -42,10 +42,10 @@ const formatCmt = async (
     comment.orig = comment.comment;
   }
 
-  if (!isAdmin) {
-    delete comment.mail;
-  } else {
+  if (isAdmin) {
     comment.ip = ip;
+  } else {
+    delete comment.mail;
   }
 
   // administrator can always show region
@@ -236,16 +236,16 @@ module.exports = class CommentController extends BaseRest {
 
     const cmtReturn = await formatCmt(
       resp,
-      [userInfo],
       { ...this.config(), deprecated: this.ctx.state.deprecated },
       userInfo,
+      [userInfo],
     );
     const parentReturn = parentComment
       ? await formatCmt(
           parentComment,
-          parentUser ? [parentUser] : [],
           { ...this.config(), deprecated: this.ctx.state.deprecated },
           userInfo,
+          parentUser ? [parentUser] : [],
         )
       : undefined;
 
@@ -265,12 +265,9 @@ module.exports = class CommentController extends BaseRest {
     think.logger.debug(`Comment post hooks postSave done!`);
 
     return this.success(
-      await formatCmt(
-        resp,
-        [userInfo],
-        { ...this.config(), deprecated: this.ctx.state.deprecated },
+      await formatCmt(resp, { ...this.config(), deprecated: this.ctx.state.deprecated }, userInfo, [
         userInfo,
-      ),
+      ]),
     );
   }
 
@@ -316,9 +313,9 @@ module.exports = class CommentController extends BaseRest {
     }
     const cmtReturn = await formatCmt(
       newData[0],
-      cmtUser ? [cmtUser] : [],
       { ...this.config(), deprecated: this.ctx.state.deprecated },
       userInfo,
+      cmtUser ? [cmtUser] : [],
     );
 
     if (oldData.status === 'waiting' && data.status === 'approved' && oldData.pid) {
@@ -340,9 +337,9 @@ module.exports = class CommentController extends BaseRest {
       const notify = this.service('notify', this);
       const pcmtReturn = await formatCmt(
         pComment,
-        pUser ? [pUser] : [],
         { ...this.config(), deprecated: this.ctx.state.deprecated },
         userInfo,
+        pUser ? [pUser] : [],
       );
 
       await notify.run(
@@ -503,10 +500,10 @@ module.exports = class CommentController extends BaseRest {
         countWhere._complex.mail = ['IN', mails];
       }
 
-      if (!think.isEmpty(countWhere._complex)) {
-        countWhere._complex._logic = 'or';
-      } else {
+      if (think.isEmpty(countWhere._complex)) {
         delete countWhere._complex;
+      } else {
+        countWhere._complex._logic = 'or';
       }
 
       const counts = await this.modelInstance.count(countWhere, {
@@ -531,9 +528,9 @@ module.exports = class CommentController extends BaseRest {
         rootComments.map(async (comment) => {
           const cmt = await formatCmt(
             comment,
-            users,
             { ...this.config(), deprecated: this.ctx.state.deprecated },
             userInfo,
+            users,
           );
 
           cmt.children = await Promise.all(
@@ -542,12 +539,12 @@ module.exports = class CommentController extends BaseRest {
               .map((cmt) =>
                 formatCmt(
                   cmt,
-                  users,
                   {
                     ...this.config(),
                     deprecated: this.ctx.state.deprecated,
                   },
                   userInfo,
+                  users,
                 ),
               )
               .reverse(),
@@ -637,9 +634,9 @@ module.exports = class CommentController extends BaseRest {
         comments.map((cmt) =>
           formatCmt(
             cmt,
-            users,
             { ...this.config(), deprecated: this.ctx.state.deprecated },
             userInfo,
+            users,
           ),
         ),
       ),
@@ -700,9 +697,9 @@ module.exports = class CommentController extends BaseRest {
       comments.map((cmt) =>
         formatCmt(
           cmt,
-          users,
           { ...this.config(), deprecated: this.ctx.state.deprecated },
           userInfo,
+          users,
         ),
       ),
     );

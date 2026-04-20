@@ -1,6 +1,6 @@
 const MySQL = require('./mysql.js');
 
-function mapKeys({ insertedat, createdat, updatedat, ...item }) {
+const mapKeys = ({ insertedat, createdat, updatedat, ...item }) => {
   const mapFields = {
     insertedAt: insertedat,
     createdAt: createdat,
@@ -16,7 +16,7 @@ function mapKeys({ insertedat, createdat, updatedat, ...item }) {
   }
 
   return item;
-}
+};
 module.exports = class extends MySQL {
   model(tableName) {
     return super.model(tableName.toLowerCase());
@@ -63,10 +63,10 @@ module.exports = class extends MySQL {
     try {
       if (Array.isArray(result)) {
         result.forEach((r) => {
-          r.count = Number.parseInt(r.count);
+          r.count = Number.parseInt(r.count, 10);
         });
       } else {
-        result = Number.parseInt(result);
+        result = Number.parseInt(result, 10);
       }
     } catch (err) {
       console.log(err);

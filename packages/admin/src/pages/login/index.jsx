@@ -4,11 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router';
 
 import Header from '../../components/Header.jsx';
+// oxlint-disable-next-line import/no-namespace
 import * as Icons from '../../components/icon/index.js';
-import { useCaptcha } from '../../components/useCaptcha.js';
 import { get2FAToken } from '../../services/user.js';
 
-// oxlint-disable-next-line max-lines-per-function
 export default function Login() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -34,7 +33,7 @@ export default function Login() {
 
     const isAdmin = user.type === 'administrator';
 
-    const defaultRedirect = !isAdmin ? '/ui/profile' : '/ui';
+    const defaultRedirect = isAdmin ? '/ui' : '/ui/profile';
     const redirect = isAdmin && query.get('redirect') ? query.get('redirect') : defaultRedirect;
 
     navigate(redirect.replaceAll(/\/+/g, '/'));
@@ -105,7 +104,7 @@ export default function Login() {
     : ['oidc', 'qq', 'weibo', 'github', 'twitter', 'facebook'];
 
   const buildOAuthURL = (social) => {
-    const redirect = query.get('redirect') ? query.get('redirect') : `${basePath}ui/profile`;
+    const redirect = query.get('redirect') || `${basePath}ui/profile`;
     return `${baseUrl}oauth?type=${encodeURIComponent(social)}&redirect=${encodeURIComponent(redirect)}`;
   };
 

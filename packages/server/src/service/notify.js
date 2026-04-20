@@ -220,7 +220,7 @@ module.exports = class NotifyService extends think.Service {
       msg: this.controller.locale(contentQQ, data),
     };
     const postBody = Object.keys(postBodyData)
-      .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(postBodyData[key]))
+      .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(postBodyData[key])}`)
       .join('&');
 
     return fetch(`${qmsgHost}/send/${QMSG_KEY}`, {

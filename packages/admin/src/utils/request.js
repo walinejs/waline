@@ -1,23 +1,19 @@
 import I18n from 'i18next';
 
 export default async function request(url, opts = {}) {
-  if (typeof url === 'object') {
-    opts = url;
-  } else if (typeof url === 'string') {
-    opts.url = url;
-  }
+  const options = typeof url === 'object' ? { ...url } : { ...opts, url };
 
-  opts.headers ??= {};
-  if (opts.body && !(opts.body instanceof FormData)) {
-    opts.headers['Content-Type'] = 'application/json';
-    opts.body = JSON.stringify(opts.body);
+  options.headers ??= {};
+  if (options.body && !(options.body instanceof FormData)) {
+    options.headers['Content-Type'] = 'application/json';
+    options.body = JSON.stringify(options.body);
   }
 
   let token = window.TOKEN ?? sessionStorage.getItem('TOKEN');
 
   token ??= localStorage.getItem('TOKEN');
   if (token) {
-    opts.headers.Authorization = `Bearer ${token}`;
+    options.headers.Authorization = `Bearer ${token}`;
   }
 
   let baseUrl = window.serverURL;
@@ -28,8 +24,8 @@ export default async function request(url, opts = {}) {
     baseUrl = match ? match[1] : '/';
   }
 
-  const joiner = opts.url.includes('?') ? '&' : '?';
-  const resp = await fetch(`${baseUrl}${opts.url}${joiner}lang=${I18n.language}`, opts);
+  const joiner = options.url.includes('?') ? '&' : '?';
+  const resp = await fetch(`${baseUrl}${options.url}${joiner}lang=${I18n.language}`, options);
 
   if (!resp.ok) {
     if (resp.status === 401) {

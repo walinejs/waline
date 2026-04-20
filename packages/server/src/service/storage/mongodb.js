@@ -18,7 +18,7 @@ module.exports = class extends Base {
 
       if (think.isString(where[k])) {
         filter[parseKey(k)] = {
-          $eq: k === 'objectId' ? ObjectId(where[k]) : where[k],
+          $eq: k === 'objectId' ? new ObjectId(where[k]) : where[k],
         };
         continue;
       }
@@ -26,54 +26,56 @@ module.exports = class extends Base {
         filter[parseKey(k)] = { $eq: null };
       }
 
-      if (Array.isArray(where[k])) {
-        if (where[k][0]) {
-          const handler = where[k][0].toUpperCase();
+      if (Array.isArray(where[k]) && where[k][0]) {
+        const handler = where[k][0].toUpperCase();
 
-          switch (handler) {
-            case 'IN': {
-              if (k === 'objectId') {
-                filter[parseKey(k)] = { $in: where[k][1].map(ObjectId) };
-              } else {
-                filter[parseKey(k)] = {
-                  $regex: new RegExp(`^(${where[k][1].join('|')})$`),
-                };
-              }
-              break;
-            }
-            case 'NOT IN': {
+        switch (handler) {
+          case 'IN': {
+            if (k === 'objectId') {
+              filter[parseKey(k)] = { $in: where[k][1].map((id) => new ObjectId(id)) };
+            } else {
               filter[parseKey(k)] = {
-                $nin: k === 'objectId' ? where[k][1].map(ObjectId) : where[k][1],
+                $regex: new RegExp(`^(${where[k][1].join('|')})$`),
               };
-              break;
             }
-            case 'LIKE': {
-              const first = where[k][1][0];
-              const last = where[k][1].slice(-1);
-              let reg;
+            break;
+          }
+          case 'NOT IN': {
+            filter[parseKey(k)] = {
+              $nin: k === 'objectId' ? where[k][1].map((id) => new ObjectId(id)) : where[k][1],
+            };
+            break;
+          }
+          case 'LIKE': {
+            const [, likePattern] = where[k];
+            const [first] = likePattern;
+            const last = likePattern.slice(-1);
+            let reg;
 
-              if (first === '%' && last === '%') {
-                reg = new RegExp(where[k][1].slice(1, -1));
-              } else if (first === '%') {
-                reg = new RegExp(where[k][1].slice(1) + '$');
-              } else if (last === '%') {
-                reg = new RegExp('^' + where[k][1].slice(0, -1));
-              }
+            if (first === '%' && last === '%') {
+              reg = new RegExp(likePattern.slice(1, -1));
+            } else if (first === '%') {
+              reg = new RegExp(`${likePattern.slice(1)}$`);
+            } else if (last === '%') {
+              reg = new RegExp(`^${likePattern.slice(0, -1)}`);
+            }
 
-              if (reg) {
-                filter[parseKey(k)] = { $regex: reg };
-              }
+            if (reg) {
+              filter[parseKey(k)] = { $regex: reg };
+            }
 
-              break;
-            }
-            case '!=': {
-              filter[parseKey(k)] = { $ne: where[k][1] };
-              break;
-            }
-            case '>': {
-              filter[parseKey(k)] = { $gt: where[k][1] };
-              break;
-            }
+            break;
+          }
+          case '!=': {
+            filter[parseKey(k)] = { $ne: where[k][1] };
+            break;
+          }
+          case '>': {
+            filter[parseKey(k)] = { $gt: where[k][1] };
+            break;
+          }
+          default: {
+            break;
           }
         }
       }

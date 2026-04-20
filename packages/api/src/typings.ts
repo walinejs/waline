@@ -3,41 +3,29 @@ export type WalineCommentStatus = 'approved' | 'waiting' | 'spam';
 export type WalineUserType = 'administrator' | 'guest';
 
 export interface WalineCommentData {
-  /**
-   * User Nickname
-   */
+  /** User Nickname */
   nick: string;
 
-  /**
-   * User email
-   */
+  /** User email */
   mail?: string;
 
-  /**
-   * User link
-   */
+  /** User link */
   link?: string;
 
-  /**
-   * Content of comment
-   */
+  /** Content of comment */
   comment: string;
 
-  /**
-   * User Agent
-   */
+  /** User Agent */
   ua: string;
 
-  /**
-   * Comment page path
-   */
+  /** Comment page path */
   // FIXME: Rename it to `path`
   url: string;
 
   /**
    * Parent comment id
    *
-   * @description Only available when replying comment
+   * Only available when replying comment
    */
 
   pid?: number;
@@ -45,43 +33,33 @@ export interface WalineCommentData {
   /**
    * Root comment id
    *
-   * @description Only available when replying comment
+   * Only available when replying comment
    */
   rid?: number;
 
   /**
    * User id being at
    *
-   * @description Only available when replying comment
+   * Only available when replying comment
    */
   at?: string;
 
-  /**
-   * Recaptcha Token
-   */
+  /** Recaptcha Token */
   // FIXME: Rename it to `verifyToken`
   recaptchaV3?: string;
 
-  /**
-   * Turnstile Token
-   */
+  /** Turnstile Token */
   turnstile?: string;
 }
 
 export interface BaseWalineResponseComment {
-  /**
-   * Comment object ID
-   */
+  /** Comment object ID */
   objectId: number;
 
-  /**
-   * Timestamp of the comment
-   */
+  /** Timestamp of the comment */
   time: number;
 
-  /**
-   * Content of comment
-   */
+  /** Content of comment */
   comment: string;
 
   /**
@@ -98,40 +76,30 @@ export interface BaseWalineResponseComment {
    */
   like: number;
 
-  /**
-   * User Nickname
-   */
+  /** User Nickname */
   nick: string;
 
-  /**
-   * User link
-   */
+  /** User link */
   link: string;
 
-  /**
-   * User avatar
-   */
+  /** User avatar */
   avatar: string;
 
   /**
    * User type
    *
-   * @description Only available with logged in user
+   * Only available with logged in user 用户类型
    *
-   * 用户类型
-   *
-   * @description 仅在登录用户时可用
+   * 仅在登录用户时可用
    */
   type?: WalineUserType;
 
   /**
    * User ID
    *
-   * @description Only available with logged in user
+   * Only available with logged in user 用户 ID
    *
-   * 用户 ID
-   *
-   * @description 仅在登录用户时可用
+   * 仅在登录用户时可用
    */
   // FIXME: Rename it to `userId`
   user_id?: number;
@@ -139,44 +107,36 @@ export interface BaseWalineResponseComment {
   /**
    * User location
    *
-   * @description Not available with `DISABLE_REGION=true`
+   * Not available with `DISABLE_REGION=true` 用户位置
    *
-   * 用户位置
-   *
-   * @description `DISABLE_REGION=true` 时不可用
+   * `DISABLE_REGION=true` 时不可用
    */
   addr?: string;
 
   /**
    * User browser
    *
-   * @description Not available with `DISABLE_USERAGENT=true`
+   * Not available with `DISABLE_USERAGENT=true` 用户浏览器
    *
-   * 用户浏览器
-   *
-   * @description `DISABLE_USERAGENT=true` 时不可用
+   * `DISABLE_USERAGENT=true` 时不可用
    */
   browser?: string;
 
   /**
    * User location
    *
-   * @description Not available with `DISABLE_USERAGENT=true`
+   * Not available with `DISABLE_USERAGENT=true` 用户位置
    *
-   * 用户位置
-   *
-   * @description `DISABLE_USERAGENT=true` 时不可用
+   * `DISABLE_USERAGENT=true` 时不可用
    */
   os?: string;
 
   /**
    * User level
    *
-   * @description Only available when `LEVELS` is set
+   * Only available when `LEVELS` is set 用户等级
    *
-   * 用户等级
-   *
-   * @description 仅在 `LEVELS` 设置时可用
+   * 仅在 `LEVELS` 设置时可用
    */
   level?: number;
 
@@ -190,35 +150,26 @@ export interface BaseWalineResponseComment {
   /**
    * Comment status
    *
-   * @description For administrators, `approved` `spam` `waiting` can be get, for others, the only value is `approved`
+   * For administrators, `approved` `spam` `waiting` can be get, for others, the only value is
+   * `approved` 评论状态
    *
-   * 评论状态
-   *
-   * @description 管理员可获得 `approved`、`spam` 和 `waiting`，其他用户只能获得 `approved`
+   * 管理员可获得 `approved`、`spam` 和 `waiting`，其他用户只能获得 `approved`
    */
   status?: WalineCommentStatus;
 }
 
 export interface WalineChildComment extends BaseWalineResponseComment {
-  /**
-   * Parent comment id
-   */
+  /** Parent comment id */
 
   pid: number;
 
-  /**
-   * Root comment id
-   */
+  /** Root comment id */
   rid: number;
 
-  /**
-   * User id being at
-   */
+  /** User id being at */
   at?: string;
 
-  /**
-   * Reply user information
-   */
+  /** Reply user information */
   reply_user?: {
     nick: string;
     link: string;

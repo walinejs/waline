@@ -118,7 +118,7 @@ module.exports = {
       return defaultLevel;
     }
 
-    // oxlint-disable-next-line unicorn/no-array-method-this-argument, unicorn/no-array-callback-reference
+    // oxlint-disable-next-line unicorn/no-array-method-this-argument
     const level = think.findLastIndex(levels, (item) => item <= val);
 
     return level === -1 ? defaultLevel : level;

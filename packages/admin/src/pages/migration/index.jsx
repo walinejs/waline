@@ -195,6 +195,7 @@ export default function Migration() {
             <div className="col-mb-12 col-tb-6" style={{ textAlign: 'center' }}>
               <button
                 className="btn"
+                type="button"
                 style={{ height: 80, fontSize: 30, padding: '0 40px' }}
                 onClick={exportDB}
                 disabled={exportLoading}
@@ -205,6 +206,7 @@ export default function Migration() {
             <div className="col-mb-12 col-tb-6" style={{ textAlign: 'center' }}>
               <button
                 className="btn error"
+                type="button"
                 style={{ height: 80, fontSize: 30, padding: '0 40px' }}
                 onClick={importDB}
                 disabled={importLoading}

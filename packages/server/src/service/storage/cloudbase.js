@@ -59,43 +59,45 @@ module.exports = class extends Base {
         filter[parseKey(k)] = _.eq(null);
       }
 
-      if (Array.isArray(where[k])) {
-        if (where[k][0]) {
-          const handler = where[k][0].toUpperCase();
+      if (Array.isArray(where[k]) && where[k][0]) {
+        const handler = where[k][0].toUpperCase();
 
-          switch (handler) {
-            case 'IN': {
-              filter[parseKey(k)] = _.in(where[k][1]);
-              break;
-            }
-            case 'NOT IN': {
-              filter[parseKey(k)] = _.nin(where[k][1]);
-              break;
-            }
-            case 'LIKE': {
-              const first = where[k][1][0];
-              const last = where[k][1].slice(-1);
-              let reg;
+        switch (handler) {
+          case 'IN': {
+            filter[parseKey(k)] = _.in(where[k][1]);
+            break;
+          }
+          case 'NOT IN': {
+            filter[parseKey(k)] = _.nin(where[k][1]);
+            break;
+          }
+          case 'LIKE': {
+            const [, likePattern] = where[k];
+            const [first] = likePattern;
+            const last = likePattern.slice(-1);
+            let reg;
 
-              if (first === '%' && last === '%') {
-                reg = new RegExp(where[k][1].slice(1, -1));
-              } else if (first === '%') {
-                reg = new RegExp(where[k][1].slice(1) + '$');
-              } else if (last === '%') {
-                reg = new RegExp('^' + where[k][1].slice(0, -1));
-              }
+            if (first === '%' && last === '%') {
+              reg = new RegExp(likePattern.slice(1, -1));
+            } else if (first === '%') {
+              reg = new RegExp(`${likePattern.slice(1)}$`);
+            } else if (last === '%') {
+              reg = new RegExp(`^${likePattern.slice(0, -1)}`);
+            }
 
-              filter[parseKey(k)] = reg;
-              break;
-            }
-            case '!=': {
-              filter[parseKey(k)] = _.neq(where[k][1]);
-              break;
-            }
-            case '>': {
-              filter[parseKey(k)] = _.gt(where[k][1]);
-              break;
-            }
+            filter[parseKey(k)] = reg;
+            break;
+          }
+          case '!=': {
+            filter[parseKey(k)] = _.neq(where[k][1]);
+            break;
+          }
+          case '>': {
+            filter[parseKey(k)] = _.gt(where[k][1]);
+            break;
+          }
+          default: {
+            break;
           }
         }
       }
@@ -159,14 +161,14 @@ module.exports = class extends Base {
   }
 
   async select(where, options = {}) {
-    let data = [];
+    const data = [];
     let ret = [];
     const offset = options.offset ?? 0;
 
     do {
       options.offset = offset + data.length;
       ret = await this._select(where, options);
-      data = data.concat(ret);
+      data.push(...ret);
     } while (ret.length === 100);
 
     return data;

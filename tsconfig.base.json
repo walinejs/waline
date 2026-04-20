@@ -7,7 +7,6 @@
     "declaration": false,
     "declarationMap": false,
     "diagnostics": false,
-    "downlevelIteration": false,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "importHelpers": true,

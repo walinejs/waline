@@ -24,7 +24,8 @@ export interface WalineProps {
    *
    * 你可以将其设置为 `window.location.pathname`
    *
-   * Article path id. Used to distinguish different _article pages_ to ensure loading the correct comment list under the _article page_.
+   * Article path id. Used to distinguish different _article pages_ to ensure loading the correct
+   * comment list under the _article page_.
    *
    * You can set it to `window.location.pathname`
    */
@@ -48,18 +49,19 @@ export interface WalineProps {
    *
    * Set required fields, default anonymous with nickname
    *
-   * @default []
+   * @default [ ]
    */
   requiredMeta?: WalineMeta[];
 
   /**
    * 评论字数限制。填入单个数字时为最大字数限制
    *
-   * @description 设置为 `0` 时无限制
+   * 设置为 `0` 时无限制
    *
-   * Comment word s limit. When a single number is filled in, it 's the maximum number of comment words.
+   * Comment word s limit. When a single number is filled in, it 's the maximum number of comment
+   * words.
    *
-   * @description No limit when set to `0`.
+   * No limit when set to `0`.
    *
    * @default 0
    */
@@ -68,7 +70,7 @@ export interface WalineProps {
   /**
    * 评论列表分页，每页条数
    *
-   * number of pages per page
+   * Number of pages per page
    *
    * @default 10
    */
@@ -131,7 +133,6 @@ export interface WalineProps {
    * @see [自定义语言](https://waline.js.org/client/i18n.html)
    *
    * Custom display language in waline
-   *
    * @see [I18n](https://waline.js.org/en/client/i18n.html)
    */
   locale?: Partial<WalineLocale>;
@@ -148,16 +149,16 @@ export interface WalineProps {
   /**
    * 是否启用暗黑模式适配
    *
-   * @description 设置 `'auto'` 会根据设备暗黑模式自适应。填入 CSS 选择器会在对应选择器生效时启用夜间模式。
+   * 设置 `'auto'` 会根据设备暗黑模式自适应。填入 CSS 选择器会在对应选择器生效时启用夜间模式。
    *
    * Whether to enable darkmode support
    *
-   * @description Setting `'auto'` will display darkmode due to device settings. Filling in CSS selector will enable darkmode only when the selector match waline ancestor nodes.
+   * Setting `'auto'` will display darkmode due to device settings. Filling in CSS selector will
+   * enable darkmode only when the selector match waline ancestor nodes.
    */
   dark?: string | boolean;
 
   /**
-   *
    * 登录模式状态，可选值:
    *
    * - `'enable'`: 启用登录 (默认)
@@ -182,7 +183,6 @@ export interface WalineProps {
    * Whether hide copyright in footer
    *
    * We strongly recommended you to keep it on to support waline
-   *
    */
   noCopyright?: boolean;
 
@@ -196,16 +196,16 @@ export interface WalineProps {
   noRss?: boolean;
 
   /**
-   * recaptcha v3 客户端 key
+   * Recaptcha v3 客户端 key
    *
-   * recaptcha v3 client key
+   * Recaptcha v3 client key
    */
   recaptchaV3Key?: string;
 
   /**
-   * turnstile 客户端 key
+   * Turnstile 客户端 key
    *
-   * turnstile client key
+   * Turnstile client key
    */
   turnstileKey?: string;
 

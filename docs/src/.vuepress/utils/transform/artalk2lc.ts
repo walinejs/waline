@@ -8,9 +8,7 @@ const parseKey = (key: string): string => {
   return anchor.pathname || key;
 };
 
-/**
- * artalk 数据结构转 leancloud
- */
+/** Artalk 数据结构转 leancloud */
 
 export const artalk2lc = (input) => {
   input = JSON.parse(input);

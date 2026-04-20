@@ -36,41 +36,43 @@ module.exports = class extends Base {
         instance.doesNotExist(k);
       }
 
-      if (Array.isArray(where[k])) {
-        if (where[k][0]) {
-          const handler = where[k][0].toUpperCase();
+      if (Array.isArray(where[k]) && where[k][0]) {
+        const handler = where[k][0].toUpperCase();
 
-          switch (handler) {
-            case 'IN': {
-              instance.containedIn(k, where[k][1]);
-              break;
-            }
-            case 'NOT IN': {
-              instance.notContainedIn(k, where[k][1]);
-              break;
-            }
-            case 'LIKE': {
-              const first = where[k][1][0];
-              const last = where[k][1].slice(-1);
+        switch (handler) {
+          case 'IN': {
+            instance.containedIn(k, where[k][1]);
+            break;
+          }
+          case 'NOT IN': {
+            instance.notContainedIn(k, where[k][1]);
+            break;
+          }
+          case 'LIKE': {
+            const [, likePattern] = where[k];
+            const [first] = likePattern;
+            const last = likePattern.slice(-1);
 
-              if (first === '%' && last === '%') {
-                instance.contains(k, where[k][1].slice(1, -1));
-              } else if (first === '%') {
-                instance.endsWith(k, where[k][1].slice(1));
-              } else if (last === '%') {
-                instance.startsWith(k, where[k][1].slice(0, -1));
-              }
+            if (first === '%' && last === '%') {
+              instance.contains(k, likePattern.slice(1, -1));
+            } else if (first === '%') {
+              instance.endsWith(k, likePattern.slice(1));
+            } else if (last === '%') {
+              instance.startsWith(k, likePattern.slice(0, -1));
+            }
 
-              break;
-            }
-            case '!=': {
-              instance.notEqualTo(k, where[k][1]);
-              break;
-            }
-            case '>': {
-              instance.greaterThan(k, where[k][1]);
-              break;
-            }
+            break;
+          }
+          case '!=': {
+            instance.notEqualTo(k, where[k][1]);
+            break;
+          }
+          case '>': {
+            instance.greaterThan(k, where[k][1]);
+            break;
+          }
+          default: {
+            break;
           }
         }
       }
@@ -133,14 +135,14 @@ module.exports = class extends Base {
   }
 
   async select(where, options = {}) {
-    let data = [];
+    const data = [];
     let ret = [];
     const offset = options.offset ?? 0;
 
     do {
       options.offset = offset + data.length;
       ret = await this._select(where, options);
-      data = data.concat(ret);
+      data.push(...ret);
     } while (ret.length === 100);
 
     return data;
@@ -215,7 +217,7 @@ module.exports = class extends Base {
       return;
     }
 
-    let { count } = cacheData[0];
+    let [{ count }] = cacheData;
 
     switch (method) {
       case 'add': {
@@ -236,6 +238,9 @@ module.exports = class extends Base {
       }
       case 'delete': {
         count -= 1;
+        break;
+      }
+      default: {
         break;
       }
     }
