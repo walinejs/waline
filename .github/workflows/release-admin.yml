@@ -1,4 +1,4 @@
-name: "publish @waline/admin"
+name: 'publish @waline/admin'
 
 on:
   push:
@@ -36,7 +36,7 @@ jobs:
       - name: Build Admin
         run: pnpm run admin:build
 
-      - name: "publish @waline/admin"
+      - name: 'publish @waline/admin'
         uses: JS-DevTools/npm-publish@v4
         with:
           package: ./packages/admin
