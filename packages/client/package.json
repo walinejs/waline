@@ -22,10 +22,6 @@
     "dist"
   ],
   "type": "module",
-  "main": "./dist/slim.js",
-  "module": "./dist/slim.js",
-  "browser": "./dist/waline.umd.js",
-  "types": "./dist/slim.d.ts",
   "exports": {
     ".": {
       "types": "./dist/slim.d.ts",
@@ -60,12 +56,11 @@
     "provenance": true
   },
   "scripts": {
-    "build": "pnpm rollup && pnpm style",
+    "build": "tsdown && pnpm run style",
     "clean": "rimraf ./dist",
     "dev": "vite",
-    "prepublishOnly": "pnpm clean && pnpm build",
-    "rollup": "rollup -c rollup.config.ts --configPlugin esbuild",
-    "style": "pnpm style:main && pnpm style:meta",
+    "prepublishOnly": "pnpm run clean && pnpm run build",
+    "style": "pnpm run style:main && pnpm run style:meta",
     "style:main": "sass ./src/styles/index.scss ./dist/waline.css --style=compressed",
     "style:meta": "sass ./src/styles/meta.scss ./dist/waline-meta.css --style=compressed"
   },
@@ -102,6 +97,6 @@
     ]
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=22"
   }
 }

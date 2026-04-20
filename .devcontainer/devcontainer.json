@@ -1,6 +1,6 @@
 {
   "name": "Waline Workspace",
-  "updateContentCommand": "pnpm i",
+  "updateContentCommand": "pnpm install",
   "postAttachCommand": "pnpm run client:dev",
   "forwardPorts": [5173],
   "portsAttributes": {

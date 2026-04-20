@@ -70,7 +70,7 @@ export default function useScript({ src, checkForExisting = false, ...attributes
       status = scripts[src] = {
         loading: true,
         error: null,
-        scriptEl: scriptEl,
+        scriptEl,
       };
     }
     // `status` is now guaranteed to be defined: either the old status

@@ -5,7 +5,7 @@ import { defineConfig } from 'vite';
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 import svgr from 'vite-plugin-svgr';
 
-import { version } from './package.json';
+import { version } from './package.json' with { type: 'json' };
 
 export default defineConfig({
   define: {

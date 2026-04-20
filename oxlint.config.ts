@@ -2,14 +2,7 @@ import { defineHopeConfig } from 'oxc-config-hope/oxlint';
 
 export default defineHopeConfig(
   {
-    ignore: [
-      'example/',
-      '**/.vuepress/utils/transform/',
-      '**/.vuepress/utils/csv.js',
-      'packages/admin/src/components/useScript.js',
-      // 'packages/admin/**',
-      // 'packages/server/**',
-    ],
+    ignore: ['example/', '**/.vuepress/utils/transform/', '**/.vuepress/utils/csv.js'],
     node: ['packages/cloudbase/**', 'packages/server/**/*.js', 'scripts/thinkjs-mock.js'],
     react: true,
     vue: true,

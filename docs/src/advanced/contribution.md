@@ -37,7 +37,7 @@ order: -1
 
 ## 开发
 
-- 使用 `pnpm client:dev` 启动 `@waline/client` 本地开发
+- 使用 `pnpm run client:dev` 启动 `@waline/client` 本地开发
 
   ::: tip
 
@@ -45,7 +45,7 @@ order: -1
 
   :::
 
-- 使用 `pnpm server:dev` 启动 `@waline/server` 本地开发
+- 使用 `pnpm run server:dev` 启动 `@waline/server` 本地开发
 
   ::: tip
 
