@@ -87,6 +87,7 @@ export default defineHopeConfig(
         'warn',
         {
           definedTags: [
+            'apiHeader',
             'apiParam',
             'apiSuccess',
             'apiSuccessExample',
@@ -108,8 +109,9 @@ export default defineHopeConfig(
 
       // temporarily disable to avoid too many warnings, will be re-enabled in the future
       'guard-for-in': 'off',
-      'no-shadow': 'off',
       'max-classes-per-file': 'off',
+      'no-shadow': 'off',
+      'no-undefined': 'off',
     },
   },
 );

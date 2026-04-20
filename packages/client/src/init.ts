@@ -11,22 +11,18 @@ export interface WalineInstance {
   /**
    * Waline 被挂载到的元素
    *
-   * @description 当通过 `el: null` 初始化，值为 `null`
+   * 当通过 `el: null` 初始化，值为 `null` Element where Waline is mounted
    *
-   * Element where Waline is mounted
-   *
-   * @description when initialized with `el: null`, it will be `null`
+   * When initialized with `el: null`, it will be `null`
    */
   el: HTMLElement | null;
 
   /**
    * 更新 Waline 实例
    *
-   * @description 只要不设置`path` 选项，更新时它就会被重置为 `windows.location.pathname`
+   * 只要不设置`path` 选项，更新时它就会被重置为 `windows.location.pathname` Update Waline instance
    *
-   * Update Waline instance
-   *
-   * @description when not setting `path` option, it will be reset to `window.location.pathname`
+   * When not setting `path` option, it will be reset to `window.location.pathname`
    */
   update: (newOptions?: Partial<Omit<WalineInitOptions, 'el'>>) => void;
 
@@ -40,6 +36,7 @@ export interface WalineInstance {
 
 export const init = ({
   el = '#waline',
+  // oxlint-disable-next-line unicorn/prefer-global-this
   path = window.location.pathname,
   comment = false,
   pageview = false,

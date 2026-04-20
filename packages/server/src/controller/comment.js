@@ -16,7 +16,7 @@ const formatCmt = async (
       .split('.')
       .slice(0, 2)
       .join('.')}`;
-    comment.os = [ua.os.name, ua.os.version].filter((v) => v).join(' ');
+    comment.os = [ua.os.name, ua.os.version].filter(Boolean).join(' ');
   }
 
   const user = users.find(({ objectId }) => comment.user_id === objectId);
@@ -112,7 +112,7 @@ module.exports = class CommentController extends BaseRest {
     };
 
     if (pid && this.ctx.state.deprecated) {
-      data.comment = `[@${at}](#${pid}): ` + data.comment;
+      data.comment = `[@${at}](#${pid}): ${data.comment}`;
     }
 
     think.logger.debug('Post Comment initial Data:', data);
@@ -190,7 +190,7 @@ module.exports = class CommentController extends BaseRest {
         const { forbiddenWords } = this.config();
 
         if (!think.isEmpty(forbiddenWords)) {
-          const regexp = new RegExp('(' + forbiddenWords.join('|') + ')', 'ig');
+          const regexp = new RegExp(`(${forbiddenWords.join('|')})`, 'ig');
 
           if (regexp.test(comment)) {
             data.status = 'spam';
@@ -220,12 +220,12 @@ module.exports = class CommentController extends BaseRest {
 
     if (pid) {
       parentComment = await this.modelInstance.select({ objectId: pid });
-      parentComment = parentComment[0];
+      [parentComment] = parentComment;
       if (parentComment.user_id) {
         parentUser = await this.getModel('Users').select({
           objectId: parentComment.user_id,
         });
-        parentUser = parentUser[0];
+        [parentUser] = parentUser;
       }
     }
 
@@ -284,7 +284,7 @@ module.exports = class CommentController extends BaseRest {
       return this.success();
     }
 
-    oldData = oldData[0];
+    [oldData] = oldData;
     if (think.isBoolean(data.like)) {
       const likeIncMax = this.config('LIKE_INC_MAX') || 1;
 
@@ -312,7 +312,7 @@ module.exports = class CommentController extends BaseRest {
       cmtUser = await this.getModel('Users').select({
         objectId: newData[0].user_id,
       });
-      cmtUser = cmtUser[0];
+      [cmtUser] = cmtUser;
     }
     const cmtReturn = await formatCmt(
       newData[0],
@@ -326,7 +326,7 @@ module.exports = class CommentController extends BaseRest {
         objectId: oldData.pid,
       });
 
-      pComment = pComment[0];
+      [pComment] = pComment;
 
       let pUser;
 
@@ -334,7 +334,7 @@ module.exports = class CommentController extends BaseRest {
         pUser = await this.getModel('Users').select({
           objectId: pComment.user_id,
         });
-        pUser = pUser[0];
+        [pUser] = pUser;
       }
 
       const notify = this.service('notify', this);
@@ -475,7 +475,7 @@ module.exports = class CommentController extends BaseRest {
     }
 
     const userModel = this.getModel('Users');
-    const user_ids = [...new Set(comments.map(({ user_id }) => user_id).filter((v) => v))];
+    const user_ids = [...new Set(comments.map(({ user_id }) => user_id).filter(Boolean))];
     let users = [];
 
     if (user_ids.length > 0) {
@@ -497,7 +497,7 @@ module.exports = class CommentController extends BaseRest {
         countWhere._complex.user_id = ['IN', user_ids];
       }
 
-      const mails = [...new Set(comments.map(({ mail }) => mail).filter((v) => v))];
+      const mails = [...new Set(comments.map(({ mail }) => mail).filter(Boolean))];
 
       if (mails.length > 0) {
         countWhere._complex.mail = ['IN', mails];
@@ -553,20 +553,19 @@ module.exports = class CommentController extends BaseRest {
               .reverse(),
           );
 
-          const childCommentsMap = new Map();
+          const childCommentsMap = new Map([[cmt.objectId, cmt]]);
 
-          childCommentsMap.set(cmt.objectId, cmt);
-          cmt.children.forEach((c) => childCommentsMap.set(c.objectId, c));
+          cmt.children.forEach((child) => childCommentsMap.set(child.objectId, child));
 
-          cmt.children.forEach((c) => {
-            const parent = childCommentsMap.get(c.pid);
+          cmt.children.forEach((child) => {
+            const parent = childCommentsMap.get(child.pid);
 
             // fix https://github.com/walinejs/waline/issues/2518 avoid some abnormal comment data
             if (!parent) {
               return;
             }
 
-            c.reply_user = {
+            child.reply_user = {
               nick: parent?.nick,
               link: parent?.link,
               avatar: parent?.avatar,

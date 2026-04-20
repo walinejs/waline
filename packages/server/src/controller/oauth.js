@@ -26,9 +26,7 @@ module.exports = class OAuthController extends think.Controller {
       return;
     }
 
-    /**
-     * user = { id, name, email, avatar,url };
-     */
+    /** User = { id, name, email, avatar,url }; */
     const params = { code, state };
 
     if (type === 'facebook') {
@@ -38,7 +36,6 @@ module.exports = class OAuthController extends think.Controller {
         type,
       });
 
-      // oxlint-disable-next-line no-undefined
       params.state = think.buildUrl(undefined, {
         redirect: redirectUrl,
         state: this.ctx.state.token || '',
