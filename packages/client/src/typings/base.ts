@@ -67,7 +67,9 @@ export interface WalineSearchImageData extends Record<string, unknown> {
   /**
    * 图片缩略图
    *
-   * 为了更好的加载性能，我们会优先在列表中使用此缩略图 Image preview link
+   * 为了更好的加载性能，我们会优先在列表中使用此缩略图
+   *
+   * Image preview link
    *
    * For better loading performance, we will use this thumbnail first in the list
    *
@@ -98,7 +100,9 @@ export interface WalineSearchOptions {
   /**
    * 获取更多的操作
    *
-   * 会在列表滚动到底部时触发，如果你的搜索服务支持分页功能，你应该设置此项实现无限滚动 Fetch more action
+   * 会在列表滚动到底部时触发，如果你的搜索服务支持分页功能，你应该设置此项实现无限滚动
+   *
+   * Fetch more action
    *
    * It will be triggered when the list scrolls to the bottom. If your search service supports
    * paging, you should set this to achieve infinite scrolling

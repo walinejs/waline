@@ -56,8 +56,10 @@ export interface WalineProps {
   /**
    * 评论字数限制。填入单个数字时为最大字数限制
    *
-   * 设置为 `0` 时无限制 Comment word s limit. When a single number is filled in, it 's the maximum number
-   * of comment words.
+   * 设置为 `0` 时无限制
+   *
+   * Comment word s limit. When a single number is filled in, it 's the maximum number of comment
+   * words.
    *
    * No limit when set to `0`.
    *
@@ -147,7 +149,9 @@ export interface WalineProps {
   /**
    * 是否启用暗黑模式适配
    *
-   * 设置 `'auto'` 会根据设备暗黑模式自适应。填入 CSS 选择器会在对应选择器生效时启用夜间模式。 Whether to enable darkmode support
+   * 设置 `'auto'` 会根据设备暗黑模式自适应。填入 CSS 选择器会在对应选择器生效时启用夜间模式。
+   *
+   * Whether to enable darkmode support
    *
    * Setting `'auto'` will display darkmode due to device settings. Filling in CSS selector will
    * enable darkmode only when the selector match waline ancestor nodes.
