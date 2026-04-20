@@ -111,9 +111,7 @@ const CSV = {};
           return (
             !0 !== u &&
               (e === '' ? (e = null) : !0 === i.skipinitialspace && (e = v(e)),
-              h.test(e)
-                ? (e = Number.parseInt(e, 10))
-                : m.test(e) && (e = Number.parseFloat(e, 10))),
+              h.test(e) ? (e = Number.parseInt(e, 10)) : m.test(e) && (e = Number.parseFloat(e))),
             e
           );
         },

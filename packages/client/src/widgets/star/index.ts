@@ -2,7 +2,7 @@ import { createApp } from 'vue';
 import type { ComponentPublicInstance } from 'vue';
 
 import { getRoot } from '../../utils/index.js';
-import StarWidget from './star-widget.vue';
+import WalineStarWidget from './WalineStarWidget.vue';
 
 /** Options for the star rating widget. */
 export interface WalineStarOptions {
@@ -44,7 +44,7 @@ export const Star = ({
     };
   }
 
-  const app = createApp(StarWidget, {
+  const app = createApp(WalineStarWidget, {
     path,
     lang,
     serverURL,
