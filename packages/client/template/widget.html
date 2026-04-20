@@ -20,21 +20,23 @@
       import { RecentComments, UserList, Star } from '../src/entries/full.ts';
       import '../src/styles/index.scss';
 
+      const serverURL = import.meta.env.SERVERURL || 'https://walinejs.comment.lithub.cc';
+
       RecentComments({
         el: '#recent-comment',
-        serverURL: import.meta.env.SERVERURL || 'https://walinejs.comment.lithub.cc',
+        serverURL,
         count: 10,
       });
 
       UserList({
         el: '#user-list',
-        serverURL: import.meta.env.SERVERURL || 'https://walinejs.comment.lithub.cc',
+        serverURL,
         count: 10,
       });
 
       UserList({
         el: '#user-wall',
-        serverURL: import.meta.env.SERVERURL || 'https://walinejs.comment.lithub.cc',
+        serverURL,
         count: 50,
         mode: 'wall',
       });
@@ -42,7 +44,7 @@
       Star({
         el: '#user-star',
         path: '/',
-        serverURL: import.meta.env.SERVERURL || 'https://walinejs.comment.lithub.cc',
+        serverURL,
       });
     </script>
   </body>
