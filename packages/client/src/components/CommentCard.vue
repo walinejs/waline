@@ -81,7 +81,7 @@ const isEditingCurrent = computed(() => comment.objectId === edit?.objectId);
           class="wl-nick"
           :href="link"
           target="_blank"
-          rel="nofollow noopener noreferrer"
+          rel="ugc nofollow noreferrer noopener"
           >{{ comment.nick }}</a
         >
 
