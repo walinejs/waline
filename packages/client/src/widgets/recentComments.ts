@@ -15,7 +15,7 @@ export interface WalineRecentCommentsOptions {
   /**
    * 获取最新评论的数量
    *
-   * fetch number of latest comments
+   * Fetch number of latest comments
    */
   count: number;
 

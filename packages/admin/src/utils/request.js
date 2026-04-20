@@ -1,15 +1,7 @@
 import I18n from 'i18next';
 
 export default async function request(url, opts = {}) {
-  let options;
-
-  if (typeof url === 'object') {
-    options = { ...url };
-  } else if (typeof url === 'string') {
-    options = { ...opts, url };
-  } else {
-    options = { ...opts };
-  }
+  const options = typeof url === 'object' ? { ...url } : { ...opts, url };
 
   options.headers ??= {};
   if (options.body && !(options.body instanceof FormData)) {

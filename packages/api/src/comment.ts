@@ -206,7 +206,7 @@ interface UpdateWalineCommentData extends Partial<WalineCommentData> {
    *
    * Comment sticky status
    *
-   * @description 0 means not sticky and 1 means sticky
+   * 0 means not sticky and 1 means sticky
    */
   sticky?: 0 | 1;
 }

@@ -167,7 +167,8 @@ exports.model = {
 };
 
 /**
- * logger adapter config
+ * Logger adapter config
+ *
  * @type {Object}
  */
 exports.logger = {

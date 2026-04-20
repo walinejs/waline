@@ -1,6 +1,4 @@
-/**
- * leancloud 数据结构转 cloudbase
- */
+/** Leancloud 数据结构转 cloudbase */
 export const lc2tcb = (json) =>
   json.results
     .map((comment) => {

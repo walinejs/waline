@@ -39,21 +39,13 @@ import ImageWall from './ImageWall.vue';
 
 // oxlint-disable-next-line vue/define-props-destructuring
 const props = defineProps<{
-  /**
-   * Current comment to be edited
-   */
+  /** Current comment to be edited */
   edit?: WalineComment | null;
-  /**
-   * Root comment id
-   */
+  /** Root comment id */
   rootId?: number;
-  /**
-   * Comment id to be replied
-   */
+  /** Comment id to be replied */
   replyId?: number;
-  /**
-   * User name to be replied
-   */
+  /** User name to be replied */
   replyUser?: string;
 }>();
 

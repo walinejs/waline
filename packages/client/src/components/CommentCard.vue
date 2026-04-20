@@ -18,21 +18,13 @@ import {
 } from './Icons.js';
 
 const { comment, edit, rootId, reply } = defineProps<{
-  /**
-   * Comment data
-   */
+  /** Comment data */
   comment: WalineComment;
-  /**
-   * Current comment to be edited
-   */
+  /** Current comment to be edited */
   edit?: WalineComment | null;
-  /**
-   * Root comment id
-   */
+  /** Root comment id */
   rootId: number;
-  /**
-   * Current comment to be replied
-   */
+  /** Current comment to be replied */
   reply?: WalineComment | null;
 }>();
 

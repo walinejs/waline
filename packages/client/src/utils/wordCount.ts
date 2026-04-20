@@ -3,14 +3,15 @@
  *
  * So We just make a simple implement here
  *
- * Forked from https://github.com/vuepress-theme-hope/vuepress-theme-hope/blob/main/packages/reading-time2/src/node/readingTime.ts
+ * Forked from
+ * https://github.com/vuepress-theme-hope/vuepress-theme-hope/blob/main/packages/reading-time2/src/node/readingTime.ts
  */
 
 /**
  * Extract Latin words from content
  *
- * @param content - input string
- * @returns matched words
+ * @param content - Input string
+ * @returns Matched words
  */
 export const getWords = (content: string): RegExpMatchArray | null =>
   // \u00C0-\u024F are Latin Supplement letters, maybe used in language like french
@@ -20,8 +21,8 @@ export const getWords = (content: string): RegExpMatchArray | null =>
 /**
  * Extract Chinese Characters from content
  *
- * @param content - input string
- * @returns matched Chinese characters
+ * @param content - Input string
+ * @returns Matched Chinese characters
  */
 export const getChinese = (content: string): RegExpMatchArray | null =>
   content.match(/[\u4E00-\u9FD5]/gu);
@@ -29,8 +30,8 @@ export const getChinese = (content: string): RegExpMatchArray | null =>
 /**
  * Get word number of given string
  *
- * @param content - input string
- * @returns word number
+ * @param content - Input string
+ * @returns Word number
  */
 export const getWordNumber = (content: string): number =>
   (getWords(content)?.reduce<number>(

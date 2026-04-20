@@ -37,17 +37,11 @@ const {
   columnWidth = 300,
   gap = 0,
 } = defineProps<{
-  /**
-   * Image Items
-   */
+  /** Image Items */
   items?: WalineSearchResult;
-  /**
-   * width in pixels of each column
-   */
+  /** Width in pixels of each column */
   columnWidth?: number;
-  /**
-   * gap in pixels between columns
-   */
+  /** Gap in pixels between columns */
   gap?: number;
 }>();
 

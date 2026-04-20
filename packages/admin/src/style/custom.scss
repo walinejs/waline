@@ -116,18 +116,22 @@ div[tabindex='-1'] {
 
 .typecho-pager button {
   display: block;
+
   padding: 0 10px;
-  border-radius: 2px;
-  background: none;
   border: none;
-  cursor: pointer;
-  font: inherit;
+  border-radius: 2px;
+
+  background: none;
   color: inherit;
+
+  font: inherit;
+
+  cursor: pointer;
 }
 
 .typecho-pager button:hover {
-  text-decoration: none;
   background: #e9e9e6;
+  text-decoration: none;
 }
 
 .typecho-pager li.current button {
@@ -137,15 +141,19 @@ div[tabindex='-1'] {
 
 .typecho-head-nav .operate button {
   display: inline-block;
+
   margin-left: -1px;
   padding: 0 20px;
   border: 1px solid #383d45;
   border-width: 0 1px;
-  line-height: 36px;
-  color: #bbb;
+
   background: none;
-  cursor: pointer;
+  color: #bbb;
+
   font: inherit;
+  line-height: 36px;
+
+  cursor: pointer;
 }
 
 .typecho-head-nav .operate button:hover {
@@ -155,14 +163,18 @@ div[tabindex='-1'] {
 
 .dropdown-menu button {
   display: block;
-  padding: 5px 12px;
-  color: #666;
+
   width: 100%;
-  text-align: left;
-  background: none;
+  padding: 5px 12px;
   border: none;
-  cursor: pointer;
+
+  background: none;
+  color: #666;
+
   font: inherit;
+  text-align: left;
+
+  cursor: pointer;
 }
 
 .dropdown-menu button:hover {
@@ -176,7 +188,7 @@ button.operate-button-delete {
 }
 
 button.operate-edit {
-  color: #007700;
+  color: #070;
 }
 
 button.operate-reply {
@@ -188,16 +200,19 @@ button.operate-reply {
 }
 
 .account-unbind {
-  background: none;
-  border: none;
   padding: 0;
+  border: none;
+  background: none;
   cursor: pointer;
 }
 
 .profile-avatar-btn {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
   display: block;
+
+  padding: 0;
+  border: none;
+
+  background: none;
+
+  cursor: pointer;
 }

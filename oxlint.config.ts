@@ -19,9 +19,11 @@ export default defineHopeConfig(
       'no-alert': 'off',
       'no-warning-comments': 'off',
       'prefer-global-this': 'off',
+      'unicorn/prefer-global-this': 'off',
       eqeqeq: 'off',
       'node/global-require': 'off',
       'node/no-process-env': 'off',
+      'no-undefined': 'off',
     },
   },
   {
@@ -40,10 +42,19 @@ export default defineHopeConfig(
       'typescript/unbound-method': 'off',
       'unicorn/prefer-global-this': 'off',
 
+      'no-shadow': 'off',
+      'promise/catch-or-return': 'off',
+      'max-lines-per-function': 'off',
+      'max-lines': 'off',
+      complexity: 'off',
+      'max-depth': 'off',
+      'react/no-danger': 'off',
+
       // temporarily disable to avoid too many warnings, will be re-enabled in the future
       'react-perf/jsx-no-jsx-as-prop': 'off',
       'react-perf/jsx-no-new-object-as-prop': 'off',
       'react-perf/jsx-no-new-function-as-prop': 'off',
+      'react-perf/jsx-no-new-array-as-prop': 'off',
     },
   },
   {
@@ -52,6 +63,7 @@ export default defineHopeConfig(
     rules: {
       'eslint-plugin-react-hooks/rules-of-hooks': 'off',
       'vue/max-props': ['warn', { maxProps: 5 }],
+      'no-shadow': 'off',
     },
   },
   {
@@ -75,6 +87,7 @@ export default defineHopeConfig(
     rules: {
       'class-methods-use-this': 'off',
       complexity: 'off',
+      'max-lines': 'off',
       'max-lines-per-function': 'off',
       'max-statements': 'off',
       'no-console': 'off',
@@ -104,14 +117,31 @@ export default defineHopeConfig(
       'typescript/prefer-promise-reject-errors': 'off',
       'typescript/require-await': 'off',
 
-      // 'unicorn/no-array-callback-reference': 'off',
+      'unicorn/no-array-callback-reference': 'off',
       // 'unicorn/no-array-method-this-argument': 'off',
+      'unicorn/no-anonymous-default-export': 'off',
+      'unicorn/consistent-function-scoping': 'off',
+
+      'promise/prefer-await-to-callbacks': 'off',
+      'promise/always-return': 'off',
+      'promise/no-nesting': 'off',
+
+      'max-depth': 'off',
+      'no-param-reassign': 'off',
+      'id-length': 'off',
+      'oxc/no-map-spread': 'off',
 
       // temporarily disable to avoid too many warnings, will be re-enabled in the future
       'guard-for-in': 'off',
       'max-classes-per-file': 'off',
       'no-shadow': 'off',
       'no-undefined': 'off',
+    },
+  },
+  {
+    files: ['docs/src/**'],
+    rules: {
+      'max-lines': 'off',
     },
   },
 );

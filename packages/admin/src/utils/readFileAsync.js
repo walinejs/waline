@@ -1,4 +1,4 @@
-export default (file) =>
+const readFileAsync = (file) =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
 
@@ -9,3 +9,5 @@ export default (file) =>
     // oxlint-disable-next-line unicorn/prefer-blob-reading-methods
     reader.readAsText(file);
   });
+
+export default readFileAsync;

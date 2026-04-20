@@ -80,6 +80,9 @@ export default function ManageComments() {
                 list.spamCount -= 1;
                 break;
               }
+              default: {
+                break;
+              }
             }
             setList({ ...list });
           } else {
@@ -540,7 +543,6 @@ export default function ManageComments() {
                                     {url}
                                   </a>
                                 </div>
-                                {/* oxlint-disable-next-line react/no-danger */}
                                 <div
                                   className="comment-content"
                                   dangerouslySetInnerHTML={{ __html: comment }}

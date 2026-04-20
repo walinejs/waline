@@ -95,8 +95,7 @@ export default function Header() {
           i18nKey="new version tips"
           defaults="New version @waline/vercel@{{version}} published, please upgrade it! Goto <a href='https://waline.js.org/en/advanced/faq.html#server' target='_blank'>FAQ</a> to find How to upgrade it."
           components={{
-            // oxlint-disable-next-line jsx-a11y/anchor-is-valid, jsx-a11y/anchor-has-content
-            // oxlint-disable-next-line id-length
+            // oxlint-disable-next-line id-length, jsx-a11y/anchor-is-valid, jsx-a11y/anchor-has-content
             a: <a />,
           }}
           values={{
@@ -112,8 +111,7 @@ export default function Header() {
           i18nKey="leancloud warning"
           defaults="<a href='https://github.com/orgs/walinejs/discussions/3370' target='_blank'>Leancloud will cease external services soon</a>. If you are using it, please migration your comment data as soon as possible."
           components={{
-            // oxlint-disable-next-line jsx-a11y/anchor-is-valid, jsx-a11y/anchor-has-content
-            // oxlint-disable-next-line id-length
+            // oxlint-disable-next-line id-length, jsx-a11y/anchor-is-valid, jsx-a11y/anchor-has-content
             a: <a />,
           }}
           transKeepBasicHtmlNodesFor={['a']}
