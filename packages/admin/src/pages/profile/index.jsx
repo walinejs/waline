@@ -4,13 +4,16 @@ import { Trans, useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Header from '../../components/Header.jsx';
+// oxlint-disable-next-line import/no-namespace
 import * as Icons from '../../components/icon/index.js';
 import { updateProfile } from '../../services/user.js';
 import TwoFactorAuth from './twoFactorAuth.jsx';
 
 // oxlint-disable-next-line max-lines-per-function
 export default function Profile() {
+  // oxlint-disable-next-line react/hook-use-state
   const [isPasswordUpdating, setPasswordUpdating] = useState(false);
+  // oxlint-disable-next-line react/hook-use-state
   const [isProfileUpdating, setProfileUpdating] = useState(false);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);

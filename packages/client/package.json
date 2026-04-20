@@ -73,18 +73,18 @@
     "@vueuse/core": "^14.2.1",
     "@waline/api": "workspace:*",
     "autosize": "^6.0.1",
-    "marked": "^17.0.5",
-    "marked-highlight": "^2.2.3",
+    "marked": "^18.0.2",
+    "marked-highlight": "^2.2.4",
     "recaptcha-v3": "^1.11.3",
-    "vue": "^3.5.31"
+    "vue": "^3.5.32"
   },
   "devDependencies": {
     "@babel/core": "7.29.0",
     "@babel/preset-env": "7.29.2",
     "@giphy/js-types": "5.1.0",
     "@types/autosize": "4.0.3",
-    "@vitejs/plugin-vue": "6.0.5",
-    "vite": "8.0.3"
+    "@vitejs/plugin-vue": "6.0.6",
+    "vite": "8.0.8"
   },
   "browserslist": {
     "production": [

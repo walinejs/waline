@@ -61,6 +61,7 @@ const withFallback = <T = unknown>(value: T | boolean | undefined, fallback: T):
 
 export const getConfig = ({
   serverURL,
+  // oxlint-disable-next-line typescript/no-useless-default-assignment
   path = location.pathname,
   lang = typeof navigator === 'undefined' ? 'en-US' : navigator.language,
   locale,

@@ -40,6 +40,7 @@ export default defineComponent({
 
   setup() {
     const frontmatter = usePageFrontmatter<
+      // oxlint-disable-next-line typescript/no-unnecessary-type-arguments
       ThemeProjectHomePageFrontmatter | ThemeNormalPageFrontmatter
     >();
     const routeLocale = useRouteLocale();

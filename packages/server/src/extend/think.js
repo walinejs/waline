@@ -118,7 +118,8 @@ module.exports = {
       return defaultLevel;
     }
 
-    const level = think.findLastIndex(levels, (level) => level <= val);
+    // oxlint-disable-next-line unicorn/no-array-method-this-argument, unicorn/no-array-callback-reference
+    const level = think.findLastIndex(levels, (item) => item <= val);
 
     return level === -1 ? defaultLevel : level;
   },
@@ -153,7 +154,7 @@ module.exports = {
       }
 
       if (think.isArray(middleware)) {
-        return middleware.filter((middleware) => think.isFunction(middleware));
+        return middleware.filter((item) => think.isFunction(item));
       }
     });
 

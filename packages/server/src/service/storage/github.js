@@ -127,7 +127,7 @@ class Github {
   }
 }
 
-module.exports = class extends Base {
+module.exports = class GithubStorage extends Base {
   constructor(tableName) {
     super();
     this.tableName = tableName;
@@ -239,6 +239,7 @@ module.exports = class extends Base {
           filters.push((item) => item[k] >= where[k][1]);
           break;
         }
+        default: 
       }
     }
 

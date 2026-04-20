@@ -72,7 +72,7 @@ const formatCmt = async (
   return comment;
 };
 
-module.exports = class extends BaseRest {
+module.exports = class CommentController extends BaseRest {
   constructor(ctx) {
     super(ctx);
     this.modelInstance = this.getModel('Comment');
@@ -426,21 +426,18 @@ module.exports = class extends BaseRest {
     }
 
     /**
-     * most of case we have just little comments
-     * while if we want get rootComments, rootCount, childComments with pagination
-     * we have to query three times from storage service
-     * That's so expensive for user, especially in the serverless.
-     * so we have a comments length check
-     * If you have less than 1000 comments, then we'll get all comments one time
-     * then we'll compute rootComment, rootCount, childComments in program to reduce http request query
+     * Most of case we have just little comments while if we want get rootComments, rootCount,
+     * childComments with pagination we have to query three times from storage service That's so
+     * expensive for user, especially in the serverless. so we have a comments length check If you
+     * have less than 1000 comments, then we'll get all comments one time then we'll compute
+     * rootComment, rootCount, childComments in program to reduce http request query
      *
-     * Why we have limit and the limit is 1000?
-     * Many serverless storages have fetch data limit, for example LeanCloud is 100, and CloudBase is 1000
-     * If we have much comments, We should use more request to fetch all comments
-     * If we have 3000 comments, We have to use 30 http request to fetch comments, things go athwart.
-     * And Serverless Service like vercel have execute time limit
-     * if we have more http requests in a serverless function, it may timeout easily.
-     * so we use limit to avoid it.
+     * Why we have limit and the limit is 1000? Many serverless storages have fetch data limit, for
+     * example LeanCloud is 100, and CloudBase is 1000 If we have much comments, We should use more
+     * request to fetch all comments If we have 3000 comments, We have to use 30 http request to
+     * fetch comments, things go athwart. And Serverless Service like vercel have execute time limit
+     * if we have more http requests in a serverless function, it may timeout easily. so we use
+     * limit to avoid it.
      */
     if (totalCount < 1000) {
       comments = await this.modelInstance.select(where, selectOptions);
@@ -618,7 +615,7 @@ module.exports = class extends BaseRest {
     });
 
     const userModel = this.getModel('Users');
-    const user_ids = [...new Set(comments.map(({ user_id }) => user_id).filter((v) => v))];
+    const user_ids = [...new Set(comments.map(({ user_id }) => user_id).filter(Boolean))];
 
     let users = [];
 
@@ -687,7 +684,7 @@ module.exports = class extends BaseRest {
     });
 
     const userModel = this.getModel('Users');
-    const user_ids = [...new Set(comments.map(({ user_id }) => user_id).filter((v) => v))];
+    const user_ids = [...new Set(comments.map(({ user_id }) => user_id).filter(Boolean))];
 
     let users = [];
 

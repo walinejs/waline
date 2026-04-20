@@ -14,7 +14,7 @@ const ptBR = require('./pt-BR.json');
 module.exports = {
   'zh-cn': zhCN,
   'zh-tw': zhTW,
-  en: en,
+  en,
   'en-us': en,
   it,
   'it-it': it,

@@ -468,7 +468,7 @@ module.exports = class NotifyService extends think.Service {
     if (LARK_SECRET) {
       const timestamp = Number.parseInt(Date.now() / 1000, 10);
 
-      signData = { timestamp: timestamp, sign: sign(timestamp, LARK_SECRET) };
+      signData = { timestamp, sign: sign(timestamp, LARK_SECRET) };
     }
 
     const resp = await fetch(LARK_WEBHOOK, {

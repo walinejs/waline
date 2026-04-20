@@ -1,4 +1,3 @@
-// oxlint-disable unicorn/text-encoding-identifier-case
 import { createRequire } from 'node:module';
 
 import commonjs from '@rollup/plugin-commonjs';

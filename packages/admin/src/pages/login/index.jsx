@@ -16,6 +16,7 @@ export default function Login() {
   const user = useSelector((state) => state.user);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  // oxlint-disable-next-line react/hook-use-state
   const [is2FAEnabled, enable2FA] = useState(false);
   const execute = useCaptcha({
     sitekey: window.turnstileKey ?? window.recaptchaV3Key,

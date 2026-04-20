@@ -1,5 +1,5 @@
 export default function download(data, filename, type) {
-  const file = new Blob([data], { type: type });
+  const file = new Blob([data], { type });
   const a = document.createElement('a');
   const url = URL.createObjectURL(file);
 
