@@ -9,7 +9,6 @@ import * as Icons from '../../components/icon/index.js';
 import { updateProfile } from '../../services/user.js';
 import TwoFactorAuth from './twoFactorAuth.jsx';
 
-// oxlint-disable-next-line max-lines-per-function
 export default function Profile() {
   // oxlint-disable-next-line react/hook-use-state
   const [isPasswordUpdating, setPasswordUpdating] = useState(false);

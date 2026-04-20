@@ -14,14 +14,14 @@ module.exports = class extends BaseRest {
       return this.fail(this.locale('USER_NOT_EXIST'));
     }
 
-    const user = users[0];
+    const [user] = users;
     const match = user.type.match(/^verify:(\d{4}):(\d+)$/i);
 
     if (!match) {
       return this.fail(this.locale('USER_REGISTERED'));
     }
 
-    if (token === match[1] && Date.now() < Number.parseInt(match[2])) {
+    if (token === match[1] && Date.now() < Number.parseInt(match[2], 10)) {
       await this.modelInstance.update({ type: 'guest' }, { email });
 
       this.redirect('/ui/login');

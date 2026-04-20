@@ -36,7 +36,6 @@ export interface WalineInstance {
 
 export const init = ({
   el = '#waline',
-  // oxlint-disable-next-line unicorn/prefer-global-this
   path = window.location.pathname,
   comment = false,
   pageview = false,
@@ -96,11 +95,8 @@ export const init = ({
   return {
     el: root,
     update: ({
-      // oxlint-disable-next-line no-shadow
       comment,
-      // oxlint-disable-next-line no-shadow
       pageview,
-      // oxlint-disable-next-line no-shadow
       path = window.location.pathname,
       ...newProps
     }: Partial<Omit<WalineInitOptions, 'el'>> = {}): void => {

@@ -1,5 +1,3 @@
-// oxlint-disable max-lines-per-function
-// oxlint-disable max-lines
 import cls from 'classnames';
 import React, { useEffect, useReducer, useRef, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
@@ -62,7 +60,6 @@ export default function ManageComments() {
     });
   }, [filter, list.page]);
 
-  // oxlint-disable-next-line max-lines-per-function
   const createActions = (comment) =>
     [
       {
@@ -543,6 +540,7 @@ export default function ManageComments() {
                                     {url}
                                   </a>
                                 </div>
+                                {/* oxlint-disable-next-line react/no-danger */}
                                 <div
                                   className="comment-content"
                                   dangerouslySetInnerHTML={{ __html: comment }}

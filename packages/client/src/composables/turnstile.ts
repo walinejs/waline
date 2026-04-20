@@ -26,7 +26,6 @@ export const useTurnstile = (key: string): Turnstile => {
   const execute = async (action: string): Promise<string> => {
     const { load } = useScriptTag(
       'https://challenges.cloudflare.com/turnstile/v0/api.js',
-      // oxlint-disable-next-line no-undefined
       undefined,
       { async: false },
     );
