@@ -1,4 +1,4 @@
-name: "publish @waline/client"
+name: 'publish @waline/client'
 
 on:
   push:
