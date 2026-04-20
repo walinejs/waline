@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { watchImmediate } from '@vueuse/core';
 import { updateArticleCounter } from '@waline/api';
-import { defineComponent, ref, computed, onMounted } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 
 import { useReactionStorage } from '../../composables';
 import { clampScore, fetchReaction, normalizeDistribution } from './utils';
@@ -141,13 +141,13 @@ const percentText = (score: number): string => {
       @mouseleave="onMouseLeave"
       @click="onClick"
     >
-      <StarDisplay :score="displayScore" />
+      <WalineStarDisplay :score="displayScore" />
     </div>
 
     <div class="wl-star-score">
       <div v-for="score in [5, 4, 3, 2, 1]" :key="score" class="wl-star-row">
         <div class="wl-star-rate">
-          <StarDisplay :score="score" />
+          <WalineStarDisplay :score="score" />
         </div>
         <div class="wl-star-progress">
           <div
