@@ -275,8 +275,8 @@ importers:
         specifier: ^5.0.0
         version: 5.0.0
       '@mdit/plugin-katex':
-        specifier: 0.23.4-cjs.0
-        version: 0.23.4-cjs.0(markdown-it@14.1.1)
+        specifier: 0.25.2
+        version: 0.25.2(markdown-it@14.1.1)
       '@mdit/plugin-mathjax':
         specifier: 0.23.4-cjs.0
         version: 0.23.4-cjs.0(markdown-it@14.1.1)
@@ -1935,9 +1935,9 @@ packages:
       markdown-it:
         optional: true
 
-  '@mdit/plugin-katex@0.23.4-cjs.0':
-    resolution: {integrity: sha512-3isWorMZ6TpynPwEw5tsKpS2ntgGyRI2SGVZxI/xe1anacEt9hq7SXwDZANeahw/2VtbbeDUCSLmuWCUwGZIlw==}
-    engines: {node: '>= 18'}
+  '@mdit/plugin-katex@0.25.2':
+    resolution: {integrity: sha512-r7nKvngZP2XXVGsYIXZt4UNxhTAxwSbLSXQtW445nJGhcp0ZrWmdPoz3AFZAX5x51inARab/lnZhD3uq01V5Yg==}
+    engines: {node: '>= 20'}
     peerDependencies:
       markdown-it: ^14.1.0
     peerDependenciesMeta:
@@ -10809,10 +10809,10 @@ snapshots:
       katex: 0.16.45
       markdown-it: 14.1.1
 
-  '@mdit/plugin-katex@0.23.4-cjs.0(markdown-it@14.1.1)':
+  '@mdit/plugin-katex@0.25.2(markdown-it@14.1.1)':
     dependencies:
-      '@mdit/helper': 0.22.3-cjs.0(markdown-it@14.1.1)
-      '@mdit/plugin-tex': 0.22.4-cjs.0(markdown-it@14.1.1)
+      '@mdit/helper': 0.23.2(markdown-it@14.1.1)
+      '@mdit/plugin-tex': 0.24.2(markdown-it@14.1.1)
       '@types/markdown-it': 14.1.2
       katex: 0.16.45
     optionalDependencies:
