@@ -10,6 +10,7 @@ export const markedTeXExtensions = (texRenderer: WalineTeXRenderer): TokenizerEx
   const blockMathExtension: TokenizerExtension = {
     name: 'blockMath',
     level: 'block',
+    // oxlint-disable-next-line typescript/consistent-return
     tokenizer(src: string) {
       const cap = blockMathReg.exec(src);
 
@@ -31,6 +32,7 @@ export const markedTeXExtensions = (texRenderer: WalineTeXRenderer): TokenizerEx
 
       return index === -1 ? src.length : index;
     },
+    // oxlint-disable-next-line typescript/consistent-return
     tokenizer(src: string) {
       const cap = inlineMathReg.exec(src);
 

@@ -34,7 +34,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build API
-        run: pnpm api:build
+        run: pnpm run api:build
 
       - name: Publish NPM
         uses: JS-DevTools/npm-publish@v4

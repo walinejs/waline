@@ -8,22 +8,13 @@ import type { DeepReadonly, CSSProperties } from 'vue';
 import { computed, inject, nextTick, onMounted, reactive, ref, useTemplateRef, watch } from 'vue';
 
 import {
-  CloseIcon,
-  EmojiIcon,
-  GifIcon,
-  ImageIcon,
-  LoadingIcon,
-  MarkdownIcon,
-  PreviewIcon,
-} from './Icons.js';
-import ImageWall from './ImageWall.vue';
-import {
   useEditor,
   useReCaptcha,
   useTurnstile,
   useUserInfo,
   useUserMeta,
 } from '../composables/index.js';
+import { configKey } from '../config/index.js';
 import type { WalineSearchResult } from '../typings/index.js';
 import type { WalineEmojiConfig } from '../utils/index.js';
 import {
@@ -35,24 +26,26 @@ import {
   parseMarkdown,
   userAgent,
 } from '../utils/index.js';
-import { configKey } from '../config/index.js';
+import {
+  CloseIcon,
+  EmojiIcon,
+  GifIcon,
+  ImageIcon,
+  LoadingIcon,
+  MarkdownIcon,
+  PreviewIcon,
+} from './Icons.js';
+import ImageWall from './ImageWall.vue';
 
+// oxlint-disable-next-line vue/define-props-destructuring
 const props = defineProps<{
-  /**
-   * Current comment to be edited
-   */
+  /** Current comment to be edited */
   edit?: WalineComment | null;
-  /**
-   * Root comment id
-   */
+  /** Root comment id */
   rootId?: number;
-  /**
-   * Comment id to be replied
-   */
+  /** Comment id to be replied */
   replyId?: number;
-  /**
-   * User name to be replied
-   */
+  /** User name to be replied */
   replyUser?: string;
 }>();
 
@@ -134,27 +127,18 @@ const isLogin = computed(() => Boolean(userInfo.value.token));
 
 const canUploadImage = computed(() => config.value.imageUploader != null);
 
-const insert = (content: string): void => {
+const insert = (text: string): void => {
   // oxlint-disable-next-line typescript/no-non-null-assertion
   const textArea = textAreaRef.value!;
   const startPosition = textArea.selectionStart;
   const endPosition = textArea.selectionEnd || 0;
   const { scrollTop } = textArea;
 
-  editor.value =
-    textArea.value.slice(0, startPosition) + content + textArea.value.slice(endPosition);
+  editor.value = textArea.value.slice(0, startPosition) + text + textArea.value.slice(endPosition);
   textArea.focus();
-  textArea.selectionStart = startPosition + content.length;
-  textArea.selectionEnd = startPosition + content.length;
+  textArea.selectionStart = startPosition + text.length;
+  textArea.selectionEnd = startPosition + text.length;
   textArea.scrollTop = scrollTop;
-};
-
-const onEditorKeyDown = ({ key, ctrlKey, metaKey }: KeyboardEvent): void => {
-  // avoid submitting same comment multiple times
-  if (isSubmitting.value) return;
-
-  // submit comment when pressing cmd|ctrl + enter
-  if ((ctrlKey || metaKey) && key === 'Enter') void submitComment();
 };
 
 const uploadImage = async (file: File): Promise<void> => {
@@ -191,7 +175,9 @@ const onEditorPaste = (event: ClipboardEvent): void => {
   if (event.clipboardData) {
     const file = getImageFromDataTransfer(event.clipboardData.items);
 
-    if (file && canUploadImage.value) void uploadImage(file);
+    if (file && canUploadImage.value) {
+      void uploadImage(file);
+    }
   }
 };
 
@@ -199,11 +185,12 @@ const onImageChange = (): void => {
   // oxlint-disable-next-line typescript/no-non-null-assertion
   const inputElement = imageUploaderRef.value!;
 
-  if (inputElement.files && canUploadImage.value)
+  if (inputElement.files && canUploadImage.value) {
     void uploadImage(inputElement.files[0]).then(() => {
       // clear input so a same image can be uploaded later
       inputElement.value = '';
     });
+  }
 };
 
 // oxlint-disable-next-line complexity, max-statements
@@ -228,7 +215,9 @@ const submitComment = async (): Promise<void> => {
       comment.mail = userInfo.value.email;
       comment.link = userInfo.value.url;
     } else {
-      if (login === 'force') return;
+      if (login === 'force') {
+        return;
+      }
 
       // check nick
       if (requiredMeta.includes('nick') && !comment.nick) {
@@ -285,9 +274,13 @@ const submitComment = async (): Promise<void> => {
   isSubmitting.value = true;
 
   try {
-    if (recaptchaV3Key) comment.recaptchaV3 = await useReCaptcha(recaptchaV3Key).execute('social');
+    if (recaptchaV3Key) {
+      comment.recaptchaV3 = await useReCaptcha(recaptchaV3Key).execute('social');
+    }
 
-    if (turnstileKey) comment.turnstile = await useTurnstile(turnstileKey).execute('social');
+    if (turnstileKey) {
+      comment.turnstile = await useTurnstile(turnstileKey).execute('social');
+    }
 
     const options = {
       serverURL,
@@ -321,12 +314,28 @@ const submitComment = async (): Promise<void> => {
     // ensure changes are applied to dom to avoid  https://github.com/walinejs/waline/issues/2371
     await nextTick();
 
-    if (props.replyId) emit('cancelReply');
-    if (props.edit?.objectId) emit('cancelEdit');
+    if (props.replyId) {
+      emit('cancelReply');
+    }
+    if (props.edit?.objectId) {
+      emit('cancelEdit');
+    }
   } catch (err: unknown) {
     isSubmitting.value = false;
 
     alert((err as TypeError).message);
+  }
+};
+
+const onEditorKeyDown = ({ key, ctrlKey, metaKey }: KeyboardEvent): void => {
+  // avoid submitting same comment multiple times
+  if (isSubmitting.value) {
+    return;
+  }
+
+  // submit comment when pressing cmd|ctrl + enter
+  if ((ctrlKey || metaKey) && key === 'Enter') {
+    void submitComment();
   }
 };
 
@@ -377,14 +386,16 @@ const popupHandler = (event: MouseEvent): void => {
   if (
     !emojiButtonRef.value?.contains(event.target as Node) &&
     !emojiPopupRef.value?.contains(event.target as Node)
-  )
+  ) {
     showEmoji.value = false;
+  }
 
   if (
     !gifButtonRef.value?.contains(event.target as Node) &&
     !gifPopupRef.value?.contains(event.target as Node)
-  )
+  ) {
     showGif.value = false;
+  }
 };
 
 const onImageWallScroll = async (event: Event): Promise<void> => {
@@ -394,7 +405,9 @@ const onImageWallScroll = async (event: Event): Promise<void> => {
   const searchOptions = config.value.search!;
   const keyword = gifSearchRef.value?.value ?? '';
 
-  if (percent < 0.9 || searchResults.loading || isImageListEnd.value) return;
+  if (percent < 0.9 || searchResults.loading || isImageListEnd.value) {
+    return;
+  }
 
   searchResults.loading = true;
 
@@ -403,14 +416,16 @@ const onImageWallScroll = async (event: Event): Promise<void> => {
       ? await searchOptions.more(keyword, searchResults.list.length)
       : await searchOptions.search(keyword);
 
-  if (searchResult.length > 0)
+  if (searchResult.length > 0) {
     searchResults.list = [
       ...searchResults.list,
       ...(searchOptions.more && searchResults.list.length > 0
         ? await searchOptions.more(keyword, searchResults.list.length)
         : await searchOptions.search(keyword)),
     ];
-  else isImageListEnd.value = true;
+  } else {
+    isImageListEnd.value = true;
+  }
 
   searchResults.loading = false;
 
@@ -427,7 +442,9 @@ const onGifSearch = useDebounceFn((event: Event) => {
 
 useEventListener('click', popupHandler);
 useEventListener('message', ({ data }: { data: { type: 'profile'; data: UserInfo } }) => {
-  if (data?.type !== 'profile') return;
+  if (data?.type !== 'profile') {
+    return;
+  }
 
   userInfo.value = { ...userInfo.value, ...data.data };
 
@@ -460,14 +477,18 @@ watchImmediate([config, wordNumber], ([config, wordNumber]) => {
 });
 
 // watch gif
-watch(showGif, async (showGif) => {
-  if (!showGif) return;
+watch(showGif, async (value) => {
+  if (!value) {
+    return;
+  }
 
   // oxlint-disable-next-line typescript/no-non-null-assertion
   const searchOptions = config.value.search!;
 
   // clear input
-  if (gifSearchRef.value) gifSearchRef.value.value = '';
+  if (gifSearchRef.value) {
+    gifSearchRef.value.value = '';
+  }
 
   // set loading state
   searchResults.loading = true;

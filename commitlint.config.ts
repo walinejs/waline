@@ -1,8 +1,7 @@
 import { readdirSync } from 'node:fs';
-import { dirname, join } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { join } from 'node:path';
 
-const packages = readdirSync(join(dirname(fileURLToPath(import.meta.url)), './packages/'));
+const packages = readdirSync(join(import.meta.dirname, './packages/'));
 
 export default {
   extends: ['@commitlint/config-conventional'],

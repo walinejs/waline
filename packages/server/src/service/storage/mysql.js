@@ -28,6 +28,7 @@ module.exports = class extends Base {
         if (filter[k][0] === 'IN' && filter[k][1].length === 0) {
           continue;
         }
+
         if (think.isDate(filter[k][1])) {
           filter[k][1] = think.datetime(filter[k][1]);
         }
@@ -46,9 +47,11 @@ module.exports = class extends Base {
     if (desc) {
       instance.order({ [desc]: 'DESC' });
     }
+
     if (limit || offset) {
       instance.limit(offset ?? 0, limit);
     }
+
     if (field) {
       field.push('id');
       instance.field(field);

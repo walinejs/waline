@@ -220,7 +220,7 @@ module.exports = class NotifyService extends think.Service {
       msg: this.controller.locale(contentQQ, data),
     };
     const postBody = Object.keys(postBodyData)
-      .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(postBodyData[key]))
+      .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(postBodyData[key])}`)
       .join('&');
 
     return fetch(`${qmsgHost}/send/${QMSG_KEY}`, {
@@ -258,6 +258,7 @@ module.exports = class NotifyService extends think.Service {
     if (commentLink !== '') {
       commentLink = `\n${commentLink}\n`;
     }
+
     const comment = self.comment
       .replaceAll(/<a href="(.*?)">(.*?)<\/a>/g, '[Link:$2]')
       .replaceAll(/<[^>]+>/g, '');
@@ -339,13 +340,27 @@ module.exports = class NotifyService extends think.Service {
 
     const form = new URLSearchParams();
 
-    if (topic) form.set('topic', topic);
-    if (template) form.set('template', template);
-    if (channel) form.set('channel', channel);
-    if (webhook) form.set('webhook', webhook);
-    if (callbackUrl) form.set('callbackUrl', callbackUrl);
-    if (title) form.set('title', title);
-    if (content) form.set('content', content);
+    if (topic) {
+      form.set('topic', topic);
+    }
+    if (template) {
+      form.set('template', template);
+    }
+    if (channel) {
+      form.set('channel', channel);
+    }
+    if (webhook) {
+      form.set('webhook', webhook);
+    }
+    if (callbackUrl) {
+      form.set('callbackUrl', callbackUrl);
+    }
+    if (title) {
+      form.set('title', title);
+    }
+    if (content) {
+      form.set('content', content);
+    }
 
     return fetch(`http://www.pushplus.plus/send/${PUSH_PLUS_KEY}`, {
       method: 'POST',
@@ -453,7 +468,7 @@ module.exports = class NotifyService extends think.Service {
     if (LARK_SECRET) {
       const timestamp = Number.parseInt(Date.now() / 1000, 10);
 
-      signData = { timestamp: timestamp, sign: sign(timestamp, LARK_SECRET) };
+      signData = { timestamp, sign: sign(timestamp, LARK_SECRET) };
     }
 
     const resp = await fetch(LARK_WEBHOOK, {

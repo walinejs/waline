@@ -27,8 +27,8 @@
 <script setup lang="ts">
 import { nextTick, onBeforeUnmount, onMounted, ref, useTemplateRef, watch } from 'vue';
 
-import { LoadingIcon } from './Icons.js';
 import type { WalineSearchResult } from '../typings/index.js';
+import { LoadingIcon } from './Icons.js';
 
 type Column = number[];
 
@@ -37,17 +37,11 @@ const {
   columnWidth = 300,
   gap = 0,
 } = defineProps<{
-  /**
-   * Image Items
-   */
+  /** Image Items */
   items?: WalineSearchResult;
-  /**
-   * width in pixels of each column
-   */
+  /** Width in pixels of each column */
   columnWidth?: number;
-  /**
-   * gap in pixels between columns
-   */
+  /** Gap in pixels between columns */
   gap?: number;
 }>();
 

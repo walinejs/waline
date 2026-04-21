@@ -36,40 +36,43 @@ module.exports = class extends Base {
         instance.doesNotExist(k);
       }
 
-      if (Array.isArray(where[k])) {
-        if (where[k][0]) {
-          const handler = where[k][0].toUpperCase();
+      if (Array.isArray(where[k]) && where[k][0]) {
+        const handler = where[k][0].toUpperCase();
 
-          switch (handler) {
-            case 'IN': {
-              instance.containedIn(k, where[k][1]);
-              break;
-            }
-            case 'NOT IN': {
-              instance.notContainedIn(k, where[k][1]);
-              break;
-            }
-            case 'LIKE': {
-              const first = where[k][1][0];
-              const last = where[k][1].slice(-1);
+        switch (handler) {
+          case 'IN': {
+            instance.containedIn(k, where[k][1]);
+            break;
+          }
+          case 'NOT IN': {
+            instance.notContainedIn(k, where[k][1]);
+            break;
+          }
+          case 'LIKE': {
+            const [, likePattern] = where[k];
+            const [first] = likePattern;
+            const last = likePattern.slice(-1);
 
-              if (first === '%' && last === '%') {
-                instance.contains(k, where[k][1].slice(1, -1));
-              } else if (first === '%') {
-                instance.endsWith(k, where[k][1].slice(1));
-              } else if (last === '%') {
-                instance.startsWith(k, where[k][1].slice(0, -1));
-              }
-              break;
+            if (first === '%' && last === '%') {
+              instance.contains(k, likePattern.slice(1, -1));
+            } else if (first === '%') {
+              instance.endsWith(k, likePattern.slice(1));
+            } else if (last === '%') {
+              instance.startsWith(k, likePattern.slice(0, -1));
             }
-            case '!=': {
-              instance.notEqualTo(k, where[k][1]);
-              break;
-            }
-            case '>': {
-              instance.greaterThan(k, where[k][1]);
-              break;
-            }
+
+            break;
+          }
+          case '!=': {
+            instance.notEqualTo(k, where[k][1]);
+            break;
+          }
+          case '>': {
+            instance.greaterThan(k, where[k][1]);
+            break;
+          }
+          default: {
+            break;
           }
         }
       }
@@ -107,12 +110,15 @@ module.exports = class extends Base {
     if (desc) {
       instance.descending(desc);
     }
+
     if (limit) {
       instance.limit(limit);
     }
+
     if (offset) {
       instance.skip(offset);
     }
+
     if (field) {
       instance.select(field);
     }
@@ -121,6 +127,7 @@ module.exports = class extends Base {
       if (err.code === 101) {
         return [];
       }
+
       throw err;
     });
 
@@ -128,14 +135,14 @@ module.exports = class extends Base {
   }
 
   async select(where, options = {}) {
-    let data = [];
+    const data = [];
     let ret = [];
     const offset = options.offset ?? 0;
 
     do {
       options.offset = offset + data.length;
       ret = await this._select(where, options);
-      data = data.concat(ret);
+      data.push(...ret);
     } while (ret.length === 100);
 
     return data;
@@ -210,13 +217,14 @@ module.exports = class extends Base {
       return;
     }
 
-    let { count } = cacheData[0];
+    let [{ count }] = cacheData;
 
     switch (method) {
       case 'add': {
         if (data.status === 'approved') {
           count += 1;
         }
+
         break;
       }
       case 'udpate_status': {
@@ -225,10 +233,14 @@ module.exports = class extends Base {
         } else {
           count -= 1;
         }
+
         break;
       }
       case 'delete': {
         count -= 1;
+        break;
+      }
+      default: {
         break;
       }
     }
@@ -240,6 +252,7 @@ module.exports = class extends Base {
       if (err.code === 101) {
         return;
       }
+
       throw err;
     });
     this.tableName = currentTableName;
@@ -253,6 +266,7 @@ module.exports = class extends Base {
         if (err.code === 101) {
           return 0;
         }
+
         throw err;
       });
     }
@@ -277,6 +291,7 @@ module.exports = class extends Base {
           for (const field of options.group) {
             countsMap[key][field] = count[field];
           }
+
           countsMap[key].count = 0;
         }
         countsMap[key].count += 1;
@@ -367,6 +382,7 @@ module.exports = class extends Base {
       if (REVERSED_KEYS.has(k)) {
         continue;
       }
+
       instance.set(k, data[k]);
     }
 
@@ -399,6 +415,7 @@ module.exports = class extends Base {
           if (REVERSED_KEYS.has(k)) {
             continue;
           }
+
           item.set(k, updateData[k]);
         }
 

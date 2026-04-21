@@ -1,4 +1,3 @@
-import { decodePath, isLinkHttp, removeEndingSplash } from './path.js';
 import {
   DEFAULT_EMOJI,
   DEFAULT_REACTION,
@@ -21,6 +20,7 @@ import type {
   WalineSearchOptions,
   WalineTeXRenderer,
 } from '../typings/index.js';
+import { decodePath, isLinkHttp, removeEndingSplash } from './path.js';
 
 export interface WalineEmojiConfig {
   tabs: Pick<WalineEmojiInfo, 'name' | 'icon' | 'items'>[];
@@ -50,13 +50,18 @@ export const getServerURL = (serverURL: string): string => {
 };
 
 const getWordLimit = (wordLimit: WalineProps['wordLimit']): [number, number] | false =>
-  Array.isArray(wordLimit) ? wordLimit : typeof wordLimit === 'number' && wordLimit > 0 ? [0, wordLimit] : false;
+  Array.isArray(wordLimit)
+    ? wordLimit
+    : typeof wordLimit === 'number' && wordLimit > 0
+      ? [0, wordLimit]
+      : false;
 
-const fallback = <T = unknown>(value: T | boolean | undefined, fallback: T): T | null =>
+const withFallback = <T = unknown>(value: T | boolean | undefined, fallback: T): T | null =>
   value == null || value === true ? fallback : value === false ? null : value;
 
 export const getConfig = ({
   serverURL,
+  // oxlint-disable-next-line typescript/no-useless-default-assignment
   path = location.pathname,
   lang = typeof navigator === 'undefined' ? 'en-US' : navigator.language,
   locale,
@@ -100,9 +105,9 @@ export const getConfig = ({
   ...more,
   // oxlint-disable-next-line typescript/strict-boolean-expressions, typescript/prefer-nullish-coalescing
   reaction: reaction === true ? DEFAULT_REACTION : reaction || null,
-  imageUploader: fallback(imageUploader, defaultUploadImage),
-  highlighter: fallback(highlighter, defaultHighlighter),
-  texRenderer: fallback(texRenderer, defaultTeXRenderer),
-  emoji: fallback(emoji, DEFAULT_EMOJI),
-  search: fallback(search, getDefaultSearchOptions(lang)),
+  imageUploader: withFallback(imageUploader, defaultUploadImage),
+  highlighter: withFallback(highlighter, defaultHighlighter),
+  texRenderer: withFallback(texRenderer, defaultTeXRenderer),
+  emoji: withFallback(emoji, DEFAULT_EMOJI),
+  search: withFallback(search, getDefaultSearchOptions(lang)),
 });

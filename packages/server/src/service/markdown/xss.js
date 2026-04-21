@@ -11,8 +11,8 @@ DOMPurify.addHook('uponSanitizeElement', (node, data) => {
 });
 
 /**
- * Add a hook to make all links open a new window
- * and force their rel to be 'ugc nofollow noreferrer noopener'
+ * Add a hook to make all links open a new window and force their rel to be 'ugc nofollow noreferrer
+ * noopener'
  */
 DOMPurify.addHook('afterSanitizeAttributes', (node) => {
   // set all elements owning target to target=_blank

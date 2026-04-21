@@ -33,24 +33,24 @@
     "build": "NODE_ENV=production vite build",
     "clean": "rimraf ./dist",
     "dev": "vite",
-    "prepublishOnly": "pnpm build"
+    "prepublishOnly": "pnpm run build"
   },
   "devDependencies": {
     "@rematch/core": "2.2.0",
     "base-icon": "2.3.2",
     "classnames": "2.5.1",
-    "i18next": "25.8.14",
+    "i18next": "26.0.6",
     "i18next-browser-languagedetector": "8.2.1",
     "md5": "2.3.0",
     "qrcode.react": "4.2.0",
-    "react": "19.2.4",
-    "react-dom": "19.2.4",
-    "react-i18next": "16.5.6",
+    "react": "19.2.5",
+    "react-dom": "19.2.5",
+    "react-i18next": "17.0.4",
     "react-redux": "9.2.0",
-    "react-router": "7.13.1",
+    "react-router": "7.14.1",
     "redux": "5.0.1",
-    "typescript": "5.9.3",
-    "vite": "7.3.1"
+    "typescript": "6.0.3",
+    "vite": "8.0.8"
   },
   "browserslist": {
     "production": [

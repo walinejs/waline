@@ -1,15 +1,15 @@
-import en from './en.json';
-import zhCN from './zh-CN.json';
-import zhTW from './zh-TW.json';
-import jp from './jp.json';
-import koKR from './ko-KR.json';
 import de from './de.json';
+import en from './en.json';
 import es from './es.json';
 import fr from './fr.json';
+import it from './it.json';
+import jp from './jp.json';
+import koKR from './ko-KR.json';
+import ptBR from './pt-BR.json';
 import ru from './ru.json';
 import viVN from './vi-VN.json';
-import ptBR from './pt-BR.json';
-import it from './it.json';
+import zhCN from './zh-CN.json';
+import zhTW from './zh-TW.json';
 
 export const LANGUAGE_OPTIONS = [
   {

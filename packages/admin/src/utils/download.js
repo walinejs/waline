@@ -1,14 +1,14 @@
 export default function download(data, filename, type) {
-  const file = new Blob([data], { type: type });
-  const a = document.createElement('a');
+  const file = new Blob([data], { type });
+  const link = document.createElement('a');
   const url = URL.createObjectURL(file);
 
-  a.href = url;
-  a.download = filename;
-  document.body.append(a);
-  a.click();
+  link.href = url;
+  link.download = filename;
+  document.body.append(link);
+  link.click();
   setTimeout(() => {
-    a.remove();
+    link.remove();
     window.URL.revokeObjectURL(url);
   }, 0);
 }

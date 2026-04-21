@@ -1,28 +1,18 @@
 import { createApp } from 'vue';
 import type { ComponentPublicInstance } from 'vue';
 
-import StarWidget from './star-widget.vue';
 import { getRoot } from '../../utils/index.js';
+import WalineStarWidget from './WalineStarWidget.vue';
 
-/**
- * Options for the star rating widget.
- */
+/** Options for the star rating widget. */
 export interface WalineStarOptions {
-  /**
-   * Element or CSS selector on which to mount the widget.
-   */
+  /** Element or CSS selector on which to mount the widget. */
   el?: string | HTMLElement;
-  /**
-   * Path identifying the current page or article.
-   */
+  /** Path identifying the current page or article. */
   path: string;
-  /**
-   * Language code used by the widget, such as `en` or `zh-CN`.
-   */
+  /** Language code used by the widget, such as `en` or `zh-CN`. */
   lang?: string;
-  /**
-   * Waline server URL.
-   */
+  /** Waline server URL. */
   serverURL: string;
   /**
    * Callback invoked after the user submits a rating.
@@ -31,13 +21,9 @@ export interface WalineStarOptions {
    */
   onRate?: (score: number) => void;
 }
-/**
- * Star widget result.
- */
+/** Star widget result. */
 export interface WalineStarResult {
-  /**
-   * Destroy star widget instance.
-   */
+  /** Destroy star widget instance. */
   destroy: () => void;
 }
 
@@ -50,12 +36,15 @@ export const Star = ({
 }: WalineStarOptions): WalineStarResult => {
   const root = getRoot(el);
 
-  if (!root)
+  if (!root) {
     return {
-      destroy: () => {},
+      destroy: () => {
+        // do nothing
+      },
     };
+  }
 
-  const app = createApp(StarWidget, {
+  const app = createApp(WalineStarWidget, {
     path,
     lang,
     serverURL,

@@ -1,10 +1,11 @@
+// oxlint-disable eslint-plugin-react-hooks/rules-of-hooks
 import type { VNode } from 'vue';
 import { computed, defineComponent, h } from 'vue';
-import { usePageFrontmatter, useRouteLocale } from 'vuepress/client';
 import type {
   ThemeNormalPageFrontmatter,
   ThemeProjectHomePageFrontmatter,
 } from 'vuepress-theme-hope';
+import { usePageFrontmatter, useRouteLocale } from 'vuepress/client';
 
 import './WalineTips.scss';
 
@@ -39,6 +40,7 @@ export default defineComponent({
 
   setup() {
     const frontmatter = usePageFrontmatter<
+      // oxlint-disable-next-line typescript/no-unnecessary-type-arguments
       ThemeProjectHomePageFrontmatter | ThemeNormalPageFrontmatter
     >();
     const routeLocale = useRouteLocale();

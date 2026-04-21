@@ -89,7 +89,9 @@ export const login = ({
     // oxlint-disable-next-line typescript/no-explicit-any
     const receiver = ({ data }: any): void => {
       // oxlint-disable-next-line typescript/strict-boolean-expressions
-      if (!data || typeof data !== 'object' || data.type !== 'userInfo') return;
+      if (!data || typeof data !== 'object' || data.type !== 'userInfo') {
+        return;
+      }
 
       // oxlint-disable-next-line typescript/strict-boolean-expressions
       if (data.data.token) {

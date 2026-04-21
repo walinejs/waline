@@ -1,11 +1,11 @@
-const Model = require('think-model');
-const Mongo = require('think-mongo');
+const model = require('think-model');
+const mongo = require('think-mongo');
 
 const { isNetlify, netlifyFunctionPrefix } = require('./netlify');
 
 module.exports = [
-  Model(think.app),
-  Mongo(think.app),
+  model(think.app),
+  mongo(think.app),
   {
     context: {
       get serverURL() {

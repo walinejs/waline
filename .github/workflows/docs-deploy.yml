@@ -31,14 +31,14 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build API
-        run: pnpm api:build
+        run: pnpm run api:build
 
       - name: Build Client
-        run: pnpm client:build
+        run: pnpm run client:build
 
       - name: Build Docs
         run: |-
-          pnpm docs:build
+          pnpm run docs:build
           > docs/src/.vuepress/dist/.nojekyll
 
       - name: Deploy

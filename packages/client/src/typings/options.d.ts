@@ -15,7 +15,8 @@ export interface WalineInitOptions extends Omit<
   /**
    * Waline 的初始化挂载器。必须是一个**有效的** CSS 选择器 或 HTML 元素
    *
-   * The DOM element to be mounted on initialization. It must be a **valid** CSS selector string or HTML Element.
+   * The DOM element to be mounted on initialization. It must be a **valid** CSS selector string or
+   * HTML Element.
    */
   el?: string | HTMLElement | null;
 
@@ -42,7 +43,8 @@ export interface WalineInitOptions extends Omit<
    *
    * 你可以将其设置为 `window.location.pathname`
    *
-   * Article path id. Used to distinguish different _article pages_ to ensure loading the correct comment list under the _article page_.
+   * Article path id. Used to distinguish different _article pages_ to ensure loading the correct
+   * comment list under the _article page_.
    *
    * You can set it to `window.location.pathname`
    *

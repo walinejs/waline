@@ -21,14 +21,14 @@
     "dev": "node development.js 9090"
   },
   "dependencies": {
-    "@cloudbase/node-sdk": "^3.18.0",
+    "@cloudbase/node-sdk": "^3.18.1",
     "@koa/cors": "^5.0.0",
     "@mdit/plugin-katex": "0.23.4-cjs.0",
     "@mdit/plugin-mathjax": "0.23.4-cjs.0",
     "@mdit/plugin-sub": "0.22.5-cjs.0",
     "@mdit/plugin-sup": "0.22.5-cjs.0",
     "akismet": "^2.0.7",
-    "dompurify": "^3.3.2",
+    "dompurify": "^3.4.0",
     "fast-csv": "^5.0.5",
     "form-data": "^4.0.5",
     "ip2region": "^2.3.0",
@@ -39,7 +39,7 @@
     "markdown-it": "^14.1.1",
     "markdown-it-emoji": "^3.0.0",
     "mathjax-full": "^3.2.2",
-    "nodemailer": "^8.0.1",
+    "nodemailer": "^8.0.5",
     "nunjucks": "^3.2.4",
     "phpass": "^0.1.1",
     "prismjs": "^1.30.0",
@@ -58,7 +58,7 @@
     "ua-parser-js": "^2.0.9"
   },
   "devDependencies": {
-    "dotenv": "17.3.1",
+    "dotenv": "17.4.2",
     "think-watcher": "3.0.4"
   },
   "engines": {

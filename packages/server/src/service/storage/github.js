@@ -53,11 +53,11 @@ class Github {
   // content api can only get file < 1MB
   async get(filename) {
     const resp = await fetch(
-      'https://api.github.com/repos/' + path.join(this.repo, 'contents', filename),
+      `https://api.github.com/repos/${path.join(this.repo, 'contents', filename)}`,
       {
         headers: {
           accept: 'application/vnd.github.v3+json',
-          authorization: 'token ' + this.token,
+          authorization: `token ${this.token}`,
           'user-agent': 'Waline',
         },
       },
@@ -82,11 +82,11 @@ class Github {
   // blob api can get file larger than 1MB
   async getLargeFile(filename) {
     const { tree } = await fetch(
-      'https://api.github.com/repos/' + path.join(this.repo, 'git/trees/HEAD') + '?recursive=1',
+      `https://api.github.com/repos/${path.join(this.repo, 'git/trees/HEAD')}?recursive=1`,
       {
         headers: {
           accept: 'application/vnd.github.v3+json',
-          authorization: 'token ' + this.token,
+          authorization: `token ${this.token}`,
           'user-agent': 'Waline',
         },
       },
@@ -104,18 +104,18 @@ class Github {
     return fetch(file.url, {
       headers: {
         accept: 'application/vnd.github.v3+json',
-        authorization: 'token ' + this.token,
+        authorization: `token ${this.token}`,
         'user-agent': 'Waline',
       },
     }).then((resp) => resp.json());
   }
 
   async set(filename, content, { sha }) {
-    return fetch('https://api.github.com/repos/' + path.join(this.repo, 'contents', filename), {
+    return fetch(`https://api.github.com/repos/${path.join(this.repo, 'contents', filename)}`, {
       method: 'PUT',
       headers: {
         accept: 'application/vnd.github.v3+json',
-        authorization: 'token ' + this.token,
+        authorization: `token ${this.token}`,
         'user-agent': 'Waline',
       },
       body: JSON.stringify({
@@ -127,7 +127,7 @@ class Github {
   }
 }
 
-module.exports = class extends Base {
+module.exports = class GithubStorage extends Base {
   constructor(tableName) {
     super();
     this.tableName = tableName;
@@ -139,11 +139,12 @@ module.exports = class extends Base {
   }
 
   async collection(tableName) {
-    const filename = path.join(this.basePath, tableName + '.csv');
+    const filename = path.join(this.basePath, `${tableName}.csv`);
     const file = await this.git.get(filename).catch((err) => {
       if (err.statusCode === 404) {
         return '';
       }
+
       throw err;
     });
 
@@ -152,7 +153,7 @@ module.exports = class extends Base {
 
       data.sha = file.sha;
 
-      return parseString(file.data, {
+      parseString(file.data, {
         headers: file ? true : CSV_HEADERS[tableName],
       })
         .on('error', reject)
@@ -164,7 +165,7 @@ module.exports = class extends Base {
   }
 
   async save(tableName, data, sha) {
-    const filename = path.join(this.basePath, tableName + '.csv');
+    const filename = path.join(this.basePath, `${tableName}.csv`);
     const csv = await writeToString(data, {
       headers: sha ? true : CSV_HEADERS[tableName],
       writeHeaders: true,
@@ -198,6 +199,7 @@ module.exports = class extends Base {
       if (where[k] === undefined) {
         filters.push((item) => item[k] === null || item[k] === undefined);
       }
+
       if (!Array.isArray(where[k]) || !where[k][0]) {
         continue;
       }
@@ -214,17 +216,19 @@ module.exports = class extends Base {
           break;
         }
         case 'LIKE': {
-          const first = where[k][1][0];
-          const last = where[k][1].slice(-1);
+          const [, likePattern] = where[k];
+          const [first] = likePattern;
+          const last = likePattern.slice(-1);
           let reg;
 
           if (first === '%' && last === '%') {
-            reg = new RegExp(where[k][1].slice(1, -1));
+            reg = new RegExp(likePattern.slice(1, -1));
           } else if (first === '%') {
-            reg = new RegExp(where[k][1].slice(1) + '$');
+            reg = new RegExp(`${likePattern.slice(1)}$`);
           } else if (last === '%') {
-            reg = new RegExp('^' + where[k][1].slice(0, -1));
+            reg = new RegExp(`^${likePattern.slice(0, -1)}`);
           }
+
           filters.push((item) => reg.test(item[k]));
           break;
         }
@@ -236,6 +240,7 @@ module.exports = class extends Base {
           filters.push((item) => item[k] >= where[k][1]);
           break;
         }
+        default:
       }
     }
 
@@ -295,9 +300,7 @@ module.exports = class extends Base {
         const ret = {};
 
         for (const k in item) {
-          if (fieldObj[k]) {
-            ret[k] = item[k];
-          }
+          if (fieldObj[k]) ret[k] = item[k];
         }
 
         return ret;
@@ -357,9 +360,7 @@ module.exports = class extends Base {
       if (typeof data === 'function') {
         data(item);
       } else {
-        for (const k in data) {
-          item[k] = data[k];
-        }
+        for (const k in data) item[k] = data[k];
       }
     });
     await this.save(this.tableName, instance, instance.sha);

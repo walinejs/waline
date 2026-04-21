@@ -3,7 +3,6 @@ import { createRoot } from 'react-dom/client';
 
 import App from './App.jsx';
 import { store } from './store/index.js';
-
 // oxlint-disable-next-line import/no-unassigned-import
 import './i18n.js';
 import './style/index.scss';
@@ -15,7 +14,9 @@ const run = async () => {
     }),
     new Promise((resolve) => {
       window.addEventListener('message', (data) => {
-        if (data && data.type === 'TOKEN' && data.data) resolve(data);
+        if (data && data.type === 'TOKEN' && data.data) {
+          resolve(data);
+        }
       });
     }),
     new Promise((resolve) => {
@@ -59,4 +60,4 @@ console.log(
   'padding:4px;border:1px solid #0078E7;',
 );
 
-run();
+await run();

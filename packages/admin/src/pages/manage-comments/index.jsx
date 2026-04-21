@@ -1,12 +1,8 @@
-// oxlint-disable import/max-dependencies
-// oxlint-disable max-lines-per-function
-// oxlint-disable max-lines
 import cls from 'classnames';
 import React, { useEffect, useReducer, useRef, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
-import { buildAvatar, formatDate, getPostUrl } from './utils.js';
 import Header from '../../components/Header.jsx';
 import Paginator from '../../components/Paginator.jsx';
 import {
@@ -15,6 +11,7 @@ import {
   replyComment,
   updateComment,
 } from '../../services/comment.js';
+import { buildAvatar, formatDate, getPostUrl } from './utils.js';
 
 export default function ManageComments() {
   const { t } = useTranslation();
@@ -58,12 +55,11 @@ export default function ManageComments() {
 
   useEffect(() => {
     getCommentList({ page: list.page, filter }).then((data) => {
-      setList({ ...list, ...data });
+      setList((list) => ({ ...list, ...data }));
       setCommentIds([]);
     });
   }, [filter, list.page]);
 
-  // oxlint-disable-next-line max-lines-per-function
   const createActions = (comment) =>
     [
       {
@@ -82,6 +78,9 @@ export default function ManageComments() {
               }
               case 'spam': {
                 list.spamCount -= 1;
+                break;
+              }
+              default: {
                 break;
               }
             }
@@ -109,6 +108,7 @@ export default function ManageComments() {
             if (comment.status === 'spam') {
               list.spamCount -= 1;
             }
+
             list.waitingCount += 1;
             setList({ ...list });
           } else {
@@ -224,6 +224,7 @@ export default function ManageComments() {
     if (!comment) {
       return null;
     }
+
     const { display_name, email, url: link } = user;
 
     await replyComment({
@@ -274,22 +275,12 @@ export default function ManageComments() {
                   >
                     {FILTER.map(({ type, name }) => (
                       <li className={cls({ current: type === filter[key] })} key={type}>
-                        <a
-                          role="button"
-                          tabIndex={0}
-                          onClick={() => dispatch({ [key]: type })}
-                          onKeyDown={(event) => {
-                            if (event.key === 'Enter' || event.key === ' ') {
-                              event.preventDefault();
-                              dispatch({ [key]: type });
-                            }
-                          }}
-                        >
+                        <button type="button" onClick={() => dispatch({ [key]: type })}>
                           {name}
                           {key === 'status' && type !== 'approved' && list[`${type}Count`] > 0 ? (
                             <span className="balloon">{list[`${type}Count`]}</span>
                           ) : null}
-                        </a>
+                        </button>
                       </li>
                     ))}
                   </ul>
@@ -325,22 +316,13 @@ export default function ManageComments() {
                         className="dropdown-menu"
                         style={{ display: actDropStatus ? 'block' : 'none' }}
                         onClick={() => setActDropStatus(false)}
+                        onKeyDown={() => setActDropStatus(false)}
                       >
                         {createActions().map(({ key, name, action }) => (
                           <li key={key}>
-                            <a
-                              role="button"
-                              tabIndex={0}
-                              onClick={action}
-                              onKeyDown={(event) => {
-                                if (event.key === 'Enter' || event.key === ' ') {
-                                  event.preventDefault();
-                                  action(event);
-                                }
-                              }}
-                            >
+                            <button type="button" onClick={action}>
                               {name}
-                            </a>
+                            </button>
                           </li>
                         ))}
                       </ul>
@@ -620,9 +602,14 @@ export default function ManageComments() {
                                         {name}
                                       </span>
                                     ) : (
-                                      <a key={key} className={`operate-${key}`} onClick={action}>
+                                      <button
+                                        type="button"
+                                        key={key}
+                                        className={`operate-${key}`}
+                                        onClick={action}
+                                      >
                                         {name}
-                                      </a>
+                                      </button>
                                     ),
                                   )}
                                 </div>

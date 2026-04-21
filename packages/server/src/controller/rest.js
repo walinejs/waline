@@ -1,13 +1,9 @@
 const path = require('node:path');
 
 module.exports = class extends think.Controller {
-  static get _REST() {
-    return true;
-  }
+  static _REST = true;
 
-  static get _method() {
-    return 'method';
-  }
+  static _method = 'method';
 
   constructor(ctx) {
     super(ctx);

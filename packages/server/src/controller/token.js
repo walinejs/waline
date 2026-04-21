@@ -44,18 +44,19 @@ module.exports = class extends BaseRest {
       }
     }
 
-    let avatarUrl = user[0].avatar
-      ? user[0].avatar
-      : await think.service('avatar').stringify({
-          mail: user[0].email,
-          nick: user[0].display_name,
-          link: user[0].url,
-        });
+    let avatarUrl =
+      user[0].avatar ||
+      (await think.service('avatar').stringify({
+        mail: user[0].email,
+        nick: user[0].display_name,
+        link: user[0].url,
+      }));
     const { avatarProxy } = think.config();
 
     if (avatarProxy) {
-      avatarUrl = avatarProxy + '?url=' + encodeURIComponent(avatarUrl);
+      avatarUrl = `${avatarProxy}?url=${encodeURIComponent(avatarUrl)}`;
     }
+
     user[0].avatar = avatarUrl;
 
     return this.success({

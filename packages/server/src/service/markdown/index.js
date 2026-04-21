@@ -13,7 +13,7 @@ const getMarkdownParser = () => {
   const { config = {}, plugin = {} } = markdown;
 
   // markdown-it instance
-  const markdownIt = MarkdownIt({
+  const markdownIt = new MarkdownIt({
     breaks: true,
     linkify: true, // Auto convert URL-like text to links
     typographer: true, // Enable some language-neutral replacement + quotes beautification

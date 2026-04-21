@@ -12,7 +12,7 @@ const instance = new Application({
   ROOT_PATH: __dirname,
   APP_PATH: path.join(__dirname, 'src'),
   proxy: false,
-  watcher: watcher,
+  watcher,
   env: 'development',
 });
 
@@ -21,7 +21,6 @@ instance.run();
 let config = {};
 
 try {
-  // oxlint-disable-next-line node/global-require
   config = require('./config.js');
 } catch {
   // do nothing

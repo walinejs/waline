@@ -5,7 +5,6 @@ import { Link, useNavigate } from 'react-router';
 
 import { LANGUAGE_OPTIONS } from '../locales/index.js';
 
-// oxlint-disable-next-line max-lines-per-function
 export default function Header() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -30,9 +29,10 @@ export default function Header() {
         if (user.__version === resp.version) {
           return;
         }
+
         setLatestVersion(resp.version);
       });
-  }, [user?.objectId]);
+  }, [user?.objectId, user?.__version]);
 
   const updateLanguage = (event) => {
     i18n.changeLanguage(event.target.value);
@@ -83,9 +83,9 @@ export default function Header() {
         ) : null}
 
         {user?.type ? (
-          <a className="exit" href="#" onClick={onLogout}>
+          <button type="button" className="exit" onClick={onLogout}>
             {t('logout')}
-          </a>
+          </button>
         ) : null}
       </div>
     </div>,
@@ -95,6 +95,7 @@ export default function Header() {
           i18nKey="new version tips"
           defaults="New version @waline/vercel@{{version}} published, please upgrade it! Goto <a href='https://waline.js.org/en/advanced/faq.html#server' target='_blank'>FAQ</a> to find How to upgrade it."
           components={{
+            // oxlint-disable-next-line id-length, jsx-a11y/anchor-is-valid, jsx-a11y/anchor-has-content
             a: <a />,
           }}
           values={{
@@ -110,6 +111,7 @@ export default function Header() {
           i18nKey="leancloud warning"
           defaults="<a href='https://github.com/orgs/walinejs/discussions/3370' target='_blank'>Leancloud will cease external services soon</a>. If you are using it, please migration your comment data as soon as possible."
           components={{
+            // oxlint-disable-next-line id-length, jsx-a11y/anchor-is-valid, jsx-a11y/anchor-has-content
             a: <a />,
           }}
           transKeepBasicHtmlNodesFor={['a']}

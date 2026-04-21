@@ -1,6 +1,4 @@
-/**
- * commento 数据结构转 leancloud
- */
+/** Commento 数据结构转 leancloud */
 
 export const commento2lc = (input: string) => {
   const data = JSON.parse(input);

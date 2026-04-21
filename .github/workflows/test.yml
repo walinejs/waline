@@ -12,7 +12,6 @@ jobs:
     strategy:
       matrix:
         node-version:
-          - 20
           - 22
           - 24
         os:
@@ -37,13 +36,13 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Package Build Test
-        run: pnpm build
+        run: pnpm run build
 
       - name: Linter test
-        run: pnpm lint
+        run: pnpm run lint
 
       - name: Unit test
-        run: pnpm test
+        run: pnpm run test
 
       - name: Docs Build Test
-        run: pnpm docs:build
+        run: pnpm run docs:build

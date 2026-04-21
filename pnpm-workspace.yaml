@@ -2,13 +2,14 @@ packages:
   - docs
   - packages/*
 
-onlyBuiltDependencies:
-  - '@parcel/watcher'
-  - core-js-pure
-  - esbuild
-  - sqlite3
-  - unrs-resolver
+allowBuilds:
+  '@parcel/watcher': true
+  core-js-pure: true
+  esbuild: true
+  sqlite3: true
+  unrs-resolver: true
 
 overrides:
   '@waline/api': workspace:*
   '@waline/client': workspace:*
+  '@xmldom/xmldom': ^0.9.10

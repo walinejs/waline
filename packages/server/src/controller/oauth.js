@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-module.exports = class extends think.Controller {
+module.exports = class OAuthController extends think.Controller {
   constructor(ctx) {
     super(ctx);
     this.modelInstance = this.getModel('Users');
@@ -26,9 +26,7 @@ module.exports = class extends think.Controller {
       return;
     }
 
-    /**
-     * user = { id, name, email, avatar,url };
-     */
+    /** User = { id, name, email, avatar,url }; */
     const params = { code, state };
 
     if (type === 'facebook') {
@@ -109,6 +107,6 @@ module.exports = class extends think.Controller {
     // and then generate token!
     const token = jwt.sign(cmtUser.objectId, this.config('jwtKey'));
 
-    this.redirect(redirect + (redirect.includes('?') ? '&' : '?') + 'token=' + token);
+    this.redirect(`${redirect}${redirect.includes('?') ? '&' : '?'}token=${token}`);
   }
 };

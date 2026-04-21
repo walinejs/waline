@@ -11,7 +11,6 @@ module.exports = class BaseLogic extends think.Logic {
     this.id = this.getId();
   }
 
-  // oxlint-disable-next-line max-statements
   async __before() {
     const referrerCheckResult = this.referrerCheck();
     if (!referrerCheckResult) {
@@ -25,6 +24,7 @@ module.exports = class BaseLogic extends think.Logic {
     if (!authorization && !state) {
       return;
     }
+
     const token = state || authorization.replace(/^Bearer /, '');
     let userId = '';
 
@@ -73,6 +73,7 @@ module.exports = class BaseLogic extends think.Logic {
     if (avatarProxy) {
       avatarUrl = `${avatarProxy}?url=${encodeURIComponent(avatarUrl)}`;
     }
+
     userInfo.avatar = avatarUrl;
     this.ctx.state.userInfo = userInfo;
     this.ctx.state.token = token;
@@ -103,7 +104,10 @@ module.exports = class BaseLogic extends think.Logic {
 
     secureDomains = think.isArray(secureDomains) ? secureDomains : [secureDomains];
     secureDomains.push('localhost', '127.0.0.1');
-    secureDomains = [...secureDomains, ...this.ctx.state.oauthServices.map(({ origin }) => origin)];
+    secureDomains = [
+      ...secureDomains,
+      ...this.ctx.state.oauthServices.map(({ origin: domainOrigin }) => domainOrigin),
+    ];
 
     // 转换可能的正则表达式字符串为正则表达式对象
     secureDomains = secureDomains
