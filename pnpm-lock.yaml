@@ -275,8 +275,8 @@ importers:
         specifier: 0.23.4-cjs.0
         version: 0.23.4-cjs.0(markdown-it@14.1.1)
       '@mdit/plugin-mathjax':
-        specifier: 0.23.4-cjs.0
-        version: 0.23.4-cjs.0(markdown-it@14.1.1)
+        specifier: 0.26.2
+        version: 0.26.2(markdown-it@14.1.1)
       '@mdit/plugin-sub':
         specifier: 0.22.5-cjs.0
         version: 0.22.5-cjs.0(markdown-it@14.1.1)
@@ -1898,9 +1898,9 @@ packages:
       markdown-it:
         optional: true
 
-  '@mdit/plugin-mathjax@0.23.4-cjs.0':
-    resolution: {integrity: sha512-+7pZhht/Ls3nkM06ZV/5+w7UA8h8zQlTkFuStWC1rhRPsnYftOArlpr72fKzHIXjGLw30Rh74bGs4Ngrit8ZKQ==}
-    engines: {node: '>= 18'}
+  '@mdit/plugin-mathjax@0.26.2':
+    resolution: {integrity: sha512-rBvGkdX/NOSo4LOzGDimJ8URX9dY12ZWa8wtdo2SgU80NzmT0nL0X0ttpnailwq/6YrIsy5utkfRFDHqAFn8BA==}
+    engines: {node: '>= 20'}
     peerDependencies:
       markdown-it: ^14.1.0
     peerDependenciesMeta:
@@ -10587,12 +10587,12 @@ snapshots:
       '@mathjax/src': 4.1.1
       markdown-it: 14.1.1
 
-  '@mdit/plugin-mathjax@0.23.4-cjs.0(markdown-it@14.1.1)':
+  '@mdit/plugin-mathjax@0.26.2(markdown-it@14.1.1)':
     dependencies:
-      '@mdit/plugin-tex': 0.22.4-cjs.0(markdown-it@14.1.1)
+      '@mathjax/mathjax-newcm-font': 4.1.1
+      '@mathjax/src': 4.1.1
+      '@mdit/plugin-tex': 0.24.2(markdown-it@14.1.1)
       '@types/markdown-it': 14.1.2
-      mathjax-full: 3.2.2
-      upath: 2.0.1
     optionalDependencies:
       markdown-it: 14.1.1
 
