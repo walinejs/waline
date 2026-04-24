@@ -71,7 +71,7 @@
     "marked": "^18.0.2",
     "marked-highlight": "^2.2.4",
     "recaptcha-v3": "^1.11.3",
-    "vue": "^3.5.32"
+    "vue": "^3.5.33"
   },
   "devDependencies": {
     "@babel/core": "7.29.0",
@@ -79,7 +79,7 @@
     "@giphy/js-types": "5.1.0",
     "@types/autosize": "4.0.3",
     "@vitejs/plugin-vue": "6.0.6",
-    "vite": "8.0.8"
+    "vite": "8.0.10"
   },
   "browserslist": {
     "production": [
