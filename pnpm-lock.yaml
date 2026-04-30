@@ -278,8 +278,8 @@ importers:
         specifier: 0.23.4-cjs.0
         version: 0.23.4-cjs.0(markdown-it@14.1.1)
       '@mdit/plugin-sub':
-        specifier: 0.22.5-cjs.0
-        version: 0.22.5-cjs.0(markdown-it@14.1.1)
+        specifier: 0.24.2
+        version: 0.24.2(markdown-it@14.1.1)
       '@mdit/plugin-sup':
         specifier: 0.22.5-cjs.0
         version: 0.22.5-cjs.0(markdown-it@14.1.1)
@@ -1928,15 +1928,6 @@ packages:
   '@mdit/plugin-stylize@0.23.2':
     resolution: {integrity: sha512-q62eRLz/41AoodZIwx5NHoSuHyX1CuFaVjG13j6kbuo5gWmLF3JcyIY9BG+BRgSM+00LvB9DCZWAf/ZdN+vOVg==}
     engines: {node: '>= 20'}
-    peerDependencies:
-      markdown-it: ^14.1.0
-    peerDependenciesMeta:
-      markdown-it:
-        optional: true
-
-  '@mdit/plugin-sub@0.22.5-cjs.0':
-    resolution: {integrity: sha512-Cl0Cir7z45bdlP5ZXhJeDHQwJ1MDwdt+RMAqc/9zIYN6HuAQ0RgF+faPXzpf3VXrRVdE9SvSwME03z6SmewiJA==}
-    engines: {node: '>= 18'}
     peerDependencies:
       markdown-it: ^14.1.0
     peerDependenciesMeta:
@@ -8459,7 +8450,7 @@ packages:
 
   uuid@3.4.0:
     resolution: {integrity: sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==}
-    deprecated: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
+    deprecated: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
     hasBin: true
 
   uuid@7.0.3:
@@ -10587,13 +10578,6 @@ snapshots:
 
   '@mdit/plugin-stylize@0.23.2(markdown-it@14.1.1)':
     dependencies:
-      '@types/markdown-it': 14.1.2
-    optionalDependencies:
-      markdown-it: 14.1.1
-
-  '@mdit/plugin-sub@0.22.5-cjs.0(markdown-it@14.1.1)':
-    dependencies:
-      '@mdit/helper': 0.22.3-cjs.0(markdown-it@14.1.1)
       '@types/markdown-it': 14.1.2
     optionalDependencies:
       markdown-it: 14.1.1
