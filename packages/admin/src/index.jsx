@@ -5,6 +5,7 @@ import App from './App.jsx';
 import { store } from './store/index.js';
 // oxlint-disable-next-line import/no-unassigned-import
 import './i18n.js';
+
 import './style/index.scss';
 
 const run = async () => {

@@ -141,6 +141,7 @@ module.exports = class extends Base {
 
     do {
       options.offset = offset + data.length;
+      // oxlint-disable-next-line no-underscore-dangle
       ret = await this._select(where, options);
       data.push(...ret);
     } while (ret.length === 100);
@@ -272,6 +273,7 @@ module.exports = class extends Base {
     }
 
     // get group count cache by group field where data
+    // oxlint-disable-next-line no-underscore-dangle
     const cacheData = await this._getCmtGroupByMailUserIdCache(options.group.join('_'), where);
 
     if (!where._complex) {
@@ -300,6 +302,7 @@ module.exports = class extends Base {
       const ret = Object.values(countsMap);
 
       // cache data
+      // oxlint-disable-next-line no-underscore-dangle
       await this._setCmtGroupByMailUserIdCache(options.group.join('_'), ret);
 
       return ret;
@@ -367,6 +370,7 @@ module.exports = class extends Base {
 
     await think.promiseAllQueue(countsPromise, 1);
     // cache data
+    // oxlint-disable-next-line no-underscore-dangle
     await this._setCmtGroupByMailUserIdCache(options.group.join('_'), counts);
 
     return [...cacheData, ...counts];
@@ -394,6 +398,7 @@ module.exports = class extends Base {
 
     const resp = await instance.save();
 
+    // oxlint-disable-next-line no-underscore-dangle
     await this._updateCmtGroupByMailUserIdCache(data, 'add');
 
     return resp.toJSON();
@@ -405,7 +410,7 @@ module.exports = class extends Base {
 
     return Promise.all(
       ret.map(async (item) => {
-        const _oldStatus = item.get('status');
+        const oldStatus = item.get('status');
 
         const updateData = typeof data === 'function' ? data(item.toJSON()) : data;
 
@@ -419,9 +424,10 @@ module.exports = class extends Base {
           item.set(k, updateData[k]);
         }
 
-        const _newStatus = item.get('status');
+        const newStatus = item.get('status');
 
-        if (_newStatus && _oldStatus !== _newStatus) {
+        if (newStatus && oldStatus !== newStatus) {
+          // oxlint-disable-next-line no-underscore-dangle
           await this._updateCmtGroupByMailUserIdCache(data, 'update_status');
         }
 
@@ -436,6 +442,7 @@ module.exports = class extends Base {
     const instance = this.where(this.tableName, where);
     const data = await instance.find();
 
+    // oxlint-disable-next-line no-underscore-dangle
     await this._updateCmtGroupByMailUserIdCache(data, 'delete');
 
     return AV.Object.destroyAll(data);

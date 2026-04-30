@@ -27,6 +27,7 @@ module.exports = function main(config = {}) {
       await think.beforeStartServer().catch((err) => {
         think.logger.error(err);
       });
+      // oxlint-disable-next-line no-underscore-dangle
       await instance._getWorkerInstance(instance.parseArgv());
       think.app.emit('appReady');
 

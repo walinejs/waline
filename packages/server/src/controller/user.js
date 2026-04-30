@@ -253,10 +253,13 @@ module.exports = class UserController extends BaseRest {
         let level = 0;
 
         if (user.count) {
-          const _level = think.findLastIndex(this.config('levels'), (level) => level <= user.count);
+          const matchedLevel = think.findLastIndex(
+            this.config('levels'),
+            (level) => level <= user.count,
+          );
 
-          if (_level !== -1) {
-            level = _level;
+          if (matchedLevel !== -1) {
+            level = matchedLevel;
           }
         }
         user.level = level;

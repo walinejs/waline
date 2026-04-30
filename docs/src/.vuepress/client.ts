@@ -25,6 +25,7 @@ export default defineClientConfig({
     const CommentService = app.component('CommentService')!;
 
     // delete
+    // oxlint-disable-next-line no-underscore-dangle
     delete app._context.components.CommentService;
 
     app.component('CommentService', () => [h(WalineTips), h(CommentService)]);

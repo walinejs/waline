@@ -167,6 +167,7 @@ module.exports = class extends Base {
 
     do {
       options.offset = offset + data.length;
+      // oxlint-disable-next-line no-underscore-dangle
       ret = await this._select(where, options);
       data.push(...ret);
     } while (ret.length === 100);
@@ -184,6 +185,7 @@ module.exports = class extends Base {
       return total;
     }
 
+    // oxlint-disable-next-line no-underscore-dangle
     const _id = {};
 
     group.forEach((f) => {
@@ -199,6 +201,7 @@ module.exports = class extends Base {
 
   async add(data) {
     if (data.objectId) {
+      // oxlint-disable-next-line no-underscore-dangle
       data._id = data.objectId;
       delete data.objectId;
     }
@@ -218,6 +221,7 @@ module.exports = class extends Base {
         const updateData = typeof data === 'function' ? data(item) : data;
         const instance = await this.collection(this.tableName);
 
+        // oxlint-disable-next-line no-underscore-dangle
         await instance.doc(item._id).update(updateData);
 
         return { ...item, ...updateData };

@@ -153,6 +153,7 @@ module.exports = class extends Base {
 
   async add(data) {
     if (data.objectId) {
+      // oxlint-disable-next-line no-underscore-dangle
       data._id = data.objectId;
       delete data.objectId;
     }

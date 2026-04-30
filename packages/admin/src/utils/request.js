@@ -49,6 +49,7 @@ export default async function request(url, opts = {}) {
     throw new Error(result.errmsg);
   }
 
+  // oxlint-disable-next-line no-underscore-dangle
   const __version = resp.headers.get('x-waline-version');
 
   return { __version, ...result.data };

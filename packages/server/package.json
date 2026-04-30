@@ -39,7 +39,7 @@
     "markdown-it": "^14.1.1",
     "markdown-it-emoji": "^3.0.0",
     "mathjax-full": "^3.2.2",
-    "nodemailer": "^8.0.5",
+    "nodemailer": "^8.0.7",
     "nunjucks": "^3.2.4",
     "phpass": "^0.1.1",
     "prismjs": "^1.30.0",

@@ -1,3 +1,4 @@
+// oxlint-disable no-underscore-dangle
 import React, { useEffect, useMemo, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';

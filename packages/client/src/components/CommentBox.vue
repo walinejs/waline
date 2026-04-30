@@ -463,12 +463,9 @@ watchImmediate([config, wordNumber], ([config, wordNumber]) => {
     if (wordNumber < limit[0] && limit[0] !== 0) {
       [wordLimit.value] = limit;
       isWordNumberLegal.value = false;
-    } else if (wordNumber > limit[1]) {
-      [, wordLimit.value] = limit;
-      isWordNumberLegal.value = false;
     } else {
       [, wordLimit.value] = limit;
-      isWordNumberLegal.value = true;
+      isWordNumberLegal.value = wordNumber <= limit[1];
     }
   } else {
     wordLimit.value = 0;

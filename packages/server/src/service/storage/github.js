@@ -175,10 +175,8 @@ module.exports = class GithubStorage extends Base {
   }
 
   parseWhere(where) {
-    const _where = [];
-
     if (think.isEmpty(where)) {
-      return _where;
+      return [];
     }
 
     const filters = [];

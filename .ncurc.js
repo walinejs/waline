@@ -3,9 +3,12 @@ export default {
   peer: true,
   upgrade: true,
   timeout: 360000,
-  target: (name) => {
-    if (name === 'think-model-postgresql') return 'ignore';
+  filter: (name) => {
+    if (name === 'think-model-postgresql') return false;
 
+    return true;
+  },
+  target: (name) => {
     if (name.startsWith('@vuepress/') || name === 'vuepress') {
       return '@next';
     }

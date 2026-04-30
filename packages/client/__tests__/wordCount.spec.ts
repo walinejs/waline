@@ -13,10 +13,9 @@ describe('Words test', () => {
   });
 
   it('Should pick chinese words correctly', () => {
-    const chineseWords =
-      getChinese(
-        'Waline - 一款从 Valine 衍生的带后端评论系统。可以将 Waline 等价成 With backend Valine.',
-      ) ?? [];
+    const chineseWords = getChinese(
+      'Waline - 一款从 Valine 衍生的带后端评论系统。可以将 Waline 等价成 With backend Valine.',
+    )!;
 
     expect(chineseWords.join('')).toEqual('一款从衍生的带后端评论系统可以将等价成');
   });
@@ -54,7 +53,7 @@ describe('Words test', () => {
     const linkMarkdown = `You can found Waline [here](${linkAddress}).`;
     const imageMarkdown = `Here is a image.\n\n![Alt](https://a/fake/link)`;
 
-    const linkWords = (getWords(linkAddress) ?? ([] as string[]))
+    const linkWords = getWords(linkAddress)!
       .map((word) => word.trim())
       .filter(Boolean);
 
@@ -91,7 +90,7 @@ describe('Words test', () => {
 \`\`\`
 `;
 
-    const codeBlockWords = (getWords(codeBlock) ?? ([] as string[]))
+    const codeBlockWords = getWords(codeBlock)!
       .map((word) => word.trim())
       .filter(Boolean);
 

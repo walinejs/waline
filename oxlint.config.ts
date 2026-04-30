@@ -87,6 +87,7 @@ export default defineHopeConfig(
       'no-await-in-loop': 'off',
       'no-callback-in-promise': 'off',
       'no-empty-function': 'off',
+      'no-underscore-dangle': ['warn', { allow: ['__before', '__filename', '_complex', '_logic'] }],
       'require-await': 'off',
 
       'jsdoc/check-tag-names': [
