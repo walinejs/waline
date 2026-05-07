@@ -15,7 +15,7 @@ export const formatDate = (time) => {
   const date =
     typeof time === 'number'
       ? new Date(time)
-      : new Date(/\d+-\d+-\d+\s\d+:\d+:\d+/.test(time) ? time.replaceAll('-', '/') : time);
+      : new Date(/\d+-\d+-\d+\s\d+:\d+:\d+/u.test(time) ? time.replaceAll('-', '/') : time);
 
   const localDate = [date.getFullYear(), date.getMonth() + 1, date.getDate()]
     .map((item) => padZero(item))

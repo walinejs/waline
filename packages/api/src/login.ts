@@ -54,7 +54,7 @@ export interface UserInfo {
 
 const isMobile = (): boolean => {
   const ua = navigator.userAgent;
-  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/iu.test(ua);
 };
 
 export const login = ({
@@ -67,7 +67,7 @@ export const login = ({
   const top = (window.innerHeight - height) / 2;
 
   if (isMobile()) {
-    location.href = `${serverURL.replace(/\/$/, '')}/ui/login?lng=${encodeURIComponent(lang)}&redirect=${encodeURIComponent(location.href)}`;
+    location.href = `${serverURL.replace(/\/$/u, '')}/ui/login?lng=${encodeURIComponent(lang)}&redirect=${encodeURIComponent(location.href)}`;
 
     // On mobile, we perform a full-page redirect; the login flow is handled entirely
     // in the redirected page, so this promise intentionally never resolves to avoid
@@ -78,7 +78,7 @@ export const login = ({
   }
 
   const handler = window.open(
-    `${serverURL.replace(/\/$/, '')}/ui/login?lng=${encodeURIComponent(lang)}`,
+    `${serverURL.replace(/\/$/u, '')}/ui/login?lng=${encodeURIComponent(lang)}`,
     '_blank',
     `width=${width},height=${height},left=${left},top=${top},scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no`,
   );

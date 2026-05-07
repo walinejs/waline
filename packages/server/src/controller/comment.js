@@ -190,7 +190,7 @@ module.exports = class CommentController extends BaseRest {
         const { forbiddenWords } = this.config();
 
         if (!think.isEmpty(forbiddenWords)) {
-          const regexp = new RegExp(`(${forbiddenWords.join('|')})`, 'ig');
+          const regexp = new RegExp(`(${forbiddenWords.join('|')})`, 'igu');
 
           if (regexp.test(comment)) {
             data.status = 'spam';

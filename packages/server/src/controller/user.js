@@ -38,7 +38,7 @@ module.exports = class UserController extends BaseRest {
 
     const formatUsers = await Promise.all(
       users.map(async (user) => {
-        user.avatar = user.avatar || (await think.service('avatar').stringify(user));
+        user.avatar ||= await think.service('avatar').stringify(user);
         return {
           ...user,
           avatar: user.avatar,
@@ -85,7 +85,7 @@ module.exports = class UserController extends BaseRest {
       await this.modelInstance.update(data, { email: data.email });
     }
 
-    if (!/^verify:/i.test(data.type)) {
+    if (!/^verify:/iu.test(data.type)) {
       return this.success();
     }
 
@@ -200,7 +200,7 @@ module.exports = class UserController extends BaseRest {
     }
 
     const [user] = users;
-    const isVerifyUser = /^verify:/i.test(user.type);
+    const isVerifyUser = /^verify:/iu.test(user.type);
 
     // oxlint-disable-next-line unicorn/prefer-ternary
     if (isVerifyUser) {

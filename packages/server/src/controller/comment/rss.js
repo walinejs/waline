@@ -4,7 +4,7 @@ const { getMarkdownParser } = require('../../service/markdown/index.js');
 
 const markdownParser = getMarkdownParser();
 
-const isHttpUrl = (value) => /^(https?:)?\/\//i.test(value);
+const isHttpUrl = (value) => /^(https?:)?\/\//iu.test(value);
 
 const buildAbsoluteUrl = (baseUrl, path) => {
   if (!path) return baseUrl || '';

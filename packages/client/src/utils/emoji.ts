@@ -9,7 +9,7 @@ const EMOJI_STORE_KEY = 'WALINE_EMOJI';
 
 const emojiStore = useStorage<Record<string, WalineEmojiInfo | undefined>>(EMOJI_STORE_KEY, {});
 
-const checkVersionAnnotation = (url: string): boolean => /@[0-9]+\.[0-9]+\.[0-9]+/.test(url);
+const checkVersionAnnotation = (url: string): boolean => /@[0-9]+\.[0-9]+\.[0-9]+/u.test(url);
 
 const fetchEmoji = (link: string): Promise<WalineEmojiInfo> => {
   const containsVersion = checkVersionAnnotation(link);

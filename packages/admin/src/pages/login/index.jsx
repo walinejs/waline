@@ -22,7 +22,7 @@ export default function Login() {
     hideDefaultBadge: true,
   });
 
-  const match = location.pathname.match(/(.*?\/)ui/);
+  const match = location.pathname.match(/(.*?\/)ui/u);
   const basePath = match && match[1] ? match[1] : '/';
   const query = useMemo(() => new URLSearchParams(location.search), []);
 
@@ -36,7 +36,7 @@ export default function Login() {
     const defaultRedirect = isAdmin ? '/ui' : '/ui/profile';
     const redirect = isAdmin && query.get('redirect') ? query.get('redirect') : defaultRedirect;
 
-    navigate(redirect.replaceAll(/\/+/g, '/'));
+    navigate(redirect.replaceAll(/\/+/gu, '/'));
   }, [user, query, navigate]);
 
   const onSubmit = async (event) => {
@@ -94,7 +94,7 @@ export default function Login() {
   let baseUrl = window.serverURL;
 
   if (!baseUrl) {
-    const match = location.pathname.match(/(.*?\/)ui/);
+    const match = location.pathname.match(/(.*?\/)ui/u);
 
     baseUrl = match ? match[1] : '/';
   }

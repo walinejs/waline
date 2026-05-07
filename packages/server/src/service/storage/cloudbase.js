@@ -78,11 +78,11 @@ module.exports = class extends Base {
             let reg;
 
             if (first === '%' && last === '%') {
-              reg = new RegExp(likePattern.slice(1, -1));
+              reg = new RegExp(likePattern.slice(1, -1), 'u');
             } else if (first === '%') {
-              reg = new RegExp(`${likePattern.slice(1)}$`);
+              reg = new RegExp(`${likePattern.slice(1)}$`, 'u');
             } else if (last === '%') {
-              reg = new RegExp(`^${likePattern.slice(0, -1)}`);
+              reg = new RegExp(`^${likePattern.slice(0, -1)}`, 'u');
             }
 
             filter[parseKey(k)] = reg;

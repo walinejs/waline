@@ -29,7 +29,7 @@ const types = [
 ];
 const scopes = [...packages, 'example', 'release', 'deps'];
 
-const commitRE = /^(revert: )?(?<type>[^(]*?)(?:\((?<scope>[^)]*?)\))?: .{1,50}$/;
+const commitRE = /^(revert: )?(?<type>[^(]*?)(?:\((?<scope>[^)]*?)\))?: .{1,50}$/u;
 
 const match = commitRE.exec(msg);
 

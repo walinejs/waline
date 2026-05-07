@@ -21,7 +21,7 @@ export default function Migration() {
     uploadRef.current.click();
   };
 
-  // oxlint-disable-next-line max-lines-per-function max-statements
+  // oxlint-disable-next-line max-statements
   const importData = async (event) => {
     try {
       const text = await readFileAsync(event.target.files[0]);

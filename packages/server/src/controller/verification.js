@@ -15,7 +15,7 @@ module.exports = class extends BaseRest {
     }
 
     const [user] = users;
-    const match = user.type.match(/^verify:(\d{4}):(\d+)$/i);
+    const match = user.type.match(/^verify:(\d{4}):(\d+)$/iu);
 
     if (!match) {
       return this.fail(this.locale('USER_REGISTERED'));

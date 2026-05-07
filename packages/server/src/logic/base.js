@@ -25,7 +25,7 @@ module.exports = class BaseLogic extends think.Logic {
       return;
     }
 
-    const token = state || authorization.replace(/^Bearer /, '');
+    const token = state || authorization.replace(/^Bearer /u, '');
     let userId = '';
 
     try {
@@ -115,7 +115,7 @@ module.exports = class BaseLogic extends think.Logic {
         // 如果是正则表达式字符串，创建一个 RegExp 对象
         if (typeof domain === 'string' && domain.startsWith('/') && domain.endsWith('/')) {
           try {
-            return new RegExp(domain.slice(1, -1)); // 去掉斜杠并创建 RegExp 对象
+            return new RegExp(domain.slice(1, -1), 'u'); // 去掉斜杠并创建 RegExp 对象
           } catch (err) {
             console.error('Invalid regex pattern in secureDomains:', domain, err);
 
@@ -152,7 +152,7 @@ module.exports = class BaseLogic extends think.Logic {
 
     const last = decodeURIComponent(this.ctx.path.split('/').pop());
 
-    if (last !== this.resource && /^([a-z0-9]+,?)*$/i.test(last)) {
+    if (last !== this.resource && /^([a-z0-9]+,?)*$/iu.test(last)) {
       return last;
     }
 

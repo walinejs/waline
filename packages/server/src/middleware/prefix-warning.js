@@ -12,8 +12,8 @@ const DEPRECATE_ROUTER_NEXT_VERSION = [
 
 module.exports = () => async (ctx, next) => {
   ctx.state.deprecated = DEPRECATE_ROUTER_NEXT_VERSION.some((prefix) => {
-    const oldAPI = new RegExp(`${prefix}$`, 'i');
-    const newAPI = new RegExp(`/api${prefix}$`, 'i');
+    const oldAPI = new RegExp(`${prefix}$`, 'iu');
+    const newAPI = new RegExp(`/api${prefix}$`, 'iu');
 
     return !newAPI.test(ctx.path) && oldAPI.test(ctx.path);
   });
