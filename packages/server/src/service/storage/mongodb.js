@@ -35,7 +35,7 @@ module.exports = class extends Base {
               filter[parseKey(k)] = { $in: where[k][1].map((id) => new ObjectId(id)) };
             } else {
               filter[parseKey(k)] = {
-                $regex: new RegExp(`^(${where[k][1].join('|')})$`),
+                $regex: new RegExp(`^(${where[k][1].join('|')})$`, 'u'),
               };
             }
             break;
@@ -53,11 +53,11 @@ module.exports = class extends Base {
             let reg;
 
             if (first === '%' && last === '%') {
-              reg = new RegExp(likePattern.slice(1, -1));
+              reg = new RegExp(likePattern.slice(1, -1), 'u');
             } else if (first === '%') {
-              reg = new RegExp(`${likePattern.slice(1)}$`);
+              reg = new RegExp(`${likePattern.slice(1)}$`, 'u');
             } else if (last === '%') {
-              reg = new RegExp(`^${likePattern.slice(0, -1)}`);
+              reg = new RegExp(`^${likePattern.slice(0, -1)}`, 'u');
             }
 
             if (reg) {

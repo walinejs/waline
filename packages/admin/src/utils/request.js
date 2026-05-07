@@ -19,7 +19,7 @@ export default async function request(url, opts = {}) {
   let baseUrl = window.serverURL;
 
   if (!baseUrl) {
-    const match = location.pathname.match(/(.*?\/)ui/);
+    const match = location.pathname.match(/(.*?\/)ui/u);
 
     baseUrl = match ? match[1] : '/';
   }

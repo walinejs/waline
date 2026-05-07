@@ -109,8 +109,8 @@ module.exports = class NotifyService extends think.Service {
 
     const QYWX_AM_AY = QYWX_AM.split(',');
     const comment = self.comment
-      .replaceAll(/<a href="(.*?)">(.*?)<\/a>/g, '\n[$2] $1\n')
-      .replaceAll(/<[^>]+>/g, '');
+      .replaceAll(/<a href="(.*?)">(.*?)<\/a>/gu, '\n[$2] $1\n')
+      .replaceAll(/<[^>]+>/gu, '');
     const postName = self.url;
 
     const data = {
@@ -190,8 +190,8 @@ module.exports = class NotifyService extends think.Service {
     }
 
     const comment = self.comment
-      .replaceAll(/<a href="(.*?)">(.*?)<\/a>/g, '')
-      .replaceAll(/<[^>]+>/g, '');
+      .replaceAll(/<a href="(.*?)">(.*?)<\/a>/gu, '')
+      .replaceAll(/<[^>]+>/gu, '');
 
     const data = {
       self: {
@@ -213,7 +213,7 @@ module.exports = class NotifyService extends think.Service {
 {{self.comment}}
 仅供预览评论，请前往上述页面查看完整內容。`;
 
-    const qmsgHost = QMSG_HOST ? QMSG_HOST.replace(/\/$/, '') : 'https://qmsg.zendee.cn';
+    const qmsgHost = QMSG_HOST ? QMSG_HOST.replace(/\/$/u, '') : 'https://qmsg.zendee.cn';
 
     const postBodyData = {
       qq: QQ_ID,
@@ -246,12 +246,12 @@ module.exports = class NotifyService extends think.Service {
     }
 
     let commentLink = '';
-    const href = self.comment.match(/<a href="(.*?)">(.*?)<\/a>/g);
+    const href = self.comment.match(/<a href="(.*?)">(.*?)<\/a>/gu);
 
     if (href != null) {
       for (let i = 0; i < href.length; i++) {
         href[i] =
-          `[Link: ${href[i].replaceAll(/<a href="(.*?)">(.*?)<\/a>/g, '$2')}](${href[i].replaceAll(/<a href="(.*?)">(.*?)<\/a>/g, '$1')})  `;
+          `[Link: ${href[i].replaceAll(/<a href="(.*?)">(.*?)<\/a>/gu, '$2')}](${href[i].replaceAll(/<a href="(.*?)">(.*?)<\/a>/gu, '$1')})  `;
         commentLink += href[i];
       }
     }
@@ -260,8 +260,8 @@ module.exports = class NotifyService extends think.Service {
     }
 
     const comment = self.comment
-      .replaceAll(/<a href="(.*?)">(.*?)<\/a>/g, '[Link:$2]')
-      .replaceAll(/<[^>]+>/g, '');
+      .replaceAll(/<a href="(.*?)">(.*?)<\/a>/gu, '[Link:$2]')
+      .replaceAll(/<[^>]+>/gu, '');
 
     const contentTG =
       think.config('TGTemplate') ||
@@ -419,7 +419,7 @@ module.exports = class NotifyService extends think.Service {
       return false;
     }
 
-    self.comment = self.comment.replaceAll(/(<([^>]+)>)/gi, '');
+    self.comment = self.comment.replaceAll(/(<([^>]+)>)/giu, '');
 
     const data = {
       self,
@@ -526,7 +526,7 @@ module.exports = class NotifyService extends think.Service {
     }
 
     const disallowList = this.controller.ctx.state.oauthServices.map(({ name }) => `mail.${name}`);
-    const fakeMail = new RegExp(`@(${disallowList.join('|')})$`, 'i');
+    const fakeMail = new RegExp(`@(${disallowList.join('|')})$`, 'iu');
 
     if (
       parent &&

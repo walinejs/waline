@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`XSS test > Should render 1`] = `
+exports[`avoid XSS > should render 1`] = `
 "<p>Waline is a good framework. :money:</p>
 <h2>特性</h2>
 <ul>

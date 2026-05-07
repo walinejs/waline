@@ -5,7 +5,7 @@ import type { WalineEmojiMaps, WalineHighlighter, WalineTeXRenderer } from '../t
 import { markedTeXExtensions } from './markedMathExtension.js';
 
 export const parseEmoji = (text = '', emojiMap: WalineEmojiMaps = {}): string =>
-  text.replaceAll(/:(.+?):/g, (placeholder, key: string) =>
+  text.replaceAll(/:(.+?):/gu, (placeholder, key: string) =>
     emojiMap[key] ? `<img class="wl-emoji" src="${emojiMap[key]}" alt="${key}">` : placeholder,
   );
 

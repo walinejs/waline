@@ -13,7 +13,7 @@ module.exports = [
   },
   {
     handle: 'dashboard',
-    match: isNetlify ? new RegExp(`${netlifyFunctionPrefix}/ui`, 'i') : /^\/ui/,
+    match: isNetlify ? new RegExp(`${netlifyFunctionPrefix}/ui`, 'iu') : /^\/ui/u,
   },
 
   {
@@ -41,7 +41,7 @@ module.exports = [
       debug: true,
       contentType: () => 'json',
       error(err, ctx) {
-        if (/favicon.ico$/.test(ctx.url)) {
+        if (/favicon.ico$/u.test(ctx.url)) {
           return;
         }
 

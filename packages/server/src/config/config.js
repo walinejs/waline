@@ -53,27 +53,27 @@ let jwtKey = JWT_TOKEN;
 
 if (LEAN_KEY) {
   storage = 'leancloud';
-  jwtKey = jwtKey || LEAN_KEY;
+  jwtKey ||= LEAN_KEY;
 } else if (MONGO_DB) {
   storage = 'mongodb';
-  jwtKey = jwtKey || MONGO_PASSWORD;
+  jwtKey ||= MONGO_PASSWORD;
 } else if (PG_DB || POSTGRES_DATABASE) {
   storage = 'postgresql';
-  jwtKey = jwtKey || PG_PASSWORD || POSTGRES_PASSWORD;
+  jwtKey ||= PG_PASSWORD || POSTGRES_PASSWORD;
 } else if (SQLITE_PATH) {
   storage = 'sqlite';
 } else if (MYSQL_DB) {
   storage = 'mysql';
-  jwtKey = jwtKey || MYSQL_PASSWORD;
+  jwtKey ||= MYSQL_PASSWORD;
 } else if (TIDB_DB) {
   storage = 'tidb';
-  jwtKey = jwtKey || TIDB_PASSWORD;
+  jwtKey ||= TIDB_PASSWORD;
 } else if (GITHUB_TOKEN) {
   storage = 'github';
-  jwtKey = jwtKey || GITHUB_TOKEN;
+  jwtKey ||= GITHUB_TOKEN;
 } else if (think.env === 'cloudbase' || TCB_ENV) {
   storage = 'cloudbase';
-  jwtKey = jwtKey || TENCENTCLOUD_SECRETKEY || TCB_KEY || TCB_ENV;
+  jwtKey ||= TENCENTCLOUD_SECRETKEY || TCB_KEY || TCB_ENV;
 }
 
 if (storage === null) {
@@ -84,7 +84,7 @@ if (think.env === 'cloudbase' && storage === 'sqlite') {
   throw new Error("You can't use SQLite in CloudBase platform.");
 }
 
-const forbiddenWords = FORBIDDEN_WORDS ? FORBIDDEN_WORDS.split(/\s*,\s*/) : [];
+const forbiddenWords = FORBIDDEN_WORDS ? FORBIDDEN_WORDS.split(/\s*,\s*/u) : [];
 
 const isFalse = (content) => content && ['0', 'false'].includes(content.toLowerCase());
 
@@ -116,10 +116,10 @@ module.exports = {
   jwtKey,
   forbiddenWords,
   disallowIPList: [],
-  secureDomains: SECURE_DOMAINS ? SECURE_DOMAINS.split(/\s*,\s*/) : null,
+  secureDomains: SECURE_DOMAINS ? SECURE_DOMAINS.split(/\s*,\s*/u) : null,
   disableUserAgent: DISABLE_USERAGENT && !isFalse(DISABLE_USERAGENT),
   disableRegion: DISABLE_REGION && !isFalse(DISABLE_REGION),
-  levels: !LEVELS || isFalse(LEVELS) ? false : LEVELS.split(/\s*,\s*/).map(Number),
+  levels: !LEVELS || isFalse(LEVELS) ? false : LEVELS.split(/\s*,\s*/u).map(Number),
 
   audit: COMMENT_AUDIT && !isFalse(COMMENT_AUDIT),
   avatarProxy,

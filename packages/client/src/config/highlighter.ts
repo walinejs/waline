@@ -20,13 +20,13 @@
  */
 
 const WORD_REGEXP =
-  /[\u4E00-\u9FFF\u3400-\u4DBF\uF900-\uFAFF\u3040-\u309F\uAC00-\uD7AF\u0400-\u04FF]+|\w+/;
-const LEFT_ANGLE_REGEXP = /</;
-const LINE_COMMENT_REGEXP = /(?:^|\s)\/\/(.+?)$/gm;
-const BLOCK_COMMENT_REGEXP = /\/\*([\S\s]*?)\*\//gm;
+  /[\u4E00-\u9FFF\u3400-\u4DBF\uF900-\uFAFF\u3040-\u309F\uAC00-\uD7AF\u0400-\u04FF]+|\w+/u;
+const LEFT_ANGLE_REGEXP = /</u;
+const LINE_COMMENT_REGEXP = /(?:^|\s)\/\/(.+?)$/gmu;
+const BLOCK_COMMENT_REGEXP = /\/\*([\S\s]*?)\*\//gmu;
 const REGEXP = new RegExp(
   `(${WORD_REGEXP.source}|${LEFT_ANGLE_REGEXP.source})|((?:${LINE_COMMENT_REGEXP.source})|(?:${BLOCK_COMMENT_REGEXP.source}))`,
-  'gmi',
+  'gmiu',
 );
 
 const COLORS = [
