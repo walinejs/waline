@@ -263,8 +263,8 @@ importers:
         specifier: workspace:*
         version: link:../server
       thinkjs:
-        specifier: 4.0.0-alpha.0
-        version: 4.0.0-alpha.0
+        specifier: 4.0.0
+        version: 4.0.0
 
   packages/hexo-next:
     dependencies:
@@ -374,8 +374,8 @@ importers:
         specifier: ^1.0.5
         version: 1.0.5
       thinkjs:
-        specifier: 4.0.0-alpha.0
-        version: 4.0.0-alpha.0
+        specifier: 4.0.0
+        version: 4.0.0
       ua-parser-js:
         specifier: ^2.0.9
         version: 2.0.9
@@ -7958,8 +7958,8 @@ packages:
     resolution: {integrity: sha512-COn8a6gq+wJqUNbkMRgHpJCgSzo5FGCBU4c05B38bhUoSuOGYVcEkLH0qd+uEy8SpivHPTSCNzzCJn7ZlUtbKA==}
     engines: {node: '>=6.0.0'}
 
-  think-payload@1.4.0:
-    resolution: {integrity: sha512-5oJLC1aOvjF/WF2xskkiezgOuIwDvPhCryZZnxhdmcsG5cwLDTvaMg7blG5NMAWQ3YsGlgso2K8D3ojc559+6w==}
+  think-payload@1.4.1:
+    resolution: {integrity: sha512-lfWF4XPp3dxJbcyKFrdYHdgcO1GxaL3byEzCFnFPkwd3rjMjtOLxUsfA00MbwRi8VI5pvta/qLt7ZLJC3fmg5g==}
 
   think-pm2@1.0.0:
     resolution: {integrity: sha512-oDSqJj7/iTcquztY/WXiJ9t2YMEiXE/K1gyrOslH6Czd7V73YLMHB/hNIGbJLFdNAuQNufGa26L92TFx/mNzaw==}
@@ -7990,8 +7990,8 @@ packages:
     resolution: {integrity: sha512-/jPy+QIIS+92uetRA7itigrlJXL6c/j+xBPJGaVT3LX2/zwlQ1VvjDUWu9SaaatWDYPVY44Em647QxsEjY9TXQ==}
     engines: {node: '>=6.0.0'}
 
-  thinkjs@4.0.0-alpha.0:
-    resolution: {integrity: sha512-Ww2o0nTN/OWEnaL+fPY8Qq4n6RwZdv17vhHsuQtuZri0fmrNt+DLgJCnDaMjwKbX2awNqhmeujM1qmjVa7OplA==}
+  thinkjs@4.0.0:
+    resolution: {integrity: sha512-KsFvLJp7r4sU7VqzicNx/mIEZeZhOxJ6F7uRKBwTEPTFnOMw2/7QsRL/usRnL/Zt0lKHMyKJh/xhq5Mo9Eb7AA==}
     engines: {node: '>=18.0.0'}
 
   throttleit@2.1.0:
@@ -8820,10 +8820,6 @@ packages:
   xml-name-validator@5.0.0:
     resolution: {integrity: sha512-EvGK8EJ3DhaHfbRlETOWAS5pO9MZITeauHKJyb8wyajUfQUenkIg2MvLDTZ4T/TgIcm3HU0TFBgWWboAZ30UHg==}
     engines: {node: '>=18'}
-
-  xml2js@0.4.23:
-    resolution: {integrity: sha512-ySPiMjM0+pLDftHgXY4By0uswI3SPKLDw/i3UXbnO8M/p28zqexCUoPmQFrYD+/1BzhGJSs2i1ERWKJAtiLrug==}
-    engines: {node: '>=4.0.0'}
 
   xml2js@0.6.2:
     resolution: {integrity: sha512-T4rieHaC1EXcES0Kxxj4JWgaUQHDk+qwHcYOCFHfiwKz7tOVPLq7Hjq9dM1WCMhylqMEfP7hMcOIChvotiZegA==}
@@ -17153,14 +17149,14 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  think-payload@1.4.0:
+  think-payload@1.4.1:
     dependencies:
       formidable: 1.2.6
       inflation: 2.1.0
       on-finished: 2.4.1
       raw-body: 2.5.3
       think-helper: 1.1.4
-      xml2js: 0.4.23
+      xml2js: 0.6.2
 
   think-pm2@1.0.0: {}
 
@@ -17222,7 +17218,7 @@ snapshots:
       think-logic: 1.2.2
       think-meta: 1.0.6
       think-mock-http: 1.0.6
-      think-payload: 1.4.0
+      think-payload: 1.4.1
       think-pm2: 1.0.0
       think-resource: 1.0.3
       think-router: 1.3.5
@@ -17231,7 +17227,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  thinkjs@4.0.0-alpha.0:
+  thinkjs@4.0.0:
     dependencies:
       cookies: 0.8.0
       debug: 3.2.7
@@ -17248,7 +17244,7 @@ snapshots:
       think-logic: 1.2.2
       think-meta: 1.0.6
       think-mock-http: 1.0.6
-      think-payload: 1.4.0
+      think-payload: 1.4.1
       think-pm2: 1.0.0
       think-resource: 1.0.3
       think-router: 1.3.5
@@ -18094,11 +18090,6 @@ snapshots:
 
   xml-name-validator@5.0.0:
     optional: true
-
-  xml2js@0.4.23:
-    dependencies:
-      sax: 1.6.0
-      xmlbuilder: 11.0.1
 
   xml2js@0.6.2:
     dependencies:
