@@ -31,7 +31,7 @@
     "@babel/preset-react": "7.28.5",
     "@babel/runtime": "7.29.2",
     "@mr-hope/tsconfig": "0.0.4",
-    "@types/node": "25.6.0",
+    "@types/node": "25.6.2",
     "@vitejs/plugin-react": "6.0.1",
     "apidoc": "1.2.0",
     "cross-env": "10.1.0",
