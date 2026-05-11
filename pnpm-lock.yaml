@@ -101,8 +101,8 @@ importers:
         specifier: 6.0.3
         version: 6.0.3
       unrun:
-        specifier: 0.2.37
-        version: 0.2.37(synckit@0.11.12)
+        specifier: 0.3.0
+        version: 0.3.0(synckit@0.11.12)
       vercel:
         specifier: 53.3.2
         version: 53.3.2(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(encoding@0.1.13)(rollup@4.60.2)
@@ -8284,6 +8284,16 @@ packages:
   unrun@0.2.37:
     resolution: {integrity: sha512-AA7vDuYsgeSYVzJMm16UKA+aXFKhy7nFqW9z5l7q44K4ppFWZAMqYS58ePRZbugMLPH0fwwMzD5A8nP0avxwZQ==}
     engines: {node: '>=20.19.0'}
+    hasBin: true
+    peerDependencies:
+      synckit: ^0.11.11
+    peerDependenciesMeta:
+      synckit:
+        optional: true
+
+  unrun@0.3.0:
+    resolution: {integrity: sha512-5xw2AIVS2WR9Lqhz76qDIQLxipKRidf7Nq+Iz5SZ8shk1OmRlxnc6FyI/1Q2m99WLj6cbqaKFdESfWE99KPzlA==}
+    engines: {node: ^22.13.0 || >=24.0.0}
     hasBin: true
     peerDependencies:
       synckit: ^0.11.11
@@ -17619,6 +17629,12 @@ snapshots:
   unrun@0.2.37(synckit@0.11.12):
     dependencies:
       rolldown: 1.0.0-rc.17
+    optionalDependencies:
+      synckit: 0.11.12
+
+  unrun@0.3.0(synckit@0.11.12):
+    dependencies:
+      rolldown: 1.0.0
     optionalDependencies:
       synckit: 0.11.12
 
