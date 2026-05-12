@@ -14,9 +14,7 @@ overrides:
   apidoc>esbuild-loader: ^4.4.3
 
 patchedDependencies:
-  apidoc:
-    hash: 14f1b3501c5015248e143b5b4216cb0f70cff2b6340214529fd5a63c8d59cffb
-    path: patches/apidoc.patch
+  apidoc: 14f1b3501c5015248e143b5b4216cb0f70cff2b6340214529fd5a63c8d59cffb
 
 importers:
 
