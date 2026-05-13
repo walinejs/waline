@@ -43,4 +43,4 @@ jobs:
         run: node scripts/workspace-publish.js @waline/client
 
       - name: Publish
-        run: pnpm publish -r --filter @waline/client
+        run: pnpm publish -r --filter @waline/client --no-git-checks

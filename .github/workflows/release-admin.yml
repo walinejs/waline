@@ -37,4 +37,4 @@ jobs:
         run: pnpm run admin:build
 
       - name: Publish
-        run: pnpm publish -r --filter @waline/admin
+        run: pnpm publish -r --filter @waline/admin --no-git-checks

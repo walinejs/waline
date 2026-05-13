@@ -48,7 +48,7 @@ jobs:
           echo "old-version=$REMOTE_VERSION" >> $GITHUB_OUTPUT
 
       - name: Publish
-        run: pnpm publish -r --filter @waline/vercel
+        run: pnpm publish -r --filter @waline/vercel --no-git-checks
 
   docker:
     needs: npm
