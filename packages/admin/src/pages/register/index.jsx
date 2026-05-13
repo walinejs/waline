@@ -87,7 +87,7 @@ export default function Register() {
       </div>
       <div className="typecho-login-wrap">
         <div className="typecho-login">
-          <form method="post" name="login" role="form" onSubmit={onSubmit}>
+          <form method="post" name="login" onSubmit={onSubmit}>
             <p>
               <label htmlFor="nick" className="sr-only">
                 {t('nickname')}

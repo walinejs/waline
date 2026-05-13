@@ -263,7 +263,7 @@ export default function ManageComments() {
           <div className="typecho-page-title">
             <h2>{t('manage comments')}</h2>
           </div>
-          <div className="row typecho-page-main" role="main">
+          <main className="row typecho-page-main">
             <div className="col-mb-12 typecho-list">
               <div className="clear-fix">
                 {FILTERS.map(([key, FILTER]) => (
@@ -632,7 +632,7 @@ export default function ManageComments() {
                 </form>
               </div>
             </div>
-          </div>
+          </main>
         </div>
       </div>
     </>

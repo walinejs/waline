@@ -30,6 +30,7 @@ export default defineHopeConfig(
           exceptions: ['i', 'j', 'x', 'y', 'z', 't', '_'],
         },
       ],
+      'jsx-a11y/prefer-tag-over-role': 'warn',
       'react/jsx-max-depth': 'off',
       'typescript/no-floating-promises': 'off',
       'typescript/unbound-method': 'off',

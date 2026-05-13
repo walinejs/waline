@@ -35,7 +35,7 @@ jobs:
           cache: pnpm
 
       - name: Install Dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm ci
 
       - id: publish-server
         name: 'publish @waline/vercel'

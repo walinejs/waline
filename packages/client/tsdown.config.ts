@@ -34,7 +34,7 @@ export default defineConfig([
     entry: './src/entries/full.ts',
     fixedExtension: false,
     minify: true,
-    target: ['chrome111', 'edge111', 'firefox114', 'safari16.4', 'node22'],
+    target: ['node22', 'baseline-widely-available'],
     define,
     alias: {
       vue: 'vue/dist/vue.runtime.esm-bundler.js',
@@ -57,7 +57,7 @@ export default defineConfig([
     entry: { slim: './src/entries/full.ts' },
     fixedExtension: false,
     minify: true,
-    target: ['chrome111', 'edge111', 'firefox114', 'safari16.4', 'node22'],
+    target: ['node22', 'baseline-widely-available'],
     define,
     plugins: [
       vue({
@@ -70,7 +70,7 @@ export default defineConfig([
     entry: './src/entries/component.ts',
     fixedExtension: false,
     minify: true,
-    target: ['chrome111', 'edge111', 'firefox114', 'safari16.4', 'node22'],
+    target: ['node22', 'baseline-widely-available'],
     define,
     dts: false,
     plugins: [
@@ -87,7 +87,7 @@ export default defineConfig([
     entry: { component: './src/entries/component-type.d.ts' },
     fixedExtension: false,
     minify: true,
-    target: ['chrome111', 'edge111', 'firefox114', 'safari16.4', 'node22'],
+    target: ['node22', 'baseline-widely-available'],
     dts: {
       dtsInput: true,
       emitDtsOnly: true,
@@ -97,7 +97,7 @@ export default defineConfig([
     entry: './src/entries/comment.ts',
     fixedExtension: false,
     minify: true,
-    target: ['chrome111', 'edge111', 'firefox114', 'safari16.4', 'node22'],
+    target: ['node22', 'baseline-widely-available'],
     define,
     treeshake: {
       moduleSideEffects: false,
@@ -107,7 +107,7 @@ export default defineConfig([
     entry: './src/entries/pageview.ts',
     fixedExtension: false,
     minify: true,
-    target: ['chrome111', 'edge111', 'firefox114', 'safari16.4', 'node22'],
+    target: ['node22', 'baseline-widely-available'],
     define,
     treeshake: {
       moduleSideEffects: false,

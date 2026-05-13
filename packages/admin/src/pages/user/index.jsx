@@ -121,7 +121,7 @@ export default function User() {
           <div className="typecho-page-title">
             <h2>{t('manage users')}</h2>
           </div>
-          <div className="row typecho-page-main" role="main">
+          <main className="row typecho-page-main">
             <div className="col-mb-12 typecho-list">
               <form method="post" name="manage_comments" className="operate-form">
                 <div className="typecho-table-wrap">
@@ -228,7 +228,7 @@ export default function User() {
                 </form>
               </div>
             </div>
-          </div>
+          </main>
         </div>
       </div>
     </>
