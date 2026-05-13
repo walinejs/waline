@@ -36,7 +36,5 @@ jobs:
       - name: Build API
         run: pnpm run api:build
 
-      - name: Publish NPM
-        uses: JS-DevTools/npm-publish@v4
-        with:
-          package: ./packages/api
+      - name: Publish
+        run: pnpm publish -r --filter @waline/api
