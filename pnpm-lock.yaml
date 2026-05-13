@@ -80,8 +80,8 @@ importers:
         specifier: 8.5.14
         version: 8.5.14
       publint:
-        specifier: 0.3.19
-        version: 0.3.19
+        specifier: 0.3.21
+        version: 0.3.21
       rimraf:
         specifier: 6.1.3
         version: 6.1.3
@@ -96,7 +96,7 @@ importers:
         version: 11.0.0(postcss@8.5.14)(stylelint@17.11.0(typescript@6.0.3))
       tsdown:
         specifier: 0.21.10
-        version: 0.21.10(publint@0.3.19)(synckit@0.11.12)(typescript@6.0.3)
+        version: 0.21.10(publint@0.3.21)(synckit@0.11.12)(typescript@6.0.3)
       typescript:
         specifier: 6.0.3
         version: 6.0.3
@@ -6915,8 +6915,8 @@ packages:
   pstree.remy@1.1.8:
     resolution: {integrity: sha512-77DZwxQmxKnu3aR542U+X8FypNzbfJ+C5XQDk3uWjWxn6151aIMGthWYRXTqT1E5oJvg+ljaa2OJi+VfvCOQ8w==}
 
-  publint@0.3.19:
-    resolution: {integrity: sha512-J3p4GOocCRFyLLFRzGfIhAwWgk0Kkcdxj5iFspFvCYbyiJs5IhCM8gsIkcNeQL+tdpV671RtJQiTFSUKhl1Wjg==}
+  publint@0.3.21:
+    resolution: {integrity: sha512-OqejcnMV6E9zel2oCrUOJEiiFkGiAAni0A6ibfQNh1k9Gu5z4F+Yso8lllam7AzmV6Do0vp7u3UpZNRBwuXaHQ==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -15940,7 +15940,7 @@ snapshots:
 
   pstree.remy@1.1.8: {}
 
-  publint@0.3.19:
+  publint@0.3.21:
     dependencies:
       '@publint/pack': 0.1.4
       package-manager-detector: 1.6.0
@@ -17434,7 +17434,7 @@ snapshots:
 
   ts-toolbelt@6.15.5: {}
 
-  tsdown@0.21.10(publint@0.3.19)(synckit@0.11.12)(typescript@6.0.3):
+  tsdown@0.21.10(publint@0.3.21)(synckit@0.11.12)(typescript@6.0.3):
     dependencies:
       ansis: 4.2.0
       cac: 7.0.0
@@ -17453,7 +17453,7 @@ snapshots:
       unconfig-core: 7.5.0
       unrun: 0.2.37(synckit@0.11.12)
     optionalDependencies:
-      publint: 0.3.19
+      publint: 0.3.21
       typescript: 6.0.3
     transitivePeerDependencies:
       - '@ts-macro/tsc'
