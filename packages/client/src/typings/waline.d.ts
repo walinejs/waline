@@ -232,7 +232,7 @@ export interface WalineProps {
    *
    * Customize Search feature
    */
-  search?: WalineSearchOptions;
+  search?: WalineSearchOptions | boolean;
 
   /**
    * 代码块高亮器
