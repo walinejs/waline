@@ -1,8 +1,5 @@
-const Akismet = require('akismet');
-
 const DEFAULT_KEY = '70542d86693e';
 
-// oxlint-disable-next-line func-names
 module.exports = async function (comment, blog) {
   let { AKISMET_KEY, SITE_URL } = process.env;
 
@@ -14,36 +11,27 @@ module.exports = async function (comment, blog) {
     return false;
   }
 
-  // oxlint-disable-next-line func-names
-  return new Promise(function (resolve, reject) {
-    const akismet = Akismet.client({ blog, apiKey: AKISMET_KEY });
+  const { Author, Blog, CheckResult, Client, Comment } =
+    await import('@cedx/akismet');
 
-    // oxlint-disable-next-line func-names
-    akismet.verifyKey(function (err, verifyKey) {
-      if (err) {
-        reject(err);
-        return;
-      } else if (!verifyKey) {
-        reject(new Error('Akismet API_KEY verify failed!'));
-        return;
-      }
+  const client = new Client(AKISMET_KEY, new Blog({ url: blog }));
+  const isValid = await client.verifyKey();
 
-      akismet.checkComment(
-        {
-          user_ip: comment.ip,
-          permalink: SITE_URL + comment.url,
-          comment_author: comment.nick,
-          comment_content: comment.comment,
-        },
-        // oxlint-disable-next-line func-names
-        function (err, spam) {
-          if (err) {
-            reject(err);
-            return;
-          }
-          resolve(spam);
-        },
-      );
-    });
-  });
+  if (!isValid) {
+    throw new Error('Akismet API_KEY verify failed!');
+  }
+
+  const result = await client.checkComment(
+    new Comment({
+      author: new Author({
+        ipAddress: comment.ip,
+        name: comment.nick,
+        email: comment.mail,
+      }),
+      content: comment.comment,
+      permalink: SITE_URL ? SITE_URL + comment.url : undefined,
+    }),
+  );
+
+  return result !== CheckResult.ham;
 };
