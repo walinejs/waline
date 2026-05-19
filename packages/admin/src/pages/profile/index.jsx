@@ -111,7 +111,12 @@ export default function Profile() {
           <div className="row typecho-page-main">
             <div className="col-mb-12 col-tb-3">
               <p>
-                <button type="button" title={t('change avatar')} onClick={changeAvatar}>
+                <button
+                  type="button"
+                  className="profile-avatar-btn"
+                  title={t('change avatar')}
+                  onClick={changeAvatar}
+                >
                   <img
                     className="profile-avatar"
                     src={buildAvatar(user.display_name, user.email, user.avatar)}
