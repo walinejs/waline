@@ -14,7 +14,9 @@ overrides:
   apidoc>esbuild-loader: ^4.4.3
 
 patchedDependencies:
-  apidoc: 14f1b3501c5015248e143b5b4216cb0f70cff2b6340214529fd5a63c8d59cffb
+  apidoc:
+    hash: 14f1b3501c5015248e143b5b4216cb0f70cff2b6340214529fd5a63c8d59cffb
+    path: patches/apidoc.patch
 
 importers:
 
@@ -304,7 +306,7 @@ importers:
         version: 4.0.5
       ip2region:
         specifier: ^2.3.0
-        version: 2.3.0(@types/node@24.0.0)
+        version: 2.3.0(@types/node@24.12.4)
       jsdom:
         specifier: ^19.0.0
         version: 19.0.0
@@ -358,7 +360,7 @@ importers:
         version: 1.1.7
       think-model-mysql2:
         specifier: ^2.0.0
-        version: 2.0.0(@types/node@24.0.0)
+        version: 2.0.0(@types/node@24.12.4)
       think-model-postgresql:
         specifier: 1.1.7
         version: 1.1.7
@@ -13502,9 +13504,9 @@ snapshots:
 
   ip-address@10.2.0: {}
 
-  ip2region@2.3.0(@types/node@24.0.0):
+  ip2region@2.3.0(@types/node@24.12.4):
     dependencies:
-      '@types/node': 24.0.0
+      '@types/node': 24.12.4
 
   is-alphabetical@2.0.1: {}
 
@@ -14477,9 +14479,9 @@ snapshots:
 
   muggle-string@0.4.1: {}
 
-  mysql2@3.22.3(@types/node@24.0.0):
+  mysql2@3.22.3(@types/node@24.12.4):
     dependencies:
-      '@types/node': 24.0.0
+      '@types/node': 24.12.4
       aws-ssl-profiles: 1.1.2
       denque: 2.1.0
       generate-function: 2.3.1
@@ -16243,12 +16245,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  think-model-mysql2@2.0.0(@types/node@24.0.0):
+  think-model-mysql2@2.0.0(@types/node@24.12.4):
     dependencies:
       think-debounce: 1.0.4
       think-helper: 1.1.4
       think-model-abstract: 1.6.5
-      think-mysql: think-mysql2@2.0.0(@types/node@24.0.0)
+      think-mysql: think-mysql2@2.0.0(@types/node@24.12.4)
     transitivePeerDependencies:
       - '@types/node'
       - supports-color
@@ -16308,10 +16310,10 @@ snapshots:
       - mongodb-extjson
       - snappy
 
-  think-mysql2@2.0.0(@types/node@24.0.0):
+  think-mysql2@2.0.0(@types/node@24.12.4):
     dependencies:
       debug: 2.6.9
-      mysql: mysql2@3.22.3(@types/node@24.0.0)
+      mysql: mysql2@3.22.3(@types/node@24.12.4)
       think-debounce: 1.0.4
       think-helper: 1.1.4
       think-instance: 1.0.2

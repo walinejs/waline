@@ -10,6 +10,7 @@ import Profile from './pages/profile/index.jsx';
 import Register from './pages/register/index.jsx';
 import User from './pages/user/index.jsx';
 import { store } from './store/index.js';
+import { getUiPath } from './utils/ui.js';
 
 const Access = (props) => {
   const user = useSelector((state) => state.user);
@@ -18,15 +19,18 @@ const Access = (props) => {
     const meta = props.meta ?? {};
     const basename = props.basename ?? '';
     const emptyUser = !user?.objectId;
+    const currentPath = location.pathname.replace(basename, '') || '/';
+    const redirectPath = currentPath.startsWith('/') ? currentPath : `/${currentPath}`;
+    const buildPath = (path) => `${basename}${path}`.replaceAll(/\/+/gu, '/');
 
     if (emptyUser) {
-      return (location.href = `${basename}/ui/login?redirect=${location.pathname.replace(basename, '')}`);
+      return (location.href = `${buildPath(getUiPath('login'))}?redirect=${redirectPath}`);
     }
 
     const noPermission = meta.auth ? props.meta.auth !== user.type : false;
 
     if (noPermission) {
-      return (location.href = `${basename}/ui/profile`);
+      return (location.href = buildPath(getUiPath('profile')));
     }
   }, [user, props.meta, props.basename]);
 
@@ -36,52 +40,61 @@ const Access = (props) => {
 export default function App() {
   const match = location.pathname.match(/(.*?)\/ui/u);
   const basePath = match ? match[1] : '/';
+  const homePath = getUiPath();
+  const userPath = getUiPath('user');
+  const migrationPath = getUiPath('migration');
+  const loginPath = getUiPath('login');
+  const registerPath = getUiPath('register');
+  const forgotPath = getUiPath('forgot');
+  const profilePath = getUiPath('profile');
 
   return (
     <Provider store={store}>
-      <Router basename={basePath}>
-        <Routes>
-          <Route
-            path="/ui"
-            exact
-            element={
-              <Access meta={{ auth: 'administrator' }} basename={basePath}>
-                <ManageComments />
-              </Access>
-            }
-          />
-          <Route
-            path="/ui/user"
-            exact
-            element={
-              <Access meta={{ auth: 'administrator' }} basename={basePath}>
-                <User />
-              </Access>
-            }
-          />
-          <Route
-            path="/ui/migration"
-            exact
-            element={
-              <Access meta={{ auth: 'administrator' }} basename={basePath}>
-                <Migration />
-              </Access>
-            }
-          />
-          <Route path="/ui/login" exact element={<Login />} />
-          <Route path="/ui/register" exact element={<Register />} />
-          <Route path="/ui/forgot" exact element={<Forgot />} />
-          <Route
-            path="/ui/profile"
-            exact
-            element={
-              <Access>
-                <Profile />
-              </Access>
-            }
-          />
-        </Routes>
-      </Router>
+      <div className="waline-admin-app">
+        <Router basename={basePath}>
+          <Routes>
+            <Route
+              path={homePath}
+              exact
+              element={
+                <Access meta={{ auth: 'administrator' }} basename={basePath}>
+                  <ManageComments />
+                </Access>
+              }
+            />
+            <Route
+              path={userPath}
+              exact
+              element={
+                <Access meta={{ auth: 'administrator' }} basename={basePath}>
+                  <User />
+                </Access>
+              }
+            />
+            <Route
+              path={migrationPath}
+              exact
+              element={
+                <Access meta={{ auth: 'administrator' }} basename={basePath}>
+                  <Migration />
+                </Access>
+              }
+            />
+            <Route path={loginPath} exact element={<Login />} />
+            <Route path={registerPath} exact element={<Register />} />
+            <Route path={forgotPath} exact element={<Forgot />} />
+            <Route
+              path={profilePath}
+              exact
+              element={
+                <Access>
+                  <Profile />
+                </Access>
+              }
+            />
+          </Routes>
+        </Router>
+      </div>
     </Provider>
   );
 }

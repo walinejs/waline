@@ -24,10 +24,10 @@ export default defineConfig({
   },
 
   server: {
+    host: '127.0.0.1',
     port: 9010,
     proxy: {
-      '/token': 'http://localhost:9090',
-      '/user': 'http://localhost:9090',
+      '/api': 'http://127.0.0.1:9090',
     },
   },
 });

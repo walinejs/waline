@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router';
 
 import Header from '../../components/Header.jsx';
 import { useCaptcha } from '../../components/useCaptcha.js';
+import { getUiPath } from '../../utils/ui.js';
 
 export default function Register() {
   const { t } = useTranslation();
@@ -20,7 +21,7 @@ export default function Register() {
 
   useEffect(() => {
     if (user?.objectId) {
-      navigate('/ui', { replace: true });
+      navigate(getUiPath(), { replace: true });
     }
   }, [navigate, user?.objectId]);
 
@@ -64,7 +65,7 @@ export default function Register() {
         alert(t('register success! please go to your mailbox to verify it!'));
       }
 
-      navigate('/ui/login');
+      navigate(getUiPath('login'));
     } catch (err) {
       setError(err.message);
     } finally {
@@ -157,8 +158,8 @@ export default function Register() {
           </form>
 
           <p className="more-link">
-            <Link to="/ui">{t('back to home')}</Link> •{' '}
-            <Link to="/ui/login">{t('register.login')}</Link>
+            <Link to={getUiPath()}>{t('back to home')}</Link> •{' '}
+            <Link to={getUiPath('login')}>{t('register.login')}</Link>
           </p>
         </div>
       </div>

@@ -500,7 +500,7 @@ export default function ManageComments() {
                                 <div className="comment-avatar">
                                   <img
                                     className="avatar"
-                                    src={buildAvatar(mail, avatar)}
+                                    src={buildAvatar(nick, mail, avatar)}
                                     alt={nick}
                                     width="40"
                                     height="40"

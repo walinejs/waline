@@ -49,7 +49,9 @@ If you want to contribute to waline, here is a guide.
 
   ::: tip
 
-  In order to run `@waline/server` locally, you need to configure some local environment variables to `.env`.
+  `pnpm run server:dev` will fall back to a local SQLite database at `./data` when no storage environment variables are set.
+
+  If you want to use another storage backend locally, configure the required environment variables in `.env`.
 
   We provide an example for you in `.env.example`.
 

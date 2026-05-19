@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router';
 
 import Header from '../../components/Header.jsx';
+import { getUiPath } from '../../utils/ui.js';
 
 export default function Forgot() {
   const { t } = useTranslation();
@@ -16,7 +17,7 @@ export default function Forgot() {
   useEffect(() => {
     // if logged
     if (user?.objectId) {
-      navigate('/ui', { replace: true });
+      navigate(getUiPath(), { replace: true });
     }
   }, [navigate, user?.objectId]);
 
@@ -36,7 +37,7 @@ export default function Forgot() {
         email,
       });
       alert(t('find password success! please go to your mailbox to reset it!'));
-      navigate('/ui/login');
+      navigate(getUiPath('login'));
     } catch {
       setError(t('find password error! try again later'));
     } finally {
@@ -85,8 +86,8 @@ export default function Forgot() {
           </form>
 
           <p className="more-link">
-            <Link to="/ui">{t('back to home')}</Link> •{' '}
-            <Link to="/ui/login">{t('register.login')}</Link>
+            <Link to={getUiPath()}>{t('back to home')}</Link> •{' '}
+            <Link to={getUiPath('login')}>{t('register.login')}</Link>
           </p>
         </div>
       </div>

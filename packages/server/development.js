@@ -5,6 +5,23 @@ require('dotenv').config({
   quiet: true,
 });
 
+const hasStorageEnv = [
+  'LEAN_KEY',
+  'MONGO_DB',
+  'PG_DB',
+  'POSTGRES_DATABASE',
+  'SQLITE_PATH',
+  'MYSQL_DB',
+  'TIDB_DB',
+  'GITHUB_TOKEN',
+  'TCB_ENV',
+].some((envName) => Boolean(process.env[envName]));
+
+if (!hasStorageEnv) {
+  process.env.SQLITE_PATH = path.join(__dirname, '../../data');
+  process.env.JWT_TOKEN ||= 'waline-dev-jwt-token';
+}
+
 const watcher = require('think-watcher');
 const Application = require('thinkjs');
 

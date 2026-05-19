@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router';
 
 import { LANGUAGE_OPTIONS } from '../locales/index.js';
+import { buildAvatar } from '../pages/manage-comments/utils.js';
+import { getUiPath } from '../utils/ui.js';
 
 export default function Header() {
   const dispatch = useDispatch();
@@ -42,54 +44,75 @@ export default function Header() {
   const onLogout = (event) => {
     event.preventDefault();
     dispatch.user.logout();
-    navigate('/ui/login');
+    navigate(getUiPath('login'));
   };
 
-  return [
-    <div className="typecho-head-nav clear-fix" role="navigation" key="header">
-      {user?.type === 'administrator' ? (
-        <nav id="typecho-nav-list">
-          <ul className="root">
-            <li className="parent">
-              <Link to="/ui">{t('management')}</Link>
-            </li>
-            <ul className="child">
-              <li className="last">
-                <Link to="/ui">{t('comment')}</Link>
-              </li>
-              <li className="last">
-                <Link to="/ui/user">{t('user')}</Link>
-              </li>
-              <li className="last">
-                <Link to="/ui/migration">{t('migration')}</Link>
-              </li>
-            </ul>
-          </ul>
-        </nav>
-      ) : null}
-      <div className="operate">
-        <div className="language-select">
-          <select defaultValue={defaultLanguage} onChange={updateLanguage} style={{ width: 120 }}>
-            {LANGUAGE_OPTIONS.map((options) => (
-              <option key={options.value} value={options.value}>
-                {options.label}
-              </option>
-            ))}
-          </select>
-        </div>
-        {user?.type ? (
-          <Link to="/ui/profile" className="author">
-            {user.display_name}
-          </Link>
-        ) : null}
+  const siteName = window.SITE_NAME || 'Waline';
 
-        {user?.type ? (
-          <button type="button" className="exit" onClick={onLogout}>
-            {t('logout')}
-          </button>
-        ) : null}
+  const navItems = [
+    { to: getUiPath(), label: t('comment') },
+    { to: getUiPath('user'), label: t('user') },
+    { to: getUiPath('migration'), label: t('migration') },
+  ];
+
+  return [
+    <header className="typecho-head-nav clear-fix" role="navigation" key="header">
+      <div className="waline-admin-header">
+        <div className="waline-admin-brand">
+          <Link to={getUiPath()} className="waline-admin-brand-link">
+            <span className="waline-admin-brand-mark">W</span>
+            <span className="waline-admin-brand-copy">
+              <strong>{siteName}</strong>
+              <small>{t('management')}</small>
+            </span>
+          </Link>
+        </div>
+
+        {user?.type === 'administrator' ? (
+          <nav id="typecho-nav-list" className="waline-admin-nav">
+            <ul className="root">
+              {navItems.map((item) => (
+                <li className="parent" key={item.to}>
+                  <Link to={item.to}>{item.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        ) : (
+          <div className="waline-admin-nav waline-admin-nav-static">
+            <span>{t('management')}</span>
+          </div>
+        )}
+
+        <div className="operate">
+          <div className="language-select">
+            <select defaultValue={defaultLanguage} onChange={updateLanguage}>
+              {LANGUAGE_OPTIONS.map((options) => (
+                <option key={options.value} value={options.value}>
+                  {options.label}
+                </option>
+              ))}
+            </select>
+          </div>
+          {user?.type ? (
+            <Link to={getUiPath('profile')} className="author">
+              <img
+                className="author-avatar"
+                src={buildAvatar(user.display_name, user.email, user.avatar)}
+                alt={user.display_name || 'Waline'}
+              />
+              <span className="author-name">{user.display_name}</span>
+            </Link>
+          ) : null}
+
+          {user?.type ? (
+            <button type="button" className="exit" onClick={onLogout}>
+              {t('logout')}
+            </button>
+          ) : null}
+        </div>
       </div>
-    </div>,
+    </header>,
     latestVersion ? (
       <div className="upgrade-tips clear-fix" key="upgrade">
         <Trans

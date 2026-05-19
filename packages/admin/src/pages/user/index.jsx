@@ -150,7 +150,7 @@ export default function User() {
                             <div className="user-avatar">
                               <img
                                 className="avatar"
-                                src={buildAvatar(user.email, user.avatar)}
+                                src={buildAvatar(user.display_name, user.email, user.avatar)}
                                 alt={user.display_name}
                                 width="40"
                                 height="40"

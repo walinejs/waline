@@ -437,8 +437,7 @@ select {
 }
 
 #typecho-nav-list .parent a:hover,
-#typecho-nav-list .focus .parent a,
-#typecho-nav-list .root:hover .parent a {
+#typecho-nav-list .focus .parent a {
   background: #202328;
   color: #fff;
   text-decoration: none;

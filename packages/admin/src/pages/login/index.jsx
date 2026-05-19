@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router';
@@ -6,7 +6,9 @@ import { Link, useNavigate } from 'react-router';
 import Header from '../../components/Header.jsx';
 // oxlint-disable-next-line import/no-namespace
 import * as Icons from '../../components/icon/index.js';
+import { useCaptcha } from '../../components/useCaptcha.js';
 import { get2FAToken } from '../../services/user.js';
+import { getUiPath } from '../../utils/ui.js';
 
 export default function Login() {
   const { t } = useTranslation();
@@ -33,7 +35,7 @@ export default function Login() {
 
     const isAdmin = user.type === 'administrator';
 
-    const defaultRedirect = isAdmin ? '/ui' : '/ui/profile';
+    const defaultRedirect = isAdmin ? getUiPath() : getUiPath('profile');
     const redirect = isAdmin && query.get('redirect') ? query.get('redirect') : defaultRedirect;
 
     navigate(redirect.replaceAll(/\/+/gu, '/'));
@@ -177,7 +179,7 @@ export default function Login() {
                 {t('remember me')}
               </label>
               <span className="right forgot-password">
-                <Link to="/ui/forgot">{t('forgot password')}</Link>
+                <Link to={getUiPath('forgot')}>{t('forgot password')}</Link>
               </span>
             </p>
           </form>
@@ -190,8 +192,8 @@ export default function Login() {
           </div>
 
           <p className="more-link">
-            <Link to="/ui">{t('back to home')}</Link> •{' '}
-            <Link to="/ui/register">{t('register')}</Link>
+            <Link to={getUiPath()}>{t('back to home')}</Link> •{' '}
+            <Link to={getUiPath('register')}>{t('register')}</Link>
           </p>
         </div>
       </div>

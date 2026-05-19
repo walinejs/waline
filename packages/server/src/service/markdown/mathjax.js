@@ -1,4 +1,5 @@
 const { liteAdaptor } = require('mathjax-full/js/adaptors/liteAdaptor.js');
+const { RegisterHTMLHandler } = require('mathjax-full/js/handlers/html.js');
 const { AllPackages } = require('mathjax-full/js/input/tex/AllPackages.js');
 const { TeX } = require('mathjax-full/js/input/tex.js');
 const { mathjax } = require('mathjax-full/js/mathjax');
@@ -9,6 +10,7 @@ const { escapeHtml } = require('./utils');
 
 const mathjaxPlugin = (md) => {
   const adaptor = liteAdaptor();
+  RegisterHTMLHandler(adaptor);
 
   const packages = AllPackages.sort();
   const tex = new TeX({ packages });

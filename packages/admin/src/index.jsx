@@ -6,7 +6,7 @@ import { store } from './store/index.js';
 // oxlint-disable-next-line import/no-unassigned-import
 import './i18n.js';
 
-import './style/index.scss';
+import './style/index.css';
 
 const run = async () => {
   await Promise.race([
@@ -42,7 +42,9 @@ const run = async () => {
 
   const container = document.createElement('div');
 
+  document.body.classList.add('waline-admin-body');
   container.style.height = '100%';
+  container.className = 'waline-admin-root';
   document.body.append(container);
 
   const root = createRoot(container);
