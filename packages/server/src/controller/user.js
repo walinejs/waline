@@ -268,7 +268,7 @@ module.exports = class UserController extends BaseRest {
       if (count.user_id && users[count.user_id]) {
         const { display_name: nick, url: link, avatar: avatarUrl, label } = users[count.user_id];
         const avatar =
-          avatarProxy && !avatarUrl.includes(avatarProxy)
+          avatarProxy && !avatarUrl.startsWith('data:') && !avatarUrl.includes(avatarProxy)
             ? `${avatarProxy}?url=${encodeURIComponent(avatarUrl)}`
             : avatarUrl;
 
@@ -292,7 +292,7 @@ module.exports = class UserController extends BaseRest {
       const { nick, link } = comment;
       const avatarUrl = await think.service('avatar').stringify(comment);
       const avatar =
-        avatarProxy && !avatarUrl.includes(avatarProxy)
+        avatarProxy && !avatarUrl.startsWith('data:') && !avatarUrl.includes(avatarProxy)
           ? `${avatarProxy}?url=${encodeURIComponent(avatarUrl)}`
           : avatarUrl;
 

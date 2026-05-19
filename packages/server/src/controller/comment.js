@@ -32,7 +32,7 @@ const formatCmt = async (
   const avatarUrl = user?.avatar || (await think.service('avatar').stringify(comment));
 
   comment.avatar =
-    avatarProxy && !avatarUrl.includes(avatarProxy)
+    avatarProxy && !avatarUrl.startsWith('data:') && !avatarUrl.includes(avatarProxy)
       ? `${avatarProxy}?url=${encodeURIComponent(avatarUrl)}`
       : avatarUrl;
 

@@ -10,15 +10,30 @@ const env = new nunjucks.Environment();
 env.addFilter('md5', (str) => helper.md5(str));
 env.addFilter('sha256', (str) => crypto.createHash('sha256').update(str).digest('hex'));
 
-const DEFAULT_GRAVATAR_STR = `{%- set numExp = r/^[0-9]+$/g -%}
-{%- set qqMailExp = r/^[0-9]+@qq.com$/ig -%}
-{%- if numExp.test(nick) -%}
-  https://q1.qlogo.cn/g?b=qq&nk={{nick}}&s=100
-{%- elif qqMailExp.test(mail) -%}
-  https://q1.qlogo.cn/g?b=qq&nk={{mail|replace('@qq.com', '')}}&s=100
-{%- else -%}
-  https://seccdn.libravatar.org/avatar/{{mail|md5}}
-{%- endif -%}`;
+const escapeSvgText = (value = '') =>
+  String(value)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
+
+const buildFallbackAvatarDataUri = (nick = '', size = 80) => {
+  const label = (typeof nick === 'string' ? nick.trim().charAt(0) : '').toUpperCase() || 'W';
+  const fontSize = Math.round(size * 0.42);
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
+  <defs>
+    <linearGradient id="walineServerAvatarGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f6bff" />
+      <stop offset="100%" stop-color="#55b1ff" />
+    </linearGradient>
+  </defs>
+  <circle cx="${size / 2}" cy="${size / 2}" r="${size / 2}" fill="url(#walineServerAvatarGradient)" />
+  <text x="50%" y="50%" fill="#ffffff" font-family="Avenir Next, SF Pro Display, Segoe UI, PingFang SC, sans-serif" font-size="${fontSize}" font-weight="700" text-anchor="middle" dominant-baseline="central">${escapeSvgText(label)}</text>
+</svg>`;
+
+  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+};
 
 module.exports = class extends think.Service {
   async stringify(comment) {
@@ -32,8 +47,10 @@ module.exports = class extends think.Service {
       }
     }
 
-    const gravatarStr = GRAVATAR_STR || DEFAULT_GRAVATAR_STR;
+    if (GRAVATAR_STR) {
+      return env.renderString(GRAVATAR_STR, comment);
+    }
 
-    return env.renderString(gravatarStr, comment);
+    return buildFallbackAvatarDataUri(comment?.nick);
   }
 };

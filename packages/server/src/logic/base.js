@@ -70,7 +70,7 @@ module.exports = class BaseLogic extends think.Logic {
       }));
     const { avatarProxy } = think.config();
 
-    if (avatarProxy) {
+    if (avatarProxy && !avatarUrl.startsWith('data:')) {
       avatarUrl = `${avatarProxy}?url=${encodeURIComponent(avatarUrl)}`;
     }
 
