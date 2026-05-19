@@ -24,13 +24,15 @@ const Access = (props) => {
     const buildPath = (path) => `${basename}${path}`.replaceAll(/\/+/gu, '/');
 
     if (emptyUser) {
-      return (location.href = `${buildPath(getUiPath('login'))}?redirect=${redirectPath}`);
+      location.href = `${buildPath(getUiPath('login'))}?redirect=${redirectPath}`;
+      return;
     }
 
-    const noPermission = meta.auth ? props.meta.auth !== user.type : false;
+    const noPermission = meta.auth ? meta.auth !== user.type : false;
 
     if (noPermission) {
-      return (location.href = buildPath(getUiPath('profile')));
+      location.href = buildPath(getUiPath('profile'));
+      return;
     }
   }, [user, props.meta, props.basename]);
 
