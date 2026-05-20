@@ -4,9 +4,8 @@ import { Trans, useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Header from '../../components/Header.jsx';
-// oxlint-disable-next-line import/no-namespace
-import * as Icons from '../../components/icon/index.js';
 import { updateProfile } from '../../services/user.js';
+import { getSocialIconSrc } from '../../utils/socialIcon.js';
 import { buildAvatar } from '../manage-comments/utils.js';
 import TwoFactorAuth from './twoFactorAuth.jsx';
 
@@ -119,7 +118,7 @@ export default function Profile() {
                 >
                   <img
                     className="profile-avatar"
-                    src={buildAvatar(user.display_name, user.email, user.avatar)}
+                    src={buildAvatar(user.email, user.avatar)}
                     alt={t('avatar')}
                   />
                 </button>
@@ -233,7 +232,11 @@ export default function Profile() {
                         target={user[social] ? '_blank' : '_self'}
                         rel="noreferrer"
                       >
-                        {React.createElement(Icons[social])}
+                        <img
+                          className="social-icon"
+                          src={getSocialIconSrc(social)}
+                          alt={social}
+                        />
                       </a>
                       <button
                         type="button"

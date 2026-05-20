@@ -4,10 +4,9 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
 import Header from '../../components/Header.jsx';
-// oxlint-disable-next-line import/no-namespace
-import * as Icons from '../../components/icon/index.js';
 import Paginator from '../../components/Paginator.jsx';
 import { getUserList, updateUser, deleteUser } from '../../services/user.js';
+import { getSocialIconSrc } from '../../utils/socialIcon.js';
 import { buildAvatar } from '../manage-comments/utils.js';
 
 export default function User() {
@@ -187,7 +186,11 @@ export default function User() {
                                   bind: user[social],
                                 })}
                               >
-                                {React.createElement(Icons[social])}
+                                <img
+                                  className="social-icon"
+                                  src={getSocialIconSrc(social)}
+                                  alt={social}
+                                />
                               </a>
                             ))}
                           </td>

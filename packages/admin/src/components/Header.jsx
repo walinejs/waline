@@ -98,7 +98,7 @@ export default function Header() {
             <Link to={getUiPath('profile')} className="author">
               <img
                 className="author-avatar"
-                src={buildAvatar(user.display_name, user.email, user.avatar)}
+                src={buildAvatar(user.email, user.avatar)}
                 alt={user.display_name || 'Waline'}
               />
               <span className="author-name">{user.display_name}</span>

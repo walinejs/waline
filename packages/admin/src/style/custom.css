@@ -783,6 +783,13 @@ button.operate-button-delete:hover {
   margin-right: 16px;
 }
 
+.account-item .social-icon,
+.social-accounts .social-icon {
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
 .account-item .account-unbind svg {
   position: absolute;
   top: -3px;
@@ -802,51 +809,6 @@ button.operate-button-delete:hover {
   display: block;
 }
 
-.account-item.github path,
-.account-item.twitter circle,
-.account-item.facebook path,
-.account-item.weibo circle,
-.account-item.qq path,
-.account-item.oidc path,
-.account-item.huawei path {
-  fill: #808080;
-}
-
-.account-item.github:hover path,
-.account-item.github.bind path {
-  fill: #1b1f23;
-}
-
-.account-item.twitter:hover circle,
-.account-item.twitter.bind circle {
-  fill: #2daae1;
-}
-
-.account-item.facebook:hover path,
-.account-item.facebook.bind path {
-  fill: #1877f2;
-}
-
-.account-item.weibo:hover circle,
-.account-item.weibo.bind circle {
-  fill: #d34237;
-}
-
-.account-item.qq:hover path,
-.account-item.qq.bind path {
-  fill: #259be0;
-}
-
-.account-item.oidc:hover path,
-.account-item.oidc.bind path {
-  fill: #ff9626;
-}
-
-.account-item.huawei:hover path,
-.account-item.huawei.bind path {
-  fill: #f00;
-}
-
 .user-page-account-item {
   margin-right: 6px;
   opacity: 0.5;
@@ -856,7 +818,7 @@ button.operate-button-delete:hover {
   opacity: 1;
 }
 
-.user-page-account-item svg {
+.user-page-account-item img {
   width: 16px;
   height: 16px;
 }

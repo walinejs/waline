@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router';
 
 import Header from '../../components/Header.jsx';
-// oxlint-disable-next-line import/no-namespace
-import * as Icons from '../../components/icon/index.js';
+import { useCaptcha } from '../../components/useCaptcha.js';
 import { get2FAToken } from '../../services/user.js';
+import { getUiPath } from '../../utils/ui.js';
+import { getSocialIconSrc } from '../../utils/socialIcon.js';
 
 export default function Login() {
   const { t } = useTranslation();
@@ -184,7 +185,11 @@ export default function Login() {
           <div className="social-accounts">
             {socials.map((social) => (
               <a key={social} href={buildOAuthURL(social)}>
-                {React.createElement(Icons[social])}
+                <img
+                  className="social-icon"
+                  src={getSocialIconSrc(social)}
+                  alt={social}
+                />
               </a>
             ))}
           </div>

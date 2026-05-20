@@ -1,0 +1,21 @@
+react-dom_client.js?v=ee5173a4:14338 Download the React DevTools for a better development experience: https://react.dev/link/react-devtools
+i18next.js?v=c88e28db:176 i18next: languageChanged zh-CN
+i18next.js?v=c88e28db:176 i18next: initialized Object
+index.jsx:60  @waline/admin  v0.31.0
+index.jsx:19 Uncaught ReferenceError: useCaptcha is not defined
+    at Login (index.jsx:19:19)
+    at Object.react_stack_bottom_frame (react-dom_client.js?v=ee5173a4:12868:12)
+    at renderWithHooks (react-dom_client.js?v=ee5173a4:4213:19)
+    at updateFunctionComponent (react-dom_client.js?v=ee5173a4:5569:16)
+    at beginWork (react-dom_client.js?v=ee5173a4:6140:20)
+    at runWithFiberInDEV (react-dom_client.js?v=ee5173a4:851:66)
+    at performUnitOfWork (react-dom_client.js?v=ee5173a4:8429:92)
+    at workLoopSync (react-dom_client.js?v=ee5173a4:8325:37)
+    at renderRootSync (react-dom_client.js?v=ee5173a4:8309:6)
+    at performWorkOnRoot (react-dom_client.js?v=ee5173a4:7994:27)
+react-dom_client.js?v=ee5173a4:5258 An error occurred in the <Login> component.
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://react.dev/link/error-boundaries to learn more about error boundaries.
+
+defaultOnUncaughtError @ react-dom_client.js?v=ee5173a4:5258

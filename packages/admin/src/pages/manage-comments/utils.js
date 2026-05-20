@@ -1,7 +1,10 @@
 import md5 from 'md5';
 
 export const buildAvatar = (email = '', avatar = '') => {
-  if (avatar) return avatar;
+  if (avatar && !String(avatar).startsWith('data:image/svg+xml')) {
+    return avatar;
+  }
+
   const normalizedEmail = typeof email === 'string' ? email : '';
 
   return `https://sdn.geekzu.org/avatar/${md5(normalizedEmail)}?s=40&r=G&d=`;
