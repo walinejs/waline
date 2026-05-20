@@ -7,6 +7,7 @@ import Header from '../../components/Header.jsx';
 // oxlint-disable-next-line import/no-namespace
 import * as Icons from '../../components/icon/index.js';
 import { updateProfile } from '../../services/user.js';
+import { buildAvatar } from '../manage-comments/utils.js';
 import TwoFactorAuth from './twoFactorAuth.jsx';
 
 export default function Profile() {
@@ -110,10 +111,17 @@ export default function Profile() {
           <div className="row typecho-page-main">
             <div className="col-mb-12 col-tb-3">
               <p>
-                <button type="button" title={t('change avatar')} onClick={changeAvatar}>
-                  {user && user.avatar && (
-                    <img className="profile-avatar" src={user.avatar} alt={t('avatar')} />
-                  )}
+                <button
+                  type="button"
+                  className="profile-avatar-btn"
+                  title={t('change avatar')}
+                  onClick={changeAvatar}
+                >
+                  <img
+                    className="profile-avatar"
+                    src={buildAvatar(user.display_name, user.email, user.avatar)}
+                    alt={t('avatar')}
+                  />
                 </button>
               </p>
               <h2>{user.display_name}</h2>
