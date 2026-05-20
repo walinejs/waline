@@ -35,3 +35,5 @@ dist/
 
 # npm config file
 .npmrc
+
+data/

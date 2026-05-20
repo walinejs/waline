@@ -17,7 +17,7 @@ const DEFAULT_GRAVATAR_STR = `{%- set numExp = r/^[0-9]+$/g -%}
 {%- elif qqMailExp.test(mail) -%}
   https://q1.qlogo.cn/g?b=qq&nk={{mail|replace('@qq.com', '')}}&s=100
 {%- else -%}
-  https://sdn.geekzu.org/avatar/{{mail|md5}}?s=40&r=G&d=
+  https://seccdn.libravatar.org/avatar/{{mail|md5}}
 {%- endif -%}`;
 
 module.exports = class extends think.Service {

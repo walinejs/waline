@@ -7,7 +7,7 @@ export const buildAvatar = (email = '', avatar = '') => {
 
   const normalizedEmail = typeof email === 'string' ? email : '';
 
-  return `https://sdn.geekzu.org/avatar/${md5(normalizedEmail)}?s=40&r=G&d=`;
+  return `https://seccdn.libravatar.org/avatar/${md5(normalizedEmail)}`;
 };
 
 export const getPostUrl = (url) => (window.SITE_URL ?? '') + url;
