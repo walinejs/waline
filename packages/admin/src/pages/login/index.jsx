@@ -6,7 +6,6 @@ import { Link, useNavigate } from 'react-router';
 import Header from '../../components/Header.jsx';
 import { useCaptcha } from '../../components/useCaptcha.js';
 import { get2FAToken } from '../../services/user.js';
-import { getUiPath } from '../../utils/ui.js';
 import { getSocialIconSrc } from '../../utils/socialIcon.js';
 
 export default function Login() {
