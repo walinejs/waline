@@ -790,6 +790,18 @@ button.operate-button-delete:hover {
   height: 18px;
 }
 
+.account-item,
+.social-accounts a {
+  color: #808080;
+  transition:
+    color 0.2s ease,
+    transform 0.24s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.social-accounts a:hover {
+  transform: translateY(-2px);
+}
+
 .account-item .account-unbind svg {
   position: absolute;
   top: -3px;
@@ -818,9 +830,57 @@ button.operate-button-delete:hover {
   opacity: 1;
 }
 
-.user-page-account-item img {
+.user-page-account-item .social-icon {
   width: 16px;
   height: 16px;
+}
+
+.account-item.github:hover,
+.account-item.github.bind,
+.social-accounts a.github:hover {
+  color: #1b1f23;
+}
+
+.account-item.twitter:hover,
+.account-item.twitter.bind,
+.social-accounts a.twitter:hover {
+  color: #2daae1;
+}
+
+.account-item.facebook:hover,
+.account-item.facebook.bind,
+.social-accounts a.facebook:hover {
+  color: #1877f2;
+}
+
+.account-item.weibo:hover,
+.account-item.weibo.bind,
+.social-accounts a.weibo:hover {
+  color: #d34237;
+}
+
+.account-item.qq:hover,
+.account-item.qq.bind,
+.social-accounts a.qq:hover {
+  color: #259be0;
+}
+
+.account-item.oidc:hover,
+.account-item.oidc.bind,
+.social-accounts a.oidc:hover {
+  color: #ff9626;
+}
+
+.account-item.google:hover,
+.account-item.google.bind,
+.social-accounts a.google:hover {
+  color: #4285f4;
+}
+
+.account-item.huawei:hover,
+.account-item.huawei.bind,
+.social-accounts a.huawei:hover {
+  color: #f00;
 }
 
 /* remain for historical reasons */

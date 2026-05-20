@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import Header from '../../components/Header.jsx';
 import Paginator from '../../components/Paginator.jsx';
 import { getUserList, updateUser, deleteUser } from '../../services/user.js';
-import { getSocialIconSrc } from '../../utils/socialIcon.js';
+import { getSocialIcon } from '../../utils/socialIcon.jsx';
 import { buildAvatar } from '../manage-comments/utils.js';
 
 export default function User() {
@@ -172,27 +172,32 @@ export default function User() {
                               {user.email}
                             </a>
                             <br />
-                            {socials.map((social) => (
-                              <a
-                                key={social}
-                                href={
-                                  user[social] && social !== 'oidc'
-                                    ? `https://${social}.com/${user[social]}`
-                                    : ``
-                                }
-                                target={user[social] ? '_blank' : '_self'}
-                                rel="noreferrer"
-                                className={cls('account-item', 'user-page-account-item', social, {
-                                  bind: user[social],
-                                })}
-                              >
-                                <img
-                                  className="social-icon"
-                                  src={getSocialIconSrc(social)}
-                                  alt={social}
-                                />
-                              </a>
-                            ))}
+                            {socials.map((social) => {
+                              const Icon = getSocialIcon(social);
+
+                              return (
+                                <a
+                                  key={social}
+                                  href={
+                                    user[social] && social !== 'oidc'
+                                      ? `https://${social}.com/${user[social]}`
+                                      : ``
+                                  }
+                                  target={user[social] ? '_blank' : '_self'}
+                                  rel="noreferrer"
+                                  className={cls(
+                                    'account-item',
+                                    'user-page-account-item',
+                                    social,
+                                    {
+                                      bind: user[social],
+                                    },
+                                  )}
+                                >
+                                  {Icon ? <Icon className="social-icon" aria-hidden="true" /> : null}
+                                </a>
+                              );
+                            })}
                           </td>
                           <td>{getRole(user.type)}</td>
                           <td>{user.label}</td>

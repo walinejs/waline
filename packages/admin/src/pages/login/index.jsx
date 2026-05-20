@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router';
 import Header from '../../components/Header.jsx';
 import { useCaptcha } from '../../components/useCaptcha.js';
 import { get2FAToken } from '../../services/user.js';
-import { getSocialIconSrc } from '../../utils/socialIcon.js';
+import { getSocialIcon } from '../../utils/socialIcon.jsx';
 
 export default function Login() {
   const { t } = useTranslation();
@@ -182,15 +182,15 @@ export default function Login() {
             </p>
           </form>
           <div className="social-accounts">
-            {socials.map((social) => (
-              <a key={social} href={buildOAuthURL(social)}>
-                <img
-                  className="social-icon"
-                  src={getSocialIconSrc(social)}
-                  alt={social}
-                />
-              </a>
-            ))}
+            {socials.map((social) => {
+              const Icon = getSocialIcon(social);
+
+              return (
+                <a key={social} href={buildOAuthURL(social)}>
+                  {Icon ? <Icon className="social-icon" aria-hidden="true" /> : null}
+                </a>
+              );
+            })}
           </div>
 
           <p className="more-link">
