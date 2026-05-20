@@ -4,7 +4,7 @@ const path = require('node:path');
 const adminBundlePath = path.resolve(__dirname, '../../../admin/dist/admin.js');
 
 const getUiBasePath = (requestPath = '') =>
-  requestPath.match(/^(.*?\/ui)(?:\/.*)?$/u)?.[1] || '/ui';
+  requestPath.match(/^(.*?\/ui)(?:$|\/.*$)/u)?.[1] || '/ui';
 
 // oxlint-disable-next-line func-names
 module.exports = function () {
