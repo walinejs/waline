@@ -734,7 +734,7 @@ button.operate-button-delete:hover {
   background: var(--wa-surface-soft);
 }
 
-@media (width <= 960px) {
+@media (max-width: 960px) {
   .typecho-head-nav {
     padding-inline: 16px;
   }
