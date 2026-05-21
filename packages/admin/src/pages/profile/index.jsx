@@ -4,8 +4,9 @@ import { Trans, useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Header from '../../components/Header.jsx';
+// oxlint-disable-next-line import/no-namespace
+import * as Icons from '../../components/icon/index.jsx';
 import { updateProfile } from '../../services/user.js';
-import { getSocialIcon } from '../../utils/socialIcon.jsx';
 import { buildAvatar } from '../manage-comments/utils.js';
 import TwoFactorAuth from './twoFactorAuth.jsx';
 
@@ -215,7 +216,7 @@ export default function Profile() {
                 <h3>{t('connect to social account')}</h3>
                 <div className="account-list">
                   {socials.map((social) => {
-                    const Icon = getSocialIcon(social);
+                    const Icon = Icons[social];
 
                     return (
                       <div

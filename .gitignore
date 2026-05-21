@@ -37,4 +37,3 @@ dist/
 .npmrc
 
 data/*
-*.sqlite

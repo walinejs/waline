@@ -4,9 +4,10 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
 import Header from '../../components/Header.jsx';
+// oxlint-disable-next-line import/no-namespace
+import * as Icons from '../../components/icon/index.jsx';
 import Paginator from '../../components/Paginator.jsx';
 import { getUserList, updateUser, deleteUser } from '../../services/user.js';
-import { getSocialIcon } from '../../utils/socialIcon.jsx';
 import { buildAvatar } from '../manage-comments/utils.js';
 
 export default function User() {
@@ -173,7 +174,7 @@ export default function User() {
                             </a>
                             <br />
                             {socials.map((social) => {
-                              const Icon = getSocialIcon(social);
+                              const Icon = Icons[social];
 
                               return (
                                 <a

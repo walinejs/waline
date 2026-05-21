@@ -4,9 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router';
 
 import Header from '../../components/Header.jsx';
+// oxlint-disable-next-line import/no-namespace
+import * as Icons from '../../components/icon/index.jsx';
 import { useCaptcha } from '../../components/useCaptcha.js';
 import { get2FAToken } from '../../services/user.js';
-import { getSocialIcon } from '../../utils/socialIcon.jsx';
 
 export default function Login() {
   const { t } = useTranslation();
@@ -183,7 +184,7 @@ export default function Login() {
           </form>
           <div className="social-accounts">
             {socials.map((social) => {
-              const Icon = getSocialIcon(social);
+              const Icon = Icons[social];
 
               return (
                 <a key={social} href={buildOAuthURL(social)}>
