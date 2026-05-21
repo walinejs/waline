@@ -6,7 +6,6 @@ import { Link, useNavigate } from 'react-router';
 
 import { LANGUAGE_OPTIONS } from '../locales/index.js';
 import { buildAvatar } from '../pages/manage-comments/utils.js';
-import { getUiPath } from '../utils/ui.js';
 
 export default function Header() {
   const dispatch = useDispatch();
@@ -44,22 +43,22 @@ export default function Header() {
   const onLogout = (event) => {
     event.preventDefault();
     dispatch.user.logout();
-    navigate(getUiPath('login'));
+    navigate('/ui/login');
   };
 
   const siteName = window.SITE_NAME || 'Waline';
 
   const navItems = [
-    { to: getUiPath(), label: t('comment') },
-    { to: getUiPath('user'), label: t('user') },
-    { to: getUiPath('migration'), label: t('migration') },
+    { to: '/ui', label: t('comment') },
+    { to: '/ui/user', label: t('user') },
+    { to: '/ui/migration', label: t('migration') },
   ];
 
   return [
     <header className="typecho-head-nav clear-fix" role="navigation" key="header">
       <div className="waline-admin-header">
         <div className="waline-admin-brand">
-          <Link to={getUiPath()} className="waline-admin-brand-link">
+          <Link to="/ui" className="waline-admin-brand-link">
             <span className="waline-admin-brand-mark">W</span>
             <span className="waline-admin-brand-copy">
               <strong>{siteName}</strong>
@@ -95,7 +94,7 @@ export default function Header() {
             </select>
           </div>
           {user?.type ? (
-            <Link to={getUiPath('profile')} className="author">
+            <Link to="/ui/profile" className="author">
               <img
                 className="author-avatar"
                 src={buildAvatar(user.email, user.avatar)}
