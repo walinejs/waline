@@ -1,9 +1,9 @@
 ---
-title: Kustomisasi Code Highlighter
+title: Kustomisasi Penyorot Kode
 icon: style
 ---
 
-Cookbook ini memandu Anda cara menambahkan code highlighter Anda sendiri.
+Cookbook ini memandu Anda cara menambahkan penyorot kode Anda sendiri.
 
 <!-- more -->
 

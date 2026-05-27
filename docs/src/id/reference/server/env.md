@@ -1,5 +1,5 @@
 ---
-title: Server Environment Variables
+title: Variabel Lingkungan Server
 icon: config
 ---
 

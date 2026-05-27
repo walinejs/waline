@@ -1,5 +1,5 @@
 ---
-title: Server Config
+title: Konfigurasi Server
 icon: config
 ---
 

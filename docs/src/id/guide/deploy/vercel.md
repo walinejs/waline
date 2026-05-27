@@ -80,11 +80,11 @@ Kami merilis paket `@waline/vercel` sebagai paket server, dan deployment Vercel 
 
    ![success](../../../assets/vercel-12.png)
 
-## Import HTML
+## Impor HTML
 
 Atur sebagai berikut di halaman web Anda:
 
-1. Import stylesheet Waline dari `https://unpkg.com/@waline/client@v3/dist/waline.css`.
+1. Impor stylesheet Waline dari `https://unpkg.com/@waline/client@v3/dist/waline.css`.
 2. Buat tag `<script>` yang menggunakan `init()` dari `https://unpkg.com/@waline/client@v3/dist/waline.js`, dan berikan opsi wajib `el` dan `serverURL`.
    - `el` adalah elemen yang digunakan untuk me-render Waline. Dapat berupa string CSS selector atau HTMLElement.
    - `serverURL` adalah alamat server Anda yang diperoleh pada langkah sebelumnya.

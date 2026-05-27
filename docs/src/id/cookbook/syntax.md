@@ -14,19 +14,19 @@ Sintaks Markdown yang didukung dalam komentar adalah sebagai berikut.
 
 <!-- markdownlint-disable MD025 -->
 
-# Heading1
+# Judul 1
 
 <!-- markdownlint-enable MD025 -->
 
-## Heading2
+## Judul 2
 
-### Heading3
+### Judul 3
 
-#### Heading4
+#### Judul 4
 
-##### Heading5
+##### Judul 5
 
-###### Heading7
+###### Judul 7
 
 ```md
 # Heading1
@@ -46,7 +46,7 @@ Sintaks Markdown yang didukung dalam komentar adalah sebagai berikut.
 
 ::: details Teks
 
-This sentence has **bold**、_italic_ and ~~delete~~ style text.
+Kalimat ini memiliki teks bergaya **tebal**、_miring_ dan ~~coret~~.
 
 ```md
 This sentence has **bold**、_italic_ and ~~delete~~ style text.
@@ -56,9 +56,9 @@ This sentence has **bold**、_italic_ and ~~delete~~ style text.
 
 ::: details Paragraf
 
-This is a paragraph.
+Ini adalah sebuah paragraf.
 
-This is another paragraph.
+Ini adalah paragraf lainnya.
 
 ```md
 This is a paragraph.
@@ -70,8 +70,8 @@ This is another paragraph.
 
 ::: details Pemisah Baris
 
-I would like to line break at  
-this point
+Saya ingin memutus baris di  
+titik ini
 
 ```md
 I would like to line break at  
@@ -80,13 +80,13 @@ this point
 
 :::
 
-::: details Blockquotes
+::: details Kutipan Blok
 
-> Blockquotes can also be nested...
+> Kutipan blok juga dapat disarangkan...
 >
-> > ...by using greater-than signs right next to each other...
+> > ...dengan menggunakan tanda lebih besar yang berdampingan...
 > >
-> > > ...or with spaces between arrows.
+> > > ...atau dengan spasi di antara tanda tersebut.
 
 ```md
 > Blockquotes can also be nested...
@@ -100,17 +100,17 @@ this point
 
 ::: details Daftar Tidak Berurutan
 
-- Create a list by starting a line with `-`
-- Make sub-lists by indenting 2 spaces:
-  - Marker character change forces new list start:
+- Buat daftar dengan memulai baris menggunakan `-`
+- Buat subdaftar dengan indentasi 2 spasi:
+  - Perubahan karakter penanda memaksa dimulainya daftar baru:
     - Ac tristique libero volutpat at
     - Facilisis in pretium nisl aliquet
     - Nulla volutpat aliquam velit  
       link break
 
-      New paragraph
+      Paragraf baru
 
-- It's easy!
+- Ini mudah!
 
 ```md
 - Create a list by starting a line with `-`
@@ -132,8 +132,8 @@ this point
 
 1. Lorem ipsum dolor sit amet
 1. Consectetur adipiscing elit  
-   line break  
-   line break again
+   pemisah baris  
+   pemisah baris lagi
 1. Integer molestie lorem at massa
 
 ```md
@@ -158,7 +158,7 @@ this point
 
 ::: details Tautan
 
-[HomePage](/)
+[Beranda](/)
 
 ```md
 [HomePage](/)
@@ -178,11 +178,11 @@ this point
 
 ::: details Tabel
 
-|           center           |                    right | left                    |
-| :------------------------: | -----------------------: | :---------------------- |
-| For center align use `:-:` | For right align use `-:` | For left align use `:-` |
-|             b              |                aaaaaaaaa | aaaa                    |
-|             c              |                     aaaa | a                       |
+|             tengah              |                         kanan | kiri                         |
+| :-----------------------------: | ----------------------------: | :--------------------------- |
+| Gunakan `:-:` untuk rata tengah | Gunakan `-:` untuk rata kanan | Gunakan `:-` untuk rata kiri |
+|                b                |                     aaaaaaaaa | aaaa                         |
+|                c                |                          aaaa | a                            |
 
 ```md
 |           center           |                    right | left                    |
@@ -196,13 +196,13 @@ this point
 
 ::: details Kode
 
-Inline Code: `code`
+Kode inline: `code`
 
 ```md
 Inline Code: `code`
 ```
 
-Block code:
+Blok kode:
 
 ```js
 var foo = function (bar) {
@@ -226,9 +226,9 @@ console.log(foo(5));
 
 :::
 
-## Superscript dan Subscript
+## Superskrip dan Subskrip
 
-Gunakan `^` dan `~` untuk menandai superscript dan subscript.
+Gunakan `^` dan `~` untuk menandai superskrip dan subskrip.
 
 ::: details Demo
 
@@ -342,7 +342,7 @@ Anda dapat menggunakan `$ ... $` untuk membuat rumus inline, atau menggunakan `$
 :::
 ::: details Demo
 
-Euler's identity $e^{i\pi}+1=0$ is a beautiful formula in $\mathbb{R}^2$.
+Identitas Euler $e^{i\pi}+1=0$ adalah rumus yang indah di $\mathbb{R}^2$.
 
 ```md
 Euler's identity $e^{i\pi}+1=0$ is a beautiful formula in $\mathbb{R}^2$.
@@ -362,6 +362,6 @@ $$
 
 :::
 
-## Embed HTML
+## Menyematkan HTML
 
 Silakan tambahkan konten HTML apa pun selama tidak memicu [mekanisme perlindungan](../guide/features/safety.md#comment-security).

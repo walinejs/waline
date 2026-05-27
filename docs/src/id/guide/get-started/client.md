@@ -6,18 +6,18 @@ order: 1
 
 Waline secara resmi menyediakan [`@waline/client`](https://www.npmjs.com/package/@waline/client), yang ditulis dalam Vue + TypeScript dan hanya berukuran 53kb gzip.
 
-## Import
+## Impor
 
 Anda dapat menggunakan CDN atau npm untuk mengimpor klien Waline, dan kami menyediakan beberapa versi file untuk memenuhi berbagai skenario.
 
 Jika Anda mengalami masalah selama proses ini, lihat:
 
-- [Cookbook → Import CDN](../../cookbook/import/cdn.md)
-- [Cookbook → Import Proyek](../../cookbook/import/project.md)
+- [Cookbook → Impor CDN](../../cookbook/import/cdn.md)
+- [Cookbook → Impor Proyek](../../cookbook/import/project.md)
 
 ## Menggunakan Waline
 
-Cara termudah menggunakan Waline adalah [menggunakan metode yang dirinci dalam panduan memulai cepat](./README.md#import-di-html): impor fungsi `init` dari Waline dan inisialisasi instans Waline melalui `init(yourOptions)`.
+Cara termudah menggunakan Waline adalah [menggunakan metode yang dirinci dalam panduan memulai cepat](./README.md#impor-di-html): impor fungsi `init` dari Waline dan inisialisasi instans Waline melalui `init(yourOptions)`.
 
 Di antara opsi `init`, `el` dan `serverURL` wajib ada. Yang pertama adalah elemen atau selector elemen tempat Waline dipasang, dan yang kedua adalah alamat server. Untuk semua parameter inisialisasi `@waline/client`, lihat [Referensi Klien → API](../../reference/client/api.md).
 

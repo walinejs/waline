@@ -51,7 +51,7 @@ Karena metode di atas akan sepenuhnya membatasi pengguna dalam cakupan Markdown,
 
 Selain akses langsung ke penyimpanan, penyerang juga dapat membaca data apa pun secara langsung. Jika sebuah field database memiliki izin baca untuk semua orang, konten field tersebut sepenuhnya transparan bagi penyerang.
 
-Dalam data komentar, dua field IP dan kotak surat berisi data sensitif pengguna. Mr. Deng menulis artikel khusus untuk mengkritik masalah tersebut [Please stop using the Valine.js comment system immediately unless it fixes the user privacy leak](https://ttys3.net/post/hugo/please-stop-using-valine-js-comment-system-until-it-fixed-the-privacy-leaking-problem/). Bahkan ketika komunitas [JueJin](https://juejin.cn) menggunakan LeanCloud pada tahun-tahun awal, masalah keamanan [nomor ponsel pengguna yang bocor](https://m.weibo.cn/detail/4568007327622344?cid=4568044392682999) pun terungkap.
+Dalam data komentar, dua field IP dan kotak surat berisi data sensitif pengguna. Mr. Deng menulis artikel khusus untuk mengkritik masalah tersebut [Harap segera berhenti menggunakan sistem komentar Valine.js kecuali kebocoran privasi pengguna diperbaiki](https://ttys3.net/post/hugo/please-stop-using-valine-js-comment-system-until-it-fixed-the-privacy-leaking-problem/). Bahkan ketika komunitas [JueJin](https://juejin.cn) menggunakan LeanCloud pada tahun-tahun awal, masalah keamanan [nomor ponsel pengguna yang bocor](https://m.weibo.cn/detail/4568007327622344?cid=4568044392682999) pun terungkap.
 
 Untuk mengatasi masalah ini, penulis Valine menambahkan konfigurasi `recordIP` untuk mengatur apakah pencatatan IP pengguna diizinkan. Karena tidak ada server, ini hanya dapat diselesaikan dengan tidak menyimpan nilainya.
 

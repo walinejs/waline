@@ -1,5 +1,5 @@
 ---
-title: Import dalam proyek
+title: Impor dalam Proyek
 icon: import
 order: 2
 ---
@@ -36,7 +36,7 @@ yarn add -D @waline/client
 
 Untuk modul yang diekspor oleh `@waline/client`, lihat [Referensi Klien → File](../../reference/client/file.md).
 
-## Import dalam Proyek Normal
+## Impor dalam Proyek Normal
 
 Berikut adalah contoh mengimpor dan menggunakan `@waline/client` dalam proyek situs web normal.
 
@@ -70,7 +70,7 @@ init({
 
 :::
 
-## Import dalam Proyek Vue
+## Impor dalam Proyek Vue
 
 Karena `@waline/client` sendiri berbasis Vue3, kami langsung mengekspor komponen Vue yang responsif.
 
@@ -98,7 +98,7 @@ Karena kita menggunakan `path` yang responsif, ketika rute berubah, `@waline/cli
 
 :::
 
-## Import dalam Proyek React
+## Impor dalam Proyek React
 
 Dengan pembungkus sederhana, Anda dapat mengubah Waline menjadi komponen React:
 

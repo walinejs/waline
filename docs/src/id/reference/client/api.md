@@ -1,9 +1,9 @@
 ---
-title: Client API
+title: API Klien
 icon: config
 ---
 
-## Client API
+## API Klien
 
 Waline menyediakan tiga API:
 
@@ -61,7 +61,7 @@ Opsi inisialisasi menerima semua [Props Komponen Waline](props.md), selain itu o
 ### el
 
 - Tipe: `string | HTMLElement | null`
-- Default: `'#waline'`
+- Bawaan: `'#waline'`
 
 Elemen DOM yang akan dipasang saat inisialisasi. Harus berupa **string selektor CSS** yang valid atau objek HTMLElement.
 
@@ -70,14 +70,14 @@ Jika Anda hanya menginginkan counter di bawah, atur opsi ini ke `null`.
 ### comment
 
 - Tipe: `boolean | string`
-- Default: `false`
+- Bawaan: `false`
 
 Counter jumlah komentar artikel, ketika diisi dengan string, akan digunakan sebagai selektor CSS.
 
 ### pageview
 
 - Tipe: `boolean | string`
-- Default: `false`
+- Bawaan: `false`
 
 Counter pageview. Ketika diisi dengan string, akan digunakan sebagai selektor CSS.
 

@@ -82,16 +82,16 @@ Selamat datang di Waline. Hanya dalam beberapa langkah, Anda dapat mengaktifkan 
 
    ![success](../../../assets/vercel-12.png)
 
-## Import di HTML
+## Impor di HTML
 
 Berikut cara menambahkan Waline ke halaman web atau website Anda:
 
-1. Import stylesheet `https://unpkg.com/@waline/client@v3/dist/waline.css` di `<head>`
+1. Impor stylesheet `https://unpkg.com/@waline/client@v3/dist/waline.css` di `<head>`
 
 1. Buat tag `<script>` dan inisialisasi dengan `init()` dari `https://unpkg.com/@waline/client@v3/dist/waline.js` sambil meneruskan opsi wajib `el` dan `serverURL`.
    - Opsi `el` adalah elemen yang digunakan untuk rendering Waline. Anda dapat mengatur CSS selector dalam bentuk string atau objek HTMLElement.
    - `serverURL` adalah tautan ke server deployment Anda, yang baru saja dibuat di Vercel.
-   - Untuk opsi lainnya, kunjungi [halaman Component Props](https://waline.js.org/id/reference/client/props.html)
+   - Untuk opsi lainnya, kunjungi [halaman Props Komponen](https://waline.js.org/id/reference/client/props.html)
 
    Berikut adalah contohnya:
 

@@ -1,5 +1,5 @@
 ---
-title: Component Props
+title: Props Komponen
 icon: config
 ---
 
@@ -13,7 +13,7 @@ URL alamat server Waline
 ## path
 
 - Tipe: `string`
-- Default: `window.location.pathname`
+- Bawaan: `window.location.pathname`
 
 ID path artikel. Digunakan untuk membedakan _halaman artikel_ yang berbeda guna memastikan daftar komentar yang tepat dimuat di bawah _halaman artikel_.
 
@@ -29,7 +29,7 @@ Harap pastikan keunikan setiap path _halaman artikel_, jika tidak, daftar koment
 ## lang
 
 - Tipe: `string`
-- Default: `navigator.language`
+- Bawaan: `navigator.language`
 - Detail:
   - [Panduan → I18n](../../guide/features/i18n.md#set-language)
 
@@ -55,7 +55,7 @@ Nilai yang tersedia:
 ## locale
 
 - Tipe: `WalineLocale`
-- Default: Nilai bawaan berdasarkan `lang`
+- Bawaan: Nilai bawaan berdasarkan `lang`
 - Detail:
   - [Cookbook → Menyesuaikan Locale](../../cookbook/customize/locale.md)
 
@@ -96,7 +96,7 @@ Locale Waline.
   }
   ```
 
-- Default: `['//unpkg.com/@waline/emojis@1.1.0/weibo']`
+- Bawaan: `['//unpkg.com/@waline/emojis@1.1.0/weibo']`
 - Detail:
   - [Panduan → Emoji](../../guide/features/emoji.md)
 
@@ -105,7 +105,7 @@ Pengaturan Emoji.
 ## dark
 
 - Tipe: `string | boolean`
-- Default: `false`
+- Bawaan: `false`
 
 Dukungan mode gelap
 
@@ -128,21 +128,21 @@ Untuk detail gaya kustom dan mode gelap, silakan lihat [Gaya Kustom](../../guide
 ## commentSorting
 
 - Tipe: `WalineCommentSorting`
-- Default: `'latest'`
+- Bawaan: `'latest'`
 
 Metode pengurutan daftar komentar. Nilai yang tersedia: `'latest'`, `'oldest'`, `'hottest'`
 
 ## meta
 
 - Tipe: `string[]`
-- Default: `['nick','mail','link']`
+- Bawaan: `['nick','mail','link']`
 
 Atribut pengulas. Nilai yang tersedia: `'nick'`, `'mail'`, `'link'`
 
 ## requiredMeta
 
 - Tipe: `string[]`
-- Default: `[]`
+- Bawaan: `[]`
 
 Mengatur bidang yang wajib diisi, default anonim, nilai yang tersedia:
 
@@ -164,14 +164,14 @@ Status mode login, nilai yang tersedia:
 ## wordLimit
 
 - Tipe: `number | [number, number]`
-- Default: `0`
+- Bawaan: `0`
 
 Batas kata komentar. Ketika satu angka diisi, itu adalah jumlah maksimum kata komentar. Tidak ada batas ketika diatur ke `0`.
 
 ## pageSize
 
 - Tipe: `number`
-- Default: `10`
+- Bawaan: `10`
 
 Jumlah komentar per halaman.
 
@@ -289,7 +289,7 @@ Anda dapat mengimpor renderer $\TeX$ untuk menyediakan fitur pratinjau. Kami mer
 ## noCopyright
 
 - Tipe: `boolean`
-- Default: `false`
+- Bawaan: `false`
 
 Apakah menyembunyikan hak cipta dan versi di footer.
 
@@ -302,7 +302,7 @@ Kami berharap Anda dapat tetap mengaktifkannya untuk mendukung Waline.
 ## noRss
 
 - Tipe: `boolean`
-- Default: `false`
+- Bawaan: `false`
 
 Apakah menyembunyikan tautan langganan RSS.
 
@@ -323,6 +323,6 @@ Turnstile adalah layanan captcha yang disediakan oleh Cloudflare. Anda dapat men
 ## reaction
 
 - Tipe: `boolean | string[]`
-- Default: `false`
+- Bawaan: `false`
 
 Menambahkan fungsi interaksi emoji pada artikel, atur ke `true` untuk menyediakan emoji default, Anda juga dapat menyesuaikan gambar emoji dengan mengatur array URL emoji, dan mendukung maksimum 8 emoji.

@@ -1,5 +1,5 @@
 ---
-title: Import Waline via CDN
+title: Impor Waline melalui CDN
 icon: import
 order: 1
 ---
