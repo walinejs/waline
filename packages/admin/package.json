@@ -50,7 +50,7 @@
     "react-router": "7.15.0",
     "redux": "5.0.1",
     "typescript": "6.0.3",
-    "vite": "8.0.12"
+    "vite": "8.0.14"
   },
   "browserslist": {
     "production": [
