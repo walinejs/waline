@@ -38,7 +38,7 @@
     "husky": "9.1.7",
     "markdownlint-cli2": "0.22.1",
     "nano-staged": "1.0.2",
-    "oxc-config-hope": "0.3.4",
+    "oxc-config-hope": "0.3.6",
     "oxfmt": "0.49.0",
     "oxlint": "1.64.0",
     "oxlint-tsgolint": "0.22.1",
