@@ -1,5 +1,5 @@
 ---
-title: Customize
+title: Kustomisasi
 icon: customize
 dir:
   collapsible: false

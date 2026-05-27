@@ -28,8 +28,8 @@ Anda harus mengatur melalui `Settings` - `Environment Variables` saat menggunaka
 
 | Variabel Lingkungan     | Bawaan                                                                  | Deskripsi                                                                     |
 | ----------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| `DISABLE_USERAGENT`     |                                                                         | apakah menyembunyikan user agent komentator. Nilai default adalah `false`     |
-| `DISABLE_REGION`        |                                                                         | apakah menyembunyikan wilayah komentator. Nilai default adalah `false`        |
+| `DISABLE_USERAGENT`     |                                                                         | apakah menyembunyikan user agent komentator. Nilai bawaan adalah `false`      |
+| `DISABLE_REGION`        |                                                                         | apakah menyembunyikan wilayah komentator. Nilai bawaan adalah `false`         |
 | `DISABLE_AUTHOR_NOTIFY` |                                                                         | apakah menonaktifkan notifikasi penulis                                       |
 | `AVATAR_PROXY`          | `https://avatar.75cdn.workers.dev`                                      | URL layanan proxy avatar. Anda dapat mengatur `false` untuk menonaktifkannya  |
 | `GRAVATAR_STR`          | <span v-pre>`https://seccdn.libravatar.org/avatar/{{mail\|md5}}`</span> | String render Gravatar, berdasarkan template nunjucks                         |

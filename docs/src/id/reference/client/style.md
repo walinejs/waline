@@ -1,5 +1,5 @@
 ---
-title: CSS variable
+title: Variabel CSS
 icon: style
 ---
 

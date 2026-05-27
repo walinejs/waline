@@ -153,7 +153,7 @@ Mengatur bidang yang wajib diisi, default anonim, nilai yang tersedia:
 ## login
 
 - Tipe: `string`
-- Nilai default: `'enable'`
+- Nilai bawaan: `'enable'`
 
 Status mode login, nilai yang tersedia:
 

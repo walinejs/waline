@@ -1,5 +1,5 @@
 ---
-title: Self Host
+title: Host Mandiri
 icon: server
 order: -1
 ---

@@ -1,5 +1,5 @@
 ---
-title: Deploy di Alibaba Cloud Compute Nest
+title: Penerapan di Alibaba Cloud Compute Nest
 icon: aliyun
 ---
 

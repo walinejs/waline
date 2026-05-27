@@ -60,7 +60,7 @@ Kami menggunakan [Mr. Qmsg](https://qmsg.zendee.cn) untuk mengirim notifikasi QQ
 - `AUTHOR_EMAIL`: Email blogger digunakan untuk membedakan apakah komentar yang diposting adalah dari blogger itu sendiri. Jika komentar diposting oleh blogger, tidak akan ada notifikasi pengingat.
 - `SITE_NAME`: Nama situs Anda, akan ditampilkan dalam pesan notifikasi.
 - `SITE_URL`: URL situs Anda, akan ditampilkan dalam pesan notifikasi.
-- `QQ_TEMPLATE`: Template notifikasi yang digunakan oleh QQ. Variabel dan format spesifik dapat ditemukan di bagian template notifikasi di bawah. Jika tidak dikonfigurasi, template default akan digunakan.
+- `QQ_TEMPLATE`: Template notifikasi yang digunakan oleh QQ. Variabel dan format spesifik dapat ditemukan di bagian template notifikasi di bawah. Jika tidak dikonfigurasi, template bawaan akan digunakan.
 
 ## Notifikasi Telegram
 
@@ -71,7 +71,7 @@ Kami menggunakan bot Telegram untuk mengirim notifikasi Telegram. Anda perlu men
 - `AUTHOR_EMAIL`: Email blogger digunakan untuk membedakan apakah komentar yang diposting adalah dari blogger itu sendiri. Jika komentar diposting oleh blogger, tidak akan ada notifikasi pengingat.
 - `SITE_NAME`: Nama situs Anda, akan ditampilkan dalam pesan notifikasi.
 - `SITE_URL`: URL situs Anda, akan ditampilkan dalam pesan notifikasi.
-- `TG_TEMPLATE`: Template notifikasi yang digunakan oleh Telegram. Variabel dan format spesifik dapat ditemukan di bagian template notifikasi di bawah. Jika tidak dikonfigurasi, template default akan digunakan.
+- `TG_TEMPLATE`: Template notifikasi yang digunakan oleh Telegram. Variabel dan format spesifik dapat ditemukan di bagian template notifikasi di bawah. Jika tidak dikonfigurasi, template bawaan akan digunakan.
 
 ## Notifikasi PushPlus
 
@@ -153,7 +153,7 @@ Template meneruskan parameter melalui objek `self`, `parent`, dan `site`, yang m
 
 ### Template Bawaan
 
-Template default dilampirkan di sini sebagai referensi Anda:
+Template bawaan dilampirkan di sini sebagai referensi Anda:
 
 - MAIL_SUBJECT:
 

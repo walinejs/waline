@@ -1,5 +1,5 @@
 ---
-title: plugin system
+title: Sistem Plugin
 icon: api
 ---
 

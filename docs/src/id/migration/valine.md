@@ -3,9 +3,9 @@ title: Migrasi dari Valine
 icon: valine
 ---
 
-1. Deploy backend sesuai dengan [Vercel Deploy](../guide/get-started/README.md#deploy-to-vercel-server) di bagian _Mulai_.
+1. Deploy backend sesuai dengan [Penerapan Vercel](../guide/get-started/README.md#penerapan-server) di bagian _Mulai_.
 
-2. Modifikasi skrip frontend sesuai dengan [HTML](../guide/get-started/README.md#importing-in-html-client) di bagian _Mulai_.
+2. Modifikasi skrip frontend sesuai dengan [HTML](../guide/get-started/README.md#impor-di-html) di bagian _Mulai_.
 
    ```diff
    - <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
