@@ -419,3 +419,38 @@ export const koKRNavbarConfig = navbar([
     children: ['intro', 'design', 'ecosystem', 'faq', 'contribution', 'privacy'],
   },
 ]);
+
+export const idNavbarConfig = navbar([
+  '/id/guide/get-started/',
+  '/id/cookbook/',
+  {
+    text: 'Migrasi',
+    icon: 'migration',
+    prefix: '/id/migration/',
+    children: ['v3', 'v2', 'valine', 'tool'],
+  },
+  {
+    text: 'Referensi',
+    icon: 'reference',
+    prefix: '/id/reference/',
+    children: [
+      'api/',
+      {
+        text: 'Klien',
+        prefix: 'client/',
+        children: ['api', 'props', 'file', 'style'],
+      },
+      {
+        text: 'Server',
+        prefix: 'server/',
+        children: ['api', 'config', 'env', 'plugin'],
+      },
+    ],
+  },
+  {
+    text: 'Lanjutan',
+    icon: 'advanced',
+    prefix: '/id/advanced/',
+    children: ['intro', 'design', 'ecosystem', 'faq', 'contribution', 'privacy'],
+  },
+]);
