@@ -32,7 +32,7 @@
     "@babel/runtime": "7.29.2",
     "@mr-hope/tsconfig": "0.0.4",
     "@types/node": "24.0.0",
-    "@vitejs/plugin-react": "6.0.1",
+    "@vitejs/plugin-react": "6.0.2",
     "apidoc": "1.2.0",
     "cross-env": "10.1.0",
     "husky": "9.1.7",
