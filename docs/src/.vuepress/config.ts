@@ -57,6 +57,11 @@ export default defineUserConfig({
       title: 'Waline',
       description: 'Một hệ thống bình luận đơn giản và an toàn.',
     },
+    '/id/': {
+      lang: 'id-ID',
+      title: 'Waline',
+      description: 'Sistem komentar yang sederhana dan aman.',
+    },
     '/zh-TW/': {
       lang: 'zh-TW',
       title: 'Waline',
