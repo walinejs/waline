@@ -245,7 +245,7 @@ importers:
         version: 6.0.1(vite@8.0.12(@types/node@24.0.0)(esbuild@0.27.7)(sass-embedded@1.99.0)(sass@1.99.0)(terser@5.47.1)(tsx@4.21.0)(yaml@2.9.0))
       apidoc:
         specifier: 1.2.0
-        version: 1.2.0(patch_hash=14f1b3501c5015248e143b5b4216cb0f70cff2b6340214529fd5a63c8d59cffb)(esbuild@0.27.7)(postcss@8.5.14)
+        version: 1.2.0(patch_hash=14f1b3501c5015248e143b5b4216cb0f70cff2b6340214529fd5a63c8d59cffb)(esbuild@0.27.7)(postcss@8.5.15)
       cross-env:
         specifier: 10.1.0
         version: 10.1.0
@@ -274,8 +274,8 @@ importers:
         specifier: 1.1.1
         version: 1.1.1
       postcss:
-        specifier: 8.5.14
-        version: 8.5.14
+        specifier: 8.5.15
+        version: 8.5.15
       publint:
         specifier: 0.3.21
         version: 0.3.21
@@ -290,7 +290,7 @@ importers:
         version: 17.11.0(typescript@6.0.3)
       stylelint-config-hope:
         specifier: 11.0.0
-        version: 11.0.0(postcss@8.5.14)(stylelint@17.11.0(typescript@6.0.3))
+        version: 11.0.0(postcss@8.5.15)(stylelint@17.11.0(typescript@6.0.3))
       tsdown:
         specifier: 0.22.0
         version: 0.22.0(publint@0.3.21)(tsx@4.21.0)(typescript@6.0.3)(unrun@0.3.0(synckit@0.11.12))
@@ -6668,6 +6668,10 @@ packages:
     resolution: {integrity: sha512-SoSL4+OSEtR99LHFZQiJLkT59C5B1amGO1NzTwj7TT1qCUgUO6hxOvzkOYxD+vMrXBM3XJIKzokoERdqQq/Zmg==}
     engines: {node: ^10 || ^12 || >=14}
 
+  postcss@8.5.15:
+    resolution: {integrity: sha512-FfR8sjd4em2T6fb3I2MwAJU7HWVMr9zba+enmQeeWFfCbm+UOC/0X4DS8XtpUTMwWMGbjKYP7xjfNekzyGmB3A==}
+    engines: {node: ^10 || ^12 || >=14}
+
   postgres-array@2.0.0:
     resolution: {integrity: sha512-VpZrUqU5A69eQyW2c5CA1jtLecCsN2U/bD6VilrFDWq5+5UIEVO7nazS3TEcHf1zuPYO/sqGvUvW62g86RXZuA==}
     engines: {node: '>=4'}
@@ -11940,7 +11944,7 @@ snapshots:
 
   '@webpack-cli/configtest@1.2.0(webpack-cli@4.10.0)(webpack@5.106.2)':
     dependencies:
-      webpack: 5.106.2(esbuild@0.27.7)(postcss@8.5.14)(webpack-cli@4.10.0)
+      webpack: 5.106.2(esbuild@0.27.7)(postcss@8.5.15)(webpack-cli@4.10.0)
       webpack-cli: 4.10.0(webpack@5.106.2)
 
   '@webpack-cli/info@1.5.0(webpack-cli@4.10.0)':
@@ -12062,7 +12066,7 @@ snapshots:
       normalize-path: 3.0.0
       picomatch: 2.3.2
 
-  apidoc@1.2.0(patch_hash=14f1b3501c5015248e143b5b4216cb0f70cff2b6340214529fd5a63c8d59cffb)(esbuild@0.27.7)(postcss@8.5.14):
+  apidoc@1.2.0(patch_hash=14f1b3501c5015248e143b5b4216cb0f70cff2b6340214529fd5a63c8d59cffb)(esbuild@0.27.7)(postcss@8.5.15):
     dependencies:
       bootstrap: 3.4.1
       commander: 10.0.1
@@ -12081,7 +12085,7 @@ snapshots:
       prismjs: 1.30.0
       semver: 7.8.0
       style-loader: 3.3.4(webpack@5.106.2)
-      webpack: 5.106.2(esbuild@0.27.7)(postcss@8.5.14)(webpack-cli@4.10.0)
+      webpack: 5.106.2(esbuild@0.27.7)(postcss@8.5.15)(webpack-cli@4.10.0)
       webpack-cli: 4.10.0(webpack@5.106.2)
       winston: 3.19.0
     transitivePeerDependencies:
@@ -12958,7 +12962,7 @@ snapshots:
       esbuild: 0.27.7
       get-tsconfig: 4.14.0
       loader-utils: 2.0.4
-      webpack: 5.106.2(esbuild@0.27.7)(postcss@8.5.14)(webpack-cli@4.10.0)
+      webpack: 5.106.2(esbuild@0.27.7)(postcss@8.5.15)(webpack-cli@4.10.0)
       webpack-sources: 3.4.1
 
   esbuild@0.27.0:
@@ -13105,7 +13109,7 @@ snapshots:
 
   expose-loader@4.1.0(webpack@5.106.2):
     dependencies:
-      webpack: 5.106.2(esbuild@0.27.7)(postcss@8.5.14)(webpack-cli@4.10.0)
+      webpack: 5.106.2(esbuild@0.27.7)(postcss@8.5.15)(webpack-cli@4.10.0)
 
   exsolve@1.0.8: {}
 
@@ -15187,9 +15191,9 @@ snapshots:
     dependencies:
       postcss: 8.5.14
 
-  postcss-scss@4.0.9(postcss@8.5.14):
+  postcss-scss@4.0.9(postcss@8.5.15):
     dependencies:
-      postcss: 8.5.14
+      postcss: 8.5.15
 
   postcss-selector-parser@7.1.1:
     dependencies:
@@ -15203,6 +15207,12 @@ snapshots:
   postcss-value-parser@4.2.0: {}
 
   postcss@8.5.14:
+    dependencies:
+      nanoid: 3.3.12
+      picocolors: 1.1.1
+      source-map-js: 1.2.1
+
+  postcss@8.5.15:
     dependencies:
       nanoid: 3.3.12
       picocolors: 1.1.1
@@ -16102,37 +16112,37 @@ snapshots:
 
   style-loader@3.3.4(webpack@5.106.2):
     dependencies:
-      webpack: 5.106.2(esbuild@0.27.7)(postcss@8.5.14)(webpack-cli@4.10.0)
+      webpack: 5.106.2(esbuild@0.27.7)(postcss@8.5.15)(webpack-cli@4.10.0)
 
-  stylelint-config-hope@11.0.0(postcss@8.5.14)(stylelint@17.11.0(typescript@6.0.3)):
+  stylelint-config-hope@11.0.0(postcss@8.5.15)(stylelint@17.11.0(typescript@6.0.3)):
     dependencies:
       stylelint: 17.11.0(typescript@6.0.3)
       stylelint-config-standard: 40.0.0(stylelint@17.11.0(typescript@6.0.3))
-      stylelint-config-standard-scss: 17.0.0(postcss@8.5.14)(stylelint@17.11.0(typescript@6.0.3))
+      stylelint-config-standard-scss: 17.0.0(postcss@8.5.15)(stylelint@17.11.0(typescript@6.0.3))
       stylelint-order: 7.0.1(stylelint@17.11.0(typescript@6.0.3))
     transitivePeerDependencies:
       - postcss
 
-  stylelint-config-recommended-scss@17.0.1(postcss@8.5.14)(stylelint@17.11.0(typescript@6.0.3)):
+  stylelint-config-recommended-scss@17.0.1(postcss@8.5.15)(stylelint@17.11.0(typescript@6.0.3)):
     dependencies:
-      postcss-scss: 4.0.9(postcss@8.5.14)
+      postcss-scss: 4.0.9(postcss@8.5.15)
       stylelint: 17.11.0(typescript@6.0.3)
       stylelint-config-recommended: 18.0.0(stylelint@17.11.0(typescript@6.0.3))
       stylelint-scss: 7.1.1(stylelint@17.11.0(typescript@6.0.3))
     optionalDependencies:
-      postcss: 8.5.14
+      postcss: 8.5.15
 
   stylelint-config-recommended@18.0.0(stylelint@17.11.0(typescript@6.0.3)):
     dependencies:
       stylelint: 17.11.0(typescript@6.0.3)
 
-  stylelint-config-standard-scss@17.0.0(postcss@8.5.14)(stylelint@17.11.0(typescript@6.0.3)):
+  stylelint-config-standard-scss@17.0.0(postcss@8.5.15)(stylelint@17.11.0(typescript@6.0.3)):
     dependencies:
       stylelint: 17.11.0(typescript@6.0.3)
-      stylelint-config-recommended-scss: 17.0.1(postcss@8.5.14)(stylelint@17.11.0(typescript@6.0.3))
+      stylelint-config-recommended-scss: 17.0.1(postcss@8.5.15)(stylelint@17.11.0(typescript@6.0.3))
       stylelint-config-standard: 40.0.0(stylelint@17.11.0(typescript@6.0.3))
     optionalDependencies:
-      postcss: 8.5.14
+      postcss: 8.5.15
 
   stylelint-config-standard@40.0.0(stylelint@17.11.0(typescript@6.0.3)):
     dependencies:
@@ -16325,16 +16335,16 @@ snapshots:
       minizlib: 3.1.0
       yallist: 5.0.0
 
-  terser-webpack-plugin@5.6.0(esbuild@0.27.7)(postcss@8.5.14)(webpack@5.106.2):
+  terser-webpack-plugin@5.6.0(esbuild@0.27.7)(postcss@8.5.15)(webpack@5.106.2):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       jest-worker: 27.5.1
       schema-utils: 4.3.3
       terser: 5.47.1
-      webpack: 5.106.2(esbuild@0.27.7)(postcss@8.5.14)(webpack-cli@4.10.0)
+      webpack: 5.106.2(esbuild@0.27.7)(postcss@8.5.15)(webpack-cli@4.10.0)
     optionalDependencies:
       esbuild: 0.27.7
-      postcss: 8.5.14
+      postcss: 8.5.15
 
   terser@5.47.1:
     dependencies:
@@ -17259,7 +17269,7 @@ snapshots:
       import-local: 3.2.0
       interpret: 2.2.0
       rechoir: 0.7.1
-      webpack: 5.106.2(esbuild@0.27.7)(postcss@8.5.14)(webpack-cli@4.10.0)
+      webpack: 5.106.2(esbuild@0.27.7)(postcss@8.5.15)(webpack-cli@4.10.0)
       webpack-merge: 5.10.0
 
   webpack-merge@5.10.0:
@@ -17272,7 +17282,7 @@ snapshots:
 
   webpack-virtual-modules@0.6.2: {}
 
-  webpack@5.106.2(esbuild@0.27.7)(postcss@8.5.14)(webpack-cli@4.10.0):
+  webpack@5.106.2(esbuild@0.27.7)(postcss@8.5.15)(webpack-cli@4.10.0):
     dependencies:
       '@types/eslint-scope': 3.7.7
       '@types/estree': 1.0.9
@@ -17295,7 +17305,7 @@ snapshots:
       neo-async: 2.6.2
       schema-utils: 4.3.3
       tapable: 2.3.3
-      terser-webpack-plugin: 5.6.0(esbuild@0.27.7)(postcss@8.5.14)(webpack@5.106.2)
+      terser-webpack-plugin: 5.6.0(esbuild@0.27.7)(postcss@8.5.15)(webpack@5.106.2)
       watchpack: 2.5.1
       webpack-sources: 3.4.1
     optionalDependencies:
