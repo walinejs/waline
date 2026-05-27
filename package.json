@@ -39,7 +39,7 @@
     "markdownlint-cli2": "0.22.1",
     "nano-staged": "1.0.2",
     "oxc-config-hope": "0.3.4",
-    "oxfmt": "0.49.0",
+    "oxfmt": "0.52.0",
     "oxlint": "1.64.0",
     "oxlint-tsgolint": "0.22.1",
     "picocolors": "1.1.1",
