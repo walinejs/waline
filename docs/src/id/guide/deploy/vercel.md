@@ -1,5 +1,5 @@
 ---
-title: Deployment Vercel
+title: Penerapan Vercel
 icon: vercel
 order: 1
 ---

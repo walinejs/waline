@@ -7,7 +7,7 @@ icon: style
 
 <!-- more -->
 
-## Nama Variabel CSS dan Nilai Default
+## Nama Variabel CSS dan Nilai Bawaan
 
 ```css
 :root {

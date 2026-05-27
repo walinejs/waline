@@ -30,7 +30,7 @@ Dengan cara ini, Anda dapat memperoleh konfigurasi terkait koneksi.
 
 ![Connection](../../../assets/tidb-7.png)
 
-## Deployment Vercel
+## Penerapan Vercel
 
 Buat akun Vercel, tambahkan proyek, dan deploy layanan Waline. Kemudian buka <kbd>Settings</kbd> proyek dan masuk ke `Environment Variables`. Klik <kbd>Add Environment Variable</kbd> dan tambahkan variabel berikut: `TIDB_HOST`, `TIDB_PORT`, `TIDB_DB`, `TIDB_USER`, dan `TIDB_PASSWORD`. Setelah menambahkan variabel-variabel ini, lakukan redeploy proyek.
 

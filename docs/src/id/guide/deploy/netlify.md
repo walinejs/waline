@@ -1,5 +1,5 @@
 ---
-title: Deployment Netlify
+title: Penerapan Netlify
 icon: netlify
 ---
 

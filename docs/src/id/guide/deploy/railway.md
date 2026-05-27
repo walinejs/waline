@@ -1,5 +1,5 @@
 ---
-title: Deployment Railway
+title: Penerapan Railway
 icon: railway
 ---
 
@@ -29,6 +29,6 @@ Buka repositori GitHub yang bersangkutan dan ubah nomor versi `@waline/vercel` d
 
 ## Cara Mengubah Variabel Lingkungan
 
-Klik tab <kbd>Variables</kbd> untuk masuk ke halaman manajemen variabel lingkungan. Deployment akan dilakukan secara otomatis setelah variabel diubah.
+Klik tab <kbd>Variables</kbd> untuk masuk ke halaman manajemen variabel lingkungan. Penerapan akan dilakukan secara otomatis setelah variabel diubah.
 
 ![railway4](../../../assets/railway-4.jpg)

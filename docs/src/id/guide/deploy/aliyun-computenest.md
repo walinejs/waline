@@ -24,7 +24,7 @@ Compute Nest menyediakan kemampuan layanan untuk setiap tahap manajemen siklus h
    | AliyunROSFullAccess             | Mengelola izin untuk Resource Orchestration Service (ROS)             |
    | AliyunComputeNestUserFullAccess | Mengelola izin sisi pengguna untuk layanan compute nest (ComputeNest) |
 
-1. Akses layanan Waline di Alibaba Compute Nest melalui [Tautan Deployment](https://computenest.console.aliyun.com/service/instance/create/default?type=user&ServiceName=Waline%20Community%20Edition), isi parameter deployment sesuai petunjuk
+1. Akses layanan Waline di Alibaba Compute Nest melalui [Tautan Penerapan](https://computenest.console.aliyun.com/service/instance/create/default?type=user&ServiceName=Waline%20Community%20Edition), isi parameter deployment sesuai petunjuk
 1. Pilih jenis pembayaran, spesifikasi instans ECS (yaitu server cloud), jenis disk sistem, dan password instans sesuai kebutuhan.
    ![computenest](../../../assets/aliyun-computenest-en-1.png)
 1. Pilih availability zone tempat instans ECS di-deploy, dan pilih VPC (jaringan privat) serta ID switch tempat instans ECS berada. Jika tidak ada VPC dan switch yang tersedia di akun Anda, Anda dapat langsung menuju konsol produk Alibaba Cloud yang relevan untuk membuatnya dengan mengklik "Create VPC" dan "Create vSwitch" di konsol Compute Nest. Klik Next: Confirm Order.

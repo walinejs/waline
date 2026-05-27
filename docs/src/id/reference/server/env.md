@@ -26,7 +26,7 @@ Anda harus mengatur melalui `Settings` - `Environment Variables` saat menggunaka
 
 ## Tampilan
 
-| Variabel Lingkungan     | Default                                                                 | Deskripsi                                                                     |
+| Variabel Lingkungan     | Bawaan                                                                  | Deskripsi                                                                     |
 | ----------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | `DISABLE_USERAGENT`     |                                                                         | apakah menyembunyikan user agent komentator. Nilai default adalah `false`     |
 | `DISABLE_REGION`        |                                                                         | apakah menyembunyikan wilayah komentator. Nilai default adalah `false`        |
@@ -39,14 +39,14 @@ Anda harus mengatur melalui `Settings` - `Environment Variables` saat menggunaka
 
 Berdasarkan jumlah komentar pengguna, label level akan ditambahkan ke komentator berdasarkan kondisi peringkat. Fitur ini dinonaktifkan secara default dan dapat diaktifkan dengan mengatur variabel lingkungan `LEVELS`. Konfigurasi dalam bentuk angka yang digabungkan dengan koma, misalnya `0,10,20,50,100,200` berarti:
 
-| Tingkat | Kondisi            | Label Tingkat Default |
-| ------- | ------------------ | --------------------- |
-| 0       | 0 <= count < 10    | Dwarves               |
-| 1       | 10 <= count < 20   | Hobbits               |
-| 2       | 20 <= count < 50   | Ents                  |
-| 3       | 50 <= count < 100  | Wizards               |
-| 4       | 100 <= count < 200 | Elves                 |
-| 5       | 200 <= count       | Maiar                 |
+| Tingkat | Kondisi            | Label Tingkat Bawaan |
+| ------- | ------------------ | -------------------- |
+| 0       | 0 <= count < 10    | Dwarves              |
+| 1       | 10 <= count < 20   | Hobbits              |
+| 2       | 20 <= count < 50   | Ents                 |
+| 3       | 50 <= count < 100  | Wizards              |
+| 4       | 100 <= count < 200 | Elves                |
+| 5       | 200 <= count       | Maiar                |
 
 Selain menyesuaikan aturan penilaian level, kita juga dapat menyesuaikan label level. Konfigurasikan teks di klien sebagai berikut:
 
@@ -69,7 +69,7 @@ Secara default, hanya 6 level teks yang disediakan, tetapi bukan berarti hanya b
 
 ## Keamanan
 
-| Variabel Lingkungan   | Default        | Deskripsi                                                                                                                           |
+| Variabel Lingkungan   | Bawaan         | Deskripsi                                                                                                                           |
 | --------------------- | -------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | `IPQPS`               | `60`           | Batas frekuensi posting komentar berbasis IP dalam detik. Atur ke 0 untuk tidak ada batas                                           |
 | `SECURE_DOMAINS`      |                | Konfigurasi Domain Aman. Mendukung beberapa domain yang dipisahkan dengan koma                                                      |
@@ -92,7 +92,7 @@ Saat mengatur domain keamanan, Anda perlu menambahkan alamat situs dan alamat se
 
 ## Markdown
 
-| Variabel Lingkungan  | Default   | Deskripsi                                                           |
+| Variabel Lingkungan  | Bawaan    | Deskripsi                                                           |
 | -------------------- | --------- | ------------------------------------------------------------------- |
 | `MARKDOWN_CONFIG`    | `{}`      | Konfigurasi MarkdownIt                                              |
 | `MARKDOWN_HIGHLIGHT` | `true`    | Apakah mengaktifkan highlight                                       |
@@ -132,7 +132,7 @@ Harap perhatikan secara khusus bahwa beberapa kotak surat menggunakan kata sandi
 
 ### MongoDB
 
-| Variabel Lingkungan | Wajib | Default   | Deskripsi                                     |
+| Variabel Lingkungan | Wajib | Bawaan    | Deskripsi                                     |
 | ------------------- | ----- | --------- | --------------------------------------------- |
 | `MONGO_DB`          | ✅    |           | Nama database MongoDB                         |
 | `MONGO_USER`        | ✅    |           | Nama pengguna server MongoDB                  |
@@ -145,7 +145,7 @@ Harap perhatikan secara khusus bahwa beberapa kotak surat menggunakan kata sandi
 
 ### MySQL
 
-| Variabel Lingkungan | Wajib | Default   | Deskripsi                      |
+| Variabel Lingkungan | Wajib | Bawaan    | Deskripsi                      |
 | ------------------- | ----- | --------- | ------------------------------ |
 | `MYSQL_DB`          | ✅    |           | Nama database MySQL            |
 | `MYSQL_USER`        | ✅    |           | Nama pengguna server MySQL     |
@@ -160,7 +160,7 @@ Harap perhatikan secara khusus bahwa beberapa kotak surat menggunakan kata sandi
 
 [Buat database di TiDB](../../../id/guide/deploy/tidb.md)
 
-| Variabel Lingkungan | Wajib | Default   | Deskripsi                 |
+| Variabel Lingkungan | Wajib | Bawaan    | Deskripsi                 |
 | ------------------- | ----- | --------- | ------------------------- |
 | `TIDB_DB`           | ✅    |           | Nama database TiDB        |
 | `TIDB_USER`         | ✅    |           | Nama pengguna server TiDB |
@@ -172,16 +172,16 @@ Harap perhatikan secara khusus bahwa beberapa kotak surat menggunakan kata sandi
 
 ### SQLite
 
-| Variabel Lingkungan | Wajib | Default | Deskripsi                                                           |
-| ------------------- | ----- | ------- | ------------------------------------------------------------------- |
-| `SQLITE_PATH`       | ✅    |         | Path file penyimpanan SQLite, tidak termasuk nama file              |
-| `JWT_TOKEN`         | ✅    |         | String acak untuk generator token login                             |
-| `SQLITE_DB`         |       | waline  | Nama file penyimpanan SQLite, ubah jika nama file Anda bukan waline |
-| `SQLITE_PREFIX`     |       | `wl_`   | Prefiks tabel SQLite                                                |
+| Variabel Lingkungan | Wajib | Bawaan | Deskripsi                                                           |
+| ------------------- | ----- | ------ | ------------------------------------------------------------------- |
+| `SQLITE_PATH`       | ✅    |        | Path file penyimpanan SQLite, tidak termasuk nama file              |
+| `JWT_TOKEN`         | ✅    |        | String acak untuk generator token login                             |
+| `SQLITE_DB`         |       | waline | Nama file penyimpanan SQLite, ubah jika nama file Anda bukan waline |
+| `SQLITE_PREFIX`     |       | `wl_`  | Prefiks tabel SQLite                                                |
 
 ### PostgreSQL
 
-| Variabel Lingkungan | Wajib | Default   | Deskripsi                                    |
+| Variabel Lingkungan | Wajib | Bawaan    | Deskripsi                                    |
 | ------------------- | ----- | --------- | -------------------------------------------- |
 | `PG_DB`             | ✅    |           | Nama database PostgreSQL                     |
 | `PG_USER`           | ✅    |           | Nama pengguna server PostgreSQL              |
@@ -200,15 +200,15 @@ Harap perhatikan secara khusus bahwa beberapa kotak surat menggunakan kata sandi
 
 ### GitHub
 
-| Variabel Lingkungan | Wajib | Default | Deskripsi                                                                                                      |
-| ------------------- | ----- | ------- | -------------------------------------------------------------------------------------------------------------- |
-| `GITHUB_TOKEN`      | ✅    |         | [Token akses personal](https://github.com/settings/tokens)                                                     |
-| `GITHUB_REPO`       | ✅    |         | nama repositori, seperti `walinejs/waline`                                                                     |
-| GITHUB_PATH         |       |         | Direktori penyimpanan data, seperti `data` berarti disimpan di direktori `data`, direktori root secara default |
+| Variabel Lingkungan | Wajib | Bawaan | Deskripsi                                                                                                      |
+| ------------------- | ----- | ------ | -------------------------------------------------------------------------------------------------------------- |
+| `GITHUB_TOKEN`      | ✅    |        | [Token akses personal](https://github.com/settings/tokens)                                                     |
+| `GITHUB_REPO`       | ✅    |        | nama repositori, seperti `walinejs/waline`                                                                     |
+| GITHUB_PATH         |       |        | Direktori penyimpanan data, seperti `data` berarti disimpan di direktori `data`, direktori root secara default |
 
 ## Lanjutan
 
-| Variabel Lingkungan             | Default                     | Deskripsi                                                                                                   |
+| Variabel Lingkungan             | Bawaan                      | Deskripsi                                                                                                   |
 | ------------------------------- | --------------------------- | ----------------------------------------------------------------------------------------------------------- |
 | `OAUTH_URL`                     | `https://oauth.lithub.cc`   | URL Layanan Login Sosial OAuth. Anda dapat [membangun auth Anda sendiri](https://github.com/walinejs/auth). |
 | `WEBHOOK`                       |                             | Anda dapat mengatur URL Webhook yang akan dipicu ketika ada komentar baru.                                  |

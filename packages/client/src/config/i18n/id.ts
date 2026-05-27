@@ -2,7 +2,7 @@ import { generateLocale } from './generate.js';
 
 export default generateLocale([
   'Nama Panggilan',
-  'Nama Panggilan tidak boleh kurang dari 3 bita.',
+  'Nama Panggilan tidak boleh kurang dari 3 byte.',
   'E-Mail',
   'Silakan konfirmasi alamat email Anda.',
   'Situs Web',

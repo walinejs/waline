@@ -14,7 +14,7 @@ Anda hanya perlu mengonfigurasi variabel lingkungan, dan Waline akan secara otom
 
 <https://mongodb.com> secara resmi menyediakan dukungan database MongoDB 512M secara gratis. Berikut adalah variabel lingkungan yang perlu dikonfigurasi untuk menggunakan database MongoDB.
 
-| Variabel Lingkungan | Wajib | Default   | Deskripsi                                     |
+| Variabel Lingkungan | Wajib | Bawaan    | Deskripsi                                     |
 | ------------------- | ----- | --------- | --------------------------------------------- |
 | `MONGO_DB`          | ✅    |           | Nama database MongoDB                         |
 | `MONGO_USER`        | ✅    |           | Username server MongoDB                       |
@@ -44,7 +44,7 @@ Menggunakan MySQL untuk menyimpan data juga merupakan pilihan yang baik. Selain 
 
 Jika ingin menggunakan MySQL sebagai penyimpanan, Anda perlu mengimpor [waline.sql](https://github.com/walinejs/waline/blob/main/assets/waline.sql) terlebih dahulu untuk membuat tabel dan struktur tabel, kemudian atur variabel lingkungan berikut dalam proyek.
 
-| Variabel Lingkungan | Wajib | Default   | Deskripsi                      |
+| Variabel Lingkungan | Wajib | Bawaan    | Deskripsi                      |
 | ------------------- | ----- | --------- | ------------------------------ |
 | `MYSQL_DB`          | ✅    |           | Nama database MySQL            |
 | `MYSQL_USER`        | ✅    |           | Username server MySQL          |
@@ -61,7 +61,7 @@ Jika ingin menggunakan MySQL sebagai penyimpanan, Anda perlu mengimpor [waline.s
 
 Silakan lihat [Membuat database TiDB](../../id/guide/deploy/tidb.md) untuk memahami proses inisialisasi.
 
-| Variabel Lingkungan | Wajib | Default   | Deskripsi                    |
+| Variabel Lingkungan | Wajib | Bawaan    | Deskripsi                    |
 | ------------------- | ----- | --------- | ---------------------------- |
 | `TIDB_DB`           | ✅    |           | Nama database TiDB           |
 | `TIDB_USER`         | ✅    |           | Nama pengguna database TiDB  |
@@ -75,18 +75,18 @@ Silakan lihat [Membuat database TiDB](../../id/guide/deploy/tidb.md) untuk memah
 
 Unduh [waline.sqlite](https://github.com/walinejs/waline/blob/main/assets/waline.sqlite) ke server Anda jika ingin menggunakan SQLite. Kemudian atur variabel lingkungan berikut dalam proyek.
 
-| Variabel Lingkungan | Wajib | Default | Deskripsi                                                           |
-| ------------------- | ----- | ------- | ------------------------------------------------------------------- |
-| `SQLITE_PATH`       | ✅    |         | Path file penyimpanan SQLite, tidak termasuk nama file              |
-| `JWT_TOKEN`         | ✅    |         | String acak untuk generator token login                             |
-| `SQLITE_DB`         |       | waline  | Nama file penyimpanan SQLite, ubah jika nama file Anda bukan waline |
-| `SQLITE_PREFIX`     |       | `wl_`   | Prefiks tabel SQLite                                                |
+| Variabel Lingkungan | Wajib | Bawaan | Deskripsi                                                           |
+| ------------------- | ----- | ------ | ------------------------------------------------------------------- |
+| `SQLITE_PATH`       | ✅    |        | Path file penyimpanan SQLite, tidak termasuk nama file              |
+| `JWT_TOKEN`         | ✅    |        | String acak untuk generator token login                             |
+| `SQLITE_DB`         |       | waline | Nama file penyimpanan SQLite, ubah jika nama file Anda bukan waline |
+| `SQLITE_PREFIX`     |       | `wl_`  | Prefiks tabel SQLite                                                |
 
 ## PostgreSQL
 
 [Supabase](https://supabase.com) dan [Neon](https://neon.tech/home) menawarkan database gratis 512M, sementara [Tembo](https://tembo.io/) menyediakan dukungan database PG 10G secara gratis. Sama seperti MySQL, Anda perlu mengimpor [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) untuk membuat tabel dan struktur tabel sebelum menggunakan PostgreSQL.
 
-| Variabel Lingkungan | Wajib | Default   | Deskripsi                            |
+| Variabel Lingkungan | Wajib | Bawaan    | Deskripsi                            |
 | ------------------- | ----- | --------- | ------------------------------------ |
 | `PG_DB`             | ✅    |           | Nama database PostgreSQL             |
 | `PG_USER`           | ✅    |           | Username server PostgreSQL           |
@@ -107,11 +107,11 @@ Unduh [waline.sqlite](https://github.com/walinejs/waline/blob/main/assets/waline
 
 Waline mendukung penyimpanan data komentar dalam file CSV di GitHub. Untuk menggunakan GitHub sebagai penyimpanan data, Anda perlu mengajukan Personal access tokens. Anda dapat mengklik <kbd>Generate new token</kbd> untuk mengajukannya di <https://github.com/settings/tokens>. Centang opsi **repo** pada izin untuk mendapatkan izin baca dan tulis ke repositori.
 
-| Variabel Lingkungan | Wajib | Default | Deskripsi                                                                                                       |
-| ------------------- | ----- | ------- | --------------------------------------------------------------------------------------------------------------- |
-| `GITHUB_TOKEN`      | ✅    |         | [Personal access tokens](https://github.com/settings/tokens)                                                    |
-| `GITHUB_REPO`       | ✅    |         | Nama repositori, seperti `walinejs/waline`                                                                      |
-| GITHUB_PATH         |       |         | Direktori penyimpanan data, misalnya `data` berarti disimpan di direktori `data`, default adalah direktori root |
+| Variabel Lingkungan | Wajib | Bawaan | Deskripsi                                                                                                       |
+| ------------------- | ----- | ------ | --------------------------------------------------------------------------------------------------------------- |
+| `GITHUB_TOKEN`      | ✅    |        | [Personal access tokens](https://github.com/settings/tokens)                                                    |
+| `GITHUB_REPO`       | ✅    |        | Nama repositori, seperti `walinejs/waline`                                                                      |
+| GITHUB_PATH         |       |        | Direktori penyimpanan data, misalnya `data` berarti disimpan di direktori `data`, default adalah direktori root |
 
 ::: warning
 

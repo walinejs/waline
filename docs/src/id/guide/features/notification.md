@@ -55,7 +55,7 @@ Kami menggunakan [Mr. Server](http://sc.ftqq.com/3.version) untuk notifikasi WeC
 Kami menggunakan [Mr. Qmsg](https://qmsg.zendee.cn) untuk mengirim notifikasi QQ. Anda perlu menetapkan `QMSG_KEY` di env yang didapatkan dari Mr. Qmsg.
 
 - `QMSG_KEY`: KEY yang didapatkan dari Mr. Qmsg, diperlukan untuk layanan ini.
-- `QMSG_HOST`: HOST yang didapatkan dari Mr. QmsgPrivate, Opsional. Diperlukan untuk host ini. Default-nya adalah `https://qmsg.zendee.cn`
+- `QMSG_HOST`: HOST yang didapatkan dari Mr. QmsgPrivate, Opsional. Diperlukan untuk host ini. Bawaannya adalah `https://qmsg.zendee.cn`
 - `QQ_ID`: ID QQ dari penerima, kecuali grup QQ. Jika ada lebih dari satu ID QQ, gunakan koma untuk memisahkan beberapa nilai, misalnya `1244453393,2952937634` (semuanya harus termasuk dalam daftar ID QQ Mr. Qmsg Anda).
 - `AUTHOR_EMAIL`: Email blogger digunakan untuk membedakan apakah komentar yang diposting adalah dari blogger itu sendiri. Jika komentar diposting oleh blogger, tidak akan ada notifikasi pengingat.
 - `SITE_NAME`: Nama situs Anda, akan ditampilkan dalam pesan notifikasi.
@@ -117,17 +117,17 @@ Template meneruskan parameter melalui objek `self`, `parent`, dan `site`, yang m
 
 - `self`: Komentar itu sendiri
 
-  | variabel        | deskripsi                    |
-  | --------------- | ---------------------------- |
-  | nick            | Nama panggilan komentator    |
-  | mail            | Email komentator             |
-  | link            | Situs web komentator         |
-  | url             | Alamat artikel               |
-  | comment         | Konten komentar              |
-  | browser         | Nama browser                 |
-  | os              | Nama sistem operasi          |
-  | avatar          | avatar                       |
-  | _commentLink_\* | Tautan dalam komentar        |
+  | variabel        | deskripsi                 |
+  | --------------- | ------------------------- |
+  | nick            | Nama panggilan komentator |
+  | mail            | Email komentator          |
+  | link            | Situs web komentator      |
+  | url             | Alamat artikel            |
+  | comment         | Konten komentar           |
+  | browser         | Nama browser              |
+  | os              | Nama sistem operasi       |
+  | avatar          | avatar                    |
+  | _commentLink_\* | Tautan dalam komentar     |
 
   \*: commentLink hanya tersedia dalam notifikasi Telegram dan akan secara otomatis dikemas dalam format Markdown.
 
@@ -145,13 +145,13 @@ Template meneruskan parameter melalui objek `self`, `parent`, dan `site`, yang m
 
 - `site`: Konfigurasi situs web
 
-  | variabel | deskripsi                    |
-  | -------- | ---------------------------- |
-  | name     | Nama situs                   |
-  | url      | URL situs                    |
-  | postUrl  | Alamat lengkap komentar      |
+  | variabel | deskripsi               |
+  | -------- | ----------------------- |
+  | name     | Nama situs              |
+  | url      | URL situs               |
+  | postUrl  | Alamat lengkap komentar |
 
-### Template Default
+### Template Bawaan
 
 Template default dilampirkan di sini sebagai referensi Anda:
 

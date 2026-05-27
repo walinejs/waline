@@ -72,14 +72,14 @@ Jika Anda hanya menginginkan counter di bawah, atur opsi ini ke `null`.
 - Tipe: `boolean | string`
 - Bawaan: `false`
 
-Counter jumlah komentar artikel, ketika diisi dengan string, akan digunakan sebagai selektor CSS.
+Penghitung jumlah komentar artikel; ketika diisi dengan string, nilai tersebut akan digunakan sebagai selektor CSS.
 
 ### pageview
 
 - Tipe: `boolean | string`
 - Bawaan: `false`
 
-Counter pageview. Ketika diisi dengan string, akan digunakan sebagai selektor CSS.
+Penghitung pageview. Ketika diisi dengan string, nilai tersebut akan digunakan sebagai selektor CSS.
 
 ## commentCount
 

@@ -4,11 +4,11 @@ icon: server
 order: 2
 ---
 
-## Deployment
+## Penerapan
 
 Selain men-deploy di Vercel secara gratis, Anda dapat men-deploy melalui docker atau langsung di lingkungan self-hosted, serta ke platform cloud umum lainnya. Untuk informasi lebih lanjut, lihat:
 
-- [Deployment mandiri](../deploy/vps.md)
+- [Penerapan mandiri](../deploy/vps.md)
 
 - [Railway](../deploy/railway.md)
 

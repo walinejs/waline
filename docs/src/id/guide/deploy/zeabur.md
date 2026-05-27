@@ -1,5 +1,5 @@
 ---
-title: Deployment Zeabur
+title: Penerapan Zeabur
 icon: zeabur
 ---
 
