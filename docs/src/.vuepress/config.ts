@@ -86,7 +86,7 @@ export default defineUserConfig({
     importCode: {
       handleImportPath: (str) =>
         str === '@waline/api/types'
-          ? path.resolve(__dirname, '../../../packages/api/dist/api.d.ts')
+          ? path.resolve(__dirname, '../../../packages/api/dist/index.d.ts')
           : str,
     },
   },

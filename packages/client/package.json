@@ -56,7 +56,7 @@
     "provenance": true
   },
   "scripts": {
-    "build": "tsdown && pnpm run style",
+    "build": "pnpm run style && tsdown",
     "clean": "rimraf ./dist",
     "dev": "vite",
     "prepublishOnly": "pnpm run clean && pnpm run build",
