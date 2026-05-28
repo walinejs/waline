@@ -3,7 +3,7 @@ const Akismet = require('akismet');
 const DEFAULT_KEY = '70542d86693e';
 
 // oxlint-disable-next-line func-names
-module.exports = async function (comment, blog) {
+module.exports = function (comment, blog) {
   let { AKISMET_KEY, SITE_URL } = process.env;
 
   if (!AKISMET_KEY) {
