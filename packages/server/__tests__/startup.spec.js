@@ -1,13 +1,32 @@
+import { spawn } from 'node:child_process';
+import path from 'node:path';
+
 import { describe, expect, it } from 'vitest';
 
-import akismet from '../src/service/akismet';
+const testDir = import.meta.dirname;
 
 describe('server startup', () => {
-  it('exports an akismet helper compatible with the service loader', () => {
-    expect(akismet).toBeTypeOf('function');
-    expect(() => {
-      akismet.prototype.__filename =
-        '/tmp/workspace/walinejs/waline/packages/server/src/service/akismet.js';
-    }).not.toThrow();
+  it('does not crash with the __filename loader error', async () => {
+    const serverPath = path.join(testDir, '..', 'vanilla.js');
+
+    const output = await new Promise((resolve, reject) => {
+      const child = spawn('timeout', ['5s', process.execPath, serverPath], {
+        cwd: path.join(testDir, '..'),
+      });
+      let data = '';
+
+      child.stdout.on('data', (chunk) => {
+        data += chunk.toString();
+      });
+      child.stderr.on('data', (chunk) => {
+        data += chunk.toString();
+      });
+      child.on('error', reject);
+      child.on('close', () => {
+        resolve(data);
+      });
+    });
+
+    expect(output).not.toContain("Cannot set properties of undefined (setting '__filename')");
   });
 });
