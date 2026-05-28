@@ -15,7 +15,7 @@ describe('server startup', () => {
       RegisterHTMLHandler(liteAdaptor());
       require('./vanilla.js');
       console.log('startup-script-loaded');
-      setTimeout(() => process.exit(0), 2000);
+      setTimeout(() => process.exit(0), 50);
     `;
 
     const output = await new Promise((resolve, reject) => {
