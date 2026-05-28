@@ -1,7 +1,6 @@
 {
   "extends": "@mr-hope/tsconfig/web.json",
   "compilerOptions": {
-    "rootDir": "./src",
     "types": ["node", "vite/client"]
   },
   "include": ["./src/**/*.ts", "./src/**/*.vue", "./__tests__/**/*.ts"]

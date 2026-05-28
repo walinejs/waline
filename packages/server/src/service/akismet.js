@@ -14,12 +14,10 @@ module.exports = async function (comment, blog) {
     return false;
   }
 
-  // oxlint-disable-next-line func-names
-  return new Promise(function (resolve, reject) {
+  return new Promise((resolve, reject) => {
     const akismet = Akismet.client({ blog, apiKey: AKISMET_KEY });
 
-    // oxlint-disable-next-line func-names
-    akismet.verifyKey(function (err, verifyKey) {
+    akismet.verifyKey((err, verifyKey) => {
       if (err) {
         reject(err);
         return;
@@ -35,8 +33,7 @@ module.exports = async function (comment, blog) {
           comment_author: comment.nick,
           comment_content: comment.comment,
         },
-        // oxlint-disable-next-line func-names
-        function (err, spam) {
+        (err, spam) => {
           if (err) {
             reject(err);
             return;
