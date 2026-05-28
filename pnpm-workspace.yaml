@@ -45,3 +45,6 @@ trustPolicy: no-downgrade
 trustPolicyExclude:
   - tinyexec@1.2.2
   - semver@6.3.1
+
+# disable minimum release age to allow immediate releases
+minimumReleaseAge: 0
