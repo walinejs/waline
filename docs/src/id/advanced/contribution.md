@@ -25,14 +25,14 @@ Jika Anda ingin berkontribusi pada waline, berikut adalah panduannya.
    Instal dan gunakan pnpm untuk menginstal dependensi.
 
    ```bash
-   npm i -g pnpm@latest
+   corepack enable
    ```
 
    :::
 
    ```bash
    cd waline
-   pnpm i
+   pnpm ci
    ```
 
 ## Pengembangan

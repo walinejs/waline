@@ -25,14 +25,14 @@ order: -1
    请使用 pnpm 安装依赖:
 
    ```bash
-   npm i -g pnpm@latest
+   corepack enable
    ```
 
    :::
 
    ```bash
    cd waline
-   pnpm i
+   pnpm ci
    ```
 
 ## 开发
