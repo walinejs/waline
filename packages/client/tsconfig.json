@@ -1,7 +1,10 @@
 {
   "extends": "@mr-hope/tsconfig/web.json",
   "compilerOptions": {
-    "types": ["node", "vite/client"]
+    "types": ["node", "vite/client"],
+    "paths": {
+      "@waline/api": ["../api/src/index.ts"]
+    }
   },
   "include": ["./src/**/*.ts", "./src/**/*.vue", "./__tests__/**/*.ts"]
 }

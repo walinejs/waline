@@ -50,7 +50,6 @@ Waline menyediakan serangkaian preset emoji yang siap digunakan. Anda dapat mena
     ```
 
   ::: details Preset lainnya
-
   - Full: (Tidak disarankan)
 
     ```http
