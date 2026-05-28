@@ -7,11 +7,20 @@ const testDir = import.meta.dirname;
 
 describe('server startup', () => {
   it('does not crash with the __filename loader error', async () => {
-    const serverPath = path.join(testDir, '..', 'vanilla.js');
+    const serverRoot = path.join(testDir, '..');
+    const script = `
+      const { liteAdaptor } = require('mathjax-full/js/adaptors/liteAdaptor.js');
+      const { RegisterHTMLHandler } = require('mathjax-full/js/handlers/html.js');
+
+      RegisterHTMLHandler(liteAdaptor());
+      require('./vanilla.js');
+      console.log('startup-script-loaded');
+      setTimeout(() => process.exit(0), 2000);
+    `;
 
     const output = await new Promise((resolve, reject) => {
-      const child = spawn('timeout', ['5s', process.execPath, serverPath], {
-        cwd: path.join(testDir, '..'),
+      const child = spawn(process.execPath, ['-e', script], {
+        cwd: serverRoot,
       });
       let data = '';
 
@@ -27,6 +36,7 @@ describe('server startup', () => {
       });
     });
 
+    expect(output).toContain('startup-script-loaded');
     expect(output).not.toContain("Cannot set properties of undefined (setting '__filename')");
   });
 });
