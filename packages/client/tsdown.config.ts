@@ -31,9 +31,12 @@ const onlyBundle = [
 
 export default defineConfig([
   {
-    entry: './src/entries/full.ts',
+    entry: { waline: './src/entries/full.ts' },
     fixedExtension: false,
+    format: ['esm', 'umd'],
+    globalName: 'Waline',
     minify: true,
+    sourcemap: true,
     target: ['node22', 'baseline-widely-available'],
     define,
     alias: {
@@ -57,6 +60,7 @@ export default defineConfig([
     entry: { slim: './src/entries/full.ts' },
     fixedExtension: false,
     minify: true,
+    sourcemap: true,
     target: ['node22', 'baseline-widely-available'],
     define,
     plugins: [
@@ -70,6 +74,7 @@ export default defineConfig([
     entry: './src/entries/component.ts',
     fixedExtension: false,
     minify: true,
+    sourcemap: true,
     target: ['node22', 'baseline-widely-available'],
     define,
     dts: false,
@@ -96,9 +101,15 @@ export default defineConfig([
   {
     entry: './src/entries/comment.ts',
     fixedExtension: false,
+    format: ['esm', 'umd'],
+    globalName: 'WalineComment',
     minify: true,
+    sourcemap: true,
     target: ['node22', 'baseline-widely-available'],
     define,
+    deps: {
+      alwaysBundle: ['@waline/api'],
+    },
     treeshake: {
       moduleSideEffects: false,
     },
@@ -106,9 +117,15 @@ export default defineConfig([
   {
     entry: './src/entries/pageview.ts',
     fixedExtension: false,
+    format: ['esm', 'umd'],
+    globalName: 'WalinePageview',
     minify: true,
+    sourcemap: true,
     target: ['node22', 'baseline-widely-available'],
     define,
+    deps: {
+      alwaysBundle: ['@waline/api'],
+    },
     treeshake: {
       moduleSideEffects: false,
     },
