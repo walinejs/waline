@@ -3,14 +3,14 @@ const { Author, Blog, CheckResult, Client, Comment } = require('@cedx/akismet');
 const DEFAULT_KEY = '70542d86693e';
 
 module.exports = class extends think.Service {
-  constructor(ctx) {
-    super(ctx);
+  constructor(blog) {
+    super(blog);
 
     const { AKISMET_KEY, SITE_URL } = process.env;
     const key = AKISMET_KEY || DEFAULT_KEY;
 
     if (key.toLowerCase() !== 'false') {
-      this.akismet = new Client(key, new Blog({ url: ctx.serverURL || SITE_URL }));
+      this.akismet = new Client(key, new Blog({ url: blog || SITE_URL }));
     }
   }
 
