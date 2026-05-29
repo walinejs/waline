@@ -14,8 +14,6 @@ export default {
       return '@next';
     }
 
-    // for markdown-it plugins, we should use cjs version
-    if (name.startsWith('@mdit/')) return '@cjs';
     // jsdom v20+ are ESM only
     if (name === 'jsdom') return 'minor';
     if (name === '@types/node') return 'minor';
