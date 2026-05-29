@@ -25,19 +25,19 @@ If you want to contribute to waline, here is a guide.
    Install and use pnpm to install dependencies.
 
    ```bash
-   npm i -g pnpm@latest
+   corepack enable
    ```
 
    :::
 
    ```bash
    cd waline
-   pnpm i
+   pnpm ci
    ```
 
 ## Development
 
-- Run `pnpm client:dev` to start `@waline/client` devServer
+- Run `pnpm  run client:dev` to start `@waline/client` devServer
 
   ::: tip
 
@@ -45,7 +45,7 @@ If you want to contribute to waline, here is a guide.
 
   :::
 
-- Run `pnpm server:dev` to start `@waline/server` devServer
+- Run `pnpm run server:dev` to start `@waline/server` devServer
 
   ::: tip
 

@@ -23,21 +23,20 @@ icon: valine
      </script>
    ```
 
-::: tip Config
+   ::: tip Config
 
-Waline V2 has removed Valine support and moved to a better configuration. The following is a migration summary of some options:
+   Waline V2 has removed Valine support and moved to a better configuration. The following is a migration summary of some options:
+   - `placeholder`: use `locales.placeholder`
+   - `highlight`: use `highlighter`
+   - `avatarForce`, `avatar`: use the server's `AVATAR_PROXY` environment variable
+   - `recordIP`: no longer display the user IP, and provide the `DISABLE_USERAGENT` environment variable on the server
+   - `requiredFields`: renamed to `requiredMeta`
+   - `langMode`: renamed to `locales`
+   - `emojiCDN`, `emojiMap`: use more powerful `emoji` options
 
-- `placeholder`: use `locales.placeholder`
-- `highlight`: use `highlighter`
-- `avatarForce`, `avatar`: use the server's `AVATAR_PROXY` environment variable
-- `recordIP`: no longer display the user IP, and provide the `DISABLE_USERAGENT` environment variable on the server
-- `requiredFields`: renamed to `requiredMeta`
-- `langMode`: renamed to `locales`
-- `emojiCDN`, `emojiMap`: use more powerful `emoji` options
+   For waline config, please refer to [Client Config](../reference/client/api.md). You can also check [Waline Client V2 Migration Guide](./v2.md) to learn about the options that are not compatible with Valine.
 
-For waline config, please refer to [Client Config](../reference/client/api.md). You can also check [Waline Client V2 Migration Guide](./v2.md) to learn about the options that are not compatible with Valine.
-
-:::
+   :::
 
 3. Migrate data
 

@@ -15,10 +15,10 @@ export default function Forgot() {
 
   useEffect(() => {
     // if logged
-    if (user && user.objectId) {
+    if (user?.objectId) {
       navigate('/ui', { replace: true });
     }
-  }, [navigate]);
+  }, [navigate, user?.objectId]);
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -59,7 +59,7 @@ export default function Forgot() {
       </div>
       <div className="typecho-login-wrap">
         <div className="typecho-login">
-          <form method="post" name="login" role="form" onSubmit={onSubmit}>
+          <form method="post" name="login" onSubmit={onSubmit}>
             <ul className="typecho-option">
               <li>
                 <label htmlFor="email" className="sr-only">

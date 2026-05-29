@@ -1,15 +1,16 @@
-import en from './en.json';
-import zhCN from './zh-CN.json';
-import zhTW from './zh-TW.json';
-import jp from './jp.json';
-import koKR from './ko-KR.json';
 import de from './de.json';
+import en from './en.json';
 import es from './es.json';
 import fr from './fr.json';
+import id from './id.json';
+import it from './it.json';
+import jp from './jp.json';
+import koKR from './ko-KR.json';
+import ptBR from './pt-BR.json';
 import ru from './ru.json';
 import viVN from './vi-VN.json';
-import ptBR from './pt-BR.json';
-import it from './it.json';
+import zhCN from './zh-CN.json';
+import zhTW from './zh-TW.json';
 
 export const LANGUAGE_OPTIONS = [
   {
@@ -26,6 +27,11 @@ export const LANGUAGE_OPTIONS = [
     label: 'English',
     value: 'en-US',
     alias: ['en', 'en-US'],
+  },
+  {
+    label: 'Bahasa Indonesia',
+    value: 'id',
+    alias: ['id', 'id-ID'],
   },
   {
     label: 'Deutsch',
@@ -80,6 +86,8 @@ export default {
   en: { translations: en },
   'en-US': { translations: en },
   'zh-TW': { translations: zhTW },
+  id: { translations: id },
+  'id-ID': { translations: id },
   fr: { translations: fr },
   'fr-FR': { translations: fr },
   it: { translations: it },

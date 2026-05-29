@@ -1,0 +1,176 @@
+import { defineHopeConfig } from 'oxc-config-hope/oxlint';
+
+export default defineHopeConfig(
+  {
+    ignore: ['example/', '**/.vuepress/utils/transform/', '**/.vuepress/utils/csv.js'],
+    node: ['packages/cloudbase/**', 'packages/server/**/*.js', 'scripts/thinkjs-mock.js'],
+    react: true,
+    vue: true,
+    vitest: true,
+    rules: {
+      curly: ['warn', 'multi-line'],
+      'no-alert': 'off',
+      'no-warning-comments': 'off',
+      'prefer-global-this': 'off',
+      'unicorn/prefer-global-this': 'off',
+      eqeqeq: 'off',
+      'node/global-require': 'off',
+      'node/no-process-env': 'off',
+      'no-undefined': 'off',
+    },
+  },
+  {
+    files: ['packages/admin/src/**'],
+    plugins: ['react'],
+    rules: {
+      'id-length': [
+        'warn',
+        {
+          min: 2,
+          exceptions: ['i', 'j', 'x', 'y', 'z', 't', '_'],
+        },
+      ],
+      'jsx-a11y/alt-text': 'warn',
+      'jsx-a11y/anchor-has-content': 'warn',
+      'jsx-a11y/anchor-is-valid': 'warn',
+      'jsx-a11y/aria-activedescendant-has-tabindex': 'warn',
+      'jsx-a11y/aria-props': 'warn',
+      'jsx-a11y/aria-proptypes': 'warn',
+      'jsx-a11y/aria-role': 'warn',
+      'jsx-a11y/aria-unsupported-elements': 'warn',
+      'jsx-a11y/autocomplete-valid': 'warn',
+      'jsx-a11y/click-events-have-key-events': 'warn',
+      'jsx-a11y/control-has-associated-label': 'warn',
+      'jsx-a11y/heading-has-content': 'warn',
+      'jsx-a11y/html-has-lang': 'warn',
+      'jsx-a11y/iframe-has-title': 'warn',
+      'jsx-a11y/img-redundant-alt': 'warn',
+      'jsx-a11y/interactive-supports-focus': 'warn',
+      'jsx-a11y/label-has-associated-control': 'warn',
+      'jsx-a11y/lang': 'warn',
+      'jsx-a11y/media-has-caption': 'warn',
+      'jsx-a11y/mouse-events-have-key-events': 'warn',
+      'jsx-a11y/no-access-key': 'warn',
+      'jsx-a11y/no-aria-hidden-on-focusable': 'warn',
+      'jsx-a11y/no-autofocus': 'warn',
+      'jsx-a11y/no-distracting-elements': 'warn',
+      'jsx-a11y/no-interactive-element-to-noninteractive-role': 'warn',
+      'jsx-a11y/no-noninteractive-element-interactions': 'warn',
+      'jsx-a11y/no-noninteractive-element-to-interactive-role': 'warn',
+      'jsx-a11y/no-noninteractive-tabindex': 'warn',
+      'jsx-a11y/no-redundant-roles': 'warn',
+      'jsx-a11y/no-static-element-interactions': 'warn',
+      'jsx-a11y/prefer-tag-over-role': 'warn',
+      'jsx-a11y/role-has-required-aria-props': 'warn',
+      'jsx-a11y/role-supports-aria-props': 'warn',
+      'jsx-a11y/scope': 'warn',
+      'jsx-a11y/tabindex-no-positive': 'warn',
+      'react/jsx-max-depth': 'off',
+      'typescript/no-floating-promises': 'off',
+      'typescript/unbound-method': 'off',
+      'unicorn/prefer-global-this': 'off',
+
+      'no-shadow': 'off',
+      'promise/catch-or-return': 'off',
+      'max-lines-per-function': 'off',
+      'max-lines': 'off',
+      complexity: 'off',
+      'max-depth': 'off',
+      'react/no-danger': 'off',
+
+      // temporarily disable to avoid too many warnings, will be re-enabled in the future
+      'react-perf/jsx-no-jsx-as-prop': 'off',
+      'react-perf/jsx-no-new-object-as-prop': 'off',
+      'react-perf/jsx-no-new-function-as-prop': 'off',
+      'react-perf/jsx-no-new-array-as-prop': 'off',
+    },
+  },
+  {
+    files: ['packages/client/src/**'],
+    plugins: ['vue'],
+    rules: {
+      'eslint-plugin-react-hooks/rules-of-hooks': 'off',
+      'vue/max-props': ['warn', { maxProps: 5 }],
+      'no-shadow': 'off',
+    },
+  },
+  {
+    files: [
+      'packages/cloudbase/**',
+      'packages/hexo-next/**',
+      'packages/server/**',
+      'scripts/thinkjs-mock.js',
+    ],
+    rules: {
+      // cjs related rules
+      'import/no-commonjs': 'off',
+      'import/unambiguous': 'off',
+      'typescript/no-require-imports': 'off',
+
+      'unicorn/prefer-module': 'off',
+    },
+  },
+  {
+    files: ['packages/server/**/*.js'],
+    rules: {
+      'class-methods-use-this': 'off',
+      complexity: 'off',
+      'max-lines': 'off',
+      'max-lines-per-function': 'off',
+      'max-statements': 'off',
+      'no-console': 'off',
+      'no-await-in-loop': 'off',
+      'no-callback-in-promise': 'off',
+      'no-empty-function': 'off',
+      'no-underscore-dangle': ['warn', { allow: ['__before', '__filename', '_complex', '_logic'] }],
+      'require-await': 'off',
+
+      'jsdoc/check-tag-names': [
+        'warn',
+        {
+          definedTags: [
+            'apiHeader',
+            'apiParam',
+            'apiSuccess',
+            'apiSuccessExample',
+            'apiVersion',
+            'api',
+            'apiGroup',
+          ],
+        },
+      ],
+      'jsdoc/require-returns': 'off',
+
+      // disable currently to avoid empty env variables falling to empty string
+      'typescript/prefer-nullish-coalescing': 'off',
+      'typescript/prefer-promise-reject-errors': 'off',
+      'typescript/require-await': 'off',
+
+      'unicorn/no-array-callback-reference': 'off',
+      // 'unicorn/no-array-method-this-argument': 'off',
+      'unicorn/no-anonymous-default-export': 'off',
+      'unicorn/consistent-function-scoping': 'off',
+
+      'promise/prefer-await-to-callbacks': 'off',
+      'promise/always-return': 'off',
+      'promise/no-nesting': 'off',
+
+      'max-depth': 'off',
+      'no-param-reassign': 'off',
+      'id-length': 'off',
+      'oxc/no-map-spread': 'off',
+
+      // temporarily disable to avoid too many warnings, will be re-enabled in the future
+      'guard-for-in': 'off',
+      'max-classes-per-file': 'off',
+      'no-shadow': 'off',
+      'no-undefined': 'off',
+    },
+  },
+  {
+    files: ['docs/src/**'],
+    rules: {
+      'max-lines': 'off',
+    },
+  },
+);

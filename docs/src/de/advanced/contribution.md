@@ -25,19 +25,19 @@ Wenn Sie zu Waline beitragen möchten, ist hier ein Leitfaden.
    Installieren und verwenden Sie pnpm, um Abhängigkeiten zu installieren.
 
    ```bash
-   npm i -g pnpm@latest
+   corepack enable
    ```
 
    :::
 
    ```bash
    cd waline
-   pnpm i
+   pnpm ci
    ```
 
 ## Entwicklung
 
-- Führen Sie `pnpm client:dev` aus, um den `@waline/client` devServer zu starten
+- Führen Sie `pnpm run client:dev` aus, um den `@waline/client` devServer zu starten
 
   ::: tip
 
@@ -45,7 +45,7 @@ Wenn Sie zu Waline beitragen möchten, ist hier ein Leitfaden.
 
   :::
 
-- Führen Sie `pnpm server:dev` aus, um den `@waline/server` devServer zu starten
+- Führen Sie `pnpm run server:dev` aus, um den `@waline/server` devServer zu starten
 
   ::: tip
 

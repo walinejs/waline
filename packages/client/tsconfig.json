@@ -1,12 +1,10 @@
 {
-  "extends": "../../tsconfig.base.json",
+  "extends": "@mr-hope/tsconfig/web.json",
   "compilerOptions": {
-    "noImplicitAny": false,
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
-    "rootDir": "./src"
+    "types": ["node", "vite/client"],
+    "paths": {
+      "@waline/api": ["../api/src/index.ts"]
+    }
   },
   "include": ["./src/**/*.ts", "./src/**/*.vue", "./__tests__/**/*.ts"]
 }

@@ -28,13 +28,13 @@ const Access = (props) => {
     if (noPermission) {
       return (location.href = `${basename}/ui/profile`);
     }
-  }, [user, props.meta]);
+  }, [user, props.meta, props.basename]);
 
   return user ? props.children : null;
 };
 
 export default function App() {
-  const match = location.pathname.match(/(.*?)\/ui/);
+  const match = location.pathname.match(/(.*?)\/ui/u);
   const basePath = match ? match[1] : '/';
 
   return (

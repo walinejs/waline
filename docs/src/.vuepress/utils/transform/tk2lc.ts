@@ -1,6 +1,4 @@
-/**
- * twikoo 数据结构转 leancloud
- */
+/** Twikoo 数据结构转 leancloud */
 export const tk2lc = (input: string) => {
   let arr: any[];
   try {
@@ -10,7 +8,7 @@ export const tk2lc = (input: string) => {
     arr = input
       .trim()
       .split(/[\r\n]+/)
-      .filter((v) => v)
+      .filter(Boolean)
       .map((text) => JSON.parse(text));
   }
 

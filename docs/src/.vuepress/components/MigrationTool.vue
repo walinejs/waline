@@ -53,13 +53,13 @@ const click = (): void => {
 
   if (from.value === 'valine') {
     // 适配 LeanCloud 国内版导出非标准 JSON 情况
-    if (/},[\r\n]+/.test(source.value)) {
+    if (/\},[\r\n]+/u.test(source.value)) {
       data = JSON.parse(source.value.trim());
     } else {
       data = JSON.parse(
         `{"results":[ ${source.value
           .trim()
-          .split(/[\r\n]+/)
+          .split(/[\r\n]+/u)
           .join(',')} ]}`,
       );
     }

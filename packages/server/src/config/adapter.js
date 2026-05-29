@@ -6,7 +6,6 @@ const Postgresql = require('think-model-postgresql');
 let Sqlite;
 
 try {
-  // oxlint-disable-next-line node/global-require
   Sqlite = require('think-model-sqlite');
 } catch (err) {
   // oxlint-disable-next-line typescript/no-extraneous-class
@@ -70,7 +69,7 @@ if (MONGO_DB) {
       const key = envKeys
         .slice(10)
         .toLocaleLowerCase()
-        .replaceAll(/_([a-z])/g, (_, b) => b.toUpperCase());
+        .replaceAll(/_([a-z])/gu, (_, b) => b.toUpperCase());
 
       mongoOpt[key] = process.env[envKeys];
     }
@@ -168,7 +167,8 @@ exports.model = {
 };
 
 /**
- * logger adapter config
+ * Logger adapter config
+ *
  * @type {Object}
  */
 exports.logger = {

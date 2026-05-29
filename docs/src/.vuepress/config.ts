@@ -1,3 +1,4 @@
+// oxlint-disable unicorn/prefer-module
 import { viteBundler } from '@vuepress/bundler-vite';
 import { defineUserConfig } from 'vuepress';
 import { path } from 'vuepress/utils';
@@ -56,6 +57,11 @@ export default defineUserConfig({
       title: 'Waline',
       description: 'Một hệ thống bình luận đơn giản và an toàn.',
     },
+    '/id/': {
+      lang: 'id-ID',
+      title: 'Waline',
+      description: 'Sistem komentar yang sederhana dan aman.',
+    },
     '/zh-TW/': {
       lang: 'zh-TW',
       title: 'Waline',
@@ -80,7 +86,7 @@ export default defineUserConfig({
     importCode: {
       handleImportPath: (str) =>
         str === '@waline/api/types'
-          ? path.resolve(__dirname, '../../../packages/api/dist/api.d.ts')
+          ? path.resolve(__dirname, '../../../packages/api/dist/index.d.ts')
           : str,
     },
   },

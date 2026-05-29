@@ -5,8 +5,8 @@ import { sanitize } from '../src/service/markdown/xss';
 
 const parser = (content) => sanitize(new MarkdownIt({ html: true }).render(content));
 
-describe('XSS test', () => {
-  it('Should render', () => {
+describe('avoid XSS', () => {
+  it('should render', () => {
     const content = `
 Waline is a good framework. :money:
 
@@ -34,63 +34,63 @@ Waline is a good framework. :money:
     expect(parser(content)).toMatchSnapshot();
   });
 
-  it('Should protect', () => {
-    expect(parser(`<img src="x" onerror="alert('img')">`)).toEqual('<img src="x">');
-    expect(parser('<script>alert("hello world")</script>')).toEqual('');
+  it('should protect', () => {
+    expect(parser(`<img src="x" onerror="alert('img')">`)).toBe('<img src="x">');
+    expect(parser('<script>alert("hello world")</script>')).toBe('');
 
-    expect(
-      parser('<p>Waline is <iframe//src=jaVa&Tab;script:alert(3)></iframe>awesome</p>'),
-    ).toEqual('<p>Waline is awesome</p>');
+    expect(parser('<p>Waline is <iframe//src=jaVa&Tab;script:alert(3)></iframe>awesome</p>')).toBe(
+      '<p>Waline is awesome</p>',
+    );
 
-    expect(parser('<p>Waline is <iframe//src=jaVa&Tab;script:alert(3)>awesome</p>')).toEqual(
+    expect(parser('<p>Waline is <iframe//src=jaVa&Tab;script:alert(3)>awesome</p>')).toBe(
       '<p>Waline is </p>',
     );
   });
 
-  it('Should resolve unmatching html tags', () => {
-    expect(parser('<TABLE><tr><td>HELLO</a></TAB>\n<p>Waline</p>')).toEqual(
+  it('should resolve unmatching html tags', () => {
+    expect(parser('<TABLE><tr><td>HELLO</a></TAB>\n<p>Waline</p>')).toBe(
       '<table><tbody><tr><td>HELLO\n<p>Waline</p></td></tr></tbody></table>',
     );
   });
 
-  it('Should not autoplay or preload media', () => {
-    expect(parser('<audio autoplay preload="auto" src="x">')).toEqual(
+  it('should not autoplay or preload media', () => {
+    expect(parser('<audio autoplay preload="auto" src="x">')).toBe(
       '<audio preload="none" src="x"></audio>',
     );
-    expect(parser('<audio autoplay src="x"></audio>')).toEqual(
+    expect(parser('<audio autoplay src="x"></audio>')).toBe(
       '<p><audio src="x" preload="none"></audio></p>\n',
     );
 
-    expect(parser('<video autoplay preload="auto" src="x">')).toEqual(
+    expect(parser('<video autoplay preload="auto" src="x">')).toBe(
       '<video preload="none" src="x"></video>',
     );
-    expect(parser('<video autoplay src="x"></video>')).toEqual(
+    expect(parser('<video autoplay src="x"></video>')).toBe(
       '<p><video src="x" preload="none"></video></p>\n',
     );
   });
 
-  it('Should resolve links', () => {
-    expect(parser('[link](https://example.com)')).toEqual(
-      '<p><a href="https://example.com" target="_blank" rel="nofollow noreferrer noopener">link</a></p>\n',
+  it('should resolve links', () => {
+    expect(parser('[link](https://example.com)')).toBe(
+      '<p><a href="https://example.com" target="_blank" rel="ugc nofollow noreferrer noopener">link</a></p>\n',
     );
-    expect(parser('<p><a href="https://example.com" rel="opener prefetch">link</a></p>')).toEqual(
-      '<p><a href="https://example.com" rel="nofollow noreferrer noopener" target="_blank">link</a></p>',
+    expect(parser('<p><a href="https://example.com" rel="opener prefetch">link</a></p>')).toBe(
+      '<p><a href="https://example.com" rel="ugc nofollow noreferrer noopener" target="_blank">link</a></p>',
     );
   });
 
-  it('Should forbid forms and inputs', () => {
-    expect(parser('<form></form>')).toEqual('');
-    expect(parser('<input type="password" autocomplete>')).toEqual('');
+  it('should forbid forms and inputs', () => {
+    expect(parser('<form></form>')).toBe('');
+    expect(parser('<input type="password" autocomplete>')).toBe('');
   });
 
-  it('Should forbid style', () => {
+  it('should forbid style', () => {
     expect(
       parser('<div style="position:fixed;top:0;left:0;width:100vh;height:100vh;">广告文字</div>'),
-    ).toEqual('<div>广告文字</div>');
+    ).toBe('<div>广告文字</div>');
     expect(
       parser(
         '<div id="ad">广告文字</div><style>#ad{position:fixed;top:0;left:0;width:100vh;height:100vh;}</style>',
       ),
-    ).toEqual('<div id="ad">广告文字</div>');
+    ).toBe('<div id="ad">广告文字</div>');
   });
 });

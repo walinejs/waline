@@ -18,6 +18,7 @@ export const user = {
       if (!user?.objectId) {
         return;
       }
+
       if (window.opener) {
         const localToken = localStorage.getItem('TOKEN');
         const remember = Boolean(localToken);
@@ -43,6 +44,7 @@ export const user = {
         if (remember) {
           localStorage.setItem('TOKEN', token);
         }
+
         if (window.opener) {
           window.opener.postMessage({ type: 'userInfo', data: { token, remember, ...user } }, '*');
         }
@@ -54,10 +56,10 @@ export const user = {
       logout();
       dispatch.user.setUser(null);
     },
-    register(user) {
+    async register(user) {
       return register(user);
     },
-    forgot(user) {
+    async forgot(user) {
       return forgot(user);
     },
     async updateProfile(data) {

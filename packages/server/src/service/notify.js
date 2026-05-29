@@ -109,8 +109,8 @@ module.exports = class NotifyService extends think.Service {
 
     const QYWX_AM_AY = QYWX_AM.split(',');
     const comment = self.comment
-      .replaceAll(/<a href="(.*?)">(.*?)<\/a>/g, '\n[$2] $1\n')
-      .replaceAll(/<[^>]+>/g, '');
+      .replaceAll(/<a href="(.*?)">(.*?)<\/a>/gu, '\n[$2] $1\n')
+      .replaceAll(/<[^>]+>/gu, '');
     const postName = self.url;
 
     const data = {
@@ -190,8 +190,8 @@ module.exports = class NotifyService extends think.Service {
     }
 
     const comment = self.comment
-      .replaceAll(/<a href="(.*?)">(.*?)<\/a>/g, '')
-      .replaceAll(/<[^>]+>/g, '');
+      .replaceAll(/<a href="(.*?)">(.*?)<\/a>/gu, '')
+      .replaceAll(/<[^>]+>/gu, '');
 
     const data = {
       self: {
@@ -213,14 +213,14 @@ module.exports = class NotifyService extends think.Service {
 {{self.comment}}
 仅供预览评论，请前往上述页面查看完整內容。`;
 
-    const qmsgHost = QMSG_HOST ? QMSG_HOST.replace(/\/$/, '') : 'https://qmsg.zendee.cn';
+    const qmsgHost = QMSG_HOST ? QMSG_HOST.replace(/\/$/u, '') : 'https://qmsg.zendee.cn';
 
     const postBodyData = {
       qq: QQ_ID,
       msg: this.controller.locale(contentQQ, data),
     };
     const postBody = Object.keys(postBodyData)
-      .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(postBodyData[key]))
+      .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(postBodyData[key])}`)
       .join('&');
 
     return fetch(`${qmsgHost}/send/${QMSG_KEY}`, {
@@ -246,21 +246,22 @@ module.exports = class NotifyService extends think.Service {
     }
 
     let commentLink = '';
-    const href = self.comment.match(/<a href="(.*?)">(.*?)<\/a>/g);
+    const href = self.comment.match(/<a href="(.*?)">(.*?)<\/a>/gu);
 
     if (href != null) {
       for (let i = 0; i < href.length; i++) {
         href[i] =
-          `[Link: ${href[i].replaceAll(/<a href="(.*?)">(.*?)<\/a>/g, '$2')}](${href[i].replaceAll(/<a href="(.*?)">(.*?)<\/a>/g, '$1')})  `;
+          `[Link: ${href[i].replaceAll(/<a href="(.*?)">(.*?)<\/a>/gu, '$2')}](${href[i].replaceAll(/<a href="(.*?)">(.*?)<\/a>/gu, '$1')})  `;
         commentLink += href[i];
       }
     }
     if (commentLink !== '') {
       commentLink = `\n${commentLink}\n`;
     }
+
     const comment = self.comment
-      .replaceAll(/<a href="(.*?)">(.*?)<\/a>/g, '[Link:$2]')
-      .replaceAll(/<[^>]+>/g, '');
+      .replaceAll(/<a href="(.*?)">(.*?)<\/a>/gu, '[Link:$2]')
+      .replaceAll(/<[^>]+>/gu, '');
 
     const contentTG =
       think.config('TGTemplate') ||
@@ -339,13 +340,27 @@ module.exports = class NotifyService extends think.Service {
 
     const form = new URLSearchParams();
 
-    if (topic) form.set('topic', topic);
-    if (template) form.set('template', template);
-    if (channel) form.set('channel', channel);
-    if (webhook) form.set('webhook', webhook);
-    if (callbackUrl) form.set('callbackUrl', callbackUrl);
-    if (title) form.set('title', title);
-    if (content) form.set('content', content);
+    if (topic) {
+      form.set('topic', topic);
+    }
+    if (template) {
+      form.set('template', template);
+    }
+    if (channel) {
+      form.set('channel', channel);
+    }
+    if (webhook) {
+      form.set('webhook', webhook);
+    }
+    if (callbackUrl) {
+      form.set('callbackUrl', callbackUrl);
+    }
+    if (title) {
+      form.set('title', title);
+    }
+    if (content) {
+      form.set('content', content);
+    }
 
     return fetch(`http://www.pushplus.plus/send/${PUSH_PLUS_KEY}`, {
       method: 'POST',
@@ -404,7 +419,7 @@ module.exports = class NotifyService extends think.Service {
       return false;
     }
 
-    self.comment = self.comment.replaceAll(/(<([^>]+)>)/gi, '');
+    self.comment = self.comment.replaceAll(/(<([^>]+)>)/giu, '');
 
     const data = {
       self,
@@ -453,7 +468,7 @@ module.exports = class NotifyService extends think.Service {
     if (LARK_SECRET) {
       const timestamp = Number.parseInt(Date.now() / 1000, 10);
 
-      signData = { timestamp: timestamp, sign: sign(timestamp, LARK_SECRET) };
+      signData = { timestamp, sign: sign(timestamp, LARK_SECRET) };
     }
 
     const resp = await fetch(LARK_WEBHOOK, {
@@ -511,7 +526,7 @@ module.exports = class NotifyService extends think.Service {
     }
 
     const disallowList = this.controller.ctx.state.oauthServices.map(({ name }) => `mail.${name}`);
-    const fakeMail = new RegExp(`@(${disallowList.join('|')})$`, 'i');
+    const fakeMail = new RegExp(`@(${disallowList.join('|')})$`, 'iu');
 
     if (
       parent &&

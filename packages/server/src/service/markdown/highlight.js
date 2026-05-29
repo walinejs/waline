@@ -14,6 +14,8 @@ const loadLanguages = (languages = []) => {
 
 /**
  * Resolve syntax highlighter for corresponding language
+ *
+ * @param {string} language - The language identifier
  */
 const resolveHighlighter = (language) => {
   // try to load languages

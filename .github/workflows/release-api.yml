@@ -22,7 +22,7 @@ jobs:
           fetch-depth: 0
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v6
 
       - name: Install Node.js
         uses: actions/setup-node@v6
@@ -31,12 +31,10 @@ jobs:
           cache: pnpm
 
       - name: Install Dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm ci
 
       - name: Build API
-        run: pnpm api:build
+        run: pnpm run api:build
 
-      - name: Publish NPM
-        uses: JS-DevTools/npm-publish@v4
-        with:
-          package: ./packages/api
+      - name: Publish
+        run: pnpm publish -r --filter @waline/api --no-git-checks

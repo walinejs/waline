@@ -1,3 +1,4 @@
+// oxlint-disable vitest/require-hook
 import { marked } from 'marked';
 import { describe, expect, it } from 'vitest';
 
@@ -9,78 +10,76 @@ const extensions = markedTeXExtensions(defaultTeXRenderer);
 marked.setOptions({ breaks: true });
 marked.use({ extensions });
 
-describe('Should parse inline tex', () => {
-  it('Single word', () => {
-    expect(marked.parse('$a$')).toEqual(
+describe('should parse inline tex', () => {
+  it('single word', () => {
+    expect(marked.parse('$a$')).toBe(
       '<p><span class="wl-tex">TeX is not available in preview</span></p>\n',
     );
 
-    expect(marked.parse('$a$ is at beginning')).toEqual(
+    expect(marked.parse('$a$ is at beginning')).toBe(
       '<p><span class="wl-tex">TeX is not available in preview</span> is at beginning</p>\n',
     );
 
-    expect(marked.parse('Here ends a single tex $a$')).toEqual(
+    expect(marked.parse('Here ends a single tex $a$')).toBe(
       '<p>Here ends a single tex <span class="wl-tex">TeX is not available in preview</span></p>\n',
     );
 
-    expect(marked.parse('Here is a single tex $a$ in the sentence')).toEqual(
+    expect(marked.parse('Here is a single tex $a$ in the sentence')).toBe(
       '<p>Here is a single tex <span class="wl-tex">TeX is not available in preview</span> in the sentence</p>\n',
     );
 
-    expect(marked.parse('$-$')).toEqual(
+    expect(marked.parse('$-$')).toBe(
       '<p><span class="wl-tex">TeX is not available in preview</span></p>\n',
     );
   });
 
-  it('Mutiple words', () => {
-    expect(marked.parse('$a = 1$')).toEqual(
+  it('mutiple words', () => {
+    expect(marked.parse('$a = 1$')).toBe(
       '<p><span class="wl-tex">TeX is not available in preview</span></p>\n',
     );
 
-    expect(marked.parse('$a = 1$ is at beginning')).toEqual(
+    expect(marked.parse('$a = 1$ is at beginning')).toBe(
       '<p><span class="wl-tex">TeX is not available in preview</span> is at beginning</p>\n',
     );
 
-    expect(marked.parse('Here ends a single tex $a = 1$')).toEqual(
+    expect(marked.parse('Here ends a single tex $a = 1$')).toBe(
       '<p>Here ends a single tex <span class="wl-tex">TeX is not available in preview</span></p>\n',
     );
 
-    expect(marked.parse('Here is a single tex $a = 1$ in the sentence')).toEqual(
+    expect(marked.parse('Here is a single tex $a = 1$ in the sentence')).toBe(
       '<p>Here is a single tex <span class="wl-tex">TeX is not available in preview</span> in the sentence</p>\n',
     );
 
-    expect(marked.parse(String.raw`$-\sqrt{x}$`)).toEqual(
+    expect(marked.parse(String.raw`$-\sqrt{x}$`)).toBe(
       '<p><span class="wl-tex">TeX is not available in preview</span></p>\n',
     );
 
-    expect(marked.parse(String.raw`$-\sqrt{x}$ is at beginning`)).toEqual(
+    expect(marked.parse(String.raw`$-\sqrt{x}$ is at beginning`)).toBe(
       '<p><span class="wl-tex">TeX is not available in preview</span> is at beginning</p>\n',
     );
 
-    expect(marked.parse(String.raw`Here ends a single tex $-\sqrt{x}$`)).toEqual(
+    expect(marked.parse(String.raw`Here ends a single tex $-\sqrt{x}$`)).toBe(
       '<p>Here ends a single tex <span class="wl-tex">TeX is not available in preview</span></p>\n',
     );
   });
 
-  it('Codespan', () => {
-    expect(marked.parse('`$a = 1$`')).toEqual('<p><code>$a = 1$</code></p>\n');
+  it('codespan', () => {
+    expect(marked.parse('`$a = 1$`')).toBe('<p><code>$a = 1$</code></p>\n');
   });
 });
 
-describe('Should parse block tex', () => {
-  it('Single line', () => {
-    expect(marked.parse('$$a$$')).toEqual('<p class="wl-tex">TeX is not available in preview</p>');
+describe('should parse block tex', () => {
+  it('single line', () => {
+    expect(marked.parse('$$a$$')).toBe('<p class="wl-tex">TeX is not available in preview</p>');
   });
 
-  it('Mutiple lines', () => {
-    expect(marked.parse('$$\na\n$$')).toEqual(
-      '<p class="wl-tex">TeX is not available in preview</p>',
-    );
+  it('mutiple lines', () => {
+    expect(marked.parse('$$\na\n$$')).toBe('<p class="wl-tex">TeX is not available in preview</p>');
   });
 
-  it('Code block', () => {
-    expect(marked.parse('    $$a$$')).toEqual('<pre><code>$$a$$\n</code></pre>\n');
+  it('code block', () => {
+    expect(marked.parse('    $$a$$')).toBe('<pre><code>$$a$$\n</code></pre>\n');
 
-    expect(marked.parse('```\n$$\na\n$$\n```')).toEqual('<pre><code>$$\na\n$$\n</code></pre>\n');
+    expect(marked.parse('```\n$$\na\n$$\n```')).toBe('<pre><code>$$\na\n$$\n</code></pre>\n');
   });
 });

@@ -6,15 +6,15 @@ import type { WalineComment, WalineCommentStatus, WalineRootComment } from '@wal
 import { deleteComment, getComment, updateComment } from '@waline/api';
 import { computed, onMounted, onUnmounted, provide, ref } from 'vue';
 
+import { useLikeStorage, useUserInfo } from '../composables/index.js';
+import { configKey, sortingMethods, sortKeyMap } from '../config/index.js';
+import type { WalineCommentSorting, WalineProps } from '../typings/index.js';
+import { getConfig, getDarkStyle } from '../utils/index.js';
+import { version } from '../version.js';
 import ArticleReaction from './ArticleReaction.vue';
 import CommentBox from './CommentBox.vue';
 import CommentCard from './CommentCard.vue';
 import { LoadingIcon, RssIcon } from './Icons.js';
-import { useLikeStorage, useUserInfo } from '../composables/index.js';
-import type { WalineCommentSorting, WalineProps } from '../typings/index.js';
-import { getConfig, getDarkStyle } from '../utils/index.js';
-import { version } from '../version.js';
-import { configKey, sortingMethods, sortKeyMap } from '../config/index.js';
 
 // oxlint-disable-next-line vue/define-props-destructuring
 const props = defineProps<WalineProps>();
@@ -207,11 +207,14 @@ const onLike = async (comment: WalineComment): Promise<void> => {
     comment: { like: !hasLiked },
   });
 
-  if (hasLiked) likeStorage.value = likeStorage.value.filter((id) => id !== objectId);
-  else {
+  if (hasLiked) {
+    likeStorage.value = likeStorage.value.filter((id) => id !== objectId);
+  } else {
     likeStorage.value = [...likeStorage.value, objectId];
 
-    if (likeStorage.value.length > 50) likeStorage.value = likeStorage.value.slice(-50);
+    if (likeStorage.value.length > 50) {
+      likeStorage.value = likeStorage.value.slice(-50);
+    }
   }
 
   comment.like = Math.max(0, (comment.like || 0) + (hasLiked ? -1 : 1));
@@ -241,6 +244,7 @@ onMounted(async () => {
   })
     .then((res) => res.json())
     .catch((err) => {
+      // oxlint-disable-next-line no-console
       console.error(err);
       return {};
     });

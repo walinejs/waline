@@ -25,19 +25,19 @@ Waline에 기여하고 싶으시다면, 다음 가이드를 참고해 주세요.
    pnpm을 설치하고 이를 사용하여 의존성을 설치합니다.
 
    ```bash
-   npm i -g pnpm@latest
+   corepack enable
    ```
 
    :::
 
    ```bash
    cd waline
-   pnpm i
+   pnpm ci
    ```
 
 ## 개발
 
-- `pnpm client:dev`를 실행하여 `@waline/client` 개발 서버를 시작합니다
+- `pnpm run client:dev`를 실행하여 `@waline/client` 개발 서버를 시작합니다
 
   ::: tip
 
@@ -45,7 +45,7 @@ Waline에 기여하고 싶으시다면, 다음 가이드를 참고해 주세요.
 
   :::
 
-- `pnpm server:dev`를 실행하여 `@waline/server` 개발 서버를 시작합니다
+- `pnpm run server:dev`를 실행하여 `@waline/server` 개발 서버를 시작합니다
 
   ::: tip
 

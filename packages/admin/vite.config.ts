@@ -1,11 +1,11 @@
-import { resolve } from 'node:path';
+import path from 'node:path';
 
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 import svgr from 'vite-plugin-svgr';
 
-import { version } from './package.json';
+import { version } from './package.json' with { type: 'json' };
 
 export default defineConfig({
   define: {
@@ -17,7 +17,7 @@ export default defineConfig({
 
   build: {
     lib: {
-      entry: resolve(__dirname, 'src/index.jsx'),
+      entry: path.resolve(__dirname, 'src/index.jsx'),
       fileName: 'admin',
       formats: ['es'],
     },

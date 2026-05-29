@@ -1,4 +1,5 @@
 const en = require('./en.json');
+const id = require('./id.json');
 const it = require('./it.json');
 const zhCN = require('./zh-CN.json');
 const zhTW = require('./zh-TW.json');
@@ -14,8 +15,10 @@ const ptBR = require('./pt-BR.json');
 module.exports = {
   'zh-cn': zhCN,
   'zh-tw': zhTW,
-  en: en,
+  en,
   'en-us': en,
+  id,
+  'id-id': id,
   it,
   'it-it': it,
   jp,

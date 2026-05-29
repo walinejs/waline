@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 
 import { gen2FAToken, get2FAToken, updateProfile } from '../../services/user.js';
 
-// oxlint-disable-next-line max-lines-per-function
 export default function TwoFactorAuth() {
   const { t } = useTranslation();
   const [step, setStep] = useState(1);
@@ -72,7 +71,7 @@ export default function TwoFactorAuth() {
         <div>
           <p>{t('2fa description 1')}</p>
           <p>{t('2fa description 2')}</p>
-          <button className="btn primary" onClick={() => setStep(2)}>
+          <button className="btn primary" type="button" onClick={() => setStep(2)}>
             {t('next step')}
           </button>
         </div>

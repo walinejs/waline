@@ -113,3 +113,106 @@ div[tabindex='-1'] {
 
   line-height: 36px;
 }
+
+.typecho-pager button {
+  display: block;
+
+  padding: 0 10px;
+  border: none;
+  border-radius: 2px;
+
+  background: none;
+  color: inherit;
+
+  font: inherit;
+
+  cursor: pointer;
+}
+
+.typecho-pager button:hover {
+  background: #e9e9e6;
+  text-decoration: none;
+}
+
+.typecho-pager li.current button {
+  background: #e9e9e6;
+  color: #444;
+}
+
+.typecho-head-nav .operate button {
+  display: inline-block;
+
+  margin-left: -1px;
+  padding: 0 20px;
+  border: 1px solid #383d45;
+  border-width: 0 1px;
+
+  background: none;
+  color: #bbb;
+
+  font: inherit;
+  line-height: 36px;
+
+  cursor: pointer;
+}
+
+.typecho-head-nav .operate button:hover {
+  background-color: #202328;
+  color: #fff;
+}
+
+.dropdown-menu button {
+  display: block;
+
+  width: 100%;
+  padding: 5px 12px;
+  border: none;
+
+  background: none;
+  color: #666;
+
+  font: inherit;
+  text-align: left;
+
+  cursor: pointer;
+}
+
+.dropdown-menu button:hover {
+  background: #f6f6f3;
+  text-decoration: none;
+}
+
+button.operate-delete,
+button.operate-button-delete {
+  color: #b94a48;
+}
+
+button.operate-edit {
+  color: #070;
+}
+
+button.operate-reply {
+  color: #545c30;
+}
+
+.typecho-list-operate button:hover {
+  text-decoration: none;
+}
+
+.account-unbind {
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.profile-avatar-btn {
+  display: block;
+
+  padding: 0;
+  border: none;
+
+  background: none;
+
+  cursor: pointer;
+}

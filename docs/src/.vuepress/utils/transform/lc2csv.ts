@@ -1,8 +1,6 @@
 import CSV from '../csv.js';
 
-/**
- * leancloud 数据结构转 csv
- */
+/** Leancloud 数据结构转 csv */
 export const lc2csv = (input) => {
   const field = [
     'id',

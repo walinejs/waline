@@ -1,6 +1,6 @@
 const BaseRest = require('./rest.js');
 
-module.exports = class extends BaseRest {
+module.exports = class DBController extends BaseRest {
   async getAction() {
     const exportData = {
       type: 'waline',

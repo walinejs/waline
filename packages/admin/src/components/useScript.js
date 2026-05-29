@@ -19,8 +19,6 @@ const checkExisting = (src) => {
       scriptEl: existing,
     });
   }
-
-  return;
 };
 
 export default function useScript({ src, checkForExisting = false, ...attributes }) {
@@ -67,11 +65,12 @@ export default function useScript({ src, checkForExisting = false, ...attributes
         }
       });
 
-      status = scripts[src] = {
+      scripts[src] = {
         loading: true,
         error: null,
-        scriptEl: scriptEl,
+        scriptEl,
       };
+      status = scripts[src];
     }
     // `status` is now guaranteed to be defined: either the old status
     // from a previous load, or a newly created one.
@@ -96,6 +95,7 @@ export default function useScript({ src, checkForExisting = false, ...attributes
       scriptEl.removeEventListener('error', handleError);
     };
     // we need to ignore the attributes as they're a new object per call, so we'd never skip an effect call
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [src]);
 
   return [loading, error];

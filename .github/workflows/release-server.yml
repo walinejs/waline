@@ -17,8 +17,8 @@ jobs:
   npm:
     runs-on: ubuntu-latest
     outputs:
-      old-version: ${{ steps.publish-server.outputs.old-version }}
-      version: ${{ steps.publish-server.outputs.version }}
+      old-version: ${{ steps.get-version.outputs.old-version }}
+      version: ${{ steps.get-version.outputs.version }}
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -26,7 +26,7 @@ jobs:
           fetch-depth: 0
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v6
 
       - name: Install Node.js
         uses: actions/setup-node@v6
@@ -35,13 +35,20 @@ jobs:
           cache: pnpm
 
       - name: Install Dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm ci
 
-      - id: publish-server
-        name: 'publish @waline/vercel'
-        uses: JS-DevTools/npm-publish@v4
-        with:
-          package: ./packages/server
+      - name: Get version
+        id: get-version
+        shell: bash
+        run: |
+          LOCAL_VERSION=$(node -p "require('./packages/server/package.json').version")
+          REMOTE_VERSION=$(pnpm view @waline/vercel version 2>/dev/null || echo "none")
+
+          echo "version=$LOCAL_VERSION" >> $GITHUB_OUTPUT
+          echo "old-version=$REMOTE_VERSION" >> $GITHUB_OUTPUT
+
+      - name: Publish
+        run: pnpm publish -r --filter @waline/vercel --no-git-checks
 
   docker:
     needs: npm

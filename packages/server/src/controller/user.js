@@ -38,7 +38,7 @@ module.exports = class UserController extends BaseRest {
 
     const formatUsers = await Promise.all(
       users.map(async (user) => {
-        user.avatar = user.avatar || (await think.service('avatar').stringify(user));
+        user.avatar ||= await think.service('avatar').stringify(user);
         return {
           ...user,
           avatar: user.avatar,
@@ -78,13 +78,14 @@ module.exports = class UserController extends BaseRest {
     data.password = this.hashPassword(data.password);
     data.type = think.isEmpty(count) ? 'administrator' : normalType;
 
+    // oxlint-disable-next-line unicorn/prefer-ternary
     if (think.isEmpty(resp)) {
       await this.modelInstance.add(data);
     } else {
       await this.modelInstance.update(data, { email: data.email });
     }
 
-    if (!/^verify:/i.test(data.type)) {
+    if (!/^verify:/iu.test(data.type)) {
       return this.success();
     }
 
@@ -198,9 +199,10 @@ module.exports = class UserController extends BaseRest {
       return this.fail();
     }
 
-    const user = users[0];
-    const isVerifyUser = /^verify:/i.test(user.type);
+    const [user] = users;
+    const isVerifyUser = /^verify:/iu.test(user.type);
 
+    // oxlint-disable-next-line unicorn/prefer-ternary
     if (isVerifyUser) {
       await this.modelInstance.delete({ objectId: this.id });
     } else {
@@ -210,7 +212,6 @@ module.exports = class UserController extends BaseRest {
     return this.success();
   }
 
-  // oxlint-disable-next-line max-statements
   async getUsersListByCount() {
     const { pageSize } = this.get();
     const commentModel = this.getModel('Comment');
@@ -252,10 +253,13 @@ module.exports = class UserController extends BaseRest {
         let level = 0;
 
         if (user.count) {
-          const _level = think.findLastIndex(this.config('levels'), (level) => level <= user.count);
+          const matchedLevel = think.findLastIndex(
+            this.config('levels'),
+            (level) => level <= user.count,
+          );
 
-          if (_level !== -1) {
-            level = _level;
+          if (matchedLevel !== -1) {
+            level = matchedLevel;
           }
         }
         user.level = level;
@@ -278,11 +282,13 @@ module.exports = class UserController extends BaseRest {
       if (think.isEmpty(comments)) {
         continue;
       }
+
       const [comment] = comments;
 
       if (think.isEmpty(comment)) {
         continue;
       }
+
       const { nick, link } = comment;
       const avatarUrl = await think.service('avatar').stringify(comment);
       const avatar =

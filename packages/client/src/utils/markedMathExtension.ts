@@ -2,14 +2,15 @@ import type { TokenizerExtension } from 'marked';
 
 import type { WalineTeXRenderer } from '../typings/index.js';
 
-const inlineMathStart = /\$.*?\$/;
-const inlineMathReg = /^\$(.*?)\$/;
-const blockMathReg = /^(?:\s{0,3})\$\$((?:[^\n]|\n[^\n])+?)\n{0,1}\$\$/;
+const inlineMathStart = /\$.*?\$/u;
+const inlineMathReg = /^\$(.*?)\$/u;
+const blockMathReg = /^(?:\s{0,3})\$\$((?:[^\n]|\n[^\n])+?)\n{0,1}\$\$/u;
 
 export const markedTeXExtensions = (texRenderer: WalineTeXRenderer): TokenizerExtension[] => {
   const blockMathExtension: TokenizerExtension = {
     name: 'blockMath',
     level: 'block',
+    // oxlint-disable-next-line typescript/consistent-return
     tokenizer(src: string) {
       const cap = blockMathReg.exec(src);
 
@@ -31,6 +32,7 @@ export const markedTeXExtensions = (texRenderer: WalineTeXRenderer): TokenizerEx
 
       return index === -1 ? src.length : index;
     },
+    // oxlint-disable-next-line typescript/consistent-return
     tokenizer(src: string) {
       const cap = inlineMathReg.exec(src);
 

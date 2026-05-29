@@ -551,3 +551,49 @@ export const koKRSidebarConfig = sidebar({
 
   '/ko-KR/guide/': 'structure',
 });
+
+export const idSidebarConfig = sidebar({
+  '/id/': [
+    {
+      text: 'Panduan',
+      icon: 'creative',
+      prefix: 'guide/',
+      children: ['get-started/', 'features/', 'database', 'deploy/'],
+    },
+    'cookbook/',
+    {
+      text: 'Referensi',
+      icon: 'reference',
+      prefix: 'reference/',
+      children: [
+        'api/',
+        {
+          text: 'Klien',
+          icon: 'client',
+          prefix: 'client/',
+          children: ['api', 'props', 'file', 'style'],
+        },
+        {
+          text: 'Server',
+          icon: 'server',
+          prefix: 'server/',
+          children: ['api', 'config', 'env', 'plugin'],
+        },
+      ],
+    },
+    {
+      text: 'Migrasi',
+      icon: 'migration',
+      prefix: 'migration/',
+      collapsible: true,
+      children: ['v3', 'v2', 'valine', 'tool'],
+    },
+    'advanced/',
+  ],
+
+  '/id/advanced/': 'structure',
+
+  '/id/cookbook/': 'structure',
+
+  '/id/guide/': 'structure',
+});

@@ -5,4 +5,4 @@ export * from './login.js';
 export * from './pageview.js';
 export * from './recentComment.js';
 export * from './user.js';
-export * from './typings.js';
+export type * from './typings.js';

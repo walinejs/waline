@@ -16,7 +16,7 @@ export interface WalineUserListOptions {
   /**
    * 获取用户列表的数量
    *
-   * fetch number of user list
+   * Fetch number of user list
    */
   count: number;
 
@@ -42,7 +42,6 @@ export interface WalineUserListOptions {
    * @see [自定义语言](https://waline.js.org/client/i18n.html)
    *
    * Custom display language in waline
-   *
    * @see [I18n](https://waline.js.org/en/client/i18n.html)
    */
   locale?: WalineLocale;
@@ -50,7 +49,7 @@ export interface WalineUserListOptions {
   /**
    * 列表模式还是头像墙模式
    *
-   * list mode or avatar wall mode
+   * List mode or avatar wall mode
    *
    * @default 'list'
    */
@@ -90,13 +89,14 @@ export const UserList = ({
     lang,
     signal: controller.signal,
   }).then((users) => {
-    if (!root || users.length === 0)
+    if (!root || users.length === 0) {
       return {
         users,
         destroy: (): void => {
           controller.abort();
         },
       };
+    }
 
     const localeData = {
       ...getLocale(lang),

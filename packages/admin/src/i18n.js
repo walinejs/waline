@@ -4,8 +4,8 @@ import { initReactI18next } from 'react-i18next';
 
 import langs from './locales/index.js';
 
-// oxlint-disable-next-line import-x/no-named-as-default-member
-void I18n.use(LanguageDetector)
+// oxlint-disable-next-line eslint-plugin-react-hooks/rules-of-hooks, import/no-named-as-default-member
+I18n.use(LanguageDetector)
   .use(initReactI18next)
   .init({
     // we init with resources

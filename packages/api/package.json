@@ -20,27 +20,22 @@
     "dist"
   ],
   "type": "module",
-  "main": "./dist/api.cjs",
-  "module": "./dist/api.js",
-  "browser": "./dist/api.umd.js",
-  "types": "./dist/api.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/api.d.ts",
-      "import": "./dist/api.js",
-      "require": "./dist/api.cjs",
-      "default": "./dist/api.js"
-    }
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
   },
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
-    "build": "rollup -c rollup.config.ts --configPlugin esbuild",
+    "build": "tsdown",
     "clean": "rimraf ./dist",
-    "prepublishOnly": "pnpm clean && pnpm build"
+    "prepublishOnly": "pnpm run clean && pnpm run build"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=22"
   }
 }

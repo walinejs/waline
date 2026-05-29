@@ -18,7 +18,7 @@ module.exports = class extends BaseRest {
     const resp = await this.modelInstance.select({ url: ['IN', path] });
 
     if (think.isEmpty(resp)) {
-      const counters = Array(path.length).fill(
+      const counters = Array.from({ length: path.length }, () =>
         type.length === 1 && deprecated
           ? 0
           : type.reduce((o, field) => {
@@ -53,12 +53,13 @@ module.exports = class extends BaseRest {
       let counters = {};
 
       for (const field of type) {
-        counters[field] = respObj[url]?.[field] ? respObj[url][field] : 0;
+        counters[field] = respObj[url]?.[field] || 0;
       }
 
       if (type.length === 1 && deprecated) {
         counters = counters[type[0]];
       }
+
       data.push(counters);
     }
 

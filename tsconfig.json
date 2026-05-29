@@ -1,4 +1,7 @@
 {
-  "extends": "./tsconfig.base.json",
+  "extends": "@mr-hope/tsconfig/web.json",
+  "compilerOptions": {
+    "types": ["node", "vite/client"]
+  },
   "include": ["**/*.ts", "**/*.vue", "**/.vuepress/**/*.ts", "**/.vuepress/**/*.vue"]
 }

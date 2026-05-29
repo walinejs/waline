@@ -1,9 +1,8 @@
 {
-  "extends": "../tsconfig.base.json",
+  "extends": "@mr-hope/tsconfig/web.json",
   "compilerOptions": {
     "rootDir": "./src/.vuepress",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext"
+    "types": ["node", "vite/client"]
   },
   "include": ["./src/.vuepress/**/*.ts", "./src/.vuepress/**/*.vue"]
 }

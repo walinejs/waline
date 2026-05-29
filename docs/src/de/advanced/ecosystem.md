@@ -37,6 +37,10 @@ Waline ist eine klassische Client/Server-Architektur, die eine relativ vollstän
 
 [waline-mini](https://github.com/JQiue/waline-mini) ist eine serverseitige Implementierung in Rust, die sich hervorragend für den Betrieb in ressourcenbeschränkten Serverumgebungen eignet.
 
+## Cloudflare Workers
+
+[Waline_On_Worker](https://github.com/wuyilingwei/Waline_On_Worker) ist eine von der Community entwickelte serverseitige Implementierung basierend auf Workers und behebt die Unzulänglichkeit, dass Waline nicht auf Cloudflare Workers laufen kann.
+
 ## Plugins
 
 ### Hexo
