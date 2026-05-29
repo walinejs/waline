@@ -17,6 +17,10 @@ module.exports = class extends think.Service {
   async check(comment) {
     const { SITE_URL } = process.env;
 
+    if (!this.akismet) {
+      return false;
+    }
+
     const isValid = await this.akismet.verifyKey();
 
     if (!isValid) {
