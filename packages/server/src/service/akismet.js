@@ -1,56 +1,44 @@
-const Akismet = require('akismet');
+const { Author, Blog, CheckResult, Client, Comment } = require('@cedx/akismet');
 
 const DEFAULT_KEY = '70542d86693e';
 
 module.exports = class extends think.Service {
-  constructor(ctx) {
-    super(ctx);
+  constructor(blog) {
+    super(blog);
 
     const { AKISMET_KEY, SITE_URL } = process.env;
     const key = AKISMET_KEY || DEFAULT_KEY;
 
     if (key.toLowerCase() !== 'false') {
-      this.akismet = Akismet.client({
-        blog: ctx.serverURL || SITE_URL,
-        apiKey: key,
-      });
+      this.akismet = new Client(key, new Blog({ url: blog || SITE_URL }));
     }
   }
 
   async check(comment) {
     const { SITE_URL } = process.env;
 
-    return new Promise((resolve, reject) => {
-      if (!this.akismet) {
-        reject(new Error('Akismet is not configured!'));
-        return;
-      }
+    if (!this.akismet) {
+      return false;
+    }
 
-      this.akismet.verifyKey((err, verifyKey) => {
-        if (err) {
-          reject(err);
-          return;
-        } else if (!verifyKey) {
-          reject(new Error('Akismet API_KEY verify failed!'));
-          return;
-        }
+    const isValid = await this.akismet.verifyKey();
 
-        this.akismet.checkComment(
-          {
-            user_ip: comment.ip,
-            permalink: SITE_URL + comment.url,
-            comment_author: comment.nick,
-            comment_content: comment.comment,
-          },
-          (err, spam) => {
-            if (err) {
-              reject(err);
-              return;
-            }
-            resolve(spam);
-          },
-        );
-      });
-    });
+    if (!isValid) {
+      throw new Error('Akismet API_KEY verify failed!');
+    }
+
+    const result = await this.akismet.checkComment(
+      new Comment({
+        author: new Author({
+          ipAddress: comment.ip,
+          name: comment.nick,
+          email: comment.mail,
+        }),
+        content: comment.comment,
+        permalink: SITE_URL ? SITE_URL + comment.url : undefined,
+      }),
+    );
+
+    return result !== CheckResult.ham;
   }
 };
