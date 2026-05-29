@@ -1,6 +1,6 @@
 {
   "name": "@waline/client",
-  "version": "3.13.0",
+  "version": "3.15.0",
   "description": "client for waline comment system",
   "keywords": [
     "blog",
@@ -56,7 +56,7 @@
     "provenance": true
   },
   "scripts": {
-    "build": "tsdown && pnpm run style",
+    "build": "pnpm run style && tsdown",
     "clean": "rimraf ./dist",
     "dev": "vite",
     "prepublishOnly": "pnpm run clean && pnpm run build",
@@ -68,18 +68,18 @@
     "@vueuse/core": "^14.3.0",
     "@waline/api": "workspace:*",
     "autosize": "^6.0.1",
-    "marked": "^18.0.3",
+    "marked": "^18.0.4",
     "marked-highlight": "^2.2.4",
     "recaptcha-v3": "^1.11.3",
     "vue": "^3.5.34"
   },
   "devDependencies": {
-    "@babel/core": "7.29.0",
-    "@babel/preset-env": "7.29.5",
+    "@babel/core": "7.29.7",
+    "@babel/preset-env": "7.29.7",
     "@giphy/js-types": "5.1.0",
     "@types/autosize": "4.0.3",
-    "@vitejs/plugin-vue": "6.0.6",
-    "vite": "8.0.12"
+    "@vitejs/plugin-vue": "6.0.7",
+    "vite": "8.0.14"
   },
   "browserslist": {
     "production": [

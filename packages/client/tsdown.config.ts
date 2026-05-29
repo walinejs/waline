@@ -1,5 +1,6 @@
 import vue from '@vitejs/plugin-vue';
 import { defineConfig } from 'tsdown';
+import type { UserConfig } from 'tsdown';
 
 import pkg from './package.json' with { type: 'json' };
 
@@ -29,13 +30,25 @@ const onlyBundle = [
   ...alwaysBundle,
 ];
 
+const commonOptions: UserConfig = {
+  clean: false,
+  fixedExtension: false,
+  minify: true,
+  sourcemap: true,
+  target: ['node22', 'baseline-widely-available'],
+  define,
+  treeshake: {
+    moduleSideEffects: false,
+  },
+  publint: true,
+};
+
 export default defineConfig([
   {
-    entry: './src/entries/full.ts',
-    fixedExtension: false,
-    minify: true,
-    target: ['node22', 'baseline-widely-available'],
-    define,
+    ...commonOptions,
+    entry: { waline: './src/entries/full.ts' },
+    format: ['esm', 'umd'],
+    globalName: 'Waline',
     alias: {
       vue: 'vue/dist/vue.runtime.esm-bundler.js',
     },
@@ -49,14 +62,10 @@ export default defineConfig([
       alwaysBundle,
       onlyBundle,
     },
-    treeshake: {
-      moduleSideEffects: false,
-    },
   },
   {
+    ...commonOptions,
     entry: { slim: './src/entries/full.ts' },
-    fixedExtension: false,
-    minify: true,
     target: ['node22', 'baseline-widely-available'],
     define,
     plugins: [
@@ -67,11 +76,8 @@ export default defineConfig([
     ],
   },
   {
+    ...commonOptions,
     entry: './src/entries/component.ts',
-    fixedExtension: false,
-    minify: true,
-    target: ['node22', 'baseline-widely-available'],
-    define,
     dts: false,
     plugins: [
       vue({
@@ -79,14 +85,11 @@ export default defineConfig([
         template: { compilerOptions: { comments: false } },
       }),
     ],
-    treeshake: {
-      moduleSideEffects: false,
-    },
   },
   {
+    ...commonOptions,
     entry: { component: './src/entries/component-type.d.ts' },
-    fixedExtension: false,
-    minify: true,
+
     target: ['node22', 'baseline-widely-available'],
     dts: {
       dtsInput: true,
@@ -94,23 +97,21 @@ export default defineConfig([
     },
   },
   {
+    ...commonOptions,
     entry: './src/entries/comment.ts',
-    fixedExtension: false,
-    minify: true,
-    target: ['node22', 'baseline-widely-available'],
-    define,
-    treeshake: {
-      moduleSideEffects: false,
+    format: ['esm', 'umd'],
+    globalName: 'WalineComment',
+    deps: {
+      alwaysBundle: ['@waline/api'],
     },
   },
   {
+    ...commonOptions,
     entry: './src/entries/pageview.ts',
-    fixedExtension: false,
-    minify: true,
-    target: ['node22', 'baseline-widely-available'],
-    define,
-    treeshake: {
-      moduleSideEffects: false,
+    format: ['esm', 'umd'],
+    globalName: 'WalinePageview',
+    deps: {
+      alwaysBundle: ['@waline/api'],
     },
   },
 ]);

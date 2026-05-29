@@ -1,37 +1,40 @@
+const { Author, Blog, CheckResult, Client, Comment } = require('@cedx/akismet');
+
 const DEFAULT_KEY = '70542d86693e';
 
-module.exports = async function (comment, blog) {
-  let { AKISMET_KEY, SITE_URL } = process.env;
+module.exports = class extends think.Service {
+  constructor(ctx) {
+    super(ctx);
 
-  if (!AKISMET_KEY) {
-    AKISMET_KEY = DEFAULT_KEY;
+    const { AKISMET_KEY, SITE_URL } = process.env;
+    const key = AKISMET_KEY || DEFAULT_KEY;
+
+    if (key.toLowerCase() !== 'false') {
+      this.akismet = new Client(key, new Blog({ url: ctx.serverURL || SITE_URL }));
+    }
   }
 
-  if (AKISMET_KEY.toLowerCase() === 'false') {
-    return false;
-  }
+  async check(comment) {
+    const { SITE_URL } = process.env;
 
-  const { Author, Blog, CheckResult, Client, Comment } =
-    await import('@cedx/akismet');
+    const isValid = await this.akismet.verifyKey();
 
-  const client = new Client(AKISMET_KEY, new Blog({ url: blog }));
-  const isValid = await client.verifyKey();
+    if (!isValid) {
+      throw new Error('Akismet API_KEY verify failed!');
+    }
 
-  if (!isValid) {
-    throw new Error('Akismet API_KEY verify failed!');
-  }
-
-  const result = await client.checkComment(
-    new Comment({
-      author: new Author({
-        ipAddress: comment.ip,
-        name: comment.nick,
-        email: comment.mail,
+    const result = await this.akismet.checkComment(
+      new Comment({
+        author: new Author({
+          ipAddress: comment.ip,
+          name: comment.nick,
+          email: comment.mail,
+        }),
+        content: comment.comment,
+        permalink: SITE_URL ? SITE_URL + comment.url : undefined,
       }),
-      content: comment.comment,
-      permalink: SITE_URL ? SITE_URL + comment.url : undefined,
-    }),
-  );
+    );
 
-  return result !== CheckResult.ham;
+    return result !== CheckResult.ham;
+  }
 };

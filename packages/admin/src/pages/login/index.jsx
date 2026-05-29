@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router';
@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router';
 import Header from '../../components/Header.jsx';
 // oxlint-disable-next-line import/no-namespace
 import * as Icons from '../../components/icon/index.js';
+import { useCaptcha } from '../../components/useCaptcha.js';
 import { get2FAToken } from '../../services/user.js';
 
 export default function Login() {

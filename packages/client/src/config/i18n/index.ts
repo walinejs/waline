@@ -3,6 +3,7 @@ import de from './de.js';
 import en from './en.js';
 import es from './es.js';
 import fr from './fr.js';
+import id from './id.js';
 import it from './it.js';
 import jp from './jp.js';
 import koKR from './ko-KR.js';
@@ -24,6 +25,8 @@ export const DEFAULT_LOCALES: Locales = {
   'en-us': en,
   fr,
   'fr-fr': fr,
+  id,
+  'id-id': id,
   it,
   'it-it': it,
   jp,

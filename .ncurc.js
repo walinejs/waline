@@ -1,4 +1,5 @@
 export default {
+  cooldown: 1,
   workspaces: true,
   peer: true,
   upgrade: true,

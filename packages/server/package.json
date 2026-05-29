@@ -1,6 +1,6 @@
 {
   "name": "@waline/vercel",
-  "version": "1.39.3",
+  "version": "1.40.1",
   "description": "vercel server for waline comment system",
   "keywords": [
     "blog",
@@ -21,14 +21,14 @@
     "dev": "node development.js 9090"
   },
   "dependencies": {
+    "@cedx/akismet": "^17.1.0",
     "@cloudbase/node-sdk": "^3.18.1",
     "@koa/cors": "^5.0.0",
     "@mdit/plugin-katex": "0.23.4-cjs.0",
     "@mdit/plugin-mathjax": "0.23.4-cjs.0",
     "@mdit/plugin-sub": "0.22.5-cjs.0",
     "@mdit/plugin-sup": "0.22.5-cjs.0",
-    "@cedx/akismet": "^17.1.0",
-    "dompurify": "^3.4.2",
+    "dompurify": "^3.4.6",
     "fast-csv": "^5.0.7",
     "form-data": "^4.0.5",
     "ip2region": "^2.3.0",
@@ -36,10 +36,10 @@
     "jsonwebtoken": "^9.0.3",
     "koa-compose": "^4.1.0",
     "leancloud-storage": "^4.15.2",
-    "markdown-it": "^14.1.1",
+    "markdown-it": "^14.2.0",
     "markdown-it-emoji": "^3.0.0",
     "mathjax-full": "^3.2.2",
-    "nodemailer": "^8.0.7",
+    "nodemailer": "^8.0.9",
     "nunjucks": "^3.2.4",
     "phpass": "^0.1.1",
     "prismjs": "^1.30.0",
@@ -55,7 +55,7 @@
     "think-mongo": "^2.2.1",
     "think-router-rest": "^1.0.5",
     "thinkjs": "4.0.0",
-    "ua-parser-js": "^2.0.9"
+    "ua-parser-js": "^2.0.10"
   },
   "devDependencies": {
     "dotenv": "17.4.2",

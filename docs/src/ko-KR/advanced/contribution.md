@@ -25,14 +25,14 @@ Waline에 기여하고 싶으시다면, 다음 가이드를 참고해 주세요.
    pnpm을 설치하고 이를 사용하여 의존성을 설치합니다.
 
    ```bash
-   npm i -g pnpm@latest
+   corepack enable
    ```
 
    :::
 
    ```bash
    cd waline
-   pnpm i
+   pnpm ci
    ```
 
 ## 개발
