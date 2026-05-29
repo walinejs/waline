@@ -3,15 +3,15 @@ const Akismet = require('akismet');
 const DEFAULT_KEY = '70542d86693e';
 
 module.exports = class extends think.Service {
-  constructor(ctx) {
-    super(ctx);
+  constructor(blog) {
+    super(blog);
 
     const { AKISMET_KEY, SITE_URL } = process.env;
     const key = AKISMET_KEY || DEFAULT_KEY;
 
     if (key.toLowerCase() !== 'false') {
       this.akismet = Akismet.client({
-        blog: ctx.serverURL || SITE_URL,
+        blog: blog || SITE_URL,
         apiKey: key,
       });
     }
