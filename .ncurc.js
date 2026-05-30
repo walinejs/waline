@@ -1,4 +1,5 @@
 export default {
+  cooldown: 1,
   workspaces: true,
   peer: true,
   upgrade: true,
@@ -9,14 +10,15 @@ export default {
     return true;
   },
   target: (name) => {
+    // FIXME: now we should be able to upgrade jsdom to v20
+    // as our node engine supports require(esm) in cjs
+    // jsdom v20+ are ESM only
+    if (name === 'jsdom') return 'minor';
+
     if (name.startsWith('@vuepress/') || name === 'vuepress') {
       return '@next';
     }
 
-    // for markdown-it plugins, we should use cjs version
-    if (name.startsWith('@mdit/')) return '@cjs';
-    // jsdom v20+ are ESM only
-    if (name === 'jsdom') return 'minor';
     if (name === '@types/node') return 'minor';
 
     return 'latest';

@@ -12,7 +12,6 @@ jobs:
     strategy:
       matrix:
         node-version:
-          - 22
           - 24
         os:
           - ubuntu-latest

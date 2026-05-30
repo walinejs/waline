@@ -10,6 +10,11 @@ import { updateProfile } from '../../services/user.js';
 import { buildAvatar } from '../manage-comments/utils.js';
 import TwoFactorAuth from './twoFactorAuth.jsx';
 
+const unbind = async (type) => {
+  await updateProfile({ [type]: '' });
+  location.reload();
+};
+
 export default function Profile() {
   // oxlint-disable-next-line react/hook-use-state
   const [isPasswordUpdating, setPasswordUpdating] = useState(false);
@@ -64,11 +69,6 @@ export default function Profile() {
     setPasswordUpdating(true);
     await updateProfile({ password });
     setPasswordUpdating(false);
-  };
-
-  const unbind = async (type) => {
-    await updateProfile({ [type]: '' });
-    location.reload();
   };
 
   const changeAvatar = async (event) => {

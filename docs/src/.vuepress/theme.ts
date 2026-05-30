@@ -5,6 +5,7 @@ import {
   enNavbarConfig,
   esNavbarConfig,
   frNavbarConfig,
+  idNavbarConfig,
   itNavbarConfig,
   jpNavbarConfig,
   koKRNavbarConfig,
@@ -19,6 +20,7 @@ import {
   enSidebarConfig,
   esSidebarConfig,
   frSidebarConfig,
+  idSidebarConfig,
   itSidebarConfig,
   jpSidebarConfig,
   koKRSidebarConfig,
@@ -126,6 +128,19 @@ export default hopeTheme(
 
         footer: 'GPL-2.0 LICENSE | Copyright © 2020-present lizheming',
         displayFooter: true,
+      },
+
+      '/id/': {
+        navbar: idNavbarConfig,
+        sidebar: idSidebarConfig,
+
+        footer: 'GPL-2.0 LICENSE | Copyright © 2020-present lizheming',
+        displayFooter: true,
+
+        navbarLocales: {
+          langName: 'Bahasa Indonesia',
+          selectLangAriaLabel: 'Pilih bahasa',
+        },
       },
 
       '/zh-TW/': {
@@ -248,6 +263,15 @@ export default hopeTheme(
             level2: 'Ents',
             level3: 'Phù thủy',
             level4: 'Yêu tinh',
+            level5: 'Maiar',
+          },
+          '/id/': {
+            admin: 'Admin',
+            level0: 'Kurcaci',
+            level1: 'Hobbit',
+            level2: 'Ent',
+            level3: 'Penyihir',
+            level4: 'Peri',
             level5: 'Maiar',
           },
           '/zh-TW/': {
