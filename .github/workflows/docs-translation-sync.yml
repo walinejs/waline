@@ -116,7 +116,7 @@ jobs:
           endpoint = os.environ["MODEL_ENDPOINT"]
           model = os.environ["MODEL_NAME"]
 
-          updates = {}
+          changed_sources = {}
 
           for changed in changed_files:
               source_locale, relative_path = detect_locale_and_relative(changed)
@@ -127,6 +127,18 @@ jobs:
               if not source_path.exists():
                   continue
 
+              changed_sources.setdefault(relative_path, []).append((source_locale, source_path))
+
+          for relative_path, sources in sorted(changed_sources.items()):
+              source_locales = {source_locale for source_locale, _ in sources}
+              if len(source_locales) > 1:
+                  print(
+                      f"Skipping {relative_path}: changed in multiple source locales "
+                      f"({', '.join(sorted(source_locales))})."
+                  )
+                  continue
+
+              source_locale, source_path = sources[0]
               source_content = source_path.read_text(encoding="utf-8")
               for target_locale in locale_to_dir:
                   if target_locale == source_locale:
