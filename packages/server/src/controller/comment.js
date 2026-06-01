@@ -1,7 +1,7 @@
 const BaseRest = require('./rest.js');
 const { getMarkdownParser } = require('../service/markdown/index.js');
 
-const markdownParser = getMarkdownParser();
+const markdownParser = getMarkdownParser(think.config('markdown'));
 
 const formatCmt = async (
   { ua, ip, ...comment },
@@ -173,7 +173,7 @@ module.exports = class CommentController extends BaseRest {
       think.logger.debug(`Comment initial status is ${data.status}`);
 
       if (data.status === 'approved') {
-        const spam = await this.service('akismet')
+        const spam = await this.service('akismet', this.ctx.serverURL)
           .check(data)
           .catch((err) => {
             console.log(err);

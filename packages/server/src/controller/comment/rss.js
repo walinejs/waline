@@ -1,8 +1,9 @@
 const RSS = require('rss');
 const BaseRest = require('../rest.js');
 const { getMarkdownParser } = require('../../service/markdown/index.js');
+const { think } = require('thinkjs');
 
-const markdownParser = getMarkdownParser();
+const markdownParser = getMarkdownParser(think.config('markdown'));
 
 const isHttpUrl = (value) => /^(https?:)?\/\//iu.test(value);
 
