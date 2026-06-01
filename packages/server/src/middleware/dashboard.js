@@ -1,35 +1,6 @@
-const fs = require('node:fs');
-const path = require('node:path');
-
-const adminBundlePath = path.resolve(__dirname, '../../../admin/dist/admin.js');
-
-const getUiBasePath = (requestPath = '') =>
-  requestPath.match(/^(.*?\/ui)(?:$|\/.*$)/u)?.[1] || '/ui';
-
 // oxlint-disable-next-line func-names
 module.exports = function () {
   return (ctx) => {
-    const uiBasePath = getUiBasePath(ctx.path);
-    const localAdminAssetPath = `${uiBasePath}/assets/admin.js`;
-    const localAdminBundleAvailable = fs.existsSync(adminBundlePath);
-
-    if (ctx.path === localAdminAssetPath) {
-      if (!localAdminBundleAvailable) {
-        ctx.status = 404;
-        ctx.body = 'Local admin bundle not found';
-        return;
-      }
-
-      ctx.type = 'js';
-      ctx.body = fs.createReadStream(adminBundlePath);
-      return;
-    }
-
-    const adminScriptSrc = localAdminBundleAvailable
-      ? `${localAdminAssetPath}?v=${encodeURIComponent(require('../../../admin/package.json').version)}`
-      : process.env.WALINE_ADMIN_MODULE_ASSET_URL || '//unpkg.com/@waline/admin';
-    const scriptType = localAdminBundleAvailable ? ' type="module"' : '';
-
     ctx.type = 'html';
     ctx.body = `<!doctype html>
 <html>
@@ -47,7 +18,9 @@ module.exports = function () {
     window.oauthServices = ${JSON.stringify(ctx.state.oauthServices || [])};
     window.serverURL = '${ctx.serverURL}/api/';
     </script>
-    <script${scriptType} src="${adminScriptSrc}"></script>
+    <script src="${
+      process.env.WALINE_ADMIN_MODULE_ASSET_URL || '//unpkg.com/@waline/admin'
+    }"></script>
   </body>
 </html>`;
   };
