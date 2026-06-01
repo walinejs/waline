@@ -9,6 +9,7 @@ on:
 
 permissions:
   contents: write
+  models: read
 
 jobs:
   sync-docs:
