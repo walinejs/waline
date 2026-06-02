@@ -813,52 +813,82 @@ button.operate-button-delete:hover {
   height: 16px;
 }
 
-.account-item.github:hover,
-.account-item.github.bind,
-.social-accounts a.github:hover {
-  color: #1b1f23;
+.account-item .account-unbind svg {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+
+  display: none;
+
+  border: 1px solid #999;
+  border-radius: 50%;
+
+  background: #fff;
+
+  cursor: pointer;
 }
 
-.account-item.twitter:hover,
-.account-item.twitter.bind,
-.social-accounts a.twitter:hover {
-  color: #2daae1;
+.account-item:hover .account-unbind svg {
+  display: block;
 }
 
-.account-item.facebook:hover,
-.account-item.facebook.bind,
-.social-accounts a.facebook:hover {
-  color: #1877f2;
+.account-item.github path,
+.account-item.twitter circle,
+.account-item.facebook path,
+.account-item.weibo circle,
+.account-item.qq path,
+.account-item.oidc path,
+.account-item.huawei path {
+  fill: #808080;
 }
 
-.account-item.weibo:hover,
-.account-item.weibo.bind,
-.social-accounts a.weibo:hover {
-  color: #d34237;
+.account-item.github:hover path,
+.account-item.github.bind path {
+  fill: #1b1f23;
 }
 
-.account-item.qq:hover,
-.account-item.qq.bind,
-.social-accounts a.qq:hover {
-  color: #259be0;
+.account-item.twitter:hover circle,
+.account-item.twitter.bind circle {
+  fill: #2daae1;
 }
 
-.account-item.oidc:hover,
-.account-item.oidc.bind,
-.social-accounts a.oidc:hover {
-  color: #ff9626;
+.account-item.facebook:hover path,
+.account-item.facebook.bind path {
+  fill: #1877f2;
 }
 
-.account-item.google:hover,
-.account-item.google.bind,
-.social-accounts a.google:hover {
-  color: #4285f4;
+.account-item.weibo:hover circle,
+.account-item.weibo.bind circle {
+  fill: #d34237;
 }
 
-.account-item.huawei:hover,
-.account-item.huawei.bind,
-.social-accounts a.huawei:hover {
-  color: #f00;
+.account-item.qq:hover path,
+.account-item.qq.bind path {
+  fill: #259be0;
+}
+
+.account-item.oidc:hover path,
+.account-item.oidc.bind path {
+  fill: #ff9626;
+}
+
+.account-item.huawei:hover path,
+.account-item.huawei.bind path {
+  fill: #f00;
+}
+
+.user-page-account-item {
+  margin-right: 6px;
+  opacity: 0.5;
+
+  &.bind {
+    opacity: 1;
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
 }
 
 /* remain for historical reasons */
