@@ -56,19 +56,18 @@ export default function Header() {
 
   return [
     <header className="typecho-head-nav clear-fix" role="navigation" key="header">
-      <div className="waline-admin-header">
-        <div className="waline-admin-brand">
-          <Link to="/ui" className="waline-admin-brand-link">
-            <span className="waline-admin-brand-mark">W</span>
-            <span className="waline-admin-brand-copy">
+      <div className="waline-header">
+        <div className="waline-brand">
+          <Link to="/ui" className="waline-brand-link">
+            <span className="waline-brand-mark"></span>
+            <span className="waline-brand-copy">
               <strong>{siteName}</strong>
-              <small>{t('management')}</small>
             </span>
           </Link>
         </div>
 
         {user?.type === 'administrator' ? (
-          <nav id="typecho-nav-list" className="waline-admin-nav">
+          <nav id="typecho-nav-list" className="waline-nav">
             <ul className="root">
               {navItems.map((item) => (
                 <li className="parent" key={item.to}>
@@ -77,11 +76,7 @@ export default function Header() {
               ))}
             </ul>
           </nav>
-        ) : (
-          <div className="waline-admin-nav waline-admin-nav-static">
-            <span>{t('management')}</span>
-          </div>
-        )}
+        ) : null}
 
         <div className="operate">
           <div className="language-select">

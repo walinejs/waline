@@ -31,30 +31,25 @@ div[tabindex='-1'] {
   --wa-radius-sm: 10px;
 }
 
-body.waline-admin-body {
+body.waline-body {
   min-height: 100%;
   background: var(--wa-bg);
   color: var(--wa-text);
   font-family:
-    'Avenir Next',
-    'SF Pro Display',
-    'Segoe UI',
-    'PingFang SC',
-    'Hiragino Sans GB',
-    sans-serif;
+    'Avenir Next', 'SF Pro Display', 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
 }
 
-.waline-admin-root,
-.waline-admin-app {
+.waline-root,
+.waline-app {
   min-height: 100%;
 }
 
-.waline-admin-app {
+.waline-app {
   position: relative;
 }
 
-.waline-admin-app::before,
-.waline-admin-app::after {
+.waline-app::before,
+.waline-app::after {
   content: '';
   position: fixed;
   z-index: 0;
@@ -64,7 +59,7 @@ body.waline-admin-body {
   display: none;
 }
 
-.waline-admin-app::before {
+.waline-app::before {
   top: 88px;
   left: max(24px, calc(50% - 700px));
   width: 240px;
@@ -72,7 +67,7 @@ body.waline-admin-body {
   background: rgb(25 118 255 / 10%);
 }
 
-.waline-admin-app::after {
+.waline-app::after {
   right: max(32px, calc(50% - 760px));
   bottom: 60px;
   width: 280px;
@@ -93,7 +88,7 @@ body.waline-admin-body {
   background: transparent;
 }
 
-.waline-admin-header {
+.waline-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -107,7 +102,7 @@ body.waline-admin-body {
   box-shadow: var(--wa-shadow-soft);
 }
 
-.waline-admin-brand-link {
+.waline-brand-link {
   display: inline-flex;
   align-items: center;
   gap: 14px;
@@ -115,49 +110,44 @@ body.waline-admin-body {
   text-decoration: none;
 }
 
-.waline-admin-brand-link:hover {
+.waline-brand-link:hover {
   color: var(--wa-text);
   text-decoration: none;
 }
 
-.waline-admin-brand-mark {
+.waline-brand-mark {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 44px;
   height: 44px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, #0f6bff, #3ea0ff);
-  box-shadow: inset 0 1px 0 rgb(255 255 255 / 35%);
-  color: #fff;
-  font-size: 1.25rem;
-  font-weight: 700;
+  background: url('https://waline.js.org/logo.png') no-repeat center/cover;
 }
 
-.waline-admin-brand-copy {
+.waline-brand-copy {
   display: flex;
   flex-direction: column;
   gap: 2px;
 }
 
-.waline-admin-brand-copy strong {
+.waline-brand-copy strong {
   font-size: 1.1rem;
   font-weight: 700;
   letter-spacing: 0.01em;
 }
 
-.waline-admin-brand-copy small {
+.waline-brand-copy small {
   color: var(--wa-text-soft);
   font-size: 0.82rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
-.waline-admin-nav {
+.waline-nav {
   flex: 1;
 }
 
-.waline-admin-nav .root {
+.waline-nav .root {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -166,14 +156,14 @@ body.waline-admin-body {
   list-style: none;
 }
 
-.waline-admin-nav .parent,
-.waline-admin-nav-static {
+.waline-nav .parent,
+.waline-nav-static {
   margin: 0;
   isolation: isolate;
 }
 
-.waline-admin-nav .parent a,
-.waline-admin-nav-static span {
+.waline-nav .parent a,
+.waline-nav-static span {
   position: relative;
   z-index: 0;
   display: inline-flex;
@@ -188,20 +178,19 @@ body.waline-admin-body {
   color: var(--wa-text-soft);
   font-weight: 600;
   text-decoration: none;
-  transition:
-    transform 0.24s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.24s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.waline-admin-nav .parent a:hover,
-.waline-admin-nav .parent a.active,
-.waline-admin-nav-static span {
+.waline-nav .parent a:hover,
+.waline-nav .parent a.active,
+.waline-nav-static span {
   transform: translateY(-2px);
   text-decoration: none;
 }
 
-.waline-admin-nav .parent a:hover,
-.waline-admin-nav .parent a:focus,
-.waline-admin-nav .parent a.active {
+.waline-nav .parent a:hover,
+.waline-nav .parent a:focus,
+.waline-nav .parent a.active {
   background: transparent;
   color: var(--wa-text-soft);
 }
@@ -739,19 +728,19 @@ button.operate-button-delete:hover {
     padding-inline: 16px;
   }
 
-  .waline-admin-header,
+  .waline-header,
   .main .body.container,
   .typecho-login {
     padding: 20px;
     border-radius: 24px;
   }
 
-  .waline-admin-header {
+  .waline-header {
     flex-direction: column;
     align-items: stretch;
   }
 
-  .waline-admin-nav,
+  .waline-nav,
   .typecho-head-nav .operate {
     width: 100%;
   }

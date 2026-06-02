@@ -42,9 +42,9 @@ const run = async () => {
 
   const container = document.createElement('div');
 
-  document.body.classList.add('waline-admin-body');
+  document.body.classList.add('waline-body');
   container.style.height = '100%';
-  container.className = 'waline-admin-root';
+  container.className = 'waline-root';
   document.body.append(container);
 
   const root = createRoot(container);
