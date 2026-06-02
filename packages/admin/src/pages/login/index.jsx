@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router';
 
 import Header from '../../components/Header.jsx';
 // oxlint-disable-next-line import/no-namespace
-import * as Icons from '../../components/icon/index.jsx';
+import * as Icons from '../../components/icon';
 import { useCaptcha } from '../../components/useCaptcha.js';
 import { get2FAToken } from '../../services/user.js';
 

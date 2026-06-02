@@ -1,6 +1,7 @@
 html,
 body {
   height: 100%;
+  background: var(--wa-bg);
 }
 
 div[tabindex='-1'] {
@@ -169,7 +170,6 @@ body.waline-body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 40px;
   padding: 0 16px;
   overflow: hidden;
   border: 1px solid var(--wa-border);
@@ -231,7 +231,6 @@ body.waline-body {
 }
 
 .typecho-head-nav .operate .language-select select {
-  width: 132px;
   padding: 0 16px;
   outline: none;
 }
@@ -661,7 +660,7 @@ button.operate-button-delete:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: calc(100% - 110px);
+  height: 50vh;
   padding: 36px 24px 48px;
 }
 
@@ -735,19 +734,9 @@ button.operate-button-delete:hover {
     border-radius: 24px;
   }
 
-  .waline-header {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
   .waline-nav,
   .typecho-head-nav .operate {
     width: 100%;
-  }
-
-  .typecho-head-nav .operate {
-    justify-content: space-between;
-    flex-wrap: wrap;
   }
 
   .main {
@@ -775,8 +764,8 @@ button.operate-button-delete:hover {
 .account-item .social-icon,
 .social-accounts .social-icon {
   display: block;
-  width: 18px;
-  height: 18px;
+  width: 32px;
+  height: 32px;
 }
 
 .account-item,
@@ -901,7 +890,6 @@ button.operate-button-delete:hover {
   justify-content: flex-end;
   flex-wrap: wrap;
   gap: 8px;
-  margin-top: 24px;
 }
 
 .typecho-pager li {

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Header from '../../components/Header.jsx';
 // oxlint-disable-next-line import/no-namespace
-import * as Icons from '../../components/icon/index.jsx';
+import * as Icons from '../../components/icon';
 import { updateProfile } from '../../services/user.js';
 import { buildAvatar } from '../manage-comments/utils.js';
 import TwoFactorAuth from './twoFactorAuth.jsx';

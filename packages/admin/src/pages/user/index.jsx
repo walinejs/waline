@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 import Header from '../../components/Header.jsx';
 // oxlint-disable-next-line import/no-namespace
-import * as Icons from '../../components/icon/index.jsx';
+import * as Icons from '../../components/icon';
 import Paginator from '../../components/Paginator.jsx';
 import { getUserList, updateUser, deleteUser } from '../../services/user.js';
 import { buildAvatar } from '../manage-comments/utils.js';
@@ -186,16 +186,13 @@ export default function User() {
                                   }
                                   target={user[social] ? '_blank' : '_self'}
                                   rel="noreferrer"
-                                  className={cls(
-                                    'account-item',
-                                    'user-page-account-item',
-                                    social,
-                                    {
-                                      bind: user[social],
-                                    },
-                                  )}
+                                  className={cls('account-item', 'user-page-account-item', social, {
+                                    bind: user[social],
+                                  })}
                                 >
-                                  {Icon ? <Icon className="social-icon" aria-hidden="true" /> : null}
+                                  {Icon ? (
+                                    <Icon className="social-icon" aria-hidden="true" />
+                                  ) : null}
                                 </a>
                               );
                             })}

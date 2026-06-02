@@ -8,7 +8,6 @@ html {
 
 body {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  background: #f6f6f3;
   color: #444;
   font-size: 87.5%;
   line-height: 1.5;
@@ -415,10 +414,6 @@ select {
   list-style: none;
   margin: 0;
   padding: 0;
-}
-
-#typecho-nav-list ul:first-child {
-  border-left: 1px solid #383d45;
 }
 
 #typecho-nav-list .root {
