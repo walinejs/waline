@@ -18,15 +18,19 @@ const Access = (props) => {
     const meta = props.meta ?? {};
     const basename = props.basename ?? '';
     const emptyUser = !user?.objectId;
+    const currentPath = location.pathname.replace(basename, '') || '/';
+    const redirectPath = currentPath.startsWith('/') ? currentPath : `/${currentPath}`;
 
     if (emptyUser) {
-      return (location.href = `${basename}/ui/login?redirect=${location.pathname.replace(basename, '')}`);
+      location.href = `${basename}/ui/login?redirect=${redirectPath}`;
+      return;
     }
 
-    const noPermission = meta.auth ? props.meta.auth !== user.type : false;
+    const noPermission = meta.auth ? meta.auth !== user.type : false;
 
     if (noPermission) {
-      return (location.href = `${basename}/ui/profile`);
+      location.href = `${basename}/ui/profile`;
+      return;
     }
   }, [user, props.meta, props.basename]);
 
