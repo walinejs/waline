@@ -660,7 +660,7 @@ button.operate-button-delete:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 50vh;
+  height: auto;
   padding: 36px 24px 48px;
 }
 
