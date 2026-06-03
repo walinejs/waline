@@ -1,5 +1,5 @@
-const createDOMPurify = require('dompurify');
-const { JSDOM } = require('jsdom');
+import createDOMPurify from 'dompurify';
+import { JSDOM } from 'jsdom';
 
 const DOMPurify = createDOMPurify(new JSDOM('').window);
 
@@ -41,6 +41,4 @@ const sanitize = (content) =>
     ...think.config('domPurify'),
   });
 
-module.exports = {
-  sanitize,
-};
+export { sanitize };

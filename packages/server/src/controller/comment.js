@@ -1,5 +1,5 @@
-const BaseRest = require('./rest.js');
-const { getMarkdownParser } = require('../service/markdown/index.js');
+import { getMarkdownParser } from '../service/markdown/index.js';
+import BaseRest from './rest.js';
 
 const markdownParser = getMarkdownParser(think.config('markdown'));
 
@@ -71,7 +71,7 @@ const formatCmt = async (
   return comment;
 };
 
-module.exports = class CommentController extends BaseRest {
+export default class CommentController extends BaseRest {
   constructor(ctx) {
     super(ctx);
     this.modelInstance = this.getModel('Comment');
@@ -732,4 +732,4 @@ module.exports = class CommentController extends BaseRest {
 
     return data;
   }
-};
+}

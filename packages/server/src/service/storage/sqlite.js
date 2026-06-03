@@ -1,6 +1,6 @@
-const MySQL = require('./mysql.js');
+import MySQL from './mysql.js';
 
-module.exports = class extends MySQL {
+export default class extends MySQL {
   async setSeqId(id) {
     const instance = this.model(this.tableName);
 
@@ -8,4 +8,4 @@ module.exports = class extends MySQL {
       `UPDATE SQLITE_SEQUENCE SET SEQ=${id} WHERE NAME='${instance.tableName}';`,
     );
   }
-};
+}

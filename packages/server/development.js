@@ -1,16 +1,21 @@
-const path = require('node:path');
+import { createRequire } from 'node:module';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+import watcher from 'think-watcher';
+import Application from 'thinkjs';
+
+const dirName = import.meta.dirname;
+const require = createRequire(import.meta.url);
 
 require('dotenv').config({
-  path: path.join(__dirname, '../../.env'),
+  path: path.join(dirName, '../../.env'),
   quiet: true,
 });
 
-const watcher = require('think-watcher');
-const Application = require('thinkjs');
-
 const instance = new Application({
-  ROOT_PATH: __dirname,
-  APP_PATH: path.join(__dirname, 'src'),
+  ROOT_PATH: dirName,
+  APP_PATH: path.join(dirName, 'src'),
   proxy: false,
   watcher,
   env: 'development',

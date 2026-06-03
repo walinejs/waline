@@ -1,8 +1,8 @@
-const path = require('node:path');
+import path from 'node:path';
 
-const { parseString, writeToString } = require('fast-csv');
+import { parseString, writeToString } from 'fast-csv';
 
-const Base = require('./base.js');
+import Base from './base.js';
 
 const CSV_HEADERS = {
   Comment: [
@@ -127,7 +127,7 @@ class Github {
   }
 }
 
-module.exports = class GithubStorage extends Base {
+export default class GithubStorage extends Base {
   constructor(tableName) {
     super();
     this.tableName = tableName;
@@ -374,4 +374,4 @@ module.exports = class GithubStorage extends Base {
 
     await this.save(this.tableName, data, instance.sha);
   }
-};
+}

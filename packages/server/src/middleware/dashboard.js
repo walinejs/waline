@@ -1,5 +1,5 @@
 // oxlint-disable-next-line func-names
-module.exports = function () {
+export default function () {
   return (ctx) => {
     ctx.type = 'html';
     ctx.body = `<!doctype html>
@@ -24,4 +24,4 @@ module.exports = function () {
   </body>
 </html>`;
   };
-};
+}

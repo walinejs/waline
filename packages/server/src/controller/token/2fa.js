@@ -1,8 +1,8 @@
-const speakeasy = require('speakeasy');
+import speakeasy from 'speakeasy';
 
-const BaseRest = require('../rest.js');
+import BaseRest from '../rest.js';
 
-module.exports = class extends BaseRest {
+export default class extends BaseRest {
   async getAction() {
     const { userInfo } = this.ctx.state;
     const { email } = this.get();
@@ -58,4 +58,4 @@ module.exports = class extends BaseRest {
 
     return this.success();
   }
-};
+}

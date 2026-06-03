@@ -1,6 +1,6 @@
-const cloudbase = require('@cloudbase/node-sdk');
+import cloudbase from '@cloudbase/node-sdk';
 
-const Base = require('./base.js');
+import Base from './base.js';
 
 const { TCB_ENV, TCB_ID, TCB_KEY } = process.env;
 const app = cloudbase.init({
@@ -14,7 +14,7 @@ const _ = db.command;
 const $ = db.command.aggregate;
 const collections = {};
 
-module.exports = class extends Base {
+export default class extends Base {
   async collection(tableName) {
     if (collections[tableName]) {
       return db.collection(tableName);
@@ -234,4 +234,4 @@ module.exports = class extends Base {
 
     return this.where(instance, where).remove();
   }
-};
+}

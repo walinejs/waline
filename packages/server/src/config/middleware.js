@@ -1,13 +1,13 @@
-const cors = require('@koa/cors');
-const routerREST = require('think-router-rest');
+import cors from '@koa/cors';
+import routerREST from 'think-router-rest';
 
-const { isNetlify, netlifyFunctionPrefix } = require('./netlify.js');
+import { isNetlify, netlifyFunctionPrefix } from './netlify.js';
 
 const isDev = think.env === 'development';
 const isTcb = think.env === 'cloudbase';
 const isAliyunFC = think.env === 'aliyun-fc' || Boolean(process.env.FC_RUNTIME_VERSION);
 
-module.exports = [
+export default [
   {
     handle: 'fetch-oauth-service',
   },

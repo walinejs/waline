@@ -1,4 +1,4 @@
-module.exports = () => async (ctx, next) => {
+export default () => async (ctx, next) => {
   const { oauthUrl } = think.config();
   const oauthResp = await fetch(oauthUrl, {
     method: 'GET',

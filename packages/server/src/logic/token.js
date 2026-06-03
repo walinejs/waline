@@ -1,6 +1,6 @@
-const Base = require('./base.js');
+import Base from './base.js';
 
-module.exports = class TokenLogic extends Base {
+export default class TokenLogic extends Base {
   /**
    * @api {GET} /api/token  get login user info
    * @apiGroup User
@@ -49,4 +49,4 @@ module.exports = class TokenLogic extends Base {
    * @apiSuccess (200) {String}  errmsg  return error message if error
    */
   deleteAction() {}
-};
+}

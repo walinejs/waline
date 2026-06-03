@@ -1,16 +1,19 @@
-const os = require('node:os');
-const path = require('node:path');
+import os from 'node:os';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const Application = require('thinkjs');
-const Loader = require('thinkjs/lib/loader');
+import Application from 'thinkjs';
+import Loader from 'thinkjs/lib/loader';
 
-module.exports = function main(configParams = {}) {
+const dirName = import.meta.dirname;
+
+export default function main(configParams = {}) {
   const { env, ...config } = configParams;
 
   const app = new Application({
-    ROOT_PATH: __dirname,
-    APP_PATH: path.join(__dirname, 'src'),
-    VIEW_PATH: path.join(__dirname, 'view'),
+    ROOT_PATH: dirName,
+    APP_PATH: path.join(dirName, 'src'),
+    VIEW_PATH: path.join(dirName, 'view'),
     RUNTIME_PATH: path.join(os.tmpdir(), 'runtime'),
     proxy: true, // use proxy
     env: env || 'vercel',
@@ -41,4 +44,4 @@ module.exports = function main(configParams = {}) {
         think.app.emit('appReady');
       });
   };
-};
+}

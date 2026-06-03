@@ -1,6 +1,6 @@
-const Base = require('./base.js');
+import Base from './base.js';
 
-module.exports = class extends Base {
+export default class extends Base {
   parseWhere(filter) {
     const where = {};
 
@@ -117,4 +117,4 @@ module.exports = class extends Base {
 
     return instance.query(`ALTER TABLE ${instance.tableName} AUTO_INCREMENT = ${id};`);
   }
-};
+}

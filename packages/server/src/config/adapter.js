@@ -1,7 +1,11 @@
-const { Console } = require('think-logger3');
-const Mysql = require('think-model-mysql');
-const Mysql2 = require('think-model-mysql2');
-const Postgresql = require('think-model-postgresql');
+import { createRequire } from 'node:module';
+
+import { Console } from 'think-logger3';
+import Mysql from 'think-model-mysql';
+import Mysql2 from 'think-model-mysql2';
+import Postgresql from 'think-model-postgresql';
+
+const require = createRequire(import.meta.url);
 
 let Sqlite;
 
@@ -84,7 +88,7 @@ if (MONGO_DB) {
   type = 'tidb';
 }
 
-exports.model = {
+export const model = {
   type,
   common: {
     logSql: true,
@@ -171,7 +175,7 @@ exports.model = {
  *
  * @type {Object}
  */
-exports.logger = {
+export const logger = {
   type: 'console',
   console: {
     handle: Console,

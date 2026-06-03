@@ -1,9 +1,12 @@
-const path = require('node:path');
-const qs = require('node:querystring');
+import path from 'node:path';
+import qs from 'node:querystring';
+import { fileURLToPath } from 'node:url';
 
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
 
-module.exports = class BaseLogic extends think.Logic {
+const fileName = import.meta.filename;
+
+export default class BaseLogic extends think.Logic {
   constructor(...args) {
     super(...args);
     this.modelInstance = this.getModel('Users');
@@ -137,7 +140,7 @@ module.exports = class BaseLogic extends think.Logic {
   }
 
   getResource() {
-    const filename = this.__filename || __filename;
+    const filename = this.__filename || fileName;
     const last = filename.lastIndexOf(path.sep);
 
     return filename.slice(last + 1, -3);
@@ -217,4 +220,4 @@ module.exports = class BaseLogic extends think.Logic {
       return this.ctx.throw(403);
     }
   }
-};
+}

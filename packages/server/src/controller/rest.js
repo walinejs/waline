@@ -1,6 +1,9 @@
-const path = require('node:path');
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-module.exports = class extends think.Controller {
+const fileName = import.meta.filename;
+
+export default class extends think.Controller {
   static _REST = true;
 
   static _method = 'method';
@@ -14,7 +17,7 @@ module.exports = class extends think.Controller {
   __before() {}
 
   getResource() {
-    const filename = this.__filename || __filename;
+    const filename = this.__filename || fileName;
     const last = filename.lastIndexOf(path.sep);
 
     return filename.slice(last + 1, -3);

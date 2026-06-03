@@ -1,8 +1,8 @@
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
 
-const BaseRest = require('../rest.js');
+import BaseRest from '../rest.js';
 
-module.exports = class extends BaseRest {
+export default class extends BaseRest {
   async putAction() {
     const { SMTP_HOST, SMTP_SERVICE, SENDER_EMAIL, SENDER_NAME, SMTP_USER, SITE_NAME } =
       process.env;
@@ -38,4 +38,4 @@ module.exports = class extends BaseRest {
 
     return this.success();
   }
-};
+}

@@ -1,8 +1,8 @@
-const { ObjectID: ObjectId } = require('think-mongo/lib/model');
+import { ObjectID as ObjectId } from 'think-mongo/lib/model';
 
-const Base = require('./base.js');
+import Base from './base.js';
 
-module.exports = class extends Base {
+export default class extends Base {
   parseWhere(where) {
     if (think.isEmpty(where)) {
       return {};
@@ -190,4 +190,4 @@ module.exports = class extends Base {
 
     return instance.delete();
   }
-};
+}

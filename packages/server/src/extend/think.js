@@ -1,5 +1,7 @@
-const IP2Region = require('ip2region').default;
-const parser = require('ua-parser-js');
+import ip2regionPkg from 'ip2region';
+import { UAParser as uaParser } from 'ua-parser-js';
+
+const IP2Region = ip2regionPkg.default;
 
 const preventMessage = 'PREVENT_NEXT_PROCESS';
 
@@ -26,7 +28,7 @@ const OS_VERSION_MAP = {
   },
 };
 
-module.exports = {
+export default {
   prevent() {
     throw new Error(preventMessage);
   },
@@ -102,7 +104,7 @@ module.exports = {
     }
   },
   uaParser(uaText) {
-    const ua = parser(uaText);
+    const ua = uaParser(uaText);
 
     if (OS_VERSION_MAP[ua.os.name]?.[ua.os.version]) {
       ua.os.version = OS_VERSION_MAP[ua.os.name][ua.os.version];

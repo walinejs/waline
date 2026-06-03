@@ -10,7 +10,7 @@ const DEPRECATE_ROUTER_NEXT_VERSION = [
   '/user/password',
 ];
 
-module.exports = () => async (ctx, next) => {
+export default () => async (ctx, next) => {
   ctx.state.deprecated = DEPRECATE_ROUTER_NEXT_VERSION.some((prefix) => {
     const oldAPI = new RegExp(`${prefix}$`, 'iu');
     const newAPI = new RegExp(`/api${prefix}$`, 'iu');

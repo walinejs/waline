@@ -1,6 +1,6 @@
-const Base = require('./base.js');
+import Base from './base.js';
 
-module.exports = class CommentLogic extends Base {
+export default class CommentLogic extends Base {
   checkAdmin() {
     const { userInfo } = this.ctx.state;
 
@@ -316,4 +316,4 @@ module.exports = class CommentLogic extends Base {
 
     return this.ctx.throw(403);
   }
-};
+}

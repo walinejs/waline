@@ -1,6 +1,6 @@
-const Base = require('./base.js');
+import Base from './base.js';
 
-module.exports = class ArticleLogic extends Base {
+export default class ArticleLogic extends Base {
   getAction() {
     this.rules = {
       path: { array: true },
@@ -24,4 +24,4 @@ module.exports = class ArticleLogic extends Base {
       },
     };
   }
-};
+}

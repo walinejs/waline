@@ -1,12 +1,12 @@
-const { katex: katexPlugin } = require('@mdit/plugin-katex');
-const { sub: subPlugin } = require('@mdit/plugin-sub');
-const { createMathjaxInstance, mathjax: mathjaxPlugin } = require('@mdit/plugin-mathjax/sync');
-const { sup: supPlugin } = require('@mdit/plugin-sup');
-const MarkdownIt = require('markdown-it');
-const emojiPlugin = require('markdown-it-emoji');
+import { katex as katexPlugin } from '@mdit/plugin-katex';
+import { createMathjaxInstance, mathjax as mathjaxPlugin } from '@mdit/plugin-mathjax/sync';
+import { sub as subPlugin } from '@mdit/plugin-sub';
+import { sup as supPlugin } from '@mdit/plugin-sup';
+import MarkdownIt from 'markdown-it';
+import { full as emojiFull } from 'markdown-it-emoji';
 
-const { resolveHighlighter } = require('./highlight.js');
-const { sanitize } = require('./xss.js');
+import { resolveHighlighter } from './highlight.js';
+import { sanitize } from './xss.js';
 
 const getMarkdownParser = (markdown = {}) => {
   const { config = {}, plugin = {} } = markdown;
@@ -34,7 +34,7 @@ const getMarkdownParser = (markdown = {}) => {
 
   // parse emoji
   if (emoji !== false) {
-    markdownIt.use(emojiPlugin.full, typeof emoji === 'object' ? emoji : {});
+    markdownIt.use(emojiFull, typeof emoji === 'object' ? emoji : {});
   }
 
   // parse sub
@@ -61,4 +61,4 @@ const getMarkdownParser = (markdown = {}) => {
   return (content) => sanitize(markdownIt.render(content));
 };
 
-module.exports = { getMarkdownParser };
+export { getMarkdownParser };

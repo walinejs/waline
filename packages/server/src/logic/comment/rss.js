@@ -1,6 +1,6 @@
-const Base = require('../base.js');
+import Base from '../base.js';
 
-module.exports = class CommentRSSLogic extends Base {
+export default class CommentRSSLogic extends Base {
   /**
    * @api {GET} /api/comment/rss Get site recent comments RSS
    * @apiGroup Comment
@@ -51,4 +51,4 @@ module.exports = class CommentRSSLogic extends Base {
       },
     };
   }
-};
+}

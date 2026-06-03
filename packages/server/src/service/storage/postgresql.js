@@ -1,4 +1,4 @@
-const MySQL = require('./mysql.js');
+import MySQL from './mysql.js';
 
 const mapKeys = ({ insertedat, createdat, updatedat, ...item }) => {
   const mapFields = {
@@ -17,7 +17,7 @@ const mapKeys = ({ insertedat, createdat, updatedat, ...item }) => {
 
   return item;
 };
-module.exports = class extends MySQL {
+export default class extends MySQL {
   model(tableName) {
     return super.model(tableName.toLowerCase());
   }
@@ -80,4 +80,4 @@ module.exports = class extends MySQL {
 
     return instance.query(`ALTER SEQUENCE ${instance.tableName}_seq RESTART WITH ${id};`);
   }
-};
+}

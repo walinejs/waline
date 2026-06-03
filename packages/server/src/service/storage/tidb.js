@@ -1,3 +1,3 @@
-const MySQL = require('./mysql.js');
+import MySQL from './mysql.js';
 
-module.exports = class extends MySQL {};
+export default class extends MySQL {}

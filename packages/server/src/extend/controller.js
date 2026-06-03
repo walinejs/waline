@@ -1,11 +1,11 @@
-const nunjucks = require('nunjucks');
-const { PasswordHash } = require('phpass');
+import nunjucks from 'nunjucks';
+import { PasswordHash } from 'phpass';
 
-const defaultLocales = require('../locales/index.js');
+import defaultLocales from '../locales/index.js';
 
 const defaultLang = 'en-us';
 
-module.exports = {
+export default {
   success(...args) {
     this.ctx.success(...args);
 

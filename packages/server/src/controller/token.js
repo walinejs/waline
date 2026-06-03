@@ -1,9 +1,9 @@
-const jwt = require('jsonwebtoken');
-const speakeasy = require('speakeasy');
+import jwt from 'jsonwebtoken';
+import speakeasy from 'speakeasy';
 
-const BaseRest = require('./rest.js');
+import BaseRest from './rest.js';
 
-module.exports = class extends BaseRest {
+export default class extends BaseRest {
   constructor(...args) {
     super(...args);
     this.modelInstance = this.getModel('Users');
@@ -67,4 +67,4 @@ module.exports = class extends BaseRest {
   }
 
   deleteAction() {}
-};
+}

@@ -1,8 +1,8 @@
-const Akismet = require('akismet');
+import Akismet from 'akismet';
 
 const DEFAULT_KEY = '70542d86693e';
 
-module.exports = class extends think.Service {
+export default class extends think.Service {
   constructor(blog) {
     super(blog);
 
@@ -53,4 +53,4 @@ module.exports = class extends think.Service {
       });
     });
   }
-};
+}

@@ -1,6 +1,6 @@
-const BaseRest = require('./rest.js');
+import BaseRest from './rest.js';
 
-module.exports = class extends BaseRest {
+export default class extends BaseRest {
   constructor(ctx) {
     super(ctx);
     this.modelInstance = this.getModel('Counter');
@@ -96,4 +96,4 @@ module.exports = class extends BaseRest {
 
     return this.jsonOrSuccess(deprecated ? ret[0][type] : [{ [type]: ret[0][type] }]);
   }
-};
+}

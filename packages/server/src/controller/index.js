@@ -1,6 +1,8 @@
-const { version } = require('../../package.json');
+import pkg from '../../package.json' with { type: 'json' };
 
-module.exports = class extends think.Controller {
+const { version } = pkg;
+
+export default class extends think.Controller {
   indexAction() {
     this.type = 'html';
     this.body = `
@@ -35,4 +37,4 @@ module.exports = class extends think.Controller {
     </body>
     </html>`;
   }
-};
+}

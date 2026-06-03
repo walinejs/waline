@@ -1,6 +1,6 @@
-const AV = require('leancloud-storage');
+import AV from 'leancloud-storage';
 
-const Base = require('./base.js');
+import Base from './base.js';
 
 const { LEAN_ID, LEAN_KEY, LEAN_MASTER_KEY, LEAN_SERVER } = process.env;
 
@@ -14,7 +14,7 @@ if (LEAN_ID && LEAN_KEY && LEAN_MASTER_KEY) {
     serverURL: LEAN_SERVER,
   });
 }
-module.exports = class extends Base {
+export default class extends Base {
   parseWhere(className, where) {
     const instance = new AV.Query(className);
 
@@ -447,4 +447,4 @@ module.exports = class extends Base {
 
     return AV.Object.destroyAll(data);
   }
-};
+}

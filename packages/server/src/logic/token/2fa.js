@@ -1,6 +1,6 @@
-const Base = require('../base.js');
+import Base from '../base.js';
 
-module.exports = class extends Base {
+export default class extends Base {
   async getAction() {
     const { email } = this.get();
     const { userInfo } = this.ctx.state;
@@ -25,4 +25,4 @@ module.exports = class extends Base {
       },
     };
   }
-};
+}

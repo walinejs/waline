@@ -110,7 +110,7 @@ if (AVATAR_PROXY) {
 
 const oauthUrl = OAUTH_URL || 'https://oauth.lithub.cc';
 
-module.exports = {
+export default {
   workers: 1,
   storage,
   jwtKey,

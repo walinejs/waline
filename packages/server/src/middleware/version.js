@@ -1,6 +1,6 @@
-const pkg = require('../../package.json');
+import pkg from '../../package.json' with { type: 'json' };
 
-module.exports = () => async (ctx, next) => {
+export default () => async (ctx, next) => {
   ctx.set('x-waline-version', pkg.version);
   await next();
 };

@@ -1,6 +1,6 @@
-const BaseRest = require('./rest.js');
+import BaseRest from './rest.js';
 
-module.exports = class extends BaseRest {
+export default class extends BaseRest {
   constructor(...args) {
     super(...args);
     this.modelInstance = this.getModel('Users');
@@ -30,4 +30,4 @@ module.exports = class extends BaseRest {
 
     return this.fail(this.locale('TOKEN_EXPIRED'));
   }
-};
+}

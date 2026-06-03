@@ -1,6 +1,6 @@
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
 
-module.exports = class OAuthController extends think.Controller {
+export default class OAuthController extends think.Controller {
   constructor(ctx) {
     super(ctx);
     this.modelInstance = this.getModel('Users');
@@ -109,4 +109,4 @@ module.exports = class OAuthController extends think.Controller {
 
     this.redirect(`${redirect}${redirect.includes('?') ? '&' : '?'}token=${token}`);
   }
-};
+}

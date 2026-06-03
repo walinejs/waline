@@ -1,10 +1,15 @@
-const path = require('node:path');
+import { createRequire } from 'node:module';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const Application = require('thinkjs');
+import Application from 'thinkjs';
+
+const dirName = import.meta.dirname;
+const require = createRequire(import.meta.url);
 
 const instance = new Application({
-  ROOT_PATH: __dirname,
-  APP_PATH: path.join(__dirname, 'src'),
+  ROOT_PATH: dirName,
+  APP_PATH: path.join(dirName, 'src'),
   proxy: true, // use proxy
   env: 'production',
 });

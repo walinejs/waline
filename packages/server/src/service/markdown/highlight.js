@@ -1,5 +1,5 @@
-const prism = require('prismjs');
-const rawLoadLanguages = require('prismjs/components/index');
+import prism from 'prismjs';
+import rawLoadLanguages from 'prismjs/components/index';
 
 // prevent warning messages
 rawLoadLanguages.silent = true;
@@ -29,6 +29,4 @@ const resolveHighlighter = (language) => {
   return (code) => prism.highlight(code, prism.languages[language], language);
 };
 
-module.exports = {
-  resolveHighlighter,
-};
+export { resolveHighlighter };

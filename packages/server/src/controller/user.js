@@ -1,6 +1,6 @@
-const BaseRest = require('./rest.js');
+import BaseRest from './rest.js';
 
-module.exports = class UserController extends BaseRest {
+export default class UserController extends BaseRest {
   constructor(...args) {
     super(...args);
     this.modelInstance = this.getModel('Users');
@@ -302,4 +302,4 @@ module.exports = class UserController extends BaseRest {
 
     return users;
   }
-};
+}

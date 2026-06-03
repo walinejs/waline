@@ -1,7 +1,7 @@
-const crypto = require('node:crypto');
+import crypto from 'node:crypto';
 
-const nunjucks = require('nunjucks');
-const helper = require('think-helper');
+import nunjucks from 'nunjucks';
+import helper from 'think-helper';
 
 const { GRAVATAR_STR } = process.env;
 
@@ -20,7 +20,7 @@ const DEFAULT_GRAVATAR_STR = `{%- set numExp = r/^[0-9]+$/g -%}
   https://seccdn.libravatar.org/avatar/{{mail|md5}}
 {%- endif -%}`;
 
-module.exports = class extends think.Service {
+export default class extends think.Service {
   async stringify(comment) {
     const fn = think.config('avatarUrl');
 
@@ -36,4 +36,4 @@ module.exports = class extends think.Service {
 
     return env.renderString(gravatarStr, comment);
   }
-};
+}

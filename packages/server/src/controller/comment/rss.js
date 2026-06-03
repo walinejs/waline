@@ -1,7 +1,8 @@
-const RSS = require('rss');
-const BaseRest = require('../rest.js');
-const { getMarkdownParser } = require('../../service/markdown/index.js');
-const { think } = require('thinkjs');
+import RSS from 'rss';
+import { think } from 'thinkjs';
+
+import { getMarkdownParser } from '../../service/markdown/index.js';
+import BaseRest from '../rest.js';
 
 const markdownParser = getMarkdownParser(think.config('markdown'));
 
@@ -47,7 +48,7 @@ const setRssResponse = (ctx, xml) => {
   ctx.body = xml;
 };
 
-module.exports = class extends BaseRest {
+export default class extends BaseRest {
   constructor(ctx) {
     super(ctx);
     this.modelInstance = this.getModel('Comment');
@@ -157,4 +158,4 @@ module.exports = class extends BaseRest {
       }),
     );
   }
-};
+}

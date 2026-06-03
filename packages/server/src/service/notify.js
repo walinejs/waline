@@ -1,10 +1,10 @@
-const crypto = require('node:crypto');
+import crypto from 'node:crypto';
 
-const FormData = require('form-data');
-const nodemailer = require('nodemailer');
-const nunjucks = require('nunjucks');
+import FormData from 'form-data';
+import nodemailer from 'nodemailer';
+import nunjucks from 'nunjucks';
 
-module.exports = class NotifyService extends think.Service {
+export default class NotifyService extends think.Service {
   constructor(controller) {
     super(controller);
 
@@ -552,4 +552,4 @@ module.exports = class NotifyService extends think.Service {
       }
     }
   }
-};
+}

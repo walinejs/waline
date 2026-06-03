@@ -1,6 +1,6 @@
-const Base = require('./base.js');
+import Base from './base.js';
 
-module.exports = class DatabaseLogic extends Base {
+export default class DatabaseLogic extends Base {
   async __before(...args) {
     await super.__before(...args);
 
@@ -78,4 +78,4 @@ module.exports = class DatabaseLogic extends Base {
       },
     };
   }
-};
+}

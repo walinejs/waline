@@ -1,6 +1,6 @@
-const compose = require('koa-compose');
+import compose from 'koa-compose';
 
-module.exports = () => async (ctx, next) => {
+export default () => async (ctx, next) => {
   const middlewares = think.getPluginMiddlewares();
 
   if (!think.isArray(middlewares) || middlewares.length === 0) {

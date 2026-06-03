@@ -1,6 +1,6 @@
-const Base = require('./base.js');
+import Base from './base.js';
 
-module.exports = class UserLogic extends Base {
+export default class UserLogic extends Base {
   /**
    * @api {GET} /api/user user top list without admin
    * @apiGroup User
@@ -146,4 +146,4 @@ module.exports = class UserLogic extends Base {
       return this.fail();
     }
   }
-};
+}
