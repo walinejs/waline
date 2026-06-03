@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router';
 
 import Header from '../../components/Header.jsx';
 // oxlint-disable-next-line import/no-namespace
-import * as Icons from '../../components/icon/index.js';
+import * as Icons from '../../components/icon';
 import { useCaptcha } from '../../components/useCaptcha.js';
 import { get2FAToken } from '../../services/user.js';
 
@@ -183,11 +183,15 @@ export default function Login() {
             </p>
           </form>
           <div className="social-accounts">
-            {socials.map((social) => (
-              <a key={social} href={buildOAuthURL(social)}>
-                {React.createElement(Icons[social])}
-              </a>
-            ))}
+            {socials.map((social) => {
+              const Icon = Icons[social];
+
+              return (
+                <a key={social} href={buildOAuthURL(social)}>
+                  {Icon ? <Icon className="social-icon" aria-hidden="true" /> : null}
+                </a>
+              );
+            })}
           </div>
 
           <p className="more-link">

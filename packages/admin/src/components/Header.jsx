@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router';
 
 import { LANGUAGE_OPTIONS } from '../locales/index.js';
+import { buildAvatar } from '../pages/manage-comments/utils.js';
 
 export default function Header() {
   const dispatch = useDispatch();
@@ -45,51 +46,67 @@ export default function Header() {
     navigate('/ui/login');
   };
 
+  const siteName = window.SITE_NAME || 'Waline';
+
+  const navItems = [
+    { to: '/ui', label: t('comment') },
+    { to: '/ui/user', label: t('user') },
+    { to: '/ui/migration', label: t('migration') },
+  ];
+
   return [
-    <div className="typecho-head-nav clear-fix" role="navigation" key="header">
-      {user?.type === 'administrator' ? (
-        <nav id="typecho-nav-list">
-          <ul className="root">
-            <li className="parent">
-              <Link to="/ui">{t('management')}</Link>
-            </li>
-            <ul className="child">
-              <li className="last">
-                <Link to="/ui">{t('comment')}</Link>
-              </li>
-              <li className="last">
-                <Link to="/ui/user">{t('user')}</Link>
-              </li>
-              <li className="last">
-                <Link to="/ui/migration">{t('migration')}</Link>
-              </li>
-            </ul>
-          </ul>
-        </nav>
-      ) : null}
-      <div className="operate">
-        <div className="language-select">
-          <select defaultValue={defaultLanguage} onChange={updateLanguage} style={{ width: 120 }}>
-            {LANGUAGE_OPTIONS.map((options) => (
-              <option key={options.value} value={options.value}>
-                {options.label}
-              </option>
-            ))}
-          </select>
-        </div>
-        {user?.type ? (
-          <Link to="/ui/profile" className="author">
-            {user.display_name}
+    <header className="typecho-head-nav clear-fix" role="navigation" key="header">
+      <div className="waline-header">
+        <div className="waline-brand">
+          <Link to="/ui" className="waline-brand-link">
+            <span className="waline-brand-mark"></span>
+            <span className="waline-brand-copy">
+              <strong>{siteName}</strong>
+            </span>
           </Link>
+        </div>
+
+        {user?.type === 'administrator' ? (
+          <nav id="typecho-nav-list" className="waline-nav">
+            <ul className="root">
+              {navItems.map((item) => (
+                <li className="parent" key={item.to}>
+                  <Link to={item.to}>{item.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
         ) : null}
 
-        {user?.type ? (
-          <button type="button" className="exit" onClick={onLogout}>
-            {t('logout')}
-          </button>
-        ) : null}
+        <div className="operate">
+          <div className="language-select">
+            <select defaultValue={defaultLanguage} onChange={updateLanguage}>
+              {LANGUAGE_OPTIONS.map((options) => (
+                <option key={options.value} value={options.value}>
+                  {options.label}
+                </option>
+              ))}
+            </select>
+          </div>
+          {user?.type ? (
+            <Link to="/ui/profile" className="author">
+              <img
+                className="author-avatar"
+                src={buildAvatar(user.email, user.avatar)}
+                alt={user.display_name || 'Waline'}
+              />
+              <span className="author-name">{user.display_name}</span>
+            </Link>
+          ) : null}
+
+          {user?.type ? (
+            <button type="button" className="exit" onClick={onLogout}>
+              {t('logout')}
+            </button>
+          ) : null}
+        </div>
       </div>
-    </div>,
+    </header>,
     latestVersion ? (
       <div className="upgrade-tips clear-fix" key="upgrade">
         <Trans
