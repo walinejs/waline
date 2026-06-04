@@ -61,8 +61,8 @@ export const login = ({
   lang,
   serverURL,
 }: BaseAPIOptions): Promise<UserInfo & { remember: boolean }> => {
-  const width = 500;
-  const height = 60500;
+  const width = 1024;
+  const height = 600;
   const left = (window.innerWidth - width) / 2;
   const top = (window.innerHeight - height) / 2;
 
