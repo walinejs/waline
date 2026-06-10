@@ -63,7 +63,7 @@ Waline 多语言配置。
 
 ## emoji
 
-- 类型: `(WalineEmojiInfo | WalineEmojiPresets)[] | boolean`
+- 类型: `WalineEmojiOptions | boolean`
 
   ```ts
   type WalineEmojiPresets = `http://${string}` | `https://${string}`;
@@ -94,6 +94,13 @@ Waline 多语言配置。
      */
     items: string[];
   }
+
+  type WalineEmojiFactory = () =>
+    | WalineEmojiInfo
+    | WalineEmojiInfo[]
+    | Promise<WalineEmojiInfo | WalineEmojiInfo[]>;
+
+  type WalineEmojiOptions = (WalineEmojiFactory | WalineEmojiInfo | WalineEmojiPresets)[];
   ```
 
 - 默认值: `['//unpkg.com/@waline/emojis@1.1.0/weibo']`
