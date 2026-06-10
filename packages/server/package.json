@@ -33,7 +33,7 @@
     "dompurify": "^3.4.7",
     "fast-csv": "^5.0.7",
     "form-data": "^4.0.5",
-    "ip2region": "^2.3.0",
+    "ip2region": "github:lizheming/node-ip2region#fix/bundle-data",
     "jsdom": "^19.0.0",
     "jsonwebtoken": "^9.0.3",
     "koa-compose": "^4.1.0",
