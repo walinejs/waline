@@ -15,7 +15,7 @@ overrides:
   # FIXME: vulnerable
   '@cloudbase/database>lodash.unset': ^4.18.0
   # FIXME: vulnerable
-  '@cloudbase/node-sdk>axios': ^0.32.0
+  '@cloudbase/node-sdk>axios': ^1.0.0
   # FIXME: https://github.com/next-theme/utils/issues/42
   '@next-theme/utils>js-yaml': ^4.1.1
   '@waline/api': workspace:*
