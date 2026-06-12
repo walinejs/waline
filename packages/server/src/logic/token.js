@@ -39,8 +39,8 @@ module.exports = class TokenLogic extends Base {
 
     const { email, password } = this.post();
 
-    if (!think.isString(email) || !think.isString(password)) {
-      return this.ctx.throw(400, 'Invalid input type');
+    if (!think.isString(email) || !think.isString(password) || !email.trim() || !password.trim()) {
+      this.ctx.throw(400, 'Email and password must be non-empty strings');
     }
   }
 

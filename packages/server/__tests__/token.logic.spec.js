@@ -25,7 +25,7 @@ describe('token logic', () => {
 
     await TokenLogic.prototype.postAction.call(logicContext);
 
-    expect(throwMock).toHaveBeenCalledWith(400, 'Invalid input type');
+    expect(throwMock).toHaveBeenCalledWith(400, 'Email and password must be non-empty strings');
   });
 
   it('should reject non-string password', async () => {
@@ -41,7 +41,23 @@ describe('token logic', () => {
 
     await TokenLogic.prototype.postAction.call(logicContext);
 
-    expect(throwMock).toHaveBeenCalledWith(400, 'Invalid input type');
+    expect(throwMock).toHaveBeenCalledWith(400, 'Email and password must be non-empty strings');
+  });
+
+  it('should reject empty string credentials', async () => {
+    const TokenLogic = require('../src/logic/token.js');
+    const throwMock = vi.fn();
+    const logicContext = {
+      useCaptchaCheck: vi.fn().mockResolvedValue(undefined),
+      post: () => ({ email: ' ', password: '' }),
+      ctx: {
+        throw: throwMock,
+      },
+    };
+
+    await TokenLogic.prototype.postAction.call(logicContext);
+
+    expect(throwMock).toHaveBeenCalledWith(400, 'Email and password must be non-empty strings');
   });
 
   it('should accept string email and password', async () => {
