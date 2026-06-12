@@ -35,13 +35,19 @@ module.exports = class TokenLogic extends Base {
    * @apiSuccess (200) {String}  errmsg  return error message if error
    */
   async postAction() {
+    this.rules = {
+      email: {
+        required: true,
+        string: true,
+        email: true,
+      },
+      password: {
+        required: true,
+        string: true,
+      },
+    };
+
     await this.useCaptchaCheck();
-
-    const { email, password } = this.post();
-
-    if (!think.isString(email) || !think.isString(password) || !email.trim() || !password.trim()) {
-      this.ctx.throw(400, 'Email and password must be non-empty strings');
-    }
   }
 
   /**

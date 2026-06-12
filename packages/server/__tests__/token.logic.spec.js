@@ -1,78 +1,43 @@
 import { createRequire } from 'node:module';
 
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
 const require = createRequire(import.meta.url);
 
+global.think = {
+  Logic: class Logic {},
+};
+const TokenLogic = require('../src/logic/token.js');
+
 describe('token logic', () => {
-  beforeEach(() => {
-    global.think = {
-      Logic: class {},
-      isString: (value) => typeof value === 'string',
-    };
-  });
-
-  it('should reject non-string email', async () => {
-    const TokenLogic = require('../src/logic/token.js');
-    const throwMock = vi.fn();
+  it('should define thinkjs rules for email and password', async () => {
     const logicContext = {
       useCaptchaCheck: vi.fn().mockResolvedValue(undefined),
-      post: () => ({ email: { $ne: null }, password: 'secret' }),
-      ctx: {
-        throw: throwMock,
-      },
     };
 
     await TokenLogic.prototype.postAction.call(logicContext);
 
-    expect(throwMock).toHaveBeenCalledWith(400, 'Email and password must be non-empty strings');
+    expect(logicContext.rules).toStrictEqual({
+      email: {
+        required: true,
+        string: true,
+        email: true,
+      },
+      password: {
+        required: true,
+        string: true,
+      },
+    });
   });
 
-  it('should reject non-string password', async () => {
-    const TokenLogic = require('../src/logic/token.js');
-    const throwMock = vi.fn();
+  it('should still run captcha check', async () => {
+    const useCaptchaCheck = vi.fn().mockResolvedValue(undefined);
     const logicContext = {
-      useCaptchaCheck: vi.fn().mockResolvedValue(undefined),
-      post: () => ({ email: 'admin@example.com', password: ['!=', ''] }),
-      ctx: {
-        throw: throwMock,
-      },
+      useCaptchaCheck,
     };
 
     await TokenLogic.prototype.postAction.call(logicContext);
 
-    expect(throwMock).toHaveBeenCalledWith(400, 'Email and password must be non-empty strings');
-  });
-
-  it('should reject empty string credentials', async () => {
-    const TokenLogic = require('../src/logic/token.js');
-    const throwMock = vi.fn();
-    const logicContext = {
-      useCaptchaCheck: vi.fn().mockResolvedValue(undefined),
-      post: () => ({ email: ' ', password: '' }),
-      ctx: {
-        throw: throwMock,
-      },
-    };
-
-    await TokenLogic.prototype.postAction.call(logicContext);
-
-    expect(throwMock).toHaveBeenCalledWith(400, 'Email and password must be non-empty strings');
-  });
-
-  it('should accept string email and password', async () => {
-    const TokenLogic = require('../src/logic/token.js');
-    const throwMock = vi.fn();
-    const logicContext = {
-      useCaptchaCheck: vi.fn().mockResolvedValue(undefined),
-      post: () => ({ email: 'admin@example.com', password: 'secret' }),
-      ctx: {
-        throw: throwMock,
-      },
-    };
-
-    await TokenLogic.prototype.postAction.call(logicContext);
-
-    expect(throwMock).not.toHaveBeenCalled();
+    expect(useCaptchaCheck).toHaveBeenCalledTimes(1);
   });
 });
