@@ -60,7 +60,8 @@
   },
   "devDependencies": {
     "dotenv": "17.4.2",
-    "think-watcher": "3.0.4"
+    "think-watcher": "3.0.4",
+    "vitest": "^4.1.8"
   },
   "engines": {
     "node": "^20.19.0 || ^22.12.0 || ^24.0.0"
