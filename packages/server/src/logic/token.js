@@ -36,6 +36,12 @@ module.exports = class TokenLogic extends Base {
    */
   async postAction() {
     await this.useCaptchaCheck();
+
+    const { email, password } = this.post();
+
+    if (!think.isString(email) || !think.isString(password)) {
+      return this.ctx.throw(400, 'Invalid input type');
+    }
   }
 
   /**
