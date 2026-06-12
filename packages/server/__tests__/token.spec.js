@@ -4,7 +4,7 @@ import http from 'node:http';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 
 // Set required env vars before booting the ThinkJS application
-process.env.SQLITE_PATH = '/tmp/test-waline.sqlite';
+process.env.SQLITE_PATH = `/tmp/test-waline-${process.pid}.sqlite`;
 process.env.JWT_TOKEN = 'test-jwt-secret';
 
 // Intercept fetch so the oauth-service middleware does not make real HTTP calls
