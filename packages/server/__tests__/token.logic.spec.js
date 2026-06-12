@@ -20,7 +20,6 @@ describe('token logic', () => {
     expect(logicContext.rules).toStrictEqual({
       email: {
         required: true,
-        string: true,
         email: true,
       },
       password: {

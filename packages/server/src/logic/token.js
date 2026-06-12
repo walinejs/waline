@@ -38,7 +38,6 @@ module.exports = class TokenLogic extends Base {
     this.rules = {
       email: {
         required: true,
-        string: true,
         email: true,
       },
       password: {
