@@ -35,6 +35,17 @@ module.exports = class TokenLogic extends Base {
    * @apiSuccess (200) {String}  errmsg  return error message if error
    */
   async postAction() {
+    this.rules = {
+      email: {
+        required: true,
+        email: true,
+      },
+      password: {
+        required: true,
+        string: true,
+      },
+    };
+
     await this.useCaptchaCheck();
   }
 
