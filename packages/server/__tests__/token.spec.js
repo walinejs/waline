@@ -45,6 +45,8 @@ beforeAll(async () => {
 
 afterAll(async () => {
   globalThis.fetch = _originalFetch;
+  delete process.env.SQLITE_PATH;
+  delete process.env.JWT_TOKEN;
   await new Promise((resolve) => server.close(resolve));
 });
 
