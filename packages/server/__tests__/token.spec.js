@@ -1,5 +1,5 @@
-import { createRequire } from 'node:module';
 import http from 'node:http';
+import { createRequire } from 'node:module';
 
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 
@@ -40,7 +40,7 @@ let port;
 beforeAll(async () => {
   server = http.createServer(handler);
   await new Promise((resolve) => server.listen(0, resolve));
-  port = server.address().port;
+  ({ port } = server.address());
 });
 
 afterAll(async () => {
@@ -50,22 +50,27 @@ afterAll(async () => {
   await new Promise((resolve) => server.close(resolve));
 });
 
-const apiRequest = (method, path, body) =>
-  fetch(`http://localhost:${port}${path}`, {
+const apiRequest = (method, path, body) => {
+  const url = `http://localhost:${port}${path}`;
+  const options = {
     method,
     headers: { 'Content-Type': 'application/json' },
-    body: body ? JSON.stringify(body) : undefined,
-  }).then((r) => r.json());
+  };
+  if (method !== 'GET' && body) {
+    options.body = JSON.stringify(body);
+  }
+  return fetch(url, options).then((r) => r.json());
+};
 
-describe('GET /api/token', () => {
+describe('gET /api/token', () => {
   it('should return empty user info when not authenticated', async () => {
     const body = await apiRequest('GET', '/api/token');
     expect(body.errno).toBe(0);
-    expect(body.data).toEqual({});
+    expect(body.data).toStrictEqual({});
   });
 });
 
-describe('POST /api/token', () => {
+describe('pOST /api/token', () => {
   it('should return a validation error when email is missing', async () => {
     const body = await apiRequest('POST', '/api/token', { password: 'password123' });
     expect(body.errno).toBe(1001);
