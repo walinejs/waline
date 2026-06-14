@@ -76,6 +76,16 @@ You can contact me through [discussions](https://github.com/walinejs/waline/disc
   <img src="./assets/qqgroup.jpg" width="300" alt="qq group qrcode" />
 </a>
 
+## Contributors
+
+Your contributions enrich the open-source community, fostering learning, inspiration, and innovation. We deeply value your involvement. Thank you for being a vital part of our community! 🥰
+
+[![Contributors](https://contrib.rocks/image?repo=walinejs/waline)](https://github.com/walinejs/waline/graphs/contributors)
+
+## Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/walinejs/waline.svg?background=%23ffffff&axis=%23333333&line=%234e9def)](https://starchart.cc/walinejs/waline)
+
 ## License
 
 [GPL-2.0](https://github.com/lizheming/Waline/blob/main/LICENSE)

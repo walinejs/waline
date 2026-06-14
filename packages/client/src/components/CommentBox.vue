@@ -365,8 +365,8 @@ const onProfile = (event: Event): void => {
 
   const { lang, serverURL } = config.value;
 
-  const width = 800;
-  const height = 800;
+  const width = 1200;
+  const height = 720;
   const left = (window.innerWidth - width) / 2;
   const top = (window.innerHeight - height) / 2;
   const query = new URLSearchParams({
