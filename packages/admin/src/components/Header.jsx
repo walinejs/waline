@@ -59,7 +59,7 @@ export default function Header() {
       <div className="waline-header">
         <div className="waline-brand">
           <Link to="/ui" className="waline-brand-link">
-            <span className="waline-brand-mark"></span>
+            <span className="waline-brand-mark" />
             <span className="waline-brand-copy">
               <strong>{siteName}</strong>
             </span>
