@@ -7,6 +7,7 @@ allowBuilds:
   core-js-pure: true
   esbuild: true
   sqlite3: true
+  better-sqlite3: true
   unrs-resolver: true
 
 enableGlobalVirtualStore: true
