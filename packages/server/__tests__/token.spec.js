@@ -22,6 +22,13 @@ const main = require('../index.js');
 // Use a custom model stub so no real database connection is needed
 const handler = main({
   customModel: (modelName) => {
+    if (modelName === 'Comment') {
+      return {
+        select: async () => [],
+        count: async () => 0,
+      };
+    }
+
     if (modelName === 'Users') {
       return {
         select: async () => [],
@@ -62,7 +69,7 @@ const apiRequest = (method, path, body) => {
   return fetch(url, options).then((r) => r.json());
 };
 
-describe('gET /api/token', () => {
+describe('GET /api/token', () => {
   it('should return empty user info when not authenticated', async () => {
     const body = await apiRequest('GET', '/api/token');
     expect(body.errno).toBe(0);
@@ -70,7 +77,21 @@ describe('gET /api/token', () => {
   });
 });
 
-describe('pOST /api/token', () => {
+describe('GET /api/comment', () => {
+  it('should return an empty comment list for a running server', async () => {
+    const body = await apiRequest('GET', '/api/comment?path=/unit-test');
+
+    expect(body.errno).toBe(0);
+    expect(body.data).toMatchObject({
+      page: 1,
+      pageSize: 10,
+      count: 0,
+      data: [],
+    });
+  });
+});
+
+describe('POST /api/token', () => {
   it('should return a validation error when email is missing', async () => {
     const body = await apiRequest('POST', '/api/token', { password: 'password123' });
     expect(body.errno).toBe(1001);
