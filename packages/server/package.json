@@ -23,14 +23,12 @@
   "dependencies": {
     "@cloudbase/node-sdk": "^3.18.1",
     "@koa/cors": "^5.0.0",
-    "@mathjax/mathjax-tex-font": "^4.1.2",
-    "@mathjax/src": "^4.1.2",
-    "@mdit/plugin-katex": "0.25.2",
-    "@mdit/plugin-mathjax": "0.26.2",
-    "@mdit/plugin-sub": "0.24.2",
-    "@mdit/plugin-sup": "0.24.2",
+    "@mdit/plugin-katex": "0.23.4-cjs.0",
+    "@mdit/plugin-mathjax": "0.23.4-cjs.0",
+    "@mdit/plugin-sub": "0.22.5-cjs.0",
+    "@mdit/plugin-sup": "0.22.5-cjs.0",
     "akismet": "^2.0.7",
-    "dompurify": "^3.4.7",
+    "dompurify": "^3.4.6",
     "fast-csv": "^5.0.7",
     "form-data": "^4.0.5",
     "ip2region": "^2.3.0",
@@ -40,6 +38,7 @@
     "leancloud-storage": "^4.15.2",
     "markdown-it": "^14.2.0",
     "markdown-it-emoji": "^3.0.0",
+    "mathjax-full": "^3.2.2",
     "nodemailer": "^8.0.9",
     "nunjucks": "^3.2.4",
     "phpass": "^0.1.1",
@@ -63,6 +62,6 @@
     "think-watcher": "3.0.4"
   },
   "engines": {
-    "node": "^20.19.0 || ^22.12.0 || ^24.0.0"
+    "node": ">=20"
   }
 }
