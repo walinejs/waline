@@ -1,7 +1,7 @@
 const BaseRest = require('./rest.js');
 const { getMarkdownParser } = require('../service/markdown/index.js');
 
-const markdownParser = getMarkdownParser(think.config('markdown'));
+const markdownParser = getMarkdownParser();
 
 const formatCmt = async (
   { ua, ip, ...comment },

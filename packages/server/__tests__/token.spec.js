@@ -22,6 +22,13 @@ const main = require('../index.js');
 // Use a custom model stub so no real database connection is needed
 const handler = main({
   customModel: (modelName) => {
+    if (modelName === 'Comment') {
+      return {
+        select: async () => [],
+        count: async () => 0,
+      };
+    }
+
     if (modelName === 'Users') {
       return {
         select: async () => [],
@@ -67,6 +74,20 @@ describe('gET /api/token', () => {
     const body = await apiRequest('GET', '/api/token');
     expect(body.errno).toBe(0);
     expect(body.data).toStrictEqual({});
+  });
+});
+
+describe('gET /api/comment', () => {
+  it('should return an empty comment list for a running server', async () => {
+    const body = await apiRequest('GET', '/api/comment?path=/unit-test');
+
+    expect(body.errno).toBe(0);
+    expect(body.data).toMatchObject({
+      page: 1,
+      pageSize: 10,
+      count: 0,
+      data: [],
+    });
   });
 });
 
