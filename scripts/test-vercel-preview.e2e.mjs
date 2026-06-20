@@ -11,6 +11,8 @@ const listBefore = await fetch(`${baseURL}/api/comment?path=${encodeURIComponent
   headers,
 });
 
+console.log('List before:', await listBefore.json());
+
 // const post = await fetch(`${baseURL}/api/comment`, {
 //   method: 'POST',
 //   headers: {
