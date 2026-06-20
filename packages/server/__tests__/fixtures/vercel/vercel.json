@@ -20,7 +20,7 @@
   ],
   "functions": {
     "/(.*)": {
-      "includeFiles": ["node_modules/@mathjax/mathjax-newcm-font/**/*"]
+      "includeFiles": "node_modules/@mathjax/mathjax-newcm-font/**/*"
     }
   }
 }
