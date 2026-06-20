@@ -17,5 +17,6 @@
       "source": "/(.*)",
       "destination": "index.cjs"
     }
-  ]
+  ],
+  "includeFiles": ["node_modules/@mathjax/mathjax-newcm-font/**/*"]
 }
