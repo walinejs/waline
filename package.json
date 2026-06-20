@@ -75,6 +75,7 @@
       "onFail": "error"
     }
   },
+  "packageManager": "pnpm@11.4.0",
   "apidoc": {
     "title": "Waline API Documentation"
   }
