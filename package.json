@@ -56,7 +56,7 @@
     "vite": "8.0.16",
     "vite-plugin-css-injected-by-js": "5.0.1",
     "vite-plugin-svgr": "5.2.0",
-    "vitest": "4.1.7"
+    "vitest": "4.1.9"
   },
   "nano-staged": {
     "**/*": "oxfmt --no-error-on-unmatched-pattern",
