@@ -9,7 +9,7 @@
       "use": "@vercel/node",
       "config": {
         "helpers": false,
-        "includeFiles": "node_modules/@mathjax/mathjax-newcm-font/**/*"
+        "includeFiles": "packages/server/node_modules/@mathjax/mathjax-newcm-font/**"
       }
     }
   ],
