@@ -71,7 +71,7 @@
     "marked": "^18.0.4",
     "marked-highlight": "^2.2.4",
     "recaptcha-v3": "^1.11.3",
-    "vue": "^3.5.34"
+    "vue": "^3.5.35"
   },
   "devDependencies": {
     "@babel/core": "7.29.7",

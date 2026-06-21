@@ -8,7 +8,11 @@
       "src": "index.cjs",
       "use": "@vercel/node",
       "config": {
-        "helpers": false
+        "helpers": false,
+        "includeFiles": [
+          "../../../node_modules/@mathjax/mathjax-newcm-font/**/*",
+          "../../../node_modules/mhchemparser/**/*"
+        ]
       }
     }
   ],
