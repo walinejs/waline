@@ -1,7 +1,31 @@
+const Module = require('node:module');
+
+const originalLoad = Module._load;
+
+Module._load = function (request, parent, isMain) {
+  if (request.includes('mathjax-newcm-font')) {
+    console.log('[MathJax module load]', {
+      request,
+      parent: parent?.filename,
+      stack: new Error().stack,
+    });
+  }
+
+  return originalLoad.call(this, request, parent, isMain);
+};
+
+// const originalResolveFilename = Module._resolveFilename;
+
+// Module._resolveFilename = function (request, parent, isMain, options) {
+//   if (request === '@mathjax/mathjax-newcm-font') {
+//     request = '@mathjax/mathjax-newcm-font/js/svg.js';
+//   }
+
+//   return originalResolveFilename.call(this, request, parent, isMain, options);
+// };
+
 const fs = require('node:fs');
 const path = require('node:path');
-
-const _mathJaxFont = require('@mathjax/mathjax-newcm-font');
 
 const createApplication = require('../../..');
 
