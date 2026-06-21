@@ -1,5 +1,3 @@
-const path = require('node:path');
-
 const { katex: katexPlugin } = require('@mdit/plugin-katex');
 const { sub: subPlugin } = require('@mdit/plugin-sub');
 const { createMathjaxInstance, mathjax: mathjaxPlugin } = require('@mdit/plugin-mathjax/sync');
@@ -10,10 +8,6 @@ const emojiPlugin = require('markdown-it-emoji');
 
 const { resolveHighlighter } = require('./highlight.js');
 const { sanitize } = require('./xss.js');
-
-const mathjaxSvgEntry = require.resolve('@mathjax/mathjax-newcm-font/js/svg.js');
-
-const mathjaxSvgDynamicPath = path.join(path.dirname(mathjaxSvgEntry), 'svg', 'dynamic');
 
 const getMarkdownParser = (markdown = {}) => {
   const { config = {}, plugin = {} } = markdown;
@@ -54,10 +48,6 @@ const getMarkdownParser = (markdown = {}) => {
     const mathjaxInstance = createMathjaxInstance({
       output: 'svg',
       mathjax,
-      svg: {
-        dynamicPrefix: mathjaxSvgDynamicPath,
-        ...mathjax?.svg,
-      },
     });
 
     markdownIt.use(mathjaxPlugin, mathjaxInstance);
