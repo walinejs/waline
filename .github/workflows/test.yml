@@ -13,7 +13,6 @@ jobs:
       matrix:
         node-version:
           - 24.17.0
-          - 26
         os:
           - ubuntu-latest
 
