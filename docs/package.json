@@ -17,7 +17,7 @@
     "@waline/client": "workspace:*",
     "marked": "18.0.5",
     "sass-embedded": "1.100.0",
-    "vidstack": "1.12.13",
+    "vidstack": "1.15.6",
     "vue": "3.5.35",
     "vuepress": "2.0.0-rc.30",
     "vuepress-shared": "2.0.0-rc.107",
