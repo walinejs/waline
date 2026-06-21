@@ -27,6 +27,8 @@ Module._load = function (request, parent, isMain) {
 const fs = require('node:fs');
 const path = require('node:path');
 
+const _mathJaxFont = require('@mathjax/mathjax-newcm-font');
+
 const createApplication = require('../../..');
 
 const storePath =
