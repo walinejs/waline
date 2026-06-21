@@ -295,13 +295,13 @@ importers:
         version: 11.0.0(postcss@8.5.15)(stylelint@17.12.0(typescript@6.0.3))
       tsdown:
         specifier: 0.22.0
-        version: 0.22.0(publint@0.3.21)(tsx@4.21.0)(typescript@6.0.3)(unrun@0.3.0(synckit@0.11.12))
+        version: 0.22.0(publint@0.3.21)(tsx@4.21.0)(typescript@6.0.3)(unrun@0.3.1(synckit@0.11.12))
       typescript:
         specifier: 6.0.3
         version: 6.0.3
       unrun:
-        specifier: 0.3.0
-        version: 0.3.0(synckit@0.11.12)
+        specifier: 0.3.1
+        version: 0.3.1(synckit@0.11.12)
       vercel:
         specifier: 54.14.5
         version: 54.14.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)
@@ -8354,8 +8354,8 @@ packages:
     resolution: {integrity: sha512-0Mqk3AT2TZCXWKdcoaufeXNukv2mTrEZExeXlHIOZXdqYoHHr4n51pymnwV8x2BOVxwXbK2HLlI7usrqMpycdg==}
     engines: {node: ^20.19.0 || >=22.12.0}
 
-  unrun@0.3.0:
-    resolution: {integrity: sha512-5xw2AIVS2WR9Lqhz76qDIQLxipKRidf7Nq+Iz5SZ8shk1OmRlxnc6FyI/1Q2m99WLj6cbqaKFdESfWE99KPzlA==}
+  unrun@0.3.1:
+    resolution: {integrity: sha512-onIck/oNnCaytwths1ZVp1LK2Gq2hPoyFhiHebObuUXqR3S0uHuLLaBK8K6mRRgV7Ptip8AnNvaUsgzwWwBZuA==}
     engines: {node: ^22.13.0 || >=24.0.0}
     hasBin: true
     peerDependencies:
@@ -17079,7 +17079,7 @@ snapshots:
 
   ts-toolbelt@6.15.5: {}
 
-  tsdown@0.22.0(publint@0.3.21)(tsx@4.21.0)(typescript@6.0.3)(unrun@0.3.0(synckit@0.11.12)):
+  tsdown@0.22.0(publint@0.3.21)(tsx@4.21.0)(typescript@6.0.3)(unrun@0.3.1(synckit@0.11.12)):
     dependencies:
       ansis: 4.2.0
       cac: 7.0.0
@@ -17100,7 +17100,7 @@ snapshots:
       publint: 0.3.21
       tsx: 4.21.0
       typescript: 6.0.3
-      unrun: 0.3.0(synckit@0.11.12)
+      unrun: 0.3.1(synckit@0.11.12)
     transitivePeerDependencies:
       - '@ts-macro/tsc'
       - '@typescript/native-preview'
@@ -17251,7 +17251,7 @@ snapshots:
       picomatch: 4.0.4
       webpack-virtual-modules: 0.6.2
 
-  unrun@0.3.0(synckit@0.11.12):
+  unrun@0.3.1(synckit@0.11.12):
     dependencies:
       rolldown: 1.0.3
     optionalDependencies:
