@@ -205,7 +205,7 @@ settings:
 
 overrides:
   '@cloudbase/database>lodash.unset': ^4.18.0
-  '@cloudbase/node-sdk>axios': ^0.32.0
+  '@cloudbase/node-sdk>axios': ^0.33.0
   '@next-theme/utils>js-yaml': ^5.0.0
   '@waline/api': workspace:*
   '@waline/client': workspace:*
@@ -4297,8 +4297,8 @@ packages:
   aws4@1.13.2:
     resolution: {integrity: sha512-lHe62zvbTB5eEABUVi/AwVh0ZKY9rMMDhmm+eeyuuUQbQ3+J+fONVQOZyj+DdrvD4BY33uYniyRJ4UJIaSKAfw==}
 
-  axios@0.32.0:
-    resolution: {integrity: sha512-sGQArzERW2SI8IRkjuJ5y91Sm9QjiRq4Ay4kOLqpbBt5CeKDNq4g6nirJdyD+palK3yEDXnJiVXsesX66AjwyA==}
+  axios@0.33.0:
+    resolution: {integrity: sha512-juz19g7B3UWT9r3+tgRFQf2Bdy6IKDVroiyuVOUrkILVKHpqHL++K1l8ybvfdEP9B/VE72vk8vllbnedVCm/og==}
 
   b4a@1.8.1:
     resolution: {integrity: sha512-aiqre1Nr0B/6DgE2N5vwTc+2/oQZ4Wh1t4NznYY4E00y8LCt6NqdRv81so00oo27D8MVKTpUa/MwUUtBLXCoDw==}
@@ -9894,7 +9894,7 @@ snapshots:
       '@cloudbase/types': 2.23.0
       '@cloudbase/wx-cloud-client-sdk': 1.7.1
       agentkeepalive: 4.6.0
-      axios: 0.32.0
+      axios: 0.33.0
       form-data: 4.0.5
       http-proxy-agent: 5.0.0
       https-proxy-agent: 5.0.1
@@ -12855,7 +12855,7 @@ snapshots:
 
   aws4@1.13.2: {}
 
-  axios@0.32.0:
+  axios@0.33.0:
     dependencies:
       follow-redirects: 1.16.0
       form-data: 4.0.5
