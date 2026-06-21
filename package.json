@@ -66,16 +66,15 @@
   "devEngines": {
     "packageManager": {
       "name": "pnpm",
-      "version": "11.4.0",
+      "version": "11.8.0",
       "onFail": "download"
     },
     "runtime": {
       "name": "node",
-      "version": "^24.15.0",
+      "version": "^24.17.0",
       "onFail": "error"
     }
   },
-  "packageManager": "pnpm@11.8.0",
   "apidoc": {
     "title": "Waline API Documentation"
   }
