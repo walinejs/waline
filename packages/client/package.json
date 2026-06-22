@@ -68,10 +68,10 @@
     "@vueuse/core": "^14.3.0",
     "@waline/api": "workspace:*",
     "autosize": "^6.0.1",
-    "marked": "^18.0.4",
+    "marked": "^18.0.5",
     "marked-highlight": "^2.2.4",
     "recaptcha-v3": "^1.11.3",
-    "vue": "^3.5.35"
+    "vue": "^3.5.38"
   },
   "devDependencies": {
     "@babel/core": "8.0.1",
