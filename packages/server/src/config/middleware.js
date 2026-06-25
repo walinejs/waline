@@ -23,6 +23,7 @@ module.exports = [
     handle: 'meta',
     options: {
       logRequest: isDev,
+      sendPowerBy: false,
       sendResponseTime: isDev,
       requestTimeoutCallback: isTcb || isAliyunFC || isNetlify ? false : () => {},
     },
