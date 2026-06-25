@@ -492,22 +492,19 @@ module.exports = class NotifyService extends think.Service {
   async run(comment, parent, disableAuthorNotify = false) {
     const { AUTHOR_EMAIL, DISABLE_AUTHOR_NOTIFY } = process.env;
     const { mailSubject, mailTemplate, mailSubjectAdmin, mailTemplateAdmin } = think.config();
-    const AUTHOR = AUTHOR_EMAIL;
-
     const mailList = [];
-    const isAuthorComment = AUTHOR
-      ? (comment.mail || '').toLowerCase() === AUTHOR.toLowerCase()
-      : false;
-    const isReplyAuthor = AUTHOR
-      ? parent && (parent.mail || '').toLowerCase() === AUTHOR.toLowerCase()
-      : false;
+    const isAdminComment = comment.type === 'administrator';
+    const isReplyAdmin = parent?.type === 'administrator';
     const isCommentSelf =
-      parent && (parent.mail || '').toLowerCase() === (comment.mail || '').toLowerCase();
+      parent &&
+      (parent.user_id && comment.user_id
+        ? parent.user_id === comment.user_id
+        : (parent.mail || '').toLowerCase() === (comment.mail || '').toLowerCase());
 
     const title = mailSubjectAdmin || 'MAIL_SUBJECT_ADMIN';
     const content = mailTemplateAdmin || 'MAIL_TEMPLATE_ADMIN';
 
-    if (!DISABLE_AUTHOR_NOTIFY && !isAuthorComment && !disableAuthorNotify) {
+    if (!DISABLE_AUTHOR_NOTIFY && !isAdminComment && !disableAuthorNotify) {
       const wechat = await this.wechat({ title, content }, comment, parent);
       const qywxAmWechat = await this.qywxAmWechat({ title, content }, comment, parent);
       const qq = await this.qq(comment, parent);
@@ -521,7 +518,7 @@ module.exports = class NotifyService extends think.Service {
           think.isEmpty(item),
         )
       ) {
-        mailList.push({ to: AUTHOR, title, content });
+        mailList.push({ to: AUTHOR_EMAIL, title, content });
       }
     }
 
@@ -532,7 +529,7 @@ module.exports = class NotifyService extends think.Service {
       parent &&
       !fakeMail.test(parent.mail) &&
       !isCommentSelf &&
-      !isReplyAuthor &&
+      !isReplyAdmin &&
       comment.status !== 'waiting'
     ) {
       mailList.push({
