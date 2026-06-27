@@ -14,7 +14,6 @@ import {
   useUserInfo,
   useUserMeta,
 } from '../composables/index.js';
-import { USER_KEY } from '../composables/userInfo.js';
 import { configKey } from '../config/index.js';
 import type { WalineSearchResult } from '../typings/index.js';
 import type { WalineEmojiConfig } from '../utils/index.js';
@@ -243,6 +242,8 @@ const submitComment = async (): Promise<void> => {
 
       comment.nick ||= locale.value.anonymous;
     }
+
+    syncUserMeta(comment);
   }
 
   // check comment
@@ -328,6 +329,14 @@ const submitComment = async (): Promise<void> => {
   }
 };
 
+const syncUserMeta = ({ link, mail, nick }: Partial<WalineCommentData>): void => {
+  userMeta.value = {
+    nick: nick ?? '',
+    mail: mail ?? '',
+    link: link ?? '',
+  };
+};
+
 const onEditorKeyDown = ({ key, ctrlKey, metaKey }: KeyboardEvent): void => {
   // avoid submitting same comment multiple times
   if (isSubmitting.value) {
@@ -340,13 +349,6 @@ const onEditorKeyDown = ({ key, ctrlKey, metaKey }: KeyboardEvent): void => {
   }
 };
 
-const updateUserInfoStorage = (data: UserInfo | Record<string, never>): void => {
-  const value = JSON.stringify(data);
-
-  localStorage.setItem(USER_KEY, value);
-  sessionStorage.setItem(USER_KEY, value);
-};
-
 const onLogin = (event: Event): void => {
   event.preventDefault();
   const { lang, serverURL } = config.value;
@@ -356,14 +358,13 @@ const onLogin = (event: Event): void => {
     lang,
   }).then((data) => {
     userInfo.value = data;
-    updateUserInfoStorage(data);
+    syncUserMeta({ nick: data.display_name, mail: data.email, link: data.url });
     emit('log');
   });
 };
 
 const onLogout = (): void => {
   userInfo.value = {};
-  updateUserInfoStorage({});
   emit('log');
 };
 
@@ -454,8 +455,11 @@ useEventListener('message', ({ data }: { data: { type: 'profile'; data: UserInfo
   }
 
   userInfo.value = { ...userInfo.value, ...data.data };
-
-  updateUserInfoStorage(userInfo.value);
+  syncUserMeta({
+    nick: userInfo.value.display_name,
+    mail: userInfo.value.email,
+    link: userInfo.value.url,
+  });
 });
 
 // start tracking comment word number
