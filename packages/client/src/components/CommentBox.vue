@@ -242,6 +242,8 @@ const submitComment = async (): Promise<void> => {
 
       comment.nick ||= locale.value.anonymous;
     }
+
+    syncUserMeta(comment);
   }
 
   // check comment
@@ -327,6 +329,14 @@ const submitComment = async (): Promise<void> => {
   }
 };
 
+const syncUserMeta = ({ link, mail, nick }: Partial<WalineCommentData>): void => {
+  userMeta.value = {
+    nick: nick ?? '',
+    mail: mail ?? '',
+    link: link ?? '',
+  };
+};
+
 const onEditorKeyDown = ({ key, ctrlKey, metaKey }: KeyboardEvent): void => {
   // avoid submitting same comment multiple times
   if (isSubmitting.value) {
@@ -348,15 +358,13 @@ const onLogin = (event: Event): void => {
     lang,
   }).then((data) => {
     userInfo.value = data;
-    (data.remember ? localStorage : sessionStorage).setItem('WALINE_USER', JSON.stringify(data));
+    syncUserMeta({ nick: data.display_name, mail: data.email, link: data.url });
     emit('log');
   });
 };
 
 const onLogout = (): void => {
   userInfo.value = {};
-  localStorage.setItem('WALINE_USER', 'null');
-  sessionStorage.setItem('WALINE_USER', 'null');
   emit('log');
 };
 
@@ -447,12 +455,11 @@ useEventListener('message', ({ data }: { data: { type: 'profile'; data: UserInfo
   }
 
   userInfo.value = { ...userInfo.value, ...data.data };
-
-  [localStorage, sessionStorage]
-    .filter((store) => store.getItem('WALINE_USER'))
-    .forEach((store) => {
-      store.setItem('WALINE_USER', JSON.stringify(userInfo));
-    });
+  syncUserMeta({
+    nick: userInfo.value.display_name,
+    mail: userInfo.value.email,
+    link: userInfo.value.url,
+  });
 });
 
 // start tracking comment word number
