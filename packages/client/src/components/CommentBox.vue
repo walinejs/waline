@@ -337,14 +337,6 @@ const syncUserMeta = ({ link, mail, nick }: Partial<WalineCommentData>): void =>
   };
 };
 
-const syncUserInfoToMeta = ({ display_name, email, url }: Partial<UserInfo>): void => {
-  syncUserMeta({
-    nick: display_name,
-    mail: email,
-    link: url,
-  });
-};
-
 const onEditorKeyDown = ({ key, ctrlKey, metaKey }: KeyboardEvent): void => {
   // avoid submitting same comment multiple times
   if (isSubmitting.value) {
@@ -366,7 +358,7 @@ const onLogin = (event: Event): void => {
     lang,
   }).then((data) => {
     userInfo.value = data;
-    syncUserInfoToMeta(data);
+    syncUserMeta({ nick: data.display_name, mail: data.email, link: data.url });
     emit('log');
   });
 };
@@ -463,7 +455,11 @@ useEventListener('message', ({ data }: { data: { type: 'profile'; data: UserInfo
   }
 
   userInfo.value = { ...userInfo.value, ...data.data };
-  syncUserInfoToMeta(userInfo.value);
+  syncUserMeta({
+    nick: userInfo.value.display_name,
+    mail: userInfo.value.email,
+    link: userInfo.value.url,
+  });
 });
 
 // start tracking comment word number
