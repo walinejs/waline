@@ -242,6 +242,8 @@ const submitComment = async (): Promise<void> => {
 
       comment.nick ||= locale.value.anonymous;
     }
+
+    syncUserMeta(comment);
   }
 
   // check comment
@@ -327,16 +329,20 @@ const submitComment = async (): Promise<void> => {
   }
 };
 
-const syncUserMeta = ({ display_name, email, token, url }: Partial<UserInfo>): void => {
-  if (!token) {
-    return;
-  }
-
+const syncUserMeta = ({ link, mail, nick }: Partial<WalineCommentData>): void => {
   userMeta.value = {
-    nick: display_name ?? '',
-    mail: email ?? '',
-    link: url ?? '',
+    nick: nick ?? '',
+    mail: mail ?? '',
+    link: link ?? '',
   };
+};
+
+const syncUserInfoToMeta = ({ display_name, email, url }: Partial<UserInfo>): void => {
+  syncUserMeta({
+    nick: display_name,
+    mail: email,
+    link: url,
+  });
 };
 
 const onEditorKeyDown = ({ key, ctrlKey, metaKey }: KeyboardEvent): void => {
@@ -360,7 +366,7 @@ const onLogin = (event: Event): void => {
     lang,
   }).then((data) => {
     userInfo.value = data;
-    syncUserMeta(data);
+    syncUserInfoToMeta(data);
     emit('log');
   });
 };
@@ -457,7 +463,7 @@ useEventListener('message', ({ data }: { data: { type: 'profile'; data: UserInfo
   }
 
   userInfo.value = { ...userInfo.value, ...data.data };
-  syncUserMeta(userInfo.value);
+  syncUserInfoToMeta(userInfo.value);
 });
 
 // start tracking comment word number
