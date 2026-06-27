@@ -243,8 +243,8 @@ importers:
         specifier: 26.0.1
         version: 26.0.1
       '@vitejs/plugin-react':
-        specifier: 6.0.2
-        version: 6.0.2(vite@8.0.16(@types/node@26.0.1)(esbuild@0.28.0)(sass-embedded@1.100.0)(sass@1.100.0)(terser@5.46.2)(tsx@4.21.0)(yaml@2.9.0))
+        specifier: 6.0.3
+        version: 6.0.3(vite@8.0.16(@types/node@26.0.1)(esbuild@0.28.0)(sass-embedded@1.100.0)(sass@1.100.0)(terser@5.46.2)(tsx@4.21.0)(yaml@2.9.0))
       apidoc:
         specifier: 1.2.0
         version: 1.2.0(patch_hash=14f1b3501c5015248e143b5b4216cb0f70cff2b6340214529fd5a63c8d59cffb)(esbuild@0.28.0)
@@ -3635,8 +3635,8 @@ packages:
   '@vercel/static-config@3.4.0':
     resolution: {integrity: sha512-wCq90CMUB//ggnFh77NQO1xaLFsS4LigQIqKrH6ohnr9Br/KI1FhlErx62WfCOuueWaW+LVsbLOqNXIUjK8t6A==}
 
-  '@vitejs/plugin-react@6.0.2':
-    resolution: {integrity: sha512-DlSMqo4WhThw4vB8Mpn0Woe9J+Jfq1geJ61AKW0QEgLzGMNwtIMdxbDUzLxcun8W7NbJO0e2Jg/Nxm3cCSVzzg==}
+  '@vitejs/plugin-react@6.0.3':
+    resolution: {integrity: sha512-vmFvco5/QuC2f9Oj+wTk0+9XeDFkHxSamwZKYc7MxYwKICfvUvlMhqKI0VuICPltGqh1neqBKDvO4kes1ya8vg==}
     engines: {node: ^20.19.0 || >=22.12.0}
     peerDependencies:
       '@rolldown/plugin-babel': ^0.1.7 || ^0.2.0
@@ -11870,7 +11870,7 @@ snapshots:
       json-schema-to-ts: 1.6.4
       ts-morph: 12.0.0
 
-  '@vitejs/plugin-react@6.0.2(vite@8.0.16(@types/node@26.0.1)(esbuild@0.28.0)(sass-embedded@1.100.0)(sass@1.100.0)(terser@5.46.2)(tsx@4.21.0)(yaml@2.9.0))':
+  '@vitejs/plugin-react@6.0.3(vite@8.0.16(@types/node@26.0.1)(esbuild@0.28.0)(sass-embedded@1.100.0)(sass@1.100.0)(terser@5.46.2)(tsx@4.21.0)(yaml@2.9.0))':
     dependencies:
       '@rolldown/pluginutils': 1.0.1
       vite: 8.0.16(@types/node@26.0.1)(esbuild@0.28.0)(sass-embedded@1.100.0)(sass@1.100.0)(terser@5.46.2)(tsx@4.21.0)(yaml@2.9.0)
