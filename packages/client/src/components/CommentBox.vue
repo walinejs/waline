@@ -14,7 +14,6 @@ import {
   useUserInfo,
   useUserMeta,
 } from '../composables/index.js';
-import { USER_KEY } from '../composables/userInfo.js';
 import { configKey } from '../config/index.js';
 import type { WalineSearchResult } from '../typings/index.js';
 import type { WalineEmojiConfig } from '../utils/index.js';
@@ -340,13 +339,6 @@ const onEditorKeyDown = ({ key, ctrlKey, metaKey }: KeyboardEvent): void => {
   }
 };
 
-const updateUserInfoStorage = (data: UserInfo | Record<string, never>): void => {
-  const value = JSON.stringify(data);
-
-  localStorage.setItem(USER_KEY, value);
-  sessionStorage.setItem(USER_KEY, value);
-};
-
 const onLogin = (event: Event): void => {
   event.preventDefault();
   const { lang, serverURL } = config.value;
@@ -356,14 +348,12 @@ const onLogin = (event: Event): void => {
     lang,
   }).then((data) => {
     userInfo.value = data;
-    updateUserInfoStorage(data);
     emit('log');
   });
 };
 
 const onLogout = (): void => {
   userInfo.value = {};
-  updateUserInfoStorage({});
   emit('log');
 };
 
@@ -454,8 +444,6 @@ useEventListener('message', ({ data }: { data: { type: 'profile'; data: UserInfo
   }
 
   userInfo.value = { ...userInfo.value, ...data.data };
-
-  updateUserInfoStorage(userInfo.value);
 });
 
 // start tracking comment word number
