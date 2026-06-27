@@ -15,11 +15,11 @@ jobs:
 
       - uses: pnpm/action-setup@v6
         with:
-          version: 11.8.0
+          version: 11.9.0
 
       - uses: actions/setup-node@v6
         with:
-          node-version: 24.17.0
+          node-version: 24.18.0
           cache: pnpm
 
       - run: pnpm install --frozen-lockfile

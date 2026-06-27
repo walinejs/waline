@@ -17,6 +17,7 @@ globalThis.fetch = async (url, options) => {
 };
 
 const require = createRequire(import.meta.url);
+const pkg = require('../package.json');
 const main = require('../index.js');
 
 // Use a custom model stub so no real database connection is needed
@@ -57,7 +58,7 @@ afterAll(async () => {
   await new Promise((resolve) => server.close(resolve));
 });
 
-const apiRequest = (method, path, body) => {
+const request = (method, path, body) => {
   const url = `http://localhost:${port}${path}`;
   const options = {
     method,
@@ -66,8 +67,21 @@ const apiRequest = (method, path, body) => {
   if (method !== 'GET' && body) {
     options.body = JSON.stringify(body);
   }
-  return fetch(url, options).then((r) => r.json());
+  return fetch(url, options);
 };
+
+const apiRequest = (method, path, body) => request(method, path, body).then((r) => r.json());
+
+const apiResponse = (method, path, body) => request(method, path, body);
+
+describe('security headers', () => {
+  it('should not expose the framework header while keeping the Waline version header', async () => {
+    const response = await apiResponse('GET', '/api/token');
+
+    expect(response.headers.get('x-powered-by')).toBeNull();
+    expect(response.headers.get('x-waline-version')).toBe(pkg.version);
+  });
+});
 
 describe('gET /api/token', () => {
   it('should return empty user info when not authenticated', async () => {
