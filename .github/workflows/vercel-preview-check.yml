@@ -24,6 +24,9 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
+      - name: Build Vercel Preview Client
+        run: pnpm preview:client
+
       - name: Test Vercel Preview
         env:
           VERCEL_PREVIEW_URL: ${{ github.event.deployment_status.target_url }}

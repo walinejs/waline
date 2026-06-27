@@ -22,7 +22,8 @@
     "prepare": "husky",
     "server:dev": "pnpm --dir=packages/server dev",
     "server:vercel": "vercel dev ./example --listen 9090",
-    "test": "vitest"
+    "test": "vitest",
+    "preview:client": "pnpm client:build && node scripts/prepare-vercel-preview-client.mjs"
   },
   "devDependencies": {
     "@babel/core": "8.0.1",

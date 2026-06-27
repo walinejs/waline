@@ -5,6 +5,14 @@
   },
   "builds": [
     {
+      "src": "index.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "client/**",
+      "use": "@vercel/static"
+    },
+    {
       "src": "index.cjs",
       "use": "@vercel/node",
       "config": {
@@ -18,6 +26,14 @@
     }
   ],
   "rewrites": [
+    {
+      "source": "/client/(.*)",
+      "destination": "/client/$1"
+    },
+    {
+      "source": "/",
+      "destination": "/index.html"
+    },
     {
       "source": "/(.*)",
       "destination": "index.cjs"
