@@ -327,6 +327,18 @@ const submitComment = async (): Promise<void> => {
   }
 };
 
+const syncUserMeta = ({ display_name, email, token, url }: Partial<UserInfo>): void => {
+  if (!token) {
+    return;
+  }
+
+  userMeta.value = {
+    nick: display_name ?? '',
+    mail: email ?? '',
+    link: url ?? '',
+  };
+};
+
 const onEditorKeyDown = ({ key, ctrlKey, metaKey }: KeyboardEvent): void => {
   // avoid submitting same comment multiple times
   if (isSubmitting.value) {
@@ -348,6 +360,7 @@ const onLogin = (event: Event): void => {
     lang,
   }).then((data) => {
     userInfo.value = data;
+    syncUserMeta(data);
     emit('log');
   });
 };
@@ -444,6 +457,7 @@ useEventListener('message', ({ data }: { data: { type: 'profile'; data: UserInfo
   }
 
   userInfo.value = { ...userInfo.value, ...data.data };
+  syncUserMeta(userInfo.value);
 });
 
 // start tracking comment word number
