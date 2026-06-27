@@ -1,5 +1,7 @@
 {
   "name": "waline-vercel-test",
+  "installCommand": "cd ../../../../.. && pnpm install --frozen-lockfile",
+  "buildCommand": "cd ../../../../.. && pnpm preview:client",
   "env": {
     "NODE_OPTIONS": "--experimental-require-module"
   },
