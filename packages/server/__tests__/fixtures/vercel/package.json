@@ -1,0 +1,6 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "test -f .vercel-install-ok || (echo \"Vercel installCommand did not complete\" && exit 1); pnpm --dir ../../../../.. preview:client"
+  }
+}

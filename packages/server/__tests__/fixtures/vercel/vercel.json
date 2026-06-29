@@ -1,9 +1,17 @@
 {
   "name": "waline-vercel-test",
+  "installCommand": "cd ../../../../.. && pnpm install --frozen-lockfile && touch packages/server/__tests__/fixtures/vercel/.vercel-install-ok",
   "env": {
     "NODE_OPTIONS": "--experimental-require-module"
   },
   "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "."
+      }
+    },
     {
       "src": "index.cjs",
       "use": "@vercel/node",
@@ -18,6 +26,14 @@
     }
   ],
   "rewrites": [
+    {
+      "source": "/client/(.*)",
+      "destination": "/client/$1"
+    },
+    {
+      "source": "/",
+      "destination": "/index.html"
+    },
     {
       "source": "/(.*)",
       "destination": "index.cjs"
