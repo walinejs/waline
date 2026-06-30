@@ -17,7 +17,7 @@
 
       window.waline = init({
         el: '#waline',
-        serverURL: '/api',
+        serverURL: location.protocol + '//' + location.host + location.pathname.replace(/\/+$/, ''),
       });
     </script>
   </body>
