@@ -96,10 +96,11 @@ jobs:
           rm -rf packages/server/__tests__/fixtures/vercel/client
           mkdir -p packages/server/__tests__/fixtures/vercel/client
           cp packages/client/dist/waline.js packages/client/dist/waline.css packages/server/__tests__/fixtures/vercel/client/
+          # Pack the server from the current PR checkout and install that local tarball in the fixture.
           pnpm --dir packages/server pack --pack-destination ../../packages/server/__tests__/fixtures/vercel
-          mv packages/server/__tests__/fixtures/vercel/waline-vercel-*.tgz packages/server/__tests__/fixtures/vercel/waline-vercel.tgz
-          printf '{"private":true,"dependencies":{"@waline/vercel":"file:./waline-vercel.tgz"}}\n' > packages/server/__tests__/fixtures/vercel/package.json
-          sed -i "s#require('../../..')#require('@waline/vercel')#" packages/server/__tests__/fixtures/vercel/index.cjs
+          mv packages/server/__tests__/fixtures/vercel/waline-vercel-*.tgz packages/server/__tests__/fixtures/vercel/waline-vercel-current-pr.tgz
+          printf '{"private":true,"dependencies":{"@waline/vercel":"file:./waline-vercel-current-pr.tgz"}}\n' > packages/server/__tests__/fixtures/vercel/package.json
+          sed -i "s#require('../../..')#require('./node_modules/@waline/vercel')#" packages/server/__tests__/fixtures/vercel/index.cjs
 
       - name: Link Vercel project
         run: |
