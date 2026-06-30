@@ -1,23 +1,42 @@
 {
   "name": "waline-vercel-test",
+  "github": {
+    "silent": true
+  },
   "env": {
     "NODE_OPTIONS": "--experimental-require-module"
   },
   "builds": [
+    {
+      "src": "index.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "client/**",
+      "use": "@vercel/static"
+    },
     {
       "src": "index.cjs",
       "use": "@vercel/node",
       "config": {
         "helpers": false,
         "includeFiles": [
-          "../../../node_modules/@mathjax/mathjax-newcm-font/**/*",
-          "../../../node_modules/mhchemparser/**/*",
-          "../../../node_modules/ip2region/data/**"
+          "node_modules/@mathjax/mathjax-newcm-font/**/*",
+          "node_modules/mhchemparser/**/*",
+          "node_modules/ip2region/data/**"
         ]
       }
     }
   ],
   "rewrites": [
+    {
+      "source": "/",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/client/(.*)",
+      "destination": "/client/$1"
+    },
     {
       "source": "/(.*)",
       "destination": "index.cjs"
