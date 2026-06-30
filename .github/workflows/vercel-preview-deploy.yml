@@ -163,6 +163,12 @@ jobs:
             const comment = comments.find((item) => item.user.type === 'Bot' && item.body?.includes(marker));
             if (comment) await github.rest.issues.updateComment({ owner: context.repo.owner, repo: context.repo.repo, comment_id: comment.id, body });
 
+      - name: Test Vercel Preview
+        env:
+          VERCEL_PREVIEW_URL: ${{ steps.vercel.outputs.url }}
+          VERCEL_AUTOMATION_BYPASS_SECRET: ${{ secrets.VERCEL_AUTOMATION_BYPASS_SECRET }}
+        run: node scripts/test-vercel-preview.mjs
+
       - name: Mark deployment failed
         if: failure() && steps.deployment.outputs.id
         uses: actions/github-script@v9
