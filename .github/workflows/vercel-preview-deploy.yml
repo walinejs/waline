@@ -153,7 +153,7 @@ jobs:
             const targetUrl = process.env.PREVIEW_URL.startsWith('http')
               ? process.env.PREVIEW_URL
               : `https://${process.env.PREVIEW_URL}`;
-            const body = `${marker}\n### Vercel Preview\n\n✅ Deployment is ready.\n\n- Preview: ${targetUrl}\n- Client assets: ${targetUrl}/client/waline.js\n- Workflow: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const body = `${marker}\n### Vercel Preview\n\n✅ Deployment is ready.\n\n- Preview: ${targetUrl}\n- Workflow: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
             const { data: comments } = await github.rest.issues.listComments({
               owner: context.repo.owner,
               repo: context.repo.repo,
