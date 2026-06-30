@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Waline Preview</title>
+    <link rel="stylesheet" href="/client/waline.css" />
+  </head>
+  <body>
+    <main style="max-width: 800px; margin: 0 auto; padding: 2rem 1rem">
+      <h1>Waline Preview</h1>
+      <div id="waline"></div>
+    </main>
+
+    <script type="module">
+      import { init } from '/client/waline.js';
+
+      window.waline = init({
+        el: '#waline',
+        serverURL: '/api',
+      });
+    </script>
+  </body>
+</html>

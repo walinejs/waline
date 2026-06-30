@@ -94,7 +94,8 @@ jobs:
           pnpm api:build
           pnpm client:build
           rm -rf packages/server/__tests__/fixtures/vercel/client
-          cp -R packages/client/dist packages/server/__tests__/fixtures/vercel/client
+          mkdir -p packages/server/__tests__/fixtures/vercel/client
+          cp packages/client/dist/waline.js packages/client/dist/waline.css packages/server/__tests__/fixtures/vercel/client/
 
       - name: Link Vercel project
         run: |

@@ -8,6 +8,10 @@
   },
   "builds": [
     {
+      "src": "index.html",
+      "use": "@vercel/static"
+    },
+    {
       "src": "client/**",
       "use": "@vercel/static"
     },
@@ -26,11 +30,15 @@
   ],
   "rewrites": [
     {
+      "source": "/",
+      "destination": "/index.html"
+    },
+    {
       "source": "/client/(.*)",
       "destination": "/client/$1"
     },
     {
-      "source": "/((?!client/).*)",
+      "source": "/(.*)",
       "destination": "index.cjs"
     }
   ]
