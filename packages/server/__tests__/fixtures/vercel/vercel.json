@@ -5,6 +5,13 @@
   },
   "builds": [
     {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    },
+    {
       "src": "index.cjs",
       "use": "@vercel/node",
       "config": {
@@ -19,8 +26,17 @@
   ],
   "rewrites": [
     {
+      "source": "/api/(.*)",
+      "destination": "index.cjs"
+    },
+    {
+      "source": "/",
+      "destination": "/index.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "index.cjs"
     }
-  ]
+  ],
+  "installCommand": "cd ../../../.. && pnpm install --frozen-lockfile"
 }

@@ -113,6 +113,17 @@ afterAll(async () => {
 });
 
 describe('vercel runtime', () => {
+  it('should serve the client preview page through vercel dev', async () => {
+    await waitForVercel();
+
+    const response = await fetch(getVercelUrl());
+    const body = await response.text();
+
+    expect(response.ok).toBe(true);
+    expect(body).toContain('Waline Vercel Preview');
+    expect(body).toContain('/assets/');
+  }, 70_000);
+
   it('should serve the comment API through vercel dev', async () => {
     const response = await waitForVercel();
     const body = await response.json();
