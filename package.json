@@ -20,10 +20,10 @@
     "packages:check-update": "pnpm dlx npm-check-updates",
     "packages:update": "pnpm dlx npm-check-updates && pnpm -r up",
     "prepare": "husky",
+    "preview:client": "pnpm client:build && node scripts/prepare-vercel-preview-client.mjs",
     "server:dev": "pnpm --dir=packages/server dev",
     "server:vercel": "vercel dev ./example --listen 9090",
-    "test": "vitest",
-    "preview:client": "pnpm client:build && node scripts/prepare-vercel-preview-client.mjs"
+    "test": "vitest"
   },
   "devDependencies": {
     "@babel/core": "8.0.1",
@@ -64,18 +64,10 @@
     "*.{js,ts,vue}": "oxlint --fix --type-aware --type-check --report-unused-disable-directives",
     "*.md": "markdownlint-cli2 --fix"
   },
-  "devEngines": {
-    "packageManager": {
-      "name": "pnpm",
-      "version": "11.8.0",
-      "onFail": "download"
-    },
-    "runtime": {
-      "name": "node",
-      "version": "^24.17.0",
-      "onFail": "error"
-    }
+  "engines": {
+    "node": "^24.17.0"
   },
+  "packageManager": "pnpm@10.34.0",
   "apidoc": {
     "title": "Waline API Documentation"
   }
