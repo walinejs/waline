@@ -86,7 +86,11 @@ jobs:
             }
 
       - name: Build preview artifacts
-        run: node scripts/prepare-vercel-preview.mjs
+        run: |
+          pnpm api:build
+          pnpm client:build
+          rm -rf packages/server/__tests__/fixtures/vercel/client
+          cp -R packages/client/dist packages/server/__tests__/fixtures/vercel/client
 
       - name: Link Vercel project
         run: |
