@@ -19,6 +19,10 @@ jobs:
     if: github.repository == 'walinejs/waline' && !github.event.pull_request.draft
     runs-on: ubuntu-latest
     env:
+      # Configure these in GitHub repository secrets.
+      # - VERCEL_TOKEN: Vercel Account Settings > Tokens.
+      # - VERCEL_ORG_ID / VERCEL_PROJECT_ID: values from `.vercel/project.json` after `vercel link`,
+      #   or the Team ID / Project ID shown in Vercel dashboard settings.
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
       VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
       VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
