@@ -1,0 +1,166 @@
+name: Vercel Preview Deploy
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+concurrency:
+  group: vercel-preview-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  deployments: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  preview:
+    if: github.repository == 'walinejs/waline' && !github.event.pull_request.draft
+    runs-on: ubuntu-latest
+    env:
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: pnpm/action-setup@v6
+        with:
+          version: 11.9.0
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24.18.0
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Create GitHub deployment
+        uses: actions/github-script@v9
+        id: deployment
+        with:
+          script: |
+            const deployment = await github.rest.repos.createDeployment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: context.payload.pull_request.head.sha,
+              task: 'deploy:vercel-preview',
+              auto_merge: false,
+              required_contexts: [],
+              environment: 'Preview',
+              transient_environment: true,
+              production_environment: false,
+              description: 'Vercel preview deployment',
+            });
+
+            await github.rest.repos.createDeploymentStatus({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              deployment_id: deployment.data.id,
+              state: 'in_progress',
+              log_url: `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+              description: 'Building API and client before Vercel deployment...',
+            });
+
+            core.setOutput('id', deployment.data.id);
+
+      - name: Upsert preview comment
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const marker = '<!-- waline-vercel-preview -->';
+            const body = `${marker}\n### Vercel Preview\n\n⏳ Building \`@waline/api\` and \`@waline/client\`, then deploying to Vercel...\n\n[View workflow run](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})`;
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              per_page: 100,
+            });
+            const comment = comments.find((item) => item.user.type === 'Bot' && item.body?.includes(marker));
+            if (comment) {
+              await github.rest.issues.updateComment({ owner: context.repo.owner, repo: context.repo.repo, comment_id: comment.id, body });
+            } else {
+              await github.rest.issues.createComment({ owner: context.repo.owner, repo: context.repo.repo, issue_number: context.issue.number, body });
+            }
+
+      - name: Build preview artifacts
+        run: node scripts/prepare-vercel-preview.mjs
+
+      - name: Link Vercel project
+        run: |
+          mkdir -p packages/server/__tests__/fixtures/vercel/.vercel
+          printf '{"orgId":"%s","projectId":"%s"}\n' "$VERCEL_ORG_ID" "$VERCEL_PROJECT_ID" > packages/server/__tests__/fixtures/vercel/.vercel/project.json
+
+      - name: Deploy to Vercel
+        id: vercel
+        run: |
+          set -o pipefail
+          pnpm vercel deploy ./packages/server/__tests__/fixtures/vercel --yes --token "$VERCEL_TOKEN" | tee vercel-deploy.log
+          url=$(awk '/https:\/\// { value=$0 } END { print value }' vercel-deploy.log)
+          if [ -z "$url" ]; then
+            echo "Unable to find Vercel preview URL in deploy output" >&2
+            exit 1
+          fi
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+          echo "$url"
+
+      - name: Mark deployment successful
+        if: success()
+        uses: actions/github-script@v9
+        env:
+          DEPLOYMENT_ID: ${{ steps.deployment.outputs.id }}
+          PREVIEW_URL: ${{ steps.vercel.outputs.url }}
+        with:
+          script: |
+            const targetUrl = process.env.PREVIEW_URL.startsWith('http')
+              ? process.env.PREVIEW_URL
+              : `https://${process.env.PREVIEW_URL}`;
+            await github.rest.repos.createDeploymentStatus({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              deployment_id: Number(process.env.DEPLOYMENT_ID),
+              state: 'success',
+              environment_url: targetUrl,
+              target_url: targetUrl,
+              log_url: `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+              description: 'Vercel preview is ready.',
+            });
+
+      - name: Update preview comment
+        if: success()
+        uses: actions/github-script@v9
+        env:
+          PREVIEW_URL: ${{ steps.vercel.outputs.url }}
+        with:
+          script: |
+            const marker = '<!-- waline-vercel-preview -->';
+            const targetUrl = process.env.PREVIEW_URL.startsWith('http')
+              ? process.env.PREVIEW_URL
+              : `https://${process.env.PREVIEW_URL}`;
+            const body = `${marker}\n### Vercel Preview\n\n✅ Deployment is ready.\n\n- Preview: ${targetUrl}\n- Client assets: ${targetUrl}/client/waline.js\n- Workflow: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              per_page: 100,
+            });
+            const comment = comments.find((item) => item.user.type === 'Bot' && item.body?.includes(marker));
+            if (comment) await github.rest.issues.updateComment({ owner: context.repo.owner, repo: context.repo.repo, comment_id: comment.id, body });
+
+      - name: Mark deployment failed
+        if: failure() && steps.deployment.outputs.id
+        uses: actions/github-script@v9
+        env:
+          DEPLOYMENT_ID: ${{ steps.deployment.outputs.id }}
+        with:
+          script: |
+            await github.rest.repos.createDeploymentStatus({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              deployment_id: Number(process.env.DEPLOYMENT_ID),
+              state: 'failure',
+              log_url: `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+              description: 'Vercel preview deployment failed.',
+            });

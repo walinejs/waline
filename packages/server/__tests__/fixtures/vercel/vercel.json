@@ -1,9 +1,16 @@
 {
   "name": "waline-vercel-test",
+  "github": {
+    "silent": true
+  },
   "env": {
     "NODE_OPTIONS": "--experimental-require-module"
   },
   "builds": [
+    {
+      "src": "client/**",
+      "use": "@vercel/static"
+    },
     {
       "src": "index.cjs",
       "use": "@vercel/node",
@@ -19,7 +26,11 @@
   ],
   "rewrites": [
     {
-      "source": "/(.*)",
+      "source": "/client/(.*)",
+      "destination": "/client/$1"
+    },
+    {
+      "source": "/((?!client/).*)",
       "destination": "index.cjs"
     }
   ]
