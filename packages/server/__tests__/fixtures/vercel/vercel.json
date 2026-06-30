@@ -38,5 +38,5 @@
       "destination": "index.cjs"
     }
   ],
-  "installCommand": "cd ../../../.. && pnpm install --frozen-lockfile"
+  "installCommand": "cd ../../../../.. && pnpm install --frozen-lockfile"
 }

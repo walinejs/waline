@@ -2,6 +2,6 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "cd ../../../.. && pnpm --dir packages/api build && pnpm exec vite build packages/server/__tests__/fixtures/vercel"
+    "build": "cd ../../../../.. && pnpm --dir packages/api build && pnpm exec vite build packages/server/__tests__/fixtures/vercel"
   }
 }
