@@ -1,6 +1,5 @@
 {
   "name": "waline-vercel-test",
-  "installCommand": "cd ../../../../.. && pnpm install --frozen-lockfile && touch packages/server/__tests__/fixtures/vercel/.vercel-install-ok",
   "env": {
     "NODE_OPTIONS": "--experimental-require-module"
   },
