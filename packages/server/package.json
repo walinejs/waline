@@ -21,7 +21,6 @@
     "dev": "node development.js 9090"
   },
   "dependencies": {
-    "@cloudbase/node-sdk": "^3.18.3",
     "@koa/cors": "^5.0.0",
     "@mathjax/mathjax-tex-font": "^4.1.2",
     "@mathjax/src": "^4.1.2",
@@ -46,6 +45,7 @@
     "prismjs": "^1.30.0",
     "rss": "^1.2.2",
     "speakeasy": "^2.0.0",
+    "tencentcloud-sdk-nodejs": "^4.1.194",
     "think-helper": "^1.1.5",
     "think-logger3": "^1.4.0",
     "think-model": "^1.5.4",
