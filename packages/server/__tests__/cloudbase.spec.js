@@ -9,7 +9,7 @@ const originalEnv = { ...process.env };
 
 let createTableMock;
 let describeTableMock;
-let randomUUIDMock;
+let randomBytesMock;
 let runCommandsMock;
 
 const loadStorage = () => {
@@ -22,7 +22,7 @@ describe('cloudbase storage', () => {
   beforeEach(() => {
     createTableMock = vi.fn().mockResolvedValue({});
     describeTableMock = vi.fn().mockResolvedValue({});
-    randomUUIDMock = vi.fn(() => 'generated-id');
+    randomBytesMock = vi.fn(() => Buffer.from('00112233445566778899aabb', 'hex'));
     runCommandsMock = vi.fn();
 
     process.env.TCB_ENV = 'test-env';
@@ -60,7 +60,7 @@ describe('cloudbase storage', () => {
 
       if (request === 'node:crypto') {
         return {
-          randomUUID: randomUUIDMock,
+          randomBytes: randomBytesMock,
         };
       }
 
@@ -206,13 +206,13 @@ describe('cloudbase storage', () => {
     expect(data).toStrictEqual({
       nick: 'Waline',
       insertedAt,
-      objectId: 'generated-id',
+      objectId: '00112233445566778899aabb',
     });
     expect(JSON.parse(runCommandsMock.mock.calls[0][0].MgoCommands[0].Command)).toStrictEqual({
       insert: 'Comment',
       documents: [
         {
-          _id: 'generated-id',
+          _id: '00112233445566778899aabb',
           nick: 'Waline',
           insertedAt: {
             $date: '2024-02-03T04:05:06.000Z',

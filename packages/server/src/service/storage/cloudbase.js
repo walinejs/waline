@@ -19,6 +19,7 @@ const {
 const secretId = TCB_ID || TENCENTCLOUD_SECRETID || TENCENTCLOUD_SECRET_ID;
 const secretKey = TCB_KEY || TENCENTCLOUD_SECRETKEY || TENCENTCLOUD_SECRET_KEY;
 const region = TENCENTCLOUD_REGION || TCB_REGION || 'ap-shanghai';
+const DEFAULT_QUERY_LIMIT = 100;
 
 const client = new TcbClient({
   credential: {
@@ -105,10 +106,11 @@ const normalizeDocument = ({ _id, ...data }) => ({
   ...data,
   objectId: _id?.toString?.() ?? _id,
 });
+const createObjectId = () => crypto.randomBytes(12).toString('hex');
 const assertCredentials = () => {
   if (!secretId || !secretKey) {
     throw new Error(
-      'CloudBase storage requires TCB_ID/TCB_KEY or TENCENTCLOUD_SECRET_ID/TENCENTCLOUD_SECRET_KEY.',
+      'CloudBase storage requires TCB_ID/TCB_KEY, TENCENTCLOUD_SECRETID/TENCENTCLOUD_SECRETKEY, or TENCENTCLOUD_SECRET_ID/TENCENTCLOUD_SECRET_KEY.',
     );
   }
 };
@@ -261,7 +263,7 @@ module.exports = class extends Base {
       find: this.tableName,
       filter: this.where(where),
       ...(desc ? { sort: { [desc]: -1 } } : {}),
-      ...(limit ? { limit } : { limit: 100 }),
+      ...(limit ? { limit } : { limit: DEFAULT_QUERY_LIMIT }),
       ...(offset ? { skip: offset } : {}),
       ...(projection ? { projection } : {}),
     });
@@ -288,11 +290,11 @@ module.exports = class extends Base {
     do {
       ret = await this._select(where, {
         ...options,
-        limit: 100,
+        limit: DEFAULT_QUERY_LIMIT,
         offset: offset + data.length,
       });
       data.push(...ret);
-    } while (ret.length === 100);
+    } while (ret.length === DEFAULT_QUERY_LIMIT);
 
     return data;
   }
@@ -326,7 +328,7 @@ module.exports = class extends Base {
   }
 
   async add(data) {
-    const objectId = data.objectId || crypto.randomUUID();
+    const objectId = data.objectId || createObjectId();
     const document = {
       ...data,
       _id: objectId,
