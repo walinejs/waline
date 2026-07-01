@@ -106,7 +106,7 @@ const normalizeDocument = ({ _id, ...data }) => ({
   ...data,
   objectId: _id?.toString?.() ?? _id,
 });
-const createObjectId = () => crypto.randomBytes(12).toString('hex');
+const generateObjectId = () => crypto.randomBytes(12).toString('hex');
 const assertCredentials = () => {
   if (!secretId || !secretKey) {
     throw new Error(
@@ -194,6 +194,8 @@ module.exports = class extends Base {
 
             if (reg) {
               filter[parseKey(key)] = reg;
+            } else {
+              filter[parseKey(key)] = { $eq: likePattern };
             }
 
             break;
@@ -267,6 +269,8 @@ module.exports = class extends Base {
       ...(offset ? { skip: offset } : {}),
       ...(projection ? { projection } : {}),
     });
+    // Tencent Cloud may return document batches either through a Mongo-style
+    // cursor payload or a flattened list, so accept both shapes here.
     const list =
       result?.cursor?.firstBatch ||
       result?.cursor?.nextBatch ||
@@ -328,7 +332,7 @@ module.exports = class extends Base {
   }
 
   async add(data) {
-    const objectId = data.objectId || createObjectId();
+    const objectId = data.objectId || generateObjectId();
     const document = {
       ...data,
       _id: objectId,

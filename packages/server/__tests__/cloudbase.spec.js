@@ -6,6 +6,7 @@ const require = createRequire(import.meta.url);
 const cloudbaseStoragePath = require.resolve('../src/service/storage/cloudbase.js');
 const originalLoad = Module._load;
 const originalEnv = { ...process.env };
+const TEST_OBJECT_ID = '00112233445566778899aabb';
 
 let createTableMock;
 let describeTableMock;
@@ -22,7 +23,7 @@ describe('cloudbase storage', () => {
   beforeEach(() => {
     createTableMock = vi.fn().mockResolvedValue({});
     describeTableMock = vi.fn().mockResolvedValue({});
-    randomBytesMock = vi.fn(() => Buffer.from('00112233445566778899aabb', 'hex'));
+    randomBytesMock = vi.fn(() => Buffer.from(TEST_OBJECT_ID, 'hex'));
     runCommandsMock = vi.fn();
 
     process.env.TCB_ENV = 'test-env';
@@ -206,13 +207,13 @@ describe('cloudbase storage', () => {
     expect(data).toStrictEqual({
       nick: 'Waline',
       insertedAt,
-      objectId: '00112233445566778899aabb',
+      objectId: TEST_OBJECT_ID,
     });
     expect(JSON.parse(runCommandsMock.mock.calls[0][0].MgoCommands[0].Command)).toStrictEqual({
       insert: 'Comment',
       documents: [
         {
-          _id: '00112233445566778899aabb',
+          _id: TEST_OBJECT_ID,
           nick: 'Waline',
           insertedAt: {
             $date: '2024-02-03T04:05:06.000Z',
