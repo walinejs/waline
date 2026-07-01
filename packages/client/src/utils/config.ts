@@ -12,7 +12,7 @@ import {
 import type {
   WalineEmojiInfo,
   WalineEmojiMaps,
-  WalineEmojiPresets,
+  WalineEmojiOptions,
   WalineHighlighter,
   WalineImageUploader,
   WalineLocale,
@@ -35,7 +35,7 @@ export interface WalineConfig extends Required<
 > {
   locale: WalineLocale;
   wordLimit: [number, number] | false;
-  emoji: (WalineEmojiInfo | WalineEmojiPresets)[] | null;
+  emoji: WalineEmojiOptions | null;
   highlighter: WalineHighlighter | null;
   imageUploader: WalineImageUploader | null;
   texRenderer: WalineTeXRenderer | null;
