@@ -16,13 +16,16 @@ const {
   TENCENTCLOUD_SECRET_ID,
   TENCENTCLOUD_SECRET_KEY,
 } = process.env;
+const secretId = TCB_ID || TENCENTCLOUD_SECRETID || TENCENTCLOUD_SECRET_ID;
+const secretKey = TCB_KEY || TENCENTCLOUD_SECRETKEY || TENCENTCLOUD_SECRET_KEY;
+const region = TENCENTCLOUD_REGION || TCB_REGION || 'ap-shanghai';
 
 const client = new TcbClient({
   credential: {
-    secretId: TCB_ID || TENCENTCLOUD_SECRETID || TENCENTCLOUD_SECRET_ID,
-    secretKey: TCB_KEY || TENCENTCLOUD_SECRETKEY || TENCENTCLOUD_SECRET_KEY,
+    secretId,
+    secretKey,
   },
-  region: TENCENTCLOUD_REGION || TCB_REGION || 'ap-shanghai',
+  region,
 });
 
 const collections = {};
@@ -102,9 +105,18 @@ const normalizeDocument = ({ _id, ...data }) => ({
   ...data,
   objectId: _id?.toString?.() ?? _id,
 });
+const assertCredentials = () => {
+  if (!secretId || !secretKey) {
+    throw new Error(
+      'CloudBase storage requires TCB_ID/TCB_KEY or TENCENTCLOUD_SECRET_ID/TENCENTCLOUD_SECRET_KEY.',
+    );
+  }
+};
 
 module.exports = class extends Base {
   async collection(tableName) {
+    assertCredentials();
+
     if (collections[tableName]) {
       return tableName;
     }
@@ -226,6 +238,7 @@ module.exports = class extends Base {
   }
 
   async runCommand(commandType, command) {
+    assertCredentials();
     await this.collection(this.tableName);
 
     const response = await client.RunCommands({

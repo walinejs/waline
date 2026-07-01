@@ -35,7 +35,7 @@ describe('cloudbase storage', () => {
       isString: (value) => typeof value === 'string',
     };
 
-    Module._load = function mockLoad(request, parent, isMain) {
+    Module._load = function mockLoad(request, parent, isMainModule) {
       if (request === 'tencentcloud-sdk-nodejs') {
         return {
           tcb: {
@@ -64,7 +64,7 @@ describe('cloudbase storage', () => {
         };
       }
 
-      return originalLoad.call(this, request, parent, isMain);
+      return originalLoad.call(this, request, parent, isMainModule);
     };
   });
 
