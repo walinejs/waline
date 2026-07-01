@@ -1,41 +1,133 @@
-const cloudbase = require('@cloudbase/node-sdk');
+const crypto = require('node:crypto');
+
+const tencentcloud = require('tencentcloud-sdk-nodejs');
 
 const Base = require('./base.js');
 
-const { TCB_ENV, TCB_ID, TCB_KEY } = process.env;
-const app = cloudbase.init({
-  env: TCB_ENV,
-  secretId: TCB_ID,
-  secretKey: TCB_KEY,
+const TcbClient = tencentcloud.tcb.v20180608.Client;
+const {
+  TCB_ENV,
+  TCB_ID,
+  TCB_KEY,
+  TCB_REGION,
+  TENCENTCLOUD_REGION,
+  TENCENTCLOUD_SECRETID,
+  TENCENTCLOUD_SECRETKEY,
+  TENCENTCLOUD_SECRET_ID,
+  TENCENTCLOUD_SECRET_KEY,
+} = process.env;
+
+const client = new TcbClient({
+  credential: {
+    secretId: TCB_ID || TENCENTCLOUD_SECRETID || TENCENTCLOUD_SECRET_ID,
+    secretKey: TCB_KEY || TENCENTCLOUD_SECRETKEY || TENCENTCLOUD_SECRET_KEY,
+  },
+  region: TENCENTCLOUD_REGION || TCB_REGION || 'ap-shanghai',
 });
 
-const db = app.database();
-const _ = db.command;
-const $ = db.command.aggregate;
 const collections = {};
+
+const isPlainObject = (value) => Object.prototype.toString.call(value) === '[object Object]';
+
+const serialize = (value) => {
+  if (value instanceof Date) {
+    return { $date: value.toISOString() };
+  }
+
+  if (value instanceof RegExp) {
+    return {
+      $regularExpression: {
+        pattern: value.source,
+        options: value.flags,
+      },
+    };
+  }
+
+  if (Array.isArray(value)) {
+    return value.map((item) => serialize(item));
+  }
+
+  if (!isPlainObject(value)) {
+    return value;
+  }
+
+  return Object.fromEntries(
+    Object.entries(value).flatMap(([key, item]) =>
+      item === undefined ? [] : [[key, serialize(item)]],
+    ),
+  );
+};
+
+const deserialize = (value) => {
+  if (Array.isArray(value)) {
+    return value.map((item) => deserialize(item));
+  }
+
+  if (!isPlainObject(value)) {
+    return value;
+  }
+
+  if (Object.keys(value).length === 1) {
+    if ('$oid' in value) {
+      return value.$oid;
+    }
+
+    if ('$numberLong' in value) {
+      return Number(value.$numberLong);
+    }
+
+    if ('$date' in value) {
+      if (isPlainObject(value.$date) && '$numberLong' in value.$date) {
+        return new Date(Number(value.$date.$numberLong));
+      }
+
+      return new Date(value.$date);
+    }
+  }
+
+  return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, deserialize(item)]));
+};
+
+const parseCommandResult = (response) => {
+  const [result] = response?.Data || [];
+
+  if (!result) {
+    return {};
+  }
+
+  return deserialize(typeof result === 'string' ? JSON.parse(result) : result);
+};
+
+const normalizeDocument = ({ _id, ...data }) => ({
+  ...data,
+  objectId: _id?.toString?.() ?? _id,
+});
 
 module.exports = class extends Base {
   async collection(tableName) {
     if (collections[tableName]) {
-      return db.collection(tableName);
+      return tableName;
     }
 
     try {
-      const instance = db.collection(tableName);
-
-      await instance.count();
-      collections[tableName] = true;
-
-      return db.collection(tableName);
+      await client.CreateTable({
+        EnvId: TCB_ENV,
+        TableName: tableName,
+      });
     } catch (err) {
-      if (err.code === 'DATABASE_COLLECTION_NOT_EXIST') {
-        await db.createCollection(tableName);
-        collections[tableName] = true;
-
-        return db.collection(tableName);
-      }
-      throw err;
+      await client
+        .DescribeTable({
+          EnvId: TCB_ENV,
+          TableName: tableName,
+        })
+        .catch(() => {
+          throw err;
+        });
     }
+
+    collections[tableName] = true;
+
+    return tableName;
   }
 
   parseWhere(where) {
@@ -44,35 +136,36 @@ module.exports = class extends Base {
     }
 
     const filter = {};
-    const parseKey = (k) => (k === 'objectId' ? '_id' : k);
+    const parseKey = (key) => (key === 'objectId' ? '_id' : key);
 
-    for (const k in where) {
-      if (k === '_complex') {
+    for (const key in where) {
+      if (key === '_complex') {
         continue;
       }
 
-      if (think.isString(where[k])) {
-        filter[parseKey(k)] = _.eq(where[k]);
+      if (think.isString(where[key])) {
+        filter[parseKey(key)] = { $eq: where[key] };
         continue;
       }
-      if (where[k] === undefined) {
-        filter[parseKey(k)] = _.eq(null);
+
+      if (where[key] === undefined) {
+        filter[parseKey(key)] = { $eq: null };
       }
 
-      if (Array.isArray(where[k]) && where[k][0]) {
-        const handler = where[k][0].toUpperCase();
+      if (Array.isArray(where[key]) && where[key][0]) {
+        const handler = where[key][0].toUpperCase();
 
         switch (handler) {
           case 'IN': {
-            filter[parseKey(k)] = _.in(where[k][1]);
+            filter[parseKey(key)] = { $in: where[key][1] };
             break;
           }
           case 'NOT IN': {
-            filter[parseKey(k)] = _.nin(where[k][1]);
+            filter[parseKey(key)] = { $nin: where[key][1] };
             break;
           }
           case 'LIKE': {
-            const [, likePattern] = where[k];
+            const [, likePattern] = where[key];
             const [first] = likePattern;
             const last = likePattern.slice(-1);
             let reg;
@@ -85,15 +178,18 @@ module.exports = class extends Base {
               reg = new RegExp(`^${likePattern.slice(0, -1)}`, 'u');
             }
 
-            filter[parseKey(k)] = reg;
+            if (reg) {
+              filter[parseKey(key)] = reg;
+            }
+
             break;
           }
           case '!=': {
-            filter[parseKey(k)] = _.neq(where[k][1]);
+            filter[parseKey(key)] = { $ne: where[key][1] };
             break;
           }
           case '>': {
-            filter[parseKey(k)] = _.gt(where[k][1]);
+            filter[parseKey(key)] = { $gt: where[key][1] };
             break;
           }
           default: {
@@ -106,69 +202,82 @@ module.exports = class extends Base {
     return filter;
   }
 
-  where(instance, where, method = 'where') {
+  where(where) {
     const filter = this.parseWhere(where);
 
     if (!where._complex) {
-      return instance[method](filter);
+      return filter;
     }
 
     const filters = [];
 
-    for (const k in where._complex) {
-      if (k === '_logic') {
+    for (const key in where._complex) {
+      if (key === '_logic') {
         continue;
       }
 
       filters.push({
-        ...this.parseWhere({ [k]: where._complex[k] }),
+        ...this.parseWhere({ [key]: where._complex[key] }),
         ...filter,
       });
     }
 
-    return instance[method](_[where._complex._logic](...filters));
+    return { [`$${where._complex._logic}`]: filters };
+  }
+
+  async runCommand(commandType, command) {
+    await this.collection(this.tableName);
+
+    const response = await client.RunCommands({
+      EnvId: TCB_ENV,
+      MgoCommands: [
+        {
+          TableName: this.tableName,
+          CommandType: commandType,
+          Command: JSON.stringify(serialize(command)),
+        },
+      ],
+    });
+
+    return parseCommandResult(response);
   }
 
   async _select(where, { desc, limit, offset, field } = {}) {
-    let instance = await this.collection(this.tableName);
+    const projection = field ? Object.fromEntries(field.map((item) => [item, 1])) : undefined;
+    const result = await this.runCommand('QUERY', {
+      find: this.tableName,
+      filter: this.where(where),
+      ...(desc ? { sort: { [desc]: -1 } } : {}),
+      ...(limit ? { limit } : { limit: 100 }),
+      ...(offset ? { skip: offset } : {}),
+      ...(projection ? { projection } : {}),
+    });
+    const list =
+      result?.cursor?.firstBatch ||
+      result?.cursor?.nextBatch ||
+      result?.documents ||
+      result?.results ||
+      result?.data ||
+      result;
 
-    instance = this.where(instance, where);
-    if (desc) {
-      instance = instance.orderBy(desc, 'desc');
-    }
-
-    if (limit) {
-      instance = instance.limit(limit);
-    }
-
-    if (offset) {
-      instance = instance.skip(offset);
-    }
-
-    if (field) {
-      const filedObj = {};
-
-      field.forEach((f) => (filedObj[f] = true));
-      instance = instance.field(filedObj);
-    }
-
-    const { data } = await instance.get();
-
-    return data.map(({ _id, ...cmt }) => ({
-      ...cmt,
-      objectId: _id.toString(),
-    }));
+    return Array.isArray(list) ? list.map((item) => normalizeDocument(item)) : [];
   }
 
   async select(where, options = {}) {
+    if (options.limit) {
+      return this._select(where, options);
+    }
+
     const data = [];
     let ret = [];
     const offset = options.offset ?? 0;
 
     do {
-      options.offset = offset + data.length;
-      // oxlint-disable-next-line no-underscore-dangle
-      ret = await this._select(where, options);
+      ret = await this._select(where, {
+        ...options,
+        limit: 100,
+        offset: offset + data.length,
+      });
       data.push(...ret);
     } while (ret.length === 100);
 
@@ -176,62 +285,86 @@ module.exports = class extends Base {
   }
 
   async count(where = {}, { group } = {}) {
-    let instance = await this.collection(this.tableName);
-
     if (!group) {
-      instance = this.where(instance, where);
-      const { total } = await instance.count();
+      const result = await this.runCommand('COMMAND', {
+        count: this.tableName,
+        query: this.where(where),
+      });
 
-      return total;
+      return result.n ?? result.total ?? 0;
     }
 
-    // oxlint-disable-next-line no-underscore-dangle
-    const _id = {};
-
-    group.forEach((f) => {
-      _id[f] = `$${f}`;
+    const result = await this.runCommand('COMMAND', {
+      aggregate: this.tableName,
+      pipeline: [
+        { $match: this.where(where) },
+        {
+          $group: {
+            _id: Object.fromEntries(group.map((item) => [item, `$${item}`])),
+            count: { $sum: 1 },
+          },
+        },
+      ],
+      cursor: {},
     });
-    instance = instance.aggregate();
-    this.where(instance, where, 'match');
-    instance = instance.group({ _id, count: $.sum(1) });
-    const { data } = await instance.end();
+    const data = result?.cursor?.firstBatch || result?.cursor?.nextBatch || [];
 
     return data.map(({ _id, count }) => ({ ..._id, count }));
   }
 
   async add(data) {
-    if (data.objectId) {
-      // oxlint-disable-next-line no-underscore-dangle
-      data._id = data.objectId;
-      delete data.objectId;
-    }
+    const objectId = data.objectId || crypto.randomUUID();
+    const document = {
+      ...data,
+      _id: objectId,
+    };
 
-    const instance = await this.collection(this.tableName);
-    const { id } = await instance.add(data);
+    delete document.objectId;
 
-    return { ...data, objectId: id };
+    await this.runCommand('INSERT', {
+      insert: this.tableName,
+      documents: [document],
+    });
+
+    return { ...data, objectId };
   }
 
   async update(data, where) {
-    const instance = await this.collection(this.tableName);
-    const { data: list } = await this.where(instance, where).get();
+    const list = await this.select(where);
 
     return Promise.all(
-      list.map(async (item) => {
-        const updateData = typeof data === 'function' ? data(item) : data;
-        const instance = await this.collection(this.tableName);
+      list.map(async ({ objectId, ...item }) => {
+        const updateData = typeof data === 'function' ? data({ ...item, objectId }) : data;
+        const document = { ...updateData };
 
-        // oxlint-disable-next-line no-underscore-dangle
-        await instance.doc(item._id).update(updateData);
+        delete document.objectId;
 
-        return { ...item, ...updateData };
+        await this.runCommand('UPDATE', {
+          update: this.tableName,
+          updates: [
+            {
+              q: { _id: objectId },
+              u: { $set: document },
+              multi: false,
+              upsert: false,
+            },
+          ],
+        });
+
+        return { ...item, ...document, objectId };
       }),
     );
   }
 
   async delete(where) {
-    const instance = await this.collection(this.tableName);
-
-    return this.where(instance, where).remove();
+    return this.runCommand('DELETE', {
+      delete: this.tableName,
+      deletes: [
+        {
+          q: this.where(where),
+          limit: 0,
+        },
+      ],
+    });
   }
 };

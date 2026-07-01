@@ -197,16 +197,17 @@ SMTP 的用户名通常均支持用户的完整邮箱，而密码大多同邮箱
 
 ### CloudBase
 
-| 环境变量名称 | 必填 | 默认值 | 备注                                                                   |
-| ------------ | ---- | ------ | ---------------------------------------------------------------------- |
-| `TCB_ENV`    | ✅   |        | 腾讯云开发环境 ID                                                      |
-| `TCB_ID`     | ✅   |        | 腾讯云 API 密钥 ID                                                     |
-| `TCB_KEY`    | ✅   |        | 腾讯云 API 密钥 Key                                                    |
-| `JWT_TOKEN`  |      |        | 用户登录密钥，如果没有配任何环境变量的话需要配置此变量，随机字符串即可 |
+| 环境变量名称          | 必填 | 默认值        | 备注                                                                   |
+| --------------------- | ---- | ------------- | ---------------------------------------------------------------------- |
+| `TCB_ENV`             | ✅   |               | 腾讯云开发环境 ID                                                      |
+| `TCB_ID`              | ✅\* |               | 腾讯云 API 密钥 ID，也可使用 `TENCENTCLOUD_SECRET_ID`                  |
+| `TCB_KEY`             | ✅\* |               | 腾讯云 API 密钥 Key，也可使用 `TENCENTCLOUD_SECRET_KEY`                |
+| `TENCENTCLOUD_REGION` |      | `ap-shanghai` | 腾讯云 API 地域，可按需覆盖默认值                                      |
+| `JWT_TOKEN`           |      |               | 用户登录密钥，如果没有配任何环境变量的话需要配置此变量，随机字符串即可 |
 
 ::: tip
 
-对于腾讯云 API 密钥 ID 与 Key，可以在 [此处](https://console.cloud.tencent.com/cam/capi) 申请。
+对于腾讯云 API 密钥 ID 与 Key，可以在 [此处](https://console.cloud.tencent.com/cam/capi) 申请。`TCB_ID` / `TCB_KEY` 与 `TENCENTCLOUD_SECRET_ID` / `TENCENTCLOUD_SECRET_KEY` 二选一即可。
 
 :::
 

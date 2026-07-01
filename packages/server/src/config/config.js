@@ -15,6 +15,7 @@ const {
   FORBIDDEN_WORDS,
   TCB_ENV,
   TENCENTCLOUD_SECRETKEY,
+  TENCENTCLOUD_SECRET_KEY,
   TCB_KEY,
   SECURE_DOMAINS,
   DISABLE_USERAGENT,
@@ -73,7 +74,7 @@ if (LEAN_KEY) {
   jwtKey ||= GITHUB_TOKEN;
 } else if (think.env === 'cloudbase' || TCB_ENV) {
   storage = 'cloudbase';
-  jwtKey ||= TENCENTCLOUD_SECRETKEY || TCB_KEY || TCB_ENV;
+  jwtKey ||= TENCENTCLOUD_SECRETKEY || TENCENTCLOUD_SECRET_KEY || TCB_KEY || TCB_ENV;
 }
 
 if (storage === null) {
