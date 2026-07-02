@@ -1,41 +1,76 @@
-const cloudbase = require('@cloudbase/node-sdk');
+const tencentcloud = require('tencentcloud-sdk-nodejs');
+
+const TcbClient = tencentcloud.tcb.v20180608.Client;
+const { Credential } = tencentcloud.common;
+const { ClientProfile, HttpProfile } = tencentcloud.common.profile;
 
 const Base = require('./base.js');
 
-const { TCB_ENV, TCB_ID, TCB_KEY } = process.env;
-const app = cloudbase.init({
-  env: TCB_ENV,
-  secretId: TCB_ID,
-  secretKey: TCB_KEY,
+const { TCB_ENV, TCB_ID, TCB_KEY, TCB_REGION = 'ap-shanghai' } = process.env;
+
+const httpProfile = new HttpProfile();
+
+httpProfile.endpoint = 'tcb.tencentcloudapi.com';
+
+const clientProfile = new ClientProfile();
+
+clientProfile.httpProfile = httpProfile;
+
+const client = new TcbClient(new Credential(TCB_ID, TCB_KEY), TCB_REGION, clientProfile);
+const collections = {};
+
+const runCommand = async (tableName, commandType, command) => {
+  const { Data } = await client.RunCommands({
+    EnvId: TCB_ENV,
+    MgoCommands: [
+      {
+        TableName: tableName,
+        CommandType: commandType,
+        Command: JSON.stringify(command),
+      },
+    ],
+  });
+  const [result = '[]'] = Data ?? [];
+
+  return JSON.parse(result);
+};
+
+const parseDoc = (doc) => (typeof doc === 'string' ? JSON.parse(doc) : doc);
+
+const normalizeDoc = ({ _id, ...doc }) => ({
+  ...doc,
+  objectId: _id?.toString(),
 });
 
-const db = app.database();
-const _ = db.command;
-const $ = db.command.aggregate;
-const collections = {};
+const eq = (value) => ({ $eq: value });
+const neq = (value) => ({ $ne: value });
+const gt = (value) => ({ $gt: value });
+const includes = (value) => ({ $in: value });
+const excludes = (value) => ({ $nin: value });
+const sum = (value) => ({ $sum: value });
+const and = (...filters) => ({ $and: filters });
+const or = (...filters) => ({ $or: filters });
+
+const _ = { eq, neq, gt, in: includes, nin: excludes, and, or };
+const $ = { sum };
 
 module.exports = class extends Base {
   async collection(tableName) {
-    if (collections[tableName]) {
-      return db.collection(tableName);
-    }
+    if (!collections[tableName]) {
+      try {
+        await runCommand(tableName, 'QUERY', { count: tableName });
+      } catch (err) {
+        if (err.code !== 'ResourceNotFound.Table') {
+          throw err;
+        }
 
-    try {
-      const instance = db.collection(tableName);
-
-      await instance.count();
-      collections[tableName] = true;
-
-      return db.collection(tableName);
-    } catch (err) {
-      if (err.code === 'DATABASE_COLLECTION_NOT_EXIST') {
-        await db.createCollection(tableName);
-        collections[tableName] = true;
-
-        return db.collection(tableName);
+        await runCommand(tableName, 'COMMAND', { create: tableName });
       }
-      throw err;
+
+      collections[tableName] = true;
     }
+
+    return tableName;
   }
 
   parseWhere(where) {
@@ -78,11 +113,11 @@ module.exports = class extends Base {
             let reg;
 
             if (first === '%' && last === '%') {
-              reg = new RegExp(likePattern.slice(1, -1), 'u');
+              reg = { $regex: likePattern.slice(1, -1) };
             } else if (first === '%') {
-              reg = new RegExp(`${likePattern.slice(1)}$`, 'u');
+              reg = { $regex: `${likePattern.slice(1)}$` };
             } else if (last === '%') {
-              reg = new RegExp(`^${likePattern.slice(0, -1)}`, 'u');
+              reg = { $regex: `^${likePattern.slice(0, -1)}` };
             }
 
             filter[parseKey(k)] = reg;
@@ -103,14 +138,8 @@ module.exports = class extends Base {
       }
     }
 
-    return filter;
-  }
-
-  where(instance, where, method = 'where') {
-    const filter = this.parseWhere(where);
-
     if (!where._complex) {
-      return instance[method](filter);
+      return filter;
     }
 
     const filters = [];
@@ -126,38 +155,33 @@ module.exports = class extends Base {
       });
     }
 
-    return instance[method](_[where._complex._logic](...filters));
+    return _[where._complex._logic](...filters);
   }
 
   async _select(where, { desc, limit, offset, field } = {}) {
-    let instance = await this.collection(this.tableName);
+    const tableName = await this.collection(this.tableName);
+    const command = { find: tableName, filter: this.parseWhere(where) };
 
-    instance = this.where(instance, where);
     if (desc) {
-      instance = instance.orderBy(desc, 'desc');
+      command.sort = { [desc]: -1 };
     }
 
     if (limit) {
-      instance = instance.limit(limit);
+      command.limit = limit;
     }
 
     if (offset) {
-      instance = instance.skip(offset);
+      command.skip = offset;
     }
 
     if (field) {
-      const filedObj = {};
-
-      field.forEach((f) => (filedObj[f] = true));
-      instance = instance.field(filedObj);
+      command.projection = {};
+      field.forEach((f) => (command.projection[f] = 1));
     }
 
-    const { data } = await instance.get();
+    const data = await runCommand(tableName, 'QUERY', command);
 
-    return data.map(({ _id, ...cmt }) => ({
-      ...cmt,
-      objectId: _id.toString(),
-    }));
+    return data.map((item) => normalizeDoc(parseDoc(item)));
   }
 
   async select(where, options = {}) {
@@ -176,13 +200,16 @@ module.exports = class extends Base {
   }
 
   async count(where = {}, { group } = {}) {
-    let instance = await this.collection(this.tableName);
+    const tableName = await this.collection(this.tableName);
+    const filter = this.parseWhere(where);
 
     if (!group) {
-      instance = this.where(instance, where);
-      const { total } = await instance.count();
+      const { n = 0 } = await runCommand(tableName, 'QUERY', {
+        count: tableName,
+        query: filter,
+      });
 
-      return total;
+      return n;
     }
 
     // oxlint-disable-next-line no-underscore-dangle
@@ -191,12 +218,17 @@ module.exports = class extends Base {
     group.forEach((f) => {
       _id[f] = `$${f}`;
     });
-    instance = instance.aggregate();
-    this.where(instance, where, 'match');
-    instance = instance.group({ _id, count: $.sum(1) });
-    const { data } = await instance.end();
 
-    return data.map(({ _id, count }) => ({ ..._id, count }));
+    const data = await runCommand(tableName, 'QUERY', {
+      aggregate: tableName,
+      pipeline: [{ $match: filter }, { $group: { _id, count: $.sum(1) } }],
+      cursor: {},
+    });
+
+    return (data.cursor?.firstBatch ?? data).map(({ _id, count }) => ({
+      ..._id,
+      count,
+    }));
   }
 
   async add(data) {
@@ -206,23 +238,34 @@ module.exports = class extends Base {
       delete data.objectId;
     }
 
-    const instance = await this.collection(this.tableName);
-    const { id } = await instance.add(data);
+    const tableName = await this.collection(this.tableName);
+    const result = await runCommand(tableName, 'INSERT', {
+      insert: tableName,
+      documents: [data],
+    });
+    const insertedId = result.insertedId ?? result.insertedIds?.[0];
 
-    return { ...data, objectId: id };
+    return { ...data, objectId: insertedId ?? data._id };
   }
 
   async update(data, where) {
-    const instance = await this.collection(this.tableName);
-    const { data: list } = await this.where(instance, where).get();
+    const tableName = await this.collection(this.tableName);
+    const list = await this._select(where);
 
     return Promise.all(
       list.map(async (item) => {
         const updateData = typeof data === 'function' ? data(item) : data;
-        const instance = await this.collection(this.tableName);
 
-        // oxlint-disable-next-line no-underscore-dangle
-        await instance.doc(item._id).update(updateData);
+        await runCommand(tableName, 'UPDATE', {
+          update: tableName,
+          updates: [
+            {
+              q: { _id: item.objectId },
+              u: { $set: updateData },
+              multi: false,
+            },
+          ],
+        });
 
         return { ...item, ...updateData };
       }),
@@ -230,8 +273,11 @@ module.exports = class extends Base {
   }
 
   async delete(where) {
-    const instance = await this.collection(this.tableName);
+    const tableName = await this.collection(this.tableName);
 
-    return this.where(instance, where).remove();
+    return runCommand(tableName, 'DELETE', {
+      delete: tableName,
+      deletes: [{ q: this.parseWhere(where), limit: 0 }],
+    });
   }
 };
