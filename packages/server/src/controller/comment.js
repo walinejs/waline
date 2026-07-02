@@ -423,54 +423,27 @@ module.exports = class CommentController extends BaseRest {
       }
     }
 
-    /**
-     * Most of case we have just little comments while if we want get rootComments, rootCount,
-     * childComments with pagination we have to query three times from storage service That's so
-     * expensive for user, especially in the serverless. so we have a comments length check If you
-     * have less than 1000 comments, then we'll get all comments one time then we'll compute
-     * rootComment, rootCount, childComments in program to reduce http request query
-     *
-     * Why we have limit and the limit is 1000? Many serverless storages have fetch data limit, for
-     * example LeanCloud is 100, and CloudBase is 1000 If we have much comments, We should use more
-     * request to fetch all comments If we have 3000 comments, We have to use 30 http request to
-     * fetch comments, things go athwart. And Serverless Service like vercel have execute time limit
-     * if we have more http requests in a serverless function, it may timeout easily. so we use
-     * limit to avoid it.
-     */
-    if (totalCount < 1000) {
-      comments = await this.modelInstance.select(where, selectOptions);
-      rootCount = comments.filter(({ rid }) => !rid).length;
-      rootComments = [
-        ...comments.filter(({ rid, sticky }) => !rid && sticky),
-        ...comments.filter(({ rid, sticky }) => !rid && !sticky),
-      ].slice(pageOffset, pageOffset + pageSize);
-      const rootIds = {};
+    const rootWhere = { ...where, rid: undefined };
+    const sortField = selectOptions.desc ?? 'insertedAt';
+    const sortOrder = selectOptions.desc ? 'DESC' : 'ASC';
 
-      rootComments.forEach(({ objectId }) => {
-        rootIds[objectId] = true;
-      });
-      comments = comments.filter((cmt) => rootIds[cmt.objectId] || rootIds[cmt.rid]);
-    } else {
-      comments = await this.modelInstance.select(
-        { ...where, rid: undefined },
-        { ...selectOptions },
-      );
-      rootCount = comments.length;
-      rootComments = [
-        ...comments.filter(({ rid, sticky }) => !rid && sticky),
-        ...comments.filter(({ rid, sticky }) => !rid && !sticky),
-      ].slice(pageOffset, pageOffset + pageSize);
+    rootCount = await this.modelInstance.count(rootWhere);
+    rootComments = await this.modelInstance.select(rootWhere, {
+      ...selectOptions,
+      order: { sticky: 'DESC', [sortField]: sortOrder },
+      limit: pageSize,
+      offset: pageOffset,
+    });
 
-      const children = await this.modelInstance.select(
-        {
-          ...where,
-          rid: ['IN', rootComments.map(({ objectId }) => objectId)],
-        },
-        selectOptions,
-      );
+    const children = await this.modelInstance.select(
+      {
+        ...where,
+        rid: ['IN', rootComments.map(({ objectId }) => objectId)],
+      },
+      selectOptions,
+    );
 
-      comments = [...rootComments, ...children];
-    }
+    comments = [...rootComments, ...children];
 
     const userModel = this.getModel('Users');
     const user_ids = [...new Set(comments.map(({ user_id }) => user_id).filter(Boolean))];
