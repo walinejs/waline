@@ -9,6 +9,8 @@ import * as Icons from '../../components/icon';
 import { useCaptcha } from '../../components/useCaptcha.js';
 import { get2FAToken } from '../../services/user.js';
 
+const isAbsoluteHttpURL = (url) => /^https?:\/\//iu.test(url);
+
 export default function Login() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -36,6 +38,12 @@ export default function Login() {
 
     const defaultRedirect = isAdmin ? '/ui' : '/ui/profile';
     const redirect = isAdmin && query.get('redirect') ? query.get('redirect') : defaultRedirect;
+
+    if (isAbsoluteHttpURL(redirect)) {
+      location.href = redirect;
+
+      return;
+    }
 
     navigate(redirect.replaceAll(/\/+/gu, '/'));
   }, [user, query, navigate]);
