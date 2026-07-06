@@ -106,7 +106,9 @@ export default function Login() {
 
   const buildOAuthURL = (social) => {
     const redirect = query.get('redirect') || `${basePath}ui/profile`;
-    return `${baseUrl}oauth?type=${encodeURIComponent(social)}&redirect=${encodeURIComponent(redirect)}`;
+    const state = query.get('state') || '';
+
+    return `${baseUrl}oauth?type=${encodeURIComponent(social)}&redirect=${encodeURIComponent(redirect)}&login_state=${encodeURIComponent(state)}`;
   };
 
   return (
