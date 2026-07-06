@@ -13,6 +13,9 @@ export const login = ({ email, password, code, recaptchaV3, turnstile }) =>
     body: { email, password, code, recaptchaV3, turnstile },
   });
 
+export const validateRedirect = (redirect) =>
+  request(`redirect?url=${encodeURIComponent(redirect)}`);
+
 export const logout = () => {
   window.TOKEN = null;
   sessionStorage.removeItem('TOKEN');

@@ -1,5 +1,6 @@
 import { forgot, getUserInfo, login, logout, register } from '../services/auth.js';
 import { updateProfile } from '../services/user.js';
+import { finishLogin } from '../utils/finishLogin.js';
 
 export const user = {
   state: null,
@@ -22,9 +23,9 @@ export const user = {
       if (window.opener) {
         const localToken = localStorage.getItem('TOKEN');
         const remember = Boolean(localToken);
-        const token = localToken ?? window.TOKEN ?? sessionStorage.getItem('token');
+        const token = localToken ?? window.TOKEN ?? sessionStorage.getItem('TOKEN');
 
-        window.opener.postMessage({ type: 'userInfo', data: { token, remember, ...user } }, '*');
+        await finishLogin({ token, user, remember });
       }
 
       return dispatch.user.setUser(user);
@@ -45,9 +46,7 @@ export const user = {
           localStorage.setItem('TOKEN', token);
         }
 
-        if (window.opener) {
-          window.opener.postMessage({ type: 'userInfo', data: { token, remember, ...user } }, '*');
-        }
+        await finishLogin({ token, user, remember });
       }
 
       return dispatch.user.setUser(user);
