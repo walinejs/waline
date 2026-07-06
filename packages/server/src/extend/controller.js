@@ -5,6 +5,22 @@ const defaultLocales = require('../locales/index.js');
 
 const defaultLang = 'en-us';
 
+const normalizeList = (value) => {
+  if (!value) {
+    return [];
+  }
+
+  return (Array.isArray(value) ? value : String(value).split(/\s*,\s*/u)).filter(Boolean);
+};
+
+const getOrigin = (url) => {
+  try {
+    return new URL(url).origin;
+  } catch {
+    return null;
+  }
+};
+
 module.exports = {
   success(...args) {
     this.ctx.success(...args);
@@ -18,6 +34,32 @@ module.exports = {
   },
   jsonOrSuccess(...args) {
     return this[this.ctx.state.deprecated ? 'json' : 'success'](...args);
+  },
+  validateLoginRedirect(redirectUrl) {
+    const allowedOrigins = normalizeList(this.config('loginRedirectAllowlist'))
+      .map(getOrigin)
+      .filter(Boolean);
+
+    if (!redirectUrl || !allowedOrigins.length) {
+      return redirectUrl;
+    }
+
+    let parsedUrl;
+
+    try {
+      parsedUrl = new URL(redirectUrl);
+    } catch {
+      return redirectUrl;
+    }
+
+    if (
+      !['http:', 'https:'].includes(parsedUrl.protocol) ||
+      !allowedOrigins.includes(parsedUrl.origin)
+    ) {
+      throw new Error('Invalid login redirect URL.');
+    }
+
+    return redirectUrl;
   },
   locale(message, variables) {
     const { lang: userLang } = this.get();
