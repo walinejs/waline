@@ -1,6 +1,8 @@
 import { spawn } from 'node:child_process';
 import { once } from 'node:events';
+import { readFile, rm } from 'node:fs/promises';
 import { createServer } from 'node:http';
+import { DatabaseSync } from 'node:sqlite';
 
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 
@@ -11,7 +13,7 @@ let oauthServiceUrl;
 let vercelProcess;
 let vercelPort;
 let output = '';
-const commentStorePath = `/tmp/test-waline-vercel-comments-${process.pid}.json`;
+const sqlitePath = `/tmp/test-waline-vercel-${process.pid}.sqlite`;
 const testPath = `/vercel-unit-test-${process.pid}`;
 
 const listen = async (server) => {
@@ -32,6 +34,20 @@ const getFreePort = async () => {
 };
 
 const getVercelUrl = () => `http://127.0.0.1:${vercelPort}`;
+
+const setupSqliteDatabase = async () => {
+  await rm(sqlitePath, { force: true });
+
+  const database = new DatabaseSync(sqlitePath);
+
+  try {
+    database.exec(
+      await readFile(new URL('../../../assets/waline.sqlite.sql', import.meta.url), 'utf8'),
+    );
+  } finally {
+    database.close();
+  }
+};
 
 const waitForVercel = async () => {
   const deadline = Date.now() + 60_000;
@@ -68,6 +84,8 @@ beforeAll(async () => {
   const oauthPort = await listen(oauthServiceStub);
 
   oauthServiceUrl = `http://127.0.0.1:${oauthPort}`;
+  await setupSqliteDatabase();
+
   vercelPort = await getFreePort();
 
   vercelProcess = spawn(
@@ -80,8 +98,7 @@ beforeAll(async () => {
         JWT_TOKEN: 'test-jwt-secret',
         OAUTH_URL: oauthServiceUrl,
         AKISMET_KEY: 'false',
-        SQLITE_PATH: `/tmp/test-waline-vercel-${process.pid}.sqlite`,
-        WALINE_TEST_COMMENT_STORE: commentStorePath,
+        SQLITE_PATH: sqlitePath,
       },
     },
   );
@@ -110,6 +127,8 @@ afterAll(async () => {
       oauthServiceStub.close(resolve);
     });
   }
+
+  await rm(sqlitePath, { force: true });
 });
 
 describe('vercel runtime', () => {
@@ -152,7 +171,7 @@ describe('vercel runtime', () => {
     expect(postBody.data).toMatchObject({
       nick: comment.nick,
       link: comment.link,
-      objectId: 'vercel-comment-1',
+      objectId: 1,
     });
 
     const getResponse = await fetch(
@@ -171,7 +190,7 @@ describe('vercel runtime', () => {
     expect(getBody.data.data[0]).toMatchObject({
       nick: comment.nick,
       link: comment.link,
-      objectId: 'vercel-comment-1',
+      objectId: 1,
     });
     expect(getBody.data.data[0].comment).toContain(comment.comment);
   }, 70_000);
