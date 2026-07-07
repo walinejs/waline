@@ -23,38 +23,23 @@
     <script type="module">
       import { init } from '/client/waline.js';
 
-      const parseConfigValue = (value) => {
+      const parseQueryConfig = () => {
+        const value = new URLSearchParams(location.search).get('config');
+
+        if (!value) return {};
+
         try {
-          return JSON.parse(value);
+          const config = JSON.parse(value);
+
+          return config && typeof config === 'object' && !Array.isArray(config)
+            ? config
+            : {};
         } catch {
-          return value;
+          return {};
         }
       };
 
-      const searchParams = new URLSearchParams(location.search);
-      const queryConfig = {};
-
-      if (searchParams.has('config')) {
-        const config = parseConfigValue(searchParams.get('config'));
-
-        if (config && typeof config === 'object' && !Array.isArray(config)) {
-          Object.assign(queryConfig, config);
-        }
-      }
-
-      searchParams.delete('config');
-
-      searchParams.forEach((value, key) => {
-        const parsedValue = parseConfigValue(value);
-
-        if (key in queryConfig) {
-          queryConfig[key] = Array.isArray(queryConfig[key])
-            ? [...queryConfig[key], parsedValue]
-            : [queryConfig[key], parsedValue];
-        } else {
-          queryConfig[key] = parsedValue;
-        }
-      });
+      const queryConfig = parseQueryConfig();
 
       window.waline = init({
         ...queryConfig,
