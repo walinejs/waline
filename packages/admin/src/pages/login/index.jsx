@@ -1,18 +1,19 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router';
+import { Link } from 'react-router';
 
 import Header from '../../components/Header.jsx';
 // oxlint-disable-next-line import/no-namespace
 import * as Icons from '../../components/icon';
 import { useCaptcha } from '../../components/useCaptcha.js';
+import { getUserInfo } from '../../services/auth.js';
 import { get2FAToken } from '../../services/user.js';
+import { finishLogin } from '../../utils/finishLogin.js';
 
 export default function Login() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const user = useSelector((state) => state.user);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -28,17 +29,20 @@ export default function Login() {
   const query = useMemo(() => new URLSearchParams(location.search), []);
 
   useEffect(() => {
-    if (!user || !user.objectId) {
+    const token = query.get('token');
+
+    if (!token || user?.objectId) {
       return;
     }
 
-    const isAdmin = user.type === 'administrator';
+    window.TOKEN = token;
+    sessionStorage.setItem('TOKEN', token);
 
-    const defaultRedirect = isAdmin ? '/ui' : '/ui/profile';
-    const redirect = isAdmin && query.get('redirect') ? query.get('redirect') : defaultRedirect;
-
-    navigate(redirect.replaceAll(/\/+/gu, '/'));
-  }, [user, query, navigate]);
+    void getUserInfo().then(async (loginUser) => {
+      await dispatch.user.setUser(loginUser);
+      await finishLogin({ token, user: loginUser, remember: false });
+    });
+  }, [user, query, dispatch]);
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -105,8 +109,16 @@ export default function Login() {
     : ['oidc', 'qq', 'weibo', 'github', 'twitter', 'facebook'];
 
   const buildOAuthURL = (social) => {
-    const redirect = query.get('redirect') || `${basePath}ui/profile`;
-    return `${baseUrl}oauth?type=${encodeURIComponent(social)}&redirect=${encodeURIComponent(redirect)}`;
+    const loginUrl = new URL(`${location.origin}${basePath}ui/login`);
+    const redirect = query.get('redirect');
+
+    if (redirect) {
+      loginUrl.searchParams.set('redirect', redirect);
+    }
+
+    return `${baseUrl}oauth?type=${encodeURIComponent(social)}&redirect=${encodeURIComponent(
+      loginUrl.pathname + loginUrl.search,
+    )}`;
   };
 
   return (

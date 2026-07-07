@@ -78,7 +78,7 @@ export const login = ({
   }
 
   const handler = window.open(
-    `${serverURL.replace(/\/$/u, '')}/ui/login?lng=${encodeURIComponent(lang)}`,
+    `${serverURL.replace(/\/$/u, '')}/ui/login?lng=${encodeURIComponent(lang)}&redirect=${encodeURIComponent(location.href)}`,
     '_blank',
     `width=${width},height=${height},left=${left},top=${top},scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no`,
   );
