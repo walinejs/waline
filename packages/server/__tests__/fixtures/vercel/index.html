@@ -44,6 +44,7 @@
       window.waline = init({
         ...queryConfig,
         el: '#waline',
+        path: queryConfig.path || 'walinejs/waline#__WALINE_PREVIEW_PR__',
         serverURL:
           queryConfig.serverURL ||
           location.protocol + '//' + location.host + location.pathname.replace(/\/+$/, ''),
