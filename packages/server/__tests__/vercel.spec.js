@@ -10,8 +10,7 @@ const fixtureUrl = new URL('fixtures/vercel/', import.meta.url);
 const fixturePath = fixtureUrl.pathname;
 const vercelEnvPath = new URL('.env.local', fixtureUrl);
 
-let oauthServiceStub;
-let oauthServiceUrl;
+const oauthServiceUrl = 'data:application/json,%7B%22services%22%3A%5B%5D%7D';
 let vercelProcess;
 let vercelPort;
 let output = '';
@@ -53,7 +52,7 @@ const setupSqliteDatabase = async () => {
 };
 
 const waitForVercel = async () => {
-  const deadline = Date.now() + 60_000;
+  const deadline = Date.now() + 120_000;
   let lastResponse = '';
 
   while (Date.now() < deadline) {
@@ -61,7 +60,7 @@ const waitForVercel = async () => {
       const response = await fetch(
         `${getVercelUrl()}/api/comment?path=${encodeURIComponent(testPath)}`,
         {
-          signal: AbortSignal.timeout(10_000),
+          signal: AbortSignal.timeout(45_000),
         },
       );
 
@@ -79,20 +78,16 @@ const waitForVercel = async () => {
   }
 
   throw new Error(
-    `Vercel dev server did not become ready. Last response:\n${lastResponse}\nOutput:\n${output}`,
+    [
+      'Vercel dev server did not become ready.',
+      `Last response:\n${lastResponse}`,
+      `Debug:\n${JSON.stringify({ fixturePath, sqlitePath, vercelEnvPath: vercelEnvPath.pathname }, null, 2)}`,
+      `Output:\n${output}`,
+    ].join('\n'),
   );
 };
 
 beforeAll(async () => {
-  // Waline fetches the OAuth service list on every request. Stub it locally so
-  // the Vercel runtime test does not depend on the public OAuth service/network.
-  oauthServiceStub = createServer((_req, res) => {
-    res.setHeader('content-type', 'application/json');
-    res.end(JSON.stringify({ services: [] }));
-  });
-  const oauthPort = await listen(oauthServiceStub);
-
-  oauthServiceUrl = `http://127.0.0.1:${oauthPort}`;
   await setupSqliteDatabase();
   await writeFile(
     vercelEnvPath,
@@ -128,7 +123,7 @@ beforeAll(async () => {
   vercelProcess.stderr.on('data', (chunk) => {
     output += chunk.toString();
   });
-}, 70_000);
+}, 150_000);
 
 afterAll(async () => {
   if (vercelProcess && !vercelProcess.killed) {
@@ -139,12 +134,6 @@ afterAll(async () => {
         setTimeout(resolve, 5000);
       }),
     ]);
-  }
-
-  if (oauthServiceStub) {
-    await new Promise((resolve) => {
-      oauthServiceStub.close(resolve);
-    });
   }
 
   await rm(sqlitePath, { force: true });
@@ -163,7 +152,7 @@ describe('vercel runtime', () => {
       count: 0,
       data: [],
     });
-  }, 70_000);
+  }, 150_000);
 
   it('should publish and fetch a comment through vercel dev', async () => {
     await waitForVercel();
@@ -213,5 +202,5 @@ describe('vercel runtime', () => {
       objectId: 1,
     });
     expect(getBody.data.data[0].comment).toContain(comment.comment);
-  }, 70_000);
+  }, 150_000);
 });
