@@ -23,9 +23,45 @@
     <script type="module">
       import { init } from '/client/waline.js';
 
+      const parseConfigValue = (value) => {
+        try {
+          return JSON.parse(value);
+        } catch {
+          return value;
+        }
+      };
+
+      const searchParams = new URLSearchParams(location.search);
+      const queryConfig = {};
+
+      if (searchParams.has('config')) {
+        const config = parseConfigValue(searchParams.get('config'));
+
+        if (config && typeof config === 'object' && !Array.isArray(config)) {
+          Object.assign(queryConfig, config);
+        }
+      }
+
+      searchParams.delete('config');
+
+      searchParams.forEach((value, key) => {
+        const parsedValue = parseConfigValue(value);
+
+        if (key in queryConfig) {
+          queryConfig[key] = Array.isArray(queryConfig[key])
+            ? [...queryConfig[key], parsedValue]
+            : [queryConfig[key], parsedValue];
+        } else {
+          queryConfig[key] = parsedValue;
+        }
+      });
+
       window.waline = init({
+        ...queryConfig,
         el: '#waline',
-        serverURL: location.protocol + '//' + location.host + location.pathname.replace(/\/+$/, ''),
+        serverURL:
+          queryConfig.serverURL ||
+          location.protocol + '//' + location.host + location.pathname.replace(/\/+$/, ''),
       });
     </script>
   </body>
