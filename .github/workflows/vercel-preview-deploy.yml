@@ -125,7 +125,15 @@ jobs:
             echo "Unable to find Vercel preview URL in deploy output" >&2
             exit 1
           fi
+          inspect_url=$(awk 'match($0, /https:\/\/vercel.com\/[^[:space:]]+/) { value=substr($0, RSTART, RLENGTH) } END { print value }' vercel-deploy.log)
+          vercel_deployment_id=${inspect_url##*/}
+          if [ -z "$vercel_deployment_id" ]; then
+            echo "Unable to find Vercel deployment ID in deploy output" >&2
+            exit 1
+          fi
+          deployment_url="https://vercel.com/${VERCEL_ORG_ID}/${VERCEL_PROJECT_ID}/${vercel_deployment_id}"
           echo "url=$url" >> "$GITHUB_OUTPUT"
+          echo "deployment_url=$deployment_url" >> "$GITHUB_OUTPUT"
           echo "$url"
 
       - name: Mark deployment successful
@@ -155,6 +163,7 @@ jobs:
         uses: actions/github-script@v9
         env:
           PREVIEW_URL: ${{ steps.vercel.outputs.url }}
+          VERCEL_DEPLOYMENT_URL: ${{ steps.vercel.outputs.deployment_url }}
         with:
           script: |
             const marker = '<!-- waline-vercel-preview -->';
@@ -163,7 +172,7 @@ jobs:
               : `https://${process.env.PREVIEW_URL}`;
             const prNumber = context.payload.pull_request.number;
             const commit = context.payload.pull_request.head.sha;
-            const body = `${marker}\n### Vercel Preview\n\n✅ Deployment is ready.\n\n- Preview: ${targetUrl}\n- Vercel Deployment: [Open deployment](${targetUrl})\n- PR: #${prNumber}\n- Commit: ${commit}\n- Workflow: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const body = `${marker}\n### Vercel Preview\n\n✅ Deployment is ready.\n\n- Preview: ${targetUrl}\n- Vercel Deployment: [Open deployment](${process.env.VERCEL_DEPLOYMENT_URL})\n- PR: #${prNumber}\n- Commit: ${commit}\n- Workflow: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
             const { data: comments } = await github.rest.issues.listComments({
               owner: context.repo.owner,
               repo: context.repo.repo,
