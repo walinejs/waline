@@ -1,6 +1,6 @@
 import { spawn } from 'node:child_process';
 import { once } from 'node:events';
-import { readFile, rm } from 'node:fs/promises';
+import { mkdir, readFile, rm } from 'node:fs/promises';
 import { createServer } from 'node:http';
 import { DatabaseSync } from 'node:sqlite';
 
@@ -13,7 +13,7 @@ let oauthServiceUrl;
 let vercelProcess;
 let vercelPort;
 let output = '';
-const sqlitePath = `/tmp/test-waline-vercel-${process.pid}.sqlite`;
+const sqliteDir = `/tmp/test-waline-vercel-${process.pid}`;
 const testPath = `/vercel-unit-test-${process.pid}`;
 
 const listen = async (server) => {
@@ -36,9 +36,10 @@ const getFreePort = async () => {
 const getVercelUrl = () => `http://127.0.0.1:${vercelPort}`;
 
 const setupSqliteDatabase = async () => {
-  await rm(sqlitePath, { force: true });
+  await rm(sqliteDir, { force: true, recursive: true });
+  await mkdir(sqliteDir, { recursive: true });
 
-  const database = new DatabaseSync(sqlitePath);
+  const database = new DatabaseSync(`${sqliteDir}/waline.sqlite`);
 
   try {
     database.exec(
@@ -98,7 +99,7 @@ beforeAll(async () => {
         JWT_TOKEN: 'test-jwt-secret',
         OAUTH_URL: oauthServiceUrl,
         AKISMET_KEY: 'false',
-        SQLITE_PATH: sqlitePath,
+        SQLITE_PATH: sqliteDir,
       },
     },
   );
@@ -128,7 +129,7 @@ afterAll(async () => {
     });
   }
 
-  await rm(sqlitePath, { force: true });
+  await rm(sqliteDir, { force: true, recursive: true });
 });
 
 describe('vercel runtime', () => {
