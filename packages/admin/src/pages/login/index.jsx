@@ -37,7 +37,22 @@ export default function Login() {
     const defaultRedirect = isAdmin ? '/ui' : '/ui/profile';
     const redirect = isAdmin && query.get('redirect') ? query.get('redirect') : defaultRedirect;
 
-    navigate(redirect.replaceAll(/(^|[^:])\/{2,}/gu, '$1/'));
+    const normalizedRedirect = redirect.replaceAll(/(^|[^:])\/{2,}/gu, '$1/');
+
+    if (/^https?:\/\//iu.test(normalizedRedirect)) {
+      try {
+        const redirectURL = new URL(normalizedRedirect);
+
+        if (redirectURL.origin === location.origin) {
+          location.href = redirectURL.href;
+          return;
+        }
+      } catch {
+        // Ignore malformed absolute redirect values and fall back to router navigation.
+      }
+    }
+
+    navigate(normalizedRedirect);
   }, [user, query, navigate]);
 
   const onSubmit = async (event) => {
