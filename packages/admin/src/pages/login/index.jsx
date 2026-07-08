@@ -37,7 +37,30 @@ export default function Login() {
     const defaultRedirect = isAdmin ? '/ui' : '/ui/profile';
     const redirect = isAdmin && query.get('redirect') ? query.get('redirect') : defaultRedirect;
 
-    navigate(redirect.replaceAll(/\/+/gu, '/'));
+    const normalizedRedirect = redirect.replaceAll(/(^|[^:])\/{2,}/gu, '$1/');
+
+    if (/^https?:\/\//iu.test(normalizedRedirect)) {
+      try {
+        const redirectURL = new URL(normalizedRedirect);
+        const referrerHost = document.referrer ? new URL(document.referrer).host : '';
+
+        if (referrerHost && redirectURL.host === referrerHost) {
+          const token =
+            localStorage.getItem('TOKEN') ?? sessionStorage.getItem('TOKEN') ?? window.TOKEN;
+
+          if (token) {
+            redirectURL.searchParams.set('token', token);
+          }
+
+          location.href = redirectURL.href;
+          return;
+        }
+      } catch {
+        // Ignore malformed redirect/referrer values and fall back to default.
+      }
+    }
+
+    navigate(defaultRedirect);
   }, [user, query, navigate]);
 
   const onSubmit = async (event) => {
