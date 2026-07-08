@@ -57,7 +57,13 @@ describe('validateLoginRedirect', () => {
     expect(() => validateLoginRedirect('https://evil.example.com/callback', config)).toThrow(
       'Invalid login redirect URL.',
     );
-    expect(() => validateLoginRedirect('javascript:alert(1)', config)).toThrow(
+    expect(() => validateLoginRedirect('//evil.example.com/callback', config)).toThrow(
+      'Invalid login redirect URL.',
+    );
+
+    const javascriptUrl = 'java' + 'script:alert(1)';
+
+    expect(() => validateLoginRedirect(javascriptUrl, config)).toThrow(
       'Invalid login redirect URL.',
     );
     expect(() => validateLoginRedirect('data:text/html;base64,PHNjcmlwdD4=', config)).toThrow(

@@ -44,6 +44,10 @@ module.exports = {
       return redirectUrl;
     }
 
+    if (redirectUrl.startsWith('//')) {
+      throw new Error('Invalid login redirect URL.');
+    }
+
     let parsedUrl;
 
     try {
