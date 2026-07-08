@@ -146,6 +146,16 @@ describe('vercel runtime', () => {
     });
   }, 70_000);
 
+  it('should reference the preview admin bundle in the dashboard', async () => {
+    await waitForVercel();
+
+    const response = await fetch(`${getVercelUrl()}/ui`);
+    const body = await response.text();
+
+    expect(response.ok).toBe(true);
+    expect(body).toContain('<script src="/admin/admin.js"></script>');
+  }, 70_000);
+
   it('should publish and fetch a comment through vercel dev', async () => {
     await waitForVercel();
 
