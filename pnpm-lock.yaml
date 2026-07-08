@@ -15,6 +15,9 @@ importers:
 
 packages:
 
+  '@webc.site/math@0.1.26':
+    resolution: {}
+
   '@pnpm/exe@11.8.0':
     resolution: {integrity: sha512-Z4yxxE+Q2bi36Ol/hNN/420TLk6MG1LxB80sIFvwFq2cr8zRkO446c8Ho+jFaBOxdFiGE7RPT5a3tvu9JQarsg==}
     hasBin: true
@@ -122,6 +125,8 @@ packages:
     hasBin: true
 
 snapshots:
+
+  '@webc.site/math@0.1.26': {}
 
   '@pnpm/exe@11.8.0':
     dependencies:
@@ -421,6 +426,9 @@ importers:
       '@waline/api':
         specifier: workspace:*
         version: link:../api
+      '@webc.site/math':
+        specifier: ^0.1.26
+        version: 0.1.26
       autosize:
         specifier: ^6.0.1
         version: 6.0.1
