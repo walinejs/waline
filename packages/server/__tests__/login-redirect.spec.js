@@ -53,21 +53,37 @@ describe('validateLoginRedirect', () => {
 
   it('throws for complete URLs that fail allowlist validation', () => {
     const config = { loginRedirectAllowlist: ['https://blog.example.com'] };
-
-    expect(() => validateLoginRedirect('https://evil.example.com/callback', config)).toThrow(
-      'Invalid login redirect URL.',
-    );
-    expect(() => validateLoginRedirect('//evil.example.com/callback', config)).toThrow(
-      'Invalid login redirect URL.',
-    );
-
     const javascriptUrl = 'java' + 'script:alert(1)';
 
-    expect(() => validateLoginRedirect(javascriptUrl, config)).toThrow(
-      'Invalid login redirect URL.',
-    );
-    expect(() => validateLoginRedirect('data:text/html;base64,PHNjcmlwdD4=', config)).toThrow(
-      'Invalid login redirect URL.',
-    );
+    for (const redirect of [
+      'https://evil.example.com/callback',
+      'https://blog.example.com.evil.com/callback',
+      'https://blog.example.com@evil.example.com/callback',
+      'https:\\evil.example.com/callback',
+      javascriptUrl,
+      'data:text/html;base64,PHNjcmlwdD4=',
+    ]) {
+      expect(() => validateLoginRedirect(redirect, config)).toThrow(
+        'Invalid login redirect URL.',
+      );
+    }
+  });
+
+  it('throws for ambiguous or header-unsafe redirects when an allowlist is configured', () => {
+    const config = { loginRedirectAllowlist: ['https://blog.example.com'] };
+
+    for (const redirect of [
+      '//evil.example.com/callback',
+      '\\evil.example.com/callback',
+      '/\\evil.example.com/callback',
+      '\\/evil.example.com/callback',
+      ' https://blog.example.com/callback',
+      'https://blog.example.com/callback ',
+      'https://blog.example.com/callback\nnext',
+    ]) {
+      expect(() => validateLoginRedirect(redirect, config)).toThrow(
+        'Invalid login redirect URL.',
+      );
+    }
   });
 });

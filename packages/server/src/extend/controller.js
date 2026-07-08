@@ -13,6 +13,8 @@ const normalizeList = (value) => {
   return (Array.isArray(value) ? value : String(value).split(/\s*,\s*/u)).filter(Boolean);
 };
 
+const invalidRedirectError = 'Invalid login redirect URL.';
+
 const getOrigin = (url) => {
   try {
     return new URL(url).origin;
@@ -44,8 +46,13 @@ module.exports = {
       return redirectUrl;
     }
 
-    if (redirectUrl.startsWith('//')) {
-      throw new Error('Invalid login redirect URL.');
+    if (
+      redirectUrl !== redirectUrl.trim() ||
+      /[\u0000-\u001F\u007F]/u.test(redirectUrl) ||
+      redirectUrl.startsWith('\\') ||
+      /^[\\/]{2}/u.test(redirectUrl)
+    ) {
+      throw new Error(invalidRedirectError);
     }
 
     let parsedUrl;
@@ -60,7 +67,7 @@ module.exports = {
       !['http:', 'https:'].includes(parsedUrl.protocol) ||
       !allowedOrigins.includes(parsedUrl.origin)
     ) {
-      throw new Error('Invalid login redirect URL.');
+      throw new Error(invalidRedirectError);
     }
 
     return redirectUrl;
