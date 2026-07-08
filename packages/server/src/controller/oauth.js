@@ -50,15 +50,33 @@ module.exports = class OAuthController extends think.Controller {
       },
     }).then((resp) => resp.json());
 
+    think.logger.info('[oauth] provider user:', {
+      type,
+      userId: user?.id,
+      email: user?.email,
+      name: user?.name,
+      redirect,
+    });
+
     if (!user?.id) {
       return this.fail(user);
     }
 
     const userBySocial = await this.modelInstance.select({ [type]: user.id });
 
+    think.logger.info('[oauth] userBySocial:', {
+      type,
+      socialId: user.id,
+      userBySocial,
+    });
+
     // when the social account has been linked, then redirect to this linked account profile page. It may be current account or another.
     // If it's another account, user should unlink the social type in that account and then link it.
     if (!think.isEmpty(userBySocial)) {
+      if (!userBySocial[0]?.objectId) {
+        think.logger.error('[oauth] missing objectId in linked user:', userBySocial[0]);
+      }
+
       const token = jwt.sign(userBySocial[0].objectId, this.config('jwtKey'));
 
       if (redirect) {
@@ -101,11 +119,21 @@ module.exports = class OAuthController extends think.Controller {
 
     const cmtUser = await this.modelInstance.add(data);
 
+    think.logger.info('[oauth] created user:', {
+      type,
+      socialId: user.id,
+      cmtUser,
+    });
+
     if (!redirect) {
       return this.success();
     }
 
     // and then generate token!
+    if (!cmtUser?.objectId) {
+      think.logger.error('[oauth] missing objectId in created user:', cmtUser);
+    }
+
     const token = jwt.sign(cmtUser.objectId, this.config('jwtKey'));
 
     this.redirect(think.buildUrl(safeRedirect, { token }));
