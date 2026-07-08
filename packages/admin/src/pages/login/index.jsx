@@ -37,7 +37,7 @@ export default function Login() {
     const defaultRedirect = isAdmin ? '/ui' : '/ui/profile';
     const redirect = isAdmin && query.get('redirect') ? query.get('redirect') : defaultRedirect;
 
-    navigate(redirect.replaceAll(/\/+/gu, '/'));
+    navigate(redirect.replaceAll(/(^|[^:])\/{2,}/gu, '$1/'));
   }, [user, query, navigate]);
 
   const onSubmit = async (event) => {
