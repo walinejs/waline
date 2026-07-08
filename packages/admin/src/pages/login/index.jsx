@@ -42,21 +42,25 @@ export default function Login() {
     if (/^https?:\/\//iu.test(normalizedRedirect)) {
       try {
         const redirectURL = new URL(normalizedRedirect);
-        const token =
-          localStorage.getItem('TOKEN') ?? sessionStorage.getItem('TOKEN') ?? window.TOKEN;
+        const referrerHost = document.referrer ? new URL(document.referrer).host : '';
 
-        if (token) {
-          redirectURL.searchParams.set('token', token);
+        if (referrerHost && redirectURL.host === referrerHost) {
+          const token =
+            localStorage.getItem('TOKEN') ?? sessionStorage.getItem('TOKEN') ?? window.TOKEN;
+
+          if (token) {
+            redirectURL.searchParams.set('token', token);
+          }
+
+          location.href = redirectURL.href;
+          return;
         }
-
-        location.href = redirectURL.href;
-        return;
       } catch {
-        // Ignore malformed absolute redirect values and fall back to router navigation.
+        // Ignore malformed redirect/referrer values and fall back to default.
       }
     }
 
-    navigate(normalizedRedirect);
+    navigate(defaultRedirect);
   }, [user, query, navigate]);
 
   const onSubmit = async (event) => {
