@@ -492,8 +492,8 @@ importers:
         specifier: 0.26.2
         version: 0.26.2(markdown-it@14.2.0)
       '@mdit/plugin-sub':
-        specifier: 0.24.2
-        version: 0.24.2(markdown-it@14.2.0)
+        specifier: 1.0.2
+        version: 1.0.2(markdown-it@14.2.0)
       '@mdit/plugin-sup':
         specifier: 0.24.2
         version: 0.24.2(markdown-it@14.2.0)
@@ -1998,6 +1998,15 @@ packages:
       markdown-it:
         optional: true
 
+  '@mdit/helper@1.0.1':
+    resolution: {integrity: sha512-zAzShsRZmkqjuoOFg6/zTCYVpvghj9a30Cl/eOGkE0xzRJJJG8T18eqb2lgceQhjVLWHK02HNVkzyfNHc429lQ==}
+    engines: {node: '>=22'}
+    peerDependencies:
+      markdown-it: ^14.2.0
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
+
   '@mdit/plugin-alert@0.23.2':
     resolution: {integrity: sha512-pXIil0FLy9ilhvT6d324A4X+mt5i/zG8ml0VIpZwiUYh2k1Wi6VnZhFHfsnONTRu6dPL2EwQBIhQgQ+269f7LA==}
     engines: {node: '>= 20'}
@@ -2112,6 +2121,15 @@ packages:
       markdown-it:
         optional: true
 
+  '@mdit/plugin-inline-rule@2.0.0':
+    resolution: {integrity: sha512-DtvfAk2sSO3sVVvt5uE/DoTH6TKR2gkVt3Tt4qavZEfODTkKr8tHkANcQ1g835J5IzGesf43CY6cEB+/bPQxqw==}
+    engines: {node: '>=22'}
+    peerDependencies:
+      markdown-it: ^14.2.0
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
+
   '@mdit/plugin-katex-slim@0.26.2':
     resolution: {integrity: sha512-QDkYQ8x2QpK9QTORofjlzvOBbXIMhGpCtdQbkYQUNyzDwNAOsfyVmqvXTXVSlxbO/qfGvThTcFJCZa3Ma/zw4w==}
     engines: {node: '>= 20'}
@@ -2206,6 +2224,15 @@ packages:
     engines: {node: '>= 20'}
     peerDependencies:
       markdown-it: ^14.1.0
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
+
+  '@mdit/plugin-sub@1.0.2':
+    resolution: {integrity: sha512-4ITiuFqPhvddsjr+UbwKYOYU0exnFiomRCmIWpyXsoKezFuY4JRcX1IVRw3wChXw63bGHqVqXaFZNbmAEMCa2w==}
+    engines: {node: '>=22'}
+    peerDependencies:
+      markdown-it: ^14.2.0
     peerDependenciesMeta:
       markdown-it:
         optional: true
@@ -10487,6 +10514,12 @@ snapshots:
     optionalDependencies:
       markdown-it: 14.2.0
 
+  '@mdit/helper@1.0.1(markdown-it@14.2.0)':
+    dependencies:
+      '@types/markdown-it': 14.1.2
+    optionalDependencies:
+      markdown-it: 14.2.0
+
   '@mdit/plugin-alert@0.23.2(markdown-it@14.2.0)':
     dependencies:
       '@types/markdown-it': 14.1.2
@@ -10570,6 +10603,13 @@ snapshots:
     optionalDependencies:
       markdown-it: 14.2.0
 
+  '@mdit/plugin-inline-rule@2.0.0(markdown-it@14.2.0)':
+    dependencies:
+      '@mdit/helper': 1.0.1(markdown-it@14.2.0)
+      '@types/markdown-it': 14.1.2
+    optionalDependencies:
+      markdown-it: 14.2.0
+
   '@mdit/plugin-katex-slim@0.26.2(katex@0.16.45)(markdown-it@14.2.0)':
     dependencies:
       '@mdit/helper': 0.23.2(markdown-it@14.2.0)
@@ -10643,6 +10683,13 @@ snapshots:
   '@mdit/plugin-sub@0.24.2(markdown-it@14.2.0)':
     dependencies:
       '@mdit/plugin-inline-rule': 0.23.2(markdown-it@14.2.0)
+      '@types/markdown-it': 14.1.2
+    optionalDependencies:
+      markdown-it: 14.2.0
+
+  '@mdit/plugin-sub@1.0.2(markdown-it@14.2.0)':
+    dependencies:
+      '@mdit/plugin-inline-rule': 2.0.0(markdown-it@14.2.0)
       '@types/markdown-it': 14.1.2
     optionalDependencies:
       markdown-it: 14.2.0
@@ -11028,7 +11075,7 @@ snapshots:
       detect-libc: 2.1.2
       is-glob: 4.0.3
       node-addon-api: 7.1.1
-      picomatch: 4.0.4
+      picomatch: 4.0.5
     optionalDependencies:
       '@parcel/watcher-android-arm64': 2.5.6
       '@parcel/watcher-darwin-arm64': 2.5.6
