@@ -4,7 +4,8 @@
     "silent": true
   },
   "env": {
-    "NODE_OPTIONS": "--experimental-require-module"
+    "NODE_OPTIONS": "--experimental-require-module",
+    "WALINE_ADMIN_MODULE_ASSET_URL": "/admin/admin.js"
   },
   "builds": [
     {
@@ -13,6 +14,10 @@
     },
     {
       "src": "client/**",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "admin/**",
       "use": "@vercel/static"
     },
     {
@@ -36,6 +41,10 @@
     {
       "source": "/client/(.*)",
       "destination": "/client/$1"
+    },
+    {
+      "source": "/admin/(.*)",
+      "destination": "/admin/$1"
     },
     {
       "source": "/(.*)",

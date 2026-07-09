@@ -9,15 +9,45 @@
   <body>
     <main style="max-width: 800px; margin: 0 auto; padding: 2rem 1rem">
       <h1>Waline Preview</h1>
+      <section
+        aria-label="Preview deployment metadata"
+        style="margin: 1rem 0; padding: 1rem; border: 1px solid #ddd; border-radius: 8px"
+      >
+        <p style="margin: 0 0 0.5rem"><strong>Preview source</strong></p>
+        <p style="margin: 0">PR <a href="__WALINE_PREVIEW_PR_URL__">#__WALINE_PREVIEW_PR__</a></p>
+        <p style="margin: 0; word-break: break-all">
+          Commit <a href="__WALINE_PREVIEW_COMMIT_URL__">__WALINE_PREVIEW_COMMIT__</a>
+        </p>
+      </section>
       <div id="waline"></div>
     </main>
 
     <script type="module">
       import { init } from '/client/waline.js';
 
+      const parseQueryConfig = () => {
+        const value = new URLSearchParams(location.search).get('config');
+
+        if (!value) return {};
+
+        try {
+          const config = JSON.parse(value);
+
+          return config && typeof config === 'object' && !Array.isArray(config) ? config : {};
+        } catch {
+          return {};
+        }
+      };
+
+      const queryConfig = parseQueryConfig();
+
       window.waline = init({
+        ...queryConfig,
         el: '#waline',
-        serverURL: location.protocol + '//' + location.host + location.pathname.replace(/\/+$/, ''),
+        path: queryConfig.path || 'walinejs/waline#__WALINE_PREVIEW_PR__',
+        serverURL:
+          queryConfig.serverURL ||
+          location.protocol + '//' + location.host + location.pathname.replace(/\/+$/, ''),
       });
     </script>
   </body>
