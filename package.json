@@ -41,7 +41,7 @@
     "oxc-config-hope": "0.3.6",
     "oxfmt": "0.56.0",
     "oxlint": "1.70.0",
-    "oxlint-tsgolint": "0.23.0",
+    "oxlint-tsgolint": "0.24.0",
     "picocolors": "1.1.1",
     "postcss": "8.5.16",
     "publint": "0.3.21",
