@@ -25,7 +25,7 @@
     "@koa/cors": "^5.0.0",
     "@mathjax/mathjax-tex-font": "^4.1.2",
     "@mathjax/src": "^4.1.2",
-    "@mdit/plugin-katex": "0.25.2",
+    "@mdit/plugin-katex": "1.0.1",
     "@mdit/plugin-mathjax": "0.26.2",
     "@mdit/plugin-sub": "0.24.2",
     "@mdit/plugin-sup": "0.24.2",
