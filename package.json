@@ -36,7 +36,7 @@
     "apidoc": "1.2.0",
     "cross-env": "10.1.0",
     "husky": "9.1.7",
-    "markdownlint-cli2": "0.22.1",
+    "markdownlint-cli2": "0.23.0",
     "nano-staged": "1.0.2",
     "oxc-config-hope": "0.3.6",
     "oxfmt": "0.56.0",
