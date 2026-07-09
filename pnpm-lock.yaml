@@ -261,8 +261,8 @@ importers:
         specifier: 1.0.2
         version: 1.0.2
       oxc-config-hope:
-        specifier: 0.3.6
-        version: 0.3.6(oxfmt@0.56.0)(oxlint-tsgolint@0.23.0)(oxlint@1.70.0(oxlint-tsgolint@0.23.0))
+        specifier: 0.3.9
+        version: 0.3.9(oxfmt@0.56.0)(oxlint-tsgolint@0.23.0)(oxlint@1.70.0(oxlint-tsgolint@0.23.0))
       oxfmt:
         specifier: 0.56.0
         version: 0.56.0
@@ -6823,12 +6823,12 @@ packages:
     resolution: {integrity: sha512-wrAwOeXp1RRMFfQY8Sy7VaGVmPocaLwSFOYCGKSyo8qmJ+/yaafCl5BCA1IQZWqFSRBrKDYFeR9d/VyQzfH/jg==}
     engines: {node: '>= 6.0'}
 
-  oxc-config-hope@0.3.6:
-    resolution: {integrity: sha512-gcucycq5Os0BmWwyHw+dv4GJnXbvWGy0OWowa7bDSqSQeRXgHW/gSERyJL3rVRpSExvd0b/Oafnjlt++xFsjFw==}
+  oxc-config-hope@0.3.9:
+    resolution: {integrity: sha512-zQMn48HvdH6ECcpzkL1fSD9YGw5yWZCywBLMnLLQ/LJpSvwQ8FcPfGV6jvnLB3g15UcPFbs3chcqQ0ke+uET/Q==}
     engines: {node: '>=22.12.0'}
     peerDependencies:
-      oxfmt: '>=0.51.0'
-      oxlint: ^1.66.0
+      oxfmt: '>=0.56.0'
+      oxlint: ^1.71.0
       oxlint-tsgolint: '>=0.23.0'
     peerDependenciesMeta:
       oxfmt:
@@ -11028,7 +11028,7 @@ snapshots:
       detect-libc: 2.1.2
       is-glob: 4.0.3
       node-addon-api: 7.1.1
-      picomatch: 4.0.4
+      picomatch: 4.0.5
     optionalDependencies:
       '@parcel/watcher-android-arm64': 2.5.6
       '@parcel/watcher-darwin-arm64': 2.5.6
@@ -15571,7 +15571,7 @@ snapshots:
 
   os-paths@4.4.0: {}
 
-  oxc-config-hope@0.3.6(oxfmt@0.56.0)(oxlint-tsgolint@0.23.0)(oxlint@1.70.0(oxlint-tsgolint@0.23.0)):
+  oxc-config-hope@0.3.9(oxfmt@0.56.0)(oxlint-tsgolint@0.23.0)(oxlint@1.70.0(oxlint-tsgolint@0.23.0)):
     optionalDependencies:
       oxfmt: 0.56.0
       oxlint: 1.70.0(oxlint-tsgolint@0.23.0)
