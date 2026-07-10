@@ -1,3 +1,4 @@
+import mathml from '@webc.site/math';
 import type { IGif } from '@giphy/js-types';
 
 import type {
@@ -41,10 +42,8 @@ export const defaultUploadImage = (file: File): Promise<string> =>
     reader.addEventListener('error', reject);
   });
 
-export const defaultTeXRenderer = (blockMode: boolean): string =>
-  blockMode
-    ? '<p class="wl-tex">TeX is not available in preview</p>'
-    : '<span class="wl-tex">TeX is not available in preview</span>';
+export const defaultTeXRenderer = (blockMode: boolean, tex: string): string =>
+  mathml(tex, blockMode);
 
 export const getDefaultSearchOptions = (lang: string): WalineSearchOptions => {
   interface GifResult {
