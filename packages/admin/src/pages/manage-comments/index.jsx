@@ -395,6 +395,7 @@ export default function ManageComments() {
                           cmtHandler.id === objectId && cmtHandler.action === 'edit' ? (
                             <tr className="comment-edit" key={objectId}>
                               <td aria-hidden="true"> </td>
+                              {/* oxlint-disable-next-line jsx-a11y/control-has-associated-label */}
                               <td colSpan="2" style={{ verticalAlign: 'top' }}>
                                 <div className="comment-edit-info">
                                   <p>
@@ -442,6 +443,7 @@ export default function ManageComments() {
                                   </p>
                                 </div>
                               </td>
+                              {/* oxlint-disable-next-line jsx-a11y/control-has-associated-label */}
                               <td style={{ verticalAlign: 'top' }}>
                                 <div className="comment-edit-content">
                                   <p>

@@ -23,8 +23,7 @@ export default function Login() {
     hideDefaultBadge: true,
   });
 
-  const match = location.pathname.match(/(.*?\/)ui/u);
-  const basePath = match?.[1] ?? '/';
+  const basePath = location.pathname.match(/(.*?\/)ui/u)?.[1] ?? '/';
   const query = useMemo(() => new URLSearchParams(location.search), []);
 
   useEffect(() => {
@@ -115,13 +114,7 @@ export default function Login() {
     enable2FA(data.enable);
   };
 
-  let baseUrl = window.serverURL;
-
-  if (!baseUrl) {
-    const match = location.pathname.match(/(.*?\/)ui/u);
-
-    baseUrl = match ? match[1] : '/';
-  }
+  const baseUrl = window.serverURL || (location.pathname.match(/(.*?\/)ui/u)?.[1] ?? '/');
 
   const socials = Array.isArray(window.oauthServices)
     ? window.oauthServices.map(({ name }) => name)

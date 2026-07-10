@@ -84,17 +84,14 @@ export default function Profile() {
     location.reload();
   };
 
-  let baseUrl = window.serverURL;
+  const baseUrl = window.serverURL || (location.pathname.match(/(.*?\/)ui/u)?.[1] ?? '/');
 
-  if (!baseUrl) {
-    const match = location.pathname.match(/(.*?\/)ui/u);
-
-    baseUrl = match ? match[1] : '/';
-  }
   const qs = new URLSearchParams(location.search);
-  let token = window.TOKEN ?? sessionStorage.getItem('TOKEN') ?? qs.get('token');
-
-  token ??= localStorage.getItem('TOKEN');
+  const token =
+    window.TOKEN ??
+    sessionStorage.getItem('TOKEN') ??
+    qs.get('token') ??
+    localStorage.getItem('TOKEN');
 
   const socials = Array.isArray(window.oauthServices)
     ? window.oauthServices.map(({ name }) => name)

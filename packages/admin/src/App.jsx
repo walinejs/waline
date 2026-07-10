@@ -37,8 +37,7 @@ const Access = (props) => {
 };
 
 export default function App() {
-  const match = location.pathname.match(/(.*?)\/ui/u);
-  const basePath = match ? match[1] : '/';
+  const basePath = location.pathname.match(/(.*?)\/ui/u)?.[1] ?? '/';
 
   return (
     <Provider store={store}>

@@ -152,7 +152,7 @@ module.exports = class BaseLogic extends think.Logic {
 
     const last = decodeURIComponent(this.ctx.path.split('/').pop());
 
-    if (last !== this.resource && /^([a-z0-9]+,?)*$/iu.test(last)) {
+    if (last !== this.resource && /^(?:[a-z0-9]+,?)*$/iu.test(last)) {
       return last;
     }
 

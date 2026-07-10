@@ -15,13 +15,13 @@ module.exports = class extends BaseRest {
     }
 
     const [user] = users;
-    const match = user.type.match(/^verify:(\d{4}):(\d+)$/iu);
+    const match = user.type.match(/^verify:(?<code>\d{4}):(?<timestamp>\d+)$/iu);
 
     if (!match) {
       return this.fail(this.locale('USER_REGISTERED'));
     }
 
-    if (token === match[1] && Date.now() < Math.trunc(Number(match[2]))) {
+    if (token === match.groups.code && Date.now() < Math.trunc(Number(match.groups.timestamp))) {
       await this.modelInstance.update({ type: 'guest' }, { email });
 
       this.redirect('/ui/login');

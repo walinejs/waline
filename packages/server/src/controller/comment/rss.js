@@ -5,7 +5,7 @@ const { think } = require('thinkjs');
 
 const markdownParser = getMarkdownParser(think.config('markdown'));
 
-const isHttpUrl = (value) => /^(https?:)?\/\//iu.test(value);
+const isHttpUrl = (value) => /^(?:https?:)?\/\//iu.test(value);
 
 const buildAbsoluteUrl = (baseUrl, path) => {
   if (!path) return baseUrl || '';

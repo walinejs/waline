@@ -13,7 +13,7 @@
     "client:dev": "pnpm --dir=packages/client dev",
     "docs:build": "pnpm --dir=docs run build && pnpm apidoc",
     "docs:dev": "pnpm --dir=docs run dev",
-    "lint": "pnpm lint:oxlint && oxfmt && pnpm lint:stylelint",
+    "lint": "pnpm lint:oxlint --deny-warnings && oxfmt && pnpm lint:stylelint",
     "lint:md": "markdownlint-cli2 '**/*.md'",
     "lint:oxlint": "oxlint --fix --report-unused-disable-directives",
     "lint:stylelint": "stylelint packages/*/src/**/*.scss --fix",

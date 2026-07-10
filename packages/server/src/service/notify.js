@@ -109,7 +109,7 @@ module.exports = class NotifyService extends think.Service {
 
     const QYWX_AM_AY = QYWX_AM.split(',');
     const comment = self.comment
-      .replaceAll(/<a href="(.*?)">(.*?)<\/a>/gu, '\n[$2] $1\n')
+      .replaceAll(/<a href="(?<url>.*?)">(?<text>.*?)<\/a>/gu, '\n[$2] $1\n')
       .replaceAll(/<[^>]+>/gu, '');
     const postName = self.url;
 
@@ -190,7 +190,7 @@ module.exports = class NotifyService extends think.Service {
     }
 
     const comment = self.comment
-      .replaceAll(/<a href="(.*?)">(.*?)<\/a>/gu, '')
+      .replaceAll(/<a href="(?:.*?)">(?:.*?)<\/a>/gu, '')
       .replaceAll(/<[^>]+>/gu, '');
 
     const data = {
@@ -246,12 +246,12 @@ module.exports = class NotifyService extends think.Service {
     }
 
     let commentLink = '';
-    const href = self.comment.match(/<a href="(.*?)">(.*?)<\/a>/gu);
+    const href = self.comment.match(/<a href="(?:.*?)">(?:.*?)<\/a>/gu);
 
     if (href != null) {
       for (let i = 0; i < href.length; i++) {
         href[i] =
-          `[Link: ${href[i].replaceAll(/<a href="(.*?)">(.*?)<\/a>/gu, '$2')}](${href[i].replaceAll(/<a href="(.*?)">(.*?)<\/a>/gu, '$1')})  `;
+          `[Link: ${href[i].replaceAll(/<a href="(?<url>.*?)">(?<text>.*?)<\/a>/gu, '$2')}](${href[i].replaceAll(/<a href="(?<url>.*?)">(?<text>.*?)<\/a>/gu, '$1')})  `;
         commentLink += href[i];
       }
     }
@@ -260,7 +260,7 @@ module.exports = class NotifyService extends think.Service {
     }
 
     const comment = self.comment
-      .replaceAll(/<a href="(.*?)">(.*?)<\/a>/gu, '[Link:$2]')
+      .replaceAll(/<a href="(?<url>.*?)">(?<text>.*?)<\/a>/gu, '[Link:$2]')
       .replaceAll(/<[^>]+>/gu, '');
 
     const contentTG =
@@ -419,7 +419,7 @@ module.exports = class NotifyService extends think.Service {
       return false;
     }
 
-    self.comment = self.comment.replaceAll(/(<([^>]+)>)/giu, '');
+    self.comment = self.comment.replaceAll(/(?:<[^>]+>)/giu, '');
 
     const data = {
       self,

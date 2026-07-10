@@ -69,7 +69,7 @@ if (MONGO_DB) {
       const key = envKeys
         .slice(10)
         .toLocaleLowerCase()
-        .replaceAll(/_([a-z])/gu, (_, b) => b.toUpperCase());
+        .replaceAll(/_(?<char>[a-z])/gu, (_, b) => b.toUpperCase());
 
       mongoOpt[key] = process.env[envKeys];
     }
