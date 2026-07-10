@@ -83,7 +83,8 @@ describe('security headers', () => {
   });
 });
 
-describe('gET /api/token', () => {
+// oxlint-disable-next-line vitest/prefer-lowercase-title
+describe('GET /api/token', () => {
   it('should return empty user info when not authenticated', async () => {
     const body = await apiRequest('GET', '/api/token');
     expect(body.errno).toBe(0);
@@ -91,7 +92,8 @@ describe('gET /api/token', () => {
   });
 });
 
-describe('gET /api/comment', () => {
+// oxlint-disable-next-line vitest/prefer-lowercase-title
+describe('GET /api/comment', () => {
   it('should return an empty comment list for a running server', async () => {
     const body = await apiRequest('GET', '/api/comment?path=/unit-test');
 
@@ -105,7 +107,8 @@ describe('gET /api/comment', () => {
   });
 });
 
-describe('pOST /api/token', () => {
+// oxlint-disable-next-line vitest/prefer-lowercase-title
+describe('POST /api/token', () => {
   it('should return a validation error when email is missing', async () => {
     const body = await apiRequest('POST', '/api/token', { password: 'password123' });
     expect(body.errno).toBe(1001);

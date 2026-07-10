@@ -10,6 +10,11 @@ allowBuilds:
   better-sqlite3: true
   unrs-resolver: true
 
+catalog:
+  typescript: ^6.0.3
+  vue: ^3.5.29
+  vite: 8.1.4
+
 enableGlobalVirtualStore: true
 
 overrides:
@@ -22,8 +27,6 @@ overrides:
   '@waline/api': workspace:*
   '@waline/client': workspace:*
   '@xmldom/xmldom': ^0.9.10
-  # FIXME: vulnerable
-  # 'apidoc>bootstrap': 5.3.8
   # FIXME: vulnerable
   'apidoc>esbuild-loader': ^4.4.3
 
@@ -44,9 +47,6 @@ packageExtensions:
 trustPolicy: no-downgrade
 
 trustPolicyExclude:
-  - tinyexec@1.2.2
-  - semver@6.3.1
-  - undici@5.29.0
-
-# disable minimum release age to allow immediate releases
-minimumReleaseAge: 0
+  - semver@6.3.1 # babel
+  - undici@5.29.0 # vercel
+  - undici-types@6.21.0 # node types

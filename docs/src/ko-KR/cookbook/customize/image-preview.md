@@ -6,7 +6,9 @@ icon: pic
 라이트박스 효과를 구현할 수 있는 많은 플러그인이 있습니다. 다음은 이러한 플러그인의 몇 가지 예입니다:
 
 - [lightGallery](https://www.lightgalleryjs.com/)
+
 <!-- - [Slimbox2](https://www.digitalia.be/software/slimbox2/) -->
+
 - [lightbox2](https://lokeshdhakar.com/projects/lightbox2/)
 - [Fancybox](https://fancyapps.com/docs/ui/fancybox/)
 

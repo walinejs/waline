@@ -14,7 +14,6 @@
       "matchPackageNames": [
         "!think-model-postgresql",
         "!vuepress",
-        "!@mdit/{/,}**",
         "!@vuepress/{/,}**",
         "!vuepress-{/,}**",
         "*"
@@ -32,12 +31,7 @@
     "extends": ["group:allNonMajor", "schedule:weekly"],
     "packageRules": [
       {
-        "matchPackageNames": [
-          "!vuepress",
-          "!@vuepress/{/,}**",
-          "!vuepress-{/,}**",
-          "*"
-        ]
+        "matchPackageNames": ["!vuepress", "!@vuepress/{/,}**", "!vuepress-{/,}**", "*"]
       }
     ]
   }

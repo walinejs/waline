@@ -232,6 +232,8 @@ console.log(foo(5));
 
 ::: details 데모
 
+<!-- prettier-ignore-start -->
+
 - 19^th^
 - H~2~O
 
@@ -239,6 +241,8 @@ console.log(foo(5));
 - 19^th^
 - H~2~O
 ```
+
+<!-- prettier-ignore-end -->
 
 :::
 

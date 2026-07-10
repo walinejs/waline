@@ -232,6 +232,8 @@ Verwenden Sie `^` und `~`, um Hochgestellt und Tiefgestellt zu markieren.
 
 ::: details Demo
 
+<!-- prettier-ignore-start -->
+
 - 19^te^
 - H~2~O
 
@@ -239,6 +241,8 @@ Verwenden Sie `^` und `~`, um Hochgestellt und Tiefgestellt zu markieren.
 - 19^te^
 - H~2~O
 ```
+
+<!-- prettier-ignore-end -->
 
 :::
 

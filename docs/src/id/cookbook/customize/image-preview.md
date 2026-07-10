@@ -6,7 +6,9 @@ icon: pic
 Ada banyak plugin yang dapat menghasilkan efek lightbox, berikut beberapa contoh plugin tersebut:
 
 - [lightGallery](https://www.lightgalleryjs.com/)
+
 <!-- - [Slimbox2](https://www.digitalia.be/software/slimbox2/) -->
+
 - [lightbox2](https://lokeshdhakar.com/projects/lightbox2/)
 - [Fancybox](https://fancyapps.com/docs/ui/fancybox/)
 

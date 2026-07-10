@@ -232,6 +232,8 @@ Gunakan `^` dan `~` untuk menandai superskrip dan subskrip.
 
 ::: details Demo
 
+<!-- prettier-ignore-start -->
+
 - 19^th^
 - H~2~O
 
@@ -239,6 +241,8 @@ Gunakan `^` dan `~` untuk menandai superskrip dan subskrip.
 - 19^th^
 - H~2~O
 ```
+
+<!-- prettier-ignore-end -->
 
 :::
 

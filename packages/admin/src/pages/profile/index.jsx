@@ -216,6 +216,7 @@ export default function Profile() {
                 <h3>{t('connect to social account')}</h3>
                 <div className="account-list">
                   {socials.map((social) => {
+                    // oxlint-disable-next-line import/namespace
                     const Icon = Icons[social];
 
                     return (

@@ -174,6 +174,7 @@ export default function User() {
                             </a>
                             <br />
                             {socials.map((social) => {
+                              // oxlint-disable-next-line import/namespace
                               const Icon = Icons[social];
 
                               return (

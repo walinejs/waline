@@ -232,6 +232,8 @@ Use `^` and `~` to mark the superscript and subscript.
 
 ::: details Demo
 
+<!-- prettier-ignore-start -->
+
 - 19^th^
 - H~2~O
 
@@ -239,6 +241,8 @@ Use `^` and `~` to mark the superscript and subscript.
 - 19^th^
 - H~2~O
 ```
+
+<!-- prettier-ignore-end -->
 
 :::
 

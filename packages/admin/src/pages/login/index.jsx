@@ -24,7 +24,7 @@ export default function Login() {
   });
 
   const match = location.pathname.match(/(.*?\/)ui/u);
-  const basePath = match && match[1] ? match[1] : '/';
+  const basePath = match?.[1] ?? '/';
   const query = useMemo(() => new URLSearchParams(location.search), []);
 
   useEffect(() => {
@@ -207,6 +207,7 @@ export default function Login() {
           </form>
           <div className="social-accounts">
             {socials.map((social) => {
+              // oxlint-disable-next-line import/namespace
               const Icon = Icons[social];
 
               return (

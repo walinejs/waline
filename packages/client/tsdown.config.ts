@@ -1,8 +1,21 @@
+import { existsSync, readFileSync } from 'node:fs';
+
 import vue from '@vitejs/plugin-vue';
 import { defineConfig } from 'tsdown';
 import type { UserConfig } from 'tsdown';
 
 import pkg from './package.json' with { type: 'json' };
+
+const vuePluginOptions = {
+  isProduction: true,
+  template: { compilerOptions: { comments: false } },
+  script: {
+    fs: {
+      fileExists: (file: string): boolean => existsSync(file),
+      readFile: (file: string): string => readFileSync(file, 'utf-8'),
+    },
+  },
+};
 
 const define = {
   'process.env.NODE_ENV': JSON.stringify('production'),
@@ -53,12 +66,7 @@ export default defineConfig([
     alias: {
       vue: 'vue/dist/vue.runtime.esm-bundler.js',
     },
-    plugins: [
-      vue({
-        isProduction: true,
-        template: { compilerOptions: { comments: false } },
-      }),
-    ],
+    plugins: [vue(vuePluginOptions)],
     deps: {
       alwaysBundle,
       onlyBundle,
@@ -69,23 +77,13 @@ export default defineConfig([
     entry: { slim: './src/entries/full.ts' },
     target: ['node22', 'baseline-widely-available'],
     define,
-    plugins: [
-      vue({
-        isProduction: true,
-        template: { compilerOptions: { comments: false } },
-      }),
-    ],
+    plugins: [vue(vuePluginOptions)],
   },
   {
     ...commonOptions,
     entry: './src/entries/component.ts',
     dts: false,
-    plugins: [
-      vue({
-        isProduction: true,
-        template: { compilerOptions: { comments: false } },
-      }),
-    ],
+    plugins: [vue(vuePluginOptions)],
   },
   {
     ...commonOptions,

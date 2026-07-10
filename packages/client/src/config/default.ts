@@ -1,5 +1,5 @@
-import mathml from '@webc.site/math';
 import type { IGif } from '@giphy/js-types';
+import mathml from '@webc.site/math';
 
 import type {
   WalineEmojiPresets,

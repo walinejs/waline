@@ -6,7 +6,9 @@ icon: pic
 有很多插件可以实现灯箱效果，下面是这些插件的例子:
 
 - [lightGallery](https://www.lightgalleryjs.com/)
+
 <!-- - [Slimbox2](https://www.digitalia.be/software/slimbox2/) -->
+
 - [lightbox2](https://lokeshdhakar.com/projects/lightbox2/)
 - [Fancybox](https://fancyapps.com/docs/ui/fancybox/)
 

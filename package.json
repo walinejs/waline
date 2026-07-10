@@ -25,23 +25,19 @@
     "test": "vitest"
   },
   "devDependencies": {
-    "@babel/core": "8.0.1",
-    "@babel/plugin-transform-runtime": "8.0.1",
-    "@babel/preset-env": "8.0.2",
-    "@babel/preset-react": "8.0.1",
     "@babel/runtime": "8.0.0",
     "@mr-hope/tsconfig": "0.0.4",
-    "@types/node": "26.0.1",
+    "@types/node": "22.20.1",
     "@vitejs/plugin-react": "6.0.3",
     "apidoc": "1.2.0",
     "cross-env": "10.1.0",
     "husky": "9.1.7",
-    "markdownlint-cli2": "0.22.1",
+    "markdownlint-cli2": "0.23.0",
     "nano-staged": "1.0.2",
-    "oxc-config-hope": "0.3.6",
-    "oxfmt": "0.56.0",
-    "oxlint": "1.70.0",
-    "oxlint-tsgolint": "0.23.0",
+    "oxc-config-hope": "0.3.9",
+    "oxfmt": "0.58.0",
+    "oxlint": "1.73.0",
+    "oxlint-tsgolint": "0.24.0",
     "picocolors": "1.1.1",
     "postcss": "8.5.16",
     "publint": "0.3.21",
@@ -49,14 +45,14 @@
     "sass-embedded": "1.100.0",
     "stylelint": "17.14.0",
     "stylelint-config-hope": "11.0.0",
-    "tsdown": "0.22.3",
-    "typescript": "6.0.3",
+    "tsdown": "0.22.4",
+    "typescript": "catalog:",
     "unrun": "0.3.1",
-    "vercel": "54.18.6",
-    "vite": "8.1.4",
+    "vercel": "54.21.1",
+    "vite": "catalog:",
     "vite-plugin-css-injected-by-js": "5.0.1",
     "vite-plugin-svgr": "5.2.0",
-    "vitest": "4.1.9"
+    "vitest": "4.1.10"
   },
   "nano-staged": {
     "**/*": "oxfmt --no-error-on-unmatched-pattern",
@@ -66,12 +62,12 @@
   "devEngines": {
     "packageManager": {
       "name": "pnpm",
-      "version": "11.8.0",
+      "version": "11.11.0",
       "onFail": "download"
     },
     "runtime": {
       "name": "node",
-      "version": "^24.17.0",
+      "version": "^24.18.0 || ^26.3.0",
       "onFail": "error"
     }
   },

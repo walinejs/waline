@@ -101,7 +101,7 @@ export const UserList = ({
     const localeData = {
       ...getLocale(lang),
       ...(typeof locale === 'object' ? locale : {}),
-    } as WalineLocale;
+    };
 
     root.innerHTML = `<ul class="wl-user-${mode}">${users
       .map((user, index) =>

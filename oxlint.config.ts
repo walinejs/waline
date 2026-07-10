@@ -173,4 +173,10 @@ export default defineHopeConfig(
       'max-lines': 'off',
     },
   },
+  {
+    files: ['scripts/**'],
+    rules: {
+      'no-console': 'off',
+    },
+  },
 );
