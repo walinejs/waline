@@ -99,5 +99,9 @@
   "please enter an exclusive label": "Por favor ingrese una etiqueta exclusiva",
   "new version tips": "Nueva versión @waline/vercel@{{version}} lanzada. Actualice lo antes posible. Vea las <a href=\"https://waline.js.org/advanced/faq.html#server\" target=\"_blank\">FAQ</a> para más información.",
   "leancloud warning": "<a href='https://github.com/orgs/walinejs/discussions/3370' target='_blank'>Leancloud dejará de ofrecer servicio</a>. Si lo usa como almacenamiento de comentarios, migre sus datos pronto.",
-  "delete user confirm": "¿Está seguro de que desea eliminar este usuario? Los usuarios verificados se eliminarán directamente, otros serán bloqueados para iniciar sesión."
+  "delete user confirm": "¿Está seguro de que desea eliminar este usuario? Los usuarios verificados se eliminarán directamente, otros serán bloqueados para iniciar sesión.",
+  "avatar": "Avatar",
+  "select": "Select",
+  "select item": "Select item",
+  "unbind": "Unbind"
 }

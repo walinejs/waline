@@ -128,7 +128,7 @@ export default function Profile() {
               <p>{user.email}</p>
             </div>
 
-            <div className="col-mb-12 col-tb-6 col-tb-offset-1 typecho-content-panel" role="form">
+            <div className="col-mb-12 col-tb-6 col-tb-offset-1 typecho-content-panel">
               <section>
                 <h3>{t('profile')}</h3>
                 <form method="post" onSubmit={onProfileUpdate}>
@@ -242,6 +242,7 @@ export default function Profile() {
                         <button
                           type="button"
                           className="account-unbind"
+                          aria-label={t('unbind')}
                           onClick={() => unbind(social)}
                         >
                           <svg

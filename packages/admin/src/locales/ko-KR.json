@@ -99,5 +99,9 @@
   "please enter an exclusive label": "전용 라벨을 입력해 주세요",
   "new version tips": "새 버전 @waline/vercel@{{version}}이 출시되었습니다. 업그레이드해 주세요! 업그레이드 방법은 <a href='https://waline.js.org/en/advanced/faq.html#server' target='_blank'>FAQ</a>를 참고하세요.",
   "leancloud warning": "<a href='https://github.com/orgs/walinejs/discussions/3370' target='_blank'>Leancloud가 곧 외부 서비스를 종료합니다</a>. 사용 중이시라면 가능한 빨리 댓글 데이터를 마이그레이션해 주세요.",
-  "delete user confirm": "이 사용자를 삭제하시겠습니까? 인증 사용자는 직접 삭제되며, 다른 사용자는 로그인이 금지됩니다."
+  "delete user confirm": "이 사용자를 삭제하시겠습니까? 인증 사용자는 직접 삭제되며, 다른 사용자는 로그인이 금지됩니다.",
+  "avatar": "Avatar",
+  "select": "Select",
+  "select item": "Select item",
+  "unbind": "Unbind"
 }

@@ -314,6 +314,7 @@ export default function ManageComments() {
                       </button>
                       <ul
                         className="dropdown-menu"
+                        role="menu"
                         style={{ display: actDropStatus ? 'block' : 'none' }}
                         onClick={() => setActDropStatus(false)}
                         onKeyDown={() => setActDropStatus(false)}
@@ -325,22 +326,19 @@ export default function ManageComments() {
                             </button>
                           </li>
                         ))}
-                      </ul>
-                      &nbsp;
+                      </ul>{' '}
                       {/* {filter.status === 'spam' ? (
                       <button lang="你确认要删除所有垃圾评论吗?" className="btn btn-s btn-warn btn-operate">删除所有垃圾评论</button>
                     ) : null} */}
                     </div>
                   </div>
-
-                  <div className="search" role="search">
+                  <search className="search">
                     <input
                       type="text"
                       ref={keywordRef}
                       className="text-s"
                       placeholder={t('please input keywords')}
-                    />
-                    &nbsp;
+                    />{' '}
                     <button
                       type="submit"
                       className="btn btn-s"
@@ -351,7 +349,7 @@ export default function ManageComments() {
                     >
                       {t('filter')}
                     </button>
-                  </div>
+                  </search>
                 </form>
               </div>
 
@@ -366,8 +364,8 @@ export default function ManageComments() {
                     </colgroup>
                     <thead>
                       <tr>
-                        <th> </th>
-                        <th> </th>
+                        <th aria-label={t('select')}> </th>
+                        <th aria-label={t('avatar')}> </th>
                         <th>{t('author')}</th>
                         <th>{t('content')}</th>
                       </tr>
@@ -396,7 +394,7 @@ export default function ManageComments() {
                         ) =>
                           cmtHandler.id === objectId && cmtHandler.action === 'edit' ? (
                             <tr className="comment-edit" key={objectId}>
-                              <td> </td>
+                              <td aria-hidden="true"> </td>
                               <td colSpan="2" style={{ verticalAlign: 'top' }}>
                                 <div className="comment-edit-info">
                                   <p>
@@ -486,6 +484,7 @@ export default function ManageComments() {
                                 <input
                                   type="checkbox"
                                   value={objectId}
+                                  aria-label={t('select item')}
                                   checked={commentIds.includes(objectId)}
                                   onChange={() =>
                                     setCommentIds(
@@ -577,7 +576,6 @@ export default function ManageComments() {
                                       >
                                         {t('reply')}
                                       </button>{' '}
-                                      &nbsp;
                                       <button
                                         type="button"
                                         className="btn btn-s cancel"

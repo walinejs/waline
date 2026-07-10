@@ -135,7 +135,7 @@ export default function User() {
                     </colgroup>
                     <thead>
                       <tr>
-                        <th> </th>
+                        <th aria-label={t('avatar')}> </th>
                         <th>{t('nickname')}</th>
                         <th>{t('email')}</th>
                         <th>{t('role')}</th>
