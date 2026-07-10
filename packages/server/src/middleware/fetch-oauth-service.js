@@ -13,5 +13,6 @@ module.exports = () => async (ctx, next) => {
 
   ctx.state.oauthServices = oauthResp.services || [];
 
+  // oxlint-disable-next-line node/callback-return
   await next();
 };

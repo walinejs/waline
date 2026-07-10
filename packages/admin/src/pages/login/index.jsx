@@ -219,7 +219,8 @@ export default function Login() {
           </div>
 
           <p className="more-link">
-            <Link to="/ui">{t('back to home')}</Link> •{' '}
+            <Link to="/ui">{t('back to home')}</Link>
+            {' • '}
             <Link to="/ui/register">{t('register')}</Link>
           </p>
         </div>

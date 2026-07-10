@@ -193,6 +193,14 @@ const onImageChange = (): void => {
   }
 };
 
+const syncUserMeta = ({ link, mail, nick }: Partial<WalineCommentData>): void => {
+  userMeta.value = {
+    nick: nick ?? '',
+    mail: mail ?? '',
+    link: link ?? '',
+  };
+};
+
 // oxlint-disable-next-line complexity, max-statements
 const submitComment = async (): Promise<void> => {
   const { serverURL, lang, login, wordLimit, requiredMeta, recaptchaV3Key, turnstileKey } =
@@ -327,14 +335,6 @@ const submitComment = async (): Promise<void> => {
 
     alert((err as TypeError).message);
   }
-};
-
-const syncUserMeta = ({ link, mail, nick }: Partial<WalineCommentData>): void => {
-  userMeta.value = {
-    nick: nick ?? '',
-    mail: mail ?? '',
-    link: link ?? '',
-  };
 };
 
 const onEditorKeyDown = ({ key, ctrlKey, metaKey }: KeyboardEvent): void => {

@@ -28,3 +28,6 @@ console.log('List before:', await listBefore.json());
 //   }),
 // });
 // const listAfter = await fetch(`${baseURL}/api/comment?path=${encodeURIComponent(path)}`);
+
+// oxlint-disable-next-line unicorn/require-module-specifiers
+export {};

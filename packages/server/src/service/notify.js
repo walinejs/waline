@@ -20,7 +20,7 @@ module.exports = class NotifyService extends think.Service {
         config.service = SMTP_SERVICE;
       } else {
         config.host = SMTP_HOST;
-        config.port = Number.parseInt(SMTP_PORT, 10);
+        config.port = Math.trunc(Number(SMTP_PORT));
         config.secure = SMTP_SECURE && SMTP_SECURE !== 'false';
       }
       this.transporter = nodemailer.createTransport(config);
@@ -466,7 +466,7 @@ module.exports = class NotifyService extends think.Service {
     };
 
     if (LARK_SECRET) {
-      const timestamp = Number.parseInt(Date.now() / 1000, 10);
+      const timestamp = Math.trunc(Number(Date.now() / 1000));
 
       signData = { timestamp, sign: sign(timestamp, LARK_SECRET) };
     }

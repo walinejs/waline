@@ -55,7 +55,7 @@ export default function Header() {
   ];
 
   return [
-    <header className="typecho-head-nav clear-fix" role="navigation" key="header">
+    <header className="typecho-head-nav clear-fix" key="header">
       <div className="waline-header">
         <div className="waline-brand">
           <Link to="/ui" className="waline-brand-link">

@@ -136,6 +136,7 @@ module.exports = {
         continue;
       }
 
+      // oxlint-disable-next-line node/callback-return
       const res = callback(plugin[type]);
 
       if (!res) {

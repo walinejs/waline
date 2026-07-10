@@ -17,7 +17,12 @@ import {
   VerifiedIcon,
 } from './Icons.js';
 
-const { comment, edit, rootId, reply } = defineProps<{
+const {
+  comment,
+  edit = null,
+  rootId,
+  reply = null,
+} = defineProps<{
   /** Comment data */
   comment: WalineComment;
   /** Current comment to be edited */

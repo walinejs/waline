@@ -64,6 +64,17 @@ export default defineHopeConfig(
       'jsx-a11y/role-has-required-aria-props': 'warn',
       'jsx-a11y/role-supports-aria-props': 'warn',
       'jsx-a11y/scope': 'warn',
+      'react/forbid-component-props': [
+        'warn',
+        {
+          forbid: [
+            {
+              propName: 'className',
+              allowedFor: ['Icon', 'Link'],
+            },
+          ],
+        },
+      ],
       'jsx-a11y/tabindex-no-positive': 'warn',
       'react/jsx-max-depth': 'off',
       'typescript/no-floating-promises': 'off',

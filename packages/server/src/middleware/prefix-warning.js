@@ -24,5 +24,6 @@ module.exports = () => async (ctx, next) => {
     );
   }
 
+  // oxlint-disable-next-line node/callback-return
   await next();
 };

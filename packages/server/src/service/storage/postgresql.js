@@ -63,10 +63,10 @@ module.exports = class extends MySQL {
     try {
       if (Array.isArray(result)) {
         result.forEach((r) => {
-          r.count = Number.parseInt(r.count, 10);
+          r.count = Math.trunc(Number(r.count));
         });
       } else {
-        result = Number.parseInt(result, 10);
+        result = Math.trunc(Number(result));
       }
     } catch (err) {
       console.log(err);

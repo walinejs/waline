@@ -5,6 +5,8 @@ import { Link, useNavigate } from 'react-router';
 
 import Header from '../../components/Header.jsx';
 
+const SEP = ' • ';
+
 export default function Forgot() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -85,7 +87,8 @@ export default function Forgot() {
           </form>
 
           <p className="more-link">
-            <Link to="/ui">{t('back to home')}</Link> •{' '}
+            <Link to="/ui">{t('back to home')}</Link>
+            {SEP}
             <Link to="/ui/login">{t('register.login')}</Link>
           </p>
         </div>

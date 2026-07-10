@@ -21,7 +21,7 @@ module.exports = class extends BaseRest {
       return this.fail(this.locale('USER_REGISTERED'));
     }
 
-    if (token === match[1] && Date.now() < Number.parseInt(match[2], 10)) {
+    if (token === match[1] && Date.now() < Math.trunc(Number(match[2]))) {
       await this.modelInstance.update({ type: 'guest' }, { email });
 
       this.redirect('/ui/login');

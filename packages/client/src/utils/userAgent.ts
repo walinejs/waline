@@ -39,8 +39,8 @@ interface UALowEntropyJSON {
 
 // https://wicg.github.io/ua-client-hints/#navigatoruadata
 interface NavigatorUAData extends UALowEntropyJSON {
-  getHighEntropyValues(hints: string[]): Promise<UADataValues>;
-  toJSON(): UALowEntropyJSON;
+  getHighEntropyValues: (hints: string[]) => Promise<UADataValues>;
+  toJSON: () => UALowEntropyJSON;
 }
 
 export const userAgent = async (): Promise<string> => {
@@ -58,7 +58,7 @@ export const userAgent = async (): Promise<string> => {
     return ua;
   }
 
-  const isWindows11Later = Number.parseInt(platformVersion.split('.')[0], 10) >= 13;
+  const isWindows11Later = Math.trunc(Number(platformVersion.split('.')[0])) >= 13;
 
   if (isWindows11Later) {
     ua = ua.replace('Windows NT 10.0', 'Windows NT 11.0');
