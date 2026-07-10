@@ -17,6 +17,19 @@ catalog:
 
 enableGlobalVirtualStore: true
 
+minimumReleaseAgeExclude:
+  - '@oxfmt/*'
+  - '@oxlint/*'
+  - '@vercel/*'
+  - '@vitest/*'
+  - '@vue/*'
+  - oxc-config-hope
+  - oxfmt
+  - oxlint
+  - vercel
+  - vitest
+  - vue
+
 overrides:
   # FIXME: vulnerable
   '@cloudbase/database>lodash.unset': ^4.18.0
