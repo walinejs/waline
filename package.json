@@ -27,7 +27,7 @@
   "devDependencies": {
     "@babel/runtime": "8.0.0",
     "@mr-hope/tsconfig": "0.0.4",
-    "@types/node": "22.20.1",
+    "@types/node": "24.13.3",
     "@vitejs/plugin-react": "6.0.3",
     "apidoc": "1.2.0",
     "cross-env": "10.1.0",
