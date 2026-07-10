@@ -11,9 +11,14 @@
   ],
   "packageRules": [
     {
-      "excludePackageNames": ["think-model-postgresql", "vuepress"],
-      "excludePackagePrefixes": ["@mdit/", "@vuepress/", "vuepress-"],
-      "matchPackagePatterns": ["*"]
+      "matchPackageNames": [
+        "!think-model-postgresql",
+        "!vuepress",
+        "!@mdit/{/,}**",
+        "!@vuepress/{/,}**",
+        "!vuepress-{/,}**",
+        "*"
+      ]
     },
     {
       "matchPackageNames": ["vite"],
@@ -27,9 +32,12 @@
     "extends": ["group:allNonMajor", "schedule:weekly"],
     "packageRules": [
       {
-        "excludePackageNames": ["vuepress"],
-        "excludePackagePrefixes": ["@vuepress/", "vuepress-"],
-        "matchPackagePatterns": ["*"]
+        "matchPackageNames": [
+          "!vuepress",
+          "!@vuepress/{/,}**",
+          "!vuepress-{/,}**",
+          "*"
+        ]
       }
     ]
   }

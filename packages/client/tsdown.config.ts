@@ -14,6 +14,7 @@ const define = {
 const alwaysBundle = [
   '@vueuse/core',
   '@waline/api',
+  '@webc.site/math',
   'autosize',
   'marked',
   'marked-highlight',
