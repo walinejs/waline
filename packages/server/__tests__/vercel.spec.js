@@ -1,3 +1,4 @@
+// oxlint-disable vitest/no-hooks vitest/require-hook vitest/max-expects
 import { spawn } from 'node:child_process';
 import { once } from 'node:events';
 import { mkdir, readFile, rm } from 'node:fs/promises';
@@ -6,133 +7,133 @@ import { DatabaseSync } from 'node:sqlite';
 
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 
-const fixturePath = new URL('fixtures/vercel', import.meta.url).pathname;
+describe('vercel runtime', () => {
+  const fixturePath = new URL('fixtures/vercel', import.meta.url).pathname;
 
-let oauthServiceStub;
-let oauthServiceUrl;
-let vercelProcess;
-let vercelPort;
-let output = '';
-const sqliteDir = `/tmp/test-waline-vercel-${process.pid}`;
-const testPath = `/vercel-unit-test-${process.pid}`;
+  let oauthServiceStub;
+  let oauthServiceUrl;
+  let vercelProcess;
+  let vercelPort;
+  let output = '';
+  const sqliteDir = `/tmp/test-waline-vercel-${process.pid}`;
+  const testPath = `/vercel-unit-test-${process.pid}`;
 
-const listen = async (server) => {
-  server.listen(0, '127.0.0.1');
-  await once(server, 'listening');
-  return server.address().port;
-};
+  const listen = async (server) => {
+    server.listen(0, '127.0.0.1');
+    await once(server, 'listening');
+    return server.address().port;
+  };
 
-const getFreePort = async () => {
-  const server = createServer();
-  const port = await listen(server);
+  const getFreePort = async () => {
+    const server = createServer();
+    const port = await listen(server);
 
-  await new Promise((resolve) => {
-    server.close(resolve);
-  });
+    await new Promise((resolve) => {
+      server.close(resolve);
+    });
 
-  return port;
-};
+    return port;
+  };
 
-const getVercelUrl = () => `http://127.0.0.1:${vercelPort}`;
+  const getVercelUrl = () => `http://127.0.0.1:${vercelPort}`;
 
-const setupSqliteDatabase = async () => {
-  await rm(sqliteDir, { force: true, recursive: true });
-  await mkdir(sqliteDir, { recursive: true });
+  const setupSqliteDatabase = async () => {
+    await rm(sqliteDir, { force: true, recursive: true });
+    await mkdir(sqliteDir, { recursive: true });
 
-  const database = new DatabaseSync(`${sqliteDir}/waline.sqlite`);
+    const database = new DatabaseSync(`${sqliteDir}/waline.sqlite`);
 
-  try {
-    database.exec(
-      await readFile(new URL('../../../assets/waline.sqlite.sql', import.meta.url), 'utf8'),
-    );
-  } finally {
-    database.close();
-  }
-};
-
-const waitForVercel = async () => {
-  const deadline = Date.now() + 60_000;
-
-  while (Date.now() < deadline) {
     try {
-      const response = await fetch(
-        `${getVercelUrl()}/api/comment?path=${encodeURIComponent(testPath)}`,
-        {
-          signal: AbortSignal.timeout(10_000),
-        },
+      database.exec(
+        await readFile(new URL('../../../assets/waline.sqlite.sql', import.meta.url), 'utf8'),
       );
+    } finally {
+      database.close();
+    }
+  };
 
-      if (response.ok) return response;
-    } catch {
-      // Vercel may still be compiling the serverless function.
+  const waitForVercel = async () => {
+    const deadline = Date.now() + 60_000;
+
+    while (Date.now() < deadline) {
+      try {
+        const response = await fetch(
+          `${getVercelUrl()}/api/comment?path=${encodeURIComponent(testPath)}`,
+          {
+            signal: AbortSignal.timeout(10_000),
+          },
+        );
+
+        if (response.ok) return response;
+      } catch {
+        // Vercel may still be compiling the serverless function.
+      }
+
+      await new Promise((resolve) => {
+        setTimeout(resolve, 500);
+      });
     }
 
-    await new Promise((resolve) => {
-      setTimeout(resolve, 500);
+    throw new Error(`Vercel dev server did not become ready. Output:\n${output}`);
+  };
+
+  beforeAll(async () => {
+    // Waline fetches the OAuth service list on every request. Stub it locally so
+    // the Vercel runtime test does not depend on the public OAuth service/network.
+    oauthServiceStub = createServer((_req, res) => {
+      res.setHeader('content-type', 'application/json');
+      res.end(JSON.stringify({ services: [] }));
     });
-  }
+    const oauthPort = await listen(oauthServiceStub);
 
-  throw new Error(`Vercel dev server did not become ready. Output:\n${output}`);
-};
+    oauthServiceUrl = `http://127.0.0.1:${oauthPort}`;
+    await setupSqliteDatabase();
 
-beforeAll(async () => {
-  // Waline fetches the OAuth service list on every request. Stub it locally so
-  // the Vercel runtime test does not depend on the public OAuth service/network.
-  oauthServiceStub = createServer((_req, res) => {
-    res.setHeader('content-type', 'application/json');
-    res.end(JSON.stringify({ services: [] }));
-  });
-  const oauthPort = await listen(oauthServiceStub);
+    vercelPort = await getFreePort();
 
-  oauthServiceUrl = `http://127.0.0.1:${oauthPort}`;
-  await setupSqliteDatabase();
-
-  vercelPort = await getFreePort();
-
-  vercelProcess = spawn(
-    'vercel',
-    ['dev', fixturePath, '--local', '--yes', '--listen', `127.0.0.1:${vercelPort}`],
-    {
-      cwd: process.cwd(),
-      env: {
-        ...process.env,
-        JWT_TOKEN: 'test-jwt-secret',
-        OAUTH_URL: oauthServiceUrl,
-        AKISMET_KEY: 'false',
-        SQLITE_PATH: sqliteDir,
+    vercelProcess = spawn(
+      'vercel',
+      ['dev', fixturePath, '--local', '--yes', '--listen', `127.0.0.1:${vercelPort}`],
+      {
+        cwd: process.cwd(),
+        env: {
+          ...process.env,
+          JWT_TOKEN: 'test-jwt-secret',
+          OAUTH_URL: oauthServiceUrl,
+          AKISMET_KEY: 'false',
+          SQLITE_PATH: sqliteDir,
+        },
       },
-    },
-  );
+    );
 
-  vercelProcess.stdout.on('data', (chunk) => {
-    output += chunk.toString();
-  });
-  vercelProcess.stderr.on('data', (chunk) => {
-    output += chunk.toString();
-  });
-}, 70_000);
-
-afterAll(async () => {
-  if (vercelProcess && !vercelProcess.killed) {
-    vercelProcess.kill('SIGTERM');
-    await Promise.race([
-      once(vercelProcess, 'exit'),
-      new Promise((resolve) => {
-        setTimeout(resolve, 5000);
-      }),
-    ]);
-  }
-
-  if (oauthServiceStub) {
-    await new Promise((resolve) => {
-      oauthServiceStub.close(resolve);
+    vercelProcess.stdout.on('data', (chunk) => {
+      output += chunk.toString();
     });
-  }
+    vercelProcess.stderr.on('data', (chunk) => {
+      output += chunk.toString();
+    });
+  }, 70_000);
 
-  await rm(sqliteDir, { force: true, recursive: true });
-});
+  afterAll(async () => {
+    if (vercelProcess && !vercelProcess.killed) {
+      vercelProcess.kill('SIGTERM');
+      await Promise.race([
+        once(vercelProcess, 'exit'),
+        new Promise((resolve) => {
+          setTimeout(resolve, 5000);
+        }),
+      ]);
+    }
 
-describe('vercel runtime', () => {
+    if (oauthServiceStub) {
+      await new Promise((resolve) => {
+        oauthServiceStub.close(resolve);
+      });
+    }
+
+    await rm(sqliteDir, { force: true, recursive: true });
+  });
+
   it('should serve the comment API through vercel dev', async () => {
     const response = await waitForVercel();
     const body = await response.json();
