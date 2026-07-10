@@ -20,6 +20,10 @@
       ]
     },
     {
+      "matchPackageNames": ["node"],
+      "matchUpdateTypes": ["minor"]
+    },
+    {
       "matchPackageNames": ["vite"],
       "matchUpdateTypes": ["patch"]
     }
