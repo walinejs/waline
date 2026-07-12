@@ -40,11 +40,13 @@ module.exports = class extends Base {
     return where;
   }
 
-  async select(where, { desc, limit, offset, field } = {}) {
+  async select(where, { desc, field, limit, offset, order } = {}) {
     const instance = this.model(this.tableName);
 
     instance.where(this.parseWhere(where));
-    if (desc) {
+    if (order) {
+      instance.order(order);
+    } else if (desc) {
       instance.order({ [desc]: 'DESC' });
     }
 

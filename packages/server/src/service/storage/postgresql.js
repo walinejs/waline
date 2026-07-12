@@ -33,6 +33,12 @@ module.exports = class extends MySQL {
       options.desc = options.desc.toLowerCase();
     }
 
+    if (options?.order) {
+      options.order = Object.fromEntries(
+        Object.entries(options.order).map(([field, order]) => [field.toLowerCase(), order]),
+      );
+    }
+
     if (Array.isArray(options.field)) {
       options.field = options.field.map((field) => field.toLowerCase());
     }
