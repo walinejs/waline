@@ -1,14 +1,10 @@
-const { katex: katexPlugin } = require('@mdit/plugin-katex');
-const { sub: subPlugin } = require('@mdit/plugin-sub');
-const { createMathjaxInstance, mathjax: mathjaxPlugin } = require('@mdit/plugin-mathjax/sync');
-const { sup: supPlugin } = require('@mdit/plugin-sup');
 const MarkdownIt = require('markdown-it');
 const emojiPlugin = require('markdown-it-emoji');
 
 const { resolveHighlighter } = require('./highlight.js');
 const { sanitize } = require('./xss.js');
 
-const getMarkdownParser = (markdown = {}) => {
+const getMarkdownParser = async (markdown = {}) => {
   const { config = {}, plugin = {} } = markdown;
 
   // markdown-it instance
@@ -39,21 +35,26 @@ const getMarkdownParser = (markdown = {}) => {
 
   // parse sub
   if (sub !== false) {
-    markdownIt.use(subPlugin);
+    const { sub } = await import('@mdit/plugin-sub');
+    markdownIt.use(sub);
   }
 
   // parse sup
   if (sup !== false) {
-    markdownIt.use(supPlugin);
+    const { sup } = await import('@mdit/plugin-sup');
+    markdownIt.use(sup);
   }
 
   // parse tex
   if (tex === 'katex') {
+    const { katex: katexPlugin } = await import('@mdit/plugin-katex');
     markdownIt.use(katexPlugin, {
       ...katex,
       output: 'mathml',
     });
   } else if (tex !== false) {
+    const { createMathjaxInstance, mathjax: mathjaxPlugin } =
+      await import('@mdit/plugin-mathjax/sync');
     const mathjaxInstance = createMathjaxInstance({ output: 'svg', mathjax });
     markdownIt.use(mathjaxPlugin, mathjaxInstance);
   }
