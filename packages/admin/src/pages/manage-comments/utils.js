@@ -5,7 +5,8 @@ export const buildAvatar = (email = '', avatar = '') => {
     return avatar;
   }
 
-  const normalizedEmail = typeof email === 'string' ? email : '';
+  // Libravatar/Gravatar spec requires normalising the email (trim + lowercase) before hashing
+  const normalizedEmail = typeof email === 'string' ? email.trim().toLowerCase() : '';
 
   return `https://seccdn.libravatar.org/avatar/${md5(normalizedEmail)}`;
 };
