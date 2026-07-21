@@ -10,6 +10,8 @@ const env = new nunjucks.Environment();
 env.addFilter('md5', (str) => helper.md5(str));
 env.addFilter('sha256', (str) => crypto.createHash('sha256').update(str).digest('hex'));
 
+// Normalise the email (trim + lowercase) in the template via nunjucks built-in
+// filters before hashing, per the libravatar/gravatar spec.
 const DEFAULT_GRAVATAR_STR = `{%- set numExp = r/^[0-9]+$/g -%}
 {%- set qqMailExp = r/^[0-9]+@qq.com$/ig -%}
 {%- if numExp.test(nick) -%}
@@ -17,7 +19,7 @@ const DEFAULT_GRAVATAR_STR = `{%- set numExp = r/^[0-9]+$/g -%}
 {%- elif qqMailExp.test(mail) -%}
   https://q1.qlogo.cn/g?b=qq&nk={{mail|replace('@qq.com', '')}}&s=100
 {%- else -%}
-  https://seccdn.libravatar.org/avatar/{{mail|md5}}
+  https://seccdn.libravatar.org/avatar/{{mail | trim | lower | md5}}
 {%- endif -%}`;
 
 module.exports = class extends think.Service {
