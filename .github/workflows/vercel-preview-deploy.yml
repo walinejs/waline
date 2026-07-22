@@ -46,31 +46,37 @@ jobs:
         id: deployment
         with:
           script: |
-            const deployment = await github.rest.repos.createDeployment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              ref: context.payload.pull_request.head.sha,
-              task: 'deploy:vercel-preview',
-              auto_merge: false,
-              required_contexts: [],
-              environment: 'Preview',
-              transient_environment: true,
-              production_environment: false,
-              description: 'Vercel preview deployment',
-            });
+            try {
+              const deployment = await github.rest.repos.createDeployment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                ref: context.payload.pull_request.head.sha,
+                task: 'deploy:vercel-preview',
+                auto_merge: false,
+                required_contexts: [],
+                environment: 'Preview',
+                transient_environment: true,
+                production_environment: false,
+                description: 'Vercel preview deployment',
+              });
 
-            await github.rest.repos.createDeploymentStatus({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              deployment_id: deployment.data.id,
-              state: 'in_progress',
-              log_url: `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
-              description: 'Building API, client, and admin before Vercel deployment...',
-            });
+              await github.rest.repos.createDeploymentStatus({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                deployment_id: deployment.data.id,
+                state: 'in_progress',
+                log_url: `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+                description: 'Building API, client, and admin before Vercel deployment...',
+              });
 
-            core.setOutput('id', deployment.data.id);
+              core.setOutput('id', deployment.data.id);
+            } catch (error) {
+              if (error.status !== 403) throw error;
+              core.warning('The workflow token cannot create a GitHub deployment; continuing without deployment metadata.');
+            }
 
       - name: Upsert preview comment
+        if: steps.deployment.outputs.id
         uses: actions/github-script@v9
         with:
           script: |
@@ -133,7 +139,7 @@ jobs:
           echo "$url"
 
       - name: Mark deployment successful
-        if: success()
+        if: success() && steps.deployment.outputs.id
         uses: actions/github-script@v9
         env:
           DEPLOYMENT_ID: ${{ steps.deployment.outputs.id }}
@@ -155,7 +161,7 @@ jobs:
             });
 
       - name: Update preview comment
-        if: success()
+        if: success() && steps.deployment.outputs.id
         uses: actions/github-script@v9
         env:
           PREVIEW_URL: ${{ steps.vercel.outputs.url }}
