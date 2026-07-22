@@ -302,7 +302,7 @@ export default hopeTheme(
       docsearch: {
         appId: 'W34KABV4KM',
         apiKey: 'd189586c601d439f9247bdaf95b3555f',
-        indexName: 'waline',
+        indices: ['waline'],
       },
 
       icon: {

@@ -12,20 +12,23 @@ allowBuilds:
 
 catalog:
   typescript: ^6.0.3
-  vue: ^3.5.29
-  vite: 8.1.4
+  vue: ^3.5.40
+  vite: 8.1.5
 
 enableGlobalVirtualStore: true
 
 minimumReleaseAgeExclude:
   - '@oxfmt/*'
   - '@oxlint/*'
+  - '@oxlint-tsgolint/*'
   - '@vercel/*'
   - '@vitest/*'
   - '@vue/*'
   - oxc-config-hope
   - oxfmt
   - oxlint
+  - oxlint-tsgolint
+  - tsdown
   - vercel
   - vitest
   - vue

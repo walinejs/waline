@@ -6,6 +6,7 @@ describe('words test', () => {
   it('should count empty content correctly', () => {
     expect(getWordNumber('')).toBe(0);
   });
+
   it('should count english words correctly', () => {
     expect(getWordNumber('A simple comment system with backend support fork from Valine')).toBe(10);
   });
