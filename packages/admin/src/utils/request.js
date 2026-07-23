@@ -1,4 +1,4 @@
-import I18n from 'i18next';
+import I18n from '../i18n.js';
 
 export default async function request(url, opts = {}) {
   const options = typeof url === 'object' ? { ...url } : { ...opts, url };

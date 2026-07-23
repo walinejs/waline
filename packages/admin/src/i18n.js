@@ -4,7 +4,9 @@ import { initReactI18next } from 'react-i18next';
 
 import langs from './locales/index.js';
 
-createInstance()
+const I18n = createInstance();
+
+I18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
