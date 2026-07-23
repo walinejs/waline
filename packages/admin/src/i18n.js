@@ -1,3 +1,5 @@
+// oxlint-disable react-hooks/rules-of-hooks
+
 import { createInstance } from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
@@ -6,8 +8,7 @@ import langs from './locales/index.js';
 
 const I18n = createInstance();
 
-I18n
-  .use(LanguageDetector)
+I18n.use(LanguageDetector)
   .use(initReactI18next)
   .init({
     // we init with resources

@@ -64,4 +64,5 @@ console.log(
 );
 
 // The admin bundle is loaded as a classic script by the server dashboard.
+// oxlint-disable-next-line unicorn/prefer-top-level-await
 run();
