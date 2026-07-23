@@ -69,7 +69,7 @@
     "@waline/api": "workspace:*",
     "@webc.site/math": "^0.1.32",
     "autosize": "^6.0.1",
-    "marked": "^18.0.5",
+    "marked": "^18.0.6",
     "marked-highlight": "^2.2.4",
     "recaptcha-v3": "^1.11.3",
     "vue": "catalog:"
@@ -79,7 +79,7 @@
     "@babel/preset-env": "8.0.2",
     "@giphy/js-types": "5.1.0",
     "@types/autosize": "4.0.3",
-    "@vitejs/plugin-vue": "6.0.7"
+    "@vitejs/plugin-vue": "6.0.8"
   },
   "browserslist": {
     "production": [
