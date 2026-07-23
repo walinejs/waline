@@ -45,7 +45,7 @@
     "sass-embedded": "1.100.0",
     "stylelint": "17.14.0",
     "stylelint-config-hope": "11.0.0",
-    "tsdown": "0.22.4",
+    "tsdown": "0.22.14",
     "typescript": "catalog:",
     "unrun": "0.3.1",
     "vercel": "55.0.0",
