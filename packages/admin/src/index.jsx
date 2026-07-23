@@ -64,4 +64,4 @@ console.log(
 );
 
 // The admin bundle is loaded as a classic script by the server dashboard.
-void run();
+run();
