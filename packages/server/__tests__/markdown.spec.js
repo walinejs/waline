@@ -1,10 +1,14 @@
-import { describe, expect, it } from 'vitest';
+import { beforeAll, describe, expect, it } from 'vitest';
 
 import { getMarkdownParser } from '../src/service/markdown/index';
 
-const parser = getMarkdownParser();
-
 describe('markdown parser', () => {
+  let parser;
+
+  // oxlint-disable-next-line vitest/no-hooks
+  beforeAll(async () => {
+    parser = await getMarkdownParser();
+  });
   it('should render basic markdown', () => {
     const result = parser('**bold** and *italic* and `code`');
 

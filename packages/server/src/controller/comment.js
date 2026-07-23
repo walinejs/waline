@@ -52,7 +52,7 @@ const formatCmt = async (
     comment.addr = await think.ip2region(ip, { depth: isAdmin ? 3 : 1 });
   }
 
-  comment.comment = markdownParser(comment.comment);
+  comment.comment = (await markdownParser)(comment.comment);
   comment.like = Number(comment.like) || 0;
 
   // compat sql storage return number flag to string
