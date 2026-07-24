@@ -79,7 +79,7 @@
     "@babel/preset-env": "8.0.2",
     "@giphy/js-types": "5.1.0",
     "@types/autosize": "4.0.3",
-    "@vitejs/plugin-vue": "6.0.7"
+    "@vitejs/plugin-vue": "6.0.8"
   },
   "browserslist": {
     "production": [

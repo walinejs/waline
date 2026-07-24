@@ -304,7 +304,7 @@ importers:
         version: 0.3.1(synckit@0.11.12)
       vercel:
         specifier: 55.0.0
-        version: 55.0.0(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)
+        version: 55.0.0(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(supports-color@5.5.0)
       vite:
         specifier: 'catalog:'
         version: 8.1.4(@types/node@22.20.1)(esbuild@0.28.0)(sass-embedded@1.100.0)(sass@1.100.0)(terser@5.46.2)(tsx@4.21.0)(yaml@2.9.0)
@@ -459,8 +459,8 @@ importers:
         specifier: 4.0.3
         version: 4.0.3
       '@vitejs/plugin-vue':
-        specifier: 6.0.7
-        version: 6.0.7(vite@8.1.4(@types/node@26.0.1)(esbuild@0.28.0)(sass-embedded@1.100.0)(sass@1.100.0)(terser@5.46.2)(tsx@4.21.0)(yaml@2.9.0))(vue@3.5.39(typescript@7.0.2))
+        specifier: 6.0.8
+        version: 6.0.8(vite@8.1.4(@types/node@26.0.1)(esbuild@0.28.0)(sass-embedded@1.100.0)(sass@1.100.0)(terser@5.46.2)(tsx@4.21.0)(yaml@2.9.0))(vue@3.5.39(typescript@7.0.2))
 
   packages/cloudbase:
     dependencies:
@@ -3727,8 +3727,8 @@ packages:
       babel-plugin-react-compiler:
         optional: true
 
-  '@vitejs/plugin-vue@6.0.7':
-    resolution: {integrity: sha512-km+p+XdSz9Sxm5rqUbqcSfZYaAniKxWBj1KURl+Jr7UaPvvX7BmaWMdP69I5rrFDeQGyxAG7NXdc57vz+snhWg==}
+  '@vitejs/plugin-vue@6.0.8':
+    resolution: {integrity: sha512-0ZjgOg7oO6farnNGup7yvoM/YXZV84OZxHAwtflItNa/6zzQyVb5LNxyea3FEKEX2XlagIKzrlH7wwxkKgtiew==}
     engines: {node: ^20.19.0 || >=22.12.0}
     peerDependencies:
       vite: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0
@@ -12095,7 +12095,7 @@ snapshots:
       '@rolldown/pluginutils': 1.0.1
       vite: 8.1.4(@types/node@22.20.1)(esbuild@0.28.0)(sass-embedded@1.100.0)(sass@1.100.0)(terser@5.46.2)(tsx@4.21.0)(yaml@2.9.0)
 
-  '@vitejs/plugin-vue@6.0.7(vite@8.1.4(@types/node@26.0.1)(esbuild@0.28.0)(sass-embedded@1.100.0)(sass@1.100.0)(terser@5.46.2)(tsx@4.21.0)(yaml@2.9.0))(vue@3.5.39(typescript@7.0.2))':
+  '@vitejs/plugin-vue@6.0.8(vite@8.1.4(@types/node@26.0.1)(esbuild@0.28.0)(sass-embedded@1.100.0)(sass@1.100.0)(terser@5.46.2)(tsx@4.21.0)(yaml@2.9.0))(vue@3.5.39(typescript@7.0.2))':
     dependencies:
       '@rolldown/pluginutils': 1.0.1
       vite: 8.1.4(@types/node@26.0.1)(esbuild@0.28.0)(sass-embedded@1.100.0)(sass@1.100.0)(terser@5.46.2)(tsx@4.21.0)(yaml@2.9.0)
@@ -12236,7 +12236,7 @@ snapshots:
 
   '@vuepress/bundler-vite@2.0.0-rc.30(@types/node@26.0.1)(@vue/compiler-sfc@3.5.39)(esbuild@0.28.0)(sass-embedded@1.100.0)(sass@1.100.0)(terser@5.46.2)(tsx@4.21.0)(typescript@7.0.2)(yaml@2.9.0)':
     dependencies:
-      '@vitejs/plugin-vue': 6.0.7(vite@8.1.4(@types/node@26.0.1)(esbuild@0.28.0)(sass-embedded@1.100.0)(sass@1.100.0)(terser@5.46.2)(tsx@4.21.0)(yaml@2.9.0))(vue@3.5.39(typescript@7.0.2))
+      '@vitejs/plugin-vue': 6.0.8(vite@8.1.4(@types/node@26.0.1)(esbuild@0.28.0)(sass-embedded@1.100.0)(sass@1.100.0)(terser@5.46.2)(tsx@4.21.0)(yaml@2.9.0))(vue@3.5.39(typescript@7.0.2))
       '@vuepress/bundlerutils': 2.0.0-rc.30(@vue/compiler-sfc@3.5.39)(typescript@7.0.2)(vite@8.1.4(@types/node@26.0.1)(esbuild@0.28.0)(sass-embedded@1.100.0)(sass@1.100.0)(terser@5.46.2)(tsx@4.21.0)(yaml@2.9.0))
       '@vuepress/client': 2.0.0-rc.30(@vue/compiler-sfc@3.5.39)(typescript@7.0.2)(vite@8.1.4(@types/node@26.0.1)(esbuild@0.28.0)(sass-embedded@1.100.0)(sass@1.100.0)(terser@5.46.2)(tsx@4.21.0)(yaml@2.9.0))
       '@vuepress/core': 2.0.0-rc.30(@vue/compiler-sfc@3.5.39)(typescript@7.0.2)(vite@8.1.4(@types/node@26.0.1)(esbuild@0.28.0)(sass-embedded@1.100.0)(sass@1.100.0)(terser@5.46.2)(tsx@4.21.0)(yaml@2.9.0))
@@ -14236,7 +14236,7 @@ snapshots:
     dependencies:
       resolve-pkg-maps: 1.0.0
 
-  get-uri@6.0.5:
+  get-uri@6.0.5(supports-color@5.5.0):
     dependencies:
       basic-ftp: 5.3.1
       data-uri-to-buffer: 6.0.2
@@ -15868,12 +15868,12 @@ snapshots:
 
   p-try@2.2.0: {}
 
-  pac-proxy-agent@7.2.0:
+  pac-proxy-agent@7.2.0(supports-color@5.5.0):
     dependencies:
       '@tootallnate/quickjs-emscripten': 0.23.0
       agent-base: 7.1.4
       debug: 4.4.3(supports-color@5.5.0)
-      get-uri: 6.0.5
+      get-uri: 6.0.5(supports-color@5.5.0)
       http-proxy-agent: 7.0.2
       https-proxy-agent: 7.0.6
       pac-resolver: 7.0.1
@@ -16127,14 +16127,14 @@ snapshots:
       glob: 7.2.3
       yargs: 3.32.0
 
-  proxy-agent@6.4.0:
+  proxy-agent@6.4.0(supports-color@5.5.0):
     dependencies:
       agent-base: 7.1.4
       debug: 4.4.3(supports-color@5.5.0)
       http-proxy-agent: 7.0.2
       https-proxy-agent: 7.0.6
       lru-cache: 7.18.3
-      pac-proxy-agent: 7.2.0
+      pac-proxy-agent: 7.2.0(supports-color@5.5.0)
       proxy-from-env: 1.1.0
       socks-proxy-agent: 8.0.5
     transitivePeerDependencies:
@@ -16516,7 +16516,7 @@ snapshots:
 
   safer-buffer@2.1.2: {}
 
-  sandbox@3.4.0:
+  sandbox@3.4.0(supports-color@5.5.0):
     dependencies:
       '@vercel/sandbox': 2.4.0
       async-retry: 1.3.3
@@ -17768,7 +17768,7 @@ snapshots:
 
   vary@1.1.2: {}
 
-  vercel@55.0.0(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1):
+  vercel@55.0.0(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(supports-color@5.5.0):
     dependencies:
       '@vercel/backends': 0.8.22(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)
       '@vercel/blob': 2.4.0
@@ -17800,8 +17800,8 @@ snapshots:
       esbuild: 0.27.0
       jose: 5.9.6
       luxon: 3.7.2
-      proxy-agent: 6.4.0
-      sandbox: 3.4.0
+      proxy-agent: 6.4.0(supports-color@5.5.0)
+      sandbox: 3.4.0(supports-color@5.5.0)
       smol-toml: 1.5.2
       undici: 5.29.0
       zod: 4.1.11
