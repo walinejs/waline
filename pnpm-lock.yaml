@@ -276,8 +276,8 @@ importers:
         specifier: 1.1.1
         version: 1.1.1
       postcss:
-        specifier: 8.5.16
-        version: 8.5.16
+        specifier: 8.5.22
+        version: 8.5.22
       publint:
         specifier: 0.3.21
         version: 0.3.21
@@ -292,7 +292,7 @@ importers:
         version: 17.14.0(supports-color@5.5.0)(typescript@6.0.3)
       stylelint-config-hope:
         specifier: 11.0.0
-        version: 11.0.0(postcss@8.5.16)(stylelint@17.14.0(supports-color@5.5.0)(typescript@6.0.3))
+        version: 11.0.0(postcss@8.5.22)(stylelint@17.14.0(supports-color@5.5.0)(typescript@6.0.3))
       tsdown:
         specifier: 0.22.4
         version: 0.22.4(publint@0.3.21)(tsx@4.21.0)(typescript@6.0.3)(unrun@0.3.1(synckit@0.11.12))
@@ -304,7 +304,7 @@ importers:
         version: 0.3.1(synckit@0.11.12)
       vercel:
         specifier: 55.0.0
-        version: 55.0.0(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)
+        version: 55.0.0(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(supports-color@5.5.0)
       vite:
         specifier: 'catalog:'
         version: 8.1.4(@types/node@22.20.1)(esbuild@0.28.0)(sass-embedded@1.100.0)(sass@1.100.0)(terser@5.46.2)(tsx@4.21.0)(yaml@2.9.0)
@@ -6810,6 +6810,11 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
+  nanoid@3.3.16:
+    resolution: {integrity: sha512-bzlKTyNJ7+LdGIIwy8ijFpIqEQIvafahV7eYykJ8Cvh42EdJeODoJ6gUJXpQJvej1BddH8OqTXZNE/KfbWAu8Q==}
+    engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
+    hasBin: true
+
   nanoid@5.1.11:
     resolution: {integrity: sha512-v+KEsUv2ps74PaSKv0gHTxTCgMXOIfBEbaqa6w6ISIGC7ZsvHN4N9oJ8d4cmf0n5oTzQz2SLmThbQWhjd/8eKg==}
     engines: {node: ^18 || >=20}
@@ -7277,6 +7282,10 @@ packages:
 
   postcss@8.5.16:
     resolution: {integrity: sha512-vuwillviilfKZsg0VGj5R/YwwcHx4SLsIOI/7K6mQkWx+l5cUHTjj5g0AasTBcyXsbfTgrwsUNmVUb5xVwyPwg==}
+    engines: {node: ^10 || ^12 || >=14}
+
+  postcss@8.5.22:
+    resolution: {integrity: sha512-KBDEIpLrvpv16pp3K0Fw+UCoZfopFjjgeB+0tA/aaThfEE74kKDLrgg603YvOWJyg3+WYtyq3xYsQWsIyZlPqQ==}
     engines: {node: ^10 || ^12 || >=14}
 
   postgres-array@2.0.0:
@@ -12242,10 +12251,10 @@ snapshots:
       '@vuepress/core': 2.0.0-rc.30(@vue/compiler-sfc@3.5.39)(typescript@7.0.2)(vite@8.1.4(@types/node@26.0.1)(esbuild@0.28.0)(sass-embedded@1.100.0)(sass@1.100.0)(terser@5.46.2)(tsx@4.21.0)(yaml@2.9.0))
       '@vuepress/shared': 2.0.0-rc.30
       '@vuepress/utils': 2.0.0-rc.30
-      autoprefixer: 10.5.0(postcss@8.5.16)
+      autoprefixer: 10.5.0(postcss@8.5.22)
       connect-history-api-fallback: 2.0.0
-      postcss: 8.5.16
-      postcss-load-config: 6.0.1(postcss@8.5.16)(tsx@4.21.0)(yaml@2.9.0)
+      postcss: 8.5.22
+      postcss-load-config: 6.0.1(postcss@8.5.22)(tsx@4.21.0)(yaml@2.9.0)
       rolldown: 1.0.3
       vite: 8.1.4(@types/node@26.0.1)(esbuild@0.28.0)(sass-embedded@1.100.0)(sass@1.100.0)(terser@5.46.2)(tsx@4.21.0)(yaml@2.9.0)
       vue: 3.5.39(typescript@7.0.2)
@@ -13137,13 +13146,13 @@ snapshots:
 
   asynckit@0.4.0: {}
 
-  autoprefixer@10.5.0(postcss@8.5.16):
+  autoprefixer@10.5.0(postcss@8.5.22):
     dependencies:
       browserslist: 4.28.2
       caniuse-lite: 1.0.30001788
       fraction.js: 5.3.4
       picocolors: 1.1.1
-      postcss: 8.5.16
+      postcss: 8.5.22
       postcss-value-parser: 4.2.0
 
   autosize@6.0.1: {}
@@ -14236,7 +14245,7 @@ snapshots:
     dependencies:
       resolve-pkg-maps: 1.0.0
 
-  get-uri@6.0.5:
+  get-uri@6.0.5(supports-color@5.5.0):
     dependencies:
       basic-ftp: 5.3.1
       data-uri-to-buffer: 6.0.2
@@ -15612,6 +15621,8 @@ snapshots:
 
   nanoid@3.3.12: {}
 
+  nanoid@3.3.16: {}
+
   nanoid@5.1.11: {}
 
   napi-build-utils@2.0.0: {}
@@ -15868,12 +15879,12 @@ snapshots:
 
   p-try@2.2.0: {}
 
-  pac-proxy-agent@7.2.0:
+  pac-proxy-agent@7.2.0(supports-color@5.5.0):
     dependencies:
       '@tootallnate/quickjs-emscripten': 0.23.0
       agent-base: 7.1.4
       debug: 4.4.3(supports-color@5.5.0)
-      get-uri: 6.0.5
+      get-uri: 6.0.5(supports-color@5.5.0)
       http-proxy-agent: 7.0.2
       https-proxy-agent: 7.0.6
       pac-resolver: 7.0.1
@@ -16039,11 +16050,11 @@ snapshots:
 
   pngjs@5.0.0: {}
 
-  postcss-load-config@6.0.1(postcss@8.5.16)(tsx@4.21.0)(yaml@2.9.0):
+  postcss-load-config@6.0.1(postcss@8.5.22)(tsx@4.21.0)(yaml@2.9.0):
     dependencies:
       lilconfig: 3.1.3
     optionalDependencies:
-      postcss: 8.5.16
+      postcss: 8.5.22
       tsx: 4.21.0
       yaml: 2.9.0
 
@@ -16051,13 +16062,13 @@ snapshots:
 
   postcss-resolve-nested-selector@0.1.6: {}
 
-  postcss-safe-parser@7.0.1(postcss@8.5.16):
+  postcss-safe-parser@7.0.1(postcss@8.5.22):
     dependencies:
-      postcss: 8.5.16
+      postcss: 8.5.22
 
-  postcss-scss@4.0.9(postcss@8.5.16):
+  postcss-scss@4.0.9(postcss@8.5.22):
     dependencies:
-      postcss: 8.5.16
+      postcss: 8.5.22
 
   postcss-selector-parser@7.1.1:
     dependencies:
@@ -16069,15 +16080,21 @@ snapshots:
       cssesc: 3.0.0
       util-deprecate: 1.0.2
 
-  postcss-sorting@9.1.0(postcss@8.5.16):
+  postcss-sorting@9.1.0(postcss@8.5.22):
     dependencies:
-      postcss: 8.5.16
+      postcss: 8.5.22
 
   postcss-value-parser@4.2.0: {}
 
   postcss@8.5.16:
     dependencies:
       nanoid: 3.3.12
+      picocolors: 1.1.1
+      source-map-js: 1.2.1
+
+  postcss@8.5.22:
+    dependencies:
+      nanoid: 3.3.16
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
@@ -16127,14 +16144,14 @@ snapshots:
       glob: 7.2.3
       yargs: 3.32.0
 
-  proxy-agent@6.4.0:
+  proxy-agent@6.4.0(supports-color@5.5.0):
     dependencies:
       agent-base: 7.1.4
       debug: 4.4.3(supports-color@5.5.0)
       http-proxy-agent: 7.0.2
       https-proxy-agent: 7.0.6
       lru-cache: 7.18.3
-      pac-proxy-agent: 7.2.0
+      pac-proxy-agent: 7.2.0(supports-color@5.5.0)
       proxy-from-env: 1.1.0
       socks-proxy-agent: 8.0.5
     transitivePeerDependencies:
@@ -16516,7 +16533,7 @@ snapshots:
 
   safer-buffer@2.1.2: {}
 
-  sandbox@3.4.0:
+  sandbox@3.4.0(supports-color@5.5.0):
     dependencies:
       '@vercel/sandbox': 2.4.0
       async-retry: 1.3.3
@@ -16945,35 +16962,35 @@ snapshots:
     dependencies:
       webpack: 5.106.2(esbuild@0.28.0)(webpack-cli@4.10.0)
 
-  stylelint-config-hope@11.0.0(postcss@8.5.16)(stylelint@17.14.0(supports-color@5.5.0)(typescript@6.0.3)):
+  stylelint-config-hope@11.0.0(postcss@8.5.22)(stylelint@17.14.0(supports-color@5.5.0)(typescript@6.0.3)):
     dependencies:
       stylelint: 17.14.0(supports-color@5.5.0)(typescript@6.0.3)
       stylelint-config-standard: 40.0.0(stylelint@17.14.0(supports-color@5.5.0)(typescript@6.0.3))
-      stylelint-config-standard-scss: 17.0.0(postcss@8.5.16)(stylelint@17.14.0(supports-color@5.5.0)(typescript@6.0.3))
+      stylelint-config-standard-scss: 17.0.0(postcss@8.5.22)(stylelint@17.14.0(supports-color@5.5.0)(typescript@6.0.3))
       stylelint-order: 7.0.1(stylelint@17.14.0(supports-color@5.5.0)(typescript@6.0.3))
     transitivePeerDependencies:
       - postcss
 
-  stylelint-config-recommended-scss@17.0.1(postcss@8.5.16)(stylelint@17.14.0(supports-color@5.5.0)(typescript@6.0.3)):
+  stylelint-config-recommended-scss@17.0.1(postcss@8.5.22)(stylelint@17.14.0(supports-color@5.5.0)(typescript@6.0.3)):
     dependencies:
-      postcss-scss: 4.0.9(postcss@8.5.16)
+      postcss-scss: 4.0.9(postcss@8.5.22)
       stylelint: 17.14.0(supports-color@5.5.0)(typescript@6.0.3)
       stylelint-config-recommended: 18.0.0(stylelint@17.14.0(supports-color@5.5.0)(typescript@6.0.3))
       stylelint-scss: 7.0.0(stylelint@17.14.0(supports-color@5.5.0)(typescript@6.0.3))
     optionalDependencies:
-      postcss: 8.5.16
+      postcss: 8.5.22
 
   stylelint-config-recommended@18.0.0(stylelint@17.14.0(supports-color@5.5.0)(typescript@6.0.3)):
     dependencies:
       stylelint: 17.14.0(supports-color@5.5.0)(typescript@6.0.3)
 
-  stylelint-config-standard-scss@17.0.0(postcss@8.5.16)(stylelint@17.14.0(supports-color@5.5.0)(typescript@6.0.3)):
+  stylelint-config-standard-scss@17.0.0(postcss@8.5.22)(stylelint@17.14.0(supports-color@5.5.0)(typescript@6.0.3)):
     dependencies:
       stylelint: 17.14.0(supports-color@5.5.0)(typescript@6.0.3)
-      stylelint-config-recommended-scss: 17.0.1(postcss@8.5.16)(stylelint@17.14.0(supports-color@5.5.0)(typescript@6.0.3))
+      stylelint-config-recommended-scss: 17.0.1(postcss@8.5.22)(stylelint@17.14.0(supports-color@5.5.0)(typescript@6.0.3))
       stylelint-config-standard: 40.0.0(stylelint@17.14.0(supports-color@5.5.0)(typescript@6.0.3))
     optionalDependencies:
-      postcss: 8.5.16
+      postcss: 8.5.22
 
   stylelint-config-standard@40.0.0(stylelint@17.14.0(supports-color@5.5.0)(typescript@6.0.3)):
     dependencies:
@@ -16982,8 +16999,8 @@ snapshots:
 
   stylelint-order@7.0.1(stylelint@17.14.0(supports-color@5.5.0)(typescript@6.0.3)):
     dependencies:
-      postcss: 8.5.16
-      postcss-sorting: 9.1.0(postcss@8.5.16)
+      postcss: 8.5.22
+      postcss-sorting: 9.1.0(postcss@8.5.22)
       stylelint: 17.14.0(supports-color@5.5.0)(typescript@6.0.3)
 
   stylelint-scss@7.0.0(stylelint@17.14.0(supports-color@5.5.0)(typescript@6.0.3)):
@@ -17026,8 +17043,8 @@ snapshots:
       micromatch: 4.0.8
       normalize-path: 3.0.0
       picocolors: 1.1.1
-      postcss: 8.5.16
-      postcss-safe-parser: 7.0.1(postcss@8.5.16)
+      postcss: 8.5.22
+      postcss-safe-parser: 7.0.1(postcss@8.5.22)
       postcss-selector-parser: 7.1.4
       postcss-value-parser: 4.2.0
       string-width: 8.2.1
@@ -17768,7 +17785,7 @@ snapshots:
 
   vary@1.1.2: {}
 
-  vercel@55.0.0(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1):
+  vercel@55.0.0(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(supports-color@5.5.0):
     dependencies:
       '@vercel/backends': 0.8.22(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)
       '@vercel/blob': 2.4.0
@@ -17800,8 +17817,8 @@ snapshots:
       esbuild: 0.27.0
       jose: 5.9.6
       luxon: 3.7.2
-      proxy-agent: 6.4.0
-      sandbox: 3.4.0
+      proxy-agent: 6.4.0(supports-color@5.5.0)
+      sandbox: 3.4.0(supports-color@5.5.0)
       smol-toml: 1.5.2
       undici: 5.29.0
       zod: 4.1.11
@@ -17864,7 +17881,7 @@ snapshots:
     dependencies:
       lightningcss: 1.32.0
       picomatch: 4.0.5
-      postcss: 8.5.16
+      postcss: 8.5.22
       rolldown: 1.1.5
       tinyglobby: 0.2.17
     optionalDependencies:
@@ -17881,7 +17898,7 @@ snapshots:
     dependencies:
       lightningcss: 1.32.0
       picomatch: 4.0.5
-      postcss: 8.5.16
+      postcss: 8.5.22
       rolldown: 1.1.5
       tinyglobby: 0.2.17
     optionalDependencies:
