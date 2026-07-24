@@ -217,7 +217,7 @@ catalogs:
 
 overrides:
   '@cloudbase/database>lodash.unset': ^4.18.0
-  '@cloudbase/node-sdk>axios': ^0.33.0
+  '@cloudbase/node-sdk>axios': ^1.0.0
   '@next-theme/utils>js-yaml': ^5.0.0
   '@waline/api': workspace:*
   '@waline/client': workspace:*
@@ -304,7 +304,7 @@ importers:
         version: 0.3.1(synckit@0.11.12)
       vercel:
         specifier: 55.0.0
-        version: 55.0.0(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)
+        version: 55.0.0(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(supports-color@5.5.0)
       vite:
         specifier: 'catalog:'
         version: 8.1.4(@types/node@22.20.1)(esbuild@0.28.0)(sass-embedded@1.100.0)(sass@1.100.0)(terser@5.46.2)(tsx@4.21.0)(yaml@2.9.0)
@@ -4486,8 +4486,8 @@ packages:
   aws4@1.13.2:
     resolution: {integrity: sha512-lHe62zvbTB5eEABUVi/AwVh0ZKY9rMMDhmm+eeyuuUQbQ3+J+fONVQOZyj+DdrvD4BY33uYniyRJ4UJIaSKAfw==}
 
-  axios@0.33.0:
-    resolution: {integrity: sha512-juz19g7B3UWT9r3+tgRFQf2Bdy6IKDVroiyuVOUrkILVKHpqHL++K1l8ybvfdEP9B/VE72vk8vllbnedVCm/og==}
+  axios@1.18.1:
+    resolution: {integrity: sha512-3nTvFlvpn9Zu/RkHUqtc7/+al4UpRW5az71ap5zccp6e8RAYEzhMTecX8Dz1wWDYrPpUoB1HAQEGEAEvUr7S9g==}
 
   b4a@1.8.1:
     resolution: {integrity: sha512-aiqre1Nr0B/6DgE2N5vwTc+2/oQZ4Wh1t4NznYY4E00y8LCt6NqdRv81so00oo27D8MVKTpUa/MwUUtBLXCoDw==}
@@ -7333,6 +7333,10 @@ packages:
   proxy-from-env@1.1.0:
     resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
 
+  proxy-from-env@2.1.0:
+    resolution: {integrity: sha512-cJ+oHTW1VAEa8cJslgmUZrc+sjRKgAKl3Zyse6+PV38hZe/V6Z14TbCuXcan9F9ghlz4QrFr2c92TNF82UkYHA==}
+    engines: {node: '>=10'}
+
   psl@1.15.0:
     resolution: {integrity: sha512-JZd3gMVBAVQkSs6HdNZo9Sdo0LNcQeMNP3CozBJb3JYC/QUYZTnKxP+f8oWRX4rHP5EurWxqAHTSwUCjlNKa1w==}
 
@@ -10080,10 +10084,10 @@ snapshots:
       '@cloudbase/types': 2.23.0
       '@cloudbase/wx-cloud-client-sdk': 1.7.1
       agentkeepalive: 4.6.0
-      axios: 0.33.0
+      axios: 1.18.1
       form-data: 4.0.5
       http-proxy-agent: 5.0.0(supports-color@5.5.0)
-      https-proxy-agent: 5.0.1(supports-color@5.5.0)
+      https-proxy-agent: 5.0.1
       jsonwebtoken: 9.0.3
       retry: 0.13.1
       web-streams-polyfill: 4.2.0
@@ -12981,7 +12985,7 @@ snapshots:
 
   acorn@8.16.0: {}
 
-  agent-base@6.0.2(supports-color@5.5.0):
+  agent-base@6.0.2:
     dependencies:
       debug: 4.4.3(supports-color@5.5.0)
     transitivePeerDependencies:
@@ -13154,13 +13158,15 @@ snapshots:
 
   aws4@1.13.2: {}
 
-  axios@0.33.0:
+  axios@1.18.1:
     dependencies:
       follow-redirects: 1.16.0
-      form-data: 4.0.5
-      proxy-from-env: 1.1.0
+      form-data: 4.0.6
+      https-proxy-agent: 5.0.1
+      proxy-from-env: 2.1.0
     transitivePeerDependencies:
       - debug
+      - supports-color
 
   b4a@1.8.1: {}
 
@@ -14236,7 +14242,7 @@ snapshots:
     dependencies:
       resolve-pkg-maps: 1.0.0
 
-  get-uri@6.0.5:
+  get-uri@6.0.5(supports-color@5.5.0):
     dependencies:
       basic-ftp: 5.3.1
       data-uri-to-buffer: 6.0.2
@@ -14497,7 +14503,7 @@ snapshots:
   http-proxy-agent@5.0.0(supports-color@5.5.0):
     dependencies:
       '@tootallnate/once': 2.0.0
-      agent-base: 6.0.2(supports-color@5.5.0)
+      agent-base: 6.0.2
       debug: 4.4.3(supports-color@5.5.0)
     transitivePeerDependencies:
       - supports-color
@@ -14515,9 +14521,9 @@ snapshots:
       jsprim: 1.4.2
       sshpk: 1.18.0
 
-  https-proxy-agent@5.0.1(supports-color@5.5.0):
+  https-proxy-agent@5.0.1:
     dependencies:
-      agent-base: 6.0.2(supports-color@5.5.0)
+      agent-base: 6.0.2
       debug: 4.4.3(supports-color@5.5.0)
     transitivePeerDependencies:
       - supports-color
@@ -15868,12 +15874,12 @@ snapshots:
 
   p-try@2.2.0: {}
 
-  pac-proxy-agent@7.2.0:
+  pac-proxy-agent@7.2.0(supports-color@5.5.0):
     dependencies:
       '@tootallnate/quickjs-emscripten': 0.23.0
       agent-base: 7.1.4
       debug: 4.4.3(supports-color@5.5.0)
-      get-uri: 6.0.5
+      get-uri: 6.0.5(supports-color@5.5.0)
       http-proxy-agent: 7.0.2
       https-proxy-agent: 7.0.6
       pac-resolver: 7.0.1
@@ -16127,20 +16133,22 @@ snapshots:
       glob: 7.2.3
       yargs: 3.32.0
 
-  proxy-agent@6.4.0:
+  proxy-agent@6.4.0(supports-color@5.5.0):
     dependencies:
       agent-base: 7.1.4
       debug: 4.4.3(supports-color@5.5.0)
       http-proxy-agent: 7.0.2
       https-proxy-agent: 7.0.6
       lru-cache: 7.18.3
-      pac-proxy-agent: 7.2.0
+      pac-proxy-agent: 7.2.0(supports-color@5.5.0)
       proxy-from-env: 1.1.0
       socks-proxy-agent: 8.0.5
     transitivePeerDependencies:
       - supports-color
 
   proxy-from-env@1.1.0: {}
+
+  proxy-from-env@2.1.0: {}
 
   psl@1.15.0:
     dependencies:
@@ -16516,7 +16524,7 @@ snapshots:
 
   safer-buffer@2.1.2: {}
 
-  sandbox@3.4.0:
+  sandbox@3.4.0(supports-color@5.5.0):
     dependencies:
       '@vercel/sandbox': 2.4.0
       async-retry: 1.3.3
@@ -17768,7 +17776,7 @@ snapshots:
 
   vary@1.1.2: {}
 
-  vercel@55.0.0(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1):
+  vercel@55.0.0(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(supports-color@5.5.0):
     dependencies:
       '@vercel/backends': 0.8.22(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)
       '@vercel/blob': 2.4.0
@@ -17800,8 +17808,8 @@ snapshots:
       esbuild: 0.27.0
       jose: 5.9.6
       luxon: 3.7.2
-      proxy-agent: 6.4.0
-      sandbox: 3.4.0
+      proxy-agent: 6.4.0(supports-color@5.5.0)
+      sandbox: 3.4.0(supports-color@5.5.0)
       smol-toml: 1.5.2
       undici: 5.29.0
       zod: 4.1.11
