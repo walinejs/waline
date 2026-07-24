@@ -399,14 +399,14 @@ module.exports = class NotifyService extends think.Service {
       data,
     );
 
-    const form = new FormData();
-
-    form.append('content', `${title}\n${content}`);
-
     return fetch(DISCORD_WEBHOOK, {
       method: 'POST',
-      headers: form.getHeaders(),
-      body: form,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        content: `${title}\n${content}`,
+      }),
     }).then((resp) => resp.statusText);
     // Expected return value: No Content
     // Since Discord doesn't return any response body on success, we just return the status text.
