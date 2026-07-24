@@ -13,7 +13,7 @@
     "@vuepress/bundler-vite": "2.0.0-rc.30",
     "@vuepress/helper": "2.0.0-rc.130",
     "@vuepress/plugin-comment": "2.0.0-rc.130",
-    "@vuepress/plugin-docsearch": "2.0.0-rc.130",
+    "@vuepress/plugin-docsearch": "2.0.0-rc.132",
     "@waline/client": "workspace:*",
     "marked": "18.0.5",
     "sass-embedded": "1.100.0",
