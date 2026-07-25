@@ -43,7 +43,7 @@
     "publint": "0.3.21",
     "rimraf": "6.1.3",
     "sass-embedded": "1.100.0",
-    "stylelint": "17.14.0",
+    "stylelint": "17.14.1",
     "stylelint-config-hope": "11.0.0",
     "tsdown": "0.22.4",
     "typescript": "catalog:",
