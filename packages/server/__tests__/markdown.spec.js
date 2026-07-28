@@ -9,6 +9,7 @@ describe('markdown parser', () => {
   beforeAll(async () => {
     parser = await getMarkdownParser();
   });
+
   it('should render basic markdown', () => {
     const result = parser('**bold** and *italic* and `code`');
 

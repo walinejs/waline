@@ -8,6 +8,7 @@ const preventMessage = 'PREVENT_NEXT_PROCESS';
 const getIP2RegionInstance = (() => {
   let instance = null;
 
+  // oxlint-disable-next-line react/function-component-definition
   return () => {
     if (!instance) {
       instance = new IP2Region({
