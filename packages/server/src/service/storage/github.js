@@ -5,6 +5,8 @@ const { parseString, writeToString } = require('fast-csv');
 const Base = require('./base.js');
 const { compareByOrder, normalizeOrder } = require('./order.js');
 
+const DATE_FIELDS = new Set(['insertedAt', 'createdAt', 'updatedAt']);
+
 const CSV_HEADERS = {
   Comment: [
     'objectId',
@@ -281,7 +283,11 @@ module.exports = class GithubStorage extends Base {
     );
 
     if (normalizedOrder.length > 0) {
-      data.sort(compareByOrder(normalizedOrder));
+      data.sort(
+        compareByOrder(normalizedOrder, (field, value) =>
+          DATE_FIELDS.has(field) ? new Date(value).getTime() : value,
+        ),
+      );
     }
 
     data = data.slice(offset ?? 0, limit ? (offset ?? 0) + limit : undefined);

@@ -37,29 +37,34 @@ const toSqlOrder = (order, { nulls = false } = {}) =>
 const toOrderString = (order) =>
   order.map(({ field, direction }) => `${field} ${direction.toUpperCase()}`).join(', ');
 
-const compareByOrder = (order) => (left, right) => {
-  for (const { field, direction, nulls } of order) {
-    const leftValue = left[field];
-    const rightValue = right[field];
-    const leftIsNull = leftValue == null;
-    const rightIsNull = rightValue == null;
+const compareByOrder =
+  (order, mapValue = (_field, value) => value) =>
+  (left, right) => {
+    for (const { field, direction, nulls } of order) {
+      const leftRawValue = left[field];
+      const rightRawValue = right[field];
+      const leftIsNull = leftRawValue == null;
+      const rightIsNull = rightRawValue == null;
 
-    if (leftIsNull || rightIsNull) {
-      if (leftIsNull && rightIsNull) continue;
+      if (leftIsNull || rightIsNull) {
+        if (leftIsNull && rightIsNull) continue;
 
-      const nullResult = nulls === 'first' ? -1 : 1;
+        const nullResult = nulls === 'first' ? -1 : 1;
 
-      return leftIsNull ? nullResult : -nullResult;
+        return leftIsNull ? nullResult : -nullResult;
+      }
+
+      const leftValue = mapValue(field, leftRawValue);
+      const rightValue = mapValue(field, rightRawValue);
+
+      if (leftValue === rightValue) continue;
+
+      const result = leftValue > rightValue ? 1 : -1;
+
+      return direction === 'desc' ? -result : result;
     }
 
-    if (leftValue === rightValue) continue;
-
-    const result = leftValue > rightValue ? 1 : -1;
-
-    return direction === 'desc' ? -result : result;
-  }
-
-  return 0;
-};
+    return 0;
+  };
 
 module.exports = { compareByOrder, normalizeOrder, toOrderString, toSqlOrder };

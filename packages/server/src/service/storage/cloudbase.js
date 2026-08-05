@@ -134,7 +134,9 @@ module.exports = class extends Base {
     let instance = await this.collection(this.tableName);
 
     instance = this.where(instance, where);
-    const normalizedOrder = normalizeOrder(order, desc);
+    const normalizedOrder = normalizeOrder(order, desc, (orderField) =>
+      orderField === 'objectId' ? '_id' : orderField,
+    );
 
     for (const { field: orderField, direction } of normalizedOrder) {
       instance = instance.orderBy(orderField, direction);

@@ -52,6 +52,30 @@ describe('storage order', () => {
     expect(comments.sort(compareByOrder(normalized)).map(({ id }) => id)).toStrictEqual([2, 3, 1]);
   });
 
+  it('supports storage-specific value coercion', () => {
+    const comments = [
+      { id: 1, insertedAt: 'Tue Dec 31 2024 12:00:00 GMT+0000' },
+      { id: 2, insertedAt: 'Mon Jan 06 2025 12:00:00 GMT+0000' },
+    ];
+    const normalized = normalizeOrder([{ field: 'insertedAt', direction: 'desc' }]);
+
+    expect(
+      comments
+        .sort(compareByOrder(normalized, (_field, value) => new Date(value).getTime()))
+        .map(({ id }) => id),
+    ).toStrictEqual([2, 1]);
+  });
+
+  it('maps the storage-neutral objectId field to a physical ID field', () => {
+    const normalized = normalizeOrder(
+      [{ field: 'objectId', direction: 'desc' }],
+      undefined,
+      () => '_id',
+    );
+
+    expect(normalized.at(-1)?.field).toBe('_id');
+  });
+
   it('keeps the legacy desc option working', () => {
     expect(normalizeOrder(undefined, 'insertedAt')).toStrictEqual([
       { field: 'insertedAt', direction: 'desc', nulls: undefined },
