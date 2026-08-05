@@ -1,6 +1,7 @@
 const AV = require('leancloud-storage');
 
 const Base = require('./base.js');
+const { normalizeOrder } = require('./order.js');
 
 const { LEAN_ID, LEAN_KEY, LEAN_MASTER_KEY, LEAN_SERVER } = process.env;
 
@@ -104,12 +105,16 @@ module.exports = class extends Base {
     return AV.Query[where._complex._logic](...filters);
   }
 
-  async _select(where, { desc, limit, offset, field } = {}) {
+  async _select(where, { desc, field, limit, offset, order } = {}) {
     const instance = this.where(this.tableName, where);
 
-    if (desc) {
-      instance.descending(desc);
-    }
+    const normalizedOrder = normalizeOrder(order, desc);
+
+    normalizedOrder.forEach(({ field: orderField, direction }, index) => {
+      const method = `${index === 0 ? '' : 'add'}${direction === 'desc' ? 'Descending' : 'Ascending'}`;
+
+      instance[method.charAt(0).toLowerCase() + method.slice(1)](orderField);
+    });
 
     if (limit) {
       instance.limit(limit);

@@ -1,6 +1,19 @@
 const Base = require('./base.js');
+const { normalizeOrder, toSqlOrder } = require('./order.js');
 
 module.exports = class extends Base {
+  mapOrderField(field) {
+    return field === 'objectId' ? 'id' : field;
+  }
+
+  getOrder(order, desc) {
+    return normalizeOrder(order, desc, (field) => this.mapOrderField(field));
+  }
+
+  getSqlOrder(order) {
+    return toSqlOrder(order);
+  }
+
   parseWhere(filter) {
     const where = {};
 
@@ -40,12 +53,14 @@ module.exports = class extends Base {
     return where;
   }
 
-  async select(where, { desc, limit, offset, field } = {}) {
+  async select(where, { desc, field, limit, offset, order } = {}) {
     const instance = this.model(this.tableName);
 
     instance.where(this.parseWhere(where));
-    if (desc) {
-      instance.order({ [desc]: 'DESC' });
+    const normalizedOrder = this.getOrder(order, desc);
+
+    if (normalizedOrder.length > 0) {
+      instance.order(this.getSqlOrder(normalizedOrder));
     }
 
     if (limit || offset) {

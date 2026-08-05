@@ -1,6 +1,7 @@
 const { ObjectID: ObjectId } = require('think-mongo/lib/model');
 
 const Base = require('./base.js');
+const { normalizeOrder, toOrderString } = require('./order.js');
 
 module.exports = class extends Base {
   parseWhere(where) {
@@ -110,12 +111,16 @@ module.exports = class extends Base {
     });
   }
 
-  async select(where, { desc, limit, offset, field } = {}) {
+  async select(where, { desc, field, limit, offset, order } = {}) {
     const instance = this.mongo(this.tableName);
 
     this.where(instance, where);
-    if (desc) {
-      instance.order(`${desc} DESC`);
+    const normalizedOrder = normalizeOrder(order, desc, (field) =>
+      field === 'objectId' ? '_id' : field,
+    );
+
+    if (normalizedOrder.length > 0) {
+      instance.order(toOrderString(normalizedOrder));
     }
 
     if (limit || offset) {
