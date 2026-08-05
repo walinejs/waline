@@ -1,4 +1,5 @@
 const MySQL = require('./mysql.js');
+const { toSqlOrder } = require('./order.js');
 
 const mapKeys = ({ insertedat, createdat, updatedat, ...item }) => {
   const mapFields = {
@@ -18,6 +19,14 @@ const mapKeys = ({ insertedat, createdat, updatedat, ...item }) => {
   return item;
 };
 module.exports = class extends MySQL {
+  mapOrderField(field) {
+    return super.mapOrderField(field).toLowerCase();
+  }
+
+  getSqlOrder(order) {
+    return toSqlOrder(order, { nulls: true });
+  }
+
   model(tableName) {
     return super.model(tableName.toLowerCase());
   }
@@ -27,10 +36,6 @@ module.exports = class extends MySQL {
 
     for (const i in where) {
       lowerWhere[i.toLowerCase()] = where[i];
-    }
-
-    if (options?.desc) {
-      options.desc = options.desc.toLowerCase();
     }
 
     if (Array.isArray(options.field)) {

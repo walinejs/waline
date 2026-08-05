@@ -3,6 +3,7 @@ const path = require('node:path');
 const { parseString, writeToString } = require('fast-csv');
 
 const Base = require('./base.js');
+const { compareByOrder, normalizeOrder } = require('./order.js');
 
 const CSV_HEADERS = {
   Comment: [
@@ -271,24 +272,19 @@ module.exports = class GithubStorage extends Base {
     return data.filter((item) => logicFn.call(filters, (filter) => filter.every((fn) => fn(item))));
   }
 
-  async select(where, { desc, limit, offset, field } = {}) {
+  async select(where, { desc, field, limit, offset, order } = {}) {
     const instance = await this.collection(this.tableName);
     let data = this.where(instance, where);
 
-    if (desc) {
-      data.sort((a, b) => {
-        if (['insertedAt', 'createdAt', 'updatedAt'].includes(desc)) {
-          const aTime = new Date(a[desc]).getTime();
-          const bTime = new Date(b[desc]).getTime();
+    const normalizedOrder = normalizeOrder(order, desc, (orderField) =>
+      orderField === 'objectId' ? 'id' : orderField,
+    );
 
-          return bTime - aTime;
-        }
-
-        return a[desc] - b[desc];
-      });
+    if (normalizedOrder.length > 0) {
+      data.sort(compareByOrder(normalizedOrder));
     }
 
-    data = data.slice(limit ?? 0, offset ?? data.length);
+    data = data.slice(offset ?? 0, limit ? (offset ?? 0) + limit : undefined);
     if (field) {
       field.push('id');
       const fieldObj = {};
