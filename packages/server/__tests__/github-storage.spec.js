@@ -33,4 +33,34 @@ describe('gitHub storage', () => {
       globalThis.think = originalThink;
     }
   });
+
+  it('returns grouped counts with their field values', async () => {
+    const originalThink = globalThis.think;
+
+    try {
+      globalThis.think = {
+        ...thinkHelper,
+        Service: Object,
+      };
+
+      const GithubStorage = require('../src/service/storage/github.js');
+      const storage = Object.create(GithubStorage.prototype);
+
+      storage.tableName = 'Comment';
+      storage.collection = async () => [
+        { id: 'first-1', url: '/first' },
+        { id: 'first-2', url: '/first' },
+        { id: 'third-1', url: '/third' },
+      ];
+
+      await expect(
+        storage.count({ url: ['IN', ['/first', '/third']] }, { group: ['url'] }),
+      ).resolves.toStrictEqual([
+        { url: '/first', count: 2 },
+        { url: '/third', count: 1 },
+      ]);
+    } finally {
+      globalThis.think = originalThink;
+    }
+  });
 });

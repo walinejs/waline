@@ -320,21 +320,19 @@ module.exports = class GithubStorage extends Base {
 
     const counts = {};
 
-    // FIXME: The loop is weird @lizheming
-    // oxlint-disable-next-line typescript/prefer-for-of
-    for (let i = 0; i < data.length; i++) {
-      const key = group.map((field) => data[field]).join(',');
+    for (const item of data) {
+      const key = group.map((field) => item[field]).join(',');
 
       if (!counts[key]) {
         counts[key] = { count: 0 };
         group.forEach((field) => {
-          counts[key][field] = data[field];
+          counts[key][field] = item[field];
         });
       }
       counts[key].count += 1;
     }
 
-    return Object.keys(counts);
+    return Object.values(counts);
   }
 
   async add(
