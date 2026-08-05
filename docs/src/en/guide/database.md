@@ -86,6 +86,8 @@ Download [waline.sqlite](https://github.com/walinejs/waline/blob/main/assets/wal
 
 [Supabase](https://supabase.com) and [Neon](https://neon.tech/home) offer a free 512M database, while [Tembo](https://tembo.io/) provides 10G PG database support for free. Same as MySQL, you need to import [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) to create table and table structure before using PostgreSQL.
 
+For a database created before the comment query indexes were added, also run [waline.pgsql.indexes](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql.indexes) once. If you use a custom `PG_PREFIX`, replace `wl_comment` in the script with the actual table name first.
+
 | Environment Variable | Required | Default   | Description                         |
 | -------------------- | -------- | --------- | ----------------------------------- |
 | `PG_DB`              | ✅       |           | PostgreSQL database name            |

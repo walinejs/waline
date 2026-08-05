@@ -22,6 +22,14 @@ CREATE TABLE wl_comment (
   PRIMARY KEY (id)
 ) ;
 
+CREATE INDEX idx_comment_url_rid ON wl_comment (url, rid);
+CREATE INDEX idx_comment_root_pagination ON wl_comment (
+  url,
+  sticky DESC NULLS LAST,
+  insertedAt DESC,
+  id DESC
+) WHERE rid IS NULL AND status NOT IN ('waiting', 'spam');
+
 
 CREATE SEQUENCE wl_counter_seq;
 

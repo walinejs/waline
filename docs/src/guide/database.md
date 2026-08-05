@@ -88,6 +88,8 @@ MONGO_OPT_SSL=true
 
 同 MySQL，使用 PostgreSQL 也需要先导入 [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) 创建好表和表结构。之后在项目中配置如下环境变量。
 
+如果数据库是在评论查询索引加入前创建的，请额外执行一次 [waline.pgsql.indexes](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql.indexes)。使用了自定义 `PG_PREFIX` 时，需要先将脚本中的 `wl_comment` 替换为实际表名。
+
 | 环境变量名称        | 必填 | 默认值    | 备注                                |
 | ------------------- | ---- | --------- | ----------------------------------- |
 | `PG_DB`             | ✅   |           | PostgreSQL 数据库库名               |

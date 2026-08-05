@@ -1,0 +1,10 @@
+-- Run this file once for an existing PostgreSQL Waline database.
+-- Replace wl_comment if a custom PG_PREFIX is in use.
+
+CREATE INDEX IF NOT EXISTS idx_comment_url_rid ON wl_comment (url, rid);
+CREATE INDEX IF NOT EXISTS idx_comment_root_pagination ON wl_comment (
+  url,
+  sticky DESC NULLS LAST,
+  insertedAt DESC,
+  id DESC
+) WHERE rid IS NULL AND status NOT IN ('waiting', 'spam');
