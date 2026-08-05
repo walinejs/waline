@@ -18,14 +18,16 @@ const { originalFetch } = vi.hoisted(() => ({
 const require = createRequire(import.meta.url);
 // const pkg = require('../package.json');
 const main = require('../index.js');
+const commentSelect = vi.fn(async () => []);
+const commentCount = vi.fn(async () => 0);
 
 // Use a custom model stub so no real database connection is needed
 const handler = main({
   customModel: (modelName) => {
     if (modelName === 'Comment') {
       return {
-        select: async () => [],
-        count: async () => 0,
+        select: commentSelect,
+        count: commentCount,
       };
     }
 
@@ -104,6 +106,8 @@ describe('token API', () => {
 
   describe('GET /api/comment', () => {
     it('should return an empty comment list for a running server', async () => {
+      commentSelect.mockClear();
+      commentCount.mockClear();
       const body = await apiRequest('GET', '/api/comment?path=/unit-test');
 
       expect(body.errno).toBe(0);
@@ -113,6 +117,19 @@ describe('token API', () => {
         count: 0,
         data: [],
       });
+      expect(commentCount).toHaveBeenCalledTimes(2);
+      expect(commentSelect).toHaveBeenCalledExactlyOnceWith(
+        expect.objectContaining({ rid: undefined, url: '/unit-test' }),
+        expect.objectContaining({
+          limit: 10,
+          offset: 0,
+          order: [
+            { field: 'sticky', direction: 'desc', nulls: 'last' },
+            { field: 'insertedAt', direction: 'desc' },
+            { field: 'objectId', direction: 'desc' },
+          ],
+        }),
+      );
     });
   });
 

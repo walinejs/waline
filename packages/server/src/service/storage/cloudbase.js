@@ -169,13 +169,22 @@ module.exports = class extends Base {
     const data = [];
     let ret = [];
     const offset = options.offset ?? 0;
+    const { limit } = options;
 
-    do {
-      options.offset = offset + data.length;
+    while (true) {
+      const remaining = limit == null ? undefined : limit - data.length;
+      const batchLimit = remaining == null ? undefined : Math.min(remaining, 100);
+
       // oxlint-disable-next-line no-underscore-dangle
-      ret = await this._select(where, options);
+      ret = await this._select(where, {
+        ...options,
+        limit: batchLimit,
+        offset: offset + data.length,
+      });
       data.push(...ret);
-    } while (ret.length === 100);
+
+      if (ret.length < 100 || (limit != null && data.length >= limit)) break;
+    }
 
     return data;
   }
