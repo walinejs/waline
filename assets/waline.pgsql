@@ -28,7 +28,7 @@ CREATE INDEX idx_comment_root_pagination ON wl_comment (
   sticky DESC NULLS LAST,
   insertedAt DESC,
   id DESC
-) WHERE rid IS NULL AND status NOT IN ('waiting', 'spam');
+) WHERE rid IS NULL;
 
 
 CREATE SEQUENCE wl_counter_seq;
