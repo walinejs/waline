@@ -198,7 +198,7 @@ module.exports = class GithubStorage extends Base {
         continue;
       }
       if (where[k] === undefined) {
-        filters.push((item) => item[k] === null || item[k] === undefined);
+        filters.push((item) => item[k] === '' || item[k] === null || item[k] === undefined);
       }
 
       if (!Array.isArray(where[k]) || !where[k][0]) {
