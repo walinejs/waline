@@ -29,10 +29,11 @@ minimumReleaseAgeExclude:
   - oxlint
   - oxlint-tsgolint
   - tsdown
-  - think-model-postgresql@1.1.10
   - vercel
   - vitest
   - vue
+  - think-helper@1.2.0
+  - think-model-postgresql@1.1.10
 
 overrides:
   # FIXME: vulnerable
