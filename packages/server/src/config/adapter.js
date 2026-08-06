@@ -3,6 +3,20 @@ const Mysql = require('think-model-mysql');
 const Mysql2 = require('think-model-mysql2');
 const Postgresql = require('think-model-postgresql');
 
+// think-model-postgresql uses E'...' escape string syntax but doesn't escape
+// backslashes, causing PostgreSQL to interpret sequences like \f as control
+// characters (form-feed 0x0C). Override escapeString to double backslashes.
+const { Parser: PostgreSQLParser } = Postgresql;
+
+class WalinePostgreSQLParser extends PostgreSQLParser {
+  escapeString(str) {
+    return str.replaceAll('\\', String.raw`\\`).replaceAll("'", String.raw`\'`);
+  }
+}
+
+class WalinePostgresql extends Postgresql {}
+WalinePostgresql.Parser = WalinePostgreSQLParser;
+
 let Sqlite;
 
 try {
@@ -107,7 +121,7 @@ exports.model = {
   },
 
   postgresql: {
-    handle: Postgresql,
+    handle: WalinePostgresql,
     user: PG_USER || POSTGRES_USER,
     password: PG_PASSWORD || POSTGRES_PASSWORD,
     database: PG_DB || POSTGRES_DATABASE,
