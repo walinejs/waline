@@ -689,12 +689,17 @@ module.exports = class CommentController extends BaseRest {
       };
     }
 
-    if (Array.isArray(url) && (url.length > 1 || !this.ctx.state.deprecated)) {
-      const data = await this.modelInstance.select(where, {
-        field: ['url'],
-      });
+    if (Array.isArray(url) && url.length === 1) {
+      const count = await this.modelInstance.count(where);
 
-      return url.map((u) => data.filter(({ url }) => url === u).length);
+      return this.ctx.state.deprecated ? count : [count];
+    }
+
+    if (Array.isArray(url) && url.length > 1) {
+      const counts = await this.modelInstance.count(where, { group: ['url'] });
+      const countByUrl = new Map(counts.map(({ url, count }) => [url, count]));
+
+      return url.map((item) => countByUrl.get(item) ?? 0);
     }
     const data = await this.modelInstance.count(where);
 

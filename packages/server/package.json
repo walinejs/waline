@@ -1,6 +1,6 @@
 {
   "name": "@waline/vercel",
-  "version": "1.41.3",
+  "version": "1.41.4",
   "description": "vercel server for waline comment system",
   "keywords": [
     "blog",
@@ -51,7 +51,7 @@
     "think-model": "^1.5.4",
     "think-model-mysql": "^1.1.7",
     "think-model-mysql2": "^2.0.0",
-    "think-model-postgresql": "1.1.7",
+    "think-model-postgresql": "^1.1.10",
     "think-model-sqlite": "^2.0.1",
     "think-mongo": "^2.2.1",
     "think-router-rest": "^1.0.5",
