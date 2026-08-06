@@ -6,12 +6,13 @@
     "admin:build": "pnpm --dir=packages/admin build",
     "admin:dev": "pnpm --dir=packages/admin dev",
     "api:build": "pnpm --dir=packages/api build",
-    "apidoc": "apidoc -i packages/server/src/logic -o docs/src/.vuepress/dist/api",
+    "api:docs": "mkdir -p docs/src/.vuepress/dist/api && redocly build-docs packages/server/openapi.yaml --output docs/src/.vuepress/dist/api/index.html --disableGoogleFont",
+    "api:lint": "redocly lint packages/server/openapi.yaml",
     "build": "pnpm admin:build && pnpm api:build && pnpm client:build",
     "clean": "pnpm -r clean",
     "client:build": "pnpm --dir=packages/client build",
     "client:dev": "pnpm --dir=packages/client dev",
-    "docs:build": "pnpm --dir=docs run build && pnpm apidoc",
+    "docs:build": "pnpm --dir=docs run build && pnpm api:docs",
     "docs:dev": "pnpm --dir=docs run dev",
     "lint": "pnpm lint:oxlint --deny-warnings && oxfmt && pnpm lint:stylelint",
     "lint:md": "markdownlint-cli2 '**/*.md'",
@@ -27,9 +28,9 @@
   "devDependencies": {
     "@babel/runtime": "8.0.0",
     "@mr-hope/tsconfig": "0.0.4",
+    "@redocly/cli": "2.43.3",
     "@types/node": "22.20.1",
     "@vitejs/plugin-react": "6.0.3",
-    "apidoc": "1.2.0",
     "cross-env": "10.1.0",
     "husky": "9.1.7",
     "markdownlint-cli2": "0.23.1",
@@ -70,8 +71,5 @@
       "version": "^22.22.0 || ^24.18.0 || ^26.3.0",
       "onFail": "error"
     }
-  },
-  "apidoc": {
-    "title": "Waline API Documentation"
   }
 }

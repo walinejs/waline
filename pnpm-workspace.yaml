@@ -29,10 +29,11 @@ minimumReleaseAgeExclude:
   - oxlint
   - oxlint-tsgolint
   - tsdown
-  - think-model-postgresql@1.1.10
   - vercel
   - vitest
   - vue
+  - think-helper@1.2.0
+  - think-model-postgresql@1.1.10
 
 overrides:
   # FIXME: vulnerable
@@ -44,12 +45,6 @@ overrides:
   '@waline/api': workspace:*
   '@waline/client': workspace:*
   '@xmldom/xmldom': ^0.9.10
-  # FIXME: vulnerable
-  'apidoc>esbuild-loader': ^4.4.3
-
-patchedDependencies:
-  apidoc: patches/apidoc.patch
-
 packageExtensions:
   # FIXME: This is a bug in mathjax
   '@mathjax/mathjax-newcm-font':
