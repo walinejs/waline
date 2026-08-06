@@ -44,5 +44,8 @@ jobs:
       - name: Unit test
         run: pnpm run test
 
+      - name: API Description Lint
+        run: pnpm run api:lint
+
       - name: Docs Build Test
         run: pnpm run docs:build

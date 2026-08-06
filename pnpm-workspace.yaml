@@ -43,12 +43,6 @@ overrides:
   '@waline/api': workspace:*
   '@waline/client': workspace:*
   '@xmldom/xmldom': ^0.9.10
-  # FIXME: vulnerable
-  'apidoc>esbuild-loader': ^4.4.3
-
-patchedDependencies:
-  apidoc: patches/apidoc.patch
-
 packageExtensions:
   # FIXME: This is a bug in mathjax
   '@mathjax/mathjax-newcm-font':
