@@ -95,23 +95,34 @@ paths:
             application/json:
               schema:
                 oneOf:
-                  - $ref: '#/components/schemas/PublicCommentList'
+                  - $ref: '#/components/schemas/PublicCommentListResponse'
                   - $ref: '#/components/schemas/AdminCommentListResponse'
-                  - $ref: '#/components/schemas/CommentCount'
+                  - $ref: '#/components/schemas/CommentCountResponse'
                   - $ref: '#/components/schemas/RecentCommentListResponse'
               examples:
                 list:
                   summary: Public comment list
                   value:
-                    page: 1
-                    pageSize: 10
-                    data: []
-                count:
-                  summary: Count for one article
-                  value: 300
+                    errno: 0
+                    errmsg: ''
+                    data:
+                      page: 1
+                      totalPages: 0
+                      pageSize: 10
+                      count: 0
+                      data: []
+                totalCount:
+                  summary: Site-wide comment count
+                  value:
+                    errno: 0
+                    errmsg: ''
+                    data: 300
                 counts:
                   summary: Counts for multiple articles
-                  value: [300, 100]
+                  value:
+                    errno: 0
+                    errmsg: ''
+                    data: [300, 100]
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -233,8 +244,10 @@ paths:
       operationId: getLoginUser
       tags: [User]
       summary: Get the logged-in user
+      description: Returns an empty user object when no valid bearer token is provided.
       security:
         - bearerAuth: []
+        - {}
       parameters:
         - $ref: '#/components/parameters/Lang'
       responses:
@@ -244,8 +257,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UserResponse'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
     post:
       operationId: login
       tags: [User]
@@ -330,13 +343,11 @@ paths:
             format: email
       responses:
         '200':
-          description: Public ranking or administrator user list.
+          description: Public ranking, administrator user list, exact-email user, or empty result.
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: '#/components/schemas/PublicUserListResponse'
-                  - $ref: '#/components/schemas/AdminUserListResponse'
+                $ref: '#/components/schemas/UserQueryResponse'
         '403':
           $ref: '#/components/responses/Forbidden'
     post:
@@ -704,24 +715,38 @@ components:
               $ref: '#/components/schemas/Comment'
     PublicCommentList:
       type: object
-      required: [page, pageSize, data]
+      required: [page, totalPages, pageSize, count, data]
       properties:
         page:
           type: integer
+        totalPages:
+          type: integer
         pageSize:
+          type: integer
+        count:
           type: integer
         data:
           type: array
           items:
             $ref: '#/components/schemas/Comment'
       additionalProperties: true
+    PublicCommentListResponse:
+      allOf:
+        - $ref: '#/components/schemas/SuccessResponse'
+        - type: object
+          required: [data]
+          properties:
+            data:
+              $ref: '#/components/schemas/PublicCommentList'
     AdminCommentListResponse:
       allOf:
         - $ref: '#/components/schemas/SuccessResponse'
         - type: object
+          required: [data]
           properties:
             data:
               type: object
+              required: [page, totalPages, pageSize, spamCount, waitingCount, data]
               properties:
                 page:
                   type: integer
@@ -743,10 +768,24 @@ components:
         - type: array
           items:
             type: integer
+    CommentCountResponse:
+      allOf:
+        - $ref: '#/components/schemas/SuccessResponse'
+        - type: object
+          required: [data]
+          properties:
+            data:
+              $ref: '#/components/schemas/CommentCount'
     RecentCommentListResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/Comment'
+      allOf:
+        - $ref: '#/components/schemas/SuccessResponse'
+        - type: object
+          required: [data]
+          properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Comment'
     User:
       type: object
       properties:
@@ -793,33 +832,37 @@ components:
                   properties:
                     token:
                       type: string
-    PublicUserListResponse:
+    UserQueryResponse:
       allOf:
         - $ref: '#/components/schemas/SuccessResponse'
         - type: object
           properties:
             data:
-              type: array
-              items:
-                $ref: '#/components/schemas/User'
-    AdminUserListResponse:
-      allOf:
-        - $ref: '#/components/schemas/SuccessResponse'
-        - type: object
-          properties:
-            data:
-              type: object
-              properties:
-                page:
-                  type: integer
-                pageSize:
-                  type: integer
-                totalPages:
-                  type: integer
-                data:
-                  type: array
+              anyOf:
+                - allOf:
+                    - $ref: '#/components/schemas/User'
+                    - type: object
+                      required: [objectId]
+                      properties:
+                        objectId:
+                          type: string
+                - type: array
                   items:
                     $ref: '#/components/schemas/User'
+                - type: object
+                  required: [page, pageSize, totalPages, data]
+                  properties:
+                    page:
+                      type: integer
+                    pageSize:
+                      type: integer
+                    totalPages:
+                      type: integer
+                    data:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/User'
+                  additionalProperties: true
     UserUpdate:
       type: object
       properties:
