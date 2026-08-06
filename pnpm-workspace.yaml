@@ -29,6 +29,7 @@ minimumReleaseAgeExclude:
   - oxlint
   - oxlint-tsgolint
   - tsdown
+  - think-model-postgresql@1.1.10
   - vercel
   - vitest
   - vue

@@ -373,8 +373,8 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0(@types/node@22.20.1)
       think-model-postgresql:
-        specifier: 1.1.7
-        version: 1.1.7
+        specifier: ^1.1.10
+        version: 1.1.10
       think-model-sqlite:
         specifier: ^2.0.1
         version: 2.0.1
@@ -7230,8 +7230,8 @@ packages:
   think-model-mysql@1.1.7:
     resolution: {integrity: sha512-HQN66b7RcIzKPnfS2xfDAPlgoy5aFaw4oOMBgHzraMzUco5R/CxoyWrbrL+C+zbKTjstY5UMo5GCJFPBqzJOng==}
 
-  think-model-postgresql@1.1.7:
-    resolution: {integrity: sha512-ccF5iSnVNlG641hV2KwQCOl1w0FpbHSv9E8h0djWAZdiVLujfs7G8TQ3kp3xDZx0KzM6zfzJh2RWIsbC1SG9HQ==}
+  think-model-postgresql@1.1.10:
+    resolution: {integrity: sha512-mzdNREn3JBRaqbmCa9qsRAF2/oUiBBIlGJiw5fiAdVtVHqbY34bvPdMTyFyE6jfMR3ha1hOsP92HP5Ff9X36cA==}
 
   think-model-sqlite@2.0.1:
     resolution: {integrity: sha512-F/6c/7sjpC6sLem4+VqJfrCMwveh051dzCVG5NUWUcuWdc9VRm92ATpxjqNWrliatIGeOhUTotbuMwPPUICZAA==}
@@ -15286,7 +15286,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  think-model-postgresql@1.1.7:
+  think-model-postgresql@1.1.10:
     dependencies:
       pg: 8.22.0
       think-debounce: 1.0.4
