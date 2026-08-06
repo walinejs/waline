@@ -82,10 +82,6 @@ Your contributions enrich the open-source community, fostering learning, inspira
 
 [![Contributors](https://contrib.rocks/image?repo=walinejs/waline)](https://github.com/walinejs/waline/graphs/contributors)
 
-## Stargazers over time
-
-[![Stargazers over time](https://starchart.cc/walinejs/waline.svg?background=%23ffffff&axis=%23333333&line=%234e9def)](https://starchart.cc/walinejs/waline)
-
 ## License
 
 [GPL-2.0](https://github.com/lizheming/Waline/blob/main/LICENSE)
