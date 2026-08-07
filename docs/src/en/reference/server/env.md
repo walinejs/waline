@@ -216,3 +216,9 @@ Please pay special attention that some mailboxes use separate SMTP passwords.
 | `IP2REGION_DB`                  |                             | customized IPv4 IP query library path (deprecated, use `IP2REGION_DB_V4` instead)                |
 | `IP2REGION_DB_V4`               |                             | customized IPv4 IP query library path. Falls back to `IP2REGION_DB` if not set                   |
 | `IP2REGION_DB_V6`               |                             | customized IPv6 IP query library path. Set this to enable IPv6 address location lookup           |
+
+::: note
+
+Mobile social login redirects back with a short-lived `waline_login_code` and `state`; the client exchanges them for the login token through the server. The legacy `token` redirect parameter is still accepted for compatibility, but is deprecated and will be removed in a future release.
+
+:::

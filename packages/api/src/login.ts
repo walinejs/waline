@@ -52,6 +52,12 @@ export interface UserInfo {
   type: 'administrator' | 'guest';
 }
 
+const createLoginState = (): string =>
+  globalThis.crypto?.randomUUID?.() ||
+  Array.from(globalThis.crypto.getRandomValues(new Uint8Array(16)), (value) =>
+    value.toString(16).padStart(2, '0'),
+  ).join('');
+
 const isMobile = (): boolean => {
   const ua = navigator.userAgent;
   return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/iu.test(ua);
@@ -67,7 +73,9 @@ export const login = ({
   const top = (window.innerHeight - height) / 2;
 
   if (isMobile()) {
-    location.href = `${serverURL.replace(/\/$/u, '')}/ui/login?lng=${encodeURIComponent(lang)}&redirect=${encodeURIComponent(location.href)}`;
+    const state = createLoginState();
+
+    location.href = `${serverURL.replace(/\/$/u, '')}/ui/login?lng=${encodeURIComponent(lang)}&redirect=${encodeURIComponent(location.href)}&state=${encodeURIComponent(state)}`;
 
     // On mobile, we perform a full-page redirect; the login flow is handled entirely
     // in the redirected page, so this promise intentionally never resolves to avoid
