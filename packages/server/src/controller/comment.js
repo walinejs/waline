@@ -250,7 +250,8 @@ module.exports = class CommentController extends BaseRest {
         )
       : undefined;
 
-    if (comment.status !== 'spam') {
+    // `comment` is the raw markdown text from the request body.
+    if (resp.status !== 'spam') {
       const notify = this.service('notify', this);
 
       await notify.run(
