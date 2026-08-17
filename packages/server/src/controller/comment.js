@@ -250,7 +250,7 @@ module.exports = class CommentController extends BaseRest {
         )
       : undefined;
 
-    if (comment.status !== 'spam') {
+    if (data.status !== 'spam') {
       const notify = this.service('notify', this);
 
       await notify.run(
