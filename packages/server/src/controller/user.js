@@ -38,7 +38,7 @@ module.exports = class UserController extends BaseRest {
 
     const formatUsers = await Promise.all(
       users.map(async (user) => {
-       user.avatar ||= await think.service('avatar').stringify({
+        user.avatar ||= await think.service('avatar').stringify({
          mail: userInfo.email,  
          nick: userInfo.display_name,
          link: userInfo.url,
