@@ -85,8 +85,9 @@ module.exports = class BaseLogic extends think.Logic {
       return true;
     }
 
-    const whitelistPath = ['/api/comment/rss', '/api/oauth'];
-    if (this.ctx.path && whitelistPath.includes(this.ctx.path)) {
+    const whitelistPath = ['/api/comment/rss'];
+    const isOAuthCallback = this.ctx.path === '/api/oauth' && this.get('code');
+    if ((this.ctx.path && whitelistPath.includes(this.ctx.path)) || isOAuthCallback) {
       return true;
     }
 

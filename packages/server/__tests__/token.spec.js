@@ -98,13 +98,25 @@ describe('token API', () => {
   });
 
   describe('secure domain checks', () => {
-    it('should allow OAuth callbacks without a referrer', async () => {
+    it('should allow authenticated OAuth callbacks without a referrer', async () => {
+      const response = await fetch(
+        `http://localhost:${port}/api/oauth?type=github&code=test`,
+        {
+          headers: { Host: 'untrusted.example' },
+          redirect: 'manual',
+        },
+      );
+
+      expect(response.status).not.toBe(403);
+    });
+
+    it('should reject unauthenticated OAuth requests from untrusted domains', async () => {
       const response = await fetch(`http://localhost:${port}/api/oauth?type=github`, {
         headers: { Host: 'untrusted.example' },
         redirect: 'manual',
       });
 
-      expect(response.status).toBe(302);
+      expect(response.status).toBe(403);
     });
 
     it('should still reject other API requests from untrusted domains', async () => {
