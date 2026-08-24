@@ -66,6 +66,25 @@ describe('token API', () => {
 
   const apiResponse = (method, path, body) => request(method, path, body);
 
+  const requestFromUntrustedDomain = (path) =>
+    new Promise((resolve, reject) => {
+      const req = http.request(
+        {
+          hostname: 'localhost',
+          port,
+          path,
+          headers: { Host: 'untrusted.example' },
+        },
+        (response) => {
+          response.resume();
+          response.on('end', () => resolve(response));
+        },
+      );
+
+      req.on('error', reject);
+      req.end();
+    });
+
   beforeAll(async () => {
     vi.stubGlobal('fetch', (url, options) => {
       if (typeof url === 'string' && url.startsWith(oauthUrl)) {
@@ -101,32 +120,23 @@ describe('token API', () => {
 
   describe('secure domain checks', () => {
     it('should allow authenticated OAuth callbacks without a referrer', async () => {
-      const response = await fetch(
-        `http://localhost:${port}/api/oauth?type=github&code=test`,
-        {
-          headers: { 'X-Forwarded-Host': 'untrusted.example' },
-          redirect: 'manual',
-        },
+      const response = await requestFromUntrustedDomain(
+        '/api/oauth?type=github&code=test',
       );
 
-      expect(response.status).not.toBe(403);
+      expect(response.statusCode).not.toBe(403);
     });
 
     it('should reject unauthenticated OAuth requests from untrusted domains', async () => {
-      const response = await fetch(`http://localhost:${port}/api/oauth?type=github`, {
-        headers: { 'X-Forwarded-Host': 'untrusted.example' },
-        redirect: 'manual',
-      });
+      const response = await requestFromUntrustedDomain('/api/oauth?type=github');
 
-      expect(response.status).toBe(403);
+      expect(response.statusCode).toBe(403);
     });
 
     it('should still reject other API requests from untrusted domains', async () => {
-      const response = await fetch(`http://localhost:${port}/api/token`, {
-        headers: { 'X-Forwarded-Host': 'untrusted.example' },
-      });
+      const response = await requestFromUntrustedDomain('/api/token');
 
-      expect(response.status).toBe(403);
+      expect(response.statusCode).toBe(403);
     });
   });
 
