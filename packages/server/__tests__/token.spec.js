@@ -104,7 +104,7 @@ describe('token API', () => {
       const response = await fetch(
         `http://localhost:${port}/api/oauth?type=github&code=test`,
         {
-          headers: { Host: 'untrusted.example' },
+          headers: { 'X-Forwarded-Host': 'untrusted.example' },
           redirect: 'manual',
         },
       );
@@ -114,7 +114,7 @@ describe('token API', () => {
 
     it('should reject unauthenticated OAuth requests from untrusted domains', async () => {
       const response = await fetch(`http://localhost:${port}/api/oauth?type=github`, {
-        headers: { Host: 'untrusted.example' },
+        headers: { 'X-Forwarded-Host': 'untrusted.example' },
         redirect: 'manual',
       });
 
@@ -123,7 +123,7 @@ describe('token API', () => {
 
     it('should still reject other API requests from untrusted domains', async () => {
       const response = await fetch(`http://localhost:${port}/api/token`, {
-        headers: { Host: 'untrusted.example' },
+        headers: { 'X-Forwarded-Host': 'untrusted.example' },
       });
 
       expect(response.status).toBe(403);
