@@ -20,9 +20,12 @@ const require = createRequire(import.meta.url);
 const main = require('../index.js');
 const commentSelect = vi.fn(async () => []);
 const commentCount = vi.fn(async () => 0);
+const oauthUrl = 'https://oauth.example.com';
 
 // Use a custom model stub so no real database connection is needed
 const handler = main({
+  secureDomains: ['trusted.example'],
+  oauthUrl,
   customModel: (modelName) => {
     if (modelName === 'Comment') {
       return {
@@ -51,7 +54,10 @@ describe('token API', () => {
     const url = `http://localhost:${port}${path}`;
     const options = {
       method,
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        Referer: 'https://trusted.example',
+      },
     };
     if (method !== 'GET' && body) {
       options.body = JSON.stringify(body);
@@ -63,9 +69,31 @@ describe('token API', () => {
 
   const apiResponse = (method, path, body) => request(method, path, body);
 
+  const requestFromUntrustedDomain = (path) =>
+    new Promise((resolve, reject) => {
+      const req = http.request(
+        {
+          hostname: 'localhost',
+          port,
+          path,
+          headers: {
+            Host: 'untrusted.example',
+            Referer: 'https://untrusted.example',
+          },
+        },
+        (response) => {
+          response.resume();
+          response.on('end', () => resolve(response));
+        },
+      );
+
+      req.on('error', reject);
+      req.end();
+    });
+
   beforeAll(async () => {
     vi.stubGlobal('fetch', (url, options) => {
-      if (typeof url === 'string' && url.includes('oauth')) {
+      if (typeof url === 'string' && url.startsWith(oauthUrl)) {
         return Promise.resolve({ json: () => Promise.resolve({ services: [] }) });
       }
 
@@ -93,6 +121,28 @@ describe('token API', () => {
 
       expect(response.headers.get('x-powered-by')).toBeNull();
       expect(response.headers.get('x-waline-version')).toBe(pkg.version);
+    });
+  });
+
+  describe('secure domain checks', () => {
+    it('should allow authenticated OAuth callbacks from an untrusted referrer', async () => {
+      const response = await requestFromUntrustedDomain(
+        '/api/oauth?type=github&code=test',
+      );
+
+      expect(response.statusCode).not.toBe(403);
+    });
+
+    it('should reject unauthenticated OAuth requests from untrusted domains', async () => {
+      const response = await requestFromUntrustedDomain('/api/oauth?type=github');
+
+      expect(response.statusCode).toBe(403);
+    });
+
+    it('should still reject other API requests from untrusted domains', async () => {
+      const response = await requestFromUntrustedDomain('/api/token');
+
+      expect(response.statusCode).toBe(403);
     });
   });
 
