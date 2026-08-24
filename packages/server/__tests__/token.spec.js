@@ -20,10 +20,12 @@ const require = createRequire(import.meta.url);
 const main = require('../index.js');
 const commentSelect = vi.fn(async () => []);
 const commentCount = vi.fn(async () => 0);
+const oauthUrl = 'https://oauth.example.com';
 
 // Use a custom model stub so no real database connection is needed
 const handler = main({
   secureDomains: ['trusted.example'],
+  oauthUrl,
   customModel: (modelName) => {
     if (modelName === 'Comment') {
       return {
@@ -66,7 +68,7 @@ describe('token API', () => {
 
   beforeAll(async () => {
     vi.stubGlobal('fetch', (url, options) => {
-      if (typeof url === 'string' && url.includes('oauth')) {
+      if (typeof url === 'string' && url.startsWith(oauthUrl)) {
         return Promise.resolve({ json: () => Promise.resolve({ services: [] }) });
       }
 
