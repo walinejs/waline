@@ -54,7 +54,10 @@ describe('token API', () => {
     const url = `http://localhost:${port}${path}`;
     const options = {
       method,
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        Referer: 'https://trusted.example',
+      },
     };
     if (method !== 'GET' && body) {
       options.body = JSON.stringify(body);
@@ -73,7 +76,10 @@ describe('token API', () => {
           hostname: 'localhost',
           port,
           path,
-          headers: { Host: 'untrusted.example' },
+          headers: {
+            Host: 'untrusted.example',
+            Referer: 'https://untrusted.example',
+          },
         },
         (response) => {
           response.resume();
@@ -119,7 +125,7 @@ describe('token API', () => {
   });
 
   describe('secure domain checks', () => {
-    it('should allow authenticated OAuth callbacks without a referrer', async () => {
+    it('should allow authenticated OAuth callbacks from an untrusted referrer', async () => {
       const response = await requestFromUntrustedDomain(
         '/api/oauth?type=github&code=test',
       );
