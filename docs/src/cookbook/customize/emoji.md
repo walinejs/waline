@@ -123,3 +123,92 @@ https://example.com/my-emoji/
 ```
 
 这里，我们额外添加了 `folder` 属性来告知 Waline 图片的存放位置。
+
+## 使用工厂函数
+
+除了直接传入配置对象外，你还可以使用工厂函数来动态创建表情预设。工厂函数支持返回单个或多个 `WalineEmojiInfo` 对象。
+
+### 返回单个预设
+
+你可以通过工厂函数动态生成一个表情预设：
+
+```js
+emoji: [
+  () => ({
+    name: "动态表情",
+    folder: "https://example.com/my-emoji",
+    prefix: "my_",
+    type: "png",
+    icon: "cute",
+    items: ["laugh", "sob", "rage", "cute"],
+  }),
+],
+```
+
+工厂函数可以是**同步的**，也可以是**异步的**。这在你需要从远程加载表情配置时非常有用：
+
+```js
+emoji: [
+  async () => {
+    const config = await fetch('https://example.com/emoji-config.json')
+      .then(res => res.json());
+
+    return {
+      name: '远程表情',
+      folder: 'https://example.com/emoji',
+      ...config,
+    };
+  },
+],
+```
+
+### 返回多个预设
+
+一个工厂函数也可以一次返回多个表情预设列表：
+
+```js
+emoji: [
+  () => [
+    {
+      name: "预设 1",
+      folder: "https://example.com/pack1",
+      icon: "icon1",
+      items: ["a", "b", "c"],
+    },
+    {
+      name: "预设 2",
+      folder: "https://example.com/pack2",
+      icon: "icon2",
+      items: ["x", "y", "z"],
+    },
+  ],
+],
+```
+
+### 混用多种类型
+
+你可以将工厂函数、预设地址和配置对象混合在同一个数组中：
+
+```js
+emoji: [
+  // 字符串预设地址
+  'https://unpkg.com/@waline/emojis@1.1.0/weibo',
+  // 工厂函数
+  async () => {
+    const config = await fetch('https://example.com/my-emoji/info.json')
+      .then(res => res.json());
+
+    return {
+      folder: 'https://example.com/my-emoji',
+      ...config,
+    };
+  },
+  // 配置对象
+  {
+    name: '自定义',
+    folder: 'https://example.com/custom',
+    icon: 'smile',
+    items: ['laugh', 'sob'],
+  },
+],
+```
