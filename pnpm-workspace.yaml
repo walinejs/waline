@@ -17,6 +17,10 @@ catalog:
 
 enableGlobalVirtualStore: true
 
+minimumReleaseAge: 10080
+
+blockExoticSubdeps: true
+
 minimumReleaseAgeExclude:
   - '@oxfmt/*'
   - '@oxlint/*'
