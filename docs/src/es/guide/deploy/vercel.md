@@ -36,29 +36,29 @@ We released the `@waline/vercel` package as server package, Vercel deployment is
 
 1. Click `Storage` at the top to enter the storage service page, choose `Create Database`. Under `Marketplace Database Providers`, select `Neon`, then click `Continue`.
 
-   ![storage](../../../assets/vercel-4.png)
+   ![storage](../../../assets/vercel-5.png)
 
 1. You will be prompted to create a Neon account. Choose `Accept and Create`. Next, select the database plan configuration, including region and quota. You can leave defaults and click `Continue`.
 
-   ![neon](../../../assets/vercel-5.png)
+   ![neon](../../../assets/vercel-6.png)
 
 1. Define the database name. You can keep the default and click `Continue`.
 
-   ![neon](../../../assets/vercel-6.png)
+   ![neon](../../../assets/vercel-7.png)
 
 1. Now the database appears under `Storage`. Click it and choose `Open in Neon` to jump to Neon. In Neon, select `SQL Editor` on the left, paste the SQL from [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) into the editor, and click `Run` to create tables.
 
-   ![neon](../../../assets/vercel-7.png)
+   ![neon](../../../assets/vercel-10.png)
 
-   ![neon](../../../assets/vercel-8.png)
+   ![neon](../../../assets/vercel-11.png)
 
 1. After a short while you should see a success message. Go back to Vercel, click `Deployments`, then click `Redeploy` on the latest deployment to make the new database configuration take effect.
 
-   ![redeploy success](../../../assets/vercel-9.png)
+   ![redeploy success](../../../assets/vercel-12.png)
 
 1. Vercel will redirect to `Overview` and start deploying. When `STATUS` becomes `Ready`, click `Visit` to open the deployed site. This URL is your server address.
 
-   ![visit](../../../assets/vercel-10.png)
+   ![visit](../../../assets/vercel-14.png)
 
 ## Assign Domain
 
@@ -66,7 +66,7 @@ We released the `@waline/vercel` package as server package, Vercel deployment is
 
 1. Input domain you want to assign and click <kbd>Add</kbd> button.
 
-   ![Add domain](../../../assets/vercel-11.png)
+   ![Add domain](../../../assets/vercel-16.png)
 
 1. Add a new `CNAME` record in your domain service server.
 
@@ -78,7 +78,7 @@ We released the `@waline/vercel` package as server package, Vercel deployment is
    - Comment system: example.your-domain.com
    - Admin panel: example.your-domain.com/ui
 
-   ![success](../../../assets/vercel-12.png)
+   ![success](../../../assets/vercel-17.png)
 
 ## HTML Import
 

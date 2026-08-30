@@ -38,29 +38,29 @@ Welcome to Waline. In just a few steps, you can enable Waline to provide comment
 
 1. Click `Storage` at the top to enter the storage configuration page, then choose `Create Database`. Select `Neon` as the `Marketplace Database Providers`, and click `Continue` to proceed.
 
-   ![neon](../../../assets/vercel-4.png)
+   ![neon](../../../assets/vercel-5.png)
 
 1. You will be prompted to create a Neon account. Click `Accept and Create` to accept and create it. Next, you will choose the database plan, including region and quota. You can leave everything as default and click `Continue`.
 
-   ![neon](../../../assets/vercel-5.png)
+   ![neon](../../../assets/vercel-6.png)
 
 1. You will then be asked to define the database name. You can also leave it unchanged and click `Continue`.
 
-   ![neon](../../../assets/vercel-6.png)
+   ![neon](../../../assets/vercel-7.png)
 
 1. Now you should see the database service you just created under `Storage`. Click it and select `Open in Neon` to jump to Neon. In the Neon interface, choose `SQL Editor` from the left sidebar, paste the SQL statements from [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) into the editor, and click `Run` to create the tables.
 
-   ![neon](../../../assets/vercel-7.png)
+   ![neon](../../../assets/vercel-10.png)
 
-   ![neon](../../../assets/vercel-8.png)
+   ![neon](../../../assets/vercel-11.png)
 
 1. After a short while, you will be notified that the creation was successful. Go back to Vercel, click `Deployments` at the top, and click the `Redeploy` button on the right of the latest deployment. This step ensures that the newly configured database service takes effect.
 
-   ![redeploy success](../../../assets/vercel-9.png)
+   ![redeploy success](../../../assets/vercel-12.png)
 
 1. You will be redirected to the `Overview` page and the deployment will start. After a moment, the `STATUS` will change to `Ready`. Click `Visit` to open the deployed website. This URL is your server address.
 
-   ![visit](../../../assets/vercel-10.png)
+   ![visit](../../../assets/vercel-14.png)
 
 ## Bind a Custom Domain
 
@@ -68,7 +68,7 @@ Welcome to Waline. In just a few steps, you can enable Waline to provide comment
 
 1. Enter the domain you want to bind and click `Add`.
 
-   ![Add domain](../../../assets/vercel-11.png)
+   ![Add domain](../../../assets/vercel-16.png)
 
 1. Add a new `CNAME` record at your domain provider:
 
@@ -80,7 +80,7 @@ Welcome to Waline. In just a few steps, you can enable Waline to provide comment
    - Comment system: example.yourdomain.com
    - Comment management: example.yourdomain.com/ui
 
-   ![success](../../../assets/vercel-12.png)
+   ![success](../../../assets/vercel-17.png)
 
 ## Importing in HTML
 
