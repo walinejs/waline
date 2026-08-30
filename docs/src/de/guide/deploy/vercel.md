@@ -36,29 +36,29 @@ Wir haben das Paket `@waline/vercel` als Serverpaket veröffentlicht. Die Vercel
 
 1. Klicken Sie oben auf `Storage`, um die Speicherdienst-Seite aufzurufen, wählen Sie `Create Database`. Wählen Sie unter `Marketplace Database Providers` `Neon` aus und klicken Sie dann auf `Continue`.
 
-   ![storage](../../../assets/vercel-4.png)
+   ![storage](../../../assets/vercel-5.png)
 
 1. Sie werden aufgefordert, ein Neon-Konto zu erstellen. Wählen Sie `Accept and Create`. Wählen Sie als Nächstes die Datenbankkonfiguration aus, einschließlich Region und Quota. Sie können die Standardeinstellungen beibehalten und auf `Continue` klicken.
 
-   ![neon](../../../assets/vercel-5.png)
+   ![neon](../../../assets/vercel-6.png)
 
 1. Definieren Sie den Datenbanknamen. Sie können die Standardeinstellung beibehalten und auf `Continue` klicken.
 
-   ![neon](../../../assets/vercel-6.png)
+   ![neon](../../../assets/vercel-7.png)
 
 1. Jetzt wird die Datenbank unter `Storage` angezeigt. Klicken Sie darauf und wählen Sie `Open in Neon`, um zu Neon zu springen. Wählen Sie in Neon auf der linken Seite `SQL Editor`, fügen Sie das SQL aus [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) in den Editor ein und klicken Sie auf `Run`, um Tabellen zu erstellen.
 
-   ![neon](../../../assets/vercel-7.png)
+   ![neon](../../../assets/vercel-10.png)
 
-   ![neon](../../../assets/vercel-8.png)
+   ![neon](../../../assets/vercel-11.png)
 
 1. Nach kurzer Zeit sollten Sie eine Erfolgsmeldung sehen. Gehen Sie zurück zu Vercel, klicken Sie auf `Deployments` und dann auf `Redeploy` bei der letzten Bereitstellung, damit die neue Datenbankkonfiguration wirksam wird.
 
-   ![redeploy success](../../../assets/vercel-9.png)
+   ![redeploy success](../../../assets/vercel-12.png)
 
 1. Vercel wird zu `Overview` weitergeleitet und beginnt mit der Bereitstellung. Wenn `STATUS` `Ready` wird, klicken Sie auf `Visit`, um die bereitgestellte Site zu öffnen. Diese URL ist Ihre Serveradresse.
 
-   ![visit](../../../assets/vercel-10.png)
+   ![visit](../../../assets/vercel-14.png)
 
 ## Domain zuweisen
 
@@ -66,7 +66,7 @@ Wir haben das Paket `@waline/vercel` als Serverpaket veröffentlicht. Die Vercel
 
 1. Geben Sie die Domain ein, die Sie zuweisen möchten, und klicken Sie auf die Schaltfläche <kbd>Add</kbd>.
 
-   ![Add domain](../../../assets/vercel-11.png)
+   ![Add domain](../../../assets/vercel-16.png)
 
 1. Fügen Sie einen neuen `CNAME`-Eintrag in Ihrem Domain-Dienstserver hinzu.
 
@@ -78,7 +78,7 @@ Wir haben das Paket `@waline/vercel` als Serverpaket veröffentlicht. Die Vercel
    - Kommentarsystem: example.your-domain.com
    - Admin-Panel: example.your-domain.com/ui
 
-   ![success](../../../assets/vercel-12.png)
+   ![success](../../../assets/vercel-17.png)
 
 ## HTML-Import
 

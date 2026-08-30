@@ -32,53 +32,67 @@ order: 1
 
    ![dashboard](../../assets/vercel-3.png)
 
+   ::: note
+   这一步有概率会报错 `500 This Serverless Function has crashed`，这个问题是由于没有连接 Neon 数据库导致的，一般完成下面的步骤之后就会自动恢复。
+   :::
+
 ## 创建数据库
 
-1. 点击顶部的 `Storage` 进入存储服务配置页，选择 `Create Database` 创建数据库。`Marketplace Database Providers` 数据库服务选择 `Neon`，点击 `Continue` 进行下一步。
-
+1. 点击左侧的 `Storage` 进入存储服务配置页，选择 `Create Database` 创建数据库。在 `Marketplace Database Providers` 中选择数据库服务 `Neon`，点击 `Continue` 进行下一步。
    ![storage](../../assets/vercel-4.png)
+   ![Marketplace Database Providers](../../assets/vercel-5.png)
 
-1. 此时会让你创建一个 Neno 账号，此时选择 `Accept and Create` 接受并创建。后续选择数据库的套餐配置，包括地区和额度。这里可以什么都不操作直接选择 `Continue` 下一步。
-
-   ![neon](../../assets/vercel-5.png)
-
-1. 此时会让你定义数据库名称，这里也可以不用修改直接 `Continue` 进行下一步。
+1. 此时会让你创建一个 Neon 账号，此时选择 `Accept and Create` 接受并创建。后续选择数据库的套餐配置，包括地区和额度。这里可以保持默认设置，直接下滑后选择 `Continue` 下一步。
 
    ![neon](../../assets/vercel-6.png)
 
-1. 这时候 `Storage` 下就有你创建的数据库服务了，点击进去选择 `Open in Neon` 跳转到 Neon。在 Neon 界面左侧选择 `SQL Editor`，将 [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) 中的 SQL 语句粘贴进编辑器中，点击 `Run` 执行创建表操作。
+1. 此时会让你定义数据库名称，这里也可以不用修改直接 `Create` 进行创建。
 
    ![neon](../../assets/vercel-7.png)
 
-   ![neon](../../assets/vercel-8.png)
+1. 这时候 `Storage` 下就有你创建的数据库服务了。先点击 `Connect` 连接到项目，然后点击 `Connect Project` 确认。
 
-1. 稍等片刻之后会告知你创建成功。此时回到 Vercel，点击顶部的 `Deployments` 点击顶部最新的一次部署右侧的 `Redeploy` 按钮进行重新部署。该步骤是为了让刚才配置的数据库服务生效。
+   ![connect](../../assets/vercel-8.png)
+   ![connect to project](../../assets/vercel-9.png)
 
-   ![redeploy success](../../assets/vercel-9.png)
+1. 等待页面加载完毕后，在数据库详情页选择 `Open in Neon` 跳转到 Neon。在 Neon 界面左侧选择 `SQL Editor`，将 [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) 中的 SQL 语句粘贴进编辑器中，点击 `Run` 执行创建表操作。
 
-1. 此时会跳转到 `Overview` 界面开始部署，等待片刻后 `STATUS` 会变成 `Ready`。此时请点击 `Visit` ，即可跳转到部署好的网站地址，此地址即为你的服务端地址。
+   ![neon](../../assets/vercel-10.png)
 
-   ![visit](../../assets/vercel-10.png)
+   ![SQL Editor](../../assets/vercel-11.png)
+
+1. 等待 SQL 命令执行完毕。此时回到 Vercel，点击左侧的 `Deployments`，然后选择最上面的最新的一次部署。再点击右侧的 `Redeploy` 按钮进行重新部署。该步骤是为了让刚才配置的数据库服务生效。
+
+   ![redeploy](../../assets/vercel-12.png)
+   ![confirm](../../assets/vercel-13.png)
+
+1. 此时会跳转到 `Overview` 界面开始部署，等待约 1～2 分钟后 `STATUS` 会变成 `Ready`。此时请点击 `Visit`，即可跳转到部署好的网站地址，此地址即为你的服务端地址。
+
+   ![visit](../../assets/vercel-14.png)
 
 ## 绑定域名
 
-1. 点击顶部的 `Settings` - `Domains` 进入域名配置页
+1. 点击左侧下方的 `Domains` 进入域名配置页，然后点击 `Edit`。
+   ![Domains](../../assets/vercel-15.png)
+1. 输入需要绑定的域名并点击 `Save`，以 `example.com` 为例
 
-1. 输入需要绑定的域名并点击 `Add`
-
-   ![Add domain](../../assets/vercel-11.png)
+   ![Add domain](../../assets/vercel-16.png)
 
 1. 在域名服务器商处添加新的 `CNAME` 解析记录
 
    | Type  | Name    | Value                |
    | ----- | ------- | -------------------- |
-   | CNAME | example | cname.vercel-dns.com |
+   | CNAME | example.com | cname.vercel-dns.com |
 
 1. 等待生效，你可以通过自己的域名来访问了:tada:
-   - 评论系统：example.yourdomain.com
-   - 评论管理：example.yourdomain.com/ui
+   - 评论系统：example.com
+   - 评论管理（后台）：example.com/ui
 
-   ![success](../../assets/vercel-12.png)
+   ::: note
+   绑定完成后，建议尽快访问后台页面进行注册。首个注册的人会被设定成管理员。
+   :::
+
+   ![success](../../assets/vercel-17.png)
 
 ## HTML 引入
 

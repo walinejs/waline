@@ -38,29 +38,29 @@ Selamat datang di Waline. Hanya dalam beberapa langkah, Anda dapat mengaktifkan 
 
 1. Klik `Storage` di bagian atas untuk masuk ke halaman konfigurasi penyimpanan, kemudian pilih `Create Database`. Pilih `Neon` sebagai `Marketplace Database Providers`, dan klik `Continue` untuk melanjutkan.
 
-   ![neon](../../../assets/vercel-4.png)
+   ![neon](../../../assets/vercel-5.png)
 
 1. Anda akan diminta untuk membuat akun Neon. Klik `Accept and Create` untuk menerima dan membuatnya. Selanjutnya, Anda akan memilih paket database, termasuk region dan kuota. Anda dapat membiarkan semua default dan klik `Continue`.
 
-   ![neon](../../../assets/vercel-5.png)
+   ![neon](../../../assets/vercel-6.png)
 
 1. Anda kemudian akan diminta untuk mendefinisikan nama database. Anda juga dapat membiarkannya tidak berubah dan klik `Continue`.
 
-   ![neon](../../../assets/vercel-6.png)
+   ![neon](../../../assets/vercel-7.png)
 
 1. Sekarang Anda akan melihat layanan database yang baru saja dibuat di bagian `Storage`. Klik dan pilih `Open in Neon` untuk berpindah ke Neon. Di antarmuka Neon, pilih `SQL Editor` dari sidebar kiri, tempelkan pernyataan SQL dari [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) ke dalam editor, dan klik `Run` untuk membuat tabel.
 
-   ![neon](../../../assets/vercel-7.png)
+   ![neon](../../../assets/vercel-10.png)
 
-   ![neon](../../../assets/vercel-8.png)
+   ![neon](../../../assets/vercel-11.png)
 
 1. Setelah beberapa saat, Anda akan diberitahu bahwa pembuatan berhasil. Kembali ke Vercel, klik `Deployments` di bagian atas, dan klik tombol `Redeploy` di sebelah kanan deployment terbaru. Langkah ini memastikan layanan database yang baru dikonfigurasi berlaku.
 
-   ![redeploy success](../../../assets/vercel-9.png)
+   ![redeploy success](../../../assets/vercel-12.png)
 
 1. Anda akan diarahkan ke halaman `Overview` dan deployment akan dimulai. Setelah beberapa saat, `STATUS` akan berubah menjadi `Ready`. Klik `Visit` untuk membuka website yang di-deploy. URL ini adalah alamat server Anda.
 
-   ![visit](../../../assets/vercel-10.png)
+   ![visit](../../../assets/vercel-14.png)
 
 ## Mengikat Domain Kustom
 
@@ -68,7 +68,7 @@ Selamat datang di Waline. Hanya dalam beberapa langkah, Anda dapat mengaktifkan 
 
 1. Masukkan domain yang ingin Anda ikat dan klik `Add`.
 
-   ![Add domain](../../../assets/vercel-11.png)
+   ![Add domain](../../../assets/vercel-16.png)
 
 1. Tambahkan record `CNAME` baru di penyedia domain Anda:
 
@@ -80,7 +80,7 @@ Selamat datang di Waline. Hanya dalam beberapa langkah, Anda dapat mengaktifkan 
    - Sistem komentar: example.yourdomain.com
    - Manajemen komentar: example.yourdomain.com/ui
 
-   ![success](../../../assets/vercel-12.png)
+   ![success](../../../assets/vercel-17.png)
 
 ## Impor di HTML
 

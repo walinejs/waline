@@ -38,29 +38,29 @@ Willkommen bei Waline. In nur wenigen Schritten können Sie Waline aktivieren, u
 
 1. Klicken Sie oben auf `Storage`, um zur Speicherkonfigurationsseite zu gelangen, und wählen Sie dann `Create Database`. Wählen Sie `Neon` als `Marketplace Database Providers` und klicken Sie auf `Continue`, um fortzufahren.
 
-   ![neon](../../../assets/vercel-4.png)
+   ![neon](../../../assets/vercel-5.png)
 
 1. Sie werden aufgefordert, ein Neon-Konto zu erstellen. Klicken Sie auf `Accept and Create`, um es zu akzeptieren und zu erstellen. Als Nächstes wählen Sie den Datenbankplan aus, einschließlich Region und Kontingent. Sie können alles als Standard belassen und auf `Continue` klicken.
 
-   ![neon](../../../assets/vercel-5.png)
+   ![neon](../../../assets/vercel-6.png)
 
 1. Sie werden dann aufgefordert, den Datenbanknamen zu definieren. Sie können ihn auch unverändert lassen und auf `Continue` klicken.
 
-   ![neon](../../../assets/vercel-6.png)
+   ![neon](../../../assets/vercel-7.png)
 
 1. Jetzt sollten Sie den soeben erstellten Datenbankdienst unter `Storage` sehen. Klicken Sie darauf und wählen Sie `Open in Neon`, um zu Neon zu springen. Wählen Sie in der Neon-Oberfläche `SQL Editor` aus der linken Seitenleiste, fügen Sie die SQL-Anweisungen aus [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) in den Editor ein und klicken Sie auf `Run`, um die Tabellen zu erstellen.
 
-   ![neon](../../../assets/vercel-7.png)
+   ![neon](../../../assets/vercel-10.png)
 
-   ![neon](../../../assets/vercel-8.png)
+   ![neon](../../../assets/vercel-11.png)
 
 1. Nach kurzer Zeit werden Sie benachrichtigt, dass die Erstellung erfolgreich war. Gehen Sie zurück zu Vercel, klicken Sie oben auf `Deployments` und klicken Sie auf die Schaltfläche `Redeploy` rechts neben der neuesten Bereitstellung. Dieser Schritt stellt sicher, dass der neu konfigurierte Datenbankdienst wirksam wird.
 
-   ![redeploy success](../../../assets/vercel-9.png)
+   ![redeploy success](../../../assets/vercel-12.png)
 
 1. Sie werden zur Seite `Overview` weitergeleitet und die Bereitstellung wird gestartet. Nach einem Moment ändert sich der `STATUS` auf `Ready`. Klicken Sie auf `Visit`, um die bereitgestellte Website zu öffnen. Diese URL ist Ihre Serveradresse.
 
-   ![visit](../../../assets/vercel-10.png)
+   ![visit](../../../assets/vercel-14.png)
 
 ## Benutzerdefinierte Domain binden
 
@@ -68,7 +68,7 @@ Willkommen bei Waline. In nur wenigen Schritten können Sie Waline aktivieren, u
 
 1. Geben Sie die Domain ein, die Sie binden möchten, und klicken Sie auf `Add`.
 
-   ![Add domain](../../../assets/vercel-11.png)
+   ![Add domain](../../../assets/vercel-16.png)
 
 1. Fügen Sie einen neuen `CNAME`-Eintrag bei Ihrem Domain-Anbieter hinzu:
 
@@ -80,7 +80,7 @@ Willkommen bei Waline. In nur wenigen Schritten können Sie Waline aktivieren, u
    - Kommentarsystem: example.ihredomain.com
    - Kommentarverwaltung: example.ihredomain.com/ui
 
-   ![success](../../../assets/vercel-12.png)
+   ![success](../../../assets/vercel-17.png)
 
 ## Import in HTML
 

@@ -38,29 +38,29 @@ dir:
 
 1. 点击顶部的 `Storage` 进入存储服务配置页，选择 `Create Database` 创建数据库。`Marketplace Database Providers` 数据库服务选择 `Neon`，点击 `Continue` 进行下一步。
 
-   ![database](../../assets/vercel-4.png)
+   ![database](../../assets/vercel-5.png)
 
 1. 此时会让你创建一个 Neno 账号，此时选择 `Accept and Create` 接受并创建。后续选择数据库的套餐配置，包括地区和额度。这里可以什么都不操作直接选择 `Continue` 下一步。
 
-   ![neon](../../assets/vercel-5.png)
+   ![neon](../../assets/vercel-6.png)
 
 1. 此时会让你定义数据库名称，这里也可以不用修改直接 `Continue` 进行下一步。
 
-   ![neon](../../assets/vercel-6.png)
+   ![neon](../../assets/vercel-7.png)
 
 1. 这时候 `Storage` 下就有你创建的数据库服务了，点击进去选择 `Open in Neon` 跳转到 Neon。在 Neon 界面左侧选择 `SQL Editor`，将 [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) 中的 SQL 语句粘贴进编辑器中，点击 `Run` 执行创建表操作。
 
-   ![neon](../../assets/vercel-7.png)
+   ![neon](../../assets/vercel-10.png)
 
-   ![neon](../../assets/vercel-8.png)
+   ![neon](../../assets/vercel-11.png)
 
 1. 稍等片刻之后会告知你创建成功。此时回到 Vercel，点击顶部的 `Deployments` 点击顶部最新的一次部署右侧的 `Redeploy` 按钮进行重新部署。该步骤是为了让刚才配置的数据库服务生效。
 
-   ![redeploy success](../../assets/vercel-9.png)
+   ![redeploy success](../../assets/vercel-12.png)
 
 1. 此时会跳转到 `Overview` 界面开始部署，等待片刻后 `STATUS` 会变成 `Ready`。此时请点击 `Visit` ，即可跳转到部署好的网站地址，此地址即为你的服务端地址。
 
-   ![visit](../../assets/vercel-10.png)
+   ![visit](../../assets/vercel-14.png)
 
 ## 绑定域名
 
@@ -68,7 +68,7 @@ dir:
 
 1. 输入需要绑定的域名并点击 `Add`
 
-   ![Add domain](../../assets/vercel-11.png)
+   ![Add domain](../../assets/vercel-16.png)
 
 1. 在域名服务器商处添加新的 `CNAME` 解析记录
 
@@ -80,7 +80,7 @@ dir:
    - 评论系统：example.yourdomain.com
    - 评论管理：example.yourdomain.com/ui
 
-   ![success](../../assets/vercel-12.png)
+   ![success](../../assets/vercel-17.png)
 
 ## HTML 引入
 

@@ -36,29 +36,29 @@ order: 1
 
 1. 상단의 `Storage`를 클릭하여 스토리지 서비스 페이지로 이동한 후 `Create Database`를 선택합니다. `Marketplace Database Providers`에서 `Neon`을 선택한 후 `Continue`를 클릭합니다.
 
-   ![storage](../../../assets/vercel-4.png)
+   ![storage](../../../assets/vercel-5.png)
 
 1. Neon 계정을 생성하라는 메시지가 표시됩니다. `Accept and Create`를 선택합니다. 그런 다음 리전과 할당량을 포함한 데이터베이스 플랜 구성을 선택합니다. 기본값을 유지하고 `Continue`를 클릭해도 됩니다.
 
-   ![neon](../../../assets/vercel-5.png)
+   ![neon](../../../assets/vercel-6.png)
 
 1. 데이터베이스 이름을 정의합니다. 기본값을 유지하고 `Continue`를 클릭해도 됩니다.
 
-   ![neon](../../../assets/vercel-6.png)
+   ![neon](../../../assets/vercel-7.png)
 
 1. 이제 `Storage` 아래에 데이터베이스가 표시됩니다. 클릭한 후 `Open in Neon`을 선택하여 Neon으로 이동합니다. Neon에서 왼쪽의 `SQL Editor`를 선택하고, [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql)의 SQL을 에디터에 붙여넣은 후 `Run`을 클릭하여 테이블을 생성합니다.
 
-   ![neon](../../../assets/vercel-7.png)
+   ![neon](../../../assets/vercel-10.png)
 
-   ![neon](../../../assets/vercel-8.png)
+   ![neon](../../../assets/vercel-11.png)
 
 1. 잠시 후 성공 메시지가 표시됩니다. Vercel로 돌아가서 `Deployments`를 클릭한 후, 최신 배포에서 `Redeploy`를 클릭하여 새 데이터베이스 구성을 적용합니다.
 
-   ![redeploy success](../../../assets/vercel-9.png)
+   ![redeploy success](../../../assets/vercel-12.png)
 
 1. Vercel이 `Overview`로 이동하여 배포를 시작합니다. `STATUS`가 `Ready`가 되면, `Visit`을 클릭하여 배포된 사이트를 엽니다. 이 URL이 서버 주소입니다.
 
-   ![visit](../../../assets/vercel-10.png)
+   ![visit](../../../assets/vercel-14.png)
 
 ## 도메인 연결
 
@@ -66,7 +66,7 @@ order: 1
 
 1. 연결할 도메인을 입력하고 <kbd>Add</kbd> 버튼을 클릭합니다.
 
-   ![Add domain](../../../assets/vercel-11.png)
+   ![Add domain](../../../assets/vercel-16.png)
 
 1. 도메인 서비스 서버에 새 `CNAME` 레코드를 추가합니다.
 
@@ -78,7 +78,7 @@ order: 1
    - 댓글 시스템: example.your-domain.com
    - 관리자 패널: example.your-domain.com/ui
 
-   ![success](../../../assets/vercel-12.png)
+   ![success](../../../assets/vercel-17.png)
 
 ## HTML 가져오기
 

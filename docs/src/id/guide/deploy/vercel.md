@@ -36,29 +36,29 @@ Kami merilis paket `@waline/vercel` sebagai paket server, dan deployment Vercel 
 
 1. Klik `Storage` di bagian atas untuk masuk ke halaman layanan penyimpanan, pilih `Create Database`. Di bagian `Marketplace Database Providers`, pilih `Neon`, kemudian klik `Continue`.
 
-   ![storage](../../../assets/vercel-4.png)
+   ![storage](../../../assets/vercel-5.png)
 
 1. Anda akan diminta untuk membuat akun Neon. Pilih `Accept and Create`. Selanjutnya, pilih konfigurasi paket database, termasuk region dan kuota. Anda dapat membiarkan default dan klik `Continue`.
 
-   ![neon](../../../assets/vercel-5.png)
+   ![neon](../../../assets/vercel-6.png)
 
 1. Tentukan nama database. Anda dapat membiarkan default dan klik `Continue`.
 
-   ![neon](../../../assets/vercel-6.png)
+   ![neon](../../../assets/vercel-7.png)
 
 1. Sekarang database muncul di bagian `Storage`. Klik database tersebut dan pilih `Open in Neon` untuk berpindah ke Neon. Di Neon, pilih `SQL Editor` di sebelah kiri, tempelkan SQL dari [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) ke dalam editor, dan klik `Run` untuk membuat tabel.
 
-   ![neon](../../../assets/vercel-7.png)
+   ![neon](../../../assets/vercel-10.png)
 
-   ![neon](../../../assets/vercel-8.png)
+   ![neon](../../../assets/vercel-11.png)
 
 1. Setelah beberapa saat Anda akan melihat pesan berhasil. Kembali ke Vercel, klik `Deployments`, kemudian klik `Redeploy` pada deployment terbaru agar konfigurasi database baru berlaku.
 
-   ![redeploy success](../../../assets/vercel-9.png)
+   ![redeploy success](../../../assets/vercel-12.png)
 
 1. Vercel akan diarahkan ke `Overview` dan mulai melakukan deployment. Ketika `STATUS` berubah menjadi `Ready`, klik `Visit` untuk membuka situs yang di-deploy. URL ini adalah alamat server Anda.
 
-   ![visit](../../../assets/vercel-10.png)
+   ![visit](../../../assets/vercel-14.png)
 
 ## Menetapkan Domain
 
@@ -66,7 +66,7 @@ Kami merilis paket `@waline/vercel` sebagai paket server, dan deployment Vercel 
 
 1. Masukkan domain yang ingin Anda tetapkan dan klik tombol <kbd>Add</kbd>.
 
-   ![Add domain](../../../assets/vercel-11.png)
+   ![Add domain](../../../assets/vercel-16.png)
 
 1. Tambahkan record `CNAME` baru di server layanan domain Anda.
 
@@ -78,7 +78,7 @@ Kami merilis paket `@waline/vercel` sebagai paket server, dan deployment Vercel 
    - Sistem komentar: example.your-domain.com
    - Panel admin: example.your-domain.com/ui
 
-   ![success](../../../assets/vercel-12.png)
+   ![success](../../../assets/vercel-17.png)
 
 ## Impor HTML
 

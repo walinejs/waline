@@ -38,29 +38,29 @@ Waline에 오신 것을 환영합니다. 몇 가지 간단한 단계만으로 �
 
 1. 상단의 `Storage`를 클릭하여 스토리지 설정 페이지로 이동한 후, `Create Database`를 선택하세요. `Marketplace Database Providers`에서 `Neon`을 선택하고 `Continue`를 클릭하여 진행하세요.
 
-   ![neon](../../../assets/vercel-4.png)
+   ![neon](../../../assets/vercel-5.png)
 
 1. Neon 계정을 생성하라는 메시지가 표시됩니다. `Accept and Create`를 클릭하여 수락하고 생성하세요. 그런 다음 지역 및 할당량을 포함한 데이터베이스 플랜을 선택합니다. 모두 기본값으로 두고 `Continue`를 클릭하면 됩니다.
 
-   ![neon](../../../assets/vercel-5.png)
+   ![neon](../../../assets/vercel-6.png)
 
 1. 데이터베이스 이름을 정의하라는 메시지가 표시됩니다. 변경하지 않고 `Continue`를 클릭해도 됩니다.
 
-   ![neon](../../../assets/vercel-6.png)
+   ![neon](../../../assets/vercel-7.png)
 
 1. 이제 `Storage` 아래에 방금 생성한 데이터베이스 서비스가 표시됩니다. 이를 클릭하고 `Open in Neon`을 선택하여 Neon으로 이동하세요. Neon 인터페이스에서 왼쪽 사이드바의 `SQL Editor`를 선택하고, [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql)의 SQL 문을 에디터에 붙여넣은 후 `Run`을 클릭하여 테이블을 생성하세요.
 
-   ![neon](../../../assets/vercel-7.png)
+   ![neon](../../../assets/vercel-10.png)
 
-   ![neon](../../../assets/vercel-8.png)
+   ![neon](../../../assets/vercel-11.png)
 
 1. 잠시 후, 생성이 성공했다는 알림을 받게 됩니다. Vercel로 돌아가서 상단의 `Deployments`를 클릭하고, 최신 배포 오른쪽의 `Redeploy` 버튼을 클릭하세요. 이 단계는 새로 설정한 데이터베이스 서비스가 적용되도록 합니다.
 
-   ![redeploy success](../../../assets/vercel-9.png)
+   ![redeploy success](../../../assets/vercel-12.png)
 
 1. `Overview` 페이지로 리디렉션되고 배포가 시작됩니다. 잠시 후 `STATUS`가 `Ready`로 변경됩니다. `Visit`을 클릭하여 배포된 웹사이트를 열어보세요. 이 URL이 서버 주소입니다.
 
-   ![visit](../../../assets/vercel-10.png)
+   ![visit](../../../assets/vercel-14.png)
 
 ## 사용자 정의 도메인 바인딩
 
@@ -68,7 +68,7 @@ Waline에 오신 것을 환영합니다. 몇 가지 간단한 단계만으로 �
 
 1. 바인딩하려는 도메인을 입력하고 `Add`를 클릭하세요.
 
-   ![도메인 추가](../../../assets/vercel-11.png)
+   ![도메인 추가](../../../assets/vercel-16.png)
 
 1. 도메인 공급업체에서 새 `CNAME` 레코드를 추가하세요:
 
@@ -80,7 +80,7 @@ Waline에 오신 것을 환영합니다. 몇 가지 간단한 단계만으로 �
    - 댓글 시스템: example.yourdomain.com
    - 댓글 관리: example.yourdomain.com/ui
 
-   ![success](../../../assets/vercel-12.png)
+   ![success](../../../assets/vercel-17.png)
 
 ## HTML에서 가져오기
 
