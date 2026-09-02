@@ -15,7 +15,7 @@
     "@vuepress/plugin-comment": "2.0.0-rc.130",
     "@vuepress/plugin-docsearch": "2.0.0-rc.132",
     "@waline/client": "workspace:*",
-    "marked": "18.0.6",
+    "marked": "18.0.11",
     "sass-embedded": "1.100.0",
     "vidstack": "1.15.6",
     "vue": "catalog:",
