@@ -38,7 +38,7 @@
     "jsonwebtoken": "^9.0.3",
     "koa-compose": "^4.1.0",
     "leancloud-storage": "^4.15.2",
-    "markdown-it": "^14.3.0",
+    "markdown-it": "^15.0.0",
     "markdown-it-emoji": "^3.0.0",
     "nodemailer": "^9.0.3",
     "nunjucks": "^3.2.4",
