@@ -120,7 +120,7 @@ Layanan email digunakan untuk notifikasi email pendaftaran pengguna dan komentar
 
 ::: tip
 
-Penyedia layanan yang didukung dapat ditemukan di [layanan nodemailer](https://github.com/nodemailer/nodemailer/blob/master/lib/well-known/services.json). Anda dapat memilih salah satu dari `SMTP_SERVICE` dan (`SMTP_HOST`, `SMTP_PORT`). Jika Anda tidak mengetahui `SMTP_SERVICE` yang sesuai dalam daftar, Anda perlu mengonfigurasi `SMTP_HOST` dan `SMTP_PORT`, yang mungkin dapat ditemukan di pengaturan kotak surat.
+Penyedia layanan yang didukung dapat ditemukan di [layanan nodemailer](https://github.com/nodemailer/nodemailer/blob/ad4513f2a179e0484f9c95948211c186ba3ce7c9/lib/well-known/services.json). Anda dapat memilih salah satu dari `SMTP_SERVICE` dan (`SMTP_HOST`, `SMTP_PORT`). Jika Anda tidak mengetahui `SMTP_SERVICE` yang sesuai dalam daftar, Anda perlu mengonfigurasi `SMTP_HOST` dan `SMTP_PORT`, yang mungkin dapat ditemukan di pengaturan kotak surat.
 
 Nama pengguna SMTP biasanya mendukung kotak surat lengkap pengguna, dan kata sandi sebagian besar sama dengan kata sandi kotak surat.
 

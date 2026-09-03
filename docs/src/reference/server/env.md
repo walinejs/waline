@@ -108,7 +108,7 @@ Recaptcha Key 和 Secret 可在 <https://www.google.com/recaptcha> 申请。
 
 ::: tip
 
-可以在 [这里](https://github.com/nodemailer/nodemailer/blob/master/lib/well-known/services.json) 查看支持的服务商。`SMTP_SERVICE` 和 (`SMTP_HOST`、`SMTP_PORT`) 任选其一即可，如果没有在列表中知道对应的 `SMTP_SERVICE` 的话则需要配 `SMTP_HOST` 和 `SMTP_PORT`，它们一般可以在邮箱的设置中找到。
+可以在 [这里](https://github.com/nodemailer/nodemailer/blob/ad4513f2a179e0484f9c95948211c186ba3ce7c9/lib/well-known/services.json) 查看支持的服务商。`SMTP_SERVICE` 和 (`SMTP_HOST`、`SMTP_PORT`) 任选其一即可，如果没有在列表中知道对应的 `SMTP_SERVICE` 的话则需要配 `SMTP_HOST` 和 `SMTP_PORT`，它们一般可以在邮箱的设置中找到。
 
 SMTP 的用户名通常均支持用户的完整邮箱，而密码大多同邮箱密码。
 
