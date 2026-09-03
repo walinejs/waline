@@ -19,7 +19,7 @@ Für E-Mail-Benachrichtigungen müssen die folgenden Umgebungsvariablen konfigur
 
   ::: tip
 
-  Sie können alle unterstützten Anbieter in [nodemailer services](https://github.com/nodemailer/nodemailer/blob/master/lib/well-known/services.json) finden. Wenn Ihr Anbieter nicht aufgeführt ist, müssen Sie `SMTP_HOST` und `SMTP_PORT` konfigurieren.
+  Sie können alle unterstützten Anbieter in [nodemailer services](https://github.com/nodemailer/nodemailer/blob/ad4513f2a179e0484f9c95948211c186ba3ce7c9/lib/well-known/services.json) finden. Wenn Ihr Anbieter nicht aufgeführt ist, müssen Sie `SMTP_HOST` und `SMTP_PORT` konfigurieren.
   - `SMTP_HOST`: SMTP-Serveradresse, normalerweise auf der Einstellungsseite des Postfachs zu finden.
   - `SMTP_PORT`: SMTP-Server-Port, normalerweise auf der Einstellungsseite des Postfachs zu finden.
 

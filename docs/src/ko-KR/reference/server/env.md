@@ -120,7 +120,7 @@ Recaptcha 키와 시크릿은 <https://www.google.com/recaptcha>에서 요청할
 
 ::: tip
 
-지원되는 서비스 제공자는 [nodemailer 서비스](https://github.com/nodemailer/nodemailer/blob/master/lib/well-known/services.json)에서 찾을 수 있습니다. `SMTP_SERVICE`와 (`SMTP_HOST`, `SMTP_PORT`) 중 하나를 선택할 수 있습니다. 목록에서 해당 `SMTP_SERVICE`를 모를 경우 `SMTP_HOST`와 `SMTP_PORT`를 구성해야 하며, 메일박스 설정에서 찾을 수 있습니다.
+지원되는 서비스 제공자는 [nodemailer 서비스](https://github.com/nodemailer/nodemailer/blob/ad4513f2a179e0484f9c95948211c186ba3ce7c9/lib/well-known/services.json)에서 찾을 수 있습니다. `SMTP_SERVICE`와 (`SMTP_HOST`, `SMTP_PORT`) 중 하나를 선택할 수 있습니다. 목록에서 해당 `SMTP_SERVICE`를 모를 경우 `SMTP_HOST`와 `SMTP_PORT`를 구성해야 하며, 메일박스 설정에서 찾을 수 있습니다.
 
 SMTP 사용자명은 일반적으로 전체 메일박스를 지원하며, 비밀번호는 대부분 메일박스 비밀번호와 동일합니다.
 

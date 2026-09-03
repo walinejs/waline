@@ -19,7 +19,7 @@ order: 10
 
   ::: tip
 
-  [nodemailer services](https://github.com/nodemailer/nodemailer/blob/master/lib/well-known/services.json)에서 지원하는 모든 제공자를 확인할 수 있습니다. 목록에 없는 제공자를 사용하는 경우 `SMTP_HOST`와 `SMTP_PORT`를 설정해야 합니다.
+  [nodemailer services](https://github.com/nodemailer/nodemailer/blob/ad4513f2a179e0484f9c95948211c186ba3ce7c9/lib/well-known/services.json)에서 지원하는 모든 제공자를 확인할 수 있습니다. 목록에 없는 제공자를 사용하는 경우 `SMTP_HOST`와 `SMTP_PORT`를 설정해야 합니다.
   - `SMTP_HOST`: SMTP 서버 주소, 일반적으로 메일함 설정 페이지에서 확인할 수 있습니다.
   - `SMTP_PORT`: SMTP 서버 포트, 일반적으로 메일함 설정 페이지에서 확인할 수 있습니다.
 

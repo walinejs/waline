@@ -120,7 +120,7 @@ Der E-Mail-Service wird für E-Mail-Benachrichtigungen bei Benutzerregistrierung
 
 ::: tip
 
-Unterstützte Serviceanbieter finden Sie unter [nodemailer services](https://github.com/nodemailer/nodemailer/blob/master/lib/well-known/services.json). Sie können zwischen `SMTP_SERVICE` und (`SMTP_HOST`, `SMTP_PORT`) wählen. Wenn Sie den entsprechenden `SMTP_SERVICE` in der Liste nicht kennen, müssen Sie `SMTP_HOST` und `SMTP_PORT` konfigurieren, die normalerweise in den Postfacheinstellungen zu finden sind.
+Unterstützte Serviceanbieter finden Sie unter [nodemailer services](https://github.com/nodemailer/nodemailer/blob/ad4513f2a179e0484f9c95948211c186ba3ce7c9/lib/well-known/services.json). Sie können zwischen `SMTP_SERVICE` und (`SMTP_HOST`, `SMTP_PORT`) wählen. Wenn Sie den entsprechenden `SMTP_SERVICE` in der Liste nicht kennen, müssen Sie `SMTP_HOST` und `SMTP_PORT` konfigurieren, die normalerweise in den Postfacheinstellungen zu finden sind.
 
 Der Benutzername von SMTP unterstützt normalerweise die vollständige E-Mail-Adresse des Benutzers, und das Passwort ist meist dasselbe wie das Postfachpasswort.
 

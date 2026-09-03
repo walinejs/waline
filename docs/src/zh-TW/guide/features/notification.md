@@ -19,7 +19,7 @@ Email notification needs the following environment variables to be configured:
 
   ::: tip
 
-  You can find all support provider in [nodemailer services](https://github.com/nodemailer/nodemailer/blob/master/lib/well-known/services.json). If your provider is not listed, you must config `SMTP_HOST` and `SMTP_PORT`.
+  You can find all support provider in [nodemailer services](https://github.com/nodemailer/nodemailer/blob/ad4513f2a179e0484f9c95948211c186ba3ce7c9/lib/well-known/services.json). If your provider is not listed, you must config `SMTP_HOST` and `SMTP_PORT`.
   - `SMTP_HOST`: SMTP server address, it can be found in mailbox's setting page generally.
   - `SMTP_PORT`: SMTP server port, it can be found in mailbox's setting page generally.
 
