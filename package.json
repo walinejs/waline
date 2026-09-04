@@ -49,7 +49,7 @@
     "tsdown": "0.22.13",
     "typescript": "catalog:",
     "unrun": "0.3.1",
-    "vercel": "56.4.1",
+    "vercel": "59.11.7",
     "vite": "catalog:",
     "vite-plugin-css-injected-by-js": "5.0.2",
     "vite-plugin-svgr": "5.2.0",
