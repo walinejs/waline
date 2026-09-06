@@ -19,7 +19,7 @@ Notifikasi email membutuhkan variabel lingkungan berikut untuk dikonfigurasi:
 
   ::: tip
 
-  Anda dapat menemukan semua penyedia yang didukung di [layanan nodemailer](https://github.com/nodemailer/nodemailer/blob/master/lib/well-known/services.json). Jika penyedia Anda tidak terdaftar, Anda harus mengkonfigurasi `SMTP_HOST` dan `SMTP_PORT`.
+  Anda dapat menemukan semua penyedia yang didukung di [layanan nodemailer](https://github.com/nodemailer/nodemailer/blob/master/src/well-known/services.json). Jika penyedia Anda tidak terdaftar, Anda harus mengkonfigurasi `SMTP_HOST` dan `SMTP_PORT`.
   - `SMTP_HOST`: Alamat server SMTP, biasanya dapat ditemukan di halaman pengaturan kotak surat.
   - `SMTP_PORT`: Port server SMTP, biasanya dapat ditemukan di halaman pengaturan kotak surat.
 
