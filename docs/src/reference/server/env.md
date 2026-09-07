@@ -228,3 +228,9 @@ SMTP 的用户名通常均支持用户的完整邮箱，而密码大多同邮箱
 | `IP2REGION_DB`                  |                             | 自定义 IPv4 IP 查询库路径（已废弃，建议使用 `IP2REGION_DB_V4`）                                                                                                     |
 | `IP2REGION_DB_V4`               |                             | 自定义 IPv4 IP 查询库路径。如果未设置，将回退到 `IP2REGION_DB`                                                                                                      |
 | `IP2REGION_DB_V6`               |                             | 自定义 IPv6 IP 查询库路径。设置后可启用 IPv6 地址的归属地查询                                                                                                       |
+
+::: note
+
+移动端社交登录会携带短期 `waline_login_code` 和 `state` 跳回评论页，客户端再通过服务端接口交换登录 token。旧的 `token` 跳转参数仍会暂时保留兼容，但已废弃，并将在未来版本移除。
+
+:::

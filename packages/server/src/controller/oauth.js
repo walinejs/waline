@@ -1,5 +1,13 @@
 const jwt = require('jsonwebtoken');
 
+const buildLoginRedirect = (redirect, token, state) => {
+  const params = state
+    ? { waline_login_code: think.service('login-code').create({ token, state }).code, state }
+    : { waline_login_code: think.service('login-code').create({ token, state }).code };
+
+  return think.buildUrl(redirect, params);
+};
+
 module.exports = class OAuthController extends think.Controller {
   constructor(ctx) {
     super(ctx);
@@ -7,7 +15,7 @@ module.exports = class OAuthController extends think.Controller {
   }
 
   async indexAction() {
-    const { code, state, type, redirect } = this.get();
+    const { code, state, type, redirect, login_state: loginState = '' } = this.get();
     const { oauthUrl } = this.config();
 
     if (!code) {
@@ -15,6 +23,7 @@ module.exports = class OAuthController extends think.Controller {
       const redirectUrl = think.buildUrl(`${serverURL}/api/oauth`, {
         redirect,
         type,
+        login_state: loginState,
       });
 
       this.redirect(
@@ -34,6 +43,7 @@ module.exports = class OAuthController extends think.Controller {
       const redirectUrl = think.buildUrl(`${serverURL}/api/oauth`, {
         redirect,
         type,
+        login_state: loginState,
       });
 
       params.state = think.buildUrl(undefined, {
@@ -61,7 +71,7 @@ module.exports = class OAuthController extends think.Controller {
       const token = jwt.sign(userBySocial[0].objectId, this.config('jwtKey'));
 
       if (redirect) {
-        this.redirect(think.buildUrl(redirect, { token }));
+        this.redirect(buildLoginRedirect(redirect, token, loginState));
         return;
       }
 
@@ -107,6 +117,46 @@ module.exports = class OAuthController extends think.Controller {
     // and then generate token!
     const token = jwt.sign(cmtUser.objectId, this.config('jwtKey'));
 
-    this.redirect(`${redirect}${redirect.includes('?') ? '&' : '?'}token=${token}`);
+    this.redirect(buildLoginRedirect(redirect, token, loginState));
+  }
+
+  async codeAction() {
+    const { code, state = '' } = this.post();
+    const token = think.service('login-code').exchange({ code, state });
+
+    if (!token) {
+      return this.fail();
+    }
+
+    let userId = '';
+
+    try {
+      userId = jwt.verify(token, this.config('jwtKey'));
+    } catch (err) {
+      think.logger.debug(err);
+      return this.fail();
+    }
+    const user = await this.modelInstance.select(
+      { objectId: userId, type: ['!=', 'banned'] },
+      {
+        field: [
+          'id',
+          'email',
+          'url',
+          'display_name',
+          'type',
+          'avatar',
+          '2fa',
+          'label',
+          ...this.ctx.state.oauthServices.map(({ name }) => name),
+        ],
+      },
+    );
+
+    if (think.isEmpty(user)) {
+      return this.fail();
+    }
+
+    return this.success({ ...user[0], token });
   }
 };
