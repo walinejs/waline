@@ -125,3 +125,92 @@ In addition to creating an `info.json` upload and using a link as a preset, you 
 ```
 
 Here, we additionally add the `folder` property to tell Waline where the images are stored.
+
+## Using factory functions
+
+In addition to config objects, you can also use factory functions to dynamically create emoji presets. Factory functions can return one or more `WalineEmojiInfo` objects.
+
+### Return a single preset
+
+You can dynamically generate an emoji preset through factory functions:
+
+```js
+emoji: [
+  () => ({
+    name: "Dynamic Emoji",
+    folder: "https://example.com/my-emoji",
+    prefix: "my_",
+    type: "png",
+    icon: "cute",
+    items: ["laugh", "sob", "rage", "cute"],
+  }),
+],
+```
+
+Factory functions can be **sync** or **async**. This is useful when you need to load emoji configurations from a remote source:
+
+```js
+emoji: [
+  async () => {
+    const config = await fetch('https://example.com/emoji-config.json')
+      .then(res => res.json());
+
+    return {
+      name: 'Remote Emoji',
+      folder: 'https://example.com/emoji',
+      ...config,
+    };
+  },
+],
+```
+
+### Return multiple presets
+
+A single factory function can also return multiple emoji preset lists at once:
+
+```js
+emoji: [
+  () => [
+    {
+      name: "Pack 1",
+      folder: "https://example.com/pack1",
+      icon: "icon1",
+      items: ["a", "b", "c"],
+    },
+    {
+      name: "Pack 2",
+      folder: "https://example.com/pack2",
+      icon: "icon2",
+      items: ["x", "y", "z"],
+    },
+  ],
+],
+```
+
+### Mixing types
+
+You can mix factory functions, preset addresses, and config objects in the same array:
+
+```js
+emoji: [
+  // string preset address
+  'https://unpkg.com/@waline/emojis@1.1.0/weibo',
+  // factory function
+  async () => {
+    const config = await fetch('https://example.com/my-emoji/info.json')
+      .then(res => res.json());
+
+    return {
+      folder: 'https://example.com/my-emoji',
+      ...config,
+    };
+  },
+  // config object
+  {
+    name: 'Custom',
+    folder: 'https://example.com/custom',
+    icon: 'smile',
+    items: ['laugh', 'sob'],
+  },
+],
+```

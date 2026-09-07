@@ -41,6 +41,13 @@ export interface WalineEmojiInfo {
   items: string[];
 }
 
+export type WalineEmojiFactory = () =>
+  | WalineEmojiInfo
+  | WalineEmojiInfo[]
+  | Promise<WalineEmojiInfo | WalineEmojiInfo[]>;
+
+export type WalineEmojiOptions = (WalineEmojiFactory | WalineEmojiInfo | WalineEmojiPresets)[];
+
 export type WalineEmojiMaps = Record<string, string>;
 
 export type WalineLoginStatus = 'enable' | 'disable' | 'force';
