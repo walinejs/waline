@@ -1,11 +1,5 @@
 import request from '../utils/request.js';
 
-export const getUserInfo = () =>
-  request('token').catch(() => {
-    logout();
-    Promise.reject(new Error('get userinfo failed'));
-  });
-
 export const login = ({ email, password, code, recaptchaV3, turnstile }) =>
   request({
     url: 'token',
@@ -26,4 +20,10 @@ export const forgot = ({ email }) =>
     url: 'user/password',
     method: 'PUT',
     body: { email },
+  });
+
+export const getUserInfo = () =>
+  request('token').catch(() => {
+    logout();
+    Promise.reject(new Error('get userinfo failed'));
   });

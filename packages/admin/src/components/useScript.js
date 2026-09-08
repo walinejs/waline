@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react';
 
+import { isBrowser } from '../utils/isBrowser.js';
+
 // Previously loading/loaded scripts and their current status
 export const scripts = {};
 
@@ -95,10 +97,9 @@ export default function useScript({ src, checkForExisting = false, ...attributes
       scriptEl.removeEventListener('error', handleError);
     };
     // we need to ignore the attributes as they're a new object per call, so we'd never skip an effect call
+    // eslint-disable-next-line react/rule-suppression
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [src]);
 
   return [loading, error];
 }
-
-const isBrowser = typeof window !== 'undefined' && Boolean(window.document);

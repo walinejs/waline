@@ -21,7 +21,7 @@ export default function TwoFactorAuth() {
 
     const code = event.target.code.value;
 
-    if (!code || code.length < 6 || code.length > 6) {
+    if (!code || code.length !== 6) {
       alert(t('minimum 6 characters required'));
 
       return;

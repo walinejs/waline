@@ -217,7 +217,7 @@ catalogs:
 
 overrides:
   '@cloudbase/database>lodash.unset': ^4.18.0
-  '@cloudbase/node-sdk>axios': ^0.33.0
+  '@cloudbase/node-sdk>axios': 1.18.0
   '@next-theme/utils>js-yaml': ^5.0.0
   '@waline/api': workspace:*
   '@waline/client': workspace:*
@@ -3800,8 +3800,8 @@ packages:
   aws4@1.13.2:
     resolution: {integrity: sha512-lHe62zvbTB5eEABUVi/AwVh0ZKY9rMMDhmm+eeyuuUQbQ3+J+fONVQOZyj+DdrvD4BY33uYniyRJ4UJIaSKAfw==}
 
-  axios@0.33.0:
-    resolution: {integrity: sha512-juz19g7B3UWT9r3+tgRFQf2Bdy6IKDVroiyuVOUrkILVKHpqHL++K1l8ybvfdEP9B/VE72vk8vllbnedVCm/og==}
+  axios@1.18.0:
+    resolution: {integrity: sha512-E32NzpYKp++W7XRe52rHiXV2ehxmh3wbdgO7MHeFM+vqxLBYHzt0ElkiImtOBxtOmyp0yoC8C6uESVV84Y2/hw==}
 
   b4a@1.8.1:
     resolution: {integrity: sha512-aiqre1Nr0B/6DgE2N5vwTc+2/oQZ4Wh1t4NznYY4E00y8LCt6NqdRv81so00oo27D8MVKTpUa/MwUUtBLXCoDw==}
@@ -6293,8 +6293,9 @@ packages:
     engines: {node: '>=0.8'}
     hasBin: true
 
-  proxy-from-env@1.1.0:
-    resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
+  proxy-from-env@2.1.0:
+    resolution: {integrity: sha512-cJ+oHTW1VAEa8cJslgmUZrc+sjRKgAKl3Zyse6+PV38hZe/V6Z14TbCuXcan9F9ghlz4QrFr2c92TNF82UkYHA==}
+    engines: {node: '>=10'}
 
   psl@1.15.0:
     resolution: {integrity: sha512-JZd3gMVBAVQkSs6HdNZo9Sdo0LNcQeMNP3CozBJb3JYC/QUYZTnKxP+f8oWRX4rHP5EurWxqAHTSwUCjlNKa1w==}
@@ -8906,7 +8907,7 @@ snapshots:
       '@cloudbase/types': 2.30.0
       '@cloudbase/wx-cloud-client-sdk': 1.7.1
       agentkeepalive: 4.6.0
-      axios: 0.33.0(debug@4.4.3(supports-color@10.2.2))
+      axios: 1.18.0(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2)
       form-data: 4.0.6
       http-proxy-agent: 5.0.0(supports-color@10.2.2)
       https-proxy-agent: 5.0.1(supports-color@10.2.2)
@@ -11369,13 +11370,15 @@ snapshots:
 
   aws4@1.13.2: {}
 
-  axios@0.33.0(debug@4.4.3(supports-color@10.2.2)):
+  axios@1.18.0(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2):
     dependencies:
       follow-redirects: 1.16.0(debug@4.4.3(supports-color@10.2.2))
       form-data: 4.0.6
-      proxy-from-env: 1.1.0
+      https-proxy-agent: 5.0.1(supports-color@10.2.2)
+      proxy-from-env: 2.1.0
     transitivePeerDependencies:
       - debug
+      - supports-color
 
   b4a@1.8.1: {}
 
@@ -13909,7 +13912,7 @@ snapshots:
       glob: 7.2.3
       yargs: 3.32.0
 
-  proxy-from-env@1.1.0: {}
+  proxy-from-env@2.1.0: {}
 
   psl@1.15.0:
     dependencies:
