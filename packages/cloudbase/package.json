@@ -9,7 +9,7 @@
   "license": "MIT",
   "author": "lizheming<i@imnerd.org>",
   "repository": {
-    "url": "https://github.com/walinejs/waline",
+    "url": "git+https://github.com/walinejs/waline.git",
     "directory": "packages/cloudbase"
   },
   "main": "index.js",

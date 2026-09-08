@@ -17,7 +17,7 @@ export default defineConfig({
 
   build: {
     lib: {
-      entry: path.resolve(__dirname, 'src/index.jsx'),
+      entry: path.resolve(import.meta.dirname, 'src/index.jsx'),
       fileName: 'admin',
       formats: ['es'],
     },

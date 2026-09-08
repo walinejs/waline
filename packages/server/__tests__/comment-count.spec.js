@@ -25,8 +25,7 @@ const handler = main({
 });
 
 describe('comment count API', () => {
-  let server;
-  let port;
+  let port, server;
 
   beforeAll(async () => {
     server = http.createServer(handler);
