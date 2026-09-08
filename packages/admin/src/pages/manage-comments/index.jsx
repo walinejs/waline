@@ -247,8 +247,12 @@ export default function ManageComments() {
     const comment = list.data[idx];
 
     await updateComment(comment.objectId, editCommentRef.current);
-    list.data[idx] = { ...comment, ...editCommentRef.current };
-    setList({ ...list });
+    setList(({ data, ...rest }) => ({
+      ...rest,
+      data: data.map((item, index) =>
+        index === idx ? { ...item, ...editCommentRef.current } : item,
+      ),
+    }));
     setCmtHandler({});
   };
 

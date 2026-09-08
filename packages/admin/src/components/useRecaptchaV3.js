@@ -1,6 +1,17 @@
 import { useEffect, useState } from 'react';
 
+import { isBrowser } from '../utils/isBrowser.js';
 import useScript from './useScript.js';
+
+const injectStyle = (rule) => {
+  const styleEl = document.createElement('style');
+
+  document.head.append(styleEl);
+
+  const styleSheet = styleEl.sheet;
+
+  if (styleSheet) styleSheet.insertRule(rule, styleSheet.cssRules.length);
+};
 
 export const useRecaptcha = ({ sitekey, hideDefaultBadge = false, checkForExisting = true }) => {
   const [recaptcha, setRecaptcha] = useState();
@@ -38,16 +49,4 @@ export const useRecaptcha = ({ sitekey, hideDefaultBadge = false, checkForExisti
         reject(new Error('Recaptcha script not available'));
       }
     });
-};
-
-const isBrowser = typeof window !== 'undefined' && Boolean(window.document);
-
-const injectStyle = (rule) => {
-  const styleEl = document.createElement('style');
-
-  document.head.append(styleEl);
-
-  const styleSheet = styleEl.sheet;
-
-  if (styleSheet) styleSheet.insertRule(rule, styleSheet.cssRules.length);
 };
