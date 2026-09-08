@@ -81,17 +81,20 @@ export const pageviewCount = ({
     return query != null && path !== query;
   };
 
-  const fetch = (elements: HTMLElement[]): Promise<void> =>
-    getPageview({
-      serverURL: getServerURL(serverURL),
-      paths: elements.map((element) => getQuery(element) ?? path),
-      lang,
-      signal: controller.signal,
-    })
-      .then((counts) => {
-        renderVisitorCount(counts, elements);
-      })
-      .catch(errorHandler);
+  const fetch = async (elements: HTMLElement[]): Promise<void> => {
+    try {
+      const counts = await getPageview({
+        serverURL: getServerURL(serverURL),
+        paths: elements.map((element) => getQuery(element) ?? path),
+        lang,
+        signal: controller.signal,
+      });
+
+      renderVisitorCount(counts, elements);
+    } catch (err) {
+      errorHandler(err as Error);
+    }
+  };
 
   // we should update pageviews
   if (update) {
