@@ -10,10 +10,7 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 describe('vercel runtime', () => {
   const fixturePath = new URL('fixtures/vercel', import.meta.url).pathname;
 
-  let oauthServiceStub;
-  let oauthServiceUrl;
-  let vercelProcess;
-  let vercelPort;
+  let oauthServiceStub, oauthServiceUrl, vercelPort, vercelProcess;
   let output = '';
   const sqliteDir = `/tmp/test-waline-vercel-${process.pid}`;
   const testPath = `/vercel-unit-test-${process.pid}`;

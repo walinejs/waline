@@ -88,7 +88,6 @@ export default defineConfig([
   {
     ...commonOptions,
     entry: { component: './src/entries/component-type.d.ts' },
-
     target: ['node22', 'baseline-widely-available'],
     dts: {
       dtsInput: true,

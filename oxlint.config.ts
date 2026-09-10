@@ -44,6 +44,9 @@ export default defineHopeConfig(
         },
       ],
       'react/jsx-max-depth': 'off',
+      'react/jsx-no-literals': 'off',
+      // react compiler is not used, its unimplemented-syntax todos are not actionable
+      'react/todo': 'off',
       'typescript/no-floating-promises': 'off',
       'typescript/unbound-method': 'off',
       // disabled for compatibility concern
@@ -86,6 +89,7 @@ export default defineHopeConfig(
       'import/no-commonjs': 'off',
       'import/unambiguous': 'off',
       'typescript/no-require-imports': 'off',
+      'typescript/no-var-requires': 'off',
 
       'unicorn/prefer-module': 'off',
     },

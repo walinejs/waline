@@ -80,8 +80,8 @@ order: 1
 
 1. 在域名服务器商处添加新的 `CNAME` 解析记录
 
-   | Type  | Name    | Value                |
-   | ----- | ------- | -------------------- |
+   | Type  | Name        | Value                |
+   | ----- | ----------- | -------------------- |
    | CNAME | example.com | cname.vercel-dns.com |
 
 1. 等待生效，你可以通过自己的域名来访问了:tada:
