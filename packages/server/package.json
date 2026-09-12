@@ -42,7 +42,7 @@
     "markdown-it-emoji": "^3.0.0",
     "nodemailer": "^9.0.3",
     "nunjucks": "^3.2.4",
-    "phpass": "^0.1.1",
+    "phpass": "^1.0.0",
     "prismjs": "^1.30.0",
     "rss": "^1.2.2",
     "speakeasy": "^2.0.0",
