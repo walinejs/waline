@@ -26,7 +26,7 @@
     "test": "vitest"
   },
   "devDependencies": {
-    "@babel/runtime": "8.0.0",
+    "@babel/runtime": "8.0.5",
     "@mr-hope/tsconfig": "0.0.4",
     "@redocly/cli": "2.43.3",
     "@types/node": "22.20.1",
