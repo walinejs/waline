@@ -4,7 +4,6 @@ import { once } from 'node:events';
 import { mkdir, readFile, rm } from 'node:fs/promises';
 import { createServer } from 'node:http';
 import { DatabaseSync } from 'node:sqlite';
-import path from 'node:path';
 
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 
