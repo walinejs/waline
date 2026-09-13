@@ -4,6 +4,7 @@ import { once } from 'node:events';
 import { mkdir, readFile, rm } from 'node:fs/promises';
 import { createServer } from 'node:http';
 import { DatabaseSync } from 'node:sqlite';
+import path from 'node:path';
 
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 
@@ -90,7 +91,7 @@ describe('vercel runtime', () => {
 
     vercelProcess = spawn(
       'vercel',
-      ['dev', fixturePath, '--local-config', './vercel.json', '--yes', '--listen', `127.0.0.1:${vercelPort}`],
+      ['dev', fixturePath, '--local-config', path.join(fixturePath, './vercel.json'), '--yes', '--listen', `127.0.0.1:${vercelPort}`],
       {
         cwd: process.cwd(),
         env: {
