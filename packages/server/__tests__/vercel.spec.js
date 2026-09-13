@@ -90,7 +90,7 @@ describe('vercel runtime', () => {
 
     vercelProcess = spawn(
       'vercel',
-      ['dev', fixturePath, '--local', '--yes', '--listen', `127.0.0.1:${vercelPort}`],
+      ['dev', fixturePath, '--local-config', './vercel.json', '--yes', '--listen', `127.0.0.1:${vercelPort}`],
       {
         cwd: process.cwd(),
         env: {
