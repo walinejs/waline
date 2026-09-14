@@ -12,8 +12,8 @@ allowBuilds:
 
 catalog:
   typescript: ^6.0.3
-  vue: ^3.5.40
-  vite: 8.1.5
+  vue: ^3.5.42
+  vite: 8.2.2
 
 enableGlobalVirtualStore: true
 
@@ -21,9 +21,11 @@ minimumReleaseAgeExclude:
   - '@oxfmt/*'
   - '@oxlint/*'
   - '@oxlint-tsgolint/*'
+  - '@mdit/*'
   - '@vercel/*'
   - '@vitest/*'
   - '@vue/*'
+  - '@vuepress/*'
   - oxc-config-hope
   - oxfmt
   - oxlint
@@ -32,8 +34,10 @@ minimumReleaseAgeExclude:
   - vercel
   - vitest
   - vue
-  - think-helper@1.2.0
-  - think-model-postgresql@1.1.10
+  - vuepress-*
+  - stylelint-config-hope
+
+minimumReleaseAgeExcludePrune: true
 
 overrides:
   # FIXME: vulnerable
@@ -45,6 +49,7 @@ overrides:
   '@waline/api': workspace:*
   '@waline/client': workspace:*
   '@xmldom/xmldom': ^0.9.10
+
 packageExtensions:
   # FIXME: This is a bug in mathjax
   '@mathjax/mathjax-newcm-font':
@@ -58,7 +63,4 @@ packageExtensions:
 
 trustPolicy: no-downgrade
 
-trustPolicyExclude:
-  - semver@6.3.1 # babel
-  - undici@5.29.0 # vercel
-  - undici-types@6.21.0 # node types
+trustPolicyIgnoreAfter: 720

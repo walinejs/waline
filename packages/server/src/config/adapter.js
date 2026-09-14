@@ -84,7 +84,7 @@ if (MONGO_DB) {
   type = 'tidb';
 }
 
-exports.model = {
+const model = {
   type,
   common: {
     logSql: true,
@@ -171,9 +171,11 @@ exports.model = {
  *
  * @type {Object}
  */
-exports.logger = {
+const logger = {
   type: 'console',
   console: {
     handle: Console,
   },
 };
+
+module.exports = { logger, model };

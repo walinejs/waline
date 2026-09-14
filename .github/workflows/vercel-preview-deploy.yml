@@ -30,12 +30,10 @@ jobs:
       - uses: actions/checkout@v7
 
       - uses: pnpm/action-setup@v6
-        with:
-          version: 11.11.0
 
       - uses: actions/setup-node@v6
         with:
-          node-version: 24.18.0
+          node-version: 24
           cache: pnpm
 
       - name: Install dependencies
@@ -99,6 +97,7 @@ jobs:
 
       - name: Build preview artifacts
         run: |
+          set -e
           pnpm api:build
           pnpm client:build
           pnpm admin:build
@@ -112,11 +111,95 @@ jobs:
             -e 's#__WALINE_PREVIEW_COMMIT__#${{ github.event.pull_request.head.sha }}#g' \
             -e 's#__WALINE_PREVIEW_COMMIT_URL__#${{ github.server_url }}/${{ github.repository }}/commit/${{ github.event.pull_request.head.sha }}#g' \
             packages/server/__tests__/fixtures/vercel/index.html
+
           # Pack the server from the current PR checkout and install that local tarball in the fixture.
+          echo "========================================="
+          echo "Step 1: Packing @waline/vercel..."
+          echo "========================================="
           pnpm --dir packages/server pack --pack-destination ../../packages/server/__tests__/fixtures/vercel
-          mv packages/server/__tests__/fixtures/vercel/waline-vercel-*.tgz packages/server/__tests__/fixtures/vercel/waline-vercel-current-pr.tgz
+          PACK_EXIT_CODE=$?
+          if [ $PACK_EXIT_CODE -ne 0 ]; then
+            echo "ERROR: pnpm pack failed with exit code $PACK_EXIT_CODE"
+            exit $PACK_EXIT_CODE
+          fi
+
+          echo ""
+          echo "========================================="
+          echo "Step 2: Checking for .tgz file..."
+          TGZ_FILE=$(ls ./packages/server/__tests__/fixtures/vercel/*.tgz | head -n 1)
+          if [ -z "$TGZ_FILE" ]; then
+            echo "ERROR: No .tgz file found in ./packages/server/__tests__/fixtures/vercel"
+            exit 1
+          fi
+          echo "Found .tgz file: $TGZ_FILE"
+          echo "========================================="
+          ls -lah packages/server/__tests__/fixtures/vercel/
+
+          TGZ_FILES=$(find packages/server/__tests__/fixtures/vercel -maxdepth 1 -name "waline-vercel-*.tgz" -type f)
+          if [ -z "$TGZ_FILES" ]; then
+            echo "ERROR: No .tgz file found in packages/server/__tests__/fixtures/vercel/"
+            exit 1
+          fi
+          echo "Found tarball(s):"
+          echo "$TGZ_FILES"
+
+          TGZ_FILE=$(ls -t packages/server/__tests__/fixtures/vercel/waline-vercel-*.tgz | head -1)
+          TGZ_SIZE=$(stat -f%z "$TGZ_FILE" 2>/dev/null || stat -c%s "$TGZ_FILE")
+          echo "Tarball size: $TGZ_SIZE bytes"
+
+          if [ $TGZ_SIZE -lt 100 ]; then
+            echo "ERROR: Tarball size is suspiciously small ($TGZ_SIZE bytes)"
+            echo "Tarball content:"
+            cat "$TGZ_FILE"
+            exit 1
+          fi
+
+          echo ""
+          echo "========================================="
+          echo "Step 3: Validating tar format..."
+          echo "========================================="
+          file "$TGZ_FILE"
+
+          tar -tzf "$TGZ_FILE" > /tmp/tar_list.txt 2>&1
+          TAR_EXIT_CODE=$?
+          if [ $TAR_EXIT_CODE -ne 0 ]; then
+            echo "ERROR: Invalid tar format! Exit code: $TAR_EXIT_CODE"
+            echo "tar output:"
+            cat /tmp/tar_list.txt
+            echo ""
+            echo "First 500 bytes of tarball:"
+            xxd -l 500 "$TGZ_FILE"
+            exit 1
+          fi
+
+          echo "Tarball is valid. First 20 entries:"
+          head -20 /tmp/tar_list.txt
+
+          echo ""
+          echo "========================================="
+          echo "Step 4: Renaming tarball..."
+          echo "========================================="
+          mv "$TGZ_FILE" packages/server/__tests__/fixtures/vercel/waline-vercel-current-pr.tgz
+          ls -lah packages/server/__tests__/fixtures/vercel/waline-vercel-current-pr.tgz
+
+          echo ""
+          echo "========================================="
+          echo "Step 5: Creating package.json..."
+          echo "========================================="
           printf '{"private":true,"dependencies":{"@waline/vercel":"file:./waline-vercel-current-pr.tgz"}}\n' > packages/server/__tests__/fixtures/vercel/package.json
+          cat packages/server/__tests__/fixtures/vercel/package.json
+
+          echo ""
+          echo "========================================="
+          echo "Step 6: Updating index.cjs..."
+          echo "========================================="
           sed -i "s#require('../../..')#require('./node_modules/@waline/vercel')#" packages/server/__tests__/fixtures/vercel/index.cjs
+          cat packages/server/__tests__/fixtures/vercel/index.cjs
+
+          echo ""
+          echo "========================================="
+          echo "Build preview artifacts completed successfully!"
+          echo "========================================="
 
       - name: Link Vercel project
         run: |

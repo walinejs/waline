@@ -1,5 +1,5 @@
+const { fullEmoji } = require('@mdit/plugin-emoji');
 const MarkdownIt = require('markdown-it');
-const emojiPlugin = require('markdown-it-emoji');
 
 const { resolveHighlighter } = require('./highlight.js');
 const { sanitize } = require('./xss.js');
@@ -30,7 +30,7 @@ const getMarkdownParser = async (markdown = {}) => {
 
   // parse emoji
   if (emoji !== false) {
-    markdownIt.use(emojiPlugin.full, typeof emoji === 'object' ? emoji : {});
+    markdownIt.use(fullEmoji, typeof emoji === 'object' ? emoji : {});
   }
 
   // parse sub
