@@ -219,8 +219,8 @@ importers:
   docs:
     devDependencies:
       '@fancyapps/ui':
-        specifier: 6.1.14
-        version: 6.1.14
+        specifier: 6.1.15
+        version: 6.1.15
       '@mathjax/src':
         specifier: 4.1.3
         version: 4.1.3
@@ -1577,8 +1577,8 @@ packages:
       '@noble/hashes':
         optional: true
 
-  '@fancyapps/ui@6.1.14':
-    resolution: {integrity: sha512-cBV73XXHrc0qMca+PJJ6qay3xweIgsoYse13rGRstgUs0xA5WAv1tgbSzPCIOOjiLs2S2jiVFJxyszgvgyfxMg==}
+  '@fancyapps/ui@6.1.15':
+    resolution: {integrity: sha512-J1w/ZLhkXzMSHZ7Bg1iX7GFA/YkH/Ka+r2HIX4pchwu6PNalfyzzgxghhP92CWlbH4ssV8qYPJ/KQcdRW5TVVw==}
 
   '@fast-csv/format@5.0.7':
     resolution: {integrity: sha512-VdypoRxv7PF+LsyPouTMKdB0d76hync+gLpgdNqfqVK44MsgW4oiCJSdrki2FisWT7v2QGUYDHjp4L7w5oO6gw==}
@@ -9636,7 +9636,7 @@ snapshots:
     optionalDependencies:
       '@noble/hashes': 1.8.0
 
-  '@fancyapps/ui@6.1.14': {}
+  '@fancyapps/ui@6.1.15': {}
 
   '@fast-csv/format@5.0.7':
     dependencies:
@@ -13622,7 +13622,7 @@ snapshots:
 
   jest-worker@27.5.1:
     dependencies:
-      '@types/node': 24.13.3
+      '@types/node': 24.13.4
       merge-stream: 2.0.0
       supports-color: 8.1.1
     optional: true
