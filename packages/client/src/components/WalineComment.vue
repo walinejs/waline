@@ -231,17 +231,27 @@ onMounted(async () => {
   );
 
   const qs = new URLSearchParams(location.search);
+  const loginCode = qs.get('waline_login_code');
+  const loginState = qs.get('state') || '';
   const token = qs.get('token');
 
-  if (!token) {
+  if (!loginCode && !token) {
     return;
   }
 
-  const resp = await fetch(`${config?.value.serverURL}/token`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  })
+  const resp = await (loginCode
+    ? fetch(`${config?.value.serverURL}/oauth/code`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ code: loginCode, state: loginState }),
+      })
+    : fetch(`${config?.value.serverURL}/token`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }))
     .then((res) => res.json())
     .catch((err) => {
       // oxlint-disable-next-line no-console
@@ -250,10 +260,12 @@ onMounted(async () => {
     });
 
   if (!resp.errno && resp?.data?.objectId) {
-    userInfo.value = { ...resp.data, token };
+    userInfo.value = { ...resp.data, token: resp.data.token || token };
   }
 
   const url = new URL(window.location.href);
+  url.searchParams.delete('waline_login_code');
+  url.searchParams.delete('state');
   url.searchParams.delete('token');
 
   history.replaceState(
