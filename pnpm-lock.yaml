@@ -138,8 +138,8 @@ importers:
         specifier: 0.0.4
         version: 0.0.4(typescript@6.0.3)
       '@redocly/cli':
-        specifier: 2.51.2
-        version: 2.51.2
+        specifier: 2.53.2
+        version: 2.53.2
       '@types/node':
         specifier: 24.13.4
         version: 24.13.4
@@ -2748,8 +2748,8 @@ packages:
   '@quansync/fs@1.0.0':
     resolution: {integrity: sha512-4TJ3DFtlf1L5LDMaM6CanJ/0lckGNtJcMjQ1NAV6zDmA0tEHKZtxNKin8EgPaVX1YzljbxckyT2tJrpQKAtngQ==}
 
-  '@redocly/cli@2.51.2':
-    resolution: {integrity: sha512-pviW1gfsjCAuIVutmQcihlhlgoivfNzisBIR61EwSSREHGZ08Sbtjp/h/HPDkVavWwdzR/gs2wgHrdXLd6qU1A==}
+  '@redocly/cli@2.53.2':
+    resolution: {integrity: sha512-ay2jLuWvKssw1Au1A0fyDR//plK83GxV80TfA08iB9W/5AVosgB+WFv0JzglU4PiXf1fQjtsoXhZwZLx28VGrw==}
     engines: {node: '>=22.12.0 || >=20.19.0 <21.0.0', npm: '>=10'}
     hasBin: true
 
@@ -10447,7 +10447,7 @@ snapshots:
     dependencies:
       quansync: 1.0.0
 
-  '@redocly/cli@2.51.2': {}
+  '@redocly/cli@2.53.2': {}
 
   '@rematch/core@2.2.0(redux@5.0.1)':
     dependencies:
@@ -13622,7 +13622,7 @@ snapshots:
 
   jest-worker@27.5.1:
     dependencies:
-      '@types/node': 24.13.3
+      '@types/node': 24.13.4
       merge-stream: 2.0.0
       supports-color: 8.1.1
     optional: true
