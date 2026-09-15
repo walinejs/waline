@@ -441,8 +441,8 @@ importers:
         specifier: ^3.2.4
         version: 3.2.4(chokidar@3.6.0)
       phpass:
-        specifier: ^0.1.1
-        version: 0.1.1
+        specifier: ^1.0.0
+        version: 1.0.0
       prismjs:
         specifier: ^1.30.0
         version: 1.30.0
@@ -4152,6 +4152,10 @@ packages:
     resolution: {integrity: sha512-esaMayGbxzD3bOpy7f00pa5wA15wqhP15RbDYGzh/xGbZRNr05G9HdNiqK4ywzrVdzO8rv+Z4l6m01/9pv1FRA==}
     engines: {node: '>=22'}
 
+  bcryptjs@3.0.3:
+    resolution: {integrity: sha512-GlF5wPWnSa/X5LKM1o0wz0suXIINz1iHRLvTS+sLyi7XPbe5ycmYI3DlZqVGZZtDgl4DmasFg7gOB3JYbphV5g==}
+    hasBin: true
+
   better-sqlite3@11.10.0:
     resolution: {integrity: sha512-EwhOpyXiOEL/lKzHz9AW1msWFNzGc/z+LzeB3/jnFJpxu+th2yqvzsSWas1v9jgs9+xiXJcD5A8CJxAG2TaghQ==}
 
@@ -6627,8 +6631,9 @@ packages:
     resolution: {integrity: sha512-WNFHoKrkZNnvFFhbHL93WDkW3ifwVOXSW3w1UuZZelSmgXpIGiZSNlZJq37rR8YejqME2rHs9EhH9ZvlvFH2NA==}
     engines: {node: '>= 0.12.0'}
 
-  phpass@0.1.1:
-    resolution: {integrity: sha512-ZGkvcdZbIVN6k94p87LavU+GJbVJ8u1BKUkG/qRhdKi8v8YQONT8Ad1DaeXTeEjHBQbMK0+eiI03/M3PbNHB5g==}
+  phpass@1.0.0:
+    resolution: {integrity: sha512-+t1HwTJVpWQHcLrUuu1OcHPzrV5j9jowHcSWCqKRDMQwh564OuETVbl75KvQuFwBltTsREOIlkwWapRtHOVtrQ==}
+    engines: {node: '>=22'}
 
   picocolors@1.0.0:
     resolution: {integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==}
@@ -12267,6 +12272,8 @@ snapshots:
 
   bcrypt-ts@9.0.2: {}
 
+  bcryptjs@3.0.3: {}
+
   better-sqlite3@11.10.0:
     dependencies:
       bindings: 1.5.0
@@ -13622,7 +13629,7 @@ snapshots:
 
   jest-worker@27.5.1:
     dependencies:
-      '@types/node': 24.13.3
+      '@types/node': 24.13.4
       merge-stream: 2.0.0
       supports-color: 8.1.1
     optional: true
@@ -14870,7 +14877,9 @@ snapshots:
 
   photoswipe@5.4.4: {}
 
-  phpass@0.1.1: {}
+  phpass@1.0.0:
+    dependencies:
+      bcryptjs: 3.0.3
 
   picocolors@1.0.0: {}
 
