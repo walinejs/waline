@@ -22,6 +22,7 @@ const {
   AVATAR_PROXY,
   GITHUB_TOKEN,
   OAUTH_URL,
+  LOGIN_REDIRECT_ALLOWLIST,
 
   MARKDOWN_CONFIG = '{}',
   MARKDOWN_HIGHLIGHT,
@@ -124,6 +125,7 @@ module.exports = {
   audit: COMMENT_AUDIT && !isFalse(COMMENT_AUDIT),
   avatarProxy,
   oauthUrl,
+  loginRedirectAllowlist: LOGIN_REDIRECT_ALLOWLIST ? LOGIN_REDIRECT_ALLOWLIST.split(/\s*,\s*/u) : [],
   markdown,
   mailSubject: MAIL_SUBJECT,
   mailTemplate: MAIL_TEMPLATE,

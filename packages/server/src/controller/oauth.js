@@ -8,12 +8,13 @@ module.exports = class OAuthController extends think.Controller {
 
   async indexAction() {
     const { code, state, type, redirect } = this.get();
+    const safeRedirect = this.validateLoginRedirect(redirect);
     const { oauthUrl } = this.config();
 
     if (!code) {
       const { serverURL } = this.ctx;
       const redirectUrl = think.buildUrl(`${serverURL}/api/oauth`, {
-        redirect,
+        redirect: safeRedirect,
         type,
       });
 
@@ -32,7 +33,7 @@ module.exports = class OAuthController extends think.Controller {
     if (type === 'facebook') {
       const { serverURL } = this.ctx;
       const redirectUrl = think.buildUrl(`${serverURL}/api/oauth`, {
-        redirect,
+        redirect: safeRedirect,
         type,
       });
 
@@ -61,7 +62,7 @@ module.exports = class OAuthController extends think.Controller {
       const token = jwt.sign(userBySocial[0].objectId, this.config('jwtKey'));
 
       if (redirect) {
-        this.redirect(think.buildUrl(redirect, { token }));
+        this.redirect(think.buildUrl(safeRedirect, { token }));
         return;
       }
 
@@ -107,6 +108,6 @@ module.exports = class OAuthController extends think.Controller {
     // and then generate token!
     const token = jwt.sign(cmtUser.objectId, this.config('jwtKey'));
 
-    this.redirect(`${redirect}${redirect.includes('?') ? '&' : '?'}token=${token}`);
+    this.redirect(think.buildUrl(safeRedirect, { token }));
   }
 };
