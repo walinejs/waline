@@ -28,7 +28,7 @@
   "devDependencies": {
     "@babel/runtime": "8.0.0",
     "@mr-hope/tsconfig": "0.0.4",
-    "@redocly/cli": "2.51.2",
+    "@redocly/cli": "2.53.2",
     "@types/node": "24.13.4",
     "@vitejs/plugin-react": "6.1.1",
     "cross-env": "10.1.0",
