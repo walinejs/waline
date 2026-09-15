@@ -36,9 +36,9 @@
     "prepublishOnly": "pnpm run build"
   },
   "devDependencies": {
-    "@babel/core": "8.0.1",
+    "@babel/core": "8.0.5",
     "@babel/plugin-transform-runtime": "8.0.1",
-    "@babel/preset-env": "8.0.2",
+    "@babel/preset-env": "8.0.5",
     "@babel/preset-react": "8.0.1",
     "@rematch/core": "2.2.0",
     "base-icon": "2.3.2",
