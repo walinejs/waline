@@ -1,0 +1,250 @@
+name: Sync translated docs
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - docs/src/**/*.md
+
+permissions:
+  contents: write
+  models: read
+
+jobs:
+  sync-docs:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+
+      - name: Sync translations
+        env:
+          BEFORE_SHA: ${{ github.event.before }}
+          AFTER_SHA: ${{ github.sha }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MODEL_ENDPOINT: https://models.inference.ai.azure.com/chat/completions
+          MODEL_NAME: gpt-4.1-mini
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import pathlib
+          import re
+          import subprocess
+          import urllib.error
+          import urllib.request
+
+          repo = pathlib.Path.cwd()
+          docs_root = repo / "docs" / "src"
+
+          # Keep folder names aligned with existing docs paths.
+          language_dirs = [
+              "de",
+              "en",
+              "es",
+              "fr",
+              "id",
+              "it",
+              "jp",
+              "ko-KR",
+              "pt-BR",
+              "ru",
+              "vi-VN",
+              "zh-TW",
+          ]
+          locale_to_dir = {"zh-CN": ""}
+          locale_to_dir.update({lang: lang for lang in language_dirs})
+          locale_names = {
+              "zh-CN": "Simplified Chinese",
+              "de": "German",
+              "en": "English",
+              "es": "Spanish",
+              "fr": "French",
+              "id": "Indonesian",
+              "it": "Italian",
+              "jp": "Japanese",
+              "ko-KR": "Korean",
+              "pt-BR": "Brazilian Portuguese",
+              "ru": "Russian",
+              "vi-VN": "Vietnamese",
+              "zh-TW": "Traditional Chinese",
+          }
+
+          before_sha = os.environ.get("BEFORE_SHA", "")
+          after_sha = os.environ.get("AFTER_SHA", "HEAD")
+
+          if not before_sha or re.fullmatch(r"0+", before_sha):
+              before_sha = "HEAD~1"
+
+          diff_cmd = ["git", "diff", "--name-only", f"{before_sha}..{after_sha}"]
+          diff_output = subprocess.check_output(diff_cmd, text=True)
+          changed_files = [line.strip() for line in diff_output.splitlines() if line.strip()]
+
+          if not changed_files:
+              print("No changed files.")
+              raise SystemExit(0)
+
+          def detect_locale_and_relative(path: str):
+              if not path.startswith("docs/src/") or not path.endswith(".md"):
+                  return None, None
+              relative = path[len("docs/src/"):]
+              if relative.startswith(".vuepress/"):
+                  return None, None
+              for lang in language_dirs:
+                  prefix = f"{lang}/"
+                  if relative.startswith(prefix):
+                      return lang, relative[len(prefix):]
+              return "zh-CN", relative
+
+          def render_path(locale: str, relative: str):
+              lang_dir = locale_to_dir[locale]
+              if lang_dir:
+                  return docs_root / lang_dir / relative
+              return docs_root / relative
+
+          token = os.environ["GITHUB_TOKEN"]
+          endpoint = os.environ["MODEL_ENDPOINT"]
+          model = os.environ["MODEL_NAME"]
+
+          changed_sources = {}
+
+          for changed in changed_files:
+              source_locale, relative_path = detect_locale_and_relative(changed)
+              if not source_locale or not relative_path:
+                  continue
+
+              source_path = render_path(source_locale, relative_path)
+              if not source_path.exists():
+                  continue
+
+              changed_sources.setdefault(relative_path, []).append((source_locale, source_path))
+
+          for relative_path, sources in sorted(changed_sources.items()):
+              source_locales = {source_locale for source_locale, _ in sources}
+              if len(source_locales) > 1:
+                  print(
+                      f"Skipping {relative_path}: changed in multiple source locales "
+                      f"({', '.join(sorted(source_locales))})."
+                  )
+                  continue
+
+              source_locale, source_path = sources[0]
+              source_content = source_path.read_text(encoding="utf-8")
+              for target_locale in locale_to_dir:
+                  if target_locale == source_locale:
+                      continue
+                  target_path = render_path(target_locale, relative_path)
+                  if not target_path.exists():
+                      continue
+                  updates[target_path] = (source_locale, target_locale, source_content, relative_path)
+
+          if not updates:
+              print("No translation targets found.")
+              raise SystemExit(0)
+
+          def translate(
+              source_locale: str,
+              target_locale: str,
+              content: str,
+              context: str,
+              keep_trailing_newline: bool,
+          ):
+              source_name = locale_names[source_locale]
+              target_name = locale_names[target_locale]
+              prompt = (
+                  f"Translate this Markdown document from {source_name} to {target_name}. "
+                  "Preserve heading structure, frontmatter, links, code blocks, inline code, "
+                  "HTML tags, and markdown formatting. Return translated markdown only."
+              )
+              body = {
+                  "model": model,
+                  "messages": [
+                      {"role": "system", "content": "You are a professional technical documentation translator."},
+                      {
+                          "role": "user",
+                          "content": f"{prompt}\n\n--- BEGIN MARKDOWN ---\n{content}\n--- END MARKDOWN ---",
+                      },
+                  ],
+                  "temperature": 0.2,
+              }
+
+              request = urllib.request.Request(
+                  endpoint,
+                  data=json.dumps(body).encode("utf-8"),
+                  headers={
+                      "Content-Type": "application/json",
+                      "Authorization": "Bearer " + token,
+                  },
+                  method="POST",
+              )
+              try:
+                  with urllib.request.urlopen(request) as response:
+                      payload = json.loads(response.read().decode("utf-8"))
+              except urllib.error.HTTPError as error:
+                  body = error.read().decode("utf-8", errors="replace")
+                  raise RuntimeError(
+                      f"Translation API HTTP {error.code} for {context}: {body}"
+                  ) from error
+              except urllib.error.URLError as error:
+                  raise RuntimeError(
+                      f"Translation API network error for {context}: {error.reason}"
+                  ) from error
+
+              choices = payload.get("choices") if isinstance(payload, dict) else None
+              if not choices or not isinstance(choices, list):
+                  raise RuntimeError(f"Translation API returned no choices for {context}: {payload}")
+              first_choice = choices[0]
+              message = first_choice.get("message") if isinstance(first_choice, dict) else None
+              translated = message.get("content") if isinstance(message, dict) else None
+              if not isinstance(translated, str) or not translated.strip():
+                  raise RuntimeError(
+                      f"Translation API returned empty content for {context}: {payload}"
+                  )
+              translated = translated.rstrip()
+              if keep_trailing_newline:
+                  return translated + "\n"
+              return translated
+
+          updated_count = 0
+          for target_path, (source_locale, target_locale, source_content, rel_path) in sorted(updates.items()):
+              print(f"Translating {rel_path}: {source_locale} -> {target_locale}")
+              translated_content = translate(
+                  source_locale,
+                  target_locale,
+                  source_content,
+                  f"{rel_path} ({source_locale}->{target_locale})",
+                  source_content.endswith("\n"),
+              )
+              current_content = target_path.read_text(encoding="utf-8")
+              if current_content != translated_content:
+                  target_path.write_text(translated_content, encoding="utf-8")
+                  updated_count += 1
+
+          if updated_count == 0:
+              print("No file content changed after translation.")
+              raise SystemExit(0)
+
+          print(f"Updated {updated_count} translated doc files.")
+          PY
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/src
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "docs: sync docs translations [skip ci]"
+          git push
