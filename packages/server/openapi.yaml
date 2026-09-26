@@ -44,13 +44,19 @@ paths:
         - $ref: '#/components/parameters/Lang'
         - name: type
           in: query
-          description: Response mode. `list` without a path requires an administrator token.
+          description: Response mode. `list` without an identifier requires an administrator token.
           schema:
             type: string
             enum: [list, count, recent]
+        - name: identifier
+          in: query
+          description: Article identifier. Required when `type` is omitted.
+          schema:
+            type: string
         - name: path
           in: query
-          description: Article path. Required when `type` is omitted.
+          deprecated: true
+          description: Legacy alias for `identifier`.
           schema:
             type: string
         - name: url
@@ -201,13 +207,19 @@ paths:
       tags: [Comment]
       summary: Get comments as RSS
       description: |
-        Returns recent site comments by default. Use `path` for comments on one
+        Returns recent site comments by default. Use `identifier` for comments on one
         article, or `email`/`user_id` for replies to a user.
       security: []
       parameters:
+        - name: identifier
+          in: query
+          description: Article identifier.
+          schema:
+            type: string
         - name: path
           in: query
-          description: Article path.
+          deprecated: true
+          description: Legacy alias for `identifier`.
           schema:
             type: string
         - name: email

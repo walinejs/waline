@@ -376,7 +376,8 @@ module.exports = class CommentController extends BaseRest {
 
   async getCommentList() {
     const { userInfo } = this.ctx.state;
-    const { path: url, page, pageSize, sortBy } = this.get();
+    const { identifier, path, page, pageSize, sortBy } = this.get();
+    const url = identifier || path;
     const where = { url };
 
     if (think.isEmpty(userInfo)) {

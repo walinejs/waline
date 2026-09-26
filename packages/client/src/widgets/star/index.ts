@@ -8,8 +8,8 @@ import WalineStarWidget from './WalineStarWidget.vue';
 export interface WalineStarOptions {
   /** Element or CSS selector on which to mount the widget. */
   el?: string | HTMLElement;
-  /** Path identifying the current page or article. */
-  path: string;
+  /** Unique identifier for the current page or article. */
+  identifier: string;
   /** Language code used by the widget, such as `en` or `zh-CN`. */
   lang?: string;
   /** Waline server URL. */
@@ -29,7 +29,7 @@ export interface WalineStarResult {
 
 export const Star = ({
   el,
-  path,
+  identifier,
   lang = navigator.language,
   serverURL,
   onRate,
@@ -45,7 +45,7 @@ export const Star = ({
   }
 
   const app = createApp(WalineStarWidget, {
-    path,
+    identifier,
     lang,
     serverURL,
     onRate,

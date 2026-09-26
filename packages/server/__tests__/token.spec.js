@@ -20,6 +20,8 @@ const require = createRequire(import.meta.url);
 const main = require('../index.js');
 const commentSelect = vi.fn(async () => []);
 const commentCount = vi.fn(async () => 0);
+const counterSelect = vi.fn(async () => []);
+const counterAdd = vi.fn(async () => ({}));
 const oauthUrl = 'https://oauth.example.com';
 
 // Use a custom model stub so no real database connection is needed
@@ -41,6 +43,13 @@ const handler = main({
         update: async () => {},
         delete: async () => {},
         count: async () => 0,
+      };
+    }
+
+    if (modelName === 'Counter') {
+      return {
+        select: counterSelect,
+        add: counterAdd,
       };
     }
   },
@@ -176,6 +185,66 @@ describe('token API', () => {
             { field: 'objectId', direction: 'desc' },
           ],
         }),
+      );
+    });
+
+    it('accepts identifier as the comment list key', async () => {
+      commentSelect.mockClear();
+      commentCount.mockClear();
+      const body = await apiRequest('GET', '/api/comment?identifier=article:42');
+
+      expect(body.errno).toBe(0);
+      expect(commentSelect).toHaveBeenCalledExactlyOnceWith(
+        expect.objectContaining({ rid: undefined, url: 'article:42' }),
+        expect.any(Object),
+      );
+    });
+
+    it('prefers identifier when both identifier and path are provided', async () => {
+      commentSelect.mockClear();
+      commentCount.mockClear();
+      await apiRequest('GET', '/api/comment?identifier=article:42&path=/legacy-path');
+
+      expect(commentSelect).toHaveBeenCalledExactlyOnceWith(
+        expect.objectContaining({ rid: undefined, url: 'article:42' }),
+        expect.any(Object),
+      );
+    });
+  });
+
+  describe('article identifier', () => {
+    it('accepts identifier when fetching counters', async () => {
+      counterSelect.mockClear();
+      const body = await apiRequest('GET', '/api/article?identifier=article:42&type=time');
+
+      expect(body).toMatchObject({ errno: 0, data: [{ time: 0 }] });
+      expect(counterSelect).toHaveBeenCalledExactlyOnceWith({
+        url: ['IN', ['article:42']],
+      });
+    });
+
+    it('continues to accept path when fetching counters', async () => {
+      counterSelect.mockClear();
+      await apiRequest('GET', '/api/article?path=/legacy-path&type=time');
+
+      expect(counterSelect).toHaveBeenCalledExactlyOnceWith({
+        url: ['IN', ['/legacy-path']],
+      });
+    });
+
+    it('accepts identifier when updating counters', async () => {
+      counterSelect.mockClear();
+      counterAdd.mockClear();
+      const body = await apiRequest('POST', '/api/article', {
+        identifier: 'article:42',
+        type: 'time',
+      });
+
+      expect(body).toMatchObject({ errno: 0, data: [{ time: 1 }] });
+      expect(counterSelect).toHaveBeenCalledExactlyOnceWith({ url: 'article:42' });
+      expect(counterAdd).toHaveBeenCalledExactlyOnceWith(
+        { url: 'article:42', time: 1 },
+        { access: { read: true, write: true } },
       );
     });
   });

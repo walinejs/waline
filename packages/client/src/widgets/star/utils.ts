@@ -2,14 +2,14 @@ import { getArticleCounter } from '@waline/api';
 
 interface FetchReactionOption {
   serverURL: string;
-  path: string;
+  identifier: string;
   lang: string;
 }
 
 export const fetchReaction = async ({
   serverURL,
   lang,
-  path,
+  identifier,
 }: FetchReactionOption): Promise<{ value: number[]; abort: () => void }> => {
   const reaction = [1, 2, 3, 4, 5];
   const controller = new AbortController();
@@ -19,7 +19,7 @@ export const fetchReaction = async ({
   const [reactionData] = (await getArticleCounter({
     serverURL,
     lang,
-    paths: [path],
+    identifiers: [identifier],
     type: Array.from({ length: 5 }, (_, index) => `reaction${index}`),
     signal: controller.signal,
   })) as Record<string, number>[];

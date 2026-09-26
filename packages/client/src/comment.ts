@@ -27,7 +27,7 @@ export interface WalineCommentCountOptions {
    *
    * @default window.location.pathname
    */
-  path?: string;
+  identifier?: string;
 
   /**
    * 错误提示消息所使用的语言
@@ -41,7 +41,7 @@ export interface WalineCommentCountOptions {
 
 export const commentCount = ({
   serverURL,
-  path = window.location.pathname,
+  identifier = window.location.pathname,
   selector = '.waline-comment-count',
   lang = navigator.language,
 }: WalineCommentCountOptions): WalineAbort => {
@@ -53,7 +53,7 @@ export const commentCount = ({
   if (elements.length > 0) {
     void fetchCommentCount({
       serverURL: getServerURL(serverURL),
-      paths: Array.from(elements, (element) => decodePath(getQuery(element) ?? path)),
+      identifiers: Array.from(elements, (element) => decodePath(getQuery(element) ?? identifier)),
       lang,
       signal: controller.signal,
     })

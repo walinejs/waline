@@ -20,9 +20,9 @@ export interface WalineInstance {
   /**
    * 更新 Waline 实例
    *
-   * 只要不设置`path` 选项，更新时它就会被重置为 `windows.location.pathname` Update Waline instance
+   * 只要不设置 `identifier` 选项，更新时它就会被重置为 `window.location.pathname` Update Waline instance
    *
-   * When not setting `path` option, it will be reset to `window.location.pathname`
+   * When not setting `identifier` option, it will be reset to `window.location.pathname`
    */
   update: (newOptions?: Partial<Omit<WalineInitOptions, 'el'>>) => void;
 
@@ -36,7 +36,7 @@ export interface WalineInstance {
 
 export const init = ({
   el = '#waline',
-  path = window.location.pathname,
+  identifier = window.location.pathname,
   comment = false,
   pageview = false,
   ...initProps
@@ -57,14 +57,14 @@ export const init = ({
   }
 
   const props = reactive({ ...initProps });
-  const state = reactive({ comment, pageview, path });
+  const state = reactive({ comment, pageview, identifier });
 
   const updateCommentCount = (): void => {
     // oxlint-disable-next-line typescript/strict-boolean-expressions
     if (state.comment) {
       commentCount({
         serverURL: props.serverURL,
-        path: state.path,
+        identifier: state.identifier,
         ...(isString(state.comment) ? { selector: state.comment } : {}),
       });
     }
@@ -75,7 +75,7 @@ export const init = ({
     if (state.pageview) {
       pageviewCount({
         serverURL: props.serverURL,
-        path: state.path,
+        identifier: state.identifier,
         ...(isString(state.pageview) ? { selector: state.pageview } : {}),
       });
     }
@@ -84,7 +84,7 @@ export const init = ({
   let app: App<Element> | null = null;
 
   if (root) {
-    app = createApp(() => h(Waline, { path: state.path, ...props }));
+    app = createApp(() => h(Waline, { identifier: state.identifier, ...props }));
 
     app.mount(root);
   }
@@ -97,7 +97,7 @@ export const init = ({
     update: ({
       comment,
       pageview,
-      path = window.location.pathname,
+      identifier = window.location.pathname,
       ...newProps
     }: Partial<Omit<WalineInitOptions, 'el'>> = {}): void => {
       Object.entries(newProps).forEach(([key, value]) => {
@@ -105,7 +105,7 @@ export const init = ({
         props[key] = value;
       });
 
-      state.path = path;
+      state.identifier = identifier;
       if (comment != null) {
         state.comment = comment;
       }

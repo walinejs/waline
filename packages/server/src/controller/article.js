@@ -7,7 +7,8 @@ module.exports = class extends BaseRest {
   }
 
   async getAction() {
-    const { path, type } = this.get();
+    const { identifier, path: legacyPath, type } = this.get();
+    const path = identifier || legacyPath;
     const { deprecated } = this.ctx.state;
 
     // path is required
@@ -67,7 +68,8 @@ module.exports = class extends BaseRest {
   }
 
   async postAction() {
-    const { path, type, action } = this.post();
+    const { identifier, path: legacyPath, type, action } = this.post();
+    const path = identifier || legacyPath;
     const resp = await this.modelInstance.select({ url: path });
     const { deprecated } = this.ctx.state;
 

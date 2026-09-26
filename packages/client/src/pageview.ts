@@ -28,12 +28,12 @@ export interface WalinePageviewCountOptions {
    *
    * @default window.location.pathname
    */
-  path?: string;
+  identifier?: string;
 
   /**
-   * 是否在查询时更新 path 的浏览量
+   * 是否在查询时更新 identifier 的浏览量
    *
-   * Whether update pageviews when fetching path result
+   * Whether update pageviews when fetching identifier result
    *
    * @default true
    */
@@ -66,7 +66,7 @@ const renderVisitorCount = (
 
 export const pageviewCount = ({
   serverURL,
-  path = window.location.pathname,
+  identifier = window.location.pathname,
   selector = '.waline-pageview-count',
   update = true,
   lang = navigator.language,
@@ -78,14 +78,14 @@ export const pageviewCount = ({
   const filter = (element: HTMLElement): boolean => {
     const query = getQuery(element);
 
-    return query != null && path !== query;
+    return query != null && identifier !== query;
   };
 
   const fetch = async (elements: HTMLElement[]): Promise<void> => {
     try {
       const counts = await getPageview({
         serverURL: getServerURL(serverURL),
-        paths: elements.map((element) => getQuery(element) ?? path),
+        identifiers: elements.map((element) => getQuery(element) ?? identifier),
         lang,
         signal: controller.signal,
       });
@@ -103,7 +103,7 @@ export const pageviewCount = ({
 
     void updatePageview({
       serverURL: getServerURL(serverURL),
-      path,
+      identifier,
       lang,
     }).then((counts) => {
       renderVisitorCount(counts, normalElements);

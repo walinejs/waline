@@ -3,11 +3,11 @@ import { errorCheck, getFetchPrefix } from './utils.js';
 
 export interface GetCommentCountOptions extends BaseAPIOptions {
   /**
-   * 待获取评论数的 path
+   * 待获取评论数的唯一标识符
    *
-   * Path of pages to be fetched
+   * Identifiers of pages to be fetched
    */
-  paths: string[];
+  identifiers: string[];
 
   /**
    * 取消请求的信号
@@ -20,12 +20,12 @@ export interface GetCommentCountOptions extends BaseAPIOptions {
 export const fetchCommentCount = ({
   serverURL,
   lang,
-  paths,
+  identifiers,
   signal,
 }: GetCommentCountOptions): Promise<number[]> =>
   fetch(
     `${getFetchPrefix(serverURL)}comment?type=count&url=${encodeURIComponent(
-      paths.join(','),
+      identifiers.join(','),
     )}&lang=${lang}`,
     { signal },
   )

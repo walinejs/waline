@@ -45,7 +45,7 @@ useStyleTag(darkmodeStyle, { id: 'waline-darkmode' });
 let abort: (() => void) | null = null;
 
 const getCommentData = (pageNumber: number): void => {
-  const { serverURL, path, pageSize } = config.value;
+  const { serverURL, identifier, pageSize } = config.value;
   const controller = new AbortController();
 
   status.value = 'loading';
@@ -55,7 +55,7 @@ const getCommentData = (pageNumber: number): void => {
   getComment({
     serverURL,
     lang: config.value.lang,
-    path,
+    identifier,
     pageSize,
     sortBy: sortKeyMap[commentSortingRef.value],
     page: pageNumber,
@@ -224,7 +224,7 @@ provide(configKey, config);
 
 onMounted(async () => {
   watchImmediate(
-    () => [props.serverURL, props.path],
+    () => [props.serverURL, props.identifier],
     () => {
       refreshComments();
     },
@@ -330,7 +330,7 @@ onUnmounted(() => {
     <div class="wl-meta-foot" v-if="data.length || status !== 'loading'">
       <div v-if="!config.noRss" class="wl-rss">
         <a
-          :href="`${config.serverURL}/api/comment/rss?path=${encodeURIComponent(config.path)}`"
+          :href="`${config.serverURL}/api/comment/rss?identifier=${encodeURIComponent(config.identifier)}`"
           target="_blank"
           rel="noopener noreferrer"
           :alt="i18n.subPostComment"

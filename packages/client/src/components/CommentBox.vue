@@ -211,7 +211,7 @@ const submitComment = async (): Promise<void> => {
     nick: userMeta.value.nick,
     mail: userMeta.value.mail,
     link: userMeta.value.link,
-    url: config.value.path,
+    url: config.value.identifier,
     ua: await userAgent(),
   };
 
