@@ -62,7 +62,7 @@
     "vite": "catalog:",
     "vite-plugin-css-injected-by-js": "5.0.2",
     "vite-plugin-svgr": "5.2.0",
-    "vitest": "5.0.0"
+    "vitest": "5.0.2"
   },
   "nano-staged": {
     "**/*": "oxfmt --no-error-on-unmatched-pattern",
