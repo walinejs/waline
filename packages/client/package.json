@@ -46,6 +46,10 @@
       "import": "./dist/pageview.js",
       "default": "./dist/pageview.umd.js"
     },
+    "./locale/*": {
+      "types": "./dist/locale/*.d.ts",
+      "default": "./dist/locale/*.js"
+    },
     "./style": "./dist/waline.css",
     "./meta": "./dist/waline-meta.css",
     "./waline.css": "./dist/waline.css",

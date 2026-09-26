@@ -112,4 +112,22 @@ export default defineConfig([
       alwaysBundle: ['@waline/api'],
     },
   },
+  {
+    ...commonOptions,
+    entry: {
+      'locale/de': './src/config/i18n/de.ts',
+      'locale/en': './src/config/i18n/en.ts',
+      'locale/es': './src/config/i18n/es.ts',
+      'locale/fr': './src/config/i18n/fr.ts',
+      'locale/id': './src/config/i18n/id.ts',
+      'locale/it': './src/config/i18n/it.ts',
+      'locale/jp': './src/config/i18n/jp.ts',
+      'locale/ko-KR': './src/config/i18n/ko-KR.ts',
+      'locale/pt-BR': './src/config/i18n/pt-BR.ts',
+      'locale/ru': './src/config/i18n/ru.ts',
+      'locale/vi-VN': './src/config/i18n/vi-VN.ts',
+      'locale/zh-CN': './src/config/i18n/zh-CN.ts',
+      'locale/zh-TW': './src/config/i18n/zh-TW.ts',
+    },
+  },
 ]);

@@ -1,50 +1,48 @@
 import type { WalineLocale } from '../../typings/index.js';
-import de from './de.js';
 import en from './en.js';
-import es from './es.js';
-import fr from './fr.js';
-import id from './id.js';
-import it from './it.js';
-import jp from './jp.js';
-import koKR from './ko-KR.js';
-import ptBR from './pt-BR.js';
-import ru from './ru.js';
-import viVN from './vi-VN.js';
-import zhCN from './zh-CN.js';
-import zhTW from './zh-TW.js';
 
 export type Locales = Record<string, WalineLocale>;
 
 export const DEFAULT_LANG = 'en-US';
 
+const localeLoaders: Record<string, () => Promise<{ default: WalineLocale }>> = {
+  zh: () => import('./zh-CN.js'),
+  'zh-cn': () => import('./zh-CN.js'),
+  'zh-tw': () => import('./zh-TW.js'),
+  en: () => import('./en.js'),
+  'en-us': () => import('./en.js'),
+  fr: () => import('./fr.js'),
+  'fr-fr': () => import('./fr.js'),
+  id: () => import('./id.js'),
+  'id-id': () => import('./id.js'),
+  it: () => import('./it.js'),
+  'it-it': () => import('./it.js'),
+  jp: () => import('./jp.js'),
+  'jp-jp': () => import('./jp.js'),
+  ko: () => import('./ko-KR.js'),
+  'ko-kr': () => import('./ko-KR.js'),
+  'pt-br': () => import('./pt-BR.js'),
+  ru: () => import('./ru.js'),
+  'ru-ru': () => import('./ru.js'),
+  vi: () => import('./vi-VN.js'),
+  'vi-vn': () => import('./vi-VN.js'),
+  de: () => import('./de.js'),
+  es: () => import('./es.js'),
+  'es-mx': () => import('./es.js'),
+};
+
 export const DEFAULT_LOCALES: Locales = {
-  zh: zhCN,
-  'zh-cn': zhCN,
-  'zh-tw': zhTW,
   en,
   'en-us': en,
-  fr,
-  'fr-fr': fr,
-  id,
-  'id-id': id,
-  it,
-  'it-it': it,
-  jp,
-  'jp-jp': jp,
-  ko: koKR,
-  'ko-kr': koKR,
-  'pt-br': ptBR,
-  ru,
-  'ru-ru': ru,
-  vi: viVN,
-  'vi-vn': viVN,
-  de,
-  es,
-  'es-mx': es,
 };
 
 export const getLocale = (lang: string): WalineLocale =>
   DEFAULT_LOCALES[lang.toLowerCase()] ?? DEFAULT_LOCALES[DEFAULT_LANG.toLowerCase()];
 
 export const getLang = (lang: string): string =>
-  Object.keys(DEFAULT_LOCALES).includes(lang.toLowerCase()) ? lang : DEFAULT_LANG;
+  lang.toLowerCase() in localeLoaders ? lang : DEFAULT_LANG;
+
+export const loadLocale = (lang: string): Promise<WalineLocale> =>
+  (localeLoaders[lang.toLowerCase()]?.() ?? Promise.resolve({ default: en })).then(
+    ({ default: locale }) => locale,
+  );
