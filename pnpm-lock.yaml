@@ -6,9 +6,6 @@ importers:
   .:
     configDependencies: {}
     packageManagerDependencies:
-      '@pnpm/exe':
-        specifier: 12.3.1
-        version: 12.3.1
       pnpm:
         specifier: 12.3.1
         version: 12.3.1
@@ -59,11 +56,6 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@pnpm/exe@12.3.1':
-    resolution: {integrity: sha512-Tqo6y+EutDHtI6dodXgaYGQJfRQbwqWmhs8QgsQACd2J+qUInOYFPoiU94RIWuxsQBqgH3OMpTEkNEoJO1uPZA==}
-    engines: {node: '>=18.*'}
-    hasBin: true
-
   pnpm@12.3.1:
     resolution: {integrity: sha512-PBTBVAjRSJ01D47X+TNh0mzHBwVPaEmk7qO7dAf/T+RWS0E6HEIadzoXarEWio3xx9VI8s0Nx9NE9YxOaApbGA==}
     engines: {node: '>=18.*'}
@@ -94,17 +86,6 @@ snapshots:
 
   '@pnpm/exe.win32-x64@12.3.1':
     optional: true
-
-  '@pnpm/exe@12.3.1':
-    optionalDependencies:
-      '@pnpm/exe.darwin-arm64': 12.3.1
-      '@pnpm/exe.darwin-x64': 12.3.1
-      '@pnpm/exe.linux-arm64': 12.3.1
-      '@pnpm/exe.linux-arm64-musl': 12.3.1
-      '@pnpm/exe.linux-x64': 12.3.1
-      '@pnpm/exe.linux-x64-musl': 12.3.1
-      '@pnpm/exe.win32-arm64': 12.3.1
-      '@pnpm/exe.win32-x64': 12.3.1
 
   pnpm@12.3.1:
     optionalDependencies:
@@ -428,8 +409,8 @@ importers:
         specifier: 1.1.1
         version: 1.1.1(markdown-it@15.0.2)
       '@mdit/plugin-sup':
-        specifier: 1.1.1
-        version: 1.1.1(markdown-it@15.0.2)
+        specifier: 1.1.2
+        version: 1.1.2(markdown-it@15.0.2)
       akismet:
         specifier: ^2.0.7
         version: 2.0.7
@@ -1850,6 +1831,15 @@ packages:
     engines: {node: '>=22'}
     peerDependencies:
       markdown-it: ^15.0.1
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
+
+  '@mdit/plugin-sup@1.1.2':
+    resolution: {integrity: sha512-GMqWN5s783jjTSEmd06Ep3IRlY6F4umAp4hvNe7L95XD2Uy1BZrHiC94Dcd6BmGSQjEEO44hw4CMPIC3xrd9sg==}
+    engines: {node: '>=22'}
+    peerDependencies:
+      markdown-it: ^15.0.2
     peerDependenciesMeta:
       markdown-it:
         optional: true
@@ -9676,6 +9666,13 @@ snapshots:
     dependencies:
       '@mdit/helper': 1.1.1(markdown-it@15.0.2)
       '@mdit/plugin-inline-rule': 2.2.1(markdown-it@15.0.2)
+    optionalDependencies:
+      markdown-it: 15.0.2
+
+  '@mdit/plugin-sup@1.1.2(markdown-it@15.0.2)':
+    dependencies:
+      '@mdit/helper': 1.1.2(markdown-it@15.0.2)
+      '@mdit/plugin-inline-rule': 2.2.2(markdown-it@15.0.2)
     optionalDependencies:
       markdown-it: 15.0.2
 
