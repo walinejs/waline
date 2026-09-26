@@ -11,7 +11,7 @@
     "@fancyapps/ui": "6.1.14",
     "@mathjax/src": "4.1.3",
     "@vuepress/bundler-vite": "2.0.0-rc.31",
-    "@vuepress/helper": "2.0.0-rc.134",
+    "@vuepress/helper": "2.0.0-rc.135",
     "@vuepress/plugin-comment": "2.0.0-rc.134",
     "@vuepress/plugin-docsearch": "2.0.0-rc.134",
     "@waline/client": "workspace:*",
