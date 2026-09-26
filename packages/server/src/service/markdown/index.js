@@ -26,7 +26,7 @@ const getMarkdownParser = async (markdown = {}) => {
     html: true,
   });
 
-  const { emoji, tex, mathjax, katex, sub, sup } = plugin;
+  const { emoji, tex, mathjax, katex, sub, sup, spoiler } = plugin;
 
   // parse emoji
   if (emoji !== false) {
@@ -43,6 +43,12 @@ const getMarkdownParser = async (markdown = {}) => {
   if (sup !== false) {
     const { sup } = await import('@mdit/plugin-sup');
     markdownIt.use(sup);
+  }
+
+  // parse spoiler
+  if (spoiler !== false) {
+    const { spoiler: spoilerPlugin } = await import('@mdit/plugin-spoiler');
+    markdownIt.use(spoilerPlugin, typeof spoiler === 'object' ? spoiler : {});
   }
 
   // parse tex
