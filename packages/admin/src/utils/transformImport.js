@@ -20,7 +20,7 @@ const parseValine = (input) => {
 
 const transformDisqus = (input) => {
   const dom = new DOMParser().parseFromString(input, 'application/xml');
-  const posts = Array.from(dom.querySelectorAll('post')).filter(
+  const posts = [...dom.querySelectorAll('post')].filter(
     (post) => post.querySelector('isDeleted')?.textContent?.toLowerCase() !== 'true',
   );
   const articleMap = {};
@@ -100,6 +100,14 @@ const transformTwikoo = (input) =>
     },
   );
 
+const parsePageKey = (pageKey) => {
+  try {
+    return new URL(pageKey).pathname;
+  } catch {
+    return pageKey;
+  }
+};
+
 const transformArtalk = (input) => {
   const comments = JSON.parse(input);
   const parentMap = Object.fromEntries(comments.map(({ id, rid }) => [id, rid]));
@@ -127,7 +135,7 @@ const transformArtalk = (input) => {
 
       while (rootId && parentMap[rootId]) rootId = parentMap[rootId];
 
-      return {
+      const comment = {
         objectId: id,
         comment: content,
         insertedAt: createdAt,
@@ -138,13 +146,15 @@ const transformArtalk = (input) => {
         mail: email,
         nick,
         ua,
-        url: pageKey,
+        url: parsePageKey(pageKey),
         pid: rid,
         rid: rootId,
         status: isPending === false || isPending === 'false' ? 'approved' : 'waiting',
         sticky: isPinned === true || isPinned === 'true',
         like: Number(voteUp) - Number(voteDown) || 0,
       };
+
+      return comment;
     },
   );
 };
@@ -170,20 +180,25 @@ const transformCommento = (input) => {
 
       while (rootId && parentMap[rootId]) rootId = parentMap[rootId];
 
-      return {
+      const commenter = commenterMap[commenterHex] ?? { nick: 'Anonymous', mail: '', link: '' };
+      const comment = {
         objectId: commentHex,
         comment: html || markdown,
         insertedAt: creationDate,
         createdAt: creationDate,
         updatedAt: creationDate,
         ip: '',
+        link: commenter.link,
+        mail: commenter.mail,
+        nick: commenter.nick,
         ua: '',
         url,
         pid: parentHex === 'root' ? undefined : parentHex,
         rid: rootId === 'root' ? undefined : rootId,
         status: state === 'approved' ? 'approved' : 'waiting',
-        ...(commenterMap[commenterHex] ?? { nick: 'Anonymous', mail: '', link: '' }),
       };
+
+      return comment;
     });
 };
 
