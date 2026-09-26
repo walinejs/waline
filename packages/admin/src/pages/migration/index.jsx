@@ -14,6 +14,7 @@ const IMPORT_SOURCES = [
   ['typecho', 'Typecho'],
   ['artalk', 'Artalk'],
   ['commento', 'Commento'],
+  ['wordpress', 'WordPress'],
 ];
 
 export default function Migration() {
