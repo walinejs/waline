@@ -203,16 +203,29 @@ const transformCommento = (input) => {
 };
 
 export const transformImport = (source, input) => {
-  const comments =
-    source === 'disqus'
-      ? transformDisqus(input)
-      : source === 'twikoo'
-        ? transformTwikoo(input)
-        : source === 'artalk'
-          ? transformArtalk(input)
-          : source === 'commento'
-            ? transformCommento(input)
-            : parseValine(input);
+  let comments;
+
+  switch (source) {
+    case 'disqus': {
+      comments = transformDisqus(input);
+      break;
+    }
+    case 'twikoo': {
+      comments = transformTwikoo(input);
+      break;
+    }
+    case 'artalk': {
+      comments = transformArtalk(input);
+      break;
+    }
+    case 'commento': {
+      comments = transformCommento(input);
+      break;
+    }
+    default: {
+      comments = parseValine(input);
+    }
+  }
 
   if (!Array.isArray(comments)) throw new TypeError('Invalid import data');
 
