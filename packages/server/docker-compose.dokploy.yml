@@ -1,0 +1,19 @@
+services:
+  waline:
+    image: lizheming/waline:latest
+    restart: unless-stopped
+    expose:
+      - 8360
+    volumes:
+      - waline-data:/app/data
+    environment:
+      TZ: ${TZ}
+      SQLITE_PATH: /app/data
+      JWT_TOKEN: ${JWT_TOKEN}
+      SITE_NAME: ${SITE_NAME}
+      SITE_URL: ${SITE_URL}
+      SECURE_DOMAINS: ${SECURE_DOMAINS}
+      AUTHOR_EMAIL: ${AUTHOR_EMAIL}
+
+volumes:
+  waline-data:
