@@ -61,6 +61,7 @@
   "exporting": "Exportando...",
   "export": "Exportar",
   "import": "Importar",
+  "import from": "Importar de {{source}}",
   "import success": "Importação bem-sucedida",
   "import clear data confirm": "Atenção! A importação substituirá todos os dados atuais. Deseja continuar?",
   "importing {{importedLength}}/{{maxLength}}": "Importando {{importedLength}}/{{maxLength}}",

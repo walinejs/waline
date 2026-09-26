@@ -61,6 +61,7 @@
   "exporting": "导出中...",
   "export": "导出",
   "import": "导入",
+  "import from": "从 {{source}} 导入",
   "import success": "导入成功",
   "import clear data confirm": "注意！导入数据会覆盖当前所有数据，请确认是否继续操作？",
   "importing {{importedLength}}/{{maxLength}}": "开始导入 {{importedLength}}/{{maxLength}}",

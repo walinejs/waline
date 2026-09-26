@@ -5,19 +5,32 @@ import Header from '../../components/Header.jsx';
 import download from '../../utils/download.js';
 import readFileAsync from '../../utils/readFileAsync.js';
 import request from '../../utils/request.js';
+import { transformImport } from '../../utils/transformImport.js';
+
+const IMPORT_SOURCES = [
+  ['disqus', 'Disqus'],
+  ['twikoo', 'Twikoo'],
+  ['valine', 'Valine'],
+  ['typecho', 'Typecho'],
+  ['artalk', 'Artalk'],
+  ['commento', 'Commento'],
+];
 
 export default function Migration() {
   const [importLoading, setImportLoading] = useState(false);
   const [exportLoading, setExportLoading] = useState(false);
+  const [importSource, setImportSource] = useState();
+  const [importDropOpen, setImportDropOpen] = useState(false);
 
   const { t } = useTranslation();
   const uploadRef = useRef(null);
 
-  const importDB = () => {
+  const importDB = (source) => {
     if (!confirm(t('import clear data confirm'))) {
       return;
     }
 
+    setImportSource(source);
     uploadRef.current.click();
   };
 
@@ -25,7 +38,7 @@ export default function Migration() {
   const importData = async (event) => {
     try {
       const text = await readFileAsync(event.target.files[0]);
-      const data = JSON.parse(text);
+      const data = importSource ? transformImport(importSource, text) : JSON.parse(text);
 
       if (!data || data.type !== 'waline') {
         alert('import data format not support!');
@@ -114,7 +127,7 @@ export default function Migration() {
       }
 
       setImportLoading(['comment data index relationship reconstruction']);
-      const commentData = data.data.Comment;
+      const commentData = data.data.Comment ?? [];
       const willUpdateData = [];
 
       for (const cmt of commentData) {
@@ -168,7 +181,7 @@ export default function Migration() {
       throw err;
     } finally {
       setImportLoading(false);
-      event.target.value = null;
+      event.target.value = '';
     }
   };
 
@@ -204,15 +217,43 @@ export default function Migration() {
               </button>
             </div>
             <div className="col-mb-12 col-tb-6" style={{ textAlign: 'center' }}>
-              <button
-                className="btn error"
-                type="button"
-                style={{ height: 80, fontSize: 30, padding: '0 40px' }}
-                onClick={importDB}
-                disabled={importLoading}
-              >
-                {Array.isArray(importLoading) ? t(...importLoading) : t('import')}
-              </button>
+              <div className="btn-group btn-drop">
+                <button
+                  className="btn error"
+                  type="button"
+                  style={{ height: 80, fontSize: 30, padding: '0 40px' }}
+                  onClick={() => importDB()}
+                  disabled={importLoading}
+                >
+                  {Array.isArray(importLoading) ? t(...importLoading) : t('import')}
+                </button>
+                <button
+                  aria-expanded={importDropOpen}
+                  aria-label={t('import from')}
+                  className="btn error dropdown-toggle"
+                  type="button"
+                  style={{ height: 80, fontSize: 30, padding: '0 20px' }}
+                  onClick={() => setImportDropOpen(!importDropOpen)}
+                  disabled={importLoading}
+                >
+                  <i className="i-caret-down" />
+                </button>
+                <ul
+                  className="dropdown-menu"
+                  role="menu"
+                  style={{ display: importDropOpen ? 'block' : 'none' }}
+                  onClick={() => setImportDropOpen(false)}
+                  onKeyDown={() => setImportDropOpen(false)}
+                >
+                  {IMPORT_SOURCES.map(([source, name]) => (
+                    <li key={source}>
+                      <button type="button" onClick={() => importDB(source)}>
+                        {t('import from', { source: name })}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
               <input
                 ref={uploadRef}
                 onChange={importData}

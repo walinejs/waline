@@ -61,6 +61,7 @@
   "exporting": "Экспорт...",
   "export": "Экспорт",
   "import": "Импорт",
+  "import from": "Импортировать из {{source}}",
   "import success": "Импорт успешно выполнен",
   "import clear data confirm": "Внимание! Импорт перезапишет все текущие данные. Продолжить?",
   "importing {{importedLength}}/{{maxLength}}": "Импорт {{importedLength}}/{{maxLength}}",
