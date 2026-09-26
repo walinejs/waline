@@ -27,7 +27,7 @@
     "@mathjax/src": "^4.1.3",
     "@mdit/plugin-emoji": "1.2.1",
     "@mdit/plugin-katex": "1.1.1",
-    "@mdit/plugin-mathjax": "1.2.1",
+    "@mdit/plugin-mathjax": "1.2.2",
     "@mdit/plugin-sub": "1.1.1",
     "@mdit/plugin-sup": "1.1.1",
     "akismet": "^2.0.7",
