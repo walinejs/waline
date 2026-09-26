@@ -29,13 +29,13 @@ const reaction = computed(() => {
 });
 
 const reactionsInfo = computed<ReactionItem[] | null>(() => {
-  const { path } = config.value;
+  const { identifier } = config.value;
 
   return (
     reaction.value?.map((icon, index) => ({
       icon,
       desc: locale.value[`reaction${index}` as keyof WalineReactionLocale],
-      active: reactionStorage.value[path] === index,
+      active: reactionStorage.value[identifier] === index,
     })) ?? null
   );
 });
@@ -43,7 +43,7 @@ const reactionsInfo = computed<ReactionItem[] | null>(() => {
 let abort: (() => void) | undefined;
 
 const fetchReaction = async (): Promise<void> => {
-  const { serverURL, lang, path } = config.value;
+  const { serverURL, lang, identifier } = config.value;
 
   if (!reaction.value) {
     return;
@@ -56,7 +56,7 @@ const fetchReaction = async (): Promise<void> => {
   const [reactionData] = (await getArticleCounter({
     serverURL,
     lang,
-    paths: [path],
+    identifiers: [identifier],
     type: reaction.value.map((_, index) => `reaction${index}`),
     signal: controller.signal,
   })) as Record<string, number>[];
@@ -70,8 +70,8 @@ const vote = async (index: number): Promise<void> => {
     return;
   }
 
-  const { serverURL, lang, path } = config.value;
-  const currentVoteItemIndex = reactionStorage.value[path];
+  const { serverURL, lang, identifier } = config.value;
+  const currentVoteItemIndex = reactionStorage.value[identifier];
 
   // mark voting status
   votingIndex.value = index;
@@ -81,7 +81,7 @@ const vote = async (index: number): Promise<void> => {
     await updateArticleCounter({
       serverURL,
       lang,
-      path,
+      identifier,
       type: `reaction${currentVoteItemIndex}`,
       action: 'desc',
     });
@@ -97,7 +97,7 @@ const vote = async (index: number): Promise<void> => {
     await updateArticleCounter({
       serverURL,
       lang,
-      path,
+      identifier,
       type: `reaction${index}`,
     });
     voteNumbers.value[index] = (voteNumbers.value[index] || 0) + 1;
@@ -106,9 +106,9 @@ const vote = async (index: number): Promise<void> => {
   // update vote info in local storage
   if (currentVoteItemIndex === index) {
     // oxlint-disable-next-line typescript/no-dynamic-delete
-    delete reactionStorage.value[path];
+    delete reactionStorage.value[identifier];
   } else {
-    reactionStorage.value[path] = index;
+    reactionStorage.value[identifier] = index;
   }
 
   // voting is completed
@@ -117,7 +117,7 @@ const vote = async (index: number): Promise<void> => {
 
 onMounted(() => {
   watchImmediate(
-    () => [config.value.serverURL, config.value.path],
+    () => [config.value.serverURL, config.value.identifier],
     () => fetchReaction(),
   );
 });

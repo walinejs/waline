@@ -11,7 +11,7 @@ import WalineStarDisplay from './WalineStarDisplay.vue';
 const props = defineProps<{
   serverURL: string;
   lang?: string;
-  path: string;
+  identifier: string;
 }>();
 
 const emit = defineEmits<{
@@ -20,14 +20,14 @@ const emit = defineEmits<{
 
 const ratingArea = ref<HTMLElement | null>(null);
 const reactionStorage = useReactionStorage();
-const selectedScore = ref(clampScore((reactionStorage.value[props.path] ?? 0) + 1));
+const selectedScore = ref(clampScore((reactionStorage.value[props.identifier] ?? 0) + 1));
 const hoverScore = ref<number | null>(null);
 const internalDistribution = ref(normalizeDistribution([]));
 const isVoting = ref(false);
 
 onMounted(() => {
   watchImmediate(
-    () => [props.serverURL, props.path],
+    () => [props.serverURL, props.identifier],
     async () => {
       try {
         const reaction = await fetchReaction(props);
@@ -97,7 +97,7 @@ const onClick = async (event: MouseEvent): Promise<void> => {
 
     selectedScore.value = nextScore;
     const nextScoreKeyIndex = nextScore - 1;
-    reactionStorage.value[props.path] = nextScoreKeyIndex;
+    reactionStorage.value[props.identifier] = nextScoreKeyIndex;
     await updateArticleCounter({
       ...props,
       type: `reaction${nextScoreKeyIndex}`,
@@ -111,10 +111,10 @@ const onClick = async (event: MouseEvent): Promise<void> => {
     // Revert optimistic UI update on failure
     selectedScore.value = prevScore;
     if (prevScore) {
-      reactionStorage.value[props.path] = prevScore - 1;
+      reactionStorage.value[props.identifier] = prevScore - 1;
     } else {
       // oxlint-disable-next-line typescript/no-dynamic-delete
-      delete reactionStorage.value[props.path];
+      delete reactionStorage.value[props.identifier];
     }
 
     // oxlint-disable-next-line no-console

@@ -54,7 +54,8 @@ module.exports = class extends BaseRest {
   }
 
   async getAction() {
-    const { path, email, user_id: userId, count } = this.get();
+    const { identifier, path: legacyPath, email, user_id: userId, count } = this.get();
+    const path = identifier || legacyPath;
     const limit = Number.isFinite(Number(count)) ? Number(count) : 20;
     const safeLimit = Math.min(Math.max(limit, 1), 50);
 

@@ -25,7 +25,7 @@ module.exports = class extends think.Controller {
         const params = new URLSearchParams(location.search.slice(1));
         const waline = init({
           el: '#waline',
-          path: params.get('path') || '/',
+          identifier: params.get('identifier') || '/',
           lang: params.get('lng') || undefined,
           serverURL: location.protocol + '//' + location.host + location.pathname.replace(/\\/+$/, ''),
           recaptchaV3Key: '${process.env.RECAPTCHA_V3_KEY || ''}',

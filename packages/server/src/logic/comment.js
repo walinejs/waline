@@ -14,8 +14,8 @@ module.exports = class CommentLogic extends Base {
   }
 
   getAction() {
-    const { type, path } = this.get();
-    const isAllowedGet = type !== 'list' || path;
+    const { type, identifier, path } = this.get();
+    const isAllowedGet = type !== 'list' || identifier || path;
 
     if (!isAllowedGet) {
       this.checkAdmin();
@@ -63,9 +63,13 @@ module.exports = class CommentLogic extends Base {
 
       default: {
         this.rules = {
+          identifier: {
+            string: true,
+          },
           path: {
             string: true,
             required: true,
+            default: identifier,
           },
           page: {
             int: true,

@@ -15,7 +15,7 @@ Waline 支持浏览量统计。
 ```html
 <div id="article-info">
   <!-- ... -->
-  阅读量: <span class="waline-pageview-count" data-path="<Your/Path/Name>" />
+  阅读量: <span class="waline-pageview-count" data-identifier="<Your/Identifier>" />
   <!-- ... -->
 </div>
 <!-- 文章内容 -->
@@ -31,13 +31,13 @@ Waline 支持浏览量统计。
 </script>
 ```
 
-Waline 会在初始化以及每次 path 更新时，自动查找页面中 `class` 值为 `waline-pageview-count` 的元素，获取其 `data-path` 为查询条件，并将得到的值填充到其中:
+Waline 会在初始化以及每次 identifier 更新时，自动查找页面中 `class` 值为 `waline-pageview-count` 的元素，获取其 `data-identifier` 为查询条件，并将得到的值填充到其中:
 
 如果你需要一个不一样的选择器，你可以设置 `pageview` 选项为这个选择器。
 
 ```html
-<!-- data-path 将作为查询条件 -->
-阅读量: <span class="waline-pageview-count" data-path="<Your/Path/Name>" />
+<!-- data-identifier 将作为查询条件 -->
+阅读量: <span class="waline-pageview-count" data-identifier="<Your/Identifier>" />
 ```
 
 每次当你调用 `WalineInstance.update()` 时，Waline 会重新查找页面并自动更新浏览量。
@@ -45,11 +45,11 @@ Waline 会在初始化以及每次 path 更新时，自动查找页面中 `class
 ::: tip 例子
 
 ```html
-当前页阅读量为: <span class="waline-pageview-count" data-path="/guide/client/count.html" />
+当前页阅读量为: <span class="waline-pageview-count" data-identifier="/guide/client/count.html" />
 ```
 
 当前页阅读量为:
-<span class="waline-pageview-count" data-path="/guide/client/count.html" />
+<span class="waline-pageview-count" data-identifier="/guide/client/count.html" />
 
 :::
 
@@ -65,7 +65,7 @@ Waline 会在初始化以及每次 path 更新时，自动查找页面中 `class
   </li>
   <li>
     主页浏览量:
-    <span class="waline-pageview-count" data-path="/" />
+    <span class="waline-pageview-count" data-identifier="/" />
   </li>
 </ul>
 <script type="module">
@@ -73,7 +73,7 @@ Waline 会在初始化以及每次 path 更新时，自动查找页面中 `class
 
   pageviewCount({
     serverURL: '<YOUR_SERVER_URL>',
-    path: window.location.pathname,
+    identifier: window.location.pathname,
 
     // 可选的，用于自定选择器，默认为 `'.waline-pageview-count'`
     // selector: 'waline-pageview-count',
@@ -86,7 +86,7 @@ Waline 会在初始化以及每次 path 更新时，自动查找页面中 `class
 
 - 当前页面浏览量: <span class="waline-pageview-count" />
 
-- 主页浏览量: <span class="waline-pageview-count" data-path="/" />
+- 主页浏览量: <span class="waline-pageview-count" data-identifier="/" />
 
 ::: info 中途取消
 
@@ -100,7 +100,7 @@ Waline 会在初始化以及每次 path 更新时，自动查找页面中 `class
 
   const abort = pageviewCount({
     serverURL: '<YOUR_SERVER_URL>',
-    path: window.location.pathname,
+    identifier: window.location.pathname,
   });
 
   // 在 500ms 后，如果网络请求仍未完成，取消本次操作

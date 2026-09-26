@@ -4,11 +4,11 @@ import type { BaseAPIOptions } from './utils.js';
 
 interface GetPageviewOptions extends BaseAPIOptions {
   /**
-   * 待获取页面的 path
+   * 待获取页面的唯一标识符
    *
-   * Path of pages
+   * Identifiers of pages
    */
-  paths: string[];
+  identifiers: string[];
 
   /**
    * 取消请求的信号
@@ -21,24 +21,24 @@ interface GetPageviewOptions extends BaseAPIOptions {
 export const getPageview = ({
   serverURL,
   lang,
-  paths,
+  identifiers,
   signal,
 }: GetPageviewOptions): Promise<GetArticleCounterResponse> =>
   getArticleCounter({
     serverURL,
     lang,
-    paths,
+    identifiers,
     type: ['time'],
     signal,
   });
 
 export interface UpdatePageviewOptions extends BaseAPIOptions {
   /**
-   * 待更新页面的 path
+   * 待更新页面的唯一标识符
    *
-   * Path of pages
+   * Identifier of page
    */
-  path: string;
+  identifier: string;
 }
 
 export const updatePageview = (

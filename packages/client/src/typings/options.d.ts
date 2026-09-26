@@ -10,7 +10,7 @@ import type { WalineProps } from './waline.js';
 
 export interface WalineInitOptions extends Omit<
   WalineProps,
-  'path' | 'emoji' | 'search' | 'highlighter' | 'imageUploader' | 'texRenderer'
+  'identifier' | 'emoji' | 'search' | 'highlighter' | 'imageUploader' | 'texRenderer'
 > {
   /**
    * Waline 的初始化挂载器。必须是一个**有效的** CSS 选择器 或 HTML 元素
@@ -39,18 +39,18 @@ export interface WalineInitOptions extends Omit<
   pageview?: string | boolean;
 
   /**
-   * 当前 _文章页_ 路径，用于区分不同的 _文章页_ ，以保证正确读取该 _文章页_ 下的评论列表
+   * 当前 _文章页_ 的唯一标识符，用于区分不同的 _文章页_ ，以保证正确读取评论列表
    *
    * 你可以将其设置为 `window.location.pathname`
    *
-   * Article path id. Used to distinguish different _article pages_ to ensure loading the correct
+   * Article identifier. Used to distinguish different _article pages_ to ensure loading the correct
    * comment list under the _article page_.
    *
    * You can set it to `window.location.pathname`
    *
    * @default window.location.pathname
    */
-  path?: string;
+  identifier?: string;
 
   /**
    * 设置表情包

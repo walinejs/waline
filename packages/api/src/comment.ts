@@ -4,11 +4,11 @@ import { JSON_HEADERS, errorCheck, getFetchPrefix } from './utils.js';
 
 export interface GetCommentOptions extends BaseAPIOptions {
   /**
-   * 待获取评论列表的 path
+   * 待获取评论列表的唯一标识符
    *
-   * Path of comment list
+   * Identifier of comment list
    */
-  path: string;
+  identifier: string;
 
   /**
    * 评论分页数
@@ -86,7 +86,7 @@ export interface GetCommentResponse {
 export const getComment = ({
   serverURL,
   lang,
-  path,
+  identifier,
   page,
   pageSize,
   sortBy,
@@ -98,8 +98,8 @@ export const getComment = ({
   if (token) headers.Authorization = `Bearer ${token}`;
 
   return fetch(
-    `${getFetchPrefix(serverURL)}comment?path=${encodeURIComponent(
-      path,
+    `${getFetchPrefix(serverURL)}comment?identifier=${encodeURIComponent(
+      identifier,
     )}&pageSize=${pageSize}&page=${page}&lang=${lang}&sortBy=${sortBy}`,
     { signal, headers },
   )

@@ -17,7 +17,7 @@
       init({
         el: '#waline',
         serverURL: 'https://walinejs.comment.lithub.cc',
-        path: '/',
+        identifier: '/',
         lang: 'en-US',
         highlighter: (code, lang) => {
           if (!window.Prism.languages[lang]) window.Prism.plugins.autoloader.loadLanguages(lang);
