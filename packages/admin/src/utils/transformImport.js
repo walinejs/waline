@@ -14,8 +14,16 @@ const parseJSONLines = (input) => {
 
 const parseValine = (input) => {
   const data = parseJSONLines(input);
+  const comments = Array.isArray(data) ? data : data.results;
 
-  return Array.isArray(data) ? data : data.results;
+  comments.forEach((comment) => {
+    comment.insertedAt = comment.insertedAt?.iso ?? comment.insertedAt;
+    comment.createdAt = comment.createdAt?.iso ?? comment.createdAt;
+    comment.updatedAt = comment.updatedAt?.iso ?? comment.updatedAt;
+    delete comment.ACL;
+  });
+
+  return comments;
 };
 
 const transformDisqus = (input) => {
@@ -147,8 +155,8 @@ const transformArtalk = (input) => {
         nick,
         ua,
         url: parsePageKey(pageKey),
-        pid: rid,
-        rid: rootId,
+        pid: rid || undefined,
+        rid: rootId || undefined,
         status: isPending === false || isPending === 'false' ? 'approved' : 'waiting',
         sticky: isPinned === true || isPinned === 'true',
         like: Number(voteUp) - Number(voteDown) || 0,
