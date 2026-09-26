@@ -6,9 +6,6 @@ importers:
   .:
     configDependencies: {}
     packageManagerDependencies:
-      '@pnpm/exe':
-        specifier: 12.3.1
-        version: 12.3.1
       pnpm:
         specifier: 12.3.1
         version: 12.3.1
@@ -59,11 +56,6 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@pnpm/exe@12.3.1':
-    resolution: {integrity: sha512-Tqo6y+EutDHtI6dodXgaYGQJfRQbwqWmhs8QgsQACd2J+qUInOYFPoiU94RIWuxsQBqgH3OMpTEkNEoJO1uPZA==}
-    engines: {node: '>=18.*'}
-    hasBin: true
-
   pnpm@12.3.1:
     resolution: {integrity: sha512-PBTBVAjRSJ01D47X+TNh0mzHBwVPaEmk7qO7dAf/T+RWS0E6HEIadzoXarEWio3xx9VI8s0Nx9NE9YxOaApbGA==}
     engines: {node: '>=18.*'}
@@ -94,17 +86,6 @@ snapshots:
 
   '@pnpm/exe.win32-x64@12.3.1':
     optional: true
-
-  '@pnpm/exe@12.3.1':
-    optionalDependencies:
-      '@pnpm/exe.darwin-arm64': 12.3.1
-      '@pnpm/exe.darwin-x64': 12.3.1
-      '@pnpm/exe.linux-arm64': 12.3.1
-      '@pnpm/exe.linux-arm64-musl': 12.3.1
-      '@pnpm/exe.linux-x64': 12.3.1
-      '@pnpm/exe.linux-x64-musl': 12.3.1
-      '@pnpm/exe.win32-arm64': 12.3.1
-      '@pnpm/exe.win32-x64': 12.3.1
 
   pnpm@12.3.1:
     optionalDependencies:
@@ -467,8 +448,8 @@ importers:
         specifier: ^3.2.4
         version: 3.2.4
       phpass:
-        specifier: ^0.1.1
-        version: 0.1.1
+        specifier: ^1.0.0
+        version: 1.0.0
       prismjs:
         specifier: ^1.30.0
         version: 1.30.0
@@ -3972,6 +3953,10 @@ packages:
     resolution: {integrity: sha512-esaMayGbxzD3bOpy7f00pa5wA15wqhP15RbDYGzh/xGbZRNr05G9HdNiqK4ywzrVdzO8rv+Z4l6m01/9pv1FRA==}
     engines: {node: '>=22'}
 
+  bcryptjs@3.0.3:
+    resolution: {integrity: sha512-GlF5wPWnSa/X5LKM1o0wz0suXIINz1iHRLvTS+sLyi7XPbe5ycmYI3DlZqVGZZtDgl4DmasFg7gOB3JYbphV5g==}
+    hasBin: true
+
   better-sqlite3@11.10.0:
     resolution: {integrity: sha512-EwhOpyXiOEL/lKzHz9AW1msWFNzGc/z+LzeB3/jnFJpxu+th2yqvzsSWas1v9jgs9+xiXJcD5A8CJxAG2TaghQ==}
 
@@ -6343,8 +6328,9 @@ packages:
     resolution: {integrity: sha512-WNFHoKrkZNnvFFhbHL93WDkW3ifwVOXSW3w1UuZZelSmgXpIGiZSNlZJq37rR8YejqME2rHs9EhH9ZvlvFH2NA==}
     engines: {node: '>= 0.12.0'}
 
-  phpass@0.1.1:
-    resolution: {integrity: sha512-ZGkvcdZbIVN6k94p87LavU+GJbVJ8u1BKUkG/qRhdKi8v8YQONT8Ad1DaeXTeEjHBQbMK0+eiI03/M3PbNHB5g==}
+  phpass@1.0.0:
+    resolution: {integrity: sha512-+t1HwTJVpWQHcLrUuu1OcHPzrV5j9jowHcSWCqKRDMQwh564OuETVbl75KvQuFwBltTsREOIlkwWapRtHOVtrQ==}
+    engines: {node: '>=22'}
 
   picocolors@1.0.0:
     resolution: {integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==}
@@ -11838,6 +11824,8 @@ snapshots:
 
   bcrypt-ts@9.0.2: {}
 
+  bcryptjs@3.0.3: {}
+
   better-sqlite3@11.10.0:
     dependencies:
       bindings: 1.5.0
@@ -14326,7 +14314,9 @@ snapshots:
 
   photoswipe@5.4.4: {}
 
-  phpass@0.1.1: {}
+  phpass@1.0.0:
+    dependencies:
+      bcryptjs: 3.0.3
 
   picocolors@1.0.0: {}
 
