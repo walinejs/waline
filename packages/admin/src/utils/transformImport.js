@@ -116,6 +116,9 @@ const parsePageKey = (pageKey) => {
   }
 };
 
+// oxlint-disable-next-line unicorn/prefer-query-selector -- CSS namespace selectors are not reliably supported
+const getElements = (element, name) => element.getElementsByTagName(name);
+
 const transformArtalk = (input) => {
   const comments = JSON.parse(input);
   const parentMap = Object.fromEntries(comments.map(({ id, rid }) => [id, rid]));
@@ -210,6 +213,57 @@ const transformCommento = (input) => {
     });
 };
 
+const transformWordPress = (input) => {
+  const dom = new DOMParser().parseFromString(input, 'application/xml');
+
+  return [...getElements(dom, 'item')].flatMap((item) => {
+    const url = parsePageKey(item.querySelector('link')?.textContent ?? '');
+    const comments = [...getElements(item, 'wp:comment')].filter((comment) => {
+      const type = getElements(comment, 'wp:comment_type')[0]?.textContent;
+      const status = getElements(comment, 'wp:comment_approved')[0]?.textContent;
+
+      return (!type || type === 'comment') && status !== 'trash' && status !== 'post-trashed';
+    });
+    const parentMap = Object.fromEntries(
+      comments
+        .map((comment) => [
+          getElements(comment, 'wp:comment_id')[0]?.textContent,
+          getElements(comment, 'wp:comment_parent')[0]?.textContent,
+        ])
+        .filter(([id, parentId]) => id && parentId && parentId !== '0'),
+    );
+
+    return comments.map((comment) => {
+      const getText = (name) => getElements(comment, name)[0]?.textContent ?? '';
+      const parentId = getText('wp:comment_parent');
+      const dateGmt = getText('wp:comment_date_gmt');
+      const date = dateGmt || getText('wp:comment_date');
+      const createdAt = toISOString(`${date.replace(' ', 'T')}${dateGmt ? 'Z' : ''}`);
+      const status = getText('wp:comment_approved');
+      let rootId = parentId;
+
+      while (rootId && parentMap[rootId]) rootId = parentMap[rootId];
+
+      return {
+        objectId: getText('wp:comment_id'),
+        comment: getText('wp:comment_content'),
+        insertedAt: createdAt,
+        createdAt,
+        updatedAt: createdAt,
+        ip: getText('wp:comment_author_IP'),
+        link: getText('wp:comment_author_url'),
+        mail: getText('wp:comment_author_email'),
+        nick: getText('wp:comment_author'),
+        ua: '',
+        url,
+        pid: parentId === '0' ? undefined : parentId,
+        rid: rootId === '0' ? undefined : rootId,
+        status: status === '1' ? 'approved' : status === 'spam' ? 'spam' : 'waiting',
+      };
+    });
+  });
+};
+
 export const transformImport = (source, input) => {
   let comments;
 
@@ -228,6 +282,10 @@ export const transformImport = (source, input) => {
     }
     case 'commento': {
       comments = transformCommento(input);
+      break;
+    }
+    case 'wordpress': {
+      comments = transformWordPress(input);
       break;
     }
     default: {
