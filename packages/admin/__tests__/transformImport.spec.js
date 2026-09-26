@@ -23,7 +23,7 @@ describe('wordpress imports', () => {
               <wp:comment_content><![CDATA[Hello <strong>world</strong>]]></wp:comment_content>
               <wp:comment_approved>1</wp:comment_approved>
               <wp:comment_parent>0</wp:comment_parent>
-              <wp:comment_type></wp:comment_type>
+              <wp:comment_type>comment</wp:comment_type>
             </wp:comment>
             <wp:comment>
               <wp:comment_id>11</wp:comment_id>

@@ -222,7 +222,7 @@ const transformWordPress = (input) => {
       const type = getElements(comment, 'wp:comment_type')[0]?.textContent;
       const status = getElements(comment, 'wp:comment_approved')[0]?.textContent;
 
-      return !type && status !== 'trash' && status !== 'post-trashed';
+      return (!type || type === 'comment') && status !== 'trash' && status !== 'post-trashed';
     });
     const parentMap = Object.fromEntries(
       comments
