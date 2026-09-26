@@ -216,8 +216,7 @@ module.exports = class CommentController extends BaseRest {
 
     think.logger.debug(`Comment have been added to storage.`);
 
-    let parentComment;
-    let parentUser;
+    let parentComment, parentUser;
 
     if (pid) {
       parentComment = await this.modelInstance.select({ objectId: pid });

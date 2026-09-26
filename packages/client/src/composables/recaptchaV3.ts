@@ -8,6 +8,7 @@ interface ReCaptcha {
 }
 
 export const useReCaptcha = (key: string): ReCaptcha => {
+  // oxlint-disable-next-line no-multi-assign
   const init = (recaptchaStore[key] ??= load(key, {
     useRecaptchaNet: true,
     autoHideBadge: true,

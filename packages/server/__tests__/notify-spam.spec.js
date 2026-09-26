@@ -32,8 +32,7 @@ const NotifyService = require('../src/service/notify.js');
 const notifyRun = vi.spyOn(NotifyService.prototype, 'run').mockResolvedValue();
 
 describe('comment notification for spam', () => {
-  let server;
-  let port;
+  let port, server;
 
   beforeAll(async () => {
     server = http.createServer(handler);
@@ -83,9 +82,9 @@ describe('comment notification for spam', () => {
     });
 
     expect(body.errno).toBe(0);
-    expect(commentAdd).toHaveBeenCalledOnce();
+    expect(commentAdd).toHaveBeenCalledTimes(1);
     expect(commentAdd.mock.calls[0][0].status).toBe('approved');
-    expect(notifyRun).toHaveBeenCalledOnce();
+    expect(notifyRun).toHaveBeenCalledTimes(1);
   });
 
   it('does not notify the author when a comment is stored as spam', async () => {
@@ -97,7 +96,7 @@ describe('comment notification for spam', () => {
     });
 
     expect(body.errno).toBe(0);
-    expect(commentAdd).toHaveBeenCalledOnce();
+    expect(commentAdd).toHaveBeenCalledTimes(1);
     expect(commentAdd.mock.calls[0][0].status).toBe('spam');
     expect(notifyRun).not.toHaveBeenCalled();
   });

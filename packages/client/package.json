@@ -15,7 +15,7 @@
     "url": "https://mister-hope.com"
   },
   "repository": {
-    "url": "https://github.com/walinejs/waline",
+    "url": "git+https://github.com/walinejs/waline.git",
     "directory": "packages/client"
   },
   "files": [
@@ -65,11 +65,11 @@
     "style:meta": "sass ./src/styles/meta.scss ./dist/waline-meta.css --style=compressed"
   },
   "dependencies": {
-    "@vueuse/core": "^14.3.0",
+    "@vueuse/core": "^14.4.0",
     "@waline/api": "workspace:*",
-    "@webc.site/math": "^0.1.32",
+    "@webc.site/math": "^0.1.34",
     "autosize": "^6.0.1",
-    "marked": "^18.0.6",
+    "marked": "^18.0.11",
     "marked-highlight": "^2.2.4",
     "recaptcha-v3": "^1.11.3",
     "vue": "catalog:"

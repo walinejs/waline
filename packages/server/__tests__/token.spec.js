@@ -47,8 +47,7 @@ const handler = main({
 });
 
 describe('token API', () => {
-  let server;
-  let port;
+  let port, server;
 
   const request = (method, path, body) => {
     const url = `http://localhost:${port}${path}`;
@@ -126,9 +125,7 @@ describe('token API', () => {
 
   describe('secure domain checks', () => {
     it('should allow authenticated OAuth callbacks from an untrusted referrer', async () => {
-      const response = await requestFromUntrustedDomain(
-        '/api/oauth?type=github&code=test',
-      );
+      const response = await requestFromUntrustedDomain('/api/oauth?type=github&code=test');
 
       expect(response.statusCode).not.toBe(403);
     });

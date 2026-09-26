@@ -13,7 +13,7 @@
     "url": "https://mister-hope.com"
   },
   "repository": {
-    "url": "https://github.com/walinejs/waline",
+    "url": "git+https://github.com/walinejs/waline.git",
     "directory": "packages/api"
   },
   "files": [
