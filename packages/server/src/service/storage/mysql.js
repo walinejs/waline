@@ -1,5 +1,5 @@
 const Base = require('./base.js');
-const { normalizeOrder, toSqlOrder } = require('./order.js');
+const { normalizeOrder, toSqlOrder } = require('@waline/core/storage/order');
 
 module.exports = class extends Base {
   mapOrderField(field) {

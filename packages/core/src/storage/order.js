@@ -1,3 +1,5 @@
+/* oxlint-disable import/no-commonjs, import/unambiguous, unicorn/prefer-module */
+
 const ORDER_DIRECTIONS = new Set(['asc', 'desc']);
 const NULL_ORDERS = new Set(['first', 'last']);
 

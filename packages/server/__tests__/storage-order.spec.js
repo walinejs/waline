@@ -8,7 +8,7 @@ const {
   normalizeOrder,
   toOrderString,
   toSqlOrder,
-} = require('../src/service/storage/order.js');
+} = require('@waline/core/storage/order');
 
 describe('storage order', () => {
   const order = [

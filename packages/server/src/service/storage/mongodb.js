@@ -1,7 +1,7 @@
 const { ObjectID: ObjectId } = require('think-mongo/lib/model');
 
 const Base = require('./base.js');
-const { normalizeOrder, toOrderString } = require('./order.js');
+const { normalizeOrder, toOrderString } = require('@waline/core/storage/order');
 
 module.exports = class extends Base {
   parseWhere(where) {

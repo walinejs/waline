@@ -1,5 +1,5 @@
 const MySQL = require('./mysql.js');
-const { toSqlOrder } = require('./order.js');
+const { toSqlOrder } = require('@waline/core/storage/order');
 
 const mapKeys = ({ insertedat, createdat, updatedat, ...item }) => {
   const mapFields = {
