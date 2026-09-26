@@ -1,0 +1,19 @@
+{
+  "name": "@waline/core",
+  "version": "1.0.0",
+  "description": "Framework-neutral business actions for Waline",
+  "license": "MIT",
+  "author": "lizheming <i@imnerd.org>",
+  "repository": {
+    "url": "git+https://github.com/walinejs/waline.git",
+    "directory": "packages/core"
+  },
+  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./storage/order": "./src/storage/order.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -1,7 +1,7 @@
 const AV = require('leancloud-storage');
 
 const Base = require('./base.js');
-const { normalizeOrder } = require('./order.js');
+const { normalizeOrder } = require('@waline/core/storage/order');
 
 const { LEAN_ID, LEAN_KEY, LEAN_MASTER_KEY, LEAN_SERVER } = process.env;
 

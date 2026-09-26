@@ -3,7 +3,7 @@ const path = require('node:path');
 const { parseString, writeToString } = require('fast-csv');
 
 const Base = require('./base.js');
-const { compareByOrder, normalizeOrder } = require('./order.js');
+const { compareByOrder, normalizeOrder } = require('@waline/core/storage/order');
 
 const DATE_FIELDS = new Set(['insertedAt', 'createdAt', 'updatedAt']);
 

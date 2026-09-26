@@ -80,6 +80,7 @@ export default defineHopeConfig(
   {
     files: [
       'packages/cloudbase/**',
+      'packages/core/**',
       'packages/hexo-next/**',
       'packages/server/**',
       'scripts/thinkjs-mock.js',
@@ -90,6 +91,7 @@ export default defineHopeConfig(
       'import/unambiguous': 'off',
       'typescript/no-require-imports': 'off',
       'typescript/no-var-requires': 'off',
+      'jsdoc/check-tag-names': 'off',
 
       'unicorn/prefer-module': 'off',
     },

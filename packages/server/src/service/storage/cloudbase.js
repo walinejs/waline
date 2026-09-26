@@ -1,7 +1,7 @@
 const cloudbase = require('@cloudbase/node-sdk');
 
 const Base = require('./base.js');
-const { normalizeOrder } = require('./order.js');
+const { normalizeOrder } = require('@waline/core/storage/order');
 
 const { TCB_ENV, TCB_ID, TCB_KEY } = process.env;
 const app = cloudbase.init({

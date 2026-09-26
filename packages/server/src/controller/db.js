@@ -1,72 +1,40 @@
 const BaseRest = require('./rest.js');
+const {
+  clearDatabaseTable,
+  createDatabaseRepositories,
+  exportDatabase,
+  importDatabaseItem,
+  updateDatabaseItem,
+} = require('../core.js');
 
 module.exports = class DBController extends BaseRest {
   async getAction() {
-    const exportData = {
-      type: 'waline',
-      version: 1,
-      time: Date.now(),
-      tables: ['Comment', 'Counter', 'Users'],
-      data: {
-        Comment: [],
-        Counter: [],
-        Users: [],
-      },
-    };
-
-    for (const tableName of exportData.tables) {
-      const model = this.getModel(tableName);
-
-      const data = await model.select({});
-
-      exportData.data[tableName] = data;
-    }
-
-    return this.success(exportData);
+    return this.success(await exportDatabase(createDatabaseRepositories(this)));
   }
 
   async postAction() {
     const { table } = this.get();
     const item = this.post();
-    const storage = this.config('storage');
-    const model = this.getModel(table);
-
-    if (storage === 'leancloud' || storage === 'mysql') {
-      if (item.insertedAt) item.insertedAt = new Date(item.insertedAt);
-      if (item.createdAt) item.createdAt = new Date(item.createdAt);
-      if (item.updatedAt) item.updatedAt = new Date(item.updatedAt);
-    }
-
-    if (storage === 'mysql') {
-      if (item.insertedAt) item.insertedAt = think.datetime(item.insertedAt, 'YYYY-MM-DD HH:mm:ss');
-      if (item.createdAt) item.createdAt = think.datetime(item.createdAt, 'YYYY-MM-DD HH:mm:ss');
-      if (item.updatedAt) item.updatedAt = think.datetime(item.updatedAt, 'YYYY-MM-DD HH:mm:ss');
-    }
-
-    delete item.objectId;
-    const resp = await model.add(item);
-
-    return this.success(resp);
+    return this.success(
+      await importDatabaseItem(
+        { table, item, storage: this.config('storage') },
+        createDatabaseRepositories(this),
+        { formatDate: (value) => think.datetime(value, 'YYYY-MM-DD HH:mm:ss') },
+      ),
+    );
   }
 
   async putAction() {
     const { table, objectId } = this.get();
     const data = this.post();
-    const model = this.getModel(table);
-
-    delete data.objectId;
-    delete data.createdAt;
-    delete data.updatedAt;
-    await model.update(data, { objectId });
+    await updateDatabaseItem({ table, objectId, data }, createDatabaseRepositories(this));
 
     return this.success();
   }
 
   async deleteAction() {
     const { table } = this.get();
-    const model = this.getModel(table);
-
-    await model.delete({});
+    await clearDatabaseTable({ table }, createDatabaseRepositories(this));
 
     return this.success();
   }
