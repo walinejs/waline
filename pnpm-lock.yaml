@@ -6,9 +6,6 @@ importers:
   .:
     configDependencies: {}
     packageManagerDependencies:
-      '@pnpm/exe':
-        specifier: 12.3.1
-        version: 12.3.1
       pnpm:
         specifier: 12.3.1
         version: 12.3.1
@@ -59,11 +56,6 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@pnpm/exe@12.3.1':
-    resolution: {integrity: sha512-Tqo6y+EutDHtI6dodXgaYGQJfRQbwqWmhs8QgsQACd2J+qUInOYFPoiU94RIWuxsQBqgH3OMpTEkNEoJO1uPZA==}
-    engines: {node: '>=18.*'}
-    hasBin: true
-
   pnpm@12.3.1:
     resolution: {integrity: sha512-PBTBVAjRSJ01D47X+TNh0mzHBwVPaEmk7qO7dAf/T+RWS0E6HEIadzoXarEWio3xx9VI8s0Nx9NE9YxOaApbGA==}
     engines: {node: '>=18.*'}
@@ -94,17 +86,6 @@ snapshots:
 
   '@pnpm/exe.win32-x64@12.3.1':
     optional: true
-
-  '@pnpm/exe@12.3.1':
-    optionalDependencies:
-      '@pnpm/exe.darwin-arm64': 12.3.1
-      '@pnpm/exe.darwin-x64': 12.3.1
-      '@pnpm/exe.linux-arm64': 12.3.1
-      '@pnpm/exe.linux-arm64-musl': 12.3.1
-      '@pnpm/exe.linux-x64': 12.3.1
-      '@pnpm/exe.linux-x64-musl': 12.3.1
-      '@pnpm/exe.win32-arm64': 12.3.1
-      '@pnpm/exe.win32-x64': 12.3.1
 
   pnpm@12.3.1:
     optionalDependencies:
@@ -416,8 +397,8 @@ importers:
         specifier: ^4.1.3
         version: 4.1.3
       '@mdit/plugin-emoji':
-        specifier: 1.2.1
-        version: 1.2.1(markdown-it@15.0.2)
+        specifier: 1.2.2
+        version: 1.2.2(markdown-it@15.0.2)
       '@mdit/plugin-katex':
         specifier: 1.1.1
         version: 1.1.1(markdown-it@15.0.2)
@@ -1660,11 +1641,11 @@ packages:
       markdown-it:
         optional: true
 
-  '@mdit/plugin-emoji@1.2.1':
-    resolution: {integrity: sha512-iE1Lun6Bon3schflVvoajo7JKVeCiJE6dp6QTdPQbz/X/7U8km8ee6X1O7uOdKqGH23MLqU1L2pjAoxiI5yqQg==}
+  '@mdit/plugin-emoji@1.2.2':
+    resolution: {integrity: sha512-U+ASgI5ZxDrCtVjLb2FyI2RGlamstOH9rAYB8HgezU4jKNGdtIUW4Re1wL5NrKzPPvSN6i6OdNzT+srSIG3e8g==}
     engines: {node: '>=22'}
     peerDependencies:
-      markdown-it: ^15.0.1
+      markdown-it: ^15.0.2
     peerDependenciesMeta:
       markdown-it:
         optional: true
@@ -9540,9 +9521,9 @@ snapshots:
     optionalDependencies:
       markdown-it: 15.0.2
 
-  '@mdit/plugin-emoji@1.2.1(markdown-it@15.0.2)':
+  '@mdit/plugin-emoji@1.2.2(markdown-it@15.0.2)':
     dependencies:
-      '@mdit/helper': 1.1.1(markdown-it@15.0.2)
+      '@mdit/helper': 1.1.2(markdown-it@15.0.2)
     optionalDependencies:
       markdown-it: 15.0.2
 
