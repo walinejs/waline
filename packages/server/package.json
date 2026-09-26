@@ -29,7 +29,7 @@
     "@mdit/plugin-katex": "1.1.1",
     "@mdit/plugin-mathjax": "1.2.1",
     "@mdit/plugin-sub": "1.1.1",
-    "@mdit/plugin-sup": "1.1.1",
+    "@mdit/plugin-sup": "1.1.2",
     "akismet": "^2.0.7",
     "dompurify": "3.4.15",
     "fast-csv": "^5.0.7",
