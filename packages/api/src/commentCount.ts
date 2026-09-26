@@ -1,9 +1,5 @@
-import {
-  type BaseAPIOptions,
-  type ErrorStatusResponse,
-  getFetchPrefix,
-  errorCheck,
-} from './utils.js';
+import type { BaseAPIOptions, ErrorStatusResponse } from './utils.js';
+import { errorCheck, getFetchPrefix } from './utils.js';
 
 export interface GetCommentCountOptions extends BaseAPIOptions {
   /**
@@ -33,7 +29,5 @@ export const fetchCommentCount = ({
     )}&lang=${lang}`,
     { signal },
   )
-    .then(
-      (resp) => <Promise<{ data: number[] } & ErrorStatusResponse>>resp.json(),
-    )
+    .then((resp) => resp.json() as Promise<{ data: number[] } & ErrorStatusResponse>)
     .then((data) => errorCheck(data, 'Get comment count').data);

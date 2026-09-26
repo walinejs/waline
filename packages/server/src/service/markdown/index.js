@@ -1,22 +1,14 @@
-const { katex: katexPlugin } = require('@mdit/plugin-katex');
-const {
-  createMathjaxInstance,
-  mathjax: mathjaxPlugin,
-} = require('@mdit/plugin-mathjax');
-const { sub: subPlugin } = require('@mdit/plugin-sub');
-const { sup: supPlugin } = require('@mdit/plugin-sup');
+const { fullEmoji } = require('@mdit/plugin-emoji');
 const MarkdownIt = require('markdown-it');
-const emojiPlugin = require('markdown-it-emoji');
 
 const { resolveHighlighter } = require('./highlight.js');
 const { sanitize } = require('./xss.js');
 
-const getMarkdownParser = () => {
-  const { markdown = {} } = think.config();
+const getMarkdownParser = async (markdown = {}) => {
   const { config = {}, plugin = {} } = markdown;
 
   // markdown-it instance
-  const markdownIt = MarkdownIt({
+  const markdownIt = new MarkdownIt({
     breaks: true,
     linkify: true, // Auto convert URL-like text to links
     typographer: true, // Enable some language-neutral replacement + quotes beautification
@@ -38,30 +30,33 @@ const getMarkdownParser = () => {
 
   // parse emoji
   if (emoji !== false) {
-    markdownIt.use(emojiPlugin, typeof emoji === 'object' ? emoji : {});
+    markdownIt.use(fullEmoji, typeof emoji === 'object' ? emoji : {});
   }
 
   // parse sub
   if (sub !== false) {
-    markdownIt.use(subPlugin);
+    const { sub } = await import('@mdit/plugin-sub');
+    markdownIt.use(sub);
   }
 
   // parse sup
   if (sup !== false) {
-    markdownIt.use(supPlugin);
+    const { sup } = await import('@mdit/plugin-sup');
+    markdownIt.use(sup);
   }
 
   // parse tex
   if (tex === 'katex') {
+    const { katex: katexPlugin } = await import('@mdit/plugin-katex');
     markdownIt.use(katexPlugin, {
       ...katex,
       output: 'mathml',
     });
   } else if (tex !== false) {
-    markdownIt.use(
-      mathjaxPlugin,
-      createMathjaxInstance({ ...mathjax, output: 'svg' }),
-    );
+    const { createMathjaxInstance, mathjax: mathjaxPlugin } =
+      await import('@mdit/plugin-mathjax/sync');
+    const mathjaxInstance = createMathjaxInstance({ output: 'svg', mathjax });
+    markdownIt.use(mathjaxPlugin, mathjaxInstance);
   }
 
   return (content) => sanitize(markdownIt.render(content));

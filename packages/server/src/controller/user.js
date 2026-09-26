@@ -1,6 +1,6 @@
 const BaseRest = require('./rest.js');
 
-module.exports = class extends BaseRest {
+module.exports = class UserController extends BaseRest {
   constructor(...args) {
     super(...args);
     this.modelInstance = this.getModel('Users');
@@ -36,11 +36,26 @@ module.exports = class extends BaseRest {
       },
     );
 
+    const formatUsers = await Promise.all(
+      users.map(async (user) => {
+        user.avatar ||= await think.service('avatar').stringify({
+          mail: user.email,
+          nick: user.nick,
+          link: user.url,
+        });
+
+        return {
+          ...user,
+          avatar: user.avatar,
+        };
+      }),
+    );
+
     return this.success({
       page,
       totalPages: Math.ceil(count / pageSize),
       pageSize,
-      data: users,
+      data: formatUsers,
     });
   }
 
@@ -50,28 +65,17 @@ module.exports = class extends BaseRest {
       email: data.email,
     });
 
-    if (
-      !think.isEmpty(resp) &&
-      ['administrator', 'guest'].includes(resp[0].type)
-    ) {
+    if (!think.isEmpty(resp) && ['administrator', 'guest'].includes(resp[0].type)) {
       return this.fail(this.locale('USER_EXIST'));
     }
 
     const count = await this.modelInstance.count();
 
-    const {
-      SMTP_HOST,
-      SMTP_SERVICE,
-      SENDER_EMAIL,
-      SENDER_NAME,
-      SMTP_USER,
-      SITE_NAME,
-    } = process.env;
+    const { SMTP_HOST, SMTP_SERVICE, SENDER_EMAIL, SENDER_NAME, SMTP_USER, SITE_NAME } =
+      process.env;
     const hasMailService = SMTP_HOST || SMTP_SERVICE;
 
-    const token = Array.from({ length: 4 }, () =>
-      Math.round(Math.random() * 9),
-    ).join('');
+    const token = Array.from({ length: 4 }, () => Math.round(Math.random() * 9)).join('');
     const normalType = hasMailService
       ? `verify:${token}:${Date.now() + 1 * 60 * 60 * 1000}`
       : 'guest';
@@ -79,28 +83,26 @@ module.exports = class extends BaseRest {
     data.password = this.hashPassword(data.password);
     data.type = think.isEmpty(count) ? 'administrator' : normalType;
 
+    // oxlint-disable-next-line unicorn/prefer-ternary
     if (think.isEmpty(resp)) {
       await this.modelInstance.add(data);
     } else {
       await this.modelInstance.update(data, { email: data.email });
     }
 
-    if (!/^verify:/i.test(data.type)) {
+    if (!/^verify:/iu.test(data.type)) {
       return this.success();
     }
 
     try {
       const notify = this.service('notify', this);
-      const apiUrl =
-        this.ctx.serverURL +
-        '/verification?' +
-        new URLSearchParams({ token, email: data.email }).toString();
+      const apiUrl = think.buildUrl(`${this.ctx.serverURL}/verification`, {
+        token,
+        email: data.email,
+      });
 
       await notify.transporter.sendMail({
-        from:
-          SENDER_EMAIL && SENDER_NAME
-            ? `"${SENDER_NAME}" <${SENDER_EMAIL}>`
-            : SMTP_USER,
+        from: SENDER_EMAIL && SENDER_NAME ? `"${SENDER_NAME}" <${SENDER_EMAIL}>` : SMTP_USER,
         to: data.email,
         subject: this.locale('[{{name | safe}}] Registration Confirm Mail', {
           name: SITE_NAME || 'Waline',
@@ -110,8 +112,8 @@ module.exports = class extends BaseRest {
           { url: apiUrl },
         ),
       });
-    } catch (e) {
-      console.log(e);
+    } catch (err) {
+      console.log(err);
 
       return this.fail(
         this.locale(
@@ -125,7 +127,7 @@ module.exports = class extends BaseRest {
   }
 
   async putAction() {
-    const { display_name, url, avatar, password, type, label } = this.post();
+    const { display_name, url, avatar, password, type, label, email } = this.post();
     const { objectId } = this.ctx.state.userInfo;
     const twoFactorAuth = this.post('2fa');
 
@@ -137,6 +139,19 @@ module.exports = class extends BaseRest {
 
     if (think.isString(label)) {
       updateData.label = label;
+    }
+
+    if (email) {
+      const user = await this.modelInstance.select({
+        email,
+        objectId: ['!=', objectId],
+      });
+
+      if (!think.isEmpty(user)) {
+        return this.fail();
+      }
+
+      updateData.email = email;
     }
 
     if (display_name) {
@@ -159,7 +174,7 @@ module.exports = class extends BaseRest {
       updateData['2fa'] = twoFactorAuth;
     }
 
-    const socials = ['github', 'twitter', 'facebook', 'google', 'weibo', 'qq'];
+    const socials = this.ctx.state.oauthServices.map(({ name }) => name);
 
     socials.forEach((social) => {
       const nextSocial = this.post(social);
@@ -180,6 +195,28 @@ module.exports = class extends BaseRest {
     return this.success();
   }
 
+  async deleteAction() {
+    const users = await this.modelInstance.select({
+      objectId: this.id,
+    });
+
+    if (think.isEmpty(users)) {
+      return this.fail();
+    }
+
+    const [user] = users;
+    const isVerifyUser = /^verify:/iu.test(user.type);
+
+    // oxlint-disable-next-line unicorn/prefer-ternary
+    if (isVerifyUser) {
+      await this.modelInstance.delete({ objectId: this.id });
+    } else {
+      await this.modelInstance.update({ type: 'banned' }, { objectId: this.id });
+    }
+
+    return this.success();
+  }
+
   async getUsersListByCount() {
     const { pageSize } = this.get();
     const commentModel = this.getModel('Comment');
@@ -195,27 +232,24 @@ module.exports = class extends BaseRest {
     counts.sort((a, b) => b.count - a.count);
     counts.length = Math.min(pageSize, counts.length);
 
-    const userIds = counts
-      .filter(({ user_id }) => user_id)
-      .map(({ user_id }) => user_id);
+    const userIds = counts.filter(({ user_id }) => user_id).map(({ user_id }) => user_id);
 
-    let usersMap = {};
+    const usersMap = {};
 
-    if (userIds.length) {
+    if (userIds.length > 0) {
       const users = await this.modelInstance.select({
         objectId: ['IN', userIds],
       });
 
-      for (let i = 0; i < users.length; i++) {
-        usersMap[users[i].objectId] = users;
+      for (const user of users) {
+        usersMap[user.objectId] = users;
       }
     }
 
     const users = [];
     const { avatarProxy } = this.config();
 
-    for (let i = 0; i < counts.length; i++) {
-      const count = counts[i];
+    for (const count of counts) {
       const user = {
         count: count.count,
       };
@@ -224,28 +258,23 @@ module.exports = class extends BaseRest {
         let level = 0;
 
         if (user.count) {
-          const _level = think.findLastIndex(
+          const matchedLevel = think.findLastIndex(
             this.config('levels'),
-            (l) => l <= user.count,
+            (level) => level <= user.count,
           );
 
-          if (_level !== -1) {
-            level = _level;
+          if (matchedLevel !== -1) {
+            level = matchedLevel;
           }
         }
         user.level = level;
       }
 
       if (count.user_id && users[count.user_id]) {
-        const {
-          display_name: nick,
-          url: link,
-          avatar: avatarUrl,
-          label,
-        } = users[count.user_id];
+        const { display_name: nick, url: link, avatar: avatarUrl, label } = users[count.user_id];
         const avatar =
           avatarProxy && !avatarUrl.includes(avatarProxy)
-            ? avatarProxy + '?url=' + encodeURIComponent(avatarUrl)
+            ? `${avatarProxy}?url=${encodeURIComponent(avatarUrl)}`
             : avatarUrl;
 
         Object.assign(user, { nick, link, avatar, label });
@@ -253,24 +282,23 @@ module.exports = class extends BaseRest {
         continue;
       }
 
-      const comments = await commentModel.select(
-        { mail: count.mail },
-        { limit: 1 },
-      );
+      const comments = await commentModel.select({ mail: count.mail }, { limit: 1 });
 
       if (think.isEmpty(comments)) {
         continue;
       }
-      const comment = comments[0];
+
+      const [comment] = comments;
 
       if (think.isEmpty(comment)) {
         continue;
       }
+
       const { nick, link } = comment;
       const avatarUrl = await think.service('avatar').stringify(comment);
       const avatar =
         avatarProxy && !avatarUrl.includes(avatarProxy)
-          ? avatarProxy + '?url=' + encodeURIComponent(avatarUrl)
+          ? `${avatarProxy}?url=${encodeURIComponent(avatarUrl)}`
           : avatarUrl;
 
       Object.assign(user, { nick, link, avatar });

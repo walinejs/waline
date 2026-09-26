@@ -4,41 +4,49 @@ on:
   - push
   - pull_request
 
+permissions:
+  contents: read
+
 jobs:
   test:
     strategy:
       matrix:
         node-version:
-          - 18
-          - 20
-        os: [ubuntu-latest]
+          - 22
+          - 24
+        os:
+          - ubuntu-latest
 
     runs-on: ${{ matrix.os }}
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v6
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node-version }}
+          check-latest: true
           cache: pnpm
 
       - name: Install Dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm ci
 
       - name: Package Build Test
-        run: pnpm build
+        run: pnpm run build
 
       - name: Linter test
-        run: pnpm lint
+        run: pnpm run lint
 
       - name: Unit test
-        run: pnpm test
+        run: pnpm run test
+
+      - name: API Description Lint
+        run: pnpm run api:lint
 
       - name: Docs Build Test
-        run: pnpm docs:build
+        run: pnpm run docs:build

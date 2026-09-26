@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable typescript/no-unused-vars */
 
 module.exports = class extends think.Service {
   constructor(tableName) {
@@ -6,7 +6,7 @@ module.exports = class extends think.Service {
     this.tableName = tableName;
   }
 
-  async select(where, { desc, limit, offset, field } = {}) {
+  async select(where, { desc, field, limit, offset, order } = {}) {
     //to be implemented
   }
 
@@ -14,12 +14,7 @@ module.exports = class extends think.Service {
     //to be implemented
   }
 
-  async add(
-    data,
-    {
-      access: { read = true, write = true } = { read: true, write: true },
-    } = {},
-  ) {
+  async add(data, { access: { read = true, write = true } = { read: true, write: true } } = {}) {
     //to be implemented
   }
 

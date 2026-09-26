@@ -1,6 +1,7 @@
 ---
 title: 通过 CDN 导入 Waline
 icon: import
+order: 1
 ---
 
 本教程引导你如何使用 CDN 导入 Waline。
@@ -17,10 +18,7 @@ icon: import
 
 ```html
 <!-- 样式文件 -->
-<link
-  rel="stylesheet"
-  href="https://unpkg.com/@waline/client@v3/dist/waline.css"
-/>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css" />
 <!-- 脚本文件 -->
 <script type="module">
   import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';

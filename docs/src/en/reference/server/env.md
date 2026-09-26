@@ -1,7 +1,6 @@
 ---
 title: Server Environment Variables
 icon: config
-redirectFrom: /en/reference/env.html
 ---
 
 You can customize Waline Server through the following environment variables.
@@ -18,15 +17,12 @@ You should set through `Settings` - `Environment Variables` when using Vercel.
 
 ## Basic
 
-| Environment Variables | Required | Description                                             |
-| --------------------- | -------- | ------------------------------------------------------- |
-| `LEAN_ID`             | ✅       | LeanCloud Application ID                                |
-| `LEAN_KEY`            | ✅       | LeanCloud Application Key                               |
-| `LEAN_MASTER_KEY`     | ✅       | LeanCloud Application Master Key                        |
-| `LEAN_SERVER`         | ⚠       | LeanCloud server address if you're leancloud china user |
-| `SITE_NAME`           |          | site name                                               |
-| `SITE_URL`            |          | site url                                                |
-| `LOGIN`               |          | User need login before comment when `LOGIN=force`       |
+| Environment Variables | Required | Description                                                                                |
+| --------------------- | -------- | ------------------------------------------------------------------------------------------ |
+| `SITE_NAME`           |          | site name                                                                                  |
+| `SITE_URL`            |          | site url                                                                                   |
+| `LOGIN`               |          | User need login before comment when `LOGIN=force`                                          |
+| `SERVER_URL`          |          | the url of the Waline Server, useful when the automatically generated address is incorrect |
 
 ## Display
 
@@ -124,7 +120,7 @@ The email service is used for email notification of user registration and commen
 
 ::: tip
 
-Supported service providers can be found [here](https://github.com/nodemailer/nodemailer/blob/master/lib/well-known/services.json). You can choose one of `SMTP_SERVICE` and (`SMTP_HOST`, `SMTP_PORT`). If you don't know the corresponding `SMTP_SERVICE` in the list, you need to configure `SMTP_HOST` and `SMTP_PORT`, which can probably be found in the mailbox settings.
+Supported service providers can be found [nodemailer services](https://github.com/nodemailer/nodemailer/blob/master/src/well-known/services.json). You can choose one of `SMTP_SERVICE` and (`SMTP_HOST`, `SMTP_PORT`). If you don't know the corresponding `SMTP_SERVICE` in the list, you need to configure `SMTP_HOST` and `SMTP_PORT`, which can probably be found in the mailbox settings.
 
 The user name of SMTP usually supports the complete mailbox of the user, and the password is mostly the same as the mailbox password.
 
@@ -210,12 +206,6 @@ Please pay special attention that some mailboxes use separate SMTP passwords.
 | `GITHUB_REPO`        | ✅       |         | repository name, such as `walinejs/waline`                                                                       |
 | GITHUB_PATH          |          |         | The data storage directory, such as `data` means it is stored in the `data` directory, root directory by default |
 
-### Deta Base
-
-| Environment Variable | Required | Default | Description             |
-| -------------------- | -------- | ------- | ----------------------- |
-| `DETA_PROJECT_KEY`   | ✅       |         | Deta project secret key |
-
 ## Advanced
 
 | Environment Variables           | Default                     | Description                                                                                      |
@@ -223,4 +213,6 @@ Please pay special attention that some mailboxes use separate SMTP passwords.
 | `OAUTH_URL`                     | `https://oauth.lithub.cc`   | OAuth Social Login Service URL. You can [build your own auth](https://github.com/walinejs/auth). |
 | `WEBHOOK`                       |                             | You can set a Webhook URL that will be triggered when you have new comment.                      |
 | `WALINE_ADMIN_MODULE_ASSET_URL` | `//unpkg.com/@waline/admin` | Waline admin link                                                                                |
-| `IP2REGION_DB`                  |                             | customized IP query library path                                                                 |
+| `IP2REGION_DB`                  |                             | customized IPv4 IP query library path (deprecated, use `IP2REGION_DB_V4` instead)                |
+| `IP2REGION_DB_V4`               |                             | customized IPv4 IP query library path. Falls back to `IP2REGION_DB` if not set                   |
+| `IP2REGION_DB_V6`               |                             | customized IPv6 IP query library path. Set this to enable IPv6 address location lookup           |

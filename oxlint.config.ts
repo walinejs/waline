@@ -1,0 +1,166 @@
+import { defineHopeConfig } from 'oxc-config-hope/oxlint';
+
+export default defineHopeConfig(
+  {
+    ignore: ['example/', '**/.vuepress/utils/transform/', '**/.vuepress/utils/csv.js'],
+    node: ['packages/cloudbase/**', 'packages/server/**/*.js', 'scripts/thinkjs-mock.js'],
+    react: true,
+    vue: true,
+    vitest: true,
+    rules: {
+      curly: ['warn', 'multi-line'],
+      'no-alert': 'off',
+      'no-warning-comments': 'off',
+      'prefer-global-this': 'off',
+      'unicorn/prefer-global-this': 'off',
+      eqeqeq: 'off',
+      'node/global-require': 'off',
+      'node/no-process-env': 'off',
+      'no-undefined': 'off',
+    },
+  },
+  {
+    files: ['packages/admin/src/**'],
+    plugins: ['react'],
+    rules: {
+      'id-length': [
+        'warn',
+        {
+          min: 2,
+          exceptions: ['i', 'j', 'x', 'y', 'z', 't', '_'],
+        },
+      ],
+      // disabled for compatibility concern
+      'prefer-named-capture-group': 'off',
+      'react/forbid-component-props': [
+        'warn',
+        {
+          forbid: [
+            {
+              propName: 'className',
+              allowedFor: ['Icon', 'Link'],
+            },
+          ],
+        },
+      ],
+      'react/jsx-max-depth': 'off',
+      'react/jsx-no-literals': 'off',
+      // react compiler is not used, its unimplemented-syntax todos are not actionable
+      'react/todo': 'off',
+      'typescript/no-floating-promises': 'off',
+      'typescript/unbound-method': 'off',
+      // disabled for compatibility concern
+      'unicorn/prefer-global-this': 'off',
+
+      // temporarily disable to avoid too many warnings, will be re-enabled in the future
+      complexity: 'off',
+      'max-depth': 'off',
+      'max-lines': 'off',
+      'max-lines-per-function': 'off',
+      'no-shadow': 'off',
+      'promise/catch-or-return': 'off',
+      'react/no-danger': 'off',
+      'react-perf/jsx-no-jsx-as-prop': 'off',
+      'react-perf/jsx-no-new-object-as-prop': 'off',
+      'react-perf/jsx-no-new-function-as-prop': 'off',
+      'react-perf/jsx-no-new-array-as-prop': 'off',
+    },
+  },
+  {
+    files: ['packages/client/src/**'],
+    plugins: ['vue'],
+    rules: {
+      'no-shadow': 'off',
+      // disabled for compatibility concern
+      'prefer-named-capture-group': 'off',
+      'react-hooks/rules-of-hooks': 'off',
+      'vue/max-props': ['warn', { maxProps: 5 }],
+    },
+  },
+  {
+    files: [
+      'packages/cloudbase/**',
+      'packages/hexo-next/**',
+      'packages/server/**',
+      'scripts/thinkjs-mock.js',
+    ],
+    rules: {
+      // cjs related rules
+      'import/no-commonjs': 'off',
+      'import/unambiguous': 'off',
+      'typescript/no-require-imports': 'off',
+      'typescript/no-var-requires': 'off',
+
+      'unicorn/prefer-module': 'off',
+    },
+  },
+  {
+    files: ['packages/server/**/*.js'],
+    rules: {
+      'class-methods-use-this': 'off',
+      complexity: 'off',
+      'max-lines': 'off',
+      'max-lines-per-function': 'off',
+      'max-statements': 'off',
+      'no-console': 'off',
+      'no-await-in-loop': 'off',
+      'no-callback-in-promise': 'off',
+      'no-empty-function': 'off',
+      'no-underscore-dangle': ['warn', { allow: ['__before', '__filename', '_complex', '_logic'] }],
+      'require-await': 'off',
+
+      'jsdoc/check-tag-names': [
+        'warn',
+        {
+          definedTags: [
+            'apiHeader',
+            'apiParam',
+            'apiSuccess',
+            'apiSuccessExample',
+            'apiVersion',
+            'api',
+            'apiGroup',
+          ],
+        },
+      ],
+      'jsdoc/require-returns': 'off',
+
+      // disable currently to avoid empty env variables falling to empty string
+      'typescript/prefer-nullish-coalescing': 'off',
+      'typescript/prefer-promise-reject-errors': 'off',
+      'typescript/require-await': 'off',
+
+      'unicorn/no-array-callback-reference': 'off',
+      // 'unicorn/no-array-method-this-argument': 'off',
+      'unicorn/no-anonymous-default-export': 'off',
+      'unicorn/consistent-function-scoping': 'off',
+
+      'promise/prefer-await-to-callbacks': 'off',
+      'promise/always-return': 'off',
+      'promise/no-nesting': 'off',
+
+      'max-depth': 'off',
+      'no-param-reassign': 'off',
+      'id-length': 'off',
+      'oxc/no-map-spread': 'off',
+
+      // temporarily disable to avoid too many warnings, will be re-enabled in the future
+      'guard-for-in': 'off',
+      'max-classes-per-file': 'off',
+      'no-shadow': 'off',
+      'no-undefined': 'off',
+    },
+  },
+  {
+    files: ['docs/src/**'],
+    rules: {
+      'max-lines': 'off',
+    },
+  },
+  {
+    files: ['scripts/**'],
+    rules: {
+      'no-console': 'off',
+    },
+  },
+);

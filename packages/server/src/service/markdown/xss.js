@@ -3,15 +3,22 @@ const { JSDOM } = require('jsdom');
 
 const DOMPurify = createDOMPurify(new JSDOM('').window);
 
+// try to fix https://github.com/walinejs/waline/issues/3238
+DOMPurify.addHook('uponSanitizeElement', (node, data) => {
+  if (data.tagName === 'annotation') {
+    node.remove();
+  }
+});
+
 /**
- * Add a hook to make all links open a new window
- * and force their rel to be 'nofollow noreferrer noopener'
+ * Add a hook to make all links open a new window and force their rel to be 'ugc nofollow noreferrer
+ * noopener'
  */
 DOMPurify.addHook('afterSanitizeAttributes', (node) => {
   // set all elements owning target to target=_blank
   if ('target' in node && node.href && !node.href.startsWith('about:blank#')) {
     node.setAttribute('target', '_blank');
-    node.setAttribute('rel', 'nofollow noreferrer noopener');
+    node.setAttribute('rel', 'ugc nofollow noreferrer noopener');
   }
 
   // set non-HTML/MathML links to xlink:show=new
@@ -28,16 +35,11 @@ DOMPurify.addHook('afterSanitizeAttributes', (node) => {
 });
 
 const sanitize = (content) =>
-  DOMPurify.sanitize(
-    content,
-    Object.assign(
-      {
-        FORBID_TAGS: ['form', 'input', 'style'],
-        FORBID_ATTR: ['autoplay', 'style'],
-      },
-      think.config('domPurify') || {},
-    ),
-  );
+  DOMPurify.sanitize(content, {
+    FORBID_TAGS: ['form', 'input', 'style'],
+    FORBID_ATTR: ['autoplay', 'style'],
+    ...think.config('domPurify'),
+  });
 
 module.exports = {
   sanitize,

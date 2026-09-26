@@ -1,19 +1,23 @@
 import React from 'react';
-import * as ReactDOM from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
 
-import App from './App';
-import { store } from './store';
+import App from './App.jsx';
+import { store } from './store/index.js';
+// oxlint-disable-next-line import/no-unassigned-import
+import './i18n.js';
 
-import './i18n';
+import './style/index.css';
 
-import './style/index.scss';
-
-async function run() {
+const run = async () => {
   await Promise.race([
-    new Promise((resolve) => setTimeout(resolve, 50)),
+    new Promise((resolve) => {
+      setTimeout(resolve, 50);
+    }),
     new Promise((resolve) => {
       window.addEventListener('message', (data) => {
-        data && data.type === 'TOKEN' && data.data && resolve(data);
+        if (data && data.type === 'TOKEN' && data.data) {
+          resolve(data);
+        }
       });
     }),
     new Promise((resolve) => {
@@ -25,36 +29,40 @@ async function run() {
       }
     }),
   ]).then((token) => {
-    if (!token) {
-      return;
-    }
+    if (!token) return;
+
     window.TOKEN = token;
     sessionStorage.setItem('TOKEN', token);
   });
 
-  await Promise.all([store.dispatch({ type: 'user/loadUserInfo' })]).catch(
-    (e) => {
-      console.error(e);
-    },
-  );
+  await store.dispatch({ type: 'user/loadUserInfo' }).catch((err) => {
+    // oxlint-disable-next-line no-console
+    console.error(err);
+  });
 
   const container = document.createElement('div');
 
+  document.body.classList.add('waline-body');
   container.style.height = '100%';
-  document.body.appendChild(container);
+  container.className = 'waline-root';
+  document.body.append(container);
 
-  const root = ReactDOM.createRoot(container);
+  const root = createRoot(container);
 
   root.render(
     <React.StrictMode>
       <App />
     </React.StrictMode>,
   );
-}
+};
 
+// oxlint-disable-next-line no-console
 console.log(
-  '%c @waline/admin %c v' + VERSION + ' ',
+  `%c @waline/admin %c v${VERSION}`,
   'color: white; background: #0078E7; padding:5px 0;',
   'padding:4px;border:1px solid #0078E7;',
 );
+
+// The admin bundle is loaded as a classic script by the server dashboard.
+// oxlint-disable-next-line unicorn/prefer-top-level-await
 run();

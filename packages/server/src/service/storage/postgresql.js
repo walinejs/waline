@@ -1,6 +1,32 @@
 const MySQL = require('./mysql.js');
+const { toSqlOrder } = require('./order.js');
 
+const mapKeys = ({ insertedat, createdat, updatedat, ...item }) => {
+  const mapFields = {
+    insertedAt: insertedat,
+    createdAt: createdat,
+    updatedAt: updatedat,
+  };
+
+  for (const field in mapFields) {
+    if (!mapFields[field]) {
+      continue;
+    }
+
+    item[field] = mapFields[field];
+  }
+
+  return item;
+};
 module.exports = class extends MySQL {
+  mapOrderField(field) {
+    return super.mapOrderField(field).toLowerCase();
+  }
+
+  getSqlOrder(order) {
+    return toSqlOrder(order, { nulls: true });
+  }
+
   model(tableName) {
     return super.model(tableName.toLowerCase());
   }
@@ -12,32 +38,13 @@ module.exports = class extends MySQL {
       lowerWhere[i.toLowerCase()] = where[i];
     }
 
-    if (options && options.desc) {
-      options.desc = options.desc.toLowerCase();
-    }
-
     if (Array.isArray(options.field)) {
       options.field = options.field.map((field) => field.toLowerCase());
     }
 
     const data = await super.select(lowerWhere, options);
 
-    return data.map(({ insertedat, createdat, updatedat, ...item }) => {
-      const mapFields = {
-        insertedAt: insertedat,
-        createdAt: createdat,
-        updatedAt: updatedat,
-      };
-
-      for (const field in mapFields) {
-        if (!mapFields[field]) {
-          continue;
-        }
-        item[field] = mapFields[field];
-      }
-
-      return item;
-    });
+    return data.map(mapKeys);
   }
 
   async add(data) {
@@ -47,13 +54,12 @@ module.exports = class extends MySQL {
         const val = data[key];
 
         data[key.toLowerCase()] =
-          val instanceof Date
-            ? think.datetime(val, 'YYYY-MM-DD HH:mm:ss')
-            : val;
+          val instanceof Date ? think.datetime(val, 'YYYY-MM-DD HH:mm:ss') : val;
+        // oxlint-disable-next-line typescript/no-dynamic-delete
         delete data[key];
       });
 
-    return super.add(data);
+    return super.add(data).then(mapKeys);
   }
 
   async count(...args) {
@@ -62,13 +68,13 @@ module.exports = class extends MySQL {
     try {
       if (Array.isArray(result)) {
         result.forEach((r) => {
-          r.count = parseInt(r.count);
+          r.count = Math.trunc(Number(r.count));
         });
       } else {
-        result = parseInt(result);
+        result = Math.trunc(Number(result));
       }
-    } catch (e) {
-      console.log(e);
+    } catch (err) {
+      console.log(err);
     }
 
     return result;
@@ -77,8 +83,6 @@ module.exports = class extends MySQL {
   async setSeqId(id) {
     const instance = this.model(this.tableName);
 
-    return instance.query(
-      `ALTER SEQUENCE ${instance.tableName}_seq RESTART WITH ${id};`,
-    );
+    return instance.query(`ALTER SEQUENCE ${instance.tableName}_seq RESTART WITH ${id};`);
   }
 };

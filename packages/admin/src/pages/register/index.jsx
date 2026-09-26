@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router';
 
-import Header from '../../components/Header';
-import { useCaptcha } from '../../components/useCaptcha';
+import Header from '../../components/Header.jsx';
+import { useCaptcha } from '../../components/useCaptcha.js';
 
-export default function () {
+const SEP = ' • ';
+
+export default function Register() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -14,33 +16,35 @@ export default function () {
   const [error, setError] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const execute = useCaptcha({
-    sitekey: window.turnstileKey || window.recaptchaV3Key,
+    sitekey: window.turnstileKey ?? window.recaptchaV3Key,
     hideDefaultBadge: true,
   });
 
   useEffect(() => {
-    if (user && user.email) {
+    if (user?.objectId) {
       navigate('/ui', { replace: true });
     }
-  }, [navigate]);
+  }, [navigate, user?.objectId]);
 
-  const onSubmit = async function (e) {
-    e.preventDefault();
+  const onSubmit = async (event) => {
+    event.preventDefault();
     setError(false);
 
-    const nick = e.target.nick.value;
+    const nick = event.target.nick.value;
 
     if (!nick || nick.length < 2) {
       return setError(t('nickname illegal'));
     }
-    const email = e.target.email.value;
+
+    const email = event.target.email.value;
 
     if (!email) {
       return setError(t('please input email'));
     }
-    const link = e.target.link.value;
-    const password = e.target.password.value;
-    const passwordAgain = e.target['password-again'].value;
+
+    const link = event.target.link.value;
+    const password = event.target.password.value;
+    const passwordAgain = event.target['password-again'].value;
 
     if (!password || !passwordAgain || passwordAgain !== password) {
       return setError(t("passwords don't match"));
@@ -61,9 +65,10 @@ export default function () {
       if (resp && resp.verify) {
         alert(t('register success! please go to your mailbox to verify it!'));
       }
+
       navigate('/ui/login');
-    } catch (e) {
-      setError(e.message);
+    } catch (err) {
+      setError(err.message);
     } finally {
       setSubmitting(false);
     }
@@ -84,7 +89,7 @@ export default function () {
       </div>
       <div className="typecho-login-wrap">
         <div className="typecho-login">
-          <form method="post" name="login" role="form" onSubmit={onSubmit}>
+          <form method="post" name="login" onSubmit={onSubmit}>
             <p>
               <label htmlFor="nick" className="sr-only">
                 {t('nickname')}
@@ -147,18 +152,15 @@ export default function () {
             </p>
             <p className="captcha-container" />
             <p className="submit">
-              <button
-                type="submit"
-                disabled={submitting}
-                className="btn btn-l w-100 primary"
-              >
+              <button type="submit" disabled={submitting} className="btn btn-l w-100 primary">
                 {t('register')}
               </button>
             </p>
           </form>
 
           <p className="more-link">
-            <Link to="/ui">{t('back to home')}</Link> •{' '}
+            <Link to="/ui">{t('back to home')}</Link>
+            {SEP}
             <Link to="/ui/login">{t('register.login')}</Link>
           </p>
         </div>

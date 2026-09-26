@@ -1,6 +1,7 @@
 ---
 title: Ecosystem
 icon: ecosystem
+order: 3
 ---
 
 Waline is a classic Client/Server architecture, which provides a relatively complete API interface. you can implement your own client implementation based on the API provided by the server.
@@ -32,6 +33,14 @@ Waline is a classic Client/Server architecture, which provides a relatively comp
 
   By [@BeiyanYunyi](https://github.com/BeiyanYunyi), build with Solid.js. For usage, see its README and [website](https://BeiyanYunyi.github.io/sodesu/)。
 
+## Rusty
+
+[waline-mini](https://github.com/JQiue/waline-mini) is a server-side implementation in Rust, highly suitable for running in resource-constrained server environments.
+
+## Cloudflare Workers
+
+[Waline_On_Worker](https://github.com/wuyilingwei/Waline_On_Worker) is a server-side implementation based on Workers by the community, making up for the shortcoming that Waline cannot run on Cloudflare Workers.
+
 ## Plugins
 
 ### Hexo
@@ -46,6 +55,10 @@ Waline is a classic Client/Server architecture, which provides a relatively comp
 
 - [vuepress-plugin-comment2](https://vuepress-theme-hope.github.io/v2/comment/): Comment system for VuePress2.
 - [@mr-hope/vuepress-plugin-comment](https://vuepress-theme-hope.github.io/v1/comment/): Comment system for VuePress1.
+
+### Gatsby
+
+- [gatsby-plugin-waline](https://www.npmjs.com/package/gatsby-plugin-waline): Comment system plugin for Gatsby.
 
 Others:
 

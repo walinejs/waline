@@ -1,10 +1,25 @@
-const ip2region = require('dy-node-ip2region');
-const helper = require('think-helper');
+const IP2Region = require('ip2region').default;
 const parser = require('ua-parser-js');
 
 const preventMessage = 'PREVENT_NEXT_PROCESS';
 
-const regionSearch = ip2region.create(process.env.IP2REGION_DB);
+// Cached IP2Region instance using IIFE closure pattern
+// Instance is created on first access and reused for all subsequent calls
+const getIP2RegionInstance = (() => {
+  let instance = null;
+
+  // oxlint-disable-next-line react/function-component-definition
+  return () => {
+    if (!instance) {
+      instance = new IP2Region({
+        ipv4db: process.env.IP2REGION_DB_V4 || process.env.IP2REGION_DB,
+        ipv6db: process.env.IP2REGION_DB_V6,
+      });
+    }
+
+    return instance;
+  };
+})();
 
 const OS_VERSION_MAP = {
   Windows: {
@@ -32,17 +47,19 @@ module.exports = {
 
     return -1;
   },
-  promiseAllQueue(promises, taskNum) {
+  async promiseAllQueue(promises, taskNum) {
     return new Promise((resolve, reject) => {
-      if (!promises.length) {
-        return resolve();
+      if (promises.length === 0) {
+        resolve();
+
+        return;
       }
 
       const ret = [];
       let index = 0;
       let count = 0;
 
-      function runTask() {
+      const runTask = () => {
         const idx = index;
 
         index += 1;
@@ -59,7 +76,7 @@ module.exports = {
 
           return runTask();
         }, reject);
-      }
+      };
 
       for (let i = 0; i < taskNum; i++) {
         runTask();
@@ -67,24 +84,20 @@ module.exports = {
     });
   },
   async ip2region(ip, { depth = 1 }) {
-    if (!ip || ip.includes(':')) return '';
+    if (!ip) return '';
 
     try {
-      const search = helper.promisify(regionSearch.btreeSearch, regionSearch);
-      const result = await search(ip);
+      const res = getIP2RegionInstance().search(ip);
 
-      if (!result) {
+      if (!res) {
         return '';
       }
-      const { region } = result;
-      const [, , province, city, isp] = region.split('|');
-      const address = Array.from(
-        new Set([province, city, isp].filter((v) => v)),
-      );
 
+      const { province, city, isp } = res;
+      const address = [...new Set([province, city, isp].filter(Boolean))];
       return address.slice(0, depth).join(' ');
-    } catch (e) {
-      console.log(e);
+    } catch (err) {
+      console.log(err);
 
       return '';
     }
@@ -92,10 +105,7 @@ module.exports = {
   uaParser(uaText) {
     const ua = parser(uaText);
 
-    if (
-      OS_VERSION_MAP[ua.os.name] &&
-      OS_VERSION_MAP[ua.os.name][ua.os.version]
-    ) {
+    if (OS_VERSION_MAP[ua.os.name]?.[ua.os.version]) {
       ua.os.version = OS_VERSION_MAP[ua.os.name][ua.os.version];
     }
 
@@ -109,7 +119,8 @@ module.exports = {
       return defaultLevel;
     }
 
-    const level = think.findLastIndex(levels, (l) => l <= val);
+    // oxlint-disable-next-line unicorn/no-array-method-this-argument
+    const level = think.findLastIndex(levels, (item) => item <= val);
 
     return level === -1 ? defaultLevel : level;
   },
@@ -121,13 +132,12 @@ module.exports = {
       return fns;
     }
 
-    for (let i = 0; i < plugins.length; i++) {
-      const plugin = plugins[i];
-
-      if (!plugin || !plugin[type]) {
+    for (const plugin of plugins) {
+      if (!plugin?.[type]) {
         continue;
       }
 
+      // oxlint-disable-next-line node/callback-return
       const res = callback(plugin[type]);
 
       if (!res) {
@@ -146,7 +156,7 @@ module.exports = {
       }
 
       if (think.isArray(middleware)) {
-        return middleware.filter((m) => think.isFunction(m));
+        return middleware.filter((item) => think.isFunction(item));
       }
     });
 
@@ -154,9 +164,32 @@ module.exports = {
   },
   getPluginHook(hookName) {
     return think
-      .pluginMap('hooks', (hook) =>
-        think.isFunction(hook[hookName]) ? hook[hookName] : undefined,
-      )
-      .filter((v) => v);
+      .pluginMap('hooks', (hook) => (think.isFunction(hook[hookName]) ? hook[hookName] : null))
+      .filter(Boolean);
+  },
+  buildUrl(path, query = {}) {
+    const notEmptyQuery = {};
+
+    for (const key in query) {
+      if (!query[key]) {
+        continue;
+      }
+
+      notEmptyQuery[key] = query[key];
+    }
+
+    const notEmptyQueryStr = new URLSearchParams(notEmptyQuery).toString();
+
+    let destUrl = path;
+
+    if (destUrl && notEmptyQueryStr) {
+      destUrl += destUrl.includes('?') ? '&' : '?';
+    }
+
+    if (notEmptyQueryStr) {
+      destUrl += notEmptyQueryStr;
+    }
+
+    return destUrl;
   },
 };

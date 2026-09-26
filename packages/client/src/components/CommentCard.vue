@@ -1,9 +1,82 @@
-<template>
-  <div :id="comment.objectId" class="wl-card-item">
-    <div class="wl-user" aria-hidden="true">
-      <img v-if="comment.avatar" class="wl-user-avatar" :src="comment.avatar" />
+<script setup lang="ts">
+import { useNow } from '@vueuse/core';
+import type { WalineComment, WalineCommentStatus } from '@waline/api';
+import { computed, inject } from 'vue';
 
-      <VerifiedIcon v-if="comment.type" />
+import { useLikeStorage, useUserInfo } from '../composables/index.js';
+import { configKey } from '../config/index.js';
+import { getTimeAgo, isLinkHttp } from '../utils/index.js';
+import CommentBox from './CommentBox.vue';
+import {
+  AdministratorIcon,
+  DeleteIcon,
+  EditIcon,
+  LikeIcon,
+  ReplyIcon,
+  RssLineIcon,
+  VerifiedIcon,
+} from './Icons.js';
+
+const {
+  comment,
+  edit = null,
+  rootId,
+  reply = null,
+} = defineProps<{
+  /** Comment data */
+  comment: WalineComment;
+  /** Current comment to be edited */
+  edit?: WalineComment | null;
+  /** Root comment id */
+  rootId: number;
+  /** Current comment to be replied */
+  reply?: WalineComment | null;
+}>();
+
+const emit = defineEmits<{
+  (event: 'log'): void;
+  (event: 'submit' | 'delete' | 'like' | 'sticky', comment: WalineComment): void;
+  (event: 'edit' | 'reply', comment: WalineComment | null): void;
+  (event: 'status', statusInfo: { status: WalineCommentStatus; comment: WalineComment }): void;
+}>();
+
+const commentStatus: WalineCommentStatus[] = ['approved', 'waiting', 'spam'];
+
+// oxlint-disable-next-line typescript/no-non-null-assertion
+const config = inject(configKey)!;
+const likes = useLikeStorage();
+const now = useNow();
+const userInfo = useUserInfo();
+
+const locale = computed(() => config.value.locale);
+
+const link = computed(() => {
+  const { link } = comment;
+
+  return link ? (isLinkHttp(link) ? link : `https://${link}`) : '';
+});
+
+const like = computed(() => likes.value.includes(comment.objectId));
+
+const time = computed(() => getTimeAgo(new Date(comment.time), now.value, locale.value));
+
+const isAdmin = computed(() => userInfo.value.type === 'administrator');
+
+const isOwner = computed(() => comment.user_id && userInfo.value.objectId === comment.user_id);
+
+const isReplyingCurrent = computed(() => comment.objectId === reply?.objectId);
+
+const isEditingCurrent = computed(() => comment.objectId === edit?.objectId);
+</script>
+
+<template>
+  <div :id="comment.objectId.toString()" class="wl-card-item">
+    <div class="wl-user" aria-hidden="true">
+      <img v-if="comment.avatar" class="wl-user-avatar" :src="comment.avatar" alt="" />
+
+      <VerifiedIcon v-if="comment.type === 'guest'" />
+
+      <AdministratorIcon v-if="comment.type === 'administrator'" />
     </div>
 
     <div class="wl-card">
@@ -13,25 +86,15 @@
           class="wl-nick"
           :href="link"
           target="_blank"
-          rel="nofollow noopener noreferrer"
+          rel="ugc nofollow noreferrer noopener"
           >{{ comment.nick }}</a
         >
 
         <span v-else class="wl-nick">{{ comment.nick }}</span>
 
-        <span
-          v-if="comment.type === 'administrator'"
-          class="wl-badge"
-          v-text="locale.admin"
-        />
-
         <span v-if="comment.label" class="wl-badge" v-text="comment.label" />
 
-        <span
-          v-if="comment['sticky']"
-          class="wl-badge"
-          v-text="locale.sticky"
-        />
+        <span v-if="comment['sticky']" class="wl-badge" v-text="locale.sticky" />
 
         <span
           v-if="typeof comment.level === 'number'"
@@ -43,22 +106,26 @@
 
         <div class="wl-comment-actions">
           <template v-if="isAdmin || isOwner">
-            <button
-              type="button"
-              class="wl-edit"
-              @click="emit('edit', comment)"
-            >
+            <button type="button" class="wl-edit" @click="emit('edit', comment)">
               <EditIcon />
             </button>
 
-            <button
-              type="button"
-              class="wl-delete"
-              @click="emit('delete', comment)"
-            >
+            <button type="button" class="wl-delete" @click="emit('delete', comment)">
               <DeleteIcon />
             </button>
           </template>
+
+          <a
+            role="button"
+            class="wl-rss"
+            :title="locale.subscribeToReplies"
+            v-if="isOwner && !config.noRss"
+            :href="`${config.serverURL}/api/comment/rss?user_id=${comment.user_id}`"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <RssLineIcon />
+          </a>
 
           <button
             type="button"
@@ -93,12 +160,21 @@
           />
         </template>
       </div>
+
+      <div class="wl-warning" aria-hidden="true" v-if="comment.status === 'waiting' && !isAdmin">
+        {{ locale.commentUnderReview }}
+      </div>
+
       <!-- eslint-disable vue/no-v-html -->
-      <div
-        v-if="!isEditingCurrent"
-        class="wl-content"
-        v-html="comment.comment"
-      />
+      <div v-if="!isEditingCurrent" class="wl-content">
+        <p v-if="'reply_user' in comment && comment.reply_user" class="wl-reply-to">
+          <a :href="'#' + comment.pid">@{{ comment.reply_user.nick }}</a>
+
+          <span>: </span>
+        </p>
+
+        <div v-html="comment.comment" />
+      </div>
       <!-- eslint-enable vue/no-v-html -->
 
       <div v-if="isAdmin && !isEditingCurrent" class="wl-admin-actions">
@@ -164,95 +240,3 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { useNow } from '@vueuse/core';
-import { type WalineComment, type WalineCommentStatus } from '@waline/api';
-import { type ComputedRef, computed, inject } from 'vue';
-
-import CommentBox from './CommentBox.vue';
-import {
-  DeleteIcon,
-  EditIcon,
-  LikeIcon,
-  ReplyIcon,
-  VerifiedIcon,
-} from './Icons.js';
-import { useLikeStorage, useUserInfo } from '../composables/index.js';
-import { type WalineConfig, getTimeAgo, isLinkHttp } from '../utils/index.js';
-
-const props = withDefaults(
-  defineProps<{
-    /**
-     * Comment data
-     */
-    comment: WalineComment;
-    /**
-     * Current comment to be edited
-     */
-    edit?: WalineComment | null;
-    /**
-     * Root comment id
-     */
-    rootId: string;
-    /**
-     * Current comment to be replied
-     */
-    reply?: WalineComment | null;
-  }>(),
-  {
-    edit: null,
-    reply: null,
-  },
-);
-
-const emit = defineEmits<{
-  (event: 'log'): void;
-  (event: 'submit', comment: WalineComment): void;
-  (event: 'delete', comment: WalineComment): void;
-  (event: 'edit', comment: WalineComment | null): void;
-  (event: 'like', comment: WalineComment): void;
-  (
-    event: 'status',
-    statusInfo: { status: WalineCommentStatus; comment: WalineComment },
-  ): void;
-  (event: 'sticky', comment: WalineComment): void;
-  (event: 'reply', comment: WalineComment | null): void;
-}>();
-
-const commentStatus: WalineCommentStatus[] = ['approved', 'waiting', 'spam'];
-
-const config = inject<ComputedRef<WalineConfig>>('config')!;
-const likes = useLikeStorage();
-const now = useNow();
-const userInfo = useUserInfo();
-
-const locale = computed(() => config.value.locale);
-
-const link = computed(() => {
-  const { link } = props.comment;
-
-  return link ? (isLinkHttp(link) ? link : `https://${link}`) : '';
-});
-
-const like = computed(() => likes.value.includes(props.comment.objectId));
-
-const time = computed(() =>
-  getTimeAgo(new Date(props.comment.time), now.value, locale.value),
-);
-
-const isAdmin = computed(() => userInfo.value.type === 'administrator');
-
-const isOwner = computed(
-  () =>
-    props.comment.user_id && userInfo.value.objectId === props.comment.user_id,
-);
-
-const isReplyingCurrent = computed(
-  () => props.comment.objectId === props.reply?.objectId,
-);
-
-const isEditingCurrent = computed(
-  () => props.comment.objectId === props.edit?.objectId,
-);
-</script>

@@ -2,41 +2,55 @@ const Akismet = require('akismet');
 
 const DEFAULT_KEY = '70542d86693e';
 
-module.exports = function (comment, blog) {
-  let { AKISMET_KEY, SITE_URL } = process.env;
+module.exports = class extends think.Service {
+  constructor(blog) {
+    super(blog);
 
-  if (!AKISMET_KEY) {
-    AKISMET_KEY = DEFAULT_KEY;
+    const { AKISMET_KEY, SITE_URL } = process.env;
+    const key = AKISMET_KEY || DEFAULT_KEY;
+
+    if (key.toLowerCase() !== 'false') {
+      this.akismet = Akismet.client({
+        blog: blog || SITE_URL,
+        apiKey: key,
+      });
+    }
   }
 
-  if (AKISMET_KEY.toLowerCase() === 'false') {
-    return Promise.resolve(false);
-  }
+  async check(comment) {
+    const { SITE_URL } = process.env;
 
-  return new Promise(function (resolve, reject) {
-    const akismet = Akismet.client({ blog, apiKey: AKISMET_KEY });
-
-    akismet.verifyKey(function (err, verifyKey) {
-      if (err) {
-        return reject(err);
-      } else if (!verifyKey) {
-        return reject(new Error('Akismet API_KEY verify failed!'));
+    return new Promise((resolve, reject) => {
+      if (!this.akismet) {
+        reject(new Error('Akismet is not configured!'));
+        return;
       }
 
-      akismet.checkComment(
-        {
-          user_ip: comment.ip,
-          permalink: SITE_URL + comment.url,
-          comment_author: comment.nick,
-          comment_content: comment.comment,
-        },
-        function (err, spam) {
-          if (err) {
-            return reject(err);
-          }
-          resolve(spam);
-        },
-      );
+      this.akismet.verifyKey((err, verifyKey) => {
+        if (err) {
+          reject(err);
+          return;
+        } else if (!verifyKey) {
+          reject(new Error('Akismet API_KEY verify failed!'));
+          return;
+        }
+
+        this.akismet.checkComment(
+          {
+            user_ip: comment.ip,
+            permalink: SITE_URL + comment.url,
+            comment_author: comment.nick,
+            comment_content: comment.comment,
+          },
+          (err, spam) => {
+            if (err) {
+              reject(err);
+              return;
+            }
+            resolve(spam);
+          },
+        );
+      });
     });
-  });
+  }
 };

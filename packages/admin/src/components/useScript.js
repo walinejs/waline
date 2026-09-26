@@ -1,6 +1,8 @@
 // The hooks original author is @hupe1980 fork from https://github.com/hupe1980/react-script-hook/blob/master/src/use-script.tsx
 
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+
+import { isBrowser } from '../utils/isBrowser.js';
 
 // Previously loading/loaded scripts and their current status
 export const scripts = {};
@@ -19,15 +21,9 @@ const checkExisting = (src) => {
       scriptEl: existing,
     });
   }
-
-  return undefined;
 };
 
-export default function useScript({
-  src,
-  checkForExisting = false,
-  ...attributes
-}) {
+export default function useScript({ src, checkForExisting = false, ...attributes }) {
   // Check whether some instance of this hook considered this src.
   let status = src ? scripts[src] : undefined;
 
@@ -37,9 +33,7 @@ export default function useScript({
     status = checkExisting(src);
   }
 
-  const [loading, setLoading] = useState(
-    status ? status.loading : Boolean(src),
-  );
+  const [loading, setLoading] = useState(status ? status.loading : Boolean(src));
   const [error, setError] = useState(status ? status.error : null);
   // Tracks if script is loaded so we can avoid duplicate script tags
   const [scriptLoaded, setScriptLoaded] = useState(false);
@@ -60,7 +54,7 @@ export default function useScript({
     let scriptEl;
 
     if (status) {
-      scriptEl = status.scriptEl;
+      ({ scriptEl } = status);
     } else {
       scriptEl = document.createElement('script');
       scriptEl.src = src;
@@ -73,11 +67,12 @@ export default function useScript({
         }
       });
 
-      status = scripts[src] = {
+      scripts[src] = {
         loading: true,
         error: null,
-        scriptEl: scriptEl,
+        scriptEl,
       };
+      status = scripts[src];
     }
     // `status` is now guaranteed to be defined: either the old status
     // from a previous load, or a newly created one.
@@ -95,17 +90,16 @@ export default function useScript({
     scriptEl.addEventListener('load', handleLoad);
     scriptEl.addEventListener('error', handleError);
 
-    document.body.appendChild(scriptEl);
+    document.body.append(scriptEl);
 
     return () => {
       scriptEl.removeEventListener('load', handleLoad);
       scriptEl.removeEventListener('error', handleError);
     };
     // we need to ignore the attributes as they're a new object per call, so we'd never skip an effect call
+    // eslint-disable-next-line react/rule-suppression
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [src]);
 
   return [loading, error];
 }
-
-const isBrowser =
-  typeof window !== 'undefined' && typeof window.document !== 'undefined';

@@ -1,19 +1,19 @@
 import cls from 'classnames';
 import React, { useEffect, useReducer, useRef, useState } from 'react';
-import { useTranslation, Trans } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
-import { buildAvatar, getPostUrl, formatDate } from './utils';
-import Header from '../../components/Header';
-import Paginator from '../../components/Paginator';
+import Header from '../../components/Header.jsx';
+import Paginator from '../../components/Paginator.jsx';
 import {
   deleteComment,
   getCommentList,
   replyComment,
   updateComment,
-} from '../../services/comment';
+} from '../../services/comment.js';
+import { buildAvatar, formatDate, getPostUrl } from './utils.js';
 
-export default function () {
+export default function ManageComments() {
   const { t } = useTranslation();
   const keywordRef = useRef(null);
   const replyTextAreaRef = useRef(null);
@@ -26,12 +26,11 @@ export default function () {
     waitingCount: 0,
     data: [],
   });
-  const [filter, dispatch] = useReducer(
-    function (state, action) {
-      return { ...state, ...action };
-    },
-    { owner: 'all', status: 'approved', keyword: '' },
-  );
+  const [filter, dispatch] = useReducer((state, action) => ({ ...state, ...action }), {
+    owner: 'all',
+    status: 'approved',
+    keyword: '',
+  });
   const [cmtHandler, setCmtHandler] = useState({});
   const [actDropStatus, setActDropStatus] = useState(false);
   const [commentIds, setCommentIds] = useState([]);
@@ -40,23 +39,23 @@ export default function () {
     [
       'owner',
       [
-        { type: 'all', name: <Trans i18nKey="all"></Trans> },
-        { type: 'mine', name: <Trans i18nKey="mine"></Trans> },
+        { type: 'all', name: <Trans i18nKey="all" /> },
+        { type: 'mine', name: <Trans i18nKey="mine" /> },
       ],
     ],
     [
       'status',
       [
-        { type: 'approved', name: <Trans i18nKey="approved"></Trans> },
-        { type: 'waiting', name: <Trans i18nKey="waiting"></Trans> },
-        { type: 'spam', name: <Trans i18nKey="spam"></Trans> },
+        { type: 'approved', name: <Trans i18nKey="approved" /> },
+        { type: 'waiting', name: <Trans i18nKey="waiting" /> },
+        { type: 'spam', name: <Trans i18nKey="spam" /> },
       ],
     ],
   ];
 
   useEffect(() => {
     getCommentList({ page: list.page, filter }).then((data) => {
-      setList({ ...list, ...data });
+      setList((list) => ({ ...list, ...data }));
       setCommentIds([]);
     });
   }, [filter, list.page]);
@@ -71,23 +70,24 @@ export default function () {
         async action() {
           if (comment) {
             await updateComment(comment.objectId, { status: 'approved' });
-            list.data = list.data.filter(
-              ({ objectId }) => objectId !== comment.objectId,
-            );
+            list.data = list.data.filter(({ objectId }) => objectId !== comment.objectId);
             switch (comment.status) {
-              case 'waiting':
+              case 'waiting': {
                 list.waitingCount -= 1;
                 break;
-              case 'spam':
+              }
+              case 'spam': {
                 list.spamCount -= 1;
                 break;
+              }
+              default: {
+                break;
+              }
             }
             setList({ ...list });
           } else {
             await Promise.all(
-              commentIds.map((objectId) =>
-                updateComment(objectId, { status: 'approved' }),
-              ),
+              commentIds.map((objectId) => updateComment(objectId, { status: 'approved' })),
             );
             getCommentList({ page: list.page, filter }).then((data) => {
               setList({ ...list, ...data });
@@ -104,19 +104,16 @@ export default function () {
         async action() {
           if (comment) {
             await updateComment(comment.objectId, { status: 'waiting' });
-            list.data = list.data.filter(
-              ({ objectId }) => objectId !== comment.objectId,
-            );
+            list.data = list.data.filter(({ objectId }) => objectId !== comment.objectId);
             if (comment.status === 'spam') {
               list.spamCount -= 1;
             }
+
             list.waitingCount += 1;
             setList({ ...list });
           } else {
             await Promise.all(
-              commentIds.map((objectId) =>
-                updateComment(objectId, { status: 'waiting' }),
-              ),
+              commentIds.map((objectId) => updateComment(objectId, { status: 'waiting' })),
             );
             getCommentList({ page: list.page, filter }).then((data) => {
               setList({ ...list, ...data });
@@ -133,16 +130,12 @@ export default function () {
         async action() {
           if (comment) {
             await updateComment(comment.objectId, { status: 'spam' });
-            list.data = list.data.filter(
-              ({ objectId }) => objectId !== comment.objectId,
-            );
+            list.data = list.data.filter(({ objectId }) => objectId !== comment.objectId);
             list.spamCount += 1;
             setList({ ...list });
           } else {
             await Promise.all(
-              commentIds.map((objectId) =>
-                updateComment(objectId, { status: 'spam' }),
-              ),
+              commentIds.map((objectId) => updateComment(objectId, { status: 'spam' })),
             );
             getCommentList({ page: list.page, filter }).then((data) => {
               setList({ ...list, ...data });
@@ -155,8 +148,8 @@ export default function () {
         key: 'sticky',
         show: comment && !comment.rid && comment.status === 'approved',
         name: comment && comment.sticky ? t('disable sticky') : t('sticky'),
-        async action(e) {
-          e.preventDefault();
+        async action(event) {
+          event.preventDefault();
 
           const sticky = !comment.sticky;
 
@@ -176,10 +169,7 @@ export default function () {
         action() {
           const handler = {};
 
-          if (
-            cmtHandler.id !== comment.objectId &&
-            cmtHandler.action !== 'edit'
-          ) {
+          if (cmtHandler.id !== comment.objectId && cmtHandler.action !== 'edit') {
             handler.id = comment.objectId;
             handler.action = 'edit';
           }
@@ -193,10 +183,7 @@ export default function () {
         action() {
           const handler = {};
 
-          if (
-            cmtHandler.id !== comment.objectId &&
-            cmtHandler.action !== 'reply'
-          ) {
+          if (cmtHandler.id !== comment.objectId && cmtHandler.action !== 'reply') {
             handler.id = comment.objectId;
             handler.action = 'reply';
           }
@@ -218,12 +205,10 @@ export default function () {
 
           if (comment) {
             await deleteComment(comment.objectId);
-            list.data = list.data.filter(
-              ({ objectId }) => objectId !== comment.objectId,
-            );
+            list.data = list.data.filter(({ objectId }) => objectId !== comment.objectId);
             setList({ ...list });
           } else {
-            await Promise.all(commentIds.map(deleteComment));
+            await Promise.all(commentIds.map((id) => deleteComment(id)));
             getCommentList({ page: list.page, filter }).then((data) => {
               setList({ ...list, ...data });
               setCommentIds([]);
@@ -239,6 +224,7 @@ export default function () {
     if (!comment) {
       return null;
     }
+
     const { display_name, email, url: link } = user;
 
     await replyComment({
@@ -249,7 +235,7 @@ export default function () {
       url,
       comment,
       pid,
-      rid: rid || pid,
+      rid: rid ?? pid,
       at,
     });
     location.reload();
@@ -261,14 +247,17 @@ export default function () {
     const comment = list.data[idx];
 
     await updateComment(comment.objectId, editCommentRef.current);
-    list.data[idx] = { ...comment, ...editCommentRef.current };
-    setList({ ...list });
+    setList(({ data, ...rest }) => ({
+      ...rest,
+      data: data.map((item, index) =>
+        index === idx ? { ...item, ...editCommentRef.current } : item,
+      ),
+    }));
     setCmtHandler({});
   };
 
   const allSelected =
-    list.data.length &&
-    list.data.every(({ objectId }) => commentIds.includes(objectId));
+    list.data.length > 0 && list.data.every(({ objectId }) => commentIds.includes(objectId));
 
   return (
     <>
@@ -278,7 +267,7 @@ export default function () {
           <div className="typecho-page-title">
             <h2>{t('manage comments')}</h2>
           </div>
-          <div className="row typecho-page-main" role="main">
+          <main className="row typecho-page-main">
             <div className="col-mb-12 typecho-list">
               <div className="clear-fix">
                 {FILTERS.map(([key, FILTER]) => (
@@ -289,23 +278,13 @@ export default function () {
                     })}
                   >
                     {FILTER.map(({ type, name }) => (
-                      <li
-                        className={cls({ current: type === filter[key] })}
-                        key={type}
-                      >
-                        <a
-                          href="javascript:void(0)"
-                          onClick={() => dispatch({ [key]: type })}
-                        >
+                      <li className={cls({ current: type === filter[key] })} key={type}>
+                        <button type="button" onClick={() => dispatch({ [key]: type })}>
                           {name}
-                          {key === 'status' &&
-                          type !== 'approved' &&
-                          list[`${type}Count`] > 0 ? (
-                            <span className="balloon">
-                              {list[`${type}Count`]}
-                            </span>
+                          {key === 'status' && type !== 'approved' && list[`${type}Count`] > 0 ? (
+                            <span className="balloon">{list[`${type}Count`]}</span>
                           ) : null}
-                        </a>
+                        </button>
                       </li>
                     ))}
                   </ul>
@@ -323,9 +302,7 @@ export default function () {
                         checked={allSelected}
                         onChange={() =>
                           setCommentIds(
-                            allSelected
-                              ? []
-                              : list.data.map(({ objectId }) => objectId),
+                            allSelected ? [] : list.data.map(({ objectId }) => objectId),
                           )
                         }
                       />
@@ -337,55 +314,50 @@ export default function () {
                         onClick={() => setActDropStatus(!actDropStatus)}
                       >
                         <i className="sr-only">{t('action')}</i>
-                        {t('selected items')} <i className="i-caret-down"></i>
+                        {t('selected items')} <i className="i-caret-down" />
                       </button>
                       <ul
                         className="dropdown-menu"
+                        role="menu"
                         style={{ display: actDropStatus ? 'block' : 'none' }}
                         onClick={() => setActDropStatus(false)}
+                        onKeyDown={() => setActDropStatus(false)}
                       >
                         {createActions().map(({ key, name, action }) => (
                           <li key={key}>
-                            <a href="javascript:void(0)" onClick={action}>
+                            <button type="button" onClick={action}>
                               {name}
-                            </a>
+                            </button>
                           </li>
                         ))}
-                      </ul>
-                      &nbsp;
+                      </ul>{' '}
                       {/* {filter.status === 'spam' ? (
                       <button lang="你确认要删除所有垃圾评论吗?" className="btn btn-s btn-warn btn-operate">删除所有垃圾评论</button>
                     ) : null} */}
                     </div>
                   </div>
-
-                  <div className="search" role="search">
+                  <search className="search">
                     <input
                       type="text"
                       ref={keywordRef}
                       className="text-s"
                       placeholder={t('please input keywords')}
-                    />
-                    &nbsp;
+                    />{' '}
                     <button
                       type="submit"
                       className="btn btn-s"
-                      onClick={(e) => {
-                        e.preventDefault();
+                      onClick={(event) => {
+                        event.preventDefault();
                         dispatch({ keyword: keywordRef.current.value });
                       }}
                     >
                       {t('filter')}
                     </button>
-                  </div>
+                  </search>
                 </form>
               </div>
 
-              <form
-                method="post"
-                name="manage_comments"
-                className="operate-form"
-              >
+              <form method="post" name="manage_comments" className="operate-form">
                 <div className="typecho-table-wrap">
                   <table className="typecho-list-table">
                     <colgroup>
@@ -396,8 +368,8 @@ export default function () {
                     </colgroup>
                     <thead>
                       <tr>
-                        <th> </th>
-                        <th> </th>
+                        <th aria-label={t('select')}> </th>
+                        <th aria-label={t('avatar')}> </th>
                         <th>{t('author')}</th>
                         <th>{t('content')}</th>
                       </tr>
@@ -424,16 +396,14 @@ export default function () {
                           },
                           idx,
                         ) =>
-                          cmtHandler.id === objectId &&
-                          cmtHandler.action === 'edit' ? (
+                          cmtHandler.id === objectId && cmtHandler.action === 'edit' ? (
                             <tr className="comment-edit" key={objectId}>
-                              <td> </td>
+                              <td aria-hidden="true"> </td>
+                              {/* oxlint-disable-next-line jsx-a11y/control-has-associated-label */}
                               <td colSpan="2" style={{ verticalAlign: 'top' }}>
                                 <div className="comment-edit-info">
                                   <p>
-                                    <label
-                                      htmlFor={`comment-${objectId}-author`}
-                                    >
+                                    <label htmlFor={`comment-${objectId}-author`}>
                                       {t('username')}
                                     </label>
                                     <input
@@ -442,25 +412,21 @@ export default function () {
                                       name="author"
                                       type="text"
                                       defaultValue={nick}
-                                      onChange={(e) =>
-                                        (editCommentRef.current.nick =
-                                          e.target.value)
+                                      onChange={(event) =>
+                                        (editCommentRef.current.nick = event.target.value)
                                       }
                                     />
                                   </p>
                                   <p>
-                                    <label htmlFor={`comment-${objectId}-mail`}>
-                                      {t('email')}
-                                    </label>
+                                    <label htmlFor={`comment-${objectId}-mail`}>{t('email')}</label>
                                     <input
                                       className="text-s w-100"
                                       type="email"
                                       name="mail"
                                       id={`comment-${objectId}-mail`}
                                       defaultValue={mail}
-                                      onChange={(e) =>
-                                        (editCommentRef.current.mail =
-                                          e.target.value)
+                                      onChange={(event) =>
+                                        (editCommentRef.current.mail = event.target.value)
                                       }
                                     />
                                   </p>
@@ -474,14 +440,14 @@ export default function () {
                                       name="url"
                                       id={`comment-${objectId}-author`}
                                       defaultValue={link}
-                                      onChange={(e) =>
-                                        (editCommentRef.current.link =
-                                          e.target.value)
+                                      onChange={(event) =>
+                                        (editCommentRef.current.link = event.target.value)
                                       }
                                     />
                                   </p>
                                 </div>
                               </td>
+                              {/* oxlint-disable-next-line jsx-a11y/control-has-associated-label */}
                               <td style={{ verticalAlign: 'top' }}>
                                 <div className="comment-edit-content">
                                   <p>
@@ -494,9 +460,8 @@ export default function () {
                                       rows="6"
                                       className="w-90 mono"
                                       defaultValue={comment}
-                                      onChange={(e) =>
-                                        (editCommentRef.current.comment =
-                                          e.target.value)
+                                      onChange={(event) =>
+                                        (editCommentRef.current.comment = event.target.value)
                                       }
                                     />
                                   </p>
@@ -525,13 +490,12 @@ export default function () {
                                 <input
                                   type="checkbox"
                                   value={objectId}
+                                  aria-label={t('select item')}
                                   checked={commentIds.includes(objectId)}
                                   onChange={() =>
                                     setCommentIds(
                                       commentIds.includes(objectId)
-                                        ? commentIds.filter(
-                                            (id) => id !== objectId,
-                                          )
+                                        ? commentIds.filter((id) => id !== objectId)
                                         : [...commentIds, objectId],
                                     )
                                   }
@@ -548,35 +512,26 @@ export default function () {
                                   />
                                 </div>
                               </td>
-                              <td
-                                style={{ verticalalign: 'top' }}
-                                className="comment-head"
-                              >
+                              <td style={{ verticalalign: 'top' }} className="comment-head">
                                 <div className="comment-meta">
                                   <strong className="comment-author">
-                                    {!link ? (
-                                      nick
-                                    ) : (
+                                    {link ? (
                                       <a
                                         href={
-                                          !/^https:\/\//.test(link)
-                                            ? 'https://' + link
-                                            : link
+                                          link.startsWith('https://') ? link : `https://${link}`
                                         }
                                         rel="external nofollow noreferrer"
                                         target="_blank"
                                       >
                                         {nick}
                                       </a>
+                                    ) : (
+                                      nick
                                     )}
                                   </strong>
                                   <br />
                                   <span>
-                                    <a
-                                      href={`mailto:${mail}`}
-                                      target="_blank"
-                                      rel="noreferrer"
-                                    >
+                                    <a href={`mailto:${mail}`} target="_blank" rel="noreferrer">
                                       {mail}
                                     </a>
                                   </span>
@@ -586,26 +541,18 @@ export default function () {
                                   <span>{addr}</span>
                                 </div>
                               </td>
-                              <td
-                                style={{ verticalalign: 'top' }}
-                                className="comment-body"
-                              >
+                              <td style={{ verticalalign: 'top' }} className="comment-body">
                                 <div className="comment-date">
-                                  {formatDate(insertedAt || time)} {t('at')}{' '}
-                                  <a
-                                    href={getPostUrl(url)}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                  >
+                                  {formatDate(insertedAt ?? time)} {t('at')}{' '}
+                                  <a href={getPostUrl(url)} target="_blank" rel="noreferrer">
                                     {url}
                                   </a>
                                 </div>
                                 <div
                                   className="comment-content"
                                   dangerouslySetInnerHTML={{ __html: comment }}
-                                ></div>
-                                {cmtHandler.id === objectId &&
-                                cmtHandler.action === 'reply' ? (
+                                />
+                                {cmtHandler.id === objectId && cmtHandler.action === 'reply' ? (
                                   <form className="comment-reply">
                                     <p>
                                       <label htmlFor="text" className="sr-only">
@@ -617,14 +564,14 @@ export default function () {
                                         className="w-90 mono"
                                         rows="3"
                                         ref={replyTextAreaRef}
-                                      ></textarea>
+                                      />
                                     </p>
                                     <p>
                                       <button
                                         type="button"
                                         className="btn btn-s primary"
-                                        onClick={(e) => {
-                                          e.preventDefault();
+                                        onClick={(event) => {
+                                          event.preventDefault();
                                           cmtReply({
                                             rid,
                                             pid: objectId,
@@ -635,7 +582,6 @@ export default function () {
                                       >
                                         {t('reply')}
                                       </button>{' '}
-                                      &nbsp;
                                       <button
                                         type="button"
                                         className="btn btn-s cancel"
@@ -660,14 +606,14 @@ export default function () {
                                         {name}
                                       </span>
                                     ) : (
-                                      <a
+                                      <button
+                                        type="button"
                                         key={key}
-                                        href="javascript:void(0)"
                                         className={`operate-${key}`}
                                         onClick={action}
                                       >
                                         {name}
-                                      </a>
+                                      </button>
                                     ),
                                   )}
                                 </div>
@@ -690,7 +636,7 @@ export default function () {
                 </form>
               </div>
             </div>
-          </div>
+          </main>
         </div>
       </div>
     </>

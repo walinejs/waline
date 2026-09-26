@@ -1,7 +1,6 @@
 ---
 title: 服务端配置
 icon: config
-redirectFrom: /reference/server.html
 ---
 
 你可以在服务端入口文件 `index.js` 中配置下列选项。
@@ -123,6 +122,12 @@ QQ 评论通知模板，等同于环境变量 `QQ_TEMPLATE`。
 
 Telegram 评论通知模板，等同于环境变量 `TG_TEMPLATE`。
 
+### SCTemplate
+
+- 类型: `string`
+
+Server酱 评论通知模板，等同于环境变量 `SC_TEMPLATE`。
+
 ### model
 
 - 类型：`class`
@@ -134,6 +139,12 @@ Telegram 评论通知模板，等同于环境变量 `TG_TEMPLATE`。
 - 类型：`function`
 
 详情见 [自定义用户系统](../../cookbook/customize/userdb.md)
+
+### locales
+
+- 类型：`Record<string, Record<string, string>>`
+
+详情见 [自定义语言支持](../../cookbook/customize/locale.md)
 
 ## 评论 Hooks
 

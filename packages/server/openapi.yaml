@@ -1,0 +1,885 @@
+openapi: 3.1.0
+
+info:
+  title: Waline API Documentation
+  version: 1.0.0
+  description: |
+    HTTP API exposed by `@waline/vercel`.
+
+    Most JSON responses use Waline's `{ errno, errmsg, data }` envelope. A
+    bearer token returned by `POST /api/token` can be used for authenticated
+    and administrator operations.
+  license:
+    name: MIT
+    identifier: MIT
+
+servers:
+  - url: /
+    description: Current Waline server
+
+tags:
+  - name: Comment
+    description: Read, publish and manage comments.
+  - name: User
+    description: User registration, authentication and profile management.
+  - name: Site
+    description: Administrator-only data import, export and maintenance.
+  - name: OAuth
+    description: OAuth provider callback.
+
+paths:
+  /api/comment:
+    get:
+      operationId: getComments
+      tags: [Comment]
+      summary: Get comments
+      description: |
+        Returns the comment list by default. The `type` query parameter selects
+        the comment count, recent comments, or the administrator list instead.
+        The shape of the successful response depends on that parameter.
+      security:
+        - bearerAuth: []
+        - {}
+      parameters:
+        - $ref: '#/components/parameters/Lang'
+        - name: type
+          in: query
+          description: Response mode. `list` without a path requires an administrator token.
+          schema:
+            type: string
+            enum: [list, count, recent]
+        - name: path
+          in: query
+          description: Article path. Required when `type` is omitted.
+          schema:
+            type: string
+        - name: url
+          in: query
+          description: Comma-separated article paths used by count mode. An empty value returns the site total.
+          schema:
+            type: string
+        - name: page
+          in: query
+          description: Page number for list modes.
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: pageSize
+          in: query
+          description: Number of comments per page.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 10
+        - name: sortBy
+          in: query
+          description: Sort order for the public comment list.
+          schema:
+            type: string
+            enum: [insertedAt_desc, insertedAt_asc, like_desc]
+            default: insertedAt_desc
+        - name: count
+          in: query
+          description: Maximum number of comments returned in recent mode.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 50
+            default: 10
+      responses:
+        '200':
+          description: Comments, counts, recent comments, or the administrator list.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/PublicCommentListResponse'
+                  - $ref: '#/components/schemas/AdminCommentListResponse'
+                  - $ref: '#/components/schemas/CommentCountResponse'
+                  - $ref: '#/components/schemas/RecentCommentListResponse'
+              examples:
+                list:
+                  summary: Public comment list
+                  value:
+                    errno: 0
+                    errmsg: ''
+                    data:
+                      page: 1
+                      totalPages: 0
+                      pageSize: 10
+                      count: 0
+                      data: []
+                totalCount:
+                  summary: Site-wide comment count
+                  value:
+                    errno: 0
+                    errmsg: ''
+                    data: 300
+                counts:
+                  summary: Counts for multiple articles
+                  value:
+                    errno: 0
+                    errmsg: ''
+                    data: [300, 100]
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+    post:
+      operationId: createComment
+      tags: [Comment]
+      summary: Publish a comment
+      security:
+        - bearerAuth: []
+        - {}
+      parameters:
+        - $ref: '#/components/parameters/Lang'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewComment'
+      responses:
+        '200':
+          description: The newly created comment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommentResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /api/comment/{id}:
+    parameters:
+      - $ref: '#/components/parameters/CommentId'
+      - $ref: '#/components/parameters/Lang'
+    put:
+      operationId: updateComment
+      tags: [Comment]
+      summary: Update or like a comment
+      description: |
+        Liking a comment does not require authentication. Updating comment
+        fields requires the comment author or an administrator.
+      security:
+        - bearerAuth: []
+        - {}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommentUpdate'
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+    delete:
+      operationId: deleteComment
+      tags: [Comment]
+      summary: Delete a comment
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /api/comment/rss:
+    get:
+      operationId: getCommentRss
+      tags: [Comment]
+      summary: Get comments as RSS
+      description: |
+        Returns recent site comments by default. Use `path` for comments on one
+        article, or `email`/`user_id` for replies to a user.
+      security: []
+      parameters:
+        - name: path
+          in: query
+          description: Article path.
+          schema:
+            type: string
+        - name: email
+          in: query
+          description: Comment author email used to find replies.
+          schema:
+            type: string
+            format: email
+        - name: user_id
+          in: query
+          description: Comment author user ID used to find replies.
+          schema:
+            type: string
+        - name: count
+          in: query
+          description: Maximum number of RSS items.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 50
+            default: 20
+      responses:
+        '200':
+          description: RSS 2.0 XML document.
+          content:
+            application/rss+xml:
+              schema:
+                type: string
+        '400':
+          description: Invalid query parameters.
+
+  /api/token:
+    get:
+      operationId: getLoginUser
+      tags: [User]
+      summary: Get the logged-in user
+      description: Returns an empty user object when no valid bearer token is provided.
+      security:
+        - bearerAuth: []
+        - {}
+      parameters:
+        - $ref: '#/components/parameters/Lang'
+      responses:
+        '200':
+          description: Current user information.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+    post:
+      operationId: login
+      tags: [User]
+      summary: Log in
+      security: []
+      parameters:
+        - $ref: '#/components/parameters/Lang'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                  format: password
+                code:
+                  type: string
+                  description: Two-factor authentication code, when enabled.
+                recaptchaV3:
+                  type: string
+                turnstile:
+                  type: string
+      responses:
+        '200':
+          description: Logged-in user and bearer token.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+    delete:
+      operationId: logout
+      tags: [User]
+      summary: Log out
+      security: []
+      parameters:
+        - $ref: '#/components/parameters/Lang'
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '400':
+          description: Invalid logout request.
+
+  /api/user:
+    get:
+      operationId: getUsers
+      tags: [User]
+      summary: Get users
+      description: |
+        Without an administrator token, returns the public user ranking. With
+        an administrator token, returns a paginated user list.
+      security:
+        - bearerAuth: []
+        - {}
+      parameters:
+        - $ref: '#/components/parameters/Lang'
+        - name: page
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+        - name: email
+          in: query
+          description: Administrator-only exact email filter.
+          schema:
+            type: string
+            format: email
+      responses:
+        '200':
+          description: Public ranking, administrator user list, exact-email user, or empty result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserQueryResponse'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+    post:
+      operationId: registerUser
+      tags: [User]
+      summary: Register a user
+      security: []
+      parameters:
+        - $ref: '#/components/parameters/Lang'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [display_name, email, password]
+              properties:
+                display_name:
+                  type: string
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                  format: password
+                url:
+                  type: string
+                  format: uri
+                recaptchaV3:
+                  type: string
+                turnstile:
+                  type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+    put:
+      operationId: updateCurrentUser
+      tags: [User]
+      summary: Update the current user
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/Lang'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserUpdate'
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /api/db:
+    get:
+      operationId: exportDatabase
+      tags: [Site]
+      summary: Export site data
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/Lang'
+      responses:
+        '200':
+          description: Exported site data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+    post:
+      operationId: importDatabaseRow
+      tags: [Site]
+      summary: Import a site table row
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/Lang'
+        - $ref: '#/components/parameters/Table'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+    put:
+      operationId: updateDatabaseRow
+      tags: [Site]
+      summary: Update a site table row
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/Lang'
+        - $ref: '#/components/parameters/Table'
+        - name: objectId
+          in: query
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+    delete:
+      operationId: cleanDatabaseTable
+      tags: [Site]
+      summary: Delete all rows from a site table
+      security:
+        - bearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/Lang'
+        - $ref: '#/components/parameters/Table'
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /api/user/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: User object ID.
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Lang'
+    delete:
+      operationId: deleteUser
+      tags: [User]
+      summary: Delete or disable a user
+      description: |
+        Deletes an account that is awaiting verification, or disables login for
+        another account. Requires an administrator token and cannot target the
+        current administrator.
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /api/oauth:
+    get:
+      operationId: oauthCallback
+      tags: [OAuth]
+      summary: Complete an OAuth login
+      security: []
+      parameters:
+        - $ref: '#/components/parameters/Lang'
+        - name: code
+          in: query
+          schema:
+            type: string
+        - name: state
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '302':
+          description: Redirect to the Waline administration interface.
+        '400':
+          description: Invalid OAuth callback.
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  parameters:
+    Lang:
+      name: lang
+      in: query
+      description: Response language.
+      schema:
+        type: string
+    CommentId:
+      name: id
+      in: path
+      required: true
+      description: Comment object ID.
+      schema:
+        type: string
+    Table:
+      name: table
+      in: query
+      required: true
+      description: Storage table name.
+      schema:
+        type: string
+        enum: [Comment, Counter, Users]
+
+  responses:
+    Success:
+      description: Operation completed successfully.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SuccessResponse'
+    Unauthorized:
+      description: Authentication is required or the token is invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: The authenticated user cannot perform this operation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+
+  schemas:
+    SuccessResponse:
+      type: object
+      required: [errno, errmsg]
+      properties:
+        errno:
+          type: integer
+          const: 0
+        errmsg:
+          type: string
+        data: true
+    ErrorResponse:
+      type: object
+      required: [errno, errmsg]
+      properties:
+        errno:
+          type: integer
+        errmsg:
+          type: string
+        data: true
+    Comment:
+      type: object
+      properties:
+        objectId:
+          type: string
+        nick:
+          type: string
+        mail:
+          type: string
+          description: Email hash for public responses; email address for administrators.
+        link:
+          type: string
+        comment:
+          type: string
+        url:
+          type: string
+        avatar:
+          type: string
+        browser:
+          type: string
+        os:
+          type: string
+        insertedAt:
+          type: string
+          format: date-time
+        time:
+          type: integer
+          format: int64
+        type:
+          type: string
+        status:
+          type: string
+          enum: [approved, waiting, spam]
+        ip:
+          type: string
+        ua:
+          type: string
+        like:
+          type: integer
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/Comment'
+      additionalProperties: true
+    NewComment:
+      type: object
+      required: [url, comment]
+      properties:
+        nick:
+          type: string
+        mail:
+          type: string
+          format: email
+        link:
+          type: string
+          format: uri
+        comment:
+          type: string
+        url:
+          type: string
+        ua:
+          type: string
+        pid:
+          type: string
+        rid:
+          type: string
+        at:
+          type: string
+        recaptchaV3:
+          type: string
+        turnstile:
+          type: string
+    CommentUpdate:
+      type: object
+      properties:
+        nick:
+          type: string
+        mail:
+          type: string
+          format: email
+        link:
+          type: string
+          format: uri
+        comment:
+          type: string
+        url:
+          type: string
+        like:
+          type: boolean
+      minProperties: 1
+    CommentResponse:
+      allOf:
+        - $ref: '#/components/schemas/SuccessResponse'
+        - type: object
+          properties:
+            data:
+              $ref: '#/components/schemas/Comment'
+    PublicCommentList:
+      type: object
+      required: [page, totalPages, pageSize, count, data]
+      properties:
+        page:
+          type: integer
+        totalPages:
+          type: integer
+        pageSize:
+          type: integer
+        count:
+          type: integer
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Comment'
+      additionalProperties: true
+    PublicCommentListResponse:
+      allOf:
+        - $ref: '#/components/schemas/SuccessResponse'
+        - type: object
+          required: [data]
+          properties:
+            data:
+              $ref: '#/components/schemas/PublicCommentList'
+    AdminCommentListResponse:
+      allOf:
+        - $ref: '#/components/schemas/SuccessResponse'
+        - type: object
+          required: [data]
+          properties:
+            data:
+              type: object
+              required: [page, totalPages, pageSize, spamCount, waitingCount, data]
+              properties:
+                page:
+                  type: integer
+                pageSize:
+                  type: integer
+                totalPages:
+                  type: integer
+                spamCount:
+                  type: integer
+                waitingCount:
+                  type: integer
+                data:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Comment'
+    CommentCount:
+      oneOf:
+        - type: integer
+        - type: array
+          items:
+            type: integer
+    CommentCountResponse:
+      allOf:
+        - $ref: '#/components/schemas/SuccessResponse'
+        - type: object
+          required: [data]
+          properties:
+            data:
+              $ref: '#/components/schemas/CommentCount'
+    RecentCommentListResponse:
+      allOf:
+        - $ref: '#/components/schemas/SuccessResponse'
+        - type: object
+          required: [data]
+          properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Comment'
+    User:
+      type: object
+      properties:
+        objectId:
+          type: string
+        display_name:
+          type: string
+        email:
+          type: string
+          format: email
+        url:
+          type: string
+        avatar:
+          type: string
+        github:
+          type: string
+        mailMd5:
+          type: string
+        type:
+          type: string
+        label:
+          type: string
+        level:
+          type: integer
+        count:
+          type: integer
+      additionalProperties: true
+    UserResponse:
+      allOf:
+        - $ref: '#/components/schemas/SuccessResponse'
+        - type: object
+          properties:
+            data:
+              $ref: '#/components/schemas/User'
+    LoginResponse:
+      allOf:
+        - $ref: '#/components/schemas/UserResponse'
+        - type: object
+          properties:
+            data:
+              allOf:
+                - $ref: '#/components/schemas/User'
+                - type: object
+                  properties:
+                    token:
+                      type: string
+    UserQueryResponse:
+      allOf:
+        - $ref: '#/components/schemas/SuccessResponse'
+        - type: object
+          properties:
+            data:
+              anyOf:
+                - allOf:
+                    - $ref: '#/components/schemas/User'
+                    - type: object
+                      required: [objectId]
+                      properties:
+                        objectId:
+                          type: string
+                - type: array
+                  items:
+                    $ref: '#/components/schemas/User'
+                - type: object
+                  required: [page, pageSize, totalPages, data]
+                  properties:
+                    page:
+                      type: integer
+                    pageSize:
+                      type: integer
+                    totalPages:
+                      type: integer
+                    data:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/User'
+                  additionalProperties: true
+    UserUpdate:
+      type: object
+      properties:
+        display_name:
+          type: string
+        url:
+          type: string
+          format: uri
+        avatar:
+          type: string
+          format: uri
+        password:
+          type: string
+          format: password
+        github:
+          type: string
+        email:
+          type: string
+          format: email
+      minProperties: 1

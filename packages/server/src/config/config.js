@@ -21,7 +21,6 @@ const {
   DISABLE_REGION,
   AVATAR_PROXY,
   GITHUB_TOKEN,
-  DETA_PROJECT_KEY,
   OAUTH_URL,
 
   MARKDOWN_CONFIG = '{}',
@@ -41,6 +40,7 @@ const {
   QQ_TEMPLATE,
   TG_TEMPLATE,
   WX_TEMPLATE,
+  SC_TEMPLATE,
   DISCORD_TEMPLATE,
   LARK_TEMPLATE,
 
@@ -48,44 +48,45 @@ const {
   COMMENT_AUDIT,
 } = process.env;
 
-let storage = 'leancloud';
-let jwtKey = JWT_TOKEN || LEAN_KEY;
+let storage = null;
+let jwtKey = JWT_TOKEN;
 
 if (LEAN_KEY) {
   storage = 'leancloud';
+  jwtKey ||= LEAN_KEY;
 } else if (MONGO_DB) {
   storage = 'mongodb';
-  jwtKey = jwtKey || MONGO_PASSWORD;
+  jwtKey ||= MONGO_PASSWORD;
 } else if (PG_DB || POSTGRES_DATABASE) {
   storage = 'postgresql';
-  jwtKey = jwtKey || PG_PASSWORD || POSTGRES_PASSWORD;
+  jwtKey ||= PG_PASSWORD || POSTGRES_PASSWORD;
 } else if (SQLITE_PATH) {
   storage = 'sqlite';
 } else if (MYSQL_DB) {
   storage = 'mysql';
-  jwtKey = jwtKey || MYSQL_PASSWORD;
+  jwtKey ||= MYSQL_PASSWORD;
 } else if (TIDB_DB) {
   storage = 'tidb';
-  jwtKey = jwtKey || TIDB_PASSWORD;
+  jwtKey ||= TIDB_PASSWORD;
 } else if (GITHUB_TOKEN) {
   storage = 'github';
-  jwtKey = jwtKey || GITHUB_TOKEN;
+  jwtKey ||= GITHUB_TOKEN;
 } else if (think.env === 'cloudbase' || TCB_ENV) {
   storage = 'cloudbase';
-  jwtKey = jwtKey || TENCENTCLOUD_SECRETKEY || TCB_KEY || TCB_ENV;
-} else if (DETA_PROJECT_KEY) {
-  storage = 'deta';
-  jwtKey = jwtKey || DETA_PROJECT_KEY;
+  jwtKey ||= TENCENTCLOUD_SECRETKEY || TCB_KEY || TCB_ENV;
+}
+
+if (storage === null) {
+  throw new Error('No valid storage found. Please check your environment variables.');
 }
 
 if (think.env === 'cloudbase' && storage === 'sqlite') {
   throw new Error("You can't use SQLite in CloudBase platform.");
 }
 
-const forbiddenWords = FORBIDDEN_WORDS ? FORBIDDEN_WORDS.split(/\s*,\s*/) : [];
+const forbiddenWords = FORBIDDEN_WORDS ? FORBIDDEN_WORDS.split(/\s*,\s*/u) : [];
 
-const isFalse = (content) =>
-  content && ['0', 'false'].includes(content.toLowerCase());
+const isFalse = (content) => content && ['0', 'false'].includes(content.toLowerCase());
 
 const markdown = {
   config: JSON.parse(MARKDOWN_CONFIG),
@@ -104,7 +105,7 @@ if (isFalse(MARKDOWN_HIGHLIGHT)) markdown.config.highlight = false;
 let avatarProxy = '';
 
 if (AVATAR_PROXY) {
-  avatarProxy = !isFalse(AVATAR_PROXY) ? AVATAR_PROXY : '';
+  avatarProxy = isFalse(AVATAR_PROXY) ? '' : AVATAR_PROXY;
 }
 
 const oauthUrl = OAUTH_URL || 'https://oauth.lithub.cc';
@@ -115,13 +116,10 @@ module.exports = {
   jwtKey,
   forbiddenWords,
   disallowIPList: [],
-  secureDomains: SECURE_DOMAINS ? SECURE_DOMAINS.split(/\s*,\s*/) : undefined,
+  secureDomains: SECURE_DOMAINS ? SECURE_DOMAINS.split(/\s*,\s*/u) : null,
   disableUserAgent: DISABLE_USERAGENT && !isFalse(DISABLE_USERAGENT),
   disableRegion: DISABLE_REGION && !isFalse(DISABLE_REGION),
-  levels:
-    !LEVELS || isFalse(LEVELS)
-      ? false
-      : LEVELS.split(/\s*,\s*/).map((v) => Number(v)),
+  levels: !LEVELS || isFalse(LEVELS) ? false : LEVELS.split(/\s*,\s*/u).map(Number),
 
   audit: COMMENT_AUDIT && !isFalse(COMMENT_AUDIT),
   avatarProxy,
@@ -134,6 +132,7 @@ module.exports = {
   QQTemplate: QQ_TEMPLATE,
   TGTemplate: TG_TEMPLATE,
   WXTemplate: WX_TEMPLATE,
+  SCTemplate: SC_TEMPLATE,
   DiscordTemplate: DISCORD_TEMPLATE,
   LarkTemplate: LARK_TEMPLATE,
 };

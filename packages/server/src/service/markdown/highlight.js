@@ -7,13 +7,15 @@ rawLoadLanguages.silent = true;
 const loadLanguages = (languages = []) => {
   const langsToLoad = languages.filter((item) => !prism.languages[item]);
 
-  if (langsToLoad.length) {
+  if (langsToLoad.length > 0) {
     rawLoadLanguages(langsToLoad);
   }
 };
 
 /**
  * Resolve syntax highlighter for corresponding language
+ *
+ * @param {string} language - The language identifier
  */
 const resolveHighlighter = (language) => {
   // try to load languages

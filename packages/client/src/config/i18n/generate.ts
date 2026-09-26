@@ -1,4 +1,4 @@
-import { type WalineLocale } from '../../typings/index.js';
+import type { WalineLocale } from '../../typings/index.js';
 
 const localeKeys = [
   'nick',
@@ -50,6 +50,10 @@ const localeKeys = [
   'latest',
   'hottest',
   'reactionTitle',
+  'commentUnderReview',
+  'subPostComment',
+  'subSiteComment',
+  'subscribeToReplies',
 ];
 
 export const generateLocale = (locale: string[]): WalineLocale =>

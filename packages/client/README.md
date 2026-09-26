@@ -1,4 +1,6 @@
-<img src="https://waline.js.org/logo.png" width="200" align="right" />
+<!-- markdownlint-disable MD033 MD041 -->
+
+<img src="./assets/logo.png" width="200" align="right" alt="Waline logo" />
 
 # Waline
 

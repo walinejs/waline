@@ -23,7 +23,7 @@
     color: var(--waline-theme-color);
 
     text-decoration: none;
-    word-break: break-word;
+    overflow-wrap: break-word;
 
     cursor: pointer;
 
@@ -66,14 +66,12 @@
     }
 
     &::-webkit-scrollbar-track-piece:horizontal {
-      -webkit-border-radius: 6px;
       border-radius: 6px;
       background: rgb(0 0 0 / 10%);
     }
 
     &::-webkit-scrollbar-thumb:horizontal {
       width: 6px;
-      -webkit-border-radius: 6px;
       border-radius: 6px;
       background: var(--waline-theme-color);
     }

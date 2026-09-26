@@ -54,7 +54,7 @@ module.exports = class extends BaseRest {
     const userModel = this.getModel('Users');
     const { objectId } = this.ctx.state.userInfo;
 
-    await userModel.update({ ['2fa']: data.secret }, { objectId });
+    await userModel.update({ '2fa': data.secret }, { objectId });
 
     return this.success();
   }

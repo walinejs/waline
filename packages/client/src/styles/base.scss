@@ -19,10 +19,9 @@
 
   cursor: pointer;
   user-select: none;
+  touch-action: manipulation;
 
   transition-duration: 0.4s;
-
-  touch-action: manipulation;
 
   &:hover,
   &:active {

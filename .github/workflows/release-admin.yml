@@ -9,25 +9,33 @@ on:
       - packages/admin/**
 
 permissions:
-  contents: write
+  contents: read
   id-token: write
 
 jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
-      - uses: pnpm/action-setup@v2
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: pnpm
-      - run: pnpm install --frozen-lockfile && pnpm --filter ./packages/admin run build
 
-      - name: 'publish @waline/admin'
-        uses: JS-DevTools/npm-publish@v3
+      - name: Install pnpm
+        uses: pnpm/action-setup@v6
+
+      - name: Install Node.js
+        uses: actions/setup-node@v6
         with:
-          token: ${{ secrets.NPM_TOKEN }}
-          package: ./packages/admin
+          node-version: 24
+          check-latest: true
+          cache: pnpm
+
+      - name: Install Dependencies
+        run: pnpm ci
+
+      - name: Build Admin
+        run: pnpm run admin:build
+
+      - name: Publish
+        run: pnpm publish -r --filter @waline/admin --no-git-checks

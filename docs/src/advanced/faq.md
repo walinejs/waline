@@ -1,6 +1,7 @@
 ---
 title: FAQ
 icon: faq
+order: 4
 ---
 
 Waline 诞生之初就已经作了很明确的定位:
@@ -45,10 +46,6 @@ Waline 主要由前端和服务端两部分组成。
 进入到对应的 GitHub 仓库中，修改 package.json 文件中的 `@waline/vercel` 版本号为最新版本即可。
 
 ![vercel](./assets/vercel-update.png)
-
-#### Deta
-
-[Deta - 如何更新](../guide/deploy/deta.md#如何更新)
 
 #### CloudBase
 

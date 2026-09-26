@@ -1,7 +1,7 @@
-import { path } from '@vuepress/utils';
+// oxlint-disable unicorn/prefer-module
+import { viteBundler } from '@vuepress/bundler-vite';
 import { defineUserConfig } from 'vuepress';
-import { redirectPlugin } from 'vuepress-plugin-redirect';
-import { addViteSsrNoExternal } from 'vuepress-shared';
+import { path } from 'vuepress/utils';
 
 import theme from './theme.js';
 
@@ -17,31 +17,83 @@ export default defineUserConfig({
       title: 'Waline',
       description: 'A Simple, Safe Comment System.',
     },
+    '/de/': {
+      lang: 'de-DE',
+      title: 'Waline',
+      description: 'Ein einfaches, sicheres Kommentarsystem.',
+    },
+    '/es/': {
+      lang: 'es-ES',
+      title: 'Waline',
+      description: 'Un sistema de comentarios simple y seguro.',
+    },
+    '/jp/': {
+      lang: 'ja-JP',
+      title: 'Waline',
+      description: 'シンプルで安全なコメントシステム。',
+    },
+    '/fr/': {
+      lang: 'fr-FR',
+      title: 'Waline',
+      description: 'Un système de commentaires simple et sûr.',
+    },
+    '/it/': {
+      lang: 'it',
+      title: 'Waline',
+      description: 'Un sistema di commenti semplice e sicuro.',
+    },
+    '/pt-BR/': {
+      lang: 'pt-BR',
+      title: 'Waline',
+      description: 'Um sistema de comentários simples e seguro.',
+    },
+    '/ru/': {
+      lang: 'ru-RU',
+      title: 'Waline',
+      description: 'Простая и безопасная система комментариев.',
+    },
+    '/vi-VN/': {
+      lang: 'vi-VN',
+      title: 'Waline',
+      description: 'Một hệ thống bình luận đơn giản và an toàn.',
+    },
+    '/id/': {
+      lang: 'id-ID',
+      title: 'Waline',
+      description: 'Sistem komentar yang sederhana dan aman.',
+    },
+    '/zh-TW/': {
+      lang: 'zh-TW',
+      title: 'Waline',
+      description: '一款簡潔、安全的評論系統。',
+    },
+    '/ko-KR/': {
+      lang: 'ko-KR',
+      title: 'Waline',
+      description: '간단하고 안전한 댓글 시스템.',
+    },
   },
 
+  bundler: viteBundler({
+    viteOptions: {
+      ssr: {
+        noExternal: ['@fancyapps/ui'],
+      },
+    },
+  }),
+
   markdown: {
-    code: {
-      lineNumbers: 20,
+    importCode: {
+      handleImportPath: (str) =>
+        str === '@waline/api/types'
+          ? path.resolve(__dirname, '../../../packages/api/dist/index.d.ts')
+          : str,
     },
   },
 
   theme,
 
-  plugins: [redirectPlugin()],
-
   alias: {
     '@MigrationTool': path.resolve(__dirname, './components/MigrationTool.vue'),
-    '@theme-hope/components/HomePage': path.resolve(
-      __dirname,
-      './components/HomePage',
-    ),
-    '@theme-hope/components/NormalPage': path.resolve(
-      __dirname,
-      './components/NormalPage',
-    ),
-  },
-
-  extendsBundlerOptions: (bundlerOptions, app) => {
-    addViteSsrNoExternal(bundlerOptions, app, '@fancyapps/ui');
   },
 });

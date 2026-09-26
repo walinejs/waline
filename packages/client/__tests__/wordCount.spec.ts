@@ -1,83 +1,69 @@
 import { describe, expect, it } from 'vitest';
 
-import { getWords, getChinese, getWordNumber } from '../src/utils/wordCount';
+import { getChinese, getWordNumber, getWords } from '../src/utils/wordCount.js';
 
-describe('Words test', () => {
-  it('Should count empty content correctly', () => {
-    expect(getWordNumber('')).toEqual(0);
-  });
-  it('Should count english words correctly', () => {
-    expect(
-      getWordNumber(
-        'A simple comment system with backend support fork from Valine',
-      ),
-    ).toEqual(10);
+describe('words test', () => {
+  it('should count empty content correctly', () => {
+    expect(getWordNumber('')).toBe(0);
   });
 
-  it('Should pick chinese words correctly', () => {
-    const chineseWords =
-      getChinese(
-        'Waline - 一款从 Valine 衍生的带后端评论系统。可以将 Waline 等价成 With backend Valine.',
-      ) || [];
+  it('should count english words correctly', () => {
+    expect(getWordNumber('A simple comment system with backend support fork from Valine')).toBe(10);
+  });
 
-    expect(chineseWords.join('')).toEqual(
-      '一款从衍生的带后端评论系统可以将等价成',
+  it('should pick chinese words correctly', () => {
+    const chineseWords = getChinese(
+      'Waline - 一款从 Valine 衍生的带后端评论系统。可以将 Waline 等价成 With backend Valine.',
+    )!;
+
+    expect(chineseWords.join('')).toBe('一款从衍生的带后端评论系统可以将等价成');
+  });
+
+  it('should count word correctly', () => {
+    expect(getWordNumber('A simple comment system, with backend support fork from Valine.')).toBe(
+      10,
     );
-  });
-
-  it('Should count word correctly', () => {
-    expect(
-      getWordNumber(
-        'A simple comment system, with backend support fork from Valine.',
-      ),
-    ).toEqual(10);
 
     expect(
       getWordNumber(
         'Waline - 一款从 Valine 衍生的带后端评论系统。可以将 Waline 等价成 With backend Valine.',
       ),
-    ).toEqual(25);
+    ).toBe(25);
   });
 
-  it('Should omit other characters in Markdown', () => {
-    expect(getWordNumber('#$%^\t&*% /?=+[\n{|}]\r')).toEqual(0);
+  it('should omit other characters in Markdown', () => {
+    expect(getWordNumber('#$%^\t&*% /?=+[\n{|}]\r')).toBe(0);
 
     expect(
       getWordNumber(
         '\nA simple comment system,\n\n with _backend support_ fork from **Valine**.\n',
       ),
-    ).toEqual(10);
+    ).toBe(10);
 
     expect(
       getWordNumber(
         'Waline - 一款从 **Valine** 衍生的带后端评论系统。\n\n可以将 Waline 等价成 _With backend Valine_.',
       ),
-    ).toEqual(25);
+    ).toBe(25);
   });
 
-  it('Additional counts with Markdown links and images', () => {
+  it('additional counts with Markdown links and images', () => {
     const linkAddress = '//unpkg.com/@waline/client/dist/Waline.min.js';
     const linkMarkdown = `You can found Waline [here](${linkAddress}).`;
     const imageMarkdown = `Here is a image.\n\n![Alt](https://a/fake/link)`;
 
-    const linkWords = (getWords(linkAddress) ?? [])
+    const linkWords = getWords(linkAddress)!
       .map((word) => word.trim())
-      .filter((word) => word);
+      .filter(Boolean);
 
-    expect(linkWords).toEqual([
-      'unpkg.com',
-      'waline',
-      'client',
-      'dist',
-      'Waline.min.js',
-    ]);
+    expect(linkWords).toStrictEqual(['unpkg.com', 'waline', 'client', 'dist', 'Waline.min.js']);
 
-    expect(getWordNumber(linkAddress)).toEqual(5);
-    expect(getWordNumber(linkMarkdown)).toEqual(10);
-    expect(getWordNumber(imageMarkdown)).toEqual(9);
+    expect(getWordNumber(linkAddress)).toBe(5);
+    expect(getWordNumber(linkMarkdown)).toBe(10);
+    expect(getWordNumber(imageMarkdown)).toBe(9);
   });
 
-  it('Can count code block', () => {
+  it('can count code block', () => {
     const codeBlock = `
 \`\`\`html
 <head>
@@ -94,7 +80,7 @@ describe('Words test', () => {
   <script type="module">
     import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
 
-    Waline.init({
+    init({
       el: '#waline',
       serverURL: 'https://your-domain.vercel.app',
     });
@@ -103,20 +89,14 @@ describe('Words test', () => {
 \`\`\`
 `;
 
-    const codeBlockWords = (getWords(codeBlock) ?? [])
+    const codeBlockWords = getWords(codeBlock)!
       .map((word) => word.trim())
-      .filter((word) => word);
+      .filter(Boolean);
 
-    expect(codeBlockWords).toEqual([
+    expect(codeBlockWords).toStrictEqual([
       'html',
       'head',
       '...',
-      'script src',
-      'https',
-      'unpkg.com',
-      'waline',
-      'client',
-      'script',
       'link\n    rel',
       'stylesheet',
       'href',
@@ -124,7 +104,7 @@ describe('Words test', () => {
       'unpkg.com',
       'waline',
       'client',
-      'v2',
+      'v3',
       'dist',
       'waline.css',
       '...',
@@ -134,8 +114,19 @@ describe('Words test', () => {
       'div id',
       'waline',
       'div',
-      'script',
-      'Waline.init',
+      'script type',
+      'module',
+      'import',
+      'init',
+      'from',
+      'https',
+      'unpkg.com',
+      'waline',
+      'client',
+      'v3',
+      'dist',
+      'waline.js',
+      'init',
       'el',
       'waline',
       `,
@@ -148,6 +139,6 @@ describe('Words test', () => {
       'body',
     ]);
 
-    expect(getWordNumber(codeBlock)).toEqual(40);
+    expect(getWordNumber(codeBlock)).toBe(45);
   });
 });

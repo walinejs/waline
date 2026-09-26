@@ -1,6 +1,7 @@
 ---
 title: 生态系统
 icon: ecosystem
+order: 3
 ---
 
 Waline 是经典的前后端分离 Client/Server 架构，提供了较为完善的 API 接口。你可以基于服务端提供的 API 自行实现自己的客户端实现。
@@ -32,6 +33,14 @@ Waline 是经典的前后端分离 Client/Server 架构，提供了较为完善�
 
   作者 [@BeiyanYunyi](https://github.com/BeiyanYunyi)。使用 Solid.js 构建，使用方式详见项目页面和[说明文档](https://BeiyanYunyi.github.io/sodesu/)。
 
+## Rust 实现
+
+得益于前后端 API 分离的架构设计，[waline-mini](https://github.com/JQiue/waline-mini) 是 Rust 实现的服务端，非常适合运行在服务器资源受限的环境上。
+
+## Cloudflare Workers 实现
+
+[Waline_On_Worker](https://github.com/wuyilingwei/Waline_On_Worker) 是用户基于 Worker 实现的服务端，弥补了 Waline 无法运行在 Cloudflare Workers 上的不足。
+
 ## 插件
 
 你可以使用下列插件来在不同工具上使用 Waline:
@@ -48,6 +57,10 @@ Waline 是经典的前后端分离 Client/Server 架构，提供了较为完善�
 
 - [vuepress-plugin-comment2](https://vuepress-theme-hope.github.io/v2/comment/): Comment system for VuePress2.
 - [@mr-hope/vuepress-plugin-comment](https://vuepress-theme-hope.github.io/v1/comment/): Comment system for VuePress1.
+
+### Gatsby
+
+- [gatsby-plugin-waline](https://www.npmjs.com/package/gatsby-plugin-waline): Comment system plugin for Gatsby.
 
 Others:
 

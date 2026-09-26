@@ -3,11 +3,13 @@ const Mysql = require('think-model-mysql');
 const Mysql2 = require('think-model-mysql2');
 const Postgresql = require('think-model-postgresql');
 
-let Sqlite = class {};
+let Sqlite;
 
 try {
   Sqlite = require('think-model-sqlite');
 } catch (err) {
+  // oxlint-disable-next-line typescript/no-extraneous-class
+  Sqlite = class {};
   console.log(err);
 }
 
@@ -44,6 +46,7 @@ const {
   POSTGRES_USER,
   PG_SSL,
   POSTGRES_SSL,
+  POSTGRES_URL,
   MONGO_AUTHSOURCE,
   MONGO_DB,
   MONGO_HOST,
@@ -62,11 +65,11 @@ if (MONGO_AUTHSOURCE) mongoOpt.authSource = MONGO_AUTHSOURCE;
 if (MONGO_DB) {
   type = 'mongo';
   for (const envKeys in process.env) {
-    if (/MONGO_OPT_/.test(envKeys)) {
+    if (envKeys.includes('MONGO_OPT_')) {
       const key = envKeys
         .slice(10)
         .toLocaleLowerCase()
-        .replace(/_([a-z])/g, (_, b) => b.toUpperCase());
+        .replaceAll(/_(?<char>[a-z])/gu, (_, b) => b.toUpperCase());
 
       mongoOpt[key] = process.env[envKeys];
     }
@@ -81,16 +84,13 @@ if (MONGO_DB) {
   type = 'tidb';
 }
 
-const isVercelPostgres =
-  type === 'postgresql' &&
-  POSTGRES_HOST &&
-  POSTGRES_HOST.endsWith('vercel-storage.com');
-
-exports.model = {
+const model = {
   type,
   common: {
     logSql: true,
-    logger: (msg) => think.logger.info(msg),
+    logger: (msg) => {
+      think.logger.info(msg);
+    },
   },
 
   mongo: {
@@ -99,11 +99,7 @@ exports.model = {
         ? JSON.parse(MONGO_HOST)
         : MONGO_HOST
       : '127.0.0.1',
-    port: MONGO_PORT
-      ? MONGO_PORT.startsWith('[')
-        ? JSON.parse(MONGO_PORT)
-        : MONGO_PORT
-      : 27017,
+    port: MONGO_PORT ? (MONGO_PORT.startsWith('[') ? JSON.parse(MONGO_PORT) : MONGO_PORT) : 27017,
     user: MONGO_USER,
     password: MONGO_PASSWORD,
     database: MONGO_DB,
@@ -116,11 +112,11 @@ exports.model = {
     password: PG_PASSWORD || POSTGRES_PASSWORD,
     database: PG_DB || POSTGRES_DATABASE,
     host: PG_HOST || POSTGRES_HOST || '127.0.0.1',
-    port: PG_PORT || POSTGRES_PORT || (isVercelPostgres ? '5432' : '3211'),
+    port: PG_PORT || POSTGRES_PORT || '5432',
     connectionLimit: 1,
     prefix: PG_PREFIX || POSTGRES_PREFIX || 'wl_',
     ssl:
-      (PG_SSL || POSTGRES_SSL) == 'true' || isVercelPostgres
+      (PG_SSL || POSTGRES_SSL) === 'true' || POSTGRES_URL?.includes('sslmode=require')
         ? {
             rejectUnauthorized: false,
           }
@@ -171,12 +167,15 @@ exports.model = {
 };
 
 /**
- * logger adapter config
+ * Logger adapter config
+ *
  * @type {Object}
  */
-exports.logger = {
+const logger = {
   type: 'console',
   console: {
     handle: Console,
   },
 };
+
+module.exports = { logger, model };

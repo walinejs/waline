@@ -11,12 +11,12 @@
   "bugs": {
     "url": "https://github.com/walinejs/waline/issues"
   },
-  "repository": {
-    "url": "https://github.com/walinejs/waline",
-    "directory": "packages/hexo-next"
-  },
   "license": "MIT",
   "author": "lizheming <i@imnerd.org>",
+  "repository": {
+    "url": "git+https://github.com/walinejs/waline.git",
+    "directory": "packages/hexo-next"
+  },
   "main": "index.js",
   "dependencies": {
     "@next-theme/utils": "^1.3.0"

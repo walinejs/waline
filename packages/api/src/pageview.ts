@@ -1,5 +1,6 @@
+import type { GetArticleCounterResponse } from './articleCounter.js';
 import { getArticleCounter, updateArticleCounter } from './articleCounter.js';
-import { type BaseAPIOptions } from './utils.js';
+import type { BaseAPIOptions } from './utils.js';
 
 interface GetPageviewOptions extends BaseAPIOptions {
   /**
@@ -22,18 +23,14 @@ export const getPageview = ({
   lang,
   paths,
   signal,
-}: GetPageviewOptions): Promise<number[]> =>
+}: GetPageviewOptions): Promise<GetArticleCounterResponse> =>
   getArticleCounter({
     serverURL,
     lang,
     paths,
     type: ['time'],
     signal,
-  })
-    // TODO: Improve this API
-    .then((counts) => (Array.isArray(counts) ? counts : [counts])) as Promise<
-    number[]
-  >;
+  });
 
 export interface UpdatePageviewOptions extends BaseAPIOptions {
   /**
@@ -46,7 +43,7 @@ export interface UpdatePageviewOptions extends BaseAPIOptions {
 
 export const updatePageview = (
   options: UpdatePageviewOptions,
-): Promise<number[]> =>
+): Promise<GetArticleCounterResponse> =>
   updateArticleCounter({
     ...options,
     type: 'time',

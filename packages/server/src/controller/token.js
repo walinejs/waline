@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken');
 const speakeasy = require('speakeasy');
-const helper = require('think-helper');
 
 const BaseRest = require('./rest.js');
 
@@ -18,7 +17,9 @@ module.exports = class extends BaseRest {
     const { email, password, code } = this.post();
     const user = await this.modelInstance.select({ email });
 
-    if (think.isEmpty(user) || /^verify:/i.test(user[0].type)) {
+    const isVerifyUser = /^verify:/iu.test(user?.[0]?.type);
+    const isBannedUser = user?.[0]?.type === 'banned';
+    if (think.isEmpty(user) || isVerifyUser || isBannedUser) {
       return this.fail();
     }
 
@@ -43,25 +44,25 @@ module.exports = class extends BaseRest {
       }
     }
 
-    let avatarUrl = user[0].avatar
-      ? user[0].avatar
-      : await think.service('avatar').stringify({
-          mail: user[0].email,
-          nick: user[0].display_name,
-          link: user[0].url,
-        });
+    let avatarUrl =
+      user[0].avatar ||
+      (await think.service('avatar').stringify({
+        mail: user[0].email,
+        nick: user[0].display_name,
+        link: user[0].url,
+      }));
     const { avatarProxy } = think.config();
 
     if (avatarProxy) {
-      avatarUrl = avatarProxy + '?url=' + encodeURIComponent(avatarUrl);
+      avatarUrl = `${avatarProxy}?url=${encodeURIComponent(avatarUrl)}`;
     }
+
     user[0].avatar = avatarUrl;
 
     return this.success({
       ...user[0],
       password: null,
-      mailMd5: helper.md5(user[0].email.toLowerCase()),
-      token: jwt.sign(user[0].email, this.config('jwtKey')),
+      token: jwt.sign(user[0].objectId, this.config('jwtKey')),
     });
   }
 

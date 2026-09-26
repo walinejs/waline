@@ -1,20 +1,11 @@
 ---
 title: 部署
 icon: deploy
+dir:
+  expanded: true
+  order: 3
 ---
 
-Waline 支持多种部署方式，你可以从以下部署平台进行选择。
+Waline 支持多种部署方式，默认使用 Vercel 作为部署平台，你可以根据自己的需求选择其他部署平台或自行部署。
 
-- [Vercel](./vercel.md) (默认)
-
-- [阿里云函数计算](./aliyun-fc.md)
-
-- [百度云函数计算](./baidu-cfc.md)
-
-- [Cloudbase](./cloudbase.md)
-
-- [Deta](./deta.md)
-
-- [Railway](./railway.md)
-
-- [独立部署](./vps.md)
+<Catalog />

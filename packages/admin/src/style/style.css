@@ -8,7 +8,6 @@ html {
 
 body {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  background: #f6f6f3;
   color: #444;
   font-size: 87.5%;
   line-height: 1.5;
@@ -325,15 +324,6 @@ select {
   color: #8a1f11;
 }
 
-.notice {
-  background: #fff6bf;
-  color: #8a6d3b;
-}
-
-.notice a {
-  color: #8a6d3b;
-}
-
 .success {
   background: #e6efc2;
   color: #264409;
@@ -417,10 +407,6 @@ select {
   padding: 0;
 }
 
-#typecho-nav-list ul:first-child {
-  border-left: 1px solid #383d45;
-}
-
 #typecho-nav-list .root {
   position: relative;
   float: left;
@@ -430,15 +416,13 @@ select {
   display: block;
   float: left;
   padding: 0 20px;
-  border-right: 1px solid #383d45;
   height: 36px;
   line-height: 36px;
   color: #bbb;
 }
 
 #typecho-nav-list .parent a:hover,
-#typecho-nav-list .focus .parent a,
-#typecho-nav-list .root:hover .parent a {
+#typecho-nav-list .focus .parent a {
   background: #202328;
   color: #fff;
   text-decoration: none;
@@ -508,7 +492,6 @@ select {
   display: inline-block;
   margin-left: -1px;
   padding: 0 20px;
-  border: 1px solid #383d45;
   border-width: 0 1px;
   line-height: 36px;
 }

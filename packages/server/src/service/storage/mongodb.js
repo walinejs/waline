@@ -1,6 +1,7 @@
 const { ObjectID: ObjectId } = require('think-mongo/lib/model');
 
 const Base = require('./base.js');
+const { normalizeOrder, toOrderString } = require('./order.js');
 
 module.exports = class extends Base {
   parseWhere(where) {
@@ -11,63 +12,71 @@ module.exports = class extends Base {
     const filter = {};
     const parseKey = (k) => (k === 'objectId' ? '_id' : k);
 
-    for (let k in where) {
+    for (const k in where) {
       if (k === '_complex') {
         continue;
       }
+
       if (think.isString(where[k])) {
         filter[parseKey(k)] = {
-          $eq: k === 'objectId' ? ObjectId(where[k]) : where[k],
+          $eq: k === 'objectId' ? new ObjectId(where[k]) : where[k],
         };
         continue;
       }
       if (where[k] === undefined) {
         filter[parseKey(k)] = { $eq: null };
       }
-      if (Array.isArray(where[k])) {
-        if (where[k][0]) {
-          const handler = where[k][0].toUpperCase();
 
-          switch (handler) {
-            case 'IN':
-              if (k === 'objectId') {
-                filter[parseKey(k)] = { $in: where[k][1].map(ObjectId) };
-              } else {
-                filter[parseKey(k)] = {
-                  $regex: new RegExp(`^(${where[k][1].join('|')})$`),
-                };
-              }
-              break;
-            case 'NOT IN':
+      if (Array.isArray(where[k]) && where[k][0]) {
+        const handler = where[k][0].toUpperCase();
+
+        switch (handler) {
+          case 'IN': {
+            if (k === 'objectId') {
+              filter[parseKey(k)] = { $in: where[k][1].map((id) => new ObjectId(id)) };
+            } else {
               filter[parseKey(k)] = {
-                $nin:
-                  k === 'objectId' ? where[k][1].map(ObjectId) : where[k][1],
+                $regex: new RegExp(`^(${where[k][1].join('|')})$`, 'u'),
               };
-              break;
-            case 'LIKE': {
-              const first = where[k][1][0];
-              const last = where[k][1].slice(-1);
-              let reg;
-
-              if (first === '%' && last === '%') {
-                reg = new RegExp(where[k][1].slice(1, -1));
-              } else if (first === '%') {
-                reg = new RegExp(where[k][1].slice(1) + '$');
-              } else if (last === '%') {
-                reg = new RegExp('^' + where[k][1].slice(0, -1));
-              }
-
-              if (reg) {
-                filter[parseKey(k)] = { $regex: reg };
-              }
-              break;
             }
-            case '!=':
-              filter[parseKey(k)] = { $ne: where[k][1] };
-              break;
-            case '>':
-              filter[parseKey(k)] = { $gt: where[k][1] };
-              break;
+            break;
+          }
+          case 'NOT IN': {
+            filter[parseKey(k)] = {
+              $nin: k === 'objectId' ? where[k][1].map((id) => new ObjectId(id)) : where[k][1],
+            };
+            break;
+          }
+          case 'LIKE': {
+            const [, likePattern] = where[k];
+            const [first] = likePattern;
+            const last = likePattern.slice(-1);
+            let reg;
+
+            if (first === '%' && last === '%') {
+              reg = new RegExp(likePattern.slice(1, -1), 'u');
+            } else if (first === '%') {
+              reg = new RegExp(`${likePattern.slice(1)}$`, 'u');
+            } else if (last === '%') {
+              reg = new RegExp(`^${likePattern.slice(0, -1)}`, 'u');
+            }
+
+            if (reg) {
+              filter[parseKey(k)] = { $regex: reg };
+            }
+
+            break;
+          }
+          case '!=': {
+            filter[parseKey(k)] = { $ne: where[k][1] };
+            break;
+          }
+          case '>': {
+            filter[parseKey(k)] = { $gt: where[k][1] };
+            break;
+          }
+          default: {
+            break;
           }
         }
       }
@@ -89,6 +98,7 @@ module.exports = class extends Base {
       if (k === '_logic') {
         continue;
       }
+
       filters.push({
         ...this.parseWhere({ [k]: where._complex[k] }),
         ...filter,
@@ -101,16 +111,22 @@ module.exports = class extends Base {
     });
   }
 
-  async select(where, { desc, limit, offset, field } = {}) {
+  async select(where, { desc, field, limit, offset, order } = {}) {
     const instance = this.mongo(this.tableName);
 
     this.where(instance, where);
-    if (desc) {
-      instance.order(`${desc} DESC`);
+    const normalizedOrder = normalizeOrder(order, desc, (field) =>
+      field === 'objectId' ? '_id' : field,
+    );
+
+    if (normalizedOrder.length > 0) {
+      instance.order(toOrderString(normalizedOrder));
     }
+
     if (limit || offset) {
-      instance.limit(offset || 0, limit);
+      instance.limit(offset ?? 0, limit);
     }
+
     if (field) {
       instance.field(field);
     }
@@ -130,6 +146,7 @@ module.exports = class extends Base {
     if (group) {
       instance.group(group);
     }
+
     const data = await instance.count({ raw: group });
 
     if (!Array.isArray(data)) {
@@ -141,6 +158,7 @@ module.exports = class extends Base {
 
   async add(data) {
     if (data.objectId) {
+      // oxlint-disable-next-line no-underscore-dangle
       data._id = data.objectId;
       delete data.objectId;
     }

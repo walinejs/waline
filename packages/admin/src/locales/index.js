@@ -1,4 +1,14 @@
+import de from './de.json';
 import en from './en.json';
+import es from './es.json';
+import fr from './fr.json';
+import id from './id.json';
+import it from './it.json';
+import jp from './jp.json';
+import koKR from './ko-KR.json';
+import ptBR from './pt-BR.json';
+import ru from './ru.json';
+import viVN from './vi-VN.json';
 import zhCN from './zh-CN.json';
 import zhTW from './zh-TW.json';
 
@@ -16,7 +26,57 @@ export const LANGUAGE_OPTIONS = [
   {
     label: 'English',
     value: 'en-US',
-    alias: ['en', 'en-US', 'jp', 'jp-JP'],
+    alias: ['en', 'en-US'],
+  },
+  {
+    label: 'Bahasa Indonesia',
+    value: 'id',
+    alias: ['id', 'id-ID'],
+  },
+  {
+    label: 'Deutsch',
+    value: 'de',
+    alias: ['de'],
+  },
+  {
+    label: 'Español (México)',
+    value: 'es-MX',
+    alias: ['es', 'es-MX'],
+  },
+  {
+    label: 'Français',
+    value: 'fr',
+    alias: ['fr', 'fr-FR'],
+  },
+  {
+    label: 'Italiano',
+    value: 'it',
+    alias: ['it', 'it-IT'],
+  },
+  {
+    label: '日本語',
+    value: 'jp',
+    alias: ['jp', 'jp-JP'],
+  },
+  {
+    label: '한국어',
+    value: 'ko-KR',
+    alias: ['ko', 'ko-KR'],
+  },
+  {
+    label: 'Português (Brasil)',
+    value: 'pt-BR',
+    alias: ['pt-BR'],
+  },
+  {
+    label: 'Русский',
+    value: 'ru',
+    alias: ['ru', 'ru-RU'],
+  },
+  {
+    label: 'Tiếng Việt',
+    value: 'vi',
+    alias: ['vi', 'vi-VN'],
   },
 ];
 
@@ -26,6 +86,22 @@ export default {
   en: { translations: en },
   'en-US': { translations: en },
   'zh-TW': { translations: zhTW },
-  jp: { translations: en },
-  'jp-JP': { translations: en },
+  id: { translations: id },
+  'id-ID': { translations: id },
+  fr: { translations: fr },
+  'fr-FR': { translations: fr },
+  it: { translations: it },
+  'it-IT': { translations: it },
+  jp: { translations: jp },
+  'jp-JP': { translations: jp },
+  ko: { translations: koKR },
+  'ko-KR': { translations: koKR },
+  'pt-BR': { translations: ptBR },
+  ru: { translations: ru },
+  'ru-RU': { translations: ru },
+  vi: { translations: viVN },
+  'vi-VN': { translations: viVN },
+  de: { translations: de },
+  es: { translations: es },
+  'es-MX': { translations: es },
 };

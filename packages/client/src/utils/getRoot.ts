@@ -1,8 +1,4 @@
-export const getRoot = (
-  el: string | HTMLElement | undefined,
-): HTMLElement | null =>
-  el instanceof HTMLElement
-    ? el
-    : typeof el === 'string'
-      ? document.querySelector(el)
-      : null;
+import { isString } from './type.js';
+
+export const getRoot = (el: string | HTMLElement | undefined): HTMLElement | null =>
+  el instanceof HTMLElement ? el : isString(el) ? document.querySelector(el) : null;

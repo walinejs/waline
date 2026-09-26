@@ -5,21 +5,24 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+
 jobs:
   path-context:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
+        uses: docker/setup-qemu-action@v4
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+        uses: docker/setup-buildx-action@v4
 
       - name: Cache Docker layers
-        uses: actions/cache@v3
+        uses: actions/cache@v6
         with:
           path: /tmp/.buildx-cache
           key: ${{ runner.os }}-buildx-${{ github.sha }}
@@ -27,17 +30,17 @@ jobs:
             ${{ runner.os }}-buildx-
 
       - name: Build alpine
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v7
         with:
           file: ./packages/server/Dockerfile.alpine
-          platforms: linux/amd64,linux/arm64,linux/arm/v7
+          platforms: linux/amd64,linux/arm64/v8
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache,mode=max
 
       - name: Build debian
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v7
         with:
           file: ./packages/server/Dockerfile
-          platforms: linux/amd64,linux/arm64,linux/arm/v7
+          platforms: linux/amd64,linux/arm64/v8
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache,mode=max

@@ -1,64 +1,86 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router';
 
-import Header from '../../components/Header';
+import Header from '../../components/Header.jsx';
+// oxlint-disable-next-line import/no-namespace
 import * as Icons from '../../components/icon';
-import { useCaptcha } from '../../components/useCaptcha';
-import { get2FAToken } from '../../services/user';
+import { useCaptcha } from '../../components/useCaptcha.js';
+import { get2FAToken } from '../../services/user.js';
 
-export default function () {
+export default function Login() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  // oxlint-disable-next-line react/hook-use-state
   const [is2FAEnabled, enable2FA] = useState(false);
   const execute = useCaptcha({
-    sitekey: window.turnstileKey || window.recaptchaV3Key,
+    sitekey: window.turnstileKey ?? window.recaptchaV3Key,
     hideDefaultBadge: true,
   });
 
-  const match = location.pathname.match(/(.*?\/)ui/);
-  const basePath = match && match[1] ? match[1] : '/';
+  const basePath = location.pathname.match(/(.*?\/)ui/u)?.[1] ?? '/';
+  const query = useMemo(() => new URLSearchParams(location.search), []);
 
   useEffect(() => {
-    if (!user || !user.email) {
+    if (!user || !user.objectId) {
       return;
     }
 
-    const query = new URLSearchParams(location.search);
     const isAdmin = user.type === 'administrator';
 
-    const defaultRedirect = isAdmin ? '/ui/profile' : '/ui';
-    const redirect =
-      isAdmin && query.get('redirect')
-        ? query.get('redirect')
-        : defaultRedirect;
+    const defaultRedirect = isAdmin ? '/ui' : '/ui/profile';
+    const redirect = isAdmin && query.get('redirect') ? query.get('redirect') : defaultRedirect;
 
-    console.log(redirect);
-    navigate(redirect.replace(/\/+/g, '/'));
-  }, [user]);
+    const normalizedRedirect = redirect.replaceAll(/(^|[^:])\/{2,}/gu, '$1/');
 
-  const onSubmit = async function (e) {
-    e.preventDefault();
+    if (/^https?:\/\//iu.test(normalizedRedirect)) {
+      try {
+        const redirectURL = new URL(normalizedRedirect);
+        const referrerHost = document.referrer ? new URL(document.referrer).host : '';
+
+        if (referrerHost && redirectURL.host === referrerHost) {
+          const token =
+            localStorage.getItem('TOKEN') ?? sessionStorage.getItem('TOKEN') ?? window.TOKEN;
+
+          if (token) {
+            redirectURL.searchParams.set('token', token);
+          }
+
+          location.href = redirectURL.href;
+          return;
+        }
+      } catch {
+        // Ignore malformed redirect/referrer values and fall back to default.
+      }
+    }
+
+    navigate(defaultRedirect);
+  }, [user, query, navigate]);
+
+  const onSubmit = async (event) => {
+    event.preventDefault();
     setError(false);
     setLoading(true);
 
-    const email = e.target.email.value;
-    const password = e.target.password.value;
-    const code = e.target.code ? e.target.code.value : '';
-    const remember = e.target.remember.checked;
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+    const code = event.target.code ? event.target.code.value : '';
+    const remember = event.target.remember.checked;
 
     if (!email) {
       return setError(t('please input email'));
     }
+
     if (!password) {
       return setError(t('please input password'));
     }
-    if (e.target.code && !code) {
+
+    if (event.target.code && !code) {
       return setError(t('please input 2fa code'));
     }
 
@@ -73,15 +95,15 @@ export default function () {
         recaptchaV3: window.recaptchaV3Key ? token : undefined,
         turnstile: window.turnstileKey ? token : undefined,
       });
-    } catch (e) {
+    } catch {
       setError(t('email or password error'));
     } finally {
       setLoading(false);
     }
   };
 
-  const check2FACode = async (e) => {
-    const email = e.target.value;
+  const check2FACode = async (event) => {
+    const email = event.target.value;
 
     if (!email) {
       return;
@@ -92,15 +114,16 @@ export default function () {
     enable2FA(data.enable);
   };
 
-  let baseUrl = window.serverURL;
+  const baseUrl = window.serverURL || (location.pathname.match(/(.*?\/)ui/u)?.[1] ?? '/');
 
-  if (!baseUrl) {
-    const match = location.pathname.match(/(.*?\/)ui/);
+  const socials = Array.isArray(window.oauthServices)
+    ? window.oauthServices.map(({ name }) => name)
+    : ['oidc', 'qq', 'weibo', 'github', 'twitter', 'facebook'];
 
-    baseUrl = match ? match[1] : '/';
-  }
-
-  const socials = ['qq', 'weibo', 'github', 'twitter', 'facebook'];
+  const buildOAuthURL = (social) => {
+    const redirect = query.get('redirect') || `${basePath}ui/profile`;
+    return `${baseUrl}oauth?type=${encodeURIComponent(social)}&redirect=${encodeURIComponent(redirect)}`;
+  };
 
   return (
     <>
@@ -119,7 +142,7 @@ export default function () {
         <div className="typecho-login">
           {/* <h1><a href="http://waline.js.org" className="i-logo">Waline</a></h1> */}
 
-          <form method="post" name="login" role="form" onSubmit={onSubmit}>
+          <form method="post" name="login" onSubmit={onSubmit}>
             <p>
               <label htmlFor="email" className="sr-only">
                 {t('email')}
@@ -161,22 +184,13 @@ export default function () {
             )}
             <p className="captcha-container" />
             <p className="submit">
-              <button
-                type="submit"
-                className="btn btn-l w-100 primary"
-                disabled={loading}
-              >
+              <button type="submit" className="btn btn-l w-100 primary" disabled={loading}>
                 {t('login')}
               </button>
             </p>
             <p style={{ display: 'flex', justifyContent: 'space-between' }}>
               <label htmlFor="remember">
-                <input
-                  type="checkbox"
-                  name="remember"
-                  className="checkbox"
-                  id="remember"
-                />{' '}
+                <input type="checkbox" name="remember" className="checkbox" id="remember" />{' '}
                 {t('remember me')}
               </label>
               <span className="right forgot-password">
@@ -185,20 +199,21 @@ export default function () {
             </p>
           </form>
           <div className="social-accounts">
-            {(window.ALLOW_SOCIALS || socials).map((social) => (
-              <a
-                key={social}
-                href={`${baseUrl}oauth${
-                  window.ALLOW_SOCIALS ? '/' + social + '?' : `?type=${social}`
-                }&redirect=${basePath}ui/profile`}
-              >
-                {React.createElement(Icons[social])}
-              </a>
-            ))}
+            {socials.map((social) => {
+              // oxlint-disable-next-line import/namespace
+              const Icon = Icons[social];
+
+              return (
+                <a key={social} href={buildOAuthURL(social)}>
+                  {Icon ? <Icon className="social-icon" aria-hidden="true" /> : null}
+                </a>
+              );
+            })}
           </div>
 
           <p className="more-link">
-            <Link to="/ui">{t('back to home')}</Link> •{' '}
+            <Link to="/ui">{t('back to home')}</Link>
+            {' • '}
             <Link to="/ui/register">{t('register')}</Link>
           </p>
         </div>

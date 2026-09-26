@@ -1,14 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
-import useScript from './useScript';
+import useScript from './useScript.js';
 
-export function useTurnstile({ sitekey, checkForExisting = true }) {
+export const useTurnstile = ({ sitekey, checkForExisting = true }) => {
   const [turnstile, setTurnstile] = useState();
 
   useScript({
-    src: window.turnstileKey
-      ? `https://challenges.cloudflare.com/turnstile/v0/api.js`
-      : undefined,
+    src: window.turnstileKey ? `https://challenges.cloudflare.com/turnstile/v0/api.js` : undefined,
     onload: () =>
       window.turnstile.ready(() => {
         setTurnstile(window.turnstile);
@@ -27,10 +25,12 @@ export function useTurnstile({ sitekey, checkForExisting = true }) {
     });
   }, []);
 
-  return (action) => {
-    return new Promise((resolve, reject) => {
+  return (action) =>
+    new Promise((resolve, reject) => {
       if (!turnstile) {
-        return reject(new Error('Turnstile script not available'));
+        reject(new Error('Turnstile script not available'));
+
+        return;
       }
 
       turnstile.render('.captcha-container', {
@@ -39,5 +39,4 @@ export function useTurnstile({ sitekey, checkForExisting = true }) {
         callback: resolve,
       });
     });
-  };
-}
+};

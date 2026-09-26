@@ -1,10 +1,10 @@
 ---
 title: 多数据库服务支持
 icon: database
-redirectFrom: /guide/server/databases.html
+order: 2
 ---
 
-除了官方默认的 LeanCloud 之外，Waline 还支持多种数据库，包括 MySQL, PostgreSQL, SQLite 以及 MongoDB。
+Waline 支持多种数据库，包括 MySQL, PostgreSQL, SQLite 以及 MongoDB。
 
 你只需配置对应的数据库的环境变量，Waline 会自动根据你配置的环境变量切换到对应的数据存储服务。
 
@@ -40,7 +40,7 @@ MONGO_OPT_SSL=true
 
 ## MySQL
 
-使用 MySQL 存储数据也是一个很好的选择，除了使用自建的 MySQL 服务之外，我们也可以使用 [PlanetScale](https://planetscale.com)，它免费提供了 10GB 的数据库支持。或者 <https://freedb.tech>，它免费提供了 100M 的数据库支持。
+使用 MySQL 存储数据也是一个很好的选择，除了使用自建的 MySQL 服务之外，我们可以使用 [PlanetScale](https://planetscale.com)(目前仅支持付费计划),或者 [FreeDB](https://freedb.tech)，它免费提供了 25M 的数据库支持。
 
 使用时请先导入 [waline.sql](https://github.com/walinejs/waline/blob/main/assets/waline.sql) 以完成表和表结构的创建，之后在项目中配置如下环境变量。
 
@@ -57,7 +57,7 @@ MONGO_OPT_SSL=true
 
 ## TiDB
 
-[TiDB](https://github.com/pingcap/tidb) 是一款开源的 NewSQL 数据库。[TiDB Cloud](https://tidbcloud.com/) 则是官方提供的在线版本，它提供了 5GB 的免费额度可供大家使用。
+[TiDB](https://github.com/pingcap/tidb) 是一款开源的 NewSQL 数据库。[TiDB Cloud](https://tidbcloud.com/) 则是官方提供的在线版本，它提供了 5GB 的免费额度。
 
 使用时请查阅[创建 TiDB 数据库](../guide/deploy/tidb.md)了解初始化流程。
 
@@ -84,7 +84,7 @@ MONGO_OPT_SSL=true
 
 ## PostgreSQL
 
-[Supabase](https://supabase.com) 提供了 512M 的数据库支持，而[elephantSQL](https://www.elephantsql.com/) 则提供了 20M 的免费空间，对于评论服务来说绰绰有余了。如果想要使用 PostgreSQL 的也可以使用它搭建 Waline。
+[Supabase](https://supabase.com) 和 [Neon](https://neon.tech/home) 均提供了 512M 的数据库支持，而 [Tembo](https://tembo.io/) 则提供了 10G 的免费空间。如果想要使用 PostgreSQL 的也可以使用它们搭建 Waline。
 
 同 MySQL，使用 PostgreSQL 也需要先导入 [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) 创建好表和表结构。之后在项目中配置如下环境变量。
 
@@ -137,14 +137,6 @@ Waline 支持将评论数据以 CSV 文件的格式存储在 GitHub 仓库中。
 出于国内 Github 服务访问稳定性与 CSV 读取与存储性能的原因，我们不建议国内用户使用 Github 作为存储库。
 
 :::
-
-## Deta Base
-
-Deta 提供了 [Deta Base](https://deta.space/docs/en/reference/base/about) 免费数据库支持，即使不部署在 Deta 上也可以使用。如果部署在 Deta 上，不需要配置任何环境变量，Waline 默认会使用 Deta Base 作为数据库存储数据。如果是部署在其它地方，需要配置以下环境变量。
-
-| 环境变量名称       | 必填 | 默认值 | 备注          |
-| ------------------ | ---- | ------ | ------------- |
-| `DETA_PROJECT_KEY` | ✅   |        | Deta 项目密钥 |
 
 ## 更多
 

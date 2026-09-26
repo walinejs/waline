@@ -1,31 +1,28 @@
+import type { App } from 'vue';
 import { createApp, h, reactive, watchEffect } from 'vue';
 
 import { commentCount } from './comment.js';
 import Waline from './components/WalineComment.vue';
 import { pageviewCount } from './pageview.js';
-import { type WalineInitOptions } from './typings/index.js';
-import { getRoot } from './utils/index.js';
+import type { WalineInitOptions } from './typings/index.js';
+import { getRoot, isString } from './utils/index.js';
 
 export interface WalineInstance {
   /**
    * Waline 被挂载到的元素
    *
-   * @description 当通过 `el: null` 初始化，值为 `null`
+   * 当通过 `el: null` 初始化，值为 `null` Element where Waline is mounted
    *
-   * Element where Waline is mounted
-   *
-   * @description when initialized with `el: null`, it will be `null`
+   * When initialized with `el: null`, it will be `null`
    */
   el: HTMLElement | null;
 
   /**
    * 更新 Waline 实例
    *
-   * @description 只要不设置`path` 选项，更新时它就会被重置为 `windows.location.pathname`
+   * 只要不设置`path` 选项，更新时它就会被重置为 `windows.location.pathname` Update Waline instance
    *
-   * Update Waline instance
-   *
-   * @description when not setting `path` option, it will be reset to `window.location.pathname`
+   * When not setting `path` option, it will be reset to `window.location.pathname`
    */
   update: (newOptions?: Partial<Omit<WalineInitOptions, 'el'>>) => void;
 
@@ -45,44 +42,52 @@ export const init = ({
   ...initProps
 }: WalineInitOptions): WalineInstance | null => {
   // check el element
+  // oxlint-disable-next-line typescript/strict-boolean-expressions
   const root = el ? getRoot(el) : null;
 
   // check root
-  if (el && !root) throw new Error(`Option 'el' do not match any domElement!`);
+  // oxlint-disable-next-line typescript/strict-boolean-expressions
+  if (el && !root) {
+    throw new Error(`Option 'el' do not match any domElement!`);
+  }
 
   // check serverURL
-  if (!initProps.serverURL) throw new Error("Option 'serverURL' is missing!");
+  if (!initProps.serverURL) {
+    throw new Error("Option 'serverURL' is missing!");
+  }
 
   const props = reactive({ ...initProps });
   const state = reactive({ comment, pageview, path });
 
   const updateCommentCount = (): void => {
-    if (state.comment)
+    // oxlint-disable-next-line typescript/strict-boolean-expressions
+    if (state.comment) {
       commentCount({
         serverURL: props.serverURL,
         path: state.path,
-        ...(typeof state.comment === 'string'
-          ? { selector: state.comment }
-          : {}),
+        ...(isString(state.comment) ? { selector: state.comment } : {}),
       });
+    }
   };
 
   const updatePageviewCount = (): void => {
-    if (state.pageview)
+    // oxlint-disable-next-line typescript/strict-boolean-expressions
+    if (state.pageview) {
       pageviewCount({
         serverURL: props.serverURL,
         path: state.path,
-        ...(typeof state.pageview === 'string'
-          ? { selector: state.pageview }
-          : {}),
+        ...(isString(state.pageview) ? { selector: state.pageview } : {}),
       });
+    }
   };
 
-  const app = root
-    ? createApp(() => h(Waline, { path: state.path, ...props }))
-    : null;
+  let app: App<Element> | null = null;
 
-  if (app) app.mount(root!);
+  if (root) {
+    app = createApp(() => h(Waline, { path: state.path, ...props }));
+
+    app.mount(root);
+  }
 
   const stopComment = watchEffect(updateCommentCount);
   const stopPageview = watchEffect(updatePageviewCount);
@@ -96,15 +101,17 @@ export const init = ({
       ...newProps
     }: Partial<Omit<WalineInitOptions, 'el'>> = {}): void => {
       Object.entries(newProps).forEach(([key, value]) => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        // eslint-disable-next-line
+        // @ts-expect-error: index signature
         props[key] = value;
       });
 
       state.path = path;
-      if (comment !== undefined) state.comment = comment;
-      if (pageview !== undefined) state.pageview = pageview;
+      if (comment != null) {
+        state.comment = comment;
+      }
+      if (pageview != null) {
+        state.pageview = pageview;
+      }
     },
     destroy: (): void => {
       app?.unmount();

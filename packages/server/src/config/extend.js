@@ -1,14 +1,11 @@
-const fetch = require('node-fetch');
-const Model = require('think-model');
-const Mongo = require('think-mongo');
+const model = require('think-model');
+const mongo = require('think-mongo');
 
 const { isNetlify, netlifyFunctionPrefix } = require('./netlify');
 
-const isDeta = think.env === 'deta' || process.env.DETA_RUNTIME === 'true';
-
 module.exports = [
-  Model(think.app),
-  Mongo(think.app),
+  model(think.app),
+  mongo(think.app),
   {
     context: {
       get serverURL() {
@@ -22,10 +19,6 @@ module.exports = [
 
         if (isNetlify) {
           return `${protocol}://${host}${netlifyFunctionPrefix}`;
-        }
-
-        if (isDeta) {
-          return `https://${host}`;
         }
 
         return `${protocol}://${host}`;

@@ -9,7 +9,7 @@ on:
       - packages/api/**
 
 permissions:
-  contents: write
+  contents: read
   id-token: write
 
 jobs:
@@ -17,27 +17,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v6
 
       - name: Install Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 24
+          check-latest: true
           cache: pnpm
 
       - name: Install Dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm ci
 
       - name: Build API
-        run: pnpm api:build
+        run: pnpm run api:build
 
-      - name: Publish NPM
-        uses: JS-DevTools/npm-publish@v3
-        with:
-          token: ${{ secrets.NPM_TOKEN }}
-          package: ./packages/api
+      - name: Publish
+        run: pnpm publish -r --filter @waline/api --no-git-checks

@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import { type BaseAPIOptions } from './utils.js';
+/* eslint-disable typescript/no-unsafe-member-access */
+import type { BaseAPIOptions } from './utils.js';
 
 export interface UserInfo {
   /**
@@ -7,7 +7,6 @@ export interface UserInfo {
    *
    * User name displayed
    */
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   display_name: string;
 
   /**
@@ -39,18 +38,11 @@ export interface UserInfo {
   avatar: string;
 
   /**
-   * 用户邮箱 MD5
-   *
-   * MD5 of User email
-   */
-  mailMd5: string;
-
-  /**
    * 用户对象 ID
    *
    * User object ID
    */
-  objectId: string | number;
+  objectId: number;
 
   /**
    * 用户身份
@@ -60,17 +52,33 @@ export interface UserInfo {
   type: 'administrator' | 'guest';
 }
 
+const isMobile = (): boolean => {
+  const ua = navigator.userAgent;
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/iu.test(ua);
+};
+
 export const login = ({
   lang,
   serverURL,
 }: BaseAPIOptions): Promise<UserInfo & { remember: boolean }> => {
-  const width = 450;
-  const height = 450;
+  const width = 1024;
+  const height = 600;
   const left = (window.innerWidth - width) / 2;
   const top = (window.innerHeight - height) / 2;
 
+  if (isMobile()) {
+    location.href = `${serverURL.replace(/\/$/u, '')}/ui/login?lng=${encodeURIComponent(lang)}&redirect=${encodeURIComponent(location.href)}`;
+
+    // On mobile, we perform a full-page redirect; the login flow is handled entirely
+    // in the redirected page, so this promise intentionally never resolves to avoid
+    // overwriting existing userInfo with an empty object.
+    return new Promise<UserInfo & { remember: boolean }>(() => {
+      // no-op
+    });
+  }
+
   const handler = window.open(
-    `${serverURL.replace(/\/$/, '')}/ui/login?lng=${encodeURIComponent(lang)}`,
+    `${serverURL.replace(/\/$/u, '')}/ui/login?lng=${encodeURIComponent(lang)}`,
     '_blank',
     `width=${width},height=${height},left=${left},top=${top},scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no`,
   );
@@ -78,10 +86,14 @@ export const login = ({
   handler?.postMessage({ type: 'TOKEN', data: null }, '*');
 
   return new Promise((resolve) => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // oxlint-disable-next-line typescript/no-explicit-any
     const receiver = ({ data }: any): void => {
-      if (!data || typeof data !== 'object' || data.type !== 'userInfo') return;
+      // oxlint-disable-next-line typescript/strict-boolean-expressions
+      if (!data || typeof data !== 'object' || data.type !== 'userInfo') {
+        return;
+      }
 
+      // oxlint-disable-next-line typescript/strict-boolean-expressions
       if (data.data.token) {
         handler?.close();
 

@@ -36,3 +36,7 @@ dist/
 ### Turbo template
 # Turborepo task cache
 .turbo
+# npm config file
+.npmrc
+
+data/*

@@ -1,7 +1,7 @@
 ---
 title: 服务端介绍
 icon: server
-redirectFrom: /guide/server/intro.html
+order: 2
 ---
 
 ## 部署
@@ -12,17 +12,17 @@ redirectFrom: /guide/server/intro.html
 
 - [阿里云函数计算](../deploy/aliyun-fc.md)
 
+- [阿里云计算巢](../deploy/aliyun-computenest.md)
+
 - [百度云函数计算](../deploy/baidu-cfc.md)
 
 - [Cloudbase](../deploy/cloudbase.md)
-
-- [Deta](../deploy/deta.md)
 
 - [Railway](../deploy/railway.md)
 
 ## 多数据库支持
 
-除了官方默认的 LeanCloud 之外，Waline 还支持多种数据库，包括 MySQL, PostgreSQL, SQLite 以及 MongoDB。
+Waline 支持多种数据库，包括 MySQL、PostgreSQL、SQLite 以及 MongoDB。
 
 你只需配置对应的数据库的环境变量，Waline 会自动根据你配置的环境变量切换到对应的数据存储服务。
 
@@ -40,7 +40,7 @@ redirectFrom: /guide/server/intro.html
 
 ## 社交登录
 
-我们支持社交帐号登录，目前支持 GitHub，Twitter, Facebook。
+我们支持社交帐号登录，目前支持 GitHub、Twitter、Facebook。
 
 ::: tip
 

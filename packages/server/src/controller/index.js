@@ -26,7 +26,7 @@ module.exports = class extends think.Controller {
         const waline = init({
           el: '#waline',
           path: params.get('path') || '/',
-          lang: params.get('lng'),
+          lang: params.get('lng') || undefined,
           serverURL: location.protocol + '//' + location.host + location.pathname.replace(/\\/+$/, ''),
           recaptchaV3Key: '${process.env.RECAPTCHA_V3_KEY || ''}',
           turnstileKey: '${process.env.TURNSTILE_KEY || ''}',

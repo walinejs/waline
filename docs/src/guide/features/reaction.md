@@ -1,7 +1,7 @@
 ---
 title: 文章反应
 icon: reaction
-redirectFrom: /guide/client/reaction.html
+order: 4
 ---
 
 Waline 允许用户表达对文章内容的反应。

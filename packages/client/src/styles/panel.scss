@@ -6,8 +6,8 @@
 
 .wl-close {
   position: absolute;
-  top: -4px;
   inset-inline-end: -4px;
+  top: -4px;
 
   padding: 0;
   border: none;
@@ -27,8 +27,8 @@
 
 .wl-logout-btn {
   position: absolute;
-  top: -10px;
   inset-inline-end: -10px;
+  top: -10px;
 
   padding: 3px;
   border: none;
@@ -109,14 +109,14 @@
   input {
     flex: 1;
 
+    resize: none;
+
     width: 0;
     padding: 0.5em;
 
     background: transparent;
 
     font-size: 0.625em;
-
-    resize: none;
   }
 }
 
@@ -155,6 +155,9 @@
 .wl-editor {
   position: relative;
 
+  resize: vertical;
+
+  box-sizing: border-box;
   width: calc(100% - 1em);
   min-height: 8.75em;
   margin: 0.75em 0.5em;
@@ -163,8 +166,6 @@
   background: transparent;
 
   font-size: 0.875em;
-
-  resize: vertical;
 }
 
 .wl-editor,
@@ -194,7 +195,7 @@
   .wl-content {
     min-height: 1.25em;
     padding: 0.25em;
-    word-break: break-word;
+    overflow-wrap: break-word;
     hyphens: auto;
 
     > *:first-child {

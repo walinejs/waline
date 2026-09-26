@@ -1,7 +1,6 @@
 ---
 title: 组件属性
 icon: config
-redirectFrom: /reference/component.html
 ---
 
 ## serverURL
@@ -48,6 +47,10 @@ Waline 的服务端地址。
 - `'pt-BR'`
 - `'ru'`
 - `'ru-RU'`
+- `fr-FR`
+- `fr`
+- `'es'`
+- `'es-MX'`
 
 ## locale
 
@@ -60,7 +63,7 @@ Waline 多语言配置。
 
 ## emoji
 
-- 类型: `(WalineEmojiInfo | WalineEmojiPresets)[] | false`
+- 类型: `(WalineEmojiInfo | WalineEmojiPresets)[] | boolean`
 
   ```ts
   type WalineEmojiPresets = `http://${string}` | `https://${string}`;
@@ -172,7 +175,7 @@ Waline 多语言配置。
 
 ## imageUploader
 
-- 类型: `WalineImageUploader | false`
+- 类型: `WalineImageUploader | boolean`
 - 必填: 否
 - 详情:
 
@@ -189,7 +192,7 @@ Waline 多语言配置。
 
 ## highlighter
 
-- 类型: `WalineHighlighter | false`
+- 类型: `WalineHighlighter | boolean`
 
   ```ts
   type WalineHighlighter = (code: string, lang: string) => string;
@@ -206,7 +209,7 @@ Waline 多语言配置。
 
 ## texRenderer
 
-- 类型: `WalineTeXRenderer | false`
+- 类型: `WalineTeXRenderer | boolean`
 
   ```ts
   type WalineTeXRenderer = (blockMode: boolean, tex: string) => string;
@@ -215,7 +218,6 @@ Waline 多语言配置。
 - 必填: 否
 
 - 详情:
-
   - [Cookbook → 自定义 $\TeX$ 渲染器](../../cookbook/customize/tex-renderer.md)
   - [MathJax](https://www.mathjax.org/)
   - [KaTeX](https://katex.org/)
@@ -226,7 +228,7 @@ Waline 多语言配置。
 
 ## search
 
-- 类型: `WalineSearchOptions | false`
+- 类型: `WalineSearchOptions | boolean`
 
   ```ts
   interface WalineSearchImageData extends Record<string, unknown> {
@@ -283,18 +285,25 @@ Waline 多语言配置。
 
 自定义搜索功能，设置 `false` 可禁用搜索。
 
-## copyright
+## noCopyright
 
 - 类型: `boolean`
-- 默认值: `true`
+- 默认值: `false`
 
-是否显示页脚版权信息。
+是否隐藏页脚版权信息。
 
 ::: tip
 
 我们希望你保持打开以支持 Waline。
 
 :::
+
+## noRss
+
+- 类型: `boolean`
+- 默认值: `false`
+
+是否隐藏 RSS 订阅链接。
 
 ## recaptchaV3Key
 

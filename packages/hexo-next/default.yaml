@@ -9,6 +9,9 @@ waline:
   # Waline server address url, you should set this to your own link
   serverURL: https://waline.vercel.app
 
+  # If false, disable the comment
+  comment: true
+
   # Waline library CDN url, you can set this to your preferred CDN
   # libUrl: https://unpkg.com/@waline/client@v3/dist/waline.umd.js
 
@@ -44,7 +47,7 @@ waline:
   # requiredMeta:
   #   - nick
 
-  # Language, available values: en-US, zh-CN, zh-TW, pt-BR, ru-RU, jp-JP
+  # Language, available values: en-US, zh-CN, zh-TW, pt-BR, ru-RU, jp-JP, fr-FR
   # lang: zh-CN
 
   # Word limit, no limit when setting to 0

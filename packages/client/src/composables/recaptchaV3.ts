@@ -1,4 +1,5 @@
-import { type ReCaptchaInstance, load } from 'recaptcha-v3';
+import type { ReCaptchaInstance } from 'recaptcha-v3';
+import { load } from 'recaptcha-v3';
 
 const recaptchaStore: Record<string, Promise<ReCaptchaInstance>> = {};
 
@@ -7,13 +8,13 @@ interface ReCaptcha {
 }
 
 export const useReCaptcha = (key: string): ReCaptcha => {
+  // oxlint-disable-next-line no-multi-assign
   const init = (recaptchaStore[key] ??= load(key, {
     useRecaptchaNet: true,
     autoHideBadge: true,
   }));
 
   return {
-    execute: (action: string) =>
-      init.then((instance) => instance.execute(action)),
+    execute: (action: string) => init.then((instance) => instance.execute(action)),
   };
 };

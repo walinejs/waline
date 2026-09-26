@@ -1,15 +1,17 @@
 # https://github.com/nodejs/LTS
 FROM node:lts AS build
 WORKDIR /app
-ENV NODE_ENV production
+ENV NODE_ENV="production"
+COPY packages/server/package.json packages/server/vanilla.js ./
+COPY packages/server/src ./src
 RUN set -eux; \
 	# npm config set registry https://registry.npm.taobao.org; \
-	npm install --production --silent @waline/vercel
+	npm install --production --silent
 
-FROM node:lts-buster-slim
+FROM node:lts-slim
 WORKDIR /app
-ENV TZ Asia/Shanghai
-ENV NODE_ENV production
+ENV TZ="Asia/Shanghai"
+ENV NODE_ENV="production"
 COPY --from=build /app .
 EXPOSE 8360
-CMD ["node", "node_modules/@waline/vercel/vanilla.js"]
+CMD ["node", "vanilla.js"]

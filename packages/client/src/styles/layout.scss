@@ -35,9 +35,9 @@
   // katex support
   .katex-display {
     overflow: auto hidden;
-    -webkit-overflow-scrolling: touch;
     padding-top: 0.2em;
     padding-bottom: 0.2em;
+    -webkit-overflow-scrolling: touch;
 
     &::-webkit-scrollbar {
       height: 3px;
@@ -71,8 +71,11 @@
 }
 
 .wl-power {
+  margin-inline-start: auto;
   padding: 0.5em 0;
+
   color: var(--waline-light-grey);
+
   font-size: var(--waline-info-font-size);
   text-align: end;
 }
@@ -101,5 +104,40 @@
     + li {
       margin-inline-start: 1em;
     }
+  }
+}
+
+.wl-meta-foot {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wl-rss {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 5px;
+
+  overflow: hidden;
+
+  max-width: 16px;
+
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    max-width: 100%;
+  }
+
+  > a {
+    display: flex;
+    flex-shrink: 0;
+    gap: 2px;
+  }
+
+  span {
+    color: var(--waline-light-grey);
+    font-size: var(--waline-info-font-size);
+    text-align: end;
   }
 }

@@ -1,7 +1,6 @@
 ---
 title: 服务端环境变量
 icon: config
-redirectFrom: /reference/env.html
 ---
 
 你可以通过下面的环境变量对 Waline 服务端进行配置。
@@ -18,15 +17,12 @@ Vercel 需要在 <kbd>Settings</kbd> - <kbd>Environment Variables</kbd> 中进�
 
 ## 主要配置
 
-| 环境变量名称      | 必填 | 备注                                         |
-| ----------------- | ---- | -------------------------------------------- |
-| `LEAN_ID`         | ✅   | LeanCloud 应用的 App ID                      |
-| `LEAN_KEY`        | ✅   | LeanCloud 应用的 App Key                     |
-| `LEAN_MASTER_KEY` | ✅   | LeanCloud 应用的 Master Key 用于后台修改数据 |
-| `LEAN_SERVER`     | ⚠   | LeanCloud 服务地址，国内版用户需要配置此项   |
-| `SITE_NAME`       |      | 博客名称                                     |
-| `SITE_URL`        |      | 博客地址                                     |
-| `LOGIN`           |      | 当设置为 LOGIN=force 时会要求登录才能评论    |
+| 环境变量名称 | 必填 | 备注                                                        |
+| ------------ | ---- | ----------------------------------------------------------- |
+| `SITE_NAME`  |      | 博客名称                                                    |
+| `SITE_URL`   |      | 博客地址                                                    |
+| `LOGIN`      |      | 当设置为 LOGIN=force 时会要求登录才能评论                   |
+| `SERVER_URL` |      | 设置 Waline Server 的地址，适合在自动生成的地址不正确时填写 |
 
 ## 显示
 
@@ -108,16 +104,26 @@ Recaptcha Key 和 Secret 可在 <https://www.google.com/recaptcha> 申请。
 | `SMTP_SECURE`  | 是否使用 SSL 连接 SMTP   |
 | `SENDER_NAME`  | 自定义发送邮件的发件人   |
 | `SENDER_EMAIL` | 自定义发送邮件的发件地址 |
+| `AUTHOR_EMAIL` | 博主邮箱，接收新评论通知 |
 
 ::: tip
 
-可以在 [这里](https://github.com/nodemailer/nodemailer/blob/master/lib/well-known/services.json) 查看支持的服务商。`SMTP_SERVICE` 和 (`SMTP_HOST`、`SMTP_PORT`) 任选其一即可，如果没有在列表中知道对应的 `SMTP_SERVICE` 的话则需要配 `SMTP_HOST` 和 `SMTP_PORT`，它们一般可以在邮箱的设置中找到。
+可以在 [这里](https://github.com/nodemailer/nodemailer/blob/master/src/well-known/services.json) 查看支持的服务商。`SMTP_SERVICE` 和 (`SMTP_HOST`、`SMTP_PORT`) 任选其一即可，如果没有在列表中知道对应的 `SMTP_SERVICE` 的话则需要配 `SMTP_HOST` 和 `SMTP_PORT`，它们一般可以在邮箱的设置中找到。
 
 SMTP 的用户名通常均支持用户的完整邮箱，而密码大多同邮箱密码。
 
 请特别注意部分邮箱 (如 163、qq 邮箱) 使用单独的 SMTP 密码。
 
 :::
+
+以下是选填的环境变量:
+
+| 环境变量名称          | 备注                     |
+| --------------------- | ------------------------ |
+| `MAIL_SUBJECT`        | 自定义评论回复邮件标题   |
+| `MAIL_TEMPLATE`       | 自定义评论回复邮件内容   |
+| `MAIL_SUBJECT_ADMIN`  | 自定义新评论通知邮件标题 |
+| `MAIL_TEMPLATE_ADMIN` | 自定义新评论通知邮件内容 |
 
 ## 数据库
 
@@ -212,12 +218,6 @@ SMTP 的用户名通常均支持用户的完整邮箱，而密码大多同邮箱
 | `GITHUB_REPO`  | ✅   |        | 仓库名称，例如 `walinejs/waline`                                         |
 | `GITHUB_PATH`  |      |        | 数据存储目录，例如 `data` 表示存储在 `data` 目录下，默认存在仓库根目录下 |
 
-### Deta Base
-
-| 环境变量名称       | 必填 | 默认值 | 备注          |
-| ------------------ | ---- | ------ | ------------- |
-| `DETA_PROJECT_KEY` | ✅   |        | Deta 项目密钥 |
-
 ## 高级配置
 
 | 环境变量名称                    | 默认值                      | 备注                                                                                                                                                                |
@@ -225,4 +225,6 @@ SMTP 的用户名通常均支持用户的完整邮箱，而密码大多同邮箱
 | `OAUTH_URL`                     | `https://oauth.lithub.cc`   | OAuth 第三方登录服务地址，可以 [自建 auth](https://github.com/walinejs/auth) 这是能让用户使用 GitHub, Twitter, Facebook, Google, 微博等第三方账户登录最简单的方式。 |
 | `WEBHOOK`                       |                             | 评论成功后会向 WEBHOOK 配置的地址发送一条 POST 请求                                                                                                                 |
 | `WALINE_ADMIN_MODULE_ASSET_URL` | `//unpkg.com/@waline/admin` | Waline admin 地址                                                                                                                                                   |
-| `IP2REGION_DB`                  |                             | 自定义 IP 查询库路径                                                                                                                                                |
+| `IP2REGION_DB`                  |                             | 自定义 IPv4 IP 查询库路径（已废弃，建议使用 `IP2REGION_DB_V4`）                                                                                                     |
+| `IP2REGION_DB_V4`               |                             | 自定义 IPv4 IP 查询库路径。如果未设置，将回退到 `IP2REGION_DB`                                                                                                      |
+| `IP2REGION_DB_V6`               |                             | 自定义 IPv6 IP 查询库路径。设置后可启用 IPv6 地址的归属地查询                                                                                                       |

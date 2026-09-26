@@ -1,12 +1,12 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import Header from '../../components/Header';
-import download from '../../utils/download';
-import readFileAsync from '../../utils/readFileAsync';
-import request from '../../utils/request';
+import Header from '../../components/Header.jsx';
+import download from '../../utils/download.js';
+import readFileAsync from '../../utils/readFileAsync.js';
+import request from '../../utils/request.js';
 
-export default function () {
+export default function Migration() {
   const [importLoading, setImportLoading] = useState(false);
   const [exportLoading, setExportLoading] = useState(false);
 
@@ -17,20 +17,24 @@ export default function () {
     if (!confirm(t('import clear data confirm'))) {
       return;
     }
+
     uploadRef.current.click();
   };
 
-  const importData = async (e) => {
+  // oxlint-disable-next-line max-statements
+  const importData = async (event) => {
     try {
-      const text = await readFileAsync(e.target.files[0]);
+      const text = await readFileAsync(event.target.files[0]);
       const data = JSON.parse(text);
 
       if (!data || data.type !== 'waline') {
-        return alert('import data format not support!');
+        alert('import data format not support!');
+
+        return;
       }
 
       const maxLength = data.tables.reduce(
-        (count, tableName) => count + (data.data[tableName]?.length || 0),
+        (count, tableName) => count + (data.data[tableName]?.length ?? 0),
         0,
       );
       let importedLength = 0;
@@ -42,62 +46,65 @@ export default function () {
 
       const idMaps = {};
 
-      for (let i = 0; i < data.tables.length; i++) {
-        const tableName = data.tables[i];
+      for (const tableName of data.tables) {
         const tableData = data.data[tableName];
 
         // clean table data if not user table
         if (tableName !== 'Users') {
+          // oxlint-disable-next-line no-await-in-loop
           await request({
-            url: 'db?table=' + tableName,
+            url: `db?table=${tableName}`,
             method: 'DELETE',
           });
         }
 
-        if (!idMaps[tableName]) {
-          idMaps[tableName] = {};
-        }
+        idMaps[tableName] ??= {};
         if (!Array.isArray(tableData)) {
           continue;
         }
 
-        for (let j = 0; j < tableData.length; j++) {
+        for (const data of tableData) {
           let existUserObjectId = false;
 
           if (tableName === 'Users') {
-            const user = await request('user?email=' + tableData[j].email);
+            // oxlint-disable-next-line no-await-in-loop
+            const user = await request(`user?email=${data.email}`);
 
             if (user.objectId) {
               existUserObjectId = user.objectId;
             }
           }
 
-          const shouldEditorUser = tableName == 'Users' && existUserObjectId;
+          const shouldEditorUser = tableName === 'Users' && existUserObjectId;
           const method = shouldEditorUser ? 'PUT' : 'POST';
           const body =
             tableName === 'Comment'
-              ? Object.assign({}, tableData[j], {
+              ? {
+                  ...data,
+                  // add default approved status to avoid unsetted status comments import issue
+                  status: data.status ?? 'approved',
+                  // reset relationship fields
                   rid: undefined,
                   pid: undefined,
                   user_id: undefined,
-                })
-              : tableData[j];
+                }
+              : data;
 
-          for (const k in body) {
-            if (body[k] === null || body[k] === undefined) {
-              delete body[k];
+          for (const key in body) {
+            if (body[key] === null || body[key] === undefined) {
+              // oxlint-disable-next-line typescript/no-dynamic-delete
+              delete body[key];
             }
           }
 
+          // oxlint-disable-next-line no-await-in-loop
           const resp = await request({
-            url: `db?table=${tableName}${
-              method === 'PUT' ? `&objectId=${existUserObjectId}` : ''
-            }`,
+            url: `db?table=${tableName}${method === 'PUT' ? `&objectId=${existUserObjectId}` : ''}`,
             method,
             body,
           });
 
-          idMaps[tableName][tableData[j].objectId] = resp.objectId;
+          idMaps[tableName][data.objectId] = resp.objectId ?? existUserObjectId;
           importedLength += 1;
           setImportLoading([
             'importing {{importedLength}}/{{maxLength}}',
@@ -110,8 +117,7 @@ export default function () {
       const commentData = data.data.Comment;
       const willUpdateData = [];
 
-      for (let i = 0; i < commentData.length; i++) {
-        const cmt = commentData[i];
+      for (const cmt of commentData) {
         const willUpdateItem = {};
 
         [
@@ -122,6 +128,7 @@ export default function () {
           if (!cmt[field]) {
             return;
           }
+
           const oldId = cmt[field];
           const newId = idMaps[tableName][cmt[field]];
 
@@ -129,20 +136,16 @@ export default function () {
             willUpdateItem[field] = newId;
           }
         });
-        if (!Object.keys(willUpdateItem).length) {
+        if (Object.keys(willUpdateItem).length === 0) {
           continue;
         }
 
-        willUpdateData.push([
-          willUpdateItem,
-          { objectId: idMaps.Comment[cmt.objectId] },
-        ]);
+        willUpdateData.push([willUpdateItem, { objectId: idMaps.Comment[cmt.objectId] }]);
       }
 
       importedLength = 0;
-      for (let i = 0; i < willUpdateData.length; i++) {
-        const [willUpdateItem, where] = willUpdateData[i];
-
+      for (const [willUpdateItem, where] of willUpdateData) {
+        // oxlint-disable-next-line no-await-in-loop
         await request({
           url: `db?table=Comment&objectId=${where.objectId}`,
           method: 'PUT',
@@ -158,13 +161,14 @@ export default function () {
 
       alert(t('import success'));
       location.reload();
-    } catch (e) {
-      console.log(e);
-      alert(e.message);
-      throw e;
+    } catch (err) {
+      // oxlint-disable-next-line no-console
+      console.log(err);
+      alert(err.message);
+      throw err;
     } finally {
       setImportLoading(false);
-      e.target.value = null;
+      event.target.value = null;
     }
   };
 
@@ -173,11 +177,7 @@ export default function () {
     try {
       const data = await request('db');
 
-      download(
-        JSON.stringify(data, null, '\t'),
-        'waline.json',
-        'application/javascript',
-      );
+      download(JSON.stringify(data, null, '\t'), 'waline.json', 'application/javascript');
     } finally {
       setExportLoading(false);
     }
@@ -195,6 +195,7 @@ export default function () {
             <div className="col-mb-12 col-tb-6" style={{ textAlign: 'center' }}>
               <button
                 className="btn"
+                type="button"
                 style={{ height: 80, fontSize: 30, padding: '0 40px' }}
                 onClick={exportDB}
                 disabled={exportLoading}
@@ -205,13 +206,12 @@ export default function () {
             <div className="col-mb-12 col-tb-6" style={{ textAlign: 'center' }}>
               <button
                 className="btn error"
+                type="button"
                 style={{ height: 80, fontSize: 30, padding: '0 40px' }}
                 onClick={importDB}
                 disabled={importLoading}
               >
-                {Array.isArray(importLoading)
-                  ? t(...importLoading)
-                  : t('import')}
+                {Array.isArray(importLoading) ? t(...importLoading) : t('import')}
               </button>
               <input
                 ref={uploadRef}

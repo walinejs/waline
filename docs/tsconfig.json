@@ -1,13 +1,8 @@
 {
-  "extends": "../tsconfig.base.json",
+  "extends": "@mr-hope/tsconfig/web.json",
   "compilerOptions": {
-    "jsx": "preserve",
-    "module": "NodeNext",
-    "moduleResolution": "nodenext",
     "rootDir": "./src/.vuepress",
-    "paths": {
-      "@theme-hope/*": ["vuepress-theme-hope/lib/client/*.js"]
-    }
+    "types": ["node", "vite/client"]
   },
   "include": ["./src/.vuepress/**/*.ts", "./src/.vuepress/**/*.vue"]
 }

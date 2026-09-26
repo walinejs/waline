@@ -1,53 +1,69 @@
 import cls from 'classnames';
 import React, { useState } from 'react';
-import { useTranslation, Trans } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
-import TwoFactorAuth from './twoFactorAuth';
-import Header from '../../components/Header';
+import Header from '../../components/Header.jsx';
+// oxlint-disable-next-line import/no-namespace
 import * as Icons from '../../components/icon';
-import { updateProfile } from '../../services/user';
+import { updateProfile } from '../../services/user.js';
+import { buildAvatar } from '../manage-comments/utils.js';
+import TwoFactorAuth from './twoFactorAuth.jsx';
 
-export default function () {
+const unbind = async (type) => {
+  await updateProfile({ [type]: '' });
+  location.reload();
+};
+
+export default function Profile() {
+  // oxlint-disable-next-line react/hook-use-state
   const [isPasswordUpdating, setPasswordUpdating] = useState(false);
+  // oxlint-disable-next-line react/hook-use-state
   const [isProfileUpdating, setProfileUpdating] = useState(false);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const { t } = useTranslation();
 
-  const onProfileUpdate = async function (e) {
-    e.preventDefault();
+  const onProfileUpdate = async (event) => {
+    event.preventDefault();
 
-    const display_name = e.target.screenName.value;
-    const url = e.target.url.value;
-    const label = e.target.label.value;
+    const display_name = event.target.screenName.value;
+    const url = event.target.url.value;
+    const label = event.target.label.value;
+    const email = event.target.email.value;
 
     if (!display_name || !url) {
-      return alert(t('nickname and homepage are required'));
+      alert(t('nickname and homepage are required'));
+
+      return;
     }
 
     setProfileUpdating(true);
     try {
-      await dispatch.user.updateProfile({ display_name, url, label });
-    } catch (e) {
-      alert(e);
+      await dispatch.user.updateProfile({ display_name, url, label, email });
+    } catch (err) {
+      alert(err);
     } finally {
       setProfileUpdating(false);
     }
   };
 
-  const onPasswordUpdate = async function (e) {
-    e.preventDefault();
+  const onPasswordUpdate = async (event) => {
+    event.preventDefault();
 
-    const password = e.target.password.value;
-    const confirm = e.target.confirm.value;
+    const password = event.target.password.value;
+    const confirm = event.target.confirm.value;
 
     if (!password || !confirm) {
-      return alert(t('please input password'));
+      alert(t('please input password'));
+
+      return;
     }
 
     if (password !== confirm) {
-      return alert(t("passwords don't match"));
+      alert(t("passwords don't match"));
+
+      return;
     }
 
     setPasswordUpdating(true);
@@ -55,13 +71,8 @@ export default function () {
     setPasswordUpdating(false);
   };
 
-  const unbind = async function (type) {
-    await updateProfile({ [type]: '' });
-    location.reload();
-  };
-
-  const changeAvatar = async function (e) {
-    e.preventDefault();
+  const changeAvatar = async (event) => {
+    event.preventDefault();
 
     const url = prompt(t('please input avatar url'));
 
@@ -73,20 +84,18 @@ export default function () {
     location.reload();
   };
 
-  let baseUrl = window.serverURL;
+  const baseUrl = window.serverURL || (location.pathname.match(/(.*?\/)ui/u)?.[1] ?? '/');
 
-  if (!baseUrl) {
-    const match = location.pathname.match(/(.*?\/)ui/);
-
-    baseUrl = match ? match[1] : '/';
-  }
   const qs = new URLSearchParams(location.search);
-  let token =
-    window.TOKEN || sessionStorage.getItem('TOKEN') || qs.get('token');
+  const token =
+    window.TOKEN ??
+    sessionStorage.getItem('TOKEN') ??
+    qs.get('token') ??
+    localStorage.getItem('TOKEN');
 
-  if (!token) {
-    token = localStorage.getItem('TOKEN');
-  }
+  const socials = Array.isArray(window.oauthServices)
+    ? window.oauthServices.map(({ name }) => name)
+    : ['oidc', 'qq', 'weibo', 'github', 'twitter', 'facebook'];
 
   return (
     <>
@@ -99,30 +108,24 @@ export default function () {
           <div className="row typecho-page-main">
             <div className="col-mb-12 col-tb-3">
               <p>
-                <a
-                  href="javascript:void(0)"
+                <button
+                  type="button"
+                  className="profile-avatar-btn"
                   title={t('change avatar')}
-                  target="_blank"
-                  rel="noreferrer"
                   onClick={changeAvatar}
                 >
                   <img
                     className="profile-avatar"
-                    src={
-                      user.avatar ||
-                      `https://seccdn.libravatar.org/avatar/${user.mailMd5}?s=220&amp;r=X&amp;d=mm`
-                    }
+                    src={buildAvatar(user.email, user.avatar)}
+                    alt={t('avatar')}
                   />
-                </a>
+                </button>
               </p>
               <h2>{user.display_name}</h2>
               <p>{user.email}</p>
             </div>
 
-            <div
-              className="col-mb-12 col-tb-6 col-tb-offset-1 typecho-content-panel"
-              role="form"
-            >
+            <div className="col-mb-12 col-tb-6 col-tb-offset-1 typecho-content-panel">
               <section>
                 <h3>{t('profile')}</h3>
                 <form method="post" onSubmit={onProfileUpdate}>
@@ -138,17 +141,33 @@ export default function () {
                         className="text"
                         defaultValue={user.display_name}
                       />
-                      <p className="description"></p>
+                      <p className="description" />
                     </li>
                   </ul>
 
                   <ul className="typecho-option">
                     <li>
-                      <label className="typecho-label" htmlFor="url-0-2">
+                      <label className="typecho-label" htmlFor="email-0-2">
+                        {t('email')}
+                      </label>
+                      <input
+                        id="email-0-2"
+                        name="email"
+                        type="text"
+                        className="text"
+                        defaultValue={user.email}
+                      />
+                      <p className="description" />
+                    </li>
+                  </ul>
+
+                  <ul className="typecho-option">
+                    <li>
+                      <label className="typecho-label" htmlFor="url-0-3">
                         {t('homepage')}
                       </label>
                       <input
-                        id="url-0-2"
+                        id="url-0-3"
                         name="url"
                         type="text"
                         className="text"
@@ -176,17 +195,13 @@ export default function () {
                         className="text"
                         defaultValue={user.label}
                       />
-                      <p className="description"></p>
+                      <p className="description" />
                     </li>
                   </ul>
 
                   <ul className="typecho-option typecho-option-submit">
                     <li>
-                      <button
-                        type="submit"
-                        className="btn primary"
-                        disabled={isProfileUpdating}
-                      >
+                      <button type="submit" className="btn primary" disabled={isProfileUpdating}>
                         {t('update my profile')}
                       </button>
                     </li>
@@ -197,63 +212,49 @@ export default function () {
               <section id="social-account">
                 <h3>{t('connect to social account')}</h3>
                 <div className="account-list">
-                  {/** warning: compat with old server version */}
-                  {window.ALLOW_SOCIALS && (
-                    <div
-                      className={cls('account-item github', {
-                        bind: user.github,
-                      })}
-                    >
-                      <a
-                        href={
-                          user.github
-                            ? `https://github.com/${user.github}`
-                            : `${baseUrl}oauth/github?state=${token}`
-                        }
-                        target={user.github ? '_blank' : '_self'}
-                        rel="noreferrer"
+                  {socials.map((social) => {
+                    // oxlint-disable-next-line import/namespace
+                    const Icon = Icons[social];
+
+                    return (
+                      <div
+                        key={social}
+                        className={cls('account-item', social, {
+                          bind: user[social],
+                        })}
                       >
-                        {React.createElement(Icons.github)}
-                      </a>
-                    </div>
-                  )}
-                  {!window.ALLOW_SOCIALS &&
-                    ['qq', 'weibo', 'github', 'twitter', 'facebook'].map(
-                      (social) => (
-                        <div
-                          key={social}
-                          className={cls('account-item', social, {
-                            bind: user[social],
-                          })}
+                        <a
+                          href={
+                            user[social]
+                              ? social === 'oidc'
+                                ? ''
+                                : `https://${social}.com/${user[social]}`
+                              : `${baseUrl}oauth?type=${social}&state=${token}`
+                          }
+                          target={user[social] ? '_blank' : '_self'}
+                          rel="noreferrer"
                         >
-                          <a
-                            href={
-                              user[social]
-                                ? `https://${social}.com/${user[social]}`
-                                : `${baseUrl}oauth/?type=${social}&state=${token}`
-                            }
-                            target={user[social] ? '_blank' : '_self'}
-                            rel="noreferrer"
+                          {Icon ? <Icon className="social-icon" aria-hidden="true" /> : null}
+                        </a>
+                        <button
+                          type="button"
+                          className="account-unbind"
+                          aria-label={t('unbind')}
+                          onClick={() => unbind(social)}
+                        >
+                          <svg
+                            className="close-icon"
+                            viewBox="0 0 1024 1024"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="14"
+                            height="14"
                           >
-                            {React.createElement(Icons[social])}
-                          </a>
-                          <div
-                            className="account-unbind"
-                            onClick={() => unbind(social)}
-                          >
-                            <svg
-                              className="close-icon"
-                              viewBox="0 0 1024 1024"
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="14"
-                              height="14"
-                            >
-                              <path d="m568.569 512 170.267-170.267c15.556-15.556 15.556-41.012 0-56.569s-41.012-15.556-56.569 0L512 455.431 341.733 285.165c-15.556-15.556-41.012-15.556-56.569 0s-15.556 41.012 0 56.569L455.431 512 285.165 682.267c-15.556 15.556-15.556 41.012 0 56.569 15.556 15.556 41.012 15.556 56.569 0L512 568.569l170.267 170.267c15.556 15.556 41.012 15.556 56.569 0 15.556-15.556 15.556-41.012 0-56.569L568.569 512z" />
-                            </svg>
-                          </div>
-                        </div>
-                      ),
-                    )}
+                            <path d="m568.569 512 170.267-170.267c15.556-15.556 15.556-41.012 0-56.569s-41.012-15.556-56.569 0L512 455.431 341.733 285.165c-15.556-15.556-41.012-15.556-56.569 0s-15.556 41.012 0 56.569L455.431 512 285.165 682.267c-15.556 15.556-15.556 41.012 0 56.569 15.556 15.556 41.012 15.556 56.569 0L512 568.569l170.267 170.267c15.556 15.556 41.012 15.556 56.569 0 15.556-15.556 15.556-41.012 0-56.569L568.569 512z" />
+                          </svg>
+                        </button>
+                      </div>
+                    );
+                  })}
                 </div>
               </section>
               <br />
@@ -273,7 +274,7 @@ export default function () {
                         autoComplete="new-password"
                       />
                       <p className="description">
-                        <Trans i18nKey="password tips"></Trans>
+                        <Trans i18nKey="password tips" />
                       </p>
                     </li>
                   </ul>
@@ -291,17 +292,13 @@ export default function () {
                         autoComplete="new-password"
                       />
                       <p className="description">
-                        <Trans i18nKey="password again tips"></Trans>
+                        <Trans i18nKey="password again tips" />
                       </p>
                     </li>
                   </ul>
                   <ul className="typecho-option typecho-option-submit">
                     <li>
-                      <button
-                        type="submit"
-                        className="btn primary"
-                        disabled={isPasswordUpdating}
-                      >
+                      <button type="submit" className="btn primary" disabled={isPasswordUpdating}>
                         {t('update password')}
                       </button>
                     </li>

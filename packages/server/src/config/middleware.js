@@ -5,14 +5,15 @@ const { isNetlify, netlifyFunctionPrefix } = require('./netlify.js');
 
 const isDev = think.env === 'development';
 const isTcb = think.env === 'cloudbase';
-const isDeta = think.env === 'deta' || process.env.DETA_RUNTIME === 'true';
-const isAliyunFC =
-  think.env === 'aliyun-fc' || Boolean(process.env.FC_RUNTIME_VERSION);
+const isAliyunFC = think.env === 'aliyun-fc' || Boolean(process.env.FC_RUNTIME_VERSION);
 
 module.exports = [
   {
+    handle: 'fetch-oauth-service',
+  },
+  {
     handle: 'dashboard',
-    match: isNetlify ? new RegExp(`${netlifyFunctionPrefix}/ui`, 'i') : /^\/ui/,
+    match: isNetlify ? new RegExp(`${netlifyFunctionPrefix}/ui`, 'iu') : /^\/ui/u,
   },
 
   {
@@ -22,9 +23,9 @@ module.exports = [
     handle: 'meta',
     options: {
       logRequest: isDev,
+      sendPowerBy: false,
       sendResponseTime: isDev,
-      requestTimeoutCallback:
-        isTcb || isDeta || isAliyunFC || isNetlify ? false : () => {},
+      requestTimeoutCallback: isTcb || isAliyunFC || isNetlify ? false : () => {},
     },
   },
 
@@ -41,9 +42,10 @@ module.exports = [
       debug: true,
       contentType: () => 'json',
       error(err, ctx) {
-        if (/favicon.ico$/.test(ctx.url)) {
+        if (/favicon.ico$/u.test(ctx.url)) {
           return;
         }
+
         if (think.isPrevent(err)) {
           return false;
         }

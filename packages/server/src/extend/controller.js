@@ -1,7 +1,9 @@
 const nunjucks = require('nunjucks');
 const { PasswordHash } = require('phpass');
 
-const locales = require('../locales/index.js');
+const defaultLocales = require('../locales/index.js');
+
+const defaultLang = 'en-us';
 
 module.exports = {
   success(...args) {
@@ -18,20 +20,28 @@ module.exports = {
     return this[this.ctx.state.deprecated ? 'json' : 'success'](...args);
   },
   locale(message, variables) {
-    const { lang } = this.get();
-    const locale = locales[(lang || 'zh-cn').toLowerCase()] || locales['zh-cn'];
+    const { lang: userLang } = this.get();
+    const lang = (userLang || defaultLang).toLowerCase();
 
-    if (locale && locale[message]) {
-      message = locale[message];
+    const customLocales = this.config('locales');
+    const locales = customLocales || defaultLocales;
+
+    const localMessage =
+      locales?.[lang]?.[message] ||
+      defaultLocales?.[lang]?.[message] ||
+      defaultLocales[defaultLang][message];
+
+    if (localMessage) {
+      message = localMessage;
     }
 
     return nunjucks.renderString(message, variables);
   },
   getModel(modelName) {
-    const { storage, model } = this.config();
+    const { storage, customModel } = this.config();
 
-    if (typeof model === 'function') {
-      const modelInstance = model(modelName, this);
+    if (typeof customModel === 'function') {
+      const modelInstance = customModel(modelName, this);
 
       if (modelInstance) {
         return modelInstance;

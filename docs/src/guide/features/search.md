@@ -1,7 +1,7 @@
 ---
 title: 表情包搜索
 icon: search
-redirectFrom: /guide/client/search.html
+order: 3
 ---
 
 `@waline/client` 允许用户添加表情包搜索服务并自定义此功能。

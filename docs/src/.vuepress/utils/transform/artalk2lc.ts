@@ -8,9 +8,7 @@ const parseKey = (key: string): string => {
   return anchor.pathname || key;
 };
 
-/**
- * artalk 数据结构转 leancloud
- */
+/** Artalk 数据结构转 leancloud */
 
 export const artalk2lc = (input) => {
   input = JSON.parse(input);
@@ -52,9 +50,7 @@ export const artalk2lc = (input) => {
         vote_up,
       }) => {
         const time =
-          date || created_at
-            ? new Date((date || created_at).replace(/-/g, '/')).toISOString()
-            : '';
+          date || created_at ? new Date((date || created_at).replace(/-/g, '/')).toISOString() : '';
         const url = parseKey(page_key);
         return {
           objectId: id,

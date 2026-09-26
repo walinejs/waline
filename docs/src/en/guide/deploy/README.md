@@ -3,14 +3,6 @@ title: Deploy
 icon: deploy
 ---
 
-Waline supports multiple deployment methods, you can choose from the following deployment platforms.
+Waline supports multiple deployment methods, and use Vercel by default. You can choose from the following deployment platforms or deploy yourself.
 
-- [Vercel](./vercel.md) (Default)
-
-- [Deta](./deta.md)
-
-- [Railway](./railway.md)
-
-- [Self Host](./vps.md)
-
-- [Zeabur](./zeabur.md)
+<Catalog />

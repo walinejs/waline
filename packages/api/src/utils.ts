@@ -31,19 +31,16 @@ export interface ErrorStatusResponse {
 }
 
 export const JSON_HEADERS: Record<string, string> = {
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   'Content-Type': 'application/json',
 };
 
 export const getFetchPrefix = (serverURL: string): string =>
-  `${serverURL.replace(/\/?$/, '/')}api/`;
+  `${serverURL.replace(/\/?$/u, '/')}api/`;
 
-export const errorCheck = <T extends ErrorStatusResponse>(
-  data: T,
-  name = '',
-): T => {
-  if (typeof data === 'object' && data.errno)
+export const errorCheck = <T extends ErrorStatusResponse>(data: T, name = ''): T => {
+  if (typeof data === 'object' && data.errno) {
     throw new TypeError(`${name} failed with ${data.errno}: ${data.errmsg}`);
+  }
 
   return data;
 };

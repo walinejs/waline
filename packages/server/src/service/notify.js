@@ -1,23 +1,15 @@
 const crypto = require('node:crypto');
 
 const FormData = require('form-data');
-const fetch = require('node-fetch');
 const nodemailer = require('nodemailer');
 const nunjucks = require('nunjucks');
 
-module.exports = class extends think.Service {
-  constructor(ctx) {
-    super(ctx);
+module.exports = class NotifyService extends think.Service {
+  constructor(controller) {
+    super(controller);
 
-    this.ctx = ctx;
-    const {
-      SMTP_USER,
-      SMTP_PASS,
-      SMTP_HOST,
-      SMTP_PORT,
-      SMTP_SECURE,
-      SMTP_SERVICE,
-    } = process.env;
+    this.controller = controller;
+    const { SMTP_USER, SMTP_PASS, SMTP_HOST, SMTP_PORT, SMTP_SECURE, SMTP_SERVICE } = process.env;
 
     if (SMTP_HOST || SMTP_SERVICE) {
       const config = {
@@ -28,7 +20,7 @@ module.exports = class extends think.Service {
         config.service = SMTP_SERVICE;
       } else {
         config.host = SMTP_HOST;
-        config.port = parseInt(SMTP_PORT);
+        config.port = Math.trunc(Number(SMTP_PORT));
         config.secure = SMTP_SECURE && SMTP_SECURE !== 'false';
       }
       this.transporter = nodemailer.createTransport(config);
@@ -36,7 +28,9 @@ module.exports = class extends think.Service {
   }
 
   async sleep(second) {
-    return new Promise((resolve) => setTimeout(resolve, second * 1000));
+    return new Promise((resolve) => {
+      setTimeout(resolve, second * 1000);
+    });
   }
 
   async mail({ to, title, content }, self, parent) {
@@ -44,26 +38,22 @@ module.exports = class extends think.Service {
       return;
     }
 
-    const { SITE_NAME, SITE_URL, SMTP_USER, SENDER_EMAIL, SENDER_NAME } =
-      process.env;
+    const { SITE_NAME, SITE_URL, SMTP_USER, SENDER_EMAIL, SENDER_NAME } = process.env;
     const data = {
       self,
       parent,
       site: {
         name: SITE_NAME,
         url: SITE_URL,
-        postUrl: SITE_URL + self.url + '#' + self.objectId,
+        postUrl: `${SITE_URL}${self.url}#${self.objectId}`,
       },
     };
 
-    title = this.ctx.locale(title, data);
-    content = this.ctx.locale(content, data);
+    title = this.controller.locale(title, data);
+    content = this.controller.locale(content, data);
 
     return this.transporter.sendMail({
-      from:
-        SENDER_EMAIL && SENDER_NAME
-          ? `"${SENDER_NAME}" <${SENDER_EMAIL}>`
-          : SMTP_USER,
+      from: SENDER_EMAIL && SENDER_NAME ? `"${SENDER_NAME}" <${SENDER_EMAIL}>` : SMTP_USER,
       to,
       subject: title,
       html: content,
@@ -83,12 +73,20 @@ module.exports = class extends think.Service {
       site: {
         name: SITE_NAME,
         url: SITE_URL,
-        postUrl: SITE_URL + self.url + '#' + self.objectId,
+        postUrl: `${SITE_URL}${self.url}#${self.objectId}`,
       },
     };
 
-    title = this.ctx.locale(title, data);
-    content = this.ctx.locale(content, data);
+    const contentWechat =
+      think.config('SCTemplate') ||
+      `{{site.name|safe}} 有新评论啦
+【评论者昵称】：{{self.nick}}
+【评论者邮箱】：{{self.mail}} 
+【内容】：{{self.comment}}
+【地址】：{{site.postUrl}}`;
+
+    title = this.controller.locale(title, data);
+    content = this.controller.locale(contentWechat, data);
 
     const form = new FormData();
 
@@ -103,7 +101,7 @@ module.exports = class extends think.Service {
   }
 
   async qywxAmWechat({ title, content }, self, parent) {
-    const { QYWX_AM, SITE_NAME, SITE_URL } = process.env;
+    const { QYWX_AM, QYWX_PROXY, QYWX_PROXY_PORT, SITE_NAME, SITE_URL } = process.env;
 
     if (!QYWX_AM) {
       return false;
@@ -111,8 +109,8 @@ module.exports = class extends think.Service {
 
     const QYWX_AM_AY = QYWX_AM.split(',');
     const comment = self.comment
-      .replace(/<a href="(.*?)">(.*?)<\/a>/g, '\n[$2] $1\n')
-      .replace(/<[^>]+>/g, '');
+      .replaceAll(/<a href="(?<url>.*?)">(?<text>.*?)<\/a>/gu, '\n[$2] $1\n')
+      .replaceAll(/<[^>]+>/gu, '');
     const postName = self.url;
 
     const data = {
@@ -125,9 +123,10 @@ module.exports = class extends think.Service {
       site: {
         name: SITE_NAME,
         url: SITE_URL,
-        postUrl: SITE_URL + self.url + '#' + self.objectId,
+        postUrl: `${SITE_URL}${self.url}#${self.objectId}`,
       },
     };
+
     const contentWechat =
       think.config('WXTemplate') ||
       `💬 {{site.name|safe}}的文章《{{postName}}》有新评论啦 
@@ -136,51 +135,51 @@ module.exports = class extends think.Service {
 【内容】：{{self.comment}} 
 <a href='{{site.postUrl}}'>查看详情</a>`;
 
-    title = this.ctx.locale(title, data);
-    const desp = this.ctx.locale(contentWechat, data);
+    title = this.controller.locale(title, data);
+    const desp = this.controller.locale(contentWechat, data);
 
-    content = desp.replace(/\n/g, '<br/>');
+    content = desp.replaceAll('\n', '<br/>');
 
     const querystring = new URLSearchParams();
 
     querystring.set('corpid', `${QYWX_AM_AY[0]}`);
     querystring.set('corpsecret', `${QYWX_AM_AY[1]}`);
 
-    const { access_token } = await fetch(
-      `https://qyapi.weixin.qq.com/cgi-bin/gettoken?${querystring.toString()}`,
-      {
-        headers: {
-          'content-type': 'application/json',
-        },
-      },
-    ).then((resp) => resp.json());
+    let baseUrl = 'https://qyapi.weixin.qq.com';
 
-    return fetch(
-      `https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=${access_token}`,
-      {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json',
-        },
-        body: JSON.stringify({
-          touser: `${QYWX_AM_AY[2]}`,
-          agentid: `${QYWX_AM_AY[3]}`,
-          msgtype: 'mpnews',
-          mpnews: {
-            articles: [
-              {
-                title,
-                thumb_media_id: `${QYWX_AM_AY[4]}`,
-                author: `Waline Comment`,
-                content_source_url: `${data.site.postUrl}`,
-                content: `${content}`,
-                digest: `${desp}`,
-              },
-            ],
-          },
-        }),
+    if (QYWX_PROXY) {
+      baseUrl = `http://${QYWX_PROXY}${QYWX_PROXY_PORT ? `:${QYWX_PROXY_PORT}` : ''}`;
+    }
+
+    const { access_token } = await fetch(`${baseUrl}/cgi-bin/gettoken?${querystring.toString()}`, {
+      headers: {
+        'content-type': 'application/json',
       },
-    ).then((resp) => resp.json());
+    }).then((resp) => resp.json());
+
+    return fetch(`${baseUrl}/cgi-bin/message/send?access_token=${access_token}`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        touser: `${QYWX_AM_AY[2]}`,
+        agentid: `${QYWX_AM_AY[3]}`,
+        msgtype: 'mpnews',
+        mpnews: {
+          articles: [
+            {
+              title,
+              thumb_media_id: `${QYWX_AM_AY[4]}`,
+              author: `Waline Comment`,
+              content_source_url: `${data.site.postUrl}`,
+              content: `${content}`,
+              digest: `${desp}`,
+            },
+          ],
+        },
+      }),
+    }).then((resp) => resp.json());
   }
 
   async qq(self, parent) {
@@ -191,8 +190,8 @@ module.exports = class extends think.Service {
     }
 
     const comment = self.comment
-      .replace(/<a href="(.*?)">(.*?)<\/a>/g, '')
-      .replace(/<[^>]+>/g, '');
+      .replaceAll(/<a href="(?:.*?)">(?:.*?)<\/a>/gu, '')
+      .replaceAll(/<[^>]+>/gu, '');
 
     const data = {
       self: {
@@ -203,7 +202,7 @@ module.exports = class extends think.Service {
       site: {
         name: SITE_NAME,
         url: SITE_URL,
-        postUrl: SITE_URL + self.url + '#' + self.objectId,
+        postUrl: `${SITE_URL}${self.url}#${self.objectId}`,
       },
     };
 
@@ -214,20 +213,29 @@ module.exports = class extends think.Service {
 {{self.comment}}
 仅供预览评论，请前往上述页面查看完整內容。`;
 
-    const form = new FormData();
+    const qmsgHost = QMSG_HOST ? QMSG_HOST.replace(/\/$/u, '') : 'https://qmsg.zendee.cn';
 
-    form.append('msg', this.ctx.locale(contentQQ, data));
-    form.append('qq', QQ_ID);
-
-    const qmsgHost = QMSG_HOST
-      ? QMSG_HOST.replace(/\/$/, '')
-      : 'https://qmsg.zendee.cn';
+    const postBodyData = {
+      qq: QQ_ID,
+      msg: this.controller.locale(contentQQ, data),
+    };
+    const postBody = Object.keys(postBodyData)
+      .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(postBodyData[key])}`)
+      .join('&');
 
     return fetch(`${qmsgHost}/send/${QMSG_KEY}`, {
       method: 'POST',
-      header: form.getHeaders(),
-      body: form,
-    }).then((resp) => resp.json());
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: postBody,
+    }).then((resp) =>
+      resp.json().then((json) => {
+        think.logger.debug(`qq notify response: ${JSON.stringify(json)}`);
+
+        return json;
+      }),
+    );
   }
 
   async telegram(self, parent) {
@@ -238,25 +246,22 @@ module.exports = class extends think.Service {
     }
 
     let commentLink = '';
-    const href = self.comment.match(/<a href="(.*?)">(.*?)<\/a>/g);
+    const href = self.comment.match(/<a href="(?:.*?)">(?:.*?)<\/a>/gu);
 
-    if (href !== null) {
+    if (href != null) {
       for (let i = 0; i < href.length; i++) {
         href[i] =
-          '[Link: ' +
-          href[i].replace(/<a href="(.*?)">(.*?)<\/a>/g, '$2') +
-          '](' +
-          href[i].replace(/<a href="(.*?)">(.*?)<\/a>/g, '$1') +
-          ')  ';
-        commentLink = commentLink + href[i];
+          `[Link: ${href[i].replaceAll(/<a href="(?<url>.*?)">(?<text>.*?)<\/a>/gu, '$2')}](${href[i].replaceAll(/<a href="(?<url>.*?)">(?<text>.*?)<\/a>/gu, '$1')})  `;
+        commentLink += href[i];
       }
     }
     if (commentLink !== '') {
-      commentLink = `\n` + commentLink + `\n`;
+      commentLink = `\n${commentLink}\n`;
     }
+
     const comment = self.comment
-      .replace(/<a href="(.*?)">(.*?)<\/a>/g, '[Link:$2]')
-      .replace(/<[^>]+>/g, '');
+      .replaceAll(/<a href="(?<url>.*?)">(?<text>.*?)<\/a>/gu, '[Link:$2]')
+      .replaceAll(/<[^>]+>/gu, '');
 
     const contentTG =
       think.config('TGTemplate') ||
@@ -269,7 +274,7 @@ module.exports = class extends think.Service {
 \`\`\`
 {{-self.commentLink}}
 *邮箱：*\`{{self.mail}}\`
-*审核：*{{self.status}} 
+*审核：*{{self.status}}
 
 仅供评论预览，点击[查看完整內容]({{site.postUrl}})`;
 
@@ -283,27 +288,24 @@ module.exports = class extends think.Service {
       site: {
         name: SITE_NAME,
         url: SITE_URL,
-        postUrl: SITE_URL + self.url + '#' + self.objectId,
+        postUrl: `${SITE_URL}${self.url}#${self.objectId}`,
       },
     };
 
-    const form = new FormData();
-
-    form.append('text', this.ctx.locale(contentTG, data));
-    form.append('chat_id', TG_CHAT_ID);
-    form.append('parse_mode', 'MarkdownV2');
-
-    const resp = await fetch(
-      `https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`,
-      {
-        method: 'POST',
-        header: form.getHeaders(),
-        body: form,
+    const resp = await fetch(`https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
       },
-    ).then((resp) => resp.json());
+      body: JSON.stringify({
+        chat_id: TG_CHAT_ID,
+        text: this.controller.locale(contentTG, data),
+        parse_mode: 'MarkdownV2',
+      }),
+    }).then((resp) => resp.json());
 
     if (!resp.ok) {
-      console.log('Telegram Notification Failed:' + JSON.stringify(resp));
+      console.log(`Telegram Notification Failed:${JSON.stringify(resp)}`);
     }
   }
 
@@ -329,27 +331,43 @@ module.exports = class extends think.Service {
       site: {
         name: SITE_NAME,
         url: SITE_URL,
-        postUrl: SITE_URL + self.url + '#' + self.objectId,
+        postUrl: `${SITE_URL}${self.url}#${self.objectId}`,
       },
     };
 
-    title = this.ctx.locale(title, data);
-    content = this.ctx.locale(content, data);
+    title = this.controller.locale(title, data);
+    content = this.controller.locale(content, data);
 
-    const form = new FormData();
+    const form = new URLSearchParams();
 
-    topic && form.append('topic', topic);
-    template && form.append('template', template);
-    channel && form.append('channel', channel);
-    webhook && form.append('webhook', webhook);
-    callbackUrl && form.append('callbackUrl', callbackUrl);
-    title && form.append('title', title);
-    content && form.append('content', content);
+    if (topic) {
+      form.set('topic', topic);
+    }
+    if (template) {
+      form.set('template', template);
+    }
+    if (channel) {
+      form.set('channel', channel);
+    }
+    if (webhook) {
+      form.set('webhook', webhook);
+    }
+    if (callbackUrl) {
+      form.set('callbackUrl', callbackUrl);
+    }
+    if (title) {
+      form.set('title', title);
+    }
+    if (content) {
+      form.set('content', content);
+    }
 
     return fetch(`http://www.pushplus.plus/send/${PUSH_PLUS_KEY}`, {
       method: 'POST',
-      header: form.getHeaders(),
-      body: form,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: form.toString(),
     }).then((resp) => resp.json());
   }
 
@@ -366,12 +384,12 @@ module.exports = class extends think.Service {
       site: {
         name: SITE_NAME,
         url: SITE_URL,
-        postUrl: SITE_URL + self.url + '#' + self.objectId,
+        postUrl: `${SITE_URL}${self.url}#${self.objectId}`,
       },
     };
 
-    title = this.ctx.locale(title, data);
-    content = this.ctx.locale(
+    title = this.controller.locale(title, data);
+    content = this.controller.locale(
       think.config('DiscordTemplate') ||
         `💬 {{site.name|safe}} 有新评论啦 
     【评论者昵称】：{{self.nick}}
@@ -381,14 +399,14 @@ module.exports = class extends think.Service {
       data,
     );
 
-    const form = new FormData();
-
-    form.append('content', `${title}\n${content}`);
-
     return fetch(DISCORD_WEBHOOK, {
       method: 'POST',
-      header: form.getHeaders(),
-      body: form,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        content: `${title}\n${content}`,
+      }),
     }).then((resp) => resp.statusText);
     // Expected return value: No Content
     // Since Discord doesn't return any response body on success, we just return the status text.
@@ -401,7 +419,7 @@ module.exports = class extends think.Service {
       return false;
     }
 
-    self.comment = self.comment.replace(/(<([^>]+)>)/gi, '');
+    self.comment = self.comment.replaceAll(/(?:<[^>]+>)/giu, '');
 
     const data = {
       self,
@@ -409,7 +427,7 @@ module.exports = class extends think.Service {
       site: {
         name: SITE_NAME,
         url: SITE_URL,
-        postUrl: SITE_URL + self.url + '#' + self.objectId,
+        postUrl: `${SITE_URL}${self.url}#${self.objectId}`,
       },
     };
 
@@ -421,7 +439,7 @@ module.exports = class extends think.Service {
 
     const post = {
       en_us: {
-        title: this.ctx.locale(title, data),
+        title: this.controller.locale(title, data),
         content: [
           [
             {
@@ -442,15 +460,15 @@ module.exports = class extends think.Service {
     };
 
     const sign = (timestamp, secret) => {
-      const signStr = timestamp + '\n' + secret;
+      const signStr = `${timestamp}\n${secret}`;
 
       return crypto.createHmac('sha256', signStr).update('').digest('base64');
     };
 
     if (LARK_SECRET) {
-      const timestamp = parseInt(+new Date() / 1000);
+      const timestamp = Math.trunc(Number(Date.now() / 1000));
 
-      signData = { timestamp: timestamp, sign: sign(timestamp, LARK_SECRET) };
+      signData = { timestamp, sign: sign(timestamp, LARK_SECRET) };
     }
 
     const resp = await fetch(LARK_WEBHOOK, {
@@ -465,38 +483,30 @@ module.exports = class extends think.Service {
     }).then((resp) => resp.json());
 
     if (resp.status !== 200) {
-      console.log('Lark Notification Failed:' + JSON.stringify(resp));
+      console.log(`Lark Notification Failed:${JSON.stringify(resp)}`);
     }
 
-    console.log('FeiShu Notification Success:' + JSON.stringify(resp));
+    console.log(`FeiShu Notification Success:${JSON.stringify(resp)}`);
   }
 
   async run(comment, parent, disableAuthorNotify = false) {
     const { AUTHOR_EMAIL, DISABLE_AUTHOR_NOTIFY } = process.env;
-    const { mailSubject, mailTemplate, mailSubjectAdmin, mailTemplateAdmin } =
-      think.config();
-    const AUTHOR = AUTHOR_EMAIL;
-
+    const { mailSubject, mailTemplate, mailSubjectAdmin, mailTemplateAdmin } = think.config();
     const mailList = [];
-    const isAuthorComment = AUTHOR
-      ? comment.mail.toLowerCase() === AUTHOR.toLowerCase()
-      : false;
-    const isReplyAuthor = AUTHOR
-      ? parent && parent.mail.toLowerCase() === AUTHOR.toLowerCase()
-      : false;
+    const isAdminComment = comment.type === 'administrator';
+    const isReplyAdmin = parent?.type === 'administrator';
     const isCommentSelf =
-      parent && parent.mail.toLowerCase() === comment.mail.toLowerCase();
+      parent &&
+      (parent.user_id && comment.user_id
+        ? parent.user_id === comment.user_id
+        : (parent.mail || '').toLowerCase() === (comment.mail || '').toLowerCase());
 
     const title = mailSubjectAdmin || 'MAIL_SUBJECT_ADMIN';
     const content = mailTemplateAdmin || 'MAIL_TEMPLATE_ADMIN';
 
-    if (!DISABLE_AUTHOR_NOTIFY && !isAuthorComment && !disableAuthorNotify) {
+    if (!DISABLE_AUTHOR_NOTIFY && !isAdminComment && !disableAuthorNotify) {
       const wechat = await this.wechat({ title, content }, comment, parent);
-      const qywxAmWechat = await this.qywxAmWechat(
-        { title, content },
-        comment,
-        parent,
-      );
+      const qywxAmWechat = await this.qywxAmWechat({ title, content }, comment, parent);
       const qq = await this.qq(comment, parent);
       const telegram = await this.telegram(comment, parent);
       const pushplus = await this.pushplus({ title, content }, comment, parent);
@@ -504,24 +514,22 @@ module.exports = class extends think.Service {
       const lark = await this.lark({ title, content }, comment, parent);
 
       if (
-        [wechat, qq, telegram, qywxAmWechat, pushplus, discord, lark].every(
-          think.isEmpty,
+        [wechat, qq, telegram, qywxAmWechat, pushplus, discord, lark].every((item) =>
+          think.isEmpty(item),
         )
       ) {
-        mailList.push({ to: AUTHOR, title, content });
+        mailList.push({ to: AUTHOR_EMAIL, title, content });
       }
     }
 
-    const disallowList = ['github', 'twitter', 'facebook', 'qq', 'weibo'].map(
-      (social) => 'mail.' + social,
-    );
-    const fakeMail = new RegExp(`@(${disallowList.join('|')})$`, 'i');
+    const disallowList = this.controller.ctx.state.oauthServices.map(({ name }) => `mail.${name}`);
+    const fakeMail = new RegExp(`@(${disallowList.join('|')})$`, 'iu');
 
     if (
       parent &&
       !fakeMail.test(parent.mail) &&
       !isCommentSelf &&
-      !isReplyAuthor &&
+      !isReplyAdmin &&
       comment.status !== 'waiting'
     ) {
       mailList.push({
@@ -531,13 +539,13 @@ module.exports = class extends think.Service {
       });
     }
 
-    for (let i = 0; i < mailList.length; i++) {
+    for (const mail of mailList) {
       try {
-        const response = await this.mail(mailList[i], comment, parent);
+        const response = await this.mail(mail, comment, parent);
 
         console.log('Notification mail send success: %s', response);
-      } catch (e) {
-        console.log('Mail send fail:', e);
+      } catch (err) {
+        console.log('Mail send fail:', err);
       }
     }
   }

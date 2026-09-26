@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: check-inactive
-        uses: actions-cool/issues-helper@v3
+        uses: actions-cool/issues-helper-backup@v3
         with:
           actions: 'check-inactive'
           inactive-label: 'Inactive'

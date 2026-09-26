@@ -1,4 +1,5 @@
-import { type RecentCommentData, getRecentComment } from '@waline/api';
+import type { RecentCommentData } from '@waline/api';
+import { getRecentComment } from '@waline/api';
 
 import { useUserInfo } from '../composables/index.js';
 import { getRoot } from '../utils/index.js';
@@ -14,7 +15,7 @@ export interface WalineRecentCommentsOptions {
   /**
    * 获取最新评论的数量
    *
-   * fetch number of latest comments
+   * Fetch number of latest comments
    */
   count: number;
 
@@ -66,9 +67,9 @@ export const RecentComments = ({
     count,
     lang,
     signal: controller.signal,
-    token: userInfo.value?.token,
+    token: userInfo.value.token,
   }).then((comments) => {
-    if (root && comments.length) {
+    if (root && comments.length > 0) {
       root.innerHTML = `<ul class="wl-recent-list">${comments
         .map(
           (comment) =>
@@ -87,7 +88,9 @@ export const RecentComments = ({
 
     return {
       comments,
-      destroy: (): void => controller.abort(),
+      destroy: (): void => {
+        controller.abort();
+      },
     };
   });
 };

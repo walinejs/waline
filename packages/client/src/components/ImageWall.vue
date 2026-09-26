@@ -24,6 +24,108 @@
   SOFTWARE. 
 -->
 
+<script setup lang="ts">
+import { nextTick, onBeforeUnmount, onMounted, ref, useTemplateRef, watch } from 'vue';
+
+import type { WalineSearchResult } from '../typings/index.js';
+import { LoadingIcon } from './Icons.js';
+
+type Column = number[];
+
+const {
+  items = [],
+  columnWidth = 300,
+  gap = 0,
+} = defineProps<{
+  /** Image Items */
+  items?: WalineSearchResult;
+  /** Width in pixels of each column */
+  columnWidth?: number;
+  /** Gap in pixels between columns */
+  gap?: number;
+}>();
+
+defineEmits<(event: 'insert', content: string) => void>();
+
+let resizeObserver: ResizeObserver | null = null;
+const wall = useTemplateRef<HTMLDivElement>('wall');
+const state = ref<Record<string, boolean>>({});
+const columns = ref<Column[]>([]);
+
+const getColumnCount = (): number => {
+  const count = Math.floor(
+    // oxlint-disable-next-line typescript/no-non-null-assertion
+    (wall.value!.getBoundingClientRect().width + gap) / (columnWidth + gap),
+  );
+
+  return count > 0 ? count : 1;
+};
+
+const createColumns = (count: number): Column[] => Array.from({ length: count }, () => []);
+
+const fillColumns = async (itemIndex: number): Promise<void> => {
+  if (itemIndex >= items.length) return;
+
+  await nextTick();
+
+  // @ts-expect-error: Type is Element not HTMLElement
+  const columnDivs = [...(wall.value?.children ?? [])];
+
+  const target = columnDivs.reduce((prev, curr) =>
+    curr.getBoundingClientRect().height < prev.getBoundingClientRect().height ? curr : prev,
+  );
+
+  columns.value[Number(target.dataset.index)].push(itemIndex);
+
+  await fillColumns(itemIndex + 1);
+};
+
+const redraw = async (force = false): Promise<void> => {
+  if (columns.value.length === getColumnCount() && !force) return;
+
+  columns.value = createColumns(getColumnCount());
+
+  const { scrollY } = window;
+
+  await fillColumns(0);
+
+  window.scrollTo({ top: scrollY });
+};
+
+const imageLoad = (event: Event): void => {
+  state.value[(event.target as HTMLImageElement).src] = true;
+};
+
+onMounted(() => {
+  void redraw(true);
+
+  resizeObserver = new ResizeObserver(() => {
+    void redraw();
+  });
+  // oxlint-disable-next-line typescript/no-non-null-assertion
+  resizeObserver.observe(wall.value!);
+
+  watch(
+    () => [items],
+    () => {
+      state.value = {};
+      void redraw(true);
+    },
+  );
+  watch(
+    () => [columnWidth, gap],
+    () => {
+      void redraw();
+    },
+  );
+});
+
+onBeforeUnmount(() => {
+  // oxlint-disable-next-line typescript/no-non-null-assertion
+  resizeObserver!.unobserve(wall.value!);
+});
+</script>
+
 <template>
   <div ref="wall" class="wl-gallery" :style="{ gap: `${gap}px` }">
     <div
@@ -35,11 +137,7 @@
     >
       <template v-for="itemIndex in column" :key="itemIndex">
         <!-- eslint-disable vue/no-static-inline-styles -->
-        <LoadingIcon
-          v-if="!state[items[itemIndex].src]"
-          :size="36"
-          style="margin: 20px auto"
-        />
+        <LoadingIcon v-if="!state[items[itemIndex].src]" :size="36" style="margin: 20px auto" />
         <!-- eslint-enable vue/no-static-inline-styles -->
 
         <img
@@ -54,116 +152,3 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue';
-
-import { LoadingIcon } from './Icons.js';
-import { type WalineSearchResult } from '../typings/index.js';
-
-type Column = number[];
-
-const props = withDefaults(
-  defineProps<{
-    /**
-     * Image Items
-     */
-    items?: WalineSearchResult;
-    /**
-     * width in pixels of each column
-     */
-    columnWidth?: number;
-    /**
-     * gap in pixels between columns
-     */
-    gap?: number;
-  }>(),
-  {
-    items: () => [] as WalineSearchResult,
-    columnWidth: 300,
-    gap: 0,
-  },
-);
-
-defineEmits<{
-  (event: 'insert', content: string): void;
-}>();
-
-defineExpose();
-
-let resizeObserver: ResizeObserver | null = null;
-const wall = ref<HTMLDivElement | null>(null);
-const state = ref<Record<string, boolean>>({});
-const columns = ref<Column[]>([]);
-
-const getColumnCount = (): number => {
-  const count = Math.floor(
-    (wall.value!.getBoundingClientRect().width + props.gap) /
-      (props.columnWidth + props.gap),
-  );
-
-  return count > 0 ? count : 1;
-};
-
-const createColumns = (count: number): Column[] =>
-  new Array(count).fill(null).map(() => []);
-
-const fillColumns = async (itemIndex: number): Promise<void> => {
-  if (itemIndex >= props.items.length) return;
-
-  await nextTick();
-
-  const columnDivs = Array.from(wall.value?.children || []) as HTMLDivElement[];
-
-  const target = columnDivs.reduce((prev, curr) =>
-    curr.getBoundingClientRect().height < prev.getBoundingClientRect().height
-      ? curr
-      : prev,
-  );
-
-  columns.value[Number(target.dataset.index)].push(itemIndex);
-
-  await fillColumns(itemIndex + 1);
-};
-
-const redraw = async (force = false): Promise<void> => {
-  if (columns.value.length === getColumnCount() && !force) return;
-
-  columns.value = createColumns(getColumnCount());
-
-  const scrollY = window.scrollY;
-
-  await fillColumns(0);
-
-  window.scrollTo({ top: scrollY });
-};
-
-const imageLoad = (e: Event): void => {
-  state.value[(e.target as HTMLImageElement).src] = true;
-};
-
-onMounted(() => {
-  void redraw(true);
-
-  resizeObserver = new ResizeObserver(() => {
-    void redraw();
-  });
-  resizeObserver.observe(wall.value!);
-
-  watch(
-    () => [props.items],
-    () => {
-      state.value = {};
-      void redraw(true);
-    },
-  );
-  watch(
-    () => [props.columnWidth, props.gap],
-    () => {
-      void redraw();
-    },
-  );
-});
-
-onBeforeUnmount(() => resizeObserver!.unobserve(wall.value!));
-</script>

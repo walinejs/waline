@@ -9,6 +9,7 @@ SET NAMES utf8mb4;
 
 
 # Dump of table wl_Comment
+DROP TABLE IF EXISTS `wl_Comment`;
 # ------------------------------------------------------------
 
 CREATE TABLE `wl_Comment` (
@@ -29,12 +30,20 @@ CREATE TABLE `wl_Comment` (
   `url` varchar(255) DEFAULT NULL,
   `createdAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  INDEX `idx_comment_url` (`url`),
+  INDEX `idx_comment_user_id` (`user_id`),
+  INDEX `idx_comment_status` (`status`),
+  INDEX `idx_comment_pid_rid` (`pid`, `rid`),
+  INDEX `idx_comment_created_at` (`createdAt`),
+  INDEX `idx_comment_updated_at` (`updatedAt`),
+  INDEX `idx_comment_sticky` (`sticky`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
 
 # Dump of table wl_Counter
+DROP TABLE IF EXISTS `wl_Counter`;
 # ------------------------------------------------------------
 
 CREATE TABLE `wl_Counter` (
@@ -52,12 +61,16 @@ CREATE TABLE `wl_Counter` (
   `url` varchar(255) NOT NULL DEFAULT '',
   `createdAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  INDEX `idx_counter_url` (`url`),
+  INDEX `idx_counter_time` (`time`),
+  INDEX `idx_counter_created_at` (`createdAt`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
 
 # Dump of table wl_Users
+DROP TABLE IF EXISTS `wl_Users`;
 # ------------------------------------------------------------
 
 CREATE TABLE `wl_Users` (
@@ -75,10 +88,15 @@ CREATE TABLE `wl_Users` (
   `google` varchar(255) DEFAULT NULL,
   `weibo` varchar(255) DEFAULT NULL,
   `qq` varchar(255) DEFAULT NULL,
+  `oidc` varchar(255) DEFAULT NULL,
+  `huawei` varchar(255) DEFAULT NULL,
   `2fa` varchar(32) DEFAULT NULL,
   `createdAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `idx_user_email` (`email`),
+  INDEX `idx_user_type` (`type`),
+  INDEX `idx_user_created_at` (`createdAt`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 

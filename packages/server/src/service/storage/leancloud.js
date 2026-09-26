@@ -1,6 +1,7 @@
 const AV = require('leancloud-storage');
 
 const Base = require('./base.js');
+const { normalizeOrder } = require('./order.js');
 
 const { LEAN_ID, LEAN_KEY, LEAN_MASTER_KEY, LEAN_SERVER } = process.env;
 
@@ -36,36 +37,43 @@ module.exports = class extends Base {
         instance.doesNotExist(k);
       }
 
-      if (Array.isArray(where[k])) {
-        if (where[k][0]) {
-          const handler = where[k][0].toUpperCase();
+      if (Array.isArray(where[k]) && where[k][0]) {
+        const handler = where[k][0].toUpperCase();
 
-          switch (handler) {
-            case 'IN':
-              instance.containedIn(k, where[k][1]);
-              break;
-            case 'NOT IN':
-              instance.notContainedIn(k, where[k][1]);
-              break;
-            case 'LIKE': {
-              const first = where[k][1][0];
-              const last = where[k][1].slice(-1);
+        switch (handler) {
+          case 'IN': {
+            instance.containedIn(k, where[k][1]);
+            break;
+          }
+          case 'NOT IN': {
+            instance.notContainedIn(k, where[k][1]);
+            break;
+          }
+          case 'LIKE': {
+            const [, likePattern] = where[k];
+            const [first] = likePattern;
+            const last = likePattern.slice(-1);
 
-              if (first === '%' && last === '%') {
-                instance.contains(k, where[k][1].slice(1, -1));
-              } else if (first === '%') {
-                instance.endsWith(k, where[k][1].slice(1));
-              } else if (last === '%') {
-                instance.startsWith(k, where[k][1].slice(0, -1));
-              }
-              break;
+            if (first === '%' && last === '%') {
+              instance.contains(k, likePattern.slice(1, -1));
+            } else if (first === '%') {
+              instance.endsWith(k, likePattern.slice(1));
+            } else if (last === '%') {
+              instance.startsWith(k, likePattern.slice(0, -1));
             }
-            case '!=':
-              instance.notEqualTo(k, where[k][1]);
-              break;
-            case '>':
-              instance.greaterThan(k, where[k][1]);
-              break;
+
+            break;
+          }
+          case '!=': {
+            instance.notEqualTo(k, where[k][1]);
+            break;
+          }
+          case '>': {
+            instance.greaterThan(k, where[k][1]);
+            break;
+          }
+          default: {
+            break;
           }
         }
       }
@@ -97,42 +105,60 @@ module.exports = class extends Base {
     return AV.Query[where._complex._logic](...filters);
   }
 
-  async _select(where, { desc, limit, offset, field } = {}) {
+  async _select(where, { desc, field, limit, offset, order } = {}) {
     const instance = this.where(this.tableName, where);
 
-    if (desc) {
-      instance.descending(desc);
-    }
+    const normalizedOrder = normalizeOrder(order, desc);
+
+    normalizedOrder.forEach(({ field: orderField, direction }, index) => {
+      const method = `${index === 0 ? '' : 'add'}${direction === 'desc' ? 'Descending' : 'Ascending'}`;
+
+      instance[method.charAt(0).toLowerCase() + method.slice(1)](orderField);
+    });
+
     if (limit) {
       instance.limit(limit);
     }
+
     if (offset) {
       instance.skip(offset);
     }
+
     if (field) {
       instance.select(field);
     }
 
-    const data = await instance.find().catch((e) => {
-      if (e.code === 101) {
+    const data = await instance.find().catch((err) => {
+      if (err.code === 101) {
         return [];
       }
-      throw e;
+
+      throw err;
     });
 
     return data.map((item) => item.toJSON());
   }
 
   async select(where, options = {}) {
-    let data = [];
+    const data = [];
     let ret = [];
-    let offset = options.offset || 0;
+    const offset = options.offset ?? 0;
+    const { limit } = options;
 
-    do {
-      options.offset = offset + data.length;
-      ret = await this._select(where, options);
-      data = data.concat(ret);
-    } while (ret.length === 100);
+    while (true) {
+      const remaining = limit == null ? undefined : limit - data.length;
+      const batchLimit = remaining == null ? undefined : Math.min(remaining, 100);
+
+      // oxlint-disable-next-line no-underscore-dangle
+      ret = await this._select(where, {
+        ...options,
+        limit: batchLimit,
+        offset: offset + data.length,
+      });
+      data.push(...ret);
+
+      if (ret.length < 100 || (limit != null && data.length >= limit)) break;
+    }
 
     return data;
   }
@@ -185,10 +211,7 @@ module.exports = class extends Base {
   }
 
   async _updateCmtGroupByMailUserIdCache(data, method) {
-    if (
-      this.tableName !== 'Comment' ||
-      !think.isArray(think.config('levels'))
-    ) {
+    if (this.tableName !== 'Comment' || !think.isArray(think.config('levels'))) {
       return;
     }
 
@@ -200,9 +223,7 @@ module.exports = class extends Base {
     const cacheData = await this.select({
       _complex: {
         _logic: 'or',
-        user_id: think.isObject(data.user_id)
-          ? data.user_id.toString()
-          : data.user_id,
+        user_id: think.isObject(data.user_id) ? data.user_id.toString() : data.user_id,
         mail: data.mail,
       },
     });
@@ -211,37 +232,44 @@ module.exports = class extends Base {
       return;
     }
 
-    let count = cacheData[0].count;
+    let [{ count }] = cacheData;
 
     switch (method) {
-      case 'add':
+      case 'add': {
         if (data.status === 'approved') {
           count += 1;
         }
+
         break;
-      case 'udpate_status':
+      }
+      case 'udpate_status': {
         if (data.status === 'approved') {
           count += 1;
         } else {
           count -= 1;
         }
+
         break;
-      case 'delete':
+      }
+      case 'delete': {
         count -= 1;
         break;
+      }
+      default: {
+        break;
+      }
     }
 
     const currentTableName = this.tableName;
 
     this.tableName = cacheTableName;
-    await this.update({ count }, { objectId: cacheData[0].objectId }).catch(
-      (e) => {
-        if (e.code === 101) {
-          return;
-        }
-        throw e;
-      },
-    );
+    await this.update({ count }, { objectId: cacheData[0].objectId }).catch((err) => {
+      if (err.code === 101) {
+        return;
+      }
+
+      throw err;
+    });
     this.tableName = currentTableName;
   }
 
@@ -249,41 +277,37 @@ module.exports = class extends Base {
     const instance = this.where(this.tableName, where);
 
     if (!options.group) {
-      return instance.count(options).catch((e) => {
-        if (e.code === 101) {
+      return instance.count(options).catch((err) => {
+        if (err.code === 101) {
           return 0;
         }
-        throw e;
+
+        throw err;
       });
     }
 
     // get group count cache by group field where data
-    const cacheData = await this._getCmtGroupByMailUserIdCache(
-      options.group.join('_'),
-      where,
-    );
+    // oxlint-disable-next-line no-underscore-dangle
+    const cacheData = await this._getCmtGroupByMailUserIdCache(options.group.join('_'), where);
 
     if (!where._complex) {
-      if (cacheData.length) {
+      if (cacheData.length > 0) {
         return cacheData;
       }
 
       const counts = await this.select(where, { field: options.group });
       const countsMap = {};
 
-      for (let i = 0; i < counts.length; i++) {
-        const key = options.group
-          .map((item) => counts[i][item] || undefined)
-          .join('_');
+      for (const count of counts) {
+        const key = options.group.map((item) => count[item] ?? undefined).join('_');
 
         if (!countsMap[key]) {
           countsMap[key] = {};
 
-          for (let j = 0; j < options.group.length; j++) {
-            const field = options.group[j];
-
-            countsMap[key][field] = counts[i][field];
+          for (const field of options.group) {
+            countsMap[key][field] = count[field];
           }
+
           countsMap[key].count = 0;
         }
         countsMap[key].count += 1;
@@ -292,6 +316,7 @@ module.exports = class extends Base {
       const ret = Object.values(countsMap);
 
       // cache data
+      // oxlint-disable-next-line no-underscore-dangle
       await this._setCmtGroupByMailUserIdCache(options.group.join('_'), ret);
 
       return ret;
@@ -299,12 +324,10 @@ module.exports = class extends Base {
 
     const cacheDataMap = {};
 
-    for (let i = 0; i < cacheData.length; i++) {
-      const key = options.group
-        .map((item) => cacheData[i][item] || undefined)
-        .join('_');
+    for (const item of cacheData) {
+      const key = options.group.map((item) => item[item] ?? undefined).join('_');
 
-      cacheDataMap[key] = cacheData[i];
+      cacheDataMap[key] = item;
     }
 
     const counts = [];
@@ -323,14 +346,14 @@ module.exports = class extends Base {
         groupFlatValue[group] = undefined;
       });
 
-      for (let j = 0; j < where._complex[groupName][1].length; j++) {
+      for (const item of where._complex[groupName][1]) {
         const cacheKey = options.group
           .map(
             (item) =>
               ({
                 ...groupFlatValue,
-                [groupName]: where._complex[groupName][1][j],
-              })[item] || undefined,
+                [groupName]: item,
+              })[item] ?? undefined,
           )
           .join('_');
 
@@ -342,7 +365,7 @@ module.exports = class extends Base {
           ...where,
           ...groupFlatValue,
           _complex: undefined,
-          [groupName]: where._complex[groupName][1][j],
+          [groupName]: item,
         };
         const countPromise = this.count(groupWhere, {
           ...options,
@@ -350,7 +373,7 @@ module.exports = class extends Base {
         }).then((num) => {
           counts.push({
             ...groupFlatValue,
-            [groupName]: where._complex[groupName][1][j],
+            [groupName]: item,
             count: num,
           });
         });
@@ -361,26 +384,23 @@ module.exports = class extends Base {
 
     await think.promiseAllQueue(countsPromise, 1);
     // cache data
+    // oxlint-disable-next-line no-underscore-dangle
     await this._setCmtGroupByMailUserIdCache(options.group.join('_'), counts);
 
     return [...cacheData, ...counts];
   }
 
-  async add(
-    data,
-    {
-      access: { read = true, write = true } = { read: true, write: true },
-    } = {},
-  ) {
+  async add(data, { access: { read = true, write = true } = { read: true, write: true } } = {}) {
     const Table = AV.Object.extend(this.tableName);
     const instance = new Table();
 
-    const REVERSED_KEYS = ['objectId', 'createdAt', 'updatedAt'];
+    const REVERSED_KEYS = new Set(['objectId', 'createdAt', 'updatedAt']);
 
     for (const k in data) {
-      if (REVERSED_KEYS.includes(k)) {
+      if (REVERSED_KEYS.has(k)) {
         continue;
       }
+
       instance.set(k, data[k]);
     }
 
@@ -392,6 +412,7 @@ module.exports = class extends Base {
 
     const resp = await instance.save();
 
+    // oxlint-disable-next-line no-underscore-dangle
     await this._updateCmtGroupByMailUserIdCache(data, 'add');
 
     return resp.toJSON();
@@ -403,23 +424,24 @@ module.exports = class extends Base {
 
     return Promise.all(
       ret.map(async (item) => {
-        const _oldStatus = item.get('status');
+        const oldStatus = item.get('status');
 
-        const updateData =
-          typeof data === 'function' ? data(item.toJSON()) : data;
+        const updateData = typeof data === 'function' ? data(item.toJSON()) : data;
 
-        const REVERSED_KEYS = ['createdAt', 'updatedAt'];
+        const REVERSED_KEYS = new Set(['createdAt', 'updatedAt']);
 
         for (const k in updateData) {
-          if (REVERSED_KEYS.includes(k)) {
+          if (REVERSED_KEYS.has(k)) {
             continue;
           }
+
           item.set(k, updateData[k]);
         }
 
-        const _newStatus = item.get('status');
+        const newStatus = item.get('status');
 
-        if (_newStatus && _oldStatus !== _newStatus) {
+        if (newStatus && oldStatus !== newStatus) {
+          // oxlint-disable-next-line no-underscore-dangle
           await this._updateCmtGroupByMailUserIdCache(data, 'update_status');
         }
 
@@ -434,6 +456,7 @@ module.exports = class extends Base {
     const instance = this.where(this.tableName, where);
     const data = await instance.find();
 
+    // oxlint-disable-next-line no-underscore-dangle
     await this._updateCmtGroupByMailUserIdCache(data, 'delete');
 
     return AV.Object.destroyAll(data);

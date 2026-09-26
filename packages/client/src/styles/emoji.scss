@@ -1,10 +1,12 @@
 .wl-emoji-popup {
   position: absolute;
-  top: 100%;
   inset-inline-start: 1.25em;
+  top: 100%;
   z-index: 10;
+
   display: none;
 
+  width: 100%;
   max-width: 526px;
   border: var(--waline-border);
   border-radius: 6px;
@@ -45,6 +47,24 @@
     max-height: 1.5em;
   }
 
+  .wl-emoji-preview {
+    position: absolute;
+    top: -4em;
+    left: 0;
+    z-index: 1;
+
+    display: block;
+
+    max-width: 3em;
+    max-height: 3em;
+    padding: 0.25em;
+    border: var(--waline-border);
+    border-radius: 4px;
+
+    background: var(--waline-bg-color);
+    box-shadow: var(--waline-box-shadow);
+  }
+
   .wl-tab-wrapper {
     overflow-y: auto;
     max-height: 145px;
@@ -56,14 +76,12 @@
     }
 
     &::-webkit-scrollbar-track-piece:vertical {
-      -webkit-border-radius: 6px;
       border-radius: 6px;
       background: rgb(0 0 0 / 10%);
     }
 
     &::-webkit-scrollbar-thumb:vertical {
       width: 6px;
-      -webkit-border-radius: 6px;
       border-radius: 6px;
       background: var(--waline-theme-color);
     }
@@ -95,14 +113,12 @@
     }
 
     &::-webkit-scrollbar-track-piece:horizontal {
-      -webkit-border-radius: 6px;
       border-radius: 6px;
       background: rgb(0 0 0 / 10%);
     }
 
     &::-webkit-scrollbar-thumb:horizontal {
       height: 6px;
-      -webkit-border-radius: 6px;
       border-radius: 6px;
       background: var(--waline-theme-color);
     }

@@ -1,10 +1,5 @@
-import {
-  type BaseAPIOptions,
-  type ErrorStatusResponse,
-  JSON_HEADERS,
-  getFetchPrefix,
-  errorCheck,
-} from './utils.js';
+import type { BaseAPIOptions, ErrorStatusResponse } from './utils.js';
+import { JSON_HEADERS, errorCheck, getFetchPrefix } from './utils.js';
 
 export interface GetArticleCounterOptions extends BaseAPIOptions {
   /**
@@ -29,11 +24,22 @@ export interface GetArticleCounterOptions extends BaseAPIOptions {
   signal?: AbortSignal;
 }
 
-export type GetArticleCounterResponse =
-  | Record<string, number>[]
-  | Record<string, number>
-  | number[]
-  | number;
+export interface CounterFields {
+  time?: number;
+  reaction0?: number;
+  reaction1?: number;
+  reaction2?: number;
+  reaction3?: number;
+  reaction4?: number;
+  reaction5?: number;
+  reaction6?: number;
+  reaction7?: number;
+  reaction8?: number;
+}
+
+export type GetArticleCounterResponseItem = Record<string, number> & CounterFields;
+
+export type GetArticleCounterResponse = GetArticleCounterResponseItem[];
 
 export const getArticleCounter = ({
   serverURL,
@@ -47,7 +53,11 @@ export const getArticleCounter = ({
       paths.join(','),
     )}&type=${encodeURIComponent(type.join(','))}&lang=${lang}`,
     { signal },
-  ).then((resp) => <Promise<GetArticleCounterResponse>>resp.json());
+  )
+    .then(
+      (resp) => resp.json() as Promise<{ data: GetArticleCounterResponse } & ErrorStatusResponse>,
+    )
+    .then((data) => errorCheck(data, 'Get counter').data);
 
 export interface UpdateArticleCounterOptions extends BaseAPIOptions {
   /**
@@ -80,13 +90,13 @@ export const updateArticleCounter = ({
   path,
   type,
   action,
-}: UpdateArticleCounterOptions): Promise<number[]> =>
+}: UpdateArticleCounterOptions): Promise<GetArticleCounterResponse> =>
   fetch(`${getFetchPrefix(serverURL)}article?lang=${lang}`, {
     method: 'POST',
     headers: JSON_HEADERS,
     body: JSON.stringify({ path, type, action }),
   })
     .then(
-      (resp) => <Promise<{ data: number[] } & ErrorStatusResponse>>resp.json(),
+      (resp) => resp.json() as Promise<{ data: GetArticleCounterResponse } & ErrorStatusResponse>,
     )
     .then((data) => errorCheck(data, 'Update counter').data);

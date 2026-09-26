@@ -1,7 +1,7 @@
 ---
 title: 评论通知
 icon: notice
-redirectFrom: /guide/server/notification.html
+order: 10
 ---
 
 当网站有用户发布评论或者用户回复评论时，Waline 支持对博主和回复评论作者进行通知。
@@ -19,10 +19,9 @@ redirectFrom: /guide/server/notification.html
 
   ::: tip
 
-  你可以在 [这里](https://github.com/nodemailer/nodemailer/blob/master/lib/well-known/services.json) 查看所有支持的运营商。
+  你可以在 [这里](https://github.com/nodemailer/nodemailer/blob/master/src/well-known/services.json) 查看所有支持的运营商。
 
   如果你的运营商不受支持，你必须填写 `SMTP_HOST` 和 `SMTP_PORT`。
-
   - `SMTP_HOST`: SMTP 服务器地址，一般可以在邮箱的设置中找到。
   - `SMTP_PORT`: SMTP 服务器端口，一般可以在邮箱的设置中找到。
 
@@ -52,6 +51,7 @@ redirectFrom: /guide/server/notification.html
 - `AUTHOR_EMAIL`: 博主邮箱，用来区分发布的评论是否是博主本身发布的。如果是博主发布的则不进行提醒通知。
 - `SITE_NAME`: 网站名称，用于在消息中显示。
 - `SITE_URL`: 网站地址，用于在消息中显示。
+- `SC_TEMPLATE`: Server酱 使用的通知模板，变量与具体格式可参见下文的通知模板。未配置则使用默认模板。
 
 ## 企业微信应用通知
 
@@ -68,6 +68,8 @@ ww479cadfqfe8c151f,MPKN9gX97w4e4b4h4u7u4i4i4i4iO6mN_dDedBFzqC5c,@all,1000002,2S8
 [参考文档 1](https://note.youdao.com/ynoteshare/index.html?id=351e08a72378206f9dd64d2281e9b83b&type=note&_time=1642141216026) | [参考文档 2](https://note.youdao.com/ynoteshare1/index.html?id=1a0c8aff284ad28cbd011b29b3ad0191&type=note)
 
 - `QYWX_AM`: 用于发送企业应用消息的变量，必填。
+- `QYWX_PROXY`: 指定企业微信接口的反向代理服务器地址（可信IP），未配置则不使用代理。
+- `QYWX_PROXY_PORT`: 指定企业微信接口的反向代理服务器端口（默认 80）
 - `AUTHOR_EMAIL`: 博主邮箱，用来区分发布的评论是否是博主本身发布的。如果是博主发布的则不进行提醒通知。
 - `SITE_NAME`: 网站名称，用于在消息中显示。
 - `SITE_URL`: 网站地址，用于在消息中显示。
@@ -210,7 +212,18 @@ Waline 支持为每个平台分别配置您自定义的通知模板，从而实�
   仅供评论预览，点击 [查看完整內容]({{site.postUrl}})
   ````
 
+- SC_TEMPLATE:
+
+  ```plain
+  {{site.name|safe}} 有新评论啦
+  【评论者昵称】：{{self.nick}}
+  【评论者邮箱】：{{self.mail}}
+  【内容】：{{self.comment}}
+  【地址】：{{site.postUrl}}
+  ```
+
 ### 附加说明
 
+1. 配置 `DISABLE_AUTHOR_NOTIFY` 环境变量可以关闭博主的新评论通知功能；
 1. Vercel 的环境变量大小限制为 `4KB` ，所以如果您的模板很长，请使用代码配置，参见 [issue#106](https://github.com/walinejs/waline/issues/106) ；
 1. 变量具体信息在开发过程中可能会发生变化，此处的变量说明仅供参考，具体的内容请以具体的代码示例为准。

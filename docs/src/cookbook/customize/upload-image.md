@@ -20,10 +20,7 @@ icon: pic
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Waline imageUploader 案例</title>
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/@waline/client@v3/dist/waline.css"
-    />
+    <link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css" />
   </head>
   <body>
     <div id="waline" style="max-width: 800px; margin: 0 auto"></div>

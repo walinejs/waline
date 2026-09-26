@@ -1,10 +1,10 @@
 ---
 title: Multi-database service support
 icon: database
-redirectFrom: /en/guide/server/databases.html
+order: 2
 ---
 
-Besides LeanCloud, Waline also supports a variety of databases, including MySQL, PostgreSQL, SQLite and MongoDB.
+Waline supports a variety of databases, including MySQL, PostgreSQL, SQLite and MongoDB.
 
 You only need to configure environment variables, and Waline will automatically switch to the corresponding data storage service based on the environment variables you configure.
 
@@ -40,7 +40,7 @@ MONGO_OPT_SSL=true
 
 ## MySQL
 
-Using MySQL to store data is also a good choice. Besides our own MySQL service, we can also use <https://freedb.tech>, which provides 100M of database support for free, or [PlanetScale](https://planetscale.com) which provides 10GB.
+Using MySQL to store data is also a good choice. Besides our own MySQL service, we can also use [FreeDB)(https://freedb.tech), which provides 25M of database support for free, or [PlanetScale](https://planetscale.com) which only support paid plan now.
 
 If you want to use MySQL as storage, you need to import [waline.sql](https://github.com/walinejs/waline/blob/main/assets/waline.sql) first to create table and table structure, then set these environment variables in project.
 
@@ -84,7 +84,7 @@ Download [waline.sqlite](https://github.com/walinejs/waline/blob/main/assets/wal
 
 ## PostgreSQL
 
-[Supabase](https://supabase.com) offers a free 512M database,while [elephantSQL](https://www.elephantsql.com/) provides 20M PG database support for free. Same as MySQL, you need to import [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) to create table and table structure before using PostgreSQL.
+[Supabase](https://supabase.com) and [Neon](https://neon.tech/home) offer a free 512M database, while [Tembo](https://tembo.io/) provides 10G PG database support for free. Same as MySQL, you need to import [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) to create table and table structure before using PostgreSQL.
 
 | Environment Variable | Required | Default   | Description                         |
 | -------------------- | -------- | --------- | ----------------------------------- |
@@ -118,14 +118,6 @@ Waline supports storing comment data in a CSV file on GitHub. To use GitHub as d
 Due to performance, using GitHub is not recommended.
 
 :::
-
-## Deta Base
-
-Deta provides [Deta Base](https://deta.space/docs/en/reference/base/about) free database support, which can be used even if it is not deployed on Deta. If deployed on Deta, there is no need to configure any environment variables. By default, Waline will use Deta Base as the database to store data. If it is deployed elsewhere, the following environment variables need to be configured.
-
-| Environment Variable | Required | Default | Description             |
-| -------------------- | -------- | ------- | ----------------------- |
-| `DETA_PROJECT_KEY`   | ✅       |         | Deta project secret key |
 
 ## Custom
 

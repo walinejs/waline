@@ -50,4 +50,8 @@ export default generateLocale([
   'Latest',
   'Hottest',
   'What do you think?',
+  'Your comment is under review and is currently only visible to you. It will be publicly visible after approval.',
+  'Subscribe to comments of this post',
+  'Subscribe to comments of this site',
+  'Subscribe to replies of your comments',
 ]);

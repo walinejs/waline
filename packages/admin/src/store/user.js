@@ -1,5 +1,5 @@
-import { getUserInfo, login, logout, register, forgot } from '../services/auth';
-import { updateProfile } from '../services/user';
+import { forgot, getUserInfo, login, logout, register } from '../services/auth.js';
+import { updateProfile } from '../services/user.js';
 
 export const user = {
   state: null,
@@ -15,19 +15,16 @@ export const user = {
     async loadUserInfo() {
       const user = await getUserInfo();
 
-      if (!user || !user.email) {
+      if (!user?.objectId) {
         return;
       }
+
       if (window.opener) {
         const localToken = localStorage.getItem('TOKEN');
-        const remember = !!localToken;
-        const token =
-          localToken || window.TOKEN || sessionStorage.getItem('token');
+        const remember = Boolean(localToken);
+        const token = localToken ?? window.TOKEN ?? sessionStorage.getItem('token');
 
-        window.opener.postMessage(
-          { type: 'userInfo', data: { token, remember, ...user } },
-          '*',
-        );
+        window.opener.postMessage({ type: 'userInfo', data: { token, remember, ...user } }, '*');
       }
 
       return dispatch.user.setUser(user);
@@ -47,11 +44,9 @@ export const user = {
         if (remember) {
           localStorage.setItem('TOKEN', token);
         }
+
         if (window.opener) {
-          window.opener.postMessage(
-            { type: 'userInfo', data: { token, remember, ...user } },
-            '*',
-          );
+          window.opener.postMessage({ type: 'userInfo', data: { token, remember, ...user } }, '*');
         }
       }
 
@@ -61,10 +56,10 @@ export const user = {
       logout();
       dispatch.user.setUser(null);
     },
-    register(user) {
+    async register(user) {
       return register(user);
     },
-    forgot(user) {
+    async forgot(user) {
       return forgot(user);
     },
     async updateProfile(data) {

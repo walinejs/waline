@@ -1,6 +1,7 @@
 ---
 title: 评论格式支持
 icon: format
+order: 2
 ---
 
 评论中支持的 Markdown 语法如下。
@@ -97,7 +98,6 @@ icon: format
 
 - 无序列表项
 - 无序列表项
-
   - 列表中的列表项
     - 更多的列表项
     - 更多的列表项
@@ -113,7 +113,6 @@ icon: format
 ```md
 - 无序列表项
 - 无序列表项
-
   - 列表中的列表项
     - 更多的列表项
     - 更多的列表项
@@ -233,6 +232,8 @@ console.log(foo(5));
 
 ::: details 例子
 
+<!-- prettier-ignore-start -->
+
 - 19^th^
 - H~2~O
 
@@ -240,6 +241,8 @@ console.log(foo(5));
 - 19^th^
 - H~2~O
 ```
+
+<!-- prettier-ignore-end -->
 
 :::
 

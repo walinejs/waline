@@ -1,7 +1,7 @@
 ---
 title: 响应式的 Waline 实例
 icon: spa
-redirectFrom: /guide/client/spa.html
+order: -1
 ---
 
 官方客户端 `@waline/client` 基于 Vue3，提供了响应式的组件和实例，为 SPA(**S**ingle **P**age **A**pplication, 单页应用) 带来了支持。

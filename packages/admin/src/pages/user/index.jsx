@@ -1,13 +1,16 @@
+import cls from 'classnames';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
-import Header from '../../components/Header';
-import Paginator from '../../components/Paginator';
-import { getUserList, updateUser } from '../../services/user';
-import { buildAvatar } from '../manage-comments/utils';
+import Header from '../../components/Header.jsx';
+// oxlint-disable-next-line import/no-namespace
+import * as Icons from '../../components/icon';
+import Paginator from '../../components/Paginator.jsx';
+import { getUserList, updateUser, deleteUser } from '../../services/user.js';
+import { buildAvatar } from '../manage-comments/utils.js';
 
-export default function () {
+export default function User() {
   const currentUser = useSelector((state) => state.user);
   const { t } = useTranslation();
   const [list, setList] = useState({
@@ -19,10 +22,7 @@ export default function () {
   });
 
   useEffect(() => {
-    getUserList({ page: list.page }).then((data) => {
-      console.log(data);
-      setList({ ...list, ...data });
-    });
+    getUserList({ page: list.page }).then((data) => setList((list) => ({ ...list, ...data })));
   }, [list.page]);
 
   const createActions = (user) =>
@@ -31,8 +31,8 @@ export default function () {
         key: 'administrator',
         name: t('set administrator'),
         show: user.type === 'guest',
-        async action(e) {
-          e.preventDefault();
+        async action(event) {
+          event.preventDefault();
 
           await updateUser({
             id: user.objectId,
@@ -46,10 +46,12 @@ export default function () {
         key: 'guest',
         name: t('set guest'),
         show: user.type === 'administrator',
-        async action(e) {
-          e.preventDefault();
+        async action(event) {
+          event.preventDefault();
           if (user.objectId === currentUser.objectId) {
-            return alert(t("You can't set yourself to be guest!"));
+            alert(t("You can't set yourself to be guest!"));
+
+            return;
           }
 
           await updateUser({
@@ -64,8 +66,8 @@ export default function () {
         key: 'label',
         name: t('set label'),
         show: true,
-        async action(e) {
-          e.preventDefault();
+        async action(event) {
+          event.preventDefault();
 
           const label = prompt(t('please enter an exclusive label'));
 
@@ -77,22 +79,39 @@ export default function () {
           setList({ ...list });
         },
       },
-      // todo
-      // {
-      //   key: 'delete',
-      //   name: t('delete'),
-      //   show: true,
-      //   async action() {},
-      // },
+      {
+        key: 'delete',
+        name: t('delete'),
+        show: user.objectId !== currentUser.objectId,
+        async action(event) {
+          event.preventDefault();
+
+          if (!confirm(t('delete user confirm'))) {
+            return;
+          }
+
+          await deleteUser({
+            id: user.objectId,
+          });
+          setList({
+            ...list,
+            data: list.data.filter(({ objectId }) => objectId !== user.objectId),
+          });
+        },
+      },
     ].filter(({ show }) => show);
 
   const getRole = (type) => {
-    if (/^verify/.test(type)) {
+    if (type.startsWith('verify')) {
       return t('verify');
     }
 
     return t(type);
   };
+
+  const socials = Array.isArray(window.oauthServices)
+    ? window.oauthServices.map(({ name }) => name)
+    : ['oidc', 'qq', 'weibo', 'github', 'twitter', 'facebook'];
 
   return (
     <>
@@ -102,13 +121,9 @@ export default function () {
           <div className="typecho-page-title">
             <h2>{t('manage users')}</h2>
           </div>
-          <div className="row typecho-page-main" role="main">
+          <main className="row typecho-page-main">
             <div className="col-mb-12 typecho-list">
-              <form
-                method="post"
-                name="manage_comments"
-                className="operate-form"
-              >
+              <form method="post" name="manage_comments" className="operate-form">
                 <div className="typecho-table-wrap">
                   <table className="typecho-list-table">
                     <colgroup>
@@ -120,7 +135,7 @@ export default function () {
                     </colgroup>
                     <thead>
                       <tr>
-                        <th> </th>
+                        <th aria-label={t('avatar')}> </th>
                         <th>{t('nickname')}</th>
                         <th>{t('email')}</th>
                         <th>{t('role')}</th>
@@ -129,7 +144,7 @@ export default function () {
                       </tr>
                     </thead>
                     <tbody>
-                      {list.data.map((user) => (
+                      {list.data.filter(Boolean).map((user) => (
                         <tr id={`user-${user.objectId}`} key={user.objectId}>
                           <td style={{ verticalAlign: 'top' }}>
                             <div className="user-avatar">
@@ -145,9 +160,7 @@ export default function () {
                           <td>
                             <a
                               href={
-                                !/^https:\/\//.test(user.url)
-                                  ? 'https://' + user.url
-                                  : user.url
+                                user.url?.startsWith('https://') ? user.url : `https://${user.url}`
                               }
                               rel="external nofollow noreferrer"
                               target="_blank"
@@ -156,34 +169,53 @@ export default function () {
                             </a>
                           </td>
                           <td>
-                            <a
-                              href={`mailto:${user.email}`}
-                              target="_blank"
-                              rel="noreferrer"
-                            >
+                            <a href={`mailto:${user.email}`} target="_blank" rel="noreferrer">
                               {user.email}
                             </a>
+                            <br />
+                            {socials.map((social) => {
+                              // oxlint-disable-next-line import/namespace
+                              const Icon = Icons[social];
+
+                              return (
+                                <a
+                                  key={social}
+                                  href={
+                                    user[social] && social !== 'oidc'
+                                      ? `https://${social}.com/${user[social]}`
+                                      : ``
+                                  }
+                                  target={user[social] ? '_blank' : '_self'}
+                                  rel="noreferrer"
+                                  className={cls('account-item', 'user-page-account-item', social, {
+                                    bind: user[social],
+                                  })}
+                                >
+                                  {Icon ? (
+                                    <Icon className="social-icon" aria-hidden="true" />
+                                  ) : null}
+                                </a>
+                              );
+                            })}
                           </td>
                           <td>{getRole(user.type)}</td>
                           <td>{user.label}</td>
                           <td className="comment-action">
-                            {createActions(user).map(
-                              ({ key, disable, name, action }) => {
-                                return disable ? (
-                                  <span className="weak" key={key}>
-                                    {name}
-                                  </span>
-                                ) : (
-                                  <a
-                                    key={key}
-                                    href="javascript:void(0)"
-                                    className={`operate-${key}`}
-                                    onClick={action}
-                                  >
-                                    {name}
-                                  </a>
-                                );
-                              },
+                            {createActions(user).map(({ key, disable, name, action }) =>
+                              disable ? (
+                                <span className="weak" key={key}>
+                                  {name}
+                                </span>
+                              ) : (
+                                <button
+                                  type="button"
+                                  key={key}
+                                  className={`operate-${key}`}
+                                  onClick={action}
+                                >
+                                  {name}
+                                </button>
+                              ),
                             )}
                           </td>
                         </tr>
@@ -203,7 +235,7 @@ export default function () {
                 </form>
               </div>
             </div>
-          </div>
+          </main>
         </div>
       </div>
     </>

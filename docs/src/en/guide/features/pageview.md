@@ -1,7 +1,7 @@
 ---
 title: Pageview Counter
 icon: counter
-redirectFrom: /en/guide/client/pageview.html
+order: 7
 ---
 
 Waline supports pageview counting.

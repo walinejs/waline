@@ -1,0 +1,210 @@
+// oxlint-disable vitest/no-hooks
+// oxlint-disable vitest/prefer-lowercase-title
+import http from 'node:http';
+import { createRequire } from 'node:module';
+
+import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
+
+import pkg from '../package.json' with { type: 'json' };
+
+// Set required env vars before booting the ThinkJS application
+process.env.SQLITE_PATH = `/tmp/test-waline-${process.pid}.sqlite`;
+process.env.JWT_TOKEN = 'test-jwt-secret';
+
+const { originalFetch } = vi.hoisted(() => ({
+  originalFetch: globalThis.fetch,
+}));
+
+const require = createRequire(import.meta.url);
+// const pkg = require('../package.json');
+const main = require('../index.js');
+const commentSelect = vi.fn(async () => []);
+const commentCount = vi.fn(async () => 0);
+const oauthUrl = 'https://oauth.example.com';
+
+// Use a custom model stub so no real database connection is needed
+const handler = main({
+  secureDomains: ['trusted.example'],
+  oauthUrl,
+  customModel: (modelName) => {
+    if (modelName === 'Comment') {
+      return {
+        select: commentSelect,
+        count: commentCount,
+      };
+    }
+
+    if (modelName === 'Users') {
+      return {
+        select: async () => [],
+        add: async () => ({}),
+        update: async () => {},
+        delete: async () => {},
+        count: async () => 0,
+      };
+    }
+  },
+});
+
+describe('token API', () => {
+  let port, server;
+
+  const request = (method, path, body) => {
+    const url = `http://localhost:${port}${path}`;
+    const options = {
+      method,
+      headers: {
+        'Content-Type': 'application/json',
+        Referer: 'https://trusted.example',
+      },
+    };
+    if (method !== 'GET' && body) {
+      options.body = JSON.stringify(body);
+    }
+    return fetch(url, options);
+  };
+
+  const apiRequest = (method, path, body) => request(method, path, body).then((r) => r.json());
+
+  const apiResponse = (method, path, body) => request(method, path, body);
+
+  const requestFromUntrustedDomain = (path) =>
+    new Promise((resolve, reject) => {
+      const req = http.request(
+        {
+          hostname: 'localhost',
+          port,
+          path,
+          headers: {
+            Host: 'untrusted.example',
+            Referer: 'https://untrusted.example',
+          },
+        },
+        (response) => {
+          response.resume();
+          response.on('end', () => resolve(response));
+        },
+      );
+
+      req.on('error', reject);
+      req.end();
+    });
+
+  beforeAll(async () => {
+    vi.stubGlobal('fetch', (url, options) => {
+      if (typeof url === 'string' && url.startsWith(oauthUrl)) {
+        return Promise.resolve({ json: () => Promise.resolve({ services: [] }) });
+      }
+
+      return originalFetch(url, options);
+    });
+    server = http.createServer(handler);
+    await new Promise((resolve) => {
+      server.listen(0, () => resolve());
+    });
+    ({ port } = server.address());
+  });
+
+  afterAll(async () => {
+    vi.unstubAllGlobals();
+    delete process.env.SQLITE_PATH;
+    delete process.env.JWT_TOKEN;
+    await new Promise((resolve) => {
+      server.close(() => resolve());
+    });
+  });
+
+  describe('security headers', () => {
+    it('should not expose the framework header while keeping the Waline version header', async () => {
+      const response = await apiResponse('GET', '/api/token');
+
+      expect(response.headers.get('x-powered-by')).toBeNull();
+      expect(response.headers.get('x-waline-version')).toBe(pkg.version);
+    });
+  });
+
+  describe('secure domain checks', () => {
+    it('should allow authenticated OAuth callbacks from an untrusted referrer', async () => {
+      const response = await requestFromUntrustedDomain('/api/oauth?type=github&code=test');
+
+      expect(response.statusCode).not.toBe(403);
+    });
+
+    it('should reject unauthenticated OAuth requests from untrusted domains', async () => {
+      const response = await requestFromUntrustedDomain('/api/oauth?type=github');
+
+      expect(response.statusCode).toBe(403);
+    });
+
+    it('should still reject other API requests from untrusted domains', async () => {
+      const response = await requestFromUntrustedDomain('/api/token');
+
+      expect(response.statusCode).toBe(403);
+    });
+  });
+
+  describe('GET /api/token', () => {
+    it('should return empty user info when not authenticated', async () => {
+      const body = await apiRequest('GET', '/api/token');
+      expect(body.errno).toBe(0);
+      expect(body.data).toStrictEqual({});
+    });
+  });
+
+  describe('GET /api/comment', () => {
+    it('should return an empty comment list for a running server', async () => {
+      commentSelect.mockClear();
+      commentCount.mockClear();
+      const body = await apiRequest('GET', '/api/comment?path=/unit-test');
+
+      expect(body.errno).toBe(0);
+      expect(body.data).toMatchObject({
+        page: 1,
+        pageSize: 10,
+        count: 0,
+        data: [],
+      });
+      expect(commentCount).toHaveBeenCalledTimes(2);
+      expect(commentSelect).toHaveBeenCalledExactlyOnceWith(
+        expect.objectContaining({ rid: undefined, url: '/unit-test' }),
+        expect.objectContaining({
+          limit: 10,
+          offset: 0,
+          order: [
+            { field: 'sticky', direction: 'desc', nulls: 'last' },
+            { field: 'insertedAt', direction: 'desc' },
+            { field: 'objectId', direction: 'desc' },
+          ],
+        }),
+      );
+    });
+  });
+
+  describe('POST /api/token', () => {
+    it('should return a validation error when email is missing', async () => {
+      const body = await apiRequest('POST', '/api/token', { password: 'password123' });
+      expect(body.errno).toBe(1001);
+    });
+
+    it('should return a validation error when email format is invalid', async () => {
+      const body = await apiRequest('POST', '/api/token', {
+        email: 'not-an-email',
+        password: 'password123',
+      });
+      expect(body.errno).toBe(1001);
+    });
+
+    it('should return a validation error when password is missing', async () => {
+      const body = await apiRequest('POST', '/api/token', { email: 'test@example.com' });
+      expect(body.errno).toBe(1001);
+    });
+
+    it('should return a login failure when user does not exist', async () => {
+      const body = await apiRequest('POST', '/api/token', {
+        email: 'nonexistent@example.com',
+        password: 'password123',
+      });
+      expect(body.errno).not.toBe(0);
+    });
+  });
+});

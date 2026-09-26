@@ -1,6 +1,7 @@
 ---
 title: 介绍
 icon: intro
+order: 1
 ---
 
 ::: info Waline
@@ -20,20 +21,20 @@ icon: intro
 - 免费部署
 - 多种部署部署方式和存储服务支持，每列选择一项多达 243 种部署方式任君选择
 
-|                                                 | Waline                                                          |                                                              |
-| ----------------------------------------------- | --------------------------------------------------------------- | ------------------------------------------------------------ |
-| **客户端脚本**                                  | **服务端部署**                                                  | **数据存储**                                                 |
-| [@waline/client](https://waline.js.org)         | [Vercel](https://vercel.com)                                    | [LeanCloud](https://leancloud.app)                           |
-| [MiniValine](https://minivaline.js.org/)        | [Deta](https://deta.space)                                      | [CloudBase](https://cloudbase.net)                           |
-| [sodesu](https://github.com/BeiyanYunyi/sodesu) | [CloudBase](https://cloudbase.net/)                             | [MongoDB](https://mongodb.com)                               |
-|                                                 | [百度云 CFC](https://console.bce.baidu.com/cfc/#/cfc/functions) | MySQL                                                        |
-|                                                 | [阿里云 FC](https://fc.console.aliyun.com/)                     | SQLite                                                       |
-|                                                 | [Railway](https://railway.app)                                  | PostgreSQL                                                   |
-|                                                 | [Render](https://render.com)                                    | [GitHub](https://github.com)                                 |
-|                                                 | [Zeabur](https://zeabur.com)                                    | [Deta Base](https://deta.space/docs/en/reference/base/about) |
-|                                                 | [Netlify](https://netlify.com)                                  | [TiDB](https://tidbcloud.com/)                               |
-|                                                 | Docker                                                          |                                                              |
-|                                                 | 独立部署                                                        |                                                              |
+|                                                 | Waline                                                          |                                    |
+| ----------------------------------------------- | --------------------------------------------------------------- | ---------------------------------- |
+| **客户端脚本**                                  | **服务端部署**                                                  | **数据存储**                       |
+| [@waline/client](https://waline.js.org)         | [Vercel](https://vercel.com)                                    | [MongoDB](https://mongodb.com)     |
+| [MiniValine](https://minivaline.js.org/)        | [CloudBase](https://cloudbase.net/)                             | MySQL                              |
+| [sodesu](https://github.com/BeiyanYunyi/sodesu) | [百度云 CFC](https://console.bce.baidu.com/cfc/#/cfc/functions) | SQLite                             |
+|                                                 | [阿里云 FC](https://fc.console.aliyun.com/)                     | PostgreSQL                         |
+|                                                 | [阿里云 计算巢](https://computenest.console.aliyun.com)         | [TiDB](https://tidbcloud.com/)     |
+|                                                 | [Railway](https://railway.app)                                  | [CloudBase](https://cloudbase.net) |
+|                                                 | [Render](https://render.com)                                    | [GitHub](https://github.com)       |
+|                                                 | [Zeabur](https://zeabur.com)                                    |                                    |
+|                                                 | [Netlify](https://netlify.com)                                  |                                    |
+|                                                 | Docker                                                          |                                    |
+|                                                 | 独立部署                                                        |                                    |
 
 ## Todo
 
@@ -50,7 +51,7 @@ icon: intro
 - [x] 用户标签
 - [x] 评论管理
 - [x] 评论删除
-- [x] 其它数据库支持 (已支持 LeanCloud, MySQL, MongoDB, SQLite, PostgreSQL, CloudBase, Deta, 轻服务, GitHub)
+- [x] 其它数据库支持 (已支持 MySQL, MongoDB, SQLite, PostgreSQL, CloudBase, GitHub, TiDB)
 - [x] 基于 IP 的发布评论频率限制
 - [x] 基于关键词的评论过滤限制
 - [x] IP 黑名单
