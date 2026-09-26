@@ -1,7 +1,7 @@
 import type { WalineUser } from '@waline/api';
 import { getUserList } from '@waline/api';
 
-import { getLocale } from '../config/index.js';
+import { loadLocale } from '../config/index.js';
 import type { WalineLocale } from '../typings/index.js';
 import { getRoot } from '../utils/index.js';
 
@@ -83,12 +83,15 @@ export const UserList = ({
   const root = getRoot(el);
   const controller = new AbortController();
 
-  return getUserList({
-    serverURL,
-    pageSize: count,
-    lang,
-    signal: controller.signal,
-  }).then((users) => {
+  return Promise.all([
+    getUserList({
+      serverURL,
+      pageSize: count,
+      lang,
+      signal: controller.signal,
+    }),
+    loadLocale(lang),
+  ]).then(([users, defaultLocale]) => {
     if (!root || users.length === 0) {
       return {
         users,
@@ -99,7 +102,7 @@ export const UserList = ({
     }
 
     const localeData = {
-      ...getLocale(lang),
+      ...defaultLocale,
       ...(typeof locale === 'object' ? locale : {}),
     };
 

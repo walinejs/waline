@@ -3,8 +3,9 @@ import { createApp, h, reactive, watchEffect } from 'vue';
 
 import { commentCount } from './comment.js';
 import Waline from './components/WalineComment.vue';
+import { getLang, loadLocale } from './config/index.js';
 import { pageviewCount } from './pageview.js';
-import type { WalineInitOptions } from './typings/index.js';
+import type { WalineInitOptions, WalineLocale } from './typings/index.js';
 import { getRoot, isString } from './utils/index.js';
 
 export interface WalineInstance {
@@ -58,6 +59,23 @@ export const init = ({
 
   const props = reactive({ ...initProps });
   const state = reactive({ comment, pageview, path });
+  let customLocale = initProps.locale;
+  let localeLoadId = 0;
+
+  const updateLocale = (): void => {
+    const currentLoadId = ++localeLoadId;
+
+    void loadLocale(getLang(props.lang ?? navigator.language)).then((locale) => {
+      if (currentLoadId === localeLoadId) {
+        props.locale = {
+          ...locale,
+          ...(typeof customLocale === 'object' ? customLocale : {}),
+        } as WalineLocale;
+      }
+    });
+  };
+
+  updateLocale();
 
   const updateCommentCount = (): void => {
     // oxlint-disable-next-line typescript/strict-boolean-expressions
@@ -100,12 +118,19 @@ export const init = ({
       path = window.location.pathname,
       ...newProps
     }: Partial<Omit<WalineInitOptions, 'el'>> = {}): void => {
+      if ('locale' in newProps) {
+        customLocale = newProps.locale;
+      }
+
       Object.entries(newProps).forEach(([key, value]) => {
         // @ts-expect-error: index signature
         props[key] = value;
       });
 
       state.path = path;
+      if ('lang' in newProps || 'locale' in newProps) {
+        updateLocale();
+      }
       if (comment != null) {
         state.comment = comment;
       }
