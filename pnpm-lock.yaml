@@ -6,9 +6,6 @@ importers:
   .:
     configDependencies: {}
     packageManagerDependencies:
-      '@pnpm/exe':
-        specifier: 12.3.1
-        version: 12.3.1
       pnpm:
         specifier: 12.3.1
         version: 12.3.1
@@ -59,11 +56,6 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@pnpm/exe@12.3.1':
-    resolution: {integrity: sha512-Tqo6y+EutDHtI6dodXgaYGQJfRQbwqWmhs8QgsQACd2J+qUInOYFPoiU94RIWuxsQBqgH3OMpTEkNEoJO1uPZA==}
-    engines: {node: '>=18.*'}
-    hasBin: true
-
   pnpm@12.3.1:
     resolution: {integrity: sha512-PBTBVAjRSJ01D47X+TNh0mzHBwVPaEmk7qO7dAf/T+RWS0E6HEIadzoXarEWio3xx9VI8s0Nx9NE9YxOaApbGA==}
     engines: {node: '>=18.*'}
@@ -94,17 +86,6 @@ snapshots:
 
   '@pnpm/exe.win32-x64@12.3.1':
     optional: true
-
-  '@pnpm/exe@12.3.1':
-    optionalDependencies:
-      '@pnpm/exe.darwin-arm64': 12.3.1
-      '@pnpm/exe.darwin-x64': 12.3.1
-      '@pnpm/exe.linux-arm64': 12.3.1
-      '@pnpm/exe.linux-arm64-musl': 12.3.1
-      '@pnpm/exe.linux-x64': 12.3.1
-      '@pnpm/exe.linux-x64-musl': 12.3.1
-      '@pnpm/exe.win32-arm64': 12.3.1
-      '@pnpm/exe.win32-x64': 12.3.1
 
   pnpm@12.3.1:
     optionalDependencies:
@@ -179,8 +160,8 @@ importers:
         specifier: 9.1.7
         version: 9.1.7
       markdownlint-cli2:
-        specifier: 0.23.2
-        version: 0.23.2(supports-color@10.2.2)
+        specifier: 0.23.3
+        version: 0.23.3(supports-color@10.2.2)
       nano-staged:
         specifier: 1.0.2
         version: 1.0.2
@@ -4909,10 +4890,6 @@ packages:
     resolution: {integrity: sha512-awConJSVCHVGND6x3tmMaKcQvwXLhjdkmomy2W+Goaui8YPgYgXJZewhg3fWC+DlfqqQuWg8AwqjGTD2nAPVWg==}
     engines: {node: '>=6'}
 
-  globby@16.2.2:
-    resolution: {integrity: sha512-NLvV9ubZ6NDsJaOpKPy3cQeJpKi9DcWiyCiFUpJPA0YihRqiE6RWaLUmgNNPr8MgPpLZjnBjSmou7uZBRJv9wA==}
-    engines: {node: '>=20'}
-
   globby@16.2.4:
     resolution: {integrity: sha512-c8B/VNLmxRcmqqenRA9t+9IyOjf9+V6lTxPaUJLqOCONdQkWZ0ETYgX0qbtJqPsgCNusT9MZ5Jeidw8Eb9tn2g==}
     engines: {node: '>=20'}
@@ -5289,8 +5266,8 @@ packages:
     resolution: {integrity: sha512-SFNOvSJ+Dgf/9An904Yx+CgSlIPCkIpao4qo51lpee25TIRejdH3rhR4EZMGoNx3/TP3O+wzWuiTFl4sqbltzA==}
     hasBin: true
 
-  js-yaml@5.2.2:
-    resolution: {integrity: sha512-dayzUzKkJ1MkuUtZglSebU43utNXH0OWQByK9rKOOuYIO8M5TV1y+n8ALMdG0rdzBnfNkOmZEqrURepb0ejqBw==}
+  js-yaml@5.4.1:
+    resolution: {integrity: sha512-28R/k+NAjeuf7+CKlTxWZVExJGwVVLwY06DgEnOMz2gEpfNkDcD7QvyiVPT0xy0XXhU8vHsd4Ot42OOPdJG7dQ==}
     hasBin: true
 
   js-yaml@5.4.2:
@@ -5650,12 +5627,12 @@ packages:
   markdown-it-emoji@3.1.0:
     resolution: {integrity: sha512-NhmMEH2ywduD4Nty1E8uB5NqfLhAT1VR0dyvoJyStKOqCzbZmVdn/+8wj7zpDsb/fLBikpCPsWwxqKlvMmbz4g==}
 
-  markdown-it@14.3.0:
-    resolution: {integrity: sha512-RCEsPjR+sr0x+AuYp601tKTkgFG4YEPLCzHST3cQ/fhlJkqAkz1L2/Qbp1j9qw5SBwQHFBoW8+hoN5xssOF0Tw==}
-    hasBin: true
-
   markdown-it@14.3.2:
     resolution: {integrity: sha512-sHHjZ5fJKlgrG4qns2YwVcdNep35h5fERrfkD2YNsb9UFk0UIHarbiTaHKVMlPuWAoiilyK8Fv/jAm11slsY7Q==}
+    hasBin: true
+
+  markdown-it@15.0.1:
+    resolution: {integrity: sha512-9/7gE95FNPkfUWrjJIoHZza2iLmuJlPD0UNMxPi7bxUrbCR525YZY0r+zyfes0dZI5ZZ/uNIXUJca0pJvtw41g==}
     hasBin: true
 
   markdown-it@15.0.2:
@@ -5667,8 +5644,8 @@ packages:
     peerDependencies:
       markdownlint-cli2: '>=0.0.4'
 
-  markdownlint-cli2@0.23.2:
-    resolution: {integrity: sha512-eUhcnkSpzURo/o4htSqc7LPDszgOOTknhU4eY/sPHvMCLxnTCYscv1gw1/js/idmaZPisv9ECVEIORcllqjTUw==}
+  markdownlint-cli2@0.23.3:
+    resolution: {integrity: sha512-xAr5o/TGpC3v6lE6cKIW4b5eOFRrRX5u7Vtjae9ix3RALv8nNOd94XMkD/1OXXBtpMcJ4uQGbpSo3hv5UqS4uQ==}
     engines: {node: '>=22'}
     hasBin: true
 
@@ -7005,8 +6982,8 @@ packages:
     resolution: {integrity: sha512-QlaZEqcAH3/RtNyet1IPIYPsEWAaYyXXv1Krsi+1L/QHppjX4Ifm8MQsBISz9vE8cHicIq3clogsheili5vhaQ==}
     engines: {node: '>= 18'}
 
-  smol-toml@1.7.0:
-    resolution: {integrity: sha512-aqVvWoyO21L23mb+drl4RmMXbf6N7FdHjAhTRA9ZBL7apWBgfWC16KjrASI+1p9GAroljyMHj6fK67i0UiTNvQ==}
+  smol-toml@1.8.0:
+    resolution: {integrity: sha512-kCZr2V3ch9i00x8zXRhjUNVcjG9ijES5dDudkXvUVCT5QlJNQWElSJdZqyPemffHoLNUYwOcou0Fy+ojN0uHSQ==}
     engines: {node: '>= 18'}
 
   snake-case@3.0.4:
@@ -12735,15 +12712,6 @@ snapshots:
       kind-of: 6.0.3
       which: 1.3.1
 
-  globby@16.2.2:
-    dependencies:
-      '@sindresorhus/merge-streams': 4.0.0
-      fast-glob: 3.3.3
-      ignore: 7.0.10
-      is-path-inside: 4.0.0
-      slash: 5.1.0
-      unicorn-magic: 0.4.1
-
   globby@16.2.4:
     dependencies:
       '@sindresorhus/merge-streams': 4.0.0
@@ -13126,7 +13094,7 @@ snapshots:
     dependencies:
       argparse: 2.0.1
 
-  js-yaml@5.2.2:
+  js-yaml@5.4.1:
     dependencies:
       argparse: 2.0.1
 
@@ -13523,15 +13491,6 @@ snapshots:
 
   markdown-it-emoji@3.1.0: {}
 
-  markdown-it@14.3.0:
-    dependencies:
-      argparse: 2.0.1
-      entities: 4.5.0
-      linkify-it: 5.0.2
-      mdurl: 2.1.0
-      punycode.js: 2.3.1
-      uc.micro: 2.1.0
-
   markdown-it@14.3.2:
     dependencies:
       argparse: 2.0.1
@@ -13540,6 +13499,15 @@ snapshots:
       mdurl: 2.1.0
       punycode.js: 2.3.1
       uc.micro: 2.1.0
+
+  markdown-it@15.0.1:
+    dependencies:
+      argparse: 3.0.2
+      entities: 8.1.0
+      linkify-it: 6.1.0
+      mdurl: 2.1.0
+      punycode.js: 2.3.1
+      uc.micro: 3.0.0
 
   markdown-it@15.0.2:
     dependencies:
@@ -13550,21 +13518,21 @@ snapshots:
       punycode.js: 2.3.1
       uc.micro: 3.0.0
 
-  markdownlint-cli2-formatter-default@0.0.6(markdownlint-cli2@0.23.2(supports-color@10.2.2)):
+  markdownlint-cli2-formatter-default@0.0.6(markdownlint-cli2@0.23.3(supports-color@10.2.2)):
     dependencies:
-      markdownlint-cli2: 0.23.2(supports-color@10.2.2)
+      markdownlint-cli2: 0.23.3(supports-color@10.2.2)
 
-  markdownlint-cli2@0.23.2(supports-color@10.2.2):
+  markdownlint-cli2@0.23.3(supports-color@10.2.2):
     dependencies:
-      globby: 16.2.2
-      js-yaml: 5.2.2
+      globby: 16.2.4
+      js-yaml: 5.4.1
       jsonc-parser: 3.3.1
       jsonpointer: 5.0.1
-      markdown-it: 14.3.0
+      markdown-it: 15.0.1
       markdownlint: 0.41.1(supports-color@10.2.2)
-      markdownlint-cli2-formatter-default: 0.0.6(markdownlint-cli2@0.23.2(supports-color@10.2.2))
+      markdownlint-cli2-formatter-default: 0.0.6(markdownlint-cli2@0.23.3(supports-color@10.2.2))
       micromatch: 4.0.8
-      smol-toml: 1.7.0
+      smol-toml: 1.8.0
     transitivePeerDependencies:
       - supports-color
 
@@ -14994,7 +14962,7 @@ snapshots:
 
   smol-toml@1.5.2: {}
 
-  smol-toml@1.7.0: {}
+  smol-toml@1.8.0: {}
 
   snake-case@3.0.4:
     dependencies:
