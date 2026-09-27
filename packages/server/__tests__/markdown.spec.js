@@ -47,6 +47,22 @@ describe('markdown parser', () => {
     expect(supResult).toContain('<sup>2</sup>');
   });
 
+  it('should render spoilers', () => {
+    const result = parser('!!spoiler!!');
+
+    expect(result).toContain('<span class="spoiler" tabindex="-1">spoiler</span>');
+  });
+
+  it('should allow disabling spoilers', async () => {
+    const parserWithoutSpoiler = await getMarkdownParser({
+      plugin: { spoiler: false },
+    });
+    const result = parserWithoutSpoiler('!!spoiler!!');
+
+    expect(result).not.toContain('class="spoiler"');
+    expect(result).toContain('!!spoiler!!');
+  });
+
   it('should render lists', () => {
     const result = parser('- item1\n- item2\n');
 

@@ -61,6 +61,7 @@
   "exporting": "내보내는 중…",
   "export": "내보내기",
   "import": "가져오기",
+  "import from": "{{source}}에서 가져오기",
   "import success": "가져오기 성공",
   "import clear data confirm": "주의! 모든 현재 데이터가 가져온 데이터로 덮어써집니다. 계속하시겠습니까?",
   "importing {{importedLength}}/{{maxLength}}": "가져오는 중 {{importedLength}}/{{maxLength}}",
