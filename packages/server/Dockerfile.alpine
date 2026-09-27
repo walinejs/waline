@@ -7,6 +7,7 @@ COPY packages/core/package.json packages/core/tsconfig.json packages/core/tsdown
 COPY packages/core/src ./src
 RUN set -eux; \
 	npm pkg set 'devDependencies.typescript=6.0.3'; \
+	npm pkg set 'devDependencies.publint=0.3.24'; \
 	npm install --include=dev --silent; \
 	npm run build
 
