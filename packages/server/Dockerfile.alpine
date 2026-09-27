@@ -6,8 +6,9 @@ WORKDIR /core
 COPY packages/core/package.json packages/core/tsconfig.json packages/core/tsdown.config.ts ./
 COPY packages/core/src ./src
 RUN set -eux; \
-	npm install --global --silent tsdown@0.23.0 typescript@6.0.3; \
-	tsdown
+	npm pkg set 'devDependencies.typescript=6.0.3'; \
+	npm install --include=dev --silent; \
+	npm run build
 
 WORKDIR /app
 COPY packages/server/package.json packages/server/vanilla.js ./
