@@ -61,6 +61,7 @@
   "exporting": "Mengekspor...",
   "export": "Ekspor",
   "import": "Impor",
+  "import from": "Impor dari {{source}}",
   "import success": "Impor Berhasil",
   "import clear data confirm": "Perhatian! Semua data saat ini akan ditimpa oleh data yang diimpor, apakah Anda benar-benar ingin melanjutkan?",
   "importing {{importedLength}}/{{maxLength}}": "Mengimpor {{importedLength}}/{{maxLength}}",

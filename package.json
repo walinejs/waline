@@ -1,6 +1,10 @@
 {
   "name": "waline-root",
   "private": true,
+  "workspaces": [
+    "packages/*",
+    "docs"
+  ],
   "type": "module",
   "scripts": {
     "admin:build": "pnpm --dir=packages/admin build",
@@ -8,22 +12,27 @@
     "api:build": "pnpm --dir=packages/api build",
     "api:docs": "mkdir -p docs/src/.vuepress/dist/api && redocly build-docs packages/server/openapi.yaml --output docs/src/.vuepress/dist/api/index.html --disableGoogleFont",
     "api:lint": "redocly lint packages/server/openapi.yaml",
-    "build": "pnpm admin:build && pnpm api:build && pnpm client:build",
-    "clean": "pnpm run -r clean",
+    "build": "turbo run build",
+    "clean": "turbo run clean",
     "client:build": "pnpm --dir=packages/client build",
     "client:dev": "pnpm --dir=packages/client dev",
+    "dev": "turbo run dev",
     "docs:build": "pnpm --dir=docs run build && pnpm api:docs",
     "docs:dev": "pnpm --dir=docs run dev",
-    "lint": "pnpm lint:oxlint --deny-warnings && oxfmt && pnpm lint:stylelint",
+    "lint": "turbo run lint",
     "lint:md": "markdownlint-cli2 '**/*.md'",
     "lint:oxlint": "oxlint --fix --report-unused-disable-directives",
     "lint:stylelint": "stylelint packages/*/src/**/*.scss --fix",
     "packages:check-update": "pnpm dlx npm-check-updates",
     "packages:update": "pnpm dlx npm-check-updates && pnpm -r up",
-    "prepare": "husky",
+    "prepare": "husky install",
     "server:dev": "pnpm --dir=packages/server dev",
     "server:vercel": "vercel dev ./example --listen 9090",
-    "test": "vitest"
+    "test": "turbo run test"
+  },
+  "dependencies": {
+    "turbo": "^1.11.3",
+    "waline-root": "link:"
   },
   "devDependencies": {
     "@babel/runtime": "8.0.0",

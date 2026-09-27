@@ -33,6 +33,9 @@ dist/
 # editors
 .idea/
 
+### Turbo template
+# Turborepo task cache
+.turbo
 # npm config file
 .npmrc
 

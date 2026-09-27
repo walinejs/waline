@@ -216,3 +216,14 @@ button.operate-reply {
 
   cursor: pointer;
 }
+
+.spoiler {
+  cursor: help;
+  background-color: currentColor;
+  border-radius: 0.2em;
+  transition: background 0.5s;
+
+  &:focus {
+    background-color: #0000;
+  }
+}

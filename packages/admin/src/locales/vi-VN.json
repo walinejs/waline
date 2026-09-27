@@ -61,6 +61,7 @@
   "exporting": "Đang xuất...",
   "export": "Xuất",
   "import": "Nhập",
+  "import from": "Nhập từ {{source}}",
   "import success": "Nhập thành công",
   "import clear data confirm": "Chú ý! Nhập dữ liệu sẽ ghi đè tất cả dữ liệu hiện có. Tiếp tục?",
   "importing {{importedLength}}/{{maxLength}}": "Đang nhập {{importedLength}}/{{maxLength}}",

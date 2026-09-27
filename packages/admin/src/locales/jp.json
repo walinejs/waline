@@ -61,6 +61,7 @@
   "exporting": "エクスポート中...",
   "export": "エクスポート",
   "import": "インポート",
+  "import from": "{{source}} からインポート",
   "import success": "インポートに成功しました",
   "import clear data confirm": "注意！インポートすると現在のデータがすべて上書きされます。続行しますか？",
   "importing {{importedLength}}/{{maxLength}}": "インポート中 {{importedLength}}/{{maxLength}}",
