@@ -7,6 +7,7 @@ on:
       - main
     paths:
       - .github/workflows/release-server.yml
+      - packages/core/**
       - packages/server/**
 
 permissions:
@@ -49,7 +50,17 @@ jobs:
           echo "old-version=$REMOTE_VERSION" >> $GITHUB_OUTPUT
 
       - name: Publish
-        run: pnpm publish -r --filter @waline/vercel --no-git-checks
+        shell: bash
+        run: |
+          CORE_LOCAL_VERSION=$(node -p "require('./packages/core/package.json').version")
+          CORE_REMOTE_VERSION=$(pnpm view @waline/core version 2>/dev/null || echo "none")
+
+          if [ "$CORE_LOCAL_VERSION" != "$CORE_REMOTE_VERSION" ]; then
+            pnpm publish -r --filter @waline/core --no-git-checks
+          fi
+
+          node scripts/workspace-publish.js @waline/vercel
+          pnpm publish -r --filter @waline/vercel --no-git-checks
 
   docker:
     needs: npm

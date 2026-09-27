@@ -117,6 +117,7 @@ jobs:
           echo "========================================="
           echo "Step 1: Packing @waline/vercel..."
           echo "========================================="
+          pnpm --dir packages/core pack --pack-destination ../../packages/server/__tests__/fixtures/vercel
           pnpm --dir packages/server pack --pack-destination ../../packages/server/__tests__/fixtures/vercel
           PACK_EXIT_CODE=$?
           if [ $PACK_EXIT_CODE -ne 0 ]; then
@@ -127,7 +128,7 @@ jobs:
           echo ""
           echo "========================================="
           echo "Step 2: Checking for .tgz file..."
-          TGZ_FILE=$(ls ./packages/server/__tests__/fixtures/vercel/*.tgz | head -n 1)
+          TGZ_FILE=$(ls ./packages/server/__tests__/fixtures/vercel/waline-vercel-*.tgz | head -n 1)
           if [ -z "$TGZ_FILE" ]; then
             echo "ERROR: No .tgz file found in ./packages/server/__tests__/fixtures/vercel"
             exit 1
@@ -181,13 +182,15 @@ jobs:
           echo "Step 4: Renaming tarball..."
           echo "========================================="
           mv "$TGZ_FILE" packages/server/__tests__/fixtures/vercel/waline-vercel-current-pr.tgz
+          CORE_TGZ_FILE=$(ls ./packages/server/__tests__/fixtures/vercel/waline-core-*.tgz | head -n 1)
+          mv "$CORE_TGZ_FILE" packages/server/__tests__/fixtures/vercel/waline-core-current-pr.tgz
           ls -lah packages/server/__tests__/fixtures/vercel/waline-vercel-current-pr.tgz
 
           echo ""
           echo "========================================="
           echo "Step 5: Creating package.json..."
           echo "========================================="
-          printf '{"private":true,"dependencies":{"@waline/vercel":"file:./waline-vercel-current-pr.tgz"}}\n' > packages/server/__tests__/fixtures/vercel/package.json
+          printf '{"private":true,"dependencies":{"@waline/core":"file:./waline-core-current-pr.tgz","@waline/vercel":"file:./waline-vercel-current-pr.tgz"}}\n' > packages/server/__tests__/fixtures/vercel/package.json
           cat packages/server/__tests__/fixtures/vercel/package.json
 
           echo ""

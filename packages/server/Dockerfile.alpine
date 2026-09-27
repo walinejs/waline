@@ -1,10 +1,19 @@
 # https://github.com/nodejs/LTS
 FROM node:lts AS build
-WORKDIR /app
 ENV NODE_ENV="production"
+
+WORKDIR /core
+COPY packages/core/package.json packages/core/tsconfig.json packages/core/tsdown.config.ts ./
+COPY packages/core/src ./src
+RUN set -eux; \
+	npm install --global --silent tsdown@0.23.0 typescript@6.0.3; \
+	tsdown
+
+WORKDIR /app
 COPY packages/server/package.json packages/server/vanilla.js ./
 COPY packages/server/src ./src
 RUN set -eux; \
+	npm pkg set 'dependencies.@waline/core=file:/core'; \
 	# npm config set registry https://registry.npm.taobao.org; \
 	npm install --production --silent
 

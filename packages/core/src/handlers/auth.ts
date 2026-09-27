@@ -10,7 +10,7 @@ export const createAuthHandler = (runtime: CoreRuntime) => {
   const avatar = createAvatarFormatter(runtime);
 
   return {
-    async resolveSession(input: { token?: string }, _ctx: WalineContext) {
+    async resolveSession(input: { token?: string }, ctx: WalineContext) {
       if (!input.token) return undefined;
 
       const tokenService = requiredCapability(services.token, 'token');
@@ -22,10 +22,25 @@ export const createAuthHandler = (runtime: CoreRuntime) => {
         return undefined;
       }
 
-      const [account] = await models.Users.select({
-        objectId: id,
-        type: ['!=', 'banned'],
-      });
+      const [account] = await models.Users.select(
+        {
+          objectId: id,
+          type: ['!=', 'banned'],
+        },
+        {
+          field: [
+            'objectId',
+            'email',
+            'url',
+            'display_name',
+            'type',
+            'avatar',
+            '2fa',
+            'label',
+            ...(ctx.state.oauthServices?.map(({ name }) => name) ?? []),
+          ],
+        },
+      );
 
       if (!account) return undefined;
 

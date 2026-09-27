@@ -3,7 +3,7 @@ import type { GroupedCount, WalineComment, WalineContext, Where } from '../types
 import { currentUser, isAdmin, requireAdmin, requireUser } from '../utils/auth.js';
 import { createCommentFormatter } from '../utils/comment.js';
 import type { CoreRuntime } from '../utils/runtime.js';
-import { positiveInt, requiredString } from '../utils/validation.js';
+import { levelFor, positiveInt, requiredString } from '../utils/validation.js';
 
 export const createCommentHandler = (runtime: CoreRuntime) => {
   const { config, hook, logger, models, now, random, services } = runtime;
@@ -67,6 +67,30 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
         ),
       ];
       const users = ids.length ? await models.Users.select({ objectId: ['IN', ids] }) : [];
+      const comments = [...roots, ...children];
+
+      if (Array.isArray(config.levels)) {
+        const mails = [...new Set(comments.map(({ mail }) => mail).filter(Boolean))] as string[];
+        const countWhere: Where<WalineComment> = { status: ['NOT IN', ['waiting', 'spam']] };
+
+        if (ids.length || mails.length) {
+          countWhere._complex = { _logic: 'or' };
+          if (ids.length) countWhere._complex.user_id = ['IN', ids];
+          if (mails.length) countWhere._complex.mail = ['IN', mails];
+        }
+
+        const counts = (await models.Comment.count(countWhere, {
+          group: ['user_id', 'mail'],
+        })) as GroupedCount[];
+
+        for (const comment of comments) {
+          const count = counts.find((item) =>
+            comment.user_id ? item.user_id === comment.user_id : item.mail === comment.mail,
+          )?.count;
+          comment.level = levelFor(config.levels, count);
+        }
+      }
+
       const data = await Promise.all(
         roots.map(async (root) => {
           const item = await formatComment(root, ctx, users);
@@ -219,10 +243,14 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
         forbidden();
       }
 
-      const data: WalineComment = {
-        ...input,
-        objectId: '',
+      const data: Partial<WalineComment> = {
         comment: rawComment,
+        link: input.link,
+        mail: input.mail,
+        nick: input.nick,
+        pid: input.pid,
+        rid: input.rid,
+        ua: input.ua,
         url,
         ip: ctx.ip,
         insertedAt: now(),
@@ -297,21 +325,21 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
     async update(
       input: {
         objectId: string;
-        data: Partial<WalineComment> & { like?: boolean | number };
+        data: Omit<Partial<WalineComment>, 'like'> & { like?: boolean | number };
       },
       ctx: WalineContext,
     ) {
       const id = requiredString(input.objectId, 'objectId');
-      const current = requireUser(ctx);
       const [old] = await models.Comment.select({ objectId: id });
 
       if (!old) return undefined;
-      if (
-        !isAdmin(ctx) &&
-        old.user_id !== current.objectId &&
-        typeof input.data.like !== 'boolean'
-      ) {
-        forbidden();
+      const isLikeOnly =
+        typeof input.data.like === 'boolean' && Object.keys(input.data).length === 1;
+      const current = currentUser(ctx);
+
+      if (!isLikeOnly) {
+        const user = current ?? requireUser(ctx);
+        if (!isAdmin(ctx) && old.user_id !== user.objectId) forbidden();
       }
 
       const data: Partial<WalineComment> = isAdmin(ctx)

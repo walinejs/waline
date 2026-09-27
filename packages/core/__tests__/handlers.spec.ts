@@ -65,10 +65,16 @@ class MemoryModel<T extends Row> implements WalineModel<T> {
         return 0;
       });
     }
-    return result.slice(
+    const selected = result.slice(
       options.offset ?? 0,
       options.limit ? (options.offset ?? 0) + options.limit : undefined,
     );
+
+    if (!options.field) return selected;
+
+    return selected.map((row) =>
+      Object.fromEntries(options.field.map((field: string) => [field, row[field]])),
+    ) as T[];
   });
   count = vi.fn(
     async (where: Where<T> = {}, options: any = {}): Promise<number | GroupedCount[]> => {
@@ -321,9 +327,12 @@ describe('auth handler', () => {
     await expect(
       core.auth.resolveSession({ token: 'token:none' }, context()),
     ).resolves.toBeUndefined();
-    await expect(core.auth.resolveSession({ token: 'token:u1' }, context())).resolves.toMatchObject(
-      { objectId: 'u1', token: 'token:u1' },
-    );
+    const session = await core.auth.resolveSession({ token: 'token:u1' }, context());
+    expect(session).toMatchObject({ objectId: 'u1', token: 'token:u1' });
+    expect(session).not.toHaveProperty('password');
+    await expect(
+      core.auth.resolveSession({ token: 'token:u1' }, { headers: {}, state: {} }),
+    ).resolves.not.toHaveProperty('password');
     await expect(
       core.auth.login({ email: guest.email, password: 'hash' }, context()),
     ).resolves.toMatchObject({ token: 'token:u1' });
@@ -652,8 +661,13 @@ describe('comment handler', () => {
       data: [
         {
           objectId: 'root',
+          level: 0,
           children: [
-            expect.objectContaining({ objectId: 'child', reply_user: expect.any(Object) }),
+            expect.objectContaining({
+              objectId: 'child',
+              level: 0,
+              reply_user: expect.any(Object),
+            }),
           ],
         },
       ],
@@ -674,6 +688,33 @@ describe('comment handler', () => {
     );
     await expect(orphan.core.comment.list({ path: '/o' }, context())).resolves.toHaveProperty(
       'data',
+    );
+    const onlyId = setup();
+    onlyId.Users.rows.push({ ...guest });
+    onlyId.Comment.rows.push({
+      objectId: 'id-only',
+      comment: 'id',
+      url: '/id',
+      user_id: guest.objectId,
+      status: 'approved',
+      insertedAt: new Date(),
+    });
+    await expect(onlyId.core.comment.list({ path: '/id' }, context())).resolves.toHaveProperty(
+      'data.0.level',
+      0,
+    );
+    const onlyMail = setup();
+    onlyMail.Comment.rows.push({
+      objectId: 'mail-only',
+      comment: 'mail',
+      url: '/mail',
+      mail: guest.email,
+      status: 'approved',
+      insertedAt: new Date(),
+    });
+    await expect(onlyMail.core.comment.list({ path: '/mail' }, context())).resolves.toHaveProperty(
+      'data.0.level',
+      0,
     );
     await expect(
       env.core.comment.list({ path: '/post', sortBy: 'bad' as 'like_desc' }, context()),
@@ -761,9 +802,18 @@ describe('comment handler', () => {
 
     const approved = setup({ hooks: { preSave: [vi.fn(() => undefined)], postSave: vi.fn() } });
     const saved = await approved.core.comment.create(
-      { comment: 'hello', url: '/', pid: 'parent', at: 'A' },
+      {
+        comment: 'hello',
+        url: '/',
+        pid: 'parent',
+        at: 'A',
+        captcha: { turnstile: 'secret' },
+        ignored: 'value',
+      } as any,
       context(administrator, true),
     );
+    expect(approved.Comment.rows[0]).not.toHaveProperty('captcha');
+    expect(approved.Comment.rows[0]).not.toHaveProperty('ignored');
     expect(saved.comment).toContain('<p>');
     expect(approved.services.webhook.emit).toHaveBeenCalled();
     expect(approved.services.notification.send).toHaveBeenCalled();
@@ -796,10 +846,10 @@ describe('comment handler', () => {
         context({ ...guest, objectId: 'other' }),
       ),
     ).rejects.toThrowError();
-    await env.core.comment.update(
-      { objectId: 'root', data: { like: true } },
-      context({ ...guest, objectId: 'other' }),
-    );
+    await expect(
+      env.core.comment.update({ objectId: 'root', data: { comment: 'x' } }, context()),
+    ).rejects.toThrowError();
+    await env.core.comment.update({ objectId: 'root', data: { like: true } }, context());
     expect(env.Comment.rows[0].like).toBe(3);
     await env.core.comment.update({ objectId: 'root', data: { like: false } }, context(guest));
     expect(env.Comment.rows[0].like).toBe(2);
