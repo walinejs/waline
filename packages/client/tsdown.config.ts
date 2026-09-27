@@ -50,6 +50,7 @@ const commonOptions: UserConfig = {
   minify: true,
   sourcemap: true,
   target: ['node22', 'baseline-widely-available'],
+  tsconfig: '../../tsconfig.json',
   define,
   treeshake: {
     moduleSideEffects: false,
