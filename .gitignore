@@ -40,3 +40,4 @@ dist/
 .npmrc
 
 data/*
+.pnpm-store

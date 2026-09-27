@@ -1,10 +1,24 @@
 # https://github.com/nodejs/LTS
-FROM node:lts AS build
-WORKDIR /app
+FROM --platform=$BUILDPLATFORM node:lts AS core-build
 ENV NODE_ENV="production"
+
+WORKDIR /core
+COPY packages/core/package.json packages/core/tsconfig.json packages/core/tsdown.config.ts ./
+COPY packages/core/src ./src
+RUN set -eux; \
+	npm pkg set 'devDependencies.typescript=6.0.3'; \
+	npm pkg set 'devDependencies.publint=0.3.24'; \
+	npm install --include=dev --silent; \
+	npm run build
+
+FROM node:lts AS build
+ENV NODE_ENV="production"
+WORKDIR /app
+COPY --from=core-build /core /core
 COPY packages/server/package.json packages/server/vanilla.js ./
 COPY packages/server/src ./src
 RUN set -eux; \
+	npm pkg set 'dependencies.@waline/core=file:/core'; \
 	# npm config set registry https://registry.npm.taobao.org; \
 	npm install --production --silent
 

@@ -1,8 +1,6 @@
 const path = require('node:path');
 const qs = require('node:querystring');
 
-const jwt = require('jsonwebtoken');
-
 module.exports = class BaseLogic extends think.Logic {
   constructor(...args) {
     super(...args);
@@ -26,57 +24,25 @@ module.exports = class BaseLogic extends think.Logic {
     }
 
     const token = state || authorization.replace(/^Bearer /u, '');
-    let userId = '';
-
-    try {
-      userId = jwt.verify(token, think.config('jwtKey'));
-    } catch (err) {
-      think.logger.debug(err);
-    }
-
-    if (think.isEmpty(userId) || !think.isString(userId)) {
-      return;
-    }
-
-    const user = await this.modelInstance.select(
-      { objectId: userId, type: ['!=', 'banned'] },
+    const core = this.service('core').create(this);
+    const session = await core.auth.resolveSession(
+      { token },
       {
-        field: [
-          'id',
-          'email',
-          'url',
-          'display_name',
-          'type',
-          'avatar',
-          '2fa',
-          'label',
-          ...this.ctx.state.oauthServices.map(({ name }) => name),
-        ],
+        headers: this.ctx.req.headers,
+        state: this.ctx.state,
+        ip: this.ctx.ip,
+        origin: this.ctx.origin,
+        referrer: this.ctx.referrer(true),
+        requestUrl: this.ctx.url,
+        serverUrl: this.ctx.serverURL,
       },
     );
 
-    if (think.isEmpty(user)) {
-      return;
+    if (session) {
+      const { token: resolvedToken, ...userInfo } = session;
+      this.ctx.state.userInfo = userInfo;
+      this.ctx.state.token = resolvedToken;
     }
-
-    const [userInfo] = user;
-
-    let avatarUrl =
-      userInfo.avatar ||
-      (await think.service('avatar').stringify({
-        mail: userInfo.email,
-        nick: userInfo.display_name,
-        link: userInfo.url,
-      }));
-    const { avatarProxy } = think.config();
-
-    if (avatarProxy) {
-      avatarUrl = `${avatarProxy}?url=${encodeURIComponent(avatarUrl)}`;
-    }
-
-    userInfo.avatar = avatarUrl;
-    this.ctx.state.userInfo = userInfo;
-    this.ctx.state.token = token;
   }
 
   referrerCheck() {

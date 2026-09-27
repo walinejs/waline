@@ -1,4 +1,5 @@
 const path = require('node:path');
+const { WalineError } = require('@waline/core');
 
 module.exports = class extends think.Controller {
   static _REST = true;
@@ -59,6 +60,44 @@ module.exports = class extends think.Controller {
       if (resp) {
         return resp;
       }
+    }
+  }
+
+  getCore() {
+    return this.service('core').create(this);
+  }
+
+  getCoreContext() {
+    return {
+      headers: this.ctx.req.headers,
+      state: this.ctx.state,
+      ip: this.ctx.ip,
+      origin: this.ctx.origin,
+      referrer: this.ctx.referrer(true),
+      requestUrl: this.ctx.url,
+      serverUrl: this.ctx.serverURL,
+    };
+  }
+
+  async runCore(callback, { json = false, raw = false } = {}) {
+    try {
+      const data = await callback(this.getCore(), this.getCoreContext());
+
+      if (raw) return data;
+
+      return json ? this.jsonOrSuccess(data) : this.success(data);
+    } catch (err) {
+      if (!(err instanceof WalineError)) {
+        throw err;
+      }
+
+      if (err.status === 401 || err.status === 403) {
+        return this.ctx.throw(err.status);
+      }
+
+      const message = err.messageKey ? this.locale(err.messageKey) : undefined;
+
+      return this.fail(message || err.details || err.code);
     }
   }
 

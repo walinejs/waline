@@ -1,69 +1,15 @@
-const jwt = require('jsonwebtoken');
-const speakeasy = require('speakeasy');
-
 const BaseRest = require('./rest.js');
 
 module.exports = class extends BaseRest {
-  constructor(...args) {
-    super(...args);
-    this.modelInstance = this.getModel('Users');
-  }
-
   getAction() {
     return this.success(this.ctx.state.userInfo);
   }
 
-  async postAction() {
-    const { email, password, code } = this.post();
-    const user = await this.modelInstance.select({ email });
-
-    const isVerifyUser = /^verify:/iu.test(user?.[0]?.type);
-    const isBannedUser = user?.[0]?.type === 'banned';
-    if (think.isEmpty(user) || isVerifyUser || isBannedUser) {
-      return this.fail();
-    }
-
-    const checkPassword = this.checkPassword(password, user[0].password);
-
-    if (!checkPassword) {
-      return this.fail();
-    }
-
-    const twoFactorAuthSecret = user[0]['2fa'];
-
-    if (twoFactorAuthSecret) {
-      const verified = speakeasy.totp.verify({
-        secret: twoFactorAuthSecret,
-        encoding: 'base32',
-        token: code,
-        window: 2,
-      });
-
-      if (!verified) {
-        return this.fail();
-      }
-    }
-
-    let avatarUrl =
-      user[0].avatar ||
-      (await think.service('avatar').stringify({
-        mail: user[0].email,
-        nick: user[0].display_name,
-        link: user[0].url,
-      }));
-    const { avatarProxy } = think.config();
-
-    if (avatarProxy) {
-      avatarUrl = `${avatarProxy}?url=${encodeURIComponent(avatarUrl)}`;
-    }
-
-    user[0].avatar = avatarUrl;
-
-    return this.success({
-      ...user[0],
+  postAction() {
+    return this.runCore(async (core, ctx) => ({
+      ...(await core.auth.login(this.post(), ctx)),
       password: null,
-      token: jwt.sign(user[0].objectId, this.config('jwtKey')),
-    });
+    }));
   }
 
   deleteAction() {}

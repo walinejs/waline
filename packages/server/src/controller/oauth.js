@@ -1,24 +1,17 @@
-const jwt = require('jsonwebtoken');
+const BaseRest = require('./rest.js');
 
-module.exports = class OAuthController extends think.Controller {
-  constructor(ctx) {
-    super(ctx);
-    this.modelInstance = this.getModel('Users');
-  }
-
-  async indexAction() {
-    const { code, state, type, redirect } = this.get();
+module.exports = class OAuthController extends BaseRest {
+  indexAction() {
+    const input = this.get();
     const { oauthUrl } = this.config();
 
-    if (!code) {
-      const { serverURL } = this.ctx;
-      const redirectUrl = think.buildUrl(`${serverURL}/api/oauth`, {
-        redirect,
-        type,
+    if (!input.code) {
+      const redirectUrl = think.buildUrl(`${this.ctx.serverURL}/api/oauth`, {
+        redirect: input.redirect,
+        type: input.type,
       });
-
       this.redirect(
-        think.buildUrl(`${oauthUrl}/${type}`, {
+        think.buildUrl(`${oauthUrl}/${input.type}`, {
           redirect: redirectUrl,
           state: this.ctx.state.token || '',
         }),
@@ -26,87 +19,30 @@ module.exports = class OAuthController extends think.Controller {
       return;
     }
 
-    /** User = { id, name, email, avatar,url }; */
-    const params = { code, state };
-
-    if (type === 'facebook') {
-      const { serverURL } = this.ctx;
-      const redirectUrl = think.buildUrl(`${serverURL}/api/oauth`, {
-        redirect,
-        type,
+    if (input.type === 'facebook') {
+      const redirectUrl = think.buildUrl(`${this.ctx.serverURL}/api/oauth`, {
+        redirect: input.redirect,
+        type: input.type,
       });
-
-      params.state = think.buildUrl(undefined, {
+      input.state = think.buildUrl(undefined, {
         redirect: redirectUrl,
         state: this.ctx.state.token || '',
       });
     }
 
-    const user = await fetch(think.buildUrl(`${oauthUrl}/${type}`, params), {
-      method: 'GET',
-      headers: {
-        'user-agent': '@waline',
+    return this.runCore(
+      async (core, ctx) => {
+        const result = await core.oauth.authorize(input, ctx);
+
+        if (ctx.state.userInfo?.objectId && !result.token) {
+          this.redirect('/ui/profile');
+        } else if (input.redirect && result.token) {
+          this.redirect(think.buildUrl(input.redirect, { token: result.token }));
+        } else {
+          this.success();
+        }
       },
-    }).then((resp) => resp.json());
-
-    if (!user?.id) {
-      return this.fail(user);
-    }
-
-    const userBySocial = await this.modelInstance.select({ [type]: user.id });
-
-    // when the social account has been linked, then redirect to this linked account profile page. It may be current account or another.
-    // If it's another account, user should unlink the social type in that account and then link it.
-    if (!think.isEmpty(userBySocial)) {
-      const token = jwt.sign(userBySocial[0].objectId, this.config('jwtKey'));
-
-      if (redirect) {
-        this.redirect(think.buildUrl(redirect, { token }));
-        return;
-      }
-
-      return this.success();
-    }
-
-    const current = this.ctx.state.userInfo;
-
-    // when login user link social type, then update data
-    if (!think.isEmpty(current)) {
-      const updateData = { [type]: user.id };
-
-      if (!current.avatar && user.avatar) {
-        updateData.avatar = user.avatar;
-      }
-
-      await this.modelInstance.update(updateData, {
-        objectId: current.objectId,
-      });
-
-      this.redirect('/ui/profile');
-      return;
-    }
-
-    // when user has not login, then we create account by the social type!
-    const count = await this.modelInstance.count();
-    const data = {
-      display_name: user.name,
-      email: user.email,
-      url: user.url,
-      avatar: user.avatar,
-      [type]: user.id,
-      password: this.hashPassword(Math.random()),
-      type: think.isEmpty(count) ? 'administrator' : 'guest',
-    };
-
-    const cmtUser = await this.modelInstance.add(data);
-
-    if (!redirect) {
-      return this.success();
-    }
-
-    // and then generate token!
-    const token = jwt.sign(cmtUser.objectId, this.config('jwtKey'));
-
-    this.redirect(`${redirect}${redirect.includes('?') ? '&' : '?'}token=${token}`);
+      { raw: true },
+    );
   }
 };
