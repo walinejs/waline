@@ -40,7 +40,7 @@
     "@redocly/cli": "2.51.2",
     "@types/node": "24.13.4",
     "@vitejs/plugin-react": "6.1.1",
-    "@vitest/coverage-v8": "5.0.0",
+    "@vitest/coverage-v8": "5.0.2",
     "cross-env": "10.1.0",
     "husky": "9.1.7",
     "markdownlint-cli2": "0.23.2",
@@ -63,7 +63,7 @@
     "vite": "catalog:",
     "vite-plugin-css-injected-by-js": "5.0.2",
     "vite-plugin-svgr": "5.2.0",
-    "vitest": "5.0.0"
+    "vitest": "5.0.2"
   },
   "nano-staged": {
     "**/*": "oxfmt --no-error-on-unmatched-pattern",
