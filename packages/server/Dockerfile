@@ -1,5 +1,5 @@
 # https://github.com/nodejs/LTS
-FROM node:lts AS build
+FROM --platform=$BUILDPLATFORM node:lts AS core-build
 ENV NODE_ENV="production"
 
 WORKDIR /core
@@ -11,7 +11,10 @@ RUN set -eux; \
 	npm install --include=dev --silent; \
 	npm run build
 
+FROM node:lts AS build
+ENV NODE_ENV="production"
 WORKDIR /app
+COPY --from=core-build /core /core
 COPY packages/server/package.json packages/server/vanilla.js ./
 COPY packages/server/src ./src
 RUN set -eux; \
