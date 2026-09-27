@@ -67,7 +67,7 @@
   "dependencies": {
     "@vueuse/core": "^14.4.0",
     "@waline/api": "workspace:*",
-    "@webc.site/math": "^0.1.34",
+    "@webc.site/math": "^0.1.41",
     "autosize": "^6.0.1",
     "marked": "^18.0.11",
     "marked-highlight": "^2.2.4",
