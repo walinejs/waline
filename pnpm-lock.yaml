@@ -407,10 +407,10 @@ importers:
         version: 1.2.1(markdown-it@15.0.2)
       '@mdit/plugin-spoiler':
         specifier: 2.1.2
-        version: 2.1.2
+        version: 2.1.2(markdown-it@15.0.2)
       '@mdit/plugin-sub':
-        specifier: 1.1.1
-        version: 1.1.1(markdown-it@15.0.2)
+        specifier: 1.1.2
+        version: 1.1.2(markdown-it@15.0.2)
       '@mdit/plugin-sup':
         specifier: 1.1.1
         version: 1.1.1(markdown-it@15.0.2)
@@ -1825,6 +1825,15 @@ packages:
     engines: {node: '>=22'}
     peerDependencies:
       markdown-it: ^15.0.1
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
+
+  '@mdit/plugin-sub@1.1.2':
+    resolution: {integrity: sha512-2aN/VzTRL7tSzJ2PO4PHRe0ODDJFHRo3uYAvOv9onZeUtAq7PeN2ySRXhc6tmg4HHdO8xjHQiwa7llZ7bqVNzQ==}
+    engines: {node: '>=22'}
+    peerDependencies:
+      markdown-it: ^15.0.2
     peerDependenciesMeta:
       markdown-it:
         optional: true
@@ -9653,6 +9662,13 @@ snapshots:
     dependencies:
       '@mdit/helper': 1.1.1(markdown-it@15.0.2)
       '@mdit/plugin-inline-rule': 2.2.1(markdown-it@15.0.2)
+    optionalDependencies:
+      markdown-it: 15.0.2
+
+  '@mdit/plugin-sub@1.1.2(markdown-it@15.0.2)':
+    dependencies:
+      '@mdit/helper': 1.1.2(markdown-it@15.0.2)
+      '@mdit/plugin-inline-rule': 2.2.2(markdown-it@15.0.2)
     optionalDependencies:
       markdown-it: 15.0.2
 
