@@ -37,3 +37,6 @@ dist/
 .npmrc
 
 data/*
+
+.turbo
+.pnpm-store

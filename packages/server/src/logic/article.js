@@ -1,27 +1,5 @@
 const Base = require('./base.js');
 
-module.exports = class ArticleLogic extends Base {
-  getAction() {
-    this.rules = {
-      path: { array: true },
-      type: { array: true, default: ['time'] },
-    };
-  }
-
-  postAction() {
-    this.rules = {
-      path: {
-        string: true,
-      },
-      type: {
-        string: true,
-        default: 'time',
-      },
-      action: {
-        string: true,
-        in: ['inc', 'desc'],
-        default: 'inc',
-      },
-    };
-  }
-};
+// Validation and authorization live in @waline/core. This class remains so
+// ThinkJS keeps its existing controller/logic discovery contract.
+module.exports = class ArticleLogic extends Base {};
