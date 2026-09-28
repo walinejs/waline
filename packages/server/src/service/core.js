@@ -63,7 +63,15 @@ module.exports = class extends think.Service {
             speakeasy.totp.verify({ secret, encoding: 'base32', token: code, window: 2 }),
         },
         markdown: { render: async (value) => (await markdown)(value) },
-        avatar: { stringify: (value) => think.service('avatar').stringify(value) },
+        avatar: {
+          stringify: (value) =>
+            think.service('avatar').stringify({
+              ...value,
+              mail: value.mail ?? value.email,
+              nick: value.nick ?? value.display_name,
+              link: value.link ?? value.url,
+            }),
+        },
         region: { lookup: (ip, depth) => think.ip2region(ip, { depth }) },
         userAgent: { parse: (value) => parser(value) },
         captcha: {
