@@ -9,18 +9,21 @@ RUN set -eux; \
 	npm pkg set 'devDependencies.typescript=6.0.3'; \
 	npm pkg set 'devDependencies.publint=0.3.24'; \
 	npm install --include=dev --silent; \
-	npm run build
+	npm run build; \
+	npm pack --silent; \
+	mv waline-core-*.tgz /waline-core.tgz
 
 FROM node:lts AS build
 ENV NODE_ENV="production"
 WORKDIR /app
-COPY --from=core-build /core /core
+COPY --from=core-build /waline-core.tgz ./
 COPY packages/server/package.json packages/server/vanilla.js ./
 COPY packages/server/src ./src
 RUN set -eux; \
-	npm pkg set 'dependencies.@waline/core=file:/core'; \
+	npm pkg set 'dependencies.@waline/core=file:./waline-core.tgz'; \
 	# npm config set registry https://registry.npm.taobao.org; \
-	npm install --production --silent
+	npm install --production --silent; \
+	rm waline-core.tgz
 
 FROM node:lts-alpine
 WORKDIR /app
@@ -33,5 +36,6 @@ RUN set -eux; \
 	setup-timezone -z ${TZ}; \
 	apk del --no-network .build-deps
 COPY --from=build /app .
+RUN node -e "require('@waline/core')"
 EXPOSE 8360
 CMD ["node", "vanilla.js"]
