@@ -11,7 +11,7 @@ export const createAuthHandler = (runtime: CoreRuntime) => {
 
   return {
     async resolveSession(input: { token?: string }, ctx: WalineContext) {
-      if (!input.token) return undefined;
+      if (!input.token) return;
 
       const tokenService = requiredCapability(services.token, 'token');
       let id: string;
@@ -19,7 +19,7 @@ export const createAuthHandler = (runtime: CoreRuntime) => {
       try {
         id = await tokenService.verify(input.token);
       } catch {
-        return undefined;
+        return;
       }
 
       const [account] = await models.Users.select(
@@ -29,7 +29,7 @@ export const createAuthHandler = (runtime: CoreRuntime) => {
         },
         {
           field: [
-            'objectId',
+            'id',
             'email',
             'url',
             'display_name',
@@ -42,7 +42,7 @@ export const createAuthHandler = (runtime: CoreRuntime) => {
         },
       );
 
-      if (!account) return undefined;
+      if (!account) return;
 
       return { ...account, avatar: await avatar(account), token: input.token };
     },

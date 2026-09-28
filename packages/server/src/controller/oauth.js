@@ -1,6 +1,8 @@
 const BaseRest = require('./rest.js');
 
 module.exports = class OAuthController extends BaseRest {
+  static _REST = false;
+
   indexAction() {
     const input = this.get();
     const { oauthUrl } = this.config();
