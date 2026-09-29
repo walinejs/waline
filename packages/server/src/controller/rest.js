@@ -79,9 +79,9 @@ module.exports = class extends think.Controller {
     };
   }
 
-  async runCore(callback, { json = false, raw = false } = {}) {
+  async runCore(handler, { json = false, raw = false } = {}) {
     try {
-      const data = await callback(this.getCore(), this.getCoreContext());
+      const data = await handler(this.getCore(), this.getCoreContext());
 
       if (raw) return data;
 

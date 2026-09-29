@@ -87,7 +87,7 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
           const count = counts.find((item) =>
             comment.user_id ? item.user_id === comment.user_id : item.mail === comment.mail,
           )?.count;
-          comment.level = levelFor(config.levels, count);
+          comment.level = levelFor(config.levels, count ?? 0);
         }
       }
 
@@ -206,8 +206,9 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
           status: ['NOT IN', ['waiting', 'spam']],
           user_id: current.objectId,
         };
+      } else {
+        where.status = ['NOT IN', ['waiting', 'spam']];
       }
-      else {where.status = ['NOT IN', ['waiting', 'spam']];}
 
       if (urls.length === 1) {
         const count = (await models.Comment.count(where)) as number;
@@ -307,8 +308,7 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
       }
 
       const saved = await models.Comment.add(data);
-      let parent: WalineComment | undefined,
-       parentUser: WalineUser | undefined;
+      let parent: WalineComment | undefined, parentUser: WalineUser | undefined;
       if (data.pid) {
         [parent] = await models.Comment.select({ objectId: data.pid });
         if (parent.user_id) {
@@ -322,7 +322,9 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
       });
 
       const cmtReturn = await formatComment(saved, ctx, current ? [current] : []);
-      const parentReturn = parent ? await formatComment(parent, ctx, parentUser ? [parentUser] : []) : undefined;
+      const parentReturn = parent
+        ? await formatComment(parent, ctx, parentUser ? [parentUser] : [])
+        : undefined;
 
       if (data.status !== 'spam' && services.notification) {
         await services.notification.send(
@@ -358,7 +360,7 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
 
       //@ts-expect-error
       const data: Partial<WalineComment> = isAdmin(ctx)
-        ? {...input.data, like: input.data.like ?? Number(input.data.like) }
+        ? { ...input.data }
         : { comment: input.data.comment, like: input.data.like as number };
 
       if (typeof input.data.like === 'boolean') {

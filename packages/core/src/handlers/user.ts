@@ -154,7 +154,7 @@ export const createUserHandler = (runtime: CoreRuntime) => {
         data.password = await passwordService.hash(data.password);
       }
 
-      if (!Object.keys(data).length) return undefined;
+      if (!Object.keys(data).length) return;
 
       return (await models.Users.update(data, { objectId }))[0];
     },

@@ -1,3 +1,4 @@
+/* oxlint-disable vitest/expect-expect, vitest/max-expects, vitest/prefer-called-with, vitest/prefer-strict-equal, vitest/require-mock-type-parameters, vitest/require-to-throw-message */
 import { describe, expect, it, vi } from 'vitest';
 
 import { createWalineCore } from '../src/index.js';
@@ -9,6 +10,8 @@ import type {
   WalineCounter,
   WalineModel,
   WalineUser,
+  OAuthProfile,
+  WalineHook,
   Where,
 } from '../src/index.js';
 import { currentUser, isAdmin, requireAdmin, requireUser } from '../src/utils/auth.js';
@@ -27,8 +30,9 @@ const matches = (row: Row, where: Record<string, any>): boolean => {
   const entries = Object.entries(where).filter(([key]) => key !== '_complex');
   const direct = entries.every(([key, expected]) => {
     const actual = row[key];
-    if (!Array.isArray(expected))
+    if (!Array.isArray(expected)) {
       return expected === undefined ? actual === undefined : actual === expected;
+    }
     const [operator, operand] = expected;
     if (operator === 'IN') return operand.includes(actual);
     if (operator === 'NOT IN') return !operand.includes(actual);
@@ -52,9 +56,10 @@ const matches = (row: Row, where: Record<string, any>): boolean => {
 class MemoryModel<T extends Row> implements WalineModel<T> {
   rows: T[];
   select = vi.fn(async (where: Where<T>, options: any = {}): Promise<T[]> => {
-    let result = this.rows.filter((row) => matches(row, where));
-    if (options.desc)
+    const result = this.rows.filter((row) => matches(row, where));
+    if (options.desc) {
       result.sort((a, b) => String(b[options.desc]).localeCompare(String(a[options.desc])));
+    }
     if (options.order) {
       result.sort((a, b) => {
         for (const order of options.order) {
@@ -113,12 +118,14 @@ class MemoryModel<T extends Row> implements WalineModel<T> {
 
 const guest: WalineUser = {
   objectId: 'u1',
+  id: 'u1',
   email: 'guest@example.com',
   display_name: 'Guest',
   type: 'guest',
   password: 'hash',
 };
 const administrator: WalineUser = {
+  id: 'admin',
   objectId: 'admin',
   email: 'admin@example.com',
   display_name: 'Admin',
@@ -132,6 +139,8 @@ const context = (userInfo?: WalineUser, deprecated = false): WalineContext => ({
   ip: '127.0.0.1',
   serverUrl: 'https://example.com',
 });
+
+const hookMock = (result?: unknown): WalineHook => vi.fn(() => result);
 
 const setup = (partial: Partial<CreateWalineCoreOptions> = {}) => {
   const Comment = new MemoryModel<WalineComment & Row>();
@@ -174,7 +183,7 @@ const setup = (partial: Partial<CreateWalineCoreOptions> = {}) => {
     },
     webhook: { emit: vi.fn(async () => undefined) },
     oauth: {
-      authorize: vi.fn(async () => ({
+      authorize: vi.fn<() => Promise<OAuthProfile>>(async () => ({
         id: 'social',
         email: 'oauth@example.com',
         name: 'OAuth',
@@ -198,12 +207,12 @@ const setup = (partial: Partial<CreateWalineCoreOptions> = {}) => {
 describe('core utilities', () => {
   it('covers validation and authorization helpers', () => {
     expect(requiredString('ok', 'name')).toBe('ok');
-    expect(() => requiredString('', 'name')).toThrowError();
+    expect(() => requiredString('', 'name')).toThrow();
     expect(positiveInt(undefined, 3)).toBe(3);
     expect(positiveInt(2, 1, 3)).toBe(2);
-    expect(() => positiveInt(0, 1)).toThrowError();
+    expect(() => positiveInt(0, 1)).toThrow();
     expect(requiredCapability('value', 'test')).toBe('value');
-    expect(() => requiredCapability(undefined, 'test')).toThrowError();
+    expect(() => requiredCapability(undefined, 'test')).toThrow();
     expect(levelFor([0, 2, 10], 5)).toBe(1);
     expect(currentUser(context())).toBeUndefined();
     expect(currentUser({ headers: {}, state: { userInfo: {} as WalineUser } })).toBeUndefined();
@@ -215,9 +224,9 @@ describe('core utilities', () => {
     ).toBeUndefined();
     expect(isAdmin(context(administrator))).toBe(true);
     expect(requireUser(context(guest))).toBe(guest);
-    expect(() => requireUser(context())).toThrowError();
+    expect(() => requireUser(context())).toThrow();
     expect(requireAdmin(context(administrator))).toBe(administrator);
-    expect(() => requireAdmin(context(guest))).toThrowError();
+    expect(() => requireAdmin(context(guest))).toThrow();
   });
 
   it('covers formatter fallbacks', async () => {
@@ -308,12 +317,10 @@ describe('counter handler', () => {
     await expect(
       env.core.counter.update({ path: '/unset', action: 'inc' }, context()),
     ).resolves.toStrictEqual([{ time: 1 }]);
-    await expect(
-      core.counter.update({ path: '', action: 'inc' }, context()),
-    ).rejects.toThrowError();
+    await expect(core.counter.update({ path: '', action: 'inc' }, context())).rejects.toThrow();
     await expect(
       core.counter.update({ path: '/a', action: 'bad' as 'inc' }, context()),
-    ).rejects.toThrowError();
+    ).rejects.toThrow();
   });
 });
 
@@ -328,7 +335,7 @@ describe('auth handler', () => {
       core.auth.resolveSession({ token: 'token:none' }, context()),
     ).resolves.toBeUndefined();
     const session = await core.auth.resolveSession({ token: 'token:u1' }, context());
-    expect(session).toMatchObject({ objectId: 'u1', token: 'token:u1' });
+    expect(session).toMatchObject({ id: 'u1', token: 'token:u1' });
     expect(session).not.toHaveProperty('password');
     await expect(
       core.auth.resolveSession({ token: 'token:u1' }, { headers: {}, state: {} }),
@@ -336,23 +343,21 @@ describe('auth handler', () => {
     await expect(
       core.auth.login({ email: guest.email, password: 'hash' }, context()),
     ).resolves.toMatchObject({ token: 'token:u1' });
-    await expect(
-      core.auth.login({ email: 'none', password: 'x' }, context()),
-    ).rejects.toThrowError();
+    await expect(core.auth.login({ email: 'none', password: 'x' }, context())).rejects.toThrow();
     account.type = 'banned';
     await expect(
       core.auth.login({ email: guest.email, password: 'hash' }, context()),
-    ).rejects.toThrowError();
+    ).rejects.toThrow();
     account.type = 'verify:1:2';
     await expect(
       core.auth.login({ email: guest.email, password: 'hash' }, context()),
-    ).rejects.toThrowError();
+    ).rejects.toThrow();
     account.type = 'guest';
     account.password = 'hash:pw';
     account['2fa'] = 'secret';
     await expect(
       core.auth.login({ email: guest.email, password: 'pw', code: 'bad' }, context()),
-    ).rejects.toThrowError();
+    ).rejects.toThrow();
     await expect(
       core.auth.login({ email: guest.email, password: 'pw', code: '123456' }, context()),
     ).resolves.toMatchObject({ objectId: 'u1' });
@@ -362,7 +367,7 @@ describe('auth handler', () => {
     await expect(core.auth.getTwoFactorStatus({}, context(account))).resolves.toStrictEqual({
       enable: true,
     });
-    await expect(core.auth.getTwoFactorStatus({}, context())).rejects.toThrowError();
+    await expect(core.auth.getTwoFactorStatus({}, context())).rejects.toThrow();
     await expect(
       core.auth.createTwoFactorSecret({}, context({ ...administrator, '2fa': 'x'.repeat(32) })),
     ).resolves.toMatchObject({ secret: 'x'.repeat(32) });
@@ -372,12 +377,10 @@ describe('auth handler', () => {
     });
     await expect(
       core.auth.enableTwoFactor({ secret: 's', code: 'bad' }, context(guest)),
-    ).rejects.toThrowError();
+    ).rejects.toThrow();
     await core.auth.enableTwoFactor({ secret: 's', code: '123456' }, context(guest));
     expect(account['2fa']).toBe('s');
-    await expect(
-      core.auth.requestPasswordReset({ email: 'none' }, context()),
-    ).rejects.toThrowError();
+    await expect(core.auth.requestPasswordReset({ email: 'none' }, context())).rejects.toThrow();
     await core.auth.requestPasswordReset({ email: guest.email }, context());
     await core.auth.requestPasswordReset({ email: guest.email }, { headers: {}, state: {} });
     expect(services.notification.passwordReset).toHaveBeenCalled();
@@ -389,16 +392,16 @@ describe('verification, oauth and database handlers', () => {
     const { core, Users } = setup();
     await expect(
       core.verification.verifyEmail({ email: 'none', token: '1' }, context()),
-    ).rejects.toThrowError();
+    ).rejects.toThrow();
     Users.rows.push({ ...guest, type: 'guest' });
     const account = Users.rows[0];
     await expect(
       core.verification.verifyEmail({ email: guest.email, token: '1' }, context()),
-    ).rejects.toThrowError();
+    ).rejects.toThrow();
     account.type = 'verify:1234:9999999999999';
     await expect(
       core.verification.verifyEmail({ email: guest.email, token: 'bad' }, context()),
-    ).rejects.toThrowError();
+    ).rejects.toThrow();
     await core.verification.verifyEmail({ email: guest.email, token: '1234' }, context());
     expect(account.type).toBe('guest');
   });
@@ -408,7 +411,7 @@ describe('verification, oauth and database handlers', () => {
     env.services.oauth.authorize.mockResolvedValueOnce({} as any);
     await expect(
       env.core.oauth.authorize({ code: 'c', type: 'github' }, context()),
-    ).rejects.toThrowError();
+    ).rejects.toThrow();
     env.Users.rows.push({ ...guest, github: 'social' });
     await expect(
       env.core.oauth.authorize({ code: 'c', type: 'github' }, context()),
@@ -458,7 +461,7 @@ describe('verification, oauth and database handlers', () => {
 
   it('covers database operations and capability errors', async () => {
     const { core, extra, options } = setup();
-    await expect(core.database.export({}, context())).rejects.toThrowError();
+    await expect(core.database.export({}, context())).rejects.toThrow();
     await expect(core.database.export({}, context(administrator))).resolves.toMatchObject({
       type: 'waline',
       version: 1,
@@ -482,7 +485,7 @@ describe('verification, oauth and database handlers', () => {
     const noModel = createWalineCore({ ...options, models: { ...options.models, get: undefined } });
     await expect(
       noModel.database.clear({ table: 'Any' }, context(administrator)),
-    ).rejects.toThrowError();
+    ).rejects.toThrow();
   });
 });
 
@@ -537,7 +540,7 @@ describe('user handler', () => {
     await expect(
       core.user.get({ email: guest.email }, context(administrator)),
     ).resolves.toMatchObject({ objectId: 'u1' });
-    await expect(core.user.get({ email: guest.email }, context(guest))).rejects.toThrowError();
+    await expect(core.user.get({ email: guest.email }, context(guest))).rejects.toThrow();
   });
 
   it('covers registration, profile updates and removal', async () => {
@@ -546,7 +549,7 @@ describe('user handler', () => {
     const account = env.Users.rows[0];
     await expect(
       env.core.user.register({ email: guest.email, password: 'pw' }, context()),
-    ).rejects.toThrowError();
+    ).rejects.toThrow();
     const result = await env.core.user.register(
       { email: 'new@example.com', password: 'pw' },
       context(),
@@ -574,11 +577,11 @@ describe('user handler', () => {
         { objectId: administrator.objectId, data: { display_name: 'No' } },
         context(guest),
       ),
-    ).rejects.toThrowError();
+    ).rejects.toThrow();
     env.Users.rows.push({ ...administrator });
     await expect(
       env.core.user.update({ data: { email: administrator.email } }, context(guest)),
-    ).rejects.toThrowError();
+    ).rejects.toThrow();
     await expect(env.core.user.update({ data: {} }, context(guest))).resolves.toBeUndefined();
     const noSocialContext = { ...context(account), state: { userInfo: account } };
     await env.core.user.update(
@@ -599,10 +602,10 @@ describe('user handler', () => {
 
     await expect(
       env.core.user.remove({ objectId: administrator.objectId }, context(administrator)),
-    ).rejects.toThrowError();
+    ).rejects.toThrow();
     await expect(
       env.core.user.remove({ objectId: 'none' }, context(administrator)),
-    ).rejects.toThrowError();
+    ).rejects.toThrow();
     const verifyUser = env.Users.rows.find((item) => item.email === 'new@example.com')!;
     await env.core.user.remove({ objectId: verifyUser.objectId }, context(administrator));
     await env.core.user.remove({ objectId: guest.objectId }, context(administrator));
@@ -718,7 +721,7 @@ describe('comment handler', () => {
     );
     await expect(
       env.core.comment.list({ path: '/post', sortBy: 'bad' as 'like_desc' }, context()),
-    ).rejects.toThrowError();
+    ).rejects.toThrow();
     await expect(env.core.comment.listRecent({ count: 3 }, context())).resolves.toHaveLength(2);
     await expect(env.core.comment.listRecent({ count: 3 }, context(guest))).resolves.toHaveLength(
       3,
@@ -736,7 +739,7 @@ describe('comment handler', () => {
     await expect(env.core.comment.listForAdmin({}, context(administrator))).resolves.toHaveProperty(
       'data',
     );
-    await expect(env.core.comment.listForAdmin({}, context(guest))).rejects.toThrowError();
+    await expect(env.core.comment.listForAdmin({}, context(guest))).rejects.toThrow();
     await expect(env.core.comment.count({}, context())).resolves.toBe(2);
     await expect(env.core.comment.count({ url: ['/post'] }, context())).resolves.toStrictEqual([2]);
     await expect(
@@ -753,21 +756,17 @@ describe('comment handler', () => {
   it('covers comment creation filters and effects', async () => {
     const env = setup();
     env.Users.rows.push({ ...guest }, { ...administrator });
-    await expect(
-      env.core.comment.create({ comment: '', url: '/' }, context()),
-    ).rejects.toThrowError();
+    await expect(env.core.comment.create({ comment: '', url: '/' }, context())).rejects.toThrow();
     const forced = setup({ config: { forceLogin: true } });
     await expect(
       forced.core.comment.create({ comment: 'x', url: '/' }, context()),
-    ).rejects.toThrowError();
+    ).rejects.toThrow();
     env.services.captcha.verify.mockResolvedValueOnce(false);
-    await expect(
-      env.core.comment.create({ comment: 'x', url: '/' }, context()),
-    ).rejects.toThrowError();
+    await expect(env.core.comment.create({ comment: 'x', url: '/' }, context())).rejects.toThrow();
     const denied = setup({ config: { disallowIPList: ['127.0.0.1'] } });
     await expect(
       denied.core.comment.create({ comment: 'x', url: '/' }, context()),
-    ).rejects.toThrowError();
+    ).rejects.toThrow();
 
     env.Comment.rows.push({
       objectId: 'duplicate',
@@ -778,7 +777,7 @@ describe('comment handler', () => {
     });
     await expect(
       env.core.comment.create({ comment: 'same', url: '/' }, context()),
-    ).rejects.toThrowError();
+    ).rejects.toThrow();
     env.Comment.rows.length = 0;
     env.Comment.rows.push({
       objectId: 'recent',
@@ -789,7 +788,7 @@ describe('comment handler', () => {
     });
     await expect(
       env.core.comment.create({ comment: 'new', url: '/' }, context()),
-    ).rejects.toThrowError();
+    ).rejects.toThrow();
     env.Comment.rows.length = 0;
 
     env.services.spam.check.mockResolvedValueOnce(true);
@@ -800,7 +799,7 @@ describe('comment handler', () => {
     await words.core.comment.create({ comment: 'bad content', url: '/' }, context());
     expect(words.Comment.rows[0].status).toBe('spam');
 
-    const approved = setup({ hooks: { preSave: [vi.fn(() => undefined)], postSave: vi.fn() } });
+    const approved = setup({ hooks: { preSave: [hookMock()], postSave: hookMock() } });
     const saved = await approved.core.comment.create(
       {
         comment: 'hello',
@@ -809,7 +808,7 @@ describe('comment handler', () => {
         at: 'A',
         captcha: { turnstile: 'secret' },
         ignored: 'value',
-      } as any,
+      },
       context(administrator, true),
     );
     expect(approved.Comment.rows[0]).not.toHaveProperty('captcha');
@@ -829,15 +828,20 @@ describe('comment handler', () => {
     const audited = setup({ config: { audit: true } });
     await audited.core.comment.create({ comment: 'audit', url: '/' }, context());
     expect(audited.Comment.rows[0].status).toBe('waiting');
-    const rejected = setup({ hooks: { preSave: vi.fn(() => 'no') } });
+    const rejected = setup({ hooks: { preSave: hookMock('no') } });
     await expect(
       rejected.core.comment.create({ comment: 'hello', url: '/' }, context(administrator)),
-    ).rejects.toThrowError();
+    ).rejects.toThrow();
   });
 
   it('covers updates, likes and removals', async () => {
     const env = setup({
-      hooks: { preUpdate: vi.fn(), postUpdate: vi.fn(), preDelete: vi.fn(), postDelete: vi.fn() },
+      hooks: {
+        preUpdate: hookMock(),
+        postUpdate: hookMock(),
+        preDelete: hookMock(),
+        postDelete: hookMock(),
+      },
     });
     seed(env);
     await expect(
@@ -848,10 +852,10 @@ describe('comment handler', () => {
         { objectId: 'root', data: { comment: 'x' } },
         context({ ...guest, objectId: 'other' }),
       ),
-    ).rejects.toThrowError();
+    ).rejects.toThrow();
     await expect(
       env.core.comment.update({ objectId: 'root', data: { comment: 'x' } }, context()),
-    ).rejects.toThrowError();
+    ).rejects.toThrow();
     await env.core.comment.update({ objectId: 'root', data: { like: true } }, context());
     expect(env.Comment.rows[0].like).toBe(3);
     await env.core.comment.update({ objectId: 'root', data: { like: false } }, context(guest));
@@ -891,7 +895,7 @@ describe('comment handler', () => {
       { objectId: 'w', data: { status: 'approved' } },
       context(administrator),
     );
-    const rejectUpdate = setup({ hooks: { preUpdate: vi.fn(() => 'no') } });
+    const rejectUpdate = setup({ hooks: { preUpdate: hookMock('no') } });
     rejectUpdate.Comment.rows.push({
       objectId: 'c',
       comment: 'x',
@@ -901,14 +905,14 @@ describe('comment handler', () => {
     });
     await expect(
       rejectUpdate.core.comment.update({ objectId: 'c', data: { comment: 'y' } }, context(guest)),
-    ).rejects.toThrowError();
+    ).rejects.toThrow();
 
     await expect(
       env.core.comment.remove({ objectId: 'root' }, context({ ...guest, objectId: 'other' })),
-    ).rejects.toThrowError();
+    ).rejects.toThrow();
     await env.core.comment.remove({ objectId: 'root' }, context(guest));
     expect(env.Comment.rows.some(({ objectId }) => objectId === 'root')).toBe(false);
-    const rejectDelete = setup({ hooks: { preDelete: vi.fn(() => 'no') } });
+    const rejectDelete = setup({ hooks: { preDelete: hookMock('no') } });
     rejectDelete.Comment.rows.push({
       objectId: 'c',
       comment: 'x',
@@ -918,7 +922,7 @@ describe('comment handler', () => {
     });
     await expect(
       rejectDelete.core.comment.remove({ objectId: 'c' }, context(guest)),
-    ).rejects.toThrowError();
+    ).rejects.toThrow();
     env.Comment.rows.push({
       objectId: 'admin-delete',
       comment: 'x',

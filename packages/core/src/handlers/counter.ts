@@ -4,9 +4,14 @@ import type { CoreRuntime } from '../utils/runtime.js';
 import { requiredString } from '../utils/validation.js';
 
 export const createCounterHandler = ({ models, now }: CoreRuntime) => ({
-  async get(input: { path?: string; type?: string }, ctx: WalineContext) {
-    const paths = input.path?.split(',') ?? [];
-    const types = input.type?.split(',') ?? ['time'];
+  async get(input: { path?: string | string[]; type?: string | string[] }, ctx: WalineContext) {
+    const paths = typeof input.path === 'string' ? input.path.split(',') : (input.path ?? []);
+    const types =
+      typeof input.type === 'string'
+        ? input.type.split(',')
+        : input.type?.length
+          ? input.type
+          : ['time'];
 
     if (!paths.length) return 0;
 

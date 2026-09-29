@@ -1,5 +1,5 @@
 import { WalineError } from '../error.js';
-import type { OAuthAuthorizeInput, WalineContext, WalineUser, Where } from '../types.js';
+import type { OAuthAuthorizeInput, WalineContext } from '../types.js';
 import { currentUser } from '../utils/auth.js';
 import type { CoreRuntime } from '../utils/runtime.js';
 import { requiredCapability } from '../utils/validation.js';
@@ -16,7 +16,7 @@ export const createOAuthHandler = ({ models, random, services }: CoreRuntime) =>
 
     const [linked] = await models.Users.select({
       [input.type]: profile.id,
-    } as Where<WalineUser>);
+    });
 
     if (linked) {
       return { token: await tokenService.sign(linked.objectId), user: linked };
