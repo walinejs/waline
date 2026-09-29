@@ -358,7 +358,7 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
         if (!isAdmin(ctx) && old.user_id !== user.objectId) forbidden();
       }
 
-      //@ts-expect-error
+      //@ts-expect-error: like type can be boolean or number
       const data: Partial<WalineComment> = isAdmin(ctx)
         ? { ...input.data }
         : { comment: input.data.comment, like: input.data.like as number };
