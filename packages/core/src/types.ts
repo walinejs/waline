@@ -144,7 +144,7 @@ export interface WalineServices {
     verify(secret: string, code: string): Promise<boolean>;
   };
   captcha?: { verify(input: unknown, ctx: WalineContext): Promise<boolean> };
-  spam?: { check(comment: WalineComment, ctx: WalineContext): Promise<boolean> };
+  spam?: { check(comment: Partial<WalineComment>, ctx: WalineContext): Promise<boolean> };
   markdown?: { render(value: string): Promise<string> | string };
   avatar?: { stringify(value: Partial<WalineComment> | WalineUser): Promise<string> | string };
   region?: { lookup(ip: string, depth: number): Promise<string> | string };
@@ -155,7 +155,11 @@ export interface WalineServices {
     };
   };
   notification?: {
-    send(comment: WalineComment, parent?: WalineComment, approved?: boolean): Promise<void>;
+    send(
+      comment: Partial<WalineComment>,
+      parent?: Partial<WalineComment>,
+      approved?: boolean,
+    ): Promise<void>;
     passwordReset?(user: WalineUser, url: string): Promise<void>;
     verification?(user: WalineUser, url: string): Promise<void>;
   };

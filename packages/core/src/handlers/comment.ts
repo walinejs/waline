@@ -1,5 +1,5 @@
 import { badRequest, forbidden, unauthorized, WalineError } from '../error.js';
-import type { GroupedCount, WalineComment, WalineContext, Where } from '../types.js';
+import type { GroupedCount, WalineComment, WalineContext, WalineUser, Where } from '../types.js';
 import { currentUser, isAdmin, requireAdmin, requireUser } from '../utils/auth.js';
 import { createCommentFormatter } from '../utils/comment.js';
 import type { CoreRuntime } from '../utils/runtime.js';
@@ -200,14 +200,14 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
       const where: Where<WalineComment> = urls.length ? { url: ['IN', urls] } : {};
       const current = currentUser(ctx);
 
-      if (!current) where.status = ['NOT IN', ['waiting', 'spam']];
-      else {
+      if (current) {
         where._complex = {
           _logic: 'or',
           status: ['NOT IN', ['waiting', 'spam']],
           user_id: current.objectId,
         };
       }
+      else {where.status = ['NOT IN', ['waiting', 'spam']];}
 
       if (urls.length === 1) {
         const count = (await models.Comment.count(where)) as number;
@@ -261,7 +261,9 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
         data.comment = `[@${input.at ?? ''}](#${data.pid}): ${data.comment}`;
       }
 
-      if (!isAdmin(ctx)) {
+      if (isAdmin(ctx)) {
+        data.status = 'approved';
+      } else {
         if (ctx.ip && config.disallowIPList?.includes(ctx.ip)) forbidden();
 
         const duplicate = await models.Comment.select({
@@ -297,8 +299,6 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
         ) {
           data.status = 'spam';
         }
-      } else {
-        data.status = 'approved';
       }
 
       const rejected = await hook('preSave', data, undefined, ctx);
@@ -307,16 +307,27 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
       }
 
       const saved = await models.Comment.add(data);
-      let parent: WalineComment | undefined;
-      if (data.pid) [parent] = await models.Comment.select({ objectId: data.pid });
+      let parent: WalineComment | undefined,
+       parentUser: WalineUser | undefined;
+      if (data.pid) {
+        [parent] = await models.Comment.select({ objectId: data.pid });
+        if (parent.user_id) {
+          [parentUser] = await models.Users.select({ objectId: parent.user_id });
+        }
+      }
+
       await services.webhook?.emit('new_comment', {
         comment: { ...saved, rawComment },
         reply: parent,
       });
+
+      const cmtReturn = await formatComment(saved, ctx, current ? [current] : []);
+      const parentReturn = parent ? await formatComment(parent, ctx, parentUser ? [parentUser] : []) : undefined;
+
       if (data.status !== 'spam' && services.notification) {
         await services.notification.send(
-          { ...saved, rawComment, ...(current && { type: current.type }) },
-          parent,
+          { ...cmtReturn, mail: saved.mail, rawComment },
+          parentReturn && parent ? { ...parentReturn, mail: parent.mail } : undefined,
         );
       }
       await hook('postSave', saved, parent, ctx);
@@ -335,7 +346,7 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
       const id = requiredString(input.objectId, 'objectId');
       const [old] = await models.Comment.select({ objectId: id });
 
-      if (!old) return undefined;
+      if (!old) return;
       const isLikeOnly =
         typeof input.data.like === 'boolean' && Object.keys(input.data).length === 1;
       const current = currentUser(ctx);
@@ -345,8 +356,9 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
         if (!isAdmin(ctx) && old.user_id !== user.objectId) forbidden();
       }
 
+      //@ts-expect-error
       const data: Partial<WalineComment> = isAdmin(ctx)
-        ? { ...input.data }
+        ? {...input.data, like: input.data.like ?? Number(input.data.like) }
         : { comment: input.data.comment, like: input.data.like as number };
 
       if (typeof input.data.like === 'boolean') {
@@ -363,7 +375,7 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
       }
 
       const [updated] = await models.Comment.update(data, { objectId: id });
-      if (!updated) return undefined;
+      if (!updated) return;
 
       if (
         old.status === 'waiting' &&
