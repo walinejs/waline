@@ -155,7 +155,11 @@ export interface WalineServices {
     };
   };
   notification?: {
-    send(comment: WalineComment, parent?: WalineComment, approved?: boolean): Promise<void>;
+    send(
+      comment: Partial<WalineComment>,
+      parent?: Partial<WalineComment>,
+      approved?: boolean,
+    ): Promise<void>;
     passwordReset?(user: WalineUser, url: string): Promise<void>;
     verification?(user: WalineUser, url: string): Promise<void>;
   };

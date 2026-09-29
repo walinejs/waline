@@ -1,5 +1,5 @@
 import { badRequest, forbidden, unauthorized, WalineError } from '../error.js';
-import type { GroupedCount, WalineComment, WalineContext, Where } from '../types.js';
+import type { GroupedCount, WalineComment, WalineContext, WalineUser, Where } from '../types.js';
 import { currentUser, isAdmin, requireAdmin, requireUser } from '../utils/auth.js';
 import { createCommentFormatter } from '../utils/comment.js';
 import type { CoreRuntime } from '../utils/runtime.js';
@@ -308,14 +308,29 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
       }
 
       const saved = await models.Comment.add(data);
-      let parent: WalineComment | undefined;
-      if (data.pid) [parent] = await models.Comment.select({ objectId: data.pid });
+      let parent: WalineComment | undefined, parentUser: WalineUser | undefined;
+      if (data.pid) {
+        [parent] = await models.Comment.select({ objectId: data.pid });
+        if (parent?.user_id) {
+          [parentUser] = await models.Users.select({ objectId: parent.user_id });
+        }
+      }
+
       await services.webhook?.emit('new_comment', {
         comment: { ...saved, rawComment },
         reply: parent,
       });
+
+      const cmtReturn = await formatComment(saved, ctx, current ? [current] : []);
+      const parentReturn = parent
+        ? await formatComment(parent, ctx, parentUser ? [parentUser] : [])
+        : undefined;
+
       if (data.status !== 'spam' && services.notification) {
-        await services.notification.send({ ...saved, rawComment }, parent);
+        await services.notification.send(
+          { ...cmtReturn, mail: saved.mail, rawComment },
+          parentReturn && parent ? { ...parentReturn, mail: parent.mail } : undefined,
+        );
       }
       await hook('postSave', saved, parent, ctx);
       logger.debug('Comment added', saved.objectId);
@@ -343,11 +358,10 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
         if (!isAdmin(ctx) && old.user_id !== user.objectId) forbidden();
       }
 
-      const data = (
-        isAdmin(ctx)
-          ? { ...input.data }
-          : { comment: input.data.comment, like: input.data.like as number }
-      ) as Partial<WalineComment>;
+      //@ts-expect-error: like type can be boolean or number
+      const data: Partial<WalineComment> = isAdmin(ctx)
+        ? { ...input.data }
+        : { comment: input.data.comment, like: input.data.like as number };
 
       if (typeof input.data.like === 'boolean') {
         data.like = Math.max(

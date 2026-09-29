@@ -25,8 +25,12 @@ export const positiveInt = (
 export const requiredCapability = <T>(value: T | undefined, name: string): T =>
   value ?? capability(name);
 
-export const levelFor = (levels: number[], count: number): number => {
+export const levelFor = (levels: number[], count?: number): number => {
   let result = 0;
+
+  if (!count) {
+    return result;
+  }
 
   for (let index = 0; index < levels.length; index += 1) {
     if (levels[index] <= count) result = index;
