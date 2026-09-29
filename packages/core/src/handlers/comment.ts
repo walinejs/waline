@@ -311,7 +311,7 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
       let parent: WalineComment | undefined, parentUser: WalineUser | undefined;
       if (data.pid) {
         [parent] = await models.Comment.select({ objectId: data.pid });
-        if (parent.user_id) {
+        if (parent?.user_id) {
           [parentUser] = await models.Users.select({ objectId: parent.user_id });
         }
       }
