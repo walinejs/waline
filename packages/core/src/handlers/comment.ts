@@ -87,7 +87,7 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
           const count = counts.find((item) =>
             comment.user_id ? item.user_id === comment.user_id : item.mail === comment.mail,
           )?.count;
-          comment.level = levelFor(config.levels, count);
+          comment.level = levelFor(config.levels, count ?? 0);
         }
       }
 
@@ -200,13 +200,14 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
       const where: Where<WalineComment> = urls.length ? { url: ['IN', urls] } : {};
       const current = currentUser(ctx);
 
-      if (!current) where.status = ['NOT IN', ['waiting', 'spam']];
-      else {
+      if (current) {
         where._complex = {
           _logic: 'or',
           status: ['NOT IN', ['waiting', 'spam']],
           user_id: current.objectId,
         };
+      } else {
+        where.status = ['NOT IN', ['waiting', 'spam']];
       }
 
       if (urls.length === 1) {
@@ -261,7 +262,9 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
         data.comment = `[@${input.at ?? ''}](#${data.pid}): ${data.comment}`;
       }
 
-      if (!isAdmin(ctx)) {
+      if (isAdmin(ctx)) {
+        data.status = 'approved';
+      } else {
         if (ctx.ip && config.disallowIPList?.includes(ctx.ip)) forbidden();
 
         const duplicate = await models.Comment.select({
@@ -297,8 +300,6 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
         ) {
           data.status = 'spam';
         }
-      } else {
-        data.status = 'approved';
       }
 
       const rejected = await hook('preSave', data, undefined, ctx);
@@ -332,7 +333,7 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
       const id = requiredString(input.objectId, 'objectId');
       const [old] = await models.Comment.select({ objectId: id });
 
-      if (!old) return undefined;
+      if (!old) return;
       const isLikeOnly =
         typeof input.data.like === 'boolean' && Object.keys(input.data).length === 1;
       const current = currentUser(ctx);
@@ -342,9 +343,11 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
         if (!isAdmin(ctx) && old.user_id !== user.objectId) forbidden();
       }
 
-      const data: Partial<WalineComment> = isAdmin(ctx)
-        ? { ...input.data }
-        : { comment: input.data.comment, like: input.data.like as number };
+      const data = (
+        isAdmin(ctx)
+          ? { ...input.data }
+          : { comment: input.data.comment, like: input.data.like as number }
+      ) as Partial<WalineComment>;
 
       if (typeof input.data.like === 'boolean') {
         data.like = Math.max(
@@ -360,7 +363,7 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
       }
 
       const [updated] = await models.Comment.update(data, { objectId: id });
-      if (!updated) return undefined;
+      if (!updated) return;
 
       if (
         old.status === 'waiting' &&
