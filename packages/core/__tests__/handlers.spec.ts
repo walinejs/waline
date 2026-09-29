@@ -816,7 +816,10 @@ describe('comment handler', () => {
     expect(approved.Comment.rows[0]).not.toHaveProperty('ignored');
     expect(saved.comment).toContain('<p>');
     expect(approved.services.webhook.emit).toHaveBeenCalled();
-    expect(approved.services.notification.send).toHaveBeenCalled();
+    expect(approved.services.notification.send).toHaveBeenCalledWith(
+      expect.objectContaining({ type: 'administrator' }),
+      undefined,
+    );
     const noIp = context();
     noIp.ip = undefined;
     await approved.core.comment.create(

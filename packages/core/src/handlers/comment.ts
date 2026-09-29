@@ -314,7 +314,10 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
         reply: parent,
       });
       if (data.status !== 'spam' && services.notification) {
-        await services.notification.send({ ...saved, rawComment }, parent);
+        await services.notification.send(
+          { ...saved, rawComment, ...(current && { type: current.type }) },
+          parent,
+        );
       }
       await hook('postSave', saved, parent, ctx);
       logger.debug('Comment added', saved.objectId);
