@@ -144,7 +144,7 @@ export interface WalineServices {
     verify(secret: string, code: string): Promise<boolean>;
   };
   captcha?: { verify(input: unknown, ctx: WalineContext): Promise<boolean> };
-  spam?: { check(comment: WalineComment, ctx: WalineContext): Promise<boolean> };
+  spam?: { check(comment: Partial<WalineComment>, ctx: WalineContext): Promise<boolean> };
   markdown?: { render(value: string): Promise<string> | string };
   avatar?: { stringify(value: Partial<WalineComment> | WalineUser): Promise<string> | string };
   region?: { lookup(ip: string, depth: number): Promise<string> | string };

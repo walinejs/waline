@@ -13,7 +13,7 @@ export const createVerificationHandler = ({ models, now }: CoreRuntime) => ({
       throw new WalineError('USER_NOT_EXIST', 400, 'USER_NOT_EXIST');
     }
 
-    const match = account.type.match(/^verify:(?<code>\d{4}):(?<timestamp>\d+)$/iu);
+    const match = /^verify:(?<code>\d{4}):(?<timestamp>\d+)$/iu.exec(account.type);
     if (!match) {
       throw new WalineError('USER_REGISTERED', 400, 'USER_REGISTERED');
     }

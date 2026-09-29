@@ -28,11 +28,11 @@ export const createWalineCore = (options: CreateWalineCoreOptions) => {
     if (!ctx) return undefined;
 
     const configured = options.hooks?.[name];
-    const hooks: WalineHook[] = !configured
-      ? []
-      : Array.isArray(configured)
+    const hooks: WalineHook[] = configured
+      ? Array.isArray(configured)
         ? configured
-        : [configured];
+        : [configured]
+      : [];
 
     for (const callback of hooks) {
       const result = await callback(payload, extra, ctx);

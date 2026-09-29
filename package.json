@@ -19,7 +19,7 @@
     "dev": "turbo run dev",
     "docs:build": "pnpm --dir=docs run build && pnpm api:docs",
     "docs:dev": "pnpm --dir=docs run dev",
-    "lint": "turbo run lint",
+    "lint": "pnpm lint:oxlint --deny-warnings && oxfmt && pnpm lint:stylelint",
     "lint:md": "markdownlint-cli2 '**/*.md'",
     "lint:oxlint": "oxlint --fix --report-unused-disable-directives",
     "lint:stylelint": "stylelint packages/*/src/**/*.scss --fix",
