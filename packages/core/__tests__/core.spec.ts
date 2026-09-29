@@ -1,7 +1,8 @@
+/* oxlint-disable vitest/prefer-strict-equal */
 import { describe, expect, it } from 'vitest';
 
-import { createWalineCore, WalineError } from '../src/index.js';
-import type { WalineContext, WalineModel } from '../src/index.js';
+import { createWalineCore } from '../src/index.js';
+import type { WalineContext, WalineModel, WalineError } from '../src/index.js';
 
 const ctx = (deprecated = false): WalineContext => ({
   headers: {},
@@ -17,8 +18,9 @@ const memoryModel = <T extends { objectId: string }>(initial: T[] = []): WalineM
       return rows.filter((row) =>
         Object.entries(where).every(([key, expected]) => {
           if (key === '_complex') return true;
-          if (Array.isArray(expected) && expected[0] === 'IN')
+          if (Array.isArray(expected) && expected[0] === 'IN') {
             return expected[1].includes(row[key as keyof T]);
+          }
           return row[key as keyof T] === expected;
         }),
       );
@@ -55,7 +57,7 @@ const setup = () => {
   };
 };
 
-describe('Waline core', () => {
+describe('waline core', () => {
   it('keeps counter compatibility shapes', async () => {
     const { core } = setup();
 

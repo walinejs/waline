@@ -218,12 +218,12 @@ button.operate-reply {
 }
 
 .spoiler {
-  cursor: help;
-  background-color: currentColor;
   border-radius: 0.2em;
+  background-color: currentcolor;
+  cursor: help;
   transition: background 0.5s;
 
   &:focus {
-    background-color: #0000;
+    background-color: transparent;
   }
 }

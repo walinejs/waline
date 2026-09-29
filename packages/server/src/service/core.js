@@ -147,7 +147,7 @@ module.exports = class extends think.Service {
           },
           verification: async (account, serverUrl) => {
             const { SENDER_EMAIL, SENDER_NAME, SMTP_USER, SITE_NAME } = process.env;
-            const code = account.type.split(':')[1];
+            const [, code] = account.type.split(':');
             const url = think.buildUrl(`${serverUrl}/verification`, {
               token: code,
               email: account.email,
