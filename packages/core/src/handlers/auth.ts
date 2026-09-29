@@ -29,7 +29,7 @@ export const createAuthHandler = (runtime: CoreRuntime) => {
         },
         {
           field: [
-            'id',
+            'objectId',
             'email',
             'url',
             'display_name',
