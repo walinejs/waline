@@ -600,6 +600,31 @@ importers:
         specifier: 3.0.4
         version: 3.0.4(supports-color@10.2.2)
 
+  packages/worker:
+    dependencies:
+      '@waline/core':
+        specifier: workspace:*
+        version: link:../core
+      bcryptjs:
+        specifier: ^3.0.3
+        version: 3.0.3
+      hono:
+        specifier: ^4.9.9
+        version: 4.13.11
+      md5:
+        specifier: 2.3.0
+        version: 2.3.0
+    devDependencies:
+      '@types/md5':
+        specifier: ^2.3.5
+        version: 2.3.6
+      tsdown:
+        specifier: ^0.23.0
+        version: 0.23.0(publint@0.3.24)(tsx@4.21.0)(typescript@7.0.2)(unrun@0.3.1(synckit@0.11.13))
+      typescript:
+        specifier: 'catalog:'
+        version: 7.0.2
+
 packages:
 
   '@asamuzakjp/css-color@7.1.0':
@@ -3124,6 +3149,9 @@ packages:
   '@types/markdown-it@14.2.0':
     resolution: {integrity: sha512-NoQ2yGlLWj4wpxMs+TYmRKk3thDrQ97agr7sFqfLsAlvoS8SNQuTrlObhFqG9iugdTtgOE9jpJ6FNM4ZGsa5xQ==}
 
+  '@types/md5@2.3.6':
+    resolution: {integrity: sha512-WD69gNXtRBnpknfZcb4TRQ0XJQbUPZcai/Qdhmka3sxUR3Et8NrXoeAoknG/LghYHTf4ve795rInVYHBTQdNVA==}
+
   '@types/mdast@4.0.4':
     resolution: {integrity: sha512-kGaNbPh1k7AFzgpud/gMdvIm5xuECykRR+JnWKQno9TAXVa6WIVCGTPvYGekIDL4uwCZQSYbUxNBSb1aUo79oA==}
 
@@ -5255,6 +5283,10 @@ packages:
 
   highlight.js@10.7.3:
     resolution: {integrity: sha512-tzcUFauisWKNHaRkN4Wjl/ZA07gENAjFl3J/c480dprkGTg5EQstgaNFqBfUqCq54kZRIEcreTsAgF/m2quD7A==}
+
+  hono@4.13.11:
+    resolution: {integrity: sha512-/SMX/RQNJn7oNmFwH6DtwDqcrzZU2otm1FD6OJe2cWF6cfy/F8hq0XVBv7xW3FTJshRQwuBnXHDq2kNsdZnshg==}
+    engines: {node: '>=16.9.0'}
 
   hookable@5.5.3:
     resolution: {integrity: sha512-Yc+BQe8SvoXH1643Qez1zqLRmbA5rCL+sSmk6TVos0LWVfNIB7PGncdlId77WzLGSIB5KaWgTaNTs2lNVEI6VQ==}
@@ -10621,6 +10653,8 @@ snapshots:
       '@types/linkify-it': 5.0.0
       '@types/mdurl': 2.0.0
 
+  '@types/md5@2.3.6': {}
+
   '@types/mdast@4.0.4':
     dependencies:
       '@types/unist': 3.0.3
@@ -13158,6 +13192,8 @@ snapshots:
       strip-indent: 3.0.0
 
   highlight.js@10.7.3: {}
+
+  hono@4.13.11: {}
 
   hookable@5.5.3: {}
 
