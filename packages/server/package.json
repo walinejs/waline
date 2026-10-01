@@ -42,7 +42,7 @@
     "koa-compose": "^4.1.0",
     "leancloud-storage": "^4.15.2",
     "markdown-it": "^15.0.2",
-    "nodemailer": "^10.0.10",
+    "nodemailer": "^10.0.13",
     "nunjucks": "^3.2.4",
     "phpass": "^1.0.0",
     "prismjs": "^1.30.0",

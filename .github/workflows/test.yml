@@ -23,15 +23,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v6
-
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v7
+      - name: Setup pnpm
+        uses: pnpm/setup@v3
         with:
-          node-version: ${{ matrix.node-version }}
-          check-latest: true
-          cache: pnpm
+          runtime: node@${{ matrix.node-version }}
 
       - name: Install Dependencies
         run: pnpm ci

@@ -15,27 +15,30 @@ catalog:
   vue: ^3.5.43
   vite: 8.3.1
 
-enableGlobalVirtualStore: true
+virtualStoreType: global
 
 minimumReleaseAgeExclude:
+  - '@mdit/*'
+  - '@mr-hope/*'
   - '@oxfmt/*'
   - '@oxlint/*'
   - '@oxlint-tsgolint/*'
-  - '@mdit/*'
   - '@vercel/*'
   - '@vitest/*'
   - '@vue/*'
   - '@vuepress/*'
-  - oxc-config-hope
-  - oxfmt
-  - oxlint
-  - oxlint-tsgolint
-  - tsdown
-  - vercel
-  - vitest
-  - vue
-  - vuepress-*
-  - stylelint-config-hope
+  - '@waline/*'
+  - 'oxc-config-hope'
+  - 'oxfmt'
+  - 'oxlint'
+  - 'oxlint-tsgolint'
+  - 'stylelint-config-hope'
+  - 'tsdown'
+  - 'vercel'
+  - 'vitest'
+  - 'vue'
+  - 'vuepress'
+  - 'vuepress-*'
 
 minimumReleaseAgeExcludePrune: true
 
@@ -64,3 +67,4 @@ packageExtensions:
 trustPolicy: no-downgrade
 
 trustPolicyIgnoreAfter: 720
+trustPolicyExcludePrune: true

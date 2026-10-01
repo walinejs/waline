@@ -29,16 +29,13 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - uses: pnpm/action-setup@v6
-
-      - uses: actions/setup-node@v7
+      - name: Setup pnpm
+        uses: pnpm/setup@v3
         with:
-          node-version: 24
-          check-latest: true
-          cache: pnpm
+          runtime: node@^24.20.0
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm ci
 
       - name: Create GitHub deployment
         uses: actions/github-script@v9

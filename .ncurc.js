@@ -1,21 +1,33 @@
 export default {
   cooldown: (pkg) => {
     if (
-      ['@oxlint/', '@oxfmt', '@oxlint-tsgolint/', '@vercel', '@vitest/', '@vue/'].some((item) =>
-        pkg.startsWith(item),
-      ) ||
+      [
+        '@mdit/',
+        '@mr-hope/',
+        '@oxfmt/',
+        '@oxlint/',
+        '@oxlint-tsgolint/',
+        '@vercel/',
+        '@vitest/',
+        '@vue/',
+        '@vuepress/',
+        '@waline/',
+        'vuepress-',
+      ].some((prefix) => pkg.startsWith(prefix)) ||
       [
         'oxc-config-hope',
         'oxfmt',
         'oxlint',
         'oxlint-tsgolint',
+        'stylelint-config-hope',
         'tsdown',
         'vercel',
         'vitest',
         'vue',
+        'vuepress',
       ].includes(pkg)
     ) {
-      return false;
+      return 0;
     }
 
     return 1;
