@@ -27,15 +27,14 @@ waline:
   # Waline server address url, you should set this to your own link
   serverURL: https://waline.vercel.app
 
+  # If false, disable the comment
+  comment: true
+
   # Waline library CDN url, you can set this to your preferred CDN
   # libUrl: https://unpkg.com/@waline/client@v3/dist/waline.umd.js
 
   # Waline CSS styles CDN url, you can set this to your preferred CDN
   cssUrl: https://unpkg.com/@waline/client@v3/dist/waline.css
-
-  # Custom locales
-  # locale:
-  #   placeholder: Welcome to comment # Comment box placeholder
 
   # If false, comment count will only be displayed in post page, not in home page
   commentCount: true
@@ -43,14 +42,20 @@ waline:
   # Pageviews count, Note: You should not enable both `waline.pageview` and `leancloud_visitors`.
   pageview: false
 
+  
+  
+  # Custom locales
+  # locale:
+  #   placeholder: Welcome to comment # Comment box placeholder
+
   # Custom emoji
   # emoji:
-  #   - https://unpkg.com/@waline/emojis@1.1.0/weibo
-  #   - https://unpkg.com/@waline/emojis@1.1.0/alus
-  #   - https://unpkg.com/@waline/emojis@1.1.0/bilibili
-  #   - https://unpkg.com/@waline/emojis@1.1.0/qq
-  #   - https://unpkg.com/@waline/emojis@1.1.0/tieba
-  #   - https://unpkg.com/@waline/emojis@1.1.0/tw-emoji
+  #   - https://unpkg.com/@waline/emojis@1.4.0/weibo
+  #   - https://unpkg.com/@waline/emojis@1.4.0/alus
+  #   - https://unpkg.com/@waline/emojis@1.4.0/bilibili
+  #   - https://unpkg.com/@waline/emojis@1.4.0/qq
+  #   - https://unpkg.com/@waline/emojis@1.4.0/tieba
+  #   - https://unpkg.com/@waline/emojis@1.4.0/tw-emoji
 
   # Comment information, valid meta are nick, mail and link
   # meta:
@@ -62,7 +67,7 @@ waline:
   # requiredMeta:
   #   - nick
 
-  # Language, available values: en-US, zh-CN, zh-TW, pt-BR, ru-RU, jp-JP, fr-FR, es-MX
+  # Language, available values: en-US, zh-CN, zh-TW, pt-BR, ru-RU, jp-JP, fr-FR
   # lang: zh-CN
 
   # Word limit, no limit when setting to 0
@@ -73,4 +78,7 @@ waline:
 
   # comment per page
   # pageSize: 10
+  
+  # Enable quick reaction. https://waline.js.org/guide/features/reaction.html 
+  # reaction: false
 ```
