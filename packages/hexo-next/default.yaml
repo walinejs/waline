@@ -24,18 +24,20 @@ waline:
   # Pageviews count, Note: You should not enable both `waline.pageview` and `leancloud_visitors`.
   pageview: false
 
+  
+  
   # Custom locales
   # locale:
   #   placeholder: Welcome to comment # Comment box placeholder
 
   # Custom emoji
   # emoji:
-  #   - https://unpkg.com/@waline/emojis@1.1.0/weibo
-  #   - https://unpkg.com/@waline/emojis@1.1.0/alus
-  #   - https://unpkg.com/@waline/emojis@1.1.0/bilibili
-  #   - https://unpkg.com/@waline/emojis@1.1.0/qq
-  #   - https://unpkg.com/@waline/emojis@1.1.0/tieba
-  #   - https://unpkg.com/@waline/emojis@1.1.0/tw-emoji
+  #   - https://unpkg.com/@waline/emojis@1.4.0/weibo
+  #   - https://unpkg.com/@waline/emojis@1.4.0/alus
+  #   - https://unpkg.com/@waline/emojis@1.4.0/bilibili
+  #   - https://unpkg.com/@waline/emojis@1.4.0/qq
+  #   - https://unpkg.com/@waline/emojis@1.4.0/tieba
+  #   - https://unpkg.com/@waline/emojis@1.4.0/tw-emoji
 
   # Comment information, valid meta are nick, mail and link
   # meta:
@@ -58,3 +60,6 @@ waline:
 
   # comment per page
   # pageSize: 10
+  
+  # Enable quick reaction. https://waline.js.org/guide/features/reaction.html 
+  # reaction: false
