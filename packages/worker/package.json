@@ -1,0 +1,61 @@
+{
+  "name": "@waline/worker",
+  "version": "0.1.0",
+  "description": "Web Runtime server for Waline powered by Hono",
+  "keywords": [
+    "blog",
+    "cloudflare",
+    "comment",
+    "hono",
+    "vercel",
+    "waline",
+    "worker"
+  ],
+  "license": "MIT",
+  "author": "lizheming <i@imnerd.org>",
+  "repository": {
+    "url": "git+https://github.com/walinejs/waline.git",
+    "directory": "packages/worker"
+  },
+  "files": [
+    "dist",
+    "examples",
+    "migrations",
+    "README.md"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json",
+    "./migrations/*": "./migrations/*"
+  },
+  "publishConfig": {
+    "provenance": true
+  },
+  "scripts": {
+    "build": "tsdown",
+    "clean": "rimraf dist",
+    "prepublishOnly": "pnpm run clean && pnpm run build",
+    "test": "vitest run __tests__"
+  },
+  "dependencies": {
+    "@waline/core": "workspace:*",
+    "bcryptjs": "^3.0.3",
+    "hono": "^4.9.9",
+    "md5": "2.3.0"
+  },
+  "devDependencies": {
+    "@types/md5": "^2.3.5",
+    "tsdown": "^0.23.0",
+    "typescript": "catalog:"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
