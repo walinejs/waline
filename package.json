@@ -52,7 +52,7 @@
     "oxlint-tsgolint": "7.0.2003",
     "picocolors": "1.1.1",
     "postcss": "8.5.28",
-    "publint": "0.3.24",
+    "publint": "0.3.25",
     "rimraf": "6.1.3",
     "sass-embedded": "1.105.1",
     "stylelint": "17.15.0",

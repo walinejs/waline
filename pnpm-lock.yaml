@@ -247,8 +247,8 @@ importers:
         specifier: 8.5.28
         version: 8.5.28
       publint:
-        specifier: 0.3.24
-        version: 0.3.24
+        specifier: 0.3.25
+        version: 0.3.25
       rimraf:
         specifier: 6.1.3
         version: 6.1.3
@@ -263,7 +263,7 @@ importers:
         version: 12.1.0(postcss@8.5.28)(stylelint@17.15.0(supports-color@10.2.2)(typescript@7.0.2))
       tsdown:
         specifier: 0.23.0
-        version: 0.23.0(publint@0.3.24)(tsx@4.21.0)(typescript@7.0.2)(unrun@0.3.1(synckit@0.11.13))
+        version: 0.23.0(publint@0.3.25)(tsx@4.21.0)(typescript@7.0.2)(unrun@0.3.1(synckit@0.11.13))
       typescript:
         specifier: 'catalog:'
         version: 7.0.2
@@ -443,7 +443,7 @@ importers:
     devDependencies:
       tsdown:
         specifier: ^0.23.0
-        version: 0.23.0(publint@0.3.24)(tsx@4.21.0)(typescript@7.0.2)(unrun@0.3.1(synckit@0.11.13))
+        version: 0.23.0(publint@0.3.25)(tsx@4.21.0)(typescript@7.0.2)(unrun@0.3.1(synckit@0.11.13))
       typescript:
         specifier: 'catalog:'
         version: 7.0.2
@@ -6747,8 +6747,8 @@ packages:
   psl@1.15.0:
     resolution: {integrity: sha512-JZd3gMVBAVQkSs6HdNZo9Sdo0LNcQeMNP3CozBJb3JYC/QUYZTnKxP+f8oWRX4rHP5EurWxqAHTSwUCjlNKa1w==}
 
-  publint@0.3.24:
-    resolution: {integrity: sha512-9zS56KrKBoqi5Qt8h92uMP8TTM9AYZSgnmCo4u2priMqkOZvQnTsziZ2p5LJ2ywbYkAjoCDp2jda9u4cgFefIw==}
+  publint@0.3.25:
+    resolution: {integrity: sha512-WMMbn/d7JqRlfXQL/JUI4n5skC8cJ5WVr8/wT5mmiYWkUdENkZr1I5rgs2+dQPVRgoJd+JRYtB46MTsuDylw9g==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -14792,7 +14792,7 @@ snapshots:
     dependencies:
       punycode: 2.3.1
 
-  publint@0.3.24:
+  publint@0.3.25:
     dependencies:
       '@publint/pack': 0.1.7
       package-manager-detector: 1.8.0
@@ -16042,7 +16042,7 @@ snapshots:
 
   ts-toolbelt@6.15.5: {}
 
-  tsdown@0.23.0(publint@0.3.24)(tsx@4.21.0)(typescript@7.0.2)(unrun@0.3.1(synckit@0.11.13)):
+  tsdown@0.23.0(publint@0.3.25)(tsx@4.21.0)(typescript@7.0.2)(unrun@0.3.1(synckit@0.11.13)):
     dependencies:
       cac: 7.0.0
       defu: 6.1.7
@@ -16059,7 +16059,7 @@ snapshots:
       unconfig-core: 7.5.0
       verkit: 0.4.1
     optionalDependencies:
-      publint: 0.3.24
+      publint: 0.3.25
       tsx: 4.21.0
       typescript: 7.0.2
       unrun: 0.3.1(synckit@0.11.13)
