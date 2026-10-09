@@ -35,7 +35,7 @@
     "waline-root": "link:"
   },
   "devDependencies": {
-    "@babel/runtime": "8.0.5",
+    "@babel/runtime": "8.0.7",
     "@mr-hope/tsconfig": "0.0.4",
     "@mr-hope/verify-commit-message": "0.1.1",
     "@redocly/cli": "2.56.0",
