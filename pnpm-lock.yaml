@@ -572,8 +572,8 @@ importers:
         version: 2.0.10
     devDependencies:
       dotenv:
-        specifier: 18.0.4
-        version: 18.0.4
+        specifier: 18.0.7
+        version: 18.0.7
       think-watcher:
         specifier: 3.0.4
         version: 3.0.4(supports-color@10.2.2)
@@ -4770,8 +4770,8 @@ packages:
   dot-case@3.0.4:
     resolution: {integrity: sha512-Kv5nKlh6yRrdrGvxeJ2e5y2eRUpkUosIW4A2AS38zwSz27zu7ufDwQPi5Jhs3XAlGNetl3bmnGhQsMtkKJnj3w==}
 
-  dotenv@18.0.4:
-    resolution: {integrity: sha512-jGt9uI5BIxpVO15kvy+iEFqNAwxYClKWnkptLjSNPnFLC003Imd0ofr3aEVsbpHdSBdSsbcApNIlz4nbyGMwdA==}
+  dotenv@18.0.7:
+    resolution: {integrity: sha512-QEvMEF8ca3GNZJJnAbOgxpj5ULhBvnMcURp+XKrtvqFNPgjBvYoswQ0Jl2cO7JzCjxZjJhr9ZuIEhlrRxMft/Q==}
     engines: {node: '>=12'}
     hasBin: true
 
@@ -12644,7 +12644,7 @@ snapshots:
       no-case: 3.0.4
       tslib: 2.8.1
 
-  dotenv@18.0.4: {}
+  dotenv@18.0.7: {}
 
   dts-resolver@3.0.0: {}
 
