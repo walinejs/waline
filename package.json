@@ -38,7 +38,7 @@
     "@babel/runtime": "8.0.5",
     "@mr-hope/tsconfig": "0.0.4",
     "@mr-hope/verify-commit-message": "0.1.1",
-    "@redocly/cli": "2.56.0",
+    "@redocly/cli": "2.62.1",
     "@types/node": "26.6.3",
     "@vitejs/plugin-react": "6.1.1",
     "@vitest/coverage-v8": "5.0.3",
