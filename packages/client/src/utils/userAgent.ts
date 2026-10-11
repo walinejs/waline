@@ -46,8 +46,12 @@ interface NavigatorUAData extends UALowEntropyJSON {
 export const userAgent = async (): Promise<string> => {
   const { userAgentData } = navigator;
   let ua = navigator.userAgent;
+  
+  if (!userAgentData) {
+    return ua;
+  }
 
-  const { platformVersion } = await userAgentData.getHighEntropyValues(['platformVersion']);
+  const { platformVersion } = await userAgentData?.getHighEntropyValues(['platformVersion']);
   if (!platformVersion) {
     return ua;
   }
