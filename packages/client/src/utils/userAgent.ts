@@ -72,7 +72,7 @@ export const userAgent = async (): Promise<string> => {
     const isMacOS1015Later = majorVersionNum > 10 || (majorVersionNum === 10 && minorVersionNum >= 15);
   
     if(isMacOS1015Later) {
-      ua = ua.replace('macOS X 10_15_7', `macOS X ${platformVersion.replace(/\./g, '_')}`);
+      ua = ua.replace('Mac OS X 10_15_7', `Mac OS X ${platformVersion.replace(/\./g, '_')}`);
     }
   }
 
