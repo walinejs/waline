@@ -63,8 +63,8 @@ export const userAgent = async (): Promise<string> => {
   // https://docs.uaparser.dev/guides/how-to-detect-macos-10157-using-javascript.htm
   if (userAgentData?.platform === 'macOS") {
     const macOsVersions = platformVersion.split('.');
-    const majorVersionNum = Math.trunc(Number(platformVersion?.[0]));
-    const minorVersionNum = Math.trunc(Number(platformVersion?.[1]));
+    const majorVersionNum = Math.trunc(Number(macOsVersions?.[0]));
+    const minorVersionNum = Math.trunc(Number(macOsVersions?.[1]));
     const isMacOS1015Later = majorVersionNum >= 10 && minorVersionNumber >= 15;
   
     if(isMacOS1015Later) {
