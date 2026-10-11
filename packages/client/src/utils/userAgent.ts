@@ -51,7 +51,7 @@ export const userAgent = async (): Promise<string> => {
     return ua;
   }
 
-  const { platformVersion } = await userAgentData?.getHighEntropyValues?.(['platformVersion']);
+  const { platformVersion } = await userAgentData.getHighEntropyValues(['platformVersion']);
   if (!platformVersion) {
     return ua;
   }
