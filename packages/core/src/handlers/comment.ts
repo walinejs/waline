@@ -49,7 +49,7 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
           offset: Math.max((page - 1) * pageSize, 0),
           order: [
             { field: 'sticky', direction: 'desc', nulls: 'last' },
-            { field: sortField, direction },
+            { field: sortField, direction, nulls: 'last' },
             { field: 'objectId', direction },
           ],
         }),
