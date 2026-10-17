@@ -373,8 +373,8 @@ importers:
         specifier: 19.3.0
         version: 19.3.0(react@19.3.0)
       react-i18next:
-        specifier: 17.0.15
-        version: 17.0.15(i18next@26.4.2(typescript@7.0.2))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@7.0.2)
+        specifier: 17.0.19
+        version: 17.0.19(i18next@26.4.2(typescript@7.0.2))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@7.0.2)
       react-redux:
         specifier: 9.3.0
         version: 9.3.0(react@19.3.0)(redux@5.0.1)
@@ -3646,21 +3646,6 @@ packages:
       twikoo:
         optional: true
 
-  '@vuepress/plugin-comment@2.0.0-rc.137':
-    resolution: {integrity: sha512-TaJKSynAlhysxIPL7JVdtFiQrH1rgfBTfwqoY65YZNLQnfBBAU/KzhDwxrvFqYIFtFS3MAcP8nxpyqN4YLLQFg==}
-    peerDependencies:
-      '@waline/client': workspace:*
-      artalk: ^2.9.1
-      twikoo: ^1.7.2 || ^2.0.0
-      vuepress: 2.0.0-rc.31
-    peerDependenciesMeta:
-      '@waline/client':
-        optional: true
-      artalk:
-        optional: true
-      twikoo:
-        optional: true
-
   '@vuepress/plugin-copy-code@2.0.0-rc.134':
     resolution: {integrity: sha512-ye0xrWQVomYVdPpvMRkWMJNH5/JPzwqVL6+zPYGSg/BRU9MGbWAJFRO2uS6jXYc2jQ4vQ+U1i6p4j4QyFb9v8Q==}
     peerDependencies:
@@ -6804,8 +6789,8 @@ packages:
     peerDependencies:
       react: ^19.3.0
 
-  react-i18next@17.0.15:
-    resolution: {integrity: sha512-7uYpx/oBkesLto7cOzOmfITlUBaXHCAcFahmgETMfWr8nbbWRRnVGvz8wsH/xpbNcyoH+NpCcnOQEqWPMO6/hw==}
+  react-i18next@17.0.19:
+    resolution: {integrity: sha512-BRHqiqOfW4J/LBVtbBFHoBoZm/Ez2/tkHPitYtn0CSpkYhEaEAsZMPsg7hZlomu30UJYQ6ZKiP3pwa3QnxGvQw==}
     peerDependencies:
       i18next: '>= 26.2.0'
       react: '>= 16.8.0'
@@ -11489,20 +11474,6 @@ snapshots:
       - '@vuepress/bundler-webpack'
       - typescript
 
-  '@vuepress/plugin-comment@2.0.0-rc.137(@vuepress/bundler-vite@2.0.0-rc.31(@types/node@26.6.3)(@vue/compiler-sfc@3.5.43)(esbuild@0.27.0)(sass-embedded@1.105.1)(sass@1.105.1)(supports-color@10.2.2)(tsx@4.21.0)(typescript@5.9.3))(@waline/client@packages+client)(typescript@5.9.3)(vuepress@2.0.0-rc.31(@vue/compiler-sfc@3.5.43)(@vuepress/bundler-vite@2.0.0-rc.31(@types/node@26.6.3)(@vue/compiler-sfc@3.5.43)(esbuild@0.27.0)(sass-embedded@1.105.1)(sass@1.105.1)(supports-color@10.2.2)(tsx@4.21.0)(typescript@5.9.3))(esbuild@0.27.0)(rolldown@1.2.11)(supports-color@10.2.2)(typescript@5.9.3)(vite@8.3.1(@types/node@26.6.3)(esbuild@0.27.0)(sass-embedded@1.105.1)(sass@1.105.1)(tsx@4.21.0))(vue@3.5.43(typescript@5.9.3)))':
-    dependencies:
-      '@vuepress/helper': 2.0.0-rc.135(@vuepress/bundler-vite@2.0.0-rc.31(@types/node@26.6.3)(@vue/compiler-sfc@3.5.43)(esbuild@0.27.0)(sass-embedded@1.105.1)(sass@1.105.1)(supports-color@10.2.2)(tsx@4.21.0)(typescript@5.9.3))(typescript@5.9.3)(vuepress@2.0.0-rc.31(@vue/compiler-sfc@3.5.43)(@vuepress/bundler-vite@2.0.0-rc.31(@types/node@26.6.3)(@vue/compiler-sfc@3.5.43)(esbuild@0.27.0)(sass-embedded@1.105.1)(sass@1.105.1)(supports-color@10.2.2)(tsx@4.21.0)(typescript@5.9.3))(esbuild@0.27.0)(rolldown@1.2.11)(supports-color@10.2.2)(typescript@5.9.3)(vite@8.3.1(@types/node@26.6.3)(esbuild@0.27.0)(sass-embedded@1.105.1)(sass@1.105.1)(tsx@4.21.0))(vue@3.5.43(typescript@5.9.3)))
-      '@vueuse/core': 15.0.0(vue@3.5.43(typescript@5.9.3))
-      giscus: 1.6.0
-      vue: 3.5.43(typescript@5.9.3)
-      vuepress: 2.0.0-rc.31(@vue/compiler-sfc@3.5.43)(@vuepress/bundler-vite@2.0.0-rc.31(@types/node@26.6.3)(@vue/compiler-sfc@3.5.43)(esbuild@0.27.0)(sass-embedded@1.105.1)(sass@1.105.1)(supports-color@10.2.2)(tsx@4.21.0)(typescript@5.9.3))(esbuild@0.27.0)(rolldown@1.2.11)(supports-color@10.2.2)(typescript@5.9.3)(vite@8.3.1(@types/node@26.6.3)(esbuild@0.27.0)(sass-embedded@1.105.1)(sass@1.105.1)(tsx@4.21.0))(vue@3.5.43(typescript@5.9.3))
-    optionalDependencies:
-      '@waline/client': link:packages/client
-    transitivePeerDependencies:
-      - '@vuepress/bundler-vite'
-      - '@vuepress/bundler-webpack'
-      - typescript
-
   '@vuepress/plugin-copy-code@2.0.0-rc.134(@vuepress/bundler-vite@2.0.0-rc.31(@types/node@26.6.3)(@vue/compiler-sfc@3.5.43)(esbuild@0.27.0)(sass-embedded@1.105.1)(sass@1.105.1)(supports-color@10.2.2)(tsx@4.21.0)(typescript@5.9.3))(typescript@5.9.3)(vuepress@2.0.0-rc.31(@vue/compiler-sfc@3.5.43)(@vuepress/bundler-vite@2.0.0-rc.31(@types/node@26.6.3)(@vue/compiler-sfc@3.5.43)(esbuild@0.27.0)(sass-embedded@1.105.1)(sass@1.105.1)(supports-color@10.2.2)(tsx@4.21.0)(typescript@5.9.3))(esbuild@0.27.0)(rolldown@1.2.11)(supports-color@10.2.2)(typescript@5.9.3)(vite@8.3.1(@types/node@26.6.3)(esbuild@0.27.0)(sass-embedded@1.105.1)(sass@1.105.1)(tsx@4.21.0))(vue@3.5.43(typescript@5.9.3)))':
     dependencies:
       '@vuepress/helper': 2.0.0-rc.134(@vuepress/bundler-vite@2.0.0-rc.31(@types/node@26.6.3)(@vue/compiler-sfc@3.5.43)(esbuild@0.27.0)(sass-embedded@1.105.1)(sass@1.105.1)(supports-color@10.2.2)(tsx@4.21.0)(typescript@5.9.3))(typescript@5.9.3)(vuepress@2.0.0-rc.31(@vue/compiler-sfc@3.5.43)(@vuepress/bundler-vite@2.0.0-rc.31(@types/node@26.6.3)(@vue/compiler-sfc@3.5.43)(esbuild@0.27.0)(sass-embedded@1.105.1)(sass@1.105.1)(supports-color@10.2.2)(tsx@4.21.0)(typescript@5.9.3))(esbuild@0.27.0)(rolldown@1.2.11)(supports-color@10.2.2)(typescript@5.9.3)(vite@8.3.1(@types/node@26.6.3)(esbuild@0.27.0)(sass-embedded@1.105.1)(sass@1.105.1)(tsx@4.21.0))(vue@3.5.43(typescript@5.9.3)))
@@ -14827,7 +14798,7 @@ snapshots:
       react: 19.3.0
       scheduler: 0.28.0
 
-  react-i18next@17.0.15(i18next@26.4.2(typescript@7.0.2))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@7.0.2):
+  react-i18next@17.0.19(i18next@26.4.2(typescript@7.0.2))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@7.0.2):
     dependencies:
       '@babel/runtime': 7.29.7
       html-parse-stringify: 4.0.1
