@@ -172,7 +172,7 @@ describe('token API', () => {
           offset: 0,
           order: [
             { field: 'sticky', direction: 'desc', nulls: 'last' },
-            { field: 'insertedAt', direction: 'desc' },
+            { field: 'insertedAt', direction: 'desc', nulls: 'last' },
             { field: 'objectId', direction: 'desc' },
           ],
         }),
