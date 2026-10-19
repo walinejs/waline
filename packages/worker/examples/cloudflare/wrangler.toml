@@ -1,0 +1,12 @@
+name = "waline-worker"
+main = "index.ts"
+compatibility_date = "2026-09-30"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "waline"
+database_id = "replace-with-your-database-id"
+migrations_dir = "../../migrations"
+
+[vars]
+SITE_NAME = "Waline"
