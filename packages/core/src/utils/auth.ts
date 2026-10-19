@@ -11,14 +11,28 @@ const empty = (value: unknown): boolean =>
 export const currentUser = (ctx: WalineContext): WalineUser | undefined =>
   empty(ctx.state.userInfo) ? undefined : ctx.state.userInfo;
 
-export const isAdmin = (ctx: WalineContext): boolean => currentUser(ctx)?.type === 'administrator';
+export const isAdmin = (ctx: WalineContext): boolean =>
+  currentUser(ctx)?.type === 'administrator' && ctx.state.siteAdmin !== false;
+
+export const isSuperAdmin = (ctx: WalineContext): boolean =>
+  currentUser(ctx)?.type === 'super_admin';
+
+export const isAnyAdmin = (ctx: WalineContext): boolean => isAdmin(ctx) || isSuperAdmin(ctx);
 
 export const requireUser = (ctx: WalineContext): WalineUser => currentUser(ctx) ?? unauthorized();
 
 export const requireAdmin = (ctx: WalineContext): WalineUser => {
   const user = requireUser(ctx);
 
-  if (user.type !== 'administrator') forbidden();
+  if (!['administrator', 'super_admin'].includes(user.type)) forbidden();
+
+  return user;
+};
+
+export const requireSuperAdmin = (ctx: WalineContext): WalineUser => {
+  const user = requireUser(ctx);
+
+  if (user.type !== 'super_admin') forbidden();
 
   return user;
 };

@@ -1,12 +1,14 @@
 const MySQL = require('./mysql.js');
 const { toSqlOrder } = require('./order.js');
 
-const mapKeys = ({ insertedat, createdat, updatedat, ...item }) => {
+const mapKeys = ({ insertedat, createdat, updatedat, siteid, isdefault, ...item }) => {
   const mapFields = {
     insertedAt: insertedat,
     createdAt: createdat,
     updatedAt: updatedat,
   };
+  if (siteid !== undefined) item.siteId = siteid;
+  if (isdefault !== undefined) item.isDefault = isdefault;
 
   for (const field in mapFields) {
     if (!mapFields[field]) {

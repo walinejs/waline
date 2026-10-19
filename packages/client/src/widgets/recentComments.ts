@@ -12,6 +12,9 @@ export interface WalineRecentCommentsOptions {
    */
   serverURL: string;
 
+  /** Public site identifier. */
+  siteId?: string;
+
   /**
    * 获取最新评论的数量
    *
@@ -56,6 +59,7 @@ export const RecentComments = ({
   el,
   serverURL,
   count,
+  siteId,
   lang = navigator.language,
 }: WalineRecentCommentsOptions): Promise<WalineRecentCommentsResult> => {
   const userInfo = useUserInfo();
@@ -68,6 +72,7 @@ export const RecentComments = ({
     lang,
     signal: controller.signal,
     token: userInfo.value.token,
+    siteId,
   }).then((comments) => {
     if (root && comments.length > 0) {
       root.innerHTML = `<ul class="wl-recent-list">${comments

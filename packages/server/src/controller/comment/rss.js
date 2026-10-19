@@ -55,13 +55,15 @@ module.exports = class extends BaseRest {
 
   async getAction() {
     const { path, email, user_id: userId, count } = this.get();
+    const { site } = await this.resolveSite();
     const limit = Number.isFinite(Number(count)) ? Number(count) : 20;
     const safeLimit = Math.min(Math.max(limit, 1), 50);
 
-    const siteUrl = process.env.SITE_URL || this.ctx.serverURL;
-    const siteName = process.env.SITE_NAME || 'Waline';
+    const siteUrl = site?.url || process.env.SITE_URL || this.ctx.serverURL;
+    const siteName = site?.name || process.env.SITE_NAME || 'Waline';
 
     const where = {
+      ...(site ? { site_id: site.siteId } : {}),
       status: ['NOT IN', ['waiting', 'spam']],
     };
 
@@ -69,6 +71,7 @@ module.exports = class extends BaseRest {
       where.url = path;
     } else if (email || userId) {
       const parentWhere = {
+        ...(site ? { site_id: site.siteId } : {}),
         status: ['NOT IN', ['waiting', 'spam']],
       };
 

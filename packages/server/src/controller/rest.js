@@ -63,8 +63,8 @@ module.exports = class extends think.Controller {
     }
   }
 
-  getCore() {
-    return this.service('core').create(this);
+  getCore(configOverride) {
+    return this.service('core').create(this, configOverride);
   }
 
   getCoreContext() {
@@ -81,7 +81,10 @@ module.exports = class extends think.Controller {
 
   async runCore(handler, { json = false, raw = false } = {}) {
     try {
-      const data = await handler(this.getCore(), this.getCoreContext());
+      const { site, config } = await this.resolveSite();
+      if (site) this.ctx.state.site = site;
+      if (config) this.ctx.state.siteConfig = config;
+      const data = await handler(this.getCore(config), this.getCoreContext());
 
       if (raw) return data;
 
@@ -99,6 +102,53 @@ module.exports = class extends think.Controller {
 
       return this.fail(message || err.details || err.code);
     }
+  }
+
+  async resolveSite() {
+    const siteResources = new Set(['comment', 'article']);
+    if (
+      !siteResources.has(this.resource) &&
+      !(this.resource === 'user' && this.ctx.method === 'GET')
+    ) {
+      return {};
+    }
+
+    const requested = this.get('siteId') || this.post('siteId');
+    const model = this.getModel('Site');
+    let sites;
+    try {
+      sites = requested ? await model.select({ siteId: requested }) : await model.select({});
+      if (!requested) {
+        sites = sites.filter(({ isDefault }) => [true, 1, '1', 'true'].includes(isDefault));
+      }
+    } catch (err) {
+      // Legacy installations remain reachable until the explicit upgrade is run.
+      think.logger.warn('Site table is not available; running in legacy mode.', err.message);
+      return {};
+    }
+
+    const [site] = sites;
+    if (!site || site.status !== 'active') this.ctx.throw(404, 'Site not found');
+
+    const user = this.ctx.state.userInfo;
+    if (user?.type === 'administrator') {
+      const grants = await this.getModel('SiteAdmin').select({
+        site_id: site.siteId,
+        user_id: user.objectId,
+      });
+      this.ctx.state.siteAdmin = Boolean(grants.length);
+      if (this.get('type') === 'list' && !grants.length) this.ctx.throw(403);
+    }
+
+    let config = {};
+    try {
+      config =
+        typeof site.config === 'string' ? JSON.parse(site.config || '{}') : site.config || {};
+    } catch {
+      this.ctx.throw(500, 'Invalid site configuration');
+    }
+
+    return { site, config: { ...config, siteName: site.name, siteUrl: site.url } };
   }
 
   __call() {}

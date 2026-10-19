@@ -72,11 +72,13 @@ export interface WalineComment extends BaseEntity {
   sticky?: boolean | string | number;
   like?: number;
   insertedAt: Date | string;
+  site_id?: string;
   [key: string]: unknown;
 }
 
 export interface WalineCounter extends BaseEntity {
   url: string;
+  site_id?: string;
   time?: number;
   reaction0?: number;
   reaction1?: number;
@@ -85,6 +87,20 @@ export interface WalineCounter extends BaseEntity {
   reaction4?: number;
   reaction5?: number;
   [key: string]: unknown;
+}
+
+export interface WalineSite extends BaseEntity {
+  siteId: string;
+  name: string;
+  url: string;
+  status: 'active' | 'disabled';
+  isDefault?: boolean | number;
+  config?: string | Record<string, unknown>;
+}
+
+export interface WalineSiteAdmin extends BaseEntity {
+  site_id: string;
+  user_id: string;
 }
 
 export interface OAuthServiceInfo {
@@ -99,6 +115,8 @@ export interface WalineContext {
     token?: string;
     deprecated?: boolean;
     oauthServices?: OAuthServiceInfo[];
+    site?: WalineSite;
+    siteAdmin?: boolean;
   };
   ip?: string;
   origin?: string;
@@ -112,6 +130,8 @@ export interface WalineModels {
   Comment: WalineModel<WalineComment>;
   Counter: WalineModel<WalineCounter>;
   Users: WalineModel<WalineUser>;
+  Site: WalineModel<WalineSite>;
+  SiteAdmin: WalineModel<WalineSiteAdmin>;
   get?(name: string): WalineModel<Record<string, unknown>>;
 }
 
@@ -128,6 +148,9 @@ export interface WalineConfig {
   likeIncMax?: number;
   normalUserType?: string;
   storage?: string;
+  siteName?: string;
+  siteUrl?: string;
+  notification?: Record<string, unknown>;
 }
 
 export interface WalineServices {

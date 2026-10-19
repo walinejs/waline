@@ -44,7 +44,7 @@ export const createOAuthHandler = ({ models, random, services }: CoreRuntime) =>
       avatar: profile.avatar,
       [input.type]: profile.id,
       password: passwordService ? await passwordService.hash(String(random())) : undefined,
-      type: count === 0 ? 'administrator' : 'guest',
+      type: count === 0 ? (models.Site ? 'super_admin' : 'administrator') : 'guest',
     });
 
     return {

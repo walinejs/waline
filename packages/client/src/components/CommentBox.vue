@@ -296,6 +296,7 @@ const submitComment = async (): Promise<void> => {
       serverURL,
       lang,
       token: userInfo.value.token,
+      siteId: config.value.siteId,
       comment,
     };
 

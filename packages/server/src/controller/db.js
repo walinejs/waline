@@ -21,7 +21,9 @@ module.exports = class DBController extends BaseRest {
       }
     }
 
-    return this.runCore((core, ctx) => core.database.import({ table, data }, ctx));
+    return this.runCore((core, ctx) =>
+      core.database.import({ table, data, siteId: this.get('siteId') }, ctx),
+    );
   }
 
   putAction() {

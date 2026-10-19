@@ -18,6 +18,7 @@ CREATE TABLE `wl_Comment` (
   `like` int DEFAULT NULL,
   `ua` text,
   `url` varchar(255) DEFAULT NULL,
+  `site_id` varchar(64) DEFAULT NULL,
   `createdAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
@@ -36,9 +37,34 @@ CREATE TABLE `wl_Counter` (
   `reaction7` int DEFAULT NULL,
   `reaction8` int DEFAULT NULL,
   `url` varchar(255) NOT NULL DEFAULT '',
+  `site_id` varchar(64) DEFAULT NULL,
   `createdAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
+) CHARSET=utf8mb4;
+
+CREATE TABLE `wl_Site` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `siteId` varchar(64) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `url` varchar(255) NOT NULL,
+  `status` varchar(20) NOT NULL DEFAULT 'active',
+  `isDefault` boolean NOT NULL DEFAULT false,
+  `config` text,
+  `createdAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_site_site_id` (`siteId`)
+) CHARSET=utf8mb4;
+
+CREATE TABLE `wl_SiteAdmin` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `site_id` varchar(64) NOT NULL,
+  `user_id` int NOT NULL,
+  `createdAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx_site_admin` (`site_id`, `user_id`)
 ) CHARSET=utf8mb4;
 
 CREATE TABLE `wl_Users` (

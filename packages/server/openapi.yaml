@@ -42,6 +42,7 @@ paths:
         - {}
       parameters:
         - $ref: '#/components/parameters/Lang'
+        - $ref: '#/components/parameters/SiteId'
         - name: type
           in: query
           description: Response mode. `list` without a path requires an administrator token.
@@ -546,6 +547,81 @@ paths:
         '400':
           description: Invalid OAuth callback.
 
+  /api/site:
+    get:
+      operationId: listSites
+      tags: [Site]
+      summary: List sites available to the current administrator
+      security: [{ bearerAuth: [] }]
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+    post:
+      operationId: createOrManageSite
+      tags: [Site]
+      summary: Create a site, change the default site, or manage an administrator grant
+      security: [{ bearerAuth: [] }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+    put:
+      operationId: updateSite
+      tags: [Site]
+      summary: Update an authorized site
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - $ref: '#/components/parameters/SiteIdRequired'
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+    delete:
+      operationId: deleteEmptySite
+      tags: [Site]
+      summary: Delete an empty non-default site
+      security: [{ bearerAuth: [] }]
+      parameters:
+        - $ref: '#/components/parameters/SiteIdRequired'
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /api/upgrade:
+    get:
+      operationId: getUpgradeStatus
+      tags: [Site]
+      summary: Check whether the multi-site database upgrade is required
+      security: [{ bearerAuth: [] }]
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+    post:
+      operationId: runUpgrade
+      tags: [Site]
+      summary: Run the idempotent multi-site database upgrade
+      security: [{ bearerAuth: [] }]
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
 components:
   securitySchemes:
     bearerAuth:
@@ -558,6 +634,19 @@ components:
       name: lang
       in: query
       description: Response language.
+      schema:
+        type: string
+    SiteId:
+      name: siteId
+      in: query
+      description: Public site identifier. When omitted, the default site is used.
+      schema:
+        type: string
+    SiteIdRequired:
+      name: siteId
+      in: query
+      required: true
+      description: Public site identifier.
       schema:
         type: string
     CommentId:
@@ -574,7 +663,7 @@ components:
       description: Storage table name.
       schema:
         type: string
-        enum: [Comment, Counter, Users]
+        enum: [Comment, Counter, Users, Site, SiteAdmin]
 
   responses:
     Success:
@@ -664,6 +753,9 @@ components:
       type: object
       required: [url, comment]
       properties:
+        siteId:
+          type: string
+          description: Public site identifier. Omit to use the default site.
         nick:
           type: string
         mail:

@@ -31,7 +31,7 @@ export default function Login() {
       return;
     }
 
-    const isAdmin = user.type === 'administrator';
+    const isAdmin = ['administrator', 'super_admin'].includes(user.type);
 
     const defaultRedirect = isAdmin ? '/ui' : '/ui/profile';
     const redirect = isAdmin && query.get('redirect') ? query.get('redirect') : defaultRedirect;

@@ -27,6 +27,19 @@ module.exports = class NotifyService extends think.Service {
     }
   }
 
+  siteData(self) {
+    const site = this.controller.ctx?.state?.site;
+    return {
+      name: site?.name || process.env.SITE_NAME,
+      url: site?.url || process.env.SITE_URL,
+      postUrl: `${site?.url || process.env.SITE_URL || ''}${self.url}#${self.objectId}`,
+    };
+  }
+
+  config(name) {
+    return this.controller.ctx?.state?.siteConfig?.[name] ?? think.config(name);
+  }
+
   async sleep(second) {
     return new Promise((resolve) => {
       setTimeout(resolve, second * 1000);
@@ -38,15 +51,11 @@ module.exports = class NotifyService extends think.Service {
       return;
     }
 
-    const { SITE_NAME, SITE_URL, SMTP_USER, SENDER_EMAIL, SENDER_NAME } = process.env;
+    const { SMTP_USER, SENDER_EMAIL, SENDER_NAME } = process.env;
     const data = {
       self,
       parent,
-      site: {
-        name: SITE_NAME,
-        url: SITE_URL,
-        postUrl: `${SITE_URL}${self.url}#${self.objectId}`,
-      },
+      site: this.siteData(self),
     };
 
     title = this.controller.locale(title, data);
@@ -61,7 +70,7 @@ module.exports = class NotifyService extends think.Service {
   }
 
   async wechat({ title, content }, self, parent) {
-    const { SC_KEY, SITE_NAME, SITE_URL } = process.env;
+    const { SC_KEY } = process.env;
 
     if (!SC_KEY) {
       return false;
@@ -70,15 +79,11 @@ module.exports = class NotifyService extends think.Service {
     const data = {
       self,
       parent,
-      site: {
-        name: SITE_NAME,
-        url: SITE_URL,
-        postUrl: `${SITE_URL}${self.url}#${self.objectId}`,
-      },
+      site: this.siteData(self),
     };
 
     const contentWechat =
-      think.config('SCTemplate') ||
+      this.config('SCTemplate') ||
       `{{site.name|safe}} 有新评论啦
 【评论者昵称】：{{self.nick}}
 【评论者邮箱】：{{self.mail}} 
@@ -101,7 +106,7 @@ module.exports = class NotifyService extends think.Service {
   }
 
   async qywxAmWechat({ title, content }, self, parent) {
-    const { QYWX_AM, QYWX_PROXY, QYWX_PROXY_PORT, SITE_NAME, SITE_URL } = process.env;
+    const { QYWX_AM, QYWX_PROXY, QYWX_PROXY_PORT } = process.env;
 
     if (!QYWX_AM) {
       return false;
@@ -120,15 +125,11 @@ module.exports = class NotifyService extends think.Service {
       },
       postName,
       parent,
-      site: {
-        name: SITE_NAME,
-        url: SITE_URL,
-        postUrl: `${SITE_URL}${self.url}#${self.objectId}`,
-      },
+      site: this.siteData(self),
     };
 
     const contentWechat =
-      think.config('WXTemplate') ||
+      this.config('WXTemplate') ||
       `💬 {{site.name|safe}}的文章《{{postName}}》有新评论啦 
 【评论者昵称】：{{self.nick}}
 【评论者邮箱】：{{self.mail}} 
@@ -183,7 +184,7 @@ module.exports = class NotifyService extends think.Service {
   }
 
   async qq(self, parent) {
-    const { QMSG_KEY, QQ_ID, SITE_NAME, SITE_URL, QMSG_HOST } = process.env;
+    const { QMSG_KEY, QQ_ID, QMSG_HOST } = process.env;
 
     if (!QMSG_KEY) {
       return false;
@@ -199,15 +200,11 @@ module.exports = class NotifyService extends think.Service {
         comment,
       },
       parent,
-      site: {
-        name: SITE_NAME,
-        url: SITE_URL,
-        postUrl: `${SITE_URL}${self.url}#${self.objectId}`,
-      },
+      site: this.siteData(self),
     };
 
     const contentQQ =
-      think.config('QQTemplate') ||
+      this.config('QQTemplate') ||
       `💬 {{site.name|safe}} 有新评论啦
 {{self.nick}} 评论道：
 {{self.comment}}
@@ -239,7 +236,7 @@ module.exports = class NotifyService extends think.Service {
   }
 
   async telegram(self, parent) {
-    const { TG_BOT_TOKEN, TG_CHAT_ID, SITE_NAME, SITE_URL } = process.env;
+    const { TG_BOT_TOKEN, TG_CHAT_ID } = process.env;
 
     if (!TG_BOT_TOKEN || !TG_CHAT_ID) {
       return false;
@@ -264,7 +261,7 @@ module.exports = class NotifyService extends think.Service {
       .replaceAll(/<[^>]+>/gu, '');
 
     const contentTG =
-      think.config('TGTemplate') ||
+      this.config('TGTemplate') ||
       `💬 *[{{site.name}}]({{site.url}}) 有新评论啦*
 
 *{{self.nick}}* 回复说：
@@ -285,11 +282,7 @@ module.exports = class NotifyService extends think.Service {
         commentLink,
       },
       parent,
-      site: {
-        name: SITE_NAME,
-        url: SITE_URL,
-        postUrl: `${SITE_URL}${self.url}#${self.objectId}`,
-      },
+      site: this.siteData(self),
     };
 
     const resp = await fetch(`https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`, {
@@ -317,8 +310,6 @@ module.exports = class NotifyService extends think.Service {
       PUSH_PLUS_CHANNEL: channel,
       PUSH_PLUS_WEBHOOK: webhook,
       PUSH_PLUS_CALLBACKURL: callbackUrl,
-      SITE_NAME,
-      SITE_URL,
     } = process.env;
 
     if (!PUSH_PLUS_KEY) {
@@ -328,11 +319,7 @@ module.exports = class NotifyService extends think.Service {
     const data = {
       self,
       parent,
-      site: {
-        name: SITE_NAME,
-        url: SITE_URL,
-        postUrl: `${SITE_URL}${self.url}#${self.objectId}`,
-      },
+      site: this.siteData(self),
     };
 
     title = this.controller.locale(title, data);
@@ -372,7 +359,7 @@ module.exports = class NotifyService extends think.Service {
   }
 
   async discord({ title, content }, self, parent) {
-    const { DISCORD_WEBHOOK, SITE_NAME, SITE_URL } = process.env;
+    const { DISCORD_WEBHOOK } = process.env;
 
     if (!DISCORD_WEBHOOK) {
       return false;
@@ -381,16 +368,12 @@ module.exports = class NotifyService extends think.Service {
     const data = {
       self,
       parent,
-      site: {
-        name: SITE_NAME,
-        url: SITE_URL,
-        postUrl: `${SITE_URL}${self.url}#${self.objectId}`,
-      },
+      site: this.siteData(self),
     };
 
     title = this.controller.locale(title, data);
     content = this.controller.locale(
-      think.config('DiscordTemplate') ||
+      this.config('DiscordTemplate') ||
         `💬 {{site.name|safe}} 有新评论啦 
     【评论者昵称】：{{self.nick}}
     【评论者邮箱】：{{self.mail}} 
@@ -413,7 +396,7 @@ module.exports = class NotifyService extends think.Service {
   }
 
   async lark({ title, content }, self, parent) {
-    const { LARK_WEBHOOK, LARK_SECRET, SITE_NAME, SITE_URL } = process.env;
+    const { LARK_WEBHOOK, LARK_SECRET } = process.env;
 
     if (!LARK_WEBHOOK) {
       return false;
@@ -424,15 +407,11 @@ module.exports = class NotifyService extends think.Service {
     const data = {
       self,
       parent,
-      site: {
-        name: SITE_NAME,
-        url: SITE_URL,
-        postUrl: `${SITE_URL}${self.url}#${self.objectId}`,
-      },
+      site: this.siteData(self),
     };
 
     content = nunjucks.renderString(
-      think.config('LarkTemplate') ||
+      this.config('LarkTemplate') ||
         `【网站名称】：{{site.name|safe}} \n【评论者昵称】：{{self.nick}}\n【评论者邮箱】：{{self.mail}}\n【内容】：{{self.comment}}【地址】：{{site.postUrl}}`,
       data,
     );
@@ -491,10 +470,16 @@ module.exports = class NotifyService extends think.Service {
 
   async run(comment, parent, disableAuthorNotify = false) {
     const { AUTHOR_EMAIL, DISABLE_AUTHOR_NOTIFY } = process.env;
-    const { mailSubject, mailTemplate, mailSubjectAdmin, mailTemplateAdmin } = think.config();
+    const {
+      mailSubject,
+      mailTemplate,
+      mailSubjectAdmin,
+      mailTemplateAdmin,
+      notification = {},
+    } = this.controller.ctx.state.siteConfig || think.config();
     const mailList = [];
-    const isAdminComment = comment.type === 'administrator';
-    const isReplyAdmin = parent?.type === 'administrator';
+    const isAdminComment = ['administrator', 'super_admin'].includes(comment.type);
+    const isReplyAdmin = ['administrator', 'super_admin'].includes(parent?.type);
     const isCommentSelf =
       parent &&
       (parent.user_id && comment.user_id
@@ -503,22 +488,44 @@ module.exports = class NotifyService extends think.Service {
 
     const title = mailSubjectAdmin || 'MAIL_SUBJECT_ADMIN';
     const content = mailTemplateAdmin || 'MAIL_TEMPLATE_ADMIN';
+    const channelEnabled = (name) =>
+      !Array.isArray(notification.channels) || notification.channels.includes(name);
 
-    if (!DISABLE_AUTHOR_NOTIFY && !isAdminComment && !disableAuthorNotify) {
-      const wechat = await this.wechat({ title, content }, comment, parent);
-      const qywxAmWechat = await this.qywxAmWechat({ title, content }, comment, parent);
-      const qq = await this.qq(comment, parent);
-      const telegram = await this.telegram(comment, parent);
-      const pushplus = await this.pushplus({ title, content }, comment, parent);
-      const discord = await this.discord({ title, content }, comment, parent);
-      const lark = await this.lark({ title, content }, comment, parent);
+    if (
+      notification.enabled !== false &&
+      !DISABLE_AUTHOR_NOTIFY &&
+      !isAdminComment &&
+      !disableAuthorNotify
+    ) {
+      const wechat = channelEnabled('wechat')
+        ? await this.wechat({ title, content }, comment, parent)
+        : false;
+      const qywxAmWechat = channelEnabled('qywx')
+        ? await this.qywxAmWechat({ title, content }, comment, parent)
+        : false;
+      const qq = channelEnabled('qq') ? await this.qq(comment, parent) : false;
+      const telegram = channelEnabled('telegram') ? await this.telegram(comment, parent) : false;
+      const pushplus = channelEnabled('pushplus')
+        ? await this.pushplus({ title, content }, comment, parent)
+        : false;
+      const discord = channelEnabled('discord')
+        ? await this.discord({ title, content }, comment, parent)
+        : false;
+      const lark = channelEnabled('lark')
+        ? await this.lark({ title, content }, comment, parent)
+        : false;
 
       if (
+        channelEnabled('mail') &&
         [wechat, qq, telegram, qywxAmWechat, pushplus, discord, lark].every((item) =>
           think.isEmpty(item),
         )
       ) {
-        mailList.push({ to: AUTHOR_EMAIL, title, content });
+        mailList.push({
+          to: notification.adminEmails?.join?.(',') || AUTHOR_EMAIL,
+          title,
+          content,
+        });
       }
     }
 
@@ -527,6 +534,8 @@ module.exports = class NotifyService extends think.Service {
 
     if (
       parent &&
+      notification.enabled !== false &&
+      channelEnabled('mail') &&
       !fakeMail.test(parent.mail) &&
       !isCommentSelf &&
       !isReplyAdmin &&
