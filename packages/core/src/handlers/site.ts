@@ -4,11 +4,7 @@ import { currentUser, isGlobalAdmin, requireAdmin, requireGlobalAdmin } from '..
 import type { CoreRuntime } from '../utils/runtime.js';
 import { requiredString } from '../utils/validation.js';
 
-export const createSiteHandler = ({ models, random }: CoreRuntime) => {
-  const newSiteId = (): string =>
-    Array.from({ length: 3 }, () => Math.floor(random() * 4_294_967_296).toString(36))
-      .join('')
-      .slice(0, 20);
+export const createSiteHandler = ({ models }: CoreRuntime) => {
   const canManage = async (siteId: string, ctx: WalineContext): Promise<boolean> => {
     const user = currentUser(ctx);
     if (!user) return false;
@@ -29,24 +25,23 @@ export const createSiteHandler = ({ models, random }: CoreRuntime) => {
         return sites.map((site) => ({
           ...site,
           adminIds: grants
-            .filter(({ site_id }) => site_id === site.siteId)
+            .filter(({ site_id }) => site_id === site.objectId)
             .map(({ user_id }) => user_id),
         }));
       }
 
       const grants = await models.SiteAdmin.select({ user_id: user.objectId });
       const ids = grants.map(({ site_id }) => site_id);
-      return ids.length ? models.Site.select({ siteId: ['IN', ids] }) : [];
+      return ids.length ? models.Site.select({ objectId: ['IN', ids] }) : [];
     },
 
     async create(input: Partial<WalineSite>, ctx: WalineContext) {
       requireGlobalAdmin(ctx);
       return models.Site.add({
-        siteId: newSiteId(),
         name: requiredString(input.name, 'name'),
         url: requiredString(input.url, 'url'),
         status: 'active',
-        isDefault: false,
+        default: false,
         config:
           typeof input.config === 'string' ? input.config : JSON.stringify(input.config ?? {}),
       });
@@ -70,24 +65,24 @@ export const createSiteHandler = ({ models, random }: CoreRuntime) => {
         data.config = JSON.stringify(data.config);
       }
       if (!isGlobalAdmin(ctx)) delete data.status;
-      return (await models.Site.update(data, { siteId }))[0];
+      return (await models.Site.update(data, { objectId: siteId }))[0];
     },
 
     async setDefault(input: { siteId: string }, ctx: WalineContext) {
       requireGlobalAdmin(ctx);
       const siteId = requiredString(input.siteId, 'siteId');
-      const [site] = await models.Site.select({ siteId });
+      const [site] = await models.Site.select({ objectId: siteId });
       if (!site || site.status !== 'active') badRequest({ field: 'siteId' });
-      await models.Site.update({ isDefault: false }, {});
-      return (await models.Site.update({ isDefault: true }, { siteId }))[0];
+      await models.Site.update({ default: false }, {});
+      return (await models.Site.update({ default: true }, { objectId: siteId }))[0];
     },
 
     async remove(input: { siteId: string }, ctx: WalineContext) {
       requireGlobalAdmin(ctx);
       const siteId = requiredString(input.siteId, 'siteId');
-      const [site] = await models.Site.select({ siteId });
+      const [site] = await models.Site.select({ objectId: siteId });
       if (!site) return;
-      if (site.isDefault) {
+      if (site.default) {
         throw new WalineError('DEFAULT_SITE', 400, 'Default site cannot be deleted');
       }
       const [comments, counters] = await Promise.all([
@@ -98,7 +93,7 @@ export const createSiteHandler = ({ models, random }: CoreRuntime) => {
         throw new WalineError('SITE_NOT_EMPTY', 400, 'Site with data can only be disabled');
       }
       await models.SiteAdmin.delete({ site_id: siteId });
-      await models.Site.delete({ siteId });
+      await models.Site.delete({ objectId: siteId });
     },
 
     async grant(input: { siteId: string; userId: string }, ctx: WalineContext) {
@@ -107,7 +102,7 @@ export const createSiteHandler = ({ models, random }: CoreRuntime) => {
       const userId = requiredString(input.userId, 'userId');
       const existing = await models.SiteAdmin.select({ site_id: siteId, user_id: userId });
       const [[site], [user]] = await Promise.all([
-        models.Site.select({ siteId }),
+        models.Site.select({ objectId: siteId }),
         models.Users.select({ objectId: userId }),
       ]);
       if (!site || !user || user.type === 'administrator') badRequest({ field: 'userId' });

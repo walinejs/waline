@@ -35,7 +35,7 @@ export default function Sites() {
   };
   const save = async (site, event) => {
     event.preventDefault();
-    await updateSite(site.siteId, {
+    await updateSite(site.objectId, {
       name: event.target.name.value,
       url: event.target.url.value,
       status: event.target.status.value,
@@ -58,14 +58,14 @@ export default function Sites() {
           </form>
         ) : null}
         {sites.map((site) => (
-          <section key={site.siteId}>
+          <section key={site.objectId}>
             <form onSubmit={(event) => save(site, event)}>
               <h2>
                 {site.name}
-                {site.isDefault ? ' (default)' : ''}
+                {site.default ? ' (default)' : ''}
               </h2>
               <p>
-                <code>{site.siteId}</code>
+                <code>{site.objectId}</code>
               </p>
               <input name="name" defaultValue={site.name} required />
               <input name="url" defaultValue={site.url} required />
@@ -83,25 +83,25 @@ export default function Sites() {
                 rows="10"
               />
               <button type="submit">Save</button>
-              {user.type === 'administrator' && !site.isDefault ? (
+              {user.type === 'administrator' && !site.default ? (
                 <button
                   type="button"
                   onClick={async () => {
-                    await setDefaultSite(site.siteId);
+                    await setDefaultSite(site.objectId);
                     load();
                   }}
                 >
                   Make default
                 </button>
               ) : null}
-              {user.type === 'administrator' && !site.isDefault ? (
+              {user.type === 'administrator' && !site.default ? (
                 <button
                   type="button"
                   onClick={async () => {
                     if (!confirm('Delete this empty site? Sites with data can only be disabled.')) {
                       return;
                     }
-                    await deleteSite(site.siteId);
+                    await deleteSite(site.objectId);
                     load();
                   }}
                 >
@@ -122,8 +122,8 @@ export default function Sites() {
                           type="checkbox"
                           checked={granted}
                           onChange={async () => {
-                            if (granted) await revokeSiteAdmin(site.siteId, item.objectId);
-                            else await grantSiteAdmin(site.siteId, item.objectId);
+                            if (granted) await revokeSiteAdmin(site.objectId, item.objectId);
+                            else await grantSiteAdmin(site.objectId, item.objectId);
                             load();
                           }}
                         />

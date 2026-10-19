@@ -6,7 +6,7 @@ import type { CoreRuntime } from '../utils/runtime.js';
 import { levelFor, positiveInt, requiredString } from '../utils/validation.js';
 
 const siteWhere = (ctx: WalineContext): Where<WalineComment> =>
-  ctx.state.site ? { site_id: ctx.state.site.siteId } : {};
+  ctx.state.site ? { site_id: ctx.state.site.objectId } : {};
 
 export const createCommentHandler = (runtime: CoreRuntime) => {
   const { config, hook, logger, models, now, random, services } = runtime;
@@ -266,7 +266,7 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
         ip: ctx.ip,
         insertedAt: now(),
         user_id: current?.objectId,
-        site_id: ctx.state.site?.siteId,
+        site_id: ctx.state.site?.objectId,
       };
 
       if (data.pid && ctx.state.deprecated) {

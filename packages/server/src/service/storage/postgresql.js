@@ -5,8 +5,6 @@ const PG_FIELDS = {
   insertedAt: 'insertedat',
   createdAt: 'createdat',
   updatedAt: 'updatedat',
-  siteId: 'siteid',
-  isDefault: 'isdefault',
 };
 
 const mapWriteKeys = (data) =>
@@ -19,15 +17,12 @@ const mapWriteKeys = (data) =>
     ]),
   );
 
-const mapKeys = ({ insertedat, createdat, updatedat, siteid, isdefault, ...item }) => {
+const mapKeys = ({ insertedat, createdat, updatedat, ...item }) => {
   const mapFields = {
     insertedAt: insertedat,
     createdAt: createdat,
     updatedAt: updatedat,
   };
-  if (siteid !== undefined) item.siteId = siteid;
-  if (isdefault !== undefined) item.isDefault = isdefault;
-
   for (const field in mapFields) {
     if (!mapFields[field]) {
       continue;

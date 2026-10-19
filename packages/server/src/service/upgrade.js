@@ -1,5 +1,3 @@
-const crypto = require('node:crypto');
-
 const SITE_CONFIG_ENV = {
   secureDomains: 'SECURE_DOMAINS',
   forceLogin: 'LOGIN',
@@ -89,17 +87,23 @@ module.exports = class UpgradeService extends think.Service {
     const statements = [
       `ALTER TABLE ${commentTable} ADD COLUMN site_id VARCHAR(64)`,
       `ALTER TABLE ${counterTable} ADD COLUMN site_id VARCHAR(64)`,
-      `CREATE TABLE ${siteTable} (id ${id}, siteId VARCHAR(64) NOT NULL UNIQUE, name VARCHAR(255) NOT NULL, url VARCHAR(255) NOT NULL, status VARCHAR(20) NOT NULL DEFAULT 'active', isDefault ${bool} NOT NULL DEFAULT ${falseValue}, config TEXT, createdAt ${timestamp}, updatedAt ${timestamp})`,
+      `CREATE TABLE ${siteTable} (id ${id}, name VARCHAR(255) NOT NULL, url VARCHAR(255) NOT NULL, status VARCHAR(20) NOT NULL DEFAULT 'active', ${isPg || isSqlite ? '"default"' : '`default`'} ${bool} NOT NULL DEFAULT ${falseValue}, config TEXT, createdAt ${timestamp}, updatedAt ${timestamp})`,
       `CREATE TABLE ${siteAdminTable} (id ${id}, site_id VARCHAR(64) NOT NULL, user_id VARCHAR(64) NOT NULL, createdAt ${timestamp}, updatedAt ${timestamp}, UNIQUE(site_id, user_id))`,
       `CREATE INDEX idx_comment_site_url ON ${commentTable} (site_id, url)`,
       `CREATE INDEX idx_counter_site_url ON ${counterTable} (site_id, url)`,
+      ...(isPg
+        ? [
+            `ALTER TABLE ${siteTable} DROP COLUMN IF EXISTS siteid`,
+            `ALTER TABLE ${siteTable} RENAME COLUMN isdefault TO "default"`,
+          ]
+        : []),
     ];
     for (const statement of statements) {
       try {
         await storage.model('Comment').query(statement);
       } catch (err) {
         const message = String(err.message || err).toLowerCase();
-        if (!/(?<knownSchemaError>duplicate|exists|already|重复)/u.test(message)) throw err;
+        if (!/(?<knownSchemaError>duplicate|exist|already|重复)/u.test(message)) throw err;
       }
     }
   }
@@ -110,24 +114,23 @@ module.exports = class UpgradeService extends think.Service {
     const Comment = controller.getModel('Comment');
     const Counter = controller.getModel('Counter');
     const sites = await Site.select({});
-    let site = sites.find(({ isDefault }) => [true, 1, '1', 'true'].includes(isDefault));
+    let site = sites.find(({ default: isDefault }) => [true, 1, '1', 'true'].includes(isDefault));
     if (!site) {
       site = await Site.add({
-        siteId: crypto.randomBytes(12).toString('base64url'),
         name: process.env.SITE_NAME || 'Waline',
         url: process.env.SITE_URL || '',
         status: 'active',
-        isDefault: true,
+        default: true,
         config: JSON.stringify(this.siteConfig()),
       });
     }
-    await Comment.update({ site_id: site.siteId }, { site_id: undefined });
-    await Counter.update({ site_id: site.siteId }, { site_id: undefined });
+    await Comment.update({ site_id: site.objectId }, { site_id: undefined });
+    await Counter.update({ site_id: site.objectId }, { site_id: undefined });
     const [missingComments, missingCounters] = await Promise.all([
       Comment.count({ site_id: undefined }),
       Counter.count({ site_id: undefined }),
     ]);
     if (missingComments || missingCounters) throw new Error('Some records still have no site');
-    return { version: 2, siteId: site.siteId, migrated: true };
+    return { version: 2, siteId: site.objectId, migrated: true };
   }
 };

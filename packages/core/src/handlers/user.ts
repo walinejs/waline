@@ -31,7 +31,7 @@ export const createUserHandler = (runtime: CoreRuntime) => {
         const pageSize = positiveInt(input.pageSize, 20, 50);
         const counts = (await models.Comment.count(
           {
-            ...(ctx.state.site ? { site_id: ctx.state.site.siteId } : {}),
+            ...(ctx.state.site ? { site_id: ctx.state.site.objectId } : {}),
             status: ['NOT IN', ['waiting', 'spam']],
           },
           { group: ['user_id', 'mail'] },
@@ -59,7 +59,7 @@ export const createUserHandler = (runtime: CoreRuntime) => {
           } else if (typeof item.mail === 'string') {
             const [lastComment] = await models.Comment.select(
               {
-                ...(ctx.state.site ? { site_id: ctx.state.site.siteId } : {}),
+                ...(ctx.state.site ? { site_id: ctx.state.site.objectId } : {}),
                 mail: item.mail,
               },
               { limit: 1 },

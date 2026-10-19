@@ -62,11 +62,10 @@ CREATE TABLE IF NOT EXISTS "wl_Users" (
 );
 CREATE TABLE IF NOT EXISTS "wl_Site" (
   "id" INTEGER PRIMARY KEY AUTOINCREMENT,
-  "siteId" TEXT NOT NULL UNIQUE,
   "name" TEXT NOT NULL,
   "url" TEXT NOT NULL,
   "status" TEXT NOT NULL DEFAULT "active",
-  "isDefault" NUMERIC NOT NULL DEFAULT 0,
+  "default" NUMERIC NOT NULL DEFAULT 0,
   "config" TEXT,
   "createdAt" DATETIME DEFAULT (datetime('now', 'localtime')),
   "updatedAt" DATETIME DEFAULT (datetime('now', 'localtime'))

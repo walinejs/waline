@@ -117,9 +117,11 @@ module.exports = class extends think.Controller {
     const model = this.getModel('Site');
     let sites;
     try {
-      sites = requested ? await model.select({ siteId: requested }) : await model.select({});
+      sites = requested ? await model.select({ objectId: requested }) : await model.select({});
       if (!requested) {
-        sites = sites.filter(({ isDefault }) => [true, 1, '1', 'true'].includes(isDefault));
+        sites = sites.filter(({ default: isDefault }) =>
+          [true, 1, '1', 'true'].includes(isDefault),
+        );
       }
     } catch (err) {
       // Legacy installations remain reachable until the explicit upgrade is run.
@@ -133,7 +135,7 @@ module.exports = class extends think.Controller {
     const user = this.ctx.state.userInfo;
     if (user?.type === 'supervisor') {
       const grants = await this.getModel('SiteAdmin').select({
-        site_id: site.siteId,
+        site_id: site.objectId,
         user_id: user.objectId,
       });
       this.ctx.state.siteAdmin = Boolean(grants.length);

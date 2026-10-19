@@ -45,16 +45,14 @@ CREATE TABLE `wl_Counter` (
 
 CREATE TABLE `wl_Site` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `siteId` varchar(64) NOT NULL,
   `name` varchar(255) NOT NULL,
   `url` varchar(255) NOT NULL,
   `status` varchar(20) NOT NULL DEFAULT 'active',
-  `isDefault` boolean NOT NULL DEFAULT false,
+  `default` boolean NOT NULL DEFAULT false,
   `config` text,
   `createdAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `idx_site_site_id` (`siteId`)
+  PRIMARY KEY (`id`)
 ) CHARSET=utf8mb4;
 
 CREATE TABLE `wl_SiteAdmin` (

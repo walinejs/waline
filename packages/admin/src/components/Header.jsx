@@ -49,7 +49,7 @@ export default function Header() {
         if (!localStorage.getItem('WALINE_SITE_ID') && data?.length) {
           localStorage.setItem(
             'WALINE_SITE_ID',
-            data.find((site) => site.isDefault)?.siteId ?? data[0].siteId,
+            data.find((site) => site.default)?.objectId ?? data[0].objectId,
           );
         }
       })
@@ -113,7 +113,7 @@ export default function Header() {
               }}
             >
               {sites.map((site) => (
-                <option value={site.siteId} key={site.siteId}>
+                <option value={site.objectId} key={site.objectId}>
                   {site.name}
                 </option>
               ))}

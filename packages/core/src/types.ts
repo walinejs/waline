@@ -90,11 +90,10 @@ export interface WalineCounter extends BaseEntity {
 }
 
 export interface WalineSite extends BaseEntity {
-  siteId: string;
   name: string;
   url: string;
   status: 'active' | 'disabled';
-  isDefault?: boolean | number;
+  default?: boolean | number;
   config?: string | Record<string, unknown>;
 }
 

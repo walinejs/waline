@@ -15,7 +15,7 @@ export const createCounterHandler = ({ models, now }: CoreRuntime) => ({
 
     if (!paths.length) return 0;
 
-    const siteWhere = ctx.state.site ? { site_id: ctx.state.site.siteId } : {};
+    const siteWhere = ctx.state.site ? { site_id: ctx.state.site.objectId } : {};
     const rows = await models.Counter.select({ ...siteWhere, url: ['IN', paths] });
     const byUrl = new Map(rows.map((item) => [item.url, item]));
     const data = paths.map((path) => {
@@ -41,7 +41,7 @@ export const createCounterHandler = ({ models, now }: CoreRuntime) => ({
 
     if (!['inc', 'desc'].includes(action)) badRequest({ field: 'action' });
 
-    const siteWhere = ctx.state.site ? { site_id: ctx.state.site.siteId } : {};
+    const siteWhere = ctx.state.site ? { site_id: ctx.state.site.objectId } : {};
     const rows = await models.Counter.select({ ...siteWhere, url: path });
 
     if (!rows.length) {

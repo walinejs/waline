@@ -20,19 +20,15 @@ describe('postgreSQL storage', () => {
         .mockImplementation(async (data) => [data]);
 
       await expect(
-        storage.add({ siteId: 'site-1', isDefault: true, name: 'Waline' }),
-      ).resolves.toMatchObject({ siteId: 'site-1', isDefault: true });
-      expect(add).toHaveBeenCalledWith(
-        expect.objectContaining({ siteid: 'site-1', isdefault: true }),
-      );
-      expect(add.mock.calls[0][0]).not.toHaveProperty('siteId');
-      expect(add.mock.calls[0][0]).not.toHaveProperty('isDefault');
+        storage.add({ objectId: '1', default: true, name: 'Waline' }),
+      ).resolves.toMatchObject({ objectId: '1', default: true });
+      expect(add).toHaveBeenCalledWith(expect.objectContaining({ objectId: '1', default: true }));
 
-      await storage.update({ isDefault: false }, { siteId: 'site-1' });
-      expect(update).toHaveBeenCalledWith({ isdefault: false }, { siteId: 'site-1' });
-      expect(storage.parseWhere({ siteId: 'site-1', isDefault: true })).toStrictEqual({
-        siteid: 'site-1',
-        isdefault: true,
+      await storage.update({ default: false }, { objectId: '1' });
+      expect(update).toHaveBeenCalledWith({ default: false }, { objectId: '1' });
+      expect(storage.parseWhere({ objectId: '1', default: true })).toStrictEqual({
+        id: '1',
+        default: true,
       });
     } finally {
       vi.restoreAllMocks();

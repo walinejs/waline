@@ -51,12 +51,12 @@ module.exports = class BaseLogic extends think.Logic {
     if (['comment', 'article', 'user'].includes(this.resource)) {
       try {
         const sites = siteId
-          ? await this.getModel('Site').select({ siteId })
+          ? await this.getModel('Site').select({ objectId: siteId })
           : await this.getModel('Site').select({});
         const [requestedSite] = sites;
         const site = siteId
           ? requestedSite
-          : sites.find(({ isDefault }) => [true, 1, '1', 'true'].includes(isDefault));
+          : sites.find(({ default: isDefault }) => [true, 1, '1', 'true'].includes(isDefault));
         const siteConfig =
           typeof site?.config === 'string' ? JSON.parse(site.config || '{}') : site?.config;
         if (siteConfig && Object.hasOwn(siteConfig, 'secureDomains')) {

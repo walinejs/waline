@@ -78,8 +78,7 @@ describe('waline core', () => {
     await Counter.add({ objectId: 'b', url: '/', site_id: 'site-b', time: 9 });
     const request = ctx();
     request.state.site = {
-      objectId: '1',
-      siteId: 'site-a',
+      objectId: 'site-a',
       name: 'A',
       url: 'https://a.example',
       status: 'active',

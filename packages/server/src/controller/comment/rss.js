@@ -63,7 +63,7 @@ module.exports = class extends BaseRest {
     const siteName = site?.name || process.env.SITE_NAME || 'Waline';
 
     const where = {
-      ...(site ? { site_id: site.siteId } : {}),
+      ...(site ? { site_id: site.objectId } : {}),
       status: ['NOT IN', ['waiting', 'spam']],
     };
 
@@ -71,7 +71,7 @@ module.exports = class extends BaseRest {
       where.url = path;
     } else if (email || userId) {
       const parentWhere = {
-        ...(site ? { site_id: site.siteId } : {}),
+        ...(site ? { site_id: site.objectId } : {}),
         status: ['NOT IN', ['waiting', 'spam']],
       };
 
