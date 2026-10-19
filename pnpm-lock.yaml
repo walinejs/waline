@@ -578,6 +578,19 @@ importers:
         specifier: 3.0.4
         version: 3.0.4(supports-color@10.2.2)
 
+  packages/test:
+    dependencies:
+      picocolors:
+        specifier: ^1.1.1
+        version: 1.1.1
+    devDependencies:
+      tsdown:
+        specifier: ^0.23.0
+        version: 0.23.0(publint@0.3.24)(tsx@4.21.0)(typescript@7.0.2)(unrun@0.3.1(synckit@0.11.13))
+      typescript:
+        specifier: 'catalog:'
+        version: 7.0.2
+
 packages:
 
   '@asamuzakjp/css-color@7.1.0':
