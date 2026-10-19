@@ -31,7 +31,7 @@ export default function Upgrade() {
         <h1>Database upgrade</h1>
         <p>
           This upgrade creates the default site, assigns all existing comments and counters to it,
-          and promotes existing administrators to super administrators. It is safe to retry after a
+          and keeps existing administrators as global administrators. It is safe to retry after a
           failure.
         </p>
         {status ? <pre>{JSON.stringify(status, null, 2)}</pre> : null}

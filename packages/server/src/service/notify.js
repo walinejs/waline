@@ -478,8 +478,8 @@ module.exports = class NotifyService extends think.Service {
       notification = {},
     } = this.controller.ctx.state.siteConfig || think.config();
     const mailList = [];
-    const isAdminComment = ['administrator', 'super_admin'].includes(comment.type);
-    const isReplyAdmin = ['administrator', 'super_admin'].includes(parent?.type);
+    const isAdminComment = ['administrator', 'supervisor'].includes(comment.type);
+    const isReplyAdmin = ['administrator', 'supervisor'].includes(parent?.type);
     const isCommentSelf =
       parent &&
       (parent.user_id && comment.user_id

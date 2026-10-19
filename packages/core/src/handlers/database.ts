@@ -1,11 +1,11 @@
 import type { WalineContext } from '../types.js';
-import { requireAdmin, requireSuperAdmin } from '../utils/auth.js';
+import { requireAdmin, requireGlobalAdmin } from '../utils/auth.js';
 import type { CoreRuntime } from '../utils/runtime.js';
 import { requiredCapability } from '../utils/validation.js';
 
 export const createDatabaseHandler = ({ models, now }: CoreRuntime) => ({
   async export(_input: object, ctx: WalineContext) {
-    if (models.Site) requireSuperAdmin(ctx);
+    if (models.Site) requireGlobalAdmin(ctx);
     else requireAdmin(ctx);
     const [Comment, Counter, Users] = await Promise.all([
       models.Comment.select({}),
@@ -39,7 +39,7 @@ export const createDatabaseHandler = ({ models, now }: CoreRuntime) => ({
     input: { table: string; data: Record<string, unknown>; siteId?: string },
     ctx: WalineContext,
   ) {
-    if (models.Site) requireSuperAdmin(ctx);
+    if (models.Site) requireGlobalAdmin(ctx);
     else requireAdmin(ctx);
     const model = requiredCapability(models.get?.(input.table), `model:${input.table}`);
     const { objectId: _objectId, ...source } = input.data;
@@ -59,7 +59,7 @@ export const createDatabaseHandler = ({ models, now }: CoreRuntime) => ({
     },
     ctx: WalineContext,
   ) {
-    if (models.Site) requireSuperAdmin(ctx);
+    if (models.Site) requireGlobalAdmin(ctx);
     else requireAdmin(ctx);
     const model = requiredCapability(models.get?.(input.table), `model:${input.table}`);
     const {
@@ -73,7 +73,7 @@ export const createDatabaseHandler = ({ models, now }: CoreRuntime) => ({
   },
 
   async clear(input: { table: string }, ctx: WalineContext) {
-    if (models.Site) requireSuperAdmin(ctx);
+    if (models.Site) requireGlobalAdmin(ctx);
     else requireAdmin(ctx);
     const model = requiredCapability(models.get?.(input.table), `model:${input.table}`);
 

@@ -24,7 +24,7 @@ export default function Sites() {
       .catch((err) => setError(err.message));
   useEffect(load, []);
   useEffect(() => {
-    if (user.type === 'super_admin')
+    if (user.type === 'administrator')
       getUserList({ page: 1 }).then((result) => setUsers(result.data ?? []));
   }, [user.type]);
   const create = async (event) => {
@@ -49,7 +49,7 @@ export default function Sites() {
       <main className="container">
         <h1>Sites</h1>
         {error ? <p className="error">{error}</p> : null}
-        {user.type === 'super_admin' ? (
+        {user.type === 'administrator' ? (
           <form onSubmit={create}>
             <h2>Create site</h2>
             <input name="name" required placeholder="Site name" />
@@ -83,7 +83,7 @@ export default function Sites() {
                 rows="10"
               />
               <button type="submit">Save</button>
-              {user.type === 'super_admin' && !site.isDefault ? (
+              {user.type === 'administrator' && !site.isDefault ? (
                 <button
                   type="button"
                   onClick={async () => {
@@ -94,7 +94,7 @@ export default function Sites() {
                   Make default
                 </button>
               ) : null}
-              {user.type === 'super_admin' && !site.isDefault ? (
+              {user.type === 'administrator' && !site.isDefault ? (
                 <button
                   type="button"
                   onClick={async () => {
@@ -109,11 +109,11 @@ export default function Sites() {
                 </button>
               ) : null}
             </form>
-            {user.type === 'super_admin' ? (
+            {user.type === 'administrator' ? (
               <div>
                 <h3>Administrators</h3>
                 {users
-                  .filter((item) => item.type !== 'super_admin')
+                  .filter((item) => item.type !== 'administrator')
                   .map((item) => {
                     const granted = site.adminIds?.includes(item.objectId);
                     return (

@@ -25,7 +25,7 @@ export default function App() {
             path="/ui"
             exact
             element={
-              <Access meta={{ auth: 'administrator' }} basename={basePath}>
+              <Access meta={{ auth: 'admin' }} basename={basePath}>
                 <ManageComments />
               </Access>
             }
@@ -34,7 +34,7 @@ export default function App() {
             path="/ui/sites"
             exact
             element={
-              <Access meta={{ auth: 'administrator' }} basename={basePath}>
+              <Access meta={{ auth: 'admin' }} basename={basePath}>
                 <Sites />
               </Access>
             }
@@ -52,7 +52,7 @@ export default function App() {
             path="/ui/user"
             exact
             element={
-              <Access meta={{ auth: 'super_admin' }} basename={basePath}>
+              <Access meta={{ auth: 'administrator' }} basename={basePath}>
                 <User />
               </Access>
             }
@@ -61,7 +61,7 @@ export default function App() {
             path="/ui/migration"
             exact
             element={
-              <Access meta={{ auth: 'super_admin' }} basename={basePath}>
+              <Access meta={{ auth: 'administrator' }} basename={basePath}>
                 <Migration />
               </Access>
             }

@@ -551,7 +551,7 @@ paths:
     get:
       operationId: listSites
       tags: [Site]
-      summary: List sites available to the current administrator
+      summary: List all sites for administrators or authorized sites for supervisors
       security: [{ bearerAuth: [] }]
       responses:
         '200':
@@ -561,7 +561,7 @@ paths:
     post:
       operationId: createOrManageSite
       tags: [Site]
-      summary: Create a site, change the default site, or manage an administrator grant
+      summary: Create a site, change the default site, or manage a supervisor grant
       security: [{ bearerAuth: [] }]
       requestBody:
         required: true
@@ -735,6 +735,7 @@ components:
           format: int64
         type:
           type: string
+          enum: [administrator, supervisor, guest]
         status:
           type: string
           enum: [approved, waiting, spam]
@@ -898,6 +899,7 @@ components:
           type: string
         type:
           type: string
+          enum: [administrator, supervisor, guest]
         label:
           type: string
         level:

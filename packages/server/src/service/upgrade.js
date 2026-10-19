@@ -109,7 +109,6 @@ module.exports = class UpgradeService extends think.Service {
     const Site = controller.getModel('Site');
     const Comment = controller.getModel('Comment');
     const Counter = controller.getModel('Counter');
-    const Users = controller.getModel('Users');
     const sites = await Site.select({});
     let site = sites.find(({ isDefault }) => [true, 1, '1', 'true'].includes(isDefault));
     if (!site) {
@@ -124,7 +123,6 @@ module.exports = class UpgradeService extends think.Service {
     }
     await Comment.update({ site_id: site.siteId }, { site_id: undefined });
     await Counter.update({ site_id: site.siteId }, { site_id: undefined });
-    await Users.update({ type: 'super_admin' }, { type: 'administrator' });
     const [missingComments, missingCounters] = await Promise.all([
       Comment.count({ site_id: undefined }),
       Counter.count({ site_id: undefined }),

@@ -38,7 +38,7 @@ export default function Header() {
   }, [user?.objectId, user?.__version]);
 
   useEffect(() => {
-    if (!['administrator', 'super_admin'].includes(user?.type)) return;
+    if (!['administrator', 'supervisor'].includes(user?.type)) return;
     const token = window.TOKEN ?? sessionStorage.getItem('TOKEN') ?? localStorage.getItem('TOKEN');
     fetch(`${window.serverURL}site?lang=${i18n.language}`, {
       headers: token ? { Authorization: `Bearer ${token}` } : {},
@@ -70,7 +70,7 @@ export default function Header() {
 
   const navItems = [
     { to: '/ui', label: t('comment') },
-    ...(user?.type === 'super_admin'
+    ...(user?.type === 'administrator'
       ? [
           { to: '/ui/user', label: t('user') },
           { to: '/ui/migration', label: t('migration') },
@@ -91,7 +91,7 @@ export default function Header() {
           </Link>
         </div>
 
-        {['administrator', 'super_admin'].includes(user?.type) ? (
+        {['administrator', 'supervisor'].includes(user?.type) ? (
           <nav id="typecho-nav-list" className="waline-nav">
             <ul className="root">
               {navItems.map((item) => (

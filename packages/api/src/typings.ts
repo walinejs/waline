@@ -1,6 +1,6 @@
 export type WalineCommentStatus = 'approved' | 'waiting' | 'spam';
 
-export type WalineUserType = 'administrator' | 'guest';
+export type WalineUserType = 'administrator' | 'supervisor' | 'guest';
 
 export interface WalineCommentData {
   /** User Nickname */

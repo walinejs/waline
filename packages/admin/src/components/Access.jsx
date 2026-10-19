@@ -17,8 +17,8 @@ export default function Access(props) {
     }
 
     const noPermission = meta.auth
-      ? meta.auth === 'administrator'
-        ? !['administrator', 'super_admin'].includes(user.type)
+      ? meta.auth === 'admin'
+        ? !['administrator', 'supervisor'].includes(user.type)
         : meta.auth !== user.type
       : false;
 

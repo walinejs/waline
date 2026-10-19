@@ -131,7 +131,7 @@ module.exports = class extends think.Controller {
     if (!site || site.status !== 'active') this.ctx.throw(404, 'Site not found');
 
     const user = this.ctx.state.userInfo;
-    if (user?.type === 'administrator') {
+    if (user?.type === 'supervisor') {
       const grants = await this.getModel('SiteAdmin').select({
         site_id: site.siteId,
         user_id: user.objectId,

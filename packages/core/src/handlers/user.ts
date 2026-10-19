@@ -2,9 +2,9 @@ import { forbidden, WalineError } from '../error.js';
 import type { GroupedCount, WalineContext, WalineUser } from '../types.js';
 import {
   isAnyAdmin,
-  isSuperAdmin,
+  isGlobalAdmin,
   requireAdmin,
-  requireSuperAdmin,
+  requireGlobalAdmin,
   requireUser,
 } from '../utils/auth.js';
 import { createAvatarFormatter } from '../utils/avatar.js';
@@ -79,7 +79,7 @@ export const createUserHandler = (runtime: CoreRuntime) => {
 
       const page = positiveInt(input.page, 1);
       const pageSize = positiveInt(input.pageSize, 10, 100);
-      if (ctx.state.site) requireSuperAdmin(ctx);
+      if (ctx.state.site) requireGlobalAdmin(ctx);
       const count = (await models.Users.count()) as number;
       const data = await models.Users.select(
         {},
@@ -108,7 +108,7 @@ export const createUserHandler = (runtime: CoreRuntime) => {
       const passwordService = requiredCapability(services.password, 'password');
       const existing = await models.Users.select({ email });
 
-      if (existing.some(({ type }) => ['super_admin', 'administrator', 'guest'].includes(type))) {
+      if (existing.some(({ type }) => ['administrator', 'supervisor', 'guest'].includes(type))) {
         throw new WalineError('USER_EXIST', 400, 'USER_EXIST');
       }
 
@@ -116,12 +116,7 @@ export const createUserHandler = (runtime: CoreRuntime) => {
       const data: Partial<WalineUser> = {
         ...input,
         password: await passwordService.hash(input.password),
-        type:
-          count === 0
-            ? models.Site
-              ? 'super_admin'
-              : 'administrator'
-            : (config.normalUserType ?? 'guest'),
+        type: count === 0 ? 'administrator' : (config.normalUserType ?? 'guest'),
       };
       const saved = existing.length
         ? (await models.Users.update(data, { email }))[0]
@@ -144,7 +139,7 @@ export const createUserHandler = (runtime: CoreRuntime) => {
 
       if (
         objectId !== user.objectId &&
-        !isSuperAdmin(ctx) &&
+        !isGlobalAdmin(ctx) &&
         !(!ctx.state.site && isAnyAdmin(ctx))
       ) {
         forbidden();
@@ -160,7 +155,7 @@ export const createUserHandler = (runtime: CoreRuntime) => {
         '2fa',
         ...(ctx.state.oauthServices ?? []).map(({ name }) => name),
       ];
-      if ((isSuperAdmin(ctx) || (!ctx.state.site && isAnyAdmin(ctx))) && input.objectId) {
+      if ((isGlobalAdmin(ctx) || (!ctx.state.site && isAnyAdmin(ctx))) && input.objectId) {
         allowed.push('type');
       }
 
@@ -189,7 +184,7 @@ export const createUserHandler = (runtime: CoreRuntime) => {
     },
 
     async remove(input: { objectId: string }, ctx: WalineContext) {
-      const user = ctx.state.site ? requireSuperAdmin(ctx) : requireAdmin(ctx);
+      const user = ctx.state.site ? requireGlobalAdmin(ctx) : requireAdmin(ctx);
       if (user.objectId === input.objectId) forbidden();
 
       const [target] = await models.Users.select({ objectId: input.objectId });

@@ -60,7 +60,7 @@ const like = computed(() => likes.value.includes(comment.objectId));
 
 const time = computed(() => getTimeAgo(new Date(comment.time), now.value, locale.value));
 
-const isAdmin = computed(() => userInfo.value.type === 'administrator');
+const isAdmin = computed(() => ['administrator', 'supervisor'].includes(userInfo.value.type));
 
 const isOwner = computed(() => comment.user_id && userInfo.value.objectId === comment.user_id);
 
@@ -76,7 +76,7 @@ const isEditingCurrent = computed(() => comment.objectId === edit?.objectId);
 
       <VerifiedIcon v-if="comment.type === 'guest'" />
 
-      <AdministratorIcon v-if="comment.type === 'administrator'" />
+      <AdministratorIcon v-if="['administrator', 'supervisor'].includes(comment.type)" />
     </div>
 
     <div class="wl-card">

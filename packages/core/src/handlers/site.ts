@@ -1,6 +1,6 @@
 import { badRequest, forbidden, WalineError } from '../error.js';
 import type { WalineContext, WalineSite } from '../types.js';
-import { currentUser, isSuperAdmin, requireAdmin, requireSuperAdmin } from '../utils/auth.js';
+import { currentUser, isGlobalAdmin, requireAdmin, requireGlobalAdmin } from '../utils/auth.js';
 import type { CoreRuntime } from '../utils/runtime.js';
 import { requiredString } from '../utils/validation.js';
 
@@ -12,7 +12,7 @@ export const createSiteHandler = ({ models, random }: CoreRuntime) => {
   const canManage = async (siteId: string, ctx: WalineContext): Promise<boolean> => {
     const user = currentUser(ctx);
     if (!user) return false;
-    if (isSuperAdmin(ctx)) return true;
+    if (isGlobalAdmin(ctx)) return true;
     return Boolean(
       (await models.SiteAdmin.select({ site_id: siteId, user_id: user.objectId })).length,
     );
@@ -21,7 +21,7 @@ export const createSiteHandler = ({ models, random }: CoreRuntime) => {
   return {
     async list(_input: object, ctx: WalineContext) {
       const user = requireAdmin(ctx);
-      if (isSuperAdmin(ctx)) {
+      if (isGlobalAdmin(ctx)) {
         const [sites, grants] = await Promise.all([
           models.Site.select({}),
           models.SiteAdmin.select({}),
@@ -40,7 +40,7 @@ export const createSiteHandler = ({ models, random }: CoreRuntime) => {
     },
 
     async create(input: Partial<WalineSite>, ctx: WalineContext) {
-      requireSuperAdmin(ctx);
+      requireGlobalAdmin(ctx);
       return models.Site.add({
         siteId: newSiteId(),
         name: requiredString(input.name, 'name'),
@@ -69,12 +69,12 @@ export const createSiteHandler = ({ models, random }: CoreRuntime) => {
       } else if (data.config) {
         data.config = JSON.stringify(data.config);
       }
-      if (!isSuperAdmin(ctx)) delete data.status;
+      if (!isGlobalAdmin(ctx)) delete data.status;
       return (await models.Site.update(data, { siteId }))[0];
     },
 
     async setDefault(input: { siteId: string }, ctx: WalineContext) {
-      requireSuperAdmin(ctx);
+      requireGlobalAdmin(ctx);
       const siteId = requiredString(input.siteId, 'siteId');
       const [site] = await models.Site.select({ siteId });
       if (!site || site.status !== 'active') badRequest({ field: 'siteId' });
@@ -83,7 +83,7 @@ export const createSiteHandler = ({ models, random }: CoreRuntime) => {
     },
 
     async remove(input: { siteId: string }, ctx: WalineContext) {
-      requireSuperAdmin(ctx);
+      requireGlobalAdmin(ctx);
       const siteId = requiredString(input.siteId, 'siteId');
       const [site] = await models.Site.select({ siteId });
       if (!site) return;
@@ -102,7 +102,7 @@ export const createSiteHandler = ({ models, random }: CoreRuntime) => {
     },
 
     async grant(input: { siteId: string; userId: string }, ctx: WalineContext) {
-      requireSuperAdmin(ctx);
+      requireGlobalAdmin(ctx);
       const siteId = requiredString(input.siteId, 'siteId');
       const userId = requiredString(input.userId, 'userId');
       const existing = await models.SiteAdmin.select({ site_id: siteId, user_id: userId });
@@ -110,19 +110,19 @@ export const createSiteHandler = ({ models, random }: CoreRuntime) => {
         models.Site.select({ siteId }),
         models.Users.select({ objectId: userId }),
       ]);
-      if (!site || !user || user.type === 'super_admin') badRequest({ field: 'userId' });
+      if (!site || !user || user.type === 'administrator') badRequest({ field: 'userId' });
       if (!existing.length) await models.SiteAdmin.add({ site_id: siteId, user_id: userId });
-      await models.Users.update({ type: 'administrator' }, { objectId: userId });
+      await models.Users.update({ type: 'supervisor' }, { objectId: userId });
     },
 
     async revoke(input: { siteId: string; userId: string }, ctx: WalineContext) {
-      requireSuperAdmin(ctx);
+      requireGlobalAdmin(ctx);
       const siteId = requiredString(input.siteId, 'siteId');
       const userId = requiredString(input.userId, 'userId');
       await models.SiteAdmin.delete({ site_id: siteId, user_id: userId });
       const remaining = await models.SiteAdmin.count({ user_id: userId });
       if (!remaining) {
-        await models.Users.update({ type: 'guest' }, { objectId: userId, type: 'administrator' });
+        await models.Users.update({ type: 'guest' }, { objectId: userId, type: 'supervisor' });
       }
     },
   };
