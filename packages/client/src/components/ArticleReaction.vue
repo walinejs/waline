@@ -17,6 +17,7 @@ interface ReactionItem {
 const reactionStorage = useReactionStorage();
 // oxlint-disable-next-line typescript/no-non-null-assertion
 const config = inject(configKey)!;
+const storageKey = computed(() => `${config.value.siteId || 'default'}:${config.value.path}`);
 
 const votingIndex = ref(-1);
 const voteNumbers = ref<number[]>([]);
@@ -35,7 +36,7 @@ const reactionsInfo = computed<ReactionItem[] | null>(() => {
     reaction.value?.map((icon, index) => ({
       icon,
       desc: locale.value[`reaction${index}` as keyof WalineReactionLocale],
-      active: reactionStorage.value[path] === index,
+      active: reactionStorage.value[storageKey.value] === index,
     })) ?? null
   );
 });
@@ -59,6 +60,7 @@ const fetchReaction = async (): Promise<void> => {
     paths: [path],
     type: reaction.value.map((_, index) => `reaction${index}`),
     signal: controller.signal,
+    siteId: config.value.siteId,
   })) as Record<string, number>[];
 
   voteNumbers.value = reaction.value.map((_, index) => reactionData[`reaction${index}`]);
@@ -71,7 +73,7 @@ const vote = async (index: number): Promise<void> => {
   }
 
   const { serverURL, lang, path } = config.value;
-  const currentVoteItemIndex = reactionStorage.value[path];
+  const currentVoteItemIndex = reactionStorage.value[storageKey.value];
 
   // mark voting status
   votingIndex.value = index;
@@ -84,6 +86,7 @@ const vote = async (index: number): Promise<void> => {
       path,
       type: `reaction${currentVoteItemIndex}`,
       action: 'desc',
+      siteId: config.value.siteId,
     });
 
     voteNumbers.value[currentVoteItemIndex] = Math.max(
@@ -99,6 +102,7 @@ const vote = async (index: number): Promise<void> => {
       lang,
       path,
       type: `reaction${index}`,
+      siteId: config.value.siteId,
     });
     voteNumbers.value[index] = (voteNumbers.value[index] || 0) + 1;
   }
@@ -106,9 +110,9 @@ const vote = async (index: number): Promise<void> => {
   // update vote info in local storage
   if (currentVoteItemIndex === index) {
     // oxlint-disable-next-line typescript/no-dynamic-delete
-    delete reactionStorage.value[path];
+    delete reactionStorage.value[storageKey.value];
   } else {
-    reactionStorage.value[path] = index;
+    reactionStorage.value[storageKey.value] = index;
   }
 
   // voting is completed
@@ -117,7 +121,7 @@ const vote = async (index: number): Promise<void> => {
 
 onMounted(() => {
   watchImmediate(
-    () => [config.value.serverURL, config.value.path],
+    () => [config.value.serverURL, config.value.siteId, config.value.path],
     () => fetchReaction(),
   );
 });

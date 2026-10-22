@@ -47,6 +47,9 @@ export interface WalinePageviewCountOptions {
    * @default navigator.language
    */
   lang?: string;
+
+  /** Public site identifier. */
+  siteId?: string;
 }
 
 const renderVisitorCount = (
@@ -70,6 +73,7 @@ export const pageviewCount = ({
   selector = '.waline-pageview-count',
   update = true,
   lang = navigator.language,
+  siteId,
 }: WalinePageviewCountOptions): WalineAbort => {
   const controller = new AbortController();
 
@@ -88,6 +92,7 @@ export const pageviewCount = ({
         paths: elements.map((element) => getQuery(element) ?? path),
         lang,
         signal: controller.signal,
+        siteId,
       });
 
       renderVisitorCount(counts, elements);
@@ -105,6 +110,7 @@ export const pageviewCount = ({
       serverURL: getServerURL(serverURL),
       path,
       lang,
+      siteId,
     }).then((counts) => {
       renderVisitorCount(counts, normalElements);
     });

@@ -4,12 +4,14 @@ interface FetchReactionOption {
   serverURL: string;
   path: string;
   lang: string;
+  siteId?: string;
 }
 
 export const fetchReaction = async ({
   serverURL,
   lang,
   path,
+  siteId,
 }: FetchReactionOption): Promise<{ value: number[]; abort: () => void }> => {
   const reaction = [1, 2, 3, 4, 5];
   const controller = new AbortController();
@@ -22,6 +24,7 @@ export const fetchReaction = async ({
     paths: [path],
     type: Array.from({ length: 5 }, (_, index) => `reaction${index}`),
     signal: controller.signal,
+    siteId,
   })) as Record<string, number>[];
 
   return {

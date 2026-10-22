@@ -9,6 +9,8 @@ import ManageComments from './pages/manage-comments/index.jsx';
 import Migration from './pages/migration/index.jsx';
 import Profile from './pages/profile/index.jsx';
 import Register from './pages/register/index.jsx';
+import Sites from './pages/sites/index.jsx';
+import Upgrade from './pages/upgrade/index.jsx';
 import User from './pages/user/index.jsx';
 import { store } from './store/index.js';
 
@@ -23,8 +25,26 @@ export default function App() {
             path="/ui"
             exact
             element={
-              <Access meta={{ auth: 'administrator' }} basename={basePath}>
+              <Access meta={{ auth: 'admin' }} basename={basePath}>
                 <ManageComments />
+              </Access>
+            }
+          />
+          <Route
+            path="/ui/sites"
+            exact
+            element={
+              <Access meta={{ auth: 'admin' }} basename={basePath}>
+                <Sites />
+              </Access>
+            }
+          />
+          <Route
+            path="/ui/upgrade"
+            exact
+            element={
+              <Access meta={{ auth: 'administrator' }} basename={basePath}>
+                <Upgrade />
               </Access>
             }
           />

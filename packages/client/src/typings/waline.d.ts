@@ -19,6 +19,9 @@ export interface WalineProps {
    */
   serverURL: string;
 
+  /** Public site identifier in a multi-site Waline deployment. */
+  siteId?: string;
+
   /**
    * 当前 _文章页_ 路径，用于区分不同的 _文章页_ ，以保证正确读取该 _文章页_ 下的评论列表
    *

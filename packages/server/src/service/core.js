@@ -6,7 +6,7 @@ const { createWalineCore } = require('@waline/core');
 const { getMarkdownParser } = require('./markdown/index.js');
 
 module.exports = class extends think.Service {
-  create(controller) {
+  create(controller, configOverride = {}) {
     const markdown = getMarkdownParser(controller.config('markdown'));
     const model = (name) => controller.getModel(name);
     const hasMailService = process.env.SMTP_HOST || process.env.SMTP_SERVICE;
@@ -28,11 +28,14 @@ module.exports = class extends think.Service {
         Comment: model('Comment'),
         Counter: model('Counter'),
         Users: model('Users'),
+        Site: model('Site'),
+        SiteAdmin: model('SiteAdmin'),
         get: model,
       },
       config: {
         ...controller.config(),
-        forceLogin: process.env.LOGIN === 'force',
+        ...configOverride,
+        forceLogin: configOverride.forceLogin ?? process.env.LOGIN === 'force',
         ipQps: Number(process.env.IPQPS || 60),
         likeIncMax: Number(controller.config('LIKE_INC_MAX') || 1),
         normalUserType: hasMailService
@@ -119,7 +122,7 @@ module.exports = class extends think.Service {
         spam: {
           check: (value) =>
             controller
-              .service('akismet', controller.ctx.serverURL)
+              .service('akismet', configOverride.siteUrl || controller.ctx.serverURL)
               .check(value)
               .catch((err) => {
                 think.logger.debug(err);

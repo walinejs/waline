@@ -61,6 +61,7 @@ const getCommentData = (pageNumber: number): void => {
     page: pageNumber,
     signal: controller.signal,
     token: userInfo.value.token,
+    siteId: config.value.siteId,
   })
     .then((resp) => {
       status.value = 'success';
@@ -138,6 +139,7 @@ const onStatusChange = async ({
   await updateComment({
     serverURL,
     lang,
+    siteId: config.value.siteId,
     token: userInfo.value.token,
     objectId: comment.objectId,
     comment: { status },
@@ -154,6 +156,7 @@ const onSticky = async (comment: WalineComment): Promise<void> => {
   await updateComment({
     serverURL,
     lang,
+    siteId: config.value.siteId,
     token: userInfo.value.token,
     objectId: comment.objectId,
     comment: { sticky: comment.sticky ? 0 : 1 },
@@ -170,6 +173,7 @@ const onDelete = async ({ objectId }: WalineComment): Promise<void> => {
   await deleteComment({
     serverURL,
     lang,
+    siteId: config.value.siteId,
     token: userInfo.value.token,
     objectId,
   });
@@ -202,6 +206,7 @@ const onLike = async (comment: WalineComment): Promise<void> => {
   await updateComment({
     serverURL,
     lang,
+    siteId: config.value.siteId,
     objectId,
     token: userInfo.value.token,
     comment: { like: !hasLiked },
@@ -224,7 +229,7 @@ provide(configKey, config);
 
 onMounted(async () => {
   watchImmediate(
-    () => [props.serverURL, props.path],
+    () => [props.serverURL, props.siteId, props.path],
     () => {
       refreshComments();
     },
@@ -330,7 +335,7 @@ onUnmounted(() => {
     <div class="wl-meta-foot" v-if="data.length || status !== 'loading'">
       <div v-if="!config.noRss" class="wl-rss">
         <a
-          :href="`${config.serverURL}/api/comment/rss?path=${encodeURIComponent(config.path)}`"
+          :href="`${config.serverURL}/api/comment/rss?path=${encodeURIComponent(config.path)}${config.siteId ? `&siteId=${encodeURIComponent(config.siteId)}` : ''}`"
           target="_blank"
           rel="noopener noreferrer"
           :alt="i18n.subPostComment"
@@ -340,7 +345,7 @@ onUnmounted(() => {
         </a>
 
         <a
-          :href="`${config.serverURL}/api/comment/rss`"
+          :href="`${config.serverURL}/api/comment/rss${config.siteId ? `?siteId=${encodeURIComponent(config.siteId)}` : ''}`"
           target="_blank"
           rel="noopener noreferrer"
           :alt="i18n.subSiteComment"

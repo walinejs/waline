@@ -37,6 +37,9 @@ export interface WalineCommentCountOptions {
    * @default navigator.language
    */
   lang?: string;
+
+  /** Public site identifier. */
+  siteId?: string;
 }
 
 export const commentCount = ({
@@ -44,6 +47,7 @@ export const commentCount = ({
   path = window.location.pathname,
   selector = '.waline-comment-count',
   lang = navigator.language,
+  siteId,
 }: WalineCommentCountOptions): WalineAbort => {
   const controller = new AbortController();
 
@@ -56,6 +60,7 @@ export const commentCount = ({
       paths: Array.from(elements, (element) => decodePath(getQuery(element) ?? path)),
       lang,
       signal: controller.signal,
+      siteId,
     })
       .then((counts) => {
         elements.forEach((element, index) => {

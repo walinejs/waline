@@ -10,7 +10,7 @@ module.exports = class BaseLogic extends think.Logic {
   }
 
   async __before() {
-    const referrerCheckResult = this.referrerCheck();
+    const referrerCheckResult = await this.referrerCheck();
     if (!referrerCheckResult) {
       return this.ctx.throw(403);
     }
@@ -45,8 +45,27 @@ module.exports = class BaseLogic extends think.Logic {
     }
   }
 
-  referrerCheck() {
+  async referrerCheck() {
     let { secureDomains } = this.config();
+    const siteId = this.get('siteId') || this.post('siteId');
+    if (['comment', 'article', 'user'].includes(this.resource)) {
+      try {
+        const sites = siteId
+          ? await this.getModel('Site').select({ objectId: siteId })
+          : await this.getModel('Site').select({});
+        const [requestedSite] = sites;
+        const site = siteId
+          ? requestedSite
+          : sites.find(({ default: isDefault }) => [true, 1, '1', 'true'].includes(isDefault));
+        const siteConfig =
+          typeof site?.config === 'string' ? JSON.parse(site.config || '{}') : site?.config;
+        if (siteConfig && Object.hasOwn(siteConfig, 'secureDomains')) {
+          ({ secureDomains } = siteConfig);
+        }
+      } catch (err) {
+        think.logger.warn('Unable to load site security configuration.', err.message);
+      }
+    }
     if (!secureDomains) {
       return true;
     }

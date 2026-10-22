@@ -47,13 +47,17 @@ const memoryModel = <T extends { objectId: string }>(initial: T[] = []): WalineM
 const setup = () => {
   const Comment = memoryModel<any>();
   const Counter = memoryModel<any>();
+  const Site = memoryModel<any>();
+  const SiteAdmin = memoryModel<any>();
   const Users = memoryModel<any>();
 
   return {
     Comment,
     Counter,
+    Site,
+    SiteAdmin,
     Users,
-    core: createWalineCore({ models: { Comment, Counter, Users } }),
+    core: createWalineCore({ models: { Comment, Counter, Site, SiteAdmin, Users } }),
   };
 };
 
@@ -66,6 +70,23 @@ describe('waline core', () => {
     ]);
     await expect(core.counter.update({ path: '/', type: 'time' }, ctx(true))).resolves.toBe(1);
     await expect(core.counter.get({ path: ['/'], type: ['time'] }, ctx(true))).resolves.toBe(1);
+  });
+
+  it('isolates counters with the same path by site', async () => {
+    const { core, Counter } = setup();
+    await Counter.add({ objectId: 'a', url: '/', site_id: 'site-a', time: 2 });
+    await Counter.add({ objectId: 'b', url: '/', site_id: 'site-b', time: 9 });
+    const request = ctx();
+    request.state.site = {
+      objectId: 'site-a',
+      name: 'A',
+      url: 'https://a.example',
+      status: 'active',
+    };
+
+    await expect(core.counter.get({ path: ['/'], type: ['time'] }, request)).resolves.toEqual([
+      { time: 2 },
+    ]);
   });
 
   it('validates required comment fields without framework state', async () => {

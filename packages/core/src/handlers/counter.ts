@@ -15,7 +15,8 @@ export const createCounterHandler = ({ models, now }: CoreRuntime) => ({
 
     if (!paths.length) return 0;
 
-    const rows = await models.Counter.select({ url: ['IN', paths] });
+    const siteWhere = ctx.state.site ? { site_id: ctx.state.site.objectId } : {};
+    const rows = await models.Counter.select({ ...siteWhere, url: ['IN', paths] });
     const byUrl = new Map(rows.map((item) => [item.url, item]));
     const data = paths.map((path) => {
       const values: Record<string, number> = {};
@@ -40,12 +41,16 @@ export const createCounterHandler = ({ models, now }: CoreRuntime) => ({
 
     if (!['inc', 'desc'].includes(action)) badRequest({ field: 'action' });
 
-    const rows = await models.Counter.select({ url: path });
+    const siteWhere = ctx.state.site ? { site_id: ctx.state.site.objectId } : {};
+    const rows = await models.Counter.select({ ...siteWhere, url: path });
 
     if (!rows.length) {
       if (action === 'desc') return ctx.state.deprecated ? 0 : [0];
 
-      await models.Counter.add({ url: path, [type]: 1 }, { access: { read: true, write: true } });
+      await models.Counter.add(
+        { ...siteWhere, url: path, [type]: 1 },
+        { access: { read: true, write: true } },
+      );
 
       return ctx.state.deprecated ? 1 : [{ [type]: 1 }];
     }
