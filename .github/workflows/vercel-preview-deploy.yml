@@ -96,6 +96,7 @@ jobs:
       - name: Build preview artifacts
         run: |
           set -e
+          pnpm --dir packages/core build
           pnpm api:build
           pnpm client:build
           pnpm admin:build
@@ -181,6 +182,15 @@ jobs:
           mv "$TGZ_FILE" packages/server/__tests__/fixtures/vercel/waline-vercel-current-pr.tgz
           CORE_TGZ_FILE=$(ls ./packages/server/__tests__/fixtures/vercel/waline-core-*.tgz | head -n 1)
           mv "$CORE_TGZ_FILE" packages/server/__tests__/fixtures/vercel/waline-core-current-pr.tgz
+          # Validate both runtime entry points before deploying the packed core.
+          tar -tzf packages/server/__tests__/fixtures/vercel/waline-core-current-pr.tgz > /tmp/core_tar_list.txt
+          for entry in package/dist/index.cjs package/dist/index.js; do
+            if ! grep -Fxq "$entry" /tmp/core_tar_list.txt; then
+              echo "ERROR: @waline/core tarball is missing $entry" >&2
+              cat /tmp/core_tar_list.txt
+              exit 1
+            fi
+          done
           ls -lah packages/server/__tests__/fixtures/vercel/waline-vercel-current-pr.tgz
 
           echo ""
