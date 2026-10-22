@@ -221,7 +221,9 @@ jobs:
         id: vercel
         run: |
           set -o pipefail
-          pnpm vercel deploy ./packages/server/__tests__/fixtures/vercel --yes --token "$VERCEL_TOKEN" | tee vercel-deploy.log
+          # Local tarballs keep the same filename/version across PR commits.
+          # Skip the build cache so npm installs the current checkout artifacts.
+          pnpm vercel deploy ./packages/server/__tests__/fixtures/vercel --yes --force --token "$VERCEL_TOKEN" | tee vercel-deploy.log
           url=$(awk '/https:\/\// { value=$0 } END { print value }' vercel-deploy.log)
           if [ -z "$url" ]; then
             echo "Unable to find Vercel preview URL in deploy output" >&2
