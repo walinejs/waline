@@ -469,8 +469,8 @@ importers:
         specifier: ^4.1.3
         version: 4.1.3
       '@mdit/plugin-emoji':
-        specifier: 1.2.2
-        version: 1.2.2(markdown-it@15.0.2)
+        specifier: 1.2.3
+        version: 1.2.3(markdown-it@15.0.2)
       '@mdit/plugin-katex':
         specifier: 1.1.3
         version: 1.1.3(markdown-it@15.0.2)
@@ -1669,6 +1669,15 @@ packages:
       markdown-it:
         optional: true
 
+  '@mdit/helper@1.1.3':
+    resolution: {integrity: sha512-ZJxIn+WQSHzJqI05hfMNmskhJoxGmixKMIUBMkbnjOL6CiamLDmiEubu6rwgyGVa6W0kE0Q1fmu/mMyNoU4SZw==}
+    engines: {node: '>=22'}
+    peerDependencies:
+      markdown-it: ^15.0.3
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
+
   '@mdit/plugin-alert@2.0.2':
     resolution: {integrity: sha512-0vjhfT58lKE5BDkrdpXdsX4jzRq2zDhlVqQNcgAOAatjG+Tq7k8eCQZBle+10lzNegqpWRgszpu2BSS4df7luw==}
     engines: {node: '>=22'}
@@ -1714,11 +1723,11 @@ packages:
       markdown-it:
         optional: true
 
-  '@mdit/plugin-emoji@1.2.2':
-    resolution: {integrity: sha512-U+ASgI5ZxDrCtVjLb2FyI2RGlamstOH9rAYB8HgezU4jKNGdtIUW4Re1wL5NrKzPPvSN6i6OdNzT+srSIG3e8g==}
+  '@mdit/plugin-emoji@1.2.3':
+    resolution: {integrity: sha512-b4CpOa2k7Z17I05zILyoP2s090wZosehw+x5oLM1oYqj/Xn1W25wYhY03a+7cRbtuqD7+WngCClrNaIXnye+iQ==}
     engines: {node: '>=22'}
     peerDependencies:
-      markdown-it: ^15.0.2
+      markdown-it: ^15.0.3
     peerDependenciesMeta:
       markdown-it:
         optional: true
@@ -9686,6 +9695,10 @@ snapshots:
     optionalDependencies:
       markdown-it: 15.0.2
 
+  '@mdit/helper@1.1.3(markdown-it@15.0.2)':
+    optionalDependencies:
+      markdown-it: 15.0.2
+
   '@mdit/plugin-alert@2.0.2(markdown-it@15.0.2)':
     dependencies:
       '@mdit/helper': 1.1.2(markdown-it@15.0.2)
@@ -9717,9 +9730,9 @@ snapshots:
     optionalDependencies:
       markdown-it: 15.0.2
 
-  '@mdit/plugin-emoji@1.2.2(markdown-it@15.0.2)':
+  '@mdit/plugin-emoji@1.2.3(markdown-it@15.0.2)':
     dependencies:
-      '@mdit/helper': 1.1.2(markdown-it@15.0.2)
+      '@mdit/helper': 1.1.3(markdown-it@15.0.2)
     optionalDependencies:
       markdown-it: 15.0.2
 
