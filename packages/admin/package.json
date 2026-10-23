@@ -51,7 +51,7 @@
     "react-dom": "19.3.0",
     "react-i18next": "17.0.15",
     "react-redux": "9.3.0",
-    "react-router": "8.4.0",
+    "react-router": "8.5.0",
     "redux": "5.0.1"
   },
   "browserslist": {
