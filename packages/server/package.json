@@ -28,7 +28,7 @@
     "@mdit/plugin-emoji": "1.2.2",
     "@mdit/plugin-katex": "1.1.3",
     "@mdit/plugin-mathjax": "1.2.2",
-    "@mdit/plugin-spoiler": "2.1.2",
+    "@mdit/plugin-spoiler": "2.1.3",
     "@mdit/plugin-sub": "1.1.2",
     "@mdit/plugin-sup": "1.1.2",
     "@waline/core": "workspace:*",
