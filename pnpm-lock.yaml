@@ -484,8 +484,8 @@ importers:
         specifier: 1.1.2
         version: 1.1.2(markdown-it@15.0.2)
       '@mdit/plugin-sup':
-        specifier: 1.1.2
-        version: 1.1.2(markdown-it@15.0.2)
+        specifier: 1.1.3
+        version: 1.1.3(markdown-it@15.0.2)
       '@waline/core':
         specifier: workspace:*
         version: link:../core
@@ -1669,6 +1669,15 @@ packages:
       markdown-it:
         optional: true
 
+  '@mdit/helper@1.1.3':
+    resolution: {integrity: sha512-ZJxIn+WQSHzJqI05hfMNmskhJoxGmixKMIUBMkbnjOL6CiamLDmiEubu6rwgyGVa6W0kE0Q1fmu/mMyNoU4SZw==}
+    engines: {node: '>=22'}
+    peerDependencies:
+      markdown-it: ^15.0.3
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
+
   '@mdit/plugin-alert@2.0.2':
     resolution: {integrity: sha512-0vjhfT58lKE5BDkrdpXdsX4jzRq2zDhlVqQNcgAOAatjG+Tq7k8eCQZBle+10lzNegqpWRgszpu2BSS4df7luw==}
     engines: {node: '>=22'}
@@ -1792,6 +1801,15 @@ packages:
       markdown-it:
         optional: true
 
+  '@mdit/plugin-inline-rule@2.2.3':
+    resolution: {integrity: sha512-HO+8vOFe/ZqNg7pFEQRMSdJPMOrNwheEeToCQ80aYLZ/gxlmMtB2cfrx6dQHfUS3TtLZRtuQ9RuLu54AiOURkA==}
+    engines: {node: '>=22'}
+    peerDependencies:
+      markdown-it: ^15.0.3
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
+
   '@mdit/plugin-katex-slim@1.1.3':
     resolution: {integrity: sha512-QYcje1/ra6PuDBjLhwFu7t6WxtwbTTRsHIblWYqcD+fYmhu7fua8a1rUplhsBNTmTEf+iohW4nbp2dNN77qPWg==}
     engines: {node: '>=22'}
@@ -1895,6 +1913,15 @@ packages:
     engines: {node: '>=22'}
     peerDependencies:
       markdown-it: ^15.0.2
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
+
+  '@mdit/plugin-sup@1.1.3':
+    resolution: {integrity: sha512-h7oEs5u4vCx7A+Xl0esIAbsB67gIWX2fXBGQaiCzWzo7hgclnQgZ/LPkESXlzs2iPBcopZwLWRNJLv2z6WfiEQ==}
+    engines: {node: '>=22'}
+    peerDependencies:
+      markdown-it: ^15.0.3
     peerDependenciesMeta:
       markdown-it:
         optional: true
@@ -9686,6 +9713,10 @@ snapshots:
     optionalDependencies:
       markdown-it: 15.0.2
 
+  '@mdit/helper@1.1.3(markdown-it@15.0.2)':
+    optionalDependencies:
+      markdown-it: 15.0.2
+
   '@mdit/plugin-alert@2.0.2(markdown-it@15.0.2)':
     dependencies:
       '@mdit/helper': 1.1.2(markdown-it@15.0.2)
@@ -9771,6 +9802,12 @@ snapshots:
     optionalDependencies:
       markdown-it: 15.0.2
 
+  '@mdit/plugin-inline-rule@2.2.3(markdown-it@15.0.2)':
+    dependencies:
+      '@mdit/helper': 1.1.3(markdown-it@15.0.2)
+    optionalDependencies:
+      markdown-it: 15.0.2
+
   '@mdit/plugin-katex-slim@1.1.3(katex@0.18.9)(markdown-it@15.0.2)':
     dependencies:
       '@mdit/helper': 1.1.2(markdown-it@15.0.2)
@@ -9847,6 +9884,13 @@ snapshots:
     dependencies:
       '@mdit/helper': 1.1.2(markdown-it@15.0.2)
       '@mdit/plugin-inline-rule': 2.2.2(markdown-it@15.0.2)
+    optionalDependencies:
+      markdown-it: 15.0.2
+
+  '@mdit/plugin-sup@1.1.3(markdown-it@15.0.2)':
+    dependencies:
+      '@mdit/helper': 1.1.3(markdown-it@15.0.2)
+      '@mdit/plugin-inline-rule': 2.2.3(markdown-it@15.0.2)
     optionalDependencies:
       markdown-it: 15.0.2
 
