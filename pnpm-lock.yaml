@@ -475,8 +475,8 @@ importers:
         specifier: 1.1.3
         version: 1.1.3(markdown-it@15.0.2)
       '@mdit/plugin-mathjax':
-        specifier: 1.2.2
-        version: 1.2.2(markdown-it@15.0.2)
+        specifier: 1.2.3
+        version: 1.2.3(markdown-it@15.0.2)
       '@mdit/plugin-spoiler':
         specifier: 2.1.2
         version: 2.1.2(markdown-it@15.0.2)
@@ -1669,6 +1669,15 @@ packages:
       markdown-it:
         optional: true
 
+  '@mdit/helper@1.1.3':
+    resolution: {integrity: sha512-ZJxIn+WQSHzJqI05hfMNmskhJoxGmixKMIUBMkbnjOL6CiamLDmiEubu6rwgyGVa6W0kE0Q1fmu/mMyNoU4SZw==}
+    engines: {node: '>=22'}
+    peerDependencies:
+      markdown-it: ^15.0.3
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
+
   '@mdit/plugin-alert@2.0.2':
     resolution: {integrity: sha512-0vjhfT58lKE5BDkrdpXdsX4jzRq2zDhlVqQNcgAOAatjG+Tq7k8eCQZBle+10lzNegqpWRgszpu2BSS4df7luw==}
     engines: {node: '>=22'}
@@ -1845,11 +1854,11 @@ packages:
       markdown-it:
         optional: true
 
-  '@mdit/plugin-mathjax@1.2.2':
-    resolution: {integrity: sha512-rLy+BH1VOTzAcJlo/k2DdPYBRdxDu0ofZfVA65VswzLJD7HZH7vXKZ4ab8fUfI67qJKt/Q2mjQNPTnJ+GAfO/Q==}
+  '@mdit/plugin-mathjax@1.2.3':
+    resolution: {integrity: sha512-4+SC3tDC8hSDiYDKATIRovTTDepRhRWSjHJ4TfWKWoucc1yeKGZfaFOpSrkzeageaAParULC5iDq7Q3MqMDi8g==}
     engines: {node: '>=22'}
     peerDependencies:
-      markdown-it: ^15.0.2
+      markdown-it: ^15.0.3
     peerDependenciesMeta:
       markdown-it:
         optional: true
@@ -1922,6 +1931,15 @@ packages:
     engines: {node: '>=22'}
     peerDependencies:
       markdown-it: ^15.0.2
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
+
+  '@mdit/plugin-tex@1.1.3':
+    resolution: {integrity: sha512-AidFpoF+hs4ghyoBIhQ7LDJeNYQUgLBga9wmxB+SwbA1F3zeI7S+mfHdv591iLwBdDIn3aLIAN6PjuOgEPYzYg==}
+    engines: {node: '>=22'}
+    peerDependencies:
+      markdown-it: ^15.0.3
     peerDependenciesMeta:
       markdown-it:
         optional: true
@@ -9686,6 +9704,10 @@ snapshots:
     optionalDependencies:
       markdown-it: 15.0.2
 
+  '@mdit/helper@1.1.3(markdown-it@15.0.2)':
+    optionalDependencies:
+      markdown-it: 15.0.2
+
   '@mdit/plugin-alert@2.0.2(markdown-it@15.0.2)':
     dependencies:
       '@mdit/helper': 1.1.2(markdown-it@15.0.2)
@@ -9808,11 +9830,11 @@ snapshots:
       '@mathjax/src': 4.1.3
       markdown-it: 15.0.2
 
-  '@mdit/plugin-mathjax@1.2.2(markdown-it@15.0.2)':
+  '@mdit/plugin-mathjax@1.2.3(markdown-it@15.0.2)':
     dependencies:
       '@mathjax/mathjax-newcm-font': 4.1.3(@mathjax/src@4.1.3)
       '@mathjax/src': 4.1.3
-      '@mdit/plugin-tex': 1.1.2(markdown-it@15.0.2)
+      '@mdit/plugin-tex': 1.1.3(markdown-it@15.0.2)
     optionalDependencies:
       markdown-it: 15.0.2
 
@@ -9865,6 +9887,12 @@ snapshots:
   '@mdit/plugin-tex@1.1.2(markdown-it@15.0.2)':
     dependencies:
       '@mdit/helper': 1.1.2(markdown-it@15.0.2)
+    optionalDependencies:
+      markdown-it: 15.0.2
+
+  '@mdit/plugin-tex@1.1.3(markdown-it@15.0.2)':
+    dependencies:
+      '@mdit/helper': 1.1.3(markdown-it@15.0.2)
     optionalDependencies:
       markdown-it: 15.0.2
 
