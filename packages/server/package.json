@@ -36,7 +36,7 @@
     "dompurify": "3.4.16",
     "fast-csv": "^5.0.7",
     "form-data": "^4.0.6",
-    "ip2region": "^2.3.0",
+    "ip2region": "^3.0.0",
     "jsdom": "^30.1.1",
     "jsonwebtoken": "^9.0.3",
     "koa-compose": "^4.1.0",
