@@ -31,9 +31,7 @@ jobs:
         uses: pnpm/setup@v3
         with:
           runtime: node@^24.22.1
-
-      - name: Install Dependencies
-        run: pnpm ci
+          require-lockfile: true
 
       - name: Get version
         id: get-version
