@@ -33,9 +33,7 @@ jobs:
         uses: pnpm/setup@v3
         with:
           runtime: node@^24.22.1
-
-      - name: Install dependencies
-        run: pnpm ci
+          require-lockfile: true
 
       - name: Create GitHub deployment
         uses: actions/github-script@v9
