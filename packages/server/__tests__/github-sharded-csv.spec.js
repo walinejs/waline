@@ -64,4 +64,23 @@ describe('sharded store CSV codec', () => {
   it('keeps a row whose single cell is an explicitly quoted empty string', () => {
     expect(parse('a,b\n""\n', PARSE_OPTIONS)).toStrictEqual([{ a: '' }]);
   });
+
+  it('treats a lone CR inside a cell as data, not as a line break', () => {
+    const rows = [{ objectId: 'a1', comment: 'has\rcr' }];
+    const text = stringify(rows, {
+      header: true,
+      columns: ['objectId', 'comment'],
+      record_delimiter: '\n',
+      quoted: false,
+    });
+
+    // Same bytes csv-stringify produces: a lone CR is not quoted in an LF file
+    expect(text).toBe('objectId,comment\na1,has\rcr\n');
+    expect(parse(text, PARSE_OPTIONS)).toStrictEqual(rows);
+
+    // A trailing CR in the last column survives, and genuinely CR-delimited
+    // files still parse
+    expect(parse('a,b\nx,y\r\n', PARSE_OPTIONS)).toStrictEqual([{ a: 'x', b: 'y\r' }]);
+    expect(parse('a,b\r1,2\r', PARSE_OPTIONS)).toStrictEqual([{ a: '1', b: '2' }]);
+  });
 });

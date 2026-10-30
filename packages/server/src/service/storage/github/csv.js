@@ -3,29 +3,47 @@
 /**
  * Minimal RFC 4180 codec for shard and manifest files.
  *
- * Shards are parsed and serialised on every read and write, and the sharded
- * store does that synchronously, while the CSV dependency of this package
- * (fast-csv) is stream based. This module therefore covers exactly the option
- * subset the store passes, and reproduces csv-parse / csv-stringify output for
- * it:
- *   - LF as record delimiter, quoting only when a cell holds `,` `"` CR or LF;
- *   - a header row on every file, columns taken from the caller or the first row;
- *   - parsing tolerates a BOM, blank lines, and rows whose cell count differs
- *     from the header (extra cells dropped, missing cells left absent).
+ * Shards are parsed and serialised synchronously on every read and write, while
+ * the CSV dependency of this package (fast-csv) is stream based. This module
+ * therefore covers exactly the option subset the store passes, in place of the
+ * csv-parse / csv-stringify pair, and reproduces their behaviour for it —
+ * including two details that are easy to get wrong:
+ *
+ *   - a cell is quoted only when it holds the record delimiter, `,` or `"`.
+ *     A lone CR therefore stays unquoted, exactly as csv-stringify writes it;
+ *   - the record delimiter is detected from the first line ending, exactly as
+ *     csv-parse does when `record_delimiter` is not given. In an LF file a lone
+ *     CR inside a cell is data, not a line break — treating it as one would
+ *     split rows written by csv-stringify and silently corrupt them.
  */
 
 const DELIMITER = ',';
 const QUOTE = '"';
-const NEEDS_QUOTE = /[",\r\n]/u;
 const BOM = 0xfe_ff;
 
-// Render one cell, quoting only when the value would otherwise be ambiguous.
-const toField = (value) => {
-  const text = value === undefined || value === null ? '' : String(value);
+/**
+ * The delimiter that separates records, detected from the first line ending.
+ *
+ * Files written by the store always use `\n`; `\r\n` and lone `\r` are accepted
+ * so a hand-edited file keeps its own convention instead of mixing the two.
+ */
+const detectRecordDelimiter = (text) => {
+  const index = text.search(/[\r\n]/u);
 
-  return NEEDS_QUOTE.test(text)
-    ? `${QUOTE}${text.replaceAll(QUOTE, QUOTE + QUOTE)}${QUOTE}`
-    : text;
+  if (index === -1 || text[index] === '\n') {
+    return '\n';
+  }
+
+  return text[index + 1] === '\n' ? '\r\n' : '\r';
+};
+
+// Render one cell, quoting only when the value would otherwise be ambiguous.
+const toField = (value, recordDelimiter) => {
+  const text = value === undefined || value === null ? '' : String(value);
+  const mustQuote =
+    text.includes(recordDelimiter) || text.includes(DELIMITER) || text.includes(QUOTE);
+
+  return mustQuote ? `${QUOTE}${text.replaceAll(QUOTE, QUOTE + QUOTE)}${QUOTE}` : text;
 };
 
 /**
@@ -41,12 +59,13 @@ function stringify(rows, { header = false, columns = null, record_delimiter = '\
   const list = [...rows];
   const fields = columns ?? (list.length > 0 ? Object.keys(list[0]) : []);
   const lines = [];
+  const field = (value) => toField(value, record_delimiter);
 
   if (header && fields.length > 0) {
-    lines.push(fields.map(toField).join(DELIMITER));
+    lines.push(fields.map(field).join(DELIMITER));
   }
   for (const row of list) {
-    lines.push(fields.map((field) => toField(row[field])).join(DELIMITER));
+    lines.push(fields.map((column) => field(row[column])).join(DELIMITER));
   }
 
   return lines.length === 0 ? '' : `${lines.join(record_delimiter)}${record_delimiter}`;
@@ -62,6 +81,7 @@ function stringify(rows, { header = false, columns = null, record_delimiter = '\
  *   line, which is what skip_empty_lines drops; a quoted empty cell is data.
  */
 function splitRecords(text) {
+  const recordDelimiter = detectRecordDelimiter(text);
   const records = [];
   let row = [];
   let field = '';
@@ -105,9 +125,8 @@ function splitRecords(text) {
       row.push(field);
       field = '';
       index += 1;
-    } else if (char === '\r' || char === '\n') {
-      // CRLF counts as one delimiter, which also covers hand-edited files
-      index += char === '\r' && text[index + 1] === '\n' ? 2 : 1;
+    } else if (text.startsWith(recordDelimiter, index)) {
+      index += recordDelimiter.length;
       endRow();
     } else {
       field += char;
@@ -162,4 +181,4 @@ function parse(text, { columns = false, skip_empty_lines = false, bom = false } 
   });
 }
 
-module.exports = { parse, stringify, splitRecords };
+module.exports = { parse, stringify };
