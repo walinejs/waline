@@ -22,6 +22,10 @@
 
 const { setTimeout: sleep } = require('node:timers/promises');
 
+// Diff:   the original implementation used `csv-parse/sync` and
+//         `csv-stringify/sync` for the snapshot manifest.
+// Patch:  the same local codec as the shard files (see ./csv.js).
+// Reason: one synchronous codec instead of two extra runtime packages.
 const { parse, stringify } = require('./csv.js');
 const { ShaConflictError } = require('./github-client');
 

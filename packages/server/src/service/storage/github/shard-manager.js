@@ -373,9 +373,18 @@ class ShardManager {
   // --------------------------------------------------------------------------
 
   /**
-   * Serialize a shard as UTF-8 + LF, quoting only when necessary (RFC 4180
-   * escaping is delegated to csv-stringify). Every shard carries a header so
-   * diffs stay readable and the files open in spreadsheet software.
+   * Serialize a shard as UTF-8 + LF, quoting only when necessary. Every shard
+   * carries a header so diffs stay readable and the files open in spreadsheet
+   * software.
+   *
+   * Diff:   the original implementation delegated this to `csv-stringify/sync`.
+   * Patch:  ./csv.js is called with the same options the original passed
+   *         (`header`, `columns`, `record_delimiter: '\n'`, `quoted: false`),
+   *         and reproduces its casting and quoting rules.
+   * Reason: @waline/vercel is published from source with no build step, so an
+   *         extra runtime package for one synchronous codec would be paid for by
+   *         every deployment. fast-csv, already present for the legacy storage,
+   *         cannot stand in: its API is stream based.
    */
   serializeShard(table, rows, columns) {
     const header = columns ?? this.buildColumns(table, rows);
@@ -410,7 +419,15 @@ class ShardManager {
     return [...canonical, ...[...extras].sort()];
   }
 
-  // Parse a shard; an empty or header-only file yields an empty array.
+  /**
+   * Parse a shard; an empty or header-only file yields an empty array.
+   *
+   * Diff:   the original implementation used `csv-parse/sync`.
+   * Patch:  ./csv.js with the same options (`columns: true`,
+   *         `skip_empty_lines`, `relax_column_count`, `bom`), including the
+   *         original error codes for malformed files.
+   * Reason: one synchronous codec instead of two extra runtime packages.
+   */
   parseShard(text) {
     if (!text || !text.trim()) {
       return [];
@@ -429,6 +446,8 @@ class ShardManager {
   // --------------------------------------------------------------------------
 
   // Serialize the manifest, ordered by shard_path, with storeDir-relative paths.
+  // Same local codec as serializeShard (see the Diff / Patch / Reason note
+  // there); the original implementation used `csv-stringify/sync` here as well.
   serializeManifest(entries) {
     const prefix = `${this.storeDir}/`;
     const records = [...entries.values()]
@@ -449,6 +468,7 @@ class ShardManager {
     });
   }
 
+  // Same local codec as parseShard, in place of the original `csv-parse/sync`.
   parseManifest(text) {
     const entries = new Map();
 

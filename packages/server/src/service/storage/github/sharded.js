@@ -8,6 +8,15 @@
  * controllers only ever see select / count / add / update / delete. Querying,
  * indexing, batching and conflict handling belong to csv-model + csv-shard-cache
  * + shard-write-queue.
+ *
+ * Diff:   the original implementation exposed a `customModel(tableName)` factory
+ *         that returned `null` for an unknown table, letting Waline fall back to
+ *         its built-in storage.
+ * Patch:  a service class instead, because thinkjs loads `storage/github` with
+ *         `new Cls(tableName)` and cannot use a null return; an unknown table
+ *         throws a descriptive error.
+ * Reason: the service loader is the only injection point in this package. Waline
+ *         only asks for Comment / Users / Counter, so the branch is unreachable.
  */
 
 const Base = require('../base.js');
