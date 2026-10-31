@@ -376,8 +376,8 @@ importers:
         specifier: 17.0.15
         version: 17.0.15(i18next@26.4.2(typescript@7.0.2))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@7.0.2)
       react-redux:
-        specifier: 9.3.0
-        version: 9.3.0(react@19.3.0)(redux@5.0.1)
+        specifier: 9.3.1
+        version: 9.3.1(react@19.3.0)(redux@5.0.1)
       react-router:
         specifier: 8.4.0
         version: 8.4.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -6771,8 +6771,8 @@ packages:
       typescript:
         optional: true
 
-  react-redux@9.3.0:
-    resolution: {integrity: sha512-KQopgqFo/p/fgmAs5qz6p5RWaNAzq40WAu7fJIXnQpYxFPbJYtsJPWvGeF2rOBaY/kEuV77AVsX8TsQzKm+A/g==}
+  react-redux@9.3.1:
+    resolution: {integrity: sha512-vxMLT0lalUjbZPkoTepWyKAZbjIIFssNx/CEL9lTfwQBU6XpkGSmCNdcCIrkOBUgB68uftZMnbXVb6DwGnhRKQ==}
     peerDependencies:
       '@types/react': ^18.2.25 || ^19
       react: ^18.0 || ^19
@@ -14763,7 +14763,7 @@ snapshots:
       react-dom: 19.3.0(react@19.3.0)
       typescript: 7.0.2
 
-  react-redux@9.3.0(react@19.3.0)(redux@5.0.1):
+  react-redux@9.3.1(react@19.3.0)(redux@5.0.1):
     dependencies:
       '@types/use-sync-external-store': 0.0.6
       react: 19.3.0
