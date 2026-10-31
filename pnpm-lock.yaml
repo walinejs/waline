@@ -449,7 +449,7 @@ importers:
   packages/core:
     devDependencies:
       tsdown:
-        specifier: ^0.23.4
+        specifier: 0.23.4
         version: 0.23.4(publint@0.3.25)(tsx@4.21.0)(typescript@7.0.2)(unrun@0.3.1(synckit@0.11.13))
       typescript:
         specifier: 'catalog:'
