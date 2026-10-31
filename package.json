@@ -10,7 +10,7 @@
     "admin:build": "pnpm --dir=packages/admin build",
     "admin:dev": "pnpm --dir=packages/admin dev",
     "api:build": "pnpm --dir=packages/api build",
-    "api:docs": "mkdir -p docs/src/.vuepress/dist/api && redocly build-docs packages/server/openapi.yaml --output docs/src/.vuepress/dist/api/index.html --disableGoogleFont",
+    "api:docs": "mkdir -p docs/src/.vuepress/dist/api && redocly build-docs packages/server/openapi.yaml --output docs/src/.vuepress/dist/api/index.html",
     "api:lint": "redocly lint packages/server/openapi.yaml",
     "build": "turbo run build",
     "clean": "turbo run clean",
