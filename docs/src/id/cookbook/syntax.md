@@ -151,7 +151,7 @@ this point
 ---
 
 ```md
----
+***
 ```
 
 :::
@@ -344,6 +344,7 @@ footer p {
 Anda dapat menggunakan `$ ... $` untuk membuat rumus inline, atau menggunakan `$$ ... $$` untuk membuat rumus tingkat blok.
 
 :::
+
 ::: details Demo
 
 Identitas Euler $e^{i\pi}+1=0$ adalah rumus yang indah di $\mathbb{R}^2$.

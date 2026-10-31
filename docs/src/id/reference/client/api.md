@@ -38,20 +38,18 @@ interface WalineInstance {
   /**
    * Element tempat Waline dipasang
    *
-   * @description ketika diinisialisasi dengan `el: null`, nilainya akan menjadi `null`
+   * Ketika diinisialisasi dengan `el: null`, nilainya akan menjadi `null`
    */
   el: HTMLElement | null;
 
   /**
    * Memperbarui instance Waline
    *
-   * @description ketika tidak mengatur opsi `path`, akan direset ke `window.location.pathname`
+   * Ketika tidak mengatur opsi `path`, akan direset ke `window.location.pathname`
    */
   update: (newOptions?: Partial<Omit<WalineInitOptions, 'el'>>) => void;
 
-  /**
-   * Melepas dan menghancurkan instance Waline
-   */
+  /** Melepas dan menghancurkan instance Waline */
   destroy: () => void;
 }
 ```
@@ -95,9 +93,7 @@ Opsi:
 
 ```ts
 interface WalineCommentCountOptions {
-  /**
-   * URL server Waline
-   */
+  /** URL server Waline */
   serverURL: string;
 
   /**
@@ -136,9 +132,7 @@ Opsi:
 
 ```ts
 interface WalinePageviewCountOptions {
-  /**
-   * URL server Waline
-   */
+  /** URL server Waline */
   serverURL: string;
 
   /**
@@ -186,19 +180,13 @@ Opsi:
 
 ```ts
 interface WalineRecentCommentsOptions {
-  /**
-   * serverURL Waline
-   */
+  /** ServerURL Waline */
   serverURL: string;
 
-  /**
-   * jumlah komentar terbaru yang diambil
-   */
+  /** Jumlah komentar terbaru yang diambil */
   count: number;
 
-  /**
-   * Elemen yang akan dipasang
-   */
+  /** Elemen yang akan dipasang */
   el?: string | HTMLElement;
 }
 ```
@@ -207,14 +195,10 @@ Kembalian:
 
 ```ts
 interface WalineRecentCommentsResult {
-  /**
-   * Data Komentar
-   */
+  /** Data Komentar */
   comments: WalineComment[];
 
-  /**
-   * Melepas widget
-   */
+  /** Melepas widget */
   destroy: () => void;
 }
 ```
@@ -233,19 +217,13 @@ Opsi:
 
 ```ts
 interface WalineUserListOptions {
-  /**
-   * serverURL Waline
-   */
+  /** ServerURL Waline */
   serverURL: string;
 
-  /**
-   * jumlah daftar pengguna yang diambil
-   */
+  /** Jumlah daftar pengguna yang diambil */
   count: number;
 
-  /**
-   * Elemen yang akan dipasang
-   */
+  /** Elemen yang akan dipasang */
   el?: string | HTMLElement;
 
   /**
@@ -262,9 +240,7 @@ interface WalineUserListOptions {
    */
   locale?: WalineLocale;
 
-  /**
-   * mode daftar atau mode dinding avatar
-   */
+  /** Mode daftar atau mode dinding avatar */
   mode: 'list' | 'wall';
 }
 ```
@@ -273,14 +249,10 @@ Kembalian:
 
 ```ts
 interface WalineUserListResult {
-  /**
-   * Data Pengguna
-   */
+  /** Data Pengguna */
   users: WalineUser[];
 
-  /**
-   * Melepas widget
-   */
+  /** Melepas widget */
   destroy: () => void;
 }
 ```

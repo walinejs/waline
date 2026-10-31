@@ -166,6 +166,7 @@ export default hopeTheme(
       math: {
         type: 'mathjax',
       },
+      preview: true,
       sub: true,
       sup: true,
       tasklist: true,

@@ -38,20 +38,18 @@ interface WalineInstance {
   /**
    * Element, an dem Waline eingebunden ist
    *
-   * @description Wenn mit `el: null` initialisiert, wird es `null` sein
+   * Wenn mit `el: null` initialisiert, wird es `null` sein
    */
   el: HTMLElement | null;
 
   /**
    * Waline-Instanz aktualisieren
    *
-   * @description Wenn die `path`-Option nicht gesetzt ist, wird sie auf `window.location.pathname` zurückgesetzt
+   * Wenn die `path`-Option nicht gesetzt ist, wird sie auf `window.location.pathname` zurückgesetzt
    */
   update: (newOptions?: Partial<Omit<WalineInitOptions, 'el'>>) => void;
 
-  /**
-   * Waline-Instanz aushängen und zerstören
-   */
+  /** Waline-Instanz aushängen und zerstören */
   destroy: () => void;
 }
 ```
@@ -95,9 +93,7 @@ Optionen:
 
 ```ts
 interface WalineCommentCountOptions {
-  /**
-   * Waline-Server-URL
-   */
+  /** Waline-Server-URL */
   serverURL: string;
 
   /**
@@ -136,9 +132,7 @@ Optionen:
 
 ```ts
 interface WalinePageviewCountOptions {
-  /**
-   * Waline-Server-URL
-   */
+  /** Waline-Server-URL */
   serverURL: string;
 
   /**
@@ -186,19 +180,13 @@ Optionen:
 
 ```ts
 interface WalineRecentCommentsOptions {
-  /**
-   * Waline-Server-URL
-   */
+  /** Waline-Server-URL */
   serverURL: string;
 
-  /**
-   * Anzahl der neuesten Kommentare abrufen
-   */
+  /** Anzahl der neuesten Kommentare abrufen */
   count: number;
 
-  /**
-   * Element zum Einbinden
-   */
+  /** Element zum Einbinden */
   el?: string | HTMLElement;
 }
 ```
@@ -207,14 +195,10 @@ Rückgabe:
 
 ```ts
 interface WalineRecentCommentsResult {
-  /**
-   * Kommentardaten
-   */
+  /** Kommentardaten */
   comments: WalineComment[];
 
-  /**
-   * Widget aushängen
-   */
+  /** Widget aushängen */
   destroy: () => void;
 }
 ```
@@ -233,19 +217,13 @@ Optionen:
 
 ```ts
 interface WalineUserListOptions {
-  /**
-   * Waline-Server-URL
-   */
+  /** Waline-Server-URL */
   serverURL: string;
 
-  /**
-   * Anzahl der Benutzerliste abrufen
-   */
+  /** Anzahl der Benutzerliste abrufen */
   count: number;
 
-  /**
-   * Element zum Einbinden
-   */
+  /** Element zum Einbinden */
   el?: string | HTMLElement;
 
   /**
@@ -262,9 +240,7 @@ interface WalineUserListOptions {
    */
   locale?: WalineLocale;
 
-  /**
-   * Listenmodus oder Avatar-Wand-Modus
-   */
+  /** Listenmodus oder Avatar-Wand-Modus */
   mode: 'list' | 'wall';
 }
 ```
@@ -273,14 +249,10 @@ Rückgabe:
 
 ```ts
 interface WalineUserListResult {
-  /**
-   * Benutzerdaten
-   */
+  /** Benutzerdaten */
   users: WalineUser[];
 
-  /**
-   * Widget aushängen
-   */
+  /** Widget aushängen */
   destroy: () => void;
 }
 ```

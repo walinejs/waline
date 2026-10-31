@@ -30,7 +30,7 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/setup@v3
         with:
-          runtime: node@^26.0.0
+          runtime: node@^26.13.0
           require-lockfile: true
 
       - name: Get version

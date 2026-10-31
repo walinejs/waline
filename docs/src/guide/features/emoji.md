@@ -152,7 +152,6 @@ Waline 不含有上述 Emoji 表情的任何版权，你需要自行承担使用
   init({
     el: '#waline',
     serverURL: '<YOUR SERVER URL>',
-
     // 设置 emoji 为微博与哔哩小黄脸
     emoji: ['//unpkg.com/@waline/emojis@1.4.0/weibo', '//unpkg.com/@waline/emojis@1.4.0/bmoji'],
   });

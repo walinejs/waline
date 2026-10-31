@@ -15,22 +15,20 @@ Für alle nachfolgenden Operationen erfordert `@waline/client`, dass Sie ein Arr
 
 ```ts
 interface WalineSearchImageData extends Record<string, unknown> {
-  /**
-   * Bild-Link
-   */
+  /** Bild-Link */
   src: string;
 
   /**
    * Bild-Titel
    *
-   * @description Wird für das Alt-Attribut des Bildes verwendet
+   * Wird für das Alt-Attribut des Bildes verwendet
    */
   title?: string;
 
   /**
    * Bild-Vorschau-Link
    *
-   * @description Für eine bessere Ladeleistung verwenden wir zuerst dieses Thumbnail in der Liste
+   * Für eine bessere Ladeleistung verwenden wir zuerst dieses Thumbnail in der Liste
    *
    * @default src
    */
@@ -58,9 +56,7 @@ Um das Laden der Liste zu beschleunigen, sollten Sie, solange der Bilddienst meh
 
 ```ts
 interface WalineSearchOptions {
-  /**
-   * Such-Aktion
-   */
+  /** Such-Aktion */
   search: (word: string) => Promise<WalineSearchResult>;
 
   /**
@@ -73,7 +69,8 @@ interface WalineSearchOptions {
   /**
    * Mehr-Laden-Aktion
    *
-   * @description Wird ausgelöst, wenn die Liste nach unten scrollt. Wenn Ihr Suchdienst Paging unterstützt, sollten Sie dies festlegen, um unendliches Scrollen zu erreichen
+   * Wird ausgelöst, wenn die Liste nach unten scrollt. Wenn Ihr Suchdienst Paging unterstützt,
+   * sollten Sie dies festlegen, um unendliches Scrollen zu erreichen
    *
    * @default (word) => search(word)
    */

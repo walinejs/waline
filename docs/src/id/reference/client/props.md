@@ -69,29 +69,17 @@ Locale Waline.
   type WalineEmojiPresets = `http://${string}` | `https://${string}`;
 
   interface WalineEmojiInfo {
-    /**
-     * Nama emoji yang ditampilkan pada tab
-     */
+    /** Nama emoji yang ditampilkan pada tab */
     name: string;
-    /**
-     * Tautan folder saat ini
-     */
+    /** Tautan folder saat ini */
     folder?: string;
-    /**
-     * Awalan umum ikon Emoji
-     */
+    /** Awalan umum ikon Emoji */
     prefix?: string;
-    /**
-     * Tipe ikon Emoji, akan dianggap sebagai ekstensi file
-     */
+    /** Tipe ikon Emoji, akan dianggap sebagai ekstensi file */
     type?: string;
-    /**
-     * Ikon emoji yang ditampilkan pada tab
-     */
+    /** Ikon emoji yang ditampilkan pada tab */
     icon: string;
-    /**
-     * Daftar gambar Emoji
-     */
+    /** Daftar gambar Emoji */
     items: string[];
   }
   ```
@@ -234,22 +222,21 @@ Anda dapat mengimpor renderer $\TeX$ untuk menyediakan fitur pratinjau. Kami mer
 
   ```ts
   interface WalineSearchImageData extends Record<string, unknown> {
-    /**
-     * Tautan gambar
-     */
+    /** Tautan gambar */
     src: string;
 
     /**
      * Judul gambar
      *
-     * @description Digunakan untuk atribut alt gambar
+     * Digunakan untuk atribut alt gambar
      */
     title?: string;
 
     /**
      * Tautan pratinjau gambar
      *
-     * @description Untuk performa loading yang lebih baik, kami akan menggunakan thumbnail ini terlebih dahulu dalam daftar
+     * Untuk performa loading yang lebih baik, kami akan menggunakan thumbnail ini terlebih dahulu
+     * dalam daftar
      *
      * @default src
      */
@@ -259,9 +246,7 @@ Anda dapat mengimpor renderer $\TeX$ untuk menyediakan fitur pratinjau. Kami mer
   type WalineSearchResult = WalineSearchImageData[];
 
   interface WalineSearchOptions {
-    /**
-     * Aksi pencarian
-     */
+    /** Aksi pencarian */
     search: (word: string) => Promise<WalineSearchResult>;
 
     /**
@@ -274,7 +259,8 @@ Anda dapat mengimpor renderer $\TeX$ untuk menyediakan fitur pratinjau. Kami mer
     /**
      * Aksi ambil lebih banyak
      *
-     * @description Akan dipicu ketika daftar digulir ke bawah. Jika layanan pencarian Anda mendukung paging, Anda harus mengatur ini untuk mencapai infinite scrolling
+     * Akan dipicu ketika daftar digulir ke bawah. Jika layanan pencarian Anda mendukung paging, Anda
+     * harus mengatur ini untuk mencapai infinite scrolling
      *
      * @default (word) => search(word)
      */

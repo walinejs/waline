@@ -69,29 +69,17 @@ Waline-Lokalisierungen.
   type WalineEmojiPresets = `http://${string}` | `https://${string}`;
 
   interface WalineEmojiInfo {
-    /**
-     * Emoji-Name, der auf der Registerkarte angezeigt wird
-     */
+    /** Emoji-Name, der auf der Registerkarte angezeigt wird */
     name: string;
-    /**
-     * Aktueller Ordner-Link
-     */
+    /** Aktueller Ordner-Link */
     folder?: string;
-    /**
-     * Gemeinsames Präfix der Emoji-Symbole
-     */
+    /** Gemeinsames Präfix der Emoji-Symbole */
     prefix?: string;
-    /**
-     * Typ der Emoji-Symbole, wird als Dateierweiterung betrachtet
-     */
+    /** Typ der Emoji-Symbole, wird als Dateierweiterung betrachtet */
     type?: string;
-    /**
-     * Emoji-Symbol, das auf der Registerkarte angezeigt wird
-     */
+    /** Emoji-Symbol, das auf der Registerkarte angezeigt wird */
     icon: string;
-    /**
-     * Emoji-Bildliste
-     */
+    /** Emoji-Bildliste */
     items: string[];
   }
   ```
@@ -234,22 +222,20 @@ Sie können einen $\TeX$-Renderer importieren, um die Vorschaufunktion bereitzus
 
   ```ts
   interface WalineSearchImageData extends Record<string, unknown> {
-    /**
-     * Bild-Link
-     */
+    /** Bild-Link */
     src: string;
 
     /**
      * Bildtitel
      *
-     * @description Wird für das alt-Attribut des Bildes verwendet
+     * Wird für das alt-Attribut des Bildes verwendet
      */
     title?: string;
 
     /**
      * Bild-Vorschau-Link
      *
-     * @description Für bessere Ladeleistung verwenden wir zuerst dieses Thumbnail in der Liste
+     * Für bessere Ladeleistung verwenden wir zuerst dieses Thumbnail in der Liste
      *
      * @default src
      */
@@ -259,9 +245,7 @@ Sie können einen $\TeX$-Renderer importieren, um die Vorschaufunktion bereitzus
   type WalineSearchResult = WalineSearchImageData[];
 
   interface WalineSearchOptions {
-    /**
-     * Suchaktion
-     */
+    /** Suchaktion */
     search: (word: string) => Promise<WalineSearchResult>;
 
     /**
@@ -274,7 +258,8 @@ Sie können einen $\TeX$-Renderer importieren, um die Vorschaufunktion bereitzus
     /**
      * Weitere Aktion abrufen
      *
-     * @description Es wird ausgelöst, wenn die Liste zum unteren Rand scrollt. Wenn Ihr Suchdienst Paginierung unterstützt, sollten Sie dies setzen, um unendliches Scrollen zu erreichen
+     * Es wird ausgelöst, wenn die Liste zum unteren Rand scrollt. Wenn Ihr Suchdienst Paginierung
+     * unterstützt, sollten Sie dies setzen, um unendliches Scrollen zu erreichen
      *
      * @default (word) => search(word)
      */

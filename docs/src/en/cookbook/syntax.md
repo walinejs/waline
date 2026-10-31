@@ -151,7 +151,7 @@ this point
 ---
 
 ```md
----
+***
 ```
 
 :::
@@ -344,6 +344,7 @@ footer p {
 You can use `$ ... $` to create inline formulas, or use `$$ ... $$` to create block-level formulas.
 
 :::
+
 ::: details Demo
 
 Euler’s identity $e^{i\pi}+1=0$ is a beautiful formula in $\mathbb{R}^2$.

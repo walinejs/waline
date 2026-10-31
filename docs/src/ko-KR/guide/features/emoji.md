@@ -156,7 +156,6 @@ Waline은 위 이모지에 대한 저작권을 보유하고 있지 않으며, �
   init({
     el: '#waline',
     serverURL: '<YOUR SERVER URL>',
-
     // Set emoji to Weibo and Bmoji
     emoji: ['//unpkg.com/@waline/emojis@1.4.0/weibo', '//unpkg.com/@waline/emojis@1.4.0/bmoji'],
   });

@@ -187,6 +187,7 @@ Waline.init({
 Standardmäßig werden die integrierten mehrsprachigen Texte verwendet, und es wird auf die Sprachtexte `en-US` zurückgegriffen, wenn die Sprache nicht unterstützt wird.
 
 Sie können eine vollständige mehrsprachige Konfiguration an die Option `locales` übergeben, um Sprachunterstützung hinzuzufügen, oder einige davon festlegen, um den vorhandenen Text zu überschreiben.
+
 ::: tip
 
 Alle benutzerdefinierten Texte werden schließlich unter Verwendung der nunjucks-Template-Engine gerendert, die das Schreiben relativ komplexer logischer Ausdrücke unterstützt. Zum Beispiel:

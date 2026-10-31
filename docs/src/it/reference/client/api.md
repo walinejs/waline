@@ -38,20 +38,18 @@ interface WalineInstance {
   /**
    * Element where Waline is mounted
    *
-   * @description when initialized with `el: null`, it will be `null`
+   * When initialized with `el: null`, it will be `null`
    */
   el: HTMLElement | null;
 
   /**
    * Update Waline instance
    *
-   * @description when not setting `path` option, it will be reset to `window.location.pathname`
+   * When not setting `path` option, it will be reset to `window.location.pathname`
    */
   update: (newOptions?: Partial<Omit<WalineInitOptions, 'el'>>) => void;
 
-  /**
-   * Unmount and destroy Waline instance
-   */
+  /** Unmount and destroy Waline instance */
   destroy: () => void;
 }
 ```
@@ -95,9 +93,7 @@ Options:
 
 ```ts
 interface WalineCommentCountOptions {
-  /**
-   * Waline server url
-   */
+  /** Waline server url */
   serverURL: string;
 
   /**
@@ -136,9 +132,7 @@ Options:
 
 ```ts
 interface WalinePageviewCountOptions {
-  /**
-   * Waline server url
-   */
+  /** Waline server url */
   serverURL: string;
 
   /**
@@ -186,19 +180,13 @@ Options:
 
 ```ts
 interface WalineRecentCommentsOptions {
-  /**
-   * Waline serverURL
-   */
+  /** Waline serverURL */
   serverURL: string;
 
-  /**
-   * fetch number of latest comments
-   */
+  /** Fetch number of latest comments */
   count: number;
 
-  /**
-   * Element to be mounted
-   */
+  /** Element to be mounted */
   el?: string | HTMLElement;
 }
 ```
@@ -207,14 +195,10 @@ Returns:
 
 ```ts
 interface WalineRecentCommentsResult {
-  /**
-   * Comment Data
-   */
+  /** Comment Data */
   comments: WalineComment[];
 
-  /**
-   * Umount widget
-   */
+  /** Umount widget */
   destroy: () => void;
 }
 ```
@@ -233,19 +217,13 @@ Options:
 
 ```ts
 interface WalineUserListOptions {
-  /**
-   * Waline serverURL
-   */
+  /** Waline serverURL */
   serverURL: string;
 
-  /**
-   * fetch number of user list
-   */
+  /** Fetch number of user list */
   count: number;
 
-  /**
-   * Element to be mounted
-   */
+  /** Element to be mounted */
   el?: string | HTMLElement;
 
   /**
@@ -262,9 +240,7 @@ interface WalineUserListOptions {
    */
   locale?: WalineLocale;
 
-  /**
-   * list mode or avatar wall mode
-   */
+  /** List mode or avatar wall mode */
   mode: 'list' | 'wall';
 }
 ```
@@ -273,14 +249,10 @@ Returns:
 
 ```ts
 interface WalineUserListResult {
-  /**
-   * User Data
-   */
+  /** User Data */
   users: WalineUser[];
 
-  /**
-   * Umount widget
-   */
+  /** Umount widget */
   destroy: () => void;
 }
 ```

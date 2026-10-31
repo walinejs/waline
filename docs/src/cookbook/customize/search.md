@@ -15,22 +15,20 @@ icon: search
 
 ```ts
 interface WalineSearchImageData extends Record<string, unknown> {
-  /**
-   * 图片链接
-   */
+  /** 图片链接 */
   src: string;
 
   /**
    * 图片标题
    *
-   * @description 用于图片的 alt 属性
+   * 用于图片的 alt 属性
    */
   title?: string;
 
   /**
    * 图片缩略图
    *
-   * @description 为了更好的加载性能，我们会优先在列表中使用此缩略图
+   * 为了更好的加载性能，我们会优先在列表中使用此缩略图
    *
    * @default src
    */
@@ -58,9 +56,7 @@ type WalineSearchResult = WalineSearchImageData[];
 
 ```ts
 interface WalineSearchOptions {
-  /**
-   * 搜索操作
-   */
+  /** 搜索操作 */
   search: (word: string) => Promise<WalineSearchResult>;
 
   /**
@@ -73,7 +69,7 @@ interface WalineSearchOptions {
   /**
    * 获取更多的操作
    *
-   * @description 会在列表滚动到底部时触发，如果你的搜索服务支持分页功能，你应该设置此项实现无限滚动
+   * 会在列表滚动到底部时触发，如果你的搜索服务支持分页功能，你应该设置此项实现无限滚动
    *
    * @default (word) => search(word)
    */

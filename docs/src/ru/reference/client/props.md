@@ -69,29 +69,17 @@ Waline Locales.
   type WalineEmojiPresets = `http://${string}` | `https://${string}`;
 
   interface WalineEmojiInfo {
-    /**
-     * Emoji name show on tab
-     */
+    /** Emoji name show on tab */
     name: string;
-    /**
-     * Current folder link
-     */
+    /** Current folder link */
     folder?: string;
-    /**
-     * Common prefix of Emoji icons
-     */
+    /** Common prefix of Emoji icons */
     prefix?: string;
-    /**
-     * Type of Emoji icons, will be regarded as file extension
-     */
+    /** Type of Emoji icons, will be regarded as file extension */
     type?: string;
-    /**
-     * Emoji icon show on tab
-     */
+    /** Emoji icon show on tab */
     icon: string;
-    /**
-     * Emoji image list
-     */
+    /** Emoji image list */
     items: string[];
   }
   ```
@@ -234,22 +222,20 @@ You can import $\TeX$ renderer to provide preview feature. We recommend you to u
 
   ```ts
   interface WalineSearchImageData extends Record<string, unknown> {
-    /**
-     * Image link
-     */
+    /** Image link */
     src: string;
 
     /**
      * Image title
      *
-     * @description Used for alt attribute of image
+     * Used for alt attribute of image
      */
     title?: string;
 
     /**
      * Image preview link
      *
-     * @description For better loading performance, we will use this thumbnail first in the list
+     * For better loading performance, we will use this thumbnail first in the list
      *
      * @default src
      */
@@ -259,9 +245,7 @@ You can import $\TeX$ renderer to provide preview feature. We recommend you to u
   type WalineSearchResult = WalineSearchImageData[];
 
   interface WalineSearchOptions {
-    /**
-     * Search action
-     */
+    /** Search action */
     search: (word: string) => Promise<WalineSearchResult>;
 
     /**
@@ -274,7 +258,8 @@ You can import $\TeX$ renderer to provide preview feature. We recommend you to u
     /**
      * Fetch more action
      *
-     * @description It will be triggered when the list scrolls to the bottom. If your search service supports paging, you should set this to achieve infinite scrolling
+     * It will be triggered when the list scrolls to the bottom. If your search service supports
+     * paging, you should set this to achieve infinite scrolling
      *
      * @default (word) => search(word)
      */
