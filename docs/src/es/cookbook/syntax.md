@@ -10,7 +10,7 @@ The supported Markdown syntax in comments is as follows.
 
 ## Markdown Support
 
-::: details Headings
+::: preview Headings
 
 <!-- markdownlint-disable MD025 -->
 
@@ -28,43 +28,19 @@ The supported Markdown syntax in comments is as follows.
 
 ###### Heading7
 
-```md
-# Heading1
-
-## Heading2
-
-### Heading3
-
-#### Heading4
-
-##### Heading5
-
-###### Heading7
-```
-
 :::
 
-::: details Text
+::: preview Text
 
 This sentence has **bold**、_italic_ and ~~delete~~ style text.
 
-```md
-This sentence has **bold**、_italic_ and ~~delete~~ style text.
-```
-
 :::
 
-::: details Paragraph
+::: preview Paragraph
 
 This is a paragraph.
 
 This is another paragraph.
-
-```md
-This is a paragraph.
-
-This is another paragraph.
-```
 
 :::
 
@@ -80,25 +56,17 @@ this point
 
 :::
 
-::: details Blockquotes
+::: preview Blockquotes
 
 > Blockquotes can also be nested...
 >
 > > ...by using greater-than signs right next to each other...
 > >
 > > > ...or with spaces between arrows.
-
-```md
-> Blockquotes can also be nested...
->
-> > ...by using greater-than signs right next to each other...
-> >
-> > > ...or with spaces between arrows.
-```
 
 :::
 
-::: details Unordered List
+::: preview Unordered List
 
 - Create a list by starting a line with `-`
 - Make sub-lists by indenting 2 spaces:
@@ -112,23 +80,9 @@ this point
 
 - It’s easy!
 
-```md
-- Create a list by starting a line with `-`
-- Sub-lists are made by indenting 2 spaces:
-  - Marker character change forces new list start:
-    - Ac tristique libero volutpat at
-    - Facilisis in pretium nisl aliquet
-    - Nulla volutpat aliquam velit  
-      link break
-
-      New paragraph
-
-- Very easy!
-```
-
 :::
 
-::: details Ordered List
+::: preview Ordered List
 
 1. Lorem ipsum dolor sit amet
 1. Consectetur adipiscing elit  
@@ -136,47 +90,27 @@ this point
    line break again
 1. Integer molestie lorem at massa
 
-```md
-1. Lorem ipsum dolor sit amet
-1. Consectetur adipiscing elit  
-   line break  
-   line break again
-1. Integer molestie lorem at massa
-```
-
 :::
 
-::: details HR
+::: preview HR
 
 ---
 
-```md
-***
-```
-
 :::
 
-::: details Link
+::: preview Link
 
 [HomePage](/)
 
-```md
-[HomePage](/)
-```
-
 :::
 
-::: details Image
+::: preview Image
 
 ![Logo](/logo.png)
 
-```md
-![Logo](/logo.png)
-```
-
 :::
 
-::: details Table
+::: preview Table
 
 |           center           |                    right | left                    |
 | :------------------------: | -----------------------: | :---------------------- |
@@ -184,23 +118,11 @@ this point
 |             b              |                aaaaaaaaa | aaaa                    |
 |             c              |                     aaaa | a                       |
 
-```md
-|           center           |                    right | left                    |
-| :------------------------: | -----------------------: | :---------------------- |
-| For center align use `:-:` | For right align use `-:` | For left align use `:-` |
-|             b              |                aaaaaaaaa | aaaa                    |
-|             c              |                     aaaa | a                       |
-```
-
 :::
 
-::: details Code
+::: preview Code
 
 Inline Code: `code`
-
-```md
-Inline Code: `code`
-```
 
 Block code:
 
@@ -211,18 +133,6 @@ var foo = function (bar) {
 
 console.log(foo(5));
 ```
-
-````md
-Block code:
-
-```js
-var foo = function (bar) {
-  return bar++;
-};
-
-console.log(foo(5));
-```
-````
 
 :::
 
@@ -230,45 +140,36 @@ console.log(foo(5));
 
 Use `^` and `~` to mark the superscript and subscript.
 
-::: details Demo
-
 <!-- prettier-ignore-start -->
 
+::: preview Demo
+
 - 19^th^
 - H~2~O
-
-```md
-- 19^th^
-- H~2~O
-```
-
-<!-- prettier-ignore-end -->
 
 :::
+
+<!-- prettier-ignore-end -->
 
 ## Emojis
 
 Besides user-configured or built-in Weibo emojis, we also support complete Emoji shorthand emoticons.
 
-::: details Demo
+<!-- prettier-ignore-start -->
+
+::: preview Demo
 
 Classic:
 
 :wink: :cry: :laughing: :yum:
 
-```md
-:wink: :cry: :laughing: :yum:
-```
-
 Shortcuts:
 
-8-) :) :\* :( :-) :-( ;)
-
-```md
-8-) :) :\* :( :-) :-( ;)
-```
+8-) :) :* :( :-) :-( ;)
 
 :::
+
+<!-- prettier-ignore-end -->
 
 ## Code Block Highlight
 
@@ -343,27 +244,14 @@ footer p {
 
 You can use `$ ... $` to create inline formulas, or use `$$ ... $$` to create block-level formulas.
 
-:::
-
-::: details Demo
+::: preview Demo
 
 Euler’s identity $e^{i\pi}+1=0$ is a beautiful formula in $\mathbb{R}^2$.
-
-```md
-Euler’s identity $e^{i\pi}+1=0$ is a beautiful formula in $\mathbb{R}^2$.
-```
 
 $$
 \frac {\partial^r} {\partial \omega^r} \left(\frac {y^{\omega}} {\omega}\right)
 = \left(\frac {y^{\omega}} {\omega}\right) \left\{(\log y)^r + \sum_{i=1}^r \frac {(-1)^i r \cdots (r-i+1) (\log y)^{r-i}} {\omega^i} \right\}
 $$
-
-```md
-$$
-\frac {\partial^r} {\partial \omega^r} \left(\frac {y^{\omega}} {\omega}\right)
-= \left(\frac {y^{\omega}} {\omega}\right) \left\{(\log y)^r + \sum_{i=1}^r \frac {(-1)^i r \cdots (r-i+1) (\log y)^{r-i}} {\omega^i} \right\}
-$$
-```
 
 :::
 

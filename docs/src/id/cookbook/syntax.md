@@ -10,7 +10,7 @@ Sintaks Markdown yang didukung dalam komentar adalah sebagai berikut.
 
 ## Dukungan Markdown
 
-::: details Judul
+::: preview Judul
 
 <!-- markdownlint-disable MD025 -->
 
@@ -28,43 +28,19 @@ Sintaks Markdown yang didukung dalam komentar adalah sebagai berikut.
 
 ###### Judul 7
 
-```md
-# Heading1
-
-## Heading2
-
-### Heading3
-
-#### Heading4
-
-##### Heading5
-
-###### Heading7
-```
-
 :::
 
-::: details Teks
+::: preview Teks
 
 Kalimat ini memiliki teks bergaya **tebal**、_miring_ dan ~~coret~~.
 
-```md
-This sentence has **bold**、_italic_ and ~~delete~~ style text.
-```
-
 :::
 
-::: details Paragraf
+::: preview Paragraf
 
 Ini adalah sebuah paragraf.
 
 Ini adalah paragraf lainnya.
-
-```md
-This is a paragraph.
-
-This is another paragraph.
-```
 
 :::
 
@@ -80,7 +56,7 @@ this point
 
 :::
 
-::: details Kutipan Blok
+::: preview Kutipan Blok
 
 > Kutipan blok juga dapat disarangkan...
 >
@@ -88,17 +64,9 @@ this point
 > >
 > > > ...atau dengan spasi di antara tanda tersebut.
 
-```md
-> Blockquotes can also be nested...
->
-> > ...by using greater-than signs right next to each other...
-> >
-> > > ...or with spaces between arrows.
-```
-
 :::
 
-::: details Daftar Tidak Berurutan
+::: preview Daftar Tidak Berurutan
 
 - Buat daftar dengan memulai baris menggunakan `-`
 - Buat subdaftar dengan indentasi 2 spasi:
@@ -112,23 +80,9 @@ this point
 
 - Ini mudah!
 
-```md
-- Create a list by starting a line with `-`
-- Sub-lists are made by indenting 2 spaces:
-  - Marker character change forces new list start:
-    - Ac tristique libero volutpat at
-    - Facilisis in pretium nisl aliquet
-    - Nulla volutpat aliquam velit  
-      link break
-
-      New paragraph
-
-- Very easy!
-```
-
 :::
 
-::: details Daftar Berurutan
+::: preview Daftar Berurutan
 
 1. Lorem ipsum dolor sit amet
 1. Consectetur adipiscing elit  
@@ -136,47 +90,27 @@ this point
    pemisah baris lagi
 1. Integer molestie lorem at massa
 
-```md
-1. Lorem ipsum dolor sit amet
-1. Consectetur adipiscing elit  
-   line break  
-   line break again
-1. Integer molestie lorem at massa
-```
-
 :::
 
-::: details HR
+::: preview HR
 
 ---
 
-```md
-***
-```
-
 :::
 
-::: details Tautan
+::: preview Tautan
 
 [Beranda](/)
 
-```md
-[HomePage](/)
-```
-
 :::
 
-::: details Gambar
+::: preview Gambar
 
 ![Logo](/logo.png)
 
-```md
-![Logo](/logo.png)
-```
-
 :::
 
-::: details Tabel
+::: preview Tabel
 
 |             tengah              |                         kanan | kiri                         |
 | :-----------------------------: | ----------------------------: | :--------------------------- |
@@ -184,23 +118,11 @@ this point
 |                b                |                     aaaaaaaaa | aaaa                         |
 |                c                |                          aaaa | a                            |
 
-```md
-|           center           |                    right | left                    |
-| :------------------------: | -----------------------: | :---------------------- |
-| For center align use `:-:` | For right align use `-:` | For left align use `:-` |
-|             b              |                aaaaaaaaa | aaaa                    |
-|             c              |                     aaaa | a                       |
-```
-
 :::
 
-::: details Kode
+::: preview Kode
 
 Kode inline: `code`
-
-```md
-Inline Code: `code`
-```
 
 Blok kode:
 
@@ -212,63 +134,42 @@ var foo = function (bar) {
 console.log(foo(5));
 ```
 
-````md
-Block code:
-
-```js
-var foo = function (bar) {
-  return bar++;
-};
-
-console.log(foo(5));
-```
-````
-
 :::
 
 ## Superskrip dan Subskrip
 
 Gunakan `^` dan `~` untuk menandai superskrip dan subskrip.
 
-::: details Demo
-
 <!-- prettier-ignore-start -->
 
+::: preview Demo
+
 - 19^th^
 - H~2~O
-
-```md
-- 19^th^
-- H~2~O
-```
-
-<!-- prettier-ignore-end -->
 
 :::
+
+<!-- prettier-ignore-end -->
 
 ## Emoji
 
 Selain emoji Weibo yang dikonfigurasi pengguna atau bawaan, kami juga mendukung emotikon singkatan Emoji lengkap.
 
-::: details Demo
+<!-- prettier-ignore-start -->
+
+::: preview Demo
 
 Klasik:
 
 :wink: :cry: :laughing: :yum:
 
-```md
-:wink: :cry: :laughing: :yum:
-```
-
 Pintasan:
 
-8-) :) :\* :( :-) :-( ;)
-
-```md
-8-) :) :\* :( :-) :-( ;)
-```
+8-) :) :* :( :-) :-( ;)
 
 :::
+
+<!-- prettier-ignore-end -->
 
 ## Sorotan Blok Kode
 
@@ -343,27 +244,14 @@ footer p {
 
 Anda dapat menggunakan `$ ... $` untuk membuat rumus inline, atau menggunakan `$$ ... $$` untuk membuat rumus tingkat blok.
 
-:::
-
-::: details Demo
+::: preview Demo
 
 Identitas Euler $e^{i\pi}+1=0$ adalah rumus yang indah di $\mathbb{R}^2$.
 
-```md
-Euler's identity $e^{i\pi}+1=0$ is a beautiful formula in $\mathbb{R}^2$.
-```
-
 $$
 \frac {\partial^r} {\partial \omega^r} \left(\frac {y^{\omega}} {\omega}\right)
 = \left(\frac {y^{\omega}} {\omega}\right) \left\{(\log y)^r + \sum_{i=1}^r \frac {(-1)^i r \cdots (r-i+1) (\log y)^{r-i}} {\omega^i} \right\}
 $$
-
-```md
-$$
-\frac {\partial^r} {\partial \omega^r} \left(\frac {y^{\omega}} {\omega}\right)
-= \left(\frac {y^{\omega}} {\omega}\right) \left\{(\log y)^r + \sum_{i=1}^r \frac {(-1)^i r \cdots (r-i+1) (\log y)^{r-i}} {\omega^i} \right\}
-$$
-```
 
 :::
 
