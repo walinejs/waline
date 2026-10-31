@@ -1,0 +1,387 @@
+/**
+ * Legacy GitHub storage: one CSV per table (data/Comment.csv and friends).
+ *
+ * Moved here from ../service/storage/github.js unchanged, semantics included:
+ * the column naming, the `where` operator behaviour and the dynamic-column
+ * handling are exactly what upstream shipped, so it stays a byte-for-byte
+ * reference for "how it used to work" instead of drifting into a half-fixed
+ * variant. Mode selection lives in ../service/storage/github.js.
+ */
+
+const path = require('node:path');
+
+const { parseString, writeToString } = require('fast-csv');
+
+const Base = require('../base.js');
+const { compareByOrder, normalizeOrder } = require('../order.js');
+
+const DATE_FIELDS = new Set(['insertedAt', 'createdAt', 'updatedAt']);
+
+const CSV_HEADERS = {
+  Comment: [
+    'objectId',
+    'user_id',
+    'comment',
+    'insertedAt',
+    'ip',
+    'link',
+    'mail',
+    'nick',
+    'pid',
+    'rid',
+    'status',
+    'ua',
+    'url',
+    'createdAt',
+    'updatedAt',
+  ],
+  Counter: ['objectId', 'time', 'url', 'createdAt', 'updatedAt'],
+  Users: [
+    'objectId',
+    'display_name',
+    'email',
+    'password',
+    'type',
+    'url',
+    'avatar',
+    'label',
+    'github',
+    'twitter',
+    'facebook',
+    'google',
+    'weibo',
+    'qq',
+    'oidc',
+    'createdAt',
+    'updatedAt',
+  ],
+};
+
+class Github {
+  constructor(repo, token) {
+    this.token = token;
+    this.repo = repo;
+  }
+
+  // content api can only get file < 1MB
+  async get(filename) {
+    const resp = await fetch(
+      `https://api.github.com/repos/${path.join(this.repo, 'contents', filename)}`,
+      {
+        headers: {
+          accept: 'application/vnd.github.v3+json',
+          authorization: `token ${this.token}`,
+          'user-agent': 'Waline',
+        },
+      },
+    )
+      .then((resp) => resp.json())
+      .catch((err) => {
+        const isTooLarge = err.message.includes('"too_large"');
+
+        if (!isTooLarge) {
+          throw err;
+        }
+
+        return this.getLargeFile(filename);
+      });
+
+    return {
+      data: Buffer.from(resp.content, 'base64').toString('utf-8'),
+      sha: resp.sha,
+    };
+  }
+
+  // blob api can get file larger than 1MB
+  async getLargeFile(filename) {
+    const { tree } = await fetch(
+      `https://api.github.com/repos/${path.join(this.repo, 'git/trees/HEAD')}?recursive=1`,
+      {
+        headers: {
+          accept: 'application/vnd.github.v3+json',
+          authorization: `token ${this.token}`,
+          'user-agent': 'Waline',
+        },
+      },
+    ).then((resp) => resp.json());
+
+    const file = tree.find(({ path }) => path === filename);
+
+    if (!file) {
+      const error = new Error('NOT FOUND');
+
+      error.statusCode = 404;
+      throw error;
+    }
+
+    return fetch(file.url, {
+      headers: {
+        accept: 'application/vnd.github.v3+json',
+        authorization: `token ${this.token}`,
+        'user-agent': 'Waline',
+      },
+    }).then((resp) => resp.json());
+  }
+
+  async set(filename, content, { sha }) {
+    return fetch(`https://api.github.com/repos/${path.join(this.repo, 'contents', filename)}`, {
+      method: 'PUT',
+      headers: {
+        accept: 'application/vnd.github.v3+json',
+        authorization: `token ${this.token}`,
+        'user-agent': 'Waline',
+      },
+      body: JSON.stringify({
+        sha,
+        message: 'feat(waline): update comment data',
+        content: Buffer.from(content, 'utf-8').toString('base64'),
+      }),
+    });
+  }
+}
+
+module.exports = class GithubStorage extends Base {
+  constructor(tableName) {
+    super();
+    this.tableName = tableName;
+
+    const { GITHUB_TOKEN, GITHUB_REPO, GITHUB_PATH } = process.env;
+
+    this.git = new Github(GITHUB_REPO, GITHUB_TOKEN);
+    this.basePath = GITHUB_PATH;
+  }
+
+  async collection(tableName) {
+    const filename = path.join(this.basePath, `${tableName}.csv`);
+    const file = await this.git.get(filename).catch((err) => {
+      if (err.statusCode === 404) {
+        return '';
+      }
+
+      throw err;
+    });
+
+    return new Promise((resolve, reject) => {
+      const data = [];
+
+      data.sha = file.sha;
+
+      parseString(file.data, {
+        headers: file ? true : CSV_HEADERS[tableName],
+      })
+        .on('error', reject)
+        .on('data', (row) => data.push(row))
+        .on('end', () => {
+          resolve(data);
+        });
+    });
+  }
+
+  async save(tableName, data, sha) {
+    const filename = path.join(this.basePath, `${tableName}.csv`);
+    const csv = await writeToString(data, {
+      headers: sha ? true : CSV_HEADERS[tableName],
+      writeHeaders: true,
+    });
+
+    return this.git.set(filename, csv, { sha });
+  }
+
+  parseWhere(where) {
+    if (think.isEmpty(where)) {
+      return [];
+    }
+
+    const filters = [];
+
+    for (const k in where) {
+      if (k === '_complex') {
+        continue;
+      }
+
+      if (k === 'objectId') {
+        filters.push((item) => item.id === where[k]);
+        continue;
+      }
+      if (think.isString(where[k])) {
+        filters.push((item) => item[k] === where[k]);
+        continue;
+      }
+      if (where[k] === undefined) {
+        filters.push((item) => item[k] === '' || item[k] === null || item[k] === undefined);
+      }
+
+      if (!Array.isArray(where[k]) || !where[k][0]) {
+        continue;
+      }
+
+      const handler = where[k][0].toUpperCase();
+
+      switch (handler) {
+        case 'IN': {
+          filters.push((item) => where[k][1].includes(item[k]));
+          break;
+        }
+        case 'NOT IN': {
+          filters.push((item) => !where[k][1].includes(item[k]));
+          break;
+        }
+        case 'LIKE': {
+          const [, likePattern] = where[k];
+          const [first] = likePattern;
+          const last = likePattern.slice(-1);
+          let reg;
+
+          if (first === '%' && last === '%') {
+            reg = new RegExp(likePattern.slice(1, -1), 'u');
+          } else if (first === '%') {
+            reg = new RegExp(`${likePattern.slice(1)}$`, 'u');
+          } else if (last === '%') {
+            reg = new RegExp(`^${likePattern.slice(0, -1)}`, 'u');
+          }
+
+          filters.push((item) => reg.test(item[k]));
+          break;
+        }
+        case '!=': {
+          filters.push((item) => item[k] !== where[k][1]);
+          break;
+        }
+        case '>': {
+          filters.push((item) => item[k] >= where[k][1]);
+          break;
+        }
+        default:
+      }
+    }
+
+    return filters;
+  }
+
+  where(data, where) {
+    const filter = this.parseWhere(where);
+
+    if (!where._complex) {
+      return data.filter((item) => filter.every((fn) => fn(item)));
+    }
+
+    const logicMap = {
+      and: Array.prototype.every,
+      or: Array.prototype.some,
+    };
+    const filters = [];
+
+    for (const k in where._complex) {
+      if (k === '_logic') {
+        continue;
+      }
+
+      filters.push([...filter, ...this.parseWhere({ [k]: where._complex[k] })]);
+    }
+
+    const logicFn = logicMap[where._complex._logic];
+
+    return data.filter((item) => logicFn.call(filters, (filter) => filter.every((fn) => fn(item))));
+  }
+
+  async select(where, { desc, field, limit, offset, order } = {}) {
+    const instance = await this.collection(this.tableName);
+    let data = this.where(instance, where);
+
+    const normalizedOrder = normalizeOrder(order, desc, (orderField) =>
+      orderField === 'objectId' ? 'id' : orderField,
+    );
+
+    if (normalizedOrder.length > 0) {
+      data.sort(
+        compareByOrder(normalizedOrder, (field, value) =>
+          DATE_FIELDS.has(field) ? new Date(value).getTime() : value,
+        ),
+      );
+    }
+
+    data = data.slice(offset ?? 0, limit ? (offset ?? 0) + limit : undefined);
+    if (field) {
+      field.push('id');
+      const fieldObj = {};
+
+      field.forEach((f) => (fieldObj[f] = true));
+      data = data.map((item) => {
+        const ret = {};
+
+        for (const k in item) {
+          if (fieldObj[k]) ret[k] = item[k];
+        }
+
+        return ret;
+      });
+    }
+
+    return data.map(({ id, ...cmt }) => ({ ...cmt, objectId: id }));
+  }
+
+  async count(where = {}, { group } = {}) {
+    const instance = await this.collection(this.tableName);
+    const data = this.where(instance, where);
+
+    if (!group) {
+      return data.length;
+    }
+
+    const counts = {};
+
+    for (const item of data) {
+      const key = group.map((field) => item[field]).join(',');
+
+      if (!counts[key]) {
+        counts[key] = { count: 0 };
+        group.forEach((field) => {
+          counts[key][field] = item[field];
+        });
+      }
+      counts[key].count += 1;
+    }
+
+    return Object.values(counts);
+  }
+
+  async add(
+    data,
+    // { access: { read = true, write = true } = { read: true, write: true } } = {}
+  ) {
+    const instance = await this.collection(this.tableName);
+    const id = Math.random().toString(36).slice(2, 15);
+
+    instance.push({ ...data, id });
+    await this.save(this.tableName, instance, instance.sha);
+
+    return { ...data, objectId: id };
+  }
+
+  async update(data, where) {
+    delete data.objectId;
+
+    const instance = await this.collection(this.tableName);
+    const list = this.where(instance, where);
+
+    list.forEach((item) => {
+      if (typeof data === 'function') {
+        data(item);
+      } else {
+        for (const k in data) item[k] = data[k];
+      }
+    });
+    await this.save(this.tableName, instance, instance.sha);
+
+    return list;
+  }
+
+  async delete(where) {
+    const instance = await this.collection(this.tableName);
+    const deleteData = this.where(instance, where);
+    const deleteId = new Set(deleteData.map(({ id }) => id));
+    const data = instance.filter((data) => !deleteId.has(data.id));
+
+    await this.save(this.tableName, data, instance.sha);
+  }
+};

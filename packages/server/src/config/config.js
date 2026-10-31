@@ -110,9 +110,19 @@ if (AVATAR_PROXY) {
 
 const oauthUrl = OAUTH_URL || 'https://oauth.lithub.cc';
 
+// The sharded GitHub store needs a middleware of its own: it flushes pending
+// shards before every response (a serverless instance is frozen after
+// responding) and serves the /csv-store ops endpoints. Legacy mode registers
+// nothing, so the middleware chain stays exactly as it was.
+const plugins =
+  storage === 'github' && require('../service/storage/github/mode.js').isSharded()
+    ? [require('../service/storage/github/plugin.js')]
+    : [];
+
 module.exports = {
   workers: 1,
   storage,
+  plugins,
   jwtKey,
   forbiddenWords,
   disallowIPList: [],
