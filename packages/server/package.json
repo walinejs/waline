@@ -54,7 +54,7 @@
     "think-model-mysql": "^1.1.7",
     "think-model-mysql2": "^2.0.0",
     "think-model-postgresql": "^1.1.10",
-    "think-model-sqlite": "^2.0.1",
+    "think-model-sqlite": "^2.1.0",
     "think-mongo": "^2.2.1",
     "think-router-rest": "^1.0.5",
     "thinkjs": "4.0.0",
