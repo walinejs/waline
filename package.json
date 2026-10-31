@@ -62,7 +62,7 @@
     "unrun": "0.3.1",
     "vercel": "65.5.0",
     "vite": "catalog:",
-    "vite-plugin-css-injected-by-js": "5.0.2",
+    "vite-plugin-css-injected-by-js": "5.0.3",
     "vite-plugin-svgr": "5.2.0",
     "vitest": "5.0.3"
   },

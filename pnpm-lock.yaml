@@ -277,8 +277,8 @@ importers:
         specifier: 'catalog:'
         version: 8.3.1(@types/node@26.6.5)(esbuild@0.27.0)(sass-embedded@1.105.1)(sass@1.104.1)(tsx@4.21.0)
       vite-plugin-css-injected-by-js:
-        specifier: 5.0.2
-        version: 5.0.2(vite@8.3.1(@types/node@26.6.5)(esbuild@0.27.0)(sass-embedded@1.105.1)(sass@1.104.1)(tsx@4.21.0))
+        specifier: 5.0.3
+        version: 5.0.3(vite@8.3.1(@types/node@26.6.5)(esbuild@0.27.0)(sass-embedded@1.105.1)(sass@1.104.1)(tsx@4.21.0))
       vite-plugin-svgr:
         specifier: 5.2.0
         version: 5.2.0(supports-color@10.2.2)(typescript@7.0.2)(vite@8.3.1(@types/node@26.6.5)(esbuild@0.27.0)(sass-embedded@1.105.1)(sass@1.104.1)(tsx@4.21.0))
@@ -7974,8 +7974,8 @@ packages:
     resolution: {integrity: sha512-bdPbguNooX7Og6xqhqlRoowciTL7DibntuUwFrW6Y7K2t1jcYX7yTd05k/hfEOJrTGaY2VpU5hLQpFJDNFzK4A==}
     engines: {node: '>=18'}
 
-  vite-plugin-css-injected-by-js@5.0.2:
-    resolution: {integrity: sha512-Hvg48QfYsCL53ju9T5zTC0Ofg90XLa8t5zhhKmPYbayoMQieNcQDkkRX8pv4TAcKPZwVisLFiwDy5uBjOn+3Ow==}
+  vite-plugin-css-injected-by-js@5.0.3:
+    resolution: {integrity: sha512-K+UsH5DfVtF9DHutSO0msLEysBpaicv/rQteVT4VbKMIUBeD0S3SgOdP5HsVoA9D7wfS94Hp84I1FxOqGfsMnw==}
     peerDependencies:
       vite: '>8.0.0-0'
 
@@ -16216,7 +16216,7 @@ snapshots:
       media-captions: 1.0.4
       unplugin: 1.16.1
 
-  vite-plugin-css-injected-by-js@5.0.2(vite@8.3.1(@types/node@26.6.5)(esbuild@0.27.0)(sass-embedded@1.105.1)(sass@1.104.1)(tsx@4.21.0)):
+  vite-plugin-css-injected-by-js@5.0.3(vite@8.3.1(@types/node@26.6.5)(esbuild@0.27.0)(sass-embedded@1.105.1)(sass@1.104.1)(tsx@4.21.0)):
     dependencies:
       vite: 8.3.1(@types/node@26.6.5)(esbuild@0.27.0)(sass-embedded@1.105.1)(sass@1.104.1)(tsx@4.21.0)
 
