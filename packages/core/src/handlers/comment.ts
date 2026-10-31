@@ -1,9 +1,12 @@
 import { badRequest, forbidden, unauthorized, WalineError } from '../error.js';
 import type { GroupedCount, WalineComment, WalineContext, WalineUser, Where } from '../types.js';
-import { currentUser, isAdmin, requireAdmin, requireUser } from '../utils/auth.js';
+import { currentUser, isAnyAdmin, requireAdmin, requireUser } from '../utils/auth.js';
 import { createCommentFormatter } from '../utils/comment.js';
 import type { CoreRuntime } from '../utils/runtime.js';
 import { levelFor, positiveInt, requiredString } from '../utils/validation.js';
+
+const siteWhere = (ctx: WalineContext): Where<WalineComment> =>
+  ctx.state.site ? { site_id: ctx.state.site.objectId } : {};
 
 export const createCommentHandler = (runtime: CoreRuntime) => {
   const { config, hook, logger, models, now, random, services } = runtime;
@@ -29,11 +32,11 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
       }
 
       const [sortField, direction] = sortBy.split('_') as ['insertedAt' | 'like', 'asc' | 'desc'];
-      const where: Where<WalineComment> = { url: path };
+      const where: Where<WalineComment> = { ...siteWhere(ctx), url: path };
       const current = currentUser(ctx);
 
       if (!current) where.status = ['NOT IN', ['waiting', 'spam']];
-      else if (!isAdmin(ctx)) {
+      else if (!isAnyAdmin(ctx)) {
         where._complex = {
           _logic: 'or',
           status: ['NOT IN', ['waiting', 'spam']],
@@ -71,7 +74,10 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
 
       if (Array.isArray(config.levels)) {
         const mails = [...new Set(comments.map(({ mail }) => mail).filter(Boolean))] as string[];
-        const countWhere: Where<WalineComment> = { status: ['NOT IN', ['waiting', 'spam']] };
+        const countWhere: Where<WalineComment> = {
+          ...siteWhere(ctx),
+          status: ['NOT IN', ['waiting', 'spam']],
+        };
 
         if (ids.length || mails.length) {
           countWhere._complex = { _logic: 'or' };
@@ -132,7 +138,7 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
     async listRecent(input: { count?: number }, ctx: WalineContext) {
       const count = positiveInt(input.count, 10, 50);
       const current = currentUser(ctx);
-      const where: Where<WalineComment> = current
+      const visibility: Where<WalineComment> = current
         ? {
             _complex: {
               _logic: 'or',
@@ -141,6 +147,7 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
             },
           }
         : { status: ['NOT IN', ['waiting', 'spam']] };
+      const where: Where<WalineComment> = { ...siteWhere(ctx), ...visibility };
       const rows = await models.Comment.select(where, {
         desc: 'insertedAt',
         limit: count,
@@ -166,7 +173,7 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
       const current = requireAdmin(ctx);
       const page = positiveInt(input.page, 1);
       const pageSize = positiveInt(input.pageSize, 10, 100);
-      const where: Where<WalineComment> = {};
+      const where: Where<WalineComment> = siteWhere(ctx);
 
       if (input.owner === 'mine') where.mail = current.email;
       if (input.status) {
@@ -176,8 +183,8 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
 
       const [count, spamCount, waitingCount, rows] = await Promise.all([
         models.Comment.count(where) as Promise<number>,
-        models.Comment.count({ status: 'spam' }) as Promise<number>,
-        models.Comment.count({ status: 'waiting' }) as Promise<number>,
+        models.Comment.count({ ...siteWhere(ctx), status: 'spam' }) as Promise<number>,
+        models.Comment.count({ ...siteWhere(ctx), status: 'waiting' }) as Promise<number>,
         models.Comment.select(where, {
           desc: 'insertedAt',
           limit: pageSize,
@@ -197,7 +204,10 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
 
     async count(input: { url?: string | string[] }, ctx: WalineContext) {
       const urls = Array.isArray(input.url) ? input.url : input.url ? [input.url] : [];
-      const where: Where<WalineComment> = urls.length ? { url: ['IN', urls] } : {};
+      const where: Where<WalineComment> = {
+        ...siteWhere(ctx),
+        ...(urls.length ? { url: ['IN', urls] } : {}),
+      };
       const current = currentUser(ctx);
 
       if (current) {
@@ -256,18 +266,20 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
         ip: ctx.ip,
         insertedAt: now(),
         user_id: current?.objectId,
+        site_id: ctx.state.site?.objectId,
       };
 
       if (data.pid && ctx.state.deprecated) {
         data.comment = `[@${input.at ?? ''}](#${data.pid}): ${data.comment}`;
       }
 
-      if (isAdmin(ctx)) {
+      if (isAnyAdmin(ctx)) {
         data.status = 'approved';
       } else {
         if (ctx.ip && config.disallowIPList?.includes(ctx.ip)) forbidden();
 
         const duplicate = await models.Comment.select({
+          ...siteWhere(ctx),
           url,
           mail: data.mail,
           nick: data.nick,
@@ -281,6 +293,7 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
 
         if (ctx.ip) {
           const recent = await models.Comment.select({
+            ...siteWhere(ctx),
             ip: ctx.ip,
             insertedAt: ['>', new Date(now().getTime() - (config.ipQps ?? 60) * 1000)],
           });
@@ -310,7 +323,7 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
       const saved = await models.Comment.add(data);
       let parent: WalineComment | undefined, parentUser: WalineUser | undefined;
       if (data.pid) {
-        [parent] = await models.Comment.select({ objectId: data.pid });
+        [parent] = await models.Comment.select({ objectId: data.pid, ...siteWhere(ctx) });
         if (parent?.user_id) {
           [parentUser] = await models.Users.select({ objectId: parent.user_id });
         }
@@ -346,7 +359,7 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
       ctx: WalineContext,
     ) {
       const id = requiredString(input.objectId, 'objectId');
-      const [old] = await models.Comment.select({ objectId: id });
+      const [old] = await models.Comment.select({ objectId: id, ...siteWhere(ctx) });
 
       if (!old) return;
       const isLikeOnly =
@@ -355,11 +368,11 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
 
       if (!isLikeOnly) {
         const user = current ?? requireUser(ctx);
-        if (!isAdmin(ctx) && old.user_id !== user.objectId) forbidden();
+        if (!isAnyAdmin(ctx) && old.user_id !== user.objectId) forbidden();
       }
 
       //@ts-expect-error: like type can be boolean or number
-      const data: Partial<WalineComment> = isAdmin(ctx)
+      const data: Partial<WalineComment> = isAnyAdmin(ctx)
         ? { ...input.data }
         : { comment: input.data.comment, like: input.data.like as number };
 
@@ -376,7 +389,7 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
         throw new WalineError('HOOK_REJECTED', 400, undefined, rejected);
       }
 
-      const [updated] = await models.Comment.update(data, { objectId: id });
+      const [updated] = await models.Comment.update(data, { objectId: id, ...siteWhere(ctx) });
       if (!updated) return;
 
       if (
@@ -385,7 +398,7 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
         old.pid &&
         services.notification
       ) {
-        const [parent] = await models.Comment.select({ objectId: old.pid });
+        const [parent] = await models.Comment.select({ objectId: old.pid, ...siteWhere(ctx) });
         if (parent) await services.notification.send(updated, parent, true);
       }
 
@@ -398,10 +411,11 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
       const id = requiredString(input.objectId, 'objectId');
       const current = requireUser(ctx);
 
-      if (!isAdmin(ctx)) {
+      if (!isAnyAdmin(ctx)) {
         const owned = await models.Comment.select({
           objectId: id,
           user_id: current.objectId,
+          ...siteWhere(ctx),
         });
         if (!owned.length) forbidden();
       }
@@ -412,6 +426,7 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
       }
 
       await models.Comment.delete({
+        ...siteWhere(ctx),
         _complex: { _logic: 'or', objectId: id, pid: id, rid: id },
       });
       await hook('postDelete', id, undefined, ctx);

@@ -1,5 +1,5 @@
 import type { WalineComment, WalineContext, WalineUser } from '../types.js';
-import { currentUser, isAdmin } from './auth.js';
+import { currentUser, isAnyAdmin } from './auth.js';
 import { createAvatarFormatter } from './avatar.js';
 import type { CoreRuntime } from './runtime.js';
 
@@ -40,10 +40,10 @@ export const createCommentFormatter = (runtime: CoreRuntime) => {
 
     result.avatar = await avatar(author ?? source);
     if (currentUser(ctx)) result.orig = result.comment;
-    if (!isAdmin(ctx)) delete result.mail;
+    if (!isAnyAdmin(ctx)) delete result.mail;
 
-    if ((isAdmin(ctx) || !config.disableRegion) && ip && services.region) {
-      result.addr = await services.region.lookup(ip, isAdmin(ctx) ? 3 : 1);
+    if ((isAnyAdmin(ctx) || !config.disableRegion) && ip && services.region) {
+      result.addr = await services.region.lookup(ip, isAnyAdmin(ctx) ? 3 : 1);
     }
 
     if (services.markdown) {
@@ -56,7 +56,7 @@ export const createCommentFormatter = (runtime: CoreRuntime) => {
     if (!ctx.state.deprecated) delete result.insertedAt;
     delete result.createdAt;
     delete result.updatedAt;
-    if (!isAdmin(ctx)) delete result.ip;
+    if (!isAnyAdmin(ctx)) delete result.ip;
 
     return result;
   };

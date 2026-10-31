@@ -1,6 +1,12 @@
 import { forbidden, WalineError } from '../error.js';
 import type { GroupedCount, WalineContext, WalineUser } from '../types.js';
-import { isAdmin, requireAdmin, requireUser } from '../utils/auth.js';
+import {
+  isAnyAdmin,
+  isGlobalAdmin,
+  requireAdmin,
+  requireGlobalAdmin,
+  requireUser,
+} from '../utils/auth.js';
 import { createAvatarFormatter } from '../utils/avatar.js';
 import type { CoreRuntime } from '../utils/runtime.js';
 import { levelFor, positiveInt, requiredCapability, requiredString } from '../utils/validation.js';
@@ -21,10 +27,13 @@ export const createUserHandler = (runtime: CoreRuntime) => {
     },
 
     async list(input: { page?: number; pageSize?: number }, ctx: WalineContext) {
-      if (!isAdmin(ctx)) {
+      if (!isAnyAdmin(ctx)) {
         const pageSize = positiveInt(input.pageSize, 20, 50);
         const counts = (await models.Comment.count(
-          { status: ['NOT IN', ['waiting', 'spam']] },
+          {
+            ...(ctx.state.site ? { site_id: ctx.state.site.objectId } : {}),
+            status: ['NOT IN', ['waiting', 'spam']],
+          },
           { group: ['user_id', 'mail'] },
         )) as GroupedCount[];
         counts.sort((a, b) => b.count - a.count);
@@ -48,7 +57,13 @@ export const createUserHandler = (runtime: CoreRuntime) => {
               label: account.label,
             });
           } else if (typeof item.mail === 'string') {
-            const [lastComment] = await models.Comment.select({ mail: item.mail }, { limit: 1 });
+            const [lastComment] = await models.Comment.select(
+              {
+                ...(ctx.state.site ? { site_id: ctx.state.site.objectId } : {}),
+                mail: item.mail,
+              },
+              { limit: 1 },
+            );
             if (!lastComment) continue;
             Object.assign(entry, {
               nick: lastComment.nick,
@@ -64,6 +79,7 @@ export const createUserHandler = (runtime: CoreRuntime) => {
 
       const page = positiveInt(input.page, 1);
       const pageSize = positiveInt(input.pageSize, 10, 100);
+      if (ctx.state.site) requireGlobalAdmin(ctx);
       const count = (await models.Users.count()) as number;
       const data = await models.Users.select(
         {},
@@ -92,7 +108,7 @@ export const createUserHandler = (runtime: CoreRuntime) => {
       const passwordService = requiredCapability(services.password, 'password');
       const existing = await models.Users.select({ email });
 
-      if (existing.some(({ type }) => ['administrator', 'guest'].includes(type))) {
+      if (existing.some(({ type }) => ['administrator', 'supervisor', 'guest'].includes(type))) {
         throw new WalineError('USER_EXIST', 400, 'USER_EXIST');
       }
 
@@ -121,7 +137,13 @@ export const createUserHandler = (runtime: CoreRuntime) => {
       const user = requireUser(ctx);
       const objectId = input.objectId ?? user.objectId;
 
-      if (objectId !== user.objectId && !isAdmin(ctx)) forbidden();
+      if (
+        objectId !== user.objectId &&
+        !isGlobalAdmin(ctx) &&
+        !(!ctx.state.site && isAnyAdmin(ctx))
+      ) {
+        forbidden();
+      }
 
       const allowed = [
         'display_name',
@@ -133,7 +155,9 @@ export const createUserHandler = (runtime: CoreRuntime) => {
         '2fa',
         ...(ctx.state.oauthServices ?? []).map(({ name }) => name),
       ];
-      if (isAdmin(ctx) && input.objectId) allowed.push('type');
+      if ((isGlobalAdmin(ctx) || (!ctx.state.site && isAnyAdmin(ctx))) && input.objectId) {
+        allowed.push('type');
+      }
 
       const data = Object.fromEntries(
         Object.entries(input.data).filter(
@@ -160,7 +184,7 @@ export const createUserHandler = (runtime: CoreRuntime) => {
     },
 
     async remove(input: { objectId: string }, ctx: WalineContext) {
-      const user = requireAdmin(ctx);
+      const user = ctx.state.site ? requireGlobalAdmin(ctx) : requireAdmin(ctx);
       if (user.objectId === input.objectId) forbidden();
 
       const [target] = await models.Users.select({ objectId: input.objectId });

@@ -1,13 +1,28 @@
 const MySQL = require('./mysql.js');
 const { toSqlOrder } = require('./order.js');
 
+const PG_FIELDS = {
+  insertedAt: 'insertedat',
+  createdAt: 'createdat',
+  updatedAt: 'updatedat',
+};
+
+const mapWriteKeys = (data) =>
+  Object.fromEntries(
+    Object.entries(data).map(([field, value]) => [
+      PG_FIELDS[field] ?? field,
+      PG_FIELDS[field] && value instanceof Date
+        ? think.datetime(value, 'YYYY-MM-DD HH:mm:ss')
+        : value,
+    ]),
+  );
+
 const mapKeys = ({ insertedat, createdat, updatedat, ...item }) => {
   const mapFields = {
     insertedAt: insertedat,
     createdAt: createdat,
     updatedAt: updatedat,
   };
-
   for (const field in mapFields) {
     if (!mapFields[field]) {
       continue;
@@ -31,6 +46,17 @@ module.exports = class extends MySQL {
     return super.model(tableName.toLowerCase());
   }
 
+  parseWhere(filter) {
+    const lowerFilter = Object.fromEntries(
+      Object.entries(filter).map(([key, value]) => [
+        key === '_complex' ? key : key.toLowerCase(),
+        value,
+      ]),
+    );
+
+    return super.parseWhere(lowerFilter);
+  }
+
   async select(where, options = {}) {
     const lowerWhere = {};
 
@@ -48,18 +74,16 @@ module.exports = class extends MySQL {
   }
 
   async add(data) {
-    ['insertedAt', 'createdAt', 'updatedAt']
-      .filter((key) => data[key])
-      .forEach((key) => {
-        const val = data[key];
+    return super.add(mapWriteKeys(data)).then(mapKeys);
+  }
 
-        data[key.toLowerCase()] =
-          val instanceof Date ? think.datetime(val, 'YYYY-MM-DD HH:mm:ss') : val;
-        // oxlint-disable-next-line typescript/no-dynamic-delete
-        delete data[key];
-      });
+  async update(data, where) {
+    const updateData =
+      typeof data === 'function'
+        ? (current) => mapWriteKeys(data(mapKeys({ ...current })))
+        : mapWriteKeys(data);
 
-    return super.add(data).then(mapKeys);
+    return super.update(updateData, where).then((items) => items.map(mapKeys));
   }
 
   async count(...args) {

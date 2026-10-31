@@ -18,6 +18,12 @@ export default async function request(url, opts = {}) {
 
   const baseUrl = window.serverURL || (location.pathname.match(/(.*?\/)ui/u)?.[1] ?? '/');
 
+  const siteId = localStorage.getItem('WALINE_SITE_ID');
+  if (siteId && !['site', 'upgrade'].some((resource) => options.url.startsWith(resource))) {
+    const siteJoiner = options.url.includes('?') ? '&' : '?';
+    options.url += `${siteJoiner}siteId=${encodeURIComponent(siteId)}`;
+  }
+
   const joiner = options.url.includes('?') ? '&' : '?';
   const resp = await fetch(`${baseUrl}${options.url}${joiner}lang=${I18n.language}`, options);
 
