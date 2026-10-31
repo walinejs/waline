@@ -14,7 +14,7 @@
 
 ---
 
-> [English README](https://github.com/walinejs/waline/blob/main/README.md)
+> [English README](https://github.com/walinejs/waline/blob/main/README.md) | [日本語 README](https://github.com/walinejs/waline/blob/main/README_JA.md)
 
 ## 文档
 

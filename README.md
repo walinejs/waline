@@ -14,7 +14,7 @@ A simple comment system with backend support.
 
 ---
 
-> [中文 README](https://github.com/walinejs/waline/blob/main/README_CN.md)
+> [中文 README](https://github.com/walinejs/waline/blob/main/README_CN.md) | [日本語 README](https://github.com/walinejs/waline/blob/main/README_JA.md)
 
 ## Documentation
 

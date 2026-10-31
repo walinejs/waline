@@ -1,0 +1,87 @@
+<!-- markdownlint-disable MD033 MD041 -->
+
+<img src="./assets/logo.png" width="200" align="right" alt="Waline ロゴ" />
+
+# Waline
+
+![Author](https://img.shields.io/badge/author-lizheming,%20Mr.Hope-blue?style=for-the-badge) ![License](https://img.shields.io/github/license/walinejs/waline?style=for-the-badge) [![qq](https://img.shields.io/badge/qq-waline交流群-f75137?logo=TencentQQ&style=for-the-badge)](https://jq.qq.com/?_wv=1027&k=bKoVBppG) [![telegram](https://img.shields.io/badge/telegram-walinejs-2ca5e0?logo=telegram&style=for-the-badge)](https://t.me/walinejs)
+
+![npm version](https://img.shields.io/npm/v/@waline/client?color=critical&logo=npm&style=flat-square&label=@waline/client) ![npm bundle size (scoped)](https://img.shields.io/bundlephobia/minzip/@waline/client?style=flat-square&label=@waline/client%20size) ![downloads](https://img.shields.io/npm/dm/@waline/vercel?style=flat-square&label=@waline/client%20downloads) [![jsDelivr hits](https://data.jsdelivr.com/v1/package/npm/@waline/client/badge)](https://www.jsdelivr.com/package/npm/@waline/client)
+
+![npm version](https://img.shields.io/npm/v/@waline/vercel?color=critical&logo=npm&style=flat-square&label=@waline/vercel)
+
+バックエンドを備えたシンプルなコメントシステムです。
+
+---
+
+> [English README](https://github.com/walinejs/waline/blob/main/README.md) | [中文 README](https://github.com/walinejs/waline/blob/main/README_CN.md)
+
+## ドキュメント
+
+### [English](https://waline.js.org/en/) | [简体中文](https://waline.js.org/)
+
+## 特徴
+
+- 高速
+- **本当に**安全
+- Markdown の全構文をサポート
+- シンプルで軽量
+- 無料でデプロイ可能！
+- 複数のデプロイ先とストレージサービスをサポートしており、少なくとも 243 通りのデプロイの選択肢があります！
+
+- |                                                 | Waline                                                              |                                   |
+  | ----------------------------------------------- | ------------------------------------------------------------------- | --------------------------------- |
+  | **クライアント**                                | **サーバー**                                                        | **ストレージ**                    |
+  | [@waline/client](https://waline.js.org)         | [Vercel](https://vercel.com)                                        | PostgreSQL                        |
+  | [MiniValine](https://minivaline.js.org/)        | [CloudBase](https://cloudbase.net/)                                 | MySQL                             |
+  | [sodesu](https://github.com/BeiyanYunyi/sodesu) | [Railway](https://railway.app)                                      | SQLite                            |
+  |                                                 | [Render](https://render.com)                                        | [TiDB](https://tidbcloud.com/)    |
+  |                                                 | [Zeabur](https://zeabur.com)                                        | [MongoDB](https://mongodb.com)    |
+  |                                                 | [Netlify](https://netlify.com)                                      | [CloudBase](https://clodbase.net) |
+  |                                                 | [Alibaba Cloud ComputeNest](https://computenest.console.aliyun.com) | [GitHub](https://github.com)      |
+  |                                                 | Docker                                                              |                                   |
+  |                                                 | セルフホスト                                                        |                                   |
+
+## Todo
+
+- [x] メール通知
+- [x] WeChat 通知
+- [x] QQ 通知
+- [x] Telegram 通知
+- [x] Akismet
+- [x] 記事カウンター
+- [x] 国際化（i18n）
+- [x] カスタム言語
+- [x] ログインのサポート
+- [x] コメント管理
+- [x] コメント削除のサポート
+- [x] より多くのデータベースのサポート
+- [x] IP ごとのコメント投稿頻度の制限
+- [x] コメントのキーワード制限
+- [x] IP 拒否リスト
+- [x] 重複コンテンツのチェック
+- [x] CloudBase へのデプロイのサポート
+- [x] ソーシャルアカウントでのログイン
+- [x] コメントの固定表示
+- [x] コメントへのいいね
+- [ ] AWS、GCP、Azure へのデプロイのサポート
+
+Waline へのコントリビュートを**心から**歓迎します！
+
+## 連絡先
+
+[discussions](https://github.com/walinejs/waline/discussions) から連絡できます。Waline について交流するには、[telegram](https://t.me/walinejs) グループに参加するか、[QQ グループ](https://qm.qq.com/cgi-bin/qm/qr?k=rPZvq_EBfwQa6QZX7sToVlhH49c6ed0R&jump_from=webapi)の QR コードをスキャンしてください！
+
+<a href="https://qm.qq.com/cgi-bin/qm/qr?k=rPZvq_EBfwQa6QZX7sToVlhH49c6ed0R&jump_from=webapi" target="_blank">
+  <img src="./assets/qqgroup.jpg" width="300" alt="QQ グループの QR コード" />
+</a>
+
+## コントリビューター
+
+皆さまのコントリビューションはオープンソースコミュニティを豊かにし、学び、インスピレーション、そしてイノベーションを育みます。皆さまの参加を心から大切に思っています。コミュニティの欠かせない一員でいてくださり、ありがとうございます！ 🥰
+
+[![Contributors](https://contrib.rocks/image?repo=walinejs/waline)](https://github.com/walinejs/waline/graphs/contributors)
+
+## ライセンス
+
+[GPL-2.0](https://github.com/lizheming/Waline/blob/main/LICENSE)
