@@ -38,20 +38,18 @@ interface WalineInstance {
   /**
    * Waline 被挂载到的元素
    *
-   * @description 当通过 `el: null` 初始化，值为 `null`
+   * 当通过 `el: null` 初始化，值为 `null`
    */
   el: HTMLElement | null;
 
   /**
    * 更新 Waline 实例
    *
-   * @description 只要不设置`path` 选项，更新时它就会被重置为 `windows.location.pathname`
+   * 只要不设置`path` 选项，更新时它就会被重置为 `windows.location.pathname`
    */
   update: (newOptions?: Partial<Omit<WalineInitOptions, 'el'>>) => void;
 
-  /**
-   * 取消挂载并摧毁 Waline 实例
-   */
+  /** 取消挂载并摧毁 Waline 实例 */
   destroy: () => void;
 }
 ```
@@ -95,9 +93,7 @@ const commentCount: (options: WalineCommentCountOptions) => WalineAbort;
 
 ```ts
 interface WalineCommentCountOptions {
-  /**
-   * Waline 服务端地址
-   */
+  /** Waline 服务端地址 */
   serverURL: string;
 
   /**
@@ -136,9 +132,7 @@ const pageviewCount: (options: WalinePageviewCountOptions) => WalineAbort;
 
 ```ts
 interface WalinePageviewCountOptions {
-  /**
-   * Waline 服务端地址
-   */
+  /** Waline 服务端地址 */
   serverURL: string;
 
   /**
@@ -186,19 +180,13 @@ const RecentComments: (options: WalineRecentCommentsOptions) => Promise<WalineRe
 
 ```ts
 interface WalineRecentCommentsOptions {
-  /**
-   * Waline 服务端地址
-   */
+  /** Waline 服务端地址 */
   serverURL: string;
 
-  /**
-   * 获取最新评论的数量
-   */
+  /** 获取最新评论的数量 */
   count: number;
 
-  /**
-   * 需要挂载的元素
-   */
+  /** 需要挂载的元素 */
   el?: string | HTMLElement;
 }
 ```
@@ -207,14 +195,10 @@ interface WalineRecentCommentsOptions {
 
 ```ts
 interface WalineRecentCommentsResult {
-  /**
-   * 评论数据
-   */
+  /** 评论数据 */
   comments: WalineComment[];
 
-  /**
-   * 取消挂载挂件
-   */
+  /** 取消挂载挂件 */
   destroy: () => void;
 }
 ```
@@ -233,19 +217,13 @@ const UserList: (options: WalineUserListOptions) => Promise<WalineUserListResult
 
 ```ts
 interface WalineUserListOptions {
-  /**
-   * Waline 服务端地址
-   */
+  /** Waline 服务端地址 */
   serverURL: string;
 
-  /**
-   * 获取用户列表的数量
-   */
+  /** 获取用户列表的数量 */
   count: number;
 
-  /**
-   * 需要挂载的元素
-   */
+  /** 需要挂载的元素 */
   el?: string | HTMLElement;
 
   /**
@@ -265,7 +243,7 @@ interface WalineUserListOptions {
   /**
    * 列表模式还是头像墙模式
    *
-   * list mode or avatar wall mode
+   * List mode or avatar wall mode
    */
   mode: 'list' | 'wall';
 }
@@ -275,14 +253,10 @@ interface WalineUserListOptions {
 
 ```ts
 interface WalineUserListResult {
-  /**
-   * 用户数据
-   */
+  /** 用户数据 */
   users: WalineUser[];
 
-  /**
-   * 取消挂载挂件
-   */
+  /** 取消挂载挂件 */
   destroy: () => void;
 }
 ```

@@ -152,7 +152,6 @@ Waline TIDAK memiliki hak cipta atas emoji-emoji di atas, gunakan dengan risiko 
   init({
     el: '#waline',
     serverURL: '<YOUR SERVER URL>',
-
     // Atur emoji ke Weibo dan Bmoji
     emoji: ['//unpkg.com/@waline/emojis@1.4.0/weibo', '//unpkg.com/@waline/emojis@1.4.0/bmoji'],
   });

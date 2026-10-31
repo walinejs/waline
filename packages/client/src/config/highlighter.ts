@@ -49,7 +49,7 @@ const cache: Record<string, string> = {};
 export const defaultHighlighter = (input: string): string => {
   let index = 0;
 
-  return input.replace(REGEXP, (_match, word: string, comment: string) => {
+  return input.replaceAll(REGEXP, (_match, word: string, comment: string) => {
     if (comment) return `<span style="color: slategray">${comment}</span>`;
 
     if (word === '<') return '&lt;';

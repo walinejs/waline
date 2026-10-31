@@ -26,6 +26,7 @@ icon: valine
    ::: tip Config
 
    Waline V2 has removed Valine support and moved to a better configuration. The following is a migration summary of some options:
+
    - `placeholder`: use `locales.placeholder`
    - `highlight`: use `highlighter`
    - `avatarForce`, `avatar`: use the server's `AVATAR_PROXY` environment variable

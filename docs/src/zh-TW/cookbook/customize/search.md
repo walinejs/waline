@@ -15,22 +15,20 @@ For any of the following operations, `@waline/client` requires you to return an 
 
 ```ts
 interface WalineSearchImageData extends Record<string, unknown> {
-  /**
-   * Image link
-   */
+  /** Image link */
   src: string;
 
   /**
    * Image title
    *
-   * @description Used for alt attribute of image
+   * Used for alt attribute of image
    */
   title?: string;
 
   /**
    * Image preview link
    *
-   * @description For better loading performance, we will use this thumbnail first in the list
+   * For better loading performance, we will use this thumbnail first in the list
    *
    * @default src
    */
@@ -58,9 +56,7 @@ In order to make the list load faster, as long as the image service can return m
 
 ```ts
 interface WalineSearchOptions {
-  /**
-   * Search action
-   */
+  /** Search action */
   search: (word: string) => Promise<WalineSearchResult>;
 
   /**
@@ -73,7 +69,8 @@ interface WalineSearchOptions {
   /**
    * Fetch more action
    *
-   * @description It will be triggered when the list scrolls to the bottom. If your search service supports paging, you should set this to achieve infinite scrolling
+   * It will be triggered when the list scrolls to the bottom. If your search service supports
+   * paging, you should set this to achieve infinite scrolling
    *
    * @default (word) => search(word)
    */

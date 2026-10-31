@@ -46,7 +46,6 @@ Hier ist ein Beispiel für den Import und die Verwendung von `@waline/client` in
 
 ```ts
 import { init } from '@waline/client';
-
 import '@waline/client/style';
 
 init({
@@ -59,7 +58,6 @@ init({
 
 ```js
 import { init } from '@waline/client';
-
 import '@waline/client/style';
 
 init({
@@ -103,9 +101,8 @@ Da wir einen responsiven `path` verwenden, wird `@waline/client` automatisch akt
 Mit einer einfachen Wrapper-Funktion können Sie Waline in eine React-Komponente verwandeln:
 
 ```tsx
-import React, { useEffect, useRef } from 'react';
 import { type WalineInstance, type WalineInitOptions, init } from '@waline/client';
-
+import React, { useEffect, useRef } from 'react';
 import '@waline/client/style';
 
 export type WalineOptions = Omit<WalineInitOptions, 'el'> & { path: string };

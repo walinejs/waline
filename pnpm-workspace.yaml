@@ -11,9 +11,11 @@ allowBuilds:
   unrs-resolver: true
 
 catalog:
+  marked: ^18.1.2
+  sass-embedded: 1.107.0
   typescript: ^7.0.2
-  vue: ^3.5.43
-  vite: 8.3.1
+  vue: ^3.5.44
+  vite: 8.3.5
 
 virtualStoreType: global
 
@@ -49,6 +51,7 @@ overrides:
   '@cloudbase/node-sdk>axios': 1.18.0
   # FIXME: https://github.com/next-theme/utils/issues/42
   '@next-theme/utils>js-yaml': ^5.0.0
+  '@vercel/backends>rolldown': ^1.0.0
   '@waline/api': workspace:*
   '@waline/client': workspace:*
   '@xmldom/xmldom': ^0.9.10

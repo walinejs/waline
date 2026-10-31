@@ -42,8 +42,6 @@ waline:
   # Pageviews count, Note: You should not enable both `waline.pageview` and `leancloud_visitors`.
   pageview: false
 
-  
-  
   # Custom locales
   # locale:
   #   placeholder: Welcome to comment # Comment box placeholder
@@ -78,7 +76,7 @@ waline:
 
   # comment per page
   # pageSize: 10
-  
-  # Enable quick reaction. https://waline.js.org/guide/features/reaction.html 
+
+  # Enable quick reaction. https://waline.js.org/guide/features/reaction.html
   # reaction: false
 ```

@@ -152,7 +152,6 @@ Waline DO NOT have any copyright of above emojis, use them at your own risk.
   init({
     el: '#waline',
     serverURL: '<YOUR SERVER URL>',
-
     // Set emoji to Weibo and Bmoji
     emoji: ['//unpkg.com/@waline/emojis@1.4.0/weibo', '//unpkg.com/@waline/emojis@1.4.0/bmoji'],
   });

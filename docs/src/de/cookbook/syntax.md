@@ -10,7 +10,7 @@ Die unterstützte Markdown-Syntax in Kommentaren ist wie folgt.
 
 ## Markdown-Unterstützung
 
-::: details Überschriften
+::: preview Überschriften
 
 <!-- markdownlint-disable MD025 -->
 
@@ -28,43 +28,19 @@ Die unterstützte Markdown-Syntax in Kommentaren ist wie folgt.
 
 ###### Überschrift7
 
-```md
-# Überschrift1
-
-## Überschrift2
-
-### Überschrift3
-
-#### Überschrift4
-
-##### Überschrift5
-
-###### Überschrift7
-```
-
 :::
 
-::: details Text
+::: preview Text
 
 Dieser Satz hat **fett**, _kursiv_ und ~~durchgestrichen~~ Stiltext.
 
-```md
-Dieser Satz hat **fett**, _kursiv_ und ~~durchgestrichen~~ Stiltext.
-```
-
 :::
 
-::: details Absatz
+::: preview Absatz
 
 Dies ist ein Absatz.
 
 Dies ist ein weiterer Absatz.
-
-```md
-Dies ist ein Absatz.
-
-Dies ist ein weiterer Absatz.
-```
 
 :::
 
@@ -80,25 +56,17 @@ an diesem Punkt
 
 :::
 
-::: details Blockzitate
+::: preview Blockzitate
 
 > Blockzitate können auch verschachtelt werden...
 >
 > > ...indem man Größer-als-Zeichen direkt nebeneinander verwendet...
 > >
 > > > ...oder mit Leerzeichen zwischen den Pfeilen.
-
-```md
-> Blockzitate können auch verschachtelt werden...
->
-> > ...indem man Größer-als-Zeichen direkt nebeneinander verwendet...
-> >
-> > > ...oder mit Leerzeichen zwischen den Pfeilen.
-```
 
 :::
 
-::: details Ungeordnete Liste
+::: preview Ungeordnete Liste
 
 - Erstellen Sie eine Liste, indem Sie eine Zeile mit `-` beginnen
 - Erstellen Sie Unterlisten durch Einrücken von 2 Leerzeichen:
@@ -112,23 +80,9 @@ an diesem Punkt
 
 - Es ist einfach!
 
-```md
-- Erstellen Sie eine Liste, indem Sie eine Zeile mit `-` beginnen
-- Unterlisten werden durch Einrücken von 2 Leerzeichen erstellt:
-  - Änderung des Marker-Zeichens erzwingt neuen Listenstart:
-    - Ac tristique libero volutpat at
-    - Facilisis in pretium nisl aliquet
-    - Nulla volutpat aliquam velit  
-      Zeilenumbruch
-
-      Neuer Absatz
-
-- Sehr einfach!
-```
-
 :::
 
-::: details Geordnete Liste
+::: preview Geordnete Liste
 
 1. Lorem ipsum dolor sit amet
 1. Consectetur adipiscing elit  
@@ -136,47 +90,27 @@ an diesem Punkt
    Zeilenumbruch wieder
 1. Integer molestie lorem at massa
 
-```md
-1. Lorem ipsum dolor sit amet
-1. Consectetur adipiscing elit  
-   Zeilenumbruch  
-   Zeilenumbruch wieder
-1. Integer molestie lorem at mass a
-```
-
 :::
 
-::: details HR
+::: preview HR
 
 ---
 
-```md
----
-```
-
 :::
 
-::: details Link
+::: preview Link
 
 [Startseite](/)
 
-```md
-[Startseite](/)
-```
-
 :::
 
-::: details Bild
+::: preview Bild
 
 ![Logo](/logo.png)
 
-```md
-![Logo](/logo.png)
-```
-
 :::
 
-::: details Tabelle
+::: preview Tabelle
 
 |              Mitte               |                      rechts | links                      |
 | :------------------------------: | --------------------------: | :------------------------- |
@@ -184,23 +118,11 @@ an diesem Punkt
 |                b                 |                   aaaaaaaaa | aaaa                       |
 |                c                 |                        aaaa | a                          |
 
-```md
-|              Mitte               |                      rechts | links                      |
-| :------------------------------: | --------------------------: | :------------------------- |
-| Für zentrierte Ausrichtung `:-:` | Für rechte Ausrichtung `-:` | Für linke Ausrichtung `:-` |
-|                b                 |                   aaaaaaaaa | aaaa                       |
-|                c                 |                        aaaa | a                          |
-```
-
 :::
 
-::: details Code
+::: preview Code
 
 Inline-Code: `code`
-
-```md
-Inline-Code: `code`
-```
 
 Block-Code:
 
@@ -211,18 +133,6 @@ var foo = function (bar) {
 
 console.log(foo(5));
 ```
-
-````md
-Block-Code:
-
-```js
-var foo = function (bar) {
-  return bar++;
-};
-
-console.log(foo(5));
-```
-````
 
 :::
 
@@ -230,45 +140,36 @@ console.log(foo(5));
 
 Verwenden Sie `^` und `~`, um Hochgestellt und Tiefgestellt zu markieren.
 
-::: details Demo
-
 <!-- prettier-ignore-start -->
 
+::: preview Demo
+
 - 19^te^
 - H~2~O
-
-```md
-- 19^te^
-- H~2~O
-```
-
-<!-- prettier-ignore-end -->
 
 :::
+
+<!-- prettier-ignore-end -->
 
 ## Emojis
 
 Neben benutzerkonfigurierten oder integrierten Weibo-Emojis unterstützen wir auch vollständige Emoji-Kurzschrift-Emoticons.
 
-::: details Demo
+<!-- prettier-ignore-start -->
+
+::: preview Demo
 
 Klassisch:
 
 :wink: :cry: :laughing: :yum:
 
-```md
-:wink: :cry: :laughing: :yum:
-```
-
 Verknüpfungen:
 
-8-) :) :\* :( :-) :-( ;)
-
-```md
-8-) :) :\* :( :-) :-( ;)
-```
+8-) :) :* :( :-) :-( ;)
 
 :::
+
+<!-- prettier-ignore-end -->
 
 ## Code-Block-Hervorhebung
 
@@ -343,26 +244,14 @@ footer p {
 
 Sie können `$ ... $` verwenden, um Inline-Formeln zu erstellen, oder `$$ ... $$` verwenden, um Block-Level-Formeln zu erstellen.
 
-:::
-::: details Demo
+::: preview Demo
 
 Eulers Identität $e^{i\pi}+1=0$ ist eine schöne Formel in $\mathbb{R}^2$.
-
-```md
-Eulers Identität $e^{i\pi}+1=0$ ist eine schöne Formel in $\mathbb{R}^2$.
-```
 
 $$
 \frac {\partial^r} {\partial \omega^r} \left(\frac {y^{\omega}} {\omega}\right)
 = \left(\frac {y^{\omega}} {\omega}\right) \left\{(\log y)^r + \sum_{i=1}^r \frac {(-1)^i r \cdots (r-i+1) (\log y)^{r-i}} {\omega^i} \right\}
 $$
-
-```md
-$$
-\frac {\partial^r} {\partial \omega^r} \left(\frac {y^{\omega}} {\omega}\right)
-= \left(\frac {y^{\omega}} {\omega}\right) \left\{(\log y)^r + \sum_{i=1}^r \frac {(-1)^i r \cdots (r-i+1) (\log y)^{r-i}} {\omega^i} \right\}
-$$
-```
 
 :::
 

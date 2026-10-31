@@ -46,7 +46,6 @@ Berikut adalah contoh mengimpor dan menggunakan `@waline/client` dalam proyek si
 
 ```ts
 import { init } from '@waline/client';
-
 import '@waline/client/style';
 
 init({
@@ -59,7 +58,6 @@ init({
 
 ```js
 import { init } from '@waline/client';
-
 import '@waline/client/style';
 
 init({
@@ -103,9 +101,8 @@ Karena kita menggunakan `path` yang responsif, ketika rute berubah, `@waline/cli
 Dengan pembungkus sederhana, Anda dapat mengubah Waline menjadi komponen React:
 
 ```tsx
-import React, { useEffect, useRef } from 'react';
 import { type WalineInstance, type WalineInitOptions, init } from '@waline/client';
-
+import React, { useEffect, useRef } from 'react';
 import '@waline/client/style';
 
 export type WalineOptions = Omit<WalineInitOptions, 'el'> & { path: string };

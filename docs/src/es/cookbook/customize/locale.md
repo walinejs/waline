@@ -187,6 +187,7 @@ Waline.init({
 By default, it uses the built-in multilingual text, and falls back to `en-US` language text if the language is not supported.
 
 You can pass a completed multilingual configuration to the `locales` option to add language support, or set some of them to override the existing text.
+
 ::: tip
 
 All custom text will eventually be rendered using the nunjucks template engine, which supports writing some relatively complex logical expressions. For example:

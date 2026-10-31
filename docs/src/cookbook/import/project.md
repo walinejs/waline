@@ -46,7 +46,6 @@ yarn add -D @waline/client
 
 ```ts
 import { init } from '@waline/client';
-
 import '@waline/client/style';
 
 init({
@@ -59,7 +58,6 @@ init({
 
 ```js
 import { init } from '@waline/client';
-
 import '@waline/client/style';
 
 init({
@@ -103,9 +101,8 @@ const path = computed(() => useRoute().path);
 只需要简单的包装，你就可以将 Waline 转为 React 组件:
 
 ```tsx
-import React, { useEffect, useRef } from 'react';
 import { type WalineInstance, type WalineInitOptions, init } from '@waline/client';
-
+import React, { useEffect, useRef } from 'react';
 import '@waline/client/style';
 
 export type WalineOptions = Omit<WalineInitOptions, 'el'> & { path: string };
