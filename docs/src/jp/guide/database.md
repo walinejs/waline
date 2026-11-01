@@ -1,31 +1,31 @@
 ---
-title: Multi-database service support
+title: 複数データベースサービスのサポート
 icon: database
 order: 2
 ---
 
-Waline supports a variety of databases, including MySQL, PostgreSQL, SQLite and MongoDB.
+WalineはMySQL、PostgreSQL、SQLite、MongoDBなど、さまざまなデータベースをサポートしています。
 
-You only need to configure environment variables, and Waline will automatically switch to the corresponding data storage service based on the environment variables you configure.
+環境変数を設定するだけで、Walineは設定した環境変数に応じて対応するデータストレージサービスへ自動的に切り替わります。
 
 <!-- more -->
 
 ## MongoDB
 
-<https://mongodb.com> official provides 512M MongoDB database support for free. The following are the environment variables that need to be configured to use MongoDB database.
+MongoDBの公式サイト<https://mongodb.com>では、512MのMongoDBデータベースを無料で提供しています。MongoDBデータベースを使用するために設定が必要な環境変数は以下のとおりです。
 
-| Environment Variable | Required | Default   | Description                                  |
-| -------------------- | -------- | --------- | -------------------------------------------- |
-| `MONGO_DB`           | ✅       |           | MongoDB database name                        |
-| `MONGO_USER`         | ✅       |           | MongoDB server username                      |
-| `MONGO_PASSWORD`     | ✅       |           | MongoDB server password                      |
-| `MONGO_HOST`         |          | 127.0.0.1 | MongoDB server address, support array format |
-| `MONGO_PORT`         |          | 27017     | MongoDB server port, support array format    |
-| `MONGO_REPLICASET`   |          |           | MongoDB replica set                          |
-| `MONGO_AUTHSOURCE`   |          |           | MongoDB auth source                          |
-| `MONGO_OPT_SSL`      |          | `false`   | use SSL connection                           |
+| 環境変数           | 必須 | デフォルト | 説明                                          |
+| ------------------ | ---- | ---------- | --------------------------------------------- |
+| `MONGO_DB`         | ✅   |            | MongoDBのデータベース名                       |
+| `MONGO_USER`       | ✅   |            | MongoDBサーバーのユーザー名                   |
+| `MONGO_PASSWORD`   | ✅   |            | MongoDBサーバーのパスワード                   |
+| `MONGO_HOST`       |      | 127.0.0.1  | MongoDBサーバーのアドレス。配列形式をサポート |
+| `MONGO_PORT`       |      | 27017      | MongoDBサーバーのポート。配列形式をサポート   |
+| `MONGO_REPLICASET` |      |            | MongoDBのレプリカセット                       |
+| `MONGO_AUTHSOURCE` |      |            | MongoDBの認証ソース                           |
+| `MONGO_OPT_SSL`    |      | `false`    | SSL接続を使用する                             |
 
-Here is an example configuration for mongodb.com. Please note that you need set as JSON style for `MONGO_HOST` and `MONGO_PORT` when you has multiple hosts.
+mongodb.com向けの設定例は以下のとおりです。複数のホストがある場合は、`MONGO_HOST`と`MONGO_PORT`をJSON形式で設定する必要がある点に注意してください。
 
 ```bash
 MONGO_HOST=["cluster0-shard-00-00.p4edw.mongodb.net","cluster0-shard-00-01.p4edw.mongodb.net","cluster0-shard-00-02.p4edw.mongodb.net"]
@@ -40,87 +40,87 @@ MONGO_OPT_SSL=true
 
 ## MySQL
 
-Using MySQL to store data is also a good choice. Besides our own MySQL service, we can also use [FreeDB)(https://freedb.tech), which provides 25M of database support for free, or [PlanetScale](https://planetscale.com) which only support paid plan now.
+MySQLでデータを保存するのも良い選択です。自前のMySQLサービスのほか、25Mのデータベースを無料で提供している[FreeDB)(https://freedb.tech)、現在は有料プランのみを提供している[PlanetScale](https://planetscale.com)も利用できます。
 
-If you want to use MySQL as storage, you need to import [waline.sql](https://github.com/walinejs/waline/blob/main/assets/waline.sql) first to create table and table structure, then set these environment variables in project.
+MySQLをストレージとして使用する場合は、まず[waline.sql](https://github.com/walinejs/waline/blob/main/assets/waline.sql)をインポートしてテーブルとテーブル構造を作成し、その後プロジェクトで以下の環境変数を設定してください。
 
-| Environment Variable | Required | Default   | Description                |
-| -------------------- | -------- | --------- | -------------------------- |
-| `MYSQL_DB`           | ✅       |           | MySQL database name        |
-| `MYSQL_USER`         | ✅       |           | MySQL server username      |
-| `MYSQL_PASSWORD`     | ✅       |           | MySQL server password      |
-| `MYSQL_HOST`         |          | 127.0.0.1 | MySQL server address       |
-| `MYSQL_PORT`         |          | 3306      | MySQL server port          |
-| `MYSQL_PREFIX`       |          | `wl_`     | MySQL table prefix         |
-| `MYSQL_CHARSET`      |          | `utf8mb4` | MySQL table charset        |
-| `MYSQL_SSL`          |          | `false`   | whether use SSL connection |
+| 環境変数         | 必須 | デフォルト | 説明                          |
+| ---------------- | ---- | ---------- | ----------------------------- |
+| `MYSQL_DB`       | ✅   |            | MySQLのデータベース名         |
+| `MYSQL_USER`     | ✅   |            | MySQLサーバーのユーザー名     |
+| `MYSQL_PASSWORD` | ✅   |            | MySQLサーバーのパスワード     |
+| `MYSQL_HOST`     |      | 127.0.0.1  | MySQLサーバーのアドレス       |
+| `MYSQL_PORT`     |      | 3306       | MySQLサーバーのポート         |
+| `MYSQL_PREFIX`   |      | `wl_`      | MySQLのテーブルプレフィックス |
+| `MYSQL_CHARSET`  |      | `utf8mb4`  | MySQLのテーブル文字コード     |
+| `MYSQL_SSL`      |      | `false`    | SSL接続を使用するか           |
 
 ## TiDB
 
-[TiDB](https://github.com/pingcap/tidb) is an open source NewSQL database. [TiDB Cloud](https://tidbcloud.com/) is the official online version, which provides 5GB of free quota for everyone to use.
+[TiDB](https://github.com/pingcap/tidb)はオープンソースのNewSQLデータベースです。[TiDB Cloud](https://tidbcloud.com/)は公式のオンラインバージョンで、誰でも利用できる5GBの無料枠を提供しています。
 
-Please refer to [Create TiDB database](../../jp/guide/deploy/tidb.md) to understand the initialization process.
+初期化の手順については[TiDBデータベースの作成](../../jp/guide/deploy/tidb.md)を参照してください。
 
-| Environment Variable | Required | Default   | Description                     |
-| -------------------- | -------- | --------- | ------------------------------- |
-| `TIDB_DB`            | ✅       |           | TiDB database name              |
-| `TIDB_USER`          | ✅       |           | TiDB database user name         |
-| `TIDB_PASSWORD`      | ✅       |           | TiDB database password          |
-| `TIDB_HOST`          |          | 127.0.0.1 | Address of TiDB service         |
-| `TIDB_PORT`          |          | 4000      | Port of TiDB service            |
-| `TIDB_PREFIX`        |          | `wl_`     | Table prefix of TiDB data table |
-| `TIDB_CHARSET`       |          | `utf8mb4` | TiDB data table character set   |
+| 環境変数        | 必須 | デフォルト | 説明                               |
+| --------------- | ---- | ---------- | ---------------------------------- |
+| `TIDB_DB`       | ✅   |            | TiDBのデータベース名               |
+| `TIDB_USER`     | ✅   |            | TiDBのデータベースユーザー名       |
+| `TIDB_PASSWORD` | ✅   |            | TiDBのデータベースパスワード       |
+| `TIDB_HOST`     |      | 127.0.0.1  | TiDBサービスのアドレス             |
+| `TIDB_PORT`     |      | 4000       | TiDBサービスのポート               |
+| `TIDB_PREFIX`   |      | `wl_`      | TiDBデータテーブルのプレフィックス |
+| `TIDB_CHARSET`  |      | `utf8mb4`  | TiDBデータテーブルの文字セット     |
 
 ## SQLite
 
-Download [waline.sqlite](https://github.com/walinejs/waline/blob/main/assets/waline.sqlite) to your server if you want to use SQLite. Then set these environment variables in project.
+SQLiteを使用する場合は、[waline.sqlite](https://github.com/walinejs/waline/blob/main/assets/waline.sqlite)をサーバーにダウンロードしてください。その後、プロジェクトで以下の環境変数を設定します。
 
-| Environment Variable | Required | Default | Description                                                        |
-| -------------------- | -------- | ------- | ------------------------------------------------------------------ |
-| `SQLITE_PATH`        | ✅       |         | SQLite storage file path, not include file name                    |
-| `JWT_TOKEN`          | ✅       |         | Random String for login token generator                            |
-| `SQLITE_DB`          |          | waline  | SQLite storage file name, change it if your filename is not waline |
-| `SQLITE_PREFIX`      |          | `wl_`   | SQLite table prefix                                                |
+| 環境変数        | 必須 | デフォルト | 説明                                                                 |
+| --------------- | ---- | ---------- | -------------------------------------------------------------------- |
+| `SQLITE_PATH`   | ✅   |            | SQLiteのストレージファイルのパス。ファイル名は含めない               |
+| `JWT_TOKEN`     | ✅   |            | ログイントークン生成用のランダム文字列                               |
+| `SQLITE_DB`     |      | waline     | SQLiteのストレージファイル名。ファイル名がwalineでない場合は変更する |
+| `SQLITE_PREFIX` |      | `wl_`      | SQLiteのテーブルプレフィックス                                       |
 
 ## PostgreSQL
 
-[Supabase](https://supabase.com) and [Neon](https://neon.tech/home) offer a free 512M database, while [Tembo](https://tembo.io/) provides 10G PG database support for free. Same as MySQL, you need to import [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) to create table and table structure before using PostgreSQL.
+[Supabase](https://supabase.com)と[Neon](https://neon.tech/home)は512Mのデータベースを無料で提供しており、[Tembo](https://tembo.io/)は10GのPGデータベースのサポートを無料で提供しています。MySQLと同様に、PostgreSQLを使用する前に[waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql)をインポートしてテーブルとテーブル構造を作成する必要があります。
 
-| Environment Variable | Required | Default   | Description                         |
-| -------------------- | -------- | --------- | ----------------------------------- |
-| `PG_DB`              | ✅       |           | PostgreSQL database name            |
-| `PG_USER`            | ✅       |           | PostgreSQL server username          |
-| `PG_PASSWORD`        | ✅       |           | PostgreSQL server password          |
-| `PG_HOST`            |          | 127.0.0.1 | PostgreSQL server address           |
-| `PG_PORT`            |          | 5432      | PostgreSQL server port              |
-| `PG_PREFIX`          |          | `wl_`     | PostgreSQL table prefix             |
-| `PG_SSL`             |          | `false`   | set to `true` to use SSL connection |
-| `POSTGRES_DATABASE`  |          |           | alias for `PG_DB`                   |
-| `POSTGRES_USER`      |          |           | alias for `PG_USER`                 |
-| `POSTGRES_PASSWORD`  |          |           | alias for `PG_PASSWORD`             |
-| `POSTGRES_HOST`      |          | 127.0.0.1 | alias for `PG_HOST`                 |
-| `POSTGRES_PORT`      |          | 5432      | alias for `PG_PORT`                 |
-| `POSTGRES_PREFIX`    |          | `wl_`     | alias for `PG_PREFIX`               |
-| `POSTGRES_SSL`       |          | `false`   | alias for `PG_SSL`                  |
+| 環境変数            | 必須 | デフォルト | 説明                                |
+| ------------------- | ---- | ---------- | ----------------------------------- |
+| `PG_DB`             | ✅   |            | PostgreSQLのデータベース名          |
+| `PG_USER`           | ✅   |            | PostgreSQLサーバーのユーザー名      |
+| `PG_PASSWORD`       | ✅   |            | PostgreSQLサーバーのパスワード      |
+| `PG_HOST`           |      | 127.0.0.1  | PostgreSQLサーバーのアドレス        |
+| `PG_PORT`           |      | 5432       | PostgreSQLサーバーのポート          |
+| `PG_PREFIX`         |      | `wl_`      | PostgreSQLのテーブルプレフィックス  |
+| `PG_SSL`            |      | `false`    | SSL接続を使用する場合は`true`に設定 |
+| `POSTGRES_DATABASE` |      |            | `PG_DB`のエイリアス                 |
+| `POSTGRES_USER`     |      |            | `PG_USER`のエイリアス               |
+| `POSTGRES_PASSWORD` |      |            | `PG_PASSWORD`のエイリアス           |
+| `POSTGRES_HOST`     |      | 127.0.0.1  | `PG_HOST`のエイリアス               |
+| `POSTGRES_PORT`     |      | 5432       | `PG_PORT`のエイリアス               |
+| `POSTGRES_PREFIX`   |      | `wl_`      | `PG_PREFIX`のエイリアス             |
+| `POSTGRES_SSL`      |      | `false`    | `PG_SSL`のエイリアス                |
 
 ## GitHub
 
-Waline supports storing comment data in a CSV file on GitHub. To use GitHub as data storage, you need to apply for Personal access tokens. You can click <kbd>Generate new token</kbd> to apply it at <https://github.com/settings/tokens>. Check the **repo** option in permission to obtain read and write permissions for repositories.
+WalineはコメントデータをGitHub上のCSVファイルに保存できます。GitHubをデータストレージとして使用するには、パーソナルアクセストークンを申請する必要があります。<https://github.com/settings/tokens>で<kbd>Generate new token</kbd>をクリックして申請できます。権限で**repo**オプションにチェックを入れ、リポジトリの読み取りと書き込みの権限を取得してください。
 
-| Environment Variable | Required | Default | Description                                                                                                      |
-| -------------------- | -------- | ------- | ---------------------------------------------------------------------------------------------------------------- |
-| `GITHUB_TOKEN`       | ✅       |         | [Personal access tokens](https://github.com/settings/tokens)                                                     |
-| `GITHUB_REPO`        | ✅       |         | repository name, such as `walinejs/waline`                                                                       |
-| GITHUB_PATH          |          |         | The data storage directory, such as `data` means it is stored in the `data` directory, root directory by default |
+| 環境変数       | 必須 | デフォルト | 説明                                                                                                           |
+| -------------- | ---- | ---------- | -------------------------------------------------------------------------------------------------------------- |
+| `GITHUB_TOKEN` | ✅   |            | [パーソナルアクセストークン](https://github.com/settings/tokens)                                               |
+| `GITHUB_REPO`  | ✅   |            | リポジトリ名。例：`walinejs/waline`                                                                            |
+| GITHUB_PATH    |      |            | データ保存ディレクトリ。`data`を指定すると`data`ディレクトリに保存され、デフォルトではルートディレクトリになる |
 
 ::: warning
 
-Due to performance, using GitHub is not recommended.
+パフォーマンス上の理由から、GitHubの使用は推奨しません。
 
 :::
 
-## Custom
+## カスタム
 
-Besides above database storage, support for other storage services can also be added.
+上記のデータベースストレージ以外にも、他のストレージサービスへの対応を追加できます。
 
-If you want to help Waline supporting more storage services, you can fork the project and inherit the [base class](https://github.com/walinejs/waline/blob/main/packages/server/src/service/storage/base.js) and then implement the `select()`, `add()`, `update()` and `delete()` methods of the corresponding storage service and submit the PR.
+Walineでより多くのストレージサービスをサポートしたい場合は、プロジェクトをフォークして[基底クラス](https://github.com/walinejs/waline/blob/main/packages/server/src/service/storage/base.js)を継承し、対応するストレージサービスの`select()`、`add()`、`update()`、`delete()`メソッドを実装してPRを送ってください。

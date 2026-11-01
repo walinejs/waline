@@ -3,7 +3,7 @@ title: クックブック
 icon: cookbook
 ---
 
-This cookbook will introduce Waline in more depth.
+このクックブックでは、Waline をより詳しく紹介します。
 
 <!-- more -->
 

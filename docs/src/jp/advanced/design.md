@@ -1,26 +1,26 @@
 ---
-title: Design Goal
+title: 設計目標
 icon: goal
 order: 2
 ---
 
-[Valine](https://valine.js.org) an exquisite style, simple operation, and efficient deployment review system. The first time I came into contact, I was attracted by its exquisite style and serverless characteristics. It doesn't require the backend service. The frontend interacts with the LeanCloud storage service directly, which is really cool! But as I understand deeper, I find out it's problems.
+[Valine](https://valine.js.org)は、洗練されたスタイル、シンプルな操作、効率的なデプロイを備えたコメントシステムです。初めて触れたとき、その洗練されたスタイルとサーバーレスという特徴に惹かれました。バックエンドサービスは不要で、フロントエンドがLeanCloudのストレージサービスと直接やり取りするのは本当にクールです！しかし、理解を深めるにつれて、その問題点が分かってきました。
 
-## Problem of Valine
+## Valineの問題点
 
-### Not Open Source
+### オープンソースではない
 
-The author only push the compiled files to the GitHub repository starting from version `1.4.0`, and the source code stop updating. May be the author have a broken heart in open source. While for users like me who want to add or modify project, this problem is a bit uncomfortable.
+作者はバージョン`1.4.0`以降、コンパイル済みのファイルのみをGitHubリポジトリにプッシュしており、ソースコードの更新は止まっています。おそらく作者はオープンソースに心を痛めたのでしょう。しかし、私のようにプロジェクトに手を加えたいユーザーにとっては、これは少し厄介な問題です。
 
 ### XSS
 
-Since the very early version, users have reported Valine's XSS problems, and the community is also using various methods to fix these problems. Including the addition of verification codes, frontend XSS filtering and other methods. However, the author later realized that all the frontend verification can only prevent the gentleman, so the restriction such as verification code is removed.
+ごく初期のバージョンから、ValineのXSS問題はユーザーによって報告されており、コミュニティもさまざまな方法でこれらの問題を修正してきました。検証コードの追加やフロントエンドでのXSSフィルタリングなどです。しかし、作者は後にフロントエンドでの検証は所詮「君子を防ぐのみ」であることに気づき、検証コードなどの制限は削除されました。
 
-Now when the frontend publishes a comment, Markdown will be converted into HTML, and then execute an XSS filter function on the frontend before be submitted to LeanCloud. After getting the data from LeanCloud, it is directly inserted to DOM. Obviously, the process is problematic. As long as the HTML is submitted directly and displayed directly after the HTML is obtained, XSS cannot be eradicated fundamentally.
+現在、フロントエンドがコメントを公開すると、MarkdownがHTMLに変換され、LeanCloudに送信される前にフロントエンドでXSSフィルター関数が実行されます。LeanCloudからデータを取得した後は、そのままDOMに挿入されます。明らかに、このプロセスには問題があります。HTMLを直接送信し、取得したHTMLをそのまま表示する限り、XSSを根本的に排除することはできません。
 
-::: note Fundamental solution
+::: note 根本的な解決策
 
-For stored XSS attacks, we can use escape HTML codes to solve them permanently. Just like old BBCode, only markdown content is submit to the database. The frontend reads the content and encodes all HTML before displaying it after Markdown conversion.
+保存型XSS攻撃に対しては、HTMLコードをエスケープすることで恒久的に解決できます。昔のBBCodeのように、データベースにはMarkdownの内容のみを送信します。フロントエンドは内容を読み取り、Markdown変換後に表示する前に、すべてのHTMLをエンコードします。
 
 ```js
 function encodeForHTML(str) {
@@ -34,34 +34,34 @@ function encodeForHTML(str) {
 }
 ```
 
-Since Valine is a serverless system, attackers can directly reach the storage stage. All precautions before data storage are invalid and can only be processed during the displaying process. Because all HTML cannot be parsed after being escaped, we can ensure that the converted HTML has no chance of being inserted.
+Valineはサーバーレスシステムであるため、攻撃者はストレージの段階に直接到達できます。データ保存前の対策はすべて無効で、表示処理の過程でしか対処できません。エスケープ後はすべてのHTMLを解析できないため、変換されたHTMLが挿入される余地はないと言えます。
 
-Since Valine is no longer open source, pull requests cannot be opened.
+Valineはもはやオープンソースではないため、Pull Requestを送ることはできません。
 
 :::
 
-Since the above method will completely restrict users in the scope of Markdown, Waline adds `DOMPurify` on the client side since `0.15.0` to prevent XSS. Besides the regular XSS sterilization:
+上記の方法ではユーザーをMarkdownの範囲に完全に制限してしまうため、Walineは`0.15.0`以降、クライアント側に`DOMPurify`を追加してXSSを防いでいます。通常のXSS無害化に加えて、次の処理も行います：
 
-- `<form>` and `<input>` are disabled
-- style inject is disabled
-- autoplay of the media is disabled
-- all external links will be processed and opened in a new window with rel of `noopener noreferrer`.
+- `<form>`と`<input>`は無効化されます
+- スタイルの注入は無効化されます
+- メディアの自動再生は無効化されます
+- すべての外部リンクは処理され、relに`noopener noreferrer`を設定した新しいウィンドウで開かれます。
 
-### Privacy Leak
+### プライバシーの漏洩
 
-Besides direct access to storage, the attacker can also read any data directly. If a database field has read permission to everyone, the content of the field is completely transparent to the attacker.
+ストレージに直接アクセスできるだけでなく、攻撃者は任意のデータを直接読み取ることもできます。データベースのフィールドに全員への読み取り権限がある場合、そのフィールドの内容は攻撃者にとって完全に透明です。
 
-In the comment data, the two fields IP and mailbox contain the user's sensitive data. Mr.Deng wrote an article specifically to criticize the problem [Please stop using the Valine.js comment system immediately unless it fixes the user privacy leak](https://ttys3.net/post/hugo/please-stop-using-valine-js-comment-system-until-it-fixed-the-privacy-leaking-problem/). Even when the [JueJin](https://juejin.cn) community used LeanCloud in early years, the security problem of [disclosed user's mobile phone number](https://m.weibo.cn/detail/4568007327622344?cid=4568044392682999) was exposed.
+コメントデータにおいて、IPとメールアドレスという2つのフィールドにはユーザーの機密データが含まれています。Mr.Dengはこの問題を批判する記事を書いています：[Valine.jsのプライバシー漏洩が修正されるまで、すぐに使用を中止してください](https://ttys3.net/post/hugo/please-stop-using-valine-js-comment-system-until-it-fixed-the-privacy-leaking-problem/)。[JueJin](https://juejin.cn)コミュニティが初期にLeanCloudを使用していた際にも、[ユーザーの携帯電話番号が漏洩する](https://m.weibo.cn/detail/4568007327622344?cid=4568044392682999)セキュリティ問題が明るみに出ました。
 
-In order to circumvent this problem, the author of Valine added the `recordIP` configuration to set whether to allow recording of user IP. Since there is no server, it can only be solved by not storing the value.
+この問題を回避するため、Valineの作者はユーザーIPの記録を許可するかどうかを設定する`recordIP`設定を追加しました。サーバーがないため、値を保存しないことでしか解決できません。
 
-There is still a problem with this option: Whether to record ip is based on the site owner's config, while commenters have no right to manage their own privacy.
+このオプションにはまだ問題があります。IPを記録するかどうかはサイト所有者の設定に依存し、コメントしたユーザーには自分のプライバシーを管理する権利がありません。
 
-Leaking of email address are another major privacy issue. It is completely feasible to calculate and report the md5 of the user's email at frontend to obtain the Gravatar avatar. But if sending email notification when a comment being replied is needed, it is inevitable to store the original value of the user's email address. This problem can theoretically be solved by RSA encryption. The private key can be stored in the environment variable of LeanCloud. The client reports both the email md5 and the email encrypted by the public key. When LeanCloud wants to send email notifications, it reads the private key in the environment in the cloud function, and then decrypt to get the user email. However, considering the size and performance of the frontend RSA encryption library, it's not actual. Adding a server layer to filter sensitive information through the server side is definitely a better practice.
+メールアドレスの漏洩は、もう1つの主要なプライバシー問題です。Gravatarのアバターを取得するために、フロントエンドでユーザーのメールアドレスのmd5を計算して送信することは完全に実現可能です。しかし、コメントへの返信時にメール通知を送信する必要がある場合は、ユーザーのメールアドレスの元の値を保存せざるを得ません。この問題は理論的にはRSA暗号化で解決できます。秘密鍵はLeanCloudの環境変数に保存できます。クライアントはメールアドレスのmd5と、公開鍵で暗号化したメールアドレスの両方を送信します。LeanCloudがメール通知を送信するとき、クラウド関数で環境から秘密鍵を読み取り、復号してユーザーのメールアドレスを取得します。ただし、フロントエンドのRSA暗号化ライブラリのサイズとパフォーマンスを考慮すると、現実的ではありません。サーバー層を追加し、サーバー側で機密情報をフィルタリングする方が間違いなく優れた方法です。
 
-### Read Statistics Tampering
+### 閲覧数統計の改ざん
 
-Valien 1.2.0 adds the function of article reading statistics, the user visits the page and records the number of visits according to the url in the counter table in the background. Since the data needs to be updated every time the page is accessed, the permissions must be set to be writable in order to perform subsequent field updates. This creates a problem. In fact, the data can be updated to any value. If you interested in it, you can open the <https://valine.js.org/visitor.html> official website and enter the console and enter the following code to try. Remember to change the number back after trying it~
+Valine 1.2.0では記事の閲覧数統計機能が追加され、ユーザーがページにアクセスすると、バックグラウンドのカウンターテーブルにあるurlに従って訪問数が記録されます。ページにアクセスするたびにデータを更新する必要があるため、後続のフィールド更新を実行できるように権限を書き込み可能に設定しなければなりません。ここで問題が生じます。実際、データは任意の値に更新できてしまいます。興味があれば、<https://valine.js.org/visitor.html>の公式サイトを開いてコンソールに次のコードを入力し、試してみてください。試した後は数値を元に戻すのをお忘れなく~
 
 ```js
 const counter = new AV.Query('Counter');
@@ -70,12 +70,12 @@ resp[0].set('time', -100000).save();
 location.reload();
 ```
 
-Fortunately, the value of the `time` field is of type Number, so other values cannot be inserted. If the `time` field is of string type, it may be an XSS vulnerability. A possible solution to this problem is not to use the accumulative storage method. Changed to store a read-only access record for each visit, and use the `count()` method for statistics when reading. In this way, all data is read-only, which solves the problem of tampering. This solution also has a problem: when the amount of data is relatively large, it will cause a certain pressure on the query.
+幸いなことに、`time`フィールドの値はNumber型であるため、他の値を挿入することはできません。もし`time`フィールドが文字列型であれば、XSS脆弱性になっていたかもしれません。この問題の可能な解決策は、累積的な保存方式をやめることです。訪問ごとに読み取り専用のアクセス記録を保存し、読み取り時に`count()`メソッドで統計を取る方式に変更します。こうすればすべてのデータが読み取り専用になり、改ざんの問題は解決します。ただし、この解決策にも問題があります。データ量が比較的多くなると、クエリに一定の負荷がかかります。
 
-If it is based on remaining the original data, only server layer can be added to isolate the modification permissions.
+元のデータを維持する場合は、変更権限を分離するためにサーバー層を追加するしかありません。
 
-## Born of Waline
+## Walineの誕生
 
-Based on the above reasons, Waline was born. Waline's original goal was only to add backend to Valine, but because Valine is not open source, it can only be implemented with frontend. Of course, many codes and logic of the frontend have reference Valine in order to be consistent with Valine's configuration. Even in the project's name, I derived it from Valine, so that everyone can understand that this project is a derivative of Valine.
+以上の理由から、Walineが誕生しました。Walineの当初の目的はValineにバックエンドを追加することだけでしたが、Valineがオープンソースではないため、フロントエンドで実装するしかありませんでした。もちろん、Valineの設定との一貫性を保つため、フロントエンドの多くのコードとロジックはValineを参考にしています。プロジェクト名さえValineから派生させているので、誰でもこのプロジェクトがValineの派生であることを理解できるでしょう。
 
-Besides solving the above-mentioned security problems. the addition of the server side implement many features previously limited by no server side, including email notifications, spam comment filtering, etc.
+上記のセキュリティ問題を解決するだけでなく、サーバー側を追加したことで、従来はサーバーがないために制限されていた多くの機能（メール通知、スパムコメントのフィルタリングなど）を実装できるようになりました。

@@ -1,23 +1,23 @@
 ---
-title: Comment Format Support
+title: コメントの書式サポート
 icon: format
 order: 1
 ---
 
-You can add different contents to comment, including extended Markdown syntax and HTML tags.
+コメントには、拡張 Markdown 構文や HTML タグなど、さまざまな内容を追加できます。
 
 <!-- more -->
 
-## Format Support
+## 対応する書式
 
-We support the full CommonMark (standard Markdown syntax), along with the following extensions:
+標準の Markdown 構文である CommonMark に完全対応しており、次の拡張も利用できます：
 
-- GFM style table
-- GFM style strike through
-- Subscript and superscript
-- Emoji
-- Code block highlighting
-- $\TeX$ formula
+- GFM 形式のテーブル
+- GFM 形式の打ち消し線
+- 下付き文字と上付き文字
+- 絵文字
+- コードブロックのハイライト
+- $\TeX$ 数式
 
 ::: info GFM
 
@@ -25,36 +25,36 @@ Github Flavored Markdown
 
 :::
 
-Meanwhile, you can freely embed any HTML content without triggering the [protection mechanism](./safety.md#comment-security).
+また、[保護機構](./safety.md#コメントのセキュリティ) を発動させることなく、任意の HTML コンテンツを自由に埋め込むことができます。
 
-## Limited Preview Support
+## プレビューでの制限
 
-In order to control the size of the client, we only place a small Markdown parser in the official client `@waline/client`, which causes many grammars to not display correctly in the preview panel (they can be **correctly rendered in the comment area**).
+クライアントのサイズを抑えるため、公式クライアント `@waline/client` には小さな Markdown パーサーのみを組み込んでいます。そのため、多くの文法がプレビューパネルで正しく表示されません（**コメント欄では正しくレンダリングされます**）。
 
-This includes the following restrictions:
+具体的には次のような制限があります：
 
-- Standard emoji syntax (eg :tada:`:tada:`) does not render correctly
+- 標準の絵文字構文（例：`:tada:`）は正しくレンダリングされません。
 
-- The upper and lower subscripts (eg: `H~2~O`, `x^2^`) cannot be rendered correctly
+- 上付き・下付き文字（例：`H~2~O`、`x^2^`）は正しくレンダリングされません。
 
-- $\TeX$ syntax, i.e. math formulas (eg: `$a = 1$`) cannot be rendered by default.
+- $\TeX$ 構文、つまり数式（例：`$a = 1$`）はデフォルトではレンダリングされません。
 
-  When using the official client, you can customize the $\TeX$ rendering in preview by setting the `texRenderer` option, see [Cookbook → Use a custom $\TeX$ renderer](../../cookbook/customize/tex-renderer.md).
+  公式クライアントを使う場合は、`texRenderer` オプションを設定することでプレビューでの $\TeX$ レンダリングをカスタマイズできます。詳しくは [クックブック → カスタム $\TeX$ レンダラーの使用](../../cookbook/customize/tex-renderer.md) を参照してください。
 
-- Under the default highlighter, code blocks will be highlighted with random colors with specific delimiters.
+- デフォルトのハイライターでは、コードブロックは特定の区切り文字を含むランダムな色でハイライトされます。
 
-  When using the official client, you can customize the code highlighting when previewing by setting the `highlighter` option, see [Cookbook → Custom Code Highlighting](../../cookbook/customize/highlighter.md).
+  公式クライアントを使う場合は、`highlighter` オプションを設定することでプレビュー時のコードハイライトをカスタマイズできます。詳しくは [クックブック → カスタムコードハイライト](../../cookbook/customize/highlighter.md) を参照してください。
 
-## More
+## 補足
 
-::: tip Principle
+::: tip 仕組み
 
-1. Considering package size, the client uses `marked` for rendering and uses a < 1kb highlighter for highlighting by default, and does not include a $\TeX$ renderer, resulting in the above limitations.
+1. パッケージサイズを考慮し、クライアントはレンダリングに `marked` を使用し、ハイライトにはデフォルトで 1KB 未満のハイライターを使い、$\TeX$ レンダラーは含んでいません。その結果が上記の制限です。
 
-1. When a user submits a comment, the client embeds a custom Emoji image and sends the original comment to the server.
+1. ユーザーがコメントを送信すると、クライアントはカスタム絵文字の画像を埋め込み、元のコメントをサーバーに送信します。
 
-1. The server receives the original text, uses `markdown-it` to render markdown correctly with relevant plug-ins, uses `prismjs` to highlight code blocks according to the language, and performs $\TeX$ rendering according to user settings, and finally performs XSS processing .
+1. サーバーは元のテキストを受け取り、関連するプラグインとともに `markdown-it` で Markdown を正しくレンダリングし、`prismjs` で言語に応じてコードブロックをハイライトし、ユーザー設定に従って $\TeX$ レンダリングを行い、最後に XSS 処理を実行します。
 
-1. After the processing is completed, the server will store the correct rendering content and return it to the client when needed to ensure the normal display of the comment area.
+1. 処理が完了すると、サーバーは正しくレンダリングされた内容を保存し、必要に応じてクライアントに返すことで、コメント欄が正常に表示されるようにします。
 
 :::

@@ -4,58 +4,58 @@ icon: faq
 order: 4
 ---
 
-Waline has a very clear position since its birth:
+Walineは誕生以来、明確な立ち位置を持っています：
 
-::: info A simple comment system with backend.
-
-:::
-
-All versions released afterwards are modifications made around this position.
-
-## What is the relationship with Valine?
-
-::: info Waline = With backend Valine
+::: info バックエンドを備えたシンプルなコメントシステム。
 
 :::
 
-Consulting with the open source version of Valine, the comment list in frontend is rewritten with React. The style and structure as well as some internal tools and methods are all from Valine.
+その後にリリースされたすべてのバージョンは、この立ち位置を中心に行われた変更です。
 
-## Do I still need to deploy Valine-Admin on LeanCloud?
+## Valineとの関係は？
 
-No. Waline is a three-in-one deployment of data storage, server, and client. The server interface is already equivalent to Valine's LeanCloud cloud engine. The server already includes comment management and email notifications feature provided by the previous cloud engine. It doesn't need the additional LeanCloud cloud engine, so it won't be restricted by the LeanCloud cloud engine's sleep strategy.
-
-## How can I upgrade?
-
-Waline is mainly composed of two parts: the frontend and the server.
-
-### Frontend
-
-The front end inserts comment lists and comment boxes by including JS scripts in the web page. In most scenarios, the link will use the address of the latest version of the online CDN, and the latest version will be automatically applied, without the need for users to manually update.
-
-::: note Need manually update in following situations
-
-1. The version number is forcibly specified in the CDN address. In this situation, you need to manually modify the version number to be the latest.
-1. Use NPM to require and pack the module into code. In this situation, you need to modify the version number in the dependency to ensure that the latest version of the dependency can be obtained during installation.
+::: info Waline = バックエンド付きのValine
 
 :::
 
-### Server
+オープンソース版のValineを参考に、フロントエンドのコメントリストはReactで書き直されています。スタイルと構造、およびいくつかの内部ツールやメソッドはすべてValine由来のものです。
 
-The server refers to the backend service corresponding to the `serverURL` configured in frontend script, and its update will be slightly different depending on different deployment environments. Server updates will be more frequent.
+## LeanCloudにValine-Adminをデプロイする必要はまだありますか？
+
+いいえ。Walineはデータストレージ、サーバー、クライアントを1つにまとめたデプロイです。サーバーインターフェースはすでにValineのLeanCloudクラウドエンジンに相当します。サーバーには、以前のクラウドエンジンが提供していたコメント管理とメール通知の機能がすでに含まれています。追加のLeanCloudクラウドエンジンは不要なため、LeanCloudクラウドエンジンのスリープ戦略に制限されることもありません。
+
+## アップグレードするには？
+
+Walineは主にフロントエンドとサーバーの2つの部分で構成されています。
+
+### フロントエンド
+
+フロントエンドは、WebページにJSスクリプトを含めることでコメントリストとコメントボックスを挿入します。ほとんどのシナリオでは、リンクは最新バージョンのオンラインCDNのアドレスを使用するため、ユーザーが手動で更新しなくても最新バージョンが自動的に適用されます。
+
+::: note 以下の場合は手動での更新が必要です
+
+1. CDNアドレスにバージョン番号を強制的に指定している場合。この場合は、バージョン番号を手動で最新に変更する必要があります。
+1. NPMを使用してモジュールをrequireし、コードにパッケージ化している場合。この場合は、インストール時に最新バージョンの依存関係を取得できるように、依存関係のバージョン番号を変更する必要があります。
+
+:::
+
+### サーバー
+
+サーバーとは、フロントエンドのスクリプトで設定した`serverURL`に対応するバックエンドサービスのことで、その更新方法はデプロイ環境によって少し異なります。サーバーの更新はより頻繁に行われます。
 
 #### Vercel
 
-Go to the corresponding GitHub repository and modify the version number of `@waline/vercel` in the package.json file to the latest.
+対応するGitHubリポジトリに移動し、package.jsonファイル内の`@waline/vercel`のバージョン番号を最新に変更します。
 
 ![vercel](./assets/vercel-update.png)
 
 #### CloudBase
 
-Enter the code editing page, click <kbd>Save and reinstall dependencies</kbd>. If it still doesn’t work, enter <kbd>My Application</kbd> and select <kbd>Deploy</kbd> to redeploy.
+コード編集ページに入り、<kbd>保存して依存関係を再インストール</kbd>をクリックします。それでも解決しない場合は、<kbd>マイアプリケーション</kbd>に入り、<kbd>デプロイ</kbd>を選択して再デプロイします。
 
 ::: caution
 
-Redeployment will clear the previous files. If there is a configuration in the previous file, it needs to be backed up first.
+再デプロイすると以前のファイルは消去されます。以前のファイルに設定がある場合は、事前にバックアップする必要があります。
 
 :::
 
@@ -63,8 +63,8 @@ Redeployment will clear the previous files. If there is a configuration in the p
 
 #### Docker
 
-Run `docker pull lizheming/waline` directly to pull the latest image.
+`docker pull lizheming/waline`を直接実行して最新のイメージを取得します。
 
-## Why posting comments are slow?
+## コメントの投稿が遅いのはなぜですか？
 
-Due to some technical reasons, spam detection and comment notification are all serial operations when posting comments. The spam detection uses the service provided by Akismet abroad, which may be slow to access. Users can turn off the spam detection function through the `AKISMET_KEY=false` environment variable. Beside the spam detection service, the email notification in the comment notification may also cause a timeout. You can turn off the comment notification to test whether it is caused by this feature.
+いくつかの技術的な理由により、コメント投稿時のスパム検出とコメント通知はすべて直列処理です。スパム検出には海外のAkismetが提供するサービスを使用しているため、アクセスが遅くなることがあります。ユーザーは`AKISMET_KEY=false`環境変数でスパム検出機能をオフにできます。スパム検出サービスに加えて、コメント通知のメール送信もタイムアウトの原因になることがあります。コメント通知をオフにして、この機能が原因かどうかをテストできます。

@@ -1,53 +1,53 @@
 ---
-title: Comment Format Support
+title: コメントで利用できる書式
 icon: format
 order: 2
 ---
 
-The supported Markdown syntax in comments is as follows.
+コメントで利用できる Markdown 記法は次のとおりです。
 
 <!-- more -->
 
-## Markdown Support
+## Markdown のサポート
 
-::: preview Headings
+::: preview 見出し
 
 <!-- markdownlint-disable MD025 -->
 
-# Heading1
+# 見出し1
 
 <!-- markdownlint-enable MD025 -->
 
-## Heading2
+## 見出し2
 
-### Heading3
+### 見出し3
 
-#### Heading4
+#### 見出し4
 
-##### Heading5
+##### 見出し5
 
-###### Heading7
-
-:::
-
-::: preview Text
-
-This sentence has **bold**、_italic_ and ~~delete~~ style text.
+###### 見出し7
 
 :::
 
-::: preview Paragraph
+::: preview テキスト
 
-This is a paragraph.
-
-This is another paragraph.
+この文には **太字**、_斜体_、~~打ち消し線~~ のテキストが含まれています。
 
 :::
 
-::: details Line Break
+::: preview 段落
 
-I would like to line break at  
-this point
+これは段落です。
+
+これは別の段落です。
+
+:::
+
+::: details 改行
+
+この位置で改行したい  
+この行が続きます
 
 ```md
 I would like to line break at  
@@ -56,75 +56,75 @@ this point
 
 :::
 
-::: preview Blockquotes
+::: preview 引用
 
-> Blockquotes can also be nested...
+> 引用は入れ子にもできます...
 >
-> > ...by using greater-than signs right next to each other...
+> > ...引用記号を隣り合わせて使うことで...
 > >
-> > > ...or with spaces between arrows.
+> > > ...または記号の間にスペースを入れて入れ子にできます。
 
 :::
 
-::: preview Unordered List
+::: preview 箇条書き
 
-- Create a list by starting a line with `-`
-- Make sub-lists by indenting 2 spaces:
-  - Marker character change forces new list start:
+- `-` で行を始めるとリストを作成できます
+- 2 スペースのインデントでサブリストを作成できます:
+  - マーカー文字を変えると新しいリストが始まります:
     - Ac tristique libero volutpat at
     - Facilisis in pretium nisl aliquet
     - Nulla volutpat aliquam velit  
-      link break
+      改行
 
-      New paragraph
+      新しい段落
 
-- It’s easy!
+- 簡単です！
 
 :::
 
-::: preview Ordered List
+::: preview 番号付きリスト
 
 1. Lorem ipsum dolor sit amet
 1. Consectetur adipiscing elit  
-   line break  
-   line break again
+   改行  
+   もう一度改行
 1. Integer molestie lorem at massa
 
 :::
 
-::: preview HR
+::: preview 水平線
 
 ---
 
 :::
 
-::: preview Link
+::: preview リンク
 
-[HomePage](/)
-
-:::
-
-::: preview Image
-
-![Logo](/logo.png)
+[ホームページ](/)
 
 :::
 
-::: preview Table
+::: preview 画像
 
-|           center           |                    right | left                    |
-| :------------------------: | -----------------------: | :---------------------- |
-| For center align use `:-:` | For right align use `-:` | For left align use `:-` |
-|             b              |                aaaaaaaaa | aaaa                    |
-|             c              |                     aaaa | a                       |
+![ロゴ](/logo.png)
 
 :::
 
-::: preview Code
+::: preview 表
 
-Inline Code: `code`
+|           中央            |                     右 | 左                     |
+| :-----------------------: | ---------------------: | :--------------------- |
+| 中央揃えには `:-:` を使用 | 右揃えには `-:` を使用 | 左揃えには `:-` を使用 |
+|             b             |              aaaaaaaaa | aaaa                   |
+|             c             |                   aaaa | a                      |
 
-Block code:
+:::
+
+::: preview コード
+
+インラインコード: `code`
+
+ブロックコード:
 
 ```js
 var foo = function (bar) {
@@ -136,13 +136,13 @@ console.log(foo(5));
 
 :::
 
-## Superscript and Subscript
+## 上付き文字と下付き文字
 
-Use `^` and `~` to mark the superscript and subscript.
+`^` と `~` を使って上付き文字と下付き文字を表します。
 
 <!-- prettier-ignore-start -->
 
-::: preview Demo
+::: preview デモ
 
 - 19^th^
 - H~2~O
@@ -151,19 +151,19 @@ Use `^` and `~` to mark the superscript and subscript.
 
 <!-- prettier-ignore-end -->
 
-## Emojis
+## 絵文字
 
-Besides user-configured or built-in Weibo emojis, we also support complete Emoji shorthand emoticons.
+ユーザーが設定した絵文字や組み込みの Weibo 絵文字に加えて、完全な絵文字ショートハンド（顔文字）にも対応しています。
 
 <!-- prettier-ignore-start -->
 
-::: preview Demo
+::: preview デモ
 
-Classic:
+クラシック:
 
 :wink: :cry: :laughing: :yum:
 
-Shortcuts:
+ショートカット:
 
 8-) :) :* :( :-) :-( ;)
 
@@ -171,11 +171,11 @@ Shortcuts:
 
 <!-- prettier-ignore-end -->
 
-## Code Block Highlight
+## コードブロックのハイライト
 
-We support highlighting in almost all languages.
+ほぼすべての言語のシンタックスハイライトに対応しています。
 
-::: details Demo
+::: details デモ
 
 ```html
 <!doctype html>
@@ -240,13 +240,13 @@ footer p {
 
 :::
 
-## Mathematical formula
+## 数式
 
-You can use `$ ... $` to create inline formulas, or use `$$ ... $$` to create block-level formulas.
+`$ ... $` でインライン数式を、`$$ ... $$` でブロックレベルの数式を作成できます。
 
-::: preview Demo
+::: preview デモ
 
-Euler’s identity $e^{i\pi}+1=0$ is a beautiful formula in $\mathbb{R}^2$.
+オイラーの等式 $e^{i\pi}+1=0$ は $\mathbb{R}^2$ における美しい数式です。
 
 $$
 \frac {\partial^r} {\partial \omega^r} \left(\frac {y^{\omega}} {\omega}\right)
@@ -255,6 +255,6 @@ $$
 
 :::
 
-## Embed HTML
+## HTML の埋め込み
 
-Feel free to add any HTML content unless triggering [the protection mechanism](../guide/features/safety.md#comment-security).
+[保護機構](../guide/features/safety.md#コメントのセキュリティ) が作動しない限り、任意の HTML コンテンツを自由に追加できます。

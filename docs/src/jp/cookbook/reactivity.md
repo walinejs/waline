@@ -1,30 +1,30 @@
 ---
-title: Reactive Waline Instance
+title: リアクティブな Waline インスタンス
 icon: spa
 order: -1
 ---
 
-The official client `@waline/client` is based on Vue3, provides responsive components and instances, and brings SPA (**S**ingle **P**age **A**application) support.
+公式クライアント `@waline/client` は Vue3 をベースにしており、リアクティブなコンポーネントとインスタンスを提供することで、SPA（**S**ingle **P**age **A**application）をサポートします。
 
 <!-- more -->
 
-## Vue Component
+## Vue コンポーネント
 
-If you are building a Vue project, you can obtain and use Waline component by importing named exports `Waline` from `@waline/client/components`.
+Vue プロジェクトを構築している場合は、`@waline/client/components` から名前付きエクスポート `Waline` をインポートすることで、Waline コンポーネントを取得して利用できます。
 
-All component properties are reactive, which means that when you change the properties, the comment box will get an automatically update.
+コンポーネントのすべてのプロパティはリアクティブです。つまり、プロパティを変更すると、コメントボックスが自動的に更新されます。
 
-## Other projects
+## その他のプロジェクト
 
-In other SPA, you need to store the `WalineInstance` returned by the Waline function when Waline is initialized.
+その他の SPA では、Waline の初期化時に Waline 関数が返す `WalineInstance` を保持しておく必要があります。
 
-You can find an instance property `el` and two methods: `update()` and `destroy()` on `WalineInstance`.
+`WalineInstance` には、インスタンスプロパティ `el` と、`update()`・`destroy()` の 2 つのメソッドがあります。
 
 ### update
 
-You can call `update()` to update Waline at any time (e.g.: when user visits a new route). The `update` method receives an optional parameter `options`, except for `el`, other Waline initial options can be updated by passing in new values.
+`update()` を呼び出すことで、いつでも Waline を更新できます（例: ユーザーが新しいルートに遷移したとき）。`update` メソッドは省略可能なパラメータ `options` を受け取り、`el` を除く Waline の初期オプションは新しい値を渡して更新できます。
 
-E.g.:
+例:
 
 ```js
 // in `/` route
@@ -43,59 +43,59 @@ waline.update({
 }); // waline will now display in English, and disable user login
 ```
 
-#### Working Principle
+#### 動作原理
 
-When calling `update`, the current option and history option will be merged by **shallow copy**, and Waline instance will refresh with the new option (and save the new option).
+`update` を呼び出すと、現在のオプションと履歴のオプションが**浅いコピー**でマージされ、Waline インスタンスが新しいオプションで更新されます（新しいオプションは保存されます）。
 
-The default behavior of this method is to always **regenerate default values** for options that haven't been set yet, and **use historical values** for options that have been set.
+このメソッドのデフォルトの動作では、まだ設定されていないオプションについては常に**デフォルト値を再生成**し、設定済みのオプションについては**履歴の値を使用**します。
 
-There are two options you may need to pay special attention to: `path` and `locale`.
+特に注意が必要なオプションが 2 つあります。`path` と `locale` です。
 
-::: warning Path precautions
+::: warning path の注意点
 
-In V2, the `path` parameter **always reset** on `update()`.
+V2 では、`update()` の呼び出し時に `path` パラメータが**常にリセット**されます。
 
-This means that in any update as long as you don't specify `path`, `path` will be reset to `window.location.pathname`.
-
-:::
-
-::: warning locale precautions
-
-Due to the shallow copy, the old `locale` options are completely overwritten by the new `locale` options passed in by `update`.
-
-Our point is: users usually want to switch the display language when updating the locale, so we set it as the expected behavior of the plugin. This also means that you can use `update({ locale: {} })` to clear the custom locale config in history.
-
-If you really need to update one or more certain fields in `locale`, you need to pass the entire updated `locale`.
+つまり、どのような更新でも `path` を指定しなければ、`path` は `window.location.pathname` にリセットされます。
 
 :::
 
-Meanwhile, the `update()` option has been optimized for asynchronous network requests, including:
+::: warning locale の注意点
 
-- Refresh the comment area and re-request only when the path does change
-- The new `update()` call will automatically terminate the no longer needed request from the previous `update()`.
+浅いコピーのため、古い `locale` オプションは `update` で渡された新しい `locale` オプションによって完全に上書きされます。
+
+私たちの意図は、ユーザーは通常 locale を更新するときに表示言語を切り替えたいはずだという点にあります。そのため、これをプラグインの期待される動作としています。これは、`update({ locale: {} })` を使って履歴上のカスタム locale 設定をクリアできることも意味します。
+
+`locale` 内の特定のフィールドだけを更新する必要がある場合は、更新後の `locale` 全体を渡す必要があります。
+
+:::
+
+また、`update()` のオプションは非同期のネットワークリクエスト向けに最適化されており、次のような特徴があります:
+
+- パスが実際に変更された場合にのみ、コメントエリアを更新して再リクエストします
+- 新しい `update()` の呼び出しは、前の `update()` による不要になったリクエストを自動的に中断します。
 
 ### el
 
-The `el` property is the HTMLElement mounted by the current instance of Waline.
+`el` プロパティは、Waline の現在のインスタンスがマウントされている HTMLElement です。
 
-If you initialize Waline with `el: null` (only use comments and pageview statistics), this property will be `null`.
+`el: null` で Waline を初期化した場合（コメントと閲覧数の統計のみを使用）、このプロパティは `null` になります。
 
 ### destroy
 
-If you forget to pass in the `serverURL` or Waline cannot find the mount location via the `el` option on the page, Waline will throw an Error indicating the reason for the error.
+`serverURL` を渡し忘れた場合や、ページ上の `el` オプションで Waline がマウント位置を見つけられない場合、Waline はエラー理由を示す Error をスローします。
 
-### Initialization Failure
+### 初期化の失敗
 
-If you forget to set `serverURL` or Waline cannot find the mount location through the `el` option on the page, Waline will return a `WalineErrorInstance`.
+`serverURL` の設定を忘れた場合や、ページ上の `el` オプションで Waline がマウント位置を見つけられない場合、Waline は `WalineErrorInstance` を返します。
 
-There is only one attribute `errMsg` on `WalineErrorInstance` to indicate the reason for the initialization failure.
+`WalineErrorInstance` には、初期化の失敗理由を示す `errMsg` という属性が 1 つだけあります。
 
-### Precautions
+### 注意事項
 
-::: warning Remember to destroy the instance
+::: warning インスタンスの破棄を忘れずに
 
-In order for Waline to properly release resources, please manually call `WalineInstance.destroy()` before removing the element where Waline is mounted.
+Waline がリソースを正しく解放できるよう、Waline をマウントしている要素を削除する前に、手動で `WalineInstance.destroy()` を呼び出してください。
 
-Otherwise, some listeners may not be removed properly.
+そうしないと、一部のリスナーが適切に削除されない可能性があります。
 
 :::

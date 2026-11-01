@@ -1,26 +1,26 @@
 ---
-title: Recent comment Widget
+title: 最新コメントウィジェット
 icon: recent
 ---
 
-Waline supports displaying recent comments by widget, which is convenient for displaying the latest comments in the sidebar of the blog.
+Waline はウィジェットで最新コメントを表示できます。ブログのサイドバーに最新のコメントを表示するのに便利です。
 
 <!-- more -->
 
-## Component options
+## コンポーネントのオプション
 
-The latest comment widget is named `RecentComments` and contains three options:
+最新コメントウィジェットの名前は `RecentComments` で、3 つのオプションがあります：
 
-- `el` (optional): the element to be mounted
-- `serverURL`: server link
-- `count` The number of recent comments needed to get
+- `el`（任意）：マウント先の要素
+- `serverURL`：サーバーのリンク
+- `count` 取得する最新コメントの件数
 
-The data format returned by the component should be `Promise<{ comment: WalineComment[], destroy: () => void }>`.
+このコンポーネントが返すデータ形式は `Promise<{ comment: WalineComment[], destroy: () => void }>` です。
 
-- `comment` property: an array of the most recent comments with exact number of `count`
-- `destroy` method: a function which will destroy the widget
+- `comment` プロパティ：`count` と同数の最新コメントの配列
+- `destroy` メソッド：ウィジェットを破棄する関数
 
-## Basic usage
+## 基本的な使い方
 
 ```html
 <div id="waline-recent"></div>
@@ -37,15 +37,15 @@ The data format returned by the component should be `Promise<{ comment: WalineCo
 
 ::: tip
 
-This will be rendered on `#waline-recent` using the default style.
+これはデフォルトのスタイルで `#waline-recent` にレンダリングされます。
 
 :::
 
-## Advanced usage
+## 応用的な使い方
 
-If you are not satisfied with the default output format, you can call the component by omitting the `el` option to get the data and render it yourself.
+デフォルトの出力形式が気に入らない場合は、`el` オプションを省略してコンポーネントを呼び出し、データを取得して自分でレンダリングできます。
 
-Example:
+例：
 
 ```html
 <div id="waline-recent"></div>

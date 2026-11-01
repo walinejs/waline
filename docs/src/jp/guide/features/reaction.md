@@ -1,16 +1,16 @@
 ---
-title: Article Reactions
+title: 記事へのリアクション
 icon: reaction
 order: 4
 ---
 
-Waline allows users to express reactions for article content.
+Waline では、ユーザーが記事の内容に対してリアクションを表明できます。
 
 <!-- more -->
 
-## Getting Started
+## はじめに
 
-To quickly enable reactions, you can set the `reaction` option to `true` to display a default list of reactions:
+すぐにリアクションを有効にしたい場合は、`reaction` オプションを `true` に設定すると、デフォルトのリアクション一覧が表示されます：
 
 ```js
 Waline.init({
@@ -20,11 +20,11 @@ Waline.init({
 });
 ```
 
-Waline will display the default list of reactions above the comment box.
+Waline はコメント欄の上にデフォルトのリアクション一覧を表示します。
 
-## Customize Reactions
+## リアクションのカスタマイズ
 
-If you need to customize these reaction emoticons, you can pass in an array containing the link of the reaction emoticon image, representing reactions you want the user to choose with:
+リアクションの絵文字をカスタマイズしたい場合は、ユーザーに選んでほしいリアクション画像のリンクを含む配列を渡します：
 
 ```js
 Waline.init({
@@ -39,20 +39,20 @@ Waline.init({
 });
 ```
 
-Meanwhile, you can customize the title of the reaction through `reactionTitle` in `locale`, and you can also customize the name of the reaction expression through `reaction0` to `reaction8`, see [Multilingual Settings](./i18n.md) .
+また、`locale` の `reactionTitle` でリアクションのタイトルを、`reaction0` から `reaction8` で各リアクション表現の名前をカスタマイズできます。詳しくは [多言語設定](./i18n.md) を参照してください。
 
-## Precautions
+## 注意事項
 
-::: tip Number Limitation
+::: tip 数の上限
 
-Waline supports up to 9 reactions, and you can add less than 9 reactions without any problems.
+Waline は最大 9 個のリアクションに対応しています。9 個未満であれば問題なく設定できます。
 
 :::
 
-::: warning Counting Rules
+::: warning カウントのルール
 
-Counting of reactions is based on location.
+リアクションのカウントは位置に基づいて行われます。
 
-If you need to reorder and adjust the reactions, check [#1451](https://github.com/walinejs/waline/issues/1451#issuecomment-1264555264) for more details.
+リアクションの並び替えや調整を行う場合は、詳細について [#1451](https://github.com/walinejs/waline/issues/1451#issuecomment-1264555264) を確認してください。
 
 :::

@@ -1,15 +1,15 @@
 ---
-title: Customize Code Highlighter
+title: コードハイライターをカスタマイズする
 icon: style
 ---
 
-This cookbook guides you how to add your own code highlighter.
+このクックブックでは、独自のコードハイライターを追加する方法を説明します。
 
 <!-- more -->
 
-`@waline/client` provides the `highlighter` function. The client passes in the original character of the code block and the language of the code block. You should return a string directly.
+`@waline/client` は `highlighter` 関数を提供しています。クライアントはコードブロックの元の文字列とコードブロックの言語を渡します。戻り値として文字列を直接返してください。
 
-## An Example Using prism.js
+## prism.js を使った例
 
 ```html
 <!doctype html>

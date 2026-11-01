@@ -1,16 +1,16 @@
 ---
-title: Pageview Counter
+title: 閲覧数カウンター
 icon: counter
 order: 7
 ---
 
-Waline supports pageview counting.
+Waline は閲覧数のカウントに対応しています。
 
 <!-- more -->
 
-## Using with comment
+## コメントと併用する
 
-Waline supIf you are using Waline's commenting service, you can enable pageview statistics by setting the `pageview` option to `true` during initialization:
+Waline のコメントサービスを利用している場合は、初期化時に `pageview` オプションを `true` に設定すると閲覧数の統計を有効にできます：
 
 ```js
 Waline.init({
@@ -20,33 +20,33 @@ Waline.init({
 });
 ```
 
-Waline will automatically find the elements with the `class` value of `waline-pageview-count` in the page, and get their `data-path` as the query condition. And fill it with the obtained value:
+Waline はページ内から `class` の値が `waline-pageview-count` の要素を自動的に探し、その `data-path` をクエリ条件として取得します。そして取得した値をその要素に埋め込みます。
 
-If you need a different selector, you can set the `pageview` option to this selector.
+別のセレクターを使いたい場合は、`pageview` オプションにそのセレクターを設定してください。
 
 ```html
 <!-- data-path will be the query condition -->
 Pageviews: <span class="waline-pageview-count" data-path="<Your/Path/Name>"></i>
 ```
 
-Every time you call `WalineInstance.update()`, Waline will re-search the page content and automatically update the pageviews.
+`WalineInstance.update()` を呼び出すたびに、Waline はページの内容を再検索し、閲覧数を自動的に更新します。
 
-::: tip Examples
+::: tip 例
 
 ```html
 The current page has been viewed
-<span class="waline-pageview-count" data-path="/jp/guide/client/count.html" />
+<span class="waline-pageview-count" data-path="/en/guide/client/count.html" />
 times.
 ```
 
-The current page has been viewed
-<span class="waline-pageview-count" data-path="/jp/guide/client/count.html" /> times.
+現在のページは
+<span class="waline-pageview-count" data-path="/en/guide/client/count.html" /> 回閲覧されています。
 
 :::
 
-## Use Alone
+## 単独で使用する
 
-If you only need to use the pageview statistics function, you can import the pageview module provided by Waline, its Gzip size is < 1KB.
+閲覧数の統計機能だけを使いたい場合は、Waline が提供する pageview モジュールをインポートできます。その Gzip サイズは 1KB 未満です。
 
 ```html
 <ul>
@@ -75,15 +75,15 @@ If you only need to use the pageview statistics function, you can import the pag
 </script>
 ```
 
-- Current pageviews: <span class="waline-pageview-count" />
+- 現在のページの閲覧数: <span class="waline-pageview-count" />
 
-- Homepage Pageviews: <span class="waline-pageview-count" data-path="/" />
+- ホームページの閲覧数: <span class="waline-pageview-count" data-path="/" />
 
-::: info Abort
+::: info 中断
 
-Since pageview fetching is an asynchronous network operation, you may need to cancel an ongoing pageview update operation under certain circumstances.
+閲覧数の取得は非同期のネットワーク処理であるため、状況によっては実行中の閲覧数更新処理をキャンセルする必要があるかもしれません。
 
-`pageviewCount` returns a function that can be called to cancel the update:
+`pageviewCount` は、呼び出すと更新をキャンセルできる関数を返します：
 
 ```html
 <script type="module">

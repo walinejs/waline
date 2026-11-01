@@ -1,110 +1,110 @@
 ---
-title: Client API
+title: クライアント API
 icon: config
 ---
 
-## Client API
+## クライアント API
 
-Waline provides three APIs:
+Waline は 3 つの API を提供しています：
 
-- `init`: Initialize Waline
+- `init`：Waline を初期化します
 
-- `commentCount`: Count comments
+- `commentCount`：コメント数をカウントします
 
-- `pageviewCount`: Count pageviews
+- `pageviewCount`：閲覧数をカウントします
 
-As well as:
+さらに次のものも提供しています：
 
-- `RecentComment`: Waline recent comments widget
+- `RecentComment`：Waline の最近のコメントウィジェット
 
-- `UserList`: User List
+- `UserList`：ユーザーリスト
 
-- `version`: Waline client version
+- `version`：Waline クライアントのバージョン
 
 ## init
 
-The `init` API accepts a `WalineInitOptions` options and returns a `WalineInstance`.
+`init` API は `WalineInitOptions` オプションを受け取り、`WalineInstance` を返します。
 
-Type:
+型：
 
 ```ts
 const init: (options: WalineInitOptions) => WalineInstance;
 ```
 
-Return:
+戻り値：
 
 ```ts
 interface WalineInstance {
   /**
-   * Element where Waline is mounted
+   * Waline がマウントされる要素
    *
-   * When initialized with `el: null`, it will be `null`
+   * `el: null` で初期化した場合は `null` になります
    */
   el: HTMLElement | null;
 
   /**
-   * Update Waline instance
+   * Waline インスタンスを更新します
    *
-   * When not setting `path` option, it will be reset to `window.location.pathname`
+   * `path` オプションを設定していない場合、`window.location.pathname` にリセットされます
    */
   update: (newOptions?: Partial<Omit<WalineInitOptions, 'el'>>) => void;
 
-  /** Unmount and destroy Waline instance */
+  /** Waline インスタンスをアンマウントして破棄します */
   destroy: () => void;
 }
 ```
 
-The initialization options accept all [Waline Component Props](props.md), in addition, the following options are added.
+初期化オプションでは、すべての [Waline コンポーネントのプロパティ](props.md) を受け入れます。さらに、次のオプションが追加されます。
 
 ### el
 
-- Type: `string | HTMLElement | null`
-- Default: `'#waline'`
+- 型：`string | HTMLElement | null`
+- デフォルト：`'#waline'`
 
-The DOM element to be mounted on initialization. It must be a valid **CSS selector string** or HTMLElement Object.
+初期化時にマウントする DOM 要素です。有効な **CSS セレクター文字列** または HTMLElement オブジェクトである必要があります。
 
-If you only want the counter below, set this option to `null`.
+下に表示されるカウンターのみが必要な場合は、このオプションを `null` に設定してください。
 
 ### comment
 
-- Type: `boolean | string`
-- Default: `false`
+- 型：`boolean | string`
+- デフォルト：`false`
 
-Article comment count counter, when filled in a string, it will be used as a CSS selector.
+記事のコメント数のカウンターです。文字列を指定すると、その文字列が CSS セレクターとして使用されます。
 
 ### pageview
 
-- Type: `boolean | string`
-- Default: `false`
+- 型：`boolean | string`
+- デフォルト：`false`
 
-Pageview counter. When filled in a string, it will be used as a CSS selector.
+閲覧数のカウンターです。文字列を指定すると、その文字列が CSS セレクターとして使用されます。
 
 ## commentCount
 
-The `commentCount` function receives the `WalineCommentCountOptions` option and updates the number of article comments on the page, and returns a function `WalineAbort` that can cancel the current operation.
+`commentCount` 関数は `WalineCommentCountOptions` オプションを受け取り、ページ上の記事のコメント数を更新し、現在の操作をキャンセルできる関数 `WalineAbort` を返します。
 
-Type:
+型：
 
 ```ts
 const commentCount: (options: WalineCommentCountOptions) => WalineAbort;
 ```
 
-Options:
+オプション：
 
 ```ts
 interface WalineCommentCountOptions {
-  /** Waline server url */
+  /** Waline サーバーの URL */
   serverURL: string;
 
   /**
-   * Comment count CSS selector
+   * コメント数の CSS セレクター
    *
    * @default '.waline-comment-count'
    */
   selector?: string;
 
   /**
-   * Path to be fetched by default
+   * デフォルトで取得するパス
    *
    * @default window.location.pathname
    */
@@ -112,7 +112,7 @@ interface WalineCommentCountOptions {
 }
 ```
 
-Returns:
+戻り値：
 
 ```ts
 type WalineAbort = (reason?: any) => void;
@@ -120,37 +120,37 @@ type WalineAbort = (reason?: any) => void;
 
 ## pageviewCount
 
-The `pageviewCount` function receives the `WalinePageviewCountOptions` option and updates the number of article comments on the page, and returns a function `WalineAbort` that can cancel the current operation.
+`pageviewCount` 関数は `WalinePageviewCountOptions` オプションを受け取り、ページ上の記事のコメント数を更新し、現在の操作をキャンセルできる関数 `WalineAbort` を返します。
 
-Type:
+型：
 
 ```ts
 const pageviewCount: (options: WalinePageviewCountOptions) => WalineAbort;
 ```
 
-Options:
+オプション：
 
 ```ts
 interface WalinePageviewCountOptions {
-  /** Waline server url */
+  /** Waline サーバーの URL */
   serverURL: string;
 
   /**
-   * Pageview CSS selector
+   * 閲覧数の CSS セレクター
    *
    * @default '.waline-pageview-count'
    */
   selector?: string;
 
   /**
-   * Path to be fetched and updated
+   * 取得および更新するパス
    *
    * @default window.location.pathname
    */
   path?: string;
 
   /**
-   * Whether update pageviews when fetching path result
+   * パスの結果を取得するときに閲覧数を更新するかどうか
    *
    * @default true
    */
@@ -158,101 +158,101 @@ interface WalinePageviewCountOptions {
 }
 ```
 
-Returns:
+戻り値：
 
 ```ts
 type WalineAbort = (reason?: any) => void;
 ```
 
-## Widgets
+## ウィジェット
 
 ### RecentComments
 
-`RecentComments` is a widget displaying recent comments.
+`RecentComments` は最近のコメントを表示するウィジェットです。
 
-Type:
+型：
 
 ```ts
 const RecentComments: (options: WalineRecentCommentsOptions) => Promise<WalineRecentCommentsResult>;
 ```
 
-Options:
+オプション：
 
 ```ts
 interface WalineRecentCommentsOptions {
-  /** Waline serverURL */
+  /** Waline の serverURL */
   serverURL: string;
 
-  /** Fetch number of latest comments */
+  /** 取得する最新コメントの数 */
   count: number;
 
-  /** Element to be mounted */
+  /** マウントする要素 */
   el?: string | HTMLElement;
 }
 ```
 
-Returns:
+戻り値：
 
 ```ts
 interface WalineRecentCommentsResult {
-  /** Comment Data */
+  /** コメントデータ */
   comments: RecentCommentData[];
 
-  /** Umount widget */
+  /** ウィジェットをアンマウントします */
   destroy: () => void;
 }
 ```
 
 ### UserList
 
-`UserList` is a widget that displays user interaction leader boards or comment walls.
+`UserList` は、ユーザーのインタラクションランキングやコメントウォールを表示するウィジェットです。
 
-Type:
+型：
 
 ```ts
 const RecentComments: (options: WalineRecentCommentsOptions) => Promise<WalineRecentCommentsResult>;
 ```
 
-Options:
+オプション：
 
 ```ts
 interface WalineUserListOptions {
-  /** Waline serverURL */
+  /** Waline の serverURL */
   serverURL: string;
 
-  /** Fetch number of user list */
+  /** 取得するユーザーリストの数 */
   count: number;
 
-  /** Element to be mounted */
+  /** マウントする要素 */
   el?: string | HTMLElement;
 
   /**
-   * Language of error message
+   * エラーメッセージの言語
    *
    * @default navigator.language
    */
   lang?: string;
 
   /**
-   * Custom display language in waline
+   * Waline の表示言語をカスタマイズします
    *
    * @see [I18n](https://waline.js.org/jp/client/i18n.html)
    */
   locale?: WalineLocale;
 
-  /** List mode or avatar wall mode */
+  /** リストモードまたはアバターウォールモード */
   mode?: 'list' | 'wall';
 }
 ```
 
-Returns:
+戻り値：
 
 ```ts
 interface WalineUserListResult {
-  /** User Data */
+  /** ユーザーデータ */
   users: WalineUser[];
 
-  /** Umount widget */
+  /** ウィジェットをアンマウントします */
   destroy: () => void;
 }
 ```

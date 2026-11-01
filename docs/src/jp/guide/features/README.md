@@ -1,5 +1,5 @@
 ---
-title: Feature
+title: 機能
 icon: feature
 dir:
   order: 2

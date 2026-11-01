@@ -1,10 +1,10 @@
 ---
-title: Custom Database Service
+title: カスタムデータベースサービス
 icon: database
 order: -2
 ---
 
-Waline classifies database operations into several operations such as CURD, and all upper-level logic is completed through the superposition of these basic operations. Through the adapter mode, different types of database storage services only need to implement these low-level atomic operations to run through all system logic.
+Waline はデータベース操作を CURD などのいくつかの操作に分類しており、上位のロジックはすべてこれらの基本操作の組み合わせで実現されています。アダプターモードにより、各種類のデータベースストレージサービスはこれらの低レベルなアトミック操作を実装するだけで、システム全体のロジックを動作させることができます。
 
 ```js
 // index.js
@@ -15,7 +15,7 @@ module.exports = Application({
 });
 ```
 
-Waline provides the `model` option to customize the database model, and we will uniformly use the incoming model for database operations. All that remains is that we need to implement this `CustomModel` class.
+Waline はデータベースモデルをカスタマイズするための `model` オプションを提供しており、データベース操作には渡されたモデルを統一的に使用します。あとはこの `CustomModel` クラスを実装するだけです。
 
 ```js
 class CustomModel {
@@ -45,25 +45,25 @@ class CustomModel {
 }
 ```
 
-The above is the basic structure that the `CustomModel` class must implement, and it must include the implementation of several basic methods `select`, `add`, `update`, `delete` and `count`. Waline is developed based on the [ThinkJS](https://thinkjs.org/en) framework, and the underlying database operations use the database operation syntax that comes with the framework. Before implementing these methods, you need to have some basic understanding of the syntax of database conditional queries.
+以上が `CustomModel` クラスが実装すべき基本構造であり、`select`、`add`、`update`、`delete`、`count` という基本メソッドの実装を含める必要があります。Waline は [ThinkJS](https://thinkjs.org/en) フレームワークをベースに開発されており、基盤となるデータベース操作にはフレームワーク付属のデータベース操作構文を使用します。これらのメソッドを実装する前に、データベースの条件クエリの構文について基本的な理解が必要です。
 
-## Condition query
+## 条件クエリ
 
-For the complete conditional query syntax, please refer to [ThinkJS Documentation](https://thinkjs.org/jp/doc/3.0/relation_model.html#toc-d47), and the implementation of Waline is a subset of it.
+完全な条件クエリ構文については、[ThinkJS ドキュメント](https://thinkjs.org/en/doc/3.0/relation_model.html#toc-d47) を参照してください。Waline の実装はそのサブセットです。
 
-Multiple conditional queries can be passed in through the object, and the default is equal to the condition. When the value is a two-dimensional array, the first bit can be passed to other judgment operations, and the second bit corresponds to the value, such as `{user_id: ['!=', 0]}`. Currently supported are `!=`, `>`, `IN`, `NOT IN`, `LIKE` centralized operations.
+オブジェクトを通じて複数の条件クエリを渡すことができ、デフォルトは等しいという条件になります。値が二次元配列の場合、1 番目に他の判定操作、2 番目に対応する値を渡します（例: `{user_id: ['!=', 0]}`）。現在サポートされているのは `!=`、`>`、`IN`、`NOT IN`、`LIKE` の各操作です。
 
-Similar to MySQL, in the `LIKE` operation, we define the mode of the fuzzy query through the position of `%`:
+MySQL と同様に、`LIKE` 操作では `%` の位置によってあいまい検索のモードを定義します。
 
-- `content%` means search for content starting with `content`
-- `%content` means search for content ending with `content`
-- `%content%` means search for content containing `content`
+- `content%` は `content` で始まる内容の検索
+- `%content` は `content` で終わる内容の検索
+- `%content%` は `content` を含む内容の検索
 
-The conditional query object supports passing in multiple query conditions. The default relationship between these conditions is `AND`, and the `_logic` magic keyword can be used to specify their relationship as `OR`. When there are `AND` and `OR`, we can use `_complex` magic keyword expression.
+条件クエリオブジェクトは複数のクエリ条件を渡すことをサポートしています。これらの条件のデフォルトの関係は `AND` で、`_logic` マジックキーワードを使って関係を `OR` に指定できます。`AND` と `OR` が混在する場合は、`_complex` マジックキーワード式を使用できます。
 
-The text may not be well understood. Let's take a look at the query examples used in the project to deepen our impression.
+文章だけでは理解しにくいかもしれません。プロジェクトで使われているクエリの例を見て、理解を深めましょう。
 
-1. General query:
+1. 一般的なクエリ:
 
    ```js
    const model = new CustomModel('Comment');
@@ -75,7 +75,7 @@ The text may not be well understood. Let's take a look at the query examples use
    // SELECT * FROM Comment WHERE url = '/' AND user_id != 0 AND createdAt > "2023-04-16 00:00:00";
    ```
 
-2. IN / NOT IN query
+2. IN / NOT IN クエリ
 
    ```js
    const model = new CustomModel('Users');
@@ -89,7 +89,7 @@ The text may not be well understood. Let's take a look at the query examples use
    // SELECT * FROM Comment WHERE status NOT IN ('waiting', 'spam');
    ```
 
-3. LIKE query
+3. LIKE クエリ
 
    ```js
    const model = new CustomModel('Comment');
@@ -97,7 +97,7 @@ The text may not be well understood. Let's take a look at the query examples use
    // SELECT * FROM Comment WHERE content LIKE "%content%";
    ```
 
-4. Multi-condition query
+4. 複数条件のクエリ
 
    ```js
    const model = new CustomModel('Comment');
@@ -110,7 +110,7 @@ The text may not be well understood. Let's take a look at the query examples use
    // SELECT * FROM Comment WHERE url = '/' OR user_id != 0 OR createdAt > "2023-04-16 00:00:00";
    ```
 
-5. Compound query
+5. 複合クエリ
 
    ```js
    const model = new CustomModel('Comment');
@@ -125,31 +125,31 @@ The text may not be well understood. Let's take a look at the query examples use
    // SELECT * FROM Comment WHERE url = '/' AND ( user_id = 0 OR status NOT IN ('waiting', 'spam'));
    ```
 
-If you are more familiar with TypeScript, [type definitions for conditional queries is here](https://github.com/walinejs/dittorm/blob/master/src/types/where.ts).
+TypeScript に詳しい場合は、[条件クエリの型定義はこちら](https://github.com/walinejs/dittorm/blob/master/src/types/where.ts) を参照してください。
 
-## Implement query
+## クエリを実装する
 
-The `select`, `update`, `delete`, `count` methods in the adapter are actually complicated in the conditional query. After understanding the conditional query syntax in the previous part, the subsequent logic is the database operation. surface.
+アダプターの `select`、`update`、`delete`、`count` メソッドで実際に複雑なのは条件クエリの部分です。前のパートで条件クエリ構文を理解すれば、その後のロジックはデータベース操作そのものです。
 
-The `select()` method has a second argument `{desc, limit, offset, field}`. This is also easier to understand:
+`select()` メソッドには 2 番目の引数 `{desc, limit, offset, field}` があります。これも理解しやすいはずです。
 
-- `desc`: Specify a field to sort in descending order of the value of the field
-- `limit`: specify the number of data returned
-- `offset`: Specify the returned data from which item to return
-- `field`: Specify the field to return data, all fields are returned by default
+- `desc`: そのフィールドの値の降順で並び替えるフィールドを指定
+- `limit`: 返すデータの件数を指定
+- `offset`: 返すデータを何件目から返すかを指定
+- `field`: 返すデータのフィールドを指定。デフォルトではすべてのフィールドが返されます
 
-The `update()` method needs to be compatible with scenarios where the `data` input parameter may be a calculation function, such as adding 1 to the number of page viewers:
+`update()` メソッドは、`data` 引数が計算関数になるケースに対応する必要があります。例えば、閲覧数に 1 を加算する場合です。
 
 ```js
 const model = new CustomModel('Count');
 await model.update((thread) => ({ view: thread.view + 1 }), { url: '/' });
 ```
 
-Return data type `select()` always returns an array, `add()` and `update()` need to include the full data of the indexed field.
+戻り値について、`select()` は常に配列を返し、`add()` と `update()` はインデックスフィールドを含む完全なデータを含める必要があります。
 
-## refer to
+## 参考
 
-Based on the above logic, in addition to implementing the storage service of professional databases, the official also implemented the GitHub storage service very interestingly. We store the data in GitHub in the form of a CSV file, and obtain the content of the CSV file each time we query, and filter out the final data according to the conditional query statement in JS and return it. The following is the official implementation, hoping to give you some reference.
+以上のロジックに基づき、専門的なデータベースのストレージサービスを実装する以外に、公式は GitHub ストレージサービスも非常に面白い形で実装しています。データを CSV ファイルの形式で GitHub に保存し、クエリのたびに CSV ファイルの内容を取得して、JS で条件クエリ文に従って最終的なデータを絞り込んで返します。以下は公式の実装です。参考になれば幸いです。
 
 ```js
 //source code: https://github.com/walinejs/waline/blob/main/packages/server/src/service/storage/github.js

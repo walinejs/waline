@@ -1,55 +1,55 @@
 ---
-title: Security
+title: セキュリティ
 icon: safe
 order: -10
 ---
 
-The security of the Waline commenting system is our top priority. We'll cover Waline's security here.
+Waline コメントシステムのセキュリティは私たちが最も重視している点です。ここでは Waline のセキュリティについて説明します。
 
 <!-- more -->
 
-## Comment Security
+## コメントのセキュリティ
 
-### Anti-XSS Attack
+### XSS 攻撃の防止
 
-Waline uses [DOMPurify](https://github.com/cure53/DOMPurify) to filter each comment input on the server side to prevent potential XSS attacks. This means you won't be able to use `<iframe>` or any form of scripting.
+Waline はサーバー側で [DOMPurify](https://github.com/cure53/DOMPurify) を使って各コメントの入力をフィルタリングし、潜在的な XSS 攻撃を防ぎます。そのため、`<iframe>` やあらゆる形式のスクリプトは使用できません。
 
-### Prevent link tracking
+### リンク追跡の防止
 
-All links will be automatically set to `rel="noreferrer noopener"` and open in a new window with `target="_blank"`.
+すべてのリンクには自動的に `rel="noreferrer noopener"` が設定され、`target="_blank"` で新しいウィンドウに開かれます。
 
-### Prevent Malicious Content Implantation
+### 悪意あるコンテンツの埋め込み防止
 
-- In order to prevent users from creating submittable forms in the comment area to trick other visitors into submitting information, you cannot use `<form>` and `<input>`
+- コメント欄に送信可能なフォームを作成して他の訪問者に情報を送信させる行為を防ぐため、`<form>` と `<input>` は使用できません。
 
-- In order to prevent users from using styles to modify website pages or modify their own comment styles to plant spam ads, the `<style>` tag and the `style` attribute on the element are not available.
+- スタイルを使ってウェブサイトのページを改変したり、自分のコメントのスタイルを変更してスパム広告を埋め込んだりする行為を防ぐため、`<style>` タグと要素の `style` 属性は利用できません。
 
-- To prevent users from abusing media autoplay functionality, you cannot use the `autoplay` attribute.
+- メディアの自動再生機能の悪用を防ぐため、`autoplay` 属性は使用できません。
 
-### Prevent Forgery
+### なりすましの防止
 
-Waline supports an account system, so you can force users to register and log in with an account. This way visitors won't be able to fake other people's comments.
+Waline はアカウントシステムに対応しているため、ユーザーにアカウントでの登録とログインを強制できます。これにより、訪問者が他人のコメントを偽装することはできなくなります。
 
-To enable this feature, you need to set mandatory login on both client and server, see [`login`](../../reference/client/props.md#login) and [`LOGIN`](../../reference/server/env.md#basic) for details.
+この機能を有効にするには、クライアントとサーバーの両方でログイン必須の設定を行う必要があります。詳しくは [`login`](../../reference/client/props.md#login) と [`LOGIN`](../../reference/server/env.md#基本) を参照してください。
 
-## Site Security
+## サイトのセキュリティ
 
-### Frequency Limit
+### 頻度制限
 
-To prevent users from commenting, Waline will restrict commenting IP. By default, the same IP can only send one comment within a minute. You can change this limit in [Server Reference → Environment Variables](../../reference/server/env.md#safety).
+コメントの乱用を防ぐため、Waline はコメント元の IP を制限します。デフォルトでは、同じ IP は 1 分間に 1 件のコメントしか送信できません。この制限は [サーバーリファレンス → 環境変数](../../reference/server/env.md#セキュリティ) で変更できます。
 
-### Prevent flooding
+### 連投の防止
 
-Waline will detect existing comments when entering comments, and if it detects a comment with too high similarity, it will reject the corresponding comment. Those who can prevent flooding to a certain extent.
+Waline はコメント入力時に既存のコメントを検出し、類似度が高すぎるコメントを検出した場合はそのコメントを拒否します。これにより、ある程度の連投を防ぐことができます。
 
-### Comment Review
+### コメントの承認
 
-When your site is under malicious attack, during sensitive periods or when you are busy, you can enable the comment review feature. For details, see [Server Reference→Environment Variables](../../reference/server/env.md#safety) .
+サイトが悪意ある攻撃を受けているとき、敏感な時期、または多忙なときには、コメント承認機能を有効にできます。詳しくは [サーバーリファレンス → 環境変数](../../reference/server/env.md#セキュリティ) を参照してください。
 
-When comment review is enabled, all new comments will be hidden by default. You can view and review comments in the Waline management terminal or the comment box on the corresponding page. Only the comments you approved can be displayed.
+コメント承認を有効にすると、すべての新しいコメントはデフォルトで非表示になります。Waline の管理画面または該当ページのコメント欄でコメントを確認・承認できます。表示されるのは承認したコメントのみです。
 
-## Data Security
+## データのセキュリティ
 
-Since Waline have server side, no body can tamper with comment data or pageviews.
+Waline はサーバー側を持つため、コメントデータや閲覧数を改ざんすることはできません。
 
-Meanwhile, you can set `DISABLE_USERAGENT` and `DISABLE_REGION` variables on the server side to prevent others from viewing the UA and geographic location of user comments.
+また、サーバー側で `DISABLE_USERAGENT` と `DISABLE_REGION` 変数を設定すると、ユーザーのコメントの UA や地理位置情報を他の人が閲覧できないようにできます。
