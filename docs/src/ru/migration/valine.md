@@ -1,11 +1,11 @@
 ---
-title: Migration from Valine
+title: Переход с Valine
 icon: valine
 ---
 
-1. Deploy backend according to [Vercel Deploy](../guide/get-started/README.md#server-deploy) in _Get Started_ section.
+1. Разверните серверную часть согласно разделу [Развёртывание на Vercel](../guide/get-started/README.md#развертывание-сервера) в главе «Начать».
 
-2. Modify frontend scripts according to [HTML](../guide/get-started/README.md#importing-in-html) in _Get Started_ section.
+2. Измените скрипты фронтенда согласно разделу [HTML](../guide/get-started/README.md#подключение-в-html) в главе «Начать».
 
    ```diff
    - <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
@@ -23,66 +23,66 @@ icon: valine
      </script>
    ```
 
-::: tip Config
+   ::: tip Конфигурация
 
-Waline V2 has removed Valine support and moved to a better configuration. The following is a migration summary of some options:
+   Waline V2 отказался от поддержки Valine и перешёл на более удобную конфигурацию. Ниже приведена сводка по миграции некоторых параметров:
 
-- `placeholder`: use `locale.placeholder`
-- `highlight`: use `highlighter`
-- `avatarForce`, `avatar`: use the server's `AVATAR_PROXY` environment variable
-- `recordIP`: no longer display the user IP, and provide the `DISABLE_USERAGENT` environment variable on the server
-- `requiredFields`: renamed to `requiredMeta`
-- `langMode`: renamed to `locale`
-- `emojiCDN`, `emojiMap`: use more powerful `emoji` options
+   - `placeholder`: используйте `locale.placeholder`
+   - `highlight`: используйте `highlighter`
+   - `avatarForce`, `avatar`: используйте переменную окружения сервера `AVATAR_PROXY`
+   - `recordIP`: IP-адрес пользователя больше не отображается, а на сервере появилась переменная окружения `DISABLE_USERAGENT`
+   - `requiredFields`: переименован в `requiredMeta`
+   - `langMode`: переименован в `locale`
+   - `emojiCDN`, `emojiMap`: используйте более мощные параметры `emoji`
 
-For waline config, please refer to [Client Config](../reference/client/api.md). You can also check [Waline Client V2 Migration Guide](./v2.md) to learn about the options that are not compatible with Valine.
+   О конфигурации Waline см. [Client Config](../reference/client/api.md). Также можно ознакомиться с [руководством по переходу на Waline Client V2](./v2.md), чтобы узнать о параметрах, несовместимых с Valine.
 
-:::
+   :::
 
-1. Migrate data
+3. Перенесите данные
 
-Select <kbd>Import/Export</kbd> > <kbd>Limit to certain classes</kbd> > <kbd>Comment</kbd> > <kbd>Export</kbd> in the LeanCloud background, and then you will receive a email notification.
+Выберите в панели управления LeanCloud <kbd>Import/Export</kbd> > <kbd>Limit to certain classes</kbd> > <kbd>Comment</kbd> > <kbd>Export</kbd>, после чего вы получите уведомление по электронной почте.
 
-Paste the content of export file into the textarea below, and click the convert button to obtain the file to be imported.
+Вставьте содержимое экспортированного файла в поле ниже и нажмите кнопку преобразования, чтобы получить файл для импорта.
 
 <MigrationTool />
 
 ::: tip
 
-After you get the exported file through the tool above, you can import it in the corresponding storage service console.
+Получив экспортированный файл с помощью инструмента выше, вы можете импортировать его в консоли соответствующего сервиса хранения.
 
 :::
 
-## Waline Highlights
+## Преимущества Waline
 
-Compared with Valine, Waline has the following highlights:
+По сравнению с Valine у Waline есть следующие преимущества:
 
-### More features
+### Больше возможностей
 
-1. Markdown supports more syntax, including superscript and subscript, emoji, tables, strike-through, mathematical formulas, HTML tags, footnotes, etc.
-1. Image upload feature, which allows customized image provider service or embedding images directly.
-1. The brand new label system adds level labels for users according to the frequency of user interaction, and support custom labels for registered users.
-1. Emoji presets and tab support, allowing multiple sets of Emoji, while allowing anyone to publish and use Emoji presets.
-1. A brand new reaction system that allows visitors to express their attitude towards the article.
-1. Comment likes, express support for the comment you like.
-1. Pageviews, more accurate viewing and anti-tampering.
-1. Emoji search. Customizable service, allowing users to search and insert emoticons freely.
-1. Support registered users to edit and delete their published comments.
+1. Markdown поддерживает больше синтаксиса, включая надстрочный и подстрочный текст, эмодзи, таблицы, зачёркивание, математические формулы, HTML-теги, сноски и другое.
+1. Загрузка изображений с возможностью подключить собственный сервис хранения изображений или встраивать изображения напрямую.
+1. Совершенно новая система меток: пользователям присваиваются уровневые метки в зависимости от частоты взаимодействия, а для зарегистрированных пользователей можно задавать собственные метки.
+1. Наборы эмодзи с поддержкой вкладок: можно использовать несколько наборов эмодзи, а любой желающий может публиковать свои наборы и пользоваться ими.
+1. Совершенно новая система реакций, позволяющая посетителям выразить своё отношение к статье.
+1. Отметки «Нравится» у комментариев: поддержите понравившийся комментарий.
+1. Просмотры страниц: более точный подсчёт и защита от подмены.
+1. Поиск эмодзи. Сервис можно настроить, и пользователи смогут свободно искать и вставлять эмодзи.
+1. Зарегистрированные пользователи могут редактировать и удалять свои опубликованные комментарии.
 
-### Safer
+### Безопаснее
 
-1. Zero privacy leakage, will not expose user mailboxes, IP addresses and other sensitive information, and can choose to hide user geographic location, browser and operating system at server
-1. Complete anti-spam system.
-   - All comments can be authenticated by anti-spam services and support additional validation logic.
-   - You can set the comment speed limit for a single IP or a single user, and Waline automatically identify duplicate comments.
-1. Comment review feature, in sensitive periods or when the website is under attack, you can enable comment review, manually review and approve the display of comments, and prevent malicious comments from causing site closure.
-1. Support user accounts. Besides registering an account, Waline also supports social media accounts, quickly synchronizes avatars and nicknames with authorized label to prevent identity fraud.
+1. Нулевая утечка конфиденциальных данных: адреса электронной почты, IP-адреса и другая чувствительная информация не раскрываются, а на сервере можно скрыть географическое положение пользователя, браузер и операционную систему.
+1. Полноценная антиспам-система.
+   - Все комментарии могут проверяться антиспам-сервисами и поддерживают дополнительную логику валидации.
+   - Можно задать ограничение частоты комментариев для отдельного IP или отдельного пользователя, а Waline автоматически выявляет дублирующиеся комментарии.
+1. Функция модерации комментариев: в периоды повышенной чувствительности или при атаке на сайт можно включить модерацию, вручную проверять и одобрять показ комментариев, чтобы вредоносные комментарии не привели к блокировке сайта.
+1. Поддержка учётных записей пользователей. Помимо регистрации аккаунта, Waline поддерживает вход через социальные сети: аватар и никнейм быстро синхронизируются с авторизованной платформой, что предотвращает подмену личности.
 
-### more convenient
+### Удобнее
 
-1. Various methods (QQ, WeChat, DingTalk, E-mail), etc. to notify bloggers about comments
-1. Powerful management service, you can view all users and comments and perform related operations, and set custom labels and administrators for users
-1. Front-end management, administrators can review, edit or delete comments directly through the Waline comment component.
+1. Различные способы уведомления авторов блога о комментариях (QQ, WeChat, DingTalk, электронная почта).
+1. Мощный сервис управления: можно просматривать всех пользователей и комментарии, выполнять связанные операции, задавать пользователям собственные метки и назначать администраторов.
+1. Управление на фронтенде: администраторы могут проверять, редактировать и удалять комментарии прямо в компоненте комментариев Waline.
 
 <script setup lang="ts">
 import { defineAsyncComponent } from 'vue'

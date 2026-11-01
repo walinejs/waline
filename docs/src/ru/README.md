@@ -14,41 +14,41 @@ actions:
     type: secondary
 
 features:
-  - title: Легкий
+  - title: Лёгкий
     icon: light
-    details: Полный размер клиента 100kb gzip
+    details: Полный размер клиента — 100 КБ в gzip
 
   - title: Полностью бесплатный
     icon: free
-    details: Можно развернуть на Vercel бесплатно
+    details: Можно бесплатно развернуть на Vercel
 
-  - title: Легко развернуть
+  - title: Простое развёртывание
     icon: strong
-    details: Множество методов развертывания и поддержка служб хранения
+    details: Несколько способов развёртывания и поддержка различных хранилищ
 
   - title: Поддержка входа
     icon: register
-    details: Поддерживаются анонимные комментарии, регистрация учетной записи и вход через социальные сети
+    details: Поддерживаются анонимные комментарии, регистрация аккаунта и вход через социальные сети
 
-  - title: Комментируйте как хотите
+  - title: Комментируйте так, как вам удобно
     icon: markdown
-    details: Полная поддержка Markdown с эмодзи, математическими уравнениями, загрузкой изображений и встраиванием HTML
+    details: Полная поддержка Markdown с эмодзи, математическими формулами, загрузкой изображений и встраиванием HTML
     link: /ru/guide/features/syntax.html
 
-  - title: Улучшенная безопасность
+  - title: Повышенная безопасность
     icon: safe
     details: Проверка контента, защита от спама, защита конфиденциальных данных и многое другое
     link: /ru/guide/features/safety.html
 
   - title: Реакция на статью
     icon: reaction
-    details: Быстро покажите свое отношение к статье
+    details: Быстро покажите своё отношение к статье
     link: /ru/guide/features/reaction.html
 
-  - title: Счетчик просмотров страниц
+  - title: Счётчик просмотров
     icon: counter
-    details: Точно считайте просмотры страниц с помощью < 1kb кода
+    details: Точно подсчитывайте просмотры страниц с помощью кода объёмом менее 1 КБ
     link: /ru/guide/features/pageview.html
 
-footer: ЛИЦЕНЗИЯ GPL-2.0 | Copyright © 2020-настоящее время <a href="https://github.com/lizheming" rel="noopener noreferrer " target="_blank">lizheming</a> | Тема от <a href="https://theme-hope.vuejs.press/" rel="noopener noreferrer " target="_blank">VuePress Theme Hope</a>
+footer: Лицензия GPL-2.0 | Copyright © 2020 — настоящее время <a href="https://github.com/lizheming" rel="noopener noreferrer " target="_blank">lizheming</a> | Тема от <a href="https://theme-hope.vuejs.press/" rel="noopener noreferrer " target="_blank">VuePress Theme Hope</a>
 ---

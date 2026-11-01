@@ -1,26 +1,26 @@
 ---
-title: Recent comment Widget
+title: Виджет последних комментариев
 icon: recent
 ---
 
-Waline supports displaying recent comments by widget, which is convenient for displaying the latest comments in the sidebar of the blog.
+Waline позволяет отображать последние комментарии с помощью виджета, что удобно для показа свежих комментариев в боковой панели блога.
 
 <!-- more -->
 
-## Component options
+## Параметры компонента
 
-The latest comment widget is named `RecentComments` and contains three options:
+Виджет последних комментариев называется `RecentComments` и содержит три параметра:
 
-- `el` (optional): the element to be mounted
-- `serverURL`: server link
-- `count` The number of recent comments needed to get
+- `el` (необязательно): элемент, в который выполняется монтирование
+- `serverURL`: ссылка на сервер
+- `count`: количество последних комментариев, которое нужно получить
 
-The data format returned by the component should be `Promise<{ comment: WalineComment[], destroy: () => void }>`.
+Формат данных, возвращаемых компонентом: `Promise<{ comment: WalineComment[], destroy: () => void }>`.
 
-- `comment` property: an array of the most recent comments with exact number of `count`
-- `destroy` method: a function which will destroy the widget
+- свойство `comment`: массив последних комментариев ровно в количестве `count`
+- метод `destroy`: функция, которая уничтожает виджет
 
-## Basic usage
+## Базовое использование
 
 ```html
 <div id="waline-recent"></div>
@@ -37,15 +37,15 @@ The data format returned by the component should be `Promise<{ comment: WalineCo
 
 ::: tip
 
-This will be rendered on `#waline-recent` using the default style.
+Результат будет отрисован в `#waline-recent` со стилем по умолчанию.
 
 :::
 
-## Advanced usage
+## Расширенное использование
 
-If you are not satisfied with the default output format, you can call the component by omitting the `el` option to get the data and render it yourself.
+Если стандартный формат вывода не подходит, можно вызвать компонент без параметра `el`, получить данные и отрисовать их самостоятельно.
 
-Example:
+Пример:
 
 ```html
 <div id="waline-recent"></div>

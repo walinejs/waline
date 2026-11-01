@@ -1,8 +1,8 @@
 ---
-title: Развертывание
+title: Развёртывание
 icon: deploy
 ---
 
-Waline supports multiple deployment methods, and use Vercel by default. You can choose from the following deployment platforms or deploy yourself.
+Waline поддерживает несколько способов развёртывания, по умолчанию используется Vercel. Вы можете выбрать одну из перечисленных ниже платформ или развернуть сервис самостоятельно.
 
 <Catalog />

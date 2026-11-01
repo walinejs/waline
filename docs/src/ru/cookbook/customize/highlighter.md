@@ -1,15 +1,15 @@
 ---
-title: Customize Code Highlighter
+title: Настройка подсветки кода
 icon: style
 ---
 
-This cookbook guides you how to add your own code highlighter.
+Это руководство рассказывает, как подключить собственную подсветку кода.
 
 <!-- more -->
 
-`@waline/client` provides the `highlighter` function. The client passes in the original character of the code block and the language of the code block. You should return a string directly.
+`@waline/client` предоставляет функцию `highlighter`. Клиент передаёт исходный текст блока кода и язык этого блока; функция должна напрямую вернуть строку.
 
-## An Example Using prism.js
+## Пример с prism.js
 
 ```html
 <!doctype html>

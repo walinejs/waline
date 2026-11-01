@@ -1,33 +1,33 @@
 ---
-title: Server Config
+title: Конфигурация сервера
 icon: config
 ---
 
-The following options need to be configured in the server entry file `index.js`.
+Следующие параметры нужно задать в файле входа сервера `index.js`.
 
 ::: warning
 
-If you are using template, please note that you need to save these configurations yourself, because they will be overwritten when you pull the latest official template.
+Если вы используете шаблон, учтите: эти конфигурации придётся сохранять самостоятельно, поскольку при получении последней версии официального шаблона они будут перезаписаны.
 
-We recommend you to create a repo from the official template and make your changes there.
+Рекомендуем создать репозиторий на основе официального шаблона и вносить изменения в нём.
 
 :::
 
-## Basic Options
+## Основные параметры
 
 ### plugins
 
-- Type: `plugin[]`
+- Тип: `plugin[]`
 
-See [Plugin System](./plugin.md) for details
+Подробнее см. в разделе [Система плагинов](./plugin.md)
 
 ### secureDomains
 
-- Type: `string | RegExp | string[] | RegExp[]`
+- Тип: `string | RegExp | string[] | RegExp[]`
 
-Secure domain settings. Requests from other domain will receive 403 status code. It supports String, Regexp, and Array type. Leaving this config means that all domain referrer are allowed.
+Настройка доверенных доменов. Запросы с других доменов получают код состояния 403. Поддерживаются строки, регулярные выражения и массивы. Если параметр не задан, разрешены все домены-источники.
 
-::: details Example
+::: details Пример
 
 ```js
 // index.js
@@ -42,18 +42,18 @@ module.exports = Waline({
 
 ::: tip
 
-- To make local development easier, `localhost` and `127.0.0.1` will be added to the list of secure domain names by default.
-- Env variable `SECURE_DOMAINS` won't work when this option is set.
+- Для удобства локальной разработки `localhost` и `127.0.0.1` по умолчанию добавляются в список доверенных доменов.
+- При заданном параметре переменная окружения `SECURE_DOMAINS` не работает.
 
 :::
 
 ### forbiddenWords
 
-- Type: `string[]`
+- Тип: `string[]`
 
-If a comment match forbidden word, it will be marked as spam.
+Если комментарий содержит запрещённое слово, он помечается как спам.
 
-::: details Example
+::: details Пример
 
 ```js
 // index.js
@@ -68,11 +68,11 @@ module.exports = Waline({
 
 ### disallowIPList
 
-- Type: `string[]`
+- Тип: `string[]`
 
-If a comment ip match this list, 403 status code is returned.
+Если IP-адрес комментария есть в этом списке, возвращается код состояния 403.
 
-::: details Example
+::: details Пример
 
 ```js
 // index.js
@@ -87,67 +87,67 @@ module.exports = Waline({
 
 ### mailSubject
 
-- Type: `string`
+- Тип: `string`
 
-Customize the title of the comment reply email, which is equivalent to environment variable `MAIL_SUBJECT`.
+Настройка темы письма-ответа на комментарий; эквивалентно переменной окружения `MAIL_SUBJECT`.
 
 ### mailTemplate
 
-- Type: `string`
+- Тип: `string`
 
-Customize the content of the comment reply email, which is equivalent to environment variable `MAIL_TEMPLATE`.
+Настройка содержимого письма-ответа на комментарий; эквивалентно переменной окружения `MAIL_TEMPLATE`.
 
 ### mailSubjectAdmin
 
-- Type: `string`
+- Тип: `string`
 
-Customize the title of the new comment notification email, which is equivalent to the environment variable `MAIL_SUBJECT_ADMIN`.
+Настройка темы письма-уведомления о новом комментарии; эквивалентно переменной окружения `MAIL_SUBJECT_ADMIN`.
 
 ### mailTemplateAdmin
 
-- Type: `string`
+- Тип: `string`
 
-Customize the content of the new comment notification email, which is equivalent to the environment variable `MAIL_TEMPLATE_ADMIN`.
+Настройка содержимого письма-уведомления о новом комментарии; эквивалентно переменной окружения `MAIL_TEMPLATE_ADMIN`.
 
 ### QQTemplate
 
-- Type: `string`
+- Тип: `string`
 
-The QQ comment notification template, which is equivalent to the environment variable `QQ_TEMPLATE`.
+Шаблон уведомления о комментариях для QQ; эквивалентно переменной окружения `QQ_TEMPLATE`.
 
 ### TGTemplate
 
-- Type: `string`
+- Тип: `string`
 
-Telegram comment notification template, which is equivalent to the environment variable `TG_TEMPLATE`.
+Шаблон уведомления о комментариях для Telegram; эквивалентно переменной окружения `TG_TEMPLATE`.
 
 ### model
 
-- type: `class`
+- тип: `class`
 
-For details, see [Customize Database Service](../../cookbook/customize/database.md)
+Подробнее см. в разделе [Настройка сервиса базы данных](../../cookbook/customize/database.md)
 
 ### encryptPassword
 
-- type: `function`
+- тип: `function`
 
-See [Customize User System](../../cookbook/customize/userdb.md) for details
+Подробнее см. в разделе [Настройка пользовательской системы](../../cookbook/customize/userdb.md)
 
 ### locales
 
-- type: `Record<string, Record<string, string>>`
+- тип: `Record<string, Record<string, string>>`
 
-See [Custom Locale](../../cookbook/customize/locale.md)
+См. [Настройка локали](../../cookbook/customize/locale.md)
 
-## Comment Hooks
+## Хуки комментариев
 
-Besides environment variable configuration, Waline also provides some custom hooks to facilitate the processing of custom requirements. It only needs to be configured in the server entry file `index.js`.
+Помимо настройки через переменные окружения, Waline предоставляет пользовательские хуки, упрощающие реализацию собственных задач. Их достаточно задать в файле входа сервера `index.js`.
 
 ### preSave(comment)
 
-Waline provides some custom hooks to let users customize Waline server behavior according to their own needs.
+Waline предоставляет пользовательские хуки, позволяющие адаптировать поведение сервера Waline под собственные нужды.
 
-::: details Example
+::: details Пример
 
 ```js
 // index.js
@@ -167,11 +167,11 @@ module.exports = Waline({
 
 ### postSave(comment, pComment)
 
-The action performed after the comment is posted.
+Действие, выполняемое после публикации комментария.
 
-When the method is executed, the comment data will be passed as the first param, and if it's a reply to the comment, the parent comment will be passed as the second param.
+При вызове метода первым параметром передаются данные комментария, а если это ответ на комментарий, вторым параметром передаётся родительский комментарий.
 
-::: details Example
+::: details Пример
 
 ```js
 // index.js
@@ -191,9 +191,9 @@ module.exports = Waline({
 
 ### preUpdate(comment)
 
-Action before a comment content is updated in the dashboard. If the method returns content, the interface will return directly without updating the comment data.
+Действие перед обновлением содержимого комментария в панели администратора. Если метод возвращает содержимое, интерфейс сразу возвращает ответ, не обновляя данные комментария.
 
-::: details Example
+::: details Пример
 
 ```js
 // index.js
@@ -210,9 +210,9 @@ module.exports = Waline({
 
 ### postUpdate(comment)
 
-Action after a comment content is updated in the dashboard. Comment data will be passed in when the method is executed.
+Действие после обновления содержимого комментария в панели администратора. При вызове метода передаются данные комментария.
 
-::: details Example
+::: details Пример
 
 ```js
 // index.js
@@ -229,9 +229,9 @@ module.exports = Waline({
 
 ### preDelete(commentId)
 
-Action before a comment is deleted. When the method is executed, the comment Id to be operated will be passed in. If the method returns content, the interface will return directly without updating the comment data.
+Действие перед удалением комментария. При вызове метода передаётся идентификатор комментария, с которым выполняется операция. Если метод возвращает содержимое, интерфейс сразу возвращает ответ, не обновляя данные комментария.
 
-::: details Example
+::: details Пример
 
 ```js
 // index.js
@@ -248,9 +248,9 @@ module.exports = Waline({
 
 ### postDelete(commentId)
 
-Action after a comment is deleted, the comment Id will be passed as the only param.
+Действие после удаления комментария; единственным параметром передаётся идентификатор комментария.
 
-::: details Example
+::: details Пример
 
 ```js
 // index.js

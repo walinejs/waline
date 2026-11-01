@@ -1,27 +1,27 @@
 ---
-title: Create your own Emoji presets
+title: Создание собственных наборов эмодзи
 icon: emoji
 ---
 
-This cookbook will show you how to create and use your own Emoji presets.
+Это руководство покажет, как создавать и использовать собственные наборы эмодзи.
 
 <!-- more -->
 
-## Create your own presets
+## Создание собственных наборов
 
-First of all, you need to prepare some emoji images. Then, please follow the steps to create your preset.
+Сначала нужно подготовить изображения эмодзи, а затем выполнить шаги ниже, чтобы создать свой набор.
 
-### Name the emoji and upload it
+### Именование эмодзи и их загрузка
 
-For the sake of simplicity, Waline will directly use the name of the emoji image as the key of the emoji. This means that if you import two different presets, and they both contain a laugh.png image, both emotes will correspond to the same emoji `:laugh:`.
+Для простоты Waline использует имя файла изображения эмодзи как ключ эмодзи. Это значит, что если подключить два разных набора и в обоих есть изображение laugh.png, оба варианта будут соответствовать одному и тому же эмодзи `:laugh:`.
 
-Therefore, the best practice is that each emoji preset creator should add a preset-name-related prefix to all names in emoji files.
+Поэтому лучшая практика — добавлять ко всем именам файлов эмодзи префикс, связанный с названием набора.
 
-After naming them appropriately, you need to upload them to your server.
+После того как имена заданы, изображения нужно загрузить на свой сервер.
 
-### Write preset information
+### Описание набора
 
-We assume that you have placed some emoji images in the `
+Предположим, что изображения эмодзи размещены в каталоге `
 
 ```
 https://example.com/my-emoji/
@@ -32,11 +32,11 @@ https://example.com/my-emoji/
 └─ info.json
 ```
 
-At this point, you'll also need to create an `info.json` file for this folder to let Waline know what emoji the Emoji presets contain.
+Кроме того, для этой папки нужно создать файл `info.json`, чтобы Waline знал, какие эмодзи входят в набор.
 
-First, let's set a name for the Emoji preset, such as `My Emoji`, because you have set the `my_` prefix for the image, and the files are in `png` format. You need to add them in `info.json`.
+Сначала зададим название набора, например `My Emoji`; поскольку для изображений задан префикс `my_`, а файлы имеют формат `png`, эти значения нужно добавить в `info.json`.
 
-Your `info.json` can be:
+Файл `info.json` может выглядеть так:
 
 ```json
 {
@@ -46,7 +46,7 @@ Your `info.json` can be:
 }
 ```
 
-Then, list all emoji names in `items` in the order you want, at the same time, remember to ignore the prefix and suffix you have set in `prefix` and `type`.
+Затем перечислите все имена эмодзи в `items` в нужном порядке, при этом не указывайте в них префикс и расширение, заданные в `prefix` и `type`.
 
 ```json
 {
@@ -57,7 +57,7 @@ Then, list all emoji names in `items` in the order you want, at the same time, r
 }
 ```
 
-After that, please select a representative emoji as the icon displayed in the tab:
+После этого выберите эмодзи, который будет отображаться на вкладке в качестве иконки:
 
 ```json
 {
@@ -69,39 +69,39 @@ After that, please select a representative emoji as the icon displayed in the ta
 }
 ```
 
-With these, you are done writing `info.json`, please upload it to the same folder.
+На этом `info.json` готов — загрузите его в ту же папку.
 
-You now successfully created a `my-emoji` preset with `https://example.com/my-emoji/'`.
+Набор `my-emoji` успешно создан и доступен по адресу `https://example.com/my-emoji/'`.
 
-## Use GitHub mirror with tags
+## Использование зеркала GitHub с тегами
 
-Usually, you might find it a bit cumbersome to have your own domain name and upload images to the domain name, and the link may expire over time, so an advanced approach is to use a GitHub repository and use tag function in git to mirror GitHub repo providing a emoji preset.
+Обычно держать собственный домен и загружать на него изображения бывает неудобно, к тому же ссылка со временем может перестать работать. Более продвинутый подход — использовать репозиторий GitHub и теги git, чтобы предоставлять набор эмодзи через зеркало GitHub-репозитория.
 
-Similar to the steps above, you need to create a new GitHub repository, name the emoji as above, create `info.json` using the same steps, and upload them to the repository.
+Как и в шагах выше, нужно создать новый репозиторий GitHub, назвать эмодзи тем же способом, подготовить `info.json` и загрузить всё в репозиторий.
 
-Then, please create a tag for the repository at this time, we recommend setting it in the format of `vx.x.x`, such as `v1.0.0`.
+Затем создайте для репозитория тег; рекомендуемый формат — `vx.x.x`, например `v1.0.0`.
 
-After adding tags, you can use the CDN link with the version on [cdn.jsdelivr.net](https://www.jsdelivr.com/) as your preset in the format `https://cdn.jsdelivr.net/gh/user/repo@version/file`.
+После добавления тегов можно использовать в качестве набора CDN-ссылку с версией на [cdn.jsdelivr.net](https://www.jsdelivr.com/) в формате `https://cdn.jsdelivr.net/gh/user/repo@version/file`.
 
-We assume that you have created the `example/emoji` repository, uploaded the emoji images and `info.json` directly, and have created the `v1.0.0` tag, then you can use `https://cdn.jsdelivr.net/gh/example/emoji@v1.0.0/` as your preset.
+Предположим, создан репозиторий `example/emoji`, в него загружены изображения эмодзи и `info.json`, а также создан тег `v1.0.0`. Тогда в качестве набора можно использовать `https://cdn.jsdelivr.net/gh/example/emoji@v1.0.0/`.
 
 ::: tip
 
-It is necessary to specific a tag with link to prevent the image link referenced by the historical comment from being invalidated by modifying your preset.
+Указывать тег в ссылке необходимо, чтобы ссылки на изображения в старых комментариях не переставали работать из-за изменения набора.
 
-The official emoji preset is achieved by creating the [walinejs/emojis](https://github.com/walinejs/emojis) repository and using the CDN link. Currently we are using the `v1.1.0` version.
+Официальный набор эмодзи устроен так же: создан репозиторий [walinejs/emojis](https://github.com/walinejs/emojis), и используется CDN-ссылка. Сейчас применяется версия `v1.1.0`.
 
 :::
 
 ::: warning
 
-Since cdn.jsdelivr.net is polluted in China, you can replace `cdn.jsdelivr.net` with `gcore.jsdelivr.net`
+Так как cdn.jsdelivr.net недоступен в Китае, можно заменить `cdn.jsdelivr.net` на `gcore.jsdelivr.net`
 
 :::
 
-## Using config objects
+## Использование объекта конфигурации
 
-Similar to the previous article, we assume you have the following file structure:
+Как и в предыдущем разделе, предположим, что структура файлов такая:
 
 ```
 https://example.com/my-emoji/
@@ -111,7 +111,7 @@ https://example.com/my-emoji/
 └─ my_sob.png
 ```
 
-In addition to creating an `info.json` upload and using a link as a preset, you can also use the following objects directly as a preset:
+Помимо загрузки `info.json` и использования ссылки в качестве набора, можно передать в качестве набора объект следующего вида:
 
 ```js
 {
@@ -124,4 +124,4 @@ In addition to creating an `info.json` upload and using a link as a preset, you 
 }
 ```
 
-Here, we additionally add the `folder` property to tell Waline where the images are stored.
+Здесь дополнительно указано свойство `folder`, которое сообщает Waline, где хранятся изображения.

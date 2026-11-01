@@ -4,58 +4,58 @@ icon: faq
 order: 4
 ---
 
-Waline has a very clear position since its birth:
+Waline с момента появления имеет очень чёткую позицию:
 
-::: info A simple comment system with backend.
-
-:::
-
-All versions released afterwards are modifications made around this position.
-
-## What is the relationship with Valine?
-
-::: info Waline = With backend Valine
+::: info Простая система комментариев с серверной частью.
 
 :::
 
-Consulting with the open source version of Valine, the comment list in frontend is rewritten with React. The style and structure as well as some internal tools and methods are all from Valine.
+Все выпущенные позже версии создавались в рамках этой позиции.
 
-## Do I still need to deploy Valine-Admin on LeanCloud?
+## Какая связь с Valine?
 
-No. Waline is a three-in-one deployment of data storage, server, and client. The server interface is already equivalent to Valine's LeanCloud cloud engine. The server already includes comment management and email notifications feature provided by the previous cloud engine. It doesn't need the additional LeanCloud cloud engine, so it won't be restricted by the LeanCloud cloud engine's sleep strategy.
-
-## How can I upgrade?
-
-Waline is mainly composed of two parts: the frontend and the server.
-
-### Frontend
-
-The front end inserts comment lists and comment boxes by including JS scripts in the web page. In most scenarios, the link will use the address of the latest version of the online CDN, and the latest version will be automatically applied, without the need for users to manually update.
-
-::: note Need manually update in following situations
-
-1. The version number is forcibly specified in the CDN address. In this situation, you need to manually modify the version number to be the latest.
-1. Use NPM to require and pack the module into code. In this situation, you need to modify the version number in the dependency to ensure that the latest version of the dependency can be obtained during installation.
+::: info Waline = Valine с серверной частью
 
 :::
 
-### Server
+Опираясь на открытую версию Valine, список комментариев на фронтенде переписан на React. Стиль и структура, а также некоторые внутренние инструменты и методы взяты из Valine.
 
-The server refers to the backend service corresponding to the `serverURL` configured in frontend script, and its update will be slightly different depending on different deployment environments. Server updates will be more frequent.
+## Нужно ли по-прежнему разворачивать Valine-Admin на LeanCloud?
+
+Нет. Waline объединяет в одном развёртывании хранилище данных, сервер и клиент. Серверный интерфейс уже эквивалентен облачному движку LeanCloud из Valine. Сервер уже включает управление комментариями и уведомления по электронной почте, которые раньше предоставлял облачный движок. Дополнительный облачный движок LeanCloud не нужен, поэтому на Waline не распространяется стратегия засыпания облачного движка LeanCloud.
+
+## Как обновиться?
+
+Waline состоит в основном из двух частей: фронтенда и сервера.
+
+### Фронтенд
+
+Фронтенд вставляет список комментариев и форму комментария, подключая JS-скрипты на веб-странице. В большинстве случаев в ссылке используется адрес последней версии онлайн-CDN, и последняя версия применяется автоматически — вручную обновлять ничего не нужно.
+
+::: note Вручную обновлять нужно в следующих случаях
+
+1. В адресе CDN принудительно указан номер версии. В этом случае нужно вручную изменить номер версии на последний.
+1. Модуль подключается через NPM и собирается в код. В этом случае нужно изменить номер версии в зависимостях, чтобы при установке была получена последняя версия зависимости.
+
+:::
+
+### Сервер
+
+Сервер — это бэкенд-сервис, соответствующий `serverURL`, указанному в скрипте фронтенда; его обновление немного отличается в зависимости от среды развёртывания. Обновления сервера происходят чаще.
 
 #### Vercel
 
-Go to the corresponding GitHub repository and modify the version number of `@waline/vercel` in the package.json file to the latest.
+Перейдите в соответствующий репозиторий GitHub и измените номер версии `@waline/vercel` в файле package.json на последний.
 
 ![vercel](./assets/vercel-update.png)
 
 #### CloudBase
 
-Enter the code editing page, click <kbd>Save and reinstall dependencies</kbd>. If it still doesn’t work, enter <kbd>My Application</kbd> and select <kbd>Deploy</kbd> to redeploy.
+Откройте страницу редактирования кода и нажмите <kbd>Save and reinstall dependencies</kbd>. Если это не помогло, перейдите в <kbd>My Application</kbd> и выберите <kbd>Deploy</kbd>, чтобы выполнить повторное развёртывание.
 
 ::: caution
 
-Redeployment will clear the previous files. If there is a configuration in the previous file, it needs to be backed up first.
+Повторное развёртывание очистит предыдущие файлы. Если в предыдущих файлах есть конфигурация, её нужно предварительно сохранить в резервную копию.
 
 :::
 
@@ -63,8 +63,8 @@ Redeployment will clear the previous files. If there is a configuration in the p
 
 #### Docker
 
-Run `docker pull lizheming/waline` directly to pull the latest image.
+Выполните `docker pull lizheming/waline`, чтобы скачать последний образ.
 
-## Why posting comments are slow?
+## Почему комментарии отправляются медленно?
 
-Due to some technical reasons, spam detection and comment notification are all serial operations when posting comments. The spam detection uses the service provided by Akismet abroad, which may be slow to access. Users can turn off the spam detection function through the `AKISMET_KEY=false` environment variable. Beside the spam detection service, the email notification in the comment notification may also cause a timeout. You can turn off the comment notification to test whether it is caused by this feature.
+По некоторым техническим причинам проверка на спам и уведомления о комментариях при отправке выполняются последовательно. Проверка на спам использует сервис Akismet, расположенный за рубежом, поэтому доступ к нему может быть медленным. Пользователи могут отключить проверку на спам с помощью переменной окружения `AKISMET_KEY=false`. Помимо сервиса проверки на спам, уведомление по электронной почте тоже может приводить к тайм-ауту. Можно отключить уведомления о комментариях, чтобы проверить, не из-за этой ли функции возникает задержка.

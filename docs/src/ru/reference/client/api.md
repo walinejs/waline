@@ -1,37 +1,37 @@
 ---
-title: Client API
+title: API клиента
 icon: config
 ---
 
-## Client API
+## API клиента
 
-Waline provides three APIs:
+Waline предоставляет три API:
 
-- `init`: Initialize Waline
+- `init`: инициализация Waline
 
-- `commentCount`: Count comments
+- `commentCount`: подсчёт комментариев
 
-- `pageviewCount`: Count pageviews
+- `pageviewCount`: подсчёт просмотров страниц
 
-As well as:
+А также:
 
-- `RecentComment`: Waline recent comments widget
+- `RecentComment`: виджет последних комментариев Waline
 
-- `UserList`: User List
+- `UserList`: список пользователей
 
-- `version`: Waline client version
+- `version`: версия клиента Waline
 
 ## init
 
-The `init` API accepts a `WalineInitOptions` options and returns a `WalineInstance`.
+API `init` принимает параметры `WalineInitOptions` и возвращает `WalineInstance`.
 
-Type:
+Тип:
 
 ```ts
 const init: (options: WalineInitOptions) => WalineInstance;
 ```
 
-Return:
+Возвращаемое значение:
 
 ```ts
 interface WalineInstance {
@@ -54,42 +54,42 @@ interface WalineInstance {
 }
 ```
 
-The initialization options accept all [Waline Component Props](props.md), in addition, the following options are added.
+Параметры инициализации принимают все [свойства компонента Waline](props.md), кроме того, добавлены следующие параметры.
 
 ### el
 
-- Type: `string | HTMLElement | null`
-- Default: `'#waline'`
+- Тип: `string | HTMLElement | null`
+- Значение по умолчанию: `'#waline'`
 
-The DOM element to be mounted on initialization. It must be a valid **CSS selector string** or HTMLElement Object.
+DOM-элемент, в который монтируется Waline при инициализации. Это должна быть корректная **строка CSS-селектора** или объект HTMLElement.
 
-If you only want the counter below, set this option to `null`.
+Если нужен только счётчик, установите этот параметр в `null`.
 
 ### comment
 
-- Type: `boolean | string`
-- Default: `false`
+- Тип: `boolean | string`
+- Значение по умолчанию: `false`
 
-Article comment count counter, when filled in a string, it will be used as a CSS selector.
+Счётчик количества комментариев статьи; если указана строка, она используется как CSS-селектор.
 
 ### pageview
 
-- Type: `boolean | string`
-- Default: `false`
+- Тип: `boolean | string`
+- Значение по умолчанию: `false`
 
-Pageview counter. When filled in a string, it will be used as a CSS selector.
+Счётчик просмотров страниц. Если указана строка, она используется как CSS-селектор.
 
 ## commentCount
 
-The `commentCount` function receives the `WalineCommentCountOptions` option and updates the number of article comments on the page, and returns a function `WalineAbort` that can cancel the current operation.
+Функция `commentCount` принимает параметры `WalineCommentCountOptions`, обновляет количество комментариев статьи на странице и возвращает функцию `WalineAbort`, позволяющую отменить текущую операцию.
 
-Type:
+Тип:
 
 ```ts
 const commentCount: (options: WalineCommentCountOptions) => WalineAbort;
 ```
 
-Options:
+Параметры:
 
 ```ts
 interface WalineCommentCountOptions {
@@ -112,7 +112,7 @@ interface WalineCommentCountOptions {
 }
 ```
 
-Returns:
+Возвращает:
 
 ```ts
 type WalineAbort = (reason?: any) => void;
@@ -120,15 +120,15 @@ type WalineAbort = (reason?: any) => void;
 
 ## pageviewCount
 
-The `pageviewCount` function receives the `WalinePageviewCountOptions` option and updates the number of article comments on the page, and returns a function `WalineAbort` that can cancel the current operation.
+Функция `pageviewCount` принимает параметры `WalinePageviewCountOptions`, обновляет количество просмотров статьи на странице и возвращает функцию `WalineAbort`, позволяющую отменить текущую операцию.
 
-Type:
+Тип:
 
 ```ts
 const pageviewCount: (options: WalinePageviewCountOptions) => WalineAbort;
 ```
 
-Options:
+Параметры:
 
 ```ts
 interface WalinePageviewCountOptions {
@@ -158,25 +158,25 @@ interface WalinePageviewCountOptions {
 }
 ```
 
-Returns:
+Возвращает:
 
 ```ts
 type WalineAbort = (reason?: any) => void;
 ```
 
-## Widgets
+## Виджеты
 
 ### RecentComments
 
-`RecentComments` is a widget displaying recent comments.
+`RecentComments` — виджет, отображающий последние комментарии.
 
-Type:
+Тип:
 
 ```ts
 const RecentComments: (options: WalineRecentCommentsOptions) => Promise<WalineRecentCommentsResult>;
 ```
 
-Options:
+Параметры:
 
 ```ts
 interface WalineRecentCommentsOptions {
@@ -191,7 +191,7 @@ interface WalineRecentCommentsOptions {
 }
 ```
 
-Returns:
+Возвращает:
 
 ```ts
 interface WalineRecentCommentsResult {
@@ -205,15 +205,15 @@ interface WalineRecentCommentsResult {
 
 ### UserList
 
-`UserList` is a widget that displays user interaction leader boards or comment walls.
+`UserList` — виджет, отображающий рейтинг активности пользователей или стену комментариев.
 
-Type:
+Тип:
 
 ```ts
 const RecentComments: (options: WalineRecentCommentsOptions) => Promise<WalineRecentCommentsResult>;
 ```
 
-Options:
+Параметры:
 
 ```ts
 interface WalineUserListOptions {
@@ -245,7 +245,7 @@ interface WalineUserListOptions {
 }
 ```
 
-Returns:
+Возвращает:
 
 ```ts
 interface WalineUserListResult {

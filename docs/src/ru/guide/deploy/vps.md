@@ -1,14 +1,14 @@
 ---
-title: Self Host
+title: Самостоятельное развёртывание
 icon: server
 order: -1
 ---
 
-If you don't want to deploy the server on Vercel, you can also choose to deploy on your own server.
+Если вы не хотите развёртывать сервер на Vercel, можно развернуть его на собственном сервере.
 
 <!-- more -->
 
-## Docker Deploy
+## Развёртывание в Docker
 
 ```bash
 docker run -d \
@@ -16,9 +16,9 @@ docker run -d \
   lizheming/waline
 ```
 
-It's a demo for how to run waline. You also need add some database environment if you want all comment function works well.
+Это демонстрационный пример запуска Waline. Чтобы все функции комментариев работали корректно, также нужно добавить переменные окружения базы данных.
 
-::: tip How to build image?
+::: tip Как собрать образ?
 
 ```bash
 git clone https://github.com/lizheming/waline.git
@@ -28,11 +28,11 @@ docker build -t lizheming/waline -f packages/server/Dockerfile .
 
 :::
 
-### via [docker stack deploy](https://docs.docker.com/engine/reference/commandline/stack_deploy/) or [docker-compose](https://github.com/docker/compose)
+### через [docker stack deploy](https://docs.docker.com/engine/reference/commandline/stack_deploy/) или [docker-compose](https://github.com/docker/compose)
 
-The SQLite is used here as an example. For SQLite and supported database services, please refer to [Multi-database service support](../database.md#sqlite).
+Здесь в качестве примера используется SQLite. Об SQLite и поддерживаемых базах данных см. в разделе [Поддержка нескольких баз данных](../database.md#sqlite).
 
-Example `docker-compose.yml` for `waline`:
+Пример `docker-compose.yml` для `waline`:
 
 ```yaml
 # docker-compose.yml
@@ -57,9 +57,9 @@ services:
       AUTHOR_EMAIL: 'mail@example.com'
 ```
 
-## Run directly (Recommended)
+## Прямой запуск (рекомендуется)
 
-It's easy to run without using docker deployment, after setting environment variables, just run the `vanilla.js` file in the module after installing.
+Запустить Waline можно и без Docker: после установки и настройки переменных окружения достаточно запустить файл `vanilla.js` из модуля.
 
 ::: code-tabs#shell
 
@@ -79,9 +79,9 @@ node node_modules/@waline/vercel/vanilla.js
 
 :::
 
-## Nginx config
+## Конфигурация Nginx
 
-If you don't want to use port in server url, you can use Nginx proxy pass to 80 and 443. Refer to the following configuration:
+Если вы не хотите указывать порт в URL сервера, можно настроить проксирование через Nginx на порты 80 и 443. См. конфигурацию ниже:
 
 ```nginx
 server

@@ -1,54 +1,54 @@
 ---
-title: Server Environment Variables
+title: Переменные окружения сервера
 icon: config
 ---
 
-You can customize Waline Server through the following environment variables.
+Настроить сервер Waline можно с помощью следующих переменных окружения.
 
 ::: warning
 
-You MUST **redeploy** after updating Environment variables to make changes applied.
+После изменения переменных окружения необходимо **развернуть** проект заново, чтобы изменения вступили в силу.
 
-You should set through `Settings` - `Environment Variables` when using Vercel.
+В Vercel их задают в разделе `Settings` - `Environment Variables`.
 
 :::
 
 <!-- more -->
 
-## Basic
+## Основные
 
-| Environment Variables | Required | Description                                                                                |
-| --------------------- | -------- | ------------------------------------------------------------------------------------------ |
-| `SITE_NAME`           |          | site name                                                                                  |
-| `SITE_URL`            |          | site url                                                                                   |
-| `LOGIN`               |          | User need login before comment when `LOGIN=force`                                          |
-| `SERVER_URL`          |          | the url of the Waline Server, useful when the automatically generated address is incorrect |
+| Переменная окружения | Обязательно | Описание                                                                            |
+| -------------------- | ----------- | ----------------------------------------------------------------------------------- |
+| `SITE_NAME`          |             | Название сайта                                                                      |
+| `SITE_URL`           |             | URL-адрес сайта                                                                     |
+| `LOGIN`              |             | При `LOGIN=force` пользователь должен войти, прежде чем оставить комментарий        |
+| `SERVER_URL`         |             | URL-адрес сервера Waline; полезен, если автоматически сгенерированный адрес неверен |
 
-## Display
+## Отображение
 
-| Environment Variables   | Default                                                                 | Description                                                       |
-| ----------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `DISABLE_USERAGENT`     |                                                                         | wether hide the user agent of commenter. Default value is `false` |
-| `DISABLE_REGION`        |                                                                         | wether hide commenter's region. Default value is `false`          |
-| `DISABLE_AUTHOR_NOTIFY` |                                                                         | wether disable author notification                                |
-| `AVATAR_PROXY`          | `''`                                                                    | Avatar proxy service URL. Leave empty to disable it               |
-| `GRAVATAR_STR`          | <span v-pre>`https://seccdn.libravatar.org/avatar/{{mail\|md5}}`</span> | Gravatar render string，base on nunjucks template                 |
-| `LEVELS`                |                                                                         | Give each user a rating label based on the number of comments     |
+| Переменная окружения    | По умолчанию                                                            | Описание                                                                                      |
+| ----------------------- | ----------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `DISABLE_USERAGENT`     |                                                                         | Скрывать ли user agent пользователя, оставившего комментарий. Значение по умолчанию — `false` |
+| `DISABLE_REGION`        |                                                                         | Скрывать ли регион пользователя, оставившего комментарий. Значение по умолчанию — `false`     |
+| `DISABLE_AUTHOR_NOTIFY` |                                                                         | Отключать ли уведомление автору комментария                                                   |
+| `AVATAR_PROXY`          | `''`                                                                    | URL-адрес сервиса проксирования аватаров. Оставьте пустым, чтобы отключить                    |
+| `GRAVATAR_STR`          | <span v-pre>`https://seccdn.libravatar.org/avatar/{{mail\|md5}}`</span> | Строка отрисовки Gravatar на основе шаблона nunjucks                                          |
+| `LEVELS`                |                                                                         | Выдавать каждому пользователю метку уровня в зависимости от количества комментариев           |
 
-::: tip Level Label
+::: tip Метки уровней
 
-According number of user comments, a level label will be added to the commenter based on rating Conditions. This feature is disabled by default and can be enabled by setting the environment variable `LEVELS`. The configuration is in the form of a comma concatenation of a given number, for example `0,10,20,50,100,200` means:
+В зависимости от количества комментариев пользователю добавляется метка уровня, определяемая условиями рейтинга. По умолчанию эта возможность отключена; включить её можно, задав переменную окружения `LEVELS`. Конфигурация представляет собой перечисление заданных чисел через запятую, например `0,10,20,50,100,200` означает:
 
-| Grades | Conditions         | Default Grade Labels |
-| ------ | ------------------ | -------------------- |
-| 0      | 0 <= count < 10    | Dwarves              |
-| 1      | 10 <= count < 20   | Hobbits              |
-| 2      | 20 <= count < 50   | Ents                 |
-| 3      | 50 <= count < 100  | Wizards              |
-| 4      | 100 <= count < 200 | Elves                |
-| 5      | 200 <= count       | Maiar                |
+| Уровень | Условия            | Метки уровней по умолчанию |
+| ------- | ------------------ | -------------------------- |
+| 0       | 0 <= count < 10    | Гномы                      |
+| 1       | 10 <= count < 20   | Хоббиты                    |
+| 2       | 20 <= count < 50   | Энты                       |
+| 3       | 50 <= count < 100  | Маги                       |
+| 4       | 100 <= count < 200 | Эльфы                      |
+| 5       | 200 <= count       | Майар                      |
 
-In addition to customizing the level judgment rules, we can also customize the level label. Configure the text in the client as follows:
+Помимо настройки правил определения уровней, можно настроить и сами метки уровней. Для этого задайте текст в клиенте следующим образом:
 
 ```js
 Waline.init({
@@ -63,156 +63,156 @@ Waline.init({
 });
 ```
 
-By default, only 6 levels of copywriting are provided, but it does not mean that there can only be 6 levels. The specific level cap is based on the level judgment rules you set. To add a new level, it is recommended to configure the label text corresponding to the level by yourself. If no label text is provided, the default label text such as `Level 10` will be displayed by default.
+По умолчанию предоставляется текст только для 6 уровней, но это не значит, что уровней может быть только 6. Конкретное максимальное число уровней определяется заданными правилами определения уровней. Чтобы добавить новый уровень, рекомендуется самостоятельно задать соответствующий ему текст метки. Если текст метки не задан, по умолчанию отображается текст вида `Level 10`.
 
 :::
 
-## Safety
+## Безопасность
 
-| Environment Variables | Default        | Description                                                                                                              |
-| --------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| `IPQPS`               | `60`           | IP-based comment posting frequency limit in seconds. Set to 0 for no limit                                               |
-| `SECURE_DOMAINS`      |                | Secure Domains config. Supports multiple domain with Comma separated                                                     |
-| `AKISMET_KEY`         | `70542d86693e` | Akismet antispam service key, set `false` if you wanna close it.                                                         |
-| `COMMENT_AUDIT`       | `false`        | Comment audit switcher. When enabled, every comment needs to be approved by admin, so hint in placeholder is recommended |
-| `RECAPTCHA_V3_KEY`    |                | reCAPTCHA V3 key,should set along with client                                                                            |
-| `RECAPTCHA_V3_SECRET` |                | reCAPTCHA V3 secret for server.                                                                                          |
-| `TURNSTILE_KEY`       |                | Turnstile key,should set along with client                                                                               |
-| `TURNSTILE_SECRET`    |                | Turnstile secret for server                                                                                              |
+| Переменная окружения  | По умолчанию   | Описание                                                                                                                                                          |
+| --------------------- | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `IPQPS`               | `60`           | Ограничение частоты отправки комментариев с одного IP в секундах. Значение 0 отключает ограничение                                                                |
+| `SECURE_DOMAINS`      |                | Конфигурация доверенных доменов. Поддерживает несколько доменов, разделённых запятыми                                                                             |
+| `AKISMET_KEY`         | `70542d86693e` | Ключ антиспам-сервиса Akismet; установите `false`, чтобы отключить его.                                                                                           |
+| `COMMENT_AUDIT`       | `false`        | Переключатель проверки комментариев. Если включён, каждый комментарий должен быть одобрен администратором, поэтому рекомендуется добавить подсказку в placeholder |
+| `RECAPTCHA_V3_KEY`    |                | Ключ reCAPTCHA V3; задаётся вместе с клиентом                                                                                                                     |
+| `RECAPTCHA_V3_SECRET` |                | Секрет reCAPTCHA V3 для сервера.                                                                                                                                  |
+| `TURNSTILE_KEY`       |                | Ключ Turnstile; задаётся вместе с клиентом                                                                                                                        |
+| `TURNSTILE_SECRET`    |                | Секрет Turnstile для сервера                                                                                                                                      |
 
-::: tip Recaptcha and Turnstile
+::: tip reCAPTCHA и Turnstile
 
-Turnstile Key and Secret can be requested at <https://www.cloudflare.com/products/turnstile/>.
+Ключ и секрет Turnstile можно получить по адресу <https://www.cloudflare.com/products/turnstile/>.
 
-Recaptcha Key and Secret can be requested at <https://www.google.com/recaptcha>.
+Ключ и секрет reCAPTCHA можно получить по адресу <https://www.google.com/recaptcha>.
 
-When setting security domains, you need to add the site address and the Waline server address at the same time.
+При настройке доверенных доменов нужно одновременно добавить адрес сайта и адрес сервера Waline.
 
 :::
 
 ## Markdown
 
-| Environment Variables | Default   | Description                                                        |
-| --------------------- | --------- | ------------------------------------------------------------------ |
-| `MARKDOWN_CONFIG`     | `{}`      | MarkdownIt Config                                                  |
-| `MARKDOWN_HIGHLIGHT`  | `true`    | Whether enable highlight                                           |
-| `MARKDOWN_EMOJI`      | `true`    | Whether enable emoji                                               |
-| `MARKDOWN_SUB`        | `true`    | Whether enable subscript                                           |
-| `MARKDOWN_SUP`        | `true`    | Whether enable superscript                                         |
-| `MARKDOWN_TEX`        | `mathjax` | Service to parse math, `mathjax` `katex` and `false` are supported |
-| `MARKDOWN_MATHJAX`    | `{}`      | MathJax Options                                                    |
-| `MARKDOWN_KATEX`      | `{}`      | KaTeX Options                                                      |
+| Переменная окружения | По умолчанию | Описание                                                           |
+| -------------------- | ------------ | ------------------------------------------------------------------ |
+| `MARKDOWN_CONFIG`    | `{}`         | Конфигурация MarkdownIt                                            |
+| `MARKDOWN_HIGHLIGHT` | `true`       | Включать ли подсветку кода                                         |
+| `MARKDOWN_EMOJI`     | `true`       | Включать ли эмодзи                                                 |
+| `MARKDOWN_SUB`       | `true`       | Включать ли нижний индекс                                          |
+| `MARKDOWN_SUP`       | `true`       | Включать ли верхний индекс                                         |
+| `MARKDOWN_TEX`       | `mathjax`    | Сервис разбора формул; поддерживаются `mathjax`, `katex` и `false` |
+| `MARKDOWN_MATHJAX`   | `{}`         | Параметры MathJax                                                  |
+| `MARKDOWN_KATEX`     | `{}`         | Параметры KaTeX                                                    |
 
-## Mail Service
+## Почтовый сервис
 
-The email service is used for email notification of user registration and comments. After configuring the variables related to the mail service, user registration will add operations related to email verification code confirmation to prevent malicious registration.
+Почтовый сервис используется для отправки уведомлений о регистрации пользователей и комментариях. После настройки переменных, связанных с почтовым сервисом, при регистрации пользователя добавляется подтверждение кодом из письма, что защищает от вредоносной регистрации.
 
-| Environment variable name | Remarks                    |
-| ------------------------- | -------------------------- |
-| `SMTP_SERVICE`            | SMTP mail service provider |
-| `SMTP_HOST`               | SMTP server address        |
-| `SMTP_PORT`               | SMTP server port           |
-| `SMTP_USER`               | SMTP username              |
-| `SMTP_PASS`               | SMTP Password.             |
-| `SMTP_SECURE`             | SMTP connect with SSL      |
-| `SENDER_NAME`             | Customize sender name      |
-| `SENDER_EMAIL`            | Customize sender email     |
+| Переменная окружения | Примечание                                     |
+| -------------------- | ---------------------------------------------- |
+| `SMTP_SERVICE`       | Провайдер почтового сервиса SMTP               |
+| `SMTP_HOST`          | Адрес SMTP-сервера                             |
+| `SMTP_PORT`          | Порт SMTP-сервера                              |
+| `SMTP_USER`          | Имя пользователя SMTP                          |
+| `SMTP_PASS`          | Пароль SMTP.                                   |
+| `SMTP_SECURE`        | Подключение к SMTP по SSL                      |
+| `SENDER_NAME`        | Настройка имени отправителя                    |
+| `SENDER_EMAIL`       | Настройка адреса электронной почты отправителя |
 
 ::: tip
 
-Supported service providers can be found [nodemailer services](https://github.com/nodemailer/nodemailer/blob/master/src/well-known/services.json). You can choose one of `SMTP_SERVICE` and (`SMTP_HOST`, `SMTP_PORT`). If you don't know the corresponding `SMTP_SERVICE` in the list, you need to configure `SMTP_HOST` and `SMTP_PORT`, which can probably be found in the mailbox settings.
+Список поддерживаемых провайдеров приведён в разделе [nodemailer services](https://github.com/nodemailer/nodemailer/blob/master/src/well-known/services.json). Достаточно выбрать что-то одно: `SMTP_SERVICE` или (`SMTP_HOST`, `SMTP_PORT`). Если подходящего `SMTP_SERVICE` в списке нет, нужно задать `SMTP_HOST` и `SMTP_PORT` — их обычно можно найти в настройках почтового ящика.
 
-The user name of SMTP usually supports the complete mailbox of the user, and the password is mostly the same as the mailbox password.
+В качестве имени пользователя SMTP обычно указывается полный адрес почтового ящика, а пароль чаще всего совпадает с паролем ящика.
 
-Please pay special attention that some mailboxes use separate SMTP passwords.
+Обратите внимание: некоторые почтовые ящики используют отдельный пароль для SMTP.
 
 :::
 
-## Database
+## База данных
 
 ### MongoDB
 
-| Environment Variable | Required | Default   | Description                                  |
-| -------------------- | -------- | --------- | -------------------------------------------- |
-| `MONGO_DB`           | ✅       |           | MongoDB database name                        |
-| `MONGO_USER`         | ✅       |           | MongoDB server username                      |
-| `MONGO_PASSWORD`     | ✅       |           | MongoDB server password                      |
-| `MONGO_HOST`         |          | 127.0.0.1 | MongoDB server address, support array format |
-| `MONGO_PORT`         |          | 27017     | MongoDB server port, support array format    |
-| `MONGO_REPLICASET`   |          |           | MongoDB replica set                          |
-| `MONGO_AUTHSOURCE`   |          |           | MongoDB auth source                          |
-| `MONGO_OPT_SSL`      |          | `false`   | use SSL connection                           |
+| Переменная окружения | Обязательно | По умолчанию | Описание                                           |
+| -------------------- | ----------- | ------------ | -------------------------------------------------- |
+| `MONGO_DB`           | ✅          |              | Имя базы данных MongoDB                            |
+| `MONGO_USER`         | ✅          |              | Имя пользователя сервера MongoDB                   |
+| `MONGO_PASSWORD`     | ✅          |              | Пароль сервера MongoDB                             |
+| `MONGO_HOST`         |             | 127.0.0.1    | Адрес сервера MongoDB, поддерживает формат массива |
+| `MONGO_PORT`         |             | 27017        | Порт сервера MongoDB, поддерживает формат массива  |
+| `MONGO_REPLICASET`   |             |              | Набор реплик MongoDB                               |
+| `MONGO_AUTHSOURCE`   |             |              | Источник аутентификации MongoDB                    |
+| `MONGO_OPT_SSL`      |             | `false`      | Использовать SSL-соединение                        |
 
 ### MySQL
 
-| Environment Variable | Required | Default   | Description                |
-| -------------------- | -------- | --------- | -------------------------- |
-| `MYSQL_DB`           | ✅       |           | MySQL database name        |
-| `MYSQL_USER`         | ✅       |           | MySQL server username      |
-| `MYSQL_PASSWORD`     | ✅       |           | MySQL server password      |
-| `MYSQL_HOST`         |          | 127.0.0.1 | MySQL server address       |
-| `MYSQL_PORT`         |          | 3306      | MySQL server port          |
-| `MYSQL_PREFIX`       |          | `wl_`     | MySQL table prefix         |
-| `MYSQL_CHARSET`      |          | `utf8mb4` | MySQL table charset        |
-| `MYSQL_SSL`          |          | `false`   | whether use SSL connection |
+| Переменная окружения | Обязательно | По умолчанию | Описание                       |
+| -------------------- | ----------- | ------------ | ------------------------------ |
+| `MYSQL_DB`           | ✅          |              | Имя базы данных MySQL          |
+| `MYSQL_USER`         | ✅          |              | Имя пользователя сервера MySQL |
+| `MYSQL_PASSWORD`     | ✅          |              | Пароль сервера MySQL           |
+| `MYSQL_HOST`         |             | 127.0.0.1    | Адрес сервера MySQL            |
+| `MYSQL_PORT`         |             | 3306         | Порт сервера MySQL             |
+| `MYSQL_PREFIX`       |             | `wl_`        | Префикс таблиц MySQL           |
+| `MYSQL_CHARSET`      |             | `utf8mb4`    | Кодировка таблиц MySQL         |
+| `MYSQL_SSL`          |             | `false`      | Использовать ли SSL-соединение |
 
 ### TiDB
 
-[Create a database on TiDB](../../../ru/guide/deploy/tidb.md)
+[Создание базы данных в TiDB](../../../ru/guide/deploy/tidb.md)
 
-| Environment Variable | Required | Default   | Description          |
-| -------------------- | -------- | --------- | -------------------- |
-| `TIDB_DB`            | ✅       |           | TiDB database name   |
-| `TIDB_USER`          | ✅       |           | TiDB server username |
-| `TIDB_PASSWORD`      | ✅       |           | TiDB server password |
-| `TIDB_HOST`          |          | 127.0.0.1 | TiDB server address  |
-| `TIDB_PORT`          |          | 4000      | TiDB server port     |
-| `TIDB_PREFIX`        |          | `wl_`     | TiDB table prefix    |
-| `TIDB_CHARSET`       |          | `utf8mb4` | TiDB table charset   |
+| Переменная окружения | Обязательно | По умолчанию | Описание                      |
+| -------------------- | ----------- | ------------ | ----------------------------- |
+| `TIDB_DB`            | ✅          |              | Имя базы данных TiDB          |
+| `TIDB_USER`          | ✅          |              | Имя пользователя сервера TiDB |
+| `TIDB_PASSWORD`      | ✅          |              | Пароль сервера TiDB           |
+| `TIDB_HOST`          |             | 127.0.0.1    | Адрес сервера TiDB            |
+| `TIDB_PORT`          |             | 4000         | Порт сервера TiDB             |
+| `TIDB_PREFIX`        |             | `wl_`        | Префикс таблиц TiDB           |
+| `TIDB_CHARSET`       |             | `utf8mb4`    | Кодировка таблиц TiDB         |
 
 ### SQLite
 
-| Environment Variable | Required | Default | Description                                                        |
-| -------------------- | -------- | ------- | ------------------------------------------------------------------ |
-| `SQLITE_PATH`        | ✅       |         | SQLite storage file path, not include file name                    |
-| `JWT_TOKEN`          | ✅       |         | Random String for login token generator                            |
-| `SQLITE_DB`          |          | waline  | SQLite storage file name, change it if your filename is not waline |
-| `SQLITE_PREFIX`      |          | `wl_`   | SQLite table prefix                                                |
+| Переменная окружения | Обязательно | По умолчанию | Описание                                                                     |
+| -------------------- | ----------- | ------------ | ---------------------------------------------------------------------------- |
+| `SQLITE_PATH`        | ✅          |              | Путь к файлу хранилища SQLite, без имени файла                               |
+| `JWT_TOKEN`          | ✅          |              | Случайная строка для генератора токенов входа                                |
+| `SQLITE_DB`          |             | waline       | Имя файла хранилища SQLite; измените его, если ваш файл называется не waline |
+| `SQLITE_PREFIX`      |             | `wl_`        | Префикс таблиц SQLite                                                        |
 
 ### PostgreSQL
 
-| Environment Variable | Required | Default   | Description                         |
-| -------------------- | -------- | --------- | ----------------------------------- |
-| `PG_DB`              | ✅       |           | PostgreSQL database name            |
-| `PG_USER`            | ✅       |           | PostgreSQL server username          |
-| `PG_PASSWORD`        | ✅       |           | PostgreSQL server password          |
-| `PG_HOST`            |          | 127.0.0.1 | PostgreSQL server address           |
-| `PG_PORT`            |          | 5432      | PostgreSQL server port              |
-| `PG_PREFIX`          |          | `wl_`     | PostgreSQL table prefix             |
-| `PG_SSL`             |          | `false`   | set to `true` to use SSL connection |
-| `POSTGRES_DATABASE`  |          |           | alias for `PG_DB`                   |
-| `POSTGRES_USER`      |          |           | alias for `PG_USER`                 |
-| `POSTGRES_PASSWORD`  |          |           | alias for `PG_PASSWORD`             |
-| `POSTGRES_HOST`      |          | 127.0.0.1 | alias for `PG_HOST`                 |
-| `POSTGRES_PORT`      |          | 5432      | alias for `PG_PORT`                 |
-| `POSTGRES_PREFIX`    |          | `wl_`     | alias for `PG_PREFIX`               |
-| `POSTGRES_SSL`       |          | `false`   | alias for `PG_SSL`                  |
+| Переменная окружения | Обязательно | По умолчанию | Описание                                             |
+| -------------------- | ----------- | ------------ | ---------------------------------------------------- |
+| `PG_DB`              | ✅          |              | Имя базы данных PostgreSQL                           |
+| `PG_USER`            | ✅          |              | Имя пользователя сервера PostgreSQL                  |
+| `PG_PASSWORD`        | ✅          |              | Пароль сервера PostgreSQL                            |
+| `PG_HOST`            |             | 127.0.0.1    | Адрес сервера PostgreSQL                             |
+| `PG_PORT`            |             | 5432         | Порт сервера PostgreSQL                              |
+| `PG_PREFIX`          |             | `wl_`        | Префикс таблиц PostgreSQL                            |
+| `PG_SSL`             |             | `false`      | Установите `true`, чтобы использовать SSL-соединение |
+| `POSTGRES_DATABASE`  |             |              | Псевдоним `PG_DB`                                    |
+| `POSTGRES_USER`      |             |              | Псевдоним `PG_USER`                                  |
+| `POSTGRES_PASSWORD`  |             |              | Псевдоним `PG_PASSWORD`                              |
+| `POSTGRES_HOST`      |             | 127.0.0.1    | Псевдоним `PG_HOST`                                  |
+| `POSTGRES_PORT`      |             | 5432         | Псевдоним `PG_PORT`                                  |
+| `POSTGRES_PREFIX`    |             | `wl_`        | Псевдоним `PG_PREFIX`                                |
+| `POSTGRES_SSL`       |             | `false`      | Псевдоним `PG_SSL`                                   |
 
 ### GitHub
 
-| Environment Variable | Required | Default | Description                                                                                                      |
-| -------------------- | -------- | ------- | ---------------------------------------------------------------------------------------------------------------- |
-| `GITHUB_TOKEN`       | ✅       |         | [Personal access tokens](https://github.com/settings/tokens)                                                     |
-| `GITHUB_REPO`        | ✅       |         | repository name, such as `walinejs/waline`                                                                       |
-| GITHUB_PATH          |          |         | The data storage directory, such as `data` means it is stored in the `data` directory, root directory by default |
+| Переменная окружения | Обязательно | По умолчанию | Описание                                                                                                     |
+| -------------------- | ----------- | ------------ | ------------------------------------------------------------------------------------------------------------ |
+| `GITHUB_TOKEN`       | ✅          |              | [Токены личного доступа](https://github.com/settings/tokens)                                                 |
+| `GITHUB_REPO`        | ✅          |              | Имя репозитория, например `walinejs/waline`                                                                  |
+| GITHUB_PATH          |             |              | Каталог хранения данных: например, `data` означает хранение в каталоге `data`; по умолчанию корневой каталог |
 
-## Advanced
+## Дополнительно
 
-| Environment Variables           | Default                     | Description                                                                                      |
-| ------------------------------- | --------------------------- | ------------------------------------------------------------------------------------------------ |
-| `OAUTH_URL`                     | `https://oauth.lithub.cc`   | OAuth Social Login Service URL. You can [build your own auth](https://github.com/walinejs/auth). |
-| `WEBHOOK`                       |                             | You can set a Webhook URL that will be triggered when you have new comment.                      |
-| `WALINE_ADMIN_MODULE_ASSET_URL` | `//unpkg.com/@waline/admin` | Waline admin link                                                                                |
-| `IP2REGION_DB`                  |                             | customized IPv4 IP query library path (deprecated, use `IP2REGION_DB_V4` instead)                |
-| `IP2REGION_DB_V4`               |                             | customized IPv4 IP query library path. Falls back to `IP2REGION_DB` if not set                   |
-| `IP2REGION_DB_V6`               |                             | customized IPv6 IP query library path. Set this to enable IPv6 address location lookup           |
+| Переменная окружения            | По умолчанию                | Описание                                                                                                                             |
+| ------------------------------- | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `OAUTH_URL`                     | `https://oauth.lithub.cc`   | URL-адрес сервиса входа через соцсети OAuth. Можно [развернуть собственный сервис аутентификации](https://github.com/walinejs/auth). |
+| `WEBHOOK`                       |                             | Можно задать URL вебхука, который будет вызываться при появлении нового комментария.                                                 |
+| `WALINE_ADMIN_MODULE_ASSET_URL` | `//unpkg.com/@waline/admin` | Ссылка на панель администратора Waline                                                                                               |
+| `IP2REGION_DB`                  |                             | Путь к пользовательской библиотеке запросов IPv4 (устарело, используйте `IP2REGION_DB_V4`)                                           |
+| `IP2REGION_DB_V4`               |                             | Путь к пользовательской библиотеке запросов IPv4. Если не задан, используется `IP2REGION_DB`                                         |
+| `IP2REGION_DB_V6`               |                             | Путь к пользовательской библиотеке запросов IPv6. Задайте его, чтобы включить определение местоположения по IPv6                     |

@@ -1,16 +1,16 @@
 ---
-title: Comment Counter
+title: Счётчик комментариев
 icon: counter
 order: 8
 ---
 
-Waline supports displaying the number of comments separately in the non-comment area.
+Waline позволяет отдельно отображать количество комментариев вне области комментариев.
 
 <!-- more -->
 
-## Automatically Update
+## Автоматическое обновление
 
-You can enable comment counting in the `init` function by setting the `comment` option to `true`.
+Вы можете включить подсчёт комментариев в функции `init`, установив для параметра `comment` значение `true`.
 
 ```html
 <script type="module">
@@ -24,34 +24,34 @@ You can enable comment counting in the `init` function by setting the `comment` 
 </script>
 ```
 
-Waline will try to fill in or update comment count whenever you called `init` function or update the path.
+Waline будет пытаться заполнить или обновить количество комментариев при каждом вызове функции `init` или при обновлении пути.
 
-waline finds the elements having `waline-comment-count` class in the page, and get their `data-path` attribute as the query condition. And fill it with the obtained value:
+Waline находит на странице элементы с классом `waline-comment-count` и использует их атрибут `data-path` в качестве условия запроса. Затем в полученное значение подставляется результат:
 
 ```html
 <!-- data-path will be the query condition -->
 <span data-path="<Your/Path/Name>" class="waline-comment-count" /> comments
 ```
 
-If you need a different selector, you can set the `comment` option to that selector.
+Если вам нужен другой селектор, установите для параметра `comment` этот селектор.
 
-Every time you call `WalineInstance.update()`, Waline will search the page content and automatically update the comment count.
+При каждом вызове `WalineInstance.update()` Waline будет заново просматривать содержимое страницы и автоматически обновлять счётчик комментариев.
 
-::: tip Examples
+::: tip Примеры
 
 ```html
 The current page has <span class="waline-comment-count" /> comments, the home page has
-<span data-path="/ru/" class="waline-comment-count" /> comments.
+<span data-path="/en/" class="waline-comment-count" /> comments.
 ```
 
-The current page has <span class="waline-comment-count" /> comments, the home
-page has <span data-path="/ru/" class="waline-comment-count" /> comments.
+На текущей странице <span class="waline-comment-count" /> комментариев, на главной
+странице <span data-path="/en/" class="waline-comment-count" /> комментариев.
 
 :::
 
-## Manual Update
+## Ручное обновление
 
-Besides automatically update via the `init` function, you can manually update the current page's comment count via the `commentCount` API:
+Помимо автоматического обновления с помощью функции `init`, вы можете вручную обновлять счётчик комментариев текущей страницы через API `commentCount`:
 
 ```html
 <script type="module">
@@ -67,11 +67,11 @@ Besides automatically update via the `init` function, you can manually update th
 </script>
 ```
 
-::: info Aborting
+::: info Отмена
 
-Since the comment count fetch is an asynchronous network operation, you may need to cancel an ongoing comment count update operation in certain circumstances.
+Поскольку получение количества комментариев является асинхронной сетевой операцией, в некоторых обстоятельствах может потребоваться отменить выполняющееся обновление счётчика комментариев.
 
-`commentCount` returns a function that can be called to cancel the update:
+`commentCount` возвращает функцию, вызов которой отменяет обновление:
 
 ```js
 const abort = Waline.commentCount({
@@ -85,9 +85,9 @@ setTimeout(() => abort(), 500);
 
 :::
 
-## Import Counter Only
+## Подключение только счётчика
 
-Sometimes, you may want to display the comment count of some pages in the article list or homepage, but do not want to load the entire Waline. At this point you can use a Gzip < 1KB `comment` module:
+Иногда требуется показывать количество комментариев некоторых страниц в списке статей или на главной странице, но загружать весь Waline не хочется. В этом случае можно использовать модуль `comment` размером Gzip < 1KB:
 
 ```html
 <script type="module">

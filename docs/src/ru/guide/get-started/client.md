@@ -1,109 +1,109 @@
 ---
-title: Client Intro
+title: Введение в клиент
 icon: client
 order: 1
 ---
 
-Waline officially provides the [`@waline/client`](https://www.npmjs.com/package/@waline/client), which is written in Vue + TypeScript and is only 100kb gzip in size.
+Waline официально предоставляет [`@waline/client`](https://www.npmjs.com/package/@waline/client), написанный на Vue + TypeScript, его размер составляет всего 100 КБ в gzip.
 
-## Import
+## Подключение
 
-You can use CDN or npm to import Waline client, and we provide multiple versions of files to meet different scenarios.
+Клиент Waline можно подключить через CDN или npm; мы предоставляем файлы в нескольких вариантах для разных сценариев.
 
-If you have problems during this process, see:
+Если в процессе возникнут проблемы, см.:
 
-- [Cookbook → CDN import](../../cookbook/import/cdn.md)
-- [Cookbook → Project Import](../../cookbook/import/project.md)
+- [Рецепты → Подключение через CDN](../../cookbook/import/cdn.md)
+- [Рецепты → Подключение в проект](../../cookbook/import/project.md)
 
-## Use Waline
+## Использование Waline
 
-The easiest way to use Waline is [using the method detailed in the quick start](./README.md#importing-in-html): import the `init` function from Waline and initialize the Waline instance through `init(yourOptions)`.
+Самый простой способ использовать Waline — [способ, подробно описанный в быстром старте](./README.md#подключение-в-html): импортировать функцию `init` из Waline и инициализировать экземпляр Waline через `init(yourOptions)`.
 
-Among the `init` options, the `el` and `serverURL` are required. The former is the element or element selector on which Waline is mounted, and the latter is the server address. For all initialization parameters for `@waline/client`, see [Client Reference → API](../../reference/client/api.md).
+Среди параметров `init` обязательны `el` и `serverURL`. Первый — элемент или селектор элемента, в который монтируется Waline, второй — адрес сервера. Все параметры инициализации `@waline/client` см. в разделе [Справочник клиента → API](../../reference/client/api.md).
 
-## Comment Counts
+## Счётчик комментариев
 
-`@waline/client` also provides a sub-package for comment statistics. You can use it to display the comment count in the blog post list or other pages that don't contain comments. For more details, see [Features → Comment Count](../features/comment.md) for details
+`@waline/client` также предоставляет подпакет для подсчёта комментариев. С его помощью можно отображать количество комментариев в списке статей блога или на других страницах без комментариев. Подробнее см. [Возможности → Счётчик комментариев](../features/comment.md)
 
-## Pageview Counts
+## Счётчик просмотров
 
-Waline supports pageview statistics. If you don't need a comment service but would like to use the pageview function, Waline provides a pageview statistics plugin whose Gzip size is < 1KB.
+Waline поддерживает подсчёт просмотров. Если сервис комментариев не нужен, а функция просмотров нужна, Waline предоставляет плагин подсчёта просмотров размером < 1KB в Gzip.
 
-For more information about the `@waline/client` pageview count, see [Features → Pageview Count](../features/pageview.md)
+Подробнее о счётчике просмотров `@waline/client` см. [Возможности → Счётчик просмотров](../features/pageview.md)
 
-## Comment Format Support
+## Поддержка форматов комментариев
 
-`@waline/client` supports many comment syntax and rich formatting. In addition to supporting standard Markdown and GFM syntax extensions, commenters can also embed HTML tags, use math equations, and more. For other syntax, see [Features → Supported syntax](../features/syntax.md) for details.
+`@waline/client` поддерживает множество синтаксисов комментариев и богатое форматирование. Помимо стандартного Markdown и расширений синтаксиса GFM, комментаторы могут встраивать HTML-теги, использовать математические формулы и многое другое. Остальной синтаксис см. в [Возможности → Поддерживаемый синтаксис](../features/syntax.md).
 
-`@waline/client` also supports real-time preview of comment input in the comment box. That said, some functions are dropped by default due to size. If you wish to restore these functions, see:
+`@waline/client` также поддерживает предпросмотр вводимого комментария в реальном времени. Правда, из-за размера некоторые функции по умолчанию отключены. Если вы хотите их вернуть, см.:
 
-- [Cookbook → Customize Preview Code Highlighter](../../cookbook/customize/highlighter.md)
-- [Cookbook → Customize Preview $\TeX$ Renderer](../../cookbook/customize/tex-renderer.md)
+- [Рецепты → Настройка подсветчика кода в предпросмотре](../../cookbook/customize/highlighter.md)
+- [Рецепты → Настройка рендерера $\TeX$ в предпросмотре](../../cookbook/customize/tex-renderer.md)
 
-## Article Reaction
+## Реакции на статью
 
-Find comments too cumbersome? Waline allows your visitors to quickly express their reactions to articles, such as like, dislike, doubt, boredom, surprise, etc. To manually enable this feature, see [Features → Article Reactions](../features/reaction.md) .
+Считаете комментарии слишком громоздкими? Waline позволяет посетителям быстро выражать своё отношение к статьям — например, «Нравится», «Не нравится», «Не понимаю», «Скучно», «Удивлён» и т. д. Как включить эту функцию вручную, см. [Возможности → Реакции на статью](../features/reaction.md) .
 
-## Comment Features
+## Возможности комментариев
 
-Waline supports a number of basic features, including login, avatars, [multiple languages](../features/i18n.md) and real-time preview.
+Waline поддерживает ряд базовых возможностей, включая вход, аватары, [несколько языков](../features/i18n.md) и предпросмотр в реальном времени.
 
-Waline allows you to set up interaction level labels and custom labels for your users. For more details, see [User Labels](../features/label.md).
+Waline позволяет задавать метки уровней взаимодействия и пользовательские метки для ваших пользователей. Подробнее см. [Метки пользователей](../features/label.md).
 
-## Emoji tab
+## Вкладка эмодзи
 
-`@waline/client` supports multiple Emoji tabs, and allows users to easily introduce Emoji tabs via presets. You can easily create your own presets in addition to the official ones.
+`@waline/client` поддерживает несколько вкладок эмодзи и позволяет легко подключать вкладки эмодзи через наборы. Помимо официальных, вы можете легко создавать собственные наборы.
 
-For more information about `@waline/client` emoji tabs, see:
+Подробнее о вкладках эмодзи `@waline/client` см.:
 
-- [Features → Emoji tab](../features/emoji.md)
-- [Cookbook → Customize Emoji](../../cookbook/customize/emoji.md)
+- [Возможности → Вкладка эмодзи](../features/emoji.md)
+- [Рецепты → Настройка эмодзи](../../cookbook/customize/emoji.md)
 
-## Inset Image
+## Вставка изображений
 
-`@waline/client` has a built-in image upload support. By default, images are converted to base64. That said, you can also use your own image hosting service.
+`@waline/client` имеет встроенную поддержку загрузки изображений. По умолчанию изображения преобразуются в base64. При этом можно использовать и собственный хостинг изображений.
 
-For more info about the image upload settings of `@waline/client`, see [Cookbook → Customize Image Upload](../../cookbook/customize/upload-image.md).
+Подробнее о настройках загрузки изображений `@waline/client` см. [Рецепты → Настройка загрузки изображений](../../cookbook/customize/upload-image.md).
 
-## Emoji Search
+## Поиск эмодзи
 
-`@waline/client` provides a meme and emoji search function via [giphy](https://giphy.com), and allows you to customize search service. See:
+`@waline/client` предоставляет поиск мемов и эмодзи через [giphy](https://giphy.com) и позволяет настроить сервис поиска. См.:
 
-- [Features → Emoji Search](../features/search.md)
-- [Cookbook → Customize emoticon search](../../cookbook/customize/search.md)
+- [Возможности → Поиск эмодзи](../features/search.md)
+- [Рецепты → Настройка поиска эмодзи](../../cookbook/customize/search.md)
 
-## Multilingual Support
+## Поддержка языков
 
-`@waline/client` has built-in support for multiple languages, and you can add language support or modify UI text based on this. See:
+`@waline/client` имеет встроенную поддержку нескольких языков, на её основе можно добавлять языки или изменять текст интерфейса. См.:
 
-- [Features → Set language](../features/i18n.md).
-- [Cookbook → Customize Language](../../cookbook/customize/locale.md).
+- [Возможности → Установка языка](../features/i18n.md).
+- [Рецепты → Настройка языка](../../cookbook/customize/locale.md).
 
-## Accessibility Support
+## Поддержка доступности
 
-Waline fully supports all accessibility standards:
+Waline полностью соответствует стандартам доступности:
 
-- All icons and controls have their corresponding accessibility labels.
-- You can interact with all of Waline's controls using either a keyboard or a head-mounted pointing device.
+- У всех иконок и элементов управления есть соответствующие метки доступности.
+- С любыми элементами управления Waline можно взаимодействовать как с клавиатуры, так и с помощью устройства указания, надеваемого на голову.
 
-This is our way of supporting the visually impaired and mobility impaired people around the world! :heart:
+Так мы поддерживаем людей с нарушениями зрения и опорно-двигательного аппарата по всему миру! :heart:
 
-## Customizable Styles
+## Настраиваемые стили
 
-Waline comes with built-in dark mode support. To make it easier for users to adjust Waline's styles, we provide many configurable CSS variables.
+Waline имеет встроенную поддержку тёмного режима. Чтобы пользователям было проще настраивать стиль Waline, мы предоставляем множество настраиваемых CSS-переменных.
 
-See [Custom Styles](../features/style.md) for more details.
+Подробнее см. [Собственные стили](../features/style.md).
 
-## Advanced Development
+## Продвинутая разработка
 
-### Single Page Application Support
+### Поддержка одностраничных приложений
 
-Waline supports SPAs (**S**ingle **P**age **A**applications).
+Waline поддерживает SPA (**S**ingle **P**age **A**pplications).
 
-If you want to use Waline in a website or application based on the history API, you can use the `update()` method on the initialized instance to refresh the configuration of the comment area, or use the `destroy()` method on the instance to destroy Waline. To learn more about the reactivity of `@waline/client`, see [Cookbook → Reactivity](../../cookbook/reactivity.md).
+Если вы хотите использовать Waline на сайте или в приложении на основе history API, можно применить метод `update()` к инициализированному экземпляру, чтобы обновить конфигурацию области комментариев, или метод `destroy()` на экземпляре, чтобы уничтожить Waline. Подробнее о реактивности `@waline/client` см. [Рецепты → Реактивность](../../cookbook/reactivity.md).
 
-### Ecosystem
+### Экосистема
 
-You can easily use Waline through plugins on tools like Hexo, VuePress, and even third-party clients.
+Waline можно легко использовать через плагины для таких инструментов, как Hexo и VuePress, а также в сторонних клиентах.
 
-For third-party clients, themes, and plugins that support Waline, see [Learn more → Ecosystem](../../advanced/ecosystem.md).
+О сторонних клиентах, темах и плагинах, поддерживающих Waline, см. [Узнать больше → Экосистема](../../advanced/ecosystem.md).

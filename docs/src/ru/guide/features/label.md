@@ -1,23 +1,23 @@
 ---
-title: User label
+title: Метки пользователей
 icon: label
 order: 5
 ---
 
-Waline allows you to set level labels based on interactions and custom labels for logged-in users.
+Waline позволяет задавать метки уровней на основе взаимодействий, а также пользовательские метки для авторизованных пользователей.
 
-## Grade labels
+## Метки уровней
 
-You need to configure the `LEVELS` variable on the server to enable this function, see [Server Environment Variable Configuration](../../reference/server/env.md#display).
+Чтобы включить эту функцию, необходимо настроить переменную `LEVELS` на сервере, см. [Конфигурация переменных окружения сервера](../../reference/server/env.md#отображение).
 
-You can customize these level labels via the locales option, see [Multilingual](./i18n.md#customize)
+Вы можете настроить эти метки уровней с помощью параметра locales, см. [Мультиязычность](./i18n.md#настроика)
 
-## Exclusive Label
+## Персональная метка
 
-You can customize labels for users through the management side.
+Вы можете настраивать метки пользователей через панель управления.
 
 ![Admin Label](./assets/label-admin.jpg)
 
-As a login user, you can also update your exclusive label at profile page.
+Будучи авторизованным пользователем, вы также можете обновить свою персональную метку на странице профиля.
 
 ![Profile Label](./assets/label-profile.jpg)

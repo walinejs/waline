@@ -1,20 +1,20 @@
 ---
-title: Import Waline via CDN
+title: Импорт Waline через CDN
 icon: import
 order: 1
 ---
 
-This cookbook is about importing Waline via CDN.
+Этот раздел руководства посвящён импорту Waline через CDN.
 
 <!-- more -->
 
-For China Mainland users, we recommend using [unpkg](https://unpkg.com/@waline/client). For foreign users, we recommend using jsDelivr.
+Пользователям из материкового Китая мы рекомендуем использовать [unpkg](https://unpkg.com/@waline/client), а пользователям из других стран — jsDelivr.
 
-To make Waline SSR friendly, we split Waline's styles in V2 version. This means, you need to import Waline's CSS style file, and import Waline script file and call Waline.
+Чтобы Waline лучше работал с SSR, в версии V2 мы разделили его стили. Это значит, что нужно импортировать CSS-файл стилей Waline, а затем импортировать скрипт Waline и вызвать его.
 
-## Comment
+## Комментарии
 
-Normally, you may want Waline to render a list of comments, you can import Waline as follows:
+Обычно требуется, чтобы Waline отображал список комментариев. В этом случае импортируйте Waline следующим образом:
 
 ```html
 <!-- style file -->
@@ -29,11 +29,11 @@ Normally, you may want Waline to render a list of comments, you can import Walin
 </script>
 ```
 
-## Pageviews and comments
+## Просмотры и комментарии
 
-Sometimes, you may want to display the number of page views and comments of the article on the home page or article list, but do not need to load the comment component, then you can import a Gzip < 1KB script file in the following ways:
+Иногда нужно отображать количество просмотров и комментариев статьи на главной странице или в списке статей, но без загрузки компонента комментариев. В этом случае можно импортировать скрипт размером Gzip < 1 КБ следующими способами:
 
-Pageviews:
+Просмотры:
 
 ```html
 <script type="module">
@@ -45,7 +45,7 @@ Pageviews:
 </script>
 ```
 
-Comments count:
+Количество комментариев:
 
 ```html
 <script type="module">
@@ -57,10 +57,10 @@ Comments count:
 </script>
 ```
 
-## More
+## Дополнительно
 
-::: info Specifies version
+::: info Указание версии
 
-You may have noticed that in the above cases, we have explicitly declared the `@v2` version after `@aline/client`. Your website is not working properly.
+Возможно, вы заметили, что во всех приведённых выше примерах мы явно указали версию `@v2` после `@aline/client`. Без этого ваш сайт не будет работать корректно.
 
 :::

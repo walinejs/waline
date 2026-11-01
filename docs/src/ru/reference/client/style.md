@@ -1,13 +1,13 @@
 ---
-title: CSS variable
+title: CSS-переменные
 icon: style
 ---
 
-`@waline/client` provides some CSS variables. You can easily configure the style of waline through these variables.
+`@waline/client` предоставляет набор CSS-переменных. С их помощью можно легко настроить стиль Waline.
 
 <!-- more -->
 
-## CSS Variables Name and Default Values
+## Имена CSS-переменных и значения по умолчанию
 
 ```css
 :root {

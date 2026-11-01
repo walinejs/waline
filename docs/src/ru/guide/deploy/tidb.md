@@ -1,37 +1,37 @@
 ---
-title: Create a database on TiDB
+title: Создание базы данных на TiDB
 icon: tidb
 ---
 
-[TiDB](https://github.com/pingcap/tidb) is an open source NewSQL database. [TiDB Cloud](https://tidbcloud.com/) is the official online version, which provides 5GB of free storage for everyone to use. The following describes how to create a Waline database on TiDB Cloud.
+[TiDB](https://github.com/pingcap/tidb) — база данных NewSQL с открытым исходным кодом. [TiDB Cloud](https://tidbcloud.com/) — её официальная онлайн-версия, предоставляющая всем 5 ГБ бесплатного хранилища. Ниже описано, как создать базу данных Waline в TiDB Cloud.
 
-## Create Database
+## Создание базы данных
 
-1. After logging in to [TiDB Cloud](https://tidbcloud.com), a TiDB instance will be created automatically, directly click <kbd>cluster0</kbd> to enter the instance
+1. После входа в [TiDB Cloud](https://tidbcloud.com) экземпляр TiDB создаётся автоматически: просто нажмите <kbd>cluster0</kbd>, чтобы войти в экземпляр
 
    ![Enter instance](../../../assets/tidb-1.png)
 
-2. Select <kbd>SQL Editor</kbd> in the list on the left and change the content of [waline.tidb](https://github.com/walinejs/waline/blob/main/assets/waline.tidb) to `;` The distribution of statements is executed close to the interface. Click the <kbd>Run</kbd> blue button in the upper right corner for each sentence, or use the <kbd>Ctrl\/Command</kbd> + <kbd>Enter</kbd> shortcut key to execute
+2. Выберите <kbd>SQL Editor</kbd> в списке слева и разбейте содержимое [waline.tidb](https://github.com/walinejs/waline/blob/main/assets/waline.tidb) на отдельные инструкции по `;` — они выполняются в интерфейсе по очереди. Для каждой инструкции нажимайте синюю кнопку <kbd>Run</kbd> в правом верхнем углу или используйте сочетание клавиш <kbd>Ctrl\/Command</kbd> + <kbd>Enter</kbd>
    ![Step1](../../../assets/tidb-2.png)
    ![Step2](../../../assets/tidb-3.png)
    ![Step3](../../../assets/tidb-4.png)
    ![Step4](../../../assets/tidb-5.png)
    ![Step5](../../../assets/tidb-6.png)
 
-So far the Waline database has been created!
+На этом база данных Waline создана!
 
-## Get Connection Configuration
+## Получение параметров подключения
 
-Click the <kbd>Overview</kbd> button on the left to enter the homepage, and select <kbd>Connect</kbd> in the upper right corner to get connection information.
+Нажмите кнопку <kbd>Overview</kbd> слева, чтобы перейти на главную страницу, и выберите <kbd>Connect</kbd> в правом верхнем углу, чтобы получить информацию о подключении.
 
-Set "Connect with" to `General`. Also click <kbd>Reset password</kbd> on the following line to generate a new password.
+Установите для «Connect with» значение `General`. Также нажмите <kbd>Reset password</kbd> в строке ниже, чтобы сгенерировать новый пароль.
 
-In this way, you can get the configuration related to the connection.
+Так вы получите все параметры, связанные с подключением.
 
 ![Connection](../../../assets/tidb-7.png)
 
-## Vercel deployment
+## Развёртывание на Vercel
 
-Create a Vercel account, add a project and deploy the Waline service. Then open the project <kbd>Settings</kbd> and go to `Environment Variables`. Click <kbd>Add Environment Variable</kbd> and add the following variables: `TIDB_HOST`, `TIDB_PORT`, `TIDB_DB`, `TIDB_USER`, and `TIDB_PASSWORD`. After adding these variables, redeploy the project.
+Создайте учётную запись Vercel, добавьте проект и разверните сервис Waline. Затем откройте <kbd>Settings</kbd> проекта и перейдите в `Environment Variables`. Нажмите <kbd>Add Environment Variable</kbd> и добавьте следующие переменные: `TIDB_HOST`, `TIDB_PORT`, `TIDB_DB`, `TIDB_USER` и `TIDB_PASSWORD`. После добавления этих переменных разверните проект заново.
 
 ![Configure TiDB connection](../../../assets/tidb-8.png)
