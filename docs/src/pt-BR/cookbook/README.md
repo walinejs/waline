@@ -3,7 +3,7 @@ title: Livro de receitas
 icon: cookbook
 ---
 
-This cookbook will introduce Waline in more depth.
+Este livro de receitas apresenta o Waline com mais profundidade.
 
 <!-- more -->
 

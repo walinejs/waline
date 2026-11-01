@@ -1,16 +1,16 @@
 ---
-title: Comment Counter
+title: Contador de comentários
 icon: counter
 order: 8
 ---
 
-Waline supports displaying the number of comments separately in the non-comment area.
+O Waline permite exibir o número de comentários separadamente, em áreas fora da lista de comentários.
 
 <!-- more -->
 
-## Automatically Update
+## Atualização automática
 
-You can enable comment counting in the `init` function by setting the `comment` option to `true`.
+Você pode ativar a contagem de comentários na função `init` definindo a opção `comment` como `true`.
 
 ```html
 <script type="module">
@@ -24,34 +24,34 @@ You can enable comment counting in the `init` function by setting the `comment` 
 </script>
 ```
 
-Waline will try to fill in or update comment count whenever you called `init` function or update the path.
+O Waline tentará preencher ou atualizar a contagem de comentários sempre que você chamar a função `init` ou atualizar o caminho.
 
-waline finds the elements having `waline-comment-count` class in the page, and get their `data-path` attribute as the query condition. And fill it with the obtained value:
+O Waline encontra na página os elementos com a classe `waline-comment-count` e usa o atributo `data-path` deles como condição de consulta, preenchendo-os com o valor obtido:
 
 ```html
 <!-- data-path will be the query condition -->
 <span data-path="<Your/Path/Name>" class="waline-comment-count" /> comments
 ```
 
-If you need a different selector, you can set the `comment` option to that selector.
+Se você precisar de um seletor diferente, pode definir a opção `comment` com esse seletor.
 
-Every time you call `WalineInstance.update()`, Waline will search the page content and automatically update the comment count.
+Toda vez que você chamar `WalineInstance.update()`, o Waline pesquisará o conteúdo da página e atualizará a contagem de comentários automaticamente.
 
-::: tip Examples
+::: tip Exemplos
 
 ```html
 The current page has <span class="waline-comment-count" /> comments, the home page has
 <span data-path="/pt-BR/" class="waline-comment-count" /> comments.
 ```
 
-The current page has <span class="waline-comment-count" /> comments, the home
-page has <span data-path="/pt-BR/" class="waline-comment-count" /> comments.
+A página atual tem <span class="waline-comment-count" /> comentários, e a página inicial tem
+<span data-path="/pt-BR/" class="waline-comment-count" /> comentários.
 
 :::
 
-## Manual Update
+## Atualização manual
 
-Besides automatically update via the `init` function, you can manually update the current page's comment count via the `commentCount` API:
+Além da atualização automática pela função `init`, você pode atualizar manualmente a contagem de comentários da página atual com a API `commentCount`:
 
 ```html
 <script type="module">
@@ -67,11 +67,11 @@ Besides automatically update via the `init` function, you can manually update th
 </script>
 ```
 
-::: info Aborting
+::: info Cancelamento
 
-Since the comment count fetch is an asynchronous network operation, you may need to cancel an ongoing comment count update operation in certain circumstances.
+Como a busca da contagem de comentários é uma operação de rede assíncrona, em algumas circunstâncias você pode precisar cancelar uma atualização de contagem em andamento.
 
-`commentCount` returns a function that can be called to cancel the update:
+`commentCount` retorna uma função que pode ser chamada para cancelar a atualização:
 
 ```js
 const abort = Waline.commentCount({
@@ -85,9 +85,9 @@ setTimeout(() => abort(), 500);
 
 :::
 
-## Import Counter Only
+## Importar apenas o contador
 
-Sometimes, you may want to display the comment count of some pages in the article list or homepage, but do not want to load the entire Waline. At this point you can use a Gzip < 1KB `comment` module:
+Às vezes você pode querer exibir a contagem de comentários de algumas páginas na lista de artigos ou na página inicial, mas sem carregar o Waline inteiro. Nesse caso, você pode usar o módulo `comment`, que tem menos de 1 KB gzip:
 
 ```html
 <script type="module">

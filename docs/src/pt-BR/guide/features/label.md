@@ -1,23 +1,23 @@
 ---
-title: User label
+title: Rótulo de usuário
 icon: label
 order: 5
 ---
 
-Waline allows you to set level labels based on interactions and custom labels for logged-in users.
+O Waline permite definir rótulos de nível com base nas interações, além de rótulos personalizados para usuários conectados.
 
-## Grade labels
+## Rótulos de nível
 
-You need to configure the `LEVELS` variable on the server to enable this function, see [Server Environment Variable Configuration](../../reference/server/env.md#display).
+Você precisa configurar a variável `LEVELS` no servidor para ativar esse recurso; veja [Configuração de variáveis de ambiente do servidor](../../reference/server/env.md#exibicao).
 
-You can customize these level labels via the locales option, see [Multilingual](./i18n.md#customize)
+Você pode personalizar esses rótulos de nível com a opção locales; veja [Multilíngue](./i18n.md#personalizar)
 
-## Exclusive Label
+## Rótulo exclusivo
 
-You can customize labels for users through the management side.
+Você pode personalizar rótulos para os usuários pelo painel administrativo.
 
 ![Admin Label](./assets/label-admin.jpg)
 
-As a login user, you can also update your exclusive label at profile page.
+Como usuário conectado, você também pode atualizar seu rótulo exclusivo na página de perfil.
 
 ![Profile Label](./assets/label-profile.jpg)

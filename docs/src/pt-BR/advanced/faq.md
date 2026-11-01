@@ -4,58 +4,58 @@ icon: faq
 order: 4
 ---
 
-Waline has a very clear position since its birth:
+O Waline tem uma posição muito clara desde o seu nascimento:
 
-::: info A simple comment system with backend.
-
-:::
-
-All versions released afterwards are modifications made around this position.
-
-## What is the relationship with Valine?
-
-::: info Waline = With backend Valine
+::: info Um sistema de comentários simples com backend.
 
 :::
 
-Consulting with the open source version of Valine, the comment list in frontend is rewritten with React. The style and structure as well as some internal tools and methods are all from Valine.
+Todas as versões lançadas depois disso são modificações feitas em torno dessa posição.
 
-## Do I still need to deploy Valine-Admin on LeanCloud?
+## Qual é a relação com o Valine?
 
-No. Waline is a three-in-one deployment of data storage, server, and client. The server interface is already equivalent to Valine's LeanCloud cloud engine. The server already includes comment management and email notifications feature provided by the previous cloud engine. It doesn't need the additional LeanCloud cloud engine, so it won't be restricted by the LeanCloud cloud engine's sleep strategy.
+::: info Waline = Valine com backend
 
-## How can I upgrade?
+:::
 
-Waline is mainly composed of two parts: the frontend and the server.
+Tendo como referência a versão open source do Valine, a lista de comentários no frontend foi reescrita com React. O estilo e a estrutura, assim como algumas ferramentas e métodos internos, vêm todos do Valine.
+
+## Ainda preciso implantar o Valine-Admin no LeanCloud?
+
+Não. O Waline é uma implantação três em um de armazenamento de dados, servidor e cliente. A interface do servidor já equivale ao mecanismo de nuvem do LeanCloud do Valine. O servidor já inclui o gerenciamento de comentários e as notificações por e-mail fornecidos pelo antigo mecanismo de nuvem. Ele não precisa do mecanismo de nuvem adicional do LeanCloud, portanto não é afetado pela estratégia de suspensão (sleep) do mecanismo de nuvem do LeanCloud.
+
+## Como faço para atualizar?
+
+O Waline é composto principalmente por duas partes: o frontend e o servidor.
 
 ### Frontend
 
-The front end inserts comment lists and comment boxes by including JS scripts in the web page. In most scenarios, the link will use the address of the latest version of the online CDN, and the latest version will be automatically applied, without the need for users to manually update.
+O frontend insere as listas de comentários e as caixas de comentário por meio da inclusão de scripts JS na página web. Na maioria dos cenários, o link usa o endereço da versão mais recente do CDN online, e a versão mais recente é aplicada automaticamente, sem que o usuário precise atualizar manualmente.
 
-::: note Need manually update in following situations
+::: note É preciso atualizar manualmente nas seguintes situações
 
-1. The version number is forcibly specified in the CDN address. In this situation, you need to manually modify the version number to be the latest.
-1. Use NPM to require and pack the module into code. In this situation, you need to modify the version number in the dependency to ensure that the latest version of the dependency can be obtained during installation.
+1. O número da versão é especificado de forma forçada no endereço do CDN. Nessa situação, você precisa alterar manualmente o número da versão para a mais recente.
+1. Você usa o NPM para importar e empacotar o módulo no código. Nessa situação, você precisa alterar o número da versão na dependência para garantir que a versão mais recente da dependência seja obtida durante a instalação.
 
 :::
 
-### Server
+### Servidor
 
-The server refers to the backend service corresponding to the `serverURL` configured in frontend script, and its update will be slightly different depending on different deployment environments. Server updates will be more frequent.
+O servidor é o serviço de backend correspondente ao `serverURL` configurado no script do frontend, e sua atualização varia um pouco conforme os diferentes ambientes de implantação. As atualizações do servidor são mais frequentes.
 
 #### Vercel
 
-Go to the corresponding GitHub repository and modify the version number of `@waline/vercel` in the package.json file to the latest.
+Acesse o repositório correspondente no GitHub e altere o número da versão do `@waline/vercel` no arquivo package.json para a mais recente.
 
 ![vercel](./assets/vercel-update.png)
 
 #### CloudBase
 
-Enter the code editing page, click <kbd>Save and reinstall dependencies</kbd>. If it still doesn’t work, enter <kbd>My Application</kbd> and select <kbd>Deploy</kbd> to redeploy.
+Entre na página de edição de código e clique em <kbd>Salvar e reinstalar dependências</kbd>. Se ainda não funcionar, entre em <kbd>Meu aplicativo</kbd> e selecione <kbd>Implantar</kbd> para reimplantar.
 
 ::: caution
 
-Redeployment will clear the previous files. If there is a configuration in the previous file, it needs to be backed up first.
+A reimplantação limpa os arquivos anteriores. Se houver alguma configuração no arquivo anterior, ela precisa ser copiada primeiro.
 
 :::
 
@@ -63,8 +63,8 @@ Redeployment will clear the previous files. If there is a configuration in the p
 
 #### Docker
 
-Run `docker pull lizheming/waline` directly to pull the latest image.
+Execute `docker pull lizheming/waline` diretamente para baixar a imagem mais recente.
 
-## Why posting comments are slow?
+## Por que o envio de comentários é lento?
 
-Due to some technical reasons, spam detection and comment notification are all serial operations when posting comments. The spam detection uses the service provided by Akismet abroad, which may be slow to access. Users can turn off the spam detection function through the `AKISMET_KEY=false` environment variable. Beside the spam detection service, the email notification in the comment notification may also cause a timeout. You can turn off the comment notification to test whether it is caused by this feature.
+Por algumas razões técnicas, a detecção de spam e a notificação de comentários são operações seriais no envio de um comentário. A detecção de spam usa o serviço fornecido pelo Akismet no exterior, que pode ser lento para acessar. Os usuários podem desativar a função de detecção de spam por meio da variável de ambiente `AKISMET_KEY=false`. Além do serviço de detecção de spam, a notificação por e-mail da notificação de comentários também pode causar timeout. Você pode desativar a notificação de comentários para testar se o problema é causado por esse recurso.

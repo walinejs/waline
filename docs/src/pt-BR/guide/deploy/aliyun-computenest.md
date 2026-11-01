@@ -1,36 +1,34 @@
 ---
-title: Deploy on Alibaba Cloud Compute Nest
+title: Implantar no Alibaba Cloud Compute Nest
 icon: aliyun
 ---
 
-[Compute Nest](https://computenest.console.aliyun.com/) is a Platform as a Service (PaaS) solution Alibaba Cloud provides for service providers and their customers to manage services.
+O [Compute Nest](https://computenest.console.aliyun.com/) é uma solução de Plataforma como Serviço (PaaS) que o Alibaba Cloud oferece para provedores de serviços e seus clientes gerenciarem serviços.
 
-Service providers can publish private services on Compute Nest, and their customers can deploy these services easily. Service providers can also publish fully-managed services where they can implement hosted O&M for the resources of their customers.
+Os provedores de serviços podem publicar serviços privados no Compute Nest, e seus clientes podem implantar esses serviços com facilidade. Os provedores também podem publicar serviços totalmente gerenciados, nos quais realizam operação e manutenção (O&M) hospedadas nos recursos de seus clientes.
 
-Compute Nest provides service capabilities to cater to each stage of the lifecycle management of services. Service providers can manage different stages using different functional modules based on their requirements. This helps service providers improve operational efficiency, reduce operating costs, and provide simple and convenient services for customers.
+O Compute Nest oferece recursos de serviço que atendem a cada etapa do gerenciamento do ciclo de vida dos serviços. Os provedores de serviços podem gerenciar diferentes etapas usando diferentes módulos funcionais conforme suas necessidades. Isso ajuda os provedores a melhorar a eficiência operacional, reduzir os custos operacionais e oferecer serviços simples e convenientes aos clientes.
 
 <!-- more -->
 
-## How to deploy
+## Como implantar
 
-1. Confirmation before deployment: To deploy a Waline community edition service instance, you need to
-   access and create some Alibaba Cloud resources. Therefore, your account must contain permissions for the following
-   resources. Description: this permission is required only when your account is a RAM account.
+1. Confirmação antes da implantação: para implantar uma instância de serviço da Waline Community Edition, você precisa acessar e criar alguns recursos do Alibaba Cloud. Portanto, sua conta deve conter permissões para os seguintes recursos. Observação: essa permissão é necessária apenas quando sua conta é uma conta RAM.
 
-   | Permission Policy Name          | Remark                                                                  |
+   | Nome da política de permissão   | Observação                                                              |
    | ------------------------------- | ----------------------------------------------------------------------- |
-   | AliyunECSFullAccess             | Permissions to manage ECS                                               |
-   | AliyunVPCFullAccess             | Permissions to manage a VPC                                             |
-   | AliyunROSFullAccess             | Manage permissions for the Resource Orchestration Service (ROS)         |
-   | AliyunComputeNestUserFullAccess | Manage user-side permissions for the compute nest service (ComputeNest) |
+   | AliyunECSFullAccess             | Permissões para gerenciar o ECS                                         |
+   | AliyunVPCFullAccess             | Permissões para gerenciar uma VPC                                       |
+   | AliyunROSFullAccess             | Permissões de gerenciamento do Resource Orchestration Service (ROS)     |
+   | AliyunComputeNestUserFullAccess | Permissões do lado do usuário para o serviço Compute Nest (ComputeNest) |
 
-1. Access the Waline service on Alibaba Compute Nest [Deployment Link](https://computenest.console.aliyun.com/service/instance/create/default?type=user&ServiceName=Waline%20Community%20Edition)，fill in the deployment parameters as prompted
-1. Select the payment type, ECS (i.e. cloud server) instance specifications, system disk type, and instance password as needed.
+1. Acesse o serviço Waline no Alibaba Compute Nest [Link de implantação](https://computenest.console.aliyun.com/service/instance/create/default?type=user&ServiceName=Waline%20Community%20Edition) e preencha os parâmetros de implantação conforme solicitado
+1. Selecione o tipo de pagamento, as especificações da instância ECS (ou seja, servidor em nuvem), o tipo de disco do sistema e a senha da instância conforme necessário.
    ![computenest](../../../assets/aliyun-computenest-en-1.png)
-1. Select the availability zone where the ECS instance is deployed, and select the VPC (private network) and switch ID where the ECS instance is located. If there are no available VPCs and switches in your account, you can directly jump to the relevant Alibaba Cloud product console to create them by clicking "Create VPC" and "Create vSwitch" in the Compute Nest console. Click Next: Confirm Order.
+1. Selecione a zona de disponibilidade onde a instância ECS será implantada e selecione a VPC (rede privada) e o ID do vSwitch onde a instância ECS está localizada. Se não houver VPCs e vSwitches disponíveis na sua conta, você pode ir diretamente ao console do produto correspondente do Alibaba Cloud para criá-los, clicando em "Create VPC" e "Create vSwitch" no console do Compute Nest. Clique em Next: Confirm Order.
    ![computenest](../../../assets/aliyun-computenest-en-2.png)
-1. After confirming the deployment parameters and reviewing the estimated price, click Create Now.
-1. Click the "Service Instance" TAB on the left to enter the service instance list page to view the service instance deployment progress.
+1. Depois de confirmar os parâmetros de implantação e revisar o preço estimado, clique em Create Now.
+1. Clique na aba "Service Instance" à esquerda para entrar na página de lista de instâncias de serviço e acompanhar o progresso da implantação da instância.
    ![computenest](../../../assets/aliyun-computenest-en-3.png)
-1. Click the instance ID, enter the details interface, and click "Experience Ip Address" to experience the Waline service.
+1. Clique no ID da instância, entre na interface de detalhes e clique em "Experience Ip Address" para experimentar o serviço Waline.
    ![computenest](../../../assets/aliyun-computenest-en-4.png)

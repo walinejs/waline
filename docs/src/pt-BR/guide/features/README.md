@@ -1,5 +1,5 @@
 ---
-title: Feature
+title: Recursos
 icon: feature
 dir:
   order: 2

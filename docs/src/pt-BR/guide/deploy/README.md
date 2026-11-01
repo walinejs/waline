@@ -3,6 +3,6 @@ title: Implantar
 icon: deploy
 ---
 
-Waline supports multiple deployment methods, and use Vercel by default. You can choose from the following deployment platforms or deploy yourself.
+O Waline oferece suporte a várias formas de implantação e usa o Vercel por padrão. Você pode escolher uma das plataformas de implantação abaixo ou implantar por conta própria.
 
 <Catalog />
