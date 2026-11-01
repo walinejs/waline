@@ -1,27 +1,27 @@
 ---
-title: Create your own Emoji presets
+title: Tạo bộ emoji đặt sẵn của riêng bạn
 icon: emoji
 ---
 
-This cookbook will show you how to create and use your own Emoji presets.
+Hướng dẫn này sẽ chỉ cho bạn cách tạo và sử dụng bộ emoji đặt sẵn của riêng mình.
 
 <!-- more -->
 
-## Create your own presets
+## Tạo bộ đặt sẵn của riêng bạn
 
-First of all, you need to prepare some emoji images. Then, please follow the steps to create your preset.
+Trước tiên, bạn cần chuẩn bị một số hình ảnh emoji. Sau đó, hãy làm theo các bước sau để tạo bộ đặt sẵn của mình.
 
-### Name the emoji and upload it
+### Đặt tên cho emoji và tải lên
 
-For the sake of simplicity, Waline will directly use the name of the emoji image as the key of the emoji. This means that if you import two different presets, and they both contain a laugh.png image, both emotes will correspond to the same emoji `:laugh:`.
+Để đơn giản, Waline sẽ dùng trực tiếp tên của tệp hình ảnh emoji làm khóa của emoji. Điều này có nghĩa là nếu bạn nhập hai bộ đặt sẵn khác nhau và cả hai đều chứa hình ảnh laugh.png, thì cả hai emoji sẽ tương ứng với cùng một emoji `:laugh:`.
 
-Therefore, the best practice is that each emoji preset creator should add a preset-name-related prefix to all names in emoji files.
+Vì vậy, cách làm tốt nhất là mỗi người tạo bộ emoji đặt sẵn nên thêm tiền tố liên quan đến tên bộ đặt sẵn vào tất cả tên tệp emoji.
 
-After naming them appropriately, you need to upload them to your server.
+Sau khi đặt tên phù hợp, bạn cần tải chúng lên máy chủ của mình.
 
-### Write preset information
+### Viết thông tin bộ đặt sẵn
 
-We assume that you have placed some emoji images in the `
+Chúng tôi giả định rằng bạn đã đặt một số hình ảnh emoji trong `
 
 ```
 https://example.com/my-emoji/
@@ -32,11 +32,11 @@ https://example.com/my-emoji/
 └─ info.json
 ```
 
-At this point, you'll also need to create an `info.json` file for this folder to let Waline know what emoji the Emoji presets contain.
+Lúc này, bạn cũng cần tạo tệp `info.json` cho thư mục này để Waline biết bộ emoji đặt sẵn chứa những emoji nào.
 
-First, let's set a name for the Emoji preset, such as `My Emoji`, because you have set the `my_` prefix for the image, and the files are in `png` format. You need to add them in `info.json`.
+Đầu tiên, hãy đặt tên cho bộ emoji đặt sẵn, ví dụ `My Emoji`, vì bạn đã đặt tiền tố `my_` cho hình ảnh và các tệp ở định dạng `png`. Bạn cần thêm chúng vào `info.json`.
 
-Your `info.json` can be:
+`info.json` của bạn có thể là:
 
 ```json
 {
@@ -46,7 +46,7 @@ Your `info.json` can be:
 }
 ```
 
-Then, list all emoji names in `items` in the order you want, at the same time, remember to ignore the prefix and suffix you have set in `prefix` and `type`.
+Sau đó, liệt kê tất cả tên emoji trong `items` theo thứ tự bạn muốn, đồng thời nhớ bỏ qua tiền tố và hậu tố mà bạn đã đặt trong `prefix` và `type`.
 
 ```json
 {
@@ -57,7 +57,7 @@ Then, list all emoji names in `items` in the order you want, at the same time, r
 }
 ```
 
-After that, please select a representative emoji as the icon displayed in the tab:
+Sau đó, hãy chọn một emoji đại diện làm biểu tượng hiển thị trên tab:
 
 ```json
 {
@@ -69,39 +69,39 @@ After that, please select a representative emoji as the icon displayed in the ta
 }
 ```
 
-With these, you are done writing `info.json`, please upload it to the same folder.
+Như vậy là bạn đã viết xong `info.json`, hãy tải nó lên cùng thư mục.
 
-You now successfully created a `my-emoji` preset with `https://example.com/my-emoji/'`.
+Bạn đã tạo thành công bộ đặt sẵn `my-emoji` với `https://example.com/my-emoji/'`.
 
-## Use GitHub mirror with tags
+## Sử dụng bản sao GitHub với tag
 
-Usually, you might find it a bit cumbersome to have your own domain name and upload images to the domain name, and the link may expire over time, so an advanced approach is to use a GitHub repository and use tag function in git to mirror GitHub repo providing a emoji preset.
+Thông thường, việc có tên miền riêng và tải hình ảnh lên tên miền đó có thể hơi rườm rà, và liên kết có thể hết hạn theo thời gian, nên một cách nâng cao là dùng kho lưu trữ GitHub và dùng chức năng tag trong git để nhân bản kho GitHub cung cấp bộ emoji đặt sẵn.
 
-Similar to the steps above, you need to create a new GitHub repository, name the emoji as above, create `info.json` using the same steps, and upload them to the repository.
+Tương tự các bước trên, bạn cần tạo một kho lưu trữ GitHub mới, đặt tên emoji như trên, tạo `info.json` theo cùng các bước và tải chúng lên kho lưu trữ.
 
-Then, please create a tag for the repository at this time, we recommend setting it in the format of `vx.x.x`, such as `v1.0.0`.
+Sau đó, hãy tạo một tag cho kho lưu trữ, chúng tôi khuyến nghị đặt theo định dạng `vx.x.x`, ví dụ `v1.0.0`.
 
-After adding tags, you can use the CDN link with the version on [cdn.jsdelivr.net](https://www.jsdelivr.com/) as your preset in the format `https://cdn.jsdelivr.net/gh/user/repo@version/file`.
+Sau khi thêm tag, bạn có thể dùng liên kết CDN kèm phiên bản trên [cdn.jsdelivr.net](https://www.jsdelivr.com/) làm bộ đặt sẵn của mình theo định dạng `https://cdn.jsdelivr.net/gh/user/repo@version/file`.
 
-We assume that you have created the `example/emoji` repository, uploaded the emoji images and `info.json` directly, and have created the `v1.0.0` tag, then you can use `https://cdn.jsdelivr.net/gh/example/emoji@v1.0.0/` as your preset.
+Giả sử bạn đã tạo kho lưu trữ `example/emoji`, tải trực tiếp hình ảnh emoji và `info.json` lên, đồng thời đã tạo tag `v1.0.0`, thì bạn có thể dùng `https://cdn.jsdelivr.net/gh/example/emoji@v1.0.0/` làm bộ đặt sẵn.
 
 ::: tip
 
-It is necessary to specific a tag with link to prevent the image link referenced by the historical comment from being invalidated by modifying your preset.
+Cần chỉ định tag trong liên kết để tránh việc liên kết hình ảnh mà các bình luận cũ tham chiếu bị mất hiệu lực do bạn sửa bộ đặt sẵn.
 
-The official emoji preset is achieved by creating the [walinejs/emojis](https://github.com/walinejs/emojis) repository and using the CDN link. Currently we are using the `v1.1.0` version.
+Bộ emoji đặt sẵn chính thức được tạo bằng kho lưu trữ [walinejs/emojis](https://github.com/walinejs/emojis) và dùng liên kết CDN. Hiện tại chúng tôi đang dùng phiên bản `v1.1.0`.
 
 :::
 
 ::: warning
 
-Since cdn.jsdelivr.net is polluted in China, you can replace `cdn.jsdelivr.net` with `gcore.jsdelivr.net`
+Vì cdn.jsdelivr.net bị ô nhiễm tại Trung Quốc, bạn có thể thay `cdn.jsdelivr.net` bằng `gcore.jsdelivr.net`
 
 :::
 
-## Using config objects
+## Sử dụng đối tượng cấu hình
 
-Similar to the previous article, we assume you have the following file structure:
+Tương tự phần trước, giả sử bạn có cấu trúc tệp như sau:
 
 ```
 https://example.com/my-emoji/
@@ -111,7 +111,7 @@ https://example.com/my-emoji/
 └─ my_sob.png
 ```
 
-In addition to creating an `info.json` upload and using a link as a preset, you can also use the following objects directly as a preset:
+Ngoài việc tạo và tải lên `info.json` rồi dùng liên kết làm bộ đặt sẵn, bạn cũng có thể dùng trực tiếp đối tượng sau làm bộ đặt sẵn:
 
 ```js
 {
@@ -124,4 +124,4 @@ In addition to creating an `info.json` upload and using a link as a preset, you 
 }
 ```
 
-Here, we additionally add the `folder` property to tell Waline where the images are stored.
+Ở đây, chúng ta thêm thuộc tính `folder` để cho Waline biết hình ảnh được lưu ở đâu.

@@ -1,52 +1,52 @@
 ---
-title: Zeabur Deployment
+title: Triển khai trên Zeabur
 icon: zeabur
 ---
 
-[Zeabur](https://zeabur.com) is a platform that helps developers deploy their own services with one click. The whole is similar to Railway, but it has more functions than it, no need to bind a credit card, and the free limit is higher than it.
+[Zeabur](https://zeabur.com) là một nền tảng giúp nhà phát triển triển khai dịch vụ của mình chỉ với một cú nhấp. Nhìn chung nó tương tự Railway nhưng có nhiều chức năng hơn, không cần liên kết thẻ tín dụng và hạn mức miễn phí cao hơn.
 
 <!-- more -->
 
-## Deploy with one click
+## Triển khai chỉ với một cú nhấp
 
 [![Deploy on Zeabur](https://zeabur.com/button.svg)](https://zeabur.com/templates/1IBY26?utm_source=waline)
 
-## Deploy from scratch
+## Triển khai từ đầu
 
-Click the [Fork](https://github.com/walinejs/zeabur-starter/fork) button to create a Zeabur starter scaffold.
+Nhấn nút [Fork](https://github.com/walinejs/zeabur-starter/fork) để tạo một khung khởi đầu cho Zeabur.
 
 ![zeabur1](../../../assets/zeabur-1.png)
 
-<https://dash.zeabur.com> Log in to the Zeabur console. If there is no project, you need to set a name for the new project first.
+<https://dash.zeabur.com> Đăng nhập vào bảng điều khiển Zeabur. Nếu chưa có dự án, bạn cần đặt tên cho dự án mới trước.
 
 ![zeabur2](../../../assets/zeabur-2.png)
 
-After entering, click <kbd>Add New Service</kbd> to create a service, select <kbd>Deploy Other Service</kbd> - <kbd>Deploy MongoDB</kbd> to create a database service first.
+Sau khi vào, nhấn <kbd>Add New Service</kbd> để tạo dịch vụ, chọn <kbd>Deploy Other Service</kbd> - <kbd>Deploy MongoDB</kbd> để tạo dịch vụ cơ sở dữ liệu trước.
 
-Give our MongoDB database service a name, click the <kbd>Deploy</kbd> button, and our database service is deployed.
+Đặt tên cho dịch vụ cơ sở dữ liệu MongoDB của chúng ta, nhấn nút <kbd>Deploy</kbd>, và dịch vụ cơ sở dữ liệu đã được triển khai.
 
 ![zeabur2](../../../assets/zeabur-3.png) ![zeabur4](../../../assets/zeabur-4.png)
 
-Next, we continue to click <kbd>Add New Service</kbd> to create the Waline service, this time we choose to click <kbd>Deploy Your Source Code</kbd>. In the following GitHub project list, find the project that we forked at the beginning, and click the corresponding <kbd>Import</kbd> button.
+Tiếp theo, chúng ta tiếp tục nhấn <kbd>Add New Service</kbd> để tạo dịch vụ Waline, lần này chọn <kbd>Deploy Your Source Code</kbd>. Trong danh sách dự án GitHub sau đó, tìm dự án mà chúng ta đã fork lúc đầu và nhấn nút <kbd>Import</kbd> tương ứng.
 
-Give our Waline service a name, click the <kbd>Deploy</kbd> button, and our Waline service is deployed.
+Đặt tên cho dịch vụ Waline của chúng ta, nhấn nút <kbd>Deploy</kbd>, và dịch vụ Waline đã được triển khai.
 
 ![zeabur6](../../../assets/zeabur-6.png) ![zeabur7](../../../assets/zeabur-7.png)
 
-Don't rush to close the Waline service panel. After the service is deployed, we need to add an access domain name to the service. Click the <kbd>Generate Domain</kbd> button under the <kbd>Domains</kbd> tab, enter the domain name prefix you want and click the <kbd>Save</kbd> button to add it to our service Visit the domain name.
+Đừng vội đóng bảng dịch vụ Waline. Sau khi dịch vụ được triển khai, chúng ta cần thêm tên miền truy cập cho dịch vụ. Nhấn nút <kbd>Generate Domain</kbd> trong thẻ <kbd>Domains</kbd>, nhập tiền tố tên miền bạn muốn và nhấn nút <kbd>Save</kbd> để thêm tên miền truy cập cho dịch vụ của chúng ta.
 
 ![zeabur8](../../../assets/zeabur-8.png) ![zeabur9](../../../assets/zeabur-9.png)
 
-Everything is ready, and the next step is to witness the miracle. Open the access domain name we just set up, test to post comments, everything is successful~ Next, configure this domain name in the client and you can comment happily!
+Mọi thứ đã sẵn sàng, bước tiếp theo là chứng kiến điều kỳ diệu. Mở tên miền truy cập chúng ta vừa thiết lập, thử đăng bình luận, và mọi thứ đều thành công~ Tiếp theo, hãy cấu hình tên miền này trong ứng dụng khách và bạn có thể bình luận thoải mái!
 
 ![zeabur2](../../../assets/zeabur-10.png)
 
-## How to update
+## Cách cập nhật
 
-Go to the GitHub repository and modify the `@waline/vercel` version number in the package.json file to the latest version.
+Vào kho lưu trữ GitHub và sửa số phiên bản của `@waline/vercel` trong tệp package.json thành phiên bản mới nhất.
 
-## How to modify environment variables
+## Cách sửa biến môi trường
 
-You can enter the environment variable management page through <kbd>Variables</kbd> Tab, and it will be automatically redeployed after modification.
+Bạn có thể vào trang quản lý biến môi trường qua thẻ <kbd>Variables</kbd>, và hệ thống sẽ tự động triển khai lại sau khi sửa.
 
 ![zeabur11](../../../assets/zeabur-11.png)

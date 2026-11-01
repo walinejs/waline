@@ -3,99 +3,99 @@ title: API
 icon: api
 ---
 
-## Comment
+## Bình luận
 
-### Comment List
+### Danh sách bình luận
 
-Get comment list for article
+Lấy danh sách bình luận của bài viết
 
 ```http
 GET /api/comment
 ```
 
-**Parameters**:
+**Tham số**:
 
-| Parameter | Type   | Description                                                                                                                                               |
-| --------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| path      | string | Article id for comment                                                                                                                                    |
-| page      | number | Comment page                                                                                                                                              |
-| pageSize  | number | Comment list page size                                                                                                                                    |
-| sortBy    | string | Which sort type for comment list, default descending sort by create time, also you can ascending sort by create_time, or descending sort by comment like. |
+| Tham số  | Kiểu   | Mô tả                                                                                                                                                                           |
+| -------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| path     | string | ID bài viết để bình luận                                                                                                                                                        |
+| page     | number | Trang bình luận                                                                                                                                                                 |
+| pageSize | number | Số bình luận trên mỗi trang của danh sách                                                                                                                                       |
+| sortBy   | string | Kiểu sắp xếp cho danh sách bình luận, mặc định sắp xếp giảm dần theo thời gian tạo; bạn cũng có thể sắp xếp tăng dần theo create_time, hoặc giảm dần theo lượt thích bình luận. |
 
-### Comment Count
+### Số lượng bình luận
 
-Get comment count for article
+Lấy số lượng bình luận của bài viết
 
 ```http
 GET /api/comment?type=count
 ```
 
-**Parameters**:
+**Tham số**:
 
-| Parameter | Type   | Description                                                   |
-| --------- | ------ | ------------------------------------------------------------- |
-| url       | string | Article id for comment, return site comment count if it empty |
+| Tham số | Kiểu   | Mô tả                                                                        |
+| ------- | ------ | ---------------------------------------------------------------------------- |
+| url     | string | ID bài viết để bình luận, nếu để trống sẽ trả về tổng số bình luận của trang |
 
-### Recent Comment
+### Bình luận gần đây
 
-Get recent comment
+Lấy các bình luận gần đây
 
 ```http
 GET /api/comment?type=recent
 ```
 
-**Parameters**:
+**Tham số**:
 
-| Parameter | Type   | Description          |
-| --------- | ------ | -------------------- |
-| count     | number | comment count return |
+| Tham số | Kiểu   | Mô tả                     |
+| ------- | ------ | ------------------------- |
+| count   | number | Số lượng bình luận trả về |
 
-### Submit comment
+### Gửi bình luận
 
 ```http
 POST /api/comment
 ```
 
-**Parameters**:
+**Tham số**:
 
-| Parameter | Type   | Description                         |
-| --------- | ------ | ----------------------------------- |
-| comment   | string | comment content                     |
-| link      | string | commentator site                    |
-| mail      | string | commentator email                   |
-| nick      | string | commentator nick                    |
-| pid       | string | comment id which one replied        |
-| rid       | string | root comment id which one owned     |
-| ua        | string | commentator's user agent            |
-| url       | string | Article id for comment              |
-| at        | string | comment nick name which one replied |
+| Tham số | Kiểu   | Mô tả                                       |
+| ------- | ------ | ------------------------------------------- |
+| comment | string | Nội dung bình luận                          |
+| link    | string | Trang web của người bình luận               |
+| mail    | string | Email của người bình luận                   |
+| nick    | string | Biệt danh của người bình luận               |
+| pid     | string | ID của bình luận được trả lời               |
+| rid     | string | ID của bình luận gốc mà bình luận này thuộc |
+| ua      | string | User agent của người bình luận              |
+| url     | string | ID bài viết để bình luận                    |
+| at      | string | Biệt danh của người được trả lời            |
 
-## Reading statistics
+## Thống kê lượt đọc
 
-### Get reading statistics
+### Lấy thống kê lượt đọc
 
-Get the number of readings corresponding to an article or multiple articles.
+Lấy số lượt đọc tương ứng của một hoặc nhiều bài viết.
 
 ```http
 GET /api/article
 ```
 
-**Parameters**:
+**Tham số**:
 
-| Parameter | Type   | Description                                                         |
-| --------- | ------ | ------------------------------------------------------------------- |
-| path      | string | Article id for comment，multiple ids should be spliced with commas. |
+| Tham số | Kiểu   | Mô tả                                                                   |
+| ------- | ------ | ----------------------------------------------------------------------- |
+| path    | string | ID bài viết để bình luận, nhiều ID cần được nối với nhau bằng dấu phẩy. |
 
-### Update reading statistics
+### Cập nhật thống kê lượt đọc
 
-Update the reading count of an article.
+Cập nhật số lượt đọc của một bài viết.
 
 ```http
 POST /api/article
 ```
 
-**Parameters**:
+**Tham số**:
 
-| Parameter | Type   | Description            |
-| --------- | ------ | ---------------------- |
-| path      | string | Article id for comment |
+| Tham số | Kiểu   | Mô tả                    |
+| ------- | ------ | ------------------------ |
+| path    | string | ID bài viết để bình luận |

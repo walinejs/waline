@@ -1,37 +1,37 @@
 ---
-title: Client API
+title: API ứng dụng khách
 icon: config
 ---
 
-## Client API
+## API ứng dụng khách
 
-Waline provides three APIs:
+Waline cung cấp ba API:
 
-- `init`: Initialize Waline
+- `init`: Khởi tạo Waline
 
-- `commentCount`: Count comments
+- `commentCount`: Đếm số bình luận
 
-- `pageviewCount`: Count pageviews
+- `pageviewCount`: Đếm số lượt xem
 
-As well as:
+Cùng với đó:
 
-- `RecentComment`: Waline recent comments widget
+- `RecentComment`: Tiện ích hiển thị bình luận gần đây của Waline
 
-- `UserList`: User List
+- `UserList`: Danh sách người dùng
 
-- `version`: Waline client version
+- `version`: Phiên bản ứng dụng khách Waline
 
 ## init
 
-The `init` API accepts a `WalineInitOptions` options and returns a `WalineInstance`.
+API `init` nhận các tùy chọn `WalineInitOptions` và trả về một `WalineInstance`.
 
-Type:
+Kiểu:
 
 ```ts
 const init: (options: WalineInitOptions) => WalineInstance;
 ```
 
-Return:
+Trả về:
 
 ```ts
 interface WalineInstance {
@@ -54,42 +54,42 @@ interface WalineInstance {
 }
 ```
 
-The initialization options accept all [Waline Component Props](props.md), in addition, the following options are added.
+Các tùy chọn khởi tạo chấp nhận toàn bộ [Props của component Waline](props.md), ngoài ra còn có thêm các tùy chọn sau.
 
 ### el
 
-- Type: `string | HTMLElement | null`
-- Default: `'#waline'`
+- Kiểu: `string | HTMLElement | null`
+- Mặc định: `'#waline'`
 
-The DOM element to be mounted on initialization. It must be a valid **CSS selector string** or HTMLElement Object.
+Phần tử DOM được gắn khi khởi tạo. Đây phải là **chuỗi bộ chọn CSS** hợp lệ hoặc một đối tượng HTMLElement.
 
-If you only want the counter below, set this option to `null`.
+Nếu bạn chỉ muốn dùng bộ đếm bên dưới, hãy đặt tùy chọn này là `null`.
 
 ### comment
 
-- Type: `boolean | string`
-- Default: `false`
+- Kiểu: `boolean | string`
+- Mặc định: `false`
 
-Article comment count counter, when filled in a string, it will be used as a CSS selector.
+Bộ đếm số bình luận của bài viết; khi truyền vào một chuỗi, chuỗi đó sẽ được dùng làm bộ chọn CSS.
 
 ### pageview
 
-- Type: `boolean | string`
-- Default: `false`
+- Kiểu: `boolean | string`
+- Mặc định: `false`
 
-Pageview counter. When filled in a string, it will be used as a CSS selector.
+Bộ đếm lượt xem. Khi truyền vào một chuỗi, chuỗi đó sẽ được dùng làm bộ chọn CSS.
 
 ## commentCount
 
-The `commentCount` function receives the `WalineCommentCountOptions` option and updates the number of article comments on the page, and returns a function `WalineAbort` that can cancel the current operation.
+Hàm `commentCount` nhận tùy chọn `WalineCommentCountOptions`, cập nhật số bình luận của bài viết trên trang và trả về hàm `WalineAbort` để có thể hủy thao tác hiện tại.
 
-Type:
+Kiểu:
 
 ```ts
 const commentCount: (options: WalineCommentCountOptions) => WalineAbort;
 ```
 
-Options:
+Tùy chọn:
 
 ```ts
 interface WalineCommentCountOptions {
@@ -112,7 +112,7 @@ interface WalineCommentCountOptions {
 }
 ```
 
-Returns:
+Trả về:
 
 ```ts
 type WalineAbort = (reason?: any) => void;
@@ -120,15 +120,15 @@ type WalineAbort = (reason?: any) => void;
 
 ## pageviewCount
 
-The `pageviewCount` function receives the `WalinePageviewCountOptions` option and updates the number of article comments on the page, and returns a function `WalineAbort` that can cancel the current operation.
+Hàm `pageviewCount` nhận tùy chọn `WalinePageviewCountOptions`, cập nhật số lượt xem của bài viết trên trang và trả về hàm `WalineAbort` để có thể hủy thao tác hiện tại.
 
-Type:
+Kiểu:
 
 ```ts
 const pageviewCount: (options: WalinePageviewCountOptions) => WalineAbort;
 ```
 
-Options:
+Tùy chọn:
 
 ```ts
 interface WalinePageviewCountOptions {
@@ -158,25 +158,25 @@ interface WalinePageviewCountOptions {
 }
 ```
 
-Returns:
+Trả về:
 
 ```ts
 type WalineAbort = (reason?: any) => void;
 ```
 
-## Widgets
+## Tiện ích
 
 ### RecentComments
 
-`RecentComments` is a widget displaying recent comments.
+`RecentComments` là tiện ích hiển thị các bình luận gần đây.
 
-Type:
+Kiểu:
 
 ```ts
 const RecentComments: (options: WalineRecentCommentsOptions) => Promise<WalineRecentCommentsResult>;
 ```
 
-Options:
+Tùy chọn:
 
 ```ts
 interface WalineRecentCommentsOptions {
@@ -191,7 +191,7 @@ interface WalineRecentCommentsOptions {
 }
 ```
 
-Returns:
+Trả về:
 
 ```ts
 interface WalineRecentCommentsResult {
@@ -205,15 +205,15 @@ interface WalineRecentCommentsResult {
 
 ### UserList
 
-`UserList` is a widget that displays user interaction leader boards or comment walls.
+`UserList` là tiện ích hiển thị bảng xếp hạng tương tác của người dùng hoặc tường bình luận.
 
-Type:
+Kiểu:
 
 ```ts
 const RecentComments: (options: WalineRecentCommentsOptions) => Promise<WalineRecentCommentsResult>;
 ```
 
-Options:
+Tùy chọn:
 
 ```ts
 interface WalineUserListOptions {
@@ -245,7 +245,7 @@ interface WalineUserListOptions {
 }
 ```
 
-Returns:
+Trả về:
 
 ```ts
 interface WalineUserListResult {

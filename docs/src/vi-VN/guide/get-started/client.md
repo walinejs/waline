@@ -1,109 +1,109 @@
 ---
-title: Client Intro
+title: Giới thiệu ứng dụng khách
 icon: client
 order: 1
 ---
 
-Waline officially provides the [`@waline/client`](https://www.npmjs.com/package/@waline/client), which is written in Vue + TypeScript and is only 100kb gzip in size.
+Waline cung cấp chính thức [`@waline/client`](https://www.npmjs.com/package/@waline/client), được viết bằng Vue + TypeScript với kích thước chỉ 100kb gzip.
 
-## Import
+## Nhập
 
-You can use CDN or npm to import Waline client, and we provide multiple versions of files to meet different scenarios.
+Bạn có thể dùng CDN hoặc npm để nhập ứng dụng khách Waline, và chúng tôi cung cấp nhiều phiên bản tệp để đáp ứng các tình huống khác nhau.
 
-If you have problems during this process, see:
+Nếu gặp vấn đề trong quá trình này, xem:
 
-- [Cookbook → CDN import](../../cookbook/import/cdn.md)
-- [Cookbook → Project Import](../../cookbook/import/project.md)
+- [Sổ tay → Nhập qua CDN](../../cookbook/import/cdn.md)
+- [Sổ tay → Nhập vào dự án](../../cookbook/import/project.md)
 
-## Use Waline
+## Sử dụng Waline
 
-The easiest way to use Waline is [using the method detailed in the quick start](./README.md#importing-in-html): import the `init` function from Waline and initialize the Waline instance through `init(yourOptions)`.
+Cách đơn giản nhất để dùng Waline là [làm theo phương pháp trong phần bắt đầu nhanh](./README.md#nhung-vao-html): nhập hàm `init` từ Waline và khởi tạo thực thể Waline qua `init(yourOptions)`.
 
-Among the `init` options, the `el` and `serverURL` are required. The former is the element or element selector on which Waline is mounted, and the latter is the server address. For all initialization parameters for `@waline/client`, see [Client Reference → API](../../reference/client/api.md).
+Trong các tùy chọn của `init`, `el` và `serverURL` là bắt buộc. `el` là phần tử hoặc bộ chọn phần tử mà Waline được gắn vào, còn `serverURL` là địa chỉ máy chủ. Để xem tất cả tham số khởi tạo của `@waline/client`, xem [Tham chiếu ứng dụng khách → API](../../reference/client/api.md).
 
-## Comment Counts
+## Đếm bình luận
 
-`@waline/client` also provides a sub-package for comment statistics. You can use it to display the comment count in the blog post list or other pages that don't contain comments. For more details, see [Features → Comment Count](../features/comment.md) for details
+`@waline/client` còn cung cấp một gói con để thống kê bình luận. Bạn có thể dùng nó để hiển thị số lượng bình luận trong danh sách bài viết hoặc ở các trang không có khung bình luận. Chi tiết xem [Tính năng → Đếm bình luận](../features/comment.md)
 
-## Pageview Counts
+## Đếm lượt xem
 
-Waline supports pageview statistics. If you don't need a comment service but would like to use the pageview function, Waline provides a pageview statistics plugin whose Gzip size is < 1KB.
+Waline hỗ trợ thống kê lượt xem. Nếu bạn không cần dịch vụ bình luận mà chỉ muốn dùng chức năng lượt xem, Waline cung cấp plugin thống kê lượt xem với kích thước Gzip < 1KB.
 
-For more information about the `@waline/client` pageview count, see [Features → Pageview Count](../features/pageview.md)
+Để biết thêm về đếm lượt xem của `@waline/client`, xem [Tính năng → Đếm lượt xem](../features/pageview.md)
 
-## Comment Format Support
+## Hỗ trợ định dạng bình luận
 
-`@waline/client` supports many comment syntax and rich formatting. In addition to supporting standard Markdown and GFM syntax extensions, commenters can also embed HTML tags, use math equations, and more. For other syntax, see [Features → Supported syntax](../features/syntax.md) for details.
+`@waline/client` hỗ trợ nhiều cú pháp bình luận và định dạng phong phú. Ngoài Markdown chuẩn và các phần mở rộng cú pháp GFM, người dùng bình luận còn có thể nhúng thẻ HTML, dùng công thức toán học, v.v. Về các cú pháp khác, xem [Tính năng → Cú pháp được hỗ trợ](../features/syntax.md)
 
-`@waline/client` also supports real-time preview of comment input in the comment box. That said, some functions are dropped by default due to size. If you wish to restore these functions, see:
+`@waline/client` cũng hỗ trợ xem trước theo thời gian thực nội dung nhập trong khung bình luận. Tuy vậy, một số chức năng bị lược bỏ mặc định do kích thước. Nếu muốn khôi phục các chức năng này, xem:
 
-- [Cookbook → Customize Preview Code Highlighter](../../cookbook/customize/highlighter.md)
-- [Cookbook → Customize Preview $\TeX$ Renderer](../../cookbook/customize/tex-renderer.md)
+- [Sổ tay → Tùy chỉnh tô sáng mã khi xem trước](../../cookbook/customize/highlighter.md)
+- [Sổ tay → Tùy chỉnh trình hiển thị $\TeX$ khi xem trước](../../cookbook/customize/tex-renderer.md)
 
-## Article Reaction
+## Cảm xúc bài viết
 
-Find comments too cumbersome? Waline allows your visitors to quickly express their reactions to articles, such as like, dislike, doubt, boredom, surprise, etc. To manually enable this feature, see [Features → Article Reactions](../features/reaction.md) .
+Thấy bình luận quá rườm rà? Waline cho phép khách truy cập nhanh chóng bày tỏ cảm xúc với bài viết, chẳng hạn như thích, không thích, hoài nghi, chán, bất ngờ, v.v. Để bật tính năng này theo cách thủ công, xem [Tính năng → Cảm xúc bài viết](../features/reaction.md) .
 
-## Comment Features
+## Tính năng bình luận
 
-Waline supports a number of basic features, including login, avatars, [multiple languages](../features/i18n.md) and real-time preview.
+Waline hỗ trợ một số tính năng cơ bản, bao gồm đăng nhập, ảnh đại diện, [đa ngôn ngữ](../features/i18n.md) và xem trước theo thời gian thực.
 
-Waline allows you to set up interaction level labels and custom labels for your users. For more details, see [User Labels](../features/label.md).
+Waline cho phép bạn đặt nhãn cấp độ tương tác và nhãn tùy chỉnh cho người dùng của mình. Chi tiết xem [Nhãn người dùng](../features/label.md).
 
-## Emoji tab
+## Tab emoji
 
-`@waline/client` supports multiple Emoji tabs, and allows users to easily introduce Emoji tabs via presets. You can easily create your own presets in addition to the official ones.
+`@waline/client` hỗ trợ nhiều tab emoji và cho phép người dùng dễ dàng thêm tab emoji qua các bộ emoji có sẵn. Ngoài các bộ chính thức, bạn cũng có thể dễ dàng tự tạo bộ emoji riêng.
 
-For more information about `@waline/client` emoji tabs, see:
+Để biết thêm về tab emoji của `@waline/client`, xem:
 
-- [Features → Emoji tab](../features/emoji.md)
-- [Cookbook → Customize Emoji](../../cookbook/customize/emoji.md)
+- [Tính năng → Tab emoji](../features/emoji.md)
+- [Sổ tay → Tùy chỉnh emoji](../../cookbook/customize/emoji.md)
 
-## Inset Image
+## Chèn hình ảnh
 
-`@waline/client` has a built-in image upload support. By default, images are converted to base64. That said, you can also use your own image hosting service.
+`@waline/client` có sẵn hỗ trợ tải lên hình ảnh. Mặc định hình ảnh được chuyển thành base64. Tuy vậy, bạn cũng có thể dùng dịch vụ lưu trữ ảnh của riêng mình.
 
-For more info about the image upload settings of `@waline/client`, see [Cookbook → Customize Image Upload](../../cookbook/customize/upload-image.md).
+Để biết thêm về cài đặt tải lên hình ảnh của `@waline/client`, xem [Sổ tay → Tùy chỉnh tải lên hình ảnh](../../cookbook/customize/upload-image.md).
 
-## Emoji Search
+## Tìm kiếm emoji
 
-`@waline/client` provides a meme and emoji search function via [giphy](https://giphy.com), and allows you to customize search service. See:
+`@waline/client` cung cấp chức năng tìm kiếm meme và emoji qua [giphy](https://giphy.com), đồng thời cho phép tùy chỉnh dịch vụ tìm kiếm. Xem:
 
-- [Features → Emoji Search](../features/search.md)
-- [Cookbook → Customize emoticon search](../../cookbook/customize/search.md)
+- [Tính năng → Tìm kiếm emoji](../features/search.md)
+- [Sổ tay → Tùy chỉnh tìm kiếm biểu tượng cảm xúc](../../cookbook/customize/search.md)
 
-## Multilingual Support
+## Hỗ trợ đa ngôn ngữ
 
-`@waline/client` has built-in support for multiple languages, and you can add language support or modify UI text based on this. See:
+`@waline/client` có sẵn hỗ trợ đa ngôn ngữ, và bạn có thể bổ sung ngôn ngữ hoặc sửa văn bản giao diện dựa trên đó. Xem:
 
-- [Features → Set language](../features/i18n.md).
-- [Cookbook → Customize Language](../../cookbook/customize/locale.md).
+- [Tính năng → Đặt ngôn ngữ](../features/i18n.md).
+- [Sổ tay → Tùy chỉnh ngôn ngữ](../../cookbook/customize/locale.md).
 
-## Accessibility Support
+## Hỗ trợ khả năng tiếp cận
 
-Waline fully supports all accessibility standards:
+Waline hỗ trợ đầy đủ mọi tiêu chuẩn về khả năng tiếp cận:
 
-- All icons and controls have their corresponding accessibility labels.
-- You can interact with all of Waline's controls using either a keyboard or a head-mounted pointing device.
+- Mọi biểu tượng và điều khiển đều có nhãn hỗ trợ tiếp cận tương ứng.
+- Bạn có thể tương tác với mọi điều khiển của Waline bằng bàn phím hoặc thiết bị trỏ gắn trên đầu.
 
-This is our way of supporting the visually impaired and mobility impaired people around the world! :heart:
+Đây là cách chúng tôi hỗ trợ những người khiếm thị và khiếm khuyết vận động trên toàn thế giới! :heart:
 
-## Customizable Styles
+## Kiểu dáng tùy chỉnh
 
-Waline comes with built-in dark mode support. To make it easier for users to adjust Waline's styles, we provide many configurable CSS variables.
+Waline có sẵn hỗ trợ chế độ tối. Để người dùng dễ điều chỉnh kiểu dáng của Waline, chúng tôi cung cấp nhiều biến CSS có thể cấu hình.
 
-See [Custom Styles](../features/style.md) for more details.
+Xem [Kiểu dáng tùy chỉnh](../features/style.md) để biết chi tiết.
 
-## Advanced Development
+## Phát triển nâng cao
 
-### Single Page Application Support
+### Hỗ trợ ứng dụng một trang
 
-Waline supports SPAs (**S**ingle **P**age **A**applications).
+Waline hỗ trợ SPA (**S**ingle **P**age **A**pplications).
 
-If you want to use Waline in a website or application based on the history API, you can use the `update()` method on the initialized instance to refresh the configuration of the comment area, or use the `destroy()` method on the instance to destroy Waline. To learn more about the reactivity of `@waline/client`, see [Cookbook → Reactivity](../../cookbook/reactivity.md).
+Nếu muốn dùng Waline trong một trang web hoặc ứng dụng dựa trên history API, bạn có thể dùng phương thức `update()` trên thực thể đã khởi tạo để làm mới cấu hình khu vực bình luận, hoặc dùng phương thức `destroy()` trên thực thể để hủy Waline. Để tìm hiểu thêm về khả năng phản ứng của `@waline/client`, xem [Sổ tay → Tính phản ứng](../../cookbook/reactivity.md).
 
-### Ecosystem
+### Hệ sinh thái
 
-You can easily use Waline through plugins on tools like Hexo, VuePress, and even third-party clients.
+Bạn có thể dễ dàng dùng Waline qua plugin trên các công cụ như Hexo, VuePress, và cả các ứng dụng khách bên thứ ba.
 
-For third-party clients, themes, and plugins that support Waline, see [Learn more → Ecosystem](../../advanced/ecosystem.md).
+Để xem các ứng dụng khách, chủ đề và plugin bên thứ ba hỗ trợ Waline, xem [Tìm hiểu thêm → Hệ sinh thái](../../advanced/ecosystem.md).

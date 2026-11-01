@@ -1,16 +1,16 @@
 ---
-title: Emoji Customize
+title: Tùy chỉnh emoji
 icon: emoji
 order: 2
 ---
 
-You can customize the emoji of the comment box by setting `emoji` option, you should set it to an **array** containing _preset link_ or _preset config object_. If you don't want it, just set it to `false`.
+Bạn có thể tùy chỉnh emoji của khung bình luận bằng cách đặt tùy chọn `emoji`. Giá trị của nó phải là một **mảng** chứa _liên kết bộ emoji có sẵn_ hoặc _đối tượng cấu hình bộ emoji có sẵn_. Nếu không muốn dùng, chỉ cần đặt thành `false`.
 
 <!-- more -->
 
-## Presets
+## Bộ emoji có sẵn
 
-Waline provides a series of emoji presets that can be used out of box. You can add them directly to the `emoji` options:
+Waline cung cấp một loạt bộ emoji dùng được ngay. Bạn có thể thêm trực tiếp chúng vào tùy chọn `emoji`:
 
 - Alus
 
@@ -49,74 +49,74 @@ Waline provides a series of emoji presets that can be used out of box. You can a
     https://unpkg.com/@waline/emojis@1.4.0/tw-emoji
     ```
 
-  ::: details Others presets
-  - Full: (Not recommended)
+  ::: details Các bộ emoji khác
+  - Đầy đủ: (không khuyến nghị)
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw
     ```
 
-  - Body:
+  - Cơ thể:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-body
     ```
 
-  - Food:
+  - Đồ ăn:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-food
     ```
 
-  - Natural:
+  - Tự nhiên:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-natural
     ```
 
-  - Object:
+  - Đồ vật:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-object
     ```
 
-  - Symbol:
+  - Ký hiệu:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-symbol
     ```
 
-  - People:
+  - Con người:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-people
     ```
 
-  - Sport:
+  - Thể thao:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-sport
     ```
 
-  - Time:
+  - Thời gian:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-time
     ```
 
-  - Travel:
+  - Du lịch:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-travel
     ```
 
-  - Weather:
+  - Thời tiết:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-weather
     ```
 
-  - Flag:
+  - Cờ:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-flag
@@ -138,11 +138,11 @@ Waline provides a series of emoji presets that can be used out of box. You can a
 
 ::: warning
 
-Waline DO NOT have any copyright of above emojis, use them at your own risk.
+Waline KHÔNG sở hữu bản quyền của các bộ emoji trên, hãy tự chịu rủi ro khi sử dụng.
 
 :::
 
-### Example
+### Ví dụ
 
 ```html
 <div id="waline"></div>
@@ -158,6 +158,6 @@ Waline DO NOT have any copyright of above emojis, use them at your own risk.
 </script>
 ```
 
-## Create your own presets
+## Tự tạo bộ emoji của riêng bạn
 
-Besides the presets provided by Waline, you can create your own presets, see [Guide → Create Emoji Presets](../../cookbook/customize/emoji.md).
+Ngoài các bộ emoji có sẵn do Waline cung cấp, bạn có thể tự tạo bộ emoji riêng, xem [Sổ tay → Tạo bộ emoji](../../cookbook/customize/emoji.md).

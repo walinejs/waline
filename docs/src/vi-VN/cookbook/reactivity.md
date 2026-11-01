@@ -1,30 +1,30 @@
 ---
-title: Reactive Waline Instance
+title: Phiên bản Waline có tính phản ứng
 icon: spa
 order: -1
 ---
 
-The official client `@waline/client` is based on Vue3, provides responsive components and instances, and brings SPA (**S**ingle **P**age **A**application) support.
+Ứng dụng khách chính thức `@waline/client` được xây dựng trên Vue3, cung cấp các thành phần và phiên bản có tính phản ứng, đồng thời mang lại hỗ trợ SPA (**S**ingle **P**age **A**pplication - ứng dụng một trang).
 
 <!-- more -->
 
-## Vue Component
+## Thành phần Vue
 
-If you are building a Vue project, you can obtain and use Waline component by importing named exports `Waline` from `@waline/client/components`.
+Nếu bạn đang xây dựng một dự án Vue, bạn có thể lấy và sử dụng thành phần Waline bằng cách nhập tên xuất `Waline` từ `@waline/client/components`.
 
-All component properties are reactive, which means that when you change the properties, the comment box will get an automatically update.
+Mọi thuộc tính của thành phần đều có tính phản ứng, nghĩa là khi bạn thay đổi các thuộc tính, khung bình luận sẽ tự động được cập nhật.
 
-## Other projects
+## Các dự án khác
 
-In other SPA, you need to store the `WalineInstance` returned by the Waline function when Waline is initialized.
+Trong các SPA khác, bạn cần lưu lại `WalineInstance` mà hàm Waline trả về khi Waline được khởi tạo.
 
-You can find an instance property `el` and two methods: `update()` and `destroy()` on `WalineInstance`.
+Bạn có thể tìm thấy thuộc tính `el` và hai phương thức `update()` và `destroy()` trên `WalineInstance`.
 
 ### update
 
-You can call `update()` to update Waline at any time (e.g.: when user visits a new route). The `update` method receives an optional parameter `options`, except for `el`, other Waline initial options can be updated by passing in new values.
+Bạn có thể gọi `update()` để cập nhật Waline bất cứ lúc nào (ví dụ: khi người dùng truy cập một tuyến đường mới). Phương thức `update` nhận tham số tùy chọn `options`; ngoài `el`, các tùy chọn khởi tạo khác của Waline đều có thể được cập nhật bằng cách truyền giá trị mới.
 
-E.g.:
+Ví dụ:
 
 ```js
 // in `/` route
@@ -43,59 +43,59 @@ waline.update({
 }); // waline will now display in English, and disable user login
 ```
 
-#### Working Principle
+#### Nguyên lý hoạt động
 
-When calling `update`, the current option and history option will be merged by **shallow copy**, and Waline instance will refresh with the new option (and save the new option).
+Khi gọi `update`, tùy chọn hiện tại và tùy chọn trong lịch sử sẽ được hợp nhất bằng **sao chép nông (shallow copy)**, và phiên bản Waline sẽ làm mới với tùy chọn mới (đồng thời lưu lại tùy chọn mới).
 
-The default behavior of this method is to always **regenerate default values** for options that haven't been set yet, and **use historical values** for options that have been set.
+Hành vi mặc định của phương thức này là luôn **tạo lại giá trị mặc định** cho những tùy chọn chưa được đặt, và **dùng giá trị trong lịch sử** cho những tùy chọn đã được đặt.
 
-There are two options you may need to pay special attention to: `path` and `locale`.
+Có hai tùy chọn bạn có thể cần đặc biệt lưu ý: `path` và `locale`.
 
-::: warning Path precautions
+::: warning Lưu ý về path
 
-In V2, the `path` parameter **always reset** on `update()`.
+Trong V2, tham số `path` **luôn được đặt lại** khi gọi `update()`.
 
-This means that in any update as long as you don't specify `path`, `path` will be reset to `window.location.pathname`.
-
-:::
-
-::: warning locale precautions
-
-Due to the shallow copy, the old `locale` options are completely overwritten by the new `locale` options passed in by `update`.
-
-Our point is: users usually want to switch the display language when updating the locale, so we set it as the expected behavior of the plugin. This also means that you can use `update({ locale: {} })` to clear the custom locale config in history.
-
-If you really need to update one or more certain fields in `locale`, you need to pass the entire updated `locale`.
+Điều này có nghĩa là trong bất kỳ lần cập nhật nào, hễ bạn không chỉ định `path`, thì `path` sẽ được đặt lại thành `window.location.pathname`.
 
 :::
 
-Meanwhile, the `update()` option has been optimized for asynchronous network requests, including:
+::: warning Lưu ý về locale
 
-- Refresh the comment area and re-request only when the path does change
-- The new `update()` call will automatically terminate the no longer needed request from the previous `update()`.
+Do sao chép nông, tùy chọn `locale` cũ sẽ bị tùy chọn `locale` mới được truyền vào `update` ghi đè hoàn toàn.
+
+Quan điểm của chúng tôi là: người dùng thường muốn chuyển ngôn ngữ hiển thị khi cập nhật locale, nên chúng tôi đặt đây là hành vi mong đợi của plugin. Điều này cũng có nghĩa là bạn có thể dùng `update({ locale: {} })` để xóa cấu hình locale tùy chỉnh trong lịch sử.
+
+Nếu bạn thực sự cần cập nhật một hoặc một vài trường nhất định trong `locale`, bạn phải truyền toàn bộ `locale` đã cập nhật.
+
+:::
+
+Đồng thời, tùy chọn của `update()` đã được tối ưu cho các yêu cầu mạng bất đồng bộ, bao gồm:
+
+- Chỉ làm mới khu vực bình luận và gửi lại yêu cầu khi đường dẫn thực sự thay đổi
+- Lần gọi `update()` mới sẽ tự động chấm dứt yêu cầu không còn cần thiết từ lần `update()` trước đó.
 
 ### el
 
-The `el` property is the HTMLElement mounted by the current instance of Waline.
+Thuộc tính `el` là HTMLElement mà phiên bản Waline hiện tại được gắn vào.
 
-If you initialize Waline with `el: null` (only use comments and pageview statistics), this property will be `null`.
+Nếu bạn khởi tạo Waline với `el: null` (chỉ dùng bình luận và thống kê lượt xem), thuộc tính này sẽ là `null`.
 
 ### destroy
 
-If you forget to pass in the `serverURL` or Waline cannot find the mount location via the `el` option on the page, Waline will throw an Error indicating the reason for the error.
+Nếu bạn quên truyền `serverURL` hoặc Waline không thể tìm thấy vị trí gắn kết qua tùy chọn `el` trên trang, Waline sẽ ném ra một Error cho biết lý do lỗi.
 
-### Initialization Failure
+### Khởi tạo thất bại
 
-If you forget to set `serverURL` or Waline cannot find the mount location through the `el` option on the page, Waline will return a `WalineErrorInstance`.
+Nếu bạn quên đặt `serverURL` hoặc Waline không thể tìm thấy vị trí gắn kết qua tùy chọn `el` trên trang, Waline sẽ trả về một `WalineErrorInstance`.
 
-There is only one attribute `errMsg` on `WalineErrorInstance` to indicate the reason for the initialization failure.
+Trên `WalineErrorInstance` chỉ có một thuộc tính `errMsg` để cho biết lý do khởi tạo thất bại.
 
-### Precautions
+### Lưu ý
 
-::: warning Remember to destroy the instance
+::: warning Hãy nhớ hủy phiên bản
 
-In order for Waline to properly release resources, please manually call `WalineInstance.destroy()` before removing the element where Waline is mounted.
+Để Waline giải phóng tài nguyên đúng cách, vui lòng gọi thủ công `WalineInstance.destroy()` trước khi gỡ bỏ phần tử mà Waline được gắn vào.
 
-Otherwise, some listeners may not be removed properly.
+Nếu không, một số trình lắng nghe có thể không được gỡ bỏ đúng cách.
 
 :::

@@ -1,11 +1,11 @@
 ---
-title: Migration from Valine
+title: Di chuyển từ Valine
 icon: valine
 ---
 
-1. Deploy backend according to [Vercel Deploy](../guide/get-started/README.md#server-deploy) in _Get Started_ section.
+1. Triển khai backend theo [Triển khai trên Vercel](../guide/get-started/README.md#trien-khai-may-chu) trong phần _Bắt đầu_.
 
-2. Modify frontend scripts according to [HTML](../guide/get-started/README.md#importing-in-html) in _Get Started_ section.
+2. Sửa script phía giao diện theo [HTML](../guide/get-started/README.md#nhung-vao-html) trong phần _Bắt đầu_.
 
    ```diff
    - <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
@@ -23,66 +23,66 @@ icon: valine
      </script>
    ```
 
-::: tip Config
+   ::: tip Cấu hình
 
-Waline V2 has removed Valine support and moved to a better configuration. The following is a migration summary of some options:
+   Waline V2 đã loại bỏ hỗ trợ Valine và chuyển sang cấu hình tốt hơn. Dưới đây là tóm tắt việc di chuyển một số tùy chọn:
 
-- `placeholder`: use `locale.placeholder`
-- `highlight`: use `highlighter`
-- `avatarForce`, `avatar`: use the server's `AVATAR_PROXY` environment variable
-- `recordIP`: no longer display the user IP, and provide the `DISABLE_USERAGENT` environment variable on the server
-- `requiredFields`: renamed to `requiredMeta`
-- `langMode`: renamed to `locale`
-- `emojiCDN`, `emojiMap`: use more powerful `emoji` options
+   - `placeholder`: dùng `locale.placeholder`
+   - `highlight`: dùng `highlighter`
+   - `avatarForce`, `avatar`: dùng biến môi trường `AVATAR_PROXY` của máy chủ
+   - `recordIP`: không còn hiển thị IP người dùng, máy chủ cung cấp biến môi trường `DISABLE_USERAGENT`
+   - `requiredFields`: đổi tên thành `requiredMeta`
+   - `langMode`: đổi tên thành `locale`
+   - `emojiCDN`, `emojiMap`: dùng các tùy chọn `emoji` mạnh hơn
 
-For waline config, please refer to [Client Config](../reference/client/api.md). You can also check [Waline Client V2 Migration Guide](./v2.md) to learn about the options that are not compatible with Valine.
+   Về cấu hình waline, vui lòng xem [Cấu hình ứng dụng khách](../reference/client/api.md). Bạn cũng có thể xem [Hướng dẫn di chuyển Waline Client V2](./v2.md) để biết những tùy chọn không tương thích với Valine.
 
-:::
+   :::
 
-1. Migrate data
+3. Di chuyển dữ liệu
 
-Select <kbd>Import/Export</kbd> > <kbd>Limit to certain classes</kbd> > <kbd>Comment</kbd> > <kbd>Export</kbd> in the LeanCloud background, and then you will receive a email notification.
+Trong phần nền LeanCloud, chọn <kbd>Import/Export</kbd> > <kbd>Limit to certain classes</kbd> > <kbd>Comment</kbd> > <kbd>Export</kbd>, sau đó bạn sẽ nhận được thông báo email.
 
-Paste the content of export file into the textarea below, and click the convert button to obtain the file to be imported.
+Dán nội dung của tệp xuất vào vùng văn bản bên dưới và nhấn nút chuyển đổi để lấy tệp cần nhập.
 
 <MigrationTool />
 
 ::: tip
 
-After you get the exported file through the tool above, you can import it in the corresponding storage service console.
+Sau khi lấy được tệp đã xuất qua công cụ trên, bạn có thể nhập nó trong bảng điều khiển của dịch vụ lưu trữ tương ứng.
 
 :::
 
-## Waline Highlights
+## Điểm nổi bật của Waline
 
-Compared with Valine, Waline has the following highlights:
+So với Valine, Waline có những điểm nổi bật sau:
 
-### More features
+### Nhiều tính năng hơn
 
-1. Markdown supports more syntax, including superscript and subscript, emoji, tables, strike-through, mathematical formulas, HTML tags, footnotes, etc.
-1. Image upload feature, which allows customized image provider service or embedding images directly.
-1. The brand new label system adds level labels for users according to the frequency of user interaction, and support custom labels for registered users.
-1. Emoji presets and tab support, allowing multiple sets of Emoji, while allowing anyone to publish and use Emoji presets.
-1. A brand new reaction system that allows visitors to express their attitude towards the article.
-1. Comment likes, express support for the comment you like.
-1. Pageviews, more accurate viewing and anti-tampering.
-1. Emoji search. Customizable service, allowing users to search and insert emoticons freely.
-1. Support registered users to edit and delete their published comments.
+1. Markdown hỗ trợ nhiều cú pháp hơn, bao gồm chỉ số trên và chỉ số dưới, emoji, bảng, gạch ngang chữ, công thức toán, thẻ HTML, chú thích cuối trang, v.v.
+1. Tính năng tải lên hình ảnh, cho phép tùy chỉnh dịch vụ cung cấp hình ảnh hoặc nhúng hình ảnh trực tiếp.
+1. Hệ thống nhãn hoàn toàn mới gán nhãn cấp độ cho người dùng theo tần suất tương tác, và hỗ trợ nhãn tùy chỉnh cho người dùng đã đăng ký.
+1. Hỗ trợ bộ emoji đặt trước và tab, cho phép nhiều bộ emoji, đồng thời cho phép bất kỳ ai phát hành và sử dụng bộ emoji đặt trước.
+1. Hệ thống cảm xúc hoàn toàn mới cho phép khách truy cập bày tỏ thái độ của mình với bài viết.
+1. Thích bình luận, bày tỏ sự ủng hộ với bình luận mà bạn thích.
+1. Lượt xem trang, chính xác hơn và chống chỉnh sửa.
+1. Tìm kiếm emoji. Dịch vụ có thể tùy chỉnh, cho phép người dùng tự do tìm và chèn biểu tượng cảm xúc.
+1. Hỗ trợ người dùng đã đăng ký chỉnh sửa và xóa những bình luận mình đã đăng.
 
-### Safer
+### An toàn hơn
 
-1. Zero privacy leakage, will not expose user mailboxes, IP addresses and other sensitive information, and can choose to hide user geographic location, browser and operating system at server
-1. Complete anti-spam system.
-   - All comments can be authenticated by anti-spam services and support additional validation logic.
-   - You can set the comment speed limit for a single IP or a single user, and Waline automatically identify duplicate comments.
-1. Comment review feature, in sensitive periods or when the website is under attack, you can enable comment review, manually review and approve the display of comments, and prevent malicious comments from causing site closure.
-1. Support user accounts. Besides registering an account, Waline also supports social media accounts, quickly synchronizes avatars and nicknames with authorized label to prevent identity fraud.
+1. Không rò rỉ quyền riêng tư, không phơi bày hộp thư, địa chỉ IP và các thông tin nhạy cảm khác của người dùng, có thể chọn ẩn vị trí địa lý, trình duyệt và hệ điều hành của người dùng ở phía máy chủ
+1. Hệ thống chống spam hoàn chỉnh.
+   - Mọi bình luận đều có thể được xác thực bởi dịch vụ chống spam và hỗ trợ logic xác thực bổ sung.
+   - Bạn có thể đặt giới hạn tốc độ bình luận cho một IP hoặc một người dùng, và Waline tự động nhận diện bình luận trùng lặp.
+1. Tính năng kiểm duyệt bình luận: trong giai đoạn nhạy cảm hoặc khi trang web bị tấn công, bạn có thể bật kiểm duyệt bình luận, duyệt thủ công và phê duyệt hiển thị bình luận, ngăn bình luận độc hại khiến trang web bị đóng.
+1. Hỗ trợ tài khoản người dùng. Ngoài đăng ký tài khoản, Waline còn hỗ trợ tài khoản mạng xã hội, đồng bộ nhanh ảnh đại diện và biệt danh theo nhãn được ủy quyền để chống mạo danh.
 
-### more convenient
+### Tiện lợi hơn
 
-1. Various methods (QQ, WeChat, DingTalk, E-mail), etc. to notify bloggers about comments
-1. Powerful management service, you can view all users and comments and perform related operations, and set custom labels and administrators for users
-1. Front-end management, administrators can review, edit or delete comments directly through the Waline comment component.
+1. Nhiều cách (QQ, WeChat, DingTalk, email), v.v. để thông báo cho blogger về bình luận
+1. Dịch vụ quản lý mạnh mẽ, bạn có thể xem tất cả người dùng và bình luận, thực hiện các thao tác liên quan, đặt nhãn tùy chỉnh và quyền quản trị viên cho người dùng
+1. Quản lý ngay trên giao diện: quản trị viên có thể duyệt, chỉnh sửa hoặc xóa bình luận trực tiếp thông qua component bình luận của Waline.
 
 <script setup lang="ts">
 import { defineAsyncComponent } from 'vue'

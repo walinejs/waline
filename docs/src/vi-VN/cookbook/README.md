@@ -3,7 +3,7 @@ title: Sổ tay
 icon: cookbook
 ---
 
-This cookbook will introduce Waline in more depth.
+Sổ tay này sẽ giới thiệu Waline một cách sâu hơn.
 
 <!-- more -->
 

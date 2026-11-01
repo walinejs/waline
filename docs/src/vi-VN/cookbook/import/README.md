@@ -1,5 +1,5 @@
 ---
-title: Import Waline
+title: Nhập Waline
 icon: import
 dir:
   collapsible: false

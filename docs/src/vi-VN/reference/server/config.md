@@ -1,33 +1,33 @@
 ---
-title: Server Config
+title: Cấu hình máy chủ
 icon: config
 ---
 
-The following options need to be configured in the server entry file `index.js`.
+Các tùy chọn sau cần được cấu hình trong tệp đầu vào của máy chủ `index.js`.
 
 ::: warning
 
-If you are using template, please note that you need to save these configurations yourself, because they will be overwritten when you pull the latest official template.
+Nếu bạn đang dùng template, lưu ý rằng bạn cần tự lưu các cấu hình này, vì chúng sẽ bị ghi đè khi bạn kéo template chính thức mới nhất về.
 
-We recommend you to create a repo from the official template and make your changes there.
+Chúng tôi khuyến nghị bạn tạo một kho lưu trữ từ template chính thức và thực hiện các thay đổi ở đó.
 
 :::
 
-## Basic Options
+## Tùy chọn cơ bản
 
 ### plugins
 
-- Type: `plugin[]`
+- Kiểu: `plugin[]`
 
-See [Plugin System](./plugin.md) for details
+Xem [Hệ thống plugin](./plugin.md) để biết chi tiết
 
 ### secureDomains
 
-- Type: `string | RegExp | string[] | RegExp[]`
+- Kiểu: `string | RegExp | string[] | RegExp[]`
 
-Secure domain settings. Requests from other domain will receive 403 status code. It supports String, Regexp, and Array type. Leaving this config means that all domain referrer are allowed.
+Cấu hình tên miền an toàn. Các yêu cầu từ tên miền khác sẽ nhận mã trạng thái 403. Hỗ trợ kiểu String, Regexp và Array. Bỏ trống cấu hình này nghĩa là cho phép mọi tên miền gửi yêu cầu.
 
-::: details Example
+::: details Ví dụ
 
 ```js
 // index.js
@@ -42,18 +42,18 @@ module.exports = Waline({
 
 ::: tip
 
-- To make local development easier, `localhost` and `127.0.0.1` will be added to the list of secure domain names by default.
-- Env variable `SECURE_DOMAINS` won't work when this option is set.
+- Để thuận tiện cho việc phát triển cục bộ, `localhost` và `127.0.0.1` sẽ được thêm vào danh sách tên miền an toàn theo mặc định.
+- Biến môi trường `SECURE_DOMAINS` sẽ không có tác dụng khi tùy chọn này được đặt.
 
 :::
 
 ### forbiddenWords
 
-- Type: `string[]`
+- Kiểu: `string[]`
 
-If a comment match forbidden word, it will be marked as spam.
+Nếu bình luận khớp với một từ bị cấm, bình luận đó sẽ bị đánh dấu là thư rác.
 
-::: details Example
+::: details Ví dụ
 
 ```js
 // index.js
@@ -68,11 +68,11 @@ module.exports = Waline({
 
 ### disallowIPList
 
-- Type: `string[]`
+- Kiểu: `string[]`
 
-If a comment ip match this list, 403 status code is returned.
+Nếu IP của bình luận khớp với danh sách này, sẽ trả về mã trạng thái 403.
 
-::: details Example
+::: details Ví dụ
 
 ```js
 // index.js
@@ -87,67 +87,67 @@ module.exports = Waline({
 
 ### mailSubject
 
-- Type: `string`
+- Kiểu: `string`
 
-Customize the title of the comment reply email, which is equivalent to environment variable `MAIL_SUBJECT`.
+Tùy chỉnh tiêu đề email trả lời bình luận, tương đương với biến môi trường `MAIL_SUBJECT`.
 
 ### mailTemplate
 
-- Type: `string`
+- Kiểu: `string`
 
-Customize the content of the comment reply email, which is equivalent to environment variable `MAIL_TEMPLATE`.
+Tùy chỉnh nội dung email trả lời bình luận, tương đương với biến môi trường `MAIL_TEMPLATE`.
 
 ### mailSubjectAdmin
 
-- Type: `string`
+- Kiểu: `string`
 
-Customize the title of the new comment notification email, which is equivalent to the environment variable `MAIL_SUBJECT_ADMIN`.
+Tùy chỉnh tiêu đề email thông báo bình luận mới, tương đương với biến môi trường `MAIL_SUBJECT_ADMIN`.
 
 ### mailTemplateAdmin
 
-- Type: `string`
+- Kiểu: `string`
 
-Customize the content of the new comment notification email, which is equivalent to the environment variable `MAIL_TEMPLATE_ADMIN`.
+Tùy chỉnh nội dung email thông báo bình luận mới, tương đương với biến môi trường `MAIL_TEMPLATE_ADMIN`.
 
 ### QQTemplate
 
-- Type: `string`
+- Kiểu: `string`
 
-The QQ comment notification template, which is equivalent to the environment variable `QQ_TEMPLATE`.
+Mẫu thông báo bình luận qua QQ, tương đương với biến môi trường `QQ_TEMPLATE`.
 
 ### TGTemplate
 
-- Type: `string`
+- Kiểu: `string`
 
-Telegram comment notification template, which is equivalent to the environment variable `TG_TEMPLATE`.
+Mẫu thông báo bình luận qua Telegram, tương đương với biến môi trường `TG_TEMPLATE`.
 
 ### model
 
-- type: `class`
+- Kiểu: `class`
 
-For details, see [Customize Database Service](../../cookbook/customize/database.md)
+Chi tiết xem [Tùy chỉnh dịch vụ cơ sở dữ liệu](../../cookbook/customize/database.md)
 
 ### encryptPassword
 
-- type: `function`
+- Kiểu: `function`
 
-See [Customize User System](../../cookbook/customize/userdb.md) for details
+Xem [Tùy chỉnh hệ thống người dùng](../../cookbook/customize/userdb.md) để biết chi tiết
 
 ### locales
 
-- type: `Record<string, Record<string, string>>`
+- Kiểu: `Record<string, Record<string, string>>`
 
-See [Custom Locale](../../cookbook/customize/locale.md)
+Xem [Tùy chỉnh ngôn ngữ](../../cookbook/customize/locale.md)
 
-## Comment Hooks
+## Hook bình luận
 
-Besides environment variable configuration, Waline also provides some custom hooks to facilitate the processing of custom requirements. It only needs to be configured in the server entry file `index.js`.
+Ngoài cấu hình qua biến môi trường, Waline còn cung cấp một số hook tùy chỉnh để thuận tiện xử lý các yêu cầu riêng. Chỉ cần cấu hình trong tệp đầu vào của máy chủ `index.js`.
 
 ### preSave(comment)
 
-Waline provides some custom hooks to let users customize Waline server behavior according to their own needs.
+Waline cung cấp một số hook tùy chỉnh để người dùng có thể tùy biến hành vi của máy chủ Waline theo nhu cầu của mình.
 
-::: details Example
+::: details Ví dụ
 
 ```js
 // index.js
@@ -167,11 +167,11 @@ module.exports = Waline({
 
 ### postSave(comment, pComment)
 
-The action performed after the comment is posted.
+Hành động được thực hiện sau khi bình luận được đăng.
 
-When the method is executed, the comment data will be passed as the first param, and if it's a reply to the comment, the parent comment will be passed as the second param.
+Khi phương thức được thực thi, dữ liệu bình luận sẽ được truyền làm tham số thứ nhất; nếu đó là trả lời cho một bình luận, bình luận cha sẽ được truyền làm tham số thứ hai.
 
-::: details Example
+::: details Ví dụ
 
 ```js
 // index.js
@@ -191,9 +191,9 @@ module.exports = Waline({
 
 ### preUpdate(comment)
 
-Action before a comment content is updated in the dashboard. If the method returns content, the interface will return directly without updating the comment data.
+Hành động trước khi nội dung bình luận được cập nhật trong bảng điều khiển. Nếu phương thức trả về nội dung, giao diện sẽ trả về ngay mà không cập nhật dữ liệu bình luận.
 
-::: details Example
+::: details Ví dụ
 
 ```js
 // index.js
@@ -210,9 +210,9 @@ module.exports = Waline({
 
 ### postUpdate(comment)
 
-Action after a comment content is updated in the dashboard. Comment data will be passed in when the method is executed.
+Hành động sau khi nội dung bình luận được cập nhật trong bảng điều khiển. Dữ liệu bình luận sẽ được truyền vào khi phương thức được thực thi.
 
-::: details Example
+::: details Ví dụ
 
 ```js
 // index.js
@@ -229,9 +229,9 @@ module.exports = Waline({
 
 ### preDelete(commentId)
 
-Action before a comment is deleted. When the method is executed, the comment Id to be operated will be passed in. If the method returns content, the interface will return directly without updating the comment data.
+Hành động trước khi một bình luận bị xóa. Khi phương thức được thực thi, ID bình luận cần thao tác sẽ được truyền vào. Nếu phương thức trả về nội dung, giao diện sẽ trả về ngay mà không cập nhật dữ liệu bình luận.
 
-::: details Example
+::: details Ví dụ
 
 ```js
 // index.js
@@ -248,9 +248,9 @@ module.exports = Waline({
 
 ### postDelete(commentId)
 
-Action after a comment is deleted, the comment Id will be passed as the only param.
+Hành động sau khi một bình luận bị xóa, ID bình luận sẽ được truyền làm tham số duy nhất.
 
-::: details Example
+::: details Ví dụ
 
 ```js
 // index.js

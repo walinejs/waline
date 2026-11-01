@@ -1,13 +1,13 @@
 ---
-title: plugin system
+title: Hệ thống plugin
 icon: api
 ---
 
-Users can extend the custom hook function through the Hook provided by Waline to realize custom functions. But if users want to share custom Hook methods, they can only use the copy method. To solve this problem, the Waline plugin system came into being.
+Người dùng có thể mở rộng chức năng thông qua Hook do Waline cung cấp để hiện thực các tính năng tùy chỉnh. Nhưng nếu người dùng muốn chia sẻ các phương thức Hook tùy chỉnh, họ chỉ có thể dùng cách sao chép. Để giải quyết vấn đề này, hệ thống plugin của Waline ra đời.
 
-## Install the plugin
+## Cài đặt plugin
 
-A new `plugins` attribute has been added to Waline's initial configuration, which supports configuring multiple plugins.
+Thuộc tính `plugins` đã được thêm vào cấu hình khởi tạo của Waline, hỗ trợ cấu hình nhiều plugin.
 
 ```js
 // index.js
@@ -19,7 +19,7 @@ module.exports = Waline({
 });
 ```
 
-To install others' plugin directly, you can also place plugin hooks direct in `plugins`:
+Để cài đặt trực tiếp plugin của người khác, bạn cũng có thể đặt trực tiếp các hook của plugin trong `plugins`:
 
 ```js
 // index.js
@@ -44,11 +44,11 @@ module.exports = Waline({
 });
 ```
 
-## Create plugin
+## Tạo plugin
 
-### Create based on Hook
+### Tạo dựa trên Hook
 
-It's easy to build a plugin. A plugin is contained by a collection of [hooks.](./config.md#comment-hooks)
+Việc xây dựng một plugin rất đơn giản. Một plugin được cấu thành từ một tập hợp [hook](./config.md#hook-binh-luan).
 
 ```js
 module.exports = {
@@ -60,13 +60,13 @@ module.exports = {
 };
 ```
 
-It should be noted that if the user installs multiple Hook plugins, the execution of the same hook function is executed in the order in which the plugins are installed. If the pre-hook method returns early, no subsequent operations will be performed.
+Cần lưu ý rằng nếu người dùng cài đặt nhiều plugin Hook, việc thực thi cùng một hàm hook sẽ diễn ra theo thứ tự cài đặt của các plugin. Nếu phương thức pre-hook trả về sớm, các thao tác tiếp theo sẽ không được thực hiện.
 
-### Create based on middleware
+### Tạo dựa trên middleware
 
-If Hook can't meet your needs, you can use a more powerful middleware mode to customize development. The bottom layer of Waline uses the Node.js framework [Koa](https://koajs.com), and we expose Koa's middleware configuration as a whole, which can meet various customization needs of advanced developers.
+Nếu Hook không đáp ứng được nhu cầu của bạn, bạn có thể dùng chế độ middleware mạnh mẽ hơn để phát triển tùy chỉnh. Tầng nền của Waline sử dụng framework Node.js [Koa](https://koajs.com), và chúng tôi công khai toàn bộ cấu hình middleware của Koa, có thể đáp ứng nhiều nhu cầu tùy chỉnh của các nhà phát triển nâng cao.
 
-If you don't know what Koa middleware is, you can search for it first. What you need to pay attention to when using the middleware mode to make plug-ins is that the callback method must write the execution of `await next()`, otherwise the follow-up operations will not be executed.
+Nếu bạn chưa biết middleware của Koa là gì, hãy tìm hiểu trước. Điều cần lưu ý khi dùng chế độ middleware để viết plugin là hàm callback phải gọi `await next()`, nếu không các thao tác tiếp theo sẽ không được thực thi.
 
 ```js
 module.exports = {
@@ -78,11 +78,11 @@ module.exports = {
 };
 ```
 
-Of course, you can put the logic of Hook-type plug-ins and middleware-type plug-ins together, and Waline supports them.
+Tất nhiên, bạn có thể đặt logic của plugin kiểu Hook và plugin kiểu middleware cùng nhau, Waline đều hỗ trợ.
 
-### List of plugins
+### Danh sách plugin
 
-Welcome to submit plugins~
+Hoan nghênh bạn đóng góp plugin~
 
 - [@waline-plugins/hello-world](https://github.com/walinejs/plugins/tree/master/packages/hello-world)
 - [@waline-plugins/privacy](https://github.com/walinejs/plugins/tree/master/packages/privacy)

@@ -1,14 +1,14 @@
 ---
-title: Self Host
+title: Tự triển khai
 icon: server
 order: -1
 ---
 
-If you don't want to deploy the server on Vercel, you can also choose to deploy on your own server.
+Nếu bạn không muốn triển khai máy chủ trên Vercel, bạn cũng có thể chọn triển khai trên máy chủ của riêng mình.
 
 <!-- more -->
 
-## Docker Deploy
+## Triển khai bằng Docker
 
 ```bash
 docker run -d \
@@ -16,9 +16,9 @@ docker run -d \
   lizheming/waline
 ```
 
-It's a demo for how to run waline. You also need add some database environment if you want all comment function works well.
+Đây là một ví dụ minh họa cách chạy Waline. Bạn còn cần thêm một số biến môi trường cơ sở dữ liệu nếu muốn mọi chức năng bình luận hoạt động tốt.
 
-::: tip How to build image?
+::: tip Làm thế nào để build image?
 
 ```bash
 git clone https://github.com/lizheming/waline.git
@@ -28,11 +28,11 @@ docker build -t lizheming/waline -f packages/server/Dockerfile .
 
 :::
 
-### via [docker stack deploy](https://docs.docker.com/engine/reference/commandline/stack_deploy/) or [docker-compose](https://github.com/docker/compose)
+### qua [docker stack deploy](https://docs.docker.com/engine/reference/commandline/stack_deploy/) hoặc [docker-compose](https://github.com/docker/compose)
 
-The SQLite is used here as an example. For SQLite and supported database services, please refer to [Multi-database service support](../database.md#sqlite).
+Ở đây sử dụng SQLite làm ví dụ. Về SQLite và các dịch vụ cơ sở dữ liệu được hỗ trợ, vui lòng tham khảo [Hỗ trợ nhiều dịch vụ cơ sở dữ liệu](../database.md#sqlite).
 
-Example `docker-compose.yml` for `waline`:
+Ví dụ `docker-compose.yml` cho `waline`:
 
 ```yaml
 # docker-compose.yml
@@ -57,9 +57,9 @@ services:
       AUTHOR_EMAIL: 'mail@example.com'
 ```
 
-## Run directly (Recommended)
+## Chạy trực tiếp (khuyên dùng)
 
-It's easy to run without using docker deployment, after setting environment variables, just run the `vanilla.js` file in the module after installing.
+Rất dễ để chạy mà không cần dùng Docker: sau khi đặt biến môi trường, chỉ cần chạy tệp `vanilla.js` trong mô-đun sau khi cài đặt.
 
 ::: code-tabs#shell
 
@@ -79,9 +79,9 @@ node node_modules/@waline/vercel/vanilla.js
 
 :::
 
-## Nginx config
+## Cấu hình Nginx
 
-If you don't want to use port in server url, you can use Nginx proxy pass to 80 and 443. Refer to the following configuration:
+Nếu bạn không muốn dùng cổng trong URL máy chủ, bạn có thể dùng Nginx proxy pass sang 80 và 443. Tham khảo cấu hình sau:
 
 ```nginx
 server

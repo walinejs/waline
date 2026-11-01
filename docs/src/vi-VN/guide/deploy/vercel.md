@@ -1,93 +1,93 @@
 ---
-title: Vercel Deployment
+title: Triển khai trên Vercel
 icon: vercel
 order: 1
 ---
 
-We released the `@waline/vercel` package as server package, Vercel deployment is also our most recommended way.
+Chúng tôi đã phát hành gói `@waline/vercel` làm gói máy chủ, và triển khai trên Vercel cũng là cách chúng tôi khuyên dùng nhất.
 
 <!-- more -->
 
-## How to Deploy
+## Cách triển khai
 
 [![Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fwalinejs%2Fwaline%2Ftree%2Fmain%2Fexample)
 
-1. Click the blue button above, it will redirect you to vercel to deploy with waline template.
+1. Nhấn nút màu xanh ở trên, trình duyệt sẽ chuyển bạn đến Vercel để triển khai bằng mẫu Waline.
 
    ::: note
 
-   If you haven't logined, we recommend you to sign in with GitHub.
+   Nếu bạn chưa đăng nhập, chúng tôi khuyên bạn nên đăng nhập bằng GitHub.
 
    :::
 
-1. Input your Vercel project name then click `Create`.
+1. Nhập tên dự án Vercel của bạn rồi nhấn `Create`.
 
    ![Create Project](../../../assets/vercel-1.png)
 
-1. Repo which named you input before will be created and initialized automatically base on waline example template by Vercel.
+1. Kho lưu trữ có tên bạn vừa nhập sẽ được Vercel tạo và khởi tạo tự động dựa trên mẫu ví dụ của Waline.
 
    ![new project](../../../assets/vercel-2.png)
 
-   After one minute or two, vercel should finish the deployment. Click `Go to Dashboard` button to redirect to your application dashboard.
+   Sau một hoặc hai phút, Vercel sẽ hoàn tất việc triển khai. Nhấn nút `Go to Dashboard` để chuyển đến bảng điều khiển ứng dụng của bạn.
 
    ![dashboard](../../../assets/vercel-3.png)
 
-## Create Database
+## Tạo cơ sở dữ liệu
 
-1. Click `Storage` at the top to enter the storage service page, choose `Create Database`. Under `Marketplace Database Providers`, select `Neon`, then click `Continue`.
+1. Nhấn `Storage` ở trên cùng để vào trang dịch vụ lưu trữ, chọn `Create Database`. Trong `Marketplace Database Providers`, chọn `Neon`, rồi nhấn `Continue`.
 
    ![storage](../../../assets/vercel-5.png)
 
-1. You will be prompted to create a Neon account. Choose `Accept and Create`. Next, select the database plan configuration, including region and quota. You can leave defaults and click `Continue`.
+1. Bạn sẽ được yêu cầu tạo tài khoản Neon. Chọn `Accept and Create`. Tiếp theo, chọn cấu hình gói cơ sở dữ liệu, bao gồm khu vực và hạn mức. Bạn có thể giữ mặc định và nhấn `Continue`.
 
    ![neon](../../../assets/vercel-6.png)
 
-1. Define the database name. You can keep the default and click `Continue`.
+1. Đặt tên cơ sở dữ liệu. Bạn có thể giữ mặc định và nhấn `Continue`.
 
    ![neon](../../../assets/vercel-7.png)
 
-1. Now the database appears under `Storage`. Click it and choose `Open in Neon` to jump to Neon. In Neon, select `SQL Editor` on the left, paste the SQL from [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) into the editor, and click `Run` to create tables.
+1. Bây giờ cơ sở dữ liệu đã xuất hiện trong `Storage`. Nhấn vào đó và chọn `Open in Neon` để chuyển sang Neon. Trong Neon, chọn `SQL Editor` ở bên trái, dán câu lệnh SQL từ [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) vào trình soạn thảo, rồi nhấn `Run` để tạo các bảng.
 
    ![neon](../../../assets/vercel-10.png)
 
    ![neon](../../../assets/vercel-11.png)
 
-1. After a short while you should see a success message. Go back to Vercel, click `Deployments`, then click `Redeploy` on the latest deployment to make the new database configuration take effect.
+1. Sau một lúc, bạn sẽ thấy thông báo thành công. Quay lại Vercel, nhấn `Deployments`, rồi nhấn `Redeploy` trên lần triển khai mới nhất để cấu hình cơ sở dữ liệu mới có hiệu lực.
 
    ![redeploy success](../../../assets/vercel-12.png)
 
-1. Vercel will redirect to `Overview` and start deploying. When `STATUS` becomes `Ready`, click `Visit` to open the deployed site. This URL is your server address.
+1. Vercel sẽ chuyển về `Overview` và bắt đầu triển khai. Khi `STATUS` trở thành `Ready`, nhấn `Visit` để mở trang đã triển khai. URL này chính là địa chỉ máy chủ của bạn.
 
    ![visit](../../../assets/vercel-14.png)
 
-## Assign Domain
+## Gán tên miền
 
-1. Click <kbd>Settings</kbd> - <kbd>Domains</kbd> to go to domain setting page.
+1. Nhấn <kbd>Settings</kbd> - <kbd>Domains</kbd> để vào trang cài đặt tên miền.
 
-1. Input domain you want to assign and click <kbd>Add</kbd> button.
+1. Nhập tên miền bạn muốn gán và nhấn nút <kbd>Add</kbd>.
 
    ![Add domain](../../../assets/vercel-16.png)
 
-1. Add a new `CNAME` record in your domain service server.
+1. Thêm một bản ghi `CNAME` mới trong máy chủ dịch vụ tên miền của bạn.
 
    | Type  | Name    | Value                |
    | ----- | ------- | -------------------- |
    | CNAME | example | cname.vercel-dns.com |
 
-1. You can use your own domain to visit Waline after it takes effect. :tada:
-   - Comment system: example.your-domain.com
-   - Admin panel: example.your-domain.com/ui
+1. Sau khi có hiệu lực, bạn có thể dùng tên miền của mình để truy cập Waline. :tada:
+   - Hệ thống bình luận: example.your-domain.com
+   - Bảng điều khiển quản trị: example.your-domain.com/ui
 
    ![success](../../../assets/vercel-17.png)
 
-## HTML Import
+## Nhúng bằng HTML
 
-Set up as follows in your webpage:
+Thiết lập như sau trong trang web của bạn:
 
-1. Import Waline styles from `https://unpkg.com/@waline/client@v3/dist/waline.css`.
-2. Create a `<script>` tag that uses `init()` from `https://unpkg.com/@waline/client@v3/dist/waline.js`, and pass required options `el` and `serverURL`.
-   - `el` is the element used to render Waline. It can be a CSS selector string or an HTMLElement.
-   - `serverURL` is your server address obtained in the previous step.
+1. Nhập kiểu dáng của Waline từ `https://unpkg.com/@waline/client@v3/dist/waline.css`.
+2. Tạo thẻ `<script>` sử dụng `init()` từ `https://unpkg.com/@waline/client@v3/dist/waline.js`, và truyền các tùy chọn bắt buộc `el` và `serverURL`.
+   - `el` là phần tử dùng để hiển thị Waline. Nó có thể là chuỗi chọn CSS hoặc một HTMLElement.
+   - `serverURL` là địa chỉ máy chủ bạn đã lấy ở bước trước.
 
 ```html {3-7,12-18}:line-numbers
 <head>
@@ -109,8 +109,8 @@ Set up as follows in your webpage:
 </body>
 ```
 
-## Comment Admin
+## Quản trị bình luận
 
-1. After deployment, visit `<serverURL>/ui/register` to register. The first registered user becomes the administrator.
-2. After logging in, the administrator can manage comments: edit, mark, or delete.
-3. Users can also register via the comment box. After login they will be redirected to their profile page.
+1. Sau khi triển khai, truy cập `<serverURL>/ui/register` để đăng ký. Người dùng đăng ký đầu tiên sẽ trở thành quản trị viên.
+2. Sau khi đăng nhập, quản trị viên có thể quản lý bình luận: chỉnh sửa, đánh dấu hoặc xóa.
+3. Người dùng cũng có thể đăng ký qua khung bình luận. Sau khi đăng nhập, họ sẽ được chuyển đến trang hồ sơ của mình.

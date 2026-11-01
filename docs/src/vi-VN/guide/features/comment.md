@@ -1,16 +1,16 @@
 ---
-title: Comment Counter
+title: Bộ đếm bình luận
 icon: counter
 order: 8
 ---
 
-Waline supports displaying the number of comments separately in the non-comment area.
+Waline hỗ trợ hiển thị số lượng bình luận riêng biệt ở những khu vực nằm ngoài khung bình luận.
 
 <!-- more -->
 
-## Automatically Update
+## Tự động cập nhật
 
-You can enable comment counting in the `init` function by setting the `comment` option to `true`.
+Bạn có thể bật tính năng đếm bình luận trong hàm `init` bằng cách đặt tùy chọn `comment` thành `true`.
 
 ```html
 <script type="module">
@@ -24,34 +24,34 @@ You can enable comment counting in the `init` function by setting the `comment` 
 </script>
 ```
 
-Waline will try to fill in or update comment count whenever you called `init` function or update the path.
+Waline sẽ cố gắng điền hoặc cập nhật số lượng bình luận mỗi khi bạn gọi hàm `init` hoặc cập nhật đường dẫn.
 
-waline finds the elements having `waline-comment-count` class in the page, and get their `data-path` attribute as the query condition. And fill it with the obtained value:
+Waline tìm các phần tử có lớp `waline-comment-count` trong trang, lấy thuộc tính `data-path` của chúng làm điều kiện truy vấn, rồi điền giá trị thu được vào đó:
 
 ```html
 <!-- data-path will be the query condition -->
 <span data-path="<Your/Path/Name>" class="waline-comment-count" /> comments
 ```
 
-If you need a different selector, you can set the `comment` option to that selector.
+Nếu cần một bộ chọn khác, bạn có thể đặt tùy chọn `comment` thành bộ chọn đó.
 
-Every time you call `WalineInstance.update()`, Waline will search the page content and automatically update the comment count.
+Mỗi lần bạn gọi `WalineInstance.update()`, Waline sẽ tìm kiếm nội dung trang và tự động cập nhật số lượng bình luận.
 
-::: tip Examples
+::: tip Ví dụ
 
 ```html
 The current page has <span class="waline-comment-count" /> comments, the home page has
 <span data-path="/vi-VN/" class="waline-comment-count" /> comments.
 ```
 
-The current page has <span class="waline-comment-count" /> comments, the home
-page has <span data-path="/vi-VN/" class="waline-comment-count" /> comments.
+Trang hiện tại có <span class="waline-comment-count" /> bình luận, trang chủ có
+<span data-path="/vi-VN/" class="waline-comment-count" /> bình luận.
 
 :::
 
-## Manual Update
+## Cập nhật thủ công
 
-Besides automatically update via the `init` function, you can manually update the current page's comment count via the `commentCount` API:
+Ngoài việc tự động cập nhật qua hàm `init`, bạn có thể cập nhật thủ công số lượng bình luận của trang hiện tại qua API `commentCount`:
 
 ```html
 <script type="module">
@@ -67,11 +67,11 @@ Besides automatically update via the `init` function, you can manually update th
 </script>
 ```
 
-::: info Aborting
+::: info Hủy thao tác
 
-Since the comment count fetch is an asynchronous network operation, you may need to cancel an ongoing comment count update operation in certain circumstances.
+Vì việc lấy số lượng bình luận là một thao tác mạng bất đồng bộ, trong một số trường hợp bạn có thể cần hủy thao tác cập nhật số lượng bình luận đang diễn ra.
 
-`commentCount` returns a function that can be called to cancel the update:
+`commentCount` trả về một hàm, bạn có thể gọi hàm này để hủy việc cập nhật:
 
 ```js
 const abort = Waline.commentCount({
@@ -85,9 +85,9 @@ setTimeout(() => abort(), 500);
 
 :::
 
-## Import Counter Only
+## Chỉ nhập bộ đếm
 
-Sometimes, you may want to display the comment count of some pages in the article list or homepage, but do not want to load the entire Waline. At this point you can use a Gzip < 1KB `comment` module:
+Đôi khi bạn muốn hiển thị số lượng bình luận của một số trang trong danh sách bài viết hoặc trang chủ mà không muốn tải toàn bộ Waline. Khi đó bạn có thể dùng mô-đun `comment` có kích thước Gzip < 1KB:
 
 ```html
 <script type="module">

@@ -1,13 +1,13 @@
 ---
-title: CSS variable
+title: Biến CSS
 icon: style
 ---
 
-`@waline/client` provides some CSS variables. You can easily configure the style of waline through these variables.
+`@waline/client` cung cấp một số biến CSS. Bạn có thể dễ dàng cấu hình kiểu dáng của Waline thông qua các biến này.
 
 <!-- more -->
 
-## CSS Variables Name and Default Values
+## Tên biến CSS và giá trị mặc định
 
 ```css
 :root {

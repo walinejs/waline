@@ -1,17 +1,17 @@
 ---
-title: Upload Image
+title: Tải lên hình ảnh
 icon: pic
 ---
 
-This cookbook guides you on how to set up your own image service to upload images in comments.
+Hướng dẫn này chỉ cho bạn cách thiết lập dịch vụ hình ảnh của riêng mình để tải hình ảnh lên trong bình luận.
 
 <!-- more -->
 
-`@waline/client` provides the `imageUploader` option. You should handle the image object passed in by the client by yourself, and after uploading the image yourself, return an image address through Promise.
+`@waline/client` cung cấp tùy chọn `imageUploader`. Bạn cần tự xử lý đối tượng hình ảnh do ứng dụng khách truyền vào, và sau khi tự tải hình ảnh lên, hãy trả về địa chỉ hình ảnh thông qua Promise.
 
-## Demo
+## Bản demo
 
-An example of using the `lsky-pro` graph bed.
+Ví dụ sử dụng dịch vụ lưu trữ ảnh `lsky-pro`.
 
 ```html
 <!doctype html>

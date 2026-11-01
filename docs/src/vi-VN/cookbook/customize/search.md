@@ -1,17 +1,17 @@
 ---
-title: Customize Emoticons Search
+title: Tùy chỉnh tìm kiếm emoji
 icon: search
 ---
 
-This tutorial guides you on how to customize the emoji search service via the `search` option provided by `@waline/client`.
+Hướng dẫn này chỉ cho bạn cách tùy chỉnh dịch vụ tìm kiếm emoji thông qua tùy chọn `search` do `@waline/client` cung cấp.
 
 <!-- more -->
 
-## search result conversion
+## Chuyển đổi kết quả tìm kiếm
 
-You may get different results when using different third-party image search services. After getting the search result, you need to convert it to the format required by `@waline/client`.
+Bạn có thể nhận được kết quả khác nhau khi dùng các dịch vụ tìm kiếm hình ảnh bên thứ ba khác nhau. Sau khi có kết quả tìm kiếm, bạn cần chuyển nó sang định dạng mà `@waline/client` yêu cầu.
 
-For any of the following operations, `@waline/client` requires you to return an array of image information in the following format:
+Với bất kỳ thao tác nào dưới đây, `@waline/client` đều yêu cầu bạn trả về một mảng thông tin hình ảnh theo định dạng sau:
 
 ```ts
 interface WalineSearchImageData extends Record<string, unknown> {
@@ -38,21 +38,21 @@ interface WalineSearchImageData extends Record<string, unknown> {
 type WalineSearchResult = WalineSearchImageData[];
 ```
 
-You need to ensure that each object of the array contains at least the `src` attribute to indicate the address of the image.
+Bạn cần đảm bảo mỗi đối tượng trong mảng chứa ít nhất thuộc tính `src` để chỉ ra địa chỉ của hình ảnh.
 
-Also, where possible, you should provide an alt text `title` to help with accessibility and in case of image service failures.
+Ngoài ra, nếu có thể, bạn nên cung cấp văn bản thay thế `title` để hỗ trợ khả năng truy cập và phòng khi dịch vụ hình ảnh gặp sự cố.
 
-In order to make the list load faster, as long as the image service can return multiple sizes of image URLs, you should choose a small size image as `preview` to improve the loading speed of the list image.
+Để danh sách tải nhanh hơn, miễn là dịch vụ hình ảnh có thể trả về URL hình ảnh với nhiều kích thước, bạn nên chọn hình ảnh kích thước nhỏ làm `preview` để cải thiện tốc độ tải hình ảnh trong danh sách.
 
 ::: note
 
-`@waline/client` doesn't care if there are extra properties in the image result, so you don't need to deliberately remove other keys from the returned result.
+`@waline/client` không quan tâm kết quả hình ảnh có thuộc tính thừa hay không, nên bạn không cần cố ý loại bỏ các khóa khác khỏi kết quả trả về.
 
 :::
 
-## Search Option
+## Tùy chọn tìm kiếm
 
-`@waline/client` provides three sub-options to control search behavior:
+`@waline/client` cung cấp ba tùy chọn con để điều khiển hành vi tìm kiếm:
 
 ```ts
 interface WalineSearchOptions {
@@ -78,9 +78,9 @@ interface WalineSearchOptions {
 }
 ```
 
-Since you need to implement at least the search logic, `search` is required. `@waline/client` will pass in the user search term and call this option function, and wait for this function to return a Promise to complete the search result.
+Vì bạn cần triển khai ít nhất logic tìm kiếm, `search` là bắt buộc. `@waline/client` sẽ truyền từ khóa tìm kiếm của người dùng vào và gọi hàm tùy chọn này, rồi chờ hàm trả về Promise để hoàn tất kết quả tìm kiếm.
 
-We want users to see some hot images or emoji results when they open it, so we provide the `default` function to implement this behavior. If your service provider provides an interface for popular pictures or emoticons, you should use this interface to return content. Also, since the default behavior of this function is to search for empty strings, if your search provider returns empty results in this situation, we recommend that you add a brief implementation of random preset words to avoid showing an empty list.
+Chúng tôi muốn người dùng thấy một số hình ảnh hoặc emoji phổ biến khi mở, nên đã cung cấp hàm `default` để thực hiện hành vi này. Nếu nhà cung cấp dịch vụ của bạn có giao diện cho hình ảnh hoặc biểu tượng cảm xúc phổ biến, bạn nên dùng giao diện đó để trả về nội dung. Đồng thời, vì hành vi mặc định của hàm này là tìm kiếm chuỗi rỗng, nếu nhà cung cấp tìm kiếm của bạn trả về kết quả rỗng trong trường hợp này, chúng tôi khuyến nghị bạn thêm một cách triển khai ngắn gọn với các từ đặt sẵn ngẫu nhiên để tránh hiển thị danh sách trống.
 
 ```js
 const search = (word) => {
@@ -102,19 +102,19 @@ Waline.init({
 });
 ```
 
-Usually, your search service will support pagination, so we provide a `more` function to trigger when the user swipes to the bottom and load more images to let you return more results. For a better experience, we recommend setting the number of pagination to 20 - 40, that is, 20 - 40 images are loaded each time.
+Thông thường, dịch vụ tìm kiếm của bạn sẽ hỗ trợ phân trang, nên chúng tôi cung cấp hàm `more` để kích hoạt khi người dùng cuộn xuống cuối và tải thêm hình ảnh, cho phép bạn trả về thêm kết quả. Để có trải nghiệm tốt hơn, chúng tôi khuyến nghị đặt số lượng phân trang là 20 - 40, tức là mỗi lần tải 20 - 40 hình ảnh.
 
-::: tip An example to help understand
+::: tip Một ví dụ giúp dễ hiểu
 
-When the user clicks the search button, we will trigger `default()`, if this function is missing, we will trigger `search('')`, and we will wait for the Promise to execute and render with the returned result.
+Khi người dùng nhấn nút tìm kiếm, chúng tôi sẽ kích hoạt `default()`; nếu thiếu hàm này, chúng tôi sẽ kích hoạt `search('')`, rồi chờ Promise thực thi và hiển thị bằng kết quả trả về.
 
-When the user searches for `smile`, we execute `search('smile')`. Suppose you return 20 results each time, when the user continues to scroll down, we will trigger `more('smile', 20)`, `more('smile', 40)`, `more('smile', 60 )` ...
+Khi người dùng tìm kiếm `smile`, chúng tôi thực thi `search('smile')`. Giả sử mỗi lần bạn trả về 20 kết quả, khi người dùng tiếp tục cuộn xuống, chúng tôi sẽ kích hoạt `more('smile', 20)`, `more('smile', 40)`, `more('smile', 60 )` ...
 
 :::
 
-## Examples
+## Ví dụ
 
-::: details Default implementation
+::: details Cách triển khai mặc định
 
 @[code{33-79}](../../../../../packages/client/src/config/default.ts)
 

@@ -1,16 +1,16 @@
 ---
-title: Import in project
+title: Nhập trong dự án
 icon: import
 order: 2
 ---
 
-Waline official client provides various versions of files. You can import and use the official client in several ways.
+Ứng dụng khách chính thức của Waline cung cấp các tệp ở nhiều phiên bản khác nhau. Bạn có thể nhập và sử dụng ứng dụng khách chính thức theo một số cách.
 
 <!-- more -->
 
-## NPM Packages
+## Gói NPM
 
-Waline official client has been released to [npm](https://www.npmjs.com/package/@waline/client) via `@waline/client`, you can install it with the following command:
+Ứng dụng khách chính thức của Waline đã được phát hành trên [npm](https://www.npmjs.com/package/@waline/client) với tên `@waline/client`, bạn có thể cài đặt bằng lệnh sau:
 
 ::: code-tabs#shell
 
@@ -34,11 +34,11 @@ yarn add -D @waline/client
 
 :::
 
-For the modules exported by `@waline/client`, see [Client Reference → Files](../../reference/client/file.md).
+Về các mô-đun do `@waline/client` xuất ra, xem [Tham chiếu ứng dụng khách → Tệp](../../reference/client/file.md).
 
-## Import in Normal Project
+## Nhập trong dự án thông thường
 
-Here is an example of importing and using `@waline/client` in a normal website project.
+Dưới đây là ví dụ nhập và sử dụng `@waline/client` trong một dự án trang web thông thường.
 
 ::: code-tabs#lang
 
@@ -68,13 +68,13 @@ init({
 
 :::
 
-## Import in Vue Project
+## Nhập trong dự án Vue
 
-Since `@waline/client` itself is based on Vue3, we directly export a responsive Vue component.
+Vì bản thân `@waline/client` được xây dựng trên Vue3, chúng tôi xuất trực tiếp một thành phần Vue có tính phản ứng.
 
-All properties of components are reactive, you can find all supported properties in [Client Reference → Component Props](../../reference/client/props.md).
+Mọi thuộc tính của thành phần đều có tính phản ứng, bạn có thể tìm thấy tất cả thuộc tính được hỗ trợ trong [Tham chiếu ứng dụng khách → Thuộc tính thành phần](../../reference/client/props.md).
 
-::: details Demo
+::: details Bản demo
 
 ```vue
 <template>
@@ -92,13 +92,13 @@ const path = computed(() => useRoute().path);
 </script>
 ```
 
-Since we use responsive `path`, when the route changes, `@waline/client` will automatically refresh and display the comments of the corresponding route.
+Vì chúng tôi sử dụng `path` có tính phản ứng, khi tuyến đường thay đổi, `@waline/client` sẽ tự động làm mới và hiển thị bình luận của tuyến đường tương ứng.
 
 :::
 
-## Import in React project
+## Nhập trong dự án React
 
-With a simple wrapper, you can turn Waline into a React component:
+Chỉ với một lớp bọc đơn giản, bạn có thể biến Waline thành một thành phần React:
 
 ```tsx
 import { type WalineInstance, type WalineInitOptions, init } from '@waline/client';

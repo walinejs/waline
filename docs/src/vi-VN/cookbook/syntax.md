@@ -1,53 +1,53 @@
 ---
-title: Comment Format Support
+title: Hỗ trợ định dạng bình luận
 icon: format
 order: 2
 ---
 
-The supported Markdown syntax in comments is as follows.
+Các cú pháp Markdown được hỗ trợ trong bình luận như sau.
 
 <!-- more -->
 
-## Markdown Support
+## Hỗ trợ Markdown
 
-::: preview Headings
+::: preview Tiêu đề
 
 <!-- markdownlint-disable MD025 -->
 
-# Heading1
+# Tiêu đề 1
 
 <!-- markdownlint-enable MD025 -->
 
-## Heading2
+## Tiêu đề 2
 
-### Heading3
+### Tiêu đề 3
 
-#### Heading4
+#### Tiêu đề 4
 
-##### Heading5
+##### Tiêu đề 5
 
-###### Heading7
-
-:::
-
-::: preview Text
-
-This sentence has **bold**、_italic_ and ~~delete~~ style text.
+###### Tiêu đề 7
 
 :::
 
-::: preview Paragraph
+::: preview Văn bản
 
-This is a paragraph.
-
-This is another paragraph.
+Câu này có văn bản **in đậm**、_in nghiêng_ và ~~gạch bỏ~~.
 
 :::
 
-::: details Line Break
+::: preview Đoạn văn
 
-I would like to line break at  
-this point
+Đây là một đoạn văn.
+
+Đây là một đoạn văn khác.
+
+:::
+
+::: details Ngắt dòng
+
+Tôi muốn ngắt dòng tại  
+điểm này
 
 ```md
 I would like to line break at  
@@ -56,75 +56,75 @@ this point
 
 :::
 
-::: preview Blockquotes
+::: preview Trích dẫn
 
-> Blockquotes can also be nested...
+> Trích dẫn cũng có thể lồng nhau...
 >
-> > ...by using greater-than signs right next to each other...
+> > ...bằng cách đặt các dấu lớn hơn ngay cạnh nhau...
 > >
-> > > ...or with spaces between arrows.
+> > > ...hoặc có dấu cách giữa các dấu mũi tên.
 
 :::
 
-::: preview Unordered List
+::: preview Danh sách không có thứ tự
 
-- Create a list by starting a line with `-`
-- Make sub-lists by indenting 2 spaces:
-  - Marker character change forces new list start:
+- Tạo danh sách bằng cách bắt đầu dòng với `-`
+- Tạo danh sách con bằng cách thụt lề 2 dấu cách:
+  - Việc đổi ký tự đánh dấu sẽ buộc bắt đầu danh sách mới:
     - Ac tristique libero volutpat at
     - Facilisis in pretium nisl aliquet
     - Nulla volutpat aliquam velit  
-      link break
+      ngắt dòng
 
-      New paragraph
+      Đoạn văn mới
 
-- It’s easy!
+- Thật đơn giản!
 
 :::
 
-::: preview Ordered List
+::: preview Danh sách có thứ tự
 
 1. Lorem ipsum dolor sit amet
 1. Consectetur adipiscing elit  
-   line break  
-   line break again
+   ngắt dòng  
+   ngắt dòng lần nữa
 1. Integer molestie lorem at massa
 
 :::
 
-::: preview HR
+::: preview Đường kẻ ngang
 
 ---
 
 :::
 
-::: preview Link
+::: preview Liên kết
 
-[HomePage](/)
+[Trang chủ](/)
 
 :::
 
-::: preview Image
+::: preview Hình ảnh
 
 ![Logo](/logo.png)
 
 :::
 
-::: preview Table
+::: preview Bảng
 
-|           center           |                    right | left                    |
-| :------------------------: | -----------------------: | :---------------------- |
-| For center align use `:-:` | For right align use `-:` | For left align use `:-` |
-|             b              |                aaaaaaaaa | aaaa                    |
-|             c              |                     aaaa | a                       |
+|      căn giữa       |           căn phải | căn trái           |
+| :-----------------: | -----------------: | :----------------- |
+| Căn giữa dùng `:-:` | Căn phải dùng `-:` | Căn trái dùng `:-` |
+|          b          |          aaaaaaaaa | aaaa               |
+|          c          |               aaaa | a                  |
 
 :::
 
-::: preview Code
+::: preview Mã
 
-Inline Code: `code`
+Mã nội dòng: `code`
 
-Block code:
+Khối mã:
 
 ```js
 var foo = function (bar) {
@@ -136,13 +136,13 @@ console.log(foo(5));
 
 :::
 
-## Superscript and Subscript
+## Chỉ số trên và chỉ số dưới
 
-Use `^` and `~` to mark the superscript and subscript.
+Dùng `^` và `~` để đánh dấu chỉ số trên và chỉ số dưới.
 
 <!-- prettier-ignore-start -->
 
-::: preview Demo
+::: preview Bản demo
 
 - 19^th^
 - H~2~O
@@ -151,19 +151,19 @@ Use `^` and `~` to mark the superscript and subscript.
 
 <!-- prettier-ignore-end -->
 
-## Emojis
+## Emoji
 
-Besides user-configured or built-in Weibo emojis, we also support complete Emoji shorthand emoticons.
+Ngoài emoji Weibo do người dùng tự cấu hình hoặc emoji có sẵn, chúng tôi còn hỗ trợ đầy đủ các biểu tượng cảm xúc viết tắt dạng Emoji.
 
 <!-- prettier-ignore-start -->
 
-::: preview Demo
+::: preview Bản demo
 
-Classic:
+Cổ điển:
 
 :wink: :cry: :laughing: :yum:
 
-Shortcuts:
+Viết tắt:
 
 8-) :) :* :( :-) :-( ;)
 
@@ -171,11 +171,11 @@ Shortcuts:
 
 <!-- prettier-ignore-end -->
 
-## Code Block Highlight
+## Tô sáng khối mã
 
-We support highlighting in almost all languages.
+Chúng tôi hỗ trợ tô sáng gần như mọi ngôn ngữ.
 
-::: details Demo
+::: details Bản demo
 
 ```html
 <!doctype html>
@@ -240,13 +240,13 @@ footer p {
 
 :::
 
-## Mathematical formula
+## Công thức toán học
 
-You can use `$ ... $` to create inline formulas, or use `$$ ... $$` to create block-level formulas.
+Bạn có thể dùng `$ ... $` để tạo công thức nội dòng, hoặc dùng `$$ ... $$` để tạo công thức cấp khối.
 
-::: preview Demo
+::: preview Bản demo
 
-Euler’s identity $e^{i\pi}+1=0$ is a beautiful formula in $\mathbb{R}^2$.
+Đồng nhất thức Euler $e^{i\pi}+1=0$ là một công thức đẹp trong $\mathbb{R}^2$.
 
 $$
 \frac {\partial^r} {\partial \omega^r} \left(\frac {y^{\omega}} {\omega}\right)
@@ -255,6 +255,6 @@ $$
 
 :::
 
-## Embed HTML
+## Nhúng HTML
 
-Feel free to add any HTML content unless triggering [the protection mechanism](../guide/features/safety.md#comment-security).
+Bạn có thể thoải mái thêm bất kỳ nội dung HTML nào, miễn là không kích hoạt [cơ chế bảo vệ](../guide/features/safety.md#bao-mat-binh-luan).

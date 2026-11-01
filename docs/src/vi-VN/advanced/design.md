@@ -1,26 +1,26 @@
 ---
-title: Design Goal
+title: Mục tiêu thiết kế
 icon: goal
 order: 2
 ---
 
-[Valine](https://valine.js.org) an exquisite style, simple operation, and efficient deployment review system. The first time I came into contact, I was attracted by its exquisite style and serverless characteristics. It doesn't require the backend service. The frontend interacts with the LeanCloud storage service directly, which is really cool! But as I understand deeper, I find out it's problems.
+[Valine](https://valine.js.org) là một hệ thống bình luận có kiểu dáng tinh tế, vận hành đơn giản và triển khai hiệu quả. Lần đầu tiếp cận, tôi đã bị thu hút bởi kiểu dáng tinh tế và đặc tính serverless của nó. Nó không cần dịch vụ backend, giao diện tương tác trực tiếp với dịch vụ lưu trữ LeanCloud, thực sự rất tuyệt! Nhưng càng tìm hiểu sâu, tôi càng nhận ra những vấn đề của nó.
 
-## Problem of Valine
+## Vấn đề của Valine
 
-### Not Open Source
+### Không mã nguồn mở
 
-The author only push the compiled files to the GitHub repository starting from version `1.4.0`, and the source code stop updating. May be the author have a broken heart in open source. While for users like me who want to add or modify project, this problem is a bit uncomfortable.
+Từ phiên bản `1.4.0`, tác giả chỉ đẩy các tệp đã biên dịch lên kho GitHub, còn mã nguồn thì ngừng cập nhật. Có lẽ tác giả đã thất vọng với mã nguồn mở. Với những người dùng muốn bổ sung hay sửa đổi dự án như tôi, điều này khá khó chịu.
 
 ### XSS
 
-Since the very early version, users have reported Valine's XSS problems, and the community is also using various methods to fix these problems. Including the addition of verification codes, frontend XSS filtering and other methods. However, the author later realized that all the frontend verification can only prevent the gentleman, so the restriction such as verification code is removed.
+Ngay từ những phiên bản rất sớm, người dùng đã báo cáo các vấn đề XSS của Valine, và cộng đồng cũng dùng nhiều cách để khắc phục. Bao gồm thêm mã xác minh, lọc XSS ở phía giao diện và các cách khác. Tuy nhiên, sau đó tác giả nhận ra mọi biện pháp xác minh phía giao diện chỉ có thể ngăn người ngay thẳng, nên các hạn chế như mã xác minh đã bị gỡ bỏ.
 
-Now when the frontend publishes a comment, Markdown will be converted into HTML, and then execute an XSS filter function on the frontend before be submitted to LeanCloud. After getting the data from LeanCloud, it is directly inserted to DOM. Obviously, the process is problematic. As long as the HTML is submitted directly and displayed directly after the HTML is obtained, XSS cannot be eradicated fundamentally.
+Hiện nay, khi giao diện đăng bình luận, Markdown được chuyển thành HTML, rồi chạy một hàm lọc XSS ngay trên giao diện trước khi gửi lên LeanCloud. Sau khi lấy dữ liệu từ LeanCloud, nội dung được chèn thẳng vào DOM. Rõ ràng quy trình này có vấn đề. Chừng nào HTML còn được gửi trực tiếp và hiển thị trực tiếp ngay sau khi lấy về, XSS sẽ không thể bị loại bỏ tận gốc.
 
-::: note Fundamental solution
+::: note Giải pháp tận gốc
 
-For stored XSS attacks, we can use escape HTML codes to solve them permanently. Just like old BBCode, only markdown content is submit to the database. The frontend reads the content and encodes all HTML before displaying it after Markdown conversion.
+Với các cuộc tấn công XSS lưu trữ, ta có thể dùng cách escape mã HTML để giải quyết vĩnh viễn. Giống như BBCode ngày trước, chỉ nội dung markdown được gửi vào cơ sở dữ liệu. Giao diện đọc nội dung, mã hóa toàn bộ HTML rồi mới hiển thị sau khi chuyển đổi Markdown.
 
 ```js
 function encodeForHTML(str) {
@@ -34,34 +34,34 @@ function encodeForHTML(str) {
 }
 ```
 
-Since Valine is a serverless system, attackers can directly reach the storage stage. All precautions before data storage are invalid and can only be processed during the displaying process. Because all HTML cannot be parsed after being escaped, we can ensure that the converted HTML has no chance of being inserted.
+Vì Valine là hệ thống serverless, kẻ tấn công có thể chạm thẳng tới tầng lưu trữ. Mọi biện pháp phòng ngừa trước khi lưu dữ liệu đều vô hiệu, chỉ có thể xử lý trong quá trình hiển thị. Vì toàn bộ HTML sau khi escape không thể được phân tích cú pháp, ta có thể đảm bảo HTML đã chuyển đổi không có cơ hội bị chèn vào.
 
-Since Valine is no longer open source, pull requests cannot be opened.
+Vì Valine không còn mã nguồn mở, không thể mở pull request.
 
 :::
 
-Since the above method will completely restrict users in the scope of Markdown, Waline adds `DOMPurify` on the client side since `0.15.0` to prevent XSS. Besides the regular XSS sterilization:
+Vì cách trên sẽ hoàn toàn giới hạn người dùng trong phạm vi Markdown, từ `0.15.0` Waline bổ sung `DOMPurify` ở phía ứng dụng khách để ngăn XSS. Ngoài việc diệt XSS thông thường:
 
-- `<form>` and `<input>` are disabled
-- style inject is disabled
-- autoplay of the media is disabled
-- all external links will be processed and opened in a new window with rel of `noopener noreferrer`.
+- `<form>` và `<input>` bị vô hiệu hóa
+- Việc chèn style bị vô hiệu hóa
+- Tính năng tự phát của media bị vô hiệu hóa
+- Mọi liên kết bên ngoài đều được xử lý và mở trong cửa sổ mới với rel là `noopener noreferrer`.
 
-### Privacy Leak
+### Rò rỉ quyền riêng tư
 
-Besides direct access to storage, the attacker can also read any data directly. If a database field has read permission to everyone, the content of the field is completely transparent to the attacker.
+Ngoài việc truy cập trực tiếp vào lưu trữ, kẻ tấn công còn có thể đọc bất kỳ dữ liệu nào. Nếu một trường trong cơ sở dữ liệu cho phép mọi người đọc, nội dung của trường đó hoàn toàn minh bạch với kẻ tấn công.
 
-In the comment data, the two fields IP and mailbox contain the user's sensitive data. Mr.Deng wrote an article specifically to criticize the problem [Please stop using the Valine.js comment system immediately unless it fixes the user privacy leak](https://ttys3.net/post/hugo/please-stop-using-valine-js-comment-system-until-it-fixed-the-privacy-leaking-problem/). Even when the [JueJin](https://juejin.cn) community used LeanCloud in early years, the security problem of [disclosed user's mobile phone number](https://m.weibo.cn/detail/4568007327622344?cid=4568044392682999) was exposed.
+Trong dữ liệu bình luận, hai trường IP và hộp thư chứa dữ liệu nhạy cảm của người dùng. Ông Deng đã viết một bài riêng để phê phán vấn đề này: [Please stop using the Valine.js comment system immediately unless it fixes the user privacy leak](https://ttys3.net/post/hugo/please-stop-using-valine-js-comment-system-until-it-fixed-the-privacy-leaking-problem/). Ngay cả cộng đồng [JueJin](https://juejin.cn) khi dùng LeanCloud những năm đầu cũng từng bị phơi bày vấn đề bảo mật [làm lộ số điện thoại người dùng](https://m.weibo.cn/detail/4568007327622344?cid=4568044392682999).
 
-In order to circumvent this problem, the author of Valine added the `recordIP` configuration to set whether to allow recording of user IP. Since there is no server, it can only be solved by not storing the value.
+Để lách vấn đề này, tác giả của Valine thêm cấu hình `recordIP` để quy định có cho phép ghi lại IP người dùng hay không. Vì không có máy chủ, chỉ có thể giải quyết bằng cách không lưu giá trị đó.
 
-There is still a problem with this option: Whether to record ip is based on the site owner's config, while commenters have no right to manage their own privacy.
+Tùy chọn này vẫn còn vấn đề: việc có ghi IP hay không do chủ trang web cấu hình, còn người dùng bình luận không có quyền quản lý quyền riêng tư của chính mình.
 
-Leaking of email address are another major privacy issue. It is completely feasible to calculate and report the md5 of the user's email at frontend to obtain the Gravatar avatar. But if sending email notification when a comment being replied is needed, it is inevitable to store the original value of the user's email address. This problem can theoretically be solved by RSA encryption. The private key can be stored in the environment variable of LeanCloud. The client reports both the email md5 and the email encrypted by the public key. When LeanCloud wants to send email notifications, it reads the private key in the environment in the cloud function, and then decrypt to get the user email. However, considering the size and performance of the frontend RSA encryption library, it's not actual. Adding a server layer to filter sensitive information through the server side is definitely a better practice.
+Lộ địa chỉ email là một vấn đề riêng tư lớn khác. Việc tính và gửi md5 của email người dùng ngay trên giao diện để lấy ảnh đại diện Gravatar là hoàn toàn khả thi. Nhưng nếu cần gửi thông báo email khi bình luận được trả lời, việc lưu giá trị gốc của địa chỉ email người dùng là không thể tránh khỏi. Về lý thuyết, vấn đề này có thể giải quyết bằng mã hóa RSA. Khóa riêng có thể lưu trong biến môi trường của LeanCloud. Ứng dụng khách gửi cả md5 của email và email đã mã hóa bằng khóa công khai. Khi LeanCloud muốn gửi thông báo email, hàm cloud đọc khóa riêng trong môi trường rồi giải mã để lấy email người dùng. Tuy nhiên, xét về kích thước và hiệu năng của thư viện mã hóa RSA phía giao diện, cách này không thực tế. Thêm một tầng máy chủ để lọc thông tin nhạy cảm qua phía máy chủ chắc chắn là cách làm tốt hơn.
 
-### Read Statistics Tampering
+### Chỉnh sửa thống kê lượt đọc
 
-Valien 1.2.0 adds the function of article reading statistics, the user visits the page and records the number of visits according to the url in the counter table in the background. Since the data needs to be updated every time the page is accessed, the permissions must be set to be writable in order to perform subsequent field updates. This creates a problem. In fact, the data can be updated to any value. If you interested in it, you can open the <https://valine.js.org/visitor.html> official website and enter the console and enter the following code to try. Remember to change the number back after trying it~
+Valine 1.2.0 bổ sung chức năng thống kê lượt đọc bài viết: khi người dùng truy cập trang, số lượt truy cập được ghi lại theo url trong bảng counter ở phần nền. Vì dữ liệu phải được cập nhật mỗi lần truy cập trang, quyền phải được đặt thành có thể ghi để có thể cập nhật trường về sau. Điều này tạo ra vấn đề: dữ liệu thực tế có thể được cập nhật thành bất kỳ giá trị nào. Nếu bạn quan tâm, có thể mở trang chính thức <https://valine.js.org/visitor.html>, vào console và nhập đoạn mã dưới đây để thử. Nhớ đổi số về ban đầu sau khi thử nhé~
 
 ```js
 const counter = new AV.Query('Counter');
@@ -70,12 +70,12 @@ resp[0].set('time', -100000).save();
 location.reload();
 ```
 
-Fortunately, the value of the `time` field is of type Number, so other values cannot be inserted. If the `time` field is of string type, it may be an XSS vulnerability. A possible solution to this problem is not to use the accumulative storage method. Changed to store a read-only access record for each visit, and use the `count()` method for statistics when reading. In this way, all data is read-only, which solves the problem of tampering. This solution also has a problem: when the amount of data is relatively large, it will cause a certain pressure on the query.
+May mắn là giá trị của trường `time` thuộc kiểu Number nên không thể chèn giá trị khác. Nếu trường `time` có kiểu chuỗi, đó có thể là một lỗ hổng XSS. Một cách khả thi để giải quyết vấn đề này là không dùng phương pháp lưu cộng dồn, mà chuyển sang lưu một bản ghi truy cập chỉ đọc cho mỗi lần ghé thăm, và dùng phương thức `count()` để thống kê khi đọc. Như vậy toàn bộ dữ liệu là chỉ đọc, giải quyết được vấn đề chỉnh sửa. Cách này cũng có vấn đề: khi lượng dữ liệu tương đối lớn, nó sẽ gây áp lực nhất định cho truy vấn.
 
-If it is based on remaining the original data, only server layer can be added to isolate the modification permissions.
+Nếu muốn giữ nguyên dữ liệu gốc, chỉ có thể thêm tầng máy chủ để tách biệt quyền chỉnh sửa.
 
-## Born of Waline
+## Waline ra đời
 
-Based on the above reasons, Waline was born. Waline's original goal was only to add backend to Valine, but because Valine is not open source, it can only be implemented with frontend. Of course, many codes and logic of the frontend have reference Valine in order to be consistent with Valine's configuration. Even in the project's name, I derived it from Valine, so that everyone can understand that this project is a derivative of Valine.
+Vì những lý do trên, Waline ra đời. Mục tiêu ban đầu của Waline chỉ là thêm backend cho Valine, nhưng vì Valine không mã nguồn mở nên chỉ có thể thực hiện ở phía giao diện. Tất nhiên, nhiều đoạn mã và logic ở phía giao diện đã tham khảo Valine để tương thích với cấu hình của Valine. Ngay cả tên dự án, tôi cũng đặt phái sinh từ Valine để mọi người hiểu đây là một dự án phái sinh của Valine.
 
-Besides solving the above-mentioned security problems. the addition of the server side implement many features previously limited by no server side, including email notifications, spam comment filtering, etc.
+Ngoài việc giải quyết các vấn đề bảo mật nêu trên, việc bổ sung phía máy chủ còn hiện thực hóa nhiều tính năng trước đây bị hạn chế vì không có máy chủ, bao gồm thông báo email, lọc bình luận spam, v.v.

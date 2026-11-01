@@ -1,54 +1,54 @@
 ---
-title: Server Environment Variables
+title: Biến môi trường máy chủ
 icon: config
 ---
 
-You can customize Waline Server through the following environment variables.
+Bạn có thể tùy chỉnh máy chủ Waline thông qua các biến môi trường sau.
 
 ::: warning
 
-You MUST **redeploy** after updating Environment variables to make changes applied.
+Bạn PHẢI **triển khai lại** sau khi cập nhật biến môi trường để các thay đổi có hiệu lực.
 
-You should set through `Settings` - `Environment Variables` when using Vercel.
+Khi dùng Vercel, bạn nên đặt qua `Settings` - `Environment Variables`.
 
 :::
 
 <!-- more -->
 
-## Basic
+## Cơ bản
 
-| Environment Variables | Required | Description                                                                                |
-| --------------------- | -------- | ------------------------------------------------------------------------------------------ |
-| `SITE_NAME`           |          | site name                                                                                  |
-| `SITE_URL`            |          | site url                                                                                   |
-| `LOGIN`               |          | User need login before comment when `LOGIN=force`                                          |
-| `SERVER_URL`          |          | the url of the Waline Server, useful when the automatically generated address is incorrect |
+| Biến môi trường | Bắt buộc | Mô tả                                                                        |
+| --------------- | -------- | ---------------------------------------------------------------------------- |
+| `SITE_NAME`     |          | tên trang web                                                                |
+| `SITE_URL`      |          | URL trang web                                                                |
+| `LOGIN`         |          | Người dùng cần đăng nhập trước khi bình luận khi `LOGIN=force`               |
+| `SERVER_URL`    |          | URL của máy chủ Waline, hữu ích khi địa chỉ được tạo tự động không chính xác |
 
-## Display
+## Hiển thị
 
-| Environment Variables   | Default                                                                 | Description                                                       |
-| ----------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `DISABLE_USERAGENT`     |                                                                         | wether hide the user agent of commenter. Default value is `false` |
-| `DISABLE_REGION`        |                                                                         | wether hide commenter's region. Default value is `false`          |
-| `DISABLE_AUTHOR_NOTIFY` |                                                                         | wether disable author notification                                |
-| `AVATAR_PROXY`          | `''`                                                                    | Avatar proxy service URL. Leave empty to disable it               |
-| `GRAVATAR_STR`          | <span v-pre>`https://seccdn.libravatar.org/avatar/{{mail\|md5}}`</span> | Gravatar render string，base on nunjucks template                 |
-| `LEVELS`                |                                                                         | Give each user a rating label based on the number of comments     |
+| Biến môi trường         | Mặc định                                                                | Mô tả                                                                       |
+| ----------------------- | ----------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `DISABLE_USERAGENT`     |                                                                         | có ẩn user agent của người bình luận hay không. Giá trị mặc định là `false` |
+| `DISABLE_REGION`        |                                                                         | có ẩn khu vực của người bình luận hay không. Giá trị mặc định là `false`    |
+| `DISABLE_AUTHOR_NOTIFY` |                                                                         | có tắt thông báo cho tác giả hay không                                      |
+| `AVATAR_PROXY`          | `''`                                                                    | URL dịch vụ proxy avatar. Để trống để tắt dịch vụ này                       |
+| `GRAVATAR_STR`          | <span v-pre>`https://seccdn.libravatar.org/avatar/{{mail\|md5}}`</span> | Chuỗi hiển thị Gravatar, dựa trên template nunjucks                         |
+| `LEVELS`                |                                                                         | Gán cho mỗi người dùng một nhãn cấp độ dựa trên số lượng bình luận          |
 
-::: tip Level Label
+::: tip Nhãn cấp độ
 
-According number of user comments, a level label will be added to the commenter based on rating Conditions. This feature is disabled by default and can be enabled by setting the environment variable `LEVELS`. The configuration is in the form of a comma concatenation of a given number, for example `0,10,20,50,100,200` means:
+Dựa trên số bình luận của người dùng, một nhãn cấp độ sẽ được thêm vào người bình luận theo các điều kiện xếp hạng. Tính năng này mặc định bị tắt và có thể bật bằng cách đặt biến môi trường `LEVELS`. Cấu hình có dạng các con số được nối với nhau bằng dấu phẩy, ví dụ `0,10,20,50,100,200` nghĩa là:
 
-| Grades | Conditions         | Default Grade Labels |
+| Cấp độ | Điều kiện          | Nhãn cấp độ mặc định |
 | ------ | ------------------ | -------------------- |
-| 0      | 0 <= count < 10    | Dwarves              |
-| 1      | 10 <= count < 20   | Hobbits              |
-| 2      | 20 <= count < 50   | Ents                 |
-| 3      | 50 <= count < 100  | Wizards              |
-| 4      | 100 <= count < 200 | Elves                |
+| 0      | 0 <= count < 10    | Người lùn            |
+| 1      | 10 <= count < 20   | Người tí hon         |
+| 2      | 20 <= count < 50   | Thần rừng            |
+| 3      | 50 <= count < 100  | Pháp sư              |
+| 4      | 100 <= count < 200 | Tiên tộc             |
 | 5      | 200 <= count       | Maiar                |
 
-In addition to customizing the level judgment rules, we can also customize the level label. Configure the text in the client as follows:
+Ngoài việc tùy chỉnh quy tắc xét cấp độ, chúng ta cũng có thể tùy chỉnh nhãn cấp độ. Cấu hình nội dung trong ứng dụng khách như sau:
 
 ```js
 Waline.init({
@@ -63,156 +63,156 @@ Waline.init({
 });
 ```
 
-By default, only 6 levels of copywriting are provided, but it does not mean that there can only be 6 levels. The specific level cap is based on the level judgment rules you set. To add a new level, it is recommended to configure the label text corresponding to the level by yourself. If no label text is provided, the default label text such as `Level 10` will be displayed by default.
+Mặc định chỉ cung cấp nội dung cho 6 cấp độ, nhưng điều đó không có nghĩa là chỉ có thể có 6 cấp độ. Giới hạn cấp độ cụ thể phụ thuộc vào quy tắc xét cấp độ mà bạn đặt. Để thêm cấp độ mới, nên tự cấu hình nội dung nhãn tương ứng với cấp độ đó. Nếu không cung cấp nội dung nhãn, nhãn mặc định như `Level 10` sẽ được hiển thị.
 
 :::
 
-## Safety
+## Bảo mật
 
-| Environment Variables | Default        | Description                                                                                                              |
-| --------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| `IPQPS`               | `60`           | IP-based comment posting frequency limit in seconds. Set to 0 for no limit                                               |
-| `SECURE_DOMAINS`      |                | Secure Domains config. Supports multiple domain with Comma separated                                                     |
-| `AKISMET_KEY`         | `70542d86693e` | Akismet antispam service key, set `false` if you wanna close it.                                                         |
-| `COMMENT_AUDIT`       | `false`        | Comment audit switcher. When enabled, every comment needs to be approved by admin, so hint in placeholder is recommended |
-| `RECAPTCHA_V3_KEY`    |                | reCAPTCHA V3 key,should set along with client                                                                            |
-| `RECAPTCHA_V3_SECRET` |                | reCAPTCHA V3 secret for server.                                                                                          |
-| `TURNSTILE_KEY`       |                | Turnstile key,should set along with client                                                                               |
-| `TURNSTILE_SECRET`    |                | Turnstile secret for server                                                                                              |
+| Biến môi trường       | Mặc định       | Mô tả                                                                                                                              |
+| --------------------- | -------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `IPQPS`               | `60`           | Giới hạn tần suất gửi bình luận theo IP, tính bằng giây. Đặt là 0 để không giới hạn                                                |
+| `SECURE_DOMAINS`      |                | Cấu hình tên miền an toàn. Hỗ trợ nhiều tên miền, phân tách bằng dấu phẩy                                                          |
+| `AKISMET_KEY`         | `70542d86693e` | Khóa dịch vụ chống thư rác Akismet, đặt là `false` nếu bạn muốn tắt dịch vụ này.                                                   |
+| `COMMENT_AUDIT`       | `false`        | Công tắc kiểm duyệt bình luận. Khi bật, mọi bình luận cần được quản trị viên phê duyệt, nên khuyến nghị thêm gợi ý vào placeholder |
+| `RECAPTCHA_V3_KEY`    |                | Khóa reCAPTCHA V3, cần đặt cùng với ứng dụng khách                                                                                 |
+| `RECAPTCHA_V3_SECRET` |                | Bí mật reCAPTCHA V3 dành cho máy chủ.                                                                                              |
+| `TURNSTILE_KEY`       |                | Khóa Turnstile, cần đặt cùng với ứng dụng khách                                                                                    |
+| `TURNSTILE_SECRET`    |                | Bí mật Turnstile dành cho máy chủ                                                                                                  |
 
-::: tip Recaptcha and Turnstile
+::: tip Recaptcha và Turnstile
 
-Turnstile Key and Secret can be requested at <https://www.cloudflare.com/products/turnstile/>.
+Có thể yêu cầu Key và Secret của Turnstile tại <https://www.cloudflare.com/products/turnstile/>.
 
-Recaptcha Key and Secret can be requested at <https://www.google.com/recaptcha>.
+Có thể yêu cầu Key và Secret của Recaptcha tại <https://www.google.com/recaptcha>.
 
-When setting security domains, you need to add the site address and the Waline server address at the same time.
+Khi thiết lập tên miền bảo mật, bạn cần thêm đồng thời địa chỉ trang web và địa chỉ máy chủ Waline.
 
 :::
 
 ## Markdown
 
-| Environment Variables | Default   | Description                                                        |
-| --------------------- | --------- | ------------------------------------------------------------------ |
-| `MARKDOWN_CONFIG`     | `{}`      | MarkdownIt Config                                                  |
-| `MARKDOWN_HIGHLIGHT`  | `true`    | Whether enable highlight                                           |
-| `MARKDOWN_EMOJI`      | `true`    | Whether enable emoji                                               |
-| `MARKDOWN_SUB`        | `true`    | Whether enable subscript                                           |
-| `MARKDOWN_SUP`        | `true`    | Whether enable superscript                                         |
-| `MARKDOWN_TEX`        | `mathjax` | Service to parse math, `mathjax` `katex` and `false` are supported |
-| `MARKDOWN_MATHJAX`    | `{}`      | MathJax Options                                                    |
-| `MARKDOWN_KATEX`      | `{}`      | KaTeX Options                                                      |
+| Biến môi trường      | Mặc định  | Mô tả                                                                  |
+| -------------------- | --------- | ---------------------------------------------------------------------- |
+| `MARKDOWN_CONFIG`    | `{}`      | Cấu hình MarkdownIt                                                    |
+| `MARKDOWN_HIGHLIGHT` | `true`    | Có bật tô sáng mã nguồn hay không                                      |
+| `MARKDOWN_EMOJI`     | `true`    | Có bật emoji hay không                                                 |
+| `MARKDOWN_SUB`       | `true`    | Có bật chỉ số dưới hay không                                           |
+| `MARKDOWN_SUP`       | `true`    | Có bật chỉ số trên hay không                                           |
+| `MARKDOWN_TEX`       | `mathjax` | Dịch vụ phân tích công thức toán, hỗ trợ `mathjax`, `katex` và `false` |
+| `MARKDOWN_MATHJAX`   | `{}`      | Tùy chọn MathJax                                                       |
+| `MARKDOWN_KATEX`     | `{}`      | Tùy chọn KaTeX                                                         |
 
-## Mail Service
+## Dịch vụ email
 
-The email service is used for email notification of user registration and comments. After configuring the variables related to the mail service, user registration will add operations related to email verification code confirmation to prevent malicious registration.
+Dịch vụ email được dùng để gửi thông báo qua email về việc đăng ký người dùng và bình luận. Sau khi cấu hình các biến liên quan đến dịch vụ email, quá trình đăng ký người dùng sẽ có thêm bước xác nhận bằng mã xác minh gửi qua email nhằm ngăn chặn đăng ký độc hại.
 
-| Environment variable name | Remarks                    |
-| ------------------------- | -------------------------- |
-| `SMTP_SERVICE`            | SMTP mail service provider |
-| `SMTP_HOST`               | SMTP server address        |
-| `SMTP_PORT`               | SMTP server port           |
-| `SMTP_USER`               | SMTP username              |
-| `SMTP_PASS`               | SMTP Password.             |
-| `SMTP_SECURE`             | SMTP connect with SSL      |
-| `SENDER_NAME`             | Customize sender name      |
-| `SENDER_EMAIL`            | Customize sender email     |
+| Tên biến môi trường | Ghi chú                         |
+| ------------------- | ------------------------------- |
+| `SMTP_SERVICE`      | Nhà cung cấp dịch vụ email SMTP |
+| `SMTP_HOST`         | Địa chỉ máy chủ SMTP            |
+| `SMTP_PORT`         | Cổng máy chủ SMTP               |
+| `SMTP_USER`         | Tên người dùng SMTP             |
+| `SMTP_PASS`         | Mật khẩu SMTP.                  |
+| `SMTP_SECURE`       | Kết nối SMTP bằng SSL           |
+| `SENDER_NAME`       | Tùy chỉnh tên người gửi         |
+| `SENDER_EMAIL`      | Tùy chỉnh email người gửi       |
 
 ::: tip
 
-Supported service providers can be found [nodemailer services](https://github.com/nodemailer/nodemailer/blob/master/src/well-known/services.json). You can choose one of `SMTP_SERVICE` and (`SMTP_HOST`, `SMTP_PORT`). If you don't know the corresponding `SMTP_SERVICE` in the list, you need to configure `SMTP_HOST` and `SMTP_PORT`, which can probably be found in the mailbox settings.
+Các nhà cung cấp dịch vụ được hỗ trợ có thể xem tại [nodemailer services](https://github.com/nodemailer/nodemailer/blob/master/src/well-known/services.json). Bạn có thể chọn một trong hai: `SMTP_SERVICE` hoặc (`SMTP_HOST`, `SMTP_PORT`). Nếu không biết `SMTP_SERVICE` tương ứng trong danh sách, bạn cần cấu hình `SMTP_HOST` và `SMTP_PORT`, thường có thể tìm thấy trong phần cài đặt hộp thư.
 
-The user name of SMTP usually supports the complete mailbox of the user, and the password is mostly the same as the mailbox password.
+Tên người dùng SMTP thường là địa chỉ hộp thư đầy đủ của người dùng, và mật khẩu phần lớn giống với mật khẩu hộp thư.
 
-Please pay special attention that some mailboxes use separate SMTP passwords.
+Xin lưu ý đặc biệt rằng một số hộp thư sử dụng mật khẩu SMTP riêng.
 
 :::
 
-## Database
+## Cơ sở dữ liệu
 
 ### MongoDB
 
-| Environment Variable | Required | Default   | Description                                  |
-| -------------------- | -------- | --------- | -------------------------------------------- |
-| `MONGO_DB`           | ✅       |           | MongoDB database name                        |
-| `MONGO_USER`         | ✅       |           | MongoDB server username                      |
-| `MONGO_PASSWORD`     | ✅       |           | MongoDB server password                      |
-| `MONGO_HOST`         |          | 127.0.0.1 | MongoDB server address, support array format |
-| `MONGO_PORT`         |          | 27017     | MongoDB server port, support array format    |
-| `MONGO_REPLICASET`   |          |           | MongoDB replica set                          |
-| `MONGO_AUTHSOURCE`   |          |           | MongoDB auth source                          |
-| `MONGO_OPT_SSL`      |          | `false`   | use SSL connection                           |
+| Biến môi trường    | Bắt buộc | Mặc định  | Mô tả                                          |
+| ------------------ | -------- | --------- | ---------------------------------------------- |
+| `MONGO_DB`         | ✅       |           | Tên cơ sở dữ liệu MongoDB                      |
+| `MONGO_USER`       | ✅       |           | Tên người dùng máy chủ MongoDB                 |
+| `MONGO_PASSWORD`   | ✅       |           | Mật khẩu máy chủ MongoDB                       |
+| `MONGO_HOST`       |          | 127.0.0.1 | Địa chỉ máy chủ MongoDB, hỗ trợ định dạng mảng |
+| `MONGO_PORT`       |          | 27017     | Cổng máy chủ MongoDB, hỗ trợ định dạng mảng    |
+| `MONGO_REPLICASET` |          |           | Replica set của MongoDB                        |
+| `MONGO_AUTHSOURCE` |          |           | Nguồn xác thực của MongoDB                     |
+| `MONGO_OPT_SSL`    |          | `false`   | sử dụng kết nối SSL                            |
 
 ### MySQL
 
-| Environment Variable | Required | Default   | Description                |
-| -------------------- | -------- | --------- | -------------------------- |
-| `MYSQL_DB`           | ✅       |           | MySQL database name        |
-| `MYSQL_USER`         | ✅       |           | MySQL server username      |
-| `MYSQL_PASSWORD`     | ✅       |           | MySQL server password      |
-| `MYSQL_HOST`         |          | 127.0.0.1 | MySQL server address       |
-| `MYSQL_PORT`         |          | 3306      | MySQL server port          |
-| `MYSQL_PREFIX`       |          | `wl_`     | MySQL table prefix         |
-| `MYSQL_CHARSET`      |          | `utf8mb4` | MySQL table charset        |
-| `MYSQL_SSL`          |          | `false`   | whether use SSL connection |
+| Biến môi trường  | Bắt buộc | Mặc định  | Mô tả                            |
+| ---------------- | -------- | --------- | -------------------------------- |
+| `MYSQL_DB`       | ✅       |           | Tên cơ sở dữ liệu MySQL          |
+| `MYSQL_USER`     | ✅       |           | Tên người dùng máy chủ MySQL     |
+| `MYSQL_PASSWORD` | ✅       |           | Mật khẩu máy chủ MySQL           |
+| `MYSQL_HOST`     |          | 127.0.0.1 | Địa chỉ máy chủ MySQL            |
+| `MYSQL_PORT`     |          | 3306      | Cổng máy chủ MySQL               |
+| `MYSQL_PREFIX`   |          | `wl_`     | Tiền tố bảng MySQL               |
+| `MYSQL_CHARSET`  |          | `utf8mb4` | Bộ ký tự bảng MySQL              |
+| `MYSQL_SSL`      |          | `false`   | có sử dụng kết nối SSL hay không |
 
 ### TiDB
 
-[Create a database on TiDB](../../../vi-VN/guide/deploy/tidb.md)
+[Tạo cơ sở dữ liệu trên TiDB](../../../vi-VN/guide/deploy/tidb.md)
 
-| Environment Variable | Required | Default   | Description          |
-| -------------------- | -------- | --------- | -------------------- |
-| `TIDB_DB`            | ✅       |           | TiDB database name   |
-| `TIDB_USER`          | ✅       |           | TiDB server username |
-| `TIDB_PASSWORD`      | ✅       |           | TiDB server password |
-| `TIDB_HOST`          |          | 127.0.0.1 | TiDB server address  |
-| `TIDB_PORT`          |          | 4000      | TiDB server port     |
-| `TIDB_PREFIX`        |          | `wl_`     | TiDB table prefix    |
-| `TIDB_CHARSET`       |          | `utf8mb4` | TiDB table charset   |
+| Biến môi trường | Bắt buộc | Mặc định  | Mô tả                       |
+| --------------- | -------- | --------- | --------------------------- |
+| `TIDB_DB`       | ✅       |           | Tên cơ sở dữ liệu TiDB      |
+| `TIDB_USER`     | ✅       |           | Tên người dùng máy chủ TiDB |
+| `TIDB_PASSWORD` | ✅       |           | Mật khẩu máy chủ TiDB       |
+| `TIDB_HOST`     |          | 127.0.0.1 | Địa chỉ máy chủ TiDB        |
+| `TIDB_PORT`     |          | 4000      | Cổng máy chủ TiDB           |
+| `TIDB_PREFIX`   |          | `wl_`     | Tiền tố bảng TiDB           |
+| `TIDB_CHARSET`  |          | `utf8mb4` | Bộ ký tự bảng TiDB          |
 
 ### SQLite
 
-| Environment Variable | Required | Default | Description                                                        |
-| -------------------- | -------- | ------- | ------------------------------------------------------------------ |
-| `SQLITE_PATH`        | ✅       |         | SQLite storage file path, not include file name                    |
-| `JWT_TOKEN`          | ✅       |         | Random String for login token generator                            |
-| `SQLITE_DB`          |          | waline  | SQLite storage file name, change it if your filename is not waline |
-| `SQLITE_PREFIX`      |          | `wl_`   | SQLite table prefix                                                |
+| Biến môi trường | Bắt buộc | Mặc định | Mô tả                                                                 |
+| --------------- | -------- | -------- | --------------------------------------------------------------------- |
+| `SQLITE_PATH`   | ✅       |          | Đường dẫn tệp lưu trữ SQLite, không bao gồm tên tệp                   |
+| `JWT_TOKEN`     | ✅       |          | Chuỗi ngẫu nhiên dùng để tạo mã thông báo đăng nhập                   |
+| `SQLITE_DB`     |          | waline   | Tên tệp lưu trữ SQLite, hãy đổi nếu tên tệp của bạn không phải waline |
+| `SQLITE_PREFIX` |          | `wl_`    | Tiền tố bảng SQLite                                                   |
 
 ### PostgreSQL
 
-| Environment Variable | Required | Default   | Description                         |
-| -------------------- | -------- | --------- | ----------------------------------- |
-| `PG_DB`              | ✅       |           | PostgreSQL database name            |
-| `PG_USER`            | ✅       |           | PostgreSQL server username          |
-| `PG_PASSWORD`        | ✅       |           | PostgreSQL server password          |
-| `PG_HOST`            |          | 127.0.0.1 | PostgreSQL server address           |
-| `PG_PORT`            |          | 5432      | PostgreSQL server port              |
-| `PG_PREFIX`          |          | `wl_`     | PostgreSQL table prefix             |
-| `PG_SSL`             |          | `false`   | set to `true` to use SSL connection |
-| `POSTGRES_DATABASE`  |          |           | alias for `PG_DB`                   |
-| `POSTGRES_USER`      |          |           | alias for `PG_USER`                 |
-| `POSTGRES_PASSWORD`  |          |           | alias for `PG_PASSWORD`             |
-| `POSTGRES_HOST`      |          | 127.0.0.1 | alias for `PG_HOST`                 |
-| `POSTGRES_PORT`      |          | 5432      | alias for `PG_PORT`                 |
-| `POSTGRES_PREFIX`    |          | `wl_`     | alias for `PG_PREFIX`               |
-| `POSTGRES_SSL`       |          | `false`   | alias for `PG_SSL`                  |
+| Biến môi trường     | Bắt buộc | Mặc định  | Mô tả                                |
+| ------------------- | -------- | --------- | ------------------------------------ |
+| `PG_DB`             | ✅       |           | Tên cơ sở dữ liệu PostgreSQL         |
+| `PG_USER`           | ✅       |           | Tên người dùng máy chủ PostgreSQL    |
+| `PG_PASSWORD`       | ✅       |           | Mật khẩu máy chủ PostgreSQL          |
+| `PG_HOST`           |          | 127.0.0.1 | Địa chỉ máy chủ PostgreSQL           |
+| `PG_PORT`           |          | 5432      | Cổng máy chủ PostgreSQL              |
+| `PG_PREFIX`         |          | `wl_`     | Tiền tố bảng PostgreSQL              |
+| `PG_SSL`            |          | `false`   | đặt là `true` để sử dụng kết nối SSL |
+| `POSTGRES_DATABASE` |          |           | bí danh của `PG_DB`                  |
+| `POSTGRES_USER`     |          |           | bí danh của `PG_USER`                |
+| `POSTGRES_PASSWORD` |          |           | bí danh của `PG_PASSWORD`            |
+| `POSTGRES_HOST`     |          | 127.0.0.1 | bí danh của `PG_HOST`                |
+| `POSTGRES_PORT`     |          | 5432      | bí danh của `PG_PORT`                |
+| `POSTGRES_PREFIX`   |          | `wl_`     | bí danh của `PG_PREFIX`              |
+| `POSTGRES_SSL`      |          | `false`   | bí danh của `PG_SSL`                 |
 
 ### GitHub
 
-| Environment Variable | Required | Default | Description                                                                                                      |
-| -------------------- | -------- | ------- | ---------------------------------------------------------------------------------------------------------------- |
-| `GITHUB_TOKEN`       | ✅       |         | [Personal access tokens](https://github.com/settings/tokens)                                                     |
-| `GITHUB_REPO`        | ✅       |         | repository name, such as `walinejs/waline`                                                                       |
-| GITHUB_PATH          |          |         | The data storage directory, such as `data` means it is stored in the `data` directory, root directory by default |
+| Biến môi trường | Bắt buộc | Mặc định | Mô tả                                                                                            |
+| --------------- | -------- | -------- | ------------------------------------------------------------------------------------------------ |
+| `GITHUB_TOKEN`  | ✅       |          | [Mã truy cập cá nhân](https://github.com/settings/tokens)                                        |
+| `GITHUB_REPO`   | ✅       |          | tên kho lưu trữ, ví dụ `walinejs/waline`                                                         |
+| GITHUB_PATH     |          |          | Thư mục lưu trữ dữ liệu, ví dụ `data` nghĩa là lưu trong thư mục `data`, mặc định là thư mục gốc |
 
-## Advanced
+## Nâng cao
 
-| Environment Variables           | Default                     | Description                                                                                      |
-| ------------------------------- | --------------------------- | ------------------------------------------------------------------------------------------------ |
-| `OAUTH_URL`                     | `https://oauth.lithub.cc`   | OAuth Social Login Service URL. You can [build your own auth](https://github.com/walinejs/auth). |
-| `WEBHOOK`                       |                             | You can set a Webhook URL that will be triggered when you have new comment.                      |
-| `WALINE_ADMIN_MODULE_ASSET_URL` | `//unpkg.com/@waline/admin` | Waline admin link                                                                                |
-| `IP2REGION_DB`                  |                             | customized IPv4 IP query library path (deprecated, use `IP2REGION_DB_V4` instead)                |
-| `IP2REGION_DB_V4`               |                             | customized IPv4 IP query library path. Falls back to `IP2REGION_DB` if not set                   |
-| `IP2REGION_DB_V6`               |                             | customized IPv6 IP query library path. Set this to enable IPv6 address location lookup           |
+| Biến môi trường                 | Mặc định                    | Mô tả                                                                                                                 |
+| ------------------------------- | --------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| `OAUTH_URL`                     | `https://oauth.lithub.cc`   | URL dịch vụ đăng nhập mạng xã hội OAuth. Bạn có thể [tự xây dựng dịch vụ xác thực](https://github.com/walinejs/auth). |
+| `WEBHOOK`                       |                             | Bạn có thể đặt URL Webhook sẽ được kích hoạt khi có bình luận mới.                                                    |
+| `WALINE_ADMIN_MODULE_ASSET_URL` | `//unpkg.com/@waline/admin` | Liên kết quản trị Waline                                                                                              |
+| `IP2REGION_DB`                  |                             | đường dẫn thư viện tra cứu IP IPv4 tùy chỉnh (không dùng nữa, hãy dùng `IP2REGION_DB_V4`)                             |
+| `IP2REGION_DB_V4`               |                             | đường dẫn thư viện tra cứu IP IPv4 tùy chỉnh. Nếu không đặt sẽ dùng `IP2REGION_DB`                                    |
+| `IP2REGION_DB_V6`               |                             | đường dẫn thư viện tra cứu IP IPv6 tùy chỉnh. Đặt giá trị này để bật tra cứu vị trí địa chỉ IPv6                      |
