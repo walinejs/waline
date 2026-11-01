@@ -1,30 +1,30 @@
 ---
-title: Reactive Waline Instance
+title: Instance Waline réactive
 icon: spa
 order: -1
 ---
 
-The official client `@waline/client` is based on Vue3, provides responsive components and instances, and brings SPA (**S**ingle **P**age **A**application) support.
+Le client officiel `@waline/client` est basé sur Vue 3, fournit des composants et des instances réactifs, et apporte la prise en charge des SPA (**S**ingle **P**age **A**pplication).
 
 <!-- more -->
 
-## Vue Component
+## Composant Vue
 
-If you are building a Vue project, you can obtain and use Waline component by importing named exports `Waline` from `@waline/client/components`.
+Si vous construisez un projet Vue, vous pouvez obtenir et utiliser le composant Waline en important l'export nommé `Waline` depuis `@waline/client/components`.
 
-All component properties are reactive, which means that when you change the properties, the comment box will get an automatically update.
+Toutes les propriétés du composant sont réactives, ce qui signifie que lorsque vous modifiez les propriétés, la zone de commentaires est automatiquement mise à jour.
 
-## Other projects
+## Autres projets
 
-In other SPA, you need to store the `WalineInstance` returned by the Waline function when Waline is initialized.
+Dans les autres SPA, vous devez stocker l'instance `WalineInstance` renvoyée par la fonction Waline au moment de l'initialisation de Waline.
 
-You can find an instance property `el` and two methods: `update()` and `destroy()` on `WalineInstance`.
+Vous trouverez sur `WalineInstance` une propriété `el` et deux méthodes : `update()` et `destroy()`.
 
 ### update
 
-You can call `update()` to update Waline at any time (e.g.: when user visits a new route). The `update` method receives an optional parameter `options`, except for `el`, other Waline initial options can be updated by passing in new values.
+Vous pouvez appeler `update()` à tout moment pour mettre à jour Waline (par exemple lorsqu'un utilisateur visite une nouvelle route). La méthode `update` reçoit un paramètre facultatif `options` ; à l'exception de `el`, toutes les options d'initialisation de Waline peuvent être mises à jour en passant de nouvelles valeurs.
 
-E.g.:
+Par exemple :
 
 ```js
 // in `/` route
@@ -43,59 +43,59 @@ waline.update({
 }); // waline will now display in English, and disable user login
 ```
 
-#### Working Principle
+#### Principe de fonctionnement
 
-When calling `update`, the current option and history option will be merged by **shallow copy**, and Waline instance will refresh with the new option (and save the new option).
+Lors de l'appel de `update`, l'option actuelle et l'option historique sont fusionnées par **copie superficielle**, et l'instance Waline est actualisée avec la nouvelle option (qui est également enregistrée).
 
-The default behavior of this method is to always **regenerate default values** for options that haven't been set yet, and **use historical values** for options that have been set.
+Le comportement par défaut de cette méthode est de toujours **régénérer les valeurs par défaut** pour les options qui n'ont pas encore été définies, et d'**utiliser les valeurs historiques** pour les options qui ont déjà été définies.
 
-There are two options you may need to pay special attention to: `path` and `locale`.
+Deux options méritent une attention particulière : `path` et `locale`.
 
-::: warning Path precautions
+::: warning Précautions concernant path
 
-In V2, the `path` parameter **always reset** on `update()`.
+Dans la V2, le paramètre `path` est **toujours réinitialisé** lors de l'appel à `update()`.
 
-This means that in any update as long as you don't specify `path`, `path` will be reset to `window.location.pathname`.
-
-:::
-
-::: warning locale precautions
-
-Due to the shallow copy, the old `locale` options are completely overwritten by the new `locale` options passed in by `update`.
-
-Our point is: users usually want to switch the display language when updating the locale, so we set it as the expected behavior of the plugin. This also means that you can use `update({ locale: {} })` to clear the custom locale config in history.
-
-If you really need to update one or more certain fields in `locale`, you need to pass the entire updated `locale`.
+Cela signifie que, dans toute mise à jour, tant que vous ne spécifiez pas `path`, `path` sera réinitialisé à `window.location.pathname`.
 
 :::
 
-Meanwhile, the `update()` option has been optimized for asynchronous network requests, including:
+::: warning Précautions concernant locale
 
-- Refresh the comment area and re-request only when the path does change
-- The new `update()` call will automatically terminate the no longer needed request from the previous `update()`.
+En raison de la copie superficielle, les anciennes options `locale` sont entièrement écrasées par les nouvelles options `locale` transmises à `update`.
+
+Notre parti pris est le suivant : les utilisateurs souhaitent généralement changer la langue d'affichage lors de la mise à jour de la locale ; nous avons donc défini ce comportement comme attendu pour le plugin. Cela signifie également que vous pouvez utiliser `update({ locale: {} })` pour effacer la configuration de locale personnalisée conservée dans l'historique.
+
+Si vous avez réellement besoin de mettre à jour un ou plusieurs champs précis de `locale`, vous devez transmettre l'intégralité du `locale` mis à jour.
+
+:::
+
+Par ailleurs, l'option `update()` a été optimisée pour les requêtes réseau asynchrones, notamment :
+
+- La zone de commentaires n'est actualisée et la requête n'est rejouée que si le chemin a réellement changé.
+- Le nouvel appel à `update()` annule automatiquement la requête devenue inutile du précédent `update()`.
 
 ### el
 
-The `el` property is the HTMLElement mounted by the current instance of Waline.
+La propriété `el` est l'HTMLElement sur lequel l'instance actuelle de Waline est montée.
 
-If you initialize Waline with `el: null` (only use comments and pageview statistics), this property will be `null`.
+Si vous initialisez Waline avec `el: null` (pour n'utiliser que les commentaires et les statistiques de pages vues), cette propriété vaudra `null`.
 
 ### destroy
 
-If you forget to pass in the `serverURL` or Waline cannot find the mount location via the `el` option on the page, Waline will throw an Error indicating the reason for the error.
+Si vous oubliez de passer `serverURL` ou si Waline ne trouve pas l'emplacement de montage via l'option `el` sur la page, Waline lèvera une Error indiquant la raison de l'erreur.
 
-### Initialization Failure
+### Échec de l'initialisation
 
-If you forget to set `serverURL` or Waline cannot find the mount location through the `el` option on the page, Waline will return a `WalineErrorInstance`.
+Si vous oubliez de définir `serverURL` ou si Waline ne trouve pas l'emplacement de montage via l'option `el` sur la page, Waline renverra une `WalineErrorInstance`.
 
-There is only one attribute `errMsg` on `WalineErrorInstance` to indicate the reason for the initialization failure.
+Il n'existe qu'un seul attribut `errMsg` sur `WalineErrorInstance`, qui indique la raison de l'échec de l'initialisation.
 
-### Precautions
+### Précautions
 
-::: warning Remember to destroy the instance
+::: warning N'oubliez pas de détruire l'instance
 
-In order for Waline to properly release resources, please manually call `WalineInstance.destroy()` before removing the element where Waline is mounted.
+Afin que Waline libère correctement ses ressources, veuillez appeler manuellement `WalineInstance.destroy()` avant de supprimer l'élément sur lequel Waline est monté.
 
-Otherwise, some listeners may not be removed properly.
+Sinon, certains écouteurs d'événements risquent de ne pas être correctement supprimés.
 
 :::

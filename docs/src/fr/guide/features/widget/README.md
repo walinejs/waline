@@ -6,7 +6,7 @@ dir:
   order: -1
 ---
 
-Waline provides some widgets, you can use them through `Waline.<widget name>`.
+Waline fournit quelques widgets, utilisables via `Waline.<nom du widget>`.
 
 <!-- more -->
 

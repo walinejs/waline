@@ -1,160 +1,160 @@
 ---
-title: Comment Notification
+title: Notification de commentaires
 icon: notice
 order: 10
 ---
 
-When a user posts a comment on the website or a user responds to a comment, Waline supports email or WeChat notification to the blogger and the author who responded to the comment.
+Lorsqu'un utilisateur publie un commentaire sur le site ou répond à un commentaire, Waline prend en charge les notifications par e-mail ou par WeChat au blogueur ainsi qu'à l'auteur auquel on répond.
 
-- We support multiple types notifications for blogger
-- We will email a visitor once his comment gets a reply.
+- Nous prenons en charge plusieurs types de notifications pour le blogueur
+- Un visiteur reçoit un e-mail dès que son commentaire obtient une réponse.
 
 <!-- more -->
 
-## Email Notification
+## Notification par e-mail
 
-Email notification needs the following environment variables to be configured:
+La notification par e-mail nécessite la configuration des variables d'environnement suivantes :
 
-- `SMTP_SERVICE`: SMTP Mail delivery service provider
+- `SMTP_SERVICE` : fournisseur du service d'envoi d'e-mails SMTP
 
   ::: tip
 
-  You can find all support provider in [nodemailer services](https://github.com/nodemailer/nodemailer/blob/master/src/well-known/services.json). If your provider is not listed, you must config `SMTP_HOST` and `SMTP_PORT`.
+  Vous trouverez la liste des fournisseurs pris en charge dans [nodemailer services](https://github.com/nodemailer/nodemailer/blob/master/src/well-known/services.json). Si votre fournisseur n'y figure pas, vous devez configurer `SMTP_HOST` et `SMTP_PORT`.
 
-  - `SMTP_HOST`: SMTP server address, it can be found in mailbox's setting page generally.
-  - `SMTP_PORT`: SMTP server port, it can be found in mailbox's setting page generally.
+  - `SMTP_HOST` : adresse du serveur SMTP, généralement indiquée dans les paramètres de votre boîte de réception.
+  - `SMTP_PORT` : port du serveur SMTP, généralement indiqué dans les paramètres de votre boîte de réception.
 
   :::
 
-- `SMTP_USER`: SMTP Mail delivery service account, it's your email address.
-- `SMTP_PASS`: SMTP Mail delivery service password, it's your email password.
-- `SMTP_SECURE`: SMTP connect with SSL, either `true` or `false`.
-- `SITE_NAME`: Your site name, will be displayed in notification message.
-- `SITE_URL`: Your site url, will be displayed in notification message.
+- `SMTP_USER` : compte du service d'envoi d'e-mails SMTP, c'est-à-dire votre adresse e-mail.
+- `SMTP_PASS` : mot de passe du service d'envoi d'e-mails SMTP, c'est-à-dire le mot de passe de votre e-mail.
+- `SMTP_SECURE` : connexion SMTP en SSL, `true` ou `false`.
+- `SITE_NAME` : nom de votre site, affiché dans les notifications.
+- `SITE_URL` : URL de votre site, affichée dans les notifications.
 
-The following environment variables are optional:
+Les variables d'environnement suivantes sont facultatives :
 
-- `SENDER_NAME`: Custom sender's name in notification
-- `SENDER_EMAIL`: Custom sender's name in notification, required for some SMTP services.
-- `MAIL_SUBJECT`: Custom comment reply email title
-- `MAIL_TEMPLATE`: Custom reply email content
-- `MAIL_SUBJECT_ADMIN`: Custom new comment notification email title
-- `MAIL_TEMPLATE_ADMIN`: Custom new comment notification email content
-- `AUTHOR_EMAIL`: The blogger’s email, used to judge whether posted comment is posted by the blogger. If it is posted by the blogger, there will be no reminder notification.
+- `SENDER_NAME` : nom de l'expéditeur personnalisé dans la notification
+- `SENDER_EMAIL` : adresse de l'expéditeur personnalisée dans la notification, requise pour certains services SMTP.
+- `MAIL_SUBJECT` : objet personnalisé de l'e-mail de réponse à un commentaire
+- `MAIL_TEMPLATE` : contenu personnalisé de l'e-mail de réponse
+- `MAIL_SUBJECT_ADMIN` : objet personnalisé de l'e-mail de notification de nouveau commentaire
+- `MAIL_TEMPLATE_ADMIN` : contenu personnalisé de l'e-mail de notification de nouveau commentaire
+- `AUTHOR_EMAIL` : adresse e-mail du blogueur, utilisée pour déterminer si le commentaire publié provient du blogueur. S'il provient du blogueur, aucune notification de rappel n'est envoyée.
 
-## Wechat Notification
+## Notification WeChat
 
-We use [Mr. Server](http://sc.ftqq.com/3.version) to wechat notification. You need to set `SC_KEY` in env which applied in Mr. Server.
+Nous utilisons [Mr. Server](http://sc.ftqq.com/3.version) pour les notifications WeChat. Vous devez définir `SC_KEY` dans les variables d'environnement de Mr. Server.
 
-- `SC_KEY`: Token applied in Mr. Server, It's required for this service.
-- `AUTHOR_EMAIL`: The blogger’s email is used to distinguish whether the posted comment is posted by the blogger himself. If it is posted by the blogger, there will be no reminder notification.
-- `SITE_NAME`: Your site name, it will be displayed in notification message.
-- `SITE_URL`: Your site url, it will be displayed in notification message.
+- `SC_KEY` : jeton obtenu auprès de Mr. Server, requis pour ce service.
+- `AUTHOR_EMAIL` : l'adresse e-mail du blogueur sert à déterminer si le commentaire publié provient du blogueur lui-même. S'il provient du blogueur, aucune notification de rappel n'est envoyée.
+- `SITE_NAME` : nom de votre site, il sera affiché dans le message de notification.
+- `SITE_URL` : URL de votre site, elle sera affichée dans le message de notification.
 
-## QQ Notification
+## Notification QQ
 
-We use [Mr. Qmsg](https://qmsg.zendee.cn) to send QQ notification. You need to set `QMSG_KEY` in env which applied in Mr. Qmsg.
+Nous utilisons [Mr. Qmsg](https://qmsg.zendee.cn) pour envoyer les notifications QQ. Vous devez définir `QMSG_KEY` dans les variables d'environnement de Mr. Qmsg.
 
-- `QMSG_KEY`: KEY applied in Mr. Qmsg, It's required for this service.
-- `QMSG_HOST`: HOST applied in Mr. QmsgPrivate, Optional. It's required for this host. Defalut is `https://qmsg.zendee.cn`
-- `QQ_ID`: The QQ ID of the receiver(s), except for QQ group. If there are more than one QQ ID, use commas to separate multiple values, e.g. `1244453393,2952937634` (should all be included in your Mr. Qmsg's QQ ID list).
-- `AUTHOR_EMAIL`: The blogger’s email is used to distinguish whether the posted comment is posted by the blogger himself. If it is posted by the blogger, there will be no reminder notification.
-- `SITE_NAME`: Your site name, it will be displayed in notification message.
-- `SITE_URL`: Your site url, it will be displayed in notification message.
-- `QQ_TEMPLATE`: Notification template used by QQ. Variables and specific formats can be found in the notification template below. If not configured, the default template is used.
+- `QMSG_KEY` : clé obtenue auprès de Mr. Qmsg, requise pour ce service.
+- `QMSG_HOST` : hôte obtenu auprès de Mr. QmsgPrivate, facultatif. Il est requis pour cet hôte. La valeur par défaut est `https://qmsg.zendee.cn`
+- `QQ_ID` : l'identifiant QQ du ou des destinataires, à l'exception des groupes QQ. S'il y a plusieurs identifiants QQ, séparez les valeurs par des virgules, par exemple `1244453393,2952937634` (ils doivent tous figurer dans la liste d'identifiants QQ de votre compte Mr. Qmsg).
+- `AUTHOR_EMAIL` : l'adresse e-mail du blogueur sert à déterminer si le commentaire publié provient du blogueur lui-même. S'il provient du blogueur, aucune notification de rappel n'est envoyée.
+- `SITE_NAME` : nom de votre site, il sera affiché dans le message de notification.
+- `SITE_URL` : URL de votre site, elle sera affichée dans le message de notification.
+- `QQ_TEMPLATE` : modèle de notification utilisé par QQ. Les variables et les formats spécifiques sont décrits dans le modèle de notification ci-dessous. S'il n'est pas configuré, le modèle par défaut est utilisé.
 
-## Telegram Notification
+## Notification Telegram
 
-We use Telegram bot to send Telegram notification. You need to set the following env.
+Nous utilisons un bot Telegram pour envoyer les notifications Telegram. Vous devez définir les variables d'environnement suivantes.
 
-- `TG_BOT_TOKEN`: Telegram bot token to access the HTTP API. Create a bot with [@BotFather](https://t.me/BotFather) to get this token. It's required for this service.
-- `TG_CHAT_ID`: The `chat_id` of the receiver. It can be an user, a channel or a group. [@userinfobot](https://t.me/userinfobot) will display this `chat_id` when you forward a message to it. It's required for this service.
-- `AUTHOR_EMAIL`: The blogger’s email is used to distinguish whether the posted comment is posted by the blogger himself. If it is posted by the blogger, there will be no reminder notification.
-- `SITE_NAME`: Your site name, it will be displayed in notification message.
-- `SITE_URL`: Your site url, it will be displayed in notification message.
-- `TG_TEMPLATE`: Notification template used by Telegram. Variables and specific formats can be found in the notification template below. If not configured, the default template is used.
+- `TG_BOT_TOKEN` : jeton du bot Telegram permettant d'accéder à l'API HTTP. Créez un bot avec [@BotFather](https://t.me/BotFather) pour obtenir ce jeton. Il est requis pour ce service.
+- `TG_CHAT_ID` : le `chat_id` du destinataire. Il peut s'agir d'un utilisateur, d'un canal ou d'un groupe. [@userinfobot](https://t.me/userinfobot) affiche ce `chat_id` lorsque vous lui transférez un message. Il est requis pour ce service.
+- `AUTHOR_EMAIL` : l'adresse e-mail du blogueur sert à déterminer si le commentaire publié provient du blogueur lui-même. S'il provient du blogueur, aucune notification de rappel n'est envoyée.
+- `SITE_NAME` : nom de votre site, il sera affiché dans le message de notification.
+- `SITE_URL` : URL de votre site, elle sera affichée dans le message de notification.
+- `TG_TEMPLATE` : modèle de notification utilisé par Telegram. Les variables et les formats spécifiques sont décrits dans le modèle de notification ci-dessous. S'il n'est pas configuré, le modèle par défaut est utilisé.
 
-## PushPlus Notification
+## Notification PushPlus
 
-[pushplus](http://www.pushplus.plus/) is a message push platform which supports many channels like wechat, wechat work, ding talk, sms or email. You need to set the following env. You can go to [pushplus documentation](http://www.pushplus.plus/doc/guide/api.html#%E4%B8%80%E3%80%81%E5%8F%91%E9%80%81%E6%B6%88%E6%81%AF%E6%8E%A5%E5%8F%A3) to get more parameter format detail.
+[pushplus](http://www.pushplus.plus/) est une plateforme de push de messages qui prend en charge de nombreux canaux comme WeChat, WeChat Work, DingTalk, SMS ou e-mail. Vous devez définir les variables d'environnement suivantes. Vous pouvez consulter la [documentation pushplus](http://www.pushplus.plus/doc/guide/api.html#%E4%B8%80%E3%80%81%E5%8F%91%E9%80%81%E6%B6%88%E6%81%AF%E6%8E%A5%E5%8F%A3) pour plus de détails sur le format des paramètres.
 
-- `PUSH_PLUS_KEY`： user token. It's required for this service.
-- `PUSH_PLUS_TOPIC`：group id. Send yourself if it's empty. And It's unuseful if `PUSH_PLUS_CHANNEL` equals `webhook`.
-- `PUSH_PLUS_TEMPLATE`：Send template
-- `PUSH_PLUS_CHANNEL`：Send channel
-- `PUSH_PLUS_WEBHOOK`：webhook is required if `PUSH_PLUS_CHANNEL` equals `webhook` or `cp`.
-- `PUSH_PLUS_CALLBACKURL`：callback url after send response.
-- `AUTHOR_EMAIL`: The blogger’s email is used to distinguish whether the posted comment is posted by the blogger himself. If it is posted by the blogger, there will be no reminder notification.
-- `SITE_NAME`: Your site name, it will be displayed in notification message.
-- `SITE_URL`: Your site url, it will be displayed in notification message.
+- `PUSH_PLUS_KEY` : jeton utilisateur. Il est requis pour ce service.
+- `PUSH_PLUS_TOPIC` : identifiant de groupe. S'il est vide, le message vous est envoyé. Et il est inutile si `PUSH_PLUS_CHANNEL` vaut `webhook`.
+- `PUSH_PLUS_TEMPLATE` : modèle d'envoi
+- `PUSH_PLUS_CHANNEL` : canal d'envoi
+- `PUSH_PLUS_WEBHOOK` : le webhook est requis si `PUSH_PLUS_CHANNEL` vaut `webhook` ou `cp`.
+- `PUSH_PLUS_CALLBACKURL` : URL de rappel après l'envoi de la réponse.
+- `AUTHOR_EMAIL` : l'adresse e-mail du blogueur sert à déterminer si le commentaire publié provient du blogueur lui-même. S'il provient du blogueur, aucune notification de rappel n'est envoyée.
+- `SITE_NAME` : nom de votre site, il sera affiché dans le message de notification.
+- `SITE_URL` : URL de votre site, elle sera affichée dans le message de notification.
 
-## Discord Notification
+## Notification Discord
 
-We use Discord Webhook to send Discord notification. You need to set the following env.
+Nous utilisons un webhook Discord pour envoyer les notifications Discord. Vous devez définir les variables d'environnement suivantes.
 
-- `DISCORD_WEBHOOK`: Discord Webhook url, [How to create Discord Webhook url](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks)?
-- `DISCORD_TEMPLATE`: Send template
-- `AUTHOR_EMAIL`: The blogger’s email is used to distinguish whether the posted comment is posted by the blogger himself. If it is posted by the blogger, there will be no reminder notification.
-- `SITE_NAME`: Your site name, it will be displayed in notification message.
-- `SITE_URL`: Your site url, it will be displayed in notification message.
+- `DISCORD_WEBHOOK` : URL du webhook Discord, [Comment créer une URL de webhook Discord](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) ?
+- `DISCORD_TEMPLATE` : modèle d'envoi
+- `AUTHOR_EMAIL` : l'adresse e-mail du blogueur sert à déterminer si le commentaire publié provient du blogueur lui-même. S'il provient du blogueur, aucune notification de rappel n'est envoyée.
+- `SITE_NAME` : nom de votre site, il sera affiché dans le message de notification.
+- `SITE_URL` : URL de votre site, elle sera affichée dans le message de notification.
 
-## Lark Notification
+## Notification Lark
 
-We use Lark Webhook to send its group notifications. The following env variables are required.
+Nous utilisons un webhook Lark pour envoyer les notifications de groupe. Les variables d'environnement suivantes sont requises.
 
-- `LARK_WEBHOOK`: Lark Group Bot [Webhook Usages](https://open.larksuite.com/document/ukTMukTMukTM/ucTM5YjL3ETO24yNxkjN?lang=en-US)
-- `LARK_SECRET`: As clarified by the doc from Lark, this secret is used to sign your request to avoid abuse（Optional).
-- `LARK_TEMPLATE`: Message template
-- `SITE_NAME`: Your site name which will be displayed in notification messages.
-- `SITE_URL`: Your site url which will be displayed in notification messages.
+- `LARK_WEBHOOK` : bot de groupe Lark, voir [Webhook Usages](https://open.larksuite.com/document/ukTMukTMukTM/ucTM5YjL3ETO24yNxkjN?lang=en-US)
+- `LARK_SECRET` : comme indiqué dans la documentation de Lark, ce secret sert à signer vos requêtes pour éviter les abus (facultatif).
+- `LARK_TEMPLATE` : modèle de message
+- `SITE_NAME` : nom de votre site, il sera affiché dans les messages de notification.
+- `SITE_URL` : URL de votre site, elle sera affichée dans les messages de notification.
 
-## Notification Template
+## Modèle de notification
 
-Waline supports configuring your customized notification templates for each platform separately to achieve stronger customization capabilities and i18n compatibility.
+Waline permet de configurer des modèles de notification personnalisés pour chaque plateforme séparément, afin d'offrir des possibilités de personnalisation plus poussées et une meilleure compatibilité i18n.
 
-### Supported variables
+### Variables disponibles
 
-The template passes parameters through `self`, `parent` and `site` objects, which contain the following variables respectively:
+Le modèle transmet les paramètres via les objets `self`, `parent` et `site`, qui contiennent respectivement les variables suivantes :
 
-- `self`: The comment itself
+- `self` : le commentaire lui-même
 
-  | variable        | description          |
-  | --------------- | -------------------- |
-  | nick            | Commenter's nickname |
-  | mail            | Commenter's email    |
-  | link            | Commenter's website  |
-  | url             | Article address      |
-  | comment         | Comment content      |
-  | browser         | Browser name         |
-  | os              | Operate system name  |
-  | avatar          | avatar               |
-  | _commentLink_\* | Links in comments    |
+  | variable        | description                   |
+  | --------------- | ----------------------------- |
+  | nick            | Pseudo du commentateur        |
+  | mail            | E-mail du commentateur        |
+  | link            | Site web du commentateur      |
+  | url             | Adresse de l'article          |
+  | comment         | Contenu du commentaire        |
+  | browser         | Nom du navigateur             |
+  | os              | Nom du système d'exploitation |
+  | avatar          | avatar                        |
+  | _commentLink_\* | Liens dans les commentaires   |
 
-  \*: commentLink is only provided in Telegram notifications and will be automatically encapsulated in Markdown format.
+  \* : commentLink n'est fourni que dans les notifications Telegram et est automatiquement encapsulé au format Markdown.
 
-- `parent`: Comment which is replied (parent comment).
+- `parent` : le commentaire auquel on répond (commentaire parent).
 
-  | variable | description          |
-  | -------- | -------------------- |
-  | nick     | Commenter's nickname |
-  | mail     | Commenter's email    |
-  | link     | Commenter's website  |
-  | browser  | Browser name         |
-  | os       | Operate system name  |
-  | avatar   | avatar               |
-  | comment  | Comment content      |
+  | variable | description                   |
+  | -------- | ----------------------------- |
+  | nick     | Pseudo du commentateur        |
+  | mail     | E-mail du commentateur        |
+  | link     | Site web du commentateur      |
+  | browser  | Nom du navigateur             |
+  | os       | Nom du système d'exploitation |
+  | avatar   | avatar                        |
+  | comment  | Contenu du commentaire        |
 
-- `site`: Website configuration
+- `site` : configuration du site
 
-  | variable | description          |
-  | -------- | -------------------- |
-  | name     | Site name            |
-  | url      | Site URL             |
-  | postUrl  | Comment full address |
+  | variable | description                     |
+  | -------- | ------------------------------- |
+  | name     | Nom du site                     |
+  | url      | URL du site                     |
+  | postUrl  | Adresse complète du commentaire |
 
-### Default template
+### Modèle par défaut
 
-The default template is attached here for your reference:
+Le modèle par défaut est reproduit ci-dessous à titre de référence :
 
 - MAIL_SUBJECT:
 
@@ -264,7 +264,7 @@ The default template is attached here for your reference:
   仅供评论预览，点击[查看完整內容]({{site.postUrl}})
   ````
 
-### Additional Info
+### Informations complémentaires
 
-1. Vercel’s environment variable size is limited to `4KB`, so if your template is long, you should config if in main entry file, see [issue#106](https://github.com/walinejs/waline/issues/106).
-1. The specific information of variables may change during the development process. The variable descriptions here are for reference only. Please refer to the specific code examples for specific content.
+1. La taille des variables d'environnement de Vercel est limitée à `4KB` ; si votre modèle est long, configurez-le plutôt dans le fichier d'entrée principal, voir [issue#106](https://github.com/walinejs/waline/issues/106).
+1. Les informations détaillées des variables peuvent évoluer au cours du développement. Les descriptions ci-dessus ne sont données qu'à titre indicatif. Référez-vous aux exemples de code pour le contenu exact.

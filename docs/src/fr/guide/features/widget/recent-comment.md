@@ -1,26 +1,26 @@
 ---
-title: Recent comment Widget
+title: Widget de commentaires récents
 icon: recent
 ---
 
-Waline supports displaying recent comments by widget, which is convenient for displaying the latest comments in the sidebar of the blog.
+Waline permet d'afficher les commentaires récents via un widget, ce qui est pratique pour présenter les derniers commentaires dans la barre latérale du blog.
 
 <!-- more -->
 
-## Component options
+## Options du composant
 
-The latest comment widget is named `RecentComments` and contains three options:
+Le widget des derniers commentaires s'appelle `RecentComments` et comporte trois options :
 
-- `el` (optional): the element to be mounted
-- `serverURL`: server link
-- `count` The number of recent comments needed to get
+- `el` (facultatif) : l'élément sur lequel monter le widget
+- `serverURL` : lien du serveur
+- `count` : nombre de commentaires récents à récupérer
 
-The data format returned by the component should be `Promise<{ comments: WalineComment[], destroy: () => void }>`.
+Le format de données renvoyé par le composant doit être `Promise<{ comments: WalineComment[], destroy: () => void }>`.
 
-- `comments` property: an array of the most recent comments with exact number of `count`
-- `destroy` method: a function which will destroy the widget
+- propriété `comments` : un tableau des commentaires les plus récents, avec exactement `count` éléments
+- méthode `destroy` : une fonction qui détruit le widget
 
-## Basic usage
+## Utilisation de base
 
 ```html
 <div id="waline-recent"></div>
@@ -37,15 +37,15 @@ The data format returned by the component should be `Promise<{ comments: WalineC
 
 ::: tip
 
-This will be rendered on `#waline-recent` using the default style.
+Le widget est rendu dans `#waline-recent` avec le style par défaut.
 
 :::
 
-## Advanced usage
+## Utilisation avancée
 
-If you are not satisfied with the default output format, you can call the component by omitting the `el` option to get the data and render it yourself.
+Si le format de sortie par défaut ne vous convient pas, vous pouvez appeler le composant en omettant l'option `el` afin de récupérer les données et de les afficher vous-même.
 
-Example:
+Exemple :
 
 ```html
 <div id="waline-recent"></div>

@@ -1,16 +1,16 @@
 ---
-title: Comment Counter
+title: Compteur de commentaires
 icon: counter
 order: 8
 ---
 
-Waline supports displaying the number of comments separately in the non-comment area.
+Waline permet d'afficher séparément le nombre de commentaires, en dehors de la zone de commentaires.
 
 <!-- more -->
 
-## Automatically Update
+## Mise à jour automatique
 
-You can enable comment counting in the `init` function by setting the `comment` option to `true`.
+Vous pouvez activer le comptage des commentaires dans la fonction `init` en définissant l'option `comment` sur `true`.
 
 ```html
 <script type="module">
@@ -24,34 +24,34 @@ You can enable comment counting in the `init` function by setting the `comment` 
 </script>
 ```
 
-Waline will try to fill in or update comment count whenever you called `init` function or update the path.
+Waline tente de renseigner ou de mettre à jour le nombre de commentaires à chaque appel de la fonction `init` ou lors d'une mise à jour du chemin.
 
-waline finds the elements having `waline-comment-count` class in the page, and get their `data-path` attribute as the query condition. And fill it with the obtained value:
+Waline recherche dans la page les éléments portant la classe `waline-comment-count`, récupère leur attribut `data-path` comme condition de requête, puis les remplit avec la valeur obtenue :
 
 ```html
 <!-- data-path will be the query condition -->
 <span data-path="<Your/Path/Name>" class="waline-comment-count" /> comments
 ```
 
-If you need a different selector, you can set the `comment` option to that selector.
+Si vous avez besoin d'un autre sélecteur, vous pouvez définir l'option `comment` sur ce sélecteur.
 
-Every time you call `WalineInstance.update()`, Waline will search the page content and automatically update the comment count.
+À chaque appel de `WalineInstance.update()`, Waline parcourt le contenu de la page et met automatiquement à jour le nombre de commentaires.
 
-::: tip Examples
+::: tip Exemples
 
 ```html
 The current page has <span class="waline-comment-count" /> comments, the home page has
 <span data-path="/fr/" class="waline-comment-count" /> comments.
 ```
 
-The current page has <span class="waline-comment-count" /> comments, the home
-page has <span data-path="/fr/" class="waline-comment-count" /> comments.
+Cette page compte <span class="waline-comment-count" /> commentaires, la page
+d'accueil en compte <span data-path="/fr/" class="waline-comment-count" />.
 
 :::
 
-## Manual Update
+## Mise à jour manuelle
 
-Besides automatically update via the `init` function, you can manually update the current page's comment count via the `commentCount` API:
+En plus de la mise à jour automatique via la fonction `init`, vous pouvez mettre à jour manuellement le nombre de commentaires de la page courante avec l'API `commentCount` :
 
 ```html
 <script type="module">
@@ -67,11 +67,11 @@ Besides automatically update via the `init` function, you can manually update th
 </script>
 ```
 
-::: info Aborting
+::: info Annulation
 
-Since the comment count fetch is an asynchronous network operation, you may need to cancel an ongoing comment count update operation in certain circumstances.
+La récupération du nombre de commentaires étant une opération réseau asynchrone, il peut être nécessaire d'annuler une mise à jour en cours dans certaines circonstances.
 
-`commentCount` returns a function that can be called to cancel the update:
+`commentCount` renvoie une fonction que vous pouvez appeler pour annuler la mise à jour :
 
 ```js
 const abort = Waline.commentCount({
@@ -85,9 +85,9 @@ setTimeout(() => abort(), 500);
 
 :::
 
-## Import Counter Only
+## Importer uniquement le compteur
 
-Sometimes, you may want to display the comment count of some pages in the article list or homepage, but do not want to load the entire Waline. At this point you can use a Gzip < 1KB `comment` module:
+Il est parfois utile d'afficher le nombre de commentaires de certaines pages dans la liste des articles ou sur la page d'accueil, sans charger tout Waline. Dans ce cas, utilisez le module `comment`, dont la taille Gzip est inférieure à 1 Ko :
 
 ```html
 <script type="module">

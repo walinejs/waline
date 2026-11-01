@@ -1,52 +1,52 @@
 ---
-title: Zeabur Deployment
+title: Déploiement sur Zeabur
 icon: zeabur
 ---
 
-[Zeabur](https://zeabur.com) is a platform that helps developers deploy their own services with one click. The whole is similar to Railway, but it has more functions than it, no need to bind a credit card, and the free limit is higher than it.
+[Zeabur](https://zeabur.com) est une plateforme qui aide les développeurs à déployer leurs propres services en un clic. Elle est globalement similaire à Railway, mais propose plus de fonctionnalités, ne nécessite pas de lier une carte bancaire et offre une limite gratuite plus élevée.
 
 <!-- more -->
 
-## Deploy with one click
+## Déploiement en un clic
 
 [![Deploy on Zeabur](https://zeabur.com/button.svg)](https://zeabur.com/templates/1IBY26?utm_source=waline)
 
-## Deploy from scratch
+## Déploiement à partir de zéro
 
-Click the [Fork](https://github.com/walinejs/zeabur-starter/fork) button to create a Zeabur starter scaffold.
+Cliquez sur le bouton [Fork](https://github.com/walinejs/zeabur-starter/fork) pour créer un modèle de démarrage Zeabur.
 
 ![zeabur1](../../../assets/zeabur-1.png)
 
-<https://dash.zeabur.com> Log in to the Zeabur console. If there is no project, you need to set a name for the new project first.
+<https://dash.zeabur.com> Connectez-vous à la console Zeabur. S'il n'existe aucun projet, vous devez d'abord donner un nom au nouveau projet.
 
 ![zeabur2](../../../assets/zeabur-2.png)
 
-After entering, click <kbd>Add New Service</kbd> to create a service, select <kbd>Deploy Other Service</kbd> - <kbd>Deploy MongoDB</kbd> to create a database service first.
+Après être entré, cliquez sur <kbd>Add New Service</kbd> pour créer un service, puis sélectionnez <kbd>Deploy Other Service</kbd> - <kbd>Deploy MongoDB</kbd> pour créer d'abord un service de base de données.
 
-Give our MongoDB database service a name, click the <kbd>Deploy</kbd> button, and our database service is deployed.
+Donnez un nom à notre service de base de données MongoDB, cliquez sur le bouton <kbd>Deploy</kbd>, et notre service de base de données est déployé.
 
 ![zeabur2](../../../assets/zeabur-3.png) ![zeabur4](../../../assets/zeabur-4.png)
 
-Next, we continue to click <kbd>Add New Service</kbd> to create the Waline service, this time we choose to click <kbd>Deploy Your Source Code</kbd>. In the following GitHub project list, find the project that we forked at the beginning, and click the corresponding <kbd>Import</kbd> button.
+Ensuite, nous continuons en cliquant sur <kbd>Add New Service</kbd> pour créer le service Waline ; cette fois, nous choisissons <kbd>Deploy Your Source Code</kbd>. Dans la liste de projets GitHub qui suit, trouvez le projet que nous avons forké au début et cliquez sur le bouton <kbd>Import</kbd> correspondant.
 
-Give our Waline service a name, click the <kbd>Deploy</kbd> button, and our Waline service is deployed.
+Donnez un nom à notre service Waline, cliquez sur le bouton <kbd>Deploy</kbd>, et notre service Waline est déployé.
 
 ![zeabur6](../../../assets/zeabur-6.png) ![zeabur7](../../../assets/zeabur-7.png)
 
-Don't rush to close the Waline service panel. After the service is deployed, we need to add an access domain name to the service. Click the <kbd>Generate Domain</kbd> button under the <kbd>Domains</kbd> tab, enter the domain name prefix you want and click the <kbd>Save</kbd> button to add it to our service Visit the domain name.
+Ne vous empressez pas de fermer le panneau du service Waline. Une fois le service déployé, nous devons ajouter un nom de domaine d'accès au service. Cliquez sur le bouton <kbd>Generate Domain</kbd> sous l'onglet <kbd>Domains</kbd>, saisissez le préfixe de nom de domaine souhaité et cliquez sur le bouton <kbd>Save</kbd> pour l'ajouter au nom de domaine d'accès de notre service.
 
 ![zeabur8](../../../assets/zeabur-8.png) ![zeabur9](../../../assets/zeabur-9.png)
 
-Everything is ready, and the next step is to witness the miracle. Open the access domain name we just set up, test to post comments, everything is successful~ Next, configure this domain name in the client and you can comment happily!
+Tout est prêt, et l'étape suivante consiste à assister au miracle. Ouvrez le nom de domaine d'accès que nous venons de configurer, testez la publication de commentaires, et tout fonctionne~ Ensuite, configurez ce nom de domaine dans le client et vous pourrez commenter joyeusement !
 
 ![zeabur2](../../../assets/zeabur-10.png)
 
-## How to update
+## Comment mettre à jour
 
-Go to the GitHub repository and modify the `@waline/vercel` version number in the package.json file to the latest version.
+Rendez-vous sur le dépôt GitHub et modifiez le numéro de version de `@waline/vercel` dans le fichier package.json pour passer à la dernière version.
 
-## How to modify environment variables
+## Comment modifier les variables d'environnement
 
-You can enter the environment variable management page through <kbd>Variables</kbd> Tab, and it will be automatically redeployed after modification.
+Vous pouvez accéder à la page de gestion des variables d'environnement via l'onglet <kbd>Variables</kbd> ; le service sera automatiquement redéployé après modification.
 
 ![zeabur11](../../../assets/zeabur-11.png)

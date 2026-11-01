@@ -1,37 +1,37 @@
 ---
-title: Client API
+title: API du client
 icon: config
 ---
 
-## Client API
+## API du client
 
-Waline provides three APIs:
+Waline fournit trois API :
 
-- `init`: Initialize Waline
+- `init` : initialise Waline
 
-- `commentCount`: Count comments
+- `commentCount` : compte les commentaires
 
-- `pageviewCount`: Count pageviews
+- `pageviewCount` : compte les pages vues
 
-As well as:
+Ainsi que :
 
-- `RecentComment`: Waline recent comments widget
+- `RecentComment` : widget des commentaires récents de Waline
 
-- `UserList`: User List
+- `UserList` : liste des utilisateurs
 
-- `version`: Waline client version
+- `version` : version du client Waline
 
 ## init
 
-The `init` API accepts a `WalineInitOptions` options and returns a `WalineInstance`.
+L'API `init` accepte un objet d'options `WalineInitOptions` et renvoie une `WalineInstance`.
 
-Type:
+Type :
 
 ```ts
 const init: (options: WalineInitOptions) => WalineInstance;
 ```
 
-Return:
+Retour :
 
 ```ts
 interface WalineInstance {
@@ -54,42 +54,42 @@ interface WalineInstance {
 }
 ```
 
-The initialization options accept all [Waline Component Props](props.md), in addition, the following options are added.
+Les options d'initialisation acceptent toutes les [props du composant Waline](props.md) ; les options suivantes s'y ajoutent.
 
 ### el
 
-- Type: `string | HTMLElement | null`
-- Default: `'#waline'`
+- Type : `string | HTMLElement | null`
+- Valeur par défaut : `'#waline'`
 
-The DOM element to be mounted on initialization. It must be a valid **CSS selector string** or HTMLElement Object.
+Élément DOM sur lequel le composant est monté lors de l'initialisation. Il doit s'agir d'une **chaîne de sélecteur CSS** valide ou d'un objet HTMLElement.
 
-If you only want the counter below, set this option to `null`.
+Si vous ne souhaitez que le compteur ci-dessous, définissez cette option sur `null`.
 
 ### comment
 
-- Type: `boolean | string`
-- Default: `false`
+- Type : `boolean | string`
+- Valeur par défaut : `false`
 
-Article comment count counter, when filled in a string, it will be used as a CSS selector.
+Compteur du nombre de commentaires de l'article ; lorsqu'une chaîne est fournie, elle est utilisée comme sélecteur CSS.
 
 ### pageview
 
-- Type: `boolean | string`
-- Default: `false`
+- Type : `boolean | string`
+- Valeur par défaut : `false`
 
-Pageview counter. When filled in a string, it will be used as a CSS selector.
+Compteur de pages vues. Lorsqu'une chaîne est fournie, elle est utilisée comme sélecteur CSS.
 
 ## commentCount
 
-The `commentCount` function receives the `WalineCommentCountOptions` option and updates the number of article comments on the page, and returns a function `WalineAbort` that can cancel the current operation.
+La fonction `commentCount` reçoit l'option `WalineCommentCountOptions`, met à jour le nombre de commentaires de l'article sur la page et renvoie une fonction `WalineAbort` permettant d'annuler l'opération en cours.
 
-Type:
+Type :
 
 ```ts
 const commentCount: (options: WalineCommentCountOptions) => WalineAbort;
 ```
 
-Options:
+Options :
 
 ```ts
 interface WalineCommentCountOptions {
@@ -112,7 +112,7 @@ interface WalineCommentCountOptions {
 }
 ```
 
-Returns:
+Retour :
 
 ```ts
 type WalineAbort = (reason?: any) => void;
@@ -120,15 +120,15 @@ type WalineAbort = (reason?: any) => void;
 
 ## pageviewCount
 
-The `pageviewCount` function receives the `WalinePageviewCountOptions` option and updates the number of article comments on the page, and returns a function `WalineAbort` that can cancel the current operation.
+La fonction `pageviewCount` reçoit l'option `WalinePageviewCountOptions`, met à jour le nombre de commentaires de l'article sur la page et renvoie une fonction `WalineAbort` permettant d'annuler l'opération en cours.
 
-Type:
+Type :
 
 ```ts
 const pageviewCount: (options: WalinePageviewCountOptions) => WalineAbort;
 ```
 
-Options:
+Options :
 
 ```ts
 interface WalinePageviewCountOptions {
@@ -158,7 +158,7 @@ interface WalinePageviewCountOptions {
 }
 ```
 
-Returns:
+Retour :
 
 ```ts
 type WalineAbort = (reason?: any) => void;
@@ -168,15 +168,15 @@ type WalineAbort = (reason?: any) => void;
 
 ### RecentComments
 
-`RecentComments` is a widget displaying recent comments.
+`RecentComments` est un widget qui affiche les commentaires récents.
 
-Type:
+Type :
 
 ```ts
 const RecentComments: (options: WalineRecentCommentsOptions) => Promise<WalineRecentCommentsResult>;
 ```
 
-Options:
+Options :
 
 ```ts
 interface WalineRecentCommentsOptions {
@@ -191,7 +191,7 @@ interface WalineRecentCommentsOptions {
 }
 ```
 
-Returns:
+Retour :
 
 ```ts
 interface WalineRecentCommentsResult {
@@ -205,15 +205,15 @@ interface WalineRecentCommentsResult {
 
 ### UserList
 
-`UserList` is a widget that displays user interaction leader boards or comment walls.
+`UserList` est un widget qui affiche des classements d'interaction entre utilisateurs ou des murs de commentaires.
 
-Type:
+Type :
 
 ```ts
 const RecentComments: (options: WalineRecentCommentsOptions) => Promise<WalineRecentCommentsResult>;
 ```
 
-Options:
+Options :
 
 ```ts
 interface WalineUserListOptions {
@@ -245,7 +245,7 @@ interface WalineUserListOptions {
 }
 ```
 
-Returns:
+Retour :
 
 ```ts
 interface WalineUserListResult {
