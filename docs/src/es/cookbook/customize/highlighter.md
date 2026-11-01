@@ -1,15 +1,15 @@
 ---
-title: Customize Code Highlighter
+title: Personalizar el resaltado de código
 icon: style
 ---
 
-This cookbook guides you how to add your own code highlighter.
+Esta receta te explica cómo añadir tu propio resaltador de código.
 
 <!-- more -->
 
-`@waline/client` provides the `highlighter` function. The client passes in the original character of the code block and the language of the code block. You should return a string directly.
+`@waline/client` ofrece la función `highlighter`. El cliente le pasa el contenido original del bloque de código y el lenguaje de ese bloque. Debes devolver directamente una cadena de texto.
 
-## An Example Using prism.js
+## Un ejemplo con prism.js
 
 ```html
 <!doctype html>

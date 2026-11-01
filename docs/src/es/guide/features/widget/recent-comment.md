@@ -1,26 +1,26 @@
 ---
-title: Recent comment Widget
+title: Widget de comentarios recientes
 icon: recent
 ---
 
-Waline supports displaying recent comments by widget, which is convenient for displaying the latest comments in the sidebar of the blog.
+Waline admite mostrar los comentarios recientes mediante un widget, lo que resulta cómodo para mostrar los últimos comentarios en la barra lateral del blog.
 
 <!-- more -->
 
-## Component options
+## Opciones del componente
 
-The latest comment widget is named `RecentComments` and contains three options:
+El widget de comentarios recientes se llama `RecentComments` y tiene tres opciones:
 
-- `el` (optional): the element to be mounted
-- `serverURL`: server link
-- `count` The number of recent comments needed to get
+- `el` (opcional): el elemento donde se va a montar
+- `serverURL`: enlace del servidor
+- `count` el número de comentarios recientes que se deben obtener
 
-The data format returned by the component should be `Promise<{ comment: WalineComment[], destroy: () => void }>`.
+El formato de datos que devuelve el componente debe ser `Promise<{ comment: WalineComment[], destroy: () => void }>`.
 
-- `comment` property: an array of the most recent comments with exact number of `count`
-- `destroy` method: a function which will destroy the widget
+- propiedad `comment`: un array con los comentarios más recientes, con exactamente `count` elementos
+- método `destroy`: una función que destruye el widget
 
-## Basic usage
+## Uso básico
 
 ```html
 <div id="waline-recent"></div>
@@ -37,15 +37,15 @@ The data format returned by the component should be `Promise<{ comment: WalineCo
 
 ::: tip
 
-This will be rendered on `#waline-recent` using the default style.
+Esto se renderizará en `#waline-recent` con el estilo predeterminado.
 
 :::
 
-## Advanced usage
+## Uso avanzado
 
-If you are not satisfied with the default output format, you can call the component by omitting the `el` option to get the data and render it yourself.
+Si no te convence el formato de salida predeterminado, puedes llamar al componente omitiendo la opción `el` para obtener los datos y renderizarlos tú mismo.
 
-Example:
+Ejemplo:
 
 ```html
 <div id="waline-recent"></div>

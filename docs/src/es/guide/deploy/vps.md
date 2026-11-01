@@ -1,14 +1,14 @@
 ---
-title: Self Host
+title: Autoalojamiento
 icon: server
 order: -1
 ---
 
-If you don't want to deploy the server on Vercel, you can also choose to deploy on your own server.
+Si no quieres desplegar el servidor en Vercel, también puedes desplegarlo en tu propio servidor.
 
 <!-- more -->
 
-## Docker Deploy
+## Despliegue con Docker
 
 ```bash
 docker run -d \
@@ -16,9 +16,9 @@ docker run -d \
   lizheming/waline
 ```
 
-It's a demo for how to run waline. You also need add some database environment if you want all comment function works well.
+Este es un ejemplo de cómo ejecutar Waline. También tienes que añadir las variables de entorno de la base de datos si quieres que todas las funciones de comentarios funcionen correctamente.
 
-::: tip How to build image?
+::: tip ¿Cómo construir la imagen?
 
 ```bash
 git clone https://github.com/lizheming/waline.git
@@ -28,11 +28,11 @@ docker build -t lizheming/waline -f packages/server/Dockerfile .
 
 :::
 
-### via [docker stack deploy](https://docs.docker.com/engine/reference/commandline/stack_deploy/) or [docker-compose](https://github.com/docker/compose)
+### con [docker stack deploy](https://docs.docker.com/engine/reference/commandline/stack_deploy/) o [docker-compose](https://github.com/docker/compose)
 
-The SQLite is used here as an example. For SQLite and supported database services, please refer to [Multi-database service support](../database.md#sqlite).
+Aquí se usa SQLite como ejemplo. Para SQLite y los servicios de base de datos compatibles, consulta [Soporte para múltiples servicios de base de datos](../database.md#sqlite).
 
-Example `docker-compose.yml` for `waline`:
+Ejemplo de `docker-compose.yml` para `waline`:
 
 ```yaml
 # docker-compose.yml
@@ -57,9 +57,9 @@ services:
       AUTHOR_EMAIL: 'mail@example.com'
 ```
 
-## Run directly (Recommended)
+## Ejecutar directamente (recomendado)
 
-It's easy to run without using docker deployment, after setting environment variables, just run the `vanilla.js` file in the module after installing.
+Ejecutarlo sin usar Docker es sencillo: después de configurar las variables de entorno, solo tienes que ejecutar el archivo `vanilla.js` del módulo una vez instalado.
 
 ::: code-tabs#shell
 
@@ -79,9 +79,9 @@ node node_modules/@waline/vercel/vanilla.js
 
 :::
 
-## Nginx config
+## Configuración de Nginx
 
-If you don't want to use port in server url, you can use Nginx proxy pass to 80 and 443. Refer to the following configuration:
+Si no quieres usar un puerto en la URL del servidor, puedes usar el proxy de Nginx hacia los puertos 80 y 443. Consulta la siguiente configuración:
 
 ```nginx
 server

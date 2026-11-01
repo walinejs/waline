@@ -1,43 +1,43 @@
 ---
-title: Server introduction
+title: Introducción al servidor
 icon: server
 order: 2
 ---
 
-## Deployment
+## Despliegue
 
-In addition to deploying on Vercel for free, you can deploy via docker or directly on a self-hosted environment, as well as to other common cloud platforms. For more information, see:
+Además de desplegar en Vercel de forma gratuita, puedes desplegar mediante Docker o directamente en un entorno autoalojado, así como en otras plataformas en la nube habituales. Para más información, consulta:
 
-- [Standalone deployment](../deploy/vps.md)
+- [Despliegue independiente](../deploy/vps.md)
 
 - [Railway](../deploy/railway.md)
 
 - [Alibaba Cloud Compute Nest](../deploy/aliyun-computenest.md)
 
-## Multiple Database Support
+## Soporte de múltiples bases de datos
 
-Waline supports a variety of databases, including MySQL, PostgreSQL, SQLite, and MongoDB.
+Waline admite varias bases de datos, incluidas MySQL, PostgreSQL, SQLite y MongoDB.
 
-You only need to configure the environment variables of the corresponding database, and Waline will automatically switch to the corresponding data storage service.
+Solo tienes que configurar las variables de entorno de la base de datos correspondiente y Waline cambiará automáticamente al servicio de almacenamiento de datos adecuado.
 
-See [multi-database support](../database.md) for more details.
+Consulta [soporte de múltiples bases de datos](../database.md) para más detalles.
 
-## Configuration
+## Configuración
 
-Most configurations on the server side can be done via environment variables, and you can also configure some advanced options in the main entry file.
+La mayor parte de la configuración del servidor se puede hacer mediante variables de entorno, y también puedes configurar algunas opciones avanzadas en el archivo de entrada principal.
 
-For configuration details, see [Server Reference → Environment Variables](../../reference/server/env.md) and [Server Reference → Configuration](../../reference/server/ config.md).
+Para ver los detalles de la configuración, consulta [Referencia del servidor → Variables de entorno](../../reference/server/env.md) y [Referencia del servidor → Configuración](../../reference/server/ config.md).
 
-## Comment notification
+## Notificación de comentarios
 
-We support multiple ways of notifying you or your commenters when someone comments or replies. See [Comment Notifications](../features/notification.md) for more details.
+Admitimos varias formas de notificarte a ti o a tus usuarios que comentan cuando alguien comenta o responde. Consulta [Notificaciones de comentarios](../features/notification.md) para más detalles.
 
-## User Account Registration and Social Login
+## Registro de cuentas de usuario e inicio de sesión social
 
-Waline supports in-app account creation and social login using GitHub, Twitter, and Facebook.
+Waline admite la creación de cuentas dentro de la aplicación y el inicio de sesión social con GitHub, Twitter y Facebook.
 
 ::: tip
 
-Stay tuned: We plan to add more social application support in future releases.
+Atento a las novedades: tenemos previsto añadir compatibilidad con más aplicaciones sociales en futuras versiones.
 
 :::

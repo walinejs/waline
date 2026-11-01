@@ -1,8 +1,8 @@
 ---
-title: Implementar
+title: Despliegue
 icon: deploy
 ---
 
-Waline supports multiple deployment methods, and use Vercel by default. You can choose from the following deployment platforms or deploy yourself.
+Waline admite varios métodos de despliegue y usa Vercel de forma predeterminada. Puedes elegir entre las siguientes plataformas de despliegue o desplegarlo por tu cuenta.
 
 <Catalog />
