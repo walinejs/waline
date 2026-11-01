@@ -1,26 +1,28 @@
 ---
-title: Design Goal
+title: 設計目標
 icon: goal
 order: 2
 ---
 
-[Valine](https://valine.js.org) an exquisite style, simple operation, and efficient deployment review system. The first time I came into contact, I was attracted by its exquisite style and serverless characteristics. It doesn't require the backend service. The frontend interacts with the LeanCloud storage service directly, which is really cool! But as I understand deeper, I find out it's problems.
+## Valine
 
-## Problem of Valine
+Valine 是一款樣式精美、操作簡單、部署高效的留言系統。第一次接觸便被它精美的樣式、無伺服器的特性給吸引。它不含伺服器，前端直接與 LeanCloud 儲存服務互動，真是太酷了！但隨著深入了解，我發現它存在一些問題。
 
-### Not Open Source
+## Valine 的問題
 
-The author only push the compiled files to the GitHub repository starting from version `1.4.0`, and the source code stop updating. May be the author have a broken heart in open source. While for users like me who want to add or modify project, this problem is a bit uncomfortable.
+### 原始碼不開放
 
-### XSS
+作者不知為何從 `1.4.0` 版本開始只推送編譯後的檔案到 GitHub 儲存庫中，原始碼檔案停止更新。可能是被開源傷了心吧。對於我這種想增加或者修改功能的使用者來說，這個問題就有點難受了。
 
-Since the very early version, users have reported Valine's XSS problems, and the community is also using various methods to fix these problems. Including the addition of verification codes, frontend XSS filtering and other methods. However, the author later realized that all the frontend verification can only prevent the gentleman, so the restriction such as verification code is removed.
+### XSS 安全
 
-Now when the frontend publishes a comment, Markdown will be converted into HTML, and then execute an XSS filter function on the frontend before be submitted to LeanCloud. After getting the data from LeanCloud, it is directly inserted to DOM. Obviously, the process is problematic. As long as the HTML is submitted directly and displayed directly after the HTML is obtained, XSS cannot be eradicated fundamentally.
+從很早的版本開始就有使用者回報了 Valine 的 XSS 問題，社群也在使用各種方法修復這些問題。包括增加驗證碼、前端 XSS 過濾等方式。不過後來作者才明白，前端的一切驗證都只能防君子，所以又去除了驗證碼之類的限制。
 
-::: note Fundamental solution
+現有的邏輯裡，前端發佈留言的時候會將 Markdown 轉換成 HTML，然後走一下前端的一個 XSS 過濾方法，最後提交到 LeanCloud 中。從 LeanCloud 中拿到資料之後，因為是 HTML，直接插入進行顯示即可。很明顯，這個流程是存在問題的。只要直接提交的是 HTML，而且拿到 HTML 之後直接進行展示的話，XSS 從根本上是無法根除的。
 
-For stored XSS attacks, we can use escape HTML codes to solve them permanently. Just like old BBCode, only markdown content is submit to the database. The frontend reads the content and encodes all HTML before displaying it after Markdown conversion.
+::: info 根本的解決辦法
+
+針對儲存型的 XSS 攻擊，我們可以使用 HTML 跳脫編碼一勞永逸的解決。只需效仿早前 BBCode 的做法，提交到資料庫的是 Markdown 內容。前端讀取到內容，對所有 HTML 進行編碼後再進行 Markdown 轉換後展示。
 
 ```js
 function encodeForHTML(str) {
@@ -34,34 +36,32 @@ function encodeForHTML(str) {
 }
 ```
 
-Since Valine is a serverless system, attackers can directly reach the storage stage. All precautions before data storage are invalid and can only be processed during the displaying process. Because all HTML cannot be parsed after being escaped, we can ensure that the converted HTML has no chance of being inserted.
-
-Since Valine is no longer open source, pull requests cannot be opened.
+由於 Serverless 攻擊者是可以直達儲存階段，所以資料儲存之前的一切防範是無效的，只能在讀取展示過程處理。由於所有的 HTML 跳脫後無法解析，Markdown 相當於我們根據自訂的語法解析成 HTML，保證轉換後的 HTML 沒有被插入的機會。由於 Valine 沒有開放原始碼，所以無法進行 Pull Request。
 
 :::
 
-Since the above method will completely restrict users in the scope of Markdown, Waline adds `DOMPurify` on the client side since `0.15.0` to prevent XSS. Besides the regular XSS sterilization:
+由於上述辦法會完全將使用者限制在 Markdown 的範圍內，目前 Waline 在客戶端自 `0.15.0` 後引入了 `DOMPurify` 來阻止 XSS。除常規的 XSS 過濾外，針對性的:
 
-- `<form>` and `<input>` are disabled
-- style inject is disabled
-- autoplay of the media is disabled
-- all external links will be processed and opened in a new window with rel of `noopener noreferrer`.
+- 停用 `<form>`、`<input>` 等表單控制項
+- 停用使用者樣式的加入
+- 停用自動拖曳屬性與媒體的自動播放
+- 所有的外部連結均會被處理，以 `noopener noreferrer` 的形式在新視窗開啟
 
-### Privacy Leak
+### 隱私洩露
 
-Besides direct access to storage, the attacker can also read any data directly. If a database field has read permission to everyone, the content of the field is completely transparent to the attacker.
+攻擊者除了可以任意儲存，也可以任意讀取，資料庫的欄位開放讀取權限後，該欄位的內容對攻擊者是完全透明的。
 
-In the comment data, the two fields IP and mailbox contain the user's sensitive data. Mr.Deng wrote an article specifically to criticize the problem [Please stop using the Valine.js comment system immediately unless it fixes the user privacy leak](https://ttys3.net/post/hugo/please-stop-using-valine-js-comment-system-until-it-fixed-the-privacy-leaking-problem/). Even when the [JueJin](https://juejin.cn) community used LeanCloud in early years, the security problem of [disclosed user's mobile phone number](https://m.weibo.cn/detail/4568007327622344?cid=4568044392682999) was exposed.
+在留言資料中，IP 和電子郵件兩個欄位包含了使用者的敏感資料。燈大甚至專門寫了一篇文章來批判該問題 [《請馬上停止使用 Valine.js 留言系統，除非它修復了使用者隱私洩露問題》](https://ttys3.dev/blog/please-stop-using-valine-js-comment-system-until-it-fixed-the-privacy-leaking-problem)。甚至掘金社群在早期使用 LeanCloud 的時候也爆出過 [洩露使用者手機號](https://m.weibo.cn/detail/4568007327622344?cid=4568044392682999) 的安全問題。
 
-In order to circumvent this problem, the author of Valine added the `recordIP` configuration to set whether to allow recording of user IP. Since there is no server, it can only be solved by not storing the value.
+為了規避這個問題，Valine 作者增加了 `recordIP` 設定用來設定是否允許記錄使用者 IP。由於無伺服器，只能透過不儲存的方式解決。
 
-There is still a problem with this option: Whether to record ip is based on the site owner's config, while commenters have no right to manage their own privacy.
+該設定項仍存在一個問題: 記錄設定權在網站，留言者無權管理自己的隱私。
 
-Leaking of email address are another major privacy issue. It is completely feasible to calculate and report the md5 of the user's email at frontend to obtain the Gravatar avatar. But if sending email notification when a comment being replied is needed, it is inevitable to store the original value of the user's email address. This problem can theoretically be solved by RSA encryption. The private key can be stored in the environment variable of LeanCloud. The client reports both the email md5 and the email encrypted by the public key. When LeanCloud wants to send email notifications, it reads the private key in the environment in the cloud function, and then decrypt to get the user email. However, considering the size and performance of the frontend RSA encryption library, it's not actual. Adding a server layer to filter sensitive information through the server side is definitely a better practice.
+電子郵件洩露是另一個重大隱私問題。在前端計算並上報使用者電子郵件的 md5 用來取得 Gravatar 頭像是完全可行的。但是如果需要在留言被回覆時發送郵件通知，就不可避免的要儲存使用者電子郵件的原始值。這個問題理論上可以透過 RSA 加密來解決，私鑰儲存在 LeanCloud 的環境變數中，客戶端同時上報電子郵件 md5 和公鑰加密後的電子郵件，LeanCloud 在發送郵件通知時在雲端函式中透過環境中的私鑰解密取得使用者電子郵件。但是考慮到前端 RSA 加密函式庫的體積與效能，實際應用可行性很小。增加一層伺服器，透過伺服器過濾敏感資訊是一個較優的做法。
 
-### Read Statistics Tampering
+### 閱讀統計竄改
 
-Valien 1.2.0 adds the function of article reading statistics, the user visits the page and records the number of visits according to the url in the counter table in the background. Since the data needs to be updated every time the page is accessed, the permissions must be set to be writable in order to perform subsequent field updates. This creates a problem. In fact, the data can be updated to any value. If you interested in it, you can open the <https://valine.js.org/visitor.html> official website and enter the console and enter the following code to try. Remember to change the number back after trying it~
+Valien 1.2.0 增加了文章閱讀統計的功能，使用者造訪頁面就會在後台 Counter 表中根據 url 記錄造訪次數。由於每次造訪頁面都需要更新資料，所以在權限上必須設定成可寫，才能進行後續的欄位更新。這樣就造成了一個問題，實際上該條資料是可以被更新成任意值的。感興趣的同學可以開啟 <https://valine.js.org/visitor.html> 官網頁面後進入主控台輸入以下程式碼試試。試完了記得把數字改回去哈~
 
 ```js
 const counter = new AV.Query('Counter');
@@ -70,12 +70,12 @@ resp[0].set('time', -100000).save();
 location.reload();
 ```
 
-Fortunately, the value of the `time` field is of type Number, so other values cannot be inserted. If the `time` field is of string type, it may be an XSS vulnerability. A possible solution to this problem is not to use the accumulative storage method. Changed to store a read-only access record for each visit, and use the `count()` method for statistics when reading. In this way, all data is read-only, which solves the problem of tampering. This solution also has a problem: when the amount of data is relatively large, it will cause a certain pressure on the query.
+值得慶幸的是 `time` 欄位的值是 Number 型別的，這樣其它的值無法插入。如果 `time` 欄位是字串型別會產生新的 XSS 漏洞。該問題有一個可行解決辦法，就是不使用次數累加的儲存方式。更改為每次造訪都儲存一條唯讀的造訪記錄，讀取的時候使用 `count()` 方法進行統計。這樣所有資料都是唯讀的，解決了竄改的問題。這種解決方案也存在問題: 資料量比較大時對查詢會造成一定壓力。
 
-If it is based on remaining the original data, only server layer can be added to isolate the modification permissions.
+如果需要保持原資料結構，只能增加一層伺服器進行修改權限的隔離。
 
-## Born of Waline
+## Waline 的誕生
 
-Based on the above reasons, Waline was born. Waline's original goal was only to add backend to Valine, but because Valine is not open source, it can only be implemented with frontend. Of course, many codes and logic of the frontend have reference Valine in order to be consistent with Valine's configuration. Even in the project's name, I derived it from Valine, so that everyone can understand that this project is a derivative of Valine.
+基於以上原因，Waline 橫空出世了。Waline 最初的目標僅僅是為 Valine 增加上伺服器中間層，但是由於 Valine 的不開源所以只能連帶前端也實現一遍。當然前端的很多程式碼和邏輯為了和 Valine 的設定保持一致都有參考 Valine。甚至在名字上，我也是從 Valine 上衍生的，讓大家能明白這個專案是 Valine 的衍生版。
 
-Besides solving the above-mentioned security problems. the addition of the server side implement many features previously limited by no server side, including email notifications, spam comment filtering, etc.
+增加了伺服器除了解決上述的安全問題，之前 Valine 受限於無伺服器的很多功能也可以實現了。包括但不限於郵件通知、垃圾留言過濾等。

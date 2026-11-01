@@ -1,130 +1,130 @@
 ---
-title: Comment Format Support
+title: 留言格式支援
 icon: format
 order: 2
 ---
 
-The supported Markdown syntax in comments is as follows.
+留言中支援的 Markdown 語法如下。
 
 <!-- more -->
 
-## Markdown Support
+## Markdown 支援
 
-::: preview Headings
+::: preview 標題
 
 <!-- markdownlint-disable MD025 -->
 
-# Heading1
+# 一級標題
 
 <!-- markdownlint-enable MD025 -->
 
-## Heading2
+## 二級標題
 
-### Heading3
+### 三級標題
 
-#### Heading4
+#### 四級標題
 
-##### Heading5
+##### 五級標題
 
-###### Heading7
-
-:::
-
-::: preview Text
-
-This sentence has **bold**、_italic_ and ~~delete~~ style text.
+###### 六級標題
 
 :::
 
-::: preview Paragraph
+::: preview 文字
 
-This is a paragraph.
-
-This is another paragraph.
+這句話裡有**粗體**、*斜體*和~~刪除線~~
 
 :::
 
-::: details Line Break
+::: preview 段落
 
-I would like to line break at  
-this point
+這是一個段落。
+
+這是另一個段落。
+
+:::
+
+::: details 換行
+
+這是一句話不過我要在這裡  
+換行
 
 ```md
-I would like to line break at  
-this point
+這是一句話不過我要在這裡  
+換行
 ```
 
 :::
 
-::: preview Blockquotes
+::: preview 引用
 
-> Blockquotes can also be nested...
+> 引用也可以連用
 >
-> > ...by using greater-than signs right next to each other...
-> >
-> > > ...or with spaces between arrows.
+> > 可以加入額外的大於符號製造更深的引用
 
 :::
 
-::: preview Unordered List
+::: preview 無序清單
 
-- Create a list by starting a line with `-`
-- Make sub-lists by indenting 2 spaces:
-  - Marker character change forces new list start:
-    - Ac tristique libero volutpat at
-    - Facilisis in pretium nisl aliquet
-    - Nulla volutpat aliquam velit  
-      link break
+- 無序清單項目
+- 無序清單項目
+  - 清單中的清單項目
+    - 更多的清單項目
+    - 更多的清單項目
+    - 更多的清單項目
+  - 清單中的長清單項目，這個清單項目很長。
 
-      New paragraph
+    而且由很多個段落構成。
 
-- It’s easy!
+    甚至最後一個段落還包含了[連結](#markdown-支援)。
 
-:::
-
-::: preview Ordered List
-
-1. Lorem ipsum dolor sit amet
-1. Consectetur adipiscing elit  
-   line break  
-   line break again
-1. Integer molestie lorem at massa
+- 無序清單項目
 
 :::
 
-::: preview HR
+::: preview 有序清單
+
+1. 有序清單第一項
+1. 有序清單第二項  
+   第二項需要換行  
+   再次換行
+1. 有序清單第三項
+
+:::
+
+::: preview 分隔線
 
 ---
 
 :::
 
-::: preview Link
+::: preview 連結
 
-[HomePage](/)
+[首頁](/)
 
 :::
 
-::: preview Image
+::: preview 圖片
 
 ![Logo](/logo.png)
 
 :::
 
-::: preview Table
+::: preview 表格
 
-|           center           |                    right | left                    |
-| :------------------------: | -----------------------: | :---------------------- |
-| For center align use `:-:` | For right align use `-:` | For left align use `:-` |
-|             b              |                aaaaaaaaa | aaaa                    |
-|             c              |                     aaaa | a                       |
+|     置中      |         靠右對齊 | 靠左對齊         |
+| :-----------: | ---------------: | :--------------- |
+| 置中使用`:-:` | 靠右對齊使用`-:` | 靠左對齊使用`:-` |
+|       b       |        aaaaaaaaa | aaaa             |
+|       c       |             aaaa | a                |
 
 :::
 
-::: preview Code
+::: preview 程式碼
 
-Inline Code: `code`
+行內程式碼效果：`code`
 
-Block code:
+區塊程式碼：
 
 ```js
 var foo = function (bar) {
@@ -136,13 +136,13 @@ console.log(foo(5));
 
 :::
 
-## Superscript and Subscript
+## 上標與下標
 
-Use `^` and `~` to mark the superscript and subscript.
+使用 `^` 和 `~` 來標記上標與下標。
 
 <!-- prettier-ignore-start -->
 
-::: preview Demo
+::: preview 範例
 
 - 19^th^
 - H~2~O
@@ -151,19 +151,19 @@ Use `^` and `~` to mark the superscript and subscript.
 
 <!-- prettier-ignore-end -->
 
-## Emojis
+## Emoji 表情符號
 
-Besides user-configured or built-in Weibo emojis, we also support complete Emoji shorthand emoticons.
+除了使用者自行設定或內建的微博表情符號外，我們還支援完整的 Emoji 簡寫表情。
 
 <!-- prettier-ignore-start -->
 
-::: preview Demo
+::: preview 範例
 
-Classic:
+經典方式：
 
 :wink: :cry: :laughing: :yum:
 
-Shortcuts:
+簡寫：
 
 8-) :) :* :( :-) :-( ;)
 
@@ -171,11 +171,11 @@ Shortcuts:
 
 <!-- prettier-ignore-end -->
 
-## Code Block Highlight
+## 程式碼區塊高亮
 
-We support highlighting in almost all languages.
+我們支援幾乎所有語言的語法高亮。
 
-::: details Demo
+::: details 範例
 
 ```html
 <!doctype html>
@@ -240,11 +240,11 @@ footer p {
 
 :::
 
-## Mathematical formula
+## 數學公式
 
-You can use `$ ... $` to create inline formulas, or use `$$ ... $$` to create block-level formulas.
+你可以使用 `$ ... $` 建立行內公式，使用 `$$ ... $$` 建立區塊公式。
 
-::: preview Demo
+::: preview 範例
 
 Euler’s identity $e^{i\pi}+1=0$ is a beautiful formula in $\mathbb{R}^2$.
 
@@ -255,6 +255,6 @@ $$
 
 :::
 
-## Embed HTML
+## 嵌入 HTML
 
-Feel free to add any HTML content unless triggering [the protection mechanism](../guide/features/safety.md#comment-security).
+你可以在不觸發 [保護機制](../guide/features/safety.md#留言安全) 的情況下自由嵌入任何的 HTML 內容。

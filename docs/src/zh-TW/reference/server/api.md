@@ -3,99 +3,101 @@ title: API
 icon: api
 ---
 
-## Comment
+## 留言 API
 
-### Comment List
+### 留言列表
 
-Get comment list for article
+取得某篇文章對應的留言列表
 
 ```http
 GET /api/comment
 ```
 
-**Parameters**:
+**參數**：
 
-| Parameter | Type   | Description                                                                                                                                               |
-| --------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| path      | string | Article id for comment                                                                                                                                    |
-| page      | number | Comment page                                                                                                                                              |
-| pageSize  | number | Comment list page size                                                                                                                                    |
-| sortBy    | string | Which sort type for comment list, default descending sort by create time, also you can ascending sort by create_time, or descending sort by comment like. |
+| 欄位     | 型別   | 描述                                                                                                             |
+| -------- | ------ | ---------------------------------------------------------------------------------------------------------------- |
+| path     | string | 取得對應文章識別碼的留言列表                                                                                     |
+| page     | number | 留言列表的頁數                                                                                                   |
+| pageSize | number | 每頁留言列表的筆數                                                                                               |
+| sortBy   | string | 留言排序方式，預設依時間倒序（insertedAt_desc），也可以選擇依時間正序（insertedAt_asc）、依熱度倒序（like_desc） |
 
-### Comment Count
+### 留言數
 
-Get comment count for article
+取得某篇文章對應的留言總數
 
 ```http
 GET /api/comment?type=count
 ```
 
-**Parameters**:
+**參數**：
 
-| Parameter | Type   | Description                                                   |
-| --------- | ------ | ------------------------------------------------------------- |
-| url       | string | Article id for comment, return site comment count if it empty |
+| 欄位 | 型別   | 描述                                                 |
+| ---- | ------ | ---------------------------------------------------- |
+| url  | string | 取得對應文章識別碼的留言列表，若為空會傳回全站留言數 |
 
-### Recent Comment
+### 最近留言
 
-Get recent comment
+取得目前網站的最近留言
 
 ```http
 GET /api/comment?type=recent
 ```
 
-**Parameters**:
+**參數**：
 
-| Parameter | Type   | Description          |
-| --------- | ------ | -------------------- |
-| count     | number | comment count return |
+| 欄位  | 型別   | 描述               |
+| ----- | ------ | ------------------ |
+| count | number | 傳回最新留言的筆數 |
 
-### Submit comment
+### 發表留言
+
+發表一則留言
 
 ```http
 POST /api/comment
 ```
 
-**Parameters**:
+**參數**：
 
-| Parameter | Type   | Description                         |
-| --------- | ------ | ----------------------------------- |
-| comment   | string | comment content                     |
-| link      | string | commentator site                    |
-| mail      | string | commentator email                   |
-| nick      | string | commentator nick                    |
-| pid       | string | comment id which one replied        |
-| rid       | string | root comment id which one owned     |
-| ua        | string | commentator's user agent            |
-| url       | string | Article id for comment              |
-| at        | string | comment nick name which one replied |
+| 欄位    | 型別   | 描述                        |
+| ------- | ------ | --------------------------- |
+| comment | string | 留言內容                    |
+| link    | string | 使用者輸入的網站            |
+| mail    | string | 使用者輸入的電子郵件        |
+| nick    | string | 使用者輸入的暱稱            |
+| pid     | string | 該則留言回覆的留言 objectId |
+| rid     | string | 該則留言的根留言 objectId   |
+| ua      | string | 使用者的 user agent         |
+| url     | string | 留言的文章識別碼            |
+| at      | string | 該則留言回覆的留言作者暱稱  |
 
-## Reading statistics
+## 閱讀統計 API
 
-### Get reading statistics
+### 取得閱讀統計數
 
-Get the number of readings corresponding to an article or multiple articles.
+取得某篇文章或多篇文章對應的閱讀數
 
 ```http
 GET /api/article
 ```
 
-**Parameters**:
+**參數**：
 
-| Parameter | Type   | Description                                                         |
-| --------- | ------ | ------------------------------------------------------------------- |
-| path      | string | Article id for comment，multiple ids should be spliced with commas. |
+| 欄位 | 型別   | 描述                                 |
+| ---- | ------ | ------------------------------------ |
+| path | string | 對應文章識別碼，多個識別碼以逗號串接 |
 
-### Update reading statistics
+### 更新閱讀統計數
 
-Update the reading count of an article.
+更新某篇文章的閱讀數
 
 ```http
 POST /api/article
 ```
 
-**Parameters**:
+**參數**：
 
-| Parameter | Type   | Description            |
-| --------- | ------ | ---------------------- |
-| path      | string | Article id for comment |
+| 欄位 | 型別   | 描述           |
+| ---- | ------ | -------------- |
+| path | string | 對應文章識別碼 |

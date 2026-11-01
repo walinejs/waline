@@ -1,13 +1,13 @@
 ---
-title: plugin system
+title: 外掛系統
 icon: api
 ---
 
-Users can extend the custom hook function through the Hook provided by Waline to realize custom functions. But if users want to share custom Hook methods, they can only use the copy method. To solve this problem, the Waline plugin system came into being.
+使用者可以透過 Waline 提供的 Hook 擴充自訂掛鉤函式來實現自訂功能。但如果使用者之間想要共享自訂的 Hook 方法，只能使用複製的方式。為了解決這個問題，Waline 外掛系統應運而生。
 
-## Install the plugin
+## 安裝外掛
 
-A new `plugins` attribute has been added to Waline's initial configuration, which supports configuring multiple plugins.
+Waline 初始化設定新增了 `plugins` 屬性，支援設定多個外掛。
 
 ```js
 // index.js
@@ -19,7 +19,7 @@ module.exports = Waline({
 });
 ```
 
-To install others' plugin directly, you can also place plugin hooks direct in `plugins`:
+除了直接安裝別人的外掛之外，我們也可以在這裡設定自己的外掛邏輯。
 
 ```js
 // index.js
@@ -44,11 +44,11 @@ module.exports = Waline({
 });
 ```
 
-## Create plugin
+## 製作外掛
 
-### Create based on Hook
+### 基於 Hook 製作
 
-It's easy to build a plugin. A plugin is contained by a collection of [hooks.](./config.md#comment-hooks)
+開發一款外掛也非常簡單，基本上與之前 [Hook](./config.md#留言-hooks) 的使用方法一致，只是做了一層封裝。
 
 ```js
 module.exports = {
@@ -60,13 +60,13 @@ module.exports = {
 };
 ```
 
-It should be noted that if the user installs multiple Hook plugins, the execution of the same hook function is executed in the order in which the plugins are installed. If the pre-hook method returns early, no subsequent operations will be performed.
+需要注意，如果使用者安裝了多個 Hook 類外掛，同一個掛鉤函式的執行是依安裝外掛載入的先後順序執行的。如果前置的掛鉤方法提前傳回的話，就不會執行後續的操作了。
 
-### Create based on middleware
+### 基於中介軟體製作
 
-If Hook can't meet your needs, you can use a more powerful middleware mode to customize development. The bottom layer of Waline uses the Node.js framework [Koa](https://koajs.com), and we expose Koa's middleware configuration as a whole, which can meet various customization needs of advanced developers.
+如果 Hook 沒辦法滿足你的需求，則可以使用更強大的中介軟體模式來自訂開發。Waline 最底層使用了 Node.js 框架 [Koa](https://koajs.com)，我們將 Koa 的中介軟體設定整體公開出來，這樣可以滿足進階開發者的各種自訂需求。
 
-If you don't know what Koa middleware is, you can search for it first. What you need to pay attention to when using the middleware mode to make plug-ins is that the callback method must write the execution of `await next()`, otherwise the follow-up operations will not be executed.
+如果你不清楚 Koa 中介軟體是什麼，可以先搜尋了解一下。使用中介軟體模式製作外掛需要注意的是，回呼方法一定要寫 `await next()` 的執行，否則不會執行後續操作。
 
 ```js
 module.exports = {
@@ -78,11 +78,11 @@ module.exports = {
 };
 ```
 
-Of course, you can put the logic of Hook-type plug-ins and middleware-type plug-ins together, and Waline supports them.
+當然你完全可以將 Hook 類外掛和中介軟體類外掛邏輯放在一起，這些 Waline 都是支援的。
 
-### List of plugins
+### 外掛列表
 
-Welcome to submit plugins~
+歡迎提交外掛～
 
 - [@waline-plugins/hello-world](https://github.com/walinejs/plugins/tree/master/packages/hello-world)
 - [@waline-plugins/privacy](https://github.com/walinejs/plugins/tree/master/packages/privacy)

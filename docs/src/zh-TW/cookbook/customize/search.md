@@ -1,34 +1,34 @@
 ---
-title: Customize Emoticons Search
+title: 自訂表情符號包搜尋
 icon: search
 ---
 
-This tutorial guides you on how to customize the emoji search service via the `search` option provided by `@waline/client`.
+本教學指引你如何透過 `@waline/client` 提供的 `search` 選項自訂設定表情符號包搜尋服務。
 
 <!-- more -->
 
-## search result conversion
+## 搜尋結果轉換
 
-You may get different results when using different third-party image search services. After getting the search result, you need to convert it to the format required by `@waline/client`.
+你在使用不同的第三方圖片搜尋服務時，可能會得到不同的結果。在取得搜尋結果後，你需要將其轉換為 `@waline/client` 所需要的格式。
 
-For any of the following operations, `@waline/client` requires you to return an array of image information in the following format:
+對於下文的任何操作，`@waline/client` 都要求你回傳如下格式的圖片資訊陣列:
 
 ```ts
 interface WalineSearchImageData extends Record<string, unknown> {
-  /** Image link */
+  /** 圖片連結 */
   src: string;
 
   /**
-   * Image title
+   * 圖片標題
    *
-   * Used for alt attribute of image
+   * 用於圖片的 alt 屬性
    */
   title?: string;
 
   /**
-   * Image preview link
+   * 圖片縮圖
    *
-   * For better loading performance, we will use this thumbnail first in the list
+   * 為了更好的載入效能，我們會優先於列表中使用此縮圖
    *
    * @default src
    */
@@ -38,39 +38,38 @@ interface WalineSearchImageData extends Record<string, unknown> {
 type WalineSearchResult = WalineSearchImageData[];
 ```
 
-You need to ensure that each object of the array contains at least the `src` attribute to indicate the address of the image.
+你需要保證陣列的每個物件至少含有 `src` 屬性來標明圖片的位址。
 
-Also, where possible, you should provide an alt text `title` to help with accessibility and in case of image service failures.
+並且，你應當盡可能提供一個替代文字 `title`，以便協助無障礙存取以及應對圖片服務失效的情況。
 
-In order to make the list load faster, as long as the image service can return multiple sizes of image URLs, you should choose a small size image as `preview` to improve the loading speed of the list image.
+為了讓列表載入更快，只要圖片服務可以回傳多種尺寸的圖片位址，你就應該選用一張小尺寸的圖片作為 `preview`，以提升列表圖片的載入速度。
 
 ::: note
 
-`@waline/client` doesn't care if there are extra properties in the image result, so you don't need to deliberately remove other keys from the returned result.
+`@waline/client` 並不在意圖片結果中是否有額外屬性，所以你無需刻意移除回傳結果中的其他鍵值。
 
 :::
 
-## Search Option
+## 搜尋設定
 
-`@waline/client` provides three sub-options to control search behavior:
+`@waline/client` 提供三個子選項來控制搜尋行為:
 
 ```ts
 interface WalineSearchOptions {
-  /** Search action */
+  /** 搜尋操作 */
   search: (word: string) => Promise<WalineSearchResult>;
 
   /**
-   * Default result when opening list
+   * 開啟列表時展示的預設結果
    *
    * @default () => search('')
    */
   default?: () => Promise<WalineSearchResult>;
 
   /**
-   * Fetch more action
+   * 取得更多結果的操作
    *
-   * It will be triggered when the list scrolls to the bottom. If your search service supports
-   * paging, you should set this to achieve infinite scrolling
+   * 會在列表捲動到底部時觸發，如果你的搜尋服務支援分頁功能，你應該設定此項來實現無限捲動
    *
    * @default (word) => search(word)
    */
@@ -78,14 +77,14 @@ interface WalineSearchOptions {
 }
 ```
 
-Since you need to implement at least the search logic, `search` is required. `@waline/client` will pass in the user search term and call this option function, and wait for this function to return a Promise to complete the search result.
+由於你至少需要實現搜尋邏輯，`search` 是必填的。`@waline/client` 會將使用者的搜尋關鍵字傳入並呼叫此選項函式，並等待此函式回傳 Promise 完成後取得搜尋結果。
 
-We want users to see some hot images or emoji results when they open it, so we provide the `default` function to implement this behavior. If your service provider provides an interface for popular pictures or emoticons, you should use this interface to return content. Also, since the default behavior of this function is to search for empty strings, if your search provider returns empty results in this situation, we recommend that you add a brief implementation of random preset words to avoid showing an empty list.
+我們希望使用者開啟時能夠看到一些熱門的圖片或表情符號包結果，因此我們提供了 `default` 函式來實現這一行為。如果你的服務商提供熱門圖片或表情符號包的介面，你應該利用此介面回傳內容。此外，由於此函式預設的行為是搜尋空字串，如果你的搜尋服務商在此情形下會回傳空結果，那我們建議你加入一個隨機預設字詞的簡要實作，以避免展示一個空列表。
 
 ```js
 const search = (word) => {
   // ...
-  // returning result
+  // 回傳結果
 };
 
 Waline.init({
@@ -95,26 +94,26 @@ Waline.init({
     search,
     default: () =>
       search(
-        // random between 3 words
-        ['laugh', 'cry', 'smile'][(Math.random() * 3) | 0],
+        // 在三個詞之間隨機
+        ['開心', '失落', '贊同'][(Math.random() * 3) | 0],
       ),
   },
 });
 ```
 
-Usually, your search service will support pagination, so we provide a `more` function to trigger when the user swipes to the bottom and load more images to let you return more results. For a better experience, we recommend setting the number of pagination to 20 - 40, that is, 20 - 40 images are loaded each time.
+通常情況下，你的搜尋服務商會支援分頁服務，所以我們提供一個 `more` 函式，在使用者捲動到底部時觸發並載入更多圖片，讓你回傳更多結果。為了更好的體驗，我們推薦將分頁數量設定為 20 - 40，也就是每次載入 20 - 40 張圖片。
 
-::: tip An example to help understand
+::: tip 一個幫助理解的範例
 
-When the user clicks the search button, we will trigger `default()`, if this function is missing, we will trigger `search('')`, and we will wait for the Promise to execute and render with the returned result.
+當使用者點擊表情符號包搜尋按鈕時，我們會觸發 `default()`，如果此函式缺失，我們會觸發 `search('')`，同時我們會等待 Promise 執行並使用回傳結果進行渲染，這樣使用者就可以看到結果。
 
-When the user searches for `smile`, we execute `search('smile')`. Suppose you return 20 results each time, when the user continues to scroll down, we will trigger `more('smile', 20)`, `more('smile', 40)`, `more('smile', 60 )` ...
+當使用者搜尋 `微笑`，我們會執行 `search('微笑')`。假定你每次回傳 20 個結果，使用者持續向下捲動時，我們會依次觸發 `more('微笑', 20)`、`more('微笑', 40)`、`more('微笑', 60)` ...
 
 :::
 
-## Examples
+## 案例
 
-::: details Default implementation
+::: details 預設實作
 
 @[code{33-79}](../../../../../packages/client/src/config/default.ts)
 

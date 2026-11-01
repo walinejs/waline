@@ -1,25 +1,25 @@
 ---
-title: Import Waline via CDN
+title: 透過 CDN 匯入 Waline
 icon: import
 order: 1
 ---
 
-This cookbook is about importing Waline via CDN.
+本教學將引導你如何透過 CDN 匯入 Waline。
 
 <!-- more -->
 
-For China Mainland users, we recommend using [unpkg](https://unpkg.com/@waline/client). For foreign users, we recommend using jsDelivr.
+對於中國大陸的使用者，我們推薦使用 [unpkg](https://unpkg.com/@waline/client)；對於海外的使用者，我們推薦使用 jsDelivr。
 
-To make Waline SSR friendly, we split Waline's styles in V2 version. This means, you need to import Waline's CSS style file, and import Waline script file and call Waline.
+為了讓 Waline 對 SSR 更友善，我們在 V2 版本中拆分了 Waline 的樣式。這意味著你需要先匯入 Waline 的 CSS 樣式檔案，再匯入 Waline 腳本檔案並呼叫 Waline。
 
-## Comment
+## 留言功能
 
-Normally, you may want Waline to render a list of comments, you can import Waline as follows:
+通常情況下，你會希望 Waline 渲染留言列表，可以按照以下方式引入 Waline：
 
 ```html
-<!-- style file -->
+<!-- 樣式檔案 -->
 <link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css" />
-<!-- script file -->
+<!-- 腳本檔案 -->
 <script type="module">
   import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
 
@@ -29,11 +29,11 @@ Normally, you may want Waline to render a list of comments, you can import Walin
 </script>
 ```
 
-## Pageviews and comments
+## 瀏覽量與留言數
 
-Sometimes, you may want to display the number of page views and comments of the article on the home page or article list, but do not need to load the comment component, then you can import a Gzip < 1KB script file in the following ways:
+有時候，你可能希望在首頁或文章列表顯示文章的瀏覽量和留言數，但不需要載入留言元件，那麼你可以透過下列方式引入一個 Gzip < 1KB 的腳本檔案：
 
-Pageviews:
+瀏覽量：
 
 ```html
 <script type="module">
@@ -45,7 +45,7 @@ Pageviews:
 </script>
 ```
 
-Comments count:
+留言數：
 
 ```html
 <script type="module">
@@ -57,10 +57,10 @@ Comments count:
 </script>
 ```
 
-## More
+## 更多
 
-::: info Specifies version
+::: info 指定版本
 
-You may have noticed that in the above cases, we have explicitly declared the `@v2` version after `@aline/client`. Your website is not working properly.
+你可能已經注意到，上述範例中，我們都在 `@waline/client` 後顯式宣告了 `@v2` 版本，這是推薦的做法，因為這能有效避免日後 Waline 客戶端發佈 V3 版本後，導致你的網站運作異常。
 
 :::

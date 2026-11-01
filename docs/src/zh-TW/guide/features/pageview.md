@@ -1,61 +1,70 @@
 ---
-title: Pageview Counter
+title: 瀏覽量統計
 icon: counter
 order: 7
 ---
 
-Waline supports pageview counting.
+Waline 支援瀏覽量統計。
 
 <!-- more -->
 
-## Using with comment
+## 和留言一起使用
 
-Waline supIf you are using Waline's commenting service, you can enable pageview statistics by setting the `pageview` option to `true` during initialization:
-
-```js
-Waline.init({
-  el: '#waline',
-  // ...
-  pageview: true, // pageview statistics
-});
-```
-
-Waline will automatically find the elements with the `class` value of `waline-pageview-count` in the page, and get their `data-path` as the query condition. And fill it with the obtained value:
-
-If you need a different selector, you can set the `pageview` option to this selector.
+如果你正在使用 Waline 的留言服務，你可以在初始化時設定 `pageview` 選項為 `true` 來開啟瀏覽量統計功能:
 
 ```html
-<!-- data-path will be the query condition -->
-Pageviews: <span class="waline-pageview-count" data-path="<Your/Path/Name>"></i>
+<div id="article-info">
+  <!-- ... -->
+  閱讀量: <span class="waline-pageview-count" data-path="<Your/Path/Name>" />
+  <!-- ... -->
+</div>
+<!-- 文章內容 -->
+<div id="waline"></div>
+<script type="module">
+  import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
+
+  init({
+    el: '#waline',
+    // ...
+    pageview: true, // 瀏覽量統計
+  });
+</script>
 ```
 
-Every time you call `WalineInstance.update()`, Waline will re-search the page content and automatically update the pageviews.
+Waline 會在初始化以及每次 path 更新時，自動尋找頁面中 `class` 值為 `waline-pageview-count` 的元素，以其 `data-path` 作為查詢條件，並將取得的值填入其中:
 
-::: tip Examples
+如果你需要一個不同的選擇器，你可以將 `pageview` 選項設定為這個選擇器。
 
 ```html
-The current page has been viewed
-<span class="waline-pageview-count" data-path="/zh-TW/guide/client/count.html" />
-times.
+<!-- data-path 將作為查詢條件 -->
+閱讀量: <span class="waline-pageview-count" data-path="<Your/Path/Name>" />
 ```
 
-The current page has been viewed
-<span class="waline-pageview-count" data-path="/zh-TW/guide/client/count.html" /> times.
+每次你呼叫 `WalineInstance.update()` 時，Waline 會重新尋找頁面並自動更新瀏覽量。
+
+::: tip 範例
+
+```html
+目前頁面閱讀量為: <span class="waline-pageview-count" data-path="/guide/client/count.html" />
+```
+
+目前頁面閱讀量為:
+<span class="waline-pageview-count" data-path="/guide/client/count.html" />
 
 :::
 
-## Use Alone
+## 單獨使用
 
-If you only need to use the pageview statistics function, you can import the pageview module provided by Waline, its Gzip size is < 1KB.
+如果你只需要使用瀏覽量統計功能，你可以匯入 Waline 提供的 pageview 模組，它的 Gzip 大小 < 1KB。
 
 ```html
 <ul>
   <li>
-    Current page views:
+    目前頁面瀏覽量:
     <span class="waline-pageview-count" />
   </li>
   <li>
-    Page Views:
+    首頁瀏覽量:
     <span class="waline-pageview-count" data-path="/" />
   </li>
 </ul>
@@ -66,35 +75,35 @@ If you only need to use the pageview statistics function, you can import the pag
     serverURL: '<YOUR_SERVER_URL>',
     path: window.location.pathname,
 
-    // optional, for custom selectors, defaults to `'.waline-pageview-count'`
+    // 選填，用於自訂選擇器，預設為 `'.waline-pageview-count'`
     // selector: 'waline-pageview-count',
 
-    // optional, whether to increase the number of visits when fetching, the default is `true`
+    // 選填，是否在取得時增加造訪量，預設為 `true`
     // update: true,
   });
 </script>
 ```
 
-- Current pageviews: <span class="waline-pageview-count" />
+- 目前頁面瀏覽量: <span class="waline-pageview-count" />
 
-- Homepage Pageviews: <span class="waline-pageview-count" data-path="/" />
+- 首頁瀏覽量: <span class="waline-pageview-count" data-path="/" />
 
-::: info Abort
+::: info 中途取消
 
-Since pageview fetching is an asynchronous network operation, you may need to cancel an ongoing pageview update operation under certain circumstances.
+由於瀏覽量取得是一個非同步網路操作，你可能需要在特定情況下取消正在執行的瀏覽量更新操作。
 
-`pageviewCount` returns a function that can be called to cancel the update:
+`pageviewCount` 會傳回一個函式，呼叫後即可取消此次更新:
 
 ```html
 <script type="module">
   import { pageviewCount } from 'https://unpkg.com/@waline/client@v3/dist/pageview.js';
 
-  const abort = Waline.pageviewCount({
+  const abort = pageviewCount({
     serverURL: '<YOUR_SERVER_URL>',
     path: window.location.pathname,
   });
 
-  // After 500ms, if the network request has not been completed, cancel this operation
+  // 在 500ms 後，若網路請求仍未完成，取消本次操作
   setTimeout(() => abort(), 500);
 </script>
 ```

@@ -3,7 +3,7 @@ title: 指南
 icon: cookbook
 ---
 
-This cookbook will introduce Waline in more depth.
+本指南將更深入地介紹 Waline。
 
 <!-- more -->
 

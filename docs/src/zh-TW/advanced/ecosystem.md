@@ -4,17 +4,17 @@ icon: ecosystem
 order: 3
 ---
 
-Waline is a classic Client/Server architecture, which provides a relatively complete API interface. you can implement your own client implementation based on the API provided by the server.
+Waline 是經典的前後端分離 Client/Server 架構，提供了較為完善的 API 介面。你可以基於伺服器提供的 API 自行實作自己的客戶端。
 
-## Clients
+## 客戶端清單
 
 - [@waline/client](https://npmjs.com/@waline/client)
 
-  Official client implementation, build with Vue and TypeScript.
+  官方的客戶端實作，使用 Vue + TypeScript 建構。
 
 - [MiniValine](https://github.com/MiniValine/MiniValine)
 
-  By [@MHuiG](https://github.com/MHuiG) , supports Waline API. Usage:
+  作者 [@MHuiG](https://github.com/MHuiG)，適配 Waline 介面。使用方式如下:
 
   ```html
   <script src="https://unpkg.com/minivaline/dist/MiniValine.min.js"></script>
@@ -31,17 +31,19 @@ Waline is a classic Client/Server architecture, which provides a relatively comp
 
 - [sodesu](https://github.com/BeiyanYunyi/sodesu)
 
-  By [@BeiyanYunyi](https://github.com/BeiyanYunyi), build with Solid.js. For usage, see its README and [website](https://BeiyanYunyi.github.io/sodesu/)。
+  作者 [@BeiyanYunyi](https://github.com/BeiyanYunyi)。使用 Solid.js 建構，使用方式詳見專案頁面與[說明文件](https://BeiyanYunyi.github.io/sodesu/)。
 
-## Rusty
+## Rust 實作
 
-[waline-mini](https://github.com/JQiue/waline-mini) is a server-side implementation in Rust, highly suitable for running in resource-constrained server environments.
+得益於前後端 API 分離的架構設計，[waline-mini](https://github.com/JQiue/waline-mini) 是 Rust 實作的伺服器，非常適合執行在伺服器資源受限的環境上。
 
-## Cloudflare Workers 實現
+## Cloudflare Workers 實作
 
-[Waline_On_Worker](https://github.com/wuyilingwei/Waline_On_Worker) 是用戶基於 Worker 實現的服務端，彌補了 Waline 無法運行在 Cloudflare Workers 上的不足。
+[Waline_On_Worker](https://github.com/wuyilingwei/Waline_On_Worker) 是使用者基於 Worker 實作的伺服器，彌補了 Waline 無法執行在 Cloudflare Workers 上的不足。
 
-## Plugins
+## 外掛
+
+你可以使用下列外掛來在不同工具上使用 Waline:
 
 ### Hexo
 
@@ -64,7 +66,7 @@ Others:
 
 - [vuepress-plugin-comment-plus](https://github.com/SivanLaai/vuepress-plugin-comment-plus): Comment system plugin for VuePress.
 
-## Theme
+## 主題
 
 ### Hexo
 
@@ -80,6 +82,7 @@ Others:
 - 🦄 [Unicorn](https://github.com/Uzizkp/hexo-theme-unicorn)
 - 💀 [freemind.bithack](https://github.com/Ares-X/hexo-theme-freemind.bithack)
 - 🤡 [Redefine](https://github.com/EvanNotFound/hexo-theme-redefine)
+- 🌟 [Keep](https://github.com/XPoet/hexo-theme-keep)
 
 ### VuePress
 
@@ -90,10 +93,11 @@ Others:
 
 - [hugo-theme-stack](https://github.com/CaiJimmy/hugo-theme-stack)
 - [DoIt](https://github.com/HEIGE-PCloud/DoIt)
+- [FixIt](https://github.com/hugo-fixit/FixIt)
 - [Kenny](https://github.com/Kindle-deep/hugo-theme-Kenny)
 
-## More
+## 更多
 
-We are looking forward to more clients and plugins from the community to expand the Waline ecosystem. :tada:
+我們期待來自社群的更多客戶端與外掛以擴展 Waline 生態。:tada:
 
-If you implement any Waline client, ecological plugin or theme including Waline, please send a PR and let us know!
+如果你實作了 Waline 的客戶端、生態外掛與支援 Waline 的主題，歡迎發送 PR！

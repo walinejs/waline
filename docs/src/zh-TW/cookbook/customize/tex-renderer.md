@@ -1,16 +1,17 @@
 ---
-title: Customize TeX renderer
+title: 加入 TeX 渲染器
+icon: tex
 ---
 
-This cookbook guides you on how to add your own $\TeX$ renderer.
+本教學將指引你設定自己的 TeX 渲染器。
 
 <!-- more -->
 
-`@waline/client` provides the `texRenderer` function. The client will pass whether in display mode and the original $\TeX$ string as parameters. You should return a string.
+`@waline/client` 提供了 `texRenderer` 函式。客戶端會傳入是否為顯示模式以及原始 $\TeX$ 字串作為參數。你應該回傳一個字串。
 
-## A Example Using KaTeX
+## 一個使用 KaTeX 的案例
 
-For KaTeX options, see [KaTeX API](https://katex.org/docs/api.html#server-side-rendering-or-rendering-to-a-string).
+關於 KaTeX 選項，請參閱 [KaTeX API](https://katex.org/docs/api.html#server-side-rendering-or-rendering-to-a-string)。
 
 ```html
 <!doctype html>
@@ -18,7 +19,7 @@ For KaTeX options, see [KaTeX API](https://katex.org/docs/api.html#server-side-r
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Waline highlighter case</title>
+    <title>Waline highlighter 案例</title>
     <link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css" />
     <link rel="stylesheet" href="https://unpkg.com/katex@v0.16/dist/katex.min.css" />
   </head>
@@ -44,9 +45,9 @@ For KaTeX options, see [KaTeX API](https://katex.org/docs/api.html#server-side-r
 </html>
 ```
 
-## A case using MathJax
+## 一個使用 MathJax 的案例
 
-For MathJax options, see [MathJax API](http://docs.mathjax.org/zh-TW/latest/web/typeset.html#converting-a-math-string-to-other-formats).
+關於 MathJax 選項，請參閱 [MathJax API](http://docs.mathjax.org/en/latest/web/typeset.html#converting-a-math-string-to-other-formats)。
 
 ```html
 <!doctype html>
@@ -54,7 +55,7 @@ For MathJax options, see [MathJax API](http://docs.mathjax.org/zh-TW/latest/web/
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Waline highlighter case</title>
+    <title>Waline highlighter 案例</title>
     <link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css" />
     <script src="https://unpkg.com/mathjax@v3/es5/tex-svg.js"></script>
   </head>

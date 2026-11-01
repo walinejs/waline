@@ -1,31 +1,31 @@
 ---
-title: Users Rank List/Users Wall Widget
+title: 排行榜/讀者牆小工具
 icon: rank
 ---
 
-Waline supports displaying users rank list or users wall by widget, which is convenient for displaying the commentor's info in the sidebar of the blog.
+Waline 透過 `UserList` 支援使用者排行榜和讀者牆的展示，方便在部落格側邊欄展示留言使用者資訊。
 
 <!-- more -->
 
-## Component options
+## 元件選項
 
-The users rank list/users wall widget is named `UserList` and contains six options:
+排行榜小工具或者讀者牆小工具名為 `UserList`，包含三個選項:
 
-- `el` (optional): the element to be mounted
-- `serverURL`: server link
-- `count` The number of users needed to get
-- `mode`: `list` means users rank list, `wall` means users wall
-- `lang`: i18n support, more ref to [i18n](../i18n.md)
-- `locale`: customize the language, more ref to [i18n](../i18n.md)
+- `el` (選填): 需要掛載的元素
+- `serverURL`: 伺服器位址
+- `count`: 需要取得的使用者列表數量
+- `mode`: `list` 表示排行榜，`wall` 表示讀者牆
+- `lang`: 多語言支援，具體可參考 [i18n](../i18n.md)
+- `locale`: 自訂語言，具體可參考 [i18n](../i18n.md)
 
-The data format returned by the component should be `Promise<{ users: WalineUser[], destroy: () => void }>`.
+元件傳回的資料格式應為 `Promise<{ users: WalineUser[], destroy: () => void }>`。
 
-- `users` property: an array of the user list with exact number of `count`
-- `destroy` method: a function which will destroy the widget
+- `users` 屬性: 包含 `count` 數量的使用者列表
+- `destroy` 方法: 銷毀小工具的函式
 
-## Basic usage
+## 基本用法
 
-### Users Rank List
+### 使用者排行榜
 
 ```html
 <div id="waline-users"></div>
@@ -40,7 +40,7 @@ The data format returned by the component should be `Promise<{ users: WalineUser
 </script>
 ```
 
-### Users Wall
+### 讀者牆
 
 ```html
 <div id="waline-users"></div>
@@ -56,11 +56,11 @@ The data format returned by the component should be `Promise<{ users: WalineUser
 </script>
 ```
 
-## Advanced usage
+## 進階用法
 
-If you are not satisfied with the default output format, you can call the component by omitting the `el` option to get the data and render it yourself.
+如果對預設輸出的格式不滿意，你也可以不傳入 `el` 選項，呼叫元件取得資料之後自行進行渲染。
 
-Example:
+範例:
 
 ```html
 <div id="waline-users"></div>

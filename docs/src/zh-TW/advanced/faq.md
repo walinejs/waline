@@ -4,58 +4,56 @@ icon: faq
 order: 4
 ---
 
-Waline has a very clear position since its birth:
+Waline 誕生之初就已經作了很明確的定位:
 
-::: info A simple comment system with backend.
+::: info 一款帶後端的極簡風留言系統。
 
 :::
 
-All versions released afterwards are modifications made around this position.
+之後發佈的所有版本都是圍繞這個定位的修改。
 
-## What is the relationship with Valine?
+## 和 Valine 是什麼關係？
 
 ::: info Waline = With backend Valine
 
 :::
 
-Consulting with the open source version of Valine, the comment list in frontend is rewritten with React. The style and structure as well as some internal tools and methods are all from Valine.
+## 是否需要在 LeanCloud 上部署 Valine-Admin？
 
-## Do I still need to deploy Valine-Admin on LeanCloud?
+不需要。Waline 是資料儲存、伺服器以及客戶端三位一體的部署，其中伺服器相當於 Valine 的 LeanCloud 雲端引擎。伺服器包含了 Valine 所用雲端引擎提供的留言管理和郵件通知等相關的功能，不依賴額外的 LeanCloud 雲端引擎，所以不會受到 LeanCloud 雲端引擎休眠策略的限制。
 
-No. Waline is a three-in-one deployment of data storage, server, and client. The server interface is already equivalent to Valine's LeanCloud cloud engine. The server already includes comment management and email notifications feature provided by the previous cloud engine. It doesn't need the additional LeanCloud cloud engine, so it won't be restricted by the LeanCloud cloud engine's sleep strategy.
+## 如何升級？
 
-## How can I upgrade?
+Waline 主要由前端和伺服器兩部分組成。
 
-Waline is mainly composed of two parts: the frontend and the server.
+### 前端
 
-### Frontend
+前端透過在網頁引入 JS 腳本以插入留言清單和留言框。大部分場景下，連結會使用線上 CDN 最新版的位址，會自動套用最新版本，無需使用者手動更新。
 
-The front end inserts comment lists and comment boxes by including JS scripts in the web page. In most scenarios, the link will use the address of the latest version of the online CDN, and the latest version will be automatically applied, without the need for users to manually update.
+::: note 以下情形需要手動更新
 
-::: note Need manually update in following situations
-
-1. The version number is forcibly specified in the CDN address. In this situation, you need to manually modify the version number to be the latest.
-1. Use NPM to require and pack the module into code. In this situation, you need to modify the version number in the dependency to ensure that the latest version of the dependency can be obtained during installation.
+1. CDN 位址中強制指定了版本號，這時候需要手動修改版本號為最新。
+1. 使用 NPM 引入最終將模組打包到程式碼中，這時候需要修改相依套件中的版本號，保證相依套件在安裝的時候能取得最新版本。
 
 :::
 
-### Server
+### 伺服器
 
-The server refers to the backend service corresponding to the `serverURL` configured in frontend script, and its update will be slightly different depending on different deployment environments. Server updates will be more frequent.
+伺服器指的是在前端腳本中設定的 `serverURL` 對應的後端服務，其更新視不同的部署環境會略有區別。伺服器的更新會比較頻繁。
 
 #### Vercel
 
-Go to the corresponding GitHub repository and modify the version number of `@waline/vercel` in the package.json file to the latest.
+進入到對應的 GitHub 儲存庫中，修改 package.json 檔案中的 `@waline/vercel` 版本號為最新版本即可。
 
 ![vercel](./assets/vercel-update.png)
 
 #### CloudBase
 
-Enter the code editing page, click <kbd>Save and reinstall dependencies</kbd>. If it still doesn’t work, enter <kbd>My Application</kbd> and select <kbd>Deploy</kbd> to redeploy.
+進入程式碼編輯介面，點擊 <kbd>儲存並重新安裝相依套件</kbd> 即可。如果還不行，則進入 <kbd>我的應用</kbd> 選擇 <kbd>部署</kbd> 進行重新部署。
 
 ::: caution
 
-Redeployment will clear the previous files. If there is a configuration in the previous file, it needs to be backed up first.
+重新部署會清空之前的檔案，如果之前檔案中有設定，需要先行備份。
 
 :::
 
@@ -63,8 +61,8 @@ Redeployment will clear the previous files. If there is a configuration in the p
 
 #### Docker
 
-Run `docker pull lizheming/waline` directly to pull the latest image.
+直接執行 `docker pull lizheming/waline` 拉取最新的映像檔即可。
 
-## Why posting comments are slow?
+## 發佈留言很慢怎麼辦？
 
-Due to some technical reasons, spam detection and comment notification are all serial operations when posting comments. The spam detection uses the service provided by Akismet abroad, which may be slow to access. Users can turn off the spam detection function through the `AKISMET_KEY=false` environment variable. Beside the spam detection service, the email notification in the comment notification may also cause a timeout. You can turn off the comment notification to test whether it is caused by this feature.
+因為一些技術性原因，在發佈留言時垃圾郵件偵測、留言通知都是串聯操作。其中垃圾郵件偵測使用的是國外 Akismet 提供的服務，可能存取很慢，使用者可以透過 `AKISMET_KEY=false` 環境變數關閉垃圾留言偵測功能。除了垃圾留言偵測服務，留言通知中的郵件通知也有可能造成逾時，可以透過關閉留言通知測試是否為該功能導致。

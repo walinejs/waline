@@ -1,18 +1,18 @@
 ---
-title: Emoticons Search
+title: 貼圖搜尋
 icon: search
 order: 3
 ---
 
-`@waline/client` allows users to add emoji search services and customize this functionality.
+`@waline/client` 允許使用者新增貼圖搜尋服務並自訂此功能。
 
-By default, `@waline/client` provides meme search service via [Giphy](https://giphy.com/). This will allow you to search images and add them to the comment.
+在預設情況下，`@waline/client` 透過 [Giphy](https://giphy.com/) 提供貼圖搜尋服務。這將允許你在留言時搜尋貼圖並加入留言中。
 
 <!-- more -->
 
-## Disable
+## 停用
 
-If you don't need the default images search service, you can disable it by setting the `search` option to `false`.
+如果你不需要預設的貼圖搜尋服務，你可以將 `search` 選項設定為 `false` 來停用它。
 
 ```js
 Waline.init({
@@ -22,20 +22,20 @@ Waline.init({
 });
 ```
 
-## Customize
+## 自訂
 
-You can customize the image search service through the search option.
+你可以透過 search 選項自訂貼圖搜尋服務。
 
-For each operation, you should return an array containing the image information as the search result, and each item should be an object with the following properties:
+對於每項操作，你應該傳回一個包含了圖片資訊的陣列作為搜尋結果，每一項應該是一個物件，包含下列屬性:
 
-- `src`: the link address of the image
-- `title`: image title and alt text (optional)
-- `preview`: Thumbnail of the image to use in the result list (optional)
+- `src`: 圖片的連結位址
+- `title`: 圖片的標題與替代文字 (選填)
+- `preview`: 圖片的縮圖，用於結果列表中 (選填)
 
-The option accepts three functions, each of which should return a Promise, and the result is the array of search results above.
+選項接受三個函式，每個函式應該傳回一個 Promise 物件，結果是上方的搜尋結果陣列。
 
-- `search`: search operation, the search term will be passed as the first parameter of the function
-- `default`: list of images to display by default (optional)
-- `more`: The function that starts when the image is scrolled to the bottom, where the search term and the current number are passed in as the first two parameters (optional)
+- `search`: 搜尋操作，搜尋詞會作為函式的第一個參數傳入
+- `default`: 預設展示的圖片列表 (選填)
+- `more`: 當圖片捲動到底部時觸發的函式，其中搜尋詞和目前數量會作為前兩個參數傳入 (選填)
 
-For tutorials on custom search, see [Cookbook → Custom Emoji Search](../../cookbook/customize/search.md).
+關於自訂搜尋的教學，詳見 [Cookbook → 自訂貼圖搜尋](../../cookbook/customize/search.md)。

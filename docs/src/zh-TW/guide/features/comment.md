@@ -1,16 +1,16 @@
 ---
-title: Comment Counter
+title: 留言數統計
 icon: counter
 order: 8
 ---
 
-Waline supports displaying the number of comments separately in the non-comment area.
+Waline 支援顯示留言數。
 
 <!-- more -->
 
-## Automatically Update
+## 取得留言時自動更新頁面
 
-You can enable comment counting in the `init` function by setting the `comment` option to `true`.
+你可以在 `init` 函式中將 `comment` 選項設定為 `true` 來開啟留言數統計。
 
 ```html
 <script type="module">
@@ -19,75 +19,74 @@ You can enable comment counting in the `init` function by setting the `comment` 
   init({
     el: '#waline',
     // ...
-    comment: true, // enable comment counting
+    comment: true, // 留言數統計
   });
 </script>
 ```
 
-Waline will try to fill in or update comment count whenever you called `init` function or update the path.
-
-waline finds the elements having `waline-comment-count` class in the page, and get their `data-path` attribute as the query condition. And fill it with the obtained value:
+Waline 會在初始化以及每次 path 更新時，自動尋找頁面中 `class` 值為 `waline-comment-count` 的元素，以其 `data-path` 屬性作為查詢條件，並將值填入其中。
 
 ```html
-<!-- data-path will be the query condition -->
-<span data-path="<Your/Path/Name>" class="waline-comment-count" /> comments
+<!-- data-path 將作為查詢條件 -->
+目前頁面共有
+<span class="waline-comment-count" data-path="/guide/client/count.html" /> 則留言。
 ```
 
-If you need a different selector, you can set the `comment` option to that selector.
+如果你需要一個不同的選擇器，你可以將 `comment` 選項設定為這個選擇器。
 
-Every time you call `WalineInstance.update()`, Waline will search the page content and automatically update the comment count.
+每次你呼叫 `WalineInstance.update()` 時，Waline 會重新尋找頁面並自動更新留言數。
 
-::: tip Examples
+::: tip 範例
 
 ```html
-The current page has <span class="waline-comment-count" /> comments, the home page has
-<span data-path="/zh-TW/" class="waline-comment-count" /> comments.
+目前頁面共有 <span class="waline-comment-count" /> 則留言，首頁共有
+<span class="waline-comment-count" data-path="/" /> 則留言。
 ```
 
-The current page has <span class="waline-comment-count" /> comments, the home
-page has <span data-path="/zh-TW/" class="waline-comment-count" /> comments.
+目前頁面共有 <span class="waline-comment-count" /> 則留言，首頁共有
+<span class="waline-comment-count" data-path="/" /> 則留言。
 
 :::
 
-## Manual Update
+## 手動更新
 
-Besides automatically update via the `init` function, you can manually update the current page's comment count via the `commentCount` API:
+除了透過 `init` 函式自動更新之外，你也可以透過 `commentCount` API 手動更新目前頁面的留言數:
 
 ```html
 <script type="module">
-  import { commentCount } from 'https://unpkg.com/@waline/client@v3/dist/comment.js';
+  import { commentCount } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
 
   commentCount({
     serverURL,
     path,
 
-    // optional, for custom selectors, defaults to `'.waline-pageview-count'`
+    // 選填，用於自訂選擇器，預設為 `'.waline-pageview-count'`
     // selector: '.waline-pageview-count',
   });
 </script>
 ```
 
-::: info Aborting
+::: info 中途取消
 
-Since the comment count fetch is an asynchronous network operation, you may need to cancel an ongoing comment count update operation in certain circumstances.
+由於留言數取得是一個非同步網路操作，你可能需要在特定情況下取消正在執行的留言數更新操作。
 
-`commentCount` returns a function that can be called to cancel the update:
+`commentCount` 會傳回一個函式，呼叫後即可取消此次更新:
 
 ```js
-const abort = Waline.commentCount({
+const abort = commentCount({
   serverURL: '<YOUR_SERVER_URL>',
   path: window.location.pathname,
 });
 
-// After 500ms, if the network request has not been completed, cancel this operation
+// 在 500ms 後，若網路請求仍未完成，取消本次操作
 setTimeout(() => abort(), 500);
 ```
 
 :::
 
-## Import Counter Only
+## 單獨匯入
 
-Sometimes, you may want to display the comment count of some pages in the article list or homepage, but do not want to load the entire Waline. At this point you can use a Gzip < 1KB `comment` module:
+有些時候，你可能希望在文章列表或首頁中顯示一些頁面的留言數，而不希望載入整個 Waline。此時你可以使用一個 Gzip 大小 < 1KB 的 `comment` 模組:
 
 ```html
 <script type="module">
@@ -97,7 +96,7 @@ Sometimes, you may want to display the comment count of some pages in the articl
     serverURL,
     path,
 
-    // optional, for custom selectors, defaults to `'.waline-pageview-count'`
+    // 選填，用於自訂選擇器，預設為 `'.waline-pageview-count'`
     // selector: '.waline-pageview-count',
   });
 </script>

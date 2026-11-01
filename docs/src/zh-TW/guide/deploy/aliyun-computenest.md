@@ -1,36 +1,28 @@
 ---
-title: Deploy on Alibaba Cloud Compute Nest
+title: 阿里雲計算巢部署
 icon: aliyun
 ---
 
-[Compute Nest](https://computenest.console.aliyun.com/) is a Platform as a Service (PaaS) solution Alibaba Cloud provides for service providers and their customers to manage services.
-
-Service providers can publish private services on Compute Nest, and their customers can deploy these services easily. Service providers can also publish fully-managed services where they can implement hosted O&M for the resources of their customers.
-
-Compute Nest provides service capabilities to cater to each stage of the lifecycle management of services. Service providers can manage different stages using different functional modules based on their requirements. This helps service providers improve operational efficiency, reduce operating costs, and provide simple and convenient services for customers.
+[阿里雲計算巢](https://computenest.console.aliyun.com/) 服務是一個開放給服務商（包括：企業應用服務商、IT 整合服務商、交付服務商和管理服務提供商等）與使用者的服務管理 PaaS 平台。計算巢服務為服務商與使用者提供高效、便捷、安全的服務使用體驗，服務商能更妥善地在阿里雲上部署、交付和管理服務，使用者則能集中管理在阿里雲上訂閱的各類服務商所提供的服務。
 
 <!-- more -->
 
-## How to deploy
+## 如何部署
 
-1. Confirmation before deployment: To deploy a Waline community edition service instance, you need to
-   access and create some Alibaba Cloud resources. Therefore, your account must contain permissions for the following
-   resources. Description: this permission is required only when your account is a RAM account.
+1. 部署前確認：部署 Waline 服務執行個體，需要對部分阿里雲資源進行存取與建立操作。因此您的帳號需要包含下列資源的權限。 說明：只有當您的帳號是 RAM 帳號時，才需要新增此權限。
 
-   | Permission Policy Name          | Remark                                                                  |
-   | ------------------------------- | ----------------------------------------------------------------------- |
-   | AliyunECSFullAccess             | Permissions to manage ECS                                               |
-   | AliyunVPCFullAccess             | Permissions to manage a VPC                                             |
-   | AliyunROSFullAccess             | Manage permissions for the Resource Orchestration Service (ROS)         |
-   | AliyunComputeNestUserFullAccess | Manage user-side permissions for the compute nest service (ComputeNest) |
+   | 權限策略名稱                    | 備註                                        |
+   | ------------------------------- | ------------------------------------------- |
+   | AliyunECSFullAccess             | 管理雲端伺服器服務（ECS）的權限             |
+   | AliyunVPCFullAccess             | 管理專有網路（VPC）的權限                   |
+   | AliyunROSFullAccess             | 管理資源編排服務（ROS）的權限               |
+   | AliyunComputeNestUserFullAccess | 管理計算巢服務（ComputeNest）的使用者端權限 |
 
-1. Access the Waline service on Alibaba Compute Nest [Deployment Link](https://computenest.console.aliyun.com/service/instance/create/default?type=user&ServiceName=Waline%20Community%20Edition)，fill in the deployment parameters as prompted
-1. Select the payment type, ECS (i.e. cloud server) instance specifications, system disk type, and instance password as needed.
-   ![computenest](../../../assets/aliyun-computenest-en-1.png)
-1. Select the availability zone where the ECS instance is deployed, and select the VPC (private network) and switch ID where the ECS instance is located. If there are no available VPCs and switches in your account, you can directly jump to the relevant Alibaba Cloud product console to create them by clicking "Create VPC" and "Create vSwitch" in the Compute Nest console. Click Next: Confirm Order.
-   ![computenest](../../../assets/aliyun-computenest-en-2.png)
-1. After confirming the deployment parameters and reviewing the estimated price, click Create Now.
-1. Click the "Service Instance" TAB on the left to enter the service instance list page to view the service instance deployment progress.
-   ![computenest](../../../assets/aliyun-computenest-en-3.png)
-1. Click the instance ID, enter the details interface, and click "Experience Ip Address" to experience the Waline service.
-   ![computenest](../../../assets/aliyun-computenest-en-4.png)
+1. 造訪計算巢 Waline 服務[部署連結](https://computenest.console.aliyun.com/service/instance/create/default?type=user&ServiceName=Waline社区版)，依提示填寫部署參數
+1. 依需求選擇付費類型、ECS（即雲端伺服器）執行個體規格、系統磁碟類型、執行個體密碼。
+   ![computenest](../../../assets/aliyun-computenest-1.png)
+1. 選擇部署 ECS 執行個體的可用區，並選擇 ECS 執行個體所在的 VPC（即專有網路）與交換器 ID。如果您的帳戶下沒有可用的 VPC 與交換器，您可在計算巢控制台「新建專有網路」與「新建交換器」，直接跳轉到相關阿里雲產品控制台進行建立。同時點選下一步。
+   ![computenest](../../../assets/aliyun-computenest-2.png)
+1. 確認部署參數並查看預估價格後，點選立即建立。
+1. 點選左側 TAB「服務執行個體」，進入服務清單頁即可查看服務執行個體部署進度。![computenest](../../../assets/aliyun-computenest-3.png)
+1. 點選執行個體 ID 進入詳情介面，點選「體驗位址」即可體驗 Waline 服務。![computenest](../../../assets/aliyun-computenest-4.png)

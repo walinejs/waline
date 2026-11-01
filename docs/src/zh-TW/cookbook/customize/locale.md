@@ -1,37 +1,37 @@
 ---
-title: Customize Locale
+title: 自訂語言
 icon: i18n
 ---
 
-This cookbook guides you to customize Waline multilingual and display text.
+本教學指引你自訂 Waline 的多語言與顯示文字。
 
 <!-- more -->
 
-## Customize client language and text
+## 自訂客戶端語言與文字
 
-`@waline/client` provides the `locale` option, through which you can customize multiple languages and display text.
+`@waline/client` 提供了 `locale` 選項，你可以透過它自訂多語言與顯示文字。
 
-By default it uses the built-in multilingual literals and falls back to `en-US` (English US) if the language is not supported.
+預設情況下，它會使用內建的多語言文字，並在語言不受支援時，回退到 `en-US`（美式英文）。
 
-You can pass a completed multilingual configuration to the `locale` option to add language support, or set several of these to override existing UI text.
+你可以傳遞一份完整的多語言設定給 `locale` 選項來新增語言支援，或者只設定其中幾項來覆寫現有的 UI 文字。
 
-### Locale Options
+### locale 選項
 
-- Level related:
-  - `level${number}`: Label for level number
+- 等級相關:
+  - `level${number}`: 第 number 等級的文字
 
   ::: tip
 
-  For example, you can customize the labels for 6 levels like this:
+  例如你設定了 6 個等級，可以這樣定義它們:
 
   ```ts
   Waline.init({
     locale: {
-      level0: '炼体',
-      level1: '炼气',
-      level2: '筑基',
+      level0: '煉體',
+      level1: '煉氣',
+      level2: '築基',
       level3: '金丹',
-      level4: '元婴',
+      level4: '元嬰',
       level5: '化神',
     },
   });
@@ -39,191 +39,191 @@ You can pass a completed multilingual configuration to the `locale` option to ad
 
   :::
 
-- Reaction related:
-  - `reactionTitle`: Reaction title
-  - `reaction0`: Reaction 1 text
-  - `reaction1`: Reaction 2 text
-  - `reaction2`: Reaction 3 text
-  - `reaction3`: Reaction 4 text
-  - `reaction4`: Reaction 5 text
-  - `reaction5`: Reaction 6 text
-  - `reaction6`: Reaction 7 text
-  - `reaction7`: Reaction 8 text
-  - `reaction8`: Reaction 9 text
+- 反應相關:
+  - `reactionTitle`: 反應標題
+  - `reaction0`: 反應 1 文字
+  - `reaction1`: 反應 2 文字
+  - `reaction2`: 反應 3 文字
+  - `reaction3`: 反應 4 文字
+  - `reaction4`: 反應 5 文字
+  - `reaction5`: 反應 6 文字
+  - `reaction6`: 反應 7 文字
+  - `reaction7`: 反應 8 文字
+  - `reaction8`: 反應 9 文字
 
-- UI related:
-  - `nick`: nickname
-  - `mail`: Email
-  - `link`: Link
-  - `placeholder`: Default text of comment box
-  - `sofa`: Display text when the comment area is empty
-  - `submit`: Submit button text
-  - `comment`: Comment button text
-  - `refresh`: Refresh button text
-  - `more`: Load more button text
-  - `uploading`: display text when uploading
-  - `login`: login button text
-  - `admin`: The label of the administrator
-  - `sticky`: Sticky text
-  - `word`: word
-  - `anonymous`: anonymous user default name
-  - `optional`: text indicating optional options
-  - `gifSearchPlaceholder`: emoji search placeholder text
-  - `oldest`: oldest comment
-  - `latest`: latest comment
-  - `hottest`: hottest comment
-
-  ::: info
-
-  The above text will be displayed in page.
-
-  :::
-
-- Prompt information related:
-  - `nickError`: Error message that the nickname does not meet the conditions
-  - `mailError`: The error message that the mailbox does not meet the conditions
-  - `wordHint`: Error prompt for comment word count, where `$0` `$1` `$2` will be automatically replaced with the lower limit of the allowed word count, the upper limit of the allowed word count, and the current word count.
-
-- Comment time related:
-  - `seconds`: seconds ago
-  - `minutes`: minutes ago
-  - `hours`: hours ago
-  - `days`: days ago
-  - `now`: just now
-
-- Management related:
-  - `approved`: Button which marks comment as approved
-  - `waiting`: Button which marks comment waiting for review
-  - `spam`: Button which marks comments as spam
-  - `unsticky`: Button which unsticky comment
-
-- Accessibility related:
-  - `like`: the label text of like button
-  - `cancelLike`: the label text of the cancel like button
-  - `reply`: the label text of the reply button
-  - `cancelReply`: the label text of the cancel reply button
-  - `preview`: Preview button label text
-  - `emoji`: the label text of the emoji button
-  - `gif`: The label text of Gif button
-  - `uploadImage`: the label text of the upload image button
-  - `profile`: The link title of profile page
-  - `logout`: the label text of the logout button
+- UI 相關:
+  - `nick`: 暱稱
+  - `mail`: 電子郵件
+  - `link`: 網址
+  - `placeholder`: 留言框預設文字
+  - `sofa`: 留言區為空時顯示的文字
+  - `submit`: 送出按鈕文字
+  - `comment`: 留言按鈕文字
+  - `refresh`: 重新整理按鈕文字
+  - `more`: 載入更多按鈕文字
+  - `uploading`: 上傳時顯示的文字
+  - `login`: 登入按鈕文字
+  - `admin`: 管理員的標籤
+  - `sticky`: 置頂文字
+  - `word`: 字
+  - `anonymous`: 匿名使用者預設名稱
+  - `optional`: 標示可選項的文字
+  - `gifSearchPlaceholder`: 表情符號包搜尋預留位置文字
+  - `oldest`: 最早的留言
+  - `latest`: 最新的留言
+  - `hottest`: 最熱門的留言
 
   ::: info
 
-  These texts are only for accessibility purpose and will not be displayed on the page.
+  此分類內的文字會顯示在頁面上。
 
   :::
 
-### Example
+- 提示訊息相關:
+  - `nickError`: 暱稱不符合條件的錯誤訊息
+  - `mailError`: 電子郵件不符合條件的錯誤訊息
+  - `wordHint`: 留言字數的錯誤提示，其中 `$0` `$1` `$2` 會被自動替換為字數允許下限、字數允許上限、目前字數。
+
+- 留言時間相關:
+  - `seconds`: 秒前
+  - `minutes`: 分鐘前
+  - `hours`: 小時前
+  - `days`: 天前
+  - `now`: 剛剛
+
+- 管理相關:
+  - `approved`: 審核通過
+  - `waiting`: 等待審核
+  - `spam`: 垃圾留言
+  - `unsticky`: 取消置頂
+
+- 無障礙相關:
+  - `like`: 喜歡文字
+  - `cancelLike`: 取消喜歡文字
+  - `reply`: 回覆按鈕的標籤文字
+  - `cancelReply`: 取消回覆按鈕的標籤文字
+  - `preview`: 預覽按鈕的標籤文字
+  - `emoji`: 表情符號按鈕的標籤文字
+  - `gif`: 表情符號包按鈕的標籤文字
+  - `uploadImage`: 上傳圖片按鈕的標籤文字
+  - `profile`: 個人檔案頁標籤文字
+  - `logout`: 登出按鈕的標籤文字
+
+  ::: info
+
+  上述文字僅用於增強無障礙服務，不會顯示在頁面中。
+
+  :::
+
+### 範例
 
 ```js
-// en default
+// 中文預設
 const locale = {
-  nick: 'NickName',
-  nickError: 'NickName cannot be less than 3 bytes.',
-  mail: 'E-Mail',
-  mailError: 'Please confirm your email address.',
-  link: 'Website',
-  optional: 'Optional',
-  placeholder: 'Comment here...',
-  sofa: 'No comment yet.',
-  submit: 'Submit',
-  like: 'Like',
-  cancelLike: 'Cancel like',
-  reply: 'Reply',
-  cancelReply: 'Cancel reply',
-  comment: 'Comments',
-  refresh: 'Refresh',
-  more: 'Load More...',
-  preview: 'Preview',
-  emoji: 'Emoji',
-  uploadImage: 'Upload Image',
-  seconds: 'seconds ago',
-  minutes: 'minutes ago',
-  hours: 'hours ago',
-  days: 'days ago',
-  now: 'just now',
-  uploading: 'Uploading',
-  login: 'Login',
-  logout: 'logout',
-  admin: 'Admin',
-  sticky: 'Sticky',
-  word: 'Words',
-  wordHint: 'Please input comments between $0 and $1 words!\n Current word number: $2',
-  anonymous: 'Anonymous',
-  level0: 'Dwarves',
-  level1: 'Hobbits',
-  level2: 'Ents',
-  level3: 'Wizards',
-  level4: 'Elves',
-  level5: 'Maiar',
-  gif: 'GIF',
-  gifSearchPlaceholder: 'Search GIF',
-  profile: 'Profile',
-  approved: 'Approved',
-  waiting: 'Waiting',
-  spam: 'Spam',
-  unsticky: 'Unsticky',
-  oldest: 'Oldest',
-  latest: 'Latest',
-  hottest: 'Hottest',
-  reactionTitle: 'What do you think?',
+  nick: '暱稱',
+  nickError: '暱稱不能少於 3 個字元',
+  mail: '電子郵件',
+  mailError: '請填寫正確的郵件地址',
+  link: '網址',
+  optional: '可選',
+  placeholder: '歡迎留言',
+  sofa: '來發留言吧~',
+  submit: '送出',
+  like: '喜歡',
+  cancelLike: '取消喜歡',
+  reply: '回覆',
+  cancelReply: '取消回覆',
+  comment: '留言',
+  refresh: '重新整理',
+  more: '載入更多...',
+  preview: '預覽',
+  emoji: '表情符號',
+  uploadImage: '上傳圖片',
+  seconds: '秒前',
+  minutes: '分鐘前',
+  hours: '小時前',
+  days: '天前',
+  now: '剛剛',
+  uploading: '正在上傳',
+  login: '登入',
+  logout: '登出',
+  admin: '站長',
+  sticky: '置頂',
+  word: '字',
+  wordHint: '留言字數應在 $0 到 $1 字之間！\n目前字數：$2',
+  anonymous: '匿名',
+  level0: '潛水',
+  level1: '冒泡',
+  level2: '吐槽',
+  level3: '活躍',
+  level4: '話癆',
+  level5: '傳說',
+  gif: '表情符號包',
+  gifSearchPlaceholder: '搜尋表情符號包',
+  profile: '個人資料',
+  approved: '通過',
+  waiting: '待審核',
+  spam: '垃圾',
+  unsticky: '取消置頂',
+  oldest: '按倒序',
+  latest: '按正序',
+  hottest: '按熱度',
+  reactionTitle: '你認為這篇文章怎麼樣？',
 };
 
 Waline.init({
   el: '#waline',
-  path: location.pathname,
   serverURL: 'YOUR_SERVER_URL',
+  path: location.pathname,
   // ...
   locale,
 });
 ```
 
-## Customize server response text
+## 自訂伺服器端文字
 
-`@waline/vercel` provides a `locales` option that allows you to customize the response text.
+`@waline/vercel` 提供了 `locales` 選項，你可以透過它自訂文字。
 
-By default, it uses the built-in multilingual text, and falls back to `en-US` language text if the language is not supported.
+預設情況下，它會使用內建的多語言文字，並在語言不受支援時，回退到 `en-US`（美式英文）對應的文字。
 
-You can pass a completed multilingual configuration to the `locales` option to add language support, or set some of them to override the existing text.
+你可以傳遞一份完整的多語言設定給 `locales` 選項來新增語言支援，或者只設定其中幾項來覆寫現有的文字。
 
 ::: tip
 
-All custom text will eventually be rendered using the nunjucks template engine, which supports writing some relatively complex logical expressions. For example:
+所有自訂文字最終都會使用 nunjucks 模板引擎進行渲染，支援撰寫較複雜的邏輯運算式。例如：
 
 ```
-Registration confirm mail send failed, please {%- if isAdmin -%}check your mail configuration{%- else -%}check your email address and contact administrator{%- endif -%}.
+註冊確認郵件傳送失敗，請{%- if isAdmin -%}檢查一下網站的郵件相關設定{% else %}確認你的電子郵件輸入無誤並聯絡管理員{%- endif -%}。
 ```
 
 :::
 
-### locale 选项
+### locale 選項
 
-- Prompt information related:
-  - `import data format not support!`
-  - `USER_EXIST`
-  - `USER_NOT_EXIST`
-  - `USER_REGISTERED`
-  - `TOKEN_EXPIRED`
-  - `TWO_FACTOR_AUTH_ERROR_DETAIL`
-  - `Duplicate Content`
-  - `Comment too fast`
+- 提示訊息相關：
+  - `import data format not support!`：檔案格式不支援
+  - `USER_EXIST`：使用者已存在
+  - `USER_NOT_EXIST`：使用者不存在
+  - `USER_REGISTERED`：使用者已註冊
+  - `TOKEN_EXPIRED`：金鑰已過期
+  - `TWO_FACTOR_AUTH_ERROR_DETAIL`：二步驟驗證失敗
+  - `Duplicate Content`：傳送的內容先前已經送過
+  - `Comment too fast`：留言太快了，請慢一點！
 
-- Register/Login mail notification related:
-  - `[{{name | safe}}] Registration Confirm Mail`
-  - `Please click <a href=\"{{url}}\">{{url}}<a/> to confirm registration, the link is valid for 1 hour. If you are not registering, please ignore this email.`
-  - `[{{name | safe}}] Reset Password`
-  - `Please click <a href=\"{{url}}\">{{url}}</a> to login and change your password as soon as possible!`
-  - `Registration confirm mail send failed, please {%- if isAdmin -%}check your mail configuration{%- else -%}check your email address and contact administrator{%- endif -%}.`
+- 登入郵件通知相關：
+  - `[{{name | safe}}] Registration Confirm Mail`：`【{{name | safe}}】註冊確認郵件`
+  - `Please click <a href=\"{{url}}\">{{url}}<a/> to confirm registration, the link is valid for 1 hour. If you are not registering, please ignore this email.`：`請點擊 <a href=\"{{url}}\">{{url}}</a> 確認註冊，連結有效時間為 1 小時。如果並非你在註冊，請忽略這封郵件。`
+  - `[{{name | safe}}] Reset Password`：`【{{name | safe}}】重設密碼`
+  - `Please click <a href=\"{{url}}\">{{url}}</a> to login and change your password as soon as possible!`：`請儘快點擊連結 <a href=\"{{url}}\">{{url}}</a> 登入並修改你的密碼！`
+  - `Registration confirm mail send failed, please {%- if isAdmin -%}check your mail configuration{%- else -%}check your email address and contact administrator{%- endif -%}.`：`註冊確認郵件傳送失敗，請{%- if isAdmin -%}檢查一下網站的郵件相關設定{% else %}確認你的電子郵件輸入無誤並聯絡管理員{%- endif -%}。`
 
-- Comment mail notification related:
-  - `MAIL_SUBJECT`：`Your comment on {{site.name | safe}} received a reply`
-  - `MAIL_TEMPLATE`：`<div style='border-top:2px solid #12ADDB;box-shadow:0 1px 3px #AAAAAA;line-height:180%;padding:0 15px 12px;margin:50px auto;font-size:12px;'> <h2 style='border-bottom:1px solid #DDD;font-size:14px;font-weight:normal;padding:13px 0 10px 8px;'> Your comment on <a style='text-decoration:none;color: #12ADDB;' href='{{site.url}}' target='_blank'>{{site.name}}</a> received a reply </h2>{{parent.nick}}, you wrote: <div style='padding:0 12px 0 12px;margin-top:18px'> <div style='background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;'>{{parent.comment | safe}}</div><p><strong>{{self.nick}}</strong> replied:</p><div style='background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;'>{{self.comment | safe}}</div><p><a style='text-decoration:none; color:#12addb' href='{{site.postUrl}}' target='_blank'>View full reply</a> or visit <a style='text-decoration:none; color:#12addb' href='{{site.url}}' target='_blank'>{{site.name}}</a>.</p><br/> </div></div>`
-  - `MAIL_SUBJECT_ADMIN`：`New comment on {{site.name | safe}}`
-  - `MAIL_TEMPLATE_ADMIN`：`<div style='border-top:2px solid #12ADDB;box-shadow:0 1px 3px #AAAAAA;line-height:180%;padding:0 15px 12px;margin:50px auto;font-size:12px;'> <h2 style='border-bottom:1px solid #DDD;font-size:14px;font-weight:normal;padding:13px 0 10px 8px;'> New comment on <a style='text-decoration:none;color: #12ADDB;' href='{{site.url}}' target='_blank'>{{site.name}}</a> </h2> <p><strong>{{self.nick}}</strong> wrote:</p><div style='background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;'>{{self.comment | safe}}</div><p><a style='text-decoration:none; color:#12addb' href='{{site.postUrl}}' target='_blank'>View page</a></p><br/></div>`
+- 郵件通知相關：
+  - `MAIL_SUBJECT`：`{{parent.nick | safe}}，『{{site.name | safe}}』上的留言收到了回覆`
+  - `MAIL_TEMPLATE`：`<div style='border-top:2px solid #12ADDB;box-shadow:0 1px 3px #AAAAAA;line-height:180%;padding:0 15px 12px;margin:50px auto;font-size:12px;'> <h2 style='border-bottom:1px solid #DDD;font-size:14px;font-weight:normal;padding:13px 0 10px 8px;'> 您在<a style='text-decoration:none;color: #12ADDB;' href='{{site.url}}' target='_blank'>{{site.name}}</a>上的留言有了新的回覆 </h2>{{parent.nick}}同學，您曾發表留言： <div style='padding:0 12px 0 12px;margin-top:18px'> <div style='background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;'>{{parent.comment | safe}}</div><p><strong>{{self.nick}}</strong>回覆說：</p><div style='background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;'>{{self.comment | safe}}</div><p>您可以點擊<a style='text-decoration:none; color:#12addb' href='{{site.postUrl}}' target='_blank'>查看回覆的完整內容</a>，歡迎再次光臨<a style='text-decoration:none; color:#12addb' href='{{site.url}}' target='_blank'>{{site.name}}</a>。</p><br/> </div></div>`
+  - `MAIL_SUBJECT_ADMIN`：`{{site.name | safe}} 上有新留言了`
+  - `MAIL_TEMPLATE_ADMIN`：`<div style='border-top:2px solid #12ADDB;box-shadow:0 1px 3px #AAAAAA;line-height:180%;padding:0 15px 12px;margin:50px auto;font-size:12px;'> <h2 style='border-bottom:1px solid #DDD;font-size:14px;font-weight:normal;padding:13px 0 10px 8px;'> 您在<a style='text-decoration:none;color: #12ADDB;' href='{{site.url}}' target='_blank'>{{site.name}}</a>上的文章有了新的留言 </h2> <p><strong>{{self.nick}}</strong>回覆說：</p><div style='background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;'>{{self.comment | safe}}</div><p>您可以點擊<a style='text-decoration:none; color:#12addb' href='{{site.postUrl}}' target='_blank'>查看回覆的完整內容</a></p><br/> </div>`
 
-### Example
+### 範例
 
 ```js
 // index.js
@@ -231,8 +231,11 @@ const Waline = require('@waline/vercel');
 
 module.exports = Waline({
   locales: {
+    'zh-CN': {
+      USER_EXIST: '使用者已存在',
+    },
     'en-US': {
-      USER_EXIST: 'Warning! User exist!',
+      USER_EXIST: 'user exist!',
     },
   },
 });

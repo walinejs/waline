@@ -1,270 +1,230 @@
 ---
-title: Comment Notification
+title: 留言通知
 icon: notice
 order: 10
 ---
 
-When a user posts a comment on the website or a user responds to a comment, Waline supports email or WeChat notification to the blogger and the author who responded to the comment.
+當網站有使用者發布留言或者使用者回覆留言時，Waline 支援對站長和回覆留言的作者進行通知。
 
-- We support multiple types notifications for blogger
-- We will email a visitor once his comment gets a reply.
+- 站長通知支援多種方式，包括 QQ、微信、郵件等。
+- 當訪客的留言收到回覆時，我們會對訪客進行郵件通知。
 
 <!-- more -->
 
-## Email Notification
+## 郵件通知
 
-Email notification needs the following environment variables to be configured:
+郵件通知需要設定以下環境變數:
 
-- `SMTP_SERVICE`: SMTP Mail delivery service provider
+- `SMTP_SERVICE`: SMTP 郵件寄送服務供應商。
 
   ::: tip
 
-  You can find all support provider in [nodemailer services](https://github.com/nodemailer/nodemailer/blob/master/src/well-known/services.json). If your provider is not listed, you must config `SMTP_HOST` and `SMTP_PORT`.
+  你可以在 [這裡](https://github.com/nodemailer/nodemailer/blob/master/src/well-known/services.json) 查看所有支援的服務商。
 
-  - `SMTP_HOST`: SMTP server address, it can be found in mailbox's setting page generally.
-  - `SMTP_PORT`: SMTP server port, it can be found in mailbox's setting page generally.
+  如果你的服務商不受支援，你必須填寫 `SMTP_HOST` 和 `SMTP_PORT`。
+
+  - `SMTP_HOST`: SMTP 伺服器位址，一般可以在電子郵件的設定中找到。
+  - `SMTP_PORT`: SMTP 伺服器連接埠，一般可以在電子郵件的設定中找到。
 
   :::
 
-- `SMTP_USER`: SMTP Mail delivery service account, it's your email address.
-- `SMTP_PASS`: SMTP Mail delivery service password, it's your email password.
-- `SMTP_SECURE`: SMTP connect with SSL, either `true` or `false`.
-- `SITE_NAME`: Your site name, will be displayed in notification message.
-- `SITE_URL`: Your site url, will be displayed in notification message.
+- `SMTP_USER`: SMTP 郵件寄送服務的使用者名稱，一般為登入電子郵件。
+- `SMTP_PASS`: SMTP 郵件寄送服務的密碼，一般為電子郵件登入密碼，部分電子郵件 (例如 163) 是獨立的 SMTP 密碼。
+- `SMTP_SECURE`: 是否使用 SSL 連接 SMTP。
+- `SITE_NAME`: 網站名稱，用於在訊息中顯示。
+- `SITE_URL`: 網站網址，用於在訊息中顯示。
+- `AUTHOR_EMAIL`: 站長電子郵件，用來接收新留言通知。如果是站長自己發布的留言則不進行提醒通知。
 
-The following environment variables are optional:
+以下是選填的環境變數:
 
-- `SENDER_NAME`: Custom sender's name in notification
-- `SENDER_EMAIL`: Custom sender's name in notification, required for some SMTP services.
-- `MAIL_SUBJECT`: Custom comment reply email title
-- `MAIL_TEMPLATE`: Custom reply email content
-- `MAIL_SUBJECT_ADMIN`: Custom new comment notification email title
-- `MAIL_TEMPLATE_ADMIN`: Custom new comment notification email content
-- `AUTHOR_EMAIL`: The blogger’s email, used to judge whether posted comment is posted by the blogger. If it is posted by the blogger, there will be no reminder notification.
+- `SENDER_NAME`: 自訂寄送郵件的寄件者
+- `SENDER_EMAIL`: 自訂寄送郵件的寄件位址
+- `MAIL_SUBJECT`: 自訂留言回覆郵件標題
+- `MAIL_TEMPLATE`: 自訂留言回覆郵件內容
+- `MAIL_SUBJECT_ADMIN`: 自訂新留言通知郵件標題
+- `MAIL_TEMPLATE_ADMIN`: 自訂新留言通知郵件內容
 
-## Wechat Notification
+## 微信通知
 
-We use [Mr. Server](http://sc.ftqq.com/3.version) to wechat notification. You need to set `SC_KEY` in env which applied in Mr. Server.
+微信通知使用了 [Server 醬](http://sc.ftqq.com/3.version) 提供的服務，需要在環境變數中設定在 Server 醬中申請的 `SC_KEY`。
 
-- `SC_KEY`: Token applied in Mr. Server, It's required for this service.
-- `AUTHOR_EMAIL`: The blogger’s email is used to distinguish whether the posted comment is posted by the blogger himself. If it is posted by the blogger, there will be no reminder notification.
-- `SITE_NAME`: Your site name, it will be displayed in notification message.
-- `SITE_URL`: Your site url, it will be displayed in notification message.
+- `SC_KEY`: Server 醬提供的 Token，必填。
+- `AUTHOR_EMAIL`: 站長電子郵件，用來區分發布的留言是否為站長本身發布。如果是站長發布的則不進行提醒通知。
+- `SITE_NAME`: 網站名稱，用於在訊息中顯示。
+- `SITE_URL`: 網站網址，用於在訊息中顯示。
+- `SC_TEMPLATE`: Server 醬使用的通知範本，變數與具體格式可參見下文的通知範本。未設定則使用預設範本。
 
-## QQ Notification
+## 企業微信應用通知
 
-We use [Mr. Qmsg](https://qmsg.zendee.cn) to send QQ notification. You need to set `QMSG_KEY` in env which applied in Mr. Qmsg.
+由於 [Server 醬](http://sc.ftqq.com/3.version) 提供的推播服務對傳送訊息數量有限制，如果訊息數量較多時，建議使用企業微信應用通知。
 
-- `QMSG_KEY`: KEY applied in Mr. Qmsg, It's required for this service.
-- `QMSG_HOST`: HOST applied in Mr. QmsgPrivate, Optional. It's required for this host. Defalut is `https://qmsg.zendee.cn`
-- `QQ_ID`: The QQ ID of the receiver(s), except for QQ group. If there are more than one QQ ID, use commas to separate multiple values, e.g. `1244453393,2952937634` (should all be included in your Mr. Qmsg's QQ ID list).
-- `AUTHOR_EMAIL`: The blogger’s email is used to distinguish whether the posted comment is posted by the blogger himself. If it is posted by the blogger, there will be no reminder notification.
-- `SITE_NAME`: Your site name, it will be displayed in notification message.
-- `SITE_URL`: Your site url, it will be displayed in notification message.
-- `QQ_TEMPLATE`: Notification template used by QQ. Variables and specific formats can be found in the notification template below. If not configured, the default template is used.
+要使用企業微信應用通知，需要設定環境變數 `QYWX_AM` 。
 
-## Telegram Notification
+第一個值是企業 id，第二個值是應用 secret，第三個值是@all(或者成員 id)，第四個值是 AgentID，第五個值是圖片 id，中間以逗號隔開。最終格式範例:
 
-We use Telegram bot to send Telegram notification. You need to set the following env.
-
-- `TG_BOT_TOKEN`: Telegram bot token to access the HTTP API. Create a bot with [@BotFather](https://t.me/BotFather) to get this token. It's required for this service.
-- `TG_CHAT_ID`: The `chat_id` of the receiver. It can be an user, a channel or a group. [@userinfobot](https://t.me/userinfobot) will display this `chat_id` when you forward a message to it. It's required for this service.
-- `AUTHOR_EMAIL`: The blogger’s email is used to distinguish whether the posted comment is posted by the blogger himself. If it is posted by the blogger, there will be no reminder notification.
-- `SITE_NAME`: Your site name, it will be displayed in notification message.
-- `SITE_URL`: Your site url, it will be displayed in notification message.
-- `TG_TEMPLATE`: Notification template used by Telegram. Variables and specific formats can be found in the notification template below. If not configured, the default template is used.
-
-## PushPlus Notification
-
-[pushplus](http://www.pushplus.plus/) is a message push platform which supports many channels like wechat, wechat work, ding talk, sms or email. You need to set the following env. You can go to [pushplus documentation](http://www.pushplus.plus/doc/guide/api.html#%E4%B8%80%E3%80%81%E5%8F%91%E9%80%81%E6%B6%88%E6%81%AF%E6%8E%A5%E5%8F%A3) to get more parameter format detail.
-
-- `PUSH_PLUS_KEY`： user token. It's required for this service.
-- `PUSH_PLUS_TOPIC`：group id. Send yourself if it's empty. And It's unuseful if `PUSH_PLUS_CHANNEL` equals `webhook`.
-- `PUSH_PLUS_TEMPLATE`：Send template
-- `PUSH_PLUS_CHANNEL`：Send channel
-- `PUSH_PLUS_WEBHOOK`：webhook is required if `PUSH_PLUS_CHANNEL` equals `webhook` or `cp`.
-- `PUSH_PLUS_CALLBACKURL`：callback url after send response.
-- `AUTHOR_EMAIL`: The blogger’s email is used to distinguish whether the posted comment is posted by the blogger himself. If it is posted by the blogger, there will be no reminder notification.
-- `SITE_NAME`: Your site name, it will be displayed in notification message.
-- `SITE_URL`: Your site url, it will be displayed in notification message.
-
-## Discord Notification
-
-We use Discord Webhook to send Discord notification. You need to set the following env.
-
-- `DISCORD_WEBHOOK`: Discord Webhook url, [How to create Discord Webhook url](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks)?
-- `DISCORD_TEMPLATE`: Send template
-- `AUTHOR_EMAIL`: The blogger’s email is used to distinguish whether the posted comment is posted by the blogger himself. If it is posted by the blogger, there will be no reminder notification.
-- `SITE_NAME`: Your site name, it will be displayed in notification message.
-- `SITE_URL`: Your site url, it will be displayed in notification message.
-
-## Lark Notification
-
-We use Lark Webhook to send its group notifications. The following env variables are required.
-
-- `LARK_WEBHOOK`: Lark Group Bot [Webhook Usages](https://open.larksuite.com/document/ukTMukTMukTM/ucTM5YjL3ETO24yNxkjN?lang=en-US)
-- `LARK_SECRET`: As clarified by the doc from Lark, this secret is used to sign your request to avoid abuse（Optional).
-- `LARK_TEMPLATE`: Message template
-- `SITE_NAME`: Your site name which will be displayed in notification messages.
-- `SITE_URL`: Your site url which will be displayed in notification messages.
-
-## Notification Template
-
-Waline supports configuring your customized notification templates for each platform separately to achieve stronger customization capabilities and i18n compatibility.
-
-### Supported variables
-
-The template passes parameters through `self`, `parent` and `site` objects, which contain the following variables respectively:
-
-- `self`: The comment itself
-
-  | variable        | description          |
-  | --------------- | -------------------- |
-  | nick            | Commenter's nickname |
-  | mail            | Commenter's email    |
-  | link            | Commenter's website  |
-  | url             | Article address      |
-  | comment         | Comment content      |
-  | browser         | Browser name         |
-  | os              | Operate system name  |
-  | avatar          | avatar               |
-  | _commentLink_\* | Links in comments    |
-
-  \*: commentLink is only provided in Telegram notifications and will be automatically encapsulated in Markdown format.
-
-- `parent`: Comment which is replied (parent comment).
-
-  | variable | description          |
-  | -------- | -------------------- |
-  | nick     | Commenter's nickname |
-  | mail     | Commenter's email    |
-  | link     | Commenter's website  |
-  | browser  | Browser name         |
-  | os       | Operate system name  |
-  | avatar   | avatar               |
-  | comment  | Comment content      |
-
-- `site`: Website configuration
-
-  | variable | description          |
-  | -------- | -------------------- |
-  | name     | Site name            |
-  | url      | Site URL             |
-  | postUrl  | Comment full address |
-
-### Default template
-
-The default template is attached here for your reference:
-
-- MAIL_SUBJECT:
-
-  ```plain
-  {{parent.nick | safe}}，『{{site.name | safe}}』上的评论收到了回复
-  ```
-
-- MAIL_TEMPLATE:
-
-```html
-<div
-  style="border-top:2px solid #12ADDB;box-shadow:0 1px 3px #AAAAAA;line-height:180%;padding:0 15px 12px;margin:50px auto;font-size:12px;"
->
-  <h2
-    style="border-bottom:1px solid #DDD;font-size:14px;font-weight:normal;padding:13px 0 10px 8px;"
-  >
-    您在<a style="text-decoration:none;color: #12ADDB;" href="{{site.url}}" target="_blank"
-      >{{site.name}}</a
-    >上的评论有了新的回复
-  </h2>
-  {{parent.nick}} 同学，您曾发表评论：
-  <div style="padding:0 12px 0 12px;margin-top:18px">
-    <div style="background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;">
-      {{parent.comment | safe}}
-    </div>
-    <p><strong>{{self.nick}}</strong>回复说：</p>
-    <div style="background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;">
-      {{self.comment | safe}}
-    </div>
-    <p>
-      您可以点击<a
-        style="text-decoration:none; color:#12addb"
-        href="{{site.postUrl}}"
-        target="_blank"
-        >查看回复的完整內容</a
-      >，欢迎再次光临<a
-        style="text-decoration:none; color:#12addb"
-        href="{{site.url}}"
-        target="_blank"
-        >{{site.name}}</a
-      >。
-    </p>
-    <br />
-  </div>
-</div>
+```
+ww479cadfqfe8c151f,MPKN9gX97w4e4b4h4u7u4i4i4i4iO6mN_dDedBFzqC5c,@all,1000002,2S8H-JWEdsadFDSFSDDijbrtkldfhjslafhs5zEU1GyUkU
 ```
 
-- MAIL_SUBJECT_ADMIN:
+[參考文件 1](https://note.youdao.com/ynoteshare/index.html?id=351e08a72378206f9dd64d2281e9b83b&type=note&_time=1642141216026) | [參考文件 2](https://note.youdao.com/ynoteshare1/index.html?id=1a0c8aff284ad28cbd011b29b3ad0191&type=note)
 
-  ```plain
-  {{site.name | safe}} 上有新评论了
-  ```
+- `QYWX_AM`: 用於傳送企業應用訊息的變數，必填。
+- `QYWX_PROXY`: 指定企業微信介面的反向代理伺服器位址（可信 IP），未設定則不使用代理。
+- `QYWX_PROXY_PORT`: 指定企業微信介面的反向代理伺服器連接埠（預設 80）
+- `AUTHOR_EMAIL`: 站長電子郵件，用來區分發布的留言是否為站長本身發布。如果是站長發布的則不進行提醒通知。
+- `SITE_NAME`: 網站名稱，用於在訊息中顯示。
+- `SITE_URL`: 網站網址，用於在訊息中顯示。
+- `WX_TEMPLATE`: QYWX_AM 使用的通知範本，變數與具體格式可參見下文 QQ 的通知範本。未設定則使用預設範本。
 
-- MAIL_TEMPLATE_ADMIN:
+## QQ 通知
 
-```html
-<div
-  style="border-top:2px solid #12ADDB;box-shadow:0 1px 3px #AAAAAA;line-height:180%;padding:0 15px 12px;margin:50px auto;font-size:12px;"
->
-  <h2
-    style="border-bottom:1px solid #DDD;font-size:14px;font-weight:normal;padding:13px 0 10px 8px;"
-  >
-    您在<a style="text-decoration:none;color: #12ADDB;" href="{{site.url}}" target="_blank"
-      >{{site.name}}</a
-    >上的文章有了新的评论
-  </h2>
-  <p><strong>{{self.nick}}</strong>回复说：</p>
-  <div style="background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;">
-    {{self.comment | safe}}
-  </div>
-  <p>
-    您可以点击<a style="text-decoration:none; color:#12addb" href="{{site.postUrl}}" target="_blank"
-      >查看回复的完整內容</a
-    >
-  </p>
-  <br />
-</div>
-```
+QQ 通知使用了 [Qmsg 醬](https://qmsg.zendee.cn) 提供的服務，需要在環境變數中設定在 Qmsg 醬中申請的 `QMSG_KEY`。
+
+- `QMSG_KEY`: Qmsg 醬提供的 KEY，必填。
+- `QMSG_HOST`: Qmsg 醬提供的私有化 HOST，選填。預設為 `https://qmsg.zendee.cn`。
+- `QQ_ID`: 接收訊息的 QQ 號 (不支援 QQ 群)，可以新增多個，以半形逗號分隔，如: `1244453393,2952937634` (必須均在您的 Qmsg 醬 QQ 號清單中)。
+- `AUTHOR_EMAIL`: 站長電子郵件，用來區分發布的留言是否為站長本身發布。如果是站長發布的則不進行提醒通知。
+- `SITE_NAME`: 網站名稱，用於在訊息中顯示。
+- `SITE_URL`: 網站網址，用於在訊息中顯示。
+- `QQ_TEMPLATE`: QQ 使用的通知範本，變數與具體格式可參見下文的通知範本。未設定則使用預設範本。
+
+## Telegram 通知
+
+Telegram 通知透過 Telegram bot 機器人實現，需要設定以下幾個環境變數:
+
+- `TG_BOT_TOKEN`: Telegram 機器人用於存取 HTTP API 的 token，透過 [@BotFather](https://t.me/BotFather) 建立機器人取得，必填。
+- `TG_CHAT_ID`: 接收訊息對象的 `chat_id`，可以是單一使用者、頻道、群組，透過 [@userinfobot](https://t.me/userinfobot) 取得，必填。
+- `AUTHOR_EMAIL`: 站長電子郵件，用來區分發布的留言是否為站長本身發布。如果是站長發布的則不進行提醒通知。
+- `SITE_NAME`: 網站名稱，用於在訊息中顯示。
+- `SITE_URL`: 網站網址，用於在訊息中顯示。
+- `TG_TEMPLATE`: Telegram 使用的通知範本，變數與具體格式可參見下文的通知範本。未設定則使用預設範本。
+
+## PushPlus 通知
+
+[pushplus](http://www.pushplus.plus/) 整合了微信、企業微信、釘釘、簡訊、郵件等管道的訊息推播平台。需要設定以下幾個環境變數，具體的參數格式見 [pushplus 文件](http://www.pushplus.plus/doc/guide/api.html#%E4%B8%80%E3%80%81%E5%8F%91%E9%80%81%E6%B6%88%E6%81%AF%E6%8E%A5%E5%8F%A3)：
+
+- `PUSH_PLUS_KEY`： 使用者權杖，即 `token`，必填。
+- `PUSH_PLUS_TOPIC`：群組編碼，不填僅傳送給自己；channel 為 webhook 時無效
+- `PUSH_PLUS_TEMPLATE`：傳送範本
+- `PUSH_PLUS_CHANNEL`：傳送管道
+- `PUSH_PLUS_WEBHOOK`：webhook 編碼，僅在 channel 使用 webhook 管道和 CP 管道時需要填寫
+- `PUSH_PLUS_CALLBACKURL`：傳送結果回呼位址
+- `AUTHOR_EMAIL`: 站長電子郵件，用來區分發布的留言是否為站長本身發布。如果是站長發布的則不進行提醒通知。
+- `SITE_NAME`: 網站名稱，用於在訊息中顯示。
+- `SITE_URL`: 網站網址，用於在訊息中顯示。
+
+## Discord 通知
+
+Discord 通知透過 Discord Webhook 實現，需要設定以下幾個環境變數：
+
+- `DISCORD_WEBHOOK`：Discord Webhook 位址，[如何建立 Discord Webhook](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks)？
+- `DISCORD_TEMPLATE`：傳送範本
+- `AUTHOR_EMAIL`: 站長電子郵件，用來區分發布的留言是否為站長本身發布。如果是站長發布的則不進行提醒通知。
+- `SITE_NAME`: 網站名稱，用於在訊息中顯示。
+- `SITE_URL`: 網站網址，用於在訊息中顯示。
+
+## 飛書通知
+
+飛書群組機器人支援透過 Webhook 傳送訊息，需設定以下幾個環境變數。
+
+- `LARK_WEBHOOK`: 飛書群組機器人 [使用指南](https://open.feishu.cn/document/ukTMukTMukTM/ucTM5YjL3ETO24yNxkjN?lang=zh-CN)
+- `LARK_SECRET`: 請參考上方的飛書文件，該金鑰用於請求簽章以避免介面被濫用（選填）
+- `LARK_TEMPLATE`: 訊息範本
+- `SITE_NAME`: 網站名稱，用於在訊息中顯示。
+- `SITE_URL`: 網站網址，用於在訊息中顯示。
+
+## 通知範本
+
+Waline 支援為每個平台分別設定您自訂的通知範本，以實現更強大的自訂能力與多語言相容性。
+
+### 支援的變數
+
+範本透過 `self` 、 `parent` 和 `site` 物件傳遞參數，其中分別包含以下變數:
+
+- `self`: 該則留言本身
+
+  | 變數            | 備註           |
+  | --------------- | -------------- |
+  | nick            | 留言者名稱     |
+  | mail            | 留言者電子郵件 |
+  | link            | 留言者網址     |
+  | url             | 文章位址       |
+  | comment         | 留言內容       |
+  | browser         | 瀏覽器         |
+  | os              | 作業系統       |
+  | addr            | 歸屬地         |
+  | avatar          | 大頭貼位址     |
+  | _commentLink_\* | 留言中的連結   |
+
+  \*: commentLink 僅在 Telegram 通知中提供，會自動封裝成 Markdown 的格式
+
+- `parent`: 該則留言的回覆對象(父留言)
+
+  | 變數    | 備註           |
+  | ------- | -------------- |
+  | nick    | 留言者名稱     |
+  | mail    | 留言者電子郵件 |
+  | link    | 留言者網址     |
+  | browser | 瀏覽器         |
+  | os      | 作業系統       |
+  | addr    | 歸屬地         |
+  | avatar  | 大頭貼位址     |
+  | comment | 留言內容       |
+
+- site: 網站設定
+
+  | 變數    | 備註         |
+  | ------- | ------------ |
+  | name    | 網站名稱     |
+  | url     | 網站網址     |
+  | postUrl | 留言完整位址 |
+
+### 預設範本
+
+此處附上預設的範本，方便您參考:
 
 - QQ_TEMPLATE:
 
   ```plain
-  💬 {{site.name|safe}} 有新评论啦
-  {{self.nick}} 评论道:
+  💬 {{site.name|safe}} 有新留言啦
+  {{self.nick}} 留言道:
   {{self.comment}}
-  邮箱: {{self.mail}}
-  状态: {{self.status}}
-  仅供评论预览，查看完整內容:
+  電子郵件: {{self.mail}}
+  狀態: {{self.status}}
+  僅供留言預覽，查看完整內容:
   {{site.postUrl}}
   ```
 
 - TG_TEMPLATE:
 
   ````md
-  💬 _[{{site.name}}]({{site.url}}) 有新评论啦_
+  💬 _[{{site.name}}]({{site.url}}) 有新留言啦_
 
-  _{{self.nick}}_ 回复说:
+  _{{self.nick}}_ 回覆說:
 
   ```
   {{self.comment-}}
   ```
 
   {{-self.commentLink}}
-  _邮箱: _\`{{self.mail}}\`
-  _审核: _{{self.status}}
+  _電子郵件_: `{{self.mail}}`
+  _審核_: {{self.status}}
 
-  仅供评论预览，点击[查看完整內容]({{site.postUrl}})
+  僅供留言預覽，點擊 [查看完整內容]({{site.postUrl}})
   ````
 
-### Additional Info
+- SC_TEMPLATE:
 
-1. Vercel’s environment variable size is limited to `4KB`, so if your template is long, you should config if in main entry file, see [issue#106](https://github.com/walinejs/waline/issues/106).
-1. The specific information of variables may change during the development process. The variable descriptions here are for reference only. Please refer to the specific code examples for specific content.
+  ```plain
+  {{site.name|safe}} 有新留言啦
+  【留言者暱稱】：{{self.nick}}
+  【留言者電子郵件】：{{self.mail}}
+  【內容】：{{self.comment}}
+  【位址】：{{site.postUrl}}
+  ```
+
+### 附加說明
+
+1. 設定 `DISABLE_AUTHOR_NOTIFY` 環境變數可以關閉站長的新留言通知功能；
+1. Vercel 的環境變數大小限制為 `4KB` ，所以如果您的範本很長，請使用程式碼設定，參見 [issue#106](https://github.com/walinejs/waline/issues/106) ；
+1. 變數具體資訊在開發過程中可能會發生變化，此處的變數說明僅供參考，具體的內容請以具體的程式碼範例為準。

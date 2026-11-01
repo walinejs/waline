@@ -1,52 +1,48 @@
 ---
-title: Zeabur Deployment
+title: Zeabur 部署
 icon: zeabur
 ---
 
-[Zeabur](https://zeabur.com) is a platform that helps developers deploy their own services with one click. The whole is similar to Railway, but it has more functions than it, no need to bind a credit card, and the free limit is higher than it.
+[Zeabur](https://zeabur.com) 是一個幫助開發者們可以一鍵部署自己服務的平台。整體和 Railway 比較類似，但是比它多了更多的功能，不需要綁定信用卡，免費額度也要比它高。
 
 <!-- more -->
 
-## Deploy with one click
+## 如何部署
 
-[![Deploy on Zeabur](https://zeabur.com/button.svg)](https://zeabur.com/templates/1IBY26?utm_source=waline)
-
-## Deploy from scratch
-
-Click the [Fork](https://github.com/walinejs/zeabur-starter/fork) button to create a Zeabur starter scaffold.
+點選 [Fork](https://github.com/walinejs/zeabur-starter/fork) 按鈕建立 Zeabur 啟動範本。
 
 ![zeabur1](../../../assets/zeabur-1.png)
 
-<https://dash.zeabur.com> Log in to the Zeabur console. If there is no project, you need to set a name for the new project first.
+<https://dash.zeabur.com> 登入 Zeabur 控制台，如果沒有專案需要先為新專案設定名稱。
 
 ![zeabur2](../../../assets/zeabur-2.png)
 
-After entering, click <kbd>Add New Service</kbd> to create a service, select <kbd>Deploy Other Service</kbd> - <kbd>Deploy MongoDB</kbd> to create a database service first.
+進入之後點選 <kbd>Add New Service</kbd> 建立服務，選擇 <kbd>Deploy Other Service</kbd> - <kbd>Deploy MongoDB</kbd> 先建立資料庫服務。
 
-Give our MongoDB database service a name, click the <kbd>Deploy</kbd> button, and our database service is deployed.
+為我們的 MongoDB 資料庫服務起個名字，點選 <kbd>Deploy</kbd> 按鈕，我們的資料庫服務就部署好了。
 
 ![zeabur2](../../../assets/zeabur-3.png) ![zeabur4](../../../assets/zeabur-4.png)
 
-Next, we continue to click <kbd>Add New Service</kbd> to create the Waline service, this time we choose to click <kbd>Deploy Your Source Code</kbd>. In the following GitHub project list, find the project that we forked at the beginning, and click the corresponding <kbd>Import</kbd> button.
+接下來我們繼續點選 <kbd>Add New Service</kbd> 建立 Waline 服務，這次我們選擇點選 <kbd>Deploy Your Source Code</kbd>。在接下來的 GitHub 專案清單中找到最開始我們 Fork 出來的專案，點選對應的 <kbd>Import</kbd> 按鈕。
 
-Give our Waline service a name, click the <kbd>Deploy</kbd> button, and our Waline service is deployed.
+為我們的 Waline 服務起個名字，點選 <kbd>Deploy</kbd> 按鈕，我們的 Waline 服務就部署好了。
 
 ![zeabur6](../../../assets/zeabur-6.png) ![zeabur7](../../../assets/zeabur-7.png)
 
-Don't rush to close the Waline service panel. After the service is deployed, we need to add an access domain name to the service. Click the <kbd>Generate Domain</kbd> button under the <kbd>Domains</kbd> tab, enter the domain name prefix you want and click the <kbd>Save</kbd> button to add it to our service Visit the domain name.
+不要著急關閉 Waline 服務的面板，服務部署完畢之後，我們還需要給服務新增存取網域。點選 <kbd>Domains</kbd> 索引標籤下的 <kbd>Generate Domain</kbd> 按鈕，輸入自己想要的網域前綴並點選 <kbd>Save</kbd> 按鈕，就給我們的服務新增好存取網域了。
 
 ![zeabur8](../../../assets/zeabur-8.png) ![zeabur9](../../../assets/zeabur-9.png)
 
-Everything is ready, and the next step is to witness the miracle. Open the access domain name we just set up, test to post comments, everything is successful~ Next, configure this domain name in the client and you can comment happily!
+一切就緒，接下來就是見證奇蹟的時刻。開啟我們剛才設定的存取網域，測試一下留言發布，一切成功~ 接下來就將這個網域設定在客戶端中，就可以愉快地留言了！
 
-![zeabur2](../../../assets/zeabur-10.png)
+![zeabur10](../../../assets/zeabur-10.png)
 
-## How to update
+## 如何更新
 
-Go to the GitHub repository and modify the `@waline/vercel` version number in the package.json file to the latest version.
+進入 GitHub 儲存庫中，將 package.json 檔案中的 `@waline/vercel` 版本號修改為最新版本即可。
 
-## How to modify environment variables
+## 如何修改環境變數
 
-You can enter the environment variable management page through <kbd>Variables</kbd> Tab, and it will be automatically redeployed after modification.
+可以透過 <kbd>Variables</kbd> Tab 進入環境變數管理頁，修改完成之後會自動重新部署。
 
 ![zeabur11](../../../assets/zeabur-11.png)

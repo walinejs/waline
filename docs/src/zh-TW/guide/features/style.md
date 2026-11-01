@@ -1,68 +1,68 @@
 ---
-title: Style Customize
+title: 自訂樣式
 icon: style
 order: -2
 ---
 
-`@waline/client` provides some CSS variables. You can easily configure the style of waline through these variables:
+`@waline/client` 提供了一些 CSS 變數。你可以很輕鬆地透過這些變數設定 waline 的樣式。
 
-Meanwhile, `@waline/client` also has built-in dark mode support.
+同時 `@waline/client` 還擁有內建的暗黑模式支援。
 
 <!-- more -->
 
-## Dark mode support
+## 暗黑模式支援
 
-You can use the `dark` option to enable Waline's dark mode support.
+你可以使用 `dark` 選項來啟用 Waline 的暗黑模式支援。
 
-Usually websites will enable dark mode support in two ways:
+通常網站會透過兩種方式啟用暗黑模式支援:
 
-- Use the `@media` selector to automatically switch according to the device color mode status through `prefers-color-scheme`
-- Dynamically apply other dark mode color style by modifying the attributes and class of the dom root element (`html` or `body`).
+- 使用 `@media` 選擇器透過 `prefers-color-scheme` 來根據裝置色彩模式狀態自動切換
+- 透過修改 dom 根元素 (`html` 或 `body`) 的屬性與 class 來動態套用或取消暗黑模式的色彩樣式。
 
-If you enable Waline on the site of the first method, you only need to set `dark` to `'auto'`.
+如果你在第一種方式的網站上啟用 Waline，你只需將 `dark` 設定為 `'auto'`。
 
-For the second type of site, you need to set dark to the CSS selector that makes the dark mode effective. Here are a few examples:
+對於第二種網站，你需要將 dark 設定為令暗黑模式生效的 CSS 選擇器。以下是幾個範例
 
-::: tip Examples
+::: tip 不同主題的範例
 
-- **vuepress-theme-hop v2**: It will enable darkmode by setting `data-theme="dark"` on the `<html>` tag itself. So you need to set `'html[data-theme="dark"]'` as `dark` option.
+- **vuepress-theme-hope v2**: 它會在 `<html>` 上透過設定 `data-theme="dark"` 開啟暗黑模式，那麼你需要將 `dark` 選項設定為 `'html[data-theme="dark"]'`。
 
-- **hexo-theme-fluid**: It will enable darkmode by setting `data-user-color-scheme="dark"` on the `<html>` tag itself. So you need to set `'html[data-user-color-scheme="dark"]'` as `dark` option.
+- **hexo-theme-fluid**: 它會在 `<html>` 上透過設定 `data-user-color-scheme="dark"` 開啟暗黑模式。那麼你需要將 `dark` 選項設定為 `'html[data-user-color-scheme="dark"]'`。
 
 :::
 
-## Meta Icons
+## Meta 圖示
 
-If you want to add icons to user comment meta data, you can import `waline-meta.css` to use it.
+如果你希望給使用者留言的 meta 資料加上圖示的話，你可以匯入 `waline-meta.css` 來使用它。
 
-For CDN users, you can import via the following link:
+對於 CDN 使用者，你可以透過以下連結匯入:
 
 ```html
-<!-- Meta icon (optional) -->
+<!-- Meta 圖示 (選填) -->
 <link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline-meta.css" />
 ```
 
-For NPM users, you can import via:
+對於 NPM 使用者，你可以透過以下方式匯入:
 
 ```js
 import '@waline/client/meta';
 ```
 
-## RTL support
+## RTL 支援
 
-`@waline/client` supports RTL layout, you just need to add `dir="rtl"` in `<html>` tag.
+`@waline/client` 支援 RTL 版面配置，你只需要在 `<html>` 標籤加入 `dir="rtl"` 即可。
 
-## Customize Styles
+## 自訂樣式
 
-### CSS Variables
+### CSS 變數
 
-You can find default values for CSS variables used by Waline in normal and darkmode at [Client Reference → CSS Variables](../../reference/client/style.md).
+你可以在 [客戶端參考 → CSS 變數](../../reference/client/style.md) 找到 Waline 正常和夜間模式下使用的 CSS 變數預設值。
 
-If it differs from your site style, you can override the corresponding CSS variable yourself.
+如果它和你的網站樣式不同，你可以自行覆蓋對應的 CSS 變數。
 
-## Box Shadow
+### 陰影樣式
 
-If you are using a theme that uses shadows (`box-shadow`) instead of borders, you can modify the display effect of Waline by modifying `--waline-border` and `--waline-box-shadow`, e.g.:
+如果你在使用一個大量運用陰影 (`box-shadow`) 的主題，你可以透過修改 `--waline-border` 和 `--waline-box-shadow` 來變更 Waline 的顯示效果，如:
 
 ```css
 :root {
@@ -77,6 +77,6 @@ If you are using a theme that uses shadows (`box-shadow`) instead of borders, yo
 }
 ```
 
-### More
+### 更多
 
-If the above CSS variables cannot meet your custom requirements for Waline styles, you can write your own css file.
+如果上面的 CSS 變數無法滿足你對 Waline 樣式的自訂要求，你可以停止匯入 Waline 官方提供的樣式，並自行製作 CSS。

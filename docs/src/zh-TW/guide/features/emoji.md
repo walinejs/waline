@@ -1,16 +1,16 @@
 ---
-title: Emoji Customize
+title: 表情符號分頁
 icon: emoji
 order: 2
 ---
 
-You can customize the emoji of the comment box by setting `emoji` option, you should set it to an **array** containing _preset link_ or _preset config object_. If you don't want it, just set it to `false`.
+你可以透過設定 `emoji` 選項自訂留言輸入框的表情符號，你應該將它設定為包含*預設網址*或*預設設定物件*的**陣列**。如果你不需要它，只需將它設定為 `false`。
 
 <!-- more -->
 
-## Presets
+## 預設
 
-Waline provides a series of emoji presets that can be used out of box. You can add them directly to the `emoji` options:
+Waline 提供了一系列開箱即用的表情符號預設。你可以直接將它們加入 `emoji` 選項中:
 
 - Alus
 
@@ -18,16 +18,16 @@ Waline provides a series of emoji presets that can be used out of box. You can a
   https://unpkg.com/@waline/emojis@1.4.0/alus
   ```
 
-- Bmoji
-
-  ```http
-  https://unpkg.com/@waline/emojis@1.4.0/bmoji
-  ```
-
-- Bilibili
+- 嗶哩嗶哩
 
   ```http
   https://unpkg.com/@waline/emojis@1.4.0/bilibili
+  ```
+
+- 嗶哩嗶哩小黃臉
+
+  ```http
+  https://unpkg.com/@waline/emojis@1.4.0/bmoji
   ```
 
 - QQ
@@ -36,87 +36,87 @@ Waline provides a series of emoji presets that can be used out of box. You can a
   https://unpkg.com/@waline/emojis@1.4.0/qq
   ```
 
-- Tieba
+- 貼吧
 
   ```http
   https://unpkg.com/@waline/emojis@1.4.0/tieba
   ```
 
-- Twemoji
-  - Emoji:
+- Twitter Emoji
+  - 表情符號:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-emoji
     ```
 
-  ::: details Others presets
-  - Full: (Not recommended)
+  ::: details 其他可用預設
+  - 完整: (不建議使用)
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw
     ```
 
-  - Body:
+  - 身體:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-body
     ```
 
-  - Food:
+  - 食物:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-food
     ```
 
-  - Natural:
+  - 自然:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-natural
     ```
 
-  - Object:
+  - 物件:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-object
     ```
 
-  - Symbol:
+  - 符號:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-symbol
     ```
 
-  - People:
+  - 人物:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-people
     ```
 
-  - Sport:
+  - 運動:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-sport
     ```
 
-  - Time:
+  - 時間:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-time
     ```
 
-  - Travel:
+  - 旅遊:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-travel
     ```
 
-  - Weather:
+  - 天氣:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-weather
     ```
 
-  - Flag:
+  - 旗幟:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-flag
@@ -124,13 +124,13 @@ Waline provides a series of emoji presets that can be used out of box. You can a
 
   :::
 
-- Weibo
+- 微博
 
   ```http
   https://unpkg.com/@waline/emojis@1.4.0/weibo
   ```
 
-- Soul knight Emoji
+- 《元氣騎士》
 
   ```http
   https://unpkg.com/@waline/emojis@1.4.0/soul-emoji
@@ -138,11 +138,11 @@ Waline provides a series of emoji presets that can be used out of box. You can a
 
 ::: warning
 
-Waline DO NOT have any copyright of above emojis, use them at your own risk.
+Waline 不含有上述 Emoji 表情符號的任何著作權，你需要自行承擔使用風險。
 
 :::
 
-### Example
+### 範例
 
 ```html
 <div id="waline"></div>
@@ -152,12 +152,12 @@ Waline DO NOT have any copyright of above emojis, use them at your own risk.
   init({
     el: '#waline',
     serverURL: '<YOUR SERVER URL>',
-    // Set emoji to Weibo and Bmoji
+    // 將 emoji 設定為微博與嗶哩小黃臉
     emoji: ['//unpkg.com/@waline/emojis@1.4.0/weibo', '//unpkg.com/@waline/emojis@1.4.0/bmoji'],
   });
 </script>
 ```
 
-## Create your own presets
+## 建立自己的預設
 
-Besides the presets provided by Waline, you can create your own presets, see [Guide → Create Emoji Presets](../../cookbook/customize/emoji.md).
+除了 Waline 提供的預設外，你可以建立自己的預設，參見 [Cookbook → 建立 emoji 預設](../../cookbook/customize/emoji.md)。

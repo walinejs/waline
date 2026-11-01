@@ -1,12 +1,12 @@
 ---
-title: Custom User System
+title: 自訂使用者系統
 icon: users
 order: -1
 ---
 
-Although Waline provides a comment service based on user system storage, this user system is Waline's own. Many third-party websites have their own user systems, so some niche users want to integrate their own user systems into Waline.
+Waline 雖然提供了基於使用者系統儲存的留言服務，但這套使用者系統是 Waline 自己的。而許多第三方網站都有自己的使用者系統，於是有些小眾使用者有將自己的使用者系統整合到 Waline 中的訴求。
 
-We can use [custom database service](./database.md) to realize this function, the essence is to do the mapping of the underlying table.
+我們可以利用 [自訂資料庫服務](./database.md) 來實現這個功能，本質是做底層資料表的對應。
 
 ```js
 // index.js
@@ -24,9 +24,9 @@ module.exports = Application({
 });
 ```
 
-Through the above configuration, we have isolated the reading of the Waline user table. Next, we need to do field mapping for the input and output parameters. The input parameters map the fields back to the table fields in the third-party system, and the output parameters map the table fields in the third-party system back to Waline fields.
+透過如上設定，我們就將 Waline 使用者資料表的讀取獨立了出來。接下來我們要針對入參與出參做好欄位對應，入參將欄位對應回第三方系統中的資料表欄位，出參則將第三方系統中的資料表欄位再對應回 Waline 的欄位即可。
 
-If you are more familiar with TypeScript, you can refer to the type definition below.
+如果你比較熟悉 TypeScript，可以參考下列型別定義。
 
 ```typescript
 type strNum = string | number;
@@ -74,7 +74,7 @@ function model(modelName): UsersModel | undefined {
 }
 ```
 
-The above can only ensure that there is no problem with the query of the database, but limited by the different encryption methods of the password, the encryption method inside Waline cannot be consistent with the encryption method used in the third-party website. For this situation, you need to customize the method of password encryption and verification.
+以上僅能保證資料庫的查詢沒有問題，但受限於密碼的加密方式不同，Waline 內部的加密方式並不能和第三方網站中使用的加密方式一致。針對這種情況，你需要自訂密碼加密和驗證的方法。
 
 ```js
 // index.js
@@ -82,17 +82,17 @@ const Application = require('@waline/vercel');
 class UserModel {}
 
 module.exports = Application({
-   encryptPassword() {
-     return {
-       hashPassword(password) {
-         return hash;
-       }
-       checkPassword(password, storeHash) {
-         return false;
-       }
-     }
-   }
+  encryptPassword() {
+    return {
+      hashPassword(password) {
+        return hash;
+      }
+      checkPassword(password, storeHash) {
+        return false;
+      }
+    }
+  }
 });
 ```
 
-Based on the above two expansion capabilities, we can realize that Waline can use the user system of the third-party website.
+基於以上兩個擴充能力，我們就能實現 Waline 使用第三方網站自己的使用者系統了。
