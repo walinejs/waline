@@ -13,6 +13,7 @@ export default function Header() {
   const user = useSelector((state) => state.user);
   const { t, i18n } = useTranslation();
   const [latestVersion, setLatestVersion] = useState(null);
+  const [sites, setSites] = useState([]);
 
   const defaultLanguage = useMemo(() => {
     const option = LANGUAGE_OPTIONS.find((option) => option.alias.includes(i18n.language));
@@ -36,6 +37,25 @@ export default function Header() {
       });
   }, [user?.objectId, user?.__version]);
 
+  useEffect(() => {
+    if (!['administrator', 'supervisor'].includes(user?.type)) return;
+    const token = window.TOKEN ?? sessionStorage.getItem('TOKEN') ?? localStorage.getItem('TOKEN');
+    fetch(`${window.serverURL}site?lang=${i18n.language}`, {
+      headers: token ? { Authorization: `Bearer ${token}` } : {},
+    })
+      .then((resp) => resp.json())
+      .then(({ data }) => {
+        setSites(data ?? []);
+        if (!localStorage.getItem('WALINE_SITE_ID') && data?.length) {
+          localStorage.setItem(
+            'WALINE_SITE_ID',
+            data.find((site) => site.default)?.objectId ?? data[0].objectId,
+          );
+        }
+      })
+      .catch(() => {});
+  }, [user?.type, i18n.language]);
+
   const updateLanguage = (event) => {
     i18n.changeLanguage(event.target.value);
   };
@@ -50,8 +70,13 @@ export default function Header() {
 
   const navItems = [
     { to: '/ui', label: t('comment') },
-    { to: '/ui/user', label: t('user') },
-    { to: '/ui/migration', label: t('migration') },
+    ...(user?.type === 'administrator'
+      ? [
+          { to: '/ui/user', label: t('user') },
+          { to: '/ui/migration', label: t('migration') },
+        ]
+      : []),
+    { to: '/ui/sites', label: 'Sites' },
   ];
 
   return [
@@ -66,7 +91,7 @@ export default function Header() {
           </Link>
         </div>
 
-        {user?.type === 'administrator' ? (
+        {['administrator', 'supervisor'].includes(user?.type) ? (
           <nav id="typecho-nav-list" className="waline-nav">
             <ul className="root">
               {navItems.map((item) => (
@@ -79,6 +104,21 @@ export default function Header() {
         ) : null}
 
         <div className="operate">
+          {sites.length ? (
+            <select
+              value={localStorage.getItem('WALINE_SITE_ID') ?? ''}
+              onChange={(event) => {
+                localStorage.setItem('WALINE_SITE_ID', event.target.value);
+                location.reload();
+              }}
+            >
+              {sites.map((site) => (
+                <option value={site.objectId} key={site.objectId}>
+                  {site.name}
+                </option>
+              ))}
+            </select>
+          ) : null}
           <div className="language-select">
             <select defaultValue={defaultLanguage} onChange={updateLanguage}>
               {LANGUAGE_OPTIONS.map((options) => (

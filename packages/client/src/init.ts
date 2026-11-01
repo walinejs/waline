@@ -64,6 +64,7 @@ export const init = ({
     if (state.comment) {
       commentCount({
         serverURL: props.serverURL,
+        siteId: props.siteId,
         path: state.path,
         ...(isString(state.comment) ? { selector: state.comment } : {}),
       });
@@ -75,6 +76,7 @@ export const init = ({
     if (state.pageview) {
       pageviewCount({
         serverURL: props.serverURL,
+        siteId: props.siteId,
         path: state.path,
         ...(isString(state.pageview) ? { selector: state.pageview } : {}),
       });

@@ -1,5 +1,5 @@
 import type { BaseAPIOptions, ErrorStatusResponse } from './utils.js';
-import { errorCheck, getFetchPrefix } from './utils.js';
+import { errorCheck, getFetchPrefix, getSiteQuery } from './utils.js';
 
 export interface GetCommentCountOptions extends BaseAPIOptions {
   /**
@@ -22,11 +22,12 @@ export const fetchCommentCount = ({
   lang,
   paths,
   signal,
+  siteId,
 }: GetCommentCountOptions): Promise<number[]> =>
   fetch(
     `${getFetchPrefix(serverURL)}comment?type=count&url=${encodeURIComponent(
       paths.join(','),
-    )}&lang=${lang}`,
+    )}&lang=${lang}${getSiteQuery(siteId)}`,
     { signal },
   )
     .then((resp) => resp.json() as Promise<{ data: number[] } & ErrorStatusResponse>)

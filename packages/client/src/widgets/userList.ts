@@ -13,6 +13,9 @@ export interface WalineUserListOptions {
    */
   serverURL: string;
 
+  /** Public site identifier. */
+  siteId?: string;
+
   /**
    * 获取用户列表的数量
    *
@@ -76,6 +79,7 @@ export const UserList = ({
   el,
   serverURL,
   count,
+  siteId,
   locale,
   lang = navigator.language,
   mode = 'list',
@@ -88,6 +92,7 @@ export const UserList = ({
     pageSize: count,
     lang,
     signal: controller.signal,
+    siteId,
   }).then((users) => {
     if (!root || users.length === 0) {
       return {

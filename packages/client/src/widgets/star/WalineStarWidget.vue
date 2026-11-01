@@ -12,6 +12,7 @@ const props = defineProps<{
   serverURL: string;
   lang?: string;
   path: string;
+  siteId?: string;
 }>();
 
 const emit = defineEmits<{
@@ -20,14 +21,15 @@ const emit = defineEmits<{
 
 const ratingArea = ref<HTMLElement | null>(null);
 const reactionStorage = useReactionStorage();
-const selectedScore = ref(clampScore((reactionStorage.value[props.path] ?? 0) + 1));
+const storageKey = computed(() => `${props.siteId ?? 'default'}:${props.path}`);
+const selectedScore = ref(clampScore((reactionStorage.value[storageKey.value] ?? 0) + 1));
 const hoverScore = ref<number | null>(null);
 const internalDistribution = ref(normalizeDistribution([]));
 const isVoting = ref(false);
 
 onMounted(() => {
   watchImmediate(
-    () => [props.serverURL, props.path],
+    () => [props.serverURL, props.siteId, props.path],
     async () => {
       try {
         const reaction = await fetchReaction(props);
@@ -97,7 +99,7 @@ const onClick = async (event: MouseEvent): Promise<void> => {
 
     selectedScore.value = nextScore;
     const nextScoreKeyIndex = nextScore - 1;
-    reactionStorage.value[props.path] = nextScoreKeyIndex;
+    reactionStorage.value[storageKey.value] = nextScoreKeyIndex;
     await updateArticleCounter({
       ...props,
       type: `reaction${nextScoreKeyIndex}`,
@@ -111,10 +113,10 @@ const onClick = async (event: MouseEvent): Promise<void> => {
     // Revert optimistic UI update on failure
     selectedScore.value = prevScore;
     if (prevScore) {
-      reactionStorage.value[props.path] = prevScore - 1;
+      reactionStorage.value[storageKey.value] = prevScore - 1;
     } else {
       // oxlint-disable-next-line typescript/no-dynamic-delete
-      delete reactionStorage.value[props.path];
+      delete reactionStorage.value[storageKey.value];
     }
 
     // oxlint-disable-next-line no-console

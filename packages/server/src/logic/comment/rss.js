@@ -16,6 +16,9 @@ module.exports = class CommentRSSLogic extends Base {
         int: { max: 50 },
         default: 20,
       },
+      siteId: {
+        string: true,
+      },
     };
   }
 };

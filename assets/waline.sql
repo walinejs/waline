@@ -28,10 +28,12 @@ CREATE TABLE `wl_Comment` (
   `like` int(11) DEFAULT NULL,
   `ua` text,
   `url` varchar(255) DEFAULT NULL,
+  `site_id` varchar(64) DEFAULT NULL,
   `createdAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   INDEX `idx_comment_url` (`url`),
+  INDEX `idx_comment_site_url` (`site_id`, `url`),
   INDEX `idx_comment_user_id` (`user_id`),
   INDEX `idx_comment_status` (`status`),
   INDEX `idx_comment_pid_rid` (`pid`, `rid`),
@@ -59,10 +61,12 @@ CREATE TABLE `wl_Counter` (
   `reaction7` int(11) DEFAULT NULL,
   `reaction8` int(11) DEFAULT NULL,
   `url` varchar(255) NOT NULL DEFAULT '',
+  `site_id` varchar(64) DEFAULT NULL,
   `createdAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updatedAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   INDEX `idx_counter_url` (`url`),
+  INDEX `idx_counter_site_url` (`site_id`, `url`),
   INDEX `idx_counter_time` (`time`),
   INDEX `idx_counter_created_at` (`createdAt`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -101,6 +105,28 @@ CREATE TABLE `wl_Users` (
 
 
 
+
+CREATE TABLE `wl_Site` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `url` varchar(255) NOT NULL,
+  `status` varchar(20) NOT NULL DEFAULT 'active',
+  `default` boolean NOT NULL DEFAULT false,
+  `config` text,
+  `createdAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE `wl_SiteAdmin` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `site_id` varchar(64) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `createdAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updatedAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `idx_site_admin` (`site_id`, `user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

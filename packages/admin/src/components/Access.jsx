@@ -16,10 +16,27 @@ export default function Access(props) {
       return;
     }
 
-    const noPermission = meta.auth ? meta.auth !== user.type : false;
+    const noPermission = meta.auth
+      ? meta.auth === 'admin'
+        ? !['administrator', 'supervisor'].includes(user.type)
+        : meta.auth !== user.type
+      : false;
 
     if (noPermission) {
       location.href = `${basename}/ui/profile`;
+    }
+
+    if (!currentPath.startsWith('/ui/upgrade')) {
+      const token =
+        window.TOKEN ?? sessionStorage.getItem('TOKEN') ?? localStorage.getItem('TOKEN');
+      fetch(`${window.serverURL}upgrade?lang=en`, {
+        headers: token ? { Authorization: `Bearer ${token}` } : {},
+      })
+        .then((resp) => resp.json())
+        .then(({ data }) => {
+          if (data?.required) location.href = `${basename}/ui/upgrade`;
+        })
+        .catch(() => {});
     }
   }, [user, props.meta, props.basename]);
 

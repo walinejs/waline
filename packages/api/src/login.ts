@@ -49,7 +49,7 @@ export interface UserInfo {
    *
    * User role
    */
-  type: 'administrator' | 'guest';
+  type: 'administrator' | 'supervisor' | 'guest';
 }
 
 const isMobile = (): boolean => {

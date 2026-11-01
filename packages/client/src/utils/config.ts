@@ -61,6 +61,7 @@ const withFallback = <T = unknown>(value: T | boolean | undefined, fallback: T):
 
 export const getConfig = ({
   serverURL,
+  siteId = '',
   // oxlint-disable-next-line typescript/no-useless-default-assignment
   path = location.pathname,
   lang = typeof navigator === 'undefined' ? 'en-US' : navigator.language,
@@ -85,6 +86,7 @@ export const getConfig = ({
   ...more
 }: WalineProps): WalineConfig => ({
   serverURL: getServerURL(serverURL),
+  siteId,
   path: decodePath(path),
   lang: getLang(lang),
   locale: {

@@ -12,6 +12,9 @@ export interface BaseAPIOptions {
    * Language used in error text
    */
   lang: string;
+
+  /** Public site identifier for multi-site deployments. */
+  siteId?: string;
 }
 
 export interface ErrorStatusResponse {
@@ -36,6 +39,9 @@ export const JSON_HEADERS: Record<string, string> = {
 
 export const getFetchPrefix = (serverURL: string): string =>
   `${serverURL.replace(/\/?$/u, '/')}api/`;
+
+export const getSiteQuery = (siteId?: string): string =>
+  siteId ? `&siteId=${encodeURIComponent(siteId)}` : '';
 
 export const errorCheck = <T extends ErrorStatusResponse>(data: T, name = ''): T => {
   if (typeof data === 'object' && data.errno) {

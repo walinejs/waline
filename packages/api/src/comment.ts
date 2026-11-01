@@ -1,6 +1,6 @@
 import type { WalineComment, WalineCommentData, WalineRootComment } from './typings.js';
 import type { BaseAPIOptions, ErrorStatusResponse } from './utils.js';
-import { JSON_HEADERS, errorCheck, getFetchPrefix } from './utils.js';
+import { JSON_HEADERS, errorCheck, getFetchPrefix, getSiteQuery } from './utils.js';
 
 export interface GetCommentOptions extends BaseAPIOptions {
   /**
@@ -92,6 +92,7 @@ export const getComment = ({
   sortBy,
   signal,
   token,
+  siteId,
 }: GetCommentOptions): Promise<GetCommentResponse> => {
   const headers: Record<string, string> = {};
 
@@ -100,7 +101,7 @@ export const getComment = ({
   return fetch(
     `${getFetchPrefix(serverURL)}comment?path=${encodeURIComponent(
       path,
-    )}&pageSize=${pageSize}&page=${page}&lang=${lang}&sortBy=${sortBy}`,
+    )}&pageSize=${pageSize}&page=${page}&lang=${lang}&sortBy=${sortBy}${getSiteQuery(siteId)}`,
     { signal, headers },
   )
     .then((resp) => resp.json() as Promise<{ data: GetCommentResponse } & ErrorStatusResponse>)
@@ -137,6 +138,7 @@ export const addComment = ({
   lang,
   token,
   comment,
+  siteId,
 }: AddCommentOptions): Promise<AddCommentResponse> => {
   const headers: Record<string, string> = {
     'Content-Type': 'application/json',
@@ -147,7 +149,7 @@ export const addComment = ({
   return fetch(`${getFetchPrefix(serverURL)}comment?lang=${lang}`, {
     method: 'POST',
     headers,
-    body: JSON.stringify(comment),
+    body: JSON.stringify({ ...comment, siteId }),
   }).then((resp) => resp.json() as Promise<AddCommentResponse>);
 };
 
@@ -176,8 +178,9 @@ export const deleteComment = ({
   lang,
   token,
   objectId,
+  siteId,
 }: DeleteCommentOptions): Promise<DeleteCommentResponse> =>
-  fetch(`${getFetchPrefix(serverURL)}comment/${objectId}?lang=${lang}`, {
+  fetch(`${getFetchPrefix(serverURL)}comment/${objectId}?lang=${lang}${getSiteQuery(siteId)}`, {
     method: 'DELETE',
     headers: {
       Authorization: `Bearer ${token}`,
@@ -248,8 +251,9 @@ export const updateComment = ({
   token,
   objectId,
   comment,
+  siteId,
 }: UpdateCommentOptions): Promise<UpdateCommentResponse> =>
-  fetch(`${getFetchPrefix(serverURL)}comment/${objectId}?lang=${lang}`, {
+  fetch(`${getFetchPrefix(serverURL)}comment/${objectId}?lang=${lang}${getSiteQuery(siteId)}`, {
     method: 'PUT',
     headers: {
       ...JSON_HEADERS,

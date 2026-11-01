@@ -1,5 +1,5 @@
 import type { BaseAPIOptions, ErrorStatusResponse } from './utils.js';
-import { JSON_HEADERS, errorCheck, getFetchPrefix } from './utils.js';
+import { JSON_HEADERS, errorCheck, getFetchPrefix, getSiteQuery } from './utils.js';
 
 export interface GetArticleCounterOptions extends BaseAPIOptions {
   /**
@@ -47,11 +47,12 @@ export const getArticleCounter = ({
   paths,
   type,
   signal,
+  siteId,
 }: GetArticleCounterOptions): Promise<GetArticleCounterResponse> =>
   fetch(
     `${getFetchPrefix(serverURL)}article?path=${encodeURIComponent(
       paths.join(','),
-    )}&type=${encodeURIComponent(type.join(','))}&lang=${lang}`,
+    )}&type=${encodeURIComponent(type.join(','))}&lang=${lang}${getSiteQuery(siteId)}`,
     { signal },
   )
     .then(
@@ -90,11 +91,12 @@ export const updateArticleCounter = ({
   path,
   type,
   action,
+  siteId,
 }: UpdateArticleCounterOptions): Promise<GetArticleCounterResponse> =>
   fetch(`${getFetchPrefix(serverURL)}article?lang=${lang}`, {
     method: 'POST',
     headers: JSON_HEADERS,
-    body: JSON.stringify({ path, type, action }),
+    body: JSON.stringify({ path, type, action, siteId }),
   })
     .then(
       (resp) => resp.json() as Promise<{ data: GetArticleCounterResponse } & ErrorStatusResponse>,

@@ -3,6 +3,7 @@ import { createCommentHandler } from './handlers/comment.js';
 import { createCounterHandler } from './handlers/counter.js';
 import { createDatabaseHandler } from './handlers/database.js';
 import { createOAuthHandler } from './handlers/oauth.js';
+import { createSiteHandler } from './handlers/site.js';
 import { createUserHandler } from './handlers/user.js';
 import { createVerificationHandler } from './handlers/verification.js';
 import type { CreateWalineCoreOptions, HookName, WalineHook, WalineLogger } from './types.js';
@@ -54,6 +55,7 @@ export const createWalineCore = (options: CreateWalineCoreOptions) => {
   return Object.freeze({
     comment: Object.freeze(createCommentHandler(runtime)),
     counter: Object.freeze(createCounterHandler(runtime)),
+    site: Object.freeze(createSiteHandler(runtime)),
     user: Object.freeze(createUserHandler(runtime)),
     auth: Object.freeze(createAuthHandler(runtime)),
     oauth: Object.freeze(createOAuthHandler(runtime)),

@@ -32,6 +32,7 @@ module.exports = class CommentController extends BaseRest {
       core.comment.create(
         {
           ...input,
+          siteId: undefined,
           captcha: {
             turnstile: input.turnstile,
             recaptchaV3: input.recaptchaV3,

@@ -1,6 +1,6 @@
 import type { BaseWalineResponseComment } from './typings.js';
 import type { BaseAPIOptions } from './utils.js';
-import { getFetchPrefix } from './utils.js';
+import { getFetchPrefix, getSiteQuery } from './utils.js';
 
 export interface GetRecentCommentOptions extends BaseAPIOptions {
   /**
@@ -40,13 +40,17 @@ export const getRecentComment = ({
   count,
   signal,
   token,
+  siteId,
 }: GetRecentCommentOptions): Promise<RecentCommentData[]> => {
   const headers: Record<string, string> = {};
 
   if (token) headers.Authorization = `Bearer ${token}`;
 
-  return fetch(`${getFetchPrefix(serverURL)}comment?type=recent&count=${count}&lang=${lang}`, {
-    signal,
-    headers,
-  }).then((resp) => resp.json() as Promise<RecentCommentData[]>);
+  return fetch(
+    `${getFetchPrefix(serverURL)}comment?type=recent&count=${count}&lang=${lang}${getSiteQuery(siteId)}`,
+    {
+      signal,
+      headers,
+    },
+  ).then((resp) => resp.json() as Promise<RecentCommentData[]>);
 };

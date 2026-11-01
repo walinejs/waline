@@ -8,18 +8,17 @@ module.exports = class extends think.Service {
 
     const { AKISMET_KEY, SITE_URL } = process.env;
     const key = AKISMET_KEY || DEFAULT_KEY;
+    this.blog = blog || SITE_URL || '';
 
     if (key.toLowerCase() !== 'false') {
       this.akismet = Akismet.client({
-        blog: blog || SITE_URL,
+        blog: this.blog,
         apiKey: key,
       });
     }
   }
 
   async check(comment) {
-    const { SITE_URL } = process.env;
-
     return new Promise((resolve, reject) => {
       if (!this.akismet) {
         reject(new Error('Akismet is not configured!'));
@@ -38,7 +37,7 @@ module.exports = class extends think.Service {
         this.akismet.checkComment(
           {
             user_ip: comment.ip,
-            permalink: SITE_URL + comment.url,
+            permalink: this.blog + comment.url,
             comment_author: comment.nick,
             comment_content: comment.comment,
           },

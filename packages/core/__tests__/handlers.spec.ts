@@ -132,6 +132,14 @@ const administrator: WalineUser = {
   type: 'administrator',
   password: 'hash',
 };
+const supervisor: WalineUser = {
+  id: 'supervisor',
+  objectId: 'supervisor',
+  email: 'supervisor@example.com',
+  display_name: 'Supervisor',
+  type: 'supervisor',
+  password: 'hash',
+};
 
 const context = (userInfo?: WalineUser, deprecated = false): WalineContext => ({
   headers: {},
@@ -145,6 +153,8 @@ const hookMock = (result?: unknown): WalineHook => vi.fn(() => result);
 const setup = (partial: Partial<CreateWalineCoreOptions> = {}) => {
   const Comment = new MemoryModel<WalineComment & Row>();
   const Counter = new MemoryModel<WalineCounter & Row>();
+  const Site = new MemoryModel<any>();
+  const SiteAdmin = new MemoryModel<any>();
   const Users = new MemoryModel<WalineUser & Row>();
   const extra = new MemoryModel<Row>();
   const services = {
@@ -194,14 +204,14 @@ const setup = (partial: Partial<CreateWalineCoreOptions> = {}) => {
     random: { value: vi.fn(() => 0.5) },
   };
   const options: CreateWalineCoreOptions = {
-    models: { Comment, Counter, Users, get: () => extra },
+    models: { Comment, Counter, Site, SiteAdmin, Users, get: () => extra },
     config: { levels: [0, 2], likeIncMax: 2 },
     services,
     logger: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() },
     ...partial,
   };
   const core = createWalineCore(options);
-  return { core, Comment, Counter, Users, extra, services, options };
+  return { core, Comment, Counter, Site, SiteAdmin, Users, extra, services, options };
 };
 
 describe('core utilities', () => {
@@ -223,9 +233,17 @@ describe('core utilities', () => {
       currentUser({ headers: {}, state: { userInfo: [] as unknown as WalineUser } }),
     ).toBeUndefined();
     expect(isAdmin(context(administrator))).toBe(true);
+    expect(isAdmin(context(supervisor))).toBe(true);
+    expect(
+      isAdmin({ ...context(supervisor), state: { userInfo: supervisor, siteAdmin: false } }),
+    ).toBe(false);
     expect(requireUser(context(guest))).toBe(guest);
     expect(() => requireUser(context())).toThrow();
     expect(requireAdmin(context(administrator))).toBe(administrator);
+    expect(requireAdmin(context(supervisor))).toBe(supervisor);
+    expect(() =>
+      requireAdmin({ ...context(supervisor), state: { userInfo: supervisor, siteAdmin: false } }),
+    ).toThrow();
     expect(() => requireAdmin(context(guest))).toThrow();
   });
 
@@ -464,7 +482,7 @@ describe('verification, oauth and database handlers', () => {
     await expect(core.database.export({}, context())).rejects.toThrow();
     await expect(core.database.export({}, context(administrator))).resolves.toMatchObject({
       type: 'waline',
-      version: 1,
+      version: 2,
     });
     await core.database.import(
       { table: 'Any', data: { objectId: 'drop', value: 1 } },
