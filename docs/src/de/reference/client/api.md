@@ -196,7 +196,7 @@ Rückgabe:
 ```ts
 interface WalineRecentCommentsResult {
   /** Kommentardaten */
-  comments: WalineComment[];
+  comments: RecentCommentData[];
 
   /** Widget aushängen */
   destroy: () => void;
@@ -229,7 +229,7 @@ interface WalineUserListOptions {
   /**
    * Sprache der Fehlermeldung
    *
-   * @default 'zh-CN'
+   * @default navigator.language
    */
   lang?: string;
 
@@ -241,7 +241,7 @@ interface WalineUserListOptions {
   locale?: WalineLocale;
 
   /** Listenmodus oder Avatar-Wand-Modus */
-  mode: 'list' | 'wall';
+  mode?: 'list' | 'wall';
 }
 ```
 

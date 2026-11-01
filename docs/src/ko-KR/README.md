@@ -16,7 +16,7 @@ actions:
 features:
   - title: 가벼움
     icon: light
-    details: 전체 클라이언트 크기 53kb gzip
+    details: 전체 클라이언트 크기 100kb gzip
 
   - title: 완전 무료
     icon: free

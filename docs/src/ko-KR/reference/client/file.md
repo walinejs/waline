@@ -11,7 +11,7 @@ icon: file
 
 - `dist/waline.js`: 전체 버전, ESM 형식
 
-  `@waline/client`를 가져올 때 권장되는 버전입니다, Gzip 크기 53 KB
+  `@waline/client`를 가져올 때 권장되는 버전입니다, Gzip 크기 100 KB
 
 - `dist/waline.umd.js`: 전체 버전, UMD 형식
 
@@ -37,7 +37,7 @@ icon: file
 
 ## 모듈 내보내기
 
-`@waline/client`는 표준 ESM 모듈이며, Node.js 버전 >= 18이 필요합니다:
+`@waline/client`는 표준 ESM 모듈이며, Node.js 버전 >= 22이 필요합니다:
 
 - `@waline/client`: 의존성 번들 없는 Waline 메인 엔트리
 

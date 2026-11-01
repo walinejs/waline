@@ -42,15 +42,24 @@ Optional value:
 - `'zh-TW'`
 - `'en'`
 - `'en-US'`
+- `'de'`
+- `'es'`
+- `'es-MX'`
+- `'fr'`
+- `'fr-FR'`
+- `'id'`
+- `'id-ID'`
+- `'it'`
+- `'it-IT'`
 - `'jp'`
 - `'jp-JP'`
+- `'ko'`
+- `'ko-KR'`
 - `'pt-BR'`
 - `'ru'`
 - `'ru-RU'`
-- `fr-FR`
-- `fr`
-- `'es'`
-- `'es-MX'`
+- `'vi'`
+- `'vi-VN'`
 
 ## locale
 

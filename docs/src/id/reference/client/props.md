@@ -31,7 +31,7 @@ Harap pastikan keunikan setiap path _halaman artikel_, jika tidak, daftar koment
 - Tipe: `string`
 - Bawaan: `navigator.language`
 - Detail:
-  - [Panduan → I18n](../../guide/features/i18n.md#set-language)
+  - [Panduan → I18n](../../guide/features/i18n.md#mengatur-bahasa)
 
 Bahasa tampilan.
 
@@ -42,15 +42,24 @@ Nilai yang tersedia:
 - `'zh-TW'`
 - `'en'`
 - `'en-US'`
+- `'de'`
+- `'es'`
+- `'es-MX'`
+- `'fr'`
+- `'fr-FR'`
+- `'id'`
+- `'id-ID'`
+- `'it'`
+- `'it-IT'`
 - `'jp'`
 - `'jp-JP'`
+- `'ko'`
+- `'ko-KR'`
 - `'pt-BR'`
 - `'ru'`
 - `'ru-RU'`
-- `fr-FR`
-- `fr`
-- `'es'`
-- `'es-MX'`
+- `'vi'`
+- `'vi-VN'`
 
 ## locale
 

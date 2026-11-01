@@ -30,13 +30,13 @@ Alle Links werden automatisch auf `rel="noreferrer noopener"` gesetzt und mit `t
 
 Waline unterstützt ein Kontosystem, sodass Sie Benutzer zwingen können, sich mit einem Konto zu registrieren und anzumelden. Auf diese Weise können Besucher keine Kommentare anderer Personen fälschen.
 
-Um diese Funktion zu aktivieren, müssen Sie die obligatorische Anmeldung sowohl auf dem Client als auch auf dem Server festlegen. Weitere Informationen finden Sie unter [`login`](../../reference/client/props.md#login) und [`LOGIN`](../../reference/server/env.md#basic).
+Um diese Funktion zu aktivieren, müssen Sie die obligatorische Anmeldung sowohl auf dem Client als auch auf dem Server festlegen. Weitere Informationen finden Sie unter [`login`](../../reference/client/props.md#login) und [`LOGIN`](../../reference/server/env.md#grundlegend).
 
 ## Website-Sicherheit
 
 ### Frequenzbegrenzung
 
-Um zu verhindern, dass Benutzer kommentieren, schränkt Waline die IP für Kommentare ein. Standardmäßig kann dieselbe IP nur einen Kommentar innerhalb einer Minute senden. Sie können diese Grenze in [Serverreferenz → Umgebungsvariablen](../../reference/server/env.md#safety) ändern.
+Um zu verhindern, dass Benutzer kommentieren, schränkt Waline die IP für Kommentare ein. Standardmäßig kann dieselbe IP nur einen Kommentar innerhalb einer Minute senden. Sie können diese Grenze in [Serverreferenz → Umgebungsvariablen](../../reference/server/env.md#sicherheit) ändern.
 
 ### Flooding verhindern
 
@@ -44,7 +44,7 @@ Waline erkennt vorhandene Kommentare beim Eingeben von Kommentaren, und wenn es 
 
 ### Kommentarüberprüfung
 
-Wenn Ihre Website unter böswilligen Angriffen steht, in sensiblen Perioden oder wenn Sie beschäftigt sind, können Sie die Kommentarüberprüfungsfunktion aktivieren. Einzelheiten finden Sie unter [Serverreferenz → Umgebungsvariablen](../../reference/server/env.md#safety).
+Wenn Ihre Website unter böswilligen Angriffen steht, in sensiblen Perioden oder wenn Sie beschäftigt sind, können Sie die Kommentarüberprüfungsfunktion aktivieren. Einzelheiten finden Sie unter [Serverreferenz → Umgebungsvariablen](../../reference/server/env.md#sicherheit).
 
 Wenn die Kommentarüberprüfung aktiviert ist, werden alle neuen Kommentare standardmäßig ausgeblendet. Sie können Kommentare im Waline-Verwaltungsterminal oder im Kommentarfeld auf der entsprechenden Seite anzeigen und überprüfen. Nur die von Ihnen genehmigten Kommentare können angezeigt werden.
 

@@ -30,7 +30,7 @@ Waline은 서버 측에서 [DOMPurify](https://github.com/cure53/DOMPurify)를 �
 
 Waline은 계정 시스템을 지원하므로 사용자에게 계정 등록 및 로그인을 강제할 수 있습니다. 이렇게 하면 방문자가 다른 사람의 댓글을 위조할 수 없습니다.
 
-이 기능을 활성화하려면 클라이언트와 서버 모두에서 필수 로그인을 설정해야 합니다. 자세한 내용은 [`login`](../../reference/client/props.md#login) 및 [`LOGIN`](../../reference/server/env.md#basic)을 참조하세요.
+이 기능을 활성화하려면 클라이언트와 서버 모두에서 필수 로그인을 설정해야 합니다. 자세한 내용은 [`login`](../../reference/client/props.md#login) 및 [`LOGIN`](../../reference/server/env.md#기본)을 참조하세요.
 
 ## 사이트 보안
 

@@ -31,7 +31,7 @@ Waline 서버 주소 URL
 - 타입: `string`
 - 기본값: `navigator.language`
 - 상세:
-  - [가이드 → 다국어](../../guide/features/i18n.md#set-language)
+  - [가이드 → 다국어](../../guide/features/i18n.md#언어-설정)
 
 표시 언어.
 
@@ -42,15 +42,24 @@ Waline 서버 주소 URL
 - `'zh-TW'`
 - `'en'`
 - `'en-US'`
+- `'de'`
+- `'es'`
+- `'es-MX'`
+- `'fr'`
+- `'fr-FR'`
+- `'id'`
+- `'id-ID'`
+- `'it'`
+- `'it-IT'`
 - `'jp'`
 - `'jp-JP'`
+- `'ko'`
+- `'ko-KR'`
 - `'pt-BR'`
 - `'ru'`
 - `'ru-RU'`
-- `fr-FR`
-- `fr`
-- `'es'`
-- `'es-MX'`
+- `'vi'`
+- `'vi-VN'`
 
 ## locale
 

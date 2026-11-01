@@ -25,7 +25,7 @@ Github Flavored Markdown
 
 :::
 
-In der Zwischenzeit können Sie jeden HTML-Inhalt frei einbetten, ohne den [Schutzmechanismus](./safety.md#comment-security) auszulösen.
+In der Zwischenzeit können Sie jeden HTML-Inhalt frei einbetten, ohne den [Schutzmechanismus](./safety.md#kommentar-sicherheit) auszulösen.
 
 ## Eingeschränkte Vorschau-Unterstützung
 

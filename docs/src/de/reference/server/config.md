@@ -208,7 +208,7 @@ module.exports = Waline({
 
 :::
 
-### afterUpdate(comment)
+### postUpdate(comment)
 
 Aktion nachdem ein Kommentarinhalt im Dashboard aktualisiert wurde. Kommentardaten werden beim Ausführen der Methode übergeben.
 
@@ -246,7 +246,7 @@ module.exports = Waline({
 
 :::
 
-### afterDelete(commentId)
+### postDelete(commentId)
 
 Aktion nachdem ein Kommentar gelöscht wurde, die Kommentar-ID wird als einziger Parameter übergeben.
 

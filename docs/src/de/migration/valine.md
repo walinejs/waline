@@ -3,9 +3,9 @@ title: Migration von Valine
 icon: valine
 ---
 
-1. Backend gemäß [Vercel Deploy](../guide/get-started/README.md#deploy-to-vercel-server) im Abschnitt _Get Started_ bereitstellen.
+1. Backend gemäß [Vercel Deploy](../guide/get-started/README.md#server-bereitstellung) im Abschnitt _Get Started_ bereitstellen.
 
-2. Frontend-Skripte gemäß [HTML](../guide/get-started/README.md#importing-in-html-client) im Abschnitt _Get Started_ ändern.
+2. Frontend-Skripte gemäß [HTML](../guide/get-started/README.md#import-in-html) im Abschnitt _Get Started_ ändern.
 
    ```diff
    - <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
@@ -27,7 +27,7 @@ icon: valine
 
 Waline V2 hat die Valine-Unterstützung entfernt und zu einer besseren Konfiguration gewechselt. Das Folgende ist eine Migrationszusammenfassung einiger Optionen:
 
-- `placeholder`: verwenden Sie `locales.placeholder`
+- `placeholder`: verwenden Sie `locale.placeholder`
 - `highlight`: verwenden Sie `highlighter`
 - `avatarForce`, `avatar`: verwenden Sie die Umgebungsvariable `AVATAR_PROXY` des Servers
 - `recordIP`: zeigt die Benutzer-IP nicht mehr an und stellt die Umgebungsvariable `DISABLE_USERAGENT` auf dem Server bereit

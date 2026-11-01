@@ -8,9 +8,9 @@ Waline memungkinkan Anda menetapkan label tingkat berdasarkan interaksi dan labe
 
 ## Label Tingkat
 
-Anda perlu mengkonfigurasi variabel `LEVELS` di server untuk mengaktifkan fungsi ini. Lihat [Konfigurasi Variabel Lingkungan Server](../../reference/server/env.md#display).
+Anda perlu mengkonfigurasi variabel `LEVELS` di server untuk mengaktifkan fungsi ini. Lihat [Konfigurasi Variabel Lingkungan Server](../../reference/server/env.md#tampilan).
 
-Anda dapat mengkustomisasi label tingkat ini melalui opsi locales. Lihat [Multibahasa](./i18n.md#customize)
+Anda dapat mengkustomisasi label tingkat ini melalui opsi locale. Lihat [Multibahasa](./i18n.md#kustomisasi)
 
 ## Label Eksklusif
 

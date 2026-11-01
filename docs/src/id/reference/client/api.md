@@ -196,7 +196,7 @@ Kembalian:
 ```ts
 interface WalineRecentCommentsResult {
   /** Data Komentar */
-  comments: WalineComment[];
+  comments: RecentCommentData[];
 
   /** Melepas widget */
   destroy: () => void;
@@ -229,7 +229,7 @@ interface WalineUserListOptions {
   /**
    * Bahasa pesan error
    *
-   * @default 'zh-CN'
+   * @default navigator.language
    */
   lang?: string;
 
@@ -241,7 +241,7 @@ interface WalineUserListOptions {
   locale?: WalineLocale;
 
   /** Mode daftar atau mode dinding avatar */
-  mode: 'list' | 'wall';
+  mode?: 'list' | 'wall';
 }
 ```
 

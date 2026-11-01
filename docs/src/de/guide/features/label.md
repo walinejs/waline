@@ -8,9 +8,9 @@ Waline ermöglicht es Ihnen, Level-Label basierend auf Interaktionen und benutze
 
 ## Grad-Label
 
-Sie müssen die Variable `LEVELS` auf dem Server konfigurieren, um diese Funktion zu aktivieren. Siehe [Server-Umgebungsvariablen-Konfiguration](../../reference/server/env.md#display).
+Sie müssen die Variable `LEVELS` auf dem Server konfigurieren, um diese Funktion zu aktivieren. Siehe [Server-Umgebungsvariablen-Konfiguration](../../reference/server/env.md#anzeige).
 
-Sie können diese Level-Label über die Locales-Option anpassen. Siehe [Mehrsprachig](./i18n.md#customize)
+Sie können diese Level-Label über die Locales-Option anpassen. Siehe [Mehrsprachig](./i18n.md#anpassen)
 
 ## Exklusives Label
 

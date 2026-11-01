@@ -23,7 +23,7 @@ class CustomModel {
     this.tableName = tableName;
   }
 
-  async select(where, { desc, limit, offset, field } = {}) {
+  async select(where, { desc, limit, offset, field, order } = {}) {
     //to be implemented
   }
 
@@ -31,7 +31,7 @@ class CustomModel {
     //to be implemented
   }
 
-  async add(data) {
+  async add(data, { access } = { access: { read: true, write: true } }) {
     //to be implemented
   }
 
@@ -417,7 +417,7 @@ module.exports = class extends Base {
     return data.filter((item) => logicFn.call(filters, (filter) => filter.every((fn) => fn(item))));
   }
 
-  async select(where, { desc, limit, offset, field } = {}) {
+  async select(where, { desc, limit, offset, field, order } = {}) {
     const instance = await this.collection(this.tableName);
     let data = this.where(instance, where);
 

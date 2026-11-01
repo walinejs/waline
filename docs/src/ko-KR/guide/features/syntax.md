@@ -25,7 +25,7 @@ Github Flavored Markdown
 
 :::
 
-또한 [보호 메커니즘](./safety.md#comment-security)을 트리거하지 않고 모든 HTML 콘텐츠를 자유롭게 삽입할 수 있습니다.
+또한 [보호 메커니즘](./safety.md#댓글-보안)을 트리거하지 않고 모든 HTML 콘텐츠를 자유롭게 삽입할 수 있습니다.
 
 ## 제한된 미리보기 지원
 

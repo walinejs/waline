@@ -48,7 +48,7 @@ module.exports = Waline({
 
 ### Erstellen basierend auf Hook
 
-Es ist einfach, ein Plugin zu erstellen. Ein Plugin besteht aus einer Sammlung von [Hooks.](./config.md#hooks)
+Es ist einfach, ein Plugin zu erstellen. Ein Plugin besteht aus einer Sammlung von [Hooks.](./config.md#kommentar-hooks)
 
 ```js
 module.exports = {

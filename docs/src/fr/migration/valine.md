@@ -3,9 +3,9 @@ title: Migration from Valine
 icon: valine
 ---
 
-1. Deploy backend according to [Vercel Deploy](../guide/get-started/README.md#deploy-to-vercel-server) in _Get Started_ section.
+1. Deploy backend according to [Vercel Deploy](../guide/get-started/README.md#server-deploy) in _Get Started_ section.
 
-2. Modify frontend scripts according to [HTML](../guide/get-started/README.md#importing-in-html-client) in _Get Started_ section.
+2. Modify frontend scripts according to [HTML](../guide/get-started/README.md#importing-in-html) in _Get Started_ section.
 
    ```diff
    - <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
@@ -27,12 +27,12 @@ icon: valine
 
 Waline V2 has removed Valine support and moved to a better configuration. The following is a migration summary of some options:
 
-- `placeholder`: use `locales.placeholder`
+- `placeholder`: use `locale.placeholder`
 - `highlight`: use `highlighter`
 - `avatarForce`, `avatar`: use the server's `AVATAR_PROXY` environment variable
 - `recordIP`: no longer display the user IP, and provide the `DISABLE_USERAGENT` environment variable on the server
 - `requiredFields`: renamed to `requiredMeta`
-- `langMode`: renamed to `locales`
+- `langMode`: renamed to `locale`
 - `emojiCDN`, `emojiMap`: use more powerful `emoji` options
 
 For waline config, please refer to [Client Config](../reference/client/api.md). You can also check [Waline Client V2 Migration Guide](./v2.md) to learn about the options that are not compatible with Valine.

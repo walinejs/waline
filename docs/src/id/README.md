@@ -16,7 +16,7 @@ actions:
 features:
   - title: Ringan
     icon: light
-    details: Ukuran klien penuh 53kb gzip
+    details: Ukuran klien penuh 100kb gzip
 
   - title: Sepenuhnya gratis
     icon: free

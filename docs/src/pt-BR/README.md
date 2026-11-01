@@ -16,7 +16,7 @@ actions:
 features:
   - title: Leve
     icon: light
-    details: Tamanho completo do cliente de 53kb gzip
+    details: Tamanho completo do cliente de 100kb gzip
 
   - title: Completamente gratuito
     icon: free

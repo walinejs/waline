@@ -6,6 +6,8 @@ import { path } from 'vuepress/utils';
 import theme from './theme.js';
 
 export default defineUserConfig({
+  head: [['link', { rel: 'manifest', href: '/manifest.webmanifest' }]],
+
   locales: {
     '/': {
       lang: 'zh-CN',

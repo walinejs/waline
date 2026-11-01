@@ -208,7 +208,7 @@ module.exports = Waline({
 
 :::
 
-### afterUpdate(comment)
+### postUpdate(comment)
 
 대시보드에서 댓글 내용이 업데이트된 후의 동작입니다. 메서드가 실행될 때 댓글 데이터가 전달됩니다.
 
@@ -246,7 +246,7 @@ module.exports = Waline({
 
 :::
 
-### afterDelete(commentId)
+### postDelete(commentId)
 
 댓글이 삭제된 후의 동작으로, 댓글 ID가 유일한 매개변수로 전달됩니다.
 

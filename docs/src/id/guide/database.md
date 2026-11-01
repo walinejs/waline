@@ -92,16 +92,16 @@ Unduh [waline.sqlite](https://github.com/walinejs/waline/blob/main/assets/waline
 | `PG_USER`           | ✅    |           | Username server PostgreSQL           |
 | `PG_PASSWORD`       | ✅    |           | Password server PostgreSQL           |
 | `PG_HOST`           |       | 127.0.0.1 | Alamat server PostgreSQL             |
-| `PG_PORT`           |       | 3211      | Port server PostgreSQL               |
+| `PG_PORT`           |       | 5432      | Port server PostgreSQL               |
 | `PG_PREFIX`         |       | `wl_`     | Prefiks tabel PostgreSQL             |
 | `PG_SSL`            |       | `false`   | Atur ke `true` untuk menggunakan SSL |
 | `POSTGRES_DATABASE` |       |           | alias untuk `PG_DB`                  |
 | `POSTGRES_USER`     |       |           | alias untuk `PG_USER`                |
 | `POSTGRES_PASSWORD` |       |           | alias untuk `PG_PASSWORD`            |
 | `POSTGRES_HOST`     |       | 127.0.0.1 | alias untuk `PG_HOST`                |
-| `POSTGRES_PORT`     |       | 3211      | alias untuk `PG_PORT`                |
+| `POSTGRES_PORT`     |       | 5432      | alias untuk `PG_PORT`                |
 | `POSTGRES_PREFIX`   |       | `wl_`     | alias untuk `PG_PREFIX`              |
-| `POSTGRES_SSL`      |       | `false`   | alias untuk `POSTGRES_SSL`           |
+| `POSTGRES_SSL`      |       | `false`   | alias untuk `PG_SSL`                 |
 
 ## GitHub
 

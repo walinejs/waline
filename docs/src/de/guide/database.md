@@ -92,7 +92,7 @@ Laden Sie [waline.sqlite](https://github.com/walinejs/waline/blob/main/assets/wa
 | `PG_USER`           | ✅           |           | Benutzername des PostgreSQL-Servers               |
 | `PG_PASSWORD`       | ✅           |           | Passwort des PostgreSQL-Servers                   |
 | `PG_HOST`           |              | 127.0.0.1 | Adresse des PostgreSQL-Servers                    |
-| `PG_PORT`           |              | 3211      | Port des PostgreSQL-Servers                       |
+| `PG_PORT`           |              | 5432      | Port des PostgreSQL-Servers                       |
 | `PG_PREFIX`         |              | `wl_`     | PostgreSQL-Tabellenpräfix                         |
 | `PG_SSL`            |              | `false`   | auf `true` setzen, um SSL-Verbindung zu verwenden |
 | `POSTGRES_DATABASE` |              |           | Alias für `PG_DB`                                 |

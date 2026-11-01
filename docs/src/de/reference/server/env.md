@@ -31,7 +31,7 @@ Bei der Verwendung von Vercel sollten Sie die Einstellungen über `Settings` - `
 | `DISABLE_USERAGENT`     |                                                                         | Ob der User-Agent des Kommentators verborgen werden soll. Standardwert ist `false` |
 | `DISABLE_REGION`        |                                                                         | Ob die Region des Kommentators verborgen werden soll. Standardwert ist `false`     |
 | `DISABLE_AUTHOR_NOTIFY` |                                                                         | Ob Autor-Benachrichtigungen deaktiviert werden sollen                              |
-| `AVATAR_PROXY`          | `https://avatar.75cdn.workers.dev`                                      | Avatar-Proxy-Service-URL. Sie können `false` setzen, um es zu deaktivieren         |
+| `AVATAR_PROXY`          | `''`                                                                    | Avatar-Proxy-Service-URL. Leer lassen, um ihn zu deaktivieren                      |
 | `GRAVATAR_STR`          | <span v-pre>`https://seccdn.libravatar.org/avatar/{{mail\|md5}}`</span> | Gravatar-Rendering-String, basierend auf nunjucks-Template                         |
 | `LEVELS`                |                                                                         | Jedem Benutzer ein Bewertungslabel basierend auf der Anzahl der Kommentare geben   |
 
@@ -187,16 +187,16 @@ Bitte beachten Sie besonders, dass einige Postfächer separate SMTP-Passwörter 
 | `PG_USER`           | ✅           |           | PostgreSQL-Server-Benutzername                    |
 | `PG_PASSWORD`       | ✅           |           | PostgreSQL-Server-Passwort                        |
 | `PG_HOST`           |              | 127.0.0.1 | PostgreSQL-Serveradresse                          |
-| `PG_PORT`           |              | 3211      | PostgreSQL-Serverport                             |
+| `PG_PORT`           |              | 5432      | PostgreSQL-Serverport                             |
 | `PG_PREFIX`         |              | `wl_`     | PostgreSQL-Tabellenpräfix                         |
 | `PG_SSL`            |              | `false`   | Auf `true` setzen, um SSL-Verbindung zu verwenden |
 | `POSTGRES_DATABASE` |              |           | Alias für `PG_DB`                                 |
 | `POSTGRES_USER`     |              |           | Alias für `PG_USER`                               |
 | `POSTGRES_PASSWORD` |              |           | Alias für `PG_PASSWORD`                           |
 | `POSTGRES_HOST`     |              | 127.0.0.1 | Alias für `PG_HOST`                               |
-| `POSTGRES_PORT`     |              | 3211      | Alias für `PG_PORT`                               |
+| `POSTGRES_PORT`     |              | 5432      | Alias für `PG_PORT`                               |
 | `POSTGRES_PREFIX`   |              | `wl_`     | Alias für `PG_PREFIX`                             |
-| `POSTGRES_SSL`      |              | `false`   | Alias für `POSTGRES_SSL`                          |
+| `POSTGRES_SSL`      |              | `false`   | Alias für `PG_SSL`                                |
 
 ### GitHub
 

@@ -4,7 +4,7 @@ icon: client
 order: 1
 ---
 
-Waline bietet offiziell den [`@waline/client`](https://www.npmjs.com/package/@waline/client) an, der in Vue + TypeScript geschrieben ist und nur 53kb gzip groß ist.
+Waline bietet offiziell den [`@waline/client`](https://www.npmjs.com/package/@waline/client) an, der in Vue + TypeScript geschrieben ist und nur 100kb gzip groß ist.
 
 ## Import
 

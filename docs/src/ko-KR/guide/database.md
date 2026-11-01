@@ -92,16 +92,16 @@ SQLite를 사용하려면 [waline.sqlite](https://github.com/walinejs/waline/blo
 | `PG_USER`           | ✅   |           | PostgreSQL 서버 사용자 이름         |
 | `PG_PASSWORD`       | ✅   |           | PostgreSQL 서버 비밀번호            |
 | `PG_HOST`           |      | 127.0.0.1 | PostgreSQL 서버 주소                |
-| `PG_PORT`           |      | 3211      | PostgreSQL 서버 포트                |
+| `PG_PORT`           |      | 5432      | PostgreSQL 서버 포트                |
 | `PG_PREFIX`         |      | `wl_`     | PostgreSQL 테이블 접두사            |
 | `PG_SSL`            |      | `false`   | SSL 연결을 사용하려면 `true`로 설정 |
 | `POSTGRES_DATABASE` |      |           | `PG_DB`의 별칭                      |
 | `POSTGRES_USER`     |      |           | `PG_USER`의 별칭                    |
 | `POSTGRES_PASSWORD` |      |           | `PG_PASSWORD`의 별칭                |
 | `POSTGRES_HOST`     |      | 127.0.0.1 | `PG_HOST`의 별칭                    |
-| `POSTGRES_PORT`     |      | 3211      | `PG_PORT`의 별칭                    |
+| `POSTGRES_PORT`     |      | 5432      | `PG_PORT`의 별칭                    |
 | `POSTGRES_PREFIX`   |      | `wl_`     | `PG_PREFIX`의 별칭                  |
-| `POSTGRES_SSL`      |      | `false`   | `POSTGRES_SSL`의 별칭               |
+| `POSTGRES_SSL`      |      | `false`   | `PG_SSL`의 별칭                     |
 
 ## GitHub
 

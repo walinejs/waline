@@ -16,7 +16,7 @@ actions:
 features:
   - title: 轻量
     icon: light
-    details: 53kb gzip 的完整客户端大小
+    details: 100kb gzip 的完整客户端大小
 
   - title: 完全免费部署
     icon: free

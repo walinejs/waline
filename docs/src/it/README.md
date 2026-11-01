@@ -16,7 +16,7 @@ actions:
 features:
   - title: Leggero
     icon: light
-    details: Dimensione completa del client di 53kb gzip
+    details: Dimensione completa del client di 100kb gzip
 
   - title: Completamente gratuito
     icon: free

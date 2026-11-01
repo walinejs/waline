@@ -4,7 +4,7 @@ icon: client
 order: 1
 ---
 
-Waline officially provides the [`@waline/client`](https://www.npmjs.com/package/@waline/client), which is written in Vue + TypeScript and is only 53kb gzip in size.
+Waline officially provides the [`@waline/client`](https://www.npmjs.com/package/@waline/client), which is written in Vue + TypeScript and is only 100kb gzip in size.
 
 ## Import
 
@@ -17,7 +17,7 @@ If you have problems during this process, see:
 
 ## Use Waline
 
-The easiest way to use Waline is [using the method detailed in the quick start](./README.md#importing-in-html-client): import the `init` function from Waline and initialize the Waline instance through `init(yourOptions)`.
+The easiest way to use Waline is [using the method detailed in the quick start](./README.md#importing-in-html): import the `init` function from Waline and initialize the Waline instance through `init(yourOptions)`.
 
 Among the `init` options, the `el` and `serverURL` are required. The former is the element or element selector on which Waline is mounted, and the latter is the server address. For all initialization parameters for `@waline/client`, see [Client Reference → API](../../reference/client/api.md).
 

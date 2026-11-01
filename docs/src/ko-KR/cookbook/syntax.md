@@ -257,4 +257,4 @@ $$
 
 ## HTML 삽입
 
-[보호 메커니즘](../guide/features/safety.md#comment-security)이 트리거되지 않는 한 HTML 콘텐츠를 자유롭게 추가할 수 있습니다.
+[보호 메커니즘](../guide/features/safety.md#댓글-보안)이 트리거되지 않는 한 HTML 콘텐츠를 자유롭게 추가할 수 있습니다.
