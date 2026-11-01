@@ -1,31 +1,31 @@
 ---
-title: Privacy Policy
+title: 隱私權政策
 icon: privacy
 order: -2
 ---
 
-Thank you for using the Waline commenting system. We take your privacy and data security very seriously. This privacy policy will inform you how we collect, use, process and protect your personal data.
+感謝您使用 Waline 留言系統，我們非常重視您的隱私權和資料安全。本隱私權政策將告知您我們如何蒐集、使用、處理和保護您的個人資料。
 
-## Data Types
+## 資料型別
 
-In order to provide services, we may collect and store your IP address, browser User-Agent (UA) and other related information, but if you have made the corresponding settings in the Waline configuration file, we will stop storing these according to your request information.
+為了提供服務，我們會蒐集和儲存您的 IP 位址、瀏覽器 User-Agent (UA) 等相關資訊，這些資訊是必要的並且無法避免。預設我們不會使用任何和 Cookie 相關的功能。
 
-## Data Usage
+## 資料用途
 
-We only use your information to provide commenting services and will not disclose, sell or rent it to third parties. We will make every effort to protect your information security and comply with local laws, regulations and relevant standards.
+我們僅會使用您的資訊來提供留言服務，並且不會洩露、出售或出租給第三方。我們會盡最大努力保護您的資訊安全，並遵守當地法律法規和相關標準。
 
-## Data Processing
+## 資料處理
 
-In order to provide you with better services, we may transmit your information to our servers, partner servers, or third-party service provider's servers, which may be located within or outside the country. We will take reasonable measures to protect your information security and comply with local laws, regulations, and relevant standards.
+為了向您提供更好的服務，我們可能將您的資訊傳輸到我們的伺服器、合作夥伴的伺服器或第三方服務商的伺服器，這些伺服器有可能位於境內或境外。我們會採取合理的措施保護您的資訊安全，並遵守當地法律法規和相關標準。
 
-## Data Protection
+## 資料保護
 
-We will take technical and management measures to protect your information security, prevent unauthorized access, use or disclosure. If there are data security issues, we will promptly notify you and take measures to repair them. However, please note that due to the characteristics and technical limitations of the Internet itself, we cannot guarantee 100% security of your information.
+我們會採取技術措施和管理措施來保護您的資訊安全，防止未經授權的存取、使用或洩露。如果發生了資料安全問題，我們會及時通知您並採取措施進行修復。但請注意，因網際網路本身的特性和技術限制，我們無法保證您的資訊 100% 安全。
 
-## Legal Responsibility
+## 法律責任
 
-We will comply with local laws, regulations, and relevant standards to protect the privacy rights and data security of users. If necessary, we may provide user information in accordance with legal requirements. In addition, we will not actively disclose user information.
+我們將遵守當地法律、法規和相關標準，保護使用者的隱私權和資料安全。如果有必要，我們可能會根據法律要求提供使用者的資訊。除此之外，我們不會主動洩露使用者資訊。
 
-## Other Provisions
+## 其他條款
 
-This privacy policy applies to all products and services of the Waline commenting system under default configurations. For additional features added to the Waline commenting system by some websites based on modification, this privacy policy does not guarantee its applicability. We reserve the right to modify the privacy policy and will update it in a timely manner. If you have any questions or suggestions about this privacy policy, please contact us.
+本隱私權政策適用於 Waline 留言系統的預設設定下所有產品和服務。對於部分網站基於 Waline 改造後增加的額外功能，本隱私權政策不保證適用。我們保留對隱私權政策的修改權利，並會及時更新隱私權政策。如果您對本隱私權政策有任何疑問或建議，請聯絡我們。

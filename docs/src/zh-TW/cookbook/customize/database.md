@@ -1,10 +1,10 @@
 ---
-title: Custom Database Service
+title: 自訂資料庫服務
 icon: database
 order: -2
 ---
 
-Waline classifies database operations into several operations such as CURD, and all upper-level logic is completed through the superposition of these basic operations. Through the adapter mode, different types of database storage services only need to implement these low-level atomic operations to run through all system logic.
+Waline 透過將資料庫操作歸類為 CURD 等幾個操作，所有的上層邏輯都透過這幾個基本操作疊加完成。透過轉接器模式，不同型別的資料庫儲存服務只需要實作這幾個底層的原子操作，就能跑通所有的系統邏輯。
 
 ```js
 // index.js
@@ -15,7 +15,7 @@ module.exports = Application({
 });
 ```
 
-Waline provides the `model` option to customize the database model, and we will uniformly use the incoming model for database operations. All that remains is that we need to implement this `CustomModel` class.
+Waline 提供了 `model` 選項來自訂資料庫模型，我們會統一使用傳入的模型進行資料庫操作。剩下的就是我們需要實作這個 `CustomModel` 類別。
 
 ```js
 class CustomModel {
@@ -45,25 +45,25 @@ class CustomModel {
 }
 ```
 
-The above is the basic structure that the `CustomModel` class must implement, and it must include the implementation of several basic methods `select`, `add`, `update`, `delete` and `count`. Waline is developed based on the [ThinkJS](https://thinkjs.org/en) framework, and the underlying database operations use the database operation syntax that comes with the framework. Before implementing these methods, you need to have some basic understanding of the syntax of database conditional queries.
+上面這個是 `CustomModel` 類別必須要實作的基礎結構，它必須包含 `select`、`add`、`update`、`delete` 以及 `count` 幾個基礎方法的實作。Waline 是基於 [ThinkJS](https://thinkjs.org) 框架開發的，底層資料庫操作採用了框架內建的資料庫操作語法。在實作這幾個方法之前，需要對資料庫條件查詢的語法有一些基礎的理解。
 
-## Condition query
+## 條件查詢
 
-For the complete conditional query syntax, please refer to [ThinkJS Documentation](https://thinkjs.org/zh-TW/doc/3.0/relation_model.html#toc-d47), and the implementation of Waline is a subset of it.
+完整的條件查詢語法可以參考 [ThinkJS 文件](https://thinkjs.org/zh-cn/doc/3.0/relation_model.html#toc-d47)，Waline 的實作是它的子集。
 
-Multiple conditional queries can be passed in through the object, and the default is equal to the condition. When the value is a two-dimensional array, the first bit can be passed to other judgment operations, and the second bit corresponds to the value, such as `{user_id: ['!=', 0]}`. Currently supported are `!=`, `>`, `IN`, `NOT IN`, `LIKE` centralized operations.
+透過物件可以傳入多條件查詢，預設是等於條件。當值為二維陣列時，第一位可以傳入其他的判斷操作，第二位則對應值，例如 `{user_id: ['!=', 0]}`。目前支援的主要有 `!=`、`>`、`IN`、`NOT IN`、`LIKE` 這幾種運算操作。
 
-Similar to MySQL, in the `LIKE` operation, we define the mode of the fuzzy query through the position of `%`:
+和 MySQL 比較類似，`LIKE` 操作中，我們透過 `%` 的位置來定義模糊查詢的模式：
 
-- `content%` means search for content starting with `content`
-- `%content` means search for content ending with `content`
-- `%content%` means search for content containing `content`
+- `content%` 表示搜尋以 `content` 開頭的內容
+- `%content` 表示搜尋以 `content` 結尾的內容
+- `%content%` 表示搜尋包含 `content` 的內容
 
-The conditional query object supports passing in multiple query conditions. The default relationship between these conditions is `AND`, and the `_logic` magic keyword can be used to specify their relationship as `OR`. When there are `AND` and `OR`, we can use `_complex` magic keyword expression.
+條件查詢物件中支援傳入多個查詢條件，預設這些條件的關係是 `AND`，可以透過 `_logic` 魔術關鍵字指定它們的關係為 `OR`。既有 `AND` 又有 `OR` 的時候，我們則可以使用 `_complex` 魔術關鍵字來表達。
 
-The text may not be well understood. Let's take a look at the query examples used in the project to deepen our impression.
+文字可能無法很好地理解，下面讓我們看一下專案中使用到的查詢範例，可能就會加深印象了。
 
-1. General query:
+1. 普通查詢：
 
    ```js
    const model = new CustomModel('Comment');
@@ -75,7 +75,7 @@ The text may not be well understood. Let's take a look at the query examples use
    // SELECT * FROM Comment WHERE url = '/' AND user_id != 0 AND createdAt > "2023-04-16 00:00:00";
    ```
 
-2. IN / NOT IN query
+2. IN / NOT IN 查詢
 
    ```js
    const model = new CustomModel('Users');
@@ -89,7 +89,7 @@ The text may not be well understood. Let's take a look at the query examples use
    // SELECT * FROM Comment WHERE status NOT IN ('waiting', 'spam');
    ```
 
-3. LIKE query
+3. LIKE 查詢
 
    ```js
    const model = new CustomModel('Comment');
@@ -97,7 +97,7 @@ The text may not be well understood. Let's take a look at the query examples use
    // SELECT * FROM Comment WHERE content LIKE "%content%";
    ```
 
-4. Multi-condition query
+4. 多條件查詢
 
    ```js
    const model = new CustomModel('Comment');
@@ -110,11 +110,11 @@ The text may not be well understood. Let's take a look at the query examples use
    // SELECT * FROM Comment WHERE url = '/' OR user_id != 0 OR createdAt > "2023-04-16 00:00:00";
    ```
 
-5. Compound query
+5. 複合查詢
 
    ```js
    const model = new CustomModel('Comment');
-   await model. select({
+   await model.select({
      url: '/',
      _complex: {
        user_id: 0,
@@ -125,31 +125,31 @@ The text may not be well understood. Let's take a look at the query examples use
    // SELECT * FROM Comment WHERE url = '/' AND ( user_id = 0 OR status NOT IN ('waiting', 'spam'));
    ```
 
-If you are more familiar with TypeScript, [type definitions for conditional queries is here](https://github.com/walinejs/dittorm/blob/master/src/types/where.ts).
+如果你比較熟悉 TypeScript，[這裡](https://github.com/walinejs/dittorm/blob/master/src/types/where.ts)有條件查詢的型別定義。
 
-## Implement query
+## 實作查詢
 
-The `select`, `update`, `delete`, `count` methods in the adapter are actually complicated in the conditional query. After understanding the conditional query syntax in the previous part, the subsequent logic is the database operation. surface.
+轉接器中 `select`、`update`、`delete`、`count` 這幾個方法實際上複雜的地方都在條件查詢中，上一部分理解了條件查詢語法之後，後續的邏輯就是資料庫操作了，無需多說。
 
-The `select()` method has a second argument `{desc, limit, offset, field}`. This is also easier to understand:
+`select()` 方法還有第二個入參 `{desc, limit, offset, field}`。這個也比較好理解：
 
-- `desc`: Specify a field to sort in descending order of the value of the field
-- `limit`: specify the number of data returned
-- `offset`: Specify the returned data from which item to return
-- `field`: Specify the field to return data, all fields are returned by default
+- `desc`：指定某個欄位按照該欄位的值遞減排列
+- `limit`：指定回傳的資料筆數
+- `offset`：指定回傳的資料從第幾筆開始回傳
+- `field`：指定回傳資料的欄位，預設回傳所有欄位
 
-The `update()` method needs to be compatible with scenarios where the `data` input parameter may be a calculation function, such as adding 1 to the number of page viewers:
+`update()` 方法需要相容 `data` 入參可能是計算函式的情境，例如頁面瀏覽人數加 1：
 
 ```js
 const model = new CustomModel('Count');
 await model.update((thread) => ({ view: thread.view + 1 }), { url: '/' });
 ```
 
-Return data type `select()` always returns an array, `add()` and `update()` need to include the full data of the indexed field.
+回傳資料型別 `select()` 永遠回傳的是陣列，`add()` 和 `update()` 需要包含索引欄位的完整資料。
 
-## refer to
+## 參考
 
-Based on the above logic, in addition to implementing the storage service of professional databases, the official also implemented the GitHub storage service very interestingly. We store the data in GitHub in the form of a CSV file, and obtain the content of the CSV file each time we query, and filter out the final data according to the conditional query statement in JS and return it. The following is the official implementation, hoping to give you some reference.
+基於以上邏輯，官方除了實作專業資料庫的儲存服務之外，還非常有意思地實作了 GitHub 儲存服務。我們將資料以 CSV 檔案的形式儲存到 GitHub 中，每次查詢的時候取得 CSV 檔案內容，在 JS 中根據條件查詢語句篩選出最終的資料回傳即可。以下是官方的實作，希望能給你一些參考。
 
 ```js
 //source code: https://github.com/walinejs/waline/blob/main/packages/server/src/service/storage/github.js

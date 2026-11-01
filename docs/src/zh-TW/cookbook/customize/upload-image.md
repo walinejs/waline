@@ -1,17 +1,17 @@
 ---
-title: Upload Image
+title: 上傳圖片
 icon: pic
 ---
 
-This cookbook guides you on how to set up your own image service to upload images in comments.
+本教學指引你如何設定自己的圖床服務，以便在留言中上傳圖片。
 
 <!-- more -->
 
-`@waline/client` provides the `imageUploader` option. You should handle the image object passed in by the client by yourself, and after uploading the image yourself, return an image address through Promise.
+`@waline/client` 提供了 `imageUploader` 選項。你應該自行處理客戶端傳入的圖片物件，在自行上傳圖片後，透過 Promise 回傳一個圖片位址。
 
-## Demo
+## 案例
 
-An example of using the `lsky-pro` graph bed.
+一個使用 `lsky - pro` 圖床的案例。
 
 ```html
 <!doctype html>
@@ -19,7 +19,7 @@ An example of using the `lsky-pro` graph bed.
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Waline imageUploader demo</title>
+    <title>Waline imageUploader 案例</title>
     <link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css" />
   </head>
   <body>

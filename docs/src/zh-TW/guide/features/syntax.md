@@ -1,60 +1,60 @@
 ---
-title: Comment Format Support
+title: 留言格式支援
 icon: format
 order: 1
 ---
 
-You can add different contents to comment, including extended Markdown syntax and HTML tags.
+你可以在留言中新增多樣化的內容，包括經過擴充的 Markdown 語法與 HTML 標籤。
 
 <!-- more -->
 
-## Format Support
+## 格式支援
 
-We support the full CommonMark (standard Markdown syntax), along with the following extensions:
+我們支援完整的 CommonMark (標準 Markdown 語法)，同時支援以下擴充:
 
-- GFM style table
-- GFM style strike through
-- Subscript and superscript
-- Emoji
-- Code block highlighting
-- $\TeX$ formula
+- GFM 風格的表格
+- GFM 風格的刪除線
+- 上下標
+- Emoji 表情符號
+- 程式碼區塊語法高亮
+- $\TeX$ 公式
 
 ::: info GFM
 
-Github Flavored Markdown
+Github Flavored Markdown，即 Github 風格語法
 
 :::
 
-Meanwhile, you can freely embed any HTML content without triggering the [protection mechanism](./safety.md#comment-security).
+同時，你可以在不觸發 [保護機制](./safety.md#留言安全) 的情況下自由嵌入任何的 HTML 內容。
 
-## Limited Preview Support
+## 有限的預覽支援
 
-In order to control the size of the client, we only place a small Markdown parser in the official client `@waline/client`, which causes many grammars to not display correctly in the preview panel (they can be **correctly rendered in the comment area**).
+為了控制客戶端體積，我們僅在官方客戶端 `@waline/client` 放置了小體積的 Markdown 解析器，這導致很多語法並**不能在預覽面板內正確顯示** (它們可以**正確地渲染在留言區**)。
 
-This includes the following restrictions:
+這包含如下限制:
 
-- Standard emoji syntax (eg :tada:`:tada:`) does not render correctly
+- 標準的 emoji 語法 (如 :tada:`:tada:`) 無法正確渲染
 
-- The upper and lower subscripts (eg: `H~2~O`, `x^2^`) cannot be rendered correctly
+- 上下標 (如: `H~2~O`、`x^2^`) 無法正確渲染
 
-- $\TeX$ syntax, i.e. math formulas (eg: `$a = 1$`) cannot be rendered by default.
+- $\TeX$ 語法，也就是數學公式 (如: `$a = 1$`) 預設無法渲染。
 
-  When using the official client, you can customize the $\TeX$ rendering in preview by setting the `texRenderer` option, see [Cookbook → Use a custom $\TeX$ renderer](../../cookbook/customize/tex-renderer.md).
+  在官方客戶端下，你可以透過設定 `texRenderer` 選項來設定預覽時的 $\TeX$ 渲染，參見 [Cookbook → 使用自訂 TeX 渲染器](../../cookbook/customize/tex-renderer.md)。
 
-- Under the default highlighter, code blocks will be highlighted with random colors with specific delimiters.
+- 在預設的高亮器下，程式碼區塊將透過特定分隔符號使用隨機色彩進行高亮。
 
-  When using the official client, you can customize the code highlighting when previewing by setting the `highlighter` option, see [Cookbook → Custom Code Highlighting](../../cookbook/customize/highlighter.md).
+  在官方客戶端下，你可以透過設定 `highlighter` 選項來設定預覽時的程式碼高亮，參見 [Cookbook → 自訂程式碼高亮](../../cookbook/customize/highlighter.md)。
 
-## More
+## 更多
 
-::: tip Principle
+::: tip 運作原理
 
-1. Considering package size, the client uses `marked` for rendering and uses a < 1kb highlighter for highlighting by default, and does not include a $\TeX$ renderer, resulting in the above limitations.
+1. 考量體積問題，客戶端使用 `marked` 進行渲染並預設使用 < 1kb 的高亮器進行高亮，同時不包含 $\TeX$ 渲染器，導致以上限制。
 
-1. When a user submits a comment, the client embeds a custom Emoji image and sends the original comment to the server.
+1. 使用者提交留言時，客戶端嵌入自訂 Emoji 表情符號圖片，並將留言原文傳送到伺服器。
 
-1. The server receives the original text, uses `markdown-it` to render markdown correctly with relevant plug-ins, uses `prismjs` to highlight code blocks according to the language, and performs $\TeX$ rendering according to user settings, and finally performs XSS processing .
+1. 伺服器接收到原文，使用 `markdown-it` 以相關外掛對 markdown 進行正確的渲染，同時使用 `prism.js` 為程式碼區塊根據語言進行高亮，並按照使用者設定進行 $\TeX$ 渲染，最後執行 XSS 處理。
 
-1. After the processing is completed, the server will store the correct rendering content and return it to the client when needed to ensure the normal display of the comment area.
+1. 處理完成後，伺服器會將正確的渲染內容進行儲存，並在需要時回傳給客戶端，確保留言區正常顯示。
 
 :::

@@ -1,14 +1,14 @@
 ---
-title: Self Host
+title: 獨立部署
 icon: server
 order: -1
 ---
 
-If you don't want to deploy the server on Vercel, you can also choose to deploy on your own server.
+如果你擔憂免費平台的請求延遲，你也可以選擇部署在自己的伺服器上。
 
 <!-- more -->
 
-## Docker Deploy
+## Docker 部署
 
 ```bash
 docker run -d \
@@ -16,23 +16,23 @@ docker run -d \
   lizheming/waline
 ```
 
-It's a demo for how to run waline. You also need add some database environment if you want all comment function works well.
+這是最簡單的啟動範例，除此之外需要增加對應的資料庫環境變數才能確保發布正常。
 
-::: tip How to build image?
+::: tip 如何建置映像檔？
 
 ```bash
-git clone https://github.com/lizheming/waline.git
+git clone https://github.com/walinejs/waline.git
 cd waline
 docker build -t lizheming/waline -f packages/server/Dockerfile .
 ```
 
 :::
 
-### via [docker stack deploy](https://docs.docker.com/engine/reference/commandline/stack_deploy/) or [docker-compose](https://github.com/docker/compose)
+### 使用 [docker stack deploy](https://docs.docker.com/engine/reference/commandline/stack_deploy/) 或者 [docker-compose](https://github.com/docker/compose)
 
-The SQLite is used here as an example. For SQLite and supported database services, please refer to [Multi-database service support](../database.md#sqlite).
+這裡使用了 SQLite 資料庫作為例子。關於 SQLite 和支援的資料庫服務，請參考[多資料庫服務支援](../database.md#sqlite)。
 
-Example `docker-compose.yml` for `waline`:
+`docker-compose.yml` 範例：
 
 ```yaml
 # docker-compose.yml
@@ -44,7 +44,7 @@ services:
     image: lizheming/waline:latest
     restart: always
     ports:
-      - 127.0.0.1:8360:8360
+      - 8360:8360
     volumes:
       - ${PWD}/data:/app/data
     environment:
@@ -57,18 +57,11 @@ services:
       AUTHOR_EMAIL: 'mail@example.com'
 ```
 
-## Run directly (Recommended)
+## 直接執行（推薦）
 
-It's easy to run without using docker deployment, after setting environment variables, just run the `vanilla.js` file in the module after installing.
+不使用容器部署的話執行也很簡單。在設定必要的環境變數、安裝好模組後，直接執行模組內的 `vanilla.js` 檔案即可。
 
 ::: code-tabs#shell
-
-@tab npm
-
-```bash
-npm install @waline/vercel
-node node_modules/@waline/vercel/vanilla.js
-```
 
 @tab yarn
 
@@ -77,11 +70,18 @@ yarn add @waline/vercel
 node node_modules/@waline/vercel/vanilla.js
 ```
 
+@tab npm
+
+```bash
+npm install @waline/vercel
+node node_modules/@waline/vercel/vanilla.js
+```
+
 :::
 
-## Nginx config
+## Nginx 設定
 
-If you don't want to use port in server url, you can use Nginx proxy pass to 80 and 443. Refer to the following configuration:
+如果你不想帶連接埠存取的話，可以增加 Nginx 80 和 443 連接埠的反向代理。可參考如下設定：
 
 ```nginx
 server

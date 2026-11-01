@@ -1,110 +1,110 @@
 ---
-title: Client API
+title: 客戶端 API
 icon: config
 ---
 
-## Client API
+## 客戶端 API
 
-Waline provides three APIs:
+Waline 提供三個 API：
 
-- `init`: Initialize Waline
+- `init`：初始化 Waline
 
-- `commentCount`: Count comments
+- `commentCount`：留言數統計
 
-- `pageviewCount`: Count pageviews
+- `pageviewCount`：瀏覽量統計
 
-As well as:
+以及：
 
-- `RecentComment`: Waline recent comments widget
+- `RecentComment`：最近留言
 
-- `UserList`: User List
+- `UserList`：使用者列表
 
-- `version`: Waline client version
+- `version`：Waline 客戶端版本
 
 ## init
 
-The `init` API accepts a `WalineInitOptions` options and returns a `WalineInstance`.
+`init` 函式接收一個 `WalineInitOptions` 初始化選項，並傳回一個 `WalineInstance`。
 
-Type:
+型別：
 
 ```ts
 const init: (options: WalineInitOptions) => WalineInstance;
 ```
 
-Return:
+傳回值：
 
 ```ts
 interface WalineInstance {
   /**
-   * Element where Waline is mounted
+   * Waline 被掛載到的元素
    *
-   * When initialized with `el: null`, it will be `null`
+   * 當透過 `el: null` 初始化時，值為 `null`
    */
   el: HTMLElement | null;
 
   /**
-   * Update Waline instance
+   * 更新 Waline 實例
    *
-   * When not setting `path` option, it will be reset to `window.location.pathname`
+   * 只要不設定 `path` 選項，更新時它就會被重設為 `windows.location.pathname`
    */
   update: (newOptions?: Partial<Omit<WalineInitOptions, 'el'>>) => void;
 
-  /** Unmount and destroy Waline instance */
+  /** 取消掛載並銷毀 Waline 實例 */
   destroy: () => void;
 }
 ```
 
-The initialization options accept all [Waline Component Props](props.md), in addition, the following options are added.
+初始化選項接受所有 [Waline 元件屬性](props.md)，此外新增下列選項。
 
 ### el
 
-- Type: `string | HTMLElement | null`
-- Default: `'#waline'`
+- 型別：`string | HTMLElement | null`
+- 預設值：`'#waline'`
 
-The DOM element to be mounted on initialization. It must be a valid **CSS selector string** or HTMLElement Object.
+Waline 的初始化掛載目標。必須是有效的 **CSS 選擇器** 或 HTMLElement 物件。
 
-If you only want the counter below, set this option to `null`.
+如果你只需要下方的統計，請將此選項設為 `null`。
 
 ### comment
 
-- Type: `boolean | string`
-- Default: `false`
+- 型別：`boolean | string`
+- 預設值：`false`
 
-Article comment count counter, when filled in a string, it will be used as a CSS selector.
+文章留言數統計，填入字串時會作為 CSS 選擇器。
 
 ### pageview
 
-- Type: `boolean | string`
-- Default: `false`
+- 型別：`boolean | string`
+- 預設值：`false`
 
-Pageview counter. When filled in a string, it will be used as a CSS selector.
+文章瀏覽量統計，填入字串時會作為 CSS 選擇器。
 
 ## commentCount
 
-The `commentCount` function receives the `WalineCommentCountOptions` option and updates the number of article comments on the page, and returns a function `WalineAbort` that can cancel the current operation.
+`commentCount` 函式接收 `WalineCommentCountOptions` 選項，負責更新頁面上的文章留言數，同時傳回一個可以取消目前操作的函式 `WalineAbort`。
 
-Type:
+型別：
 
 ```ts
 const commentCount: (options: WalineCommentCountOptions) => WalineAbort;
 ```
 
-Options:
+選項：
 
 ```ts
 interface WalineCommentCountOptions {
-  /** Waline server url */
+  /** Waline 伺服器位址 */
   serverURL: string;
 
   /**
-   * Comment count CSS selector
+   * 留言數 CSS 選擇器
    *
    * @default '.waline-comment-count'
    */
   selector?: string;
 
   /**
-   * Path to be fetched by default
+   * 需要取得的預設路徑
    *
    * @default window.location.pathname
    */
@@ -112,7 +112,7 @@ interface WalineCommentCountOptions {
 }
 ```
 
-Returns:
+傳回值：
 
 ```ts
 type WalineAbort = (reason?: any) => void;
@@ -120,37 +120,37 @@ type WalineAbort = (reason?: any) => void;
 
 ## pageviewCount
 
-The `pageviewCount` function receives the `WalinePageviewCountOptions` option and updates the number of article comments on the page, and returns a function `WalineAbort` that can cancel the current operation.
+`pageviewCount` 函式接收 `WalinePageviewCountOptions` 選項，負責更新頁面上的文章留言數，同時傳回一個可以取消目前操作的函式 `WalineAbort`。
 
-Type:
+型別：
 
 ```ts
 const pageviewCount: (options: WalinePageviewCountOptions) => WalineAbort;
 ```
 
-Options:
+選項：
 
 ```ts
 interface WalinePageviewCountOptions {
-  /** Waline server url */
+  /** Waline 伺服器位址 */
   serverURL: string;
 
   /**
-   * Pageview CSS selector
+   * 留言數 CSS 選擇器
    *
    * @default '.waline-pageview-count'
    */
   selector?: string;
 
   /**
-   * Path to be fetched and updated
+   * 需要更新與取得的路徑
    *
    * @default window.location.pathname
    */
   path?: string;
 
   /**
-   * Whether update pageviews when fetching path result
+   * 是否在查詢時更新 path 的瀏覽量
    *
    * @default true
    */
@@ -158,101 +158,105 @@ interface WalinePageviewCountOptions {
 }
 ```
 
-Returns:
+傳回值：
 
 ```ts
 type WalineAbort = (reason?: any) => void;
 ```
 
-## Widgets
+## 小工具
 
 ### RecentComments
 
-`RecentComments` is a widget displaying recent comments.
+`RecentComments` 是一個顯示最近留言的小工具。
 
-Type:
+型別：
 
 ```ts
 const RecentComments: (options: WalineRecentCommentsOptions) => Promise<WalineRecentCommentsResult>;
 ```
 
-Options:
+選項：
 
 ```ts
 interface WalineRecentCommentsOptions {
-  /** Waline serverURL */
+  /** Waline 伺服器位址 */
   serverURL: string;
 
-  /** Fetch number of latest comments */
+  /** 取得最新留言的數量 */
   count: number;
 
-  /** Element to be mounted */
+  /** 需要掛載的元素 */
   el?: string | HTMLElement;
 }
 ```
 
-Returns:
+傳回值：
 
 ```ts
 interface WalineRecentCommentsResult {
-  /** Comment Data */
+  /** 留言資料 */
   comments: RecentCommentData[];
 
-  /** Umount widget */
+  /** 取消掛載小工具 */
   destroy: () => void;
 }
 ```
 
 ### UserList
 
-`UserList` is a widget that displays user interaction leader boards or comment walls.
+`UserList` 是一個顯示使用者互動排行榜或留言牆的小工具。
 
-Type:
+型別：
 
 ```ts
-const RecentComments: (options: WalineRecentCommentsOptions) => Promise<WalineRecentCommentsResult>;
+const UserList: (options: WalineUserListOptions) => Promise<WalineUserListResult>;
 ```
 
-Options:
+選項：
 
 ```ts
 interface WalineUserListOptions {
-  /** Waline serverURL */
+  /** Waline 伺服器位址 */
   serverURL: string;
 
-  /** Fetch number of user list */
+  /** 取得使用者列表的數量 */
   count: number;
 
-  /** Element to be mounted */
+  /** 需要掛載的元素 */
   el?: string | HTMLElement;
 
   /**
-   * Language of error message
+   * 錯誤提示訊息所使用的語言
    *
    * @default navigator.language
    */
   lang?: string;
 
   /**
-   * Custom display language in waline
+   * 自訂 waline 語言顯示
    *
-   * @see [I18n](https://waline.js.org/zh-TW/client/i18n.html)
+   * @see [自訂語言](https://waline.js.org/guide/features/i18n.html)
    */
   locale?: WalineLocale;
 
-  /** List mode or avatar wall mode */
+  /**
+   * 列表模式還是頭像牆模式
+   *
+   * List mode or avatar wall mode
+   */
   mode?: 'list' | 'wall';
 }
 ```
 
-Returns:
+傳回值：
 
 ```ts
 interface WalineUserListResult {
-  /** User Data */
+  /** 使用者資料 */
   users: WalineUser[];
 
-  /** Umount widget */
+  /** 取消掛載小工具 */
   destroy: () => void;
 }
 ```

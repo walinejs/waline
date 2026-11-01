@@ -1,15 +1,15 @@
 ---
-title: Customize Code Highlighter
+title: 加入程式碼高亮器
 icon: style
 ---
 
-This cookbook guides you how to add your own code highlighter.
+本教學將指引你設定自己的程式碼高亮器。
 
 <!-- more -->
 
-`@waline/client` provides the `highlighter` function. The client passes in the original character of the code block and the language of the code block. You should return a string directly.
+`@waline/client` 提供了 `highlighter` 函式。客戶端會傳入程式碼區塊的原始字元與程式碼區塊的語言。你應該直接回傳一個字串。
 
-## An Example Using prism.js
+## 一個使用 prism.js 的案例
 
 ```html
 <!doctype html>
@@ -17,7 +17,7 @@ This cookbook guides you how to add your own code highlighter.
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Waline highlighter case</title>
+    <title>Waline highlighter 案例</title>
     <link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline.css" />
     <script src="https://unpkg.com/prismjs@v1" data-manual></script>
     <script src="https://unpkg.com/prismjs@v1/plugins/autoloader/prism-autoloader.min.js"></script>

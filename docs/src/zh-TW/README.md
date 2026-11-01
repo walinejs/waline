@@ -5,50 +5,50 @@ icon: home
 heroText: Waline
 heroImage: /logo.png
 actions:
-  - text: 💡 開始使用
-    link: /zh-TW/guide/get-started/
+  - text: 💡 快速上手
+    link: /guide/get-started/
     type: primary
 
   - text: ℹ️ 介紹
-    link: /zh-TW/advanced/intro.html
+    link: /advanced/intro.html
     type: secondary
 
 features:
   - title: 輕量
     icon: light
-    details: 客戶端完整大小為 100kb gzip
+    details: 100kb gzip 的完整客戶端大小
 
-  - title: 完全免費
+  - title: 完全免費部署
     icon: free
-    details: 可以在 Vercel 上免費部署
+    details: 可免費部署在 Vercel 上
 
   - title: 易於部署
     icon: strong
-    details: 多種部署方法和儲存服務支援
+    details: 多種部署方式與儲存服務支援
 
   - title: 登入支援
     icon: register
-    details: 支援匿名評論、帳號註冊和社交登入
+    details: 在允許匿名留言的基礎上，支援帳號註冊，保持身分
 
-  - title: 以你喜歡的方式評論
+  - title: 自由留言
     icon: markdown
-    details: 完整的 Markdown 支援，包含表情符號、數學公式、圖片上傳和 HTML 嵌入支援
-    link: /zh-TW/guide/features/syntax.html
+    details: 完整的 Markdown 支援，同時包含表情符號、數學公式、HTML 嵌入
+    link: /guide/features/syntax.html
 
-  - title: 改進的安全性
+  - title: 強大的安全性
     icon: safe
-    details: 內容驗證、反垃圾郵件、敏感資料保護等
-    link: /zh-TW/guide/features/safety.html
+    details: 內容驗證、防灌水、保護敏感資料等
+    link: /guide/features/safety.html
 
   - title: 文章反應
     icon: reaction
     details: 快速表達你對文章的態度
-    link: /zh-TW/guide/features/reaction.html
+    link: /guide/features/reaction.html
 
-  - title: 頁面瀏覽計數器
+  - title: 瀏覽量統計
     icon: counter
-    details: 用 < 1kb 的程式碼精確計算頁面瀏覽次數
-    link: /zh-TW/guide/features/pageview.html
+    details: 透過 <1kb 程式碼可靠統計文章瀏覽量
+    link: /guide/features/pageview.html
 
-footer: GPL-2.0 授權 | Copyright © 2020-現在 <a href="https://github.com/lizheming" rel="noopener noreferrer " target="_blank">lizheming</a> | 主題由 <a href="https://theme-hope.vuejs.press/" rel="noopener noreferrer " target="_blank">VuePress Theme Hope</a> 提供
+footer: GPL-2.0 授權 | Copyright © 2020-present <a href="https://github.com/lizheming" rel="noopener noreferrer " target="_blank">lizheming</a> | 主題使用 <a href="https://theme-hope.vuejs.press/zh/" rel="noopener noreferrer " target="_blank">VuePress Theme Hope</a>
 ---

@@ -1,101 +1,99 @@
 ---
-title: Reactive Waline Instance
+title: 響應式的 Waline 實例
 icon: spa
 order: -1
 ---
 
-The official client `@waline/client` is based on Vue3, provides responsive components and instances, and brings SPA (**S**ingle **P**age **A**application) support.
+官方客戶端 `@waline/client` 基於 Vue3，提供了響應式的元件和實例，為 SPA（**S**ingle **P**age **A**pplication，單頁應用）帶來了支援。
 
 <!-- more -->
 
-## Vue Component
+## Vue 元件
 
-If you are building a Vue project, you can obtain and use Waline component by importing named exports `Waline` from `@waline/client/components`.
+如果你正在使用一個 Vue 專案，你可以透過 `@waline/client/components` 匯入具名匯出 `Waline`，以取得並使用 Waline 元件。
 
-All component properties are reactive, which means that when you change the properties, the comment box will get an automatically update.
+元件的所有屬性都是響應式的，這意味著當你變更屬性時，留言框會自動更新。
 
-## Other projects
+## 其他專案
 
-In other SPA, you need to store the `WalineInstance` returned by the Waline function when Waline is initialized.
+在其他單頁應用中，你需要在初始化 Waline 時儲存 Waline 函式回傳的 `WalineInstance` 實例，以便後續使用。
 
-You can find an instance property `el` and two methods: `update()` and `destroy()` on `WalineInstance`.
+你可以在 `WalineInstance` 上找到一個實例屬性 `el` 和兩個方法：`update()` 和 `destroy()`。
 
 ### update
 
-You can call `update()` to update Waline at any time (e.g.: when user visits a new route). The `update` method receives an optional parameter `options`, except for `el`, other Waline initial options can be updated by passing in new values.
+你可以在任何需要的時刻（例如使用者前往新頁面後）呼叫 `update()` 更新 Waline。`update` 方法接收一個可選參數 `options`，除 `el` 選項外，其他 Waline 初始化選項都可以傳入新的值進行更新。
 
-E.g.:
+例如：
 
 ```js
-// in `/` route
+// 在 `/` 路由
 const waline = Waline.init({
   serverURL: 'https://example.com',
 });
 
-/* User: after some time, route has changed to `/a.html` */
+/* 使用者：經過一段時間後，路由變動到 `/a.html` */
 
-waline.update(); // Now waline will start clear the comment and show a loading state.
-// After some time, the counter and comments will be all updated
+waline.update(); // 現在 waline 將開始清除留言並顯示載入狀態
+// 經過一段時間後，計數器和留言將全部更新
 
 waline.update({
   lang: 'en',
   login: 'disable',
-}); // waline will now display in English, and disable user login
+}); // 這將使 Waline 以英文顯示，並停用使用者登入
 ```
 
-#### Working Principle
+#### 運作方式
 
-When calling `update`, the current option and history option will be merged by **shallow copy**, and Waline instance will refresh with the new option (and save the new option).
+呼叫 `update` 時，會把目前選項和歷史選項**淺拷貝**合併，並重新根據新參數更新整個 Waline 實例（同時儲存這個新參數）。
 
-The default behavior of this method is to always **regenerate default values** for options that haven't been set yet, and **use historical values** for options that have been set.
+該方法的預設行為是：對於未設定過的參數永遠**重新產生預設值**，對於設定過的參數**使用歷史值**。
 
-There are two options you may need to pay special attention to: `path` and `locale`.
+這裡有兩個選項你可能需要特別留意：`path` 和 `locale`。
 
-::: warning Path precautions
+::: warning path 注意事項
 
-In V2, the `path` parameter **always reset** on `update()`.
+在 V2 中，`path` 參數在 `update()` 時**總是被重設**。
 
-This means that in any update as long as you don't specify `path`, `path` will be reset to `window.location.pathname`.
-
-:::
-
-::: warning locale precautions
-
-Due to the shallow copy, the old `locale` options are completely overwritten by the new `locale` options passed in by `update`.
-
-Our point is: users usually want to switch the display language when updating the locale, so we set it as the expected behavior of the plugin. This also means that you can use `update({ locale: {} })` to clear the custom locale config in history.
-
-If you really need to update one or more certain fields in `locale`, you need to pass the entire updated `locale`.
+這意味著在任何一次更新中，只要你不指定 `path`，`path` 就會被重設為 `window.location.pathname`。
 
 :::
 
-Meanwhile, the `update()` option has been optimized for asynchronous network requests, including:
+::: warning locale 注意事項
 
-- Refresh the comment area and re-request only when the path does change
-- The new `update()` call will automatically terminate the no longer needed request from the previous `update()`.
+由於淺拷貝的關係，舊的 `locale` 選項會被 `update` 傳入的新 `locale` 選項完全覆蓋。
+
+我們的依據是：使用者更新 locale 的情境通常是想切換顯示語言，所以我們將其設定為外掛的預期行為。這種行為提供了透過 `update({ locale: {} })` 清除先前自訂語言設定的能力。
+
+如果你的確需要更新已設定的 `locale` 的某一項或某幾項，你需要把 `locale` 中所有變動的值重新傳入外掛。
+
+:::
+
+同時，`update()` 選項已針對非同步網路請求進行最佳化，包括：
+
+- 只有當路徑確實發生改變時，才重新整理留言區並重新請求
+- 新的 `update()` 呼叫會自動終止上一個 `update()` 發出但已不再需要的請求。
 
 ### el
 
-The `el` property is the HTMLElement mounted by the current instance of Waline.
+`el` 屬性為 Waline 目前實例掛載的 HTMLElement。
 
-If you initialize Waline with `el: null` (only use comments and pageview statistics), this property will be `null`.
+如果你在初始化時設定了 `el: null`（即只需要瀏覽量與留言數功能），該項為 `null`。
 
 ### destroy
 
-If you forget to pass in the `serverURL` or Waline cannot find the mount location via the `el` option on the page, Waline will throw an Error indicating the reason for the error.
+你可以使用 `destroy()` 方法銷毀 Waline 實例。它會同時清空 Waline 掛載元素中的全部內容。
 
-### Initialization Failure
+### 初始化失敗
 
-If you forget to set `serverURL` or Waline cannot find the mount location through the `el` option on the page, Waline will return a `WalineErrorInstance`.
+如果你忘記傳入 `serverURL`，或者 Waline 無法在頁面中透過 `el` 選項找到掛載位置，Waline 會拋出一個 Error 指明錯誤原因。
 
-There is only one attribute `errMsg` on `WalineErrorInstance` to indicate the reason for the initialization failure.
+### 注意事項
 
-### Precautions
+::: warning 取消掛載實例
 
-::: warning Remember to destroy the instance
+為了讓 Waline 能夠正確釋放資源，請在移除 Waline 所在元素之前，手動呼叫 `WalineInstance.destroy()`。
 
-In order for Waline to properly release resources, please manually call `WalineInstance.destroy()` before removing the element where Waline is mounted.
-
-Otherwise, some listeners may not be removed properly.
+否則，某些監聽器可能不會被正確移除。
 
 :::

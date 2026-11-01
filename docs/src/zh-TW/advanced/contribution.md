@@ -1,28 +1,28 @@
 ---
-title: Development Guide
+title: 貢獻指南
 icon: contribute
 order: -1
 ---
 
-We welcome everyone to open Pull Requests for waline! :tada:
+歡迎大家為 waline 提交 Pull Request！:tada:
 
-If you want to contribute to waline, here is a guide.
+如果你想為 waline 貢獻自己的一份心力，以下是一份指南。
 
 <!-- more -->
 
-## Preparation
+## 準備
 
-1. Use Git to clone the project
+1. 使用 Git 複製專案
 
    ```bash
    git clone https://github.com/walinejs/waline.git
    ```
 
-1. Installation dependencies
+1. 安裝相依套件
 
    ::: warning
 
-   Install and use pnpm to install dependencies.
+   請使用 pnpm 安裝相依套件:
 
    ```bash
    corepack enable
@@ -35,22 +35,22 @@ If you want to contribute to waline, here is a guide.
    pnpm ci
    ```
 
-## Development
+## 開發
 
-- Run `pnpm run client:dev` to start `@waline/client` devServer
+- 使用 `pnpm run client:dev` 啟動 `@waline/client` 本機開發
 
   ::: tip
 
-  Since waline is based on Client/Server architecture, when debugging a client, you need to set `SERVERURL`, or start server devServer below at the same time and use the default `localhost:9090`.
+  由於 waline 是 Client/Server 架構，在除錯 client 時，你需要設定 `SERVERURL` 為除錯伺服器，或同時啟動下方的 server 開發伺服器並使用預設的 `localhost:9090`。
 
   :::
 
-- Run `pnpm run server:dev` to start `@waline/server` devServer
+- 使用 `pnpm run server:dev` 啟動 `@waline/server` 本機開發
 
   ::: tip
 
-  In order to run `@waline/server` locally, you need to configure some local environment variables to `.env`.
+  為了讓 `@waline/server` 能在本機正常執行，你需要將必要的本機環境變數設定至 `.env`。
 
-  We provide an example for you in `.env.example`.
+  在 `.env.example` 我們準備了範例供你參考
 
   :::

@@ -1,5 +1,5 @@
 ---
-title: Migration Helper
+title: 資料遷移助手
 icon: helper
 ---
 
@@ -7,7 +7,7 @@ icon: helper
 
 ::: tip
 
-After using the above tools to obtain the exported files, you can import them in the correct storage service.
+使用上述工具取得匯出的檔案之後，可以在對應的儲存服務後台進行匯入。
 
 :::
 

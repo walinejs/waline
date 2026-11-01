@@ -1,37 +1,37 @@
 ---
-title: Create a database on TiDB
+title: 建立 TiDB 資料庫
 icon: tidb
 ---
 
-[TiDB](https://github.com/pingcap/tidb) is an open source NewSQL database. [TiDB Cloud](https://tidbcloud.com/) is the official online version, which provides 5GB of free storage for everyone to use. The following describes how to create a Waline database on TiDB Cloud.
+[TiDB](https://github.com/pingcap/tidb) 是一款開源的 NewSQL 資料庫。[TiDB Cloud](https://tidbcloud.com/) 則是官方提供的線上版本，它提供了 5GB 的免費額度。以下介紹如何在 TiDB Cloud 上建立 Waline 資料庫。
 
-## Create Database
+## 建立資料庫
 
-1. After logging in to [TiDB Cloud](https://tidbcloud.com), a TiDB instance will be created automatically, directly click <kbd>cluster0</kbd> to enter the instance
+1. 登入 [TiDB Cloud](https://tidbcloud.com) 後會自動建立 TiDB 執行個體，直接點選 <kbd>cluster0</kbd> 進入執行個體
 
-   ![Enter instance](../../../assets/tidb-1.png)
+   ![進入執行個體](../../../assets/tidb-1.png)
 
-2. Select <kbd>SQL Editor</kbd> in the list on the left and change the content of [waline.tidb](https://github.com/walinejs/waline/blob/main/assets/waline.tidb) to `;` The distribution of statements is executed close to the interface. Click the <kbd>Run</kbd> blue button in the upper right corner for each sentence, or use the <kbd>Ctrl\/Command</kbd> + <kbd>Enter</kbd> shortcut key to execute
-   ![Step1](../../../assets/tidb-2.png)
-   ![Step2](../../../assets/tidb-3.png)
-   ![Step3](../../../assets/tidb-4.png)
-   ![Step4](../../../assets/tidb-5.png)
-   ![Step5](../../../assets/tidb-6.png)
+2. 左側清單選擇 <kbd>SQL Editor</kbd>，並將 [waline.tidb](https://github.com/walinejs/waline/blob/main/assets/waline.tidb) 的內容以 `;` 為語句分隔貼到介面中執行。每貼一句就點選右上角的<kbd>執行</kbd>藍色按鈕，或者使用 <kbd>Ctrl\/Command</kbd> + <kbd>Enter</kbd> 快速鍵執行
+   ![步驟1](../../../assets/tidb-2.png)
+   ![步驟2](../../../assets/tidb-3.png)
+   ![步驟3](../../../assets/tidb-4.png)
+   ![步驟4](../../../assets/tidb-5.png)
+   ![步驟5](../../../assets/tidb-6.png)
 
-So far the Waline database has been created!
+至此 Waline 資料庫就已經建立完成！
 
-## Get Connection Configuration
+## 取得連線設定
 
-Click the <kbd>Overview</kbd> button on the left to enter the homepage, and select <kbd>Connect</kbd> in the upper right corner to get connection information.
+點選左側的 <kbd>Overview</kbd> 按鈕進入首頁，選擇右上角的 <kbd>Connect</kbd> 取得連線資訊。
 
-Set "Connect with" to `General`. Also click <kbd>Reset password</kbd> on the following line to generate a new password.
+Connect with 選擇 `General`。此外還需要點選下一行的 <kbd>Reset password</kbd> 產生新密碼。
 
-In this way, you can get the configuration related to the connection.
+這樣你就能取得連線相關的設定了。
 
-![Connection](../../../assets/tidb-7.png)
+![取得連線設定](../../../assets/tidb-7.png)
 
-## Vercel deployment
+## Vercel 部署
 
-Create a Vercel account, add a project and deploy the Waline service. Then open the project <kbd>Settings</kbd> and go to `Environment Variables`. Click <kbd>Add Environment Variable</kbd> and add the following variables: `TIDB_HOST`, `TIDB_PORT`, `TIDB_DB`, `TIDB_USER`, and `TIDB_PASSWORD`. After adding these variables, redeploy the project.
+建立 Vercel 帳號並建立專案和部署好 Waline 服務，然後點選左側的 <kbd>Settings</kbd> 選單項目，再找到 `Environment Variables` 設定項目，點選右上角的 <kbd>Add Environment Variable</kbd> 按鈕，依序填寫 `TIDB_HOST`、`TIDB_PORT`、`TIDB_DB`、`TIDB_USER` 和 `TIDB_PASSWORD` 的參數資訊，然後重新部署服務即可。
 
-![Configure TiDB connection](../../../assets/tidb-8.png)
+![設定 TiDB 資料庫連線](../../../assets/tidb-8.png)

@@ -1,30 +1,30 @@
 ---
-title: Article Reactions
+title: 文章反應
 icon: reaction
 order: 4
 ---
 
-Waline allows users to express reactions for article content.
+Waline 允許使用者表達對文章內容的反應。
 
 <!-- more -->
 
-## Getting Started
+## 快速啟用
 
-To quickly enable reactions, you can set the `reaction` option to `true` to display a default list of reactions:
+想要快速啟用反應，你可以在初始化時設定 `reaction` 選項為 `true` 來顯示預設的反應清單:
 
 ```js
 Waline.init({
   el: '#waline',
   // ...
-  reaction: true, // start the reaction
+  reaction: true, // 開啟反應
 });
 ```
 
-Waline will display the default list of reactions above the comment box.
+Waline 會在留言框的上方，顯示預設的反應清單。
 
-## Customize Reactions
+## 自訂反應
 
-If you need to customize these reaction emoticons, you can pass in an array containing the link of the reaction emoticon image, representing reactions you want the user to choose with:
+如果你需要自訂這些反應表情，你可以傳入一個包含反應表情圖片網址的陣列，表達你想要使用者選擇的反應:
 
 ```js
 Waline.init({
@@ -39,20 +39,20 @@ Waline.init({
 });
 ```
 
-Meanwhile, you can customize the title of the reaction through `reactionTitle` in `locale`, and you can also customize the name of the reaction expression through `reaction0` to `reaction8`, see [Multilingual Settings](./i18n.md) .
+同時，你可以透過 `locale` 中的 `reactionTitle` 來自訂反應的標題，也可以透過 `reaction0` 到 `reaction8` 來自訂反應表情的名稱，詳見 [多語言設定](./i18n.md)。
 
-## Precautions
+## 注意事項
 
-::: tip Number Limitation
+::: tip 數量限制
 
-Waline supports up to 9 reactions, and you can add less than 9 reactions without any problems.
+Waline 最多支援 9 個反應，新增的反應數量可以小於 9 個，這不會產生任何問題。
 
 :::
 
-::: warning Counting Rules
+::: warning 計數規則
 
-Counting of reactions is based on location.
+反應的計數是基於位置的。
 
-If you need to reorder and adjust the reactions, check [#1451](https://github.com/walinejs/waline/issues/1451#issuecomment-1264555264) for more details.
+如果你需要對反應重新進行排序與調整，可參見 [#1451](https://github.com/walinejs/waline/issues/1451#issuecomment-1264555264)。
 
 :::

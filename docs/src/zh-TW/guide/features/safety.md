@@ -1,55 +1,55 @@
 ---
-title: Security
+title: 安全性
 icon: safe
 order: -10
 ---
 
-The security of the Waline commenting system is our top priority. We'll cover Waline's security here.
+Waline 留言系統的安全性是我們的首要考量。我們將在這裡介紹 Waline 的安全性。
 
 <!-- more -->
 
-## Comment Security
+## 留言安全
 
-### Anti-XSS Attack
+### 防範 XSS 攻擊
 
-Waline uses [DOMPurify](https://github.com/cure53/DOMPurify) to filter each comment input on the server side to prevent potential XSS attacks. This means you won't be able to use `<iframe>` or any form of scripting.
+Waline 在伺服器端使用 [DOMPurify](https://github.com/cure53/DOMPurify) 過濾每一筆留言輸入，以防止潛在的 XSS 攻擊。這意味著你將不能使用 `<iframe>` 以及任何形式的腳本。
 
-### Prevent link tracking
+### 防止連結追蹤
 
-All links will be automatically set to `rel="noreferrer noopener"` and open in a new window with `target="_blank"`.
+所有的連結都會被自動設定 `rel="noreferrer noopener"` 並使用 `target="_blank"` 在新視窗中開啟。
 
-### Prevent Malicious Content Implantation
+### 防止惡意內容植入
 
-- In order to prevent users from creating submittable forms in the comment area to trick other visitors into submitting information, you cannot use `<form>` and `<input>`
+- 為了防止使用者在留言區建立可提交的表單欺騙其他訪客提交資訊，你無法使用 `<form>` 與 `<input>`
 
-- In order to prevent users from using styles to modify website pages or modify their own comment styles to plant spam ads, the `<style>` tag and the `style` attribute on the element are not available.
+- 為了防止使用者利用樣式篡改網站頁面或修改自身留言樣式植入垃圾廣告，`<style>` 標籤和元素上的 `style` 屬性均不可用。
 
-- To prevent users from abusing media autoplay functionality, you cannot use the `autoplay` attribute.
+- 為了防止使用者濫用媒體自動播放功能，你無法使用 `autoplay` 屬性。
 
-### Prevent Forgery
+### 防止偽造
 
-Waline supports an account system, so you can force users to register and log in with an account. This way visitors won't be able to fake other people's comments.
+Waline 支援帳號系統，所以你可以強制使用者註冊並使用帳號登入。這樣訪客將不能偽造其他人發表留言。
 
-To enable this feature, you need to set mandatory login on both client and server, see [`login`](../../reference/client/props.md#login) and [`LOGIN`](../../reference/server/env.md#basic) for details.
+為了啟用這個功能，你需要在客戶端和伺服器同時設定強制登入，詳見 [`login`](../../reference/client/props.md#login) 和 [`LOGIN`](../../reference/server/env.md#主要設定)。
 
-## Site Security
+## 網站安全
 
-### Frequency Limit
+### 頻率限制
 
-To prevent users from commenting, Waline will restrict commenting IP. By default, the same IP can only send one comment within a minute. You can change this limit in [Server Reference → Environment Variables](../../reference/server/env.md#safety).
+為了防止使用者頻繁留言，Waline 會針對留言 IP 進行限制。在預設情況下，同一 IP 一分鐘內只能傳送一則留言。你可以在 [伺服器參考 → 環境變數](../../reference/server/env.md#安全) 中修改這個限制。
 
-### Prevent flooding
+### 防止洗版
 
-Waline will detect existing comments when entering comments, and if it detects a comment with too high similarity, it will reject the corresponding comment. Those who can prevent flooding to a certain extent.
+Waline 在寫入留言時會對既有留言進行偵測，如果偵測到相似度過高的留言，將會拒絕相應留言。這可以在一定程度上防止洗版。
 
-### Comment Review
+### 留言審核
 
-When your site is under malicious attack, during sensitive periods or when you are busy, you can enable the comment review feature. For details, see [Server Reference→Environment Variables](../../reference/server/env.md#safety) .
+在你的網站遭受惡意攻擊、敏感時期或你忙碌的時候，你可以開啟留言審核功能，詳見 [伺服器參考 → 環境變數](../../reference/server/env.md#安全)。
 
-When comment review is enabled, all new comments will be hidden by default. You can view and review comments in the Waline management terminal or the comment box on the corresponding page. Only the comments you approved can be displayed.
+留言審核開啟期間，所有新增留言會預設隱藏，你可以在 Waline 管理端或相應頁面的留言框中查看並審核留言，只有你審核通過的留言才會被顯示。
 
-## Data Security
+## 資料安全
 
-Since Waline have server side, no body can tamper with comment data or pageviews.
+由於 Waline 擁有伺服器，任何人無法篡改留言資料或瀏覽量。
 
-Meanwhile, you can set `DISABLE_USERAGENT` and `DISABLE_REGION` variables on the server side to prevent others from viewing the UA and geographic location of user comments.
+同時，你可以在伺服器設定 `DISABLE_USERAGENT` 和 `DISABLE_REGION` 變數，阻止他人查看使用者留言的 UA 和地理位置。

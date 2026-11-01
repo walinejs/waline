@@ -1,29 +1,29 @@
 ---
-title: CSS variable
+title: CSS 變數
 icon: style
 ---
 
-`@waline/client` provides some CSS variables. You can easily configure the style of waline through these variables.
+`@waline/client` 提供了一些 CSS 變數。你可以很輕鬆地透過這些變數設定 Waline 的樣式。
 
 <!-- more -->
 
-## CSS Variables Name and Default Values
+## 提供的變數與預設值
 
 ```css
 :root {
-  /* Font Size */
+  /* 字體大小 */
   --waline-font-size: 16px;
 
-  /* Regular color */
+  /* 一般顏色 */
   --waline-white: #fff;
   --waline-light-grey: #999;
   --waline-dark-grey: #666;
 
-  /* Theme Color */
+  /* 主題色 */
   --waline-theme-color: #27ae60;
   --waline-active-color: #2ecc71;
 
-  /* Layout Color */
+  /* 版面顏色 */
   --waline-color: #444;
   --waline-bg-color: #fff;
   --waline-bg-color-light: #f8f8f8;
@@ -33,36 +33,36 @@ icon: style
   --waline-disable-color: #bbb;
   --waline-code-bg-color: #282c34;
 
-  /* Special Color */
+  /* 特殊顏色 */
   --waline-bq-color: #f0f0f0;
 
-  /* Avatar */
+  /* 頭像 */
   --waline-avatar-size: 3.25rem;
   --waline-m-avatar-size: calc(var(--waline-avatar-size) * 9 / 13);
 
-  /* Badge */
+  /* 徽章 */
   --waline-badge-color: #3498db;
   --waline-badge-font-size: 0.775em;
 
-  /* Information */
+  /* 資訊 */
   --waline-info-bg-color: #f8f8f8;
   --waline-info-color: #999;
   --waline-info-font-size: 0.625em;
 
-  /* Render choice */
+  /* 渲染選擇 */
   --waline-border: 1px solid var(--waline-border-color);
   --waline-avatar-radius: 50%;
   --waline-box-shadow: none;
 }
 
-/* ↓ Based on user settings */
+/* 根據使用者設定 ↓ */
 darkmode-selector {
-  /* Regular color */
+  /* 一般顏色 */
   --waline-white: #000;
   --waline-light-grey: #666;
   --waline-dark-grey: #999;
 
-  /* Layout color */
+  /* 版面顏色 */
   --waline-color: #888;
   --waline-bg-color: #1e1e1e;
   --waline-bg-color-light: #272727;
@@ -70,10 +70,10 @@ darkmode-selector {
   --waline-disable-bg-color: #444;
   --waline-disable-color: #272727;
 
-  /* Special color */
+  /* 特殊顏色 */
   --waline-bq-color: #272727;
 
-  /* Other color */
+  /* 其他顏色 */
   --waline-info-bg-color: #272727;
   --waline-info-color: #666;
 }
