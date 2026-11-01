@@ -1,41 +1,41 @@
 ---
-title: Component Props
+title: Propiedades del componente
 icon: config
 ---
 
 ## serverURL
 
-- Type: `string`
-- Required: Yes
+- Tipo: `string`
+- Obligatorio: Sí
 
-Waline server address url
+Dirección URL del servidor de Waline
 
 ## path
 
-- Type: `string`
-- Default: `window.location.pathname`
+- Tipo: `string`
+- Valor predeterminado: `window.location.pathname`
 
-Article path id. Used to distinguish different _article pages_ to ensure loading the correct comment list under the _article page_.
+Identificador de ruta del artículo. Sirve para distinguir las distintas _páginas de artículo_ y garantizar que se cargue la lista de comentarios correcta en cada _página de artículo_.
 
 ::: warning
 
-Please ensure the uniqueness of each _article page_ path, otherwise the same comment list may be loaded .
+Asegúrate de que la ruta de cada _página de artículo_ sea única; de lo contrario, podría cargarse la misma lista de comentarios.
 
-- e.g. 1: If on your site `/example/path/` and `/example/path` is the same page, you should probably set `window.location.pathname.replace(/\/$/,'')`.
-- e.g. 2: If you store en docs at root, while serve other language docs at `/zh/`, `/ja/`, etc, you should probably set `window.location.pathname.replace(/^\/(fr|jp|zh)\//, '/')`.
+- Ej. 1: si en tu sitio `/example/path/` y `/example/path` son la misma página, probablemente debas usar `window.location.pathname.replace(/\/$/,'')`.
+- Ej. 2: si guardas la documentación en inglés en la raíz y sirves la de otros idiomas en `/zh/`, `/ja/`, etc., probablemente debas usar `window.location.pathname.replace(/^\/(fr|jp|zh)\//, '/')`.
 
 :::
 
 ## lang
 
-- Type: `string`
-- Default: `navigator.language`
-- Details:
-  - [Guide → I18n](../../guide/features/i18n.md#set-language)
+- Tipo: `string`
+- Valor predeterminado: `navigator.language`
+- Detalles:
+  - [Guía → I18n](../../guide/features/i18n.md#establecer-el-idioma)
 
-Display language.
+Idioma de visualización.
 
-Optional value:
+Valores opcionales:
 
 - `'zh'`
 - `'zh-CN'`
@@ -63,16 +63,16 @@ Optional value:
 
 ## locale
 
-- Type: `WalineLocale`
-- Default: Built-in value based on `lang`
-- Details:
-  - [Cookbook → Customize Locale](../../cookbook/customize/locale.md)
+- Tipo: `WalineLocale`
+- Valor predeterminado: valor integrado según `lang`
+- Detalles:
+  - [Recetario → Personalizar el idioma](../../cookbook/customize/locale.md)
 
-Waline Locales.
+Configuración regional de Waline.
 
 ## emoji
 
-- Type: `(string | WalineEmojiInfo)[] | boolean`
+- Tipo: `(string | WalineEmojiInfo)[] | boolean`
 
   ```ts
   type WalineEmojiPresets = `http://${string}` | `https://${string}`;
@@ -93,55 +93,55 @@ Waline Locales.
   }
   ```
 
-- Default: `['//unpkg.com/@waline/emojis@1.1.0/weibo']`
-- Details:
-  - [Guide → Emoji](../../guide/features/emoji.md)
+- Valor predeterminado: `['//unpkg.com/@waline/emojis@1.1.0/weibo']`
+- Detalles:
+  - [Guía → Emoji](../../guide/features/emoji.md)
 
-Emoji settings.
+Configuración de los emojis.
 
 ## dark
 
-- Type: `string | boolean`
-- Default: `false`
+- Tipo: `string | boolean`
+- Valor predeterminado: `false`
 
-Darkmode support
+Compatibilidad con el modo oscuro
 
-- Setting a boolean will set the dark mode according to its value.
-- Set it to `'auto'` will display darkmode due to device settings.
-- Filling in a CSS selector will enable darkmode only when the selector match waline ancestor nodes.
+- Si se indica un valor booleano, el modo oscuro se activará o desactivará según ese valor.
+- Si lo estableces en `'auto'`, el modo oscuro se mostrará según la configuración del dispositivo.
+- Si indicas un selector CSS, el modo oscuro solo se activará cuando el selector coincida con algún nodo antecesor de Waline.
 
-::: tip Examples
+::: tip Ejemplos
 
-- **Docusaurus**: It will enable darkmode by setting `data-theme="dark"` on the `<html>` tag itself. So you need to set `'html[data-theme="dark"]'` as `dark` option.
+- **Docusaurus**: activa el modo oscuro estableciendo `data-theme="dark"` en la propia etiqueta `<html>`. Por eso debes usar `'html[data-theme="dark"]'` como opción `dark`.
 
-- **hexo-theme-fluid**: It will enable darkmode by setting `data-user-color-scheme="dark"` on the `<html>` tag itself. So you need to set `'html[data-user-color-scheme="dark"]'` as `dark` option.
+- **hexo-theme-fluid**: activa el modo oscuro estableciendo `data-user-color-scheme="dark"` en la propia etiqueta `<html>`. Por eso debes usar `'html[data-user-color-scheme="dark"]'` como opción `dark`.
 
-- **vuepress-theme-hope**: It will enable darkmode by setting `theme-dark` class on the `<body>` tag itself. So you need to set `'body.theme-dark'` as `dark` option.
+- **vuepress-theme-hope**: activa el modo oscuro añadiendo la clase `theme-dark` a la propia etiqueta `<body>`. Por eso debes usar `'body.theme-dark'` como opción `dark`.
 
 :::
 
-For details of custom style and darkmode, please see [Custom Style](../../guide/features/style.md).
+Para más detalles sobre estilos personalizados y el modo oscuro, consulta [Estilos personalizados](../../guide/features/style.md).
 
 ## commentSorting
 
-- Type: `WalineCommentSorting`
-- Default: `'latest'`
+- Tipo: `WalineCommentSorting`
+- Valor predeterminado: `'latest'`
 
-Comment list sorting methods. Optional values: `'latest'`, `'oldest'`, `'hottest'`
+Métodos de ordenación de la lista de comentarios. Valores opcionales: `'latest'`, `'oldest'`, `'hottest'`
 
 ## meta
 
-- Type: `string[]`
-- Default: `['nick','mail','link']`
+- Tipo: `string[]`
+- Valor predeterminado: `['nick','mail','link']`
 
-Reviewer attributes. Optional values: `'nick'`, `'mail'`, `'link'`
+Atributos del usuario que comenta. Valores opcionales: `'nick'`, `'mail'`, `'link'`
 
 ## requiredMeta
 
-- Type: `string[]`
-- Default: `[]`
+- Tipo: `string[]`
+- Valor predeterminado: `[]`
 
-Set required fields, default anonymous, optional values:
+Campos obligatorios; de forma predeterminada, el comentario es anónimo. Valores opcionales:
 
 - `[]`
 - `['nick']`
@@ -149,85 +149,85 @@ Set required fields, default anonymous, optional values:
 
 ## login
 
-- Type: `string`
-- Default value: `'enable'`
+- Tipo: `string`
+- Valor predeterminado: `'enable'`
 
-Login mode status, optional values:
+Estado del modo de inicio de sesión, valores opcionales:
 
-- `'enable'`: enable login (default)
-- `'disable'`: Login is disabled, users should fill in information to comment
-- `'force'`: Forced login, users must login to comment
+- `'enable'`: se permite iniciar sesión (predeterminado)
+- `'disable'`: el inicio de sesión está desactivado, los usuarios deben rellenar sus datos para comentar
+- `'force'`: inicio de sesión obligatorio, los usuarios deben iniciar sesión para comentar
 
 ## wordLimit
 
-- Type: `number | [number, number]`
-- Default: `0`
+- Tipo: `number | [number, number]`
+- Valor predeterminado: `0`
 
-Comment word s limit. When a single number is filled in, it 's the maximum number of comment words. No limit when set to `0`.
+Límite de palabras del comentario. Si indicas un solo número, es el número máximo de palabras del comentario. No hay límite cuando se establece en `0`.
 
 ## pageSize
 
-- Type: `number`
-- Default: `10`
+- Tipo: `number`
+- Valor predeterminado: `10`
 
-number of comments per page.
+Número de comentarios por página.
 
 ## imageUploader
 
-- Type: `WalineImageUploader | boolean`
+- Tipo: `WalineImageUploader | boolean`
 
   ```ts
   type WalineImageUploader = (image: File) => Promise<string>;
   ```
 
-- Required: No
+- Obligatorio: No
 
-- Details:
-  - [Cookbook → Upload Image](../../cookbook/customize/upload-image.md)
+- Detalles:
+  - [Recetario → Subir imágenes](../../cookbook/customize/upload-image.md)
 
-Custom image upload method. The default behavior is to embed images Base 64 encoded, you can set this to `false` to disable image uploading.
+Método personalizado para subir imágenes. De forma predeterminada, las imágenes se incrustan codificadas en Base 64; puedes establecerlo en `false` para desactivar la subida de imágenes.
 
-The function should receive an image object and return a Promise that provides the image address.
+La función debe recibir un objeto de imagen y devolver una Promise que proporcione la dirección de la imagen.
 
 ## highlighter
 
-- Type: `WalineHighlighter | boolean`
+- Tipo: `WalineHighlighter | boolean`
 
   ```ts
   type WalineHighlighter = (code: string, lang: string) => string;
   ```
 
-- Required: No
+- Obligatorio: No
 
-- Details:
-  - [Cookbook → Customize Highlighter](../../cookbook/customize/highlighter.md)
+- Detalles:
+  - [Recetario → Personalizar el resaltador](../../cookbook/customize/highlighter.md)
 
-**Code highlighting**, use `hanabi` by default. The function passes in original content of code block and language of the code block. You should return a string directly.
+**Resaltado de código**; de forma predeterminada se usa `hanabi`. La función recibe el contenido original del bloque de código y el lenguaje del bloque. Debe devolver directamente una cadena.
 
-You can pass in a code highlighter of your own, or set to `false` to disable code highlighting.
+Puedes usar tu propio resaltador de código o establecerlo en `false` para desactivar el resaltado.
 
 ## texRenderer
 
-- Type: `WalineTeXRenderer | boolean`
+- Tipo: `WalineTeXRenderer | boolean`
 
   ```ts
   type WalineTeXRenderer = (blockMode: boolean, tex: string) => string;
   ```
 
-- Required: No
+- Obligatorio: No
 
-- Details:
-  - [Cookbook → Customize $\TeX$ Renderer](../../cookbook/customize/tex-renderer.md)
+- Detalles:
+  - [Recetario → Personalizar el renderizador de $\TeX$](../../cookbook/customize/tex-renderer.md)
   - [MathJax](https://www.mathjax.org/)
   - [KaTeX](https://katex.org/)
 
-Customize $\TeX$ rendering, the default behavior is to prompt that the preview mode does not support $\TeX$. The function provides two parameters, the first parameter indicates whether it should be rendered in block level, and the second parameter is the string of the $\TeX$ content, and return a HTML string as render result.
+Personaliza el renderizado de $\TeX$; de forma predeterminada se muestra un aviso de que el modo de vista previa no admite $\TeX$. La función recibe dos parámetros: el primero indica si debe renderizarse a nivel de bloque y el segundo es la cadena con el contenido $\TeX$; debe devolver una cadena HTML como resultado del renderizado.
 
-You can import $\TeX$ renderer to provide preview feature. We recommend you to use KaTeX or MathJax, or you can set to `false` to disable parsing $\TeX$.
+Puedes importar un renderizador de $\TeX$ para ofrecer la vista previa. Te recomendamos usar KaTeX o MathJax, o puedes establecerlo en `false` para desactivar el análisis de $\TeX$.
 
 ## search
 
-- Type: `WalineSearchOptions | boolean`
+- Tipo: `WalineSearchOptions | boolean`
 
   ```ts
   interface WalineSearchImageData extends Record<string, unknown> {
@@ -276,47 +276,47 @@ You can import $\TeX$ renderer to provide preview feature. We recommend you to u
   }
   ```
 
-- Required: No
-- Details:
-  Customize search features, you can disable search function by setting it to `false`.
+- Obligatorio: No
+- Detalles:
+  Personaliza la función de búsqueda; puedes desactivarla estableciéndola en `false`.
 
 ## noCopyright
 
-- Type: `boolean`
-- Default: `false`
+- Tipo: `boolean`
+- Valor predeterminado: `false`
 
-Whether hide copyright and version in footer.
+Indica si se ocultan el copyright y la versión en el pie de página.
 
 ::: tip
 
-We hope you can keep it on to support Waline.
+Esperamos que lo mantengas activo para apoyar a Waline.
 
 :::
 
 ## noRss
 
-- Type: `boolean`
-- Default: `false`
+- Tipo: `boolean`
+- Valor predeterminado: `false`
 
-Whether to hide RSS subscription links.
+Indica si se ocultan los enlaces de suscripción RSS.
 
 ## recaptchaV3Key
 
-- Type: `string`
-- Required: No
+- Tipo: `string`
+- Obligatorio: No
 
-reCAPTCHA V3 is a captcha service provided by Google. You can add reCAPTCHA V3 site key with `recaptchaV3Key` to enable it. Notice you should also set environment variable `RECAPTCHA_V3_SECRET` for server.
+reCAPTCHA V3 es un servicio captcha de Google. Puedes añadir la clave de sitio de reCAPTCHA V3 con `recaptchaV3Key` para activarlo. Ten en cuenta que también debes configurar la variable de entorno `RECAPTCHA_V3_SECRET` en el servidor.
 
 ## turnstileKey
 
-- Type: `string`
-- Required: No
+- Tipo: `string`
+- Obligatorio: No
 
-Turnstile is a captcha service provided by Cloudflare. You can add turnstile site key with `turnstileKey` to enable it. Notice you should also set environment variable `TURNSTILE_SECRET` for server.
+Turnstile es un servicio captcha de Cloudflare. Puedes añadir la clave de sitio de Turnstile con `turnstileKey` para activarlo. Ten en cuenta que también debes configurar la variable de entorno `TURNSTILE_SECRET` en el servidor.
 
 ## reaction
 
-- Type: `boolean | string[]`
-- Default: `false`
+- Tipo: `boolean | string[]`
+- Valor predeterminado: `false`
 
-Add emoji interaction function to the article, set it to `true` to provide the default emoji, you can also customize the emoji image by setting the emoji url array, and supports a maximum of 8 emojis.
+Añade la función de interacción con emojis al artículo: establece `true` para usar los emojis predeterminados, o personaliza las imágenes de los emojis indicando un array de URL de emojis. Admite un máximo de 8 emojis.

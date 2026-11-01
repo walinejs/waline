@@ -6,7 +6,7 @@ order: 1
 
 ::: info Waline
 
-Un sistema de comentarios simple con soporte de backend bifurcado de [Valine](https://valine.js.org).
+Un sistema de comentarios simple con soporte de backend, bifurcado de [Valine](https://valine.js.org).
 
 :::
 
@@ -15,11 +15,11 @@ Un sistema de comentarios simple con soporte de backend bifurcado de [Valine](ht
 ## Características
 
 - Rápido
-- **Realmente** Seguro
-- Soporte para sintaxis completa de markdown
+- **Realmente** seguro
+- Soporte para toda la sintaxis de Markdown
 - Simple y ligero
-- ¡Implementación gratuita!
-- Soporte de múltiples servicios de implementación y almacenamiento, ¡al menos 243 opciones de implementación!
+- ¡Despliegue gratuito!
+- Soporte para múltiples servicios de despliegue y almacenamiento, ¡al menos 243 opciones de despliegue!
 
 |                                                 | Waline                                                              |                                    |
 | ----------------------------------------------- | ------------------------------------------------------------------- | ---------------------------------- |
@@ -32,7 +32,7 @@ Un sistema de comentarios simple con soporte de backend bifurcado de [Valine](ht
 |                                                 | [Netlify](https://netlify.com)                                      | [CloudBase](https://cloudbase.net) |
 |                                                 | [Alibaba Cloud ComputeNest](https://computenest.console.aliyun.com) | [GitHub](https://github.com)       |
 |                                                 | Docker                                                              |                                    |
-|                                                 | auto-alojamiento                                                    |                                    |
+|                                                 | autoalojado                                                         |                                    |
 
 ## Tareas pendientes
 
@@ -42,21 +42,21 @@ Un sistema de comentarios simple con soporte de backend bifurcado de [Valine](ht
 - [x] Akismet
 - [x] i18n
 - [x] Idioma personalizado
-- [x] Vistas de página
+- [x] Visitas a la página
 - [x] Reacción al artículo
 - [x] Soporte de inicio de sesión
 - [x] Etiqueta de usuario
 - [x] Gestión de comentarios
 - [x] Soporte para eliminar comentarios
-- [x] Más soporte de bases de datos
+- [x] Compatibilidad con más bases de datos
 - [x] Limitar la frecuencia de comentarios publicados por IP
 - [x] Restricciones de palabras clave en comentarios
-- [x] Lista de bloqueo de IP
+- [x] Lista de IP no permitidas
 - [x] Verificación de contenido duplicado
-- [x] Soporte de implementación CloudBase
-- [x] Inicio de sesión con cuenta social
+- [x] Soporte de despliegue en CloudBase
+- [x] Inicio de sesión con cuentas sociales
 - [x] Comentario fijado
-- [x] Me gusta en comentarios
-- [ ] Soporte de implementación AWS, GCP, Azure
+- [x] «Me gusta» en comentarios
+- [ ] Soporte de despliegue en AWS, GCP y Azure
 
-¡Realmente te damos la bienvenida para contribuir a Waline!
+¡**Realmente** te damos la bienvenida a contribuir con waline!

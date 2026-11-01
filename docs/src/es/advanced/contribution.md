@@ -1,28 +1,28 @@
 ---
-title: Development Guide
+title: Guía de desarrollo
 icon: contribute
 order: -1
 ---
 
-We welcome everyone to open Pull Requests for waline! :tada:
+¡Damos la bienvenida a todos a abrir Pull Requests para waline! :tada:
 
-If you want to contribute to waline, here is a guide.
+Si quieres contribuir a waline, aquí tienes una guía.
 
 <!-- more -->
 
-## Preparation
+## Preparación
 
-1. Use Git to clone the project
+1. Usa Git para clonar el proyecto
 
    ```bash
    git clone https://github.com/walinejs/waline.git
    ```
 
-1. Installation dependencies
+1. Instala las dependencias
 
    ::: warning
 
-   Install and use pnpm to install dependencies.
+   Instala y usa pnpm para instalar las dependencias.
 
    ```bash
    corepack enable
@@ -35,22 +35,22 @@ If you want to contribute to waline, here is a guide.
    pnpm ci
    ```
 
-## Development
+## Desarrollo
 
-- Run `pnpm run client:dev` to start `@waline/client` devServer
+- Ejecuta `pnpm run client:dev` para iniciar el devServer de `@waline/client`
 
   ::: tip
 
-  Since waline is based on Client/Server architecture, when debugging a client, you need to set `SERVERURL`, or start server devServer below at the same time and use the default `localhost:9090`.
+  Como waline se basa en una arquitectura Cliente/Servidor, al depurar un cliente necesitas configurar `SERVERURL`, o iniciar al mismo tiempo el devServer del servidor que se indica abajo y usar el `localhost:9090` predeterminado.
 
   :::
 
-- Run `pnpm run server:dev` to start `@waline/server` devServer
+- Ejecuta `pnpm run server:dev` para iniciar el devServer de `@waline/server`
 
   ::: tip
 
-  In order to run `@waline/server` locally, you need to configure some local environment variables to `.env`.
+  Para ejecutar `@waline/server` en local, necesitas configurar algunas variables de entorno locales en `.env`.
 
-  We provide an example for you in `.env.example`.
+  Te proporcionamos un ejemplo en `.env.example`.
 
   :::

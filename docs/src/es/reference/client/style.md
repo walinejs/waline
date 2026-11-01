@@ -1,13 +1,13 @@
 ---
-title: CSS variable
+title: Variables CSS
 icon: style
 ---
 
-`@waline/client` provides some CSS variables. You can easily configure the style of waline through these variables.
+`@waline/client` ofrece algunas variables CSS con las que puedes configurar fácilmente el estilo de Waline.
 
 <!-- more -->
 
-## CSS Variables Name and Default Values
+## Nombres de las variables CSS y valores predeterminados
 
 ```css
 :root {

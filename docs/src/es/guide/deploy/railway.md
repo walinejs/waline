@@ -1,34 +1,34 @@
 ---
-title: Railway Deployment
+title: Despliegue en Railway
 icon: railway
 ---
 
-[Railway](https://railway.app/) is a free Serverless platform, we can deploy Waline to Railway platform easily.
+[Railway](https://railway.app/) es una plataforma Serverless gratuita con la que puedes desplegar Waline fácilmente.
 
 <!-- more -->
 
-## How to Deploy
+## Cómo desplegar
 
 [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template/UZB84v?referralCode=lizheming)
 
-Click this button and it'll redirect to railway.app platform to quickly deploy. You can input your new GitHub repo name or just use default after login, then click <kbd>Deploy</kbd> button at the bottom to deploy. You should notice that the part of environment variables should not be modified.
+Haz clic en este botón y te redirigirá a la plataforma railway.app para desplegar rápidamente. Después de iniciar sesión, puedes escribir el nombre de tu nuevo repositorio de GitHub o dejar el predeterminado; luego haz clic en el botón <kbd>Deploy</kbd> de la parte inferior para desplegar. Ten en cuenta que la sección de variables de entorno no debe modificarse.
 
 ![railway1](../../../assets/railway-1.jpg)
 
-After a moment you will redirect to dashboard page. Click <kbd>PostgreSQL</kbd> - <kbd>Query</kbd> and paste [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) this file content into textarea, then click <kbd>Run Query</kbd> button at the bottom to initialized database.
+Al cabo de un momento te redirigirá al panel de control. Haz clic en <kbd>PostgreSQL</kbd> - <kbd>Query</kbd>, pega el contenido del archivo [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) en el área de texto y haz clic en el botón <kbd>Run Query</kbd> de la parte inferior para inicializar la base de datos.
 
 ![railway2](../../../assets/railway-2.jpg)
 
-At last you can click <kbd>Deployments</kbd> - <kbd>Domains</kbd> to get server URL. Copy the site url and input it into client `serverURL` configuration. Then you can enjoy waline!
+Por último, puedes hacer clic en <kbd>Deployments</kbd> - <kbd>Domains</kbd> para obtener la URL del servidor. Copia la URL del sitio y escríbela en la configuración `serverURL` del cliente. ¡Y ya puedes disfrutar de Waline!
 
 ![railway3](../../../assets/railway-3.jpg)
 
-## How to Update
+## Cómo actualizar
 
-Go to the corresponding GitHub repository and modify the version number of `@waline/vercel` in the package.json file to the latest.
+Ve al repositorio de GitHub correspondiente y cambia el número de versión de `@waline/vercel` en el archivo package.json a la última.
 
-## How to Modify Environment Variables
+## Cómo modificar las variables de entorno
 
-Click <kbd>Variables</kbd> Tab to go to enviroment variables management page. It will deploy automatically after variable was changed.
+Haz clic en la pestaña <kbd>Variables</kbd> para ir a la página de gestión de variables de entorno. El despliegue se hará automáticamente cuando cambies una variable.
 
 ![railway4](../../../assets/railway-4.jpg)

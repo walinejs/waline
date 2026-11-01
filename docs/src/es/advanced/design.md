@@ -1,26 +1,26 @@
 ---
-title: Design Goal
+title: Objetivo del diseño
 icon: goal
 order: 2
 ---
 
-[Valine](https://valine.js.org) an exquisite style, simple operation, and efficient deployment review system. The first time I came into contact, I was attracted by its exquisite style and serverless characteristics. It doesn't require the backend service. The frontend interacts with the LeanCloud storage service directly, which is really cool! But as I understand deeper, I find out it's problems.
+[Valine](https://valine.js.org) es un sistema de comentarios de estilo refinado, operación sencilla y despliegue eficiente. La primera vez que lo conocí, me atrajeron su estilo refinado y sus características serverless. No necesita un servicio de backend: el frontend interactúa directamente con el servicio de almacenamiento de LeanCloud, ¡lo cual es realmente genial! Pero a medida que lo fui entendiendo mejor, descubrí sus problemas.
 
-## Problem of Valine
+## Los problemas de Valine
 
-### Not Open Source
+### No es de código abierto
 
-The author only push the compiled files to the GitHub repository starting from version `1.4.0`, and the source code stop updating. May be the author have a broken heart in open source. While for users like me who want to add or modify project, this problem is a bit uncomfortable.
+El autor solo subió los archivos compilados al repositorio de GitHub a partir de la versión `1.4.0`, y el código fuente dejó de actualizarse. Puede que el autor se haya desilusionado del código abierto. Para usuarios como yo, que quieren añadir o modificar cosas del proyecto, este problema resulta algo incómodo.
 
 ### XSS
 
-Since the very early version, users have reported Valine's XSS problems, and the community is also using various methods to fix these problems. Including the addition of verification codes, frontend XSS filtering and other methods. However, the author later realized that all the frontend verification can only prevent the gentleman, so the restriction such as verification code is removed.
+Desde versiones muy tempranas, los usuarios han reportado problemas de XSS en Valine, y la comunidad también ha usado diversos métodos para corregirlos, incluida la adición de códigos de verificación, el filtrado XSS en el frontend y otras técnicas. Sin embargo, el autor comprendió después que toda la verificación en el frontend solo puede detener a las personas honestas, así que eliminó restricciones como el código de verificación.
 
-Now when the frontend publishes a comment, Markdown will be converted into HTML, and then execute an XSS filter function on the frontend before be submitted to LeanCloud. After getting the data from LeanCloud, it is directly inserted to DOM. Obviously, the process is problematic. As long as the HTML is submitted directly and displayed directly after the HTML is obtained, XSS cannot be eradicated fundamentally.
+Ahora, cuando el frontend publica un comentario, Markdown se convierte en HTML y luego se ejecuta una función de filtrado XSS en el frontend antes de enviarlo a LeanCloud. Después de obtener los datos de LeanCloud, se insertan directamente en el DOM. Obviamente, el proceso tiene problemas. Mientras el HTML se envíe directamente y se muestre directamente después de obtenerlo, el XSS no se puede erradicar de raíz.
 
-::: note Fundamental solution
+::: note Solución fundamental
 
-For stored XSS attacks, we can use escape HTML codes to solve them permanently. Just like old BBCode, only markdown content is submit to the database. The frontend reads the content and encodes all HTML before displaying it after Markdown conversion.
+Para los ataques XSS almacenados, podemos usar el escape de código HTML para resolverlos de forma permanente. Igual que en el viejo BBCode, solo el contenido de Markdown se envía a la base de datos. El frontend lee el contenido y codifica todo el HTML antes de mostrarlo tras la conversión de Markdown.
 
 ```js
 function encodeForHTML(str) {
@@ -34,34 +34,34 @@ function encodeForHTML(str) {
 }
 ```
 
-Since Valine is a serverless system, attackers can directly reach the storage stage. All precautions before data storage are invalid and can only be processed during the displaying process. Because all HTML cannot be parsed after being escaped, we can ensure that the converted HTML has no chance of being inserted.
+Como Valine es un sistema serverless, los atacantes pueden llegar directamente a la etapa de almacenamiento. Todas las precauciones anteriores al almacenamiento de datos son inútiles y solo se pueden aplicar durante el proceso de visualización. Como todo el HTML no se puede analizar después de escaparlo, podemos asegurar que el HTML convertido no tenga ninguna oportunidad de ser insertado.
 
-Since Valine is no longer open source, pull requests cannot be opened.
+Como Valine ya no es de código abierto, no se pueden abrir pull requests.
 
 :::
 
-Since the above method will completely restrict users in the scope of Markdown, Waline adds `DOMPurify` on the client side since `0.15.0` to prevent XSS. Besides the regular XSS sterilization:
+Como el método anterior limitaría por completo a los usuarios al ámbito de Markdown, Waline añade `DOMPurify` en el lado del cliente desde la versión `0.15.0` para prevenir el XSS. Además de la esterilización XSS habitual:
 
-- `<form>` and `<input>` are disabled
-- style inject is disabled
-- autoplay of the media is disabled
-- all external links will be processed and opened in a new window with rel of `noopener noreferrer`.
+- `<form>` e `<input>` están deshabilitados
+- la inyección de estilos está deshabilitada
+- la reproducción automática de los medios está deshabilitada
+- todos los enlaces externos se procesan y se abren en una ventana nueva con rel de `noopener noreferrer`.
 
-### Privacy Leak
+### Fuga de privacidad
 
-Besides direct access to storage, the attacker can also read any data directly. If a database field has read permission to everyone, the content of the field is completely transparent to the attacker.
+Además del acceso directo al almacenamiento, el atacante también puede leer cualquier dato directamente. Si un campo de la base de datos tiene permiso de lectura para todos, el contenido de ese campo es completamente transparente para el atacante.
 
-In the comment data, the two fields IP and mailbox contain the user's sensitive data. Mr.Deng wrote an article specifically to criticize the problem [Please stop using the Valine.js comment system immediately unless it fixes the user privacy leak](https://ttys3.net/post/hugo/please-stop-using-valine-js-comment-system-until-it-fixed-the-privacy-leaking-problem/). Even when the [JueJin](https://juejin.cn) community used LeanCloud in early years, the security problem of [disclosed user's mobile phone number](https://m.weibo.cn/detail/4568007327622344?cid=4568044392682999) was exposed.
+En los datos de los comentarios, los dos campos IP y correo contienen datos sensibles del usuario. El Sr. Deng escribió un artículo específicamente para criticar el problema [Please stop using the Valine.js comment system immediately unless it fixes the user privacy leak](https://ttys3.net/post/hugo/please-stop-using-valine-js-comment-system-until-it-fixed-the-privacy-leaking-problem/). Incluso cuando la comunidad [JueJin](https://juejin.cn) usaba LeanCloud en sus primeros años, se expuso el problema de seguridad de [revelar el número de teléfono móvil de los usuarios](https://m.weibo.cn/detail/4568007327622344?cid=4568044392682999).
 
-In order to circumvent this problem, the author of Valine added the `recordIP` configuration to set whether to allow recording of user IP. Since there is no server, it can only be solved by not storing the value.
+Para eludir este problema, el autor de Valine añadió la configuración `recordIP` para establecer si se permite registrar la IP del usuario. Como no hay servidor, solo se puede resolver dejando de almacenar el valor.
 
-There is still a problem with this option: Whether to record ip is based on the site owner's config, while commenters have no right to manage their own privacy.
+Esta opción sigue teniendo un problema: que se registre la IP depende de la configuración del propietario del sitio, mientras que los usuarios que comentan no tienen derecho a gestionar su propia privacidad.
 
-Leaking of email address are another major privacy issue. It is completely feasible to calculate and report the md5 of the user's email at frontend to obtain the Gravatar avatar. But if sending email notification when a comment being replied is needed, it is inevitable to store the original value of the user's email address. This problem can theoretically be solved by RSA encryption. The private key can be stored in the environment variable of LeanCloud. The client reports both the email md5 and the email encrypted by the public key. When LeanCloud wants to send email notifications, it reads the private key in the environment in the cloud function, and then decrypt to get the user email. However, considering the size and performance of the frontend RSA encryption library, it's not actual. Adding a server layer to filter sensitive information through the server side is definitely a better practice.
+La filtración de la dirección de correo electrónico es otro gran problema de privacidad. Es totalmente factible calcular y reportar el md5 del correo del usuario en el frontend para obtener el avatar de Gravatar. Pero si se necesita enviar una notificación por correo cuando alguien responde a un comentario, es inevitable almacenar el valor original del correo del usuario. En teoría, este problema se podría resolver con cifrado RSA. La clave privada se puede guardar en la variable de entorno de LeanCloud. El cliente reporta tanto el md5 del correo como el correo cifrado con la clave pública. Cuando LeanCloud quiere enviar notificaciones por correo, lee la clave privada del entorno en la función en la nube y descifra para obtener el correo del usuario. Sin embargo, considerando el tamaño y el rendimiento de la biblioteca de cifrado RSA en el frontend, no es práctico. Añadir una capa de servidor para filtrar la información sensible a través del servidor es sin duda una mejor práctica.
 
-### Read Statistics Tampering
+### Manipulación de las estadísticas de lectura
 
-Valien 1.2.0 adds the function of article reading statistics, the user visits the page and records the number of visits according to the url in the counter table in the background. Since the data needs to be updated every time the page is accessed, the permissions must be set to be writable in order to perform subsequent field updates. This creates a problem. In fact, the data can be updated to any value. If you interested in it, you can open the <https://valine.js.org/visitor.html> official website and enter the console and enter the following code to try. Remember to change the number back after trying it~
+Valine 1.2.0 añade la función de estadísticas de lectura de artículos: el usuario visita la página y se registra el número de visitas según la URL en la tabla counter del backend. Como los datos deben actualizarse cada vez que se accede a la página, los permisos deben ser de escritura para poder realizar las actualizaciones posteriores de los campos. Esto crea un problema: en realidad, los datos se pueden actualizar a cualquier valor. Si te interesa, puedes abrir el sitio oficial <https://valine.js.org/visitor.html>, entrar en la consola e introducir el siguiente código para probarlo. Recuerda devolver el número a su valor original después de probarlo~
 
 ```js
 const counter = new AV.Query('Counter');
@@ -70,12 +70,12 @@ resp[0].set('time', -100000).save();
 location.reload();
 ```
 
-Fortunately, the value of the `time` field is of type Number, so other values cannot be inserted. If the `time` field is of string type, it may be an XSS vulnerability. A possible solution to this problem is not to use the accumulative storage method. Changed to store a read-only access record for each visit, and use the `count()` method for statistics when reading. In this way, all data is read-only, which solves the problem of tampering. This solution also has a problem: when the amount of data is relatively large, it will cause a certain pressure on the query.
+Por suerte, el valor del campo `time` es de tipo Number, así que no se pueden insertar otros valores. Si el campo `time` fuera de tipo string, podría ser una vulnerabilidad XSS. Una posible solución a este problema es no usar el método de almacenamiento acumulativo. En su lugar, se almacena un registro de acceso de solo lectura por cada visita y se usa el método `count()` para las estadísticas al leer. De esta forma, todos los datos son de solo lectura, lo que resuelve el problema de la manipulación. Esta solución también tiene un problema: cuando la cantidad de datos es relativamente grande, generará cierta presión en las consultas.
 
-If it is based on remaining the original data, only server layer can be added to isolate the modification permissions.
+Si se basa en conservar los datos originales, solo se puede añadir una capa de servidor para aislar los permisos de modificación.
 
-## Born of Waline
+## El nacimiento de Waline
 
-Based on the above reasons, Waline was born. Waline's original goal was only to add backend to Valine, but because Valine is not open source, it can only be implemented with frontend. Of course, many codes and logic of the frontend have reference Valine in order to be consistent with Valine's configuration. Even in the project's name, I derived it from Valine, so that everyone can understand that this project is a derivative of Valine.
+Por las razones anteriores nació Waline. El objetivo original de Waline era solo añadir un backend a Valine, pero como Valine no es de código abierto, solo se pudo implementar con el frontend. Por supuesto, mucho código y lógica del frontend toman como referencia a Valine para ser coherentes con la configuración de Valine. Incluso el nombre del proyecto lo derivé de Valine, para que todos puedan entender que este proyecto es un derivado de Valine.
 
-Besides solving the above-mentioned security problems. the addition of the server side implement many features previously limited by no server side, including email notifications, spam comment filtering, etc.
+Además de resolver los problemas de seguridad mencionados, la adición del lado del servidor permite implementar muchas funciones que antes estaban limitadas por la ausencia de servidor, incluidas las notificaciones por correo, el filtrado de comentarios spam, etc.

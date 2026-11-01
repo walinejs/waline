@@ -1,52 +1,52 @@
 ---
-title: Client Files
+title: Archivos del cliente
 icon: file
 ---
 
-`@waline/client` provides multiple versions of files
+`@waline/client` ofrece varias versiones de archivos
 
 <!-- more -->
 
-## CDN File List
+## Lista de archivos CDN
 
-- `dist/waline.js`: full version, ESM format
+- `dist/waline.js`: versión completa, formato ESM
 
-  This file is the recommend version to import `@waline/client`, 100 KB Gzip size
+  Este archivo es la versión recomendada para importar `@waline/client`, con 100 KB de tamaño Gzip
 
-- `dist/waline.umd.js`: full version, UMD format
+- `dist/waline.umd.js`: versión completa, formato UMD
 
-- `dist/slim.js`: full version without dependency bundles, ES Module format
+- `dist/slim.js`: versión completa sin dependencias empaquetadas, formato ES Module
 
-  This file is the default file to import `@waline/client` with Node.js, 27 KB Gzip size
+  Este archivo es el que se importa por defecto con Node.js al usar `@waline/client`, con 27 KB de tamaño Gzip
 
-- `dist/waline.css`: Waline CSS styles
+- `dist/waline.css`: estilos CSS de Waline
 
-- `dist/waline-meta.css`: Waline Meta Icon CSS
+- `dist/waline-meta.css`: CSS de los iconos meta de Waline
 
-- `dist/component.js`: Waline's Vue component, ES Module format, without dependency bundling
+- `dist/component.js`: componente Vue de Waline, formato ES Module, sin dependencias empaquetadas
 
-  This file is for using Waline comments in component mode in a Vue project, 25 KB Gzip size
+  Este archivo sirve para usar los comentarios de Waline en modo componente dentro de un proyecto Vue, con 25 KB de tamaño Gzip
 
-- `dist/comment.js`: Waline's comment count module, ESM format, < 1KB Gzip size
+- `dist/comment.js`: módulo de recuento de comentarios de Waline, formato ESM, < 1KB de tamaño Gzip
 
-  This file is used for CDN import, when only the number of page comments is required
+  Este archivo se usa para importar desde CDN cuando solo necesitas el número de comentarios de la página
 
-- `dist/pageview.js`: Waline's pageview module, ESM format, < 1KB Gzip size
+- `dist/pageview.js`: módulo de visitas a la página de Waline, formato ESM, < 1KB de tamaño Gzip
 
-  This file is used for CDN import, when only page views are required
+  Este archivo se usa para importar desde CDN cuando solo necesitas las visitas a la página
 
-## Module exports
+## Exportaciones del módulo
 
-`@waline/client` is a standard ESM module, requiring Node.js version >= 22:
+`@waline/client` es un módulo ESM estándar y requiere Node.js versión >= 22:
 
-- `@waline/client`: Waline main entry without dependencies bundled
+- `@waline/client`: entrada principal de Waline sin dependencias empaquetadas
 
-- `@waline/client/waline.css`: Waline style file
+- `@waline/client/waline.css`: archivo de estilos de Waline
 
-- `@waline/client/waline-meta.css`: Waline meta icon style file
+- `@waline/client/waline-meta.css`: archivo de estilos de los iconos meta de Waline
 
-- `@waline/client/comment`: Waline comment count module
+- `@waline/client/comment`: módulo de recuento de comentarios de Waline
 
-- `@waline/client/pageview`: Waline pageview count module
+- `@waline/client/pageview`: módulo de recuento de visitas a la página de Waline
 
-- `@waline/client/full`: Waline main entry with all dependencies bundled
+- `@waline/client/full`: entrada principal de Waline con todas las dependencias empaquetadas

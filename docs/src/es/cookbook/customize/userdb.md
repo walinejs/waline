@@ -1,12 +1,12 @@
 ---
-title: Custom User System
+title: Sistema de usuarios personalizado
 icon: users
 order: -1
 ---
 
-Although Waline provides a comment service based on user system storage, this user system is Waline's own. Many third-party websites have their own user systems, so some niche users want to integrate their own user systems into Waline.
+Aunque Waline ofrece un servicio de comentarios basado en el almacenamiento de su propio sistema de usuarios, ese sistema es propio de Waline. Muchos sitios web de terceros tienen su propio sistema de usuarios, así que algunos usuarios quieren integrar su sistema de usuarios en Waline.
 
-We can use [custom database service](./database.md) to realize this function, the essence is to do the mapping of the underlying table.
+Podemos usar el [servicio de base de datos personalizado](./database.md) para conseguir esta funcionalidad; en esencia, se trata de hacer el mapeo de la tabla subyacente.
 
 ```js
 // index.js
@@ -24,9 +24,9 @@ module.exports = Application({
 });
 ```
 
-Through the above configuration, we have isolated the reading of the Waline user table. Next, we need to do field mapping for the input and output parameters. The input parameters map the fields back to the table fields in the third-party system, and the output parameters map the table fields in the third-party system back to Waline fields.
+Con la configuración anterior hemos aislado la lectura de la tabla de usuarios de Waline. A continuación debemos hacer el mapeo de campos para los parámetros de entrada y de salida. Los parámetros de entrada mapean los campos de vuelta a los campos de la tabla en el sistema de terceros, y los parámetros de salida mapean los campos de la tabla del sistema de terceros de vuelta a los campos de Waline.
 
-If you are more familiar with TypeScript, you can refer to the type definition below.
+Si estás más familiarizado con TypeScript, puedes consultar la definición de tipos de abajo.
 
 ```typescript
 type strNum = string | number;
@@ -74,7 +74,7 @@ function model(modelName): UsersModel | undefined {
 }
 ```
 
-The above can only ensure that there is no problem with the query of the database, but limited by the different encryption methods of the password, the encryption method inside Waline cannot be consistent with the encryption method used in the third-party website. For this situation, you need to customize the method of password encryption and verification.
+Lo anterior solo garantiza que la consulta a la base de datos funcione, pero, debido a los distintos métodos de cifrado de contraseñas, el método de cifrado interno de Waline no puede coincidir con el que usa el sitio web de terceros. Para este caso, necesitas personalizar el método de cifrado y verificación de la contraseña.
 
 ```js
 // index.js
@@ -95,4 +95,4 @@ module.exports = Application({
 });
 ```
 
-Based on the above two expansion capabilities, we can realize that Waline can use the user system of the third-party website.
+Con estas dos capacidades de extensión, podemos hacer que Waline use el sistema de usuarios del sitio web de terceros.

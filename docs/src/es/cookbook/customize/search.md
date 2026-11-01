@@ -1,17 +1,17 @@
 ---
-title: Customize Emoticons Search
+title: Personalizar la búsqueda de emoticonos
 icon: search
 ---
 
-This tutorial guides you on how to customize the emoji search service via the `search` option provided by `@waline/client`.
+Este tutorial te explica cómo personalizar el servicio de búsqueda de emojis mediante la opción `search` que ofrece `@waline/client`.
 
 <!-- more -->
 
-## search result conversion
+## Conversión de los resultados de búsqueda
 
-You may get different results when using different third-party image search services. After getting the search result, you need to convert it to the format required by `@waline/client`.
+Puede que obtengas resultados distintos al usar distintos servicios de búsqueda de imágenes de terceros. Después de obtener el resultado de la búsqueda, debes convertirlo al formato que requiere `@waline/client`.
 
-For any of the following operations, `@waline/client` requires you to return an array of image information in the following format:
+En cualquiera de las operaciones siguientes, `@waline/client` requiere que devuelvas un array con la información de las imágenes en el siguiente formato:
 
 ```ts
 interface WalineSearchImageData extends Record<string, unknown> {
@@ -38,21 +38,21 @@ interface WalineSearchImageData extends Record<string, unknown> {
 type WalineSearchResult = WalineSearchImageData[];
 ```
 
-You need to ensure that each object of the array contains at least the `src` attribute to indicate the address of the image.
+Debes asegurarte de que cada objeto del array contenga al menos el atributo `src` para indicar la dirección de la imagen.
 
-Also, where possible, you should provide an alt text `title` to help with accessibility and in case of image service failures.
+Además, cuando sea posible, deberías proporcionar un texto alternativo `title` que ayude con la accesibilidad y sirva de respaldo por si falla el servicio de imágenes.
 
-In order to make the list load faster, as long as the image service can return multiple sizes of image URLs, you should choose a small size image as `preview` to improve the loading speed of the list image.
+Para que la lista cargue más rápido, siempre que el servicio de imágenes pueda devolver URLs de varios tamaños, deberías elegir una imagen de tamaño pequeño como `preview` para mejorar la velocidad de carga de las imágenes de la lista.
 
 ::: note
 
-`@waline/client` doesn't care if there are extra properties in the image result, so you don't need to deliberately remove other keys from the returned result.
+A `@waline/client` no le importa que el resultado de la imagen tenga propiedades adicionales, así que no necesitas eliminar a propósito otras claves del resultado devuelto.
 
 :::
 
-## Search Option
+## Opción de búsqueda
 
-`@waline/client` provides three sub-options to control search behavior:
+`@waline/client` ofrece tres subopciones para controlar el comportamiento de la búsqueda:
 
 ```ts
 interface WalineSearchOptions {
@@ -78,9 +78,9 @@ interface WalineSearchOptions {
 }
 ```
 
-Since you need to implement at least the search logic, `search` is required. `@waline/client` will pass in the user search term and call this option function, and wait for this function to return a Promise to complete the search result.
+Como mínimo necesitas implementar la lógica de búsqueda, por lo que `search` es obligatorio. `@waline/client` pasará el término de búsqueda del usuario y llamará a esta opción, y esperará a que la función devuelva una Promise para obtener el resultado de la búsqueda.
 
-We want users to see some hot images or emoji results when they open it, so we provide the `default` function to implement this behavior. If your service provider provides an interface for popular pictures or emoticons, you should use this interface to return content. Also, since the default behavior of this function is to search for empty strings, if your search provider returns empty results in this situation, we recommend that you add a brief implementation of random preset words to avoid showing an empty list.
+Queremos que los usuarios vean algunas imágenes populares o resultados de emojis al abrir la búsqueda, así que ofrecemos la función `default` para implementar este comportamiento. Si tu proveedor de servicios ofrece una interfaz para imágenes o emoticonos populares, deberías usar esa interfaz para devolver el contenido. Además, como el comportamiento predeterminado de esta función es buscar una cadena vacía, si tu proveedor de búsqueda devuelve resultados vacíos en ese caso, te recomendamos añadir una implementación breve con palabras predefinidas aleatorias para evitar mostrar una lista vacía.
 
 ```js
 const search = (word) => {
@@ -102,19 +102,19 @@ Waline.init({
 });
 ```
 
-Usually, your search service will support pagination, so we provide a `more` function to trigger when the user swipes to the bottom and load more images to let you return more results. For a better experience, we recommend setting the number of pagination to 20 - 40, that is, 20 - 40 images are loaded each time.
+Normalmente, tu servicio de búsqueda admitirá paginación, así que ofrecemos una función `more` que se activa cuando el usuario se desplaza hasta el final y carga más imágenes, para que devuelvas más resultados. Para una mejor experiencia, recomendamos fijar el número de resultados por página entre 20 y 40, es decir, cargar de 20 a 40 imágenes cada vez.
 
-::: tip An example to help understand
+::: tip Un ejemplo para entenderlo mejor
 
-When the user clicks the search button, we will trigger `default()`, if this function is missing, we will trigger `search('')`, and we will wait for the Promise to execute and render with the returned result.
+Cuando el usuario hace clic en el botón de búsqueda, activamos `default()`; si esta función no existe, activamos `search('')`, y esperamos a que la Promise se ejecute y renderizamos con el resultado devuelto.
 
-When the user searches for `smile`, we execute `search('smile')`. Suppose you return 20 results each time, when the user continues to scroll down, we will trigger `more('smile', 20)`, `more('smile', 40)`, `more('smile', 60 )` ...
+Cuando el usuario busca `smile`, ejecutamos `search('smile')`. Supongamos que devuelves 20 resultados cada vez; cuando el usuario siga desplazándose hacia abajo, activaremos `more('smile', 20)`, `more('smile', 40)`, `more('smile', 60 )` ...
 
 :::
 
-## Examples
+## Ejemplos
 
-::: details Default implementation
+::: details Implementación predeterminada
 
 @[code{33-79}](../../../../../packages/client/src/config/default.ts)
 
