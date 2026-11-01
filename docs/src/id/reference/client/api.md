@@ -120,7 +120,7 @@ type WalineAbort = (reason?: any) => void;
 
 ## pageviewCount
 
-Fungsi `pageviewCount` menerima opsi `WalinePageviewCountOptions`, memperbarui jumlah komentar artikel di halaman, dan mengembalikan fungsi `WalineAbort` yang dapat membatalkan operasi saat ini.
+Fungsi `pageviewCount` menerima opsi `WalinePageviewCountOptions`, memperbarui jumlah pageview di halaman, dan mengembalikan fungsi `WalineAbort` yang dapat membatalkan operasi saat ini.
 
 Tipe:
 

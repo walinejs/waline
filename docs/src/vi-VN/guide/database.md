@@ -40,7 +40,7 @@ MONGO_OPT_SSL=true
 
 ## MySQL
 
-Sử dụng MySQL để lưu trữ dữ liệu cũng là một lựa chọn tốt. Ngoài dịch vụ MySQL của riêng chúng tôi, bạn cũng có thể dùng [FreeDB)(https://freedb.tech), dịch vụ cung cấp miễn phí 25M dung lượng cơ sở dữ liệu, hoặc [PlanetScale](https://planetscale.com) hiện chỉ hỗ trợ gói trả phí.
+Sử dụng MySQL để lưu trữ dữ liệu cũng là một lựa chọn tốt. Ngoài dịch vụ MySQL của riêng chúng tôi, bạn cũng có thể dùng [FreeDB](https://freedb.tech), dịch vụ cung cấp miễn phí 25M dung lượng cơ sở dữ liệu, hoặc [PlanetScale](https://planetscale.com) hiện chỉ hỗ trợ gói trả phí.
 
 Nếu bạn muốn dùng MySQL làm nơi lưu trữ, trước tiên bạn cần nhập [waline.sql](https://github.com/walinejs/waline/blob/main/assets/waline.sql) để tạo bảng và cấu trúc bảng, sau đó đặt các biến môi trường sau trong dự án.
 

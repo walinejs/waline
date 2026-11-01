@@ -10,7 +10,7 @@ Der offizielle Client `@waline/client` basiert auf Vue3, bietet responsive Kompo
 
 ## Vue-Komponente
 
-Wenn Sie ein Vue-Projekt erstellen, können Sie die Waline-Komponente erhalten und verwenden, indem Sie benannte Exporte `Waline` aus `@waline/client/components` importieren.
+Wenn Sie ein Vue-Projekt erstellen, können Sie die Waline-Komponente erhalten und verwenden, indem Sie benannte Exporte `Waline` aus `@waline/client/component` importieren.
 
 Alle Komponenteneigenschaften sind reaktiv, was bedeutet, dass das Kommentarfeld automatisch aktualisiert wird, wenn Sie die Eigenschaften ändern.
 
@@ -82,7 +82,7 @@ Wenn Sie Waline mit `el: null` initialisieren (nur Kommentare und Seitenaufruf-S
 
 ### destroy
 
-Wenn Sie vergessen, `serverURL` zu übergeben, oder Waline die Mount-Position über die Option `el` auf der Seite nicht finden kann, wirft Waline einen Fehler, der den Grund für den Fehler angibt.
+Die Methode `destroy()` zerstört die Waline-Instanz. Sie löscht außerdem den gesamten Inhalt des Elements, auf dem Waline gemountet ist.
 
 ### Initialisierungsfehler
 

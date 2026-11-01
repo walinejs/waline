@@ -26,7 +26,7 @@ Jika Anda membutuhkan selektor yang berbeda, Anda dapat menetapkan opsi `pagevie
 
 ```html
 <!-- data-path akan menjadi kondisi kueri -->
-Tampilan: <span class="waline-pageview-count" data-path="<Your/Path/Name>"></i>
+Tampilan: <span class="waline-pageview-count" data-path="<Your/Path/Name>"></span>
 ```
 
 Setiap kali Anda memanggil `WalineInstance.update()`, Waline akan mencari ulang konten halaman dan memperbarui tampilan halaman secara otomatis.

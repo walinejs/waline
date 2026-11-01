@@ -40,7 +40,7 @@ MONGO_OPT_SSL=true
 
 ## MySQL
 
-Usare MySQL per archiviare i dati è un'altra buona scelta. Oltre al nostro servizio MySQL, puoi anche usare [FreeDB)(https://freedb.tech), che offre gratuitamente 25M di database, oppure [PlanetScale](https://planetscale.com), che però ora supporta solo piani a pagamento.
+Usare MySQL per archiviare i dati è un'altra buona scelta. Oltre al nostro servizio MySQL, puoi anche usare [FreeDB](https://freedb.tech), che offre gratuitamente 25M di database, oppure [PlanetScale](https://planetscale.com), che però ora supporta solo piani a pagamento.
 
 Se vuoi usare MySQL come archiviazione, devi prima importare [waline.sql](https://github.com/walinejs/waline/blob/main/assets/waline.sql) per creare la tabella e la sua struttura, poi impostare queste variabili d'ambiente nel progetto.
 

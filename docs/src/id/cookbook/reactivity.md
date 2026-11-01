@@ -10,7 +10,7 @@ Klien resmi `@waline/client` berbasis Vue3, menyediakan komponen dan instans yan
 
 ## Komponen Vue
 
-Jika Anda membangun proyek Vue, Anda dapat memperoleh dan menggunakan komponen Waline dengan mengimpor ekspor bernama `Waline` dari `@waline/client/components`.
+Jika Anda membangun proyek Vue, Anda dapat memperoleh dan menggunakan komponen Waline dengan mengimpor ekspor bernama `Waline` dari `@waline/client/component`.
 
 Semua properti komponen bersifat reaktif, yang berarti ketika Anda mengubah properti, kotak komentar akan mendapatkan pembaruan secara otomatis.
 
@@ -82,7 +82,7 @@ Jika Anda menginisialisasi Waline dengan `el: null` (hanya menggunakan komentar 
 
 ### destroy
 
-Jika Anda lupa meneruskan `serverURL` atau Waline tidak dapat menemukan lokasi pemasangan melalui opsi `el` di halaman, Waline akan melempar Error yang menunjukkan alasan kesalahan.
+Metode `destroy()` menghancurkan instans Waline. Ini juga menghapus seluruh konten pada elemen tempat Waline dipasang.
 
 ### Kegagalan Inisialisasi
 

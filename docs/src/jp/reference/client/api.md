@@ -120,7 +120,7 @@ type WalineAbort = (reason?: any) => void;
 
 ## pageviewCount
 
-`pageviewCount` 関数は `WalinePageviewCountOptions` オプションを受け取り、ページ上の記事のコメント数を更新し、現在の操作をキャンセルできる関数 `WalineAbort` を返します。
+`pageviewCount` 関数は `WalinePageviewCountOptions` オプションを受け取り、ページ上の閲覧数を更新し、現在の操作をキャンセルできる関数 `WalineAbort` を返します。
 
 型：
 

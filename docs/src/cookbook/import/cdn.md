@@ -10,7 +10,7 @@ order: 1
 
 对于国内用户，我们推荐使用 [unpkg](https://unpkg.com/@waline/client)。对于国外用户，我们推荐使用 jsDelivr。
 
-为了让 Waline SSR 友好，我们在 V2 版本中拆分了 Waline 的样式。这意味着，你需要导入 Waline 的 CSS 样式文件，并导入 Waline 脚本文件并调用 Waline。
+为了让 Waline 对 SSR 友好，从 V3 开始我们将 Waline 的样式拆分成了单独的 CSS 文件。这意味着，你需要先导入 Waline 的 CSS 样式文件，再导入并调用 Waline 脚本文件。
 
 ## 评论功能
 
@@ -61,6 +61,6 @@ order: 1
 
 ::: info 指定版本
 
-你可能已经注意到，上述案例中，我们都在 `@waline/client` 后显式声明了 `@v2` 版本，这是推荐的，因为这能有效避免日后 Waline 客户端发布 V3 版本后，导致你的网站工作异常。
+你可能已经注意到，上述案例中，我们都在 `@waline/client` 后显式声明了 `@v3` 版本。这是推荐的做法，可以避免 Waline 客户端发布新的主版本后导致你的网站工作异常。
 
 :::

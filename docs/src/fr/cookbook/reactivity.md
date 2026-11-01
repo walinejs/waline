@@ -10,7 +10,7 @@ Le client officiel `@waline/client` est basé sur Vue 3, fournit des composants 
 
 ## Composant Vue
 
-Si vous construisez un projet Vue, vous pouvez obtenir et utiliser le composant Waline en important l'export nommé `Waline` depuis `@waline/client/components`.
+Si vous construisez un projet Vue, vous pouvez obtenir et utiliser le composant Waline en important l'export nommé `Waline` depuis `@waline/client/component`.
 
 Toutes les propriétés du composant sont réactives, ce qui signifie que lorsque vous modifiez les propriétés, la zone de commentaires est automatiquement mise à jour.
 
@@ -82,7 +82,7 @@ Si vous initialisez Waline avec `el: null` (pour n'utiliser que les commentaires
 
 ### destroy
 
-Si vous oubliez de passer `serverURL` ou si Waline ne trouve pas l'emplacement de montage via l'option `el` sur la page, Waline lèvera une Error indiquant la raison de l'erreur.
+La méthode `destroy()` détruit l'instance Waline. Elle vide également tout le contenu de l'élément sur lequel Waline est monté.
 
 ### Échec de l'initialisation
 

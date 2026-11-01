@@ -40,7 +40,7 @@ MONGO_OPT_SSL=true
 
 ## MySQL
 
-Utiliser MySQL pour stocker les données est également un bon choix. Outre notre propre service MySQL, nous pouvons aussi recourir à [FreeDB)(https://freedb.tech), qui offre gratuitement une base de données de 25 Mo, ou à [PlanetScale](https://planetscale.com), qui ne propose désormais que des offres payantes.
+Utiliser MySQL pour stocker les données est également un bon choix. Outre notre propre service MySQL, nous pouvons aussi recourir à [FreeDB](https://freedb.tech), qui offre gratuitement une base de données de 25 Mo, ou à [PlanetScale](https://planetscale.com), qui ne propose désormais que des offres payantes.
 
 Si vous souhaitez utiliser MySQL comme stockage, vous devez d'abord importer [waline.sql](https://github.com/walinejs/waline/blob/main/assets/waline.sql) pour créer la table et sa structure, puis définir ces variables d'environnement dans le projet.
 

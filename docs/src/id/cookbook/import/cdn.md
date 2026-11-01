@@ -10,7 +10,7 @@ Cookbook ini membahas cara mengimpor Waline melalui CDN.
 
 Untuk pengguna di Tiongkok daratan, kami merekomendasikan menggunakan [unpkg](https://unpkg.com/@waline/client). Untuk pengguna luar negeri, kami merekomendasikan menggunakan jsDelivr.
 
-Agar Waline ramah SSR, kami memisahkan gaya Waline di versi V2. Ini berarti, Anda perlu mengimpor file gaya CSS Waline, dan mengimpor file skrip Waline lalu memanggil Waline.
+Agar Waline ramah SSR, kami memisahkan gaya Waline di versi V3. Ini berarti, Anda perlu mengimpor file gaya CSS Waline, dan mengimpor file skrip Waline lalu memanggil Waline.
 
 ## Komentar
 
@@ -61,6 +61,6 @@ Jumlah komentar:
 
 ::: info Menentukan versi
 
-Anda mungkin memperhatikan bahwa dalam kasus di atas, kami telah secara eksplisit mendeklarasikan versi `@v2` setelah `@aline/client`. Situs web Anda mungkin tidak berfungsi dengan benar.
+Anda mungkin memperhatikan bahwa dalam contoh di atas, kami telah secara eksplisit mendeklarasikan versi `@v3` setelah `@waline/client`. Ini direkomendasikan karena mencegah situs web Anda rusak saat versi mayor baru klien Waline dirilis.
 
 :::

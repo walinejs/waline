@@ -26,7 +26,7 @@ Waline は MySQL、PostgreSQL、SQLite、MongoDB など多様なデータベー�
 
 サーバー側の設定のほとんどは環境変数で行えます。また、メインのエントリーファイルでいくつかの高度なオプションを設定することもできます。
 
-設定の詳細は [サーバーリファレンス → 環境変数](../../reference/server/env.md) と [サーバーリファレンス → 設定](../../reference/server/ config.md) を参照してください。
+設定の詳細は [サーバーリファレンス → 環境変数](../../reference/server/env.md) と [サーバーリファレンス → 設定](../../reference/server/config.md) を参照してください。
 
 ## コメント通知
 

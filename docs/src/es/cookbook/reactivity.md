@@ -10,7 +10,7 @@ El cliente oficial `@waline/client` se basa en Vue 3, ofrece componentes e insta
 
 ## Componente de Vue
 
-Si estás creando un proyecto con Vue, puedes obtener y usar el componente Waline importando la exportación con nombre `Waline` desde `@waline/client/components`.
+Si estás creando un proyecto con Vue, puedes obtener y usar el componente Waline importando la exportación con nombre `Waline` desde `@waline/client/component`.
 
 Todas las propiedades del componente son reactivas, lo que significa que, cuando las cambies, el cuadro de comentarios se actualizará automáticamente.
 
@@ -82,7 +82,7 @@ Si inicializas Waline con `el: null` (solo usas los comentarios y las estadísti
 
 ### destroy
 
-Si olvidas pasar `serverURL` o Waline no puede encontrar el lugar de montaje en la página con la opción `el`, Waline lanzará un Error que indique el motivo.
+El método `destroy()` destruye la instancia de Waline. También borra todo el contenido del elemento sobre el que Waline está montado.
 
 ### Fallo de inicialización
 

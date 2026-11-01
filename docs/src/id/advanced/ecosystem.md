@@ -31,7 +31,7 @@ Waline adalah arsitektur Client/Server klasik yang menyediakan antarmuka API yan
 
 - [sodesu](https://github.com/BeiyanYunyi/sodesu)
 
-  Oleh [@BeiyanYunyi](https://github.com/BeiyanYunyi), dibangun dengan Solid.js. Untuk penggunaan, lihat README dan [websitenya](https://BeiyanYunyi.github.io/sodesu/)。
+  Oleh [@BeiyanYunyi](https://github.com/BeiyanYunyi), dibangun dengan Solid.js. Untuk penggunaan, lihat README dan [websitenya](https://BeiyanYunyi.github.io/sodesu/).
 
 ## Rusty
 

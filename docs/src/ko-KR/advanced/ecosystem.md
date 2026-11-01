@@ -31,7 +31,7 @@ Waline은 클래식한 클라이언트/서버 아키텍처로, 비교적 완전�
 
 - [sodesu](https://github.com/BeiyanYunyi/sodesu)
 
-  [@BeiyanYunyi](https://github.com/BeiyanYunyi) 제작, Solid.js로 구축되었습니다. 사용법은 README와 [웹사이트](https://BeiyanYunyi.github.io/sodesu/)를 참고하세요。
+  [@BeiyanYunyi](https://github.com/BeiyanYunyi) 제작, Solid.js로 구축되었습니다. 사용법은 README와 [웹사이트](https://BeiyanYunyi.github.io/sodesu/)를 참고하세요.
 
 ## Rust 구현
 

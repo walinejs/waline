@@ -10,7 +10,7 @@ This cookbook is about importing Waline via CDN.
 
 For China Mainland users, we recommend using [unpkg](https://unpkg.com/@waline/client). For foreign users, we recommend using jsDelivr.
 
-To make Waline SSR friendly, we split Waline's styles in V2 version. This means, you need to import Waline's CSS style file, and import Waline script file and call Waline.
+Since V3, Waline's styles are provided as a separate CSS file to keep the client SSR friendly. This means you need to import Waline's CSS style file, then import and call the Waline script file.
 
 ## Comment
 
@@ -61,6 +61,6 @@ Comments count:
 
 ::: info Specifies version
 
-You may have noticed that in the above cases, we have explicitly declared the `@v2` version after `@aline/client`. Your website is not working properly.
+You may have noticed that in the above examples we explicitly declared the `@v3` version after `@waline/client`. This is recommended because it prevents your website from breaking when a new major version of the Waline client is released.
 
 :::

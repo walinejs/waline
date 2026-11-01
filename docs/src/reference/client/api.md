@@ -120,7 +120,7 @@ type WalineAbort = (reason?: any) => void;
 
 ## pageviewCount
 
-`pageviewCount` 函数接收 `WalinePageviewCountOptions` 选项，并负责更新页面上的文章评论数，同时返回一个可以取消当前操作的函数 `WalineAbort`。
+`pageviewCount` 函数接收 `WalinePageviewCountOptions` 选项，并负责更新页面上的浏览量，同时返回一个可以取消当前操作的函数 `WalineAbort`。
 
 类型:
 
