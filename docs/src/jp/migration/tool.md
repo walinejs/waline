@@ -1,5 +1,5 @@
 ---
-title: Migration Helper
+title: 移行ヘルパー
 icon: helper
 ---
 
@@ -7,7 +7,7 @@ icon: helper
 
 ::: tip
 
-After using the above tools to obtain the exported files, you can import them in the correct storage service.
+上記のツールを使用してエクスポートしたファイルを取得したら、対応するストレージサービスでインポートできます。
 
 :::
 

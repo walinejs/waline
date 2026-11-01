@@ -1,13 +1,13 @@
 ---
-title: plugin system
+title: プラグインシステム
 icon: api
 ---
 
-Users can extend the custom hook function through the Hook provided by Waline to realize custom functions. But if users want to share custom Hook methods, they can only use the copy method. To solve this problem, the Waline plugin system came into being.
+ユーザーは Waline が提供するフック関数を拡張して独自の機能を実現できます。しかし、カスタムフックのメソッドを共有したい場合はコピーする方法しかありませんでした。この問題を解決するために、Waline のプラグインシステムが生まれました。
 
-## Install the plugin
+## プラグインのインストール
 
-A new `plugins` attribute has been added to Waline's initial configuration, which supports configuring multiple plugins.
+Waline の初期設定に新しい `plugins` 属性が追加され、複数のプラグインを設定できるようになりました。
 
 ```js
 // index.js
@@ -19,7 +19,7 @@ module.exports = Waline({
 });
 ```
 
-To install others' plugin directly, you can also place plugin hooks direct in `plugins`:
+他の人のプラグインを直接インストールする代わりに、プラグインのフックを `plugins` に直接記述することもできます：
 
 ```js
 // index.js
@@ -31,7 +31,7 @@ module.exports = Waline({
     {
       hooks: {
         async postSave() {
-          // do what ever you want after comment saved
+          // コメントの保存後に任意の処理を行えます
         },
       },
       middlewares: [
@@ -44,29 +44,29 @@ module.exports = Waline({
 });
 ```
 
-## Create plugin
+## プラグインの作成
 
-### Create based on Hook
+### フックをベースに作成する
 
-It's easy to build a plugin. A plugin is contained by a collection of [hooks.](./config.md#comment-hooks)
+プラグインの作成は簡単です。プラグインは[フック](./config.md#コメントフック)の集合で構成されます。
 
 ```js
 module.exports = {
   hooks: {
     async postSave() {
-      // do what ever you want after comment saved
+      // コメントの保存後に任意の処理を行えます
     },
   },
 };
 ```
 
-It should be noted that if the user installs multiple Hook plugins, the execution of the same hook function is executed in the order in which the plugins are installed. If the pre-hook method returns early, no subsequent operations will be performed.
+ユーザーが複数のフックプラグインをインストールした場合、同じフック関数はプラグインをインストールした順に実行される点に注意してください。pre フックのメソッドが早期に値を返した場合、以降の操作は実行されません。
 
-### Create based on middleware
+### ミドルウェアをベースに作成する
 
-If Hook can't meet your needs, you can use a more powerful middleware mode to customize development. The bottom layer of Waline uses the Node.js framework [Koa](https://koajs.com), and we expose Koa's middleware configuration as a whole, which can meet various customization needs of advanced developers.
+フックでニーズを満たせない場合は、より強力なミドルウェアモードを使ってカスタム開発ができます。Waline の基盤は Node.js フレームワークの [Koa](https://koajs.com) を使用しており、Koa のミドルウェア設定をそのまま公開しているため、上級開発者のさまざまなカスタマイズ要件に対応できます。
 
-If you don't know what Koa middleware is, you can search for it first. What you need to pay attention to when using the middleware mode to make plug-ins is that the callback method must write the execution of `await next()`, otherwise the follow-up operations will not be executed.
+Koa のミドルウェアについてご存じない場合は、まず調べてみてください。ミドルウェアモードでプラグインを作成する際に注意すべき点は、コールバックメソッドで必ず `await next()` を実行することです。そうしないと後続の操作が実行されません。
 
 ```js
 module.exports = {
@@ -78,11 +78,11 @@ module.exports = {
 };
 ```
 
-Of course, you can put the logic of Hook-type plug-ins and middleware-type plug-ins together, and Waline supports them.
+もちろん、フック型プラグインのロジックとミドルウェア型プラグインのロジックをまとめて記述することもでき、Waline はそれをサポートしています。
 
-### List of plugins
+### プラグイン一覧
 
-Welcome to submit plugins~
+プラグインの投稿を歓迎します〜
 
 - [@waline-plugins/hello-world](https://github.com/walinejs/plugins/tree/master/packages/hello-world)
 - [@waline-plugins/privacy](https://github.com/walinejs/plugins/tree/master/packages/privacy)

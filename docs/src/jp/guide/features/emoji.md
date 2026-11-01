@@ -1,16 +1,16 @@
 ---
-title: Emoji Customize
+title: 絵文字のカスタマイズ
 icon: emoji
 order: 2
 ---
 
-You can customize the emoji of the comment box by setting `emoji` option, you should set it to an **array** containing _preset link_ or _preset config object_. If you don't want it, just set it to `false`.
+`emoji` オプションを設定すると、コメント欄の絵文字をカスタマイズできます。_プリセットリンク_ または _プリセット設定オブジェクト_ を含む**配列**を設定してください。不要な場合は `false` に設定するだけです。
 
 <!-- more -->
 
-## Presets
+## プリセット
 
-Waline provides a series of emoji presets that can be used out of box. You can add them directly to the `emoji` options:
+Waline はすぐに使える絵文字プリセットを多数提供しています。`emoji` オプションに直接追加できます：
 
 - Alus
 
@@ -43,80 +43,80 @@ Waline provides a series of emoji presets that can be used out of box. You can a
   ```
 
 - Twemoji
-  - Emoji:
+  - 絵文字:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-emoji
     ```
 
-  ::: details Others presets
-  - Full: (Not recommended)
+  ::: details その他のプリセット
+  - すべて:（非推奨）
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw
     ```
 
-  - Body:
+  - 体:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-body
     ```
 
-  - Food:
+  - 食べ物:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-food
     ```
 
-  - Natural:
+  - 自然:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-natural
     ```
 
-  - Object:
+  - オブジェクト:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-object
     ```
 
-  - Symbol:
+  - 記号:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-symbol
     ```
 
-  - People:
+  - 人:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-people
     ```
 
-  - Sport:
+  - スポーツ:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-sport
     ```
 
-  - Time:
+  - 時間:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-time
     ```
 
-  - Travel:
+  - 旅行:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-travel
     ```
 
-  - Weather:
+  - 天気:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-weather
     ```
 
-  - Flag:
+  - 旗:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-flag
@@ -138,11 +138,11 @@ Waline provides a series of emoji presets that can be used out of box. You can a
 
 ::: warning
 
-Waline DO NOT have any copyright of above emojis, use them at your own risk.
+Waline は上記の絵文字に関する著作権を一切保有していません。自己責任でご利用ください。
 
 :::
 
-### Example
+### 例
 
 ```html
 <div id="waline"></div>
@@ -158,6 +158,6 @@ Waline DO NOT have any copyright of above emojis, use them at your own risk.
 </script>
 ```
 
-## Create your own presets
+## 独自のプリセットを作成する
 
-Besides the presets provided by Waline, you can create your own presets, see [Guide → Create Emoji Presets](../../cookbook/customize/emoji.md).
+Waline が提供するプリセットのほか、独自のプリセットを作成できます。詳しくは [ガイド → 絵文字プリセットの作成](../../cookbook/customize/emoji.md) を参照してください。

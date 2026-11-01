@@ -1,36 +1,34 @@
 ---
-title: Deploy on Alibaba Cloud Compute Nest
+title: Alibaba Cloud Compute Nestでのデプロイ
 icon: aliyun
 ---
 
-[Compute Nest](https://computenest.console.aliyun.com/) is a Platform as a Service (PaaS) solution Alibaba Cloud provides for service providers and their customers to manage services.
+[Compute Nest](https://computenest.console.aliyun.com/)は、Alibaba Cloudがサービスプロバイダーとその顧客向けに提供する、サービスを管理するためのPlatform as a Service（PaaS）ソリューションです。
 
-Service providers can publish private services on Compute Nest, and their customers can deploy these services easily. Service providers can also publish fully-managed services where they can implement hosted O&M for the resources of their customers.
+サービスプロバイダーはCompute Nest上でプライベートサービスを公開でき、顧客はそれらのサービスを簡単にデプロイできます。また、サービスプロバイダーは、顧客のリソースに対してホスティング形式の運用保守を実施できるフルマネージドサービスを公開することもできます。
 
-Compute Nest provides service capabilities to cater to each stage of the lifecycle management of services. Service providers can manage different stages using different functional modules based on their requirements. This helps service providers improve operational efficiency, reduce operating costs, and provide simple and convenient services for customers.
+Compute Nestは、サービスのライフサイクル管理の各段階に対応するサービス機能を提供します。サービスプロバイダーは、要件に応じて異なる機能モジュールを使い分けながら各段階を管理できます。これにより、運用効率の向上、運用コストの削減、そして顧客へのシンプルで便利なサービスの提供を実現できます。
 
 <!-- more -->
 
-## How to deploy
+## デプロイ方法
 
-1. Confirmation before deployment: To deploy a Waline community edition service instance, you need to
-   access and create some Alibaba Cloud resources. Therefore, your account must contain permissions for the following
-   resources. Description: this permission is required only when your account is a RAM account.
+1. デプロイ前の確認：Walineコミュニティエディションのサービスインスタンスをデプロイするには、いくつかのAlibaba Cloudリソースにアクセスして作成する必要があります。そのため、アカウントに以下のリソースに対する権限が付与されている必要があります。説明：この権限が必要なのは、アカウントがRAMアカウントの場合のみです。
 
-   | Permission Policy Name          | Remark                                                                  |
-   | ------------------------------- | ----------------------------------------------------------------------- |
-   | AliyunECSFullAccess             | Permissions to manage ECS                                               |
-   | AliyunVPCFullAccess             | Permissions to manage a VPC                                             |
-   | AliyunROSFullAccess             | Manage permissions for the Resource Orchestration Service (ROS)         |
-   | AliyunComputeNestUserFullAccess | Manage user-side permissions for the compute nest service (ComputeNest) |
+   | 権限ポリシー名                  | 備考                                                              |
+   | ------------------------------- | ----------------------------------------------------------------- |
+   | AliyunECSFullAccess             | ECSを管理する権限                                                 |
+   | AliyunVPCFullAccess             | VPCを管理する権限                                                 |
+   | AliyunROSFullAccess             | Resource Orchestration Service（ROS）を管理する権限               |
+   | AliyunComputeNestUserFullAccess | Compute Nestサービス（ComputeNest）のユーザー側権限を管理する権限 |
 
-1. Access the Waline service on Alibaba Compute Nest [Deployment Link](https://computenest.console.aliyun.com/service/instance/create/default?type=user&ServiceName=Waline%20Community%20Edition)，fill in the deployment parameters as prompted
-1. Select the payment type, ECS (i.e. cloud server) instance specifications, system disk type, and instance password as needed.
+1. Alibaba Compute Nest上のWalineサービス[デプロイリンク](https://computenest.console.aliyun.com/service/instance/create/default?type=user&ServiceName=Waline%20Community%20Edition)にアクセスし、画面の指示に従ってデプロイパラメータを入力します。
+1. 必要に応じて、支払いタイプ、ECS（クラウドサーバー）インスタンスのスペック、システムディスクのタイプ、インスタンスのパスワードを選択します。
    ![computenest](../../../assets/aliyun-computenest-en-1.png)
-1. Select the availability zone where the ECS instance is deployed, and select the VPC (private network) and switch ID where the ECS instance is located. If there are no available VPCs and switches in your account, you can directly jump to the relevant Alibaba Cloud product console to create them by clicking "Create VPC" and "Create vSwitch" in the Compute Nest console. Click Next: Confirm Order.
+1. ECSインスタンスをデプロイする可用性ゾーンを選択し、ECSインスタンスが配置されるVPC（プライベートネットワーク）とスイッチIDを選択します。アカウントに利用可能なVPCとスイッチがない場合は、Compute Nestコンソールの「Create VPC」と「Create vSwitch」をクリックすると、対応するAlibaba Cloud製品のコンソールに直接移動して作成できます。「Next: Confirm Order」をクリックします。
    ![computenest](../../../assets/aliyun-computenest-en-2.png)
-1. After confirming the deployment parameters and reviewing the estimated price, click Create Now.
-1. Click the "Service Instance" TAB on the left to enter the service instance list page to view the service instance deployment progress.
+1. デプロイパラメータを確認し、見積価格を確認したら、「Create Now」をクリックします。
+1. 左側の「Service Instance」タブをクリックしてサービスインスタンスの一覧ページに移動し、サービスインスタンスのデプロイ状況を確認します。
    ![computenest](../../../assets/aliyun-computenest-en-3.png)
-1. Click the instance ID, enter the details interface, and click "Experience Ip Address" to experience the Waline service.
+1. インスタンスIDをクリックして詳細画面に入り、「Experience Ip Address」をクリックするとWalineサービスを試すことができます。
    ![computenest](../../../assets/aliyun-computenest-en-4.png)

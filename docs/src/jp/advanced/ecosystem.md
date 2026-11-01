@@ -4,17 +4,17 @@ icon: ecosystem
 order: 3
 ---
 
-Waline is a classic Client/Server architecture, which provides a relatively complete API interface. you can implement your own client implementation based on the API provided by the server.
+Walineは古典的なクライアント/サーバーアーキテクチャで、比較的完全なAPIインターフェースを提供しています。サーバーが提供するAPIに基づいて、独自のクライアントを実装できます。
 
-## Clients
+## クライアント
 
 - [@waline/client](https://npmjs.com/@waline/client)
 
-  Official client implementation, build with Vue and TypeScript.
+  VueとTypeScriptで構築された公式のクライアント実装です。
 
 - [MiniValine](https://github.com/MiniValine/MiniValine)
 
-  By [@MHuiG](https://github.com/MHuiG) , supports Waline API. Usage:
+  [@MHuiG](https://github.com/MHuiG)による、Waline APIをサポートする実装です。使用方法：
 
   ```html
   <script src="https://unpkg.com/minivaline/dist/MiniValine.min.js"></script>
@@ -31,40 +31,40 @@ Waline is a classic Client/Server architecture, which provides a relatively comp
 
 - [sodesu](https://github.com/BeiyanYunyi/sodesu)
 
-  By [@BeiyanYunyi](https://github.com/BeiyanYunyi), build with Solid.js. For usage, see its README and [website](https://BeiyanYunyi.github.io/sodesu/)。
+  [@BeiyanYunyi](https://github.com/BeiyanYunyi)による、Solid.jsで構築されたクライアントです。使用方法はREADMEと[ウェブサイト](https://BeiyanYunyi.github.io/sodesu/)を参照してください。
 
 ## Rusty
 
-[waline-mini](https://github.com/JQiue/waline-mini) is a server-side implementation in Rust, highly suitable for running in resource-constrained server environments.
+[waline-mini](https://github.com/JQiue/waline-mini)はRustによるサーバー側実装で、リソースが限られたサーバー環境での実行に非常に適しています。
 
 ## Cloudflare Workers
 
-[Waline_On_Worker](https://github.com/wuyilingwei/Waline_On_Worker) は、コミュニティによって実装されたWorkerベースのサーバー側実装で、WalineがCloudflare Workers上で実行できないという問題を解決します。
+[Waline_On_Worker](https://github.com/wuyilingwei/Waline_On_Worker)は、コミュニティによるWorkersベースのサーバー側実装で、WalineがCloudflare Workers上で実行できないという弱点を補っています。
 
-## Plugins
+## プラグイン
 
 ### Hexo
 
-- [@waline/hexo-next](https://npmjs.com/@waline/hexo-next): Waline comment system for NexT.
+- [@waline/hexo-next](https://npmjs.com/@waline/hexo-next): NexT用のWalineコメントシステム。
 
 ### Docsify
 
-- [docsify-waline](https://github.com/cxcn/docsify-waline): A simple comment plugin for docsify.
+- [docsify-waline](https://github.com/cxcn/docsify-waline): docsify用のシンプルなコメントプラグイン。
 
 ### VuePress
 
-- [vuepress-plugin-comment2](https://vuepress-theme-hope.github.io/v2/comment/): Comment system for VuePress2.
-- [@mr-hope/vuepress-plugin-comment](https://vuepress-theme-hope.github.io/v1/comment/): Comment system for VuePress1.
+- [vuepress-plugin-comment2](https://vuepress-theme-hope.github.io/v2/comment/): VuePress2用のコメントシステム。
+- [@mr-hope/vuepress-plugin-comment](https://vuepress-theme-hope.github.io/v1/comment/): VuePress1用のコメントシステム。
 
 ### Gatsby
 
-- [gatsby-plugin-waline](https://www.npmjs.com/package/gatsby-plugin-waline): Comment system plugin for Gatsby.
+- [gatsby-plugin-waline](https://www.npmjs.com/package/gatsby-plugin-waline): Gatsby用のコメントシステムプラグイン。
 
-Others:
+その他：
 
-- [vuepress-plugin-comment-plus](https://github.com/SivanLaai/vuepress-plugin-comment-plus): Comment system plugin for VuePress.
+- [vuepress-plugin-comment-plus](https://github.com/SivanLaai/vuepress-plugin-comment-plus): VuePress用のコメントシステムプラグイン。
 
-## Theme
+## テーマ
 
 ### Hexo
 
@@ -92,8 +92,8 @@ Others:
 - [DoIt](https://github.com/HEIGE-PCloud/DoIt)
 - [Kenny](https://github.com/Kindle-deep/hugo-theme-Kenny)
 
-## More
+## その他
 
-We are looking forward to more clients and plugins from the community to expand the Waline ecosystem. :tada:
+Walineのエコシステムを広げるため、コミュニティからのより多くのクライアントやプラグインを期待しています。 :tada:
 
-If you implement any Waline client, ecological plugin or theme including Waline, please send a PR and let us know!
+Walineのクライアント、Walineを含むエコシステムのプラグインやテーマを実装した場合は、PRを送ってお知らせください！

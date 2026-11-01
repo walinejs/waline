@@ -1,31 +1,31 @@
 ---
-title: Users Rank List/Users Wall Widget
+title: ユーザーランキング／ユーザーウォールウィジェット
 icon: rank
 ---
 
-Waline supports displaying users rank list or users wall by widget, which is convenient for displaying the commentor's info in the sidebar of the blog.
+Waline はウィジェットでユーザーランキングやユーザーウォールを表示できます。ブログのサイドバーにコメントしたユーザーの情報を表示するのに便利です。
 
 <!-- more -->
 
-## Component options
+## コンポーネントのオプション
 
-The users rank list/users wall widget is named `UserList` and contains six options:
+ユーザーランキング／ユーザーウォールウィジェットの名前は `UserList` で、6 つのオプションがあります：
 
-- `el` (optional): the element to be mounted
-- `serverURL`: server link
-- `count` The number of users needed to get
-- `mode`: `list` means users rank list, `wall` means users wall
-- `lang`: i18n support, more ref to [i18n](../i18n.md)
-- `locale`: customize the language, more ref to [i18n](../i18n.md)
+- `el`（任意）：マウント先の要素
+- `serverURL`：サーバーのリンク
+- `count` 取得するユーザー数
+- `mode`：`list` はユーザーランキング、`wall` はユーザーウォールを意味します
+- `lang`：i18n 対応。詳しくは [i18n](../i18n.md) を参照してください
+- `locale`：言語をカスタマイズします。詳しくは [i18n](../i18n.md) を参照してください
 
-The data format returned by the component should be `Promise<{ users: WalineUser[], destroy: () => void }>`.
+このコンポーネントが返すデータ形式は `Promise<{ users: WalineUser[], destroy: () => void }>` です。
 
-- `users` property: an array of the user list with exact number of `count`
-- `destroy` method: a function which will destroy the widget
+- `users` プロパティ：`count` と同数のユーザー一覧の配列
+- `destroy` メソッド：ウィジェットを破棄する関数
 
-## Basic usage
+## 基本的な使い方
 
-### Users Rank List
+### ユーザーランキング
 
 ```html
 <div id="waline-users"></div>
@@ -40,7 +40,7 @@ The data format returned by the component should be `Promise<{ users: WalineUser
 </script>
 ```
 
-### Users Wall
+### ユーザーウォール
 
 ```html
 <div id="waline-users"></div>
@@ -56,11 +56,11 @@ The data format returned by the component should be `Promise<{ users: WalineUser
 </script>
 ```
 
-## Advanced usage
+## 応用的な使い方
 
-If you are not satisfied with the default output format, you can call the component by omitting the `el` option to get the data and render it yourself.
+デフォルトの出力形式が気に入らない場合は、`el` オプションを省略してコンポーネントを呼び出し、データを取得して自分でレンダリングできます。
 
-Example:
+例：
 
 ```html
 <div id="waline-users"></div>

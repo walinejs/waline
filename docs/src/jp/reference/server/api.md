@@ -3,99 +3,99 @@ title: API
 icon: api
 ---
 
-## Comment
+## コメント
 
-### Comment List
+### コメント一覧
 
-Get comment list for article
+記事のコメント一覧を取得します。
 
 ```http
 GET /api/comment
 ```
 
-**Parameters**:
+**パラメータ**：
 
-| Parameter | Type   | Description                                                                                                                                               |
-| --------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| path      | string | Article id for comment                                                                                                                                    |
-| page      | number | Comment page                                                                                                                                              |
-| pageSize  | number | Comment list page size                                                                                                                                    |
-| sortBy    | string | Which sort type for comment list, default descending sort by create time, also you can ascending sort by create_time, or descending sort by comment like. |
+| パラメータ | 型     | 説明                                                                                                                 |
+| ---------- | ------ | -------------------------------------------------------------------------------------------------------------------- |
+| path       | string | コメント対象の記事 ID                                                                                                |
+| page       | number | コメントのページ                                                                                                     |
+| pageSize   | number | コメント一覧のページサイズ                                                                                           |
+| sortBy     | string | コメント一覧の並び替え方法。デフォルトは作成日時の降順で、作成日時の昇順やいいね数による降順での並び替えも可能です。 |
 
-### Comment Count
+### コメント数
 
-Get comment count for article
+記事のコメント数を取得します。
 
 ```http
 GET /api/comment?type=count
 ```
 
-**Parameters**:
+**パラメータ**：
 
-| Parameter | Type   | Description                                                   |
-| --------- | ------ | ------------------------------------------------------------- |
-| url       | string | Article id for comment, return site comment count if it empty |
+| パラメータ | 型     | 説明                                                              |
+| ---------- | ------ | ----------------------------------------------------------------- |
+| url        | string | コメント対象の記事 ID。空の場合はサイト全体のコメント数を返します |
 
-### Recent Comment
+### 最近のコメント
 
-Get recent comment
+最近のコメントを取得します。
 
 ```http
 GET /api/comment?type=recent
 ```
 
-**Parameters**:
+**パラメータ**：
 
-| Parameter | Type   | Description          |
-| --------- | ------ | -------------------- |
-| count     | number | comment count return |
+| パラメータ | 型     | 説明               |
+| ---------- | ------ | ------------------ |
+| count      | number | 返されるコメント数 |
 
-### Submit comment
+### コメントの投稿
 
 ```http
 POST /api/comment
 ```
 
-**Parameters**:
+**パラメータ**：
 
-| Parameter | Type   | Description                         |
-| --------- | ------ | ----------------------------------- |
-| comment   | string | comment content                     |
-| link      | string | commentator site                    |
-| mail      | string | commentator email                   |
-| nick      | string | commentator nick                    |
-| pid       | string | comment id which one replied        |
-| rid       | string | root comment id which one owned     |
-| ua        | string | commentator's user agent            |
-| url       | string | Article id for comment              |
-| at        | string | comment nick name which one replied |
+| パラメータ | 型     | 説明                                       |
+| ---------- | ------ | ------------------------------------------ |
+| comment    | string | コメントの内容                             |
+| link       | string | コメントしたユーザーのサイト               |
+| mail       | string | コメントしたユーザーのメールアドレス       |
+| nick       | string | コメントしたユーザーのニックネーム         |
+| pid        | string | 返信先のコメント ID                        |
+| rid        | string | 所属するルートコメント ID                  |
+| ua         | string | コメントしたユーザーのユーザーエージェント |
+| url        | string | コメント対象の記事 ID                      |
+| at         | string | 返信先のコメントのニックネーム             |
 
-## Reading statistics
+## 閲覧数の統計
 
-### Get reading statistics
+### 閲覧数の統計を取得する
 
-Get the number of readings corresponding to an article or multiple articles.
+1 つまたは複数の記事に対応する閲覧数を取得します。
 
 ```http
 GET /api/article
 ```
 
-**Parameters**:
+**パラメータ**：
 
-| Parameter | Type   | Description                                                         |
-| --------- | ------ | ------------------------------------------------------------------- |
-| path      | string | Article id for comment，multiple ids should be spliced with commas. |
+| パラメータ | 型     | 説明                                                            |
+| ---------- | ------ | --------------------------------------------------------------- |
+| path       | string | コメント対象の記事 ID。複数の ID はカンマで区切って指定します。 |
 
-### Update reading statistics
+### 閲覧数の統計を更新する
 
-Update the reading count of an article.
+記事の閲覧数を更新します。
 
 ```http
 POST /api/article
 ```
 
-**Parameters**:
+**パラメータ**：
 
-| Parameter | Type   | Description            |
-| --------- | ------ | ---------------------- |
-| path      | string | Article id for comment |
+| パラメータ | 型     | 説明                  |
+| ---------- | ------ | --------------------- |
+| path       | string | コメント対象の記事 ID |

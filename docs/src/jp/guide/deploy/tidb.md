@@ -1,37 +1,37 @@
 ---
-title: Create a database on TiDB
+title: TiDBでのデータベース作成
 icon: tidb
 ---
 
-[TiDB](https://github.com/pingcap/tidb) is an open source NewSQL database. [TiDB Cloud](https://tidbcloud.com/) is the official online version, which provides 5GB of free storage for everyone to use. The following describes how to create a Waline database on TiDB Cloud.
+[TiDB](https://github.com/pingcap/tidb)はオープンソースのNewSQLデータベースです。[TiDB Cloud](https://tidbcloud.com/)は公式のオンラインバージョンで、誰でも利用できる5GBの無料ストレージを提供しています。以下では、TiDB Cloud上でWaline用のデータベースを作成する方法を説明します。
 
-## Create Database
+## データベースの作成
 
-1. After logging in to [TiDB Cloud](https://tidbcloud.com), a TiDB instance will be created automatically, directly click <kbd>cluster0</kbd> to enter the instance
+1. [TiDB Cloud](https://tidbcloud.com)にログインするとTiDBインスタンスが自動的に作成されるので、そのまま<kbd>cluster0</kbd>をクリックしてインスタンスに入ります
 
-   ![Enter instance](../../../assets/tidb-1.png)
+   ![インスタンスに入る](../../../assets/tidb-1.png)
 
-2. Select <kbd>SQL Editor</kbd> in the list on the left and change the content of [waline.tidb](https://github.com/walinejs/waline/blob/main/assets/waline.tidb) to `;` The distribution of statements is executed close to the interface. Click the <kbd>Run</kbd> blue button in the upper right corner for each sentence, or use the <kbd>Ctrl\/Command</kbd> + <kbd>Enter</kbd> shortcut key to execute
+2. 左側の一覧で<kbd>SQL Editor</kbd>を選択し、[waline.tidb](https://github.com/walinejs/waline/blob/main/assets/waline.tidb)の内容を`;`で区切って文ごとに画面へ貼り付け、実行します。各文の実行は右上の青い<kbd>Run</kbd>ボタンをクリックするか、<kbd>Ctrl\/Command</kbd> + <kbd>Enter</kbd>のショートカットキーを利用します
    ![Step1](../../../assets/tidb-2.png)
    ![Step2](../../../assets/tidb-3.png)
    ![Step3](../../../assets/tidb-4.png)
    ![Step4](../../../assets/tidb-5.png)
    ![Step5](../../../assets/tidb-6.png)
 
-So far the Waline database has been created!
+これでWalineデータベースの作成は完了です！
 
-## Get Connection Configuration
+## 接続設定の取得
 
-Click the <kbd>Overview</kbd> button on the left to enter the homepage, and select <kbd>Connect</kbd> in the upper right corner to get connection information.
+左側の<kbd>Overview</kbd>ボタンをクリックしてホームページに入り、右上の<kbd>Connect</kbd>を選択して接続情報を取得します。
 
-Set "Connect with" to `General`. Also click <kbd>Reset password</kbd> on the following line to generate a new password.
+「Connect with」を`General`に設定します。あわせて、次の行の<kbd>Reset password</kbd>をクリックして新しいパスワードを生成します。
 
-In this way, you can get the configuration related to the connection.
+これで接続に関する設定を取得できます。
 
-![Connection](../../../assets/tidb-7.png)
+![接続](../../../assets/tidb-7.png)
 
-## Vercel deployment
+## Vercelへのデプロイ
 
-Create a Vercel account, add a project and deploy the Waline service. Then open the project <kbd>Settings</kbd> and go to `Environment Variables`. Click <kbd>Add Environment Variable</kbd> and add the following variables: `TIDB_HOST`, `TIDB_PORT`, `TIDB_DB`, `TIDB_USER`, and `TIDB_PASSWORD`. After adding these variables, redeploy the project.
+Vercelアカウントを作成し、プロジェクトを追加してWalineサービスをデプロイします。その後、プロジェクトの<kbd>Settings</kbd>を開いて`Environment Variables`に移動します。<kbd>Add Environment Variable</kbd>をクリックし、`TIDB_HOST`、`TIDB_PORT`、`TIDB_DB`、`TIDB_USER`、`TIDB_PASSWORD`の各変数を追加します。これらの変数を追加したら、プロジェクトを再デプロイします。
 
-![Configure TiDB connection](../../../assets/tidb-8.png)
+![TiDB接続の設定](../../../assets/tidb-8.png)

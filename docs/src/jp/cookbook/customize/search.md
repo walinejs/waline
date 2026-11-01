@@ -1,17 +1,17 @@
 ---
-title: Customize Emoticons Search
+title: 絵文字検索をカスタマイズする
 icon: search
 ---
 
-This tutorial guides you on how to customize the emoji search service via the `search` option provided by `@waline/client`.
+このチュートリアルでは、`@waline/client` が提供する `search` オプションを使って絵文字検索サービスをカスタマイズする方法を説明します。
 
 <!-- more -->
 
-## search result conversion
+## 検索結果の変換
 
-You may get different results when using different third-party image search services. After getting the search result, you need to convert it to the format required by `@waline/client`.
+使用するサードパーティの画像検索サービスによって、得られる結果は異なります。検索結果を取得したら、`@waline/client` が要求する形式に変換する必要があります。
 
-For any of the following operations, `@waline/client` requires you to return an array of image information in the following format:
+以下のいずれの操作でも、`@waline/client` は次の形式の画像情報の配列を返すことを求めます。
 
 ```ts
 interface WalineSearchImageData extends Record<string, unknown> {
@@ -38,21 +38,21 @@ interface WalineSearchImageData extends Record<string, unknown> {
 type WalineSearchResult = WalineSearchImageData[];
 ```
 
-You need to ensure that each object of the array contains at least the `src` attribute to indicate the address of the image.
+配列の各オブジェクトには、画像のアドレスを示す `src` 属性が少なくとも含まれている必要があります。
 
-Also, where possible, you should provide an alt text `title` to help with accessibility and in case of image service failures.
+また、可能であれば代替テキスト `title` を指定し、アクセシビリティの向上と画像サービスの障害に備えてください。
 
-In order to make the list load faster, as long as the image service can return multiple sizes of image URLs, you should choose a small size image as `preview` to improve the loading speed of the list image.
+リストの読み込みを速くするため、画像サービスが複数サイズの画像 URL を返せる場合は、小さいサイズの画像を `preview` に指定してリスト画像の読み込み速度を向上させてください。
 
 ::: note
 
-`@waline/client` doesn't care if there are extra properties in the image result, so you don't need to deliberately remove other keys from the returned result.
+`@waline/client` は画像の結果に余分なプロパティがあっても気にしないため、返却結果から他のキーをわざわざ削除する必要はありません。
 
 :::
 
-## Search Option
+## 検索オプション
 
-`@waline/client` provides three sub-options to control search behavior:
+`@waline/client` は検索動作を制御する 3 つのサブオプションを提供しています。
 
 ```ts
 interface WalineSearchOptions {
@@ -78,9 +78,9 @@ interface WalineSearchOptions {
 }
 ```
 
-Since you need to implement at least the search logic, `search` is required. `@waline/client` will pass in the user search term and call this option function, and wait for this function to return a Promise to complete the search result.
+検索ロジックは少なくとも実装する必要があるため、`search` は必須です。`@waline/client` はユーザーの検索語を渡してこのオプション関数を呼び出し、この関数が Promise を返すのを待って検索結果を取得します。
 
-We want users to see some hot images or emoji results when they open it, so we provide the `default` function to implement this behavior. If your service provider provides an interface for popular pictures or emoticons, you should use this interface to return content. Also, since the default behavior of this function is to search for empty strings, if your search provider returns empty results in this situation, we recommend that you add a brief implementation of random preset words to avoid showing an empty list.
+ユーザーが開いたときに人気の画像や絵文字の結果をいくつか目にできるように、私たちは `default` 関数を提供してこの動作を実現しています。サービス提供元が人気の画像や絵文字のインターフェースを提供している場合は、そのインターフェースを使って内容を返してください。また、この関数のデフォルトの動作は空文字列の検索であるため、その場合に検索プロバイダーが空の結果を返す場合は、空のリストが表示されないよう、ランダムなプリセット語を返す簡単な実装を追加することをおすすめします。
 
 ```js
 const search = (word) => {
@@ -102,19 +102,19 @@ Waline.init({
 });
 ```
 
-Usually, your search service will support pagination, so we provide a `more` function to trigger when the user swipes to the bottom and load more images to let you return more results. For a better experience, we recommend setting the number of pagination to 20 - 40, that is, 20 - 40 images are loaded each time.
+通常、検索サービスはページネーションをサポートしているため、ユーザーが一番下までスクロールしたときに追加の画像を読み込めるよう `more` 関数を提供しています。より良い体験のために、ページネーションの件数は 20〜40 に設定することをおすすめします。つまり、1 回に 20〜40 枚の画像を読み込みます。
 
-::: tip An example to help understand
+::: tip 理解のための例
 
-When the user clicks the search button, we will trigger `default()`, if this function is missing, we will trigger `search('')`, and we will wait for the Promise to execute and render with the returned result.
+ユーザーが検索ボタンをクリックすると `default()` を呼び出します。この関数がない場合は `search('')` を呼び出し、Promise の実行が完了するのを待って返された結果でレンダリングします。
 
-When the user searches for `smile`, we execute `search('smile')`. Suppose you return 20 results each time, when the user continues to scroll down, we will trigger `more('smile', 20)`, `more('smile', 40)`, `more('smile', 60 )` ...
+ユーザーが `smile` を検索すると `search('smile')` を実行します。毎回 20 件の結果を返すとすると、ユーザーがさらに下へスクロールすると `more('smile', 20)`、`more('smile', 40)`、`more('smile', 60 )` ... が呼び出されます。
 
 :::
 
-## Examples
+## 例
 
-::: details Default implementation
+::: details デフォルトの実装
 
 @[code{33-79}](../../../../../packages/client/src/config/default.ts)
 

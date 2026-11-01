@@ -1,33 +1,33 @@
 ---
-title: Server Config
+title: サーバー設定
 icon: config
 ---
 
-The following options need to be configured in the server entry file `index.js`.
+以下のオプションは、サーバーのエントリーファイル `index.js` で設定する必要があります。
 
 ::: warning
 
-If you are using template, please note that you need to save these configurations yourself, because they will be overwritten when you pull the latest official template.
+テンプレートを使用している場合は注意が必要です。公式テンプレートの最新版を取得すると設定が上書きされるため、これらの設定はご自身で保存してください。
 
-We recommend you to create a repo from the official template and make your changes there.
+公式テンプレートからリポジトリを作成し、そこで変更を加えることをおすすめします。
 
 :::
 
-## Basic Options
+## 基本オプション
 
 ### plugins
 
-- Type: `plugin[]`
+- 型：`plugin[]`
 
-See [Plugin System](./plugin.md) for details
+詳細は [プラグインシステム](./plugin.md) を参照してください。
 
 ### secureDomains
 
-- Type: `string | RegExp | string[] | RegExp[]`
+- 型：`string | RegExp | string[] | RegExp[]`
 
-Secure domain settings. Requests from other domain will receive 403 status code. It supports String, Regexp, and Array type. Leaving this config means that all domain referrer are allowed.
+セキュアドメインの設定です。他のドメインからのリクエストは 403 ステータスコードを受け取ります。String、Regexp、Array 型をサポートしています。この設定を省略すると、すべてのドメインからのリファラーが許可されます。
 
-::: details Example
+::: details 例
 
 ```js
 // index.js
@@ -42,18 +42,18 @@ module.exports = Waline({
 
 ::: tip
 
-- To make local development easier, `localhost` and `127.0.0.1` will be added to the list of secure domain names by default.
-- Env variable `SECURE_DOMAINS` won't work when this option is set.
+- ローカル開発を容易にするため、`localhost` と `127.0.0.1` はデフォルトでセキュアドメイン名のリストに追加されます。
+- このオプションを設定した場合、環境変数 `SECURE_DOMAINS` は機能しません。
 
 :::
 
 ### forbiddenWords
 
-- Type: `string[]`
+- 型：`string[]`
 
-If a comment match forbidden word, it will be marked as spam.
+コメントが禁止ワードに一致すると、スパムとしてマークされます。
 
-::: details Example
+::: details 例
 
 ```js
 // index.js
@@ -68,11 +68,11 @@ module.exports = Waline({
 
 ### disallowIPList
 
-- Type: `string[]`
+- 型：`string[]`
 
-If a comment ip match this list, 403 status code is returned.
+コメントの IP がこのリストに一致する場合、403 ステータスコードが返されます。
 
-::: details Example
+::: details 例
 
 ```js
 // index.js
@@ -87,67 +87,67 @@ module.exports = Waline({
 
 ### mailSubject
 
-- Type: `string`
+- 型：`string`
 
-Customize the title of the comment reply email, which is equivalent to environment variable `MAIL_SUBJECT`.
+コメント返信メールのタイトルをカスタマイズします。環境変数 `MAIL_SUBJECT` に相当します。
 
 ### mailTemplate
 
-- Type: `string`
+- 型：`string`
 
-Customize the content of the comment reply email, which is equivalent to environment variable `MAIL_TEMPLATE`.
+コメント返信メールの内容をカスタマイズします。環境変数 `MAIL_TEMPLATE` に相当します。
 
 ### mailSubjectAdmin
 
-- Type: `string`
+- 型：`string`
 
-Customize the title of the new comment notification email, which is equivalent to the environment variable `MAIL_SUBJECT_ADMIN`.
+新しいコメントの通知メールのタイトルをカスタマイズします。環境変数 `MAIL_SUBJECT_ADMIN` に相当します。
 
 ### mailTemplateAdmin
 
-- Type: `string`
+- 型：`string`
 
-Customize the content of the new comment notification email, which is equivalent to the environment variable `MAIL_TEMPLATE_ADMIN`.
+新しいコメントの通知メールの内容をカスタマイズします。環境変数 `MAIL_TEMPLATE_ADMIN` に相当します。
 
 ### QQTemplate
 
-- Type: `string`
+- 型：`string`
 
-The QQ comment notification template, which is equivalent to the environment variable `QQ_TEMPLATE`.
+QQ のコメント通知テンプレートです。環境変数 `QQ_TEMPLATE` に相当します。
 
 ### TGTemplate
 
-- Type: `string`
+- 型：`string`
 
-Telegram comment notification template, which is equivalent to the environment variable `TG_TEMPLATE`.
+Telegram のコメント通知テンプレートです。環境変数 `TG_TEMPLATE` に相当します。
 
 ### model
 
-- type: `class`
+- 型：`class`
 
-For details, see [Customize Database Service](../../cookbook/customize/database.md)
+詳細は [データベースサービスのカスタマイズ](../../cookbook/customize/database.md) を参照してください。
 
 ### encryptPassword
 
-- type: `function`
+- 型：`function`
 
-See [Customize User System](../../cookbook/customize/userdb.md) for details
+詳細は [ユーザーシステムのカスタマイズ](../../cookbook/customize/userdb.md) を参照してください。
 
 ### locales
 
-- type: `Record<string, Record<string, string>>`
+- 型：`Record<string, Record<string, string>>`
 
-See [Custom Locale](../../cookbook/customize/locale.md)
+[ロケールのカスタマイズ](../../cookbook/customize/locale.md) を参照してください。
 
-## Comment Hooks
+## コメントフック
 
-Besides environment variable configuration, Waline also provides some custom hooks to facilitate the processing of custom requirements. It only needs to be configured in the server entry file `index.js`.
+環境変数による設定に加えて、Waline はカスタム要件の処理を容易にするためのカスタムフックも提供しています。サーバーのエントリーファイル `index.js` で設定するだけで利用できます。
 
 ### preSave(comment)
 
-Waline provides some custom hooks to let users customize Waline server behavior according to their own needs.
+Waline は、ユーザーが自身のニーズに応じて Waline サーバーの動作をカスタマイズできるよう、いくつかのカスタムフックを提供しています。
 
-::: details Example
+::: details 例
 
 ```js
 // index.js
@@ -167,11 +167,11 @@ module.exports = Waline({
 
 ### postSave(comment, pComment)
 
-The action performed after the comment is posted.
+コメントが投稿された後に実行されるアクションです。
 
-When the method is executed, the comment data will be passed as the first param, and if it's a reply to the comment, the parent comment will be passed as the second param.
+このメソッドが実行されると、コメントデータが第 1 引数として渡されます。コメントへの返信の場合は、親コメントが第 2 引数として渡されます。
 
-::: details Example
+::: details 例
 
 ```js
 // index.js
@@ -191,9 +191,9 @@ module.exports = Waline({
 
 ### preUpdate(comment)
 
-Action before a comment content is updated in the dashboard. If the method returns content, the interface will return directly without updating the comment data.
+管理画面でコメントの内容が更新される前に実行されるアクションです。メソッドが内容を返した場合、コメントデータを更新せずにその内容がそのまま返されます。
 
-::: details Example
+::: details 例
 
 ```js
 // index.js
@@ -210,9 +210,9 @@ module.exports = Waline({
 
 ### postUpdate(comment)
 
-Action after a comment content is updated in the dashboard. Comment data will be passed in when the method is executed.
+管理画面でコメントの内容が更新された後に実行されるアクションです。メソッドが実行されるときにコメントデータが渡されます。
 
-::: details Example
+::: details 例
 
 ```js
 // index.js
@@ -229,9 +229,9 @@ module.exports = Waline({
 
 ### preDelete(commentId)
 
-Action before a comment is deleted. When the method is executed, the comment Id to be operated will be passed in. If the method returns content, the interface will return directly without updating the comment data.
+コメントが削除される前に実行されるアクションです。メソッドが実行されると、操作対象のコメント ID が渡されます。メソッドが内容を返した場合、コメントデータを更新せずにその内容がそのまま返されます。
 
-::: details Example
+::: details 例
 
 ```js
 // index.js
@@ -248,9 +248,9 @@ module.exports = Waline({
 
 ### postDelete(commentId)
 
-Action after a comment is deleted, the comment Id will be passed as the only param.
+コメントが削除された後に実行されるアクションです。コメント ID が唯一の引数として渡されます。
 
-::: details Example
+::: details 例
 
 ```js
 // index.js

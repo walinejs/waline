@@ -1,160 +1,160 @@
 ---
-title: Comment Notification
+title: コメント通知
 icon: notice
 order: 10
 ---
 
-When a user posts a comment on the website or a user responds to a comment, Waline supports email or WeChat notification to the blogger and the author who responded to the comment.
+ウェブサイトにユーザーがコメントを投稿したとき、またはユーザーがコメントに返信したとき、Waline はブロガーと返信されたコメントの投稿者に対して、メールや WeChat での通知に対応しています。
 
-- We support multiple types notifications for blogger
-- We will email a visitor once his comment gets a reply.
+- ブロガー向けに複数の種類の通知に対応しています。
+- 訪問者のコメントに返信が付くと、その訪問者にメールを送信します。
 
 <!-- more -->
 
-## Email Notification
+## メール通知
 
-Email notification needs the following environment variables to be configured:
+メール通知には、次の環境変数を設定する必要があります：
 
-- `SMTP_SERVICE`: SMTP Mail delivery service provider
+- `SMTP_SERVICE`: SMTP メール配信サービスのプロバイダー
 
   ::: tip
 
-  You can find all support provider in [nodemailer services](https://github.com/nodemailer/nodemailer/blob/master/src/well-known/services.json). If your provider is not listed, you must config `SMTP_HOST` and `SMTP_PORT`.
+  対応しているプロバイダーは [nodemailer services](https://github.com/nodemailer/nodemailer/blob/master/src/well-known/services.json) で確認できます。プロバイダーが一覧にない場合は、`SMTP_HOST` と `SMTP_PORT` を設定する必要があります。
 
-  - `SMTP_HOST`: SMTP server address, it can be found in mailbox's setting page generally.
-  - `SMTP_PORT`: SMTP server port, it can be found in mailbox's setting page generally.
+  - `SMTP_HOST`: SMTP サーバーのアドレス。通常はメールボックスの設定ページで確認できます。
+  - `SMTP_PORT`: SMTP サーバーのポート。通常はメールボックスの設定ページで確認できます。
 
   :::
 
-- `SMTP_USER`: SMTP Mail delivery service account, it's your email address.
-- `SMTP_PASS`: SMTP Mail delivery service password, it's your email password.
-- `SMTP_SECURE`: SMTP connect with SSL, either `true` or `false`.
-- `SITE_NAME`: Your site name, will be displayed in notification message.
-- `SITE_URL`: Your site url, will be displayed in notification message.
+- `SMTP_USER`: SMTP メール配信サービスのアカウント。あなたのメールアドレスです。
+- `SMTP_PASS`: SMTP メール配信サービスのパスワード。あなたのメールパスワードです。
+- `SMTP_SECURE`: SMTP を SSL で接続するかどうか。`true` または `false` を指定します。
+- `SITE_NAME`: サイト名。通知メッセージに表示されます。
+- `SITE_URL`: サイトの URL。通知メッセージに表示されます。
 
-The following environment variables are optional:
+次の環境変数は任意です：
 
-- `SENDER_NAME`: Custom sender's name in notification
-- `SENDER_EMAIL`: Custom sender's name in notification, required for some SMTP services.
-- `MAIL_SUBJECT`: Custom comment reply email title
-- `MAIL_TEMPLATE`: Custom reply email content
-- `MAIL_SUBJECT_ADMIN`: Custom new comment notification email title
-- `MAIL_TEMPLATE_ADMIN`: Custom new comment notification email content
-- `AUTHOR_EMAIL`: The blogger’s email, used to judge whether posted comment is posted by the blogger. If it is posted by the blogger, there will be no reminder notification.
+- `SENDER_NAME`: 通知に表示する送信者名のカスタマイズ
+- `SENDER_EMAIL`: 通知に表示する送信者のメールアドレスのカスタマイズ。一部の SMTP サービスでは必須です。
+- `MAIL_SUBJECT`: コメント返信メールのタイトルのカスタマイズ
+- `MAIL_TEMPLATE`: 返信メール本文のカスタマイズ
+- `MAIL_SUBJECT_ADMIN`: 新規コメント通知メールのタイトルのカスタマイズ
+- `MAIL_TEMPLATE_ADMIN`: 新規コメント通知メール本文のカスタマイズ
+- `AUTHOR_EMAIL`: ブロガーのメールアドレス。投稿されたコメントがブロガー自身によるものかどうかの判定に使われます。ブロガー自身が投稿した場合は通知が送信されません。
 
-## Wechat Notification
+## WeChat 通知
 
-We use [Mr. Server](http://sc.ftqq.com/3.version) to wechat notification. You need to set `SC_KEY` in env which applied in Mr. Server.
+WeChat 通知には [Mr. Server](http://sc.ftqq.com/3.version) を利用しています。Mr. Server で申請した `SC_KEY` を環境変数に設定する必要があります。
 
-- `SC_KEY`: Token applied in Mr. Server, It's required for this service.
-- `AUTHOR_EMAIL`: The blogger’s email is used to distinguish whether the posted comment is posted by the blogger himself. If it is posted by the blogger, there will be no reminder notification.
-- `SITE_NAME`: Your site name, it will be displayed in notification message.
-- `SITE_URL`: Your site url, it will be displayed in notification message.
+- `SC_KEY`: Mr. Server で申請したトークン。このサービスには必須です。
+- `AUTHOR_EMAIL`: ブロガーのメールアドレス。投稿されたコメントがブロガー自身によるものかどうかの判定に使われます。ブロガー自身が投稿した場合は通知が送信されません。
+- `SITE_NAME`: サイト名。通知メッセージに表示されます。
+- `SITE_URL`: サイトの URL。通知メッセージに表示されます。
 
-## QQ Notification
+## QQ 通知
 
-We use [Mr. Qmsg](https://qmsg.zendee.cn) to send QQ notification. You need to set `QMSG_KEY` in env which applied in Mr. Qmsg.
+QQ 通知の送信には [Mr. Qmsg](https://qmsg.zendee.cn) を利用しています。Mr. Qmsg で申請した `QMSG_KEY` を環境変数に設定する必要があります。
 
-- `QMSG_KEY`: KEY applied in Mr. Qmsg, It's required for this service.
-- `QMSG_HOST`: HOST applied in Mr. QmsgPrivate, Optional. It's required for this host. Defalut is `https://qmsg.zendee.cn`
-- `QQ_ID`: The QQ ID of the receiver(s), except for QQ group. If there are more than one QQ ID, use commas to separate multiple values, e.g. `1244453393,2952937634` (should all be included in your Mr. Qmsg's QQ ID list).
-- `AUTHOR_EMAIL`: The blogger’s email is used to distinguish whether the posted comment is posted by the blogger himself. If it is posted by the blogger, there will be no reminder notification.
-- `SITE_NAME`: Your site name, it will be displayed in notification message.
-- `SITE_URL`: Your site url, it will be displayed in notification message.
-- `QQ_TEMPLATE`: Notification template used by QQ. Variables and specific formats can be found in the notification template below. If not configured, the default template is used.
+- `QMSG_KEY`: Mr. Qmsg で申請した KEY。このサービスには必須です。
+- `QMSG_HOST`: Mr. QmsgPrivate で申請した HOST。任意です。このホストを使う場合は必須です。デフォルトは `https://qmsg.zendee.cn` です。
+- `QQ_ID`: 受信者の QQ ID（QQ グループを除く）。複数ある場合はカンマで区切ります（例：`1244453393,2952937634`）。いずれも Mr. Qmsg の QQ ID リストに含まれている必要があります。
+- `AUTHOR_EMAIL`: ブロガーのメールアドレス。投稿されたコメントがブロガー自身によるものかどうかの判定に使われます。ブロガー自身が投稿した場合は通知が送信されません。
+- `SITE_NAME`: サイト名。通知メッセージに表示されます。
+- `SITE_URL`: サイトの URL。通知メッセージに表示されます。
+- `QQ_TEMPLATE`: QQ で使用する通知テンプレート。変数と具体的な形式は後述の通知テンプレートで確認できます。設定しない場合はデフォルトのテンプレートが使われます。
 
-## Telegram Notification
+## Telegram 通知
 
-We use Telegram bot to send Telegram notification. You need to set the following env.
+Telegram 通知の送信には Telegram ボットを利用しています。次の環境変数を設定する必要があります。
 
-- `TG_BOT_TOKEN`: Telegram bot token to access the HTTP API. Create a bot with [@BotFather](https://t.me/BotFather) to get this token. It's required for this service.
-- `TG_CHAT_ID`: The `chat_id` of the receiver. It can be an user, a channel or a group. [@userinfobot](https://t.me/userinfobot) will display this `chat_id` when you forward a message to it. It's required for this service.
-- `AUTHOR_EMAIL`: The blogger’s email is used to distinguish whether the posted comment is posted by the blogger himself. If it is posted by the blogger, there will be no reminder notification.
-- `SITE_NAME`: Your site name, it will be displayed in notification message.
-- `SITE_URL`: Your site url, it will be displayed in notification message.
-- `TG_TEMPLATE`: Notification template used by Telegram. Variables and specific formats can be found in the notification template below. If not configured, the default template is used.
+- `TG_BOT_TOKEN`: HTTP API にアクセスするための Telegram ボットトークン。[@BotFather](https://t.me/BotFather) でボットを作成すると取得できます。このサービスには必須です。
+- `TG_CHAT_ID`: 受信者の `chat_id`。ユーザー、チャンネル、グループのいずれかです。[@userinfobot](https://t.me/userinfobot) にメッセージを転送すると、この `chat_id` が表示されます。このサービスには必須です。
+- `AUTHOR_EMAIL`: ブロガーのメールアドレス。投稿されたコメントがブロガー自身によるものかどうかの判定に使われます。ブロガー自身が投稿した場合は通知が送信されません。
+- `SITE_NAME`: サイト名。通知メッセージに表示されます。
+- `SITE_URL`: サイトの URL。通知メッセージに表示されます。
+- `TG_TEMPLATE`: Telegram で使用する通知テンプレート。変数と具体的な形式は後述の通知テンプレートで確認できます。設定しない場合はデフォルトのテンプレートが使われます。
 
-## PushPlus Notification
+## PushPlus 通知
 
-[pushplus](http://www.pushplus.plus/) is a message push platform which supports many channels like wechat, wechat work, ding talk, sms or email. You need to set the following env. You can go to [pushplus documentation](http://www.pushplus.plus/doc/guide/api.html#%E4%B8%80%E3%80%81%E5%8F%91%E9%80%81%E6%B6%88%E6%81%AF%E6%8E%A5%E5%8F%A3) to get more parameter format detail.
+[pushplus](http://www.pushplus.plus/) は、WeChat、WeCom、DingTalk、SMS、メールなど多数のチャネルに対応したメッセージプッシュプラットフォームです。次の環境変数を設定する必要があります。パラメータの形式の詳細は [pushplus のドキュメント](http://www.pushplus.plus/doc/guide/api.html#%E4%B8%80%E3%80%81%E5%8F%91%E9%80%81%E6%B6%88%E6%81%AF%E6%8E%A5%E5%8F%A3) を参照してください。
 
-- `PUSH_PLUS_KEY`： user token. It's required for this service.
-- `PUSH_PLUS_TOPIC`：group id. Send yourself if it's empty. And It's unuseful if `PUSH_PLUS_CHANNEL` equals `webhook`.
-- `PUSH_PLUS_TEMPLATE`：Send template
-- `PUSH_PLUS_CHANNEL`：Send channel
-- `PUSH_PLUS_WEBHOOK`：webhook is required if `PUSH_PLUS_CHANNEL` equals `webhook` or `cp`.
-- `PUSH_PLUS_CALLBACKURL`：callback url after send response.
-- `AUTHOR_EMAIL`: The blogger’s email is used to distinguish whether the posted comment is posted by the blogger himself. If it is posted by the blogger, there will be no reminder notification.
-- `SITE_NAME`: Your site name, it will be displayed in notification message.
-- `SITE_URL`: Your site url, it will be displayed in notification message.
+- `PUSH_PLUS_KEY`： ユーザートークン。このサービスには必須です。
+- `PUSH_PLUS_TOPIC`：グループ ID。空の場合は自分宛てに送信されます。`PUSH_PLUS_CHANNEL` が `webhook` の場合は使用されません。
+- `PUSH_PLUS_TEMPLATE`：送信テンプレート
+- `PUSH_PLUS_CHANNEL`：送信チャネル
+- `PUSH_PLUS_WEBHOOK`：`PUSH_PLUS_CHANNEL` が `webhook` または `cp` の場合は webhook が必須です。
+- `PUSH_PLUS_CALLBACKURL`：送信応答後のコールバック URL。
+- `AUTHOR_EMAIL`: ブロガーのメールアドレス。投稿されたコメントがブロガー自身によるものかどうかの判定に使われます。ブロガー自身が投稿した場合は通知が送信されません。
+- `SITE_NAME`: サイト名。通知メッセージに表示されます。
+- `SITE_URL`: サイトの URL。通知メッセージに表示されます。
 
-## Discord Notification
+## Discord 通知
 
-We use Discord Webhook to send Discord notification. You need to set the following env.
+Discord 通知の送信には Discord Webhook を利用しています。次の環境変数を設定する必要があります。
 
-- `DISCORD_WEBHOOK`: Discord Webhook url, [How to create Discord Webhook url](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks)?
-- `DISCORD_TEMPLATE`: Send template
-- `AUTHOR_EMAIL`: The blogger’s email is used to distinguish whether the posted comment is posted by the blogger himself. If it is posted by the blogger, there will be no reminder notification.
-- `SITE_NAME`: Your site name, it will be displayed in notification message.
-- `SITE_URL`: Your site url, it will be displayed in notification message.
+- `DISCORD_WEBHOOK`: Discord Webhook の URL。[Discord Webhook URL の作成方法](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks) はこちら。
+- `DISCORD_TEMPLATE`: 送信テンプレート
+- `AUTHOR_EMAIL`: ブロガーのメールアドレス。投稿されたコメントがブロガー自身によるものかどうかの判定に使われます。ブロガー自身が投稿した場合は通知が送信されません。
+- `SITE_NAME`: サイト名。通知メッセージに表示されます。
+- `SITE_URL`: サイトの URL。通知メッセージに表示されます。
 
-## Lark Notification
+## Lark 通知
 
-We use Lark Webhook to send its group notifications. The following env variables are required.
+Lark のグループ通知の送信には Lark Webhook を利用しています。次の環境変数が必要です。
 
-- `LARK_WEBHOOK`: Lark Group Bot [Webhook Usages](https://open.larksuite.com/document/ukTMukTMukTM/ucTM5YjL3ETO24yNxkjN?lang=en-US)
-- `LARK_SECRET`: As clarified by the doc from Lark, this secret is used to sign your request to avoid abuse（Optional).
-- `LARK_TEMPLATE`: Message template
-- `SITE_NAME`: Your site name which will be displayed in notification messages.
-- `SITE_URL`: Your site url which will be displayed in notification messages.
+- `LARK_WEBHOOK`: Lark グループボットの [Webhook の使い方](https://open.larksuite.com/document/ukTMukTMukTM/ucTM5YjL3ETO24yNxkjN?lang=en-US)
+- `LARK_SECRET`: Lark のドキュメントで説明されているとおり、このシークレットはリクエストの署名に使われ、悪用を防ぎます（任意）。
+- `LARK_TEMPLATE`: メッセージテンプレート
+- `SITE_NAME`: サイト名。通知メッセージに表示されます。
+- `SITE_URL`: サイトの URL。通知メッセージに表示されます。
 
-## Notification Template
+## 通知テンプレート
 
-Waline supports configuring your customized notification templates for each platform separately to achieve stronger customization capabilities and i18n compatibility.
+Waline はプラットフォームごとに独自の通知テンプレートを個別に設定でき、より強力なカスタマイズと i18n 対応を実現します。
 
-### Supported variables
+### 使用できる変数
 
-The template passes parameters through `self`, `parent` and `site` objects, which contain the following variables respectively:
+テンプレートには `self`、`parent`、`site` の各オブジェクトを通じてパラメータが渡されます。それぞれ次の変数を含みます：
 
-- `self`: The comment itself
+- `self`: コメント自体
 
-  | variable        | description          |
-  | --------------- | -------------------- |
-  | nick            | Commenter's nickname |
-  | mail            | Commenter's email    |
-  | link            | Commenter's website  |
-  | url             | Article address      |
-  | comment         | Comment content      |
-  | browser         | Browser name         |
-  | os              | Operate system name  |
-  | avatar          | avatar               |
-  | _commentLink_\* | Links in comments    |
+  | 変数            | 説明                                 |
+  | --------------- | ------------------------------------ |
+  | nick            | コメントしたユーザーのニックネーム   |
+  | mail            | コメントしたユーザーのメールアドレス |
+  | link            | コメントしたユーザーのウェブサイト   |
+  | url             | 記事のアドレス                       |
+  | comment         | コメント本文                         |
+  | browser         | ブラウザ名                           |
+  | os              | OS 名                                |
+  | avatar          | アバター                             |
+  | _commentLink_\* | コメント内のリンク                   |
 
-  \*: commentLink is only provided in Telegram notifications and will be automatically encapsulated in Markdown format.
+  \*: commentLink は Telegram 通知でのみ提供され、Markdown 形式で自動的にラップされます。
 
-- `parent`: Comment which is replied (parent comment).
+- `parent`: 返信対象のコメント（親コメント）。
 
-  | variable | description          |
-  | -------- | -------------------- |
-  | nick     | Commenter's nickname |
-  | mail     | Commenter's email    |
-  | link     | Commenter's website  |
-  | browser  | Browser name         |
-  | os       | Operate system name  |
-  | avatar   | avatar               |
-  | comment  | Comment content      |
+  | 変数    | 説明                                 |
+  | ------- | ------------------------------------ |
+  | nick    | コメントしたユーザーのニックネーム   |
+  | mail    | コメントしたユーザーのメールアドレス |
+  | link    | コメントしたユーザーのウェブサイト   |
+  | browser | ブラウザ名                           |
+  | os      | OS 名                                |
+  | avatar  | アバター                             |
+  | comment | コメント本文                         |
 
-- `site`: Website configuration
+- `site`: ウェブサイトの設定
 
-  | variable | description          |
-  | -------- | -------------------- |
-  | name     | Site name            |
-  | url      | Site URL             |
-  | postUrl  | Comment full address |
+  | 変数    | 説明                     |
+  | ------- | ------------------------ |
+  | name    | サイト名                 |
+  | url     | サイトの URL             |
+  | postUrl | コメントの完全なアドレス |
 
-### Default template
+### デフォルトのテンプレート
 
-The default template is attached here for your reference:
+参考までに、デフォルトのテンプレートを掲載します：
 
 - MAIL_SUBJECT:
 
@@ -264,7 +264,7 @@ The default template is attached here for your reference:
   仅供评论预览，点击[查看完整內容]({{site.postUrl}})
   ````
 
-### Additional Info
+### 補足情報
 
-1. Vercel’s environment variable size is limited to `4KB`, so if your template is long, you should config if in main entry file, see [issue#106](https://github.com/walinejs/waline/issues/106).
-1. The specific information of variables may change during the development process. The variable descriptions here are for reference only. Please refer to the specific code examples for specific content.
+1. Vercel の環境変数のサイズは `4KB` に制限されているため、テンプレートが長い場合はメインのエントリーファイルで設定してください。詳しくは [issue#106](https://github.com/walinejs/waline/issues/106) を参照してください。
+1. 変数の具体的な内容は開発の過程で変更される可能性があります。ここでの変数の説明は参考情報です。具体的な内容は実際のコード例を参照してください。

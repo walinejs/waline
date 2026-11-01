@@ -3,6 +3,6 @@ title: デプロイ
 icon: deploy
 ---
 
-Waline supports multiple deployment methods, and use Vercel by default. You can choose from the following deployment platforms or deploy yourself.
+Walineは複数のデプロイ方法をサポートしており、デフォルトではVercelを使用します。以下のデプロイプラットフォームから選択することも、自分でデプロイすることもできます。
 
 <Catalog />
