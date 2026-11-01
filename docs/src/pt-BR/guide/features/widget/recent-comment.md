@@ -1,26 +1,26 @@
 ---
-title: Recent comment Widget
+title: Widget de comentários recentes
 icon: recent
 ---
 
-Waline supports displaying recent comments by widget, which is convenient for displaying the latest comments in the sidebar of the blog.
+O Waline permite exibir comentários recentes por widget, o que facilita mostrar os comentários mais recentes na barra lateral do blog.
 
 <!-- more -->
 
-## Component options
+## Opções do componente
 
-The latest comment widget is named `RecentComments` and contains three options:
+O widget de comentários recentes se chama `RecentComments` e tem três opções:
 
-- `el` (optional): the element to be mounted
-- `serverURL`: server link
-- `count` The number of recent comments needed to get
+- `el` (opcional): o elemento onde o widget será montado
+- `serverURL`: link do servidor
+- `count` a quantidade de comentários recentes a obter
 
-The data format returned by the component should be `Promise<{ comment: WalineComment[], destroy: () => void }>`.
+O formato de dados retornado pelo componente é `Promise<{ comment: WalineComment[], destroy: () => void }>`.
 
-- `comment` property: an array of the most recent comments with exact number of `count`
-- `destroy` method: a function which will destroy the widget
+- propriedade `comment`: um array com os comentários mais recentes, exatamente na quantidade de `count`
+- método `destroy`: uma função que destrói o widget
 
-## Basic usage
+## Uso básico
 
 ```html
 <div id="waline-recent"></div>
@@ -37,15 +37,15 @@ The data format returned by the component should be `Promise<{ comment: WalineCo
 
 ::: tip
 
-This will be rendered on `#waline-recent` using the default style.
+Isso será renderizado em `#waline-recent` usando o estilo padrão.
 
 :::
 
-## Advanced usage
+## Uso avançado
 
-If you are not satisfied with the default output format, you can call the component by omitting the `el` option to get the data and render it yourself.
+Se você não gostar do formato de saída padrão, pode chamar o componente omitindo a opção `el` para obter os dados e renderizá-los você mesmo.
 
-Example:
+Exemplo:
 
 ```html
 <div id="waline-recent"></div>

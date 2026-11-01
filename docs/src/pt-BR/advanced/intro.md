@@ -6,7 +6,7 @@ order: 1
 
 ::: info Waline
 
-Um sistema de comentários simples com suporte de backend bifurcado do [Valine](https://valine.js.org).
+Um sistema de comentários simples com suporte a backend, derivado do [Valine](https://valine.js.org).
 
 :::
 
@@ -15,11 +15,11 @@ Um sistema de comentários simples com suporte de backend bifurcado do [Valine](
 ## Recursos
 
 - Rápido
-- **Realmente** Seguro
-- Suporte para sintaxe markdown completa
+- **Realmente** seguro
+- Suporte a toda a sintaxe do markdown
 - Simples e leve
 - Implantação gratuita!
-- Suporte para vários serviços de implantação e armazenamento, pelo menos 243 opções de estilo de implantação!
+- Suporte a vários serviços de implantação e armazenamento, com pelo menos 243 opções de implantação!
 
 |                                                 | Waline                                                              |                                    |
 | ----------------------------------------------- | ------------------------------------------------------------------- | ---------------------------------- |
@@ -37,26 +37,26 @@ Um sistema de comentários simples com suporte de backend bifurcado do [Valine](
 ## Lista de tarefas
 
 - [x] Notificação por e-mail
-- [x] Notificação do WeChat
-- [x] Notificação do Telegram
+- [x] Notificação por WeChat
+- [x] Notificação por Telegram
 - [x] Akismet
 - [x] i18n
 - [x] Idioma personalizado
 - [x] Visualizações de página
 - [x] Reação ao artigo
-- [x] Suporte de login
+- [x] Suporte a login
 - [x] Rótulo de usuário
 - [x] Gerenciamento de comentários
-- [x] Suporte para excluir comentários
-- [x] Mais suporte de banco de dados
-- [x] Limitar a frequência de comentários postados por IP
-- [x] Restrições de palavras-chave de comentários
-- [x] Lista de bloqueio de IP
+- [x] Suporte a exclusão de comentários
+- [x] Suporte a mais bancos de dados
+- [x] Limitar a frequência de comentários enviados por IP
+- [x] Restrições de palavras-chave nos comentários
+- [x] Lista de IPs bloqueados
 - [x] Verificação de conteúdo duplicado
-- [x] Suporte de implantação CloudBase
-- [x] Login de conta social
+- [x] Suporte à implantação no CloudBase
+- [x] Login com contas sociais
 - [x] Comentário fixado
 - [x] Curtir comentário
-- [ ] Suporte de implantação AWS, GCP, Azure
+- [ ] Suporte à implantação na AWS, GCP e Azure
 
-Nós **realmente** damos as boas-vindas para você contribuir com o Waline!
+Nós **realmente** agradecemos a sua contribuição para o Waline!

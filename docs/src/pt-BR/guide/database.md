@@ -1,31 +1,31 @@
 ---
-title: Multi-database service support
+title: Suporte a múltiplos bancos de dados
 icon: database
 order: 2
 ---
 
-Waline supports a variety of databases, including MySQL, PostgreSQL, SQLite and MongoDB.
+O Waline é compatível com diversos bancos de dados, incluindo MySQL, PostgreSQL, SQLite e MongoDB.
 
-You only need to configure environment variables, and Waline will automatically switch to the corresponding data storage service based on the environment variables you configure.
+Basta configurar as variáveis de ambiente: o Waline alterna automaticamente para o serviço de armazenamento de dados correspondente de acordo com as variáveis que você definir.
 
 <!-- more -->
 
 ## MongoDB
 
-<https://mongodb.com> official provides 512M MongoDB database support for free. The following are the environment variables that need to be configured to use MongoDB database.
+O site oficial <https://mongodb.com> oferece, gratuitamente, um banco de dados MongoDB de 512M. A seguir estão as variáveis de ambiente que você precisa configurar para usar o banco de dados MongoDB.
 
-| Environment Variable | Required | Default   | Description                                  |
-| -------------------- | -------- | --------- | -------------------------------------------- |
-| `MONGO_DB`           | ✅       |           | MongoDB database name                        |
-| `MONGO_USER`         | ✅       |           | MongoDB server username                      |
-| `MONGO_PASSWORD`     | ✅       |           | MongoDB server password                      |
-| `MONGO_HOST`         |          | 127.0.0.1 | MongoDB server address, support array format |
-| `MONGO_PORT`         |          | 27017     | MongoDB server port, support array format    |
-| `MONGO_REPLICASET`   |          |           | MongoDB replica set                          |
-| `MONGO_AUTHSOURCE`   |          |           | MongoDB auth source                          |
-| `MONGO_OPT_SSL`      |          | `false`   | use SSL connection                           |
+| Variável de ambiente | Obrigatório | Padrão    | Descrição                                               |
+| -------------------- | ----------- | --------- | ------------------------------------------------------- |
+| `MONGO_DB`           | ✅          |           | Nome do banco de dados MongoDB                          |
+| `MONGO_USER`         | ✅          |           | Nome de usuário do servidor MongoDB                     |
+| `MONGO_PASSWORD`     | ✅          |           | Senha do servidor MongoDB                               |
+| `MONGO_HOST`         |             | 127.0.0.1 | Endereço do servidor MongoDB, aceita o formato de array |
+| `MONGO_PORT`         |             | 27017     | Porta do servidor MongoDB, aceita o formato de array    |
+| `MONGO_REPLICASET`   |             |           | Conjunto de réplicas (replica set) do MongoDB           |
+| `MONGO_AUTHSOURCE`   |             |           | Origem de autenticação do MongoDB (auth source)         |
+| `MONGO_OPT_SSL`      |             | `false`   | usar conexão SSL                                        |
 
-Here is an example configuration for mongodb.com. Please note that you need set as JSON style for `MONGO_HOST` and `MONGO_PORT` when you has multiple hosts.
+Veja abaixo um exemplo de configuração para o mongodb.com. Observe que, quando você tiver vários hosts, é preciso definir `MONGO_HOST` e `MONGO_PORT` no formato JSON.
 
 ```bash
 MONGO_HOST=["cluster0-shard-00-00.p4edw.mongodb.net","cluster0-shard-00-01.p4edw.mongodb.net","cluster0-shard-00-02.p4edw.mongodb.net"]
@@ -40,87 +40,87 @@ MONGO_OPT_SSL=true
 
 ## MySQL
 
-Using MySQL to store data is also a good choice. Besides our own MySQL service, we can also use [FreeDB)(https://freedb.tech), which provides 25M of database support for free, or [PlanetScale](https://planetscale.com) which only support paid plan now.
+Usar o MySQL para armazenar os dados também é uma boa escolha. Além do nosso próprio serviço MySQL, podemos usar o [FreeDB)(https://freedb.tech), que oferece 25M de banco de dados gratuitamente, ou o [PlanetScale](https://planetscale.com), que no momento só oferece plano pago.
 
-If you want to use MySQL as storage, you need to import [waline.sql](https://github.com/walinejs/waline/blob/main/assets/waline.sql) first to create table and table structure, then set these environment variables in project.
+Se você quiser usar o MySQL como armazenamento, primeiro importe o [waline.sql](https://github.com/walinejs/waline/blob/main/assets/waline.sql) para criar a tabela e sua estrutura e, em seguida, defina estas variáveis de ambiente no projeto.
 
-| Environment Variable | Required | Default   | Description                |
-| -------------------- | -------- | --------- | -------------------------- |
-| `MYSQL_DB`           | ✅       |           | MySQL database name        |
-| `MYSQL_USER`         | ✅       |           | MySQL server username      |
-| `MYSQL_PASSWORD`     | ✅       |           | MySQL server password      |
-| `MYSQL_HOST`         |          | 127.0.0.1 | MySQL server address       |
-| `MYSQL_PORT`         |          | 3306      | MySQL server port          |
-| `MYSQL_PREFIX`       |          | `wl_`     | MySQL table prefix         |
-| `MYSQL_CHARSET`      |          | `utf8mb4` | MySQL table charset        |
-| `MYSQL_SSL`          |          | `false`   | whether use SSL connection |
+| Variável de ambiente | Obrigatório | Padrão    | Descrição                                   |
+| -------------------- | ----------- | --------- | ------------------------------------------- |
+| `MYSQL_DB`           | ✅          |           | Nome do banco de dados MySQL                |
+| `MYSQL_USER`         | ✅          |           | Nome de usuário do servidor MySQL           |
+| `MYSQL_PASSWORD`     | ✅          |           | Senha do servidor MySQL                     |
+| `MYSQL_HOST`         |             | 127.0.0.1 | Endereço do servidor MySQL                  |
+| `MYSQL_PORT`         |             | 3306      | Porta do servidor MySQL                     |
+| `MYSQL_PREFIX`       |             | `wl_`     | Prefixo das tabelas do MySQL                |
+| `MYSQL_CHARSET`      |             | `utf8mb4` | Conjunto de caracteres das tabelas do MySQL |
+| `MYSQL_SSL`          |             | `false`   | se usa conexão SSL                          |
 
 ## TiDB
 
-[TiDB](https://github.com/pingcap/tidb) is an open source NewSQL database. [TiDB Cloud](https://tidbcloud.com/) is the official online version, which provides 5GB of free quota for everyone to use.
+O [TiDB](https://github.com/pingcap/tidb) é um banco de dados NewSQL de código aberto. O [TiDB Cloud](https://tidbcloud.com/) é a versão online oficial e oferece uma cota gratuita de 5GB para todos usarem.
 
-Please refer to [Create TiDB database](../../pt-BR/guide/deploy/tidb.md) to understand the initialization process.
+Consulte [Criar um banco de dados no TiDB](../../pt-BR/guide/deploy/tidb.md) para entender o processo de inicialização.
 
-| Environment Variable | Required | Default   | Description                     |
-| -------------------- | -------- | --------- | ------------------------------- |
-| `TIDB_DB`            | ✅       |           | TiDB database name              |
-| `TIDB_USER`          | ✅       |           | TiDB database user name         |
-| `TIDB_PASSWORD`      | ✅       |           | TiDB database password          |
-| `TIDB_HOST`          |          | 127.0.0.1 | Address of TiDB service         |
-| `TIDB_PORT`          |          | 4000      | Port of TiDB service            |
-| `TIDB_PREFIX`        |          | `wl_`     | Table prefix of TiDB data table |
-| `TIDB_CHARSET`       |          | `utf8mb4` | TiDB data table character set   |
+| Variável de ambiente | Obrigatório | Padrão    | Descrição                                           |
+| -------------------- | ----------- | --------- | --------------------------------------------------- |
+| `TIDB_DB`            | ✅          |           | Nome do banco de dados TiDB                         |
+| `TIDB_USER`          | ✅          |           | Nome de usuário do banco de dados TiDB              |
+| `TIDB_PASSWORD`      | ✅          |           | Senha do banco de dados TiDB                        |
+| `TIDB_HOST`          |             | 127.0.0.1 | Endereço do serviço TiDB                            |
+| `TIDB_PORT`          |             | 4000      | Porta do serviço TiDB                               |
+| `TIDB_PREFIX`        |             | `wl_`     | Prefixo das tabelas de dados do TiDB                |
+| `TIDB_CHARSET`       |             | `utf8mb4` | Conjunto de caracteres das tabelas de dados do TiDB |
 
 ## SQLite
 
-Download [waline.sqlite](https://github.com/walinejs/waline/blob/main/assets/waline.sqlite) to your server if you want to use SQLite. Then set these environment variables in project.
+Baixe o [waline.sqlite](https://github.com/walinejs/waline/blob/main/assets/waline.sqlite) para o seu servidor se quiser usar o SQLite. Depois, defina estas variáveis de ambiente no projeto.
 
-| Environment Variable | Required | Default | Description                                                        |
-| -------------------- | -------- | ------- | ------------------------------------------------------------------ |
-| `SQLITE_PATH`        | ✅       |         | SQLite storage file path, not include file name                    |
-| `JWT_TOKEN`          | ✅       |         | Random String for login token generator                            |
-| `SQLITE_DB`          |          | waline  | SQLite storage file name, change it if your filename is not waline |
-| `SQLITE_PREFIX`      |          | `wl_`   | SQLite table prefix                                                |
+| Variável de ambiente | Obrigatório | Padrão | Descrição                                                                                |
+| -------------------- | ----------- | ------ | ---------------------------------------------------------------------------------------- |
+| `SQLITE_PATH`        | ✅          |        | Caminho do arquivo de armazenamento do SQLite, sem incluir o nome do arquivo             |
+| `JWT_TOKEN`          | ✅          |        | String aleatória para o gerador de token de login                                        |
+| `SQLITE_DB`          |             | waline | Nome do arquivo de armazenamento do SQLite; altere se o seu arquivo não se chamar waline |
+| `SQLITE_PREFIX`      |             | `wl_`  | Prefixo das tabelas do SQLite                                                            |
 
 ## PostgreSQL
 
-[Supabase](https://supabase.com) and [Neon](https://neon.tech/home) offer a free 512M database, while [Tembo](https://tembo.io/) provides 10G PG database support for free. Same as MySQL, you need to import [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) to create table and table structure before using PostgreSQL.
+O [Supabase](https://supabase.com) e o [Neon](https://neon.tech/home) oferecem um banco de dados de 512M gratuito, enquanto o [Tembo](https://tembo.io/) oferece suporte gratuito a um banco de dados PostgreSQL de 10G. Assim como no MySQL, você precisa importar o [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) para criar a tabela e sua estrutura antes de usar o PostgreSQL.
 
-| Environment Variable | Required | Default   | Description                         |
-| -------------------- | -------- | --------- | ----------------------------------- |
-| `PG_DB`              | ✅       |           | PostgreSQL database name            |
-| `PG_USER`            | ✅       |           | PostgreSQL server username          |
-| `PG_PASSWORD`        | ✅       |           | PostgreSQL server password          |
-| `PG_HOST`            |          | 127.0.0.1 | PostgreSQL server address           |
-| `PG_PORT`            |          | 5432      | PostgreSQL server port              |
-| `PG_PREFIX`          |          | `wl_`     | PostgreSQL table prefix             |
-| `PG_SSL`             |          | `false`   | set to `true` to use SSL connection |
-| `POSTGRES_DATABASE`  |          |           | alias for `PG_DB`                   |
-| `POSTGRES_USER`      |          |           | alias for `PG_USER`                 |
-| `POSTGRES_PASSWORD`  |          |           | alias for `PG_PASSWORD`             |
-| `POSTGRES_HOST`      |          | 127.0.0.1 | alias for `PG_HOST`                 |
-| `POSTGRES_PORT`      |          | 5432      | alias for `PG_PORT`                 |
-| `POSTGRES_PREFIX`    |          | `wl_`     | alias for `PG_PREFIX`               |
-| `POSTGRES_SSL`       |          | `false`   | alias for `PG_SSL`                  |
+| Variável de ambiente | Obrigatório | Padrão    | Descrição                                |
+| -------------------- | ----------- | --------- | ---------------------------------------- |
+| `PG_DB`              | ✅          |           | Nome do banco de dados PostgreSQL        |
+| `PG_USER`            | ✅          |           | Nome de usuário do servidor PostgreSQL   |
+| `PG_PASSWORD`        | ✅          |           | Senha do servidor PostgreSQL             |
+| `PG_HOST`            |             | 127.0.0.1 | Endereço do servidor PostgreSQL          |
+| `PG_PORT`            |             | 5432      | Porta do servidor PostgreSQL             |
+| `PG_PREFIX`          |             | `wl_`     | Prefixo das tabelas do PostgreSQL        |
+| `PG_SSL`             |             | `false`   | defina como `true` para usar conexão SSL |
+| `POSTGRES_DATABASE`  |             |           | alias de `PG_DB`                         |
+| `POSTGRES_USER`      |             |           | alias de `PG_USER`                       |
+| `POSTGRES_PASSWORD`  |             |           | alias de `PG_PASSWORD`                   |
+| `POSTGRES_HOST`      |             | 127.0.0.1 | alias de `PG_HOST`                       |
+| `POSTGRES_PORT`      |             | 5432      | alias de `PG_PORT`                       |
+| `POSTGRES_PREFIX`    |             | `wl_`     | alias de `PG_PREFIX`                     |
+| `POSTGRES_SSL`       |             | `false`   | alias de `PG_SSL`                        |
 
 ## GitHub
 
-Waline supports storing comment data in a CSV file on GitHub. To use GitHub as data storage, you need to apply for Personal access tokens. You can click <kbd>Generate new token</kbd> to apply it at <https://github.com/settings/tokens>. Check the **repo** option in permission to obtain read and write permissions for repositories.
+O Waline permite armazenar os dados dos comentários em um arquivo CSV no GitHub. Para usar o GitHub como armazenamento de dados, você precisa solicitar Personal access tokens. Clique em <kbd>Generate new token</kbd> para solicitar em <https://github.com/settings/tokens>. Marque a opção **repo** nas permissões para obter permissão de leitura e escrita nos repositórios.
 
-| Environment Variable | Required | Default | Description                                                                                                      |
-| -------------------- | -------- | ------- | ---------------------------------------------------------------------------------------------------------------- |
-| `GITHUB_TOKEN`       | ✅       |         | [Personal access tokens](https://github.com/settings/tokens)                                                     |
-| `GITHUB_REPO`        | ✅       |         | repository name, such as `walinejs/waline`                                                                       |
-| GITHUB_PATH          |          |         | The data storage directory, such as `data` means it is stored in the `data` directory, root directory by default |
+| Variável de ambiente | Obrigatório | Padrão | Descrição                                                                                                                                |
+| -------------------- | ----------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `GITHUB_TOKEN`       | ✅          |        | [Personal access tokens](https://github.com/settings/tokens)                                                                             |
+| `GITHUB_REPO`        | ✅          |        | nome do repositório, como `walinejs/waline`                                                                                              |
+| GITHUB_PATH          |             |        | Diretório de armazenamento dos dados; por exemplo, `data` significa que os dados ficam no diretório `data`, no diretório raiz por padrão |
 
 ::: warning
 
-Due to performance, using GitHub is not recommended.
+Por questões de desempenho, o uso do GitHub não é recomendado.
 
 :::
 
-## Custom
+## Personalizado
 
-Besides above database storage, support for other storage services can also be added.
+Além dos armazenamentos de banco de dados acima, também é possível adicionar suporte a outros serviços de armazenamento.
 
-If you want to help Waline supporting more storage services, you can fork the project and inherit the [base class](https://github.com/walinejs/waline/blob/main/packages/server/src/service/storage/base.js) and then implement the `select()`, `add()`, `update()` and `delete()` methods of the corresponding storage service and submit the PR.
+Se você quiser ajudar o Waline a oferecer suporte a mais serviços de armazenamento, pode fazer um fork do projeto, herdar a [classe base](https://github.com/walinejs/waline/blob/main/packages/server/src/service/storage/base.js) e então implementar os métodos `select()`, `add()`, `update()` e `delete()` do serviço de armazenamento correspondente e enviar o PR.

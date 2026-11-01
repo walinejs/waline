@@ -1,16 +1,16 @@
 ---
-title: Emoji Customize
+title: Personalizar emojis
 icon: emoji
 order: 2
 ---
 
-You can customize the emoji of the comment box by setting `emoji` option, you should set it to an **array** containing _preset link_ or _preset config object_. If you don't want it, just set it to `false`.
+Você pode personalizar os emojis da caixa de comentários com a opção `emoji`, que deve ser definida como um **array** contendo _links de predefinições_ ou _objetos de configuração de predefinições_. Se você não quiser emojis, basta defini-la como `false`.
 
 <!-- more -->
 
-## Presets
+## Predefinições
 
-Waline provides a series of emoji presets that can be used out of box. You can add them directly to the `emoji` options:
+O Waline oferece uma série de predefinições de emojis prontas para usar. Você pode adicioná-las diretamente à opção `emoji`:
 
 - Alus
 
@@ -49,74 +49,74 @@ Waline provides a series of emoji presets that can be used out of box. You can a
     https://unpkg.com/@waline/emojis@1.4.0/tw-emoji
     ```
 
-  ::: details Others presets
-  - Full: (Not recommended)
+  ::: details Outras predefinições
+  - Completo: (não recomendado)
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw
     ```
 
-  - Body:
+  - Corpo:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-body
     ```
 
-  - Food:
+  - Comida:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-food
     ```
 
-  - Natural:
+  - Natureza:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-natural
     ```
 
-  - Object:
+  - Objetos:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-object
     ```
 
-  - Symbol:
+  - Símbolos:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-symbol
     ```
 
-  - People:
+  - Pessoas:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-people
     ```
 
-  - Sport:
+  - Esportes:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-sport
     ```
 
-  - Time:
+  - Tempo:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-time
     ```
 
-  - Travel:
+  - Viagem:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-travel
     ```
 
-  - Weather:
+  - Clima:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-weather
     ```
 
-  - Flag:
+  - Bandeiras:
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw-flag
@@ -130,7 +130,7 @@ Waline provides a series of emoji presets that can be used out of box. You can a
   https://unpkg.com/@waline/emojis@1.4.0/weibo
   ```
 
-- Soul knight Emoji
+- Emoji do Soul Knight
 
   ```http
   https://unpkg.com/@waline/emojis@1.4.0/soul-emoji
@@ -138,11 +138,11 @@ Waline provides a series of emoji presets that can be used out of box. You can a
 
 ::: warning
 
-Waline DO NOT have any copyright of above emojis, use them at your own risk.
+O Waline não detém nenhum direito autoral sobre os emojis acima, use-os por sua conta e risco.
 
 :::
 
-### Example
+### Exemplo
 
 ```html
 <div id="waline"></div>
@@ -158,6 +158,6 @@ Waline DO NOT have any copyright of above emojis, use them at your own risk.
 </script>
 ```
 
-## Create your own presets
+## Criar suas próprias predefinições
 
-Besides the presets provided by Waline, you can create your own presets, see [Guide → Create Emoji Presets](../../cookbook/customize/emoji.md).
+Além das predefinições oferecidas pelo Waline, você pode criar as suas próprias; veja [Guia → Criar predefinições de emojis](../../cookbook/customize/emoji.md).

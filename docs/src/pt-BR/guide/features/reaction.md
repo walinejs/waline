@@ -1,16 +1,16 @@
 ---
-title: Article Reactions
+title: Reações ao artigo
 icon: reaction
 order: 4
 ---
 
-Waline allows users to express reactions for article content.
+O Waline permite que os usuários expressem reações ao conteúdo do artigo.
 
 <!-- more -->
 
-## Getting Started
+## Começando
 
-To quickly enable reactions, you can set the `reaction` option to `true` to display a default list of reactions:
+Para ativar as reações rapidamente, você pode definir a opção `reaction` como `true` para exibir uma lista padrão de reações:
 
 ```js
 Waline.init({
@@ -20,11 +20,11 @@ Waline.init({
 });
 ```
 
-Waline will display the default list of reactions above the comment box.
+O Waline exibirá a lista padrão de reações acima da caixa de comentários.
 
-## Customize Reactions
+## Personalizar reações
 
-If you need to customize these reaction emoticons, you can pass in an array containing the link of the reaction emoticon image, representing reactions you want the user to choose with:
+Se você precisar personalizar esses emoticons de reação, pode passar um array contendo os links das imagens dos emoticons de reação, representando as reações que você quer que o usuário escolha:
 
 ```js
 Waline.init({
@@ -39,20 +39,20 @@ Waline.init({
 });
 ```
 
-Meanwhile, you can customize the title of the reaction through `reactionTitle` in `locale`, and you can also customize the name of the reaction expression through `reaction0` to `reaction8`, see [Multilingual Settings](./i18n.md) .
+Além disso, você pode personalizar o título das reações com `reactionTitle` em `locale`, e também o nome de cada expressão de reação com `reaction0` a `reaction8`; veja [Configurações de idioma](./i18n.md).
 
-## Precautions
+## Precauções
 
-::: tip Number Limitation
+::: tip Limite de quantidade
 
-Waline supports up to 9 reactions, and you can add less than 9 reactions without any problems.
+O Waline suporta até 9 reações, e você pode adicionar menos de 9 reações sem problemas.
 
 :::
 
-::: warning Counting Rules
+::: warning Regras de contagem
 
-Counting of reactions is based on location.
+A contagem das reações é baseada na posição.
 
-If you need to reorder and adjust the reactions, check [#1451](https://github.com/walinejs/waline/issues/1451#issuecomment-1264555264) for more details.
+Se você precisar reordenar e ajustar as reações, consulte [#1451](https://github.com/walinejs/waline/issues/1451#issuecomment-1264555264) para mais detalhes.
 
 :::

@@ -1,93 +1,93 @@
 ---
-title: Vercel Deployment
+title: Implantação no Vercel
 icon: vercel
 order: 1
 ---
 
-We released the `@waline/vercel` package as server package, Vercel deployment is also our most recommended way.
+Publicamos o pacote `@waline/vercel` como pacote de servidor, e a implantação no Vercel também é a forma que mais recomendamos.
 
 <!-- more -->
 
-## How to Deploy
+## Como implantar
 
 [![Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fwalinejs%2Fwaline%2Ftree%2Fmain%2Fexample)
 
-1. Click the blue button above, it will redirect you to vercel to deploy with waline template.
+1. Clique no botão azul acima; ele redirecionará você para o Vercel para implantar com o template do Waline.
 
    ::: note
 
-   If you haven't logined, we recommend you to sign in with GitHub.
+   Se você ainda não entrou na sua conta, recomendamos entrar com o GitHub.
 
    :::
 
-1. Input your Vercel project name then click `Create`.
+1. Informe o nome do seu projeto no Vercel e clique em `Create`.
 
    ![Create Project](../../../assets/vercel-1.png)
 
-1. Repo which named you input before will be created and initialized automatically base on waline example template by Vercel.
+1. O repositório com o nome que você informou será criado e inicializado automaticamente pelo Vercel com base no template de exemplo do Waline.
 
    ![new project](../../../assets/vercel-2.png)
 
-   After one minute or two, vercel should finish the deployment. Click `Go to Dashboard` button to redirect to your application dashboard.
+   Após um ou dois minutos, o Vercel deve concluir a implantação. Clique no botão `Go to Dashboard` para ir ao dashboard da sua aplicação.
 
    ![dashboard](../../../assets/vercel-3.png)
 
-## Create Database
+## Criar o banco de dados
 
-1. Click `Storage` at the top to enter the storage service page, choose `Create Database`. Under `Marketplace Database Providers`, select `Neon`, then click `Continue`.
+1. Clique em `Storage` na parte superior para entrar na página de serviços de armazenamento e escolha `Create Database`. Em `Marketplace Database Providers`, selecione `Neon` e clique em `Continue`.
 
    ![storage](../../../assets/vercel-5.png)
 
-1. You will be prompted to create a Neon account. Choose `Accept and Create`. Next, select the database plan configuration, including region and quota. You can leave defaults and click `Continue`.
+1. Você será solicitado a criar uma conta no Neon. Escolha `Accept and Create`. Em seguida, selecione a configuração do plano do banco de dados, incluindo região e cota. Você pode manter os padrões e clicar em `Continue`.
 
    ![neon](../../../assets/vercel-6.png)
 
-1. Define the database name. You can keep the default and click `Continue`.
+1. Defina o nome do banco de dados. Você pode manter o padrão e clicar em `Continue`.
 
    ![neon](../../../assets/vercel-7.png)
 
-1. Now the database appears under `Storage`. Click it and choose `Open in Neon` to jump to Neon. In Neon, select `SQL Editor` on the left, paste the SQL from [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) into the editor, and click `Run` to create tables.
+1. Agora o banco de dados aparece em `Storage`. Clique nele e escolha `Open in Neon` para ir ao Neon. No Neon, selecione `SQL Editor` à esquerda, cole no editor o SQL de [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) e clique em `Run` para criar as tabelas.
 
    ![neon](../../../assets/vercel-10.png)
 
    ![neon](../../../assets/vercel-11.png)
 
-1. After a short while you should see a success message. Go back to Vercel, click `Deployments`, then click `Redeploy` on the latest deployment to make the new database configuration take effect.
+1. Depois de um curto intervalo, você deve ver uma mensagem de sucesso. Volte ao Vercel, clique em `Deployments` e então em `Redeploy` na implantação mais recente para que a nova configuração do banco de dados entre em vigor.
 
    ![redeploy success](../../../assets/vercel-12.png)
 
-1. Vercel will redirect to `Overview` and start deploying. When `STATUS` becomes `Ready`, click `Visit` to open the deployed site. This URL is your server address.
+1. O Vercel redirecionará para `Overview` e iniciará a implantação. Quando `STATUS` se tornar `Ready`, clique em `Visit` para abrir o site implantado. Essa URL é o endereço do seu servidor.
 
    ![visit](../../../assets/vercel-14.png)
 
-## Assign Domain
+## Atribuir um domínio
 
-1. Click <kbd>Settings</kbd> - <kbd>Domains</kbd> to go to domain setting page.
+1. Clique em <kbd>Settings</kbd> - <kbd>Domains</kbd> para ir à página de configuração de domínio.
 
-1. Input domain you want to assign and click <kbd>Add</kbd> button.
+1. Informe o domínio que você deseja atribuir e clique no botão <kbd>Add</kbd>.
 
    ![Add domain](../../../assets/vercel-16.png)
 
-1. Add a new `CNAME` record in your domain service server.
+1. Adicione um novo registro `CNAME` no servidor de domínio.
 
-   | Type  | Name    | Value                |
+   | Tipo  | Nome    | Valor                |
    | ----- | ------- | -------------------- |
    | CNAME | example | cname.vercel-dns.com |
 
-1. You can use your own domain to visit Waline after it takes effect. :tada:
-   - Comment system: example.your-domain.com
-   - Admin panel: example.your-domain.com/ui
+1. Depois que entrar em vigor, você pode usar seu próprio domínio para visitar o Waline. :tada:
+   - Sistema de comentários: example.your-domain.com
+   - Painel administrativo: example.your-domain.com/ui
 
    ![success](../../../assets/vercel-17.png)
 
-## HTML Import
+## Importar via HTML
 
-Set up as follows in your webpage:
+Configure o seguinte na sua página web:
 
-1. Import Waline styles from `https://unpkg.com/@waline/client@v3/dist/waline.css`.
-2. Create a `<script>` tag that uses `init()` from `https://unpkg.com/@waline/client@v3/dist/waline.js`, and pass required options `el` and `serverURL`.
-   - `el` is the element used to render Waline. It can be a CSS selector string or an HTMLElement.
-   - `serverURL` is your server address obtained in the previous step.
+1. Importe os estilos do Waline de `https://unpkg.com/@waline/client@v3/dist/waline.css`.
+2. Crie uma tag `<script>` que use `init()` de `https://unpkg.com/@waline/client@v3/dist/waline.js` e passe as opções obrigatórias `el` e `serverURL`.
+   - `el` é o elemento usado para renderizar o Waline. Pode ser uma string de seletor CSS ou um HTMLElement.
+   - `serverURL` é o endereço do seu servidor obtido na etapa anterior.
 
 ```html {3-7,12-18}:line-numbers
 <head>
@@ -109,8 +109,8 @@ Set up as follows in your webpage:
 </body>
 ```
 
-## Comment Admin
+## Administração de comentários
 
-1. After deployment, visit `<serverURL>/ui/register` to register. The first registered user becomes the administrator.
-2. After logging in, the administrator can manage comments: edit, mark, or delete.
-3. Users can also register via the comment box. After login they will be redirected to their profile page.
+1. Após a implantação, acesse `<serverURL>/ui/register` para se cadastrar. O primeiro usuário cadastrado se torna o administrador.
+2. Depois de entrar, o administrador pode gerenciar os comentários: editar, marcar ou excluir.
+3. Os usuários também podem se cadastrar pela caixa de comentários. Após entrar, eles serão redirecionados para a página de perfil.
