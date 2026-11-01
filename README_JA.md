@@ -6,7 +6,7 @@
 
 ![Author](https://img.shields.io/badge/author-lizheming,%20Mr.Hope-blue?style=for-the-badge) ![License](https://img.shields.io/github/license/walinejs/waline?style=for-the-badge) [![qq](https://img.shields.io/badge/qq-waline交流群-f75137?logo=TencentQQ&style=for-the-badge)](https://jq.qq.com/?_wv=1027&k=bKoVBppG) [![telegram](https://img.shields.io/badge/telegram-walinejs-2ca5e0?logo=telegram&style=for-the-badge)](https://t.me/walinejs)
 
-![npm version](https://img.shields.io/npm/v/@waline/client?color=critical&logo=npm&style=flat-square&label=@waline/client) ![npm bundle size (scoped)](https://img.shields.io/bundlephobia/minzip/@waline/client?style=flat-square&label=@waline/client%20size) ![downloads](https://img.shields.io/npm/dm/@waline/vercel?style=flat-square&label=@waline/client%20downloads) [![jsDelivr hits](https://data.jsdelivr.com/v1/package/npm/@waline/client/badge)](https://www.jsdelivr.com/package/npm/@waline/client)
+![npm version](https://img.shields.io/npm/v/@waline/client?color=critical&logo=npm&style=flat-square&label=@waline/client) ![npm bundle size (scoped)](https://img.shields.io/bundlephobia/minzip/@waline/client?style=flat-square&label=@waline/client%20size) ![downloads](https://img.shields.io/npm/dm/@waline/vercel?style=flat-square&label=@waline/vercel%20downloads) [![jsDelivr hits](https://data.jsdelivr.com/v1/package/npm/@waline/client/badge)](https://www.jsdelivr.com/package/npm/@waline/client)
 
 ![npm version](https://img.shields.io/npm/v/@waline/vercel?color=critical&logo=npm&style=flat-square&label=@waline/vercel)
 
@@ -29,18 +29,20 @@
 - 無料でデプロイ可能！
 - 複数のデプロイ先とストレージサービスをサポートしており、少なくとも 243 通りのデプロイの選択肢があります！
 
-- |                                                 | Waline                                                              |                                   |
-  | ----------------------------------------------- | ------------------------------------------------------------------- | --------------------------------- |
-  | **クライアント**                                | **サーバー**                                                        | **ストレージ**                    |
-  | [@waline/client](https://waline.js.org)         | [Vercel](https://vercel.com)                                        | PostgreSQL                        |
-  | [MiniValine](https://minivaline.js.org/)        | [CloudBase](https://cloudbase.net/)                                 | MySQL                             |
-  | [sodesu](https://github.com/BeiyanYunyi/sodesu) | [Railway](https://railway.app)                                      | SQLite                            |
-  |                                                 | [Render](https://render.com)                                        | [TiDB](https://tidbcloud.com/)    |
-  |                                                 | [Zeabur](https://zeabur.com)                                        | [MongoDB](https://mongodb.com)    |
-  |                                                 | [Netlify](https://netlify.com)                                      | [CloudBase](https://clodbase.net) |
-  |                                                 | [Alibaba Cloud ComputeNest](https://computenest.console.aliyun.com) | [GitHub](https://github.com)      |
-  |                                                 | Docker                                                              |                                   |
-  |                                                 | セルフホスト                                                        |                                   |
+- |                                                 | Waline                                                               |                                    |
+  | ----------------------------------------------- | -------------------------------------------------------------------- | ---------------------------------- |
+  | **クライアント**                                | **サーバー**                                                         | **ストレージ**                     |
+  | [@waline/client](https://waline.js.org)         | [Vercel](https://vercel.com)                                         | PostgreSQL                         |
+  | [MiniValine](https://minivaline.js.org/)        | [CloudBase](https://cloudbase.net/)                                  | MySQL                              |
+  | [sodesu](https://github.com/BeiyanYunyi/sodesu) | [Baidu Cloud CFC](https://console.bce.baidu.com/cfc/#/cfc/functions) | SQLite                             |
+  |                                                 | [Alibaba Cloud FC](https://fc.console.aliyun.com/)                   | [TiDB](https://tidbcloud.com/)     |
+  |                                                 | [Alibaba Cloud ComputeNest](https://computenest.console.aliyun.com)  | [MongoDB](https://mongodb.com)     |
+  |                                                 | [Railway](https://railway.app)                                       | [CloudBase](https://cloudbase.net) |
+  |                                                 | [Render](https://render.com)                                         | [GitHub](https://github.com)       |
+  |                                                 | [Zeabur](https://zeabur.com)                                         |                                    |
+  |                                                 | [Netlify](https://netlify.com)                                       |                                    |
+  |                                                 | Docker                                                               |                                    |
+  |                                                 | セルフホスト                                                         |                                    |
 
 ## Todo
 
@@ -84,4 +86,4 @@ Waline へのコントリビュートを**心から**歓迎します！
 
 ## ライセンス
 
-[GPL-2.0](https://github.com/lizheming/Waline/blob/main/LICENSE)
+[GPL-2.0](https://github.com/walinejs/waline/blob/main/LICENSE)

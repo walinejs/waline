@@ -4,7 +4,7 @@ icon: client
 order: 1
 ---
 
-Waline 官方提供了 [`@waline/client`](https://www.npmjs.com/package/@waline/client) 客户端，使用 Vue + TypeScript 编写，大小仅为 53kb gzip。
+Waline 官方提供了 [`@waline/client`](https://www.npmjs.com/package/@waline/client) 客户端，使用 Vue + TypeScript 编写，大小仅为 100kb gzip。
 
 ## 引入
 
@@ -17,7 +17,7 @@ Waline 官方提供了 [`@waline/client`](https://www.npmjs.com/package/@waline/
 
 ## 调用 Waline
 
-使用 Waline 最简单的方式就是 [快速上手中的方式](./README.md#html-引入-客户端)，从 Waline 中导入 `init` 函数并通过 `init(yourOptions)` 初始化 Waline 实例。
+使用 Waline 最简单的方式就是 [快速上手中的方式](./README.md#html-引入)，从 Waline 中导入 `init` 函数并通过 `init(yourOptions)` 初始化 Waline 实例。
 
 在初始化选项中，`el` 和 `serverURL` 两个选项是必填的。前者为 Waline 挂载的元素或元素选择器，后者为服务端地址。关于 `@waline/client` 的全部初始化参数，详见 [客户端参考 → API](../../reference/client/api.md)。
 

@@ -16,7 +16,7 @@ actions:
 features:
   - title: Легкий
     icon: light
-    details: Полный размер клиента 53kb gzip
+    details: Полный размер клиента 100kb gzip
 
   - title: Полностью бесплатный
     icon: free

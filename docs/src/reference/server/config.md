@@ -217,7 +217,7 @@ module.exports = Waline({
 
 :::
 
-### afterUpdate(comment)
+### postUpdate(comment)
 
 评论内容在后台被更新后执行的操作。方法执行时会传入评论数据。
 
@@ -255,7 +255,7 @@ module.exports = Waline({
 
 :::
 
-### afterDelete(commentId)
+### postDelete(commentId)
 
 评论被删除后执行的操作，方法执行时会传入需要操作的评论 Id。
 

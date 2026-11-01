@@ -208,7 +208,7 @@ module.exports = Waline({
 
 :::
 
-### afterUpdate(comment)
+### postUpdate(comment)
 
 Action after a comment content is updated in the dashboard. Comment data will be passed in when the method is executed.
 
@@ -246,7 +246,7 @@ module.exports = Waline({
 
 :::
 
-### afterDelete(commentId)
+### postDelete(commentId)
 
 Action after a comment is deleted, the comment Id will be passed as the only param.
 

@@ -25,7 +25,7 @@ Waline은 위젯을 통해 최근 댓글을 표시하는 기능을 지원하며,
 ```html
 <div id="waline-recent"></div>
 <script type="module">
-  import { RecentComments } from 'https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.mjs';
+  import { RecentComments } from 'https://cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline.js';
 
   RecentComments({
     el: '#waline-recent',
@@ -50,7 +50,7 @@ Waline은 위젯을 통해 최근 댓글을 표시하는 기능을 지원하며,
 ```html
 <div id="waline-recent"></div>
 <script type="module">
-  import { RecentComments } from 'https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.mjs';
+  import { RecentComments } from 'https://cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline.js';
 
   RecentComments({
     serverURL: 'http://waline.vercel.app',

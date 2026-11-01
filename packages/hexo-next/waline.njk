@@ -3,7 +3,7 @@
 }, config.waline, {
   el: '#waline',
   comment: true,
-  libUrl: config.waline.libUrl | default('//unpkg.com/@waline/client@v2/dist/waline.js', true),
+  libUrl: config.waline.libUrl | default('//unpkg.com/@waline/client@v3/dist/waline.umd.js', true),
   path: url_for(page.path) | replace(r/\/index\.html$/, '/')
 }) }}
 <link rel="stylesheet" href="{{ config.waline.cssUrl }}">

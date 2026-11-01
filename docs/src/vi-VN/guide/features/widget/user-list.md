@@ -30,7 +30,7 @@ The data format returned by the component should be `Promise<{ users: WalineUser
 ```html
 <div id="waline-users"></div>
 <script type="module">
-  import { UserList } from 'https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.mjs';
+  import { UserList } from 'https://cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline.js';
 
   UserList({
     el: '#waline-users',
@@ -45,7 +45,7 @@ The data format returned by the component should be `Promise<{ users: WalineUser
 ```html
 <div id="waline-users"></div>
 <script type="module">
-  import { UserList } from 'https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.mjs';
+  import { UserList } from 'https://cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline.js';
 
   UserList({
     el: '#waline-users',
@@ -65,7 +65,7 @@ Example:
 ```html
 <div id="waline-users"></div>
 <script type="module">
-  import { UserList } from 'https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.mjs';
+  import { UserList } from 'https://cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline.js';
 
   UserList({ serverURL: 'http://waline.vercel.app', count: 10 }).then(({ users }) => {
     document.getElementById('waline-users').innerHTML = users.map(

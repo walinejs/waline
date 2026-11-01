@@ -27,7 +27,7 @@ icon: valine
 
    Waline V2 telah menghapus dukungan Valine dan beralih ke konfigurasi yang lebih baik. Berikut adalah ringkasan migrasi beberapa opsi:
 
-   - `placeholder`: gunakan `locales.placeholder`
+   - `placeholder`: gunakan `locale.placeholder`
    - `highlight`: gunakan `highlighter`
    - `avatarForce`, `avatar`: gunakan variabel lingkungan `AVATAR_PROXY` di server
    - `recordIP`: tidak lagi menampilkan IP pengguna, dan menyediakan variabel lingkungan `DISABLE_USERAGENT` di server

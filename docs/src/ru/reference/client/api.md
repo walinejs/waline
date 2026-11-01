@@ -196,7 +196,7 @@ Returns:
 ```ts
 interface WalineRecentCommentsResult {
   /** Comment Data */
-  comments: WalineComment[];
+  comments: RecentCommentData[];
 
   /** Umount widget */
   destroy: () => void;
@@ -229,7 +229,7 @@ interface WalineUserListOptions {
   /**
    * Language of error message
    *
-   * @default 'zh-CN'
+   * @default navigator.language
    */
   lang?: string;
 
@@ -241,7 +241,7 @@ interface WalineUserListOptions {
   locale?: WalineLocale;
 
   /** List mode or avatar wall mode */
-  mode: 'list' | 'wall';
+  mode?: 'list' | 'wall';
 }
 ```
 

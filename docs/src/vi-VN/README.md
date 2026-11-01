@@ -16,7 +16,7 @@ actions:
 features:
   - title: Nhẹ
     icon: light
-    details: Kích thước đầy đủ của client là 53kb gzip
+    details: Kích thước đầy đủ của client là 100kb gzip
 
   - title: Hoàn toàn miễn phí
     icon: free

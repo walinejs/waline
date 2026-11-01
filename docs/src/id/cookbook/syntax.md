@@ -257,4 +257,4 @@ $$
 
 ## Menyematkan HTML
 
-Silakan tambahkan konten HTML apa pun selama tidak memicu [mekanisme perlindungan](../guide/features/safety.md#comment-security).
+Silakan tambahkan konten HTML apa pun selama tidak memicu [mekanisme perlindungan](../guide/features/safety.md#keamanan-komentar).

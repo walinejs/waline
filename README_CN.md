@@ -6,7 +6,7 @@
 
 ![作者](https://img.shields.io/badge/作者-lizheming,%20Mr.Hope-blue?style=for-the-badge) ![协议](https://img.shields.io/github/license/walinejs/waline?style=for-the-badge) [![qq](https://img.shields.io/badge/qq-waline交流群-f75137?logo=TencentQQ&style=for-the-badge)](https://jq.qq.com/?_wv=1027&k=bKoVBppG) [![telegram](https://img.shields.io/badge/telegram-walinejs-2ca5e0?logo=telegram&style=for-the-badge)](https://t.me/walinejs)
 
-![npm version](https://img.shields.io/npm/v/@waline/client?color=critical&logo=npm&style=flat-square&label=@waline/client) ![npm bundle size (scoped)](https://img.shields.io/bundlephobia/minzip/@waline/client?style=flat-square&label=@waline/client%20size) ![downloads](https://img.shields.io/npm/dm/@waline/vercel?style=flat-square&label=@waline/client%20downloads) [![jsDelivr hits](https://data.jsdelivr.com/v1/package/npm/@waline/client/badge)](https://www.jsdelivr.com/package/npm/@waline/client)
+![npm version](https://img.shields.io/npm/v/@waline/client?color=critical&logo=npm&style=flat-square&label=@waline/client) ![npm bundle size (scoped)](https://img.shields.io/bundlephobia/minzip/@waline/client?style=flat-square&label=@waline/client%20size) ![downloads](https://img.shields.io/npm/dm/@waline/vercel?style=flat-square&label=@waline/vercel%20downloads) [![jsDelivr hits](https://data.jsdelivr.com/v1/package/npm/@waline/client/badge)](https://www.jsdelivr.com/package/npm/@waline/client)
 
 ![npm version](https://img.shields.io/npm/v/@waline/vercel?color=critical&logo=npm&style=flat-square&label=@waline/vercel)
 
@@ -36,7 +36,7 @@
   | [MiniValine](https://minivaline.js.org/)        | [CloudBase](https://cloudbase.net/)                             | MySQL                              |
   | [sodesu](https://github.com/BeiyanYunyi/sodesu) | [百度云 CFC](https://console.bce.baidu.com/cfc/#/cfc/functions) | SQLite                             |
   |                                                 | [阿里云 FC](https://fc.console.aliyun.com/)                     | [TiDB](https://tidbcloud.com/)     |
-  |                                                 | [阿里云 计算巢](https://computenest.console.aliyun.com)         | [MongoDB](https://mongodb.com)     |
+  |                                                 | [阿里云计算巢](https://computenest.console.aliyun.com)          | [MongoDB](https://mongodb.com)     |
   |                                                 | [Railway](https://railway.app)                                  | [CloudBase](https://cloudbase.net) |
   |                                                 | [Render](https://render.com)                                    | [GitHub](https://github.com)       |
   |                                                 | [Zeabur](https://zeabur.com)                                    |                                    |
@@ -57,7 +57,7 @@
 - [x] 登录支持
 - [x] 评论管理
 - [x] 评论删除
-- [x] 其它数据库服务支持 (已支持 LeanCloud, MySQL, MongoDB, SQLite, PostgreSQL, CloudBase Base, GitHub)
+- [x] 其它数据库服务支持 (已支持 LeanCloud, MySQL, MongoDB, SQLite, PostgreSQL, CloudBase, GitHub)
 - [x] 基于 IP 的评论发布频率限制
 - [x] 基于关键词的评论过滤限制
 - [x] IP 黑名单
@@ -80,4 +80,4 @@
 
 ## 协议
 
-[GPL-2.0](https://github.com/lizheming/Waline/blob/main/LICENSE)
+[GPL-2.0](https://github.com/walinejs/waline/blob/main/LICENSE)

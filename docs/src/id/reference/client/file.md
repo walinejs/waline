@@ -17,7 +17,7 @@ icon: file
 
 - `dist/slim.js`: versi lengkap tanpa bundel dependensi, format ES Module
 
-  File ini adalah file default untuk mengimpor `@waline/client` dengan Node.js, ukuran Gzip 19,39 KB
+  File ini adalah file default untuk mengimpor `@waline/client` dengan Node.js, ukuran Gzip 27 KB
 
 - `dist/waline.css`: Gaya CSS Waline
 
@@ -25,7 +25,7 @@ icon: file
 
 - `dist/component.js`: Komponen Vue Waline, format ES Module, tanpa bundel dependensi
 
-  File ini digunakan untuk menggunakan komentar Waline dalam mode komponen di proyek Vue, ukuran Gzip 18,28 KB
+  File ini digunakan untuk menggunakan komentar Waline dalam mode komponen di proyek Vue, ukuran Gzip 25 KB
 
 - `dist/comment.js`: Modul penghitung komentar Waline, format ESM, < 1KB ukuran Gzip
 
@@ -37,7 +37,7 @@ icon: file
 
 ## Ekspor Modul
 
-`@waline/client` adalah modul ESM standar, memerlukan Node.js versi >= 18:
+`@waline/client` adalah modul ESM standar, memerlukan Node.js versi >= 22:
 
 - `@waline/client`: Entry utama Waline tanpa dependensi yang dibundel
 

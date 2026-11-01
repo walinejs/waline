@@ -3,9 +3,9 @@ title: 从 Valine 迁移
 icon: valine
 ---
 
-1. 按照 [Vercel 部署](../guide/get-started/README.md#vercel-部署-服务端) 一节部署服务端。
+1. 按照 [Vercel 部署](../guide/get-started/README.md#部署服务端) 一节部署服务端。
 
-2. 按照 [HTML 片段](../guide/get-started/README.md#html-引入-客户端) 一节修改对应的前端脚本。
+2. 按照 [HTML 片段](../guide/get-started/README.md#html-引入) 一节修改对应的前端脚本。
 
    ::: warning
 
@@ -33,12 +33,12 @@ icon: valine
 
 Waline V2 已经移除了 Valine 支持进而转向更好的配置方案。以下是部分选项的迁移概要:
 
-- `placeholder`: 使用 `locales.placeholder`
+- `placeholder`: 使用 `locale.placeholder`
 - `highlight`: 使用 `highlighter`
 - `avatarForce`, `avatar`: 使用服务端的 `AVATAR_PROXY` 环境变量
 - `recordIP`: 不再显示用户 IP，同时在服务端提供 `DISABLE_USERAGENT` 环境变量
 - `requiredFields`: 重命名为 `requiredMeta`
-- `langMode`: 重命名为 `locales`
+- `langMode`: 重命名为 `locale`
 - `emojiCDN`, `emojiMap`: 使用更强大的 `emoji` 选项
 
 Waline 具体的配置详见 [客户端配置](../reference/client/api.md)。你也可以查看 [Waline 客户端 V2 迁移指南](./v2.md) 来了解与 Valine 不兼容的选项。

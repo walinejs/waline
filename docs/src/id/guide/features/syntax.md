@@ -25,7 +25,7 @@ Github Flavored Markdown
 
 :::
 
-Sementara itu, Anda dapat dengan bebas menyisipkan konten HTML apapun tanpa memicu [mekanisme perlindungan](./safety.md#comment-security).
+Sementara itu, Anda dapat dengan bebas menyisipkan konten HTML apapun tanpa memicu [mekanisme perlindungan](./safety.md#keamanan-komentar).
 
 ## Dukungan Pratinjau Terbatas
 

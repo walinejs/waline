@@ -3,9 +3,9 @@ title: Valine에서 마이그레이션
 icon: valine
 ---
 
-1. _시작하기_ 섹션의 [Vercel 배포](../guide/get-started/README.md#deploy-to-vercel-server)에 따라 백엔드를 배포하세요.
+1. _시작하기_ 섹션의 [Vercel 배포](../guide/get-started/README.md#서버-배포)에 따라 백엔드를 배포하세요.
 
-2. _시작하기_ 섹션의 [HTML](../guide/get-started/README.md#importing-in-html-client)에 따라 프론트엔드 스크립트를 수정하세요.
+2. _시작하기_ 섹션의 [HTML](../guide/get-started/README.md#html에서-가져오기)에 따라 프론트엔드 스크립트를 수정하세요.
 
    ```diff
    - <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
@@ -27,12 +27,12 @@ icon: valine
 
 Waline V2는 Valine 지원을 제거하고 더 나은 구성으로 전환했습니다. 다음은 일부 옵션의 마이그레이션 요약입니다:
 
-- `placeholder`: `locales.placeholder`를 사용하세요
+- `placeholder`: `locale.placeholder`를 사용하세요
 - `highlight`: `highlighter`를 사용하세요
 - `avatarForce`, `avatar`: 서버의 `AVATAR_PROXY` 환경 변수를 사용하세요
 - `recordIP`: 더 이상 사용자 IP를 표시하지 않으며, 서버에서 `DISABLE_USERAGENT` 환경 변수를 제공합니다
 - `requiredFields`: `requiredMeta`로 이름이 변경됨
-- `langMode`: `locales`로 이름이 변경됨
+- `langMode`: `locale`로 이름이 변경됨
 - `emojiCDN`, `emojiMap`: 더 강력한 `emoji` 옵션을 사용하세요
 
 Waline 설정에 대해서는 [클라이언트 설정](../reference/client/api.md)을 참조하세요. Valine과 호환되지 않는 옵션에 대해서는 [Waline 클라이언트 V2 마이그레이션 가이드](./v2.md)도 확인할 수 있습니다.

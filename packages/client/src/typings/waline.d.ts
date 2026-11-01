@@ -130,10 +130,10 @@ export interface WalineProps {
   /**
    * 自定义 waline 语言显示
    *
-   * @see [自定义语言](https://waline.js.org/client/i18n.html)
+   * @see [自定义语言](https://waline.js.org/guide/features/i18n.html)
    *
    * Custom display language in waline
-   * @see [I18n](https://waline.js.org/en/client/i18n.html)
+   * @see [I18n](https://waline.js.org/en/guide/features/i18n.html)
    */
   locale?: Partial<WalineLocale>;
 

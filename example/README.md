@@ -6,7 +6,7 @@ This directory is a brief example of a [Waline](https://waline.js.org/) app that
 
 Deploy your own Waline project with Vercel.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/walinejs/waline/tree/main/example)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fwalinejs%2Fwaline%2Ftree%2Fmain%2Fexample)
 
 ### How We Created This Example
 

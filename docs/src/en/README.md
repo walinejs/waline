@@ -16,7 +16,7 @@ actions:
 features:
   - title: LightWeight
     icon: light
-    details: Full client size of 53kb gzip
+    details: Full client size of 100kb gzip
 
   - title: Completely free
     icon: free

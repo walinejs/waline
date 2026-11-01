@@ -31,7 +31,7 @@ Anda harus mengatur melalui `Settings` - `Environment Variables` saat menggunaka
 | `DISABLE_USERAGENT`     |                                                                         | apakah menyembunyikan user agent komentator. Nilai bawaan adalah `false`      |
 | `DISABLE_REGION`        |                                                                         | apakah menyembunyikan wilayah komentator. Nilai bawaan adalah `false`         |
 | `DISABLE_AUTHOR_NOTIFY` |                                                                         | apakah menonaktifkan notifikasi penulis                                       |
-| `AVATAR_PROXY`          | `https://avatar.75cdn.workers.dev`                                      | URL layanan proxy avatar. Anda dapat mengatur `false` untuk menonaktifkannya  |
+| `AVATAR_PROXY`          | `''`                                                                    | URL layanan proxy avatar. Biarkan kosong untuk menonaktifkannya               |
 | `GRAVATAR_STR`          | <span v-pre>`https://seccdn.libravatar.org/avatar/{{mail\|md5}}`</span> | String render Gravatar, berdasarkan template nunjucks                         |
 | `LEVELS`                |                                                                         | Memberikan label peringkat kepada setiap pengguna berdasarkan jumlah komentar |
 
@@ -187,16 +187,16 @@ Harap perhatikan secara khusus bahwa beberapa kotak surat menggunakan kata sandi
 | `PG_USER`           | ✅    |           | Nama pengguna server PostgreSQL              |
 | `PG_PASSWORD`       | ✅    |           | Kata sandi server PostgreSQL                 |
 | `PG_HOST`           |       | 127.0.0.1 | Alamat server PostgreSQL                     |
-| `PG_PORT`           |       | 3211      | Port server PostgreSQL                       |
+| `PG_PORT`           |       | 5432      | Port server PostgreSQL                       |
 | `PG_PREFIX`         |       | `wl_`     | Prefiks tabel PostgreSQL                     |
 | `PG_SSL`            |       | `false`   | atur ke `true` untuk menggunakan koneksi SSL |
 | `POSTGRES_DATABASE` |       |           | alias untuk `PG_DB`                          |
 | `POSTGRES_USER`     |       |           | alias untuk `PG_USER`                        |
 | `POSTGRES_PASSWORD` |       |           | alias untuk `PG_PASSWORD`                    |
 | `POSTGRES_HOST`     |       | 127.0.0.1 | alias untuk `PG_HOST`                        |
-| `POSTGRES_PORT`     |       | 3211      | alias untuk `PG_PORT`                        |
+| `POSTGRES_PORT`     |       | 5432      | alias untuk `PG_PORT`                        |
 | `POSTGRES_PREFIX`   |       | `wl_`     | alias untuk `PG_PREFIX`                      |
-| `POSTGRES_SSL`      |       | `false`   | alias untuk `POSTGRES_SSL`                   |
+| `POSTGRES_SSL`      |       | `false`   | alias untuk `PG_SSL`                         |
 
 ### GitHub
 

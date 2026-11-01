@@ -16,7 +16,7 @@ actions:
 features:
   - title: 軽量
     icon: light
-    details: クライアントサイズは53kb gzip
+    details: クライアントサイズは100kb gzip
 
   - title: 完全無料
     icon: free

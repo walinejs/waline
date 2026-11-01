@@ -31,7 +31,7 @@ Bitte stellen Sie die Eindeutigkeit jedes _Artikelseiten_-Pfads sicher, andernfa
 - Typ: `string`
 - Standard: `navigator.language`
 - Details:
-  - [Anleitung → I18n](../../guide/features/i18n.md#set-language)
+  - [Anleitung → I18n](../../guide/features/i18n.md#sprache-festlegen)
 
 Anzeigesprache.
 
@@ -42,15 +42,24 @@ Optionale Werte:
 - `'zh-TW'`
 - `'en'`
 - `'en-US'`
+- `'de'`
+- `'es'`
+- `'es-MX'`
+- `'fr'`
+- `'fr-FR'`
+- `'id'`
+- `'id-ID'`
+- `'it'`
+- `'it-IT'`
 - `'jp'`
 - `'jp-JP'`
+- `'ko'`
+- `'ko-KR'`
 - `'pt-BR'`
 - `'ru'`
 - `'ru-RU'`
-- `fr-FR`
-- `fr`
-- `'es'`
-- `'es-MX'`
+- `'vi'`
+- `'vi-VN'`
 
 ## locale
 

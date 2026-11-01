@@ -25,7 +25,7 @@ Das von der Komponente zurückgegebene Datenformat sollte `Promise<{ comment: Wa
 ```html
 <div id="waline-recent"></div>
 <script type="module">
-  import { RecentComments } from 'https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.mjs';
+  import { RecentComments } from 'https://cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline.js';
 
   RecentComments({
     el: '#waline-recent',
@@ -50,7 +50,7 @@ Beispiel:
 ```html
 <div id="waline-recent"></div>
 <script type="module">
-  import { RecentComments } from 'https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.mjs';
+  import { RecentComments } from 'https://cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline.js';
 
   RecentComments({
     serverURL: 'http://waline.vercel.app',

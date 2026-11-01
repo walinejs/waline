@@ -196,7 +196,7 @@ interface WalineRecentCommentsOptions {
 ```ts
 interface WalineRecentCommentsResult {
   /** 评论数据 */
-  comments: WalineComment[];
+  comments: RecentCommentData[];
 
   /** 取消挂载挂件 */
   destroy: () => void;
@@ -229,14 +229,14 @@ interface WalineUserListOptions {
   /**
    * 错误提示消息所使用的语言
    *
-   * @default 'zh-CN'
+   * @default navigator.language
    */
   lang?: string;
 
   /**
    * 自定义 waline 语言显示
    *
-   * @see [自定义语言](https://waline.js.org/client/i18n.html)
+   * @see [自定义语言](https://waline.js.org/guide/features/i18n.html)
    */
   locale?: WalineLocale;
 
@@ -245,7 +245,7 @@ interface WalineUserListOptions {
    *
    * List mode or avatar wall mode
    */
-  mode: 'list' | 'wall';
+  mode?: 'list' | 'wall';
 }
 ```
 

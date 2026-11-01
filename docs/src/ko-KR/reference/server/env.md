@@ -31,7 +31,7 @@ Vercel을 사용하는 경우 `Settings` - `Environment Variables`에서 설정�
 | `DISABLE_USERAGENT`     |                                                                         | 댓글 작성자의 유저 에이전트를 숨길지 여부. 기본값은 `false`입니다 |
 | `DISABLE_REGION`        |                                                                         | 댓글 작성자의 지역을 숨길지 여부. 기본값은 `false`입니다          |
 | `DISABLE_AUTHOR_NOTIFY` |                                                                         | 작성자 알림을 비활성화할지 여부                                   |
-| `AVATAR_PROXY`          | `https://avatar.75cdn.workers.dev`                                      | 아바타 프록시 서비스 URL. `false`로 설정하면 비활성화됩니다       |
+| `AVATAR_PROXY`          | `''`                                                                    | 아바타 프록시 서비스 URL. 비워 두면 비활성화됩니다                |
 | `GRAVATAR_STR`          | <span v-pre>`https://seccdn.libravatar.org/avatar/{{mail\|md5}}`</span> | Gravatar 렌더링 문자열, nunjucks 템플릿 기반                      |
 | `LEVELS`                |                                                                         | 댓글 수에 따라 각 사용자에게 등급 라벨을 부여합니다               |
 
@@ -187,16 +187,16 @@ SMTP 사용자명은 일반적으로 전체 메일박스를 지원하며, 비밀
 | `PG_USER`            | ✅       |           | PostgreSQL server username          |
 | `PG_PASSWORD`        | ✅       |           | PostgreSQL server password          |
 | `PG_HOST`            |          | 127.0.0.1 | PostgreSQL server address           |
-| `PG_PORT`            |          | 3211      | PostgreSQL server port              |
+| `PG_PORT`            |          | 5432      | PostgreSQL server port              |
 | `PG_PREFIX`          |          | `wl_`     | PostgreSQL table prefix             |
 | `PG_SSL`             |          | `false`   | set to `true` to use SSL connection |
 | `POSTGRES_DATABASE`  |          |           | alias for `PG_DB`                   |
 | `POSTGRES_USER`      |          |           | alias for `PG_USER`                 |
 | `POSTGRES_PASSWORD`  |          |           | alias for `PG_PASSWORD`             |
 | `POSTGRES_HOST`      |          | 127.0.0.1 | alias for `PG_HOST`                 |
-| `POSTGRES_PORT`      |          | 3211      | alias for `PG_PORT`                 |
+| `POSTGRES_PORT`      |          | 5432      | alias for `PG_PORT`                 |
 | `POSTGRES_PREFIX`    |          | `wl_`     | alias for `PG_PREFIX`               |
-| `POSTGRES_SSL`       |          | `false`   | alias for `POSTGRES_SSL`            |
+| `POSTGRES_SSL`       |          | `false`   | alias for `PG_SSL`                  |
 
 ### GitHub
 

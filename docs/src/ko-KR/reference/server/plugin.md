@@ -48,7 +48,7 @@ module.exports = Waline({
 
 ### Hook 기반으로 만들기
 
-플러그인을 만드는 것은 코운단 일입니다. 플러그인은 [훈칢](./config.md#hooks)의 콜난심으로 구성됩니다.
+플러그인을 만드는 것은 코운단 일입니다. 플러그인은 [훈칢](./config.md#댓글-훅)의 콜난심으로 구성됩니다.
 
 ```js
 module.exports = {

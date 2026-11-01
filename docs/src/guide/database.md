@@ -94,16 +94,16 @@ MONGO_OPT_SSL=true
 | `PG_USER`           | ✅   |           | PostgreSQL 数据库的用户名           |
 | `PG_PASSWORD`       | ✅   |           | PostgreSQL 数据库的密码             |
 | `PG_HOST`           |      | 127.0.0.1 | PostgreSQL 服务的地址               |
-| `PG_PORT`           |      | 3211      | PostgreSQL 服务的端口               |
+| `PG_PORT`           |      | 5432      | PostgreSQL 服务的端口               |
 | `PG_PREFIX`         |      | `wl_`     | PostgreSQL 数据表的表前缀           |
 | `PG_SSL`            |      | `false`   | 是否使用 SSL 连接 PostgreSQL 数据库 |
 | `POSTGRES_DATABASE` |      |           | 同 `PG_DB`                          |
 | `POSTGRES_USER`     |      |           | 同 `PG_USER`                        |
 | `POSTGRES_PASSWORD` |      |           | 同 `PG_PASSWORD`                    |
 | `POSTGRES_HOST`     |      | 127.0.0.1 | 同 `PG_HOST`                        |
-| `POSTGRES_PORT`     |      | 3211      | 同 `PG_PORT`                        |
+| `POSTGRES_PORT`     |      | 5432      | 同 `PG_PORT`                        |
 | `POSTGRES_PREFIX`   |      | `wl_`     | 同 `PG_PREFIX`                      |
-| `POSTGRES_SSL`      |      | `false`   | 同 `POSTGRES_SSL`                   |
+| `POSTGRES_SSL`      |      | `false`   | 同 `PG_SSL`                         |
 
 ## CloudBase
 

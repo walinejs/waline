@@ -30,13 +30,13 @@ Semua tautan akan secara otomatis diatur ke `rel="noreferrer noopener"` dan dibu
 
 Waline mendukung sistem akun, sehingga Anda dapat memaksa pengguna untuk mendaftar dan masuk dengan akun. Dengan cara ini pengunjung tidak akan dapat memalsukan komentar orang lain.
 
-Untuk mengaktifkan fitur ini, Anda perlu mengatur login wajib di klien dan server. Lihat [`login`](../../reference/client/props.md#login) dan [`LOGIN`](../../reference/server/env.md#basic) untuk detailnya.
+Untuk mengaktifkan fitur ini, Anda perlu mengatur login wajib di klien dan server. Lihat [`login`](../../reference/client/props.md#login) dan [`LOGIN`](../../reference/server/env.md#dasar) untuk detailnya.
 
 ## Keamanan Situs
 
 ### Batas Frekuensi
 
-Untuk mencegah pengguna membanjiri komentar, Waline akan membatasi IP yang berkomentar. Secara default, IP yang sama hanya dapat mengirim satu komentar dalam satu menit. Anda dapat mengubah batas ini di [Referensi Server → Variabel Lingkungan](../../reference/server/env.md#safety).
+Untuk mencegah pengguna membanjiri komentar, Waline akan membatasi IP yang berkomentar. Secara default, IP yang sama hanya dapat mengirim satu komentar dalam satu menit. Anda dapat mengubah batas ini di [Referensi Server → Variabel Lingkungan](../../reference/server/env.md#keamanan).
 
 ### Mencegah Banjir Komentar
 
@@ -44,7 +44,7 @@ Waline akan mendeteksi komentar yang ada saat memasukkan komentar, dan jika mend
 
 ### Moderasi Komentar
 
-Ketika situs Anda sedang diserang secara jahat, pada masa-masa sensitif, atau ketika Anda sibuk, Anda dapat mengaktifkan fitur moderasi komentar. Untuk detailnya, lihat [Referensi Server → Variabel Lingkungan](../../reference/server/env.md#safety).
+Ketika situs Anda sedang diserang secara jahat, pada masa-masa sensitif, atau ketika Anda sibuk, Anda dapat mengaktifkan fitur moderasi komentar. Untuk detailnya, lihat [Referensi Server → Variabel Lingkungan](../../reference/server/env.md#keamanan).
 
 Ketika moderasi komentar diaktifkan, semua komentar baru akan disembunyikan secara default. Anda dapat melihat dan mereview komentar di terminal manajemen Waline atau kotak komentar di halaman yang bersangkutan. Hanya komentar yang Anda setujui yang dapat ditampilkan.
 

@@ -11,13 +11,13 @@ icon: file
 
 - `dist/waline.js`: 完整版本, ESM 格式
 
-  此文件为 CDN 引入 `@waline/client` 的默认文件，53 KB Gzip 大小
+  此文件为 CDN 引入 `@waline/client` 的默认文件，100 KB Gzip 大小
 
 - `dist/waline.umd.js`: 完整版本，UMD 格式
 
 - `dist/slim.js`: 不含依赖捆绑的完整版本， ES Module 格式
 
-  此文件为 Node.js 导入 `@waline/client` 的默认文件, 19.39 KB Gzip 大小
+  此文件为 Node.js 导入 `@waline/client` 的默认文件, 27 KB Gzip 大小
 
 - `dist/waline.css`: Waline CSS 样式
 
@@ -25,7 +25,7 @@ icon: file
 
 - `dist/component.js`: Waline 的 Vue 组件，ES Module 格式，不含依赖捆绑
 
-  此文件用于在 Vue 项目中以组件模式使用 Waline 评论, 18.28 KB Gzip 大小
+  此文件用于在 Vue 项目中以组件模式使用 Waline 评论, 25 KB Gzip 大小
 
 - `dist/comment.js`: Waline 的评论数模块，ESM 格式， < 1KB Gzip 大小
 
@@ -37,7 +37,7 @@ icon: file
 
 ## 模块导出
 
-`@waline/client` 是一个标准的 ESM 模块，要求 Node.js 版本 >= 18:
+`@waline/client` 是一个标准的 ESM 模块，要求 Node.js 版本 >= 22:
 
 - `@waline/client`：没有捆绑依赖的 Waline 主入口
 

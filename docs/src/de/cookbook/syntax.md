@@ -257,4 +257,4 @@ $$
 
 ## HTML einbetten
 
-Fügen Sie gerne beliebigen HTML-Inhalt hinzu, es sei denn, [der Schutzmechanismus](../guide/features/safety.md#comment-security) wird ausgelöst.
+Fügen Sie gerne beliebigen HTML-Inhalt hinzu, es sei denn, [der Schutzmechanismus](../guide/features/safety.md#kommentar-sicherheit) wird ausgelöst.

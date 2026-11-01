@@ -208,7 +208,7 @@ module.exports = Waline({
 
 :::
 
-### afterUpdate(comment)
+### postUpdate(comment)
 
 Tindakan setelah konten komentar diperbarui di dashboard. Data komentar akan diteruskan saat metode dijalankan.
 
@@ -246,7 +246,7 @@ module.exports = Waline({
 
 :::
 
-### afterDelete(commentId)
+### postDelete(commentId)
 
 Tindakan setelah komentar dihapus, ID komentar akan diteruskan sebagai satu-satunya parameter.
 

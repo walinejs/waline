@@ -11,13 +11,13 @@ icon: file
 
 - `dist/waline.js`: Vollversion, ESM-Format
 
-  Diese Datei ist die empfohlene Version zum Importieren von `@waline/client`, 53 KB Gzip-Größe
+  Diese Datei ist die empfohlene Version zum Importieren von `@waline/client`, 100 KB Gzip-Größe
 
 - `dist/waline.umd.js`: Vollversion, UMD-Format
 
 - `dist/slim.js`: Vollversion ohne Dependency-Bundles, ES-Module-Format
 
-  Diese Datei ist die Standarddatei zum Importieren von `@waline/client` mit Node.js, 19.39 KB Gzip-Größe
+  Diese Datei ist die Standarddatei zum Importieren von `@waline/client` mit Node.js, 27 KB Gzip-Größe
 
 - `dist/waline.css`: Waline-CSS-Stile
 
@@ -25,7 +25,7 @@ icon: file
 
 - `dist/component.js`: Walines Vue-Komponente, ES-Module-Format, ohne Dependency-Bundling
 
-  Diese Datei dient zur Verwendung von Waline-Kommentaren im Komponentenmodus in einem Vue-Projekt, 18.28 KB Gzip-Größe
+  Diese Datei dient zur Verwendung von Waline-Kommentaren im Komponentenmodus in einem Vue-Projekt, 25 KB Gzip-Größe
 
 - `dist/comment.js`: Walines Kommentarzähler-Modul, ESM-Format, < 1 KB Gzip-Größe
 
@@ -37,7 +37,7 @@ icon: file
 
 ## Modul-Exporte
 
-`@waline/client` ist ein Standard-ESM-Modul und erfordert Node.js-Version >= 18:
+`@waline/client` ist ein Standard-ESM-Modul und erfordert Node.js-Version >= 22:
 
 - `@waline/client`: Waline-Haupteinstieg ohne gebündelte Abhängigkeiten
 

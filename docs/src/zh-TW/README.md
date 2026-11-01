@@ -16,7 +16,7 @@ actions:
 features:
   - title: 輕量
     icon: light
-    details: 客戶端完整大小為 53kb gzip
+    details: 客戶端完整大小為 100kb gzip
 
   - title: 完全免費
     icon: free

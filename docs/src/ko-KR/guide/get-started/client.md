@@ -17,7 +17,7 @@ CDN 또는 npm을 사용하여 Waline 클라이언트를 가져올 수 있으며
 
 ## Waline 사용하기
 
-Waline을 사용하는 가장 쉬운 방법은 [빠른 시작에서 설명한 방법](./README.md#importing-in-html-client)을 사용하는 것입니다: Waline에서 `init` 함수를 가져오고 `init(yourOptions)`를 통해 Waline 인스턴스를 초기화합니다.
+Waline을 사용하는 가장 쉬운 방법은 [빠른 시작에서 설명한 방법](./README.md#html에서-가져오기)을 사용하는 것입니다: Waline에서 `init` 함수를 가져오고 `init(yourOptions)`를 통해 Waline 인스턴스를 초기화합니다.
 
 `init` 옵션 중에서 `el`과 `serverURL`은 필수입니다. 전자는 Waline이 마운트될 요소 또는 요소 선택자이고, 후자는 서버 주소입니다. `@waline/client`의 모든 초기화 매개변수는 [클라이언트 참조 → API](../../reference/client/api.md)를 참조하세요.
 
