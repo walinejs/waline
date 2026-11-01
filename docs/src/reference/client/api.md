@@ -136,7 +136,7 @@ interface WalinePageviewCountOptions {
   serverURL: string;
 
   /**
-   * 评论数 CSS 选择器
+   * 浏览量 CSS 选择器
    *
    * @default '.waline-pageview-count'
    */

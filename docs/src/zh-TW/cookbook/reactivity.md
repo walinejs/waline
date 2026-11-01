@@ -86,7 +86,9 @@ waline.update({
 
 ### 初始化失敗
 
-如果你忘記傳入 `serverURL`，或者 Waline 無法在頁面中透過 `el` 選項找到掛載位置，Waline 會拋出一個 Error 指明錯誤原因。
+如果你忘記設定 `serverURL`，或者 Waline 無法在頁面中透過 `el` 選項找到掛載位置，Waline 會回傳一個 `WalineErrorInstance`。
+
+`WalineErrorInstance` 上只有一個 `errMsg` 屬性，用於指明初始化失敗的原因。
 
 ### 注意事項
 
