@@ -10,7 +10,7 @@ order: -1
 
 ## Vue 컴포넌트
 
-Vue 프로젝트를 구축하고 있다면, `@waline/client/components`에서 명명된 내보내기 `Waline`을 가져와 Waline 컴포넌트를 얻고 사용할 수 있습니다.
+Vue 프로젝트를 구축하고 있다면, `@waline/client/component`에서 명명된 내보내기 `Waline`을 가져와 Waline 컴포넌트를 얻고 사용할 수 있습니다.
 
 모든 컴포넌트 속성은 반응형이므로, 속성을 변경하면 댓글 상자가 자동으로 업데이트됩니다.
 
@@ -82,7 +82,7 @@ V2에서 `path` 매개변수는 `update()` 시 **항상 재설정**됩니다.
 
 ### destroy
 
-`serverURL`을 전달하는 것을 잊거나, Waline이 페이지에서 `el` 옵션을 통해 마운트 위치를 찾을 수 없는 경우, Waline은 오류 원인을 나타내는 Error를 throw합니다.
+`destroy()` 메서드는 Waline 인스턴스를 파괴합니다. 또한 Waline이 마운트된 요소의 모든 콘텐츠를 지웁니다.
 
 ### 초기화 실패
 

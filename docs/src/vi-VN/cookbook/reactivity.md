@@ -10,7 +10,7 @@ order: -1
 
 ## Thành phần Vue
 
-Nếu bạn đang xây dựng một dự án Vue, bạn có thể lấy và sử dụng thành phần Waline bằng cách nhập tên xuất `Waline` từ `@waline/client/components`.
+Nếu bạn đang xây dựng một dự án Vue, bạn có thể lấy và sử dụng thành phần Waline bằng cách nhập tên xuất `Waline` từ `@waline/client/component`.
 
 Mọi thuộc tính của thành phần đều có tính phản ứng, nghĩa là khi bạn thay đổi các thuộc tính, khung bình luận sẽ tự động được cập nhật.
 
@@ -82,7 +82,7 @@ Nếu bạn khởi tạo Waline với `el: null` (chỉ dùng bình luận và t
 
 ### destroy
 
-Nếu bạn quên truyền `serverURL` hoặc Waline không thể tìm thấy vị trí gắn kết qua tùy chọn `el` trên trang, Waline sẽ ném ra một Error cho biết lý do lỗi.
+Phương thức `destroy()` hủy phiên bản Waline. Nó cũng xóa toàn bộ nội dung trong phần tử mà Waline được gắn vào.
 
 ### Khởi tạo thất bại
 

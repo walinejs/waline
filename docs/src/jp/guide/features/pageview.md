@@ -26,7 +26,7 @@ Waline はページ内から `class` の値が `waline-pageview-count` の要素
 
 ```html
 <!-- data-path will be the query condition -->
-Pageviews: <span class="waline-pageview-count" data-path="<Your/Path/Name>"></i>
+Pageviews: <span class="waline-pageview-count" data-path="<Your/Path/Name>"></span>
 ```
 
 `WalineInstance.update()` を呼び出すたびに、Waline はページの内容を再検索し、閲覧数を自動的に更新します。

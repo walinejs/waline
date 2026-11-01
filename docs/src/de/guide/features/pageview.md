@@ -26,7 +26,7 @@ Wenn Sie einen anderen Selektor benötigen, können Sie die Option `pageview` au
 
 ```html
 <!-- data-path wird die Abfragebedingung sein -->
-Seitenaufrufe: <span class="waline-pageview-count" data-path="<Your/Path/Name>"></i>
+Seitenaufrufe: <span class="waline-pageview-count" data-path="<Your/Path/Name>"></span>
 ```
 
 Jedes Mal, wenn Sie `WalineInstance.update()` aufrufen, durchsucht Waline den Seiteninhalt erneut und aktualisiert automatisch die Seitenaufrufe.

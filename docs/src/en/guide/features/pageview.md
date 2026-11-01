@@ -10,7 +10,7 @@ Waline supports pageview counting.
 
 ## Using with comment
 
-Waline supIf you are using Waline's commenting service, you can enable pageview statistics by setting the `pageview` option to `true` during initialization:
+If you are using Waline's commenting service, you can enable pageview statistics by setting the `pageview` option to `true` during initialization:
 
 ```js
 Waline.init({
@@ -26,7 +26,7 @@ If you need a different selector, you can set the `pageview` option to this sele
 
 ```html
 <!-- data-path will be the query condition -->
-Pageviews: <span class="waline-pageview-count" data-path="<Your/Path/Name>"></i>
+Pageviews: <span class="waline-pageview-count" data-path="<Your/Path/Name>"></span>
 ```
 
 Every time you call `WalineInstance.update()`, Waline will re-search the page content and automatically update the pageviews.

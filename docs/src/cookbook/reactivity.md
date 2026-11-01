@@ -10,7 +10,7 @@ order: -1
 
 ## Vue 组件
 
-如果你在使用一个 Vue 项目，你可以通过 `@waline/client/components` 导入命名导出 `Waline` 来获得并使用 Waline 组件。
+如果你在使用一个 Vue 项目，你可以通过 `@waline/client/component` 导入命名导出 `Waline` 来获得并使用 Waline 组件。
 
 所有组件的属性都是响应式的，这意味着当你更改属性时，评论框会自动更新。
 

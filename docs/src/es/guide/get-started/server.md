@@ -26,7 +26,7 @@ Consulta [soporte de múltiples bases de datos](../database.md) para más detall
 
 La mayor parte de la configuración del servidor se puede hacer mediante variables de entorno, y también puedes configurar algunas opciones avanzadas en el archivo de entrada principal.
 
-Para ver los detalles de la configuración, consulta [Referencia del servidor → Variables de entorno](../../reference/server/env.md) y [Referencia del servidor → Configuración](../../reference/server/ config.md).
+Para ver los detalles de la configuración, consulta [Referencia del servidor → Variables de entorno](../../reference/server/env.md) y [Referencia del servidor → Configuración](../../reference/server/config.md).
 
 ## Notificación de comentarios
 

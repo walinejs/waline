@@ -10,7 +10,7 @@ Questo ricettario spiega come importare Waline via CDN.
 
 Per gli utenti della Cina continentale consigliamo di usare [unpkg](https://unpkg.com/@waline/client). Per gli utenti esteri consigliamo jsDelivr.
 
-Per rendere Waline compatibile con l'SSR, nella versione V2 abbiamo separato gli stili di Waline. Questo significa che devi importare il file CSS di Waline, poi importare il file di script di Waline e chiamare Waline.
+A partire dalla V3, gli stili di Waline sono forniti in un file CSS separato per mantenere il client compatibile con l'SSR. Questo significa che devi importare il file CSS di Waline, poi importare e chiamare il file di script di Waline.
 
 ## Commenti
 
@@ -61,6 +61,6 @@ Conteggio dei commenti:
 
 ::: info Specificare la versione
 
-Potresti aver notato che nei casi precedenti abbiamo dichiarato esplicitamente la versione `@v2` dopo `@aline/client`. Il tuo sito web non funzionerà correttamente.
+Potresti aver notato che negli esempi precedenti abbiamo dichiarato esplicitamente la versione `@v3` dopo `@waline/client`. Questo è consigliato perché evita che il tuo sito si rompa quando viene pubblicata una nuova versione major del client Waline.
 
 :::

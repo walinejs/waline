@@ -26,7 +26,7 @@ Xem [hỗ trợ nhiều cơ sở dữ liệu](../database.md) để biết chi t
 
 Hầu hết cấu hình ở phía máy chủ có thể thực hiện qua biến môi trường, và bạn cũng có thể cấu hình một số tùy chọn nâng cao trong tệp đầu vào chính.
 
-Chi tiết cấu hình xem [Tham chiếu máy chủ → Biến môi trường](../../reference/server/env.md) và [Tham chiếu máy chủ → Cấu hình](../../reference/server/ config.md).
+Chi tiết cấu hình xem [Tham chiếu máy chủ → Biến môi trường](../../reference/server/env.md) và [Tham chiếu máy chủ → Cấu hình](../../reference/server/config.md).
 
 ## Thông báo bình luận
 

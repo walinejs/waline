@@ -10,7 +10,7 @@ order: -1
 
 ## Vue 元件
 
-如果你正在使用一個 Vue 專案，你可以透過 `@waline/client/components` 匯入具名匯出 `Waline`，以取得並使用 Waline 元件。
+如果你正在使用一個 Vue 專案，你可以透過 `@waline/client/component` 匯入具名匯出 `Waline`，以取得並使用 Waline 元件。
 
 元件的所有屬性都是響應式的，這意味著當你變更屬性時，留言框會自動更新。
 

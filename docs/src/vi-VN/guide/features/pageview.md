@@ -26,7 +26,7 @@ Nếu cần một bộ chọn khác, bạn có thể đặt tùy chọn `pagevie
 
 ```html
 <!-- data-path will be the query condition -->
-Pageviews: <span class="waline-pageview-count" data-path="<Your/Path/Name>"></i>
+Pageviews: <span class="waline-pageview-count" data-path="<Your/Path/Name>"></span>
 ```
 
 Mỗi lần bạn gọi `WalineInstance.update()`, Waline sẽ tìm lại nội dung trang và tự động cập nhật lượt xem.

@@ -26,7 +26,7 @@ Se ti serve un selettore diverso, puoi impostare l'opzione `pageview` su quel se
 
 ```html
 <!-- data-path will be the query condition -->
-Pageviews: <span class="waline-pageview-count" data-path="<Your/Path/Name>"></i>
+Pageviews: <span class="waline-pageview-count" data-path="<Your/Path/Name>"></span>
 ```
 
 Ogni volta che chiami `WalineInstance.update()`, Waline cerca di nuovo nel contenuto della pagina e aggiorna automaticamente le visualizzazioni.

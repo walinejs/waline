@@ -10,7 +10,7 @@ Sổ tay này hướng dẫn cách nhập Waline qua CDN.
 
 Với người dùng Trung Quốc đại lục, chúng tôi khuyên dùng [unpkg](https://unpkg.com/@waline/client). Với người dùng nước ngoài, chúng tôi khuyên dùng jsDelivr.
 
-Để Waline thân thiện với SSR, chúng tôi đã tách riêng phần kiểu dáng của Waline trong phiên bản V2. Điều này có nghĩa là bạn cần nhập tệp CSS của Waline, rồi nhập tệp script của Waline và gọi Waline.
+Kể từ V3, phần kiểu dáng của Waline được cung cấp dưới dạng một tệp CSS riêng để giữ cho client thân thiện với SSR. Điều này có nghĩa là bạn cần nhập tệp CSS của Waline, sau đó nhập và gọi tệp script của Waline.
 
 ## Bình luận
 
@@ -61,6 +61,6 @@ Số bình luận:
 
 ::: info Chỉ định phiên bản
 
-Bạn có thể đã nhận ra rằng trong các trường hợp trên, chúng ta đã khai báo rõ phiên bản `@v2` sau `@aline/client`. Trang web của bạn sẽ không hoạt động bình thường.
+Bạn có thể đã nhận ra rằng trong các ví dụ trên, chúng ta đã khai báo rõ phiên bản `@v3` sau `@waline/client`. Điều này được khuyến nghị vì nó giúp trang web của bạn không bị hỏng khi một phiên bản major mới của client Waline được phát hành.
 
 :::

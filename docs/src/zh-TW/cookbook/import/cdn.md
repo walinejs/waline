@@ -10,7 +10,7 @@ order: 1
 
 對於中國大陸的使用者，我們推薦使用 [unpkg](https://unpkg.com/@waline/client)；對於海外的使用者，我們推薦使用 jsDelivr。
 
-為了讓 Waline 對 SSR 更友善，我們在 V2 版本中拆分了 Waline 的樣式。這意味著你需要先匯入 Waline 的 CSS 樣式檔案，再匯入 Waline 腳本檔案並呼叫 Waline。
+自 V3 版本起，Waline 的樣式改以獨立的 CSS 檔案提供，以讓客戶端對 SSR 更友善。這意味著你需要先匯入 Waline 的 CSS 樣式檔案，再匯入並呼叫 Waline 的腳本檔案。
 
 ## 留言功能
 
@@ -61,6 +61,6 @@ order: 1
 
 ::: info 指定版本
 
-你可能已經注意到，上述範例中，我們都在 `@waline/client` 後顯式宣告了 `@v2` 版本，這是推薦的做法，因為這能有效避免日後 Waline 客戶端發佈 V3 版本後，導致你的網站運作異常。
+你可能已經注意到，上述範例中，我們都在 `@waline/client` 後明確指定了 `@v3` 版本。這是推薦的做法，因為這樣可以避免 Waline 客戶端推出新的主版本時，導致你的網站運作異常。
 
 :::

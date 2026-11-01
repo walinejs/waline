@@ -26,7 +26,7 @@ See [multi-database support](../database.md) for more details.
 
 Most configurations on the server side can be done via environment variables, and you can also configure some advanced options in the main entry file.
 
-For configuration details, see [Server Reference → Environment Variables](../../reference/server/env.md) and [Server Reference → Configuration](../../reference/server/ config.md).
+For configuration details, see [Server Reference → Environment Variables](../../reference/server/env.md) and [Server Reference → Configuration](../../reference/server/config.md).
 
 ## Comment notification
 

@@ -40,7 +40,7 @@ MONGO_OPT_SSL=true
 
 ## MySQL
 
-MySQLでデータを保存するのも良い選択です。自前のMySQLサービスのほか、25Mのデータベースを無料で提供している[FreeDB)(https://freedb.tech)、現在は有料プランのみを提供している[PlanetScale](https://planetscale.com)も利用できます。
+MySQLでデータを保存するのも良い選択です。自前のMySQLサービスのほか、25Mのデータベースを無料で提供している[FreeDB](https://freedb.tech)、現在は有料プランのみを提供している[PlanetScale](https://planetscale.com)も利用できます。
 
 MySQLをストレージとして使用する場合は、まず[waline.sql](https://github.com/walinejs/waline/blob/main/assets/waline.sql)をインポートしてテーブルとテーブル構造を作成し、その後プロジェクトで以下の環境変数を設定してください。
 

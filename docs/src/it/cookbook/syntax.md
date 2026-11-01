@@ -257,4 +257,4 @@ $$
 
 ## Incorporare HTML
 
-Puoi aggiungere liberamente qualsiasi contenuto HTML, a meno che non attivi [il meccanismo di protezione](../guide/features/safety.md#comment-security).
+Puoi aggiungere liberamente qualsiasi contenuto HTML, a meno che non attivi [il meccanismo di protezione](../guide/features/safety.md#sicurezza-dei-commenti).

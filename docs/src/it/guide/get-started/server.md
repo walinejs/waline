@@ -26,7 +26,7 @@ Per maggiori dettagli vedi [supporto a più database](../database.md).
 
 La maggior parte delle configurazioni lato server si effettua tramite variabili d'ambiente; puoi comunque impostare alcune opzioni avanzate nel file di entry principale.
 
-Per i dettagli sulla configurazione vedi [Riferimento server → Variabili d'ambiente](../../reference/server/env.md) e [Riferimento server → Configurazione](../../reference/server/ config.md).
+Per i dettagli sulla configurazione vedi [Riferimento server → Variabili d'ambiente](../../reference/server/env.md) e [Riferimento server → Configurazione](../../reference/server/config.md).
 
 ## Notifica dei commenti
 

@@ -40,7 +40,7 @@ MONGO_OPT_SSL=true
 
 ## MySQL
 
-Using MySQL to store data is also a good choice. Besides our own MySQL service, we can also use [FreeDB)(https://freedb.tech), which provides 25M of database support for free, or [PlanetScale](https://planetscale.com) which only support paid plan now.
+Using MySQL to store data is also a good choice. Besides our own MySQL service, we can also use [FreeDB](https://freedb.tech), which provides 25 MB of database storage for free, or [PlanetScale](https://planetscale.com), which currently only supports paid plans.
 
 If you want to use MySQL as storage, you need to import [waline.sql](https://github.com/walinejs/waline/blob/main/assets/waline.sql) first to create table and table structure, then set these environment variables in project.
 

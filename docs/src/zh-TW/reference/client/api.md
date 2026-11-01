@@ -120,7 +120,7 @@ type WalineAbort = (reason?: any) => void;
 
 ## pageviewCount
 
-`pageviewCount` 函式接收 `WalinePageviewCountOptions` 選項，負責更新頁面上的文章留言數，同時傳回一個可以取消目前操作的函式 `WalineAbort`。
+`pageviewCount` 函式接收 `WalinePageviewCountOptions` 選項，負責更新頁面上的瀏覽量，同時傳回一個可以取消目前操作的函式 `WalineAbort`。
 
 型別：
 

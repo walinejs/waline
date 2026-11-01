@@ -26,7 +26,7 @@ Veja [suporte a múltiplos bancos de dados](../database.md) para mais detalhes.
 
 A maior parte da configuração no lado do servidor pode ser feita por variáveis de ambiente, e você também pode configurar algumas opções avançadas no arquivo de entrada principal.
 
-Para detalhes de configuração, veja [Referência do servidor → Variáveis de ambiente](../../reference/server/env.md) e [Referência do servidor → Configuração](../../reference/server/ config.md).
+Para detalhes de configuração, veja [Referência do servidor → Variáveis de ambiente](../../reference/server/env.md) e [Referência do servidor → Configuração](../../reference/server/config.md).
 
 ## Notificação de comentários
 

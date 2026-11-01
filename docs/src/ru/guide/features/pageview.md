@@ -26,7 +26,7 @@ Waline автоматически найдёт на странице элеме�
 
 ```html
 <!-- data-path will be the query condition -->
-Pageviews: <span class="waline-pageview-count" data-path="<Your/Path/Name>"></i>
+Pageviews: <span class="waline-pageview-count" data-path="<Your/Path/Name>"></span>
 ```
 
 При каждом вызове `WalineInstance.update()` Waline будет заново просматривать содержимое страницы и автоматически обновлять просмотры.

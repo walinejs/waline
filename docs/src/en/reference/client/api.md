@@ -120,7 +120,7 @@ type WalineAbort = (reason?: any) => void;
 
 ## pageviewCount
 
-The `pageviewCount` function receives the `WalinePageviewCountOptions` option and updates the number of article comments on the page, and returns a function `WalineAbort` that can cancel the current operation.
+The `pageviewCount` function receives the `WalinePageviewCountOptions` option, updates the pageview count on the page, and returns a `WalineAbort` function that can cancel the current operation.
 
 Type:
 

@@ -26,7 +26,7 @@ Waline은 페이지에서 `class` 값이 `waline-pageview-count`인 요소를 �
 
 ```html
 <!-- data-path will be the query condition -->
-Pageviews: <span class="waline-pageview-count" data-path="<Your/Path/Name>"></i>
+Pageviews: <span class="waline-pageview-count" data-path="<Your/Path/Name>"></span>
 ```
 
 `WalineInstance.update()`를 호출할 때마다 Waline은 페이지 콘텐츠를 다시 검색하고 페이지뷰를 자동으로 업데이트합니다.
