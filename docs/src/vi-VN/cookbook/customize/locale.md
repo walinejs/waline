@@ -1,28 +1,28 @@
 ---
-title: Customize Locale
+title: Tùy chỉnh ngôn ngữ hiển thị
 icon: i18n
 ---
 
-This cookbook guides you to customize Waline multilingual and display text.
+Hướng dẫn này chỉ cho bạn cách tùy chỉnh đa ngôn ngữ và văn bản hiển thị của Waline.
 
 <!-- more -->
 
-## Customize client language and text
+## Tùy chỉnh ngôn ngữ và văn bản của ứng dụng khách
 
-`@waline/client` provides the `locale` option, through which you can customize multiple languages and display text.
+`@waline/client` cung cấp tùy chọn `locale`, qua đó bạn có thể tùy chỉnh nhiều ngôn ngữ và văn bản hiển thị.
 
-By default it uses the built-in multilingual literals and falls back to `en-US` (English US) if the language is not supported.
+Mặc định, nó dùng các chuỗi đa ngôn ngữ có sẵn và quay về `en-US` (tiếng Anh Mỹ) nếu ngôn ngữ không được hỗ trợ.
 
-You can pass a completed multilingual configuration to the `locale` option to add language support, or set several of these to override existing UI text.
+Bạn có thể truyền một cấu hình đa ngôn ngữ hoàn chỉnh cho tùy chọn `locale` để thêm hỗ trợ ngôn ngữ, hoặc chỉ đặt một vài mục trong đó để ghi đè văn bản giao diện hiện có.
 
-### Locale Options
+### Các tùy chọn locale
 
-- Level related:
-  - `level${number}`: Label for level number
+- Liên quan đến cấp độ:
+  - `level${number}`: Nhãn cho số cấp độ
 
   ::: tip
 
-  For example, you can customize the labels for 6 levels like this:
+  Ví dụ, bạn có thể tùy chỉnh nhãn cho 6 cấp độ như sau:
 
   ```ts
   Waline.init({
@@ -39,83 +39,83 @@ You can pass a completed multilingual configuration to the `locale` option to ad
 
   :::
 
-- Reaction related:
-  - `reactionTitle`: Reaction title
-  - `reaction0`: Reaction 1 text
-  - `reaction1`: Reaction 2 text
-  - `reaction2`: Reaction 3 text
-  - `reaction3`: Reaction 4 text
-  - `reaction4`: Reaction 5 text
-  - `reaction5`: Reaction 6 text
-  - `reaction6`: Reaction 7 text
-  - `reaction7`: Reaction 8 text
-  - `reaction8`: Reaction 9 text
+- Liên quan đến cảm xúc (reaction):
+  - `reactionTitle`: Tiêu đề của phần cảm xúc
+  - `reaction0`: Văn bản cảm xúc 1
+  - `reaction1`: Văn bản cảm xúc 2
+  - `reaction2`: Văn bản cảm xúc 3
+  - `reaction3`: Văn bản cảm xúc 4
+  - `reaction4`: Văn bản cảm xúc 5
+  - `reaction5`: Văn bản cảm xúc 6
+  - `reaction6`: Văn bản cảm xúc 7
+  - `reaction7`: Văn bản cảm xúc 8
+  - `reaction8`: Văn bản cảm xúc 9
 
-- UI related:
-  - `nick`: nickname
+- Liên quan đến giao diện:
+  - `nick`: biệt danh
   - `mail`: Email
-  - `link`: Link
-  - `placeholder`: Default text of comment box
-  - `sofa`: Display text when the comment area is empty
-  - `submit`: Submit button text
-  - `comment`: Comment button text
-  - `refresh`: Refresh button text
-  - `more`: Load more button text
-  - `uploading`: display text when uploading
-  - `login`: login button text
-  - `admin`: The label of the administrator
-  - `sticky`: Sticky text
-  - `word`: word
-  - `anonymous`: anonymous user default name
-  - `optional`: text indicating optional options
-  - `gifSearchPlaceholder`: emoji search placeholder text
-  - `oldest`: oldest comment
-  - `latest`: latest comment
-  - `hottest`: hottest comment
+  - `link`: Liên kết
+  - `placeholder`: Văn bản mặc định của khung bình luận
+  - `sofa`: Văn bản hiển thị khi khu vực bình luận trống
+  - `submit`: Văn bản nút gửi
+  - `comment`: Văn bản nút bình luận
+  - `refresh`: Văn bản nút làm mới
+  - `more`: Văn bản nút tải thêm
+  - `uploading`: văn bản hiển thị khi đang tải lên
+  - `login`: văn bản nút đăng nhập
+  - `admin`: Nhãn của quản trị viên
+  - `sticky`: Văn bản ghim
+  - `word`: từ
+  - `anonymous`: tên mặc định của người dùng ẩn danh
+  - `optional`: văn bản cho biết tùy chọn không bắt buộc
+  - `gifSearchPlaceholder`: văn bản gợi ý tìm kiếm emoji
+  - `oldest`: bình luận cũ nhất
+  - `latest`: bình luận mới nhất
+  - `hottest`: bình luận nổi bật nhất
 
   ::: info
 
-  The above text will be displayed in page.
+  Các văn bản trên sẽ được hiển thị trên trang.
 
   :::
 
-- Prompt information related:
-  - `nickError`: Error message that the nickname does not meet the conditions
-  - `mailError`: The error message that the mailbox does not meet the conditions
-  - `wordHint`: Error prompt for comment word count, where `$0` `$1` `$2` will be automatically replaced with the lower limit of the allowed word count, the upper limit of the allowed word count, and the current word count.
+- Liên quan đến thông báo:
+  - `nickError`: Thông báo lỗi khi biệt danh không đáp ứng điều kiện
+  - `mailError`: Thông báo lỗi khi địa chỉ email không đáp ứng điều kiện
+  - `wordHint`: Thông báo lỗi về số từ của bình luận, trong đó `$0` `$1` `$2` sẽ tự động được thay bằng giới hạn dưới số từ cho phép, giới hạn trên số từ cho phép và số từ hiện tại.
 
-- Comment time related:
-  - `seconds`: seconds ago
-  - `minutes`: minutes ago
-  - `hours`: hours ago
-  - `days`: days ago
-  - `now`: just now
+- Liên quan đến thời gian bình luận:
+  - `seconds`: giây trước
+  - `minutes`: phút trước
+  - `hours`: giờ trước
+  - `days`: ngày trước
+  - `now`: vừa xong
 
-- Management related:
-  - `approved`: Button which marks comment as approved
-  - `waiting`: Button which marks comment waiting for review
-  - `spam`: Button which marks comments as spam
-  - `unsticky`: Button which unsticky comment
+- Liên quan đến quản lý:
+  - `approved`: Nút đánh dấu bình luận đã được phê duyệt
+  - `waiting`: Nút đánh dấu bình luận đang chờ kiểm duyệt
+  - `spam`: Nút đánh dấu bình luận là spam
+  - `unsticky`: Nút bỏ ghim bình luận
 
-- Accessibility related:
-  - `like`: the label text of like button
-  - `cancelLike`: the label text of the cancel like button
-  - `reply`: the label text of the reply button
-  - `cancelReply`: the label text of the cancel reply button
-  - `preview`: Preview button label text
-  - `emoji`: the label text of the emoji button
-  - `gif`: The label text of Gif button
-  - `uploadImage`: the label text of the upload image button
-  - `profile`: The link title of profile page
-  - `logout`: the label text of the logout button
+- Liên quan đến khả năng truy cập:
+  - `like`: văn bản nhãn của nút thích
+  - `cancelLike`: văn bản nhãn của nút hủy thích
+  - `reply`: văn bản nhãn của nút trả lời
+  - `cancelReply`: văn bản nhãn của nút hủy trả lời
+  - `preview`: Văn bản nhãn của nút xem trước
+  - `emoji`: văn bản nhãn của nút emoji
+  - `gif`: Văn bản nhãn của nút GIF
+  - `uploadImage`: văn bản nhãn của nút tải hình ảnh lên
+  - `profile`: Tiêu đề liên kết của trang hồ sơ
+  - `logout`: văn bản nhãn của nút đăng xuất
 
   ::: info
 
-  These texts are only for accessibility purpose and will not be displayed on the page.
+  Các văn bản này chỉ nhằm mục đích hỗ trợ khả năng truy cập và sẽ không hiển thị trên trang.
 
   :::
 
-### Example
+### Ví dụ
 
 ```js
 // en default
@@ -180,17 +180,17 @@ Waline.init({
 });
 ```
 
-## Customize server response text
+## Tùy chỉnh văn bản phản hồi của máy chủ
 
-`@waline/vercel` provides a `locales` option that allows you to customize the response text.
+`@waline/vercel` cung cấp tùy chọn `locales` cho phép bạn tùy chỉnh văn bản phản hồi.
 
-By default, it uses the built-in multilingual text, and falls back to `en-US` language text if the language is not supported.
+Mặc định, nó dùng văn bản đa ngôn ngữ có sẵn và quay về văn bản tiếng `en-US` nếu ngôn ngữ không được hỗ trợ.
 
-You can pass a completed multilingual configuration to the `locales` option to add language support, or set some of them to override the existing text.
+Bạn có thể truyền một cấu hình đa ngôn ngữ hoàn chỉnh cho tùy chọn `locales` để thêm hỗ trợ ngôn ngữ, hoặc đặt một vài mục trong đó để ghi đè văn bản hiện có.
 
 ::: tip
 
-All custom text will eventually be rendered using the nunjucks template engine, which supports writing some relatively complex logical expressions. For example:
+Mọi văn bản tùy chỉnh cuối cùng sẽ được kết xuất bằng công cụ mẫu nunjucks, công cụ này hỗ trợ viết một số biểu thức logic tương đối phức tạp. Ví dụ:
 
 ```
 Registration confirm mail send failed, please {%- if isAdmin -%}check your mail configuration{%- else -%}check your email address and contact administrator{%- endif -%}.
@@ -198,9 +198,9 @@ Registration confirm mail send failed, please {%- if isAdmin -%}check your mail 
 
 :::
 
-### locale 选项
+### Tùy chọn locale
 
-- Prompt information related:
+- Liên quan đến thông báo:
   - `import data format not support!`
   - `USER_EXIST`
   - `USER_NOT_EXIST`
@@ -210,20 +210,20 @@ Registration confirm mail send failed, please {%- if isAdmin -%}check your mail 
   - `Duplicate Content`
   - `Comment too fast`
 
-- Register/Login mail notification related:
+- Liên quan đến thông báo email đăng ký/đăng nhập:
   - `[{{name | safe}}] Registration Confirm Mail`
   - `Please click <a href=\"{{url}}\">{{url}}<a/> to confirm registration, the link is valid for 1 hour. If you are not registering, please ignore this email.`
   - `[{{name | safe}}] Reset Password`
   - `Please click <a href=\"{{url}}\">{{url}}</a> to login and change your password as soon as possible!`
   - `Registration confirm mail send failed, please {%- if isAdmin -%}check your mail configuration{%- else -%}check your email address and contact administrator{%- endif -%}.`
 
-- Comment mail notification related:
+- Liên quan đến thông báo email bình luận:
   - `MAIL_SUBJECT`：`Your comment on {{site.name | safe}} received a reply`
   - `MAIL_TEMPLATE`：`<div style='border-top:2px solid #12ADDB;box-shadow:0 1px 3px #AAAAAA;line-height:180%;padding:0 15px 12px;margin:50px auto;font-size:12px;'> <h2 style='border-bottom:1px solid #DDD;font-size:14px;font-weight:normal;padding:13px 0 10px 8px;'> Your comment on <a style='text-decoration:none;color: #12ADDB;' href='{{site.url}}' target='_blank'>{{site.name}}</a> received a reply </h2>{{parent.nick}}, you wrote: <div style='padding:0 12px 0 12px;margin-top:18px'> <div style='background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;'>{{parent.comment | safe}}</div><p><strong>{{self.nick}}</strong> replied:</p><div style='background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;'>{{self.comment | safe}}</div><p><a style='text-decoration:none; color:#12addb' href='{{site.postUrl}}' target='_blank'>View full reply</a> or visit <a style='text-decoration:none; color:#12addb' href='{{site.url}}' target='_blank'>{{site.name}}</a>.</p><br/> </div></div>`
   - `MAIL_SUBJECT_ADMIN`：`New comment on {{site.name | safe}}`
   - `MAIL_TEMPLATE_ADMIN`：`<div style='border-top:2px solid #12ADDB;box-shadow:0 1px 3px #AAAAAA;line-height:180%;padding:0 15px 12px;margin:50px auto;font-size:12px;'> <h2 style='border-bottom:1px solid #DDD;font-size:14px;font-weight:normal;padding:13px 0 10px 8px;'> New comment on <a style='text-decoration:none;color: #12ADDB;' href='{{site.url}}' target='_blank'>{{site.name}}</a> </h2> <p><strong>{{self.nick}}</strong> wrote:</p><div style='background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;'>{{self.comment | safe}}</div><p><a style='text-decoration:none; color:#12addb' href='{{site.postUrl}}' target='_blank'>View page</a></p><br/></div>`
 
-### Example
+### Ví dụ
 
 ```js
 // index.js

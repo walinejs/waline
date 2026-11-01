@@ -1,31 +1,31 @@
 ---
-title: Multi-database service support
+title: Hỗ trợ nhiều dịch vụ cơ sở dữ liệu
 icon: database
 order: 2
 ---
 
-Waline supports a variety of databases, including MySQL, PostgreSQL, SQLite and MongoDB.
+Waline hỗ trợ nhiều loại cơ sở dữ liệu, bao gồm MySQL, PostgreSQL, SQLite và MongoDB.
 
-You only need to configure environment variables, and Waline will automatically switch to the corresponding data storage service based on the environment variables you configure.
+Bạn chỉ cần cấu hình biến môi trường, Waline sẽ tự động chuyển sang dịch vụ lưu trữ dữ liệu tương ứng dựa trên các biến môi trường bạn đã cấu hình.
 
 <!-- more -->
 
 ## MongoDB
 
-<https://mongodb.com> official provides 512M MongoDB database support for free. The following are the environment variables that need to be configured to use MongoDB database.
+<https://mongodb.com> cung cấp miễn phí cơ sở dữ liệu MongoDB 512M. Dưới đây là các biến môi trường cần cấu hình để sử dụng cơ sở dữ liệu MongoDB.
 
-| Environment Variable | Required | Default   | Description                                  |
-| -------------------- | -------- | --------- | -------------------------------------------- |
-| `MONGO_DB`           | ✅       |           | MongoDB database name                        |
-| `MONGO_USER`         | ✅       |           | MongoDB server username                      |
-| `MONGO_PASSWORD`     | ✅       |           | MongoDB server password                      |
-| `MONGO_HOST`         |          | 127.0.0.1 | MongoDB server address, support array format |
-| `MONGO_PORT`         |          | 27017     | MongoDB server port, support array format    |
-| `MONGO_REPLICASET`   |          |           | MongoDB replica set                          |
-| `MONGO_AUTHSOURCE`   |          |           | MongoDB auth source                          |
-| `MONGO_OPT_SSL`      |          | `false`   | use SSL connection                           |
+| Biến môi trường    | Bắt buộc | Giá trị mặc định | Mô tả                                          |
+| ------------------ | -------- | ---------------- | ---------------------------------------------- |
+| `MONGO_DB`         | ✅       |                  | Tên cơ sở dữ liệu MongoDB                      |
+| `MONGO_USER`       | ✅       |                  | Tên người dùng máy chủ MongoDB                 |
+| `MONGO_PASSWORD`   | ✅       |                  | Mật khẩu máy chủ MongoDB                       |
+| `MONGO_HOST`       |          | 127.0.0.1        | Địa chỉ máy chủ MongoDB, hỗ trợ định dạng mảng |
+| `MONGO_PORT`       |          | 27017            | Cổng máy chủ MongoDB, hỗ trợ định dạng mảng    |
+| `MONGO_REPLICASET` |          |                  | Replica set của MongoDB                        |
+| `MONGO_AUTHSOURCE` |          |                  | Nguồn xác thực của MongoDB                     |
+| `MONGO_OPT_SSL`    |          | `false`          | Sử dụng kết nối SSL                            |
 
-Here is an example configuration for mongodb.com. Please note that you need set as JSON style for `MONGO_HOST` and `MONGO_PORT` when you has multiple hosts.
+Dưới đây là ví dụ cấu hình cho mongodb.com. Xin lưu ý rằng bạn cần đặt `MONGO_HOST` và `MONGO_PORT` theo định dạng JSON khi có nhiều máy chủ.
 
 ```bash
 MONGO_HOST=["cluster0-shard-00-00.p4edw.mongodb.net","cluster0-shard-00-01.p4edw.mongodb.net","cluster0-shard-00-02.p4edw.mongodb.net"]
@@ -40,87 +40,87 @@ MONGO_OPT_SSL=true
 
 ## MySQL
 
-Using MySQL to store data is also a good choice. Besides our own MySQL service, we can also use [FreeDB)(https://freedb.tech), which provides 25M of database support for free, or [PlanetScale](https://planetscale.com) which only support paid plan now.
+Sử dụng MySQL để lưu trữ dữ liệu cũng là một lựa chọn tốt. Ngoài dịch vụ MySQL của riêng chúng tôi, bạn cũng có thể dùng [FreeDB)(https://freedb.tech), dịch vụ cung cấp miễn phí 25M dung lượng cơ sở dữ liệu, hoặc [PlanetScale](https://planetscale.com) hiện chỉ hỗ trợ gói trả phí.
 
-If you want to use MySQL as storage, you need to import [waline.sql](https://github.com/walinejs/waline/blob/main/assets/waline.sql) first to create table and table structure, then set these environment variables in project.
+Nếu bạn muốn dùng MySQL làm nơi lưu trữ, trước tiên bạn cần nhập [waline.sql](https://github.com/walinejs/waline/blob/main/assets/waline.sql) để tạo bảng và cấu trúc bảng, sau đó đặt các biến môi trường sau trong dự án.
 
-| Environment Variable | Required | Default   | Description                |
-| -------------------- | -------- | --------- | -------------------------- |
-| `MYSQL_DB`           | ✅       |           | MySQL database name        |
-| `MYSQL_USER`         | ✅       |           | MySQL server username      |
-| `MYSQL_PASSWORD`     | ✅       |           | MySQL server password      |
-| `MYSQL_HOST`         |          | 127.0.0.1 | MySQL server address       |
-| `MYSQL_PORT`         |          | 3306      | MySQL server port          |
-| `MYSQL_PREFIX`       |          | `wl_`     | MySQL table prefix         |
-| `MYSQL_CHARSET`      |          | `utf8mb4` | MySQL table charset        |
-| `MYSQL_SSL`          |          | `false`   | whether use SSL connection |
+| Biến môi trường  | Bắt buộc | Giá trị mặc định | Mô tả                            |
+| ---------------- | -------- | ---------------- | -------------------------------- |
+| `MYSQL_DB`       | ✅       |                  | Tên cơ sở dữ liệu MySQL          |
+| `MYSQL_USER`     | ✅       |                  | Tên người dùng máy chủ MySQL     |
+| `MYSQL_PASSWORD` | ✅       |                  | Mật khẩu máy chủ MySQL           |
+| `MYSQL_HOST`     |          | 127.0.0.1        | Địa chỉ máy chủ MySQL            |
+| `MYSQL_PORT`     |          | 3306             | Cổng máy chủ MySQL               |
+| `MYSQL_PREFIX`   |          | `wl_`            | Tiền tố bảng MySQL               |
+| `MYSQL_CHARSET`  |          | `utf8mb4`        | Bộ ký tự bảng MySQL              |
+| `MYSQL_SSL`      |          | `false`          | Có sử dụng kết nối SSL hay không |
 
 ## TiDB
 
-[TiDB](https://github.com/pingcap/tidb) is an open source NewSQL database. [TiDB Cloud](https://tidbcloud.com/) is the official online version, which provides 5GB of free quota for everyone to use.
+[TiDB](https://github.com/pingcap/tidb) là một cơ sở dữ liệu NewSQL mã nguồn mở. [TiDB Cloud](https://tidbcloud.com/) là phiên bản trực tuyến chính thức, cung cấp miễn phí 5GB dung lượng cho mọi người sử dụng.
 
-Please refer to [Create TiDB database](../../vi-VN/guide/deploy/tidb.md) to understand the initialization process.
+Vui lòng tham khảo [Tạo cơ sở dữ liệu TiDB](../../vi-VN/guide/deploy/tidb.md) để hiểu quy trình khởi tạo.
 
-| Environment Variable | Required | Default   | Description                     |
-| -------------------- | -------- | --------- | ------------------------------- |
-| `TIDB_DB`            | ✅       |           | TiDB database name              |
-| `TIDB_USER`          | ✅       |           | TiDB database user name         |
-| `TIDB_PASSWORD`      | ✅       |           | TiDB database password          |
-| `TIDB_HOST`          |          | 127.0.0.1 | Address of TiDB service         |
-| `TIDB_PORT`          |          | 4000      | Port of TiDB service            |
-| `TIDB_PREFIX`        |          | `wl_`     | Table prefix of TiDB data table |
-| `TIDB_CHARSET`       |          | `utf8mb4` | TiDB data table character set   |
+| Biến môi trường | Bắt buộc | Giá trị mặc định | Mô tả                       |
+| --------------- | -------- | ---------------- | --------------------------- |
+| `TIDB_DB`       | ✅       |                  | Tên cơ sở dữ liệu TiDB      |
+| `TIDB_USER`     | ✅       |                  | Tên người dùng TiDB         |
+| `TIDB_PASSWORD` | ✅       |                  | Mật khẩu cơ sở dữ liệu TiDB |
+| `TIDB_HOST`     |          | 127.0.0.1        | Địa chỉ dịch vụ TiDB        |
+| `TIDB_PORT`     |          | 4000             | Cổng dịch vụ TiDB           |
+| `TIDB_PREFIX`   |          | `wl_`            | Tiền tố bảng dữ liệu TiDB   |
+| `TIDB_CHARSET`  |          | `utf8mb4`        | Bộ ký tự bảng dữ liệu TiDB  |
 
 ## SQLite
 
-Download [waline.sqlite](https://github.com/walinejs/waline/blob/main/assets/waline.sqlite) to your server if you want to use SQLite. Then set these environment variables in project.
+Tải [waline.sqlite](https://github.com/walinejs/waline/blob/main/assets/waline.sqlite) về máy chủ của bạn nếu bạn muốn sử dụng SQLite. Sau đó đặt các biến môi trường sau trong dự án.
 
-| Environment Variable | Required | Default | Description                                                        |
-| -------------------- | -------- | ------- | ------------------------------------------------------------------ |
-| `SQLITE_PATH`        | ✅       |         | SQLite storage file path, not include file name                    |
-| `JWT_TOKEN`          | ✅       |         | Random String for login token generator                            |
-| `SQLITE_DB`          |          | waline  | SQLite storage file name, change it if your filename is not waline |
-| `SQLITE_PREFIX`      |          | `wl_`   | SQLite table prefix                                                |
+| Biến môi trường | Bắt buộc | Giá trị mặc định | Mô tả                                                                 |
+| --------------- | -------- | ---------------- | --------------------------------------------------------------------- |
+| `SQLITE_PATH`   | ✅       |                  | Đường dẫn tệp lưu trữ SQLite, không bao gồm tên tệp                   |
+| `JWT_TOKEN`     | ✅       |                  | Chuỗi ngẫu nhiên dùng để tạo mã thông báo đăng nhập                   |
+| `SQLITE_DB`     |          | waline           | Tên tệp lưu trữ SQLite, hãy đổi nếu tên tệp của bạn không phải waline |
+| `SQLITE_PREFIX` |          | `wl_`            | Tiền tố bảng SQLite                                                   |
 
 ## PostgreSQL
 
-[Supabase](https://supabase.com) and [Neon](https://neon.tech/home) offer a free 512M database, while [Tembo](https://tembo.io/) provides 10G PG database support for free. Same as MySQL, you need to import [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) to create table and table structure before using PostgreSQL.
+[Supabase](https://supabase.com) và [Neon](https://neon.tech/home) cung cấp miễn phí cơ sở dữ liệu 512M, trong khi [Tembo](https://tembo.io/) cung cấp miễn phí 10G dung lượng cơ sở dữ liệu PG. Giống như MySQL, bạn cần nhập [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) để tạo bảng và cấu trúc bảng trước khi sử dụng PostgreSQL.
 
-| Environment Variable | Required | Default   | Description                         |
-| -------------------- | -------- | --------- | ----------------------------------- |
-| `PG_DB`              | ✅       |           | PostgreSQL database name            |
-| `PG_USER`            | ✅       |           | PostgreSQL server username          |
-| `PG_PASSWORD`        | ✅       |           | PostgreSQL server password          |
-| `PG_HOST`            |          | 127.0.0.1 | PostgreSQL server address           |
-| `PG_PORT`            |          | 5432      | PostgreSQL server port              |
-| `PG_PREFIX`          |          | `wl_`     | PostgreSQL table prefix             |
-| `PG_SSL`             |          | `false`   | set to `true` to use SSL connection |
-| `POSTGRES_DATABASE`  |          |           | alias for `PG_DB`                   |
-| `POSTGRES_USER`      |          |           | alias for `PG_USER`                 |
-| `POSTGRES_PASSWORD`  |          |           | alias for `PG_PASSWORD`             |
-| `POSTGRES_HOST`      |          | 127.0.0.1 | alias for `PG_HOST`                 |
-| `POSTGRES_PORT`      |          | 5432      | alias for `PG_PORT`                 |
-| `POSTGRES_PREFIX`    |          | `wl_`     | alias for `PG_PREFIX`               |
-| `POSTGRES_SSL`       |          | `false`   | alias for `PG_SSL`                  |
+| Biến môi trường     | Bắt buộc | Giá trị mặc định | Mô tả                                   |
+| ------------------- | -------- | ---------------- | --------------------------------------- |
+| `PG_DB`             | ✅       |                  | Tên cơ sở dữ liệu PostgreSQL            |
+| `PG_USER`           | ✅       |                  | Tên người dùng máy chủ PostgreSQL       |
+| `PG_PASSWORD`       | ✅       |                  | Mật khẩu máy chủ PostgreSQL             |
+| `PG_HOST`           |          | 127.0.0.1        | Địa chỉ máy chủ PostgreSQL              |
+| `PG_PORT`           |          | 5432             | Cổng máy chủ PostgreSQL                 |
+| `PG_PREFIX`         |          | `wl_`            | Tiền tố bảng PostgreSQL                 |
+| `PG_SSL`            |          | `false`          | Đặt thành `true` để sử dụng kết nối SSL |
+| `POSTGRES_DATABASE` |          |                  | Bí danh cho `PG_DB`                     |
+| `POSTGRES_USER`     |          |                  | Bí danh cho `PG_USER`                   |
+| `POSTGRES_PASSWORD` |          |                  | Bí danh cho `PG_PASSWORD`               |
+| `POSTGRES_HOST`     |          | 127.0.0.1        | Bí danh cho `PG_HOST`                   |
+| `POSTGRES_PORT`     |          | 5432             | Bí danh cho `PG_PORT`                   |
+| `POSTGRES_PREFIX`   |          | `wl_`            | Bí danh cho `PG_PREFIX`                 |
+| `POSTGRES_SSL`      |          | `false`          | Bí danh cho `PG_SSL`                    |
 
 ## GitHub
 
-Waline supports storing comment data in a CSV file on GitHub. To use GitHub as data storage, you need to apply for Personal access tokens. You can click <kbd>Generate new token</kbd> to apply it at <https://github.com/settings/tokens>. Check the **repo** option in permission to obtain read and write permissions for repositories.
+Waline hỗ trợ lưu trữ dữ liệu bình luận trong một tệp CSV trên GitHub. Để dùng GitHub làm nơi lưu trữ dữ liệu, bạn cần xin Personal access tokens. Bạn có thể nhấn <kbd>Generate new token</kbd> để xin tại <https://github.com/settings/tokens>. Chọn tùy chọn **repo** trong phần quyền để có quyền đọc và ghi đối với kho lưu trữ.
 
-| Environment Variable | Required | Default | Description                                                                                                      |
-| -------------------- | -------- | ------- | ---------------------------------------------------------------------------------------------------------------- |
-| `GITHUB_TOKEN`       | ✅       |         | [Personal access tokens](https://github.com/settings/tokens)                                                     |
-| `GITHUB_REPO`        | ✅       |         | repository name, such as `walinejs/waline`                                                                       |
-| GITHUB_PATH          |          |         | The data storage directory, such as `data` means it is stored in the `data` directory, root directory by default |
+| Biến môi trường | Bắt buộc | Giá trị mặc định | Mô tả                                                                                            |
+| --------------- | -------- | ---------------- | ------------------------------------------------------------------------------------------------ |
+| `GITHUB_TOKEN`  | ✅       |                  | [Personal access tokens](https://github.com/settings/tokens)                                     |
+| `GITHUB_REPO`   | ✅       |                  | Tên kho lưu trữ, ví dụ `walinejs/waline`                                                         |
+| GITHUB_PATH     |          |                  | Thư mục lưu trữ dữ liệu, ví dụ `data` nghĩa là lưu trong thư mục `data`, mặc định là thư mục gốc |
 
 ::: warning
 
-Due to performance, using GitHub is not recommended.
+Do vấn đề hiệu năng, không nên sử dụng GitHub.
 
 :::
 
-## Custom
+## Tùy chỉnh
 
-Besides above database storage, support for other storage services can also be added.
+Ngoài các dịch vụ lưu trữ cơ sở dữ liệu ở trên, bạn cũng có thể thêm hỗ trợ cho các dịch vụ lưu trữ khác.
 
-If you want to help Waline supporting more storage services, you can fork the project and inherit the [base class](https://github.com/walinejs/waline/blob/main/packages/server/src/service/storage/base.js) and then implement the `select()`, `add()`, `update()` and `delete()` methods of the corresponding storage service and submit the PR.
+Nếu bạn muốn giúp Waline hỗ trợ thêm dịch vụ lưu trữ, bạn có thể fork dự án, kế thừa [lớp cơ sở](https://github.com/walinejs/waline/blob/main/packages/server/src/service/storage/base.js) rồi triển khai các phương thức `select()`, `add()`, `update()` và `delete()` của dịch vụ lưu trữ tương ứng và gửi PR.

@@ -1,16 +1,16 @@
 ---
-title: Article Reactions
+title: Cảm xúc bài viết
 icon: reaction
 order: 4
 ---
 
-Waline allows users to express reactions for article content.
+Waline cho phép người dùng bày tỏ cảm xúc với nội dung bài viết.
 
 <!-- more -->
 
-## Getting Started
+## Bắt đầu
 
-To quickly enable reactions, you can set the `reaction` option to `true` to display a default list of reactions:
+Để nhanh chóng bật cảm xúc bài viết, bạn có thể đặt tùy chọn `reaction` thành `true` để hiển thị danh sách cảm xúc mặc định:
 
 ```js
 Waline.init({
@@ -20,11 +20,11 @@ Waline.init({
 });
 ```
 
-Waline will display the default list of reactions above the comment box.
+Waline sẽ hiển thị danh sách cảm xúc mặc định phía trên khung bình luận.
 
-## Customize Reactions
+## Tùy chỉnh cảm xúc
 
-If you need to customize these reaction emoticons, you can pass in an array containing the link of the reaction emoticon image, representing reactions you want the user to choose with:
+Nếu cần tùy chỉnh các biểu tượng cảm xúc này, bạn có thể truyền vào một mảng chứa liên kết tới hình ảnh biểu tượng cảm xúc, tương ứng với những cảm xúc bạn muốn người dùng chọn:
 
 ```js
 Waline.init({
@@ -39,20 +39,20 @@ Waline.init({
 });
 ```
 
-Meanwhile, you can customize the title of the reaction through `reactionTitle` in `locale`, and you can also customize the name of the reaction expression through `reaction0` to `reaction8`, see [Multilingual Settings](./i18n.md) .
+Đồng thời, bạn có thể tùy chỉnh tiêu đề của phần cảm xúc qua `reactionTitle` trong `locale`, và cũng có thể tùy chỉnh tên của từng cảm xúc qua `reaction0` đến `reaction8`, xem [Cài đặt đa ngôn ngữ](./i18n.md).
 
-## Precautions
+## Lưu ý
 
-::: tip Number Limitation
+::: tip Giới hạn số lượng
 
-Waline supports up to 9 reactions, and you can add less than 9 reactions without any problems.
+Waline hỗ trợ tối đa 9 cảm xúc, và bạn có thể thêm ít hơn 9 cảm xúc mà không gặp vấn đề gì.
 
 :::
 
-::: warning Counting Rules
+::: warning Quy tắc đếm
 
-Counting of reactions is based on location.
+Việc đếm cảm xúc dựa trên vị trí.
 
-If you need to reorder and adjust the reactions, check [#1451](https://github.com/walinejs/waline/issues/1451#issuecomment-1264555264) for more details.
+Nếu bạn cần sắp xếp lại và điều chỉnh các cảm xúc, hãy xem [#1451](https://github.com/walinejs/waline/issues/1451#issuecomment-1264555264) để biết chi tiết.
 
 :::

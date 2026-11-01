@@ -3,6 +3,6 @@ title: Triển khai
 icon: deploy
 ---
 
-Waline supports multiple deployment methods, and use Vercel by default. You can choose from the following deployment platforms or deploy yourself.
+Waline hỗ trợ nhiều cách triển khai, mặc định sử dụng Vercel. Bạn có thể chọn một trong các nền tảng triển khai dưới đây hoặc tự triển khai.
 
 <Catalog />

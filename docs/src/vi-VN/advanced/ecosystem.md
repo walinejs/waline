@@ -4,17 +4,17 @@ icon: ecosystem
 order: 3
 ---
 
-Waline is a classic Client/Server architecture, which provides a relatively complete API interface. you can implement your own client implementation based on the API provided by the server.
+Waline là một kiến trúc Client/Server kinh điển, cung cấp bộ giao diện API khá đầy đủ. Bạn có thể tự hiện thực ứng dụng khách của mình dựa trên API do máy chủ cung cấp.
 
-## Clients
+## Ứng dụng khách
 
 - [@waline/client](https://npmjs.com/@waline/client)
 
-  Official client implementation, build with Vue and TypeScript.
+  Ứng dụng khách chính thức, được xây dựng bằng Vue và TypeScript.
 
 - [MiniValine](https://github.com/MiniValine/MiniValine)
 
-  By [@MHuiG](https://github.com/MHuiG) , supports Waline API. Usage:
+  Bởi [@MHuiG](https://github.com/MHuiG), hỗ trợ API của Waline. Cách dùng:
 
   ```html
   <script src="https://unpkg.com/minivaline/dist/MiniValine.min.js"></script>
@@ -31,40 +31,40 @@ Waline is a classic Client/Server architecture, which provides a relatively comp
 
 - [sodesu](https://github.com/BeiyanYunyi/sodesu)
 
-  By [@BeiyanYunyi](https://github.com/BeiyanYunyi), build with Solid.js. For usage, see its README and [website](https://BeiyanYunyi.github.io/sodesu/)。
+  Bởi [@BeiyanYunyi](https://github.com/BeiyanYunyi), được xây dựng bằng Solid.js. Cách dùng xem README và [trang web](https://BeiyanYunyi.github.io/sodesu/) của dự án.
 
 ## Rusty
 
-[waline-mini](https://github.com/JQiue/waline-mini) is a server-side implementation in Rust, highly suitable for running in resource-constrained server environments.
+[waline-mini](https://github.com/JQiue/waline-mini) là một hiện thực phía máy chủ viết bằng Rust, rất phù hợp để chạy trong môi trường máy chủ hạn chế tài nguyên.
 
 ## Cloudflare Workers
 
-[Waline_On_Worker](https://github.com/wuyilingwei/Waline_On_Worker) là một triển khai phía máy chủ dựa trên Workers từ cộng đồng,弥補了 Waline không thể chạy trên Cloudflare Workers 的不足。
+[Waline_On_Worker](https://github.com/wuyilingwei/Waline_On_Worker) là hiện thực phía máy chủ dựa trên Workers do cộng đồng phát triển, khắc phục nhược điểm Waline không thể chạy trên Cloudflare Workers.
 
-## Plugins
+## Plugin
 
 ### Hexo
 
-- [@waline/hexo-next](https://npmjs.com/@waline/hexo-next): Waline comment system for NexT.
+- [@waline/hexo-next](https://npmjs.com/@waline/hexo-next): Hệ thống bình luận Waline cho NexT.
 
 ### Docsify
 
-- [docsify-waline](https://github.com/cxcn/docsify-waline): A simple comment plugin for docsify.
+- [docsify-waline](https://github.com/cxcn/docsify-waline): Plugin bình luận đơn giản cho docsify.
 
 ### VuePress
 
-- [vuepress-plugin-comment2](https://vuepress-theme-hope.github.io/v2/comment/): Comment system for VuePress2.
-- [@mr-hope/vuepress-plugin-comment](https://vuepress-theme-hope.github.io/v1/comment/): Comment system for VuePress1.
+- [vuepress-plugin-comment2](https://vuepress-theme-hope.github.io/v2/comment/): Hệ thống bình luận cho VuePress2.
+- [@mr-hope/vuepress-plugin-comment](https://vuepress-theme-hope.github.io/v1/comment/): Hệ thống bình luận cho VuePress1.
 
 ### Gatsby
 
-- [gatsby-plugin-waline](https://www.npmjs.com/package/gatsby-plugin-waline): Comment system plugin for Gatsby.
+- [gatsby-plugin-waline](https://www.npmjs.com/package/gatsby-plugin-waline): Plugin hệ thống bình luận cho Gatsby.
 
-Others:
+Khác:
 
-- [vuepress-plugin-comment-plus](https://github.com/SivanLaai/vuepress-plugin-comment-plus): Comment system plugin for VuePress.
+- [vuepress-plugin-comment-plus](https://github.com/SivanLaai/vuepress-plugin-comment-plus): Plugin hệ thống bình luận cho VuePress.
 
-## Theme
+## Chủ đề
 
 ### Hexo
 
@@ -92,8 +92,8 @@ Others:
 - [DoIt](https://github.com/HEIGE-PCloud/DoIt)
 - [Kenny](https://github.com/Kindle-deep/hugo-theme-Kenny)
 
-## More
+## Thông tin thêm
 
-We are looking forward to more clients and plugins from the community to expand the Waline ecosystem. :tada:
+Chúng tôi mong chờ thêm nhiều ứng dụng khách và plugin từ cộng đồng để mở rộng hệ sinh thái Waline. :tada:
 
-If you implement any Waline client, ecological plugin or theme including Waline, please send a PR and let us know!
+Nếu bạn hiện thực bất kỳ ứng dụng khách, plugin hệ sinh thái hay chủ đề nào có tích hợp Waline, hãy gửi PR để cho chúng tôi biết!

@@ -1,9 +1,9 @@
 ---
-title: Image Preview for Comment List
+title: Xem trước hình ảnh trong danh sách bình luận
 icon: pic
 ---
 
-There are many plugins that can achieve the lightbox effect, here are some examples of these plugins:
+Có nhiều plugin có thể tạo hiệu ứng lightbox, dưới đây là một vài ví dụ về các plugin đó:
 
 - [lightGallery](https://www.lightgalleryjs.com/)
 
@@ -16,7 +16,7 @@ There are many plugins that can achieve the lightbox effect, here are some examp
 
 ## LightGallery
 
-Write the following content before your HTML `<head>`, where `#waline-comment` is your Waline comment box, which needs to be replaced according to the actual scene.
+Hãy đặt nội dung sau trước thẻ `<head>` của HTML; trong đó `#waline-comment` là khung bình luận Waline của bạn, cần được thay thế theo tình huống thực tế.
 
 ```html
 <link rel="stylesheet" href="https://unpkg.com/lightgallery@v2/css/lightgallery-bundle.css" />
@@ -68,7 +68,7 @@ Write the following content before your HTML `<head>`, where `#waline-comment` i
 
 ## Lightbox2
 
-Write the following content before your HTML `<head>`, where `#waline-comment` is your Waline comment box, which needs to be replaced according to the actual scene.
+Hãy đặt nội dung sau trước thẻ `<head>` của HTML; trong đó `#waline-comment` là khung bình luận Waline của bạn, cần được thay thế theo tình huống thực tế.
 
 ```html
 <link rel="stylesheet" href="https://unpkg.com/lightbox2@v2/dist/css/lightbox.min.css" />
@@ -96,7 +96,7 @@ Write the following content before your HTML `<head>`, where `#waline-comment` i
 
 ## Fancybox
 
-Write the following content before your HTML `<head>`, where `#waline-comment` is your Waline comment box, which needs to be replaced according to the actual scene.
+Hãy đặt nội dung sau trước thẻ `<head>` của HTML; trong đó `#waline-comment` là khung bình luận Waline của bạn, cần được thay thế theo tình huống thực tế.
 
 ```html
 <script src="https://unpkg.com/@fancyapps/ui/dist/fancybox.umd.js"></script>

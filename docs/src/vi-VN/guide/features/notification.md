@@ -1,160 +1,160 @@
 ---
-title: Comment Notification
+title: Thông báo bình luận
 icon: notice
 order: 10
 ---
 
-When a user posts a comment on the website or a user responds to a comment, Waline supports email or WeChat notification to the blogger and the author who responded to the comment.
+Khi người dùng gửi bình luận trên trang web hoặc trả lời một bình luận, Waline hỗ trợ gửi thông báo qua email hoặc WeChat cho chủ blog và cho tác giả của bình luận được trả lời.
 
-- We support multiple types notifications for blogger
-- We will email a visitor once his comment gets a reply.
+- Chúng tôi hỗ trợ nhiều loại thông báo cho chủ blog
+- Chúng tôi sẽ gửi email cho người dùng bình luận ngay khi bình luận của họ có trả lời.
 
 <!-- more -->
 
-## Email Notification
+## Thông báo qua email
 
-Email notification needs the following environment variables to be configured:
+Thông báo qua email cần cấu hình các biến môi trường sau:
 
-- `SMTP_SERVICE`: SMTP Mail delivery service provider
+- `SMTP_SERVICE`: Nhà cung cấp dịch vụ gửi thư SMTP
 
   ::: tip
 
-  You can find all support provider in [nodemailer services](https://github.com/nodemailer/nodemailer/blob/master/src/well-known/services.json). If your provider is not listed, you must config `SMTP_HOST` and `SMTP_PORT`.
+  Bạn có thể tìm thấy mọi nhà cung cấp được hỗ trợ trong [nodemailer services](https://github.com/nodemailer/nodemailer/blob/master/src/well-known/services.json). Nếu nhà cung cấp của bạn không có trong danh sách, bạn phải cấu hình `SMTP_HOST` và `SMTP_PORT`.
 
-  - `SMTP_HOST`: SMTP server address, it can be found in mailbox's setting page generally.
-  - `SMTP_PORT`: SMTP server port, it can be found in mailbox's setting page generally.
+  - `SMTP_HOST`: Địa chỉ máy chủ SMTP, thường có thể tìm thấy trong trang cài đặt của hộp thư.
+  - `SMTP_PORT`: Cổng máy chủ SMTP, thường có thể tìm thấy trong trang cài đặt của hộp thư.
 
   :::
 
-- `SMTP_USER`: SMTP Mail delivery service account, it's your email address.
-- `SMTP_PASS`: SMTP Mail delivery service password, it's your email password.
-- `SMTP_SECURE`: SMTP connect with SSL, either `true` or `false`.
-- `SITE_NAME`: Your site name, will be displayed in notification message.
-- `SITE_URL`: Your site url, will be displayed in notification message.
+- `SMTP_USER`: Tài khoản dịch vụ gửi thư SMTP, chính là địa chỉ email của bạn.
+- `SMTP_PASS`: Mật khẩu dịch vụ gửi thư SMTP, chính là mật khẩu email của bạn.
+- `SMTP_SECURE`: Kết nối SMTP bằng SSL, nhận giá trị `true` hoặc `false`.
+- `SITE_NAME`: Tên trang web của bạn, sẽ được hiển thị trong nội dung thông báo.
+- `SITE_URL`: URL trang web của bạn, sẽ được hiển thị trong nội dung thông báo.
 
-The following environment variables are optional:
+Các biến môi trường sau là tùy chọn:
 
-- `SENDER_NAME`: Custom sender's name in notification
-- `SENDER_EMAIL`: Custom sender's name in notification, required for some SMTP services.
-- `MAIL_SUBJECT`: Custom comment reply email title
-- `MAIL_TEMPLATE`: Custom reply email content
-- `MAIL_SUBJECT_ADMIN`: Custom new comment notification email title
-- `MAIL_TEMPLATE_ADMIN`: Custom new comment notification email content
-- `AUTHOR_EMAIL`: The blogger’s email, used to judge whether posted comment is posted by the blogger. If it is posted by the blogger, there will be no reminder notification.
+- `SENDER_NAME`: Tên người gửi tùy chỉnh trong thông báo
+- `SENDER_EMAIL`: Email người gửi tùy chỉnh trong thông báo, bắt buộc với một số dịch vụ SMTP.
+- `MAIL_SUBJECT`: Tiêu đề email trả lời tùy chỉnh
+- `MAIL_TEMPLATE`: Nội dung email trả lời tùy chỉnh
+- `MAIL_SUBJECT_ADMIN`: Tiêu đề email thông báo bình luận mới tùy chỉnh
+- `MAIL_TEMPLATE_ADMIN`: Nội dung email thông báo bình luận mới tùy chỉnh
+- `AUTHOR_EMAIL`: Email của chủ blog, dùng để xác định bình luận có phải do chủ blog gửi hay không. Nếu do chủ blog gửi sẽ không có thông báo nhắc nhở.
 
-## Wechat Notification
+## Thông báo qua WeChat
 
-We use [Mr. Server](http://sc.ftqq.com/3.version) to wechat notification. You need to set `SC_KEY` in env which applied in Mr. Server.
+Chúng tôi dùng [Mr. Server](http://sc.ftqq.com/3.version) để gửi thông báo qua WeChat. Bạn cần đặt `SC_KEY` trong biến môi trường, đây là khóa đăng ký trên Mr. Server.
 
-- `SC_KEY`: Token applied in Mr. Server, It's required for this service.
-- `AUTHOR_EMAIL`: The blogger’s email is used to distinguish whether the posted comment is posted by the blogger himself. If it is posted by the blogger, there will be no reminder notification.
-- `SITE_NAME`: Your site name, it will be displayed in notification message.
-- `SITE_URL`: Your site url, it will be displayed in notification message.
+- `SC_KEY`: Token đăng ký trên Mr. Server, bắt buộc cho dịch vụ này.
+- `AUTHOR_EMAIL`: Email của chủ blog, dùng để phân biệt bình luận có phải do chính chủ blog gửi hay không. Nếu do chủ blog gửi sẽ không có thông báo nhắc nhở.
+- `SITE_NAME`: Tên trang web của bạn, sẽ được hiển thị trong nội dung thông báo.
+- `SITE_URL`: URL trang web của bạn, sẽ được hiển thị trong nội dung thông báo.
 
-## QQ Notification
+## Thông báo qua QQ
 
-We use [Mr. Qmsg](https://qmsg.zendee.cn) to send QQ notification. You need to set `QMSG_KEY` in env which applied in Mr. Qmsg.
+Chúng tôi dùng [Mr. Qmsg](https://qmsg.zendee.cn) để gửi thông báo qua QQ. Bạn cần đặt `QMSG_KEY` trong biến môi trường, đây là khóa đăng ký trên Mr. Qmsg.
 
-- `QMSG_KEY`: KEY applied in Mr. Qmsg, It's required for this service.
-- `QMSG_HOST`: HOST applied in Mr. QmsgPrivate, Optional. It's required for this host. Defalut is `https://qmsg.zendee.cn`
-- `QQ_ID`: The QQ ID of the receiver(s), except for QQ group. If there are more than one QQ ID, use commas to separate multiple values, e.g. `1244453393,2952937634` (should all be included in your Mr. Qmsg's QQ ID list).
-- `AUTHOR_EMAIL`: The blogger’s email is used to distinguish whether the posted comment is posted by the blogger himself. If it is posted by the blogger, there will be no reminder notification.
-- `SITE_NAME`: Your site name, it will be displayed in notification message.
-- `SITE_URL`: Your site url, it will be displayed in notification message.
-- `QQ_TEMPLATE`: Notification template used by QQ. Variables and specific formats can be found in the notification template below. If not configured, the default template is used.
+- `QMSG_KEY`: KEY đăng ký trên Mr. Qmsg, bắt buộc cho dịch vụ này.
+- `QMSG_HOST`: HOST đăng ký trên Mr. QmsgPrivate, tùy chọn. Bắt buộc khi dùng host riêng này. Mặc định là `https://qmsg.zendee.cn`
+- `QQ_ID`: ID QQ của (những) người nhận, trừ nhóm QQ. Nếu có nhiều ID QQ, hãy phân tách các giá trị bằng dấu phẩy, ví dụ `1244453393,2952937634` (tất cả phải nằm trong danh sách QQ ID của Mr. Qmsg).
+- `AUTHOR_EMAIL`: Email của chủ blog, dùng để phân biệt bình luận có phải do chính chủ blog gửi hay không. Nếu do chủ blog gửi sẽ không có thông báo nhắc nhở.
+- `SITE_NAME`: Tên trang web của bạn, sẽ được hiển thị trong nội dung thông báo.
+- `SITE_URL`: URL trang web của bạn, sẽ được hiển thị trong nội dung thông báo.
+- `QQ_TEMPLATE`: Mẫu thông báo dùng cho QQ. Các biến và định dạng cụ thể có thể xem trong phần mẫu thông báo bên dưới. Nếu không cấu hình, mẫu mặc định sẽ được dùng.
 
-## Telegram Notification
+## Thông báo qua Telegram
 
-We use Telegram bot to send Telegram notification. You need to set the following env.
+Chúng tôi dùng bot Telegram để gửi thông báo qua Telegram. Bạn cần đặt các biến môi trường sau.
 
-- `TG_BOT_TOKEN`: Telegram bot token to access the HTTP API. Create a bot with [@BotFather](https://t.me/BotFather) to get this token. It's required for this service.
-- `TG_CHAT_ID`: The `chat_id` of the receiver. It can be an user, a channel or a group. [@userinfobot](https://t.me/userinfobot) will display this `chat_id` when you forward a message to it. It's required for this service.
-- `AUTHOR_EMAIL`: The blogger’s email is used to distinguish whether the posted comment is posted by the blogger himself. If it is posted by the blogger, there will be no reminder notification.
-- `SITE_NAME`: Your site name, it will be displayed in notification message.
-- `SITE_URL`: Your site url, it will be displayed in notification message.
-- `TG_TEMPLATE`: Notification template used by Telegram. Variables and specific formats can be found in the notification template below. If not configured, the default template is used.
+- `TG_BOT_TOKEN`: Token của bot Telegram để truy cập HTTP API. Tạo bot với [@BotFather](https://t.me/BotFather) để lấy token này. Bắt buộc cho dịch vụ này.
+- `TG_CHAT_ID`: `chat_id` của người nhận. Có thể là một người dùng, một kênh hoặc một nhóm. [@userinfobot](https://t.me/userinfobot) sẽ hiển thị `chat_id` này khi bạn chuyển tiếp tin nhắn cho nó. Bắt buộc cho dịch vụ này.
+- `AUTHOR_EMAIL`: Email của chủ blog, dùng để phân biệt bình luận có phải do chính chủ blog gửi hay không. Nếu do chủ blog gửi sẽ không có thông báo nhắc nhở.
+- `SITE_NAME`: Tên trang web của bạn, sẽ được hiển thị trong nội dung thông báo.
+- `SITE_URL`: URL trang web của bạn, sẽ được hiển thị trong nội dung thông báo.
+- `TG_TEMPLATE`: Mẫu thông báo dùng cho Telegram. Các biến và định dạng cụ thể có thể xem trong phần mẫu thông báo bên dưới. Nếu không cấu hình, mẫu mặc định sẽ được dùng.
 
-## PushPlus Notification
+## Thông báo qua PushPlus
 
-[pushplus](http://www.pushplus.plus/) is a message push platform which supports many channels like wechat, wechat work, ding talk, sms or email. You need to set the following env. You can go to [pushplus documentation](http://www.pushplus.plus/doc/guide/api.html#%E4%B8%80%E3%80%81%E5%8F%91%E9%80%81%E6%B6%88%E6%81%AF%E6%8E%A5%E5%8F%A3) to get more parameter format detail.
+[pushplus](http://www.pushplus.plus/) là một nền tảng đẩy tin nhắn hỗ trợ nhiều kênh như WeChat, WeChat Work, DingTalk, SMS hoặc email. Bạn cần đặt các biến môi trường sau. Bạn có thể xem [tài liệu pushplus](http://www.pushplus.plus/doc/guide/api.html#%E4%B8%80%E3%80%81%E5%8F%91%E9%80%81%E6%B6%88%E6%81%AF%E6%8E%A5%E5%8F%A3) để biết thêm chi tiết về định dạng tham số.
 
-- `PUSH_PLUS_KEY`： user token. It's required for this service.
-- `PUSH_PLUS_TOPIC`：group id. Send yourself if it's empty. And It's unuseful if `PUSH_PLUS_CHANNEL` equals `webhook`.
-- `PUSH_PLUS_TEMPLATE`：Send template
-- `PUSH_PLUS_CHANNEL`：Send channel
-- `PUSH_PLUS_WEBHOOK`：webhook is required if `PUSH_PLUS_CHANNEL` equals `webhook` or `cp`.
-- `PUSH_PLUS_CALLBACKURL`：callback url after send response.
-- `AUTHOR_EMAIL`: The blogger’s email is used to distinguish whether the posted comment is posted by the blogger himself. If it is posted by the blogger, there will be no reminder notification.
-- `SITE_NAME`: Your site name, it will be displayed in notification message.
-- `SITE_URL`: Your site url, it will be displayed in notification message.
+- `PUSH_PLUS_KEY`: token người dùng. Bắt buộc cho dịch vụ này.
+- `PUSH_PLUS_TOPIC`: ID nhóm. Nếu để trống sẽ gửi cho chính bạn. Không có tác dụng nếu `PUSH_PLUS_CHANNEL` bằng `webhook`.
+- `PUSH_PLUS_TEMPLATE`: Mẫu gửi
+- `PUSH_PLUS_CHANNEL`: Kênh gửi
+- `PUSH_PLUS_WEBHOOK`: webhook là bắt buộc nếu `PUSH_PLUS_CHANNEL` bằng `webhook` hoặc `cp`.
+- `PUSH_PLUS_CALLBACKURL`: URL callback sau khi gửi phản hồi.
+- `AUTHOR_EMAIL`: Email của chủ blog, dùng để phân biệt bình luận có phải do chính chủ blog gửi hay không. Nếu do chủ blog gửi sẽ không có thông báo nhắc nhở.
+- `SITE_NAME`: Tên trang web của bạn, sẽ được hiển thị trong nội dung thông báo.
+- `SITE_URL`: URL trang web của bạn, sẽ được hiển thị trong nội dung thông báo.
 
-## Discord Notification
+## Thông báo qua Discord
 
-We use Discord Webhook to send Discord notification. You need to set the following env.
+Chúng tôi dùng Discord Webhook để gửi thông báo qua Discord. Bạn cần đặt các biến môi trường sau.
 
-- `DISCORD_WEBHOOK`: Discord Webhook url, [How to create Discord Webhook url](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks)?
-- `DISCORD_TEMPLATE`: Send template
-- `AUTHOR_EMAIL`: The blogger’s email is used to distinguish whether the posted comment is posted by the blogger himself. If it is posted by the blogger, there will be no reminder notification.
-- `SITE_NAME`: Your site name, it will be displayed in notification message.
-- `SITE_URL`: Your site url, it will be displayed in notification message.
+- `DISCORD_WEBHOOK`: URL Webhook Discord, [Cách tạo URL Webhook Discord](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks)?
+- `DISCORD_TEMPLATE`: Mẫu gửi
+- `AUTHOR_EMAIL`: Email của chủ blog, dùng để phân biệt bình luận có phải do chính chủ blog gửi hay không. Nếu do chủ blog gửi sẽ không có thông báo nhắc nhở.
+- `SITE_NAME`: Tên trang web của bạn, sẽ được hiển thị trong nội dung thông báo.
+- `SITE_URL`: URL trang web của bạn, sẽ được hiển thị trong nội dung thông báo.
 
-## Lark Notification
+## Thông báo qua Lark
 
-We use Lark Webhook to send its group notifications. The following env variables are required.
+Chúng tôi dùng Lark Webhook để gửi thông báo nhóm. Các biến môi trường sau là bắt buộc.
 
-- `LARK_WEBHOOK`: Lark Group Bot [Webhook Usages](https://open.larksuite.com/document/ukTMukTMukTM/ucTM5YjL3ETO24yNxkjN?lang=en-US)
-- `LARK_SECRET`: As clarified by the doc from Lark, this secret is used to sign your request to avoid abuse（Optional).
-- `LARK_TEMPLATE`: Message template
-- `SITE_NAME`: Your site name which will be displayed in notification messages.
-- `SITE_URL`: Your site url which will be displayed in notification messages.
+- `LARK_WEBHOOK`: Bot nhóm Lark [Cách dùng Webhook](https://open.larksuite.com/document/ukTMukTMukTM/ucTM5YjL3ETO24yNxkjN?lang=en-US)
+- `LARK_SECRET`: Theo tài liệu của Lark, secret này dùng để ký yêu cầu của bạn nhằm tránh bị lạm dụng (tùy chọn).
+- `LARK_TEMPLATE`: Mẫu tin nhắn
+- `SITE_NAME`: Tên trang web của bạn, sẽ được hiển thị trong nội dung thông báo.
+- `SITE_URL`: URL trang web của bạn, sẽ được hiển thị trong nội dung thông báo.
 
-## Notification Template
+## Mẫu thông báo
 
-Waline supports configuring your customized notification templates for each platform separately to achieve stronger customization capabilities and i18n compatibility.
+Waline hỗ trợ cấu hình mẫu thông báo tùy chỉnh riêng cho từng nền tảng, giúp khả năng tùy biến mạnh hơn và tương thích với đa ngôn ngữ.
 
-### Supported variables
+### Các biến được hỗ trợ
 
-The template passes parameters through `self`, `parent` and `site` objects, which contain the following variables respectively:
+Mẫu nhận tham số thông qua các đối tượng `self`, `parent` và `site`, mỗi đối tượng chứa các biến sau:
 
-- `self`: The comment itself
+- `self`: Bình luận hiện tại
 
-  | variable        | description          |
-  | --------------- | -------------------- |
-  | nick            | Commenter's nickname |
-  | mail            | Commenter's email    |
-  | link            | Commenter's website  |
-  | url             | Article address      |
-  | comment         | Comment content      |
-  | browser         | Browser name         |
-  | os              | Operate system name  |
-  | avatar          | avatar               |
-  | _commentLink_\* | Links in comments    |
+  | biến            | mô tả                         |
+  | --------------- | ----------------------------- |
+  | nick            | Biệt danh của người bình luận |
+  | mail            | Email của người bình luận     |
+  | link            | Trang web của người bình luận |
+  | url             | Địa chỉ bài viết              |
+  | comment         | Nội dung bình luận            |
+  | browser         | Tên trình duyệt               |
+  | os              | Tên hệ điều hành              |
+  | avatar          | ảnh đại diện                  |
+  | _commentLink_\* | Liên kết trong bình luận      |
 
-  \*: commentLink is only provided in Telegram notifications and will be automatically encapsulated in Markdown format.
+  \*: commentLink chỉ được cung cấp trong thông báo Telegram và sẽ tự động được bọc theo định dạng Markdown.
 
-- `parent`: Comment which is replied (parent comment).
+- `parent`: Bình luận được trả lời (bình luận cha).
 
-  | variable | description          |
-  | -------- | -------------------- |
-  | nick     | Commenter's nickname |
-  | mail     | Commenter's email    |
-  | link     | Commenter's website  |
-  | browser  | Browser name         |
-  | os       | Operate system name  |
-  | avatar   | avatar               |
-  | comment  | Comment content      |
+  | biến    | mô tả                         |
+  | ------- | ----------------------------- |
+  | nick    | Biệt danh của người bình luận |
+  | mail    | Email của người bình luận     |
+  | link    | Trang web của người bình luận |
+  | browser | Tên trình duyệt               |
+  | os      | Tên hệ điều hành              |
+  | avatar  | ảnh đại diện                  |
+  | comment | Nội dung bình luận            |
 
-- `site`: Website configuration
+- `site`: Cấu hình trang web
 
-  | variable | description          |
-  | -------- | -------------------- |
-  | name     | Site name            |
-  | url      | Site URL             |
-  | postUrl  | Comment full address |
+  | biến    | mô tả                        |
+  | ------- | ---------------------------- |
+  | name    | Tên trang web                |
+  | url     | URL trang web                |
+  | postUrl | Địa chỉ đầy đủ của bình luận |
 
-### Default template
+### Mẫu mặc định
 
-The default template is attached here for your reference:
+Mẫu mặc định được đính kèm dưới đây để bạn tham khảo:
 
 - MAIL_SUBJECT:
 
@@ -264,7 +264,7 @@ The default template is attached here for your reference:
   仅供评论预览，点击[查看完整內容]({{site.postUrl}})
   ````
 
-### Additional Info
+### Thông tin thêm
 
-1. Vercel’s environment variable size is limited to `4KB`, so if your template is long, you should config if in main entry file, see [issue#106](https://github.com/walinejs/waline/issues/106).
-1. The specific information of variables may change during the development process. The variable descriptions here are for reference only. Please refer to the specific code examples for specific content.
+1. Kích thước biến môi trường của Vercel bị giới hạn ở `4KB`, nên nếu mẫu của bạn dài, bạn nên cấu hình nó trong tệp đầu vào chính, xem [issue#106](https://github.com/walinejs/waline/issues/106).
+1. Thông tin cụ thể của các biến có thể thay đổi trong quá trình phát triển. Phần mô tả biến ở đây chỉ mang tính tham khảo. Vui lòng tham khảo các ví dụ mã cụ thể để biết nội dung chính xác.

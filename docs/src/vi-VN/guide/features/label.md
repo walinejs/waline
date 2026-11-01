@@ -1,23 +1,23 @@
 ---
-title: User label
+title: Nhãn người dùng
 icon: label
 order: 5
 ---
 
-Waline allows you to set level labels based on interactions and custom labels for logged-in users.
+Waline cho phép bạn đặt nhãn cấp độ dựa trên tương tác và nhãn tùy chỉnh cho người dùng đã đăng nhập.
 
-## Grade labels
+## Nhãn cấp độ
 
-You need to configure the `LEVELS` variable on the server to enable this function, see [Server Environment Variable Configuration](../../reference/server/env.md#display).
+Bạn cần cấu hình biến `LEVELS` trên máy chủ để bật tính năng này, xem [Cấu hình biến môi trường máy chủ](../../reference/server/env.md#hien-thi).
 
-You can customize these level labels via the locales option, see [Multilingual](./i18n.md#customize)
+Bạn có thể tùy chỉnh các nhãn cấp độ này qua tùy chọn locales, xem [Đa ngôn ngữ](./i18n.md#tuy-chinh)
 
-## Exclusive Label
+## Nhãn riêng
 
-You can customize labels for users through the management side.
+Bạn có thể tùy chỉnh nhãn cho người dùng thông qua bảng điều khiển quản trị.
 
-![Admin Label](./assets/label-admin.jpg)
+![Nhãn quản trị](./assets/label-admin.jpg)
 
-As a login user, you can also update your exclusive label at profile page.
+Với tư cách người dùng đã đăng nhập, bạn cũng có thể cập nhật nhãn riêng của mình ở trang hồ sơ.
 
-![Profile Label](./assets/label-profile.jpg)
+![Nhãn hồ sơ](./assets/label-profile.jpg)

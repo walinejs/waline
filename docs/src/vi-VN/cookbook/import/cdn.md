@@ -1,20 +1,20 @@
 ---
-title: Import Waline via CDN
+title: Nhập Waline qua CDN
 icon: import
 order: 1
 ---
 
-This cookbook is about importing Waline via CDN.
+Sổ tay này hướng dẫn cách nhập Waline qua CDN.
 
 <!-- more -->
 
-For China Mainland users, we recommend using [unpkg](https://unpkg.com/@waline/client). For foreign users, we recommend using jsDelivr.
+Với người dùng Trung Quốc đại lục, chúng tôi khuyên dùng [unpkg](https://unpkg.com/@waline/client). Với người dùng nước ngoài, chúng tôi khuyên dùng jsDelivr.
 
-To make Waline SSR friendly, we split Waline's styles in V2 version. This means, you need to import Waline's CSS style file, and import Waline script file and call Waline.
+Để Waline thân thiện với SSR, chúng tôi đã tách riêng phần kiểu dáng của Waline trong phiên bản V2. Điều này có nghĩa là bạn cần nhập tệp CSS của Waline, rồi nhập tệp script của Waline và gọi Waline.
 
-## Comment
+## Bình luận
 
-Normally, you may want Waline to render a list of comments, you can import Waline as follows:
+Thông thường, bạn có thể muốn Waline hiển thị danh sách bình luận, khi đó bạn có thể nhập Waline như sau:
 
 ```html
 <!-- style file -->
@@ -29,11 +29,11 @@ Normally, you may want Waline to render a list of comments, you can import Walin
 </script>
 ```
 
-## Pageviews and comments
+## Lượt xem và bình luận
 
-Sometimes, you may want to display the number of page views and comments of the article on the home page or article list, but do not need to load the comment component, then you can import a Gzip < 1KB script file in the following ways:
+Đôi khi, bạn có thể muốn hiển thị số lượt xem và số bình luận của bài viết trên trang chủ hoặc trong danh sách bài viết nhưng không cần tải thành phần bình luận, khi đó bạn có thể nhập một tệp script Gzip < 1KB theo các cách sau:
 
-Pageviews:
+Lượt xem:
 
 ```html
 <script type="module">
@@ -45,7 +45,7 @@ Pageviews:
 </script>
 ```
 
-Comments count:
+Số bình luận:
 
 ```html
 <script type="module">
@@ -57,10 +57,10 @@ Comments count:
 </script>
 ```
 
-## More
+## Thêm
 
-::: info Specifies version
+::: info Chỉ định phiên bản
 
-You may have noticed that in the above cases, we have explicitly declared the `@v2` version after `@aline/client`. Your website is not working properly.
+Bạn có thể đã nhận ra rằng trong các trường hợp trên, chúng ta đã khai báo rõ phiên bản `@v2` sau `@aline/client`. Trang web của bạn sẽ không hoạt động bình thường.
 
 :::

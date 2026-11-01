@@ -1,16 +1,16 @@
 ---
-title: Customize TeX renderer
+title: Tùy chỉnh trình kết xuất TeX
 ---
 
-This cookbook guides you on how to add your own $\TeX$ renderer.
+Hướng dẫn này chỉ cho bạn cách thêm trình kết xuất $\TeX$ của riêng mình.
 
 <!-- more -->
 
-`@waline/client` provides the `texRenderer` function. The client will pass whether in display mode and the original $\TeX$ string as parameters. You should return a string.
+`@waline/client` cung cấp hàm `texRenderer`. Ứng dụng khách sẽ truyền vào tham số cho biết có đang ở chế độ hiển thị khối hay không và chuỗi $\TeX$ gốc. Bạn nên trả về một chuỗi.
 
-## A Example Using KaTeX
+## Ví dụ sử dụng KaTeX
 
-For KaTeX options, see [KaTeX API](https://katex.org/docs/api.html#server-side-rendering-or-rendering-to-a-string).
+Về các tùy chọn của KaTeX, hãy xem [KaTeX API](https://katex.org/docs/api.html#server-side-rendering-or-rendering-to-a-string).
 
 ```html
 <!doctype html>
@@ -44,9 +44,9 @@ For KaTeX options, see [KaTeX API](https://katex.org/docs/api.html#server-side-r
 </html>
 ```
 
-## A case using MathJax
+## Một trường hợp sử dụng MathJax
 
-For MathJax options, see [MathJax API](http://docs.mathjax.org/vi-VN/latest/web/typeset.html#converting-a-math-string-to-other-formats).
+Về các tùy chọn của MathJax, hãy xem [MathJax API](http://docs.mathjax.org/en/latest/web/typeset.html#converting-a-math-string-to-other-formats).
 
 ```html
 <!doctype html>

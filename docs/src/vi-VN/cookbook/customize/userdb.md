@@ -1,12 +1,12 @@
 ---
-title: Custom User System
+title: Hệ thống người dùng tùy chỉnh
 icon: users
 order: -1
 ---
 
-Although Waline provides a comment service based on user system storage, this user system is Waline's own. Many third-party websites have their own user systems, so some niche users want to integrate their own user systems into Waline.
+Mặc dù Waline cung cấp dịch vụ bình luận dựa trên lưu trữ của hệ thống người dùng, nhưng hệ thống người dùng này là của riêng Waline. Nhiều trang web bên thứ ba có hệ thống người dùng riêng, nên một số người dùng muốn tích hợp hệ thống người dùng của mình vào Waline.
 
-We can use [custom database service](./database.md) to realize this function, the essence is to do the mapping of the underlying table.
+Chúng ta có thể dùng [dịch vụ cơ sở dữ liệu tùy chỉnh](./database.md) để thực hiện chức năng này; về bản chất, đó là ánh xạ bảng ở tầng dưới.
 
 ```js
 // index.js
@@ -24,9 +24,9 @@ module.exports = Application({
 });
 ```
 
-Through the above configuration, we have isolated the reading of the Waline user table. Next, we need to do field mapping for the input and output parameters. The input parameters map the fields back to the table fields in the third-party system, and the output parameters map the table fields in the third-party system back to Waline fields.
+Với cấu hình trên, chúng ta đã tách riêng việc đọc bảng người dùng của Waline. Tiếp theo, cần ánh xạ trường cho các tham số đầu vào và đầu ra. Tham số đầu vào ánh xạ các trường trở lại các trường bảng trong hệ thống bên thứ ba, còn tham số đầu ra ánh xạ các trường bảng của hệ thống bên thứ ba trở lại các trường của Waline.
 
-If you are more familiar with TypeScript, you can refer to the type definition below.
+Nếu bạn quen thuộc hơn với TypeScript, có thể tham khảo định nghĩa kiểu bên dưới.
 
 ```typescript
 type strNum = string | number;
@@ -74,7 +74,7 @@ function model(modelName): UsersModel | undefined {
 }
 ```
 
-The above can only ensure that there is no problem with the query of the database, but limited by the different encryption methods of the password, the encryption method inside Waline cannot be consistent with the encryption method used in the third-party website. For this situation, you need to customize the method of password encryption and verification.
+Phần trên chỉ đảm bảo không có vấn đề với truy vấn cơ sở dữ liệu, nhưng do cách mã hóa mật khẩu khác nhau, cách mã hóa bên trong Waline không thể đồng nhất với cách mã hóa mà trang web bên thứ ba sử dụng. Với tình huống này, bạn cần tùy chỉnh cách mã hóa và xác minh mật khẩu.
 
 ```js
 // index.js
@@ -95,4 +95,4 @@ module.exports = Application({
 });
 ```
 
-Based on the above two expansion capabilities, we can realize that Waline can use the user system of the third-party website.
+Dựa trên hai khả năng mở rộng ở trên, chúng ta có thể để Waline sử dụng hệ thống người dùng của trang web bên thứ ba.

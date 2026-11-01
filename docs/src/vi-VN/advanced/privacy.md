@@ -1,31 +1,31 @@
 ---
-title: Privacy Policy
+title: Chính sách quyền riêng tư
 icon: privacy
 order: -2
 ---
 
-Thank you for using the Waline commenting system. We take your privacy and data security very seriously. This privacy policy will inform you how we collect, use, process and protect your personal data.
+Cảm ơn bạn đã sử dụng hệ thống bình luận Waline. Chúng tôi rất coi trọng quyền riêng tư và an toàn dữ liệu của bạn. Chính sách quyền riêng tư này sẽ cho bạn biết cách chúng tôi thu thập, sử dụng, xử lý và bảo vệ dữ liệu cá nhân của bạn.
 
-## Data Types
+## Các loại dữ liệu
 
-In order to provide services, we may collect and store your IP address, browser User-Agent (UA) and other related information, but if you have made the corresponding settings in the Waline configuration file, we will stop storing these according to your request information.
+Để cung cấp dịch vụ, chúng tôi có thể thu thập và lưu trữ địa chỉ IP, User-Agent (UA) của trình duyệt cùng các thông tin liên quan khác của bạn; tuy nhiên nếu bạn đã thiết lập tương ứng trong tệp cấu hình Waline, chúng tôi sẽ ngừng lưu trữ các thông tin này theo yêu cầu của bạn.
 
-## Data Usage
+## Sử dụng dữ liệu
 
-We only use your information to provide commenting services and will not disclose, sell or rent it to third parties. We will make every effort to protect your information security and comply with local laws, regulations and relevant standards.
+Chúng tôi chỉ sử dụng thông tin của bạn để cung cấp dịch vụ bình luận và sẽ không tiết lộ, bán hoặc cho thuê thông tin đó cho bên thứ ba. Chúng tôi sẽ nỗ lực hết mình để bảo vệ an toàn thông tin của bạn, đồng thời tuân thủ luật pháp, quy định và các tiêu chuẩn liên quan của địa phương.
 
-## Data Processing
+## Xử lý dữ liệu
 
-In order to provide you with better services, we may transmit your information to our servers, partner servers, or third-party service provider's servers, which may be located within or outside the country. We will take reasonable measures to protect your information security and comply with local laws, regulations, and relevant standards.
+Để cung cấp dịch vụ tốt hơn, chúng tôi có thể truyền thông tin của bạn tới máy chủ của chúng tôi, máy chủ của đối tác hoặc máy chủ của nhà cung cấp dịch vụ bên thứ ba, những máy chủ này có thể nằm trong hoặc ngoài quốc gia. Chúng tôi sẽ áp dụng các biện pháp hợp lý để bảo vệ an toàn thông tin của bạn, đồng thời tuân thủ luật pháp, quy định và các tiêu chuẩn liên quan.
 
-## Data Protection
+## Bảo vệ dữ liệu
 
-We will take technical and management measures to protect your information security, prevent unauthorized access, use or disclosure. If there are data security issues, we will promptly notify you and take measures to repair them. However, please note that due to the characteristics and technical limitations of the Internet itself, we cannot guarantee 100% security of your information.
+Chúng tôi sẽ áp dụng các biện pháp kỹ thuật và quản lý để bảo vệ an toàn thông tin của bạn, ngăn chặn truy cập, sử dụng hoặc tiết lộ trái phép. Nếu xảy ra sự cố an toàn dữ liệu, chúng tôi sẽ kịp thời thông báo cho bạn và có biện pháp khắc phục. Tuy nhiên, xin lưu ý rằng do đặc điểm và giới hạn kỹ thuật của bản thân Internet, chúng tôi không thể đảm bảo an toàn 100% cho thông tin của bạn.
 
-## Legal Responsibility
+## Trách nhiệm pháp lý
 
-We will comply with local laws, regulations, and relevant standards to protect the privacy rights and data security of users. If necessary, we may provide user information in accordance with legal requirements. In addition, we will not actively disclose user information.
+Chúng tôi sẽ tuân thủ luật pháp, quy định và các tiêu chuẩn liên quan của địa phương để bảo vệ quyền riêng tư và an toàn dữ liệu của người dùng. Khi cần thiết, chúng tôi có thể cung cấp thông tin người dùng theo yêu cầu pháp lý. Ngoài ra, chúng tôi sẽ không chủ động tiết lộ thông tin người dùng.
 
-## Other Provisions
+## Các quy định khác
 
-This privacy policy applies to all products and services of the Waline commenting system under default configurations. For additional features added to the Waline commenting system by some websites based on modification, this privacy policy does not guarantee its applicability. We reserve the right to modify the privacy policy and will update it in a timely manner. If you have any questions or suggestions about this privacy policy, please contact us.
+Chính sách quyền riêng tư này áp dụng cho toàn bộ sản phẩm và dịch vụ của hệ thống bình luận Waline trong cấu hình mặc định. Với những tính năng bổ sung mà một số trang web thêm vào hệ thống bình luận Waline dựa trên việc sửa đổi, chính sách này không đảm bảo tính áp dụng. Chúng tôi có quyền sửa đổi chính sách quyền riêng tư và sẽ cập nhật kịp thời. Nếu bạn có bất kỳ câu hỏi hay góp ý nào về chính sách này, vui lòng liên hệ với chúng tôi.

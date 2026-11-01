@@ -1,41 +1,41 @@
 ---
-title: Component Props
+title: Props của component
 icon: config
 ---
 
 ## serverURL
 
-- Type: `string`
-- Required: Yes
+- Kiểu: `string`
+- Bắt buộc: Có
 
-Waline server address url
+URL địa chỉ máy chủ Waline
 
 ## path
 
-- Type: `string`
-- Default: `window.location.pathname`
+- Kiểu: `string`
+- Mặc định: `window.location.pathname`
 
-Article path id. Used to distinguish different _article pages_ to ensure loading the correct comment list under the _article page_.
+ID đường dẫn của bài viết. Dùng để phân biệt các _trang bài viết_ khác nhau, đảm bảo tải đúng danh sách bình luận của _trang bài viết_ đó.
 
 ::: warning
 
-Please ensure the uniqueness of each _article page_ path, otherwise the same comment list may be loaded .
+Vui lòng đảm bảo tính duy nhất của đường dẫn cho mỗi _trang bài viết_, nếu không có thể tải nhầm cùng một danh sách bình luận.
 
-- e.g. 1: If on your site `/example/path/` and `/example/path` is the same page, you should probably set `window.location.pathname.replace(/\/$/,'')`.
-- e.g. 2: If you store en docs at root, while serve other language docs at `/zh/`, `/ja/`, etc, you should probably set `window.location.pathname.replace(/^\/(fr|jp|zh)\//, '/')`.
+- Ví dụ 1: Nếu trên trang web của bạn `/example/path/` và `/example/path` là cùng một trang, bạn nên đặt `window.location.pathname.replace(/\/$/,'')`.
+- Ví dụ 2: Nếu bạn lưu tài liệu tiếng Anh ở thư mục gốc, còn tài liệu các ngôn ngữ khác tại `/zh/`, `/ja/`, v.v., bạn nên đặt `window.location.pathname.replace(/^\/(fr|jp|zh)\//, '/')`.
 
 :::
 
 ## lang
 
-- Type: `string`
-- Default: `navigator.language`
-- Details:
-  - [Guide → I18n](../../guide/features/i18n.md#set-language)
+- Kiểu: `string`
+- Mặc định: `navigator.language`
+- Chi tiết:
+  - [Hướng dẫn → I18n](../../guide/features/i18n.md#đat-ngon-ngu)
 
-Display language.
+Ngôn ngữ hiển thị.
 
-Optional value:
+Giá trị tùy chọn:
 
 - `'zh'`
 - `'zh-CN'`
@@ -63,16 +63,16 @@ Optional value:
 
 ## locale
 
-- Type: `WalineLocale`
-- Default: Built-in value based on `lang`
-- Details:
-  - [Cookbook → Customize Locale](../../cookbook/customize/locale.md)
+- Kiểu: `WalineLocale`
+- Mặc định: Giá trị tích hợp sẵn dựa trên `lang`
+- Chi tiết:
+  - [Cookbook → Tùy chỉnh ngôn ngữ](../../cookbook/customize/locale.md)
 
-Waline Locales.
+Ngôn ngữ của Waline.
 
 ## emoji
 
-- Type: `(string | WalineEmojiInfo)[] | boolean`
+- Kiểu: `(string | WalineEmojiInfo)[] | boolean`
 
   ```ts
   type WalineEmojiPresets = `http://${string}` | `https://${string}`;
@@ -93,55 +93,55 @@ Waline Locales.
   }
   ```
 
-- Default: `['//unpkg.com/@waline/emojis@1.1.0/weibo']`
-- Details:
-  - [Guide → Emoji](../../guide/features/emoji.md)
+- Mặc định: `['//unpkg.com/@waline/emojis@1.1.0/weibo']`
+- Chi tiết:
+  - [Hướng dẫn → Emoji](../../guide/features/emoji.md)
 
-Emoji settings.
+Cấu hình emoji.
 
 ## dark
 
-- Type: `string | boolean`
-- Default: `false`
+- Kiểu: `string | boolean`
+- Mặc định: `false`
 
-Darkmode support
+Hỗ trợ chế độ tối
 
-- Setting a boolean will set the dark mode according to its value.
-- Set it to `'auto'` will display darkmode due to device settings.
-- Filling in a CSS selector will enable darkmode only when the selector match waline ancestor nodes.
+- Đặt giá trị boolean sẽ bật hoặc tắt chế độ tối theo giá trị đó.
+- Đặt thành `'auto'` sẽ hiển thị chế độ tối theo cài đặt của thiết bị.
+- Truyền vào một bộ chọn CSS sẽ chỉ bật chế độ tối khi bộ chọn đó khớp với các nút tổ tiên của Waline.
 
-::: tip Examples
+::: tip Ví dụ
 
-- **Docusaurus**: It will enable darkmode by setting `data-theme="dark"` on the `<html>` tag itself. So you need to set `'html[data-theme="dark"]'` as `dark` option.
+- **Docusaurus**: Công cụ này bật chế độ tối bằng cách đặt `data-theme="dark"` trên chính thẻ `<html>`. Vì vậy bạn cần đặt `'html[data-theme="dark"]'` làm tùy chọn `dark`.
 
-- **hexo-theme-fluid**: It will enable darkmode by setting `data-user-color-scheme="dark"` on the `<html>` tag itself. So you need to set `'html[data-user-color-scheme="dark"]'` as `dark` option.
+- **hexo-theme-fluid**: Công cụ này bật chế độ tối bằng cách đặt `data-user-color-scheme="dark"` trên chính thẻ `<html>`. Vì vậy bạn cần đặt `'html[data-user-color-scheme="dark"]'` làm tùy chọn `dark`.
 
-- **vuepress-theme-hope**: It will enable darkmode by setting `theme-dark` class on the `<body>` tag itself. So you need to set `'body.theme-dark'` as `dark` option.
+- **vuepress-theme-hope**: Công cụ này bật chế độ tối bằng cách thêm lớp `theme-dark` vào chính thẻ `<body>`. Vì vậy bạn cần đặt `'body.theme-dark'` làm tùy chọn `dark`.
 
 :::
 
-For details of custom style and darkmode, please see [Custom Style](../../guide/features/style.md).
+Chi tiết về kiểu dáng tùy chỉnh và chế độ tối, vui lòng xem [Kiểu dáng tùy chỉnh](../../guide/features/style.md).
 
 ## commentSorting
 
-- Type: `WalineCommentSorting`
-- Default: `'latest'`
+- Kiểu: `WalineCommentSorting`
+- Mặc định: `'latest'`
 
-Comment list sorting methods. Optional values: `'latest'`, `'oldest'`, `'hottest'`
+Phương thức sắp xếp danh sách bình luận. Giá trị tùy chọn: `'latest'`, `'oldest'`, `'hottest'`
 
 ## meta
 
-- Type: `string[]`
-- Default: `['nick','mail','link']`
+- Kiểu: `string[]`
+- Mặc định: `['nick','mail','link']`
 
-Reviewer attributes. Optional values: `'nick'`, `'mail'`, `'link'`
+Thuộc tính của người bình luận. Giá trị tùy chọn: `'nick'`, `'mail'`, `'link'`
 
 ## requiredMeta
 
-- Type: `string[]`
-- Default: `[]`
+- Kiểu: `string[]`
+- Mặc định: `[]`
 
-Set required fields, default anonymous, optional values:
+Đặt các trường bắt buộc, mặc định là ẩn danh, các giá trị tùy chọn:
 
 - `[]`
 - `['nick']`
@@ -149,85 +149,85 @@ Set required fields, default anonymous, optional values:
 
 ## login
 
-- Type: `string`
-- Default value: `'enable'`
+- Kiểu: `string`
+- Giá trị mặc định: `'enable'`
 
-Login mode status, optional values:
+Trạng thái chế độ đăng nhập, các giá trị tùy chọn:
 
-- `'enable'`: enable login (default)
-- `'disable'`: Login is disabled, users should fill in information to comment
-- `'force'`: Forced login, users must login to comment
+- `'enable'`: bật đăng nhập (mặc định)
+- `'disable'`: Tắt đăng nhập, người dùng cần điền thông tin để bình luận
+- `'force'`: Bắt buộc đăng nhập, người dùng phải đăng nhập mới có thể bình luận
 
 ## wordLimit
 
-- Type: `number | [number, number]`
-- Default: `0`
+- Kiểu: `number | [number, number]`
+- Mặc định: `0`
 
-Comment word s limit. When a single number is filled in, it 's the maximum number of comment words. No limit when set to `0`.
+Giới hạn số từ của bình luận. Khi truyền vào một số, đó là số từ tối đa của bình luận. Không giới hạn khi đặt là `0`.
 
 ## pageSize
 
-- Type: `number`
-- Default: `10`
+- Kiểu: `number`
+- Mặc định: `10`
 
-number of comments per page.
+Số bình luận trên mỗi trang.
 
 ## imageUploader
 
-- Type: `WalineImageUploader | boolean`
+- Kiểu: `WalineImageUploader | boolean`
 
   ```ts
   type WalineImageUploader = (image: File) => Promise<string>;
   ```
 
-- Required: No
+- Bắt buộc: Không
 
-- Details:
-  - [Cookbook → Upload Image](../../cookbook/customize/upload-image.md)
+- Chi tiết:
+  - [Cookbook → Tải lên hình ảnh](../../cookbook/customize/upload-image.md)
 
-Custom image upload method. The default behavior is to embed images Base 64 encoded, you can set this to `false` to disable image uploading.
+Phương thức tải lên hình ảnh tùy chỉnh. Hành vi mặc định là nhúng hình ảnh dưới dạng mã hóa Base64, bạn có thể đặt là `false` để tắt tính năng tải lên hình ảnh.
 
-The function should receive an image object and return a Promise that provides the image address.
+Hàm này cần nhận một đối tượng hình ảnh và trả về một Promise cung cấp địa chỉ hình ảnh.
 
 ## highlighter
 
-- Type: `WalineHighlighter | boolean`
+- Kiểu: `WalineHighlighter | boolean`
 
   ```ts
   type WalineHighlighter = (code: string, lang: string) => string;
   ```
 
-- Required: No
+- Bắt buộc: Không
 
-- Details:
-  - [Cookbook → Customize Highlighter](../../cookbook/customize/highlighter.md)
+- Chi tiết:
+  - [Cookbook → Tùy chỉnh trình tô sáng mã](../../cookbook/customize/highlighter.md)
 
-**Code highlighting**, use `hanabi` by default. The function passes in original content of code block and language of the code block. You should return a string directly.
+**Tô sáng mã nguồn**, mặc định sử dụng `hanabi`. Hàm nhận nội dung gốc của khối mã và ngôn ngữ của khối mã. Bạn nên trả về trực tiếp một chuỗi.
 
-You can pass in a code highlighter of your own, or set to `false` to disable code highlighting.
+Bạn có thể truyền vào trình tô sáng mã của riêng mình, hoặc đặt là `false` để tắt tô sáng mã nguồn.
 
 ## texRenderer
 
-- Type: `WalineTeXRenderer | boolean`
+- Kiểu: `WalineTeXRenderer | boolean`
 
   ```ts
   type WalineTeXRenderer = (blockMode: boolean, tex: string) => string;
   ```
 
-- Required: No
+- Bắt buộc: Không
 
-- Details:
-  - [Cookbook → Customize $\TeX$ Renderer](../../cookbook/customize/tex-renderer.md)
+- Chi tiết:
+  - [Cookbook → Tùy chỉnh trình hiển thị $\TeX$](../../cookbook/customize/tex-renderer.md)
   - [MathJax](https://www.mathjax.org/)
   - [KaTeX](https://katex.org/)
 
-Customize $\TeX$ rendering, the default behavior is to prompt that the preview mode does not support $\TeX$. The function provides two parameters, the first parameter indicates whether it should be rendered in block level, and the second parameter is the string of the $\TeX$ content, and return a HTML string as render result.
+Tùy chỉnh cách hiển thị $\TeX$, hành vi mặc định là thông báo rằng chế độ xem trước không hỗ trợ $\TeX$. Hàm cung cấp hai tham số: tham số thứ nhất cho biết có cần hiển thị ở cấp khối hay không, tham số thứ hai là chuỗi nội dung $\TeX$, và trả về một chuỗi HTML làm kết quả hiển thị.
 
-You can import $\TeX$ renderer to provide preview feature. We recommend you to use KaTeX or MathJax, or you can set to `false` to disable parsing $\TeX$.
+Bạn có thể import trình hiển thị $\TeX$ để có tính năng xem trước. Chúng tôi khuyến nghị dùng KaTeX hoặc MathJax, hoặc bạn có thể đặt là `false` để tắt việc phân tích $\TeX$.
 
 ## search
 
-- Type: `WalineSearchOptions | boolean`
+- Kiểu: `WalineSearchOptions | boolean`
 
   ```ts
   interface WalineSearchImageData extends Record<string, unknown> {
@@ -276,47 +276,47 @@ You can import $\TeX$ renderer to provide preview feature. We recommend you to u
   }
   ```
 
-- Required: No
-- Details:
-  Customize search features, you can disable search function by setting it to `false`.
+- Bắt buộc: Không
+- Chi tiết:
+  Tùy chỉnh tính năng tìm kiếm, bạn có thể tắt chức năng tìm kiếm bằng cách đặt là `false`.
 
 ## noCopyright
 
-- Type: `boolean`
-- Default: `false`
+- Kiểu: `boolean`
+- Mặc định: `false`
 
-Whether hide copyright and version in footer.
+Có ẩn thông tin bản quyền và phiên bản ở chân trang hay không.
 
 ::: tip
 
-We hope you can keep it on to support Waline.
+Chúng tôi hy vọng bạn có thể giữ nguyên để ủng hộ Waline.
 
 :::
 
 ## noRss
 
-- Type: `boolean`
-- Default: `false`
+- Kiểu: `boolean`
+- Mặc định: `false`
 
-Whether to hide RSS subscription links.
+Có ẩn các liên kết đăng ký RSS hay không.
 
 ## recaptchaV3Key
 
-- Type: `string`
-- Required: No
+- Kiểu: `string`
+- Bắt buộc: Không
 
-reCAPTCHA V3 is a captcha service provided by Google. You can add reCAPTCHA V3 site key with `recaptchaV3Key` to enable it. Notice you should also set environment variable `RECAPTCHA_V3_SECRET` for server.
+reCAPTCHA V3 là dịch vụ captcha do Google cung cấp. Bạn có thể thêm site key của reCAPTCHA V3 bằng `recaptchaV3Key` để bật dịch vụ này. Lưu ý bạn cũng cần đặt biến môi trường `RECAPTCHA_V3_SECRET` cho máy chủ.
 
 ## turnstileKey
 
-- Type: `string`
-- Required: No
+- Kiểu: `string`
+- Bắt buộc: Không
 
-Turnstile is a captcha service provided by Cloudflare. You can add turnstile site key with `turnstileKey` to enable it. Notice you should also set environment variable `TURNSTILE_SECRET` for server.
+Turnstile là dịch vụ captcha do Cloudflare cung cấp. Bạn có thể thêm site key của Turnstile bằng `turnstileKey` để bật dịch vụ này. Lưu ý bạn cũng cần đặt biến môi trường `TURNSTILE_SECRET` cho máy chủ.
 
 ## reaction
 
-- Type: `boolean | string[]`
-- Default: `false`
+- Kiểu: `boolean | string[]`
+- Mặc định: `false`
 
-Add emoji interaction function to the article, set it to `true` to provide the default emoji, you can also customize the emoji image by setting the emoji url array, and supports a maximum of 8 emojis.
+Thêm tính năng tương tác emoji cho bài viết; đặt là `true` để dùng bộ emoji mặc định, bạn cũng có thể tùy chỉnh hình ảnh emoji bằng cách truyền vào mảng URL emoji, hỗ trợ tối đa 8 emoji.

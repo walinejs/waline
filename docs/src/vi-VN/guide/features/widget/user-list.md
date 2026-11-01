@@ -1,31 +1,31 @@
 ---
-title: Users Rank List/Users Wall Widget
+title: Tiện ích bảng xếp hạng người dùng/tường người dùng
 icon: rank
 ---
 
-Waline supports displaying users rank list or users wall by widget, which is convenient for displaying the commentor's info in the sidebar of the blog.
+Waline hỗ trợ hiển thị bảng xếp hạng người dùng hoặc tường người dùng bằng tiện ích, thuận tiện cho việc hiển thị thông tin người dùng bình luận ở thanh bên của blog.
 
 <!-- more -->
 
-## Component options
+## Tùy chọn thành phần
 
-The users rank list/users wall widget is named `UserList` and contains six options:
+Tiện ích bảng xếp hạng người dùng/tường người dùng có tên `UserList` và gồm sáu tùy chọn:
 
-- `el` (optional): the element to be mounted
-- `serverURL`: server link
-- `count` The number of users needed to get
-- `mode`: `list` means users rank list, `wall` means users wall
-- `lang`: i18n support, more ref to [i18n](../i18n.md)
-- `locale`: customize the language, more ref to [i18n](../i18n.md)
+- `el` (tùy chọn): phần tử để gắn vào
+- `serverURL`: liên kết máy chủ
+- `count`: số lượng người dùng cần lấy
+- `mode`: `list` là bảng xếp hạng người dùng, `wall` là tường người dùng
+- `lang`: hỗ trợ đa ngôn ngữ, xem thêm [i18n](../i18n.md)
+- `locale`: tùy chỉnh ngôn ngữ, xem thêm [i18n](../i18n.md)
 
-The data format returned by the component should be `Promise<{ users: WalineUser[], destroy: () => void }>`.
+Định dạng dữ liệu mà thành phần trả về là `Promise<{ users: WalineUser[], destroy: () => void }>`.
 
-- `users` property: an array of the user list with exact number of `count`
-- `destroy` method: a function which will destroy the widget
+- thuộc tính `users`: mảng danh sách người dùng với đúng số lượng `count`
+- phương thức `destroy`: hàm dùng để hủy tiện ích
 
-## Basic usage
+## Cách dùng cơ bản
 
-### Users Rank List
+### Bảng xếp hạng người dùng
 
 ```html
 <div id="waline-users"></div>
@@ -40,7 +40,7 @@ The data format returned by the component should be `Promise<{ users: WalineUser
 </script>
 ```
 
-### Users Wall
+### Tường người dùng
 
 ```html
 <div id="waline-users"></div>
@@ -56,11 +56,11 @@ The data format returned by the component should be `Promise<{ users: WalineUser
 </script>
 ```
 
-## Advanced usage
+## Cách dùng nâng cao
 
-If you are not satisfied with the default output format, you can call the component by omitting the `el` option to get the data and render it yourself.
+Nếu không hài lòng với định dạng đầu ra mặc định, bạn có thể gọi thành phần mà bỏ qua tùy chọn `el` để lấy dữ liệu và tự hiển thị.
 
-Example:
+Ví dụ:
 
 ```html
 <div id="waline-users"></div>

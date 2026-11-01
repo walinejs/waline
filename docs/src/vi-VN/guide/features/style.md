@@ -1,68 +1,68 @@
 ---
-title: Style Customize
+title: Tùy chỉnh kiểu dáng
 icon: style
 order: -2
 ---
 
-`@waline/client` provides some CSS variables. You can easily configure the style of waline through these variables:
+`@waline/client` cung cấp một số biến CSS. Bạn có thể dễ dàng cấu hình kiểu dáng của Waline qua các biến này:
 
-Meanwhile, `@waline/client` also has built-in dark mode support.
+Đồng thời, `@waline/client` cũng có sẵn hỗ trợ chế độ tối.
 
 <!-- more -->
 
-## Dark mode support
+## Hỗ trợ chế độ tối
 
-You can use the `dark` option to enable Waline's dark mode support.
+Bạn có thể dùng tùy chọn `dark` để bật hỗ trợ chế độ tối của Waline.
 
-Usually websites will enable dark mode support in two ways:
+Thông thường trang web bật hỗ trợ chế độ tối theo hai cách:
 
-- Use the `@media` selector to automatically switch according to the device color mode status through `prefers-color-scheme`
-- Dynamically apply other dark mode color style by modifying the attributes and class of the dom root element (`html` or `body`).
+- Dùng bộ chọn `@media` để tự động chuyển theo trạng thái màu của thiết bị thông qua `prefers-color-scheme`
+- Áp dụng động kiểu màu chế độ tối khác bằng cách sửa thuộc tính và class của phần tử gốc DOM (`html` hoặc `body`).
 
-If you enable Waline on the site of the first method, you only need to set `dark` to `'auto'`.
+Nếu trang của bạn dùng cách thứ nhất, bạn chỉ cần đặt `dark` thành `'auto'`.
 
-For the second type of site, you need to set dark to the CSS selector that makes the dark mode effective. Here are a few examples:
+Với trang dùng cách thứ hai, bạn cần đặt dark thành bộ chọn CSS làm chế độ tối có hiệu lực. Dưới đây là vài ví dụ:
 
-::: tip Examples
+::: tip Ví dụ
 
-- **vuepress-theme-hop v2**: It will enable darkmode by setting `data-theme="dark"` on the `<html>` tag itself. So you need to set `'html[data-theme="dark"]'` as `dark` option.
+- **vuepress-theme-hop v2**: chủ đề này bật chế độ tối bằng cách đặt `data-theme="dark"` trên chính thẻ `<html>`. Vì vậy bạn cần đặt `'html[data-theme="dark"]'` làm tùy chọn `dark`.
 
-- **hexo-theme-fluid**: It will enable darkmode by setting `data-user-color-scheme="dark"` on the `<html>` tag itself. So you need to set `'html[data-user-color-scheme="dark"]'` as `dark` option.
+- **hexo-theme-fluid**: chủ đề này bật chế độ tối bằng cách đặt `data-user-color-scheme="dark"` trên chính thẻ `<html>`. Vì vậy bạn cần đặt `'html[data-user-color-scheme="dark"]'` làm tùy chọn `dark`.
 
 :::
 
-## Meta Icons
+## Biểu tượng meta
 
-If you want to add icons to user comment meta data, you can import `waline-meta.css` to use it.
+Nếu muốn thêm biểu tượng vào phần meta của bình luận, bạn có thể nhập `waline-meta.css` để dùng.
 
-For CDN users, you can import via the following link:
+Với người dùng CDN, bạn có thể nhập qua liên kết sau:
 
 ```html
 <!-- Meta icon (optional) -->
 <link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline-meta.css" />
 ```
 
-For NPM users, you can import via:
+Với người dùng NPM, bạn có thể nhập qua:
 
 ```js
 import '@waline/client/meta';
 ```
 
-## RTL support
+## Hỗ trợ RTL
 
-`@waline/client` supports RTL layout, you just need to add `dir="rtl"` in `<html>` tag.
+`@waline/client` hỗ trợ bố cục RTL, bạn chỉ cần thêm `dir="rtl"` vào thẻ `<html>`.
 
-## Customize Styles
+## Tùy chỉnh kiểu dáng
 
-### CSS Variables
+### Biến CSS
 
-You can find default values for CSS variables used by Waline in normal and darkmode at [Client Reference → CSS Variables](../../reference/client/style.md).
+Bạn có thể tìm giá trị mặc định của các biến CSS mà Waline dùng ở chế độ thường và chế độ tối tại [Tham chiếu ứng dụng khách → Biến CSS](../../reference/client/style.md).
 
-If it differs from your site style, you can override the corresponding CSS variable yourself.
+Nếu khác với kiểu dáng trang của bạn, bạn có thể tự ghi đè biến CSS tương ứng.
 
-## Box Shadow
+## Đổ bóng
 
-If you are using a theme that uses shadows (`box-shadow`) instead of borders, you can modify the display effect of Waline by modifying `--waline-border` and `--waline-box-shadow`, e.g.:
+Nếu bạn dùng chủ đề dùng bóng đổ (`box-shadow`) thay vì đường viền, bạn có thể thay đổi hiển thị của Waline bằng cách sửa `--waline-border` và `--waline-box-shadow`, ví dụ:
 
 ```css
 :root {
@@ -77,6 +77,6 @@ If you are using a theme that uses shadows (`box-shadow`) instead of borders, yo
 }
 ```
 
-### More
+### Thêm
 
-If the above CSS variables cannot meet your custom requirements for Waline styles, you can write your own css file.
+Nếu các biến CSS trên không đáp ứng được yêu cầu tùy chỉnh kiểu dáng Waline của bạn, bạn có thể tự viết tệp CSS riêng.

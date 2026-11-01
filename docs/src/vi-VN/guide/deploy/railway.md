@@ -1,34 +1,34 @@
 ---
-title: Railway Deployment
+title: Triển khai trên Railway
 icon: railway
 ---
 
-[Railway](https://railway.app/) is a free Serverless platform, we can deploy Waline to Railway platform easily.
+[Railway](https://railway.app/) là một nền tảng Serverless miễn phí, chúng ta có thể triển khai Waline lên nền tảng Railway một cách dễ dàng.
 
 <!-- more -->
 
-## How to Deploy
+## Cách triển khai
 
 [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template/UZB84v?referralCode=lizheming)
 
-Click this button and it'll redirect to railway.app platform to quickly deploy. You can input your new GitHub repo name or just use default after login, then click <kbd>Deploy</kbd> button at the bottom to deploy. You should notice that the part of environment variables should not be modified.
+Nhấn nút này, trình duyệt sẽ chuyển đến nền tảng railway.app để triển khai nhanh. Sau khi đăng nhập, bạn có thể nhập tên kho lưu trữ GitHub mới hoặc dùng giá trị mặc định, rồi nhấn nút <kbd>Deploy</kbd> ở cuối để triển khai. Bạn nên lưu ý rằng phần biến môi trường không nên sửa.
 
 ![railway1](../../../assets/railway-1.jpg)
 
-After a moment you will redirect to dashboard page. Click <kbd>PostgreSQL</kbd> - <kbd>Query</kbd> and paste [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) this file content into textarea, then click <kbd>Run Query</kbd> button at the bottom to initialized database.
+Sau một lát, bạn sẽ được chuyển đến trang bảng điều khiển. Nhấn <kbd>PostgreSQL</kbd> - <kbd>Query</kbd> và dán nội dung tệp [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) vào vùng văn bản, rồi nhấn nút <kbd>Run Query</kbd> ở cuối để khởi tạo cơ sở dữ liệu.
 
 ![railway2](../../../assets/railway-2.jpg)
 
-At last you can click <kbd>Deployments</kbd> - <kbd>Domains</kbd> to get server URL. Copy the site url and input it into client `serverURL` configuration. Then you can enjoy waline!
+Cuối cùng, bạn có thể nhấn <kbd>Deployments</kbd> - <kbd>Domains</kbd> để lấy URL máy chủ. Sao chép URL trang web và nhập vào cấu hình `serverURL` của ứng dụng khách. Sau đó bạn có thể dùng Waline!
 
 ![railway3](../../../assets/railway-3.jpg)
 
-## How to Update
+## Cách cập nhật
 
-Go to the corresponding GitHub repository and modify the version number of `@waline/vercel` in the package.json file to the latest.
+Vào kho lưu trữ GitHub tương ứng và sửa số phiên bản của `@waline/vercel` trong tệp package.json thành phiên bản mới nhất.
 
-## How to Modify Environment Variables
+## Cách sửa biến môi trường
 
-Click <kbd>Variables</kbd> Tab to go to enviroment variables management page. It will deploy automatically after variable was changed.
+Nhấn thẻ <kbd>Variables</kbd> để vào trang quản lý biến môi trường. Hệ thống sẽ tự động triển khai lại sau khi biến được thay đổi.
 
 ![railway4](../../../assets/railway-4.jpg)

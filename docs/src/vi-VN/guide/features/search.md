@@ -1,18 +1,18 @@
 ---
-title: Emoticons Search
+title: Tìm kiếm biểu tượng cảm xúc
 icon: search
 order: 3
 ---
 
-`@waline/client` allows users to add emoji search services and customize this functionality.
+`@waline/client` cho phép người dùng thêm dịch vụ tìm kiếm emoji và tùy chỉnh chức năng này.
 
-By default, `@waline/client` provides meme search service via [Giphy](https://giphy.com/). This will allow you to search images and add them to the comment.
+Mặc định, `@waline/client` cung cấp dịch vụ tìm kiếm meme qua [Giphy](https://giphy.com/). Nhờ đó bạn có thể tìm hình ảnh và thêm vào bình luận.
 
 <!-- more -->
 
-## Disable
+## Tắt tính năng
 
-If you don't need the default images search service, you can disable it by setting the `search` option to `false`.
+Nếu không cần dịch vụ tìm kiếm hình ảnh mặc định, bạn có thể tắt nó bằng cách đặt tùy chọn `search` thành `false`.
 
 ```js
 Waline.init({
@@ -22,20 +22,20 @@ Waline.init({
 });
 ```
 
-## Customize
+## Tùy chỉnh
 
-You can customize the image search service through the search option.
+Bạn có thể tùy chỉnh dịch vụ tìm kiếm hình ảnh thông qua tùy chọn search.
 
-For each operation, you should return an array containing the image information as the search result, and each item should be an object with the following properties:
+Với mỗi thao tác, bạn nên trả về một mảng chứa thông tin hình ảnh làm kết quả tìm kiếm, mỗi phần tử là một đối tượng có các thuộc tính sau:
 
-- `src`: the link address of the image
-- `title`: image title and alt text (optional)
-- `preview`: Thumbnail of the image to use in the result list (optional)
+- `src`: địa chỉ liên kết của hình ảnh
+- `title`: tiêu đề và văn bản alt của hình ảnh (tùy chọn)
+- `preview`: Hình thu nhỏ của ảnh dùng trong danh sách kết quả (tùy chọn)
 
-The option accepts three functions, each of which should return a Promise, and the result is the array of search results above.
+Tùy chọn này nhận ba hàm, mỗi hàm nên trả về một Promise với kết quả là mảng kết quả tìm kiếm ở trên.
 
-- `search`: search operation, the search term will be passed as the first parameter of the function
-- `default`: list of images to display by default (optional)
-- `more`: The function that starts when the image is scrolled to the bottom, where the search term and the current number are passed in as the first two parameters (optional)
+- `search`: thao tác tìm kiếm, từ khóa tìm kiếm sẽ được truyền làm tham số đầu tiên của hàm
+- `default`: danh sách hình ảnh hiển thị mặc định (tùy chọn)
+- `more`: Hàm được kích hoạt khi cuộn hình ảnh xuống cuối, từ khóa tìm kiếm và số lượng hiện tại được truyền vào làm hai tham số đầu (tùy chọn)
 
-For tutorials on custom search, see [Cookbook → Custom Emoji Search](../../cookbook/customize/search.md).
+Để biết hướng dẫn về tùy chỉnh tìm kiếm, xem [Sổ tay → Tùy chỉnh tìm kiếm emoji](../../cookbook/customize/search.md).

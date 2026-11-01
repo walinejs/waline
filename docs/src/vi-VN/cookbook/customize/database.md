@@ -1,10 +1,10 @@
 ---
-title: Custom Database Service
+title: Dịch vụ cơ sở dữ liệu tùy chỉnh
 icon: database
 order: -2
 ---
 
-Waline classifies database operations into several operations such as CURD, and all upper-level logic is completed through the superposition of these basic operations. Through the adapter mode, different types of database storage services only need to implement these low-level atomic operations to run through all system logic.
+Waline phân loại các thao tác cơ sở dữ liệu thành một số thao tác như CURD, và toàn bộ logic cấp trên được hoàn thành thông qua việc chồng ghép các thao tác cơ bản này. Nhờ chế độ adapter, các dịch vụ lưu trữ cơ sở dữ liệu khác nhau chỉ cần triển khai các thao tác nguyên tử cấp thấp này là có thể chạy được toàn bộ logic của hệ thống.
 
 ```js
 // index.js
@@ -15,7 +15,7 @@ module.exports = Application({
 });
 ```
 
-Waline provides the `model` option to customize the database model, and we will uniformly use the incoming model for database operations. All that remains is that we need to implement this `CustomModel` class.
+Waline cung cấp tùy chọn `model` để tùy chỉnh mô hình cơ sở dữ liệu, và chúng tôi sẽ dùng thống nhất mô hình được truyền vào cho các thao tác cơ sở dữ liệu. Phần còn lại là chúng ta cần triển khai lớp `CustomModel` này.
 
 ```js
 class CustomModel {
@@ -45,25 +45,25 @@ class CustomModel {
 }
 ```
 
-The above is the basic structure that the `CustomModel` class must implement, and it must include the implementation of several basic methods `select`, `add`, `update`, `delete` and `count`. Waline is developed based on the [ThinkJS](https://thinkjs.org/en) framework, and the underlying database operations use the database operation syntax that comes with the framework. Before implementing these methods, you need to have some basic understanding of the syntax of database conditional queries.
+Trên đây là cấu trúc cơ bản mà lớp `CustomModel` phải triển khai, và phải bao gồm việc triển khai một số phương thức cơ bản `select`, `add`, `update`, `delete` và `count`. Waline được phát triển dựa trên framework [ThinkJS](https://thinkjs.org/en), và các thao tác cơ sở dữ liệu ở tầng dưới dùng cú pháp thao tác cơ sở dữ liệu đi kèm framework. Trước khi triển khai các phương thức này, bạn cần có hiểu biết cơ bản về cú pháp truy vấn có điều kiện của cơ sở dữ liệu.
 
-## Condition query
+## Truy vấn có điều kiện
 
-For the complete conditional query syntax, please refer to [ThinkJS Documentation](https://thinkjs.org/vi-VN/doc/3.0/relation_model.html#toc-d47), and the implementation of Waline is a subset of it.
+Về cú pháp truy vấn có điều kiện đầy đủ, hãy tham khảo [Tài liệu ThinkJS](https://thinkjs.org/en/doc/3.0/relation_model.html#toc-d47); cách triển khai của Waline là một tập con của cú pháp đó.
 
-Multiple conditional queries can be passed in through the object, and the default is equal to the condition. When the value is a two-dimensional array, the first bit can be passed to other judgment operations, and the second bit corresponds to the value, such as `{user_id: ['!=', 0]}`. Currently supported are `!=`, `>`, `IN`, `NOT IN`, `LIKE` centralized operations.
+Có thể truyền nhiều điều kiện truy vấn qua đối tượng, và mặc định là điều kiện bằng nhau. Khi giá trị là mảng hai chiều, phần tử đầu tiên có thể là các phép so sánh khác, phần tử thứ hai tương ứng với giá trị, ví dụ `{user_id: ['!=', 0]}`. Hiện tại hỗ trợ các phép `!=`, `>`, `IN`, `NOT IN`, `LIKE`.
 
-Similar to MySQL, in the `LIKE` operation, we define the mode of the fuzzy query through the position of `%`:
+Tương tự MySQL, trong phép `LIKE`, chúng ta xác định kiểu truy vấn mờ thông qua vị trí của `%`:
 
-- `content%` means search for content starting with `content`
-- `%content` means search for content ending with `content`
-- `%content%` means search for content containing `content`
+- `content%` có nghĩa là tìm nội dung bắt đầu bằng `content`
+- `%content` có nghĩa là tìm nội dung kết thúc bằng `content`
+- `%content%` có nghĩa là tìm nội dung chứa `content`
 
-The conditional query object supports passing in multiple query conditions. The default relationship between these conditions is `AND`, and the `_logic` magic keyword can be used to specify their relationship as `OR`. When there are `AND` and `OR`, we can use `_complex` magic keyword expression.
+Đối tượng truy vấn có điều kiện hỗ trợ truyền nhiều điều kiện truy vấn. Quan hệ mặc định giữa các điều kiện này là `AND`, và có thể dùng từ khóa đặc biệt `_logic` để chỉ định quan hệ là `OR`. Khi có cả `AND` và `OR`, chúng ta có thể dùng biểu thức với từ khóa đặc biệt `_complex`.
 
-The text may not be well understood. Let's take a look at the query examples used in the project to deepen our impression.
+Phần văn bản có thể chưa dễ hiểu. Hãy xem các ví dụ truy vấn được dùng trong dự án để nhớ kỹ hơn.
 
-1. General query:
+1. Truy vấn thông thường:
 
    ```js
    const model = new CustomModel('Comment');
@@ -75,7 +75,7 @@ The text may not be well understood. Let's take a look at the query examples use
    // SELECT * FROM Comment WHERE url = '/' AND user_id != 0 AND createdAt > "2023-04-16 00:00:00";
    ```
 
-2. IN / NOT IN query
+2. Truy vấn IN / NOT IN
 
    ```js
    const model = new CustomModel('Users');
@@ -89,7 +89,7 @@ The text may not be well understood. Let's take a look at the query examples use
    // SELECT * FROM Comment WHERE status NOT IN ('waiting', 'spam');
    ```
 
-3. LIKE query
+3. Truy vấn LIKE
 
    ```js
    const model = new CustomModel('Comment');
@@ -97,7 +97,7 @@ The text may not be well understood. Let's take a look at the query examples use
    // SELECT * FROM Comment WHERE content LIKE "%content%";
    ```
 
-4. Multi-condition query
+4. Truy vấn nhiều điều kiện
 
    ```js
    const model = new CustomModel('Comment');
@@ -110,7 +110,7 @@ The text may not be well understood. Let's take a look at the query examples use
    // SELECT * FROM Comment WHERE url = '/' OR user_id != 0 OR createdAt > "2023-04-16 00:00:00";
    ```
 
-5. Compound query
+5. Truy vấn phức hợp
 
    ```js
    const model = new CustomModel('Comment');
@@ -125,31 +125,31 @@ The text may not be well understood. Let's take a look at the query examples use
    // SELECT * FROM Comment WHERE url = '/' AND ( user_id = 0 OR status NOT IN ('waiting', 'spam'));
    ```
 
-If you are more familiar with TypeScript, [type definitions for conditional queries is here](https://github.com/walinejs/dittorm/blob/master/src/types/where.ts).
+Nếu bạn quen thuộc hơn với TypeScript, [định nghĩa kiểu cho truy vấn có điều kiện ở đây](https://github.com/walinejs/dittorm/blob/master/src/types/where.ts).
 
-## Implement query
+## Triển khai truy vấn
 
-The `select`, `update`, `delete`, `count` methods in the adapter are actually complicated in the conditional query. After understanding the conditional query syntax in the previous part, the subsequent logic is the database operation. surface.
+Các phương thức `select`, `update`, `delete`, `count` trong adapter thực ra phức tạp ở phần truy vấn có điều kiện. Sau khi hiểu cú pháp truy vấn có điều kiện ở phần trước, logic tiếp theo chỉ là thao tác cơ sở dữ liệu.
 
-The `select()` method has a second argument `{desc, limit, offset, field}`. This is also easier to understand:
+Phương thức `select()` có tham số thứ hai `{desc, limit, offset, field}`. Điều này cũng dễ hiểu:
 
-- `desc`: Specify a field to sort in descending order of the value of the field
-- `limit`: specify the number of data returned
-- `offset`: Specify the returned data from which item to return
-- `field`: Specify the field to return data, all fields are returned by default
+- `desc`: Chỉ định trường để sắp xếp giảm dần theo giá trị của trường đó
+- `limit`: chỉ định số lượng dữ liệu trả về
+- `offset`: Chỉ định dữ liệu trả về bắt đầu từ mục nào
+- `field`: Chỉ định trường dữ liệu trả về, mặc định trả về tất cả các trường
 
-The `update()` method needs to be compatible with scenarios where the `data` input parameter may be a calculation function, such as adding 1 to the number of page viewers:
+Phương thức `update()` cần tương thích với trường hợp tham số đầu vào `data` có thể là một hàm tính toán, ví dụ tăng số lượt xem trang thêm 1:
 
 ```js
 const model = new CustomModel('Count');
 await model.update((thread) => ({ view: thread.view + 1 }), { url: '/' });
 ```
 
-Return data type `select()` always returns an array, `add()` and `update()` need to include the full data of the indexed field.
+Về kiểu dữ liệu trả về: `select()` luôn trả về một mảng, `add()` và `update()` cần bao gồm toàn bộ dữ liệu của trường được lập chỉ mục.
 
-## refer to
+## Tham khảo
 
-Based on the above logic, in addition to implementing the storage service of professional databases, the official also implemented the GitHub storage service very interestingly. We store the data in GitHub in the form of a CSV file, and obtain the content of the CSV file each time we query, and filter out the final data according to the conditional query statement in JS and return it. The following is the official implementation, hoping to give you some reference.
+Dựa trên logic trên, ngoài việc triển khai dịch vụ lưu trữ cho các cơ sở dữ liệu chuyên dụng, nhóm chính thức còn triển khai dịch vụ lưu trữ GitHub một cách khá thú vị. Chúng tôi lưu dữ liệu trên GitHub dưới dạng tệp CSV, mỗi lần truy vấn đều lấy nội dung tệp CSV, lọc ra dữ liệu cuối cùng theo câu truy vấn có điều kiện bằng JS rồi trả về. Dưới đây là cách triển khai chính thức, hy vọng có thể cho bạn một số tham khảo.
 
 ```js
 //source code: https://github.com/walinejs/waline/blob/main/packages/server/src/service/storage/github.js

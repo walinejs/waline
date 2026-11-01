@@ -1,23 +1,23 @@
 ---
-title: Comment Format Support
+title: Hỗ trợ định dạng bình luận
 icon: format
 order: 1
 ---
 
-You can add different contents to comment, including extended Markdown syntax and HTML tags.
+Bạn có thể thêm nhiều nội dung khác nhau vào bình luận, bao gồm cú pháp Markdown mở rộng và thẻ HTML.
 
 <!-- more -->
 
-## Format Support
+## Định dạng được hỗ trợ
 
-We support the full CommonMark (standard Markdown syntax), along with the following extensions:
+Chúng tôi hỗ trợ đầy đủ CommonMark (cú pháp Markdown chuẩn), cùng các phần mở rộng sau:
 
-- GFM style table
-- GFM style strike through
-- Subscript and superscript
+- Bảng kiểu GFM
+- Gạch ngang kiểu GFM
+- Chỉ số dưới và chỉ số trên
 - Emoji
-- Code block highlighting
-- $\TeX$ formula
+- Tô sáng khối mã
+- Công thức $\TeX$
 
 ::: info GFM
 
@@ -25,36 +25,36 @@ Github Flavored Markdown
 
 :::
 
-Meanwhile, you can freely embed any HTML content without triggering the [protection mechanism](./safety.md#comment-security).
+Đồng thời, bạn có thể tự do nhúng bất kỳ nội dung HTML nào mà không kích hoạt [cơ chế bảo vệ](./safety.md#bao-mat-binh-luan).
 
-## Limited Preview Support
+## Hạn chế của phần xem trước
 
-In order to control the size of the client, we only place a small Markdown parser in the official client `@waline/client`, which causes many grammars to not display correctly in the preview panel (they can be **correctly rendered in the comment area**).
+Để kiểm soát kích thước của ứng dụng khách, chúng tôi chỉ đặt một trình phân tích Markdown nhỏ trong ứng dụng khách chính thức `@waline/client`, khiến nhiều cú pháp không hiển thị đúng trong bảng xem trước (chúng vẫn **được hiển thị đúng trong khung bình luận**).
 
-This includes the following restrictions:
+Điều này bao gồm các hạn chế sau:
 
-- Standard emoji syntax (eg :tada:`:tada:`) does not render correctly
+- Cú pháp emoji chuẩn (ví dụ :tada:`:tada:`) không hiển thị đúng
 
-- The upper and lower subscripts (eg: `H~2~O`, `x^2^`) cannot be rendered correctly
+- Chỉ số trên và chỉ số dưới (ví dụ: `H~2~O`, `x^2^`) không thể hiển thị đúng
 
-- $\TeX$ syntax, i.e. math formulas (eg: `$a = 1$`) cannot be rendered by default.
+- Cú pháp $\TeX$, tức công thức toán học (ví dụ: `$a = 1$`) mặc định không được hiển thị.
 
-  When using the official client, you can customize the $\TeX$ rendering in preview by setting the `texRenderer` option, see [Cookbook → Use a custom $\TeX$ renderer](../../cookbook/customize/tex-renderer.md).
+  Khi dùng ứng dụng khách chính thức, bạn có thể tùy chỉnh việc hiển thị $\TeX$ trong phần xem trước bằng cách đặt tùy chọn `texRenderer`, xem [Sổ tay → Dùng trình hiển thị $\TeX$ tùy chỉnh](../../cookbook/customize/tex-renderer.md).
 
-- Under the default highlighter, code blocks will be highlighted with random colors with specific delimiters.
+- Với bộ tô sáng mặc định, các khối mã sẽ được tô sáng bằng màu ngẫu nhiên với các dấu phân cách cụ thể.
 
-  When using the official client, you can customize the code highlighting when previewing by setting the `highlighter` option, see [Cookbook → Custom Code Highlighting](../../cookbook/customize/highlighter.md).
+  Khi dùng ứng dụng khách chính thức, bạn có thể tùy chỉnh việc tô sáng mã khi xem trước bằng cách đặt tùy chọn `highlighter`, xem [Sổ tay → Tùy chỉnh tô sáng mã](../../cookbook/customize/highlighter.md).
 
-## More
+## Thêm
 
-::: tip Principle
+::: tip Nguyên lý
 
-1. Considering package size, the client uses `marked` for rendering and uses a < 1kb highlighter for highlighting by default, and does not include a $\TeX$ renderer, resulting in the above limitations.
+1. Do cân nhắc kích thước gói, ứng dụng khách dùng `marked` để hiển thị và mặc định dùng bộ tô sáng < 1kb, đồng thời không bao gồm trình hiển thị $\TeX$, dẫn tới các hạn chế trên.
 
-1. When a user submits a comment, the client embeds a custom Emoji image and sends the original comment to the server.
+1. Khi người dùng gửi bình luận, ứng dụng khách nhúng hình emoji tùy chỉnh và gửi nội dung bình luận gốc tới máy chủ.
 
-1. The server receives the original text, uses `markdown-it` to render markdown correctly with relevant plug-ins, uses `prismjs` to highlight code blocks according to the language, and performs $\TeX$ rendering according to user settings, and finally performs XSS processing .
+1. Máy chủ nhận văn bản gốc, dùng `markdown-it` để hiển thị Markdown một cách chính xác với các plugin liên quan, dùng `prismjs` để tô sáng khối mã theo ngôn ngữ, thực hiện hiển thị $\TeX$ theo cài đặt của người dùng, và cuối cùng xử lý XSS.
 
-1. After the processing is completed, the server will store the correct rendering content and return it to the client when needed to ensure the normal display of the comment area.
+1. Sau khi xử lý xong, máy chủ sẽ lưu nội dung đã hiển thị chính xác và trả về cho ứng dụng khách khi cần, đảm bảo khu vực bình luận hiển thị bình thường.
 
 :::

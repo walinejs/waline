@@ -4,58 +4,58 @@ icon: faq
 order: 4
 ---
 
-Waline has a very clear position since its birth:
+Waline có một định vị rất rõ ràng ngay từ khi ra đời:
 
-::: info A simple comment system with backend.
-
-:::
-
-All versions released afterwards are modifications made around this position.
-
-## What is the relationship with Valine?
-
-::: info Waline = With backend Valine
+::: info Một hệ thống bình luận đơn giản có backend.
 
 :::
 
-Consulting with the open source version of Valine, the comment list in frontend is rewritten with React. The style and structure as well as some internal tools and methods are all from Valine.
+Mọi phiên bản phát hành sau đó đều là những thay đổi xoay quanh định vị này.
 
-## Do I still need to deploy Valine-Admin on LeanCloud?
+## Waline có quan hệ thế nào với Valine?
 
-No. Waline is a three-in-one deployment of data storage, server, and client. The server interface is already equivalent to Valine's LeanCloud cloud engine. The server already includes comment management and email notifications feature provided by the previous cloud engine. It doesn't need the additional LeanCloud cloud engine, so it won't be restricted by the LeanCloud cloud engine's sleep strategy.
-
-## How can I upgrade?
-
-Waline is mainly composed of two parts: the frontend and the server.
-
-### Frontend
-
-The front end inserts comment lists and comment boxes by including JS scripts in the web page. In most scenarios, the link will use the address of the latest version of the online CDN, and the latest version will be automatically applied, without the need for users to manually update.
-
-::: note Need manually update in following situations
-
-1. The version number is forcibly specified in the CDN address. In this situation, you need to manually modify the version number to be the latest.
-1. Use NPM to require and pack the module into code. In this situation, you need to modify the version number in the dependency to ensure that the latest version of the dependency can be obtained during installation.
+::: info Waline = Valine có backend
 
 :::
 
-### Server
+Tham khảo phiên bản mã nguồn mở của Valine, danh sách bình luận ở phía giao diện được viết lại bằng React. Kiểu dáng, cấu trúc cùng một số công cụ và phương thức bên trong đều lấy từ Valine.
 
-The server refers to the backend service corresponding to the `serverURL` configured in frontend script, and its update will be slightly different depending on different deployment environments. Server updates will be more frequent.
+## Tôi có còn cần triển khai Valine-Admin trên LeanCloud không?
+
+Không. Waline là giải pháp triển khai hợp nhất ba thành phần: lưu trữ dữ liệu, máy chủ và ứng dụng khách. Giao diện máy chủ đã tương đương với cloud engine LeanCloud của Valine. Máy chủ đã bao gồm tính năng quản lý bình luận và thông báo email mà cloud engine trước đây cung cấp. Bạn không cần thêm cloud engine LeanCloud, nên sẽ không bị hạn chế bởi chiến lược ngủ của cloud engine LeanCloud.
+
+## Làm thế nào để nâng cấp?
+
+Waline chủ yếu gồm hai phần: phía giao diện và phía máy chủ.
+
+### Giao diện
+
+Phía giao diện chèn danh sách bình luận và ô bình luận bằng cách nhúng script JS vào trang web. Trong hầu hết trường hợp, liên kết sẽ dùng địa chỉ của phiên bản mới nhất trên CDN trực tuyến và phiên bản mới nhất được áp dụng tự động, người dùng không cần cập nhật thủ công.
+
+::: note Cần cập nhật thủ công trong các trường hợp sau
+
+1. Số phiên bản được chỉ định cứng trong địa chỉ CDN. Khi đó bạn cần sửa số phiên bản thành mới nhất.
+1. Dùng NPM để require và đóng gói module vào mã. Khi đó bạn cần sửa số phiên bản trong gói phụ thuộc để đảm bảo lấy được phiên bản mới nhất khi cài đặt.
+
+:::
+
+### Máy chủ
+
+Máy chủ là dịch vụ backend tương ứng với `serverURL` được cấu hình trong script phía giao diện, và việc cập nhật sẽ hơi khác nhau tùy môi trường triển khai. Bản cập nhật máy chủ sẽ thường xuyên hơn.
 
 #### Vercel
 
-Go to the corresponding GitHub repository and modify the version number of `@waline/vercel` in the package.json file to the latest.
+Truy cập kho GitHub tương ứng và sửa số phiên bản của `@waline/vercel` trong tệp package.json thành mới nhất.
 
 ![vercel](./assets/vercel-update.png)
 
 #### CloudBase
 
-Enter the code editing page, click <kbd>Save and reinstall dependencies</kbd>. If it still doesn’t work, enter <kbd>My Application</kbd> and select <kbd>Deploy</kbd> to redeploy.
+Vào trang chỉnh sửa mã, nhấn <kbd>Save and reinstall dependencies</kbd>. Nếu vẫn không được, vào <kbd>My Application</kbd> và chọn <kbd>Deploy</kbd> để triển khai lại.
 
 ::: caution
 
-Redeployment will clear the previous files. If there is a configuration in the previous file, it needs to be backed up first.
+Triển khai lại sẽ xóa các tệp trước đó. Nếu tệp cũ có cấu hình, cần sao lưu trước.
 
 :::
 
@@ -63,8 +63,8 @@ Redeployment will clear the previous files. If there is a configuration in the p
 
 #### Docker
 
-Run `docker pull lizheming/waline` directly to pull the latest image.
+Chạy trực tiếp `docker pull lizheming/waline` để kéo image mới nhất.
 
-## Why posting comments are slow?
+## Vì sao gửi bình luận lại chậm?
 
-Due to some technical reasons, spam detection and comment notification are all serial operations when posting comments. The spam detection uses the service provided by Akismet abroad, which may be slow to access. Users can turn off the spam detection function through the `AKISMET_KEY=false` environment variable. Beside the spam detection service, the email notification in the comment notification may also cause a timeout. You can turn off the comment notification to test whether it is caused by this feature.
+Do một số lý do kỹ thuật, khi gửi bình luận, việc phát hiện spam và thông báo bình luận đều là thao tác tuần tự. Việc phát hiện spam dùng dịch vụ của Akismet ở nước ngoài nên có thể truy cập chậm. Người dùng có thể tắt tính năng phát hiện spam bằng biến môi trường `AKISMET_KEY=false`. Ngoài dịch vụ phát hiện spam, phần thông báo email trong thông báo bình luận cũng có thể gây quá thời gian chờ. Bạn có thể tắt thông báo bình luận để kiểm tra xem có phải do tính năng này không.

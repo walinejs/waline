@@ -1,5 +1,5 @@
 ---
-title: Feature
+title: Tính năng
 icon: feature
 dir:
   order: 2

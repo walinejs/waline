@@ -1,16 +1,16 @@
 ---
-title: Pageview Counter
+title: Bộ đếm lượt xem
 icon: counter
 order: 7
 ---
 
-Waline supports pageview counting.
+Waline hỗ trợ đếm lượt xem trang.
 
 <!-- more -->
 
-## Using with comment
+## Dùng cùng bình luận
 
-Waline supIf you are using Waline's commenting service, you can enable pageview statistics by setting the `pageview` option to `true` during initialization:
+Nếu bạn đang dùng dịch vụ bình luận của Waline, bạn có thể bật thống kê lượt xem bằng cách đặt tùy chọn `pageview` thành `true` khi khởi tạo:
 
 ```js
 Waline.init({
@@ -20,18 +20,18 @@ Waline.init({
 });
 ```
 
-Waline will automatically find the elements with the `class` value of `waline-pageview-count` in the page, and get their `data-path` as the query condition. And fill it with the obtained value:
+Waline sẽ tự động tìm các phần tử có giá trị `class` là `waline-pageview-count` trong trang, lấy `data-path` của chúng làm điều kiện truy vấn, rồi điền giá trị thu được vào đó:
 
-If you need a different selector, you can set the `pageview` option to this selector.
+Nếu cần một bộ chọn khác, bạn có thể đặt tùy chọn `pageview` thành bộ chọn đó.
 
 ```html
 <!-- data-path will be the query condition -->
 Pageviews: <span class="waline-pageview-count" data-path="<Your/Path/Name>"></i>
 ```
 
-Every time you call `WalineInstance.update()`, Waline will re-search the page content and automatically update the pageviews.
+Mỗi lần bạn gọi `WalineInstance.update()`, Waline sẽ tìm lại nội dung trang và tự động cập nhật lượt xem.
 
-::: tip Examples
+::: tip Ví dụ
 
 ```html
 The current page has been viewed
@@ -39,14 +39,14 @@ The current page has been viewed
 times.
 ```
 
-The current page has been viewed
-<span class="waline-pageview-count" data-path="/vi-VN/guide/client/count.html" /> times.
+Trang hiện tại đã được xem
+<span class="waline-pageview-count" data-path="/vi-VN/guide/client/count.html" /> lần.
 
 :::
 
-## Use Alone
+## Dùng độc lập
 
-If you only need to use the pageview statistics function, you can import the pageview module provided by Waline, its Gzip size is < 1KB.
+Nếu chỉ cần dùng chức năng thống kê lượt xem, bạn có thể nhập mô-đun pageview do Waline cung cấp, kích thước Gzip của nó < 1KB.
 
 ```html
 <ul>
@@ -75,15 +75,15 @@ If you only need to use the pageview statistics function, you can import the pag
 </script>
 ```
 
-- Current pageviews: <span class="waline-pageview-count" />
+- Lượt xem trang hiện tại: <span class="waline-pageview-count" />
 
-- Homepage Pageviews: <span class="waline-pageview-count" data-path="/" />
+- Lượt xem trang chủ: <span class="waline-pageview-count" data-path="/" />
 
-::: info Abort
+::: info Hủy thao tác
 
-Since pageview fetching is an asynchronous network operation, you may need to cancel an ongoing pageview update operation under certain circumstances.
+Vì việc lấy lượt xem là một thao tác mạng bất đồng bộ, trong một số trường hợp bạn có thể cần hủy thao tác cập nhật lượt xem đang diễn ra.
 
-`pageviewCount` returns a function that can be called to cancel the update:
+`pageviewCount` trả về một hàm, bạn có thể gọi hàm này để hủy việc cập nhật:
 
 ```html
 <script type="module">

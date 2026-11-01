@@ -1,37 +1,37 @@
 ---
-title: Create a database on TiDB
+title: Tạo cơ sở dữ liệu trên TiDB
 icon: tidb
 ---
 
-[TiDB](https://github.com/pingcap/tidb) is an open source NewSQL database. [TiDB Cloud](https://tidbcloud.com/) is the official online version, which provides 5GB of free storage for everyone to use. The following describes how to create a Waline database on TiDB Cloud.
+[TiDB](https://github.com/pingcap/tidb) là một cơ sở dữ liệu NewSQL mã nguồn mở. [TiDB Cloud](https://tidbcloud.com/) là phiên bản trực tuyến chính thức, cung cấp miễn phí 5GB dung lượng lưu trữ cho mọi người sử dụng. Dưới đây là hướng dẫn tạo cơ sở dữ liệu Waline trên TiDB Cloud.
 
-## Create Database
+## Tạo cơ sở dữ liệu
 
-1. After logging in to [TiDB Cloud](https://tidbcloud.com), a TiDB instance will be created automatically, directly click <kbd>cluster0</kbd> to enter the instance
+1. Sau khi đăng nhập [TiDB Cloud](https://tidbcloud.com), một phiên bản TiDB sẽ được tạo tự động, hãy nhấn trực tiếp vào <kbd>cluster0</kbd> để vào phiên bản
 
    ![Enter instance](../../../assets/tidb-1.png)
 
-2. Select <kbd>SQL Editor</kbd> in the list on the left and change the content of [waline.tidb](https://github.com/walinejs/waline/blob/main/assets/waline.tidb) to `;` The distribution of statements is executed close to the interface. Click the <kbd>Run</kbd> blue button in the upper right corner for each sentence, or use the <kbd>Ctrl\/Command</kbd> + <kbd>Enter</kbd> shortcut key to execute
+2. Chọn <kbd>SQL Editor</kbd> trong danh sách bên trái, chuyển nội dung của [waline.tidb](https://github.com/walinejs/waline/blob/main/assets/waline.tidb) thành các câu lệnh phân tách bằng `;` rồi thực thi ngay trong giao diện. Nhấn nút màu xanh <kbd>Run</kbd> ở góc trên bên phải cho từng câu, hoặc dùng tổ hợp phím tắt <kbd>Ctrl\/Command</kbd> + <kbd>Enter</kbd> để thực thi
    ![Step1](../../../assets/tidb-2.png)
    ![Step2](../../../assets/tidb-3.png)
    ![Step3](../../../assets/tidb-4.png)
    ![Step4](../../../assets/tidb-5.png)
    ![Step5](../../../assets/tidb-6.png)
 
-So far the Waline database has been created!
+Đến đây cơ sở dữ liệu Waline đã được tạo xong!
 
-## Get Connection Configuration
+## Lấy cấu hình kết nối
 
-Click the <kbd>Overview</kbd> button on the left to enter the homepage, and select <kbd>Connect</kbd> in the upper right corner to get connection information.
+Nhấn nút <kbd>Overview</kbd> ở bên trái để vào trang chủ, rồi chọn <kbd>Connect</kbd> ở góc trên bên phải để lấy thông tin kết nối.
 
-Set "Connect with" to `General`. Also click <kbd>Reset password</kbd> on the following line to generate a new password.
+Đặt "Connect with" thành `General`. Đồng thời nhấn <kbd>Reset password</kbd> ở dòng bên dưới để tạo mật khẩu mới.
 
-In this way, you can get the configuration related to the connection.
+Như vậy, bạn có thể lấy được các cấu hình liên quan đến kết nối.
 
 ![Connection](../../../assets/tidb-7.png)
 
-## Vercel deployment
+## Triển khai trên Vercel
 
-Create a Vercel account, add a project and deploy the Waline service. Then open the project <kbd>Settings</kbd> and go to `Environment Variables`. Click <kbd>Add Environment Variable</kbd> and add the following variables: `TIDB_HOST`, `TIDB_PORT`, `TIDB_DB`, `TIDB_USER`, and `TIDB_PASSWORD`. After adding these variables, redeploy the project.
+Tạo tài khoản Vercel, thêm dự án và triển khai dịch vụ Waline. Sau đó mở <kbd>Settings</kbd> của dự án và vào `Environment Variables`. Nhấn <kbd>Add Environment Variable</kbd> và thêm các biến sau: `TIDB_HOST`, `TIDB_PORT`, `TIDB_DB`, `TIDB_USER` và `TIDB_PASSWORD`. Sau khi thêm các biến này, hãy triển khai lại dự án.
 
 ![Configure TiDB connection](../../../assets/tidb-8.png)

@@ -1,15 +1,15 @@
 ---
-title: Customize Code Highlighter
+title: Tùy chỉnh bộ tô sáng mã nguồn
 icon: style
 ---
 
-This cookbook guides you how to add your own code highlighter.
+Hướng dẫn này chỉ cho bạn cách thêm bộ tô sáng mã nguồn (highlighter) của riêng mình.
 
 <!-- more -->
 
-`@waline/client` provides the `highlighter` function. The client passes in the original character of the code block and the language of the code block. You should return a string directly.
+`@waline/client` cung cấp hàm `highlighter`. Ứng dụng khách sẽ truyền vào nội dung gốc của khối mã và ngôn ngữ của khối mã. Bạn chỉ cần trả về một chuỗi.
 
-## An Example Using prism.js
+## Ví dụ sử dụng prism.js
 
 ```html
 <!doctype html>
