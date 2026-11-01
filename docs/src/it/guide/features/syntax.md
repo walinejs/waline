@@ -1,23 +1,23 @@
 ---
-title: Comment Format Support
+title: Formato dei commenti supportato
 icon: format
 order: 1
 ---
 
-You can add different contents to comment, including extended Markdown syntax and HTML tags.
+Puoi aggiungere contenuti diversi ai commenti, tra cui la sintassi Markdown estesa e i tag HTML.
 
 <!-- more -->
 
-## Format Support
+## Formati supportati
 
-We support the full CommonMark (standard Markdown syntax), along with the following extensions:
+Supportiamo l'intero CommonMark (la sintassi Markdown standard) insieme alle seguenti estensioni:
 
-- GFM style table
-- GFM style strike through
-- Subscript and superscript
+- Tabelle in stile GFM
+- Barrato in stile GFM
+- Pedice e apice
 - Emoji
-- Code block highlighting
-- $\TeX$ formula
+- Evidenziazione dei blocchi di codice
+- Formule $\TeX$
 
 ::: info GFM
 
@@ -25,36 +25,36 @@ Github Flavored Markdown
 
 :::
 
-Meanwhile, you can freely embed any HTML content without triggering the [protection mechanism](./safety.md#comment-security).
+Inoltre puoi incorporare liberamente qualsiasi contenuto HTML senza attivare il [meccanismo di protezione](./safety.md#sicurezza-dei-commenti).
 
-## Limited Preview Support
+## Supporto limitato nell'anteprima
 
-In order to control the size of the client, we only place a small Markdown parser in the official client `@waline/client`, which causes many grammars to not display correctly in the preview panel (they can be **correctly rendered in the comment area**).
+Per contenere le dimensioni del client, nel client ufficiale `@waline/client` inseriamo solo un piccolo parser Markdown: per questo molte sintassi non vengono mostrate correttamente nel pannello di anteprima (ma vengono **resi correttamente nell'area dei commenti**).
 
-This includes the following restrictions:
+Tra le limitazioni troviamo:
 
-- Standard emoji syntax (eg :tada:`:tada:`) does not render correctly
+- La sintassi emoji standard (ad es. :tada:`:tada:`) non viene renderizzata correttamente
 
-- The upper and lower subscripts (eg: `H~2~O`, `x^2^`) cannot be rendered correctly
+- I pedici e gli apici (ad es. `H~2~O`, `x^2^`) non possono essere renderizzati correttamente
 
-- $\TeX$ syntax, i.e. math formulas (eg: `$a = 1$`) cannot be rendered by default.
+- La sintassi $\TeX$, cioè le formule matematiche (ad es. `$a = 1$`), non viene renderizzata per impostazione predefinita.
 
-  When using the official client, you can customize the $\TeX$ rendering in preview by setting the `texRenderer` option, see [Cookbook → Use a custom $\TeX$ renderer](../../cookbook/customize/tex-renderer.md).
+  Con il client ufficiale puoi personalizzare il rendering $\TeX$ nell'anteprima impostando l'opzione `texRenderer`; vedi [Cookbook → Usare un renderer $\TeX$ personalizzato](../../cookbook/customize/tex-renderer.md).
 
-- Under the default highlighter, code blocks will be highlighted with random colors with specific delimiters.
+- Con l'evidenziatore predefinito i blocchi di codice vengono evidenziati con colori casuali e delimitatori specifici.
 
-  When using the official client, you can customize the code highlighting when previewing by setting the `highlighter` option, see [Cookbook → Custom Code Highlighting](../../cookbook/customize/highlighter.md).
+  Con il client ufficiale puoi personalizzare l'evidenziazione del codice in anteprima impostando l'opzione `highlighter`; vedi [Cookbook → Evidenziazione del codice personalizzata](../../cookbook/customize/highlighter.md).
 
-## More
+## Approfondimenti
 
-::: tip Principle
+::: tip Come funziona
 
-1. Considering package size, the client uses `marked` for rendering and uses a < 1kb highlighter for highlighting by default, and does not include a $\TeX$ renderer, resulting in the above limitations.
+1. Per contenere le dimensioni del pacchetto, il client usa `marked` per il rendering e, per impostazione predefinita, un evidenziatore di dimensioni inferiori a 1 KB, e non include un renderer $\TeX$: da qui derivano le limitazioni descritte sopra.
 
-1. When a user submits a comment, the client embeds a custom Emoji image and sends the original comment to the server.
+1. Quando un utente invia un commento, il client incorpora l'immagine emoji personalizzata e invia al server il commento originale.
 
-1. The server receives the original text, uses `markdown-it` to render markdown correctly with relevant plug-ins, uses `prismjs` to highlight code blocks according to the language, and performs $\TeX$ rendering according to user settings, and finally performs XSS processing .
+1. Il server riceve il testo originale, usa `markdown-it` con i plugin correlati per renderizzare correttamente il Markdown, usa `prismjs` per evidenziare i blocchi di codice in base al linguaggio ed esegue il rendering $\TeX$ in base alle impostazioni dell'utente; infine applica la protezione XSS.
 
-1. After the processing is completed, the server will store the correct rendering content and return it to the client when needed to ensure the normal display of the comment area.
+1. Al termine dell'elaborazione il server memorizza il contenuto renderizzato correttamente e lo restituisce al client quando serve, per garantire la corretta visualizzazione dell'area dei commenti.
 
 :::

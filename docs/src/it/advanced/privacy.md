@@ -1,31 +1,31 @@
 ---
-title: Privacy Policy
+title: Informativa sulla privacy
 icon: privacy
 order: -2
 ---
 
-Thank you for using the Waline commenting system. We take your privacy and data security very seriously. This privacy policy will inform you how we collect, use, process and protect your personal data.
+Grazie per aver scelto il sistema di commenti Waline. Prendiamo molto sul serio la tua privacy e la sicurezza dei dati. La presente informativa sulla privacy ti spiega come raccogliamo, utilizziamo, trattiamo e proteggiamo i tuoi dati personali.
 
-## Data Types
+## Tipi di dati
 
-In order to provide services, we may collect and store your IP address, browser User-Agent (UA) and other related information, but if you have made the corresponding settings in the Waline configuration file, we will stop storing these according to your request information.
+Per fornire il servizio potremmo raccogliere e memorizzare il tuo indirizzo IP, lo User-Agent (UA) del browser e altre informazioni correlate; se però nella configurazione di Waline hai impostato le opzioni corrispondenti, smetteremo di memorizzarle come da tua richiesta.
 
-## Data Usage
+## Utilizzo dei dati
 
-We only use your information to provide commenting services and will not disclose, sell or rent it to third parties. We will make every effort to protect your information security and comply with local laws, regulations and relevant standards.
+Utilizziamo le tue informazioni solo per fornire il servizio di commenti e non le divulghiamo, vendiamo o affittiamo a terzi. Faremo tutto il possibile per proteggere la sicurezza delle tue informazioni e rispetteremo le leggi, i regolamenti e gli standard locali.
 
-## Data Processing
+## Trattamento dei dati
 
-In order to provide you with better services, we may transmit your information to our servers, partner servers, or third-party service provider's servers, which may be located within or outside the country. We will take reasonable measures to protect your information security and comply with local laws, regulations, and relevant standards.
+Per offrirti un servizio migliore potremmo trasferire le tue informazioni ai nostri server, a server partner o a server di fornitori di servizi terzi, che possono trovarsi all'interno o all'esterno del paese. Adotteremo misure ragionevoli per proteggere la sicurezza delle tue informazioni e rispetteremo le leggi, i regolamenti e gli standard locali.
 
-## Data Protection
+## Protezione dei dati
 
-We will take technical and management measures to protect your information security, prevent unauthorized access, use or disclosure. If there are data security issues, we will promptly notify you and take measures to repair them. However, please note that due to the characteristics and technical limitations of the Internet itself, we cannot guarantee 100% security of your information.
+Adotteremo misure tecniche e gestionali per proteggere la sicurezza delle tue informazioni ed evitare accessi, utilizzi o divulgazioni non autorizzati. In caso di problemi alla sicurezza dei dati ti avviseremo tempestivamente e adotteremo misure di riparazione. Tieni presente però che, per le caratteristiche e i limiti tecnici di Internet stesso, non possiamo garantire al 100% la sicurezza delle tue informazioni.
 
-## Legal Responsibility
+## Responsabilità legale
 
-We will comply with local laws, regulations, and relevant standards to protect the privacy rights and data security of users. If necessary, we may provide user information in accordance with legal requirements. In addition, we will not actively disclose user information.
+Rispetteremo le leggi, i regolamenti e gli standard locali per tutelare il diritto alla privacy e la sicurezza dei dati degli utenti. Se necessario potremo fornire informazioni sugli utenti in conformità ai requisiti di legge. Inoltre non divulgheremo attivamente informazioni sugli utenti.
 
-## Other Provisions
+## Altre disposizioni
 
-This privacy policy applies to all products and services of the Waline commenting system under default configurations. For additional features added to the Waline commenting system by some websites based on modification, this privacy policy does not guarantee its applicability. We reserve the right to modify the privacy policy and will update it in a timely manner. If you have any questions or suggestions about this privacy policy, please contact us.
+La presente informativa sulla privacy si applica a tutti i prodotti e servizi del sistema di commenti Waline con la configurazione predefinita. Per le funzionalità aggiuntive introdotte in alcuni siti web apportando modifiche al sistema di commenti Waline, questa informativa non ne garantisce l'applicabilità. Ci riserviamo il diritto di modificare l'informativa sulla privacy e la aggiorneremo tempestivamente. Se hai domande o suggerimenti su questa informativa, contattaci.

@@ -3,7 +3,7 @@ title: API
 icon: config
 ---
 
-Waline provides `@waline/api` package for official client, third-party client developers and users to call Waline backend API.
+Waline fornisce il pacchetto `@waline/api` per il client ufficiale, per gli sviluppatori di client di terze parti e per gli utenti che vogliono chiamare l'API del backend di Waline.
 
 ## API
 

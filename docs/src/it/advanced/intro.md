@@ -32,7 +32,7 @@ Un semplice sistema di commenti con supporto backend biforcato da [Valine](https
 |                                                 | [Netlify](https://netlify.com)                                      | [CloudBase](https://cloudbase.net) |
 |                                                 | [Alibaba Cloud ComputeNest](https://computenest.console.aliyun.com) | [GitHub](https://github.com)       |
 |                                                 | Docker                                                              |                                    |
-|                                                 | auto-hosting                                                        |                                    |
+|                                                 | self-hosting                                                        |                                    |
 
 ## Lista delle attività
 

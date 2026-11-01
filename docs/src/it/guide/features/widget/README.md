@@ -1,12 +1,12 @@
 ---
-title: Widgets
+title: Widget
 icon: widget
 dir:
   index: false
   order: -1
 ---
 
-Waline provides some widgets, you can use them through `Waline.<widget name>`.
+Waline fornisce alcuni widget che puoi usare tramite `Waline.<nome del widget>`.
 
 <!-- more -->
 

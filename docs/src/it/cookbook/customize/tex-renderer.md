@@ -1,16 +1,16 @@
 ---
-title: Customize TeX renderer
+title: Personalizza il renderer TeX
 ---
 
-This cookbook guides you on how to add your own $\TeX$ renderer.
+Questa guida ti mostra come aggiungere un tuo renderer $\TeX$.
 
 <!-- more -->
 
-`@waline/client` provides the `texRenderer` function. The client will pass whether in display mode and the original $\TeX$ string as parameters. You should return a string.
+`@waline/client` fornisce la funzione `texRenderer`. Il client passa come parametri l'indicazione della modalità display e la stringa $\TeX$ originale; la funzione deve restituire una stringa.
 
-## A Example Using KaTeX
+## Un esempio con KaTeX
 
-For KaTeX options, see [KaTeX API](https://katex.org/docs/api.html#server-side-rendering-or-rendering-to-a-string).
+Per le opzioni di KaTeX consulta la [API di KaTeX](https://katex.org/docs/api.html#server-side-rendering-or-rendering-to-a-string).
 
 ```html
 <!doctype html>
@@ -44,9 +44,9 @@ For KaTeX options, see [KaTeX API](https://katex.org/docs/api.html#server-side-r
 </html>
 ```
 
-## A case using MathJax
+## Un caso con MathJax
 
-For MathJax options, see [MathJax API](http://docs.mathjax.org/it/latest/web/typeset.html#converting-a-math-string-to-other-formats).
+Per le opzioni di MathJax consulta la [API di MathJax](http://docs.mathjax.org/en/latest/web/typeset.html#converting-a-math-string-to-other-formats).
 
 ```html
 <!doctype html>

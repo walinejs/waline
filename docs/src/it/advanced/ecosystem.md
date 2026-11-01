@@ -4,17 +4,17 @@ icon: ecosystem
 order: 3
 ---
 
-Waline is a classic Client/Server architecture, which provides a relatively complete API interface. you can implement your own client implementation based on the API provided by the server.
+Waline è una classica architettura Client/Server che fornisce un'interfaccia API piuttosto completa. Puoi realizzare la tua implementazione del client basandoti sulle API offerte dal server.
 
-## Clients
+## Client
 
 - [@waline/client](https://npmjs.com/@waline/client)
 
-  Official client implementation, build with Vue and TypeScript.
+  Implementazione ufficiale del client, realizzata con Vue e TypeScript.
 
 - [MiniValine](https://github.com/MiniValine/MiniValine)
 
-  By [@MHuiG](https://github.com/MHuiG) , supports Waline API. Usage:
+  Di [@MHuiG](https://github.com/MHuiG), supporta l'API di Waline. Utilizzo:
 
   ```html
   <script src="https://unpkg.com/minivaline/dist/MiniValine.min.js"></script>
@@ -31,40 +31,40 @@ Waline is a classic Client/Server architecture, which provides a relatively comp
 
 - [sodesu](https://github.com/BeiyanYunyi/sodesu)
 
-  By [@BeiyanYunyi](https://github.com/BeiyanYunyi), build with Solid.js. For usage, see its README and [website](https://BeiyanYunyi.github.io/sodesu/)。
+  Di [@BeiyanYunyi](https://github.com/BeiyanYunyi), realizzato con Solid.js. Per l'utilizzo, consulta il suo README e il [sito](https://BeiyanYunyi.github.io/sodesu/).
 
 ## Rusty
 
-[waline-mini](https://github.com/JQiue/waline-mini) is a server-side implementation in Rust, highly suitable for running in resource-constrained server environments.
+[waline-mini](https://github.com/JQiue/waline-mini) è un'implementazione lato server in Rust, particolarmente adatta all'esecuzione in ambienti server con risorse limitate.
 
 ## Cloudflare Workers
 
-[Waline_On_Worker](https://github.com/wuyilingwei/Waline_On_Worker) è un'implementazione lato server basata su Workers dalla comunità, che risolve il problema che Waline non può essere eseguito su Cloudflare Workers.
+[Waline_On_Worker](https://github.com/wuyilingwei/Waline_On_Worker) è un'implementazione lato server basata su Workers realizzata dalla community, che colma la lacuna per cui Waline non può essere eseguito su Cloudflare Workers.
 
-## Plugins
+## Plugin
 
 ### Hexo
 
-- [@waline/hexo-next](https://npmjs.com/@waline/hexo-next): Waline comment system for NexT.
+- [@waline/hexo-next](https://npmjs.com/@waline/hexo-next): sistema di commenti Waline per NexT.
 
 ### Docsify
 
-- [docsify-waline](https://github.com/cxcn/docsify-waline): A simple comment plugin for docsify.
+- [docsify-waline](https://github.com/cxcn/docsify-waline): un semplice plugin di commenti per docsify.
 
 ### VuePress
 
-- [vuepress-plugin-comment2](https://vuepress-theme-hope.github.io/v2/comment/): Comment system for VuePress2.
-- [@mr-hope/vuepress-plugin-comment](https://vuepress-theme-hope.github.io/v1/comment/): Comment system for VuePress1.
+- [vuepress-plugin-comment2](https://vuepress-theme-hope.github.io/v2/comment/): sistema di commenti per VuePress2.
+- [@mr-hope/vuepress-plugin-comment](https://vuepress-theme-hope.github.io/v1/comment/): sistema di commenti per VuePress1.
 
 ### Gatsby
 
-- [gatsby-plugin-waline](https://www.npmjs.com/package/gatsby-plugin-waline): Comment system plugin for Gatsby.
+- [gatsby-plugin-waline](https://www.npmjs.com/package/gatsby-plugin-waline): plugin del sistema di commenti per Gatsby.
 
-Others:
+Altri:
 
-- [vuepress-plugin-comment-plus](https://github.com/SivanLaai/vuepress-plugin-comment-plus): Comment system plugin for VuePress.
+- [vuepress-plugin-comment-plus](https://github.com/SivanLaai/vuepress-plugin-comment-plus): plugin del sistema di commenti per VuePress.
 
-## Theme
+## Tema
 
 ### Hexo
 
@@ -92,8 +92,8 @@ Others:
 - [DoIt](https://github.com/HEIGE-PCloud/DoIt)
 - [Kenny](https://github.com/Kindle-deep/hugo-theme-Kenny)
 
-## More
+## Altro
 
-We are looking forward to more clients and plugins from the community to expand the Waline ecosystem. :tada:
+Aspettiamo con impazienza sempre più client e plugin dalla community per ampliare l'ecosistema di Waline. :tada:
 
-If you implement any Waline client, ecological plugin or theme including Waline, please send a PR and let us know!
+Se hai realizzato un client Waline, un plugin per l'ecosistema o un tema che include Waline, invia una PR e faccelo sapere!

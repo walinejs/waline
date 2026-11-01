@@ -3,99 +3,99 @@ title: API
 icon: api
 ---
 
-## Comment
+## Commenti
 
-### Comment List
+### Lista dei commenti
 
-Get comment list for article
+Ottieni la lista dei commenti di un articolo
 
 ```http
 GET /api/comment
 ```
 
-**Parameters**:
+**Parametri**:
 
-| Parameter | Type   | Description                                                                                                                                               |
-| --------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| path      | string | Article id for comment                                                                                                                                    |
-| page      | number | Comment page                                                                                                                                              |
-| pageSize  | number | Comment list page size                                                                                                                                    |
-| sortBy    | string | Which sort type for comment list, default descending sort by create time, also you can ascending sort by create_time, or descending sort by comment like. |
+| Parametro | Tipo   | Descrizione                                                                                                                                                                                                                   |
+| --------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| path      | string | ID dell'articolo del commento                                                                                                                                                                                                 |
+| page      | number | Pagina dei commenti                                                                                                                                                                                                           |
+| pageSize  | number | Dimensione della pagina della lista dei commenti                                                                                                                                                                              |
+| sortBy    | string | Tipo di ordinamento della lista dei commenti: per impostazione predefinita ordina per data di creazione in modo decrescente; puoi anche ordinare per create_time in modo crescente oppure per «mi piace» in modo decrescente. |
 
-### Comment Count
+### Conteggio dei commenti
 
-Get comment count for article
+Ottieni il numero di commenti di un articolo
 
 ```http
 GET /api/comment?type=count
 ```
 
-**Parameters**:
+**Parametri**:
 
-| Parameter | Type   | Description                                                   |
-| --------- | ------ | ------------------------------------------------------------- |
-| url       | string | Article id for comment, return site comment count if it empty |
+| Parametro | Tipo   | Descrizione                                                                                |
+| --------- | ------ | ------------------------------------------------------------------------------------------ |
+| url       | string | ID dell'articolo del commento; se vuoto restituisce il numero di commenti dell'intero sito |
 
-### Recent Comment
+### Commenti recenti
 
-Get recent comment
+Ottieni i commenti recenti
 
 ```http
 GET /api/comment?type=recent
 ```
 
-**Parameters**:
+**Parametri**:
 
-| Parameter | Type   | Description          |
-| --------- | ------ | -------------------- |
-| count     | number | comment count return |
+| Parametro | Tipo   | Descrizione                      |
+| --------- | ------ | -------------------------------- |
+| count     | number | numero di commenti da restituire |
 
-### Submit comment
+### Invia un commento
 
 ```http
 POST /api/comment
 ```
 
-**Parameters**:
+**Parametri**:
 
-| Parameter | Type   | Description                         |
-| --------- | ------ | ----------------------------------- |
-| comment   | string | comment content                     |
-| link      | string | commentator site                    |
-| mail      | string | commentator email                   |
-| nick      | string | commentator nick                    |
-| pid       | string | comment id which one replied        |
-| rid       | string | root comment id which one owned     |
-| ua        | string | commentator's user agent            |
-| url       | string | Article id for comment              |
-| at        | string | comment nick name which one replied |
+| Parametro | Tipo   | Descrizione                             |
+| --------- | ------ | --------------------------------------- |
+| comment   | string | contenuto del commento                  |
+| link      | string | sito dell'utente che commenta           |
+| mail      | string | e-mail dell'utente che commenta         |
+| nick      | string | nickname dell'utente che commenta       |
+| pid       | string | ID del commento a cui si risponde       |
+| rid       | string | ID del commento radice a cui appartiene |
+| ua        | string | user agent dell'utente che commenta     |
+| url       | string | ID dell'articolo del commento           |
+| at        | string | nickname del commento a cui si risponde |
 
-## Reading statistics
+## Statistiche di lettura
 
-### Get reading statistics
+### Ottieni le statistiche di lettura
 
-Get the number of readings corresponding to an article or multiple articles.
+Ottieni il numero di visualizzazioni di uno o più articoli.
 
 ```http
 GET /api/article
 ```
 
-**Parameters**:
+**Parametri**:
 
-| Parameter | Type   | Description                                                         |
-| --------- | ------ | ------------------------------------------------------------------- |
-| path      | string | Article id for comment，multiple ids should be spliced with commas. |
+| Parametro | Tipo   | Descrizione                                                      |
+| --------- | ------ | ---------------------------------------------------------------- |
+| path      | string | ID dell'articolo del commento; più ID vanno separati da virgole. |
 
-### Update reading statistics
+### Aggiorna le statistiche di lettura
 
-Update the reading count of an article.
+Aggiorna il conteggio delle visualizzazioni di un articolo.
 
 ```http
 POST /api/article
 ```
 
-**Parameters**:
+**Parametri**:
 
-| Parameter | Type   | Description            |
-| --------- | ------ | ---------------------- |
-| path      | string | Article id for comment |
+| Parametro | Tipo   | Descrizione                   |
+| --------- | ------ | ----------------------------- |
+| path      | string | ID dell'articolo del commento |

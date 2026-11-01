@@ -1,16 +1,16 @@
 ---
-title: Emoji Customize
+title: Personalizzare le emoji
 icon: emoji
 order: 2
 ---
 
-You can customize the emoji of the comment box by setting `emoji` option, you should set it to an **array** containing _preset link_ or _preset config object_. If you don't want it, just set it to `false`.
+Puoi personalizzare le emoji del riquadro dei commenti impostando l'opzione `emoji`: deve essere un **array** che contiene _link di preset_ o _oggetti di configurazione dei preset_. Se non le vuoi, impostala su `false`.
 
 <!-- more -->
 
-## Presets
+## Preset
 
-Waline provides a series of emoji presets that can be used out of box. You can add them directly to the `emoji` options:
+Waline offre una serie di preset di emoji pronti all'uso. Puoi aggiungerli direttamente alle opzioni `emoji`:
 
 - Alus
 
@@ -49,8 +49,8 @@ Waline provides a series of emoji presets that can be used out of box. You can a
     https://unpkg.com/@waline/emojis@1.4.0/tw-emoji
     ```
 
-  ::: details Others presets
-  - Full: (Not recommended)
+  ::: details Altri preset
+  - Full: (sconsigliato)
 
     ```http
     https://unpkg.com/@waline/emojis@1.4.0/tw
@@ -138,11 +138,11 @@ Waline provides a series of emoji presets that can be used out of box. You can a
 
 ::: warning
 
-Waline DO NOT have any copyright of above emojis, use them at your own risk.
+Waline non detiene alcun diritto d'autore sulle emoji elencate: usale a tuo rischio.
 
 :::
 
-### Example
+### Esempio
 
 ```html
 <div id="waline"></div>
@@ -158,6 +158,6 @@ Waline DO NOT have any copyright of above emojis, use them at your own risk.
 </script>
 ```
 
-## Create your own presets
+## Creare preset personalizzati
 
-Besides the presets provided by Waline, you can create your own presets, see [Guide → Create Emoji Presets](../../cookbook/customize/emoji.md).
+Oltre ai preset forniti da Waline, puoi creare i tuoi; vedi [Guida → Creare preset di emoji](../../cookbook/customize/emoji.md).

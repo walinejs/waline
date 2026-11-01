@@ -1,18 +1,18 @@
 ---
-title: Emoticons Search
+title: Ricerca di emoticon
 icon: search
 order: 3
 ---
 
-`@waline/client` allows users to add emoji search services and customize this functionality.
+`@waline/client` permette agli utenti di aggiungere servizi di ricerca emoji e di personalizzare questa funzionalità.
 
-By default, `@waline/client` provides meme search service via [Giphy](https://giphy.com/). This will allow you to search images and add them to the comment.
+Per impostazione predefinita, `@waline/client` offre un servizio di ricerca di meme tramite [Giphy](https://giphy.com/). In questo modo puoi cercare immagini e aggiungerle al commento.
 
 <!-- more -->
 
-## Disable
+## Disabilitare la ricerca
 
-If you don't need the default images search service, you can disable it by setting the `search` option to `false`.
+Se non ti serve il servizio di ricerca immagini predefinito, puoi disabilitarlo impostando l'opzione `search` su `false`.
 
 ```js
 Waline.init({
@@ -22,20 +22,20 @@ Waline.init({
 });
 ```
 
-## Customize
+## Personalizzare
 
-You can customize the image search service through the search option.
+Puoi personalizzare il servizio di ricerca immagini tramite l'opzione search.
 
-For each operation, you should return an array containing the image information as the search result, and each item should be an object with the following properties:
+Per ogni operazione devi restituire un array contenente le informazioni sulle immagini come risultato della ricerca; ogni elemento deve essere un oggetto con le seguenti proprietà:
 
-- `src`: the link address of the image
-- `title`: image title and alt text (optional)
-- `preview`: Thumbnail of the image to use in the result list (optional)
+- `src`: indirizzo del link dell'immagine
+- `title`: titolo dell'immagine e testo alternativo (facoltativo)
+- `preview`: miniatura dell'immagine da usare nell'elenco dei risultati (facoltativo)
 
-The option accepts three functions, each of which should return a Promise, and the result is the array of search results above.
+L'opzione accetta tre funzioni, ognuna delle quali deve restituire una Promise il cui risultato è l'array di risultati di ricerca descritto sopra.
 
-- `search`: search operation, the search term will be passed as the first parameter of the function
-- `default`: list of images to display by default (optional)
-- `more`: The function that starts when the image is scrolled to the bottom, where the search term and the current number are passed in as the first two parameters (optional)
+- `search`: operazione di ricerca; il termine cercato viene passato come primo parametro della funzione
+- `default`: elenco di immagini da mostrare per impostazione predefinita (facoltativo)
+- `more`: funzione attivata quando si scorre fino in fondo all'elenco di immagini; il termine cercato e il numero corrente vengono passati come primi due parametri (facoltativo)
 
-For tutorials on custom search, see [Cookbook → Custom Emoji Search](../../cookbook/customize/search.md).
+Per un tutorial sulla ricerca personalizzata, vedi [Cookbook → Ricerca emoji personalizzata](../../cookbook/customize/search.md).
