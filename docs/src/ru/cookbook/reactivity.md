@@ -1,30 +1,30 @@
 ---
-title: Reactive Waline Instance
+title: Реактивный экземпляр Waline
 icon: spa
 order: -1
 ---
 
-The official client `@waline/client` is based on Vue3, provides responsive components and instances, and brings SPA (**S**ingle **P**age **A**application) support.
+Официальный клиент `@waline/client` основан на Vue 3, предоставляет реактивные компоненты и экземпляры, а также обеспечивает поддержку SPA (одностраничных приложений).
 
 <!-- more -->
 
-## Vue Component
+## Компонент Vue
 
-If you are building a Vue project, you can obtain and use Waline component by importing named exports `Waline` from `@waline/client/components`.
+Если вы создаёте проект на Vue, компонент Waline можно получить, импортировав именованный экспорт `Waline` из `@waline/client/components`.
 
-All component properties are reactive, which means that when you change the properties, the comment box will get an automatically update.
+Все свойства компонента реактивны: при изменении свойств поле комментариев обновляется автоматически.
 
-## Other projects
+## Другие проекты
 
-In other SPA, you need to store the `WalineInstance` returned by the Waline function when Waline is initialized.
+В других SPA нужно сохранять `WalineInstance`, который возвращает функция Waline при инициализации.
 
-You can find an instance property `el` and two methods: `update()` and `destroy()` on `WalineInstance`.
+У экземпляра `WalineInstance` есть свойство `el` и два метода: `update()` и `destroy()`.
 
 ### update
 
-You can call `update()` to update Waline at any time (e.g.: when user visits a new route). The `update` method receives an optional parameter `options`, except for `el`, other Waline initial options can be updated by passing in new values.
+Вызывать `update()` можно в любой момент (например, когда пользователь переходит на новый маршрут). Метод `update` принимает необязательный параметр `options`: помимо `el`, любые другие параметры инициализации Waline можно обновить, передав новые значения.
 
-E.g.:
+Например:
 
 ```js
 // in `/` route
@@ -43,59 +43,59 @@ waline.update({
 }); // waline will now display in English, and disable user login
 ```
 
-#### Working Principle
+#### Принцип работы
 
-When calling `update`, the current option and history option will be merged by **shallow copy**, and Waline instance will refresh with the new option (and save the new option).
+При вызове `update` текущие и предыдущие параметры объединяются **поверхностным копированием**, после чего экземпляр Waline обновляется с новыми параметрами (и сохраняет их).
 
-The default behavior of this method is to always **regenerate default values** for options that haven't been set yet, and **use historical values** for options that have been set.
+По умолчанию метод всегда **заново формирует значения по умолчанию** для ещё не заданных параметров и **использует прежние значения** для уже заданных.
 
-There are two options you may need to pay special attention to: `path` and `locale`.
+На два параметра стоит обратить особое внимание: `path` и `locale`.
 
-::: warning Path precautions
+::: warning Особенности `path`
 
-In V2, the `path` parameter **always reset** on `update()`.
+В версии V2 параметр `path` **всегда сбрасывается** при вызове `update()`.
 
-This means that in any update as long as you don't specify `path`, `path` will be reset to `window.location.pathname`.
-
-:::
-
-::: warning locale precautions
-
-Due to the shallow copy, the old `locale` options are completely overwritten by the new `locale` options passed in by `update`.
-
-Our point is: users usually want to switch the display language when updating the locale, so we set it as the expected behavior of the plugin. This also means that you can use `update({ locale: {} })` to clear the custom locale config in history.
-
-If you really need to update one or more certain fields in `locale`, you need to pass the entire updated `locale`.
+Это значит, что при любом обновлении, если не указать `path`, он будет сброшен в `window.location.pathname`.
 
 :::
 
-Meanwhile, the `update()` option has been optimized for asynchronous network requests, including:
+::: warning Особенности `locale`
 
-- Refresh the comment area and re-request only when the path does change
-- The new `update()` call will automatically terminate the no longer needed request from the previous `update()`.
+Из-за поверхностного копирования старые параметры `locale` полностью перезаписываются новыми, переданными в `update`.
+
+Мы исходим из того, что пользователи обычно хотят переключить язык отображения при обновлении локали, поэтому такое поведение задано как ожидаемое для плагина. Это также означает, что с помощью `update({ locale: {} })` можно очистить пользовательскую конфигурацию локали из истории.
+
+Если действительно нужно обновить одно или несколько отдельных полей `locale`, передавайте `locale` целиком.
+
+:::
+
+Кроме того, параметр `update()` оптимизирован для асинхронных сетевых запросов:
+
+- область комментариев обновляется и запрос повторяется, только если путь действительно изменился;
+- новый вызов `update()` автоматически прерывает ставший ненужным запрос предыдущего `update()`.
 
 ### el
 
-The `el` property is the HTMLElement mounted by the current instance of Waline.
+Свойство `el` — это HTMLElement, в который смонтирован текущий экземпляр Waline.
 
-If you initialize Waline with `el: null` (only use comments and pageview statistics), this property will be `null`.
+Если инициализировать Waline с `el: null` (использовать только комментарии и статистику просмотров), это свойство будет равно `null`.
 
 ### destroy
 
-If you forget to pass in the `serverURL` or Waline cannot find the mount location via the `el` option on the page, Waline will throw an Error indicating the reason for the error.
+Если вы забыли передать `serverURL` или Waline не может найти место монтирования по параметру `el` на странице, Waline выбросит ошибку с указанием причины.
 
-### Initialization Failure
+### Ошибка инициализации
 
-If you forget to set `serverURL` or Waline cannot find the mount location through the `el` option on the page, Waline will return a `WalineErrorInstance`.
+Если вы забыли задать `serverURL` или Waline не может найти место монтирования по параметру `el` на странице, Waline вернёт `WalineErrorInstance`.
 
-There is only one attribute `errMsg` on `WalineErrorInstance` to indicate the reason for the initialization failure.
+У `WalineErrorInstance` есть только один атрибут `errMsg`, указывающий причину неудачной инициализации.
 
-### Precautions
+### Меры предосторожности
 
-::: warning Remember to destroy the instance
+::: warning Не забывайте уничтожать экземпляр
 
-In order for Waline to properly release resources, please manually call `WalineInstance.destroy()` before removing the element where Waline is mounted.
+Чтобы Waline корректно освобождал ресурсы, вызывайте `WalineInstance.destroy()` вручную перед удалением элемента, в который смонтирован Waline.
 
-Otherwise, some listeners may not be removed properly.
+Иначе некоторые слушатели могут быть удалены некорректно.
 
 :::

@@ -1,28 +1,28 @@
 ---
-title: Customize Locale
+title: Настройка локали
 icon: i18n
 ---
 
-This cookbook guides you to customize Waline multilingual and display text.
+Это руководство рассказывает, как настроить языки и тексты интерфейса Waline.
 
 <!-- more -->
 
-## Customize client language and text
+## Настройка языка и текстов клиента
 
-`@waline/client` provides the `locale` option, through which you can customize multiple languages and display text.
+`@waline/client` предоставляет параметр `locale`, с помощью которого можно настроить несколько языков и тексты интерфейса.
 
-By default it uses the built-in multilingual literals and falls back to `en-US` (English US) if the language is not supported.
+По умолчанию используются встроенные мультиязычные тексты; если язык не поддерживается, применяется `en-US` (американский английский).
 
-You can pass a completed multilingual configuration to the `locale` option to add language support, or set several of these to override existing UI text.
+В параметр `locale` можно передать полную конфигурацию языков, чтобы добавить поддержку языка, или задать отдельные значения, чтобы переопределить существующие тексты интерфейса.
 
-### Locale Options
+### Параметры локали
 
-- Level related:
-  - `level${number}`: Label for level number
+- Связанные с уровнями:
+  - `level${number}`: подпись для уровня с указанным номером
 
   ::: tip
 
-  For example, you can customize the labels for 6 levels like this:
+  Например, так можно задать подписи для 6 уровней:
 
   ```ts
   Waline.init({
@@ -39,83 +39,83 @@ You can pass a completed multilingual configuration to the `locale` option to ad
 
   :::
 
-- Reaction related:
-  - `reactionTitle`: Reaction title
-  - `reaction0`: Reaction 1 text
-  - `reaction1`: Reaction 2 text
-  - `reaction2`: Reaction 3 text
-  - `reaction3`: Reaction 4 text
-  - `reaction4`: Reaction 5 text
-  - `reaction5`: Reaction 6 text
-  - `reaction6`: Reaction 7 text
-  - `reaction7`: Reaction 8 text
-  - `reaction8`: Reaction 9 text
+- Связанные с реакциями:
+  - `reactionTitle`: заголовок реакций
+  - `reaction0`: текст реакции 1
+  - `reaction1`: текст реакции 2
+  - `reaction2`: текст реакции 3
+  - `reaction3`: текст реакции 4
+  - `reaction4`: текст реакции 5
+  - `reaction5`: текст реакции 6
+  - `reaction6`: текст реакции 7
+  - `reaction7`: текст реакции 8
+  - `reaction8`: текст реакции 9
 
-- UI related:
-  - `nick`: nickname
-  - `mail`: Email
-  - `link`: Link
-  - `placeholder`: Default text of comment box
-  - `sofa`: Display text when the comment area is empty
-  - `submit`: Submit button text
-  - `comment`: Comment button text
-  - `refresh`: Refresh button text
-  - `more`: Load more button text
-  - `uploading`: display text when uploading
-  - `login`: login button text
-  - `admin`: The label of the administrator
-  - `sticky`: Sticky text
-  - `word`: word
-  - `anonymous`: anonymous user default name
-  - `optional`: text indicating optional options
-  - `gifSearchPlaceholder`: emoji search placeholder text
-  - `oldest`: oldest comment
-  - `latest`: latest comment
-  - `hottest`: hottest comment
-
-  ::: info
-
-  The above text will be displayed in page.
-
-  :::
-
-- Prompt information related:
-  - `nickError`: Error message that the nickname does not meet the conditions
-  - `mailError`: The error message that the mailbox does not meet the conditions
-  - `wordHint`: Error prompt for comment word count, where `$0` `$1` `$2` will be automatically replaced with the lower limit of the allowed word count, the upper limit of the allowed word count, and the current word count.
-
-- Comment time related:
-  - `seconds`: seconds ago
-  - `minutes`: minutes ago
-  - `hours`: hours ago
-  - `days`: days ago
-  - `now`: just now
-
-- Management related:
-  - `approved`: Button which marks comment as approved
-  - `waiting`: Button which marks comment waiting for review
-  - `spam`: Button which marks comments as spam
-  - `unsticky`: Button which unsticky comment
-
-- Accessibility related:
-  - `like`: the label text of like button
-  - `cancelLike`: the label text of the cancel like button
-  - `reply`: the label text of the reply button
-  - `cancelReply`: the label text of the cancel reply button
-  - `preview`: Preview button label text
-  - `emoji`: the label text of the emoji button
-  - `gif`: The label text of Gif button
-  - `uploadImage`: the label text of the upload image button
-  - `profile`: The link title of profile page
-  - `logout`: the label text of the logout button
+- Связанные с интерфейсом:
+  - `nick`: никнейм
+  - `mail`: адрес электронной почты
+  - `link`: ссылка
+  - `placeholder`: текст по умолчанию в поле комментария
+  - `sofa`: текст, отображаемый, когда комментариев ещё нет
+  - `submit`: текст кнопки отправки
+  - `comment`: текст кнопки комментариев
+  - `refresh`: текст кнопки обновления
+  - `more`: текст кнопки «Загрузить ещё»
+  - `uploading`: текст, отображаемый во время загрузки
+  - `login`: текст кнопки входа
+  - `admin`: метка администратора
+  - `sticky`: текст «Закреплено»
+  - `word`: слово
+  - `anonymous`: имя по умолчанию для анонимного пользователя
+  - `optional`: текст, указывающий на необязательность поля
+  - `gifSearchPlaceholder`: подсказка в поле поиска эмодзи
+  - `oldest`: самый старый комментарий
+  - `latest`: самый новый комментарий
+  - `hottest`: самый популярный комментарий
 
   ::: info
 
-  These texts are only for accessibility purpose and will not be displayed on the page.
+  Перечисленные тексты отображаются на странице.
 
   :::
 
-### Example
+- Связанные с подсказками:
+  - `nickError`: сообщение об ошибке, когда никнейм не соответствует требованиям
+  - `mailError`: сообщение об ошибке, когда адрес электронной почты не соответствует требованиям
+  - `wordHint`: подсказка об ограничении количества слов в комментарии; `$0`, `$1` и `$2` автоматически заменяются на минимальное допустимое количество слов, максимальное допустимое количество слов и текущее количество слов.
+
+- Связанные со временем комментария:
+  - `seconds`: секунд назад
+  - `minutes`: минут назад
+  - `hours`: часов назад
+  - `days`: дней назад
+  - `now`: только что
+
+- Связанные с управлением:
+  - `approved`: кнопка, помечающая комментарий как одобренный
+  - `waiting`: кнопка, помечающая комментарий как ожидающий проверки
+  - `spam`: кнопка, помечающая комментарий как спам
+  - `unsticky`: кнопка, снимающая закрепление комментария
+
+- Связанные с доступностью:
+  - `like`: текст метки кнопки «Нравится»
+  - `cancelLike`: текст метки кнопки отмены «Нравится»
+  - `reply`: текст метки кнопки ответа
+  - `cancelReply`: текст метки кнопки отмены ответа
+  - `preview`: текст метки кнопки предпросмотра
+  - `emoji`: текст метки кнопки эмодзи
+  - `gif`: текст метки кнопки GIF
+  - `uploadImage`: текст метки кнопки загрузки изображения
+  - `profile`: заголовок ссылки на страницу профиля
+  - `logout`: текст метки кнопки выхода
+
+  ::: info
+
+  Эти тексты нужны только для обеспечения доступности и не отображаются на странице.
+
+  :::
+
+### Пример
 
 ```js
 // en default
@@ -180,17 +180,17 @@ Waline.init({
 });
 ```
 
-## Customize server response text
+## Настройка текстов ответов сервера
 
-`@waline/vercel` provides a `locales` option that allows you to customize the response text.
+`@waline/vercel` предоставляет параметр `locales`, позволяющий настроить тексты ответов.
 
-By default, it uses the built-in multilingual text, and falls back to `en-US` language text if the language is not supported.
+По умолчанию используются встроенные мультиязычные тексты; если язык не поддерживается, применяются тексты для `en-US`.
 
-You can pass a completed multilingual configuration to the `locales` option to add language support, or set some of them to override the existing text.
+В параметр `locales` можно передать полную конфигурацию языков, чтобы добавить поддержку языка, или задать часть значений, чтобы переопределить существующие тексты.
 
 ::: tip
 
-All custom text will eventually be rendered using the nunjucks template engine, which supports writing some relatively complex logical expressions. For example:
+Все пользовательские тексты в итоге обрабатываются шаблонизатором nunjucks, который поддерживает довольно сложные логические выражения. Например:
 
 ```
 Registration confirm mail send failed, please {%- if isAdmin -%}check your mail configuration{%- else -%}check your email address and contact administrator{%- endif -%}.
@@ -198,9 +198,9 @@ Registration confirm mail send failed, please {%- if isAdmin -%}check your mail 
 
 :::
 
-### locale 选项
+### Параметр locale
 
-- Prompt information related:
+- Связанные с подсказками:
   - `import data format not support!`
   - `USER_EXIST`
   - `USER_NOT_EXIST`
@@ -210,20 +210,20 @@ Registration confirm mail send failed, please {%- if isAdmin -%}check your mail 
   - `Duplicate Content`
   - `Comment too fast`
 
-- Register/Login mail notification related:
+- Связанные с письмами о регистрации и входе:
   - `[{{name | safe}}] Registration Confirm Mail`
   - `Please click <a href=\"{{url}}\">{{url}}<a/> to confirm registration, the link is valid for 1 hour. If you are not registering, please ignore this email.`
   - `[{{name | safe}}] Reset Password`
   - `Please click <a href=\"{{url}}\">{{url}}</a> to login and change your password as soon as possible!`
   - `Registration confirm mail send failed, please {%- if isAdmin -%}check your mail configuration{%- else -%}check your email address and contact administrator{%- endif -%}.`
 
-- Comment mail notification related:
+- Связанные с письмами о комментариях:
   - `MAIL_SUBJECT`：`Your comment on {{site.name | safe}} received a reply`
   - `MAIL_TEMPLATE`：`<div style='border-top:2px solid #12ADDB;box-shadow:0 1px 3px #AAAAAA;line-height:180%;padding:0 15px 12px;margin:50px auto;font-size:12px;'> <h2 style='border-bottom:1px solid #DDD;font-size:14px;font-weight:normal;padding:13px 0 10px 8px;'> Your comment on <a style='text-decoration:none;color: #12ADDB;' href='{{site.url}}' target='_blank'>{{site.name}}</a> received a reply </h2>{{parent.nick}}, you wrote: <div style='padding:0 12px 0 12px;margin-top:18px'> <div style='background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;'>{{parent.comment | safe}}</div><p><strong>{{self.nick}}</strong> replied:</p><div style='background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;'>{{self.comment | safe}}</div><p><a style='text-decoration:none; color:#12addb' href='{{site.postUrl}}' target='_blank'>View full reply</a> or visit <a style='text-decoration:none; color:#12addb' href='{{site.url}}' target='_blank'>{{site.name}}</a>.</p><br/> </div></div>`
   - `MAIL_SUBJECT_ADMIN`：`New comment on {{site.name | safe}}`
   - `MAIL_TEMPLATE_ADMIN`：`<div style='border-top:2px solid #12ADDB;box-shadow:0 1px 3px #AAAAAA;line-height:180%;padding:0 15px 12px;margin:50px auto;font-size:12px;'> <h2 style='border-bottom:1px solid #DDD;font-size:14px;font-weight:normal;padding:13px 0 10px 8px;'> New comment on <a style='text-decoration:none;color: #12ADDB;' href='{{site.url}}' target='_blank'>{{site.name}}</a> </h2> <p><strong>{{self.nick}}</strong> wrote:</p><div style='background-color: #f5f5f5;padding: 10px 15px;margin:18px 0;word-wrap:break-word;'>{{self.comment | safe}}</div><p><a style='text-decoration:none; color:#12addb' href='{{site.postUrl}}' target='_blank'>View page</a></p><br/></div>`
 
-### Example
+### Пример
 
 ```js
 // index.js

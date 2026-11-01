@@ -1,52 +1,52 @@
 ---
-title: Zeabur Deployment
+title: Развёртывание на Zeabur
 icon: zeabur
 ---
 
-[Zeabur](https://zeabur.com) is a platform that helps developers deploy their own services with one click. The whole is similar to Railway, but it has more functions than it, no need to bind a credit card, and the free limit is higher than it.
+[Zeabur](https://zeabur.com) — платформа, которая помогает разработчикам разворачивать собственные сервисы в один клик. В целом она похожа на Railway, но имеет больше возможностей, не требует привязки банковской карты, а бесплатный лимит выше.
 
 <!-- more -->
 
-## Deploy with one click
+## Развёртывание в один клик
 
 [![Deploy on Zeabur](https://zeabur.com/button.svg)](https://zeabur.com/templates/1IBY26?utm_source=waline)
 
-## Deploy from scratch
+## Развёртывание с нуля
 
-Click the [Fork](https://github.com/walinejs/zeabur-starter/fork) button to create a Zeabur starter scaffold.
+Нажмите кнопку [Fork](https://github.com/walinejs/zeabur-starter/fork), чтобы создать стартовый шаблон Zeabur.
 
 ![zeabur1](../../../assets/zeabur-1.png)
 
-<https://dash.zeabur.com> Log in to the Zeabur console. If there is no project, you need to set a name for the new project first.
+Войдите в консоль Zeabur по адресу <https://dash.zeabur.com>. Если проекта ещё нет, сначала нужно задать имя для нового проекта.
 
 ![zeabur2](../../../assets/zeabur-2.png)
 
-After entering, click <kbd>Add New Service</kbd> to create a service, select <kbd>Deploy Other Service</kbd> - <kbd>Deploy MongoDB</kbd> to create a database service first.
+После входа нажмите <kbd>Add New Service</kbd>, чтобы создать сервис, и выберите <kbd>Deploy Other Service</kbd> - <kbd>Deploy MongoDB</kbd>, чтобы сначала создать сервис базы данных.
 
-Give our MongoDB database service a name, click the <kbd>Deploy</kbd> button, and our database service is deployed.
+Задайте имя сервису базы данных MongoDB, нажмите кнопку <kbd>Deploy</kbd> — и сервис базы данных развёрнут.
 
 ![zeabur2](../../../assets/zeabur-3.png) ![zeabur4](../../../assets/zeabur-4.png)
 
-Next, we continue to click <kbd>Add New Service</kbd> to create the Waline service, this time we choose to click <kbd>Deploy Your Source Code</kbd>. In the following GitHub project list, find the project that we forked at the beginning, and click the corresponding <kbd>Import</kbd> button.
+Затем снова нажмите <kbd>Add New Service</kbd>, чтобы создать сервис Waline; на этот раз выберите <kbd>Deploy Your Source Code</kbd>. В появившемся списке проектов GitHub найдите проект, который вы форкнули в самом начале, и нажмите соответствующую кнопку <kbd>Import</kbd>.
 
-Give our Waline service a name, click the <kbd>Deploy</kbd> button, and our Waline service is deployed.
+Задайте имя сервису Waline, нажмите кнопку <kbd>Deploy</kbd> — и сервис Waline развёрнут.
 
 ![zeabur6](../../../assets/zeabur-6.png) ![zeabur7](../../../assets/zeabur-7.png)
 
-Don't rush to close the Waline service panel. After the service is deployed, we need to add an access domain name to the service. Click the <kbd>Generate Domain</kbd> button under the <kbd>Domains</kbd> tab, enter the domain name prefix you want and click the <kbd>Save</kbd> button to add it to our service Visit the domain name.
+Не спешите закрывать панель сервиса Waline. После развёртывания сервиса нужно добавить домен для доступа. Нажмите кнопку <kbd>Generate Domain</kbd> на вкладке <kbd>Domains</kbd>, введите желаемый префикс домена и нажмите кнопку <kbd>Save</kbd>, чтобы добавить домен доступа к сервису.
 
 ![zeabur8](../../../assets/zeabur-8.png) ![zeabur9](../../../assets/zeabur-9.png)
 
-Everything is ready, and the next step is to witness the miracle. Open the access domain name we just set up, test to post comments, everything is successful~ Next, configure this domain name in the client and you can comment happily!
+Всё готово, осталось проверить результат. Откройте только что настроенный домен для доступа, проверьте отправку комментария: если всё прошло успешно, настройте этот домен в клиенте и комментируйте с удовольствием!
 
 ![zeabur2](../../../assets/zeabur-10.png)
 
-## How to update
+## Как обновить
 
-Go to the GitHub repository and modify the `@waline/vercel` version number in the package.json file to the latest version.
+Перейдите в репозиторий GitHub и измените номер версии `@waline/vercel` в файле package.json на последнюю версию.
 
-## How to modify environment variables
+## Как изменить переменные окружения
 
-You can enter the environment variable management page through <kbd>Variables</kbd> Tab, and it will be automatically redeployed after modification.
+Перейти на страницу управления переменными окружения можно через вкладку <kbd>Variables</kbd>; после изменения сервис будет развёрнут заново автоматически.
 
 ![zeabur11](../../../assets/zeabur-11.png)

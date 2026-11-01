@@ -3,7 +3,7 @@ title: Руководство
 icon: cookbook
 ---
 
-This cookbook will introduce Waline in more depth.
+Этот раздел подробнее познакомит вас с Waline.
 
 <!-- more -->
 

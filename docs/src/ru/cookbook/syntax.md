@@ -1,53 +1,53 @@
 ---
-title: Comment Format Support
+title: Поддерживаемое форматирование комментариев
 icon: format
 order: 2
 ---
 
-The supported Markdown syntax in comments is as follows.
+Поддерживаемый в комментариях синтаксис Markdown приведён ниже.
 
 <!-- more -->
 
-## Markdown Support
+## Поддержка Markdown
 
-::: preview Headings
+::: preview Заголовки
 
 <!-- markdownlint-disable MD025 -->
 
-# Heading1
+# Заголовок1
 
 <!-- markdownlint-enable MD025 -->
 
-## Heading2
+## Заголовок2
 
-### Heading3
+### Заголовок3
 
-#### Heading4
+#### Заголовок4
 
-##### Heading5
+##### Заголовок5
 
-###### Heading7
-
-:::
-
-::: preview Text
-
-This sentence has **bold**、_italic_ and ~~delete~~ style text.
+###### Заголовок7
 
 :::
 
-::: preview Paragraph
+::: preview Текст
 
-This is a paragraph.
-
-This is another paragraph.
+В этом предложении есть **полужирный**、_курсивный_ и ~~зачёркнутый~~ текст.
 
 :::
 
-::: details Line Break
+::: preview Абзац
 
-I would like to line break at  
-this point
+Это абзац.
+
+Это другой абзац.
+
+:::
+
+::: details Перенос строки
+
+Я хочу сделать перенос строки  
+в этом месте
 
 ```md
 I would like to line break at  
@@ -56,75 +56,75 @@ this point
 
 :::
 
-::: preview Blockquotes
+::: preview Цитаты
 
-> Blockquotes can also be nested...
+> Цитаты тоже могут быть вложенными...
 >
-> > ...by using greater-than signs right next to each other...
+> > ...если ставить знаки «больше» вплотную друг к другу...
 > >
-> > > ...or with spaces between arrows.
+> > > ...или с пробелами между стрелками.
 
 :::
 
-::: preview Unordered List
+::: preview Неупорядоченный список
 
-- Create a list by starting a line with `-`
-- Make sub-lists by indenting 2 spaces:
-  - Marker character change forces new list start:
+- Создайте список, начав строку с `-`
+- Делайте подсписки с отступом в 2 пробела:
+  - Смена символа маркера начинает новый список:
     - Ac tristique libero volutpat at
     - Facilisis in pretium nisl aliquet
     - Nulla volutpat aliquam velit  
-      link break
+      перенос строки
 
-      New paragraph
+      Новый абзац
 
-- It’s easy!
+- Это просто!
 
 :::
 
-::: preview Ordered List
+::: preview Упорядоченный список
 
 1. Lorem ipsum dolor sit amet
 1. Consectetur adipiscing elit  
-   line break  
-   line break again
+   перенос строки  
+   перенос строки снова
 1. Integer molestie lorem at massa
 
 :::
 
-::: preview HR
+::: preview Горизонтальная линия
 
 ---
 
 :::
 
-::: preview Link
+::: preview Ссылка
 
-[HomePage](/)
-
-:::
-
-::: preview Image
-
-![Logo](/logo.png)
+[Главная страница](/)
 
 :::
 
-::: preview Table
+::: preview Изображение
 
-|           center           |                    right | left                    |
-| :------------------------: | -----------------------: | :---------------------- |
-| For center align use `:-:` | For right align use `-:` | For left align use `:-` |
-|             b              |                aaaaaaaaa | aaaa                    |
-|             c              |                     aaaa | a                       |
+![Логотип](/logo.png)
 
 :::
 
-::: preview Code
+::: preview Таблица
 
-Inline Code: `code`
+|                  по центру                   |                                            справа | слева                                            |
+| :------------------------------------------: | ------------------------------------------------: | :----------------------------------------------- |
+| Для выравнивания по центру используйте `:-:` | Для выравнивания по правому краю используйте `-:` | Для выравнивания по левому краю используйте `:-` |
+|                      b                       |                                         aaaaaaaaa | aaaa                                             |
+|                      c                       |                                              aaaa | a                                                |
 
-Block code:
+:::
+
+::: preview Код
+
+Встроенный код: `code`
+
+Блок кода:
 
 ```js
 var foo = function (bar) {
@@ -136,13 +136,13 @@ console.log(foo(5));
 
 :::
 
-## Superscript and Subscript
+## Верхние и нижние индексы
 
-Use `^` and `~` to mark the superscript and subscript.
+Используйте `^` и `~` для обозначения верхнего и нижнего индексов.
 
 <!-- prettier-ignore-start -->
 
-::: preview Demo
+::: preview Демонстрация
 
 - 19^th^
 - H~2~O
@@ -151,19 +151,19 @@ Use `^` and `~` to mark the superscript and subscript.
 
 <!-- prettier-ignore-end -->
 
-## Emojis
+## Эмодзи
 
-Besides user-configured or built-in Weibo emojis, we also support complete Emoji shorthand emoticons.
+Помимо настроенных пользователем или встроенных эмодзи Weibo, поддерживаются и полные наборы сокращённых смайликов Emoji.
 
 <!-- prettier-ignore-start -->
 
-::: preview Demo
+::: preview Демонстрация
 
-Classic:
+Классические:
 
 :wink: :cry: :laughing: :yum:
 
-Shortcuts:
+Сокращения:
 
 8-) :) :* :( :-) :-( ;)
 
@@ -171,11 +171,11 @@ Shortcuts:
 
 <!-- prettier-ignore-end -->
 
-## Code Block Highlight
+## Подсветка блоков кода
 
-We support highlighting in almost all languages.
+Поддерживается подсветка почти для всех языков.
 
-::: details Demo
+::: details Демонстрация
 
 ```html
 <!doctype html>
@@ -240,13 +240,13 @@ footer p {
 
 :::
 
-## Mathematical formula
+## Математические формулы
 
-You can use `$ ... $` to create inline formulas, or use `$$ ... $$` to create block-level formulas.
+С помощью `$ ... $` можно создавать встроенные формулы, а с помощью `$$ ... $$` — блочные.
 
-::: preview Demo
+::: preview Демонстрация
 
-Euler’s identity $e^{i\pi}+1=0$ is a beautiful formula in $\mathbb{R}^2$.
+Тождество Эйлера $e^{i\pi}+1=0$ — красивая формула в $\mathbb{R}^2$.
 
 $$
 \frac {\partial^r} {\partial \omega^r} \left(\frac {y^{\omega}} {\omega}\right)
@@ -255,6 +255,6 @@ $$
 
 :::
 
-## Embed HTML
+## Встраивание HTML
 
-Feel free to add any HTML content unless triggering [the protection mechanism](../guide/features/safety.md#comment-security).
+Можно свободно добавлять любое HTML-содержимое, если только оно не активирует [механизм защиты](../guide/features/safety.md#безопасность-комментариев).

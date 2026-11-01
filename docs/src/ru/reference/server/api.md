@@ -3,99 +3,99 @@ title: API
 icon: api
 ---
 
-## Comment
+## Комментарии
 
-### Comment List
+### Список комментариев
 
-Get comment list for article
+Получить список комментариев к статье
 
 ```http
 GET /api/comment
 ```
 
-**Parameters**:
+**Параметры**:
 
-| Parameter | Type   | Description                                                                                                                                               |
-| --------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| path      | string | Article id for comment                                                                                                                                    |
-| page      | number | Comment page                                                                                                                                              |
-| pageSize  | number | Comment list page size                                                                                                                                    |
-| sortBy    | string | Which sort type for comment list, default descending sort by create time, also you can ascending sort by create_time, or descending sort by comment like. |
+| Параметр | Тип    | Описание                                                                                                                                                                             |
+| -------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| path     | string | Идентификатор статьи для комментариев                                                                                                                                                |
+| page     | number | Страница комментариев                                                                                                                                                                |
+| pageSize | number | Размер страницы списка комментариев                                                                                                                                                  |
+| sortBy   | string | Тип сортировки списка комментариев: по умолчанию сортировка по убыванию времени создания, также доступна сортировка по возрастанию `create_time` или по убыванию отметок «Нравится». |
 
-### Comment Count
+### Количество комментариев
 
-Get comment count for article
+Получить количество комментариев к статье
 
 ```http
 GET /api/comment?type=count
 ```
 
-**Parameters**:
+**Параметры**:
 
-| Parameter | Type   | Description                                                   |
-| --------- | ------ | ------------------------------------------------------------- |
-| url       | string | Article id for comment, return site comment count if it empty |
+| Параметр | Тип    | Описание                                                                                              |
+| -------- | ------ | ----------------------------------------------------------------------------------------------------- |
+| url      | string | Идентификатор статьи для комментариев; если он пуст, возвращается количество комментариев всего сайта |
 
-### Recent Comment
+### Последние комментарии
 
-Get recent comment
+Получить последние комментарии
 
 ```http
 GET /api/comment?type=recent
 ```
 
-**Parameters**:
+**Параметры**:
 
-| Parameter | Type   | Description          |
-| --------- | ------ | -------------------- |
-| count     | number | comment count return |
+| Параметр | Тип    | Описание                             |
+| -------- | ------ | ------------------------------------ |
+| count    | number | Количество возвращаемых комментариев |
 
-### Submit comment
+### Отправка комментария
 
 ```http
 POST /api/comment
 ```
 
-**Parameters**:
+**Параметры**:
 
-| Parameter | Type   | Description                         |
-| --------- | ------ | ----------------------------------- |
-| comment   | string | comment content                     |
-| link      | string | commentator site                    |
-| mail      | string | commentator email                   |
-| nick      | string | commentator nick                    |
-| pid       | string | comment id which one replied        |
-| rid       | string | root comment id which one owned     |
-| ua        | string | commentator's user agent            |
-| url       | string | Article id for comment              |
-| at        | string | comment nick name which one replied |
+| Параметр | Тип    | Описание                                                       |
+| -------- | ------ | -------------------------------------------------------------- |
+| comment  | string | Содержимое комментария                                         |
+| link     | string | Сайт пользователя, оставившего комментарий                     |
+| mail     | string | Электронная почта пользователя, оставившего комментарий        |
+| nick     | string | Имя пользователя, оставившего комментарий                      |
+| pid      | string | Идентификатор комментария, на который отвечают                 |
+| rid      | string | Идентификатор корневого комментария                            |
+| ua       | string | User agent пользователя, оставившего комментарий               |
+| url      | string | Идентификатор статьи для комментариев                          |
+| at       | string | Имя пользователя, оставившего комментарий, на который отвечают |
 
-## Reading statistics
+## Статистика просмотров
 
-### Get reading statistics
+### Получение статистики просмотров
 
-Get the number of readings corresponding to an article or multiple articles.
+Получить количество просмотров, соответствующее одной или нескольким статьям.
 
 ```http
 GET /api/article
 ```
 
-**Parameters**:
+**Параметры**:
 
-| Parameter | Type   | Description                                                         |
-| --------- | ------ | ------------------------------------------------------------------- |
-| path      | string | Article id for comment，multiple ids should be spliced with commas. |
+| Параметр | Тип    | Описание                                                                               |
+| -------- | ------ | -------------------------------------------------------------------------------------- |
+| path     | string | Идентификатор статьи для комментариев; несколько идентификаторов разделяются запятыми. |
 
-### Update reading statistics
+### Обновление статистики просмотров
 
-Update the reading count of an article.
+Обновить количество просмотров статьи.
 
 ```http
 POST /api/article
 ```
 
-**Parameters**:
+**Параметры**:
 
-| Parameter | Type   | Description            |
-| --------- | ------ | ---------------------- |
-| path      | string | Article id for comment |
+| Параметр | Тип    | Описание                              |
+| -------- | ------ | ------------------------------------- |
+| path     | string | Идентификатор статьи для комментариев |

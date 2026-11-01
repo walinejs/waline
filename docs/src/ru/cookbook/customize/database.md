@@ -1,10 +1,10 @@
 ---
-title: Custom Database Service
+title: Собственный сервис базы данных
 icon: database
 order: -2
 ---
 
-Waline classifies database operations into several operations such as CURD, and all upper-level logic is completed through the superposition of these basic operations. Through the adapter mode, different types of database storage services only need to implement these low-level atomic operations to run through all system logic.
+Waline разделяет операции с базой данных на несколько базовых операций, в том числе CRUD, а вся вышестоящая логика строится путём их объединения. Благодаря режиму адаптера, разным типам сервисов хранения достаточно реализовать эти низкоуровневые атомарные операции, чтобы работала вся системная логика.
 
 ```js
 // index.js
@@ -15,7 +15,7 @@ module.exports = Application({
 });
 ```
 
-Waline provides the `model` option to customize the database model, and we will uniformly use the incoming model for database operations. All that remains is that we need to implement this `CustomModel` class.
+Waline предоставляет параметр `model` для настройки модели базы данных, и все операции с базой данных единообразно выполняются через переданную модель. Остаётся только реализовать этот класс `CustomModel`.
 
 ```js
 class CustomModel {
@@ -45,25 +45,25 @@ class CustomModel {
 }
 ```
 
-The above is the basic structure that the `CustomModel` class must implement, and it must include the implementation of several basic methods `select`, `add`, `update`, `delete` and `count`. Waline is developed based on the [ThinkJS](https://thinkjs.org/en) framework, and the underlying database operations use the database operation syntax that comes with the framework. Before implementing these methods, you need to have some basic understanding of the syntax of database conditional queries.
+Выше приведена базовая структура, которую должен реализовать класс `CustomModel`: в неё обязательно входят методы `select`, `add`, `update`, `delete` и `count`. Waline разработан на основе фреймворка [ThinkJS](https://thinkjs.org/en), а операции с базой данных на нижнем уровне используют синтаксис, встроенный в этот фреймворк. Прежде чем реализовывать эти методы, нужно иметь базовое представление о синтаксисе условных запросов к базе данных.
 
-## Condition query
+## Условные запросы
 
-For the complete conditional query syntax, please refer to [ThinkJS Documentation](https://thinkjs.org/ru/doc/3.0/relation_model.html#toc-d47), and the implementation of Waline is a subset of it.
+Полный синтаксис условных запросов описан в [документации ThinkJS](https://thinkjs.org/en/doc/3.0/relation_model.html#toc-d47); реализация в Waline является его подмножеством.
 
-Multiple conditional queries can be passed in through the object, and the default is equal to the condition. When the value is a two-dimensional array, the first bit can be passed to other judgment operations, and the second bit corresponds to the value, such as `{user_id: ['!=', 0]}`. Currently supported are `!=`, `>`, `IN`, `NOT IN`, `LIKE` centralized operations.
+В объект можно передать несколько условий запроса; по умолчанию используется сравнение на равенство. Если значение является двумерным массивом, первый элемент задаёт операцию сравнения, а второй соответствует значению, например `{user_id: ['!=', 0]}`. Сейчас поддерживаются операции `!=`, `>`, `IN`, `NOT IN` и `LIKE`.
 
-Similar to MySQL, in the `LIKE` operation, we define the mode of the fuzzy query through the position of `%`:
+Как и в MySQL, в операции `LIKE` режим нечёткого поиска задаётся положением `%`:
 
-- `content%` means search for content starting with `content`
-- `%content` means search for content ending with `content`
-- `%content%` means search for content containing `content`
+- `content%` — поиск строк, начинающихся с `content`
+- `%content` — поиск строк, заканчивающихся на `content`
+- `%content%` — поиск строк, содержащих `content`
 
-The conditional query object supports passing in multiple query conditions. The default relationship between these conditions is `AND`, and the `_logic` magic keyword can be used to specify their relationship as `OR`. When there are `AND` and `OR`, we can use `_complex` magic keyword expression.
+Объект условного запроса поддерживает несколько условий. По умолчанию они связываются через `AND`, а специальное ключевое слово `_logic` позволяет указать связь `OR`. Если нужны одновременно `AND` и `OR`, используется специальное ключевое слово `_complex`.
 
-The text may not be well understood. Let's take a look at the query examples used in the project to deepen our impression.
+Возможно, по тексту это понять непросто, поэтому рассмотрим примеры запросов, используемых в проекте.
 
-1. General query:
+1. Обычный запрос:
 
    ```js
    const model = new CustomModel('Comment');
@@ -75,7 +75,7 @@ The text may not be well understood. Let's take a look at the query examples use
    // SELECT * FROM Comment WHERE url = '/' AND user_id != 0 AND createdAt > "2023-04-16 00:00:00";
    ```
 
-2. IN / NOT IN query
+2. Запрос IN / NOT IN
 
    ```js
    const model = new CustomModel('Users');
@@ -89,7 +89,7 @@ The text may not be well understood. Let's take a look at the query examples use
    // SELECT * FROM Comment WHERE status NOT IN ('waiting', 'spam');
    ```
 
-3. LIKE query
+3. Запрос LIKE
 
    ```js
    const model = new CustomModel('Comment');
@@ -97,7 +97,7 @@ The text may not be well understood. Let's take a look at the query examples use
    // SELECT * FROM Comment WHERE content LIKE "%content%";
    ```
 
-4. Multi-condition query
+4. Запрос с несколькими условиями
 
    ```js
    const model = new CustomModel('Comment');
@@ -110,7 +110,7 @@ The text may not be well understood. Let's take a look at the query examples use
    // SELECT * FROM Comment WHERE url = '/' OR user_id != 0 OR createdAt > "2023-04-16 00:00:00";
    ```
 
-5. Compound query
+5. Составной запрос
 
    ```js
    const model = new CustomModel('Comment');
@@ -125,31 +125,31 @@ The text may not be well understood. Let's take a look at the query examples use
    // SELECT * FROM Comment WHERE url = '/' AND ( user_id = 0 OR status NOT IN ('waiting', 'spam'));
    ```
 
-If you are more familiar with TypeScript, [type definitions for conditional queries is here](https://github.com/walinejs/dittorm/blob/master/src/types/where.ts).
+Тем, кто хорошо знаком с TypeScript, пригодятся [определения типов для условных запросов](https://github.com/walinejs/dittorm/blob/master/src/types/where.ts).
 
-## Implement query
+## Реализация запросов
 
-The `select`, `update`, `delete`, `count` methods in the adapter are actually complicated in the conditional query. After understanding the conditional query syntax in the previous part, the subsequent logic is the database operation. surface.
+Методы `select`, `update`, `delete` и `count` в адаптере на самом деле сложны именно в части условных запросов. После освоения синтаксиса из предыдущего раздела остальная логика — это уже непосредственно операции с базой данных.
 
-The `select()` method has a second argument `{desc, limit, offset, field}`. This is also easier to understand:
+У метода `select()` есть второй аргумент `{desc, limit, offset, field}`. Его тоже несложно понять:
 
-- `desc`: Specify a field to sort in descending order of the value of the field
-- `limit`: specify the number of data returned
-- `offset`: Specify the returned data from which item to return
-- `field`: Specify the field to return data, all fields are returned by default
+- `desc`: указывает поле, по которому данные сортируются по убыванию значения этого поля
+- `limit`: указывает количество возвращаемых записей
+- `offset`: указывает, начиная с какой записи возвращать данные
+- `field`: указывает поля, данные которых нужно вернуть; по умолчанию возвращаются все поля
 
-The `update()` method needs to be compatible with scenarios where the `data` input parameter may be a calculation function, such as adding 1 to the number of page viewers:
+Метод `update()` должен поддерживать сценарии, когда входной параметр `data` является функцией вычисления, например для увеличения счётчика просмотров страницы на 1:
 
 ```js
 const model = new CustomModel('Count');
 await model.update((thread) => ({ view: thread.view + 1 }), { url: '/' });
 ```
 
-Return data type `select()` always returns an array, `add()` and `update()` need to include the full data of the indexed field.
+Типы возвращаемых данных: `select()` всегда возвращает массив, а `add()` и `update()` должны возвращать полные данные записи.
 
-## refer to
+## Пример для справки
 
-Based on the above logic, in addition to implementing the storage service of professional databases, the official also implemented the GitHub storage service very interestingly. We store the data in GitHub in the form of a CSV file, and obtain the content of the CSV file each time we query, and filter out the final data according to the conditional query statement in JS and return it. The following is the official implementation, hoping to give you some reference.
+Опираясь на описанную логику, разработчики Waline, помимо сервисов хранения на профессиональных базах данных, реализовали довольно любопытный сервис хранения на GitHub. Данные хранятся в GitHub в виде CSV-файла: при каждом запросе читается содержимое CSV-файла, затем в JS данные фильтруются по условиям запроса, и результат возвращается. Ниже приведена официальная реализация — возможно, она будет полезна как образец.
 
 ```js
 //source code: https://github.com/walinejs/waline/blob/main/packages/server/src/service/storage/github.js

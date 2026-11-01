@@ -1,23 +1,23 @@
 ---
-title: Comment Format Support
+title: Поддержка форматов комментариев
 icon: format
 order: 1
 ---
 
-You can add different contents to comment, including extended Markdown syntax and HTML tags.
+В комментарии можно добавлять различное содержимое, включая расширенный синтаксис Markdown и HTML-теги.
 
 <!-- more -->
 
-## Format Support
+## Поддержка форматов
 
-We support the full CommonMark (standard Markdown syntax), along with the following extensions:
+Мы поддерживаем полный CommonMark (стандартный синтаксис Markdown), а также следующие расширения:
 
-- GFM style table
-- GFM style strike through
-- Subscript and superscript
-- Emoji
-- Code block highlighting
-- $\TeX$ formula
+- таблицы в стиле GFM
+- зачёркивание в стиле GFM
+- нижние и верхние индексы
+- эмодзи
+- подсветка блоков кода
+- формулы $\TeX$
 
 ::: info GFM
 
@@ -25,36 +25,36 @@ Github Flavored Markdown
 
 :::
 
-Meanwhile, you can freely embed any HTML content without triggering the [protection mechanism](./safety.md#comment-security).
+Кроме того, можно свободно встраивать любое HTML-содержимое, не срабатывая при этом [механизм защиты](./safety.md#безопасность-комментариев).
 
-## Limited Preview Support
+## Ограниченная поддержка предпросмотра
 
-In order to control the size of the client, we only place a small Markdown parser in the official client `@waline/client`, which causes many grammars to not display correctly in the preview panel (they can be **correctly rendered in the comment area**).
+Чтобы контролировать размер клиента, в официальный клиент `@waline/client` встроен лишь небольшой парсер Markdown, из-за чего многие конструкции отображаются в панели предпросмотра некорректно (они **корректно отображаются в области комментариев**).
 
-This includes the following restrictions:
+Это включает следующие ограничения:
 
-- Standard emoji syntax (eg :tada:`:tada:`) does not render correctly
+- Стандартный синтаксис эмодзи (например, :tada:`:tada:`) отображается некорректно
 
-- The upper and lower subscripts (eg: `H~2~O`, `x^2^`) cannot be rendered correctly
+- Верхние и нижние индексы (например, `H~2~O`, `x^2^`) не отображаются корректно
 
-- $\TeX$ syntax, i.e. math formulas (eg: `$a = 1$`) cannot be rendered by default.
+- Синтаксис $\TeX$, то есть математические формулы (например, `$a = 1$`), по умолчанию не отображается.
 
-  When using the official client, you can customize the $\TeX$ rendering in preview by setting the `texRenderer` option, see [Cookbook → Use a custom $\TeX$ renderer](../../cookbook/customize/tex-renderer.md).
+  При использовании официального клиента можно настроить отображение $\TeX$ в предпросмотре с помощью параметра `texRenderer`, см. [Рецепты → Использование собственного рендерера $\TeX$](../../cookbook/customize/tex-renderer.md).
 
-- Under the default highlighter, code blocks will be highlighted with random colors with specific delimiters.
+- При стандартном подсветчике блоки кода подсвечиваются случайными цветами с определёнными разделителями.
 
-  When using the official client, you can customize the code highlighting when previewing by setting the `highlighter` option, see [Cookbook → Custom Code Highlighting](../../cookbook/customize/highlighter.md).
+  При использовании официального клиента можно настроить подсветку кода в предпросмотре с помощью параметра `highlighter`, см. [Рецепты → Пользовательская подсветка кода](../../cookbook/customize/highlighter.md).
 
-## More
+## Дополнительно
 
-::: tip Principle
+::: tip Принцип
 
-1. Considering package size, the client uses `marked` for rendering and uses a < 1kb highlighter for highlighting by default, and does not include a $\TeX$ renderer, resulting in the above limitations.
+1. Учитывая размер пакета, клиент использует `marked` для отрисовки и подсветчик размером < 1kb для подсветки по умолчанию, а также не включает рендерер $\TeX$, что и приводит к описанным выше ограничениям.
 
-1. When a user submits a comment, the client embeds a custom Emoji image and sends the original comment to the server.
+1. Когда пользователь отправляет комментарий, клиент встраивает собственное изображение эмодзи и отправляет исходный комментарий на сервер.
 
-1. The server receives the original text, uses `markdown-it` to render markdown correctly with relevant plug-ins, uses `prismjs` to highlight code blocks according to the language, and performs $\TeX$ rendering according to user settings, and finally performs XSS processing .
+1. Сервер получает исходный текст, корректно отрисовывает Markdown с помощью `markdown-it` и соответствующих плагинов, подсвечивает блоки кода по языку с помощью `prismjs`, выполняет отрисовку $\TeX$ в соответствии с настройками пользователя и, наконец, выполняет XSS-обработку.
 
-1. After the processing is completed, the server will store the correct rendering content and return it to the client when needed to ensure the normal display of the comment area.
+1. После завершения обработки сервер сохраняет корректно отрисованное содержимое и возвращает его клиенту при необходимости, чтобы обеспечить нормальное отображение области комментариев.
 
 :::

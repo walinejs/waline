@@ -1,16 +1,16 @@
 ---
-title: Article Reactions
+title: Реакции на статью
 icon: reaction
 order: 4
 ---
 
-Waline allows users to express reactions for article content.
+Waline позволяет пользователям выражать своё отношение к содержимому статьи.
 
 <!-- more -->
 
-## Getting Started
+## Начало работы
 
-To quickly enable reactions, you can set the `reaction` option to `true` to display a default list of reactions:
+Чтобы быстро включить реакции, установите для параметра `reaction` значение `true` — отобразится список реакций по умолчанию:
 
 ```js
 Waline.init({
@@ -20,11 +20,11 @@ Waline.init({
 });
 ```
 
-Waline will display the default list of reactions above the comment box.
+Waline отобразит список реакций по умолчанию над полем комментариев.
 
-## Customize Reactions
+## Настройка реакций
 
-If you need to customize these reaction emoticons, you can pass in an array containing the link of the reaction emoticon image, representing reactions you want the user to choose with:
+Если нужно настроить эти эмоции-реакции, можно передать массив, содержащий ссылки на изображения эмоций-реакций, которые будут предложены пользователю:
 
 ```js
 Waline.init({
@@ -39,20 +39,20 @@ Waline.init({
 });
 ```
 
-Meanwhile, you can customize the title of the reaction through `reactionTitle` in `locale`, and you can also customize the name of the reaction expression through `reaction0` to `reaction8`, see [Multilingual Settings](./i18n.md) .
+Кроме того, заголовок блока реакций можно настроить через `reactionTitle` в `locale`, а названия реакций — через `reaction0` … `reaction8`, см. [Настройка языков](./i18n.md) .
 
-## Precautions
+## Меры предосторожности
 
-::: tip Number Limitation
+::: tip Ограничение количества
 
-Waline supports up to 9 reactions, and you can add less than 9 reactions without any problems.
+Waline поддерживает до 9 реакций, можно без проблем добавить и меньше 9 реакций.
 
 :::
 
-::: warning Counting Rules
+::: warning Правила подсчёта
 
-Counting of reactions is based on location.
+Подсчёт реакций основан на позиции.
 
-If you need to reorder and adjust the reactions, check [#1451](https://github.com/walinejs/waline/issues/1451#issuecomment-1264555264) for more details.
+Если нужно изменить порядок и состав реакций, подробности см. в [#1451](https://github.com/walinejs/waline/issues/1451#issuecomment-1264555264).
 
 :::

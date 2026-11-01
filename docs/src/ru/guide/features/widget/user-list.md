@@ -1,31 +1,31 @@
 ---
-title: Users Rank List/Users Wall Widget
+title: Виджет рейтинга и стены пользователей
 icon: rank
 ---
 
-Waline supports displaying users rank list or users wall by widget, which is convenient for displaying the commentor's info in the sidebar of the blog.
+Waline позволяет отображать рейтинг пользователей или стену пользователей с помощью виджета, что удобно для показа сведений о комментаторах в боковой панели блога.
 
 <!-- more -->
 
-## Component options
+## Параметры компонента
 
-The users rank list/users wall widget is named `UserList` and contains six options:
+Виджет рейтинга и стены пользователей называется `UserList` и содержит шесть параметров:
 
-- `el` (optional): the element to be mounted
-- `serverURL`: server link
-- `count` The number of users needed to get
-- `mode`: `list` means users rank list, `wall` means users wall
-- `lang`: i18n support, more ref to [i18n](../i18n.md)
-- `locale`: customize the language, more ref to [i18n](../i18n.md)
+- `el` (необязательно): элемент, в который выполняется монтирование
+- `serverURL`: ссылка на сервер
+- `count`: количество пользователей, которое нужно получить
+- `mode`: `list` — рейтинг пользователей, `wall` — стена пользователей
+- `lang`: поддержка i18n, подробнее см. [i18n](../i18n.md)
+- `locale`: настройка языка, подробнее см. [i18n](../i18n.md)
 
-The data format returned by the component should be `Promise<{ users: WalineUser[], destroy: () => void }>`.
+Формат данных, возвращаемых компонентом: `Promise<{ users: WalineUser[], destroy: () => void }>`.
 
-- `users` property: an array of the user list with exact number of `count`
-- `destroy` method: a function which will destroy the widget
+- свойство `users`: массив пользователей ровно в количестве `count`
+- метод `destroy`: функция, которая уничтожает виджет
 
-## Basic usage
+## Базовое использование
 
-### Users Rank List
+### Список рейтинга пользователей
 
 ```html
 <div id="waline-users"></div>
@@ -40,7 +40,7 @@ The data format returned by the component should be `Promise<{ users: WalineUser
 </script>
 ```
 
-### Users Wall
+### Стена пользователей
 
 ```html
 <div id="waline-users"></div>
@@ -56,11 +56,11 @@ The data format returned by the component should be `Promise<{ users: WalineUser
 </script>
 ```
 
-## Advanced usage
+## Расширенное использование
 
-If you are not satisfied with the default output format, you can call the component by omitting the `el` option to get the data and render it yourself.
+Если стандартный формат вывода не подходит, можно вызвать компонент без параметра `el`, получить данные и отрисовать их самостоятельно.
 
-Example:
+Пример:
 
 ```html
 <div id="waline-users"></div>

@@ -1,99 +1,99 @@
 ---
-title: Начать
+title: Начало работы
 icon: creative
 dir:
   collapsible: false
   order: 1
 ---
 
-Welcome to Waline. In just a few steps, you can enable Waline to provide comments and pageviews on your site.
+Добро пожаловать в Waline. Всего за несколько шагов вы сможете включить Waline, чтобы добавить на свой сайт комментарии и просмотры страниц.
 
 <!-- more -->
 
-## Server Deploy
+## Развёртывание сервера
 
 [![Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fwalinejs%2Fwaline%2Ftree%2Fmain%2Fexample)
 
-1. Click the button above to go to Vercel and deploy the server.
+1. Нажмите кнопку выше, чтобы перейти в Vercel и развернуть сервер.
 
    ::: note
 
-   If you are not logged in, Vercel will prompt you to sign up or log in. Please use your GitHub account for quick login.
+   Если вы не вошли в систему, Vercel предложит зарегистрироваться или войти. Для быстрого входа используйте аккаунт GitHub.
 
    :::
 
-1. Enter a Vercel project name you like and click `Create` to continue:
+1. Введите подходящее название проекта Vercel и нажмите `Create`, чтобы продолжить:
 
    ![create](../../../assets/vercel-1.png)
 
-1. Vercel will now create and initialize a new repository based on the Waline template. The repository name will be the project name you just entered.
+1. Vercel создаст и инициализирует новый репозиторий на основе шаблона Waline. Названием репозитория станет только что введённое название проекта.
 
    ![deploy](../../../assets/vercel-2.png)
 
-   After one or two minutes, fireworks will appear on the screen to celebrate a successful deployment. Click `Go to Dashboard` to jump to the application dashboard.
+   Через одну-две минуты на экране появится фейерверк в честь успешного развёртывания. Нажмите `Go to Dashboard`, чтобы перейти в панель управления приложением.
 
    ![deploy](../../../assets/vercel-3.png)
 
-## Create a Database
+## Создание базы данных
 
-1. Click `Storage` at the top to enter the storage configuration page, then choose `Create Database`. Select `Neon` as the `Marketplace Database Providers`, and click `Continue` to proceed.
+1. Нажмите `Storage` в верхней части, чтобы открыть страницу настройки хранилища, затем выберите `Create Database`. В качестве `Marketplace Database Providers` выберите `Neon` и нажмите `Continue`, чтобы продолжить.
 
    ![neon](../../../assets/vercel-5.png)
 
-1. You will be prompted to create a Neon account. Click `Accept and Create` to accept and create it. Next, you will choose the database plan, including region and quota. You can leave everything as default and click `Continue`.
+1. Вам будет предложено создать аккаунт Neon. Нажмите `Accept and Create`, чтобы принять условия и создать его. Затем потребуется выбрать тариф базы данных, включая регион и квоту. Можно оставить всё по умолчанию и нажать `Continue`.
 
    ![neon](../../../assets/vercel-6.png)
 
-1. You will then be asked to define the database name. You can also leave it unchanged and click `Continue`.
+1. Далее вас попросят задать имя базы данных. Его также можно оставить без изменений и нажать `Continue`.
 
    ![neon](../../../assets/vercel-7.png)
 
-1. Now you should see the database service you just created under `Storage`. Click it and select `Open in Neon` to jump to Neon. In the Neon interface, choose `SQL Editor` from the left sidebar, paste the SQL statements from [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) into the editor, and click `Run` to create the tables.
+1. Теперь в разделе `Storage` должен отображаться только что созданный сервис базы данных. Нажмите на него и выберите `Open in Neon`, чтобы перейти в Neon. В интерфейсе Neon выберите `SQL Editor` на левой боковой панели, вставьте в редактор SQL-выражения из [waline.pgsql](https://github.com/walinejs/waline/blob/main/assets/waline.pgsql) и нажмите `Run`, чтобы создать таблицы.
 
    ![neon](../../../assets/vercel-10.png)
 
    ![neon](../../../assets/vercel-11.png)
 
-1. After a short while, you will be notified that the creation was successful. Go back to Vercel, click `Deployments` at the top, and click the `Redeploy` button on the right of the latest deployment. This step ensures that the newly configured database service takes effect.
+1. Через некоторое время появится уведомление об успешном создании. Вернитесь в Vercel, нажмите `Deployments` в верхней части и нажмите кнопку `Redeploy` справа от последнего развёртывания. Этот шаг гарантирует, что только что настроенный сервис базы данных вступит в силу.
 
    ![redeploy success](../../../assets/vercel-12.png)
 
-1. You will be redirected to the `Overview` page and the deployment will start. After a moment, the `STATUS` will change to `Ready`. Click `Visit` to open the deployed website. This URL is your server address.
+1. Вы будете перенаправлены на страницу `Overview`, и начнётся развёртывание. Через некоторое время `STATUS` изменится на `Ready`. Нажмите `Visit`, чтобы открыть развёрнутый сайт. Этот URL и есть адрес вашего сервера.
 
    ![visit](../../../assets/vercel-14.png)
 
-## Bind a Custom Domain
+## Привязка собственного домена
 
-1. Click `Settings` → `Domains` at the top to enter the domain configuration page.
+1. Нажмите `Settings` → `Domains` в верхней части, чтобы открыть страницу настройки домена.
 
-1. Enter the domain you want to bind and click `Add`.
+1. Введите домен, который хотите привязать, и нажмите `Add`.
 
    ![Add domain](../../../assets/vercel-16.png)
 
-1. Add a new `CNAME` record at your domain provider:
+1. Добавьте новую запись `CNAME` у вашего регистратора домена:
 
-   | Type  | Name    | Value                |
+   | Тип   | Имя     | Значение             |
    | ----- | ------- | -------------------- |
    | CNAME | example | cname.vercel-dns.com |
 
-1. Wait for the DNS record to take effect. You can then access Waline using your own domain 🎉
-   - Comment system: example.yourdomain.com
-   - Comment management: example.yourdomain.com/ui
+1. Дождитесь вступления записи DNS в силу. После этого Waline будет доступен по вашему домену 🎉
+   - Система комментариев: example.yourdomain.com
+   - Управление комментариями: example.yourdomain.com/ui
 
    ![success](../../../assets/vercel-17.png)
 
-## Importing in HTML
+## Подключение в HTML
 
-Here is how you can add Waline to your web page or website:
+Вот как добавить Waline на веб-страницу или сайт:
 
-1. Import the stylesheet `https://unpkg.com/@waline/client@v3/dist/waline.css` in the `<head>`
+1. Подключите таблицу стилей `https://unpkg.com/@waline/client@v3/dist/waline.css` в `<head>`
 
-1. Create a `<script>` tag and initialize with `init()` from `https://unpkg.com/@waline/client@v3/dist/waline.js` while passing in the necessary `el` and `serverURL` options.
-   - The `el` option is the element used for Waline rendering. You can set a CSS selector in the form of a string or an HTMLElement object.
-   - `serverURL` is the link to your deployment server, which you just created in Vercel.
-   - For more options, visit the [Component Props page](https://waline.js.org/ru/reference/client/props.html)
+1. Создайте тег `<script>` и инициализируйте Waline с помощью `init()` из `https://unpkg.com/@waline/client@v3/dist/waline.js`, передав необходимые параметры `el` и `serverURL`.
+   - Параметр `el` — это элемент, в котором отрисовывается Waline. В качестве него можно указать CSS-селектор в виде строки или объект HTMLElement.
+   - `serverURL` — ссылка на ваш сервер развёртывания, который вы только что создали в Vercel.
+   - Другие параметры см. на странице [Параметры компонента](https://waline.js.org/ru/reference/client/props.html)
 
-   Here is an example:
+   Пример:
 
    ```html {3-7,12-18}:line-numbers
    <head>
@@ -115,18 +115,18 @@ Here is how you can add Waline to your web page or website:
    </body>
    ```
 
-1. The comment service will now run successfully on your website :tada:!
+1. Теперь сервис комментариев успешно работает на вашем сайте :tada:!
 
-## Comment Management (Management)
+## Управление комментариями (Панель управления)
 
-1. After the deployment is complete, please visit `<serverURL>/ui/register` to register. The first person to register will be set as an administrator.
+1. После завершения развёртывания перейдите на `<serverURL>/ui/register`, чтобы зарегистрироваться. Первый зарегистрировавшийся становится администратором.
 
-1. After you log in as administrator, you'll be able to access the comment management dashboard. You can edit, mark or delete comments here.
+1. После входа в качестве администратора вам станет доступна панель управления комментариями. Здесь можно редактировать, помечать и удалять комментарии.
 
-1. Users can also register for an account via the comment box, and will be redirected to their profile page after logging in.
+1. Пользователи также могут зарегистрировать аккаунт через поле комментариев; после входа они будут перенаправлены на страницу своего профиля.
 
-## Video Tutorial
+## Видеоруководство
 
-An enthusiastic Waline user made the following video tutorial. If the instructions above aren't clear, you can refer to the video:
+Один увлечённый пользователь Waline записал видеоруководство. Если описанные выше инструкции не совсем понятны, можно обратиться к видео:
 
 <VidStack src="https://www.youtube.com/watch?v=SzEHzsme8uY" />

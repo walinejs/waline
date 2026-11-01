@@ -1,16 +1,16 @@
 ---
-title: Pageview Counter
+title: Счётчик просмотров
 icon: counter
 order: 7
 ---
 
-Waline supports pageview counting.
+Waline поддерживает подсчёт просмотров страниц.
 
 <!-- more -->
 
-## Using with comment
+## Совместное использование с комментариями
 
-Waline supIf you are using Waline's commenting service, you can enable pageview statistics by setting the `pageview` option to `true` during initialization:
+Если вы используете сервис комментариев Waline, подсчёт просмотров можно включить, установив для параметра `pageview` значение `true` при инициализации:
 
 ```js
 Waline.init({
@@ -20,33 +20,33 @@ Waline.init({
 });
 ```
 
-Waline will automatically find the elements with the `class` value of `waline-pageview-count` in the page, and get their `data-path` as the query condition. And fill it with the obtained value:
+Waline автоматически найдёт на странице элементы со значением `class`, равным `waline-pageview-count`, и получит их `data-path` в качестве условия запроса. Затем подставит полученное значение:
 
-If you need a different selector, you can set the `pageview` option to this selector.
+Если вам нужен другой селектор, установите для параметра `pageview` этот селектор.
 
 ```html
 <!-- data-path will be the query condition -->
 Pageviews: <span class="waline-pageview-count" data-path="<Your/Path/Name>"></i>
 ```
 
-Every time you call `WalineInstance.update()`, Waline will re-search the page content and automatically update the pageviews.
+При каждом вызове `WalineInstance.update()` Waline будет заново просматривать содержимое страницы и автоматически обновлять просмотры.
 
-::: tip Examples
+::: tip Примеры
 
 ```html
 The current page has been viewed
-<span class="waline-pageview-count" data-path="/ru/guide/client/count.html" />
+<span class="waline-pageview-count" data-path="/en/guide/client/count.html" />
 times.
 ```
 
-The current page has been viewed
-<span class="waline-pageview-count" data-path="/ru/guide/client/count.html" /> times.
+Текущая страница просмотрена
+<span class="waline-pageview-count" data-path="/en/guide/client/count.html" /> раз.
 
 :::
 
-## Use Alone
+## Использование отдельно
 
-If you only need to use the pageview statistics function, you can import the pageview module provided by Waline, its Gzip size is < 1KB.
+Если вам нужна только функция подсчёта просмотров, можно подключить модуль pageview, предоставляемый Waline, его размер Gzip составляет < 1KB.
 
 ```html
 <ul>
@@ -75,15 +75,15 @@ If you only need to use the pageview statistics function, you can import the pag
 </script>
 ```
 
-- Current pageviews: <span class="waline-pageview-count" />
+- Просмотры текущей страницы: <span class="waline-pageview-count" />
 
-- Homepage Pageviews: <span class="waline-pageview-count" data-path="/" />
+- Просмотры главной страницы: <span class="waline-pageview-count" data-path="/" />
 
-::: info Abort
+::: info Отмена
 
-Since pageview fetching is an asynchronous network operation, you may need to cancel an ongoing pageview update operation under certain circumstances.
+Поскольку получение просмотров является асинхронной сетевой операцией, в некоторых обстоятельствах может потребоваться отменить выполняющееся обновление просмотров.
 
-`pageviewCount` returns a function that can be called to cancel the update:
+`pageviewCount` возвращает функцию, вызов которой отменяет обновление:
 
 ```html
 <script type="module">

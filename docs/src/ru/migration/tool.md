@@ -1,5 +1,5 @@
 ---
-title: Migration Helper
+title: Помощник миграции
 icon: helper
 ---
 
@@ -7,7 +7,7 @@ icon: helper
 
 ::: tip
 
-After using the above tools to obtain the exported files, you can import them in the correct storage service.
+Получив с помощью инструмента выше экспортированные файлы, их можно импортировать в соответствующем сервисе хранения.
 
 :::
 

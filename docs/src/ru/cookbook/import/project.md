@@ -1,16 +1,16 @@
 ---
-title: Import in project
+title: Импорт в проект
 icon: import
 order: 2
 ---
 
-Waline official client provides various versions of files. You can import and use the official client in several ways.
+Официальный клиент Waline предоставляет файлы в нескольких версиях. Импортировать и использовать официальный клиент можно несколькими способами.
 
 <!-- more -->
 
-## NPM Packages
+## NPM-пакеты
 
-Waline official client has been released to [npm](https://www.npmjs.com/package/@waline/client) via `@waline/client`, you can install it with the following command:
+Официальный клиент Waline опубликован в [npm](https://www.npmjs.com/package/@waline/client) под именем `@waline/client`; установить его можно следующей командой:
 
 ::: code-tabs#shell
 
@@ -34,11 +34,11 @@ yarn add -D @waline/client
 
 :::
 
-For the modules exported by `@waline/client`, see [Client Reference → Files](../../reference/client/file.md).
+О модулях, экспортируемых `@waline/client`, см. в разделе [Справочник клиента → Файлы](../../reference/client/file.md).
 
-## Import in Normal Project
+## Импорт в обычный проект
 
-Here is an example of importing and using `@waline/client` in a normal website project.
+Ниже приведён пример импорта и использования `@waline/client` в обычном проекте сайта.
 
 ::: code-tabs#lang
 
@@ -68,13 +68,13 @@ init({
 
 :::
 
-## Import in Vue Project
+## Импорт в проект Vue
 
-Since `@waline/client` itself is based on Vue3, we directly export a responsive Vue component.
+Поскольку сам `@waline/client` основан на Vue 3, мы напрямую экспортируем реактивный компонент Vue.
 
-All properties of components are reactive, you can find all supported properties in [Client Reference → Component Props](../../reference/client/props.md).
+Все свойства компонента реактивны; полный список поддерживаемых свойств приведён в разделе [Справочник клиента → Свойства компонента](../../reference/client/props.md).
 
-::: details Demo
+::: details Демонстрация
 
 ```vue
 <template>
@@ -92,13 +92,13 @@ const path = computed(() => useRoute().path);
 </script>
 ```
 
-Since we use responsive `path`, when the route changes, `@waline/client` will automatically refresh and display the comments of the corresponding route.
+Поскольку мы используем реактивный `path`, при изменении маршрута `@waline/client` автоматически обновится и покажет комментарии соответствующего маршрута.
 
 :::
 
-## Import in React project
+## Импорт в проект React
 
-With a simple wrapper, you can turn Waline into a React component:
+С помощью простой обёртки Waline можно превратить в React-компонент:
 
 ```tsx
 import { type WalineInstance, type WalineInitOptions, init } from '@waline/client';

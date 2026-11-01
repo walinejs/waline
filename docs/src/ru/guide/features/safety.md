@@ -1,55 +1,55 @@
 ---
-title: Security
+title: Безопасность
 icon: safe
 order: -10
 ---
 
-The security of the Waline commenting system is our top priority. We'll cover Waline's security here.
+Безопасность системы комментариев Waline — наш главный приоритет. Здесь описаны вопросы безопасности Waline.
 
 <!-- more -->
 
-## Comment Security
+## Безопасность комментариев
 
-### Anti-XSS Attack
+### Защита от XSS-атак
 
-Waline uses [DOMPurify](https://github.com/cure53/DOMPurify) to filter each comment input on the server side to prevent potential XSS attacks. This means you won't be able to use `<iframe>` or any form of scripting.
+Waline использует [DOMPurify](https://github.com/cure53/DOMPurify) для фильтрации каждого введённого комментария на стороне сервера, чтобы предотвратить потенциальные XSS-атаки. Это означает, что использовать `<iframe>` или любые формы скриптов не получится.
 
-### Prevent link tracking
+### Защита от отслеживания по ссылкам
 
-All links will be automatically set to `rel="noreferrer noopener"` and open in a new window with `target="_blank"`.
+Все ссылки автоматически получают `rel="noreferrer noopener"` и открываются в новом окне с `target="_blank"`.
 
-### Prevent Malicious Content Implantation
+### Предотвращение внедрения вредоносного содержимого
 
-- In order to prevent users from creating submittable forms in the comment area to trick other visitors into submitting information, you cannot use `<form>` and `<input>`
+- Чтобы пользователи не могли создавать в области комментариев отправляемые формы и обманом заставлять других посетителей отправлять данные, использование `<form>` и `<input>` недоступно.
 
-- In order to prevent users from using styles to modify website pages or modify their own comment styles to plant spam ads, the `<style>` tag and the `style` attribute on the element are not available.
+- Чтобы пользователи не могли с помощью стилей изменять страницы сайта или собственные стили комментария для размещения спам-рекламы, тег `<style>` и атрибут `style` у элементов недоступны.
 
-- To prevent users from abusing media autoplay functionality, you cannot use the `autoplay` attribute.
+- Чтобы пользователи не злоупотребляли автовоспроизведением медиа, использование атрибута `autoplay` недоступно.
 
-### Prevent Forgery
+### Защита от подделки
 
-Waline supports an account system, so you can force users to register and log in with an account. This way visitors won't be able to fake other people's comments.
+Waline поддерживает систему аккаунтов, поэтому можно обязать пользователей регистрироваться и входить в аккаунт. Так посетители не смогут писать комментарии от имени других людей.
 
-To enable this feature, you need to set mandatory login on both client and server, see [`login`](../../reference/client/props.md#login) and [`LOGIN`](../../reference/server/env.md#basic) for details.
+Чтобы включить эту функцию, необходимо включить обязательный вход как на клиенте, так и на сервере, подробнее см. [`login`](../../reference/client/props.md#login) и [`LOGIN`](../../reference/server/env.md#основные).
 
-## Site Security
+## Безопасность сайта
 
-### Frequency Limit
+### Ограничение частоты
 
-To prevent users from commenting, Waline will restrict commenting IP. By default, the same IP can only send one comment within a minute. You can change this limit in [Server Reference → Environment Variables](../../reference/server/env.md#safety).
+Чтобы предотвратить злоупотребления, Waline ограничивает комментарии по IP. По умолчанию один и тот же IP может отправить только один комментарий в минуту. Это ограничение можно изменить в разделе [Справочник сервера → Переменные окружения](../../reference/server/env.md#безопасность).
 
-### Prevent flooding
+### Защита от флуда
 
-Waline will detect existing comments when entering comments, and if it detects a comment with too high similarity, it will reject the corresponding comment. Those who can prevent flooding to a certain extent.
+При вводе комментария Waline проверяет существующие комментарии и, если обнаруживает комментарий с слишком высокой степенью сходства, отклоняет соответствующий комментарий. Это в определённой мере позволяет предотвратить флуд.
 
-### Comment Review
+### Модерация комментариев
 
-When your site is under malicious attack, during sensitive periods or when you are busy, you can enable the comment review feature. For details, see [Server Reference→Environment Variables](../../reference/server/env.md#safety) .
+Когда ваш сайт подвергается вредоносной атаке, в чувствительные периоды или когда вы заняты, можно включить функцию модерации комментариев. Подробнее см. [Справочник сервера → Переменные окружения](../../reference/server/env.md#безопасность) .
 
-When comment review is enabled, all new comments will be hidden by default. You can view and review comments in the Waline management terminal or the comment box on the corresponding page. Only the comments you approved can be displayed.
+Когда модерация комментариев включена, все новые комментарии по умолчанию скрыты. Вы можете просматривать и модерировать комментарии в панели управления Waline или в области комментариев на соответствующей странице. Отображаются только одобренные вами комментарии.
 
-## Data Security
+## Безопасность данных
 
-Since Waline have server side, no body can tamper with comment data or pageviews.
+Поскольку у Waline есть серверная часть, никто не может подменить данные комментариев или просмотры.
 
-Meanwhile, you can set `DISABLE_USERAGENT` and `DISABLE_REGION` variables on the server side to prevent others from viewing the UA and geographic location of user comments.
+Кроме того, на стороне сервера можно задать переменные `DISABLE_USERAGENT` и `DISABLE_REGION`, чтобы другие не могли видеть UA и географическое местоположение авторов комментариев.

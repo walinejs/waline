@@ -1,18 +1,18 @@
 ---
-title: Emoticons Search
+title: Поиск эмодзи
 icon: search
 order: 3
 ---
 
-`@waline/client` allows users to add emoji search services and customize this functionality.
+`@waline/client` позволяет пользователям подключать сервисы поиска эмодзи и настраивать эту функцию.
 
-By default, `@waline/client` provides meme search service via [Giphy](https://giphy.com/). This will allow you to search images and add them to the comment.
+По умолчанию `@waline/client` предоставляет сервис поиска мемов через [Giphy](https://giphy.com/). Это позволяет искать изображения и добавлять их в комментарий.
 
 <!-- more -->
 
-## Disable
+## Отключение
 
-If you don't need the default images search service, you can disable it by setting the `search` option to `false`.
+Если сервис поиска изображений по умолчанию не нужен, его можно отключить, установив для параметра `search` значение `false`.
 
 ```js
 Waline.init({
@@ -22,20 +22,20 @@ Waline.init({
 });
 ```
 
-## Customize
+## Настройка
 
-You can customize the image search service through the search option.
+Вы можете настроить сервис поиска изображений с помощью параметра search.
 
-For each operation, you should return an array containing the image information as the search result, and each item should be an object with the following properties:
+Для каждой операции необходимо вернуть массив с информацией об изображениях в качестве результата поиска; каждый элемент должен быть объектом со следующими свойствами:
 
-- `src`: the link address of the image
-- `title`: image title and alt text (optional)
-- `preview`: Thumbnail of the image to use in the result list (optional)
+- `src`: адрес ссылки на изображение
+- `title`: заголовок изображения и альтернативный текст (необязательно)
+- `preview`: миниатюра изображения для списка результатов (необязательно)
 
-The option accepts three functions, each of which should return a Promise, and the result is the array of search results above.
+Параметр принимает три функции, каждая из которых должна возвращать Promise, а результатом является описанный выше массив результатов поиска.
 
-- `search`: search operation, the search term will be passed as the first parameter of the function
-- `default`: list of images to display by default (optional)
-- `more`: The function that starts when the image is scrolled to the bottom, where the search term and the current number are passed in as the first two parameters (optional)
+- `search`: операция поиска, поисковый запрос передаётся первым параметром функции
+- `default`: список изображений, отображаемых по умолчанию (необязательно)
+- `more`: функция, вызываемая при прокрутке изображений до конца; поисковый запрос и текущее количество передаются первыми двумя параметрами (необязательно)
 
-For tutorials on custom search, see [Cookbook → Custom Emoji Search](../../cookbook/customize/search.md).
+Руководство по настройке поиска см. в [Рецепты → Пользовательский поиск эмодзи](../../cookbook/customize/search.md).

@@ -1,68 +1,68 @@
 ---
-title: Style Customize
+title: Настройка стилей
 icon: style
 order: -2
 ---
 
-`@waline/client` provides some CSS variables. You can easily configure the style of waline through these variables:
+`@waline/client` предоставляет набор CSS-переменных. С их помощью можно легко настроить стиль Waline:
 
-Meanwhile, `@waline/client` also has built-in dark mode support.
+Кроме того, `@waline/client` имеет встроенную поддержку тёмного режима.
 
 <!-- more -->
 
-## Dark mode support
+## Поддержка тёмного режима
 
-You can use the `dark` option to enable Waline's dark mode support.
+Вы можете включить поддержку тёмного режима Waline с помощью параметра `dark`.
 
-Usually websites will enable dark mode support in two ways:
+Обычно сайты включают поддержку тёмного режима двумя способами:
 
-- Use the `@media` selector to automatically switch according to the device color mode status through `prefers-color-scheme`
-- Dynamically apply other dark mode color style by modifying the attributes and class of the dom root element (`html` or `body`).
+- использование селектора `@media` для автоматического переключения в соответствии с цветовой схемой устройства через `prefers-color-scheme`
+- динамическое применение другого цветового стиля тёмного режима путём изменения атрибутов и классов корневого элемента DOM (`html` или `body`).
 
-If you enable Waline on the site of the first method, you only need to set `dark` to `'auto'`.
+Если вы включаете Waline на сайте первого типа, достаточно установить для `dark` значение `'auto'`.
 
-For the second type of site, you need to set dark to the CSS selector that makes the dark mode effective. Here are a few examples:
+Для сайтов второго типа нужно задать в `dark` CSS-селектор, при котором тёмный режим становится активным. Вот несколько примеров:
 
-::: tip Examples
+::: tip Примеры
 
-- **vuepress-theme-hop v2**: It will enable darkmode by setting `data-theme="dark"` on the `<html>` tag itself. So you need to set `'html[data-theme="dark"]'` as `dark` option.
+- **vuepress-theme-hop v2**: включает тёмный режим, устанавливая `data-theme="dark"` на самом теге `<html>`. Поэтому в качестве параметра `dark` нужно указать `'html[data-theme="dark"]'`.
 
-- **hexo-theme-fluid**: It will enable darkmode by setting `data-user-color-scheme="dark"` on the `<html>` tag itself. So you need to set `'html[data-user-color-scheme="dark"]'` as `dark` option.
+- **hexo-theme-fluid**: включает тёмный режим, устанавливая `data-user-color-scheme="dark"` на самом теге `<html>`. Поэтому в качестве параметра `dark` нужно указать `'html[data-user-color-scheme="dark"]'`.
 
 :::
 
-## Meta Icons
+## Иконки метаданных
 
-If you want to add icons to user comment meta data, you can import `waline-meta.css` to use it.
+Если вы хотите добавить иконки к метаданным комментариев пользователей, подключите `waline-meta.css`.
 
-For CDN users, you can import via the following link:
+Пользователи CDN могут подключить его по следующей ссылке:
 
 ```html
 <!-- Meta icon (optional) -->
 <link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline-meta.css" />
 ```
 
-For NPM users, you can import via:
+Пользователи NPM могут подключить его так:
 
 ```js
 import '@waline/client/meta';
 ```
 
-## RTL support
+## Поддержка RTL
 
-`@waline/client` supports RTL layout, you just need to add `dir="rtl"` in `<html>` tag.
+`@waline/client` поддерживает RTL-разметку, достаточно добавить `dir="rtl"` в тег `<html>`.
 
-## Customize Styles
+## Настройка стилей
 
-### CSS Variables
+### CSS-переменные
 
-You can find default values for CSS variables used by Waline in normal and darkmode at [Client Reference → CSS Variables](../../reference/client/style.md).
+Значения по умолчанию для CSS-переменных, используемых Waline в обычном и тёмном режиме, приведены в разделе [Справочник клиента → CSS-переменные](../../reference/client/style.md).
 
-If it differs from your site style, you can override the corresponding CSS variable yourself.
+Если они отличаются от стиля вашего сайта, соответствующую CSS-переменную можно переопределить.
 
-## Box Shadow
+## Тень блока
 
-If you are using a theme that uses shadows (`box-shadow`) instead of borders, you can modify the display effect of Waline by modifying `--waline-border` and `--waline-box-shadow`, e.g.:
+Если вы используете тему, в которой вместо границ применяются тени (`box-shadow`), можно изменить отображение Waline, изменив `--waline-border` и `--waline-box-shadow`, например:
 
 ```css
 :root {
@@ -77,6 +77,6 @@ If you are using a theme that uses shadows (`box-shadow`) instead of borders, yo
 }
 ```
 
-### More
+### Дополнительно
 
-If the above CSS variables cannot meet your custom requirements for Waline styles, you can write your own css file.
+Если перечисленных CSS-переменных недостаточно для ваших требований к стилю Waline, вы можете написать собственный css-файл.

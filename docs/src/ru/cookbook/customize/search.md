@@ -1,17 +1,17 @@
 ---
-title: Customize Emoticons Search
+title: Настройка поиска эмодзи
 icon: search
 ---
 
-This tutorial guides you on how to customize the emoji search service via the `search` option provided by `@waline/client`.
+Это руководство рассказывает, как настроить сервис поиска эмодзи с помощью параметра `search`, предоставляемого `@waline/client`.
 
 <!-- more -->
 
-## search result conversion
+## Преобразование результатов поиска
 
-You may get different results when using different third-party image search services. After getting the search result, you need to convert it to the format required by `@waline/client`.
+Разные сторонние сервисы поиска изображений возвращают результаты в разном виде. Получив результат поиска, его нужно преобразовать в формат, который ожидает `@waline/client`.
 
-For any of the following operations, `@waline/client` requires you to return an array of image information in the following format:
+Во всех описанных ниже случаях `@waline/client` ожидает массив с информацией об изображениях следующего формата:
 
 ```ts
 interface WalineSearchImageData extends Record<string, unknown> {
@@ -38,21 +38,21 @@ interface WalineSearchImageData extends Record<string, unknown> {
 type WalineSearchResult = WalineSearchImageData[];
 ```
 
-You need to ensure that each object of the array contains at least the `src` attribute to indicate the address of the image.
+Каждый объект массива должен содержать как минимум свойство `src` с адресом изображения.
 
-Also, where possible, you should provide an alt text `title` to help with accessibility and in case of image service failures.
+Кроме того, по возможности следует указывать альтернативный текст `title` — это помогает с доступностью и при сбоях сервиса изображений.
 
-In order to make the list load faster, as long as the image service can return multiple sizes of image URLs, you should choose a small size image as `preview` to improve the loading speed of the list image.
+Чтобы список загружался быстрее, при наличии у сервиса изображений ссылок на разные размеры следует выбрать небольшое изображение в качестве `preview` — так изображения в списке будут загружаться быстрее.
 
 ::: note
 
-`@waline/client` doesn't care if there are extra properties in the image result, so you don't need to deliberately remove other keys from the returned result.
+`@waline/client` не обращает внимания на дополнительные свойства в результате изображения, поэтому специально удалять из него другие ключи не нужно.
 
 :::
 
-## Search Option
+## Параметр поиска
 
-`@waline/client` provides three sub-options to control search behavior:
+`@waline/client` предоставляет три подпараметра для управления поиском:
 
 ```ts
 interface WalineSearchOptions {
@@ -78,9 +78,9 @@ interface WalineSearchOptions {
 }
 ```
 
-Since you need to implement at least the search logic, `search` is required. `@waline/client` will pass in the user search term and call this option function, and wait for this function to return a Promise to complete the search result.
+Поскольку логику поиска нужно реализовать в любом случае, параметр `search` обязателен. `@waline/client` передаёт в эту функцию поисковый запрос пользователя и ждёт, пока она вернёт Promise с результатом поиска.
 
-We want users to see some hot images or emoji results when they open it, so we provide the `default` function to implement this behavior. If your service provider provides an interface for popular pictures or emoticons, you should use this interface to return content. Also, since the default behavior of this function is to search for empty strings, if your search provider returns empty results in this situation, we recommend that you add a brief implementation of random preset words to avoid showing an empty list.
+Хочется, чтобы при открытии списка пользователь сразу видел популярные изображения или эмодзи, поэтому предусмотрена функция `default`. Если ваш сервис предоставляет интерфейс для популярных изображений или эмодзи, используйте его для возврата содержимого. Кроме того, по умолчанию эта функция выполняет поиск по пустой строке: если сервис в такой ситуации возвращает пустой результат, рекомендуется добавить несложную реализацию со случайным набором слов, чтобы не показывать пустой список.
 
 ```js
 const search = (word) => {
@@ -102,19 +102,19 @@ Waline.init({
 });
 ```
 
-Usually, your search service will support pagination, so we provide a `more` function to trigger when the user swipes to the bottom and load more images to let you return more results. For a better experience, we recommend setting the number of pagination to 20 - 40, that is, 20 - 40 images are loaded each time.
+Обычно сервис поиска поддерживает пагинацию, поэтому предусмотрена функция `more`, которая вызывается, когда пользователь прокручивает список до конца, и загружает больше изображений. Для удобства рекомендуется задавать размер страницы 20–40, то есть загружать по 20–40 изображений за раз.
 
-::: tip An example to help understand
+::: tip Пример для наглядности
 
-When the user clicks the search button, we will trigger `default()`, if this function is missing, we will trigger `search('')`, and we will wait for the Promise to execute and render with the returned result.
+Когда пользователь нажимает кнопку поиска, вызывается `default()`; если эта функция не задана, вызывается `search('')`, после чего результат Promise дожидается выполнения и отрисовывается.
 
-When the user searches for `smile`, we execute `search('smile')`. Suppose you return 20 results each time, when the user continues to scroll down, we will trigger `more('smile', 20)`, `more('smile', 40)`, `more('smile', 60 )` ...
+Когда пользователь ищет `smile`, выполняется `search('smile')`. Предположим, каждый раз возвращается по 20 результатов: при дальнейшей прокрутке вызываются `more('smile', 20)`, `more('smile', 40)`, `more('smile', 60 )` ...
 
 :::
 
-## Examples
+## Примеры
 
-::: details Default implementation
+::: details Реализация по умолчанию
 
 @[code{33-79}](../../../../../packages/client/src/config/default.ts)
 
