@@ -1,33 +1,33 @@
 ---
-title: Server Config
+title: Configuration du serveur
 icon: config
 ---
 
-The following options need to be configured in the server entry file `index.js`.
+Les options suivantes doivent être configurées dans le fichier d'entrée du serveur `index.js`.
 
 ::: warning
 
-If you are using template, please note that you need to save these configurations yourself, because they will be overwritten when you pull the latest official template.
+Si vous utilisez le modèle, notez que vous devez enregistrer vous-même ces configurations, car elles seront écrasées lorsque vous récupérerez le dernier modèle officiel.
 
-We recommend you to create a repo from the official template and make your changes there.
+Nous vous recommandons de créer un dépôt à partir du modèle officiel et d'y effectuer vos modifications.
 
 :::
 
-## Basic Options
+## Options de base
 
 ### plugins
 
-- Type: `plugin[]`
+- Type : `plugin[]`
 
-See [Plugin System](./plugin.md) for details
+Voir le [système de plugins](./plugin.md) pour plus de détails
 
 ### secureDomains
 
-- Type: `string | RegExp | string[] | RegExp[]`
+- Type : `string | RegExp | string[] | RegExp[]`
 
-Secure domain settings. Requests from other domain will receive 403 status code. It supports String, Regexp, and Array type. Leaving this config means that all domain referrer are allowed.
+Configuration des domaines sécurisés. Les requêtes provenant d'un autre domaine reçoivent un code d'état 403. Les types String, RegExp et Array sont pris en charge. Ne pas définir cette configuration signifie que tous les domaines référents sont autorisés.
 
-::: details Example
+::: details Exemple
 
 ```js
 // index.js
@@ -42,18 +42,18 @@ module.exports = Waline({
 
 ::: tip
 
-- To make local development easier, `localhost` and `127.0.0.1` will be added to the list of secure domain names by default.
-- Env variable `SECURE_DOMAINS` won't work when this option is set.
+- Pour faciliter le développement local, `localhost` et `127.0.0.1` sont ajoutés par défaut à la liste des noms de domaine sécurisés.
+- La variable d'environnement `SECURE_DOMAINS` ne fonctionne pas lorsque cette option est définie.
 
 :::
 
 ### forbiddenWords
 
-- Type: `string[]`
+- Type : `string[]`
 
-If a comment match forbidden word, it will be marked as spam.
+Si un commentaire correspond à un mot interdit, il est marqué comme spam.
 
-::: details Example
+::: details Exemple
 
 ```js
 // index.js
@@ -68,11 +68,11 @@ module.exports = Waline({
 
 ### disallowIPList
 
-- Type: `string[]`
+- Type : `string[]`
 
-If a comment ip match this list, 403 status code is returned.
+Si l'IP d'un commentaire correspond à cette liste, le code d'état 403 est renvoyé.
 
-::: details Example
+::: details Exemple
 
 ```js
 // index.js
@@ -87,67 +87,67 @@ module.exports = Waline({
 
 ### mailSubject
 
-- Type: `string`
+- Type : `string`
 
-Customize the title of the comment reply email, which is equivalent to environment variable `MAIL_SUBJECT`.
+Personnalisation de l'objet de l'e-mail de réponse aux commentaires, équivalent à la variable d'environnement `MAIL_SUBJECT`.
 
 ### mailTemplate
 
-- Type: `string`
+- Type : `string`
 
-Customize the content of the comment reply email, which is equivalent to environment variable `MAIL_TEMPLATE`.
+Personnalisation du contenu de l'e-mail de réponse aux commentaires, équivalent à la variable d'environnement `MAIL_TEMPLATE`.
 
 ### mailSubjectAdmin
 
-- Type: `string`
+- Type : `string`
 
-Customize the title of the new comment notification email, which is equivalent to the environment variable `MAIL_SUBJECT_ADMIN`.
+Personnalisation de l'objet de l'e-mail de notification de nouveau commentaire, équivalent à la variable d'environnement `MAIL_SUBJECT_ADMIN`.
 
 ### mailTemplateAdmin
 
-- Type: `string`
+- Type : `string`
 
-Customize the content of the new comment notification email, which is equivalent to the environment variable `MAIL_TEMPLATE_ADMIN`.
+Personnalisation du contenu de l'e-mail de notification de nouveau commentaire, équivalent à la variable d'environnement `MAIL_TEMPLATE_ADMIN`.
 
 ### QQTemplate
 
-- Type: `string`
+- Type : `string`
 
-The QQ comment notification template, which is equivalent to the environment variable `QQ_TEMPLATE`.
+Modèle de notification de commentaire QQ, équivalent à la variable d'environnement `QQ_TEMPLATE`.
 
 ### TGTemplate
 
-- Type: `string`
+- Type : `string`
 
-Telegram comment notification template, which is equivalent to the environment variable `TG_TEMPLATE`.
+Modèle de notification de commentaire Telegram, équivalent à la variable d'environnement `TG_TEMPLATE`.
 
 ### model
 
-- type: `class`
+- Type : `class`
 
-For details, see [Customize Database Service](../../cookbook/customize/database.md)
+Pour plus de détails, consultez [Personnaliser le service de base de données](../../cookbook/customize/database.md).
 
 ### encryptPassword
 
-- type: `function`
+- Type : `function`
 
-See [Customize User System](../../cookbook/customize/userdb.md) for details
+Consultez [Personnaliser le système d'utilisateurs](../../cookbook/customize/userdb.md) pour plus de détails.
 
 ### locales
 
-- type: `Record<string, Record<string, string>>`
+- Type : `Record<string, Record<string, string>>`
 
-See [Custom Locale](../../cookbook/customize/locale.md)
+Consultez [Personnaliser les locales](../../cookbook/customize/locale.md).
 
-## Comment Hooks
+## Hooks de commentaires
 
-Besides environment variable configuration, Waline also provides some custom hooks to facilitate the processing of custom requirements. It only needs to be configured in the server entry file `index.js`.
+Outre la configuration par variables d'environnement, Waline fournit également des hooks personnalisés pour faciliter le traitement de besoins spécifiques. Ils se configurent simplement dans le fichier d'entrée du serveur `index.js`.
 
 ### preSave(comment)
 
-Waline provides some custom hooks to let users customize Waline server behavior according to their own needs.
+Waline fournit des hooks personnalisés permettant aux utilisateurs d'adapter le comportement du serveur Waline à leurs propres besoins.
 
-::: details Example
+::: details Exemple
 
 ```js
 // index.js
@@ -167,11 +167,11 @@ module.exports = Waline({
 
 ### postSave(comment, pComment)
 
-The action performed after the comment is posted.
+Action effectuée après la publication du commentaire.
 
-When the method is executed, the comment data will be passed as the first param, and if it's a reply to the comment, the parent comment will be passed as the second param.
+Lors de l'exécution de la méthode, les données du commentaire sont transmises comme premier paramètre, et s'il s'agit d'une réponse à un commentaire, le commentaire parent est transmis comme second paramètre.
 
-::: details Example
+::: details Exemple
 
 ```js
 // index.js
@@ -191,9 +191,9 @@ module.exports = Waline({
 
 ### preUpdate(comment)
 
-Action before a comment content is updated in the dashboard. If the method returns content, the interface will return directly without updating the comment data.
+Action effectuée avant la mise à jour du contenu d'un commentaire dans le panneau d'administration. Si la méthode renvoie du contenu, l'interface renvoie directement la réponse sans mettre à jour les données du commentaire.
 
-::: details Example
+::: details Exemple
 
 ```js
 // index.js
@@ -210,9 +210,9 @@ module.exports = Waline({
 
 ### postUpdate(comment)
 
-Action after a comment content is updated in the dashboard. Comment data will be passed in when the method is executed.
+Action effectuée après la mise à jour du contenu d'un commentaire dans le panneau d'administration. Les données du commentaire sont transmises lors de l'exécution de la méthode.
 
-::: details Example
+::: details Exemple
 
 ```js
 // index.js
@@ -229,9 +229,9 @@ module.exports = Waline({
 
 ### preDelete(commentId)
 
-Action before a comment is deleted. When the method is executed, the comment Id to be operated will be passed in. If the method returns content, the interface will return directly without updating the comment data.
+Action effectuée avant la suppression d'un commentaire. Lors de l'exécution de la méthode, l'identifiant du commentaire concerné est transmis. Si la méthode renvoie du contenu, l'interface renvoie directement la réponse sans mettre à jour les données du commentaire.
 
-::: details Example
+::: details Exemple
 
 ```js
 // index.js
@@ -248,9 +248,9 @@ module.exports = Waline({
 
 ### postDelete(commentId)
 
-Action after a comment is deleted, the comment Id will be passed as the only param.
+Action effectuée après la suppression d'un commentaire ; l'identifiant du commentaire est transmis comme unique paramètre.
 
-::: details Example
+::: details Exemple
 
 ```js
 // index.js

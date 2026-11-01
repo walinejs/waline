@@ -1,53 +1,53 @@
 ---
-title: Comment Format Support
+title: Prise en charge du format des commentaires
 icon: format
 order: 2
 ---
 
-The supported Markdown syntax in comments is as follows.
+Voici la syntaxe Markdown prise en charge dans les commentaires.
 
 <!-- more -->
 
-## Markdown Support
+## Prise en charge de Markdown
 
-::: preview Headings
+::: preview Titres
 
 <!-- markdownlint-disable MD025 -->
 
-# Heading1
+# Titre 1
 
 <!-- markdownlint-enable MD025 -->
 
-## Heading2
+## Titre 2
 
-### Heading3
+### Titre 3
 
-#### Heading4
+#### Titre 4
 
-##### Heading5
+##### Titre 5
 
-###### Heading7
-
-:::
-
-::: preview Text
-
-This sentence has **bold**、_italic_ and ~~delete~~ style text.
+###### Titre 7
 
 :::
 
-::: preview Paragraph
+::: preview Texte
 
-This is a paragraph.
-
-This is another paragraph.
+Cette phrase contient du texte en **gras**, en _italique_ et en ~~barré~~.
 
 :::
 
-::: details Line Break
+::: preview Paragraphe
 
-I would like to line break at  
-this point
+Ceci est un paragraphe.
+
+Ceci est un autre paragraphe.
+
+:::
+
+::: details Saut de ligne
+
+Je souhaite effectuer un saut de ligne à  
+cet endroit
 
 ```md
 I would like to line break at  
@@ -56,51 +56,51 @@ this point
 
 :::
 
-::: preview Blockquotes
+::: preview Citations
 
-> Blockquotes can also be nested...
+> Les citations peuvent aussi être imbriquées...
 >
-> > ...by using greater-than signs right next to each other...
+> > ...en plaçant des signes supérieurs juste à côté les uns des autres...
 > >
-> > > ...or with spaces between arrows.
+> > > ...ou avec des espaces entre les flèches.
 
 :::
 
-::: preview Unordered List
+::: preview Liste non ordonnée
 
-- Create a list by starting a line with `-`
-- Make sub-lists by indenting 2 spaces:
-  - Marker character change forces new list start:
+- Créez une liste en commençant une ligne par `-`
+- Créez des sous-listes en indentant de 2 espaces :
+  - Un changement de caractère de puce force le démarrage d'une nouvelle liste :
     - Ac tristique libero volutpat at
     - Facilisis in pretium nisl aliquet
     - Nulla volutpat aliquam velit  
-      link break
+      saut de ligne
 
-      New paragraph
+      Nouveau paragraphe
 
-- It’s easy!
+- C'est facile !
 
 :::
 
-::: preview Ordered List
+::: preview Liste ordonnée
 
 1. Lorem ipsum dolor sit amet
 1. Consectetur adipiscing elit  
-   line break  
-   line break again
+   saut de ligne  
+   encore un saut de ligne
 1. Integer molestie lorem at massa
 
 :::
 
-::: preview HR
+::: preview Ligne horizontale
 
 ---
 
 :::
 
-::: preview Link
+::: preview Lien
 
-[HomePage](/)
+[Page d'accueil](/)
 
 :::
 
@@ -110,21 +110,21 @@ this point
 
 :::
 
-::: preview Table
+::: preview Tableau
 
-|           center           |                    right | left                    |
-| :------------------------: | -----------------------: | :---------------------- |
-| For center align use `:-:` | For right align use `-:` | For left align use `:-` |
-|             b              |                aaaaaaaaa | aaaa                    |
-|             c              |                     aaaa | a                       |
+|            centre            |                               droite | gauche                               |
+| :--------------------------: | -----------------------------------: | :----------------------------------- |
+| Pour centrer, utilisez `:-:` | Pour aligner à droite, utilisez `-:` | Pour aligner à gauche, utilisez `:-` |
+|              b               |                            aaaaaaaaa | aaaa                                 |
+|              c               |                                 aaaa | a                                    |
 
 :::
 
 ::: preview Code
 
-Inline Code: `code`
+Code en ligne : `code`
 
-Block code:
+Bloc de code :
 
 ```js
 var foo = function (bar) {
@@ -136,15 +136,15 @@ console.log(foo(5));
 
 :::
 
-## Superscript and Subscript
+## Exposant et indice
 
-Use `^` and `~` to mark the superscript and subscript.
+Utilisez `^` et `~` pour marquer l'exposant et l'indice.
 
 <!-- prettier-ignore-start -->
 
-::: preview Demo
+::: preview Démo
 
-- 19^th^
+- 19^e^
 - H~2~O
 
 :::
@@ -153,17 +153,17 @@ Use `^` and `~` to mark the superscript and subscript.
 
 ## Emojis
 
-Besides user-configured or built-in Weibo emojis, we also support complete Emoji shorthand emoticons.
+Outre les emojis Weibo intégrés ou configurés par l'utilisateur, nous prenons également en charge l'ensemble des émoticônes abrégées Emoji.
 
 <!-- prettier-ignore-start -->
 
-::: preview Demo
+::: preview Démo
 
-Classic:
+Classiques :
 
 :wink: :cry: :laughing: :yum:
 
-Shortcuts:
+Raccourcis :
 
 8-) :) :* :( :-) :-( ;)
 
@@ -171,11 +171,11 @@ Shortcuts:
 
 <!-- prettier-ignore-end -->
 
-## Code Block Highlight
+## Coloration syntaxique des blocs de code
 
-We support highlighting in almost all languages.
+Nous prenons en charge la coloration syntaxique dans presque tous les langages.
 
-::: details Demo
+::: details Démo
 
 ```html
 <!doctype html>
@@ -240,13 +240,13 @@ footer p {
 
 :::
 
-## Mathematical formula
+## Formule mathématique
 
-You can use `$ ... $` to create inline formulas, or use `$$ ... $$` to create block-level formulas.
+Vous pouvez utiliser `$ ... $` pour créer des formules en ligne, ou `$$ ... $$` pour créer des formules en bloc.
 
-::: preview Demo
+::: preview Démo
 
-Euler’s identity $e^{i\pi}+1=0$ is a beautiful formula in $\mathbb{R}^2$.
+L'identité d'Euler $e^{i\pi}+1=0$ est une belle formule dans $\mathbb{R}^2$.
 
 $$
 \frac {\partial^r} {\partial \omega^r} \left(\frac {y^{\omega}} {\omega}\right)
@@ -255,6 +255,6 @@ $$
 
 :::
 
-## Embed HTML
+## Intégration de HTML
 
-Feel free to add any HTML content unless triggering [the protection mechanism](../guide/features/safety.md#comment-security).
+N'hésitez pas à ajouter tout contenu HTML, sauf si cela déclenche [le mécanisme de protection](../guide/features/safety.md#securite-des-commentaires).

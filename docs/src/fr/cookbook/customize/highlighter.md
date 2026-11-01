@@ -1,15 +1,15 @@
 ---
-title: Customize Code Highlighter
+title: Personnaliser la coloration syntaxique du code
 icon: style
 ---
 
-This cookbook guides you how to add your own code highlighter.
+Ce guide pratique vous explique comment ajouter votre propre coloration syntaxique de code.
 
 <!-- more -->
 
-`@waline/client` provides the `highlighter` function. The client passes in the original character of the code block and the language of the code block. You should return a string directly.
+`@waline/client` fournit la fonction `highlighter`. Le client transmet les caractères d'origine du bloc de code ainsi que le langage de ce bloc. Vous devez renvoyer directement une chaîne de caractères.
 
-## An Example Using prism.js
+## Un exemple avec prism.js
 
 ```html
 <!doctype html>

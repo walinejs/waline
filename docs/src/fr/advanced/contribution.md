@@ -1,28 +1,28 @@
 ---
-title: Development Guide
+title: Guide de développement
 icon: contribute
 order: -1
 ---
 
-We welcome everyone to open Pull Requests for waline! :tada:
+Nous vous invitons à ouvrir des Pull Requests pour Waline ! :tada:
 
-If you want to contribute to waline, here is a guide.
+Si vous souhaitez contribuer à Waline, voici un guide.
 
 <!-- more -->
 
-## Preparation
+## Préparation
 
-1. Use Git to clone the project
+1. Utiliser Git pour cloner le projet
 
    ```bash
    git clone https://github.com/walinejs/waline.git
    ```
 
-1. Installation dependencies
+1. Installer les dépendances
 
    ::: warning
 
-   Install and use pnpm to install dependencies.
+   Installez et utilisez pnpm pour installer les dépendances.
 
    ```bash
    corepack enable
@@ -35,22 +35,22 @@ If you want to contribute to waline, here is a guide.
    pnpm ci
    ```
 
-## Development
+## Développement
 
-- Run `pnpm  run client:dev` to start `@waline/client` devServer
+- Exécutez `pnpm run client:dev` pour démarrer le serveur de développement de `@waline/client`
 
   ::: tip
 
-  Since waline is based on Client/Server architecture, when debugging a client, you need to set `SERVERURL`, or start server devServer below at the same time and use the default `localhost:9090`.
+  Waline reposant sur une architecture client/serveur, lorsque vous déboguez le client, vous devez définir `SERVERURL`, ou démarrer en même temps le serveur de développement ci-dessous et utiliser la valeur par défaut `localhost:9090`.
 
   :::
 
-- Run `pnpm run server:dev` to start `@waline/server` devServer
+- Exécutez `pnpm run server:dev` pour démarrer le serveur de développement de `@waline/server`
 
   ::: tip
 
-  In order to run `@waline/server` locally, you need to configure some local environment variables to `.env`.
+  Pour exécuter `@waline/server` en local, vous devez configurer quelques variables d'environnement locales dans `.env`.
 
-  We provide an example for you in `.env.example`.
+  Nous vous fournissons un exemple dans `.env.example`.
 
   :::

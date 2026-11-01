@@ -6,7 +6,7 @@ order: 1
 
 ::: info Waline
 
-Un système de commentaires simple avec support backend forké de [Valine](https://valine.js.org).
+Un système de commentaires simple avec backend, fork de [Valine](https://valine.js.org).
 
 :::
 
@@ -15,11 +15,11 @@ Un système de commentaires simple avec support backend forké de [Valine](https
 ## Fonctionnalités
 
 - Rapide
-- **Vraiment** Sûr
-- Support de la syntaxe markdown complète
+- **Vraiment** sûr
+- Prise en charge de la syntaxe Markdown complète
 - Simple et léger
-- Déploiement gratuit !
-- Support de plusieurs services de déploiement et de stockage, au moins 243 choix de style de déploiement !
+- Déploiement gratuit !
+- Prise en charge de multiples services de déploiement et de stockage, soit au moins 243 combinaisons de déploiement possibles !
 
 |                                                 | Waline                                                              |                                    |
 | ----------------------------------------------- | ------------------------------------------------------------------- | ---------------------------------- |
@@ -44,19 +44,19 @@ Un système de commentaires simple avec support backend forké de [Valine](https
 - [x] Langue personnalisée
 - [x] Pages vues
 - [x] Réaction à l'article
-- [x] Support de connexion
+- [x] Prise en charge de la connexion
 - [x] Étiquette utilisateur
 - [x] Gestion des commentaires
-- [x] Support de suppression de commentaires
-- [x] Plus de support de base de données
-- [x] Limiter la fréquence des commentaires postés par IP
-- [x] Restrictions de mots-clés de commentaires
-- [x] Liste de refus d'IP
-- [x] Vérification du contenu en double
-- [x] Support de déploiement CloudBase
-- [x] Connexion par compte social
-- [x] Commentaire épinglé
-- [x] J'aime le commentaire
-- [ ] Support de déploiement AWS, GCP, Azure
+- [x] Prise en charge de la suppression des commentaires
+- [x] Prise en charge de davantage de bases de données
+- [x] Limitation de la fréquence des commentaires par IP
+- [x] Restrictions sur les mots-clés des commentaires
+- [x] Liste d'IP interdites
+- [x] Vérification des contenus en double
+- [x] Prise en charge du déploiement sur CloudBase
+- [x] Connexion via un compte social
+- [x] Commentaires épinglés
+- [x] « J'aime » sur les commentaires
+- [ ] Prise en charge du déploiement sur AWS, GCP et Azure
 
-Nous vous souhaitons **vraiment** la bienvenue pour contribuer à Waline !
+Nous vous invitons **vraiment** à contribuer à Waline !

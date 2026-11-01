@@ -1,20 +1,20 @@
 ---
-title: Import Waline via CDN
+title: Importer Waline via CDN
 icon: import
 order: 1
 ---
 
-This cookbook is about importing Waline via CDN.
+Ce guide explique comment importer Waline via un CDN.
 
 <!-- more -->
 
-For China Mainland users, we recommend using [unpkg](https://unpkg.com/@waline/client). For foreign users, we recommend using jsDelivr.
+Pour les utilisateurs de Chine continentale, nous recommandons d'utiliser [unpkg](https://unpkg.com/@waline/client). Pour les utilisateurs étrangers, nous recommandons jsDelivr.
 
-To make Waline SSR friendly, we split Waline's styles in V2 version. This means, you need to import Waline's CSS style file, and import Waline script file and call Waline.
+Pour rendre Waline compatible avec le SSR, nous avons séparé les styles de Waline dans la version V2. Cela signifie que vous devez importer le fichier CSS de Waline, puis importer le fichier de script de Waline et appeler Waline.
 
-## Comment
+## Commentaires
 
-Normally, you may want Waline to render a list of comments, you can import Waline as follows:
+Normalement, vous voudrez que Waline affiche une liste de commentaires ; vous pouvez alors importer Waline comme suit :
 
 ```html
 <!-- style file -->
@@ -29,11 +29,11 @@ Normally, you may want Waline to render a list of comments, you can import Walin
 </script>
 ```
 
-## Pageviews and comments
+## Pages vues et commentaires
 
-Sometimes, you may want to display the number of page views and comments of the article on the home page or article list, but do not need to load the comment component, then you can import a Gzip < 1KB script file in the following ways:
+Parfois, vous pouvez souhaiter afficher le nombre de pages vues et de commentaires de l'article sur la page d'accueil ou dans la liste des articles, sans charger le composant de commentaires ; vous pouvez alors importer un fichier de script Gzip < 1 Ko de la manière suivante :
 
-Pageviews:
+Pages vues :
 
 ```html
 <script type="module">
@@ -45,7 +45,7 @@ Pageviews:
 </script>
 ```
 
-Comments count:
+Nombre de commentaires :
 
 ```html
 <script type="module">
@@ -57,10 +57,10 @@ Comments count:
 </script>
 ```
 
-## More
+## Pour aller plus loin
 
-::: info Specifies version
+::: info Spécifier la version
 
-You may have noticed that in the above cases, we have explicitly declared the `@v3` version after `@waline/client`. Your website is not working properly.
+Vous avez peut-être remarqué que, dans les cas ci-dessus, nous avons explicitement déclaré la version `@v2` après `@aline/client`. Votre site web ne fonctionnera pas correctement.
 
 :::

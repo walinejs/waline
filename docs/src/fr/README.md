@@ -16,7 +16,7 @@ actions:
 features:
   - title: Léger
     icon: light
-    details: Taille complète du client de 100kb gzip
+    details: La taille complète du client est de 100 ko gzip
 
   - title: Entièrement gratuit
     icon: free
@@ -24,30 +24,30 @@ features:
 
   - title: Facile à déployer
     icon: strong
-    details: Plusieurs méthodes de déploiement et support de service de stockage
+    details: Plusieurs méthodes de déploiement et de nombreux services de stockage pris en charge
 
-  - title: Support de connexion
+  - title: Connexion prise en charge
     icon: register
-    details: Les commentaires anonymes, l'enregistrement de compte et la connexion sociale sont pris en charge
+    details: Commentaires anonymes, création de compte et connexion via les réseaux sociaux sont pris en charge
 
   - title: Commentez comme vous le souhaitez
     icon: markdown
-    details: Support complet de Markdown, avec emojis, équations mathématiques, téléchargement d'images et intégration HTML
+    details: Prise en charge complète de Markdown, avec emojis, formules mathématiques, téléversement d'images et intégration de HTML
     link: /fr/guide/features/syntax.html
 
-  - title: Sécurité améliorée
+  - title: Sécurité renforcée
     icon: safe
-    details: Vérification du contenu, anti-spam, protection des données sensibles et plus
+    details: Vérification du contenu, lutte contre le spam, protection des données sensibles, et plus encore
     link: /fr/guide/features/safety.html
 
   - title: Réaction à l'article
     icon: reaction
-    details: Montrez rapidement votre attitude envers l'article
+    details: Exprimez rapidement votre avis sur l'article
     link: /fr/guide/features/reaction.html
 
   - title: Compteur de pages vues
     icon: counter
-    details: Comptez les pages vues avec précision avec < 1kb de code
+    details: Comptez précisément les pages vues avec moins de 1 ko de code
     link: /fr/guide/features/pageview.html
 
 footer: LICENCE GPL-2.0 | Copyright © 2020-présent <a href="https://github.com/lizheming" rel="noopener noreferrer " target="_blank">lizheming</a> | Thème par <a href="https://theme-hope.vuejs.press/" rel="noopener noreferrer " target="_blank">VuePress Theme Hope</a>

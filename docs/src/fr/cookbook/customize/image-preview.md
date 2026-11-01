@@ -1,9 +1,9 @@
 ---
-title: Image Preview for Comment List
+title: Aperçu des images dans la liste des commentaires
 icon: pic
 ---
 
-There are many plugins that can achieve the lightbox effect, here are some examples of these plugins:
+De nombreux plugins permettent d'obtenir un effet lightbox ; voici quelques exemples de ces plugins :
 
 - [lightGallery](https://www.lightgalleryjs.com/)
 
@@ -16,7 +16,7 @@ There are many plugins that can achieve the lightbox effect, here are some examp
 
 ## LightGallery
 
-Write the following content before your HTML `<head>`, where `#waline-comment` is your Waline comment box, which needs to be replaced according to the actual scene.
+Insérez le contenu suivant avant la balise HTML `<head>` ; `#waline-comment` correspond à votre zone de commentaires Waline et doit être remplacé selon le cas réel.
 
 ```html
 <link rel="stylesheet" href="https://unpkg.com/lightgallery@v2/css/lightgallery-bundle.css" />
@@ -41,7 +41,7 @@ Write the following content before your HTML `<head>`, where `#waline-comment` i
 <!--
 ##Slimbox2
 
-Write the following content before your HTML `<head>`, where `#waline-comment` is your Waline comment box, which needs to be replaced according to the actual scene.
+Insérez le contenu suivant avant la balise HTML `<head>` ; `#waline-comment` correspond à votre zone de commentaires Waline et doit être remplacé selon le cas réel.
 
 ```html
 <link
@@ -68,7 +68,7 @@ Write the following content before your HTML `<head>`, where `#waline-comment` i
 
 ## Lightbox2
 
-Write the following content before your HTML `<head>`, where `#waline-comment` is your Waline comment box, which needs to be replaced according to the actual scene.
+Insérez le contenu suivant avant la balise HTML `<head>` ; `#waline-comment` correspond à votre zone de commentaires Waline et doit être remplacé selon le cas réel.
 
 ```html
 <link rel="stylesheet" href="https://unpkg.com/lightbox2@v2/dist/css/lightbox.min.css" />
@@ -96,7 +96,7 @@ Write the following content before your HTML `<head>`, where `#waline-comment` i
 
 ## Fancybox
 
-Write the following content before your HTML `<head>`, where `#waline-comment` is your Waline comment box, which needs to be replaced according to the actual scene.
+Insérez le contenu suivant avant la balise HTML `<head>` ; `#waline-comment` correspond à votre zone de commentaires Waline et doit être remplacé selon le cas réel.
 
 ```html
 <script src="https://unpkg.com/@fancyapps/ui/dist/fancybox.umd.js"></script>

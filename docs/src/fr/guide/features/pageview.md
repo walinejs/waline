@@ -1,16 +1,16 @@
 ---
-title: Pageview Counter
+title: Compteur de pages vues
 icon: counter
 order: 7
 ---
 
-Waline supports pageview counting.
+Waline prend en charge le comptage des pages vues.
 
 <!-- more -->
 
-## Using with comment
+## Utilisation avec les commentaires
 
-If you are using Waline's commenting service, you can enable pageview statistics by setting the `pageview` option to `true` during initialization:
+Si vous utilisez le service de commentaires de Waline, vous pouvez activer les statistiques de pages vues en définissant l'option `pageview` sur `true` lors de l'initialisation :
 
 ```js
 Waline.init({
@@ -20,18 +20,18 @@ Waline.init({
 });
 ```
 
-Waline will automatically find the elements with the `class` value of `waline-pageview-count` in the page, and get their `data-path` as the query condition. And fill it with the obtained value:
+Waline recherche automatiquement dans la page les éléments dont la valeur de `class` est `waline-pageview-count`, récupère leur `data-path` comme condition de requête, puis les remplit avec la valeur obtenue :
 
-If you need a different selector, you can set the `pageview` option to this selector.
+Si vous avez besoin d'un autre sélecteur, vous pouvez définir l'option `pageview` sur ce sélecteur.
 
 ```html
 <!-- data-path will be the query condition -->
 Pageviews: <span class="waline-pageview-count" data-path="<Your/Path/Name>" />
 ```
 
-Every time you call `WalineInstance.update()`, Waline will re-search the page content and automatically update the pageviews.
+À chaque appel de `WalineInstance.update()`, Waline parcourt à nouveau le contenu de la page et met automatiquement à jour les pages vues.
 
-::: tip Examples
+::: tip Exemples
 
 ```html
 The current page has been viewed
@@ -39,14 +39,14 @@ The current page has been viewed
 times.
 ```
 
-The current page has been viewed
-<span class="waline-pageview-count" data-path="/fr/guide/client/count.html" /> times.
+Cette page a été consultée
+<span class="waline-pageview-count" data-path="/fr/guide/client/count.html" /> fois.
 
 :::
 
-## Use Alone
+## Utilisation autonome
 
-If you only need to use the pageview statistics function, you can import the pageview module provided by Waline, its Gzip size is < 1KB.
+Si vous avez uniquement besoin des statistiques de pages vues, vous pouvez importer le module dédié fourni par Waline ; sa taille Gzip est inférieure à 1 Ko.
 
 ```html
 <ul>
@@ -75,15 +75,15 @@ If you only need to use the pageview statistics function, you can import the pag
 </script>
 ```
 
-- Current pageviews: <span class="waline-pageview-count" />
+- Pages vues de la page courante : <span class="waline-pageview-count" />
 
-- Homepage Pageviews: <span class="waline-pageview-count" data-path="/" />
+- Pages vues de la page d'accueil : <span class="waline-pageview-count" data-path="/" />
 
-::: info Abort
+::: info Annulation
 
-Since pageview fetching is an asynchronous network operation, you may need to cancel an ongoing pageview update operation under certain circumstances.
+La récupération des pages vues étant une opération réseau asynchrone, il peut être nécessaire d'annuler une mise à jour en cours dans certaines circonstances.
 
-`pageviewCount` returns a function that can be called to cancel the update:
+`pageviewCount` renvoie une fonction que vous pouvez appeler pour annuler la mise à jour :
 
 ```html
 <script type="module">

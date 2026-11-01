@@ -1,16 +1,16 @@
 ---
-title: Article Reactions
+title: Réactions aux articles
 icon: reaction
 order: 4
 ---
 
-Waline allows users to express reactions for article content.
+Waline permet aux utilisateurs d'exprimer leurs réactions au contenu d'un article.
 
 <!-- more -->
 
-## Getting Started
+## Prise en main
 
-To quickly enable reactions, you can set the `reaction` option to `true` to display a default list of reactions:
+Pour activer rapidement les réactions, vous pouvez définir l'option `reaction` sur `true` afin d'afficher une liste de réactions par défaut :
 
 ```js
 Waline.init({
@@ -20,11 +20,11 @@ Waline.init({
 });
 ```
 
-Waline will display the default list of reactions above the comment box.
+Waline affiche la liste de réactions par défaut au-dessus de la zone de commentaire.
 
-## Customize Reactions
+## Personnaliser les réactions
 
-If you need to customize these reaction emoticons, you can pass in an array containing the link of the reaction emoticon image, representing reactions you want the user to choose with:
+Si vous souhaitez personnaliser ces emoji de réaction, vous pouvez passer un tableau contenant les liens des images des emoji de réaction, représentant les réactions que vous souhaitez proposer à l'utilisateur :
 
 ```js
 Waline.init({
@@ -39,20 +39,20 @@ Waline.init({
 });
 ```
 
-Meanwhile, you can customize the title of the reaction through `reactionTitle` in `locale`, and you can also customize the name of the reaction expression through `reaction0` to `reaction8`, see [Multilingual Settings](./i18n.md) .
+Par ailleurs, vous pouvez personnaliser le titre des réactions via `reactionTitle` dans `locale`, et le nom de chaque réaction via `reaction0` à `reaction8`. Voir [Paramètres multilingues](./i18n.md) .
 
-## Precautions
+## Précautions
 
-::: tip Number Limitation
+::: tip Limitation du nombre
 
-Waline supports up to 9 reactions, and you can add less than 9 reactions without any problems.
+Waline prend en charge jusqu'à 9 réactions ; vous pouvez en ajouter moins de 9 sans aucun problème.
 
 :::
 
-::: warning Counting Rules
+::: warning Règles de comptage
 
-Counting of reactions is based on location.
+Le comptage des réactions est basé sur la position.
 
-If you need to reorder and adjust the reactions, check [#1451](https://github.com/walinejs/waline/issues/1451#issuecomment-1264555264) for more details.
+Si vous devez réordonner et ajuster les réactions, consultez [#1451](https://github.com/walinejs/waline/issues/1451#issuecomment-1264555264) pour plus de détails.
 
 :::
