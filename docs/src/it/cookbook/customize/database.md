@@ -1,10 +1,10 @@
 ---
-title: Custom Database Service
+title: Servizio database personalizzato
 icon: database
 order: -2
 ---
 
-Waline classifies database operations into several operations such as CURD, and all upper-level logic is completed through the superposition of these basic operations. Through the adapter mode, different types of database storage services only need to implement these low-level atomic operations to run through all system logic.
+Waline classifica le operazioni sul database in diverse operazioni come CURD, e tutta la logica di livello superiore viene realizzata tramite la sovrapposizione di queste operazioni di base. Grazie alla modalità adapter, i vari tipi di servizi di archiviazione del database devono implementare solo queste operazioni atomiche di basso livello per far funzionare l'intera logica del sistema.
 
 ```js
 // index.js
@@ -15,7 +15,7 @@ module.exports = Application({
 });
 ```
 
-Waline provides the `model` option to customize the database model, and we will uniformly use the incoming model for database operations. All that remains is that we need to implement this `CustomModel` class.
+Waline mette a disposizione l'opzione `model` per personalizzare il modello del database: tutte le operazioni sul database useranno in modo uniforme il modello passato. Non resta altro che implementare questa classe `CustomModel`.
 
 ```js
 class CustomModel {
@@ -45,25 +45,25 @@ class CustomModel {
 }
 ```
 
-The above is the basic structure that the `CustomModel` class must implement, and it must include the implementation of several basic methods `select`, `add`, `update`, `delete` and `count`. Waline is developed based on the [ThinkJS](https://thinkjs.org/en) framework, and the underlying database operations use the database operation syntax that comes with the framework. Before implementing these methods, you need to have some basic understanding of the syntax of database conditional queries.
+Quella sopra è la struttura di base che la classe `CustomModel` deve implementare, e deve includere l'implementazione dei metodi fondamentali `select`, `add`, `update`, `delete` e `count`. Waline è sviluppato sulla base del framework [ThinkJS](https://thinkjs.org/en) e le operazioni di basso livello sul database usano la sintassi di query fornita dal framework. Prima di implementare questi metodi devi avere una conoscenza di base della sintassi delle query condizionali sul database.
 
-## Condition query
+## Query condizionali
 
-For the complete conditional query syntax, please refer to [ThinkJS Documentation](https://thinkjs.org/it/doc/3.0/relation_model.html#toc-d47), and the implementation of Waline is a subset of it.
+Per la sintassi completa delle query condizionali, consulta la [documentazione di ThinkJS](https://thinkjs.org/en/doc/3.0/relation_model.html#toc-d47); l'implementazione di Waline ne è un sottoinsieme.
 
-Multiple conditional queries can be passed in through the object, and the default is equal to the condition. When the value is a two-dimensional array, the first bit can be passed to other judgment operations, and the second bit corresponds to the value, such as `{user_id: ['!=', 0]}`. Currently supported are `!=`, `>`, `IN`, `NOT IN`, `LIKE` centralized operations.
+Puoi passare più query condizionali tramite l'oggetto e, per impostazione predefinita, il confronto è di uguaglianza. Quando il valore è un array bidimensionale, il primo elemento indica l'operazione di confronto e il secondo il valore, ad esempio `{user_id: ['!=', 0]}`. Al momento sono supportate le operazioni `!=`, `>`, `IN`, `NOT IN` e `LIKE`.
 
-Similar to MySQL, in the `LIKE` operation, we define the mode of the fuzzy query through the position of `%`:
+Come in MySQL, nell'operazione `LIKE` definiamo il tipo di ricerca fuzzy tramite la posizione di `%`:
 
-- `content%` means search for content starting with `content`
-- `%content` means search for content ending with `content`
-- `%content%` means search for content containing `content`
+- `content%` cerca il contenuto che inizia con `content`
+- `%content` cerca il contenuto che termina con `content`
+- `%content%` cerca il contenuto che contiene `content`
 
-The conditional query object supports passing in multiple query conditions. The default relationship between these conditions is `AND`, and the `_logic` magic keyword can be used to specify their relationship as `OR`. When there are `AND` and `OR`, we can use `_complex` magic keyword expression.
+L'oggetto di query condizionale può contenere più condizioni. Per impostazione predefinita la relazione tra queste condizioni è `AND`, e la parola chiave speciale `_logic` permette di impostarla a `OR`. Quando servono sia `AND` sia `OR`, puoi usare l'espressione con la parola chiave speciale `_complex`.
 
-The text may not be well understood. Let's take a look at the query examples used in the project to deepen our impression.
+La teoria da sola può non bastare: vediamo alcuni esempi di query usati nel progetto per fissare i concetti.
 
-1. General query:
+1. Query generica:
 
    ```js
    const model = new CustomModel('Comment');
@@ -75,7 +75,7 @@ The text may not be well understood. Let's take a look at the query examples use
    // SELECT * FROM Comment WHERE url = '/' AND user_id != 0 AND createdAt > "2023-04-16 00:00:00";
    ```
 
-2. IN / NOT IN query
+2. Query IN / NOT IN
 
    ```js
    const model = new CustomModel('Users');
@@ -89,7 +89,7 @@ The text may not be well understood. Let's take a look at the query examples use
    // SELECT * FROM Comment WHERE status NOT IN ('waiting', 'spam');
    ```
 
-3. LIKE query
+3. Query LIKE
 
    ```js
    const model = new CustomModel('Comment');
@@ -97,7 +97,7 @@ The text may not be well understood. Let's take a look at the query examples use
    // SELECT * FROM Comment WHERE content LIKE "%content%";
    ```
 
-4. Multi-condition query
+4. Query con più condizioni
 
    ```js
    const model = new CustomModel('Comment');
@@ -110,7 +110,7 @@ The text may not be well understood. Let's take a look at the query examples use
    // SELECT * FROM Comment WHERE url = '/' OR user_id != 0 OR createdAt > "2023-04-16 00:00:00";
    ```
 
-5. Compound query
+5. Query composta
 
    ```js
    const model = new CustomModel('Comment');
@@ -125,31 +125,31 @@ The text may not be well understood. Let's take a look at the query examples use
    // SELECT * FROM Comment WHERE url = '/' AND ( user_id = 0 OR status NOT IN ('waiting', 'spam'));
    ```
 
-If you are more familiar with TypeScript, [type definitions for conditional queries is here](https://github.com/walinejs/dittorm/blob/master/src/types/where.ts).
+Se hai più familiarità con TypeScript, [qui trovi le definizioni dei tipi per le query condizionali](https://github.com/walinejs/dittorm/blob/master/src/types/where.ts).
 
-## Implement query
+## Implementare le query
 
-The `select`, `update`, `delete`, `count` methods in the adapter are actually complicated in the conditional query. After understanding the conditional query syntax in the previous part, the subsequent logic is the database operation. surface.
+Nei metodi `select`, `update`, `delete` e `count` dell'adapter la parte davvero complicata è la query condizionale. Una volta compresa la sintassi della query condizionale nella sezione precedente, la logica successiva è la normale operazione sul database.
 
-The `select()` method has a second argument `{desc, limit, offset, field}`. This is also easier to understand:
+Il metodo `select()` accetta un secondo argomento `{desc, limit, offset, field}`, anch'esso facile da capire:
 
-- `desc`: Specify a field to sort in descending order of the value of the field
-- `limit`: specify the number of data returned
-- `offset`: Specify the returned data from which item to return
-- `field`: Specify the field to return data, all fields are returned by default
+- `desc`: specifica il campo in base al quale ordinare in modo decrescente per valore
+- `limit`: specifica il numero di dati restituiti
+- `offset`: specifica da quale record iniziare a restituire i dati
+- `field`: specifica i campi da restituire; per impostazione predefinita vengono restituiti tutti i campi
 
-The `update()` method needs to be compatible with scenarios where the `data` input parameter may be a calculation function, such as adding 1 to the number of page viewers:
+Il metodo `update()` deve gestire anche i casi in cui il parametro `data` è una funzione di calcolo, ad esempio per incrementare di 1 il numero di visualizzazioni:
 
 ```js
 const model = new CustomModel('Count');
 await model.update((thread) => ({ view: thread.view + 1 }), { url: '/' });
 ```
 
-Return data type `select()` always returns an array, `add()` and `update()` need to include the full data of the indexed field.
+Per quanto riguarda i tipi restituiti: `select()` restituisce sempre un array, mentre `add()` e `update()` devono includere tutti i dati del record indicizzato.
 
-## refer to
+## Riferimenti
 
-Based on the above logic, in addition to implementing the storage service of professional databases, the official also implemented the GitHub storage service very interestingly. We store the data in GitHub in the form of a CSV file, and obtain the content of the CSV file each time we query, and filter out the final data according to the conditional query statement in JS and return it. The following is the official implementation, hoping to give you some reference.
+Sulla base di questa logica, oltre a implementare i servizi di archiviazione dei database professionali, il team ufficiale ha realizzato in modo molto interessante anche un servizio di archiviazione su GitHub. Salviamo i dati su GitHub sotto forma di file CSV, a ogni query leggiamo il contenuto del file CSV, filtriamo i dati in JS in base alla query condizionale e li restituiamo. Qui sotto trovi l'implementazione ufficiale, sperando che ti sia utile come riferimento.
 
 ```js
 //source code: https://github.com/walinejs/waline/blob/main/packages/server/src/service/storage/github.js

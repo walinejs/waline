@@ -1,13 +1,13 @@
 ---
-title: plugin system
+title: Sistema di plugin
 icon: api
 ---
 
-Users can extend the custom hook function through the Hook provided by Waline to realize custom functions. But if users want to share custom Hook methods, they can only use the copy method. To solve this problem, the Waline plugin system came into being.
+Gli utenti possono estendere le funzionalità tramite gli Hook forniti da Waline per realizzare funzioni personalizzate. Ma se vogliono condividere i metodi Hook personalizzati possono solo copiarli. Per risolvere questo problema è nato il sistema di plugin di Waline.
 
-## Install the plugin
+## Installare un plugin
 
-A new `plugins` attribute has been added to Waline's initial configuration, which supports configuring multiple plugins.
+Alla configurazione iniziale di Waline è stato aggiunto l'attributo `plugins`, che supporta la configurazione di più plugin.
 
 ```js
 // index.js
@@ -19,7 +19,7 @@ module.exports = Waline({
 });
 ```
 
-To install others' plugin directly, you can also place plugin hooks direct in `plugins`:
+Per installare direttamente il plugin di qualcun altro, puoi anche inserire gli hook del plugin direttamente in `plugins`:
 
 ```js
 // index.js
@@ -44,11 +44,11 @@ module.exports = Waline({
 });
 ```
 
-## Create plugin
+## Creare un plugin
 
-### Create based on Hook
+### Creare un plugin basato sugli Hook
 
-It's easy to build a plugin. A plugin is contained by a collection of [hooks.](./config.md#comment-hooks)
+Creare un plugin è semplice: un plugin è composto da un insieme di [hook](./config.md#hook-dei-commenti).
 
 ```js
 module.exports = {
@@ -60,13 +60,13 @@ module.exports = {
 };
 ```
 
-It should be noted that if the user installs multiple Hook plugins, the execution of the same hook function is executed in the order in which the plugins are installed. If the pre-hook method returns early, no subsequent operations will be performed.
+Tieni presente che, se vengono installati più plugin Hook, l'esecuzione della stessa funzione hook avviene nell'ordine in cui i plugin sono stati installati. Se un metodo pre-hook restituisce un valore in anticipo, le operazioni successive non vengono eseguite.
 
-### Create based on middleware
+### Creare un plugin basato sui middleware
 
-If Hook can't meet your needs, you can use a more powerful middleware mode to customize development. The bottom layer of Waline uses the Node.js framework [Koa](https://koajs.com), and we expose Koa's middleware configuration as a whole, which can meet various customization needs of advanced developers.
+Se gli Hook non bastano, puoi usare la modalità middleware, più potente, per sviluppare funzionalità personalizzate. Alla base Waline usa il framework Node.js [Koa](https://koajs.com) ed espone integralmente la configurazione dei middleware di Koa, così da soddisfare le varie esigenze di personalizzazione degli sviluppatori esperti.
 
-If you don't know what Koa middleware is, you can search for it first. What you need to pay attention to when using the middleware mode to make plug-ins is that the callback method must write the execution of `await next()`, otherwise the follow-up operations will not be executed.
+Se non sai cosa sono i middleware di Koa, cerca prima qualche informazione. Quando usi la modalità middleware per creare plugin devi fare attenzione a scrivere l'esecuzione di `await next()` nel metodo di callback, altrimenti le operazioni successive non vengono eseguite.
 
 ```js
 module.exports = {
@@ -78,11 +78,11 @@ module.exports = {
 };
 ```
 
-Of course, you can put the logic of Hook-type plug-ins and middleware-type plug-ins together, and Waline supports them.
+Naturalmente puoi combinare la logica dei plugin di tipo Hook e di quelli di tipo middleware: Waline li supporta entrambi.
 
-### List of plugins
+### Elenco dei plugin
 
-Welcome to submit plugins~
+Sei invitato a proporre i tuoi plugin~
 
 - [@waline-plugins/hello-world](https://github.com/walinejs/plugins/tree/master/packages/hello-world)
 - [@waline-plugins/privacy](https://github.com/walinejs/plugins/tree/master/packages/privacy)

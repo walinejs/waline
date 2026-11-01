@@ -1,68 +1,68 @@
 ---
-title: Style Customize
+title: Personalizzazione dello stile
 icon: style
 order: -2
 ---
 
-`@waline/client` provides some CSS variables. You can easily configure the style of waline through these variables:
+`@waline/client` mette a disposizione alcune variabili CSS. Grazie a queste variabili puoi configurare facilmente lo stile di Waline:
 
-Meanwhile, `@waline/client` also has built-in dark mode support.
+Inoltre, `@waline/client` supporta nativamente anche la modalità scura.
 
 <!-- more -->
 
-## Dark mode support
+## Supporto alla modalità scura
 
-You can use the `dark` option to enable Waline's dark mode support.
+Puoi usare l'opzione `dark` per abilitare il supporto alla modalità scura di Waline.
 
-Usually websites will enable dark mode support in two ways:
+Di solito i siti web abilitano la modalità scura in due modi:
 
-- Use the `@media` selector to automatically switch according to the device color mode status through `prefers-color-scheme`
-- Dynamically apply other dark mode color style by modifying the attributes and class of the dom root element (`html` or `body`).
+- Usano il selettore `@media` per passare automaticamente in base allo stato della modalità colore del dispositivo tramite `prefers-color-scheme`
+- Applicano dinamicamente un altro stile di colore scuro modificando gli attributi e la classe dell'elemento radice del DOM (`html` o `body`).
 
-If you enable Waline on the site of the first method, you only need to set `dark` to `'auto'`.
+Se abiliti Waline su un sito che usa il primo metodo, devi solo impostare `dark` su `'auto'`.
 
-For the second type of site, you need to set dark to the CSS selector that makes the dark mode effective. Here are a few examples:
+Per il secondo tipo di sito, devi impostare `dark` sul selettore CSS che rende effettiva la modalità scura. Ecco alcuni esempi:
 
-::: tip Examples
+::: tip Esempi
 
-- **vuepress-theme-hop v2**: It will enable darkmode by setting `data-theme="dark"` on the `<html>` tag itself. So you need to set `'html[data-theme="dark"]'` as `dark` option.
+- **vuepress-theme-hop v2**: abilita la modalità scura impostando `data-theme="dark"` sul tag `<html>` stesso. Devi quindi impostare `'html[data-theme="dark"]'` come opzione `dark`.
 
-- **hexo-theme-fluid**: It will enable darkmode by setting `data-user-color-scheme="dark"` on the `<html>` tag itself. So you need to set `'html[data-user-color-scheme="dark"]'` as `dark` option.
+- **hexo-theme-fluid**: abilita la modalità scura impostando `data-user-color-scheme="dark"` sul tag `<html>` stesso. Devi quindi impostare `'html[data-user-color-scheme="dark"]'` come opzione `dark`.
 
 :::
 
-## Meta Icons
+## Icone dei metadati
 
-If you want to add icons to user comment meta data, you can import `waline-meta.css` to use it.
+Se vuoi aggiungere delle icone ai metadati dei commenti degli utenti, puoi importare `waline-meta.css`.
 
-For CDN users, you can import via the following link:
+Per chi usa il CDN, l'import avviene tramite il seguente link:
 
 ```html
 <!-- Meta icon (optional) -->
 <link rel="stylesheet" href="https://unpkg.com/@waline/client@v3/dist/waline-meta.css" />
 ```
 
-For NPM users, you can import via:
+Per chi usa NPM, puoi importarlo con:
 
 ```js
 import '@waline/client/meta';
 ```
 
-## RTL support
+## Supporto RTL
 
-`@waline/client` supports RTL layout, you just need to add `dir="rtl"` in `<html>` tag.
+`@waline/client` supporta il layout RTL: devi solo aggiungere `dir="rtl"` nel tag `<html>`.
 
-## Customize Styles
+## Personalizzare gli stili
 
-### CSS Variables
+### Variabili CSS
 
-You can find default values for CSS variables used by Waline in normal and darkmode at [Client Reference → CSS Variables](../../reference/client/style.md).
+Nella pagina [Riferimento client → Variabili CSS](../../reference/client/style.md) trovi i valori predefiniti delle variabili CSS usate da Waline in modalità normale e scura.
 
-If it differs from your site style, you can override the corresponding CSS variable yourself.
+Se non sono in linea con lo stile del tuo sito, puoi sovrascrivere tu stesso la variabile CSS corrispondente.
 
 ## Box Shadow
 
-If you are using a theme that uses shadows (`box-shadow`) instead of borders, you can modify the display effect of Waline by modifying `--waline-border` and `--waline-box-shadow`, e.g.:
+Se usi un tema che sfrutta le ombre (`box-shadow`) invece dei bordi, puoi modificare l'aspetto di Waline intervenendo su `--waline-border` e `--waline-box-shadow`, ad esempio:
 
 ```css
 :root {
@@ -77,6 +77,6 @@ If you are using a theme that uses shadows (`box-shadow`) instead of borders, yo
 }
 ```
 
-### More
+### Altro
 
-If the above CSS variables cannot meet your custom requirements for Waline styles, you can write your own css file.
+Se le variabili CSS qui sopra non bastano a soddisfare le tue esigenze di personalizzazione dello stile di Waline, puoi scrivere un tuo file CSS.

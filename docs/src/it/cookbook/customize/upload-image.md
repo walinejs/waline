@@ -1,17 +1,17 @@
 ---
-title: Upload Image
+title: Caricare immagini
 icon: pic
 ---
 
-This cookbook guides you on how to set up your own image service to upload images in comments.
+Questa guida ti mostra come configurare un tuo servizio immagini per caricare immagini nei commenti.
 
 <!-- more -->
 
-`@waline/client` provides the `imageUploader` option. You should handle the image object passed in by the client by yourself, and after uploading the image yourself, return an image address through Promise.
+`@waline/client` fornisce l'opzione `imageUploader`. Devi gestire tu stesso l'oggetto immagine passato dal client e, dopo aver caricato l'immagine, restituire tramite Promise l'indirizzo dell'immagine.
 
 ## Demo
 
-An example of using the `lsky-pro` graph bed.
+Un esempio con il servizio di hosting immagini `lsky-pro`.
 
 ```html
 <!doctype html>

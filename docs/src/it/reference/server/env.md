@@ -1,54 +1,54 @@
 ---
-title: Server Environment Variables
+title: Variabili d'ambiente del server
 icon: config
 ---
 
-You can customize Waline Server through the following environment variables.
+Puoi personalizzare il server Waline tramite le seguenti variabili d'ambiente.
 
 ::: warning
 
-You MUST **redeploy** after updating Environment variables to make changes applied.
+Devi **ridistribuire** il servizio dopo aver aggiornato le variabili d'ambiente perché le modifiche abbiano effetto.
 
-You should set through `Settings` - `Environment Variables` when using Vercel.
+Se usi Vercel, imposta le variabili da `Settings` - `Environment Variables`.
 
 :::
 
 <!-- more -->
 
-## Basic
+## Base
 
-| Environment Variables | Required | Description                                                                                |
-| --------------------- | -------- | ------------------------------------------------------------------------------------------ |
-| `SITE_NAME`           |          | site name                                                                                  |
-| `SITE_URL`            |          | site url                                                                                   |
-| `LOGIN`               |          | User need login before comment when `LOGIN=force`                                          |
-| `SERVER_URL`          |          | the url of the Waline Server, useful when the automatically generated address is incorrect |
+| Variabili d'ambiente | Obbligatoria | Descrizione                                                                             |
+| -------------------- | ------------ | --------------------------------------------------------------------------------------- |
+| `SITE_NAME`          |              | nome del sito                                                                           |
+| `SITE_URL`           |              | URL del sito                                                                            |
+| `LOGIN`              |              | con `LOGIN=force` l'utente deve accedere prima di poter commentare                      |
+| `SERVER_URL`         |              | URL del server Waline, utile quando l'indirizzo generato automaticamente non è corretto |
 
-## Display
+## Visualizzazione
 
-| Environment Variables   | Default                                                                 | Description                                                       |
-| ----------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `DISABLE_USERAGENT`     |                                                                         | wether hide the user agent of commenter. Default value is `false` |
-| `DISABLE_REGION`        |                                                                         | wether hide commenter's region. Default value is `false`          |
-| `DISABLE_AUTHOR_NOTIFY` |                                                                         | wether disable author notification                                |
-| `AVATAR_PROXY`          | `''`                                                                    | Avatar proxy service URL. Leave empty to disable it               |
-| `GRAVATAR_STR`          | <span v-pre>`https://seccdn.libravatar.org/avatar/{{mail\|md5}}`</span> | Gravatar render string，base on nunjucks template                 |
-| `LEVELS`                |                                                                         | Give each user a rating label based on the number of comments     |
+| Variabili d'ambiente    | Valore predefinito                                                      | Descrizione                                                                                  |
+| ----------------------- | ----------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `DISABLE_USERAGENT`     |                                                                         | indica se nascondere lo user agent dell'utente che commenta. Il valore predefinito è `false` |
+| `DISABLE_REGION`        |                                                                         | indica se nascondere la regione dell'utente che commenta. Il valore predefinito è `false`    |
+| `DISABLE_AUTHOR_NOTIFY` |                                                                         | indica se disabilitare la notifica all'autore                                                |
+| `AVATAR_PROXY`          | `''`                                                                    | URL del servizio proxy per gli avatar. Lascia vuoto per disabilitarlo                        |
+| `GRAVATAR_STR`          | <span v-pre>`https://seccdn.libravatar.org/avatar/{{mail\|md5}}`</span> | stringa di rendering di Gravatar, basata su un template nunjucks                             |
+| `LEVELS`                |                                                                         | assegna a ogni utente un'etichetta di livello in base al numero di commenti                  |
 
-::: tip Level Label
+::: tip Etichetta di livello
 
-According number of user comments, a level label will be added to the commenter based on rating Conditions. This feature is disabled by default and can be enabled by setting the environment variable `LEVELS`. The configuration is in the form of a comma concatenation of a given number, for example `0,10,20,50,100,200` means:
+In base al numero di commenti dell'utente, all'autore del commento viene aggiunta un'etichetta di livello secondo le condizioni di valutazione. Questa funzione è disabilitata per impostazione predefinita e si abilita impostando la variabile d'ambiente `LEVELS`. La configurazione è una sequenza di numeri separati da virgole: ad esempio `0,10,20,50,100,200` significa:
 
-| Grades | Conditions         | Default Grade Labels |
-| ------ | ------------------ | -------------------- |
-| 0      | 0 <= count < 10    | Dwarves              |
-| 1      | 10 <= count < 20   | Hobbits              |
-| 2      | 20 <= count < 50   | Ents                 |
-| 3      | 50 <= count < 100  | Wizards              |
-| 4      | 100 <= count < 200 | Elves                |
-| 5      | 200 <= count       | Maiar                |
+| Livello | Condizioni         | Etichette predefinite |
+| ------- | ------------------ | --------------------- |
+| 0       | 0 <= count < 10    | Nani                  |
+| 1       | 10 <= count < 20   | Hobbit                |
+| 2       | 20 <= count < 50   | Ent                   |
+| 3       | 50 <= count < 100  | Stregoni              |
+| 4       | 100 <= count < 200 | Elfi                  |
+| 5       | 200 <= count       | Maiar                 |
 
-In addition to customizing the level judgment rules, we can also customize the level label. Configure the text in the client as follows:
+Oltre a personalizzare le regole di valutazione dei livelli, puoi personalizzare anche le etichette dei livelli. Configura i testi nel client in questo modo:
 
 ```js
 Waline.init({
@@ -63,68 +63,68 @@ Waline.init({
 });
 ```
 
-By default, only 6 levels of copywriting are provided, but it does not mean that there can only be 6 levels. The specific level cap is based on the level judgment rules you set. To add a new level, it is recommended to configure the label text corresponding to the level by yourself. If no label text is provided, the default label text such as `Level 10` will be displayed by default.
+Per impostazione predefinita sono forniti solo 6 testi di livello, ma ciò non significa che i livelli possano essere solo 6: il limite effettivo dipende dalle regole di valutazione che imposti. Per aggiungere un nuovo livello, ti consigliamo di configurare tu il testo dell'etichetta corrispondente. Se non viene fornito alcun testo, viene mostrata l'etichetta predefinita, ad esempio `Level 10`.
 
 :::
 
-## Safety
+## Sicurezza
 
-| Environment Variables | Default        | Description                                                                                                              |
-| --------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| `IPQPS`               | `60`           | IP-based comment posting frequency limit in seconds. Set to 0 for no limit                                               |
-| `SECURE_DOMAINS`      |                | Secure Domains config. Supports multiple domain with Comma separated                                                     |
-| `AKISMET_KEY`         | `70542d86693e` | Akismet antispam service key, set `false` if you wanna close it.                                                         |
-| `COMMENT_AUDIT`       | `false`        | Comment audit switcher. When enabled, every comment needs to be approved by admin, so hint in placeholder is recommended |
-| `RECAPTCHA_V3_KEY`    |                | reCAPTCHA V3 key,should set along with client                                                                            |
-| `RECAPTCHA_V3_SECRET` |                | reCAPTCHA V3 secret for server.                                                                                          |
-| `TURNSTILE_KEY`       |                | Turnstile key,should set along with client                                                                               |
-| `TURNSTILE_SECRET`    |                | Turnstile secret for server                                                                                              |
+| Variabili d'ambiente  | Valore predefinito | Descrizione                                                                                                                                                               |
+| --------------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `IPQPS`               | `60`               | limite di frequenza di pubblicazione dei commenti per IP, in secondi. Imposta 0 per nessun limite                                                                         |
+| `SECURE_DOMAINS`      |                    | configurazione dei domini sicuri. Supporta più domini separati da virgole                                                                                                 |
+| `AKISMET_KEY`         | `70542d86693e`     | chiave del servizio antispam Akismet; imposta `false` se vuoi disattivarlo.                                                                                               |
+| `COMMENT_AUDIT`       | `false`            | interruttore della moderazione dei commenti. Se attivo, ogni commento deve essere approvato dall'amministratore; in questo caso è consigliabile indicarlo nel placeholder |
+| `RECAPTCHA_V3_KEY`    |                    | chiave reCAPTCHA V3, da impostare insieme a quella del client                                                                                                             |
+| `RECAPTCHA_V3_SECRET` |                    | segreto reCAPTCHA V3 per il server.                                                                                                                                       |
+| `TURNSTILE_KEY`       |                    | chiave Turnstile, da impostare insieme a quella del client                                                                                                                |
+| `TURNSTILE_SECRET`    |                    | segreto Turnstile per il server                                                                                                                                           |
 
-::: tip Recaptcha and Turnstile
+::: tip reCAPTCHA e Turnstile
 
-Turnstile Key and Secret can be requested at <https://www.cloudflare.com/products/turnstile/>.
+La Key e il Secret di Turnstile si richiedono su <https://www.cloudflare.com/products/turnstile/>.
 
-Recaptcha Key and Secret can be requested at <https://www.google.com/recaptcha>.
+La Key e il Secret di reCAPTCHA si richiedono su <https://www.google.com/recaptcha>.
 
-When setting security domains, you need to add the site address and the Waline server address at the same time.
+Quando imposti i domini sicuri devi aggiungere sia l'indirizzo del sito sia quello del server Waline.
 
 :::
 
 ## Markdown
 
-| Environment Variables | Default   | Description                                                        |
-| --------------------- | --------- | ------------------------------------------------------------------ |
-| `MARKDOWN_CONFIG`     | `{}`      | MarkdownIt Config                                                  |
-| `MARKDOWN_HIGHLIGHT`  | `true`    | Whether enable highlight                                           |
-| `MARKDOWN_EMOJI`      | `true`    | Whether enable emoji                                               |
-| `MARKDOWN_SUB`        | `true`    | Whether enable subscript                                           |
-| `MARKDOWN_SUP`        | `true`    | Whether enable superscript                                         |
-| `MARKDOWN_TEX`        | `mathjax` | Service to parse math, `mathjax` `katex` and `false` are supported |
-| `MARKDOWN_MATHJAX`    | `{}`      | MathJax Options                                                    |
-| `MARKDOWN_KATEX`      | `{}`      | KaTeX Options                                                      |
+| Variabili d'ambiente | Valore predefinito | Descrizione                                                                                  |
+| -------------------- | ------------------ | -------------------------------------------------------------------------------------------- |
+| `MARKDOWN_CONFIG`    | `{}`               | configurazione di MarkdownIt                                                                 |
+| `MARKDOWN_HIGHLIGHT` | `true`             | se abilitare l'evidenziazione del codice                                                     |
+| `MARKDOWN_EMOJI`     | `true`             | se abilitare le emoji                                                                        |
+| `MARKDOWN_SUB`       | `true`             | se abilitare il pedice                                                                       |
+| `MARKDOWN_SUP`       | `true`             | se abilitare l'apice                                                                         |
+| `MARKDOWN_TEX`       | `mathjax`          | servizio per analizzare le formule matematiche; sono supportati `mathjax`, `katex` e `false` |
+| `MARKDOWN_MATHJAX`   | `{}`               | opzioni di MathJax                                                                           |
+| `MARKDOWN_KATEX`     | `{}`               | opzioni di KaTeX                                                                             |
 
-## Mail Service
+## Servizio e-mail
 
-The email service is used for email notification of user registration and comments. After configuring the variables related to the mail service, user registration will add operations related to email verification code confirmation to prevent malicious registration.
+Il servizio e-mail viene usato per le notifiche via e-mail di registrazioni e commenti. Dopo aver configurato le variabili relative al servizio e-mail, alla registrazione dell'utente si aggiunge la conferma tramite codice di verifica inviato per e-mail, per prevenire registrazioni dannose.
 
-| Environment variable name | Remarks                    |
-| ------------------------- | -------------------------- |
-| `SMTP_SERVICE`            | SMTP mail service provider |
-| `SMTP_HOST`               | SMTP server address        |
-| `SMTP_PORT`               | SMTP server port           |
-| `SMTP_USER`               | SMTP username              |
-| `SMTP_PASS`               | SMTP Password.             |
-| `SMTP_SECURE`             | SMTP connect with SSL      |
-| `SENDER_NAME`             | Customize sender name      |
-| `SENDER_EMAIL`            | Customize sender email     |
+| Nome della variabile d'ambiente | Note                               |
+| ------------------------------- | ---------------------------------- |
+| `SMTP_SERVICE`                  | provider del servizio e-mail SMTP  |
+| `SMTP_HOST`                     | indirizzo del server SMTP          |
+| `SMTP_PORT`                     | porta del server SMTP              |
+| `SMTP_USER`                     | nome utente SMTP                   |
+| `SMTP_PASS`                     | password SMTP.                     |
+| `SMTP_SECURE`                   | connessione SMTP tramite SSL       |
+| `SENDER_NAME`                   | personalizza il nome del mittente  |
+| `SENDER_EMAIL`                  | personalizza l'e-mail del mittente |
 
 ::: tip
 
-Supported service providers can be found [nodemailer services](https://github.com/nodemailer/nodemailer/blob/master/src/well-known/services.json). You can choose one of `SMTP_SERVICE` and (`SMTP_HOST`, `SMTP_PORT`). If you don't know the corresponding `SMTP_SERVICE` in the list, you need to configure `SMTP_HOST` and `SMTP_PORT`, which can probably be found in the mailbox settings.
+I provider supportati sono elencati in [servizi di nodemailer](https://github.com/nodemailer/nodemailer/blob/master/src/well-known/services.json). Puoi scegliere tra `SMTP_SERVICE` e (`SMTP_HOST`, `SMTP_PORT`). Se non conosci il `SMTP_SERVICE` corrispondente nell'elenco, devi configurare `SMTP_HOST` e `SMTP_PORT`, che di solito trovi nelle impostazioni della casella di posta.
 
-The user name of SMTP usually supports the complete mailbox of the user, and the password is mostly the same as the mailbox password.
+Il nome utente SMTP di solito è l'indirizzo e-mail completo dell'utente, mentre la password coincide quasi sempre con quella della casella.
 
-Please pay special attention that some mailboxes use separate SMTP passwords.
+Attenzione in particolare al fatto che alcune caselle usano una password SMTP separata.
 
 :::
 
@@ -132,87 +132,87 @@ Please pay special attention that some mailboxes use separate SMTP passwords.
 
 ### MongoDB
 
-| Environment Variable | Required | Default   | Description                                  |
-| -------------------- | -------- | --------- | -------------------------------------------- |
-| `MONGO_DB`           | ✅       |           | MongoDB database name                        |
-| `MONGO_USER`         | ✅       |           | MongoDB server username                      |
-| `MONGO_PASSWORD`     | ✅       |           | MongoDB server password                      |
-| `MONGO_HOST`         |          | 127.0.0.1 | MongoDB server address, support array format |
-| `MONGO_PORT`         |          | 27017     | MongoDB server port, support array format    |
-| `MONGO_REPLICASET`   |          |           | MongoDB replica set                          |
-| `MONGO_AUTHSOURCE`   |          |           | MongoDB auth source                          |
-| `MONGO_OPT_SSL`      |          | `false`   | use SSL connection                           |
+| Variabile d'ambiente | Obbligatoria | Valore predefinito | Descrizione                                             |
+| -------------------- | ------------ | ------------------ | ------------------------------------------------------- |
+| `MONGO_DB`           | ✅           |                    | nome del database MongoDB                               |
+| `MONGO_USER`         | ✅           |                    | nome utente del server MongoDB                          |
+| `MONGO_PASSWORD`     | ✅           |                    | password del server MongoDB                             |
+| `MONGO_HOST`         |              | 127.0.0.1          | indirizzo del server MongoDB; supporta il formato array |
+| `MONGO_PORT`         |              | 27017              | porta del server MongoDB; supporta il formato array     |
+| `MONGO_REPLICASET`   |              |                    | replica set di MongoDB                                  |
+| `MONGO_AUTHSOURCE`   |              |                    | auth source di MongoDB                                  |
+| `MONGO_OPT_SSL`      |              | `false`            | usa una connessione SSL                                 |
 
 ### MySQL
 
-| Environment Variable | Required | Default   | Description                |
-| -------------------- | -------- | --------- | -------------------------- |
-| `MYSQL_DB`           | ✅       |           | MySQL database name        |
-| `MYSQL_USER`         | ✅       |           | MySQL server username      |
-| `MYSQL_PASSWORD`     | ✅       |           | MySQL server password      |
-| `MYSQL_HOST`         |          | 127.0.0.1 | MySQL server address       |
-| `MYSQL_PORT`         |          | 3306      | MySQL server port          |
-| `MYSQL_PREFIX`       |          | `wl_`     | MySQL table prefix         |
-| `MYSQL_CHARSET`      |          | `utf8mb4` | MySQL table charset        |
-| `MYSQL_SSL`          |          | `false`   | whether use SSL connection |
+| Variabile d'ambiente | Obbligatoria | Valore predefinito | Descrizione                  |
+| -------------------- | ------------ | ------------------ | ---------------------------- |
+| `MYSQL_DB`           | ✅           |                    | nome del database MySQL      |
+| `MYSQL_USER`         | ✅           |                    | nome utente del server MySQL |
+| `MYSQL_PASSWORD`     | ✅           |                    | password del server MySQL    |
+| `MYSQL_HOST`         |              | 127.0.0.1          | indirizzo del server MySQL   |
+| `MYSQL_PORT`         |              | 3306               | porta del server MySQL       |
+| `MYSQL_PREFIX`       |              | `wl_`              | prefisso delle tabelle MySQL |
+| `MYSQL_CHARSET`      |              | `utf8mb4`          | charset delle tabelle MySQL  |
+| `MYSQL_SSL`          |              | `false`            | se usare una connessione SSL |
 
 ### TiDB
 
-[Create a database on TiDB](../../../it/guide/deploy/tidb.md)
+[Creare un database su TiDB](../../../it/guide/deploy/tidb.md)
 
-| Environment Variable | Required | Default   | Description          |
-| -------------------- | -------- | --------- | -------------------- |
-| `TIDB_DB`            | ✅       |           | TiDB database name   |
-| `TIDB_USER`          | ✅       |           | TiDB server username |
-| `TIDB_PASSWORD`      | ✅       |           | TiDB server password |
-| `TIDB_HOST`          |          | 127.0.0.1 | TiDB server address  |
-| `TIDB_PORT`          |          | 4000      | TiDB server port     |
-| `TIDB_PREFIX`        |          | `wl_`     | TiDB table prefix    |
-| `TIDB_CHARSET`       |          | `utf8mb4` | TiDB table charset   |
+| Variabile d'ambiente | Obbligatoria | Valore predefinito | Descrizione                 |
+| -------------------- | ------------ | ------------------ | --------------------------- |
+| `TIDB_DB`            | ✅           |                    | nome del database TiDB      |
+| `TIDB_USER`          | ✅           |                    | nome utente del server TiDB |
+| `TIDB_PASSWORD`      | ✅           |                    | password del server TiDB    |
+| `TIDB_HOST`          |              | 127.0.0.1          | indirizzo del server TiDB   |
+| `TIDB_PORT`          |              | 4000               | porta del server TiDB       |
+| `TIDB_PREFIX`        |              | `wl_`              | prefisso delle tabelle TiDB |
+| `TIDB_CHARSET`       |              | `utf8mb4`          | charset delle tabelle TiDB  |
 
 ### SQLite
 
-| Environment Variable | Required | Default | Description                                                        |
-| -------------------- | -------- | ------- | ------------------------------------------------------------------ |
-| `SQLITE_PATH`        | ✅       |         | SQLite storage file path, not include file name                    |
-| `JWT_TOKEN`          | ✅       |         | Random String for login token generator                            |
-| `SQLITE_DB`          |          | waline  | SQLite storage file name, change it if your filename is not waline |
-| `SQLITE_PREFIX`      |          | `wl_`   | SQLite table prefix                                                |
+| Variabile d'ambiente | Obbligatoria | Valore predefinito | Descrizione                                                                           |
+| -------------------- | ------------ | ------------------ | ------------------------------------------------------------------------------------- |
+| `SQLITE_PATH`        | ✅           |                    | percorso del file di archiviazione SQLite, senza il nome del file                     |
+| `JWT_TOKEN`          | ✅           |                    | stringa casuale per generare il token di accesso                                      |
+| `SQLITE_DB`          |              | waline             | nome del file di archiviazione SQLite; modificalo se il tuo file non si chiama waline |
+| `SQLITE_PREFIX`      |              | `wl_`              | prefisso delle tabelle SQLite                                                         |
 
 ### PostgreSQL
 
-| Environment Variable | Required | Default   | Description                         |
-| -------------------- | -------- | --------- | ----------------------------------- |
-| `PG_DB`              | ✅       |           | PostgreSQL database name            |
-| `PG_USER`            | ✅       |           | PostgreSQL server username          |
-| `PG_PASSWORD`        | ✅       |           | PostgreSQL server password          |
-| `PG_HOST`            |          | 127.0.0.1 | PostgreSQL server address           |
-| `PG_PORT`            |          | 5432      | PostgreSQL server port              |
-| `PG_PREFIX`          |          | `wl_`     | PostgreSQL table prefix             |
-| `PG_SSL`             |          | `false`   | set to `true` to use SSL connection |
-| `POSTGRES_DATABASE`  |          |           | alias for `PG_DB`                   |
-| `POSTGRES_USER`      |          |           | alias for `PG_USER`                 |
-| `POSTGRES_PASSWORD`  |          |           | alias for `PG_PASSWORD`             |
-| `POSTGRES_HOST`      |          | 127.0.0.1 | alias for `PG_HOST`                 |
-| `POSTGRES_PORT`      |          | 5432      | alias for `PG_PORT`                 |
-| `POSTGRES_PREFIX`    |          | `wl_`     | alias for `PG_PREFIX`               |
-| `POSTGRES_SSL`       |          | `false`   | alias for `PG_SSL`                  |
+| Variabile d'ambiente | Obbligatoria | Valore predefinito | Descrizione                                  |
+| -------------------- | ------------ | ------------------ | -------------------------------------------- |
+| `PG_DB`              | ✅           |                    | nome del database PostgreSQL                 |
+| `PG_USER`            | ✅           |                    | nome utente del server PostgreSQL            |
+| `PG_PASSWORD`        | ✅           |                    | password del server PostgreSQL               |
+| `PG_HOST`            |              | 127.0.0.1          | indirizzo del server PostgreSQL              |
+| `PG_PORT`            |              | 5432               | porta del server PostgreSQL                  |
+| `PG_PREFIX`          |              | `wl_`              | prefisso delle tabelle PostgreSQL            |
+| `PG_SSL`             |              | `false`            | imposta `true` per usare una connessione SSL |
+| `POSTGRES_DATABASE`  |              |                    | alias di `PG_DB`                             |
+| `POSTGRES_USER`      |              |                    | alias di `PG_USER`                           |
+| `POSTGRES_PASSWORD`  |              |                    | alias di `PG_PASSWORD`                       |
+| `POSTGRES_HOST`      |              | 127.0.0.1          | alias di `PG_HOST`                           |
+| `POSTGRES_PORT`      |              | 5432               | alias di `PG_PORT`                           |
+| `POSTGRES_PREFIX`    |              | `wl_`              | alias di `PG_PREFIX`                         |
+| `POSTGRES_SSL`       |              | `false`            | alias di `PG_SSL`                            |
 
 ### GitHub
 
-| Environment Variable | Required | Default | Description                                                                                                      |
-| -------------------- | -------- | ------- | ---------------------------------------------------------------------------------------------------------------- |
-| `GITHUB_TOKEN`       | ✅       |         | [Personal access tokens](https://github.com/settings/tokens)                                                     |
-| `GITHUB_REPO`        | ✅       |         | repository name, such as `walinejs/waline`                                                                       |
-| GITHUB_PATH          |          |         | The data storage directory, such as `data` means it is stored in the `data` directory, root directory by default |
+| Variabile d'ambiente | Obbligatoria | Valore predefinito | Descrizione                                                                                                                                                         |
+| -------------------- | ------------ | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `GITHUB_TOKEN`       | ✅           |                    | [token di accesso personale](https://github.com/settings/tokens)                                                                                                    |
+| `GITHUB_REPO`        | ✅           |                    | nome del repository, ad esempio `walinejs/waline`                                                                                                                   |
+| GITHUB_PATH          |              |                    | directory di archiviazione dei dati: ad esempio `data` significa che i dati sono salvati nella directory `data`; per impostazione predefinita è la directory radice |
 
-## Advanced
+## Avanzate
 
-| Environment Variables           | Default                     | Description                                                                                      |
-| ------------------------------- | --------------------------- | ------------------------------------------------------------------------------------------------ |
-| `OAUTH_URL`                     | `https://oauth.lithub.cc`   | OAuth Social Login Service URL. You can [build your own auth](https://github.com/walinejs/auth). |
-| `WEBHOOK`                       |                             | You can set a Webhook URL that will be triggered when you have new comment.                      |
-| `WALINE_ADMIN_MODULE_ASSET_URL` | `//unpkg.com/@waline/admin` | Waline admin link                                                                                |
-| `IP2REGION_DB`                  |                             | customized IPv4 IP query library path (deprecated, use `IP2REGION_DB_V4` instead)                |
-| `IP2REGION_DB_V4`               |                             | customized IPv4 IP query library path. Falls back to `IP2REGION_DB` if not set                   |
-| `IP2REGION_DB_V6`               |                             | customized IPv6 IP query library path. Set this to enable IPv6 address location lookup           |
+| Variabili d'ambiente            | Valore predefinito          | Descrizione                                                                                                                         |
+| ------------------------------- | --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `OAUTH_URL`                     | `https://oauth.lithub.cc`   | URL del servizio di accesso social OAuth. Puoi [creare un tuo servizio di autenticazione](https://github.com/walinejs/auth).        |
+| `WEBHOOK`                       |                             | puoi impostare un URL Webhook che viene chiamato quando arriva un nuovo commento.                                                   |
+| `WALINE_ADMIN_MODULE_ASSET_URL` | `//unpkg.com/@waline/admin` | link del pannello di amministrazione di Waline                                                                                      |
+| `IP2REGION_DB`                  |                             | percorso personalizzato della libreria di interrogazione IP IPv4 (deprecato, usa `IP2REGION_DB_V4`)                                 |
+| `IP2REGION_DB_V4`               |                             | percorso personalizzato della libreria di interrogazione IP IPv4. Se non impostato usa `IP2REGION_DB`                               |
+| `IP2REGION_DB_V6`               |                             | percorso personalizzato della libreria di interrogazione IP IPv6. Impostalo per abilitare la geolocalizzazione degli indirizzi IPv6 |

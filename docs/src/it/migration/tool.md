@@ -1,5 +1,5 @@
 ---
-title: Migration Helper
+title: Strumento di migrazione
 icon: helper
 ---
 
@@ -7,7 +7,7 @@ icon: helper
 
 ::: tip
 
-After using the above tools to obtain the exported files, you can import them in the correct storage service.
+Dopo aver usato gli strumenti qui sopra per ottenere i file esportati, puoi importarli nel servizio di archiviazione corretto.
 
 :::
 

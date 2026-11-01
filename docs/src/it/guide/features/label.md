@@ -1,23 +1,23 @@
 ---
-title: User label
+title: Etichette utente
 icon: label
 order: 5
 ---
 
-Waline allows you to set level labels based on interactions and custom labels for logged-in users.
+Waline ti permette di impostare etichette di livello basate sulle interazioni e etichette personalizzate per gli utenti che hanno effettuato l'accesso.
 
-## Grade labels
+## Etichette di livello
 
-You need to configure the `LEVELS` variable on the server to enable this function, see [Server Environment Variable Configuration](../../reference/server/env.md#display).
+Per abilitare questa funzione devi configurare la variabile `LEVELS` sul server; vedi [Configurazione delle variabili d'ambiente del server](../../reference/server/env.md#visualizzazione).
 
-You can customize these level labels via the locales option, see [Multilingual](./i18n.md#customize)
+Puoi personalizzare queste etichette di livello tramite l'opzione locales; vedi [Multilingua](./i18n.md#personalizzare)
 
-## Exclusive Label
+## Etichetta esclusiva
 
-You can customize labels for users through the management side.
+Puoi personalizzare le etichette degli utenti dal pannello di amministrazione.
 
 ![Admin Label](./assets/label-admin.jpg)
 
-As a login user, you can also update your exclusive label at profile page.
+Come utente che ha effettuato l'accesso, puoi aggiornare la tua etichetta esclusiva anche dalla pagina del profilo.
 
 ![Profile Label](./assets/label-profile.jpg)

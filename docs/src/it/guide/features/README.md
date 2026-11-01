@@ -1,5 +1,5 @@
 ---
-title: Feature
+title: Funzionalità
 icon: feature
 dir:
   order: 2

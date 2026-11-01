@@ -1,27 +1,27 @@
 ---
-title: Create your own Emoji presets
+title: Crea i tuoi preset Emoji
 icon: emoji
 ---
 
-This cookbook will show you how to create and use your own Emoji presets.
+Questa guida ti mostra come creare e usare i tuoi preset Emoji.
 
 <!-- more -->
 
-## Create your own presets
+## Crea i tuoi preset
 
-First of all, you need to prepare some emoji images. Then, please follow the steps to create your preset.
+Per prima cosa devi preparare alcune immagini emoji. Poi segui questi passaggi per creare il tuo preset.
 
-### Name the emoji and upload it
+### Dai un nome alle emoji e caricarle
 
-For the sake of simplicity, Waline will directly use the name of the emoji image as the key of the emoji. This means that if you import two different presets, and they both contain a laugh.png image, both emotes will correspond to the same emoji `:laugh:`.
+Per semplicità, Waline usa direttamente il nome del file immagine come chiave dell'emoji. Questo significa che se importi due preset diversi ed entrambi contengono un'immagine laugh.png, entrambi corrisponderanno alla stessa emoji `:laugh:`.
 
-Therefore, the best practice is that each emoji preset creator should add a preset-name-related prefix to all names in emoji files.
+La buona pratica è quindi che chi crea un preset di emoji aggiunga a tutti i nomi dei file un prefisso legato al nome del preset.
 
-After naming them appropriately, you need to upload them to your server.
+Dopo aver assegnato loro un nome adeguato, devi caricarle sul tuo server.
 
-### Write preset information
+### Scrivi le informazioni del preset
 
-We assume that you have placed some emoji images in the `
+Supponiamo che tu abbia inserito alcune immagini emoji nella cartella `
 
 ```
 https://example.com/my-emoji/
@@ -32,11 +32,11 @@ https://example.com/my-emoji/
 └─ info.json
 ```
 
-At this point, you'll also need to create an `info.json` file for this folder to let Waline know what emoji the Emoji presets contain.
+A questo punto devi anche creare un file `info.json` in questa cartella per indicare a Waline quali emoji contiene il preset.
 
-First, let's set a name for the Emoji preset, such as `My Emoji`, because you have set the `my_` prefix for the image, and the files are in `png` format. You need to add them in `info.json`.
+Per prima cosa impostiamo un nome per il preset, ad esempio `My Emoji`; poiché hai impostato il prefisso `my_` per le immagini e i file sono in formato `png`, devi aggiungerli in `info.json`.
 
-Your `info.json` can be:
+Il tuo `info.json` può essere:
 
 ```json
 {
@@ -46,7 +46,7 @@ Your `info.json` can be:
 }
 ```
 
-Then, list all emoji names in `items` in the order you want, at the same time, remember to ignore the prefix and suffix you have set in `prefix` and `type`.
+Poi elenca tutti i nomi delle emoji in `items` nell'ordine che preferisci; ricorda di omettere il prefisso e il suffisso impostati in `prefix` e `type`.
 
 ```json
 {
@@ -57,7 +57,7 @@ Then, list all emoji names in `items` in the order you want, at the same time, r
 }
 ```
 
-After that, please select a representative emoji as the icon displayed in the tab:
+Successivamente scegli un'emoji rappresentativa come icona mostrata nella scheda:
 
 ```json
 {
@@ -69,39 +69,39 @@ After that, please select a representative emoji as the icon displayed in the ta
 }
 ```
 
-With these, you are done writing `info.json`, please upload it to the same folder.
+Fatto questo, il tuo `info.json` è pronto: caricalo nella stessa cartella.
 
-You now successfully created a `my-emoji` preset with `https://example.com/my-emoji/'`.
+Hai così creato con successo il preset `my-emoji` con `https://example.com/my-emoji/'`.
 
-## Use GitHub mirror with tags
+## Usa un mirror GitHub con i tag
 
-Usually, you might find it a bit cumbersome to have your own domain name and upload images to the domain name, and the link may expire over time, so an advanced approach is to use a GitHub repository and use tag function in git to mirror GitHub repo providing a emoji preset.
+Di solito avere un dominio proprio e caricare lì le immagini può risultare scomodo, e inoltre il link può scadere nel tempo. Un approccio più avanzato consiste nell'usare un repository GitHub e la funzione tag di git per ospitare il preset di emoji.
 
-Similar to the steps above, you need to create a new GitHub repository, name the emoji as above, create `info.json` using the same steps, and upload them to the repository.
+Analogamente ai passaggi precedenti, crea un nuovo repository GitHub, assegna alle emoji i nomi come sopra, crea `info.json` con gli stessi passaggi e carica tutto nel repository.
 
-Then, please create a tag for the repository at this time, we recommend setting it in the format of `vx.x.x`, such as `v1.0.0`.
+A questo punto crea un tag per il repository; consigliamo il formato `vx.x.x`, ad esempio `v1.0.0`.
 
-After adding tags, you can use the CDN link with the version on [cdn.jsdelivr.net](https://www.jsdelivr.com/) as your preset in the format `https://cdn.jsdelivr.net/gh/user/repo@version/file`.
+Dopo aver aggiunto i tag puoi usare come preset il link CDN con la versione su [cdn.jsdelivr.net](https://www.jsdelivr.com/), nel formato `https://cdn.jsdelivr.net/gh/user/repo@version/file`.
 
-We assume that you have created the `example/emoji` repository, uploaded the emoji images and `info.json` directly, and have created the `v1.0.0` tag, then you can use `https://cdn.jsdelivr.net/gh/example/emoji@v1.0.0/` as your preset.
+Supponiamo che tu abbia creato il repository `example/emoji`, caricato direttamente le immagini emoji e `info.json` e creato il tag `v1.0.0`: puoi usare `https://cdn.jsdelivr.net/gh/example/emoji@v1.0.0/` come preset.
 
 ::: tip
 
-It is necessary to specific a tag with link to prevent the image link referenced by the historical comment from being invalidated by modifying your preset.
+È necessario specificare un tag nel link per evitare che i link delle immagini citati nei commenti storici diventino non validi quando modifichi il preset.
 
-The official emoji preset is achieved by creating the [walinejs/emojis](https://github.com/walinejs/emojis) repository and using the CDN link. Currently we are using the `v1.1.0` version.
+Il preset ufficiale di emoji è realizzato creando il repository [walinejs/emojis](https://github.com/walinejs/emojis) e usando il link CDN. Al momento usiamo la versione `v1.1.0`.
 
 :::
 
 ::: warning
 
-Since cdn.jsdelivr.net is polluted in China, you can replace `cdn.jsdelivr.net` with `gcore.jsdelivr.net`
+Poiché in Cina cdn.jsdelivr.net è soggetto a DNS poisoning, puoi sostituire `cdn.jsdelivr.net` con `gcore.jsdelivr.net`
 
 :::
 
-## Using config objects
+## Usare oggetti di configurazione
 
-Similar to the previous article, we assume you have the following file structure:
+Come nell'esempio precedente, supponiamo che tu abbia la seguente struttura di file:
 
 ```
 https://example.com/my-emoji/
@@ -111,7 +111,7 @@ https://example.com/my-emoji/
 └─ my_sob.png
 ```
 
-In addition to creating an `info.json` upload and using a link as a preset, you can also use the following objects directly as a preset:
+Oltre a creare e caricare un `info.json` e a usare un link come preset, puoi anche usare direttamente i seguenti oggetti come preset:
 
 ```js
 {
@@ -124,4 +124,4 @@ In addition to creating an `info.json` upload and using a link as a preset, you 
 }
 ```
 
-Here, we additionally add the `folder` property to tell Waline where the images are stored.
+Qui aggiungiamo la proprietà `folder` per indicare a Waline dove sono archiviate le immagini.
