@@ -885,8 +885,10 @@ describe('comment handler', () => {
     await expect(
       env.core.comment.update({ objectId: 'root', data: { comment: 'x' } }, context()),
     ).rejects.toThrow();
+    const rootComment = env.Comment.rows[0].comment;
     await env.core.comment.update({ objectId: 'root', data: { like: true } }, context());
     expect(env.Comment.rows[0].like).toBe(3);
+    expect(env.Comment.rows[0].comment).toBe(rootComment);
     await env.core.comment.update({ objectId: 'root', data: { like: false } }, context(guest));
     expect(env.Comment.rows[0].like).toBe(2);
     const waiting = env.Comment.rows.find(({ objectId }) => objectId === 'waiting')!;
