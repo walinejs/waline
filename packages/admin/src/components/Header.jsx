@@ -123,7 +123,7 @@ export default function Header() {
         />
       </div>
     ) : null,
-    user?.type ? (
+    user?.type && (!user.storage || user.storage === 'leancloud') ? (
       <div className="upgrade-tips clear-fix" key="leancloud-warning">
         <Trans
           i18nKey="leancloud warning"
