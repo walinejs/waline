@@ -419,23 +419,22 @@ const onImageWallScroll = async (event: Event): Promise<void> => {
 
   searchResults.loading = true;
 
-  const searchResult =
-    searchOptions.more && searchResults.list.length > 0
-      ? await searchOptions.more(keyword, searchResults.list.length)
-      : await searchOptions.search(keyword);
-
-  if (searchResult.length > 0) {
-    searchResults.list = [
-      ...searchResults.list,
-      ...(searchOptions.more && searchResults.list.length > 0
+  try {
+    const nextPage =
+      searchOptions.more && searchResults.list.length > 0
         ? await searchOptions.more(keyword, searchResults.list.length)
-        : await searchOptions.search(keyword)),
-    ];
-  } else {
-    isImageListEnd.value = true;
-  }
+        : await searchOptions.search(keyword);
 
-  searchResults.loading = false;
+    if (nextPage.length > 0) {
+      searchResults.list = [...searchResults.list, ...nextPage];
+    } else {
+      isImageListEnd.value = true;
+    }
+  } catch {
+    // Keep the current results and retry on the next scroll.
+  } finally {
+    searchResults.loading = false;
+  }
 
   setTimeout(() => {
     (event.target as HTMLDivElement).scrollTop = scrollTop;
