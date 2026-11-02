@@ -53,15 +53,23 @@ const fetchReaction = async (): Promise<void> => {
 
   abort = controller.abort.bind(controller);
 
-  const [reactionData] = (await getArticleCounter({
-    serverURL,
-    lang,
-    paths: [path],
-    type: reaction.value.map((_, index) => `reaction${index}`),
-    signal: controller.signal,
-  })) as Record<string, number>[];
+  try {
+    const [reactionData] = (await getArticleCounter({
+      serverURL,
+      lang,
+      paths: [path],
+      type: reaction.value.map((_, index) => `reaction${index}`),
+      signal: controller.signal,
+    })) as Record<string, number>[];
 
-  voteNumbers.value = reaction.value.map((_, index) => reactionData[`reaction${index}`]);
+    voteNumbers.value = reaction.value.map((_, index) => reactionData[`reaction${index}`]);
+  } catch (err) {
+    // Ignore aborted requests, but keep the widget usable after network errors.
+    if (err instanceof Error && err.name === 'AbortError') return;
+
+    // oxlint-disable-next-line no-console
+    console.error('[Waline] Failed to fetch reaction data', err);
+  }
 };
 
 const vote = async (index: number): Promise<void> => {
@@ -72,47 +80,62 @@ const vote = async (index: number): Promise<void> => {
 
   const { serverURL, lang, path } = config.value;
   const currentVoteItemIndex = reactionStorage.value[path];
+  const prevVoteNumbers = [...voteNumbers.value];
 
   // mark voting status
   votingIndex.value = index;
 
-  // if user already vote current article, decrease the voted item number
-  if (currentVoteItemIndex != null) {
-    await updateArticleCounter({
-      serverURL,
-      lang,
-      path,
-      type: `reaction${currentVoteItemIndex}`,
-      action: 'desc',
-    });
+  try {
+    // if user already vote current article, decrease the voted item number
+    if (currentVoteItemIndex != null) {
+      await updateArticleCounter({
+        serverURL,
+        lang,
+        path,
+        type: `reaction${currentVoteItemIndex}`,
+        action: 'desc',
+      });
 
-    voteNumbers.value[currentVoteItemIndex] = Math.max(
-      voteNumbers.value[currentVoteItemIndex] - 1,
-      0,
-    );
+      voteNumbers.value[currentVoteItemIndex] = Math.max(
+        (voteNumbers.value[currentVoteItemIndex] ?? 0) - 1,
+        0,
+      );
+    }
+
+    // increase voting number if current reaction item is not been voted
+    if (currentVoteItemIndex !== index) {
+      await updateArticleCounter({
+        serverURL,
+        lang,
+        path,
+        type: `reaction${index}`,
+      });
+      voteNumbers.value[index] = (voteNumbers.value[index] ?? 0) + 1;
+    }
+
+    // update vote info in local storage
+    if (currentVoteItemIndex === index) {
+      // oxlint-disable-next-line typescript/no-dynamic-delete
+      delete reactionStorage.value[path];
+    } else {
+      reactionStorage.value[path] = index;
+    }
+  } catch (err) {
+    // Revert optimistic updates and keep the widget usable after a failed request.
+    voteNumbers.value = prevVoteNumbers;
+
+    if (currentVoteItemIndex == null) {
+      // oxlint-disable-next-line typescript/no-dynamic-delete
+      delete reactionStorage.value[path];
+    } else {
+      reactionStorage.value[path] = currentVoteItemIndex;
+    }
+
+    // oxlint-disable-next-line no-console
+    console.error('[Waline] Failed to update reaction counter', err);
+  } finally {
+    votingIndex.value = -1;
   }
-
-  // increase voting number if current reaction item is not been voted
-  if (currentVoteItemIndex !== index) {
-    await updateArticleCounter({
-      serverURL,
-      lang,
-      path,
-      type: `reaction${index}`,
-    });
-    voteNumbers.value[index] = (voteNumbers.value[index] || 0) + 1;
-  }
-
-  // update vote info in local storage
-  if (currentVoteItemIndex === index) {
-    // oxlint-disable-next-line typescript/no-dynamic-delete
-    delete reactionStorage.value[path];
-  } else {
-    reactionStorage.value[path] = index;
-  }
-
-  // voting is completed
-  votingIndex.value = -1;
 };
 
 onMounted(() => {
