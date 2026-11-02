@@ -753,6 +753,35 @@ describe('comment handler', () => {
     ]);
   });
 
+  it('normalizes CSV count URLs without changing array or legacy inputs', async () => {
+    const { core, Comment } = setup();
+    const comment = { comment: 'test', insertedAt: new Date() };
+    Comment.rows.push(
+      { ...comment, objectId: 'approved', url: '/post', status: 'approved' },
+      { ...comment, objectId: 'waiting', url: '/post', status: 'waiting', user_id: guest.objectId },
+      { ...comment, objectId: 'spam', url: '/post', status: 'spam', user_id: 'another-user' },
+      { ...comment, objectId: 'comma', url: '/with,comma', status: 'approved' },
+    );
+
+    await expect(
+      core.comment.count({ url: '/missing,/post,/post' }, context()),
+    ).resolves.toStrictEqual([0, 1, 1]);
+    await expect(
+      core.comment.count({ url: '/missing,/post' }, context(guest)),
+    ).resolves.toStrictEqual([0, 2]);
+    await expect(
+      core.comment.count({ url: ['/with,comma', '/missing'] }, context()),
+    ).resolves.toStrictEqual([1, 0]);
+    await expect(core.comment.count({ url: '/post' }, context())).resolves.toStrictEqual([1]);
+    await expect(core.comment.count({ url: '/post' }, context(undefined, true))).resolves.toBe(1);
+    await expect(
+      core.comment.count({ url: '/post,/missing' }, context(undefined, true)),
+    ).resolves.toStrictEqual([1, 0]);
+    await expect(core.comment.count({ url: '' }, context())).resolves.toBe(2);
+    await expect(core.comment.count({ url: [] }, context())).resolves.toBe(2);
+    await expect(core.comment.count({}, context())).resolves.toBe(2);
+  });
+
   it('covers comment creation filters and effects', async () => {
     const env = setup();
     env.Users.rows.push({ ...guest }, { ...administrator });

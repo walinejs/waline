@@ -196,7 +196,7 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
     },
 
     async count(input: { url?: string | string[] }, ctx: WalineContext) {
-      const urls = Array.isArray(input.url) ? input.url : input.url ? [input.url] : [];
+      const urls = Array.isArray(input.url) ? input.url : input.url ? input.url.split(',') : [];
       const where: Where<WalineComment> = urls.length ? { url: ['IN', urls] } : {};
       const current = currentUser(ctx);
 
