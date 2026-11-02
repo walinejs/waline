@@ -36,6 +36,18 @@ export const clampScore = (score: number): number => {
   return Math.min(5, Math.max(0, normalized));
 };
 
+/**
+ * Convert the 0-based score stored in localStorage into a 1-based display score.
+ *
+ * No stored entry means the user has not rated yet (0), while a stored `0` means the user rated 1
+ * star.
+ *
+ * @param storedScore - 0-based score read from localStorage
+ * @returns 1-based score, or 0 when the user has not rated
+ */
+export const getInitialScore = (storedScore?: number): number =>
+  storedScore == null ? 0 : clampScore(storedScore + 1);
+
 export const normalizeDistribution = (distribution: number[] = []): number[] =>
   Array.from({ length: 5 }, (_, index) => {
     const value = distribution[index] ?? 0;
