@@ -87,6 +87,9 @@ if (MONGO_DB) {
 const model = {
   type,
   common: {
+    // The PostgreSQL and MongoDB adapters log the full connection string,
+    // password included, on first connect unless this is turned off.
+    logConnect: false,
     logSql: true,
     logger: (msg) => {
       think.logger.info(msg);
