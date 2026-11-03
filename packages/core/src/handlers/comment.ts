@@ -358,10 +358,18 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
         if (!isAdmin(ctx) && old.user_id !== user.objectId) forbidden();
       }
 
-      //@ts-expect-error: like type can be boolean or number
-      const data: Partial<WalineComment> = isAdmin(ctx)
-        ? { ...input.data }
-        : { comment: input.data.comment, like: input.data.like as number };
+      // Only copy the fields that were actually sent. A like-only request has no
+      // `comment`, and passing `comment: undefined` through to storage makes the
+      // returned row lose its text, so formatComment's markdown render throws.
+      const data = (
+        isAdmin(ctx)
+          ? { ...input.data }
+          : Object.fromEntries(
+              (['comment', 'like'] as const)
+                .filter((key) => input.data[key] !== undefined)
+                .map((key) => [key, input.data[key]]),
+            )
+      ) as Partial<WalineComment>;
 
       if (typeof input.data.like === 'boolean') {
         data.like = Math.max(
