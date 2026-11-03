@@ -4,7 +4,7 @@ import { updateArticleCounter } from '@waline/api';
 import { ref, computed, onMounted } from 'vue';
 
 import { useReactionStorage } from '../../composables';
-import { clampScore, fetchReaction, normalizeDistribution } from './utils';
+import { fetchReaction, getInitialScore, normalizeDistribution } from './utils';
 import WalineStarDisplay from './WalineStarDisplay.vue';
 
 // oxlint-disable-next-line vue/define-props-destructuring
@@ -20,7 +20,7 @@ const emit = defineEmits<{
 
 const ratingArea = ref<HTMLElement | null>(null);
 const reactionStorage = useReactionStorage();
-const selectedScore = ref(clampScore((reactionStorage.value[props.path] ?? 0) + 1));
+const selectedScore = ref(getInitialScore(reactionStorage.value[props.path]));
 const hoverScore = ref<number | null>(null);
 const internalDistribution = ref(normalizeDistribution([]));
 const isVoting = ref(false);
@@ -29,6 +29,8 @@ onMounted(() => {
   watchImmediate(
     () => [props.serverURL, props.path],
     async () => {
+      selectedScore.value = getInitialScore(reactionStorage.value[props.path]);
+
       try {
         const reaction = await fetchReaction(props);
         internalDistribution.value = normalizeDistribution(reaction.value);
@@ -76,14 +78,17 @@ const onMouseLeave = (): void => {
 
 const onClick = async (event: MouseEvent): Promise<void> => {
   const nextScore = hoverScore.value ?? getScoreFromEvent(event);
+  const storedScore = reactionStorage.value[props.path];
+  const hasVoted = storedScore != null;
+  const prevScore = hasVoted ? selectedScore.value : 0;
 
-  if (nextScore === selectedScore.value || isVoting.value) return;
+  if (nextScore < 1 || isVoting.value || (hasVoted && nextScore === prevScore)) return;
 
   isVoting.value = true;
-  const prevScore = selectedScore.value;
+  const prevDistribution = [...internalDistribution.value];
 
   try {
-    if (prevScore) {
+    if (hasVoted) {
       await updateArticleCounter({
         ...props,
         type: `reaction${prevScore - 1}`,
@@ -110,7 +115,8 @@ const onClick = async (event: MouseEvent): Promise<void> => {
   } catch (err) {
     // Revert optimistic UI update on failure
     selectedScore.value = prevScore;
-    if (prevScore) {
+    internalDistribution.value = prevDistribution;
+    if (hasVoted) {
       reactionStorage.value[props.path] = prevScore - 1;
     } else {
       // oxlint-disable-next-line typescript/no-dynamic-delete
