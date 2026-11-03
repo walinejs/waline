@@ -20,6 +20,7 @@ const require = createRequire(import.meta.url);
 const main = require('../index.js');
 const commentSelect = vi.fn(async () => []);
 const commentCount = vi.fn(async () => 0);
+const usersSelect = vi.fn(async () => []);
 const oauthUrl = 'https://oauth.example.com';
 
 // Use a custom model stub so no real database connection is needed
@@ -36,7 +37,7 @@ const handler = main({
 
     if (modelName === 'Users') {
       return {
-        select: async () => [],
+        select: usersSelect,
         add: async () => ({}),
         update: async () => {},
         delete: async () => {},
@@ -148,6 +149,30 @@ describe('token API', () => {
       const body = await apiRequest('GET', '/api/token');
       expect(body.errno).toBe(0);
       expect(body.data).toStrictEqual({});
+    });
+
+    it('should include the storage type for administrators only', async () => {
+      const jwt = require('jsonwebtoken');
+      const getAs = (type) => {
+        usersSelect.mockResolvedValueOnce([
+          { objectId: '1', email: 'user@example.com', display_name: 'User', type },
+        ]);
+
+        return fetch(`http://localhost:${port}/api/token`, {
+          headers: {
+            Referer: 'https://trusted.example',
+            Authorization: `Bearer ${jwt.sign('1', 'test-jwt-secret')}`,
+          },
+        }).then((response) => response.json());
+      };
+
+      const admin = await getAs('administrator');
+      expect(admin.data.type).toBe('administrator');
+      expect(admin.data.storage).toBe('sqlite');
+
+      const guest = await getAs('guest');
+      expect(guest.data.type).toBe('guest');
+      expect(guest.data).not.toHaveProperty('storage');
     });
   });
 
