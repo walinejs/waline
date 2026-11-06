@@ -479,8 +479,8 @@ importers:
         specifier: 1.2.3
         version: 1.2.3(markdown-it@15.0.3)
       '@mdit/plugin-katex':
-        specifier: 1.1.4
-        version: 1.1.4(markdown-it@15.0.3)
+        specifier: 1.1.5
+        version: 1.1.5(markdown-it@15.0.3)
       '@mdit/plugin-mathjax':
         specifier: 1.2.3
         version: 1.2.3(markdown-it@15.0.3)
@@ -1676,6 +1676,15 @@ packages:
       markdown-it:
         optional: true
 
+  '@mdit/helper@1.2.0':
+    resolution: {integrity: sha512-+Lh3nitlVclyxjD0LnOKPCyogVqL1W416FKOYjJSGDVlVKq9/jasQNOsUbjAvRwc+imgnFq1lsnat4q69UibIg==}
+    engines: {node: '>=22'}
+    peerDependencies:
+      markdown-it: ^15.0.3
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
+
   '@mdit/plugin-alert@2.0.3':
     resolution: {integrity: sha512-uVzAnsu1hen3eb+FsindjNKOPCKzsUf/lFx3YdSt2pLvROT2N1UAPKJNf9Pbq6sAUq42Ddal8ScR5JC8wyPffQ==}
     engines: {node: '>=22'}
@@ -1814,8 +1823,8 @@ packages:
       markdown-it:
         optional: true
 
-  '@mdit/plugin-katex@1.1.4':
-    resolution: {integrity: sha512-l3W88fhr+6khSakHCZx64dUzWD7opmMOJDTDKIKrIp/Q4WslC72GDgzKBe0jrX45//z57tl0JaN1I7TnejkQew==}
+  '@mdit/plugin-katex@1.1.5':
+    resolution: {integrity: sha512-hOiLKXL0rhLg1myXIk7YQPa7OeyhUniZSHPcIjx4pi8i/5to04zxaxnfcncp87vCB86zqUlCrHV2eratz5C2+A==}
     engines: {node: '>=22'}
     peerDependencies:
       markdown-it: ^15.0.3
@@ -1930,6 +1939,15 @@ packages:
 
   '@mdit/plugin-tex@1.1.3':
     resolution: {integrity: sha512-AidFpoF+hs4ghyoBIhQ7LDJeNYQUgLBga9wmxB+SwbA1F3zeI7S+mfHdv591iLwBdDIn3aLIAN6PjuOgEPYzYg==}
+    engines: {node: '>=22'}
+    peerDependencies:
+      markdown-it: ^15.0.3
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
+
+  '@mdit/plugin-tex@1.2.0':
+    resolution: {integrity: sha512-nVoipJc/zKZnQeDYh/tIB81Xw9RVZTQtoqKO69OTso0FyV7wzxvg/qZ/8qq5P7mvz6ArNVWGC0ozpRxmO/ufIg==}
     engines: {node: '>=22'}
     peerDependencies:
       markdown-it: ^15.0.3
@@ -7345,6 +7363,10 @@ packages:
     resolution: {integrity: sha512-SLWVPtst6Ya3/iK674BRGNCDT5iGnojDB/6+E73Em9VSw+/D9wOfrawMI5LmMSHK5SK/zmKQdo2mVa9b7eO+vA==}
     engines: {node: '>=20.19.0'}
 
+  think-helper@1.3.1:
+    resolution: {integrity: sha512-lraehILn/xpt1FpHhBsJ+Y90+DOOd851dLXQBFCW4DplqX1AhuX0MeE+U9di9eX9oYh2PIA2fUvILUJRSMqkYQ==}
+    engines: {node: '>=20.19.0'}
+
   think-instance@1.0.2:
     resolution: {integrity: sha512-vLSgu8fBV0Kg+4pS8lyn0Jkeb0GcZZ8hmRYjKKwyOCNVt9wIPeKfrYx1SvKTbTUxJwNjgf5AloW0fJdTCXHLmg==}
     engines: {node: '>=6.0.0'}
@@ -9456,6 +9478,10 @@ snapshots:
     optionalDependencies:
       markdown-it: 15.0.3
 
+  '@mdit/helper@1.2.0(markdown-it@15.0.3)':
+    optionalDependencies:
+      markdown-it: 15.0.3
+
   '@mdit/plugin-alert@2.0.3(markdown-it@15.0.3)':
     dependencies:
       '@mdit/helper': 1.1.3(markdown-it@15.0.3)
@@ -9549,10 +9575,10 @@ snapshots:
     optionalDependencies:
       markdown-it: 15.0.3
 
-  '@mdit/plugin-katex@1.1.4(markdown-it@15.0.3)':
+  '@mdit/plugin-katex@1.1.5(markdown-it@15.0.3)':
     dependencies:
-      '@mdit/helper': 1.1.3(markdown-it@15.0.3)
-      '@mdit/plugin-tex': 1.1.3(markdown-it@15.0.3)
+      '@mdit/helper': 1.2.0(markdown-it@15.0.3)
+      '@mdit/plugin-tex': 1.2.0(markdown-it@15.0.3)
       katex: 0.19.1
     optionalDependencies:
       markdown-it: 15.0.3
@@ -9635,6 +9661,12 @@ snapshots:
   '@mdit/plugin-tex@1.1.3(markdown-it@15.0.3)':
     dependencies:
       '@mdit/helper': 1.1.3(markdown-it@15.0.3)
+    optionalDependencies:
+      markdown-it: 15.0.3
+
+  '@mdit/plugin-tex@1.2.0(markdown-it@15.0.3)':
+    dependencies:
+      '@mdit/helper': 1.2.0(markdown-it@15.0.3)
     optionalDependencies:
       markdown-it: 15.0.3
 
@@ -15327,6 +15359,13 @@ snapshots:
       ms: 2.1.3
       pure-uuid: 2.0.0
 
+  think-helper@1.3.1:
+    dependencies:
+      core-util-is: 1.0.3
+      lodash.merge: 4.6.2
+      ms: 2.1.3
+      pure-uuid: 2.0.0
+
   think-instance@1.0.2:
     dependencies:
       think-helper: 1.3.0
@@ -15468,7 +15507,7 @@ snapshots:
     dependencies:
       debug: 2.6.9(supports-color@10.2.2)
       koa-send: 3.3.0(supports-color@10.2.2)
-      think-helper: 1.3.0
+      think-helper: 1.3.1
     transitivePeerDependencies:
       - supports-color
 
