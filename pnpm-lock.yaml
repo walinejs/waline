@@ -482,8 +482,8 @@ importers:
         specifier: 1.1.4
         version: 1.1.4(markdown-it@15.0.3)
       '@mdit/plugin-mathjax':
-        specifier: 1.2.3
-        version: 1.2.3(markdown-it@15.0.3)
+        specifier: 2.0.0
+        version: 2.0.0(markdown-it@15.0.3)
       '@mdit/plugin-spoiler':
         specifier: 2.1.3
         version: 2.1.3(markdown-it@15.0.3)
@@ -1320,6 +1320,9 @@ packages:
   '@docsearch/js@5.2.0':
     resolution: {integrity: sha512-5gIXOpG72MIptdCL40xPRDElWKzIM/gZpCLXN115cOOCWFbUUv+AkXhPPVZv5uRuIqIXygrT2ZpUgSxsD2xifA==}
 
+  '@dual-bundle/import-meta-resolve@4.2.1':
+    resolution: {integrity: sha512-id+7YRUgoUX6CgV0DtuhirQWodeeA7Lf4i2x71JS/vtA5pRb/hIGWlw+G6MeXvsM+MXrz0VAydTGElX1rAfgPg==}
+
   '@edge-runtime/format@2.2.1':
     resolution: {integrity: sha512-JQTRVuiusQLNNLe2W9tnzBlV/GvSVcozLl4XZHk5swnRZ/v6jp8TqR8P7sqmJsQqblDZ3EztcWmLDbhRje/+8g==}
     engines: {node: '>=16'}
@@ -1676,6 +1679,15 @@ packages:
       markdown-it:
         optional: true
 
+  '@mdit/helper@1.2.0':
+    resolution: {integrity: sha512-+Lh3nitlVclyxjD0LnOKPCyogVqL1W416FKOYjJSGDVlVKq9/jasQNOsUbjAvRwc+imgnFq1lsnat4q69UibIg==}
+    engines: {node: '>=22'}
+    peerDependencies:
+      markdown-it: ^15.0.3
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
+
   '@mdit/plugin-alert@2.0.3':
     resolution: {integrity: sha512-uVzAnsu1hen3eb+FsindjNKOPCKzsUf/lFx3YdSt2pLvROT2N1UAPKJNf9Pbq6sAUq42Ddal8ScR5JC8wyPffQ==}
     engines: {node: '>=22'}
@@ -1856,8 +1868,8 @@ packages:
       markdown-it:
         optional: true
 
-  '@mdit/plugin-mathjax@1.2.3':
-    resolution: {integrity: sha512-4+SC3tDC8hSDiYDKATIRovTTDepRhRWSjHJ4TfWKWoucc1yeKGZfaFOpSrkzeageaAParULC5iDq7Q3MqMDi8g==}
+  '@mdit/plugin-mathjax@2.0.0':
+    resolution: {integrity: sha512-B95W1n+fahUS0U3VoIdgHT8Q3jqq5UKdwGkTPWeC2kSFYgRrozvmOhun6fmSawFaOmI6xdT8WzOlSW7T3uHiPA==}
     engines: {node: '>=22'}
     peerDependencies:
       markdown-it: ^15.0.3
@@ -1930,6 +1942,15 @@ packages:
 
   '@mdit/plugin-tex@1.1.3':
     resolution: {integrity: sha512-AidFpoF+hs4ghyoBIhQ7LDJeNYQUgLBga9wmxB+SwbA1F3zeI7S+mfHdv591iLwBdDIn3aLIAN6PjuOgEPYzYg==}
+    engines: {node: '>=22'}
+    peerDependencies:
+      markdown-it: ^15.0.3
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
+
+  '@mdit/plugin-tex@1.2.0':
+    resolution: {integrity: sha512-nVoipJc/zKZnQeDYh/tIB81Xw9RVZTQtoqKO69OTso0FyV7wzxvg/qZ/8qq5P7mvz6ArNVWGC0ozpRxmO/ufIg==}
     engines: {node: '>=22'}
     peerDependencies:
       markdown-it: ^15.0.3
@@ -7289,6 +7310,10 @@ packages:
     resolution: {integrity: sha512-eNRKgb3z66Yp3D2CixVujOUvXLFUTij/zVnV8KRyvFdQwpz7I5DS8UfRkTeLzb64u+dkzDSdelE24izu+zSSUg==}
     engines: {node: ^14.18.0 || >=16.0.0}
 
+  synckit@0.12.3:
+    resolution: {integrity: sha512-U+/AXT6LWsxnj2vz9HeUuPWBNgdWxjyIEjEPdbJARC9txmgPzo2VEdqnFo4hHaNyMPtycyVJrSaQYeQv/PoyyA==}
+    engines: {node: ^14.18.0 || >=16.0.0}
+
   table@6.9.0:
     resolution: {integrity: sha512-9kY+CygyYM6j02t5YFHbNz2FN5QmYGv9zAjVp4lCDjlCw7amdckXlEt/bjMhUIfj4ThGRE4gCUH5+yGnNuPo5A==}
     engines: {node: '>=10.0.0'}
@@ -7343,6 +7368,10 @@ packages:
 
   think-helper@1.3.0:
     resolution: {integrity: sha512-SLWVPtst6Ya3/iK674BRGNCDT5iGnojDB/6+E73Em9VSw+/D9wOfrawMI5LmMSHK5SK/zmKQdo2mVa9b7eO+vA==}
+    engines: {node: '>=20.19.0'}
+
+  think-helper@1.3.1:
+    resolution: {integrity: sha512-lraehILn/xpt1FpHhBsJ+Y90+DOOd851dLXQBFCW4DplqX1AhuX0MeE+U9di9eX9oYh2PIA2fUvILUJRSMqkYQ==}
     engines: {node: '>=20.19.0'}
 
   think-instance@1.0.2:
@@ -9148,6 +9177,8 @@ snapshots:
 
   '@docsearch/js@5.2.0': {}
 
+  '@dual-bundle/import-meta-resolve@4.2.1': {}
+
   '@edge-runtime/format@2.2.1': {}
 
   '@edge-runtime/node-utils@2.3.0': {}
@@ -9456,6 +9487,10 @@ snapshots:
     optionalDependencies:
       markdown-it: 15.0.3
 
+  '@mdit/helper@1.2.0(markdown-it@15.0.3)':
+    optionalDependencies:
+      markdown-it: 15.0.3
+
   '@mdit/plugin-alert@2.0.3(markdown-it@15.0.3)':
     dependencies:
       '@mdit/helper': 1.1.3(markdown-it@15.0.3)
@@ -9578,11 +9613,12 @@ snapshots:
       '@mathjax/src': 4.1.3
       markdown-it: 15.0.3
 
-  '@mdit/plugin-mathjax@1.2.3(markdown-it@15.0.3)':
+  '@mdit/plugin-mathjax@2.0.0(markdown-it@15.0.3)':
     dependencies:
       '@mathjax/mathjax-newcm-font': 4.1.3(@mathjax/src@4.1.3)
       '@mathjax/src': 4.1.3
-      '@mdit/plugin-tex': 1.1.3(markdown-it@15.0.3)
+      '@mdit/plugin-tex': 1.2.0(markdown-it@15.0.3)
+      synckit: 0.12.3
     optionalDependencies:
       markdown-it: 15.0.3
 
@@ -9635,6 +9671,12 @@ snapshots:
   '@mdit/plugin-tex@1.1.3(markdown-it@15.0.3)':
     dependencies:
       '@mdit/helper': 1.1.3(markdown-it@15.0.3)
+    optionalDependencies:
+      markdown-it: 15.0.3
+
+  '@mdit/plugin-tex@1.2.0(markdown-it@15.0.3)':
+    dependencies:
+      '@mdit/helper': 1.2.0(markdown-it@15.0.3)
     optionalDependencies:
       markdown-it: 15.0.3
 
@@ -15238,6 +15280,11 @@ snapshots:
     dependencies:
       '@pkgr/core': 0.3.6
 
+  synckit@0.12.3:
+    dependencies:
+      '@dual-bundle/import-meta-resolve': 4.2.1
+      '@pkgr/core': 0.3.6
+
   table@6.9.0:
     dependencies:
       ajv: 8.20.0
@@ -15321,6 +15368,13 @@ snapshots:
   think-debounce@1.0.4: {}
 
   think-helper@1.3.0:
+    dependencies:
+      core-util-is: 1.0.3
+      lodash.merge: 4.6.2
+      ms: 2.1.3
+      pure-uuid: 2.0.0
+
+  think-helper@1.3.1:
     dependencies:
       core-util-is: 1.0.3
       lodash.merge: 4.6.2
@@ -15468,7 +15522,7 @@ snapshots:
     dependencies:
       debug: 2.6.9(supports-color@10.2.2)
       koa-send: 3.3.0(supports-color@10.2.2)
-      think-helper: 1.3.0
+      think-helper: 1.3.1
     transitivePeerDependencies:
       - supports-color
 
