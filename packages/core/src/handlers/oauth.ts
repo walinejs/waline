@@ -17,11 +17,12 @@ export const createOAuthHandler = ({ models, random, services }: CoreRuntime) =>
     const tokenService = requiredCapability(services.token, 'token');
     const profile = await oauthService.authorize(input, ctx);
 
+    const profileId: unknown = profile?.id;
     if (
       !profile ||
       !(
-        (typeof profile.id === 'string' && profile.id.length > 0) ||
-        (typeof profile.id === 'number' && Number.isSafeInteger(profile.id))
+        (typeof profileId === 'string' && profileId.length > 0) ||
+        (typeof profileId === 'number' && Number.isSafeInteger(profileId))
       ) ||
       ['email', 'name', 'url', 'avatar'].some(
         (key) =>
@@ -33,7 +34,7 @@ export const createOAuthHandler = ({ models, random, services }: CoreRuntime) =>
     }
 
     const [linked] = await models.Users.select({
-      [input.type]: `${profile.id}`,
+      [input.type]: String(profileId),
     });
 
     if (linked) {
@@ -43,7 +44,7 @@ export const createOAuthHandler = ({ models, random, services }: CoreRuntime) =>
     const user = currentUser(ctx);
     if (user) {
       const update = {
-        [input.type]: `${profile.id}`,
+        [input.type]: String(profileId),
         ...(!user.avatar && profile.avatar ? { avatar: profile.avatar } : {}),
       };
       const [updated] = await models.Users.update(update, {
@@ -60,7 +61,7 @@ export const createOAuthHandler = ({ models, random, services }: CoreRuntime) =>
       display_name: profile.name,
       url: profile.url,
       avatar: profile.avatar,
-      [input.type]: `${profile.id}`,
+      [input.type]: String(profileId),
       password: passwordService ? await passwordService.hash(String(random())) : undefined,
       type: count === 0 ? 'administrator' : 'guest',
     });
