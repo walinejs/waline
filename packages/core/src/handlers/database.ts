@@ -1,7 +1,7 @@
 import type { WalineContext } from '../types.js';
 import { requireAdmin } from '../utils/auth.js';
 import type { CoreRuntime } from '../utils/runtime.js';
-import { requiredCapability } from '../utils/validation.js';
+import { requiredCapability, requiredString, requiredRecord } from '../utils/validation.js';
 
 export const createDatabaseHandler = ({ models, now }: CoreRuntime) => ({
   async export(_input: object, ctx: WalineContext) {
@@ -23,7 +23,9 @@ export const createDatabaseHandler = ({ models, now }: CoreRuntime) => ({
 
   async import(input: { table: string; data: Record<string, unknown> }, ctx: WalineContext) {
     requireAdmin(ctx);
+    requiredString(input.table, 'table');
     const model = requiredCapability(models.get?.(input.table), `model:${input.table}`);
+    requiredRecord(input.data, 'data');
     const { objectId: _objectId, ...data } = input.data;
 
     return model.add(data);
@@ -38,7 +40,10 @@ export const createDatabaseHandler = ({ models, now }: CoreRuntime) => ({
     ctx: WalineContext,
   ) {
     requireAdmin(ctx);
+    requiredString(input.table, 'table');
     const model = requiredCapability(models.get?.(input.table), `model:${input.table}`);
+    requiredString(input.objectId, 'objectId');
+    requiredRecord(input.data, 'data');
     const {
       objectId: _objectId,
       createdAt: _createdAt,
@@ -51,6 +56,7 @@ export const createDatabaseHandler = ({ models, now }: CoreRuntime) => ({
 
   async clear(input: { table: string }, ctx: WalineContext) {
     requireAdmin(ctx);
+    requiredString(input.table, 'table');
     const model = requiredCapability(models.get?.(input.table), `model:${input.table}`);
 
     return model.delete({});

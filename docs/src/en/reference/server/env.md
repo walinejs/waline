@@ -24,6 +24,8 @@ You should set through `Settings` - `Environment Variables` when using Vercel.
 | `LOGIN`               |          | User need login before comment when `LOGIN=force`                                          |
 | `SERVER_URL`          |          | the url of the Waline Server, useful when the automatically generated address is incorrect |
 
+Password-reset emails require `SERVER_URL` to be set to the trusted HTTP(S) URL of your Waline server. Reset requests fail when it is absent, preventing request Host headers from controlling email links.
+
 ## Display
 
 | Environment Variables   | Default                                                                 | Description                                                       |

@@ -3,7 +3,14 @@ import type { GroupedCount, WalineComment, WalineContext, WalineUser, Where } fr
 import { currentUser, isAdmin, requireAdmin, requireUser } from '../utils/auth.js';
 import { createCommentFormatter } from '../utils/comment.js';
 import type { CoreRuntime } from '../utils/runtime.js';
-import { levelFor, positiveInt, requiredString } from '../utils/validation.js';
+import {
+  levelFor,
+  positiveInt,
+  requiredString,
+  optionalString,
+  stringList,
+  requiredRecord,
+} from '../utils/validation.js';
 
 export const createCommentHandler = (runtime: CoreRuntime) => {
   const { config, hook, logger, models, now, random, services } = runtime;
@@ -168,6 +175,9 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
       const pageSize = positiveInt(input.pageSize, 10, 100);
       const where: Where<WalineComment> = {};
 
+      optionalString(input.owner, 'owner');
+      optionalString(input.status, 'status');
+      optionalString(input.keyword, 'keyword');
       if (input.owner === 'mine') where.mail = current.email;
       if (input.status) {
         where.status = input.status === 'approved' ? ['NOT IN', ['waiting', 'spam']] : input.status;
@@ -196,7 +206,7 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
     },
 
     async count(input: { url?: string | string[] }, ctx: WalineContext) {
-      const urls = Array.isArray(input.url) ? input.url : input.url ? input.url.split(',') : [];
+      const urls = stringList(input.url, 'url');
       const where: Where<WalineComment> = urls.length ? { url: ['IN', urls] } : {};
       const current = currentUser(ctx);
 
@@ -237,6 +247,11 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
     ) {
       const rawComment = requiredString(input.comment, 'comment');
       const url = requiredString(input.url, 'url');
+      for (const field of ['link', 'mail', 'nick', 'pid', 'rid', 'ua', 'at'] as const) {
+        if (input[field] !== undefined && typeof input[field] !== 'string') {
+          badRequest({ field, rule: 'string' });
+        }
+      }
       const current = currentUser(ctx);
 
       if (!current && config.forceLogin) unauthorized();
@@ -346,12 +361,31 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
       ctx: WalineContext,
     ) {
       const id = requiredString(input.objectId, 'objectId');
+      requiredRecord(input.data, 'data');
+      if (input.data.comment !== undefined) requiredString(input.data.comment, 'comment');
+      if (
+        input.data.like !== undefined &&
+        typeof input.data.like !== 'boolean' &&
+        !(typeof input.data.like === 'number' && Number.isFinite(input.data.like))
+      ) {
+        badRequest({ field: 'like' });
+      }
       const [old] = await models.Comment.select({ objectId: id });
 
       if (!old) return;
       const isLikeOnly =
         typeof input.data.like === 'boolean' && Object.keys(input.data).length === 1;
       const current = currentUser(ctx);
+
+      // Match public list visibility, including legacy comments without a status.
+      if (
+        isLikeOnly &&
+        ['waiting', 'spam'].includes(old.status ?? '') &&
+        !isAdmin(ctx) &&
+        (!current || old.user_id !== current.objectId)
+      ) {
+        forbidden();
+      }
 
       if (!isLikeOnly) {
         const user = current ?? requireUser(ctx);
