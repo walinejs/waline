@@ -352,6 +352,13 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
     ) {
       const id = requiredString(input.objectId, 'objectId');
       if (input.data.comment !== undefined) requiredString(input.data.comment, 'comment');
+      if (
+        input.data.like !== undefined &&
+        typeof input.data.like !== 'boolean' &&
+        !(typeof input.data.like === 'number' && Number.isFinite(input.data.like))
+      ) {
+        badRequest({ field: 'like' });
+      }
       const [old] = await models.Comment.select({ objectId: id });
 
       if (!old) return;

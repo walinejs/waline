@@ -1044,6 +1044,12 @@ describe('untrusted query values', () => {
     await expect(
       env.core.auth.getTwoFactorStatus({ email: ['exp', '1'] as any }, context()),
     ).rejects.toThrow('VALIDATION_ERROR');
+    await expect(
+      env.core.comment.update(
+        { objectId: 'one', data: { like: ['exp', '1'] as any } },
+        context(guest),
+      ),
+    ).rejects.toThrow('VALIDATION_ERROR');
     expect(env.Comment.select).not.toHaveBeenCalled();
     expect(env.Users.select).not.toHaveBeenCalled();
   });
