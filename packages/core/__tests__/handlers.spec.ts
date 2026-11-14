@@ -1017,6 +1017,99 @@ describe('comment handler', () => {
   });
 });
 
+describe('untrusted query values', () => {
+  it.each(['link', 'mail', 'nick', 'pid', 'rid', 'ua', 'at'])(
+    'rejects array-valued %s before storage',
+    async (field) => {
+      const env = setup();
+      await expect(
+        env.core.comment.create(
+          { comment: 'hello', url: '/post', [field]: ['exp', '1'] },
+          context(),
+        ),
+      ).rejects.toThrow('VALIDATION_ERROR');
+      expect(env.Comment.select).not.toHaveBeenCalled();
+      expect(env.Comment.rows).toHaveLength(0);
+    },
+  );
+
+  it('rejects query operators in edits and two-factor lookups', async () => {
+    const env = setup();
+    await expect(
+      env.core.comment.update(
+        { objectId: 'one', data: { comment: ['exp', '1'] as any } },
+        context(guest),
+      ),
+    ).rejects.toThrow('VALIDATION_ERROR');
+    await expect(
+      env.core.auth.getTwoFactorStatus({ email: ['exp', '1'] as any }, context()),
+    ).rejects.toThrow('VALIDATION_ERROR');
+    await expect(
+      env.core.comment.update(
+        { objectId: 'one', data: { like: ['exp', '1'] as any } },
+        context(guest),
+      ),
+    ).rejects.toThrow('VALIDATION_ERROR');
+    expect(env.Comment.select).not.toHaveBeenCalled();
+    expect(env.Users.select).not.toHaveBeenCalled();
+  });
+});
+
+describe('hidden comment likes', () => {
+  it.each(['waiting', 'spam'])(
+    'prevents public access to %s comments through likes',
+    async (status) => {
+      const env = setup();
+      env.Comment.rows.push({
+        objectId: 'hidden',
+        insertedAt: '2026-01-01',
+        comment: 'secret',
+        url: '/post',
+        status,
+        user_id: guest.objectId,
+        like: 0,
+      });
+      await expect(
+        env.core.comment.update({ objectId: 'hidden', data: { like: true } }, context()),
+      ).rejects.toThrow('FORBIDDEN');
+      await expect(
+        env.core.comment.update(
+          { objectId: 'hidden', data: { like: false } },
+          context({ ...guest, objectId: 'other' }),
+        ),
+      ).rejects.toThrow('FORBIDDEN');
+      expect(env.Comment.rows[0].like).toBe(0);
+      await expect(
+        env.core.comment.update({ objectId: 'hidden', data: { like: true } }, context(guest)),
+      ).resolves.toBeDefined();
+      await expect(
+        env.core.comment.update(
+          { objectId: 'hidden', data: { like: true } },
+          context(administrator),
+        ),
+      ).resolves.toBeDefined();
+    },
+  );
+});
+
+describe('public comment like compatibility', () => {
+  it.each(['approved', undefined, ''])('allows public likes with status %s', async (status) => {
+    const env = setup();
+    env.Comment.rows.push({
+      objectId: 'public',
+      comment: 'visible',
+      url: '/post',
+      insertedAt: '2026-01-01',
+      status,
+      like: 0,
+    });
+    await expect(
+      env.core.comment.update({ objectId: 'public', data: { like: true } }, context()),
+    ).resolves.toBeDefined();
+    expect(env.Comment.rows[0].like).toBe(1);
+  });
+});
+
 describe('registration account state', () => {
   it.each(['banned', 'administrator', 'guest'])(
     'does not overwrite an existing %s account',
