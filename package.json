@@ -44,7 +44,7 @@
     "@vitest/coverage-v8": "5.0.5",
     "cross-env": "10.1.0",
     "husky": "9.1.7",
-    "markdownlint-cli2": "0.24.0",
+    "markdownlint-cli2": "0.24.1",
     "nano-staged": "1.0.2",
     "oxc-config-hope": "0.3.15",
     "oxfmt": "0.75.0",
