@@ -482,8 +482,8 @@ importers:
         specifier: 1.2.0
         version: 1.2.0(markdown-it@15.0.3)
       '@mdit/plugin-mathjax':
-        specifier: 1.2.3
-        version: 1.2.3(markdown-it@15.0.3)
+        specifier: 2.1.0
+        version: 2.1.0(markdown-it@15.0.3)
       '@mdit/plugin-spoiler':
         specifier: 2.2.0
         version: 2.2.0(markdown-it@15.0.3)
@@ -1345,6 +1345,9 @@ packages:
   '@docsearch/js@5.2.0':
     resolution: {integrity: sha512-5gIXOpG72MIptdCL40xPRDElWKzIM/gZpCLXN115cOOCWFbUUv+AkXhPPVZv5uRuIqIXygrT2ZpUgSxsD2xifA==}
 
+  '@dual-bundle/import-meta-resolve@4.2.1':
+    resolution: {integrity: sha512-id+7YRUgoUX6CgV0DtuhirQWodeeA7Lf4i2x71JS/vtA5pRb/hIGWlw+G6MeXvsM+MXrz0VAydTGElX1rAfgPg==}
+
   '@edge-runtime/format@2.2.1':
     resolution: {integrity: sha512-JQTRVuiusQLNNLe2W9tnzBlV/GvSVcozLl4XZHk5swnRZ/v6jp8TqR8P7sqmJsQqblDZ3EztcWmLDbhRje/+8g==}
     engines: {node: '>=16'}
@@ -1902,8 +1905,8 @@ packages:
       markdown-it:
         optional: true
 
-  '@mdit/plugin-mathjax@1.2.3':
-    resolution: {integrity: sha512-4+SC3tDC8hSDiYDKATIRovTTDepRhRWSjHJ4TfWKWoucc1yeKGZfaFOpSrkzeageaAParULC5iDq7Q3MqMDi8g==}
+  '@mdit/plugin-mathjax@2.1.0':
+    resolution: {integrity: sha512-XP3dAW1+Ni9kqU+jec2ufzASbrh5E/TX/16nM7APwnzW/nqrqhXd5zNfOLn9f9al24OWKQB/wSugk1tQKG17vw==}
     engines: {node: '>=22'}
     peerDependencies:
       markdown-it: ^15.0.3
@@ -7454,6 +7457,10 @@ packages:
     resolution: {integrity: sha512-eNRKgb3z66Yp3D2CixVujOUvXLFUTij/zVnV8KRyvFdQwpz7I5DS8UfRkTeLzb64u+dkzDSdelE24izu+zSSUg==}
     engines: {node: ^14.18.0 || >=16.0.0}
 
+  synckit@0.12.3:
+    resolution: {integrity: sha512-U+/AXT6LWsxnj2vz9HeUuPWBNgdWxjyIEjEPdbJARC9txmgPzo2VEdqnFo4hHaNyMPtycyVJrSaQYeQv/PoyyA==}
+    engines: {node: ^14.18.0 || >=16.0.0}
+
   table@6.9.0:
     resolution: {integrity: sha512-9kY+CygyYM6j02t5YFHbNz2FN5QmYGv9zAjVp4lCDjlCw7amdckXlEt/bjMhUIfj4ThGRE4gCUH5+yGnNuPo5A==}
     engines: {node: '>=10.0.0'}
@@ -9356,6 +9363,8 @@ snapshots:
 
   '@docsearch/js@5.2.0': {}
 
+  '@dual-bundle/import-meta-resolve@4.2.1': {}
+
   '@edge-runtime/format@2.2.1': {}
 
   '@edge-runtime/node-utils@2.3.0': {}
@@ -9798,11 +9807,12 @@ snapshots:
       '@mathjax/src': 4.1.3
       markdown-it: 15.0.3
 
-  '@mdit/plugin-mathjax@1.2.3(markdown-it@15.0.3)':
+  '@mdit/plugin-mathjax@2.1.0(markdown-it@15.0.3)':
     dependencies:
       '@mathjax/mathjax-newcm-font': 4.1.3(@mathjax/src@4.1.3)
       '@mathjax/src': 4.1.3
-      '@mdit/plugin-tex': 1.1.3(markdown-it@15.0.3)
+      '@mdit/plugin-tex': 1.3.0(markdown-it@15.0.3)
+      synckit: 0.12.3
     optionalDependencies:
       markdown-it: 15.0.3
 
@@ -15554,6 +15564,11 @@ snapshots:
 
   synckit@0.11.13:
     dependencies:
+      '@pkgr/core': 0.3.6
+
+  synckit@0.12.3:
+    dependencies:
+      '@dual-bundle/import-meta-resolve': 4.2.1
       '@pkgr/core': 0.3.6
 
   table@6.9.0:
