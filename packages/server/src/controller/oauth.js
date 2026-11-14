@@ -7,6 +7,14 @@ module.exports = class OAuthController extends BaseRest {
     const input = this.get();
     const { oauthUrl } = this.config();
 
+    if (
+      typeof input.type !== 'string' ||
+      !/^[a-z][a-z0-9-]*$/u.test(input.type) ||
+      !this.ctx.state.oauthServices?.some(({ name }) => name === input.type)
+    ) {
+      return this.ctx.throw(400, 'Invalid OAuth provider');
+    }
+
     if (!input.code) {
       const redirectUrl = think.buildUrl(`${this.ctx.serverURL}/api/oauth`, {
         redirect: input.redirect,
