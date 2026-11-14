@@ -116,6 +116,7 @@ export interface WalineModels {
 }
 
 export interface WalineConfig {
+  serverUrl?: string;
   audit?: boolean;
   avatarProxy?: string;
   disableRegion?: boolean;

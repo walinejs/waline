@@ -1,23 +1,29 @@
-import { unauthorized, WalineError } from '../error.js';
+import { badRequest, unauthorized, WalineError } from '../error.js';
 import type { WalineContext } from '../types.js';
 import { currentUser, requireUser } from '../utils/auth.js';
 import { createAvatarFormatter } from '../utils/avatar.js';
 import type { CoreRuntime } from '../utils/runtime.js';
-import { requiredCapability, requiredString } from '../utils/validation.js';
+import {
+  requiredCapability,
+  requiredString,
+  optionalString,
+  emailString,
+} from '../utils/validation.js';
 
 export const createAuthHandler = (runtime: CoreRuntime) => {
-  const { models, services } = runtime;
+  const { config, models, services } = runtime;
   const avatar = createAvatarFormatter(runtime);
 
   return {
     async resolveSession(input: { token?: string }, ctx: WalineContext) {
       if (!input.token) return;
+      requiredString(input.token, 'token');
 
       const tokenService = requiredCapability(services.token, 'token');
       let id: string;
 
       try {
-        id = await tokenService.verify(input.token);
+        id = requiredString(await tokenService.verify(input.token), 'tokenSubject');
       } catch {
         return;
       }
@@ -48,8 +54,9 @@ export const createAuthHandler = (runtime: CoreRuntime) => {
     },
 
     async login(input: { email: string; password: string; code?: string }, _ctx: WalineContext) {
-      const email = requiredString(input.email, 'email');
+      const email = emailString(input.email);
       requiredString(input.password, 'password');
+      optionalString(input.code, 'code');
       const passwordService = requiredCapability(services.password, 'password');
       const tokenService = requiredCapability(services.token, 'token');
       const [account] = await models.Users.select({ email });
@@ -82,7 +89,7 @@ export const createAuthHandler = (runtime: CoreRuntime) => {
     async getTwoFactorStatus(input: { email?: string }, ctx: WalineContext) {
       if (!currentUser(ctx) && !input.email) unauthorized();
 
-      const email = input.email ?? currentUser(ctx)?.email;
+      const email = requiredString(input.email ?? currentUser(ctx)?.email, 'email');
       const [account] = await models.Users.select({ email });
 
       return { enable: Boolean(account?.['2fa']) };
@@ -104,6 +111,9 @@ export const createAuthHandler = (runtime: CoreRuntime) => {
 
     async enableTwoFactor(input: { secret: string; code: string }, ctx: WalineContext) {
       const user = requireUser(ctx);
+      requiredString(input.secret, 'secret');
+      requiredString(input.code, 'code');
+      if (!/^\d{6}$/u.test(input.code)) badRequest({ field: 'code', rule: 'sixDigits' });
       const twoFactor = requiredCapability(services.twoFactor, 'twoFactor');
 
       if (!(await twoFactor.verify(input.secret, input.code))) {
@@ -113,7 +123,22 @@ export const createAuthHandler = (runtime: CoreRuntime) => {
       await models.Users.update({ '2fa': input.secret }, { objectId: user.objectId });
     },
 
-    async requestPasswordReset(input: { email: string }, ctx: WalineContext) {
+    async requestPasswordReset(input: { email: string }, _ctx: WalineContext) {
+      let baseUrl: URL;
+      try {
+        baseUrl = new URL(config.serverUrl ?? '');
+        if (
+          !['http:', 'https:'].includes(baseUrl.protocol) ||
+          baseUrl.username ||
+          baseUrl.password
+        ) {
+          throw new Error('Invalid canonical URL');
+        }
+      } catch {
+        throw new WalineError('SERVER_URL_REQUIRED', 400);
+      }
+      baseUrl.search = '';
+      baseUrl.hash = '';
       const [account] = await models.Users.select({
         email: requiredString(input.email, 'email'),
       });
@@ -126,7 +151,7 @@ export const createAuthHandler = (runtime: CoreRuntime) => {
         'notification.passwordReset',
       );
       const tokenService = requiredCapability(services.token, 'token');
-      const profileUrl = `${ctx.serverUrl ?? ''}/ui/profile?token=${await tokenService.sign(account.objectId)}`;
+      const profileUrl = `${baseUrl.href.replace(/\/$/u, '')}/ui/profile?token=${encodeURIComponent(await tokenService.sign(account.objectId))}`;
 
       await reset(account, profileUrl);
     },

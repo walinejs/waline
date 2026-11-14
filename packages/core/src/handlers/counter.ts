@@ -1,17 +1,34 @@
 import { badRequest } from '../error.js';
 import type { WalineContext } from '../types.js';
 import type { CoreRuntime } from '../utils/runtime.js';
-import { requiredString } from '../utils/validation.js';
+import { requiredString, stringList } from '../utils/validation.js';
+
+const validateCounterType = (value: unknown): void => {
+  const type = requiredString(value, 'type');
+  if (
+    !/^[a-z][a-z0-9_]*$/iu.test(type) ||
+    [
+      'url',
+      'objectid',
+      'id',
+      'createdat',
+      'updatedat',
+      'site_id',
+      '__proto__',
+      'constructor',
+      'prototype',
+    ].includes(type.toLowerCase())
+  ) {
+    badRequest({ field: 'type' });
+  }
+};
 
 export const createCounterHandler = ({ models, now }: CoreRuntime) => ({
   async get(input: { path?: string | string[]; type?: string | string[] }, ctx: WalineContext) {
-    const paths = typeof input.path === 'string' ? input.path.split(',') : (input.path ?? []);
-    const types =
-      typeof input.type === 'string'
-        ? input.type.split(',')
-        : input.type?.length
-          ? input.type
-          : ['time'];
+    const paths = stringList(input.path, 'path');
+    const types = input.type === undefined ? ['time'] : stringList(input.type, 'type');
+    if (!types.length) types.push('time');
+    types.forEach(validateCounterType);
 
     if (!paths.length) return 0;
 
@@ -37,6 +54,7 @@ export const createCounterHandler = ({ models, now }: CoreRuntime) => ({
     const path = requiredString(input.path, 'path');
     const type = input.type ?? 'time';
     const action = input.action ?? 'inc';
+    validateCounterType(type);
 
     if (!['inc', 'desc'].includes(action)) badRequest({ field: 'action' });
 
