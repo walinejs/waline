@@ -5,6 +5,7 @@ import { requiredString } from '../utils/validation.js';
 
 export const createVerificationHandler = ({ models, now }: CoreRuntime) => ({
   async verifyEmail(input: { email: string; token: string }, _ctx: WalineContext) {
+    requiredString(input.token, 'token');
     const [account] = await models.Users.select({
       email: requiredString(input.email, 'email'),
     });

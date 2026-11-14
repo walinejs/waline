@@ -13,9 +13,15 @@ export const positiveInt = (
 ): number => {
   if (value === undefined) return fallback;
 
+  if (
+    (typeof value !== 'number' && typeof value !== 'string') ||
+    (typeof value === 'string' && !/^\d+$/u.test(value))
+  ) {
+    badRequest({ rule: 'int', max });
+  }
   const result = Number(value);
 
-  if (!Number.isInteger(result) || result < 1 || result > max) {
+  if (!Number.isSafeInteger(result) || result < 1 || result > max) {
     badRequest({ rule: 'int', max });
   }
 
@@ -37,4 +43,31 @@ export const levelFor = (levels: number[], count?: number): number => {
   }
 
   return result;
+};
+
+export const optionalString = (value: unknown, field: string): string | undefined => {
+  if (value === undefined) return undefined;
+  if (typeof value !== 'string') badRequest({ field, rule: 'string' });
+  return value as string;
+};
+
+export const stringList = (value: unknown, field: string): string[] => {
+  if (value === undefined || value === '') return [];
+  const items = typeof value === 'string' ? value.split(',') : value;
+  if (!Array.isArray(items) || !items.every((item) => typeof item === 'string')) {
+    badRequest({ field, rule: 'stringArray' });
+  }
+  return items as string[];
+};
+
+export const requiredRecord = (value: unknown, field: string): void => {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) {
+    badRequest({ field, rule: 'object' });
+  }
+};
+
+export const emailString = (value: unknown): string => {
+  const email = requiredString(value, 'email');
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/u.test(email)) badRequest({ field: 'email', rule: 'email' });
+  return email;
 };
