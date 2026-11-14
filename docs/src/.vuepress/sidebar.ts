@@ -25,7 +25,7 @@ export const zhSidebarConfig = sidebar({
           text: '服务端',
           icon: 'server',
           prefix: 'server/',
-          children: ['api', 'config', 'env', 'plugin'],
+          children: ['api', 'config', 'env', 'plugin', 'test'],
         },
       ],
     },
