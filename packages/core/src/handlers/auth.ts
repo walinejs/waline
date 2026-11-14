@@ -6,7 +6,7 @@ import type { CoreRuntime } from '../utils/runtime.js';
 import { requiredCapability, requiredString } from '../utils/validation.js';
 
 export const createAuthHandler = (runtime: CoreRuntime) => {
-  const { models, services } = runtime;
+  const { config, models, services } = runtime;
   const avatar = createAvatarFormatter(runtime);
 
   return {
@@ -113,7 +113,22 @@ export const createAuthHandler = (runtime: CoreRuntime) => {
       await models.Users.update({ '2fa': input.secret }, { objectId: user.objectId });
     },
 
-    async requestPasswordReset(input: { email: string }, ctx: WalineContext) {
+    async requestPasswordReset(input: { email: string }, _ctx: WalineContext) {
+      let baseUrl: URL;
+      try {
+        baseUrl = new URL(config.serverUrl ?? '');
+        if (
+          !['http:', 'https:'].includes(baseUrl.protocol) ||
+          baseUrl.username ||
+          baseUrl.password
+        ) {
+          throw new Error('Invalid canonical URL');
+        }
+      } catch {
+        throw new WalineError('SERVER_URL_REQUIRED', 400);
+      }
+      baseUrl.search = '';
+      baseUrl.hash = '';
       const [account] = await models.Users.select({
         email: requiredString(input.email, 'email'),
       });
@@ -126,7 +141,7 @@ export const createAuthHandler = (runtime: CoreRuntime) => {
         'notification.passwordReset',
       );
       const tokenService = requiredCapability(services.token, 'token');
-      const profileUrl = `${ctx.serverUrl ?? ''}/ui/profile?token=${await tokenService.sign(account.objectId)}`;
+      const profileUrl = `${baseUrl.href.replace(/\/$/u, '')}/ui/profile?token=${encodeURIComponent(await tokenService.sign(account.objectId))}`;
 
       await reset(account, profileUrl);
     },

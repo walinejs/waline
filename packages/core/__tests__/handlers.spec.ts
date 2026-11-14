@@ -182,7 +182,7 @@ const setup = (partial: Partial<CreateWalineCoreOptions> = {}) => {
     },
     notification: {
       send: vi.fn(async () => undefined),
-      passwordReset: vi.fn(async () => undefined),
+      passwordReset: vi.fn(async (_user: WalineUser, _url: string) => undefined),
       verification: vi.fn(async () => undefined),
     },
     webhook: { emit: vi.fn(async () => undefined) },
@@ -199,7 +199,7 @@ const setup = (partial: Partial<CreateWalineCoreOptions> = {}) => {
   };
   const options: CreateWalineCoreOptions = {
     models: { Comment, Counter, Users, get: () => extra },
-    config: { levels: [0, 2], likeIncMax: 2 },
+    config: { levels: [0, 2], likeIncMax: 2, serverUrl: 'https://example.com' },
     services,
     logger: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() },
     ...partial,
@@ -1153,6 +1153,37 @@ describe('registration account state', () => {
         env.core.user.register({ email: guest.email, password: 'replacement' }, context()),
       ).rejects.toThrow('USER_EXIST');
       expect(env.Users.rows[0]).toMatchObject({ type, password: 'original' });
+    },
+  );
+});
+
+describe('password reset origin', () => {
+  it('uses the configured origin despite a forged request host', async () => {
+    const env = setup();
+    env.Users.rows.push({ ...guest });
+    await env.core.auth.requestPasswordReset(
+      { email: guest.email },
+      {
+        ...context(),
+        serverUrl: 'https://attacker.example',
+        headers: { host: 'attacker.example' },
+      },
+    );
+    const url = new URL(env.services.notification.passwordReset.mock.calls[0][1]);
+    expect(url.origin).toBe('https://example.com');
+    expect(url.pathname).toBe('/ui/profile');
+  });
+
+  it.each([undefined, 'file:///tmp/reset', 'https://user@server.example'])(
+    'fails closed without a valid canonical URL',
+    async (serverUrl) => {
+      const env = setup({ config: { serverUrl } });
+      env.Users.rows.push({ ...guest });
+      await expect(
+        env.core.auth.requestPasswordReset({ email: guest.email }, context()),
+      ).rejects.toThrow('SERVER_URL_REQUIRED');
+      expect(env.services.notification.passwordReset).not.toHaveBeenCalled();
+      expect(env.services.token.sign).not.toHaveBeenCalled();
     },
   );
 });
