@@ -1,3 +1,4 @@
+import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 
 import vue from '@vitejs/plugin-vue';
@@ -11,7 +12,16 @@ export default defineConfig({
   define: {
     VERSION: JSON.stringify(pkg.version),
   },
-  plugins: [vue()],
+  plugins: [
+    vue({
+      script: {
+        fs: {
+          fileExists: (file: string): boolean => existsSync(file),
+          readFile: (file: string): string => readFileSync(file, 'utf-8'),
+        },
+      },
+    }),
+  ],
   envDir: path.resolve(__dirname),
   envPrefix: ['VITE_', 'SERVERURL'],
   server: {
