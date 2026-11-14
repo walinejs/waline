@@ -491,8 +491,8 @@ importers:
         specifier: 1.1.3
         version: 1.1.3(markdown-it@15.0.3)
       '@mdit/plugin-sup':
-        specifier: 1.1.3
-        version: 1.1.3(markdown-it@15.0.3)
+        specifier: 1.2.0
+        version: 1.2.0(markdown-it@15.0.3)
       '@waline/core':
         specifier: workspace:*
         version: link:../core
@@ -1704,6 +1704,15 @@ packages:
       markdown-it:
         optional: true
 
+  '@mdit/helper@1.2.1':
+    resolution: {integrity: sha512-OS++ECXryTqYD3IQFngmYI5Eag8ZftewAmsFnZ8EqBV+YpoTNVFubb9fFgQDkxdNdDT/oh5wtEzcj1Tu1/BLSQ==}
+    engines: {node: '>=22'}
+    peerDependencies:
+      markdown-it: ^15.0.3
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
+
   '@mdit/plugin-alert@2.0.3':
     resolution: {integrity: sha512-uVzAnsu1hen3eb+FsindjNKOPCKzsUf/lFx3YdSt2pLvROT2N1UAPKJNf9Pbq6sAUq42Ddal8ScR5JC8wyPffQ==}
     engines: {node: '>=22'}
@@ -1830,6 +1839,15 @@ packages:
       markdown-it:
         optional: true
 
+  '@mdit/plugin-inline-rule@2.2.5':
+    resolution: {integrity: sha512-O8PTqbGb6f06KcUkIqkTKyaEjVn0WpWgWavKcsnubgPXIJXKDZTlAza0JQ2J4DKqow2yzvVdtVQYYEtbHFQuhg==}
+    engines: {node: '>=22'}
+    peerDependencies:
+      markdown-it: ^15.0.3
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
+
   '@mdit/plugin-katex-slim@1.1.4':
     resolution: {integrity: sha512-RnHSkxKJtaPxC/OY/CkAk6Dy7p89s7D2rqeDp7h8IVKH0U6yRUP4P1klH8fcmUZ7QlVmzbEYj6+Ypo70/QB6mQ==}
     engines: {node: '>=22'}
@@ -1929,8 +1947,8 @@ packages:
       markdown-it:
         optional: true
 
-  '@mdit/plugin-sup@1.1.3':
-    resolution: {integrity: sha512-h7oEs5u4vCx7A+Xl0esIAbsB67gIWX2fXBGQaiCzWzo7hgclnQgZ/LPkESXlzs2iPBcopZwLWRNJLv2z6WfiEQ==}
+  '@mdit/plugin-sup@1.2.0':
+    resolution: {integrity: sha512-0ZtRy6/l0sFghfwpFn2BvXaTSTXcdXeXxPrZ8OM38ohbmYhyww+ZsIVssA5YbG/dPreffCL7eJpRriLxzi61WQ==}
     engines: {node: '>=22'}
     peerDependencies:
       markdown-it: ^15.0.3
@@ -9639,6 +9657,10 @@ snapshots:
     optionalDependencies:
       markdown-it: 15.0.3
 
+  '@mdit/helper@1.2.1(markdown-it@15.0.3)':
+    optionalDependencies:
+      markdown-it: 15.0.3
+
   '@mdit/plugin-alert@2.0.3(markdown-it@15.0.3)':
     dependencies:
       '@mdit/helper': 1.1.3(markdown-it@15.0.3)
@@ -9725,6 +9747,12 @@ snapshots:
     optionalDependencies:
       markdown-it: 15.0.3
 
+  '@mdit/plugin-inline-rule@2.2.5(markdown-it@15.0.3)':
+    dependencies:
+      '@mdit/helper': 1.2.1(markdown-it@15.0.3)
+    optionalDependencies:
+      markdown-it: 15.0.3
+
   '@mdit/plugin-katex-slim@1.1.4(markdown-it@15.0.3)':
     dependencies:
       '@mdit/helper': 1.1.3(markdown-it@15.0.3)
@@ -9796,10 +9824,10 @@ snapshots:
     optionalDependencies:
       markdown-it: 15.0.3
 
-  '@mdit/plugin-sup@1.1.3(markdown-it@15.0.3)':
+  '@mdit/plugin-sup@1.2.0(markdown-it@15.0.3)':
     dependencies:
-      '@mdit/helper': 1.1.3(markdown-it@15.0.3)
-      '@mdit/plugin-inline-rule': 2.2.3(markdown-it@15.0.3)
+      '@mdit/helper': 1.2.1(markdown-it@15.0.3)
+      '@mdit/plugin-inline-rule': 2.2.5(markdown-it@15.0.3)
     optionalDependencies:
       markdown-it: 15.0.3
 
@@ -11715,7 +11743,7 @@ snapshots:
       '@mdit/plugin-spoiler': 2.1.3(markdown-it@15.0.3)
       '@mdit/plugin-stylize': 2.0.3(markdown-it@15.0.3)
       '@mdit/plugin-sub': 1.1.3(markdown-it@15.0.3)
-      '@mdit/plugin-sup': 1.1.3(markdown-it@15.0.3)
+      '@mdit/plugin-sup': 1.2.0(markdown-it@15.0.3)
       '@types/markdown-it': 14.2.0
       '@vuepress/helper': 2.0.0-rc.134(@vuepress/bundler-vite@2.0.0-rc.31(@types/node@26.6.6)(@vue/compiler-sfc@3.5.44)(esbuild@0.27.0)(sass-embedded@1.107.1)(sass@1.107.1)(supports-color@10.2.2)(tsx@4.21.0)(typescript@5.9.3))(typescript@5.9.3)(vuepress@2.0.0-rc.31(@vue/compiler-sfc@3.5.44)(@vuepress/bundler-vite@2.0.0-rc.31(@types/node@26.6.6)(@vue/compiler-sfc@3.5.44)(esbuild@0.27.0)(sass-embedded@1.107.1)(sass@1.107.1)(supports-color@10.2.2)(tsx@4.21.0)(typescript@5.9.3))(esbuild@0.27.0)(rolldown@1.2.16)(supports-color@10.2.2)(typescript@5.9.3)(vite@8.3.5(@types/node@26.6.6)(esbuild@0.27.0)(sass-embedded@1.107.1)(sass@1.107.1)(tsx@4.21.0))(vue@3.5.44(typescript@5.9.3)))
       vuepress: 2.0.0-rc.31(@vue/compiler-sfc@3.5.44)(@vuepress/bundler-vite@2.0.0-rc.31(@types/node@26.6.6)(@vue/compiler-sfc@3.5.44)(esbuild@0.27.0)(sass-embedded@1.107.1)(sass@1.107.1)(supports-color@10.2.2)(tsx@4.21.0)(typescript@5.9.3))(esbuild@0.27.0)(rolldown@1.2.16)(supports-color@10.2.2)(typescript@5.9.3)(vite@8.3.5(@types/node@26.6.6)(esbuild@0.27.0)(sass-embedded@1.107.1)(sass@1.107.1)(tsx@4.21.0))(vue@3.5.44(typescript@5.9.3))
