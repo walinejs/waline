@@ -54,7 +54,7 @@
     "postcss": "8.5.32",
     "publint": "0.3.25",
     "rimraf": "6.1.4",
-    "stylelint": "17.16.0",
+    "stylelint": "18.0.0",
     "stylelint-config-hope": "12.1.0",
     "tsdown": "0.23.7",
     "typescript": "catalog:",
