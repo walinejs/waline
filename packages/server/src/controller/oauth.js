@@ -1,3 +1,5 @@
+const validateRedirect = require('../utils/oauth-redirect.js');
+
 const BaseRest = require('./rest.js');
 
 module.exports = class OAuthController extends BaseRest {
@@ -5,7 +7,14 @@ module.exports = class OAuthController extends BaseRest {
 
   indexAction() {
     const input = this.get();
-    const { oauthUrl } = this.config();
+    const { oauthUrl, secureDomains } = this.config();
+    if (input.redirect) {
+      input.redirect = validateRedirect(input.redirect, {
+        serverUrl: process.env.SERVER_URL,
+        secureDomains,
+      });
+      if (!input.redirect) return this.ctx.throw(400, 'Invalid OAuth redirect');
+    }
 
     if (!input.code) {
       const redirectUrl = think.buildUrl(`${this.ctx.serverURL}/api/oauth`, {
