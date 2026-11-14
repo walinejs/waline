@@ -132,7 +132,8 @@ export const createUserHandler = (runtime: CoreRuntime) => {
 
     async update(input: { objectId?: string; data: Partial<WalineUser> }, ctx: WalineContext) {
       const user = requireUser(ctx);
-      const objectId = requiredString(input.objectId ?? user.objectId, 'objectId');
+      const objectId =
+        input.objectId === undefined ? user.objectId : requiredString(input.objectId, 'objectId');
       requiredRecord(input.data, 'data');
 
       if (objectId !== user.objectId && !isAdmin(ctx)) forbidden();

@@ -200,3 +200,37 @@ describe('core permissions without ThinkJS logic', () => {
     expect(model.update).not.toHaveBeenCalled();
   });
 });
+
+describe('numeric storage user IDs', () => {
+  it('preserves the authenticated numeric ID for profile, password and unlink updates', async () => {
+    const { core, model, services } = setup();
+    const ctx: WalineContext = {
+      headers: {},
+      state: {
+        userInfo: { objectId: 42 as any, email: 'user@example.com', type: 'guest' },
+        oauthServices: [{ name: 'github' }],
+      },
+    };
+    await core.user.update(
+      {
+        data: {
+          display_name: 'Updated',
+          avatar: 'https://example.com/avatar',
+          password: 'new-password',
+          github: '',
+        },
+      },
+      ctx,
+    );
+    expect(model.update).toHaveBeenCalledWith(
+      {
+        display_name: 'Updated',
+        avatar: 'https://example.com/avatar',
+        password: 'hash',
+        github: '',
+      },
+      { objectId: 42 },
+    );
+    expect(services.password.hash).toHaveBeenCalledWith('new-password');
+  });
+});
