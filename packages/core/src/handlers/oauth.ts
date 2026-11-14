@@ -2,10 +2,12 @@ import { WalineError } from '../error.js';
 import type { OAuthAuthorizeInput, WalineContext } from '../types.js';
 import { currentUser } from '../utils/auth.js';
 import type { CoreRuntime } from '../utils/runtime.js';
-import { requiredCapability } from '../utils/validation.js';
+import { requiredCapability, requiredString, optionalString } from '../utils/validation.js';
 
 export const createOAuthHandler = ({ models, random, services }: CoreRuntime) => ({
   async authorize(input: OAuthAuthorizeInput, ctx: WalineContext) {
+    requiredString(input.code, 'code');
+    optionalString(input.state, 'state');
     if (
       typeof input.type !== 'string' ||
       !/^[a-z][a-z0-9-]*$/u.test(input.type) ||

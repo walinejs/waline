@@ -3,7 +3,14 @@ import type { GroupedCount, WalineContext, WalineUser } from '../types.js';
 import { isAdmin, requireAdmin, requireUser } from '../utils/auth.js';
 import { createAvatarFormatter } from '../utils/avatar.js';
 import type { CoreRuntime } from '../utils/runtime.js';
-import { levelFor, positiveInt, requiredCapability, requiredString } from '../utils/validation.js';
+import {
+  emailString,
+  levelFor,
+  positiveInt,
+  requiredCapability,
+  requiredString,
+  requiredRecord,
+} from '../utils/validation.js';
 
 export const createUserHandler = (runtime: CoreRuntime) => {
   const { config, models, services } = runtime;
@@ -88,7 +95,8 @@ export const createUserHandler = (runtime: CoreRuntime) => {
       input: Partial<WalineUser> & { email: string; password: string },
       ctx: WalineContext,
     ) {
-      const email = requiredString(input.email, 'email');
+      const email = emailString(input.email);
+      requiredString(input.password, 'password');
       const passwordService = requiredCapability(services.password, 'password');
       const existing = await models.Users.select({ email });
 
@@ -124,7 +132,9 @@ export const createUserHandler = (runtime: CoreRuntime) => {
 
     async update(input: { objectId?: string; data: Partial<WalineUser> }, ctx: WalineContext) {
       const user = requireUser(ctx);
-      const objectId = input.objectId ?? user.objectId;
+      const objectId =
+        input.objectId === undefined ? user.objectId : requiredString(input.objectId, 'objectId');
+      requiredRecord(input.data, 'data');
 
       if (objectId !== user.objectId && !isAdmin(ctx)) forbidden();
 
@@ -140,7 +150,8 @@ export const createUserHandler = (runtime: CoreRuntime) => {
         ),
       ) as Partial<WalineUser>;
 
-      if (data.email) {
+      if (data.email !== undefined) {
+        emailString(data.email);
         const duplicate = await models.Users.select({
           email: data.email,
           objectId: ['!=', user.objectId],
@@ -160,6 +171,7 @@ export const createUserHandler = (runtime: CoreRuntime) => {
 
     async remove(input: { objectId: string }, ctx: WalineContext) {
       const user = requireAdmin(ctx);
+      requiredString(input.objectId, 'objectId');
       if (user.objectId === input.objectId) forbidden();
 
       const [target] = await models.Users.select({ objectId: input.objectId });
