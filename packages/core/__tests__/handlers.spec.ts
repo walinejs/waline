@@ -1054,3 +1054,58 @@ describe('untrusted query values', () => {
     expect(env.Users.select).not.toHaveBeenCalled();
   });
 });
+
+describe('hidden comment likes', () => {
+  it.each(['waiting', 'spam'])(
+    'prevents public access to %s comments through likes',
+    async (status) => {
+      const env = setup();
+      env.Comment.rows.push({
+        objectId: 'hidden',
+        insertedAt: '2026-01-01',
+        comment: 'secret',
+        url: '/post',
+        status,
+        user_id: guest.objectId,
+        like: 0,
+      });
+      await expect(
+        env.core.comment.update({ objectId: 'hidden', data: { like: true } }, context()),
+      ).rejects.toThrow('FORBIDDEN');
+      await expect(
+        env.core.comment.update(
+          { objectId: 'hidden', data: { like: false } },
+          context({ ...guest, objectId: 'other' }),
+        ),
+      ).rejects.toThrow('FORBIDDEN');
+      expect(env.Comment.rows[0].like).toBe(0);
+      await expect(
+        env.core.comment.update({ objectId: 'hidden', data: { like: true } }, context(guest)),
+      ).resolves.toBeDefined();
+      await expect(
+        env.core.comment.update(
+          { objectId: 'hidden', data: { like: true } },
+          context(administrator),
+        ),
+      ).resolves.toBeDefined();
+    },
+  );
+});
+
+describe('public comment like compatibility', () => {
+  it.each(['approved', undefined, ''])('allows public likes with status %s', async (status) => {
+    const env = setup();
+    env.Comment.rows.push({
+      objectId: 'public',
+      comment: 'visible',
+      url: '/post',
+      insertedAt: '2026-01-01',
+      status,
+      like: 0,
+    });
+    await expect(
+      env.core.comment.update({ objectId: 'public', data: { like: true } }, context()),
+    ).resolves.toBeDefined();
+    expect(env.Comment.rows[0].like).toBe(1);
+  });
+});
