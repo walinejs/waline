@@ -100,7 +100,7 @@ export const createUserHandler = (runtime: CoreRuntime) => {
       const passwordService = requiredCapability(services.password, 'password');
       const existing = await models.Users.select({ email });
 
-      if (existing.some(({ type }) => ['administrator', 'guest'].includes(type))) {
+      if (existing.some(({ type }) => !type.startsWith('verify:'))) {
         throw new WalineError('USER_EXIST', 400, 'USER_EXIST');
       }
 

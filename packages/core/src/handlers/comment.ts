@@ -247,6 +247,11 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
     ) {
       const rawComment = requiredString(input.comment, 'comment');
       const url = requiredString(input.url, 'url');
+      for (const field of ['link', 'mail', 'nick', 'pid', 'rid', 'ua', 'at'] as const) {
+        if (input[field] !== undefined && typeof input[field] !== 'string') {
+          badRequest({ field, rule: 'string' });
+        }
+      }
       const current = currentUser(ctx);
 
       if (!current && config.forceLogin) unauthorized();
@@ -357,12 +362,30 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
     ) {
       const id = requiredString(input.objectId, 'objectId');
       requiredRecord(input.data, 'data');
+      if (input.data.comment !== undefined) requiredString(input.data.comment, 'comment');
+      if (
+        input.data.like !== undefined &&
+        typeof input.data.like !== 'boolean' &&
+        !(typeof input.data.like === 'number' && Number.isFinite(input.data.like))
+      ) {
+        badRequest({ field: 'like' });
+      }
       const [old] = await models.Comment.select({ objectId: id });
 
       if (!old) return;
       const isLikeOnly =
         typeof input.data.like === 'boolean' && Object.keys(input.data).length === 1;
       const current = currentUser(ctx);
+
+      // Match public list visibility, including legacy comments without a status.
+      if (
+        isLikeOnly &&
+        ['waiting', 'spam'].includes(old.status ?? '') &&
+        !isAdmin(ctx) &&
+        (!current || old.user_id !== current.objectId)
+      ) {
+        forbidden();
+      }
 
       if (!isLikeOnly) {
         const user = current ?? requireUser(ctx);
