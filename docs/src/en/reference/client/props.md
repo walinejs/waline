@@ -72,7 +72,7 @@ Waline Locales.
 
 ## emoji
 
-- Type: `(string | WalineEmojiInfo)[] | boolean`
+- Type: `WalineEmojiOptions | boolean`
 
   ```ts
   type WalineEmojiPresets = `http://${string}` | `https://${string}`;
@@ -91,6 +91,13 @@ Waline Locales.
     /** Emoji image list */
     items: string[];
   }
+
+  type WalineEmojiFactory = () =>
+    | WalineEmojiInfo
+    | WalineEmojiInfo[]
+    | Promise<WalineEmojiInfo | WalineEmojiInfo[]>;
+
+  type WalineEmojiOptions = (WalineEmojiFactory | WalineEmojiInfo | WalineEmojiPresets)[];
   ```
 
 - Default: `['//unpkg.com/@waline/emojis@1.1.0/weibo']`
