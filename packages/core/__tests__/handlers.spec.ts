@@ -398,11 +398,14 @@ describe('verification, oauth and database handlers', () => {
     await expect(
       core.verification.verifyEmail({ email: guest.email, token: '1' }, context()),
     ).rejects.toThrow();
-    account.type = 'verify:1234:9999999999999';
+    account.type = 'verify:abcdefghijklmnopqrstuv:9999999999999';
     await expect(
       core.verification.verifyEmail({ email: guest.email, token: 'bad' }, context()),
     ).rejects.toThrow();
-    await core.verification.verifyEmail({ email: guest.email, token: '1234' }, context());
+    await core.verification.verifyEmail(
+      { email: guest.email, token: 'abcdefghijklmnopqrstuv' },
+      context(),
+    );
     expect(account.type).toBe('guest');
   });
 
@@ -1014,5 +1017,32 @@ describe('comment handler', () => {
       insertedAt: new Date(),
     });
     await env.core.comment.remove({ objectId: 'admin-delete' }, context(administrator));
+  });
+});
+
+describe('email verification token security', () => {
+  it.each(['verify:1234:9999999999999', 'verify:abcdefghijklmnopqrstuv:1'])(
+    'rejects weak or expired tokens',
+    async (type) => {
+      const env = setup();
+      env.Users.rows.push({ ...guest, type });
+      await expect(
+        env.core.verification.verifyEmail(
+          { email: guest.email, token: type.split(':')[1] },
+          context(),
+        ),
+      ).rejects.toThrow();
+      expect(env.Users.rows[0].type).toBe(type);
+    },
+  );
+
+  it('does not allow a verification token to be reused', async () => {
+    const env = setup();
+    env.Users.rows.push({ ...guest, type: 'verify:abcdefghijklmnopqrstuv:9999999999999' });
+    const input = { email: guest.email, token: 'abcdefghijklmnopqrstuv' };
+    await env.core.verification.verifyEmail(input, context());
+    await expect(env.core.verification.verifyEmail(input, context())).rejects.toThrow(
+      'USER_REGISTERED',
+    );
   });
 });

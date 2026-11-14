@@ -1,3 +1,4 @@
+const { randomBytes } = require('node:crypto');
 const jwt = require('jsonwebtoken');
 const speakeasy = require('speakeasy');
 const parser = require('ua-parser-js');
@@ -10,9 +11,7 @@ module.exports = class extends think.Service {
     const markdown = getMarkdownParser(controller.config('markdown'));
     const model = (name) => controller.getModel(name);
     const hasMailService = process.env.SMTP_HOST || process.env.SMTP_SERVICE;
-    const verificationCode = Array.from({ length: 4 }, () => Math.round(Math.random() * 9)).join(
-      '',
-    );
+    const verificationCode = randomBytes(16).toString('base64url');
     const hookNames = ['preSave', 'postSave', 'preUpdate', 'postUpdate', 'preDelete', 'postDelete'];
     const hooks = controller.hook
       ? Object.fromEntries(
