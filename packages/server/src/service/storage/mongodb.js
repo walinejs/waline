@@ -3,6 +3,8 @@ const { ObjectID: ObjectId } = require('think-mongo/lib/model');
 const Base = require('./base.js');
 const { normalizeOrder, toOrderString } = require('./order.js');
 
+const escapeRegExp = (value) => value.replaceAll(/[.*+?^${}()|[\]\\]/gu, String.raw`\$&`);
+
 module.exports = class extends Base {
   parseWhere(where) {
     if (think.isEmpty(where)) {
@@ -36,7 +38,7 @@ module.exports = class extends Base {
               filter[parseKey(k)] = { $in: where[k][1].map((id) => new ObjectId(id)) };
             } else {
               filter[parseKey(k)] = {
-                $regex: new RegExp(`^(${where[k][1].join('|')})$`, 'u'),
+                $in: where[k][1],
               };
             }
             break;
@@ -54,11 +56,11 @@ module.exports = class extends Base {
             let reg;
 
             if (first === '%' && last === '%') {
-              reg = new RegExp(likePattern.slice(1, -1), 'u');
+              reg = new RegExp(escapeRegExp(likePattern.slice(1, -1)), 'u');
             } else if (first === '%') {
-              reg = new RegExp(`${likePattern.slice(1)}$`, 'u');
+              reg = new RegExp(`${escapeRegExp(likePattern.slice(1))}$`, 'u');
             } else if (last === '%') {
-              reg = new RegExp(`^${likePattern.slice(0, -1)}`, 'u');
+              reg = new RegExp(`^${escapeRegExp(likePattern.slice(0, -1))}`, 'u');
             }
 
             if (reg) {
