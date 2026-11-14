@@ -237,6 +237,11 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
     ) {
       const rawComment = requiredString(input.comment, 'comment');
       const url = requiredString(input.url, 'url');
+      for (const field of ['link', 'mail', 'nick', 'pid', 'rid', 'ua', 'at'] as const) {
+        if (input[field] !== undefined && typeof input[field] !== 'string') {
+          badRequest({ field, rule: 'string' });
+        }
+      }
       const current = currentUser(ctx);
 
       if (!current && config.forceLogin) unauthorized();
@@ -346,6 +351,7 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
       ctx: WalineContext,
     ) {
       const id = requiredString(input.objectId, 'objectId');
+      if (input.data.comment !== undefined) requiredString(input.data.comment, 'comment');
       const [old] = await models.Comment.select({ objectId: id });
 
       if (!old) return;
