@@ -1,9 +1,14 @@
-import { unauthorized, WalineError } from '../error.js';
+import { badRequest, unauthorized, WalineError } from '../error.js';
 import type { WalineContext } from '../types.js';
 import { currentUser, requireUser } from '../utils/auth.js';
 import { createAvatarFormatter } from '../utils/avatar.js';
 import type { CoreRuntime } from '../utils/runtime.js';
-import { requiredCapability, requiredString } from '../utils/validation.js';
+import {
+  requiredCapability,
+  requiredString,
+  optionalString,
+  emailString,
+} from '../utils/validation.js';
 
 export const createAuthHandler = (runtime: CoreRuntime) => {
   const { models, services } = runtime;
@@ -12,12 +17,13 @@ export const createAuthHandler = (runtime: CoreRuntime) => {
   return {
     async resolveSession(input: { token?: string }, ctx: WalineContext) {
       if (!input.token) return;
+      requiredString(input.token, 'token');
 
       const tokenService = requiredCapability(services.token, 'token');
       let id: string;
 
       try {
-        id = await tokenService.verify(input.token);
+        id = requiredString(await tokenService.verify(input.token), 'tokenSubject');
       } catch {
         return;
       }
@@ -48,8 +54,9 @@ export const createAuthHandler = (runtime: CoreRuntime) => {
     },
 
     async login(input: { email: string; password: string; code?: string }, _ctx: WalineContext) {
-      const email = requiredString(input.email, 'email');
+      const email = emailString(input.email);
       requiredString(input.password, 'password');
+      optionalString(input.code, 'code');
       const passwordService = requiredCapability(services.password, 'password');
       const tokenService = requiredCapability(services.token, 'token');
       const [account] = await models.Users.select({ email });
@@ -104,6 +111,9 @@ export const createAuthHandler = (runtime: CoreRuntime) => {
 
     async enableTwoFactor(input: { secret: string; code: string }, ctx: WalineContext) {
       const user = requireUser(ctx);
+      requiredString(input.secret, 'secret');
+      requiredString(input.code, 'code');
+      if (!/^\d{6}$/u.test(input.code)) badRequest({ field: 'code', rule: 'sixDigits' });
       const twoFactor = requiredCapability(services.twoFactor, 'twoFactor');
 
       if (!(await twoFactor.verify(input.secret, input.code))) {

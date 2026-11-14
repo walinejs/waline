@@ -3,7 +3,14 @@ import type { GroupedCount, WalineComment, WalineContext, WalineUser, Where } fr
 import { currentUser, isAdmin, requireAdmin, requireUser } from '../utils/auth.js';
 import { createCommentFormatter } from '../utils/comment.js';
 import type { CoreRuntime } from '../utils/runtime.js';
-import { levelFor, positiveInt, requiredString } from '../utils/validation.js';
+import {
+  levelFor,
+  positiveInt,
+  requiredString,
+  optionalString,
+  stringList,
+  requiredRecord,
+} from '../utils/validation.js';
 
 export const createCommentHandler = (runtime: CoreRuntime) => {
   const { config, hook, logger, models, now, random, services } = runtime;
@@ -168,6 +175,9 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
       const pageSize = positiveInt(input.pageSize, 10, 100);
       const where: Where<WalineComment> = {};
 
+      optionalString(input.owner, 'owner');
+      optionalString(input.status, 'status');
+      optionalString(input.keyword, 'keyword');
       if (input.owner === 'mine') where.mail = current.email;
       if (input.status) {
         where.status = input.status === 'approved' ? ['NOT IN', ['waiting', 'spam']] : input.status;
@@ -196,7 +206,7 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
     },
 
     async count(input: { url?: string | string[] }, ctx: WalineContext) {
-      const urls = Array.isArray(input.url) ? input.url : input.url ? input.url.split(',') : [];
+      const urls = stringList(input.url, 'url');
       const where: Where<WalineComment> = urls.length ? { url: ['IN', urls] } : {};
       const current = currentUser(ctx);
 
@@ -346,6 +356,7 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
       ctx: WalineContext,
     ) {
       const id = requiredString(input.objectId, 'objectId');
+      requiredRecord(input.data, 'data');
       const [old] = await models.Comment.select({ objectId: id });
 
       if (!old) return;
