@@ -24,6 +24,8 @@ Vercel 需要在 <kbd>Settings</kbd> - <kbd>Environment Variables</kbd> 中进�
 | `LOGIN`      |      | 当设置为 LOGIN=force 时会要求登录才能评论                   |
 | `SERVER_URL` |      | 设置 Waline Server 的地址，适合在自动生成的地址不正确时填写 |
 
+密码重置邮件要求配置 `SERVER_URL`，必须为可信的 Waline 服务端 HTTP(S) 地址。未配置时不发送重置邮件，以避免请求 Host 污染邮件链接。
+
 ## 显示
 
 | 环境变量名称            | 默认值                                                                  | 备注                                     |
