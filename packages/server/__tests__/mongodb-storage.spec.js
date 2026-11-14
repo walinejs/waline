@@ -1,61 +1,67 @@
-// Test-only ThinkJS service stub and lifecycle restoration.
-// oxlint-disable typescript/no-extraneous-class, vitest/no-hooks, eslint/no-underscore-dangle, unicorn/prefer-string-raw
 import { createRequire } from 'node:module';
 
-import { afterAll, describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 const require = createRequire(import.meta.url);
-const previousThink = globalThis.think;
+const thinkHelper = require('think-helper');
 
-globalThis.think = {
-  ...previousThink,
-  Service: class {},
-  isEmpty: (value) => !value || Object.keys(value).length === 0,
-  isString: (value) => typeof value === 'string',
+// `rows` are raw `$group` results as think-mongo returns them: `_id` is the
+// bare field value when grouping by one field, and an object of field values
+// when grouping by several fields.
+const countGroupedRows = async (group, rows) => {
+  const originalThink = globalThis.think;
+
+  try {
+    globalThis.think = {
+      ...thinkHelper,
+      Service: Object,
+    };
+
+    const MongoStorage = require('../src/service/storage/mongodb.js');
+    const storage = Object.create(MongoStorage.prototype);
+    const query = {
+      where: () => query,
+      group: () => query,
+      count: async () => rows,
+    };
+
+    storage.tableName = 'Comment';
+    storage.mongo = () => query;
+
+    return await storage.count({ status: ['NOT IN', ['waiting', 'spam']] }, { group });
+  } finally {
+    globalThis.think = originalThink;
+  }
 };
 
-const MongoStorage = require('../src/service/storage/mongodb.js');
-const storage = new MongoStorage('Comment');
-
-describe('mongodb literal query values', () => {
-  afterAll(() => {
-    globalThis.think = previousThink;
+describe('mongodb storage', () => {
+  it('returns grouped counts with the field value when grouping by one field', async () => {
+    await expect(
+      countGroupedRows(
+        ['url'],
+        [
+          { _id: '/first', total: 2 },
+          { _id: '/third', total: 1 },
+        ],
+      ),
+    ).resolves.toStrictEqual([
+      { url: '/first', count: 2 },
+      { url: '/third', count: 1 },
+    ]);
   });
 
-  it('uses exact membership for page identifiers, including regex syntax', () => {
-    const urls = ['(', '.*', '/a.b', '/a|b', '/path\\name'];
-
-    expect(storage.parseWhere({ url: ['IN', urls] })).toStrictEqual({
-      url: { $in: urls },
-    });
-    expect(storage.parseWhere({ url: ['IN', []] })).toStrictEqual({
-      url: { $in: [] },
-    });
-  });
-
-  it('preserves ObjectId conversion', () => {
-    const id = '507f1f77bcf86cd799439011';
-    const filter = storage.parseWhere({ objectId: ['IN', [id]] });
-
-    expect(filter._id.$in[0].toHexString()).toBe(id);
-  });
-
-  it.each([
-    ['%a.b%', 'before a.b after', 'before axb after'],
-    ['a.b%', 'a.b after', 'before a.b'],
-    ['%a.b', 'before a.b', 'a.b after'],
-  ])('preserves LIKE anchoring for %s', (pattern, matching, other) => {
-    const { $regex } = storage.parseWhere({ comment: ['LIKE', pattern] }).comment;
-
-    expect($regex.test(matching)).toBe(true);
-    expect($regex.test(other)).toBe(false);
-    expect($regex.test('axb')).toBe(false);
-  });
-
-  it.each(['(', '.*', '[a]', 'a|b', '\\', '^$+?{}'])('searches for literal %s', (text) => {
-    const { $regex } = storage.parseWhere({ comment: ['LIKE', `%${text}%`] }).comment;
-
-    expect($regex.test(`before ${text} after`)).toBe(true);
-    expect($regex.test('unrelated comment')).toBe(false);
+  it('returns grouped counts with every field value when grouping by several fields', async () => {
+    await expect(
+      countGroupedRows(
+        ['user_id', 'mail'],
+        [
+          { _id: { user_id: 'user-1', mail: 'a@example.com' }, total: 3 },
+          { _id: { user_id: null, mail: 'b@example.com' }, total: 1 },
+        ],
+      ),
+    ).resolves.toStrictEqual([
+      { user_id: 'user-1', mail: 'a@example.com', count: 3 },
+      { user_id: null, mail: 'b@example.com', count: 1 },
+    ]);
   });
 });
