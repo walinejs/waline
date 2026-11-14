@@ -590,6 +590,10 @@ describe('user handler', () => {
     );
     expect(env.Users.rows[0]).toMatchObject({ display_name: 'Updated', github: 'original' });
     expect(env.Users.rows[0].google).toBeUndefined();
+    await env.core.user.update({ data: { github: '' } }, context(guest));
+    expect(env.Users.rows[0].github).toBe('');
+    const result = await env.core.oauth.authorize({ code: 'c', type: 'github' }, context(guest));
+    expect(result.user.github).toBe('social');
   });
 
   it('covers registration, profile updates and removal', async () => {

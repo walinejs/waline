@@ -131,9 +131,12 @@ export const createUserHandler = (runtime: CoreRuntime) => {
       const allowed = ['display_name', 'url', 'avatar', 'password', 'label', 'email', '2fa'];
       if (isAdmin(ctx) && input.objectId) allowed.push('type');
 
+      const oauthFields = new Set((ctx.state.oauthServices ?? []).map(({ name }) => name));
       const data = Object.fromEntries(
         Object.entries(input.data).filter(
-          ([key, value]) => allowed.includes(key) && typeof value === 'string',
+          ([key, value]) =>
+            (allowed.includes(key) && typeof value === 'string') ||
+            (oauthFields.has(key) && value === ''),
         ),
       ) as Partial<WalineUser>;
 
