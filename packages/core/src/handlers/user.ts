@@ -98,7 +98,12 @@ export const createUserHandler = (runtime: CoreRuntime) => {
 
       const count = (await models.Users.count()) as number;
       const data: Partial<WalineUser> = {
-        ...input,
+        ...Object.fromEntries(
+          ['display_name', 'url', 'avatar']
+            .filter((key) => typeof input[key] === 'string')
+            .map((key) => [key, input[key]]),
+        ),
+        email,
         password: await passwordService.hash(input.password),
         type: count === 0 ? 'administrator' : (config.normalUserType ?? 'guest'),
       };
@@ -123,16 +128,7 @@ export const createUserHandler = (runtime: CoreRuntime) => {
 
       if (objectId !== user.objectId && !isAdmin(ctx)) forbidden();
 
-      const allowed = [
-        'display_name',
-        'url',
-        'avatar',
-        'password',
-        'label',
-        'email',
-        '2fa',
-        ...(ctx.state.oauthServices ?? []).map(({ name }) => name),
-      ];
+      const allowed = ['display_name', 'url', 'avatar', 'password', 'label', 'email', '2fa'];
       if (isAdmin(ctx) && input.objectId) allowed.push('type');
 
       const data = Object.fromEntries(
