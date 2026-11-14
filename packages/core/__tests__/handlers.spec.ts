@@ -135,7 +135,11 @@ const administrator: WalineUser = {
 
 const context = (userInfo?: WalineUser, deprecated = false): WalineContext => ({
   headers: {},
-  state: { userInfo, deprecated, oauthServices: [{ name: 'github' }] },
+  state: {
+    userInfo,
+    deprecated,
+    oauthServices: [{ name: 'github' }, { name: 'gitlab' }, { name: 'twitter' }],
+  },
   ip: '127.0.0.1',
   serverUrl: 'https://example.com',
 });
@@ -1014,5 +1018,34 @@ describe('comment handler', () => {
       insertedAt: new Date(),
     });
     await env.core.comment.remove({ objectId: 'admin-delete' }, context(administrator));
+  });
+});
+
+describe('oauth input boundaries', () => {
+  it.each(['_string', 'github?redirect=https://example.com', '../github', 'unknown'])(
+    'rejects provider %s before authorization',
+    async (type) => {
+      const env = setup();
+      await expect(env.core.oauth.authorize({ type, code: 'c' }, context())).rejects.toThrow(
+        'OAUTH_FAILED',
+      );
+      expect(env.services.oauth.authorize).not.toHaveBeenCalled();
+      expect(env.Users.select).not.toHaveBeenCalled();
+    },
+  );
+
+  it.each([
+    { id: ['IN', []] },
+    { id: { $ne: null } },
+    { id: true },
+    { id: 'valid', email: ['exp', '1'] },
+  ])('rejects malformed provider profiles', async (profile) => {
+    const env = setup();
+    env.services.oauth.authorize.mockResolvedValueOnce(profile as any);
+    await expect(
+      env.core.oauth.authorize({ type: 'github', code: 'c' }, context()),
+    ).rejects.toThrow('OAUTH_FAILED');
+    expect(env.Users.select).not.toHaveBeenCalled();
+    expect(env.services.token.sign).not.toHaveBeenCalled();
   });
 });
