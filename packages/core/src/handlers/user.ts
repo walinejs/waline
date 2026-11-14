@@ -3,7 +3,14 @@ import type { GroupedCount, WalineContext, WalineUser } from '../types.js';
 import { isAdmin, requireAdmin, requireUser } from '../utils/auth.js';
 import { createAvatarFormatter } from '../utils/avatar.js';
 import type { CoreRuntime } from '../utils/runtime.js';
-import { levelFor, positiveInt, requiredCapability, requiredString } from '../utils/validation.js';
+import {
+  emailString,
+  levelFor,
+  positiveInt,
+  requiredCapability,
+  requiredString,
+  requiredRecord,
+} from '../utils/validation.js';
 
 export const createUserHandler = (runtime: CoreRuntime) => {
   const { config, models, services } = runtime;
@@ -88,17 +95,23 @@ export const createUserHandler = (runtime: CoreRuntime) => {
       input: Partial<WalineUser> & { email: string; password: string },
       ctx: WalineContext,
     ) {
-      const email = requiredString(input.email, 'email');
+      const email = emailString(input.email);
+      requiredString(input.password, 'password');
       const passwordService = requiredCapability(services.password, 'password');
       const existing = await models.Users.select({ email });
 
-      if (existing.some(({ type }) => ['administrator', 'guest'].includes(type))) {
+      if (existing.some(({ type }) => !type.startsWith('verify:'))) {
         throw new WalineError('USER_EXIST', 400, 'USER_EXIST');
       }
 
       const count = (await models.Users.count()) as number;
       const data: Partial<WalineUser> = {
-        ...input,
+        ...Object.fromEntries(
+          ['display_name', 'url', 'avatar']
+            .filter((key) => typeof input[key] === 'string')
+            .map((key) => [key, input[key]]),
+        ),
+        email,
         password: await passwordService.hash(input.password),
         type: count === 0 ? 'administrator' : (config.normalUserType ?? 'guest'),
       };
@@ -119,29 +132,26 @@ export const createUserHandler = (runtime: CoreRuntime) => {
 
     async update(input: { objectId?: string; data: Partial<WalineUser> }, ctx: WalineContext) {
       const user = requireUser(ctx);
-      const objectId = input.objectId ?? user.objectId;
+      const objectId =
+        input.objectId === undefined ? user.objectId : requiredString(input.objectId, 'objectId');
+      requiredRecord(input.data, 'data');
 
       if (objectId !== user.objectId && !isAdmin(ctx)) forbidden();
 
-      const allowed = [
-        'display_name',
-        'url',
-        'avatar',
-        'password',
-        'label',
-        'email',
-        '2fa',
-        ...(ctx.state.oauthServices ?? []).map(({ name }) => name),
-      ];
+      const allowed = ['display_name', 'url', 'avatar', 'password', 'label', 'email', '2fa'];
       if (isAdmin(ctx) && input.objectId) allowed.push('type');
 
+      const oauthFields = new Set((ctx.state.oauthServices ?? []).map(({ name }) => name));
       const data = Object.fromEntries(
         Object.entries(input.data).filter(
-          ([key, value]) => allowed.includes(key) && typeof value === 'string',
+          ([key, value]) =>
+            (allowed.includes(key) && typeof value === 'string') ||
+            (oauthFields.has(key) && value === ''),
         ),
       ) as Partial<WalineUser>;
 
-      if (data.email) {
+      if (data.email !== undefined) {
+        emailString(data.email);
         const duplicate = await models.Users.select({
           email: data.email,
           objectId: ['!=', user.objectId],
@@ -161,6 +171,7 @@ export const createUserHandler = (runtime: CoreRuntime) => {
 
     async remove(input: { objectId: string }, ctx: WalineContext) {
       const user = requireAdmin(ctx);
+      requiredString(input.objectId, 'objectId');
       if (user.objectId === input.objectId) forbidden();
 
       const [target] = await models.Users.select({ objectId: input.objectId });

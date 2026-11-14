@@ -32,6 +32,7 @@ module.exports = class extends think.Service {
       },
       config: {
         ...controller.config(),
+        serverUrl: process.env.SERVER_URL,
         forceLogin: process.env.LOGIN === 'force',
         ipQps: Number(process.env.IPQPS || 60),
         likeIncMax: Number(controller.config('LIKE_INC_MAX') || 1),
@@ -112,6 +113,7 @@ module.exports = class extends think.Service {
               }),
               {
                 method: 'GET',
+                redirect: 'error',
                 headers: { 'user-agent': '@waline' },
               },
             ).then((resp) => resp.json()),
