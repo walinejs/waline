@@ -543,6 +543,59 @@ describe('user handler', () => {
     await expect(core.user.get({ email: guest.email }, context(guest))).rejects.toThrow();
   });
 
+  it.each([{ existing: [] }, { existing: [{ ...guest, type: 'verify:1:2' }] }])(
+    'ignores protected registration fields (existing: %s)',
+    async ({ existing }) => {
+      const env = setup();
+      env.Users.rows.push({ ...administrator }, ...existing);
+      await env.core.user.register(
+        {
+          email: guest.email,
+          password: 'pw',
+          display_name: 'Allowed',
+          url: 'https://example.com',
+          avatar: 'https://example.com/avatar.png',
+          github: 'social',
+          google: 'target',
+          custom_provider: 'target',
+          objectId: 'injected',
+          type: 'administrator',
+          label: 'Administrator',
+          '2fa': 'injected',
+        },
+        context(),
+      );
+      const saved = env.Users.rows.find((row) => row.email === guest.email)!;
+      expect(saved).toMatchObject({
+        display_name: 'Allowed',
+        url: 'https://example.com',
+        avatar: 'https://example.com/avatar.png',
+      });
+      expect(saved.objectId).not.toBe('injected');
+      expect(saved.type).not.toBe('administrator');
+      for (const key of ['github', 'google', 'custom_provider', '2fa']) {
+        expect(saved[key]).toBeUndefined();
+      }
+      const result = await env.core.oauth.authorize({ code: 'c', type: 'github' }, context());
+      expect(result.user.objectId).not.toBe(saved.objectId);
+    },
+  );
+
+  it('does not allow profile updates to replace OAuth identities', async () => {
+    const env = setup();
+    env.Users.rows.push({ ...guest, github: 'original' });
+    await env.core.user.update(
+      { data: { display_name: 'Updated', github: 'social', google: 'target' } },
+      context(guest),
+    );
+    expect(env.Users.rows[0]).toMatchObject({ display_name: 'Updated', github: 'original' });
+    expect(env.Users.rows[0].google).toBeUndefined();
+    await env.core.user.update({ data: { github: '' } }, context(guest));
+    expect(env.Users.rows[0].github).toBe('');
+    const result = await env.core.oauth.authorize({ code: 'c', type: 'github' }, context(guest));
+    expect(result.user.github).toBe('social');
+  });
+
   it('covers registration, profile updates and removal', async () => {
     const env = setup({ config: { normalUserType: 'verify:1234:9999999999999' } });
     env.Users.rows.push({ ...guest, type: 'guest', password: 'hash' });
