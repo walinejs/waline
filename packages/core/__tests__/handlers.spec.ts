@@ -1032,6 +1032,7 @@ describe('untrusted query values', () => {
       expect(env.Comment.rows).toHaveLength(0);
     },
   );
+
   it('rejects query operators in edits and two-factor lookups', async () => {
     const env = setup();
     await expect(
