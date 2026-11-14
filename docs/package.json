@@ -10,7 +10,7 @@
   "devDependencies": {
     "@fancyapps/ui": "6.1.15",
     "@mathjax/src": "4.1.3",
-    "@vuepress/bundler-vite": "2.0.0-rc.31",
+    "@vuepress/bundler-vite": "2.0.0-rc.32",
     "@vuepress/helper": "2.0.0-rc.135",
     "@vuepress/plugin-comment": "2.0.0-rc.137",
     "@vuepress/plugin-docsearch": "2.0.0-rc.137",
