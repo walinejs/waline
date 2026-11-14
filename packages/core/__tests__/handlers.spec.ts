@@ -1016,3 +1016,17 @@ describe('comment handler', () => {
     await env.core.comment.remove({ objectId: 'admin-delete' }, context(administrator));
   });
 });
+
+describe('registration account state', () => {
+  it.each(['banned', 'administrator', 'guest'])(
+    'does not overwrite an existing %s account',
+    async (type) => {
+      const env = setup();
+      env.Users.rows.push({ ...guest, type, password: 'original' });
+      await expect(
+        env.core.user.register({ email: guest.email, password: 'replacement' }, context()),
+      ).rejects.toThrow('USER_EXIST');
+      expect(env.Users.rows[0]).toMatchObject({ type, password: 'original' });
+    },
+  );
+});
