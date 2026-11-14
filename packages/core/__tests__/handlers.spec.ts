@@ -1016,3 +1016,41 @@ describe('comment handler', () => {
     await env.core.comment.remove({ objectId: 'admin-delete' }, context(administrator));
   });
 });
+
+describe('untrusted query values', () => {
+  it.each(['link', 'mail', 'nick', 'pid', 'rid', 'ua', 'at'])(
+    'rejects array-valued %s before storage',
+    async (field) => {
+      const env = setup();
+      await expect(
+        env.core.comment.create(
+          { comment: 'hello', url: '/post', [field]: ['exp', '1'] },
+          context(),
+        ),
+      ).rejects.toThrow('VALIDATION_ERROR');
+      expect(env.Comment.select).not.toHaveBeenCalled();
+      expect(env.Comment.rows).toHaveLength(0);
+    },
+  );
+
+  it('rejects query operators in edits and two-factor lookups', async () => {
+    const env = setup();
+    await expect(
+      env.core.comment.update(
+        { objectId: 'one', data: { comment: ['exp', '1'] as any } },
+        context(guest),
+      ),
+    ).rejects.toThrow('VALIDATION_ERROR');
+    await expect(
+      env.core.auth.getTwoFactorStatus({ email: ['exp', '1'] as any }, context()),
+    ).rejects.toThrow('VALIDATION_ERROR');
+    await expect(
+      env.core.comment.update(
+        { objectId: 'one', data: { like: ['exp', '1'] as any } },
+        context(guest),
+      ),
+    ).rejects.toThrow('VALIDATION_ERROR');
+    expect(env.Comment.select).not.toHaveBeenCalled();
+    expect(env.Users.select).not.toHaveBeenCalled();
+  });
+});
