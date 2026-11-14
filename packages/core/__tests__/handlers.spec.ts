@@ -135,7 +135,11 @@ const administrator: WalineUser = {
 
 const context = (userInfo?: WalineUser, deprecated = false): WalineContext => ({
   headers: {},
-  state: { userInfo, deprecated, oauthServices: [{ name: 'github' }] },
+  state: {
+    userInfo,
+    deprecated,
+    oauthServices: [{ name: 'github' }, { name: 'gitlab' }, { name: 'twitter' }],
+  },
   ip: '127.0.0.1',
   serverUrl: 'https://example.com',
 });
@@ -178,7 +182,7 @@ const setup = (partial: Partial<CreateWalineCoreOptions> = {}) => {
     },
     notification: {
       send: vi.fn(async () => undefined),
-      passwordReset: vi.fn(async () => undefined),
+      passwordReset: vi.fn(async (_user: WalineUser, _url: string) => undefined),
       verification: vi.fn(async () => undefined),
     },
     webhook: { emit: vi.fn(async () => undefined) },
@@ -195,7 +199,7 @@ const setup = (partial: Partial<CreateWalineCoreOptions> = {}) => {
   };
   const options: CreateWalineCoreOptions = {
     models: { Comment, Counter, Users, get: () => extra },
-    config: { levels: [0, 2], likeIncMax: 2 },
+    config: { levels: [0, 2], likeIncMax: 2, serverUrl: 'https://example.com' },
     services,
     logger: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() },
     ...partial,
@@ -541,6 +545,59 @@ describe('user handler', () => {
       core.user.get({ email: guest.email }, context(administrator)),
     ).resolves.toMatchObject({ objectId: 'u1' });
     await expect(core.user.get({ email: guest.email }, context(guest))).rejects.toThrow();
+  });
+
+  it.each([{ existing: [] }, { existing: [{ ...guest, type: 'verify:1:2' }] }])(
+    'ignores protected registration fields (existing: %s)',
+    async ({ existing }) => {
+      const env = setup();
+      env.Users.rows.push({ ...administrator }, ...existing);
+      await env.core.user.register(
+        {
+          email: guest.email,
+          password: 'pw',
+          display_name: 'Allowed',
+          url: 'https://example.com',
+          avatar: 'https://example.com/avatar.png',
+          github: 'social',
+          google: 'target',
+          custom_provider: 'target',
+          objectId: 'injected',
+          type: 'administrator',
+          label: 'Administrator',
+          '2fa': 'injected',
+        },
+        context(),
+      );
+      const saved = env.Users.rows.find((row) => row.email === guest.email)!;
+      expect(saved).toMatchObject({
+        display_name: 'Allowed',
+        url: 'https://example.com',
+        avatar: 'https://example.com/avatar.png',
+      });
+      expect(saved.objectId).not.toBe('injected');
+      expect(saved.type).not.toBe('administrator');
+      for (const key of ['github', 'google', 'custom_provider', '2fa']) {
+        expect(saved[key]).toBeUndefined();
+      }
+      const result = await env.core.oauth.authorize({ code: 'c', type: 'github' }, context());
+      expect(result.user.objectId).not.toBe(saved.objectId);
+    },
+  );
+
+  it('does not allow profile updates to replace OAuth identities', async () => {
+    const env = setup();
+    env.Users.rows.push({ ...guest, github: 'original' });
+    await env.core.user.update(
+      { data: { display_name: 'Updated', github: 'social', google: 'target' } },
+      context(guest),
+    );
+    expect(env.Users.rows[0]).toMatchObject({ display_name: 'Updated', github: 'original' });
+    expect(env.Users.rows[0].google).toBeUndefined();
+    await env.core.user.update({ data: { github: '' } }, context(guest));
+    expect(env.Users.rows[0].github).toBe('');
+    const result = await env.core.oauth.authorize({ code: 'c', type: 'github' }, context(guest));
+    expect(result.user.github).toBe('social');
   });
 
   it('covers registration, profile updates and removal', async () => {
@@ -962,4 +1019,171 @@ describe('comment handler', () => {
     });
     await env.core.comment.remove({ objectId: 'admin-delete' }, context(administrator));
   });
+});
+
+describe('oauth input boundaries', () => {
+  it.each(['_string', 'github?redirect=https://example.com', '../github', 'unknown'])(
+    'rejects provider %s before authorization',
+    async (type) => {
+      const env = setup();
+      await expect(env.core.oauth.authorize({ type, code: 'c' }, context())).rejects.toThrow(
+        'OAUTH_FAILED',
+      );
+      expect(env.services.oauth.authorize).not.toHaveBeenCalled();
+      expect(env.Users.select).not.toHaveBeenCalled();
+    },
+  );
+
+  it.each([
+    { id: ['IN', []] },
+    { id: { $ne: null } },
+    { id: true },
+    { id: 'valid', email: ['exp', '1'] },
+  ])('rejects malformed provider profiles', async (profile) => {
+    const env = setup();
+    env.services.oauth.authorize.mockResolvedValueOnce(profile as any);
+    await expect(
+      env.core.oauth.authorize({ type: 'github', code: 'c' }, context()),
+    ).rejects.toThrow('OAUTH_FAILED');
+    expect(env.Users.select).not.toHaveBeenCalled();
+    expect(env.services.token.sign).not.toHaveBeenCalled();
+  });
+});
+
+describe('untrusted query values', () => {
+  it.each(['link', 'mail', 'nick', 'pid', 'rid', 'ua', 'at'])(
+    'rejects array-valued %s before storage',
+    async (field) => {
+      const env = setup();
+      await expect(
+        env.core.comment.create(
+          { comment: 'hello', url: '/post', [field]: ['exp', '1'] },
+          context(),
+        ),
+      ).rejects.toThrow('VALIDATION_ERROR');
+      expect(env.Comment.select).not.toHaveBeenCalled();
+      expect(env.Comment.rows).toHaveLength(0);
+    },
+  );
+
+  it('rejects query operators in edits and two-factor lookups', async () => {
+    const env = setup();
+    await expect(
+      env.core.comment.update(
+        { objectId: 'one', data: { comment: ['exp', '1'] as any } },
+        context(guest),
+      ),
+    ).rejects.toThrow('VALIDATION_ERROR');
+    await expect(
+      env.core.auth.getTwoFactorStatus({ email: ['exp', '1'] as any }, context()),
+    ).rejects.toThrow('VALIDATION_ERROR');
+    await expect(
+      env.core.comment.update(
+        { objectId: 'one', data: { like: ['exp', '1'] as any } },
+        context(guest),
+      ),
+    ).rejects.toThrow('VALIDATION_ERROR');
+    expect(env.Comment.select).not.toHaveBeenCalled();
+    expect(env.Users.select).not.toHaveBeenCalled();
+  });
+});
+
+describe('hidden comment likes', () => {
+  it.each(['waiting', 'spam'])(
+    'prevents public access to %s comments through likes',
+    async (status) => {
+      const env = setup();
+      env.Comment.rows.push({
+        objectId: 'hidden',
+        insertedAt: '2026-01-01',
+        comment: 'secret',
+        url: '/post',
+        status,
+        user_id: guest.objectId,
+        like: 0,
+      });
+      await expect(
+        env.core.comment.update({ objectId: 'hidden', data: { like: true } }, context()),
+      ).rejects.toThrow('FORBIDDEN');
+      await expect(
+        env.core.comment.update(
+          { objectId: 'hidden', data: { like: false } },
+          context({ ...guest, objectId: 'other' }),
+        ),
+      ).rejects.toThrow('FORBIDDEN');
+      expect(env.Comment.rows[0].like).toBe(0);
+      await expect(
+        env.core.comment.update({ objectId: 'hidden', data: { like: true } }, context(guest)),
+      ).resolves.toBeDefined();
+      await expect(
+        env.core.comment.update(
+          { objectId: 'hidden', data: { like: true } },
+          context(administrator),
+        ),
+      ).resolves.toBeDefined();
+    },
+  );
+});
+
+describe('public comment like compatibility', () => {
+  it.each(['approved', undefined, ''])('allows public likes with status %s', async (status) => {
+    const env = setup();
+    env.Comment.rows.push({
+      objectId: 'public',
+      comment: 'visible',
+      url: '/post',
+      insertedAt: '2026-01-01',
+      status,
+      like: 0,
+    });
+    await expect(
+      env.core.comment.update({ objectId: 'public', data: { like: true } }, context()),
+    ).resolves.toBeDefined();
+    expect(env.Comment.rows[0].like).toBe(1);
+  });
+});
+
+describe('registration account state', () => {
+  it.each(['banned', 'administrator', 'guest'])(
+    'does not overwrite an existing %s account',
+    async (type) => {
+      const env = setup();
+      env.Users.rows.push({ ...guest, type, password: 'original' });
+      await expect(
+        env.core.user.register({ email: guest.email, password: 'replacement' }, context()),
+      ).rejects.toThrow('USER_EXIST');
+      expect(env.Users.rows[0]).toMatchObject({ type, password: 'original' });
+    },
+  );
+});
+
+describe('password reset origin', () => {
+  it('uses the configured origin despite a forged request host', async () => {
+    const env = setup();
+    env.Users.rows.push({ ...guest });
+    await env.core.auth.requestPasswordReset(
+      { email: guest.email },
+      {
+        ...context(),
+        serverUrl: 'https://attacker.example',
+        headers: { host: 'attacker.example' },
+      },
+    );
+    const url = new URL(env.services.notification.passwordReset.mock.calls[0][1]);
+    expect(url.origin).toBe('https://example.com');
+    expect(url.pathname).toBe('/ui/profile');
+  });
+
+  it.each([undefined, 'file:///tmp/reset', 'https://user@server.example'])(
+    'fails closed without a valid canonical URL',
+    async (serverUrl) => {
+      const env = setup({ config: { serverUrl } });
+      env.Users.rows.push({ ...guest });
+      await expect(
+        env.core.auth.requestPasswordReset({ email: guest.email }, context()),
+      ).rejects.toThrow('SERVER_URL_REQUIRED');
+      expect(env.services.notification.passwordReset).not.toHaveBeenCalled();
+      expect(env.services.token.sign).not.toHaveBeenCalled();
+    },
+  );
 });
