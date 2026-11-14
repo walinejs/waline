@@ -153,7 +153,9 @@ module.exports = class extends Base {
       return data;
     }
 
-    return data.map(({ _id, total: count }) => ({ ..._id, count }));
+    return data.map(({ _id, total: count }) =>
+      group.length === 1 ? { [group[0]]: _id, count } : { ..._id, count },
+    );
   }
 
   async add(data) {
