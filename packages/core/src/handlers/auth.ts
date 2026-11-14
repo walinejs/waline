@@ -82,7 +82,7 @@ export const createAuthHandler = (runtime: CoreRuntime) => {
     async getTwoFactorStatus(input: { email?: string }, ctx: WalineContext) {
       if (!currentUser(ctx) && !input.email) unauthorized();
 
-      const email = input.email ?? currentUser(ctx)?.email;
+      const email = requiredString(input.email ?? currentUser(ctx)?.email, 'email');
       const [account] = await models.Users.select({ email });
 
       return { enable: Boolean(account?.['2fa']) };

@@ -113,6 +113,7 @@ module.exports = class extends think.Service {
               }),
               {
                 method: 'GET',
+                redirect: 'error',
                 headers: { 'user-agent': '@waline' },
               },
             ).then((resp) => resp.json()),
