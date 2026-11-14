@@ -1024,6 +1024,7 @@ describe('hidden comment likes', () => {
       const env = setup();
       env.Comment.rows.push({
         objectId: 'hidden',
+        insertedAt: '2026-01-01',
         comment: 'secret',
         url: '/post',
         status,
