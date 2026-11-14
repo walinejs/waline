@@ -353,6 +353,15 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
         typeof input.data.like === 'boolean' && Object.keys(input.data).length === 1;
       const current = currentUser(ctx);
 
+      if (
+        isLikeOnly &&
+        ['waiting', 'spam'].includes(old.status ?? '') &&
+        !isAdmin(ctx) &&
+        (!current || old.user_id !== current.objectId)
+      ) {
+        forbidden();
+      }
+
       if (!isLikeOnly) {
         const user = current ?? requireUser(ctx);
         if (!isAdmin(ctx) && old.user_id !== user.objectId) forbidden();

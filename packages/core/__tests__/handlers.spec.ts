@@ -1016,3 +1016,39 @@ describe('comment handler', () => {
     await env.core.comment.remove({ objectId: 'admin-delete' }, context(administrator));
   });
 });
+
+describe('hidden comment likes', () => {
+  it.each(['waiting', 'spam'])(
+    'prevents public access to %s comments through likes',
+    async (status) => {
+      const env = setup();
+      env.Comment.rows.push({
+        objectId: 'hidden',
+        comment: 'secret',
+        url: '/post',
+        status,
+        user_id: guest.objectId,
+        like: 0,
+      });
+      await expect(
+        env.core.comment.update({ objectId: 'hidden', data: { like: true } }, context()),
+      ).rejects.toThrow('FORBIDDEN');
+      await expect(
+        env.core.comment.update(
+          { objectId: 'hidden', data: { like: false } },
+          context({ ...guest, objectId: 'other' }),
+        ),
+      ).rejects.toThrow('FORBIDDEN');
+      expect(env.Comment.rows[0].like).toBe(0);
+      await expect(
+        env.core.comment.update({ objectId: 'hidden', data: { like: true } }, context(guest)),
+      ).resolves.toBeDefined();
+      await expect(
+        env.core.comment.update(
+          { objectId: 'hidden', data: { like: true } },
+          context(administrator),
+        ),
+      ).resolves.toBeDefined();
+    },
+  );
+});
