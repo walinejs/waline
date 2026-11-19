@@ -40,6 +40,7 @@
   "sticky": "置頂留言",
   "edit": "編輯",
   "reply": "回覆",
+  "reply failed": "回覆傳送失敗，請重試。",
   "delete": "刪除",
   "delete one confirm": "你確認要刪除{{nick}}的留言嗎？",
   "delete multiple confirm": "你確認要刪除這些留言嗎？",

@@ -12,6 +12,13 @@ import {
   requiredRecord,
 } from '../utils/validation.js';
 
+const optionalReplyId = (value: unknown, field: 'pid' | 'rid'): string | number | undefined => {
+  if (value === undefined || typeof value === 'string') return value;
+  if (typeof value === 'number' && Number.isSafeInteger(value) && value > 0) return value;
+
+  return badRequest({ field, rule: 'stringOrPositiveInteger' });
+};
+
 export const createCommentHandler = (runtime: CoreRuntime) => {
   const { config, hook, logger, models, now, random, services } = runtime;
   const formatComment = createCommentFormatter(runtime);
@@ -107,13 +114,13 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
               .map((child) => formatComment(child, ctx, users)),
           );
           item.children = formattedChildren;
-          const map = new Map<string, Record<string, unknown>>([
-            [item.objectId as string, item],
-            ...formattedChildren.map((child) => [child.objectId as string, child] as const),
+          const map = new Map([
+            [item.objectId, item],
+            ...formattedChildren.map((child) => [child.objectId, child] as const),
           ]);
 
           for (const child of formattedChildren) {
-            const parent = map.get(child.pid as string);
+            const parent = child.pid === undefined ? undefined : map.get(child.pid);
             if (parent) {
               child.reply_user = {
                 nick: parent.nick,
@@ -247,11 +254,13 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
     ) {
       const rawComment = requiredString(input.comment, 'comment');
       const url = requiredString(input.url, 'url');
-      for (const field of ['link', 'mail', 'nick', 'pid', 'rid', 'ua', 'at'] as const) {
+      for (const field of ['link', 'mail', 'nick', 'ua', 'at'] as const) {
         if (input[field] !== undefined && typeof input[field] !== 'string') {
           badRequest({ field, rule: 'string' });
         }
       }
+      const pid = optionalReplyId(input.pid, 'pid');
+      const rid = optionalReplyId(input.rid, 'rid');
       const current = currentUser(ctx);
 
       if (!current && config.forceLogin) unauthorized();
@@ -264,8 +273,8 @@ export const createCommentHandler = (runtime: CoreRuntime) => {
         link: input.link,
         mail: input.mail,
         nick: input.nick,
-        pid: input.pid,
-        rid: input.rid,
+        pid,
+        rid,
         ua: input.ua,
         url,
         ip: ctx.ip,

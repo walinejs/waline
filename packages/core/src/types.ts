@@ -39,8 +39,8 @@ export interface WalineModel<T extends object> {
   delete(where: Where<T>): Promise<void>;
 }
 
-export interface BaseEntity {
-  objectId: string;
+export interface BaseEntity<ID extends string | number = string> {
+  objectId: ID;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 }
@@ -57,14 +57,14 @@ export interface WalineUser extends BaseEntity {
   [provider: string]: unknown;
 }
 
-export interface WalineComment extends BaseEntity {
+export interface WalineComment extends BaseEntity<string | number> {
   comment: string;
   url: string;
   mail?: string;
   nick?: string;
   link?: string;
-  pid?: string;
-  rid?: string;
+  pid?: string | number;
+  rid?: string | number;
   ua?: string;
   ip?: string;
   user_id?: string;

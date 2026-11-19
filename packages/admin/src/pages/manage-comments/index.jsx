@@ -227,20 +227,24 @@ export default function ManageComments() {
 
     const { display_name, email, url: link } = user;
 
-    await replyComment({
-      nick: display_name,
-      mail: email,
-      ua: navigator.userAgent,
-      link,
-      url,
-      comment,
-      pid,
-      rid: rid ?? pid,
-      at,
-    });
+    try {
+      await replyComment({
+        nick: display_name,
+        mail: email,
+        ua: navigator.userAgent,
+        link,
+        url,
+        comment,
+        pid,
+        rid: rid ?? pid,
+        at,
+      });
+    } catch {
+      alert(t('reply failed'));
+      return;
+    }
+
     location.reload();
-    // setCmtHandler({});
-    // setList({page: 1, totalPages: list.totalPages, spamCount: list.spamCount, data: []});
   };
 
   const onEditComment = async (idx) => {
