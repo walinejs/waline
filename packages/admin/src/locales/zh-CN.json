@@ -40,6 +40,7 @@
   "sticky": "置顶评论",
   "edit": "编辑",
   "reply": "回复",
+  "reply failed": "回复发送失败，请重试。",
   "delete": "删除",
   "delete one confirm": "你确认要删除{{nick}}的评论吗？",
   "delete multiple confirm": "你确认要删除这些评论吗？",
