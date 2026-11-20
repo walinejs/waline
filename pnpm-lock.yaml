@@ -212,8 +212,8 @@ importers:
         specifier: 0.1.1
         version: 0.1.1
       '@redocly/cli':
-        specifier: 2.78.0
-        version: 2.78.0
+        specifier: 2.82.0
+        version: 2.82.0
       '@types/node':
         specifier: 26.6.6
         version: 26.6.6
@@ -2752,8 +2752,8 @@ packages:
   '@quansync/fs@1.1.0':
     resolution: {integrity: sha512-qAPG/t3HqML1TlN7sY/pTbEjzFVAKsMjNNMGheyDosro+kT4iw2KCUoHcVdmliwWjorm4elZbgNQyU2eD97eDg==}
 
-  '@redocly/cli@2.78.0':
-    resolution: {integrity: sha512-ozrbcxLabQUxQr62nt0R8HE2T7kmlmIu1hTa/hyN1h5iht9v3Bh4fA2FXLj4wEhtN4xmdqoySHfba8+vFbONJA==}
+  '@redocly/cli@2.82.0':
+    resolution: {integrity: sha512-yyd53xbJgLRa1qyFhaxf9PxOnccjfWJmVRC7uqY7lRUhSq7Zo0id8lHLblpJKMjj4fE2t5zKDF3xml3hnBscJw==}
     engines: {node: '>=22.12.0 || >=20.19.0 <21.0.0', npm: '>=10'}
     hasBin: true
 
@@ -10344,7 +10344,7 @@ snapshots:
     dependencies:
       quansync: 1.0.0
 
-  '@redocly/cli@2.78.0': {}
+  '@redocly/cli@2.82.0': {}
 
   '@rematch/core@2.2.0(redux@5.0.1)':
     dependencies:
