@@ -488,8 +488,8 @@ importers:
         specifier: 1.2.3
         version: 1.2.3(markdown-it@15.0.3)
       '@mdit/plugin-katex':
-        specifier: 1.2.0
-        version: 1.2.0(markdown-it@15.0.3)
+        specifier: 1.2.1
+        version: 1.2.1(markdown-it@15.0.3)
       '@mdit/plugin-mathjax':
         specifier: 1.2.3
         version: 1.2.3(markdown-it@15.0.3)
@@ -1869,8 +1869,8 @@ packages:
       markdown-it:
         optional: true
 
-  '@mdit/plugin-katex@1.2.0':
-    resolution: {integrity: sha512-bseVd9srkselpndk0BahLRvipL2/+2u8gRuEtfIPuzpaBPAztHprhSc+AKf+BNaeT0JPWR0MNGcMtTCHYs4xzg==}
+  '@mdit/plugin-katex@1.2.1':
+    resolution: {integrity: sha512-cwf5q2O3AMrCo4nzhkb4bhNhIVmuQxtPa1uK4eheykOjwoJf5WtkjvbAeFp/0BGCGeqh+NnbLTe8fwqGovMn7A==}
     engines: {node: '>=22'}
     peerDependencies:
       markdown-it: ^15.0.3
@@ -9828,9 +9828,8 @@ snapshots:
     optionalDependencies:
       markdown-it: 15.0.3
 
-  '@mdit/plugin-katex@1.2.0(markdown-it@15.0.3)':
+  '@mdit/plugin-katex@1.2.1(markdown-it@15.0.3)':
     dependencies:
-      '@mdit/helper': 1.2.1(markdown-it@15.0.3)
       '@mdit/plugin-tex': 1.3.0(markdown-it@15.0.3)
       katex: 0.19.1
     optionalDependencies:
