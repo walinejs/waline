@@ -75,7 +75,10 @@ paths:
             default: 10
         - name: sortBy
           in: query
-          description: Sort order for the public comment list.
+          description: >-
+            Sort order for the public comment list. like_desc ranks whole threads
+            by root likes + public reply count + public reply likes. Pinned
+            comments remain first; waiting and spam replies do not contribute.
           schema:
             type: string
             enum: [insertedAt_desc, insertedAt_asc, like_desc]

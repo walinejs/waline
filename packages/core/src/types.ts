@@ -11,6 +11,11 @@ export interface SelectOptions<T> {
   field?: readonly (keyof T & string)[];
   limit?: number;
   offset?: number;
+  /**
+   * Comment adapters support the virtual `popularity` order field: root likes plus the count and
+   * likes of public replies with the same URL and root ID. Compute it before offset/limit; it is
+   * not a persisted or returned field.
+   */
   order?: readonly {
     field: keyof T & string;
     direction: 'asc' | 'desc';

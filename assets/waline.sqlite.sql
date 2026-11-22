@@ -19,6 +19,7 @@ CREATE TABLE IF NOT EXISTS "wl_Comment" (
 	"updatedAt"	DATETIME DEFAULT (datetime('now', 'localtime')),
 	PRIMARY KEY("id" AUTOINCREMENT)
 );
+CREATE INDEX IF NOT EXISTS "idx_comment_rid_url_status" ON "wl_Comment" ("rid", "url", "status");
 CREATE TABLE IF NOT EXISTS "wl_Counter" (
 	"id"	INTEGER,
 	"time"	INTEGER,

@@ -4,6 +4,12 @@ const { parseString, writeToString } = require('fast-csv');
 
 const Base = require('./base.js');
 const { compareByOrder, normalizeOrder } = require('./order.js');
+const {
+  POPULARITY,
+  isPopularityOrder,
+  withPopularity,
+  withoutPopularity,
+} = require('./popularity.js');
 
 const DATE_FIELDS = new Set(['insertedAt', 'createdAt', 'updatedAt']);
 
@@ -282,6 +288,13 @@ module.exports = class GithubStorage extends Base {
       orderField === 'objectId' ? 'id' : orderField,
     );
 
+    if (isPopularityOrder(normalizedOrder)) {
+      data = withPopularity(data, instance);
+      for (const entry of normalizedOrder) {
+        if (entry.field === 'popularity') entry.field = POPULARITY;
+      }
+    }
+
     if (normalizedOrder.length > 0) {
       data.sort(
         compareByOrder(normalizedOrder, (field, value) =>
@@ -307,7 +320,7 @@ module.exports = class GithubStorage extends Base {
       });
     }
 
-    return data.map(({ id, ...cmt }) => ({ ...cmt, objectId: id }));
+    return data.map(({ id, ...cmt }) => ({ ...withoutPopularity(cmt), objectId: id }));
   }
 
   async count(where = {}, { group } = {}) {
