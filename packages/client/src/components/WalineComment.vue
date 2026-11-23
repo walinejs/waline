@@ -162,7 +162,9 @@ const onSticky = async (comment: WalineComment): Promise<void> => {
   comment.sticky = !comment.sticky;
 };
 
-const onDelete = async ({ objectId }: WalineComment): Promise<void> => {
+const onDelete = async (comment: WalineComment): Promise<void> => {
+  const { objectId } = comment;
+
   if (!confirm('Are you sure you want to delete this comment?')) return;
 
   const { serverURL, lang } = config.value;
@@ -192,6 +194,18 @@ const onDelete = async ({ objectId }: WalineComment): Promise<void> => {
       return false;
     });
   });
+
+  // The API deletes a root comment with all its replies, and a reply with its direct replies.
+  const deletedCount =
+    'children' in comment
+      ? 1 + comment.children.length
+      : 1 +
+        data.value.reduce(
+          (total, item) => total + item.children.filter(({ pid }) => pid === objectId).length,
+          0,
+        );
+
+  count.value = Math.max(count.value - deletedCount, 0);
 };
 
 const onLike = async (comment: WalineComment): Promise<void> => {
