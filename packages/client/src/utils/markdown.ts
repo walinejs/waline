@@ -15,10 +15,18 @@ export interface ParseMarkdownOptions {
   texRenderer: WalineTeXRenderer | null;
 }
 
-export const parseMarkdown = (
-  content: string,
-  { emojiMap, highlighter, texRenderer }: ParseMarkdownOptions,
-): string => {
+let cachedHighlighter: WalineHighlighter | null | undefined,
+  cachedMarked: Marked | undefined,
+  cachedTeXRenderer: WalineTeXRenderer | null | undefined;
+
+const getMarked = (
+  highlighter: WalineHighlighter | null,
+  texRenderer: WalineTeXRenderer | null,
+): Marked => {
+  if (cachedMarked && cachedHighlighter === highlighter && cachedTeXRenderer === texRenderer) {
+    return cachedMarked;
+  }
+
   const marked = new Marked();
 
   marked.setOptions({ breaks: true });
@@ -33,5 +41,14 @@ export const parseMarkdown = (
     marked.use({ extensions });
   }
 
-  return marked.parse(parseEmoji(content, emojiMap)) as string;
+  cachedMarked = marked;
+  cachedHighlighter = highlighter;
+  cachedTeXRenderer = texRenderer;
+
+  return marked;
 };
+
+export const parseMarkdown = (
+  content: string,
+  { emojiMap, highlighter, texRenderer }: ParseMarkdownOptions,
+): string => getMarked(highlighter, texRenderer).parse(parseEmoji(content, emojiMap)) as string;
