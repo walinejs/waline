@@ -93,7 +93,7 @@ export const getConfig = ({
   } as WalineLocale,
   wordLimit: getWordLimit(wordLimit),
   meta: getMeta(meta),
-  requiredMeta: getMeta(requiredMeta),
+  requiredMeta: getMeta(requiredMeta).filter((item) => getMeta(meta).includes(item)),
   dark,
   pageSize,
   commentSorting,
