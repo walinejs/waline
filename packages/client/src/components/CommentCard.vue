@@ -106,11 +106,21 @@ const isEditingCurrent = computed(() => comment.objectId === edit?.objectId);
 
         <div class="wl-comment-actions">
           <template v-if="isAdmin || isOwner">
-            <button type="button" class="wl-edit" @click="emit('edit', comment)">
+            <button
+              type="button"
+              class="wl-edit"
+              aria-label="Edit comment"
+              @click="emit('edit', comment)"
+            >
               <EditIcon />
             </button>
 
-            <button type="button" class="wl-delete" @click="emit('delete', comment)">
+            <button
+              type="button"
+              class="wl-delete"
+              aria-label="Delete comment"
+              @click="emit('delete', comment)"
+            >
               <DeleteIcon />
             </button>
           </template>
@@ -119,6 +129,7 @@ const isEditingCurrent = computed(() => comment.objectId === edit?.objectId);
             role="button"
             class="wl-rss"
             :title="locale.subscribeToReplies"
+            :aria-label="locale.subscribeToReplies"
             v-if="isOwner && !config.noRss"
             :href="`${config.serverURL}/api/comment/rss?user_id=${comment.user_id}`"
             target="_blank"
@@ -131,6 +142,7 @@ const isEditingCurrent = computed(() => comment.objectId === edit?.objectId);
             type="button"
             class="wl-like"
             :title="like ? locale.cancelLike : locale.like"
+            :aria-label="like ? locale.cancelLike : locale.like"
             @click="emit('like', comment)"
           >
             <LikeIcon :active="like" />
@@ -142,6 +154,7 @@ const isEditingCurrent = computed(() => comment.objectId === edit?.objectId);
             class="wl-reply"
             :class="{ active: isReplyingCurrent }"
             :title="isReplyingCurrent ? locale.cancelReply : locale.reply"
+            :aria-label="isReplyingCurrent ? locale.cancelReply : locale.reply"
             @click="emit('reply', isReplyingCurrent ? null : comment)"
           >
             <ReplyIcon />
