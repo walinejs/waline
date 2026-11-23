@@ -203,6 +203,8 @@ const syncUserMeta = ({ link, mail, nick }: Partial<WalineCommentData>): void =>
 
 // oxlint-disable-next-line complexity, max-statements
 const submitComment = async (): Promise<void> => {
+  if (isSubmitting.value) return;
+
   const { serverURL, lang, login, wordLimit, requiredMeta, recaptchaV3Key, turnstileKey } =
     config.value;
 
@@ -212,7 +214,7 @@ const submitComment = async (): Promise<void> => {
     mail: userMeta.value.mail,
     link: userMeta.value.link,
     url: config.value.path,
-    ua: await userAgent(),
+    ua: '',
   };
 
   if (!props.edit) {
@@ -284,6 +286,8 @@ const submitComment = async (): Promise<void> => {
   isSubmitting.value = true;
 
   try {
+    comment.ua = await userAgent();
+
     if (recaptchaV3Key) {
       comment.recaptchaV3 = await useReCaptcha(recaptchaV3Key).execute('social');
     }
