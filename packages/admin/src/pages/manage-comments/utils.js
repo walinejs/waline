@@ -30,3 +30,10 @@ export const formatDate = (time) => {
 
   return `${localDate} ${localTime}`;
 };
+
+export const getCommentEditDraft = (comment) => ({
+  nick: comment.nick ?? '',
+  mail: comment.mail ?? '',
+  link: comment.link ?? '',
+  comment: comment.orig ?? comment.comment ?? '',
+});
