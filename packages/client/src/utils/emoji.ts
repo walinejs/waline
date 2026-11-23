@@ -39,36 +39,48 @@ const fetchEmoji = (link: string): Promise<WalineEmojiInfo> => {
 const getLink = (name: string, folder = '', prefix = '', type = ''): string =>
   `${folder ? `${folder}/` : ''}${prefix}${name}${type ? `.${type}` : ''}`;
 
-export const getEmojisInfo = (
+export const getEmojisInfo = async (
   emojis: (string | WalineEmojiInfo)[] | null,
-): Promise<WalineEmojiConfig> =>
-  Promise.all(
-    emojis
-      ? emojis.map((emoji) =>
-          isString(emoji) ? fetchEmoji(removeEndingSplash(emoji)) : Promise.resolve(emoji),
-        )
-      : [],
-  ).then((emojiInfos) => {
-    const emojisConfig: WalineEmojiConfig = {
-      tabs: [],
-      map: {},
-    };
+): Promise<WalineEmojiConfig> => {
+  const emojiInfos = await Promise.all(
+    (emojis ?? []).map(async (emoji) => {
+      if (!isString(emoji)) return emoji;
 
-    emojiInfos.forEach((emojiInfo) => {
-      const { name, folder, icon, prefix = '', type, items } = emojiInfo;
+      const link = removeEndingSplash(emoji);
 
-      emojisConfig.tabs.push({
-        name,
-        icon: getLink(icon, folder, prefix, type),
-        items: items.map((item) => {
-          const key = `${prefix}${item}`;
+      try {
+        return await fetchEmoji(link);
+      } catch (err) {
+        // Ignore unavailable presets so the remaining emoji tabs still load.
+        // oxlint-disable-next-line no-console
+        console.error(`[Waline] Failed to load emoji preset ${link}`, err);
+        return null;
+      }
+    }),
+  );
 
-          emojisConfig.map[key] = getLink(item, folder, prefix, type);
+  const emojisConfig: WalineEmojiConfig = {
+    tabs: [],
+    map: {},
+  };
 
-          return key;
-        }),
-      });
+  emojiInfos.forEach((emojiInfo) => {
+    if (!emojiInfo) return;
+
+    const { name, folder, icon, prefix = '', type, items } = emojiInfo;
+
+    emojisConfig.tabs.push({
+      name,
+      icon: getLink(icon, folder, prefix, type),
+      items: items.map((item) => {
+        const key = `${prefix}${item}`;
+
+        emojisConfig.map[key] = getLink(item, folder, prefix, type);
+
+        return key;
+      }),
     });
-
-    return emojisConfig;
   });
+
+  return emojisConfig;
+};
