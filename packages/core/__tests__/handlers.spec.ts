@@ -585,6 +585,18 @@ describe('user handler', () => {
     },
   );
 
+  it('checks a new email against the target account', async () => {
+    const env = setup();
+    env.Users.rows.push({ ...administrator }, { ...guest });
+
+    await expect(
+      env.core.user.update(
+        { objectId: guest.objectId, data: { email: administrator.email } },
+        context(administrator),
+      ),
+    ).rejects.toThrow();
+  });
+
   it('does not allow profile updates to replace OAuth identities', async () => {
     const env = setup();
     env.Users.rows.push({ ...guest, github: 'original' });
