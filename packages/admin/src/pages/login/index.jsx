@@ -59,6 +59,11 @@ export default function Login() {
       }
     }
 
+    if (normalizedRedirect.startsWith('/') && !normalizedRedirect.startsWith('//')) {
+      navigate(normalizedRedirect);
+      return;
+    }
+
     navigate(defaultRedirect);
   }, [user, query, navigate]);
 
