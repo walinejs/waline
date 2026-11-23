@@ -11,7 +11,7 @@ import {
   replyComment,
   updateComment,
 } from '../../services/comment.js';
-import { buildAvatar, formatDate, getPostUrl } from './utils.js';
+import { buildAvatar, formatDate, getCommentEditDraft, getPostUrl } from './utils.js';
 
 export default function ManageComments() {
   const { t } = useTranslation();
@@ -34,6 +34,12 @@ export default function ManageComments() {
   const [cmtHandler, setCmtHandler] = useState({});
   const [actDropStatus, setActDropStatus] = useState(false);
   const [commentIds, setCommentIds] = useState([]);
+
+  useEffect(() => {
+    if (cmtHandler.action === 'edit' && cmtHandler.draft) {
+      editCommentRef.current = cmtHandler.draft;
+    }
+  }, [cmtHandler]);
 
   const FILTERS = [
     [
@@ -167,13 +173,11 @@ export default function ManageComments() {
         show: comment,
         name: t('edit'),
         action() {
-          const handler = {};
-
-          if (cmtHandler.id !== comment.objectId && cmtHandler.action !== 'edit') {
-            handler.id = comment.objectId;
-            handler.action = 'edit';
-          }
-          setCmtHandler(handler);
+          setCmtHandler({
+            id: comment.objectId,
+            action: 'edit',
+            draft: getCommentEditDraft(comment),
+          });
         },
       },
       {
@@ -249,14 +253,14 @@ export default function ManageComments() {
 
   const onEditComment = async (idx) => {
     const comment = list.data[idx];
+    const draft = { ...editCommentRef.current };
+    const updated = await updateComment(comment.objectId, draft);
 
-    await updateComment(comment.objectId, editCommentRef.current);
     setList(({ data, ...rest }) => ({
       ...rest,
-      data: data.map((item, index) =>
-        index === idx ? { ...item, ...editCommentRef.current } : item,
-      ),
+      data: data.map((item, index) => (index === idx ? { ...item, ...draft, ...updated } : item)),
     }));
+    editCommentRef.current = {};
     setCmtHandler({});
   };
 
@@ -397,6 +401,7 @@ export default function ManageComments() {
                             sticky,
                             time,
                             insertedAt,
+                            orig,
                           },
                           idx,
                         ) =>
@@ -463,7 +468,7 @@ export default function ManageComments() {
                                       id={`comment-${objectId}-text`}
                                       rows="6"
                                       className="w-90 mono"
-                                      defaultValue={comment}
+                                      defaultValue={orig ?? comment}
                                       onChange={(event) =>
                                         (editCommentRef.current.comment = event.target.value)
                                       }
@@ -589,7 +594,10 @@ export default function ManageComments() {
                                       <button
                                         type="button"
                                         className="btn btn-s cancel"
-                                        onClick={() => setCmtHandler({})}
+                                        onClick={() => {
+                                          editCommentRef.current = {};
+                                          setCmtHandler({});
+                                        }}
                                       >
                                         {t('cancel')}
                                       </button>
@@ -604,6 +612,10 @@ export default function ManageComments() {
                                     rid,
                                     pid,
                                     sticky,
+                                    mail,
+                                    link,
+                                    comment,
+                                    orig,
                                   }).map(({ key, disable, name, action }) =>
                                     disable ? (
                                       <span className="weak" key={key}>
