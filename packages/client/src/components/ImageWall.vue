@@ -143,6 +143,7 @@ onBeforeUnmount(() => {
         <img
           class="wl-gallery-item"
           :src="items[itemIndex].src"
+          :alt="items[itemIndex].title || ''"
           :title="items[itemIndex].title"
           loading="lazy"
           @load="imageLoad"

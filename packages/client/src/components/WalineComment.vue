@@ -300,7 +300,12 @@ onUnmounted(() => {
           v-for="item in sortingMethods"
           :key="item"
           :class="[item === commentSortingRef ? 'active' : '']"
+          role="button"
+          tabindex="0"
+          :aria-pressed="item === commentSortingRef"
           @click="onSortByChange(item)"
+          @keydown.enter.prevent="onSortByChange(item)"
+          @keydown.space.prevent="onSortByChange(item)"
         >
           {{ i18n[item] }}
         </li>
@@ -347,7 +352,7 @@ onUnmounted(() => {
           :href="`${config.serverURL}/api/comment/rss?path=${encodeURIComponent(config.path)}`"
           target="_blank"
           rel="noopener noreferrer"
-          :alt="i18n.subPostComment"
+          :aria-label="i18n.subPostComment"
         >
           <RssIcon />
           <span v-text="i18n.subPostComment" />
@@ -357,7 +362,7 @@ onUnmounted(() => {
           :href="`${config.serverURL}/api/comment/rss`"
           target="_blank"
           rel="noopener noreferrer"
-          :alt="i18n.subSiteComment"
+          :aria-label="i18n.subSiteComment"
         >
           <RssIcon />
           <span v-text="i18n.subSiteComment" />

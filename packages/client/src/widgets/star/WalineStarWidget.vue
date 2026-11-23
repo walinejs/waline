@@ -76,8 +76,7 @@ const onMouseLeave = (): void => {
   hoverScore.value = null;
 };
 
-const onClick = async (event: MouseEvent): Promise<void> => {
-  const nextScore = hoverScore.value ?? getScoreFromEvent(event);
+const submitScore = async (nextScore: number): Promise<void> => {
   const storedScore = reactionStorage.value[props.path];
   const hasVoted = storedScore != null;
   const prevScore = hasVoted ? selectedScore.value : 0;
@@ -130,6 +129,44 @@ const onClick = async (event: MouseEvent): Promise<void> => {
   }
 };
 
+const onClick = async (event: MouseEvent): Promise<void> => {
+  const nextScore = hoverScore.value ?? getScoreFromEvent(event);
+
+  await submitScore(nextScore);
+};
+
+const onKeydown = async (event: KeyboardEvent): Promise<void> => {
+  const currentScore = hoverScore.value ?? selectedScore.value;
+
+  switch (event.key) {
+    case 'ArrowRight':
+    case 'ArrowUp': {
+      event.preventDefault();
+      hoverScore.value = Math.min(5, Math.max(1, Math.ceil(currentScore) + 1));
+      break;
+    }
+
+    case 'ArrowLeft':
+    case 'ArrowDown': {
+      event.preventDefault();
+      hoverScore.value = Math.max(1, Math.floor(currentScore) - 1);
+      break;
+    }
+
+    case 'Enter':
+    case ' ': {
+      event.preventDefault();
+      await submitScore(hoverScore.value ?? selectedScore.value);
+      hoverScore.value = null;
+      break;
+    }
+
+    default: {
+      break;
+    }
+  }
+};
+
 const countFor = (score: number): number => internalDistribution.value[score - 1] ?? 0;
 
 const percentText = (score: number): string => {
@@ -143,8 +180,16 @@ const percentText = (score: number): string => {
     <div
       ref="ratingArea"
       class="wl-star-rate"
+      role="slider"
+      tabindex="0"
+      aria-label="Rating"
+      :aria-valuemin="0"
+      :aria-valuemax="5"
+      :aria-valuenow="Math.round(displayScore)"
+      @keydown="onKeydown"
       @mousemove="onMouseMove"
       @mouseleave="onMouseLeave"
+      @blur="onMouseLeave"
       @click="onClick"
     >
       <WalineStarDisplay :score="displayScore" />

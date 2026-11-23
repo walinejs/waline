@@ -610,6 +610,7 @@ onMounted(() => {
         ref="textarea"
         v-model="editor"
         class="wl-editor"
+        :aria-label="locale.placeholder"
         :placeholder="replyUser ? `@${replyUser}` : locale.placeholder"
         @keydown="onEditorKeyDown"
         @drop="onEditorDrop"
