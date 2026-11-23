@@ -42,9 +42,9 @@ const props = defineProps<{
   /** Current comment to be edited */
   edit?: WalineComment | null;
   /** Root comment id */
-  rootId?: number;
+  rootId?: string | number;
   /** Comment id to be replied */
-  replyId?: number;
+  replyId?: string | number;
   /** User name to be replied */
   replyUser?: string;
 }>();
