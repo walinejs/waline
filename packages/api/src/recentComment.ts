@@ -1,6 +1,6 @@
 import type { BaseWalineResponseComment } from './typings.js';
-import type { BaseAPIOptions } from './utils.js';
-import { getFetchPrefix } from './utils.js';
+import type { BaseAPIOptions, ErrorStatusResponse } from './utils.js';
+import { errorCheck, getFetchPrefix } from './utils.js';
 
 export interface GetRecentCommentOptions extends BaseAPIOptions {
   /**
@@ -48,5 +48,7 @@ export const getRecentComment = ({
   return fetch(`${getFetchPrefix(serverURL)}comment?type=recent&count=${count}&lang=${lang}`, {
     signal,
     headers,
-  }).then((resp) => resp.json() as Promise<RecentCommentData[]>);
+  })
+    .then((resp) => resp.json() as Promise<{ data: RecentCommentData[] } & ErrorStatusResponse>)
+    .then((data) => errorCheck(data, 'Get recent comments').data);
 };
