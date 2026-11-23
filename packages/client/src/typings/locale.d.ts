@@ -72,4 +72,5 @@ export interface WalineLocale extends WalineDateLocale, WalineLevelLocale, Walin
   subPostComment: string;
   subSiteComment: string;
   subscribeToReplies: string;
+  deleteConfirm?: string;
 }

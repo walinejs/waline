@@ -54,4 +54,5 @@ export default generateLocale([
   'Đăng ký nhận xét của bài viết này',
   'Đăng ký nhận xét của trang web này',
   'Đăng ký nhận xét của bạn',
+  'Bạn có chắc chắn muốn xóa bình luận này không?',
 ]);
