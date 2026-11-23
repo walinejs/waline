@@ -82,7 +82,7 @@ export default function Migration() {
 
           if (tableName === 'Users') {
             // oxlint-disable-next-line no-await-in-loop
-            const user = await request(`user?email=${data.email}`);
+            const user = await request(`user?email=${encodeURIComponent(data.email)}`);
 
             if (user.objectId) {
               existUserObjectId = user.objectId;
