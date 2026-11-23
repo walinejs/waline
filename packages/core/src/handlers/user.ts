@@ -154,7 +154,7 @@ export const createUserHandler = (runtime: CoreRuntime) => {
         emailString(data.email);
         const duplicate = await models.Users.select({
           email: data.email,
-          objectId: ['!=', user.objectId],
+          objectId: ['!=', objectId],
         });
         if (duplicate.length) throw new WalineError('USER_EXIST', 400);
       }
