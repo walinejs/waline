@@ -507,6 +507,18 @@ watch(showGif, async (value) => {
   searchResults.loading = false;
 });
 
+const updatePreview = (value: string): void => {
+  const { highlighter, texRenderer } = config.value;
+
+  previewText.value = parseMarkdown(value, {
+    emojiMap: emoji.value.map,
+    highlighter,
+    texRenderer,
+  });
+};
+
+const updatePreviewDebounced = useDebounceFn(() => updatePreview(editor.value), 150);
+
 onMounted(() => {
   if (props.edit?.objectId) {
     editor.value = props.edit.orig;
@@ -516,15 +528,10 @@ onMounted(() => {
   watchImmediate(
     () => editor.value,
     (value) => {
-      const { highlighter, texRenderer } = config.value;
-
       content.value = value;
-      previewText.value = parseMarkdown(value, {
-        emojiMap: emoji.value.map,
-        highlighter,
-        texRenderer,
-      });
       wordNumber.value = getWordNumber(value);
+
+      if (showPreview.value) updatePreviewDebounced();
 
       // oxlint-disable-next-line typescript/no-non-null-assertion
       if (value) autosize(textAreaRef.value!);
@@ -532,6 +539,10 @@ onMounted(() => {
       else autosize.destroy(textAreaRef.value!);
     },
   );
+
+  watch(showPreview, (visible) => {
+    if (visible) updatePreview(editor.value);
+  });
 
   // watch emoji value change
   watchImmediate(
