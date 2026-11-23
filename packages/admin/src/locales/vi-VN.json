@@ -64,6 +64,8 @@
   "import from": "Nhập từ {{source}}",
   "import success": "Nhập thành công",
   "import clear data confirm": "Chú ý! Nhập dữ liệu sẽ ghi đè tất cả dữ liệu hiện có. Tiếp tục?",
+  "import backup": "Đang sao lưu dữ liệu hiện tại…",
+  "import backup hint": "Nhập dữ liệu thất bại. Bản sao lưu dữ liệu đã được tải xuống dưới tên {{backupFilename}}; hãy nhập tệp đó để khôi phục dữ liệu của bạn.",
   "importing {{importedLength}}/{{maxLength}}": "Đang nhập {{importedLength}}/{{maxLength}}",
   "comment data index relationship reconstruction": "Đang tái tạo chỉ mục dữ liệu bình luận",
   "index updating {{importedLength}}/{{maxLength}}": "Đang cập nhật chỉ mục {{importedLength}}/{{maxLength}}",

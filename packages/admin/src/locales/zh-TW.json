@@ -65,6 +65,8 @@
   "import from": "從 {{source}} 匯入",
   "import success": "匯入成功",
   "import clear data confirm": "注意！匯入資料會覆蓋目前所有資料，請確認是否繼續？",
+  "import backup": "正在備份目前資料…",
+  "import backup hint": "匯入失敗。已將資料備份下載為 {{backupFilename}}，可匯入該檔案恢復資料。",
   "importing {{importedLength}}/{{maxLength}}": "開始導入 {{importedLength}}/{{maxLength}}",
   "comment data index relationship reconstruction": "留言資料索引重建中",
   "index updating {{importedLength}}/{{maxLength}}": "索引更新 {{importedLength}}/{{maxLength}}",
