@@ -4,7 +4,7 @@ const MarkdownIt = require('markdown-it');
 const { resolveHighlighter } = require('./highlight.js');
 const { sanitize } = require('./xss.js');
 
-const getMarkdownParser = async (markdown = {}) => {
+const createMarkdownParser = async (markdown = {}) => {
   const { config = {}, plugin = {} } = markdown;
 
   // markdown-it instance
@@ -66,6 +66,26 @@ const getMarkdownParser = async (markdown = {}) => {
   }
 
   return (content) => sanitize(markdownIt.render(content));
+};
+
+const parserCache = new WeakMap();
+let defaultParser;
+
+const getMarkdownParser = (markdown) => {
+  if (markdown && typeof markdown === 'object') {
+    let parser = parserCache.get(markdown);
+
+    if (!parser) {
+      parser = createMarkdownParser(markdown);
+      parserCache.set(markdown, parser);
+    }
+
+    return parser;
+  }
+
+  defaultParser ??= createMarkdownParser(markdown || {});
+
+  return defaultParser;
 };
 
 module.exports = { getMarkdownParser };

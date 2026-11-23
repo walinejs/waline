@@ -132,3 +132,23 @@ describe('markdown parser', () => {
     });
   });
 });
+
+describe('markdown parser cache', () => {
+  it('reuses the parser for the same config object', async () => {
+    const config = {};
+
+    const first = getMarkdownParser(config);
+    const second = getMarkdownParser(config);
+
+    expect(first).toBe(second);
+    await first;
+  });
+
+  it('creates a parser for different config objects', async () => {
+    const first = getMarkdownParser({});
+    const second = getMarkdownParser({});
+
+    expect(first).not.toBe(second);
+    await Promise.all([first, second]);
+  });
+});
