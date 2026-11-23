@@ -54,4 +54,5 @@ export default generateLocale([
   'Assinar os comentários deste post',
   'Assinar os comentários deste site',
   'Assinar as respostas dos seus comentários',
+  'Tem certeza de que deseja excluir este comentário?',
 ]);

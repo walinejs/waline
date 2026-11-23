@@ -40,6 +40,14 @@ const darkmodeStyle = computed(() => getDarkStyle(config.value.dark));
 
 const i18n = computed(() => config.value.locale);
 
+const actionError = ref('');
+
+const handleActionError = (error: unknown): void => {
+  actionError.value = error instanceof Error ? error.message : String(error);
+  // oxlint-disable-next-line no-console
+  console.error(error);
+};
+
 useStyleTag(darkmodeStyle, { id: 'waline-darkmode' });
 
 let abort: (() => void) | null = null;
@@ -133,105 +141,129 @@ const onStatusChange = async ({
 }): Promise<void> => {
   if (comment.status === status) return;
 
+  actionError.value = '';
+
   const { serverURL, lang } = config.value;
 
-  await updateComment({
-    serverURL,
-    lang,
-    token: userInfo.value.token,
-    objectId: comment.objectId,
-    comment: { status },
-  });
+  try {
+    await updateComment({
+      serverURL,
+      lang,
+      token: userInfo.value.token,
+      objectId: comment.objectId,
+      comment: { status },
+    });
 
-  comment.status = status;
+    comment.status = status;
+  } catch (err) {
+    handleActionError(err);
+  }
 };
 
 const onSticky = async (comment: WalineComment): Promise<void> => {
   if ('rid' in comment) return;
 
+  actionError.value = '';
+
   const { serverURL, lang } = config.value;
 
-  await updateComment({
-    serverURL,
-    lang,
-    token: userInfo.value.token,
-    objectId: comment.objectId,
-    comment: { sticky: comment.sticky ? 0 : 1 },
-  });
+  try {
+    await updateComment({
+      serverURL,
+      lang,
+      token: userInfo.value.token,
+      objectId: comment.objectId,
+      comment: { sticky: comment.sticky ? 0 : 1 },
+    });
 
-  comment.sticky = !comment.sticky;
+    comment.sticky = !comment.sticky;
+  } catch (err) {
+    handleActionError(err);
+  }
 };
 
 const onDelete = async (comment: WalineComment): Promise<void> => {
   const { objectId } = comment;
 
-  if (!confirm('Are you sure you want to delete this comment?')) return;
+  if (!confirm(i18n.value.deleteConfirm ?? 'Are you sure you want to delete this comment?')) return;
+
+  actionError.value = '';
 
   const { serverURL, lang } = config.value;
 
-  await deleteComment({
-    serverURL,
-    lang,
-    token: userInfo.value.token,
-    objectId,
-  });
+  try {
+    await deleteComment({
+      serverURL,
+      lang,
+      token: userInfo.value.token,
+      objectId,
+    });
 
-  // delete comment from data
-  data.value.some((item, index) => {
-    if (item.objectId === objectId) {
-      data.value = data.value.filter((_item, i) => i !== index);
-
-      return true;
-    }
-
-    return item.children.some((child, childIndex) => {
-      if (child.objectId === objectId) {
-        data.value[index].children = item.children.filter((_item, i) => i !== childIndex);
+    // delete comment from data
+    data.value.some((item, index) => {
+      if (item.objectId === objectId) {
+        data.value = data.value.filter((_item, i) => i !== index);
 
         return true;
       }
 
-      return false;
+      return item.children.some((child, childIndex) => {
+        if (child.objectId === objectId) {
+          data.value[index].children = item.children.filter((_item, i) => i !== childIndex);
+
+          return true;
+        }
+
+        return false;
+      });
     });
-  });
 
-  // The API deletes a root comment with all its replies, and a reply with its direct replies.
-  const deletedCount =
-    'children' in comment
-      ? 1 + comment.children.length
-      : 1 +
-        data.value.reduce(
-          (total, item) => total + item.children.filter(({ pid }) => pid === objectId).length,
-          0,
-        );
+    // The API deletes a root comment with all its replies, and a reply with its direct replies.
+    const deletedCount =
+      'children' in comment
+        ? 1 + comment.children.length
+        : 1 +
+          data.value.reduce(
+            (total, item) => total + item.children.filter(({ pid }) => pid === objectId).length,
+            0,
+          );
 
-  count.value = Math.max(count.value - deletedCount, 0);
+    count.value = Math.max(count.value - deletedCount, 0);
+  } catch (err) {
+    handleActionError(err);
+  }
 };
 
 const onLike = async (comment: WalineComment): Promise<void> => {
+  actionError.value = '';
+
   const { serverURL, lang } = config.value;
   const { objectId } = comment;
   const hasLiked = likeStorage.value.includes(objectId);
 
-  await updateComment({
-    serverURL,
-    lang,
-    objectId,
-    token: userInfo.value.token,
-    comment: { like: !hasLiked },
-  });
+  try {
+    await updateComment({
+      serverURL,
+      lang,
+      objectId,
+      token: userInfo.value.token,
+      comment: { like: !hasLiked },
+    });
 
-  if (hasLiked) {
-    likeStorage.value = likeStorage.value.filter((id) => id !== objectId);
-  } else {
-    likeStorage.value = [...likeStorage.value, objectId];
+    if (hasLiked) {
+      likeStorage.value = likeStorage.value.filter((id) => id !== objectId);
+    } else {
+      likeStorage.value = [...likeStorage.value, objectId];
 
-    if (likeStorage.value.length > 50) {
-      likeStorage.value = likeStorage.value.slice(-50);
+      if (likeStorage.value.length > 50) {
+        likeStorage.value = likeStorage.value.slice(-50);
+      }
     }
-  }
 
-  comment.like = Math.max(0, (comment.like || 0) + (hasLiked ? -1 : 1));
+    comment.like = Math.max(0, (comment.like || 0) + (hasLiked ? -1 : 1));
+  } catch (err) {
+    handleActionError(err);
+  }
 };
 
 provide(configKey, config);
@@ -285,6 +317,10 @@ onUnmounted(() => {
 
 <template>
   <div data-waline>
+    <div v-if="actionError" class="wl-operation" role="alert">
+      <span v-text="actionError" />
+    </div>
+
     <ArticleReaction />
 
     <CommentBox v-if="!reply && !edit" @log="refreshComments" @submit="onSubmit" />
