@@ -30,8 +30,26 @@ const locales = {
   'zh-TW': zhTW,
 };
 
+const reactionKeys = [
+  'reaction0',
+  'reaction1',
+  'reaction2',
+  'reaction3',
+  'reaction4',
+  'reaction5',
+  'reaction6',
+  'reaction7',
+  'reaction8',
+] as const;
+
 describe('locale strings', () => {
   it.each(Object.entries(locales))('%s provides a delete confirmation', (_name, locale) => {
     expect(locale.deleteConfirm?.trim()).toBeTruthy();
+  });
+
+  it.each(Object.entries(locales))('%s provides reaction labels', (_name, locale) => {
+    for (const key of reactionKeys) {
+      expect(locale[key]?.trim()).toBeTruthy();
+    }
   });
 });
