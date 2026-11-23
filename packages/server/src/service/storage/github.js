@@ -153,6 +153,7 @@ module.exports = class GithubStorage extends Base {
 
     return new Promise((resolve, reject) => {
       const data = [];
+      let legacyId = 0;
 
       data.sha = file.sha;
 
@@ -160,7 +161,21 @@ module.exports = class GithubStorage extends Base {
         headers: file ? true : CSV_HEADERS[tableName],
       })
         .on('error', reject)
-        .on('data', (row) => data.push(row))
+        .on('data', (row) => {
+          if (tableName === 'Counter' && row.time !== undefined && row.time !== '') {
+            row.time = Number(row.time);
+          }
+
+          if (row.objectId) {
+            row.id = row.objectId;
+          } else {
+            row.id = `legacy-${legacyId}`;
+            legacyId += 1;
+            row.objectId = row.id;
+          }
+
+          data.push(row);
+        })
         .on('end', () => {
           resolve(data);
         });
@@ -169,7 +184,14 @@ module.exports = class GithubStorage extends Base {
 
   async save(tableName, data, sha) {
     const filename = path.join(this.basePath, `${tableName}.csv`);
-    const csv = await writeToString(data, {
+    const rows = data.map((item) => {
+      if (!('id' in item)) return item;
+
+      const { id: _id, ...row } = item;
+
+      return row;
+    });
+    const csv = await writeToString(rows, {
       headers: sha ? true : CSV_HEADERS[tableName],
       writeHeaders: true,
     });
@@ -190,7 +212,26 @@ module.exports = class GithubStorage extends Base {
       }
 
       if (k === 'objectId') {
-        filters.push((item) => item.id === where[k]);
+        const expected = where[k];
+
+        if (think.isString(expected)) {
+          filters.push((item) => item.id === expected);
+        } else if (expected === undefined) {
+          filters.push((item) => item.id === '' || item.id === null || item.id === undefined);
+        } else if (Array.isArray(expected) && expected[0]) {
+          const handler = expected[0].toUpperCase();
+
+          if (handler === 'IN') {
+            filters.push((item) => expected[1].includes(item.id));
+          } else if (handler === 'NOT IN') {
+            filters.push((item) => !expected[1].includes(item.id));
+          } else if (handler === '!=') {
+            filters.push((item) => item.id !== expected[1]);
+          } else if (handler === '=') {
+            filters.push((item) => item.id === expected[1]);
+          }
+        }
+
         continue;
       }
       if (think.isString(where[k])) {
@@ -342,7 +383,7 @@ module.exports = class GithubStorage extends Base {
     const instance = await this.collection(this.tableName);
     const id = Math.random().toString(36).slice(2, 15);
 
-    instance.push({ ...data, id });
+    instance.push({ ...data, objectId: id });
     await this.save(this.tableName, instance, instance.sha);
 
     return { ...data, objectId: id };
@@ -355,11 +396,9 @@ module.exports = class GithubStorage extends Base {
     const list = this.where(instance, where);
 
     list.forEach((item) => {
-      if (typeof data === 'function') {
-        data(item);
-      } else {
-        for (const k in data) item[k] = data[k];
-      }
+      const updateData = typeof data === 'function' ? data(item) : data;
+
+      for (const k in updateData) item[k] = updateData[k];
     });
     await this.save(this.tableName, instance, instance.sha);
 
