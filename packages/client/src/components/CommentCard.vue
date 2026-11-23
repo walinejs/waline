@@ -28,7 +28,7 @@ const {
   /** Current comment to be edited */
   edit?: WalineComment | null;
   /** Root comment id */
-  rootId: number;
+  rootId: string | number;
   /** Current comment to be replied */
   reply?: WalineComment | null;
 }>();

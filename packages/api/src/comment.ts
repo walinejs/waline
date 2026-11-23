@@ -164,7 +164,7 @@ export interface DeleteCommentOptions extends BaseAPIOptions {
    *
    * 待删除的评论对象 ID
    */
-  objectId: number;
+  objectId: string | number;
 }
 
 export interface DeleteCommentResponse extends ErrorStatusResponse {
@@ -223,7 +223,7 @@ export interface UpdateCommentOptions extends BaseAPIOptions {
    *
    * Comment ID
    */
-  objectId: number;
+  objectId: string | number;
 
   /**
    * 评论数据
