@@ -73,20 +73,23 @@ export default function Login() {
     const remember = event.target.remember.checked;
 
     if (!email) {
+      setLoading(false);
       return setError(t('please input email'));
     }
 
     if (!password) {
+      setLoading(false);
       return setError(t('please input password'));
     }
 
     if (event.target.code && !code) {
+      setLoading(false);
       return setError(t('please input 2fa code'));
     }
 
-    const token = await execute('login');
-
     try {
+      const token = await execute('login');
+
       await dispatch.user.login({
         email,
         password,
