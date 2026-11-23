@@ -13,15 +13,15 @@ const AVAILABLE_META = new Set<WalineMeta>(['nick', 'mail', 'link']);
 export const getMeta = (meta: WalineMeta[]): WalineMeta[] =>
   meta.filter((item) => AVAILABLE_META.has(item));
 
-export const DEFAULT_EMOJI: WalineEmojiPresets[] = ['//unpkg.com/@waline/emojis@1.1.0/weibo'];
+export const DEFAULT_EMOJI: WalineEmojiPresets[] = ['//unpkg.com/@waline/emojis@1/weibo'];
 
 export const DEFAULT_REACTION = [
-  '//unpkg.com/@waline/emojis/tieba/tieba_agree.png',
-  '//unpkg.com/@waline/emojis/tieba/tieba_look_down.png',
-  '//unpkg.com/@waline/emojis/tieba/tieba_sunglasses.png',
-  '//unpkg.com/@waline/emojis/tieba/tieba_pick_nose.png',
-  '//unpkg.com/@waline/emojis/tieba/tieba_awkward.png',
-  '//unpkg.com/@waline/emojis/tieba/tieba_sleep.png',
+  '//unpkg.com/@waline/emojis@1/tieba/tieba_agree.png',
+  '//unpkg.com/@waline/emojis@1/tieba/tieba_look_down.png',
+  '//unpkg.com/@waline/emojis@1/tieba/tieba_sunglasses.png',
+  '//unpkg.com/@waline/emojis@1/tieba/tieba_pick_nose.png',
+  '//unpkg.com/@waline/emojis@1/tieba/tieba_awkward.png',
+  '//unpkg.com/@waline/emojis@1/tieba/tieba_sleep.png',
 ];
 
 export const defaultUploadImage = (file: File): Promise<string> =>
