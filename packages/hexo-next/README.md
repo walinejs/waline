@@ -19,7 +19,7 @@ Set the value `enable` to `true`, add `serverURL`, and edit other configurations
 # Waline Config File
 # For more information:
 # - https://waline.js.org
-# - https://waline.js.org/reference/component.html
+# - https://waline.js.org/reference/client/api.html
 waline:
   # New! Whether enable this plugin
   enable: false
