@@ -68,8 +68,7 @@ module.exports = class extends Base {
     }
 
     if (field) {
-      field.push('id');
-      instance.field(field);
+      instance.field([...field, 'id']);
     }
 
     const data = await instance.select();
@@ -125,11 +124,5 @@ module.exports = class extends Base {
     const instance = this.model(this.tableName);
 
     return instance.where(this.parseWhere(where)).delete();
-  }
-
-  async setSeqId(id) {
-    const instance = this.model(this.tableName);
-
-    return instance.query(`ALTER TABLE ${instance.tableName} AUTO_INCREMENT = ${id};`);
   }
 };
