@@ -6,6 +6,7 @@ import download from '../../utils/download.js';
 import readFileAsync from '../../utils/readFileAsync.js';
 import request from '../../utils/request.js';
 import { transformImport } from '../../utils/transformImport.js';
+import { restoreCommentRelationships } from './relationships.js';
 
 const IMPORT_SOURCES = [
   ['disqus', 'Disqus'],
@@ -128,50 +129,16 @@ export default function Migration() {
       }
 
       setImportLoading(['comment data index relationship reconstruction']);
-      const commentData = data.data.Comment ?? [];
-      const willUpdateData = [];
-
-      for (const cmt of commentData) {
-        const willUpdateItem = {};
-
-        [
-          { tableName: 'Comment', field: 'pid' },
-          { tableName: 'Comment', field: 'rid' },
-          { tableName: 'Users', field: 'user_id' },
-        ].forEach(({ tableName, field }) => {
-          if (!cmt[field]) {
-            return;
-          }
-
-          const oldId = cmt[field];
-          const newId = idMaps[tableName][cmt[field]];
-
-          if (oldId && newId && oldId !== newId) {
-            willUpdateItem[field] = newId;
-          }
-        });
-        if (Object.keys(willUpdateItem).length === 0) {
-          continue;
-        }
-
-        willUpdateData.push([willUpdateItem, { objectId: idMaps.Comment[cmt.objectId] }]);
-      }
-
-      importedLength = 0;
-      for (const [willUpdateItem, where] of willUpdateData) {
-        // oxlint-disable-next-line no-await-in-loop
-        await request({
-          url: `db?table=Comment&objectId=${where.objectId}`,
-          method: 'PUT',
-          body: willUpdateItem,
-        });
-
-        importedLength += 1;
-        setImportLoading([
-          'index updating {{importedLength}}/{{maxLength}}',
-          { importedLength, maxLength: willUpdateData.length },
-        ]);
-      }
+      await restoreCommentRelationships(
+        data.data.Comment ?? [],
+        idMaps,
+        (updatedLength, maxLength) => {
+          setImportLoading([
+            'index updating {{importedLength}}/{{maxLength}}',
+            { importedLength: updatedLength, maxLength },
+          ]);
+        },
+      );
 
       alert(t('import success'));
       location.reload();
