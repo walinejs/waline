@@ -3,7 +3,7 @@ import { watchImmediate } from '@vueuse/core';
 import { updateArticleCounter } from '@waline/api';
 import { ref, computed, onMounted } from 'vue';
 
-import { useReactionStorage } from '../../composables';
+import { useStarStorage } from '../../composables';
 import { fetchReaction, getInitialScore, normalizeDistribution } from './utils';
 import WalineStarDisplay from './WalineStarDisplay.vue';
 
@@ -19,8 +19,8 @@ const emit = defineEmits<{
 }>();
 
 const ratingArea = ref<HTMLElement | null>(null);
-const reactionStorage = useReactionStorage();
-const selectedScore = ref(getInitialScore(reactionStorage.value[props.path]));
+const starStorage = useStarStorage();
+const selectedScore = ref(getInitialScore(starStorage.value[props.path]));
 const hoverScore = ref<number | null>(null);
 const internalDistribution = ref(normalizeDistribution([]));
 const isVoting = ref(false);
@@ -29,7 +29,7 @@ onMounted(() => {
   watchImmediate(
     () => [props.serverURL, props.path],
     async () => {
-      selectedScore.value = getInitialScore(reactionStorage.value[props.path]);
+      selectedScore.value = getInitialScore(starStorage.value[props.path]);
 
       try {
         const reaction = await fetchReaction(props);
@@ -77,7 +77,7 @@ const onMouseLeave = (): void => {
 };
 
 const submitScore = async (nextScore: number): Promise<void> => {
-  const storedScore = reactionStorage.value[props.path];
+  const storedScore = starStorage.value[props.path];
   const hasVoted = storedScore != null;
   const prevScore = hasVoted ? selectedScore.value : 0;
 
@@ -101,7 +101,7 @@ const submitScore = async (nextScore: number): Promise<void> => {
 
     selectedScore.value = nextScore;
     const nextScoreKeyIndex = nextScore - 1;
-    reactionStorage.value[props.path] = nextScoreKeyIndex;
+    starStorage.value[props.path] = nextScoreKeyIndex;
     await updateArticleCounter({
       ...props,
       type: `reaction${nextScoreKeyIndex}`,
@@ -116,10 +116,10 @@ const submitScore = async (nextScore: number): Promise<void> => {
     selectedScore.value = prevScore;
     internalDistribution.value = prevDistribution;
     if (hasVoted) {
-      reactionStorage.value[props.path] = prevScore - 1;
+      starStorage.value[props.path] = prevScore - 1;
     } else {
       // oxlint-disable-next-line typescript/no-dynamic-delete
-      delete reactionStorage.value[props.path];
+      delete starStorage.value[props.path];
     }
 
     // oxlint-disable-next-line no-console
