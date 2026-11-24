@@ -14,9 +14,11 @@ const run = async () => {
       setTimeout(resolve, 50);
     }),
     new Promise((resolve) => {
-      window.addEventListener('message', (data) => {
-        if (data && data.type === 'TOKEN' && data.data) {
-          resolve(data);
+      window.addEventListener('message', (event) => {
+        const data = event.data ?? null;
+
+        if (data?.type === 'TOKEN' && data.data) {
+          resolve(data.data);
         }
       });
     }),
