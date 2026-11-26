@@ -128,12 +128,12 @@ dir:
 
 > UP 主：[阿巴In](https://space.bilibili.com/381992209)
 
-<BiliBili bvid="BV1J2XuBtEGn" />
+<BiliBiliEmbed bvid="BV1J2XuBtEGn" />
 
-<BiliBili bvid="BV1pB4y1E7fp" />
+<BiliBiliEmbed bvid="BV1pB4y1E7fp" />
 
 ### 使用 Vercel 简单地部署 Waline 评论系统
 
 > UP 主：[岚天呀](https://space.bilibili.com/355877984)
 
-<BiliBili bvid="BV1Ft4y1A73f" />
+<BiliBiliEmbed bvid="BV1Ft4y1A73f" />

@@ -133,15 +133,17 @@ module.exports = {
           return Promise.resolve();
         }
 
-        return promises[idx].then((data) => {
-          ret[idx] = data;
-          count += 1;
-          if (count === promises.length) {
-            resolve(ret);
-          }
+        return promises[idx]
+          .then((data) => {
+            ret[idx] = data;
+            count += 1;
+            if (count === promises.length) {
+              resolve(ret);
+            }
 
-          return runTask();
-        }, reject);
+            return runTask();
+          })
+          .catch(reject);
       };
 
       for (let i = 0; i < taskNum; i++) {

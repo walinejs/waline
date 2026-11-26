@@ -45,7 +45,9 @@ export default function useScript({ src, checkForExisting = false, ...attributes
 
     // Check again for existing <script> tags with this src
     // in case it's changed since mount.
-    status = scripts[src];
+    // Keep it local to the effect: reassigning the render-scope `status`
+    // would make the hook impure for the react compiler.
+    let status = scripts[src];
     if (!status && checkForExisting) {
       status = checkExisting(src);
     }
@@ -97,8 +99,7 @@ export default function useScript({ src, checkForExisting = false, ...attributes
       scriptEl.removeEventListener('error', handleError);
     };
     // we need to ignore the attributes as they're a new object per call, so we'd never skip an effect call
-    // eslint-disable-next-line react/rule-suppression
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps react/exhaustive-effect-dependencies
   }, [src]);
 
   return [loading, error];

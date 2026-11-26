@@ -296,10 +296,6 @@ export default hopeTheme(
         },
       },
 
-      components: {
-        components: ['BiliBili', 'VidStack'],
-      },
-
       docsearch: {
         appId: 'W34KABV4KM',
         apiKey: 'd189586c601d439f9247bdaf95b3555f',
@@ -308,6 +304,10 @@ export default hopeTheme(
 
       icon: {
         assets: '//at.alicdn.com/t/c/font_3180165_6o97v6oir2j.css',
+      },
+
+      media: {
+        embeds: ['bilibili'],
       },
     },
   },

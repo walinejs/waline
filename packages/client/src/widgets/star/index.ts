@@ -38,7 +38,7 @@ export const Star = ({
 
   if (!root) {
     return {
-      destroy: () => {
+      destroy: (): void => {
         // do nothing
       },
     };

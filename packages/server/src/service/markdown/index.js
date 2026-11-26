@@ -60,7 +60,7 @@ const getMarkdownParser = async (markdown = {}) => {
     });
   } else if (tex !== false) {
     const { createMathjaxInstance, mathjax: mathjaxPlugin } =
-      await import('@mdit/plugin-mathjax/sync');
+      await import('@mdit/plugin-mathjax/async');
     const mathjaxInstance = createMathjaxInstance({ output: 'svg', mathjax });
     markdownIt.use(mathjaxPlugin, mathjaxInstance);
   }

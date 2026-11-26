@@ -17,10 +17,9 @@ export default {
         'kbd',
         'script',
         'span',
-        'BiliBili',
+        'BiliBiliEmbed',
         'Catalog',
         'MigrationTool',
-        'VidStack',
       ],
     },
     MD035: {

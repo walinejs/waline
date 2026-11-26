@@ -10,13 +10,7 @@ order: 2
 
 - [獨立部署](../deploy/vps.md)
 
-- [阿里雲函數計算](../deploy/aliyun-fc.md)
-
 - [阿里雲計算巢](../deploy/aliyun-computenest.md)
-
-- [百度雲函數計算](../deploy/baidu-cfc.md)
-
-- [Cloudbase](../deploy/cloudbase.md)
 
 - [Railway](../deploy/railway.md)
 
