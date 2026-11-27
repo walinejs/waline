@@ -1,0 +1,41 @@
+name: 'publish @waline/test'
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/release-test.yml
+      - packages/test/**
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v6
+
+      - name: Install Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          check-latest: true
+          cache: pnpm
+
+      - name: Install Dependencies
+        run: pnpm ci
+
+      - name: Build Test Package
+        run: pnpm --dir=packages/test build
+
+      - name: Publish
+        run: pnpm publish -r --filter @waline/test --no-git-checks

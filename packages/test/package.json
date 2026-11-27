@@ -1,0 +1,42 @@
+{
+  "name": "@waline/test",
+  "version": "0.1.0",
+  "description": "Compatibility test suite for Waline servers",
+  "keywords": [
+    "compatibility",
+    "integration-test",
+    "waline"
+  ],
+  "license": "MIT",
+  "author": "lizheming <i@imnerd.org>",
+  "repository": {
+    "url": "git+https://github.com/walinejs/waline.git",
+    "directory": "packages/test"
+  },
+  "bin": {
+    "waline-test": "./dist/cli.mjs"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "scripts": {
+    "build": "tsdown",
+    "clean": "rimraf ./dist",
+    "prepublishOnly": "pnpm run clean && pnpm run build"
+  },
+  "dependencies": {
+    "picocolors": "^1.1.1"
+  },
+  "devDependencies": {
+    "tsdown": "^0.23.0",
+    "typescript": "catalog:"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
