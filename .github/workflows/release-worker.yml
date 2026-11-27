@@ -1,0 +1,35 @@
+name: 'publish @waline/worker'
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/release-worker.yml
+      - packages/core/**
+      - packages/worker/**
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  npm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm ci
+      - name: Publish when version changed
+        shell: bash
+        run: |
+          local_version=$(node -p "require('./packages/worker/package.json').version")
+          remote_version=$(pnpm view @waline/worker version 2>/dev/null || echo none)
+          if [[ "$local_version" != "$remote_version" ]]; then
+            pnpm --dir packages/worker publish --access public --no-git-checks
+          fi
