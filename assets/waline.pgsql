@@ -22,6 +22,8 @@ CREATE TABLE wl_comment (
   PRIMARY KEY (id)
 ) ;
 
+CREATE INDEX idx_comment_rid_url_status ON wl_comment (rid, url, status);
+
 
 CREATE SEQUENCE wl_counter_seq;
 

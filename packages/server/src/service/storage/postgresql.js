@@ -23,8 +23,12 @@ module.exports = class extends MySQL {
     return super.mapOrderField(field).toLowerCase();
   }
 
-  getSqlOrder(order) {
-    return toSqlOrder(order, { nulls: true });
+  quoteIdentifier(value) {
+    return `"${value.replaceAll('"', '""')}"`;
+  }
+
+  getSqlOrder(order, instance) {
+    return toSqlOrder(this.getQueryOrder(order, instance), { nulls: true });
   }
 
   model(tableName) {

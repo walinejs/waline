@@ -1,5 +1,6 @@
 const Base = require('./base.js');
 const { normalizeOrder, toSqlOrder } = require('./order.js');
+const { sqlPopularity } = require('./popularity.js');
 
 module.exports = class extends Base {
   mapOrderField(field) {
@@ -10,8 +11,20 @@ module.exports = class extends Base {
     return normalizeOrder(order, desc, (field) => this.mapOrderField(field));
   }
 
-  getSqlOrder(order) {
-    return toSqlOrder(order);
+  quoteIdentifier(value) {
+    return `\`${value.replaceAll('`', '``')}\``;
+  }
+
+  getQueryOrder(order, instance) {
+    return order.map((entry) =>
+      entry.field === 'popularity'
+        ? { ...entry, field: sqlPopularity(instance.tableName, (key) => this.quoteIdentifier(key)) }
+        : entry,
+    );
+  }
+
+  getSqlOrder(order, instance) {
+    return toSqlOrder(this.getQueryOrder(order, instance));
   }
 
   parseWhere(filter) {
@@ -60,7 +73,7 @@ module.exports = class extends Base {
     const normalizedOrder = this.getOrder(order, desc);
 
     if (normalizedOrder.length > 0) {
-      instance.order(this.getSqlOrder(normalizedOrder));
+      instance.order(this.getSqlOrder(normalizedOrder, instance));
     }
 
     if (limit || offset) {
