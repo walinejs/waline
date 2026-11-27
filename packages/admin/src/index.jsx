@@ -1,3 +1,4 @@
+import { isTrustedOrigin } from './utils/popup.js';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 
@@ -15,7 +16,7 @@ const run = async () => {
     }),
     new Promise((resolve) => {
       window.addEventListener('message', (event) => {
-        if (event.origin !== window.location.origin || event.source !== window.opener) {
+        if (!isTrustedOrigin(event.origin) || event.source !== window.opener) {
           return;
         }
 
