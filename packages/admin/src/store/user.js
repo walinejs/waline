@@ -1,6 +1,6 @@
-import { postToOpener } from '../utils/popup.js';
 import { forgot, getUserInfo, login, logout, register } from '../services/auth.js';
 import { updateProfile } from '../services/user.js';
+import { postToOpener } from '../utils/popup.js';
 
 export const user = {
   state: null,

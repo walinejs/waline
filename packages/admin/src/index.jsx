@@ -1,9 +1,9 @@
-import { isTrustedOrigin } from './utils/popup.js';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 
 import App from './App.jsx';
 import { store } from './store/index.js';
+import { isTrustedOrigin } from './utils/popup.js';
 // oxlint-disable-next-line import/no-unassigned-import
 import './i18n.js';
 

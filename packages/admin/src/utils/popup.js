@@ -36,7 +36,7 @@ export const postToOpener = (message) => {
   }
 
   try {
-    const origin = new URL(document.referrer).origin;
+    const { origin } = new URL(document.referrer);
 
     if (isTrustedOrigin(origin)) {
       window.opener.postMessage(message, origin);
