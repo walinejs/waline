@@ -15,6 +15,10 @@ const run = async () => {
     }),
     new Promise((resolve) => {
       window.addEventListener('message', (event) => {
+        if (event.origin !== window.location.origin || event.source !== window.opener) {
+          return;
+        }
+
         const data = event.data ?? null;
 
         if (data?.type === 'TOKEN' && data.data) {

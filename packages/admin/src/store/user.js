@@ -24,7 +24,10 @@ export const user = {
         const remember = Boolean(localToken);
         const token = localToken ?? window.TOKEN ?? sessionStorage.getItem('TOKEN');
 
-        window.opener.postMessage({ type: 'userInfo', data: { token, remember, ...user } }, '*');
+        window.opener.postMessage(
+          { type: 'userInfo', data: { token, remember, ...user } },
+          window.location.origin,
+        );
       }
 
       return dispatch.user.setUser(user);
@@ -46,7 +49,10 @@ export const user = {
         }
 
         if (window.opener) {
-          window.opener.postMessage({ type: 'userInfo', data: { token, remember, ...user } }, '*');
+          window.opener.postMessage(
+          { type: 'userInfo', data: { token, remember, ...user } },
+          window.location.origin,
+        );
         }
       }
 
@@ -66,7 +72,7 @@ export const user = {
       await updateProfile(data);
 
       if (window.opener) {
-        window.opener.postMessage({ type: 'profile', data }, '*');
+        window.opener.postMessage({ type: 'profile', data }, window.location.origin);
       }
 
       return dispatch.user.updateUser(data);
