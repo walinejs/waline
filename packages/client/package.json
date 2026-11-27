@@ -69,6 +69,7 @@
     "@waline/api": "workspace:*",
     "@webc.site/math": "^0.1.41",
     "autosize": "^6.0.1",
+    "dompurify": "3.4.18",
     "marked": "catalog:",
     "marked-highlight": "^2.2.4",
     "recaptcha-v3": "^1.11.3",

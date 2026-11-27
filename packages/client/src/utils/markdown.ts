@@ -1,3 +1,4 @@
+import DOMPurify from 'dompurify';
 import { Marked } from 'marked';
 import { markedHighlight } from 'marked-highlight';
 
@@ -51,4 +52,11 @@ const getMarked = (
 export const parseMarkdown = (
   content: string,
   { emojiMap, highlighter, texRenderer }: ParseMarkdownOptions,
-): string => getMarked(highlighter, texRenderer).parse(parseEmoji(content, emojiMap)) as string;
+): string =>
+  DOMPurify.sanitize(
+    getMarked(highlighter, texRenderer).parse(parseEmoji(content, emojiMap)) as string,
+    {
+      FORBID_TAGS: ['form', 'input', 'style'],
+      FORBID_ATTR: ['autoplay', 'style'],
+    },
+  );
