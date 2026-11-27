@@ -50,9 +50,9 @@ export const user = {
 
         if (window.opener) {
           window.opener.postMessage(
-          { type: 'userInfo', data: { token, remember, ...user } },
-          window.location.origin,
-        );
+            { type: 'userInfo', data: { token, remember, ...user } },
+            window.location.origin,
+          );
         }
       }
 
