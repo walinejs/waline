@@ -1,6 +1,4 @@
 import { Fancybox } from '@fancyapps/ui/dist/fancybox/fancybox.js';
-import type { WalineOptions } from '@vuepress/plugin-comment/client';
-import { defineWalineConfig } from '@vuepress/plugin-comment/client';
 import { h, onBeforeUnmount, onMounted, resolveComponent } from 'vue';
 import { Layout } from 'vuepress-theme-hope/client';
 import { defineClientConfig, useFrontmatter } from 'vuepress/client';
@@ -8,16 +6,7 @@ import { defineClientConfig, useFrontmatter } from 'vuepress/client';
 import '@fancyapps/ui/dist/fancybox/fancybox.css';
 import WalineTips from './components/WalineTips.js';
 
-export const walineOptions: WalineOptions = {
-  login: 'force',
-  serverURL: 'https://walinejs.comment.lithub.cc',
-  recaptchaV3Key: '6Lfz4-shAAAAANgsYRR0datkzv6zLIaKrSqfHsiG',
-  comment: true,
-  pageview: true,
-  reaction: true,
-};
-
-defineWalineConfig(walineOptions);
+export { walineOptions } from './waline.js';
 
 export default defineClientConfig({
   enhance({ app }) {

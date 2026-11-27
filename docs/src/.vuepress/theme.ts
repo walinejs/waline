@@ -30,6 +30,7 @@ import {
   zhSidebarConfig,
   zhTWSidebarConfig,
 } from './sidebar.js';
+import { walineOptions } from './waline.js';
 
 export default hopeTheme(
   {
@@ -175,6 +176,7 @@ export default hopeTheme(
     plugins: {
       comment: {
         provider: 'Waline',
+        ...walineOptions,
         locales: {
           '/': {
             admin: '可爱的管理员',
