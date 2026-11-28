@@ -64,6 +64,8 @@
   "import from": "Impor dari {{source}}",
   "import success": "Impor Berhasil",
   "import clear data confirm": "Perhatian! Semua data saat ini akan ditimpa oleh data yang diimpor, apakah Anda benar-benar ingin melanjutkan?",
+  "import backup": "Mencadangkan data saat ini…",
+  "import backup hint": "Impor gagal. Cadangan data telah diunduh sebagai {{backupFilename}}; impor file tersebut untuk memulihkan data Anda.",
   "importing {{importedLength}}/{{maxLength}}": "Mengimpor {{importedLength}}/{{maxLength}}",
   "comment data index relationship reconstruction": "Rekonstruksi hubungan indeks data komentar",
   "index updating {{importedLength}}/{{maxLength}}": "Memperbarui indeks {{importedLength}}/{{maxLength}}",

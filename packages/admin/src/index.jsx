@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 
 import App from './App.jsx';
 import { store } from './store/index.js';
+import { isTrustedOrigin } from './utils/popup.js';
 // oxlint-disable-next-line import/no-unassigned-import
 import './i18n.js';
 
@@ -15,6 +16,10 @@ const run = async () => {
     }),
     new Promise((resolve) => {
       window.addEventListener('message', (event) => {
+        if (!isTrustedOrigin(event.origin) || event.source !== window.opener) {
+          return;
+        }
+
         const data = event.data ?? null;
 
         if (data?.type === 'TOKEN' && data.data) {

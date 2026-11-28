@@ -1,7 +1,8 @@
 const AV = require('leancloud-storage');
 
 const Base = require('./base.js');
-const { normalizeOrder } = require('./order.js');
+const { compareByOrder, normalizeOrder } = require('./order.js');
+const { POPULARITY, isPopularityOrder, withPopularity } = require('./popularity.js');
 
 const { LEAN_ID, LEAN_KEY, LEAN_MASTER_KEY, LEAN_SERVER } = process.env;
 
@@ -140,6 +141,40 @@ module.exports = class extends Base {
   }
 
   async select(where, options = {}) {
+    const order = normalizeOrder(options.order, options.desc);
+
+    if (isPopularityOrder(order)) {
+      // The legacy LeanCloud backend has no joins. Read only ranking metadata,
+      // then fetch the selected page's comments rather than all comment bodies.
+      const [roots, replies] = await Promise.all([
+        this.select(where, { field: ['url', 'like', 'sticky'] }),
+        this.select(
+          { url: where.url, status: ['NOT IN', ['waiting', 'spam']] },
+          { field: ['url', 'rid', 'like'] },
+        ),
+      ]);
+      const ids = withPopularity(roots, replies)
+        .sort(
+          compareByOrder(
+            order.map((entry) => ({
+              ...entry,
+              field: entry.field === 'popularity' ? POPULARITY : entry.field,
+            })),
+          ),
+        )
+        .slice(
+          options.offset ?? 0,
+          options.limit ? (options.offset ?? 0) + options.limit : undefined,
+        )
+        .map(({ objectId }) => objectId);
+
+      if (!ids.length) return [];
+      const rows = await this.select({ objectId: ['IN', ids] }, { field: options.field });
+      const byId = new Map(rows.map((row) => [row.objectId, row]));
+
+      return ids.map((id) => byId.get(id)).filter(Boolean);
+    }
+
     const data = [];
     let ret = [];
     const offset = options.offset ?? 0;

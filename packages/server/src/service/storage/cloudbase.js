@@ -2,6 +2,7 @@ const cloudbase = require('@cloudbase/node-sdk');
 
 const Base = require('./base.js');
 const { normalizeOrder } = require('./order.js');
+const { POPULARITY, REPLIES, isPopularityOrder, withoutPopularity } = require('./popularity.js');
 
 const { TCB_ENV, TCB_ID, TCB_KEY } = process.env;
 const app = cloudbase.init({
@@ -137,6 +138,51 @@ module.exports = class extends Base {
     const normalizedOrder = normalizeOrder(order, desc, (orderField) =>
       orderField === 'objectId' ? '_id' : orderField,
     );
+
+    if (isPopularityOrder(normalizedOrder)) {
+      const sameThread = $.and([$.eq(['$rid', '$$root']), $.eq(['$url', '$$url'])]);
+      const replyScore = $.add([1, $.ifNull(['$like', 0])]);
+      const repliesScore = $.arrayElemAt([`$${REPLIES}.score`, 0]);
+      instance = this.where((await this.collection(this.tableName)).aggregate(), where, 'match');
+      instance = instance
+        .lookup({
+          from: this.tableName,
+          let: { root: '$_id', url: '$url' },
+          pipeline: $.pipeline()
+            .match({ status: _.nin(['waiting', 'spam']) })
+            .match(_.expr(sameThread))
+            .group({ _id: null, score: $.sum(replyScore) })
+            .done(),
+          as: REPLIES,
+        })
+        .addFields({
+          [POPULARITY]: $.add([$.ifNull(['$like', 0]), $.ifNull([repliesScore, 0])]),
+        })
+        .sort(
+          Object.fromEntries(
+            normalizedOrder.map(({ field, direction }) => [
+              field === 'popularity' ? POPULARITY : field,
+              direction === 'desc' ? -1 : 1,
+            ]),
+          ),
+        );
+
+      if (offset) instance = instance.skip(offset);
+      if (limit) instance = instance.limit(limit);
+      instance = instance.project(
+        field
+          ? Object.fromEntries(
+              ['_id', ...field].map((key) => [key === 'objectId' ? '_id' : key, 1]),
+            )
+          : { [POPULARITY]: 0, [REPLIES]: 0 },
+      );
+      const { data } = await instance.end();
+
+      return data.map(({ _id, ...cmt }) => ({
+        ...withoutPopularity(cmt),
+        objectId: _id.toString(),
+      }));
+    }
 
     for (const { field: orderField, direction } of normalizedOrder) {
       instance = instance.orderBy(orderField, direction);

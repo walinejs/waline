@@ -1,6 +1,6 @@
 import request from '../utils/request.js';
 
-export const getCommentList = ({ page = 1, filter }) => {
+export const getCommentList = ({ page = 1, filter, signal }) => {
   const query = new URLSearchParams({
     type: 'list',
     owner: filter.owner,
@@ -12,6 +12,7 @@ export const getCommentList = ({ page = 1, filter }) => {
   return request({
     url: `comment?${query.toString()}`,
     method: 'GET',
+    signal,
   });
 };
 
