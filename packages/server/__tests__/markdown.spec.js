@@ -144,6 +144,31 @@ describe('markdown parser cache', () => {
     await first;
   });
 
+  it('retries initialization after a shared failure', async () => {
+    let attempts = 0;
+    const config = {
+      get plugin() {
+        attempts += 1;
+        if (attempts === 1) {
+          throw new Error('temporary initialization failure');
+        }
+
+        return { tex: false };
+      },
+    };
+
+    const failed = getMarkdownParser(config);
+
+    expect(getMarkdownParser(config)).toBe(failed);
+    await expect(failed).rejects.toThrow('temporary initialization failure');
+
+    const retried = getMarkdownParser(config);
+
+    expect(retried).not.toBe(failed);
+    await expect(retried).resolves.toBeTypeOf('function');
+    expect(attempts).toBe(2);
+  });
+
   it('creates a parser for different config objects', async () => {
     const first = getMarkdownParser({});
     const second = getMarkdownParser({});

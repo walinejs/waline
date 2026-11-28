@@ -76,14 +76,20 @@ const getMarkdownParser = (markdown) => {
     let parser = parserCache.get(markdown);
 
     if (!parser) {
-      parser = createMarkdownParser(markdown);
+      parser = createMarkdownParser(markdown).catch((error) => {
+        parserCache.delete(markdown);
+        throw error;
+      });
       parserCache.set(markdown, parser);
     }
 
     return parser;
   }
 
-  defaultParser ??= createMarkdownParser(markdown || {});
+  defaultParser ??= createMarkdownParser(markdown || {}).catch((error) => {
+    defaultParser = undefined;
+    throw error;
+  });
 
   return defaultParser;
 };

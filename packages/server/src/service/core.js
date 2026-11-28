@@ -7,7 +7,6 @@ const { getMarkdownParser } = require('./markdown/index.js');
 
 module.exports = class extends think.Service {
   create(controller) {
-    const markdown = getMarkdownParser(controller.config('markdown'));
     const model = (name) => controller.getModel(name);
     const hasMailService = process.env.SMTP_HOST || process.env.SMTP_SERVICE;
     const verificationCode = Array.from({ length: 4 }, () => Math.round(Math.random() * 9)).join(
@@ -63,7 +62,9 @@ module.exports = class extends think.Service {
           verify: async (secret, code) =>
             speakeasy.totp.verify({ secret, encoding: 'base32', token: code, window: 2 }),
         },
-        markdown: { render: async (value) => (await markdown)(value) },
+        markdown: {
+          render: async (value) => (await getMarkdownParser(controller.config('markdown')))(value),
+        },
         avatar: {
           stringify: (value) =>
             think.service('avatar').stringify({
