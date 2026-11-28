@@ -64,6 +64,8 @@
   "import from": "Importa da {{source}}",
   "import success": "Importazione riuscita",
   "import clear data confirm": "Attenzione! L'import sovrascriverà tutti i dati correnti. Continuare?",
+  "import backup": "Backup dei dati correnti…",
+  "import backup hint": "Importazione non riuscita. È stato scaricato un backup come {{backupFilename}}; importa quel file per ripristinare i tuoi dati.",
   "importing {{importedLength}}/{{maxLength}}": "Importazione {{importedLength}}/{{maxLength}}",
   "comment data index relationship reconstruction": "Ricostruzione indice dati commenti in corso",
   "index updating {{importedLength}}/{{maxLength}}": "Aggiornamento indice {{importedLength}}/{{maxLength}}",

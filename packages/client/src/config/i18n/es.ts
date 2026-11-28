@@ -54,4 +54,5 @@ export default generateLocale([
   'Suscribirse a los comentarios de esta publicación',
   'Suscribirse a los comentarios de este sitio',
   'Suscribirse a las respuestas de tus comentarios',
+  '¿Estás seguro de que quieres eliminar este comentario?',
 ]);

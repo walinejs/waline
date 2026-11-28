@@ -34,7 +34,7 @@ jobs:
         run: pnpm run build
 
       - name: Linter test
-        run: pnpm run lint
+        run: pnpm run lint:check
 
       - name: Unit test
         run: pnpm run test

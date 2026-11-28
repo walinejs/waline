@@ -1,5 +1,43 @@
 import I18n from '../i18n.js';
 
+const getBasename = () => location.pathname.match(/(.*)\/ui(?:\/|$)/u)?.[1] ?? '';
+
+const isLoginPage = () => location.pathname.includes('/ui/login');
+
+const clearAuth = () => {
+  window.TOKEN = undefined;
+  sessionStorage.removeItem('TOKEN');
+  localStorage.removeItem('TOKEN');
+};
+
+const redirectToLogin = () => {
+  if (isLoginPage()) {
+    return;
+  }
+
+  const basename = getBasename();
+  const redirectPath = location.pathname.replace(basename, '') || '/';
+
+  location.href = `${basename}/ui/login?redirect=${encodeURIComponent(redirectPath)}`;
+};
+
+const unauthorizedError = () => {
+  const error = new Error('Unauthorized');
+
+  error.status = 401;
+
+  return error;
+};
+
+const handleUnauthorized = () => {
+  if (!isLoginPage()) {
+    clearAuth();
+    redirectToLogin();
+  }
+
+  return unauthorizedError();
+};
+
 export default async function request(url, opts = {}) {
   const options = typeof url === 'object' ? { ...url } : { ...opts, url };
 
@@ -23,7 +61,7 @@ export default async function request(url, opts = {}) {
 
   if (!resp.ok) {
     if (resp.status === 401) {
-      throw new Error(401);
+      throw handleUnauthorized();
     }
 
     let result;
@@ -38,6 +76,10 @@ export default async function request(url, opts = {}) {
   }
 
   const result = await resp.json();
+
+  if (result.errno === 401) {
+    throw handleUnauthorized();
+  }
 
   if (result.errno !== 0) {
     throw new Error(result.errmsg);

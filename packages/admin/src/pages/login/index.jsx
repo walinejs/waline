@@ -8,6 +8,7 @@ import Header from '../../components/Header.jsx';
 import * as Icons from '../../components/icon';
 import { useCaptcha } from '../../components/useCaptcha.js';
 import { get2FAToken } from '../../services/user.js';
+import { getAdminRedirect } from '../../utils/login-redirect.js';
 
 export default function Login() {
   const { t } = useTranslation();
@@ -59,7 +60,7 @@ export default function Login() {
       }
     }
 
-    navigate(defaultRedirect);
+    navigate(getAdminRedirect(redirect, location.origin) ?? defaultRedirect);
   }, [user, query, navigate]);
 
   const onSubmit = async (event) => {
@@ -73,20 +74,23 @@ export default function Login() {
     const remember = event.target.remember.checked;
 
     if (!email) {
+      setLoading(false);
       return setError(t('please input email'));
     }
 
     if (!password) {
+      setLoading(false);
       return setError(t('please input password'));
     }
 
     if (event.target.code && !code) {
+      setLoading(false);
       return setError(t('please input 2fa code'));
     }
 
-    const token = await execute('login');
-
     try {
+      const token = await execute('login');
+
       await dispatch.user.login({
         email,
         password,

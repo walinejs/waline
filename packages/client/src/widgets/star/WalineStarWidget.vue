@@ -3,7 +3,7 @@ import { watchImmediate } from '@vueuse/core';
 import { updateArticleCounter } from '@waline/api';
 import { ref, computed, onMounted } from 'vue';
 
-import { useReactionStorage } from '../../composables';
+import { useStarStorage } from '../../composables';
 import { fetchReaction, getInitialScore, normalizeDistribution } from './utils';
 import WalineStarDisplay from './WalineStarDisplay.vue';
 
@@ -19,8 +19,8 @@ const emit = defineEmits<{
 }>();
 
 const ratingArea = ref<HTMLElement | null>(null);
-const reactionStorage = useReactionStorage();
-const selectedScore = ref(getInitialScore(reactionStorage.value[props.path]));
+const starStorage = useStarStorage();
+const selectedScore = ref(getInitialScore(starStorage.value[props.path]));
 const hoverScore = ref<number | null>(null);
 const internalDistribution = ref(normalizeDistribution([]));
 const isVoting = ref(false);
@@ -29,7 +29,7 @@ onMounted(() => {
   watchImmediate(
     () => [props.serverURL, props.path],
     async () => {
-      selectedScore.value = getInitialScore(reactionStorage.value[props.path]);
+      selectedScore.value = getInitialScore(starStorage.value[props.path]);
 
       try {
         const reaction = await fetchReaction(props);
@@ -76,9 +76,8 @@ const onMouseLeave = (): void => {
   hoverScore.value = null;
 };
 
-const onClick = async (event: MouseEvent): Promise<void> => {
-  const nextScore = hoverScore.value ?? getScoreFromEvent(event);
-  const storedScore = reactionStorage.value[props.path];
+const submitScore = async (nextScore: number): Promise<void> => {
+  const storedScore = starStorage.value[props.path];
   const hasVoted = storedScore != null;
   const prevScore = hasVoted ? selectedScore.value : 0;
 
@@ -102,7 +101,7 @@ const onClick = async (event: MouseEvent): Promise<void> => {
 
     selectedScore.value = nextScore;
     const nextScoreKeyIndex = nextScore - 1;
-    reactionStorage.value[props.path] = nextScoreKeyIndex;
+    starStorage.value[props.path] = nextScoreKeyIndex;
     await updateArticleCounter({
       ...props,
       type: `reaction${nextScoreKeyIndex}`,
@@ -117,16 +116,54 @@ const onClick = async (event: MouseEvent): Promise<void> => {
     selectedScore.value = prevScore;
     internalDistribution.value = prevDistribution;
     if (hasVoted) {
-      reactionStorage.value[props.path] = prevScore - 1;
+      starStorage.value[props.path] = prevScore - 1;
     } else {
       // oxlint-disable-next-line typescript/no-dynamic-delete
-      delete reactionStorage.value[props.path];
+      delete starStorage.value[props.path];
     }
 
     // oxlint-disable-next-line no-console
     console.error('[Waline] Failed to update reaction counter', err);
   } finally {
     isVoting.value = false;
+  }
+};
+
+const onClick = async (event: MouseEvent): Promise<void> => {
+  const nextScore = hoverScore.value ?? getScoreFromEvent(event);
+
+  await submitScore(nextScore);
+};
+
+const onKeydown = async (event: KeyboardEvent): Promise<void> => {
+  const currentScore = hoverScore.value ?? selectedScore.value;
+
+  switch (event.key) {
+    case 'ArrowRight':
+    case 'ArrowUp': {
+      event.preventDefault();
+      hoverScore.value = Math.min(5, Math.max(1, Math.ceil(currentScore) + 1));
+      break;
+    }
+
+    case 'ArrowLeft':
+    case 'ArrowDown': {
+      event.preventDefault();
+      hoverScore.value = Math.max(1, Math.floor(currentScore) - 1);
+      break;
+    }
+
+    case 'Enter':
+    case ' ': {
+      event.preventDefault();
+      await submitScore(hoverScore.value ?? selectedScore.value);
+      hoverScore.value = null;
+      break;
+    }
+
+    default: {
+      break;
+    }
   }
 };
 
@@ -143,8 +180,16 @@ const percentText = (score: number): string => {
     <div
       ref="ratingArea"
       class="wl-star-rate"
+      role="slider"
+      tabindex="0"
+      aria-label="Rating"
+      :aria-valuemin="0"
+      :aria-valuemax="5"
+      :aria-valuenow="Math.round(displayScore)"
+      @keydown="onKeydown"
       @mousemove="onMouseMove"
       @mouseleave="onMouseLeave"
+      @blur="onMouseLeave"
       @click="onClick"
     >
       <WalineStarDisplay :score="displayScore" />

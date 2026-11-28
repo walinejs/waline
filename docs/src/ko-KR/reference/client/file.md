@@ -17,7 +17,7 @@ icon: file
 
 - `dist/slim.js`: 의존성 번들 없는 전체 버전, ES Module 형식
 
-  Node.js에서 `@waline/client`를 가져올 때 기본 파일입니다, Gzip 크기 19.39 KB
+  Node.js에서 `@waline/client`를 가져올 때 기본 파일입니다, Gzip 크기 27 KB
 
 - `dist/waline.css`: Waline CSS 스타일
 
@@ -25,7 +25,7 @@ icon: file
 
 - `dist/component.js`: Waline의 Vue 컴포넌트, ES Module 형식, 의존성 번들 없음
 
-  Vue 프로젝트에서 Waline 댓글을 컴포넌트 모드로 사용하기 위한 파일입니다, Gzip 크기 18.28 KB
+  Vue 프로젝트에서 Waline 댓글을 컴포넌트 모드로 사용하기 위한 파일입니다, Gzip 크기 25 KB
 
 - `dist/comment.js`: Waline의 댓글 수 모듈, ESM 형식, Gzip 크기 < 1KB
 

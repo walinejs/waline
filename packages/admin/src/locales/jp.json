@@ -64,6 +64,8 @@
   "import from": "{{source}} からインポート",
   "import success": "インポートに成功しました",
   "import clear data confirm": "注意！インポートすると現在のデータがすべて上書きされます。続行しますか？",
+  "import backup": "現在のデータをバックアップしています…",
+  "import backup hint": "インポートに失敗しました。データのバックアップが {{backupFilename}} としてダウンロードされました。そのファイルをインポートして復元してください。",
   "importing {{importedLength}}/{{maxLength}}": "インポート中 {{importedLength}}/{{maxLength}}",
   "comment data index relationship reconstruction": "コメントデータのインデックス再構築中",
   "index updating {{importedLength}}/{{maxLength}}": "インデックス更新 {{importedLength}}/{{maxLength}}",

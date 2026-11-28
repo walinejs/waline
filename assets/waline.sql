@@ -35,6 +35,7 @@ CREATE TABLE `wl_Comment` (
   INDEX `idx_comment_user_id` (`user_id`),
   INDEX `idx_comment_status` (`status`),
   INDEX `idx_comment_pid_rid` (`pid`, `rid`),
+  INDEX `idx_comment_rid_url_status` (`rid`, `url`, `status`),
   INDEX `idx_comment_created_at` (`createdAt`),
   INDEX `idx_comment_updated_at` (`updatedAt`),
   INDEX `idx_comment_sticky` (`sticky`)

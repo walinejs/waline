@@ -57,4 +57,5 @@ export default generateLocale([
   'Iscriviti ai commenti di questo post',
   'Iscriviti ai commenti di questo sito',
   'Iscriviti alle risposte dei tuoi commenti',
+  'Sei sicuro di voler eliminare questo commento?',
 ]);
