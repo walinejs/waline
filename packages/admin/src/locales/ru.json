@@ -64,6 +64,8 @@
   "import from": "Импортировать из {{source}}",
   "import success": "Импорт успешно выполнен",
   "import clear data confirm": "Внимание! Импорт перезапишет все текущие данные. Продолжить?",
+  "import backup": "Создание резервной копии текущих данных…",
+  "import backup hint": "Импорт не удался. Резервная копия данных загружена как {{backupFilename}}; импортируйте этот файл, чтобы восстановить данные.",
   "importing {{importedLength}}/{{maxLength}}": "Импорт {{importedLength}}/{{maxLength}}",
   "comment data index relationship reconstruction": "Восстановление индексов данных комментариев",
   "index updating {{importedLength}}/{{maxLength}}": "Обновление индекса {{importedLength}}/{{maxLength}}",

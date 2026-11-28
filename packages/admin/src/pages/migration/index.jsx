@@ -17,6 +17,15 @@ const IMPORT_SOURCES = [
   ['wordpress', 'WordPress'],
 ];
 
+const downloadBackup = async () => {
+  const data = await request('db');
+  const backupFilename = `waline-backup-${new Date().toISOString().replaceAll(/[:.]/gu, '-')}.json`;
+
+  download(JSON.stringify(data, null, '\t'), backupFilename, 'application/json');
+
+  return backupFilename;
+};
+
 export default function Migration() {
   const [importLoading, setImportLoading] = useState(false);
   const [exportLoading, setExportLoading] = useState(false);
@@ -37,6 +46,8 @@ export default function Migration() {
 
   // oxlint-disable-next-line max-statements
   const importData = async (event) => {
+    let backupFilename = '';
+
     try {
       const text = await readFileAsync(event.target.files[0]);
       const data = importSource ? transformImport(importSource, text) : JSON.parse(text);
@@ -52,6 +63,9 @@ export default function Migration() {
         0,
       );
       let importedLength = 0;
+
+      setImportLoading(['import backup']);
+      backupFilename = await downloadBackup();
 
       setImportLoading([
         'importing {{importedLength}}/{{maxLength}}',
@@ -178,7 +192,11 @@ export default function Migration() {
     } catch (err) {
       // oxlint-disable-next-line no-console
       console.log(err);
-      alert(err.message);
+      alert(
+        backupFilename
+          ? `${t('import backup hint', { backupFilename })}\n${err.message}`
+          : err.message,
+      );
       throw err;
     } finally {
       setImportLoading(false);
