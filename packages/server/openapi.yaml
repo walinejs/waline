@@ -24,6 +24,8 @@ tags:
     description: User registration, authentication and profile management.
   - name: Site
     description: Administrator-only data import, export and maintenance.
+  - name: Article
+    description: Public article counter endpoints.
   - name: OAuth
     description: OAuth provider callback.
 
@@ -75,7 +77,10 @@ paths:
             default: 10
         - name: sortBy
           in: query
-          description: Sort order for the public comment list.
+          description: >-
+            Sort order for the public comment list. like_desc ranks whole threads
+            by root likes + public reply count + public reply likes. Pinned
+            comments remain first; waiting and spam replies do not contribute.
           schema:
             type: string
             enum: [insertedAt_desc, insertedAt_asc, like_desc]
@@ -504,6 +509,31 @@ paths:
         schema:
           type: string
       - $ref: '#/components/parameters/Lang'
+    put:
+      operationId: updateUser
+      tags: [User]
+      summary: Update a user
+      description: |
+        Updates the account identified by `id`. Administrators may update any
+        account and may change `type`; other users may update only their own
+        account. Omitted fields are left unchanged, and only the fields in
+        `UserUpdate` are applied.
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserUpdate'
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
     delete:
       operationId: deleteUser
       tags: [User]
@@ -521,6 +551,145 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '403':
           $ref: '#/components/responses/Forbidden'
+
+  /api/article:
+    get:
+      operationId: getArticleCounter
+      tags: [Article]
+      summary: Get article counters
+      security: []
+      parameters:
+        - $ref: '#/components/parameters/Lang'
+        - name: path
+          in: query
+          description: One or more comma-separated article paths. Omit to return 0.
+          schema:
+            type: string
+        - name: type
+          in: query
+          description: Comma-separated counter types. Defaults to `time`.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Counter values for the requested paths.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArticleCounterResponse'
+    post:
+      operationId: updateArticleCounter
+      tags: [Article]
+      summary: Update an article counter
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ArticleCounterUpdate'
+      responses:
+        '200':
+          description: Updated counter values.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArticleCounterResponse'
+
+  /api/token/2fa:
+    get:
+      operationId: getTwoFactorStatus
+      tags: [User]
+      summary: Get 2FA status or create a secret
+      description: |
+        With an `email` query, returns whether 2FA is enabled for that account;
+        this variant is public. Without an `email` query, creates or returns a
+        TOTP secret for the authenticated user, so a bearer token is required.
+      security:
+        - bearerAuth: []
+        - {}
+      parameters:
+        - $ref: '#/components/parameters/Lang'
+        - name: email
+          in: query
+          description: Account email whose 2FA status should be checked.
+          schema:
+            type: string
+            format: email
+      responses:
+        '200':
+          description: 2FA status or TOTP secret.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TwoFactorResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: enableTwoFactor
+      tags: [User]
+      summary: Enable two-factor authentication
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TwoFactorEnable'
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/user/password:
+    put:
+      operationId: requestPasswordReset
+      tags: [User]
+      summary: Request a password reset email
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PasswordResetRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/Success'
+
+  /api/verification:
+    get:
+      operationId: verifyEmail
+      tags: [User]
+      summary: Verify a registered email address
+      security: []
+      parameters:
+        - $ref: '#/components/parameters/Lang'
+        - name: email
+          in: query
+          required: true
+          schema:
+            type: string
+            format: email
+        - name: token
+          in: query
+          required: true
+          schema:
+            type: string
+      description: |
+        Verification failures (unknown account, already verified, or expired
+        token) return HTTP 200 with an error envelope (`errno`/`errmsg`).
+      responses:
+        '302':
+          description: Verification succeeded; redirects to the administration login page.
+        '200':
+          description: Verification failed; returns an error envelope without redirecting.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
 
   /api/oauth:
     get:
@@ -620,7 +789,25 @@ components:
       type: object
       properties:
         objectId:
-          type: string
+          oneOf:
+            - type: string
+            - type: integer
+          description: Comment object ID (string for text IDs, integer for numeric storage).
+        pid:
+          oneOf:
+            - type: string
+            - type: integer
+          description: Parent comment ID.
+        rid:
+          oneOf:
+            - type: string
+            - type: integer
+          description: Root comment ID.
+        user_id:
+          oneOf:
+            - type: string
+            - type: integer
+          description: Author user ID.
         nick:
           type: string
         mail:
@@ -660,6 +847,80 @@ components:
           items:
             $ref: '#/components/schemas/Comment'
       additionalProperties: true
+    ArticleCounter:
+      type: object
+      description: Counter values keyed by counter type.
+      additionalProperties:
+        type: integer
+
+    ArticleCounterResponse:
+      allOf:
+        - $ref: '#/components/schemas/SuccessResponse'
+        - type: object
+          required: [data]
+          properties:
+            data:
+              oneOf:
+                - type: integer
+                - type: array
+                  items:
+                    oneOf:
+                      - type: integer
+                      - $ref: '#/components/schemas/ArticleCounter'
+
+    ArticleCounterUpdate:
+      type: object
+      required: [path]
+      properties:
+        path:
+          type: string
+        type:
+          type: string
+          default: time
+        action:
+          type: string
+          enum: [inc, desc]
+          default: inc
+
+    TwoFactorEnable:
+      type: object
+      required: [secret, code]
+      properties:
+        secret:
+          type: string
+        code:
+          type: string
+          pattern: '^[0-9]{6}$'
+
+    TwoFactorResponse:
+      allOf:
+        - $ref: '#/components/schemas/SuccessResponse'
+        - type: object
+          required: [data]
+          properties:
+            data:
+              oneOf:
+                - type: object
+                  required: [enable]
+                  properties:
+                    enable:
+                      type: boolean
+                - type: object
+                  required: [otpauth_url, secret]
+                  properties:
+                    otpauth_url:
+                      type: string
+                    secret:
+                      type: string
+
+    PasswordResetRequest:
+      type: object
+      required: [email]
+      properties:
+        email:
+          type: string
+          format: email
+
     NewComment:
       type: object
       required: [url, comment]
@@ -790,7 +1051,9 @@ components:
       type: object
       properties:
         objectId:
-          type: string
+          oneOf:
+            - type: string
+            - type: integer
         display_name:
           type: string
         email:
@@ -879,6 +1142,16 @@ components:
           format: password
         github:
           type: string
+          description: Set to an empty string to unlink a configured OAuth provider.
+        label:
+          type: string
+        type:
+          type: string
+          enum: [administrator, guest]
+          description: Only applied when an administrator updates another account.
+        '2fa':
+          type: string
+          description: Empty string disables 2FA; a TOTP secret enables it.
         email:
           type: string
           format: email

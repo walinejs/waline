@@ -24,7 +24,7 @@ import {
   requiredString,
 } from '../src/utils/validation.js';
 
-type Row = Record<string, any> & { objectId: string };
+type Row = Record<string, any> & { objectId: string | number };
 
 const matches = (row: Row, where: Record<string, any>): boolean => {
   const entries = Object.entries(where).filter(([key]) => key !== '_complex');
@@ -150,7 +150,7 @@ const setup = (partial: Partial<CreateWalineCoreOptions> = {}) => {
   const Comment = new MemoryModel<WalineComment & Row>();
   const Counter = new MemoryModel<WalineCounter & Row>();
   const Users = new MemoryModel<WalineUser & Row>();
-  const extra = new MemoryModel<Row>();
+  const extra = new MemoryModel<Row & { objectId: string }>();
   const services = {
     token: {
       sign: vi.fn(async (id: string) => `token:${id}`),
@@ -585,6 +585,18 @@ describe('user handler', () => {
     },
   );
 
+  it('checks a new email against the target account', async () => {
+    const env = setup();
+    env.Users.rows.push({ ...administrator }, { ...guest });
+
+    await expect(
+      env.core.user.update(
+        { objectId: guest.objectId, data: { email: administrator.email } },
+        context(administrator),
+      ),
+    ).rejects.toThrow();
+  });
+
   it('does not allow profile updates to replace OAuth identities', async () => {
     const env = setup();
     env.Users.rows.push({ ...guest, github: 'original' });
@@ -837,6 +849,47 @@ describe('comment handler', () => {
     await expect(core.comment.count({ url: '' }, context())).resolves.toBe(2);
     await expect(core.comment.count({ url: [] }, context())).resolves.toBe(2);
     await expect(core.comment.count({}, context())).resolves.toBe(2);
+  });
+
+  it.each([
+    { rootId: 235, parentId: 236, name: 'numeric IDs' },
+    { rootId: 'root', parentId: 'parent', name: 'string IDs' },
+  ])('creates and lists replies using $name', async ({ rootId, parentId }) => {
+    const { core, Comment } = setup();
+    const post = { url: '/post', status: 'approved', insertedAt: new Date() };
+    Comment.rows.push(
+      { ...post, objectId: rootId, comment: 'root', nick: 'Root' },
+      { ...post, objectId: parentId, pid: rootId, rid: rootId, comment: 'parent', nick: 'Parent' },
+    );
+
+    await expect(
+      core.comment.create(
+        { comment: 'first reply', url: '/post', pid: rootId, rid: rootId },
+        context(),
+      ),
+    ).resolves.toMatchObject({ pid: rootId, rid: rootId });
+    expect(Comment.select).toHaveBeenCalledWith({ objectId: rootId });
+
+    await expect(
+      core.comment.create(
+        { comment: 'nested reply', url: '/post', pid: parentId, rid: rootId },
+        context(administrator),
+      ),
+    ).resolves.toMatchObject({ pid: parentId, rid: rootId });
+    expect(Comment.select).toHaveBeenCalledWith({ objectId: parentId });
+
+    const { data } = await core.comment.list({ path: '/post' }, context());
+    expect(data).toMatchObject([{ objectId: rootId }]);
+    expect(data[0].children).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          comment: '<p>nested reply</p>',
+          pid: parentId,
+          rid: rootId,
+          reply_user: expect.objectContaining({ nick: 'Parent' }),
+        }),
+      ]),
+    );
   });
 
   it('covers comment creation filters and effects', async () => {

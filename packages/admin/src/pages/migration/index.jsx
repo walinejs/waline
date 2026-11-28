@@ -6,6 +6,7 @@ import download from '../../utils/download.js';
 import readFileAsync from '../../utils/readFileAsync.js';
 import request from '../../utils/request.js';
 import { transformImport } from '../../utils/transformImport.js';
+import { restoreCommentRelationships } from './relationships.js';
 
 const IMPORT_SOURCES = [
   ['disqus', 'Disqus'],
@@ -16,6 +17,15 @@ const IMPORT_SOURCES = [
   ['commento', 'Commento'],
   ['wordpress', 'WordPress'],
 ];
+
+const downloadBackup = async () => {
+  const data = await request('db');
+  const backupFilename = `waline-backup-${new Date().toISOString().replaceAll(/[:.]/gu, '-')}.json`;
+
+  download(JSON.stringify(data, null, '\t'), backupFilename, 'application/json');
+
+  return backupFilename;
+};
 
 export default function Migration() {
   const [importLoading, setImportLoading] = useState(false);
@@ -37,6 +47,8 @@ export default function Migration() {
 
   // oxlint-disable-next-line max-statements
   const importData = async (event) => {
+    let backupFilename = '';
+
     try {
       const text = await readFileAsync(event.target.files[0]);
       const data = importSource ? transformImport(importSource, text) : JSON.parse(text);
@@ -52,6 +64,9 @@ export default function Migration() {
         0,
       );
       let importedLength = 0;
+
+      setImportLoading(['import backup']);
+      backupFilename = await downloadBackup();
 
       setImportLoading([
         'importing {{importedLength}}/{{maxLength}}',
@@ -82,7 +97,7 @@ export default function Migration() {
 
           if (tableName === 'Users') {
             // oxlint-disable-next-line no-await-in-loop
-            const user = await request(`user?email=${data.email}`);
+            const user = await request(`user?email=${encodeURIComponent(data.email)}`);
 
             if (user.objectId) {
               existUserObjectId = user.objectId;
@@ -128,57 +143,27 @@ export default function Migration() {
       }
 
       setImportLoading(['comment data index relationship reconstruction']);
-      const commentData = data.data.Comment ?? [];
-      const willUpdateData = [];
-
-      for (const cmt of commentData) {
-        const willUpdateItem = {};
-
-        [
-          { tableName: 'Comment', field: 'pid' },
-          { tableName: 'Comment', field: 'rid' },
-          { tableName: 'Users', field: 'user_id' },
-        ].forEach(({ tableName, field }) => {
-          if (!cmt[field]) {
-            return;
-          }
-
-          const oldId = cmt[field];
-          const newId = idMaps[tableName][cmt[field]];
-
-          if (oldId && newId && oldId !== newId) {
-            willUpdateItem[field] = newId;
-          }
-        });
-        if (Object.keys(willUpdateItem).length === 0) {
-          continue;
-        }
-
-        willUpdateData.push([willUpdateItem, { objectId: idMaps.Comment[cmt.objectId] }]);
-      }
-
-      importedLength = 0;
-      for (const [willUpdateItem, where] of willUpdateData) {
-        // oxlint-disable-next-line no-await-in-loop
-        await request({
-          url: `db?table=Comment&objectId=${where.objectId}`,
-          method: 'PUT',
-          body: willUpdateItem,
-        });
-
-        importedLength += 1;
-        setImportLoading([
-          'index updating {{importedLength}}/{{maxLength}}',
-          { importedLength, maxLength: willUpdateData.length },
-        ]);
-      }
+      await restoreCommentRelationships(
+        data.data.Comment ?? [],
+        idMaps,
+        (updatedLength, maxLength) => {
+          setImportLoading([
+            'index updating {{importedLength}}/{{maxLength}}',
+            { importedLength: updatedLength, maxLength },
+          ]);
+        },
+      );
 
       alert(t('import success'));
       location.reload();
     } catch (err) {
       // oxlint-disable-next-line no-console
       console.log(err);
-      alert(err.message);
+      alert(
+        backupFilename
+          ? `${t('import backup hint', { backupFilename })}\n${err.message}`
+          : err.message,
+      );
       throw err;
     } finally {
       setImportLoading(false);

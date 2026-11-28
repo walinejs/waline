@@ -11,7 +11,7 @@ icon: file
 
 - `dist/waline.js`: versi lengkap, format ESM
 
-  File ini adalah versi yang direkomendasikan untuk mengimpor `@waline/client`, ukuran Gzip 53 KB
+  File ini adalah versi yang direkomendasikan untuk mengimpor `@waline/client`, ukuran Gzip 100 KB
 
 - `dist/waline.umd.js`: versi lengkap, format UMD
 

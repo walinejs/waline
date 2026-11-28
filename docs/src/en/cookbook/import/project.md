@@ -84,7 +84,6 @@ All properties of components are reactive, you can find all supported properties
 import { Waline } from '@waline/client/component';
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
-
 import '@waline/client/style';
 
 const serverURL = 'https://waline.vercel.app';

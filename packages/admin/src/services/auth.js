@@ -22,8 +22,11 @@ export const forgot = ({ email }) =>
     body: { email },
   });
 
-export const getUserInfo = () =>
-  request('token').catch(() => {
+export const getUserInfo = async () => {
+  try {
+    return await request('token');
+  } catch (err) {
     logout();
-    Promise.reject(new Error('get userinfo failed'));
-  });
+    throw err;
+  }
+};

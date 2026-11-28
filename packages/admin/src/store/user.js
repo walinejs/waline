@@ -1,5 +1,6 @@
 import { forgot, getUserInfo, login, logout, register } from '../services/auth.js';
 import { updateProfile } from '../services/user.js';
+import { postToOpener } from '../utils/popup.js';
 
 export const user = {
   state: null,
@@ -22,9 +23,9 @@ export const user = {
       if (window.opener) {
         const localToken = localStorage.getItem('TOKEN');
         const remember = Boolean(localToken);
-        const token = localToken ?? window.TOKEN ?? sessionStorage.getItem('token');
+        const token = localToken ?? window.TOKEN ?? sessionStorage.getItem('TOKEN');
 
-        window.opener.postMessage({ type: 'userInfo', data: { token, remember, ...user } }, '*');
+        postToOpener({ type: 'userInfo', data: { token, remember, ...user } });
       }
 
       return dispatch.user.setUser(user);
@@ -46,7 +47,7 @@ export const user = {
         }
 
         if (window.opener) {
-          window.opener.postMessage({ type: 'userInfo', data: { token, remember, ...user } }, '*');
+          postToOpener({ type: 'userInfo', data: { token, remember, ...user } });
         }
       }
 
@@ -66,7 +67,7 @@ export const user = {
       await updateProfile(data);
 
       if (window.opener) {
-        window.opener.postMessage({ type: 'profile', data }, '*');
+        postToOpener({ type: 'profile', data });
       }
 
       return dispatch.user.updateUser(data);

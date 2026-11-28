@@ -160,7 +160,13 @@ onUnmounted(() => {
         :key="index"
         class="wl-reaction-item"
         :class="{ active }"
+        role="button"
+        tabindex="0"
+        :aria-label="desc"
+        :aria-pressed="active"
         @click="vote(index)"
+        @keydown.enter.prevent="vote(index)"
+        @keydown.space.prevent="vote(index)"
       >
         <div class="wl-reaction-img">
           <img :src="icon" :alt="desc" />

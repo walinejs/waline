@@ -54,6 +54,7 @@ const localeKeys = [
   'subPostComment',
   'subSiteComment',
   'subscribeToReplies',
+  'deleteConfirm',
 ];
 
 export const generateLocale = (locale: string[]): WalineLocale =>

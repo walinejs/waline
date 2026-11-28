@@ -11,6 +11,11 @@ export interface SelectOptions<T> {
   field?: readonly (keyof T & string)[];
   limit?: number;
   offset?: number;
+  /**
+   * Comment adapters support the virtual `popularity` order field: root likes plus the count and
+   * likes of public replies with the same URL and root ID. Compute it before offset/limit; it is
+   * not a persisted or returned field.
+   */
   order?: readonly {
     field: keyof T & string;
     direction: 'asc' | 'desc';
@@ -39,8 +44,8 @@ export interface WalineModel<T extends object> {
   delete(where: Where<T>): Promise<void>;
 }
 
-export interface BaseEntity {
-  objectId: string;
+export interface BaseEntity<ID extends string | number = string> {
+  objectId: ID;
   createdAt?: Date | string;
   updatedAt?: Date | string;
 }
@@ -57,14 +62,14 @@ export interface WalineUser extends BaseEntity {
   [provider: string]: unknown;
 }
 
-export interface WalineComment extends BaseEntity {
+export interface WalineComment extends BaseEntity<string | number> {
   comment: string;
   url: string;
   mail?: string;
   nick?: string;
   link?: string;
-  pid?: string;
-  rid?: string;
+  pid?: string | number;
+  rid?: string | number;
   ua?: string;
   ip?: string;
   user_id?: string;

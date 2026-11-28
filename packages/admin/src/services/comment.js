@@ -1,10 +1,20 @@
 import request from '../utils/request.js';
 
-export const getCommentList = ({ page = 1, filter }) =>
-  request({
-    url: `comment?type=list&owner=${filter.owner}&status=${filter.status}&keyword=${filter.keyword}&page=${page}`,
-    method: 'GET',
+export const getCommentList = ({ page = 1, filter, signal }) => {
+  const query = new URLSearchParams({
+    type: 'list',
+    owner: filter.owner,
+    status: filter.status,
+    keyword: filter.keyword,
+    page: String(page),
   });
+
+  return request({
+    url: `comment?${query.toString()}`,
+    method: 'GET',
+    signal,
+  });
+};
 
 export const updateComment = (id, data) =>
   request({

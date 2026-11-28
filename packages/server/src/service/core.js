@@ -35,7 +35,7 @@ module.exports = class extends think.Service {
         serverUrl: process.env.SERVER_URL,
         forceLogin: process.env.LOGIN === 'force',
         ipQps: Number(process.env.IPQPS || 60),
-        likeIncMax: Number(controller.config('LIKE_INC_MAX') || 1),
+        likeIncMax: Number(controller.config('likeIncMax') || 1),
         normalUserType: hasMailService
           ? `verify:${verificationCode}:${Date.now() + 60 * 60 * 1000}`
           : 'guest',

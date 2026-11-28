@@ -42,7 +42,7 @@ export interface UserInfo {
    *
    * User object ID
    */
-  objectId: number;
+  objectId: string | number;
 
   /**
    * 用户身份

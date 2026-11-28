@@ -42,9 +42,9 @@ const props = defineProps<{
   /** Current comment to be edited */
   edit?: WalineComment | null;
   /** Root comment id */
-  rootId?: number;
+  rootId?: string | number;
   /** Comment id to be replied */
-  replyId?: number;
+  replyId?: string | number;
   /** User name to be replied */
   replyUser?: string;
 }>();
@@ -203,6 +203,8 @@ const syncUserMeta = ({ link, mail, nick }: Partial<WalineCommentData>): void =>
 
 // oxlint-disable-next-line complexity, max-statements
 const submitComment = async (): Promise<void> => {
+  if (isSubmitting.value) return;
+
   const { serverURL, lang, login, wordLimit, requiredMeta, recaptchaV3Key, turnstileKey } =
     config.value;
 
@@ -212,7 +214,7 @@ const submitComment = async (): Promise<void> => {
     mail: userMeta.value.mail,
     link: userMeta.value.link,
     url: config.value.path,
-    ua: await userAgent(),
+    ua: '',
   };
 
   if (!props.edit) {
@@ -284,6 +286,8 @@ const submitComment = async (): Promise<void> => {
   isSubmitting.value = true;
 
   try {
+    comment.ua = await userAgent();
+
     if (recaptchaV3Key) {
       comment.recaptchaV3 = await useReCaptcha(recaptchaV3Key).execute('social');
     }
@@ -503,6 +507,31 @@ watch(showGif, async (value) => {
   searchResults.loading = false;
 });
 
+// An edit can contain another author's raw Markdown. Only preview edits
+// when the signed-in user owns the comment.
+const canPreview = computed(
+  () =>
+    !props.edit || Boolean(props.edit.user_id && props.edit.user_id === userInfo.value.objectId),
+);
+
+const updatePreview = (value: string): void => {
+  if (!canPreview.value) {
+    previewText.value = '';
+
+    return;
+  }
+
+  const { highlighter, texRenderer } = config.value;
+
+  previewText.value = parseMarkdown(value, {
+    emojiMap: emoji.value.map,
+    highlighter,
+    texRenderer,
+  });
+};
+
+const updatePreviewDebounced = useDebounceFn(() => updatePreview(editor.value), 150);
+
 onMounted(() => {
   if (props.edit?.objectId) {
     editor.value = props.edit.orig;
@@ -512,15 +541,10 @@ onMounted(() => {
   watchImmediate(
     () => editor.value,
     (value) => {
-      const { highlighter, texRenderer } = config.value;
-
       content.value = value;
-      previewText.value = parseMarkdown(value, {
-        emojiMap: emoji.value.map,
-        highlighter,
-        texRenderer,
-      });
       wordNumber.value = getWordNumber(value);
+
+      if (showPreview.value) updatePreviewDebounced();
 
       // oxlint-disable-next-line typescript/no-non-null-assertion
       if (value) autosize(textAreaRef.value!);
@@ -528,6 +552,10 @@ onMounted(() => {
       else autosize.destroy(textAreaRef.value!);
     },
   );
+
+  watch(showPreview, (visible) => {
+    if (visible) updatePreview(editor.value);
+  });
 
   // watch emoji value change
   watchImmediate(
@@ -606,13 +634,14 @@ onMounted(() => {
         ref="textarea"
         v-model="editor"
         class="wl-editor"
+        :aria-label="locale.placeholder"
         :placeholder="replyUser ? `@${replyUser}` : locale.placeholder"
         @keydown="onEditorKeyDown"
         @drop="onEditorDrop"
         @paste="onEditorPaste"
       />
 
-      <div v-show="showPreview" class="wl-preview">
+      <div v-if="canPreview" v-show="showPreview" class="wl-preview">
         <hr />
 
         <h4>{{ locale.preview }}:</h4>
@@ -678,6 +707,7 @@ onMounted(() => {
           </label>
 
           <button
+            v-if="canPreview"
             type="button"
             class="wl-action"
             :class="{ active: showPreview }"
