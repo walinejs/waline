@@ -54,4 +54,5 @@ export default generateLocale([
   'Subscribe to comments of this post',
   'Subscribe to comments of this site',
   'Subscribe to replies of your comments',
+  'Are you sure you want to delete this comment?',
 ]);

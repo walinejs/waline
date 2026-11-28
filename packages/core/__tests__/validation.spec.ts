@@ -137,6 +137,32 @@ describe('core validation without ThinkJS logic', () => {
     expect(services.twoFactor.verify).not.toHaveBeenCalled();
   });
 
+  describe.each(['pid', 'rid'] as const)('comment reply %s', (field) => {
+    it.each(
+      [
+        [],
+        {},
+        true,
+        null,
+        0,
+        -1,
+        1.5,
+        Number.POSITIVE_INFINITY,
+        Number.NaN,
+        Number.MAX_SAFE_INTEGER + 1,
+      ].map((value) => ({
+        value,
+      })),
+    )('rejects invalid input %# before storage', async ({ value }) => {
+      const { core, model } = setup();
+      await expect(
+        core.comment.create({ comment: 'reply', url: '/', [field]: value }, anonymous),
+      ).rejects.toMatchObject({ code: 'VALIDATION_ERROR', status: 400, details: { field } });
+      expect(model.select).not.toHaveBeenCalled();
+      expect(model.add).not.toHaveBeenCalled();
+    });
+  });
+
   it('rejects non-scalar verified token subjects without querying users', async () => {
     const { core, model } = setup();
     await expect(core.auth.resolveSession({ token: 'signed' }, anonymous)).resolves.toBeUndefined();

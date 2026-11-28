@@ -28,14 +28,14 @@ export interface WalineCommentData {
    * Only available when replying comment
    */
 
-  pid?: number;
+  pid?: string | number;
 
   /**
    * Root comment id
    *
    * Only available when replying comment
    */
-  rid?: number;
+  rid?: string | number;
 
   /**
    * User id being at
@@ -54,7 +54,7 @@ export interface WalineCommentData {
 
 export interface BaseWalineResponseComment {
   /** Comment object ID */
-  objectId: number;
+  objectId: string | number;
 
   /** Timestamp of the comment */
   time: number;
@@ -102,7 +102,7 @@ export interface BaseWalineResponseComment {
    * 仅在登录用户时可用
    */
   // FIXME: Rename it to `userId`
-  user_id?: number;
+  user_id?: string | number;
 
   /**
    * User location
@@ -161,10 +161,10 @@ export interface BaseWalineResponseComment {
 export interface WalineChildComment extends BaseWalineResponseComment {
   /** Parent comment id */
 
-  pid: number;
+  pid: string | number;
 
   /** Root comment id */
-  rid: number;
+  rid: string | number;
 
   /** User id being at */
   at?: string;

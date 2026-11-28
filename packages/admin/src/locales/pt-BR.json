@@ -64,6 +64,8 @@
   "import from": "Importar de {{source}}",
   "import success": "Importação bem-sucedida",
   "import clear data confirm": "Atenção! A importação substituirá todos os dados atuais. Deseja continuar?",
+  "import backup": "Fazendo backup dos dados atuais…",
+  "import backup hint": "Falha na importação. Um backup dos dados foi baixado como {{backupFilename}}; importe esse arquivo para restaurar seus dados.",
   "importing {{importedLength}}/{{maxLength}}": "Importando {{importedLength}}/{{maxLength}}",
   "comment data index relationship reconstruction": "Reconstrução do índice de dados de comentários em andamento",
   "index updating {{importedLength}}/{{maxLength}}": "Atualizando índice {{importedLength}}/{{maxLength}}",

@@ -46,6 +46,7 @@ const {
 
   LEVELS,
   COMMENT_AUDIT,
+  LIKE_INC_MAX,
 } = process.env;
 
 let storage = null;
@@ -120,6 +121,7 @@ module.exports = {
   disableUserAgent: DISABLE_USERAGENT && !isFalse(DISABLE_USERAGENT),
   disableRegion: DISABLE_REGION && !isFalse(DISABLE_REGION),
   levels: !LEVELS || isFalse(LEVELS) ? false : LEVELS.split(/\s*,\s*/u).map(Number),
+  likeIncMax: Number(LIKE_INC_MAX || 1),
 
   audit: COMMENT_AUDIT && !isFalse(COMMENT_AUDIT),
   avatarProxy,

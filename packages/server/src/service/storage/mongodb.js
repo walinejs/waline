@@ -2,6 +2,9 @@ const { ObjectID: ObjectId } = require('think-mongo/lib/model');
 
 const Base = require('./base.js');
 const { normalizeOrder, toOrderString } = require('./order.js');
+const { POPULARITY, REPLIES, isPopularityOrder, withoutPopularity } = require('./popularity.js');
+
+const escapeRegExp = (value) => value.replaceAll(/[.*+?^${}()|[\]\\]/gu, String.raw`\$&`);
 
 module.exports = class extends Base {
   parseWhere(where) {
@@ -36,7 +39,7 @@ module.exports = class extends Base {
               filter[parseKey(k)] = { $in: where[k][1].map((id) => new ObjectId(id)) };
             } else {
               filter[parseKey(k)] = {
-                $regex: new RegExp(`^(${where[k][1].join('|')})$`, 'u'),
+                $in: where[k][1],
               };
             }
             break;
@@ -54,11 +57,11 @@ module.exports = class extends Base {
             let reg;
 
             if (first === '%' && last === '%') {
-              reg = new RegExp(likePattern.slice(1, -1), 'u');
+              reg = new RegExp(escapeRegExp(likePattern.slice(1, -1)), 'u');
             } else if (first === '%') {
-              reg = new RegExp(`${likePattern.slice(1)}$`, 'u');
+              reg = new RegExp(`${escapeRegExp(likePattern.slice(1))}$`, 'u');
             } else if (last === '%') {
-              reg = new RegExp(`^${likePattern.slice(0, -1)}`, 'u');
+              reg = new RegExp(`^${escapeRegExp(likePattern.slice(0, -1))}`, 'u');
             }
 
             if (reg) {
@@ -85,11 +88,11 @@ module.exports = class extends Base {
     return filter;
   }
 
-  where(instance, where) {
+  parseFilter(where) {
     const filter = this.parseWhere(where);
 
     if (!where._complex) {
-      return instance.where(filter);
+      return filter;
     }
 
     const filters = [];
@@ -105,10 +108,14 @@ module.exports = class extends Base {
       });
     }
 
-    return instance.where({
+    return {
       // $or, $and, $not, $nor
       [`$${where._complex._logic}`]: filters,
-    });
+    };
+  }
+
+  where(instance, where) {
+    return instance.where(this.parseFilter(where));
   }
 
   async select(where, { desc, field, limit, offset, order } = {}) {
@@ -118,6 +125,65 @@ module.exports = class extends Base {
     const normalizedOrder = normalizeOrder(order, desc, (field) =>
       field === 'objectId' ? '_id' : field,
     );
+
+    if (isPopularityOrder(normalizedOrder)) {
+      const pipeline = [
+        { $match: this.parseFilter(where) },
+        {
+          $lookup: {
+            from: instance.tableName,
+            let: { root: { $toString: '$_id' }, url: '$url' },
+            pipeline: [
+              {
+                $match: {
+                  status: { $nin: ['waiting', 'spam'] },
+                  $expr: { $and: [{ $eq: ['$rid', '$$root'] }, { $eq: ['$url', '$$url'] }] },
+                },
+              },
+              { $group: { _id: null, score: { $sum: { $add: [1, { $ifNull: ['$like', 0] }] } } } },
+            ],
+            as: REPLIES,
+          },
+        },
+        {
+          $addFields: {
+            [POPULARITY]: {
+              $add: [
+                { $ifNull: ['$like', 0] },
+                { $ifNull: [{ $arrayElemAt: [`$${REPLIES}.score`, 0] }, 0] },
+              ],
+            },
+          },
+        },
+        {
+          $sort: Object.fromEntries(
+            normalizedOrder.map(({ field, direction }) => [
+              field === 'popularity' ? POPULARITY : field,
+              direction === 'desc' ? -1 : 1,
+            ]),
+          ),
+        },
+      ];
+
+      if (offset) pipeline.push({ $skip: offset });
+      if (limit) pipeline.push({ $limit: limit });
+      if (field) {
+        pipeline.push({
+          $project: Object.fromEntries(
+            ['_id', ...field].map((key) => [key === 'objectId' ? '_id' : key, 1]),
+          ),
+        });
+      } else {
+        pipeline.push({ $project: { [POPULARITY]: 0, [REPLIES]: 0 } });
+      }
+
+      const data = await instance.aggregate(pipeline);
+
+      return data.map(({ _id, ...cmt }) => ({
+        ...withoutPopularity(cmt),
+        objectId: _id.toString(),
+      }));
+    }
 
     if (normalizedOrder.length > 0) {
       instance.order(toOrderString(normalizedOrder));

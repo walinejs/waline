@@ -22,6 +22,18 @@ GET /api/comment
 | pageSize | number | 每頁留言列表的筆數                                                                                               |
 | sortBy   | string | 留言排序方式，預設依時間倒序（insertedAt_desc），也可以選擇依時間正序（insertedAt_asc）、依熱度倒序（like_desc） |
 
+`like_desc` 以整串討論的**主留言讚數＋公開回覆數＋公開回覆讚數**排序，包含各層回覆。待審、垃圾留言及其他頁面的回覆不計入熱度，即使目前使用者有權限看到這些留言也一樣。置頂留言仍排最前面；同分時依留言 ID 倒序排列。回傳的 `like` 仍代表該則留言本身的讚數。
+
+熱度在查詢時、分頁前計算，既有留言及後續按讚、審核、刪除、資料匯入都不需要額外回填。SQL、MongoDB 與 CloudBase 在資料庫內完成排序；GitHub 儲存原本就會將 CSV 載入記憶體。舊版 LeanCloud 後端則讀取該頁所有留言的排序欄位，在記憶體排序後才讀取當頁留言內容，因此資源成本會隨留言數增加。
+
+既有 SQL 資料庫建議新增 `(rid, url, status)` 索引，避免每個主留言都掃描整張表；新部署的 SQL 範本已包含索引。例如（請依部署調整資料表名稱與前綴）：
+
+```sql
+CREATE INDEX idx_comment_rid_url_status ON wl_Comment (rid, url, status);
+```
+
+MongoDB／CloudBase 請建立相同欄位順序的複合索引。
+
 ### 留言數
 
 取得某篇文章對應的留言總數

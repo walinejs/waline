@@ -22,6 +22,18 @@ GET /api/comment
 | pageSize | number | 每页评论列表的条数                                                                                             |
 | sortBy   | string | 评论排序方式，默认按时间倒序(insertedAt_desc)，还可以选择按时间正序（insertedAt_asc），按热度倒序（like_desc） |
 
+`like_desc` 按整串讨论的**主评论点赞数＋公开回复数＋公开回复点赞数**排序，包含各层回复。待审核、垃圾评论及其他页面的回复不计入热度，即使当前用户有权限看到这些评论也一样。置顶评论仍排在最前面；同分时按评论 ID 倒序排列。返回的 `like` 仍代表该条评论本身的点赞数。
+
+热度在查询时、分页前计算，已有评论及后续点赞、审核、删除、数据导入都不需要额外回填。SQL、MongoDB 与 CloudBase 在数据库内完成排序；GitHub 存储原本就会将 CSV 加载到内存。旧版 LeanCloud 后端则读取该文章下所有评论的排序字段，在内存中排序后才读取当前分页的评论内容，因此资源成本会随评论数增加。
+
+已有 SQL 数据库建议新增 `(rid, url, status)` 索引，避免每个主评论都扫描整张表；新部署的 SQL 模板已包含索引。例如（请根据部署调整数据表名称与前缀）：
+
+```sql
+CREATE INDEX idx_comment_rid_url_status ON wl_Comment (rid, url, status);
+```
+
+MongoDB／CloudBase 请建立相同字段顺序的复合索引。
+
 ### 评论数
 
 获取某篇文章对应的评论总数

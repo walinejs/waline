@@ -54,4 +54,5 @@ export default generateLocale([
   'Berlangganan komentar di postingan ini',
   'Berlangganan komentar di situs ini',
   'Berlangganan balasan komentar Anda',
+  'Apakah Anda yakin ingin menghapus komentar ini?',
 ]);

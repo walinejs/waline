@@ -56,4 +56,5 @@ export default generateLocale([
   'S’abonner aux commentaires de ce post',
   'S’abonner aux commentaires de ce site',
   'S’abonner aux réponses de vos commentaires',
+  'Voulez-vous vraiment supprimer ce commentaire ?',
 ]);

@@ -11,7 +11,7 @@ import {
   replyComment,
   updateComment,
 } from '../../services/comment.js';
-import { buildAvatar, formatDate, getPostUrl } from './utils.js';
+import { buildAvatar, formatDate, getCommentEditDraft, getPostUrl } from './utils.js';
 
 export default function ManageComments() {
   const { t } = useTranslation();
@@ -35,6 +35,12 @@ export default function ManageComments() {
   const [actDropStatus, setActDropStatus] = useState(false);
   const [commentIds, setCommentIds] = useState([]);
 
+  useEffect(() => {
+    if (cmtHandler.action === 'edit' && cmtHandler.draft) {
+      editCommentRef.current = cmtHandler.draft;
+    }
+  }, [cmtHandler]);
+
   const FILTERS = [
     [
       'owner',
@@ -53,11 +59,40 @@ export default function ManageComments() {
     ],
   ];
 
+  const refreshComments = () => {
+    // Changing the filter object identity re-runs the list effect for the current page.
+    dispatch({});
+  };
+
+  const updateFilter = (key, type) => {
+    setList((current) => (current.page === 1 ? current : { ...current, page: 1 }));
+    dispatch({ [key]: type });
+  };
+
   useEffect(() => {
-    getCommentList({ page: list.page, filter }).then((data) => {
-      setList((list) => ({ ...list, ...data }));
-      setCommentIds([]);
-    });
+    const controller = new AbortController();
+
+    const loadComments = async () => {
+      try {
+        const data = await getCommentList({
+          page: list.page,
+          filter,
+          signal: controller.signal,
+        });
+
+        setList((current) => ({ ...current, ...data }));
+        setCommentIds([]);
+      } catch (err) {
+        if (err.name !== 'AbortError') {
+          // oxlint-disable-next-line no-console
+          console.error(err);
+        }
+      }
+    };
+
+    void loadComments();
+
+    return () => controller.abort();
   }, [filter, list.page]);
 
   const createActions = (comment) =>
@@ -70,29 +105,20 @@ export default function ManageComments() {
         async action() {
           if (comment) {
             await updateComment(comment.objectId, { status: 'approved' });
-            list.data = list.data.filter(({ objectId }) => objectId !== comment.objectId);
-            switch (comment.status) {
-              case 'waiting': {
-                list.waitingCount -= 1;
-                break;
-              }
-              case 'spam': {
-                list.spamCount -= 1;
-                break;
-              }
-              default: {
-                break;
-              }
-            }
-            setList({ ...list });
+            setList((current) => {
+              const data = current.data.filter(({ objectId }) => objectId !== comment.objectId);
+              let { waitingCount, spamCount } = current;
+
+              if (comment.status === 'waiting') waitingCount = Math.max(waitingCount - 1, 0);
+              if (comment.status === 'spam') spamCount = Math.max(spamCount - 1, 0);
+
+              return { ...current, data, waitingCount, spamCount };
+            });
           } else {
             await Promise.all(
               commentIds.map((objectId) => updateComment(objectId, { status: 'approved' })),
             );
-            getCommentList({ page: list.page, filter }).then((data) => {
-              setList({ ...list, ...data });
-              setCommentIds([]);
-            });
+            refreshComments();
           }
         },
       },
@@ -104,21 +130,18 @@ export default function ManageComments() {
         async action() {
           if (comment) {
             await updateComment(comment.objectId, { status: 'waiting' });
-            list.data = list.data.filter(({ objectId }) => objectId !== comment.objectId);
-            if (comment.status === 'spam') {
-              list.spamCount -= 1;
-            }
+            setList((current) => {
+              const data = current.data.filter(({ objectId }) => objectId !== comment.objectId);
+              const spamCount =
+                comment.status === 'spam' ? Math.max(current.spamCount - 1, 0) : current.spamCount;
 
-            list.waitingCount += 1;
-            setList({ ...list });
+              return { ...current, data, spamCount, waitingCount: current.waitingCount + 1 };
+            });
           } else {
             await Promise.all(
               commentIds.map((objectId) => updateComment(objectId, { status: 'waiting' })),
             );
-            getCommentList({ page: list.page, filter }).then((data) => {
-              setList({ ...list, ...data });
-              setCommentIds([]);
-            });
+            refreshComments();
           }
         },
       },
@@ -130,17 +153,16 @@ export default function ManageComments() {
         async action() {
           if (comment) {
             await updateComment(comment.objectId, { status: 'spam' });
-            list.data = list.data.filter(({ objectId }) => objectId !== comment.objectId);
-            list.spamCount += 1;
-            setList({ ...list });
+            setList((current) => ({
+              ...current,
+              data: current.data.filter(({ objectId }) => objectId !== comment.objectId),
+              spamCount: current.spamCount + 1,
+            }));
           } else {
             await Promise.all(
               commentIds.map((objectId) => updateComment(objectId, { status: 'spam' })),
             );
-            getCommentList({ page: list.page, filter }).then((data) => {
-              setList({ ...list, ...data });
-              setCommentIds([]);
-            });
+            refreshComments();
           }
         },
       },
@@ -153,13 +175,13 @@ export default function ManageComments() {
 
           const sticky = !comment.sticky;
 
-          list.data.forEach((cmt) => {
-            if (cmt.objectId === comment.objectId) {
-              cmt.sticky = sticky;
-            }
-          });
           await updateComment(comment.objectId, { sticky: sticky ? 1 : 0 });
-          setList({ ...list });
+          setList((current) => ({
+            ...current,
+            data: current.data.map((cmt) =>
+              cmt.objectId === comment.objectId ? { ...cmt, sticky } : cmt,
+            ),
+          }));
         },
       },
       {
@@ -167,13 +189,11 @@ export default function ManageComments() {
         show: comment,
         name: t('edit'),
         action() {
-          const handler = {};
-
-          if (cmtHandler.id !== comment.objectId && cmtHandler.action !== 'edit') {
-            handler.id = comment.objectId;
-            handler.action = 'edit';
-          }
-          setCmtHandler(handler);
+          setCmtHandler({
+            id: comment.objectId,
+            action: 'edit',
+            draft: getCommentEditDraft(comment),
+          });
         },
       },
       {
@@ -205,14 +225,13 @@ export default function ManageComments() {
 
           if (comment) {
             await deleteComment(comment.objectId);
-            list.data = list.data.filter(({ objectId }) => objectId !== comment.objectId);
-            setList({ ...list });
+            setList((current) => ({
+              ...current,
+              data: current.data.filter(({ objectId }) => objectId !== comment.objectId),
+            }));
           } else {
             await Promise.all(commentIds.map((id) => deleteComment(id)));
-            getCommentList({ page: list.page, filter }).then((data) => {
-              setList({ ...list, ...data });
-              setCommentIds([]);
-            });
+            refreshComments();
           }
         },
       },
@@ -227,32 +246,36 @@ export default function ManageComments() {
 
     const { display_name, email, url: link } = user;
 
-    await replyComment({
-      nick: display_name,
-      mail: email,
-      ua: navigator.userAgent,
-      link,
-      url,
-      comment,
-      pid,
-      rid: rid ?? pid,
-      at,
-    });
+    try {
+      await replyComment({
+        nick: display_name,
+        mail: email,
+        ua: navigator.userAgent,
+        link,
+        url,
+        comment,
+        pid,
+        rid: rid ?? pid,
+        at,
+      });
+    } catch {
+      alert(t('reply failed'));
+      return;
+    }
+
     location.reload();
-    // setCmtHandler({});
-    // setList({page: 1, totalPages: list.totalPages, spamCount: list.spamCount, data: []});
   };
 
   const onEditComment = async (idx) => {
     const comment = list.data[idx];
+    const draft = { ...editCommentRef.current };
+    const updated = await updateComment(comment.objectId, draft);
 
-    await updateComment(comment.objectId, editCommentRef.current);
     setList(({ data, ...rest }) => ({
       ...rest,
-      data: data.map((item, index) =>
-        index === idx ? { ...item, ...editCommentRef.current } : item,
-      ),
+      data: data.map((item, index) => (index === idx ? { ...item, ...draft, ...updated } : item)),
     }));
+    editCommentRef.current = {};
     setCmtHandler({});
   };
 
@@ -279,7 +302,7 @@ export default function ManageComments() {
                   >
                     {FILTER.map(({ type, name }) => (
                       <li className={cls({ current: type === filter[key] })} key={type}>
-                        <button type="button" onClick={() => dispatch({ [key]: type })}>
+                        <button type="button" onClick={() => updateFilter(key, type)}>
                           {name}
                           {key === 'status' && type !== 'approved' && list[`${type}Count`] > 0 ? (
                             <span className="balloon">{list[`${type}Count`]}</span>
@@ -348,7 +371,7 @@ export default function ManageComments() {
                       className="btn btn-s"
                       onClick={(event) => {
                         event.preventDefault();
-                        dispatch({ keyword: keywordRef.current.value });
+                        updateFilter('keyword', keywordRef.current.value);
                       }}
                     >
                       {t('filter')}
@@ -393,6 +416,7 @@ export default function ManageComments() {
                             sticky,
                             time,
                             insertedAt,
+                            orig,
                           },
                           idx,
                         ) =>
@@ -459,7 +483,7 @@ export default function ManageComments() {
                                       id={`comment-${objectId}-text`}
                                       rows="6"
                                       className="w-90 mono"
-                                      defaultValue={comment}
+                                      defaultValue={orig ?? comment}
                                       onChange={(event) =>
                                         (editCommentRef.current.comment = event.target.value)
                                       }
@@ -585,7 +609,10 @@ export default function ManageComments() {
                                       <button
                                         type="button"
                                         className="btn btn-s cancel"
-                                        onClick={() => setCmtHandler({})}
+                                        onClick={() => {
+                                          editCommentRef.current = {};
+                                          setCmtHandler({});
+                                        }}
                                       >
                                         {t('cancel')}
                                       </button>
@@ -600,6 +627,10 @@ export default function ManageComments() {
                                     rid,
                                     pid,
                                     sticky,
+                                    mail,
+                                    link,
+                                    comment,
+                                    orig,
                                   }).map(({ key, disable, name, action }) =>
                                     disable ? (
                                       <span className="weak" key={key}>
@@ -631,7 +662,7 @@ export default function ManageComments() {
                   <Paginator
                     current={list.page}
                     total={list.totalPages}
-                    onChange={(page) => setList({ ...list, page })}
+                    onChange={(page) => setList((current) => ({ ...current, page }))}
                   />
                 </form>
               </div>

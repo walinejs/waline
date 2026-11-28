@@ -70,12 +70,32 @@ export const RecentComments = ({
     token: userInfo.value.token,
   }).then((comments) => {
     if (root && comments.length > 0) {
-      root.innerHTML = `<ul class="wl-recent-list">${comments
-        .map(
-          (comment) =>
-            `<li class="wl-recent-item"><a href="${comment.url}">${comment.nick}</a>：${comment.comment}</li>`,
-        )
-        .join('')}</ul>`;
+      const document = root.ownerDocument;
+      const list = document.createElement('ul');
+      list.className = 'wl-recent-list';
+
+      for (const comment of comments) {
+        const item = document.createElement('li');
+        const link = document.createElement('a');
+        item.className = 'wl-recent-item';
+        link.textContent = comment.nick;
+
+        try {
+          const target = new URL(comment.url, document.baseURI);
+          if (target.protocol === 'http:' || target.protocol === 'https:') {
+            link.href = target.href;
+          }
+        } catch {
+          // Invalid page identifiers remain visible without a clickable URL.
+        }
+
+        // Only the server-sanitized comment body is HTML; metadata stays literal.
+        item.innerHTML = comment.comment;
+        item.prepend(link, document.createTextNode('：'));
+        list.append(item);
+      }
+
+      root.replaceChildren(list);
 
       return {
         comments,
