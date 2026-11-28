@@ -51,7 +51,7 @@
     "oxlint": "1.90.0",
     "oxlint-tsgolint": "7.0.2009",
     "picocolors": "1.1.1",
-    "postcss": "8.5.33",
+    "postcss": "8.5.34",
     "publint": "0.3.25",
     "rimraf": "6.1.4",
     "stylelint": "17.16.0",
