@@ -3,8 +3,6 @@ const BaseRest = require('../rest.js');
 const { getMarkdownParser } = require('../../service/markdown/index.js');
 const { think } = require('thinkjs');
 
-const markdownParser = getMarkdownParser(think.config('markdown'));
-
 const isHttpUrl = (value) => /^(?:https?:)?\/\//iu.test(value);
 
 const buildAbsoluteUrl = (baseUrl, path) => {
@@ -120,7 +118,7 @@ module.exports = class extends BaseRest {
       );
     }
 
-    const md = await markdownParser;
+    const md = await getMarkdownParser(think.config('markdown'));
     const items = comments.map((comment) => {
       const user = users.find(({ objectId }) => objectId === comment.user_id);
       const nick = user?.display_name || comment.nick || 'Anonymous';

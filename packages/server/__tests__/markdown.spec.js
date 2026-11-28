@@ -132,3 +132,48 @@ describe('markdown parser', () => {
     });
   });
 });
+
+describe('markdown parser cache', () => {
+  it('reuses the parser for the same config object', async () => {
+    const config = {};
+
+    const first = getMarkdownParser(config);
+    const second = getMarkdownParser(config);
+
+    expect(first).toBe(second);
+    await first;
+  });
+
+  it('retries initialization after a shared failure', async () => {
+    let attempts = 0;
+    const config = {
+      get plugin() {
+        attempts += 1;
+        if (attempts === 1) {
+          throw new Error('temporary initialization failure');
+        }
+
+        return { tex: false };
+      },
+    };
+
+    const failed = getMarkdownParser(config);
+
+    expect(getMarkdownParser(config)).toBe(failed);
+    await expect(failed).rejects.toThrow('temporary initialization failure');
+
+    const retried = getMarkdownParser(config);
+
+    expect(retried).not.toBe(failed);
+    await expect(retried).resolves.toBeTypeOf('function');
+    expect(attempts).toBe(2);
+  });
+
+  it('creates a parser for different config objects', async () => {
+    const first = getMarkdownParser({});
+    const second = getMarkdownParser({});
+
+    expect(first).not.toBe(second);
+    await Promise.all([first, second]);
+  });
+});
