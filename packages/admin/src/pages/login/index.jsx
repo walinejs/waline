@@ -8,6 +8,7 @@ import Header from '../../components/Header.jsx';
 import * as Icons from '../../components/icon';
 import { useCaptcha } from '../../components/useCaptcha.js';
 import { get2FAToken } from '../../services/user.js';
+import { getAdminRedirect } from '../../utils/login-redirect.js';
 
 export default function Login() {
   const { t } = useTranslation();
@@ -59,7 +60,7 @@ export default function Login() {
       }
     }
 
-    navigate(defaultRedirect);
+    navigate(getAdminRedirect(redirect, location.origin) ?? defaultRedirect);
   }, [user, query, navigate]);
 
   const onSubmit = async (event) => {
