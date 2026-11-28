@@ -507,7 +507,20 @@ watch(showGif, async (value) => {
   searchResults.loading = false;
 });
 
+// An edit can contain another author's raw Markdown. Only preview edits
+// when the signed-in user owns the comment.
+const canPreview = computed(
+  () =>
+    !props.edit || Boolean(props.edit.user_id && props.edit.user_id === userInfo.value.objectId),
+);
+
 const updatePreview = (value: string): void => {
+  if (!canPreview.value) {
+    previewText.value = '';
+
+    return;
+  }
+
   const { highlighter, texRenderer } = config.value;
 
   previewText.value = parseMarkdown(value, {
@@ -628,7 +641,7 @@ onMounted(() => {
         @paste="onEditorPaste"
       />
 
-      <div v-show="showPreview" class="wl-preview">
+      <div v-if="canPreview" v-show="showPreview" class="wl-preview">
         <hr />
 
         <h4>{{ locale.preview }}:</h4>
@@ -694,6 +707,7 @@ onMounted(() => {
           </label>
 
           <button
+            v-if="canPreview"
             type="button"
             class="wl-action"
             :class="{ active: showPreview }"
